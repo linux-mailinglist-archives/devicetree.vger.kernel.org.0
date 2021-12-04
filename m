@@ -2,230 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F8204684DD
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 13:42:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCD744684EF
+	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 14:08:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1384948AbhLDMqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Dec 2021 07:46:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38778 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233028AbhLDMqS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 07:46:18 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7406AC061751;
-        Sat,  4 Dec 2021 04:42:52 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id x15so22992705edv.1;
-        Sat, 04 Dec 2021 04:42:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=2n1fNN+PJjJwaJjJvU82cMiwh7uZr6sJndttoiAU83w=;
-        b=ZWtu+Jt9eah7JczO6qAyOkk+iI3ChP9qxjyzKPMExlYZMV/1kClCMPIZlITGEKyXY/
-         zu/mAIO4Wsl2lafS5tRGgYNWffDrl8gma6G0v3ZpAp/6FkPEQtNAUE8GpbRc6we0NTum
-         8+Rtye4sE8QTmbWsc86RmXwntSLQqsktlnMAfw3Gw/zA0bh8G9lC11IIX7tfwflQblix
-         Sd6z4gqq0f08FZvWCzrOrRP6q0Pt1+qq5h/24hWgd7IQUL+SHxzk2HN8qVGoAtz8t9Rj
-         V3NBcnQfu6/1bP+L0gU4j2Mhkc3f+6ttsiNoaNybGFQSTCS9h5wNruZSkhmWv9Moq5J8
-         yOIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=2n1fNN+PJjJwaJjJvU82cMiwh7uZr6sJndttoiAU83w=;
-        b=g2wKSLbqIgyNO8walX23RGG3OUZwEjbx2saWKD75spFqahFuB6YE+g3A5wZhWWJRiB
-         nJIJlrZlRBOf2gb+rGcwxjuxxWuO1TDFewmONvbSAxnUBcwN1G6Rg9cr4N3xH9CMnHmH
-         eTPH8T1FewkqfkppOeCS2Eq3ugEfyB+64g6wCwISlgvZvuS30GH/C8KG02O7qPRiO41W
-         MpvF5doNAbpfjlTjF+FDH5N5wlW/MvsR9UfUXnHyF97XaIswTl+GAonX807L5imMOJmp
-         t7T9uc9BEH+0p4mv6ADOuyY7/+4F4Cj+L4FuUPTgg15BXeI7aPWMpBSWuiPuMPVtekej
-         pVBA==
-X-Gm-Message-State: AOAM5308MWwED2Yq+u9LVp7OWVDIKgQyDJyDoPh3D8EWbqnYVNNx1MJH
-        OzI6XspqqvEMAmXaEV7As41JcfREBaw=
-X-Google-Smtp-Source: ABdhPJwsrSJDKXm/3ArbLb6lZtGfFZl8FCSdGtdDuyTXKo0CPpQrsfJbiWCPSfn4iTknPYlYWQJ02w==
-X-Received: by 2002:a17:907:3e22:: with SMTP id hp34mr31297502ejc.491.1638621770817;
-        Sat, 04 Dec 2021 04:42:50 -0800 (PST)
-Received: from skbuf ([188.25.173.50])
-        by smtp.gmail.com with ESMTPSA id x7sm4043317edd.28.2021.12.04.04.42.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Dec 2021 04:42:50 -0800 (PST)
-Date:   Sat, 4 Dec 2021 14:42:49 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        id S1384993AbhLDNLx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Dec 2021 08:11:53 -0500
+Received: from mail-eopbgr00054.outbound.protection.outlook.com ([40.107.0.54]:28486
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1355001AbhLDNLx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 4 Dec 2021 08:11:53 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TkSLAZjCIoCk0sa6FwMMMNhsF6O/FeTEfSr5wZodDnNaYT+5RKunobjQmy/PgGhI4uVet6wA+CfFEaT1QbONlspR3h75+Mv6/W1CvGGmZePJLDnkHQfRJA0rR8kr3tfzSQ59UVQGnkYIOOJ9gwjY04Yp7WQJGNb9Sh1Iv3jpIfBwhLrkt6gzxiTjRS6UuWLs83NNfCoACSQlVw+gvtjffQ1ru7XWnzBglf4axzcl4bVhjHwh5+7pjluP/f2WRksJm7M9kySXNTzQc8jMpiG/a6mynWioHmOR+v/INSAmqAKL5H6MTgkBDf8Lb8hL5SMM3I8AU8wVPPESZ00Gbd3vXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IzLo5uQkueAt34RubRqe1eMpmhjwPT1Rs4pJ9CtpjBo=;
+ b=UdHEAozscbicQ9qxGoyZI2tzeJm37u5Fjpht56zFO66v8GfNm1HwXhwPAIySoQuTGwyAjzlRP8R0nenywpFBEMiYVn0S/iAylpz9gCgoBd0NBQmQSeZA+1+eWZoO311cc1AAUtK0ou+CDTCBIz78kcFLvpHU+SXiNK4b7bvnViCINGORTV3RUjMDekQIeWZymgJHClWoajHKLr3m6vJHE1xWdUbESdfqgQR7zV7KctX0qUbP39/CKxq+C+vNHJZs4W3D9igVanS0+a7f2qTZGA/L4Lh7PRYQyQfuY1+UxW6h5ZUBVOXVwVgGEPtr+llv0GaDQQZzYb7JBTfd65eqjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IzLo5uQkueAt34RubRqe1eMpmhjwPT1Rs4pJ9CtpjBo=;
+ b=W6JtAXGgH/IP7jRu+QH8GX+uHXzjRyKV/I5Q5IHD/0NI49Ncw6a6PChfu5pzAfIJ4oqMSW7DXEZel9CPBfj54mlF1q6NQHDBc8sTRDUDJndnA7mCqwH51IlKzuC9XQdQ7imNnuI332Qq4p1BaA+hW980CnMzYX4+hanRw8tZsU0=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by VI1PR04MB4685.eurprd04.prod.outlook.com (2603:10a6:803:70::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23; Sat, 4 Dec
+ 2021 13:08:20 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::796e:38c:5706:b802]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::796e:38c:5706:b802%3]) with mapi id 15.20.4755.020; Sat, 4 Dec 2021
+ 13:08:20 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+CC:     "David S. Miller" <davem@davemloft.net>,
         Jakub Kicinski <kuba@kernel.org>,
-        Sean Anderson <sean.anderson@seco.com>, davem@davemloft.net
-Subject: Re: [PATCH net-next v2 4/8] net: phylink: update
- supported_interfaces with modes from fwnode
-Message-ID: <20211204124249.uldyjnf44xgqoq4o@skbuf>
-References: <20211123164027.15618-1-kabel@kernel.org>
- <20211123164027.15618-5-kabel@kernel.org>
- <20211123212441.qwgqaad74zciw6wj@skbuf>
- <20211123232713.460e3241@thinkpad>
- <20211123225418.skpnnhnrsdqrwv5f@skbuf>
- <YZ4cRWkEO+l1W08u@shell.armlinux.org.uk>
- <20211124120441.i7735czjm5k3mkwh@skbuf>
- <20211124131703.30176315@thinkpad>
- <20211124123135.wn4lef5iv2k26txb@skbuf>
- <20211202232550.05bda788@thinkpad>
+        Rob Herring <robh+dt@kernel.org>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Denis Kirjanov <dkirjanov@suse.de>,
+        Julian Wiedmann <jwi@linux.ibm.com>
+Subject: Re: [PATCH net-next v4 1/4] net: ocelot: export ocelot_ifh_port_set()
+ to setup IFH
+Thread-Topic: [PATCH net-next v4 1/4] net: ocelot: export
+ ocelot_ifh_port_set() to setup IFH
+Thread-Index: AQHX6Gn/FbL7frqUIkGKruPq0taeVqwiTy+A
+Date:   Sat, 4 Dec 2021 13:08:20 +0000
+Message-ID: <20211204130819.3sclg4jnnqlyjqfw@skbuf>
+References: <20211203171916.378735-1-clement.leger@bootlin.com>
+ <20211203171916.378735-2-clement.leger@bootlin.com>
+In-Reply-To: <20211203171916.378735-2-clement.leger@bootlin.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fbf069be-b9c9-48ec-75f7-08d9b72724f5
+x-ms-traffictypediagnostic: VI1PR04MB4685:
+x-microsoft-antispam-prvs: <VI1PR04MB468545B6B25DB499B5E5C8AAE06B9@VI1PR04MB4685.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: BT9TeBdg+0b1eP//1eN3bGvN7NCoo07eXmaYgga2+ZPXYCqvRIQeEStLpNNVQ7Mj3/VFU10oN7iK5eCcM0HY0/SXwaoDLc9S05+kl+AeFiJkSpq5I1TakgPi6tE8Jyk3h+f/dxzi7DGZ7pH1/q0H32EJSeWaMEhzrF9575+qo8EAGA0mSv8SCs0EyaL7qS+C+d9rtQSJ6gq0Yyk78sqQpCSTd0eObBtAKIbVSpFiAK0kvoLl56F/XGHI9wacf6EWjrCt0m4nvm73qLxIpmJd95Nn+lKnui7ammP99XvxO4M80Ba6Jpm7Tr+Z63ewbzk1BfA+4nGzfspzUTeq1IkYel7xApRuZsPs6r0hV5dkutH94U2srb+MZw8DpLuaxRQZtgufr8JVjXqtgFhcGnpTvJYVfQj4UUTcy4x1O8pgy+L6BF9CSN9JmdsSlyg9cAbLoMfrIkXiS75LDpSy84pEW5HkgaKnSTpD8NzXblATtEYYCU8NUCkX74Vcr0kX2QjrYrEb4Ps5ti6yw+8aVvieZx6wUlxGcezbHbtyW4efA0IoeOCSY884eM4IAsq8PYWv2LNl5wvnt4Qd+GW6ID1bTQTB4hUsoa/Znd9RWU/8PdqQNug7+cmNgJh5rptvC3EWxpnE5TV+XPrfNUmVsq7ccUzJmkmdQx8+09qAXurADHswrygKUhlQxlCn1MCP+tMUrXmafo54qiXHJU9rfUYNfA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(366004)(4744005)(33716001)(44832011)(8676002)(64756008)(186003)(8936002)(6506007)(91956017)(2906002)(66446008)(38070700005)(1076003)(26005)(4326008)(6512007)(6916009)(86362001)(316002)(508600001)(122000001)(66946007)(7416002)(5660300002)(71200400001)(66556008)(54906003)(66476007)(9686003)(76116006)(6486002)(38100700002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?G8Ml417ktaVMh8aPTc4qAzdqGQmdkJDFe61y6rIXoKIrt6chhsBE25MaKb?=
+ =?iso-8859-1?Q?h1DFoCXRwPiKWxDI5U3INtKQ3GpmL0QkMpxxv8lD4uoKRMVsgFp6HP4rU8?=
+ =?iso-8859-1?Q?cShn4zOjqJeca7o9tlzuv4sR+a0CB4eOXwyavkU//gFcCzRHxzA6YbZs4c?=
+ =?iso-8859-1?Q?vm2AoTjjGboSjwX7+yjYup0UQTcimZ3FZYhqNSHKNsf9HyNfpyb2BWJ463?=
+ =?iso-8859-1?Q?K8CO+x/KvT349uc54Ulq0v5dO5cFuzI4CjMRjgD7E66DPm5sEwgwQvDoSS?=
+ =?iso-8859-1?Q?Ks6xD4nL+fBxSHyClLvkOnOlfFRGteydDhapGDKXyX8ZD0sf/torR3H5yZ?=
+ =?iso-8859-1?Q?W61/+pxL4NKK77cw3hYzlm/Utj4f9jBcEJ533nKF57aLmrJEIVpuvEp2wk?=
+ =?iso-8859-1?Q?pi17mtSKYDA0j6eTLRPkSAFb1uIEUOp1ZNdx0BHnG/VRXSda/MraBA0auX?=
+ =?iso-8859-1?Q?/VEHVNHapNQyJaPC4fxD+ssUfIIwyAczRhf8PNAVX4m40Mtt6QiWm3Xr8S?=
+ =?iso-8859-1?Q?tr1SlfirAltfB3RwjhZeprGTRNwrtCz2l99HdCC14jATRaqhFaZqTjR7it?=
+ =?iso-8859-1?Q?94OToXNhr31Wx25imnjnGglM0TtSNBgu8oGGkqcisB2TwrNvJ8dW9y5cKm?=
+ =?iso-8859-1?Q?709JdUUJd0b+IYv7YzQwoNsLUBuagdJO4DyZakG4yRLkJCDWMZjGRTzsJ0?=
+ =?iso-8859-1?Q?AJpPCC375IB0xeRqXLHSzgysyRXq75zlW23ZkXLqpzJpp4JDYepNZ4aOvE?=
+ =?iso-8859-1?Q?+ByNAt0Po8oK45Ce3gA//RT75IQFJnBaIHISlaNUnqOLVmpj6v89Bxl4fc?=
+ =?iso-8859-1?Q?zTo4deYsLVnuYw9++4CuNrGxz6f1miYaJpP3WK8GCWd4VEC3iMi2RJc6Y5?=
+ =?iso-8859-1?Q?bo3ygt9yWtIxxRBLOe05B2gz3WDiIX7A3hYLncJH61IEn3eNtY3N0TDEeU?=
+ =?iso-8859-1?Q?SiNDWjBqR5rrFA+jymn7Qd/E6BGQNIig9I3zPEmDcvBBiF+gPTNXEf8guh?=
+ =?iso-8859-1?Q?W+LlhDOuSWS17TI6H0azB2Ze8J+h6HU5InEdnvJ6UEhXGADvrzAq/R3Jop?=
+ =?iso-8859-1?Q?ob3Xyj21YPRAChgUcaVu60vwL/w+aeMrs45H6pJS9cbB04ibN+B87KZ0I8?=
+ =?iso-8859-1?Q?/NyvMvsXwy5oUdUI2q3I/vFxBEvxiKCHK7KJWcAy2M5G7SP9q+yp0PoPhw?=
+ =?iso-8859-1?Q?Chn8nTk10PhPKpdRx0XpBvbAVyWhNEyN5R0ngJAmoKDYBC0ghRtbj4mZoU?=
+ =?iso-8859-1?Q?3fHoyiHtoNMvnCzHGKXRn6Ksl2ukvIKNVV8zHQb+3U3XP6RUSon6LVOmMl?=
+ =?iso-8859-1?Q?xLgF4klYcT4TbH7Iyz+CqZjQSnYElkBKypAJOyGZJsFz1jl23TlMyZuAGt?=
+ =?iso-8859-1?Q?ryoxsWT9IFChESbKoOugolVACSvl6VeCnPKPIhPRx+LR4YDJyjY6kfZ2g8?=
+ =?iso-8859-1?Q?Axz9sxeayZYhLyEPo2D+jRmcjTE76iK0CZWVITE5QQ9Mat/LT0jQdafcym?=
+ =?iso-8859-1?Q?5tqUa1BY29Uf8eiKx/p47R51FzlcSv4mYcVLlL8MpOkNeZ/aWHilrc1dbI?=
+ =?iso-8859-1?Q?3hMtQdK6JoMdzsw2tVGXw9l+rD9nE4058HxWInlhZEOKsBvxXmbugQeYbc?=
+ =?iso-8859-1?Q?V/pEagdQWOqGVs6sO27dj8FW/o9xSo9v2CqH/oocarARYrguaLgH8G4nUM?=
+ =?iso-8859-1?Q?8LbPUJQ9UOCQz7thvTI=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <595C55A8C0855E4BB494D455D4A5A861@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211202232550.05bda788@thinkpad>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbf069be-b9c9-48ec-75f7-08d9b72724f5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Dec 2021 13:08:20.0840
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: eReNu4zeWnQ8on2VpcaKCuih4ax5ztW1oNHghpE7vXSDby9PVmyWJwWYIgV1vAUkr56cOxYSQGjm1PmeYQ350g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4685
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 02, 2021 at 11:25:50PM +0100, Marek Behún wrote:
-> On Wed, 24 Nov 2021 14:31:35 +0200
-> Vladimir Oltean <olteanv@gmail.com> wrote:
->
-> > > > To err is human, of course. But one thing I think we learned from the
-> > > > old implementation of phylink_validate is that it gets very tiring to
-> > > > keep adding PHY modes, and we always seem to miss some. When that array
-> > > > will be described in DT, it could be just a tad more painful to maintain.
-> > >
-> > > The thing is that we will still need the `phy-mode` property, it can't
-> > > be deprecated IMO.
-> >
-> > Wait a minute, who said anything about deprecating it? I just said
-> > "let's not make it an array, in the actual device tree". The phy-mode
-> > was, and will remain, the initial MII-side protocol, which can or cannot
-> > be changed at runtime.
->
-> Hello Vladimir,
->
-> I was told multiple times that device-tree should not specify how the
-> software should behave (given multiple HW options). This has not been
-> always followed, but it is preferred.
->
-> Now the 'phy-mode' property, if interpreted as "the initial MII-side
-> protocol" would break this rule.
+On Fri, Dec 03, 2021 at 06:19:13PM +0100, Cl=E9ment L=E9ger wrote:
+> FDMA will need this code to prepare the injection frame header when
+> sending SKBs. Move this code into ocelot_ifh_port_set() and add
+> conditional IFH setting for vlan and rew op if they are not set.
+>=20
+> Signed-off-by: Cl=E9ment L=E9ger <clement.leger@bootlin.com>
+> ---
 
-Isn't the rule already broken? Like it or not, this is exactly what the
-phy-mode property is today. Even the compatibility mode added by your
-patch right here _depends_ on that exact interpretation.
-
-> This is therefore another reason why it should either be extended to an
-> array,
-
-The reason being what, exactly? To me it is still non sequitur.
-I think you are saying that by listing all supported PHY modes, it
-becomes less of a "hardware configuration" and more of a "hardware
-description". But my point is that "all PHY modes" is a pretty moving
-target, and it shouldn't be put in the device tree because that should
-be rather stable.
-
-> or, if we went with your proposal of 'num-lanes' + 'max-freq',
-> deprecated (at least for serdes modes). But it can't be deprecated
-> entirely, IMO (because of non serdes protocols).
-
-You haven't exactly formulated why you think the implication is that
-phy-mode could be deprecated, if kept "not an array". Because it can't.
-If I understand you correctly, you are basically implying that in an
-ideal world where all MAC drivers and all PHY drivers could list out all
-their capabilities, a given MAC + PHY pair would just work out the
-highest common SERDES protocol that can be electrically supported. But
-as long as the Generic PHY driver is going to be a thing, this will be
-technically impossible, because there isn't any IEEE standardized way of
-determining SERDES protocols. So no, the phy-mode will continue to have
-its role of specifying the initial MII-side protocol, which can or
-cannot be changed at runtime.
-
-Also, as a second point, my guess is that there will always be SERDES
-blocks where changing the protocol at runtime is so complicated, or has
-so many restrictions, that "wont't change" is indistinguishable from
-"cant't change". And the network drivers that use these SERDES blocks
-will therefore use the device tree to specify the phy-mode that the
-SERDES lane is preconfigured for, which is not the same as describing
-the capability, technically speaking, but is nonetheless virtually
-indistinguishable. So I don't see that the phy-mode should become
-deprecated either way.
-
->
-> I thought more about your proposal of 'num-lanes' + 'max-freq' vs
-> extending 'phy-mode'.
->
-> - 'num-lanes' + 'max-freq' are IMO closer to the idea of device-tree,
->   since they describe exactly how the parts of the device are connected
->   to each other
-> - otherwise I think your argument against extending 'phy-mode' because
->   of people declaring support for modes that weren't properly tested and
->   would later be found broken is invalid, since the same could happen
->   for 'num-lanes' + 'max-freq' properties
-
-To reiterate my points:
-
-- The worst cases of the phy-mode array vs the physical properties of
-  the lanes are about just as bad, if you're set out to misuse them.
-  I.e. you can first declare that a lane is capable of 1.125 GHz, then
-  "oh, you know what, now I tested 3.125 GHz and that works too", then
-  "as a matter of fact, 10.3125 GHz works too", then "hey, there are
-  actually 4 lanes, not just one!". I'm sorry, nobody can help you if
-  you do that.
-
-- The best cases seem to be a bit more disproportionate on the other
-  hand (i.e. when things are done "right" by device tree authors):
-  With the phy-mode array, if you don't want to declare things that
-  haven't been tested, it gets clunky: you'd have an ever increasing
-  array of gibberish, and multiple versions of it in flight.
-  On the other hand, doing the 'num-lanes' + 'max-freq' thing right
-  would IMO mean that you validate the electrical parameters of the
-  SERDES lane at the maximum intended and testable data rate and width.
-  I truly believe this can be done orthogonally to actually testing an
-  Ethernet protocol, which is why I'm actually suggesting it. This
-  description can't bit rot no matter what you do, if it was done
-  correctly (see above). It also appears easier to look at physical
-  properties and say "yes, this looks about right", than looking at a
-  potentially large phy-mode array where some modes are oddly missing
-  and you don't really know why.
-
-- If you discover that some phy-modes can't be supported despite the
-  electrical parameters allowing it (your SMC firmware example), it
-  becomes "not a device tree problem" if you don't put the phy-mode
-  array there in the first place.
-
-So my proposal simply comes from trying to optimize for the "doing
-things right" case (hopefully this would also be the common case).
-If we look at ways in which people will find ways to screw things up,
-I'm sure that the sky is the limit.
-
-> - the 'phy-mode' property already exists. I think if we went with the
->   'num-lanes' + 'max-freq' proposal, we would need to deprecate
->   'phy-mode' for serdes protocols (at least for situations where
->   multiple modes can be used, since then 'phy-mode' would go against
->   the idea of the rule I mentioned in first paragraph)
-
-I don't understand this argument, I'm sorry. I only suggested that you
-don't introduce a phy-mode array until there is a proven need for it.
-You've said that your current use cases are fine with just the
-"compatibility" mode where you extend the single phy-mode from the
-device tree based on supported_interfaces. I don't think you _have_ to
-introduce my suggested electrical parameters right now, either. It is
-just an alternative solution to an unspecified problem.
-
-But one other aspect that maybe should be considered is the fact that
-your compatibility mode would introduce some weirdness: if the phy-mode
-array in the device tree has exactly one element, then you say "oh, this
-is an old device tree, let me fix this up based on supported_interfaces
-and potentially change towards protocols that aren't present in the
-device tree". But if the phy-mode array has more than one element, you
-don't allow changing towards protocols outside of that array. That is
-strange. I think _you_ are changing the meaning of the phy-mode property.
-If you restrict the array of phy-modes via some other mechanism (like
-dynamically through code that populates supported_interfaces based on
-stuff like SMC firmware queries, lane electrical parameters), then
-transforming the phy-mode property into an array has literally no benefits,
-and there won't be any backwards compatibility problem to handle.
-
-> Vladimir, Rob has now given R-B for the 'phy-mode' extension patch.
->
-> I am wondering now what to do, since other people haven't given their
-> opinions here. Whether to re-send the series, and maybe start discussing
-> there, or waiting more.
-
-Go with the approach you feel the most comfortable justifying, I have no
-stake here. In fact I would be glad too if other people shared their opinion
-on how to move things forward.
+Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>=
