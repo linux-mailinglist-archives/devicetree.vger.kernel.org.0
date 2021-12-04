@@ -2,54 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BD944687D6
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 22:56:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4452C4687D8
+	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 22:58:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232614AbhLDV7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Dec 2021 16:59:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46934 "EHLO
+        id S229888AbhLDWBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Dec 2021 17:01:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230024AbhLDV7k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 16:59:40 -0500
-Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com [IPv6:2607:f8b0:4864:20::92c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F781C061354
-        for <devicetree@vger.kernel.org>; Sat,  4 Dec 2021 13:56:14 -0800 (PST)
-Received: by mail-ua1-x92c.google.com with SMTP id l24so12381775uak.2
-        for <devicetree@vger.kernel.org>; Sat, 04 Dec 2021 13:56:14 -0800 (PST)
+        with ESMTP id S236342AbhLDWBt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 17:01:49 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 000D3C0613F8
+        for <devicetree@vger.kernel.org>; Sat,  4 Dec 2021 13:58:22 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id o29so5185444wms.2
+        for <devicetree@vger.kernel.org>; Sat, 04 Dec 2021 13:58:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jlijFLhR6+r3JWz4tB9M0GrHy0Uv9AN2XW/u7IjaJz4=;
-        b=wjG+3jcOw/Ii65JEa/rYFx9TMVQhQJ3CIrllOz4LyD2mn5+Xb+d4dF+1stcABP/Qzc
-         D73RL8cLFle/UdOXSu1fJVZK99PUJpFY3WEpnfQ9eEG3URZjcRSO/3eteDzG8dmwjZwb
-         zqG3bIdWv9EqAITrgYb5W00Nl8w6GNVHBHKfTXxGdrioEwPzna1FyzaOkXQja+xd/A8a
-         amFfpGn/S2kSqVQQTkSzakSr9MTKw7W7k7s2t1lhzpPeT60xGND0Xg1dTos8xnKVf+/L
-         zg7lmk/uCFZQodVHYzOAMN8n6QxdaHjQhcu6DkCxcQ6U2wxX0BdgbPIyJgMebwIYQF8j
-         CZhg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jHZ/NY52q+fJ8ZyowbxA7ltlvG1kl7aRGse+qxxLYbY=;
+        b=TaNYBwZrqLHyDEpJd9tFK7v+pEKaWZ3gK/aQWMCDDiOa6FN6Mnu+hJnKy121s0MzAX
+         jbUGACs1M/WfjkNBwPxlIVi8YPDfNYI2gAn/Eb2RgQQCRrZgLRMcYopKWgiKyfQ/9zBT
+         0+45bnNZAEfMMDVntIok6Cb9RlSyuacIBJJWN9dDtpXoH8feVj4IZJPNVMsc2n65lTY6
+         e5jr96haRHzO7POFgzMt9Bvc8gKcRV4WyEkwHJlnmG6TBKJkMDfZ2+xgpCQjzEOaQY/m
+         xzEoF9kclmjQhxyGKDNVj5UQN5qCXQk9+qf9609TYCc629b3/WHGgyG2xYQUw8mGUbAz
+         dmdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jlijFLhR6+r3JWz4tB9M0GrHy0Uv9AN2XW/u7IjaJz4=;
-        b=JJ47rkZcyqNov2TAPaXUoW7J1oB7lOKjqZ1dgL56hGz/4YbHRD0XQYlabMh6HkJ4OA
-         NzuAtDrtOPmN0eIijXzhHe7fNUrMy1AeuvrEZiyXayyrxj/ClyQ1EIq+8EyJ+LsdBfQQ
-         u2mRwsrGbJtuOeDeX5PFyZ12ThFGXxp9lxl810fiX0bWPYVOVHC2UmkOBTD/15dlrUcF
-         TC+dIW8IbW03b//b18mN6vG1XVGojdKh1WdmFHobstE9fSU7zyuff9dcV8J1BX1ASjcI
-         WcrorQnXBBDKFbOIMdWVtgXGI3tOJmk+AAvPJF8qfxAfAYSu0hRMai/3812tCrm7rSgC
-         l3pA==
-X-Gm-Message-State: AOAM531TTyxLK43lhVIrrRNnTWABGDGyU2z11uEokEkmJ7ghXDOSRTL6
-        Lr49lmkl8Av/UHvuDWuXkY+x4fRb8yC+p4ikUbAWY8DWYGmQXw==
-X-Google-Smtp-Source: ABdhPJxQvasWODGaqUZ7EeyZGO6L8kopH0JrCYBINCwP6VYNXPK/+UTqRmEnkYjFr7bMySk+qdqfzDUITYM07uj/2v8=
-X-Received: by 2002:a67:be0f:: with SMTP id x15mr28248414vsq.86.1638654973600;
- Sat, 04 Dec 2021 13:56:13 -0800 (PST)
-MIME-Version: 1.0
-References: <20211204215033.5134-1-semen.protsenko@linaro.org>
-In-Reply-To: <20211204215033.5134-1-semen.protsenko@linaro.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jHZ/NY52q+fJ8ZyowbxA7ltlvG1kl7aRGse+qxxLYbY=;
+        b=FbF1B8P7ogrCFKqgksvDdhVAficjsKK23pFEDTAyE/1z4FtmNUfqGG3QJxfrlOUi4r
+         ncJAvvh0Dbdx7/RvHN/2tJ584avxZ0zIy5g17hAl4Z6grX/qgcLkpZhknA3w172cpCGn
+         mkXKn79PU8aDrBB5+dW8WYp+qxylPiVeyyO0f7XgwWYBWEc007EQkW2AdNqDVyxRJvXd
+         aCn2ujo1VTdIxpOPTiBryoXmLVvDiXdUcJ99u2PHKaASSJR0c5xAcQRBin1f/S1O+IOR
+         TNvLm42AZmPHvbCgVuuXulKauDzpNxKPOoJ7+xkwjSFWeMde8sqYEgRGKfeBDbzeZBl6
+         mqjw==
+X-Gm-Message-State: AOAM531aFGwOymhDcTRFBj2QepW+Eru2MjUca+uGpnkTil94utlb/Swb
+        /qqD4LdEKiGsUmrhuZzYpzDdAQ==
+X-Google-Smtp-Source: ABdhPJyBlS65eTB40gkaiVnMcqmJfn92ZRp+4jD43fZfatuxal9gpwbItlIEPVa3d0KqyoC1hPexAA==
+X-Received: by 2002:a05:600c:4e8f:: with SMTP id f15mr11572129wmq.116.1638655101461;
+        Sat, 04 Dec 2021 13:58:21 -0800 (PST)
+Received: from localhost ([31.134.121.151])
+        by smtp.gmail.com with ESMTPSA id o3sm9628522wms.10.2021.12.04.13.58.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 04 Dec 2021 13:58:21 -0800 (PST)
 From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Sat, 4 Dec 2021 23:56:02 +0200
-Message-ID: <CAPLW+4mqqk0XfdvsyGLeUdqQssQss3-C4BB4iMRMVSSm8dOa4A@mail.gmail.com>
-Subject: Re: From a5f512cb01e48f5bfcdef800dd477c8b04a4cacf Mon Sep 17 00:00:00 2001
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
@@ -60,66 +58,65 @@ Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
         linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: [PATCH v2 RESEND 0/8] i2c: exynos5: Add support for modern Exynos SoCs
+Date:   Sat,  4 Dec 2021 23:58:12 +0200
+Message-Id: <20211204215820.17378-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 4 Dec 2021 at 23:50, Sam Protsenko <semen.protsenko@linaro.org> wrote:
->
-> Modern ARM64 Samsung Exynos SoCs (like Exynos Auto V9 and Exynos850) use
-> pretty much the same High-Speed I2C controller supported in i2c-exynos5
-> driver ("samsung,exynos7-hsi2c" variant), but with some differences:
-> - timings are now calculated and configured a bit differently
-> - two clocks are now provided to HSI2C controller (and must be
-> asserted during I2C operation and register access)
->
-> This patch series implements these changes, making it possible to use
-> HSI2C driver on modern Exynos SoCs.
->
-> Another change in mentioned SoCs is that HSI2C controller is now a part
-> of USIv2 IP-core. But no USI modifications are needed in HSI2C driver,
-> as all USI related configuration is done in USI driver independently.
-> USI driver is added in [1] series (or its later revision, if available).
-> To make HSI2C functional, both patch series (this one and [1]) have to
-> be applied, but those can be applied independently.
->
-> Changes in v2:
-> - Added new patches renaming "hsi2c@*" nodes to "i2c@*" for Exynos
-> dts's
-> - Added R-b tags from v1 review
-> - Fixed and improved i2c-exynos5 dt-bindings
->
-> [1] https://patchwork.kernel.org/project/linux-samsung-soc/cover/20211204195757.8600-1-semen.protsenko@linaro.org/
->
-> Jaewon Kim (2):
->   dt-bindings: i2c: exynos5: Add exynosautov9-hsi2c compatible
->   i2c: exynos5: Add support for ExynosAutoV9 SoC
->
-> Sam Protsenko (6):
->   dt-bindings: i2c: exynos5: Convert to dtschema
->   dt-bindings: i2c: exynos5: Add bus clock
->   i2c: exynos5: Add bus clock support
->   i2c: exynos5: Mention Exynos850 and ExynosAutoV9 in Kconfig
->   arm: dts: exynos: Rename hsi2c nodes to i2c for Exynos5260
->   arm64: dts: exynos: Rename hsi2c nodes to i2c for Exynos5433 and
->     Exynos7
->
->  .../devicetree/bindings/i2c/i2c-exynos5.txt   |  53 -------
->  .../devicetree/bindings/i2c/i2c-exynos5.yaml  | 133 ++++++++++++++++++
->  arch/arm/boot/dts/exynos5260.dtsi             |   8 +-
->  arch/arm64/boot/dts/exynos/exynos5433.dtsi    |  24 ++--
->  arch/arm64/boot/dts/exynos/exynos7.dtsi       |  24 ++--
->  drivers/i2c/busses/Kconfig                    |   2 +-
->  drivers/i2c/busses/i2c-exynos5.c              | 108 +++++++++++---
->  7 files changed, 253 insertions(+), 99 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-exynos5.txt
->  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
->
-> --
+Modern ARM64 Samsung Exynos SoCs (like Exynos Auto V9 and Exynos850) use
+pretty much the same High-Speed I2C controller supported in i2c-exynos5
+driver ("samsung,exynos7-hsi2c" variant), but with some differences:
+- timings are now calculated and configured a bit differently
+- two clocks are now provided to HSI2C controller (and must be
+asserted during I2C operation and register access)
 
-Please ignore this series, patch 0/8 was malformed for some reason.
-I'll resend it soon, with [PATCH v2 RESEND] prefix.
+This patch series implements these changes, making it possible to use
+HSI2C driver on modern Exynos SoCs.
 
-> 2.30.2
->
+Another change in mentioned SoCs is that HSI2C controller is now a part
+of USIv2 IP-core. But no USI modifications are needed in HSI2C driver,
+as all USI related configuration is done in USI driver independently.
+USI driver is added in [1] series (or its later revision, if available).
+To make HSI2C functional, both patch series (this one and [1]) have to
+be applied, but those can be applied independently.
+
+Changes in v2:
+- Added new patches renaming "hsi2c@*" nodes to "i2c@*" for Exynos
+dts's
+- Added R-b tags from v1 review
+- Fixed and improved i2c-exynos5 dt-bindings
+
+[1] https://patchwork.kernel.org/project/linux-samsung-soc/cover/20211204195757.8600-1-semen.protsenko@linaro.org/
+
+Jaewon Kim (2):
+  dt-bindings: i2c: exynos5: Add exynosautov9-hsi2c compatible
+  i2c: exynos5: Add support for ExynosAutoV9 SoC
+
+Sam Protsenko (6):
+  dt-bindings: i2c: exynos5: Convert to dtschema
+  dt-bindings: i2c: exynos5: Add bus clock
+  i2c: exynos5: Add bus clock support
+  i2c: exynos5: Mention Exynos850 and ExynosAutoV9 in Kconfig
+  arm: dts: exynos: Rename hsi2c nodes to i2c for Exynos5260
+  arm64: dts: exynos: Rename hsi2c nodes to i2c for Exynos5433 and
+    Exynos7
+
+ .../devicetree/bindings/i2c/i2c-exynos5.txt   |  53 -------
+ .../devicetree/bindings/i2c/i2c-exynos5.yaml  | 133 ++++++++++++++++++
+ arch/arm/boot/dts/exynos5260.dtsi             |   8 +-
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi    |  24 ++--
+ arch/arm64/boot/dts/exynos/exynos7.dtsi       |  24 ++--
+ drivers/i2c/busses/Kconfig                    |   2 +-
+ drivers/i2c/busses/i2c-exynos5.c              | 108 +++++++++++---
+ 7 files changed, 253 insertions(+), 99 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-exynos5.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
+
+-- 
+2.30.2
+
