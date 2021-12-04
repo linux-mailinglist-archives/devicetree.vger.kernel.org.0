@@ -2,151 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EDB946854D
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 15:17:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 317C2468558
+	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 15:28:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385188AbhLDOVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Dec 2021 09:21:21 -0500
-Received: from mga14.intel.com ([192.55.52.115]:63379 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1385174AbhLDOVV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 4 Dec 2021 09:21:21 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="237346832"
-X-IronPort-AV: E=Sophos;i="5.87,287,1631602800"; 
-   d="scan'208";a="237346832"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Dec 2021 06:17:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,287,1631602800"; 
-   d="scan'208";a="514100772"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by orsmga008.jf.intel.com with ESMTP; 04 Dec 2021 06:17:52 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mtVrL-000J5T-Lo; Sat, 04 Dec 2021 14:17:51 +0000
-Date:   Sat, 4 Dec 2021 22:16:56 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Lizhi Hou <lizhi.hou@xilinx.com>, linux-fpga@vger.kernel.org,
-        maxz@xilinx.com, sonal.santan@xilinx.com, yliu@xilinx.com,
-        michal.simek@xilinx.com, stefanos@xilinx.com,
-        devicetree@vger.kernel.org, trix@redhat.com
-Subject: Re: [PATCH V3 XRT Alveo Infrastructure 3/8] of: create empty of root
-Message-ID: <202112042255.DZihRncD-lkp@intel.com>
-References: <20211204003957.1448567-4-lizhi.hou@xilinx.com>
+        id S231284AbhLDObh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Dec 2021 09:31:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33614 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229727AbhLDObh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 09:31:37 -0500
+Received: from mail-vk1-xa36.google.com (mail-vk1-xa36.google.com [IPv6:2607:f8b0:4864:20::a36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 927BBC0613F8
+        for <devicetree@vger.kernel.org>; Sat,  4 Dec 2021 06:28:11 -0800 (PST)
+Received: by mail-vk1-xa36.google.com with SMTP id e27so3800773vkd.4
+        for <devicetree@vger.kernel.org>; Sat, 04 Dec 2021 06:28:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ATc16WWtCcR8jUe6fibytkicXJ7JqnP1WJvtGJ1JYG8=;
+        b=b9LNeX0fhXS4Lma2JLx5C7MG2H0cZBeJH8tYd2AZ7hd350a4rDRpnqh6zjP+q2uVDC
+         /2B5RQF3Xs7NKpjz13v0lp6yOeth8spyv5zDypDos5JUqxMxDobHPWokZhXs5sdQcTem
+         bgtW7zjPfXUfteywFCk4Tu1qZBmHk7zHKkSnkHa1ynYyBbkkdHqV1F+n1uXLBvRpkFmN
+         bakzMecHWj33/R9txe02OjbLEr0XWfago4gRHHQscExsJHr+N6nkvLZtdEoizqokBENm
+         tEpGK+rDd74Y4TCS0y+1ZaL1Kc+gfWKTeAxW1xzaH4fTPjtnwlGoTuQt/JJHYcKLEjwg
+         BEqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ATc16WWtCcR8jUe6fibytkicXJ7JqnP1WJvtGJ1JYG8=;
+        b=OgZKn+9ijSryiNSlq3uACcHLT/gIOwGTG4hnXgcAVSWbASU7IzL+TPi1vDkmlENkIm
+         E27DzST7/unpHsC0wE2CVBYhQLRfSCZrHo10mzMWSyo+UlSBZ6L0L94DO5o7zLFQwnjG
+         wsNbiZViUQ7d4QqG54BF/jklZU4YauXS1irPygSf2NmYOt36rtCQIwXj1meOK3c1kc62
+         QXBiTlEpRRxD4gO7v3SxAUer1UrbIzjGDpLN0kpTPmRXywNMNoe17Y0sUQoi8wOlhEYt
+         gOrRusNsB8/AAVf81nC6YEu7fHt+S8eevdXGxQGWErSZ0H1blgUJ1Y/R0aC2eNVfPv+F
+         wmAA==
+X-Gm-Message-State: AOAM5314vGwoUm8gwkdFKVW8XwQCIbKE2b0Hs32ih19U++DYTso4uE5I
+        Mwbu8lw2sevBkksay6QfKukTGJOKvZ0cgLuQbSg+8w9Dv9HHFA==
+X-Google-Smtp-Source: ABdhPJw2w7MhlaMAGEDp/OboJf6AaW8ZvKhMK6p1HiGFUrq0bh+XYZSyYu7+pvPNDEzlw2dDnBMrYtRfs4EjCCNo5tA=
+X-Received: by 2002:a1f:a08c:: with SMTP id j134mr29652382vke.35.1638628090612;
+ Sat, 04 Dec 2021 06:28:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211204003957.1448567-4-lizhi.hou@xilinx.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20211130111325.29328-1-semen.protsenko@linaro.org>
+ <20211130111325.29328-2-semen.protsenko@linaro.org> <YaZ8BpUaaC+sJYqx@robh.at.kernel.org>
+ <CAPLW+4kGGk+umKTVRPNM7R=GaUQa31Uid=K+9ofq8w2mqzGAEA@mail.gmail.com>
+ <CAL_JsqLopqkOEWmnvMDWr2rBa5Dm3jf17soqVA=Jx5Hn9BDS_g@mail.gmail.com> <8460edd6-efaf-3ae7-594c-0d1495d57abf@canonical.com>
+In-Reply-To: <8460edd6-efaf-3ae7-594c-0d1495d57abf@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Sat, 4 Dec 2021 16:27:59 +0200
+Message-ID: <CAPLW+4=x4Qm2AO6_h9NdypQV5t-j3QW-kqVSsSGkmmsu0n5fzA@mail.gmail.com>
+Subject: Re: [PATCH v2 RESEND 1/5] dt-bindings: soc: samsung: Add Exynos USI bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lizhi,
+On Sat, 4 Dec 2021 at 13:28, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 03/12/2021 21:40, Rob Herring wrote:
+> > On Fri, Dec 3, 2021 at 1:36 PM Sam Protsenko <semen.protsenko@linaro.org> wrote:
+> >>
+> >> On Tue, 30 Nov 2021 at 21:31, Rob Herring <robh@kernel.org> wrote:
+> >>>
+> >>> On Tue, Nov 30, 2021 at 01:13:21PM +0200, Sam Protsenko wrote:
+> >>>> Add constants for choosing USIv2 configuration mode in device tree.
+> >>>> Those are further used in USI driver to figure out which value to write
+> >>>> into SW_CONF register. Also document USIv2 IP-core bindings.
+> >>>>
+> >>>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> >>>> ---
+> >>>> Changes in v2:
+> >>>>   - Combined dt-bindings doc and dt-bindings header patches
+> >>>>   - Added i2c node to example in bindings doc
+> >>>>   - Added mentioning of shared internal circuits
+> >>>>   - Added USI_V2_NONE value to bindings header
+> >>>>
+> >>>>  .../bindings/soc/samsung/exynos-usi.yaml      | 135 ++++++++++++++++++
+> >>>>  include/dt-bindings/soc/samsung,exynos-usi.h  |  17 +++
+> >>>>  2 files changed, 152 insertions(+)
+> >>>>  create mode 100644 Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> >>>>  create mode 100644 include/dt-bindings/soc/samsung,exynos-usi.h
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> >>>> new file mode 100644
+> >>>> index 000000000000..a822bc62b3cd
+> >>>> --- /dev/null
+> >>>> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> >>>> @@ -0,0 +1,135 @@
+> >>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>>> +%YAML 1.2
+> >>>> +---
+> >>>> +$id: http://devicetree.org/schemas/soc/samsung/exynos-usi.yaml#
+> >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>> +
+> >>>> +title: Samsung's Exynos USI (Universal Serial Interface) binding
+> >>>> +
+> >>>> +maintainers:
+> >>>> +  - Sam Protsenko <semen.protsenko@linaro.org>
+> >>>> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> >>>> +
+> >>>> +description: |
+> >>>> +  USI IP-core provides selectable serial protocol (UART, SPI or High-Speed I2C).
+> >>>> +  USI shares almost all internal circuits within each protocol, so only one
+> >>>> +  protocol can be chosen at a time. USI is modeled as a node with zero or more
+> >>>> +  child nodes, each representing a serial sub-node device. The mode setting
+> >>>> +  selects which particular function will be used.
+> >>>> +
+> >>>> +  Refer to next bindings documentation for information on protocol subnodes that
+> >>>> +  can exist under USI node:
+> >>>> +
+> >>>> +  [1] Documentation/devicetree/bindings/serial/samsung_uart.yaml
+> >>>> +  [2] Documentation/devicetree/bindings/i2c/i2c-exynos5.txt
+> >>>> +  [3] Documentation/devicetree/bindings/spi/spi-samsung.txt
+> >>>> +
+> >>>> +properties:
+> >>>> +  $nodename:
+> >>>> +    pattern: "^usi@[0-9a-f]+$"
+> >>>> +
+> >>>> +  compatible:
+> >>>> +    const: samsung,exynos-usi-v2
+> >>>
+> >>> Use SoC based compatibles.
+> >>>
+> >>
+> >> In this particular case, I'd really prefer to have it like this. Most
+> >> likely we'll only have USIv1 and USIv1 in the end, and I think that
+> >> would be more clear to have USI version in compatible, rather than SoC
+> >> name. Please let me know if you have a strong opinion on this one --
+> >> if so I'll re-send.
+> >
+> > Fine if you have some evidence the ratio of versions to SoC are much
+> > more than 1:1 and the versions correspond to something (IOW, you
+> > aren't making them up).
+> >
+> > We went down the version # path with QCom and in the end about every
+> > SoC had a different version.
+>
+> I am against v1/v2 versions. The documentation in Samsung was always
+> poor in that matter. There were mistakes or confusions so it wasn't
+> always obvious which IP-block version comes with which SoC. Not
+> mentioning that several contributors do not have access to Samsung
+> datasheets and they submit code based on GPL compliance packages, so
+> they won't know which version they have for given SoC.
+>
+> OTOH there is no single benefit of using USI v1/v2, except "liking".
+>
 
-I love your patch! Yet something to improve:
+Ok, I'll do as you ask. In general I agree, but I still think in this
+particular case using "usi" in compatible is feasible. Anyway, I have
+no strong opinion on this one, and it's easy to rework.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linux/master linus/master v5.16-rc3 next-20211203]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Lizhi-Hou/XRT-Alveo-driver-infrastructure-overview/20211204-084333
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: mips-randconfig-c004-20211203 (https://download.01.org/0day-ci/archive/20211204/202112042255.DZihRncD-lkp@intel.com/config)
-compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 5f1d1854eb1450d352663ee732235893c5782237)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install mips cross compiling tool for clang build
-        # apt-get install binutils-mips-linux-gnu
-        # https://github.com/0day-ci/linux/commit/1b36c19ebc303a293dff82ed399ea70bf4ddde50
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Lizhi-Hou/XRT-Alveo-driver-infrastructure-overview/20211204-084333
-        git checkout 1b36c19ebc303a293dff82ed399ea70bf4ddde50
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash drivers/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/of/fdt.c:505:7: error: implicit declaration of function 'of_resolve_phandles' [-Werror,-Wimplicit-function-declaration]
-           rc = of_resolve_phandles(dt);
-                ^
-   1 error generated.
-
-
-vim +/of_resolve_phandles +505 drivers/of/fdt.c
-
-   468	
-   469	static int __init of_fdt_root_init(void)
-   470	{
-   471		struct device_node *dt = NULL, *np;
-   472		void *fdt, *fdt_aligned;
-   473		int size, rc;
-   474	
-   475	#if !defined(CONFIG_OF_UNITTEST)
-   476		if (of_root)
-   477			return 0;
-   478	#endif
-   479		size = __dtb_fdt_default_end - __dtb_fdt_default_begin;
-   480	
-   481		fdt = kmalloc(size + FDT_ALIGN_SIZE, GFP_KERNEL);
-   482		if (!fdt)
-   483			return -ENOMEM;
-   484	
-   485		fdt_aligned = PTR_ALIGN(fdt, FDT_ALIGN_SIZE);
-   486		memcpy(fdt_aligned, __dtb_fdt_default_begin, size);
-   487	
-   488		if (!of_fdt_unflatten_tree((const unsigned long *)fdt_aligned,
-   489					   NULL, &dt)) {
-   490			pr_warn("%s: unflatten default tree failed\n", __func__);
-   491			kfree(fdt);
-   492			return -ENODATA;
-   493		}
-   494		if (!dt) {
-   495			pr_warn("%s: empty default tree\n", __func__);
-   496			kfree(fdt);
-   497			return -ENODATA;
-   498		}
-   499	
-   500		/*
-   501		 * This lock normally encloses of_resolve_phandles()
-   502		 */
-   503		of_overlay_mutex_lock();
-   504	
- > 505		rc = of_resolve_phandles(dt);
-   506		if (rc) {
-   507			pr_err("%s: Failed to resolve phandles (rc=%i)\n", __func__, rc);
-   508			of_overlay_mutex_unlock();
-   509			return -EINVAL;
-   510		}
-   511	
-   512		if (!of_root) {
-   513			of_root = dt;
-   514			for_each_of_allnodes(np)
-   515				__of_attach_node_sysfs(np);
-   516			of_aliases = of_find_node_by_path("/aliases");
-   517			of_chosen = of_find_node_by_path("/chosen");
-   518			of_overlay_mutex_unlock();
-   519			return 0;
-   520		}
-   521	
-   522		unittest_data_add(dt);
-   523	
-   524		of_overlay_mutex_unlock();
-   525	
-   526		return 0;
-   527	}
-   528	pure_initcall(of_fdt_root_init);
-   529	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> Best regards,
+> Krzysztof
