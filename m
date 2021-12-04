@@ -2,121 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AE5E468819
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 23:32:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0FCB468844
+	for <lists+devicetree@lfdr.de>; Sun,  5 Dec 2021 00:36:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231728AbhLDWgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Dec 2021 17:36:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55036 "EHLO
+        id S233814AbhLDXkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Dec 2021 18:40:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229732AbhLDWgF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 17:36:05 -0500
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DE9BC061751;
-        Sat,  4 Dec 2021 14:32:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=0uonSFb5ll3NkOsEORfpc5PMXzUpkEmBGaG8Mqblnr4=; b=hZ7ied3+9RriH16R7jrpuJ2VMf
-        uuZrMWPs0S//H76YanW9kbV7vB9pAp6pohmJSL8yctD3HhQvmNQocAycqu+cST8d9/Adnr50AjIxh
-        h8LNtkVlMLHjpWwB7E3VGOisplHUSUL06xXduGIkLeixP9X+3bXP0cXW90j8A0XOENLQ=;
-Received: from p200300ccff382c001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff38:2c00:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1mtda8-0007at-An; Sat, 04 Dec 2021 23:32:36 +0100
-Date:   Sat, 4 Dec 2021 23:32:33 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org, alistair23@gmail.com,
-        dmitry.torokhov@gmail.com, linus.walleij@linaro.org,
-        rydberg@bitmath.org,
-        =?UTF-8?B?TXlsw6huZQ==?= Josserand <mylene.josserand@bootlin.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Subject: Re: [PATCH v3 1/4] Input: Add driver for Cypress Generation 5
- touchscreen
-Message-ID: <20211204233233.6c55875c@aktux>
-In-Reply-To: <20211202122021.43124-2-alistair@alistair23.me>
-References: <20211202122021.43124-1-alistair@alistair23.me>
-        <20211202122021.43124-2-alistair@alistair23.me>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S233752AbhLDXkT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 18:40:19 -0500
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C59EC061354
+        for <devicetree@vger.kernel.org>; Sat,  4 Dec 2021 15:36:53 -0800 (PST)
+Received: by mail-ot1-x32b.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so8543123otg.4
+        for <devicetree@vger.kernel.org>; Sat, 04 Dec 2021 15:36:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NuW/fbIz0j4mSyCSfNd6qMqzZTl35SAyBw4Kyu5HiPA=;
+        b=iFbmdA1TsAivA5FbFGUBriHLHlUT75w9xDbOkgIWR5o158RgJ70WSafgXYLVZVCtYh
+         JbW+i/OT9oGX6cLrJjAurb4KM4XI0qhxiDyyGXjSkJsmioqwUyRLRbvbYenRvTbTwXpB
+         Gi7ifeCLnLESst4k1++JcqYERHLsr7rnPGXORK/0lbRodkCHjQW3QLDob1VGDc4DquBy
+         O5PhoQd37dN8UCwebSIoifubCOm4CPIYiM6iQDWrH6vZW93Z/SLd6B9FoDubK07nv38z
+         tMUWwt0UntbeEPHP/RcRXrqrmd4I+DBrvxqdxeshQJyRwlsVJAV8qczxssO/yiy+u3VW
+         cVug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NuW/fbIz0j4mSyCSfNd6qMqzZTl35SAyBw4Kyu5HiPA=;
+        b=fSHMcb85P1ucTWsKqmZp0Ykj7X9Zs/lyZS2ayQkcAiQ0UMIzsgGt+zVpyXHIHMKKID
+         tdcRFQimT0IlooAaDczxK9my034fZlUvAojZkTMaIjrX3u+a8eEiQBrononM27AfL3SM
+         t6zspllKiX5vShnmMD7EhUBF8pSv8uPsnMyVhZyEOzQFyh/5v7qMLd1qVyDnE2VbbWf6
+         nKw0TWtG1NfUVvnnyD4rgBHtmJu52D8sl0NB079Fu/Cc16rqyS41DyYtFghfq48VQ1Ox
+         wmE5c+1dPMa5TWBLBijfGXvb84PsemCyBMWIhyJRi/bj4z2OJgc8XR9vfXY9m/le2IOm
+         2/JQ==
+X-Gm-Message-State: AOAM533QXjJ2qfQ8hdmsUziG9oEUkkWK77XXhG46DPcfxiqlyI2Q9COR
+        2ENFH5WXjl6GAep9w2HYhYCW7A0n7ZHU/IkMwGRqPqT8GEE=
+X-Google-Smtp-Source: ABdhPJy/YkD5Lpp/kh/+b64tVyaKjWYz3dLa+2TfJuzuzRee3iC2k5N/5GhHPgwu4UeTgAhYUNIO+l5Lt4i9ercDe74=
+X-Received: by 2002:a9d:a42:: with SMTP id 60mr23684363otg.179.1638661012313;
+ Sat, 04 Dec 2021 15:36:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Score: -1.0 (-)
+References: <20211202095255.165797-1-herve.codina@bootlin.com>
+In-Reply-To: <20211202095255.165797-1-herve.codina@bootlin.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sun, 5 Dec 2021 00:36:41 +0100
+Message-ID: <CACRpkdZPO7HOAGwV1iU+z047EFWCRbsrOjNV5o9s4dzPsT1H5w@mail.gmail.com>
+Subject: Re: [PATCH 0/6] spear: Fix SPEAr3XX plgpio support
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, Dec 2, 2021 at 10:53 AM Herve Codina <herve.codina@bootlin.com> wrote:
 
+> Herve Codina (6):
+>   pinctrl: spear: spear: Convert to regmap
+>   pinctrl: spear: plgpio: Convert to regmap
+>   pinctrl: spear: plgpio: Introduce regmap phandle
 
-On Thu,  2 Dec 2021 22:20:18 +1000
-Alistair Francis <alistair@alistair23.me> wrote:
+These three applied to the pinctrl tree.
 
-> From: Myl=C3=A8ne Josserand <mylene.josserand@bootlin.com>
->=20
-> This is the basic driver for the Cypress TrueTouch Gen5 touchscreen
-> controllers. This driver supports only the I2C bus but it uses regmap
-> so SPI support could be added later.
-> The touchscreen can retrieve some defined zone that are handled as
-> buttons (according to the hardware). That is why it handles
-> button and multitouch events.
->=20
-> Reviewed-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> Signed-off-by: Myl=C3=A8ne Josserand <mylene.josserand@bootlin.com>
-> Message-Id: <20180703094309.18514-2-mylene.josserand@bootlin.com>
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+>   ARM: dts: spear3xx: Use plgpio regmap in SPEAr310 and SPEAr320
 
-I finally got it working. The order of initialisation is important.
-Params are copied on input_mt_init_slots() from ABS_MT* to ABS_*, so you
-have to set params first.
+Please apply this to the SoC tree.
 
-Here is the patch i need on top of this one to make it actually work
-with X (evdev and libinput is tested):
+>   irq: spear-shirq: Add support for IRQ 0..6
 
-diff --git a/drivers/input/touchscreen/cyttsp5.c b/drivers/input/touchscree=
-n/cyttsp5.c
-index b5d96eb71e46..3894ec85a732 100644
---- a/drivers/input/touchscreen/cyttsp5.c
-+++ b/drivers/input/touchscreen/cyttsp5.c
-@@ -415,19 +415,12 @@ static int cyttsp5_setup_input_device(struct device *=
-dev)
- 	int max_x_tmp, max_y_tmp;
- 	int error;
-=20
--	__set_bit(EV_REL, ts->input->evbit);
--
- 	max_x_tmp =3D si->sensing_conf_data.res_x;
- 	max_y_tmp =3D si->sensing_conf_data.res_y;
- 	max_x =3D max_x_tmp - 1;
- 	max_y =3D max_y_tmp - 1;
- 	max_p =3D si->sensing_conf_data.max_z;
-=20
--	error =3D input_mt_init_slots(ts->input, si->tch_abs[CY_TCH_T].max,
--		INPUT_MT_DROP_UNUSED | INPUT_MT_POINTER);
--	if (error < 0)
--		return error;
--
- 	input_set_abs_params(ts->input, ABS_MT_POSITION_X, 0, max_x, 0, 0);
- 	input_set_abs_params(ts->input, ABS_MT_POSITION_Y, 0, max_y, 0, 0);
- 	input_set_abs_params(ts->input, ABS_MT_PRESSURE, 0, max_p, 0, 0);
-@@ -435,6 +428,11 @@ static int cyttsp5_setup_input_device(struct device *d=
-ev)
- 	input_set_abs_params(ts->input, ABS_MT_TOUCH_MAJOR, 0, MAX_AREA, 0, 0);
- 	input_set_abs_params(ts->input, ABS_MT_TOUCH_MINOR, 0, MAX_AREA, 0, 0);
-=20
-+	error =3D input_mt_init_slots(ts->input, si->tch_abs[CY_TCH_T].max,
-+		INPUT_MT_DROP_UNUSED | INPUT_MT_DIRECT);
-+	if (error < 0)
-+		return error;
-+
- 	error =3D input_register_device(ts->input);
- 	if (error < 0)
- 		dev_err(dev, "Error, failed register input device r=3D%d\n", error);
-=20
+Please ask Marc Zyngier to apply this to the irqchip tree.
+
+>   ARM: dts: spear3xx: Add spear320s dtsi
+
+Please apply this to the SoC tree.
+
+Yours,
+Linus Walleij
