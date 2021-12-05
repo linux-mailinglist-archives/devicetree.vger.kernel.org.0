@@ -2,127 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0942468D79
-	for <lists+devicetree@lfdr.de>; Sun,  5 Dec 2021 22:39:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3A96468D91
+	for <lists+devicetree@lfdr.de>; Sun,  5 Dec 2021 23:12:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239397AbhLEVnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Dec 2021 16:43:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44384 "EHLO
+        id S236975AbhLEWPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Dec 2021 17:15:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232165AbhLEVnH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 16:43:07 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F9EC061714;
-        Sun,  5 Dec 2021 13:39:40 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id x7so6296112pjn.0;
-        Sun, 05 Dec 2021 13:39:40 -0800 (PST)
+        with ESMTP id S230153AbhLEWPr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 17:15:47 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8AF0C061714;
+        Sun,  5 Dec 2021 14:12:19 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id y13so35033278edd.13;
+        Sun, 05 Dec 2021 14:12:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=nJ+Pla7ZGvHQEHUB3DSoauogXISC+UwH9TH03jV2caw=;
-        b=Qu1A6lJOOwziop+bTtc3cOXfWdWTDsa3dc9dlGvErHl24bKZY0yUOGeJX3GEfdOLg7
-         R8z/DLAZFKXvHQsvZOsHzy/aBqYotqU8B2g5jAi+/7TBUG37f85ZR8H93ZUdU/E7rJqu
-         XTuxzVFk5Do3MtQ4XO5VG73SWtYhhkFO4lXGrDKBTWumxIYLS+bJgUj8ehJe0o4DlOol
-         6snfjGiaC5tYFMw2+jUKMwlW/w0Hikok4dPOZIsZtMdPAASV35LJZj2i+1r6O4d/bLI4
-         Dxv1u80vSeTPlgmW/sKK+qd7h4mnIJnn6bfMwn4ZWJzeOATv2KpJuQcK6gfWtO/deV6t
-         c3bg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/0+D7LVpx2b7+YEMHYNQ4sHzfEasm4IIQFuQ89JA1j8=;
+        b=F1ShzJNVmwrJpSJSRSW9i78hXffC6SmbOrZhsVhVWauFzMa2QgZ5ZEiL3yjxKcWWl/
+         b3mZcfV2vMjsBoxTguBJ2/Fj4TLrJGB5PBWZnTceQvBlrC9J+xIYPw+9L5sknnwRVyOe
+         Tj4zoIDtHFctHEmv4nyiv2dHBXa3cfQlYV4Bfi9/NI2W62m8e1X9tC4WoalYvLJQaVSc
+         1Yf3y95KIX8VTuzYd+xcG/t+qKei2WJXaV0ka/zSMq6pJuVioghBpp+li4gX61+y0s07
+         eGFs1sGzLxp/r/Teac8JLFi0QKh1nO3mPGPpTfVQRh7oHq+4JvvVlHmdi8V7cD1ujyK0
+         zFUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nJ+Pla7ZGvHQEHUB3DSoauogXISC+UwH9TH03jV2caw=;
-        b=TUPJSvGDS4/GsyWkPUWqIBEHObK2sWMNIcQNaIS25Wy5/thCStjYFn74g/U+Ljfr3t
-         rbeYf1N4NbLN3S0auYAAC/jgeefeIA45kuRDLK7Tw+UbLMpUgT4tnCmgFx2zfBDlVQue
-         TdSHZl3VWh02zvInN96WdzugvNd1ZMM//mquSly3z0lL1iAEmBx8kSFyqKogpOyS1DPc
-         VEEEdbOfAkPYbMJyuqFLP4Ab56HhU2H11L93sgDvjFYNrvLJkhlHaMq7qJ2Jj+gmDhkv
-         sR1rddPsgyoRGMi2x1cMhOzm7/UX5hnryvTReDWhnbrTTfRAHTo1AbVBm8wwSMpq1bfF
-         diMQ==
-X-Gm-Message-State: AOAM531/yBuA1G+vIGOf8TC0jKNpUDtlajxNrDpcUiTqihU6sKtLLTiU
-        EhPk4ikbRXpflDl/C4KI5Gc=
-X-Google-Smtp-Source: ABdhPJywN0CepSJUH0wjIwIrZ3rw8E0BK/gq2Ajuc86GPVBeZ7JkGYLHgMeH+DFvYhicvdNwkCM7gw==
-X-Received: by 2002:a17:90b:4c02:: with SMTP id na2mr32444046pjb.94.1638740379199;
-        Sun, 05 Dec 2021 13:39:39 -0800 (PST)
-Received: from localhost ([2409:10:24a0:4700:e8ad:216a:2a9d:6d0c])
-        by smtp.gmail.com with ESMTPSA id il7sm8365725pjb.54.2021.12.05.13.39.38
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/0+D7LVpx2b7+YEMHYNQ4sHzfEasm4IIQFuQ89JA1j8=;
+        b=no614cVfOAo7oaf5p9lsaZZJmqR5gI4k1dqW7kkKnNoQ3iqV45yb7ZnUoDIaX8vTVA
+         FaHZIyUmXIQdKsfccoXiC4GxMJe+u5ObaPbtnenVlD9962VsgIojn1w/5aF5xxpCH0WO
+         FoisrjvPW57+L4Xq2cWT1dpluBN53w8gY+40rihsmpzymdTKcZggR9eo2fACAQ0aIhJd
+         +2s0md1UVUaUjts/ir0mPpVLfREf4+70dKydypmbj6r9v5dPMFzt4yJEPfVNNcEItgfU
+         yr1WrUL+pOCtefjauuyNEUz9hvQHDr2sQejH865CsWYULkXyQ4zRq7cu65KZzxvZpyzX
+         qJXg==
+X-Gm-Message-State: AOAM531B2oAPaQ1SgJtJ0FOj6zWkSVZClsnNy4fsKGKVHn6FACQ1sFMq
+        wFms2ulwXoDxWY7vaG+luE0=
+X-Google-Smtp-Source: ABdhPJwNJVY/pPrZpgLhM+zElauLpEyy+O+9rCOEWxON+LxRF3Qjo0Yh25DR1b0Y1aOy0+uHn21Xww==
+X-Received: by 2002:a17:906:f74a:: with SMTP id jp10mr39938596ejb.358.1638742338498;
+        Sun, 05 Dec 2021 14:12:18 -0800 (PST)
+Received: from localhost.localdomain ([2a02:ab88:368f:2080:eab:126a:947d:3008])
+        by smtp.googlemail.com with ESMTPSA id gb18sm5608079ejc.95.2021.12.05.14.12.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Dec 2021 13:39:38 -0800 (PST)
-Date:   Mon, 6 Dec 2021 06:39:36 +0900
-From:   Stafford Horne <shorne@gmail.com>
-To:     Gabriel Somlo <gsomlo@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, ulf.hansson@linaro.org,
-        linux-mmc@vger.kernel.org, kgugala@antmicro.com,
-        mholenko@antmicro.com, krakoczy@antmicro.com,
-        mdudek@internships.antmicro.com, paulus@ozlabs.org, joel@jms.id.au,
-        geert@linux-m68k.org, david.abdurachmanov@sifive.com,
-        florent@enjoy-digital.fr
-Subject: Re: [PATCH v1 3/3] mmc: Add driver for LiteX's LiteSDCard interface
-Message-ID: <Ya0xmCTrp7BJmiBs@antec>
-References: <20211203234155.2319803-1-gsomlo@gmail.com>
- <20211203234155.2319803-4-gsomlo@gmail.com>
+        Sun, 05 Dec 2021 14:12:18 -0800 (PST)
+From:   David Virag <virag.david003@gmail.com>
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
+        David Virag <virag.david003@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: [PATCH v2 0/7] Initial Samsung Galaxy A8 (2018) support
+Date:   Sun,  5 Dec 2021 23:10:59 +0100
+Message-Id: <20211205221108.193400-1-virag.david003@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211203234155.2319803-4-gsomlo@gmail.com>
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 03, 2021 at 06:41:55PM -0500, Gabriel Somlo wrote:
-> LiteX (https://github.com/enjoy-digital/litex) is a SoC framework
-> that targets FPGAs. LiteSDCard is a small footprint, configurable
-> SDCard core commonly used in LiteX designs.
-> 
-> The driver was first written in May 2020 and has been maintained
-> cooperatively by the LiteX community. Thanks to all contributors!
-> 
-> Co-developed-by: Kamil Rakoczy <krakoczy@antmicro.com>
-> Signed-off-by: Kamil Rakoczy <krakoczy@antmicro.com>
-> Co-developed-by: Maciej Dudek <mdudek@internships.antmicro.com>
-> Signed-off-by: Maciej Dudek <mdudek@internships.antmicro.com>
-> Co-developed-by: Paul Mackerras <paulus@ozlabs.org>
-> Signed-off-by: Paul Mackerras <paulus@ozlabs.org>
-> Signed-off-by: Gabriel Somlo <gsomlo@gmail.com>
-> Cc: Mateusz Holenko <mholenko@antmicro.com>
-> Cc: Karol Gugala <kgugala@antmicro.com>
-> Cc: Joel Stanley <joel@jms.id.au>
-> Cc: Stafford Horne <shorne@gmail.com>
-> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
-> Cc: David Abdurachmanov <david.abdurachmanov@sifive.com>
-> Cc: Florent Kermarrec <florent@enjoy-digital.fr>
-> ---
->  drivers/mmc/host/Kconfig     |   6 +
->  drivers/mmc/host/Makefile    |   1 +
->  drivers/mmc/host/litex_mmc.c | 677 +++++++++++++++++++++++++++++++++++
->  3 files changed, 684 insertions(+)
->  create mode 100644 drivers/mmc/host/litex_mmc.c
-> 
-> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-> index 5af8494c31b5..84c64e72195d 100644
-> --- a/drivers/mmc/host/Kconfig
-> +++ b/drivers/mmc/host/Kconfig
-> @@ -1093,3 +1093,9 @@ config MMC_OWL
->  
->  config MMC_SDHCI_EXTERNAL_DMA
->  	bool
-> +
-> +config MMC_LITEX
-> +	tristate "Support for the MMC Controller in LiteX SOCs"
-> +	depends on OF && LITEX
-> +	help
-> +	  Generic MCC driver for LiteX
+Add basic initial support for the Samsung Galaxy A8 (2018) smartphone.
+This phone is also known as "jackpotlte" and under the model name
+"SM-A530F". In its current state this should work on most if not all
+Exynos7885 phones/devices released.
 
-I just noticed this while configuring the kernel.  This doesn't really follow
-the pattern of other drivers, we should think of putting "Litex" near the
-beginning of the line. It makes it easier to spot in menuconfig.
+As of now, it supports I2C nodes (all disabled by default) and UART
+console with basic clock support in place.
 
-For example:
+To access the UART console on the A8, there are two methods:
+  -You can open up the device and solder directly to some debug pins
+   close to the display connector.
+  -Through I2C you can set the S2MU004 MFD chip to multiplex the SoC's
+   UART lines to the d+ and d- on the USB Type-C port of the device.
 
-LiteX MMC Controller support
+Note that UART works on 1.8 volts, so plugging in a normal USB cable
+while multiplexed to UART may fry the SoC.
 
-This selects support for the MMC Host Controller found in LiteX SOCs.
+Everything was tested through UART by using a minimal driver that sets
+the S2MU004 to multiplex UART.
 
-It unsure, say N.
+The preferred way to boot this device is by using my Minimal S-Boot
+Wrapper [1] to work around some issues caused by the stock, and
+non-replacable Samsung S-Boot bootloader.
 
--Stafford
+Changes in v2:
+- Added R-b tags by Krzysztof Kozlowski
+- Moved dt-bindings patches to the beginning of the series
+- Fixed double : in 7885 CMU bindings
+- Fixed multiple double line breaks
+- Made Exynos850 and 7885 clock drivers share some code in a new patch
+- Lots of dts/dtsi fixes
+
+[1] https://github.com/VDavid003/minimal_sboot_wrapper
+
+David Virag (7):
+  dt-bindings: clock: Add bindings definitions for Exynos7885 CMU
+  dt-bindings: clock: Document Exynos7885 CMU bindings
+  dt-bindings: arm: samsung: document jackpotlte board binding
+  clk: samsung: Make exynos850_register_cmu shared
+  clk: samsung: clk-pll: Add support for pll1417x
+  clk: samsung: Add initial Exynos7885 clock driver
+  arm64: dts: exynos: Add initial device tree support for Exynos7885 SoC
+
+ .../bindings/arm/samsung/samsung-boards.yaml  |   6 +
+ .../clock/samsung,exynos7885-clock.yaml       | 166 ++++
+ arch/arm64/boot/dts/exynos/Makefile           |   7 +-
+ .../boot/dts/exynos/exynos7885-jackpotlte.dts |  95 ++
+ .../boot/dts/exynos/exynos7885-pinctrl.dtsi   | 865 ++++++++++++++++++
+ arch/arm64/boot/dts/exynos/exynos7885.dtsi    | 438 +++++++++
+ drivers/clk/samsung/Makefile                  |   2 +
+ drivers/clk/samsung/clk-exynos-arm64.c        |  94 ++
+ drivers/clk/samsung/clk-exynos-arm64.h        |  20 +
+ drivers/clk/samsung/clk-exynos7885.c          | 593 ++++++++++++
+ drivers/clk/samsung/clk-exynos850.c           |  94 +-
+ drivers/clk/samsung/clk-pll.c                 |   1 +
+ drivers/clk/samsung/clk-pll.h                 |   1 +
+ include/dt-bindings/clock/exynos7885.h        | 115 +++
+ 14 files changed, 2404 insertions(+), 93 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos7885-clock.yaml
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos7885-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos7885.dtsi
+ create mode 100644 drivers/clk/samsung/clk-exynos-arm64.c
+ create mode 100644 drivers/clk/samsung/clk-exynos-arm64.h
+ create mode 100644 drivers/clk/samsung/clk-exynos7885.c
+ create mode 100644 include/dt-bindings/clock/exynos7885.h
+
+-- 
+2.34.1
+
