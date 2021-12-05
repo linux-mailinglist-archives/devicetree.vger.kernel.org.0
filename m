@@ -2,84 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7108D468BEE
-	for <lists+devicetree@lfdr.de>; Sun,  5 Dec 2021 16:43:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2344468C01
+	for <lists+devicetree@lfdr.de>; Sun,  5 Dec 2021 16:47:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231730AbhLEPqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Dec 2021 10:46:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51574 "EHLO
+        id S231434AbhLEPus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Dec 2021 10:50:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236221AbhLEPqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 10:46:06 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61F63C061714;
-        Sun,  5 Dec 2021 07:42:39 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id e3so32870670edu.4;
-        Sun, 05 Dec 2021 07:42:39 -0800 (PST)
+        with ESMTP id S229838AbhLEPus (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 10:50:48 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1424DC061714
+        for <devicetree@vger.kernel.org>; Sun,  5 Dec 2021 07:47:21 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id t9so17060637wrx.7
+        for <devicetree@vger.kernel.org>; Sun, 05 Dec 2021 07:47:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=uPhNvczeuSunjNtIHb635StOQzdWe5hSGlJOVerCe70=;
-        b=AShHHdFzo/7Fw5V2v01+h5zTFl1DEJtXY04/5Pd6XjF5unBpg8/mpkD3FT6C/j//lV
-         CCqHG5v/6IWhxdkhfkJSyoB3PPcjKYhUTqd2xETGDp7439V/12PKg1Gjwr5ncwna14RI
-         ns1kd+8GIpIfPpUpRTYxEydmp+fda9uABXPUXYD5BOdmSM6u+hePrY68GiQKokNIeaQ+
-         u4m1fPU8jRZ9cakLFzmTNSGK4iyBrVtnBplS+QaS5rSCrLa0zRrEHDvg1xqQUtNTPPkP
-         PvGAxBzs0sL7wseo6l/jts4SDBFdBo5go7+IStpQtb7YYN0l0X8PU+LSPlaQObUN4c/j
-         XRJg==
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=s9IGPqOTuFEFxKMxMPq1P/MfyJrhGXNasZNiCUUGkGw=;
+        b=Ha/2Ff4tU7ure/AV/wSxdUG6CdNdZY8x7fqmX+q7cO/mBd8eO5bkIc6MdIqStqYrHR
+         OWl8X5Yn8Mt5lPiQY3UJYSMr8ryqXdtCX3EHvNFc0iHutdeIC1Ii1RuQjKGnNK2HD7K6
+         3QHTctGvdTSq6udOEosGa/ldgJRHBasOARDCcAxabFE1CutscH+IW5d57P2FK/sGPtCm
+         wMnp1xIoKTksUeuLgWpC2Fx0nZ2+Uo97GxwWeFp5Z8E9s/83XThbMRPz1h2LmbrdPD+F
+         d/4TzP+E4Z5nXe92VwQhA0FXi0ZInKfZMD1ysoPneBuzKFXrDw721d9jTYl+bPriY8bp
+         W/Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=uPhNvczeuSunjNtIHb635StOQzdWe5hSGlJOVerCe70=;
-        b=dF95hcaF50Q70GYDzXjyJCxPIzBDeChuOPoiVYuv7vQIjg0J5fsREJjRneytvQOSfQ
-         AZJihnbdRIVd5EouFFGhhKcWFPuNz6vtNUlLGRUPzm7eRSo0ogmT0jUmtAcCiSLAqDSq
-         alp+noBT0B3fw+3dutyvRSLQAvx6hN4PrcRtF7js1NHgsSvu393hAzxYKLEm4filsDo2
-         Ble+Qobn87Z1lAzRPJytnvJq713qk6aKTbDyXemo78OYuaDqp94Cs3TLSIKzsnULRuAB
-         uevmBZGzGtZl3hOZ9OKtmmLgZDA4f228iGkEd4M2uYBKRkr9D+ojxlPqlhnGtz2hl7y4
-         4b2g==
-X-Gm-Message-State: AOAM530joAK0ShT7RwDVv1gywnJjb0Qy5EDF4xi4U0Sz61DKLL/OoAIB
-        eQibF0WD8BIcwBySXT6VDNw=
-X-Google-Smtp-Source: ABdhPJyDvq3mVFxjeVmdQzh+3GTCIxa+91K4K5U0Tont7GnRAgOdwRKi2+kgf1u5AInXTiwrz1ZWoQ==
-X-Received: by 2002:a17:906:d930:: with SMTP id rn16mr40668186ejb.223.1638718957716;
-        Sun, 05 Dec 2021 07:42:37 -0800 (PST)
-Received: from ?IPv6:2a02:ab88:368f:2080:eab:126a:947d:3008? ([2a02:ab88:368f:2080:eab:126a:947d:3008])
-        by smtp.gmail.com with ESMTPSA id j4sm5991820edk.64.2021.12.05.07.42.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Dec 2021 07:42:37 -0800 (PST)
-Message-ID: <b5d698b430b45b1b29e28b33b62702dd7deeaa76.camel@gmail.com>
-Subject: Re: [PATCH 0/6] Initial Samsung Galaxy A8 (2018) support
-From:   David Virag <virag.david003@gmail.com>
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Date:   Sun, 05 Dec 2021 16:41:53 +0100
-In-Reply-To: <20211205153302.76418-1-virag.david003@gmail.com>
-References: <20211205153302.76418-1-virag.david003@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.2 
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=s9IGPqOTuFEFxKMxMPq1P/MfyJrhGXNasZNiCUUGkGw=;
+        b=MC32gREN+2fBrDebXKJGkQk1y7q3pvEfzKEzycTCOyfHvPeobJZ7CxwIEskI3mFOIT
+         zKq+FkucVOJFIAXC+6EqAxnjeDfH7WhHbkpgUuAGEUfIJ63FOdVapITZMpb6bJNk51jY
+         TEU7i1++Rs9X0puJUXEVjKbdacl0n24xfNeHu9DSMz4S/7uvErDal8jp+6Gi07EdQV9M
+         /KB/v+tXQCepPwZgmeF2dCFg0ozHr1brLkCCfRHP2g8mLhqN1+284VVy9POrrAt0ol4V
+         1vn5yhl1sH80pvu4DvrVm2tintX1v7v3DrUzkLoyHK1oRJmbXeqLj9WsIi9O8cyb1tcx
+         YZgA==
+X-Gm-Message-State: AOAM531WhNSvKRlPqCjrwXtb1eVmANDrhO3ojvcMf10glq/hNBMYbugc
+        788RndfFpdvQh5SVN5HS8sbrNoEJTjeSkuE4aOY=
+X-Google-Smtp-Source: ABdhPJy/wrAkvUqYyGjypgbXzPmuKQBu+v63UNybTefZWb1YCh/Hl6tdybZDbngxOtonk3+EvsljfGXNiEg46kfWLW8=
+X-Received: by 2002:adf:b1cc:: with SMTP id r12mr36446508wra.217.1638719239441;
+ Sun, 05 Dec 2021 07:47:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Received: by 2002:a05:600c:1550:0:0:0:0 with HTTP; Sun, 5 Dec 2021 07:47:18
+ -0800 (PST)
+Reply-To: lawrencetansanco.y@gmail.com
+From:   Lawrence Tansanco Yacouba <mmmchez07@gmail.com>
+Date:   Sun, 5 Dec 2021 15:47:18 +0000
+Message-ID: <CAPRL_G8S=tuyZe3VwuRZZ-ADQh_YMyAkUjn_C7KJh9ZDdyq=Ag@mail.gmail.com>
+Subject: THANKS FOR YOUR RESPONSE AND GOD BLESS
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I accidentally forgot to CC Sam Protsenko, so I'll CC him in this
-email, so hopefully it gets to him!
+.
+I will like to disclose something very important to you,
+get back for more details please.
 
-I think it would have been important to CC him as he is the author of
-the original Exynos850 clock driver that the initial 7885 clock driver
-included in this series was based on. I just realized I didn't do it
-while the emails were already being sent.
-
-Best Regards,
-David
+Regards.
+Mr Lawrence Tansanco Y.
