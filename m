@@ -2,147 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 454C7468D0D
-	for <lists+devicetree@lfdr.de>; Sun,  5 Dec 2021 20:46:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DF4E468D16
+	for <lists+devicetree@lfdr.de>; Sun,  5 Dec 2021 20:51:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238150AbhLETuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Dec 2021 14:50:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48194 "EHLO
+        id S238288AbhLETyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Dec 2021 14:54:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233648AbhLETuH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 14:50:07 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33548C061714
-        for <devicetree@vger.kernel.org>; Sun,  5 Dec 2021 11:46:40 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id o4so17481652oia.10
-        for <devicetree@vger.kernel.org>; Sun, 05 Dec 2021 11:46:40 -0800 (PST)
+        with ESMTP id S233648AbhLETyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 14:54:43 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 154B0C061714;
+        Sun,  5 Dec 2021 11:51:16 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id x15so34602352edv.1;
+        Sun, 05 Dec 2021 11:51:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EcFKiX7xbKqkQNXA7B58bii58XjgqxU59DDHx7WJlQI=;
-        b=fziO+LbTAROemtggbzAuNFIUyuvFQ5kz6OBRYrtdUf+LMsEIFXSHQQfHVpIzQQIsRJ
-         RCIEfxbp5qYZe1sSnJI2jSHYYAt4EFxJWHu+GWQAHTczGqgRPcSC5MYSeohUJ+/3ryI3
-         4lqXzXdptThMXbLjRC/5yivLLC7KkRHFo/8jRDMtPHYYoqf3umu9v1GOKn0V/G136Ej5
-         w7m9vyZNLObByWYGemLunYoNGPvRfAdpYDaBbO0CsVjxk7YjJGRzAj58wuJd0k684KrZ
-         8kMSBdE1p6blQoi27X7Sykps4xxBuwAvVDnm/HIDrW8/lTd9LSqElQ63W2NQ1j9yi7lA
-         xMLg==
+         :cc:content-transfer-encoding;
+        bh=aYk6tlltAWxz+Lc9ZOG1gq6DUYS4v1JgEkLR93QjrjA=;
+        b=PqmsZO7Oa5OdJ5RdHyIN/q2FCcc53sI5u2qfvkDWMqXurPU3LNwhVQN4G6xy83UnqB
+         JaUfqIkPDW/nW+Go0fZylKEnnxsnDgLlkVg9Z9avDDvYU0rwHSy0EGhgguW0eevFK7lh
+         2nKN5LZ14iiMhAneUPO9hEz5vbJsy24x8yV2IC0sn5bmBWkCb/AS/rv5o1Nu4DYZIavv
+         zYL40hCA5e3XujdHXuTIP0C0IxrUpOnOSlAWjicHrFC2cdz33zl//LF3eDVRlAhvqrxV
+         066KjqjrGsxe/4sze3saD72bxIZ3RfcqchiHUgV5i7BbLqnpXQ5uJtSwZu7lseL+P1Ql
+         SC1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EcFKiX7xbKqkQNXA7B58bii58XjgqxU59DDHx7WJlQI=;
-        b=edtj3CWAk3Qky45iGzh8zO48s+fh4xAV5dShtq+kIA1gYPSXKkCuLvRfQ3Pfus0j+H
-         rAGhp9Et1AzrBVNqPzdwUmluh5nAnmHALU7p3dAZP8X3cCFbWJ5ijd9kTuMDxM0wX1vi
-         XqYwDHmVS6p3umm15raa5XNtcaFjGMBdWBoyFm7Q06G3DpOE0zk/c7a5MqOtIGcj2cMp
-         LdYIGd0SsvivW+OAX8gPgs8LFZQ+34zhRFjFHpdLIHgZ3yqOYO/UF/a4jnhhZ//seTFw
-         vXo6p8F62tHVQatMqXNC+s9HteTibnOYhEOfhMc0AjI2o9A1aKcoXa3WLOYcSbZ+6gln
-         l8vQ==
-X-Gm-Message-State: AOAM531LCl4S73xtjXeC3Qb8Gbz51xp5UvXm0K3Dp9t3k23MpBz3KEEr
-        slJRA3IPQwXa5ySFM/2zpRoD2CmuOBHMDMFbc4wmGg==
-X-Google-Smtp-Source: ABdhPJwDo16TQrPKVqAGuE0uBJ0FxE7MYgH77QQwApEKH62cTw8KZncd3gIBXH/r97N6WrjrnctIHelwjHLoH3qrV28=
-X-Received: by 2002:aca:120f:: with SMTP id 15mr19749633ois.132.1638733599530;
- Sun, 05 Dec 2021 11:46:39 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=aYk6tlltAWxz+Lc9ZOG1gq6DUYS4v1JgEkLR93QjrjA=;
+        b=CMZts4hlkEyLki8UPLPrRVzPTVAv4IsgLLZKei1v0+9+KuBUg/oEoHIxe8+VnCJv+Q
+         zDa2EC0+YMgrCk7zSPsiU4RebdRuqWBLqeCijtS75vACykk/ZEg9clT/JzzHwNfEqwYO
+         KhZXROKhsLjUwd5HQb+Ab1V7nE68cpRUDy7L1cyqHbAvq188rtDzxvYqp6MDDKK6KLll
+         4lB6rm63Ltzh9tEwHrMId0qSVRNflDOOJxMcdml5SMw9KBTbD50H69pzlvTpOdP6FDLM
+         u+lrkPUlOoH8TlJBs41N4s1Or6ZmCnjGzMfu5RsdSe4bPGynz9Z24fKySFRQYdXKrMQ+
+         eK9g==
+X-Gm-Message-State: AOAM533e7jedUH2ypaAPWX+0iuBp63BQxlR/w+/A4LKazdwbyPIl+Xes
+        G3Vki2GcZyp4Y6bsFEErkhFh7rHsDLMuvPuMPjXNav1YgwY=
+X-Google-Smtp-Source: ABdhPJxEEYXAtlNDIHxi+vMyv1lC0gCFxrGSQ2h/mDcSyIsJ/yDhiCAw5OsZ2QHMzxz0RC6SAm2D12hmp3o0fp/mzn0=
+X-Received: by 2002:aa7:d288:: with SMTP id w8mr49063653edq.404.1638733874161;
+ Sun, 05 Dec 2021 11:51:14 -0800 (PST)
 MIME-Version: 1.0
-References: <20211118141233.247907-1-boger@wirenboard.com> <20211118141233.247907-3-boger@wirenboard.com>
- <20211122104915.zism6uadgwxjz5d2@gilmour> <d1a18116-e198-1b26-d73a-36fbf31aaa81@wirenboard.com>
- <35630e89-4988-a6a9-b801-0e9e44419684@sholland.org> <206c2a66-42b9-7e07-66c3-6007b010c996@wirenboard.com>
- <20211201110241.kts5caycdmzqtp3i@fiqs> <4fd167ed-d5dc-358a-00f5-6590f4c20a68@wirenboard.com>
- <20211203204754.2ucaiiwyrvbtwgbz@earth.universe> <20211204152621.4f15b3d0@jic23-huawei>
- <CACRpkdZ+WWz7JoyE3a1Ra8dx27YcHH6zRNcTmNJyX_vfcu0n7w@mail.gmail.com> <a45c37e5-caa3-e5e4-62d2-e2418ed95441@wirenboard.com>
-In-Reply-To: <a45c37e5-caa3-e5e4-62d2-e2418ed95441@wirenboard.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 5 Dec 2021 20:46:24 +0100
-Message-ID: <CACRpkdaxXQD-VxSg-zouRTwWJUQbVPJJRvEn8=kV-8BK77xrfQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: document TS voltage in AXP PMICs
-To:     Evgeny Boger <boger@wirenboard.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Quentin Schulz <foss+kernel@0leil.net>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <maxime@cerno.tech>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, linux-pm@vger.kernel.org,
-        Guenter Roeck <linux@roeck-us.net>
+References: <20211205181618.1041699-1-aford173@gmail.com>
+In-Reply-To: <20211205181618.1041699-1-aford173@gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Sun, 5 Dec 2021 13:51:02 -0600
+Message-ID: <CAHCN7xL3PSbHKZK_4NKRwhNGOZYM+i54CoKCq01a6kdbCLc2KA@mail.gmail.com>
+Subject: Re: [RFC 0/5] Split iMX8MQ Hantro VPU into G1 and G2 with blk-ctrl support
+To:     linux-media@vger.kernel.org
+Cc:     benjamin.gaignard@collabora.com, cphealy@gmail.com,
+        nicolas@ndufresne.ca, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-staging@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 5, 2021 at 11:50 AM Evgeny Boger <boger@wirenboard.com> wrote:
-
-> >> Agreed those tables would be needed whatever the solution.  We might
-> >> stick to 'standard' tables for simple cases but someone will always wire
-> >> a circuit up that does something we haven't thought of.
-> > What we usually do is model the wiring in the device tree like we (I) have
-> > already done with much pain in:
-> > Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
+On Sun, Dec 5, 2021 at 12:16 PM Adam Ford <aford173@gmail.com> wrote:
 >
-> Earlier in this thread I mentioned our use case with AXP221s: we ended
-> up wiring 10k NTC in series with 12k fixed resistance.
-> The only reason was to work around poorly-designed AXP NTC detection
-> "feature", which would turn off protection whenever
-> the voltage on TS pin drops below 0.2V.
+> Currently, the VPU in the i.MQ8MQ is appearing as one codec, but in reali=
+ty, it's
+> two IP blocks called G1 and G2.  There is initialization code in VPU code=
+ to
+> pull some clocks, resets and other features which has been integrated int=
+o
+> the vpu-blk-ctrl for the i.MX8M Mini and a similar method can be used to =
+make
+> the VPU codec's operate as stand-alone cores without having to know the d=
+etails
+> of each other or the quirks unique to the i.MX8MQ, so the remaining code =
+can be
+> left more generic.
 >
-> How would you suggest to handle such a wiring?
-
-Correct me if I'm wrong but it is pretty standard to connect an extra
-resistor in series with a thermistor, for example batteries often have
-an BTI "Battery Type Indicator" resistor in series with the thermistor.
-
-If you check the NTC bindings:
-Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
-they already cover this, in two different ways depending of how
-the voltage is measured and if the resistor is in series with the
-thermistor to ground or to VCC.
-
-The thermistor table goes in the driver for the 10k resistor
-and the 12k resistor is pullup-ohm or pulldown-ohm.
-
-> > battery: battery {
-> >          compatible = "simple-battery";
-> >
-> >          ntc-resistor {
-> >                  ...
-> >          };
-> > };
-> >
-> > For the Samsung batteries my plan is to spawn a platform device from inside the
-> > Samsung battery driver and add pull-down resistor value and
-> > compatible using software nodes from within the kernel.
+> This series was started by Lucas Stach, and picked up by me so some patch=
+es have
+> his s-o-b and mine where I might have changed a few minor items.  It's in=
+ an RFC state
+> because the G2 VP9 operations appear to hang, but the parent code from wh=
+ich I started doesn't
+> appear to show VP9 support, and it looks like it should.
 >
-> In this example, the ntc-resistor node will be handled by current NTC
-> hwmon driver, right?
+> since the g-streamer and media trees are in a constant state of change, t=
+his series is based on
+> git://linuxtv.org/hverkuil/media_tree.git for-v5.17e
+>
 
-Yes
+I forgot to post Fluster results.
 
-> Frankly, I'm quite confused about hwmon vs iio choice in this case.
-> Wouldn't it be better to use iio here, say, by extending iio-afe?
+Before the patches to this branch:
 
-The hwmon driver uses IIO for voltage sampling. It is in the hwmon
-driver folder because the driver provides a temperature and for
-historical reasons: it was used for hwmon use cases.
+2gst-main] root@localhost:~/gstreamer/fluster# ./fluster.py list -c |grep -=
+i v4l
 
-It is possible to refactor it to a driver in
-drivers/iio/temperature/* if so desired, and make sure all users
-are moved over and the Kconfig symbols are resolved to the
-new driver. After that it can be used by hwmon using the
-iio-to-hwmon bridge driver.
+    GStreamer-H.264-V4L2-Gst1.0: GStreamer H.264 V4L2 decoder for
+GStreamer 1.0... =E2=9D=8C
+    GStreamer-H.264-V4L2SL-Gst1.0: GStreamer H.264 V4L2SL decoder for
+GStreamer 1.0... =E2=9C=94=EF=B8=8F
+    GStreamer-H.265-V4L2-Gst1.0: GStreamer H.265 V4L2 decoder for
+GStreamer 1.0... =E2=9D=8C
+    GStreamer-H.265-V4L2SL-Gst1.0: GStreamer H.265 V4L2SL decoder for
+GStreamer 1.0... =E2=9D=8C
+    GStreamer-VP8-V4L2-Gst1.0: GStreamer VP8 V4L2 decoder for GStreamer 1.0=
+... =E2=9D=8C
+    GStreamer-VP8-V4L2SL-Gst1.0: GStreamer VP8 V4L2SL decoder for
+GStreamer 1.0... =E2=9C=94=EF=B8=8F
+    GStreamer-VP9-V4L2SL-Gst1.0: GStreamer VP9 V4L2SL decoder for
+GStreamer 1.0... =E2=9D=8C
+    GStreamer-AV1-V4L2SL-Gst1.0: GStreamer AV1 V4L2SL decoder for
+GStreamer 1.0... =E2=9D=8C
+[gst-main] root@localhost:~/gstreamer/fluster#
 
-It's just work, someone who want to fix it can step in and submit
-the patches and drive the change.
+There was no VP9 support.
 
-> But you still need to describe the particular NTC model in device tree,
-> right?
+./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
+GStreamer-H.264-V4L2SL-Gst1.0
+Ran 90/135 tests successfully               in 58.787 secs
 
-No. Drivers can spawn devices including fwnode properties that will
-work identical to a device spawn from a device tree node.
+AFTER this series, two decoders appear:
 
-We can instatiate an NTC as a subdevice of a battery without
-the need of sich a NTC node in the device tree, This is the
-ambition of the fwnode concept,
+[   15.919137] hantro-vpu 38300000.video-codec: registered
+nxp,imx8mq-vpu-g1-dec as /dev/video0
+[   15.983579] hantro-vpu 38310000.video-codec: registered
+nxp,imx8mq-vpu-g2-dec as /dev/video1
 
-Yours,
-Linus Walleij
+VP9 was listed:
+
+    GStreamer-H.264-V4L2-Gst1.0: GStreamer H.264 V4L2 decoder for
+GStreamer 1.0... =E2=9D=8C
+    GStreamer-H.264-V4L2SL-Gst1.0: GStreamer H.264 V4L2SL decoder for
+GStreamer 1.0... =E2=9C=94=EF=B8=8F
+    GStreamer-H.265-V4L2-Gst1.0: GStreamer H.265 V4L2 decoder for
+GStreamer 1.0... =E2=9D=8C
+    GStreamer-H.265-V4L2SL-Gst1.0: GStreamer H.265 V4L2SL decoder for
+GStreamer 1.0... =E2=9D=8C
+    GStreamer-VP8-V4L2-Gst1.0: GStreamer VP8 V4L2 decoder for GStreamer 1.0=
+... =E2=9D=8C
+    GStreamer-VP8-V4L2SL-Gst1.0: GStreamer VP8 V4L2SL decoder for
+GStreamer 1.0... =E2=9C=94=EF=B8=8F
+    GStreamer-VP9-V4L2SL-Gst1.0: GStreamer VP9 V4L2SL decoder for
+GStreamer 1.0... =E2=9C=94=EF=B8=8F
+    GStreamer-AV1-V4L2SL-Gst1.0: GStreamer AV1 V4L2SL decoder for
+GStreamer 1.0... =E2=9D=8C
+
+./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
+Ran 55/61 tests successfully               in 8.565 secs
+
+
+./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
+Ran 90/135 tests successfully               in 60.269 secs
+
+Same results for H.264
+
+VP9 Hangs, where it didn't even appear as available before:
+
+./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
+***************************************************************************=
+*************************
+Running test suite VP9-TEST-VECTORS with decoder GStreamer-VP9-V4L2SL-Gst1.=
+0
+Using 4 parallel job(s)
+***************************************************************************=
+*************************
+
+[TEST SUITE      ] (DECODER                    ) TEST VECTOR
+                          ... RESULT
+----------------------------------------------------------------------
+[VP9-TEST-VECTORS] (GStreamer-VP9-V4L2SL-Gst1.0)
+vp90-2-00-quantizer-00.webm                     ... Success
+[VP9-TEST-VECTORS] (GStreamer-VP9-V4L2SL-Gst1.0)
+vp90-2-00-quantizer-01.webm                     ... Success
+[VP9-TEST-VECTORS] (GStreamer-VP9-V4L2SL-Gst1.0)
+vp90-2-00-quantizer-02.webm                     ... Succes
+
+<hang > - and yes, 'Success' didnt' finish writing to the serial port.
+
+
+
+> Adam Ford (2):
+>   media: hantro: split i.MX8MQ G1 and G2 code
+>   arm64: dts: imx8mq: Split i.MX8MQ G1 and G2 with vpu-blk-ctrl
+>
+> Lucas Stach (3):
+>   dt-bindings: power: imx8mq: add defines for VPU blk-ctrl domains
+>   dt-bindings: soc: add binding for i.MX8MQ VPU blk-ctrl
+>   soc: imx: imx8m-blk-ctrl: add i.MX8MQ VPU blk-ctrl
+>
+>  .../soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml      |  71 +++++++++++
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  69 ++++++----
+>  drivers/soc/imx/imx8m-blk-ctrl.c              |  67 ++++++++++
+>  drivers/staging/media/hantro/hantro_drv.c     |   4 +-
+>  drivers/staging/media/hantro/hantro_hw.h      |   2 +-
+>  drivers/staging/media/hantro/imx8m_vpu_hw.c   | 119 +++---------------
+>  include/dt-bindings/power/imx8mq-power.h      |   3 +
+>  7 files changed, 205 insertions(+), 130 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-=
+vpu-blk-ctrl.yaml
+>
+> --
+> 2.32.0
+>
