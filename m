@@ -2,157 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 338DD468C17
-	for <lists+devicetree@lfdr.de>; Sun,  5 Dec 2021 17:24:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AAD468C27
+	for <lists+devicetree@lfdr.de>; Sun,  5 Dec 2021 17:45:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230143AbhLEQ1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Dec 2021 11:27:50 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:56294
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235862AbhLEQ1u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 11:27:50 -0500
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
+        id S235945AbhLEQsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Dec 2021 11:48:53 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:49834
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235936AbhLEQsx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 11:48:53 -0500
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0EDE13F1F0
-        for <devicetree@vger.kernel.org>; Sun,  5 Dec 2021 16:24:21 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2295F4003A
+        for <devicetree@vger.kernel.org>; Sun,  5 Dec 2021 16:45:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638721461;
-        bh=nbJ6HUZTiIpY2dLLhX4P5MU4lthn/nI4dze09TvpBwY=;
+        s=20210705; t=1638722725;
+        bh=Ynkq06ZARMCOYrhIwJJNWg9AtV11IKTUxlCiNMi7yFs=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=FrDbT8zY0mOFyOHsL8w0TZ5pRkPNLG8TTZ+bj4cDbsFgLWK7uno29d4JV3gnc6xyV
-         NoJXELsJuWLGni5DBIYvs7eErG7jKoAoisZ3H2xXhgSoGpU7v5PN25amCNS6JwBHEd
-         mxmF8JfRQAq1zYgTyUpWtrUzjgABTbUYIJUF8VUgFGxQOIZTNXtA30kIos0pc3Rsfe
-         RqFfNfdYJWl5OhRn+D7RE5/t8H00nTDOnqPog1LuXqSmezUHpHiOG/eisFw1NTU6Sp
-         WfQsvVfDywo4/wnnIzBgwJDO6OL9FHs57f3pA3Xn71/motLTuCp1kQA4RqaB+ouqeT
-         v72jFX2JFYXvw==
-Received: by mail-lf1-f71.google.com with SMTP id h40-20020a0565123ca800b00402514d959fso2678675lfv.7
-        for <devicetree@vger.kernel.org>; Sun, 05 Dec 2021 08:24:21 -0800 (PST)
+        b=dljC7F68rKvH1urViLspgEBeopvIOV6rXIGr9pALyoOvebzQBcJ6n92EfAfZk/9KI
+         9TdoJmyPOH5aTQ0+VmOM58ZiUNrOEBKiRAb/Ldy+Y3e+cBFi/Ig4DRGndUW04ncxq3
+         jyIweooyRIb0BRqvtq8VEtjEccRNBXNhzPCh7TcaFsmskZsU5oRsIrUrHK7/MoQ+0R
+         rBkWdAruCOK+3BqiYOFUFa1Y4C2sNNYKGj513eSVaM9WH359H2IOFE7kte/LbL0jqx
+         2Eaa2vpwdgcgFBatT2tCfb31cnF5HeQt4aQLESFiWpLWw9agILpdwJM5Kn+nAPcOGK
+         cX1P9EDCRvO/A==
+Received: by mail-lj1-f198.google.com with SMTP id y11-20020a2e978b000000b00218df7f76feso2923849lji.11
+        for <devicetree@vger.kernel.org>; Sun, 05 Dec 2021 08:45:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=nbJ6HUZTiIpY2dLLhX4P5MU4lthn/nI4dze09TvpBwY=;
-        b=0zNb8COb1HL80xAJGQj7h79gwT0MTi/ySre9XIySJ3A3UhZ19HJiD4fGb/EqXx0pfK
-         AJ/fcMzEpFV6xF7odvlRF2ZSSAj6pyKkk9xsYRER5JtbCarYKWceEyDQcwq6pH2HHbKa
-         NvF531Wuv1Yhj5GSdHmJKZUvRL6AxHBR+V1ofbGDUuIK1AoJG38QrgHSCtyppegVdALN
-         4h5UjvD0w57Wow3qndun7+/BFAG06Mpp8QKiT1h6S9tFec59b4CcCOnDeBqdtUVkCPX3
-         iRlziE25ofC3f+KXxWD71YOUw7JmSH1+LlG8YSlHb6MZnnFQ78G4p1RvzIV1SExyr6Ig
-         n1Hw==
-X-Gm-Message-State: AOAM530E7wQ3Yq6iEM96VPywTmccirkgRvtYugNctyms/afIutPR1SDx
-        yXISQjZBmOg1inGEVD6f5Xonle+lYqXACiDl6yvfbASOen5BzgptaCz2pzIuEwnoBPPHx69DnyC
-        LVjev8y61vjKvMYOXhiEqtZ+6KXLto1BvuN3F60c=
-X-Received: by 2002:a05:6512:1510:: with SMTP id bq16mr28585912lfb.628.1638721460393;
-        Sun, 05 Dec 2021 08:24:20 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzR/xCJPwKB2U8RdTOYNbXSPYhS9ES4jpT5RpBqrBntCiLjZSPJ+9rYbwp9ILjuquAir6a5Hw==
-X-Received: by 2002:a05:6512:1510:: with SMTP id bq16mr28585885lfb.628.1638721460121;
-        Sun, 05 Dec 2021 08:24:20 -0800 (PST)
+        bh=Ynkq06ZARMCOYrhIwJJNWg9AtV11IKTUxlCiNMi7yFs=;
+        b=KKblPwXO9HtKJmIydxFU6sJvQepZQ9hhT4fYPWIPckiLO9xT9oHMUwxNOhe95Y+ZON
+         im7bA9Zkr+9t3eT73ZrcvhyCC2pHf3VIFQo4VNUJaIDFU8ITS8jIR9wMhJHCN7ol3KKs
+         60eoU486nYyXzY+byddA7MOFV6v/QEJSxtlleDx41HyztSKVrEikTtiLm5Ju9HrfkVJI
+         yv6BRu6V8Yqa34UPfE3lSl/ChnP19kbYBGbtLe90aIBypmhLlK/GjhCMUZVHBKA5cp2x
+         5cF8Sim10qSqKoX12oa4/r/MPlctSD6zJ2GxL3BeOObPbyEr/kBalwEJN+tQcfsc92NJ
+         bE/w==
+X-Gm-Message-State: AOAM531qrN4f5wA9nX+XKm+AG0EYp3YdQBlExCYKF8vo3W1nTrkdLUL/
+        wQ9qpgtpq9UA6jKNq2VzXYNu2zux6IuL/b9o7wY/orAT6gup2gaHsAGMYRVvNv7k244t4/E9+80
+        A9CE1jkNQPmNRB0nvKu8C0AESRspf3KtWOpJS2vE=
+X-Received: by 2002:a05:6512:3718:: with SMTP id z24mr30354652lfr.563.1638722724465;
+        Sun, 05 Dec 2021 08:45:24 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwRuYQWcf9Blj+BSef7qa3hqIyQBNi63M86AiQYiGhVbFi71sm/nCqsjP+YXZtzSaItqny9OQ==
+X-Received: by 2002:a05:6512:3718:: with SMTP id z24mr30354638lfr.563.1638722724308;
+        Sun, 05 Dec 2021 08:45:24 -0800 (PST)
 Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id l5sm1102009ljh.66.2021.12.05.08.24.18
+        by smtp.gmail.com with ESMTPSA id v66sm1118752lfa.6.2021.12.05.08.45.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Dec 2021 08:24:19 -0800 (PST)
-Message-ID: <fb31a159-6d2e-6c9a-439f-f19ef4fd4732@canonical.com>
-Date:   Sun, 5 Dec 2021 17:24:18 +0100
+        Sun, 05 Dec 2021 08:45:23 -0800 (PST)
+Message-ID: <b650681f-62e4-8bff-37de-ea9066559072@canonical.com>
+Date:   Sun, 5 Dec 2021 17:45:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.1
-Subject: Re: [PATCH v3 0/5] soc: samsung: Add USI driver
+Subject: Re: [PATCH 2/6] dt-bindings: clock: Add bindings definitions for
+ Exynos7885 CMU
 Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20211204195757.8600-1-semen.protsenko@linaro.org>
+To:     David Virag <virag.david003@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20211205153302.76418-1-virag.david003@gmail.com>
+ <20211205153302.76418-3-virag.david003@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211204195757.8600-1-semen.protsenko@linaro.org>
+In-Reply-To: <20211205153302.76418-3-virag.david003@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/12/2021 20:57, Sam Protsenko wrote:
-> USIv2 IP-core provides selectable serial protocol (UART, SPI or
-> High-Speed I2C); only one can be chosen at a time. This series
-> implements USIv2 driver, which allows one to select particular USI
-> function in device tree, and also performs USI block initialization.
+On 05/12/2021 16:32, David Virag wrote:
+> Just like on Exynos850, the clock controller driver is designed to have
+> separate instances for each particular CMU, so clock IDs start from 1
+> for each CMU in this bindings header too.
 > 
-> With that driver implemented, it's not needed to do USI initialization
-> in protocol drivers anymore, so that code is removed from the serial
-> driver.
-> 
-> Because USI driver is tristate (can be built as a module), serial driver
-> was reworked so it's possible to use its console part as a module too.
-> This way we can load serial driver module from user space and still have
-> serial console functional.
-> 
-> Design features:
->   - "reg" property contains USI registers start address (0xc0 offset);
->     it's used in the driver to access USI_CON and USI_OPTION registers.
->     This way all USI initialization (reset, HWACG, etc) can be done in
->     USIv2 driver separately, rather than duplicating that code over
->     UART/SPI/I2C drivers
->   - System Register (system controller node) and its SW_CONF register
->     offset are provided in "samsung,sysreg" property; it's used to
->     select USI function (protocol to be used)
->   - USI function is specified in "samsung,mode" property; integer value
->     is used to simplify parsing
->   - there is "samsung,clkreq-on" bool property, which makes driver
->     disable HWACG control (needed for UART to work properly)
->   - PCLK and IPCLK clocks are both provided to USI node; apparently both
->     need to be enabled to access USI registers
->   - protocol nodes are embedded (as a child nodes) in USI node; it
->     allows correct init order, and reflects HW properly
->   - USI driver is a tristate: can be also useful from Android GKI
->     requirements point of view
->   - driver functions are implemented with further development in mind:
->     - we might want to add some DebugFs interface later
->     - some functions might need to be revealed to serial drivers with
->       EXPORT_SYMBOL(), and provide somehow pointer to needed USI driver
->       instance
->     - another USI revisions could be added (like USIv1)
-> 
-> Changes in v3:
->   - Renamed compatible from samsung,exynos-usi-v2 to samsung,exynos850-usi
->   - Used clk_bulk API instead of handling each clock separately
->   - Spell check fixes and coding style fixes
->   - Improved dt-bindings doc
-> 
-> Changes in v2:
->   - Renamed all 'usi_v2' wording to just 'usi' everywhere
->   - Removed patches adding dependency on EXYNOS_USI for UART/I2C/SPI
->     drivers
->   - Added patch: "tty: serial: samsung: Fix console registration from
->     module"
->   - Combined dt-bindings doc and dt-bindings header patches
->   - Reworked USI driver to be ready for USIv1 addition
->   - Improved dt-bindings
->   - Added USI_V2_NONE mode value
-> 
-> Sam Protsenko (5):
->   dt-bindings: soc: samsung: Add Exynos USI bindings
->   soc: samsung: Add USI driver
->   tty: serial: samsung: Remove USI initialization
->   tty: serial: samsung: Enable console as module
->   tty: serial: samsung: Fix console registration from module
-> 
+> Signed-off-by: David Virag <virag.david003@gmail.com>
+> ---
+>  include/dt-bindings/clock/exynos7885.h | 115 +++++++++++++++++++++++++
+>  1 file changed, 115 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/exynos7885.h
 
-All this looks good to me. The serial driver changes should come
-together with this one (usi driver is now a dependency for them). If I
-am correct, mention this please in future cover letter (if there is such).
 
-I will still need DTSI changes for Exynos Auto v9 and confirmation that
-is not being used downstream and breaking DTB ABI is okay. Because this
-will be a non-bisctable and also a DTB ABI break.
+This should be patch 1.
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
 Best regards,
 Krzysztof
