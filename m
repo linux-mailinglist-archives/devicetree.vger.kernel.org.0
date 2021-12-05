@@ -2,361 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1FA0468C3E
-	for <lists+devicetree@lfdr.de>; Sun,  5 Dec 2021 17:57:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66014468C49
+	for <lists+devicetree@lfdr.de>; Sun,  5 Dec 2021 18:02:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236117AbhLERAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Dec 2021 12:00:37 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:50000
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236074AbhLERAg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 12:00:36 -0500
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S236222AbhLERFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Dec 2021 12:05:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40520 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236135AbhLERFe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 12:05:34 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63247C061751;
+        Sun,  5 Dec 2021 09:02:07 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E7C183F317
-        for <devicetree@vger.kernel.org>; Sun,  5 Dec 2021 16:57:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638723427;
-        bh=nSLKlIsCiPB42ckUpSHy4pa9flxMtR9ISD15kq5k0zw=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=oIUII8QMw48DVhgY83ixSxal/GstcRGLexVTi6VV983JheCojfAFhfxxTdeHPtJ3K
-         IjG4Msvopa+iKlIYUx5aTiyyGtNJuAbdLVNY4MUXECqb/en3yObbViYUFzEsPJZL9r
-         AE+nHxkXdhLDG/MFUw0KfmKbDM1X3LbhLIbTf5KXEPAjFBhEFB3YB19JXmbKRk9X4l
-         V32WjveH2djvmNgU7MMrVwdF7wF5lMDlNcxaDPIJo4dzg3SYdeYRsM53QA8+upgddE
-         iU/aQtshBVMElQ3hG4C5/GiVondXGK1s4hNNQJrZn85IbhHLLdYPXH596YxgaHDAzk
-         3bHdR1sQF1dJw==
-Received: by mail-lf1-f71.google.com with SMTP id d26-20020ac244da000000b00417e1d212a2so2705204lfm.0
-        for <devicetree@vger.kernel.org>; Sun, 05 Dec 2021 08:57:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=nSLKlIsCiPB42ckUpSHy4pa9flxMtR9ISD15kq5k0zw=;
-        b=kT9HmgGPi4m+2zpEMvhB8F726/Fs5lSd19mKnBeGrNOgey74ppRITHIIBv6hBr1zB/
-         ZuPY7F83Vrp9uF3cjvLetaH/cXVKnuBcLTCGHqSWGs8PHHXHC338CUyup/ar65uu6XG3
-         P5jXWWJ7qOnq28fOGUCYyCoItekg+rcn4stoepvVKENueT3ZVJaJKKoYzv7nK3aHPyC3
-         J4gObHTP7MoaanVhg1LsMKhm/pr5FODk1C7y70N198uxqNeHZWLdTzmwtxpvyP990iC0
-         pD+TqrH5G2BRA+zg/Sw7gu5s5DFJDtXLaSFbbYJTJoKjxRmmLEV/0AM+tikm7EzcczTa
-         QYYQ==
-X-Gm-Message-State: AOAM530ZZHxQB833qVXqvWobYwEBsbnTtF2z7jvfv/wyQUpyTdcDt1m7
-        p3cFORftDvPGMaw162VCgRnagJ0wuJvM6us/bgz7DF4rJNiJ18bk4je/SD4n9+CWFnCpeY4xEiw
-        aCScssUZGe5lUWassMWtotUcGGljTrs2n4uxOVjE=
-X-Received: by 2002:a05:651c:1411:: with SMTP id u17mr30781242lje.483.1638723427225;
-        Sun, 05 Dec 2021 08:57:07 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyQ00TJdes4mjN9ik7dFbBvXF8Oz+ThyEv0Bpp/XOTHSh59puJh3JzjeswV38YgZSFM8Mwq6A==
-X-Received: by 2002:a05:651c:1411:: with SMTP id u17mr30781214lje.483.1638723426928;
-        Sun, 05 Dec 2021 08:57:06 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id q26sm1117465lfa.203.2021.12.05.08.57.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Dec 2021 08:57:06 -0800 (PST)
-Message-ID: <8518adaf-fa07-c17a-5618-5c0359cf5bff@canonical.com>
-Date:   Sun, 5 Dec 2021 17:57:05 +0100
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E69C961118;
+        Sun,  5 Dec 2021 17:02:06 +0000 (UTC)
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtp.kernel.org (Postfix) with ESMTPSA id 847C7C341C4;
+        Sun,  5 Dec 2021 17:02:02 +0000 (UTC)
+Date:   Sun, 5 Dec 2021 17:07:13 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v11 0/3] Add AD74413R driver
+Message-ID: <20211205170713.3ddf0434@jic23-huawei>
+In-Reply-To: <20211205114045.173612-1-cosmin.tanislav@analog.com>
+References: <20211205114045.173612-1-cosmin.tanislav@analog.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 4/6] clk: samsung: Add initial Exynos7885 clock driver
-Content-Language: en-US
-To:     David Virag <virag.david003@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20211205153302.76418-1-virag.david003@gmail.com>
- <20211205153302.76418-5-virag.david003@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211205153302.76418-5-virag.david003@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/12/2021 16:32, David Virag wrote:
-> This is an initial implementation adding basic clocks, such as UART,
-> USI, I2C, WDT, ect. and their parent clocks. It is heavily based on the
-> Exynos850 clock driver at 'drivers/clk/samsung/clk-exynos850.c' which
-> was made by Sam Protsenko, thus the copyright and author lines were
-> kept.
+On Sun,  5 Dec 2021 13:40:42 +0200
+Cosmin Tanislav <demonsingur@gmail.com> wrote:
+
+> V1 -> V2
+>  * sign off using company email
 > 
-> Bus clocks are enabled by default as well to avoid hangs while trying to
-> access CMU registers.
+> V2 -> V3
+>  * replace gpo config firmware flag with flag specifying whether gpo is in
+>    comparator mode
+>  * create two separate gpiochips, one output-only gpiochip for GPO pins not
+>    in comparator mode and one input-only for the value of digital input
+>    channels
+>  * wire up all gpo functionalities using pinconf
+>  * keep number of characters per line under 80
+>  * rework locking
+>  * do not invalidate other chip revisions
+>  * do not set indio device parent
+>  * print probe error for refin regulator
+>  * move conversion from range register value to range / offset / raw offset
+>    into separate function
+>  * module.h -> mod_devicetable.h
+>  * use generic firmware interface functions
+>  * add comment regarding cache alignment
+>  * add comment regarding ADC channels buffered read setup
+>  * un-inline comment regarding 100us delay for conversion start
+>  * inline return statements
+>  * remove assignments to val2 where not necessary
+>  * local_channels -> chans
+>  * index -> i
+>  * channel_config -> config
+>  * IIO_ALTVOLTAGE -> IIO_VOLTAGE
+>  * .info_mask_shared_by_type_available -> .info_mask_separate_available
+>  * remove unlikely probe error messages
+>  * use an array indexed by channel function for retrieving iio channels
+>  * count iio channels while parsing
+>  * move HART rate rejection outside of setter
+>  * move channel function validation outside of setter
+>  * use SPI messages for read and write
+>  * validate DAC code earlier
+>  * simplify switches to only handle existing iio channels
+>  * pass indio_dev into functions needing access to it
+>  * pass spi into devm_regmap_init
+>  * dt-bindings: sort compatibles
+>  * dt-bindings: remove driver word from description
+>  * dt-bindings: remove refin supply description
+>  * dt-bindings: specify channel function default value
+>  * dt-bindings: remove maxItems from scalar value
 > 
-> Only the parts of CMU_TOP needed for CMU_CORE and CMU_PERI, a bit of
-> CMU_CORE, and most of CMU_PERI is implemented as of now.
+> V3 -> v4
+>  * remove double gpo from macro name
+>  * reset at probe
+>  * config -> chip_info and store chip name inside chip info
+>  * cacheline align every DMA buffer
+>  * simplify generation of adc samples message by caching xfer, tx_buf and
+>    rx_buf
+>  * use mask itself for writing the value of channel enable and gpo data
+>  * move reg read and write transfers to the same buffers and use local
+>    variables for transfers
+>  * merge the two for loops handling gpio configuration
+>  * let firmware decide irq edge
+>  * remove INDIO_BUFFER_SOFTWARE already set by iio framework
+>  * do not set trigger device parent
+>  * return dev_err_probe for regulator error case
+>  * do not set cs_change to 0 when not needed
+>  * do not set spi device drvdata as it is not needed
+>  * fix bug regarding wrong channels being created for resistance input,
+>    digital input, and current input with hart
+>  * use voltage input channels spec for high impedance mode
+>  * put () around macro parameters
+>  * merge AD74413R_CHANNEL macro into its uses
+>  * remove unused switch case scope
+>  * inline return IIO_VAL_INT
+>  * use {get,put}_unaligned_be16
+>  * use proper types for reg and val
+>  * move default case handling into switch statements
+>  * pass driver state into regmap functions
+>  * use genmask for generating a 16bit max value
+>  * alphanumeric order for part numbers
+>  * dt-bindings: remove $ref from ohms value
 > 
-> Signed-off-by: David Virag <virag.david003@gmail.com>
-> ---
->  drivers/clk/samsung/Makefile         |   1 +
->  drivers/clk/samsung/clk-exynos7885.c | 680 +++++++++++++++++++++++++++
->  2 files changed, 681 insertions(+)
->  create mode 100644 drivers/clk/samsung/clk-exynos7885.c
+> V4 -> V5
+>  * dt-bindings: include headers necessary
+>  * dt-bindings: add IRQ_TYPE_EDGE_FALLING to interrupt flags
+>  * dt-bindings: ohm -> ohms
+>  * dt-bindings: spi0 -> spi
 > 
-> diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
-> index c46cf11e4d0b..149258b232a9 100644
-> --- a/drivers/clk/samsung/Makefile
-> +++ b/drivers/clk/samsung/Makefile
-> @@ -18,6 +18,7 @@ obj-$(CONFIG_EXYNOS_AUDSS_CLK_CON) += clk-exynos-audss.o
->  obj-$(CONFIG_EXYNOS_CLKOUT)	+= clk-exynos-clkout.o
->  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos7.o
->  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos850.o
-> +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos7885.o
->  obj-$(CONFIG_S3C2410_COMMON_CLK)+= clk-s3c2410.o
->  obj-$(CONFIG_S3C2410_COMMON_DCLK)+= clk-s3c2410-dclk.o
->  obj-$(CONFIG_S3C2412_COMMON_CLK)+= clk-s3c2412.o
-> diff --git a/drivers/clk/samsung/clk-exynos7885.c b/drivers/clk/samsung/clk-exynos7885.c
-> new file mode 100644
-> index 000000000000..088f36e64609
-> --- /dev/null
-> +++ b/drivers/clk/samsung/clk-exynos7885.c
-> @@ -0,0 +1,680 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2021 Linaro Ltd.
-> + * Copyright (C) 2021 Dávid Virág <virag.david003@gmail.com>
-> + * Author: Sam Protsenko <semen.protsenko@linaro.org>
-> + * Author: Dávid Virág <virag.david003@gmail.com>
-> + *
-> + * Common Clock Framework support for Exynos7885 SoC.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include <dt-bindings/clock/exynos7885.h>
-> +
-> +#include "clk.h"
-> +
-> +/* Gate register bits */
-> +#define GATE_MANUAL		BIT(20)
-> +#define GATE_ENABLE_HWACG	BIT(28)
-> +
-> +/* Gate register offsets range */
-> +#define GATE_OFF_START		0x2000
-> +#define GATE_OFF_END		0x2fff
-> +
-> +/**
-> + * exynos7885_init_clocks - Set clocks initial configuration
-> + * @np:			CMU device tree node with "reg" property (CMU addr)
-> + * @reg_offs:		Register offsets array for clocks to init
-> + * @reg_offs_len:	Number of register offsets in reg_offs array
-> + *
-> + * Set manual control mode for all gate clocks.
-> + */
-> +static void __init exynos7885_init_clocks(struct device_node *np,
-> +		const unsigned long *reg_offs, size_t reg_offs_len)
-> +{
-> +	void __iomem *reg_base;
-> +	size_t i;
-> +
-> +	reg_base = of_iomap(np, 0);
-> +	if (!reg_base)
-> +		panic("%s: failed to map registers\n", __func__);
-> +
-> +	for (i = 0; i < reg_offs_len; ++i) {
-> +		void __iomem *reg = reg_base + reg_offs[i];
-> +		u32 val;
-> +
-> +		/* Modify only gate clock registers */
-> +		if (reg_offs[i] < GATE_OFF_START || reg_offs[i] > GATE_OFF_END)
-> +			continue;
-> +
-> +		val = readl(reg);
-> +		val |= GATE_MANUAL;
-> +		val &= ~GATE_ENABLE_HWACG;
-> +		writel(val, reg);
-> +	}
-> +
-> +	iounmap(reg_base);
-> +}
-> +
-> +/**
-> + * exynos7885_register_cmu - Register specified Exynos7885 CMU domain
-> + * @dev:	Device object; may be NULL if this function is not being
-> + *		called from platform driver probe function
-> + * @np:		CMU device tree node
-> + * @cmu:	CMU data
-> + *
-> + * Register specified CMU domain, which includes next steps:
-> + *
-> + * 1. Enable parent clock of @cmu CMU
-> + * 2. Set initial registers configuration for @cmu CMU clocks
-> + * 3. Register @cmu CMU clocks using Samsung clock framework API
-> + */
-> +static void __init exynos7885_register_cmu(struct device *dev,
-> +		struct device_node *np, const struct samsung_cmu_info *cmu)
-> +{
-> +	/* Keep CMU parent clock running (needed for CMU registers access) */
-> +	if (cmu->clk_name) {
-> +		struct clk *parent_clk;
-> +
-> +		if (dev)
-> +			parent_clk = clk_get(dev, cmu->clk_name);
-> +		else
-> +			parent_clk = of_clk_get_by_name(np, cmu->clk_name);
-> +
-> +		if (IS_ERR(parent_clk)) {
-> +			pr_err("%s: could not find bus clock %s; err = %ld\n",
-> +			       __func__, cmu->clk_name, PTR_ERR(parent_clk));
-> +		} else {
-> +			clk_prepare_enable(parent_clk);
-> +		}
-> +	}
-> +
-> +	exynos7885_init_clocks(np, cmu->clk_regs, cmu->nr_clk_regs);
-> +	samsung_cmu_register_one(np, cmu);
-> +}
+> V5 -> V6
+>  * fix warnings regarding overflows
+> 
+> V6 -> V7
+>  * remove extra cache-line alignment
+>  * adi,rsense-resistance-ohms -> shunt-resistor-micro-ohms
+>  * dt-bindings: add product page links
+> 
+> V7 -> V8
+>  * also check DAC code lower bound
+>  * fix checkpath --strict complaints
+>  * add comment regarding mutex lock usage
+>  * propagate error when converting adc result to resistance
+> 
+> V8 -> V9
+>  * fix spelling mistake
+>  * undo propagate error when converting adc result to resistance
+>  * return void from adc result to resistance function
+>  * limit max adc value when doing resistance calculation to avoid
+>    a potential division-by-zero case
+> 
+> V9 -> V10
+>  * pick up Reviewed-By tags
+>  * fix odd alignment in header
+>  * add dev_err_probe to irq request error path
+> 
+> V10 -> V11
+>  * fix compile error
 
-All this looks exactly the same as Exynos850, so this should be shared.
-Could be a new file - clk-exynos-arm64.c
+Applied with one minor tweak to regmap_config which should have been marked
+static and turned up in my build tests.
 
-> +
-> +/* ---- CMU_TOP ------------------------------------------------------------- */
-> +
-> +/* Register Offset definitions for CMU_TOP (0x12060000) */
-> +#define PLL_LOCKTIME_PLL_SHARED0		0x0000
-> +#define PLL_LOCKTIME_PLL_SHARED1		0x0004
-> +#define PLL_CON0_PLL_SHARED0			0x0100
-> +#define PLL_CON0_PLL_SHARED1			0x0120
-> +#define CLK_CON_MUX_MUX_CLKCMU_CORE_BUS		0x1014
-> +#define CLK_CON_MUX_MUX_CLKCMU_CORE_CCI		0x1018
-> +#define CLK_CON_MUX_MUX_CLKCMU_CORE_G3D		0x101c
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_BUS		0x1058
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_SPI0	0x105c
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_SPI1	0x1060
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_UART0	0x1064
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_UART1	0x1068
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_UART2	0x106c
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_USI0	0x1070
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_USI1	0x1074
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_USI2	0x1078
-> +#define CLK_CON_DIV_CLKCMU_CORE_BUS		0x181c
-> +#define CLK_CON_DIV_CLKCMU_CORE_CCI		0x1820
-> +#define CLK_CON_DIV_CLKCMU_CORE_G3D		0x1824
-> +#define CLK_CON_DIV_CLKCMU_PERI_BUS		0x1874
-> +#define CLK_CON_DIV_CLKCMU_PERI_SPI0		0x1878
-> +#define CLK_CON_DIV_CLKCMU_PERI_SPI1		0x187c
-> +#define CLK_CON_DIV_CLKCMU_PERI_UART0		0x1880
-> +#define CLK_CON_DIV_CLKCMU_PERI_UART1		0x1884
-> +#define CLK_CON_DIV_CLKCMU_PERI_UART2		0x1888
-> +#define CLK_CON_DIV_CLKCMU_PERI_USI0		0x188c
-> +#define CLK_CON_DIV_CLKCMU_PERI_USI1		0x1890
-> +#define CLK_CON_DIV_CLKCMU_PERI_USI2		0x1894
-> +#define CLK_CON_DIV_PLL_SHARED0_DIV2		0x189c
-> +#define CLK_CON_DIV_PLL_SHARED0_DIV3		0x18a0
-> +#define CLK_CON_DIV_PLL_SHARED0_DIV4		0x18a4
-> +#define CLK_CON_DIV_PLL_SHARED0_DIV5		0x18a8
-> +#define CLK_CON_DIV_PLL_SHARED1_DIV2		0x18ac
-> +#define CLK_CON_DIV_PLL_SHARED1_DIV3		0x18b0
-> +#define CLK_CON_DIV_PLL_SHARED1_DIV4		0x18b4
-> +#define CLK_CON_GAT_GATE_CLKCMUC_PERI_UART1	0x2004
-> +#define CLK_CON_GAT_GATE_CLKCMU_CORE_BUS	0x201c
-> +#define CLK_CON_GAT_GATE_CLKCMU_CORE_CCI	0x2020
-> +#define CLK_CON_GAT_GATE_CLKCMU_CORE_G3D	0x2024
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_BUS	0x207c
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_SPI0	0x2080
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_SPI1	0x2084
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_UART0	0x2088
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_UART2	0x208c
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_USI0	0x2090
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_USI1	0x2094
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_USI2	0x2098
-> +
-> +static const unsigned long top_clk_regs[] __initconst = {
-> +	PLL_LOCKTIME_PLL_SHARED0,
-> +	PLL_LOCKTIME_PLL_SHARED1,
-> +	PLL_CON0_PLL_SHARED0,
-> +	PLL_CON0_PLL_SHARED1,
-> +	CLK_CON_MUX_MUX_CLKCMU_CORE_BUS,
-> +	CLK_CON_MUX_MUX_CLKCMU_CORE_CCI,
-> +	CLK_CON_MUX_MUX_CLKCMU_CORE_G3D,
-> +	CLK_CON_MUX_MUX_CLKCMU_PERI_BUS,
-> +	CLK_CON_MUX_MUX_CLKCMU_PERI_SPI0,
-> +	CLK_CON_MUX_MUX_CLKCMU_PERI_SPI1,
-> +	CLK_CON_MUX_MUX_CLKCMU_PERI_UART0,
-> +	CLK_CON_MUX_MUX_CLKCMU_PERI_UART1,
-> +	CLK_CON_MUX_MUX_CLKCMU_PERI_UART2,
-> +	CLK_CON_MUX_MUX_CLKCMU_PERI_USI0,
-> +	CLK_CON_MUX_MUX_CLKCMU_PERI_USI1,
-> +	CLK_CON_MUX_MUX_CLKCMU_PERI_USI2,
-> +	CLK_CON_DIV_CLKCMU_CORE_BUS,
-> +	CLK_CON_DIV_CLKCMU_CORE_CCI,
-> +	CLK_CON_DIV_CLKCMU_CORE_G3D,
-> +	CLK_CON_DIV_CLKCMU_PERI_BUS,
-> +	CLK_CON_DIV_CLKCMU_PERI_SPI0,
-> +	CLK_CON_DIV_CLKCMU_PERI_SPI1,
-> +	CLK_CON_DIV_CLKCMU_PERI_UART0,
-> +	CLK_CON_DIV_CLKCMU_PERI_UART1,
-> +	CLK_CON_DIV_CLKCMU_PERI_UART2,
-> +	CLK_CON_DIV_CLKCMU_PERI_USI0,
-> +	CLK_CON_DIV_CLKCMU_PERI_USI1,
-> +	CLK_CON_DIV_CLKCMU_PERI_USI2,
-> +	CLK_CON_DIV_PLL_SHARED0_DIV2,
-> +	CLK_CON_DIV_PLL_SHARED0_DIV3,
-> +	CLK_CON_DIV_PLL_SHARED0_DIV4,
-> +	CLK_CON_DIV_PLL_SHARED0_DIV5,
-> +	CLK_CON_DIV_PLL_SHARED1_DIV2,
-> +	CLK_CON_DIV_PLL_SHARED1_DIV3,
-> +	CLK_CON_DIV_PLL_SHARED1_DIV4,
-> +	CLK_CON_GAT_GATE_CLKCMUC_PERI_UART1,
-> +	CLK_CON_GAT_GATE_CLKCMU_CORE_BUS,
-> +	CLK_CON_GAT_GATE_CLKCMU_CORE_CCI,
-> +	CLK_CON_GAT_GATE_CLKCMU_CORE_G3D,
-> +	CLK_CON_GAT_GATE_CLKCMU_PERI_BUS,
-> +	CLK_CON_GAT_GATE_CLKCMU_PERI_SPI0,
-> +	CLK_CON_GAT_GATE_CLKCMU_PERI_SPI1,
-> +	CLK_CON_GAT_GATE_CLKCMU_PERI_UART0,
-> +	CLK_CON_GAT_GATE_CLKCMU_PERI_UART2,
-> +	CLK_CON_GAT_GATE_CLKCMU_PERI_USI0,
-> +	CLK_CON_GAT_GATE_CLKCMU_PERI_USI1,
-> +	CLK_CON_GAT_GATE_CLKCMU_PERI_USI2,
-> +};
-> +
-> +static const struct samsung_pll_clock top_pll_clks[] __initconst = {
-> +	PLL(pll_1417x, CLK_FOUT_SHARED0_PLL, "fout_shared0_pll", "oscclk",
-> +	    PLL_LOCKTIME_PLL_SHARED0, PLL_CON0_PLL_SHARED0,
-> +	    NULL),
-> +	PLL(pll_1417x, CLK_FOUT_SHARED1_PLL, "fout_shared1_pll", "oscclk",
-> +	    PLL_LOCKTIME_PLL_SHARED1, PLL_CON0_PLL_SHARED1,
-> +	    NULL),
-> +};
-> +
-> +/* List of parent clocks for Muxes in CMU_TOP: for CMU_CORE */
-> +PNAME(mout_core_bus_p)		= { "dout_shared0_div2", "dout_shared1_div2",
-> +				    "dout_shared0_div3", "dout_shared0_div3" };
-> +PNAME(mout_core_cci_p)		= { "dout_shared0_div2", "dout_shared1_div2",
-> +				    "dout_shared0_div3", "dout_shared0_div3" };
-> +PNAME(mout_core_g3d_p)		= { "dout_shared0_div2", "dout_shared1_div2",
-> +				    "dout_shared0_div3", "dout_shared0_div3" };
-> +
-> +/* List of parent clocks for Muxes in CMU_TOP: for CMU_PERI */
-> +PNAME(mout_peri_bus_p)		= { "dout_shared0_div4", "dout_shared1_div4" };
-> +PNAME(mout_peri_spi0_p)		= { "oscclk", "dout_shared0_div4" };
-> +PNAME(mout_peri_spi1_p)		= { "oscclk", "dout_shared0_div4" };
-> +PNAME(mout_peri_uart0_p)	= { "oscclk", "dout_shared0_div4" };
-> +PNAME(mout_peri_uart1_p)	= { "oscclk", "dout_shared0_div4" };
-> +PNAME(mout_peri_uart2_p)	= { "oscclk", "dout_shared0_div4" };
-> +PNAME(mout_peri_usi0_p)		= { "oscclk", "dout_shared0_div4" };
-> +PNAME(mout_peri_usi1_p)		= { "oscclk", "dout_shared0_div4" };
-> +PNAME(mout_peri_usi2_p)		= { "oscclk", "dout_shared0_div4" };
-> +
-> +
+Applied to the togreg branch of iio.git and pushed out initially as testing
+to see if 0-day finds anything.
 
-No need for double line break.
+Thanks,
+
+Jonathan
 
 
-Best regards,
-Krzysztof
+> 
+> Cosmin Tanislav (3):
+>   iio: add addac subdirectory
+>   dt-bindings: iio: add AD74413R
+>   iio: addac: add AD74413R driver
+> 
+>  .../bindings/iio/addac/adi,ad74413r.yaml      |  158 ++
+>  MAINTAINERS                                   |    9 +
+>  drivers/iio/Kconfig                           |    1 +
+>  drivers/iio/Makefile                          |    1 +
+>  drivers/iio/addac/Kconfig                     |   20 +
+>  drivers/iio/addac/Makefile                    |    7 +
+>  drivers/iio/addac/ad74413r.c                  | 1475 +++++++++++++++++
+>  include/dt-bindings/iio/addac/adi,ad74413r.h  |   21 +
+>  8 files changed, 1692 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+>  create mode 100644 drivers/iio/addac/Kconfig
+>  create mode 100644 drivers/iio/addac/Makefile
+>  create mode 100644 drivers/iio/addac/ad74413r.c
+>  create mode 100644 include/dt-bindings/iio/addac/adi,ad74413r.h
+> 
+
