@@ -2,189 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4D4F46AE95
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 00:48:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8246746AEA1
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 00:51:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377493AbhLFXv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 18:51:56 -0500
-Received: from mga06.intel.com ([134.134.136.31]:63765 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1377492AbhLFXv4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Dec 2021 18:51:56 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10190"; a="298234314"
-X-IronPort-AV: E=Sophos;i="5.87,292,1631602800"; 
-   d="scan'208";a="298234314"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2021 15:48:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,292,1631602800"; 
-   d="scan'208";a="611435632"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by orsmga004.jf.intel.com with ESMTP; 06 Dec 2021 15:48:23 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1muNiZ-000LsT-28; Mon, 06 Dec 2021 23:48:23 +0000
-Date:   Tue, 7 Dec 2021 07:47:53 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Alistair Francis <alistair@alistair23.me>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     kbuild-all@lists.01.org, robh+dt@kernel.org, andreas@kemnade.info,
-        alistair23@gmail.com, dmitry.torokhov@gmail.com,
-        linus.walleij@linaro.org, rydberg@bitmath.org
-Subject: Re: [PATCH v3 1/4] Input: Add driver for Cypress Generation 5
- touchscreen
-Message-ID: <202112070710.hut43Md3-lkp@intel.com>
-References: <20211202122021.43124-2-alistair@alistair23.me>
+        id S1377646AbhLFXzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 18:55:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39626 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1377635AbhLFXzG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 18:55:06 -0500
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74B80C061746;
+        Mon,  6 Dec 2021 15:51:37 -0800 (PST)
+Received: by mail-qv1-xf2c.google.com with SMTP id m17so11449060qvx.8;
+        Mon, 06 Dec 2021 15:51:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=irxdvYSeAdtdlqYqZPtlOv4U0i5Fz2HAUzP2/GQnZ7o=;
+        b=NarHRNNY3zmdDjao/09C3SOmn/+Ta3Pdhvyo9ztKamruOrHXEicP5DSpy6YzI3Cigj
+         yum/jpZfNhtj1XVeRSX3sy8IYol8JOJZdT57sB8801Z0DzX3GPO98IPMQbIHuiuL8MuF
+         DYI6DFmiZVm6HGtc7Byu2amBgL5EGYoHKfZxQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=irxdvYSeAdtdlqYqZPtlOv4U0i5Fz2HAUzP2/GQnZ7o=;
+        b=iKnNp/24SBmnb+/f3E0f4PQc/dCBR1IgM/9XScyH7xqX6egUTLmp7fXXvTECHqTEwR
+         vIqrr3G1aTqEhxUhDUHp96TG3LokAXN+2xKzbKKHNEutf8WgedaixQyagsDgh1FmlL3U
+         Y4/rQOzbWpqKjlV2mEM0LDBnxkDzAoFocVq+Kk3jTINyasSI2aHJxfE/lrRzSZHNagw9
+         RlLAPG+8OHuXH2CTKW+tvjDdg2GPVrRlm33D6bnY9A1HMHnFelyOZfV9OTwXgqKDldO0
+         oOeo2kNcE3jEt7riOtTqOQAqDnhe1ZZbk9BLRw5MhcDIAkiO403+zXHQgN0ox09PsaSj
+         0NjA==
+X-Gm-Message-State: AOAM5303rkIDb0omN4d/Oe5tgP5nQG0VhZYHovlNnM0KJM3/meq8X7zH
+        OefbA6v0xwEfDe3SDeAUppKjRJ2of24DARmePQE=
+X-Google-Smtp-Source: ABdhPJzm8mA7wmNlXOpZ/141+GMdDuCroCHT1aZ4XA3yEiqKTvaonCc/SHd8mjMJ+tONbkBnaVC/ADrd6mTnhNm9puY=
+X-Received: by 2002:ad4:5ce8:: with SMTP id iv8mr41121845qvb.21.1638834696527;
+ Mon, 06 Dec 2021 15:51:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211202122021.43124-2-alistair@alistair23.me>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20211203234155.2319803-1-gsomlo@gmail.com> <20211203234155.2319803-4-gsomlo@gmail.com>
+ <CACPK8XfO_8=vgedmZddz1YmWbyxiM1-azF_j88wEBHzXnP6y_g@mail.gmail.com> <CAMuHMdXxO-CP0Ao8q8r4Gw5e5FzCznhSxt2JWz13zbnt2tnzVQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdXxO-CP0Ao8q8r4Gw5e5FzCznhSxt2JWz13zbnt2tnzVQ@mail.gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Mon, 6 Dec 2021 23:51:22 +0000
+Message-ID: <CACPK8XdF6WQDj9X1Nr0Hf6EzPkQtXBo75dj_WPsFq6nzfWPUrA@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>
+Cc:     Gabriel Somlo <gsomlo@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Kamil Rakoczy <krakoczy@antmicro.com>,
+        mdudek@internships.antmicro.com,
+        Paul Mackerras <paulus@ozlabs.org>,
+        Stafford Horne <shorne@gmail.com>,
+        david.abdurachmanov@sifive.com,
+        Florent Kermarrec <florent@enjoy-digital.fr>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alistair,
+On Mon, 6 Dec 2021 at 12:16, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
-Thank you for the patch! Yet something to improve:
+> > > +       depends on OF && LITEX
+> >
+> > I don't like having litex drivers depend on the LITEX kconfig. The
+> > symbol is not user visible, and to enable it we need to build in the
+> > litex controller driver, which platforms may or may not have.
+> >
+> > The microwatt platform is an example of a SoC that embeds some LITEX
+> > IP, but may or may not be a litex SoC.
+>
+> I do like the LITEX dependency, as it allows us to gate off a bunch of
+> related drivers, and avoid annoying users with questions about them,
+> using a single symbol.
 
-[auto build test ERROR on linux/master]
-[also build test ERROR on robh/for-next linus/master v5.16-rc4 next-20211206]
-[cannot apply to dtor-input/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+I appreciate your concern.
 
-url:    https://github.com/0day-ci/linux/commits/Alistair-Francis/Add-support-for-the-Cypress-cyttsp5/20211202-202300
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git 136057256686de39cc3a07c2e39ef6bc43003ff6
-config: microblaze-randconfig-m031-20211207 (https://download.01.org/0day-ci/archive/20211207/202112070710.hut43Md3-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/737a89fa2dc4a337dea6a131b8b94fcc49fdcec5
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Alistair-Francis/Add-support-for-the-Cypress-cyttsp5/20211202-202300
-        git checkout 737a89fa2dc4a337dea6a131b8b94fcc49fdcec5
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=microblaze SHELL=/bin/bash drivers/input/touchscreen/
+We could do this:
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+        depends on PPC_MICROWATT || LITEX || COMPILE_TEST
 
-All errors (new ones prefixed by >>):
+It's unfortunate that kconfig doesn't let us describe the difference
+between "this driver requires this symbol" as it won't build and "this
+driver is only useful when this symbol is enabled". Traditionally I
+write kconfig to represent only the former, whereas you prefer both.
 
-   drivers/input/touchscreen/cyttsp5.c: In function 'cyttsp5_probe':
->> drivers/input/touchscreen/cyttsp5.c:931:26: error: implicit declaration of function 'devm_gpiod_get_optional'; did you mean 'devm_regulator_get_optional'? [-Werror=implicit-function-declaration]
-     931 |         ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-         |                          ^~~~~~~~~~~~~~~~~~~~~~~
-         |                          devm_regulator_get_optional
->> drivers/input/touchscreen/cyttsp5.c:931:64: error: 'GPIOD_OUT_HIGH' undeclared (first use in this function); did you mean 'GPIOF_INIT_HIGH'?
-     931 |         ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-         |                                                                ^~~~~~~~~~~~~~
-         |                                                                GPIOF_INIT_HIGH
-   drivers/input/touchscreen/cyttsp5.c:931:64: note: each undeclared identifier is reported only once for each function it appears in
->> drivers/input/touchscreen/cyttsp5.c:937:9: error: implicit declaration of function 'gpiod_set_value'; did you mean 'gpio_set_value'? [-Werror=implicit-function-declaration]
-     937 |         gpiod_set_value(ts->reset_gpio, 0);
-         |         ^~~~~~~~~~~~~~~
-         |         gpio_set_value
-   cc1: some warnings being treated as errors
+> Originally, people told me the system controller is always present,
+> hence the current logic to have LITEX_SOC_CONTROLLER visible, and
+> an invisible LITEX (which is shorter to type) for individual drivers
+> to depend on.
 
-
-vim +931 drivers/input/touchscreen/cyttsp5.c
-
-   881	
-   882	static int cyttsp5_probe(struct device *dev, struct regmap *regmap, int irq,
-   883				 const char *name)
-   884	{
-   885		struct cyttsp5 *ts;
-   886		struct cyttsp5_sysinfo *si;
-   887		int error, i;
-   888	
-   889		ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
-   890		if (!ts)
-   891			return -ENOMEM;
-   892	
-   893		/* Initialize device info */
-   894		ts->regmap = regmap;
-   895		ts->dev = dev;
-   896		si = &ts->sysinfo;
-   897		dev_set_drvdata(dev, ts);
-   898	
-   899		/* Initialize wait queue */
-   900		init_waitqueue_head(&ts->wait_q);
-   901	
-   902		/* Power up the device */
-   903		ts->vdd = regulator_get(dev, "vdd");
-   904		if (IS_ERR(ts->vdd)) {
-   905			error = PTR_ERR(ts->vdd);
-   906			dev_set_drvdata(dev, NULL);
-   907			kfree(ts);
-   908			return error;
-   909		}
-   910	
-   911		error = regulator_enable(ts->vdd);
-   912		if (error) {
-   913			regulator_put(ts->vdd);
-   914			dev_set_drvdata(dev, NULL);
-   915			kfree(ts);
-   916			return error;
-   917		}
-   918	
-   919		ts->input = devm_input_allocate_device(dev);
-   920		if (!ts->input) {
-   921			dev_err(dev, "Error, failed to allocate input device\n");
-   922			return -ENODEV;
-   923		}
-   924	
-   925		ts->input->name = "cyttsp5";
-   926		scnprintf(ts->phys, sizeof(ts->phys), "%s/input0", dev_name(dev));
-   927		ts->input->phys = ts->phys;
-   928		input_set_drvdata(ts->input, ts);
-   929	
-   930		/* Reset the gpio to be in a reset state */
- > 931		ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-   932		if (IS_ERR(ts->reset_gpio)) {
-   933			error = PTR_ERR(ts->reset_gpio);
-   934			dev_err(dev, "Failed to request reset gpio, error %d\n", error);
-   935			return error;
-   936		}
- > 937		gpiod_set_value(ts->reset_gpio, 0);
-   938	
-   939		/* Need a delay to have device up */
-   940		msleep(20);
-   941	
-   942		error = devm_request_threaded_irq(dev, irq, NULL, cyttsp5_handle_irq,
-   943					       IRQF_ONESHOT, name, ts);
-   944		if (error) {
-   945			dev_err(dev, "unable to request IRQ\n");
-   946			return error;
-   947		}
-   948	
-   949		error = cyttsp5_startup(ts);
-   950		if (error) {
-   951			dev_err(ts->dev, "Fail initial startup r=%d\n", error);
-   952			return error;
-   953		}
-   954	
-   955		error = cyttsp5_parse_dt_key_code(dev);
-   956		if (error < 0) {
-   957			dev_err(ts->dev, "Error while parsing dts %d\n", error);
-   958			return error;
-   959		}
-   960	
-   961		touchscreen_parse_properties(ts->input, true, &ts->prop);
-   962	
-   963		__set_bit(EV_KEY, ts->input->evbit);
-   964		for (i = 0; i < si->num_btns; i++)
-   965			__set_bit(si->key_code[i], ts->input->keybit);
-   966	
-   967		return cyttsp5_setup_input_device(dev);
-   968	}
-   969	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+That's another option. I think LITEX either needs to become visible,
+become selected by microwatt, or we adopt the proposal I made above
+for the litex drivers that the microwatt soc uses.
