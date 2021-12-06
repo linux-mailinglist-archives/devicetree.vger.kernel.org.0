@@ -2,86 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A1EB4691DE
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 09:58:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 636364691D0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 09:53:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239826AbhLFJBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 04:01:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52814 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230492AbhLFJBk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 04:01:40 -0500
-X-Greylist: delayed 594 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 06 Dec 2021 00:58:11 PST
-Received: from mx3.securetransport.de (mx3.securetransport.de [IPv6:2a01:4f8:c0c:92be::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C54E5C061746
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 00:58:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1638780421;
-        bh=6jaTMmXBmF19GHLv0vFZrDBi7PSUD+mgYaqX54w4rb0=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=GY6918A+EwWGHoV9yNwZTvsyGKv9imDsRd+g+ZdSTceu1bWugp5w3MnLd5Ba7TEXf
-         lzzNt9OWQgPmhrKvas2CbYEvRLoO4CXpb/lq4pdCpFRhlV83Nz/Ipt4Ed2AQaCUzlN
-         uWg15R5PMK6/o64IZmN1StWgBDQqZlt9xuT/MoR8FhU6XiqZFW9haGC5spG4pyeKKV
-         sfQXURx9z6SvQZbzQcp4q8cwP8qXCdKIqDorkgMeTB4nyg2+owmoixcJ1Eep2c10xN
-         GEnkq1ps8gTE7x+SyeEiKLiwh9xYAd1Ocfw22FHwTfU7+V3WIkeVuMwgDdcZmArui2
-         e9gfRZx4NRY0Q==
-X-secureTransport-forwarded: yes
-From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Complaints-To: abuse@cubewerk.de
-To:     Andrej Picej <andrej.picej@norik.com>,
-        "support.opensource@diasemi.com" <support.opensource@diasemi.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
-CC:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH v5 2/5] mfd: da9061: make register CONFIG_I writable
-Thread-Topic: [PATCH v5 2/5] mfd: da9061: make register CONFIG_I writable
-Thread-Index: AQHX6m0s9RmOs0WHvUmZX0opZ+OZf6wlIxdg
-Date:   Mon, 6 Dec 2021 08:46:52 +0000
-Message-ID: <9d9032c5e1da4a0f83b0d8eba9156d4c@dh-electronics.com>
-References: <20211206064732.280375-1-andrej.picej@norik.com>
- <20211206064732.280375-2-andrej.picej@norik.com>
-In-Reply-To: <20211206064732.280375-2-andrej.picej@norik.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S239762AbhLFI5I convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 6 Dec 2021 03:57:08 -0500
+Received: from mail-ua1-f41.google.com ([209.85.222.41]:41488 "EHLO
+        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229542AbhLFI5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 03:57:01 -0500
+Received: by mail-ua1-f41.google.com with SMTP id p37so18049427uae.8;
+        Mon, 06 Dec 2021 00:53:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Fa88EzZGCDt/on2PK9adyVtAB10G/5IDqGLBZHmYHC8=;
+        b=KwokwK+RWxPJONzaBX8LW92uSZYvFMvjms4fcn7b8sY+Vxxf30fX1uUtUChrcTL3Y8
+         BcZBtuAVWRFFlBDzaQbR4v3arKPEPVKikf6GrMCwGxMuaB4aX+AwyfqkKw/ghwHRS1hA
+         v7Rxv8aMIqbDJQ4kt4SixOGAp+TUCXKePJeNfWlsfmaWf9c2SusvdkprF8GquokCX4bc
+         nzZ54yWFGqVOY8wlHpo3hTm7QNBmub1YkdbMAVFZZKLuPkyk5xL5HcUbS/JYhNvHfhAn
+         LYVwmzsYx5vD9R03oAlOZX4fgp0Zt1allNSvPmh0TO7e7KiCp/BqMwNy+w1ewPsD2GcB
+         a9eA==
+X-Gm-Message-State: AOAM531hTxCdQE2WPJZSoXtjHpfX8yyvUvikFCqrQsEf8XBwceNWonfq
+        76teORUolKYynP0+6F1sF5NgHCIKk5faig==
+X-Google-Smtp-Source: ABdhPJx7TrOfwq0LRXcD21wSqv37jDZ2rzVbRdyhdz+0sZFakCyNOnds9WaOmZhrI2bipq90C/Zswg==
+X-Received: by 2002:a67:6741:: with SMTP id b62mr34771718vsc.59.1638780812702;
+        Mon, 06 Dec 2021 00:53:32 -0800 (PST)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
+        by smtp.gmail.com with ESMTPSA id b11sm3694883vsp.6.2021.12.06.00.53.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Dec 2021 00:53:32 -0800 (PST)
+Received: by mail-ua1-f53.google.com with SMTP id t13so18046140uad.9;
+        Mon, 06 Dec 2021 00:53:32 -0800 (PST)
+X-Received: by 2002:a9f:3e01:: with SMTP id o1mr37900038uai.89.1638780812238;
+ Mon, 06 Dec 2021 00:53:32 -0800 (PST)
 MIME-Version: 1.0
+References: <20211124150757.17929-1-noralf@tronnes.org> <20211124150757.17929-2-noralf@tronnes.org>
+In-Reply-To: <20211124150757.17929-2-noralf@tronnes.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 6 Dec 2021 09:53:21 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUhtwXVFNCzijdtXtuRD=VeHQm2sEQ8WZfin6uBmY0QHg@mail.gmail.com>
+Message-ID: <CAMuHMdUhtwXVFNCzijdtXtuRD=VeHQm2sEQ8WZfin6uBmY0QHg@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: display: sitronix,st7735r: Fix backlight
+ in example
+To:     =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        David Lechner <david@lechnology.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        linux-staging@lists.linux.dev,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Maxime Ripard <maxime@cerno.tech>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogQW5kcmVqIFBpY2VqDQpTZW50OiBNb25kYXksIERlY2VtYmVyIDYsIDIwMjEgNzo0NyBB
-TQ0KPiANCj4gTWFrZSB0aGUgY29uZmlnIHJlZ2lzdGVyIENPTkZJR19JIHdyaXRhYmxlIHRvIGNo
-YW5nZSB0aGUgd2F0Y2hkb2cgbW9kZS4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEFuZHJlaiBQaWNl
-aiA8YW5kcmVqLnBpY2VqQG5vcmlrLmNvbT4NCj4gLS0tDQo+IENobmFnZXMgaW4gdjU6DQo+ICAt
-IG5ldyBwYXRjaCwgbWFrZSBDT05GSUdfSSB3cml0YWJsZSBhbHNvIGZvciBkYTkwNjEgdmVyc2lv
-bg0KPiAtLS0NCj4gIGRyaXZlcnMvbWZkL2RhOTA2Mi1jb3JlLmMgfCAxICsNCj4gIDEgZmlsZSBj
-aGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWZkL2Rh
-OTA2Mi1jb3JlLmMgYi9kcml2ZXJzL21mZC9kYTkwNjItY29yZS5jDQo+IGluZGV4IDcwNDFiYTUz
-ZWZiNC4uMjBlNWNlMmEyMzU0IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL21mZC9kYTkwNjItY29y
-ZS5jDQo+ICsrKyBiL2RyaXZlcnMvbWZkL2RhOTA2Mi1jb3JlLmMNCj4gQEAgLTQ1Myw2ICs0NTMs
-NyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHJlZ21hcF9yYW5nZQ0KPiBkYTkwNjFfYWFfd3JpdGVh
-YmxlX3Jhbmdlc1tdID0gew0KPiAgICAgICAgIHJlZ21hcF9yZWdfcmFuZ2UoREE5MDYyQUFfVkJV
-Q0sxX0IsIERBOTA2MkFBX1ZCVUNLNF9CKSwNCj4gICAgICAgICByZWdtYXBfcmVnX3JhbmdlKERB
-OTA2MkFBX1ZCVUNLM19CLCBEQTkwNjJBQV9WQlVDSzNfQiksDQo+ICAgICAgICAgcmVnbWFwX3Jl
-Z19yYW5nZShEQTkwNjJBQV9WTERPMV9CLCBEQTkwNjJBQV9WTERPNF9CKSwNCj4gKyAgICAgICBy
-ZWdtYXBfcmVnX3JhbmdlKERBOTA2MkFBX0NPTkZJR19JLCBEQTkwNjJBQV9DT05GSUdfSSksDQo+
-ICAgICAgICAgcmVnbWFwX3JlZ19yYW5nZShEQTkwNjJBQV9HUF9JRF8wLCBEQTkwNjJBQV9HUF9J
-RF8xOSksDQo+ICB9Ow0KDQpUZXN0ZWQgaXQgb24gbXkgREE5MDYxOg0KLSBJZiBJIGRvbid0IGFk
-ZCBhbnl0aGluZyB0byBteSBkZXZpY2UgdHJlZSwgdGhlIHN5c3RlbSBmcmVlemVzLg0KLSBXaXRo
-ICJkbGcsd2R0LXNkID0gPDE+OyIgaW4gbXkgZGV2aWNldHJlZSB0aGUgc3lzdGVtIHJlc3RhcnRz
-Lg0KVGh1cyBpdCB3b3JrcyBvbiBteSBzeXN0ZW0hDQoNClRlc3RlZC1ieTogQ2hyaXN0b3BoIE5p
-ZWRlcm1haWVyIDxjbmllZGVybWFpZXJAZGgtZWxlY3Ryb25pY3MuY29tPg0KDQoNClRoYW5rcyBh
-bmQgcmVnYXJkcw0KQ2hyaXN0b3BoDQo=
+On Thu, Nov 25, 2021 at 4:17 PM Noralf Trønnes <noralf@tronnes.org> wrote:
+> The backlight property was lost during conversion to yaml in commit
+> abdd9e3705c8 ("dt-bindings: display: sitronix,st7735r: Convert to DT schema").
+> Put it back.
+>
+> Fixes: abdd9e3705c8 ("dt-bindings: display: sitronix,st7735r: Convert to DT schema")
+> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
+
+Mea culpa
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
