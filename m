@@ -2,211 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE36946A8CC
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 21:51:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D138446A8D2
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 21:52:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349835AbhLFUym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 15:54:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53158 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349831AbhLFUyl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 15:54:41 -0500
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84922C0613F8
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 12:51:12 -0800 (PST)
-Received: by mail-qk1-x735.google.com with SMTP id t6so12544379qkg.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 12:51:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=GRaAwXK2rSzM3Lp9oMiYyXb3xjjCWbcFm8UXB1aGFXg=;
-        b=IgCiPPgf6cAcBl8evExqjZpZyZkUljOdEjcAQ1qlxo9kgYTgNJUF2CvuRpfWAhDLY+
-         3ylzpEiMUVSssnlEBPpvEnCX55SpYmtBqO25yJilivDfDBtxI+PqtsAMJ9SAfEeKVJKU
-         lHLAbadtcxJnSVOjIVUSYzXRETj2Y1Vd2pNWdORdY2bo1HIcud1+p9gWXZ2KHsQy30ii
-         U5+yEhiCvimw/jx7FcMDiDJCw+VVeqIThIZr6z9xMHiMFEVeFwvL1VY4iD6RXfPr7PAc
-         5x/B90Z1ozEB4DghEGQjZ5vi6ULI52TZSB5yStKxltcVasX+wwi96QDRCjMMAOeM/UcP
-         ux2Q==
+        id S1349836AbhLFU4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 15:56:07 -0500
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:43666 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347444AbhLFU4H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 15:56:07 -0500
+Received: by mail-ot1-f52.google.com with SMTP id i5-20020a05683033e500b0057a369ac614so15246302otu.10;
+        Mon, 06 Dec 2021 12:52:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=GRaAwXK2rSzM3Lp9oMiYyXb3xjjCWbcFm8UXB1aGFXg=;
-        b=f2as9uagb+nD3T6rtxah7oJVgJBrST6Gyi6mR5BGngMX6JW8C2JWk0Ab1dMvTIxurz
-         0bG36qLwE9hgZHKN8B8BBoOCsHlrI9eT7+7UC/loPjS6cvSSxq5P5aZC3UnMXl42Z/++
-         sIZver1NXfMyP0X3c40CK0kl4CMwVf6DWzz8wdzH4TYRkL6FUcVQ40Kn8UKUliisi8Dc
-         auZpxQbL0zPcU9ndeI781Tdh+6FOb+fDtn/lAjxLW0P8yiVTO5FuwcTgReJQMSRMnFlG
-         itzV9t6S1ioz1mby9eRb11uU4Sd3Vtdfysz35bLNq1t1mBB79tUFWzcFfxLHzZXiKRdw
-         jtHw==
-X-Gm-Message-State: AOAM530T4ZMSBLSTFHQYq8medTFJj2v1QLHTLeyHdTzeQzM/Dafia5QW
-        ujfwRGJz8rrcT3ly4TZ6uOtW7Q==
-X-Google-Smtp-Source: ABdhPJztSx9XHqWzMQjln614SKGQowAKOpctDFZUB6VnU0E80ndRg9LQhOP1cBDd6pBfwMJ3FDLSyQ==
-X-Received: by 2002:a05:620a:4307:: with SMTP id u7mr33471597qko.15.1638823871635;
-        Mon, 06 Dec 2021 12:51:11 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (mtl.collabora.ca. [66.171.169.34])
-        by smtp.gmail.com with ESMTPSA id h3sm7374741qko.78.2021.12.06.12.51.10
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=W/W8O0C+viVmbaluDdRLKJbTo1E1f58tr+DrDv3GBJw=;
+        b=j64BANqaskYrlfkRuQcfYP+ZwrhaXJ0nC9PX79+nJhlXeNiCUCq5kSf76oVGH2mRC3
+         0k70Q+kLAgg7jrl1og+448QVKAvSQxIKLKnb3gXW/TMy5AzskJOLFrPStNcipHkMxIhJ
+         QGsLlYkxIPiILtscRKEQrEaYadSMTBXRASYiKBR1E+Jpm7RP1W5XiCXZrB4pQggwqaA3
+         sLwxGWPEkJaEu9dzQE+0hQKV2bqFMI0lzpuH6tJX34/cJuqakfTs9O7K97C6xAl0YYuF
+         DsTpUHNyCo9Cch0pMRYEfKqJe65+GUSoBeJD4YjNdbpbAGuDV36wmANS15Zi9lA05Y6U
+         epKQ==
+X-Gm-Message-State: AOAM533CEt3NFcL5wxVAqnciuJAaMXWbg5eVIQzEtw93vdJwmiJ14r4E
+        pV0u4zi5fKgYm5UdhfoEdw==
+X-Google-Smtp-Source: ABdhPJwgIRX48WHJocgpnwBS9w+Q3VG8+yZhRKKuw3tidFx+ioYSkN+enpt8ygJiRllrkM5rincv4g==
+X-Received: by 2002:a05:6830:348:: with SMTP id h8mr30182899ote.344.1638823957848;
+        Mon, 06 Dec 2021 12:52:37 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id k14sm2386947otb.50.2021.12.06.12.52.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 12:51:11 -0800 (PST)
-Message-ID: <3b81a33d9bbadd10bc61c3daedecc5b73b99a435.camel@ndufresne.ca>
-Subject: Re: [RFC 0/5] Split iMX8MQ Hantro VPU into G1 and G2 with blk-ctrl
- support
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Adam Ford <aford173@gmail.com>, linux-media@vger.kernel.org
-Cc:     benjamin.gaignard@collabora.com, cphealy@gmail.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-staging@lists.linux.dev
-Date:   Mon, 06 Dec 2021 15:51:09 -0500
-In-Reply-To: <CAHCN7xL3PSbHKZK_4NKRwhNGOZYM+i54CoKCq01a6kdbCLc2KA@mail.gmail.com>
-References: <20211205181618.1041699-1-aford173@gmail.com>
-         <CAHCN7xL3PSbHKZK_4NKRwhNGOZYM+i54CoKCq01a6kdbCLc2KA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.1 (3.42.1-1.fc35) 
+        Mon, 06 Dec 2021 12:52:37 -0800 (PST)
+Received: (nullmailer pid 2564806 invoked by uid 1000);
+        Mon, 06 Dec 2021 20:52:36 -0000
+Date:   Mon, 6 Dec 2021 14:52:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        andreas@kemnade.info, alistair23@gmail.com,
+        dmitry.torokhov@gmail.com, linus.walleij@linaro.org,
+        rydberg@bitmath.org,
+        =?iso-8859-1?Q?Myl=E8ne?= Josserand 
+        <mylene.josserand@free-electrons.com>
+Subject: Re: [PATCH v3 2/4] Documentation: DT: bindings: input: Add
+ documentation for cyttsp5
+Message-ID: <Ya54FBALxdPN6mng@robh.at.kernel.org>
+References: <20211202122021.43124-1-alistair@alistair23.me>
+ <20211202122021.43124-3-alistair@alistair23.me>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211202122021.43124-3-alistair@alistair23.me>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le dimanche 05 décembre 2021 à 13:51 -0600, Adam Ford a écrit :
-> On Sun, Dec 5, 2021 at 12:16 PM Adam Ford <aford173@gmail.com> wrote:
-> > 
-> > Currently, the VPU in the i.MQ8MQ is appearing as one codec, but in reality, it's
-> > two IP blocks called G1 and G2.  There is initialization code in VPU code to
-> > pull some clocks, resets and other features which has been integrated into
-> > the vpu-blk-ctrl for the i.MX8M Mini and a similar method can be used to make
-> > the VPU codec's operate as stand-alone cores without having to know the details
-> > of each other or the quirks unique to the i.MX8MQ, so the remaining code can be
-> > left more generic.
-> > 
-> > This series was started by Lucas Stach, and picked up by me so some patches have
-> > his s-o-b and mine where I might have changed a few minor items.  It's in an RFC state
-> > because the G2 VP9 operations appear to hang, but the parent code from which I started doesn't
-> > appear to show VP9 support, and it looks like it should.
-> > 
-> > since the g-streamer and media trees are in a constant state of change, this series is based on
-> > git://linuxtv.org/hverkuil/media_tree.git for-v5.17e
-> > 
-> 
-> I forgot to post Fluster results.
-> 
-> Before the patches to this branch:
-> 
-> 2gst-main] root@localhost:~/gstreamer/fluster# ./fluster.py list -c |grep -i v4l
-> 
->     GStreamer-H.264-V4L2-Gst1.0: GStreamer H.264 V4L2 decoder for
-> GStreamer 1.0... ❌
->     GStreamer-H.264-V4L2SL-Gst1.0: GStreamer H.264 V4L2SL decoder for
-> GStreamer 1.0... ✔️
->     GStreamer-H.265-V4L2-Gst1.0: GStreamer H.265 V4L2 decoder for
-> GStreamer 1.0... ❌
->     GStreamer-H.265-V4L2SL-Gst1.0: GStreamer H.265 V4L2SL decoder for
-> GStreamer 1.0... ❌
->     GStreamer-VP8-V4L2-Gst1.0: GStreamer VP8 V4L2 decoder for GStreamer 1.0... ❌
->     GStreamer-VP8-V4L2SL-Gst1.0: GStreamer VP8 V4L2SL decoder for
-> GStreamer 1.0... ✔️
->     GStreamer-VP9-V4L2SL-Gst1.0: GStreamer VP9 V4L2SL decoder for
-> GStreamer 1.0... ❌
->     GStreamer-AV1-V4L2SL-Gst1.0: GStreamer AV1 V4L2SL decoder for
-> GStreamer 1.0... ❌
-> [gst-main] root@localhost:~/gstreamer/fluster#
-> 
-> There was no VP9 support.
-> 
-> ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
-> GStreamer-H.264-V4L2SL-Gst1.0
-> Ran 90/135 tests successfully               in 58.787 secs
-> 
-> AFTER this series, two decoders appear:
-> 
-> [   15.919137] hantro-vpu 38300000.video-codec: registered
-> nxp,imx8mq-vpu-g1-dec as /dev/video0
-> [   15.983579] hantro-vpu 38310000.video-codec: registered
-> nxp,imx8mq-vpu-g2-dec as /dev/video1
-> 
-> VP9 was listed:
-> 
->     GStreamer-H.264-V4L2-Gst1.0: GStreamer H.264 V4L2 decoder for
-> GStreamer 1.0... ❌
->     GStreamer-H.264-V4L2SL-Gst1.0: GStreamer H.264 V4L2SL decoder for
-> GStreamer 1.0... ✔️
->     GStreamer-H.265-V4L2-Gst1.0: GStreamer H.265 V4L2 decoder for
-> GStreamer 1.0... ❌
->     GStreamer-H.265-V4L2SL-Gst1.0: GStreamer H.265 V4L2SL decoder for
-> GStreamer 1.0... ❌
->     GStreamer-VP8-V4L2-Gst1.0: GStreamer VP8 V4L2 decoder for GStreamer 1.0... ❌
->     GStreamer-VP8-V4L2SL-Gst1.0: GStreamer VP8 V4L2SL decoder for
-> GStreamer 1.0... ✔️
->     GStreamer-VP9-V4L2SL-Gst1.0: GStreamer VP9 V4L2SL decoder for
-> GStreamer 1.0... ✔️
->     GStreamer-AV1-V4L2SL-Gst1.0: GStreamer AV1 V4L2SL decoder for
-> GStreamer 1.0... ❌
-> 
-> ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
-> Ran 55/61 tests successfully               in 8.565 secs
-> 
-> 
-> ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
-> Ran 90/135 tests successfully               in 60.269 secs
-> 
-> Same results for H.264
-> 
-> VP9 Hangs, where it didn't even appear as available before:
-> 
-> ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
-> ****************************************************************************************************
-> Running test suite VP9-TEST-VECTORS with decoder GStreamer-VP9-V4L2SL-Gst1.0
-> Using 4 parallel job(s)
-> ****************************************************************************************************
-> 
-> [TEST SUITE      ] (DECODER                    ) TEST VECTOR
->                           ... RESULT
-> ----------------------------------------------------------------------
-> [VP9-TEST-VECTORS] (GStreamer-VP9-V4L2SL-Gst1.0)
-> vp90-2-00-quantizer-00.webm                     ... Success
-> [VP9-TEST-VECTORS] (GStreamer-VP9-V4L2SL-Gst1.0)
-> vp90-2-00-quantizer-01.webm                     ... Success
-> [VP9-TEST-VECTORS] (GStreamer-VP9-V4L2SL-Gst1.0)
-> vp90-2-00-quantizer-02.webm                     ... Succes
-> 
-> <hang > - and yes, 'Success' didnt' finish writing to the serial port.
+On Thu, Dec 02, 2021 at 10:20:19PM +1000, Alistair Francis wrote:
+> From: Myl�ne Josserand <mylene.josserand@free-electrons.com>
 
-Looks like hope to me ! Do you get further with -j 1 (one concurrent decode) ?
+For the subject, use subjects matching other commits for the directory 
+and 'documentation' (twice) is redundant as that's all bindings:
+
+dt-bindings: input: Add Cypress TT2100 touchscreen controller
 
 > 
+> Add the Cypress TrueTouch Generation 5 touchscreen device tree bindings
+> documentation. It can use I2C or SPI bus.
+> This touchscreen can handle some defined zone that are designed and
+> sent as button. To be able to customize the keycode sent, the
+> "linux,code" property in a "button" sub-node can be used.
 > 
-> 
-> > Adam Ford (2):
-> >   media: hantro: split i.MX8MQ G1 and G2 code
-> >   arm64: dts: imx8mq: Split i.MX8MQ G1 and G2 with vpu-blk-ctrl
-> > 
-> > Lucas Stach (3):
-> >   dt-bindings: power: imx8mq: add defines for VPU blk-ctrl domains
-> >   dt-bindings: soc: add binding for i.MX8MQ VPU blk-ctrl
-> >   soc: imx: imx8m-blk-ctrl: add i.MX8MQ VPU blk-ctrl
-> > 
-> >  .../soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml      |  71 +++++++++++
-> >  arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  69 ++++++----
-> >  drivers/soc/imx/imx8m-blk-ctrl.c              |  67 ++++++++++
-> >  drivers/staging/media/hantro/hantro_drv.c     |   4 +-
-> >  drivers/staging/media/hantro/hantro_hw.h      |   2 +-
-> >  drivers/staging/media/hantro/imx8m_vpu_hw.c   | 119 +++---------------
-> >  include/dt-bindings/power/imx8mq-power.h      |   3 +
-> >  7 files changed, 205 insertions(+), 130 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml
-> > 
-> > --
-> > 2.32.0
-> > 
+> Signed-off-by: Myl�ne Josserand <mylene.josserand@free-electrons.com>
+> Message-Id: <20170529144538.29187-3-mylene.josserand@free-electrons.com>
 
+Not a tag used in the kernel.
+
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> ---
+>  .../input/touchscreen/cypress,tt21000.yaml    | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml b/Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
+> new file mode 100644
+> index 000000000000..f3f353192917
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/touchscreen/cypress,tt21000.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cypress TT2100 touchscreen controller
+> +
+> +description: The Cypress TT2100 series (also known as "CYTTSP5" after
+> +  the marketing name Cypress TrueTouch Standard Product series 5).
+> +
+> +maintainers:
+> +  - Alistair Francis <alistair@alistair23.me>
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: cypress,tt21000
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: Regulator for voltage.
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  linux,code:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: EV_ABS specific event code generated by the axis.
+> +
+> +patternProperties:
+> +  "^button-[0-9]+$":
+> +    type: object
+> +    properties:
+> +      linux,code:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Keycode to emit
+> +
+> +    required:
+> +      - linux,code
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - vdd-supply
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/input/linux-event-codes.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        touchscreen@24 {
+> +            compatible = "cypress,tt2100";
+> +            reg = <0x24>;
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&tp_reset_ds203>;
+> +            interrupt-parent = <&pio>;
+> +            interrupts = <1 5 IRQ_TYPE_LEVEL_LOW>;
+> +            reset-gpios = <&pio 7 1 GPIO_ACTIVE_LOW>;
+> +            vdd-supply = <&reg_touch>;
+> +
+> +            button@0 {
+> +                linux,code = <KEY_HOMEPAGE>;
+> +            };
+> +
+> +            button@1 {
+> +                linux,code = <KEY_MENU>;
+> +            };
+> +
+> +            button@2 {
+> +                linux,code = <KEY_BACK>;
+> +            };
+> +        };
+> +    };
+> +...
+> -- 
+> 2.31.1
+> 
+> 
