@@ -2,146 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2BDB4698D7
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 15:26:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 943D64698E9
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 15:29:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245622AbhLFO3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 09:29:42 -0500
-Received: from uho.ysoft.cz ([81.19.3.130]:13946 "EHLO uho.ysoft.cz"
+        id S245672AbhLFOdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 09:33:19 -0500
+Received: from smtp2.axis.com ([195.60.68.18]:10552 "EHLO smtp2.axis.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344259AbhLFO3k (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Dec 2021 09:29:40 -0500
-Received: from localhost.localdomain (unknown [10.0.30.84])
-        by uho.ysoft.cz (Postfix) with ESMTP id 9136EA22D9;
-        Mon,  6 Dec 2021 15:26:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-        s=20160406-ysoft-com; t=1638800769;
-        bh=EwWBPVjwFWUEpxAXGfNoM0zA1YudXlRd/su3eJhTQA0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=jug6j8+QHhumQGEgLs4N8AluV4gN7a/8iR91CZ7EU/8yiN7jy+FtggLMNG3gpMMHl
-         t6yT9lNNaiVpzWZHm5r+F2tAPxXMotz4Vjd4JCtQmb+3UMcOcu+kYoIZ8as8JdqzqU
-         Fx2ORqBU32uOE92UBWGtloSDpCJfIcs1EYOP/l3E=
-From:   =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>,
-        kernel test robot <lkp@intel.com>
-Subject: [PATCH] ARM: dts: imx6dl-yapp4: Remove not-yet added support for sound from Crux
-Date:   Mon,  6 Dec 2021 15:26:01 +0100
-Message-Id: <20211206142601.373807-1-michal.vokac@ysoft.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <202112061855.SidQyicE-lkp@intel.com>
-References: <202112061855.SidQyicE-lkp@intel.com>
+        id S245601AbhLFOdT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Dec 2021 09:33:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1638800991;
+  x=1670336991;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=I56fq9oOSQa7fp6BC7G0m8hJ7yaBpxzTKGiw2H8tVwA=;
+  b=TISV0DnlKjS6fIIxpx2SG+06+Tpg/xNg+jx2FesOuL8EGEyGkFYfvjcb
+   UZ0feUcmeUL3QhNrfDtGPcLVeN9cxWoU2+mZ0luOzOmKf2SKgWS8hha4m
+   zPJSHz/dr9UcW4SaxvoY4GK+sVkX0Lv5KRhVmziMxsbX2JuZXDlnz6ODF
+   glYngvngFvkzI3BgT3FoSLvq99eNto73UgGy6L4+Z+fjP8j81bTnwsXva
+   GYdQnxKrVyBQM/PuQIZgUQLlShYr8TzV4wBGJ4jg2DqPRXUdaxZEisSJg
+   PDH+s8ZgjLJvyQLYiwWO7J7VtqgSW86LMW7o7barDojQP53abLeThFWZD
+   w==;
+From:   =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Jaehoon Chung <jh80.chung@samsung.com>
+CC:     Doug Anderson <dianders@google.com>, <kernel@axis.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>,
+        =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
+Subject: [PATCH v2 0/4] Add ARTPEC-8 support to DWMMC controller
+Date:   Mon, 6 Dec 2021 15:29:25 +0100
+Message-ID: <20211206142929.26729-1-marten.lindahl@axis.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove mistakingly added support for audio codec. We support the coded
-by our downstream patches but the appropriate driver and bindings are not
-in mainline yet.
+Hi!
 
-Reported-by: kernel test robot <lkp@intel.com>
-Fixes: a4d744ac2bab ("ARM: dts: imx6dl-yapp4: Add Y Soft IOTA Crux/Crux+ board")
-Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
----
- arch/arm/boot/dts/imx6q-yapp4-crux.dts       | 22 --------------------
- arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts | 22 --------------------
- 2 files changed, 44 deletions(-)
+The ARTPEC-8 SoC has a DWMMC controller that is compatible with the
+Exynos 7 version v2.70a. The main differences from Exynos 7 is that it
+does not support HS400 and has an extended data read timeout. To run
+this controller we need to add compatibility for ARTPEC-8, because we
+need a quirk to separate the configuration of the TMOUT register from
+the non ARTPEC-8 versions.
 
-diff --git a/arch/arm/boot/dts/imx6q-yapp4-crux.dts b/arch/arm/boot/dts/imx6q-yapp4-crux.dts
-index deb18c57cf18..15f4824a5142 100644
---- a/arch/arm/boot/dts/imx6q-yapp4-crux.dts
-+++ b/arch/arm/boot/dts/imx6q-yapp4-crux.dts
-@@ -17,22 +17,10 @@ memory@10000000 {
- 	};
- };
- 
--&audmux {
--	status = "okay";
--};
--
--&codec {
--	status = "okay";
--};
--
- &gpio_oled {
- 	status = "okay";
- };
- 
--&i2c1 {
--	status = "okay";
--};
--
- &leds {
- 	status = "okay";
- };
-@@ -49,16 +37,6 @@ &reg_usb_h1_vbus {
- 	status = "okay";
- };
- 
--&sound {
--	audio-routing =
--		   "Ext Spk", "LSOUT";
--	status = "okay";
--};
--
--&ssi2 {
--	status = "okay";
--};
--
- &touchkeys {
- 	status = "okay";
- };
-diff --git a/arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts b/arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts
-index a450a77f920f..cea165f2161a 100644
---- a/arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts
-+++ b/arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts
-@@ -17,22 +17,10 @@ memory@10000000 {
- 	};
- };
- 
--&audmux {
--	status = "okay";
--};
--
--&codec {
--	status = "okay";
--};
--
- &gpio_oled {
- 	status = "okay";
- };
- 
--&i2c1 {
--	status = "okay";
--};
--
- &leds {
- 	status = "okay";
- };
-@@ -49,16 +37,6 @@ &reg_usb_h1_vbus {
- 	status = "okay";
- };
- 
--&sound {
--	audio-routing =
--		   "Ext Spk", "LSOUT";
--	status = "okay";
--};
--
--&ssi2 {
--	status = "okay";
--};
--
- &touchkeys {
- 	status = "okay";
- };
+This patchset is dependent on 2 changes that has been added to the mmc
+git next branch, but has not yet been merged to mainline:
+
+Patch 2 of this patchset depends on commit 0e6f2c4c2072b ("mmc: dw_mmc:
+add common capabilities to replace caps").
+
+Patch 3 of this patchset depends on commit d5bc33487eab3 ("mmc: dw_mmc:
+Allow lower TMOUT value than maximum").
+
+Kind regards
+Mårten Lindahl
+
+Changes in v2:
+ - Change compatible string vendor prefix
+ - Removed unnecessary comment
+ - Change 1<<0 to BIT(0)
+
+Mårten Lindahl (4):
+  dt-bindings: mmc: exynos-dw-mshc: Add support for ARTPEC-8
+  mmc: dw_mmc-exynos: Add support for ARTPEC-8
+  mmc: dw_mmc: Add quirk for extended data read timeout
+  mmc: dw_mmc: Do not wait for DTO in case of error
+
+ .../bindings/mmc/exynos-dw-mshc.txt           |  2 +
+ drivers/mmc/host/dw_mmc-exynos.c              | 52 +++++++++++++++----
+ drivers/mmc/host/dw_mmc.c                     | 41 +++++++++++++--
+ drivers/mmc/host/dw_mmc.h                     |  6 +++
+ 4 files changed, 86 insertions(+), 15 deletions(-)
+
 -- 
-2.25.1
+2.20.1
 
