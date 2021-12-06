@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B556946A6D9
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 21:24:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72CFE46A8A7
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 21:40:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349655AbhLFU2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 15:28:04 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:42529 "EHLO
+        id S1349752AbhLFUnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 15:43:52 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:39802 "EHLO
         mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349484AbhLFU2C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 15:28:02 -0500
-Received: by mail-ot1-f46.google.com with SMTP id 47-20020a9d0332000000b005798ac20d72so15130738otv.9;
-        Mon, 06 Dec 2021 12:24:33 -0800 (PST)
+        with ESMTP id S1344890AbhLFUnw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 15:43:52 -0500
+Received: by mail-ot1-f46.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso15185013ots.6;
+        Mon, 06 Dec 2021 12:40:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=jEXGbs8t8zHzg061q4w+dTqR7kI/UQIsGWsr/5lgX5I=;
-        b=gOJZei4fHVg8YzoUwuIm396Xlj2DfI9Iino0Q8RJaGhpWQfocLy/Xp/2wCDPh6l2Kp
-         p5+JG55+UZEB3jbOwX9enIcwKMthItRU1+XZBr5FLdZUwYtT8tK4QQ90DcHC/QgOufTZ
-         ynLg/99jUZyYOF8NubHLIfglCtpgKtnjBgPN8bF/0KziI2Uf3b+kfshv+gYivqE4Q0TU
-         ONHWycstQ60U7D8faJNf/2SibQiYvQ+eq+9kzUi/X3IxwttcYyC4m4ODVlInX51u6ADU
-         wm4sRgkqTPGwVaGu/Vcu7HUrB5OX1x3nzu8EvJebCV3cBFsLa8JOek5ZUDy8/3P5oDXK
-         MxfQ==
-X-Gm-Message-State: AOAM532K3NwgvnpW0XbZHfUfGpneQs4VzGVNkRhr94poeIxz7LZf8Z1v
-        262mBp3Ni7pbm9hOLhyCGeW5gx4CXg==
-X-Google-Smtp-Source: ABdhPJyr0R1r6Cdk0vmVPda+pPuk/WVg0Lbsk396FExNpH1bUyMTSNYEuaGp/XYFNVL46OGZzmpEFw==
-X-Received: by 2002:a9d:373:: with SMTP id 106mr31778337otv.127.1638822273260;
-        Mon, 06 Dec 2021 12:24:33 -0800 (PST)
+        bh=G9TDOALasqiFSszInJV6KzrsLKJJEMpQxRMDfbAXH48=;
+        b=mFA0URKjRPDmmibSHPRu+2kbtGC7e9afHnUST8Lg9N6YwKk3wtcPJOYP/dV1hEoImA
+         UT6sK2+Z6ZZP83jkTJP8d6Mdgc/9Fzf3PFY6rMTZPpInGI6vrkTxcGIQdwV5e5GQIGk5
+         ziUCO3Ti0rhHtv62aXqtu1gk/BNZOjMD5nDzCowNWCyQ6r5aBezMKa94hvdimplzdBBe
+         u4R92099GQnD2UhzKHoWfrguNh9u2WKI3QJ5wie9YefUZxUZY3AynkHDgpPiQlWDcy+e
+         injQBEa67HnBSKOdmZTVmaMQgy2TkimjVf4MRj2vZGZbVeIufDxTpUW4EmlqMN+gmlqg
+         PPMQ==
+X-Gm-Message-State: AOAM5313dGE2RJVM7SaD0lDxZ9EBYD4glG2tOHAOBlbmuWPAIHMnGook
+        RYxnxrfUNYLVXKunIxaHKkZpVRBbkQ==
+X-Google-Smtp-Source: ABdhPJxCL9cAErW+hVEsmv1fgbiitQWpYvUCUxe+OHBgCAgPMcjVm7hvwJev23IYD7Asr4EfPFYbPQ==
+X-Received: by 2002:a9d:2002:: with SMTP id n2mr31418152ota.95.1638823222894;
+        Mon, 06 Dec 2021 12:40:22 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d12sm2370518otq.67.2021.12.06.12.24.32
+        by smtp.gmail.com with ESMTPSA id bj8sm3100955oib.51.2021.12.06.12.40.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 12:24:32 -0800 (PST)
-Received: (nullmailer pid 2524466 invoked by uid 1000);
-        Mon, 06 Dec 2021 20:24:31 -0000
-Date:   Mon, 6 Dec 2021 14:24:31 -0600
+        Mon, 06 Dec 2021 12:40:22 -0800 (PST)
+Received: (nullmailer pid 2546639 invoked by uid 1000);
+        Mon, 06 Dec 2021 20:40:21 -0000
+Date:   Mon, 6 Dec 2021 14:40:21 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH] dt-bindings: regulator: Fix type of
- regulator-coupled-max-spread property
-Message-ID: <Ya5xfxaJs3D7ZjIw@robh.at.kernel.org>
-References: <20211206153726.227464-1-thierry.reding@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: regulators: Document Tegra regulator
+ coupling in json-schema
+Message-ID: <Ya51Ndf+VdRRdM9h@robh.at.kernel.org>
+References: <20211206154032.227938-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211206153726.227464-1-thierry.reding@gmail.com>
+In-Reply-To: <20211206154032.227938-1-thierry.reding@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Dec 2021 16:37:26 +0100, Thierry Reding wrote:
+On Mon, Dec 06, 2021 at 04:40:32PM +0100, Thierry Reding wrote:
 > From: Thierry Reding <treding@nvidia.com>
 > 
-> According to the description and the various uses of this property it is
-> meant to be an array of unsigned 32-bit values, so fixup the type to
-> match that.
+> Move the NVIDIA Tegra regulator coupling bindings from the free-form
+> text format into the existing json-schema file for regulators.
+
+Do we need these properties for every single regulator? This should be 
+its own schema file and then referenced where it is needed.
+
 > 
 > Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  Documentation/devicetree/bindings/regulator/regulator.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-
-Acked-by: Rob Herring <robh@kernel.org>
+>  .../nvidia,tegra-regulators-coupling.txt      | 65 -------------------
+>  .../bindings/regulator/regulator.yaml         | 22 +++++++
+>  2 files changed, 22 insertions(+), 65 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/regulator/nvidia,tegra-regulators-coupling.txt
