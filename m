@@ -2,91 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5556B46A8D9
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 21:55:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A2A246A8E7
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 21:58:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349885AbhLFU7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 15:59:24 -0500
-Received: from mail-oo1-f41.google.com ([209.85.161.41]:43810 "EHLO
-        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349883AbhLFU7W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 15:59:22 -0500
-Received: by mail-oo1-f41.google.com with SMTP id w5-20020a4a2745000000b002c2649b8d5fso4740802oow.10;
-        Mon, 06 Dec 2021 12:55:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1GkNznSBQtWJgrsWSFxmee9FbMbeGL/694Sq+ppQxoI=;
-        b=XQ4jKkRuP9l2zXCS40ZOiyii0dqcZgUp51eHuuAGEtUZTPx9/aUJRxfQkuzUJNlrRl
-         1wY0pdZBnTp/DkSfjVHzSFaWPp5LlFqsW0UErhebu85Sg8q1dhpmlQKIAfSufmY131VR
-         7LN0v21SAj8G3PIIGK6lQC67C5F3YdAD3WZMaIBBA41zfKRvU76khEpKJVfnK0D34gxB
-         Npk2jnIYGjX3lbQHauK1At6LIKvPlqP0MsAe20l8BYQtbqUso41lt3Wbuy6Chgw7vD+p
-         Fxa9fwi4AXofq8POHO1+p3E5ojVXTXMn+kWoU61U10snugnUSpDPDffzGlUQTHD+h8OX
-         Oxsg==
-X-Gm-Message-State: AOAM532oqDIPPHE5BR0bofHaQk5BQg/l8J4kNsCJdYc8mALwshkRFimv
-        Ms2VH09e8g7pK8aWaYxIaErWis1flw==
-X-Google-Smtp-Source: ABdhPJxT0JSuhaYjX3+lvrmTAecuqd8/aKtxxaFKQafVBTtXok+6SKYkzYqml3xqz5LMZPyCSe8JIg==
-X-Received: by 2002:a05:6820:30b:: with SMTP id l11mr23870353ooe.32.1638824153196;
-        Mon, 06 Dec 2021 12:55:53 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id n26sm2299851ooq.36.2021.12.06.12.55.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 12:55:52 -0800 (PST)
-Received: (nullmailer pid 2569154 invoked by uid 1000);
-        Mon, 06 Dec 2021 20:55:51 -0000
-Date:   Mon, 6 Dec 2021 14:55:51 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Peter Rosin <peda@axentia.se>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mux: Document mux-states property
-Message-ID: <Ya5411zdtB3RJePO@robh.at.kernel.org>
-References: <20211202124053.2835-1-a-govindraju@ti.com>
- <20211202124053.2835-2-a-govindraju@ti.com>
+        id S1349971AbhLFVB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 16:01:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54714 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349944AbhLFVB0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 16:01:26 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28D39C061746;
+        Mon,  6 Dec 2021 12:57:57 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 97999B81084;
+        Mon,  6 Dec 2021 20:57:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0BB2C341C2;
+        Mon,  6 Dec 2021 20:57:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638824274;
+        bh=d3oHX7kwFRR0VxHG4lHD0ytEtwUn0m1TsPaS5dtfOAk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=BGCoMWjKZPsPgKSVWKOV5cmPRf2ofEkg1mBluNu/XYWiWolSBI7qyqQ9MPu0seWyi
+         YVnwbCbDxFAecIy30/5tMjOQSTWhCidgy2GUsNcA5xsXoZeS8HrsPTTCRoPvzMoaBI
+         dcZMgHSo7PmR+TDPErAKm8ccPEvvtq8LgdDuSj0mc8I3dSFuPhR+/ovrg38jia4SkO
+         R2eXSW3LGXQPEMPrvFWBhcgRhroJ73IsGZdGVR42/dpU9wJjwMjVU+MsuaTioAtuG4
+         h8YH24BWD4vtu/m8oAWAeVCfJA1DtQCT25wdA5AXIR3S8uvI3g0ecq4dUl8hLKPYw9
+         FOAzRun4yvE6Q==
+Date:   Mon, 6 Dec 2021 12:57:53 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: mdio: Allow any child node name
+Message-ID: <20211206125753.6a5e837c@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20211206174139.2296497-1-robh@kernel.org>
+References: <20211206174139.2296497-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211202124053.2835-2-a-govindraju@ti.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 02 Dec 2021 18:10:52 +0530, Aswath Govindraju wrote:
-> In some cases, it is required to provide the state to which the mux
-> controller has to be set to, from the consumer device tree node. Document
-> the property mux-states that can be used for adding this support.
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
-> 
-> Note:
-> - on running dt_binding_check with "DT_CHECKER_FLAGS=-m" the following
->   error was seen,
-> 
->  LINT    Documentation/devicetree/bindings
->   CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
->   SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
->   DTC     Documentation/devicetree/bindings/mux/mux-controller.example.dt.yaml
->   CHECK   Documentation/devicetree/bindings/mux/mux-controller.example.dt.yaml
-> /home/gsaswath/presil/ks3-linux-integrated/linux/Documentation/devicetree/bindings/
-> mux/mux-controller.example.dt.yaml: can-phy4: 'mux-states' does not match any of
-> the regexes: 'pinctrl-[0-9]+'
-> 	From schema: /home/gsaswath/presil/ks3-linux-integrated/linux/
-> Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> 
-> "mux-states" is a new property that is being added and the patch adding this
-> property to TCAN104x can transceiver bindings will be sent as a follow up
-> of this series.
-> 
->  .../devicetree/bindings/mux/gpio-mux.yaml     | 11 ++++++--
->  .../devicetree/bindings/mux/mux-consumer.yaml | 21 +++++++++++++++
->  .../bindings/mux/mux-controller.yaml          | 26 ++++++++++++++++++-
->  3 files changed, 55 insertions(+), 3 deletions(-)
-> 
+On Mon,  6 Dec 2021 11:41:39 -0600 Rob Herring wrote:
+> An MDIO bus can have devices other than ethernet PHYs on it, so it
+> should allow for any node name rather than just 'ethernet-phy'.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Hi Rob, what's your preference for merging these?
