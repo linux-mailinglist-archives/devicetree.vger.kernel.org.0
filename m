@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8DFA469E47
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:36:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5958B469E48
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:36:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344044AbhLFPhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 10:37:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58640 "EHLO
+        id S1389376AbhLFPhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 10:37:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359673AbhLFP3L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:29:11 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 264D0C08ED86
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 07:18:20 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id l16so23131111wrp.11
-        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 07:18:19 -0800 (PST)
+        with ESMTP id S1386809AbhLFPaF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:30:05 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E028C08ED90
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 07:18:21 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id r9-20020a7bc089000000b00332f4abf43fso86021wmh.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 07:18:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=MkCaFX+fKMkid7uldA1xTiH54uM3PwF9W50eMPDqnD0=;
-        b=x7YBCjtnHCTyGoUBYVloHKXSHr0qwFxm3+zrzuM0KiPj/qPIq+fygoGPbDTtxrQseP
-         d5iydHCAR/B6UHC+LLEDBFZ7IHsuYCqD+xH9pXzzXNSKVeCAd5/Gh5h/kFhKwUuzUzzw
-         uFy1jyxA9+yvxe8a+kgs+/CGmZy1LHH205pR6NaOv5U2GTj56Pz5aoTsZorlcVkMxdmE
-         cIsv3Uja19VRdJNpT85JMIpA1L5R+Tsoun0UmJgh2mQplQNOCeJITZVNzOrjeIovCsb5
-         /4FRrhfaAPtNbFJSuGCSs5a0P04S1khThJg8K+2mwPMhD9BaEJWyErdiEWv8Huwmg6Ry
-         SkWw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=FAIIeY4U32cBPzHPwCmHWiVlLz8C0dZOTLAx5GruJd4=;
+        b=PWaEj9LNUJ4/SOFcv3dadsoA9o6juv5kGYSBPLedAxMU9ZVPjOAyk4xoKgIEj2HH+A
+         ilG8BhCdIwdX5WPq2qqrQgGeIu0YkQmTY5wSomu5G527fBXX2mxpdsVyB7BjMzdgNLDo
+         XQjkPVHT6u6Jx0Cs/vzDT7gAkZILO2rxVIBd1vVpbA1O84FemFy40UgoMNm+0prRPfDm
+         gi9TsoJNOmDF1kBMsIyIH3HYVGijAw8Vmtgv2p3fo9WVeqqpPHLcjjgtcERGiik0DZmk
+         CcdJ2cahFIVkj5ZhXE6rr6dtYLR+J5dgHWjQcwQxEXWxfO0rQ8kBnLU42ubJUbXhoPtY
+         qaSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=MkCaFX+fKMkid7uldA1xTiH54uM3PwF9W50eMPDqnD0=;
-        b=W5JnE1rZJ9ODNUYSE5a61hBzO0pGgXRteJ+REUuj9sHfnBXLjYoRWlWjSoXOvMyi3t
-         FVyd0+Cys/P+vSsSGrwtTAlNFwbnhWzTuo9/5oLvBuyGAkAcmHD6ZVYsUhXr5G6A/Y/d
-         uuz2tO99uxL3tyTESKF+Ils19wIomclpZarkldaUC7wN5YH3GUQEXJzJK3Xdh+o5wRd7
-         uQ5ZffnGfaP4aaQV72UReuKZbNZYQbI7vfP25aAs7ta8E7krQ3APjf+y+ex8Ak+vrI1C
-         nhmEEwNrCq3dgcnYUnwKrs9Ir3qRuqJQ5+XeGFVYWEjGoJwwnkQ7axyCrmX6njiL5gMg
-         C31g==
-X-Gm-Message-State: AOAM532rSPEf7jf7uaIFZ4M9pj0ekGkOC9OV+2Zj3qBjruC7vOb2Z6Lx
-        sX3ZPR35Y9Xud3oCFJZz+RbK8w==
-X-Google-Smtp-Source: ABdhPJyqtqdoPeBZrnWvucRAqfeoe3NjuU7FHu9Tm2FywsmMWbmQnYPvTUO1v8TXY6/flwDnNTUaKw==
-X-Received: by 2002:adf:c5d1:: with SMTP id v17mr43227869wrg.571.1638803898602;
-        Mon, 06 Dec 2021 07:18:18 -0800 (PST)
+        bh=FAIIeY4U32cBPzHPwCmHWiVlLz8C0dZOTLAx5GruJd4=;
+        b=vvJJCmQqDj4c/aymLTWKY97Pq8StQHJV6Mz97hZMSzlIDJ99HCgII1j6cHMTXQhMKl
+         0+9hGAXHSQIPOFRhcGf60F0TC788Ntolywf1oLiPpudUugdAChyTkY/eIqxVaI+fULFn
+         i6Q1nuwwd8a7rvYAZFz+1ylA94McDMRVbvAlR/DSgCH5YinXAoZjaSwiMTOoxeIWA0aA
+         yAkALY34tVUuxiBxebZQdEXU/eTv02ZdT8VLL9Jpyv9G7ytBFPdNPx6B7wHgsx2wAVbn
+         7V6BMW2wk44I6x8O0BvCvAeyBQh8ec6cy1A35rpWLt2YYtBvH950jnD/htIilREratoD
+         J4zw==
+X-Gm-Message-State: AOAM531rVVFBkiZAmP/G0Y8/+P1q2B3q/9cyA/kfAOjiN3+zVTCiGd1n
+        0+KgtELs5rdJJHBLqd0fct5FrQ==
+X-Google-Smtp-Source: ABdhPJzhQLU2ZIcOxTVyqCd3xvNXxtheKA72amiAwWxQlt04ThQP+GY7c3AXYGRTK1rxiFfBqn6GMA==
+X-Received: by 2002:a1c:1c8:: with SMTP id 191mr39046263wmb.90.1638803899673;
+        Mon, 06 Dec 2021 07:18:19 -0800 (PST)
 Received: from xps7590.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
-        by smtp.gmail.com with ESMTPSA id t8sm11784871wrv.30.2021.12.06.07.18.17
+        by smtp.gmail.com with ESMTPSA id t8sm11784871wrv.30.2021.12.06.07.18.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 07:18:18 -0800 (PST)
+        Mon, 06 Dec 2021 07:18:19 -0800 (PST)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
         bjorn.andersson@linaro.org, mchehab@kernel.org, robh+dt@kernel.org,
@@ -56,9 +56,10 @@ To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
         Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         Andrey Konovalov <andrey.konovalov@linaro.org>,
         Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH v4 1/2] media: camss: csiphy: Move to hardcode CSI Clock Lane number
-Date:   Mon,  6 Dec 2021 16:18:10 +0100
-Message-Id: <20211206151811.39271-2-robert.foss@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 2/2] media: dt-bindings: media: camss: Remove clock-lane property
+Date:   Mon,  6 Dec 2021 16:18:11 +0100
+Message-Id: <20211206151811.39271-3-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211206151811.39271-1-robert.foss@linaro.org>
 References: <20211206151811.39271-1-robert.foss@linaro.org>
@@ -68,184 +69,274 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QCOM ISPs do not support having a programmable CSI Clock Lane number.
-
-In order to accurately reflect this, the different CSIPHY HW versions
-need to have their own register layer for computing lane masks.
+The clock-lanes property is not programmable by the hardware,
+and as such it should not be exposed in the dt-binding.
 
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- .../qcom/camss/camss-csiphy-2ph-1-0.c         | 19 +++++++++++++++--
- .../qcom/camss/camss-csiphy-3ph-1-0.c         | 17 ++++++++++++++-
- .../media/platform/qcom/camss/camss-csiphy.c  | 21 +------------------
- .../media/platform/qcom/camss/camss-csiphy.h  |  7 +++++++
- 4 files changed, 41 insertions(+), 23 deletions(-)
+ .../bindings/media/qcom,msm8916-camss.yaml    | 10 ----------
+ .../bindings/media/qcom,msm8996-camss.yaml    | 20 -------------------
+ .../bindings/media/qcom,sdm660-camss.yaml     | 20 -------------------
+ .../bindings/media/qcom,sdm845-camss.yaml     | 17 ----------------
+ 4 files changed, 67 deletions(-)
 
-diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-2ph-1-0.c b/drivers/media/platform/qcom/camss/camss-csiphy-2ph-1-0.c
-index 30b454c369ab..cd4a8c369234 100644
---- a/drivers/media/platform/qcom/camss/camss-csiphy-2ph-1-0.c
-+++ b/drivers/media/platform/qcom/camss/camss-csiphy-2ph-1-0.c
-@@ -16,6 +16,7 @@
+diff --git a/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
+index 304908072d72..12ec3e1ea869 100644
+--- a/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
++++ b/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
+@@ -83,10 +83,6 @@ properties:
+             unevaluatedProperties: false
  
- #define CAMSS_CSI_PHY_LNn_CFG2(n)		(0x004 + 0x40 * (n))
- #define CAMSS_CSI_PHY_LNn_CFG3(n)		(0x008 + 0x40 * (n))
-+#define		CAMSS_CSI_PHY_LN_CLK		1
- #define CAMSS_CSI_PHY_GLBL_RESET		0x140
- #define CAMSS_CSI_PHY_GLBL_PWR_CFG		0x144
- #define CAMSS_CSI_PHY_GLBL_IRQ_CMD		0x164
-@@ -26,6 +27,19 @@
- #define CAMSS_CSI_PHY_GLBL_T_INIT_CFG0		0x1ec
- #define CAMSS_CSI_PHY_T_WAKEUP_CFG0		0x1f4
- 
-+static u8 csiphy_get_lane_mask(struct csiphy_lanes_cfg *lane_cfg)
-+{
-+	u8 lane_mask;
-+	int i;
-+
-+	lane_mask = 1 << CAMSS_CSI_PHY_LN_CLK;
-+
-+	for (i = 0; i < lane_cfg->num_data; i++)
-+		lane_mask |= 1 << lane_cfg->data[i].pos;
-+
-+	return lane_mask;
-+}
-+
- static void csiphy_hw_version_read(struct csiphy_device *csiphy,
- 				   struct device *dev)
- {
-@@ -105,7 +119,7 @@ static void csiphy_lanes_enable(struct csiphy_device *csiphy,
- 
- 	for (i = 0; i <= c->num_data; i++) {
- 		if (i == c->num_data)
--			l = c->clk.pos;
-+			l = CAMSS_CSI_PHY_LN_CLK;
- 		else
- 			l = c->data[i].pos;
- 
-@@ -129,7 +143,7 @@ static void csiphy_lanes_disable(struct csiphy_device *csiphy,
- 
- 	for (i = 0; i <= c->num_data; i++) {
- 		if (i == c->num_data)
--			l = c->clk.pos;
-+			l = CAMSS_CSI_PHY_LN_CLK;
- 		else
- 			l = c->data[i].pos;
- 
-@@ -167,6 +181,7 @@ static irqreturn_t csiphy_isr(int irq, void *dev)
- }
- 
- const struct csiphy_hw_ops csiphy_ops_2ph_1_0 = {
-+	.get_lane_mask = csiphy_get_lane_mask,
- 	.hw_version_read = csiphy_hw_version_read,
- 	.reset = csiphy_reset,
- 	.lanes_enable = csiphy_lanes_enable,
-diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
-index e318c822ab04..cde6b3a10b9e 100644
---- a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
-+++ b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
-@@ -43,6 +43,7 @@
- #define CSIPHY_3PH_LNn_CSI_LANE_CTRL15_SWI_SOT_SYMBOL	0xb8
- 
- #define CSIPHY_3PH_CMN_CSI_COMMON_CTRLn(n)	(0x800 + 0x4 * (n))
-+#define CSIPHY_3PH_CMN_CSI_COMMON_CTRL5_CLK_ENABLE	BIT(7)
- #define CSIPHY_3PH_CMN_CSI_COMMON_CTRL6_COMMON_PWRDN_B	BIT(0)
- #define CSIPHY_3PH_CMN_CSI_COMMON_CTRL6_SHOW_REV_ID	BIT(1)
- #define CSIPHY_3PH_CMN_CSI_COMMON_STATUSn(n)	(0x8b0 + 0x4 * (n))
-@@ -320,6 +321,19 @@ static void csiphy_gen2_config_lanes(struct csiphy_device *csiphy,
- 	}
- }
- 
-+static u8 csiphy_get_lane_mask(struct csiphy_lanes_cfg *lane_cfg)
-+{
-+	u8 lane_mask;
-+	int i;
-+
-+	lane_mask = CSIPHY_3PH_CMN_CSI_COMMON_CTRL5_CLK_ENABLE;
-+
-+	for (i = 0; i < lane_cfg->num_data; i++)
-+		lane_mask |= 1 << lane_cfg->data[i].pos;
-+
-+	return lane_mask;
-+}
-+
- static void csiphy_lanes_enable(struct csiphy_device *csiphy,
- 				struct csiphy_config *cfg,
- 				s64 link_freq, u8 lane_mask)
-@@ -331,7 +345,7 @@ static void csiphy_lanes_enable(struct csiphy_device *csiphy,
- 
- 	settle_cnt = csiphy_settle_cnt_calc(link_freq, csiphy->timer_clk_rate);
- 
--	val = BIT(c->clk.pos);
-+	val = CSIPHY_3PH_CMN_CSI_COMMON_CTRL5_CLK_ENABLE;
- 	for (i = 0; i < c->num_data; i++)
- 		val |= BIT(c->data[i].pos * 2);
- 
-@@ -397,6 +411,7 @@ static void csiphy_lanes_disable(struct csiphy_device *csiphy,
- }
- 
- const struct csiphy_hw_ops csiphy_ops_3ph_1_0 = {
-+	.get_lane_mask = csiphy_get_lane_mask,
- 	.hw_version_read = csiphy_hw_version_read,
- 	.reset = csiphy_reset,
- 	.lanes_enable = csiphy_lanes_enable,
-diff --git a/drivers/media/platform/qcom/camss/camss-csiphy.c b/drivers/media/platform/qcom/camss/camss-csiphy.c
-index 24eec16197e7..ac7e96e6b7cd 100644
---- a/drivers/media/platform/qcom/camss/camss-csiphy.c
-+++ b/drivers/media/platform/qcom/camss/camss-csiphy.c
-@@ -229,25 +229,6 @@ static int csiphy_set_power(struct v4l2_subdev *sd, int on)
- 	return 0;
- }
- 
--/*
-- * csiphy_get_lane_mask - Calculate CSI2 lane mask configuration parameter
-- * @lane_cfg - CSI2 lane configuration
-- *
-- * Return lane mask
-- */
--static u8 csiphy_get_lane_mask(struct csiphy_lanes_cfg *lane_cfg)
--{
--	u8 lane_mask;
--	int i;
+             properties:
+-              clock-lanes:
+-                items:
+-                  - const: 1
 -
--	lane_mask = 1 << lane_cfg->clk.pos;
--
--	for (i = 0; i < lane_cfg->num_data; i++)
--		lane_mask |= 1 << lane_cfg->data[i].pos;
--
--	return lane_mask;
--}
--
- /*
-  * csiphy_stream_on - Enable streaming on CSIPHY module
-  * @csiphy: CSIPHY device
-@@ -261,7 +242,7 @@ static int csiphy_stream_on(struct csiphy_device *csiphy)
- {
- 	struct csiphy_config *cfg = &csiphy->cfg;
- 	s64 link_freq;
--	u8 lane_mask = csiphy_get_lane_mask(&cfg->csi2->lane_cfg);
-+	u8 lane_mask = csiphy->ops->get_lane_mask(&cfg->csi2->lane_cfg);
- 	u8 bpp = csiphy_get_bpp(csiphy->formats, csiphy->nformats,
- 				csiphy->fmt[MSM_CSIPHY_PAD_SINK].code);
- 	u8 num_lanes = csiphy->cfg.csi2->lane_cfg.num_data;
-diff --git a/drivers/media/platform/qcom/camss/camss-csiphy.h b/drivers/media/platform/qcom/camss/camss-csiphy.h
-index d71b8bc6ec00..1c14947f92d3 100644
---- a/drivers/media/platform/qcom/camss/camss-csiphy.h
-+++ b/drivers/media/platform/qcom/camss/camss-csiphy.h
-@@ -45,6 +45,13 @@ struct csiphy_config {
- struct csiphy_device;
+               data-lanes:
+                 description:
+                   An array of physical data lanes indexes.
+@@ -99,7 +95,6 @@ properties:
+                 maxItems: 4
  
- struct csiphy_hw_ops {
-+	/*
-+	 * csiphy_get_lane_mask - Calculate CSI2 lane mask configuration parameter
-+	 * @lane_cfg - CSI2 lane configuration
-+	 *
-+	 * Return lane mask
-+	 */
-+	u8 (*get_lane_mask)(struct csiphy_lanes_cfg *lane_cfg);
- 	void (*hw_version_read)(struct csiphy_device *csiphy,
- 				struct device *dev);
- 	void (*reset)(struct csiphy_device *csiphy);
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+       port@1:
+@@ -114,16 +109,11 @@ properties:
+             unevaluatedProperties: false
+ 
+             properties:
+-              clock-lanes:
+-                items:
+-                  - const: 1
+-
+               data-lanes:
+                 minItems: 1
+                 maxItems: 4
+ 
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+   reg:
+diff --git a/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
+index 38be41e932f0..6aeb3d6d02d5 100644
+--- a/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
++++ b/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
+@@ -105,10 +105,6 @@ properties:
+             unevaluatedProperties: false
+ 
+             properties:
+-              clock-lanes:
+-                items:
+-                  - const: 7
+-
+               data-lanes:
+                 description:
+                   An array of physical data lanes indexes.
+@@ -121,7 +117,6 @@ properties:
+                 maxItems: 4
+ 
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+       port@1:
+@@ -136,16 +131,11 @@ properties:
+             unevaluatedProperties: false
+ 
+             properties:
+-              clock-lanes:
+-                items:
+-                  - const: 7
+-
+               data-lanes:
+                 minItems: 1
+                 maxItems: 4
+ 
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+       port@2:
+@@ -160,16 +150,11 @@ properties:
+             unevaluatedProperties: false
+ 
+             properties:
+-              clock-lanes:
+-                items:
+-                  - const: 7
+-
+               data-lanes:
+                 minItems: 1
+                 maxItems: 4
+ 
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+       port@3:
+@@ -184,16 +169,11 @@ properties:
+             unevaluatedProperties: false
+ 
+             properties:
+-              clock-lanes:
+-                items:
+-                  - const: 7
+-
+               data-lanes:
+                 minItems: 1
+                 maxItems: 4
+ 
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+   reg:
+diff --git a/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
+index 841a1aafdd13..338ab28d5f3b 100644
+--- a/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
++++ b/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
+@@ -111,16 +111,11 @@ properties:
+             unevaluatedProperties: false
+ 
+             properties:
+-              clock-lanes:
+-                items:
+-                  - const: 7
+-
+               data-lanes:
+                 minItems: 1
+                 maxItems: 4
+ 
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+       port@1:
+@@ -135,16 +130,11 @@ properties:
+             unevaluatedProperties: false
+ 
+             properties:
+-              clock-lanes:
+-                items:
+-                  - const: 7
+-
+               data-lanes:
+                 minItems: 1
+                 maxItems: 4
+ 
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+       port@2:
+@@ -159,16 +149,11 @@ properties:
+             unevaluatedProperties: false
+ 
+             properties:
+-              clock-lanes:
+-                items:
+-                  - const: 7
+-
+               data-lanes:
+                 minItems: 1
+                 maxItems: 4
+ 
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+       port@3:
+@@ -183,16 +168,11 @@ properties:
+             unevaluatedProperties: false
+ 
+             properties:
+-              clock-lanes:
+-                items:
+-                  - const: 7
+-
+               data-lanes:
+                 minItems: 1
+                 maxItems: 4
+ 
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+   reg:
+diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+index 9ca5dfa7f226..9404d6b9db54 100644
+--- a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
++++ b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+@@ -105,15 +105,11 @@ properties:
+             unevaluatedProperties: false
+ 
+             properties:
+-              clock-lanes:
+-                maxItems: 1
+-
+               data-lanes:
+                 minItems: 1
+                 maxItems: 4
+ 
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+       port@1:
+@@ -128,16 +124,11 @@ properties:
+             unevaluatedProperties: false
+ 
+             properties:
+-              clock-lanes:
+-                items:
+-                  - const: 7
+-
+               data-lanes:
+                 minItems: 1
+                 maxItems: 4
+ 
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+       port@2:
+@@ -152,15 +143,11 @@ properties:
+             unevaluatedProperties: false
+ 
+             properties:
+-              clock-lanes:
+-                maxItems: 1
+-
+               data-lanes:
+                 minItems: 1
+                 maxItems: 4
+ 
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+       port@3:
+@@ -175,15 +162,11 @@ properties:
+             unevaluatedProperties: false
+ 
+             properties:
+-              clock-lanes:
+-                maxItems: 1
+-
+               data-lanes:
+                 minItems: 1
+                 maxItems: 4
+ 
+             required:
+-              - clock-lanes
+               - data-lanes
+ 
+   reg:
 -- 
 2.32.0
 
