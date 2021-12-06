@@ -2,81 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 545024695E8
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 13:44:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C76F4695FB
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 13:52:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243316AbhLFMrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 07:47:22 -0500
-Received: from mail-ua1-f42.google.com ([209.85.222.42]:38548 "EHLO
-        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243297AbhLFMrV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 07:47:21 -0500
-Received: by mail-ua1-f42.google.com with SMTP id w23so19197567uao.5;
-        Mon, 06 Dec 2021 04:43:52 -0800 (PST)
+        id S243376AbhLFMzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 07:55:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50040 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232664AbhLFMzr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 07:55:47 -0500
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 755B1C061746;
+        Mon,  6 Dec 2021 04:52:18 -0800 (PST)
+Received: by mail-io1-xd2c.google.com with SMTP id z18so12721566iof.5;
+        Mon, 06 Dec 2021 04:52:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kWJMdo59yTSqgJcYQGuTdjoYwCvGkhFPo9VMwlZW8Wc=;
+        b=poA4Fh2eLuxpzHYdkWnPujX6m/BcXB3qWs3e/llhbBL1groISYuSuPm59BCl7UU7DG
+         dBDenGke/eNaiyVOAG3VEeif1lnxPrdNoDt61HEjR8508yyw3GZCsmRYxI9c/gRWFZxm
+         3FnirNabC4Lx/J8Gw33Y2T9trHssa80s4v0stAR1nGkDfOkQWaJeolnArKQkKJUd96jY
+         CZ+uD0zOJpJILfdqHqcu9gzh9kPasSeKLC02KbgQ7Yh5pZLQ4dlTS217MKyKsmyVEbDL
+         x5pc81JOSTVXItRYok887CdqvVUsOGOHOiUSdLzhD/4JldW00jLDWG26j3utAA5VFX2b
+         vyLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=diTFsItQxsjlWEXrD9HKHMo7eDvHbW5sddSfozLs0bY=;
-        b=0xfpd5gDO1e1iCiPxmQJK6YfNzBl9kE3xzHtWPQDM2KiiTb5KTT1kvK+8t7mtLe06j
-         eGaDUyCX+/RgSv0jY+e4R5sjN+XlNN0e3kS9H19Mr1R36LwF/JRiGcbMZCnrq6j4EFLc
-         Fr+HSAEh9ftXrtatP5wH8vp9W3yZy9iRnvq9mEjl70mHvUZfEbWSBJsdBgDAZFb8tXT3
-         safkNO7ZxdvKeFsDsSwdF2QEajAVc/zkkciVGo/9xnMldWVEPJxC17RMckLJwDvVnKzN
-         BX/x6pANtw+tQHrtR0FGf+9HwvD14UrYEZjR7lWNi1ObSqzqcognbKpZE+EGYO6hsnYi
-         gSIw==
-X-Gm-Message-State: AOAM530gikKoLZY+YIQqb5ozqL30jto0I4WN0Q+4plIIB4QTgKOayeXe
-        DAI118zj3XHssvrF6Ysx86P9Z+VqbPCUxA==
-X-Google-Smtp-Source: ABdhPJzl8vb4F9/DBncbNNN0L0/+LmmA8Bd348cKYUiTebxrsT93eWlfk/xwhFEaF9fGvRGHBe7Z5A==
-X-Received: by 2002:ab0:22d6:: with SMTP id z22mr39607552uam.65.1638794632414;
-        Mon, 06 Dec 2021 04:43:52 -0800 (PST)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id 186sm3934633vsd.30.2021.12.06.04.43.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Dec 2021 04:43:52 -0800 (PST)
-Received: by mail-ua1-f41.google.com with SMTP id t13so19161730uad.9;
-        Mon, 06 Dec 2021 04:43:52 -0800 (PST)
-X-Received: by 2002:ab0:7354:: with SMTP id k20mr39571944uap.78.1638794631869;
- Mon, 06 Dec 2021 04:43:51 -0800 (PST)
+        bh=kWJMdo59yTSqgJcYQGuTdjoYwCvGkhFPo9VMwlZW8Wc=;
+        b=I5vGZGgl+whNH91kR3kTQroK49tCgdawkklMC4yBBwWS4D+/qhZQ51bWCTjniFeMA6
+         JCOR64XLYlEW3+XPXJxFBFMjbQEk+PEFLDxQWYwXNlBBzFzZ14rhus2jxH62PEh1NvoC
+         qDzVidppx6FmA/4Z2ndKtv4f9YKrOr+qUh4OLDcCh9/Hse9PYswWqat/c/wceLWFqY0t
+         aau/vn4OniwQXCBBcKaxIasUxsydhQkHJobALJheNbepAuKeiPOvXtkPUL/aK2Nc7Iec
+         CV9KnyCgEwITCY2WuAPYgkGAR8WO6Z/98bARWv39NCi7xcHgaEoUsYoUIrAba+fFHfzS
+         /XIA==
+X-Gm-Message-State: AOAM531+vB5bY6XpdCYXaGnVpeeej/mFhBbPWWuGNPAbPSEH+jtQ9su6
+        TAm64K0QDzKGPckqWHMaFR0Bws5ZYcyW6XyeTcg=
+X-Google-Smtp-Source: ABdhPJwt3qZlkLSpxVG/nChwiA3yPio+t4NQvFW9uo5vaNbMypcBavzm9Rc8k9CZTHIPe0VQ8b3hrpeDhkr+ufQv6Sw=
+X-Received: by 2002:a05:6602:1487:: with SMTP id a7mr32334878iow.57.1638795137663;
+ Mon, 06 Dec 2021 04:52:17 -0800 (PST)
 MIME-Version: 1.0
-References: <20211201073308.1003945-1-yoshihiro.shimoda.uh@renesas.com> <20211201073308.1003945-10-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20211201073308.1003945-10-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 6 Dec 2021 13:43:40 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWx4fxjHrQn-7qbFkZwa31W_D-5zGnxRQqb+VRezjzs+w@mail.gmail.com>
-Message-ID: <CAMuHMdWx4fxjHrQn-7qbFkZwa31W_D-5zGnxRQqb+VRezjzs+w@mail.gmail.com>
-Subject: Re: [PATCH v2 09/14] clk: renesas: cpg-mssr: Add support for R-Car S4-8
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+References: <20211202120758.41478-1-alistair@alistair23.me>
+ <20211202120758.41478-9-alistair@alistair23.me> <20211205220744.18534b50@aktux>
+In-Reply-To: <20211205220744.18534b50@aktux>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Mon, 6 Dec 2021 22:51:51 +1000
+Message-ID: <CAKmqyKPCt0a5_6=Ezc87SK4jLWrh=-D1a2bXnyLjgd9OH3A-bg@mail.gmail.com>
+Subject: Re: [PATCH v16 8/8] ARM: dts: imx7d: remarkable2: Enable lcdif
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        Sascha Hauer <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+        Lee Jones <lee.jones@linaro.org>, lgirdwood@gmail.com,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-hwmon@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-pm@vger.kernel.org, rui.zhang@intel.com,
+        dl-linux-imx <linux-imx@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>, amitk@kernel.org,
+        Shawn Guo <shawnguo@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 1, 2021 at 8:33 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Initial CPG support for R-Car S4-8 (r8a779f0).
+On Mon, Dec 6, 2021 at 7:07 AM Andreas Kemnade <andreas@kemnade.info> wrote:
 >
-> Inspired by patches in the BSP by LUU HOAI.
+> On Thu,  2 Dec 2021 22:07:58 +1000
+> Alistair Francis <alistair@alistair23.me> wrote:
 >
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > Connect the dispaly on the reMarkable2.
+> >
+> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> > ---
+> >  arch/arm/boot/dts/imx7d-remarkable2.dts | 73 +++++++++++++++++++++++++
+> >  1 file changed, 73 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> > index b66d28b30d75..bb0c68d24583 100644
+> > --- a/arch/arm/boot/dts/imx7d-remarkable2.dts
+> > +++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> [...]
+>
+> > @@ -187,6 +221,45 @@ MX7D_PAD_I2C4_SCL__I2C4_SCL              0x4000007f
+> >               >;
+> >       };
+> >
+> > +     pinctrl_lcdif: lcdifgrp {
+> > +             fsl,pins = <
+> > +                     MX7D_PAD_LCD_DATA00__LCD_DATA0          0x79
+> > +                     MX7D_PAD_LCD_DATA01__LCD_DATA1          0x79
+> > +                     MX7D_PAD_LCD_DATA02__LCD_DATA2          0x79
+> > +                     MX7D_PAD_LCD_DATA03__LCD_DATA3          0x79
+> > +                     MX7D_PAD_LCD_DATA04__LCD_DATA4          0x79
+> > +                     MX7D_PAD_LCD_DATA05__LCD_DATA5          0x79
+> > +                     MX7D_PAD_LCD_DATA06__LCD_DATA6          0x79
+> > +                     MX7D_PAD_LCD_DATA07__LCD_DATA7          0x79
+> > +                     MX7D_PAD_LCD_DATA08__LCD_DATA8          0x79
+> > +                     MX7D_PAD_LCD_DATA09__LCD_DATA9          0x79
+> > +                     MX7D_PAD_LCD_DATA10__LCD_DATA10         0x79
+> > +                     MX7D_PAD_LCD_DATA11__LCD_DATA11         0x79
+> > +                     MX7D_PAD_LCD_DATA12__LCD_DATA12         0x79
+> > +                     MX7D_PAD_LCD_DATA13__LCD_DATA13         0x79
+> > +                     MX7D_PAD_LCD_DATA14__LCD_DATA14         0x79
+> > +                     MX7D_PAD_LCD_DATA15__LCD_DATA15         0x79
+> > +
+> > +                     MX7D_PAD_LCD_DATA17__LCD_DATA17         0x79
+> > +                     MX7D_PAD_LCD_DATA18__LCD_DATA18         0x79
+> > +                     MX7D_PAD_LCD_DATA19__LCD_DATA19         0x79
+> > +                     MX7D_PAD_LCD_DATA20__LCD_DATA20         0x79
+> > +                     MX7D_PAD_LCD_DATA21__LCD_DATA21         0x79
+> > +
+> > +                     MX7D_PAD_LCD_DATA23__LCD_DATA23         0x79
+> > +                     MX7D_PAD_LCD_CLK__LCD_CLK               0x79
+> > +                     MX7D_PAD_LCD_ENABLE__LCD_ENABLE         0x79
+> > +                     MX7D_PAD_LCD_VSYNC__LCD_VSYNC           0x79
+> > +                     MX7D_PAD_LCD_HSYNC__LCD_HSYNC           0x79
+> > +                     MX7D_PAD_LCD_RESET__LCD_RESET           0x79
+> > +             >;
+> > +     };
+>
+> shouldn't this belong into the upper list:
+> > +
+> > +             fsl,pins = <
+> > +                     MX7D_PAD_LCD_DATA22__GPIO3_IO27         0x74
+> > +             >;
+> > +     };
+> > +
+>
+> probably some rebase or merge accident. If I submit non-trivial things,
+> I usually apply my patches to a separate git tree and do a final
+> compile, that might help to reduce some trouble.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-clk-for-v5.17.
+Yeah, it was a rebase error. I split these patches out from my working tree.
 
-Gr{oetje,eeting}s,
+Alistair
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>
+> Regards,
+> Andreas
