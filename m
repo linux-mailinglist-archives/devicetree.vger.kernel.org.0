@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E760146A6C9
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 21:20:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2FED46A6CB
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 21:21:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237565AbhLFUXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 15:23:52 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:44651 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234408AbhLFUXw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 15:23:52 -0500
-Received: by mail-ot1-f45.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso15129254otj.11;
-        Mon, 06 Dec 2021 12:20:23 -0800 (PST)
+        id S1349702AbhLFUZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 15:25:13 -0500
+Received: from mail-oo1-f46.google.com ([209.85.161.46]:33690 "EHLO
+        mail-oo1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349694AbhLFUZN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 15:25:13 -0500
+Received: by mail-oo1-f46.google.com with SMTP id r18-20020a4a7252000000b002c5f52d1834so4736058ooe.0;
+        Mon, 06 Dec 2021 12:21:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=6zqTsj+dFTrmTG1Ez8HFYlIWgA9VO44scMyv1E4QzAM=;
-        b=Vn8d3WMh6XQi1Ifc0/xLRSfI8t4C+frk8s87PuLPXk2GhJgkKcnsJChB4b7UMQAE5X
-         FFbZ81GXHUYyJyOtaHF1Ay6qIqgRkBc9GLVcVSAQdtqdloaDwYDpJzFkdKXQWPxZGxUd
-         mPVvBAV/iz9Ztfo4xYA4R4/zb9JVXvyoJ89VNcDFak39F/m2C5AMY4TG075AloMAhEu8
-         DsRBKcrA6ToveDDG38ra+8chIJTjGf2nMepI8FA6mrM01oQ9CbRw2ebDbTb5sbk7WmsS
-         jDhIPy+nkCZ1XwmmIHOFx6W95AUm6geiZ9tB3nmq0Hx+E5VLDss/iXFQST2FHg50kKNl
-         6zTQ==
-X-Gm-Message-State: AOAM530uAgtgCMvDH1chmBfV0/W0bgYg21CLyBIfPIMwFkd+WIdhPvO4
-        7thrBzUiT0RtWqcFYPQEHEpao1cZVw==
-X-Google-Smtp-Source: ABdhPJwae2E3SP4ilAnZ2qjRo94JXN6XWBNesvdl5D8JGxxx6kmoRBkFsjPZE11G5prFhK+O1IkVTw==
-X-Received: by 2002:a05:6830:195:: with SMTP id q21mr30783743ota.355.1638822022807;
-        Mon, 06 Dec 2021 12:20:22 -0800 (PST)
+        bh=i3wfqJfvtxxPeW+EmQNpuFXSEkdc7MdnZNlSSCFz+3A=;
+        b=jidbmAozRKx1CX6aoOXLeHymqySbXutE7O4ivkYcEdwxfiuczWKpP3B7vZcvlCnY7Q
+         E7VlCBrQl/DKiiHrgR34ZAg5h3VE8jqFCxN/AE8rle26J8PiY6XaNGJJzUM96s4EqvZk
+         2ROTWdpmJiImS6ha69B1a7nCuJKSHdfYN0cta8tLbN6CvpIXZobJp3tUrw1fEEF8jViD
+         //p78OXMUosiazCFHLFdDN2SOF7O6iL3cX3wVCEvFV5cMzdMFxQ2ZSnyyMXY/1LXqtrJ
+         T1n7Chq4Vs+98El/ojsWc4FTCxtkV7iHF2jLP53EKuWv+Cnqk+fqfXAdektpXjzYkSTj
+         e54Q==
+X-Gm-Message-State: AOAM532zZ7vhEev25xGJDXPWo24ztId24XOX5DsHQPxGEvfIm/sRbPxn
+        sJeKBmzbHa+LY2yN//TgU7EyUHNg7g==
+X-Google-Smtp-Source: ABdhPJw7ZlsABLKOKoogFUD4GYQqy/6qBhGrhSTHV1/r2wTII0ekvX3LXpNmdVinCpYEJHHX7i3OcQ==
+X-Received: by 2002:a4a:245a:: with SMTP id v26mr23892741oov.67.1638822103685;
+        Mon, 06 Dec 2021 12:21:43 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 186sm2803896oig.28.2021.12.06.12.20.21
+        by smtp.gmail.com with ESMTPSA id j10sm2302334ooq.5.2021.12.06.12.21.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 12:20:21 -0800 (PST)
-Received: (nullmailer pid 2518378 invoked by uid 1000);
-        Mon, 06 Dec 2021 20:20:20 -0000
-Date:   Mon, 6 Dec 2021 14:20:20 -0600
+        Mon, 06 Dec 2021 12:21:43 -0800 (PST)
+Received: (nullmailer pid 2520352 invoked by uid 1000);
+        Mon, 06 Dec 2021 20:21:42 -0000
+Date:   Mon, 6 Dec 2021 14:21:42 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        linux-iio@vger.kernel.org, Sean Nyekjaer <sean.nyekjaer@prevas.dk>
-Subject: Re: [PATCH] dt-bindings: iio: dac: adi,ad5755: drop unrelated
- included.
-Message-ID: <Ya5whKgsd7O3gZW4@robh.at.kernel.org>
-References: <20211204165817.2768110-1-jic23@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: Use correct vendor prefix for Asahi
+ Kasei Corp.
+Message-ID: <Ya5w1kDmClgg6ePM@robh.at.kernel.org>
+References: <20211206144802.217073-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211204165817.2768110-1-jic23@kernel.org>
+In-Reply-To: <20211206144802.217073-1-thierry.reding@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 04 Dec 2021 16:58:17 +0000, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Mon, 06 Dec 2021 15:48:01 +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Probably a cut and paste error, but the binding header used in the
-> example is for the wrong device and nothing from it is used.
+> The old "ak" vendor prefix that was never officially accepted was still
+> being used in some examples. Convert to the correct vendor prefix (i.e.
+> "asahi-kasei").
 > 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: Sean Nyekjaer <sean.nyekjaer@prevas.dk>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  Documentation/devicetree/bindings/iio/dac/adi,ad5755.yaml | 1 -
->  1 file changed, 1 deletion(-)
+>  Documentation/devicetree/bindings/i2c/i2c-gate.yaml             | 2 +-
+>  .../devicetree/bindings/iio/gyroscope/invensense,mpu3050.yaml   | 2 +-
+>  .../devicetree/bindings/iio/imu/invensense,mpu6050.yaml         | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
