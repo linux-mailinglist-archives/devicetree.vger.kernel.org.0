@@ -2,93 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D209469B54
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:13:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2811E469BA2
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:14:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348224AbhLFPO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 10:14:56 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:59228 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345843AbhLFPMz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:12:55 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 10F5B61331;
-        Mon,  6 Dec 2021 15:09:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5BEDC341C5;
-        Mon,  6 Dec 2021 15:09:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638803365;
-        bh=dw9XxwMU7Td04mZbDOSAvoqc7QfnAD/1a1RCoKpziy4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nji2GU1IHM4eYGvBFkSGnE7BzaMtdiEJBDL4bMPpAKPyodvXf2tijBvVijiSOOblb
-         8MGQXk94GUdVqTwjVsRCBdoAsEI0wyDhWI/b7bKr4vQZ7NkcL0KNwhkZwaZdQO4LTs
-         QTHTfqyKGGAv0J+DprafJPZdt6/kTkFpZhFU+Q8MItAYUe+PIwxlYa3BUhOcEw5P9n
-         mxdzpHELW+1VNgwdbZHCW8Y/EvM1c2FqJRXkI9Cr3K7X0Z3DVdl5VRDk0RjZUQkvbo
-         /2a6VLmyIvlU5RCJrZAhhR0NUdaa98lCck5xLCmj5zjsUGDioPDf/sWsa5NQEwUlsH
-         AVw6o/pLPUfJg==
-Date:   Mon, 6 Dec 2021 15:09:19 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, swboyd@chromium.org,
-        collinsd@codeaurora.org, subbaram@codeaurora.org,
-        Das Srinagesh <gurus@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V4 4/6] regulator: Add a regulator driver for the PM8008
- PMIC
-Message-ID: <Ya4nn0/qp5El8P0L@sirena.org.uk>
-References: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
- <1637314953-4215-5-git-send-email-quic_c_skakit@quicinc.com>
- <YZ+vnV12gDCtia5S@sirena.org.uk>
- <d86e1a33-e7cf-58f7-d75b-23a0313ebde5@quicinc.com>
+        id S1356146AbhLFPSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 10:18:05 -0500
+Received: from mail-ua1-f51.google.com ([209.85.222.51]:42679 "EHLO
+        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1358090AbhLFPQ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:16:26 -0500
+Received: by mail-ua1-f51.google.com with SMTP id t13so20168001uad.9;
+        Mon, 06 Dec 2021 07:12:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aizL4V3R6kz8WyT46b5iR9KQsWFerEJyjc+TMAAR37s=;
+        b=DvSLc5ZECUpLiQNTvggoWbjgSk/Z8eowSeBgdNSTlG6SJBIAg1DRIayBz93enz828q
+         0wv4rNDM8qjhTagcie7xhFZvmjPuyQuo3HaHvYzMvsZPehnRj7oKBHYyy2WOLqIA7Vb/
+         PuAWm68PGY3M9qU21Pt9MtkOYU32NCraqGvbUZaKpADcPsDH9sLZNVxh76yEvRR1SC7s
+         +aO0nTgiR6PMq5SFWKATGAa0DBkoHOCZ/fKDpJ2D+eyWWAOLPN6+YHCZ8vENzVBXf8+R
+         JSjRw5fxl0/6vcAau8mWJ11A/DwrzhkvUAC6qKRUbvWslfxZQnS0+KlSUiGL5REGronN
+         ga+w==
+X-Gm-Message-State: AOAM531VVWV3I8l/wvywsT1hOpyj3Ps5YZJwwbrwF77+CSY9icsapCwD
+        gqFM5pX1OgRMvUy5PP2c39i1/8Mv52QnqQ==
+X-Google-Smtp-Source: ABdhPJxuhn287b6ddzQ8GQW49BAYZ8lCqCZa7SuGLKLR7gD5FO8oMIC0u0iE1DkbERc0xc0uV3eoXQ==
+X-Received: by 2002:ab0:3c9f:: with SMTP id a31mr42399445uax.134.1638803576964;
+        Mon, 06 Dec 2021 07:12:56 -0800 (PST)
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
+        by smtp.gmail.com with ESMTPSA id y22sm4223565vsy.33.2021.12.06.07.12.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Dec 2021 07:12:56 -0800 (PST)
+Received: by mail-vk1-f171.google.com with SMTP id s1so7021332vks.9;
+        Mon, 06 Dec 2021 07:12:56 -0800 (PST)
+X-Received: by 2002:a1f:9f04:: with SMTP id i4mr41059573vke.33.1638803576344;
+ Mon, 06 Dec 2021 07:12:56 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Iup9tc3xCjeDkBkE"
-Content-Disposition: inline
-In-Reply-To: <d86e1a33-e7cf-58f7-d75b-23a0313ebde5@quicinc.com>
-X-Cookie: You will soon forget this.
+References: <20211130140724.10750-1-conor.dooley@microchip.com> <20211130140724.10750-2-conor.dooley@microchip.com>
+In-Reply-To: <20211130140724.10750-2-conor.dooley@microchip.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 6 Dec 2021 16:12:45 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXy9B5B5tW6-nJ9J0aCGjHzy1C90ObA_7A2qz_NQphq-w@mail.gmail.com>
+Message-ID: <CAMuHMdXy9B5B5tW6-nJ9J0aCGjHzy1C90ObA_7A2qz_NQphq-w@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: clk: microchip: Add Microchip
+ PolarFire host binding
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        david.abdurachmanov@gmail.com, Palmer Dabbelt <palmer@dabbelt.com>,
+        daire.mcnamara@microchip.com, cyril.jean@microchip.com,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Nov 30, 2021 at 3:06 PM <conor.dooley@microchip.com> wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
+>
+> Add device tree bindings for the Microchip PolarFire system
+> clock controller
+>
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
---Iup9tc3xCjeDkBkE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
-On Mon, Dec 06, 2021 at 08:13:57PM +0530, Satya Priya Kakitapalli (Temp) wrote:
-> On 11/25/2021 9:15 PM, Mark Brown wrote:
-> > On Fri, Nov 19, 2021 at 03:12:31PM +0530, Satya Priya wrote:
+Gr{oetje,eeting}s,
 
-> > > +		child_node = of_get_child_by_name(parent_node, reg->name);
-> > > +		if (!child_node) {
-> > > +			dev_err(dev, "child node %s not found\n", reg->name);
-> > > +			return -ENODEV;
-> > > +		}
+                        Geert
 
-> > This could be pulled out of the array.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> Not sure what you meant here. could you elaborate a bit?
-
-Why is this in every iteration of the loop?
-
---Iup9tc3xCjeDkBkE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGuJ54ACgkQJNaLcl1U
-h9BoCwf7B0e5FaSpbT2g+oY0Sk9qtf9WbFJ/Q0KFdvOUFoZMbUJFU696VOd5Y7PM
-E3Lv6SM02b2YHpyvMhc7ThkY76kH85jy4k2grAFyUf0g0BaUo+lqBJEZqdOftghL
-13IBaJ3EYEyELFG4+pRgnipVFvWGxbwbPdKSiti0UuutznglOo5UOsSeJUZcYlF8
-tkWuoKBHqHS4jwrEO0IT+HU5SOPuU7UkiJYKdD/L42vlPuBUqEKP0hYF0rirvbM+
-VJ8u16+Hs6teUB8V3Iu6x0kPSQRXy4s1uEBvdFrrXLY2Glnh1OaxH53Sp9p0vc0w
-XDoo1A+3CfAc4DBh3CqX6NxdKDVmZQ==
-=pBk6
------END PGP SIGNATURE-----
-
---Iup9tc3xCjeDkBkE--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
