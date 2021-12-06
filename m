@@ -2,87 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0D46469FDF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:55:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8981F46A0B3
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 17:09:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1387924AbhLFPyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 10:54:44 -0500
-Received: from mail-ua1-f53.google.com ([209.85.222.53]:39433 "EHLO
-        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380269AbhLFPsF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:48:05 -0500
-Received: by mail-ua1-f53.google.com with SMTP id i6so20398713uae.6;
-        Mon, 06 Dec 2021 07:44:36 -0800 (PST)
+        id S230131AbhLFQMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 11:12:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39794 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243949AbhLFQId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 11:08:33 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 779D8C0A88A9;
+        Mon,  6 Dec 2021 07:46:27 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id o29so8516466wms.2;
+        Mon, 06 Dec 2021 07:46:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=I6tp7FFhJACS8QWvJrV4J18ejcDzbxbLkmoezmrRFt0=;
+        b=n13ximXnQOahmYmejBNmkPry0M6Eu5jpASd0nFbE5KkDYPs+PyPs9Rd3F4EE/HK4/x
+         Gn8/dTpYxJxysQUcvLBAu45VgnBj0i5MnUeQkr4QVrHKctk/xbjMs2uSE0Y1muCxzy/Q
+         QU76UolzAf7d7VrYYnwcgA8MEV9ynf2vskedehauqWKaUjZLjrgsHczwPmuFP+S+gkth
+         380Ps6S9TmBU9nCfw5TyhFmzUizeBFbfc69fD0+RDDRzTz/4smsQj4lJLaOLQJN9qyPQ
+         OIQA0NpcRVDls3Qq/S6WIJEymLuiqYKYMH4vGZ4ZU6DHUBpaQu6SbWE3D/eC1GI5wznZ
+         ANlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Vy3338Qktced19OV69eNGqaLOwGIfSaex03EYB876QU=;
-        b=tSQoMX/u3t8Zfrqn3pE0X+viVaHEDe2CRj/cuCXDHX14DbUbPNCl3hHp9GteofNTZO
-         AVtqpJfbScOBUatoMDHBXF0/v0OKCaPQVNrtjUkvrtgvzUtZX7GRVWvMMqTbGLLTtrVo
-         BXjvXonexh25tZbaTFOMwek2JyEijLr1nh/jtd0I0SiShKqwRnBmtYO0Z7EHnW/Uq8nn
-         s2Dc+EuhaNpg9IQrqWfivvvmx/WzJmltnbIxuyHlak4Eo3MKs+DgIdDSZ5SvILrbohse
-         r+9iof0aQELdk8n82c7yIBcwP3qMtOOsX3kPO4qu3n/UB9Qjq4wVjndVhO3R4HjY5Qu9
-         4T/Q==
-X-Gm-Message-State: AOAM532w1cZ/WJ7owWykfIMLJySnzDog3QATMZLyEDS9DWM3ZOLLNJoN
-        5OhJDUOuXumcSIGc24DY0AmHatgeqWpNQw==
-X-Google-Smtp-Source: ABdhPJwYaqBSIH4vYBT/cM0UkpgTxOgXJJT2kgBeQavRnv+4FRiqBBEyhQiVjvr+iqaxJJMMFeqT8A==
-X-Received: by 2002:a67:fdc3:: with SMTP id l3mr37963775vsq.42.1638805475997;
-        Mon, 06 Dec 2021 07:44:35 -0800 (PST)
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
-        by smtp.gmail.com with ESMTPSA id z188sm4193582vsz.12.2021.12.06.07.44.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Dec 2021 07:44:35 -0800 (PST)
-Received: by mail-ua1-f48.google.com with SMTP id o1so20427958uap.4;
-        Mon, 06 Dec 2021 07:44:35 -0800 (PST)
-X-Received: by 2002:a05:6102:3232:: with SMTP id x18mr36267266vsf.38.1638805466989;
- Mon, 06 Dec 2021 07:44:26 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=I6tp7FFhJACS8QWvJrV4J18ejcDzbxbLkmoezmrRFt0=;
+        b=8CxpQll8IK+RLf6nlxSDVJp+RVS/Xx8F3vpXigu2+nEwFQT86WPKOhR/ZTXH/gN+RM
+         b4u0Oq7LjbdWnfnO/nkNs7z8nQZY8OGEZ3lJlAY7Icnm9Ij8Drv719hKPkJ6pQdVKqgb
+         HSgge2POeYyc6GvdeVNSjRZm2BSUqJt1vFXD40rzzym6vh/IISE/l0jGpsDX0f2F1hjx
+         gjV4qGPJ1r74shNsJMumhjisBvzB34VyYid53+16HOG1d6mDyn63WsdKvTtUfUqjw67Z
+         Qvkqr0SqgxQsUij8BvyR47aKRWqOi0IGH+BLPTplAothlqXXb/rgYV4XojDgrls2xvts
+         nj4g==
+X-Gm-Message-State: AOAM531BOGoD/4rWIvMDd1q8G0rFvSDfkiZFCTlUqy4ggYKLihGo7/Pu
+        jVwF/DmbEYRUZx0L1mJZwMc2e7mkUk8=
+X-Google-Smtp-Source: ABdhPJyekBe6dnXPs6YOJehgDST53pxv0RT0H/3MI6ngt8Cji7hflRixjLv1vGzfGSLx/T0I4wYVNQ==
+X-Received: by 2002:a05:600c:4f55:: with SMTP id m21mr40236724wmq.68.1638805586114;
+        Mon, 06 Dec 2021 07:46:26 -0800 (PST)
+Received: from localhost (pd9e51d39.dip0.t-ipconnect.de. [217.229.29.57])
+        by smtp.gmail.com with ESMTPSA id j40sm13799400wms.19.2021.12.06.07.46.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Dec 2021 07:46:25 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Sameer Pujar <spujar@nvidia.com>,
+        Jon Hunter <jonathanh@nvidia.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: tegra: Document interconnects property
+Date:   Mon,  6 Dec 2021 16:46:24 +0100
+Message-Id: <20211206154624.229018-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-References: <20211204204121.2367127-1-gsomlo@gmail.com> <20211204204121.2367127-3-gsomlo@gmail.com>
- <CAMuHMdVJZp+YuaDnXabOgeTajNo0JA9nwCmkiTg2=69L9-6-ew@mail.gmail.com> <Ya4uETXlJc7PMY81@errol.ini.cmu.edu>
-In-Reply-To: <Ya4uETXlJc7PMY81@errol.ini.cmu.edu>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 6 Dec 2021 16:44:15 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV6Nktw66s8pY5T6tra8j0kGePsWn1uT59j45=b92CBsg@mail.gmail.com>
-Message-ID: <CAMuHMdV6Nktw66s8pY5T6tra8j0kGePsWn1uT59j45=b92CBsg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: mmc: Add bindings for LiteSDCard
-To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        Kamil Rakoczy <krakoczy@antmicro.com>,
-        mdudek@internships.antmicro.com, paulus@ozlabs.org,
-        Joel Stanley <joel@jms.id.au>,
-        Stafford Horne <shorne@gmail.com>,
-        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
-        Randy Dunlap <rdunlap@infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gabriel,
+From: Thierry Reding <treding@nvidia.com>
 
-On Mon, Dec 6, 2021 at 4:36 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
-> Some of the *.txt formatted files in Documentation/devicetree/bindings/mmc
-> had an explicit "Optional" section, but all the .yaml formatted ones
-> just seem to assume that if it's not under `required:`, it's
-> implicitly optional. So I'm removing `interrupts` from `required`, and
-> adding `reg-names`, as you pointed out.
+Add the interconnects and interconnect-names properties to the bindings
+for the sound card on various NVIDIA Tegra based boards. These are used
+to describe the device's memory paths to and from memory.
 
-That's correct: if it's not listed under "required", it's optional.
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ .../bindings/sound/nvidia,tegra-audio-graph-card.yaml  | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Gr{oetje,eeting}s,
+diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml
+index 5bdd30a8a404..b4bee466d67a 100644
+--- a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml
++++ b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml
+@@ -44,6 +44,16 @@ properties:
+     minItems: 1
+     maxItems: 3
+ 
++  interconnects:
++    items:
++      - description: APE read memory client
++      - description: APE write memory client
++
++  interconnect-names:
++    items:
++      - const: dma-mem # read
++      - const: write
++
+   iommus:
+     maxItems: 1
+ 
+-- 
+2.33.1
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
