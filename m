@@ -2,89 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF21546A074
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 17:03:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0D46469FDF
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:55:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376539AbhLFQEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 11:04:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37020 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1388085AbhLFP7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:59:02 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7004DC08EB3F
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 07:42:31 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F0AB16123D
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 15:42:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EA3BC34900;
-        Mon,  6 Dec 2021 15:42:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638805350;
-        bh=vxHt8yQIACfo+eg5a/K8OTetZFiZUvKMMODqrLzrgaU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sNzZx7N3eoc9v2maBGqKAhMPJ/JAJkHwn4BKNeIfoKU2X3w7IvA/O9d4fR7Rq60La
-         outLYWYMm8mieQnTsaeLFNGRPYj0bw3+Y5XUq9j8VGOHr0aDiGJmZ+HookUW/2IwTU
-         HaONiPVx+9hLYMi+X10cw1oF/7ak2ERDf0OpNzolGO20mCCGlY4CdMxcjW7U/yftXD
-         MTwCf4x2KopFm2l96ZVLOZvCtKbXJkaYjLkuz0x3i7WfTzXjsdFiLsWpHdXq0cnNvo
-         zaP3EpPsIMdZdGRuQ8Qd9qgTFDak8G/XwzB8IV6jDNGmEwv8CJLuvW3UlVH+DqbeKh
-         RyV7/3lqz5amA==
-Date:   Mon, 6 Dec 2021 15:42:26 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: regulator: maxim,max8973: Document
- interrupts property
-Message-ID: <Ya4vYjGSUeJFiRa3@sirena.org.uk>
-References: <20211206153432.226963-1-thierry.reding@gmail.com>
+        id S1387924AbhLFPyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 10:54:44 -0500
+Received: from mail-ua1-f53.google.com ([209.85.222.53]:39433 "EHLO
+        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1380269AbhLFPsF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:48:05 -0500
+Received: by mail-ua1-f53.google.com with SMTP id i6so20398713uae.6;
+        Mon, 06 Dec 2021 07:44:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Vy3338Qktced19OV69eNGqaLOwGIfSaex03EYB876QU=;
+        b=tSQoMX/u3t8Zfrqn3pE0X+viVaHEDe2CRj/cuCXDHX14DbUbPNCl3hHp9GteofNTZO
+         AVtqpJfbScOBUatoMDHBXF0/v0OKCaPQVNrtjUkvrtgvzUtZX7GRVWvMMqTbGLLTtrVo
+         BXjvXonexh25tZbaTFOMwek2JyEijLr1nh/jtd0I0SiShKqwRnBmtYO0Z7EHnW/Uq8nn
+         s2Dc+EuhaNpg9IQrqWfivvvmx/WzJmltnbIxuyHlak4Eo3MKs+DgIdDSZ5SvILrbohse
+         r+9iof0aQELdk8n82c7yIBcwP3qMtOOsX3kPO4qu3n/UB9Qjq4wVjndVhO3R4HjY5Qu9
+         4T/Q==
+X-Gm-Message-State: AOAM532w1cZ/WJ7owWykfIMLJySnzDog3QATMZLyEDS9DWM3ZOLLNJoN
+        5OhJDUOuXumcSIGc24DY0AmHatgeqWpNQw==
+X-Google-Smtp-Source: ABdhPJwYaqBSIH4vYBT/cM0UkpgTxOgXJJT2kgBeQavRnv+4FRiqBBEyhQiVjvr+iqaxJJMMFeqT8A==
+X-Received: by 2002:a67:fdc3:: with SMTP id l3mr37963775vsq.42.1638805475997;
+        Mon, 06 Dec 2021 07:44:35 -0800 (PST)
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
+        by smtp.gmail.com with ESMTPSA id z188sm4193582vsz.12.2021.12.06.07.44.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Dec 2021 07:44:35 -0800 (PST)
+Received: by mail-ua1-f48.google.com with SMTP id o1so20427958uap.4;
+        Mon, 06 Dec 2021 07:44:35 -0800 (PST)
+X-Received: by 2002:a05:6102:3232:: with SMTP id x18mr36267266vsf.38.1638805466989;
+ Mon, 06 Dec 2021 07:44:26 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="SD6ZSew+sVN9TsAj"
-Content-Disposition: inline
-In-Reply-To: <20211206153432.226963-1-thierry.reding@gmail.com>
-X-Cookie: You will soon forget this.
+References: <20211204204121.2367127-1-gsomlo@gmail.com> <20211204204121.2367127-3-gsomlo@gmail.com>
+ <CAMuHMdVJZp+YuaDnXabOgeTajNo0JA9nwCmkiTg2=69L9-6-ew@mail.gmail.com> <Ya4uETXlJc7PMY81@errol.ini.cmu.edu>
+In-Reply-To: <Ya4uETXlJc7PMY81@errol.ini.cmu.edu>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 6 Dec 2021 16:44:15 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV6Nktw66s8pY5T6tra8j0kGePsWn1uT59j45=b92CBsg@mail.gmail.com>
+Message-ID: <CAMuHMdV6Nktw66s8pY5T6tra8j0kGePsWn1uT59j45=b92CBsg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: mmc: Add bindings for LiteSDCard
+To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Kamil Rakoczy <krakoczy@antmicro.com>,
+        mdudek@internships.antmicro.com, paulus@ozlabs.org,
+        Joel Stanley <joel@jms.id.au>,
+        Stafford Horne <shorne@gmail.com>,
+        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
+        Randy Dunlap <rdunlap@infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Gabriel,
 
---SD6ZSew+sVN9TsAj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, Dec 6, 2021 at 4:36 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+> Some of the *.txt formatted files in Documentation/devicetree/bindings/mmc
+> had an explicit "Optional" section, but all the .yaml formatted ones
+> just seem to assume that if it's not under `required:`, it's
+> implicitly optional. So I'm removing `interrupts` from `required`, and
+> adding `reg-names`, as you pointed out.
 
-On Mon, Dec 06, 2021 at 04:34:32PM +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
->=20
-> One of the examples in the bindings has an interrupts property and the
-> Linux kernel driver has support for requesting an interrupt as well. It
-> looks like the absence from the bindings was just an oversight. Add the
-> property to make sure the examples can be validated.
+That's correct: if it's not listed under "required", it's optional.
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+Gr{oetje,eeting}s,
 
---SD6ZSew+sVN9TsAj
-Content-Type: application/pgp-signature; name="signature.asc"
+                        Geert
 
------BEGIN PGP SIGNATURE-----
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGuL2EACgkQJNaLcl1U
-h9BSjgf8C0QwS53uOk4sK8klELOF3npr8KNvkshFu4YI/dHhmwcG7sccrb9lSMQD
-cqkDJ84tw64laBbyCZQkdIzvr9ZP4GZs+UMTecvOJ6ge0X+Rdkxu3JW8VZ79GGT1
-74K6M+VTOyhfnku8Lmu8QwgId5pje85gnc5NiAx8m8KM9URNwjpnfUQOP/BElqjD
-rvfKJ8dlGQUTbGfg5xmSJ3bN6Bc4WcpXAg5ZPqDaTuL+MLG9Io9aLaeXxlM3U0di
-2M6qXl+dUZpykrdyaKaph1V00NBR8ClciEMfzZU7WRqTAx5UZkVxMQTU+NPCEPT0
-tAgiRal8ZmGil8J0HxavoCEFhgnAuw==
-=1HW7
------END PGP SIGNATURE-----
-
---SD6ZSew+sVN9TsAj--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
