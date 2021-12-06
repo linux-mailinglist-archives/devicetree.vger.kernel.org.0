@@ -2,303 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48D1446A144
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 17:25:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0B4A46A14C
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 17:26:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359081AbhLFQ2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 11:28:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44724 "EHLO
+        id S1376898AbhLFQ3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 11:29:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358915AbhLFQ2j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 11:28:39 -0500
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65A63C0613F8
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 08:25:10 -0800 (PST)
-Received: by mail-ot1-x336.google.com with SMTP id n104-20020a9d2071000000b005799790cf0bso14315848ota.5
-        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 08:25:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=oxjEfTWOmaP7pZiU/lsiM3HBFWw8g2ciGnA41bmg1W4=;
-        b=Su0TIZSIS2211s1e9/4DNfZ9QdbllmaHoRHcVCCZ9jyW7UxvZa1wCK53vfymIdUszn
-         89pg0kJRVK61ZBQTxRTxXBHkWDC2T4SeEtcUeIXHuaJrEkmgSVwBrp/Tvxhi14nwh/m1
-         BFtUgO744XQdRJlejLJWqE9AVLuVOqvx+BQQXAhBPFOp0RwBkcqvqescgf0V67URRz11
-         SevGG79T6AbZUW3JXcJaAgo4ysorw4iSos/4RO8PfAS4vokL6dRZ+3NnMTO68IN2DY/C
-         3T8RB/1K6TKNe5wF0zDtiA4G22Vod4Sb9E5r0JE0PyvOvY2ZT6LdMfjvF2ngTN/QXzLa
-         i07Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=oxjEfTWOmaP7pZiU/lsiM3HBFWw8g2ciGnA41bmg1W4=;
-        b=vOWQpSO14q7gIoIWLJ1SzCOZgk8j7XIaUif85wnPPCX/DICK1CtZUxOkivlJdbC09o
-         34Kt3xPOwCnHUwmUtCYHYZ2pdIFzrgJ11qogvtf7ZsCie/x7e4av3CKmIQ1VVdu5+Df2
-         yd0sleXIg24mTnApregE9cOP95jypmxhgHC6XU1IkoKQwYtbq13GxwTh0uOgII0C2i0X
-         mkV+UepNQ6bPkCucEmWdPLSRb/QN/ziJoKRMsn5RjFTUHRldxi8PM1ux+5r6U6cez8Os
-         3MPla/NoEL7fkkipoMIRIapXjmJSVA0+ZuXDayIWowV3bscJ6Lc0uEIBuF9LlACeNmCn
-         DDrw==
-X-Gm-Message-State: AOAM531FF3YuPy+XImWNfMSbuZOZYgMc6ilaamjocWm/VoC/5GyAFJ4v
-        xidjhvg1fXWnCotCxTfOeg1pwg==
-X-Google-Smtp-Source: ABdhPJwEa0lxr4O/X502RfLfqHwoH3oj9UIuY7xIL8wEUyBkouiZ73MniMtOownAxVsYRQpcLzdcDg==
-X-Received: by 2002:a9d:6348:: with SMTP id y8mr30396341otk.243.1638807909676;
-        Mon, 06 Dec 2021 08:25:09 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id z7sm2694067oib.0.2021.12.06.08.25.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 08:25:09 -0800 (PST)
-Date:   Mon, 6 Dec 2021 10:25:04 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.com>
-Cc:     agross@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-Subject: Re: [PATCH v4 5/5] pinctrl: qcom: Add SC7280 lpass pin configuration
-Message-ID: <Ya45YKsdloY8l8do@builder.lan>
-References: <1638531140-25899-1-git-send-email-srivasam@codeaurora.com>
- <1638531140-25899-6-git-send-email-srivasam@codeaurora.com>
+        with ESMTP id S1358749AbhLFQ3r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 11:29:47 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74C2BC061354;
+        Mon,  6 Dec 2021 08:26:18 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 2A2121F449AA
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1638807977; bh=0rQTTF2QgSQJJ2bf5Dy5jQmG8LVwC5zO11tv6jX0lD8=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=W4h85dImJdJQH7Oc7BRt49wZWM81HCKeAFrqvhzH2zGAWWvnPh7GHUuqUtffAElxL
+         +BW5+mIT/cMKfX+L1d4rYM/k3a37IIxejwkKpeIs4cPcD0DmNWFZ/388R/tnlGZshY
+         zroRVpymTCTmwV4fMBdkdLPGushIcrB4kn4h46fsXOb4zneDJOwmy2XHiHvhBTCdm4
+         4tzfMA/dIt4iEoboEiVJT4rO86e1BjCbTl3pa+iBTilR40tInFqfC0yE/zfMRDBYlT
+         Vt0eU4uILRYsSQq0tenDYfWgKt7XR2TBQ/UbE1BGLHx2VRDguv1si9HP4HMcjSiMlb
+         nb2LkHyYJgP5g==
+Subject: Re: [PATCH V1, 4/6] media: mtk-jpegdec: add jpeg decode worker
+ interface
+To:     "kyrie.wu" <kyrie.wu@mediatek.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com,
+        irui.wang@mediatek.com
+References: <1638509655-14296-1-git-send-email-kyrie.wu@mediatek.com>
+ <1638509655-14296-5-git-send-email-kyrie.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <1de01778-5750-c7aa-eac9-d9f91ad76ddb@collabora.com>
+Date:   Mon, 6 Dec 2021 17:26:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1638531140-25899-6-git-send-email-srivasam@codeaurora.com>
+In-Reply-To: <1638509655-14296-5-git-send-email-kyrie.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 03 Dec 05:32 CST 2021, Srinivasa Rao Mandadapu wrote:
-
-> From: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Il 03/12/21 06:34, kyrie.wu ha scritto:
+> Add jpeg decoding worker to ensure that three HWs
+> run in parallel in MT8195.
 > 
-> Add pin control support for SC7280 LPASS LPI.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: kyrie.wu <kyrie.wu@mediatek.com>
 > ---
->  drivers/pinctrl/qcom/Kconfig                    |   8 ++
->  drivers/pinctrl/qcom/Makefile                   |   1 +
->  drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c | 169 ++++++++++++++++++++++++
->  3 files changed, 178 insertions(+)
->  create mode 100644 drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+>   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c   | 190 +++++++++++++++++++---
+>   drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h   |   5 +
+>   drivers/media/platform/mtk-jpeg/mtk_jpeg_dec_hw.c |  17 ++
+>   3 files changed, 189 insertions(+), 23 deletions(-)
 > 
-> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
-> index e750e10..37fe868 100644
-> --- a/drivers/pinctrl/qcom/Kconfig
-> +++ b/drivers/pinctrl/qcom/Kconfig
-> @@ -328,4 +328,12 @@ config PINCTRL_SM8250_LPASS_LPI
->  	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
->  	  (Low Power Island) found on the Qualcomm Technologies Inc SM8250 platform.
->  
-> +config PINCTRL_SC7280_LPASS_LPI
-> +	tristate "Qualcomm Technologies Inc SM8250 LPASS LPI pin controller driver"
 
-You misspelled SC7280 here.
+Hello Kyrie,
+thanks for the patch! However, there are some things to improve...
 
-> +	depends on PINCTRL_LPASS_LPI
-> +	help
-> +	  This is the pinctrl, pinmux, pinconf and gpiolib driver for the
-> +	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
-> +	  (Low Power Island) found on the Qualcomm Technologies Inc SC7280 platform.
+> diff --git a/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c b/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c
+> index f2a5e84..2518660 100644
+> --- a/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c
+> +++ b/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c
+> @@ -1065,57 +1065,187 @@ static void mtk_jpeg_enc_device_run(void *priv)
+>   	queue_work(jpeg->workqueue, &ctx->jpeg_work);
+>   }
+>   
+> -static void mtk_jpeg_dec_device_run(void *priv)
+> +static int mtk_jpegdec_select_hw(struct mtk_jpeg_ctx *ctx)
+>   {
+> -	struct mtk_jpeg_ctx *ctx = priv;
+> +	struct mtk_jpegdec_comp_dev *comp_jpeg;
+>   	struct mtk_jpeg_dev *jpeg = ctx->jpeg;
+> -	struct vb2_v4l2_buffer *src_buf, *dst_buf;
+> -	enum vb2_buffer_state buf_state = VB2_BUF_STATE_ERROR;
+>   	unsigned long flags;
+> -	struct mtk_jpeg_src_buf *jpeg_src_buf;
+> +	int hw_id = -1;
+> +	int i;
 > +
->  endif
-> diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
-> index 8bc877e..6c3ddaf 100644
-> --- a/drivers/pinctrl/qcom/Makefile
-> +++ b/drivers/pinctrl/qcom/Makefile
-> @@ -38,3 +38,4 @@ obj-$(CONFIG_PINCTRL_SM8250) += pinctrl-sm8250.o
->  obj-$(CONFIG_PINCTRL_SM8350) += pinctrl-sm8350.o
->  obj-$(CONFIG_PINCTRL_LPASS_LPI) += pinctrl-lpass-lpi.o
->  obj-$(CONFIG_PINCTRL_SM8250_LPASS_LPI) += pinctrl-sm8250-lpass-lpi.o
-> +obj-$(CONFIG_PINCTRL_SC7280_LPASS_LPI) += pinctrl-sc7280-lpass-lpi.o
+> +	spin_lock_irqsave(&jpeg->hw_lock, flags);
+> +	for (i = 0; i < MTK_JPEGDEC_HW_MAX; i++) {
+> +		comp_jpeg = jpeg->dec_hw_dev[i];
+> +		if (comp_jpeg->hw_state == MTK_JPEG_HW_IDLE) {
+> +			hw_id = i;
+> +			comp_jpeg->hw_state = MTK_JPEG_HW_BUSY;
+> +			break;
+> +		}
+> +	}
+> +	spin_unlock_irqrestore(&jpeg->hw_lock, flags);
+> +
+> +	return hw_id;
+> +}
+> +
+> +static int mtk_jpegdec_deselect_hw(struct mtk_jpeg_dev *jpeg, int hw_id)
+> +{
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&jpeg->hw_lock, flags);
+> +	jpeg->dec_hw_dev[hw_id]->hw_state =
+> +		MTK_JPEG_HW_IDLE;
+> +	spin_unlock_irqrestore(&jpeg->hw_lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_jpegdec_set_hw_param(struct mtk_jpeg_ctx *ctx,
+> +	int hw_id,
+> +	struct vb2_v4l2_buffer *src_buf,
+> +	struct vb2_v4l2_buffer *dst_buf)
+> +{
+> +	struct mtk_jpegdec_comp_dev *jpeg =
+> +		ctx->jpeg->dec_hw_dev[hw_id];
+> +
+> +	jpeg->hw_param.curr_ctx = ctx;
+> +	jpeg->hw_param.src_buffer = src_buf;
+> +	jpeg->hw_param.dst_buffer = dst_buf;
+> +
+> +	return 0;
+> +}
+> +
+> +static void mtk_jpegdec_worker(struct work_struct *work)
+> +{
+> +	struct mtk_jpeg_ctx *ctx = container_of(work, struct mtk_jpeg_ctx,
+> +		jpeg_work);
+> +	struct mtk_jpegdec_comp_dev *comp_jpeg[MTK_JPEGDEC_HW_MAX];
+> +	enum vb2_buffer_state buf_state = VB2_BUF_STATE_ERROR;
+> +	struct mtk_jpeg_src_buf *jpeg_src_buf, *jpeg_dst_buf;
+> +	struct vb2_v4l2_buffer *src_buf, *dst_buf;
+> +	struct mtk_jpeg_dev *jpeg = ctx->jpeg;
+> +	atomic_t *hw_rdy[MTK_JPEGDEC_HW_MAX];
+> +	struct clk *jpegdec_clk;
+> +	int ret, i, hw_id = 0;
+>   	struct mtk_jpeg_bs bs;
+>   	struct mtk_jpeg_fb fb;
+> -	int ret;
+> +	unsigned long flags;
+> +
+> +	for (i = 0; i < MTK_JPEGDEC_HW_MAX; i++) {
+> +		comp_jpeg[i] = jpeg->dec_hw_dev[i];
+> +		hw_rdy[i] = &comp_jpeg[i]->hw_rdy;
+> +	}
+> +
 
-Please keep these entries sorted alphabetically, same with Kconfig.
+This entire retry_select block should go to a helper function instead
+of being inside of here.
+
+Also, there's a big issue with this snippet that has to be solved: you're
+unconditionally calling "goto retry_select" at the end of the if branch,
+but please consider the following scenario:
+
+- mtk_jpegdec_select_hw() returns a hw_id < 0
+- wait_event_interruptible returns 0
+... then we redo the same, and we still get the same result.
+
+This may generate an infinite loop!!
+
+After putting this into a separate function, please use a controlled loop
+with a well thought maximum number of retries, as to avoid this situation.
+
+> +retry_select:
+> +	hw_id = mtk_jpegdec_select_hw(ctx);
+> +	if (hw_id < 0) {
+> +		ret = wait_event_interruptible(jpeg->dec_hw_wq,
+> +			(atomic_read(hw_rdy[0]) ||
+> +			atomic_read(hw_rdy[1]) ||
+> +			atomic_read(hw_rdy[2])) > 0);
+> +		if (ret != 0) {
+> +			dev_err(jpeg->dev, "%s : %d, all HW are busy\n",
+> +				__func__, __LINE__);
+> +			v4l2_m2m_job_finish(jpeg->m2m_dev, ctx->fh.m2m_ctx);
+> +			return;
+> +		}
+> +
+> +		dev_err(jpeg->dev, "%s : %d, NEW HW IDLE, please retry selcet!!!\n",
+> +			__func__, __LINE__);
+> +		goto retry_select;
+> +	}
+>   
+> +	atomic_dec(&comp_jpeg[hw_id]->hw_rdy);
+>   	src_buf = v4l2_m2m_next_src_buf(ctx->fh.m2m_ctx);
+> +	if (!src_buf) {
+> +		dev_err(jpeg->dev, "%s : %d, get src_buf fail !!!\n",
+> +			__func__, __LINE__);
+> +		goto getbuf_fail;
+> +	}
+>   	dst_buf = v4l2_m2m_next_dst_buf(ctx->fh.m2m_ctx);
+> +	if (!dst_buf) {
+> +		dev_err(jpeg->dev, "%s : %d, get dst_buf fail !!!\n",
+> +			__func__, __LINE__);
+> +		goto getbuf_fail;
+> +	}
+> +
+>   	jpeg_src_buf = mtk_jpeg_vb2_to_srcbuf(&src_buf->vb2_buf);
+> +	jpeg_dst_buf = mtk_jpeg_vb2_to_srcbuf(&dst_buf->vb2_buf);
+>   
+> -	if (mtk_jpeg_check_resolution_change(ctx, &jpeg_src_buf->dec_param)) {
+> +	if (mtk_jpeg_check_resolution_change(ctx,
+> +		&jpeg_src_buf->dec_param)) {
+
+Why are you breaking this line? There's no need to.
+
+>   		mtk_jpeg_queue_src_chg_event(ctx);
+>   		ctx->state = MTK_JPEG_SOURCE_CHANGE;
+> -		v4l2_m2m_job_finish(jpeg->m2m_dev, ctx->fh.m2m_ctx);
+> -		return;
+> +		goto getbuf_fail;
+>   	}
+>   
+
 
 Regards,
-Bjorn
-
-> diff --git a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-> new file mode 100644
-> index 0000000..94bec15
-> --- /dev/null
-> +++ b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-> @@ -0,0 +1,169 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
-> + * ALSA SoC platform-machine driver for QTi LPASS
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "pinctrl-lpass-lpi.h"
-> +
-> +enum lpass_lpi_functions {
-> +	LPI_MUX_dmic1_clk,
-> +	LPI_MUX_dmic1_data,
-> +	LPI_MUX_dmic2_clk,
-> +	LPI_MUX_dmic2_data,
-> +	LPI_MUX_dmic3_clk,
-> +	LPI_MUX_dmic3_data,
-> +	LPI_MUX_i2s1_clk,
-> +	LPI_MUX_i2s1_data,
-> +	LPI_MUX_i2s1_ws,
-> +	LPI_MUX_i2s2_clk,
-> +	LPI_MUX_i2s2_data,
-> +	LPI_MUX_i2s2_ws,
-> +	LPI_MUX_qua_mi2s_data,
-> +	LPI_MUX_qua_mi2s_sclk,
-> +	LPI_MUX_qua_mi2s_ws,
-> +	LPI_MUX_swr_rx_clk,
-> +	LPI_MUX_swr_rx_data,
-> +	LPI_MUX_swr_tx_clk,
-> +	LPI_MUX_swr_tx_data,
-> +	LPI_MUX_wsa_swr_clk,
-> +	LPI_MUX_wsa_swr_data,
-> +	LPI_MUX_gpio,
-> +	LPI_MUX__,
-> +};
-> +
-> +static const unsigned int gpio0_pins[] = { 0 };
-> +static const unsigned int gpio1_pins[] = { 1 };
-> +static const unsigned int gpio2_pins[] = { 2 };
-> +static const unsigned int gpio3_pins[] = { 3 };
-> +static const unsigned int gpio4_pins[] = { 4 };
-> +static const unsigned int gpio5_pins[] = { 5 };
-> +static const unsigned int gpio6_pins[] = { 6 };
-> +static const unsigned int gpio7_pins[] = { 7 };
-> +static const unsigned int gpio8_pins[] = { 8 };
-> +static const unsigned int gpio9_pins[] = { 9 };
-> +static const unsigned int gpio10_pins[] = { 10 };
-> +static const unsigned int gpio11_pins[] = { 11 };
-> +static const unsigned int gpio12_pins[] = { 12 };
-> +static const unsigned int gpio13_pins[] = { 13 };
-> +static const unsigned int gpio14_pins[] = { 14 };
-> +
-> +/* sc7280 variant specific data */
-> +static const struct pinctrl_pin_desc sc7280_lpi_pins[] = {
-> +	PINCTRL_PIN(0, "gpio0"),
-> +	PINCTRL_PIN(1, "gpio1"),
-> +	PINCTRL_PIN(2, "gpio2"),
-> +	PINCTRL_PIN(3, "gpio3"),
-> +	PINCTRL_PIN(4, "gpio4"),
-> +	PINCTRL_PIN(5, "gpio5"),
-> +	PINCTRL_PIN(6, "gpio6"),
-> +	PINCTRL_PIN(7, "gpio7"),
-> +	PINCTRL_PIN(8, "gpio8"),
-> +	PINCTRL_PIN(9, "gpio9"),
-> +	PINCTRL_PIN(10, "gpio10"),
-> +	PINCTRL_PIN(11, "gpio11"),
-> +	PINCTRL_PIN(12, "gpio12"),
-> +	PINCTRL_PIN(13, "gpio13"),
-> +	PINCTRL_PIN(14, "gpio14"),
-> +};
-> +
-> +static const char * const swr_tx_clk_groups[] = { "gpio0" };
-> +static const char * const swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio14" };
-> +static const char * const swr_rx_clk_groups[] = { "gpio3" };
-> +static const char * const swr_rx_data_groups[] = { "gpio4", "gpio5" };
-> +static const char * const dmic1_clk_groups[] = { "gpio6" };
-> +static const char * const dmic1_data_groups[] = { "gpio7" };
-> +static const char * const dmic2_clk_groups[] = { "gpio8" };
-> +static const char * const dmic2_data_groups[] = { "gpio9" };
-> +static const char * const i2s2_clk_groups[] = { "gpio10" };
-> +static const char * const i2s2_ws_groups[] = { "gpio11" };
-> +static const char * const dmic3_clk_groups[] = { "gpio12" };
-> +static const char * const dmic3_data_groups[] = { "gpio13" };
-> +static const char * const qua_mi2s_sclk_groups[] = { "gpio0" };
-> +static const char * const qua_mi2s_ws_groups[] = { "gpio1" };
-> +static const char * const qua_mi2s_data_groups[] = { "gpio2", "gpio3", "gpio4" };
-> +static const char * const i2s1_clk_groups[] = { "gpio6" };
-> +static const char * const i2s1_ws_groups[] = { "gpio7" };
-> +static const char * const i2s1_data_groups[] = { "gpio8", "gpio9" };
-> +static const char * const wsa_swr_clk_groups[] = { "gpio10" };
-> +static const char * const wsa_swr_data_groups[] = { "gpio11" };
-> +static const char * const i2s2_data_groups[] = { "gpio12", "gpio13" };
-> +
-> +static const struct lpi_pingroup sc7280_groups[] = {
-> +	LPI_PINGROUP(0, 0, swr_tx_clk, qua_mi2s_sclk, _, _),
-> +	LPI_PINGROUP(1, 2, swr_tx_data, qua_mi2s_ws, _, _),
-> +	LPI_PINGROUP(2, 4, swr_tx_data, qua_mi2s_data, _, _),
-> +	LPI_PINGROUP(3, 8, swr_rx_clk, qua_mi2s_data, _, _),
-> +	LPI_PINGROUP(4, 10, swr_rx_data, qua_mi2s_data, _, _),
-> +	LPI_PINGROUP(5, 12, swr_rx_data, _, _, _),
-> +	LPI_PINGROUP(6, NO_SLEW, dmic1_clk, i2s1_clk, _,  _),
-> +	LPI_PINGROUP(7, NO_SLEW, dmic1_data, i2s1_ws, _, _),
-> +	LPI_PINGROUP(8, NO_SLEW, dmic2_clk, i2s1_data, _, _),
-> +	LPI_PINGROUP(9, NO_SLEW, dmic2_data, i2s1_data, _, _),
-> +	LPI_PINGROUP(10, 16, i2s2_clk, wsa_swr_clk, _, _),
-> +	LPI_PINGROUP(11, 18, i2s2_ws, wsa_swr_data, _, _),
-> +	LPI_PINGROUP(12, NO_SLEW, dmic3_clk, i2s2_data, _, _),
-> +	LPI_PINGROUP(13, NO_SLEW, dmic3_data, i2s2_data, _, _),
-> +	LPI_PINGROUP(14, 6, swr_tx_data, _, _, _),
-> +};
-> +
-> +static const struct lpi_function sc7280_functions[] = {
-> +	LPI_FUNCTION(dmic1_clk),
-> +	LPI_FUNCTION(dmic1_data),
-> +	LPI_FUNCTION(dmic2_clk),
-> +	LPI_FUNCTION(dmic2_data),
-> +	LPI_FUNCTION(dmic3_clk),
-> +	LPI_FUNCTION(dmic3_data),
-> +	LPI_FUNCTION(i2s1_clk),
-> +	LPI_FUNCTION(i2s1_data),
-> +	LPI_FUNCTION(i2s1_ws),
-> +	LPI_FUNCTION(i2s2_clk),
-> +	LPI_FUNCTION(i2s2_data),
-> +	LPI_FUNCTION(i2s2_ws),
-> +	LPI_FUNCTION(qua_mi2s_data),
-> +	LPI_FUNCTION(qua_mi2s_sclk),
-> +	LPI_FUNCTION(qua_mi2s_ws),
-> +	LPI_FUNCTION(swr_rx_clk),
-> +	LPI_FUNCTION(swr_rx_data),
-> +	LPI_FUNCTION(swr_tx_clk),
-> +	LPI_FUNCTION(swr_tx_data),
-> +	LPI_FUNCTION(wsa_swr_clk),
-> +	LPI_FUNCTION(wsa_swr_data),
-> +};
-> +
-> +static const struct lpi_pinctrl_variant_data sc7280_lpi_data = {
-> +	.pins = sc7280_lpi_pins,
-> +	.npins = ARRAY_SIZE(sc7280_lpi_pins),
-> +	.groups = sc7280_groups,
-> +	.ngroups = ARRAY_SIZE(sc7280_groups),
-> +	.functions = sc7280_functions,
-> +	.nfunctions = ARRAY_SIZE(sc7280_functions),
-> +};
-> +
-> +static const struct of_device_id lpi_pinctrl_of_match[] = {
-> +	{
-> +	       .compatible = "qcom,sc7280-lpass-lpi-pinctrl",
-> +	       .data = &sc7280_lpi_data,
-> +	},
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, lpi_pinctrl_of_match);
-> +
-> +static struct platform_driver lpi_pinctrl_driver = {
-> +	.driver = {
-> +		   .name = "qcom-sc7280-lpass-lpi-pinctrl",
-> +		   .of_match_table = lpi_pinctrl_of_match,
-> +	},
-> +	.probe = lpi_pinctrl_probe,
-> +	.remove = lpi_pinctrl_remove,
-> +};
-> +
-> +module_platform_driver(lpi_pinctrl_driver);
-> +MODULE_DESCRIPTION("QTI SC7280 LPI GPIO pin control driver");
-> +MODULE_LICENSE("GPL");
-> +
-> -- 
-> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-> 
+- Angelo
