@@ -2,271 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17A1346AE68
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 00:25:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4D4F46AE95
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 00:48:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376928AbhLFX3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 18:29:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33850 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376880AbhLFX3G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 18:29:06 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3DF9C061746;
-        Mon,  6 Dec 2021 15:25:36 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id g14so48969446edb.8;
-        Mon, 06 Dec 2021 15:25:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=4jV+KqtpM7JW+L5upscVKEEk6MlCh5LAGBK1hWf/qpE=;
-        b=Z/V3La0yEBh0sB7xYAIMGrElf+AakB+TTvh3Mipj2EpT+5gAHOceeF+fJ5BxtXEwmg
-         lPABrBeTNgT2Zusv9Wk0K7YA23Pb+j90UBHgF03X6l+yn5NmXaTix3IKpzLjhaJ3pE9I
-         vfQRB4dborFnqmnSIyYScI4E5k6wrW7+ai1HDlzGgFeNnwjE6ghtcrtnUWz+fqhAGtf9
-         RnRYqVllvx7oui9kbHhIWMNBDGHDfMfU0eeSnFlgPmOcr7qQ4r9KaBUno0l2qI9EsZtT
-         dLUNyNqRZ+qoiyw/rOOPoUj2exN8xnj0/lhEcdi2JSuD84553WTct1N1NrP0QUcompYL
-         5PlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=4jV+KqtpM7JW+L5upscVKEEk6MlCh5LAGBK1hWf/qpE=;
-        b=mxfyUi3IdQ3gUSl+KORdHHPbBNsvUE3rdd8YCxgXse1p670m7mdUjR4qU2YuBImN4y
-         U2iAKYDS2NKU+cciaNLvQVCTcSQMeoW5BkrydBTp9OgJzT68KRUiYqIrTwXtGyr+9UjR
-         IuvfnUn7tv9jLKkVNXGDd5gh7k2+uQx9t95qNycY8bX4jCP0OB/TwXiKTIQAdoiKlUuZ
-         b4gDO86jw+WoNeD1IBUHSposVN4heud9arSAbYOAKf3WUrIGzxADdMmkKQPjCbyooSiY
-         4cNXwHiJdM540eECLnRbS2Kg6KIKP9EHHDr+RkBqYMYIXyoKbr3nkeOh9y0GFAjO5cEI
-         Avcw==
-X-Gm-Message-State: AOAM532gu3Ml7K1wLFTdu0aR50Z8SXcaHM0DXzhQBSTwUE63XEnCoG65
-        ew7k086FIX9/22tOJJzl/5MBhfXsKXMr5IQSw4I=
-X-Google-Smtp-Source: ABdhPJxrfMVHSOouoxr/+cSB16Q7UzeaTBXSxd4bv1eKjaKdQrKDvpgt4H1AK8+o2kVsbxd2nVyWpOLXNjYHIfnafec=
-X-Received: by 2002:a05:6402:3549:: with SMTP id f9mr3446135edd.23.1638833135041;
- Mon, 06 Dec 2021 15:25:35 -0800 (PST)
+        id S1377493AbhLFXv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 18:51:56 -0500
+Received: from mga06.intel.com ([134.134.136.31]:63765 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1377492AbhLFXv4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Dec 2021 18:51:56 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10190"; a="298234314"
+X-IronPort-AV: E=Sophos;i="5.87,292,1631602800"; 
+   d="scan'208";a="298234314"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2021 15:48:26 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,292,1631602800"; 
+   d="scan'208";a="611435632"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 06 Dec 2021 15:48:23 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1muNiZ-000LsT-28; Mon, 06 Dec 2021 23:48:23 +0000
+Date:   Tue, 7 Dec 2021 07:47:53 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Alistair Francis <alistair@alistair23.me>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     kbuild-all@lists.01.org, robh+dt@kernel.org, andreas@kemnade.info,
+        alistair23@gmail.com, dmitry.torokhov@gmail.com,
+        linus.walleij@linaro.org, rydberg@bitmath.org
+Subject: Re: [PATCH v3 1/4] Input: Add driver for Cypress Generation 5
+ touchscreen
+Message-ID: <202112070710.hut43Md3-lkp@intel.com>
+References: <20211202122021.43124-2-alistair@alistair23.me>
 MIME-Version: 1.0
-References: <20211205181618.1041699-1-aford173@gmail.com> <CAHCN7xL3PSbHKZK_4NKRwhNGOZYM+i54CoKCq01a6kdbCLc2KA@mail.gmail.com>
- <3b81a33d9bbadd10bc61c3daedecc5b73b99a435.camel@ndufresne.ca> <CAHCN7xKb4YhH83oOnbXtkAKWk-3QWNNxE8EhVJ=i7xKW0wjYXw@mail.gmail.com>
-In-Reply-To: <CAHCN7xKb4YhH83oOnbXtkAKWk-3QWNNxE8EhVJ=i7xKW0wjYXw@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 6 Dec 2021 17:25:23 -0600
-Message-ID: <CAHCN7xLh-daWTOJXxQmrjprX8uT6xn5WjvZo1M3xPW4W27vusw@mail.gmail.com>
-Subject: Re: [RFC 0/5] Split iMX8MQ Hantro VPU into G1 and G2 with blk-ctrl support
-To:     Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc:     linux-media <linux-media@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Chris Healy <cphealy@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211202122021.43124-2-alistair@alistair23.me>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 6, 2021 at 4:30 PM Adam Ford <aford173@gmail.com> wrote:
->
-> On Mon, Dec 6, 2021 at 2:51 PM Nicolas Dufresne <nicolas@ndufresne.ca> wr=
-ote:
-> >
-> > Le dimanche 05 d=C3=A9cembre 2021 =C3=A0 13:51 -0600, Adam Ford a =C3=
-=A9crit :
-> > > On Sun, Dec 5, 2021 at 12:16 PM Adam Ford <aford173@gmail.com> wrote:
-> > > >
-> > > > Currently, the VPU in the i.MQ8MQ is appearing as one codec, but in=
- reality, it's
-> > > > two IP blocks called G1 and G2.  There is initialization code in VP=
-U code to
-> > > > pull some clocks, resets and other features which has been integrat=
-ed into
-> > > > the vpu-blk-ctrl for the i.MX8M Mini and a similar method can be us=
-ed to make
-> > > > the VPU codec's operate as stand-alone cores without having to know=
- the details
-> > > > of each other or the quirks unique to the i.MX8MQ, so the remaining=
- code can be
-> > > > left more generic.
-> > > >
-> > > > This series was started by Lucas Stach, and picked up by me so some=
- patches have
-> > > > his s-o-b and mine where I might have changed a few minor items.  I=
-t's in an RFC state
-> > > > because the G2 VP9 operations appear to hang, but the parent code f=
-rom which I started doesn't
-> > > > appear to show VP9 support, and it looks like it should.
-> > > >
-> > > > since the g-streamer and media trees are in a constant state of cha=
-nge, this series is based on
-> > > > git://linuxtv.org/hverkuil/media_tree.git for-v5.17e
-> > > >
-> > >
-> > > I forgot to post Fluster results.
-> > >
-> > > Before the patches to this branch:
-> > >
-> > > 2gst-main] root@localhost:~/gstreamer/fluster# ./fluster.py list -c |=
-grep -i v4l
-> > >
-> > >     GStreamer-H.264-V4L2-Gst1.0: GStreamer H.264 V4L2 decoder for
-> > > GStreamer 1.0... =E2=9D=8C
-> > >     GStreamer-H.264-V4L2SL-Gst1.0: GStreamer H.264 V4L2SL decoder for
-> > > GStreamer 1.0... =E2=9C=94=EF=B8=8F
-> > >     GStreamer-H.265-V4L2-Gst1.0: GStreamer H.265 V4L2 decoder for
-> > > GStreamer 1.0... =E2=9D=8C
-> > >     GStreamer-H.265-V4L2SL-Gst1.0: GStreamer H.265 V4L2SL decoder for
-> > > GStreamer 1.0... =E2=9D=8C
-> > >     GStreamer-VP8-V4L2-Gst1.0: GStreamer VP8 V4L2 decoder for GStream=
-er 1.0... =E2=9D=8C
-> > >     GStreamer-VP8-V4L2SL-Gst1.0: GStreamer VP8 V4L2SL decoder for
-> > > GStreamer 1.0... =E2=9C=94=EF=B8=8F
-> > >     GStreamer-VP9-V4L2SL-Gst1.0: GStreamer VP9 V4L2SL decoder for
-> > > GStreamer 1.0... =E2=9D=8C
-> > >     GStreamer-AV1-V4L2SL-Gst1.0: GStreamer AV1 V4L2SL decoder for
-> > > GStreamer 1.0... =E2=9D=8C
-> > > [gst-main] root@localhost:~/gstreamer/fluster#
-> > >
-> > > There was no VP9 support.
-> > >
-> > > ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
-> > > GStreamer-H.264-V4L2SL-Gst1.0
-> > > Ran 90/135 tests successfully               in 58.787 secs
-> > >
-> > > AFTER this series, two decoders appear:
-> > >
-> > > [   15.919137] hantro-vpu 38300000.video-codec: registered
-> > > nxp,imx8mq-vpu-g1-dec as /dev/video0
-> > > [   15.983579] hantro-vpu 38310000.video-codec: registered
-> > > nxp,imx8mq-vpu-g2-dec as /dev/video1
-> > >
-> > > VP9 was listed:
-> > >
-> > >     GStreamer-H.264-V4L2-Gst1.0: GStreamer H.264 V4L2 decoder for
-> > > GStreamer 1.0... =E2=9D=8C
-> > >     GStreamer-H.264-V4L2SL-Gst1.0: GStreamer H.264 V4L2SL decoder for
-> > > GStreamer 1.0... =E2=9C=94=EF=B8=8F
-> > >     GStreamer-H.265-V4L2-Gst1.0: GStreamer H.265 V4L2 decoder for
-> > > GStreamer 1.0... =E2=9D=8C
-> > >     GStreamer-H.265-V4L2SL-Gst1.0: GStreamer H.265 V4L2SL decoder for
-> > > GStreamer 1.0... =E2=9D=8C
-> > >     GStreamer-VP8-V4L2-Gst1.0: GStreamer VP8 V4L2 decoder for GStream=
-er 1.0... =E2=9D=8C
-> > >     GStreamer-VP8-V4L2SL-Gst1.0: GStreamer VP8 V4L2SL decoder for
-> > > GStreamer 1.0... =E2=9C=94=EF=B8=8F
-> > >     GStreamer-VP9-V4L2SL-Gst1.0: GStreamer VP9 V4L2SL decoder for
-> > > GStreamer 1.0... =E2=9C=94=EF=B8=8F
-> > >     GStreamer-AV1-V4L2SL-Gst1.0: GStreamer AV1 V4L2SL decoder for
-> > > GStreamer 1.0... =E2=9D=8C
-> > >
-> > > ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
-> > > Ran 55/61 tests successfully               in 8.565 secs
-> > >
-> > >
-> > > ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
-> > > Ran 90/135 tests successfully               in 60.269 secs
-> > >
-> > > Same results for H.264
-> > >
-> > > VP9 Hangs, where it didn't even appear as available before:
-> > >
-> > > ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
-> > > *********************************************************************=
-*******************************
-> > > Running test suite VP9-TEST-VECTORS with decoder GStreamer-VP9-V4L2SL=
--Gst1.0
-> > > Using 4 parallel job(s)
-> > > *********************************************************************=
-*******************************
-> > >
-> > > [TEST SUITE      ] (DECODER                    ) TEST VECTOR
-> > >                           ... RESULT
-> > > ---------------------------------------------------------------------=
--
-> > > [VP9-TEST-VECTORS] (GStreamer-VP9-V4L2SL-Gst1.0)
-> > > vp90-2-00-quantizer-00.webm                     ... Success
-> > > [VP9-TEST-VECTORS] (GStreamer-VP9-V4L2SL-Gst1.0)
-> > > vp90-2-00-quantizer-01.webm                     ... Success
-> > > [VP9-TEST-VECTORS] (GStreamer-VP9-V4L2SL-Gst1.0)
-> > > vp90-2-00-quantizer-02.webm                     ... Succes
-> > >
-> > > <hang > - and yes, 'Success' didnt' finish writing to the serial port=
-.
-> >
-> > Looks like hope to me ! Do you get further with -j 1 (one concurrent de=
-code) ?
->
-> Anything after the first attempt appears to fail.  I haven't figured
-> out if it's the G2 code or the power domain stuff.  Since VP9 didn't
-> work I migrated it to use the vpu-blk-ctrl, I can't really compare to
-> know if it was a regression or an improvement.
->
-> :-)
->
-I managed to get the vpu-blk-ctrl updated to address the G2 hanging.
+Hi Alistair,
 
-./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
-Ran 144/303 tests successfully               in 224.847 secs
+Thank you for the patch! Yet something to improve:
 
-Since I couldn't get it to work before the split, I am not sure if
-this is good or not.  I also wasn't sure if I needed to allocate more
-CMA for this.
+[auto build test ERROR on linux/master]
+[also build test ERROR on robh/for-next linus/master v5.16-rc4 next-20211206]
+[cannot apply to dtor-input/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-If/when people can give me some feedback on the RFC's, I'll submit an
-updated formal patch for both the i.MQ8MQ and the i.MQ8M Mini as one
-series based on  "for-v5.17e" from
-git://linuxtv.org/hverkuil/media_tree.git
+url:    https://github.com/0day-ci/linux/commits/Alistair-Francis/Add-support-for-the-Cypress-cyttsp5/20211202-202300
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git 136057256686de39cc3a07c2e39ef6bc43003ff6
+config: microblaze-randconfig-m031-20211207 (https://download.01.org/0day-ci/archive/20211207/202112070710.hut43Md3-lkp@intel.com/config)
+compiler: microblaze-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/737a89fa2dc4a337dea6a131b8b94fcc49fdcec5
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Alistair-Francis/Add-support-for-the-Cypress-cyttsp5/20211202-202300
+        git checkout 737a89fa2dc4a337dea6a131b8b94fcc49fdcec5
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=microblaze SHELL=/bin/bash drivers/input/touchscreen/
 
-I wasn't sure if I needed to break up the migration from a combined
-VPU to split G1 and G2.  I might need some help/suggestions on the
-YAML, because I struggle with that part a little, but I'd like the 8MM
-to use the 8MQ dt-binding yaml file since they are so similar.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-I hope to have some more time this week because my weekends are
-completely booked for the rest of the year, and leave for London, on
-23 Dec 2021 and I won't return until 5 Jan 2022.
+All errors (new ones prefixed by >>):
+
+   drivers/input/touchscreen/cyttsp5.c: In function 'cyttsp5_probe':
+>> drivers/input/touchscreen/cyttsp5.c:931:26: error: implicit declaration of function 'devm_gpiod_get_optional'; did you mean 'devm_regulator_get_optional'? [-Werror=implicit-function-declaration]
+     931 |         ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+         |                          ^~~~~~~~~~~~~~~~~~~~~~~
+         |                          devm_regulator_get_optional
+>> drivers/input/touchscreen/cyttsp5.c:931:64: error: 'GPIOD_OUT_HIGH' undeclared (first use in this function); did you mean 'GPIOF_INIT_HIGH'?
+     931 |         ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+         |                                                                ^~~~~~~~~~~~~~
+         |                                                                GPIOF_INIT_HIGH
+   drivers/input/touchscreen/cyttsp5.c:931:64: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/input/touchscreen/cyttsp5.c:937:9: error: implicit declaration of function 'gpiod_set_value'; did you mean 'gpio_set_value'? [-Werror=implicit-function-declaration]
+     937 |         gpiod_set_value(ts->reset_gpio, 0);
+         |         ^~~~~~~~~~~~~~~
+         |         gpio_set_value
+   cc1: some warnings being treated as errors
 
 
-> adam
->
-> >
-> > >
-> > >
-> > >
-> > > > Adam Ford (2):
-> > > >   media: hantro: split i.MX8MQ G1 and G2 code
-> > > >   arm64: dts: imx8mq: Split i.MX8MQ G1 and G2 with vpu-blk-ctrl
-> > > >
-> > > > Lucas Stach (3):
-> > > >   dt-bindings: power: imx8mq: add defines for VPU blk-ctrl domains
-> > > >   dt-bindings: soc: add binding for i.MX8MQ VPU blk-ctrl
-> > > >   soc: imx: imx8m-blk-ctrl: add i.MX8MQ VPU blk-ctrl
-> > > >
-> > > >  .../soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml      |  71 +++++++++++
-> > > >  arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  69 ++++++----
-> > > >  drivers/soc/imx/imx8m-blk-ctrl.c              |  67 ++++++++++
-> > > >  drivers/staging/media/hantro/hantro_drv.c     |   4 +-
-> > > >  drivers/staging/media/hantro/hantro_hw.h      |   2 +-
-> > > >  drivers/staging/media/hantro/imx8m_vpu_hw.c   | 119 +++-----------=
-----
-> > > >  include/dt-bindings/power/imx8mq-power.h      |   3 +
-> > > >  7 files changed, 205 insertions(+), 130 deletions(-)
-> > > >  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,i=
-mx8mq-vpu-blk-ctrl.yaml
-> > > >
-> > > > --
-> > > > 2.32.0
-> > > >
-> >
+vim +931 drivers/input/touchscreen/cyttsp5.c
+
+   881	
+   882	static int cyttsp5_probe(struct device *dev, struct regmap *regmap, int irq,
+   883				 const char *name)
+   884	{
+   885		struct cyttsp5 *ts;
+   886		struct cyttsp5_sysinfo *si;
+   887		int error, i;
+   888	
+   889		ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
+   890		if (!ts)
+   891			return -ENOMEM;
+   892	
+   893		/* Initialize device info */
+   894		ts->regmap = regmap;
+   895		ts->dev = dev;
+   896		si = &ts->sysinfo;
+   897		dev_set_drvdata(dev, ts);
+   898	
+   899		/* Initialize wait queue */
+   900		init_waitqueue_head(&ts->wait_q);
+   901	
+   902		/* Power up the device */
+   903		ts->vdd = regulator_get(dev, "vdd");
+   904		if (IS_ERR(ts->vdd)) {
+   905			error = PTR_ERR(ts->vdd);
+   906			dev_set_drvdata(dev, NULL);
+   907			kfree(ts);
+   908			return error;
+   909		}
+   910	
+   911		error = regulator_enable(ts->vdd);
+   912		if (error) {
+   913			regulator_put(ts->vdd);
+   914			dev_set_drvdata(dev, NULL);
+   915			kfree(ts);
+   916			return error;
+   917		}
+   918	
+   919		ts->input = devm_input_allocate_device(dev);
+   920		if (!ts->input) {
+   921			dev_err(dev, "Error, failed to allocate input device\n");
+   922			return -ENODEV;
+   923		}
+   924	
+   925		ts->input->name = "cyttsp5";
+   926		scnprintf(ts->phys, sizeof(ts->phys), "%s/input0", dev_name(dev));
+   927		ts->input->phys = ts->phys;
+   928		input_set_drvdata(ts->input, ts);
+   929	
+   930		/* Reset the gpio to be in a reset state */
+ > 931		ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+   932		if (IS_ERR(ts->reset_gpio)) {
+   933			error = PTR_ERR(ts->reset_gpio);
+   934			dev_err(dev, "Failed to request reset gpio, error %d\n", error);
+   935			return error;
+   936		}
+ > 937		gpiod_set_value(ts->reset_gpio, 0);
+   938	
+   939		/* Need a delay to have device up */
+   940		msleep(20);
+   941	
+   942		error = devm_request_threaded_irq(dev, irq, NULL, cyttsp5_handle_irq,
+   943					       IRQF_ONESHOT, name, ts);
+   944		if (error) {
+   945			dev_err(dev, "unable to request IRQ\n");
+   946			return error;
+   947		}
+   948	
+   949		error = cyttsp5_startup(ts);
+   950		if (error) {
+   951			dev_err(ts->dev, "Fail initial startup r=%d\n", error);
+   952			return error;
+   953		}
+   954	
+   955		error = cyttsp5_parse_dt_key_code(dev);
+   956		if (error < 0) {
+   957			dev_err(ts->dev, "Error while parsing dts %d\n", error);
+   958			return error;
+   959		}
+   960	
+   961		touchscreen_parse_properties(ts->input, true, &ts->prop);
+   962	
+   963		__set_bit(EV_KEY, ts->input->evbit);
+   964		for (i = 0; i < si->num_btns; i++)
+   965			__set_bit(si->key_code[i], ts->input->keybit);
+   966	
+   967		return cyttsp5_setup_input_device(dev);
+   968	}
+   969	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
