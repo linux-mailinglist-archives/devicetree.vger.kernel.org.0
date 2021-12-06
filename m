@@ -2,93 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C748B46ACDA
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 23:41:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2705D46ACF7
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 23:46:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376884AbhLFWok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 17:44:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51276 "EHLO
+        id S1343791AbhLFWuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 17:50:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376296AbhLFWnz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 17:43:55 -0500
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C4C1C0698DC
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 14:39:54 -0800 (PST)
-Received: by mail-qk1-x732.google.com with SMTP id t83so12787529qke.8
-        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 14:39:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=0dlCpKXDdnB3LdPyRqxmoynTirH+zzLw2AsoXketLHY=;
-        b=C8PGqD4WFo5043ppfpJ+22mFPpx9J4+FCsksvGJSjIZy2qGcm2LFrh5x3luh/dmrLL
-         5x4P4YchSM3ngUe6Rp4BED3CuaAtHSnf/iDMApCbiNjTWy5buyfbGgP4BYcsCFxPwuCy
-         nD+r0zOohf64uWGzNdI+hkmspQFiyRUeIZDPs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=0dlCpKXDdnB3LdPyRqxmoynTirH+zzLw2AsoXketLHY=;
-        b=WSGMmgeIP5tHnWe8TRpD0b3FcKlgcRyyF4uuNgBDrU4JqsofX8jYqk+4Kxc60iJJfm
-         BTsz0FmJRFiZ9CurpnvnLsId58g2LgkCT6LNRmCVPkBC7m5Cr7Q+/iVRV108Prcuq6NZ
-         kz4BpwSS/KW7OWk5vd3jJS1ka2dLV4Fp69wCVcdryhj4ZCY17cI0dLuyEs12FehCj4M0
-         9CRgiLlz+QmA6y5i41XQcJvWe4uET1miIDMiih6ZdwC3GZxFWG/FE/b+fvKX6TZoJAiy
-         tom3WENcrgTjawuKAGJMUX/W8mc9opj3wGW0m+H+e9LvHC5yUskk6LKlF6VtUIHR9+qM
-         44RA==
-X-Gm-Message-State: AOAM5321WL15eVubYfe3ALpEAeO88jlTwfWT2f2CfgNmXwHFtp5tb5b9
-        yJqtTjL69QR/R5VENMCwMwTEFtaIt+Fb/8OTvY4=
-X-Google-Smtp-Source: ABdhPJyb002MRzrnUdhH9jS3C2gNvzDmA6eDyqdysvyoYDDESa1vOVbcFbpObTHjWxRlkJmOBPsnhAY36sZ2EyLoN44=
-X-Received: by 2002:a05:620a:4081:: with SMTP id f1mr35618826qko.165.1638830393102;
- Mon, 06 Dec 2021 14:39:53 -0800 (PST)
+        with ESMTP id S1358532AbhLFWuC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 17:50:02 -0500
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F51CC061746;
+        Mon,  6 Dec 2021 14:46:32 -0800 (PST)
+Received: from hatter.bewilderbeest.net (174-21-184-96.tukw.qwest.net [174.21.184.96])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id E704265E;
+        Mon,  6 Dec 2021 14:46:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1638830792;
+        bh=sJGoD0KGK28NF/XGudTV7ZOesD4oG76zvYJfSvr/Mjw=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=dRr0ZFsYkpTJi4YZrHfW/njIhXwiebKtrwhmqu5QteZX9M1p8a1kXhb8bgUF1OcOI
+         PsX0LukgZR52Mp53Uvn3bJ0yFVdX5OcJp/U3YNHBWC/GbgPsr0fr2+bPCZtvKzIX+s
+         Rkefnn9aILmU+gTez7tC+cou0p5oAk6g2VZNj5AQ=
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     linux-hwmon@vger.kernel.org
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, Zev Weiss <zev@bewilderbeest.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 2/2] dt-bindings: add Delta AHE-50DC fan control module
+Date:   Mon,  6 Dec 2021 14:44:18 -0800
+Message-Id: <20211206224419.15736-3-zev@bewilderbeest.net>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20211206224419.15736-1-zev@bewilderbeest.net>
+References: <20211206224419.15736-1-zev@bewilderbeest.net>
 MIME-Version: 1.0
-References: <20211119120057.12118-1-a.kartashev@yadro.com> <20211119120057.12118-3-a.kartashev@yadro.com>
- <FA1B4FAF-387D-4D71-952A-D44B493FC67B@gmail.com> <368313b889cbadc267b053cd808b080e9f6470a0.camel@yadro.com>
-In-Reply-To: <368313b889cbadc267b053cd808b080e9f6470a0.camel@yadro.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 6 Dec 2021 22:39:41 +0000
-Message-ID: <CACPK8Xcpg+V7BB6vq8oqqu=g7FRoTLLmz7-4G5Cp=hn0ziEuyw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: add device tree for YADRO VEGMAN BMC
-To:     Andrei Kartashev <a.kartashev@yadro.com>
-Cc:     Andrew Geissler <geissonator@gmail.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 20 Nov 2021 at 15:51, Andrei Kartashev <a.kartashev@yadro.com> wrot=
-e:
->
-> >
-> > Can we utilize
-> > https://github.com/openbmc/docs/blob/master/designs/device-tree-gpio-na=
-ming.md
-> >  to get some consistent naming across the GPIO=E2=80=99s on OpenBMC mac=
-hines?
-> >
->
-> Some names here are standard for Intel daemons like x86-power-control,
-> host-error-monitor, pfr-manager, IntrusionSensor and so on. Other lines
-> just called same as in schematics to make it easy for our engineers to
-> understand what does it refer to. BTW, most of the lines there not used
-> by software and appeared just because dts files are supposed to be
-> hardware description and thus we describe all we have in schematics.
->
-> We can rename all this according to guide you mention, but are you
-> sure, there is any sense to do so?
-> Keep in mind, currently there are lot of dts files which also don't
-> follow convention, so I believe, it is unnecessary work.
+This is the integrated fan control module of the Delta AHE-50DC Open19
+power shelf.
 
-I have a strong preference for using the naming document. It provides
-consistency, which makes it easier to review. I'm encouraging that for
-any new dts.
+Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-If you think it makes the descriptions less useful for your platform
-then that's a reasonable reason to not follow the convention.
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 791079021f1b..0cadfbf640b2 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -75,6 +75,8 @@ properties:
+           - dallas,ds75
+             # Delta Electronics DPS-650-AB power supply
+           - delta,dps650ab
++            # Delta AHE-50DC Open19 power shelf fan control module
++          - delta,ahe50dc-fan
+           # Delta Electronics DPS920AB 920W 54V Power Supply
+           - delta,dps920ab
+             # 1/4 Brick DC/DC Regulated Power Module
+-- 
+2.34.1
 
-Cheers,
-
-Joel
