@@ -2,147 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2680A46957D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 13:15:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45496469580
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 13:16:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242926AbhLFMSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 07:18:31 -0500
-Received: from mail-os0jpn01on2105.outbound.protection.outlook.com ([40.107.113.105]:34884
-        "EHLO JPN01-OS0-obe.outbound.protection.outlook.com"
+        id S242968AbhLFMTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 07:19:41 -0500
+Received: from mail-dm6nam10on2050.outbound.protection.outlook.com ([40.107.93.50]:17504
+        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S242106AbhLFMSa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Dec 2021 07:18:30 -0500
+        id S242106AbhLFMTk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Dec 2021 07:19:40 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Dlpt8CL7TgBpJMMThhBIH+KQFKHFsJsNK6Ps234C48wA2EiU/w+5bG9WAmATZU8cQ2JGI0LNU2fs3YPT/jza+htWSI5TT/d9Uj/VyM2j1Gdw6V/cqjg+xWbLuSMvvJoGxvs922mgcxHRD5Nm4TEhhU5mtJurYjmQ1SJozhclxcWqva+McStmoyYiNii+J0L+wzPhvySchrLD9bfxv/t2ka51xa0iJYSC09KoNNW0q23kowPtfNN5LcblByATW/uK/4+6jTnMjMvbqUvzQ4Y30d1VqEjHybInN9Uo0Vti9j30G0ep8C2Xm2K6z74zHYaAcqe+UDrjsrGA01D5IF1V8Q==
+ b=QrvTnkmLE/9asncpQ3LE0fpDz79s7OWp/3iXdJi9k02ZVvYn60OT0kGsn2Ia9O+2Al92eEywVYdTFkk7qhhnva0c9STY3+WMDMK83zbm+DFGtaqQZEYFKzXotYvzCXMLi4mw2S5z0u3XS2AoMg72qNmK0QvDaa/LeqOrgIcse1wHOLjJo6QDAYDXY3XIJkO4MYn5lOF6lH0q4u5BTtgP7kTzJ0PTAp182vaLmrH+nKByG6uVSn7chvemhfxe2VHF4/023DrKSe5GY0WIovVYMp5ne6ZnsJwKuN82z8MDyAeVLEI0GXn0U/skS0AiIipvkHtUNQi2ZP7J4p+yXAH11g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YmmNmUsmfPH4mpuni7ewcb+VSHzltCRpZA3ZbSIEb4M=;
- b=BQEJSnUj0rxB80+bB8ZPIUpo8qx7ll4zfsDGSvDeRAsD6dD44KXLp5idW7skwVrEUaotda7Gjm92ymhRXHYhqWxzkc5Nqdt0dkHkDBpJCgVyADQZpPBGOBv0fUwDul8CO3S5WfmRbclNZmNiZbO5eUGmAOgnBpA+M1HG9H34HA3Oolv4qOPztBKYDXPZxKiJ0/2XvHp9d8SyteDt7r9xbwzTzcPmU396x4FohLb/r5GH8lxty8Mdu7Zj0Kh1GoMgQTyzL2qq/DtO66tASTlTW2oUAFh+7FoepfvBFQHh408besPlI7vB8Gk+SHJRChx17PUil2pzPTV3QFjTBWGcsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
+ bh=iaoULu0uA+efOoFEoEoD12zUtd9mDiQS0wwxfEa5jYE=;
+ b=etnGWa9I7mwAOzKlzVh/fxsTLW8KrsvCnmFhpfoGVy+nh/7xWz4GXW4P+Lhf7ngyxXDpB9DQ9/+cwWNKMDga5UZa/fHlKbvgU7KTHSrE6vGELnatsh/rR/m/14E72X7KN9POt0/63vN0xaZRHzOPLIukmiZzgaibZh1uJZJbl17AstIA9Yaa0kwx5pJLJvYYc3A3KV04xwrqpjG3Yr9U0GxD8p0eDppKvWHttvSucap0QtCiYj02hQPTJDhOyEJUSkpHDZmiOTLZC3R1s1tS94Tt8zqdvo0eYlLaDczNlzvYq5X0X3F+KHaDdNvCoVh4CJA1B9UeIOtrxEwVwIe4AQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YmmNmUsmfPH4mpuni7ewcb+VSHzltCRpZA3ZbSIEb4M=;
- b=crrr/uUDQrXR7GjCW0/DluuGorH9CHjWOCwLMAS6LatjBd8Zs58K72W7GZGXTWCiRwVGmAVj7y3u8z7yvJgqX0eynohW2lPyFHZ4qMQBhqOmx7ykszrTS4BTT9U1lwjEU0d/3WZMre9cOvimGgvZvpSoLjBp+dAmnxuzXzKKZkA=
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
- by TYYPR01MB7005.jpnprd01.prod.outlook.com (2603:1096:400:d9::6) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=iaoULu0uA+efOoFEoEoD12zUtd9mDiQS0wwxfEa5jYE=;
+ b=WCAvQ1luR2fztzcUw/TwIQEilyi8hSmj3Olaf6jTnQMuqH1Db5kQoWg/2G1cSp1sa3swqkoWQmtdpOrMJKYlS5p2bPKkliooQ0ORSQJLaWBeztjes89Wvsd/5lgTIdxaZXbuikP6Ipg4VifSEQIisV4wizRQvvGeojasflA7feA=
+Received: from SN4PR0701CA0006.namprd07.prod.outlook.com
+ (2603:10b6:803:28::16) by PH0PR02MB7704.namprd02.prod.outlook.com
+ (2603:10b6:510:53::6) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.11; Mon, 6 Dec
- 2021 12:15:00 +0000
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::b0dd:ed1e:5cfc:f408]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::b0dd:ed1e:5cfc:f408%3]) with mapi id 15.20.4755.021; Mon, 6 Dec 2021
- 12:14:59 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ 2021 12:16:08 +0000
+Received: from SN1NAM02FT0054.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:803:28:cafe::c4) by SN4PR0701CA0006.outlook.office365.com
+ (2603:10b6:803:28::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.16 via Frontend
+ Transport; Mon, 6 Dec 2021 12:16:08 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT0054.mail.protection.outlook.com (10.97.4.242) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4755.13 via Frontend Transport; Mon, 6 Dec 2021 12:16:08 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Mon, 6 Dec 2021 04:16:08 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Mon, 6 Dec 2021 04:16:08 -0800
+Envelope-to: robh@kernel.org,
+ geert@linux-m68k.org,
+ davem@davemloft.net,
+ kuba@kernel.org,
+ nicolas.ferre@microchip.com,
+ claudiu.beznea@microchip.com,
+ palmer@dabbelt.com,
+ paul.walmsley@sifive.com,
+ netdev@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Received: from [10.254.241.49] (port=41474)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1muCud-0008CS-UO; Mon, 06 Dec 2021 04:16:08 -0800
+Message-ID: <37b26b32-5828-df7f-3f73-6b9a4ef9d4e4@xilinx.com>
+Date:   Mon, 6 Dec 2021 13:16:04 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH] dt-bindings: net: cdns,macb: Convert to json-schema
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Stefano Stabellini <stefanos@xilinx.com>
+CC:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        netdev <netdev@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Subject: RE: [PATCH v2 04/14] dt-bindings: serial: renesas,scif: Document
- r8a779f0 bindings
-Thread-Topic: [PATCH v2 04/14] dt-bindings: serial: renesas,scif: Document
- r8a779f0 bindings
-Thread-Index: AQHX5oW2Mj0jbIAYNkqvxUxqrJQve6wg91IAgARxEeA=
-Date:   Mon, 6 Dec 2021 12:14:59 +0000
-Message-ID: <TY2PR01MB36928B73E52DAF27AF90CF1FD86D9@TY2PR01MB3692.jpnprd01.prod.outlook.com>
-References: <20211201073308.1003945-1-yoshihiro.shimoda.uh@renesas.com>
- <20211201073308.1003945-5-yoshihiro.shimoda.uh@renesas.com>
- <CAMuHMdVHD05pLkdyBKfz-OCLqtPU+GKk6U68fscT8OMnXRzRPQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdVHD05pLkdyBKfz-OCLqtPU+GKk6U68fscT8OMnXRzRPQ@mail.gmail.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ab3883ca-c3e5-4f98-8109-08d9b8b20657
-x-ms-traffictypediagnostic: TYYPR01MB7005:EE_
-x-microsoft-antispam-prvs: <TYYPR01MB7005B309BD025F29ECC9693CD86D9@TYYPR01MB7005.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:747;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: WW6bkCNobLXKnPI89OIABz76IhyUX6iwzqgr+pTGd9YBTiZ7iqUb92uyHXQlryUOUKW2GoaUt2rmT31ZS+wa2Nem+dM7qQPe7rqy46gNdGuMAqtwlnCQIOzqll5gG3jE8753cK/+dK66SejLWmVhEbjSldtqZsmT/6pybhwLJiu1M5UyeRNqvcFdeZpqlzf+1ka505FyvIOBrhlUhEH9z6Vs6OAGAdCbYJ3vHVTjn1iwkUIAYYFf5Rpzd4hqChslLUjTXZ+dW19vtDaAaesod1fHBdBObjS5uKJNMt16+u+/eFAB20Pn05eRHn1axgJhfbttdTVvRsLWDYUu1reNpUdEoMuplOkVJpqCFJDBSDFgpcliHfILBaU/0kG4foWxFbQHMNIOdCuANWUO5KeZsUwlwwLnyKHOOYOde3BoZP43Jh4XNz2anrQuiGUlLzQhZav9+57KyNI4TS2rSJP+JoRWC2HbwAtFNrWAN+NCM68+mNyCC4mjHMgEsvqLUu4eKh9r4OWl+w/WaE3gSKWc4u+3zaxQ5E8jn57b53gkXiP/MPoeqhOGA+tsu1HdWt5urTdvPZYFGD+9NSlvcAG6+AWFdjVGQkpQF+n28iiAMBfrZcgwmE3USNBeWKXCpLorC5flW1YMKR1iNNA7pkNPgBiIZHZPe/8hHppbc3lRK3dqxDHs+TuZ/ns5rkT2AesrgbuxS4AixEeFWm/v1zF2hA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(54906003)(4326008)(86362001)(8676002)(38070700005)(66476007)(2906002)(316002)(52536014)(66556008)(6916009)(64756008)(66446008)(9686003)(55016003)(186003)(71200400001)(122000001)(508600001)(8936002)(7696005)(4744005)(33656002)(26005)(53546011)(6506007)(5660300002)(76116006)(38100700002)(66946007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bmVyT1NKd2xuU3lZWjQ3WUoyN0w0eFRUYTh2TU9PekxPcHVuMkVVYWdZSi9C?=
- =?utf-8?B?cTdESEV4V0lGRzF3Snl3c1ltZGh2UExzSG1TVTJuS0RzellWTm1TVUZvck8y?=
- =?utf-8?B?UFFWWUZ2RVV4MzhZcHJWcFJkSjhDS0pmeTZwRllpQlJLV0N2N2FhRTJHeXBY?=
- =?utf-8?B?ZlBMNEJEZnRVK1E1elNobHBMUExyTW01RVpOYW9BMTlDZnNNdnJGankxMUo3?=
- =?utf-8?B?cEJnN2h1VEZhYTEwTE5XRUhvV1lWaElWUEZkU2ZMeVRTRUpLN2hmVFNUYVlz?=
- =?utf-8?B?Ky9TaFN6SGxoZzd4aXQ5cHljK1hVQ3I5Q0V5VENISVZ5Q2NHY083Y2xvakU5?=
- =?utf-8?B?cmozOW4zNXdxQW5xNVhvdGh4VkxvSDlSMjJBbmQ1UlFYdFh2enA3RFF5aEd4?=
- =?utf-8?B?MmppZUUvRm05QXdhYkFESHhJL0kvMzVnWWtOejlLT2FSYW5xV1NMQUFTYk9U?=
- =?utf-8?B?dUF5UEtoV0VPbThQRlgwSFRlUEZMdWxxMUhmUmd3NkIvUXUrK3ZtNkcxNHQ4?=
- =?utf-8?B?bWI5RkFlVzQwT1g4TVFGUDdCbml6dERqUWlFV3lielNVUmwyNXlqMmNhODZ2?=
- =?utf-8?B?RGZGOWNiaS80dnR1WW9VZWkzYTZvMm5iRTUvNTZXTFQ4RFVYOU9Ud0NZSWQ3?=
- =?utf-8?B?YTJkUXhGODk4ODhZelVGTlRrdE1CakhFeGlRUCtSVXFYY1pGWkJBbzlOYlR0?=
- =?utf-8?B?dTF5YzZtWkNpV3VrQ2h6UTlLUTJJT3BDelRTSG01ZmIxV0NMYmx1NUMrdFJz?=
- =?utf-8?B?WWJ4K0JsU2VtOEU4dWZPQUduMnJ3MXRNNndsSVdMNjlXTzRCSGZ6YURrR295?=
- =?utf-8?B?d1Q3N3NnWUt1dmdKSmllU3ZNa2x3RWFKN3lXYnFRU2xQclZsODdYcDNDMTdy?=
- =?utf-8?B?ZS9KK3l5R1hWNXNTYmQ3QzQvc2VlSTBGYmltSnNjNWNlZHJoaFIxc05Ndm1L?=
- =?utf-8?B?UzkvejVGVHNKVmgrVlV5RFA1QVgzZHdjNTcvTzdKOGFvVk1yajA0OWZQNWVR?=
- =?utf-8?B?cmFxenArVWFQVGJkWnd5YURZaFFCWFB0VzZpZ0g4bjZUeTI3U2N2ZlFrZ1BO?=
- =?utf-8?B?QWRLNG1mbVpPU21NcFgzTnFISFRyRDZNT29CbmNmMUNzbmZEeGpFUit2cE95?=
- =?utf-8?B?UDBpOHVmd0p4S3lHaVVYMGI3K1dkMEJ2QVVRUnJtQ3lLVWs3YlNLOEtPSDE5?=
- =?utf-8?B?d3NYOU9PakZhNEFwdnRmUVV4eEZTdkh2Tjd0amhnaXZaakI0NWNlWVB2UlI1?=
- =?utf-8?B?eGZRV3dkc1M2Zjd4dE1lVklYVzRKSUV0RVRxamltS1FvdUptZ2RFc1JjV3hy?=
- =?utf-8?B?eTEzdG1hU3c5aWlJUzBKTGdUUmhxSU5IbWlQVWhTb1grNGdhUjZwTHgvSHRn?=
- =?utf-8?B?VHljZkNDaTNjYmVFQnhpRmNZa1ZOQzRYMlZUTGQrZnZlUGxOUmR6VmdCYlRE?=
- =?utf-8?B?aDRQbnRsZHlYT3VxNHIxSUJaVlBGenFmS0JEOVhLTzVxc2dYVjgxQ2owRUlt?=
- =?utf-8?B?cHNHR1FQNFJLU29LbC9oUG50SVRLVkJLZmNFVDZROGordTBPcnYySkl4bENh?=
- =?utf-8?B?YjdoUjFqOFR2bDZHYy9yanJGcnZCbkJsOCtQRVkwZVl0OFZ0TEc2Y3NYVGZp?=
- =?utf-8?B?bEN2c25IZi9tMFlWbFdkelNpc0o4WTRuUm8vK1p5ZVBpVE5xSGRzNzhSSFk4?=
- =?utf-8?B?c0lqWkZKNUlXbU9PT3YvZWExcEI4S2xVUzE0WHpNV01MSzZYTEZ5RDBnaWZy?=
- =?utf-8?B?ZTNTM2JGeUZNOVVVdGJ3NzVVMUh1Y0RQbEZWVVV6NEZJaXZBNHhqWUcwRjRO?=
- =?utf-8?B?bm96YkY0c0p4cDVsN3VOV1l6Skc5TkdlVjl5ZHdLK3NvSklwKzk0U3BhS3Nm?=
- =?utf-8?B?T1JXMThhSTBXczFnT1VtcGFWUVRKWTl5SVFTS3huQ2dCN081Z1JYb0ZWQ0lY?=
- =?utf-8?B?NC9EK2ZrbXVXREx4VTViNVBLU3J1THdqTi9aTXA4bG42Q3ZTcDF4KytFaEZM?=
- =?utf-8?B?cVVaSzBIaTZpMVdQcVA5TGdhRlJoOEh6OC9MZTErQitWbGZMU3o0TVl2RVZK?=
- =?utf-8?B?SjJIQTg2WG1wQ3BVa3BGcEcrdHlmUUxkMFN4MGJ1MGRDZStwL1pKK09DWGJQ?=
- =?utf-8?B?L2FNUDJQL3FkcTZRSGMydnhSZGhZT1lyRW90ZzcrNjhrbWc2SThmbDVxNmpj?=
- =?utf-8?B?ZzkzTTd0cnF5WXQrdEV4c2ZPRUkvcXRxTVE0dmxreXc3eWJNYnl1SnJ6bjFh?=
- =?utf-8?B?NEV4R01QaEJYMitYbEd4Q0JEZXhsSERFWERlbTdHQkZVN0F4djlET1NtVldY?=
- =?utf-8?B?dzNwZ1BlRURGUG1KTURWZStWazZENnZuYVJoUzJxbnJ3UEtkZGVYUT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab3883ca-c3e5-4f98-8109-08d9b8b20657
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Dec 2021 12:14:59.8723
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>
+References: <104dcbfd22f95fc77de9fe15e8abd83869603ea5.1637927673.git.geert@linux-m68k.org>
+ <YagEai+VPAnjAq4X@robh.at.kernel.org>
+ <CAMuHMdW5Ng9225a6XK0VKd0kj=m8a1xr_oKeazQYxdpvn4Db=g@mail.gmail.com>
+ <CAL_JsqJHkL_Asqd5WPc7rfqXkbz1dpYfR0zxp5erVCyLiHaJNQ@mail.gmail.com>
+From:   Michal Simek <michal.simek@xilinx.com>
+In-Reply-To: <CAL_JsqJHkL_Asqd5WPc7rfqXkbz1dpYfR0zxp5erVCyLiHaJNQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6f38daf2-77c9-43a5-ef48-08d9b8b22f5b
+X-MS-TrafficTypeDiagnostic: PH0PR02MB7704:EE_
+X-Microsoft-Antispam-PRVS: <PH0PR02MB7704228C093EC94EC5892988C66D9@PH0PR02MB7704.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: pEhab+IXpqFxN9CEpR9oVc6Rqhl3TCK6ve7PIRKoNyvNjy9/uvdmpU2qXzDI1xaHynrfHPuPiD3bxEQjrc3HNMAel1c0aVfbkZp8GMAtz6AiseAHja5oPaGJ0OJyPwLJ7S97zaDI9GN9BDsPR9ou2TA+ifGyDfLIfouZNt5kzGmbH1j6coiB5tpOs7sLBGt9TsVJLtxZ7Z3MwNcvcpMyAZvQargxfZbxxT+7QMGD48n78nMAWfwj5pk5Ya4kN0SldYPIVKoSMqKjKL4z2VAYbkfxv+5PpJbpMJsHjrNoCFOfEXbUvUtJH7XskVnBykWWEURZ+enOo551WunkCLos/Q6IxDTwvFWx9xmxgcNJx0sg/pm8h0sGwN4oHtC6IqLYxtnYMXm00o0mnCUgETKVgc0Ji+TnTAnCFP+HuaQWv/DzDO2O/8wVthTMn8WAB+RA6bo8bvaWM2TwuBoywCS0ASDzPjFQzCMxV1spHvCRCwnSdEaoV29K2vYqlBM5h5vU9nSZ9AcJVXAl0ecEEOVwnNwF4dMy1giXf8huneRk6ENds1BvdeAgSC6f1B05w1ZEDyyn5Vq7h9d1V/rbQKIuPAsMOgNcB0GxE8W0z8wJTi6sCHruN6V3kAsw8z3eoQqozVvhdqZH/k+DuoJKEBsqTSwFWlO2DU0DiqQgF8c+Adu/yUJUZd2gUP30sligYE6+Y0HDQzX2OBAnjAWa2nZEj77Y1tr/Dt/3tQsDngHgq57jqB4Jv7f1axV8aWASm6LbHiqmtBd44S+VDtmSZePXSg==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(36840700001)(46966006)(53546011)(2616005)(4326008)(70206006)(70586007)(316002)(508600001)(82310400004)(6636002)(110136005)(54906003)(2906002)(36860700001)(44832011)(7416002)(356005)(6666004)(7636003)(9786002)(186003)(8676002)(26005)(336012)(5660300002)(31686004)(8936002)(47076005)(36756003)(83380400001)(426003)(31696002)(107886003)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Dec 2021 12:16:08.7098
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nInkAE/2eqnERiY3OzqP7W+O15/1tcCLwtnt+DBNhIfrBy28hjUGYJq7xfA/yjPSuJat3bM0nb+rtrHl43D96SYlWaKLglCyC1nlrUPoWnAmMjZBgTP186SEJuVwBs9h
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB7005
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6f38daf2-77c9-43a5-ef48-08d9b8b22f5b
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0054.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB7704
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQtc2FuLA0KDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiwgU2VudDogU2F0dXJk
-YXksIERlY2VtYmVyIDQsIDIwMjEgMToyNCBBTQ0KPiANCj4gSGkgU2hpbW9kYS1zYW4sDQo+IA0K
-PiBPbiBXZWQsIERlYyAxLCAyMDIxIGF0IDg6MzMgQU0gWW9zaGloaXJvIFNoaW1vZGENCj4gPHlv
-c2hpaGlyby5zaGltb2RhLnVoQHJlbmVzYXMuY29tPiB3cm90ZToNCj4gPiBSLUNhciBTNC04IChS
-OEE3NzlGMCkgU29DIGhhcyB0aGUgUi1DYXIgR2VuNCBjb21wYXRpYmxlIFNDSUYgcG9ydHMsDQo+
-ID4gc28gZG9jdW1lbnQgdGhlIFNvQyBzcGVjaWZpYyBiaW5kaW5ncy4NCj4gPg0KPiA+IFNpZ25l
-ZC1vZmYtYnk6IFlvc2hpaGlybyBTaGltb2RhIDx5b3NoaWhpcm8uc2hpbW9kYS51aEByZW5lc2Fz
-LmNvbT4NCj4gDQo+IFJldmlld2VkLWJ5OiBHZWVydCBVeXR0ZXJob2V2ZW4gPGdlZXJ0K3JlbmVz
-YXNAZ2xpZGVyLmJlPg0KDQpUaGFuayB5b3UgZm9yIHlvdXIgcmV2aWV3IQ0KDQo+IE5vdGUgdGhh
-dCB0aGlzIG5vIGxvbmdlciBhcHBsaWVzIGNsZWFubHkgdG8gdHR5L3R0eS1uZXh0LCBkdWUgdG8N
-Cj4gY29tbWl0IDA4MzYxNTBjMjZjNDAyOGIgKCJkdC1iaW5kaW5nczogc2VyaWFsOiByZW5lc2Fz
-LHNjaWY6IE1ha2UNCj4gcmVzZXRzIGFzIGEgcmVxdWlyZWQgcHJvcGVydHkiKS4NCg0KVGhhbmsg
-eW91IGZvciB0aGUgaW5mb3JtYXRpb24hIEknbGwgcmViYXNlIHRoaXMgcGF0Y2ggb24gdGhlIHR0
-eS90dHktbmV4dA0KdG9tb3Jyb3cuDQoNCkJlc3QgcmVnYXJkcywNCllvc2hpaGlybyBTaGltb2Rh
-DQoNCg==
+Hi,
+
+On 12/2/21 16:53, Rob Herring wrote:
+> On Thu, Dec 2, 2021 at 4:10 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>>
+>> Hi Rob,
+>>
+>> CC Michal
+>>
+>> On Thu, Dec 2, 2021 at 12:25 AM Rob Herring <robh@kernel.org> wrote:
+>>> On Fri, Nov 26, 2021 at 12:57:00PM +0100, Geert Uytterhoeven wrote:
+>>>> Convert the Cadence MACB/GEM Ethernet controller Device Tree binding
+>>>> documentation to json-schema.
+>>>>
+>>>> Re-add "cdns,gem" (removed in commit a217d8711da5c87f ("dt-bindings:
+>>>> Remove PicoXcell bindings")) as there are active users on non-PicoXcell
+>>>> platforms.
+>>>> Add missing "ether_clk" clock.
+>>>> Add missing properties.
+>>>>
+>>>> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+>>
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+>>
+>>>> +  '#stream-id-cells':
+>>>> +    const: 1
+>>>
+>>> I can't figure out why you have this here. I'll drop it while applying.
+>>
+>> See arch/arm64/boot/dts/xilinx/zynqmp.dtsi and
+>> drivers/iommu/arm/arm-smmu/arm-smmu.c.
+>>
+>> It wasn't clear to me if this is still needed, or legacy. Michal?
+> 
+> They should update to the iommu binding instead of the legacy smmu
+> one. It's been around for years now.
+
+At the beginning it was there for XEN usage which was using this legacy 
+binding.
+Stefano: Please confirm that it is not needed anymore that we can remove 
+it for zynqmp and versal.
+
+Thanks,
+Michal
+
