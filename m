@@ -2,185 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF661469165
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 09:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C1DC469167
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 09:27:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239227AbhLFIaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 03:30:08 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:37786
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239229AbhLFIaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 03:30:08 -0500
+        id S239183AbhLFIbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 03:31:05 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:40208
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S239168AbhLFIbF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 03:31:05 -0500
 Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2ECAB3F1F7
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 08:26:39 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 302BD3F1F7
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 08:27:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638779199;
-        bh=I2YDk0JOf4YFbZyBoWvQAoknXKPERCVo9tXi68CgMpY=;
+        s=20210705; t=1638779256;
+        bh=bKEJIZAQjQgq4md0kg/pxei579CQyZfJWJdDIldzueQ=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=RpOF7i37XbOuskO6HE8DM0eB3mVQEMY3YXboXl3VHmuxibVZEEvINto88z7rs/6Pp
-         22leEeNz7HyX4inh1/3rU03Nyf5vAdqTewJ2XDRJ/zmC5UjOn5WK1dZ4mwr4SRsdgD
-         ed9tKxInpvgvtA7zCPOHVbX/bz3bsBCdU1sX8x7BKkjU6OLmRHuUI0GCEVP0iJYS8z
-         39YWd8gp5M9rvh+Syuw7Gc2N8V0rvWhDbQWPLQr5ch2kW0g3YnIulZB8rsd6wEQuYG
-         oJOqBU0NxEcAm/zImbZcn8oU56Jx/+H5ge19IroKgqnuaBK+Y8fLCFwLaiLav5Wrda
-         lvTAFdCznvgRw==
-Received: by mail-lf1-f72.google.com with SMTP id e23-20020a196917000000b0041bcbb80798so1469896lfc.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 00:26:39 -0800 (PST)
+        b=oblectKt7cLJcYNOeBpiFzPje9WAmLLU4iik0XMs8wRBX+rg7WKgsEeBa0nqtSFcC
+         dLmqx0ebpmlLSn3S/Qaky7yZGJNrdrqcAQttQOKyb3JUJxpFikJiuDa8t+HEFpqId2
+         fljUgIvxuP6jkydR40tYMMnFYbr08yN6qPZBxc5U0ALv9RVIn83+5xjnpSlIU8SwUK
+         P47nGMJ+9Q5U3SrZeU2mD23nQSZoGBbTySU8Eth1tktAmLC10VE7FLawjj40Uwi1yU
+         S3Y9wwT+UX4xYYYmhulx7dus86RkKIKfNJg31AMbLnpnR/m/jRm8yYHhA+nqGs1Ywf
+         rrR/VUDXvZ1Pg==
+Received: by mail-lf1-f72.google.com with SMTP id u20-20020a056512129400b0040373ffc60bso3521064lfs.15
+        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 00:27:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=I2YDk0JOf4YFbZyBoWvQAoknXKPERCVo9tXi68CgMpY=;
-        b=4zwsVaTR3YKgxmQFFd/+lI0jRFJKkb5DXGFUAh7HROVXX/ITFMlzH164CFRpmkFdix
-         lmvpIZTGxYE8Lr3fQF2lssnUdiGxrnKZdBnrVXFoyONU9qreLq/D1bkInM4gKlbVT54K
-         n7YeCi1wG6SjP5gL6KBAxUW6Bdf0k0t+1+9hUQ9wPYQVmetoWvL1rQ2VWlAwh/3R414Q
-         c+iJzqUfFfeFWez5aECxNukbpGWVyZcDMFsmkldKEcxu6B+2Gv22pR1M8JvjBzauzkNd
-         /KMRhclRmVbGDrR1xksj55SXznvnDLxkh/oSlSEkiqbBPREQcpe0TAH3zDtNtPYRl8d6
-         gZHA==
-X-Gm-Message-State: AOAM531aUYHIKQyHiW5w3tCncPFpya9roSptyqXWlApOjME+yrCkdqw8
-        HTzdgtXFGtLTns3GtTweVBa5u/j2TD9n6ewbLoHfGOj31tsnwxosLrXWG0yLIvwWW1Jqk/GVaWQ
-        ScE/zXRWEzpI+aa+bNANbwuzc+iCu6qzzvK6YhnA=
-X-Received: by 2002:a2e:9510:: with SMTP id f16mr34952318ljh.409.1638779198521;
-        Mon, 06 Dec 2021 00:26:38 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyNPrUMZzOnnm8zdAwzMDd+aJHk6yZF25LQGSg+8qkRDFotnn5BIFf+o11O8VA5y3oY+fctIg==
-X-Received: by 2002:a2e:9510:: with SMTP id f16mr34952248ljh.409.1638779197628;
-        Mon, 06 Dec 2021 00:26:37 -0800 (PST)
+        bh=bKEJIZAQjQgq4md0kg/pxei579CQyZfJWJdDIldzueQ=;
+        b=aN4WT05/zPl3oPzrwlngnraitd3EmrDiykhWdh/x2TdKWqRzgoDmFJ4cR13w+C71Bt
+         xmBWsrUJXFbrokKEhT90Gt4eiQsMgZ/FZwsjqPfHczlF4QhEvK9fizot20uI62syAcC1
+         0KY5mywNhvn+KJpFZDNrk+q9OY6HFwIL0oU+wRdGP3qXgMPA2md8XbxNaDpk2ZV9yDGa
+         xgDkNmujyxqJEgqdPu0FbMNsw3U7opNP0fNIu8vo1cdxeQK/dSYkdz0Aa60No2vLcqEP
+         EkRi5NWNUPm3Ao9OP/Z7xJ4V0gDZX9ZNaGNy67LFQJApeo/HGNOyAPQgIzKh9veaDobn
+         x/Rg==
+X-Gm-Message-State: AOAM530vmmSj+PgoxJm+tE5Ee+7wZZaUOChPH8FZW1YFz92YGsf+ocNs
+        5zvO7jprwdZcNcyOFzCOGTZsn3jYiDdUORVgPK2MuVdQSfD1fqaeWf4QI6WmvuLwKrVlPXOoWIi
+        ZZjZ1cn0a7c0OHC9QVZBx7HxeEBThFw7SbTLPEfE=
+X-Received: by 2002:a19:4312:: with SMTP id q18mr34592507lfa.299.1638779255275;
+        Mon, 06 Dec 2021 00:27:35 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzzjKn8LjK/5lmCMNpVPgrp0RN3Vobgp5kXibfWPy43zCCeGy55FntekQYEglNs6rllZXWBUw==
+X-Received: by 2002:a19:4312:: with SMTP id q18mr34592489lfa.299.1638779255102;
+        Mon, 06 Dec 2021 00:27:35 -0800 (PST)
 Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id k15sm1298650lfe.15.2021.12.06.00.26.36
+        by smtp.gmail.com with ESMTPSA id f22sm1287181lfa.171.2021.12.06.00.27.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Dec 2021 00:26:37 -0800 (PST)
-Message-ID: <e9a07956-86d4-ae96-a641-020b3d85c51c@canonical.com>
-Date:   Mon, 6 Dec 2021 09:26:36 +0100
+        Mon, 06 Dec 2021 00:27:34 -0800 (PST)
+Message-ID: <98414edc-18fa-c759-9c73-490078d8c93c@canonical.com>
+Date:   Mon, 6 Dec 2021 09:27:33 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.1
-Subject: Re: [PATCH 6/6] arm64: dts: exynos: Add initial device tree support
- for Exynos7885 SoC
+Subject: Re: [PATCH v2 RESEND 3/8] dt-bindings: i2c: exynos5: Add bus clock
 Content-Language: en-US
-To:     David Virag <virag.david003@gmail.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20211205153302.76418-1-virag.david003@gmail.com>
- <20211205153302.76418-7-virag.david003@gmail.com>
- <de24b968-f359-25bf-76d7-69328401f83d@canonical.com>
- <60f5c2e98e3a2048f86a79c3aa1ed945dc0cb4aa.camel@gmail.com>
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        Wolfram Sang <wsa@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20211204215820.17378-1-semen.protsenko@linaro.org>
+ <20211204215820.17378-4-semen.protsenko@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <60f5c2e98e3a2048f86a79c3aa1ed945dc0cb4aa.camel@gmail.com>
+In-Reply-To: <20211204215820.17378-4-semen.protsenko@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/12/2021 19:14, David Virag wrote:
-> On Sun, 2021-12-05 at 18:31 +0100, Krzysztof Kozlowski wrote:
+On 04/12/2021 22:58, Sam Protsenko wrote:
+> In new Exynos SoCs (like Exynos850) where HSI2C is implemented as a
+> part of USIv2 block, there are two clocks provided to HSI2C controller:
+>   - PCLK: bus clock (APB), provides access to register interface
+>   - IPCLK: operating IP-core clock; SCL is derived from this one
 > 
-> [...]
+> Both clocks have to be asserted for HSI2C to be functional in that case.
 > 
->>> +       fimc_is_mclk0_in: fimc_is_mclk0_in {
->>> +               samsung,pins = "gpc0-0";
->>> +               samsung,pin-function = <EXYNOS_PIN_FUNC_INPUT>;
->>> +               samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
->>> +               samsung,pin-drv = <2>;
->>> +       };
->>> +
->>> +       fimc_is_mclk0_out: fimc_is_mclk0_out {
->>> +               samsung,pins = "gpc0-0";
->>> +               samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
->>> +               samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
->>> +               samsung,pin-drv = <2>;
->>> +       };
->>> +
->>> +       fimc_is_mclk0_fn: fimc_is_mclk0_fn {
->>
->> I cannot get the point of these pin configurations - three groups
->> with
->> only function difference. How this would be used by the driver? Maybe
->> just keep the one really used. Same for others below.
->>
+> Modify bindings doc to allow specifying bus clock in addition to
+> already described operating clock.
 > 
-> They seem to be changed in some cases by the FIMC-IS and/or Camera
-> module drivers in the downstream kernel. I'm not exactly sure about why
-> and how are they needed, as the code for FIMC-IS is quite large and
-> it's not my priority to work on it right now. I can remove these
-> configurations for now if that's okay, maybe I, or someone else will
-> re-add it later if it's needed.
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+> Changes in v2:
+>   - Added 'clock-names' property to 'required:' in case of ExynosAutoV9
+>   - Added example for two clocks case
 > 
->>
->>> +               samsung,pins = "gpc0-0";
->>> +               samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
->>> +               samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
->>> +               samsung,pin-drv = <2>;
->>> +       };
->>> +
+>  .../devicetree/bindings/i2c/i2c-exynos5.yaml  | 59 +++++++++++++++++--
+>  1 file changed, 53 insertions(+), 6 deletions(-)
 > 
-> [...]
-> 
->>> +
->>> +       arm-pmu {
->>> +               compatible = "arm,armv8-pmuv3";
->>
->> Wrong compatible. Please use specific, although I don't know which
->> one
->> you have - 53 or 73... since you have two clusters, I would expect
->> two
->> PMUs, hmm....
-> 
-> I was thinking the same, but there's a problem: As I'm also guessing we
-> have two PMUs for the a53 and a73 cores, we'd need to seperate it but I
-> have no access to the documentation that would let me know which
-> interrupts we would need for both of these PMUs. The downstream dts
-> doesn't tell us anything specific in this case, and I have no idea how
-> else am I supposed to know which interrupts are right without a TRM.
-> 
-> I'd be guessing either the 82, 83 or the 218, 219 interrupts would be
-> the right one for the a73 cores, and I suspect that it should be 82 and
-> 83, but I can't really confirm this.
-> 
-> Do you have any idea how to proceed in this case? Maybe there is a way
-> to test which ones would be right?
-> 
->>
->>> +               interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>,
->>> +                            <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>,
 
-These are for cpu6 and cpu7, because they match the index in
-"interrupt-affinity". cpu6 and cpu7 are a73 cores in your DTSI.
 
->>> +                            <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
->>> +                            <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
->>> +                            <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
->>> +                            <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
->>> +                            <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>,
->>> +                            <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>;
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-These are for a53, judging by affinity.
-
->>> +               interrupt-affinity = <&cpu6>,
->>> +                                    <&cpu7>,
->>> +                                    <&cpu0>,
->>> +                                    <&cpu1>,
->>> +                                    <&cpu2>,
->>> +                                    <&cpu3>,
->>> +                                    <&cpu4>,
->>> +                                    <&cpu5>;
->>> +       };
->>> +
-> 
-> [...]
 
 Best regards,
 Krzysztof
