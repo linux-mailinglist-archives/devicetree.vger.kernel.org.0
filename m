@@ -2,150 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50F4A46A4E0
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 19:46:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 663CF46A4F2
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 19:52:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347423AbhLFSt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 13:49:56 -0500
-Received: from ixit.cz ([94.230.151.217]:55824 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229657AbhLFSty (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Dec 2021 13:49:54 -0500
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 9957221F5E;
-        Mon,  6 Dec 2021 19:46:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1638816383;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=KMnX90Nv+m5GJBS0htoe+zW4SS/+Tp3wHwgEGIlnf68=;
-        b=wiNV03kCkQUnjwf0zdzhNJxpSE3dd7lYr4Ec5vgU3iaKjYdPSRAq9AMubmcUrxgvIzKsbd
-        v2XEFxjEmVNTmV8i6a2WAfliOAZ7QCDLufAurxgwV5oJvP4E5kY1WCEijExSNhX2e1pc7N
-        RPtT9KdzFKV6jplMIh2JGZgAkGk2nfg=
-From:   David Heidelberg <david@ixit.cz>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
+        id S1347686AbhLFS4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 13:56:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53550 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347658AbhLFS4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 13:56:15 -0500
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2590CC061746;
+        Mon,  6 Dec 2021 10:52:46 -0800 (PST)
+Received: by mail-pf1-x42c.google.com with SMTP id g19so11023167pfb.8;
+        Mon, 06 Dec 2021 10:52:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6Qa7MjIYGVQpWiCqHFjWcTV+J2/Hu0PKJOfB6Hd0D3Q=;
+        b=AUeJx8ofDmZpvsP1SYYvUcXgeWM2kCypJAZI72ITYveeAKnI+BEdhyCNHHw4wS/WT8
+         +U0rwxeRZCiUXn0hbM/9YtnTcZwZOXCdUqDw4Fg8jkxRHp+ZqY0DL7g1Iy5wUkaLr+hW
+         MBGAm1ahWZn1k7emFAuE736YcjO922VHTFcwKwSnBwbIr1GCJQXnPpPxuijv0yzCPOB5
+         v9fDwVN531oRUNMJgZkoVGwkzmzJMLKJQVAi9U1FIOXS2NL0p43pekGN1L28kbi9q8jU
+         ICqWsChcRPChxYZ2nw3Zlnoxn1txE5s0uQ6soqje72DjFoDYjx+7kDDHsH0B4MATjyv8
+         9GiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6Qa7MjIYGVQpWiCqHFjWcTV+J2/Hu0PKJOfB6Hd0D3Q=;
+        b=szodvc7WruxvIoXqTHsVqyGV4CBioay/8Q75obKOE1T7DwaWA1JFSQbqYJQW3Ipztk
+         xSPWU52egVptUjs+x+sITnonVZEdjiaSr1qmoLnu5rpuKwsi4xxcM8MPDmjZLeAzE9EK
+         f79cLP5KNnDcjVfWeiumOeJSkcfbY0pQ/4ath7LFri30+dGPT4d9s7QrrrKltv/rR8An
+         RGwhGeuFzxmCygPstB0tVBxVi974H1RDb2wixeJZteIUnr79D8NMFA3aNuxrXYLsp30B
+         uGFV3aIvGsS995nmsYFxVxlQkgQfwNV69JSljaw/YNfdNwypHeZQCLyC4YEb2hQDuiEe
+         6sTA==
+X-Gm-Message-State: AOAM533oYW6xdku3c+iVYa+rZuEuk9UlZ5babU4OHDYutDmS4fqq0UCd
+        yL7/ojzXE7gD3rBwP2oBY6xZIRMMbIg=
+X-Google-Smtp-Source: ABdhPJzCJi1Qp6CulNzfKNnb8tfwGft75nGwuIOHxHJ+31/NmA0nacnf1eQfTKl5VPd/dnMkwY9aYw==
+X-Received: by 2002:a63:8141:: with SMTP id t62mr19919599pgd.5.1638816765256;
+        Mon, 06 Dec 2021 10:52:45 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id u22sm14323432pfk.148.2021.12.06.10.52.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Dec 2021 10:52:44 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
         Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Stephen Warren <swarren@wwwdotorg.org>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: i2c: brcm,bcm2835-i2c: convert to YAML schema
-Date:   Mon,  6 Dec 2021 19:46:12 +0100
-Message-Id: <20211206184613.100809-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM IPROC ARM
+        ARCHITECTURE),
+        linux-pci@vger.kernel.org (open list:PCI SUBSYSTEM),
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM IPROC ARM
+        ARCHITECTURE), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v2 0/5] Convert iProc PCIe binding to YAML
+Date:   Mon,  6 Dec 2021 10:52:37 -0800
+Message-Id: <20211206185242.2098683-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch the DT binding to a YAML schema to enable the DT validation.
+This patch series converts the iProc PCIe binding to YAML. Given there
+is a majority of DTS changes, it would make sense for me to pull this
+via the Broadcom ARM SoC git tree.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../bindings/i2c/brcm,bcm2835-i2c.txt         | 22 --------
- .../bindings/i2c/brcm,bcm2835-i2c.yaml        | 54 +++++++++++++++++++
- 2 files changed, 54 insertions(+), 22 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/i2c/brcm,bcm2835-i2c.txt
- create mode 100644 Documentation/devicetree/bindings/i2c/brcm,bcm2835-i2c.yaml
+Thanks!
 
-diff --git a/Documentation/devicetree/bindings/i2c/brcm,bcm2835-i2c.txt b/Documentation/devicetree/bindings/i2c/brcm,bcm2835-i2c.txt
-deleted file mode 100644
-index a8a35df41951..000000000000
---- a/Documentation/devicetree/bindings/i2c/brcm,bcm2835-i2c.txt
-+++ /dev/null
-@@ -1,22 +0,0 @@
--Broadcom BCM2835 I2C controller
--
--Required properties:
--- compatible : Should be one of:
--	"brcm,bcm2711-i2c"
--	"brcm,bcm2835-i2c"
--- reg: Should contain register location and length.
--- interrupts: Should contain interrupt.
--- clocks : The clock feeding the I2C controller.
--
--Recommended properties:
--- clock-frequency : desired I2C bus clock frequency in Hz.
--
--Example:
--
--i2c@7e205000 {
--	compatible = "brcm,bcm2835-i2c";
--	reg = <0x7e205000 0x1000>;
--	interrupts = <2 21>;
--	clocks = <&clk_i2c>;
--	clock-frequency = <100000>;
--};
-diff --git a/Documentation/devicetree/bindings/i2c/brcm,bcm2835-i2c.yaml b/Documentation/devicetree/bindings/i2c/brcm,bcm2835-i2c.yaml
-new file mode 100644
-index 000000000000..8256490a7af2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/brcm,bcm2835-i2c.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/brcm,bcm2835-i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM2835 I2C controller
-+
-+maintainers:
-+  - Stephen Warren <swarren@wwwdotorg.org>
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - brcm,bcm2835-i2c
-+      - items:
-+          - const: brcm,bcm2711-i2c
-+          - const: brcm,bcm2835-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clock-names:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-frequency: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c@7e205000 {
-+        compatible = "brcm,bcm2835-i2c";
-+        reg = <0x7e205000 0x1000>;
-+        interrupts = <2 21>;
-+        clocks = <&clk_i2c>;
-+        clock-frequency = <100000>;
-+    };
+Changes in v2:
+
+- document msi sub-node compatible string
+
+Florian Fainelli (5):
+  ARM: dts: Cygnus: Fixed iProc PCIe controller properties
+  ARM: dts: HR2: Fixed iProc PCIe controller properties
+  ARM: dts: NSP: Fixed iProc PCIe controller properties
+  arm64: dts: ns2: Add missing interrupt-controller property
+  dt-bindings: pci: Convert iProc PCIe to YAML
+
+ .../bindings/pci/brcm,iproc-pcie.txt          | 133 -------------
+ .../bindings/pci/brcm,iproc-pcie.yaml         | 179 ++++++++++++++++++
+ arch/arm/boot/dts/bcm-cygnus.dtsi             |  14 +-
+ arch/arm/boot/dts/bcm-hr2.dtsi                |   6 +-
+ arch/arm/boot/dts/bcm-nsp.dtsi                |   9 +-
+ .../boot/dts/broadcom/northstar2/ns2.dtsi     |   2 +
+ 6 files changed, 199 insertions(+), 144 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/brcm,iproc-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
+
 -- 
-2.33.0
+2.25.1
 
