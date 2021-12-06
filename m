@@ -2,109 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C1DC469167
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 09:27:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14508469178
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 09:29:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239183AbhLFIbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 03:31:05 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:40208
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239168AbhLFIbF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 03:31:05 -0500
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S239318AbhLFIdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 03:33:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46238 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239361AbhLFIdH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 03:33:07 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E43BC061359;
+        Mon,  6 Dec 2021 00:29:38 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 302BD3F1F7
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 08:27:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638779256;
-        bh=bKEJIZAQjQgq4md0kg/pxei579CQyZfJWJdDIldzueQ=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=oblectKt7cLJcYNOeBpiFzPje9WAmLLU4iik0XMs8wRBX+rg7WKgsEeBa0nqtSFcC
-         dLmqx0ebpmlLSn3S/Qaky7yZGJNrdrqcAQttQOKyb3JUJxpFikJiuDa8t+HEFpqId2
-         fljUgIvxuP6jkydR40tYMMnFYbr08yN6qPZBxc5U0ALv9RVIn83+5xjnpSlIU8SwUK
-         P47nGMJ+9Q5U3SrZeU2mD23nQSZoGBbTySU8Eth1tktAmLC10VE7FLawjj40Uwi1yU
-         S3Y9wwT+UX4xYYYmhulx7dus86RkKIKfNJg31AMbLnpnR/m/jRm8yYHhA+nqGs1Ywf
-         rrR/VUDXvZ1Pg==
-Received: by mail-lf1-f72.google.com with SMTP id u20-20020a056512129400b0040373ffc60bso3521064lfs.15
-        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 00:27:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=bKEJIZAQjQgq4md0kg/pxei579CQyZfJWJdDIldzueQ=;
-        b=aN4WT05/zPl3oPzrwlngnraitd3EmrDiykhWdh/x2TdKWqRzgoDmFJ4cR13w+C71Bt
-         xmBWsrUJXFbrokKEhT90Gt4eiQsMgZ/FZwsjqPfHczlF4QhEvK9fizot20uI62syAcC1
-         0KY5mywNhvn+KJpFZDNrk+q9OY6HFwIL0oU+wRdGP3qXgMPA2md8XbxNaDpk2ZV9yDGa
-         xgDkNmujyxqJEgqdPu0FbMNsw3U7opNP0fNIu8vo1cdxeQK/dSYkdz0Aa60No2vLcqEP
-         EkRi5NWNUPm3Ao9OP/Z7xJ4V0gDZX9ZNaGNy67LFQJApeo/HGNOyAPQgIzKh9veaDobn
-         x/Rg==
-X-Gm-Message-State: AOAM530vmmSj+PgoxJm+tE5Ee+7wZZaUOChPH8FZW1YFz92YGsf+ocNs
-        5zvO7jprwdZcNcyOFzCOGTZsn3jYiDdUORVgPK2MuVdQSfD1fqaeWf4QI6WmvuLwKrVlPXOoWIi
-        ZZjZ1cn0a7c0OHC9QVZBx7HxeEBThFw7SbTLPEfE=
-X-Received: by 2002:a19:4312:: with SMTP id q18mr34592507lfa.299.1638779255275;
-        Mon, 06 Dec 2021 00:27:35 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzzjKn8LjK/5lmCMNpVPgrp0RN3Vobgp5kXibfWPy43zCCeGy55FntekQYEglNs6rllZXWBUw==
-X-Received: by 2002:a19:4312:: with SMTP id q18mr34592489lfa.299.1638779255102;
-        Mon, 06 Dec 2021 00:27:35 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id f22sm1287181lfa.171.2021.12.06.00.27.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Dec 2021 00:27:34 -0800 (PST)
-Message-ID: <98414edc-18fa-c759-9c73-490078d8c93c@canonical.com>
-Date:   Mon, 6 Dec 2021 09:27:33 +0100
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0992EB80EFA;
+        Mon,  6 Dec 2021 08:29:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52477C341C4;
+        Mon,  6 Dec 2021 08:29:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1638779375;
+        bh=Qpk06R2m9n8EzDlZnPqkeXf0kQJLMZ7QcJIUjhYiQe0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kFa9V1dRNeWM8rerUSgJUZ425RnogekENZT8h2AP8/6kPIR+ohiGTkddnoPlooCMq
+         Xg6pGLFkTh5CUmqGSZsidkn0n8CmFsB+aZ56tbUfo7ESYZTrsdDwYV4Qk0vAOvFX3m
+         A1OVjokBlGxmybM39bXpEdd+V8PmuEsIoRa2rBHg=
+Date:   Mon, 6 Dec 2021 09:29:33 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Tony Huang =?utf-8?B?6buD5oe35Y6a?= <tony.huang@sunplus.com>
+Cc:     Tony Huang <tonyhuang.sunplus@gmail.com>,
+        "derek.kiernan@xilinx.com" <derek.kiernan@xilinx.com>,
+        "dragan.cvetic@xilinx.com" <dragan.cvetic@xilinx.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Subject: Re: [PATCH v2 2/2] misc: Add iop driver for Sunplus SP7021
+Message-ID: <Ya3J7fy+DqwkUNu9@kroah.com>
+References: <cover.1638499659.git.tonyhuang.sunplus@gmail.com>
+ <9bb79f74ff1b08a5f9a1f6707b3b41484506468a.1638499659.git.tonyhuang.sunplus@gmail.com>
+ <Yanz1xpZamJVZ0LE@kroah.com>
+ <5ab2710b37784d51a3f4f90f625ae907@sphcmbx02.sunplus.com.tw>
+ <Ya3EjykU5RMaRbkt@kroah.com>
+ <2e7d5df0cbe74f2697709ed3e8c94b0b@sphcmbx02.sunplus.com.tw>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v2 RESEND 3/8] dt-bindings: i2c: exynos5: Add bus clock
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        Wolfram Sang <wsa@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20211204215820.17378-1-semen.protsenko@linaro.org>
- <20211204215820.17378-4-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211204215820.17378-4-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2e7d5df0cbe74f2697709ed3e8c94b0b@sphcmbx02.sunplus.com.tw>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/12/2021 22:58, Sam Protsenko wrote:
-> In new Exynos SoCs (like Exynos850) where HSI2C is implemented as a
-> part of USIv2 block, there are two clocks provided to HSI2C controller:
->   - PCLK: bus clock (APB), provides access to register interface
->   - IPCLK: operating IP-core clock; SCL is derived from this one
+On Mon, Dec 06, 2021 at 08:22:01AM +0000, Tony Huang 黃懷厚 wrote:
+> Dear Greg KH:
 > 
-> Both clocks have to be asserted for HSI2C to be functional in that case.
+> > -----Original Message-----
+> > From: Greg KH <gregkh@linuxfoundation.org>
+> > Sent: Monday, December 6, 2021 4:07 PM
+> > To: Tony Huang 黃懷厚 <tony.huang@sunplus.com>
+> > Cc: Tony Huang <tonyhuang.sunplus@gmail.com>; derek.kiernan@xilinx.com;
+> > dragan.cvetic@xilinx.com; arnd@arndb.de; linux-kernel@vger.kernel.org;
+> > robh+dt@kernel.org; devicetree@vger.kernel.org; Wells Lu 呂芳騰
+> > <wells.lu@sunplus.com>
+> > Subject: Re: [PATCH v2 2/2] misc: Add iop driver for Sunplus SP7021
+> > 
+> > On Mon, Dec 06, 2021 at 06:48:46AM +0000, Tony Huang 黃懷厚 wrote:
+> > > Dear Greg KH, Arnd:
+> > >
+> > > > -----Original Message-----
+> > > > From: Greg KH <gregkh@linuxfoundation.org>
+> > > > Sent: Friday, December 3, 2021 6:39 PM
+> > > > To: Tony Huang <tonyhuang.sunplus@gmail.com>
+> > > > Cc: derek.kiernan@xilinx.com; dragan.cvetic@xilinx.com;
+> > > > arnd@arndb.de; linux-kernel@vger.kernel.org; robh+dt@kernel.org;
+> > > > devicetree@vger.kernel.org; Wells Lu 呂芳騰 <wells.lu@sunplus.com>;
+> > > > Tony Huang 黃懷厚
+> > > > <tony.huang@sunplus.com>
+> > > > Subject: Re: [PATCH v2 2/2] misc: Add iop driver for Sunplus SP7021
+> > > >
+> > > > On Fri, Dec 03, 2021 at 11:48:45AM +0800, Tony Huang wrote:
+> > > > > IOP (IO Processor) embedded inside SP7021 which is used as
+> > > > > Processor for I/O control, RTC wake-up and cooperation with CPU &
+> > > > > PMC in power management purpose.
+> > > > > The IOP core is DQ8051, so also named IOP8051, it supports
+> > > > > dedicated JTAG debug pins which share with SP7021.
+> > > > > In standby mode operation, the power spec reach 400uA.
+> > > > >
+> > > > > Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
+> > > > > ---
+> > > > > Changes in v2:
+> > > > >  - Addressed comments from Arnd Bergmann.
+> > > > >  - Addressed comments from Greg KH.
+> > > > >  - Addressed comments from kernel test robot.
+> > > > >
+> > > > >  MAINTAINERS                    |   1 +
+> > > > >  drivers/misc/Kconfig           |   1 +
+> > > > >  drivers/misc/Makefile          |   1 +
+> > > > >  drivers/misc/iop/Kconfig       |  13 ++
+> > > > >  drivers/misc/iop/Makefile      |   6 +
+> > > >
+> > > > Why do you need a subdirectory for a single .c file?
+> > > >
+> > >
+> > > 1. Currently my bin file is placed in the root file system. I need to
+> > > wait for the kernel booting to succeed before loading the bin code.
+> > 
+> > What "bin file"?
+> > 
 > 
-> Modify bindings doc to allow specifying bus clock in addition to
-> already described operating clock.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
-> Changes in v2:
->   - Added 'clock-names' property to 'required:' in case of ExynosAutoV9
->   - Added example for two clocks case
-> 
->  .../devicetree/bindings/i2c/i2c-exynos5.yaml  | 59 +++++++++++++++++--
->  1 file changed, 53 insertions(+), 6 deletions(-)
-> 
+> IOP MODULE EXECUTES 8051 CODE
+> Source code should reserve SDRAM memory area for IOP module code. 8051 bin file normal code and standby code can be placed in this area. The location area can be select by user.
+> Normal code: Monitor CPU commands.
+> Standby code: For RTC wake up, cooperation with CPU&PMC in power management When the system enters standby mode, 8051 bin file should be moved to I_Cache.
+> I_Cache has 16K only. Standby code cannot exceed 16K.
+> When the IOP module is mounted, CPU load 8051 codes (normal.bin) into memory.
+> Iop_base_addr_l and iop_base_addr_h specify address.
+> During system boot up, when the IOP is mounted, it will load 8051 normal code and start execute 8051 code.
 
+So this is firmware, just put it in the normal firmware location.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+thanks,
 
-
-Best regards,
-Krzysztof
+greg k-h
