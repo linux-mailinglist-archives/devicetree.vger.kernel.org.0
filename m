@@ -2,168 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C9D446A0F2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 17:14:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D68B946A103
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 17:16:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357910AbhLFQRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 11:17:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41008 "EHLO
+        id S1381130AbhLFQTn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 11:19:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356306AbhLFQRI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 11:17:08 -0500
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA479C09CE4A;
-        Mon,  6 Dec 2021 08:04:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-        ; s=ds202012; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=2epoAf2lUXqG0LoZXcquZka33t9goGRmiuRxD8PmsgE=; b=GolYI1fHrt4U+XsASD+aZcpHDm
-        aEzYCiTSmm1v+3u0CgSAfs9RDQgzk84O45eckS5eHs1tWYy3JzJfKF/ZXqBd/aPoptDTgyVx9U2LJ
-        XiesCkh9jtstIJCydKpn3frLNFRKKX5vmpRurOwbW+jgE6JB7jKhvKx+K6QwUGQbXYlHDdk4zKkEV
-        gxX7QfmEe7wZ4RC0fZbpfgPXibgwVP4zQhCHwEg0AsynsUd12iNvQamrt9mv06OpQGO2QtD5a5A2Y
-        OSl2lycDr0ZLEEgaIgr3bJLGpHXLNpWdp7xZCYnNBExf4qS1W3Z6vn3Q3oMOSst0vjYj52y88DOxy
-        56WKZ0ig==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:58493 helo=[192.168.10.61])
-        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <noralf@tronnes.org>)
-        id 1muGTj-0001B0-Nj; Mon, 06 Dec 2021 17:04:35 +0100
-Message-ID: <998fa525-d4f1-b0a7-d233-e6d1ebc506bc@tronnes.org>
-Date:   Mon, 6 Dec 2021 17:04:33 +0100
+        with ESMTP id S1382183AbhLFQTM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 11:19:12 -0500
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDEE2C04979C
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 08:12:26 -0800 (PST)
+Received: by mail-ot1-x332.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso14328937otf.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 08:12:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Ab6y7Qd/4ZmggRJljJmRlXHqMCde+8hb4OflbprAwok=;
+        b=jHmG0n0IXvKPDCYB612UXT2bfxLlP7VKzUzEUsFrA/y+3swLCx2UA4TvUoCyEXJ5DS
+         QCaUaHkDMf8OwjSlI8qG2cUOqth1kjQPQS09SwyvpcKZH3WL/nwadDL8xo3UT+lVbltd
+         qpIDl9KIygJqqDit3siJj3+aajOrztCuR6NxD3mRxce+lvw6+lLpKV7GBIf827pq0NiL
+         /QWTUDjBUujynDE/OVnIIDLVHexYCkrz2XRvtptXTHoyzE/hYA+0KEv/XC4oDWlp2ADJ
+         UP7QqZ2T1kd5CJS3hlvEQL/7qG5FI5GEoLC0AfaHKI++BnPDBfjfA/KYgIjC4y6ezd8q
+         6OHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Ab6y7Qd/4ZmggRJljJmRlXHqMCde+8hb4OflbprAwok=;
+        b=dYfZEEtZpoU+T8mdVmznz98gNUN6jl43ZEfoaBBMGwTD7GjyMrpwXDkfo6QVzFvy0m
+         x7aMVtModsruXrYs5ElgqBqF/1kxDAS2WHfSjOMDCB8TpUFGf3XrygGyezpxTC+MgyPf
+         Q4y0a1+UWd74w6YhNEuFgsCPBQd/Untb4hafV2oVLl7yTFCnxfon73pOitVZ5qxxnfzB
+         FoV2/fjYQyf0IWVrYf+BFrQNdFiyjEpyhPJQCTlZmjkvUMpfXrZeNOKLhx1DxcLhQwb+
+         p/6TpbHBcay4DZOgMtfnDqqoRrTVjDHU8IgFYjKUVQBnNJEFD0T7bWmToUzbBgnyfMg2
+         0Q/g==
+X-Gm-Message-State: AOAM531a/P/klOtfORymwsZxJ7xWbraIG/o66LJ770pxEtM95dklynvA
+        yIef+muUh9U/7rA0DRT8CgC4hQ==
+X-Google-Smtp-Source: ABdhPJxSl+B6hJMfpl8OQNxuJMuTbUZ6z3G9DZNePSTV+nh0S//5reDmAFW4aePjKrHJeuEund/Iuw==
+X-Received: by 2002:a9d:1727:: with SMTP id i39mr29932941ota.48.1638807146111;
+        Mon, 06 Dec 2021 08:12:26 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id j187sm2705481oih.5.2021.12.06.08.12.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Dec 2021 08:12:25 -0800 (PST)
+Date:   Mon, 6 Dec 2021 10:12:20 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jeffrey Hugo <jhugo@codeaurora.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 2/2] clk: qcom: Add MSM8226 Multimedia Clock Controller
+ support
+Message-ID: <Ya42ZAKupwKiWpJf@builder.lan>
+References: <20211113015844.92762-1-bartosz.dudziak@snejp.pl>
+ <20211113015844.92762-2-bartosz.dudziak@snejp.pl>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 0/6] drm/tiny/st7735r: Match up with staging/fbtft driver
-To:     David Lechner <david@lechnology.com>,
-        Maxime Ripard <maxime@cerno.tech>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
-        linux-staging@lists.linux.dev, dave.stevenson@raspberrypi.com
-References: <20211124150757.17929-1-noralf@tronnes.org>
- <eba23198-5c52-6520-079b-d2d41f71dc25@lechnology.com>
- <20211129093946.xhp22mvdut3m67sc@houat>
- <ca9e432a-6b04-9935-2469-135a9b47514e@tronnes.org>
- <20211201145237.6ezs4pwkmku3pesv@houat>
- <1fec2480-195a-b1ec-a58e-caedf7798019@lechnology.com>
-From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <1fec2480-195a-b1ec-a58e-caedf7798019@lechnology.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211113015844.92762-2-bartosz.dudziak@snejp.pl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri 12 Nov 19:58 CST 2021, Bartosz Dudziak wrote:
+> diff --git a/drivers/clk/qcom/mmcc-msm8974.c b/drivers/clk/qcom/mmcc-msm8974.c
+[..]
+>  static int mmcc_msm8974_probe(struct platform_device *pdev)
+>  {
+>  	struct regmap *regmap;
+> +	const struct of_device_id *match;
+> +
+> +	match = of_match_device(mmcc_msm8974_match_table, &pdev->dev);
 
+Could you please use of_device_get_match_data() instead?
 
-Den 06.12.2021 16.26, skrev David Lechner:
-> On 12/1/21 8:52 AM, Maxime Ripard wrote:
->> Hi Noralf,
->>
->> On Tue, Nov 30, 2021 at 03:30:11PM +0100, Noralf Trønnes wrote:
->>> Den 29.11.2021 10.39, skrev Maxime Ripard:
->>>> On Wed, Nov 24, 2021 at 04:03:07PM -0600, David Lechner wrote:
->>>>> On 11/24/21 9:07 AM, Noralf Trønnes wrote:
->>>> I agree that it doesn't really fit in the DT either though. Noralf,
->>>> what
->>>> kind of data do we need to setup a display in fbtft? The init sequence,
->>>> and maybe some enable/reset GPIO, plus some timing duration maybe?
->>>>
->>>> There's one similar situation I can think of: wifi chips. Those also
->>>> need a few infos from the DT (like what bus it's connected to, enable
->>>> GPIO, etc) and a different sequence (firmware), sometimes different
->>>> from
->>>> one board to the other.
->>>>
->>>> Could we have a binding that would be something like:
->>>>
->>>> panel@42 {
->>>>      compatible = "panel-spi";
->>>>      model = "panel-from-random-place-42";
->>>>      enable-gpios = <&...>;
->>>> }
->>>>
->>>> And then, the driver would request the init sequence through the
->>>> firmware mechanism using a name generated from the model property.
->>>>
->>>> It allows to support multiple devices in a given system, since the
->>>> firmware name wouldn't conflict, it makes a decent binding, and users
->>>> can adjust the init sequence easily (maybe with a bit of tooling)
->>>>
->>>> Would that work?
->>>
->>> I really like this idea. An added benefit is that one driver can handle
->>> all MIPI DBI compatible controllers avoiding the need to do a patchset
->>> like this for all the various MIPI DBI controllers. The firmware will
->>> just contain numeric commands with parameters, so no need for different
->>> controller drivers to handle the controller specific command names.
->>>
->>> The following is a list of the MIPI DBI compatible controllers currently
->>> in staging/fbtft: ili9341, hx8357d, st7735r, ili9163, ili9163, ili9163,
->>> ili9163, ili9486, ili9481, tinylcd, s6d02a1, s6d02a1, hx8340bn, ili9340.
->>>
->>> The compatible needs to be a bit more specific though since there are 2
->>> major SPI protocols for these display: MIPI DBI and the one used by
->>> ILI9325 and others.
->>>
->>> The full binding would be something like this:
->>>
->>> panel@42 {
->>>     compatible = "panel-mipi-dbi-spi";
->>>     model = "panel-from-random-place-42";
->>>
->>>     /* The MIPI DBI spec lists these powers supply pins */
->>>     vdd-supply = <&...>;
->>>     vddi-supply = <&...>;
->>>
->>>     /* Optional gpio to drive the RESX line */
->>>     reset-gpios = <&...>;
->>>
->>>     /*
->>>      * D/CX: Data/Command, Command is active low
->>>      * Abcense: Interface option 1 (D/C embedded in 9-bit word)
->>>      * Precense: Interface option 3
->>>      */
->>>     dc-gpios = <&...>;
->>>
->>>     /*
->>>      * If set the driver won't try to read from the controller to see
->>>      * if it's already configured by the bootloader or previously by
->>>      * the driver. A readable controller avoids flicker and/or delay
->>>      * enabling the pipeline.
->>>      *
->>>      * This property might not be necessary if we are guaranteed to
->>>      * always read back all 1's or 0's when MISO is not connected.
->>>      * I don't know if all setups can guarantee that.
->>>      */
->>>     write-only;
->>>
->>>     /* Optional ref to backlight node */
->>>     backlight = <&...>;
->>> }
->>
->> It looks decent to me. We'll want Rob to give his opinion though, but it
->> looks in a much better shape compared to what we usually have :)
->>
->>> Many of these controllers also have a RGB interface option for the
->>> pixels and only do configuration over SPI.
->>> Maybe the compatible should reflect these 2 options somehow?
->>
->> I think we'll want a "real" panel for RGB, with its own compatible
->> though. We have a few of these drivers in tree already, so it's better
->> to remain consistent.
->>
->> Maxime
->>
+> +	if (!match)
+
+As a general suggestion; I don't see how we would end up here with
+!match, but if we somehow do it would be during development and you
+would have an easier time debugging this by hitting a NULL pointer
+dereference with a callstack, than tracking down why your clocks are
+missing...
+
+Thanks,
+Bjorn
+
+> +		return -ENODEV;
+>  
+> -	regmap = qcom_cc_map(pdev, &mmcc_msm8974_desc);
+> +	regmap = qcom_cc_map(pdev, match->data);
+>  	if (IS_ERR(regmap))
+>  		return PTR_ERR(regmap);
+>  
+> -	clk_pll_configure_sr_hpm_lp(&mmpll1, regmap, &mmpll1_config, true);
+> -	clk_pll_configure_sr_hpm_lp(&mmpll3, regmap, &mmpll3_config, false);
+> +	if (match->data == &mmcc_msm8974_desc) {
+> +		clk_pll_configure_sr_hpm_lp(&mmpll1, regmap, &mmpll1_config, true);
+> +		clk_pll_configure_sr_hpm_lp(&mmpll3, regmap, &mmpll3_config, false);
+> +	} else {
+> +		msm8226_clock_override();
+> +	}
+>  
+> -	return qcom_cc_really_probe(pdev, &mmcc_msm8974_desc, regmap);
+> +	return qcom_cc_really_probe(pdev, match->data, regmap);
+>  }
+>  
+>  static struct platform_driver mmcc_msm8974_driver = {
+> -- 
+> 2.25.1
 > 
-> I'm on board with the idea of the init sequence as firmware as well.
-> 
-> It looks like Rob might have missed this thread, so maybe just apply
-> the acked patches and submit a v2 with the firmware implementation?
-> 
-
-Yes, that's my plan.
-
-Noralf.
