@@ -2,85 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2811E469BA2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:14:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD5DA469C35
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:18:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356146AbhLFPSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 10:18:05 -0500
-Received: from mail-ua1-f51.google.com ([209.85.222.51]:42679 "EHLO
-        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358090AbhLFPQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:16:26 -0500
-Received: by mail-ua1-f51.google.com with SMTP id t13so20168001uad.9;
-        Mon, 06 Dec 2021 07:12:57 -0800 (PST)
+        id S1346020AbhLFPVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 10:21:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55392 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1358456AbhLFPTa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:19:30 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A90AC0698CD
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 07:13:43 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id cq22-20020a17090af99600b001a9550a17a5so11049309pjb.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 07:13:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cnQqBSAo+K5oxr9l26dxH3RShjXf+td6E+PHuLLI4y8=;
+        b=VQIiWgpFRexhnDvLc40hcuZW7IZloc67v1EO6pDc4gDJnAh0CPsQ5fznnTZhQcFJXW
+         ktjxw6RbnBpLiUVoQ/VacQo/TSIwujyyBjZaLSEgclpiWnMOU0wdE/lJEBphP9+pWKl1
+         MLh+Ujy0n3oE+c9MqT0iP4kmn7D/myUpNO+J5WgQ7hnBstrPn6rVBDc6ScOZQCYHYQoj
+         +aICtAZrE2isxEmPRNrM5erhDnCag58kMThzQA/slIoLTYR09wAa1WJmPubjtobDJ1XZ
+         9q3B9k6Z9uz/EgFWcroiQpydY7/DYNHpq0fI+n4mKDIt2+NZ47cNlDIXk/1cTE+i5Yn5
+         t7eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=aizL4V3R6kz8WyT46b5iR9KQsWFerEJyjc+TMAAR37s=;
-        b=DvSLc5ZECUpLiQNTvggoWbjgSk/Z8eowSeBgdNSTlG6SJBIAg1DRIayBz93enz828q
-         0wv4rNDM8qjhTagcie7xhFZvmjPuyQuo3HaHvYzMvsZPehnRj7oKBHYyy2WOLqIA7Vb/
-         PuAWm68PGY3M9qU21Pt9MtkOYU32NCraqGvbUZaKpADcPsDH9sLZNVxh76yEvRR1SC7s
-         +aO0nTgiR6PMq5SFWKATGAa0DBkoHOCZ/fKDpJ2D+eyWWAOLPN6+YHCZ8vENzVBXf8+R
-         JSjRw5fxl0/6vcAau8mWJ11A/DwrzhkvUAC6qKRUbvWslfxZQnS0+KlSUiGL5REGronN
-         ga+w==
-X-Gm-Message-State: AOAM531VVWV3I8l/wvywsT1hOpyj3Ps5YZJwwbrwF77+CSY9icsapCwD
-        gqFM5pX1OgRMvUy5PP2c39i1/8Mv52QnqQ==
-X-Google-Smtp-Source: ABdhPJxuhn287b6ddzQ8GQW49BAYZ8lCqCZa7SuGLKLR7gD5FO8oMIC0u0iE1DkbERc0xc0uV3eoXQ==
-X-Received: by 2002:ab0:3c9f:: with SMTP id a31mr42399445uax.134.1638803576964;
-        Mon, 06 Dec 2021 07:12:56 -0800 (PST)
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
-        by smtp.gmail.com with ESMTPSA id y22sm4223565vsy.33.2021.12.06.07.12.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Dec 2021 07:12:56 -0800 (PST)
-Received: by mail-vk1-f171.google.com with SMTP id s1so7021332vks.9;
-        Mon, 06 Dec 2021 07:12:56 -0800 (PST)
-X-Received: by 2002:a1f:9f04:: with SMTP id i4mr41059573vke.33.1638803576344;
- Mon, 06 Dec 2021 07:12:56 -0800 (PST)
+        bh=cnQqBSAo+K5oxr9l26dxH3RShjXf+td6E+PHuLLI4y8=;
+        b=hsGVr1kNZQ7EVnaBScWv+OJCpXugjpxZXAA4Mcs24leI+BGwHYSxookOObhkpzKjuv
+         ENGM5ObwnfyxKELw3/NxpIQyn9UUR8KnOHFBaZJntFW4g312r+SpDcczofElxwa6noMY
+         dgfw4FJ21Txgr+yMeMft/qKRJ0Jvp6e0kkKlxCSP0RVM8hR8Rb+t2AWjaL1FnQLS36V9
+         2ZaPZX+uAk91QZNRyaHHmd7PySiN+o6mHOPei3rMgS8QXNf0FPlpzCRpwstv1MKjZda9
+         3WQszfvuykatXPa/XFUUqPDANDj+DlDr0Xb4aVnicq2xYpbQecL/859GGuLhe+iR+bPG
+         PEOw==
+X-Gm-Message-State: AOAM531yQqpAugn6j3wBDhcEUiYkSkmjXk/SRFI2W8i8ZzaMz993WNy6
+        O79BOlNq3lEDIE+ukd3AT71oJtyqdTS0AUpSkb6FoQ==
+X-Google-Smtp-Source: ABdhPJxLJ6uUWWiSZlny/JEj/mVjhmgg6C7BE3VsA338kjFc2t92GnAbloeXMtJTb10Jeu46/eWHG5/ObtlkLgQyN8c=
+X-Received: by 2002:a17:903:2004:b0:142:6344:2c08 with SMTP id
+ s4-20020a170903200400b0014263442c08mr44072941pla.51.1638803620589; Mon, 06
+ Dec 2021 07:13:40 -0800 (PST)
 MIME-Version: 1.0
-References: <20211130140724.10750-1-conor.dooley@microchip.com> <20211130140724.10750-2-conor.dooley@microchip.com>
-In-Reply-To: <20211130140724.10750-2-conor.dooley@microchip.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 6 Dec 2021 16:12:45 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXy9B5B5tW6-nJ9J0aCGjHzy1C90ObA_7A2qz_NQphq-w@mail.gmail.com>
-Message-ID: <CAMuHMdXy9B5B5tW6-nJ9J0aCGjHzy1C90ObA_7A2qz_NQphq-w@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: clk: microchip: Add Microchip
- PolarFire host binding
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        david.abdurachmanov@gmail.com, Palmer Dabbelt <palmer@dabbelt.com>,
-        daire.mcnamara@microchip.com, cyril.jean@microchip.com,
-        Rob Herring <robh@kernel.org>
+References: <20211118124819.1902427-1-robert.foss@linaro.org>
+ <20211118124819.1902427-4-robert.foss@linaro.org> <Ya4nEMnZ3zQiXbaR@ripper>
+In-Reply-To: <Ya4nEMnZ3zQiXbaR@ripper>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Mon, 6 Dec 2021 16:13:29 +0100
+Message-ID: <CAG3jFytNQHK=dTHGzd57V_m_6YNwtD2zRYgBSjykd3whzqy9pQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: apq8016-sbc: Remove clock-lanes
+ property from &camss node
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     agross@kernel.org, todor.too@gmail.com, mchehab@kernel.org,
+        robh+dt@kernel.org, angelogioacchino.delregno@somainline.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 30, 2021 at 3:06 PM <conor.dooley@microchip.com> wrote:
-> From: Daire McNamara <daire.mcnamara@microchip.com>
+On Mon, 6 Dec 2021 at 16:05, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
 >
-> Add device tree bindings for the Microchip PolarFire system
-> clock controller
+> On Thu 18 Nov 04:48 PST 2021, Robert Foss wrote:
 >
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> > The clock-lanes property is no longer used as it is not programmable by
+> > the CSIPHY hardware block of Qcom ISPs and should be removed.
+> >
+> > Signed-off-by: Robert Foss <robert.foss@linaro.org>
+>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>
+> Although I'd be happy to take the two dts patches through the Qualcomm
+> tree, once the driver changes has landed.
 
-Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks Bjorn. I'll split the series and submit two fully reviewed v4 series.
