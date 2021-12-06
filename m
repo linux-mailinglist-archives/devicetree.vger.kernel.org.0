@@ -2,129 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77B4F4695E2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 13:43:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 545024695E8
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 13:44:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243284AbhLFMrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 07:47:17 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:53000
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S243298AbhLFMrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 07:47:16 -0500
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 52B833F1BD
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 12:43:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638794627;
-        bh=2ccnvvjzh+vr27cmDIxMLKkuyPKdTXHoRsCzeOVPF7c=;
-        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
-        b=eEmJYfaiZO+/iHRvWxq8KF1GbQir4H1bi4y4JgahBCNZVqqIT9ihpBxN96LgC7NKQ
-         dy2oIc0VlduOjJijtyz4aCMYi4VtN4ZPYzk1nfh9dw3iqYkoYLiL0ufzj3B/LRGjx3
-         3cAqCAeAgxpBBCbHNfztfVHGD3uYcxJu/B/HbexftnWtT7seEz6p8Kq0FlcPP/JZXH
-         R2V1eLvbfXXbVKHog2Nt14KEH8eSaC8C78TCUle1bRqfXQ/1kFsmdz6pOaQfdKsvxs
-         ztO4+pc1yL4VIX0Fq38VunhuN7VW1ubc8ZP+0U5AIXCok8G1zRpNJ/WjWo28O7rSkM
-         DgzTSZRjksvhg==
-Received: by mail-lf1-f72.google.com with SMTP id k32-20020a0565123da000b0041643c6a467so3747999lfv.5
-        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 04:43:47 -0800 (PST)
+        id S243316AbhLFMrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 07:47:22 -0500
+Received: from mail-ua1-f42.google.com ([209.85.222.42]:38548 "EHLO
+        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243297AbhLFMrV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 07:47:21 -0500
+Received: by mail-ua1-f42.google.com with SMTP id w23so19197567uao.5;
+        Mon, 06 Dec 2021 04:43:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2ccnvvjzh+vr27cmDIxMLKkuyPKdTXHoRsCzeOVPF7c=;
-        b=GUz+EkTAQbmxwCbK82VDCJpx7k2yUyIkSA9cOLpjgofAZqnlPWjDEnUJyBDySuiLkZ
-         ly2WBDfeoR8nIYZ6bg2EwMtWUGHjqawQWkitfpvxd9x+LLGfg5t/9knmPhEPazAFNaXA
-         3X1YytFZbbnmlJhjdtDyseOp4EAeDRPdmL29UWxUqm5NwFJR37s1op9gh9SzaPI5Gwrv
-         E1sbAq31pOEhnsbNRATE9oTYaDRjDJKVPex7D52LPvg04sq+CnZalMzA492VHMEuWc2j
-         KZvpVkxgym1fRIANKI5PtwZMhkXHHHIZ5Suw3uukU5rd3E4ETUJLZ02qzw7jjD29s+z8
-         Q0Xg==
-X-Gm-Message-State: AOAM533tra0BYvKmfRcOHVI1JoQmvQdrA4paHbl/v4WI5MiRXhZcu6EU
-        JrdK4I4DX2qIvuOkfixt10KmPwqiRWgB3qcC60adpzaPhKsSRwvaEOtlI4o147wDlO6wVGxVJ6d
-        MMs23kZUzf0dCXQxf5a13fvc6ZnUYymojsK3fL7A=
-X-Received: by 2002:a05:6512:1313:: with SMTP id x19mr35524129lfu.279.1638794626750;
-        Mon, 06 Dec 2021 04:43:46 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxEMmT5tdvgU9TQ9t8yV5F7fDNCa+/K4eYR8uaI1kK7FvQ6ULIl3dE3GYPMmHi49FXSHjzxDw==
-X-Received: by 2002:a05:6512:1313:: with SMTP id x19mr35524106lfu.279.1638794626513;
-        Mon, 06 Dec 2021 04:43:46 -0800 (PST)
-Received: from localhost.localdomain (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id u14sm1296006ljd.12.2021.12.06.04.43.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 04:43:46 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>, stable@vger.kernel.org
-Subject: [PATCH] regulator: dt-bindings: samsung,s5m8767: add missing op_mode to bucks
-Date:   Mon,  6 Dec 2021 13:43:06 +0100
-Message-Id: <20211206124306.14006-1-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=diTFsItQxsjlWEXrD9HKHMo7eDvHbW5sddSfozLs0bY=;
+        b=0xfpd5gDO1e1iCiPxmQJK6YfNzBl9kE3xzHtWPQDM2KiiTb5KTT1kvK+8t7mtLe06j
+         eGaDUyCX+/RgSv0jY+e4R5sjN+XlNN0e3kS9H19Mr1R36LwF/JRiGcbMZCnrq6j4EFLc
+         Fr+HSAEh9ftXrtatP5wH8vp9W3yZy9iRnvq9mEjl70mHvUZfEbWSBJsdBgDAZFb8tXT3
+         safkNO7ZxdvKeFsDsSwdF2QEajAVc/zkkciVGo/9xnMldWVEPJxC17RMckLJwDvVnKzN
+         BX/x6pANtw+tQHrtR0FGf+9HwvD14UrYEZjR7lWNi1ObSqzqcognbKpZE+EGYO6hsnYi
+         gSIw==
+X-Gm-Message-State: AOAM530gikKoLZY+YIQqb5ozqL30jto0I4WN0Q+4plIIB4QTgKOayeXe
+        DAI118zj3XHssvrF6Ysx86P9Z+VqbPCUxA==
+X-Google-Smtp-Source: ABdhPJzl8vb4F9/DBncbNNN0L0/+LmmA8Bd348cKYUiTebxrsT93eWlfk/xwhFEaF9fGvRGHBe7Z5A==
+X-Received: by 2002:ab0:22d6:: with SMTP id z22mr39607552uam.65.1638794632414;
+        Mon, 06 Dec 2021 04:43:52 -0800 (PST)
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
+        by smtp.gmail.com with ESMTPSA id 186sm3934633vsd.30.2021.12.06.04.43.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Dec 2021 04:43:52 -0800 (PST)
+Received: by mail-ua1-f41.google.com with SMTP id t13so19161730uad.9;
+        Mon, 06 Dec 2021 04:43:52 -0800 (PST)
+X-Received: by 2002:ab0:7354:: with SMTP id k20mr39571944uap.78.1638794631869;
+ Mon, 06 Dec 2021 04:43:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211201073308.1003945-1-yoshihiro.shimoda.uh@renesas.com> <20211201073308.1003945-10-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20211201073308.1003945-10-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 6 Dec 2021 13:43:40 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWx4fxjHrQn-7qbFkZwa31W_D-5zGnxRQqb+VRezjzs+w@mail.gmail.com>
+Message-ID: <CAMuHMdWx4fxjHrQn-7qbFkZwa31W_D-5zGnxRQqb+VRezjzs+w@mail.gmail.com>
+Subject: Re: [PATCH v2 09/14] clk: renesas: cpg-mssr: Add support for R-Car S4-8
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While converting bindings to dtschema, the buck regulators lost
-"op_mode" property.  The "op_mode" is a valid property for all
-regulators (both LDOs and bucks), so add it.
+On Wed, Dec 1, 2021 at 8:33 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Initial CPG support for R-Car S4-8 (r8a779f0).
+>
+> Inspired by patches in the BSP by LUU HOAI.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-Reported-by: Rob Herring <robh@kernel.org>
-Fixes: fab58debc137 ("regulator: dt-bindings: samsung,s5m8767: convert to dtschema")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- .../bindings/regulator/samsung,s5m8767.yaml   | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk-for-v5.17.
 
-diff --git a/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml b/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
-index 80a63d47790a..c98929a213e9 100644
---- a/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
-+++ b/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
-@@ -51,6 +51,19 @@ patternProperties:
-     description:
-       Properties for single BUCK regulator.
- 
-+    properties:
-+      op_mode:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [0, 1, 2, 3]
-+        default: 1
-+        description: |
-+          Describes the different operating modes of the regulator with power
-+          mode change in SOC. The different possible values are:
-+            0 - always off mode
-+            1 - on in normal mode
-+            2 - low power mode
-+            3 - suspend mode
-+
-     required:
-       - regulator-name
- 
-@@ -63,6 +76,18 @@ patternProperties:
-       Properties for single BUCK regulator.
- 
-     properties:
-+      op_mode:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [0, 1, 2, 3]
-+        default: 1
-+        description: |
-+          Describes the different operating modes of the regulator with power
-+          mode change in SOC. The different possible values are:
-+            0 - always off mode
-+            1 - on in normal mode
-+            2 - low power mode
-+            3 - suspend mode
-+
-       s5m8767,pmic-ext-control-gpios:
-         maxItems: 1
-         description: |
--- 
-2.32.0
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
