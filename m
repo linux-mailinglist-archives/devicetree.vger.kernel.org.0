@@ -2,77 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8DF94698CA
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 15:25:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91D744698D2
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 15:25:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245305AbhLFO2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 09:28:54 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:46673 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236352AbhLFO2x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 09:28:53 -0500
-Received: by mail-oi1-f176.google.com with SMTP id s139so21661152oie.13;
-        Mon, 06 Dec 2021 06:25:24 -0800 (PST)
+        id S236352AbhLFO26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 09:28:58 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:35646 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344236AbhLFO25 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 09:28:57 -0500
+Received: by mail-ot1-f46.google.com with SMTP id x43-20020a056830246b00b00570d09d34ebso13837178otr.2;
+        Mon, 06 Dec 2021 06:25:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=1UM6mk2YqDOCPpxKmVW4hUay67A5ShMZFccLmrgtyws=;
-        b=l1m+dAcvG6tuwyX2hv9sWXpKM9QC6dCJWTxsGuZf/wEe/H1RdrQ4BQ03FxzoEWyOHe
-         J5eGPTIhetFLIZUpl+xLlcnIgk7UBpWc9Z51k+diCzBs/ADTm488hqhnEsMK/cEKRW8/
-         8BkxxZlVfrqVAz8Dmv92lT82mq2+sI2laEYTiNZoP+sETzrF9DbKN4UUpMq9/S3H+zte
-         OQam/nwpFIBqEO8ot0jT4IT9ywd747TiQ4ykpjfYWruyMqD7U1ZbLZ2Hd5i38YjrEgvE
-         6zEFjSHtwknKkiIsmUbuvYvygB9wzYzPfz3kxWT6CzYCWsd7B6TMnknbrR6TQivhX/fh
-         Bh3g==
-X-Gm-Message-State: AOAM5337mmYznMCBu8dpkzTzxweqAFZu81MS0pZf6fowiglJZPlp6Sl4
-        w+BDrf8CvU4K/DTcIQCSo0ejeg+utQ==
-X-Google-Smtp-Source: ABdhPJwHh7iLhlSQhwyOIjqD6otmwOl55D4ggjQJihayjKesYaNOleTLyfqMib/TY7E6KZA+XSLjEA==
-X-Received: by 2002:aca:1c02:: with SMTP id c2mr24930352oic.53.1638800724490;
-        Mon, 06 Dec 2021 06:25:24 -0800 (PST)
+        bh=CWGHOhMZUfniE+Y2ng6wuO7zGULF9CPIy3yGJ1kJWX0=;
+        b=DgwFIAmc9k2dWMF6EQVDHIiNE35cuKEvoa+pjnuDeEpoU1T9GbQbFPHDX0ItXFnlwY
+         ddRE4uy8P1xniuAKAitMKdSo4lZwJ3GJNZWMq4J+hQndcEwYphV6FuJysgne/pqPSfcw
+         uKKRU+YgChofbHOQCk0QhwL6P97XQiQBgIav/9/UTfZr9De6WGWtkblnH9e6AxfPlhbm
+         uTQbWHRjacuypQvvrFtke+Ns08YssWEPkGzTiuoNtc949z5Nmq37UvnmHKXZCKB69UZb
+         A6BJMbFvASPBGFL59M+GF6AiW7RI4VTr5x1V/IaEfEKM3wnDijThouPnBSfokHFORpX5
+         viQw==
+X-Gm-Message-State: AOAM533JlCKddPbz3MaK9BV/OnSMpny5CgEvxXy3hMcpEA4kDTlFMhdk
+        R+VvpghYxn4GoSlytayN6Q==
+X-Google-Smtp-Source: ABdhPJyfp+sRZSmmxcQQNS5FVwHTA4gbp/9HMnapB0bZgOO+3eG1BRDTnxJZIBTFqjfhvJMpWKKcbg==
+X-Received: by 2002:a9d:12c:: with SMTP id 41mr30003581otu.322.1638800727961;
+        Mon, 06 Dec 2021 06:25:27 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x12sm2181654oom.44.2021.12.06.06.25.22
+        by smtp.gmail.com with ESMTPSA id s2sm2197803otr.69.2021.12.06.06.25.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 06:25:23 -0800 (PST)
-Received: (nullmailer pid 1976291 invoked by uid 1000);
+        Mon, 06 Dec 2021 06:25:27 -0800 (PST)
+Received: (nullmailer pid 1976294 invoked by uid 1000);
         Mon, 06 Dec 2021 14:25:22 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        benjamin.gaignard@collabora.com, cphealy@gmail.com,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-staging@lists.linux.dev, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, nicolas@ndufresne.ca,
-        Fabio Estevam <festevam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>
-In-Reply-To: <20211205181618.1041699-3-aford173@gmail.com>
-References: <20211205181618.1041699-1-aford173@gmail.com> <20211205181618.1041699-3-aford173@gmail.com>
-Subject: Re: [RFC 2/5] dt-bindings: soc: add binding for i.MX8MQ VPU blk-ctrl
+To:     David Virag <virag.david003@gmail.com>
+Cc:     linux-samsung-soc@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20211205230804.202292-3-virag.david003@gmail.com>
+References: <20211205230804.202292-1-virag.david003@gmail.com> <20211205230804.202292-3-virag.david003@gmail.com>
+Subject: Re: [PATCH v3 2/7] dt-bindings: clock: Document Exynos7885 CMU bindings
 Date:   Mon, 06 Dec 2021 08:25:22 -0600
-Message-Id: <1638800722.475991.1976290.nullmailer@robh.at.kernel.org>
+Message-Id: <1638800722.490043.1976293.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 05 Dec 2021 12:16:15 -0600, Adam Ford wrote:
-> From: Lucas Stach <l.stach@pengutronix.de>
+On Mon, 06 Dec 2021 00:07:56 +0100, David Virag wrote:
+> Provide dt-schema documentation for Exynos7885 SoC clock controller.
+> Description is modified from Exynos850 clock controller documentation as
+> I couldn't describe it any better, that was written by Sam Protsenko.
 > 
-> This adds the DT binding for the i.MX8MQ VPU blk-ctrl.
-> 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Signed-off-by: David Virag <virag.david003@gmail.com>
 > ---
->  .../soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml      | 71 +++++++++++++++++++
->  1 file changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml
+> Changes in v2:
+>   - Fixed double : in description
+>   - Added R-b tag by Krzysztof Kozlowski
+> 
+> Changes in v3:
+>   - Nothing
+> 
+>  .../clock/samsung,exynos7885-clock.yaml       | 166 ++++++++++++++++++
+>  1 file changed, 166 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos7885-clock.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -81,14 +83,13 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.example.dt.yaml: blk-ctrl@38320000: compatible: ['fsl,imx8mq-vpu-blk-ctrl', 'syscon'] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.example.dt.yaml: blk-ctrl@38320000: compatible: Additional items are not allowed ('syscon' was unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml
+Documentation/devicetree/bindings/clock/samsung,exynos7885-clock.example.dts:21.47-46.11: Warning (unit_address_format): /example-0/clock-controller@0x10010000: unit name should not have leading "0x"
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/samsung,exynos7885-clock.example.dt.yaml: example-0: 'clock-controller@0x10010000' does not match any of the regexes: '.*-names$', '.*-supply$', '^#.*-cells$', '^#[a-zA-Z0-9,+\\-._]{0,63}$', '^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}$', '^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}@[0-9a-fA-F]+(,[0-9a-fA-F]+)*$', '^__.*__$', 'pinctrl-[0-9]+'
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/dt-core.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1563759
+See https://patchwork.ozlabs.org/patch/1563783
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
