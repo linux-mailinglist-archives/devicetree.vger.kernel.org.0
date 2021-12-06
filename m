@@ -2,106 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEC28469971
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 15:48:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E53046998B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 15:54:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344553AbhLFOvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 09:51:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49530 "EHLO
+        id S1344718AbhLFO5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 09:57:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344625AbhLFOvi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 09:51:38 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3AF9C061746;
-        Mon,  6 Dec 2021 06:48:09 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id t9so22928510wrx.7;
-        Mon, 06 Dec 2021 06:48:09 -0800 (PST)
+        with ESMTP id S244997AbhLFO5x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 09:57:53 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79DFFC061746;
+        Mon,  6 Dec 2021 06:54:24 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id y12so43779723eda.12;
+        Mon, 06 Dec 2021 06:54:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tl+bc9cDudWEWWttxQF08Y5sqNDbrMUOVcMdmCNzreI=;
-        b=O6wtoj5/02M1fKKNutYuRB0M9wfe3TM4ANyffn110ToLoCnVAJLfaSpOLCDx1Ig7SH
-         7+f27Ktq6CcK1tCRUw/YeES5lDysFXupGSrilLaK/HTj9pkbZqVYHLEUjEomJ+pHx3t1
-         xcc6fPuymQCoBKFaG3h7T8UIdsql/iNT7PMYbNcGzPsDuEoVhpZuLQO80Zhpdad3UXxX
-         LsskGHMkOMRu1EPv/RU1NhS1cdHfGvCwVqm00n55TZdP9lKZjFBm1OjQ8rgtmE+NEtwk
-         PIKbw2QmvUQ5w5nXV9hMitMoAxnJPyw7IBbCdSvt7VwJ9C9Gk5jwgvMKk2AIhLZmn3BQ
-         of0w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=LW1BYGyD1FrsuN8OaH1EYpOJNibso1Z40XxZHZPtTn4=;
+        b=GyaohrZqlHknwgP8z1/U81lrjK6R1xtFKBXnuAzjdMx2z0snNBUcYlS9b27tzMWZ6c
+         In5aLO/mv+KzQZo8L64KbgWWLTYExi6j4HU7DdKSoKjifsXJUekm8DMMNj/fvUicAPtN
+         DrMOO2UrprHt2B8evbHNi2+xg6MrjrPoTtGjs33Z3ND8B7jCMkkxSbt5Veglif7zvHZe
+         TvVk62MACV/RG+9iQdzYuy+j+C+jOUmZKa7AxNBpl4ZRaUkHSrXJaiie7pJQvzY/Df81
+         gDIM4ay9mJPmoqZP+89OReek5V9OWLYdGbJt9i4axnQS55LuouiwN8lIH2bm06Y1eQjz
+         IDYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tl+bc9cDudWEWWttxQF08Y5sqNDbrMUOVcMdmCNzreI=;
-        b=2VmeT3A6XxO/8w5yA5Dl0t8+O3dPVu5XTADAvHSXmivtYW402o9m4Y0JlvPW/QOSQ3
-         cR5GKl3pt3YWIqR4W/QEsPVvCaH1nt6VdE7wM/uO7dslWR81m0pmEchHac0J5iKE/4I4
-         hzxMW5/RcKXKVx31b6nZlGhFhiAjnk5iKkyTt43fTljE5ScyiZf92HkwalszB2LDfR+j
-         C368hdRVlcfaHchXOsI3xbhUPINM0+AXLuDcj7zwSfOKasZA/RIksb0dWgz2nEKb2Z9W
-         R/knn0VNhB5mzdUTjz89P8KMr4WusVR6fF6X8juiFdj7DjrottTEUKKDNF+ZkH/7ZOIZ
-         SZyA==
-X-Gm-Message-State: AOAM531yZWvS5enCDDIbX67ICv7HeY1OAoi0BmPKdhWcrnSuHtwQr+XB
-        k/QmWUy7682oiS9P4XBNRDYu200Bc80=
-X-Google-Smtp-Source: ABdhPJyk3RhaeFP6AGhDL8ACrjn68+WzOUTXx18SZVBIonFP9OaVWOu9kAtoF1x/Ktq8CpEK3udBRQ==
-X-Received: by 2002:adf:f551:: with SMTP id j17mr44914648wrp.392.1638802088477;
-        Mon, 06 Dec 2021 06:48:08 -0800 (PST)
-Received: from localhost (pd9e51d39.dip0.t-ipconnect.de. [217.229.29.57])
-        by smtp.gmail.com with ESMTPSA id o12sm16281478wrc.85.2021.12.06.06.48.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 06:48:07 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] ARM: dts: am335x: Use correct vendor prefix for Asahi Kasei Corp.
-Date:   Mon,  6 Dec 2021 15:48:02 +0100
-Message-Id: <20211206144802.217073-2-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211206144802.217073-1-thierry.reding@gmail.com>
-References: <20211206144802.217073-1-thierry.reding@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=LW1BYGyD1FrsuN8OaH1EYpOJNibso1Z40XxZHZPtTn4=;
+        b=nNfj2pz/dUYLWbyXrw4pRZUK22BDX77IWj2BPYREAEzuXG4QR6pitqknXcBNDzGoHt
+         sjrYy+OBtgu+RrziO+3gFTF5zc0i5mxtFZAFszgYuElu1pjzt+ITqWqGqIXMuY8xbbwl
+         3TGtymAH+Zl4gEHdcbDgbH4rfJSY3/tF+MYMWSRL5pC4kObsK9NZJES9yyDQqy9RwPtc
+         yqA61mpZYKID7CFUbBCpCIcJPFPY/76iWOvU//IzdCJCJ5+D7eO0Gnk10RkV0GTqGxoR
+         UPtjZoQzHbxCF/N2E/OiKbIyQhu3PrOs2+lwCFW1d8QuI4iMgMA7ebldZgbHPACjFvpS
+         wrrg==
+X-Gm-Message-State: AOAM531BCZwLIN1ZPcRPomsHHBAeeKTCA1aVIaEaYd21q+64izoMzfTx
+        Kf15ZkN8LHZA6xE14OdZAOxtdH2iCzIo931W+KxMEv16
+X-Google-Smtp-Source: ABdhPJy8zsn0hmEb/oqWd5Cknlc3dy5ENqov/JpF1U5cDxLUqIH++Z4sEpXmxtE1qyu0UtY0jdZfRYMFcV8lyENVMN0=
+X-Received: by 2002:a17:906:d930:: with SMTP id rn16mr48020240ejb.223.1638802462900;
+ Mon, 06 Dec 2021 06:54:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <202112061855.SidQyicE-lkp@intel.com> <20211206142601.373807-1-michal.vokac@ysoft.com>
+In-Reply-To: <20211206142601.373807-1-michal.vokac@ysoft.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 6 Dec 2021 11:54:11 -0300
+Message-ID: <CAOMZO5AByeyYZ89gBSNtcJaJ68Dz_K4J5+eVwRrbn5AP5VMeSQ@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: imx6dl-yapp4: Remove not-yet added support for
+ sound from Crux
+To:     =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        kernel test robot <lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On Mon, Dec 6, 2021 at 11:26 AM Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.=
+com> wrote:
+>
+> Remove mistakingly added support for audio codec. We support the coded
+> by our downstream patches but the appropriate driver and bindings are not
+> in mainline yet.
+>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Fixes: a4d744ac2bab ("ARM: dts: imx6dl-yapp4: Add Y Soft IOTA Crux/Crux+ =
+board")
+> Signed-off-by: Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.com>
 
-The old "ak" vendor prefix that was never officially accepted was still
-being used in some device trees. Convert to the correct vendor prefix
-(i.e. "asahi-kasei").
-
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- arch/arm/boot/dts/am335x-boneblue.dts       | 2 +-
- arch/arm/boot/dts/am335x-osd3358-sm-red.dts | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/am335x-boneblue.dts b/arch/arm/boot/dts/am335x-boneblue.dts
-index c6bb325ead33..147c00de3795 100644
---- a/arch/arm/boot/dts/am335x-boneblue.dts
-+++ b/arch/arm/boot/dts/am335x-boneblue.dts
-@@ -341,7 +341,7 @@ i2c-gate {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			ax8975@c {
--				compatible = "ak,ak8975";
-+				compatible = "asahi-kasei,ak8975";
- 				reg = <0x0c>;
- 			};
- 		};
-diff --git a/arch/arm/boot/dts/am335x-osd3358-sm-red.dts b/arch/arm/boot/dts/am335x-osd3358-sm-red.dts
-index 605b2a436edf..b2846cd220f0 100644
---- a/arch/arm/boot/dts/am335x-osd3358-sm-red.dts
-+++ b/arch/arm/boot/dts/am335x-osd3358-sm-red.dts
-@@ -84,7 +84,7 @@ i2c-gate {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			ax8975@c {
--				compatible = "ak,ak8975";
-+				compatible = "asahi-kasei,ak8975";
- 				reg = <0x0c>;
- 			};
- 		};
--- 
-2.33.1
-
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
