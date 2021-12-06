@@ -2,187 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4E4146A36F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 18:44:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D2FD46A382
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 18:58:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245757AbhLFRrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 12:47:25 -0500
-Received: from aposti.net ([89.234.176.197]:59760 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239205AbhLFRrZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Dec 2021 12:47:25 -0500
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     list@opendingux.net, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>
-Subject: [PATCH v2 6/6] dmaengine: jz4780: Support bidirectional I/O on one channel
-Date:   Mon,  6 Dec 2021 17:42:59 +0000
-Message-Id: <20211206174259.68133-7-paul@crapouillou.net>
-In-Reply-To: <20211206174259.68133-1-paul@crapouillou.net>
-References: <20211206174259.68133-1-paul@crapouillou.net>
+        id S238445AbhLFSBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 13:01:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40818 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232983AbhLFSBf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 13:01:35 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81F1CC061746
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 09:58:06 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id bf8so22893022oib.6
+        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 09:58:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=3eJRkxKHjYtDlGhrBmsa7oWzPrfpyNEjV4tZVEm1oUc=;
+        b=FqCFYVVcjT3UmUox7fyqaqypdAweknPDBxPaw3frnDIQPeZcYr0Emht1Y11Frt4/Gk
+         ewkmM4fSeFM2Vs0SqZEdV6yllZPvsGfpLjrRYZGv/3EW4rEkLvkhB4NtmjWQhk+hleSU
+         WKifwNb/zxil3Uh7C7R883+N5DKwEBxC1+gDESmwfIUVABRxFm6hiEAiaqDHmz44v1qp
+         azxR2GFKZArJeT5eBPrIYfATvzsGwOJzTtPaQIOAwhyaTz93uNBiuWJJmnHs/XSa2tlL
+         mzVvhJkrSWCXNVsvZ63mDmr4cbj6122a8ruzpqTe/RpBsPFq/8B38ZRAyQv93ad3jY3A
+         erqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=3eJRkxKHjYtDlGhrBmsa7oWzPrfpyNEjV4tZVEm1oUc=;
+        b=kmOH8higtZ8zXlpzF4f0j5f2IRwEpoR9GK5OfwXPFId2+ajZYspm7EXkrN3iJqyqbQ
+         LMwepUE8/qKjEPlDFUx/SpqwsLvHr5WoyUKl9CeizeK1Io4yjlgq9ltgmdv1HxnXLgcA
+         XqR5t2S7/pksXE5k6kOgdTybwm7vUWap4VxiBk4m+pwElrAkO4kA5oidJnUu3JGUexw/
+         qxatQ4QIt6G0oWfq9Jr0qmxKly2ePjdfOKc1OFI0rIkdsjdMGhVCteP9yAzk02JUEbaI
+         yvKdVIpMlmzrhuXIjInacwkuQiq7LyPwE3W13Bqv+L3HsrHRAptMER10LDp4s1703x5U
+         PI7w==
+X-Gm-Message-State: AOAM533zwCW0vqJ5+x0xYgRcZhJPYzMIy3HSwDQ+v2abtoZ37tSwEEks
+        6LcMglRBEnciGzUQTJk5Hp2aZQ==
+X-Google-Smtp-Source: ABdhPJzrHIA4p/UAQ7mwXGVdb2WAGoyrCMuKxtML3Ak8sy0Kg7Rkls0dD7kJgUM7SjaiDbKFAurgug==
+X-Received: by 2002:a54:4402:: with SMTP id k2mr12345oiw.141.1638813485663;
+        Mon, 06 Dec 2021 09:58:05 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id l23sm2355726oti.16.2021.12.06.09.58.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Dec 2021 09:58:05 -0800 (PST)
+Date:   Mon, 6 Dec 2021 11:58:00 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     quic_vamslank@quicinc.com
+Cc:     agross@kernel.org, linus.walleij@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        manivannan.sadhasivam@linaro.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: pinctrl: qcom: Add SDX65 pinctrl
+ bindings
+Message-ID: <Ya5PKNifQ53QUXeQ@builder.lan>
+References: <cover.1638404936.git.quic_vamslank@quicinc.com>
+ <829642d28acbe0f993b5b059cb984da9b5262fa0.1638404936.git.quic_vamslank@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <829642d28acbe0f993b5b059cb984da9b5262fa0.1638404936.git.quic_vamslank@quicinc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For some devices with only half-duplex capabilities, it doesn't make
-much sense to use one DMA channel per direction, as both channels will
-never be active at the same time.
+On Wed 01 Dec 18:32 CST 2021, quic_vamslank@quicinc.com wrote:
 
-Add support for bidirectional I/O on DMA channels. The client drivers
-can then request a "tx-rx" DMA channel which will be used for both
-directions.
+> From: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
+> 
+> Add device tree binding Documentation details for Qualcomm SDX65
+> pinctrl driver.
+> 
+> Signed-off-by: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>  .../bindings/pinctrl/qcom,sdx65-pinctrl.yaml  | 174 ++++++++++++++++++
+>  1 file changed, 174 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdx65-pinctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdx65-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdx65-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..f3487717da83
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdx65-pinctrl.yaml
+> @@ -0,0 +1,174 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,sdx65-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. SDX65 TLMM block
+> +
+> +maintainers:
+> +  - Vamsi krishna Lanka <quic_vamslank@quicinc.com>
+> +
+> +description:
+> +  This binding describes the Top Level Mode Multiplexer block found in the
+> +  SDX65 platform.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sdx65-tlmm
+> +
+> +  reg:
+> +    description: Specifies the base address and size of the TLMM register space
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: Specifies the TLMM summary IRQ
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    description: Specifies the PIN numbers and Flags, as defined in
+> +      include/dt-bindings/interrupt-controller/irq.h
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    description: Specifying the pin number and flags, as defined in
+> +      include/dt-bindings/gpio/gpio.h
+> +    const: 2
+> +
+> +  gpio-ranges:
+> +    maxItems: 1
+> +
+> +  gpio-reserved-ranges:
+> +    maxItems: 1
+> +
+> +#PIN CONFIGURATION NODES
+> +patternProperties:
+> +  '-pins$':
 
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
----
- drivers/dma/dma-jz4780.c | 48 ++++++++++++++++++++++++++--------------
- 1 file changed, 32 insertions(+), 16 deletions(-)
+What you describe in this subnode is the pinctrl state, that's why we
+decided to make it '-state$' instead of '-pins$'.
 
-diff --git a/drivers/dma/dma-jz4780.c b/drivers/dma/dma-jz4780.c
-index c8c4bbd57d14..fc513eb2b289 100644
---- a/drivers/dma/dma-jz4780.c
-+++ b/drivers/dma/dma-jz4780.c
-@@ -122,6 +122,7 @@ struct jz4780_dma_desc {
- 	dma_addr_t desc_phys;
- 	unsigned int count;
- 	enum dma_transaction_type type;
-+	u32 transfer_type;
- 	u32 status;
- };
- 
-@@ -130,7 +131,7 @@ struct jz4780_dma_chan {
- 	unsigned int id;
- 	struct dma_pool *desc_pool;
- 
--	u32 transfer_type;
-+	u32 transfer_type_tx, transfer_type_rx;
- 	u32 transfer_shift;
- 	struct dma_slave_config	config;
- 
-@@ -157,7 +158,7 @@ struct jz4780_dma_dev {
- };
- 
- struct jz4780_dma_filter_data {
--	u32 transfer_type;
-+	u32 transfer_type_tx, transfer_type_rx;
- 	int channel;
- };
- 
-@@ -226,9 +227,10 @@ static inline void jz4780_dma_chan_disable(struct jz4780_dma_dev *jzdma,
- 		jz4780_dma_ctrl_writel(jzdma, JZ_DMA_REG_DCKEC, BIT(chn));
- }
- 
--static struct jz4780_dma_desc *jz4780_dma_desc_alloc(
--	struct jz4780_dma_chan *jzchan, unsigned int count,
--	enum dma_transaction_type type)
-+static struct jz4780_dma_desc *
-+jz4780_dma_desc_alloc(struct jz4780_dma_chan *jzchan, unsigned int count,
-+		      enum dma_transaction_type type,
-+		      enum dma_transfer_direction direction)
- {
- 	struct jz4780_dma_desc *desc;
- 
-@@ -248,6 +250,12 @@ static struct jz4780_dma_desc *jz4780_dma_desc_alloc(
- 
- 	desc->count = count;
- 	desc->type = type;
-+
-+	if (direction == DMA_DEV_TO_MEM)
-+		desc->transfer_type = jzchan->transfer_type_rx;
-+	else
-+		desc->transfer_type = jzchan->transfer_type_tx;
-+
- 	return desc;
- }
- 
-@@ -361,7 +369,7 @@ static struct dma_async_tx_descriptor *jz4780_dma_prep_slave_sg(
- 	unsigned int i;
- 	int err;
- 
--	desc = jz4780_dma_desc_alloc(jzchan, sg_len, DMA_SLAVE);
-+	desc = jz4780_dma_desc_alloc(jzchan, sg_len, DMA_SLAVE, direction);
- 	if (!desc)
- 		return NULL;
- 
-@@ -410,7 +418,7 @@ static struct dma_async_tx_descriptor *jz4780_dma_prep_dma_cyclic(
- 
- 	periods = buf_len / period_len;
- 
--	desc = jz4780_dma_desc_alloc(jzchan, periods, DMA_CYCLIC);
-+	desc = jz4780_dma_desc_alloc(jzchan, periods, DMA_CYCLIC, direction);
- 	if (!desc)
- 		return NULL;
- 
-@@ -455,14 +463,14 @@ static struct dma_async_tx_descriptor *jz4780_dma_prep_dma_memcpy(
- 	struct jz4780_dma_desc *desc;
- 	u32 tsz;
- 
--	desc = jz4780_dma_desc_alloc(jzchan, 1, DMA_MEMCPY);
-+	desc = jz4780_dma_desc_alloc(jzchan, 1, DMA_MEMCPY, 0);
- 	if (!desc)
- 		return NULL;
- 
- 	tsz = jz4780_dma_transfer_size(jzchan, dest | src | len,
- 				       &jzchan->transfer_shift);
- 
--	jzchan->transfer_type = JZ_DMA_DRT_AUTO;
-+	desc->transfer_type = JZ_DMA_DRT_AUTO;
- 
- 	desc->desc[0].dsa = src;
- 	desc->desc[0].dta = dest;
-@@ -528,7 +536,7 @@ static void jz4780_dma_begin(struct jz4780_dma_chan *jzchan)
- 
- 	/* Set transfer type. */
- 	jz4780_dma_chn_writel(jzdma, jzchan->id, JZ_DMA_REG_DRT,
--			      jzchan->transfer_type);
-+			      jzchan->desc->transfer_type);
- 
- 	/*
- 	 * Set the transfer count. This is redundant for a descriptor-driven
-@@ -788,7 +796,8 @@ static bool jz4780_dma_filter_fn(struct dma_chan *chan, void *param)
- 		return false;
- 	}
- 
--	jzchan->transfer_type = data->transfer_type;
-+	jzchan->transfer_type_tx = data->transfer_type_tx;
-+	jzchan->transfer_type_rx = data->transfer_type_rx;
- 
- 	return true;
- }
-@@ -800,11 +809,17 @@ static struct dma_chan *jz4780_of_dma_xlate(struct of_phandle_args *dma_spec,
- 	dma_cap_mask_t mask = jzdma->dma_device.cap_mask;
- 	struct jz4780_dma_filter_data data;
- 
--	if (dma_spec->args_count != 2)
-+	if (dma_spec->args_count == 2) {
-+		data.transfer_type_tx = dma_spec->args[0];
-+		data.transfer_type_rx = dma_spec->args[0];
-+		data.channel = dma_spec->args[1];
-+	} else if (dma_spec->args_count == 3) {
-+		data.transfer_type_tx = dma_spec->args[0];
-+		data.transfer_type_rx = dma_spec->args[1];
-+		data.channel = dma_spec->args[2];
-+	} else {
- 		return NULL;
--
--	data.transfer_type = dma_spec->args[0];
--	data.channel = dma_spec->args[1];
-+	}
- 
- 	if (data.channel > -1) {
- 		if (data.channel >= jzdma->soc_data->nb_channels) {
-@@ -822,7 +837,8 @@ static struct dma_chan *jz4780_of_dma_xlate(struct of_phandle_args *dma_spec,
- 			return NULL;
- 		}
- 
--		jzdma->chan[data.channel].transfer_type = data.transfer_type;
-+		jzdma->chan[data.channel].transfer_type_tx = data.transfer_type_tx;
-+		jzdma->chan[data.channel].transfer_type_rx = data.transfer_type_rx;
- 
- 		return dma_get_slave_channel(
- 			&jzdma->chan[data.channel].vchan.chan);
--- 
-2.33.0
+So please revert this back to what you had in v4 and fix the example
+instead.
 
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: "/schemas/pinctrl/pincfg-node.yaml"
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          List of gpio pins affected by the properties specified in this subnode.
+> +        items:
+> +          oneOf:
+> +            - pattern: "^gpio([0-9]|[1-9][0-9]|10[0-9])$"
+
+I think I might have mislead you on this one. The valid gpios are gpio0
+through gpio107 according to the driver. So the last 9 should be a 7.
+
+The 109 in gpio-ranges is correct though, as that's number of gpios in
+{gpio0..gpio107 + ufs_reset}.
+
+Thanks,
+Bjorn
+
+> +            - enum: [ ufs_reset, sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data, sdc1_rclk ]
+> +        minItems: 1
+> +        maxItems: 150
+> +
+> +      function:
+> +        description:
+> +          Specify the alternative function to be configured for the specified
+> +          pins. Functions are only valid for gpio pins.
+> +        enum: [ blsp_uart1, blsp_spi1, blsp_i2c1, blsp_uim1, atest_tsens,
+> +                bimc_dte1, dac_calib0, blsp_spi8, blsp_uart8, blsp_uim8,
+> +                qdss_cti_trig_out_b, bimc_dte0, dac_calib1, qdss_cti_trig_in_b,
+> +                dac_calib2, atest_tsens2, atest_usb1, blsp_spi10, blsp_uart10,
+> +                blsp_uim10, atest_bbrx1, atest_usb13, atest_bbrx0, atest_usb12,
+> +                mdp_vsync, edp_lcd, blsp_i2c10, atest_gpsadc1, atest_usb11,
+> +                atest_gpsadc0, edp_hot, atest_usb10, m_voc, dac_gpio, atest_char,
+> +                cam_mclk, pll_bypassnl, qdss_stm7, blsp_i2c8, qdss_tracedata_b,
+> +                pll_reset, qdss_stm6, qdss_stm5, qdss_stm4, atest_usb2, cci_i2c,
+> +                qdss_stm3, dac_calib3, atest_usb23, atest_char3, dac_calib4,
+> +                qdss_stm2, atest_usb22, atest_char2, qdss_stm1, dac_calib5,
+> +                atest_usb21, atest_char1, dbg_out, qdss_stm0, dac_calib6,
+> +                atest_usb20, atest_char0, dac_calib10, qdss_stm10,
+> +                qdss_cti_trig_in_a, cci_timer4, blsp_spi6, blsp_uart6, blsp_uim6,
+> +                blsp2_spi, qdss_stm9, qdss_cti_trig_out_a, dac_calib11,
+> +                qdss_stm8, cci_timer0, qdss_stm13, dac_calib7, cci_timer1,
+> +                qdss_stm12, dac_calib8, cci_timer2, blsp1_spi, qdss_stm11,
+> +                dac_calib9, cci_timer3, cci_async, dac_calib12, blsp_i2c6,
+> +                qdss_tracectl_a, dac_calib13, qdss_traceclk_a, dac_calib14,
+> +                dac_calib15, hdmi_rcv, dac_calib16, hdmi_cec, pwr_modem,
+> +                dac_calib17, hdmi_ddc, pwr_nav, dac_calib18, pwr_crypto,
+> +                dac_calib19, hdmi_hot, dac_calib20, dac_calib21, pci_e0,
+> +                dac_calib22, dac_calib23, dac_calib24, tsif1_sync, dac_calib25,
+> +                sd_write, tsif1_error, blsp_spi2, blsp_uart2, blsp_uim2,
+> +                qdss_cti, blsp_i2c2, blsp_spi3, blsp_uart3, blsp_uim3, blsp_i2c3,
+> +                uim3, blsp_spi9, blsp_uart9, blsp_uim9, blsp10_spi, blsp_i2c9,
+> +                blsp_spi7, blsp_uart7, blsp_uim7, qdss_tracedata_a, blsp_i2c7,
+> +                qua_mi2s, gcc_gp1_clk_a, ssc_irq, uim4, blsp_spi11, blsp_uart11,
+> +                blsp_uim11, gcc_gp2_clk_a, gcc_gp3_clk_a, blsp_i2c11, cri_trng0,
+> +                cri_trng1, cri_trng, qdss_stm18, pri_mi2s, qdss_stm17, blsp_spi4,
+> +                blsp_uart4, blsp_uim4, qdss_stm16, qdss_stm15, blsp_i2c4,
+> +                qdss_stm14, dac_calib26, spkr_i2s, audio_ref, lpass_slimbus,
+> +                isense_dbg, tsense_pwm1, tsense_pwm2, btfm_slimbus, ter_mi2s,
+> +                qdss_stm22, qdss_stm21, qdss_stm20, qdss_stm19, gcc_gp1_clk_b,
+> +                sec_mi2s, blsp_spi5, blsp_uart5, blsp_uim5, gcc_gp2_clk_b,
+> +                gcc_gp3_clk_b, blsp_i2c5, blsp_spi12, blsp_uart12, blsp_uim12,
+> +                qdss_stm25, qdss_stm31, blsp_i2c12, qdss_stm30, qdss_stm29,
+> +                tsif1_clk, qdss_stm28, tsif1_en, tsif1_data, sdc4_cmd, qdss_stm27,
+> +                qdss_traceclk_b, tsif2_error, sdc43, vfr_1, qdss_stm26, tsif2_clk,
+> +                sdc4_clk, qdss_stm24, tsif2_en, sdc42, qdss_stm23, qdss_tracectl_b,
+> +                sd_card, tsif2_data, sdc41, tsif2_sync, sdc40, mdp_vsync_p_b,
+> +                ldo_en, mdp_vsync_s_b, ldo_update, blsp11_uart_tx_b, blsp11_uart_rx_b,
+> +                blsp11_i2c_sda_b, prng_rosc, blsp11_i2c_scl_b, uim2, uim1, uim_batt,
+> +                pci_e2, pa_indicator, adsp_ext, ddr_bist, qdss_tracedata_11,
+> +                qdss_tracedata_12, modem_tsync, nav_dr, nav_pps, pci_e1, gsm_tx,
+> +                qspi_cs, ssbi2, ssbi1, mss_lte, qspi_clk, qspi0, qspi1, qspi2, qspi3,
+> +                gpio ]
+> +
+> +      drive-strength:
+> +        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+> +        default: 2
+> +        description:
+> +          Selects the drive strength for the specified pins, in mA.
+> +
+> +      bias-pull-down: true
+> +
+> +      bias-pull-up: true
+> +
+> +      bias-disable: true
+> +
+> +      output-high: true
+> +
+> +      output-low: true
+> +
+> +    required:
+> +      - pins
+> +      - function
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +  - gpio-ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +        tlmm: pinctrl@f100000 {
+> +                compatible = "qcom,sdx65-tlmm";
+> +                reg = <0x03000000 0xdc2000>;
+> +                gpio-controller;
+> +                #gpio-cells = <2>;
+> +                gpio-ranges = <&tlmm 0 0 109>;
+> +                interrupt-controller;
+> +                #interrupt-cells = <2>;
+> +                interrupts = <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +                serial-pins {
+> +                    pins = "gpio8", "gpio9";
+> +                    function = "blsp_uart3";
+> +                    drive-strength = <2>;
+> +                    bias-disable;
+> +                };
+> +         };
+> +...
+> -- 
+> 2.33.1
+> 
