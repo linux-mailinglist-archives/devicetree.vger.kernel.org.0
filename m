@@ -2,101 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A7B346A614
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 20:53:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D3E446A66F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 20:59:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348710AbhLFT5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 14:57:25 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:33413 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348599AbhLFT5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 14:57:21 -0500
-Received: by mail-ot1-f42.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso15157433otf.0;
-        Mon, 06 Dec 2021 11:53:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=FEXfkV7DzfDOJwDiaMHFm7upzA8Sh7nLlaXOwLGj1BE=;
-        b=VedFdf0VhLZWwtlF9+GyktKViRKs7uoBop5BDlwjKHvA5Exifb+tw+8EkBaoo59ead
-         jhY6hStCWlIokNklvuowFHQzRMJKFUSUpbNtRBlpidCddwklO9ix361M1QXEOZIZ3doF
-         Zurrrj1moiXGoyejG+eWgo8oc1bCwN3KcD9oG3EegxyfD76ZDO9Hz+Z6i5CUrlIfmr7q
-         uQ+f+h4MyTSuEdNOFKbXQPKI9n4/0s7HNF4x7B8i1VHTj/kWXttYpF45SxzV5ZhRI0In
-         NUgYg6YB3BQcOOk+jeFFIVsNxQ8lHrJeOMkT416qzF8LSrz1UUn6oQ+IUj4Kl519e12Y
-         xNoA==
-X-Gm-Message-State: AOAM533b36oi2syD1kzWBXZcLW8kG0ZNfsuVdajvCZU3b0wI07DbGhXr
-        +dfuaRVkwPVBDsQJLXZOgXBTSzSuvQ==
-X-Google-Smtp-Source: ABdhPJxqPcwZqRSvz/gvJxol+w0vc9LVGdjC/iJystk++DcVt34euIEQfUOhOsHSNlSNtMeenxx9rw==
-X-Received: by 2002:a9d:67d5:: with SMTP id c21mr31326344otn.128.1638820432263;
-        Mon, 06 Dec 2021 11:53:52 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e28sm2894339oiy.10.2021.12.06.11.53.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 11:53:51 -0800 (PST)
-Received: (nullmailer pid 2482589 invoked by uid 1000);
-        Mon, 06 Dec 2021 19:53:49 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Mihail Chindris <mihail.chindris@analog.com>
-Cc:     lars@metafoo.de, linux-iio@vger.kernel.org,
-        alexandru.ardelean@analog.com, broonie@kernel.org,
-        Michael.Hennerich@analog.com, nuno.sa@analog.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, jic23@kernel.org, dragos.bogdan@analog.com
-In-Reply-To: <20211206163529.3528-1-mihail.chindris@analog.com>
-References: <20211206163529.3528-1-mihail.chindris@analog.com>
-Subject: Re: [RESEND, PATCH v6 1/2] dt-bindings: iio: dac: Add adi,ad3552r.yaml
-Date:   Mon, 06 Dec 2021 13:53:49 -0600
-Message-Id: <1638820429.528698.2482588.nullmailer@robh.at.kernel.org>
+        id S232169AbhLFUCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 15:02:50 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:57778 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229479AbhLFUCt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 15:02:49 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 52D01CE180A;
+        Mon,  6 Dec 2021 19:59:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D4CDC341C2;
+        Mon,  6 Dec 2021 19:59:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638820757;
+        bh=T4aB3iAFuCBw5bew9OWrYw7I9uaZkV0Nov/YMV/ousQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=hggLGZuJBaglUu21+PxtOArN2IJpgSi1HzE1sLzsyjwdljoC7yy37JsKvtJy0Tx/R
+         iFoaNcl/1BNcAqz1uPl/Xvzd7JDoczGU1Uw5wXdQoIZJM4KEKG+kzZ23nyGi3vGXFJ
+         zjWXxhS61r//pEakBVNdmdBQFaPICzmVcKWlTbdYIC/289jNK0v8S9FUbhFmhd0hgl
+         9anBPL+p1iE8E1pX8sTzzaDLx9Kgnh1Zt5wPpGaKEDg79lMCh71psuPSBYJBUftXpA
+         lwsnk7qN9wPt/a4zUe4yPnF/b5dwavFbn6PspJ08/yFzVy9n/L8guX2Vb3EEHjH0o2
+         j73cC02BYNXkQ==
+Date:   Mon, 6 Dec 2021 13:59:15 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v1 04/10] PCI: qcom: do not duplicate qcom_pcie_cfg
+ fields in qcom_pcie struct
+Message-ID: <20211206195915.GA6596@bhelgaas>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211202141726.1796793-5-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Dec 2021 16:35:29 +0000, Mihail Chindris wrote:
-> Add documentation for ad3552r
+On Thu, Dec 02, 2021 at 05:17:20PM +0300, Dmitry Baryshkov wrote:
+> In preparation to adding more flags to configuration data, use struct
+> qcom_pcie_cfg directly inside struct qcom_pcie, rather than duplicating
+> all its fields. This would save us from the boilerplate code that just
+> copies flags values from one sruct to another one.
 > 
-> Signed-off-by: Mihail Chindris <mihail.chindris@analog.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../bindings/iio/dac/adi,ad3552r.yaml         | 190 ++++++++++++++++++
->  1 file changed, 190 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+>  drivers/pci/controller/dwc/pcie-qcom.c | 34 ++++++++++++--------------
+>  1 file changed, 16 insertions(+), 18 deletions(-)
 > 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 3bee901c4df7..64f762cdbc7d 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -204,8 +204,7 @@ struct qcom_pcie {
+>  	union qcom_pcie_resources res;
+>  	struct phy *phy;
+>  	struct gpio_desc *reset;
+> -	const struct qcom_pcie_ops *ops;
+> -	unsigned int pipe_clk_need_muxing:1;
+> +	struct qcom_pcie_cfg cfg;
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+A common strategy is to simply save the pointer to the match data,
+e.g.,
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml:64:11: [warning] wrong indentation: expected 8 but found 10 (indentation)
-./Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml:102:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml:104:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+    struct imx6_pcie {
+      ...
+      const struct imx6_pcie_drvdata *drvdata;
+    };
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dts:21.17-27: Warning (reg_format): /example-0/ad3552r:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dts:24.25-35: Warning (reg_format): /example-0/ad3552r/channel@0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dts:28.25-35: Warning (reg_format): /example-0/ad3552r/channel@1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dts:19.17-36.13: Warning (unit_address_vs_reg): /example-0/ad3552r: node has a reg or ranges property, but no unit name
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dts:23.27-26.19: Warning (avoid_default_addr_size): /example-0/ad3552r/channel@0: Relying on default #address-cells value
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dts:23.27-26.19: Warning (avoid_default_addr_size): /example-0/ad3552r/channel@0: Relying on default #size-cells value
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dts:27.27-35.17: Warning (avoid_default_addr_size): /example-0/ad3552r/channel@1: Relying on default #address-cells value
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dts:27.27-35.17: Warning (avoid_default_addr_size): /example-0/ad3552r/channel@1: Relying on default #size-cells value
-Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
+    imx6_pcie_probe()
+      imx6_pcie->drvdata = of_device_get_match_data(dev);
+    
 
-doc reference errors (make refcheckdocs):
+    struct ls_pcie {
+      ...
+      const struct ls_pcie_drvdata *drvdata;
+    };
 
-See https://patchwork.ozlabs.org/patch/1564044
+    ls_pcie_probe()
+      pcie->drvdata = of_device_get_match_data(dev);
+    
+    
+    struct tegra_pcie {
+      ...
+      const struct tegra_pcie_soc *soc;
+    };
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+    tegra_pcie_probe()
+      pcie->soc = of_device_get_match_data(dev);
+    
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+    struct mtk_pcie {
+      ...
+      const struct mtk_pcie_soc *soc;
+    };
 
-pip3 install dtschema --upgrade
+    mtk_pcie_probe()
+      pcie->soc = of_device_get_match_data(dev);
 
-Please check and re-submit.
+Bonus points if you name the pointer the same, e.g., "soc" or maybe
+"drvdata" (although this one is possibly confusing with
+platform_set_drvdata(), which is something different).
 
+>  };
+>  
+>  #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
+> @@ -229,8 +228,8 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
+>  	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+>  
+>  	/* Enable Link Training state machine */
+> -	if (pcie->ops->ltssm_enable)
+> -		pcie->ops->ltssm_enable(pcie);
+> +	if (pcie->cfg.ops->ltssm_enable)
+> +		pcie->cfg.ops->ltssm_enable(pcie);
+>  
+>  	return 0;
+>  }
+> @@ -1176,7 +1175,7 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	if (pcie->pipe_clk_need_muxing) {
+> +	if (pcie->cfg.pipe_clk_need_muxing) {
+>  		res->pipe_clk_src = devm_clk_get(dev, "pipe_mux");
+>  		if (IS_ERR(res->pipe_clk_src))
+>  			return PTR_ERR(res->pipe_clk_src);
+> @@ -1209,7 +1208,7 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
+>  	}
+>  
+>  	/* Set TCXO as clock source for pcie_pipe_clk_src */
+> -	if (pcie->pipe_clk_need_muxing)
+> +	if (pcie->cfg.pipe_clk_need_muxing)
+>  		clk_set_parent(res->pipe_clk_src, res->ref_clk_src);
+>  
+>  	ret = clk_bulk_prepare_enable(res->num_clks, res->clks);
+> @@ -1287,7 +1286,7 @@ static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+>  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+>  
+>  	/* Set pipe clock as clock source for pcie_pipe_clk_src */
+> -	if (pcie->pipe_clk_need_muxing)
+> +	if (pcie->cfg.pipe_clk_need_muxing)
+>  		clk_set_parent(res->pipe_clk_src, res->phy_pipe_clk);
+>  
+>  	return clk_prepare_enable(res->pipe_clk);
+> @@ -1387,7 +1386,7 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
+>  
+>  	qcom_ep_reset_assert(pcie);
+>  
+> -	ret = pcie->ops->init(pcie);
+> +	ret = pcie->cfg.ops->init(pcie);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -1395,16 +1394,16 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
+>  	if (ret)
+>  		goto err_deinit;
+>  
+> -	if (pcie->ops->post_init) {
+> -		ret = pcie->ops->post_init(pcie);
+> +	if (pcie->cfg.ops->post_init) {
+> +		ret = pcie->cfg.ops->post_init(pcie);
+>  		if (ret)
+>  			goto err_disable_phy;
+>  	}
+>  
+>  	qcom_ep_reset_deassert(pcie);
+>  
+> -	if (pcie->ops->config_sid) {
+> -		ret = pcie->ops->config_sid(pcie);
+> +	if (pcie->cfg.ops->config_sid) {
+> +		ret = pcie->cfg.ops->config_sid(pcie);
+>  		if (ret)
+>  			goto err;
+>  	}
+> @@ -1413,12 +1412,12 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
+>  
+>  err:
+>  	qcom_ep_reset_assert(pcie);
+> -	if (pcie->ops->post_deinit)
+> -		pcie->ops->post_deinit(pcie);
+> +	if (pcie->cfg.ops->post_deinit)
+> +		pcie->cfg.ops->post_deinit(pcie);
+>  err_disable_phy:
+>  	phy_power_off(pcie->phy);
+>  err_deinit:
+> -	pcie->ops->deinit(pcie);
+> +	pcie->cfg.ops->deinit(pcie);
+>  
+>  	return ret;
+>  }
+> @@ -1562,8 +1561,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  		return -EINVAL;
+>  	}
+>  
+> -	pcie->ops = pcie_cfg->ops;
+> -	pcie->pipe_clk_need_muxing = pcie_cfg->pipe_clk_need_muxing;
+> +	pcie->cfg = *pcie_cfg;
+>  
+>  	pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
+>  	if (IS_ERR(pcie->reset)) {
+> @@ -1589,7 +1587,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  		goto err_pm_runtime_put;
+>  	}
+>  
+> -	ret = pcie->ops->get_resources(pcie);
+> +	ret = pcie->cfg.ops->get_resources(pcie);
+>  	if (ret)
+>  		goto err_pm_runtime_put;
+>  
+> -- 
+> 2.33.0
+> 
