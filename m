@@ -2,111 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 870DD469703
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 14:29:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E88846970B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 14:30:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244482AbhLFNdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 08:33:19 -0500
-Received: from foss.arm.com ([217.140.110.172]:57506 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S243962AbhLFNdT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Dec 2021 08:33:19 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 521C46D;
-        Mon,  6 Dec 2021 05:29:50 -0800 (PST)
-Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6C0ED3F73D;
-        Mon,  6 Dec 2021 05:29:48 -0800 (PST)
-Date:   Mon, 6 Dec 2021 13:29:40 +0000
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Jim Quinlan <jim2101024@gmail.com>, Rob Herring <robh@kernel.org>
-Cc:     linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Saenz Julienne <nsaenzjulienne@suse.de>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
+        id S244511AbhLFNeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 08:34:01 -0500
+Received: from mail-ua1-f53.google.com ([209.85.222.53]:46606 "EHLO
+        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244021AbhLFNdz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 08:33:55 -0500
+Received: by mail-ua1-f53.google.com with SMTP id 30so901487uag.13;
+        Mon, 06 Dec 2021 05:30:27 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gZ7XbAA0e9TFYtAk7l2XzyZx3kK4we/eIgTQkb/6fZc=;
+        b=Iv5nUPUDmqsU1lKOj9OxqOthBBuwjxt2OsGwDSLMt93U0xbBHVl1fNw6TqxqBZhSNH
+         eAgHZzZdMsMiPLlW1eL1gxbKO5IM+I/1KUkDQNaBnmKDaUxFslfrvg6Vx52wrM8M4h9a
+         cALEc2fHRYJbv4kSvOkk9WMuqLacQVlhO8gHRvgh4QMON/UWI2oQycLW1q0WDoxj82jJ
+         yLV2EsN7igZU1gEd4Jk3gvdDHllUnMvwz7Dsq5SBHi4jRfIXMNBFTlg0fjmPCeQBIW07
+         EpYSGbMo9iAQNxxyyteWzYWMuY13x/btqrpBB8zzAfjlqvhO0xMdkOIcp7RhkiMhFjiu
+         AYBg==
+X-Gm-Message-State: AOAM530EIWdsSq/r26AHXhtUxVMnztp0QHk5a2lqXlPvMCQudE+009Gc
+        Cbn6HQEY35lNkanM0GJHfu30yi9c2++tXw==
+X-Google-Smtp-Source: ABdhPJxz0XkPmFCZJQKGEwTosH1zqbln6bqXlrLk1sAoVfuYsaT4gHh0OWuG2YarYTfgU4XbaRDnkg==
+X-Received: by 2002:ab0:4868:: with SMTP id c37mr40664941uad.33.1638797425196;
+        Mon, 06 Dec 2021 05:30:25 -0800 (PST)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id j15sm4165454vsp.8.2021.12.06.05.30.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Dec 2021 05:30:25 -0800 (PST)
+Received: by mail-ua1-f44.google.com with SMTP id i6so19478238uae.6;
+        Mon, 06 Dec 2021 05:30:25 -0800 (PST)
+X-Received: by 2002:a05:6102:c89:: with SMTP id f9mr35981830vst.68.1638797423928;
+ Mon, 06 Dec 2021 05:30:23 -0800 (PST)
+MIME-Version: 1.0
+References: <20211203115154.31864-1-biju.das.jz@bp.renesas.com> <20211203115154.31864-6-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20211203115154.31864-6-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 6 Dec 2021 14:30:12 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVQJ-AtrNZYe2MaOfqL+7RShXRcOXBfwkjuaWkikj3tJg@mail.gmail.com>
+Message-ID: <CAMuHMdVQJ-AtrNZYe2MaOfqL+7RShXRcOXBfwkjuaWkikj3tJg@mail.gmail.com>
+Subject: Re: [PATCH 5/6] arm64: dts: renesas: r9a07g044: Add Mali-G31 GPU node
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v9 3/7] dt-bindings: PCI: Add bindings for Brcmstb EP
- voltage regulators
-Message-ID: <20211206132940.GA19176@lpieralisi>
-References: <20211119220756.18628-1-jim2101024@gmail.com>
- <20211119220756.18628-4-jim2101024@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211119220756.18628-4-jim2101024@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 19, 2021 at 05:07:50PM -0500, Jim Quinlan wrote:
-> Add bindings for Brcmstb EP voltage regulators.  A new mechanism is to be
-> added to the Linux PCI subsystem that will allocate and turn on/off
-> regulators.  These are standard regulators -- vpcie12v, vpcie3v3, and
-> vpcie3v3aux -- placed in the DT in the bridge node under the host bridge
-> device.
-> 
-> The use of a regulator property in the pcie EP subnode such as
-> "vpcie12v-supply" depends on a pending pullreq to the pci-bus.yaml
-> file at
-> 
-> https://github.com/devicetree-org/dt-schema/pull/63
-> 
-> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
-> ---
->  .../bindings/pci/brcm,stb-pcie.yaml           | 23 +++++++++++++++++++
->  1 file changed, 23 insertions(+)
+On Fri, Dec 3, 2021 at 12:52 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add Mali-G31 GPU node to SoC DTSI.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Hi Rob,
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-is it Ok to pull this patch ? I would like to merge the series, please
-let me know.
+Gr{oetje,eeting}s,
 
-Thanks,
-Lorenzo
+                        Geert
 
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index 22f2ef446f18..7113a7f726e7 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -159,5 +159,28 @@ examples:
->                                   <0x42000000 0x1 0x80000000 0x3 0x00000000 0x0 0x80000000>;
->                      brcm,enable-ssc;
->                      brcm,scb-sizes =  <0x0000000080000000 0x0000000080000000>;
-> +
-> +                    /* PCIe bridge */
-> +                    pci@0,0 {
-> +                            #address-cells = <3>;
-> +                            #size-cells = <2>;
-> +                            reg = <0x0 0x0 0x0 0x0 0x0>;
-> +                            compatible = "pciclass,0604";
-> +                            device_type = "pci";
-> +                            vpcie3v3-supply = <&vreg7>;
-> +                            ranges;
-> +
-> +                            /* PCIe endpoint */
-> +                            pci-ep@0,0 {
-> +                                    assigned-addresses =
-> +                                        <0x82010000 0x0 0xf8000000 0x6 0x00000000 0x0 0x2000>;
-> +                                    reg = <0x0 0x0 0x0 0x0 0x0>;
-> +                                    compatible = "pci14e4,1688";
-> +                                    #address-cells = <3>;
-> +                                    #size-cells = <2>;
-> +
-> +                                    ranges;
-> +                            };
-> +                    };
->              };
->      };
-> -- 
-> 2.17.1
-> 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
