@@ -2,89 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B0374699FC
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:02:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEB7E469A61
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:04:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345681AbhLFPEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 10:04:47 -0500
-Received: from relmlor1.renesas.com ([210.160.252.171]:49581 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1345215AbhLFPEH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:04:07 -0500
-X-IronPort-AV: E=Sophos;i="5.87,291,1631545200"; 
-   d="scan'208";a="102563461"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 07 Dec 2021 00:00:38 +0900
-Received: from localhost.localdomain (unknown [10.226.93.57])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 1C6AF43B6D95;
-        Tue,  7 Dec 2021 00:00:35 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 3/3] arm64: dts: renesas: rzg2l-smarc-som: Add vdd core regulator
-Date:   Mon,  6 Dec 2021 15:00:25 +0000
-Message-Id: <20211206150025.15703-4-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211206150025.15703-1-biju.das.jz@bp.renesas.com>
-References: <20211206150025.15703-1-biju.das.jz@bp.renesas.com>
+        id S1346239AbhLFPHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 10:07:30 -0500
+Received: from mswedge1.sunplus.com ([60.248.182.113]:37026 "EHLO
+        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1346248AbhLFPGM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:06:12 -0500
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.112
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(5126:0:AUTH_RELAY)
+        (envelope-from <tony.huang@sunplus.com>); Mon, 06 Dec 2021 23:02:38 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Mon, 6 Dec 2021 23:02:39 +0800
+Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
+ ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Mon, 6 Dec 2021
+ 23:02:39 +0800
+From:   =?utf-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+CC:     Tony Huang <tonyhuang.sunplus@gmail.com>,
+        "derek.kiernan@xilinx.com" <derek.kiernan@xilinx.com>,
+        "dragan.cvetic@xilinx.com" <dragan.cvetic@xilinx.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Subject: RE: [PATCH v2 2/2] misc: Add iop driver for Sunplus SP7021
+Thread-Topic: [PATCH v2 2/2] misc: Add iop driver for Sunplus SP7021
+Thread-Index: AQHX5/jPsCYr7BDcdE2zYDyk9FgNIqwgDd6AgATJzeD//7FbgIAAnEbw
+Date:   Mon, 6 Dec 2021 15:02:38 +0000
+Message-ID: <b16c466e2ce04687a5f0634c5294d226@sphcmbx02.sunplus.com.tw>
+References: <cover.1638499659.git.tonyhuang.sunplus@gmail.com>
+ <9bb79f74ff1b08a5f9a1f6707b3b41484506468a.1638499659.git.tonyhuang.sunplus@gmail.com>
+ <Yanzu7/J75n/OCUY@kroah.com>
+ <4bd765590e3e4a5da2cf79be921bac5b@sphcmbx02.sunplus.com.tw>
+ <Ya22CT1pRO6NCYrC@kroah.com>
+In-Reply-To: <Ya22CT1pRO6NCYrC@kroah.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.54]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add vdd core regulator (1.1 V).
-
-This patch add regulator support for gpu.
-
-On the H/W manual nothing mentioned about gpu
-regulator. So using vdd core regulator for gpu.
-
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v1->v2:
- * Added Rb tag from Geert.
----
- arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-index a4fc9517a0de..4ce799314f0f 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-@@ -52,6 +52,15 @@
- 		regulator-always-on;
- 	};
- 
-+	reg_1p1v: regulator-vdd-core {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-1.1V";
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1100000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
- 	vccq_sdhi0: regulator-vccq-sdhi0 {
- 		compatible = "regulator-gpio";
- 
-@@ -130,6 +139,10 @@
- 	clock-frequency = <24000000>;
- };
- 
-+&gpu {
-+	mali-supply = <&reg_1p1v>;
-+};
-+
- &ostm1 {
- 	status = "okay";
- };
--- 
-2.17.1
-
+RGVhciBHcmVnIEtIOg0KDQo+ID4gPiBBbHNvLCBubyBuZWVkIGZvciBhIC5oIGZpbGUgZm9yIGEg
+ZHJpdmVyIHRoYXQgb25seSBoYXMgb25lIC5jIGZpbGUuDQo+ID4gPg0KPiA+DQo+ID4gSSBuZWVk
+IHRvIGtlZXAgc3VuZ2x1c19pb3AuaC4gT3RoZXIgZmlsZXMgd2lsbCB1c2UNCj4gPiBzcF9pb3Bf
+cGxhdGZvcm1fZHJpdmVyX3Bvd2Vyb2ZmKHZvaWQpIGluIHBvd2Vyb2ZmIGZsb3cuDQo+IA0KPiBX
+aGF0IG90aGVyIGZpbGVzPyAgVGhhdCBpcyBub3QgaW5jbHVkZWQgaGVyZSwgbm9yIHNob3VsZCBv
+dGhlciBkcml2ZXJzIGJlDQo+IG1ha2luZyB0aGF0IGNhbGwsIHVzZSB0aGUgbm9ybWFsIHBvd2Vy
+b2ZmIGxvZ2ljLg0KPiANCg0KT2theSwgSSB3aWxsIGNhbGwgdGhlIHNwX2lvcF9wbGF0Zm9ybV9k
+cml2ZXJfcG93ZXJvZmYodm9pZCkgdGhyb3VnaCBub3JtYWwgcG93ZXJvZmYgbG9naWMuDQoNCg==
