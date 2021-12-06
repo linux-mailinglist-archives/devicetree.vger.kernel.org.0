@@ -2,59 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A2A246A8E7
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 21:58:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38B7746A902
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 22:02:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349971AbhLFVB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 16:01:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54714 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349944AbhLFVB0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 16:01:26 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28D39C061746;
-        Mon,  6 Dec 2021 12:57:57 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 97999B81084;
-        Mon,  6 Dec 2021 20:57:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0BB2C341C2;
-        Mon,  6 Dec 2021 20:57:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638824274;
-        bh=d3oHX7kwFRR0VxHG4lHD0ytEtwUn0m1TsPaS5dtfOAk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=BGCoMWjKZPsPgKSVWKOV5cmPRf2ofEkg1mBluNu/XYWiWolSBI7qyqQ9MPu0seWyi
-         YVnwbCbDxFAecIy30/5tMjOQSTWhCidgy2GUsNcA5xsXoZeS8HrsPTTCRoPvzMoaBI
-         dcZMgHSo7PmR+TDPErAKm8ccPEvvtq8LgdDuSj0mc8I3dSFuPhR+/ovrg38jia4SkO
-         R2eXSW3LGXQPEMPrvFWBhcgRhroJ73IsGZdGVR42/dpU9wJjwMjVU+MsuaTioAtuG4
-         h8YH24BWD4vtu/m8oAWAeVCfJA1DtQCT25wdA5AXIR3S8uvI3g0ecq4dUl8hLKPYw9
-         FOAzRun4yvE6Q==
-Date:   Mon, 6 Dec 2021 12:57:53 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: mdio: Allow any child node name
-Message-ID: <20211206125753.6a5e837c@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20211206174139.2296497-1-robh@kernel.org>
-References: <20211206174139.2296497-1-robh@kernel.org>
+        id S233575AbhLFVFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 16:05:54 -0500
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:46054 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231419AbhLFVFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 16:05:54 -0500
+Received: by mail-oi1-f182.google.com with SMTP id 7so23722247oip.12;
+        Mon, 06 Dec 2021 13:02:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2oyty0xsfvWrj6OhLFZNGZUWW1B8YFU5eRdWHSgy7PU=;
+        b=4F5gAx53T53CjEiED9+rus1WqRh8/wbVtz4FnltunhTiKC0fbbSk0xN1XaexLP6IYH
+         3HMyT3Cwll1P3x/QImftg6amol/NvaUgWM0fastEB+j6/d3Vx7rJ/5wiid1RMJ/yy8oo
+         iWK3BAEutBCF4ghR/ak1e+MSb5JSnOFd3au/axspXKfYW6D0PezeAQt9KB3Ngsgtvdju
+         Bnkk6hyJUYkAfC8tYxSH0+TiNEybfIQCzYI1i5S2yuRSIZa93HjtXBZj33gO7kEj+jYI
+         orhMOkdNmsE1LcqXGxN97BZyDxyEPaJST3AosGV5TUP/NHqBhF3aNGjOqw05xDvGzH/T
+         vY6w==
+X-Gm-Message-State: AOAM530NODCEf2yjIsrM9cTNZ8gDxN4VNsjH0BmJPW8qDCgTxoy3R3Tk
+        Ibr7hl+fpqsomCQ8YgjK6g==
+X-Google-Smtp-Source: ABdhPJyfMRSShzT8CkbeQSkFjn7ORJQDpLrQTHZobuuL2O9psekoj85E7ZUONGsrgCATLaREROS/5A==
+X-Received: by 2002:a05:6808:209b:: with SMTP id s27mr1079807oiw.43.1638824544805;
+        Mon, 06 Dec 2021 13:02:24 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 3sm2825327oif.12.2021.12.06.13.02.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Dec 2021 13:02:24 -0800 (PST)
+Received: (nullmailer pid 2578233 invoked by uid 1000);
+        Mon, 06 Dec 2021 21:02:23 -0000
+Date:   Mon, 6 Dec 2021 15:02:23 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chanho Park <chanho61.park@samsung.com>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v3 1/5] dt-bindings: soc: samsung: Add Exynos USI bindings
+Message-ID: <Ya56X9CJrXWw8rm3@robh.at.kernel.org>
+References: <20211204195757.8600-1-semen.protsenko@linaro.org>
+ <20211204195757.8600-2-semen.protsenko@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211204195757.8600-2-semen.protsenko@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  6 Dec 2021 11:41:39 -0600 Rob Herring wrote:
-> An MDIO bus can have devices other than ethernet PHYs on it, so it
-> should allow for any node name rather than just 'ethernet-phy'.
+On Sat, 04 Dec 2021 21:57:53 +0200, Sam Protsenko wrote:
+> Add constants for choosing USIv2 configuration mode in device tree.
+> Those are further used in USI driver to figure out which value to write
+> into SW_CONF register. Also document USIv2 IP-core bindings.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+> Changes in v3:
+>   - Removed usi0 "status" property from the example
+>   - Made child nodes pattern allow only serial/spi/i2c node names
+>   - Moved all USIv2 specific properties under corresponding "if:"
+>   - Renamed compatible from samsung,exynos-usi-v2 to samsung,exynos850-usi
+>   - Related: submitted separate patch removing warning on
+>     "make dt_binding_check" for USI bindings
+> 
+> Changes in v2:
+>   - Combined dt-bindings doc and dt-bindings header patches
+>   - Added i2c node to example in bindings doc
+>   - Added mentioning of shared internal circuits
+>   - Added USI_V2_NONE value to bindings header
+> 
+>  .../bindings/soc/samsung/exynos-usi.yaml      | 159 ++++++++++++++++++
+>  include/dt-bindings/soc/samsung,exynos-usi.h  |  17 ++
+>  2 files changed, 176 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+>  create mode 100644 include/dt-bindings/soc/samsung,exynos-usi.h
+> 
 
-Hi Rob, what's your preference for merging these?
+Reviewed-by: Rob Herring <robh@kernel.org>
