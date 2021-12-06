@@ -2,66 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 059B24699ED
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:02:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B08D04699EA
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:02:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345579AbhLFPEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 10:04:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52190 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345381AbhLFPDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:03:47 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ECF9C0698DD;
-        Mon,  6 Dec 2021 07:00:10 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 4FBD11F44803
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1638802808; bh=GdCGPmly0UuQ6WjSsNws2p+iDG85TsB+eBdXAeJYWKo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=K0fNGcFVKt7O287APEpkAIFNWACJowOJtubES7YzU18wZK9tNnX6ZS0kbADSNKC+Y
-         am0NkVRHfnoQTQJlzPZjKnz30qgm4Whf1fMoJ36ZW7tuuwUON8yNfV5KB1fLGF4qLz
-         wRT4fRML+iDArFocVdBPGhXWssHAcEDtuY3zEl7XnqGMC9g8Nu3Z34O6qjezjYx2+p
-         Jm3G8SkDOksXBYgZgWNmR8ZXro02agCanHvdBQG3jB7N6mGf3ioJSxk1lPrjf/msEu
-         rhasgGlGOHR52V1irMnWJcut59XIHV0ggwnbxyB9JXfc+GJvqg6CTW6oYAXy015cKw
-         WjK2fAddW3VRw==
-Subject: Re: [PATCH 4/4] memory: mtk-smi: mt8186: Add smi support
-To:     Yong Wu <yong.wu@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com, lc.kan@mediatek.com, yi.kuo@mediatek.com,
-        anthony.huang@mediatek.com
-References: <20211203064027.14993-1-yong.wu@mediatek.com>
- <20211203064027.14993-5-yong.wu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <417ec223-b49a-c8dc-c53a-7831cca4d2d1@collabora.com>
-Date:   Mon, 6 Dec 2021 16:00:04 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20211203064027.14993-5-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1345142AbhLFPE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 10:04:28 -0500
+Received: from relmlor2.renesas.com ([210.160.252.172]:37142 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1345158AbhLFPEB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:04:01 -0500
+X-IronPort-AV: E=Sophos;i="5.87,291,1631545200"; 
+   d="scan'208";a="102982266"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 07 Dec 2021 00:00:30 +0900
+Received: from localhost.localdomain (unknown [10.226.93.57])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id DC6BE43B6D99;
+        Tue,  7 Dec 2021 00:00:27 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v2 0/3] Add Mali-G31 GPU support for RZ/G2L SoC
+Date:   Mon,  6 Dec 2021 15:00:22 +0000
+Message-Id: <20211206150025.15703-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 03/12/21 07:40, Yong Wu ha scritto:
-> Add mt8186 SMI support.
-> 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+RZ/G2L SoC embeds Mali-G31 bifrost GPU.
+This patch series aims to add support for the same
 
+It is tested with latest drm-misc-next + mesa 21.3.0 + 
+out of tree patch for (du + DSI) + 
+platfrom mesa configuration for RZ/G2L.
 
-Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Tested the kmscube application.
+
+test logs:-
+root@smarc-rzg2l:~# kmscube
+Using display 0xaaaadb6e7d30 with EGL version 1.4
+===================================
+EGL information:
+  version: "1.4"
+  vendor: "Mesa Project"
+.....
+===================================
+OpenGL ES 2.x information:
+  version: "OpenGL ES 3.1 Mesa 21.3.0"
+  shading language version: "OpenGL ES GLSL ES 3.10"
+  vendor: "Panfrost"
+  renderer: "Mali-G31 (Panfrost)"
+  ....
+===================================
+^C
+
+root@smarc-rzg2l:~# cat /proc/interrupts | grep panfrost
+ 82:     587287          0     GICv3 186 Level     panfrost-job
+ 83:          2          0     GICv3 187 Level     panfrost-mmu
+ 84:          8          0     GICv3 185 Level     panfrost-gpu
+
+root@smarc-rzg2l:~# cat /sys/class/devfreq/11840000.gpu/trans_stat
+     From  :   To
+           :  50000000  62500000 100000000 125000000 200000000 250000000 400000000 500000000   time(ms)
+*  50000000:         0         0         0         0         0         0         0         0        72
+   62500000:         0         0         0         0         0         0         0         0         0
+  100000000:         0         0         0         0         0         0         0         0         0
+  125000000:         0         0         0         0         0         0         0         1        68
+  200000000:         0         0         0         0         0         0         0         1        68
+  250000000:         1         0         0         0         0         0         0         0        84
+  400000000:         0         0         0         0         0         0         0         0         0
+  500000000:         0         0         0         1         1         1         0         0       736
+Total transition : 6
+root@smarc-rzg2l:~# kmscube
+Using display 0xaaaaf7a421b0 with EGL version 1.4
+===================================
+EGL information:
+  version: "1.4"
+  vendor: "Mesa Project"
+  .....
+===================================
+OpenGL ES 2.x information:
+  version: "OpenGL ES 3.1 Mesa 21.3.0"
+  shading language version: "OpenGL ES GLSL ES 3.10"
+  vendor: "Panfrost"
+  renderer: "Mali-G31 (Panfrost)"
+  ......
+===================================
+
+root@smarc-rzg2l:~#
+root@smarc-rzg2l:~#
+root@smarc-rzg2l:~# cat /sys/class/devfreq/11840000.gpu/trans_stat
+     From  :   To
+           :  50000000  62500000 100000000 125000000 200000000 250000000 400000000 500000000   time(ms)
+*  50000000:         0         0         0         0         0         0         0         1       144
+   62500000:         0         0         0         0         0         0         0         0         0
+  100000000:         0         0         0         0         0         0         0         9       524
+  125000000:         0         0         9         0         0         0         0         3      2544
+  200000000:         0         0         0        11         0         0         0        46      3304
+  250000000:         1         0         0         0        33         0         0         0      7496
+  400000000:         0         0         0         0        16        19         0         0      2024
+  500000000:         1         0         0         1         8        15        35         0      4032
+Total transition : 208
+
+Platform specific Mesa patch for RZ/G2L
+---------------------
+src/gallium/targets/dri/meson.build
++               'rcar-du_dri.so',
+src/gallium/targets/dri/target.c
++DEFINE_LOADER_DRM_ENTRYPOINT(rcar_du)
+
+V1->V2:
+ * Removed clock patches from this seies, as it is accepted for 5.17
+ * Added Rb tag from Geert
+ * Added reset-names required property for RZ/G2L and updated the board dtsi.
+
+Biju Das (3):
+  dt-bindings: gpu: mali-bifrost: Document RZ/G2L support
+  arm64: dts: renesas: r9a07g044: Add Mali-G31 GPU node
+  arm64: dts: renesas: rzg2l-smarc-som: Add vdd core regulator
+
+ .../bindings/gpu/arm,mali-bifrost.yaml        | 39 ++++++++++-
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    | 65 +++++++++++++++++++
+ .../boot/dts/renesas/rzg2l-smarc-som.dtsi     | 13 ++++
+ 3 files changed, 115 insertions(+), 2 deletions(-)
+
+-- 
+2.17.1
+
