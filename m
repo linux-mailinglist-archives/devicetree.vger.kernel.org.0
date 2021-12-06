@@ -2,113 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DEAA468F30
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 03:34:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F97468F3B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 03:37:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234450AbhLFChw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Dec 2021 21:37:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbhLFChw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 21:37:52 -0500
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37FB6C0613F8
-        for <devicetree@vger.kernel.org>; Sun,  5 Dec 2021 18:34:24 -0800 (PST)
-Received: by mail-oi1-x233.google.com with SMTP id s139so18778283oie.13
-        for <devicetree@vger.kernel.org>; Sun, 05 Dec 2021 18:34:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=TTlnq7Wgzp2iX6Ls4tQK0iYVNHZC93S+jeurCSfQZQg=;
-        b=VfAmdIa7950nGp7sfvUgTx/o5m/K2ugSiyqUnlGAt7y3DjfeFETtbKV4biPq7ywvei
-         xF4wi6g4qFXI2OGXFs1/jxnOMurxZ+YBy851oBsN4o/F8EANSHG7iCh38gtbS24QjbZy
-         Nzy2IYEprxBE6EDy5RkFY7NkXf+ktsvCpSka8E93IYlrqc9Rk1O1d0Scua7R+cKL4AqY
-         QLG8ZS6bn8aiYGObLtMn9siD6l92rWqVUTKb4yaMWSdUaf1sNiUGIEbvlwxiZBvT8gm9
-         bGq3Wl2YdJ5eHYeelFhH9VBArjRCByGjzlSxboWtFb5QqYMgvSncbVsbVHvUMa1Aw+wS
-         rV/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=TTlnq7Wgzp2iX6Ls4tQK0iYVNHZC93S+jeurCSfQZQg=;
-        b=fizT1E6uBEhRjiLiP/DywDp1Rpmrw3Bk4gVK3Gszpt+FJ5vk0N7gV+cUsnadA+FrQ6
-         KaAbajS2rVCghQOPJ2ayn8Ckmxn0cp+em/2KYoDkzV4YcU+umsdLsgsyA1JY7KjsGWxi
-         uFFidGqRJCBTZCun8KXLS19/OB8WQGwk8BEz0IjoCL7zyR/cEu1VIRjqaa/qtRZDZNl+
-         XoYrT6aIPHL0QS776KvtrJsXy7meZe98+nyfy9cGCImdBpD7MjNadFg3wf9b1Ud3Jyg/
-         14rg1F5o6TcZD+AteLCnH948O2rY44BUeCxxw7LxLOAWmcpeuynexOAzTWi3f1vPuRHa
-         TY1w==
-X-Gm-Message-State: AOAM532YQj9MogP6sfeLmVAEh7TkM5R5XvLiaYKxsiZCBNnWIbXE+pJB
-        sVOXQPA2jlpVAnNh+pEcib0Pag==
-X-Google-Smtp-Source: ABdhPJw574NkW6bD77DqAw/lwQOC13BsjPT9cNCMD5G/pLKoQYLZV9vtlJVZ+99bghWUwhxrwg+WbA==
-X-Received: by 2002:a05:6808:1116:: with SMTP id e22mr21315983oih.45.1638758063412;
-        Sun, 05 Dec 2021 18:34:23 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id p6sm1952823oof.0.2021.12.05.18.34.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Dec 2021 18:34:23 -0800 (PST)
-Date:   Sun, 5 Dec 2021 18:35:50 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.com>
-Cc:     agross@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-Subject: Re: [PATCH v4 4/5] pinctrl: qcom: Update clock voting as optional
-Message-ID: <Ya13Bl66oS1hgHFd@ripper>
-References: <1638531140-25899-1-git-send-email-srivasam@codeaurora.com>
- <1638531140-25899-5-git-send-email-srivasam@codeaurora.com>
+        id S234663AbhLFCkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Dec 2021 21:40:31 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:34966 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234509AbhLFCkb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 21:40:31 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2AEF4B80EDA;
+        Mon,  6 Dec 2021 02:37:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DE40C00446;
+        Mon,  6 Dec 2021 02:36:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638758221;
+        bh=uh+ev6MS8/oi5tL+V6gOiL502llJGKSw6NHvNHqBqEc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Di9uC+hRAoF3vbyM6obFSFqxhB6gtiAWCrCS5bUI1H7/egzf0nmnKJ25O840IXXTT
+         EhchcvjzE9BN6vK5K7LK983i6gGiP+FtlwtnnzM1gZLRNDy8u87njGUp6jL2wtao2/
+         d7AMx6ByVlG2aH/i18Z7YSGs73D5QAvWVyjKGg/pldsOmGgoQZqphYvuFa5fNybVcZ
+         DcCUA3a/tpLLmMiXQYh9MoNTAxHHXU0s9fFxL4nW0m5xIXOVUJBeySulKJneN8U0gu
+         hgpEIz7rhHVVmxQJQWbdhSQmnZTkgPYICz0neTssrlsTzfAcMYA8wmqoU3IsaFIkjx
+         Mc3PdRdmtS4ng==
+Date:   Mon, 6 Dec 2021 10:36:53 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        laurent.pinchart@ideasonboard.com, tharvey@gateworks.com,
+        aford@beaconembedded.com, Fabio Estevam <festevam@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V3 1/5] soc: imx: imx8m-blk-ctrl: Fix imx8mm mipi reset
+Message-ID: <20211206023650.GV4216@dragon>
+References: <20211128125011.12817-1-aford173@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1638531140-25899-5-git-send-email-srivasam@codeaurora.com>
+In-Reply-To: <20211128125011.12817-1-aford173@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 03 Dec 03:32 PST 2021, Srinivasa Rao Mandadapu wrote:
-
-> From: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+On Sun, Nov 28, 2021 at 06:50:07AM -0600, Adam Ford wrote:
+> Most of the blk-ctrl reset bits are found in one register, however
+> there are two bits in offset 8 for pulling the MIPI DPHY out of reset
+> and one of them needs to be set when IMX8MM_DISPBLK_PD_MIPI_CSI is brought
+> out of reset or the MIPI_CSI hangs.
 > 
-> Update bulk clock voting to optional voting as ADSP bypass platform doesn't
-> need macro and decodec clocks, these are maintained as power domains and
-> operated from lpass audio core cc.
+> Since MIPI_DSI is impacted, add the additional one for MIPI_DSI too.
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> ---
->  drivers/pinctrl/qcom/pinctrl-lpass-lpi.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> index bcc12f6..c2a1110 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> @@ -394,7 +394,7 @@ int lpi_pinctrl_probe(struct platform_device *pdev)
->  		return dev_err_probe(dev, PTR_ERR(pctrl->slew_base),
->  				     "Slew resource not provided\n");
->  
-> -	ret = devm_clk_bulk_get(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
-> +	ret = devm_clk_bulk_get_optional(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
+> Fixes: 926e57c065df ("soc: imx: imx8m-blk-ctrl: add DISP blk-ctrl")
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
 
-If some platforms requires this clock and others doesn't have one, then
-please make this statement conditional on the compatible, rather than
-making it optional on both.
-
-Thanks,
-Bjorn
-
->  	if (ret)
->  		return dev_err_probe(dev, ret, "Can't get clocks\n");
->  
-> -- 
-> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-> 
+Applied all, thanks!
