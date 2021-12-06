@@ -2,92 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C79346AA8A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 22:35:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 753A946AA97
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 22:40:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351971AbhLFVif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 16:38:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35898 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351960AbhLFVie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 16:38:34 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92274C061746;
-        Mon,  6 Dec 2021 13:35:05 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id t5so48580930edd.0;
-        Mon, 06 Dec 2021 13:35:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=g/3xej/+7yR5jJ0HvJ4Y8QLnsfRIB2TAouZkdT19Z2g=;
-        b=J7JsGjsf/XGWSvpCCG8croHDg8zDuVWD+tHl/bI49pnwZcleqZoMVWfxLLBWqPfzrF
-         kumFZb1dl7F+01MzkDELA5qt3iMyS2ail/jGZusyCcLUgwja5bJgiX5zaJhNM25xSS/8
-         DdsS1tl59APyj3ACPqfhgcgbI1demlIgtU6Qti85MJ7KX46le2eIMiVv0BHzqhFwsV8n
-         X0vqahcDxs4YcAWwLumlhUQZ1IdfHxNjmXUn47z2gAbqxeHhlr0TLF3PeASown5WVn1Q
-         Yy3hKGXOOMdDuta1Qi42aYvChfg81FTRkOzp7v+wnEDHvoJ41ell4r5N3n4R02boNKf9
-         ccLA==
+        id S1351596AbhLFVoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 16:44:16 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:34737 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1352195AbhLFVoO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 16:44:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1638826844;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=veukaapGBdz2yq7cvoWrlyqpvVVcueT7D3xH6m4YqRY=;
+        b=ZIp1TxwzJF1jpEQWPIjYHElD1JK3AuGfEREYfAA/Za3xT4qHeQqj2nM2/wSr6zaf3ycdmH
+        C6Gk1erUcvZ25+WkCjvSSLc+YiHu3smSeSHK37vOdQRCx6yTR+gLp61JyiBiZPNGnusCdE
+        ZI/kr5VJJW0MRTdvE7puUMolMIZ/cfE=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-336-xoCm5-HfPIeP1klfxd5lWQ-1; Mon, 06 Dec 2021 16:40:43 -0500
+X-MC-Unique: xoCm5-HfPIeP1klfxd5lWQ-1
+Received: by mail-ed1-f71.google.com with SMTP id eg20-20020a056402289400b003eb56fcf6easo9424500edb.20
+        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 13:40:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=g/3xej/+7yR5jJ0HvJ4Y8QLnsfRIB2TAouZkdT19Z2g=;
-        b=Y+ocSszV+qKJjJNVYb5kPHto9C31S0kBcQnWcbY5r8Rux78M/sw0GzV1/b0VlKwOu8
-         XYAA55dcMmFJ28Gydh4QwevPG874SAMcDd/GRIyHVpWEXeEdSD0Kl2mLHX5cmm76C31x
-         x/sF/mtuI9WQdDwgPLR4b9sqjh/8dLHycqmj6tBIwTi5eXGeVYQc5+WOKe3J08DdzI/P
-         w72Bv+5s0jeVuig6j+DqiPei+LoF4G0Czt7Sf5Rj8GkflHVKqY1Tumn1iVYYLxW40Zra
-         Xew//tEzLRTFvowQnERJvlvUiJdvtndoVehvf9uysU8/Tr84rnYW9G67mHSV+F7hxJGK
-         hlRQ==
-X-Gm-Message-State: AOAM5339umK/ZlNf4mmjnx1O4JpiNiKuDt2gRLKWosaTTKwiA2VkAGaT
-        /7wt4qNp/FEhfsLq2AhE0TTWgPVQsyw1pCJStqs=
-X-Google-Smtp-Source: ABdhPJz7vzNiruzGi8mIW3IUnHtTxAzltO2rAWQ0vCs78/iB1Z8kPEXplKx6gdM538xcewsFgbTKHxy/BZxn3gyyy78=
-X-Received: by 2002:a05:6402:7d8:: with SMTP id u24mr2500706edy.215.1638826503830;
- Mon, 06 Dec 2021 13:35:03 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=veukaapGBdz2yq7cvoWrlyqpvVVcueT7D3xH6m4YqRY=;
+        b=mlmc4N89HW15u3x8msD0Rm+3yuGIG/dFG4kwUs9LC7pFB6vRhk0B0IgevmUuoqsnRf
+         REfQE3ETuWf88hteANbwa8mzp57xS2mGlX4j4qkuJBXm7/pQR9y+MkjDXLdAgsS05qdo
+         1cl7BDwbLUdt0F3NOP+s0f9tbwWt/desGBf5WKvDaD5WvUXbSdQHb1wUJ5qNFNMNygiv
+         msTSpsk9Xq7M0f/nZkDMt/deVcFn89zkk/6NUFQXQk2jHwgE1oekgssh74HTaq2YbvAs
+         fczyBi5Vn/8igGhVGgkrG9yzVyQeXLxyHno38D4W9miQQgmQA5a+0/6Yd5/g8j2dztX1
+         bIJw==
+X-Gm-Message-State: AOAM532g/qf4k6NM5D8tu+i7H+0Iy79qF/oYjdaYHIqXHHJD+yaW+YJ1
+        ifClNfBAKAt12oNMUyKLYJoFq34gkoeoHX9T19bFINqmNu42aLdq2yNuX5QcbG2Jc+SCYMNQqfc
+        nP4mBuNbA1Si6za4DYY/NOQ==
+X-Received: by 2002:a05:6402:348b:: with SMTP id v11mr2597927edc.276.1638826842501;
+        Mon, 06 Dec 2021 13:40:42 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwKc5sLVaRUlJAvnik7YO6sicX6i5fywo2lsr7E1JoY3p6ePADfa2FkOmTTHz54PEMiMunTqg==
+X-Received: by 2002:a05:6402:348b:: with SMTP id v11mr2597904edc.276.1638826842297;
+        Mon, 06 Dec 2021 13:40:42 -0800 (PST)
+Received: from ?IPV6:2001:1c00:c1e:bf00:1054:9d19:e0f0:8214? (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl. [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+        by smtp.gmail.com with ESMTPSA id qk40sm7232823ejc.2.2021.12.06.13.40.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Dec 2021 13:40:41 -0800 (PST)
+Message-ID: <e0c42dca-9500-d4c8-ab93-c958a3b23348@redhat.com>
+Date:   Mon, 6 Dec 2021 22:40:41 +0100
 MIME-Version: 1.0
-References: <20211130060523.19161-1-christianshewitt@gmail.com> <20211130060523.19161-4-christianshewitt@gmail.com>
-In-Reply-To: <20211130060523.19161-4-christianshewitt@gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Mon, 6 Dec 2021 22:34:53 +0100
-Message-ID: <CAFBinCAK76UY3LPyBRX99oR74JFk8geru-th6FqA9bPgugbCag@mail.gmail.com>
-Subject: Re: [RFC PATCH 3/9] arm64: dts: meson: add initial device-trees for X96-AIR
-To:     Christian Hewitt <christianshewitt@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Benoit Masson <yahoo@perenite.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [EXTERNAL] Re: [PATCH 2/5] platform: surface: Propagate ACPI
+ Dependency
+Content-Language: en-US
+To:     Jarrett Schultz <jaschultz@microsoft.com>,
+        Jarrett Schultz <jaschultzms@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Gross <markgross@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>
+Cc:     "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "platform-driver-x86@vger.kernel.org" 
+        <platform-driver-x86@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Felipe Balbi <balbi@kernel.org>
+References: <20211202191630.12450-1-jaschultz@microsoft.com>
+ <20211202191630.12450-3-jaschultz@microsoft.com>
+ <639583df-a54a-eb9b-91ad-a60612a930b0@redhat.com>
+ <BL0PR2101MB1316DFA13C3AB1A6620A6CA3A56A9@BL0PR2101MB1316.namprd21.prod.outlook.com>
+From:   Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <BL0PR2101MB1316DFA13C3AB1A6620A6CA3A56A9@BL0PR2101MB1316.namprd21.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 30, 2021 at 7:07 AM Christian Hewitt
-<christianshewitt@gmail.com> wrote:
->
-> The Amediatek X96-AIR is based on Amlogic S905X3 reference board
-> designs and ships in multiple configurations:
->
-> =E2=80=93 4GB DDR3 + 64GB eMMC + WiFi a/b/g/n/ac + BT + Gb Ethernet
-> =E2=80=93 4GB DDR3 + 32GB eMMC + WiFi a/b/g/n/ac + BT + Gb Ethernet
-> =E2=80=93 4GB DDR3 + 32GB eMMC + WiFi b/g/n (no BT) + 10/100 Ethernet
-> =E2=80=93 2GB DDR3 + 16GB eMMC + WiFi b/g/n (no BT) + 10/100 Ethernet
-> ...
-> - HDMI 2.1 video
-> - S/PDIF optical output
-> - AV output
-> - 2x USB 2.0 inc. OTG port
-> - 1x USB 3.0 port
-> - IR receiver
-> - 1x micro SD card slot (internal)
-> - 1x Reset/Update button (in AV jack)
-> - 7-segment VFD
->
-> The device-tree with -100 suffix supports models with 10/100 Ethernet
-> and with -1000 suffix supports models with Gigabit Ethernet.
->
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> #
-X96-Air with Gbit/s PHY
+Hi,
+
+On 12/3/21 18:34, Jarrett Schultz wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Hans de Goede <hdegoede@redhat.com>
+>> Sent: Friday, December 3, 2021 1:59 AM
+>> To: Jarrett Schultz <jaschultzms@gmail.com>; Rob Herring
+>> <robh+dt@kernel.org>; Andy Gross <agross@kernel.org>; Bjorn Andersson
+>> <bjorn.andersson@linaro.org>; Mark Gross <markgross@kernel.org>;
+>> Maximilian Luz <luzmaximilian@gmail.com>
+>> Cc: linux-arm-msm@vger.kernel.org; platform-driver-x86@vger.kernel.org;
+>> linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; Felipe Balbi
+>> <balbi@kernel.org>; Jarrett Schultz <jaschultz@microsoft.com>
+>> Subject: [EXTERNAL] Re: [PATCH 2/5] platform: surface: Propagate ACPI
+>> Dependency
+>>
+>> Hi Jarett,
+>>
+>> On 12/2/21 20:16, Jarrett Schultz wrote:
+>>> Since the Surface XBL Driver does not depend on ACPI, the
+>>> platform/surface directory as a whole no longer depends on ACPI. With
+>>> respect to this, the ACPI dependency is moved into each config that
+>>> depends on ACPI individually.
+>>>
+>>> Signed-off-by: Jarrett Schultz <jaschultz@microsoft.com>
+>>
+>> I think I will already merge this patch into the pdx86 tree:
+>>
+>> https://nam06.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgit.k
+>> ernel.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Fpdx86%2Fplatform-
+>> drivers-
+>> x86.git%2F&amp;data=04%7C01%7Cjaschultz%40microsoft.com%7C0ab6fcc6
+>> 4a5c4fd8657308d9b64391dd%7C72f988bf86f141af91ab2d7cd011db47%7C0
+>> %7C0%7C637741223627024908%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC
+>> 4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&
+>> amp;sdata=fEszuAgBLL3g2Z9Lh3DPQ%2BlzrWZR3o6aUst6fDmLOrE%3D&amp
+>> ;reserved=0
+>>
+>> While we are waiting for the rest of the series to get hashed out.
+>>
+>> But as already pointed out by Trilok Soni your From: and Signed-off-by email
+>> addresses don't match.
+>>
+>> I can fix up the From to match the Signed-off-by while I apply this, but before
+>> I do that I wanted to check with you that setting both to "Jarrett Schultz
+>> <jaschultz@microsoft.com>" is the right thing to do ?
+>>
+>> Regards,
+>>
+>> Hans
+>>
+>>
+> 
+> Hans,
+> 
+> Yes, that is the correct email. Still trying to get all the kinks worked out, I appreciate your patience.
+
+Ok, I've merged this patch now, so you can drop it from the next version of
+the series.
+
+
+Thank you for your patch, I've applied this patch to my review-hans 
+branch:
+https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git/log/?h=review-hans
+
+Note it will show up in my review-hans branch once I've pushed my
+local branch there, which might take a while.
+
+Once I've run some tests on this branch the patches there will be
+added to the platform-drivers-x86/for-next branch and eventually
+will be included in the pdx86 pull-request to Linus for the next
+merge-window.
+
+Regards,
+
+Hans
+
+
+
+
+
+>>> ---
+>>>
+>>> Changes in v3:
+>>>  - Further propagated ACPI dependecy to SURFACE_AGGREGATOR
+>>>
+>>> ---
+>>>
+>>> Changes in v2:
+>>>  - Created to propagate ACPI dependency
+>>> ---
+>>>  drivers/platform/surface/Kconfig            | 7 ++++++-
+>>>  drivers/platform/surface/aggregator/Kconfig | 1 +
+>>>  2 files changed, 7 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/platform/surface/Kconfig
+>>> b/drivers/platform/surface/Kconfig
+>>> index 3105f651614f..5f0578e25f71 100644
+>>> --- a/drivers/platform/surface/Kconfig
+>>> +++ b/drivers/platform/surface/Kconfig
+>>> @@ -5,7 +5,6 @@
+>>>
+>>>  menuconfig SURFACE_PLATFORMS
+>>>  	bool "Microsoft Surface Platform-Specific Device Drivers"
+>>> -	depends on ACPI
+>>>  	default y
+>>>  	help
+>>>  	  Say Y here to get to see options for platform-specific device
+>>> drivers @@ -30,12 +29,14 @@ config SURFACE3_WMI
+>>>
+>>>  config SURFACE_3_BUTTON
+>>>  	tristate "Power/home/volume buttons driver for Microsoft Surface 3
+>> tablet"
+>>> +	depends on ACPI
+>>>  	depends on KEYBOARD_GPIO && I2C
+>>>  	help
+>>>  	  This driver handles the power/home/volume buttons on the
+>> Microsoft Surface 3 tablet.
+>>>
+>>>  config SURFACE_3_POWER_OPREGION
+>>>  	tristate "Surface 3 battery platform operation region support"
+>>> +	depends on ACPI
+>>>  	depends on I2C
+>>>  	help
+>>>  	  This driver provides support for ACPI operation @@ -126,6 +127,7
+>>> @@ config SURFACE_DTX
+>>>
+>>>  config SURFACE_GPE
+>>>  	tristate "Surface GPE/Lid Support Driver"
+>>> +	depends on ACPI
+>>>  	depends on DMI
+>>>  	help
+>>>  	  This driver marks the GPEs related to the ACPI lid device found on
+>>> @@ -135,6 +137,7 @@ config SURFACE_GPE
+>>>
+>>>  config SURFACE_HOTPLUG
+>>>  	tristate "Surface Hot-Plug Driver"
+>>> +	depends on ACPI
+>>>  	depends on GPIOLIB
+>>>  	help
+>>>  	  Driver for out-of-band hot-plug event signaling on Microsoft
+>>> Surface @@ -154,6 +157,7 @@ config SURFACE_HOTPLUG
+>>>
+>>>  config SURFACE_PLATFORM_PROFILE
+>>>  	tristate "Surface Platform Profile Driver"
+>>> +	depends on ACPI
+>>>  	depends on SURFACE_AGGREGATOR_REGISTRY
+>>>  	select ACPI_PLATFORM_PROFILE
+>>>  	help
+>>> @@ -176,6 +180,7 @@ config SURFACE_PLATFORM_PROFILE
+>>>
+>>>  config SURFACE_PRO3_BUTTON
+>>>  	tristate "Power/home/volume buttons driver for Microsoft Surface
+>> Pro 3/4 tablet"
+>>> +	depends on ACPI
+>>>  	depends on INPUT
+>>>  	help
+>>>  	  This driver handles the power/home/volume buttons on the
+>> Microsoft Surface Pro 3/4 tablet.
+>>> diff --git a/drivers/platform/surface/aggregator/Kconfig
+>>> b/drivers/platform/surface/aggregator/Kconfig
+>>> index fd6dc452f3e8..cab020324256 100644
+>>> --- a/drivers/platform/surface/aggregator/Kconfig
+>>> +++ b/drivers/platform/surface/aggregator/Kconfig
+>>> @@ -4,6 +4,7 @@
+>>>  menuconfig SURFACE_AGGREGATOR
+>>>  	tristate "Microsoft Surface System Aggregator Module Subsystem
+>> and Drivers"
+>>>  	depends on SERIAL_DEV_BUS
+>>> +	depends on ACPI
+>>>  	select CRC_CCITT
+>>>  	help
+>>>  	  The Surface System Aggregator Module (Surface SAM or SSAM) is an
+>>>
+> 
+
