@@ -2,80 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E53046998B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 15:54:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4045A46998F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 15:54:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344718AbhLFO5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 09:57:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50940 "EHLO
+        id S1344748AbhLFO6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 09:58:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244997AbhLFO5x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 09:57:53 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79DFFC061746;
-        Mon,  6 Dec 2021 06:54:24 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id y12so43779723eda.12;
-        Mon, 06 Dec 2021 06:54:24 -0800 (PST)
+        with ESMTP id S1344755AbhLFO57 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 09:57:59 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A08BC0613F8;
+        Mon,  6 Dec 2021 06:54:30 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id 77-20020a1c0450000000b0033123de3425so10660964wme.0;
+        Mon, 06 Dec 2021 06:54:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=LW1BYGyD1FrsuN8OaH1EYpOJNibso1Z40XxZHZPtTn4=;
-        b=GyaohrZqlHknwgP8z1/U81lrjK6R1xtFKBXnuAzjdMx2z0snNBUcYlS9b27tzMWZ6c
-         In5aLO/mv+KzQZo8L64KbgWWLTYExi6j4HU7DdKSoKjifsXJUekm8DMMNj/fvUicAPtN
-         DrMOO2UrprHt2B8evbHNi2+xg6MrjrPoTtGjs33Z3ND8B7jCMkkxSbt5Veglif7zvHZe
-         TvVk62MACV/RG+9iQdzYuy+j+C+jOUmZKa7AxNBpl4ZRaUkHSrXJaiie7pJQvzY/Df81
-         gDIM4ay9mJPmoqZP+89OReek5V9OWLYdGbJt9i4axnQS55LuouiwN8lIH2bm06Y1eQjz
-         IDYw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hroQBssVxccXajSIae+vPPzUFUCBfFmeKRgOcB2d4Jg=;
+        b=laMQzgB9Kc7SGSnTUCCGTKOhZsn2+fU4lLtJWBUTXBJTfe4kNE4bzeP5J//rVa/OL2
+         a84DsGfDpn41aP2kQLXahj7MBW4GA5I7M+YxPpxfVuZNv6m2pJHVbMSmrWhU0+0E+s3E
+         +pfKfG5XOxHKt7uhfgkGdqAuWfheNsNdizAlhCkQcYFGRUy5V8QONplcUuttldY7DOMy
+         vZLlf443NJyd6xS/4qx7HICV/aXlhY5LNimJfvkD38nGS8tvCth6IExYGUFo8Ji0qaIv
+         2c72jw66U8IN0OdZauDmqbxY8KQlC6CpzR1s5USZwvcGW+sogZ4izNEi52+PNAhYn6ot
+         +BEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=LW1BYGyD1FrsuN8OaH1EYpOJNibso1Z40XxZHZPtTn4=;
-        b=nNfj2pz/dUYLWbyXrw4pRZUK22BDX77IWj2BPYREAEzuXG4QR6pitqknXcBNDzGoHt
-         sjrYy+OBtgu+RrziO+3gFTF5zc0i5mxtFZAFszgYuElu1pjzt+ITqWqGqIXMuY8xbbwl
-         3TGtymAH+Zl4gEHdcbDgbH4rfJSY3/tF+MYMWSRL5pC4kObsK9NZJES9yyDQqy9RwPtc
-         yqA61mpZYKID7CFUbBCpCIcJPFPY/76iWOvU//IzdCJCJ5+D7eO0Gnk10RkV0GTqGxoR
-         UPtjZoQzHbxCF/N2E/OiKbIyQhu3PrOs2+lwCFW1d8QuI4iMgMA7ebldZgbHPACjFvpS
-         wrrg==
-X-Gm-Message-State: AOAM531BCZwLIN1ZPcRPomsHHBAeeKTCA1aVIaEaYd21q+64izoMzfTx
-        Kf15ZkN8LHZA6xE14OdZAOxtdH2iCzIo931W+KxMEv16
-X-Google-Smtp-Source: ABdhPJy8zsn0hmEb/oqWd5Cknlc3dy5ENqov/JpF1U5cDxLUqIH++Z4sEpXmxtE1qyu0UtY0jdZfRYMFcV8lyENVMN0=
-X-Received: by 2002:a17:906:d930:: with SMTP id rn16mr48020240ejb.223.1638802462900;
- Mon, 06 Dec 2021 06:54:22 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hroQBssVxccXajSIae+vPPzUFUCBfFmeKRgOcB2d4Jg=;
+        b=uDQ+jNzVvSVIX1WnrjM+mtWHIS769ShgGnud55UM2UdhVCJY4bodEbCiYCXZCkTd3I
+         6bXnpBhQaYrzNqoBP0aEOEB3zSasYWezJlKtoXysfc8LN7UKHZcq0U1q/hSlIYYCnnXD
+         pE1ektT0Bch64QFM6xicx4nCeXfU8XH3oW1ghNSacaJccD44ZYHXo1adV2vEy2/DvJWK
+         e3TeOLWA6ourQh775U0AjbOCTakomYIuCo8e+U++0oTm5TojYBkSRWX8MFl5ojifBnCJ
+         1AIcRumKaZHyPXPcyrhVfvheTrR79pFFc0PqfIQk21DN+1v+8Dxt8nV3QFhb3ZCRFFHA
+         TEjA==
+X-Gm-Message-State: AOAM530s/pnmEqYRqJIGHNGjKH/KxCpbtRgrYDmBxznAAu5w6s5oFdkR
+        HcaXGleIDXyRgpnDw83cX4oWoGD3vjo=
+X-Google-Smtp-Source: ABdhPJwZE6cTUOHICfFzcEVWtMASsJaXM3HxaMiAyaWZhGFpqA1EIUcGmP+pJr3aOVZ93eKwXxqkSg==
+X-Received: by 2002:a7b:c155:: with SMTP id z21mr38803253wmi.107.1638802469123;
+        Mon, 06 Dec 2021 06:54:29 -0800 (PST)
+Received: from localhost (pd9e51d39.dip0.t-ipconnect.de. [217.229.29.57])
+        by smtp.gmail.com with ESMTPSA id z14sm11783269wrp.70.2021.12.06.06.54.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Dec 2021 06:54:28 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: iio: exynos-adc: Use correct node name
+Date:   Mon,  6 Dec 2021 15:54:27 +0100
+Message-Id: <20211206145427.218436-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-References: <202112061855.SidQyicE-lkp@intel.com> <20211206142601.373807-1-michal.vokac@ysoft.com>
-In-Reply-To: <20211206142601.373807-1-michal.vokac@ysoft.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 6 Dec 2021 11:54:11 -0300
-Message-ID: <CAOMZO5AByeyYZ89gBSNtcJaJ68Dz_K4J5+eVwRrbn5AP5VMeSQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: imx6dl-yapp4: Remove not-yet added support for
- sound from Crux
-To:     =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 6, 2021 at 11:26 AM Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.=
-com> wrote:
->
-> Remove mistakingly added support for audio codec. We support the coded
-> by our downstream patches but the appropriate driver and bindings are not
-> in mainline yet.
->
-> Reported-by: kernel test robot <lkp@intel.com>
-> Fixes: a4d744ac2bab ("ARM: dts: imx6dl-yapp4: Add Y Soft IOTA Crux/Crux+ =
-board")
-> Signed-off-by: Michal Vok=C3=A1=C4=8D <michal.vokac@ysoft.com>
+From: Thierry Reding <treding@nvidia.com>
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+According to the murata,ncp15wb473 DT bindings, the node name should be
+"thermistor", so use that in order to make the example validate.
+
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ .../devicetree/bindings/iio/adc/samsung,exynos-adc.yaml         | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
+index c65921e66dc1..81c87295912c 100644
+--- a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
+@@ -136,7 +136,7 @@ examples:
+         samsung,syscon-phandle = <&pmu_system_controller>;
+ 
+         /* NTC thermistor is a hwmon device */
+-        ncp15wb473 {
++        thermistor {
+             compatible = "murata,ncp15wb473";
+             pullup-uv = <1800000>;
+             pullup-ohm = <47000>;
+-- 
+2.33.1
+
