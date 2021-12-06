@@ -2,183 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB0AA46A024
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:56:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF21546A074
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 17:03:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358162AbhLFP6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 10:58:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35930 "EHLO
+        id S1376539AbhLFQEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 11:04:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1442880AbhLFP4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:56:20 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30141C08E847;
-        Mon,  6 Dec 2021 07:40:35 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id n33-20020a05600c502100b0032fb900951eso10707231wmr.4;
-        Mon, 06 Dec 2021 07:40:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IFFwKnk3cbAW8jNrxL+vFBZxoatRvN6SQuYnsDGyFVg=;
-        b=RPtBn2mfNXoGjx1ojHeBAnLO1qVUSVt60HBdLecCMRKrHAqjM9GVSFYjinL9lWiLaq
-         4rK1gjllQ07iaXREVS0oT3bUlViUpM8UTUlvjeeF7w/dlqhW6nfQS8q4i1HFNU8SScSf
-         i1a7+jP8rB7SiCAfyJLrvwHE7UfRCnaHZmVkGra3o9pUotIYfmaoS2SMwfvGgREGNbB0
-         /IKUC8NqxE9ayTwn6B8bsipozMJRhj1xdSpw1zd0UQgJReAE3jVskGDKXO5vNZLwmFXE
-         nkEY8Wfd4NT0CSGiQtA1NiIULZfrJKzAtODVwIwUsoZxSdsmHzIQqG7Z2iFQlZlFC7Jk
-         SpZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IFFwKnk3cbAW8jNrxL+vFBZxoatRvN6SQuYnsDGyFVg=;
-        b=WYdNW/Ar9nSdBZaef2NLNz5JYBi/885VbgjA6fKOsDAvL+9037+6rRj7KBtG9ZTMXw
-         XEmiRFfxCWBMYNeei2Ezmv/apLCZhtALDPNp6GwzenkNc35aBfkBzmfT43SJZQ/H4lsr
-         7GDAY0NQdfRtAun2dn2ZONj+qyYvbn8Cgw9YUdhsz+MGt1U9rp3NoRa0u/QOCPZRn9kE
-         FuWiYK95HslbjwH2Qsne2vjxuyF6VVBUYD4CByrwqGynCn4ydUVqaXG7JnJhZEd/f9Vf
-         7A/YtK7hK7wuxc62zmzbIOBBBVbIlSePXy9+2KeIMa2ZYyKf+SdY1UwiQbwsDwoBNMb6
-         4Rvw==
-X-Gm-Message-State: AOAM533yOZOB4X4Y8leWBE2iPPI0Ixzrzdtw/d6poP0hsiky5YibgwGJ
-        0UfPXn3cHQnrFHJNE1kGfGM=
-X-Google-Smtp-Source: ABdhPJwIK1sZU+XX7uJLcxtVSFOv7RHxMzHCbd/T22a1Vi+8Lo/paQlu7PYjqZSC8rSBYq+OerekTw==
-X-Received: by 2002:a05:600c:154f:: with SMTP id f15mr39332252wmg.86.1638805233630;
-        Mon, 06 Dec 2021 07:40:33 -0800 (PST)
-Received: from localhost (pd9e51d39.dip0.t-ipconnect.de. [217.229.29.57])
-        by smtp.gmail.com with ESMTPSA id u15sm10643561wmq.13.2021.12.06.07.40.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 07:40:33 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: regulators: Document Tegra regulator coupling in json-schema
-Date:   Mon,  6 Dec 2021 16:40:32 +0100
-Message-Id: <20211206154032.227938-1-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.33.1
+        with ESMTP id S1388085AbhLFP7C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:59:02 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7004DC08EB3F
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 07:42:31 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F0AB16123D
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 15:42:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EA3BC34900;
+        Mon,  6 Dec 2021 15:42:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638805350;
+        bh=vxHt8yQIACfo+eg5a/K8OTetZFiZUvKMMODqrLzrgaU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sNzZx7N3eoc9v2maBGqKAhMPJ/JAJkHwn4BKNeIfoKU2X3w7IvA/O9d4fR7Rq60La
+         outLYWYMm8mieQnTsaeLFNGRPYj0bw3+Y5XUq9j8VGOHr0aDiGJmZ+HookUW/2IwTU
+         HaONiPVx+9hLYMi+X10cw1oF/7ak2ERDf0OpNzolGO20mCCGlY4CdMxcjW7U/yftXD
+         MTwCf4x2KopFm2l96ZVLOZvCtKbXJkaYjLkuz0x3i7WfTzXjsdFiLsWpHdXq0cnNvo
+         zaP3EpPsIMdZdGRuQ8Qd9qgTFDak8G/XwzB8IV6jDNGmEwv8CJLuvW3UlVH+DqbeKh
+         RyV7/3lqz5amA==
+Date:   Mon, 6 Dec 2021 15:42:26 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: regulator: maxim,max8973: Document
+ interrupts property
+Message-ID: <Ya4vYjGSUeJFiRa3@sirena.org.uk>
+References: <20211206153432.226963-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="SD6ZSew+sVN9TsAj"
+Content-Disposition: inline
+In-Reply-To: <20211206153432.226963-1-thierry.reding@gmail.com>
+X-Cookie: You will soon forget this.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
 
-Move the NVIDIA Tegra regulator coupling bindings from the free-form
-text format into the existing json-schema file for regulators.
+--SD6ZSew+sVN9TsAj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- .../nvidia,tegra-regulators-coupling.txt      | 65 -------------------
- .../bindings/regulator/regulator.yaml         | 22 +++++++
- 2 files changed, 22 insertions(+), 65 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/regulator/nvidia,tegra-regulators-coupling.txt
+On Mon, Dec 06, 2021 at 04:34:32PM +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+>=20
+> One of the examples in the bindings has an interrupts property and the
+> Linux kernel driver has support for requesting an interrupt as well. It
+> looks like the absence from the bindings was just an oversight. Add the
+> property to make sure the examples can be validated.
 
-diff --git a/Documentation/devicetree/bindings/regulator/nvidia,tegra-regulators-coupling.txt b/Documentation/devicetree/bindings/regulator/nvidia,tegra-regulators-coupling.txt
-deleted file mode 100644
-index 4bf2dbf7c6cc..000000000000
---- a/Documentation/devicetree/bindings/regulator/nvidia,tegra-regulators-coupling.txt
-+++ /dev/null
-@@ -1,65 +0,0 @@
--NVIDIA Tegra Regulators Coupling
--================================
--
--NVIDIA Tegra SoC's have a mandatory voltage-coupling between regulators.
--Thus on Tegra20 there are 3 coupled regulators and on NVIDIA Tegra30
--there are 2.
--
--Tegra20 voltage coupling
--------------------------
--
--On Tegra20 SoC's there are 3 coupled regulators: CORE, RTC and CPU.
--The CORE and RTC voltages shall be in a range of 170mV from each other
--and they both shall be higher than the CPU voltage by at least 120mV.
--
--Tegra30 voltage coupling
--------------------------
--
--On Tegra30 SoC's there are 2 coupled regulators: CORE and CPU. The CORE
--and CPU voltages shall be in a range of 300mV from each other and CORE
--voltage shall be higher than the CPU by N mV, where N depends on the CPU
--voltage.
--
--Required properties:
--- nvidia,tegra-core-regulator: Boolean property that designates regulator
--  as the "Core domain" voltage regulator.
--- nvidia,tegra-rtc-regulator: Boolean property that designates regulator
--  as the "RTC domain" voltage regulator.
--- nvidia,tegra-cpu-regulator: Boolean property that designates regulator
--  as the "CPU domain" voltage regulator.
--
--Example:
--
--	pmic {
--		regulators {
--			core_vdd_reg: core {
--				regulator-name = "vdd_core";
--				regulator-min-microvolt = <950000>;
--				regulator-max-microvolt = <1300000>;
--				regulator-coupled-with = <&rtc_vdd_reg &cpu_vdd_reg>;
--				regulator-coupled-max-spread = <170000 550000>;
--
--				nvidia,tegra-core-regulator;
--			};
--
--			rtc_vdd_reg: rtc {
--				regulator-name = "vdd_rtc";
--				regulator-min-microvolt = <950000>;
--				regulator-max-microvolt = <1300000>;
--				regulator-coupled-with = <&core_vdd_reg &cpu_vdd_reg>;
--				regulator-coupled-max-spread = <170000 550000>;
--
--				nvidia,tegra-rtc-regulator;
--			};
--
--			cpu_vdd_reg: cpu {
--				regulator-name = "vdd_cpu";
--				regulator-min-microvolt = <750000>;
--				regulator-max-microvolt = <1125000>;
--				regulator-coupled-with = <&core_vdd_reg &rtc_vdd_reg>;
--				regulator-coupled-max-spread = <550000 550000>;
--
--				nvidia,tegra-cpu-regulator;
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/regulator/regulator.yaml b/Documentation/devicetree/bindings/regulator/regulator.yaml
-index ed560ee8714e..14f269f1e877 100644
---- a/Documentation/devicetree/bindings/regulator/regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/regulator.yaml
-@@ -224,6 +224,28 @@ properties:
-     description: Maximum difference between current and target voltages
-       that can be changed safely in a single step.
- 
-+  # NVIDIA Tegra SoC's have a mandatory voltage-coupling between regulators. Thus on Tegra20 there
-+  # are 3 coupled regulators and on NVIDIA Tegra30 there are 2.
-+  #
-+  # The 3 coupled regulators on Tegra20 are: CORE, RTC and CPU. The CORE and RTC voltages shall be
-+  # in a range of 170 mV of each other and they both shall be higher than the CPU voltage by at
-+  # least 120 mV.
-+  #
-+  # The 2 coupled regulators on Tegra30 are: CORE and CPU. The CORE and CPU voltages shall be in
-+  # a range of 300 mV of each other and CORE voltage shall be higher than the CPU by N mV, where
-+  # N depends on the CPU voltage.
-+  nvidia,tegra-core-regulator:
-+    $ref: "/schemas/types.yaml#/definitions/flag"
-+    description: if present, designates the regulator as the "CORE domain" voltage regulator
-+
-+  nvidia,tegra-rtc-regulator:
-+    $ref: "/schemas/types.yaml#/definitions/flag"
-+    description: if present, designates the regulator as the "RTC domain" voltage regulator
-+
-+  nvidia,tegra-cpu-regulator:
-+    $ref: "/schemas/types.yaml#/definitions/flag"
-+    description: if present, designates the regulator as the "CPU domain" voltage regulator
-+
- patternProperties:
-   ".*-supply$":
-     description: Input supply phandle(s) for this node
--- 
-2.33.1
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
+--SD6ZSew+sVN9TsAj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGuL2EACgkQJNaLcl1U
+h9BSjgf8C0QwS53uOk4sK8klELOF3npr8KNvkshFu4YI/dHhmwcG7sccrb9lSMQD
+cqkDJ84tw64laBbyCZQkdIzvr9ZP4GZs+UMTecvOJ6ge0X+Rdkxu3JW8VZ79GGT1
+74K6M+VTOyhfnku8Lmu8QwgId5pje85gnc5NiAx8m8KM9URNwjpnfUQOP/BElqjD
+rvfKJ8dlGQUTbGfg5xmSJ3bN6Bc4WcpXAg5ZPqDaTuL+MLG9Io9aLaeXxlM3U0di
+2M6qXl+dUZpykrdyaKaph1V00NBR8ClciEMfzZU7WRqTAx5UZkVxMQTU+NPCEPT0
+tAgiRal8ZmGil8J0HxavoCEFhgnAuw==
+=1HW7
+-----END PGP SIGNATURE-----
+
+--SD6ZSew+sVN9TsAj--
