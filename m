@@ -2,92 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1FD946969E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 14:15:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 637E24696D1
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 14:22:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244196AbhLFNTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 08:19:08 -0500
-Received: from mta-02.yadro.com ([89.207.88.252]:36312 "EHLO mta-01.yadro.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S244199AbhLFNTI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Dec 2021 08:19:08 -0500
-Received: from localhost (unknown [127.0.0.1])
-        by mta-01.yadro.com (Postfix) with ESMTP id 4038A43853;
-        Mon,  6 Dec 2021 13:15:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
-        content-transfer-encoding:mime-version:user-agent:content-type
-        :content-type:organization:references:in-reply-to:date:date:from
-        :from:subject:subject:message-id:received:received:received; s=
-        mta-01; t=1638796537; x=1640610938; bh=WYnhsStQPKwBhv3yqIJvJ0ar/
-        93JiGJNAwumc8N/HXM=; b=oRRHhbqTG9Hwmf8J/3NMw+b8y+ffhQ3Lby4UetdpT
-        uVYv345rJPS422NRX56ui5PJs51B4uWnXdD6oCCDKq5pY/EXZQtikRpA2s5fr77G
-        ZwX0snd4wFuCZybxdZiPySigCMWSCozmol8KzEpH7q0zBKdD15ltZ23aKvjig++j
-        2s=
-X-Virus-Scanned: amavisd-new at yadro.com
-Received: from mta-01.yadro.com ([127.0.0.1])
-        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id V1ryOn8CB0sz; Mon,  6 Dec 2021 16:15:37 +0300 (MSK)
-Received: from T-EXCH-04.corp.yadro.com (t-exch-04.corp.yadro.com [172.17.100.104])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mta-01.yadro.com (Postfix) with ESMTPS id 2E2D44384B;
-        Mon,  6 Dec 2021 16:15:35 +0300 (MSK)
-Received: from [10.199.10.105] (10.199.10.105) by T-EXCH-04.corp.yadro.com
- (172.17.100.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Mon, 6 Dec
- 2021 16:15:35 +0300
-Message-ID: <e698c84c424d698eb54a595c0df265a7de613946.camel@yadro.com>
-Subject: Re: [PATCH v2 0/2] ARM: dts: device tree for YADRO VEGMAN BMC
-From:   Andrei Kartashev <a.kartashev@yadro.com>
-To:     <joel@jms.id.au>, <andrew@aj.id.au>, <openbmc@lists.ozlabs.org>,
-        <devicetree@vger.kernel.org>
-Date:   Mon, 6 Dec 2021 16:15:29 +0300
-In-Reply-To: <20211119120057.12118-1-a.kartashev@yadro.com>
-References: <20211119120057.12118-1-a.kartashev@yadro.com>
-Organization: YADRO
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 
+        id S244415AbhLFNZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 08:25:36 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:40622 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244369AbhLFNZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 08:25:36 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B6DLvaj009276;
+        Mon, 6 Dec 2021 07:21:57 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1638796918;
+        bh=o4RttUSCrTmPAxrbzFqdWgBnrZ+5Ctc0eO9fvzF3r/8=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=CVY+kjxLcal5VD0gYjXm7gLMjJSTIJfgHH09dWqSwcbDuhA0iI4PTvNxteE1KVlTA
+         4PEpkFVmEmJSQRTSZdevFXRqsdf90zZygza7+5J08J41wUIs43kGgkxxQREvlf2K7/
+         TJO7JIj8ukx3rl6u+wx89wJQIecd5dgLPJplb1w8=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B6DLvLS122651
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 6 Dec 2021 07:21:57 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 6
+ Dec 2021 07:21:57 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 6 Dec 2021 07:21:57 -0600
+Received: from uda0132425.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B6DLsHF091959;
+        Mon, 6 Dec 2021 07:21:55 -0600
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am642: Fix the L2 cache sets
+Date:   Mon, 6 Dec 2021 18:51:34 +0530
+Message-ID: <163879687338.18805.990123917091132995.b4-ty@ti.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20211113043635.4296-1-nm@ti.com>
+References: <20211113043635.4296-1-nm@ti.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.199.10.105]
-X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
- T-EXCH-04.corp.yadro.com (172.17.100.104)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gently ping.
-
-Is there any other comments for dts files?
-
-On Fri, 2021-11-19 at 15:00 +0300, Andrei Kartashev wrote:
-> This brings initial DTS files for VEGMAN BMC machines
+Hi Nishanth Menon,
+ 
+On Fri, 12 Nov 2021 22:36:35 -0600, Nishanth Menon wrote:
+> A53's L2 cache[1] on AM642[2] is 256KB. A53's L2 is fixed line length
+> of 64 bytes and 16-way set-associative cache structure.
 > 
-> ---
->   v2:
->   - Cleanup I2C definitions
->   - Use OpenBMC flash layout
+> 256KB of L2 / 64 (line length) = 4096 ways
+> 4096 ways / 16 = 256 sets
 > 
-> Andrei Kartashev (2):
->   dt-bindings: vendor-prefixes: add YADRO
->   ARM: dts: aspeed: add device tree for YADRO VEGMAN BMC
+> Fix the l2 cache-sets.
 > 
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  arch/arm/boot/dts/Makefile                    |   5 +-
->  arch/arm/boot/dts/aspeed-bmc-vegman-n110.dts  | 149 +++++++++
->  arch/arm/boot/dts/aspeed-bmc-vegman-rx20.dts  | 255 ++++++++++++++
->  arch/arm/boot/dts/aspeed-bmc-vegman-sx20.dts  | 154 +++++++++
->  arch/arm/boot/dts/aspeed-bmc-vegman.dtsi      | 311
-> ++++++++++++++++++
->  6 files changed, 875 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm/boot/dts/aspeed-bmc-vegman-n110.dts
->  create mode 100644 arch/arm/boot/dts/aspeed-bmc-vegman-rx20.dts
->  create mode 100644 arch/arm/boot/dts/aspeed-bmc-vegman-sx20.dts
->  create mode 100644 arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
-> 
-
--- 
-Best regards,
-Andrei Kartashev
-
+> [...]
+ 
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+ 
+[1/1] arm64: dts: ti: k3-am642: Fix the L2 cache sets
+      commit: a27a93bf70045be54b594fa8482959ffb84166d7
+ 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+ 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+ 
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+ 
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+ 
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
 
