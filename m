@@ -2,122 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFF814690DC
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 08:34:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B63674690F6
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 08:50:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238481AbhLFHiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 02:38:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33816 "EHLO
+        id S231627AbhLFHyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 02:54:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238479AbhLFHiB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 02:38:01 -0500
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CA2CC0613F8
-        for <devicetree@vger.kernel.org>; Sun,  5 Dec 2021 23:34:32 -0800 (PST)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 01A5A891AF;
-        Mon,  6 Dec 2021 20:34:30 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1638776070;
-        bh=0Tnh/7w8NutVos3QgBFtkzzrU7g1CNwyGaPWqav3wEk=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=s2o4Z/C5OwBdzomv0/r4RKL5oBduMJtlOnTiVi0LzNdtOxsvRHjRU3izmTXZXn9x/
-         VOBSdQ9JrXFE0a382pSUg9luKx0keB8QE4pDVEPTFDp7HeOIvxtIGVKEWZkB/tMXcD
-         qkN38JpwpGu7UcutFeF1KWsRQTKefkuykhq7ptJt5V7VkLsHg8ii8/IQDykR+t/hXY
-         Vhso2OuscgkwjVVmFpAUGBnEcLuU+ox9oozT8SJ6ucJIS0f47eZIePKIr/cgNLlNvh
-         bWrX4CISNU/V46KALrowXz4+lHunLP0UGJvOMGtdqyfY+eT1t7/Idu4CEJasnLbiyS
-         AdqTRgCNbV4zw==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B61adbd050001>; Mon, 06 Dec 2021 20:34:29 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.26; Mon, 6 Dec 2021 20:34:29 +1300
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.026; Mon, 6 Dec 2021 20:34:29 +1300
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Rob Herring <robh@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-CC:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Tom Rini <trini@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>
-Subject: Re: [PATCH v2] kbuild: Enable DT schema checks for %.dtb targets
-Thread-Topic: [PATCH v2] kbuild: Enable DT schema checks for %.dtb targets
-Thread-Index: AQHX6nO08beVuCfA/0Kxy5t++H/TdQ==
-Date:   Mon, 6 Dec 2021 07:34:29 +0000
-Message-ID: <cc083619-3744-5979-4750-9c26f016505c@alliedtelesis.co.nz>
-References: <20210913145146.766080-1-robh@kernel.org>
-In-Reply-To: <20210913145146.766080-1-robh@kernel.org>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <35AEF6AEF7C697438B51A1095FF4B995@atlnz.lc>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229561AbhLFHyV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 02:54:21 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3CA2C0613F8;
+        Sun,  5 Dec 2021 23:50:52 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id b40so23149351lfv.10;
+        Sun, 05 Dec 2021 23:50:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=fCwe1VRxK/j7XJ5dJctRw9LHxIMyo7XPy4yY62+18HM=;
+        b=M59fRZr90st8qyqqdtOhcn+AdgfXwiHNaC8fHzWC4JfnZLhpSNLlV22S7uXKBT5KAZ
+         jwZjtFdLxN6hfqMuwHhI3rNHCxldQOTom5Sry2IcNeYTaMRcy8yBMZMHXMn6e9ZcxQiA
+         R2+2OfPFLWHpL8PD69uNI0scxgi9aaf8xqUTPwk4LASAv+uz5C2dnCN97h+Yto1eiQtl
+         C3g7PLSRYFm56O97j+AgbvynUubf6sxF89Zn8LO+JmNOHS3VH2T35qeXmy7KV5tFSEza
+         PQVq9Vl/Akga0jr9BL2t+EjF+jwA2gyDQyohy2KJXZwfjdazJgbIjhiQcwR6e0r0/Lcf
+         SRCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=fCwe1VRxK/j7XJ5dJctRw9LHxIMyo7XPy4yY62+18HM=;
+        b=evFjN8ZV+sIorkpMcu1lNhpmBYB292iom3E67TCtyWMzzoFKRLrC0lVKtE2Ms87r2N
+         5TF+VV31HB3S0pR3FuNUmUb/fYZ4nbfD29Gm7Reu+zQPr8opf0pJeWyLlkpfxKTnYbVA
+         tug6dPyG/eJo5rEx1qDGEqmJEIJwcSFe5uJedUnKLl0rPbU+fNbTKL8KkFi2mbH+3xEn
+         vyRD1LrAsUVlbaromw+iZNfK0AY2BjKYNiWBcuVQijLpFH1scwDll9miFcSTy74fuAn3
+         xQ5Zp49akvHqAKc/D11Ok5wZbsn45RP8Q5GeiEZQgN+CVOlJxExOHgLok/BC6t3B+8eo
+         FSog==
+X-Gm-Message-State: AOAM5312ZmKzEsj6peKo0KpplkIOPf6rmXsXmvOKYff1nJiWfHBc9zmL
+        JZhPlKlvAXBmvuJYTq292EH8JjIL2jE=
+X-Google-Smtp-Source: ABdhPJy30DijDfK6V0+GXiVjwsnOqx1pZ7NzOnBqwGVGlHmU8bXtBXfqbz4fZYgBdvHIWP2Q8ip6Ww==
+X-Received: by 2002:ac2:4c52:: with SMTP id o18mr34063032lfk.372.1638777051090;
+        Sun, 05 Dec 2021 23:50:51 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id b6sm1194949ljr.103.2021.12.05.23.50.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 05 Dec 2021 23:50:50 -0800 (PST)
+Message-ID: <78eba629-b0cf-e1db-df73-2b33fb0b4929@gmail.com>
+Date:   Mon, 6 Dec 2021 08:50:48 +0100
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=XOZOtjpE c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=IOMw9HtfNCkA:10 a=KKAkSRfTAAAA:8 a=k-42gJp3AAAA:8 a=VwQbUJbxAAAA:8 a=bYLquNiKjVeCADY__y4A:9 a=QEXdDO2ut3YA:10 a=cvBusfyB2V15izCimMoJ:22 a=uCSXFHLys93vLW5PjgO_:22 a=AjGcO6oz07-iQ99wixmX:22
-X-SEG-SpamProfiler-Score: 0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101
+ Thunderbird/95.0
+Subject: Re: [PATCH V4 RESEND 1/2] dt-bindings: watchdog: convert Broadcom's
+ WDT to the json-schema
+To:     Lee Jones <lee.jones@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Justin Chen <justinpopo6@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Rob Herring <robh@kernel.org>
+References: <20211115055354.6089-1-zajec5@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20211115055354.6089-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iLA0KDQpPbiAxNC8wOS8yMSAyOjUxIGFtLCBSb2IgSGVycmluZyB3cm90ZToNCj4gSXQg
-aXMgcG9zc2libGUgdG8gYnVpbGQgYSBzaW5nbGUgZHRiLCBidXQgbm90IHdpdGggRFQgc2NoZW1h
-IHZhbGlkYXRpb24NCj4gZW5hYmxlZC4gRW5hYmxlIHRoZSBzY2hlbWEgdmFsaWRhdGlvbiB0byBy
-dW4gZm9yICUuZHRiIGFuZCAlLmR0Ym8NCj4gdGFyZ2V0cy4gQW55b25lIGJ1aWxkaW5nIGEgZHRi
-IGZvciBhIHNwZWNpZmljIHBsYXRmb3JtICpzaG91bGQqIHBheQ0KPiBhdHRlbnRpb24gdG8gc2No
-ZW1hIHdhcm5pbmdzLg0KPg0KPiBUaGlzIGNvdWxkIGJlIHN1cHBvcnRlZCB3aXRoIGEgc2VwYXJh
-dGUgJS5kdC55YW1sIHRhcmdldCBpbnN0ZWFkLg0KPiBIb3dldmVyLCB0aGUgLmR0LnlhbWwgZm9y
-bWF0IGlzIGNvbnNpZGVyZWQgYW4gaW50ZXJtZWRpYXRlIGZvcm1hdCBhbmQNCj4gY291bGQgcG9z
-c2libHkgZ28gYXdheSBhdCBzb21lIHBvaW50IGlmIHNjaGVtYSBjaGVja2luZyBpcyBpbnRlZ3Jh
-dGVkDQo+IGludG8gZHRjLiBBbHNvLCB0aGUgcGxhbiBpcyB0byBlbmFibGUgdGhlIHNjaGVtYSBj
-aGVja3MgYnkgZGVmYXVsdCBvbmNlDQo+IHBsYXRmb3JtcyBhcmUgZnJlZSBvZiB3YXJuaW5ncywg
-YW5kIHRoaXMgaXMgYSBtb3ZlIGluIHRoYXQgZGlyZWN0aW9uLg0KDQpKdXN0IHN0YXJ0ZWQgYnVp
-bGRpbmcgNS4xNi1yYzQgYW5kIGhpdCB0aGUgZm9sbG93aW5nIGVycm9yDQoNCi91c3Ivc3JjL2xp
-bnV4L3NjcmlwdHMvZHRjL01ha2VmaWxlOjIzOiAqKiogZHRjIG5lZWRzIGxpYnlhbWwgZm9yIERU
-IA0Kc2NoZW1hIHZhbGlkYXRpb24gc3VwcG9ydC4gSW5zdGFsbCB0aGUgbmVjZXNzYXJ5IGxpYnlh
-bWwgZGV2ZWxvcG1lbnQgDQpwYWNrYWdlLi7CoCBTdG9wLg0KbWFrZTogKioqIFsvdXNyL3NyYy9s
-aW51eC9NYWtlZmlsZToxNDA1OiBzY3JpcHRzX2R0Y10gRXJyb3IgMg0KbWFrZTogKioqIFdhaXRp
-bmcgZm9yIHVuZmluaXNoZWQgam9icy4uLi4NCg0KSSB0cmFja2VkIGl0IGJhY2sgdG8gdGhpcyBw
-YXRjaCBhbmQgSSBnYXRoZXIgdGhhdCB0aGUgImVycm9yIiBpcyB2ZXJ5IA0KbXVjaCBpbnRlbmRl
-ZC4gRml4aW5nIGl0IG1lYW5zIEkgbmVlZCB0byBnZXQgYSBuYXRpdmUgbGlieWFtbCBpbnRvIG15
-IA0KY3Jvc3MgdG9vbGNoYWluLCB3aGljaCBpcyBkb2FibGUgYnV0IGEgYml0IG9mIGEgaGFzc2xl
-LiBUaGlzIHByb2JhYmx5IA0KYWZmZWN0cyBvdGhlciBtZXRhIGJ1aWxkIHN5c3RlbXMgbGlrZSBi
-dWlsZHJvb3QgYW5kIHlvY3RvLg0KDQpJIHRoaW5rIEkgdW5kZXJzdGFuZCB3aGF0IHlvdSdyZSBn
-ZXR0aW5nIGF0IGJ1dCBpcyBpdCBwb3NzaWJsZSB0byBoYXZlIA0Kc29tZSBraW5kIG9mIGVzY2Fw
-ZSBoYXRjaCB0byBhdm9pZCBoYXZpbmcgdG8gYWRkIGEgYnVpbGQgdGltZSB0b29sIA0KZGVwZW5k
-ZW5jeSAob3IgZXZlbiBidW5kbGluZyBsaWJ5YW1sIG5leHQgdG8gc2NyaXB0cy9kdGMpPw0KDQpJ
-IGFsc28gbm90aWNlIHRoYXQgd2hlbiBJIGRvIHN1cHBseSBhIHRvb2xjaGFpbiB3aXRoIGxpYnlh
-bWwgdGhlIGJ1aWxkIA0KdGltZXMgYXJlIGltcGFjdGVkIGJ5IGEgbm90aWNhYmxlIGZhY3Rvci4N
-Cg0KPiBDYzogRG1pdHJ5IEJhcnlzaGtvdiA8ZG1pdHJ5LmJhcnlzaGtvdkBsaW5hcm8ub3JnPg0K
-PiBDYzogVG9tIFJpbmkgPHRyaW5pQGtvbnN1bGtvLmNvbT4NCj4gQ2M6IE1hc2FoaXJvIFlhbWFk
-YSA8bWFzYWhpcm95QGtlcm5lbC5vcmc+DQo+IENjOiBsaW51eC1rYnVpbGRAdmdlci5rZXJuZWwu
-b3JnDQo+IFNpZ25lZC1vZmYtYnk6IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+DQo+IC0t
-LQ0KPiB2MjoNCj4gICAtIEFsc28gZW5hYmxlIHNjaGVtYSBjaGVja3Mgb24gJS5kdGJvIHRhcmdl
-dHMNCj4gLS0tDQo+ICAgTWFrZWZpbGUgfCAxMCArKysrKy0tLS0tDQo+ICAgMSBmaWxlIGNoYW5n
-ZWQsIDUgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkNCj4NCj4gZGlmZiAtLWdpdCBhL01h
-a2VmaWxlIGIvTWFrZWZpbGUNCj4gaW5kZXggN2NmZTRmZjM2ZjQ0Li5jNTdhNzY1N2M4ZGQgMTAw
-NjQ0DQo+IC0tLSBhL01ha2VmaWxlDQo+ICsrKyBiL01ha2VmaWxlDQo+IEBAIC0xNDAyLDE3ICsx
-NDAyLDE3IEBAIGVuZGlmDQo+ICAgDQo+ICAgaWZuZXEgKCQoZHRzdHJlZSksKQ0KPiAgIA0KPiAt
-JS5kdGI6IGluY2x1ZGUvY29uZmlnL2tlcm5lbC5yZWxlYXNlIHNjcmlwdHNfZHRjDQo+IC0JJChR
-KSQoTUFLRSkgJChidWlsZCk9JChkdHN0cmVlKSAkKGR0c3RyZWUpLyRADQo+ICslLmR0YjogZHRf
-YmluZGluZ19jaGVjayBpbmNsdWRlL2NvbmZpZy9rZXJuZWwucmVsZWFzZSBzY3JpcHRzX2R0Yw0K
-PiArCSQoUSkkKE1BS0UpICQoYnVpbGQpPSQoZHRzdHJlZSkgJChkdHN0cmVlKS8kQCAkKGR0c3Ry
-ZWUpLyQqLmR0LnlhbWwNCj4gICANCj4gLSUuZHRibzogaW5jbHVkZS9jb25maWcva2VybmVsLnJl
-bGVhc2Ugc2NyaXB0c19kdGMNCj4gLQkkKFEpJChNQUtFKSAkKGJ1aWxkKT0kKGR0c3RyZWUpICQo
-ZHRzdHJlZSkvJEANCj4gKyUuZHRibzogZHRfYmluZGluZ19jaGVjayBpbmNsdWRlL2NvbmZpZy9r
-ZXJuZWwucmVsZWFzZSBzY3JpcHRzX2R0Yw0KPiArCSQoUSkkKE1BS0UpICQoYnVpbGQpPSQoZHRz
-dHJlZSkgJChkdHN0cmVlKS8kQCAkKGR0c3RyZWUpLyQqLmR0LnlhbWwNCj4gICANCj4gICBQSE9O
-WSArPSBkdGJzIGR0YnNfaW5zdGFsbCBkdGJzX2NoZWNrDQo+ICAgZHRiczogaW5jbHVkZS9jb25m
-aWcva2VybmVsLnJlbGVhc2Ugc2NyaXB0c19kdGMNCj4gICAJJChRKSQoTUFLRSkgJChidWlsZCk9
-JChkdHN0cmVlKQ0KPiAgIA0KPiAtaWZuZXEgKCQoZmlsdGVyIGR0YnNfY2hlY2ssICQoTUFLRUNN
-REdPQUxTKSksKQ0KPiAraWZuZXEgKCQoZmlsdGVyIGR0YnNfY2hlY2sgJS5kdGIgJS5kdGJvLCAk
-KE1BS0VDTURHT0FMUykpLCkNCj4gICBleHBvcnQgQ0hFQ0tfRFRCUz15DQo+ICAgZHRiczogZHRf
-YmluZGluZ19jaGVjaw0KPiAgIGVuZGlm
+Wim, Lee,
+
+On 15.11.2021 06:53, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> This helps validating DTS files.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+I'm not familiar with handling multi-subsystem patchsets (here: watchdog
+& MFD).
+
+Please kindly let me know: how to proceed with this patchset now to get
+it queued for Linus?
