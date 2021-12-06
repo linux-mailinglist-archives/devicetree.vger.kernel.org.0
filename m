@@ -2,166 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 909E3469E4A
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:36:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15E7A469F46
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:43:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356851AbhLFPhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 10:37:43 -0500
-Received: from vern.gendns.com ([98.142.107.122]:44916 "EHLO vern.gendns.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1386847AbhLFPaL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Dec 2021 10:30:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=ju0HGoaDlI3NtJceOq4hz3W9DZf1MVSOEOEdOkJiahM=; b=OebpVDLsG197RJ/t6TgUimh/As
-        6SjtAQcP4Qpp4FiOgxoy03gzCXUprPE2oxk5plLyhbEUh1rD1DUz3EHfDBrBm6cVNxBOMVJKsIG+E
-        r9s3BzOyVd4s8Welkty1B51f6brKAbdkz18Cf6Q+r4z1dadNUTTQfy9RFTAlBtRdTaABKnfR6aa5g
-        +rcC53mM23azXzHBvsQWYd1scoP2CbDM90unAPf5xMr1tBPuPy6Sc1lqTYMfE1W4jO8YBaFbDoCKc
-        Wy8CeRKPkMSEU/mQhJk3GNaaIYuZwlnLiv7anCb7BA0AdnguFxW/8bLPs11ELEMFX9s3ojKFyg3i/
-        ycDeSZtw==;
-Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:49498 helo=[192.168.0.134])
-        by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <david@lechnology.com>)
-        id 1muFsy-0007g0-Vb; Mon, 06 Dec 2021 10:26:39 -0500
-Subject: Re: [PATCH 0/6] drm/tiny/st7735r: Match up with staging/fbtft driver
-To:     Maxime Ripard <maxime@cerno.tech>,
-        =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
-        linux-staging@lists.linux.dev, dave.stevenson@raspberrypi.com
-References: <20211124150757.17929-1-noralf@tronnes.org>
- <eba23198-5c52-6520-079b-d2d41f71dc25@lechnology.com>
- <20211129093946.xhp22mvdut3m67sc@houat>
- <ca9e432a-6b04-9935-2469-135a9b47514e@tronnes.org>
- <20211201145237.6ezs4pwkmku3pesv@houat>
-From:   David Lechner <david@lechnology.com>
-Message-ID: <1fec2480-195a-b1ec-a58e-caedf7798019@lechnology.com>
-Date:   Mon, 6 Dec 2021 09:26:38 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S1348506AbhLFPq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 10:46:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33594 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1390598AbhLFPmf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:42:35 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC933C0698DE;
+        Mon,  6 Dec 2021 07:29:08 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id l16so23206007wrp.11;
+        Mon, 06 Dec 2021 07:29:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0XOlZ179JzCv5LqPw9a9LqaU5xYygHMHLSV5H8mIWsM=;
+        b=XF/lsECkt8ZlU+BMdwteQ91T+r0KGA6y4eB5X66O2RmHv5o5zNlcTQoirRjdbrga1u
+         54hf062+plRMHBQLtsqpTBfeOPzFUGKlzK63GnJ9iasdbc7WVVfEyR2VwNyfNRMRsM+e
+         psOHOdmHEWPVzyU4Y3r5f22npyDhvi1GYaCKe5fZj5PGWQJWKJTcCcbEO+mzmfmm5UP3
+         hzHtWFUVnpAFITiBM4k2kw49Ay8wXXxxEU8ThLfwNhRgZcn3B7B053k9VunK8jejh6RE
+         8beSqpsb3S0shljnV/2V8b4WCh4LaOFMmJ+aiWwKcAuPBQO9QwYHnQ3v500qHWTkVdva
+         +2RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0XOlZ179JzCv5LqPw9a9LqaU5xYygHMHLSV5H8mIWsM=;
+        b=aZD7Ov02+AXROi6eLnXUjcdf5UFR+kQM4k9Cfrk6ki7HEkNIVAR1B8wv6Fk5XJNUjU
+         4gsQc9WTeNXBEckpEOYQmq32kUb+y96oz191bwzjb8Qzk7juwVxMhWPDeaBFhqeZLZlA
+         6vjmHUNZn+XSE4Af3aNgDpFvnTHp1bCGbxqwumJJJqZEp4NeNopL5dcI0Xzcn56TzhSf
+         fKzk/FKEUNgfvrEJZy0p15ayMGorUbDwSsgF+vGKwYkL8UhNlfDOj+Pqm9Eq6Ocvp1HQ
+         eySj7agTS7opZaMD03fdEpX0BPh4fZrrdh8O2dQZ0VEpVFwENeu6hvkGsJGNwLaC39/0
+         Y5mA==
+X-Gm-Message-State: AOAM532B8xl7W1FKEHHuQTokG5Pu9IVT0aIIS7FQwIXp/QhXgk8M8xhp
+        xT90VmqciDDFwdriZZ/oM4rlhxZz6IE=
+X-Google-Smtp-Source: ABdhPJyXCJfhRK7Y/NgFYdI26UrB6giiAlJ4VaVfFlbR/XTgm9T4WvVULsd9Fa8A7OlfbOXD8IA4/g==
+X-Received: by 2002:adf:c992:: with SMTP id f18mr43364729wrh.574.1638804547089;
+        Mon, 06 Dec 2021 07:29:07 -0800 (PST)
+Received: from localhost (pd9e51d39.dip0.t-ipconnect.de. [217.229.29.57])
+        by smtp.gmail.com with ESMTPSA id r8sm14374337wrz.43.2021.12.06.07.29.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Dec 2021 07:29:06 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Dan Murphy <dmurphy@ti.com>,
+        Ricardo Rivera-Matos <r-rivera-matos@ti.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: bq25980: Fixup the example
+Date:   Mon,  6 Dec 2021 16:29:05 +0100
+Message-Id: <20211206152905.226239-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-In-Reply-To: <20211201145237.6ezs4pwkmku3pesv@houat>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/1/21 8:52 AM, Maxime Ripard wrote:
-> Hi Noralf,
-> 
-> On Tue, Nov 30, 2021 at 03:30:11PM +0100, Noralf Trønnes wrote:
->> Den 29.11.2021 10.39, skrev Maxime Ripard:
->>> On Wed, Nov 24, 2021 at 04:03:07PM -0600, David Lechner wrote:
->>>> On 11/24/21 9:07 AM, Noralf Trønnes wrote:
->>> I agree that it doesn't really fit in the DT either though. Noralf, what
->>> kind of data do we need to setup a display in fbtft? The init sequence,
->>> and maybe some enable/reset GPIO, plus some timing duration maybe?
->>>
->>> There's one similar situation I can think of: wifi chips. Those also
->>> need a few infos from the DT (like what bus it's connected to, enable
->>> GPIO, etc) and a different sequence (firmware), sometimes different from
->>> one board to the other.
->>>
->>> Could we have a binding that would be something like:
->>>
->>> panel@42 {
->>> 	 compatible = "panel-spi";
->>> 	 model = "panel-from-random-place-42";
->>> 	 enable-gpios = <&...>;
->>> }
->>>
->>> And then, the driver would request the init sequence through the
->>> firmware mechanism using a name generated from the model property.
->>>
->>> It allows to support multiple devices in a given system, since the
->>> firmware name wouldn't conflict, it makes a decent binding, and users
->>> can adjust the init sequence easily (maybe with a bit of tooling)
->>>
->>> Would that work?
->>
->> I really like this idea. An added benefit is that one driver can handle
->> all MIPI DBI compatible controllers avoiding the need to do a patchset
->> like this for all the various MIPI DBI controllers. The firmware will
->> just contain numeric commands with parameters, so no need for different
->> controller drivers to handle the controller specific command names.
->>
->> The following is a list of the MIPI DBI compatible controllers currently
->> in staging/fbtft: ili9341, hx8357d, st7735r, ili9163, ili9163, ili9163,
->> ili9163, ili9486, ili9481, tinylcd, s6d02a1, s6d02a1, hx8340bn, ili9340.
->>
->> The compatible needs to be a bit more specific though since there are 2
->> major SPI protocols for these display: MIPI DBI and the one used by
->> ILI9325 and others.
->>
->> The full binding would be something like this:
->>
->> panel@42 {
->> 	compatible = "panel-mipi-dbi-spi";
->> 	model = "panel-from-random-place-42";
->>
->> 	/* The MIPI DBI spec lists these powers supply pins */
->> 	vdd-supply = <&...>;
->> 	vddi-supply = <&...>;
->>
->> 	/* Optional gpio to drive the RESX line */
->> 	reset-gpios = <&...>;
->>
->> 	/*
->> 	 * D/CX: Data/Command, Command is active low
->> 	 * Abcense: Interface option 1 (D/C embedded in 9-bit word)
->> 	 * Precense: Interface option 3
->> 	 */
->> 	dc-gpios = <&...>;
->>
->> 	/*
->> 	 * If set the driver won't try to read from the controller to see
->> 	 * if it's already configured by the bootloader or previously by
->> 	 * the driver. A readable controller avoids flicker and/or delay
->> 	 * enabling the pipeline.
->> 	 *
->> 	 * This property might not be necessary if we are guaranteed to
->> 	 * always read back all 1's or 0's when MISO is not connected.
->> 	 * I don't know if all setups can guarantee that.
->> 	 */
->> 	write-only;
->>
->> 	/* Optional ref to backlight node */
->> 	backlight = <&...>;
->> }
-> 
-> It looks decent to me. We'll want Rob to give his opinion though, but it
-> looks in a much better shape compared to what we usually have :)
-> 
->> Many of these controllers also have a RGB interface option for the
->> pixels and only do configuration over SPI.
->> Maybe the compatible should reflect these 2 options somehow?
-> 
-> I think we'll want a "real" panel for RGB, with its own compatible
-> though. We have a few of these drivers in tree already, so it's better
-> to remain consistent.
-> 
-> Maxime
-> 
+From: Thierry Reding <treding@nvidia.com>
 
-I'm on board with the idea of the init sequence as firmware as well.
+Use the ti,watchdog-timeout-ms property instead of the unsupported
+ti,watchdog-timer property to make the example validate correctly.
 
-It looks like Rob might have missed this thread, so maybe just apply
-the acked patches and submit a v2 with the firmware implementation?
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ Documentation/devicetree/bindings/power/supply/bq25980.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/power/supply/bq25980.yaml b/Documentation/devicetree/bindings/power/supply/bq25980.yaml
+index 06eca6667f67..8367a1fd4057 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq25980.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq25980.yaml
+@@ -105,7 +105,7 @@ examples:
+           reg = <0x65>;
+           interrupt-parent = <&gpio1>;
+           interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
+-          ti,watchdog-timer = <0>;
++          ti,watchdog-timeout-ms = <0>;
+           ti,sc-ocp-limit-microamp = <2000000>;
+           ti,sc-ovp-limit-microvolt = <17800000>;
+           monitored-battery = <&bat>;
+-- 
+2.33.1
 
