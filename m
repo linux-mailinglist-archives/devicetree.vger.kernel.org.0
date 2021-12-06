@@ -2,98 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 637E24696D1
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 14:22:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 713824696F3
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 14:24:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244415AbhLFNZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 08:25:36 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:40622 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244369AbhLFNZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 08:25:36 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B6DLvaj009276;
-        Mon, 6 Dec 2021 07:21:57 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1638796918;
-        bh=o4RttUSCrTmPAxrbzFqdWgBnrZ+5Ctc0eO9fvzF3r/8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=CVY+kjxLcal5VD0gYjXm7gLMjJSTIJfgHH09dWqSwcbDuhA0iI4PTvNxteE1KVlTA
-         4PEpkFVmEmJSQRTSZdevFXRqsdf90zZygza7+5J08J41wUIs43kGgkxxQREvlf2K7/
-         TJO7JIj8ukx3rl6u+wx89wJQIecd5dgLPJplb1w8=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B6DLvLS122651
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 6 Dec 2021 07:21:57 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 6
- Dec 2021 07:21:57 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 6 Dec 2021 07:21:57 -0600
-Received: from uda0132425.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B6DLsHF091959;
-        Mon, 6 Dec 2021 07:21:55 -0600
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am642: Fix the L2 cache sets
-Date:   Mon, 6 Dec 2021 18:51:34 +0530
-Message-ID: <163879687338.18805.990123917091132995.b4-ty@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211113043635.4296-1-nm@ti.com>
-References: <20211113043635.4296-1-nm@ti.com>
+        id S234859AbhLFN2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 08:28:22 -0500
+Received: from mail-ua1-f48.google.com ([209.85.222.48]:41902 "EHLO
+        mail-ua1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244430AbhLFN2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 08:28:22 -0500
+Received: by mail-ua1-f48.google.com with SMTP id p37so19434216uae.8;
+        Mon, 06 Dec 2021 05:24:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hUTPaB3i0du6uvmwX41ota+aoFFQiaoFa1Jt/8inJiQ=;
+        b=l/VRjWraZ9malqHdP2NTu7+uVLD3TY1EScJWPrTbZoFSBpSRdhsM2JVm8pQJ5sC0zf
+         5vvL7b54VIqfRw1mb0trGqlp9tIywApUz9+FIGFFGqvIc+1S2wgonPowjdIBGSqLiYsv
+         htqHgDL+QGu1NhFgBYKgK63xaysYE1z0P+EFueZQY3duWSwycVisGJkdESgYuXmKbsYu
+         Kg0wsfyGZ96SuCP3KqQ6SxqoT6ZnwrmVHsddKk3pSb0EjmAjD8fdDVqeEF2gbP483DGE
+         Ql7k/0ZeOEZova9seebHrDLfaUUt2Od4qCXlxXzlvG3KEfZ5QZ0VxrDEXZrSVjl0onDR
+         I1fA==
+X-Gm-Message-State: AOAM531hzinEKPvHEqXoSA55SkHDCvizn27zGu+Sng8qDeHn7pWxreLg
+        ztqqMhYndrl4VIiR/NnE+pqGC2Q3fX/4/g==
+X-Google-Smtp-Source: ABdhPJxcM5TZI8LDiWr6gGLk9T5SAnzo0tAGDJW0H6OqbgmpioodVrm4O2FFIICPScTfUvib2y62og==
+X-Received: by 2002:a67:2683:: with SMTP id m125mr35250840vsm.80.1638797093100;
+        Mon, 06 Dec 2021 05:24:53 -0800 (PST)
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
+        by smtp.gmail.com with ESMTPSA id o188sm4155262vko.48.2021.12.06.05.24.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Dec 2021 05:24:52 -0800 (PST)
+Received: by mail-ua1-f41.google.com with SMTP id i6so19442066uae.6;
+        Mon, 06 Dec 2021 05:24:52 -0800 (PST)
+X-Received: by 2002:a9f:3e01:: with SMTP id o1mr39567596uai.89.1638797092369;
+ Mon, 06 Dec 2021 05:24:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20211203115154.31864-1-biju.das.jz@bp.renesas.com> <20211203115154.31864-5-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20211203115154.31864-5-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 6 Dec 2021 14:24:41 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU+eYymZBQv8xrLKFCzORxmGe==Vc4z5qjxq+2vNfgaAw@mail.gmail.com>
+Message-ID: <CAMuHMdU+eYymZBQv8xrLKFCzORxmGe==Vc4z5qjxq+2vNfgaAw@mail.gmail.com>
+Subject: Re: [PATCH 4/6] dt-bindings: gpu: mali-bifrost: Document RZ/G2L support
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth Menon,
- 
-On Fri, 12 Nov 2021 22:36:35 -0600, Nishanth Menon wrote:
-> A53's L2 cache[1] on AM642[2] is 256KB. A53's L2 is fixed line length
-> of 64 bytes and 16-way set-associative cache structure.
-> 
-> 256KB of L2 / 64 (line length) = 4096 ways
-> 4096 ways / 16 = 256 sets
-> 
-> Fix the l2 cache-sets.
-> 
-> [...]
- 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
- 
-[1/1] arm64: dts: ti: k3-am642: Fix the L2 cache sets
-      commit: a27a93bf70045be54b594fa8482959ffb84166d7
- 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
- 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
- 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
- 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
- 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+Hi Biju,
 
+On Fri, Dec 3, 2021 at 12:52 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> The Renesas RZ/G2{L, LC} SoC (a.k.a R9A07G044) has a Bifrost Mali-G31 GPU,
+> add a compatible string for it.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Thanks for your patch!
+
+> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+
+> @@ -52,7 +64,8 @@ properties:
+>      maxItems: 3
+>
+>    resets:
+> -    maxItems: 2
+> +    minItems: 1
+
+2, as before?
+
+> +    maxItems: 3
+
+Perhaps you should add reset-names?
+
+>
+>    "#cooling-cells":
+>      const: 2
+> @@ -113,6 +126,21 @@ allOf:
+>          - sram-supply
+>          - power-domains
+>          - power-domain-names
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a07g044-mali
+> +    then:
+> +      properties:
+> +        interrupt-names:
+> +          minItems: 4
+> +        clock-names:
+> +          minItems: 3
+> +      required:
+> +        - clock-names
+> +        - power-domains
+> +        - resets
+
+reset-names
+
+>      else:
+>        properties:
+>          power-domains:
+
+The rest looks good to me, but I'm no Mali expert.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
