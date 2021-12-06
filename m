@@ -2,128 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20365469D0B
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:24:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71FE6469E46
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:36:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232601AbhLFP2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 10:28:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56998 "EHLO
+        id S1345879AbhLFPhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 10:37:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345674AbhLFPWY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:22:24 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24909C08EA47;
-        Mon,  6 Dec 2021 07:14:49 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 265421F4488A
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1638803687; bh=0wYI5HLADYAd4xSANRFLZ/t5SGL4HjQoUDDbtVZMntw=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=F3i+qP58ek+QIKjw1gTAd6rIjXU196UrMqKi+DJqxtwKT9teAAAKYDKlz5oFjx46y
-         FPqYUOo3CrAC3nuDPAyR2f16fDPcNAwAenlgSg0xB58532r5z07c3PBmgezyJ6ti6L
-         KebBY0RT6kj0OndKhn9btJ7CLlBQznplhoMfPx+oIn44P4Yp4uw0SnnewMaBvZ7IeD
-         KxkWDS4nJRLje/JEm0LgJyq17nuMAIFq11UWBpXnIAKA8FrW2f2CGgYXRyyVob+1Mx
-         FVg68HlMTJE1lQAItxtheu4WVmAArwN9qGVH7ibsCT2t5b0jghIuqZzlmT9nYhBXVH
-         FiDZ12bt+YGDw==
-Subject: Re: [PATCH v4 1/7] net-next: stmmac: dwmac-mediatek: add platform
- level clocks management
-To:     Biao Huang <biao.huang@mediatek.com>, davem@davemloft.net,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        srv_heupstream@mediatek.com, macpaul.lin@mediatek.com,
-        dkirjanov@suse.de
-References: <20211203063418.14892-1-biao.huang@mediatek.com>
- <20211203063418.14892-2-biao.huang@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <9dc0cbc3-8de0-f1ed-cfc9-852b7e69ab3c@collabora.com>
-Date:   Mon, 6 Dec 2021 16:14:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S1377887AbhLFP27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:28:59 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C77FC0698D4
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 07:18:16 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id a9so23096172wrr.8
+        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 07:18:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+qJJaUGGfelfGcEnvCwsVEqDVlMxcACIbGxhhje7zmQ=;
+        b=glIoQLOH4iRhQv9GbWfPsc6HlWo9A4bsP9ZXrFxYNcGfJEmfyVTqgKY0Gvtl5N9e6W
+         eA3T0r97domCuDiHVzcrvpE0tTo9/ycTpKkH/fC8bG8AlYNlBgajMSPilZsOG2KLxZtd
+         4cuWDl6+G11tQYNjl0nnFToYKm6g0Ot2dFvK+1USq7fKWRcprrNwQ0NNR2GGk2Hgtjbt
+         WMVhceYUB+oLVsNxH/yo3GcGCSu5srP5nXFjYVq34E6vbsW6Ri+fchcUNfzVrlew2f5t
+         H3DFdGdlTjoLB0EtDhS36SaVu2ZVx76jqi4INsdr5GOCH//tPHOlhnFZODpnL0gwIu0W
+         9f8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+qJJaUGGfelfGcEnvCwsVEqDVlMxcACIbGxhhje7zmQ=;
+        b=WyHTeSOVUtNnrv0GUkr3Pf7OXh3i7mSsgkeAJkaSjEh/aQHFSzIjVsOYc7EdeWDhRQ
+         vqqNS4e0PsAwJQWLiNAALdSp/62qxNiojThnvYbYHw7lq/PRtv6AHTNJnCxiWyvDQL17
+         BCvqes8TMKGNn2jRPzWzaEseq2D2VzqcpP0t/BuEOO5L8O2M45e5PusRL2grUan0bhz3
+         BelehYJVjCi98yDyNnNB/K1LYo8ov7tOeisj15s1PaoWhETaVhuYit15D2X2VAjSUXsE
+         pEyxL/C0EkJq/Ft6+koeWl5Qq+o+eUnI8lVzE82eVv3LiX9aaiyMm5E/rGsams0effP5
+         7xUA==
+X-Gm-Message-State: AOAM532w/Id5mqFRckQ2M8Nsz/FVCtLygpI3i6Y2PEfR8UGk0VLY1oFg
+        CFDoC4ntD5k5CmklBAS3GEWMnA==
+X-Google-Smtp-Source: ABdhPJwa5CV2ZYbn7LsYzVvJ8cAuUtdDsip8eT/OjGDKB5wIglWaTkpPgBb3ctR8lQx7Ah89qZMYOA==
+X-Received: by 2002:a05:6000:1862:: with SMTP id d2mr45042094wri.251.1638803894813;
+        Mon, 06 Dec 2021 07:18:14 -0800 (PST)
+Received: from xps7590.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
+        by smtp.gmail.com with ESMTPSA id t8sm11784871wrv.30.2021.12.06.07.18.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Dec 2021 07:18:14 -0800 (PST)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, mchehab@kernel.org, robh+dt@kernel.org,
+        angelogioacchino.delregno@somainline.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH v4 0/2] Remove clock-lanes DT property from CAMSS
+Date:   Mon,  6 Dec 2021 16:18:09 +0100
+Message-Id: <20211206151811.39271-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <20211203063418.14892-2-biao.huang@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 03/12/21 07:34, Biao Huang ha scritto:
-> This patch implements clks_config callback for dwmac-mediatek platform,
-> which could support platform level clocks management.
-> 
-> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
-> ---
->   .../ethernet/stmicro/stmmac/dwmac-mediatek.c  | 24 ++++++++++++++-----
->   1 file changed, 18 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
-> index 58c0feaa8131..157ff655c85e 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
-> @@ -359,9 +359,6 @@ static int mediatek_dwmac_init(struct platform_device *pdev, void *priv)
->   		return ret;
->   	}
->   
-> -	pm_runtime_enable(&pdev->dev);
-> -	pm_runtime_get_sync(&pdev->dev);
-> -
->   	return 0;
->   }
->   
-> @@ -370,11 +367,25 @@ static void mediatek_dwmac_exit(struct platform_device *pdev, void *priv)
->   	struct mediatek_dwmac_plat_data *plat = priv;
->   
->   	clk_bulk_disable_unprepare(plat->num_clks_to_config, plat->clks);
-> -
-> -	pm_runtime_put_sync(&pdev->dev);
-> -	pm_runtime_disable(&pdev->dev);
->   }
->   
-> +static int mediatek_dwmac_clks_config(void *priv, bool enabled)
-> +{
-> +	struct mediatek_dwmac_plat_data *plat = priv;
-> +	int ret = 0;
-> +
-> +	if (enabled) {
-> +		ret = clk_bulk_prepare_enable(plat->num_clks_to_config, plat->clks);
-> +		if (ret) {
-> +			dev_err(plat->dev, "failed to enable clks, err = %d\n", ret);
-> +			return ret;
-> +		}
-> +	} else {
-> +		clk_bulk_disable_unprepare(plat->num_clks_to_config, plat->clks);
-> +	}
-> +
-> +	return ret;
-> +}
->   static int mediatek_dwmac_probe(struct platform_device *pdev)
->   {
->   	struct mediatek_dwmac_plat_data *priv_plat;
-> @@ -420,6 +431,7 @@ static int mediatek_dwmac_probe(struct platform_device *pdev)
->   	plat_dat->bsp_priv = priv_plat;
->   	plat_dat->init = mediatek_dwmac_init;
->   	plat_dat->exit = mediatek_dwmac_exit;
-> +	plat_dat->clks_config = mediatek_dwmac_clks_config;
->   	mediatek_dwmac_init(pdev, priv_plat);
->   
->   	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
-> 
+Changes since v3:
+ - Split patches heading for Media and ARM64 tress
+   into two seperate series
 
-Hello Biao,
+Changes since v2:
+ - Stephan: Rebased on v5.16-rc1
+ - Stephan: Fixed 3/4 commit message title
 
-you're removing all calls to pm_runtime_* functions, so there is no more reason
-to include linux/pm_runtime.h in this file: please also remove the inclusion.
+Changes since v1:
+ - Rob: Instead of documenting and fixing the use of the clock-lanes
+   property, remove it, since it is is not programmable and
+   therefore shouldn't be exposed in the DT.
 
-Thanks!
+Robert Foss (2):
+  media: camss: csiphy: Move to hardcode CSI Clock Lane number
+  media: dt-bindings: media: camss: Remove clock-lane property
+
+ .../bindings/media/qcom,msm8916-camss.yaml    | 10 ---------
+ .../bindings/media/qcom,msm8996-camss.yaml    | 20 ------------------
+ .../bindings/media/qcom,sdm660-camss.yaml     | 20 ------------------
+ .../bindings/media/qcom,sdm845-camss.yaml     | 17 ---------------
+ .../qcom/camss/camss-csiphy-2ph-1-0.c         | 19 +++++++++++++++--
+ .../qcom/camss/camss-csiphy-3ph-1-0.c         | 17 ++++++++++++++-
+ .../media/platform/qcom/camss/camss-csiphy.c  | 21 +------------------
+ .../media/platform/qcom/camss/camss-csiphy.h  |  7 +++++++
+ 8 files changed, 41 insertions(+), 90 deletions(-)
+
+-- 
+2.32.0
+
