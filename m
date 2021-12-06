@@ -2,246 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B9A846A189
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 17:37:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA3C46A198
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 17:41:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357218AbhLFQlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 11:41:04 -0500
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:49965 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351075AbhLFQk4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 11:40:56 -0500
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 28A101BF209;
-        Mon,  6 Dec 2021 16:37:22 +0000 (UTC)
-Date:   Mon, 6 Dec 2021 17:38:15 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Eugen Hristev <eugen.hristev@microchip.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
-        nicolas.ferre@microchip.com
-Subject: Re: [PATCH v2 12/25] media: atmel: atmel-isc-base: fix bytesperline
- value for planar formats
-Message-ID: <20211206163815.wq5tq3fcsqkj2etk@uno.localdomain>
-References: <20211112142509.2230884-1-eugen.hristev@microchip.com>
- <20211112142509.2230884-13-eugen.hristev@microchip.com>
+        id S229579AbhLFQp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 11:45:26 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:52808 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229503AbhLFQp0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 11:45:26 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id EDB251F44A85
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1638808916; bh=M3hSCHW0hydix9hLEzH0Vi8aDVF0BRckDz30x5C/otc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FUmrqbTgbM7ViNCVOYPUNFgAwOKMfDYcV3caU+/NT+VSE0L94IjhC882xgvRXiSlh
+         Xj8mjDujX0WAlz+LIeBN2a4XF36qKRXfZNJVtLAXb+2dsvcDbkDCjSMi5HZ8UMJaEI
+         8oTagz5tVlppAgNaKsEQLJ7S1cvcmULer4Me8tRZTBHCvCByA/5f+vaQ/aKH9cBbBK
+         Nx0Z1iz3EjOv51+yD+vvZAT/TgWvZVGZfCTqV4p/XhVVGGp+2cCQivtRib11vSACIX
+         QAU4k+xNM+95FM9ec84q/WRGJFuZXsqDfhmmUvzZL977xn5GKmxgLUaDTR19SxFdEv
+         QMDZuFp3X3M4w==
+Date:   Mon, 6 Dec 2021 11:41:50 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [v1 1/5] arm64: dts: mediatek: Correct system timer clock of
+ MT8192
+Message-ID: <20211206164150.wigqbwo6kdkwi35r@notapiano>
+References: <20210825011120.30481-1-chun-jie.chen@mediatek.com>
+ <20210825011120.30481-2-chun-jie.chen@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20211112142509.2230884-13-eugen.hristev@microchip.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210825011120.30481-2-chun-jie.chen@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eugen
+Hi Chun-Jie,
 
-On Fri, Nov 12, 2021 at 04:24:56PM +0200, Eugen Hristev wrote:
-> The bytesperline field of the pixfmt should be only for the first plane
-> in case of planar formats like YUV420 or YUV422.
-> The bytesperline is used by the driver to compute the framesize.
-> We have to report a different bpp (bytes per pixel) to v4l2 in bytesperline
-> than the actual bpp.
-> For example for YUV420, the real bpp is 12, but the first plane has only
-> 8 bpp. Thus we report a bytesperline 8*width instead of 12*width.
-> However, for real framezise we have to compute 12*width*height.
-> Hence added a new variable to hold this information and to correctly
-> compute the frame size.
+thanks for the patch! However, can you please improve the commit message? Here's
+a possible suggestion:
 
-Using single planar API for multiplanar format is really painful :(
+    When the initial devicetree for mt8192 was added in 48489980e27e ("arm64:
+    dts: Add Mediatek SoC MT8192 and evaluation board dts and Makefile"), the
+    clock driver for mt8192 was not yet upstream, so the clock property nodes
+    were set to the clk26m clock as a placeholder.
 
->
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+    Given that the clock driver has since been added through 710573dee31b ("clk:
+    mediatek: Add MT8192 basic clocks support"), as well as its dt-bindings
+    through f35f1a23e0e1 ("clk: mediatek: Add dt-bindings of MT8192 clocks") and
+    devicetree nodes through 5d2b897bc6f5 ("arm64: dts: mediatek: Add mt8192
+    clock controllers"), fix the systimer clock property to point to the actual
+    clock.
+
+Then you could use the same message for the other commits, just updating which
+clock is being fixed in the last sentence there. With that improved commit
+message:
+
+Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
+Thanks,
+Nícolas
+
+> 
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
 > ---
->  drivers/media/platform/atmel/atmel-isc-base.c | 19 +++++++++++++++++--
->  drivers/media/platform/atmel/atmel-isc.h      |  4 ++++
->  2 files changed, 21 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/media/platform/atmel/atmel-isc-base.c b/drivers/media/platform/atmel/atmel-isc-base.c
-> index 2cb8446ff90c..d0542b97a391 100644
-> --- a/drivers/media/platform/atmel/atmel-isc-base.c
-> +++ b/drivers/media/platform/atmel/atmel-isc-base.c
-> @@ -654,6 +654,7 @@ static int isc_try_configure_rlp_dma(struct isc_device *isc, bool direct_dump)
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_PACKED8;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PACKED;
->  		isc->try_config.bpp = 8;
-> +		isc->try_config.bpp_v4l2 = 8;
->  		break;
->  	case V4L2_PIX_FMT_SBGGR10:
->  	case V4L2_PIX_FMT_SGBRG10:
-> @@ -663,6 +664,7 @@ static int isc_try_configure_rlp_dma(struct isc_device *isc, bool direct_dump)
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_PACKED16;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PACKED;
->  		isc->try_config.bpp = 16;
-> +		isc->try_config.bpp_v4l2 = 16;
->  		break;
->  	case V4L2_PIX_FMT_SBGGR12:
->  	case V4L2_PIX_FMT_SGBRG12:
-> @@ -672,24 +674,28 @@ static int isc_try_configure_rlp_dma(struct isc_device *isc, bool direct_dump)
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_PACKED16;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PACKED;
->  		isc->try_config.bpp = 16;
-> +		isc->try_config.bpp_v4l2 = 16;
->  		break;
->  	case V4L2_PIX_FMT_RGB565:
->  		isc->try_config.rlp_cfg_mode = ISC_RLP_CFG_MODE_RGB565;
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_PACKED16;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PACKED;
->  		isc->try_config.bpp = 16;
-> +		isc->try_config.bpp_v4l2 = 16;
->  		break;
->  	case V4L2_PIX_FMT_ARGB444:
->  		isc->try_config.rlp_cfg_mode = ISC_RLP_CFG_MODE_ARGB444;
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_PACKED16;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PACKED;
->  		isc->try_config.bpp = 16;
-> +		isc->try_config.bpp_v4l2 = 16;
->  		break;
->  	case V4L2_PIX_FMT_ARGB555:
->  		isc->try_config.rlp_cfg_mode = ISC_RLP_CFG_MODE_ARGB555;
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_PACKED16;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PACKED;
->  		isc->try_config.bpp = 16;
-> +		isc->try_config.bpp_v4l2 = 16;
->  		break;
->  	case V4L2_PIX_FMT_ABGR32:
->  	case V4L2_PIX_FMT_XBGR32:
-> @@ -697,42 +703,49 @@ static int isc_try_configure_rlp_dma(struct isc_device *isc, bool direct_dump)
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_PACKED32;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PACKED;
->  		isc->try_config.bpp = 32;
-> +		isc->try_config.bpp_v4l2 = 32;
->  		break;
->  	case V4L2_PIX_FMT_YUV420:
->  		isc->try_config.rlp_cfg_mode = ISC_RLP_CFG_MODE_YYCC;
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_YC420P;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PLANAR;
->  		isc->try_config.bpp = 12;
-> +		isc->try_config.bpp_v4l2 = 8; /* only first plane */
->  		break;
->  	case V4L2_PIX_FMT_YUV422P:
->  		isc->try_config.rlp_cfg_mode = ISC_RLP_CFG_MODE_YYCC;
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_YC422P;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PLANAR;
->  		isc->try_config.bpp = 16;
-> +		isc->try_config.bpp_v4l2 = 8; /* only first plane */
-
-This could have also been described with by adding to the format a
-subsampling factor for the CbCr plane and fixing the bpp to 8 as it
-describes the first plane. In this way you could avoid setting
-bpp_v4l2 for all formats that do not need it.
-
-Something like a simple subsampling multiplier would do for planar YUV
-formats, more complicated schemes would probably needed for other
-formats.
-
-                420:
-                bpp = 8
-                subsampling = 12
-                bytesperline = w * bpp  >> 3
-                sizeimage = w * h * subsampling >> 3
-
-                422:
-                bpp = 8
-                subsampling = 16
-                bytesperline = w * bpp  >> 3
-                sizeimage = w * h * subsampling >> 3
-
-                444:
-                bpp = 8
-                subsampling = 24
-                bytesperline = w * bpp  >> 3
-                sizeimage = w * h * subsampling >> 3
-
-You would anyway need to set subsampling = 8 in other formats or
-either
-        sizeimage = w * h * (subsampling ? subsampling : 8) >> 3
-
-which is not super nice ;)
-
-As you wish though, this is driver code, so anything goes
-
-Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
-
-Thanks
-   j
-
-
-
-
->  		break;
->  	case V4L2_PIX_FMT_YUYV:
->  		isc->try_config.rlp_cfg_mode = ISC_RLP_CFG_MODE_YCYC | ISC_RLP_CFG_YMODE_YUYV;
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_PACKED32;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PACKED;
->  		isc->try_config.bpp = 16;
-> +		isc->try_config.bpp_v4l2 = 16;
->  		break;
->  	case V4L2_PIX_FMT_UYVY:
->  		isc->try_config.rlp_cfg_mode = ISC_RLP_CFG_MODE_YCYC | ISC_RLP_CFG_YMODE_UYVY;
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_PACKED32;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PACKED;
->  		isc->try_config.bpp = 16;
-> +		isc->try_config.bpp_v4l2 = 16;
->  		break;
->  	case V4L2_PIX_FMT_VYUY:
->  		isc->try_config.rlp_cfg_mode = ISC_RLP_CFG_MODE_YCYC | ISC_RLP_CFG_YMODE_VYUY;
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_PACKED32;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PACKED;
->  		isc->try_config.bpp = 16;
-> +		isc->try_config.bpp_v4l2 = 16;
->  		break;
->  	case V4L2_PIX_FMT_GREY:
->  		isc->try_config.rlp_cfg_mode = ISC_RLP_CFG_MODE_DATY8;
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_PACKED8;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PACKED;
->  		isc->try_config.bpp = 8;
-> +		isc->try_config.bpp_v4l2 = 8;
->  		break;
->  	case V4L2_PIX_FMT_Y16:
->  		isc->try_config.rlp_cfg_mode = ISC_RLP_CFG_MODE_DATY10 | ISC_RLP_CFG_LSH;
-> @@ -742,6 +755,7 @@ static int isc_try_configure_rlp_dma(struct isc_device *isc, bool direct_dump)
->  		isc->try_config.dcfg_imode = ISC_DCFG_IMODE_PACKED16;
->  		isc->try_config.dctrl_dview = ISC_DCTRL_DVIEW_PACKED;
->  		isc->try_config.bpp = 16;
-> +		isc->try_config.bpp_v4l2 = 16;
->  		break;
->  	default:
->  		return -EINVAL;
-> @@ -990,8 +1004,9 @@ static int isc_try_fmt(struct isc_device *isc, struct v4l2_format *f,
->  		pixfmt->height = isc->max_height;
->
->  	pixfmt->field = V4L2_FIELD_NONE;
-> -	pixfmt->bytesperline = (pixfmt->width * isc->try_config.bpp) >> 3;
-> -	pixfmt->sizeimage = pixfmt->bytesperline * pixfmt->height;
-> +	pixfmt->bytesperline = (pixfmt->width * isc->try_config.bpp_v4l2) >> 3;
-> +	pixfmt->sizeimage = ((pixfmt->width * isc->try_config.bpp) >> 3) *
-> +			     pixfmt->height;
->
->  	if (code)
->  		*code = mbus_code;
-> diff --git a/drivers/media/platform/atmel/atmel-isc.h b/drivers/media/platform/atmel/atmel-isc.h
-> index 32448ccfc636..07fa6dbf8460 100644
-> --- a/drivers/media/platform/atmel/atmel-isc.h
-> +++ b/drivers/media/platform/atmel/atmel-isc.h
-> @@ -102,6 +102,9 @@ struct isc_format {
->  			configuration.
->   * @fourcc:		Fourcc code for this format.
->   * @bpp:		Bytes per pixel in the current format.
-> + * @bpp_v4l2:		Bytes per pixel in the current format, for v4l2.
-> +			This differs from 'bpp' in the sense that in planar
-> +			formats, it refers only to the first plane.
->   * @rlp_cfg_mode:	Configuration of the RLP (rounding, limiting packaging)
->   * @dcfg_imode:		Configuration of the input of the DMA module
->   * @dctrl_dview:	Configuration of the output of the DMA module
-> @@ -112,6 +115,7 @@ struct fmt_config {
->
->  	u32			fourcc;
->  	u8			bpp;
-> +	u8			bpp_v4l2;
->
->  	u32			rlp_cfg_mode;
->  	u32			dcfg_imode;
-> --
-> 2.25.1
->
+>  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index c7c7d4e017ae..2b63d2ea6cb6 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -312,7 +312,7 @@
+>  				     "mediatek,mt6765-timer";
+>  			reg = <0 0x10017000 0 0x1000>;
+>  			interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH 0>;
+> -			clocks = <&clk26m>;
+> +			clocks = <&topckgen CLK_TOP_CSW_F26M_D2>;
+>  			clock-names = "clk13m";
+>  		};
+>  
+> -- 
+> 2.18.0
+> 
+> 
