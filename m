@@ -2,100 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BEEF469706
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 14:30:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 870DD469703
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 14:29:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243962AbhLFNdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 08:33:32 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:41480 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244021AbhLFNdb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 08:33:31 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B6DTrV8011520;
-        Mon, 6 Dec 2021 07:29:53 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1638797393;
-        bh=AkzDdriUGxQiwAqQmJA42Ef15ui8ESE81FZMjz4HunE=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=KApRLcweQCVw4ts6entfdsNy7WVPtmMDZ+NTKe2yBi+WNxaZ3D31QOY28ERLWkO+i
-         S9riroP1Gfju/81AhYK079+Kr95OIyIWdAYc1ZxiHmPhEq3iabaeGEmoLx7Ywnkbix
-         5ti2HrXzmaJtHd0qMjAN+waUeo6fYh+W4cbzN7X4=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B6DTqFl001589
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 6 Dec 2021 07:29:52 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 6
- Dec 2021 07:29:52 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 6 Dec 2021 07:29:52 -0600
-Received: from uda0132425.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B6DTml2109056;
-        Mon, 6 Dec 2021 07:29:49 -0600
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     <robh+dt@kernel.org>, <s-anna@ti.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, <kristo@kernel.org>,
-        <nm@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        id S244482AbhLFNdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 08:33:19 -0500
+Received: from foss.arm.com ([217.140.110.172]:57506 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S243962AbhLFNdT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Dec 2021 08:33:19 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 521C46D;
+        Mon,  6 Dec 2021 05:29:50 -0800 (PST)
+Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6C0ED3F73D;
+        Mon,  6 Dec 2021 05:29:48 -0800 (PST)
+Date:   Mon, 6 Dec 2021 13:29:40 +0000
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Jim Quinlan <jim2101024@gmail.com>, Rob Herring <robh@kernel.org>
+Cc:     linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Saenz Julienne <nsaenzjulienne@suse.de>,
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: k3-j721e: correct cache-sets info
-Date:   Mon, 6 Dec 2021 18:59:22 +0530
-Message-ID: <163879723385.20240.9306599472058265234.b4-ty@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211112063155.3485777-1-peng.fan@oss.nxp.com>
-References: <20211112063155.3485777-1-peng.fan@oss.nxp.com>
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v9 3/7] dt-bindings: PCI: Add bindings for Brcmstb EP
+ voltage regulators
+Message-ID: <20211206132940.GA19176@lpieralisi>
+References: <20211119220756.18628-1-jim2101024@gmail.com>
+ <20211119220756.18628-4-jim2101024@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211119220756.18628-4-jim2101024@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peng Fan (OSS),
- 
-On Fri, 12 Nov 2021 14:31:55 +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Fri, Nov 19, 2021 at 05:07:50PM -0500, Jim Quinlan wrote:
+> Add bindings for Brcmstb EP voltage regulators.  A new mechanism is to be
+> added to the Linux PCI subsystem that will allocate and turn on/off
+> regulators.  These are standard regulators -- vpcie12v, vpcie3v3, and
+> vpcie3v3aux -- placed in the DT in the bridge node under the host bridge
+> device.
 > 
-> A72 Cluster has 48KB Icache, 32KB Dcache and 1MB L2 Cache
->  - ICache is 3-way set-associative
->  - Dcache is 2-way set-associative
->  - Line size are 64bytes
+> The use of a regulator property in the pcie EP subnode such as
+> "vpcie12v-supply" depends on a pending pullreq to the pci-bus.yaml
+> file at
 > 
-> [...]
- 
-I have applied the following to branch ti-k3-dts-next on [1].
+> https://github.com/devicetree-org/dt-schema/pull/63
+> 
+> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
+> ---
+>  .../bindings/pci/brcm,stb-pcie.yaml           | 23 +++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 
-Fixed $subject as suggested by Nishanth.
+Hi Rob,
 
-Thank you!
- 
-[1/1] arm64: dts: k3-j721e: correct cache-sets info
-      commit: 7a0df1f969c14939f60a7f9a6af72adcc314675f
- 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
- 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
- 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
- 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
- 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+is it Ok to pull this patch ? I would like to merge the series, please
+let me know.
 
+Thanks,
+Lorenzo
+
+> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> index 22f2ef446f18..7113a7f726e7 100644
+> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> @@ -159,5 +159,28 @@ examples:
+>                                   <0x42000000 0x1 0x80000000 0x3 0x00000000 0x0 0x80000000>;
+>                      brcm,enable-ssc;
+>                      brcm,scb-sizes =  <0x0000000080000000 0x0000000080000000>;
+> +
+> +                    /* PCIe bridge */
+> +                    pci@0,0 {
+> +                            #address-cells = <3>;
+> +                            #size-cells = <2>;
+> +                            reg = <0x0 0x0 0x0 0x0 0x0>;
+> +                            compatible = "pciclass,0604";
+> +                            device_type = "pci";
+> +                            vpcie3v3-supply = <&vreg7>;
+> +                            ranges;
+> +
+> +                            /* PCIe endpoint */
+> +                            pci-ep@0,0 {
+> +                                    assigned-addresses =
+> +                                        <0x82010000 0x0 0xf8000000 0x6 0x00000000 0x0 0x2000>;
+> +                                    reg = <0x0 0x0 0x0 0x0 0x0>;
+> +                                    compatible = "pci14e4,1688";
+> +                                    #address-cells = <3>;
+> +                                    #size-cells = <2>;
+> +
+> +                                    ranges;
+> +                            };
+> +                    };
+>              };
+>      };
+> -- 
+> 2.17.1
+> 
