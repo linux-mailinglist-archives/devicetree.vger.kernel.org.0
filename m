@@ -2,83 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78BF5469730
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 14:34:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B07346975B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 14:43:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243557AbhLFNhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 08:37:42 -0500
-Received: from mail-ua1-f49.google.com ([209.85.222.49]:42995 "EHLO
-        mail-ua1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243535AbhLFNhm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 08:37:42 -0500
-Received: by mail-ua1-f49.google.com with SMTP id t13so19489702uad.9;
-        Mon, 06 Dec 2021 05:34:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pS8Rss5A1BoPPse5q1pKuD2luLMk14bxeQTyewVOD5I=;
-        b=3Ct2VNK7fa8we/VF6EaCpxCgqeAVy6wcfS2Srf+aJGlZh8JzKeJb2MpWHdXSQkId3U
-         +ts90oKEshKlxQZWuPANQu2Kp2DWd2hO+o6082sAcMF9tNkGHdZOwmXusjDsssqu5Bbw
-         gWtLe/+cDJ88ZdPznIzoctoHZS1GsBiWMqYjmJmauhqy3YqDBNM1mPNTsuialy2nNK87
-         Dhg/1ZKDMmojREqIox9C3ABOKlKP3IGV5LBzwc6noU2lKUSfQgaM+Ptyvr/JKz6VvKPY
-         Mv8nOSrCQwrGfa14bEvS0TtFxyKC3xLeWMKso7XPob68dZf+IVtVP+TXS62bDaqm+xSi
-         xpBA==
-X-Gm-Message-State: AOAM5335k6jIdz2H8Heec9c2DHHtZekJSRVRzLWMUQ8rcnqN0qjO5arV
-        gui9mySXCHPIIBKbgqUV5houUavXimlqwA==
-X-Google-Smtp-Source: ABdhPJzpY7wnzMJwZvecx7uf4FwuhmoZaWtoXp17mko81RFhEubsxCDw1j9A/odnHOwKwQxYLQ6Uxg==
-X-Received: by 2002:a05:6102:358b:: with SMTP id h11mr36888566vsu.82.1638797652819;
-        Mon, 06 Dec 2021 05:34:12 -0800 (PST)
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
-        by smtp.gmail.com with ESMTPSA id i24sm4194343vkk.5.2021.12.06.05.34.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Dec 2021 05:34:12 -0800 (PST)
-Received: by mail-ua1-f44.google.com with SMTP id a14so19656937uak.0;
-        Mon, 06 Dec 2021 05:34:12 -0800 (PST)
-X-Received: by 2002:a05:6102:21dc:: with SMTP id r28mr37033732vsg.57.1638797652196;
- Mon, 06 Dec 2021 05:34:12 -0800 (PST)
+        id S240974AbhLFNql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 08:46:41 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:29050 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244675AbhLFNqk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 08:46:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1638798192; x=1670334192;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=0QW7DwiKKjDcGAgR40YyUnQsj2KHuLU2QR5LeUUkwYM=;
+  b=lcDedLAh0agWaogOUlR/qEtp8a+rJ9jKWNImciFHqmK4HU3Y45TYpTYr
+   5BKZ4jHGVM99i0Xw2UKZ1xvJATI6eOe7fmXX36ss0U8WQDUjmWyiHGXEq
+   DUnjyK1lCdXlqxmag/szb1JEBxlVQX8Y/dTIl0Dud8sqWpwKUuE6q0viP
+   I=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 06 Dec 2021 05:43:12 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2021 05:43:11 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 6 Dec 2021 05:43:11 -0800
+Received: from [10.216.22.188] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Mon, 6 Dec 2021
+ 05:43:06 -0800
+Subject: Re: [PATCH V4 2/6] dt-bindings: regulator: Add pm8008 regulator
+ bindings
+To:     Mark Brown <broonie@kernel.org>
+CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, <swboyd@chromium.org>,
+        <collinsd@codeaurora.org>, <subbaram@codeaurora.org>,
+        Das Srinagesh <gurus@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        "Lee Jones" <lee.jones@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1637314953-4215-3-git-send-email-quic_c_skakit@quicinc.com>
+ <YZ+qn2hA4MzNEqM+@sirena.org.uk>
+From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+Message-ID: <30b21a08-f7f7-f3a6-a3ac-156c7f8964b1@quicinc.com>
+Date:   Mon, 6 Dec 2021 19:13:02 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20211203115154.31864-1-biju.das.jz@bp.renesas.com> <20211203115154.31864-7-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20211203115154.31864-7-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 6 Dec 2021 14:34:01 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU5t-sCGX-RpiX0-yL3pEVKTMzPrb3Pt_eXg4VzBNKuvw@mail.gmail.com>
-Message-ID: <CAMuHMdU5t-sCGX-RpiX0-yL3pEVKTMzPrb3Pt_eXg4VzBNKuvw@mail.gmail.com>
-Subject: Re: [PATCH 6/6] arm64: dts: renesas: rzg2l-smarc-som: Add vdd core regulator
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YZ+qn2hA4MzNEqM+@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 3, 2021 at 12:52 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add vdd core regulator (1.1 V).
+
+On 11/25/2021 8:54 PM, Mark Brown wrote:
+> On Fri, Nov 19, 2021 at 03:12:29PM +0530, Satya Priya wrote:
 >
-> This patch add regulator support for gpu.
->
-> On the H/W manual nothing mentioned about gpu
-> regulator. So using vdd core regulator for gpu.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>> +properties:
+>> +  compatible:
+>> +    const: qcom,pm8008-regulators
+> Why are we adding a separate compatible for this when we already know
+> that this is a pm8008 based on the parent?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Gr{oetje,eeting}s,
+For the regulator driver to be probed we do need a separate compatible 
+right? may be I didn't get your question..
 
-                        Geert
+My understanding is we should have a separate compatible for each 
+peripheral under the parent mfd node.. like gpios, temp alarm, 
+regulators etc..
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>> +  vdd_l1_l2-supply:
+>> +    description: Input supply phandle of ldo1 and ldo2 regulators.
+> These supply nodes should be chip level, they're going into the chip and
+> in general the expectation is that you should be able to describe the
+> supplies going into a device without worrying about how or if any
+> particular OS splits things up.
+
+So, if i understand correctly, we don't have to mention these in the 
+documentation as these are handled at framework level?
+
