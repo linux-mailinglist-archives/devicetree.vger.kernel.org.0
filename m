@@ -2,106 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C462446A600
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 20:51:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEB9C46A607
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 20:52:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348721AbhLFTyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 14:54:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38946 "EHLO
+        id S1348750AbhLFT4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 14:56:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348327AbhLFTyr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 14:54:47 -0500
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A592C061746;
-        Mon,  6 Dec 2021 11:51:18 -0800 (PST)
-Received: by mail-oi1-x22f.google.com with SMTP id r26so23483985oiw.5;
-        Mon, 06 Dec 2021 11:51:18 -0800 (PST)
+        with ESMTP id S1348752AbhLFT4Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 14:56:24 -0500
+Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com [IPv6:2607:f8b0:4864:20::930])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DE5DC061746;
+        Mon,  6 Dec 2021 11:52:55 -0800 (PST)
+Received: by mail-ua1-x930.google.com with SMTP id p37so21933361uae.8;
+        Mon, 06 Dec 2021 11:52:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=GpOk1yAja8xkekw3cS+BtU6PU09LvqDcAjEYwaYoBnw=;
-        b=XnZUU8pXFkpzsY2cKvTpZQ69FMCok6b0I/YHcBAmBFPr/uJcN3IqeWZ8ClWJCCZX98
-         AQacqh2g/uMdA+6TgivYUykhs1bYsnTY7Q42302gmODZaMv44tDLvzpUB/lRtYaWXYr5
-         WxOEWnDzy0M4CQdwCf1Pvf4J71l0iIDoNkzli+ZSNu7Oog47Dgd4GV9/W7xC4My7Wbu5
-         jRbKFJH3SMeJ/SKwo2CP1FlVlfFYdkIRrqL0Xl4t3IF5Lk81EV/z9DDBLthBgUekG0Ah
-         LypeWYIwYAqCkLalqtoemaHI0bV3Y3hzip8XNcg8kvlrj+Y+bFi3ZsX3unPFMeNGCzEA
-         cfeQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vrXin/HXbXG1mkAXUdU3bzqqz9eX4d3rYtsLa4pucxw=;
+        b=nDmVgYJ/PlSvCUzukGDeqqONJGyo38g6dxHIqMAz4ZhdMKFNYWO8zW6qPw+60MscTd
+         ZkTRH2cgDr0KgoxzSbE4ybGjEmuRqdpG0TUAPpspaIkKlURBd+JO1aqhCIegCgtZGnUe
+         ibnld6zq3UQCac7G8cBceBd4nd9tvhYkyGYe7s/tku2hvBJ3wZVAcM6Wd1bubAS0peNV
+         ptgFa90xBpPPDM/8lrdwKbM4GKithKGd+VZjV7wBHt5Dp50BoiBF/9gpB0QONTytYwA1
+         PPP5MO3zsGHhPXrGmQrnW/fcrLaC32XO/+3ua24iPnvWciTVURe9m7aCL9R40g2QLyp5
+         tpzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=GpOk1yAja8xkekw3cS+BtU6PU09LvqDcAjEYwaYoBnw=;
-        b=4HY2AK/wab++yca/+QHrt1qLUjVoHo+gIPKOxxB1JhC+Hqdy2m4OdyJiXTDyQ+QFwj
-         CIgCPNo/XPrgRUwaTfYSPH6WDay5HLb5hCKf+veN2movP1rDZL74u061Tlp5SytLOPg2
-         Bb5S42Pp+I07eOkYj1u8cBIrLhTzwiBaCHXXhcTBP8HXVYyXoAlXeB8qNWUAGvxYVTD/
-         NyfwITAIiSg+TEiKH294jbi9DAxWsj02o+ZZStYkYXDJhqCvNTn5t4LIScJ04K3zfvgh
-         NphgkEW/1WxwWCIovqJattgfk23NcWwvDhnFk9c5HDeKip97ocbepVYYZX1gjQqDbYRB
-         g3Tg==
-X-Gm-Message-State: AOAM532R7gG4g3jIfk2AFuqHMeNJ0UBUr9sjQCXOAjDBY+5LpAIzl76v
-        FVBp8C/CfzrYvd3H78hAsFSXDNTGDjo=
-X-Google-Smtp-Source: ABdhPJx06t1hDmzxQYZjanZCyYyWBQ3XwQNfDp+aETxk4+ULDI0JvLkNuMzmax3chtKUvWGwk/vPjg==
-X-Received: by 2002:a05:6808:1686:: with SMTP id bb6mr748230oib.40.1638820277471;
-        Mon, 06 Dec 2021 11:51:17 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e14sm2433650oow.3.2021.12.06.11.51.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 11:51:16 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 6 Dec 2021 11:51:15 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Justin Chen <justinpopo6@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH V4 RESEND 1/2] dt-bindings: watchdog: convert Broadcom's
- WDT to the json-schema
-Message-ID: <20211206195115.GC3759192@roeck-us.net>
-References: <78eba629-b0cf-e1db-df73-2b33fb0b4929@gmail.com>
- <Ya3NaVKf1NRc8rrx@google.com>
- <89b9512d-2e5e-c23a-d1f2-62172c8f68f7@gmail.com>
- <Ya3SU6U6YT6mlFu8@google.com>
- <f5745952-9e3c-ed7a-cced-ce42d3da2276@gmail.com>
- <Ya5ctkIU+jNzDfBc@google.com>
- <f4af4971-7047-80c9-69ae-e6587979ecd5@roeck-us.net>
- <e1fa1683-a0a6-8ee0-9da5-8e97dd9c820a@gmail.com>
- <432664af-5660-aaad-bf75-81e4d61cb078@roeck-us.net>
- <46a88b40-6d92-727c-7adc-5723921d08e3@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vrXin/HXbXG1mkAXUdU3bzqqz9eX4d3rYtsLa4pucxw=;
+        b=yYdmGj0FAVHe0mJh/OHDeEvmKM4GFXsuLxJWutyssa6c7tyZeulX3tmgvdBy2r45kX
+         +bBOMvCUzSM4IaAc0X96P8L/YPW9jDYf/ETwvKfkM6kPfvJGZkrGv8FhiwT2p7kSTWKb
+         Xcpby4+D1b4L7dm6dHQaJOVcJkyylDo7T9cxkXZNmd+nZp1YuaqtAuIj0O/2kUGJNKhq
+         XDch6MkFB9su2sH1BWXUh6mwvEAMbTyizJR6PfxvNwHYnpjzMX9pdfUBGmhW4G840v5A
+         NZv+fOjwMnH9ozL88L+tdBG5eiAvv2pedJ8mXdPNb3NHOGm5iR8mmts5hX7UsbjDx6CD
+         E5ww==
+X-Gm-Message-State: AOAM532RNwbKRQiiBb4ix4+AWVyNIw3oMs0A8ShUQ9TXwVmsWQ8vnvrc
+        Fbgg8UzIaYqfX/dpc8qLB76qGvJ0nY01+TZqzZHhFSNA
+X-Google-Smtp-Source: ABdhPJyUiGZbBBY7MWqrYEkfviMec8HXucbIt3f+AkAmjHcK7OnVQWqUWU5Xu/hUs3bHmfranmVtMbYS0JLk30bQKwk=
+X-Received: by 2002:ab0:2a8b:: with SMTP id h11mr43242829uar.98.1638820374257;
+ Mon, 06 Dec 2021 11:52:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <46a88b40-6d92-727c-7adc-5723921d08e3@gmail.com>
+References: <20211206194406.2469361-1-robh@kernel.org>
+In-Reply-To: <20211206194406.2469361-1-robh@kernel.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Mon, 6 Dec 2021 20:52:42 +0100
+Message-ID: <CAMhs-H888q9FihfXkn=wdV8j2iRTnaXiXf=9onRxab8qHvFwcQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: PCI: Fix 'unevaluatedProperties' warnings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Abraham I <kishon@ti.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 06, 2021 at 11:43:31AM -0800, Florian Fainelli wrote:
-[ ... ]
-> > 
-> > Your series includes the patch discussed here, and it is the first patch
-> > of your series. The second patch in your series depends on it. Are you
-> > telling me that I should drop those two patches from your series ?
-> 
-> No, quite the contrary, I want you to keep the entire 7 patches that
-> converted the bcm7038-wdt binding to YAML and get rid of the bcm63xx-wdt
-> changes, the branch that you have right now is good in that regard.
-> 
-> I don't see why you should be creating an immutable branch for Lee and
-> not simply merge Rafal's "[PATCH V4 RESEND 2/2] dt-bindings: mfd: add
-> Broadcom's Timer-Watchdog block" patch with Lee's ack directly. This is
-> a new file, so I don't see how it would create conflicts as long as we
-> don't pile up changes on top.
+On Mon, Dec 6, 2021 at 8:44 PM Rob Herring <robh@kernel.org> wrote:
+>
+> With 'unevaluatedProperties' support implemented, there's several
+> warnings due to undocumented properties:
+>
+> Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.example.dt.yaml: pcie@1e140000: pcie@0,0: Unevaluated properties are not allowed ('phy-names' was unexpected)
+> Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.example.dt.yaml: pcie@1e140000: pcie@1,0: Unevaluated properties are not allowed ('phy-names' was unexpected)
+> Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.example.dt.yaml: pcie@1e140000: pcie@2,0: Unevaluated properties are not allowed ('phy-names' was unexpected)
+> Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dt.yaml: pcie@11230000: Unevaluated properties are not allowed ('phy-names' was unexpected)
+> Documentation/devicetree/bindings/pci/microchip,pcie-host.example.dt.yaml: pcie@2030000000: Unevaluated properties are not allowed ('interrupt-controller' was unexpected)
+> Documentation/devicetree/bindings/pci/ti,am65-pci-ep.example.dt.yaml: pcie-ep@5500000: Unevaluated properties are not allowed ('num-ib-windows', 'num-ob-windows' were unexpected)
+> Documentation/devicetree/bindings/pci/ti,am65-pci-host.example.dt.yaml: pcie@5500000: Unevaluated properties are not allowed ('num-viewport', 'interrupts' were unexpected)
+> Documentation/devicetree/bindings/pci/ti,j721e-pci-host.example.dt.yaml: pcie@2900000: Unevaluated properties are not allowed ('dma-coherent' was unexpected)
+>
+> Add the necessary property definitions or remove the properties from the
+> examples to fix these warnings.
+>
+> Cc: Ryder Lee <ryder.lee@mediatek.com>
+> Cc: Jianjun Wang <jianjun.wang@mediatek.com>
+> Cc: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: Daire McNamara <daire.mcnamara@microchip.com>
+> Cc: Abraham I <kishon@ti.com>
+> Cc: linux-pci@vger.kernel.org
+> Cc: linux-mediatek@lists.infradead.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/pci/mediatek,mt7621-pcie.yaml     |  3 +++
 
-It sounded to me like Lee wanted an immutable branch for that, which I
-can't do for watchdog. That means the options are to either drop the dt
-changes, or to drop everything until after the dt issues are sorted out.
+Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 
-Guenter
+Thanks,
+    Sergio Paracuellos
+
+>  .../bindings/pci/mediatek-pcie-gen3.yaml       |  4 ++++
+>  .../bindings/pci/microchip,pcie-host.yaml      | 18 ++++++++++++++++++
+>  .../bindings/pci/ti,am65-pci-ep.yaml           |  2 --
+>  .../bindings/pci/ti,am65-pci-host.yaml         |  4 +++-
+>  .../bindings/pci/ti,j721e-pci-host.yaml        |  2 ++
+>  6 files changed, 30 insertions(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml b/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
+> index 044fa967bc8b..d60f43fd9c5a 100644
+> --- a/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
+> @@ -45,6 +45,9 @@ patternProperties:
+>        phys:
+>          maxItems: 1
+>
+> +      phy-names:
+> +        pattern: '^pcie-phy[0-2]$'
+> +
+>      required:
+>        - "#interrupt-cells"
+>        - interrupt-map-mask
+> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> index 742206dbd965..0499b94627ae 100644
+> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> @@ -95,6 +95,10 @@ properties:
+>    phys:
+>      maxItems: 1
+>
+> +  phy-names:
+> +    items:
+> +      - const: pcie-phy
+> +
+>    '#interrupt-cells':
+>      const: 1
+>
+> diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> index 7b0776457178..edb4f81253c8 100644
+> --- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> @@ -46,6 +46,24 @@ properties:
+>    msi-parent:
+>      description: MSI controller the device is capable of using.
+>
+> +  interrupt-controller:
+> +    type: object
+> +    properties:
+> +      '#address-cells':
+> +        const: 0
+> +
+> +      '#interrupt-cells':
+> +        const: 1
+> +
+> +      interrupt-controller: true
+> +
+> +    required:
+> +      - '#address-cells'
+> +      - '#interrupt-cells'
+> +      - interrupt-controller
+> +
+> +    additionalProperties: false
+> +
+>  required:
+>    - reg
+>    - reg-names
+> diff --git a/Documentation/devicetree/bindings/pci/ti,am65-pci-ep.yaml b/Documentation/devicetree/bindings/pci/ti,am65-pci-ep.yaml
+> index 78c217d362a7..a6896cb40e83 100644
+> --- a/Documentation/devicetree/bindings/pci/ti,am65-pci-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/ti,am65-pci-ep.yaml
+> @@ -66,8 +66,6 @@ examples:
+>          reg-names = "app", "dbics", "addr_space", "atu";
+>          power-domains = <&k3_pds 120 TI_SCI_PD_EXCLUSIVE>;
+>          ti,syscon-pcie-mode = <&pcie0_mode>;
+> -        num-ib-windows = <16>;
+> -        num-ob-windows = <16>;
+>          max-link-speed = <2>;
+>          dma-coherent;
+>          interrupts = <GIC_SPI 340 IRQ_TYPE_EDGE_RISING>;
+> diff --git a/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
+> index 834dc1c1743c..eabe1635e336 100644
+> --- a/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/ti,am65-pci-host.yaml
+> @@ -29,6 +29,9 @@ properties:
+>        - const: config
+>        - const: atu
+>
+> +  interrupts:
+> +    maxItems: 1
+> +
+>    power-domains:
+>      maxItems: 1
+>
+> @@ -87,7 +90,6 @@ examples:
+>          ti,syscon-pcie-id = <&pcie_devid>;
+>          ti,syscon-pcie-mode = <&pcie0_mode>;
+>          bus-range = <0x0 0xff>;
+> -        num-viewport = <16>;
+>          max-link-speed = <2>;
+>          dma-coherent;
+>          interrupts = <GIC_SPI 340 IRQ_TYPE_EDGE_RISING>;
+> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> index cc900202df29..2115d5a3f0e1 100644
+> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> @@ -60,6 +60,8 @@ properties:
+>        - const: fck
+>        - const: pcie_refclk
+>
+> +  dma-coherent: true
+> +
+>    vendor-id:
+>      const: 0x104c
+>
+> --
+> 2.32.0
+>
