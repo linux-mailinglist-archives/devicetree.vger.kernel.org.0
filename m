@@ -2,76 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BC2B469D0C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:24:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E264D469D0F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:24:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355840AbhLFP2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 10:28:01 -0500
-Received: from vern.gendns.com ([98.142.107.122]:44204 "EHLO vern.gendns.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1358707AbhLFPXa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Dec 2021 10:23:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=AF2/R1hXPB3sA1ReHfqnoIHtZukG2PWVyQc/kMCx1Cw=; b=CZmtGEXm7YJUfxTRKJ33Z6yUVI
-        mJ1G0Mc5J4eWoXtaH+RTMI5tYnkjr5e0IOQ/c+OGEIfsNgHSXvrDsvwqMqOcaVKfjSlTBEbq/mNCi
-        S8qOgwGfdjpINXbGYbAZsUg5JxnPjFlZWhkVV1mzP1QnGhal2mrHIgFbyPcZkqJlO7kqV5k9+g/Z3
-        pReAx3lms6dZlfE8n/wgkgePTQlRVPNReEsoSNhZctchjnYXKJ5huEBYnFfozmDQf5MvY80szbpQo
-        6x31bCekD327vaQxnIR8eF51rc/Duwh+ZJV0jXf69wO6MJ1QtMs8HnChA+6+EwvPx305jR6f7RElL
-        1ryzLqaw==;
-Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:49496 helo=[192.168.0.134])
-        by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <david@lechnology.com>)
-        id 1muFmW-0006Y1-5E; Mon, 06 Dec 2021 10:19:58 -0500
-Subject: Re: [PATCH 3/6] dt-bindings: display: sitronix,st7735r: Remove
- spi-max-frequency limit
-To:     =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-fbdev@vger.kernel.org, linux-staging@lists.linux.dev,
-        dave.stevenson@raspberrypi.com, maxime@cerno.tech
-References: <20211124150757.17929-1-noralf@tronnes.org>
- <20211124150757.17929-4-noralf@tronnes.org>
-From:   David Lechner <david@lechnology.com>
-Message-ID: <1a094ddf-2190-3586-16b9-8c610e406bc2@lechnology.com>
-Date:   Mon, 6 Dec 2021 09:19:58 -0600
+        id S1356828AbhLFP2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 10:28:03 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:52014 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1385676AbhLFPZh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:25:37 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id D414B1F448BD
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1638804126; bh=ux40/LC0D3LdxvH8CUOyRevnqGZQpDWpUZPhHgMMiiU=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=UNGhVTAxhT2aSUwjSANNqykn4+1GineOgwgoSHquBuYDW5iqjva5ToheZb47waOxk
+         Tqd5NtT2NhHBAMAWoWhwRMERBN//nwuuewSMD2V6f/EOHffUZs43Bt9yBsGCgrDTYW
+         w4Hh0SOKRfML6f5wtAIf7bOgE30QvCGVKpfxt87xifBuc14jj7GVMef9YCNWjhtFhh
+         xp3nr5bizuUgCUlK69CNW595ZkFNsOUO/uqNbEQoax+qtsX1vkCPaMY8fz8PyZHhzH
+         C46q+hPllY0i1z8AeleH1/vQh7mB2Rcrt5YFEg5wm6gSaG1aDiiClYMGlvcayEuykv
+         /guBZe13EOy2w==
+Subject: Re: [PATCH v4 5/7] net-next: stmmac: dwmac-mediatek: add support for
+ mt8195
+To:     Biao Huang <biao.huang@mediatek.com>, davem@davemloft.net,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        srv_heupstream@mediatek.com, macpaul.lin@mediatek.com,
+        dkirjanov@suse.de
+References: <20211203063418.14892-1-biao.huang@mediatek.com>
+ <20211203063418.14892-6-biao.huang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <0efc7cfd-f048-3c69-0ef3-5904c245f914@collabora.com>
+Date:   Mon, 6 Dec 2021 16:22:03 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20211124150757.17929-4-noralf@tronnes.org>
+In-Reply-To: <20211203063418.14892-6-biao.huang@mediatek.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/24/21 9:07 AM, Noralf Trønnes wrote:
-> The datasheet lists the minimum Serial clock cycle (Write) as 66ns which is
-
-Is this supposed to say "maximum" rather than "minimum"?
-
-> 15MHz. Mostly it can do much better than that and is in fact often run at
-> 32MHz. With a clever driver that runs configuration commands at a low speed
-> and only the pixel data at the maximum speed the configuration can't be
-> messed up by transfer errors and the speed is only limited by the amount of
-> pixel glitches that one is able to tolerate.
+Il 03/12/21 07:34, Biao Huang ha scritto:
+> Add Ethernet support for MediaTek SoCs from the mt8195 family.
 > 
-> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
-> ---
-Acked-by: David Lechner <david@lechnology.com>
+> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
+
+Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
