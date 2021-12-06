@@ -2,97 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A17246A2B3
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 18:25:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C3F346A2FD
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 18:29:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239486AbhLFR2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 12:28:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32792 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234199AbhLFR2b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 12:28:31 -0500
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D707C061746;
-        Mon,  6 Dec 2021 09:25:02 -0800 (PST)
-Received: by mail-pg1-x532.google.com with SMTP id 137so11161614pgg.3;
-        Mon, 06 Dec 2021 09:25:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=wGI0LCAPIz5KvwQ+2lj86H/d+Nna109rkn2gLihP96U=;
-        b=l4kwufD61aG+RlFU1MapBNvhESj/nDyKEMOQZWmxE7EdpPeHCyqXfDnN/Xb0thwyTd
-         kmL/hfzcSKaQ4qI8+KgSZZHX2tVLlvOmXOqsvJeSd+4haW10Upb6dSixslnxHKj209LL
-         Soh4i3UMoVFfG8TGxMR2lnyGgJmxwxn3xf4MywMvFib/DqD4lbfjLN7y6MQTC09qoHZl
-         lSb3nzI0Q9jt/+gJyDQzvv+0oK5Llhc8jltU0DoRsQSdz4w9WK7WJw+lNX0EKcVtFb2O
-         3FtVLbSwihT0Fh4oiznlarR0hjNXzl+fE05HTeUIoPhr62FkxL1PXvGtzUhrXsfxZy7N
-         aB3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=wGI0LCAPIz5KvwQ+2lj86H/d+Nna109rkn2gLihP96U=;
-        b=lJQZ/S9eg144y59UdoF5LjMHdQ1yULUZaQR9bxQj+G4EAtPOnq502vw12h3GVYOfsH
-         YryzMnKllFjBe919hlUBUTfStS99VvE3rNwuxJlrLnnfJH720xKGiHFuJPEOUhFmiXsj
-         ev5Fn5GT+MrJCbmy7OOpdH6dxofbdM1tfVP8hXTfOCN9LSW4yxFSEo7o8kwuSkFI7dUm
-         iqiTegNHRnDRrdgMfaI5WYRJjYjF0WopUqT+cGHIkLzizDOYA6OGnMslyOI3Ew48FoVz
-         YerPyGVIrkFTwNrAbAH5eJe09MvO5FsuiGppmpRIxiK0Woh7MOm1GiSwvoa4NvVD4YfR
-         n8KQ==
-X-Gm-Message-State: AOAM530fA8IZQpY5EJWmFGx7lPt8TYFF3q51t05+ywoTATDymoTC+KTU
-        yGzW5BfFXsyNbRvxsOazWyw4ODAvw1U=
-X-Google-Smtp-Source: ABdhPJzyaRX/JKtzcPrFdJuWbLVhqC7eLihaPTEv9nqQiYflZsBLBcwSjvc62O57fjcIJonuCrVAsw==
-X-Received: by 2002:aa7:93c4:0:b0:49f:a7f5:7f5a with SMTP id y4-20020aa793c4000000b0049fa7f57f5amr38082976pff.8.1638811501406;
-        Mon, 06 Dec 2021 09:25:01 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id 12sm485pjn.16.2021.12.06.09.24.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Dec 2021 09:25:00 -0800 (PST)
-Subject: Re: [PATCH v2 2/2] ARM: dts: gpio-ranges property is now required
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Phil Elwell <phil@raspberrypi.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Thierry Reding <treding@nvidia.com>,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org
-References: <20211206092237.4105895-1-phil@raspberrypi.com>
- <20211206092237.4105895-3-phil@raspberrypi.com>
- <CACRpkdYJAZcr_PPCGPYcitfcwd9GDFf+7hPJkOmjomqCrruNfw@mail.gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <04acf5f1-7d82-b12b-f70f-1712a4a2610c@gmail.com>
-Date:   Mon, 6 Dec 2021 09:24:59 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S240032AbhLFRcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 12:32:41 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:33588 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236532AbhLFRcl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 12:32:41 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9A20AB811A6
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 17:29:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 271A4C341C2;
+        Mon,  6 Dec 2021 17:29:08 +0000 (UTC)
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Rob Herring <robh@kernel.org>, Will Deacon <will@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: Simplify checking for populated DT
+Date:   Mon,  6 Dec 2021 17:29:07 +0000
+Message-Id: <163881168906.164288.11558013836253666654.b4-ty@arm.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20211029144055.2365814-1-robh@kernel.org>
+References: <20211029144055.2365814-1-robh@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdYJAZcr_PPCGPYcitfcwd9GDFf+7hPJkOmjomqCrruNfw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/6/21 2:33 AM, Linus Walleij wrote:
-> On Mon, Dec 6, 2021 at 10:22 AM Phil Elwell <phil@raspberrypi.com> wrote:
-> 
->> Since [1], added in 5.7, the absence of a gpio-ranges property has
->> prevented GPIOs from being restored to inputs when released.
->> Add those properties for BCM283x and BCM2711 devices.
->>
->> [1] commit 2ab73c6d8323 ("gpio: Support GPIO controllers without
->>     pin-ranges")
->>
->> Fixes: 2ab73c6d8323 ("gpio: Support GPIO controllers without pin-ranges")
->> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
-> 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> 
-> Please funnel this patch through the SoC tree.
+On Fri, 29 Oct 2021 09:40:55 -0500, Rob Herring wrote:
+> Use of the of_scan_flat_dt() function predates libfdt and is discouraged
+> as libfdt provides a nicer set of APIs. Rework dt_scan_depth1_nodes to
+> use libfdt calls directly, and rename it to dt_is_stub() to reflect
+> exactly what it checking.
 
-This one was definitively going to go via ARM SoC in the absence of any
-explicit routing, did you mean that patch #1 should also be routed via
-ARM SoC?
+Applied to arm64 (for-next/misc), thanks!
+
+[1/1] arm64: Simplify checking for populated DT
+      https://git.kernel.org/arm64/c/b6363fe7b513
+
 -- 
-Florian
+Catalin
+
