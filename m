@@ -2,97 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52DD94698CE
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 15:25:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2BDB4698D7
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 15:26:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344202AbhLFO24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 09:28:56 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:33603 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236352AbhLFO2z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 09:28:55 -0500
-Received: by mail-ot1-f45.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso13893586otf.0;
-        Mon, 06 Dec 2021 06:25:26 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=88917iC6H5nhElQ9x7+CfadIV2a1jWVz9fN629up9wg=;
-        b=yprw048BUl+IrxAYWjZJFINkJazyDon6sJUD8UOSfQEZhdyMkwHgiw9IL/zhaHVBdt
-         VdcLJQD5fvx3hkbvAM0NH/VCcjFjZU96e2AC3h62DVo+yVrn/TPezOcfJqt+ncDBDNkA
-         s/qqaUd/7P431aHhTejULorHcP6Zm4HENp+pr2ABQcAQnIEprP6sz1i8p/yDjhO3pyzz
-         hsM7i14ni03wvhAVPRUqHvHTwzD/sj/GY2csHBagdkqJ6KWGcIdo9zRJkpiDtBrGrtfU
-         qOfeeC7IKe9mk0/IJihoWM9ytIQjLAdZu10wj4b0rJm98GyzeYSf58OxJlXI+pIiX1nk
-         +DTA==
-X-Gm-Message-State: AOAM5324VlHMAlXwUo0FAdMNUoAmKn3cN2zIrlAvylkS4dXzLX/nmup9
-        BTSEc+WtuNji9SlSxdcRBQ==
-X-Google-Smtp-Source: ABdhPJzlufPMb8glq0YPKYZhLUskox6MWUfr0g1UpoGFhyfBL+HiJUm0R4QTKML3VOEMR4qh5LLQQw==
-X-Received: by 2002:a05:6830:1e8f:: with SMTP id n15mr29243378otr.259.1638800726030;
-        Mon, 06 Dec 2021 06:25:26 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x13sm2218912otr.58.2021.12.06.06.25.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 06:25:25 -0800 (PST)
-Received: (nullmailer pid 1976296 invoked by uid 1000);
-        Mon, 06 Dec 2021 14:25:22 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     cosmin.tanislav@analog.com, Rob Herring <robh+dt@kernel.org>,
+        id S245622AbhLFO3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 09:29:42 -0500
+Received: from uho.ysoft.cz ([81.19.3.130]:13946 "EHLO uho.ysoft.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1344259AbhLFO3k (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Dec 2021 09:29:40 -0500
+Received: from localhost.localdomain (unknown [10.0.30.84])
+        by uho.ysoft.cz (Postfix) with ESMTP id 9136EA22D9;
+        Mon,  6 Dec 2021 15:26:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1638800769;
+        bh=EwWBPVjwFWUEpxAXGfNoM0zA1YudXlRd/su3eJhTQA0=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=jug6j8+QHhumQGEgLs4N8AluV4gN7a/8iR91CZ7EU/8yiN7jy+FtggLMNG3gpMMHl
+         t6yT9lNNaiVpzWZHm5r+F2tAPxXMotz4Vjd4JCtQmb+3UMcOcu+kYoIZ8as8JdqzqU
+         Fx2ORqBU32uOE92UBWGtloSDpCJfIcs1EYOP/l3E=
+From:   =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>
-In-Reply-To: <20211206105403.53049-1-cosmin.tanislav@analog.com>
-References: <20211206105403.53049-1-cosmin.tanislav@analog.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: iio: accel: add ADXL367
-Date:   Mon, 06 Dec 2021 08:25:22 -0600
-Message-Id: <1638800722.501713.1976295.nullmailer@robh.at.kernel.org>
+        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>,
+        kernel test robot <lkp@intel.com>
+Subject: [PATCH] ARM: dts: imx6dl-yapp4: Remove not-yet added support for sound from Crux
+Date:   Mon,  6 Dec 2021 15:26:01 +0100
+Message-Id: <20211206142601.373807-1-michal.vokac@ysoft.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <202112061855.SidQyicE-lkp@intel.com>
+References: <202112061855.SidQyicE-lkp@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Dec 2021 12:54:02 +0200, Cosmin Tanislav wrote:
-> The ADXL367 is an ultralow power, 3-axis MEMS accelerometer.
-> 
-> The ADXL367 does not alias input signals to achieve ultralow power
-> consumption, it samples the full bandwidth of the sensor at all
-> data rates. Measurement ranges of +-2g, +-4g, and +-8g are available,
-> with a resolution of 0.25mg/LSB on the +-2 g range.
-> 
-> In addition to its ultralow power consumption, the ADXL367
-> has many features to enable true system level power reduction.
-> It includes a deep multimode output FIFO, a built-in micropower
-> temperature sensor, and an internal ADC for synchronous conversion
-> of an additional analog input.
-> 
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
-> ---
->  .../bindings/iio/accel/adi,adxl367.yaml       | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl367.yaml
-> 
+Remove mistakingly added support for audio codec. We support the coded
+by our downstream patches but the appropriate driver and bindings are not
+in mainline yet.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Reported-by: kernel test robot <lkp@intel.com>
+Fixes: a4d744ac2bab ("ARM: dts: imx6dl-yapp4: Add Y Soft IOTA Crux/Crux+ board")
+Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+---
+ arch/arm/boot/dts/imx6q-yapp4-crux.dts       | 22 --------------------
+ arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts | 22 --------------------
+ 2 files changed, 44 deletions(-)
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/accel/adi,adxl367.example.dt.yaml: adxl367@0: 'spi-max-frequency' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/accel/adi,adxl367.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1563904
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/arch/arm/boot/dts/imx6q-yapp4-crux.dts b/arch/arm/boot/dts/imx6q-yapp4-crux.dts
+index deb18c57cf18..15f4824a5142 100644
+--- a/arch/arm/boot/dts/imx6q-yapp4-crux.dts
++++ b/arch/arm/boot/dts/imx6q-yapp4-crux.dts
+@@ -17,22 +17,10 @@ memory@10000000 {
+ 	};
+ };
+ 
+-&audmux {
+-	status = "okay";
+-};
+-
+-&codec {
+-	status = "okay";
+-};
+-
+ &gpio_oled {
+ 	status = "okay";
+ };
+ 
+-&i2c1 {
+-	status = "okay";
+-};
+-
+ &leds {
+ 	status = "okay";
+ };
+@@ -49,16 +37,6 @@ &reg_usb_h1_vbus {
+ 	status = "okay";
+ };
+ 
+-&sound {
+-	audio-routing =
+-		   "Ext Spk", "LSOUT";
+-	status = "okay";
+-};
+-
+-&ssi2 {
+-	status = "okay";
+-};
+-
+ &touchkeys {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts b/arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts
+index a450a77f920f..cea165f2161a 100644
+--- a/arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts
++++ b/arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts
+@@ -17,22 +17,10 @@ memory@10000000 {
+ 	};
+ };
+ 
+-&audmux {
+-	status = "okay";
+-};
+-
+-&codec {
+-	status = "okay";
+-};
+-
+ &gpio_oled {
+ 	status = "okay";
+ };
+ 
+-&i2c1 {
+-	status = "okay";
+-};
+-
+ &leds {
+ 	status = "okay";
+ };
+@@ -49,16 +37,6 @@ &reg_usb_h1_vbus {
+ 	status = "okay";
+ };
+ 
+-&sound {
+-	audio-routing =
+-		   "Ext Spk", "LSOUT";
+-	status = "okay";
+-};
+-
+-&ssi2 {
+-	status = "okay";
+-};
+-
+ &touchkeys {
+ 	status = "okay";
+ };
+-- 
+2.25.1
 
