@@ -2,77 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2705D46ACF7
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 23:46:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91E1346AD2E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 23:50:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343791AbhLFWuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 17:50:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53052 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358532AbhLFWuC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 17:50:02 -0500
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F51CC061746;
-        Mon,  6 Dec 2021 14:46:32 -0800 (PST)
-Received: from hatter.bewilderbeest.net (174-21-184-96.tukw.qwest.net [174.21.184.96])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        id S1352960AbhLFWyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 17:54:22 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:44978 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1358484AbhLFWyU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 17:54:20 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id E704265E;
-        Mon,  6 Dec 2021 14:46:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1638830792;
-        bh=sJGoD0KGK28NF/XGudTV7ZOesD4oG76zvYJfSvr/Mjw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=dRr0ZFsYkpTJi4YZrHfW/njIhXwiebKtrwhmqu5QteZX9M1p8a1kXhb8bgUF1OcOI
-         PsX0LukgZR52Mp53Uvn3bJ0yFVdX5OcJp/U3YNHBWC/GbgPsr0fr2+bPCZtvKzIX+s
-         Rkefnn9aILmU+gTez7tC+cou0p5oAk6g2VZNj5AQ=
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     linux-hwmon@vger.kernel.org
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, Zev Weiss <zev@bewilderbeest.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: add Delta AHE-50DC fan control module
-Date:   Mon,  6 Dec 2021 14:44:18 -0800
-Message-Id: <20211206224419.15736-3-zev@bewilderbeest.net>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211206224419.15736-1-zev@bewilderbeest.net>
-References: <20211206224419.15736-1-zev@bewilderbeest.net>
+        by sin.source.kernel.org (Postfix) with ESMTPS id 9EA50CE13D5;
+        Mon,  6 Dec 2021 22:50:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C37D5C341C6;
+        Mon,  6 Dec 2021 22:50:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638831047;
+        bh=/m8B7N3jn07JULFSJmfIN2cB4DvMqUf+Q2gtsAi4WYA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=q3QYj0WmJh35iA/2aBRqyocQHyfRqeWsaer8cRiFNQKHd2o/PymZHP9BXeXn7alCf
+         f8PLNWMRpxdT0t7xXVJWx2Jtx4zV0xoVSKVvlsPbLfhzP/nIzFck4Wv2smi16kMM2E
+         6qdaCS10soNluWvwRIGyCuAc/CU5a0jZaJjY2Y35FgxhrY066IixTTVQrwKkaMURbB
+         FJYmF3HLKWcL1w6v2xYUSZoAgs6tesvcXH6j7TQT+yaEtxxAZv89JOmceUlVxW7hRM
+         6liaOFMQjDH2NLlAv0A5sKU4+5Qp6d+ruCCXPoyzRfSC4IKYRw/VKvnNTi7rAs/xiz
+         nvTKh24U509aA==
+Received: by mail-ed1-f52.google.com with SMTP id g14so48696069edb.8;
+        Mon, 06 Dec 2021 14:50:47 -0800 (PST)
+X-Gm-Message-State: AOAM530/mPupjs6QO8HYHFTyxRWLK3jU5RYmk8OPBfFe8CUO0RUc7mcy
+        1ubgbHxlLFglPyb/Aj74UjB8auRPOEaplo4G4A==
+X-Google-Smtp-Source: ABdhPJzQWjlsdlKnpjt+Djq9bVfhZhkqKmJUQQIFwENFEOID1iyokEcVWDrEBcnv1aslpxs8xFAfwX5TU/JaN2Ay9FA=
+X-Received: by 2002:a17:907:7f25:: with SMTP id qf37mr49050471ejc.147.1638831046133;
+ Mon, 06 Dec 2021 14:50:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211202063216.24439-1-zajec5@gmail.com>
+In-Reply-To: <20211202063216.24439-1-zajec5@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 6 Dec 2021 16:50:34 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL=4iUJjQXjGc7eacbYW5YE-VRC4yGhu8pLVd-zUKvhHQ@mail.gmail.com>
+Message-ID: <CAL_JsqL=4iUJjQXjGc7eacbYW5YE-VRC4yGhu8pLVd-zUKvhHQ@mail.gmail.com>
+Subject: Re: [PATCH REBASE] dt-bindings: pinctrl: use pinctrl.yaml
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is the integrated fan control module of the Delta AHE-50DC Open19
-power shelf.
+On Thu, Dec 2, 2021 at 12:32 AM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
+wrote:
+>
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>
+> Also fix some examples to avoid warnings like:
+> brcm,ns-pinmux.example.dt.yaml: pin-controller@1800c1c0: $nodename:0: 'pi=
+n-controller@1800c1c0' does not match '^pinctrl|pinmux@[0-9a-f]+$'
 
-Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+I think you missed some. linux-next now has these warnings:
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 791079021f1b..0cadfbf640b2 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -75,6 +75,8 @@ properties:
-           - dallas,ds75
-             # Delta Electronics DPS-650-AB power supply
-           - delta,dps650ab
-+            # Delta AHE-50DC Open19 power shelf fan control module
-+          - delta,ahe50dc-fan
-           # Delta Electronics DPS920AB 920W 54V Power Supply
-           - delta,dps920ab
-             # 1/4 Brick DC/DC Regulated Power Module
--- 
-2.34.1
-
+builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/brcm,cru.e=
+xample.dt.yaml:
+pin-controller@1c0: $nodename:0: 'pin-controller@1c0' does not match
+'^(pinctrl|pinmux)(@[0-9a-f]+)?$'
+From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/=
+pinctrl/brcm,ns-pinmux.yaml
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/cirrus,ma=
+dera.example.dt.yaml:
+codec@1a: $nodename:0: 'codec@1a' does not match
+'^(pinctrl|pinmux)(@[0-9a-f]+)?$'
+From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/=
+mfd/cirrus,madera.yaml
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/cirrus,lo=
+chnagar.example.dt.yaml:
+lochnagar-pinctrl: $nodename:0: 'lochnagar-pinctrl' does not match
+'^(pinctrl|pinmux)(@[0-9a-f]+)?$'
+From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/=
+pinctrl/cirrus,lochnagar.yaml
