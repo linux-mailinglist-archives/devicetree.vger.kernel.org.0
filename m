@@ -2,228 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED264693A3
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 11:26:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 170B94693FE
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 11:33:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237214AbhLFKaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 05:30:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45070 "EHLO
+        id S236406AbhLFKhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 05:37:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231287AbhLFKaK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 05:30:10 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E20AC061746;
-        Mon,  6 Dec 2021 02:26:42 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AB46DB81059;
-        Mon,  6 Dec 2021 10:26:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CA32C341C2;
-        Mon,  6 Dec 2021 10:26:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638786399;
-        bh=vchL0exgypXeLVmbDjGhhC/0ASb7p1CByasQVsC649g=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=aqZuPg3VTYKEMfFlWFO80TQHKYaJtAEyqoNq64R155H4xfExmfaJnZwx9ff0Udc+6
-         MpqXfWIsKGGWHUhOZOmip3HHBgff2gKTlSqwwWx1lpczjkapo2gsavlJNjl9oQdMzB
-         qjYHlcJZ5G55krvyE0uvP8XG5F3Q+EJ2NKwParUl/9S6JOSdg4tIS58qvMKqKID+Ap
-         ypLupHJJVSVDAD85NLxRfcERdx9XR7X3NT+mDUTATQPKVTW4QpAbqer7UNEROXwic0
-         0pBjJ4FCGkbelA1xkehb727x91SeRJB+309xvnp+L1Prfth206gSo07vWYkeQPZBQR
-         KasMdXycl6zAQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1muBCf-00A94d-BG; Mon, 06 Dec 2021 10:26:37 +0000
-Date:   Mon, 06 Dec 2021 10:26:37 +0000
-Message-ID: <87y24y112a.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kernel-team@android.com" <kernel-team@android.com>,
-        John Crispin <john@phrozen.org>, Biwen Li <biwen.li@nxp.com>,
-        Chris Brandt <Chris.Brandt@renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH] of/irq: Add a quirk for controllers with their own definition of interrupt-map
-In-Reply-To: <CA+V-a8uc0vHVRJ5_Zycw-qiZVbyNBw4HO2XVPbKba3ybooqFtQ@mail.gmail.com>
-References: <20211122103032.517923-1-maz@kernel.org>
-        <CAMuHMdX2ZRvDYA3idmw3nBcP6CO=2od6ZU-UeJo9vYsuB=fQNQ@mail.gmail.com>
-        <8735no70tt.wl-maz@kernel.org>
-        <CAMuHMdVS67BLP2XEdD6ZvVBVE2x11gKnQa1TqG659HXPM5scqQ@mail.gmail.com>
-        <CAMuHMdWJhnXabKGpW7k944dzQHtwQtxw-yb2bRBsoaMw6N6nuA@mail.gmail.com>
-        <87tug3clvc.wl-maz@kernel.org>
-        <CAMuHMdWGb2xik+94RVwtq8E6+9eN=HfQLX3a4sTjKQXR96Udkw@mail.gmail.com>
-        <87r1b7ck40.wl-maz@kernel.org>
-        <OSZPR01MB7019E7DD7119EFF9C994AA62AA649@OSZPR01MB7019.jpnprd01.prod.outlook.com>
-        <87tufvmes9.wl-maz@kernel.org>
-        <CA+V-a8siHRjF+bJu88QFwz0a_MZ+kiJEwmER58_feyr8O+WNGA@mail.gmail.com>
-        <CAL_JsqK+GcnChx3i9fsYnw+FzZgON4PtKB=CzYLUj6sXtxX6fQ@mail.gmail.com>
-        <CA+V-a8sVS_1hUWJ3uM+VffGyMtdnctBOJTyHTQAoJZGOh0a1Tw@mail.gmail.com>
-        <87bl21mqwk.wl-maz@kernel.org>
-        <CA+V-a8vA0P-yhm2SHJmVh+cuUw7qodQLQBqzNPTz31x5q18xaA@mail.gmail.com>
-        <CAL_JsqJ1Dw9C_GQjto-E2ch7fdN=3f4Qz9qYuf2iYwMRLkdroA@mail.gmail.com>
-        <CA+V-a8uOkkG8_mz-PjL2q22hfSXuKSpwuQ-E2_pvCc1sKCJ+zw@mail.gmail.com>
-        <CA+V-a8uc0vHVRJ5_Zycw-qiZVbyNBw4HO2XVPbKba3ybooqFtQ@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, robh@kernel.org, geert@linux-m68k.org, prabhakar.mahadev-lad.rj@bp.renesas.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kernel-team@android.com, john@phrozen.org, biwen.li@nxp.com, Chris.Brandt@renesas.com, linux-renesas-soc@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        with ESMTP id S231678AbhLFKhM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 05:37:12 -0500
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66737C061746
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 02:33:44 -0800 (PST)
+Received: by mail-ot1-x32c.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so12996095otj.7
+        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 02:33:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=idIIka1mu53auPQEDeeVp+5SHwt5ecOY/qD1zuhwjP0=;
+        b=s5NKI1vfcVcdP/hgX0slg1LbmFOYHQvdD54qDsKNlTuEvjhDieF2KBOa+m4AJP+fWa
+         I6RwTWbgikEHoDk4duW2ogZ2n52/99cLU3ebklMcUtRyP6+YA0fkIzvdq7saaWZ6UZug
+         o9PhAa6H+jEGHi+GOkzvgWG8YOYoXcn51hnBPXFiwgD+59Y4Zby8JmtM0LT/ZuPaLAkH
+         qIU2KlnrMrHRd1jjAtSQtQVWmd0+rFjqzBjCOseUfUtuqfA3uqWBAPpht7a+DEE4vXQ2
+         0rR8ORLRyw5ryR0t5ccRd6IYuAdObQzB2mS6cOVGNWdJfxywDzwvbr2Q1W5FuZUwU5BZ
+         bzkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=idIIka1mu53auPQEDeeVp+5SHwt5ecOY/qD1zuhwjP0=;
+        b=QgqVlbINuXKFquN5+/f8afljGkVu7MUkltdCbJx08omuTpQ2WZkFNLqtG40UgyhpOu
+         Ku2ERW35rz9gcdfoxDvPGoc9hWBpu4lN0uxAEK0ADAB3Kkcfp+kfOstoM1JNjA4x3T4w
+         0y6htot0PxXfVVWxn0p+jl+i9HFNj3olaB6yC5t3NEeVN2lH4AuYyMvcsucftBDzepxb
+         WZNNM/BZyKyxGFlT5K/MGnDnTC4umj6Vmw2BrosqWfrekARNDaM2zvv+Y9fY6DE+6nPq
+         tycdmCfdYI4fXSpCZNuMs94h2jDwTIqJI49AXlbhjcaxO+1IAFmowSfnMNDPHUhw0xdO
+         7H8A==
+X-Gm-Message-State: AOAM531+Ls9e95ZXXm0YxssiU2Q4V9IpS2jp30v+5B9Mo6CC2K1OEEUe
+        1Za65FIzqXYCYEo+naqOTuvVvtUuixjkitHPl6CEGw==
+X-Google-Smtp-Source: ABdhPJy+tsCtsj+QeIrqAMtkmf9IDd2UQ+HzcP4FYj0UXeDJ4SMyh01L0lrgFs/yzvW1/CttamvXLsS+qFDoNkAkXEg=
+X-Received: by 2002:a9d:74d0:: with SMTP id a16mr27600057otl.237.1638786823769;
+ Mon, 06 Dec 2021 02:33:43 -0800 (PST)
+MIME-Version: 1.0
+References: <20211206092237.4105895-1-phil@raspberrypi.com> <20211206092237.4105895-3-phil@raspberrypi.com>
+In-Reply-To: <20211206092237.4105895-3-phil@raspberrypi.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 6 Dec 2021 11:33:31 +0100
+Message-ID: <CACRpkdYJAZcr_PPCGPYcitfcwd9GDFf+7hPJkOmjomqCrruNfw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ARM: dts: gpio-ranges property is now required
+To:     Phil Elwell <phil@raspberrypi.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Thierry Reding <treding@nvidia.com>,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 05 Dec 2021 22:27:35 +0000,
-"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> 
-> On Wed, Dec 1, 2021 at 4:16 PM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
-> >
-> > On Wed, Dec 1, 2021 at 2:36 PM Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Wed, Dec 1, 2021 at 7:37 AM Lad, Prabhakar
-> > > <prabhakar.csengg@gmail.com> wrote:
-> > > >
-> > > > Hi Marc/Rob,
-> > > >
-> > > > On Tue, Nov 30, 2021 at 6:37 PM Marc Zyngier <maz@kernel.org> wrote:
-> > > > >
-> > > > > On Tue, 30 Nov 2021 12:52:21 +0000,
-> > > > > "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> > > > > >
-> > > > > > On Mon, Nov 29, 2021 at 6:33 PM Rob Herring <robh@kernel.org> wrote:
-> > > > > > >
-> > > > > > > interrupts would work just fine here:
-> > > > > > >
-> > > > > > > interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> > > > > > >   <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-> > > > > > >   <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-> > > > > > >   <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> > > > > > >   <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> > > > > > >   <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-> > > > > > >   <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-> > > > > > >   <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-> > > > > > >
-> > > > > > > We don't need a different solution for N:1 interrupts from N:M. Sure,
-> > > > > > > that could become unweldy if there are a lot of interrupts (just like
-> > > > > > > interrupt-map), but is that an immediate problem?
-> > > > > > >
-> > > > > > It's just that with this approach the driver will have to index the
-> > > > > > interrupts instead of reading from DT.
-> > > > > >
-> > > > > > Marc - is it OK with the above approach?
-> > > > >
-> > > > > Anything that uses standard properties in a standard way works for me.
-> > > > >
-> > > > I added interrupts property now instead of interrupt-map as below:
-> > > >
-> > > > irqc: interrupt-controller@110a0000 {
-> > > >       compatible = "renesas,r9a07g044-irqc", "renesas,rzg2l-irqc";
-> > > >        #address-cells = <0>;
-> > > >        interrupt-parent = <&gic>;
-> > > >        interrupt-controller;
-> > > >        reg = <0 0x110a0000 0 0x10000>;
-> > > >        interrupts =
-> > > >                       <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 449 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 455 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 457 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 459 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 460 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 461 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 470 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 471 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 472 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                       <GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>,
-> > > >                      <GIC_SPI 475 IRQ_TYPE_LEVEL_HIGH>;
-> > > >          clocks = <&cpg CPG_MOD R9A07G044_IA55_CLK>,
-> > > >                        <&cpg CPG_MOD R9A07G044_IA55_PCLK>;
-> > > >           clock-names = "clk", "pclk";
-> > > >           power-domains = <&cpg>;
-> > > >           resets = <&cpg R9A07G044_IA55_RESETN>;
-> > > > };
-> > > >
-> > > >
-> > > > In the hierarchal interrupt code its parsed as below:
-> > > > on probe fetch the details:
-> > > > range = of_get_property(np, "interrupts", &len);
-> > > > if (!range)
-> > > >       return -EINVAL;
-> > > >
-> > > > for (len /= sizeof(*range), j = 0; len >= 3; len -= 3) {
-> > > >       if (j >= IRQC_NUM_IRQ)
-> > > >             return -EINVAL;
-> > > >
-> > > >       priv->map[j].args[0] = be32_to_cpu(*range++);
-> > > >       priv->map[j].args[1] = be32_to_cpu(*range++);
-> > > >       priv->map[j].args[2] = be32_to_cpu(*range++);
-> > > >       priv->map[j].args_count = 3;
-> > > >       j++;
-> > >
-> > > Not sure what's wrong, but you shouldn't be doing your own parsing.
-> > > The setup shouldn't look much different than a GPIO controller
-> > > interrupts except you have multiple parent interrupts.
-> > >
-> > Sorry does that mean the IRQ domain should be chained handler and not
-> > hierarchical? Or is it I have miss-understood.
+On Mon, Dec 6, 2021 at 10:22 AM Phil Elwell <phil@raspberrypi.com> wrote:
 
-I guess the core DT code allocates the interrupts itself, as if the
-interrupt controller was the interrupt producer itself (which isn't
-the case here), bypassing the hierarchical setup altogether.
+> Since [1], added in 5.7, the absence of a gpio-ranges property has
+> prevented GPIOs from being restored to inputs when released.
+> Add those properties for BCM283x and BCM2711 devices.
+>
+> [1] commit 2ab73c6d8323 ("gpio: Support GPIO controllers without
+>     pin-ranges")
+>
+> Fixes: 2ab73c6d8323 ("gpio: Support GPIO controllers without pin-ranges")
+> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
 
-We solved it on the MSI side by not using 'interrupts'. Either we
-adopt a similar solution for wired interrupts, or we fix the core DT
-code.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-> >
-> > If the IRQ domain has to be hierarchical how do we map to the parent?
-> > (based on the previous reviews Marc had suggested to implement as
-> > hierarchical  [1])
-> >
-> Gentle ping.
+Please funnel this patch through the SoC tree.
 
-Please move this discussion to the relevant thread.
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+Yours,
+Linus Walleij
