@@ -2,180 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1609468F19
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 03:26:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DEAA468F30
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 03:34:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234105AbhLFCaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Dec 2021 21:30:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51294 "EHLO
+        id S234450AbhLFChw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Dec 2021 21:37:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233372AbhLFCaN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 21:30:13 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07557C061751;
-        Sun,  5 Dec 2021 18:26:45 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BDF4EB80E5C;
-        Mon,  6 Dec 2021 02:26:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 764F0C00446;
-        Mon,  6 Dec 2021 02:26:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638757602;
-        bh=unCgcF4z6X1P0I02zsZOpbSSMauTnSzJIbHVF4cY1LA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cBqH4DlC6mS21VwtSPfs1/ic+qINLdyYTpKR5vU0xKQGjb67hgVBrNqQOW4+w2Tj1
-         H5s/U5hymbZKMXoX8gxpB5//DcELi6WG5MNIsJEoBd+ECUztidlN4apg38T8w/+LNW
-         iFgwzWIFGe3IWvNT7hjUtB5phhzRP5UI8nvXQTVy+as8aFxu9spd17ZVWwte8rk382
-         CTqw3sZLDg6scYOKZ3fh82mAZkDPYDc0M3y5H8O8GmHI1U1qdhu9nAfEZKyStrhTjO
-         f1PBrxrhouP+KqFYfMI2zlDsq1N/fswG9Y2ECN8rw/Y7KgYMAp7XiijbNlpShtpDGb
-         I8mSMQd0PBe5Q==
-Date:   Mon, 6 Dec 2021 10:26:36 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        ~okias/devicetree@lists.sr.ht, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: imx8mq: fix the schema check errors for
- fsl,tmu-calibration
-Message-ID: <20211206022635.GU4216@dragon>
-References: <20211127130118.37525-1-david@ixit.cz>
+        with ESMTP id S229886AbhLFChw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Dec 2021 21:37:52 -0500
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37FB6C0613F8
+        for <devicetree@vger.kernel.org>; Sun,  5 Dec 2021 18:34:24 -0800 (PST)
+Received: by mail-oi1-x233.google.com with SMTP id s139so18778283oie.13
+        for <devicetree@vger.kernel.org>; Sun, 05 Dec 2021 18:34:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=TTlnq7Wgzp2iX6Ls4tQK0iYVNHZC93S+jeurCSfQZQg=;
+        b=VfAmdIa7950nGp7sfvUgTx/o5m/K2ugSiyqUnlGAt7y3DjfeFETtbKV4biPq7ywvei
+         xF4wi6g4qFXI2OGXFs1/jxnOMurxZ+YBy851oBsN4o/F8EANSHG7iCh38gtbS24QjbZy
+         Nzy2IYEprxBE6EDy5RkFY7NkXf+ktsvCpSka8E93IYlrqc9Rk1O1d0Scua7R+cKL4AqY
+         QLG8ZS6bn8aiYGObLtMn9siD6l92rWqVUTKb4yaMWSdUaf1sNiUGIEbvlwxiZBvT8gm9
+         bGq3Wl2YdJ5eHYeelFhH9VBArjRCByGjzlSxboWtFb5QqYMgvSncbVsbVHvUMa1Aw+wS
+         rV/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TTlnq7Wgzp2iX6Ls4tQK0iYVNHZC93S+jeurCSfQZQg=;
+        b=fizT1E6uBEhRjiLiP/DywDp1Rpmrw3Bk4gVK3Gszpt+FJ5vk0N7gV+cUsnadA+FrQ6
+         KaAbajS2rVCghQOPJ2ayn8Ckmxn0cp+em/2KYoDkzV4YcU+umsdLsgsyA1JY7KjsGWxi
+         uFFidGqRJCBTZCun8KXLS19/OB8WQGwk8BEz0IjoCL7zyR/cEu1VIRjqaa/qtRZDZNl+
+         XoYrT6aIPHL0QS776KvtrJsXy7meZe98+nyfy9cGCImdBpD7MjNadFg3wf9b1Ud3Jyg/
+         14rg1F5o6TcZD+AteLCnH948O2rY44BUeCxxw7LxLOAWmcpeuynexOAzTWi3f1vPuRHa
+         TY1w==
+X-Gm-Message-State: AOAM532YQj9MogP6sfeLmVAEh7TkM5R5XvLiaYKxsiZCBNnWIbXE+pJB
+        sVOXQPA2jlpVAnNh+pEcib0Pag==
+X-Google-Smtp-Source: ABdhPJw574NkW6bD77DqAw/lwQOC13BsjPT9cNCMD5G/pLKoQYLZV9vtlJVZ+99bghWUwhxrwg+WbA==
+X-Received: by 2002:a05:6808:1116:: with SMTP id e22mr21315983oih.45.1638758063412;
+        Sun, 05 Dec 2021 18:34:23 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id p6sm1952823oof.0.2021.12.05.18.34.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Dec 2021 18:34:23 -0800 (PST)
+Date:   Sun, 5 Dec 2021 18:35:50 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.com>
+Cc:     agross@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org, Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Venkata Prasad Potturu <potturu@codeaurora.org>
+Subject: Re: [PATCH v4 4/5] pinctrl: qcom: Update clock voting as optional
+Message-ID: <Ya13Bl66oS1hgHFd@ripper>
+References: <1638531140-25899-1-git-send-email-srivasam@codeaurora.com>
+ <1638531140-25899-5-git-send-email-srivasam@codeaurora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211127130118.37525-1-david@ixit.cz>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <1638531140-25899-5-git-send-email-srivasam@codeaurora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 27, 2021 at 02:01:18PM +0100, David Heidelberg wrote:
-> fsl,tmu-calibration is in u32-matrix. Use matching property syntax.
-> No functional changes. Fixes warnings as:
-> $ make dtbs_check
-> ...
-> arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dt.yaml: tmu@30260000: fsl,tmu-calibration:0: Additional items are not allowed (1, 41, 2, 47, 3, 53, 4, 61, 5, 67, 6, 75, 7, 81, 8, 87, 9, 95, 10, 103, 11, 111, 65536, 27, 65537, 35, 65538, 43, 65539, 51, 65540, 59, 65541, 67, 65542, 75, 65543, 85, 65544, 93, 65545, 103, 65546, 112, 131072, 23, 131073, 35, 131074, 45, 131075, 55, 131076, 65, 131077, 75, 131078, 87, 131079, 99, 131080, 111, 196608, 21, 196609, 33, 196610, 45, 196611, 57, 196612, 69, 196613, 83, 196614, 95, 196615, 113 were unexpected)
->         From schema: /home/ubuntu/projects_remote/linux/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
+On Fri 03 Dec 03:32 PST 2021, Srinivasa Rao Mandadapu wrote:
 
-I made some edit to split the long line and use relative path for kernel
-source.
-
-> ...
+> From: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Update bulk clock voting to optional voting as ADSP bypass platform doesn't
+> need macro and decodec clocks, these are maintained as power domains and
+> operated from lpass audio core cc.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
 > ---
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 86 +++++++++++------------
->  1 file changed, 43 insertions(+), 43 deletions(-)
+>  drivers/pinctrl/qcom/pinctrl-lpass-lpi.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index 95d8b95d6120..c90a8befdd95 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -457,49 +457,49 @@ tmu: tmu@30260000 {
->  				clocks = <&clk IMX8MQ_CLK_TMU_ROOT>;
->  				little-endian;
->  				fsl,tmu-range = <0xb0000 0xa0026 0x80048 0x70061>;
-> -				fsl,tmu-calibration = <0x00000000 0x00000023
-> -						       0x00000001 0x00000029
-> -						       0x00000002 0x0000002f
-> -						       0x00000003 0x00000035
-> -						       0x00000004 0x0000003d
-> -						       0x00000005 0x00000043
-> -						       0x00000006 0x0000004b
-> -						       0x00000007 0x00000051
-> -						       0x00000008 0x00000057
-> -						       0x00000009 0x0000005f
-> -						       0x0000000a 0x00000067
-> -						       0x0000000b 0x0000006f
-> -
-> -						       0x00010000 0x0000001b
-> -						       0x00010001 0x00000023
-> -						       0x00010002 0x0000002b
-> -						       0x00010003 0x00000033
-> -						       0x00010004 0x0000003b
-> -						       0x00010005 0x00000043
-> -						       0x00010006 0x0000004b
-> -						       0x00010007 0x00000055
-> -						       0x00010008 0x0000005d
-> -						       0x00010009 0x00000067
-> -						       0x0001000a 0x00000070
-> -
-> -						       0x00020000 0x00000017
-> -						       0x00020001 0x00000023
-> -						       0x00020002 0x0000002d
-> -						       0x00020003 0x00000037
-> -						       0x00020004 0x00000041
-> -						       0x00020005 0x0000004b
-> -						       0x00020006 0x00000057
-> -						       0x00020007 0x00000063
-> -						       0x00020008 0x0000006f
-> -
-> -						       0x00030000 0x00000015
-> -						       0x00030001 0x00000021
-> -						       0x00030002 0x0000002d
-> -						       0x00030003 0x00000039
-> -						       0x00030004 0x00000045
-> -						       0x00030005 0x00000053
-> -						       0x00030006 0x0000005f
-> -						       0x00030007 0x00000071>;
-> +				fsl,tmu-calibration = <0x00000000 0x00000023>,
+> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+> index bcc12f6..c2a1110 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+> @@ -394,7 +394,7 @@ int lpi_pinctrl_probe(struct platform_device *pdev)
+>  		return dev_err_probe(dev, PTR_ERR(pctrl->slew_base),
+>  				     "Slew resource not provided\n");
+>  
+> -	ret = devm_clk_bulk_get(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
+> +	ret = devm_clk_bulk_get_optional(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
 
-I update the following lines to align with "<".
+If some platforms requires this clock and others doesn't have one, then
+please make this statement conditional on the compatible, rather than
+making it optional on both.
 
-Applied, thanks!
+Thanks,
+Bjorn
 
-Shawn
-
-> +						<0x00000001 0x00000029>,
-> +						<0x00000002 0x0000002f>,
-> +						<0x00000003 0x00000035>,
-> +						<0x00000004 0x0000003d>,
-> +						<0x00000005 0x00000043>,
-> +						<0x00000006 0x0000004b>,
-> +						<0x00000007 0x00000051>,
-> +						<0x00000008 0x00000057>,
-> +						<0x00000009 0x0000005f>,
-> +						<0x0000000a 0x00000067>,
-> +						<0x0000000b 0x0000006f>,
-> +
-> +						<0x00010000 0x0000001b>,
-> +						<0x00010001 0x00000023>,
-> +						<0x00010002 0x0000002b>,
-> +						<0x00010003 0x00000033>,
-> +						<0x00010004 0x0000003b>,
-> +						<0x00010005 0x00000043>,
-> +						<0x00010006 0x0000004b>,
-> +						<0x00010007 0x00000055>,
-> +						<0x00010008 0x0000005d>,
-> +						<0x00010009 0x00000067>,
-> +						<0x0001000a 0x00000070>,
-> +
-> +						<0x00020000 0x00000017>,
-> +						<0x00020001 0x00000023>,
-> +						<0x00020002 0x0000002d>,
-> +						<0x00020003 0x00000037>,
-> +						<0x00020004 0x00000041>,
-> +						<0x00020005 0x0000004b>,
-> +						<0x00020006 0x00000057>,
-> +						<0x00020007 0x00000063>,
-> +						<0x00020008 0x0000006f>,
-> +
-> +						<0x00030000 0x00000015>,
-> +						<0x00030001 0x00000021>,
-> +						<0x00030002 0x0000002d>,
-> +						<0x00030003 0x00000039>,
-> +						<0x00030004 0x00000045>,
-> +						<0x00030005 0x00000053>,
-> +						<0x00030006 0x0000005f>,
-> +						<0x00030007 0x00000071>;
->  				#thermal-sensor-cells =  <1>;
->  			};
+>  	if (ret)
+>  		return dev_err_probe(dev, ret, "Can't get clocks\n");
 >  
 > -- 
-> 2.33.0
+> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 > 
