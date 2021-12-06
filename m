@@ -2,75 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A37B4469184
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 09:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A765046918A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 09:30:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239352AbhLFIeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 03:34:18 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:40332
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232011AbhLFIeS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 03:34:18 -0500
-Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
+        id S239424AbhLFIeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 03:34:21 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:37976
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232011AbhLFIeU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 03:34:20 -0500
+Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 2BD1F3F1C0
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 08:30:49 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D17FF4003E
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 08:30:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638779449;
-        bh=Tml629Uq95zSJI5V07nE+j3CNsdC1fLdTAkBUTpIiTI=;
+        s=20210705; t=1638779450;
+        bh=TMqqkvVoAtVu1BbDjYoZK1xIEx095VfIUwglYUMppCE=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version:Content-Type;
-        b=r4G3bayU0h2ctLOth5lPk/hJ3MB43Uew1QPSiLgsPQ0iDVWeTfKj9a1fnfwibc/KQ
-         xQN2rSd2cq+aenMx6YJqXBGTQJpgZ8t/aHcUVPKqdOPask/FOg8nDYWc206EXq+jQl
-         TAsJMuYxGsDwQ9d4WVabRuxny4BOiEOzuGFwSWuVukEo4Wjf1SdlZgJrOQC+97kCt4
-         zsOCDmmap011Inh7oKHyNrYzqRWRbHBMBWnnaAOzHeuobaNHgH110miZF0nKSEYEx4
-         aqtKX1HGxy2L1I8UGztii3mPTq8nF6FS4vhFIwGkXgh12G1OorLOmzO2eV4cdfDijR
-         J0JkbQzt12mfg==
-Received: by mail-lj1-f200.google.com with SMTP id q19-20020a05651c055300b0021a259ae8bbso3162301ljp.4
-        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 00:30:49 -0800 (PST)
+        b=e0VUXbkm/qVHPME3B4wMjnhdYMP3GoYoNH4rv7cBWt4iBpORrpim6c1/OOquZFaL+
+         C2bJrLD5+xZZ/MGJlb8RICHnlvmqppak6YiS3WYtBEny69jPRbNC+YowIpzT55NtOn
+         Y2TZXEjEj6Y/gViUFb5+kCgpdrrgou8ay6ZJtv8q8ZqlzDRLjjAV3pPNSV6AYPJL2x
+         Vh3NHIlUCt3OyHrBq7PCKIYu9vc8yHoI76Pd7PHaYpZAtKDLNAvYmWPAlxB3ZYDvI/
+         nWxQoFM2dCu1g3Fd1Lfh8/sl00AuHF87Cy+XuT9GFDNEM9xI/Cb2dtC5g1RPXUD0XB
+         xzZoAyLIMtolQ==
+Received: by mail-lj1-f199.google.com with SMTP id i123-20020a2e2281000000b0021cfde1fa8eso2331254lji.7
+        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 00:30:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Tml629Uq95zSJI5V07nE+j3CNsdC1fLdTAkBUTpIiTI=;
-        b=ONWPc1mUr8mPpI1qU03Ph5TPDAa/OzpCOLphpwCWpnK6cOFAFqWF3nC80AZckuOByA
-         dJPRLILmrySa2Jn5ajaBe+6CyaO85CPOZcue9Ey20as5EkV6Pzl/XFGu+uyOSPZubS7D
-         FMKBxAOOc/GJWWwOCxsVxRQRv+RFn2wZcN69Aq5oGE5Tly0X1X9g8dd+hYzv8SaqKpca
-         +zic7Qpe7iGhdwQScNO1CVbY08TO/XQRrVL4fZHZkviDJH/W83hC5lQmenoZrDEtjWKS
-         +95r9J+mabkmclaY3BweaqJGG75Jdt/Vz4BD1gTtWPtk/GFm/9MdKaIobJYSjlRzXKDZ
-         dkug==
-X-Gm-Message-State: AOAM530mj8e4TjlyPDcBYDg1T69t88NGIxHKka3zIvmfzJZkJgq98wTo
-        jhXVeL44mwHUFFHXaiz1va38O4I8lZL4/4tf2tiE1oP0Yy2o95RRsbmKDjOHM/KcPFGzJ9gSUmf
-        5SC3sCxTKGI9YW54Tc+1z+LqO27p87Tu9HGev+Fs=
-X-Received: by 2002:a2e:bb98:: with SMTP id y24mr33106635lje.315.1638779448592;
-        Mon, 06 Dec 2021 00:30:48 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJytdYeVEp8v2mHGvAwVxlTa1ujpCO/yCzbLFBVXrJkqZz7YKMn2qMy3HQWA7KgUSveKen3jGA==
-X-Received: by 2002:a2e:bb98:: with SMTP id y24mr33106604lje.315.1638779448263;
-        Mon, 06 Dec 2021 00:30:48 -0800 (PST)
+        bh=TMqqkvVoAtVu1BbDjYoZK1xIEx095VfIUwglYUMppCE=;
+        b=OlZx64zRByYYEoDPPF44QgSf3bYWLdU8kt01JMxuBGCptnmti2QFSdiRpqkILHxCQV
+         RbbHw1sqBYYpoTVAgWkUnLcUSuMHLUSQpoMEU8vsowV6ir4Ypv5fvgwMeNS9NWTIs9Si
+         eNnvzU7knkDLPBw3vic1SuqKK2wdPQD+3Tr6VBXehE/Uo0MCFmHe7bbd3+f9s28FYfXy
+         tS8gGlIx7LGFa4fXHFZ2ohtJlrLfUk+GWESiCG2T9I176/6hAlDxN4VEhIlb9W7dIJqI
+         S4Q/P31UA1My2phKRqO0Stp3QLxBJxVt5prZoy5uchJrVVLF0e0cXX5T3mMnhY/DhUFk
+         nQQw==
+X-Gm-Message-State: AOAM532mPZYNxl3hS6TtaNXijbbIxtE6Th7wbSJNhcBCu7Io4G7Pjyye
+        lu8jyB7b15II9nBoZ/V+ctL4mia+N6oP0NG/o/C1Xq4LIImKj94LAj+dC6Kn6Lt3eixke39STQa
+        O3/A2mWJqlnAhridPaQDrlv6ChbrNUuYZSybIKak=
+X-Received: by 2002:a2e:a548:: with SMTP id e8mr33498328ljn.24.1638779449631;
+        Mon, 06 Dec 2021 00:30:49 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxe/goV4O1M8RkFPwEf7OqKkR6GayhXGhlDwSUUTNuoMNkI5f5ksqkuRJRbhwol22uan2oxnw==
+X-Received: by 2002:a2e:a548:: with SMTP id e8mr33498316ljn.24.1638779449485;
+        Mon, 06 Dec 2021 00:30:49 -0800 (PST)
 Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id m15sm1296249lfp.9.2021.12.06.00.30.47
+        by smtp.gmail.com with ESMTPSA id m15sm1296249lfp.9.2021.12.06.00.30.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 00:30:47 -0800 (PST)
+        Mon, 06 Dec 2021 00:30:48 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Sam Protsenko <semen.protsenko@linaro.org>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
         Youngmin Nam <youngmin.nam@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
         Arnd Bergmann <arnd@arndb.de>,
         David Virag <virag.david003@gmail.com>,
         Jaewon Kim <jaewon02.kim@samsung.com>,
         Chanho Park <chanho61.park@samsung.com>
-Subject: Re: (subset) [PATCH v2 RESEND 7/8] arm: dts: exynos: Rename hsi2c nodes to i2c for Exynos5260
-Date:   Mon,  6 Dec 2021 09:30:44 +0100
-Message-Id: <163877944232.78791.17720968863028259612.b4-ty@canonical.com>
+Subject: Re: (subset) [PATCH v2 RESEND 8/8] arm64: dts: exynos: Rename hsi2c nodes to i2c for Exynos5433 and Exynos7
+Date:   Mon,  6 Dec 2021 09:30:45 +0100
+Message-Id: <163877944232.78791.17872835189239220303.b4-ty@canonical.com>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211204215820.17378-8-semen.protsenko@linaro.org>
-References: <20211204215820.17378-1-semen.protsenko@linaro.org> <20211204215820.17378-8-semen.protsenko@linaro.org>
+In-Reply-To: <20211204215820.17378-9-semen.protsenko@linaro.org>
+References: <20211204215820.17378-1-semen.protsenko@linaro.org> <20211204215820.17378-9-semen.protsenko@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -78,7 +79,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 4 Dec 2021 23:58:19 +0200, Sam Protsenko wrote:
+On Sat, 4 Dec 2021 23:58:20 +0200, Sam Protsenko wrote:
 > In Device Tree specification it's recommended to use "i2c" name for I2C
 > nodes. Now that i2c-exynos5 dt-schema binding was added, it shows some
 > warnings like this when validating HS-I2C nodes:
@@ -91,8 +92,8 @@ On Sat, 4 Dec 2021 23:58:19 +0200, Sam Protsenko wrote:
 
 Applied, thanks!
 
-[7/8] arm: dts: exynos: Rename hsi2c nodes to i2c for Exynos5260
-      commit: 29bf0ff5ae18ad1a6dd183569cc097e578052c57
+[8/8] arm64: dts: exynos: Rename hsi2c nodes to i2c for Exynos5433 and Exynos7
+      commit: 8858f8622e82170ec184971b66c7a455816190f8
 
 Best regards,
 -- 
