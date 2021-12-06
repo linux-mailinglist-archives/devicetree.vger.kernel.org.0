@@ -2,71 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F91746AA7F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 22:31:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B87E746AA88
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 22:34:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351807AbhLFVfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 16:35:21 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:36596 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351761AbhLFVfT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 16:35:19 -0500
-Received: by mail-oi1-f180.google.com with SMTP id t23so23972854oiw.3;
-        Mon, 06 Dec 2021 13:31:50 -0800 (PST)
+        id S244109AbhLFViO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 16:38:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35802 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244040AbhLFViO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 16:38:14 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2E74C061746;
+        Mon,  6 Dec 2021 13:34:44 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id v1so48636827edx.2;
+        Mon, 06 Dec 2021 13:34:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=quIKySIUpr5MTJfpnarHC6Utt3+7Kapj52Q68fqD7/c=;
+        b=RcG0NpN/CiGr6OfnnUTL7idQLJ4zDE6Vh6ZzmoVGdQ0VISX0i/Mnpa8FVE9p7jYqDF
+         CEhjqGX5EdNwxzPT4HXdLGZAhAEDyVs7l6gMHigwRzQBU03QxVUAaYJ0vIn4d+ED5fLo
+         9iX5JN2N7eCSK652vAV9ynOYdBGY85GqZGwQO8WTD8JCrgna4E9a1AYryFJjqt6RWvKP
+         KxctAxHgfBXHzI/1Ycp4WnalCxt4sG7YzJl3FfNYZndIJrEc+ZQmtrlyx8gZw8Lzc1H8
+         jXDlGLZhoZCLKW27JPI/bPkmIylXbSiht4PDhjW4ToHlHKTJ0inXBnIYPoV2HdWOX3ie
+         femw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FCMMUJ0+HiyKmUIwYyAGcz9h/aDXGAPpZdZ0VwD768U=;
-        b=hs2Yc95r6/EBvnZTw++Jprob1oimzlX/yfSf/LcMKnUA+N77EKVoXbtmWBiIhC1DEa
-         fSNN5+DGfpu0id9lPS6ZQ6Cdm8gGtiOXovYUDRMSSetFrHNN7jYyn5zg1R1zccXWQpHk
-         qOTTWIEn9MRbUHfC7UogiRYKwyL0CnyzXOyJPuv+BQQbTrOdUz0361TMur54jEaI3jmc
-         1kRbOXHA9JcNQ/TYkWYmEQUWlbeep+WJbVRZgi6QU71TYp9/J5nE+OjJrryHq/g4pM+K
-         r7CY70Qx3KzXRcFwKHI+gkVfjsq39X71pEkpA/W0dG/41mf0mFA1urEGcSBIoMPfo/vC
-         XKLw==
-X-Gm-Message-State: AOAM530qvObWfKXWrl4eM/gJZiQH9q2wgRL6il9fRCw8tZkKVBhyzpo9
-        lxJim8b49xmeXVnoF3gCrg==
-X-Google-Smtp-Source: ABdhPJwYnhC4hQgC55Mgltgr4tT72tEnDjU8lmBzX2mIzTWoUa3wMrCLM0xJjMjQHnzZUqJ7XRjCIg==
-X-Received: by 2002:aca:44c1:: with SMTP id r184mr1245726oia.15.1638826309611;
-        Mon, 06 Dec 2021 13:31:49 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bj8sm3135561oib.51.2021.12.06.13.31.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 13:31:49 -0800 (PST)
-Received: (nullmailer pid 2619775 invoked by uid 1000);
-        Mon, 06 Dec 2021 21:31:48 -0000
-Date:   Mon, 6 Dec 2021 15:31:48 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     linux-mtd@lists.infradead.org, Richard Weinberger <richard@nod.at>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-spi@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
-        Michal Simek <monstr@monstr.eu>,
-        Michael Walle <michael@walle.cc>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] spi: dt-bindings: Add an example with two stacked
- flashes
-Message-ID: <Ya6BRHLcElZghQRb@robh.at.kernel.org>
-References: <20211206095921.33302-1-miquel.raynal@bootlin.com>
- <20211206095921.33302-4-miquel.raynal@bootlin.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=quIKySIUpr5MTJfpnarHC6Utt3+7Kapj52Q68fqD7/c=;
+        b=Y/WWlxVhgimv7ymLfHp4nvkovweh+bOLCljjfPeH8GlhFVJJ7Y2MciBe8UnduMg6XA
+         UvA5+W5wjQmTGLpuNeBM0bgawI5UnmqnbjtmXaR9PXC7O8EtA1rbvD6VpQYx2XxweiaY
+         zVIO/Ikda6ESZX/1R1Lcqi0ff+Gx+EaHQ+wVIagksG+x2cUZqdbhHP3DPvJN3X1xvFl8
+         l5CuqLjdkBg4hYXwqeEXxtWym2R/CrwlW81NHzbDVWCFmrxMeMLo2TJegPO/uR3yP5DQ
+         2grx6Rz+EEMAIvV4N4trQl4VH1yNqAxWRznjqN5VkSMI6u3kygwBbkoixZ7OdCP8z03H
+         ks2g==
+X-Gm-Message-State: AOAM533490VZjlgPShG+zLsvRIapJm9/yzWwSXlXlKCB5jKfwQ7/Hk6D
+        GX/IKAT30hYxmnHimcIjY8S/99K6vUpzCd8mWnq7ufzePhg=
+X-Google-Smtp-Source: ABdhPJxKk5osnLLPa52HV3kvZMqV602+8tKH5puSMUMGuE3sqVSWJLfZFzzabDosBRZ+x/7gc1KN1GjOwLmcYYHtOy4=
+X-Received: by 2002:a17:906:37d2:: with SMTP id o18mr48850450ejc.278.1638826483479;
+ Mon, 06 Dec 2021 13:34:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211206095921.33302-4-miquel.raynal@bootlin.com>
+References: <20211130060523.19161-1-christianshewitt@gmail.com> <20211130060523.19161-2-christianshewitt@gmail.com>
+In-Reply-To: <20211130060523.19161-2-christianshewitt@gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Mon, 6 Dec 2021 22:34:32 +0100
+Message-ID: <CAFBinCAkz2f7480+qnicM9Bm5r58_+=V4a_BvRduORRvyHS89A@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/9] arm64: dts: meson: add common SM1 ac2xx dtsi
+To:     Christian Hewitt <christianshewitt@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Benoit Masson <yahoo@perenite.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Dec 2021 10:59:21 +0100, Miquel Raynal wrote:
-> Provide an example of how to describe two flashes in eg. stacked mode.
-> 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/spi/spi-controller.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Tue, Nov 30, 2021 at 7:06 AM Christian Hewitt
+<christianshewitt@gmail.com> wrote:
+>
+> Add a common dtsi for Android STB devices based on the Amlogic S905X3
+> (AC213/AC214) and S905D3 (AC201/AC202) reference designs. The dtsi is
+> loosely based on the existing SEI610 device-tree.
+>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> #
+X96-Air with Gbit/s PHY
