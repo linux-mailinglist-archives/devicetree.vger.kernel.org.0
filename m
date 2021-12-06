@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4472346A019
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:55:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8420E46A01C
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 16:55:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352249AbhLFP5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 10:57:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35590 "EHLO
+        id S1359458AbhLFP5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 10:57:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352598AbhLFPyr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:54:47 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78AFEC07E5E4
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 07:40:08 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id d72-20020a1c1d4b000000b00331140f3dc8so144661wmd.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 07:40:08 -0800 (PST)
+        with ESMTP id S1388177AbhLFPyz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 10:54:55 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91F79C07E5E8
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 07:40:09 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id o13so23221331wrs.12
+        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 07:40:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=tQXx7GnUnnrSCouIsJOJJqdsqKC/T8UFD1PrZ+Nst5U=;
-        b=IuaMZSyQ+XFWmM3aQkBaM/vyuejE/mCo0s0ldZhwVJQfdZrFwnV/LW9wnvrMm1NWVM
-         +gz5GFxnJUbj7kaKnnzdt9lARyJlkmSi7vpqH1lR5dGD8Z7FwIGJW4drbwMTN6XhoqFC
-         74LTT6ajb8LK3pLQygvtY/J8YqDewfGhzCYQKHxq+8OFeU7JtpkFp+lSd8TnVVUXdxBo
-         xP2dD/c35+5cKD4JtLh2/DD42FGrVN+6eAIkUExDTsO9JW5IE2A/k30op8e7tr5gD0Rv
-         STfkdgDX7X3c64D7UMEYn9E3DfZTJ/ty2pj+EREM/AuQIgpkQwb1Tc3lZwQhM3/c5e9q
-         D2Nw==
+        bh=2GJDE2PlAe1SK4CWIqaNsGRDv9Fy2sK0QymkxrkRl9Q=;
+        b=vqXtM8dac/0SlC/DS4sp1pnEAS2lR73/xsVfG2VZt9Om7gEpBQLNKXRK6eMb4nN0vw
+         LI3VSmH7pqLRbW2sGBQ7jTT7Te8C3KGvPp+lsXr/Ku5kE/KDhB6C8a7kQbcQJxEQ0yLP
+         763BrPSx/gYz+nVXLPX5yQ8xWZt7iQ5BxW7toKejEAFGFzHm7MHv3JAJ5rk6IZMNeXiw
+         kbeiYgcXRc5LLZi8MjzDjOcGsJfc7cScQ+ZdSNlJTdD1wfSY4DdiqrGEniQGNjJ+VhVq
+         v5aqIRzZ0qkoU55gyfWZIs8WZPTJ3UAdaN4CkxbUZPlWiuInsOGrHjM3ZEoZ3hTo9qLu
+         lYqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=tQXx7GnUnnrSCouIsJOJJqdsqKC/T8UFD1PrZ+Nst5U=;
-        b=5ZZotbEWNSEweH8IPvZegR39DpjOjd3dgMptYJq0J+mZX4mL6ja6JA1IxlhoQD8hCG
-         uZmaHT33Z43KqrLg6v0Cjv30dA9xxf3kfq+pdj1Kp4OCLtLAaOiCZNv3XnVYNJ/VJ+Mv
-         6JpvCT/tXlw+u4UCRb1kblo0Y1zP52E7v7LdeIAPI7ixGqPf+S8rj/24Wqqac/y53D9C
-         ZJ+dKIZwQT6HUUpcyv6rosq3d1n8soV60+hjYqFz1Zex86fQs7orRkWE/2YO4hRCyvc0
-         JTe10llUxipMZDozK3Qrr+Uh5J6VtbgQTFjfGMFYsvQOQc6KBuoIn7M6ZDRE89bMOmb/
-         qtVg==
-X-Gm-Message-State: AOAM530v4pM/0VleOqaCJUEiT78ctW4VoIE7QFY6WWfSye/oHm5e9YgJ
-        U92m2NTJsJ17ibOXX+1MEkdoeA==
-X-Google-Smtp-Source: ABdhPJxOHQO9mqqr0dXVOzuceTkm+GBE8UVOd04B0PnegF7w28h7QvZL6qZBwGY/2Tfr8iffu6aqiA==
-X-Received: by 2002:a7b:ca54:: with SMTP id m20mr39723541wml.21.1638805206906;
-        Mon, 06 Dec 2021 07:40:06 -0800 (PST)
+        bh=2GJDE2PlAe1SK4CWIqaNsGRDv9Fy2sK0QymkxrkRl9Q=;
+        b=Ah+Xvw5St+aMBjzSEzBesDH5Dbuk9tEJWGsQLyM5iN555KkGHeq6phrh0XO765bDnX
+         lotK5HxzSZy8NQY//yT+PmtWOjVSW1N1mkDDYxQ9XC0OpB+VfoCJhWnRIvxK49yqSo96
+         4f0Qe4J+6VjGMr4761washFCX4Rg1NEOXfF50fkncLX4lQae3ZjXlhHt8W+FxS12e4yK
+         c7gGN5tqEJPc+k86QGeHkpDXG5lnWFiqaWnWnpwVvQZ5yL2E+ECliNYSmXvaKzJMo91h
+         iTAWBoKG/yNFf+BpEOYvNkJriEk68bQYLsSb40J/imzTHJD6UZ4eJ0AH2n3yRhFyuY2h
+         wMzA==
+X-Gm-Message-State: AOAM53104hwwLFHpMLV2Cf+PXMxqiX+zgGlsGdyQE+mcbicz2KjCp667
+        UJHcnVRSpUdaXjiET1Rnv3KXMg==
+X-Google-Smtp-Source: ABdhPJyATexF8UtrBdaev8nChUE8RNqxgsjAWoeHGQnhc+vMpNPzXPUV3Ql+fETfplfbig6ujPTsbg==
+X-Received: by 2002:a05:6000:11c3:: with SMTP id i3mr43243273wrx.426.1638805208160;
+        Mon, 06 Dec 2021 07:40:08 -0800 (PST)
 Received: from xps7590.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
-        by smtp.gmail.com with ESMTPSA id g13sm15818962wrd.57.2021.12.06.07.40.05
+        by smtp.gmail.com with ESMTPSA id g13sm15818962wrd.57.2021.12.06.07.40.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 07:40:06 -0800 (PST)
+        Mon, 06 Dec 2021 07:40:07 -0800 (PST)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
@@ -58,9 +58,9 @@ To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
         Stephan Gerhold <stephan@gerhold.net>,
         Mauro Carvalho <mchehab@kernel.org>
 Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [PATCH v4 1/2] arm64: dts: qcom: apq8016-sbc: Remove clock-lanes property from &camss node
-Date:   Mon,  6 Dec 2021 16:40:02 +0100
-Message-Id: <20211206154003.39892-2-robert.foss@linaro.org>
+Subject: [PATCH v4 2/2] arm64: dts: qcom: sdm845-db845c: Remove clock-lanes property from &camss node
+Date:   Mon,  6 Dec 2021 16:40:03 +0100
+Message-Id: <20211206154003.39892-3-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211206154003.39892-1-robert.foss@linaro.org>
 References: <20211206154003.39892-1-robert.foss@linaro.org>
@@ -76,28 +76,36 @@ the CSIPHY hardware block of Qcom ISPs and should be removed.
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/apq8016-sbc.dts | 2 --
- 1 file changed, 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-index a5320d6d30e7..b7a578aafcbb 100644
---- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-@@ -253,7 +253,6 @@ ports {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 13f80a0b6faa..2cf4b932aee2 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -1125,7 +1125,6 @@ ports {
  		port@0 {
  			reg = <0>;
  			csiphy0_ep: endpoint {
--				clock-lanes = <1>;
- 				data-lanes = <0 2>;
- 				remote-endpoint = <&ov5640_ep>;
- 				status = "okay";
-@@ -289,7 +288,6 @@ camera_rear@3b {
+-				clock-lanes = <7>;
+ 				data-lanes = <0 1 2 3>;
+ 				remote-endpoint = <&ov8856_ep>;
+ 			};
+@@ -1166,7 +1165,6 @@ camera@10 {
  
  		port {
- 			ov5640_ep: endpoint {
+ 			ov8856_ep: endpoint {
 -				clock-lanes = <1>;
- 				data-lanes = <0 2>;
- 				remote-endpoint = <&csiphy0_ep>;
+ 				link-frequencies = /bits/ 64
+ 					<360000000 180000000>;
+ 				data-lanes = <1 2 3 4>;
+@@ -1211,7 +1209,6 @@ camera@60 {
+ 
+ 		port {
+ 			ov7251_ep: endpoint {
+-				clock-lanes = <1>;
+ 				data-lanes = <0 1>;
+ //				remote-endpoint = <&csiphy3_ep>;
  			};
 -- 
 2.32.0
