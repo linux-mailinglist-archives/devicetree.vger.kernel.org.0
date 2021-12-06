@@ -2,178 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AD134695DF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 13:42:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77B4F4695E2
+	for <lists+devicetree@lfdr.de>; Mon,  6 Dec 2021 13:43:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243259AbhLFMqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 07:46:18 -0500
-Received: from mail-ua1-f51.google.com ([209.85.222.51]:34322 "EHLO
-        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243223AbhLFMqQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 07:46:16 -0500
-Received: by mail-ua1-f51.google.com with SMTP id n6so19274474uak.1;
-        Mon, 06 Dec 2021 04:42:47 -0800 (PST)
+        id S243284AbhLFMrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 07:47:17 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:53000
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S243298AbhLFMrQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 07:47:16 -0500
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 52B833F1BD
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 12:43:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1638794627;
+        bh=2ccnvvjzh+vr27cmDIxMLKkuyPKdTXHoRsCzeOVPF7c=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=eEmJYfaiZO+/iHRvWxq8KF1GbQir4H1bi4y4JgahBCNZVqqIT9ihpBxN96LgC7NKQ
+         dy2oIc0VlduOjJijtyz4aCMYi4VtN4ZPYzk1nfh9dw3iqYkoYLiL0ufzj3B/LRGjx3
+         3cAqCAeAgxpBBCbHNfztfVHGD3uYcxJu/B/HbexftnWtT7seEz6p8Kq0FlcPP/JZXH
+         R2V1eLvbfXXbVKHog2Nt14KEH8eSaC8C78TCUle1bRqfXQ/1kFsmdz6pOaQfdKsvxs
+         ztO4+pc1yL4VIX0Fq38VunhuN7VW1ubc8ZP+0U5AIXCok8G1zRpNJ/WjWo28O7rSkM
+         DgzTSZRjksvhg==
+Received: by mail-lf1-f72.google.com with SMTP id k32-20020a0565123da000b0041643c6a467so3747999lfv.5
+        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 04:43:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6ZinrwU3GhnnnOlksQsuvBgeRa1fK5jzAPrFF7INP8Y=;
-        b=2a3iLE3yNDC9W9BYnUDVeb2i3mY6aP+E9ZXXeOJ/6D0BgpV3LZm8AawVxhpoQ8PV/B
-         H0sxch3Lj/5LAlI9NnhXCDVtNkT9zbIOLJXIPFtGByxMrbF/ltTnI4Awoi2hCJPEEUCS
-         KFssu3Ec+4HrFIu356KyhvDQnJJOk+szML8eDrgKPc7+z7IeqCNAdrPpknyFQIx+FCC7
-         M7rKzFHkFXEUaJ8N8ML+v6IOaUstgq/XUeIzPmFBWNoyJorPEQJ4Y+Tb50Jbrrg4pc4a
-         h2ivR3zYj4LBR7SI2urYFJeF2G1FblGWiFaJ06xYBOi1J/qOUEXy9MaYPA58hemEtoge
-         AUXQ==
-X-Gm-Message-State: AOAM532b/zMmpOfiKbtTiIjyA139hHJp6ZtwO9x3eC7N9o5sJYwI+xK5
-        UY80vyao0yDujRx+ErHYpChH0/0Y2Hss3g==
-X-Google-Smtp-Source: ABdhPJw7bLYxeSgnIlpLcBMb5ky5s4/7KUAs0AXcBVdn/UDhwZuutLMpGmhJv6h/NRLGEyq8Yt0NQg==
-X-Received: by 2002:ab0:1566:: with SMTP id p35mr39787579uae.20.1638794566698;
-        Mon, 06 Dec 2021 04:42:46 -0800 (PST)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id i24sm4094170vkk.5.2021.12.06.04.42.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Dec 2021 04:42:46 -0800 (PST)
-Received: by mail-ua1-f53.google.com with SMTP id n6so19274337uak.1;
-        Mon, 06 Dec 2021 04:42:46 -0800 (PST)
-X-Received: by 2002:a9f:3e01:: with SMTP id o1mr39302663uai.89.1638794566075;
- Mon, 06 Dec 2021 04:42:46 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2ccnvvjzh+vr27cmDIxMLKkuyPKdTXHoRsCzeOVPF7c=;
+        b=GUz+EkTAQbmxwCbK82VDCJpx7k2yUyIkSA9cOLpjgofAZqnlPWjDEnUJyBDySuiLkZ
+         ly2WBDfeoR8nIYZ6bg2EwMtWUGHjqawQWkitfpvxd9x+LLGfg5t/9knmPhEPazAFNaXA
+         3X1YytFZbbnmlJhjdtDyseOp4EAeDRPdmL29UWxUqm5NwFJR37s1op9gh9SzaPI5Gwrv
+         E1sbAq31pOEhnsbNRATE9oTYaDRjDJKVPex7D52LPvg04sq+CnZalMzA492VHMEuWc2j
+         KZvpVkxgym1fRIANKI5PtwZMhkXHHHIZ5Suw3uukU5rd3E4ETUJLZ02qzw7jjD29s+z8
+         Q0Xg==
+X-Gm-Message-State: AOAM533tra0BYvKmfRcOHVI1JoQmvQdrA4paHbl/v4WI5MiRXhZcu6EU
+        JrdK4I4DX2qIvuOkfixt10KmPwqiRWgB3qcC60adpzaPhKsSRwvaEOtlI4o147wDlO6wVGxVJ6d
+        MMs23kZUzf0dCXQxf5a13fvc6ZnUYymojsK3fL7A=
+X-Received: by 2002:a05:6512:1313:: with SMTP id x19mr35524129lfu.279.1638794626750;
+        Mon, 06 Dec 2021 04:43:46 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxEMmT5tdvgU9TQ9t8yV5F7fDNCa+/K4eYR8uaI1kK7FvQ6ULIl3dE3GYPMmHi49FXSHjzxDw==
+X-Received: by 2002:a05:6512:1313:: with SMTP id x19mr35524106lfu.279.1638794626513;
+        Mon, 06 Dec 2021 04:43:46 -0800 (PST)
+Received: from localhost.localdomain (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id u14sm1296006ljd.12.2021.12.06.04.43.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Dec 2021 04:43:46 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>, stable@vger.kernel.org
+Subject: [PATCH] regulator: dt-bindings: samsung,s5m8767: add missing op_mode to bucks
+Date:   Mon,  6 Dec 2021 13:43:06 +0100
+Message-Id: <20211206124306.14006-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <20211201073308.1003945-1-yoshihiro.shimoda.uh@renesas.com> <20211201073308.1003945-9-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20211201073308.1003945-9-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 6 Dec 2021 13:42:34 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXwYqDO2q=SYC=r299QB0TRgga4-ijDCdA7tordBw1OUg@mail.gmail.com>
-Message-ID: <CAMuHMdXwYqDO2q=SYC=r299QB0TRgga4-ijDCdA7tordBw1OUg@mail.gmail.com>
-Subject: Re: [PATCH v2 08/14] clk: renesas: rcar-gen4-cpg: Introduce R-Car
- Gen4 CPG driver
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
+While converting bindings to dtschema, the buck regulators lost
+"op_mode" property.  The "op_mode" is a valid property for all
+regulators (both LDOs and bucks), so add it.
 
-On Wed, Dec 1, 2021 at 8:33 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> According to the official website [1], the R-Car V3U SoC is based
-> on the R-Car Gen4 architecture. So, introduce R-Car Gen4 CPG
-> driver.
->
-> [1]
-> https://www.renesas.com/us/en/products/automotive-products/automotive-system-chips-socs/r-car-v3u-best-class-r-car-v3u-asil-d-system-chip-automated-driving
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Reported-by: Rob Herring <robh@kernel.org>
+Fixes: fab58debc137 ("regulator: dt-bindings: samsung,s5m8767: convert to dtschema")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ .../bindings/regulator/samsung,s5m8767.yaml   | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-Thanks for your patch!
+diff --git a/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml b/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
+index 80a63d47790a..c98929a213e9 100644
+--- a/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
++++ b/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
+@@ -51,6 +51,19 @@ patternProperties:
+     description:
+       Properties for single BUCK regulator.
+ 
++    properties:
++      op_mode:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [0, 1, 2, 3]
++        default: 1
++        description: |
++          Describes the different operating modes of the regulator with power
++          mode change in SOC. The different possible values are:
++            0 - always off mode
++            1 - on in normal mode
++            2 - low power mode
++            3 - suspend mode
++
+     required:
+       - regulator-name
+ 
+@@ -63,6 +76,18 @@ patternProperties:
+       Properties for single BUCK regulator.
+ 
+     properties:
++      op_mode:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [0, 1, 2, 3]
++        default: 1
++        description: |
++          Describes the different operating modes of the regulator with power
++          mode change in SOC. The different possible values are:
++            0 - always off mode
++            1 - on in normal mode
++            2 - low power mode
++            3 - suspend mode
++
+       s5m8767,pmic-ext-control-gpios:
+         maxItems: 1
+         description: |
+-- 
+2.32.0
 
-> --- /dev/null
-> +++ b/drivers/clk/renesas/rcar-gen4-cpg.c
-
-> +/*
-> + * RPC Clocks
-> + */
-> +#define CPG_RPCCKCR 0x874
-
-This is also defined in rcar-gen4-cpg.h, so I will drop it while applying.
-
-> +
-
-> --- /dev/null
-> +++ b/drivers/clk/renesas/rcar-gen4-cpg.h
-> @@ -0,0 +1,76 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * R-Car Gen4 Clock Pulse Generator
-> + *
-> + * Copyright (C) 2021 Renesas Electronics Corp.
-> + *
-> + */
-> +
-> +#ifndef __CLK_RENESAS_RCAR_GEN4_CPG_H__
-> +#define __CLK_RENESAS_RCAR_GEN4_CPG_H__
-> +
-> +enum rcar_gen4_clk_types {
-> +       CLK_TYPE_GEN4_MAIN = CLK_TYPE_CUSTOM,
-> +       CLK_TYPE_GEN4_PLL1,
-> +       CLK_TYPE_GEN4_PLL2,
-> +       CLK_TYPE_GEN4_PLL2X_3X, /* r8a779a0 only */
-> +       CLK_TYPE_GEN4_PLL3,
-> +       CLK_TYPE_GEN4_PLL5,
-> +       CLK_TYPE_GEN4_PLL6,
-> +       CLK_TYPE_GEN4_SDSRC,
-> +       CLK_TYPE_GEN4_SDH,
-> +       CLK_TYPE_GEN4_SD,
-> +       CLK_TYPE_GEN4_MDSEL,    /* Select parent/divider using mode pin */
-> +       CLK_TYPE_GEN4_Z,
-> +       CLK_TYPE_GEN4_OSC,      /* OSC EXTAL predivider and fixed divider */
-> +       CLK_TYPE_GEN4_RPCSRC,
-> +       CLK_TYPE_GEN4_RPC,
-> +       CLK_TYPE_GEN4_RPCD2,
-> +
-> +       /* SoC specific definitions start here */
-> +       CLK_TYPE_GEN4_SOC_BASE,
-> +};
-> +
-> +#define DEF_GEN4_SDH(_name, _id, _parent, _offset)     \
-> +       DEF_BASE(_name, _id, CLK_TYPE_GEN4_SDH, _parent, .offset = _offset)
-> +
-> +#define DEF_GEN4_SD(_name, _id, _parent, _offset)      \
-> +       DEF_BASE(_name, _id, CLK_TYPE_GEN4_SD, _parent, .offset = _offset)
-> +
-> +#define DEF_GEN4_MDSEL(_name, _id, _md, _parent0, _div0, _parent1, _div1) \
-> +       DEF_BASE(_name, _id, CLK_TYPE_GEN4_MDSEL,       \
-> +                (_parent0) << 16 | (_parent1),         \
-> +                .div = (_div0) << 16 | (_div1), .offset = _md)
-> +
-> +#define DEF_GEN4_OSC(_name, _id, _parent, _div)                \
-> +       DEF_BASE(_name, _id, CLK_TYPE_GEN4_OSC, _parent, .div = _div)
-> +
-> +#define DEF_GEN4_Z(_name, _id, _type, _parent, _div, _offset)  \
-> +       DEF_BASE(_name, _id, _type, _parent, .div = _div, .offset = _offset)
-
-Is there any specific reason _type is not fixed to CLK_TYPE_GEN4_Z,
-like before? Perhaps you have a future use-case in mind?
-
-> +
-> +struct rcar_gen4_cpg_pll_config {
-> +       u8 extal_div;
-> +       u8 pll1_mult;
-> +       u8 pll1_div;
-> +       u8 pll2_mult;
-> +       u8 pll2_div;
-> +       u8 pll3_mult;
-> +       u8 pll3_div;
-> +       u8 pll5_mult;
-> +       u8 pll5_div;
-> +       u8 pll6_mult;
-> +       u8 pll6_div;
-> +       u8 osc_prediv;
-> +};
-> +
-> +#define CPG_RPCCKCR    0x874
-> +#define SD0CKCR1       0x8a4
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-clk-for-v5.17 when the above has been sorted
-out.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
