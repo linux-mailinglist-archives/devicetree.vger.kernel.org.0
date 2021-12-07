@@ -2,36 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 226D846BC0F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 14:00:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02A7E46BC18
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 14:01:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236701AbhLGNE0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 08:04:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51952 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236458AbhLGNE0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 08:04:26 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E2A2C061574;
-        Tue,  7 Dec 2021 05:00:56 -0800 (PST)
+        id S236776AbhLGNFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 08:05:08 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:48156 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236717AbhLGNFI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 08:05:08 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 04C55B817AB;
-        Tue,  7 Dec 2021 13:00:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70D83C341C6;
-        Tue,  7 Dec 2021 13:00:51 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 12FE3CE19BC;
+        Tue,  7 Dec 2021 13:01:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BBCFC341C6;
+        Tue,  7 Dec 2021 13:01:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638882053;
-        bh=tlZQmFrL4c1Q7qm8ZsencyO1fQ3VitQp6hwvBIsNvKE=;
+        s=k20201202; t=1638882095;
+        bh=keBxHbjB8AP5/qJ3hn2VYj4CVUnlvblJ9kiHbZyhIyI=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=aeBE5Zrf2kuyD0QZ9LLtvcfige7Oxx/yZ2y465k9Ky2u0IcJSAOhQV10BxgSlM1M+
-         HOJgTUHstK7sSdidZ+hck1HpWJri3SqsqR38MgcAYPLVD+n7DCm/l82Ue0Q0a1x63O
-         Ul6l3ljb9o+NBb1GWggszojYit/K0dL6U8bMkR3jHuVEn56oV7BC15boebev5ZKVgo
-         u2G5DfDwR7XX4W/HMtiD4J8p2/Zop30oxCI1aQXrkIhWKUVwiqdFfUJH/GeFBAhBw3
-         jebTErETudTe/Uv40BkFm17Y75FFVKBfgy8hcFYhwHnmmt8byLKACKKiSZMxvtB3fP
-         naW/VAerP4l5w==
-Date:   Tue, 7 Dec 2021 14:00:48 +0100
+        b=H5jGQFIDljWiKDSiiEUkSEykimksJFlsuIHKR30/CUpBDa+Tuo8R9JTMY/NhASA+i
+         ntTcB2eD4ZZraXe1zI9gbaF1rgG6p1Xqack/Zbf+ATVFt7L0J9CUTN+ypxglHKUq3/
+         V4ij+2wdC2JsvdfiLr87ISG2EdzZqz2z7hn8GjptnBXxaeb1mwB5sUvp1YrNYQeZEX
+         09nmzSa8JFIWMOnm+V7XSTGsritQ20aWVLJY1aTCS/ZvUpq+THe7CaSY7nGNOto6hT
+         QchKQ2OeridOoGd/hU4VnmCI6+/r7CxchCENMcubEWUVluEpsKN5GqVAga1Pz3ufAf
+         ngsFRtzGkBP0g==
+Date:   Tue, 7 Dec 2021 14:01:30 +0100
 From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 To:     Wei Xu <xuwei5@hisilicon.com>
 Cc:     Rob Herring <robh+dt@kernel.org>, <linuxarm@huawei.com>,
@@ -211,7 +208,7 @@ Just sent a patch adding a compatible for it:
 	https://lore.kernel.org/all/fec9df1a99ad8639f23edc24cdcc3ec78ea31575.1638881845.git.mchehab+huawei@kernel.org/T/#u
 
 This is basically a DWC3 driver, using drivers/usb/dwc3/dwc3-of-simple.c
-to setup the needed clocks and reset pins to make DWC3 IP available.
+to setup the needed clocks and reset pins needed by the DWC3 driver.
 
 Thanks,
 Mauro
