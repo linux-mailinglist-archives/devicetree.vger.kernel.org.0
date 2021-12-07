@@ -2,131 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31C9146B62D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:38:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3D2D46B62E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:38:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233093AbhLGIl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 03:41:28 -0500
-Received: from mta-02.yadro.com ([89.207.88.252]:35706 "EHLO mta-01.yadro.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231543AbhLGIl1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Dec 2021 03:41:27 -0500
-Received: from localhost (unknown [127.0.0.1])
-        by mta-01.yadro.com (Postfix) with ESMTP id 990C74149B;
-        Tue,  7 Dec 2021 08:37:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
-        content-transfer-encoding:mime-version:user-agent:content-type
-        :content-type:organization:references:in-reply-to:date:date:from
-        :from:subject:subject:message-id:received:received:received; s=
-        mta-01; t=1638866275; x=1640680676; bh=Pqpj2gVHp9/jU+iExGIG2nhIf
-        8+sv12YFhDXrnwgC/Y=; b=uhVKWXS1TKiBnoyTQ1bcvJrTe5K80Unk6IZqUZUUy
-        GCNjd36b1Pk09wTVZfLxmQa+0rbpdcxWuVhQ0HoduWUgCbQYYWSxoDONkVjFP8i7
-        xrveY/joYGGMUIOUFyWTCsedsHqGOc8YKu/luBXwy3b2ucgMiXrbP+4SwgHHqFNv
-        Lg=
-X-Virus-Scanned: amavisd-new at yadro.com
-Received: from mta-01.yadro.com ([127.0.0.1])
-        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id T7CqOSGJOpP8; Tue,  7 Dec 2021 11:37:55 +0300 (MSK)
-Received: from T-EXCH-04.corp.yadro.com (t-exch-04.corp.yadro.com [172.17.100.104])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mta-01.yadro.com (Postfix) with ESMTPS id EB13343834;
-        Tue,  7 Dec 2021 11:37:53 +0300 (MSK)
-Received: from [10.199.10.105] (10.199.10.105) by T-EXCH-04.corp.yadro.com
- (172.17.100.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Tue, 7 Dec
- 2021 11:37:53 +0300
-Message-ID: <706caeeb14703abbc1399348ec4f11898b701c09.camel@yadro.com>
-Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: add device tree for YADRO
- VEGMAN BMC
-From:   Andrei Kartashev <a.kartashev@yadro.com>
-To:     Milton Miller II <miltonm@us.ibm.com>,
-        Joel Stanley <joel@jms.id.au>
-CC:     Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Date:   Tue, 7 Dec 2021 11:37:49 +0300
-In-Reply-To: <OF32EA8A79.571186E8-ON002587A4.002D0A6E-002587A4.002D0A73@ibm.com>
-References: <CACPK8Xcpg+V7BB6vq8oqqu=g7FRoTLLmz7-4G5Cp=hn0ziEuyw@mail.gmail.com>
-        ,<20211119120057.12118-1-a.kartashev@yadro.com>
-         <20211119120057.12118-3-a.kartashev@yadro.com>
-         <FA1B4FAF-387D-4D71-952A-D44B493FC67B@gmail.com>
-         <368313b889cbadc267b053cd808b080e9f6470a0.camel@yadro.com>
-         <OF32EA8A79.571186E8-ON002587A4.002D0A6E-002587A4.002D0A73@ibm.com>
-Organization: YADRO
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 
+        id S231543AbhLGIlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 03:41:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46342 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233118AbhLGIlb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:41:31 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E93EC061748;
+        Tue,  7 Dec 2021 00:38:01 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id c4so27797195wrd.9;
+        Tue, 07 Dec 2021 00:38:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=HfN03EH6jRdkzxqbzdL+husUCScYn8YWR0GEjsaexJQ=;
+        b=SU1LiBtF7Vmw2kbRPFZMKxlaW7Wvd0fPteIARv6bABR+DP9wdANTI612x7HCDjUt+2
+         mB3J1q0LBIQleCPyscGcpdrlPFn9IoYiz4nsZmf4GYqEdiEY8Cw2hjwpI1wpqfU1KoaH
+         +v8GnCYWfUIpegDUJdZqo5UFlOlC4bSRMwgwLJEm+EmQ5+b57JVfU1JxdyEtUP9xlX0W
+         CbGwk1pCd+0vKnlhPzSEBmWzn5qOcvDun9F52OjT/BJho2ybARzPQD3ctpYZaKi6ZRlT
+         QNeSXt/pepGdGA578DLX7k5/IbagL0BicaxTbvt4KEXU2HTjJfvBZii4bQQo3280SXuA
+         xQUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=HfN03EH6jRdkzxqbzdL+husUCScYn8YWR0GEjsaexJQ=;
+        b=sm2H6B01bECGEtxFt+aNA32jiZawKVt6A9ZRRnvePvg2AE55jGrOdBZk8yydgVxLjR
+         sVcYTi0V/VEzgiHccSr1yUqQZ68N1sdqJtKxBzzuGWRpPnj/y9vL5HClVvK5cEwwL/Pk
+         g5ZBZhmZbE7wTcru/fsGcsH3NDKIOTv6WqkQHBx5QK0IU4uw3U1jazyx8DlGi1U7JmYg
+         vC04M+Ke6qMlvJNR/tbcJXOKex6scJ6SBE+6M5Y9qoFejya8dAELKk3ueWnOXxFFCjHK
+         3rPcUVWdORheMNEzQRaOrhcYxo2ozg0mmnQ77rZ9UPaOME5UicapCAvPzIOj/UKYSEx8
+         gLGg==
+X-Gm-Message-State: AOAM530uS+adXKGLBPj2O5uqcQQhAu5GGNMl7f7x9LwgByXvtdVSuKdB
+        HcnGknviOI4Alyj1YNXD/Gs77z7j+GXqsg==
+X-Google-Smtp-Source: ABdhPJyCGrPxgn5HfGAfiUv6e3AxvvcHVuO3XSqp8b4h82P41TA3JfEm4nzDaa136Axf9Qwn4+IU5g==
+X-Received: by 2002:a5d:6da2:: with SMTP id u2mr48974035wrs.273.1638866279689;
+        Tue, 07 Dec 2021 00:37:59 -0800 (PST)
+Received: from orome.fritz.box ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id l7sm16234648wry.86.2021.12.07.00.37.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Dec 2021 00:37:58 -0800 (PST)
+Date:   Tue, 7 Dec 2021 09:37:56 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Roger Quadros <rogerq@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: memory-controllers: ti,gpmc: Drop incorrect
+ unevaluatedProperties
+Message-ID: <Ya8dZKQJWxt5IfZh@orome.fritz.box>
+References: <20211206174215.2297796-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.199.10.105]
-X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
- T-EXCH-04.corp.yadro.com (172.17.100.104)
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jnZevcPpY2ZzTOjv"
+Content-Disposition: inline
+In-Reply-To: <20211206174215.2297796-1-robh@kernel.org>
+User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2021-12-07 at 08:11 +0000, Milton Miller II wrote:
-> On Monday, December 6, 2021, Joel Stanley wrote:
-> 
-> > On Sat, 20 Nov 2021 at 15:51, Andrei Kartashev
-> > <a.kartashev@yadro.com> wrote:
-> > > 
-> > > > 
-> > > > Can we utilize
-> > > > 
-> [ gpio naming ]
-> > > > to get some consistent naming across the GPIO’s on OpenBMC
-> > machines?
-> > > > 
-> > > 
-> > > Some names here are standard for Intel daemons like
-> > x86-power-control,
-> > > host-error-monitor, pfr-manager, IntrusionSensor and so on. Other
-> > lines
-> > > just called same as in schematics to make it easy for our
-> > > engineers
-> > to
-> > > understand what does it refer to. BTW, most of the lines there
-> > > not
-> > used
-> > > by software and appeared just because dts files are supposed to
-> > > be
-> > > hardware description and thus we describe all we have in
-> > schematics.
-> > > 
-> > > We can rename all this according to guide you mention, but are
-> > > you
-> > > sure, there is any sense to do so?
-> > > Keep in mind, currently there are lot of dts files which also
-> > > don't
-> > > follow convention, so I believe, it is unnecessary work.
-> > 
-> > I have a strong preference for using the naming document. It
-> > provides
-> > consistency, which makes it easier to review. I'm encouraging that
-> > for
-> > any new dts.
-> > 
-> > If you think it makes the descriptions less useful for your
-> > platform
-> > then that's a reasonable reason to not follow the convention.
-> > 
-> 
-> Actually, what I would prefer is that these well established signal
-> names that appear in the x86 industry servers be enumerated in the
-> gpio naming document and be accepted like the original OpenPOWER
-> legacy names were.   This will clearly show the names that appear 
-> on other systems and will help reviewing things like power control 
-> applications.
-> 
-> Andrei does this sound reasonable?
 
-Actually, as TOF member I can't decline this input, it really sounds
-reasonable and important for OBMC in common. I will take this action,
-but this will require some time since now I'm working on other tasks.
+--jnZevcPpY2ZzTOjv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Best regards,
-Andrei Kartashev
+On Mon, Dec 06, 2021 at 11:42:15AM -0600, Rob Herring wrote:
+> With 'unevaluatedProperties' support implemented, the TI GPMC example
+> has a warning:
+>=20
+> Documentation/devicetree/bindings/mtd/ti,gpmc-onenand.example.dt.yaml: me=
+mory-controller@6e000000: onenand@0,0: Unevaluated properties are not allow=
+ed ('compatible', '#address-cells', '#size-cells', 'partition@0', 'partitio=
+n@100000' were unexpected)
+>=20
+> The child node definition for GPMC is not a complete binding, so specifyi=
+ng
+> 'unevaluatedProperties: false' for it is not correct and should be
+> dropped.
+>=20
+> Fixup the unnecessary 'allOf' while we're here.
+>=20
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Cc: Tony Lindgren <tony@atomide.com>
+> Cc: Roger Quadros <rogerq@kernel.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/memory-controllers/ti,gpmc.yaml      | 5 +----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
 
+Reviewed-by: Thierry Reding <treding@nvidia.com>
 
+--jnZevcPpY2ZzTOjv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGvHWMACgkQ3SOs138+
+s6H4QA/9EgPPg3VO2cn97p6mKq29CZwbV2RejnZP3ZuuxGjNobrVjjfSiaQIqeOR
+CAjFxXtVjmaB6X0jhPSDNH0fRF2rAI3SHISGvEoks8utXlzEkTEcXhUIMz3s9Zym
+da9RS8YQJpQcJk+fzKpOKJ+eCUMAgVSOdkkdb4QyxNIsrCRB60oQXchWVsuKHxIv
+uWtPRf6Vy1gz+myQpoKC+R5i9YrulZOPLFqEKuuKIz9NZ5RHne8bWtQEy4JC3K4Z
+6m84is5MzD4r8M6c1NQaNxeOACzklND0Zwkk2iiJrlbFmdO2jmxbgzAzHnNlSDNi
+/If7hU9MKEOW3QZMuDA0aTVeitEa9TXG8/3fDUpsWNtOHuv71RxKMYJwPW87ln8a
+/Zyx2BzqHthpIrEUDDTD97dqZQsYFNB02wDJT6ZcJEoSBiQCFfDo/GuduAowpXtp
+4bsLT2YNx7G0UFbsW+H/4Dv9PBjEDyLgmTaK0jGbp+ut6AqZvUfzHhSo4OtUygZ4
+vUq6ATyuGKlBSolN+zSjqQbTFg433mZ0Bi5I8HH3xwJmQVMKjm67Tf/EiDTZ8+vy
+yw1zTbWdGvTOX0eLacz9C7UyyKddgYLzY/JUzwqlfddnK6dmKTgfOJi5y8FCf2G+
+4QH0hXpXCnlKOtkNU3NnH0i9h9cE7OhGhNOJwj1apkWgYQxjbmE=
+=czj4
+-----END PGP SIGNATURE-----
+
+--jnZevcPpY2ZzTOjv--
