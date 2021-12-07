@@ -2,75 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D154B46BBBE
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:49:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D601F46BBEC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:56:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229866AbhLGMwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 07:52:50 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:44510 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbhLGMws (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 07:52:48 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 65603CE1A7E;
-        Tue,  7 Dec 2021 12:49:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E127C341C1;
-        Tue,  7 Dec 2021 12:49:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638881355;
-        bh=FUeS5OKYqlwq5GfNT9YDHvFKgZgQJXp5vN47IEJN1UA=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=JBZIwpAzGmvTKQHbYTaJlAZXiovuJzhYcwOrExykuTUsAMm4PSqED1hxQbuyTb6+4
-         Hc2NHDRULa7/Fulg8DNPooWxTUxBSXYDmwkIenJS4uM6Ox08XUlQtvnWd5PECqAZw2
-         QHbNsc3YyDkBWvrZwM246WA4wKoII642Sf17zmiR1bLLt4TQsiyO/1cOEXfeEPkQ5s
-         /jLGtS3aFhfDn4k53n3NjBcBbl4d8VoKdc7G6QxrO2I1y8E2t7X0eQN4Eg5xo45umM
-         4ji+hQNqL7weS3CJig3tbMc97s38F3nFFtDCi11mmlcA/ta9I1erg/cdIyK8R6szYe
-         w12uaSHR/OJmg==
-Subject: Re: [PATCH] dt-bindings: memory-controllers: ti,gpmc: Drop incorrect
- unevaluatedProperties
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tony Lindgren <tony@atomide.com>
-Cc:     devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-kernel@vger.kernel.org
-References: <20211206174215.2297796-1-robh@kernel.org>
-From:   Roger Quadros <rogerq@kernel.org>
-Message-ID: <d2b524c5-3e65-248d-44d2-eaf337cf4765@kernel.org>
-Date:   Tue, 7 Dec 2021 14:49:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S235539AbhLGNAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 08:00:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50914 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232439AbhLGNAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 08:00:17 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A7F4C061574;
+        Tue,  7 Dec 2021 04:56:47 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id p27-20020a05600c1d9b00b0033bf8532855so2169245wms.3;
+        Tue, 07 Dec 2021 04:56:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9rOcjGde/KWZTwQaV5kkIYXKq8iKi5wvGnMXIJC9BmY=;
+        b=gKXl3jtmK9PAW3g+l/f23cqipT04ctuh1p9+Ctxo3MKut5fRKjyk5uuy0UxKeLiwYf
+         jQsVTtq6Kaa6qQMXjEBvWWogCiHSCX44S4psHcncMC0QClUxOwUk/qYelfqepvbXRjR+
+         82eJIr+jdaJRygnJTe/IJIAIecz/5d+XiJ22v3mgKCrzDrPNv/vRr2sxRPnZ5b0f7ktN
+         o5xA4lEP657wE+DcBPgVksW6LzuHanHnirWE83OpUMqrlwZzD5JmsdXrfTkbJ0dYXnab
+         IvoXs2PlI7bvFBPnKPK9crMCETR9hFdXtBhzOkbWfTO7FvDVoOPwLyC4C3aS6hDym4xt
+         q8Hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9rOcjGde/KWZTwQaV5kkIYXKq8iKi5wvGnMXIJC9BmY=;
+        b=J/1MuzopF1kWrGkOm7bIKTNITrYdau909aHZex68Na+6IyCnn4Euxcdn3zeihyysDf
+         pOlHUYL/QDwIRnfk+1+bsXz9jqaH9MxWO/FfI70V4m3l2Ti3PM37wVWQcfK3d6vQSa6J
+         upoEC/nylVmKfIIL/9sb/z2VciarxaE6V6DXMD11fJcl/tUT1noNyy77oRJMlozTp2kJ
+         pmS6BPH+lMlMFbhfCm7cr5WZgRrlbbhMtkVh4kpqAHPEBCoRBiwHWg50xF/DR0Syei2g
+         efI8ExPwNnQ7MCkDtWWyqzktHeeeDkiqcOE8+rEZb/QfZHV1HBpSwUlbCwzyG7WhwG3D
+         f/Sg==
+X-Gm-Message-State: AOAM531eO8iVUmA4b5iWT2x+8zp2t3cIdeeVeEIdnDMTtSEQ6a9Yc0d9
+        CTy3pofHhu1lY68YLe1imda5Z6bH6h/yxA==
+X-Google-Smtp-Source: ABdhPJywW1ADwejKnwk8LQyR/oXFaJVF6S9ZfE2i9/4YMeVwRRfL98gwKQaDdJCGFwPoFukc3xxQWQ==
+X-Received: by 2002:a1c:9d13:: with SMTP id g19mr6788144wme.41.1638881806164;
+        Tue, 07 Dec 2021 04:56:46 -0800 (PST)
+Received: from localhost ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id p27sm2467605wmi.28.2021.12.07.04.56.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Dec 2021 04:56:45 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] ARM: tegra: Add compatible string for built-in ASIX on Colibri boards
+Date:   Tue,  7 Dec 2021 13:56:43 +0100
+Message-Id: <20211207125643.400976-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-In-Reply-To: <20211206174215.2297796-1-robh@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Thierry Reding <treding@nvidia.com>
 
+The device tree node for the built-in ASIX Ethernet device on Colibri
+boards needs a compatible string in order to pass DT schema validation.
+Add the USB VID,PID compatible string as required by the DT schema for
+USB devices.
 
-On 06/12/2021 19:42, Rob Herring wrote:
-> With 'unevaluatedProperties' support implemented, the TI GPMC example
-> has a warning:
-> 
-> Documentation/devicetree/bindings/mtd/ti,gpmc-onenand.example.dt.yaml: memory-controller@6e000000: onenand@0,0: Unevaluated properties are not allowed ('compatible', '#address-cells', '#size-cells', 'partition@0', 'partition@100000' were unexpected)
-> 
-> The child node definition for GPMC is not a complete binding, so specifying
-> 'unevaluatedProperties: false' for it is not correct and should be
-> dropped.
-> 
-> Fixup the unnecessary 'allOf' while we're here.
-> 
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Cc: Tony Lindgren <tony@atomide.com>
-> Cc: Roger Quadros <rogerq@kernel.org>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+Marcel, Philippe, I've used the USB vendor and device IDs from the ASIX
+driver match entry for the AX88772B module, but do you have a quick way
+of verifying that that's indeed the ID that the device reports in those
+systems?
 
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
+Rob, I do get a checkpatch.pl warning for this new compatible string,
+but I'm not sure there's anything easy that could be done about this,
+other than perhaps making checkpatch.pl aware of the special USB (and
+potentially PCI) compatible strings as well.
+---
+ arch/arm/boot/dts/tegra20-colibri.dtsi | 1 +
+ arch/arm/boot/dts/tegra30-colibri.dtsi | 1 +
+ 2 files changed, 2 insertions(+)
 
-cheers,
--roger
+diff --git a/arch/arm/boot/dts/tegra20-colibri.dtsi b/arch/arm/boot/dts/tegra20-colibri.dtsi
+index 2350fda3be6a..c5c401edd0bf 100644
+--- a/arch/arm/boot/dts/tegra20-colibri.dtsi
++++ b/arch/arm/boot/dts/tegra20-colibri.dtsi
+@@ -689,6 +689,7 @@ usb@c5004000 {
+ 		#size-cells = <0>;
+ 
+ 		asix@1 {
++			compatible = "usbb95,772b";
+ 			reg = <1>;
+ 			local-mac-address = [00 00 00 00 00 00];
+ 		};
+diff --git a/arch/arm/boot/dts/tegra30-colibri.dtsi b/arch/arm/boot/dts/tegra30-colibri.dtsi
+index e89b4e5a238d..4361b93d0934 100644
+--- a/arch/arm/boot/dts/tegra30-colibri.dtsi
++++ b/arch/arm/boot/dts/tegra30-colibri.dtsi
+@@ -950,6 +950,7 @@ usb@7d004000 {
+ 		#size-cells = <0>;
+ 
+ 		asix@1 {
++			compatible = "usbb95,772b";
+ 			reg = <1>;
+ 			local-mac-address = [00 00 00 00 00 00];
+ 		};
+-- 
+2.33.1
+
