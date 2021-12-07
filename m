@@ -2,67 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE22146B634
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:38:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEAD346B63A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:39:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233115AbhLGImA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 03:42:00 -0500
-Received: from mxout04.lancloud.ru ([45.84.86.114]:40406 "EHLO
-        mxout04.lancloud.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229925AbhLGIl7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:41:59 -0500
-Received: from LanCloud
-DKIM-Filter: OpenDKIM Filter v2.11.0 mxout04.lancloud.ru 99BA320D1C56
-Received: from LanCloud
-Received: from LanCloud
-Received: from LanCloud
-Message-ID: <812b9898-42df-7e8d-f079-1c41a8cfd6a8@omp.ru>
-Date:   Tue, 7 Dec 2021 11:38:19 +0300
+        id S231367AbhLGInF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 03:43:05 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:53650 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229925AbhLGInF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:43:05 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8745AB80E45;
+        Tue,  7 Dec 2021 08:39:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFA58C341C3;
+        Tue,  7 Dec 2021 08:39:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638866373;
+        bh=Y6skVCngCbI28tETkZn7Q+Cj+mWVtnxR54oJS9ORRtw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=G7wh6klcUOGI124zSciDGLZnl/jFRh+vJkbgsmhrQJQjIBDiCg+p+lnVVCmdikTjt
+         hlrOlZFE6Z1zCu2pnuOoTOh2Ohjhol5O4Jx7sAnsN0weqJyYQYKckvy8zHMpnhjKbt
+         ljKdfLiWUtTZShxxk3p06CBZE8obhBAjhQOTph2Uo4BR9nryPZxzAbw80wC0jESa3l
+         nPruA/i3jo8OzeAiqy+hFhVuvF9K13WjIZqtCbcHPy5HqCYIEyKQk6aWiJ7B1GFFwR
+         SPltmVJycfpOzkfIqlxNH6Xm2AtHJ8r5txunauQ+ZDRGGN2GzOsbTMoBLYQO9neVzV
+         kaqNcYmXIq6Dw==
+Date:   Tue, 7 Dec 2021 09:39:26 +0100
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Wei Xu <xuwei5@hisilicon.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, <linuxarm@huawei.com>,
+        <mauro.chehab@huawei.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/5] arm64: dts: HiSilicon: Add support for HiKey 970
+ PCIe controller hardware
+Message-ID: <20211207093926.24f26dae@coco.lan>
+In-Reply-To: <61AF16AC.1080506@hisilicon.com>
+References: <cover.1637063775.git.mchehab+huawei@kernel.org>
+        <884b83c1aed70735883e15f032f9668ebfd77a01.1637063775.git.mchehab+huawei@kernel.org>
+        <61AF16AC.1080506@hisilicon.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v2 3/3] arm64: dts: renesas: rzg2l-smarc-som: Add vdd core
- regulator
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        <linux-renesas-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20211206150025.15703-1-biju.das.jz@bp.renesas.com>
- <20211206150025.15703-4-biju.das.jz@bp.renesas.com>
-From:   Sergey Shtylyov <s.shtylyov@omp.ru>
-Organization: Open Mobile Platform
-In-Reply-To: <20211206150025.15703-4-biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [192.168.11.198]
-X-ClientProxiedBy: LFEXT01.lancloud.ru (fd00:f066::141) To
- LFEX1907.lancloud.ru (fd00:f066::207)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+Em Tue, 7 Dec 2021 16:09:16 +0800
+Wei Xu <xuwei5@hisilicon.com> escreveu:
 
-On 06.12.2021 18:00, Biju Das wrote:
-
-> Add vdd core regulator (1.1 V).
+> Hi Mauro,
 > 
-> This patch add regulator support for gpu.
+> On 2021/11/16 19:59, Mauro Carvalho Chehab wrote:
+> > From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > 
+> > Add DTS bindings for the HiKey 970 board's PCIe hardware.
+> > 
+> > Co-developed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> > ---
+> > 
+> > To mailbombing on a large number of people, only mailing lists were C/C on the cover.
+> > See [PATCH 0/5] at: https://lore.kernel.org/all/cover.1637063775.git.mchehab+huawei@kernel.org/
+> > 
+> >  arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 107 ++++++++++++++++++++++
+> >  1 file changed, 107 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
+> > index 636c8817df7e..225dccbcb064 100644
+> > --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
+> > +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
+> > @@ -176,6 +176,12 @@ sctrl: sctrl@fff0a000 {
+> >  			#clock-cells = <1>;
+> >  		};
+> >  
+> > +		pmctrl: pmctrl@fff31000 {
+> > +			compatible = "hisilicon,hi3670-pmctrl", "syscon";  
 > 
-> On the H/W manual nothing mentioned about gpu
+> The "hi3670-pmctrl" is not documented in the devicetree binding documents yet.
+> Could we remove this part this time?
 
-     Mentioned nothing?
+Without that, the PCI PHY won't work.
 
-> regulator. So using vdd core regulator for gpu.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-[...]
+IMO, the best would be to just add this compatible to hi3670-clock,
+where it belongs.
 
-MBR, Sergey
+Just sent a patch.
+
+Regards,
+Mauro
