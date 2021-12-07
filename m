@@ -2,29 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86F1646C299
+	by mail.lfdr.de (Postfix) with ESMTP id 383D546C298
 	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 19:20:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236089AbhLGSY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S236100AbhLGSY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 7 Dec 2021 13:24:26 -0500
-Received: from foss.arm.com ([217.140.110.172]:38374 "EHLO foss.arm.com"
+Received: from foss.arm.com ([217.140.110.172]:38384 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236110AbhLGSYY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Dec 2021 13:24:24 -0500
+        id S236098AbhLGSY0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 13:24:26 -0500
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BD21011FB;
-        Tue,  7 Dec 2021 10:20:53 -0800 (PST)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 213D41063;
+        Tue,  7 Dec 2021 10:20:55 -0800 (PST)
 Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id A0FAA3F73B;
-        Tue,  7 Dec 2021 10:20:52 -0800 (PST)
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id EFF4D3F73B;
+        Tue,  7 Dec 2021 10:20:53 -0800 (PST)
 From:   Robin Murphy <robin.murphy@arm.com>
 To:     will@kernel.org, catalin.marinas@arm.com, robh+dt@kernel.org
 Cc:     mark.rutland@arm.com, suzuki.poulose@arm.com,
         thierry.reding@gmail.com, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 4/5] dt-bindings: perf: Convert Arm DSU to schema
-Date:   Tue,  7 Dec 2021 18:20:42 +0000
-Message-Id: <9530f441a62c72c5a22a7b555ea42bbcd3b145a1.1638900542.git.robin.murphy@arm.com>
+Subject: [PATCH 5/5] dt-bindings: perf: Add compatible for Arm DSU-110
+Date:   Tue,  7 Dec 2021 18:20:43 +0000
+Message-Id: <b9364dc5dd31cea84a58c156cfce5b90b9248d7d.1638900542.git.robin.murphy@arm.com>
 X-Mailer: git-send-email 2.28.0.dirty
 In-Reply-To: <cover.1638900542.git.robin.murphy@arm.com>
 References: <cover.1638900542.git.robin.murphy@arm.com>
@@ -34,96 +34,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the DSU binding to schema, as one does.
+DSU-110 is the newest and shiniest for Armv9. Its programmer's model is
+largely identical to the previous generation of DSUs, so we can treat it
+as compatible, but it does have a a handful of extra IMP-DEF PMU events
+to call its own. Thanks to the new notion of core complexes, the maximum
+number of supported CPUs goes up as well.
 
 Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 ---
- .../devicetree/bindings/arm/arm-dsu-pmu.txt   | 27 ------------
- .../devicetree/bindings/perf/arm,dsu-pmu.yaml | 41 +++++++++++++++++++
- 2 files changed, 41 insertions(+), 27 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
- create mode 100644 Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
+ Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt b/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
-deleted file mode 100644
-index 6efabba530f1..000000000000
---- a/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--* ARM DynamIQ Shared Unit (DSU) Performance Monitor Unit (PMU)
--
--ARM DyanmIQ Shared Unit (DSU) integrates one or more CPU cores
--with a shared L3 memory system, control logic and external interfaces to
--form a multicore cluster. The PMU enables to gather various statistics on
--the operations of the DSU. The PMU provides independent 32bit counters that
--can count any of the supported events, along with a 64bit cycle counter.
--The PMU is accessed via CPU system registers and has no MMIO component.
--
--** DSU PMU required properties:
--
--- compatible	: should be one of :
--
--		"arm,dsu-pmu"
--
--- interrupts	: Exactly 1 SPI must be listed.
--
--- cpus		: List of phandles for the CPUs connected to this DSU instance.
--
--
--** Example:
--
--dsu-pmu-0 {
--	compatible = "arm,dsu-pmu";
--	interrupts = <GIC_SPI 02 IRQ_TYPE_LEVEL_HIGH>;
--	cpus = <&cpu_0>, <&cpu_1>;
--};
 diff --git a/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
-new file mode 100644
-index 000000000000..b78b6b0fce66
---- /dev/null
+index b78b6b0fce66..b623520ad302 100644
+--- a/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
 +++ b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
-@@ -0,0 +1,41 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright 2021 Arm Ltd.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/perf/arm,dsu-pmu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ARM DynamIQ Shared Unit (DSU) Performance Monitor Unit (PMU)
-+
-+maintainers:
-+  - Suzuki K Poulose <suzuki.poulose@arm.com>
-+  - Robin Murphy <robin.murphy@arm.com>
-+
-+description:
-+  ARM DyanmIQ Shared Unit (DSU) integrates one or more CPU cores with a shared
-+  L3 memory system, control logic and external interfaces to form a multicore
-+  cluster. The PMU enables gathering various statistics on the operation of the
-+  DSU. The PMU provides independent 32-bit counters that can count any of the
-+  supported events, along with a 64-bit cycle counter. The PMU is accessed via
-+  CPU system registers and has no MMIO component.
-+
-+properties:
-+  compatible:
-+    const: "arm,dsu-pmu"
-+
-+  interrupts:
-+    items:
-+      description: nCLUSTERPMUIRQ interrupt
-+
-+  cpus:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    minitems: 1
-+    maxitems: 8
-+    description: List of phandles for the CPUs connected to this DSU instance.
-+
-+required:
-+  - compatible
-+  - interrupts
-+  - cpus
-+
-+additionalProperties: false
+@@ -21,7 +21,11 @@ description:
+ 
+ properties:
+   compatible:
+-    const: "arm,dsu-pmu"
++    oneof:
++      const: "arm,dsu-pmu"
++      items:
++        const: "arm,dsu-110-pmu"
++        const: "arm,dsu-pmu"
+ 
+   interrupts:
+     items:
+@@ -30,7 +34,7 @@ properties:
+   cpus:
+     $ref: /schemas/types.yaml#/definitions/phandle-array
+     minitems: 1
+-    maxitems: 8
++    maxitems: 12
+     description: List of phandles for the CPUs connected to this DSU instance.
+ 
+ required:
 -- 
 2.28.0.dirty
 
