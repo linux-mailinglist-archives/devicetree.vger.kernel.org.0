@@ -2,337 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 214C546BB79
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:39:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26E4846BB81
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:40:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236529AbhLGMmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 07:42:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46686 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232094AbhLGMmr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 07:42:47 -0500
-Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF9E1C061746
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 04:39:16 -0800 (PST)
-Received: by mail-ua1-x92d.google.com with SMTP id 30so7618853uag.13
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 04:39:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=f5zNiGp1JSRMA3ASHOmUNvDb/V2yjKGJt7/64a/2WPc=;
-        b=gx8+94KVsuJqe1HwL87XV9zl/HbVJp5NymZXXh4xMOByJ9y3MEhjy19i/FXs3tMYpn
-         zrUkflXzCLCrXlfsD6l/pX67U1MCrGgLDJN8oiIQwouIOx76JxY5QR/Qo1SLU2JOYxGt
-         z9Fam7x/pYxZiH4UUqdvS7PKe5+iYlAmfnx+n2bjCq+CddGylOfU7sRICNRsoeyJ5n/l
-         DjH/Iv2Qpx5V/Nl/NVJsN++HHjy7trhelHzBkozk4Z4FWPyeLq/UakPE+IlEvBCBihoq
-         qIlPefZy2yGP4kfuUGe9PgBLIMBHQ+tAVt+fTdZtoJaFWTtghbkuXS08dPxecYBbhRq1
-         9uaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=f5zNiGp1JSRMA3ASHOmUNvDb/V2yjKGJt7/64a/2WPc=;
-        b=ZGKuWMbjT/ZFEcaJ75Oa/wgH4syyVJLhH6rwwE8d+KHtI1NlkosHrjKubC8R857DDG
-         UncYbw4hIH859DyQDItrUZGOFtDbujrmT0O3n4yNFqi8sWmtXMpXZMr4+O8OKyubwPio
-         qQmlECa8Z0qI3bscGtCIn0+ApiDqQBy+Jmm+TrPVrgaSZCly2Xsgddn8JaVbQ6GWncA4
-         4IOrTR6W3KPe+FYyp5IQ+54mNsfuYvjjvHqfSqzBJyROk+Y6Feo4kVM5GYAWAkEspWQq
-         n2lGj1gfsTUSxPYBLkmkm9mY8QeWOwfsBfvGE4/l8OpokvzcKbpz+SHSjlvq94GZYtLL
-         cWQg==
-X-Gm-Message-State: AOAM533mDE3AE1ffE+1ZtT8KumfEfLdh4BEGNoGE14a6DbIRsPTHVokQ
-        pzG3ExE6aGJLWkPSpbSvexca1Q==
-X-Google-Smtp-Source: ABdhPJwgSwCNzy5HjbSEOmWA5It2C47YIiajCxqyi27+tXazPDhvr0kGSvN8zGoCTdGVRhKlVhcRpA==
-X-Received: by 2002:a9f:3086:: with SMTP id j6mr50620326uab.83.1638880755986;
-        Tue, 07 Dec 2021 04:39:15 -0800 (PST)
-Received: from eze-laptop (host208.201-253-22.telecom.net.ar. [201.253.22.208])
-        by smtp.gmail.com with ESMTPSA id w17sm6302166uar.18.2021.12.07.04.39.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 04:39:14 -0800 (PST)
-Date:   Tue, 7 Dec 2021 09:39:08 -0300
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-media@vger.kernel.org, cphealy@gmail.com,
-        benjamin.gaignard@collabora.com, hverkuil@xs4all.nl,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-Subject: Re: [RFC V2 5/6] media: hantro: split i.MX8MQ G1 and G2 code
-Message-ID: <Ya9V7Kwa8MICeS34@eze-laptop>
-References: <20211207015446.1250854-1-aford173@gmail.com>
- <20211207015446.1250854-6-aford173@gmail.com>
+        id S236539AbhLGMoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 07:44:17 -0500
+Received: from mail-bn8nam08on2080.outbound.protection.outlook.com ([40.107.100.80]:35760
+        "EHLO NAM04-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S236544AbhLGMoR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 07:44:17 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NpkRzDDpaBdnudeWfwZuxLdYQKZv29nKahjQNQ035WFwx05qUU046UVoEqkL4bv3ncHJ5gcGljzQli9XKYuBSglzEh6SuFiQ8DR+RL0XY/eMxbvURKFq9Q27f994jmWxfTsEwYlLChvcNmzfKRtir3JAKf/fU4ApmDTRPLat2egbETEEDkqTLiA86aDnbmMm0u7WgV4+GQ/pZCjpz196T285FThds5XHLQ+mygaKHyLwWlDzkwjJQWbXHON482NSi8LzwEpzffAm5PzwM955cA8KbUVrkoc9R117lANQmgy8fWdG7icl+uFdPlHZmXf4juBtQ8voQKhECwR76pHLVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hW8hvvY6N9ZQUhF8TIwBXv1J2p401JHaU2ZVVrGYMwc=;
+ b=OY2mryE1AFbqDyhOMGMeqGXCXfHLDNhlyZkh0pBjP2Q7ZjZK5hvHHJ58gFvY9FbQHX0Kewu/dknsxifPrBrZEwmBFJnRM4LvUTKPnkNdaHc2WcUVpZFi8Y1GFhIhTkhvAB7RshGzBeJxWwKZuNFlPmkrKiu0ovz07VV17h2AUbuZE8/5cXsbjREFrXG47Ls1Jyp5bZ1uqynh416djsweVsFvsPtqsT4l62g9vIrJpHdJFyi/r1ymMW9eJdNtTTHxVnbomfkD2/vKTFqtAn3khAEENX8dy2EYYYw5OQcGbw7ZUCIaaVjC05yaR11gxWuJCtsTYqLoZLIiqOJfRsXMxA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hW8hvvY6N9ZQUhF8TIwBXv1J2p401JHaU2ZVVrGYMwc=;
+ b=ayvJfzv8o0AIBLaEggayNXfyuJDXoe1X4nWjsFk7qZyhJXQUP5x5nsHuBjwGZJx7FzJ5Qqg0Se9okPbBO3SFjjxz1A95fiefGoZ9rWiL3eek5PYXN7ZBsyOkLE4MFdUBAYDEv9lMtpXOYKg3UhmxTtd5aVEPoFhcJKWYa8/k1AkP7YJEiOnSWsrtfiSk099bOfC/w+TcB8dIMMWrYBd7dCuYY7Owa2tnj9sDjQqZNJgo+nHk09JyjyeGmvPu3UmXezUqBs91eLS58PD3g5vb6aQ4ArEAuqucNLBxGR+OJYvUkT4tesDgIizjxL9Svks7Ahf4hZRC8oocsyexwtlaUw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CY4PR12MB1576.namprd12.prod.outlook.com (2603:10b6:910:10::9)
+ by CY4PR1201MB0056.namprd12.prod.outlook.com (2603:10b6:910:1c::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.21; Tue, 7 Dec
+ 2021 12:40:39 +0000
+Received: from CY4PR12MB1576.namprd12.prod.outlook.com
+ ([fe80::24b0:46e7:d3c0:a77b]) by CY4PR12MB1576.namprd12.prod.outlook.com
+ ([fe80::24b0:46e7:d3c0:a77b%7]) with mapi id 15.20.4755.022; Tue, 7 Dec 2021
+ 12:40:39 +0000
+Subject: Re: [PATCH 1/3] ALSA: hda/tegra: Skip reset on BPMP devices
+To:     Dmitry Osipenko <digetx@gmail.com>, tiwai@suse.com,
+        broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, perex@perex.cz
+Cc:     jonathanh@nvidia.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Mohan Kumar <mkumard@nvidia.com>
+References: <1638858770-22594-1-git-send-email-spujar@nvidia.com>
+ <1638858770-22594-2-git-send-email-spujar@nvidia.com>
+ <7742adae-cdbe-a9ea-2cef-f63363298d73@gmail.com>
+ <8fd704d9-43ce-e34a-a3c0-b48381ef0cd8@nvidia.com>
+ <56bb43b6-8d72-b1de-4402-a2cb31707bd9@gmail.com>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <4855e9c4-e4c2-528b-c9ad-2be7209dc62a@nvidia.com>
+Date:   Tue, 7 Dec 2021 18:10:09 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
+In-Reply-To: <56bb43b6-8d72-b1de-4402-a2cb31707bd9@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-GB
+X-ClientProxiedBy: PN2PR01CA0006.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:25::11) To CY4PR12MB1576.namprd12.prod.outlook.com
+ (2603:10b6:910:10::9)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211207015446.1250854-6-aford173@gmail.com>
+Received: from [10.25.102.117] (202.164.25.5) by PN2PR01CA0006.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:25::11) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.17 via Frontend Transport; Tue, 7 Dec 2021 12:40:28 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8a9ea4ab-9bf7-4a9f-4942-08d9b97ec60d
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB0056:EE_
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB0056FA470C9444FEC7A608ECA76E9@CY4PR1201MB0056.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: MdgsCCf6eOXh87gAmi+3C4XuRkMg9TxxdZFd4OZY8HjJ0iB+i5nm3hYrCXz8TmlXnkuEdwx959IlzF4eee9Kic7LVwEJPfKsocft8uBV+qMiowcqxNC1ELTiDTya24unKPnzEQoRjqfRulEhW3qW2NOaLLvXbw8IzzmYPJGCPuAi3GGrGheWJvciOE762DNQ93EEoafWbtkBfo4ZZ20rRXMqvPcz3hIqK3Wv3PU+Gda4+z+Lv0mmhnNrDgpsxfcA80sYb8b0Dv9t/Kk2jOZYj2DljFawRhmMDt4WaHdSOKcxyiKr6Li0tPImrH4JxrQqVnzErexFbtnLjI2EiPJaJJmrxD5vzKV+QUv5rRWM2V2EhaJtFf5T0ZqWMzoPlm+5HGLHKEWt5336KwZVPR4aOKwgqCdHkwBPhxOU+XkeWqUhkqBBz2YMUztaTwzk9aoyr7HRFdh9HO4UqemhV9uo6Y//o/dj/4Da8jBjfa3h70M6CZ7pN25AI8OV49e3YFsBvzPvAAckkk4Vx5AswfsU4zXKh9vIRaS6Q0kfNbFncTSy+jLa+s32XNT/K+fw9QSp5xZ+D29ud7DiDSvJet54N4byeIM207T4kePOLfPSAztciX6/uqwTMwkp9TS5xA8iaf4Bfq5uAWtJPwrlHYDg8mFbngrvyQ6K2Qa9uH3KygGGIWhwmGbTEmbcmicBixFuB4DMptjd30cbrqaAji31M0ukxskGdpQuZ236mrFmu64=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR12MB1576.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66946007)(6486002)(38100700002)(31696002)(8936002)(66476007)(66556008)(53546011)(956004)(5660300002)(2616005)(83380400001)(26005)(4326008)(86362001)(6666004)(16576012)(316002)(186003)(36756003)(107886003)(31686004)(508600001)(2906002)(8676002)(7416002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cEhZMXNGLy9tSVNPcHZKcFFnaEdOMjdqaUJpQkt0RWoydjZ1YjdYUEN4WjNC?=
+ =?utf-8?B?TTNHVFBQUndnQ0plRXpLTVM4QTRjQVNHRCtKWTJrUStQMjE1NzV0QkZMTG1o?=
+ =?utf-8?B?TmZVYkptT3pDS2IzbWlNMEdwM0J3Q1oxazNJekhnUVgwaWJoV3RKRjRrUDZs?=
+ =?utf-8?B?WnZkVEJYWWJmajkwVFJHaWM3WUxLR3NVU2U5bmdsU0JOalNNTmpmaXJDZnpa?=
+ =?utf-8?B?N2dnMXFRdERHRTBPbUt2NndLbG5YZms3aGN4L0t3Q3FoM1dnZ0NNTmREM20z?=
+ =?utf-8?B?SnZEYkFxbE1VQk5sVjhCRE5lRXVvRUpzUG0zYy8yT3h6QnJnL29xV0dRSkhr?=
+ =?utf-8?B?NFh3UnhwdElkdUZvOGpUREhMcUcwV005S1BreDJ4SWt3OEFibXZvcm5XbXBZ?=
+ =?utf-8?B?RnlGZFhUbE96OWxCdnhYRlRHQTQ4TTdNNmNRTk9qVmpLM0hIdE9sUjZTTUdS?=
+ =?utf-8?B?eUU3by9zT3RkaTJxMXlJTStUZm5lc3FxT0sxQjZCMWN5aUR3YVBISlVkd0ZR?=
+ =?utf-8?B?RW0zazkxekh4SVd2dFFyZGdJeXFabitPSW9hVzM3cXVyTWs4K1NiekhNZ3pw?=
+ =?utf-8?B?MFFPbk5yZi9DakloaTBjME8zT0FTUDU2bnFtWDhHSmZuaUZEd0RxZkxGYm9p?=
+ =?utf-8?B?ZzlucFc0Zk5QZUVYTkFqRkNGMnRQNC90UG5GM3dmSXhtTVh4ME9TYUQreFFy?=
+ =?utf-8?B?bUkwU3JremxWMEpLOThyOEZlSVBNTTNmeU03MVA5b1B3UWZwYjBWUUVLUEdD?=
+ =?utf-8?B?WHB1SG1LaXpvN3QzdjkrODY5dzY0NG5iejNjUUtEY21VTU5kT1lVL0k1bnB0?=
+ =?utf-8?B?U1IwTjRZQzRPU0NaUHlYUit2dHB0OTVBK3JTR1VMcWlyYzRIaG4wWlljQ2xC?=
+ =?utf-8?B?cWNBRjVlbStZVVBLcllZSG8xcmlxS3dqVjUxVmhxQ29tSVBPNDRJRmRYQkdQ?=
+ =?utf-8?B?K0VIY3dxdmhtNjJiMDJIUFJ0a1FtT1FTaVRqRDM3bCtvTHB2WG1aLzVITlM5?=
+ =?utf-8?B?OVBEWll5VTFiYmk1NnZCQTZDSjNjOGlsbmQxbFhJR3ZDMXo0RlNZams0QVBo?=
+ =?utf-8?B?MVJnZmpXZlVPTEVpR0dHaXQvT0lqNzZJbGd0K294SllsTkp2L3N0MXdNdDNN?=
+ =?utf-8?B?TmZiTW03cVoyMGxudi9kenJ2Q09nTlM4cEdUaVdXN2tGZXdsbWxSaWRqRG9j?=
+ =?utf-8?B?azU5blNYaEJUY2NqRkgyd3lKRWNxMzN5ZXd4Zis1bWJtRzNUNHMrdytva21G?=
+ =?utf-8?B?cFh1SE90NExIdThMUjlqNG1pRGh3MGZCa1h6Y0hKME1NS3VOMkFRR2J5OGE5?=
+ =?utf-8?B?c1pOa051cm5pS0p1Y1ZmaXRZaHY1MVljRDZYT2FOVjRVa3h6eDc1LzdncU5P?=
+ =?utf-8?B?Umo1Wm5nK2JnN2UyZUhyQU41WTgvR2NPU3BwWjFLMkRiYWd2ZytRVHV5NEo3?=
+ =?utf-8?B?cUNuN2QvUjU2NVNRRGltbWhUSThFVVdvU0N4VXlWdEt4RDROaWVLMXlnYnd3?=
+ =?utf-8?B?ZFVUOUxHRFp1ZHVULys5R0JlZlRwWGowTHhPS01WcndpTnBWWUNhNmQvUnFU?=
+ =?utf-8?B?WVFYSzBEWGZ3aU45RCtNNklrTGtaYUhBMzkycUZNWkJOaS96NXRIZmFyNlQ1?=
+ =?utf-8?B?ZFJVQXVST245UzN5Rk1rOVpIUkJpWTJpbEt0OGZBcWd4ZHNWRnJYdHdRa3dY?=
+ =?utf-8?B?bk5JQ1kvbEFOM0t4WXlTMW82TnpOV0ZMTVNoVDJTR1FLUEM2NWcvM0tMUEMy?=
+ =?utf-8?B?azRjcW1IOW1VMmxQc2UwMkdzZndDc3RRY0N6NTFUazZNWGJnU3AwNUhKS2lI?=
+ =?utf-8?B?SHRUc3pwRjBKYkJsR0xDMkZLVEtzSW8vWVNYSkdUd25VWU91ZXEwSkNVaFBJ?=
+ =?utf-8?B?VkZ3b3dFWDBjU1IyZEplekMyejRIdXRqUFhTQ0FDTlFUWWlWOEpJb0lZV2JK?=
+ =?utf-8?B?TkIzNGpRUHUyRTZiQS94dS8zUi95cVd2c1hZdUIzYy94eE1zMlZMMkxhU28v?=
+ =?utf-8?B?emdBWXJyb3lUdkZuMlVhY1VRK3d1WXAyaWdETDdCMVF1OTJ6ZkM0bFlJNEpE?=
+ =?utf-8?B?MFBoc3NNTlBHWkthSXhCUCtvdXhDYXBXZ2hiMFlMZkNsdUtZQ1hKYTN4QnFY?=
+ =?utf-8?B?S0RaMzI4NW55dDVTRnhKTXp2NW5oNVh1Y0doNGdhekJmY1I2d05yZTFBY3E5?=
+ =?utf-8?Q?g+IfFRGhC3WblyelOrmlRyw=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a9ea4ab-9bf7-4a9f-4942-08d9b97ec60d
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR12MB1576.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2021 12:40:39.1022
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sm+rGNHIHsIm5j1dRwpfdcbveUbt4ECLSR+mr2R/3ObHvQ0V4IP9MWl6eCUTE5+BKHe9c7oduUZfCOGr2qvDWw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0056
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
 
-Thanks for the good work! This is looking quite promising.
 
-On Mon, Dec 06, 2021 at 07:54:44PM -0600, Adam Ford wrote:
-> The VPU in the i.MX8MQ is really the combination of Hantro G1 and
-> Hantro G2. With the updated vpu-blk-ctrl, the power domains system
-> can enable and disable them separately as well as pull them out of
-> reset. This simplifies the code and lets them run independently.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> 
-> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> index ab2467998d29..d803252a5aba 100644
-> --- a/drivers/staging/media/hantro/hantro_drv.c
-> +++ b/drivers/staging/media/hantro/hantro_drv.c
-> @@ -608,8 +608,8 @@ static const struct of_device_id of_hantro_match[] = {
->  	{ .compatible = "rockchip,rk3399-vpu", .data = &rk3399_vpu_variant, },
->  #endif
->  #ifdef CONFIG_VIDEO_HANTRO_IMX8M
-> -	{ .compatible = "nxp,imx8mq-vpu", .data = &imx8mq_vpu_variant, },
-> -	{ .compatible = "nxp,imx8mq-vpu-g2", .data = &imx8mq_vpu_g2_variant },
-> +	{ .compatible = "nxp,imx8mq-vpu-g1", .data = &imx8mq_vpu_g1_variant, },
+On 12/7/2021 5:35 PM, Dmitry Osipenko wrote:
+> External email: Use caution opening links or attachments
+>
+>
+> 07.12.2021 15:00, Sameer Pujar пишет:
+>>
+>> On 12/7/2021 3:52 PM, Dmitry Osipenko wrote:
+>>> 07.12.2021 09:32, Sameer Pujar пишет:
+>>>> HDA regression is recently reported on Tegra194 based platforms.
+>>>> This happens because "hda2codec_2x" reset does not really exist
+>>>> in Tegra194 and it causes probe failure. All the HDA based audio
+>>>> tests fail at the moment. This underlying issue is exposed by
+>>>> commit c045ceb5a145 ("reset: tegra-bpmp: Handle errors in BPMP
+>>>> response") which now checks return code of BPMP command response.
+>>>>
+>>>> The failure can be fixed by avoiding above reset in the driver,
+>>>> but the explicit reset is not necessary for Tegra devices which
+>>>> depend on BPMP. On such devices, BPMP ensures reset application
+>>>> during unpowergate calls. Hence skip reset on these devices
+>>>> which is applicable for Tegra186 and later.
+>>> The power domain is shared with the display, AFAICS. The point of reset
+>>> is to bring h/w into predictable state. It doesn't make sense to me to
+>>> skip the reset.
+>> Yes the power-domain is shared with display. As mentioned above,
+>> explicit reset in driver is not really necessary since BPMP is already
+>> doing it during unpowergate stage. So the h/w is already ensured to be
+>> in a good state.
+> If you'll reload the driver module, then h/w won't be reset.
 
-I think it's important to clarify that you are breaking support
-for the previous device-tree binding. Not only because of the compatible
-string change, but because the binding is now quite different.
-
-Note that in the past Benjamin tried to avoid this.
-IIRC, his proposal was backwards compatible.
-
-If this is unavoidable, due to how the blk-ctrl is handled, then that's
-fine. Given it's a staging driver, we can still play these games.
-
-Having said that, let's please make this very clear in the commit
-description, to it's clear for developers forward-porting their kernels.
-This applies not only to this commit, but to all commits that affect
-the binding.
-
-Thanks!
-Ezequiel
-
-> +	{ .compatible = "nxp,imx8mq-vpu-g2", .data = &imx8mq_vpu_g2_variant, },
->  #endif
->  #ifdef CONFIG_VIDEO_HANTRO_SAMA5D4
->  	{ .compatible = "microchip,sama5d4-vdec", .data = &sama5d4_vdec_variant, },
-> diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
-> index cff817ca8d22..122b83a16663 100644
-> --- a/drivers/staging/media/hantro/hantro_hw.h
-> +++ b/drivers/staging/media/hantro/hantro_hw.h
-> @@ -299,8 +299,8 @@ enum hantro_enc_fmt {
->  	ROCKCHIP_VPU_ENC_FMT_UYVY422 = 3,
->  };
->  
-> +extern const struct hantro_variant imx8mq_vpu_g1_variant;
->  extern const struct hantro_variant imx8mq_vpu_g2_variant;
-> -extern const struct hantro_variant imx8mq_vpu_variant;
->  extern const struct hantro_variant px30_vpu_variant;
->  extern const struct hantro_variant rk3036_vpu_variant;
->  extern const struct hantro_variant rk3066_vpu_variant;
-> diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> index 1a43f6fceef9..c9f6e8472258 100644
-> --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> @@ -13,67 +13,6 @@
->  #include "hantro_g1_regs.h"
->  #include "hantro_g2_regs.h"
->  
-> -#define CTRL_SOFT_RESET		0x00
-> -#define RESET_G1		BIT(1)
-> -#define RESET_G2		BIT(0)
-> -
-> -#define CTRL_CLOCK_ENABLE	0x04
-> -#define CLOCK_G1		BIT(1)
-> -#define CLOCK_G2		BIT(0)
-> -
-> -#define CTRL_G1_DEC_FUSE	0x08
-> -#define CTRL_G1_PP_FUSE		0x0c
-> -#define CTRL_G2_DEC_FUSE	0x10
-> -
-> -static void imx8m_soft_reset(struct hantro_dev *vpu, u32 reset_bits)
-> -{
-> -	u32 val;
-> -
-> -	/* Assert */
-> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
-> -	val &= ~reset_bits;
-> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
-> -
-> -	udelay(2);
-> -
-> -	/* Release */
-> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
-> -	val |= reset_bits;
-> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
-> -}
-> -
-> -static void imx8m_clk_enable(struct hantro_dev *vpu, u32 clock_bits)
-> -{
-> -	u32 val;
-> -
-> -	val = readl(vpu->ctrl_base + CTRL_CLOCK_ENABLE);
-> -	val |= clock_bits;
-> -	writel(val, vpu->ctrl_base + CTRL_CLOCK_ENABLE);
-> -}
-> -
-> -static int imx8mq_runtime_resume(struct hantro_dev *vpu)
-> -{
-> -	int ret;
-> -
-> -	ret = clk_bulk_prepare_enable(vpu->variant->num_clocks, vpu->clocks);
-> -	if (ret) {
-> -		dev_err(vpu->dev, "Failed to enable clocks\n");
-> -		return ret;
-> -	}
-> -
-> -	imx8m_soft_reset(vpu, RESET_G1 | RESET_G2);
-> -	imx8m_clk_enable(vpu, CLOCK_G1 | CLOCK_G2);
-> -
-> -	/* Set values of the fuse registers */
-> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_DEC_FUSE);
-> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_PP_FUSE);
-> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G2_DEC_FUSE);
-> -
-> -	clk_bulk_disable_unprepare(vpu->variant->num_clocks, vpu->clocks);
-> -
-> -	return 0;
-> -}
-> -
->  /*
->   * Supported formats.
->   */
-> @@ -209,27 +148,6 @@ static irqreturn_t imx8m_vpu_g2_irq(int irq, void *dev_id)
->  	return IRQ_HANDLED;
->  }
->  
-> -static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
-> -{
-> -	vpu->ctrl_base = vpu->reg_bases[vpu->variant->num_regs - 1];
-> -
-> -	return 0;
-> -}
-> -
-> -static void imx8m_vpu_g1_reset(struct hantro_ctx *ctx)
-> -{
-> -	struct hantro_dev *vpu = ctx->dev;
-> -
-> -	imx8m_soft_reset(vpu, RESET_G1);
-> -}
-> -
-> -static void imx8m_vpu_g2_reset(struct hantro_ctx *ctx)
-> -{
-> -	struct hantro_dev *vpu = ctx->dev;
-> -
-> -	imx8m_soft_reset(vpu, RESET_G2);
-> -}
-> -
->  /*
->   * Supported codec ops.
->   */
-> @@ -237,19 +155,16 @@ static void imx8m_vpu_g2_reset(struct hantro_ctx *ctx)
->  static const struct hantro_codec_ops imx8mq_vpu_codec_ops[] = {
->  	[HANTRO_MODE_MPEG2_DEC] = {
->  		.run = hantro_g1_mpeg2_dec_run,
-> -		.reset = imx8m_vpu_g1_reset,
->  		.init = hantro_mpeg2_dec_init,
->  		.exit = hantro_mpeg2_dec_exit,
->  	},
->  	[HANTRO_MODE_VP8_DEC] = {
->  		.run = hantro_g1_vp8_dec_run,
-> -		.reset = imx8m_vpu_g1_reset,
->  		.init = hantro_vp8_dec_init,
->  		.exit = hantro_vp8_dec_exit,
->  	},
->  	[HANTRO_MODE_H264_DEC] = {
->  		.run = hantro_g1_h264_dec_run,
-> -		.reset = imx8m_vpu_g1_reset,
->  		.init = hantro_h264_dec_init,
->  		.exit = hantro_h264_dec_exit,
->  	},
-> @@ -258,14 +173,12 @@ static const struct hantro_codec_ops imx8mq_vpu_codec_ops[] = {
->  static const struct hantro_codec_ops imx8mq_vpu_g2_codec_ops[] = {
->  	[HANTRO_MODE_HEVC_DEC] = {
->  		.run = hantro_g2_hevc_dec_run,
-> -		.reset = imx8m_vpu_g2_reset,
->  		.init = hantro_hevc_dec_init,
->  		.exit = hantro_hevc_dec_exit,
->  	},
->  	[HANTRO_MODE_VP9_DEC] = {
->  		.run = hantro_g2_vp9_dec_run,
->  		.done = hantro_g2_vp9_dec_done,
-> -		.reset = imx8m_vpu_g2_reset,
->  		.init = hantro_vp9_dec_init,
->  		.exit = hantro_vp9_dec_exit,
->  	},
-> @@ -275,7 +188,7 @@ static const struct hantro_codec_ops imx8mq_vpu_g2_codec_ops[] = {
->   * VPU variants.
->   */
->  
-> -static const struct hantro_irq imx8mq_irqs[] = {
-> +static const struct hantro_irq imx8mq_g1_irqs[] = {
->  	{ "g1", imx8m_vpu_g1_irq },
->  };
->  
-> @@ -283,10 +196,12 @@ static const struct hantro_irq imx8mq_g2_irqs[] = {
->  	{ "g2", imx8m_vpu_g2_irq },
->  };
->  
-> -static const char * const imx8mq_clk_names[] = { "g1", "g2", "bus" };
-> -static const char * const imx8mq_reg_names[] = { "g1", "g2", "ctrl" };
-> +static const char * const imx8mq_g1_clk_names[] = { "g1" };
-> +static const char * const imx8mq_g1_reg_names[] = { "g1" };
-> +static const char * const imx8mq_g2_clk_names[] = { "g2" };
-> +static const char * const imx8mq_g2_reg_names[] = { "g2" };
->  
-> -const struct hantro_variant imx8mq_vpu_variant = {
-> +const struct hantro_variant imx8mq_vpu_g1_variant = {
->  	.dec_fmts = imx8m_vpu_dec_fmts,
->  	.num_dec_fmts = ARRAY_SIZE(imx8m_vpu_dec_fmts),
->  	.postproc_fmts = imx8m_vpu_postproc_fmts,
-> @@ -295,14 +210,12 @@ const struct hantro_variant imx8mq_vpu_variant = {
->  	.codec = HANTRO_MPEG2_DECODER | HANTRO_VP8_DECODER |
->  		 HANTRO_H264_DECODER,
->  	.codec_ops = imx8mq_vpu_codec_ops,
-> -	.init = imx8mq_vpu_hw_init,
-> -	.runtime_resume = imx8mq_runtime_resume,
-> -	.irqs = imx8mq_irqs,
-> -	.num_irqs = ARRAY_SIZE(imx8mq_irqs),
-> -	.clk_names = imx8mq_clk_names,
-> -	.num_clocks = ARRAY_SIZE(imx8mq_clk_names),
-> -	.reg_names = imx8mq_reg_names,
-> -	.num_regs = ARRAY_SIZE(imx8mq_reg_names)
-> +	.irqs = imx8mq_g1_irqs,
-> +	.num_irqs = ARRAY_SIZE(imx8mq_g1_irqs),
-> +	.clk_names = imx8mq_g1_clk_names,
-> +	.num_clocks = ARRAY_SIZE(imx8mq_g1_clk_names),
-> +	.reg_names = imx8mq_g1_reg_names,
-> +	.num_regs = ARRAY_SIZE(imx8mq_g1_reg_names),
->  };
->  
->  const struct hantro_variant imx8mq_vpu_g2_variant = {
-> @@ -314,10 +227,10 @@ const struct hantro_variant imx8mq_vpu_g2_variant = {
->  	.postproc_ops = &hantro_g2_postproc_ops,
->  	.codec = HANTRO_HEVC_DECODER | HANTRO_VP9_DECODER,
->  	.codec_ops = imx8mq_vpu_g2_codec_ops,
-> -	.init = imx8mq_vpu_hw_init,
-> -	.runtime_resume = imx8mq_runtime_resume,
->  	.irqs = imx8mq_g2_irqs,
->  	.num_irqs = ARRAY_SIZE(imx8mq_g2_irqs),
-> -	.clk_names = imx8mq_clk_names,
-> -	.num_clocks = ARRAY_SIZE(imx8mq_clk_names),
-> +	.clk_names = imx8mq_g2_clk_names,
-> +	.num_clocks = ARRAY_SIZE(imx8mq_g2_clk_names),
-> +	.reg_names = imx8mq_g2_reg_names,
-> +	.num_regs = ARRAY_SIZE(imx8mq_g2_reg_names),
->  };
-> -- 
-> 2.32.0
-> 
+How the reload case would be different? Can you please specify more 
+details if you are referring to a particular scenario?
