@@ -2,93 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8992C46BE75
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:59:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E72946BE5F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:59:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238358AbhLGPCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 10:02:10 -0500
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:42771 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238379AbhLGPBx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 10:01:53 -0500
-Received: by mail-oi1-f177.google.com with SMTP id n66so28109787oia.9;
-        Tue, 07 Dec 2021 06:58:22 -0800 (PST)
+        id S238338AbhLGPBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 10:01:47 -0500
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:35822 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238310AbhLGPBp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 10:01:45 -0500
+Received: by mail-ot1-f52.google.com with SMTP id x43-20020a056830246b00b00570d09d34ebso18409426otr.2;
+        Tue, 07 Dec 2021 06:58:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=+5Z+s+qZr/dqYuPrhwxEsfm4VoIv7raKxg2fSVPXZ1s=;
-        b=xHQOICTa9TFDdai7dyn7nNyifSpUKGxOiCiW3C2SPZoYHQ+RXcnFJ9syWxKMqNP3dc
-         nvj6KKiAphfkzpfoiy4y2YlBQ0P5a+03m4PnZ3xxho5SDcmoNTX1BU80dpRc0CwfvE1g
-         Zl7f0yUp4174Or9MbhiaGVDyO6ehhjIKGoj2Q02m1SC33vwbDfDdwCoNAbgxlyjpUEWn
-         6HJSkQptPRJY7vS9LnStrr8ph1AJNl/feYoHqnY+tEcd4uoCr277e3BoCyD0aD8We4Ok
-         LfE479Ik4GyC7ZZcG4MtUTFgXyZhoLkvcUO8NvIx26+6Jtal82au5ONlY8S/swruJ1bD
-         kCKw==
-X-Gm-Message-State: AOAM5324MyjTZfuHjYcnkULfJZv3SzXU+xoBzPIEx1iVsJO8JQPsCvPZ
-        jDMTFAdwkfIJxOxt3bnjoQ==
-X-Google-Smtp-Source: ABdhPJyPQz8MGdEnpy+dfjpiUez2RQSbPKGqr/ncBa0qgl3Qa9MdN4Hom3+TzcbiAkTw6HJamzmPOA==
-X-Received: by 2002:a54:4104:: with SMTP id l4mr5476582oic.17.1638889102302;
-        Tue, 07 Dec 2021 06:58:22 -0800 (PST)
+        bh=ISwB/Cqr0g2fR9Rv1ZPSZGA/iwpQtfwdBswG+ia19pY=;
+        b=gfnfWPUM61NcILbw+nBDwkoPkHatfY9B7MidFAhE4r3zvq8itm/tlsegbnxNHjwS51
+         U7xNNJ8P37Ur9Xzz3F4SkNbCweSnfMhjxIm8mvn1l9QaJm5sXUankOuzJ72QNNOAdzWY
+         +LykeUpkLEvmrA6Dl2BXh+N736fWjd8LohvLjfj56EzncDeDwPBXKAIbbZ1fcaouOFiS
+         PeY9y/KVDMbZMgmImgN6LV8TRk87GBShZYVJHXe14aMoBCEGnhYwAMTrJL7Pjs+D02Ir
+         iOzFNSxGUIh2ztZmIfe+TRf3qcW4i4ijy9fuz6g51elQ3222jStGt569xEi4coaK7bl1
+         Uzsw==
+X-Gm-Message-State: AOAM532KDc+a/Dv4n4cMvEU/2/0tfE8gNngimVILWp6CMYxgOltD19mq
+        y0cWQCjpDT43D1s+A/JwJw==
+X-Google-Smtp-Source: ABdhPJzWbIjQ5ndnddb4GSl+z61bTtoUDb/1KYBoxAMiY033kVvOuMdyLuS3XWH3MrvukZoClyRG5g==
+X-Received: by 2002:a05:6830:2643:: with SMTP id f3mr35971443otu.187.1638889094869;
+        Tue, 07 Dec 2021 06:58:14 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id be12sm3524103oib.50.2021.12.07.06.58.20
+        by smtp.gmail.com with ESMTPSA id g4sm2719201oof.40.2021.12.07.06.58.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 06:58:21 -0800 (PST)
-Received: (nullmailer pid 5804 invoked by uid 1000);
+        Tue, 07 Dec 2021 06:58:13 -0800 (PST)
+Received: (nullmailer pid 5806 invoked by uid 1000);
         Tue, 07 Dec 2021 14:58:10 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>, linux-pwm@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-gpio@vger.kernel.org, Amit Kucheria <amitk@kernel.org>,
-        linux-rtc@vger.kernel.org,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Marc Zyngier <maz@kernel.org>,
-        Doug Berger <opendmb@gmail.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Al Cooper <alcooperx@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
+To:     Biao Huang <biao.huang@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com, davem@davemloft.net,
+        netdev@vger.kernel.org, dkirjanov@suse.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Jakub Kicinski <kuba@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-usb@vger.kernel.org, linux-mmc@vger.kernel.org,
-        Ray Jui <rjui@broadcom.com>, linux-pm@vger.kernel.org,
-        Markus Mayer <mmayer@broadcom.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Zhang Rui <rui.zhang@intel.com>, linux-ide@vger.kernel.org,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        Gregory Fong <gregory.0xf0@gmail.com>,
-        linux-crypto@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Scott Branden <sbranden@broadcom.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>
-In-Reply-To: <20211206182616.2089677-13-f.fainelli@gmail.com>
-References: <20211206182616.2089677-1-f.fainelli@gmail.com> <20211206182616.2089677-13-f.fainelli@gmail.com>
-Subject: Re: [PATCH v2 12/14] dt-bindings: ata: Convert Broadcom SATA to YAML
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        angelogioacchino.delregno@collabora.com,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        macpaul.lin@mediatek.com
+In-Reply-To: <20211207015505.16746-5-biao.huang@mediatek.com>
+References: <20211207015505.16746-1-biao.huang@mediatek.com> <20211207015505.16746-5-biao.huang@mediatek.com>
+Subject: Re: [PATCH v5 4/7] net-next: dt-bindings: dwmac: Convert mediatek-dwmac to DT schema
 Date:   Tue, 07 Dec 2021 08:58:10 -0600
-Message-Id: <1638889090.722845.5803.nullmailer@robh.at.kernel.org>
+Message-Id: <1638889090.734543.5805.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Dec 2021 10:26:14 -0800, Florian Fainelli wrote:
-> Convert the Broadcom SATA3 AHCI controller Device Tree binding to YAML
-> to help with validation.
+On Tue, 07 Dec 2021 09:55:02 +0800, Biao Huang wrote:
+> Convert mediatek-dwmac to DT schema, and delete old mediatek-dwmac.txt.
+> And there are some changes in .yaml than .txt, others almost keep the same:
+>   1. compatible "const: snps,dwmac-4.20".
+>   2. delete "snps,reset-active-low;" in example, since driver remove this
+>      property long ago.
+>   3. add "snps,reset-delay-us = <0 10000 10000>" in example.
+>   4. the example is for rgmii interface, keep related properties only.
 > 
-> Acked-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
 > ---
->  .../bindings/ata/brcm,sata-brcm.txt           | 45 ---------
->  .../bindings/ata/brcm,sata-brcm.yaml          | 91 +++++++++++++++++++
->  2 files changed, 91 insertions(+), 45 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/ata/brcm,sata-brcm.txt
->  create mode 100644 Documentation/devicetree/bindings/ata/brcm,sata-brcm.yaml
+>  .../bindings/net/mediatek-dwmac.txt           |  91 ----------
+>  .../bindings/net/mediatek-dwmac.yaml          | 156 ++++++++++++++++++
+>  2 files changed, 156 insertions(+), 91 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
 > 
 
 Running 'make dtbs_check' with the schema in this patch gives the
@@ -98,43 +85,21 @@ incorrect. These may not be new warnings.
 Note that it is not yet a requirement to have 0 warnings for dtbs_check.
 This will change in the future.
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1564108
+Full log is available here: https://patchwork.ozlabs.org/patch/1564459
 
 
-ahci@41000: $nodename:0: 'ahci@41000' does not match '^sata(@.*)?$'
-	arch/arm/boot/dts/bcm958522er.dt.yaml
-	arch/arm/boot/dts/bcm958525er.dt.yaml
-	arch/arm/boot/dts/bcm958525xmc.dt.yaml
-	arch/arm/boot/dts/bcm958622hr.dt.yaml
-	arch/arm/boot/dts/bcm958623hr.dt.yaml
-	arch/arm/boot/dts/bcm958625hr.dt.yaml
-	arch/arm/boot/dts/bcm958625k.dt.yaml
-	arch/arm/boot/dts/bcm958625-meraki-mx64-a0.dt.yaml
-	arch/arm/boot/dts/bcm958625-meraki-mx64.dt.yaml
-	arch/arm/boot/dts/bcm958625-meraki-mx64w-a0.dt.yaml
-	arch/arm/boot/dts/bcm958625-meraki-mx64w.dt.yaml
-	arch/arm/boot/dts/bcm958625-meraki-mx65.dt.yaml
-	arch/arm/boot/dts/bcm958625-meraki-mx65w.dt.yaml
-	arch/arm/boot/dts/bcm988312hr.dt.yaml
+ethernet@1101c000: clock-names: ['axi', 'apb', 'mac_main', 'ptp_ref'] is too short
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
 
-ahci@41000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'dma-coherent', 'sata-port@0', 'sata-port@1' were unexpected)
-	arch/arm/boot/dts/bcm958522er.dt.yaml
-	arch/arm/boot/dts/bcm958525er.dt.yaml
-	arch/arm/boot/dts/bcm958525xmc.dt.yaml
-	arch/arm/boot/dts/bcm958622hr.dt.yaml
-	arch/arm/boot/dts/bcm958623hr.dt.yaml
-	arch/arm/boot/dts/bcm958625hr.dt.yaml
-	arch/arm/boot/dts/bcm958625k.dt.yaml
-	arch/arm/boot/dts/bcm958625-meraki-mx64.dt.yaml
-	arch/arm/boot/dts/bcm958625-meraki-mx64w.dt.yaml
-	arch/arm/boot/dts/bcm958625-meraki-mx65.dt.yaml
-	arch/arm/boot/dts/bcm958625-meraki-mx65w.dt.yaml
-	arch/arm/boot/dts/bcm988312hr.dt.yaml
+ethernet@1101c000: clocks: [[27, 34], [27, 37], [6, 154], [6, 155]] is too short
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
 
-ahci@41000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'sata-port@0', 'sata-port@1' were unexpected)
-	arch/arm/boot/dts/bcm958625-meraki-mx64-a0.dt.yaml
-	arch/arm/boot/dts/bcm958625-meraki-mx64w-a0.dt.yaml
+ethernet@1101c000: compatible: ['mediatek,mt2712-gmac'] does not contain items matching the given schema
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
 
-sata@a000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/bcm963138dvt.dt.yaml
+ethernet@1101c000: compatible: 'oneOf' conditional failed, one must be fixed:
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+
+ethernet@1101c000: Unevaluated properties are not allowed ('compatible', 'reg', 'interrupts', 'interrupt-names', 'mac-address', 'clock-names', 'clocks', 'power-domains', 'snps,axi-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,txpbl', 'snps,rxpbl', 'clk_csr', 'phy-mode', 'phy-handle', 'snps,reset-gpio', 'mdio' were unexpected)
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
 
