@@ -2,146 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B07646B08E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 03:25:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1742046B0A2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 03:32:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241423AbhLGC2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 21:28:30 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:59584 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241497AbhLGC23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 21:28:29 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 31A9DB81611;
-        Tue,  7 Dec 2021 02:24:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA889C004DD;
-        Tue,  7 Dec 2021 02:24:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638843898;
-        bh=je9VRaZCoX11UWGvRaPQFHeg/OsHxIwbxim2ugr49vo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Afb4fAcK8BGPwbBVQGdcOzaZNRy39zXYamRkFLCFP65Jdfk7Psl1hWLpCU6vdrp0M
-         iHifziGQyr/oT6+xq8DIGNu/2iHGUxMjk7xdjAnw6H7vn2VgIurCfzIvUw6bn8IoaL
-         /Wx6Z5Q11xdbiVIDHY7IaMUDaujGs2iqgAFNchBy1rbV7rsa2na3n9Jmu3t1udp8Hf
-         82rzTFTk6y2DUpeJ0Ti8SXEJ2s3vSM9oboa8zRXKPioyF75n5nNbrTQYZuiH+u5Otj
-         ciuGJlRCfcTOZ50zX9CFdISA3h5daYpi95pmd5mtwuiLrsHY1oX74CcPLDkdOyrZSB
-         RhMlBhzee0Vbw==
-Date:   Mon, 6 Dec 2021 18:24:56 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     <davem@davemloft.net>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <linux@armlinux.org.uk>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next 3/6] net: lan966x: add support for interrupts
- from analyzer
-Message-ID: <20211206182456.4494c5f6@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20211203104645.1476704-4-horatiu.vultur@microchip.com>
-References: <20211203104645.1476704-1-horatiu.vultur@microchip.com>
-        <20211203104645.1476704-4-horatiu.vultur@microchip.com>
+        id S232749AbhLGCg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 21:36:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47930 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243541AbhLGCgZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 21:36:25 -0500
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 406D7C061746;
+        Mon,  6 Dec 2021 18:32:56 -0800 (PST)
+Received: by mail-qt1-x833.google.com with SMTP id p19so12866690qtw.12;
+        Mon, 06 Dec 2021 18:32:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=QQzMbHoCIHQcabSUmv+A+cuD+7qIgSkwyMRvoh0L3Gs=;
+        b=h7KB6b3EX6ARdK4WUecjmEHeiKvtwdiOJ7RqH4PFeXYLLgP5MFzWNcJCmTMsW2Qo9e
+         CxdPOqBqWoCHISCIxvSQ0ZrXeU25dZarYGcdEbiNY3YIS7IRhpvfPclamQsoo72hliNM
+         +Sf+15JVxmE7F4MdCgG+wpcrZYcyr+er6kzGOCYufjK8QdcK1QuGeKaeK7+Rl6/hoFYn
+         Zx9vsSuzXJGAnzjB4Up5+6FxQ/U6XwLVENAv2jdmqWeuqqGNg9lTY7V2yNtCAJYSXWu5
+         f9mlC+tPdrnFk+OSsHHemX5Z6RX15/hRvxG4cphtCyNBmT758Co+yb2EabAy2C14lxym
+         TVwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QQzMbHoCIHQcabSUmv+A+cuD+7qIgSkwyMRvoh0L3Gs=;
+        b=AJVlwyi/l52Rxc/dq7la/vfuB47U1gG2PUIBPSDmB5VZB9qDfQ7nRBpTfLNRmfpLBg
+         74Rh9OGWS2MsUkkaV0n7V/R1VXEdy8rz74iOJdtF+SPpDCj3hQAvc8iIi8mQNIpYSpf2
+         eBLTT2NkxVlpjNHVtblMOR8IJzuK/hEfIM01wsefCPytcdPpjymFvKTC1ODgK1LA2a5b
+         JNwpYjWhetsQigwsywCxDzGIIvoErwSzmP2ecoTZhnbS5tBltTe4vDOrH6TEwVfocpDu
+         GLCZtQ1sHNk1pg+lMyy+BYOZfRH2Vh32bw89+kkJKHDCsN29KsOes7+Vt9Jr/ZYBZxT8
+         OZUA==
+X-Gm-Message-State: AOAM531ykmHq3HWf8fFYTuQD156CVLtZh/b/76fDA9rYw8pCweHRyI04
+        3nwFdKmKzBMuaNFEfZBarDf1tlIkOPc7jw==
+X-Google-Smtp-Source: ABdhPJz9gAnjJaTSLqSBU8V1XbG1Ba11WfK8eAbaVVjxdKkz3fPB9mJLRZ4pHrpc7sQIC5T8EkI3Mg==
+X-Received: by 2002:ac8:4a0e:: with SMTP id x14mr45094726qtq.345.1638844375373;
+        Mon, 06 Dec 2021 18:32:55 -0800 (PST)
+Received: from [10.4.10.38] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id t9sm7520523qkp.110.2021.12.06.18.32.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Dec 2021 18:32:54 -0800 (PST)
+Message-ID: <9dab64ca-0d91-3bea-f873-3c2da6ef1645@gmail.com>
+Date:   Mon, 6 Dec 2021 21:32:52 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH v4 06/13] dt-bindings: clock: imx: Add documentation for
+ i.MXRT clock
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, linux-imx@nxp.com
+Cc:     mturquette@baylibre.com, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        ulf.hansson@linaro.org, aisheng.dong@nxp.com, stefan@agner.ch,
+        linus.walleij@linaro.org, gregkh@linuxfoundation.org,
+        arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        linux@armlinux.org.uk, abel.vesa@nxp.com, adrian.hunter@intel.com,
+        jirislaby@kernel.org, giulio.benetti@benettiengineering.com,
+        nobuhiro1.iwamatsu@toshiba.co.jp, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+References: <20211204061042.1248028-1-Mr.Bossman075@gmail.com>
+ <20211204061042.1248028-7-Mr.Bossman075@gmail.com>
+ <20211206223849.554F6C341C6@smtp.kernel.org>
+From:   Jesse Taube <mr.bossman075@gmail.com>
+In-Reply-To: <20211206223849.554F6C341C6@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 3 Dec 2021 11:46:42 +0100 Horatiu Vultur wrote:
-> This patch adds support for handling the interrupts generated by the
-> analyzer. Currently, only the MAC table generates these interrupts.
-> The MAC table will generate an interrupt whenever it learns or forgets
-> an entry in the table. It is the SW responsibility figure out which
-> entries were added/removed.
+
+
+On 12/6/21 17:38, Stephen Boyd wrote:
+> Quoting Jesse Taube (2021-12-03 22:10:35)
+>> diff --git a/Documentation/devicetree/bindings/clock/imxrt-clock.yaml b/Documentation/devicetree/bindings/clock/imxrt-clock.yaml
+>> new file mode 100644
+>> index 000000000000..8af48c59ff99
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/imxrt-clock.yaml
+>> @@ -0,0 +1,67 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/imxrt-clock.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Clock bindings for Freescale i.MXRT
+>> +
+>> +maintainers:
+>> +  - Giulio Benetti <giulio.benetti@benettiengineering.com>
+>> +  - Jesse Taube <Mr.Bossman075@gmail.com>
+>> +
+>> +description: |
+>> +  The clock consumer should specify the desired clock by having the clock
+>> +  ID in its "clocks" phandle cell. See include/dt-bindings/clock/imxrt*-clock.h
+>> +  for the full list of i.MXRT clock IDs.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: fsl,imxrt1050-ccm
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 2
+>> +
+>> +  clocks:
+>> +    minItems: 1
+>> +
+>> +  clock-names:
+>> +    minItems: 1
 > 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> Why minitems vs. exactly 1 for osc?
+because i don't understand yaml yet.
+I'll look into this.
 
-> +static struct lan966x_mac_entry *lan966x_mac_alloc_entry(struct lan966x *lan966x,
-> +							 const unsigned char *mac,
-> +							 u16 vid, u16 port_index)
-> +{
-> +	struct lan966x_mac_entry *mac_entry;
-> +
-> +	mac_entry = devm_kzalloc(lan966x->dev,
-> +				 sizeof(*mac_entry), GFP_ATOMIC);
+>> +
+>> +  '#clock-cells':
+>> +    const: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - clock-names
+>> +  - '#clock-cells'
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/imxrt1050-clock.h>
+>> +
+>> +    ccm@400fc000 {
+> 
+> s/ccm/clock-controller/
 
-Is it really necessary to use devm_ allocation for the mac entries?
-It's 2x memory overhead.
+This made my day!
 
-Also why GFP_ATOMIC? Memory allocations are _a lot_ less likely with
-GFP_KERNEL.
-
-> +	if (!mac_entry)
-> +		return NULL;
-> +
-> +	memcpy(mac_entry->mac, mac, ETH_ALEN);
-> +	mac_entry->vid = vid;
-> +	mac_entry->port_index = port_index;
-> +	mac_entry->row = LAN966X_MAC_INVALID_ROW;
-> +	return mac_entry;
-> +}
-
-> +static void lan966x_mac_process_raw_entry(struct lan966x_mac_raw_entry *raw_entry,
-> +					  u8 *mac, u16 *vid, u32 *dest_idx)
-> +{
-> +	mac[0] = (raw_entry->mach >> 8)  & 0xff;
-> +	mac[1] = (raw_entry->mach >> 0)  & 0xff;
-> +	mac[2] = (raw_entry->macl >> 24) & 0xff;
-> +	mac[3] = (raw_entry->macl >> 16) & 0xff;
-> +	mac[4] = (raw_entry->macl >> 8)  & 0xff;
-> +	mac[5] = (raw_entry->macl >> 0)  & 0xff;
-> +
-> +	*vid = (raw_entry->mach >> 16) & 0xfff;
-> +	*dest_idx  = ANA_MACACCESS_DEST_IDX_GET(raw_entry->maca);
-
-Double space before =
-
-> +}
-> +
-> +static void lan966x_mac_irq_process(struct lan966x *lan966x, u32 row,
-> +				    struct lan966x_mac_raw_entry *raw_entries)
-> +{
-> +	struct lan966x_mac_entry *mac_entry, *tmp;
-> +	unsigned long flags;
-> +	char mac[ETH_ALEN];
-> +	u32 dest_idx;
-> +	u32 column;
-> +	u16 vid;
-> +
-> +	spin_lock_irqsave(&lan966x->mac_lock, flags);
-> +	list_for_each_entry_safe(mac_entry, tmp, &lan966x->mac_entries, list) {
-> +		bool founded = false;
-
-s/founded/found/
-
-> +		if (mac_entry->row != row)
-> +			continue;
-> +
-> +		for (column = 0; column < LAN966X_MAC_COLUMNS; ++column) {
-> +			/* All the valid entries are at the start of the row,
-> +			 * so when get one invalid entry it can just skip the
-> +			 * rest of the columns
-> +			 */
-> +			if (!ANA_MACACCESS_VALID_GET(raw_entries[column].maca))
-> +				break;
-> +
-> +			lan966x_mac_process_raw_entry(&raw_entries[column],
-> +						      mac, &vid, &dest_idx);
-> +			WARN_ON(dest_idx > lan966x->num_phys_ports);
-> +
-> +			/* If the entry in SW is found, then there is nothing
-> +			 * to do
-> +			 */
-> +			if (mac_entry->vid == vid &&
-> +			    ether_addr_equal(mac_entry->mac, mac) &&
-
-You need to add __aligned(2) to mac, ether_addr_equal() needs aligned
-arguments.
-
-> +			    mac_entry->port_index == dest_idx) {
-> +				raw_entries[column].process = true;
-> +				founded = true;
-> +				break;
-> +			}
-> +		}
+> 
+>> +        compatible = "fsl,imxrt1050-ccm";
+>> +        reg = <0x400fc000 0x4000>;
+>> +        interrupts = <95>, <96>;
+>> +        clocks = <&osc>;
+>> +        clock-names = "osc";
+>> +        #clock-cells = <1>;
+>> +    };
+>> +
+>> +
+> 
+> Nitpick: Drop extra newline
+sorry will fix.
+> 
+>> +    lpuart1: serial@40184000 {
+>> +        compatible = "fsl,imxrt1050-lpuart";
+>> +        reg = <0x40184000 0x4000>;
+>> +        interrupts = <20>;
+>> +        clocks = <&clks IMXRT1050_CLK_LPUART1>;
+>> +        clock-names = "ipg";
+>> +    };
+>> -- 
+>> 2.34.0
+>>
