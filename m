@@ -2,84 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE7EF46B64C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:44:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7F2C46B64E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:46:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232371AbhLGIrk convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 7 Dec 2021 03:47:40 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:39147 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229846AbhLGIrj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:47:39 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 9A91E20000C;
-        Tue,  7 Dec 2021 08:44:06 +0000 (UTC)
-Date:   Tue, 7 Dec 2021 09:44:05 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     <Tudor.Ambarus@microchip.com>
-Cc:     <richard@nod.at>, <vigneshr@ti.com>, <p.yadav@ti.com>,
-        <michael@walle.cc>, <linux-mtd@lists.infradead.org>,
-        <broonie@kernel.org>, <linux-spi@vger.kernel.org>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <thomas.petazzoni@bootlin.com>, <monstr@monstr.eu>,
-        <robh@kernel.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: mtd: spi-nor: Allow two CS per
- device
-Message-ID: <20211207094405.6083b141@xps13>
-In-Reply-To: <e5d05d00-8823-f9a2-156e-ac0c268d705c@microchip.com>
-References: <20211206095921.33302-1-miquel.raynal@bootlin.com>
-        <20211206095921.33302-2-miquel.raynal@bootlin.com>
-        <e5d05d00-8823-f9a2-156e-ac0c268d705c@microchip.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S233110AbhLGIth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 03:49:37 -0500
+Received: from ixit.cz ([94.230.151.217]:57944 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229846AbhLGIth (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 03:49:37 -0500
+Received: from [127.0.0.1] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 7A33721F5E;
+        Tue,  7 Dec 2021 09:46:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1638866764;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=f9NukqFBTsggR/WpNLr3kIERvGsIMZF+z2E9KVqGv+8=;
+        b=DMC+q23hWJ44vyyPytXKyrX2yQjDPgGW0e51OoaY8T7s5u4kdq3iEKVERRiH5MFdoLRodH
+        bQqBP7Y63ZMiYnIjp8UR0esCI0nBJBvsGcj55AsIv4Q7GsRxlkmi7mg1y81Zzj2ANorDsL
+        2F6FJJSJchTkWALwS+yUBgpTAqZvnCs=
+Date:   Tue, 07 Dec 2021 08:46:03 +0000
+From:   David Heidelberg <david@ixit.cz>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Stephen Warren <swarren@wwwdotorg.org>
+CC:     ~okias/devicetree@lists.sr.ht, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH=5D_dt-bindings=3A_i2c=3A_brcm=2C?= =?US-ASCII?Q?bcm2835-i2c=3A_convert_to_YAML_schema?=
+In-Reply-To: <d337e0e9-7013-b10f-f696-5133da3490e5@gmail.com>
+References: <20211206184613.100809-1-david@ixit.cz> <d337e0e9-7013-b10f-f696-5133da3490e5@gmail.com>
+Message-ID: <40FA507D-825B-4C9D-A190-66797AEC2DF2@ixit.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Tudor,
+Hello Florian,
 
-Tudor.Ambarus@microchip.com wrote on Tue, 7 Dec 2021 07:16:11 +0000:
+thanks for looking into patch=2E Currently I'm picking missing and broken =
+bindings, which has biggest impact on arm64 make dtbs_check output, to give=
+ developers chance to use it to find their problems instead of being overwh=
+elmed by thousands lines of usually irrelevant warnings not related to DTS =
+their writing=2E So feel free to continue, I'm very happy that there is mor=
+e people trying make dtbs_check output clean and DT validated :)
 
-> Hi, Miquel,
-> 
-> On 12/6/21 11:59 AM, Miquel Raynal wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > 
-> > The Xilinx QSPI controller has two advanced modes which allow the
-> > controller to behave differently and consider two flashes as one single
-> > storage.
-> > 
-> > One of these two modes is quite complex to support from a binding point
-> > of view and is the dual parallel memories. In this mode, each byte of
-> > data is stored in both devices: the even bits in one, the odd bits in
-> > the other. The split is automatically handled by the QSPI controller and
-> > is transparent for the user.
-> > 
-> > The other mode is simpler to support, it is called dual stacked
-> > memories. The controller shares the same SPI bus but each of the devices
-> > contain half of the data. Once in this mode, the controller does not
-> > follow CS requests but instead internally wires the two CS levels with
-> > the value of the most significant address bit.  
-> 
-> The stacked mode that you describe seems particular to a specific
-> vendor. There are multi die NOR flashes which do not require any
-> controller intervention, the logic is held at the flash level:
-> https://media-www.micron.com/-/media/client/global/documents/products/technical-note/nor-flash/tn2505_n25q_mt25q_stacked_devices.pdf?rev=7a23cc95238e46f7b22e2a9f6bc736b7
-> 
-> Can you point us to which kind of memories you're willing to add
-> support for? Some datasheets will be best.
+David
 
-Unfortunately I don't have any datasheets to propose, I think this mode
-must be seen like a controller abstraction of any device with several
-physical cs.
 
-The question: "should these properties be common to all devices" is
-still open, I don't have a strong opinion, whether we should make these
-Xilinx specific, or not. For now they are, but in the near future, it
-is not so sure (and my crystal ball is under maintenance ;) ).
+-------- P=C5=AFvodn=C3=AD zpr=C3=A1va --------
+Odes=C3=ADlatel: Florian Fainelli <f=2Efainelli@gmail=2Ecom>
+Odesl=C3=A1no: 6=2E prosince 2021 22:27:49 UTC
+Komu: David Heidelberg <david@ixit=2Ecz>, Rob Herring <robh+dt@kernel=2Eor=
+g>, Ray Jui <rjui@broadcom=2Ecom>, Scott Branden <sbranden@broadcom=2Ecom>,=
+ bcm-kernel-feedback-list@broadcom=2Ecom, Nicolas Saenz Julienne <nsaenz@ke=
+rnel=2Eorg>, Stephen Warren <swarren@wwwdotorg=2Eorg>
+Kopie: ~okias/devicetree@lists=2Esr=2Eht, linux-i2c@vger=2Ekernel=2Eorg, d=
+evicetree@vger=2Ekernel=2Eorg, linux-rpi-kernel@lists=2Einfradead=2Eorg, li=
+nux-arm-kernel@lists=2Einfradead=2Eorg, linux-kernel@vger=2Ekernel=2Eorg
+P=C5=99edm=C4=9Bt: Re: [PATCH] dt-bindings: i2c: brcm,bcm2835-i2c: convert=
+ to YAML schema
 
-Thanks,
-Miquèl
+On 12/6/21 10:46 AM, David Heidelberg wrote:
+> Switch the DT binding to a YAML schema to enable the DT validation=2E
+>=20
+> Signed-off-by: David Heidelberg <david@ixit=2Ecz>
+
+Acked-by: Florian Fainelli <f=2Efainelli@gmail=2Ecom>
+Tested-by: Florian Fainelli <f=2Efainelli@gmail=2Ecom>
+
+Let me know if you are planning on converting more of the bcm2835
+binding so we don't overlap=2E Thanks!
