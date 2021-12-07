@@ -2,136 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22A2E46C227
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 18:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF22F46C247
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 19:02:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240239AbhLGR4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 12:56:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37850 "EHLO
+        id S240322AbhLGSFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 13:05:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229703AbhLGR4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 12:56:20 -0500
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F410FC061574;
-        Tue,  7 Dec 2021 09:52:49 -0800 (PST)
-Received: by mail-pf1-x431.google.com with SMTP id o4so12012pfp.13;
-        Tue, 07 Dec 2021 09:52:49 -0800 (PST)
+        with ESMTP id S240013AbhLGSFu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 13:05:50 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68F23C061574;
+        Tue,  7 Dec 2021 10:02:19 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id m12so28911898ljj.6;
+        Tue, 07 Dec 2021 10:02:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=veFZZ2BwM4ZKvUKxG49udfxSBvJVoaKMQ2UqudqotEQ=;
-        b=jgk5tAuMGUati/xM9n9lNn854YcG8IWqsSlnPC3BlX1x/M8A9P0BExT2hSoApDiQ4C
-         AzRvnEQ/MuyXDHUQsD5qW7yEN2tc+aOf2NEn/PlRjn7BtytXeEf8qar/IZoYu5hCzSRh
-         Sh3T4oittUtRC4IQnYUNYco5R1elFYYQaeQhj7XSJv1n6JBNI/xS4zRymEjZvj3lyYS/
-         QZKeHvGIvsLGwddK3pI3BrDBzv0lj+ftujyo4ZYyVClx9HXsTxh/BWfau/IFvX2UQyo5
-         rbiXdRDBF9nHNczwVOLdif6RqOK3UvgAfZEsCDqdvOIkqcZ/V2CVvrszzSxkRqEZknqa
-         5XhA==
+        bh=sqoUoMtUBmHodK2PJJEDxB6ED3784jkw/8tgiFLOL6Q=;
+        b=bJFHJd4uXpwYV7ifbUZrGZDtcpLtYf10riM503HihUISrQRgoFT3Q9hZ8ef4bsmQNB
+         JG6n7TshIzNt7J2EffIDjCz7U8FaB4o9C2CYEUwj8QIA3354fg6W4CuYn+S1Uj3VtCCr
+         5+Rkz/oQGUyLYOxDStDiJHfnfR3zu5qp+x5QP30V9M9T3ZfUyJj9X1Fd0YzssvBI6jvl
+         2clFJhgknW4Uhm6nkL9YJMWXt5ReOdPfJo36ECq7dfIF3EWCLt9cmGmLwB2P0i228HGn
+         8Uy/0jbUJwj74alicGPV+cSZuof3GjVsF7CKAihZLYAAl7ms/zAs2Ba8kfpQ13ojJjPA
+         /1cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=veFZZ2BwM4ZKvUKxG49udfxSBvJVoaKMQ2UqudqotEQ=;
-        b=IjQJgSXSbSwxjspEVVYXUl8eoLrA8otZFqfAGgwFwSkes2gMMiNrkawoszOTR/vvCc
-         L28kvZio4W5UUmrNn4fYFHKYDu9WOX5aawI7QD96dRsSnqFAytoWsyWFlaj5NzDp9EFp
-         IH7yLkL6WHM42Yuk6jyaC4a0KyA0JExa7IwfYA0Ma7LKaMBimMIDs8Glt6HInUgGageQ
-         ONV/RLvdrh08I9tysm3/fMNovE5nPTx27HIwNZGUSlSd6OICf34fe7cpxkQcY/QjEp6A
-         2o6XSx4RCAYoY0N0ndw1eKFBydhvGTDwiKL5pNr2j8OLGvfGrQ7gJeQABIwelUc/6hKZ
-         tWWA==
-X-Gm-Message-State: AOAM5327iSV9S/lsv7yriTYHA3L2t9mHTe9UybQYXsCtD3IqV0raGYXY
-        /idROkaSt1UqiUKp/W+UYLoiObA0+A0=
-X-Google-Smtp-Source: ABdhPJxJv+eohQpgN/P9mjM8WWY4HG7RyDTmtHVmTtGPQQIpL0ogZ+ePWhy4QDRVfVlcgrx9DFsDsw==
-X-Received: by 2002:a62:de83:0:b0:4ad:57f7:5a86 with SMTP id h125-20020a62de83000000b004ad57f75a86mr629241pfg.9.1638899569110;
-        Tue, 07 Dec 2021 09:52:49 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id x16sm300653pfo.165.2021.12.07.09.52.46
+        bh=sqoUoMtUBmHodK2PJJEDxB6ED3784jkw/8tgiFLOL6Q=;
+        b=DwIEHUo0nryGZgYEm+vbVkZy9Y66wmn17OUMqWY8JDF9dzM2JHvNOfZKtXyNKZaND7
+         TlMA6aVEjkwNDFfX8yurKSAzhggwCZdXnbKnFB8Gem9gtR65BnDILoIwaOwYKO4ZHk6n
+         4IBdYIg9UVX7rQCzGlnww8kQnzFukprTmBjDsJ/fuN3s4YzAM2mAcnbUK7wwWWBKdZm1
+         i5+fSDirMvLbN8eK9Pc2V+N6V+/hj0x1CBeBZ30xREWjxDUge8ztUCzdsgdHTKrois6m
+         L98GD8BiWsWq8ZV5Si5D80/fsSXiW0nil6r1/rgvEpctv0zugto9UTcANVcktkTtLhOJ
+         uW2w==
+X-Gm-Message-State: AOAM530JSZUzoZ8EvzgNXp3w67yACYlXp7uxmU+8QnkGkkr+ZBVxr4co
+        L/nzfESEs4JQ8Nh+GVCHLlg=
+X-Google-Smtp-Source: ABdhPJwCj8oArFSu/8QVwop2LAW+6QUY+qwLMixQnx5V8GYd+tftm6uJDuFh4bo53x4nRWt0VVtYBA==
+X-Received: by 2002:a05:651c:503:: with SMTP id o3mr44082043ljp.353.1638900137688;
+        Tue, 07 Dec 2021 10:02:17 -0800 (PST)
+Received: from [192.168.2.145] (94-29-46-111.dynamic.spd-mgts.ru. [94.29.46.111])
+        by smtp.googlemail.com with ESMTPSA id n6sm29541lfh.28.2021.12.07.10.02.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Dec 2021 09:52:48 -0800 (PST)
-Subject: Re: [PATCH v2 05/14] dt-bindings: gpio: Convert Broadcom STB GPIO to
- YAML
-To:     Rob Herring <robh@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Marc Zyngier <maz@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Doug Berger <opendmb@gmail.com>, linux-usb@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-mmc@vger.kernel.org, Al Cooper <alcooperx@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>, linux-pm@vger.kernel.org,
-        linux-crypto@vger.kernel.org, Markus Mayer <mmayer@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Lee Jones <lee.jones@linaro.org>, linux-gpio@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Gregory Fong <gregory.0xf0@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Scott Branden <sbranden@broadcom.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        "Rafael J. Wysocki" <rafael@kernel.org>, linux-ide@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-References: <20211206182616.2089677-1-f.fainelli@gmail.com>
- <20211206182616.2089677-6-f.fainelli@gmail.com>
- <1638889090.698687.5799.nullmailer@robh.at.kernel.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <df5cc6a5-7857-d86d-e739-9a592b3a5294@gmail.com>
-Date:   Tue, 7 Dec 2021 09:52:45 -0800
+        Tue, 07 Dec 2021 10:02:16 -0800 (PST)
+Subject: Re: [PATCH 1/3] ALSA: hda/tegra: Skip reset on BPMP devices
+To:     Sameer Pujar <spujar@nvidia.com>, tiwai@suse.com,
+        broonie@kernel.org, lgirdwood@gmail.com, thierry.reding@gmail.com,
+        perex@perex.cz
+Cc:     jonathanh@nvidia.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Mohan Kumar <mkumard@nvidia.com>, robh+dt@kernel.org
+References: <1638858770-22594-1-git-send-email-spujar@nvidia.com>
+ <1638858770-22594-2-git-send-email-spujar@nvidia.com>
+ <7742adae-cdbe-a9ea-2cef-f63363298d73@gmail.com>
+ <8fd704d9-43ce-e34a-a3c0-b48381ef0cd8@nvidia.com>
+ <56bb43b6-8d72-b1de-4402-a2cb31707bd9@gmail.com>
+ <4855e9c4-e4c2-528b-c9ad-2be7209dc62a@nvidia.com>
+ <5d441571-c1c2-5433-729f-86d6396c2853@gmail.com>
+ <f32cde65-63dc-67f8-ded8-b58ea5e89f4e@nvidia.com>
+ <95cc7efa-251c-690b-9afa-53ee9e052c34@gmail.com>
+ <148fba18-5d14-d342-0eb9-4ff224cc58ad@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <3b0de739-7866-3886-be9c-a853c746f8b7@gmail.com>
+Date:   Tue, 7 Dec 2021 21:02:14 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <1638889090.698687.5799.nullmailer@robh.at.kernel.org>
+In-Reply-To: <148fba18-5d14-d342-0eb9-4ff224cc58ad@nvidia.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/7/21 6:58 AM, Rob Herring wrote:
-> On Mon, 06 Dec 2021 10:26:07 -0800, Florian Fainelli wrote:
->> Convert the Broadcom STB GPIO Device Tree binding to YAML to help with
->> validation.
->>
->> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
->> ---
->>  .../bindings/gpio/brcm,brcmstb-gpio.txt       |  83 --------------
->>  .../bindings/gpio/brcm,brcmstb-gpio.yaml      | 105 ++++++++++++++++++
->>  MAINTAINERS                                   |   2 +-
->>  3 files changed, 106 insertions(+), 84 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/gpio/brcm,brcmstb-gpio.txt
->>  create mode 100644 Documentation/devicetree/bindings/gpio/brcm,brcmstb-gpio.yaml
->>
+07.12.2021 20:37, Sameer Pujar пишет:
+..
+>> HDA won't be reset while display is active on T186+.
 > 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1564132
-> 
-> 
-> gpio@4172c0: interrupts-extended: [[6, 6], [7, 5]] is too long
-> 	arch/arm/boot/dts/bcm7445-bcm97445svmb.dt.yaml
+> No. HDA reset is applied whenever power-domain is ungated. It can happen
+> when either HDA or display device becomes active.
 
-The property is correct AFAICT, we have:
+I said "display is active", where do you see "becomes active"?
 
-                        interrupts-extended = <&irq0_aon_intc 0x6>,
-                                              <&aon_pm_l2_intc 0x5>;
+> So I don't think that
+> it is inconsistent.
 
-with both interrupt controllers having #interrupt-cells = <1>. I tried
-documenting the interrupts-extended for brcm,brcmstb-gpio.yaml to have
-maxItems: 2 but that does not eliminate the warning. Do you have any
-suggestions?
--- 
-Florian
+If display is already active, then shared power domain is already
+ungated. It won't be ungated second time in a row, HDA won't get the reset.
