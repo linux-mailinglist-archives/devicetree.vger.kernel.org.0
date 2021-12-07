@@ -2,106 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E33AB46BD1A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 14:59:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 154FF46BD21
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:00:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232852AbhLGOC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 09:02:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37322 "EHLO
+        id S232930AbhLGODn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 09:03:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237447AbhLGOCp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 09:02:45 -0500
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24908C061A83
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 05:59:13 -0800 (PST)
-Received: by mail-pg1-x530.google.com with SMTP id 137so13946910pgg.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 05:59:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=9ESUKLBiwLglZ7fAAALXoWV7PZXHvOzhIGDPe6OkebM=;
-        b=pnPRLtMTnOq4Uwn8E7r9ZkhDKaI/K0nHH2eo4O61f9z4Gf8UtFzuGHXAShM3qwxd+K
-         hXhKUkmb86V9PD5om1THMHzggWzlW46siyiJlIfghm7PnhfeR3G7K/0orRrl46aMQ2rT
-         8ErVQAgnvUs6jjRaygo6pGPS+OTAYxsIToGFVLJyGROtIbLQTWAtKaMEMaD+kygm9kZu
-         A76K+tIR1a7imbpvYUCM9oTpee2LevEVELMeoFTtdWh4hlgnc+JizU9CVbBbqcIMmW4R
-         sMrERlO+uA0FqeLeKtznjev6GKtSLeOAQ4ZKMCw/Eq+XN5uJI9IB1DRWjW2a6gLfniEo
-         AmcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9ESUKLBiwLglZ7fAAALXoWV7PZXHvOzhIGDPe6OkebM=;
-        b=ciIfVat4fh1PqMyGYiauDpC2HdzjxMvpIIyooW9AhZP2jFieTVgOpI+Y9xTOYz4d4W
-         p8Z7dBuPjY4R650X7xG7NMwsUY9lUw1g4B0fsCwLHku9w3theeJNSzHvTAnLiSE2nkaA
-         bQ4FVUD2XbCB/fO6r8VZo9qin6vtcud70KBh7zckzXoe/1YdDQP7aJLaBG2tVVpn3TFy
-         /7WxUcYX+0KEmFmotAEYV7M56RxvUU+NBiXIMI0FUMRNpMgGwkmx4zNylqnEI4Ctkqa9
-         4ozCDJnrq2ZmGEh5JNRCPYtogl3vOxamHo2RYOz7pz7ct2CyMehC9ig3vXNbcslGYWme
-         Cvwg==
-X-Gm-Message-State: AOAM533JeZfOlnRx1KQ0eFgnELaEgtyMxVrKHXCExEtNwp5PJqHDVL2n
-        z8CEFvSULu0stvyCXzSOBW4kJQ==
-X-Google-Smtp-Source: ABdhPJz2NyQwlIvJG831Y8wH/2/s8eMw0eLvlWUNc1iKHcnNjz05ZlVRgrBC+IQojO6FNU7cn80pEA==
-X-Received: by 2002:a63:c003:: with SMTP id h3mr24405268pgg.261.1638885552582;
-        Tue, 07 Dec 2021 05:59:12 -0800 (PST)
-Received: from leoy-ThinkPad-X240s ([103.207.71.6])
-        by smtp.gmail.com with ESMTPSA id b18sm16905053pfl.121.2021.12.07.05.59.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 05:59:11 -0800 (PST)
-Date:   Tue, 7 Dec 2021 21:59:04 +0800
-From:   Leo Yan <leo.yan@linaro.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     John Garry <john.garry@huawei.com>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        mark.rutland@arm.com, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, uchida.jun@socionext.com,
-        will@kernel.org, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v2 3/3] perf/smmuv3: Synthesize IIDR from CoreSight ID
- registers
-Message-ID: <20211207135904.GH42658@leoy-ThinkPad-X240s>
-References: <20211117144844.241072-1-jean-philippe@linaro.org>
- <20211117144844.241072-4-jean-philippe@linaro.org>
- <e60b15db-4e52-b5a6-1b17-203d250f1e65@huawei.com>
- <766ac58a-ffb7-f673-709b-0f0f740f3cfd@arm.com>
- <53f868a8-c7ae-b69d-b061-bb0a7dc98f8a@huawei.com>
- <d60110c4-c179-45d6-512d-3d058caac974@arm.com>
- <20211207132007.GB255238@leoy-ThinkPad-X240s>
- <675bfd78-69ac-608f-1303-e86b90a83f72@arm.com>
+        with ESMTP id S237476AbhLGODm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 09:03:42 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 232DAC061748
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 06:00:12 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1mub0i-0006xW-KF; Tue, 07 Dec 2021 15:00:00 +0100
+Subject: Re: [Linux-stm32] [PATCH v2 1/4] ASoC: dt-bindings: stm32: i2s: add
+ audio-graph-card port
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh@kernel.org>,
+        Olivier MOYSAN <olivier.moysan@foss.st.com>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        alain.volmat@foss.st.com, arnaud.pouliquen@foss.st.com,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20211125144053.774-1-olivier.moysan@foss.st.com>
+ <20211125144053.774-2-olivier.moysan@foss.st.com>
+ <1637875562.357461.2858318.nullmailer@robh.at.kernel.org>
+ <237f56b3-0597-2526-a182-f1fbdd327338@foss.st.com>
+ <Yaf4jiZIp8+ndaXs@robh.at.kernel.org>
+ <627777a4-7458-88ed-e7c5-d11e3db847b5@foss.st.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <cf5f994b-aecf-e051-f5c9-4a46e6414207@pengutronix.de>
+Date:   Tue, 7 Dec 2021 14:59:58 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <675bfd78-69ac-608f-1303-e86b90a83f72@arm.com>
+In-Reply-To: <627777a4-7458-88ed-e7c5-d11e3db847b5@foss.st.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 07, 2021 at 01:46:49PM +0000, Robin Murphy wrote:
+Hello Alex,
 
-[...]
-
-> >    [   28.854767] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.15.auto: iidr=0x0
-> > 
-> > Please confirm if this is expected or not?  I think this might
-> > introduce difficulty for John for the PMU event alias patches, which
-> > is dependent on a non-zero IIDR.
+On 07.12.21 14:52, Alexandre TORGUE wrote:
+> Hi Rob
 > 
-> Yes, from previous discussions I believe the HiSilicon implementations don't
-> have much meaningful ID information at all (hence why we have to match ACPI
-> table headers to identify the counter erratum). My trick only works for Arm
-> Ltd. implementations since they happen to have the IMP-DEF CoreSight
-> registers with the same information as would be in the future IIDR.
+> On 12/1/21 11:34 PM, Rob Herring wrote:
+>> On Fri, Nov 26, 2021 at 11:25:27AM +0100, Olivier MOYSAN wrote:
+>>> Hi Rob,
+>>>
+>>> On 11/25/21 10:26 PM, Rob Herring wrote:
+>>>> On Thu, 25 Nov 2021 15:40:50 +0100, Olivier Moysan wrote:
+>>>>> The STM2 I2S DAI can be connected via the audio-graph-card.
+>>>>> Add port entry into the bindings.
+>>>>>
+>>>>> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+>>>>> ---
+>>>>>    Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml | 5 +++++
+>>>>>    1 file changed, 5 insertions(+)
+>>>>>
+>>>>
+>>>> Running 'make dtbs_check' with the schema in this patch gives the
+>>>> following warnings. Consider if they are expected or the schema is
+>>>> incorrect. These may not be new warnings.
+>>>>
+>>>> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+>>>> This will change in the future.
+>>>>
+>>>> Full log is available here: https://patchwork.ozlabs.org/patch/1559750
+>>>>
+>>>>
+>>>> audio-controller@4000b000: 'port' does not match any of the regexes: '^port@[0-9]', 'pinctrl-[0-9]+'
+>>>>     arch/arm/boot/dts/stm32mp157a-dk1.dt.yaml
+>>>>     arch/arm/boot/dts/stm32mp157c-dk2.dt.yaml
+>>>>
+>>>
+>>> This warning is not a new one.
+>>>
+>>> The i2s2 node in stm32mp15xx-dkx.dtsi would require the following binding:
+>>> port:
+>>>     $ref: audio-graph-port.yaml#
+>>>     unevaluatedProperties: false
+>>>
+>>> However the spi binding requires to introduce a unit address:
+>>> patternProperties:
+>>>    '^port@[0-9]':
+>>>      $ref: audio-graph-port.yaml#
+>>>      unevaluatedProperties: false
+>>>
+>>> The warning can be removed by re-ordering the bindings patches in the serie,
+>>> as "additionalProperties: true" makes the check more tolerant on extra
+>>> properties.
+>>
+>> That's never right.
+>>
+>>> The patch "ASoC: dt-bindings: stm32: i2s: add audio-graph-card port" can
+>>> even be merely dropped.
+>>> So, I suggest to resend the serie without audio-graph-card patch.
+>>
+>> Only if you aren't using audio-graph-card.
+>>
+>>>
+>>> Does it sound too permissive to you ?
+>>
+>> I think perhaps you need to combine the schemas into 1. Or you need to
+>> restructure your dtsi files such that you only add spi specific
+>> properties when spi mode is enabled and only add i2s specific properties
+>> when i2s mode is enabled. Or use the /delete-property/ directive.
 > 
-> To clarify, the proposal at this point is to write up JSON files for
-> MMU-600/MMU-700, based on this patch, in order to pipe-clean the process for
-> future SMMUv3.3 PMCG implementations with real IIDRs.
+> Initially the aim of this series was to fix a "make W=1" warnings seen on spi and i2s nodes (duplicate unit-address). Moving both nodes in a common node + using a different compatible depending on SPI or I2S usage sounded good) but it is not enough. In this series the common node is named as following: "spi2s2: spi@4000b000". It is fine for a spi usage but if we want to use this "common node" with I2S compatible and specific bindings, the node name remains spi@... and then specific spi checks are done. For this with this series applied we got this issue reported by spi-controller.yaml:
 > 
-> Whether other implementers might retroactively define "equivalent" IIDR
-> values for their existing implementations in a way we could potentially
-> quirk in the driver is an orthogonal question.
+> spi@4000b000: port@0: 'compatible' is a required property
+> 
+> So, if we use two separates nodes we got W=1 warning and if we use a common node we got yaml check issue. One possibility would be to use a common node with a new node name (for example i2spi@...) but I think it is not acceptable.
+> 
+> How to progress ?
 
-Agreed, it makes sense that supports the standard IP modules in
-the mainline kernel at this stage.
+Atmel Flexcom can be configured to be either UART, SPI or i2c. Functions
+are child nodes of the flexcom node and the MFD driver matching against it,
+just configure the operating mode and then calls of_platform_populate.
 
-Thanks for explanation.
+Would something along these lines fit here as well?
 
-Leo
+Cheers,
+Ahmad
+
+> 
+> Thanks
+> Alex
+> 
+> 
+>> Rob
+>>
+> 
+> _______________________________________________
+> Linux-stm32 mailing list
+> Linux-stm32@st-md-mailman.stormreply.com
+> https://st-md-mailman.stormreply.com/mailman/listinfo/linux-stm32
+> 
+
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
