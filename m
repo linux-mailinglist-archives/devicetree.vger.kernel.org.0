@@ -2,312 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E267646BC2C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 14:08:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E6E146BC52
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 14:20:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236397AbhLGNLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 08:11:54 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:50060 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232552AbhLGNLy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 08:11:54 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id D59CBCE1AA3;
-        Tue,  7 Dec 2021 13:08:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84257C341C1;
-        Tue,  7 Dec 2021 13:08:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1638882500;
-        bh=K9zNh0bHKvKySji7UxHLTM/rwJ1vrX1xw1Z10O3pD+Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FhvalWCgCHWRni0bv3Tp2q3OivrGkVigo0Y/b8pXMb2bkaDHJhBZ789zTqb84jOtK
-         UJx3suQZWK713/h+uLGG2qi0uGV8f7aYjNSFfTHUVSv7AQpxqqQNXfYOEzLb2jQcaG
-         oi5c8ZjcXKzuYgvWdQbZghflgt0KGcr+LDZ0Xya8=
-Date:   Tue, 7 Dec 2021 14:08:17 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     David Brazdil <dbrazdil@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hans de Goede <hdegoede@redhat.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, Andrew Scull <ascull@google.com>,
-        Will Deacon <will@kernel.org>
-Subject: Re: [PATCH 2/2] misc: dice: Add driver to forward secrets to
- userspace
-Message-ID: <Ya9cwZ94QatewwIc@kroah.com>
-References: <20211207123617.3040177-1-dbrazdil@google.com>
- <20211207123617.3040177-3-dbrazdil@google.com>
+        id S232519AbhLGNXp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 08:23:45 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:36520 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230480AbhLGNXo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 08:23:44 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B7DJuYj025207;
+        Tue, 7 Dec 2021 07:19:56 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1638883196;
+        bh=v/6aq2797oij1s5lipUAq6dL/uBHuD+VUvfMzrdyUdw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=FAfxRO7L0FQ3rTgTfhSQY2bjNf4WgveuuaMv1OG0GXjyFefkAJEG+mVfjoZMqKN34
+         qCETLKCcuawOnT9RcBXgHQJH+AWL2sCoHPcOXKe11lYwPwwQjxiIeTaWPa6Dn2o/tC
+         gKq8IAiVMtFQHXsIqF89KuPX3MZ1XVxuIIqIJ3+g=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B7DJuOE078582
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 7 Dec 2021 07:19:56 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 7
+ Dec 2021 07:19:56 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 7 Dec 2021 07:19:56 -0600
+Received: from [10.250.232.32] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B7DJouG110240;
+        Tue, 7 Dec 2021 07:19:51 -0600
+Subject: Re: [PATCH v5 2/6] arm64: dts: ti:
+ am654-base-board/am65-iot2050-common: Disable mcan nodes
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Marc Kleine-Budde <mkl@pengutronix.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20211122134159.29936-1-a-govindraju@ti.com>
+ <20211122134159.29936-3-a-govindraju@ti.com>
+From:   Apurva Nandan <a-nandan@ti.com>
+Message-ID: <f5e66abb-5c84-eccd-dc7f-333b525fafae@ti.com>
+Date:   Tue, 7 Dec 2021 18:49:50 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211207123617.3040177-3-dbrazdil@google.com>
+In-Reply-To: <20211122134159.29936-3-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 07, 2021 at 12:36:17PM +0000, David Brazdil wrote:
-> Open Profile for DICE is a protocol for deriving unique secrets at boot,
-> used by some Android devices. The firmware/bootloader hands over secrets
-> in a reserved memory region, this driver takes ownership of the memory
-> region and exposes it to userspace via a character device that
-> lets userspace mmap the memory region into its process.
-> 
-> The character device can only be opened once at any given time.
 
-Why?  That should not matter.  And your code (correctly), does not check
-for that.  So why say that here?
+On 22/11/21 7:11 pm, Aswath Govindraju wrote:
+> AM654 base board and iot platforms do not have mcan instances pinned out.
+> Therefore, disable all the mcan instances.
+>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 
-> Userspace can issue an ioctl requesting that the memory be wiped after
-> the current FD is released. In that case, the driver will clear
-> the buffer and refuse to open any new FDs.
-> 
-> Cc: Andrew Scull <ascull@google.com>
-> Cc: Will Deacon <will@kernel.org>
-> Signed-off-by: David Brazdil <dbrazdil@google.com>
+Reviewed-by: Apurva Nandan <a-nandan@ti.com>
 
-Some minor comments on the code:
-
-> +#include <linux/cdev.h>
-> +#include <linux/dice.h>
-> +#include <linux/io.h>
-> +#include <linux/mm.h>
-> +#include <linux/module.h>
-> +#include <linux/of_reserved_mem.h>
-> +#include <linux/platform_device.h>
-> +
-> +#define DICE_MKDEV		MKDEV(MAJOR(dice_devt), 0)
-> +#define DICE_MINOR_COUNT	1
-
-Please just use the misc_device api, no need to try to claim a major
-number for just one device node.  That will simplify your code a lot as
-well.
-
-> +enum dice_state {
-> +	DICE_STATE_READY = 0,
-> +	DICE_STATE_BUSY,
-> +	DICE_STATE_BUSY_WIPE_ON_CLOSE,
-> +	DICE_STATE_WIPED,
+> ---
+>   arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 8 ++++++++
+>   arch/arm64/boot/dts/ti/k3-am654-base-board.dts     | 8 ++++++++
+>   2 files changed, 16 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> index 65da226847f4..1e0112b90d9f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> @@ -646,6 +646,14 @@
+>   	reset-gpios = <&wkup_gpio0 27 GPIO_ACTIVE_HIGH>;
+>   };
+>   
+> +&m_can0 {
+> +	status = "disabled";
 > +};
 > +
-> +struct dice_data {
-> +	struct device *dev;
-
-What is this for?  The parent?  If so, say parent :)
-
-> +	struct cdev cdev;
-> +	atomic_t state;
-> +	phys_addr_t base;
-> +	size_t size;
+> +&m_can1 {
+> +	status = "disabled";
 > +};
 > +
-> +static dev_t dice_devt;
-> +static struct class *dice_class;
-> +
-> +static int dice_open(struct inode *inode, struct file *filp)
-> +{
-> +	struct dice_data *data;
-> +
-> +	data = container_of(inode->i_cdev, struct dice_data, cdev);
-> +
-> +	/* Never allow write access. */
-> +	if (filp->f_mode & FMODE_WRITE)
-> +		return -EROFS;
-
-Why do you care?  Writes just will not work anyway, right?
-
-> +
-> +	switch (atomic_cmpxchg(&data->state, DICE_STATE_READY, DICE_STATE_BUSY)) {
-> +	case DICE_STATE_READY:
-> +		break;
-> +	case DICE_STATE_WIPED:
-> +		/* Return error to inform caller memory has been wiped. */
-> +		return -EACCES;
-> +	default:
-> +		return -EBUSY;
-> +	}
-> +
-> +	filp->private_data = data;
-> +	nonseekable_open(inode, filp);
-> +	return 0;
-> +}
-> +
-> +static int dice_release(struct inode *inode, struct file *filp)
-> +{
-> +	struct dice_data *data = filp->private_data;
-> +	void *base;
-> +
-> +	if (atomic_read(&data->state) == DICE_STATE_BUSY_WIPE_ON_CLOSE) {
-> +		base = devm_memremap(data->dev, data->base, data->size, MEMREMAP_WT);
-> +		if (!WARN_ON(!base)) {
-> +			memzero_explicit(base, data->size);
-> +			devm_memunmap(data->dev, base);
-> +		}
-> +		atomic_set(&data->state, DICE_STATE_WIPED);
-> +		return 0;
-> +	}
-> +
-> +	atomic_set(&data->state, DICE_STATE_READY);
-> +	return 0;
-> +}
-> +
-> +static int dice_mmap(struct file *filp, struct vm_area_struct *vma)
-> +{
-> +	struct dice_data *data = filp->private_data;
-> +
-> +	vma->vm_flags |= VM_DONTCOPY;
-> +	return vm_iomap_memory(vma, data->base, data->size);
-> +}
-> +
-> +static long dice_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
-> +{
-> +	struct dice_data *data = filp->private_data;
-> +
-> +	switch (cmd) {
-> +	case DICE_GET_SIZE:
-> +		/* Checked against INT_MAX in dice_probe(). */
-> +		return data->size;
-> +	case DICE_SET_WIPE_ON_CLOSE:
-> +		atomic_set(&data->state, DICE_STATE_BUSY_WIPE_ON_CLOSE);
-> +		return 0;
-> +	}
-> +
-> +	return -EINVAL;
-
-Wrong error value for invalid ioctl.
-
-And why do these have to be ioctls at all?  I guess sysfs could be used,
-but if you are comfortable with ioctls, that's fine.
-
-> +}
-> +
-> +static const struct file_operations dice_fops = {
-> +	.open = dice_open,
-> +	.release = dice_release,
-> +	.mmap = dice_mmap,
-> +	.unlocked_ioctl = dice_ioctl,
-> +	.llseek = no_llseek,
+>   &pcie1_ep {
+>   	status = "disabled";
+>   };
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> index cfbcebfa37c1..9043f91c9bec 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> @@ -416,6 +416,14 @@
+>   	status = "disabled";
+>   };
+>   
+> +&m_can0 {
+> +	status = "disabled";
 > +};
 > +
-> +static int __init dice_probe(struct platform_device *pdev)
-> +{
-> +	struct device *chr_dev, *dev = &pdev->dev;
-> +	struct device_node *rmem_np;
-> +	struct reserved_mem *rmem;
-> +	struct dice_data *data;
-> +	int ret;
-> +
-> +	rmem_np = of_parse_phandle(dev->of_node, "memory-region", 0);
-> +	if (!rmem_np) {
-> +		dev_err(dev, "missing 'memory-region' property\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	rmem = of_reserved_mem_lookup(rmem_np);
-> +	of_node_put(rmem_np);
-> +	if (!rmem) {
-> +		dev_err(dev, "failed to lookup reserved memory\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (!PAGE_ALIGNED(rmem->base) || !PAGE_ALIGNED(rmem->size)) {
-> +		dev_err(dev, "memory region must be page-aligned\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (rmem->size > INT_MAX) {
-> +		dev_err(dev, "memory region too large\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	data = devm_kmalloc(dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	*data = (struct dice_data){
-> +		.dev = dev,
-> +		.base = rmem->base,
-> +		.size = rmem->size,
-> +		.state = ATOMIC_INIT(DICE_STATE_READY),
-> +	};
-> +
-> +	cdev_init(&data->cdev, &dice_fops);
-
-Again a misc device will make this much simpler.
-
-> +	data->cdev.owner = THIS_MODULE;
-> +	ret = cdev_add(&data->cdev, DICE_MKDEV, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	chr_dev = device_create(dice_class, dev, DICE_MKDEV, NULL, "dice");
-> +	if (IS_ERR(chr_dev)) {
-> +		cdev_del(&data->cdev);
-> +		return PTR_ERR(chr_dev);
-> +	}
-> +
-> +	platform_set_drvdata(pdev, data);
-> +	return 0;
-> +}
-> +
-> +static int dice_remove(struct platform_device *pdev)
-> +{
-> +	struct dice_data *data = platform_get_drvdata(pdev);
-> +
-> +	cdev_del(&data->cdev);
-> +	device_destroy(dice_class, DICE_MKDEV);
-> +	return 0;
-> +}
-> +
-> +static char *dice_devnode(struct device *dev, umode_t *mode)
-> +{
-> +	/* Initial permissions: read-only by owner */
-> +	if (mode)
-> +		*mode = 0400;
-> +	return NULL;
-
-Put the mode in the misc device structure please.
-
-> +}
-> +
-> +static const struct of_device_id dice_of_match[] = {
-> +	{ .compatible = "google,dice" },
-> +	{},
+> +&m_can1 {
+> +	status = "disabled";
 > +};
 > +
-> +static struct platform_driver dice_driver = {
-> +	.remove = dice_remove,
-> +	.driver = {
-> +		.name = "dice",
-> +		.of_match_table = dice_of_match,
-> +	},
-> +};
-> +
-> +static int __init dice_init(void)
-> +{
-> +	int ret;
-> +
-> +	ret = alloc_chrdev_region(&dice_devt, 0, DICE_MINOR_COUNT, "dice");
-> +	if (ret)
-> +		return ret;
-> +
-> +	dice_class = class_create(THIS_MODULE, "dice");
-> +	if (IS_ERR(dice_class)) {
-> +		ret = PTR_ERR(dice_class);
-> +		goto fail;
-> +	}
-> +	dice_class->devnode = dice_devnode;
-
-Never create a class and reserve things like this, if you do not even
-know if your hardware is present or not.  That just wastes resources.
-Only allocate it if your device probes properly.
-
-And again, moving to a misc_device makes this all much simpler and your
-whole init function can go away.
-
-thanks,
-
-greg k-h
+>   &mailbox0_cluster0 {
+>   	interrupts = <436>;
+>   
