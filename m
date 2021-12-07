@@ -2,211 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48A4346B20C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 06:03:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B3B346B261
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 06:30:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229662AbhLGFGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 00:06:50 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:48378 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbhLGFGt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 00:06:49 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B7535He028160;
-        Mon, 6 Dec 2021 23:03:05 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1638853385;
-        bh=gS5qRRdJFapqcyUi0/EkgP/aZO8T3aw4DbK7IE3Zxc0=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Pz2Snm2610uopRqDqLRpN5SKVdG5MH/jaWAGz2NteDWtPRBkZO0QLedjCjBQ51gWT
-         B6+OSjTZXDzzXQy0lkGph7eppOO7FfN4QV4y1P/lQ84QuD6qvP7Y/YnWaP1mrlWbuf
-         TFWo9US/oTwib6iI7Ajz5odxyAonSyHiOj1W+k+8=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B75359M069532
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 6 Dec 2021 23:03:05 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 6
- Dec 2021 23:03:04 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 6 Dec 2021 23:03:04 -0600
-Received: from [172.24.145.75] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B7532JM129163;
-        Mon, 6 Dec 2021 23:03:02 -0600
-Subject: Re: [PATCH v4] ASoC: dt-bindings: davinci-mcasp: convert McASP
- bindings to yaml schema
-To:     =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
-        <robh+dt@kernel.org>
-CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20211203120243.24173-1-j-choudhary@ti.com>
- <ed6c9be9-32d3-719a-ee0d-608b228f36b3@gmail.com>
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-Message-ID: <20449d7b-0524-a8df-7852-a4c495157682@ti.com>
-Date:   Tue, 7 Dec 2021 10:33:01 +0530
+        id S234174AbhLGFe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 00:34:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59082 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232346AbhLGFeZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 00:34:25 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6A27C061746;
+        Mon,  6 Dec 2021 21:30:55 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id A87FF41EF0;
+        Tue,  7 Dec 2021 05:30:49 +0000 (UTC)
+Subject: Re: [PATCH v3 00/11] Apple SoC PMGR device power states driver
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20211124073419.181799-1-marcan@marcan.st>
+From:   Hector Martin <marcan@marcan.st>
+Message-ID: <8fdf7a68-1a24-89eb-96d6-93c3f334621c@marcan.st>
+Date:   Tue, 7 Dec 2021 14:30:46 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <ed6c9be9-32d3-719a-ee0d-608b228f36b3@gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20211124073419.181799-1-marcan@marcan.st>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 04/12/21 1:50 pm, Péter Ujfalusi wrote:
-> Hi,
+On 24/11/2021 16.34, Hector Martin wrote:
+> This series adds the driver for the Apple PMGR device power state
+> registers. These registers can clockgate and (in some cases) powergate
+> specific SoC blocks. They also control the reset line, and can have
+> additional features such as automatic power management.
 > 
-> On 03/12/2021 14:02, Jayesh Choudhary wrote:
->> Convert the bindings for McASP controllers for TI SOCs from txt
->> to YAML schema.
->>
->> Adds additional properties 'clocks', 'clock-names', 'power-domains',
->> '#sound-dai-cells' and 'port' which were missing from txt file.
->> Removes properties 'sram-size-playback' and 'sram-size-capture'
->> since they are not used.
->> Adds 'dmas' and 'dma-names' in the example which were missing from
->> the txt file.
->> Changes 'interrupts' and 'interrupt-names' from optional to
->> required properties.
->> Changes 'op-mode', 'serial-dir' and 'tdm-slots' to optional properties
->> as they are not needed if the McASP is used only as GPIO.
->>
->> Adds the yaml file in the 'MAINTAINERS' under the heading 'TEXAS
->> INSTRUMENTS ASoC DRIVERS'
->>
->> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->> ---
->> Changelog:
->> v4:
->> - changes the commit message
->> - adds type and description to relevant properties
->> - changes maxItems for 'serial-dir'
->> - removes properties 'sram-size-playback' and 'sram-size-capture'
->>    as they are not used
->> - removes 'function-gpios'
->> - removes 'num-serializer'
->> - marks 'tdm-slots', 'serial-dir' and 'op-mode' as optional properties
->> - adds the yaml file in MAINTAINERS
->>
+> The current driver supports only the lowest/highest power states,
+> provided via the genpd framework, plus reset support provided via
+> the reset subsystem.
 > 
-> ...
+> Apple's PMGRs (there are two in the T8103) have a uniform register
+> bit layout (sometimes with varying features). To be able to support
+> multiple SoC generations as well as express pd relationships
+> dynamically, this binding describes each PMGR power state control
+> as a single devicetree node. Future SoC generations are expected to
+> retain backwards compatibility, allowing this driver to work on them
+> with only DT changes.
 > 
->> +  reg:
->> +    minItems: 1
->> +    items:
->> +      - description: main registers
+> #1: MAINTAINERS updates, to go via the SoC tree to avert merge hell
+> #2-#5: Adds power-domains properties to existing device bindings
+> #6-#7: Adds the new pmgr device tree bindings
+> #8: The driver itself.
+> #9: Instantiates the driver in t8103.dtsi. This adds the entire PMGR
+>      node tree and references the relevant nodes from existing devices.
+> #7: Adds runtime-pm support to the Samsung UART driver, as a first
+>      working consumer.
+> #8: Instantiates a second UART, to more easily test this.
 > 
-> The TRM refers to this area as CFG registers
+> There are currently no consumers for the reset functionality, so
+> it is untested, but we will be testing it soon with the NVMe driver
+> (as it is required to allow driver re-binding to work properly).
 > 
->> +      - description: data port register
+> == Changes since v2 ==
+> - DT schema review comments & patch order fix
+> - Added the power-domains properties to devices that already mainlined
+> - Now adds the entire PMGR tree. This turns off all devices we do not
+>    currently instantiate, and adds power-domains to those we do. The
+>    nodes were initially generated with [1] and manually tweaked. all
+>    the labels match the ADT labels (lowercased), which might be used
+>    by the bootloader in the future to conditionally disable nodes
+>    based on hardware configuration.
+> - Dropped apple,t8103-minipmgr, since I don't expect we will ever need
+>    to tell apart multiple PMGR instances within a SoC, and added
+>    apple,t6000-pmgr{-pwrstate} for the new SoCs.
+> - Driver now unconditionally enables auto-PM for all devices. This
+>    seems to be safe and should save power (it is not implemented for
+>    all devices; if not implemented, the bit just doesn't exist and is
+>    ignored).
+> - If an always-on device is not powered on at boot, turn it on and
+>    print a warning. This avoids the PM core complaining. We still
+>    want to know if/when this happens, but let's not outright fail.
+> - Other minor fixes (use PS names instead of offsets for messages,
+>    do not spuriously clear flag bits).
 > 
-> Data registers
+> On the way the parent node is handled: I've decided that these syscon
+> nodes will only ever contain pwrstates and nothing else. We now size
+> them based on the register range that contains pwrstate controls
+> (rounded up to page size). t6000 has 3 PMGRs and t6001 has 4, and
+> we shouldn't have to care about telling apart the multiple instances.
+> Anything else PMGR does that needs a driver will be handled by
+> entirely separate nodes in the future.
 > 
->> +
->> +  op-mode:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: I2S - 0 or DIT - 1 operation mode
+> Re t6001 and t6000 (and the rumored t6002), t6000 is basically a
+> cut-down version of t6001 (and t6002 is rumored to be two t6001
+> dies), down to the die floorplan, so I'm quite certain we won't need
+> t6001/2-specific compatibles for anything shared. The t6000 devicetree
+> will just #include the t6001 one and remove the missing devices.
+> Hence, everything for this SoC series is going to have compatibles
+> named apple,t6000-* (except the extra instances of some blocks in
+> t6001 which look like they may have differences; PMGR isn't one of
+> them, but some multimedia stuff might).
 > 
-> 0 - I2S, or 1 - DIT operation mode
+> [1] https://github.com/AsahiLinux/m1n1/blob/main/proxyclient/tools/pmgr_adt2dt.py
 > 
-
-I will change the description for 'reg' and 'op-mode'.
-
->> +    enum:
->> +      - 0
->> +      - 1
->> +
->> +  tdm-slots:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: number of channels over one serializer
->> +    maxItems: 1
+> Hector Martin (11):
+>    MAINTAINERS: Add PMGR power state files to ARM/APPLE MACHINE
+>    dt-bindings: i2c: apple,i2c: Add power-domains property
+>    dt-bindings: iommu: apple,dart: Add power-domains property
+>    dt-bindings: pinctrl: apple,pinctrl: Add power-domains property
+>    dt-bindings: interrupt-controller: apple,aic: Add power-domains
+>      property
+>    dt-bindings: power: Add apple,pmgr-pwrstate binding
+>    dt-bindings: arm: apple: Add apple,pmgr binding
+>    soc: apple: Add driver for Apple PMGR power state controls
+>    arm64: dts: apple: t8103: Add PMGR nodes
+>    tty: serial: samsung_tty: Support runtime PM
+>    arm64: dts: apple: t8103: Add UART2
 > 
-> and it has to be between 2 and 32, ignored in DIT mode (384 slots)
-> 
-
-Will add minimum and maximum. Should this be added as a conditional
-property when op-mode is 0 (I2S mode) and mark it as required?
-
->> +
->> +  serial-dir:
->> +    description:
->> +      A list of serializer configuration
->> +      Entry is indication for serializer pin direction
->> +      0 - Inactive, 1 - TX, 2 - RX
->> +      All AXR pins should be present in the array even if inactive
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    minItems: 1
->> +    maxItems: 25
->> +    items:
->> +      minimum: 0
->> +      maximum: 2
->> +      default: 0
-> 
-> There is no default as all pins must be accounted for.
-> 
-
-Okay. Will remove it.
-
->> +
->> +  tx-num-evt:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: configures WFIFO threshold
-> 
-> 0 disables the FIFO use
-> If the property is missing, it also disables the FIFO use.
-> 
-
-Will mention this in the description of both tx/rx-num-evt.
-
->> +    maxItems: 1
->> +
->> +  rx-num-evt:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: configures RFIFO threshold
->> +    maxItems: 1
-
->> +
->> +  interrupts:
->> +    anyOf:
->> +      - minItems: 1
->> +        items:
->> +          - description: TX FIFO interrupt
->> +          - description: RX FIFO interrupt
->> +      - items:
->> +          - description: common FIFO interrupt
-> 
-> These has nothing to do with FIFO, they are just transmit, receive and
-> common or combined
+>   .../bindings/arm/apple/apple,pmgr.yaml        |  134 ++
+>   .../devicetree/bindings/i2c/apple,i2c.yaml    |    3 +
+>   .../interrupt-controller/apple,aic.yaml       |    3 +
+>   .../devicetree/bindings/iommu/apple,dart.yaml |    3 +
+>   .../bindings/pinctrl/apple,pinctrl.yaml       |    3 +
+>   .../bindings/power/apple,pmgr-pwrstate.yaml   |   71 ++
+>   MAINTAINERS                                   |    3 +
+>   arch/arm64/boot/dts/apple/t8103-j274.dts      |    5 +
+>   arch/arm64/boot/dts/apple/t8103-pmgr.dtsi     | 1136 +++++++++++++++++
+>   arch/arm64/boot/dts/apple/t8103.dtsi          |   36 +
+>   drivers/soc/Kconfig                           |    1 +
+>   drivers/soc/Makefile                          |    1 +
+>   drivers/soc/apple/Kconfig                     |   21 +
+>   drivers/soc/apple/Makefile                    |    2 +
+>   drivers/soc/apple/apple-pmgr-pwrstate.c       |  317 +++++
+>   drivers/tty/serial/samsung_tty.c              |   93 +-
+>   16 files changed, 1798 insertions(+), 34 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+>   create mode 100644 Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
+>   create mode 100644 arch/arm64/boot/dts/apple/t8103-pmgr.dtsi
+>   create mode 100644 drivers/soc/apple/Kconfig
+>   create mode 100644 drivers/soc/apple/Makefile
+>   create mode 100644 drivers/soc/apple/apple-pmgr-pwrstate.c
 > 
 
-Okay.
+Applied everything except the samsung_tty change to asahi-soc/dt (DT 
+changes) and asahi-soc/pmgr (just the driver). Thanks everyone for the 
+reviews!
 
->> +
->> +  port:
->> +    description: connection for when McASP is used via graph card
->> +    type: object
-> 
-> I understand that it can be present under the mcasp node as it is part
-> of the graph card binding (or a card binding using graph).
-> I mean if a new card binding comes around then we need to document it
-> here as well?
-> 
+Krzysztof: feel free to take that patch through tty if you think it's in 
+good shape. I'm not sure how much power UART runtime-pm will save us, 
+but at least it's a decent test case, so it's probably worth having.
 
-Specific properties are not marked for the port. So it should not be an
-issue. Other alternative is to mark the additional properties as true
-but that is not preferred.
-
-Peter,
-Any other changes I should make?
-
->> +
-> 
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
