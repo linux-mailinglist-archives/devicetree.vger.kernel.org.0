@@ -2,108 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8885046B645
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:41:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE7EF46B64C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:44:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233176AbhLGIpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 03:45:04 -0500
-Received: from szxga01-in.huawei.com ([45.249.212.187]:32883 "EHLO
-        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229846AbhLGIpD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:45:03 -0500
-Received: from dggeme756-chm.china.huawei.com (unknown [172.30.72.54])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4J7Yg45PQMzcbg5;
-        Tue,  7 Dec 2021 16:41:20 +0800 (CST)
-Received: from [127.0.0.1] (10.67.102.125) by dggeme756-chm.china.huawei.com
- (10.3.19.102) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.20; Tue, 7
- Dec 2021 16:41:32 +0800
-Message-ID: <61AF1E3B.5060706@hisilicon.com>
-Date:   Tue, 7 Dec 2021 16:41:31 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+        id S232371AbhLGIrk convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 7 Dec 2021 03:47:40 -0500
+Received: from relay12.mail.gandi.net ([217.70.178.232]:39147 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229846AbhLGIrj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:47:39 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 9A91E20000C;
+        Tue,  7 Dec 2021 08:44:06 +0000 (UTC)
+Date:   Tue, 7 Dec 2021 09:44:05 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     <Tudor.Ambarus@microchip.com>
+Cc:     <richard@nod.at>, <vigneshr@ti.com>, <p.yadav@ti.com>,
+        <michael@walle.cc>, <linux-mtd@lists.infradead.org>,
+        <broonie@kernel.org>, <linux-spi@vger.kernel.org>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <thomas.petazzoni@bootlin.com>, <monstr@monstr.eu>,
+        <robh@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: mtd: spi-nor: Allow two CS per
+ device
+Message-ID: <20211207094405.6083b141@xps13>
+In-Reply-To: <e5d05d00-8823-f9a2-156e-ac0c268d705c@microchip.com>
+References: <20211206095921.33302-1-miquel.raynal@bootlin.com>
+        <20211206095921.33302-2-miquel.raynal@bootlin.com>
+        <e5d05d00-8823-f9a2-156e-ac0c268d705c@microchip.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-To:     David Heidelberg <david@ixit.cz>, Rob Herring <robh+dt@kernel.org>
-CC:     <~okias/devicetree@lists.sr.ht>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: hisilicon: update deprecated property name
-References: <20211029104211.29079-1-david@ixit.cz>
-In-Reply-To: <20211029104211.29079-1-david@ixit.cz>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.67.102.125]
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- dggeme756-chm.china.huawei.com (10.3.19.102)
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi David,
+Hello Tudor,
 
-On 2021/10/29 18:42, David Heidelberg wrote:
-> hisi,rst-syscon property name is deprecated, use hisilicon,rst-syscon
+Tudor.Ambarus@microchip.com wrote on Tue, 7 Dec 2021 07:16:11 +0000:
+
+> Hi, Miquel,
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 4 ++--
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 4 ++--
->  2 files changed, 4 insertions(+), 4 deletions(-)
+> On 12/6/21 11:59 AM, Miquel Raynal wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > 
+> > The Xilinx QSPI controller has two advanced modes which allow the
+> > controller to behave differently and consider two flashes as one single
+> > storage.
+> > 
+> > One of these two modes is quite complex to support from a binding point
+> > of view and is the dual parallel memories. In this mode, each byte of
+> > data is stored in both devices: the even bits in one, the odd bits in
+> > the other. The split is automatically handled by the QSPI controller and
+> > is transparent for the user.
+> > 
+> > The other mode is simpler to support, it is called dual stacked
+> > memories. The controller shares the same SPI bus but each of the devices
+> > contain half of the data. Once in this mode, the controller does not
+> > follow CS requests but instead internally wires the two CS levels with
+> > the value of the most significant address bit.  
 > 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> index 8bd6d7e8a474..3fd80f1f7c1e 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> @@ -345,7 +345,7 @@ crg_ctrl: crg_ctrl@fff35000 {
->  		crg_rst: crg_rst_controller {
->  			compatible = "hisilicon,hi3660-reset";
->  			#reset-cells = <2>;
-> -			hisi,rst-syscon = <&crg_ctrl>;
-> +			hisilicon,rst-syscon = <&crg_ctrl>;
->  		};
->  
->  
-> @@ -376,7 +376,7 @@ iomcu: iomcu@ffd7e000 {
->  
->  		iomcu_rst: reset {
->  			compatible = "hisilicon,hi3660-reset";
-> -			hisi,rst-syscon = <&iomcu>;
-> +			hisilicon,rst-syscon = <&iomcu>;
->  			#reset-cells = <2>;
->  		};
->  
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> index 636c8817df7e..9eac9a339654 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> @@ -155,7 +155,7 @@ crg_rst: crg_rst_controller {
->  			compatible = "hisilicon,hi3670-reset",
->  				     "hisilicon,hi3660-reset";
->  			#reset-cells = <2>;
-> -			hisi,rst-syscon = <&crg_ctrl>;
-> +			hisilicon,rst-syscon = <&crg_ctrl>;
->  		};
->  
->  		pctrl: pctrl@e8a09000 {
-> @@ -196,7 +196,7 @@ media2_crg: media2_crgctrl@e8900000 {
->  
->  		iomcu_rst: reset {
->  			compatible = "hisilicon,hi3660-reset";
-> -			hisi,rst-syscon = <&iomcu>;
-> +			hisilicon,rst-syscon = <&iomcu>;
->  			#reset-cells = <2>;
->  		};
->  
+> The stacked mode that you describe seems particular to a specific
+> vendor. There are multi die NOR flashes which do not require any
+> controller intervention, the logic is held at the flash level:
+> https://media-www.micron.com/-/media/client/global/documents/products/technical-note/nor-flash/tn2505_n25q_mt25q_stacked_devices.pdf?rev=7a23cc95238e46f7b22e2a9f6bc736b7
 > 
+> Can you point us to which kind of memories you're willing to add
+> support for? Some datasheets will be best.
 
-Thanks!
-But this may break the compatibility of old kernels with new dts files here.
-And we have discussed this at [1].
-That is why we did not update the dts file yet.
+Unfortunately I don't have any datasheets to propose, I think this mode
+must be seen like a controller abstraction of any device with several
+physical cs.
 
-[1]: https://www.spinics.net/lists/arm-kernel/msg887577.html
+The question: "should these properties be common to all devices" is
+still open, I don't have a strong opinion, whether we should make these
+Xilinx specific, or not. For now they are, but in the near future, it
+is not so sure (and my crystal ball is under maintenance ;) ).
 
-Best Regards,
-Wei
-
+Thanks,
+Miquèl
