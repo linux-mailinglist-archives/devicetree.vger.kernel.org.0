@@ -2,129 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83E6946C341
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 20:00:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5E9446C366
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 20:14:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240805AbhLGTE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 14:04:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53970 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231778AbhLGTE1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 14:04:27 -0500
-Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com [IPv6:2607:f8b0:4864:20::92a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F8DC061746
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 11:00:56 -0800 (PST)
-Received: by mail-ua1-x92a.google.com with SMTP id n6so358917uak.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 11:00:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XUW31wASrpej0TIE+YgQ7k+2lttAbs6gSJFGK6RBLPs=;
-        b=KotoaVRcY7w9F5qPYhg8uT5YU7vXM9Nap2d+E1Jj1bxEtOYIf9ruXQ2RAO0t2oh1Lx
-         w1kS4gQlcV9cDX0SNOXlr102ieZAo7dWvX6DG4HYvRvBteqXn+BEqg240XGceQWaoTVE
-         DCCPrFe/J/E5/oWvBD53iiUij4SwsK1uBtxB1d6Olh2xg74wAlivLavVKKltnXLE0SHT
-         1qUkOGdgwae3JKT9EC7iLcVsFbHX7Q3ZeyNwsEfuTFZYHsT6aDnQTw/qeOq7dzDcpSUo
-         dzAscOhwDrMuPGwa/hjXZ2imTvQxdzS7Q4UvbKsiAh2ygvo0cIqjg3oztvLwmNrGuAbe
-         TgDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XUW31wASrpej0TIE+YgQ7k+2lttAbs6gSJFGK6RBLPs=;
-        b=zjsoPlAdpB+cdlGHL7RUUxkaCdV57b+tiaTFxOo3fJaSulZcbKLQivFCV2WTKG7bQz
-         EOoQL18j2WI5+lw4uSx81Zs2sa6xcU+DJzYtnuewNSUahRurlz2DWyizsyZne1AKNJaw
-         Q6a3r0yLC2t+7QAB1ITbYmZBmDJq8Sf6DOfRmTOZd63FWG2YrUKXQdzs1Br/LQMoZIsa
-         9WVQqXQ6mThC6X9Yd5FyYpU66PZjNk9QTx7nt54U/oCmX4KnjBaH2g+DH8dvKlh8J6pS
-         bktMkrqW/7ZGDXHiIk9IiAW/DFxIvGO3flA9q2mhAKO1hOBFqQi2IOqPNZ57lRS6Z2Ui
-         x3Aw==
-X-Gm-Message-State: AOAM533iOBUC1bENbD2hocE7Xb3jp0PTRWJoFkg2DeifnYrrTyUH2dyj
-        2Bk9Nws1UH96JzIvTK0K6KItSQjHEvgztZEOVSVvEg==
-X-Google-Smtp-Source: ABdhPJzv2fTwd3ja4cBNvXF6S3n5jGC34sPus7OnJwNyYndFTy2ncbXaEU8Qldo0qciKxLX0Ic5B597EeLxHxyLu55o=
-X-Received: by 2002:a67:3382:: with SMTP id z124mr46939269vsz.57.1638903656074;
- Tue, 07 Dec 2021 11:00:56 -0800 (PST)
+        id S240893AbhLGTSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 14:18:06 -0500
+Received: from foss.arm.com ([217.140.110.172]:39472 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231634AbhLGTSF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 14:18:05 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EE3D51063;
+        Tue,  7 Dec 2021 11:14:34 -0800 (PST)
+Received: from [10.57.34.58] (unknown [10.57.34.58])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A99833F73B;
+        Tue,  7 Dec 2021 11:14:33 -0800 (PST)
+Message-ID: <428b2e70-0ab1-8acc-3cbd-4df131976e27@arm.com>
+Date:   Tue, 7 Dec 2021 19:14:29 +0000
 MIME-Version: 1.0
-References: <20211206153124.427102-1-virag.david003@gmail.com> <20211206153124.427102-6-virag.david003@gmail.com>
-In-Reply-To: <20211206153124.427102-6-virag.david003@gmail.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Tue, 7 Dec 2021 21:00:44 +0200
-Message-ID: <CAPLW+4kSDHUsvHo0njykTTRGqaAehRt6MXdJF73OzR47avOm9Q@mail.gmail.com>
-Subject: Re: [PATCH v4 5/7] clk: samsung: clk-pll: Add support for pll1417x
-To:     David Virag <virag.david003@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH 3/5] arm64: perf: Support new DT compatibles
+Content-Language: en-GB
+To:     Mark Rutland <mark.rutland@arm.com>
+Cc:     will@kernel.org, catalin.marinas@arm.com, robh+dt@kernel.org,
+        suzuki.poulose@arm.com, thierry.reding@gmail.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <cover.1638900542.git.robin.murphy@arm.com>
+ <579f301dbf5347d20cfdf49480b850cba82c1ca2.1638900542.git.robin.murphy@arm.com>
+ <Ya+rdqYBe7AyKoF6@FVFF77S0Q05N>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <Ya+rdqYBe7AyKoF6@FVFF77S0Q05N>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Dec 2021 at 17:32, David Virag <virag.david003@gmail.com> wrote:
->
-> pll1417x is used in Exynos7885 SoC for top-level integer PLLs.
-> It is similar enough to pll0822x that practically the same code can
-> handle both. The difference that's to be noted is that when defining a
-> pl1417x PLL, the "con" parameter of the PLL macro should be set to the
-> CON1 register instead of CON3, like this:
->
->     PLL(pll_1417x, CLK_FOUT_SHARED0_PLL, "fout_shared0_pll", "oscclk",
->         PLL_LOCKTIME_PLL_SHARED0, PLL_CON0_PLL_SHARED0,
->         NULL),
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Signed-off-by: David Virag <virag.david003@gmail.com>
-> ---
-> Changes in v2:
->   - Nothing
->
-> Changes in v3:
->   - Nothing
->
-> Changes in v4:
->   - Added R-b tag by Krzysztof Kozlowski
->
->  drivers/clk/samsung/clk-pll.c | 1 +
->  drivers/clk/samsung/clk-pll.h | 1 +
->  2 files changed, 2 insertions(+)
->
-> diff --git a/drivers/clk/samsung/clk-pll.c b/drivers/clk/samsung/clk-pll.c
-> index 83d1b03647db..70cdc87f714e 100644
-> --- a/drivers/clk/samsung/clk-pll.c
-> +++ b/drivers/clk/samsung/clk-pll.c
-> @@ -1476,6 +1476,7 @@ static void __init _samsung_clk_register_pll(struct samsung_clk_provider *ctx,
->                 else
->                         init.ops = &samsung_pll35xx_clk_ops;
->                 break;
-> +       case pll_1417x:
+On 2021-12-07 18:44, Mark Rutland wrote:
+> On Tue, Dec 07, 2021 at 06:20:41PM +0000, Robin Murphy wrote:
+>> Wire up the new DT compatibles so we can present appropriate
+>> PMU names to userspace for the latest and greatest CPUs.
+>>
+>> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+>> ---
+>>   arch/arm64/kernel/perf_event.c | 36 ++++++++++++++++++++++++++++++++++
+>>   1 file changed, 36 insertions(+)
+>>
+>> diff --git a/arch/arm64/kernel/perf_event.c b/arch/arm64/kernel/perf_event.c
+>> index 57720372da62..3fe4dcfc28d4 100644
+>> --- a/arch/arm64/kernel/perf_event.c
+>> +++ b/arch/arm64/kernel/perf_event.c
+>> @@ -1215,6 +1215,26 @@ static int armv8_a78_pmu_init(struct arm_pmu *cpu_pmu)
+>>   	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a78", NULL);
+>>   }
+>>   
+>> +static int armv9_a510_pmu_init(struct arm_pmu *cpu_pmu)
+>> +{
+>> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv9_cortex_a510", NULL);
+>> +}
+>> +
+>> +static int armv9_a710_pmu_init(struct arm_pmu *cpu_pmu)
+>> +{
+>> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv9_cortex_a710", NULL);
+>> +}
+>> +
+>> +static int armv8_x1_pmu_init(struct arm_pmu *cpu_pmu)
+>> +{
+>> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_x1", NULL);
+>> +}
+>> +
+>> +static int armv9_x2_pmu_init(struct arm_pmu *cpu_pmu)
+>> +{
+>> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv9_cortex_x2", NULL);
+>> +}
+> 
+> I wonder if it'd be better to do something like:
+> 
+> #define PMU_INIT_SIMPLE(name)						\
+> static int name##_pmu_init(struct arm_pmu *cpu_pmu)			\
+> {
+> 	return armv8_pmu_init_nogroups(cpu_pmu, #name, NULL);		\
+> }
+> 
+> PMU_INIT_SIMPLE(armv9_cortex_a510)
+> PMU_INIT_SIMPLE(armv9_cortex_a710)
+> PMU_INIT_SIMPLE(armv8_xortex_x1)
+> PMU_INIT_SIMPLE(armv9_xortex_x2)
+> 
+> ... and fix up the armv8_pmu_of_device_ids[] table to use the longer init names
+> that results in?
 
-I wonder why this switch have a bunch of fall through cases, but none
-marked with "fallthrough;" line, and both checkpatch and "make" turn
-blind eye on that? Anyway, I guess it's ok as is, just an observation.
+Indeed I did ponder doing almost exactly that, but at that point I'd 
+rather try refactoring a bit deeper to convert most of the arm_pmu init 
+business to pure data, so I figured I'd chuck in the simple tweak to 
+mitigate these new additions with minimal churn, then have a go at the 
+bigger change in its own right.
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Otherwise, looks good to me.
 
->         case pll_0822x:
->                 pll->enable_offs = PLL0822X_ENABLE_SHIFT;
->                 pll->lock_offs = PLL0822X_LOCK_STAT_SHIFT;
-> diff --git a/drivers/clk/samsung/clk-pll.h b/drivers/clk/samsung/clk-pll.h
-> index a739f2b7ae80..c83a20195f6d 100644
-> --- a/drivers/clk/samsung/clk-pll.h
-> +++ b/drivers/clk/samsung/clk-pll.h
-> @@ -32,6 +32,7 @@ enum samsung_pll_type {
->         pll_2550xx,
->         pll_2650x,
->         pll_2650xx,
-> +       pll_1417x,
->         pll_1450x,
->         pll_1451x,
->         pll_1452x,
-> --
-> 2.34.1
->
+Thanks!
+
+Robin.
+
+> 
+> Thanks,
+> Mark.
+> 
+>> +
+>>   static int armv8_e1_pmu_init(struct arm_pmu *cpu_pmu)
+>>   {
+>>   	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_neoverse_e1", NULL);
+>> @@ -1225,6 +1245,16 @@ static int armv8_n1_pmu_init(struct arm_pmu *cpu_pmu)
+>>   	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_neoverse_n1", NULL);
+>>   }
+>>   
+>> +static int armv9_n2_pmu_init(struct arm_pmu *cpu_pmu)
+>> +{
+>> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv9_neoverse_n2", NULL);
+>> +}
+>> +
+>> +static int armv8_v1_pmu_init(struct arm_pmu *cpu_pmu)
+>> +{
+>> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_neoverse_v1", NULL);
+>> +}
+>> +
+>>   static int armv8_thunder_pmu_init(struct arm_pmu *cpu_pmu)
+>>   {
+>>   	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cavium_thunder",
+>> @@ -1251,8 +1281,14 @@ static const struct of_device_id armv8_pmu_of_device_ids[] = {
+>>   	{.compatible = "arm,cortex-a76-pmu",	.data = armv8_a76_pmu_init},
+>>   	{.compatible = "arm,cortex-a77-pmu",	.data = armv8_a77_pmu_init},
+>>   	{.compatible = "arm,cortex-a78-pmu",	.data = armv8_a78_pmu_init},
+>> +	{.compatible = "arm,cortex-a510-pmu",	.data = armv9_a510_pmu_init},
+>> +	{.compatible = "arm,cortex-a710-pmu",	.data = armv9_a710_pmu_init},
+>> +	{.compatible = "arm,cortex-x1-pmu",	.data = armv8_x1_pmu_init},
+>> +	{.compatible = "arm,cortex-x2-pmu",	.data = armv9_x2_pmu_init},
+>>   	{.compatible = "arm,neoverse-e1-pmu",	.data = armv8_e1_pmu_init},
+>>   	{.compatible = "arm,neoverse-n1-pmu",	.data = armv8_n1_pmu_init},
+>> +	{.compatible = "arm,neoverse-n2-pmu",	.data = armv9_n2_pmu_init},
+>> +	{.compatible = "arm,neoverse-v1-pmu",	.data = armv8_v1_pmu_init},
+>>   	{.compatible = "cavium,thunder-pmu",	.data = armv8_thunder_pmu_init},
+>>   	{.compatible = "brcm,vulcan-pmu",	.data = armv8_vulcan_pmu_init},
+>>   	{},
+>> -- 
+>> 2.28.0.dirty
+>>
