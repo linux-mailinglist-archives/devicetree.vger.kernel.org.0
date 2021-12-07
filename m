@@ -2,205 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6FFB46BFA1
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 16:38:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8E4246BFB4
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 16:44:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239004AbhLGPmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 10:42:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33556 "EHLO
+        id S239142AbhLGPsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 10:48:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238999AbhLGPmC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 10:42:02 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 828AEC061574
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 07:38:32 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mucXu-0004Ow-J8; Tue, 07 Dec 2021 16:38:22 +0100
-Message-ID: <dbe7f7e488d92364ac2573175b0a262477a4d69a.camel@pengutronix.de>
-Subject: Re: [RFC V2 3/6] dt-bindings: media: nxp,imx8mq-vpu: Update the
- bindings for G2 support
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>, Adam Ford <aford173@gmail.com>
-Cc:     linux-media@vger.kernel.org, cphealy@gmail.com,
-        benjamin.gaignard@collabora.com, hverkuil@xs4all.nl,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-Date:   Tue, 07 Dec 2021 16:38:19 +0100
-In-Reply-To: <Ya96O6VXuIDdcM8p@robh.at.kernel.org>
-References: <20211207015446.1250854-1-aford173@gmail.com>
-         <20211207015446.1250854-4-aford173@gmail.com>
-         <Ya96O6VXuIDdcM8p@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S239139AbhLGPsF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 10:48:05 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AD71C061574
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 07:44:35 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id i12so11105402wmq.4
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 07:44:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=GDbc4h38L7Xqu5Gkd11iZTTBGBAs0PJyND5cTN2uSK4=;
+        b=JL1eItc2fbu2q5yOpYsMZm6ITJf67rhjlzwho9wAoBRtevh2CFW5DJdTp2MeeiyK6C
+         r2CQyQCk+0gqyEeZvrKZUKIe/HFOqo24k1FrVKvG2OQ9P/GLOVgzmgaQTikWfN6uoNQ6
+         s6se+7S04BjNNrw/FpvIZ2W1BRu85ARudjZifAh1mYBAESTJRqJEGFXfN7kzJ3cL4UaF
+         1iueBwY5Hqq4jHwbrv2H4IUGrBdmFmBOcpwYSfb5GAV5cIEpGZLMVc+oRVABkSfVGxF7
+         O0z/vuAGjeS7XivvcDvrlRGEsLjRBL2A4SvQs4oo0n4X+0rmjgVPVPapblSu8o2g7ImX
+         STkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=GDbc4h38L7Xqu5Gkd11iZTTBGBAs0PJyND5cTN2uSK4=;
+        b=220hnBSF2KLbiQJ8mpp21RW0qNAuD11rps4TLrpWYCHVQjhfZVz/j9k0CTljl1OEp3
+         zKvYyKaQ68eIUEtS90+YYZWr0xi4EcOXIdcDaZvdexAdaX5HKa9GNDihEFgRi/qFNsdf
+         0rQHqDaggQiBv+EICSeyS+LjqK13OCcLdumn49Bu+pJ1oyY3QIyTgNNdVjBs+LtTLjvU
+         7+/HKw1sa1N27E9NhiX++dZslupPC6Xcuiu9CIfW1NCTTqQwJbi4rVEqHGTg77/ifAus
+         QJFO2d0DtrF9IrJqZRK3AMNlVuX4JpuiU3SciYXu1HUpFQqNZdmDx6iZ6ItQp0LEXAMM
+         wYWg==
+X-Gm-Message-State: AOAM531TqBtJ87dYJmXLUeNsWPSsx1/QlNozP2crkID9RLXnlFOndTao
+        +tuFP/UbKLJ+R9BqOS3wL3TMAg==
+X-Google-Smtp-Source: ABdhPJw/ZnhwcGRzecvHHBydUJbGZHREqRCw4qtiHqzsKgHW4meOqCidqlbNDTAow1lOhlUS7zopjw==
+X-Received: by 2002:a05:600c:3c91:: with SMTP id bg17mr8111276wmb.80.1638891873696;
+        Tue, 07 Dec 2021 07:44:33 -0800 (PST)
+Received: from google.com ([2.31.167.18])
+        by smtp.gmail.com with ESMTPSA id s8sm86023wra.9.2021.12.07.07.44.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Dec 2021 07:44:33 -0800 (PST)
+Date:   Tue, 7 Dec 2021 15:44:31 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Justin Chen <justinpopo6@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH V4 RESEND 1/2] dt-bindings: watchdog: convert Broadcom's
+ WDT to the json-schema
+Message-ID: <Ya+BX1X7/YqmfCU8@google.com>
+References: <Ya3SU6U6YT6mlFu8@google.com>
+ <f5745952-9e3c-ed7a-cced-ce42d3da2276@gmail.com>
+ <Ya5ctkIU+jNzDfBc@google.com>
+ <f4af4971-7047-80c9-69ae-e6587979ecd5@roeck-us.net>
+ <e1fa1683-a0a6-8ee0-9da5-8e97dd9c820a@gmail.com>
+ <432664af-5660-aaad-bf75-81e4d61cb078@roeck-us.net>
+ <46a88b40-6d92-727c-7adc-5723921d08e3@gmail.com>
+ <20211206195115.GC3759192@roeck-us.net>
+ <Ya8xhUR5GbTxVE8w@google.com>
+ <a86d5998-8d84-7afe-e34e-a632aa890683@roeck-us.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a86d5998-8d84-7afe-e34e-a632aa890683@roeck-us.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Tue, 07 Dec 2021, Guenter Roeck wrote:
 
-Am Dienstag, dem 07.12.2021 um 09:14 -0600 schrieb Rob Herring:
-> On Mon, Dec 06, 2021 at 07:54:42PM -0600, Adam Ford wrote:
-> > From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> On 12/7/21 2:03 AM, Lee Jones wrote:
+> [ ... ]
+> > > It sounded to me like Lee wanted an immutable branch for that
 > > 
-> > Introducing the G2 hevc video decoder requires modifications of the bindings to allow
-> > one node per VPU.
+> > Not exactly, I said:
+> > 
+> >    "> Suppose we should take patch #2 via [Watchdog] as well.
+> > 
+> >     If that happens, I would like a PR to an immutable branch."
+> > 
+> > The alternative is that I take the patch and provide an immutable
+> > branch to you, which I am in a position to do.
+> > 
 > 
-> Why? It looks like the G2 part was already described. If you are 
-> changing this because you want 2 drivers for G1 and G2, then NAK. DT 
-> nodes and drivers don't have to be 1:1. This change is breaking 
-> compatibility.
-
-We can keep the compatibility by just keeping the code in the VPU
-driver to handle the G1 block as-is. The VPU block on the imx8mq is
-really three peripherals: the control block working together with the
-power domain controller to provide clocks and resets and the G1 and G2
-VPU cores.
-
+> I understand, only I am not in a position to take it since my tree
+> isn't the official watchdog-next tree, and it doesn't show up in -next.
+> If Wim takes it into the official watchdog-next tree or not would be
+> completely up to him.
 > 
-> > 
-> > VPUs share one hardware control block which is provided as a phandle on
-> > a syscon.
-> 
-> That's not really ideal. Is this really a separate block?
-> 
-This part of the commit message is not accurate anymore. The control
-block is in fact so separate from the VPU that we even added a new
-driver to handle those control blocks: the imx8m blk-ctrl driver. The
-VPU driver doesn't need handle this control block anymore, it's now
-handled via the power-domain abstraction.
+> I personally don't care if the bindings check is clean in my inofficial
+> tree, so maybe this is a non-issue.
 
-Regards,
-Lucas
+That doesn't help, sadly.
 
-> > Each node has now one reg and one interrupt.
-> > Add a compatible for G2 hardware block: nxp,imx8mq-vpu-g2.
-> > 
-> > To be compatible with older DT the driver is still capable to use the 'ctrl'
-> > reg-name even if it is deprecated now.
-> > 
-> > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> > index 762be3f96ce9..eaeba4ce262a 100644
-> > --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> > +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> > @@ -15,37 +15,36 @@ description:
-> >  
-> >  properties:
-> >    compatible:
-> > -    const: nxp,imx8mq-vpu
-> > +    oneOf:
-> > +      - const: nxp,imx8mq-vpu-g1
-> > +      - const: nxp,imx8mq-vpu-g2
-> >  
-> >    reg:
-> > -    maxItems: 3
-> > -
-> > -  reg-names:
-> > -    items:
-> > -      - const: g1
-> > -      - const: g2
-> > -      - const: ctrl
-> > +    maxItems: 1
-> >  
-> >    interrupts:
-> > -    maxItems: 2
-> > +    maxItems: 1
-> >  
-> >    interrupt-names:
-> > -    items:
-> > +    oneOf:
-> >        - const: g1
-> >        - const: g2
-> >  
-> >    clocks:
-> > -    maxItems: 3
-> > +    maxItems: 1
-> >  
-> >    clock-names:
-> > -    items:
-> > +    oneOf:
-> >        - const: g1
-> >        - const: g2
-> > -      - const: bus
-> >  
-> >    power-domains:
-> >      maxItems: 1
-> >  
-> > +  nxp,imx8m-vpu-ctrl:
-> > +    description: Specifies a phandle to syscon VPU hardware control block
-> > +    $ref: "/schemas/types.yaml#/definitions/phandle"
-> 
-> This is optional?
-> 
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -60,20 +59,27 @@ additionalProperties: false
-> >  examples:
-> >    - |
-> >          #include <dt-bindings/clock/imx8mq-clock.h>
-> > +        #include <dt-bindings/power/imx8mq-power.h>
-> >          #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >  
-> > -        vpu: video-codec@38300000 {
-> > +        vpu_g1: video-codec@38300000 {
-> >                  compatible = "nxp,imx8mq-vpu";
-> > -                reg = <0x38300000 0x10000>,
-> > -                      <0x38310000 0x10000>,
-> > -                      <0x38320000 0x10000>;
-> > -                reg-names = "g1", "g2", "ctrl";
-> > -                interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> > -                             <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> > -                interrupt-names = "g1", "g2";
-> > -                clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
-> > -                         <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
-> > -                         <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
-> > -                clock-names = "g1", "g2", "bus";
-> > -                power-domains = <&pgc_vpu>;
-> > +                reg = <0x38300000 0x10000>;
-> > +                reg-names "g1";
-> > +                interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> > +                interrupt-names = "g1";
-> > +                clocks = <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
-> > +                clock-names = "g1";
-> > +                power-domains = <&vpu_blk_ctrl IMX8MQ_VPUBLK_PD_G1>;
-> > +        };
-> > +
-> > +        vpu_g2: video-codec@38310000 {
-> > +                compatible = "nxp,imx8mq-vpu-g2";
-> > +                reg = <0x38300000 0x10000>;
-> > +                reg-names "g2";
-> > +                interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> > +                interrupt-names = "g2";
-> > +                clocks = <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
-> > +                clock-names = "g2";
-> > +                power-domains = <&vpu_blk_ctrl IMX8MQ_VPUBLK_PD_G2>;
-> >          };
-> > -- 
-> > 2.32.0
-> > 
-> > 
+I think the best course of action is for Wim to let me know when this
+patch makes it into his tree.  I'll take the MFD one at the same time
+and the two shall meet in -next.
 
+Honestly, this is all such a faff.
 
+Just to keep a script happy that 3 people care about.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
