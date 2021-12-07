@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E05C46B7A4
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 10:40:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFF5446B7A9
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 10:40:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbhLGJoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 04:44:04 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:60468
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229485AbhLGJoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 04:44:04 -0500
-Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
+        id S234104AbhLGJoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 04:44:18 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:36978
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229697AbhLGJoS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 04:44:18 -0500
+Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id A7A193F1FE
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 09:40:33 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 6B46D3F1E5
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 09:40:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638870033;
-        bh=JOMD5NNt/xfvXy1MKrXFMrSWfmb2GWyO1lXjWYdJbus=;
+        s=20210705; t=1638870047;
+        bh=7CSWGrt6fvofgfSt2AEImcKHomEx+COW1Egj1pWf4eg=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=mYMtLfECoJN/ZP0bqmodDZEsFXSydQ293lRL4+0s+IpN2oR3nNEK0NeUZLJ0jWjzR
-         vJgxAeN19QhWoM6VtvwEwht++C70mx9RUUl/zG0GCoOvzmecSjqe94pU+qmq/WOe5T
-         XMT8hIoIFy9bMERb+InRAr2gdcEFpl3/sF1+0/d8rsK2qlDQ7On19Pk9Sha7xZ521G
-         3VHhm9Sa5V+Zt5wZBjNaaVfnJ1cjEL/TNTtIpg2seKHkzcbm2ZNaEHmNm7RZqrR4Ee
-         ioghDoW1wf1uSc/uOtoenVpq+ly22Hkrov0YC78bNocYVXKqi66eteVA1dmQzU2FFf
-         w2/g0ddofZytg==
-Received: by mail-lj1-f200.google.com with SMTP id a7-20020a05651c210700b00219132ab503so4319114ljq.12
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 01:40:33 -0800 (PST)
+        b=bmPr9PwPzkoeaVa6M9pn2nIA8M/mNubG9X6I9XSTYnVNFYT90tMSo9T8DT6EmP5q1
+         vYmESsUWpWN3BQ1O7xa42dGQHVmHsxUz/aBOQ6bIpQe9M6V7p7nu4RRhbufeSsbJHs
+         U+90iVSsMLsIONU9KAGtyXNwah/UsxmtCMVAOZ9YxE1n/IoX3p1cveVxEUWidadW8R
+         IrvSXDlwFAwjFMCyYeGsEevHa77E262hUE/aAvBBR/aPfq5TfNBbNi/aerRviH56Pr
+         Om1vk+U0I2vmdYA6a6uNcKKWrptzCCnt1adXOAOM4BEaH5g2P9cz23z2Ff3hxiG1Rs
+         ynNW8NpFj6X6Q==
+Received: by mail-lj1-f197.google.com with SMTP id b3-20020a2ebc03000000b0021ffe75b14cso558966ljf.5
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 01:40:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=JOMD5NNt/xfvXy1MKrXFMrSWfmb2GWyO1lXjWYdJbus=;
-        b=sm060LLkyCvOxiIsBU4aIzArpi5tQx0zbnn5VstzMOMFUxpPtynwMCb9+8znOaEZ/q
-         MCm7GDX1o6qWNoz2SFZgUsN7FQBK8sUVNdLvil+hwgj8WReg1ooGuU12Sz06xX4vH+2S
-         rkNIO4zpmBq5ZTydIuQGEI2eF0gw+2bNP/0qx8p1L2ubb4QlOs0LRIlPsPvDXxaGfHLG
-         jqDiorTAkrcSLic01mk0d8eOCjDjI22h2uWbEElURc1DX3gIDDxDIVqdgbDFVlPOMpga
-         xe27xpAnrodqLBRHuiI1oFnXIR5lKWMd+cyzt0KXpjCIsjABEYCOKtNRdtRs2SKNIyja
-         9I9A==
-X-Gm-Message-State: AOAM531c67iI0ExxLyQtrSBQVkHqBfpSqnPWWFfKWnT3kzdSZFJMoWgh
-        J8tkWPf4XNyb0A0L7zf73YUPt/OSiN+IUvvY338i1ln5QTBNSNh/YRX2nIcpO+EEQW+zfv/Fp68
-        Ama8LEh0cQKG6ITf6bLUUcGPipzrtjS3bIRXnmmA=
-X-Received: by 2002:a05:6512:90c:: with SMTP id e12mr23777133lft.419.1638870032748;
-        Tue, 07 Dec 2021 01:40:32 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwTQ2k0wWW/H+W08cFK0E4G1YScO3MV5cie2qRunh/w3gGjwnDm4UaCRWd67b0Qs0mfxg2tFQ==
-X-Received: by 2002:a05:6512:90c:: with SMTP id e12mr23777113lft.419.1638870032568;
-        Tue, 07 Dec 2021 01:40:32 -0800 (PST)
+        bh=7CSWGrt6fvofgfSt2AEImcKHomEx+COW1Egj1pWf4eg=;
+        b=PCQqxA6CXcKex99BSag2prqIVdjzzR1WoN04epGoWjTNx9Lpo8S7ZbeBaNVz5NiCY1
+         DMgJuOb8Od/rqiUivLhW5YFu8+mNrhdxd13k3wmYwIRo1dZZYdOO9SAX2cYR0fx1ZkgK
+         ElOJbJ8a4MOAEp+cKStdpes6ycXCosnDi+kDGd+YeAZtMjrlTjKJZB5Ao/Tnf4OCvnXG
+         10BCpA7CGaPt2DAygVDizLP/LMo+5WsA4BBVQ66BwbhXMsrlPLHFo7nhMp/7DKnZ1dCT
+         0IMSl1po6OffEzhvHU5cbKxGCCO9z1iuC7XQemb5IGJ13ZXRhRMDyWBBY5Kcwlc2NO8J
+         29eA==
+X-Gm-Message-State: AOAM530VX6wKshQj4m6ZG626dw+mtk+0NhE73zk+HzYYZkH0i+1G6W0F
+        Ez4SFX8oO2exqd3x0w9fv/+SXMmA/BYAl+xLE99k08OtfhaLleLjf3UJYx6EAOWu4kgIzkcFmad
+        uK9veVQnDnfFaprW5tb0fiEC84RbPM9G9hj06trA=
+X-Received: by 2002:a2e:b742:: with SMTP id k2mr42256382ljo.107.1638870046674;
+        Tue, 07 Dec 2021 01:40:46 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyRdcrfzbvimMwkeuVfULbIfxDL3rJ1tOLR+96tOIKmVrzRmCTfgrfu0jng1eGwC4aY0+onTQ==
+X-Received: by 2002:a2e:b742:: with SMTP id k2mr42256364ljo.107.1638870046485;
+        Tue, 07 Dec 2021 01:40:46 -0800 (PST)
 Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id f13sm1613936lfe.297.2021.12.07.01.40.31
+        by smtp.gmail.com with ESMTPSA id s4sm1594356ljp.73.2021.12.07.01.40.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Dec 2021 01:40:32 -0800 (PST)
-Message-ID: <5ba8fb6f-fc8b-cee4-6a10-38d64545af42@canonical.com>
-Date:   Tue, 7 Dec 2021 10:40:31 +0100
+        Tue, 07 Dec 2021 01:40:46 -0800 (PST)
+Message-ID: <8dae2a2d-4f48-ab31-7a12-292167db1ac9@canonical.com>
+Date:   Tue, 7 Dec 2021 10:40:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.1
-Subject: Re: [PATCH v2 1/4] dt-bindings: mmc: exynos-dw-mshc: Add support for
- ARTPEC-8
+Subject: Re: [PATCH v2 2/4] mmc: dw_mmc-exynos: Add support for ARTPEC-8
 Content-Language: en-US
 To:     =?UTF-8?Q?M=c3=a5rten_Lindahl?= <marten.lindahl@axis.com>,
         Ulf Hansson <ulf.hansson@linaro.org>,
@@ -71,9 +70,9 @@ Cc:     Doug Anderson <dianders@google.com>, kernel@axis.com,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org
 References: <20211206142929.26729-1-marten.lindahl@axis.com>
- <20211206142929.26729-2-marten.lindahl@axis.com>
+ <20211206142929.26729-3-marten.lindahl@axis.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211206142929.26729-2-marten.lindahl@axis.com>
+In-Reply-To: <20211206142929.26729-3-marten.lindahl@axis.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -85,7 +84,8 @@ On 06/12/2021 15:29, Mårten Lindahl wrote:
 > Exynos 7 version v2.70a. The main differences from Exynos 7 is that it
 > does not support HS400 and has extended data read timeout.
 > 
-> Add compatibility string "axis,artpec8-dw-mshc" for ARTPEC-8.
+> This patch adds compatibility string "axis,artpec8-dw-mshc" for
+> ARTPEC-8, and DW_MCI_TYPE_ARTPEC8 is added to the dw_mci_exynos_type.
 > 
 > Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
 > ---
@@ -93,26 +93,13 @@ On 06/12/2021 15:29, Mårten Lindahl wrote:
 > v2:
 >  - Change compatible string vendor prefix
 > 
->  Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt b/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
-> index 0419a63f73a0..753e9d7d8956 100644
-> --- a/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
-> +++ b/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
-> @@ -22,6 +22,8 @@ Required Properties:
->  	  specific extensions.
->  	- "samsung,exynos7-dw-mshc-smu": for controllers with Samsung Exynos7
->  	  specific extensions having an SMU.
-> +	- "axis,artpec8-dw-mshc": for controllers with ARTPEC-8 specific
-> +	  extensions.
->  
->  * samsung,dw-mshc-ciu-div: Specifies the divider value for the card interface
->    unit (ciu) clock. This property is applicable only for Exynos5 SoC's and
+>  drivers/mmc/host/dw_mmc-exynos.c | 47 ++++++++++++++++++++++++--------
+>  1 file changed, 36 insertions(+), 11 deletions(-)
 > 
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
 
 Best regards,
 Krzysztof
