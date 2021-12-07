@@ -2,107 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 015C446B18F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 04:41:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10A3946B1C7
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 05:17:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234310AbhLGDp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 22:45:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35154 "EHLO
+        id S234728AbhLGEVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 23:21:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234282AbhLGDp0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 22:45:26 -0500
-Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4279BC061746;
-        Mon,  6 Dec 2021 19:41:57 -0800 (PST)
-Received: by mail-ua1-x92e.google.com with SMTP id l24so23994291uak.2;
-        Mon, 06 Dec 2021 19:41:57 -0800 (PST)
+        with ESMTP id S229817AbhLGEVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 23:21:14 -0500
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0958C061746;
+        Mon,  6 Dec 2021 20:17:44 -0800 (PST)
+Received: by mail-qk1-x733.google.com with SMTP id p4so13475280qkm.7;
+        Mon, 06 Dec 2021 20:17:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+WjCLq5iyPbhZoOVbo+nvWb9Wp/JdlLnIPR31C337C8=;
-        b=mZiJ1JWBFc1OWU2CphwdToWib2Fs7VeoMvRyd6OGAUdTYE7JuVX3y18pFnbL9d0SYR
-         qnkGAcFy4HWByFCmfen3y9B+gsUBd2Z4vpiAY8cExnT/X6456PRBzYpHz5lzE8xWOBLE
-         /Opn0hwl+/WEjMpD3cFa2zhWfG+2VM8IZAoAwDwKw4uis+328EKo2LCeWhkZKeKEAT9k
-         n3UXrAemi7nOM0I+lBZxbPlnpXZXWks7fOWw21TwqOUg6+DtBOdhLAZp7S1avVtceNWO
-         6hIZiEiJ4irNSwTkZ0WAOuxz06b1U7vebIqVBU87ZImLwZxD31NuI/0Q7jK48HpCxsG6
-         jbJQ==
+        h=from:to:cc:subject:date:message-id;
+        bh=YRl2ZXrqWQRWseDojt6V5smgQ3LgIDm++24PeexJCQM=;
+        b=Lw5uwm0Lkb+Ifzjbxr5aM1cC/nbRYHM4j/CCs7VwOAHgOqMDypStXHTHT3tanP1i6Q
+         oR8Sn+0/a83VNIuZhKhSN/i4uU49bRc4lR7sE6LWO5QCzaugNqvVbJ0YAjoD2ab64nav
+         WnsmNtu6aV8Ma5bj+dpFynKq0Fg1xEpWfD/O62/AcIldfkcN3vfRoLG7A1l07KQaD37d
+         MdpfM0L/IDRcpHkRMdHk/jshanfyqMdlACyABb4xAbOpL3+9NOfWyUqIzJzOMMOA0NZq
+         9kfmChFbF43pDhg+BeYLLzkp429yj0hMW0IviSXKqlCTUI6024bSZtnt4UP47iYZyxli
+         etQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+WjCLq5iyPbhZoOVbo+nvWb9Wp/JdlLnIPR31C337C8=;
-        b=5b7/eFbJEOeL9ZNIuyZyAlpO52UWbGZLaf1bg2jfeQ4GVl9evTE4oJzyD9m1cSI9P/
-         DVPyXnB3/68ID+cisJSTq0toGmcK37hgecZUF+s5nTmSNshi7xyjIvERRCANsf5p2Cef
-         yJcC3400mMfT63OzCTqBEdCLqzU8xaCSeUwhc4bGPHFTFKW2b3+ptNWmWBzWiIc0kMa9
-         vZG8GfYGc42M+t896RoqpVEKnJpiKiqgug+D23TQaG32kECWATHpfW8SP/GLfqEUa5hf
-         WwNhY9eNgtRg13me9cjXzUQuEuMd15/WNRvBlpPMtNKPGOv6A2JBl3sGakYnONJo0rIu
-         Ki8w==
-X-Gm-Message-State: AOAM532t6a257QWxIXJkyZ7p6GAsPVSWe/vD+jR6CfEsncfkwhk3ZcV8
-        X+LhJLOcsUU2w0747qhtduReT7g/GebIhBzAkg0d1blr0+c=
-X-Google-Smtp-Source: ABdhPJx6RQZ3n6olyV3sCz9AbKmYBKhNAk0yZ773fOAPjf8R3q9XrHTi0PcC2P6/Zcqz0XN+NMNLS7cMSGYejK/S3F0=
-X-Received: by 2002:ab0:6813:: with SMTP id z19mr46872879uar.28.1638848516162;
- Mon, 06 Dec 2021 19:41:56 -0800 (PST)
-MIME-Version: 1.0
-References: <20211206182616.2089677-1-f.fainelli@gmail.com> <20211206182616.2089677-6-f.fainelli@gmail.com>
-In-Reply-To: <20211206182616.2089677-6-f.fainelli@gmail.com>
-From:   Gregory Fong <gregory.0xf0@gmail.com>
-Date:   Mon, 6 Dec 2021 19:41:29 -0800
-Message-ID: <CADtm3G5Sh5sFhq7ye=aJbzd0v_FiqOPt_RAE3v_qWFQ+jH5bEQ@mail.gmail.com>
-Subject: Re: [PATCH v2 05/14] dt-bindings: gpio: Convert Broadcom STB GPIO to YAML
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Markus Mayer <mmayer@broadcom.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Al Cooper <alcooperx@gmail.com>,
-        Doug Berger <opendmb@gmail.com>,
-        "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" 
-        <linux-ide@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:MULTIMEDIA CARD (MMC), SECURE DIGITAL (SD) AND..." 
-        <linux-mmc@vger.kernel.org>,
-        "open list:PWM SUBSYSTEM" <linux-pwm@vger.kernel.org>,
-        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
-        <linux-crypto@vger.kernel.org>,
-        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
-        <linux-rtc@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=YRl2ZXrqWQRWseDojt6V5smgQ3LgIDm++24PeexJCQM=;
+        b=NlLwUj7agWjHcxpEteYSgHhkFc897giz3EUc25A5+pHIj3TWAvs2L51C0oW0nCAfqB
+         Y4yfnsh2xZmVmpVRqh4yZv2+H8Dh+vpo2D9ecqZttBeDo2Od9b/QsEHfuJSy2FMLYQd/
+         buK94z3n80v0+/pULO7K966gRE53J3myUVlCDOFimW4KA5CX5f8jJFwMNOaL+ohqraVJ
+         MJXJzrbsa4ZoKJ1B+H9QeaZFmfXbmwNQd0cTh3qNsWxvLYEGpG4vuEJ2okqj+VYdMjVD
+         85I8uP+0upvHWgiYBZ5VN7YYiUfEQ7RgiODBlkwe4yfCEAybD2p/l6jkOmWkXQBUgbPk
+         MTWQ==
+X-Gm-Message-State: AOAM531VVw3us4yuxQ+vgT29CqiRvgZ9SJzZcnva4qVd9mBXROHhcyw7
+        4L0ZliM7jcXBy03Hd0jcae0=
+X-Google-Smtp-Source: ABdhPJyRKYxCqpH8fKePy1V8UM58DluAKxvPYfONURZjgXjq3d3mJCYdAVpIburVMndIEQIaQ8DzWw==
+X-Received: by 2002:a05:620a:4587:: with SMTP id bp7mr37484919qkb.105.1638850663775;
+        Mon, 06 Dec 2021 20:17:43 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id q12sm8745004qtx.16.2021.12.06.20.17.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 06 Dec 2021 20:17:43 -0800 (PST)
+From:   Wells Lu <wellslutw@gmail.com>
+To:     linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     wells.lu@sunplus.com, dvorkin@tibbo.com,
+        Wells Lu <wellslutw@gmail.com>
+Subject: [PATCH v3 0/2] This is a patch series for pinctrl driver of Sunplus SP7021 SoC.
+Date:   Tue,  7 Dec 2021 12:17:43 +0800
+Message-Id: <1638850665-9474-1-git-send-email-wellslutw@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 6, 2021 at 10:26 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
->
-> Convert the Broadcom STB GPIO Device Tree binding to YAML to help with
-> validation.
->
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control
+applications.
 
-Acked-by: Gregory Fong <gregory.0xf0@gmail.com>
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
+
+Wells Lu (2):
+  dt-bindings: pinctrl: Add dt-bindings for Sunplus SP7021
+  pinctrl: Add driver for Sunplus SP7021
+
+ .../bindings/pinctrl/sunplus,sp7021-pinctrl.yaml   |  293 ++++++
+ MAINTAINERS                                        |   10 +
+ drivers/pinctrl/Kconfig                            |    1 +
+ drivers/pinctrl/Makefile                           |    1 +
+ drivers/pinctrl/sunplus/Kconfig                    |   21 +
+ drivers/pinctrl/sunplus/Makefile                   |    5 +
+ drivers/pinctrl/sunplus/sppctl.c                   | 1074 ++++++++++++++++++++
+ drivers/pinctrl/sunplus/sppctl.h                   |  154 +++
+ drivers/pinctrl/sunplus/sppctl_sp7021.c            |  536 ++++++++++
+ include/dt-bindings/pinctrl/sppctl-sp7021.h        |  173 ++++
+ include/dt-bindings/pinctrl/sppctl.h               |   40 +
+ 11 files changed, 2308 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/sunplus,sp7021-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/sunplus/Kconfig
+ create mode 100644 drivers/pinctrl/sunplus/Makefile
+ create mode 100644 drivers/pinctrl/sunplus/sppctl.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl.h
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_sp7021.c
+ create mode 100644 include/dt-bindings/pinctrl/sppctl-sp7021.h
+ create mode 100644 include/dt-bindings/pinctrl/sppctl.h
+
+-- 
+2.7.4
+
