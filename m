@@ -2,100 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C4B546BD2E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:03:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53EE046BD31
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:04:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237550AbhLGOHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 09:07:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38356 "EHLO
+        id S237514AbhLGOHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 09:07:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237514AbhLGOHJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 09:07:09 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A95A3C061574
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 06:03:38 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id y13so57282311edd.13
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 06:03:38 -0800 (PST)
+        with ESMTP id S237516AbhLGOHh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 09:07:37 -0500
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D689C061574
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 06:04:07 -0800 (PST)
+Received: by mail-pg1-x52c.google.com with SMTP id g16so5512926pgi.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 06:04:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4QaFJr9Kj7W1E5J0O0glmrUNqwId/EqvnwB8+dCfYBU=;
-        b=QrCmwezXgDffYu3BYDFeZy4MmR2Bcvm/db80gHwidFga+NwxX3y+rcY846l2UQdA9F
-         uQR0l0gkJConYz8JyaPYkdCoeqml2PcMm+HRWvsJ5OWJhLEjTKwnQ1993B2TwqJaIUJC
-         qVgrZQQF08nhrZuXpSeha15CpfCFQetTqqcHCEzMRpX+ftTjhR+0igzGere/eweQRSp7
-         0h2rssfxGJvXtnkAusZ6KIle3uX41hQL5XG6+dLl+EiIukCFtIxUGd7JROI1RBLDef55
-         PC2ei026in6pMihQjWFpxRsYT07bIokDyl5DnDr9XlIOUrBe/y4SjW5nROtUmeJX/moX
-         /W6w==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=uUMLiNh/bSzrS43lAqDC9c682in0XTRAfDruWLqNFmE=;
+        b=SYUTMmCU+Y2f8WNZJs4lt3PIdlJ9b+cI4l1BsoFipX8rC9deEq400ZLQP0o8ZiA4vC
+         hKNpJJ9OeBi5IqdsdF2L3gNcuSfkmk/vaVaWOhPduRjd8ANsGLjvnskJhbhAQC8IBl2y
+         kUOMXpo0+Lp1CsRgzK/5QOqS/Xx9lga/AWXTrQmyTk/RpGKTpHsmZHloi4fP57yD5J40
+         DzFj2I1uhLrAjBNereixnEIGie+pO80UHgC+mxrauCrjcssw6SX9y7njLk0YjPNXeUdM
+         QvXQz6tExD67LXaPKuvYgDjSSknxpIla0+3mIEB9HD9h7lA+l8EDbFSfMbSG+/8eWeF5
+         B5Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=4QaFJr9Kj7W1E5J0O0glmrUNqwId/EqvnwB8+dCfYBU=;
-        b=Dbq/sZHvqZ5YhbhK4G2pLg4U5bKJyGbp+PXem4HwlUuqFBF3XK+gKeAAcJo38/oFBn
-         x3WNOk6EinDs+IF8RAA6AZco0nSZCgHfiwKNUMoFRGoVT7nNECv4gGRznr7gXrmNVZsJ
-         c6dkDIS6ChjLh0ahcRIGIWG15wAIDUyPPq6s/h2J2p3sQGpCnSERptMtiQFOC3+gOCCO
-         b0OCYddKEY28V5iyewxu1qN5WtUtd8rzTQyUbcdBeJUUmGX2QokQKaFthb04Phsq9qQH
-         YdN6JB0rs7UsioZ9i69VD1KmMqUn5D2XErWJMhIm2hPiUVyKDjNOAesOviErfwjcxk10
-         RZTw==
-X-Gm-Message-State: AOAM531PdpxVWHzaP+NX3u3yQXxq0j6QvXEgFdgcmWkGf4OuHizfkaUx
-        TC8ayIV1bXk/NiJVxTQsZbKIJw==
-X-Google-Smtp-Source: ABdhPJzbnSFGpYaz1Y0yAN5niqLJAa8lYqVYXK9DdlHCE5yqsGkSEplPM3PLY6SPPooXRSpN84dB7Q==
-X-Received: by 2002:a17:906:ae48:: with SMTP id lf8mr53950076ejb.451.1638885816143;
-        Tue, 07 Dec 2021 06:03:36 -0800 (PST)
-Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id sg17sm8644501ejc.72.2021.12.07.06.03.35
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=uUMLiNh/bSzrS43lAqDC9c682in0XTRAfDruWLqNFmE=;
+        b=LH+5X5kI73l6qAQpL7IbEs9g8ZEtfej51Nf6DW1BMEHWGjNV4FV2TL+eOKYGZ2d3lM
+         uiWEEyCGtXfZdoNxCf/NdnPVp/O1NGFjdP0vE2Zskm1g5YxvZtGvZayH/mFu9+eh24EA
+         tL7/6U5jkiIvUnxGMNnAef2GbCvCR+SK1k53xuwZLiwI3Z9uFtRxHuJUuWI+qDbBaq3b
+         Ioom0fMYQEuI5ubQtSAsl/fxzMD8lweOPUzORL66lSGVjvXssQS2uJR82UR/grHbEn1E
+         hb1a/1G4jQw3HKKtcjXJZdCsV+nCm/KWYz2VRJh9MS82R5NlEgC5d/bIUkZXUA3Eo6Mg
+         3kRg==
+X-Gm-Message-State: AOAM531pt7XEKVvJSfEbTyDTfnZ9tsVU9jmT63fNiXs15qB5WP160Twp
+        MZ8kLJUqmL6fObsunMRieXFtRA==
+X-Google-Smtp-Source: ABdhPJyHIlrdgCmOSeODZKEXgmwArMZ8OyS/M4e8Py4QlUyrwOAc9DhuSEAI/jN+lC7Z7UQ0FTBstQ==
+X-Received: by 2002:a63:110:: with SMTP id 16mr23644069pgb.498.1638885846603;
+        Tue, 07 Dec 2021 06:04:06 -0800 (PST)
+Received: from leoy-ThinkPad-X240s ([2602:feda:dd4:2c9c:bf78:9bf6:6aab:c7a8])
+        by smtp.gmail.com with ESMTPSA id a18sm15425723pfn.185.2021.12.07.06.04.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 06:03:35 -0800 (PST)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>
-Cc:     Nick Desaulniers <ndesaulniers@google.com>,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Subject: [PATCH] kbuild: Report enabled nodes with duplicated address
-Date:   Tue,  7 Dec 2021 16:03:34 +0200
-Message-Id: <20211207140334.10461-1-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.30.2
+        Tue, 07 Dec 2021 06:04:06 -0800 (PST)
+Date:   Tue, 7 Dec 2021 22:04:01 +0800
+From:   Leo Yan <leo.yan@linaro.org>
+To:     John Garry <john.garry@huawei.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, uchida.jun@socionext.com,
+        will@kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v2 3/3] perf/smmuv3: Synthesize IIDR from CoreSight ID
+ registers
+Message-ID: <20211207140401.GA273781@leoy-ThinkPad-X240s>
+References: <20211117144844.241072-1-jean-philippe@linaro.org>
+ <20211117144844.241072-4-jean-philippe@linaro.org>
+ <e60b15db-4e52-b5a6-1b17-203d250f1e65@huawei.com>
+ <766ac58a-ffb7-f673-709b-0f0f740f3cfd@arm.com>
+ <53f868a8-c7ae-b69d-b061-bb0a7dc98f8a@huawei.com>
+ <d60110c4-c179-45d6-512d-3d058caac974@arm.com>
+ <20211207132007.GB255238@leoy-ThinkPad-X240s>
+ <675bfd78-69ac-608f-1303-e86b90a83f72@arm.com>
+ <20211207135904.GH42658@leoy-ThinkPad-X240s>
+ <2ece685e-84fb-cec2-522e-70680bcf9370@huawei.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2ece685e-84fb-cec2-522e-70680bcf9370@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Duplicated unit address is a normal case, as long as no more than one
-node using that address is enabled. Having duplicated addresses is
-already allowed by '-Wno-unique_unit_address' in DTC_FLAGS. But two
-simultaneously enabled nodes sharing the same address is usually
-incorrect. Add '-Wunique_unit_address_if_enabled' flag to report
-warnings for such case when doing "make dtbs_check".
+On Tue, Dec 07, 2021 at 02:00:35PM +0000, John Garry wrote:
+> On 07/12/2021 13:59, Leo Yan wrote:
+> > > Whether other implementers might retroactively define "equivalent" IIDR
+> > > values for their existing implementations in a way we could potentially
+> > > quirk in the driver is an orthogonal question.
+> > Agreed, it makes sense that supports the standard IP modules in
+> > the mainline kernel at this stage.
+> > 
+> > Thanks for explanation.
+> 
+> Leo, if you really want this to work on D06, I could also hack some
+> out-of-tree perf tool patches for you. I'm not sure if you're interested in
+> that. Let me know.
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-Reported-by: Rob Herring <robh@kernel.org>
-Suggested-by: Rob Herring <robh@kernel.org>
----
-NOTE: After applying this patch, a lot of warnings appear on "make
-dtbs_check". I'm not completely sure if it's ok, so feel free to Nack.
+No, please don't spend time on this.  I just use D06 platform to
+verify SMMUv3 relevant patches, but have no requirement for profiling
+SMMUv3 on it.  Anyway, thanks a lot!
 
- scripts/Makefile.lib | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index ce6142238835..2f00c996d2e3 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -315,7 +315,8 @@ DTC_FLAGS += -Wno-unit_address_vs_reg \
- 	-Wno-alias_paths \
- 	-Wno-graph_child_address \
- 	-Wno-simple_bus_reg \
--	-Wno-unique_unit_address
-+	-Wno-unique_unit_address \
-+	-Wunique_unit_address_if_enabled
- endif
- 
- ifneq ($(findstring 2,$(KBUILD_EXTRA_WARN)),)
--- 
-2.30.2
-
+Leo
