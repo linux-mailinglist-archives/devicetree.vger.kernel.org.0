@@ -2,29 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E366246C297
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 19:20:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86F1646C299
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 19:20:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231712AbhLGSYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 13:24:24 -0500
-Received: from foss.arm.com ([217.140.110.172]:38364 "EHLO foss.arm.com"
+        id S236089AbhLGSY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 13:24:26 -0500
+Received: from foss.arm.com ([217.140.110.172]:38374 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236089AbhLGSYX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Dec 2021 13:24:23 -0500
+        id S236110AbhLGSYY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 13:24:24 -0500
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6DEC81476;
-        Tue,  7 Dec 2021 10:20:52 -0800 (PST)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BD21011FB;
+        Tue,  7 Dec 2021 10:20:53 -0800 (PST)
 Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 503C73F73B;
-        Tue,  7 Dec 2021 10:20:51 -0800 (PST)
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id A0FAA3F73B;
+        Tue,  7 Dec 2021 10:20:52 -0800 (PST)
 From:   Robin Murphy <robin.murphy@arm.com>
 To:     will@kernel.org, catalin.marinas@arm.com, robh+dt@kernel.org
 Cc:     mark.rutland@arm.com, suzuki.poulose@arm.com,
         thierry.reding@gmail.com, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 3/5] arm64: perf: Support new DT compatibles
-Date:   Tue,  7 Dec 2021 18:20:41 +0000
-Message-Id: <579f301dbf5347d20cfdf49480b850cba82c1ca2.1638900542.git.robin.murphy@arm.com>
+Subject: [PATCH 4/5] dt-bindings: perf: Convert Arm DSU to schema
+Date:   Tue,  7 Dec 2021 18:20:42 +0000
+Message-Id: <9530f441a62c72c5a22a7b555ea42bbcd3b145a1.1638900542.git.robin.murphy@arm.com>
 X-Mailer: git-send-email 2.28.0.dirty
 In-Reply-To: <cover.1638900542.git.robin.murphy@arm.com>
 References: <cover.1638900542.git.robin.murphy@arm.com>
@@ -34,77 +34,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Wire up the new DT compatibles so we can present appropriate
-PMU names to userspace for the latest and greatest CPUs.
+Convert the DSU binding to schema, as one does.
 
 Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 ---
- arch/arm64/kernel/perf_event.c | 36 ++++++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+ .../devicetree/bindings/arm/arm-dsu-pmu.txt   | 27 ------------
+ .../devicetree/bindings/perf/arm,dsu-pmu.yaml | 41 +++++++++++++++++++
+ 2 files changed, 41 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
+ create mode 100644 Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
 
-diff --git a/arch/arm64/kernel/perf_event.c b/arch/arm64/kernel/perf_event.c
-index 57720372da62..3fe4dcfc28d4 100644
---- a/arch/arm64/kernel/perf_event.c
-+++ b/arch/arm64/kernel/perf_event.c
-@@ -1215,6 +1215,26 @@ static int armv8_a78_pmu_init(struct arm_pmu *cpu_pmu)
- 	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a78", NULL);
- }
- 
-+static int armv9_a510_pmu_init(struct arm_pmu *cpu_pmu)
-+{
-+	return armv8_pmu_init_nogroups(cpu_pmu, "armv9_cortex_a510", NULL);
-+}
+diff --git a/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt b/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
+deleted file mode 100644
+index 6efabba530f1..000000000000
+--- a/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-* ARM DynamIQ Shared Unit (DSU) Performance Monitor Unit (PMU)
+-
+-ARM DyanmIQ Shared Unit (DSU) integrates one or more CPU cores
+-with a shared L3 memory system, control logic and external interfaces to
+-form a multicore cluster. The PMU enables to gather various statistics on
+-the operations of the DSU. The PMU provides independent 32bit counters that
+-can count any of the supported events, along with a 64bit cycle counter.
+-The PMU is accessed via CPU system registers and has no MMIO component.
+-
+-** DSU PMU required properties:
+-
+-- compatible	: should be one of :
+-
+-		"arm,dsu-pmu"
+-
+-- interrupts	: Exactly 1 SPI must be listed.
+-
+-- cpus		: List of phandles for the CPUs connected to this DSU instance.
+-
+-
+-** Example:
+-
+-dsu-pmu-0 {
+-	compatible = "arm,dsu-pmu";
+-	interrupts = <GIC_SPI 02 IRQ_TYPE_LEVEL_HIGH>;
+-	cpus = <&cpu_0>, <&cpu_1>;
+-};
+diff --git a/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
+new file mode 100644
+index 000000000000..b78b6b0fce66
+--- /dev/null
++++ b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright 2021 Arm Ltd.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/perf/arm,dsu-pmu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+static int armv9_a710_pmu_init(struct arm_pmu *cpu_pmu)
-+{
-+	return armv8_pmu_init_nogroups(cpu_pmu, "armv9_cortex_a710", NULL);
-+}
++title: ARM DynamIQ Shared Unit (DSU) Performance Monitor Unit (PMU)
 +
-+static int armv8_x1_pmu_init(struct arm_pmu *cpu_pmu)
-+{
-+	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_x1", NULL);
-+}
++maintainers:
++  - Suzuki K Poulose <suzuki.poulose@arm.com>
++  - Robin Murphy <robin.murphy@arm.com>
 +
-+static int armv9_x2_pmu_init(struct arm_pmu *cpu_pmu)
-+{
-+	return armv8_pmu_init_nogroups(cpu_pmu, "armv9_cortex_x2", NULL);
-+}
++description:
++  ARM DyanmIQ Shared Unit (DSU) integrates one or more CPU cores with a shared
++  L3 memory system, control logic and external interfaces to form a multicore
++  cluster. The PMU enables gathering various statistics on the operation of the
++  DSU. The PMU provides independent 32-bit counters that can count any of the
++  supported events, along with a 64-bit cycle counter. The PMU is accessed via
++  CPU system registers and has no MMIO component.
 +
- static int armv8_e1_pmu_init(struct arm_pmu *cpu_pmu)
- {
- 	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_neoverse_e1", NULL);
-@@ -1225,6 +1245,16 @@ static int armv8_n1_pmu_init(struct arm_pmu *cpu_pmu)
- 	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_neoverse_n1", NULL);
- }
- 
-+static int armv9_n2_pmu_init(struct arm_pmu *cpu_pmu)
-+{
-+	return armv8_pmu_init_nogroups(cpu_pmu, "armv9_neoverse_n2", NULL);
-+}
++properties:
++  compatible:
++    const: "arm,dsu-pmu"
 +
-+static int armv8_v1_pmu_init(struct arm_pmu *cpu_pmu)
-+{
-+	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_neoverse_v1", NULL);
-+}
++  interrupts:
++    items:
++      description: nCLUSTERPMUIRQ interrupt
 +
- static int armv8_thunder_pmu_init(struct arm_pmu *cpu_pmu)
- {
- 	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cavium_thunder",
-@@ -1251,8 +1281,14 @@ static const struct of_device_id armv8_pmu_of_device_ids[] = {
- 	{.compatible = "arm,cortex-a76-pmu",	.data = armv8_a76_pmu_init},
- 	{.compatible = "arm,cortex-a77-pmu",	.data = armv8_a77_pmu_init},
- 	{.compatible = "arm,cortex-a78-pmu",	.data = armv8_a78_pmu_init},
-+	{.compatible = "arm,cortex-a510-pmu",	.data = armv9_a510_pmu_init},
-+	{.compatible = "arm,cortex-a710-pmu",	.data = armv9_a710_pmu_init},
-+	{.compatible = "arm,cortex-x1-pmu",	.data = armv8_x1_pmu_init},
-+	{.compatible = "arm,cortex-x2-pmu",	.data = armv9_x2_pmu_init},
- 	{.compatible = "arm,neoverse-e1-pmu",	.data = armv8_e1_pmu_init},
- 	{.compatible = "arm,neoverse-n1-pmu",	.data = armv8_n1_pmu_init},
-+	{.compatible = "arm,neoverse-n2-pmu",	.data = armv9_n2_pmu_init},
-+	{.compatible = "arm,neoverse-v1-pmu",	.data = armv8_v1_pmu_init},
- 	{.compatible = "cavium,thunder-pmu",	.data = armv8_thunder_pmu_init},
- 	{.compatible = "brcm,vulcan-pmu",	.data = armv8_vulcan_pmu_init},
- 	{},
++  cpus:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    minitems: 1
++    maxitems: 8
++    description: List of phandles for the CPUs connected to this DSU instance.
++
++required:
++  - compatible
++  - interrupts
++  - cpus
++
++additionalProperties: false
 -- 
 2.28.0.dirty
 
