@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABD5046B720
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 10:32:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 832EB46B726
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 10:33:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233835AbhLGJgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 04:36:12 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:60074
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233687AbhLGJgL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 04:36:11 -0500
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        id S232193AbhLGJgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 04:36:36 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:36600
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233719AbhLGJgf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 04:36:35 -0500
+Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1F6D93F1B7
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 09:32:41 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 162E840048
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 09:33:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638869561;
-        bh=T6+9s82eszvtvdECt4LjIhYDKx4D2t9XfbY0joue/Fo=;
+        s=20210705; t=1638869585;
+        bh=BEdVsoIuFxM799cTbQkXLyx5ca2h6q0N/IASsw9oLV4=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=Jm/Hyhx5pGgs/QGzfTB/OsnrNBMqsQU9++qLk3/KoWnoQ4UHRZLulY0Mk3AiPqjmq
-         smFLibq2s9roLJVdkjNgDZ4eYO2c9YFNdfCMrO7YRZUBtr0ZIu/mledv+VMGjtwGsy
-         fGlNzPB/2wK6CoW8CJKxwvp3yGROf0c4VWEfjoWuZ2OJxzL7lTuBtnCchc06T8Md+2
-         0eHrN5jH+dNzzVDyxGP6RoJPIhNOjmv2oCrtw4WTa3Qg1nj6gei2ttffpOKJlcPFQ7
-         1a0gxN1vu9U4dVYCXQQXdW39961opiE42Xw901EkT5iuixKg4Y26RGOhXOOvbrrr4H
-         fPIytuhbIPv+w==
-Received: by mail-lf1-f69.google.com with SMTP id k10-20020ac2456a000000b0041bd7b22c6fso2940329lfm.21
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 01:32:41 -0800 (PST)
+        b=WJfpJf9yzKjRLd13tGz/qbf0vAw8krN5pm7AuyHUBNC7nuuPTL7E8n0YFnKi1OqA0
+         zMaObJD4Ihm2VFCjhvux3wkCD0/qml6Amlc0+R2oWXowG4RxdW8FNKHKOr9YcmWf9u
+         yCTnNPW0UOKhcC2v5GZUhHvghThQ1C5KteLw6EO2l9XbZrviGQGDzBQ6Iqm728QooT
+         WjNViXFSbijmeeb8nv/uC7wVxhrvDjcWz8ugvaQM4zl0XdZ1ufuD3I4BeN5yZgmTMe
+         zx4yKVeKdaIb8i7r8nRJOQfHfvaTfP6EdvSdKnDaS3BJFBr8XA2MHT7c85qUV3Gob3
+         Adyb0+MgiHNJA==
+Received: by mail-lj1-f200.google.com with SMTP id h18-20020a05651c159200b0021cf7c089d0so4158836ljq.21
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 01:33:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=T6+9s82eszvtvdECt4LjIhYDKx4D2t9XfbY0joue/Fo=;
-        b=HBEtHgOkhaxiR/Q96lONkpXzzK8cXUuSbjhoV5JO/2g04ZMZrMbSYqRqetTKnUMc8M
-         kcMxXbVXNABJos+22xbonEt7Ptak3JvsP/noEVPt6lYs0DsADikdKExHXANGrfeB+gni
-         8TKDRn0QxzVCAIIbH65I1f/OSiPUfta4WL4jkMnjxwKRSgWemrWaFiZo9cAUQvumb7X3
-         ECpkMWFoG/KnEOtWhV5AZlzyShhz00Lm+FdKA/Gn1qy5HcWIMRa9OYQ4YEy6UwyCQS/2
-         LB2uEOumSgsy3YJo6Qj/gKonFibAytqsEph4Eh9+rckEtTne1y6jSNoPMcydVjYJOYmT
-         b00A==
-X-Gm-Message-State: AOAM532h8/ZZLTJWjWswwrasJ3PRkOiT0SWdeTJjWe3SED/qZgjJNvqv
-        bZrnMao/jBkzG4F0zSVLyDmvKEhQep97hgVvq9ePkj6QqupfLLu3TYKlhyLg74E3eaIcyooMBIs
-        WB9S86EyiWjJV+hNsrqrBHnwP+YMw9WJA6r6E/8M=
-X-Received: by 2002:a2e:994a:: with SMTP id r10mr41066350ljj.301.1638869560604;
-        Tue, 07 Dec 2021 01:32:40 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwKyBwQ35QuPUmJsbOyAfvODA2PllK81Af6yVKERMwFTiAYBejXq04Tp3ARzZKlv7wtY5zCdQ==
-X-Received: by 2002:a2e:994a:: with SMTP id r10mr41066327ljj.301.1638869560444;
-        Tue, 07 Dec 2021 01:32:40 -0800 (PST)
+        bh=BEdVsoIuFxM799cTbQkXLyx5ca2h6q0N/IASsw9oLV4=;
+        b=MrcWbp4vCC2gSDBTTNL4yyBOHZmcVAtCq5rV5dMgMEm4yQ26vkbGSAjnGLu8oYiwDC
+         cz188TLnl4b+VEF0YBZsti2eDVQLZfSYByNTYqHdNOIVCKvSOsVXGixZaInjeAlE6h+Z
+         +xZJSwBQUSNqHWz9rAdjoJ3LxatU3lJ/yLsutABx8HeekWgfp9koDuslk2D2BsazLBCC
+         411rrEOz9WvuWlSyXDNeM5aT21Bchx8vN0fAPNdmJFS8sP59QrfAyLfD1vcNsKj6p4y1
+         +ROC4AoGC+NA00h14cUg7jf0Rr5Cn+yRTwMqBXyBOS/u7UOk9wkD19y+afGL97tHOpD1
+         /ixg==
+X-Gm-Message-State: AOAM532MVYwDn5WMapX1XjdZ3U8GY1pXWE8+FK/zelxMM/wZykUXILQb
+        nXhMNs4R6qBMLSy7U2legvgxkphnjuwmb7NQ4cFL4yVPIDwCukuLX35rUWDc+2OgGbd/ksjbHqa
+        +j8lbzETj3OcQo7C6gnDvOuldAwDMAsdAzxgH1HY=
+X-Received: by 2002:ac2:4568:: with SMTP id k8mr39785447lfm.80.1638869584476;
+        Tue, 07 Dec 2021 01:33:04 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyJnVDk3iH40oUmSMxetPRxhkoJ0C7h06clV4jQucaTt6d1WFAgv+kKH51sPo13Jm0l9iRrdA==
+X-Received: by 2002:ac2:4568:: with SMTP id k8mr39785427lfm.80.1638869584282;
+        Tue, 07 Dec 2021 01:33:04 -0800 (PST)
 Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id l5sm1553374ljh.66.2021.12.07.01.32.39
+        by smtp.gmail.com with ESMTPSA id l5sm1553513ljh.66.2021.12.07.01.33.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Dec 2021 01:32:39 -0800 (PST)
-Message-ID: <f2f2a084-9362-db44-27e9-19b54d350775@canonical.com>
-Date:   Tue, 7 Dec 2021 10:32:38 +0100
+        Tue, 07 Dec 2021 01:33:03 -0800 (PST)
+Message-ID: <314c4616-7151-f854-2ee4-9ab8d25ef0fb@canonical.com>
+Date:   Tue, 7 Dec 2021 10:33:02 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.1
-Subject: Re: [PATCH v4 4/7] clk: samsung: Make exynos850_register_cmu shared
+Subject: Re: [PATCH v4 6/7] clk: samsung: Add initial Exynos7885 clock driver
 Content-Language: en-US
 To:     David Virag <virag.david003@gmail.com>
 Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
@@ -73,9 +73,9 @@ Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
         linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
 References: <20211206153124.427102-1-virag.david003@gmail.com>
- <20211206153124.427102-5-virag.david003@gmail.com>
+ <20211206153124.427102-7-virag.david003@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211206153124.427102-5-virag.david003@gmail.com>
+In-Reply-To: <20211206153124.427102-7-virag.david003@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
@@ -83,34 +83,36 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 06/12/2021 16:31, David Virag wrote:
-> Rename exynos850_register_cmu to exynos_arm64_register_cmu and move it
-> to a new file called "clk-exynos-arm64.c".
+> This is an initial implementation adding basic clocks, such as UART,
+> USI, I2C, WDT, ect. and their parent clocks. It is heavily based on the
+> Exynos850 clock driver at 'drivers/clk/samsung/clk-exynos850.c' which
+> was made by Sam Protsenko, thus the copyright and author lines were
+> kept.
 > 
-> This should have no functional changes, but it will allow this code to
-> be shared between other arm64 Exynos SoCs, like the Exynos7885 and
-> possibly ExynosAuto V9.
+> Bus clocks are enabled by default as well to avoid hangs while trying to
+> access CMU registers.
+> 
+> Only the parts of CMU_TOP needed for CMU_CORE and CMU_PERI, a bit of
+> CMU_CORE, and most of CMU_PERI is implemented as of now.
 > 
 > Signed-off-by: David Virag <virag.david003@gmail.com>
 > ---
 > Changes in v2:
->   - New patch
+>   - Use shared code between Exynos850 and 7885 clock drivers
+>   - As the code that was from the Exynos850 clock driver was moved to
+>     clk-exynos-arm64.c and what remains is mostly SoC specific data,
+>     move the Linaro copyright and Sam Protsenko author lines there.
 > 
 > Changes in v3:
->   - Fix SPDX comment style in clk-exynos-arm64.h
+>   - Nothing
 > 
 > Changes in v4:
->   - Fix missing headers but still remove of_address.h
->   - "__SAMSUNG_CLK_ARM64_H" -> "__CLK_EXYNOS_ARM64_H" in
->     clk-exynos-arm64.h everywhere (only the comment at the end had the
->     latter by accident)
+>   - Fixed missing headers
 > 
->  drivers/clk/samsung/Makefile           |  1 +
->  drivers/clk/samsung/clk-exynos-arm64.c | 94 ++++++++++++++++++++++++++
->  drivers/clk/samsung/clk-exynos-arm64.h | 20 ++++++
->  drivers/clk/samsung/clk-exynos850.c    | 88 ++----------------------
->  4 files changed, 119 insertions(+), 84 deletions(-)
->  create mode 100644 drivers/clk/samsung/clk-exynos-arm64.c
->  create mode 100644 drivers/clk/samsung/clk-exynos-arm64.h
+>  drivers/clk/samsung/Makefile         |   1 +
+>  drivers/clk/samsung/clk-exynos7885.c | 597 +++++++++++++++++++++++++++
+>  2 files changed, 598 insertions(+)
+>  create mode 100644 drivers/clk/samsung/clk-exynos7885.c
 > 
 
 
