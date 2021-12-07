@@ -2,124 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8E4246BFB4
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 16:44:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DE9A46BFCE
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 16:49:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239142AbhLGPsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 10:48:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34928 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239139AbhLGPsF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 10:48:05 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AD71C061574
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 07:44:35 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id i12so11105402wmq.4
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 07:44:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=GDbc4h38L7Xqu5Gkd11iZTTBGBAs0PJyND5cTN2uSK4=;
-        b=JL1eItc2fbu2q5yOpYsMZm6ITJf67rhjlzwho9wAoBRtevh2CFW5DJdTp2MeeiyK6C
-         r2CQyQCk+0gqyEeZvrKZUKIe/HFOqo24k1FrVKvG2OQ9P/GLOVgzmgaQTikWfN6uoNQ6
-         s6se+7S04BjNNrw/FpvIZ2W1BRu85ARudjZifAh1mYBAESTJRqJEGFXfN7kzJ3cL4UaF
-         1iueBwY5Hqq4jHwbrv2H4IUGrBdmFmBOcpwYSfb5GAV5cIEpGZLMVc+oRVABkSfVGxF7
-         O0z/vuAGjeS7XivvcDvrlRGEsLjRBL2A4SvQs4oo0n4X+0rmjgVPVPapblSu8o2g7ImX
-         STkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=GDbc4h38L7Xqu5Gkd11iZTTBGBAs0PJyND5cTN2uSK4=;
-        b=220hnBSF2KLbiQJ8mpp21RW0qNAuD11rps4TLrpWYCHVQjhfZVz/j9k0CTljl1OEp3
-         zKvYyKaQ68eIUEtS90+YYZWr0xi4EcOXIdcDaZvdexAdaX5HKa9GNDihEFgRi/qFNsdf
-         0rQHqDaggQiBv+EICSeyS+LjqK13OCcLdumn49Bu+pJ1oyY3QIyTgNNdVjBs+LtTLjvU
-         7+/HKw1sa1N27E9NhiX++dZslupPC6Xcuiu9CIfW1NCTTqQwJbi4rVEqHGTg77/ifAus
-         QJFO2d0DtrF9IrJqZRK3AMNlVuX4JpuiU3SciYXu1HUpFQqNZdmDx6iZ6ItQp0LEXAMM
-         wYWg==
-X-Gm-Message-State: AOAM531TqBtJ87dYJmXLUeNsWPSsx1/QlNozP2crkID9RLXnlFOndTao
-        +tuFP/UbKLJ+R9BqOS3wL3TMAg==
-X-Google-Smtp-Source: ABdhPJw/ZnhwcGRzecvHHBydUJbGZHREqRCw4qtiHqzsKgHW4meOqCidqlbNDTAow1lOhlUS7zopjw==
-X-Received: by 2002:a05:600c:3c91:: with SMTP id bg17mr8111276wmb.80.1638891873696;
-        Tue, 07 Dec 2021 07:44:33 -0800 (PST)
-Received: from google.com ([2.31.167.18])
-        by smtp.gmail.com with ESMTPSA id s8sm86023wra.9.2021.12.07.07.44.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 07:44:33 -0800 (PST)
-Date:   Tue, 7 Dec 2021 15:44:31 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        id S229499AbhLGPxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 10:53:12 -0500
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:38881 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230518AbhLGPxM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 10:53:12 -0500
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 527FF60015;
+        Tue,  7 Dec 2021 15:49:38 +0000 (UTC)
+From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Justin Chen <justinpopo6@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH V4 RESEND 1/2] dt-bindings: watchdog: convert Broadcom's
- WDT to the json-schema
-Message-ID: <Ya+BX1X7/YqmfCU8@google.com>
-References: <Ya3SU6U6YT6mlFu8@google.com>
- <f5745952-9e3c-ed7a-cced-ce42d3da2276@gmail.com>
- <Ya5ctkIU+jNzDfBc@google.com>
- <f4af4971-7047-80c9-69ae-e6587979ecd5@roeck-us.net>
- <e1fa1683-a0a6-8ee0-9da5-8e97dd9c820a@gmail.com>
- <432664af-5660-aaad-bf75-81e4d61cb078@roeck-us.net>
- <46a88b40-6d92-727c-7adc-5723921d08e3@gmail.com>
- <20211206195115.GC3759192@roeck-us.net>
- <Ya8xhUR5GbTxVE8w@google.com>
- <a86d5998-8d84-7afe-e34e-a632aa890683@roeck-us.net>
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>
+Cc:     =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Denis Kirjanov <dkirjanov@suse.de>,
+        Julian Wiedmann <jwi@linux.ibm.com>
+Subject: [PATCH net-next v6 0/4] Add FDMA support on ocelot switch driver
+Date:   Tue,  7 Dec 2021 16:48:35 +0100
+Message-Id: <20211207154839.1864114-1-clement.leger@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a86d5998-8d84-7afe-e34e-a632aa890683@roeck-us.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 07 Dec 2021, Guenter Roeck wrote:
+This series adds support for the Frame DMA present on the VSC7514
+switch. The FDMA is able to extract and inject packets on the various
+ethernet interfaces present on the switch.
 
-> On 12/7/21 2:03 AM, Lee Jones wrote:
-> [ ... ]
-> > > It sounded to me like Lee wanted an immutable branch for that
-> > 
-> > Not exactly, I said:
-> > 
-> >    "> Suppose we should take patch #2 via [Watchdog] as well.
-> > 
-> >     If that happens, I would like a PR to an immutable branch."
-> > 
-> > The alternative is that I take the patch and provide an immutable
-> > branch to you, which I am in a position to do.
-> > 
-> 
-> I understand, only I am not in a position to take it since my tree
-> isn't the official watchdog-next tree, and it doesn't show up in -next.
-> If Wim takes it into the official watchdog-next tree or not would be
-> completely up to him.
-> 
-> I personally don't care if the bindings check is clean in my inofficial
-> tree, so maybe this is a non-issue.
+------------------
+Changes in V6:
+  - Remove dead code added in ocelot_vsc7514
+  - Remove useless include added in mscc/ocelot.h
+  - Remove trailing whitespace
+  - Move skb_tx_timestamp before sending the skb
+  - Fix a few long lines
 
-That doesn't help, sadly.
+Changes in V5:
+  - Add skb freeing for TX and fix RX ring skb not being freed
+  - Fix napi init in case of netdev registration failure
+  - Reorganize FDMA register definitions
+  - Used regmap targets from ocelot structure to get fdma pointer
+  - s/page_count/page_ref_count
+  - Move napi back in struct ocelot_fdma
 
-I think the best course of action is for Wim to let me know when this
-patch makes it into his tree.  I'll take the MFD one at the same time
-and the two shall meet in -next.
+Changes in V4:
+  - Use regmap for register access
+  - Removed yaml bindings convertion as well as mac address from dt
+  - Removed pre-computed IFH for the moment
+  - Fixed timestamp reading for PTP in FDMA
+  - Fixed wrong exit path for fdma netdev init
+  - Removed spinlock from TX cleanup
+  - Add asynchronous RX chan stop before refilling
+  - Reduce CH_SAFE wait time to 10us
+  - Reduce waiting time for channel to be safe
+  - Completely rework rx to use page recycling (code from gianfar)
+  - Reenable MTU change support since FDMA now supports it transparently
+  - Split TX and RX ring size
+  - Larger RX size to lower page allocation rate
+  - Add static key to check for FDMA to be enabled in fast path
 
-Honestly, this is all such a faff.
+Changes in V3:
+  - Add timeouts for hardware registers read
+  - Add cleanup path in fdma_init
+  - Rework injection and extraction to used ring like structure
+  - Added PTP support to FDMA
+  - Use pskb_expand_head instead of skb_copy_expand in xmit
+  - Drop jumbo support
+  - Use of_get_ethdev_address
+  - Add ocelot_fdma_netdev_init/deinit
 
-Just to keep a script happy that 3 people care about.
+Changes in V2:
+  - Read MAC for each port and not as switch base MAC address
+  - Add missing static for some functions in ocelot_fdma.c
+  - Split change_mtu from fdma commit
+  - Add jumbo support for register based xmit
+  - Move precomputed header into ocelot_port struct
+  - Remove use of QUIRK_ENDIAN_LITTLE due to misconfiguration for tests
+  - Remove fragmented packet sending which has not been tested
+
+Clément Léger (4):
+  net: ocelot: export ocelot_ifh_port_set() to setup IFH
+  net: ocelot: add and export ocelot_ptp_rx_timestamp()
+  net: ocelot: add support for ndo_change_mtu
+  net: ocelot: add FDMA support
+
+ drivers/net/ethernet/mscc/Makefile         |   1 +
+ drivers/net/ethernet/mscc/ocelot.c         |  59 +-
+ drivers/net/ethernet/mscc/ocelot.h         |   2 +
+ drivers/net/ethernet/mscc/ocelot_fdma.c    | 894 +++++++++++++++++++++
+ drivers/net/ethernet/mscc/ocelot_fdma.h    | 166 ++++
+ drivers/net/ethernet/mscc/ocelot_net.c     |  39 +-
+ drivers/net/ethernet/mscc/ocelot_vsc7514.c |  10 +
+ include/soc/mscc/ocelot.h                  |   6 +
+ 8 files changed, 1151 insertions(+), 26 deletions(-)
+ create mode 100644 drivers/net/ethernet/mscc/ocelot_fdma.c
+ create mode 100644 drivers/net/ethernet/mscc/ocelot_fdma.h
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.34.1
+
