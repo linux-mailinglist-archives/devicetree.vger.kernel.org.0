@@ -2,63 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F3B246BAA5
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:04:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB27C46BAA8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:05:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231638AbhLGMIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 07:08:09 -0500
-Received: from foss.arm.com ([217.140.110.172]:58234 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231576AbhLGMIJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Dec 2021 07:08:09 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 97E7911FB;
-        Tue,  7 Dec 2021 04:04:38 -0800 (PST)
-Received: from [10.57.34.58] (unknown [10.57.34.58])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F11633F5A1;
-        Tue,  7 Dec 2021 04:04:36 -0800 (PST)
-Message-ID: <766ac58a-ffb7-f673-709b-0f0f740f3cfd@arm.com>
-Date:   Tue, 7 Dec 2021 12:04:32 +0000
+        id S231641AbhLGMIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 07:08:37 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:60862 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231576AbhLGMIh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 07:08:37 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 682DFCE1A7E;
+        Tue,  7 Dec 2021 12:05:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC0A1C341C3;
+        Tue,  7 Dec 2021 12:05:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638878703;
+        bh=ujCHnMR34AzoG3Vi8aJNN8FINppyuK04wRnq0gfNiQk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MZoqarWRRmjq2S95AYjelwGU5/W9x8CNj0QiHigq0C1l9A5f2d31V2UOqzQpHQpNk
+         G6N7GU7Cl5HYfJkeRrJsyy/JE2KLDapb8lJnhKYkdYZqco9sy2gm5h3fTztMKRiDih
+         E6NpUpWLQ0jFms5nBU05FQ2OAkH7NZBl+hHBlGmFG31S5/cAnamjaARGcPCg+42Q4L
+         kbtGwgxiSSecsQFgy63b1QH2yF+AAHrmwGBD6qVc82OCt+CeP7C0rpz/8ta1SQxGIx
+         gJ3ktWVVbQswr9+p5D2Y5e7zp68iKGMm64Lg7D+c+S4Ejl50IwDP09QsCRGyGxVsDX
+         noNVVuLEFk49g==
+Date:   Tue, 7 Dec 2021 17:34:59 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Kuogee Hsieh <khsieh@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        robdclark@gmail.com, robh+dt@kernel.org, sean@poorly.run,
+        abhinavk@codeaurora.org, aravindh@codeaurora.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kishon@ti.com, p.zabel@pengutronix.de
+Subject: Re: [PATCH v4] phy: qcom-qmp: add support for display port voltage
+ and pre-emphasis swing
+Message-ID: <Ya9N65mseobpBrYx@matsya>
+References: <1631637901-11603-1-git-send-email-khsieh@codeaurora.org>
+ <CAE-0n50R1wfw=V7o19N20YOqSrRZKR7Zd4QLcRcjYQNsdf3QHg@mail.gmail.com>
+ <CAE-0n51OA3c_hcnpJ-k5ZQvCN3kv8PcjLMRw4BLx9OKZPjGLcA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v2 3/3] perf/smmuv3: Synthesize IIDR from CoreSight ID
- registers
-Content-Language: en-GB
-To:     John Garry <john.garry@huawei.com>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        robh+dt@kernel.org
-Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, uchida.jun@socionext.com,
-        leo.yan@linaro.org, will@kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20211117144844.241072-1-jean-philippe@linaro.org>
- <20211117144844.241072-4-jean-philippe@linaro.org>
- <e60b15db-4e52-b5a6-1b17-203d250f1e65@huawei.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <e60b15db-4e52-b5a6-1b17-203d250f1e65@huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAE-0n51OA3c_hcnpJ-k5ZQvCN3kv8PcjLMRw4BLx9OKZPjGLcA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-12-07 09:14, John Garry wrote:
-> On 17/11/2021 14:48, Jean-Philippe Brucker wrote:
->> From: Robin Murphy<robin.murphy@arm.com>
->>
->> The SMMU_PMCG_IIDR register was not present in older revisions of the
->> Arm SMMUv3 spec. On Arm Ltd. implementations, the IIDR value consists of
->> fields from several PIDR registers, allowing us to present a
->> standardized identifier to userspace.
->>
-> So is there some userspace part to go with this now?
+On 02-12-21, 14:51, Stephen Boyd wrote:
+> Quoting Stephen Boyd (2021-09-14 12:49:13)
+> > Quoting Kuogee Hsieh (2021-09-14 09:45:01)
+> > > Both voltage and pre-emphasis swing level are set during link training
+> > > negotiation between host and sink. There are totally four tables added.
+> > > A voltage swing table for both hbr and hbr1, a voltage table for both
+> > > hbr2 and hbr3, a pre-emphasis table for both hbr and hbr1 and a pre-emphasis
+> > > table for both hbr2 and hbr3. In addition, write 0x0a to TX_TX_POL_INV is
+> > > added to complete the sequence of configure dp phy base on HPG.
+> > >
+> > > Chnages in v2:
+> > > -- revise commit test
+> > > -- add Fixes tag
+> > > -- replaced voltage_swing_cfg with voltage
+> > > -- replaced pre_emphasis_cfg with emphasis
+> > > -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_v4_phy_configure_dp_swing()
+> > > -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_phy_configure_dp_swing()
+> > >
+> > > Changes in V3:
+> > > -- add __qcom_qmp_phy_configure_dp_swing() to commit swing/pre-emphasis level
+> > >
+> > > Changes in V4:
+> > > -- pass 2D array to __qcom_qmp_phy_configure_dp_swing()
+> > >
+> > > Fixes: aff188feb5e1 ("phy: qcom-qmp: add support for sm8250-usb3-dp phy")
+> > > Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
+> > > ---
+> >
+> > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> 
+> Can this patch be picked up?
 
-FWIW I've not looked into it - is it just a case of someone knocking out 
-some JSON from the MMU-600/700 TRMs, or is there still mroe to do? I had 
-the impression that *some* part of the process was stalled until 
-implementations can start providing meaningful IIDRs, but I wasn't sure 
-whether that was tooling or just data. I just work the low-level 
-enablement angle :)
+Somehow this is not in my queue. Kuogee can you add tags received and
+rebase and send please
 
-Robin.
+
+-- 
+~Vinod
