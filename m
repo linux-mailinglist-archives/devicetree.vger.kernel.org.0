@@ -2,83 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A44AF46C14A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 18:04:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0349146C17C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 18:16:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239785AbhLGRHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 12:07:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54508 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235159AbhLGRHo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 12:07:44 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25590C061574
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 09:04:14 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 73F7C556;
-        Tue,  7 Dec 2021 18:04:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1638896652;
-        bh=Oo3zNiuAJNfk53ZJOP0z97e653AwK2d7kec4ofNwVdI=;
+        id S234977AbhLGRTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 12:19:54 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:43440 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229971AbhLGRTy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 12:19:54 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 6B474CE1C4B;
+        Tue,  7 Dec 2021 17:16:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE93EC341C3;
+        Tue,  7 Dec 2021 17:16:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1638897380;
+        bh=msCm2s4EM69yiV9jR5VyG96141b9uBc0mx/hEdnJskA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kl/KMtXAAHUo291X7sZ3J72YBdOLxgQv40+/sKNiZzsQd9cbJLtxMnUh84tOxWayN
-         h7dbg8Kha+OSxqo6uQXCSpQpgiRBtVSx96wML0dKuKO8EchOrd1mogRIrvfXWDGVtB
-         7GrhLJN4iicVjJEeDSYFY3VSVjChOXQIZcgopnNY=
-Date:   Tue, 7 Dec 2021 19:03:43 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Marek Vasut <marex@denx.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: display: bridge: tc358867: Document DPI
- output support
-Message-ID: <Ya+T7zPigqtBzdR+@pendragon.ideasonboard.com>
-References: <20211127032405.283435-1-marex@denx.de>
- <Ya+PRMvq3cjJ46s/@pendragon.ideasonboard.com>
- <1a7967f0-ed4b-9cd2-28c8-eb9d181448ae@denx.de>
+        b=q/F77Mmsls3bReyCvn2u/26L70wkiszfZIJAsC7wBaaRr7Wnv3owVzcr24Q5CFXcF
+         ql342dQdxb/2WVNsEJIxM1aOAJQUCfFeExGEqutHCBt3vH6DR/YjZxjC4ZtNUOLVJt
+         NWJbdIujJG0cqCIP1/je2taKojOct3RmHWpCCAbU=
+Date:   Tue, 7 Dec 2021 18:16:17 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     David Brazdil <dbrazdil@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hans de Goede <hdegoede@redhat.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, Andrew Scull <ascull@google.com>,
+        Will Deacon <will@kernel.org>
+Subject: Re: [PATCH 2/2] misc: dice: Add driver to forward secrets to
+ userspace
+Message-ID: <Ya+W4YpxtB08F1sd@kroah.com>
+References: <20211207123617.3040177-1-dbrazdil@google.com>
+ <20211207123617.3040177-3-dbrazdil@google.com>
+ <Ya9cwZ94QatewwIc@kroah.com>
+ <Ya+PYiP43YxfLS4x@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1a7967f0-ed4b-9cd2-28c8-eb9d181448ae@denx.de>
+In-Reply-To: <Ya+PYiP43YxfLS4x@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 07, 2021 at 05:47:29PM +0100, Marek Vasut wrote:
-> On 12/7/21 17:43, Laurent Pinchart wrote:
+On Tue, Dec 07, 2021 at 04:44:18PM +0000, David Brazdil wrote:
+> Hi Greg,
 > 
-> [...]
-> 
-> >> diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-> >> index f1541cc05297..5cfda6f2ba69 100644
-> >> --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-> >> +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-> >> @@ -61,8 +61,8 @@ properties:
-> >>         port@1:
-> >>           $ref: /schemas/graph.yaml#/properties/port
-> >>           description: |
-> >> -            DPI input port. The remote endpoint phandle should be a
-> >> -            reference to a valid DPI output endpoint node
-> >> +            DPI input/output port. The remote endpoint phandle should be a
-> >> +            reference to a valid DPI output or input endpoint node.
+> On Tue, Dec 07, 2021 at 02:08:17PM +0100, Greg Kroah-Hartman wrote:
+> > On Tue, Dec 07, 2021 at 12:36:17PM +0000, David Brazdil wrote:
+> > > Open Profile for DICE is a protocol for deriving unique secrets at boot,
+> > > used by some Android devices. The firmware/bootloader hands over secrets
+> > > in a reserved memory region, this driver takes ownership of the memory
+> > > region and exposes it to userspace via a character device that
+> > > lets userspace mmap the memory region into its process.
+> > > 
+> > > The character device can only be opened once at any given time.
 > > 
-> > I assume the mode of operation (input or output) will be fixed for a
-> > given hardware design. Isn't this something that should be recorded in
-> > DT ? It would simplify configuration of the device in the driver.
+> > Why?  That should not matter.  And your code (correctly), does not check
+> > for that.  So why say that here?
 > 
-> Currently the configuration (DSI-to-DPI / DPI-to-eDP) is inferred from 
-> the presence of DPI panel. If DPI panel present, DSI-to-DPI, else, 
-> DPI-to-eDP.
+> It does check - open() returns -EBUSY if cmpxchg of the state from READY
+> to BUSY fails. I agree this is a bit unconventional but it makes things
+> easier to reason about. With multiple open FDs the driver would have to
+> wait for all of them to get released before wiping, so one user could
+> block the wiping requested by others by holding the FD indefinitely.
+> And wiping despite other open FDs seems wrong, too. Is there a better
+> way of doing this?
 
-I've had a look at the driver side, and it seems to complicate things
-quite a bit. It seems that specifying the mode of operation explicitly
-in DT could make software implementations quite a bit simpler.
+Yes, totally ignore it from the kernel point of view.  You don't know
+what userspace just did with that FD the kernel gave it, it could have
+sent it across a pipe, run dup() on it, or any sort of other things.
+Just rely on open/release to know when the device is opened, and then
+when that instance is released.  If userspace wants to do looney things,
+and oddities happen, that's userspace's problem, not yours :)
 
--- 
-Regards,
 
-Laurent Pinchart
+> > > +#include <linux/cdev.h>
+> > > +#include <linux/dice.h>
+> > > +#include <linux/io.h>
+> > > +#include <linux/mm.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of_reserved_mem.h>
+> > > +#include <linux/platform_device.h>
+> > > +
+> > > +#define DICE_MKDEV		MKDEV(MAJOR(dice_devt), 0)
+> > > +#define DICE_MINOR_COUNT	1
+> > 
+> > Please just use the misc_device api, no need to try to claim a major
+> > number for just one device node.  That will simplify your code a lot as
+> > well.
+> 
+> Ok, I'll look into it.
+> 
+> > > +static int dice_open(struct inode *inode, struct file *filp)
+> > > +{
+> > > +	struct dice_data *data;
+> > > +
+> > > +	data = container_of(inode->i_cdev, struct dice_data, cdev);
+> > > +
+> > > +	/* Never allow write access. */
+> > > +	if (filp->f_mode & FMODE_WRITE)
+> > > +		return -EROFS;
+> > 
+> > Why do you care?  Writes just will not work anyway, right?
+> 
+> There is nothing else preventing writes, the reserved memory is just plain
+> old RAM.
+
+And you can rely on this check only?  Nothing else needed with mmap?
+And why can't userspace write to this?  What's wrong with that
+happening?
+
+thanks,
+
+greg k-h
