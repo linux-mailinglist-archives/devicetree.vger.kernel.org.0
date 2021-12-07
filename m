@@ -2,181 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1410646B673
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:54:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55A6246B67E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:57:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233349AbhLGI51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 03:57:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50082 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233353AbhLGI51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:57:27 -0500
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52A1BC061359;
-        Tue,  7 Dec 2021 00:53:57 -0800 (PST)
-Received: by mail-qt1-x836.google.com with SMTP id f20so13616533qtb.4;
-        Tue, 07 Dec 2021 00:53:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=YQ8iQqe0A5/uglekK6JjLVqTME4ar4CUT63VuUJgkz0=;
-        b=VFGQZwmSmPMaFk9St2+ciFlM2xEVgkrOleUY15Qxw3ioZ44fqjfldMQc1W6lScyNOy
-         hgcOyXKRWpd41EITJkMKqSmJzKgt9oQX9QncbiaXcaDrXC3mG9hfmoJO3cFsEmMuHrJx
-         9e166SSaQcYbQJYXRevjs7uQqE/9oI153ue4VeXfRPCWK8TlKf8Zf+5Nk0L+scE9FQMN
-         fBm4cK3H2Okg5BrfyooHVvc8CI91vYiJk5oUt015owzm1R1HATe+S3KsfV2XyJZXoIYe
-         vs7oBXj7q3dXqDc5Qs8mdNKDEgvUjZKTC0EgvdTx3vfBU4qFxSMI8qUIjsS0ulunSzgf
-         qrQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=YQ8iQqe0A5/uglekK6JjLVqTME4ar4CUT63VuUJgkz0=;
-        b=YyGp0e2wl/slsk4l6EiRAXiqZ2JHjsIvnCn5u8NEeTti68o/NCjIPk3FiYgsvOjWnm
-         B+tz0a/M2p+gZh/W/3lUAcuZ0Skt+RUDa/GOHnCidOc2/6WHJsz6p9ydx5DVz0BQCF5Q
-         tooXXtY6I3H7a0SVHVQSIkZIDbirv+g6znx/CiJ+AZF3C5yZfQGgthKYboMHhBnvag2+
-         M8WnXOF2V6MKwcpDcHgA+YIZU/kiQ2GRy5PDe+6qARcDK3G+JAVF8EoRkrwfp3ddwmxa
-         Luv37hI0U+ri62o1L3mEk2VrYcDM+bITLdDZTTrtxCCCKfppRirFutX+TiRvWyS/nw9u
-         p44g==
-X-Gm-Message-State: AOAM530IIn0U/LXg1vU3RPg15nQyhaOvlxzEVFJx7+2EuxMhxwU+QfSU
-        ZO+8a2Q0BigFGWYsQx1WM0aeG5kXYaY=
-X-Google-Smtp-Source: ABdhPJyDp/o/b9Dck15/LZ9TULFM/NU7si9K5iYw6W4JSgsfDDBQlxLmuKjb6cCkGEI5Ol1VvJOMAQ==
-X-Received: by 2002:ac8:20f:: with SMTP id k15mr46428797qtg.173.1638867236469;
-        Tue, 07 Dec 2021 00:53:56 -0800 (PST)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id bp38sm7797797qkb.66.2021.12.07.00.53.54
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 07 Dec 2021 00:53:56 -0800 (PST)
-From:   Vincent Shih <vincent.sunplus@gmail.com>
-To:     srinivas.kandagatla@linaro.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        wells.lu@sunplus.com
-Cc:     Vincent Shih <vincent.sunplus@gmail.com>
-Subject: [PATCH v2 2/2] dt-bindings: nvmem: Add bindings doc for Sunplus OCOTP driver
-Date:   Tue,  7 Dec 2021 16:53:53 +0800
-Message-Id: <1638867233-8383-3-git-send-email-vincent.sunplus@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1638867233-8383-1-git-send-email-vincent.sunplus@gmail.com>
-References: <1638867233-8383-1-git-send-email-vincent.sunplus@gmail.com>
+        id S231751AbhLGJAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 04:00:34 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:59900 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231313AbhLGJAd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 04:00:33 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id ADE191F44D8B
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1638867422; bh=6nmUTy2qScz4iTwXjqQt0rHoA1TXWwXjzZV/fmWui78=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=QKWHMuu5MIBaoMET43C9soRtIOij55jI75VSMpib0iawKdoiBkK20yQOfM8K0bA1H
+         mIlHI5anp3xP/om0YfO56YFbkE+x59LCgTk0P1E6jEI4TSAgOB8Bn+HudlcEl5L7Lj
+         0W1xcTyM7p8C/EIkgyAQxsMREoHfomCqmI1R35niwX3m/9U/RgcartIfFL9cYEw0NY
+         dACSCmbJNTgttlGUTumf7Ixv+qkDxuxUmLBIJId5xrGRjvcmvVUv6c5XAN0HaXhB6s
+         pnW8XiOmhbLvCpGPlYjl548ujYKn9zTyWKZHZy926Psh3P8ZEEanceqXYmtEBqgCvV
+         pIWWjhztMnuBg==
+Subject: Re: [PATCH 3/4] memory: mtk-smi: Add sleep ctrl function
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, lc.kan@mediatek.com, yi.kuo@mediatek.com,
+        anthony.huang@mediatek.com, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+References: <20211203064027.14993-1-yong.wu@mediatek.com>
+ <20211203064027.14993-4-yong.wu@mediatek.com>
+ <f2ffd08a-44c3-9458-1bd8-68e3c0755611@collabora.com>
+ <ebc8e4c0b0519043c5a82c6c967ac6d524e8869a.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <47c30f6f-ce9d-9ea7-283c-9026ae9ed1c0@collabora.com>
+Date:   Tue, 7 Dec 2021 09:56:59 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <ebc8e4c0b0519043c5a82c6c967ac6d524e8869a.camel@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings doc for Sunplus OCOTP driver
+Il 07/12/21 07:24, Yong Wu ha scritto:
+> Hi AngeloGioacchino,
+> 
+> Thanks for your review.
+> 
+> On Mon, 2021-12-06 at 16:08 +0100, AngeloGioacchino Del Regno wrote:
+>> Il 03/12/21 07:40, Yong Wu ha scritto:
+>>> sleep control means that when the larb go to sleep, we should wait
+>>> a bit
+>>> until all the current commands are finished. thus, when the larb
+>>> runtime
+>>> suspend, we need enable this function to wait until all the existed
+>>> command are finished. when the larb resume, just disable this
+>>> function.
+>>> This function only improve the safe of bus. Add a new flag for this
+>>> function. Prepare for mt8186.
+>>>
+>>> Signed-off-by: Anan Sun <anan.sun@mediatek.com>
+>>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+>>> ---
+>>>    drivers/memory/mtk-smi.c | 39
+>>> +++++++++++++++++++++++++++++++++++----
+>>>    1 file changed, 35 insertions(+), 4 deletions(-)
+> 
+> [snip]
+> 
+>>>    static int __maybe_unused mtk_smi_larb_suspend(struct device
+>>> *dev)
+>>>    {
+>>>    	struct mtk_smi_larb *larb = dev_get_drvdata(dev);
+>>> +	int ret = 0;
+>>> +
+>>> +	if (MTK_SMI_CAPS(larb->larb_gen->flags_general,
+>>> MTK_SMI_FLAG_SLEEP_CTL))
+>>> +		ret = mtk_smi_larb_sleep_ctrl(dev, true);
+>>
+>> Sorry but what happens if SLP_PROT_RDY is not getting set properly?
+>>   From what I can understand in the commit description that you wrote,
+>> if we reach
+>> the timeout, then the LARB transactions are not over....
+>>
+>> I see that you are indeed returning a failure here, but you are also
+>> turning off
+>> the clocks regardless of whether we get a failure or a success; I'm
+>> not sure that
+>> this is right, as this may leave the hardware in an unpredictable
+>> state (since
+>> there were some more LARB transactions that didn't go through),
+>> leading to crashes
+>> at system resume (or when retyring to suspend).
+> 
+> Thanks for this question. In theory you are right. In this case, the
+> bus already hang.
+> 
+> We only printed a fail log in this patch. If this fail happens, we
+> should request the master to check which case cause the larb hang.
+> 
+> If the master has a good reason or limitation, the hang is expected, I
+> think we have to add larb reset in this fail case: Reset the larb when
+> the larb runtime resume.
+> 
 
-Signed-off-by: Vincent Shih <vincent.sunplus@gmail.com>
----
-Changes in v2:
- - Address the comments from Mr. Rob Herring
+Think about the case in which the system gets resumed only partially due to a
 
- .../bindings/nvmem/sunplus,sp7021-ocotp.yaml       | 86 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 87 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
+failure during resume of some driver, or due to a RTC or arch timer resume and
+suspend right after... or perhaps during runtime suspend/resume of some devices.
+In that case, we definitely want to avoid any kind of failure point that would
+lead to a system crash, or any kind of user noticeable (or UX disrupting) "strange
+behavior".
 
-diff --git a/Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml b/Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
-new file mode 100644
-index 0000000..4b28f37
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd. 2021
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/sunplus,sp7021-ocotp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: On-Chip OTP Memory for Sunplus SP7021
-+
-+maintainers:
-+  - Vincent Shih <vincent.sunplus@gmail.com>
-+
-+allOf:
-+  - $ref: "nvmem.yaml#"
-+
-+properties:
-+  compatible:
-+    const: sunplus,sp7021-ocotp
-+
-+  reg:
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: hb_gpio
-+      - const: otprx
-+
-+  clocks:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  thermal-calibration:
-+    type: object
-+    description: thermal calibration values
-+
-+  disconnect-voltage:
-+    type: object
-+    description: disconnect voltages of usb2 port 0 and port 1
-+
-+  mac-address0:
-+    type: object
-+    description: MAC address of ethernet port 0
-+
-+  mac-address1:
-+    type: object
-+    description: MAC address of ethernet port 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/sp-sp7021.h>
-+
-+    otp: otp@9c00af00 {
-+        compatible = "sunplus,sp7021-ocotp";
-+        reg = <0x9c00af00 0x34>, <0x9c00af80 0x58>;
-+        reg-names = "hb_gpio", "otprx";
-+        clocks = <&clks OTPRX>;
-+
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        therm_calib: thermal-calibration@14 {
-+          reg = <0x14 0x3>;
-+        };
-+        disc_vol: disconnect-voltage@18 {
-+          reg = <0x18 0x2>;
-+        };
-+        mac_addr0: mac-address0@34 {
-+          reg = <0x34 0x6>;
-+        };
-+        mac_addr1: mac-address1@3a {
-+          reg = <0x3a 0x6>;
-+        };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0e6593a..2afd1ea 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17950,6 +17950,7 @@ F:	drivers/net/ethernet/dlink/sundance.c
- SUNPLUS OCOTP DRIVER
- M:	Vincent Shih <vincent.sunplus@gmail.com>
- S:	Maintained
-+F:	Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
- F:	drivers/nvmem/sunplus-ocotp.c
- 
- SUPERH
--- 
-2.7.4
+I think that we should make sure that the system suspends cleanly, instead of
+patching up any possible leftover issue at resume time: if this is doable with
+a LARB reset in suspend error case, that looks like being a good option indeed.
+
+As a side note, thinking about UX, losing a little more time during suspend is
+nothing really noticeable for the user... on the other hand, spending more time
+during resume may be something noticeable to the user.
+For this reason, I think that guaranteeing that the system resumes as fast as
+possible is very important, which adds up to the need of suspending cleanly.
+
+> Fortunately, we have never got this issue. We could add this reset when
+> necessary. Is this OK for you?
+> 
+> Thanks.
+> 
+>>
+>>>    
+>>>    	clk_bulk_disable_unprepare(larb->smi.clk_num, larb->smi.clks);
+>>> -	return 0;
+>>> +	return ret;
+>>>    }
+>>>    
+>>>    static const struct dev_pm_ops smi_larb_pm_ops = {
+>>>
+>>
+>>
 
