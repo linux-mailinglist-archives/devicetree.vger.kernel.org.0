@@ -2,99 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F12D46BCDC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 14:45:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A20A146BCE2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 14:46:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232560AbhLGNtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 08:49:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34148 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232101AbhLGNtK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 08:49:10 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A29E9C061574;
-        Tue,  7 Dec 2021 05:45:39 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id o19-20020a1c7513000000b0033a93202467so2288514wmc.2;
-        Tue, 07 Dec 2021 05:45:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=hborBrthxNbQAZArCMA4MiIrNEcRIe9EcwmyeOHHUJ0=;
-        b=KwioKg8aKiIAwqcRrerQOBq+2pCJ2noJDzLdEYT0nGbN8xeTiR1kypzDh3rAusGg1/
-         BbjhbpflDqERDU8n9tuDi2g9G1oGy2XUXHjJz05N+wkm9I0i/EqdIcxhPJTA//NyZGES
-         mky5qUXIyPMwph4iVFdoU4OJRqKVSXIqaJ27NkfQCQrq2oifGW31lQfZp0v9bAgZSyoB
-         jkvrEE+xq1H1Kx1W2Oq6I+lVXw2INETyIMAEzLQjuiJU0+QNfrGMNpp0Q4fYXgsSQE8p
-         FLt14202lMw46oGpzbZp3WV9W3vKo4fEppM3FcewYDvfrlrLWUYKPYkDO+BtqD3AZ9kX
-         Tadw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=hborBrthxNbQAZArCMA4MiIrNEcRIe9EcwmyeOHHUJ0=;
-        b=bfXT1Qa+e7/OJmIgVqpWvw0/I4yX/O12TP7z4d96dJLuGKsIa5WK0iJpX7yiWQJ43a
-         9PD/25hdjzOBBa7xtmDOIIuGk5wfjno1gHHpm1eMeAckzxowZ5JekiFfbtfGGE09+dQN
-         //iRC6DNAA6JOjxyR5/BY4A53DRK09ShOVppi6vf1qHUkeSW3sh13N29I8M86WHCy0DK
-         oma1uLyU+XyHHBGC/EsKU033pv6pUt8KLy42s3bSuCi3ij13JP0fGpAQSYpIPZNu0LbW
-         boIIgmWOR8aL0NPMwaR3qbLLEOYSJ+QTnJTGbG2M4Ocv4sir2s8UbXY6PDuDDTIUYd6r
-         rPHA==
-X-Gm-Message-State: AOAM532ZJFWWZ2hw3P08y1g+b0s4M/EWUp8//53GPIhS4D18io+3NW8z
-        HzaLxdMCKVSmH4Q+iGFm5Z0=
-X-Google-Smtp-Source: ABdhPJzt9o/ocPKsbNmeRRBU4lwVWkUk/+vqjSHNtgFCZ8vx5g2UUbxi4CHe1kWcOXN5YOzW/PppBQ==
-X-Received: by 2002:a1c:a592:: with SMTP id o140mr7041688wme.10.1638884738146;
-        Tue, 07 Dec 2021 05:45:38 -0800 (PST)
-Received: from localhost.elektrobit.com (eth1-fw1-nbg6.eb.noris.de. [213.95.148.172])
-        by smtp.gmail.com with ESMTPSA id x1sm14504594wru.40.2021.12.07.05.45.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 05:45:37 -0800 (PST)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To:     Lee Jones <lee.jones@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: [PATCH] MAINTAINERS: rectify entry for ROHM MULTIFUNCTION BD9571MWV-M PMIC DEVICE DRIVERS
-Date:   Tue,  7 Dec 2021 14:45:31 +0100
-Message-Id: <20211207134531.19560-1-lukas.bulwahn@gmail.com>
-X-Mailer: git-send-email 2.26.2
+        id S237202AbhLGNuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 08:50:25 -0500
+Received: from foss.arm.com ([217.140.110.172]:60752 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237179AbhLGNuZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 08:50:25 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EC85B11FB;
+        Tue,  7 Dec 2021 05:46:54 -0800 (PST)
+Received: from [10.57.34.58] (unknown [10.57.34.58])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5CC683F5A1;
+        Tue,  7 Dec 2021 05:46:53 -0800 (PST)
+Message-ID: <675bfd78-69ac-608f-1303-e86b90a83f72@arm.com>
+Date:   Tue, 7 Dec 2021 13:46:49 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH v2 3/3] perf/smmuv3: Synthesize IIDR from CoreSight ID
+ registers
+Content-Language: en-GB
+To:     Leo Yan <leo.yan@linaro.org>
+Cc:     John Garry <john.garry@huawei.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, uchida.jun@socionext.com,
+        will@kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org
+References: <20211117144844.241072-1-jean-philippe@linaro.org>
+ <20211117144844.241072-4-jean-philippe@linaro.org>
+ <e60b15db-4e52-b5a6-1b17-203d250f1e65@huawei.com>
+ <766ac58a-ffb7-f673-709b-0f0f740f3cfd@arm.com>
+ <53f868a8-c7ae-b69d-b061-bb0a7dc98f8a@huawei.com>
+ <d60110c4-c179-45d6-512d-3d058caac974@arm.com>
+ <20211207132007.GB255238@leoy-ThinkPad-X240s>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20211207132007.GB255238@leoy-ThinkPad-X240s>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 983b62975e90 ("dt-bindings: mfd: bd9571mwv: Convert to json-schema")
-converts bd9571mwv.txt to rohm,bd9571mwv.yaml, but missed to adjust its
-reference in MAINTAINERS.
+On 2021-12-07 13:20, Leo Yan wrote:
+> On Tue, Dec 07, 2021 at 12:48:13PM +0000, Robin Murphy wrote:
+>> On 2021-12-07 12:28, John Garry via iommu wrote:
+>>> On 07/12/2021 12:04, Robin Murphy wrote:
+>>>>>>
+>>>>> So is there some userspace part to go with this now?
+>>>>
+>>>> FWIW I've not looked into it - is it just a case of someone knocking
+>>>> out some JSON from the MMU-600/700 TRMs, or is there still mroe to
+>>>> do?
+>>>
+>>> That should just be it.
+> 
+> Hope I didn't arrive too late :)
+> 
+> Yes, I think we just missed two things: the DT binding for SMMUv3 PMU
+> which is just addressed by this patchset; and the PMU event aliasing
+> for SMMUv3 PMU, before I inquired with John and John said he would
+> upstream the related patches after kernel can export a IIDR value via
+> sysfs node.
+> 
+> Seems to me, after this patchset for DT binding and PMU event alias
+> patches are landed to the mainline kernel, it would be perfect.
+> 
+>>>> I had the impression that *some* part of the process was stalled
+>>>> until implementations can start providing meaningful IIDRs, but I
+>>>> wasn't sure whether that was tooling or just data. I just work the
+>>>> low-level enablement angle :)
+>>>
+>>> Tooling should be ok, but I would just like to see more of these JSONs
+>>> so any tooling issues can be ironed out.
+>>
+>> Sounds good - Jean, Leo, is that something Linaro might like to pick up as
+>> part of the PMCG interest, or shall I make a note on my to-do list for the
+>> new year?
+> 
+> I took a look for current patch for using PIDR to synthesize IIDR, it
+> looks good to me.  But I tested it on Hisilicon D06 board and observed
+> the composed IIDR values are still zeros.
+> 
+> I added a printk sentence to dump iidr value at the end of the function
+> smmu_pmu_get_iidr():
+> 
+>    leoy@ubuntu:~$ dmesg | grep iidr
+>    [   28.674087] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.8.auto: iidr=0x0
+>    [   28.705239] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.9.auto: iidr=0x0
+>    [   28.729924] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.10.auto: iidr=0x0
+>    [   28.754855] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.11.auto: iidr=0x0
+>    [   28.779811] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.12.auto: iidr=0x0
+>    [   28.804755] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.13.auto: iidr=0x0
+>    [   28.829825] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.14.auto: iidr=0x0
+>    [   28.854767] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.15.auto: iidr=0x0
+> 
+> Please confirm if this is expected or not?  I think this might
+> introduce difficulty for John for the PMU event alias patches, which
+> is dependent on a non-zero IIDR.
 
-Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about
-a broken reference. Repair this file reference in ROHM MULTIFUNCTION
-BD9571MWV-M PMIC DEVICE DRIVERS.
+Yes, from previous discussions I believe the HiSilicon implementations 
+don't have much meaningful ID information at all (hence why we have to 
+match ACPI table headers to identify the counter erratum). My trick only 
+works for Arm Ltd. implementations since they happen to have the IMP-DEF 
+CoreSight registers with the same information as would be in the future 
+IIDR.
 
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
----
-Lee, please pick this minor clean-up patch into your -next tree on top
-of the commit mentioned above.
+To clarify, the proposal at this point is to write up JSON files for 
+MMU-600/MMU-700, based on this patch, in order to pipe-clean the process 
+for future SMMUv3.3 PMCG implementations with real IIDRs.
 
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Whether other implementers might retroactively define "equivalent" IIDR 
+values for their existing implementations in a way we could potentially 
+quirk in the driver is an orthogonal question.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 79ef55bf2ca7..842be45b37ab 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16560,7 +16560,7 @@ M:	Marek Vasut <marek.vasut+renesas@gmail.com>
- L:	linux-kernel@vger.kernel.org
- L:	linux-renesas-soc@vger.kernel.org
- S:	Supported
--F:	Documentation/devicetree/bindings/mfd/bd9571mwv.txt
-+F:	Documentation/devicetree/bindings/mfd/rohm,bd9571mwv.yaml
- F:	drivers/gpio/gpio-bd9571mwv.c
- F:	drivers/mfd/bd9571mwv.c
- F:	drivers/regulator/bd9571mwv-regulator.c
--- 
-2.26.2
+Cheers,
+Robin.
 
+> 
+> At last, very appreciate your (Jean-Philippe, Robin and John) help!
+> 
+> Thanks,
+> Leo
+> 
