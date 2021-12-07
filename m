@@ -2,134 +2,325 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51CD746BC54
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 14:20:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C0246BC58
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 14:20:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236714AbhLGNXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 08:23:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56442 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230480AbhLGNXr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 08:23:47 -0500
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E914CC061574
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 05:20:16 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id y8so9429939plg.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 05:20:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=3pjdVhWR1OgHYWV0sxlZyJWoI2cI2Oh0roG7GoSp3nI=;
-        b=qzUf+lPLoy8N93P9Uyf+2TLGaK4mOsKziqdfzRnbb3odO/2MhkPJKvrcCynajDarOc
-         0THGTjNfBsgmZmrLXhnlX2PHkhf+t+S8DGprz2XsJPI0ssW4mr5US2djCTQuAptTwsaW
-         Yx42eLAgNm2Loo4Srw6kmC0UM4OIceQdylrdnqGf32IzzCC5FAuJCbqvTYP9QCLo5S/u
-         BPk+pV0Spfd5XWgjtmPyjvi/iFgXuJEdBuRlMCv3M+PXkekKFgeWCtU6nTaJZEoMP4VE
-         9wicT9Ei6SKFJS1Iyw6g9RL4QSJ8I03RFrR7JF+9/K1QQvJzur8zkcrkQ9PB4aTUIzrp
-         lAfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3pjdVhWR1OgHYWV0sxlZyJWoI2cI2Oh0roG7GoSp3nI=;
-        b=Y0GHJ4che9FHFyx3fZZ3YpdfnIhhgkryaWyBugR0Q+HVEEiw0oxIhFHntQ74JOEjbB
-         fmUJLxMeFssotvnjatZ1j8ROjse5a/MdXC6RbHJUbRQegeyjRAHTqCa1k7M7Fup9P29C
-         IYy08X5u4Z0f0przn4p/4+IJJ+3VFlzmJl6cGLaxL7ehUm3FKacwqj+ggdEaT84MTVYg
-         llSLXuf+Md78Z+hGcaxHG9ZbyrLLTVS5dTmJCbVYc2DYHMLmyV0Wl1ofBUzdHtmwy1Lw
-         9AAbiBNjlKF0d99QMdPr9oF8Dk0sZTGDqQMtqeedZ/QsL3i/uQh/sCc2HFTkIbDSbDD4
-         D9Iw==
-X-Gm-Message-State: AOAM532iloR+23bAjL3fhuYhr8+ncHlEOnTOZT9zhtUnXneM9WQBPPeZ
-        eNbCinB60ERzOvSao0V/Lc0f9FfQ9elai7HHSqw=
-X-Google-Smtp-Source: ABdhPJyT36O+3PzDMnfYqToz8aS2UUJaqSeMsISrkbXJtNAy82ZKfJX+kRLQwdMUPlxd55dKVcedTg==
-X-Received: by 2002:a17:902:c7c4:b0:141:deb4:1b2f with SMTP id r4-20020a170902c7c400b00141deb41b2fmr50916851pla.44.1638883216337;
-        Tue, 07 Dec 2021 05:20:16 -0800 (PST)
-Received: from leoy-ThinkPad-X240s ([103.207.71.6])
-        by smtp.gmail.com with ESMTPSA id j15sm15751386pfh.35.2021.12.07.05.20.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 05:20:15 -0800 (PST)
-Date:   Tue, 7 Dec 2021 21:20:07 +0800
-From:   Leo Yan <leo.yan@linaro.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     John Garry <john.garry@huawei.com>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        mark.rutland@arm.com, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, uchida.jun@socionext.com,
-        will@kernel.org, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v2 3/3] perf/smmuv3: Synthesize IIDR from CoreSight ID
- registers
-Message-ID: <20211207132007.GB255238@leoy-ThinkPad-X240s>
-References: <20211117144844.241072-1-jean-philippe@linaro.org>
- <20211117144844.241072-4-jean-philippe@linaro.org>
- <e60b15db-4e52-b5a6-1b17-203d250f1e65@huawei.com>
- <766ac58a-ffb7-f673-709b-0f0f740f3cfd@arm.com>
- <53f868a8-c7ae-b69d-b061-bb0a7dc98f8a@huawei.com>
- <d60110c4-c179-45d6-512d-3d058caac974@arm.com>
+        id S230480AbhLGNYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 08:24:10 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:36590 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232535AbhLGNYK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 08:24:10 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B7DKW5b025373;
+        Tue, 7 Dec 2021 07:20:32 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1638883232;
+        bh=Bi898T9x8J49r3ACM+xVfh8daK3ybA5GEBdVLFFDfk4=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=jj9sk792O2w9givkalEtPXbelAy+UT+H7Cp76Ho6outiQ1TTUHT4tcIATkZWNdxxq
+         /gdbblzg40iCAaGGTqvm6tczHfTIEueM12aFNLBD3IkwNqPaGxT/diPNEf6ueAf398
+         atwLUEwdpfVkPdmwusVOp3of/X6dOceGdgXK9OyU=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B7DKWn6004689
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 7 Dec 2021 07:20:32 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 7
+ Dec 2021 07:20:32 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 7 Dec 2021 07:20:32 -0600
+Received: from [10.250.232.32] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B7DKPGf112183;
+        Tue, 7 Dec 2021 07:20:26 -0600
+Subject: Re: [PATCH v5 3/6] arm64: dts: ti: k3-j721e: Add support for MCAN
+ nodes
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Marc Kleine-Budde <mkl@pengutronix.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Faiz Abbas <faiz_abbas@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20211122134159.29936-1-a-govindraju@ti.com>
+ <20211122134159.29936-4-a-govindraju@ti.com>
+From:   Apurva Nandan <a-nandan@ti.com>
+Message-ID: <3b8c234c-b5b5-57c9-bbb0-ad678b83b08d@ti.com>
+Date:   Tue, 7 Dec 2021 18:50:24 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d60110c4-c179-45d6-512d-3d058caac974@arm.com>
+In-Reply-To: <20211122134159.29936-4-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 07, 2021 at 12:48:13PM +0000, Robin Murphy wrote:
-> On 2021-12-07 12:28, John Garry via iommu wrote:
-> > On 07/12/2021 12:04, Robin Murphy wrote:
-> > > > > 
-> > > > So is there some userspace part to go with this now?
-> > > 
-> > > FWIW I've not looked into it - is it just a case of someone knocking
-> > > out some JSON from the MMU-600/700 TRMs, or is there still mroe to
-> > > do?
-> > 
-> > That should just be it.
 
-Hope I didn't arrive too late :)
+On 22/11/21 7:11 pm, Aswath Govindraju wrote:
+> From: Faiz Abbas <faiz_abbas@ti.com>
+>
+> Add support for 14 MCAN controllers in main domain and 2 MCAN controllers
+> present in mcu domain. All the MCAN controllers support classic CAN
+> messages as well as CAN_FD messages.
+>
+> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 
-Yes, I think we just missed two things: the DT binding for SMMUv3 PMU
-which is just addressed by this patchset; and the PMU event aliasing
-for SMMUv3 PMU, before I inquired with John and John said he would
-upstream the related patches after kernel can export a IIDR value via
-sysfs node.
+Reviewed-by: Apurva Nandan <a-nandan@ti.com>
 
-Seems to me, after this patchset for DT binding and PMU event alias
-patches are landed to the mainline kernel, it would be perfect.
-
-> > > I had the impression that *some* part of the process was stalled
-> > > until implementations can start providing meaningful IIDRs, but I
-> > > wasn't sure whether that was tooling or just data. I just work the
-> > > low-level enablement angle :)
-> > 
-> > Tooling should be ok, but I would just like to see more of these JSONs
-> > so any tooling issues can be ironed out.
-> 
-> Sounds good - Jean, Leo, is that something Linaro might like to pick up as
-> part of the PMCG interest, or shall I make a note on my to-do list for the
-> new year?
-
-I took a look for current patch for using PIDR to synthesize IIDR, it
-looks good to me.  But I tested it on Hisilicon D06 board and observed
-the composed IIDR values are still zeros.
-
-I added a printk sentence to dump iidr value at the end of the function
-smmu_pmu_get_iidr():
-
-  leoy@ubuntu:~$ dmesg | grep iidr
-  [   28.674087] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.8.auto: iidr=0x0
-  [   28.705239] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.9.auto: iidr=0x0
-  [   28.729924] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.10.auto: iidr=0x0
-  [   28.754855] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.11.auto: iidr=0x0
-  [   28.779811] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.12.auto: iidr=0x0
-  [   28.804755] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.13.auto: iidr=0x0
-  [   28.829825] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.14.auto: iidr=0x0
-  [   28.854767] arm-smmu-v3-pmcg arm-smmu-v3-pmcg.15.auto: iidr=0x0
-
-Please confirm if this is expected or not?  I think this might
-introduce difficulty for John for the PMU event alias patches, which
-is dependent on a non-zero IIDR.
-
-At last, very appreciate your (Jean-Philippe, Robin and John) help!
-
-Thanks,
-Leo
+> ---
+>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 196 ++++++++++++++++++
+>   .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  28 +++
+>   2 files changed, 224 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index 08c8d1b47dcd..08a30c21e6b7 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -1940,4 +1940,200 @@
+>   			bus_freq = <1000000>;
+>   		};
+>   	};
+> +
+> +	main_mcan0: can@2701000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x02701000 0x00 0x200>,
+> +		      <0x00 0x02708000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 156 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 156 0>, <&k3_clks 156 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	main_mcan1: can@2711000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x02711000 0x00 0x200>,
+> +		      <0x00 0x02718000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 158 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 158 0>, <&k3_clks 158 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	main_mcan2: can@2721000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x02721000 0x00 0x200>,
+> +		      <0x00 0x02728000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 160 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 160 0>, <&k3_clks 160 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	main_mcan3: can@2731000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x02731000 0x00 0x200>,
+> +		      <0x00 0x02738000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 161 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 161 0>, <&k3_clks 161 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	main_mcan4: can@2741000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x02741000 0x00 0x200>,
+> +		      <0x00 0x02748000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 162 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 162 0>, <&k3_clks 162 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	main_mcan5: can@2751000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x02751000 0x00 0x200>,
+> +		      <0x00 0x02758000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 163 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 163 0>, <&k3_clks 163 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	main_mcan6: can@2761000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x02761000 0x00 0x200>,
+> +		      <0x00 0x02768000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 164 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 164 0>, <&k3_clks 164 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	main_mcan7: can@2771000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x02771000 0x00 0x200>,
+> +		      <0x00 0x02778000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 165 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 165 0>, <&k3_clks 165 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	main_mcan8: can@2781000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x02781000 0x00 0x200>,
+> +		      <0x00 0x02788000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 166 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 166 0>, <&k3_clks 166 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 576 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 577 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	main_mcan9: can@2791000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x02791000 0x00 0x200>,
+> +		      <0x00 0x02798000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 167 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 167 0>, <&k3_clks 167 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 579 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 580 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	main_mcan10: can@27a1000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x027a1000 0x00 0x200>,
+> +		      <0x00 0x027a8000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 168 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 168 0>, <&k3_clks 168 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 583 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	main_mcan11: can@27b1000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x027b1000 0x00 0x200>,
+> +		      <0x00 0x027b8000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 169 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 169 0>, <&k3_clks 169 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	main_mcan12: can@27c1000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x027c1000 0x00 0x200>,
+> +		      <0x00 0x027c8000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 170 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 170 0>, <&k3_clks 170 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 588 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 589 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	main_mcan13: can@27d1000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x027d1000 0x00 0x200>,
+> +		      <0x00 0x027d8000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 171 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 171 0>, <&k3_clks 171 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 591 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 592 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+>   };
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> index d2dceda72fe9..b4972dfb7da8 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> @@ -390,4 +390,32 @@
+>   			ti,loczrama = <1>;
+>   		};
+>   	};
+> +
+> +	mcu_mcan0: can@40528000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x40528000 0x00 0x200>,
+> +		      <0x00 0x40500000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 172 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 172 0>, <&k3_clks 172 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 832 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 833 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+> +
+> +	mcu_mcan1: can@40568000 {
+> +		compatible = "bosch,m_can";
+> +		reg = <0x00 0x40568000 0x00 0x200>,
+> +		      <0x00 0x40540000 0x00 0x8000>;
+> +		reg-names = "m_can", "message_ram";
+> +		power-domains = <&k3_pds 173 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 173 0>, <&k3_clks 173 1>;
+> +		clock-names = "hclk", "cclk";
+> +		interrupts = <GIC_SPI 835 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 836 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "int0", "int1";
+> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+> +	};
+>   };
