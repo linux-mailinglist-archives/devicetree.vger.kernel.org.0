@@ -2,195 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 686A046BDC9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:34:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C13CB46BDC5
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:33:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237906AbhLGOhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 09:37:32 -0500
-Received: from mail-vk1-f175.google.com ([209.85.221.175]:38593 "EHLO
-        mail-vk1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237908AbhLGOhb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 09:37:31 -0500
-Received: by mail-vk1-f175.google.com with SMTP id s17so9411813vka.5;
-        Tue, 07 Dec 2021 06:34:01 -0800 (PST)
+        id S237888AbhLGOhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 09:37:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45686 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231591AbhLGOhR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 09:37:17 -0500
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98193C061574
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 06:33:47 -0800 (PST)
+Received: by mail-ot1-x32e.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so18260244otl.8
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 06:33:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=0m2GF26E40xs6mb1JEeofYn5H0g7vqPjjF1kUlGlw1g=;
+        b=qTMDWbLjlnnwBWIxkq7P3nMajKwCc4EprCObUf3oK+rgEK99LWCDchKSgEBzp3taXi
+         L9OdOkdcVYPJPOSSFjixzUJDR6Z6f5/5yiQI7AU50vOq7eDrvkkfGF09XoA7TRFDxZt7
+         6B7Mo1KflEauK7z7QPu2luy3bqlkZ0fFTTAicwhdgvGQ48fbrCGHyYKe2Hu720QR/85m
+         PLsr02ynd/it9TtM/XFds17CdDdIPalHH/xZMFuX8cxcGFOErICua4RTr+oOrX5PwsOv
+         D9vm6YT3Ufpfb2ZMp+P1Esa5Oar8v/aSvtil36hD1bfWnrX44y61rvvmgVjKOwknwH5N
+         tdtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qpQwqoT8XwAAdzoQ9aX+buSx+t+PONUN1DKB1Js0qIY=;
-        b=Qkl9wEXZR6NT9yA1rL9JSKHQZV+rSOTrFOFN59QE1KwAKzoIHZyyWEseUcu0lFRGiX
-         qyIfIkmrtxO9tEZOAWVWWEWiDe373x8twbrBNdQHZ1th+7WZ/oLRGHqtZoJcHsGxnTwH
-         r3Ifr0um3tA+HVVgMpmMVNqIFCmucpo7kkgbLUe0/zbm0r00oGSOuBu/XqwSih5S1vgv
-         f1LkdEwc4hH7B867KOGmsTRW1whERSy9c0QgdWIImlaMQRH0QTeC/d2725bYO0OurI4A
-         bdg3hHIpetafDRxZlzeYC+G0ySwVBtIMmRtlT2cn7eEE1VHoW3I1S7y+ejunbnMsptGb
-         gEtA==
-X-Gm-Message-State: AOAM5304G5wIDNZlgGFR/YQeh5uYrDlJHllRwW3L0aAdeJNmbzXraeS0
-        F4bMBwGYeeQPfqF9GNHYMzlss0FO7+umsg==
-X-Google-Smtp-Source: ABdhPJyIlVg355hB6brafrIKzc/ptkFOMFuLYllkn7XoHdTKrN2/gPk2d2/KHxf4gyUSi7HAvzxM9g==
-X-Received: by 2002:a1f:d642:: with SMTP id n63mr52528306vkg.32.1638887639973;
-        Tue, 07 Dec 2021 06:33:59 -0800 (PST)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id x9sm6420104vkn.36.2021.12.07.06.33.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Dec 2021 06:33:59 -0800 (PST)
-Received: by mail-ua1-f50.google.com with SMTP id ay21so26892588uab.12;
-        Tue, 07 Dec 2021 06:33:59 -0800 (PST)
-X-Received: by 2002:a05:6102:21dc:: with SMTP id r28mr46694326vsg.57.1638887638783;
- Tue, 07 Dec 2021 06:33:58 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0m2GF26E40xs6mb1JEeofYn5H0g7vqPjjF1kUlGlw1g=;
+        b=ineSf9B2W1HYe9KtbKHO3Q2Ir7d0Zds6el4cVOdNKRG5RU9otaFuPHDgRIAxUJEJ/T
+         Ioa0zueXHYNh1F3PJliOxUT6hc9aGW3uoD4jMEHmeB/gLgZIs+7MQ1WkoTmS2E/UQI0e
+         YivjTcrKtetoIjorAkOI9JLBfR1tvpkctfuYlB9zrc4OTcCMWgPV02SZQJWdQlLBOa9H
+         yADqv8A+S/gL60AkPj6SfHC+4NlWj05qiHJjeRu5Nf6zIoDlRJGvZ31yJtxb340KfNdA
+         hAOiuf5aB/HZPQujDcxuos10z9gEF+f45gaomvJ4I9lUqUqZrg/ZB+I6u4jRUxuDxPpS
+         GXRg==
+X-Gm-Message-State: AOAM532C21TIoDdqiEsgUQ+IIK8bimHOb+v4ojALwHkbspQWemmtKZEk
+        3+bi+moIuEBNUaRGzf9kX22N5Q==
+X-Google-Smtp-Source: ABdhPJy9LoOphSM1nEVxuWvLYLMmN9Elgk4jmv3+PE9nQA06m25+qZiTiG26zXQGeLFhHPulg3eG2Q==
+X-Received: by 2002:a9d:62c5:: with SMTP id z5mr36478679otk.166.1638887626915;
+        Tue, 07 Dec 2021 06:33:46 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id bh12sm3469459oib.25.2021.12.07.06.33.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Dec 2021 06:33:46 -0800 (PST)
+Date:   Tue, 7 Dec 2021 06:35:11 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 01/15] arm64: dts: qcom: Add base SM8450 DTSI
+Message-ID: <Ya9xHzykSknMdqcd@ripper>
+References: <20211201072915.3969178-1-vkoul@kernel.org>
+ <20211201072915.3969178-2-vkoul@kernel.org>
+ <3fe36e35-8c4b-f772-be43-8e8c49e97f63@somainline.org>
+ <Ya2iJD8kfFfj/MpY@matsya>
 MIME-Version: 1.0
-References: <20211202062733.20338-1-moudy.ho@mediatek.com> <20211202062733.20338-4-moudy.ho@mediatek.com>
- <c48154b9-b202-c47c-c27e-53aa97877430@xs4all.nl>
-In-Reply-To: <c48154b9-b202-c47c-c27e-53aa97877430@xs4all.nl>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 7 Dec 2021 15:33:47 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVDQMUcYSnvPj=TOepSbgSj7fO7oxd9QvQBDSttpVz=ew@mail.gmail.com>
-Message-ID: <CAMuHMdVDQMUcYSnvPj=TOepSbgSj7fO7oxd9QvQBDSttpVz=ew@mail.gmail.com>
-Subject: Re: [PATCH v10 3/3] media: platform: mtk-mdp3: add Mediatek MDP3 driver
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     Moudy Ho <moudy.ho@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-mediatek@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Tomasz Figa <tfiga@chromium.org>, drinkcat@chromium.org,
-        pihsun@chromium.org, hsinyi@google.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        menghui.lin@mediatek.com, sj.huang@mediatek.com,
-        allen-kh.cheng@mediatek.com, randy.wu@mediatek.com,
-        jason-jh.lin@mediatek.com, roy-cw.yeh@mediatek.com,
-        river.cheng@mediatek.com, srv_heupstream@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Ya2iJD8kfFfj/MpY@matsya>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
+On Sun 05 Dec 21:39 PST 2021, Vinod Koul wrote:
 
-On Tue, Dec 7, 2021 at 3:20 PM Hans Verkuil <hverkuil-cisco@xs4all.nl> wrote:
-> On 12/2/21 7:27 AM, Moudy Ho wrote:
-> > This patch adds driver for Mediatek's Media Data Path ver.3 (MDP3).
-> > It provides the following functions:
-> >   color transform, format conversion, resize, crop, rotate, flip
-> >   and additional image quality enhancement.
-> >
-> > The MDP3 driver is mainly used for Google Chromebook products to
-> > import the new architecture to set the HW settings as shown below:
-> >   User -> V4L2 framework
-> >     -> MDP3 driver -> SCP (setting calculations)
-> >       -> MDP3 driver -> CMDQ (GCE driver) -> HW
-> >
-> > Each modules' related operation control is sited in mtk-mdp3-comp.c
-> > Each modules' register table is defined in file with "mdp_reg_" prefix
-> > GCE related API, operation control  sited in mtk-mdp3-cmdq.c
-> > V4L2 m2m device functions are implemented in mtk-mdp3-m2m.c
-> > Probe, power, suspend/resume, system level functions are defined in
-> > mtk-mdp3-core.c
-> >
-> > Signed-off-by: Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
-> > Signed-off-by: daoyuan huang <daoyuan.huang@mediatek.com>
-> > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> > Reported-by: kernel test robot <lkp@intel.com>
-> > ---
-> >  drivers/media/platform/Kconfig                |   19 +
-> >  drivers/media/platform/Makefile               |    2 +
-> >  drivers/media/platform/mtk-mdp3/Makefile      |    6 +
-> >  .../media/platform/mtk-mdp3/mdp_reg_ccorr.h   |   19 +
-> >  drivers/media/platform/mtk-mdp3/mdp_reg_isp.h |   27 +
-> >  .../media/platform/mtk-mdp3/mdp_reg_rdma.h    |   65 +
-> >  drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h |   39 +
-> >  .../media/platform/mtk-mdp3/mdp_reg_wdma.h    |   47 +
-> >  .../media/platform/mtk-mdp3/mdp_reg_wrot.h    |   55 +
-> >  drivers/media/platform/mtk-mdp3/mtk-img-ipi.h |  280 ++++
-> >  .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.c   |  505 +++++++
-> >  .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.h   |   46 +
-> >  .../media/platform/mtk-mdp3/mtk-mdp3-comp.c   | 1264 +++++++++++++++++
-> >  .../media/platform/mtk-mdp3/mtk-mdp3-comp.h   |  147 ++
-> >  .../media/platform/mtk-mdp3/mtk-mdp3-core.c   |  338 +++++
-> >  .../media/platform/mtk-mdp3/mtk-mdp3-core.h   |   76 +
-> >  .../media/platform/mtk-mdp3/mtk-mdp3-m2m.c    |  789 ++++++++++
-> >  .../media/platform/mtk-mdp3/mtk-mdp3-m2m.h    |   49 +
-> >  .../media/platform/mtk-mdp3/mtk-mdp3-regs.c   |  737 ++++++++++
-> >  .../media/platform/mtk-mdp3/mtk-mdp3-regs.h   |  372 +++++
-> >  .../media/platform/mtk-mdp3/mtk-mdp3-vpu.c    |  312 ++++
-> >  .../media/platform/mtk-mdp3/mtk-mdp3-vpu.h    |   78 +
-> >  22 files changed, 5272 insertions(+)
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/Makefile
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_ccorr.h
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_isp.h
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rdma.h
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wdma.h
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wrot.h
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-img-ipi.h
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.c
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.h
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.c
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.h
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-core.h
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.c
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.h
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.c
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.h
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.c
-> >  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.h
-> >
-> > diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
-> > index cf4adc64c953..e6c1e8892154 100644
-> > --- a/drivers/media/platform/Kconfig
-> > +++ b/drivers/media/platform/Kconfig
-> > @@ -315,6 +315,25 @@ config VIDEO_MEDIATEK_MDP
-> >           To compile this driver as a module, choose M here: the
-> >           module will be called mtk-mdp.
-> >
-> > +config VIDEO_MEDIATEK_MDP3
-> > +     tristate "Mediatek MDP v3 driver"
-> > +     depends on MTK_IOMMU || COMPLIE_TEST
->
-> Typo: COMPLIE_TEST -> COMPILE_TEST
->
-> After fixing this, trying to build this driver on my PC results in:
->
-> ERROR: modpost: "mtk_mmsys_mdp_connect" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-> ERROR: modpost: "mtk_mmsys_mdp_camin_ctrl" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-> ERROR: modpost: "mtk_mmsys_mdp_isp_ctrl" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-> ERROR: modpost: "mtk_mutex_prepare" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-> ERROR: modpost: "mtk_mmsys_mdp_disconnect" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-> ERROR: modpost: "mtk_mutex_unprepare" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-> ERROR: modpost: "mtk_mutex_get_mdp_mod" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-> ERROR: modpost: "mtk_mutex_put" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-> ERROR: modpost: "mtk_mutex_mdp_get" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-> ERROR: modpost: "mtk_mutex_add_mod_by_cmdq" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-> WARNING: modpost: suppressed 1 unresolved symbol warnings because there were too many)
->
-> include/linux/soc/mediatek/mtk-mmsys.h should probably provide dummy functions
-> if CONFIG_MTK_MMSYS is undefined. Ditto for include/linux/soc/mediatek/mtk-mutex.h.
+> On 01-12-21, 16:03, Konrad Dybcio wrote:
+> > 
+> > On 01.12.2021 08:29, Vinod Koul wrote:
+> > > This add based DTSI for SM8450 SoC and includes base description of
+> > > CPUs, GCC, RPMHCC, UART, interuupt-controller which helps to boot to
+> > > shell with console on boards with this SoC
+> > >
+> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sm8450.dtsi | 476 +++++++++++++++++++++++++++
+> > >  1 file changed, 476 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > new file mode 100644
+> > > index 000000000000..d838283bde4b
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> > > @@ -0,0 +1,476 @@
+> > > +// SPDX-License-Identifier: BSD-3-Clause
+> > > +/*
+> > > + * Copyright (c) 2021, Linaro Limited
+> > > + */
+> > > +
+> > > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +#include <dt-bindings/clock/qcom,gcc-sm8450.h>
+> > > +#include <dt-bindings/clock/qcom,rpmh.h>
+> > > +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
+> > > +
+> > > +/ {
+> > > +	interrupt-parent = <&intc>;
+> > > +
+> > > +	#address-cells = <2>;
+> > > +	#size-cells = <2>;
+> > > +
+> > > +	chosen { };
+> > > +
+> > > +	clocks {
+> > > +		xo_board: xo-board {
+> > > +			compatible = "fixed-clock";
+> > > +			#clock-cells = <0>;
+> > > +			clock-frequency = <76800000>;
+> > > +			clock-output-names = "xo_board";
+> > > +		};
+> > > +
+> > > +		sleep_clk: sleep-clk {
+> > > +			compatible = "fixed-clock";
+> > > +			clock-frequency = <32000>;
+> > > +			#clock-cells = <0>;
+> > > +		};
+> > 
+> > No clock-output-names for this one?
+> 
+> This should have one, will fix and update in v2
 
-Or add a hard dependency on MTK_MMSYS?
-The latter can be enabled when compile-testing.
+No need, the clock's name is not significant for anything beyond
+debugging. So if you're going to change something let it be dropping the
+clock-output-names from &xo_board.
 
-Gr{oetje,eeting}s,
+Thanks,
+Bjorn
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> > 
+> > 
+> > Other than that:
+> > 
+> > Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> 
+> Thanks for the review!
+> 
+> -- 
+> ~Vinod
