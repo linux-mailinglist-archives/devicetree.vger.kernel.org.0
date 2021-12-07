@@ -2,75 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 383D546C298
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 19:20:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D69C746C2A8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 19:23:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236100AbhLGSY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 13:24:26 -0500
-Received: from foss.arm.com ([217.140.110.172]:38384 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236098AbhLGSY0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Dec 2021 13:24:26 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 213D41063;
-        Tue,  7 Dec 2021 10:20:55 -0800 (PST)
-Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id EFF4D3F73B;
-        Tue,  7 Dec 2021 10:20:53 -0800 (PST)
-From:   Robin Murphy <robin.murphy@arm.com>
-To:     will@kernel.org, catalin.marinas@arm.com, robh+dt@kernel.org
-Cc:     mark.rutland@arm.com, suzuki.poulose@arm.com,
-        thierry.reding@gmail.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 5/5] dt-bindings: perf: Add compatible for Arm DSU-110
-Date:   Tue,  7 Dec 2021 18:20:43 +0000
-Message-Id: <b9364dc5dd31cea84a58c156cfce5b90b9248d7d.1638900542.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.28.0.dirty
-In-Reply-To: <cover.1638900542.git.robin.murphy@arm.com>
-References: <cover.1638900542.git.robin.murphy@arm.com>
+        id S235630AbhLGS1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 13:27:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45178 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234691AbhLGS1O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 13:27:14 -0500
+Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BBC0C061574
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 10:23:44 -0800 (PST)
+Received: by mail-ua1-x92e.google.com with SMTP id n6so146721uak.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 10:23:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=WFFnGguuAfJNNlyzWzYsEDjqWn3Es8o9KH8UkSEiIJg=;
+        b=QXZdsesh40yspp/vuC5Vm4kMeddsWnQpKc0BAPZaKnCnpIg7QL+i3AYQbm/r10ITsH
+         kCH+skGM9Kvqr0wsMAM4D0rE5+zGBHo33hoCIH6hI3VPck20O82PjYLJWHBJn6TrUoD5
+         fge5j2BSWbIn2Gi8Lxu55GIILQB7foQ2bwRNfILJZYG9WhX11A/tjE0Ns06xbKV8Sdho
+         Ftpv2zumMtcyoz8/eGZGylQK3VBRYyXJYXuM3NSXp2IQu143V1XWo/80J/YCte/zlfXs
+         tnugYlYug+jWNblRHSs5zDksVV3Xh7DvY4QYxU727mRn4P22JNaLfq+VdlhBlo+Rg3FB
+         71nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=WFFnGguuAfJNNlyzWzYsEDjqWn3Es8o9KH8UkSEiIJg=;
+        b=rkjMLAyW3jIjHQ+jdXIPgE/9swsjkbtAQ4eKijaBbxfDfsz3G3LyJJ3uBz8u/nO+PH
+         IXUPVUX9fzJe/fJmws/8vXfvYEnZzoBNqoOEubPaP4e2IPtqFiv3LqBZURvzUHFH8EdP
+         Rxi28t1XvvKZK1dkCkOE3PuAAHQpF+mnHfOjQHWuhFw1CS/jyGbu9LA8WTG9p8680rsp
+         CyUuLXA4yNnImEiEK64HzCWW8J30rjuwsYQvG+uv1S00/szbJdNyRxU0cz/Tjhh1Aj8F
+         EY8T188cwq1z7XNQV+W17iWBEG+A38P5Z22T3lin3JEu3qSgiI9TeOZof1j7aAeue7db
+         Wkfw==
+X-Gm-Message-State: AOAM5330Zh93+1ii0FxSwsujXY327UmpQoHKvb3YvVO4UghuB675geeh
+        jGEiyqzOUh4QuETq2bk84mk0p5MAhc4AWGnoBvRCRQ==
+X-Google-Smtp-Source: ABdhPJzhaNDn+hR8Qy06/GBXd2FkzRqewGIyrqT1j1J8CgqqD8P0mc41IH5Pb0jPdTIcD/UIQ3uJiyVReoJxL8RZWu4=
+X-Received: by 2002:ab0:6f4f:: with SMTP id r15mr962993uat.17.1638901423133;
+ Tue, 07 Dec 2021 10:23:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211206153124.427102-1-virag.david003@gmail.com> <20211206153124.427102-3-virag.david003@gmail.com>
+In-Reply-To: <20211206153124.427102-3-virag.david003@gmail.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Tue, 7 Dec 2021 20:23:31 +0200
+Message-ID: <CAPLW+4ndzvks6os2W1o+_7dyi_DZKjgqpoFfsS90pzXWVTpkGg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/7] dt-bindings: clock: Document Exynos7885 CMU bindings
+To:     David Virag <virag.david003@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DSU-110 is the newest and shiniest for Armv9. Its programmer's model is
-largely identical to the previous generation of DSUs, so we can treat it
-as compatible, but it does have a a handful of extra IMP-DEF PMU events
-to call its own. Thanks to the new notion of core complexes, the maximum
-number of supported CPUs goes up as well.
+On Mon, 6 Dec 2021 at 17:32, David Virag <virag.david003@gmail.com> wrote:
+>
+> Provide dt-schema documentation for Exynos7885 SoC clock controller.
+> Description is modified from Exynos850 clock controller documentation as
+> I couldn't describe it any better, that was written by Sam Protsenko.
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Signed-off-by: David Virag <virag.david003@gmail.com>
+> ---
 
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
- Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
-index b78b6b0fce66..b623520ad302 100644
---- a/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
-+++ b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
-@@ -21,7 +21,11 @@ description:
- 
- properties:
-   compatible:
--    const: "arm,dsu-pmu"
-+    oneof:
-+      const: "arm,dsu-pmu"
-+      items:
-+        const: "arm,dsu-110-pmu"
-+        const: "arm,dsu-pmu"
- 
-   interrupts:
-     items:
-@@ -30,7 +34,7 @@ properties:
-   cpus:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     minitems: 1
--    maxitems: 8
-+    maxitems: 12
-     description: List of phandles for the CPUs connected to this DSU instance.
- 
- required:
--- 
-2.28.0.dirty
-
+> Changes in v2:
+>   - Fixed double : in description
+>   - Added R-b tag by Krzysztof Kozlowski
+>
+> Changes in v3:
+>   - Nothing
+>
+> Changes in v4:
+>   - Fix leading 0x in example.
+>
+>  .../clock/samsung,exynos7885-clock.yaml       | 166 ++++++++++++++++++
+>  1 file changed, 166 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/samsung,exyno=
+s7885-clock.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/clock/samsung,exynos7885-c=
+lock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynos7885-cloc=
+k.yaml
+> new file mode 100644
+> index 000000000000..7e5a9cac2fd2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/samsung,exynos7885-clock.ya=
+ml
+> @@ -0,0 +1,166 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/samsung,exynos7885-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung Exynos7885 SoC clock controller
+> +
+> +maintainers:
+> +  - D=C3=A1vid Vir=C3=A1g <virag.david003@gmail.com>
+> +  - Chanwoo Choi <cw00.choi@samsung.com>
+> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> +  - Sylwester Nawrocki <s.nawrocki@samsung.com>
+> +  - Tomasz Figa <tomasz.figa@gmail.com>
+> +
+> +description: |
+> +  Exynos7885 clock controller is comprised of several CMU units, generat=
+ing
+> +  clocks for different domains. Those CMU units are modeled as separate =
+device
+> +  tree nodes, and might depend on each other. The root clock in that roo=
+t tree
+> +  is an external clock: OSCCLK (26 MHz). This external clock must be def=
+ined
+> +  as a fixed-rate clock in dts.
+> +
+> +  CMU_TOP is a top-level CMU, where all base clocks are prepared using P=
+LLs and
+> +  dividers; all other leaf clocks (other CMUs) are usually derived from =
+CMU_TOP.
+> +
+> +  Each clock is assigned an identifier and client nodes can use this ide=
+ntifier
+> +  to specify the clock which they consume. All clocks available for usag=
+e
+> +  in clock consumer nodes are defined as preprocessor macros in
+> +  'dt-bindings/clock/exynos7885.h' header.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - samsung,exynos7885-cmu-top
+> +      - samsung,exynos7885-cmu-core
+> +      - samsung,exynos7885-cmu-peri
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 10
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 10
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynos7885-cmu-top
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynos7885-cmu-core
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +            - description: CMU_CORE bus clock (from CMU_TOP)
+> +            - description: CCI clock (from CMU_TOP)
+> +            - description: G3D clock (from CMU_TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: dout_core_bus
+> +            - const: dout_core_cci
+> +            - const: dout_core_g3d
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynos7885-cmu-peri
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +            - description: CMU_PERI bus clock (from CMU_TOP)
+> +            - description: SPI0 clock (from CMU_TOP)
+> +            - description: SPI1 clock (from CMU_TOP)
+> +            - description: UART0 clock (from CMU_TOP)
+> +            - description: UART1 clock (from CMU_TOP)
+> +            - description: UART2 clock (from CMU_TOP)
+> +            - description: USI0 clock (from CMU_TOP)
+> +            - description: USI1 clock (from CMU_TOP)
+> +            - description: USI2 clock (from CMU_TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: dout_peri_bus
+> +            - const: dout_peri_spi0
+> +            - const: dout_peri_spi1
+> +            - const: dout_peri_uart0
+> +            - const: dout_peri_uart1
+> +            - const: dout_peri_uart2
+> +            - const: dout_peri_usi0
+> +            - const: dout_peri_usi1
+> +            - const: dout_peri_usi2
+> +
+> +required:
+> +  - compatible
+> +  - "#clock-cells"
+> +  - clocks
+> +  - clock-names
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Clock controller node for CMU_PERI
+> +  - |
+> +    #include <dt-bindings/clock/exynos7885.h>
+> +
+> +    cmu_peri: clock-controller@10010000 {
+> +        compatible =3D "samsung,exynos7885-cmu-peri";
+> +        reg =3D <0x10010000 0x8000>;
+> +        #clock-cells =3D <1>;
+> +
+> +        clocks =3D <&oscclk>,
+> +                 <&cmu_top CLK_DOUT_PERI_BUS>,
+> +                 <&cmu_top CLK_DOUT_PERI_SPI0>,
+> +                 <&cmu_top CLK_DOUT_PERI_SPI1>,
+> +                 <&cmu_top CLK_DOUT_PERI_UART0>,
+> +                 <&cmu_top CLK_DOUT_PERI_UART1>,
+> +                 <&cmu_top CLK_DOUT_PERI_UART2>,
+> +                 <&cmu_top CLK_DOUT_PERI_USI0>,
+> +                 <&cmu_top CLK_DOUT_PERI_USI1>,
+> +                 <&cmu_top CLK_DOUT_PERI_USI2>;
+> +        clock-names =3D "oscclk",
+> +                      "dout_peri_bus",
+> +                      "dout_peri_spi0",
+> +                      "dout_peri_spi1",
+> +                      "dout_peri_uart0",
+> +                      "dout_peri_uart1",
+> +                      "dout_peri_uart2",
+> +                      "dout_peri_usi0",
+> +                      "dout_peri_usi1",
+> +                      "dout_peri_usi2";
+> +    };
+> +
+> +...
+> --
+> 2.34.1
+>
