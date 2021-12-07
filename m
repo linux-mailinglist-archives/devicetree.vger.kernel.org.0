@@ -2,87 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DB1646B56D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:13:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2216F46B573
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:14:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232257AbhLGIRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 03:17:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40232 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232243AbhLGIRO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:17:14 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE167C061746;
-        Tue,  7 Dec 2021 00:13:44 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id t26so31633845lfk.9;
-        Tue, 07 Dec 2021 00:13:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=8VBBrS5Mji35H9dzLgGDSTzu48sYhkKhDmT2w5684vA=;
-        b=eyXrksDMf/c8wg8yU3nEVAiX4ThD9uL4nYKBMpSP08/SJDscsXoQ3FzXsgC9+P3LEe
-         A+unKaG3TKNJcWInaAHtmO01SNVmsc3kQHsY/JpdfgBzKEHUapjP71W1ba0+WyYMosG9
-         MGsgDAxpp5uM74/IyF9oJGD9/y/iAS6TG+lyA4t4SqTTmy0zPVEnMrhQU6xPCTJohUU1
-         ttXiyiRck6cuK0fterlCb1n9EH1daWTCRC4XLUqtBvVp82MYWo338tPocDkQ3Typ2/fo
-         7/r0Wso/pdbrybIDMf5Vigw0KoiUs+8r7tmdu8nZucPx8WSLguXLFZHuAW+7YAE6VF21
-         Ab4w==
+        id S232243AbhLGISL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 03:18:11 -0500
+Received: from mail-ua1-f53.google.com ([209.85.222.53]:35781 "EHLO
+        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232151AbhLGISL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:18:11 -0500
+Received: by mail-ua1-f53.google.com with SMTP id l24so24991714uak.2;
+        Tue, 07 Dec 2021 00:14:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=8VBBrS5Mji35H9dzLgGDSTzu48sYhkKhDmT2w5684vA=;
-        b=i6v63kNwhFfWLpK5EptpFSH2xVNc6I4ZHCDo0iS8yt1xcFDoADp/AVG3DIe3jCwXfc
-         PDUg+CVKefgBqVwiBDagmQQ9EnTPsQYM0uhZN3I4143nUWlM80ZcPi0hcSKQtECHtYcK
-         OR9cvLQIAeBJ3dtwVShmWtnDinRGisgL02OmUAZJy8y6QaDOekuss0HrqC1Tn35VZ5NW
-         wXMzuWEsGWOoyO4VD6otfTxRyTb/kiIt3yNLajPSpl4vSBzPp1SFFcQTX0o7iqJLijqn
-         5wmXwPuizk7X7ay2bxnedNqpcc3agEHbIry5KUwnUdnpkuT5q6lwrWzs6klU2PHgelbD
-         Kd4w==
-X-Gm-Message-State: AOAM531tQNNzMGDe8DV9HNogMQCsUF+xIg9uI+3wsT9ks0zECa26yHqv
-        nGLIGFtqcMi0AXy77OSm8GI=
-X-Google-Smtp-Source: ABdhPJzvorYiMqU8lsAb1gx1vK3Pmj3BOFvmYw5exgUvQft5nH1yGsRO1olpZhwCPkIhGOaZq5LqrQ==
-X-Received: by 2002:ac2:4c4e:: with SMTP id o14mr40231404lfk.148.1638864823066;
-        Tue, 07 Dec 2021 00:13:43 -0800 (PST)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id p22sm1599842lfe.257.2021.12.07.00.13.42
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 07 Dec 2021 00:13:42 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [RFC PATCH 3/9] arm64: dts: meson: add initial device-trees for
- X96-AIR
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20211130060523.19161-4-christianshewitt@gmail.com>
-Date:   Tue, 7 Dec 2021 09:13:38 +0100
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-amlogic@lists.infradead.org" 
-        <linux-amlogic@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Benoit Masson <yahoo@perenite.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <FD127A47-ED36-40C6-B3A0-238166F727E7@gmail.com>
-References: <20211130060523.19161-1-christianshewitt@gmail.com>
- <20211130060523.19161-4-christianshewitt@gmail.com>
-To:     Christian Hewitt <christianshewitt@gmail.com>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Im/95wWBcL00BOGyJ9v1SQD2hiUfJwtvdeae0rhshHE=;
+        b=pdQyizk0M/y/OG+6k3bfvao53q+vf8Asj5c/VBknCclJ9Rdz/9OsZF9GuLteauXjxg
+         KELcOkB/ucQJ5Nl0g6sxVD/+ZIPc3hLrjK95URsBYXIfMeTtZ9ZWUdb7c/p3BwSCj/JZ
+         aHhHboYEUuvh55B5sbOVaEnEMk2X8d7FjHfExm2gzyyp8GKxfaliWWOYf0vaQXaNoc70
+         5q4HROZcXAJuzTH7pXQfb30RTguTNm61UxmDsKUqq/1mFMZndYm+dLeXEN5hSSlahVq5
+         fk1refeI+x/OGEcOkw41wmj9BTmpMEh+EOqgXbsaIJ1NwVqWXBeXIJh+tEPimR2yFhi1
+         pWtw==
+X-Gm-Message-State: AOAM530/25EkD7ev4YbG1c8/Skv5S2Jo5F77mNmRS3Oc42JC/kqCMqu5
+        XXzWBO6lV2w77Hr2kKoIp5Xsy2JACOzFeg==
+X-Google-Smtp-Source: ABdhPJwfhqaEVZSPptMLitDEQsKZKPeQ3X58rJg8Lc8+M9BdyHZvSgFjPf6GCOyyCGD0jjrHHBGcQQ==
+X-Received: by 2002:a67:efd5:: with SMTP id s21mr43500967vsp.73.1638864880601;
+        Tue, 07 Dec 2021 00:14:40 -0800 (PST)
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
+        by smtp.gmail.com with ESMTPSA id t5sm5946298vsk.24.2021.12.07.00.14.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Dec 2021 00:14:40 -0800 (PST)
+Received: by mail-vk1-f171.google.com with SMTP id b192so8716974vkf.3;
+        Tue, 07 Dec 2021 00:14:40 -0800 (PST)
+X-Received: by 2002:a05:6122:2193:: with SMTP id j19mr49838152vkd.7.1638864880073;
+ Tue, 07 Dec 2021 00:14:40 -0800 (PST)
+MIME-Version: 1.0
+References: <20211201073308.1003945-1-yoshihiro.shimoda.uh@renesas.com>
+ <20211201073308.1003945-9-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdXwYqDO2q=SYC=r299QB0TRgga4-ijDCdA7tordBw1OUg@mail.gmail.com> <TY2PR01MB36922481D5C75272BA7B7D9ED86E9@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY2PR01MB36922481D5C75272BA7B7D9ED86E9@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 7 Dec 2021 09:14:28 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVBNrWaXNLgA6q+19QQ5nSSnuM2r+VrsVMprM80heQm4A@mail.gmail.com>
+Message-ID: <CAMuHMdVBNrWaXNLgA6q+19QQ5nSSnuM2r+VrsVMprM80heQm4A@mail.gmail.com>
+Subject: Re: [PATCH v2 08/14] clk: renesas: rcar-gen4-cpg: Introduce R-Car
+ Gen4 CPG driver
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Shimoda-san,
 
+On Tue, Dec 7, 2021 at 2:51 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> > From: Geert Uytterhoeven, Sent: Monday, December 6, 2021 9:43 PM
+> > On Wed, Dec 1, 2021 at 8:33 AM Yoshihiro Shimoda
+> > <yoshihiro.shimoda.uh@renesas.com> wrote:
+> > > According to the official website [1], the R-Car V3U SoC is based
+> > > on the R-Car Gen4 architecture. So, introduce R-Car Gen4 CPG
+> > > driver.
+> > >
+> > > [1]
+> > >
+> > https://www.renesas.com/us/en/products/automotive-products/automotive-system-chips-socs/r-car-v3u-best-class-r-car-v
+> > 3u-asil-d-system-chip-automated-driving
+> > >
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-> Wiadomo=C5=9B=C4=87 napisana przez Christian Hewitt =
-<christianshewitt@gmail.com> w dniu 30.11.2021, o godz. 07:05:
->=20
->=20
-> =E2=80=93 2GB DDR3 + 16GB eMMC + WiFi b/g/n (no BT) + 10/100 Ethernet
-Tested-by: Piotr Oniszczuk <piotr.oniszczuk@gmail.com> #
-X96-Air with 10/100 Eth
+> > > +#define DEF_GEN4_Z(_name, _id, _type, _parent, _div, _offset)  \
+> > > +       DEF_BASE(_name, _id, _type, _parent, .div = _div, .offset = _offset)
+> >
+> > Is there any specific reason _type is not fixed to CLK_TYPE_GEN4_Z,
+> > like before? Perhaps you have a future use-case in mind?
+>
+> This is a similar definition with DEF_GEN3_Z. And, there is not
 
+Right. And we never finished ZG clock support upstream, due to issues
+with upstream GPU support.
+
+> upstream use-case though, if we support ZG clock, we have to use
+> _type for ZG like Gen3 BSP. In Gen4, we will support ZG clock
+> on other SoCs in the future, the _type is not fixed.
+
+OK, will keep.
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
