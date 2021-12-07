@@ -2,75 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4E5F46BB10
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:28:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34CF946BB6D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:36:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236207AbhLGMbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 07:31:50 -0500
-Received: from frasgout.his.huawei.com ([185.176.79.56]:4223 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231467AbhLGMbt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 07:31:49 -0500
-Received: from fraeml735-chm.china.huawei.com (unknown [172.18.147.226])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4J7ffy1z8Gz67tVs;
-        Tue,  7 Dec 2021 20:26:34 +0800 (CST)
-Received: from lhreml724-chm.china.huawei.com (10.201.108.75) by
- fraeml735-chm.china.huawei.com (10.206.15.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 7 Dec 2021 13:28:17 +0100
-Received: from [10.47.82.161] (10.47.82.161) by lhreml724-chm.china.huawei.com
- (10.201.108.75) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.20; Tue, 7 Dec
- 2021 12:28:16 +0000
-Subject: Re: [PATCH v2 3/3] perf/smmuv3: Synthesize IIDR from CoreSight ID
- registers
-To:     Robin Murphy <robin.murphy@arm.com>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        <robh+dt@kernel.org>
-CC:     <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
-        <iommu@lists.linux-foundation.org>, <uchida.jun@socionext.com>,
-        <leo.yan@linaro.org>, <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20211117144844.241072-1-jean-philippe@linaro.org>
- <20211117144844.241072-4-jean-philippe@linaro.org>
- <e60b15db-4e52-b5a6-1b17-203d250f1e65@huawei.com>
- <766ac58a-ffb7-f673-709b-0f0f740f3cfd@arm.com>
-From:   John Garry <john.garry@huawei.com>
-Message-ID: <53f868a8-c7ae-b69d-b061-bb0a7dc98f8a@huawei.com>
-Date:   Tue, 7 Dec 2021 12:28:00 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
-MIME-Version: 1.0
-In-Reply-To: <766ac58a-ffb7-f673-709b-0f0f740f3cfd@arm.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.82.161]
-X-ClientProxiedBy: lhreml721-chm.china.huawei.com (10.201.108.72) To
- lhreml724-chm.china.huawei.com (10.201.108.75)
-X-CFilter-Loop: Reflected
+        id S236489AbhLGMkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 07:40:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46024 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232088AbhLGMkH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 07:40:07 -0500
+Received: from mail-wr1-x449.google.com (mail-wr1-x449.google.com [IPv6:2a00:1450:4864:20::449])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF1ECC061746
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 04:36:36 -0800 (PST)
+Received: by mail-wr1-x449.google.com with SMTP id v17-20020adfedd1000000b0017c5e737b02so2891532wro.18
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 04:36:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=x46zOR8LTnf2zn3iy3IJEpl7ojPoSuxdNAclWSV2WCE=;
+        b=lrBu1OR3FHdb1i5ChRqi9NtsxN8V/oMMVdxf3dJzsEj2fmyhuCFLyqDx90X0F6LALq
+         zRRNQ0+2cKRDOUXdAizVhOpx87dIYKp5yZikcWHj4u8UQVK7yfbmVmIlcL9B81Ez2YUZ
+         TzyN7DZOP++GjoBlhczpGzVBUHrVTC1qn9udmbfKgB8pxpn7nKQ1Uqkt9tMl/R+l43qd
+         sf/Ja0R52ExvkHg0Wa1CO7wmWTeXzbOzxbonaZBBnAuohQvymUjY0p8rmYkXvyuTYvQc
+         VSq/tLSMENXD+x6/zNjtAsZutfN2iIVCCCBuBLqYJN0ePtk9IxUARyc35jcgYhd3IV1X
+         Iq6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=x46zOR8LTnf2zn3iy3IJEpl7ojPoSuxdNAclWSV2WCE=;
+        b=v7c1/pBf+cvzeRijwsgf969h7dKgyWjkoQbAxP7Nw9otpohLaGEfCBv7XxxjJOrW8o
+         Q958i66Tt0hHH03WB8Wn+df1qg884UO/kqX24ebvLOiodE5finRaFyOGC3Oz3YsbNwjK
+         9Z5OABRa+HCuPBbdQ8mRFeGwsaDRvJ5yvesENJMBs45ioldORX3YzwkuSHzSsvQ9vbd3
+         Mcs57MlpMsPwGzyao7d4bGHfDsUnk70DsqqL16AZcL9av0qs5b1gy9R5PgcN9F1Zs+Xv
+         XxJKKWGFZVQOlocBPQRxW1UgwNdgatbCQ5rtg/V/UEBbC6cdTowt5b0qUxrursv4siN/
+         mlug==
+X-Gm-Message-State: AOAM533zn9zmdLzFVNrUbHqD4HZLWjmRAka+RPHq9rYqBpej9CB1d4E/
+        nPBdX9FcnQPKpeLWm93HvE/tcsrQnLp0tg==
+X-Google-Smtp-Source: ABdhPJzsolbRhyKp+pryLDXdETwIA8wD1ZgFomo2XVyem7NhpLO9j3TKznoUscTKM4bpTiRSDYdKWWGujtwDKA==
+X-Received: from dbrazdil.lon.corp.google.com ([2a00:79e0:d:209:cb8b:b013:316d:b2f1])
+ (user=dbrazdil job=sendgmr) by 2002:a05:600c:1d1b:: with SMTP id
+ l27mr896548wms.1.1638880594902; Tue, 07 Dec 2021 04:36:34 -0800 (PST)
+Date:   Tue,  7 Dec 2021 12:36:15 +0000
+Message-Id: <20211207123617.3040177-1-dbrazdil@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.34.1.400.ga245620fadb-goog
+Subject: [PATCH 0/2] Driver for Open Profile for DICE
+From:   David Brazdil <dbrazdil@google.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        David Brazdil <dbrazdil@google.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, Andrew Scull <ascull@google.com>,
+        Will Deacon <will@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2021 12:04, Robin Murphy wrote:
->>>
->> So is there some userspace part to go with this now?
-> 
-> FWIW I've not looked into it - is it just a case of someone knocking out 
-> some JSON from the MMU-600/700 TRMs, or is there still mroe to do? 
+Open Profile for DICE is a secret derivation protocol used by some
+Android devices. The firmware/bootloader generates the secrets and hands
+them over to Linux in a reserved memory region.
 
-That should just be it.
+This patchset adds the corresponding DeviceTree bindings and a driver
+that takes ownership of the memory region and exposes it to userspace
+via a character device. It is currently under drivers/misc but perhaps
+a better location would be drivers/firmware. Let me know what you think.
 
-> I had 
-> the impression that *some* part of the process was stalled until 
-> implementations can start providing meaningful IIDRs, but I wasn't sure 
-> whether that was tooling or just data. I just work the low-level 
-> enablement angle :)
+The patches are based on top of v5.16-rc4 and can also be found here:
+  https://android-kvm.googlesource.com/linux topic/dice_v1
 
-Tooling should be ok, but I would just like to see more of these JSONs 
-so any tooling issues can be ironed out.
+David Brazdil (2):
+  dt-bindings: firmware: Add Open Profile for DICE
+  misc: dice: Add driver to forward secrets to userspace
 
-Cheers,
-John
+ .../devicetree/bindings/firmware/dice.yaml    |  51 ++++
+ .../userspace-api/ioctl/ioctl-number.rst      |   1 +
+ drivers/misc/Kconfig                          |   8 +
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/dice.c                           | 254 ++++++++++++++++++
+ include/uapi/linux/dice.h                     |  14 +
+ 6 files changed, 329 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/firmware/dice.yaml
+ create mode 100644 drivers/misc/dice.c
+ create mode 100644 include/uapi/linux/dice.h
+
+-- 
+2.34.1.400.ga245620fadb-goog
 
