@@ -2,786 +2,914 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D94A446C369
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 20:15:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B62EE46C3A1
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 20:29:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240896AbhLGTSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 14:18:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57504 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231634AbhLGTS3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 14:18:29 -0500
-Received: from mail-vk1-xa32.google.com (mail-vk1-xa32.google.com [IPv6:2607:f8b0:4864:20::a32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04EBFC061574
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 11:14:59 -0800 (PST)
-Received: by mail-vk1-xa32.google.com with SMTP id s1so20460vks.9
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 11:14:58 -0800 (PST)
+        id S231786AbhLGTdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 14:33:07 -0500
+Received: from mail-co1nam11on2046.outbound.protection.outlook.com ([40.107.220.46]:10208
+        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231811AbhLGTdH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 14:33:07 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XbXGWkyoCt3WZxSa9HXAuCzQTRF92f68e+0yRY+Rr1XUBRVEIU680RPH+ibtuRdXonp/AYjvJDLoGtRUZQPTqOAY8I/20SOdduCzN+Wj1IY4fTAXG+L3Ky+02RkkCGSgDLPmkwkM6OnDFNTBQF5ZwUao1QItZOHLB+EsomJLKP1FtxxcspiQ3h5J7hqDo8e9lWztcZ5nRSfgt4vZ0BGQ3KomJLi150fitQgZHShwLcLZt5tWEatJSSw6rfg9GwmKo7a5GkN6HImY4dmQyiXyW+5iR0MlzbjuPaKBGlkganx3PjFEu5JZBP4NjOt6uh6Gbi1rx1PbbvQACebFERqKmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YPzQ+Ua/d0rZ6HUxWtv973T7YQqw3U0fmelJh8TpA/8=;
+ b=M6v492U7m7lAmWYsDupF7wH3++s5ZrBk7QoyLnLqWIl/fXJowGQfDZ1YcX+XPocEI8+5rgCGH6GdtB4yR5QbaTu4vXi4mL7HsVCVMUS7SUHOV4YOyDR6KlwMH9OWgTZSefbLVd25r8HzFAKaAB5AjCfae0QypgzfXSTiNDdjvumopKtFHaHk+p91kHEtnTAQc+dHiVHxO5yjPyw7kas+r8/KpDfvlsUqR4s8WMqj7Ql96Ow2iCUHpTXkBaChY22R3hxuLzL/qmas19GAqXaKLMgVeS+rQggGPkC21Df+uvdp+X50yJgJyCo+C2nCt8EiMW56sgGlJoD8aYSe6gP90A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=infradead.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=gfzNRfOsKy6o4CoW0KTsI8J/eMEJikfY3EgMdOHcArI=;
-        b=C3x8m6XIt5zZcZApC7UVXRhmEt91ObiEbV5HiF21yWuQ8Z/F+R5Ikk1vFBylMG9YQP
-         +D8LEcg+90Z0v6OUYHWQrcerwLFno4922M7JZobuKooB0HPx3DwCbqcpRZ8vYltJOKqt
-         O+kud+dZtDXjnxh0jWSHwi/D8Pmmv2/C3EXePud4faXxyq3+2xW0IBRos78tEeA/IJi7
-         uMcoykTpVhtjy0Hj92zQF2XRc9ArpKWlg+HOW3bnbuQxj61GL3CzM3IDAWIAP6bNohHF
-         iAf1z9IBV8c4wun4DdtnR+WD6LlIunFHulbBVAvuFa9c9lAA3sw/0WHEVPxY6NyUoyQ+
-         HSRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=gfzNRfOsKy6o4CoW0KTsI8J/eMEJikfY3EgMdOHcArI=;
-        b=OD/OreQoihX7kwVuzKNdgr4TxuyIeOAwy3RQHxkMqpaLaJTNg16txXTCUFwxYDrzXM
-         bidGdwK0TXv+8yvaaN6CqXY6dSg1PnOqb52cuMayFYOBb6rcBwgdosgwg3sHQ2gmf8+N
-         7QRMX+stYSoZQoei3vXSmuvMIREM3uwxwsnW5nu5dvF0Tquh/IL9zWs8R8Dc1u3Y1mGO
-         2fmCVlaw6e9gN0FhQJk+bhfYph/8phHQc6meP0s4KmCl4xL4iGe4aa2R/zMB/khoZY7n
-         tsdNwDS60BZSY2Tw0it2DUZEmTqjIrNoa7vNIRYzEPeUxBbXF1YOtHvVNasTHjrKe55+
-         b04Q==
-X-Gm-Message-State: AOAM5311emF6n9GvgkXHyvqg6FjBUXjNl0cR5FRYxjIKX9K73qHTXrnD
-        2TEXWFuHRxc9ig/wjtXzx0pMWG7XkmHZJhG9nRc4cA==
-X-Google-Smtp-Source: ABdhPJypvfHUwXRyCLvcg9o+Gk+YOEbi43sos3p42f+xtscBwKeEdSKeESXqCTfGN7/Avjk5D6XLH79UrM0X4YmCde8=
-X-Received: by 2002:a05:6122:2158:: with SMTP id m24mr55096110vkd.1.1638904498002;
- Tue, 07 Dec 2021 11:14:58 -0800 (PST)
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YPzQ+Ua/d0rZ6HUxWtv973T7YQqw3U0fmelJh8TpA/8=;
+ b=Aj5O73pX5I7ote2KSBaEqXwPEp0+azRSBRjLsZdaNd1dDhiYUMexq/rx26DU05KhNT+TeTesW7NT6PjT9rlgj5tmGHLW1KonnYoOw/EsbDssGgAg2kIojFC0+bEGUZ/rWt1IspIPxzH4g7TTX9NOwMlMNI7lk4Rqucs6h9kmD4Y=
+Received: from DM5PR11CA0006.namprd11.prod.outlook.com (2603:10b6:3:115::16)
+ by BYAPR02MB5640.namprd02.prod.outlook.com (2603:10b6:a03:9c::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.21; Tue, 7 Dec
+ 2021 19:29:33 +0000
+Received: from DM3NAM02FT059.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:3:115:cafe::7e) by DM5PR11CA0006.outlook.office365.com
+ (2603:10b6:3:115::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.17 via Frontend
+ Transport; Tue, 7 Dec 2021 19:29:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ DM3NAM02FT059.mail.protection.outlook.com (10.13.4.97) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4755.13 via Frontend Transport; Tue, 7 Dec 2021 19:29:32 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Tue, 7 Dec 2021 11:29:31 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Tue, 7 Dec 2021 11:29:31 -0800
+Envelope-to: dwmw2@infradead.org,
+ robh@kernel.org,
+ mdf@kernel.org,
+ trix@redhat.com,
+ devicetree@vger.kernel.org,
+ linux-fpga@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ yilun.xu@intel.com
+Received: from [10.17.2.60] (port=49866)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <lizhi.hou@xilinx.com>)
+        id 1mug9b-0005CR-SY; Tue, 07 Dec 2021 11:29:31 -0800
+Subject: Re: [PATCH V2 XRT Alveo Infrastructure 1/9] Documentation: fpga: Add
+ a document describing XRT Alveo driver infrastructure
+From:   Lizhi Hou <lizhi.hou@xilinx.com>
+To:     Xu Yilun <yilun.xu@intel.com>, Lizhi Hou <lizhi.hou@xilinx.com>
+CC:     <linux-kernel@vger.kernel.org>, <linux-fpga@vger.kernel.org>,
+        <maxz@xilinx.com>, <sonal.santan@xilinx.com>, <yliu@xilinx.com>,
+        <michal.simek@xilinx.com>, <stefanos@xilinx.com>,
+        <devicetree@vger.kernel.org>, <trix@redhat.com>, <mdf@kernel.org>,
+        <robh@kernel.org>, <dwmw2@infradead.org>,
+        Max Zhen <max.zhen@xilinx.com>
+References: <20211119222412.1092763-1-lizhi.hou@xilinx.com>
+ <20211119222412.1092763-2-lizhi.hou@xilinx.com>
+ <20211202070438.GB336280@yilunxu-OptiPlex-7050>
+ <cafdb152-f219-5e01-7cec-ccb82f5a1b84@xilinx.com>
+Message-ID: <4367aa73-114d-e830-a31c-93701315f0d9@xilinx.com>
+Date:   Tue, 7 Dec 2021 11:29:31 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.1
 MIME-Version: 1.0
-References: <20211206153124.427102-1-virag.david003@gmail.com> <20211206153124.427102-7-virag.david003@gmail.com>
-In-Reply-To: <20211206153124.427102-7-virag.david003@gmail.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Tue, 7 Dec 2021 21:14:46 +0200
-Message-ID: <CAPLW+4mxXMx2bBRiC2Y2_-PytK2PbvWgJ9OHkoE=dij5G4ac1Q@mail.gmail.com>
-Subject: Re: [PATCH v4 6/7] clk: samsung: Add initial Exynos7885 clock driver
-To:     David Virag <virag.david003@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <cafdb152-f219-5e01-7cec-ccb82f5a1b84@xilinx.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: aef2cd39-1113-42c5-0785-08d9b9b7e51e
+X-MS-TrafficTypeDiagnostic: BYAPR02MB5640:EE_
+X-Microsoft-Antispam-PRVS: <BYAPR02MB5640AE31864FA1910C09A20CA16E9@BYAPR02MB5640.namprd02.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dyTJY+mbgUjpdsv82OIYB7a5T6gwFkfvnchPLj8l10Caj5HqDbKcAOdV8FFN3VTZNfaie3sSQZmWjV0foaO8PGHAXHrtBnbcMQvOz48nUUd8kkhkuyrur42rXrC9Qa5QDfI4Gzj1F1z05lsoq/EJkZDwR55x5DoJgq/C52hwcMuosDWQ5LQHnk7bF15hR2H73RPdZflDQ8YkTrfVsVKdmyfm+4ZYLvQvLcwcerZx/ho72eOtJHwkOp0e0uFhWR+Q01kirS/Ni2lhl3bXvB8Zxk43PnizIoeKybK5AlhACF33K5Qk1psETwJ9+8fI2DX5uaMtXzirzgIXqQgkquOgqnCr1XLuWL4EL6fGSU5e880eYf4U8craHrUjzNdvpbSW/6XyjgoM1z11aHpwarJPeg1hWZNIAwP/huBGSwhIXUosmBRto1KzJK2yYR0TgN4PP7p3K7P1xWkKkVyzMAQTASTQLUciuX7kjMBfHBNw6cgO0wPUHFR2TCZqo0/fiS2C36qWo0qbP50/JKhQxZoXKvVfpCKWTt5i0rfVJez/A69ioszIkh2iGduOeDCrwroZLDUSCbCOiBWO5lYSNZnAy8cpZtQgbOt3EsGqVEOHTxn1srX7T9ofcUjdIE8FEpMguyWhR24n1kbLnAnIpaPdUR3xIk6FIaggOH/2xzNaxDOl/O/Vg78DSiy3TddRzXjbKl3jJZZuewuBLsfeD3UZJYvw/rTW54PYbAWQdfJk127PSTRXkN9Y8dnyAXUHHlbOwn2dhkYkHzAUCpObr3yuf+6OXOyk1Xs7D4sNQutPP2wqStxpcPNTD6CQS8lsRM27QudIXYQEIGZppfeTKRdwoHLchB3Rf5Zq0ikynpGuEPV21QRPTZjf3yYwTUjdhgoH
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(36840700001)(46966006)(356005)(26005)(45080400002)(7636003)(336012)(186003)(47076005)(966005)(30864003)(54906003)(70586007)(316002)(70206006)(508600001)(2616005)(2906002)(110136005)(36860700001)(31696002)(107886003)(8676002)(44832011)(83380400001)(8936002)(31686004)(82310400004)(5660300002)(426003)(4326008)(36756003)(9786002)(53546011)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2021 19:29:32.2802
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aef2cd39-1113-42c5-0785-08d9b9b7e51e
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT059.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5640
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Dec 2021 at 17:32, David Virag <virag.david003@gmail.com> wrote:
->
-> This is an initial implementation adding basic clocks, such as UART,
-> USI, I2C, WDT, ect. and their parent clocks. It is heavily based on the
-> Exynos850 clock driver at 'drivers/clk/samsung/clk-exynos850.c' which
-> was made by Sam Protsenko, thus the copyright and author lines were
-> kept.
->
-> Bus clocks are enabled by default as well to avoid hangs while trying to
-> access CMU registers.
->
-> Only the parts of CMU_TOP needed for CMU_CORE and CMU_PERI, a bit of
-> CMU_CORE, and most of CMU_PERI is implemented as of now.
->
-> Signed-off-by: David Virag <virag.david003@gmail.com>
-> ---
-> Changes in v2:
->   - Use shared code between Exynos850 and 7885 clock drivers
->   - As the code that was from the Exynos850 clock driver was moved to
->     clk-exynos-arm64.c and what remains is mostly SoC specific data,
->     move the Linaro copyright and Sam Protsenko author lines there.
->
-> Changes in v3:
->   - Nothing
->
-> Changes in v4:
->   - Fixed missing headers
->
->  drivers/clk/samsung/Makefile         |   1 +
->  drivers/clk/samsung/clk-exynos7885.c | 597 +++++++++++++++++++++++++++
->  2 files changed, 598 insertions(+)
->  create mode 100644 drivers/clk/samsung/clk-exynos7885.c
->
-> diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
-> index 901e6333c5f0..0df74916a895 100644
-> --- a/drivers/clk/samsung/Makefile
-> +++ b/drivers/clk/samsung/Makefile
-> @@ -18,6 +18,7 @@ obj-$(CONFIG_EXYNOS_AUDSS_CLK_CON) +=3D clk-exynos-auds=
-s.o
->  obj-$(CONFIG_EXYNOS_CLKOUT)    +=3D clk-exynos-clkout.o
->  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)  +=3D clk-exynos-arm64.o
->  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)  +=3D clk-exynos7.o
-> +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)  +=3D clk-exynos7885.o
->  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)  +=3D clk-exynos850.o
->  obj-$(CONFIG_S3C2410_COMMON_CLK)+=3D clk-s3c2410.o
->  obj-$(CONFIG_S3C2410_COMMON_DCLK)+=3D clk-s3c2410-dclk.o
-> diff --git a/drivers/clk/samsung/clk-exynos7885.c b/drivers/clk/samsung/c=
-lk-exynos7885.c
-> new file mode 100644
-> index 000000000000..a7b106302706
-> --- /dev/null
-> +++ b/drivers/clk/samsung/clk-exynos7885.c
-> @@ -0,0 +1,597 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2021 D=C3=A1vid Vir=C3=A1g <virag.david003@gmail.com>
-> + * Author: D=C3=A1vid Vir=C3=A1g <virag.david003@gmail.com>
-> + *
-> + * Common Clock Framework support for Exynos7885 SoC.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include <dt-bindings/clock/exynos7885.h>
-> +
-> +#include "clk.h"
-> +#include "clk-exynos-arm64.h"
-> +
-> +/* ---- CMU_TOP --------------------------------------------------------=
------ */
-> +
-> +/* Register Offset definitions for CMU_TOP (0x12060000) */
-> +#define PLL_LOCKTIME_PLL_SHARED0               0x0000
-> +#define PLL_LOCKTIME_PLL_SHARED1               0x0004
-> +#define PLL_CON0_PLL_SHARED0                   0x0100
-> +#define PLL_CON0_PLL_SHARED1                   0x0120
-> +#define CLK_CON_MUX_MUX_CLKCMU_CORE_BUS                0x1014
-> +#define CLK_CON_MUX_MUX_CLKCMU_CORE_CCI                0x1018
-> +#define CLK_CON_MUX_MUX_CLKCMU_CORE_G3D                0x101c
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_BUS                0x1058
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_SPI0       0x105c
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_SPI1       0x1060
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_UART0      0x1064
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_UART1      0x1068
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_UART2      0x106c
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_USI0       0x1070
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_USI1       0x1074
-> +#define CLK_CON_MUX_MUX_CLKCMU_PERI_USI2       0x1078
-> +#define CLK_CON_DIV_CLKCMU_CORE_BUS            0x181c
-> +#define CLK_CON_DIV_CLKCMU_CORE_CCI            0x1820
-> +#define CLK_CON_DIV_CLKCMU_CORE_G3D            0x1824
-> +#define CLK_CON_DIV_CLKCMU_PERI_BUS            0x1874
-> +#define CLK_CON_DIV_CLKCMU_PERI_SPI0           0x1878
-> +#define CLK_CON_DIV_CLKCMU_PERI_SPI1           0x187c
-> +#define CLK_CON_DIV_CLKCMU_PERI_UART0          0x1880
-> +#define CLK_CON_DIV_CLKCMU_PERI_UART1          0x1884
-> +#define CLK_CON_DIV_CLKCMU_PERI_UART2          0x1888
-> +#define CLK_CON_DIV_CLKCMU_PERI_USI0           0x188c
-> +#define CLK_CON_DIV_CLKCMU_PERI_USI1           0x1890
-> +#define CLK_CON_DIV_CLKCMU_PERI_USI2           0x1894
-> +#define CLK_CON_DIV_PLL_SHARED0_DIV2           0x189c
-> +#define CLK_CON_DIV_PLL_SHARED0_DIV3           0x18a0
-> +#define CLK_CON_DIV_PLL_SHARED0_DIV4           0x18a4
-> +#define CLK_CON_DIV_PLL_SHARED0_DIV5           0x18a8
-> +#define CLK_CON_DIV_PLL_SHARED1_DIV2           0x18ac
-> +#define CLK_CON_DIV_PLL_SHARED1_DIV3           0x18b0
-> +#define CLK_CON_DIV_PLL_SHARED1_DIV4           0x18b4
-> +#define CLK_CON_GAT_GATE_CLKCMUC_PERI_UART1    0x2004
-> +#define CLK_CON_GAT_GATE_CLKCMU_CORE_BUS       0x201c
-> +#define CLK_CON_GAT_GATE_CLKCMU_CORE_CCI       0x2020
-> +#define CLK_CON_GAT_GATE_CLKCMU_CORE_G3D       0x2024
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_BUS       0x207c
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_SPI0      0x2080
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_SPI1      0x2084
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_UART0     0x2088
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_UART2     0x208c
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_USI0      0x2090
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_USI1      0x2094
-> +#define CLK_CON_GAT_GATE_CLKCMU_PERI_USI2      0x2098
-> +
-> +static const unsigned long top_clk_regs[] __initconst =3D {
-> +       PLL_LOCKTIME_PLL_SHARED0,
-> +       PLL_LOCKTIME_PLL_SHARED1,
-> +       PLL_CON0_PLL_SHARED0,
-> +       PLL_CON0_PLL_SHARED1,
-> +       CLK_CON_MUX_MUX_CLKCMU_CORE_BUS,
-> +       CLK_CON_MUX_MUX_CLKCMU_CORE_CCI,
-> +       CLK_CON_MUX_MUX_CLKCMU_CORE_G3D,
-> +       CLK_CON_MUX_MUX_CLKCMU_PERI_BUS,
-> +       CLK_CON_MUX_MUX_CLKCMU_PERI_SPI0,
-> +       CLK_CON_MUX_MUX_CLKCMU_PERI_SPI1,
-> +       CLK_CON_MUX_MUX_CLKCMU_PERI_UART0,
-> +       CLK_CON_MUX_MUX_CLKCMU_PERI_UART1,
-> +       CLK_CON_MUX_MUX_CLKCMU_PERI_UART2,
-> +       CLK_CON_MUX_MUX_CLKCMU_PERI_USI0,
-> +       CLK_CON_MUX_MUX_CLKCMU_PERI_USI1,
-> +       CLK_CON_MUX_MUX_CLKCMU_PERI_USI2,
-> +       CLK_CON_DIV_CLKCMU_CORE_BUS,
-> +       CLK_CON_DIV_CLKCMU_CORE_CCI,
-> +       CLK_CON_DIV_CLKCMU_CORE_G3D,
-> +       CLK_CON_DIV_CLKCMU_PERI_BUS,
-> +       CLK_CON_DIV_CLKCMU_PERI_SPI0,
-> +       CLK_CON_DIV_CLKCMU_PERI_SPI1,
-> +       CLK_CON_DIV_CLKCMU_PERI_UART0,
-> +       CLK_CON_DIV_CLKCMU_PERI_UART1,
-> +       CLK_CON_DIV_CLKCMU_PERI_UART2,
-> +       CLK_CON_DIV_CLKCMU_PERI_USI0,
-> +       CLK_CON_DIV_CLKCMU_PERI_USI1,
-> +       CLK_CON_DIV_CLKCMU_PERI_USI2,
-> +       CLK_CON_DIV_PLL_SHARED0_DIV2,
-> +       CLK_CON_DIV_PLL_SHARED0_DIV3,
-> +       CLK_CON_DIV_PLL_SHARED0_DIV4,
-> +       CLK_CON_DIV_PLL_SHARED0_DIV5,
-> +       CLK_CON_DIV_PLL_SHARED1_DIV2,
-> +       CLK_CON_DIV_PLL_SHARED1_DIV3,
-> +       CLK_CON_DIV_PLL_SHARED1_DIV4,
-> +       CLK_CON_GAT_GATE_CLKCMUC_PERI_UART1,
-> +       CLK_CON_GAT_GATE_CLKCMU_CORE_BUS,
-> +       CLK_CON_GAT_GATE_CLKCMU_CORE_CCI,
-> +       CLK_CON_GAT_GATE_CLKCMU_CORE_G3D,
-> +       CLK_CON_GAT_GATE_CLKCMU_PERI_BUS,
-> +       CLK_CON_GAT_GATE_CLKCMU_PERI_SPI0,
-> +       CLK_CON_GAT_GATE_CLKCMU_PERI_SPI1,
-> +       CLK_CON_GAT_GATE_CLKCMU_PERI_UART0,
-> +       CLK_CON_GAT_GATE_CLKCMU_PERI_UART2,
-> +       CLK_CON_GAT_GATE_CLKCMU_PERI_USI0,
-> +       CLK_CON_GAT_GATE_CLKCMU_PERI_USI1,
-> +       CLK_CON_GAT_GATE_CLKCMU_PERI_USI2,
-> +};
-> +
-> +static const struct samsung_pll_clock top_pll_clks[] __initconst =3D {
-> +       PLL(pll_1417x, CLK_FOUT_SHARED0_PLL, "fout_shared0_pll", "oscclk"=
-,
-> +           PLL_LOCKTIME_PLL_SHARED0, PLL_CON0_PLL_SHARED0,
-> +           NULL),
-> +       PLL(pll_1417x, CLK_FOUT_SHARED1_PLL, "fout_shared1_pll", "oscclk"=
-,
-> +           PLL_LOCKTIME_PLL_SHARED1, PLL_CON0_PLL_SHARED1,
-> +           NULL),
-> +};
-> +
-> +/* List of parent clocks for Muxes in CMU_TOP: for CMU_CORE */
-> +PNAME(mout_core_bus_p)         =3D { "dout_shared0_div2", "dout_shared1_=
-div2",
-> +                                   "dout_shared0_div3", "dout_shared0_di=
-v3" };
-> +PNAME(mout_core_cci_p)         =3D { "dout_shared0_div2", "dout_shared1_=
-div2",
-> +                                   "dout_shared0_div3", "dout_shared0_di=
-v3" };
-> +PNAME(mout_core_g3d_p)         =3D { "dout_shared0_div2", "dout_shared1_=
-div2",
-> +                                   "dout_shared0_div3", "dout_shared0_di=
-v3" };
-> +
-> +/* List of parent clocks for Muxes in CMU_TOP: for CMU_PERI */
-> +PNAME(mout_peri_bus_p)         =3D { "dout_shared0_div4", "dout_shared1_=
-div4" };
-> +PNAME(mout_peri_spi0_p)                =3D { "oscclk", "dout_shared0_div=
-4" };
-> +PNAME(mout_peri_spi1_p)                =3D { "oscclk", "dout_shared0_div=
-4" };
-> +PNAME(mout_peri_uart0_p)       =3D { "oscclk", "dout_shared0_div4" };
-> +PNAME(mout_peri_uart1_p)       =3D { "oscclk", "dout_shared0_div4" };
-> +PNAME(mout_peri_uart2_p)       =3D { "oscclk", "dout_shared0_div4" };
-> +PNAME(mout_peri_usi0_p)                =3D { "oscclk", "dout_shared0_div=
-4" };
-> +PNAME(mout_peri_usi1_p)                =3D { "oscclk", "dout_shared0_div=
-4" };
-> +PNAME(mout_peri_usi2_p)                =3D { "oscclk", "dout_shared0_div=
-4" };
-> +
-> +static const struct samsung_mux_clock top_mux_clks[] __initconst =3D {
-> +       /* CORE */
-> +       MUX(CLK_MOUT_CORE_BUS, "mout_core_bus", mout_core_bus_p,
-> +           CLK_CON_MUX_MUX_CLKCMU_CORE_BUS, 0, 2),
-> +       MUX(CLK_MOUT_CORE_CCI, "mout_core_cci", mout_core_cci_p,
-> +           CLK_CON_MUX_MUX_CLKCMU_CORE_CCI, 0, 2),
-> +       MUX(CLK_MOUT_CORE_G3D, "mout_core_g3d", mout_core_g3d_p,
-> +           CLK_CON_MUX_MUX_CLKCMU_CORE_G3D, 0, 2),
-> +
-> +       /* PERI */
-> +       MUX(CLK_MOUT_PERI_BUS, "mout_peri_bus", mout_peri_bus_p,
-> +           CLK_CON_MUX_MUX_CLKCMU_PERI_BUS, 0, 1),
-> +       MUX(CLK_MOUT_PERI_SPI0, "mout_peri_spi0", mout_peri_spi0_p,
-> +           CLK_CON_MUX_MUX_CLKCMU_PERI_SPI0, 0, 1),
-> +       MUX(CLK_MOUT_PERI_SPI1, "mout_peri_spi1", mout_peri_spi1_p,
-> +           CLK_CON_MUX_MUX_CLKCMU_PERI_SPI1, 0, 1),
-> +       MUX(CLK_MOUT_PERI_UART0, "mout_peri_uart0", mout_peri_uart0_p,
-> +           CLK_CON_MUX_MUX_CLKCMU_PERI_UART0, 0, 1),
-> +       MUX(CLK_MOUT_PERI_UART1, "mout_peri_uart1", mout_peri_uart1_p,
-> +           CLK_CON_MUX_MUX_CLKCMU_PERI_UART1, 0, 1),
-> +       MUX(CLK_MOUT_PERI_UART2, "mout_peri_uart2", mout_peri_uart2_p,
-> +           CLK_CON_MUX_MUX_CLKCMU_PERI_UART2, 0, 1),
-> +       MUX(CLK_MOUT_PERI_USI0, "mout_peri_usi0", mout_peri_usi0_p,
-> +           CLK_CON_MUX_MUX_CLKCMU_PERI_USI0, 0, 1),
-> +       MUX(CLK_MOUT_PERI_USI1, "mout_peri_usi1", mout_peri_usi1_p,
-> +           CLK_CON_MUX_MUX_CLKCMU_PERI_USI1, 0, 1),
-> +       MUX(CLK_MOUT_PERI_USI2, "mout_peri_usi2", mout_peri_usi2_p,
-> +           CLK_CON_MUX_MUX_CLKCMU_PERI_USI2, 0, 1),
-> +};
-> +
-> +static const struct samsung_div_clock top_div_clks[] __initconst =3D {
-> +       /* TOP */
-> +       DIV(CLK_DOUT_SHARED0_DIV2, "dout_shared0_div2", "fout_shared0_pll=
-",
-> +           CLK_CON_DIV_PLL_SHARED0_DIV2, 0, 1),
-> +       DIV(CLK_DOUT_SHARED0_DIV3, "dout_shared0_div3", "fout_shared0_pll=
-",
-> +           CLK_CON_DIV_PLL_SHARED0_DIV3, 0, 2),
-> +       DIV(CLK_DOUT_SHARED0_DIV4, "dout_shared0_div4", "fout_shared0_pll=
-",
-> +           CLK_CON_DIV_PLL_SHARED0_DIV4, 0, 1),
-> +       DIV(CLK_DOUT_SHARED0_DIV5, "dout_shared0_div5", "fout_shared0_pll=
-",
-> +           CLK_CON_DIV_PLL_SHARED0_DIV5, 0, 3),
-> +       DIV(CLK_DOUT_SHARED1_DIV2, "dout_shared1_div2", "fout_shared1_pll=
-",
-> +           CLK_CON_DIV_PLL_SHARED1_DIV2, 0, 1),
-> +       DIV(CLK_DOUT_SHARED1_DIV3, "dout_shared1_div3", "fout_shared1_pll=
-",
-> +           CLK_CON_DIV_PLL_SHARED1_DIV3, 0, 2),
-> +       DIV(CLK_DOUT_SHARED1_DIV4, "dout_shared1_div4", "fout_shared1_pll=
-",
-> +           CLK_CON_DIV_PLL_SHARED1_DIV4, 0, 1),
-> +
-> +       /* CORE */
-> +       DIV(CLK_DOUT_CORE_BUS, "dout_core_bus", "gout_core_bus",
-> +           CLK_CON_DIV_CLKCMU_CORE_BUS, 0, 3),
-> +       DIV(CLK_DOUT_CORE_CCI, "dout_core_cci", "gout_core_cci",
-> +           CLK_CON_DIV_CLKCMU_CORE_CCI, 0, 3),
-> +       DIV(CLK_DOUT_CORE_G3D, "dout_core_g3d", "gout_core_g3d",
-> +           CLK_CON_DIV_CLKCMU_CORE_G3D, 0, 3),
-> +
-> +       /* PERI */
-> +       DIV(CLK_DOUT_PERI_BUS, "dout_peri_bus", "gout_peri_bus",
-> +           CLK_CON_DIV_CLKCMU_PERI_BUS, 0, 4),
-> +       DIV(CLK_DOUT_PERI_SPI0, "dout_peri_spi0", "gout_peri_spi0",
-> +           CLK_CON_DIV_CLKCMU_PERI_SPI0, 0, 6),
-> +       DIV(CLK_DOUT_PERI_SPI1, "dout_peri_spi1", "gout_peri_spi1",
-> +           CLK_CON_DIV_CLKCMU_PERI_SPI1, 0, 6),
-> +       DIV(CLK_DOUT_PERI_UART0, "dout_peri_uart0", "gout_peri_uart0",
-> +           CLK_CON_DIV_CLKCMU_PERI_UART0, 0, 4),
-> +       DIV(CLK_DOUT_PERI_UART1, "dout_peri_uart1", "gout_peri_uart1",
-> +           CLK_CON_DIV_CLKCMU_PERI_UART1, 0, 4),
-> +       DIV(CLK_DOUT_PERI_UART2, "dout_peri_uart2", "gout_peri_uart2",
-> +           CLK_CON_DIV_CLKCMU_PERI_UART2, 0, 4),
-> +       DIV(CLK_DOUT_PERI_USI0, "dout_peri_usi0", "gout_peri_usi0",
-> +           CLK_CON_DIV_CLKCMU_PERI_USI0, 0, 4),
-> +       DIV(CLK_DOUT_PERI_USI1, "dout_peri_usi1", "gout_peri_usi1",
-> +           CLK_CON_DIV_CLKCMU_PERI_USI1, 0, 4),
-> +       DIV(CLK_DOUT_PERI_USI2, "dout_peri_usi2", "gout_peri_usi2",
-> +           CLK_CON_DIV_CLKCMU_PERI_USI2, 0, 4),
-> +};
-> +
-> +static const struct samsung_gate_clock top_gate_clks[] __initconst =3D {
-> +       /* CORE */
-> +       GATE(CLK_GOUT_CORE_BUS, "gout_core_bus", "mout_core_bus",
-> +            CLK_CON_GAT_GATE_CLKCMU_CORE_BUS, 21, 0, 0),
-> +       GATE(CLK_GOUT_CORE_CCI, "gout_core_cci", "mout_core_cci",
-> +            CLK_CON_GAT_GATE_CLKCMU_CORE_CCI, 21, 0, 0),
-> +       GATE(CLK_GOUT_CORE_G3D, "gout_core_g3d", "mout_core_g3d",
-> +            CLK_CON_GAT_GATE_CLKCMU_CORE_G3D, 21, 0, 0),
-> +
-> +       /* PERI */
-> +       GATE(CLK_GOUT_PERI_BUS, "gout_peri_bus", "mout_peri_bus",
-> +            CLK_CON_GAT_GATE_CLKCMU_PERI_BUS, 21, 0, 0),
-> +       GATE(CLK_GOUT_PERI_SPI0, "gout_peri_spi0", "mout_peri_spi0",
-> +            CLK_CON_GAT_GATE_CLKCMU_PERI_SPI0, 21, 0, 0),
-> +       GATE(CLK_GOUT_PERI_SPI1, "gout_peri_spi1", "mout_peri_spi1",
-> +            CLK_CON_GAT_GATE_CLKCMU_PERI_SPI1, 21, 0, 0),
-> +       GATE(CLK_GOUT_PERI_UART0, "gout_peri_uart0", "mout_peri_uart0",
-> +            CLK_CON_GAT_GATE_CLKCMU_PERI_UART0, 21, 0, 0),
-> +       GATE(CLK_GOUT_PERI_UART1, "gout_peri_uart1", "mout_peri_uart1",
-> +            CLK_CON_GAT_GATE_CLKCMUC_PERI_UART1, 21, 0, 0),
-> +       GATE(CLK_GOUT_PERI_UART2, "gout_peri_uart2", "mout_peri_uart2",
-> +            CLK_CON_GAT_GATE_CLKCMU_PERI_UART2, 21, 0, 0),
-> +       GATE(CLK_GOUT_PERI_USI0, "gout_peri_usi0", "mout_peri_usi0",
-> +            CLK_CON_GAT_GATE_CLKCMU_PERI_USI0, 21, 0, 0),
-> +       GATE(CLK_GOUT_PERI_USI1, "gout_peri_usi1", "mout_peri_usi1",
-> +            CLK_CON_GAT_GATE_CLKCMU_PERI_USI1, 21, 0, 0),
-> +       GATE(CLK_GOUT_PERI_USI2, "gout_peri_usi2", "mout_peri_usi2",
-> +            CLK_CON_GAT_GATE_CLKCMU_PERI_USI2, 21, 0, 0),
-> +};
-> +
-> +static const struct samsung_cmu_info top_cmu_info __initconst =3D {
-> +       .pll_clks               =3D top_pll_clks,
-> +       .nr_pll_clks            =3D ARRAY_SIZE(top_pll_clks),
-> +       .mux_clks               =3D top_mux_clks,
-> +       .nr_mux_clks            =3D ARRAY_SIZE(top_mux_clks),
-> +       .div_clks               =3D top_div_clks,
-> +       .nr_div_clks            =3D ARRAY_SIZE(top_div_clks),
-> +       .gate_clks              =3D top_gate_clks,
-> +       .nr_gate_clks           =3D ARRAY_SIZE(top_gate_clks),
-> +       .nr_clk_ids             =3D TOP_NR_CLK,
-> +       .clk_regs               =3D top_clk_regs,
-> +       .nr_clk_regs            =3D ARRAY_SIZE(top_clk_regs),
-> +};
-> +
-> +static void __init exynos7885_cmu_top_init(struct device_node *np)
-> +{
-> +       exynos_arm64_register_cmu(NULL, np, &top_cmu_info);
-> +}
-> +
-> +/* Register CMU_TOP early, as it's a dependency for other early domains =
-*/
-> +CLK_OF_DECLARE(exynos7885_cmu_top, "samsung,exynos7885-cmu-top",
-> +              exynos7885_cmu_top_init);
-> +
-> +/* ---- CMU_PERI -------------------------------------------------------=
------ */
-> +
-> +/* Register Offset definitions for CMU_PERI (0x10010000) */
-> +#define PLL_CON0_MUX_CLKCMU_PERI_BUS_USER      0x0100
-> +#define PLL_CON0_MUX_CLKCMU_PERI_SPI0_USER     0x0120
-> +#define PLL_CON0_MUX_CLKCMU_PERI_SPI1_USER     0x0140
-> +#define PLL_CON0_MUX_CLKCMU_PERI_UART0_USER    0x0160
-> +#define PLL_CON0_MUX_CLKCMU_PERI_UART1_USER    0x0180
-> +#define PLL_CON0_MUX_CLKCMU_PERI_UART2_USER    0x01a0
-> +#define PLL_CON0_MUX_CLKCMU_PERI_USI0_USER     0x01c0
-> +#define PLL_CON0_MUX_CLKCMU_PERI_USI1_USER     0x01e0
-> +#define PLL_CON0_MUX_CLKCMU_PERI_USI2_USER     0x0200
-> +#define CLK_CON_GAT_GOUT_PERI_GPIO_TOP_PCLK    0x2024
-> +#define CLK_CON_GAT_GOUT_PERI_HSI2C_0_PCLK     0x2028
-> +#define CLK_CON_GAT_GOUT_PERI_HSI2C_1_PCLK     0x202c
-> +#define CLK_CON_GAT_GOUT_PERI_HSI2C_2_PCLK     0x2030
-> +#define CLK_CON_GAT_GOUT_PERI_HSI2C_3_PCLK     0x2034
-> +#define CLK_CON_GAT_GOUT_PERI_I2C_0_PCLK       0x2038
-> +#define CLK_CON_GAT_GOUT_PERI_I2C_1_PCLK       0x203c
-> +#define CLK_CON_GAT_GOUT_PERI_I2C_2_PCLK       0x2040
-> +#define CLK_CON_GAT_GOUT_PERI_I2C_3_PCLK       0x2044
-> +#define CLK_CON_GAT_GOUT_PERI_I2C_4_PCLK       0x2048
-> +#define CLK_CON_GAT_GOUT_PERI_I2C_5_PCLK       0x204c
-> +#define CLK_CON_GAT_GOUT_PERI_I2C_6_PCLK       0x2050
-> +#define CLK_CON_GAT_GOUT_PERI_I2C_7_PCLK       0x2054
-> +#define CLK_CON_GAT_GOUT_PERI_PWM_MOTOR_PCLK   0x2058
-> +#define CLK_CON_GAT_GOUT_PERI_SPI_0_PCLK       0x205c
-> +#define CLK_CON_GAT_GOUT_PERI_SPI_0_EXT_CLK    0x2060
-> +#define CLK_CON_GAT_GOUT_PERI_SPI_1_PCLK       0x2064
-> +#define CLK_CON_GAT_GOUT_PERI_SPI_1_EXT_CLK    0x2068
-> +#define CLK_CON_GAT_GOUT_PERI_UART_0_EXT_UCLK  0x206c
-> +#define CLK_CON_GAT_GOUT_PERI_UART_0_PCLK      0x2070
-> +#define CLK_CON_GAT_GOUT_PERI_UART_1_EXT_UCLK  0x2074
-> +#define CLK_CON_GAT_GOUT_PERI_UART_1_PCLK      0x2078
-> +#define CLK_CON_GAT_GOUT_PERI_UART_2_EXT_UCLK  0x207c
-> +#define CLK_CON_GAT_GOUT_PERI_UART_2_PCLK      0x2080
-> +#define CLK_CON_GAT_GOUT_PERI_USI0_PCLK                0x2084
-> +#define CLK_CON_GAT_GOUT_PERI_USI0_SCLK                0x2088
-> +#define CLK_CON_GAT_GOUT_PERI_USI1_PCLK                0x208c
-> +#define CLK_CON_GAT_GOUT_PERI_USI1_SCLK                0x2090
-> +#define CLK_CON_GAT_GOUT_PERI_USI2_PCLK                0x2094
-> +#define CLK_CON_GAT_GOUT_PERI_USI2_SCLK                0x2098
-> +#define CLK_CON_GAT_GOUT_PERI_MCT_PCLK         0x20a0
-> +#define CLK_CON_GAT_GOUT_PERI_SYSREG_PERI_PCLK 0x20b0
-> +#define CLK_CON_GAT_GOUT_PERI_WDT_CLUSTER0_PCLK        0x20b4
-> +#define CLK_CON_GAT_GOUT_PERI_WDT_CLUSTER1_PCLK        0x20b8
-> +
-> +static const unsigned long peri_clk_regs[] __initconst =3D {
-> +       PLL_CON0_MUX_CLKCMU_PERI_BUS_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERI_SPI0_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERI_SPI1_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERI_UART0_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERI_UART1_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERI_UART2_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERI_USI0_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERI_USI1_USER,
-> +       PLL_CON0_MUX_CLKCMU_PERI_USI2_USER,
-> +       CLK_CON_GAT_GOUT_PERI_GPIO_TOP_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_HSI2C_0_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_HSI2C_1_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_HSI2C_2_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_HSI2C_3_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_I2C_0_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_I2C_1_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_I2C_2_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_I2C_3_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_I2C_4_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_I2C_5_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_I2C_6_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_I2C_7_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_PWM_MOTOR_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_SPI_0_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_SPI_0_EXT_CLK,
-> +       CLK_CON_GAT_GOUT_PERI_SPI_1_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_SPI_1_EXT_CLK,
-> +       CLK_CON_GAT_GOUT_PERI_UART_0_EXT_UCLK,
-> +       CLK_CON_GAT_GOUT_PERI_UART_0_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_UART_1_EXT_UCLK,
-> +       CLK_CON_GAT_GOUT_PERI_UART_1_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_UART_2_EXT_UCLK,
-> +       CLK_CON_GAT_GOUT_PERI_UART_2_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_USI0_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_USI0_SCLK,
-> +       CLK_CON_GAT_GOUT_PERI_USI1_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_USI1_SCLK,
-> +       CLK_CON_GAT_GOUT_PERI_USI2_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_USI2_SCLK,
-> +       CLK_CON_GAT_GOUT_PERI_MCT_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_SYSREG_PERI_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_WDT_CLUSTER0_PCLK,
-> +       CLK_CON_GAT_GOUT_PERI_WDT_CLUSTER1_PCLK,
-> +};
-> +
-> +/* List of parent clocks for Muxes in CMU_PERI */
-> +PNAME(mout_peri_bus_user_p)    =3D { "oscclk", "dout_peri_bus" };
-> +PNAME(mout_peri_spi0_user_p)   =3D { "oscclk", "dout_peri_spi0" };
-> +PNAME(mout_peri_spi1_user_p)   =3D { "oscclk", "dout_peri_spi1" };
-> +PNAME(mout_peri_uart0_user_p)  =3D { "oscclk", "dout_peri_uart0" };
-> +PNAME(mout_peri_uart1_user_p)  =3D { "oscclk", "dout_peri_uart1" };
-> +PNAME(mout_peri_uart2_user_p)  =3D { "oscclk", "dout_peri_uart2" };
-> +PNAME(mout_peri_usi0_user_p)   =3D { "oscclk", "dout_peri_usi0" };
-> +PNAME(mout_peri_usi1_user_p)   =3D { "oscclk", "dout_peri_usi1" };
-> +PNAME(mout_peri_usi2_user_p)   =3D { "oscclk", "dout_peri_usi2" };
-> +
-> +static const struct samsung_mux_clock peri_mux_clks[] __initconst =3D {
-> +       MUX(CLK_MOUT_PERI_BUS_USER, "mout_peri_bus_user", mout_peri_bus_u=
-ser_p,
-> +           PLL_CON0_MUX_CLKCMU_PERI_BUS_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERI_SPI0_USER, "mout_peri_spi0_user", mout_peri_spi=
-0_user_p,
+Hi Yilun,
 
-Nit-pick: here and below in this file, please try to keep max line
-length at 80 characters. I know it's not mandatory anymore, but I'd
-personally prefer it to be that away (otherwise it's not consistent
-with most of lines that are 80 char long). It's easy to spot that with
-"checkpatch.pl --strict".
+We had discussed this internally. And I add my comments in line.
 
-> +           PLL_CON0_MUX_CLKCMU_PERI_SPI0_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERI_SPI1_USER, "mout_peri_spi1_user", mout_peri_spi=
-1_user_p,
-> +           PLL_CON0_MUX_CLKCMU_PERI_SPI1_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERI_UART0_USER, "mout_peri_uart0_user",
-> +           mout_peri_uart0_user_p, PLL_CON0_MUX_CLKCMU_PERI_UART0_USER, =
-4, 1),
-> +       MUX(CLK_MOUT_PERI_UART1_USER, "mout_peri_uart1_user",
-> +           mout_peri_uart1_user_p, PLL_CON0_MUX_CLKCMU_PERI_UART1_USER, =
-4, 1),
-> +       MUX(CLK_MOUT_PERI_UART2_USER, "mout_peri_uart2_user",
-> +           mout_peri_uart2_user_p, PLL_CON0_MUX_CLKCMU_PERI_UART2_USER, =
-4, 1),
-> +       MUX(CLK_MOUT_PERI_USI0_USER, "mout_peri_usi0_user",
-> +           mout_peri_usi0_user_p, PLL_CON0_MUX_CLKCMU_PERI_USI0_USER, 4,=
- 1),
-> +       MUX(CLK_MOUT_PERI_USI1_USER, "mout_peri_usi1_user",
-> +           mout_peri_usi1_user_p, PLL_CON0_MUX_CLKCMU_PERI_USI1_USER, 4,=
- 1),
-> +       MUX(CLK_MOUT_PERI_USI2_USER, "mout_peri_usi2_user",
-> +           mout_peri_usi2_user_p, PLL_CON0_MUX_CLKCMU_PERI_USI2_USER, 4,=
- 1),
-> +};
-> +
-> +static const struct samsung_gate_clock peri_gate_clks[] __initconst =3D =
-{
-> +       /* TODO: Should be enabled in GPIO driver (or made CLK_IS_CRITICA=
-L) */
-> +       GATE(CLK_GOUT_GPIO_TOP_PCLK, "gout_gpio_top_pclk",
-> +            "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_GPIO_TOP_PCLK, 21, CLK_IGNORE_UNUSED, =
-0),
-> +       GATE(CLK_GOUT_HSI2C0_PCLK, "gout_hsi2c0_pclk", "mout_peri_bus_use=
-r",
-> +            CLK_CON_GAT_GOUT_PERI_HSI2C_0_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_HSI2C1_PCLK, "gout_hsi2c1_pclk", "mout_peri_bus_use=
-r",
-> +            CLK_CON_GAT_GOUT_PERI_HSI2C_1_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_HSI2C2_PCLK, "gout_hsi2c2_pclk", "mout_peri_bus_use=
-r",
-> +            CLK_CON_GAT_GOUT_PERI_HSI2C_2_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_HSI2C3_PCLK, "gout_hsi2c3_pclk", "mout_peri_bus_use=
-r",
-> +            CLK_CON_GAT_GOUT_PERI_HSI2C_3_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_I2C0_PCLK, "gout_i2c0_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_I2C_0_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_I2C1_PCLK, "gout_i2c1_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_I2C_1_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_I2C2_PCLK, "gout_i2c2_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_I2C_2_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_I2C3_PCLK, "gout_i2c3_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_I2C_3_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_I2C4_PCLK, "gout_i2c4_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_I2C_4_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_I2C5_PCLK, "gout_i2c5_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_I2C_5_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_I2C6_PCLK, "gout_i2c6_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_I2C_6_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_I2C7_PCLK, "gout_i2c7_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_I2C_7_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_PWM_MOTOR_PCLK, "gout_pwm_motor_pclk",
-> +            "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_PWM_MOTOR_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_SPI0_PCLK, "gout_spi0_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_SPI_0_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_SPI0_EXT_CLK, "gout_spi0_ipclk", "mout_peri_spi0_us=
-er",
-> +            CLK_CON_GAT_GOUT_PERI_SPI_0_EXT_CLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_SPI1_PCLK, "gout_spi1_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_SPI_1_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_SPI1_EXT_CLK, "gout_spi1_ipclk", "mout_peri_spi1_us=
-er",
-> +            CLK_CON_GAT_GOUT_PERI_SPI_1_EXT_CLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_UART0_EXT_UCLK, "gout_uart0_ext_uclk", "mout_peri_u=
-art0_user",
-> +            CLK_CON_GAT_GOUT_PERI_UART_0_EXT_UCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_UART0_PCLK, "gout_uart0_pclk", "mout_peri_bus_user"=
-,
-> +            CLK_CON_GAT_GOUT_PERI_UART_0_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_UART1_EXT_UCLK, "gout_uart1_ext_uclk", "mout_peri_u=
-art1_user",
-> +            CLK_CON_GAT_GOUT_PERI_UART_1_EXT_UCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_UART1_PCLK, "gout_uart1_pclk", "mout_peri_bus_user"=
-,
-> +            CLK_CON_GAT_GOUT_PERI_UART_1_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_UART2_EXT_UCLK, "gout_uart2_ext_uclk", "mout_peri_u=
-art2_user",
-> +            CLK_CON_GAT_GOUT_PERI_UART_2_EXT_UCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_UART2_PCLK, "gout_uart2_pclk", "mout_peri_bus_user"=
-,
-> +            CLK_CON_GAT_GOUT_PERI_UART_2_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_USI0_PCLK, "gout_usi0_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_USI0_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_USI0_SCLK, "gout_usi0_sclk", "mout_peri_usi0_user",
-> +            CLK_CON_GAT_GOUT_PERI_USI0_SCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_USI1_PCLK, "gout_usi1_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_USI1_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_USI1_SCLK, "gout_usi1_sclk", "mout_peri_usi1_user",
-> +            CLK_CON_GAT_GOUT_PERI_USI1_SCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_USI2_PCLK, "gout_usi2_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_USI2_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_USI2_SCLK, "gout_usi2_sclk", "mout_peri_usi2_user",
-> +            CLK_CON_GAT_GOUT_PERI_USI2_SCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_MCT_PCLK, "gout_mct_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_MCT_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_SYSREG_PERI_PCLK, "gout_sysreg_peri_pclk",
-> +            "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_SYSREG_PERI_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_WDT0_PCLK, "gout_wdt0_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_WDT_CLUSTER0_PCLK, 21, 0, 0),
-> +       GATE(CLK_GOUT_WDT1_PCLK, "gout_wdt1_pclk", "mout_peri_bus_user",
-> +            CLK_CON_GAT_GOUT_PERI_WDT_CLUSTER1_PCLK, 21, 0, 0),
-> +};
-> +
-> +static const struct samsung_cmu_info peri_cmu_info __initconst =3D {
-> +       .mux_clks               =3D peri_mux_clks,
-> +       .nr_mux_clks            =3D ARRAY_SIZE(peri_mux_clks),
-> +       .gate_clks              =3D peri_gate_clks,
-> +       .nr_gate_clks           =3D ARRAY_SIZE(peri_gate_clks),
-> +       .nr_clk_ids             =3D PERI_NR_CLK,
-> +       .clk_regs               =3D peri_clk_regs,
-> +       .nr_clk_regs            =3D ARRAY_SIZE(peri_clk_regs),
-> +       .clk_name               =3D "dout_peri_bus",
-> +};
-> +
-> +static void __init exynos7885_cmu_peri_init(struct device_node *np)
-> +{
-> +       exynos_arm64_register_cmu(NULL, np, &peri_cmu_info);
-> +}
-> +
-> +/* Register CMU_PERI early, as it's needed for MCT timer */
-> +CLK_OF_DECLARE(exynos7885_cmu_peri, "samsung,exynos7885-cmu-peri",
-> +              exynos7885_cmu_peri_init);
-> +
-> +/* ---- CMU_CORE -------------------------------------------------------=
------ */
-> +
-> +/* Register Offset definitions for CMU_CORE (0x12000000) */
-> +#define PLL_CON0_MUX_CLKCMU_CORE_BUS_USER      0x0100
-> +#define PLL_CON0_MUX_CLKCMU_CORE_CCI_USER      0x0120
-> +#define PLL_CON0_MUX_CLKCMU_CORE_G3D_USER      0x0140
-> +#define CLK_CON_MUX_MUX_CLK_CORE_GIC           0x1000
-> +#define CLK_CON_DIV_DIV_CLK_CORE_BUSP          0x1800
-> +#define CLK_CON_GAT_GOUT_CORE_CCI_550_ACLK     0x2054
-> +#define CLK_CON_GAT_GOUT_CORE_GIC400_CLK       0x2058
-> +
-> +static const unsigned long core_clk_regs[] __initconst =3D {
-> +       PLL_CON0_MUX_CLKCMU_CORE_BUS_USER,
-> +       PLL_CON0_MUX_CLKCMU_CORE_CCI_USER,
-> +       PLL_CON0_MUX_CLKCMU_CORE_G3D_USER,
-> +       CLK_CON_MUX_MUX_CLK_CORE_GIC,
-> +       CLK_CON_DIV_DIV_CLK_CORE_BUSP,
-> +       CLK_CON_GAT_GOUT_CORE_CCI_550_ACLK,
-> +       CLK_CON_GAT_GOUT_CORE_GIC400_CLK,
-> +};
-> +
-> +/* List of parent clocks for Muxes in CMU_CORE */
-> +PNAME(mout_core_bus_user_p)            =3D { "oscclk", "dout_core_bus" }=
-;
-> +PNAME(mout_core_cci_user_p)            =3D { "oscclk", "dout_core_cci" }=
-;
-> +PNAME(mout_core_g3d_user_p)            =3D { "oscclk", "dout_core_g3d" }=
-;
-> +PNAME(mout_core_gic_p)                 =3D { "dout_core_busp", "oscclk" =
-};
-> +
-> +static const struct samsung_mux_clock core_mux_clks[] __initconst =3D {
-> +       MUX(CLK_MOUT_CORE_BUS_USER, "mout_core_bus_user", mout_core_bus_u=
-ser_p,
-> +           PLL_CON0_MUX_CLKCMU_CORE_BUS_USER, 4, 1),
-> +       MUX(CLK_MOUT_CORE_CCI_USER, "mout_core_cci_user", mout_core_cci_u=
-ser_p,
-> +           PLL_CON0_MUX_CLKCMU_CORE_CCI_USER, 4, 1),
-> +       MUX(CLK_MOUT_CORE_G3D_USER, "mout_core_g3d_user", mout_core_g3d_u=
-ser_p,
-> +           PLL_CON0_MUX_CLKCMU_CORE_G3D_USER, 4, 1),
-> +       MUX(CLK_MOUT_CORE_GIC, "mout_core_gic", mout_core_gic_p,
-> +           CLK_CON_MUX_MUX_CLK_CORE_GIC, 0, 1),
-> +};
-> +
-> +static const struct samsung_div_clock core_div_clks[] __initconst =3D {
-> +       DIV(CLK_DOUT_CORE_BUSP, "dout_core_busp", "mout_core_bus_user",
-> +           CLK_CON_DIV_DIV_CLK_CORE_BUSP, 0, 2),
-> +};
-> +
-> +static const struct samsung_gate_clock core_gate_clks[] __initconst =3D =
-{
-> +       /* CCI (interconnect) clock must be always running */
-> +       GATE(CLK_GOUT_CCI_ACLK, "gout_cci_aclk", "mout_core_cci_user",
-> +            CLK_CON_GAT_GOUT_CORE_CCI_550_ACLK, 21, CLK_IS_CRITICAL, 0),
-> +       /* GIC (interrupt controller) clock must be always running */
-> +       GATE(CLK_GOUT_GIC400_CLK, "gout_gic400_clk", "mout_core_gic",
-> +            CLK_CON_GAT_GOUT_CORE_GIC400_CLK, 21, CLK_IS_CRITICAL, 0),
-> +};
-> +
-> +static const struct samsung_cmu_info core_cmu_info __initconst =3D {
-> +       .mux_clks               =3D core_mux_clks,
-> +       .nr_mux_clks            =3D ARRAY_SIZE(core_mux_clks),
-> +       .div_clks               =3D core_div_clks,
-> +       .nr_div_clks            =3D ARRAY_SIZE(core_div_clks),
-> +       .gate_clks              =3D core_gate_clks,
-> +       .nr_gate_clks           =3D ARRAY_SIZE(core_gate_clks),
-> +       .nr_clk_ids             =3D CORE_NR_CLK,
-> +       .clk_regs               =3D core_clk_regs,
-> +       .nr_clk_regs            =3D ARRAY_SIZE(core_clk_regs),
-> +       .clk_name               =3D "dout_core_bus",
-> +};
-> +
-> +/* ---- platform_driver ------------------------------------------------=
------ */
-> +
-> +static int __init exynos7885_cmu_probe(struct platform_device *pdev)
-> +{
-> +       const struct samsung_cmu_info *info;
-> +       struct device *dev =3D &pdev->dev;
-> +
-> +       info =3D of_device_get_match_data(dev);
-> +       exynos_arm64_register_cmu(dev, dev->of_node, info);
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct of_device_id exynos7885_cmu_of_match[] =3D {
-> +       {
-> +               .compatible =3D "samsung,exynos7885-cmu-core",
-> +               .data =3D &core_cmu_info,
-> +       }, {
-> +       },
-> +};
-> +
-> +static struct platform_driver exynos7885_cmu_driver __refdata =3D {
-> +       .driver =3D {
-> +               .name =3D "exynos7885-cmu",
-> +               .of_match_table =3D exynos7885_cmu_of_match,
-> +               .suppress_bind_attrs =3D true,
-> +       },
-> +       .probe =3D exynos7885_cmu_probe,
-> +};
-> +
-> +static int __init exynos7885_cmu_init(void)
-> +{
-> +       return platform_driver_register(&exynos7885_cmu_driver);
-> +}
-> +core_initcall(exynos7885_cmu_init);
-> --
-> 2.34.1
+On 12/3/21 4:33 PM, Lizhi Hou wrote:
+> Hi Yilun,
 >
+> Thanks a lot for your feedback. They all seem generic questions. We 
+> will discuss them internally and get back to you soon.
+>
+> In the meanwhile, I am going to send out another patch set for Rob's 
+> comments.
+>
+>
+> Thanks,
+>
+> Lizhi
+>
+> On 12/1/21 11:04 PM, Xu Yilun wrote:
+>>
+>> On Fri, Nov 19, 2021 at 02:24:04PM -0800, Lizhi Hou wrote:
+>>> Describe XRT driver architecture and provide basic overview of
+>>> Xilinx Alveo platform.
+>>>
+>>> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
+>>> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
+>>> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
+>>> ---
+>>>   Documentation/fpga/index.rst |   1 +
+>>>   Documentation/fpga/xrt.rst   | 510 
+>>> +++++++++++++++++++++++++++++++++++
+>>>   MAINTAINERS                  |  10 +
+>>>   3 files changed, 521 insertions(+)
+>>>   create mode 100644 Documentation/fpga/xrt.rst
+>>>
+>>> diff --git a/Documentation/fpga/index.rst 
+>>> b/Documentation/fpga/index.rst
+>>> index f80f95667ca2..30134357b70d 100644
+>>> --- a/Documentation/fpga/index.rst
+>>> +++ b/Documentation/fpga/index.rst
+>>> @@ -8,6 +8,7 @@ fpga
+>>>       :maxdepth: 1
+>>>
+>>>       dfl
+>>> +    xrt
+>>>
+>>>   .. only::  subproject and html
+>>>
+>>> diff --git a/Documentation/fpga/xrt.rst b/Documentation/fpga/xrt.rst
+>>> new file mode 100644
+>>> index 000000000000..323ded5c0f4a
+>>> --- /dev/null
+>>> +++ b/Documentation/fpga/xrt.rst
+>>> @@ -0,0 +1,510 @@
+>>> +.. SPDX-License-Identifier: GPL-2.0
+>>> +
+>>> +==================================
+>>> +XRTV2 Linux Kernel Driver Overview
+>>> +==================================
+>>> +
+>>> +Authors:
+>>> +
+>>> +* Sonal Santan <sonal.santan@xilinx.com>
+>>> +* Max Zhen <max.zhen@xilinx.com>
+>>> +* Lizhi Hou <lizhi.hou@xilinx.com>
+>>> +
+>>> +XRTV2 drivers are second generation `XRT 
+>>> <https://github.com/Xilinx/XRT>`_
+>>> +drivers which support `Alveo 
+>>> <https://www.xilinx.com/products/boards-and-kits/alveo.html>`_
+>>> +PCIe platforms from Xilinx.
+>>> +
+>>> +XRTV2 drivers support *subsystem* style data driven platforms where 
+>>> driver's
+>>> +configuration and behavior are determined by metadata provided by 
+>>> the platform
+>>> +(in *device tree* format). Primary management physical function 
+>>> (MPF) driver
+>>> +is called **xrt-mgmt**. Primary user physical function (UPF) driver 
+>>> is called
+>>> +**xrt-user** and is under development. xrt_driver framework and 
+>>> FPGA subsystem
+>>> +drivers are packaged into a library module called **xrt-lib**, 
+>>> which is shared
+>>> +by **xrt-mgmt** and **xrt-user** (under development). The 
+>>> xrt_driver framework
+>>> +implements a ``bus_type`` called **xrt_bus_type** which is used to 
+>>> discover HW
+>>> +subsystems and facilitate inter HW subsystem interaction.
+>>> +
+>>> +Driver Modules
+>>> +==============
+>>> +
+>>> +xrt-lib.ko
+>>> +----------
+>>> +
+>>> +xrt-lib is the repository of xrt drivers and pure software modules 
+>>> that can
+>>> +potentially be shared between xrt-mgmt and xrt-user. All these 
+>>> drivers are
+>>> +structured as **xrt_driver** and are instantiated by xrt-mgmt (or 
+>>> xrt-user under
+>>> +development) based on the metadata associated with the hardware.  
+>>> The metadata
+>>> +is in the form of a device tree as mentioned before.
+>>> +
+>>> +xrt-lib relies on OF kernel APIs to unflatten the metadata and 
+>>> overlay the
+>>> +unflattened device tree nodes to system device tree. In xrt-lib 
+>>> module initialization
+>>> +routine, "/xrt-bus" is created in system device tree, all XRT device
+>>> +tree nodes and properties will be under "/xrt-bus".
+>>> +
+>>> +The xrt-lib infrastructure provides hooks to xrt_drivers for device 
+>>> node
+>>> +management, user file operations and ioctl callbacks. The core 
+>>> infrastructure also
+>>> +provides a bus functionality called **xrt_bus_type** for xrt_driver 
+>>> registration,
+>>> +discovery and inter xrt_driver calls. xrt-lib does not have any 
+>>> dependency on PCIe
+>>> +subsystem.
+>>> +
+>>> +xrt-mgmt.ko
+>>> +------------
+>>> +
+>>> +The xrt-mgmt driver is a PCIe device driver driving MPF found on 
+>>> Xilinx's Alveo
+>>> +PCIe device. It creates one or more *group* device and one or more 
+>>> *xleaf* device.
+>>> +The group and xleaf drivers are in xrt-lib and instantiations of 
+>>> the xrt_driver but
+>>> +are called group and xleaf to symbolize the logical operation 
+>>> performed by them.
+>>> +
+>>> +The xrt-mgmt driver uses xrt-lib APIs to manages the life cycle of 
+>>> multiple group
+>>> +drivers, which, in turn, manages multiple xleaf drivers. This 
+>>> flexibility allows
+>>> +xrt-mgmt.ko and xrt-lib.ko to support various HW subsystems exposed 
+>>> by different
+>>> +Alveo shells. The differences among these Alveo shells is handled 
+>>> in xleaf drivers.
+>>> +The group driver is part of the infrastructure which provides 
+>>> common services to xleaf
+>>> +drivers found on various Alveo shells. See 
+>>> :ref:`alveo_platform_overview`.
+>>> +
+>>> +The instantiation of specific group driver or xleaf drivers is 
+>>> completely data
+>>> +driven based on metadata (mostly in device tree format) found 
+>>> through VSEC
+>>> +capability and inside the firmware files, such as platform xsabin 
+>>> or user xclbin
+>>> +file.
+>>> +
+>>> +
+>>> +Driver Object Model
+>>> +===================
+>>> +
+>>> +The driver object model looks like the following::
+>>> +
+>>> +                              +-----------+
+>>> +                              |  of root  |
+>>> +                              +-----+-----+
+>>> +                                    |
+>>> +                          +---------+---------+
+>>> +                          |                   |
+>>> +                    +-----------+        +----------+
+>>> +                    |  xrt-bus  |        |   ...    |
+>>> +                    +-----+-----+        +----------+
+>>> +                          |
+>>> +              +-----------+-----------+
+>>> +              |                       |
+>>> +              v                       v
+>>> +        +-----------+          +-----------+
+>>> +        |   group   |    ...   |   group   |
+>>> +        +-----+-----+          +------+----+
+>>> +              |                       |
+>>> +              |                       |
+>>> +        +-----+----+            +-----+----+
+>>> +        |          |            |          |
+>>> +        v          v            v          v
+>>> +    +-------+  +-------+    +-------+  +-------+
+>>> +    | xleaf |..| xleaf |    | xleaf |..| xleaf |
+>>> +    +-------+  +-------+    +-------+  +-------+
+>>> +
+>>> +As an example, for Xilinx Alveo U50 before user xclbin download, 
+>>> the tree
+>>> +looks like the following::
+>>> +
+>>> +                                +-----------+
+>>> +                                |  xrt-bus  |
+>>> +                                +-----+-----+
+>>> +                                      |
+>>> +            +-------------------------+--------------------+
+>>> +            |                         |                    |
+>>> +            v                         v                    v
+>>> +       +--------+                +--------+ +--------+
+>>> +       | group0 |                | group1 |            | group2 |
+>>> +       +----+---+                +----+---+ +---+----+
+>>> +            |                         |                    |
+>>> +            |                         |                    |
+>>> +      +-----+-----+        +----+-----+---+ 
+>>> +-----+-----+----+--------+
+>>> +      |           |        |    |         |    | |          |        |
+>>> +      v           v        |    v         v    | v          v        |
+>>> + +------------+  +------+  | +------+ +------+ |  +------+ 
+>>> +-----------+ |
+>>> + | xmgmt_main |  | VSEC |  | | GPIO | | QSPI | |  |  CMC | | 
+>>> AXI-GATE0 | |
+>>> + +------------+  +------+  | +------+ +------+ |  +------+ 
+>>> +-----------+ |
+>>> +                           | +---------+       |  +------+ 
+>>> +-----------+ |
+>>> +                           +>| MAILBOX |       +->| ICAP | | 
+>>> AXI-GATE1 |<+
+>>> +                             +---------+       |  +------+ 
+>>> +-----------+
+>>> +                                               |  +-------+
+>>> +                                               +->| CALIB |
+>>> +                                                  +-------+
+>> These leaves are all part of the Management Physical Function(MPF), 
+>> is it?
+>> But why are they assigned in different groups from software perspective?
+We will remove the group device nodes. The device structure will reflect 
+the hardware.
+>>
+>>> +
+>>> +After a xclbin is downloaded, group3 will be added and the tree 
+>>> looks like the
+>>> +following::
+>>> +
+>>> +                                +-----------+
+>>> +                                |  xrt-bus  |
+>>> +                                +-----+-----+
+>>> +                                      |
+>>> + +-------------------------+--------------------+-----------------+
+>>> +            |                         | |                 |
+>>> +            v                         v v                 |
+>>> +       +--------+                +--------+ +--------+            |
+>>> +       | group0 |                | group1 |            | group2 
+>>> |            |
+>>> +       +----+---+                +----+---+ +---+----+            |
+>>> +            |                         | |                 |
+>>> +            |                         | |                 |
+>>> +      +-----+-----+       +-----+-----+---+ 
+>>> +-----+-----+----+--------+   |
+>>> +      |           |       |     |         |    | |          
+>>> |        |   |
+>>> +      v           v       |     v         v    | v          
+>>> v        |   |
+>>> + +------------+  +------+ | +------+ +------+  |  +------+ 
+>>> +-----------+ |   |
+>>> + | xmgmt_main |  | VSEC | | | GPIO | | QSPI |  |  |  CMC | | 
+>>> AXI-GATE0 | |   |
+>>> + +------------+  +------+ | +------+ +------+  |  +------+ 
+>>> +-----------+ |   |
+>>> +                          | +---------+        |  +------+ 
+>>> +-----------+ |   |
+>>> +                          +>| MAILBOX |        +->| ICAP | | 
+>>> AXI-GATE1 |<+   |
+>>> +                            +---------+        |  +------+ 
+>>> +-----------+     |
+>>> +                                               | 
+>>> +-------+                  |
+>>> +                                               +->| CALIB 
+>>> |                  |
+>>> + +-------+                  |
+>>> + +---+----+                                             |
+>>> +                      | group3 
+>>> |<--------------------------------------------+
+>>> +                      +--------+
+>>> +                          |
+>>> +                          |
+>>> +     +-------+--------+---+--+--------+------+-------+
+>>> +     |       |        |      |        |      |       |
+>>> +     v       |        v      |        v      |       v
+>>> + +--------+  |   +--------+  |   +--------+  |    +-----+
+>>> + | CLOCK0 |  |   | CLOCK1 |  |   | CLOCK2 |  |    | UCS |
+>>> + +--------+  v   +--------+  v   +--------+  v    +-----+
+>>> + +-------------+ +-------------+ +-------------+
+>>> + | CLOCK-FREQ0 | | CLOCK-FREQ1 | | CLOCK-FREQ2 |
+>>> + +-------------+ +-------------+ +-------------+
+>>> +
+>>> +
+>>> +group
+>>> +-----
+>>> +
+>>> +The group driver represents a pseudo device whose life cycle is 
+>>> managed by
+>>> +root and does not have real IO mem or IRQ resources. It's part of the
+>>> +infrastructure of the MPF driver and resides in xrt-lib.ko. This 
+>>> driver
+>> I'm not quite understand the neccessity of the group device & driver.
+>>
+>>> +
+>>> +* manages one or more xleaf drivers
+>> The xleaf devices could be enumerated & managed by one root driver 
+>> (maybe the
+>> PCIe driver for the card). Why we need group drivers to do it part by 
+>> part?
+>> Maybe this is the same question as the first one.
+>>
+>>> +* handle requests from xleaf drivers. For example event 
+>>> notifications and
+>>> +  inter xleaf calls.
+>> There are many ways in kernel for direct communication between two 
+>> device
+>> drivers according to their functionalies. Is it necessary we introduce a
+>> new mechanism for general communication across all kinds of devices 
+>> under
+>> xroot?
+We will define call back function table in leaf driver instead of xleaf 
+call.
+>>
+>>> +
+>>> +In xrt-mgmt, an initial group driver instance will be created by 
+>>> the PCIe driver.
+>>> +This instance contains xleaf drivers that will trigger group 
+>>> instances to be
+>>> +created to manage groups of xleaf drivers found on different 
+>>> partitions of
+>>> +hardware, such as VSEC, Shell, and User.
+>>> +
+>>> +xleaf
+>>> +-----
+>>> +
+>>> +The xleaf driver is a xrt_driver whose life cycle is managed by
+>>> +a group driver and may or may not have real IO mem or IRQ 
+>>> resources. They
+>>> +manage HW subsystems they are attached to.
+>>> +
+>>> +A xleaf driver without real hardware resources manages in-memory 
+>>> states for
+>>> +xrt-mgmt. These states are shareable by other xleaf drivers.
+>>> +
+>>> +Xleaf drivers assigned to specific hardware resources drive a 
+>>> specific subsystem
+>>> +in the device. To manipulate the subsystem or carry out a task, a 
+>>> xleaf driver
+>>> +may ask for help from the root via root calls and/or from other 
+>>> leaves via
+>>> +inter xleaf calls.
+>>> +
+>>> +A xleaf can also broadcast events through infrastructure code for 
+>>> other leaves
+>>> +to process. It can also receive event notification from 
+>>> infrastructure about
+>>> +certain events, such as post-creation or pre-exit of a particular 
+>>> xleaf.
+>>> +
+>>> +xrt_bus_type
+>>> +------------
+>>> +
+>>> +xrt_bus_type defines a virtual bus which handles xrt_driver probe, 
+>>> remove and match
+>>> +operations. All xrt_drivers register with xrt_bus_type as part of 
+>>> xrt-lib driver
+>>> +``module_init`` and un-register as part of xrt-lib driver 
+>>> ``module_exit``.
+>> Do we still need the xrt_bus? Seems it all it does is the OF style 
+>> device-driver matching.
+>>  From my perspective, the main part of the patchset is to dynamically 
+>> add some mmio sub
+>> devices under a parent PCI device and they are enumerated by DT 
+>> overlay. Maybe it is
+>> much easier just implement them as platform devices, then you could 
+>> leverage the
+>> of/platform enumeration. You could also leverage the drivers for IP 
+>> blocks that are
+>> already supported. We don't need both the xrt_driver and 
+>> platform_driver for the same
+>> IP blocks just because they are placed on different boards.
+
+Because we are remodeling our driver to use unflattened device tree. And 
+all the current xleaf devices are able to matching by 'compatible'. We 
+agree that leveraging platform device/driver is simpler.
+
+There was a discussion among Moritz, Tom and us for platform_bus/xrt_bus.
+
+  https://lore.kernel.org/lkml/BY5PR02MB6260F99A93646FD560BCB86ABB939@BY5PR02MB6260.namprd02.prod.outlook.com/
+
+Moritz and Tom, does it make sense to you for using platform_bus instead 
+of introducing xrt_bus?
+
+
+Thanks,
+
+Lizhi
+
+>>
+>> Thanks,
+>> Yilun
+>>
+>>> +
+>>> +FPGA Manager Interaction
+>>> +========================
+>>> +
+>>> +fpga_manager
+>>> +------------
+>>> +
+>>> +An instance of fpga_manager is created by xmgmt_main and is used 
+>>> for xclbin
+>>> +image download. fpga_manager requires the full xclbin image before 
+>>> it can
+>>> +start programming the FPGA configuration engine via Internal 
+>>> Configuration
+>>> +Access Port (ICAP) xrt_driver.
+>>> +
+>>> +fpga_region
+>>> +-----------
+>>> +
+>>> +For every interface exposed by the currently loaded xclbin/xsabin 
+>>> in the
+>>> +*parent* fpga_region a new instance of fpga_region is created like 
+>>> a *child*
+>>> +fpga_region. The device tree of the *parent* fpga_region defines the
+>>> +resources for a new instance of fpga_bridge which isolates the 
+>>> parent from
+>>> +child fpga_region. This new instance of fpga_bridge will be used 
+>>> when a
+>>> +xclbin image is loaded on the child fpga_region. After the xclbin 
+>>> image is
+>>> +downloaded to the fpga_region, an instance of a group is created 
+>>> for the
+>>> +fpga_region using the device tree obtained as part of the xclbin. 
+>>> If this
+>>> +device tree defines any child interfaces, it can trigger the 
+>>> creation of
+>>> +fpga_bridge and fpga_region for the next region in the chain.
+>>> +
+>>> +fpga_bridge
+>>> +-----------
+>>> +
+>>> +Like the fpga_region, an fpga_bridge is created by walking the 
+>>> device tree
+>>> +of the parent group. The bridge is used for isolation between a 
+>>> parent and
+>>> +its child.
+>>> +
+>>> +Driver Interfaces
+>>> +=================
+>>> +
+>>> +xrt-mgmt Driver Ioctls
+>>> +----------------------
+>>> +
+>>> +Ioctls exposed by the xrt-mgmt driver to user space are enumerated 
+>>> in the
+>>> +following table:
+>>> +
+>>> +== ===================== ============================ 
+>>> ==========================
+>>> +#  Functionality         ioctl request code            data format
+>>> +== ===================== ============================ 
+>>> ==========================
+>>> +1  FPGA image download   XMGMT_IOCICAPDOWNLOAD_AXLF 
+>>> xmgmt_ioc_bitstream_axlf
+>>> +== ===================== ============================ 
+>>> ==========================
+>>> +
+>>> +A user xclbin can be downloaded by using the xbmgmt tool from the 
+>>> XRT open source
+>>> +suite. See example usage below::
+>>> +
+>>> +  xbmgmt partition --program --path 
+>>> /lib/firmware/xilinx/862c7020a250293e32036f19956669e5/test/verify.xclbin 
+>>> --force
+>>> +
+>>> +.. _alveo_platform_overview:
+>>> +
+>>> +Alveo Platform Overview
+>>> +=======================
+>>> +
+>>> +Alveo platforms are architected as two physical FPGA partitions: 
+>>> *Shell* and
+>>> +*User*. The Shell provides basic infrastructure for the Alveo 
+>>> platform like
+>>> +PCIe connectivity, board management, Dynamic Function Exchange 
+>>> (DFX), sensors,
+>>> +clocking, reset, and security. DFX, partial reconfiguration, is 
+>>> responsible for
+>>> +loading the user compiled FPGA binary.
+>>> +
+>>> +For DFX to work properly, physical partitions require strict HW 
+>>> compatibility
+>>> +with each other. Every physical partition has two interface UUIDs: 
+>>> the *parent*
+>>> +UUID and the *child* UUID. For simple single stage platforms, Shell 
+>>> → User forms
+>>> +the parent child relationship.
+>>> +
+>>> +.. note::
+>>> +   Partition compatibility matching is a key design component of 
+>>> the Alveo platforms
+>>> +   and XRT. Partitions have child and parent relationship. A loaded 
+>>> partition
+>>> +   exposes child partition UUID to advertise its compatibility 
+>>> requirement. When
+>>> +   loading a child partition, the xrt-mgmt driver matches the parent
+>>> +   UUID of the child partition against the child UUID exported by 
+>>> the parent.
+>>> +   The parent and child partition UUIDs are stored in the *xclbin* 
+>>> (for the user)
+>>> +   and the *xsabin* (for the shell). Except for the root UUID 
+>>> exported by VSEC,
+>>> +   the hardware itself does not know about the UUIDs. The UUIDs are 
+>>> stored in
+>>> +   xsabin and xclbin. The image format has a special node called 
+>>> Partition UUIDs
+>>> +   which define the compatibility UUIDs.
+>>> +
+>>> +
+>>> +The physical partitions and their loading are illustrated below::
+>>> +
+>>> +           SHELL                               USER
+>>> +        +-----------+                  +-------------------+
+>>> +        |           |                  |                   |
+>>> +        | VSEC UUID | CHILD     PARENT |    LOGIC UUID     |
+>>> +        | o------->|<--------o                   |
+>>> +        |           | UUID       UUID  |                   |
+>>> +        +-----+-----+                  +--------+----------+
+>>> +              |                                 |
+>>> +              .                                 .
+>>> +              |                                 |
+>>> +          +---+---+                      +------+--------+
+>>> +          |  POR  |                      | USER COMPILED |
+>>> +          | FLASH |                      |    XCLBIN     |
+>>> +          +-------+                      +---------------+
+>>> +
+>>> +
+>>> +Loading Sequence
+>>> +----------------
+>>> +
+>>> +The Shell partition is loaded from flash at system boot time. It 
+>>> establishes the
+>>> +PCIe link and exposes two physical functions to the BIOS. After the 
+>>> OS boots,
+>>> +the xrt-mgmt driver attaches to the PCIe physical function 0 
+>>> exposed by the Shell
+>>> +and then looks for VSEC in the PCIe extended configuration space. 
+>>> Using VSEC, it
+>>> +determines the logic UUID of the Shell and uses the UUID to load 
+>>> matching *xsabin*
+>>> +file from Linux firmware directory. The xsabin file contains the 
+>>> metadata to
+>>> +discover the peripherals that are part of the Shell and the 
+>>> firmware for any
+>>> +embedded soft processors in the Shell. The xsabin file also 
+>>> contains Partition
+>>> +UUIDs.
+>>> +
+>>> +The Shell exports a child interface UUID which is used for the 
+>>> compatibility
+>>> +check when loading the user compiled xclbin over the User partition 
+>>> as part of DFX.
+>>> +When a user requests loading of a specific xclbin, the xrt-mgmt 
+>>> driver reads
+>>> +the parent interface UUID specified in the xclbin and matches it 
+>>> with the child
+>>> +interface UUID exported by the Shell to determine if the xclbin is 
+>>> compatible with
+>>> +the Shell. If the match fails, loading of xclbin is denied.
+>>> +
+>>> +xclbin loading is requested using the ICAP_DOWNLOAD_AXLF ioctl 
+>>> command. When loading
+>>> +a xclbin, the xrt-mgmt driver performs the following *logical* 
+>>> operations:
+>>> +
+>>> +1. Copy xclbin from user to kernel memory
+>>> +2. Sanity check the xclbin contents
+>>> +3. Isolate the User partition
+>>> +4. Download the bitstream using the FPGA config engine (ICAP)
+>>> +5. De-isolate the User partition
+>>> +6. Program the clocks (ClockWiz) driving the User partition
+>>> +7. Wait for the memory controller (MIG) calibration
+>>> +8. Return the loading status back to the caller
+>>> +
+>>> +`Platform Loading Overview 
+>>> <https://xilinx.github.io/XRT/master/html/platforms_partitions.html>`_
+>>> +provides more detailed information on platform loading.
+>>> +
+>>> +
+>>> +xsabin
+>>> +------
+>>> +
+>>> +Each Alveo platform comes packaged with its own xsabin. The xsabin 
+>>> is a trusted
+>>> +component of the platform. For format details refer to 
+>>> :ref:`xsabin_xclbin_container_format`
+>>> +below. xsabin contains basic information like UUIDs, platform name 
+>>> and metadata in the
+>>> +form of device tree. See :ref:`device_tree_usage` below for details 
+>>> and example.
+>>> +
+>>> +xclbin
+>>> +------
+>>> +
+>>> +xclbin is compiled by end user using
+>>> +`Vitis 
+>>> <https://www.xilinx.com/products/design-tools/vitis/vitis-platform.html>`_
+>>> +tool set from Xilinx. The xclbin contains sections describing user 
+>>> compiled
+>>> +acceleration engines/kernels, memory subsystems, clocking 
+>>> information etc. It also
+>>> +contains an FPGA bitstream for the user partition, UUIDs, platform 
+>>> name, etc.
+>>> +
+>>> +
+>>> +.. _xsabin_xclbin_container_format:
+>>> +
+>>> +xsabin/xclbin Container Format
+>>> +------------------------------
+>>> +
+>>> +xclbin/xsabin is ELF-like binary container format. It is structured 
+>>> as series of
+>>> +sections. There is a file header followed by several section 
+>>> headers which is
+>>> +followed by sections. A section header points to an actual section. 
+>>> There is an
+>>> +optional signature at the end. The format is defined by the header 
+>>> file ``xclbin.h``.
+>>> +The following figure illustrates a typical xclbin::
+>>> +
+>>> +
+>>> +           +---------------------+
+>>> +           |                     |
+>>> +           |       HEADER        |
+>>> +           +---------------------+
+>>> +           |   SECTION  HEADER   |
+>>> +           |                     |
+>>> +           +---------------------+
+>>> +           |         ...         |
+>>> +           |                     |
+>>> +           +---------------------+
+>>> +           |   SECTION  HEADER   |
+>>> +           |                     |
+>>> +           +---------------------+
+>>> +           |       SECTION       |
+>>> +           |                     |
+>>> +           +---------------------+
+>>> +           |         ...         |
+>>> +           |                     |
+>>> +           +---------------------+
+>>> +           |       SECTION       |
+>>> +           |                     |
+>>> +           +---------------------+
+>>> +           |      SIGNATURE      |
+>>> +           |      (OPTIONAL)     |
+>>> +           +---------------------+
+>>> +
+>>> +
+>>> +xclbin/xsabin files can be packaged, un-packaged and inspected 
+>>> using an XRT
+>>> +utility called **xclbinutil**. xclbinutil is part of the XRT open 
+>>> source
+>>> +software stack. The source code for xclbinutil can be found at
+>>> +https://github.com/Xilinx/XRT/tree/master/src/runtime_src/tools/xclbinutil 
+>>>
+>>> +
+>>> +For example, to enumerate the contents of a xclbin/xsabin use the 
+>>> *--info* switch
+>>> +as shown below::
+>>> +
+>>> +
+>>> +  xclbinutil --info --input 
+>>> /opt/xilinx/firmware/u50/gen3x16-xdma/blp/test/bandwidth.xclbin
+>>> +  xclbinutil --info --input 
+>>> /lib/firmware/xilinx/862c7020a250293e32036f19956669e5/partition.xsabin
+>>> +
+>>> +
+>>> +.. _device_tree_usage:
+>>> +
+>>> +Device Tree Usage
+>>> +-----------------
+>>> +
+>>> +The xsabin file stores metadata which advertise HW subsystems 
+>>> present in a
+>>> +partition. The metadata is stored in device tree format with a well 
+>>> defined
+>>> +schema. XRT management driver uses this information to create 
+>>> *xrt_devices* and
+>>> +bind *xrt_drivers* to them. The xrt_drivers could be independent 
+>>> modules or
+>>> +found in **xrt-lib.ko** kernel module.
+>>> +
+>>> +Deployment Models
+>>> +=================
+>>> +
+>>> +Baremetal
+>>> +---------
+>>> +
+>>> +In bare-metal deployments, both MPF and UPF are visible and 
+>>> accessible. The
+>>> +xrt-mgmt driver binds to MPF. The xrt-mgmt driver operations are 
+>>> privileged and
+>>> +available to system administrator. The full stack is illustrated 
+>>> below::
+>>> +
+>>> +                            HOST
+>>> +
+>>> +               [XRT-MGMT]         [XRT-USER]
+>>> +                    |                  |
+>>> +                    |                  |
+>>> +                 +-----+            +-----+
+>>> +                 | MPF |            | UPF |
+>>> +                 |     |            |     |
+>>> +                 | PF0 |            | PF1 |
+>>> +                 +--+--+            +--+--+
+>>> +          ......... ^................. ^..........
+>>> +                    |                  |
+>>> +                    |   PCIe DEVICE    |
+>>> +                    |                  |
+>>> +                 +--+------------------+--+
+>>> +                 |         SHELL          |
+>>> +                 |                        |
+>>> +                 +------------------------+
+>>> +                 |         USER           |
+>>> +                 |                        |
+>>> +                 |                        |
+>>> +                 |                        |
+>>> +                 |                        |
+>>> +                 +------------------------+
+>>> +
+>>> +
+>>> +
+>>> +Virtualized
+>>> +-----------
+>>> +
+>>> +In virtualized deployments, the privileged MPF is assigned to the 
+>>> host but the
+>>> +unprivileged UPF is assigned to a guest VM via PCIe pass-through. 
+>>> The xrt-mgmt
+>>> +driver in host binds to MPF. The xrt-mgmt driver operations are 
+>>> privileged and
+>>> +only accessible to the MPF. The full stack is illustrated below::
+>>> +
+>>> +
+>>> +                                 ..............
+>>> +                  HOST           .    VM      .
+>>> +                                 .            .
+>>> +               [XRT-MGMT]        . [XRT-USER] .
+>>> +                    |            .     |      .
+>>> +                    |            .     |      .
+>>> +                 +-----+         .  +-----+   .
+>>> +                 | MPF |         .  | UPF |   .
+>>> +                 |     |         .  |     |   .
+>>> +                 | PF0 |         .  | PF1 |   .
+>>> +                 +--+--+         .  +--+--+   .
+>>> +          ......... ^................. ^..........
+>>> +                    |                  |
+>>> +                    |   PCIe DEVICE    |
+>>> +                    |                  |
+>>> +                 +--+------------------+--+
+>>> +                 |         SHELL          |
+>>> +                 |                        |
+>>> +                 +------------------------+
+>>> +                 |         USER           |
+>>> +                 |                        |
+>>> +                 |                        |
+>>> +                 |                        |
+>>> +                 |                        |
+>>> +                 +------------------------+
+>>> +
+>>> +
+>>> +
+>>> +
+>>> +
+>>> +Platform Security Considerations
+>>> +================================
+>>> +
+>>> +`Security of Alveo Platform 
+>>> <https://xilinx.github.io/XRT/master/html/security.html>`_
+>>> +discusses the deployment options and security implications in great 
+>>> detail.
+>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>> index 80eebc1d9ed5..fd7053bcfdb0 100644
+>>> --- a/MAINTAINERS
+>>> +++ b/MAINTAINERS
+>>> @@ -7369,6 +7369,16 @@ F:     Documentation/fpga/
+>>>   F:   drivers/fpga/
+>>>   F:   include/linux/fpga/
+>>>
+>>> +FPGA XRT DRIVERS
+>>> +M:   Lizhi Hou <lizhi.hou@xilinx.com>
+>>> +R:   Max Zhen <max.zhen@xilinx.com>
+>>> +R:   Sonal Santan <sonal.santan@xilinx.com>
+>>> +L:   linux-fpga@vger.kernel.org
+>>> +S:   Supported
+>>> +W:   https://github.com/Xilinx/XRT
+>>> +F:   Documentation/fpga/xrt.rst
+>>> +F:   drivers/fpga/xrt/
+>>> +
+>>>   FPU EMULATOR
+>>>   M:   Bill Metzenthen <billm@melbpc.org.au>
+>>>   S:   Maintained
+>>> -- 
+>>> 2.27.0
