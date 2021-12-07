@@ -2,118 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E196146BE5A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:58:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 299AD46BE95
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 16:01:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238316AbhLGPBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 10:01:43 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:41571 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238310AbhLGPBn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 10:01:43 -0500
-Received: by mail-ot1-f50.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so18359900otl.8;
-        Tue, 07 Dec 2021 06:58:13 -0800 (PST)
+        id S238483AbhLGPEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 10:04:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52252 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230070AbhLGPEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 10:04:00 -0500
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F31FBC0617A2
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 07:00:29 -0800 (PST)
+Received: by mail-oi1-x230.google.com with SMTP id m6so28209846oim.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 07:00:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=9PcNSizbGMw2YegMGX+KEq63ckIOo2EkWnB9epQMR/4=;
+        b=wo6OZc/tsL2Q6FqkG87AA9zGjAp316r9JhkLvLznsTArdKJGqGDhNrupJtuedQSzS/
+         O1pLr/FrkioqNDAjhDDWYJZdEnMC6CpYCQbgZapYsB1wcc+RAS1hNNZYqXcCvl4WY+Xb
+         hz4be3fuQav5oYU7ZizNDqAoHA5l26bKaDnPRkL3WxWnsdcxZbHmOiXh05fauLXdmUK6
+         AJpiMXHj+XpFtAqkJw1Y6G+CF9Z969P0KKYquVSTQhjQF4w41EKkHqjMyW2ZKRbXAOab
+         l5AnCoAnp1XdW8r5/t4TuNm0YIB8S9erFwqSdFTRsc6hMsexFCHAKhOVTwB9tPvFyLus
+         ZeMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=VgYpRv7FKDRFJkyswgOt8jfkEjY4KcUU5jFAaY5SUrw=;
-        b=PxwlrWpgDFax7uetBT41rigifwzYiPf/J+9SMS0yE7eaAyMKJw3ZnevfVC03iSPzCd
-         wlU0AY81Z6Y+xQpaGcPySxJDDh8oIW6oJT3JWG41QOfAIqDIZrE8OGkpj7MSZrkRmfee
-         1XKHfdAEip2+p9CFClbeTnG/4jGHKoZea8oiuGoWa8cPk4TTMn8LWEyReYF+6QEzceA9
-         26Il/RgH/kkxkCm2PFBMJmOlyVoDSUXC4MWv272U1NFyK6HjpnUdZ6VvgrrskXwb0sOl
-         75AXKwKiTRsfiNhZGInp2+y0q3eTFZQyeR0cVxLRQ4/DyVRHfKZ/JUi302+0XEtDVQ1x
-         RH1A==
-X-Gm-Message-State: AOAM531Fhfkr5J9ddiflZt2yVc2Yo+HticnVAb/umnOX7Gz/XbuVOKbr
-        OpEq0R9xR/uVMrBPMQskpw==
-X-Google-Smtp-Source: ABdhPJxI+GdBHmtxK/QcTh3tcIy1ZwNfkubLUnPPWtqNhLRymXjSM4MMyk6de2SMgFGNU+/WHw79vA==
-X-Received: by 2002:a9d:4f0b:: with SMTP id d11mr35759185otl.227.1638889092708;
-        Tue, 07 Dec 2021 06:58:12 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m2sm2815394oop.12.2021.12.07.06.58.11
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9PcNSizbGMw2YegMGX+KEq63ckIOo2EkWnB9epQMR/4=;
+        b=IWN6+zLzDWWh9C1ziQwPPhnBY91uQ8AYWnsV//5AIkypzMd6xJ7DvrM4JuIPccNwH9
+         lvteDZZ4WdXsAmP5zU26Leh/lvAvocBCFDVwMA8G+bLoxLKtQgzrxS3GLyc7+rmeKKYw
+         5YeKDrLZy0acBoUUiSB1U3QXfw1TztgF5TDQz4RaGznfBVKTrsTGzogdtAFoI0fx8TLi
+         hM3dU8ayM6IvmGtD0M/YUZggsYWInGKDLpW3KjCBSa3h0h8adSnRLERZwonfXt7G3+sl
+         XArRI6OOlLQQLmIE+c/CtDeqrUHzLZ0Utu6DL0AIQ5K/q3bf9XxkXfmFz8la4K3GPZ/b
+         asSg==
+X-Gm-Message-State: AOAM532xFLrsnMm5GydcWYDBDntoJ/2rAz6LsLP8PG2EruxFH/63DpHI
+        I43gf7DeH1LpPWRDv8iMiRS/gw==
+X-Google-Smtp-Source: ABdhPJzTSTMkm/8aGli1JXMrmKw7lTvzRkVWM1kPOOBkMy15qpPX8ydvwW1Hst/qM9q5kVvDeaAyvA==
+X-Received: by 2002:a05:6808:120b:: with SMTP id a11mr5717777oil.128.1638889228489;
+        Tue, 07 Dec 2021 07:00:28 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id n189sm3271744oif.33.2021.12.07.07.00.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 06:58:11 -0800 (PST)
-Received: (nullmailer pid 5797 invoked by uid 1000);
-        Tue, 07 Dec 2021 14:58:10 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-rockchip@lists.infradead.org, linux-staging@lists.linux.dev,
-        linux-media@vger.kernel.org, Lucas Stach <l.stach@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel@vger.kernel.org, benjamin.gaignard@collabora.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        hverkuil@xs4all.nl, Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, cphealy@gmail.com
-In-Reply-To: <20211207015446.1250854-4-aford173@gmail.com>
-References: <20211207015446.1250854-1-aford173@gmail.com> <20211207015446.1250854-4-aford173@gmail.com>
-Subject: Re: [RFC V2 3/6] dt-bindings: media: nxp,imx8mq-vpu: Update the bindings for G2 support
-Date:   Tue, 07 Dec 2021 08:58:10 -0600
-Message-Id: <1638889090.684232.5796.nullmailer@robh.at.kernel.org>
+        Tue, 07 Dec 2021 07:00:27 -0800 (PST)
+Date:   Tue, 7 Dec 2021 07:01:53 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 09/15] arm64: dts: qcom: sm8450-qrd: enable ufs nodes
+Message-ID: <Ya93Ybq3et5WuGsx@ripper>
+References: <20211201072915.3969178-1-vkoul@kernel.org>
+ <20211201072915.3969178-10-vkoul@kernel.org>
+ <bef7e4bf-6d4d-c665-b96a-84b28ed19a33@somainline.org>
+ <Ya2mdlhWCmgiAvvK@matsya>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Ya2mdlhWCmgiAvvK@matsya>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Dec 2021 19:54:42 -0600, Adam Ford wrote:
-> From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+On Sun 05 Dec 21:58 PST 2021, Vinod Koul wrote:
+
+> On 01-12-21, 16:18, Konrad Dybcio wrote:
+> > 
+> > On 01.12.2021 08:29, Vinod Koul wrote:
+> > > Enable the UFS and phy node and add the regulators used by them.
+> > >
+> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sm8450-qrd.dts | 21 +++++++++++++++++++++
+> > >  1 file changed, 21 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+> > > index 218eb3ce1ee5..3e65d662ab8c 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+> > > +++ b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+> > > @@ -5,6 +5,7 @@
+> > >  
+> > >  /dts-v1/;
+> > >  
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > 
+> > This should probably go to the SoC DTSI, as it's generally used
+> > 
+> > in every DT if you have anything more than serial console working..
 > 
-> Introducing the G2 hevc video decoder requires modifications of the bindings to allow
-> one node per VPU.
+> But arent the gpios added in board dts typically? I am okay either
+> way... Bjorn where would you like this to be..?
+> Seems like we have this is both board as well as SoC DTS
+
+I like Konrad's suggestion of putting it in the dtsi, simply because it
+saves us from including it in every board file - where it will be needed.
+
+Regards,
+Bjorn
+
+> > 
+> > 
+> > Konrad
 > 
-> VPUs share one hardware control block which is provided as a phandle on
-> a syscon.
-> Each node has now one reg and one interrupt.
-> Add a compatible for G2 hardware block: nxp,imx8mq-vpu-g2.
-> 
-> To be compatible with older DT the driver is still capable to use the 'ctrl'
-> reg-name even if it is deprecated now.
-> 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml: properties:clock-names:oneOf: [{'const': 'g1'}, {'const': 'g2'}] should not be valid under {'items': {'propertyNames': {'const': 'const'}, 'required': ['const']}}
-	hint: Use 'enum' rather than 'oneOf' + 'const' entries
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml: properties:interrupt-names:oneOf: [{'const': 'g1'}, {'const': 'g2'}] should not be valid under {'items': {'propertyNames': {'const': 'const'}, 'required': ['const']}}
-	hint: Use 'enum' rather than 'oneOf' + 'const' entries
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml: properties:compatible:oneOf: [{'const': 'nxp,imx8mq-vpu-g1'}, {'const': 'nxp,imx8mq-vpu-g2'}] should not be valid under {'items': {'propertyNames': {'const': 'const'}, 'required': ['const']}}
-	hint: Use 'enum' rather than 'oneOf' + 'const' entries
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml: ignoring, error in schema: properties: interrupt-names: oneOf
-warning: no schema found in file: ./Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-Error: Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.example.dts:26.27-31 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1413: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1564457
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> -- 
+> ~Vinod
