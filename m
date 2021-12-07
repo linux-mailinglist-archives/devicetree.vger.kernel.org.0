@@ -2,160 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D364946B629
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:37:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31C9146B62D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:38:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233095AbhLGIlC convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 7 Dec 2021 03:41:02 -0500
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:59543 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233093AbhLGIlC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:41:02 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 533BDE0014;
-        Tue,  7 Dec 2021 08:37:29 +0000 (UTC)
-Date:   Tue, 7 Dec 2021 09:37:27 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     <Tudor.Ambarus@microchip.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <michael@walle.cc>, <linux-mtd@lists.infradead.org>,
-        <broonie@kernel.org>, <linux-spi@vger.kernel.org>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <thomas.petazzoni@bootlin.com>, <monstr@monstr.eu>
-Subject: Re: [PATCH v3 2/3] spi: dt-bindings: Describe stacked/parallel
- memories modes
-Message-ID: <20211207093727.5261fe66@xps13>
-In-Reply-To: <20211207075721.ghwbruqcgi36fk72@ti.com>
-References: <20211206095921.33302-1-miquel.raynal@bootlin.com>
-        <20211206095921.33302-3-miquel.raynal@bootlin.com>
-        <20211207071406.c2ajc3shqybevvjj@ti.com>
-        <0d97a420-685e-5120-3c09-d433382c02aa@microchip.com>
-        <20211207075721.ghwbruqcgi36fk72@ti.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S233093AbhLGIl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 03:41:28 -0500
+Received: from mta-02.yadro.com ([89.207.88.252]:35706 "EHLO mta-01.yadro.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231543AbhLGIl1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 03:41:27 -0500
+Received: from localhost (unknown [127.0.0.1])
+        by mta-01.yadro.com (Postfix) with ESMTP id 990C74149B;
+        Tue,  7 Dec 2021 08:37:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
+        content-transfer-encoding:mime-version:user-agent:content-type
+        :content-type:organization:references:in-reply-to:date:date:from
+        :from:subject:subject:message-id:received:received:received; s=
+        mta-01; t=1638866275; x=1640680676; bh=Pqpj2gVHp9/jU+iExGIG2nhIf
+        8+sv12YFhDXrnwgC/Y=; b=uhVKWXS1TKiBnoyTQ1bcvJrTe5K80Unk6IZqUZUUy
+        GCNjd36b1Pk09wTVZfLxmQa+0rbpdcxWuVhQ0HoduWUgCbQYYWSxoDONkVjFP8i7
+        xrveY/joYGGMUIOUFyWTCsedsHqGOc8YKu/luBXwy3b2ucgMiXrbP+4SwgHHqFNv
+        Lg=
+X-Virus-Scanned: amavisd-new at yadro.com
+Received: from mta-01.yadro.com ([127.0.0.1])
+        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id T7CqOSGJOpP8; Tue,  7 Dec 2021 11:37:55 +0300 (MSK)
+Received: from T-EXCH-04.corp.yadro.com (t-exch-04.corp.yadro.com [172.17.100.104])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mta-01.yadro.com (Postfix) with ESMTPS id EB13343834;
+        Tue,  7 Dec 2021 11:37:53 +0300 (MSK)
+Received: from [10.199.10.105] (10.199.10.105) by T-EXCH-04.corp.yadro.com
+ (172.17.100.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Tue, 7 Dec
+ 2021 11:37:53 +0300
+Message-ID: <706caeeb14703abbc1399348ec4f11898b701c09.camel@yadro.com>
+Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: add device tree for YADRO
+ VEGMAN BMC
+From:   Andrei Kartashev <a.kartashev@yadro.com>
+To:     Milton Miller II <miltonm@us.ibm.com>,
+        Joel Stanley <joel@jms.id.au>
+CC:     Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Date:   Tue, 7 Dec 2021 11:37:49 +0300
+In-Reply-To: <OF32EA8A79.571186E8-ON002587A4.002D0A6E-002587A4.002D0A73@ibm.com>
+References: <CACPK8Xcpg+V7BB6vq8oqqu=g7FRoTLLmz7-4G5Cp=hn0ziEuyw@mail.gmail.com>
+        ,<20211119120057.12118-1-a.kartashev@yadro.com>
+         <20211119120057.12118-3-a.kartashev@yadro.com>
+         <FA1B4FAF-387D-4D71-952A-D44B493FC67B@gmail.com>
+         <368313b889cbadc267b053cd808b080e9f6470a0.camel@yadro.com>
+         <OF32EA8A79.571186E8-ON002587A4.002D0A6E-002587A4.002D0A73@ibm.com>
+Organization: YADRO
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.199.10.105]
+X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
+ T-EXCH-04.corp.yadro.com (172.17.100.104)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pratyush & Tudor,
-
-p.yadav@ti.com wrote on Tue, 7 Dec 2021 13:27:23 +0530:
-
-> On 07/12/21 07:35AM, Tudor.Ambarus@microchip.com wrote:
-> > On 12/7/21 9:14 AM, Pratyush Yadav wrote:  
-> > > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+On Tue, 2021-12-07 at 08:11 +0000, Milton Miller II wrote:
+> On Monday, December 6, 2021, Joel Stanley wrote:
+> 
+> > On Sat, 20 Nov 2021 at 15:51, Andrei Kartashev
+> > <a.kartashev@yadro.com> wrote:
 > > > 
-> > > On 06/12/21 10:59AM, Miquel Raynal wrote:  
-> > >> Describe two new memories modes:
-> > >> - A stacked mode when the bus is common but the address space extended
-> > >>   with an additinals wires.
-> > >> - A parallel mode with parallel busses accessing parallel flashes where
-> > >>   the data is spread.
-> > >>
-> > >> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > >> ---
-> > >>  .../bindings/spi/spi-peripheral-props.yaml    | 21 +++++++++++++++++++
-> > >>  1 file changed, 21 insertions(+)
-> > >>
-> > >> diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > >> index 5dd209206e88..13aa6a2374c9 100644
-> > >> --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > >> +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > >> @@ -82,6 +82,27 @@ properties:
-> > >>      description:
-> > >>        Delay, in microseconds, after a write transfer.
-> > >>
-> > >> +  stacked-memories:
-> > >> +    type: boolean  
+> > > > 
+> > > > Can we utilize
+> > > > 
+> [ gpio naming ]
+> > > > to get some consistent naming across the GPIO’s on OpenBMC
+> > machines?
+> > > > 
 > > > 
-> > > I don't think a boolean is enough to completely describe the memory.
-> > > Sure, you say the memories are stacked, but where do you specify when to
-> > > switch the CS? They could be two 512 MiB memories, two 1 GiB memories,
-> > > or one 512 MiB and one 256 MiB.  
+> > > Some names here are standard for Intel daemons like
+> > x86-power-control,
+> > > host-error-monitor, pfr-manager, IntrusionSensor and so on. Other
+> > lines
+> > > just called same as in schematics to make it easy for our
+> > > engineers
+> > to
+> > > understand what does it refer to. BTW, most of the lines there
+> > > not
+> > used
+> > > by software and appeared just because dts files are supposed to
+> > > be
+> > > hardware description and thus we describe all we have in
+> > schematics.
+> > > 
+> > > We can rename all this according to guide you mention, but are
+> > > you
+> > > sure, there is any sense to do so?
+> > > Keep in mind, currently there are lot of dts files which also
+> > > don't
+> > > follow convention, so I believe, it is unnecessary work.
 > > 
-> > If the multi-die flash contains identical dies then the die boundary can be
-> > determined with flash_size / number_of_cs. Are there any multi die flashes
-> > with different types of dies?  
-> 
-> The way I see it, a multi-die flash is not much different from 2 
-> independent flashes attached to the same SPI bus. So if we are going to 
-> implement this feature, I want it to be generic enough to allow 
-> supporting this type of hardware setup as well.
-> 
-> I am not aware of any flashes with a different CS for each die (that 
-> isn't handled by the flash internally), let alone with different types 
-> of dies. IIRC from our IRC conversation, Miquel's use case was using 2 
-> smaller identical flashes connected to the same SPI bus with 1 CS each. 
-> Do I remember this right Miquel?
-
-I made the assumption that dies would be identical in order to use this
-mode. However, if you think this is too risky I see two alternatives:
-* Keep the bindings as I proposed and if we ever have the case, add
-  another property, something like:
-	stacked-memories;
-	stacked-sizes = <x>, <y>;
-* Merge these two properties into one:
-	stacked-memories = <x>, <y>;
-
-But TBH I prefer the former solution for these two reasons:
-1/ You need to know the devices exact geometry when writing the
-   bindings while this is something that is usually let to the core and
-   the hardware designers.
-2/ I am not sure this is really a valid use case. If we ever need to
-   concatenate two devices, in particular if they are different, I
-   would prefer reviving the mtd-concat series which, besides lacking a
-   dynamic discovery feature, is almost ready to be used. Plus, adding
-   too much complexity to the core logic (such as handling different
-   die sizes) might impact negatively the overall performances even for
-   simpler devices.
-
-> > >> +    description: Several SPI memories can be wired in stacked mode.
-> > >> +      This basically means that either a device features several chip
-> > >> +      selects, or that different devices must be seen as a single
-> > >> +      bigger chip. This basically doubles (or more) the total address
-> > >> +      space with only a single additional wire, while still needing
-> > >> +      to repeat the commands when crossing a chip boundary. XIP is
-> > >> +      usually not supported in this mode.
-> > >> +
-> > >> +  parallel-memories:
-> > >> +    type: boolean  
-> > > 
-> > > With this I assume both memories have to be the same size?  
+> > I have a strong preference for using the naming document. It
+> > provides
+> > consistency, which makes it easier to review. I'm encouraging that
+> > for
+> > any new dts.
 > > 
-> > It looks like the assumption for both cases is that the dies are identical.  
+> > If you think it makes the descriptions less useful for your
+> > platform
+> > then that's a reasonable reason to not follow the convention.
+> > 
 > 
-> I would like to _not_ assume that for stacked-memories, unless 
-> implementing that becomes too complicated.
+> Actually, what I would prefer is that these well established signal
+> names that appear in the x86 industry servers be enumerated in the
+> gpio naming document and be accepted like the original OpenPOWER
+> legacy names were.   This will clearly show the names that appear 
+> on other systems and will help reviewing things like power control 
+> applications.
 > 
-> >   
-> > >   
-> > >> +    description: Several SPI memories can be wired in parallel mode.
-> > >> +      The devices are physically on a different buses but will always
-> > >> +      act synchronously as each data word is spread across the
-> > >> +      different memories (eg. even bits are stored in one memory, odd
-> > >> +      bits in the other). This basically doubles the address space and
-> > >> +      the throughput while greatly complexifying the wiring because as
-> > >> +      many busses as devices must be wired. XIP is usually not
-> > >> +      supported in this mode.
-> > >> +
-> > >>  # The controller specific properties go here.
-> > >>  allOf:
-> > >>    - $ref: cdns,qspi-nor-peripheral-props.yaml#
-> > >> --
-> > >> 2.27.0
-> > >>  
-> > > 
-> > > --
-> > > Regards,
-> > > Pratyush Yadav
-> > > Texas Instruments Inc.
-> > >   
-> >   
-> 
+> Andrei does this sound reasonable?
+
+Actually, as TOF member I can't decline this input, it really sounds
+reasonable and important for OBMC in common. I will take this action,
+but this will require some time since now I'm working on other tasks.
+
+-- 
+Best regards,
+Andrei Kartashev
 
 
-Thanks,
-Miquèl
