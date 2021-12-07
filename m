@@ -2,81 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6380F46B551
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:09:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A828F46B56B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:12:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232113AbhLGING (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 03:13:06 -0500
-Received: from szxga01-in.huawei.com ([45.249.212.187]:32882 "EHLO
-        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231543AbhLGIMs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:12:48 -0500
-Received: from dggeme706-chm.china.huawei.com (unknown [172.30.72.57])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4J7Xxs4vfWzcbt4;
-        Tue,  7 Dec 2021 16:09:05 +0800 (CST)
-Received: from [127.0.0.1] (10.67.102.125) by dggeme706-chm.china.huawei.com
- (10.1.199.102) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.20; Tue, 7
- Dec 2021 16:09:16 +0800
-Message-ID: <61AF16AC.1080506@hisilicon.com>
-Date:   Tue, 7 Dec 2021 16:09:16 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+        id S230228AbhLGIPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 03:15:38 -0500
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:62102 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230132AbhLGIPi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:15:38 -0500
+Received: from pps.filterd (m0098414.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1B77lpH7027926;
+        Tue, 7 Dec 2021 08:12:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=in-reply-to : from : to
+ : cc : date : message-id : content-transfer-encoding : content-type :
+ mime-version : references : subject; s=pp1;
+ bh=e3i33fvRShRQ8hY+plFklJnA1FZzrtnngpYW8P/UTBM=;
+ b=DTNdPiwlYZyBHJQAAmodrpviD8HMTZkRnq217cVJVlUaUA0uQmfXN5mp7WdpQL+M3MkF
+ uctxfXXm3me0GWq1VEWMV+cQpUZeptP0VETxAR6KHt1M34c5IZcY0CDarnfBAtLttpKI
+ JaQhgfejv63kbzdry2tqN2aMN0eZcpLjGAdMtZH6oHFIY9Zy6YSkcOydFzym8jjfafNI
+ l+Nda6m194Gvx3W/rt8+IWNAcfRA32gKZDUuf3V9yY18UioWpgsQ9Qohuiv9VLr5db85
+ zry3LWK4iONmNvauMs8D4KnTzkQSJe2l/7vPzVal0GcZTOE+bjs7w3yhvAwhwCWGiltH RQ== 
+Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 3ct3hs0esg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 07 Dec 2021 08:12:01 +0000
+Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
+        by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 1B787mou025040;
+        Tue, 7 Dec 2021 08:12:00 GMT
+Received: from b03cxnp07029.gho.boulder.ibm.com (b03cxnp07029.gho.boulder.ibm.com [9.17.130.16])
+        by ppma03dal.us.ibm.com with ESMTP id 3cqyyajp2p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 07 Dec 2021 08:12:00 +0000
+Received: from b03ledav006.gho.boulder.ibm.com (b03ledav006.gho.boulder.ibm.com [9.17.130.237])
+        by b03cxnp07029.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 1B78BxPg54526264
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 7 Dec 2021 08:11:59 GMT
+Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 9ABB7C6059;
+        Tue,  7 Dec 2021 08:11:59 +0000 (GMT)
+Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 863D3C6069;
+        Tue,  7 Dec 2021 08:11:59 +0000 (GMT)
+Received: from mww0332.dal12m.mail.ibm.com (unknown [9.208.69.80])
+        by b03ledav006.gho.boulder.ibm.com (Postfix) with ESMTPS;
+        Tue,  7 Dec 2021 08:11:59 +0000 (GMT)
+In-Reply-To: <CACPK8Xcpg+V7BB6vq8oqqu=g7FRoTLLmz7-4G5Cp=hn0ziEuyw@mail.gmail.com>
+From:   "Milton Miller II" <miltonm@us.ibm.com>
+To:     "Joel Stanley" <joel@jms.id.au>
+Cc:     "Andrei Kartashev" <a.kartashev@yadro.com>,
+        "Andrew Jeffery" <andrew@aj.id.au>,
+        "devicetree" <devicetree@vger.kernel.org>,
+        "OpenBMC Maillist" <openbmc@lists.ozlabs.org>
+Date:   Tue, 7 Dec 2021 08:11:57 +0000
+Message-ID: <OF32EA8A79.571186E8-ON002587A4.002D0A6E-002587A4.002D0A73@ibm.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 MIME-Version: 1.0
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linuxarm@huawei.com>, <mauro.chehab@huawei.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/5] arm64: dts: HiSilicon: Add support for HiKey 970
- PCIe controller hardware
-References: <cover.1637063775.git.mchehab+huawei@kernel.org> <884b83c1aed70735883e15f032f9668ebfd77a01.1637063775.git.mchehab+huawei@kernel.org>
-In-Reply-To: <884b83c1aed70735883e15f032f9668ebfd77a01.1637063775.git.mchehab+huawei@kernel.org>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.67.102.125]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- dggeme706-chm.china.huawei.com (10.1.199.102)
-X-CFilter-Loop: Reflected
+Sensitivity: 
+Importance: Normal
+X-Priority: 3 (Normal)
+References: <CACPK8Xcpg+V7BB6vq8oqqu=g7FRoTLLmz7-4G5Cp=hn0ziEuyw@mail.gmail.com>,<20211119120057.12118-1-a.kartashev@yadro.com>
+ <20211119120057.12118-3-a.kartashev@yadro.com>
+ <FA1B4FAF-387D-4D71-952A-D44B493FC67B@gmail.com>
+ <368313b889cbadc267b053cd808b080e9f6470a0.camel@yadro.com>
+X-Mailer: Lotus Domino Web Server Release 11.0.1FP2HF125   November 22, 2021
+X-MIMETrack: Serialize by http on MWW0332/03/M/IBM at 12/07/2021 08:11:58,Serialize
+ complete at 12/07/2021 08:11:58
+X-Disclaimed: 62399
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: gY7fALezt1YQBqwtREv4W_IRlJjGfL4t
+X-Proofpoint-GUID: gY7fALezt1YQBqwtREv4W_IRlJjGfL4t
+Subject: RE: [PATCH v2 2/2] ARM: dts: aspeed: add device tree for YADRO VEGMAN BMC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2021-12-07_03,2021-12-06_02,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ impostorscore=0 mlxscore=0 phishscore=0 spamscore=0 clxscore=1011
+ malwarescore=0 suspectscore=0 priorityscore=1501 adultscore=0 bulkscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2110150000 definitions=main-2112070047
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
+On Monday, December 6, 2021, Joel Stanley wrote:
 
-On 2021/11/16 19:59, Mauro Carvalho Chehab wrote:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> 
-> Add DTS bindings for the HiKey 970 board's PCIe hardware.
-> 
-> Co-developed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
-> 
-> To mailbombing on a large number of people, only mailing lists were C/C on the cover.
-> See [PATCH 0/5] at: https://lore.kernel.org/all/cover.1637063775.git.mchehab+huawei@kernel.org/
-> 
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 107 ++++++++++++++++++++++
->  1 file changed, 107 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> index 636c8817df7e..225dccbcb064 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> @@ -176,6 +176,12 @@ sctrl: sctrl@fff0a000 {
->  			#clock-cells = <1>;
->  		};
->  
-> +		pmctrl: pmctrl@fff31000 {
-> +			compatible = "hisilicon,hi3670-pmctrl", "syscon";
+>On Sat, 20 Nov 2021 at 15:51, Andrei Kartashev
+><a.kartashev@yadro.com> wrote:
+>>
+>> >
+>> > Can we utilize
+>> >
+[ gpio naming ]
+>> > to get some consistent naming across the GPIO=E2=80=99s on OpenBMC
+>machines?
+>> >
+>>
+>> Some names here are standard for Intel daemons like
+>x86-power-control,
+>> host-error-monitor, pfr-manager, IntrusionSensor and so on. Other
+>lines
+>> just called same as in schematics to make it easy for our engineers
+>to
+>> understand what does it refer to. BTW, most of the lines there not
+>used
+>> by software and appeared just because dts files are supposed to be
+>> hardware description and thus we describe all we have in
+>schematics.
+>>
+>> We can rename all this according to guide you mention, but are you
+>> sure, there is any sense to do so?
+>> Keep in mind, currently there are lot of dts files which also don't
+>> follow convention, so I believe, it is unnecessary work.
+>
+>I have a strong preference for using the naming document. It provides
+>consistency, which makes it easier to review. I'm encouraging that
+>for
+>any new dts.
+>
+>If you think it makes the descriptions less useful for your platform
+>then that's a reasonable reason to not follow the convention.
+>
 
-The "hi3670-pmctrl" is not documented in the devicetree binding documents yet.
-Could we remove this part this time?
-Thanks!
+Actually, what I would prefer is that these well established signal
+names that appear in the x86 industry servers be enumerated in the
+gpio naming document and be accepted like the original OpenPOWER
+legacy names were.   This will clearly show the names that appear=20
+on other systems and will help reviewing things like power control=20
+applications.
 
-Best Regards,
-Wei
-
+Andrei does this sound reasonable?
