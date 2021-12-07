@@ -2,101 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDF6046BE2C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:52:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 567D446BE4D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:54:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238255AbhLGOz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 09:55:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50214 "EHLO
+        id S238290AbhLGO6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 09:58:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238234AbhLGOz2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 09:55:28 -0500
-Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11997C061746
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 06:51:58 -0800 (PST)
-Received: by mail-oo1-xc35.google.com with SMTP id x1-20020a4aea01000000b002c296d82604so5432707ood.9
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 06:51:58 -0800 (PST)
+        with ESMTP id S238280AbhLGO6X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 09:58:23 -0500
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97CB1C061574
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 06:54:53 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso18468578otf.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 06:54:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=OeNOUxJRvzJDEPV0OHCTfN/BC6OjDO8ZDnn+8g5u4A0=;
-        b=H4vHUFxY+7ZtRXtaHRDlhIzLI79WBBMNDjTny3CTQzQRnqFaZDmH7U314L1aT/sBuq
-         IaAgyYE2n98cvIsPjjRf23kimor5r2uQqirFclePUpX3mTbIuZD5l2yT7UEGAU49S0QW
-         37ux2Dul11cQJBSg1WUeyl7Yb0EkFPfuo9OI5eieCQTIEXZ4Qp6oBktjbMXEeCizfPpz
-         57CJgP9NU31Q8nR3IKtBsUK0tzWUOxBIOlimy9p2ttVqRnu3T4YVret8FX9fcKTELqx2
-         mrZ1aqqP6RYz6BlrrVgvg2FAqs/kLM2XFV/brhjIehGfu7chrbmxfZ8Vbe/rBGelCSKD
-         5LCQ==
+        bh=YDnXzaIjA0B+oe/SZBP1rR8TVXnlVHcIKBm5X/ow/c8=;
+        b=TF05PyjsBqxmiBptnFtNclQ++tzEa/1hGdB6cVF1nxsE8SlCyx69D4dh89V/wvdGdk
+         kKeiEMF/Hah9C8axROromNduAnMZoSWfbKXTVD+hHtG5OP0XLCmu0Mzr9LZxjRHSW+W6
+         uimB4JUaFb71L14tIxp6R+DPW7qAmc3Vu6yysVnFw6AnNdrVSEt8gWJAwN5hJCGMe7S9
+         4HWOMcDW/gclcknppNeFx9MaGkMZRBAUBTZSa97+DdkS4GQ6i5Jmj8MiH9MAo0Q+/6oD
+         pRTUo9Oe423ANutC1JPAsdez+LAZlBpcVS13vqDZaeLetCxQqVpv6WcoRMFSt/q264EO
+         yU+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=OeNOUxJRvzJDEPV0OHCTfN/BC6OjDO8ZDnn+8g5u4A0=;
-        b=oskpZG1hGLzhcGQY1QXV3I+ZOkEkm6LIGwQ7qLhJOcYfV/l0wnfdubAcB+88kfg3k8
-         x7hvMp2feD3llpeiRZjh9z5oIeuvxi32Xt51fqVwpCYrT+etl4JVCZ3YEqHfJSEa7l8g
-         +TqVTRXQtlhS7MPDgwZP6ces7DStmhnT/SUH/Yjc9TpnnbrNxTYlKefkOH+PjUgGLIsv
-         x6wv2JwxmLj4DisEk0uFcE33WjUnz43Y5bcOIVapFB5TkK6FHthkOrJDVep5uRGg3ll5
-         gLRtviORBUD+oxxBnXwrY9TVITbtGfA6q/h1deLVuhVtWeu2AXrqy8w1jP4NsGzrWyy+
-         8t7w==
-X-Gm-Message-State: AOAM532WTBjvoARsoNsm6tWvQaPaq1xt7287GI0JHB+kQN+YzEBaBg1R
-        NsvUxW7Wuv+wC1lKvJdsQXmTfaCqhbqMqg==
-X-Google-Smtp-Source: ABdhPJx4b5NHZUnIbdAlET8r6WP74/NerDHcpOLA4tts/SA95+Tbms6lQZAldQ7a4U4g4i2c+FcbbQ==
-X-Received: by 2002:a4a:c987:: with SMTP id u7mr27386225ooq.65.1638888717409;
-        Tue, 07 Dec 2021 06:51:57 -0800 (PST)
+        bh=YDnXzaIjA0B+oe/SZBP1rR8TVXnlVHcIKBm5X/ow/c8=;
+        b=hdXJRi2cLrqFqIx0rIMUJQanHsC9DY+oq02GIJ9YDY1pOxOOob/N6+/3fB5rzwDjR9
+         YYJ5ALBnE/QVSjdZIrpJEtQZ5VCBu7okS/mZDXvNBgZbJSdVTaRO6rMdAXgZUnLot+lr
+         7HWy33JDw5XbIbIGSMjEDaEm0VOoMCHaQq1D9GRv8b3gZA9/GpU4dluiZRBSvJ2gSP/C
+         hkMuamgxWzRBXNfRoOIFwYVjvwFZnSay48NVwC8+BPs38AmWEUS35Q2ibCYmN5W4xWqz
+         eK3niTzfoth+8s7nXLUVktMeM/2tOubvTEKSJ7z57KycP7X9wc5Lpc+2Oz+korq/8RKT
+         ZyJQ==
+X-Gm-Message-State: AOAM5307ZwX0Zw7ZsX4Eje0o69F0sAoZuR27qkvMzg3Od+W79cVJF8dW
+        4byNjMkF7pmchGS3+B8rte1m3g==
+X-Google-Smtp-Source: ABdhPJyojwQh5ai4cAsqQce5Fw0CD9rq904xG9yRgAnuclktrY69vn9nOyv7eD8FYwwwfBo80hsT3A==
+X-Received: by 2002:a05:6830:1c70:: with SMTP id s16mr35635191otg.59.1638888892976;
+        Tue, 07 Dec 2021 06:54:52 -0800 (PST)
 Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id o26sm2813460otj.14.2021.12.07.06.51.56
+        by smtp.gmail.com with ESMTPSA id k16sm2816382otp.21.2021.12.07.06.54.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 06:51:56 -0800 (PST)
-Date:   Tue, 7 Dec 2021 06:53:24 -0800
+        Tue, 07 Dec 2021 06:54:52 -0800 (PST)
+Date:   Tue, 7 Dec 2021 06:56:17 -0800
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Vinod Koul <vkoul@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/15] arm64: dts: qcom: Add base SM8450 DTSI
-Message-ID: <Ya91ZLytXpm9brJu@ripper>
+Subject: Re: [PATCH 04/15] arm64: dts: qcom: sm8450-qrd: Add reserved gpio
+ range for QRD
+Message-ID: <Ya92EdytQOYC7tqR@ripper>
 References: <20211201072915.3969178-1-vkoul@kernel.org>
- <20211201072915.3969178-2-vkoul@kernel.org>
+ <20211201072915.3969178-5-vkoul@kernel.org>
+ <7449e40f-d8ac-3ee9-c453-163c1310ca9d@somainline.org>
+ <Ya2lXXDzN83pYxqn@matsya>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211201072915.3969178-2-vkoul@kernel.org>
+In-Reply-To: <Ya2lXXDzN83pYxqn@matsya>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 30 Nov 23:29 PST 2021, Vinod Koul wrote:
+On Sun 05 Dec 21:53 PST 2021, Vinod Koul wrote:
 
-> This add based DTSI for SM8450 SoC and includes base description of
-> CPUs, GCC, RPMHCC, UART, interuupt-controller which helps to boot to
-> shell with console on boards with this SoC
+> On 01-12-21, 16:07, Konrad Dybcio wrote:
+> > 
+> > On 01.12.2021 08:29, Vinod Koul wrote:
+> > > Some tlmm gpios are reserved, so mark them as such in QRD DTS
+> > >
+> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sm8450-qrd.dts | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+> > > index 127d32502555..8dcd41c4e5ab 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+> > > +++ b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
+> > > @@ -24,6 +24,10 @@ &qupv3_id_0 {
+> > >  	status = "okay";
+> > >  };
+> > >  
+> > > +&tlmm {
+> > > +	gpio-reserved-ranges = <28 4>, <36 4>;
+> > > +};
+> > > +
+> > >  &uart7 {
+> > >  	status = "okay";
+> > >  };
+> > >
+> > Personally I'd squash this into the patch that introduced the DT and
 > 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8450.dtsi | 476 +++++++++++++++++++++++++++
->  1 file changed, 476 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm8450.dtsi
+> I feel it is the right things to do, a patch should not touch a
+> different file. soc dts and board dts and two different entities and
+> should be patched separately!
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-[..]
-> +		qupv3_id_0: geniqup@9c0000 {
-> +			compatible = "qcom,geni-se-qup";
-> +			reg = <0x0 0x009c0000 0x0 0x2000>;
-> +			clock-names = "m-ahb", "s-ahb";
-> +			clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
-> +				 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +			status = "disabled";
-> +
-> +			uart7: serial@99c000 {
-> +				compatible = "qcom,geni-debug-uart";
 
-There's nothing special about uart7 on a platform level, so my
-suggestion is that you use the standard compatible of "qcom,geni-se-qup"
-here and then override the compatible with "qcom,geni-debug-uart" in the
-qrd.dts.
+You could introduce the qrd.dts slightly later in the series and squash
+this in there.
 
 Regards,
 Bjorn
+
+> > move it to the end of the series, but I reckon it's fine either way..
+> > 
+> > 
+> > Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> 
+> Thanks for the detailed review.
+> 
+> -- 
+> ~Vinod
