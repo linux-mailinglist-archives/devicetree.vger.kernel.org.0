@@ -2,194 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B870846B04B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 02:56:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6958246B061
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 03:00:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239465AbhLGB73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 20:59:29 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:47622 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S239471AbhLGB7B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 20:59:01 -0500
-X-UUID: ad80672025164991a0e30e3e215f3102-20211207
-X-UUID: ad80672025164991a0e30e3e215f3102-20211207
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <biao.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1084066892; Tue, 07 Dec 2021 09:55:28 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Tue, 7 Dec 2021 09:55:26 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkcas10.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Tue, 7 Dec 2021 09:55:25 +0800
-From:   Biao Huang <biao.huang@mediatek.com>
-To:     <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>,
-        <angelogioacchino.delregno@collabora.com>, <dkirjanov@suse.de>
-Subject: [PATCH v5 7/7] net-next: dt-bindings: dwmac: add support for mt8195
-Date:   Tue, 7 Dec 2021 09:55:05 +0800
-Message-ID: <20211207015505.16746-8-biao.huang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211207015505.16746-1-biao.huang@mediatek.com>
-References: <20211207015505.16746-1-biao.huang@mediatek.com>
+        id S229605AbhLGCED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 21:04:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40654 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230367AbhLGCEC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 21:04:02 -0500
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 851DCC0613F8
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 18:00:32 -0800 (PST)
+Received: by mail-qk1-x731.google.com with SMTP id i9so13198751qki.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 18:00:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LHUXbPRT25ZDGyYQUP9EBdAS2w1po8K23wsE9IxclQk=;
+        b=qlYV3iClS+ewTz9MNtRVV068VCFdmh32g7bxah8hRW43G3UhX8MDE0ve7Rv1DOE7BY
+         Q/O/2i/m3At0lBx/bfJfJWjxy+9FHg5G0pjtLuG0/Zu7IkAI3tIKe3hd7onOt+jlYPH8
+         CMa+YMPbdvXUlkHEh5DAFrVexOfscXuuDXujz/+/Q//NV14eKWnqyJmqmP3YtYV5j2FS
+         lwbDHQYWCbKVw07jcvyxPffdZZ08K36mNnnnKNKLL2PVlARA8cXmDvauPU/l811uzvr7
+         aaw4IpslGK20NREkJB3aaEq1D1D+pNlIQOGwngIN/G8OyonYFwMnvFmteEJAhZeNmdQk
+         NIpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LHUXbPRT25ZDGyYQUP9EBdAS2w1po8K23wsE9IxclQk=;
+        b=IUA5mUeYgoind+5DO8XzRiI4mUyziA8X4soALvEFhwArcLRzwdYw/h3v2AHMEe09jG
+         LGFbzGGIAWeRJ+YsXEMIQmWjkScbJOfeEfkl6o0T2uBIoyQSPDiyvoSvq66OoObItWIJ
+         /t/jNoL29R+DQSHB0ZFLlryGdT3DcJ3TkdUmQFBwv+obJyI0yO39Em1vMLtXnhuvqfqn
+         yjApDcTWVEZ1cjFPWOSGrcalPFGXDjINHGY1hik0ZYp6tzy3O027guDtyCJioaw+pjNV
+         iXy7Pvq2HnvQEzpzummssj0sE4iIJzk5JeAyqCjqQO7mxLCDntIAuqJuHZl24KiEz4M4
+         0oRQ==
+X-Gm-Message-State: AOAM531e/99EniiGiWP/43boeYEtsVVGEbIseFJSgGoVZscWhH35gcbH
+        p2/Ywgw10fqzGsLWHuQrf+0dKZxFfwF7+8tIbGPLsA==
+X-Google-Smtp-Source: ABdhPJw97MStNRFea+NYyfM5DcUImSj/8TRCrOrCZq/Nm/PIVjOTf+7OL70Rwjttb0VO9ssJzBfqKKOJBNi7jXWamEc=
+X-Received: by 2002:a05:620a:c50:: with SMTP id u16mr38296709qki.203.1638842431627;
+ Mon, 06 Dec 2021 18:00:31 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+References: <20211125183622.597177-1-dmitry.baryshkov@linaro.org>
+ <CAGETcx-_6OvcJM1nAoX3pxE3Rard5CRxEuEsmhfLANOzOS1BSQ@mail.gmail.com>
+ <CAGETcx86iFm04PxnmrRQhooxtd4_kv87rAu=T0RauqFXmRLKNA@mail.gmail.com> <CAA8EJpr4+B1Q3voOr__3M37jxxBRi0g3avzE1Y8CDLkZB+rSGg@mail.gmail.com>
+In-Reply-To: <CAA8EJpr4+B1Q3voOr__3M37jxxBRi0g3avzE1Y8CDLkZB+rSGg@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 7 Dec 2021 05:00:20 +0300
+Message-ID: <CAA8EJpr47F6x+GhV1z_uLWmGFKCdYCoohvi_A83SBynKGf=qkA@mail.gmail.com>
+Subject: Re: [PATCH] of: property: do not create clocks device link for clock controllers
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Rob Clark <robdclark@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding document for the ethernet on mt8195.
+Hi Saravana,
 
-Signed-off-by: Biao Huang <biao.huang@mediatek.com>
----
- .../bindings/net/mediatek-dwmac.yaml          | 86 +++++++++++++++----
- 1 file changed, 70 insertions(+), 16 deletions(-)
+On Tue, 30 Nov 2021 at 03:24, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Tue, 30 Nov 2021 at 02:53, Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > On Mon, Nov 29, 2021 at 3:48 PM Saravana Kannan <saravanak@google.com> wrote:
+> > >
+> > > On Thu, Nov 25, 2021 at 10:36 AM Dmitry Baryshkov
+> > > <dmitry.baryshkov@linaro.org> wrote:
+> > > >
+> > > > Do not create device link for clock controllers.
+> > >
+> > > Nak.
+> > >
+> > > > Some of the clocks
+> > > > provided to the device via OF can be the clocks that are just parents to
+> > > > the clocks provided by this clock controller. Clock subsystem already
+> > > > has support for handling missing clock parents correctly (clock
+> > > > orphans). Later when the parent clock is registered, clocks get
+> > > > populated properly.
+> > > >
+> > > > An example of the system where this matters is the SDM8450 MTP board
+> > > > (see arch/arm64/boot/dts/qcom/sdm845-mtp.dts). Here the dispcc uses
+> > > > clocks provided by dsi0_phy and dsi1_phy device tree nodes. However the
+> > > > dispcc itself provides clocks to both PHYs, to the PHY parent device,
+> > > > etc. With just dsi0_phy in place devlink is able to break the
+> > > > dependency,
+> > >
+> > > Right, because I wrote code to make sure we handle these clock
+> > > controller cases properly. If that logic isn't smart enough, let's fix
+> > > that.
+>
+> As I said, devlink was delaying dispcc probing ,waiting for the second
+> DSI PHY clock provider.
+> Thus came my proposal to let clock orphans handle the case (which it
+> does perfectly).
+>
+> > >
+> > > > but with two PHYs, dispcc doesn't get probed at all, thus
+> > > > breaking display support.
+> > >
+> > > Then let's find out why and fix this instead of hiding some
+> > > dependencies from fw_devlink. You could be breaking other cases/boards
+> > > with this change you are making.
+> >
+> > Btw, forgot to mention. I'll look into this one and try to find the
+> > reason why it wasn't handled automatically. And then come up with a
+> > fix.
+> >
+> > If you want to find out why fw_devlink didn't notice the cycle
+> > correctly for the case of 2 PHYs vs 1 PHY, I'd appreciate that too.
+> >
+> > Btw, same comment for remote-endpoint. I'll look into what's going on
+> > in that case. Btw, I'm assuming all the code and DT you are testing
+> > this on is already upstream. Can you please confirm that?
+>
+> All the code and basic DT is upstreamed. The DT part I
+> referenced/posted was written for the custom extender for the
+> qrb5165-rb5 board that I use here to test MSM DRM driver, but the
+> result DT should be more or less the same as smd845-mtp.
 
-diff --git a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-index 9207266a6e69..fb04166404d8 100644
---- a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-@@ -19,11 +19,67 @@ select:
-       contains:
-         enum:
-           - mediatek,mt2712-gmac
-+          - mediatek,mt8195-gmac
-   required:
-     - compatible
- 
- allOf:
-   - $ref: "snps,dwmac.yaml#"
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - mediatek,mt2712-gmac
-+
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 5
-+          items:
-+            - description: AXI clock
-+            - description: APB clock
-+            - description: MAC Main clock
-+            - description: PTP clock
-+            - description: RMII reference clock provided by MAC
-+
-+        clock-names:
-+          minItems: 5
-+          items:
-+            - const: axi
-+            - const: apb
-+            - const: mac_main
-+            - const: ptp_ref
-+            - const: rmii_internal
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - mediatek,mt8195-gmac
-+
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 6
-+          items:
-+            - description: AXI clock
-+            - description: APB clock
-+            - description: MAC clock gate
-+            - description: MAC Main clock
-+            - description: PTP clock
-+            - description: RMII reference clock provided by MAC
-+
-+        clock-names:
-+          minItems: 6
-+          items:
-+            - const: axi
-+            - const: apb
-+            - const: mac_cg
-+            - const: mac_main
-+            - const: ptp_ref
-+            - const: rmii_internal
- 
- properties:
-   compatible:
-@@ -32,22 +88,10 @@ properties:
-           - enum:
-               - mediatek,mt2712-gmac
-           - const: snps,dwmac-4.20a
--
--  clocks:
--    items:
--      - description: AXI clock
--      - description: APB clock
--      - description: MAC Main clock
--      - description: PTP clock
--      - description: RMII reference clock provided by MAC
--
--  clock-names:
--    items:
--      - const: axi
--      - const: apb
--      - const: mac_main
--      - const: ptp_ref
--      - const: rmii_internal
-+      - items:
-+          - enum:
-+              - mediatek,mt8195-gmac
-+          - const: snps,dwmac-5.10a
- 
-   mediatek,pericfg:
-     $ref: /schemas/types.yaml#/definitions/phandle
-@@ -62,6 +106,8 @@ properties:
-       or will round down. Range 0~31*170.
-       For MT2712 RMII/MII interface, Allowed value need to be a multiple of 550,
-       or will round down. Range 0~31*550.
-+      For MT8195 RGMII/RMII/MII interface, Allowed value need to be a multiple of 290,
-+      or will round down. Range 0~31*290.
- 
-   mediatek,rx-delay-ps:
-     description:
-@@ -70,6 +116,8 @@ properties:
-       or will round down. Range 0~31*170.
-       For MT2712 RMII/MII interface, Allowed value need to be a multiple of 550,
-       or will round down. Range 0~31*550.
-+      For MT8195 RGMII/RMII/MII interface, Allowed value need to be a multiple
-+      of 290, or will round down. Range 0~31*290.
- 
-   mediatek,rmii-rxc:
-     type: boolean
-@@ -103,6 +151,12 @@ properties:
-       3. the inside clock, which be sent to MAC, will be inversed in RMII case when
-          the reference clock is from MAC.
- 
-+  mediatek,mac-wol:
-+    type: boolean
-+    description:
-+      If present, indicates that MAC supports WOL(Wake-On-LAN), and MAC WOL will be enabled.
-+      Otherwise, PHY WOL is perferred.
-+
- required:
-   - compatible
-   - reg
+So, is there a way we can assist you in debugging these issues? I
+still can not get dual DSI setup to work without this patch (or
+without disabling fw_devlink).
+
+>
+> >
+> > -Saravana
+> >
+> > >
+> > > -Saravana
+> > >
+> > > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > Cc: Stephen Boyd <swboyd@chromium.org>
+> > > > Cc: Saravana Kannan <saravanak@google.com>
+> > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > ---
+> > > >  drivers/of/property.c | 16 +++++++++++++++-
+> > > >  1 file changed, 15 insertions(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > > index a3483484a5a2..f7229e4030e3 100644
+> > > > --- a/drivers/of/property.c
+> > > > +++ b/drivers/of/property.c
+> > > > @@ -1264,7 +1264,6 @@ struct supplier_bindings {
+> > > >         bool node_not_dev;
+> > > >  };
+> > > >
+> > > > -DEFINE_SIMPLE_PROP(clocks, "clocks", "#clock-cells")
+> > > >  DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
+> > > >  DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
+> > > >  DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
+> > > > @@ -1294,6 +1293,21 @@ DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
+> > > >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+> > > >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+> > > >
+> > > > +static struct device_node *parse_clocks(struct device_node *np,
+> > > > +                                       const char *prop_name, int index)
+> > > > +{
+> > > > +       /*
+> > > > +        * Do not create clock-related device links for clocks controllers,
+> > > > +        * clock orphans will handle missing clock parents automatically.
+> > > > +        */
+> > > > +       if (!strcmp(prop_name, "clocks") &&
+> > > > +           of_find_property(np, "#clock-cells", NULL))
+> > > > +               return NULL;
+> > > > +
+> > > > +       return parse_prop_cells(np, prop_name, index, "clocks",
+> > > > +                                      "#clock-cells");
+> > > > +}
+> > > > +
+> > > >  static struct device_node *parse_gpios(struct device_node *np,
+> > > >                                        const char *prop_name, int index)
+> > > >  {
+> > > > --
+> > > > 2.33.0
+> > > >
+>
+>
+>
+> --
+> With best wishes
+> Dmitry
+
+
+
 -- 
-2.25.1
-
+With best wishes
+Dmitry
