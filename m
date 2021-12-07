@@ -2,140 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CB0B46BFF1
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 16:52:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC20846C001
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 16:54:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234449AbhLGPzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 10:55:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36872 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233306AbhLGPzw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 10:55:52 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7197EC061574;
-        Tue,  7 Dec 2021 07:52:21 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id a18so30466414wrn.6;
-        Tue, 07 Dec 2021 07:52:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=6P7zVBXhkZB89KSkmuzfPpvn7y6oK4PlBjq+KmslJgc=;
-        b=kTgT5/8E3EUTUQafk5f1paXaflLhVpA0IkbfEnIBcV97d0q0HpIsfs+jRx+QNmh6v1
-         YWNLjwIjPIGztgfmKAH4Vg1PM/NMdKstpdjBY/glNgAQZSu+rJh5gMXey3Vof0hRYQmA
-         FPGVnaCE+x3HenaDrFbiYZ9ep0IihM5J6LwCdU+3B7c7Gvtfa7Q5L7C051i8D/lvGpCl
-         mNAUCiQA+gPwoxE8+0n08aLFREIvoSbRiPI5SVMeUvdNIa/91aXhpkCBdqWOK3UFoyz9
-         07+0vplmJj8kKOZYC48OuRZqT03E3D5yd2ngouapAa0ZqWO+Qkut2cf5STnuFCBo35p4
-         Opzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6P7zVBXhkZB89KSkmuzfPpvn7y6oK4PlBjq+KmslJgc=;
-        b=594nzXH9pm5FZkLHyekU2vdxz9P6fw8QWnjUSyPmQbYkSQ8QFgzJPEObvEUz/VjvXJ
-         GW2SJGGJaOjLtg6yLyE4xtg0XoxvHQHbFOIbuAf66IEUzmWfIY3JPaoFBdESc937qMLR
-         dGSBcRsjhUWNubSHkIgdLDFuQd+b7Px8UYEz8uKH5iK1qorZZdN+xSdTBtnJIUqRmlep
-         YT94Sh/pmcFU+XywCipBe0e1RrnabG4WMQ2WuXIWPpeGN3QgqrvQ5T6bIFCsJF9e+eyF
-         pJoMAPwB790xsORJDAfDFjPwBCs3aiEE1qQo7LSw1FTesFsppyRSn4XNZzpntD88DQnU
-         krdw==
-X-Gm-Message-State: AOAM533UIyC668L9C9PddlbINADncecW/m1bi9ywmU3iz/MpRDfMiMTJ
-        5vuTmyhbPZmCi8jLmAdWOoU=
-X-Google-Smtp-Source: ABdhPJxp5J4ipRp0e/VgzXH2/dNQBBjKdI90Vbc5z8GpoOljoQiRRPdqSRdlqBC+nv5z9grS7LxSaA==
-X-Received: by 2002:a5d:66cd:: with SMTP id k13mr51720979wrw.517.1638892340030;
-        Tue, 07 Dec 2021 07:52:20 -0800 (PST)
-Received: from orome.fritz.box ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id z8sm69830wrh.54.2021.12.07.07.52.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 07:52:18 -0800 (PST)
-Date:   Tue, 7 Dec 2021 16:52:16 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 05/11] misc: sram: Add compatible string for Tegra234
- SYSRAM
-Message-ID: <Ya+DMHSYt7T22fYX@orome.fritz.box>
-References: <20211112123542.3680629-1-thierry.reding@gmail.com>
- <20211112123542.3680629-6-thierry.reding@gmail.com>
+        id S239153AbhLGP6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 10:58:24 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:45672 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233306AbhLGP6Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 10:58:24 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 4681ECE1B83;
+        Tue,  7 Dec 2021 15:54:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7963DC341C1;
+        Tue,  7 Dec 2021 15:54:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638892490;
+        bh=ml7yqq7yqyYeVse/0iHre3f11/9NJ5q9XMKUjfkRQVA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=sdHEtKwFaKGwlPgvuzDlLPIHg2bEfrQgp3CzHcVTA7ennZehTW9b5K68Na4fymx5J
+         rY03CpQVMbYIPO8Y7cdRrFlgx+XYL8IZuwKH8XFB7iESpXb2gCFcDkbRLUG79kD9MS
+         NN/aKK/12aDaWAIXBTOrENUXqBSr0nvB68hJMqd1EGP1tJqlinpQKLuGvr1sO+QXEs
+         ZRnpNQjTwUJEjau1OiUdt0VvlR7aix5ua563th7C7MVZASlYuwNMr2jKfkWTttkDJg
+         Gaeo2a6Hd+O6hz3xUlP3T3bNsuxMVdXAmpERtdKpyHhJWwg1x+1Fq2yowNW9ZOBhPw
+         xgPpg2StoBkHg==
+Received: by mail-ed1-f52.google.com with SMTP id t5so58800457edd.0;
+        Tue, 07 Dec 2021 07:54:50 -0800 (PST)
+X-Gm-Message-State: AOAM532rXZqnbmnXt6pXkAv6oaiD5sEajsAb0RQfM9iKLCeedLpE3bwj
+        jiLkTDZeuYl/qM2fpaAQmVDGotvn48BKFLHYYA==
+X-Google-Smtp-Source: ABdhPJzECztRAh8+Ww3o/uaGbfXERCtaFTuWEaEtW++NQ1ytY45kzl9v1Zw0edX5p5nnUIwMRVu+P5e9EJEa3/j+Z+8=
+X-Received: by 2002:a17:906:fcbb:: with SMTP id qw27mr275216ejb.320.1638892488478;
+ Tue, 07 Dec 2021 07:54:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zeOIG0z7395Yc90d"
-Content-Disposition: inline
-In-Reply-To: <20211112123542.3680629-6-thierry.reding@gmail.com>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+References: <20211206174215.2297796-1-robh@kernel.org> <9400d57e-7db7-0f58-b391-417e103576cd@canonical.com>
+In-Reply-To: <9400d57e-7db7-0f58-b391-417e103576cd@canonical.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 7 Dec 2021 09:54:36 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKBE5p2hA0F4DqrzA1ERA484kzDsZP2u1nq79yTG2nM+A@mail.gmail.com>
+Message-ID: <CAL_JsqKBE5p2hA0F4DqrzA1ERA484kzDsZP2u1nq79yTG2nM+A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: memory-controllers: ti,gpmc: Drop incorrect unevaluatedProperties
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Tony Lindgren <tony@atomide.com>,
+        Roger Quadros <rogerq@kernel.org>, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Dec 7, 2021 at 3:12 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 06/12/2021 18:42, Rob Herring wrote:
+> > With 'unevaluatedProperties' support implemented, the TI GPMC example
+> > has a warning:
+> >
+> > Documentation/devicetree/bindings/mtd/ti,gpmc-onenand.example.dt.yaml: memory-controller@6e000000: onenand@0,0: Unevaluated properties are not allowed ('compatible', '#address-cells', '#size-cells', 'partition@0', 'partition@100000' were unexpected)
+> >
+> > The child node definition for GPMC is not a complete binding, so specifying
+> > 'unevaluatedProperties: false' for it is not correct and should be
+> > dropped.
+> >
+> > Fixup the unnecessary 'allOf' while we're here.
+> >
+> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> > Cc: Tony Lindgren <tony@atomide.com>
+> > Cc: Roger Quadros <rogerq@kernel.org>
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../devicetree/bindings/memory-controllers/ti,gpmc.yaml      | 5 +----
+> >  1 file changed, 1 insertion(+), 4 deletions(-)
+> >
+>
+> Looks good. Rob, do you want to take it via your tree or I should handle it?
 
---zeOIG0z7395Yc90d
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'll take it given there's also the somewhat related "dt-bindings:
+mtd: ti,gpmc-nand: Add missing 'rb-gpios'"
 
-On Fri, Nov 12, 2021 at 01:35:36PM +0100, Thierry Reding wrote:
-> From: Mikko Perttunen <mperttunen@nvidia.com>
->=20
-> We want to use the same behavior as on Tegra186 and Tegra194, so add
-> this the compatible string for Tegra234 SYSRAM to the list.
->=20
-> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  drivers/misc/sram.c | 1 +
->  1 file changed, 1 insertion(+)
-
-Hi Greg,
-
-I forgot to Cc you on the initial submission, not realizing that I had
-this one-line driver change mixed into a set of DT bindings and device
-tree updates.
-
-Quoting in full. Would you mind if I pick this up into the Tegra tree,
-or do you want me to resend this to you for inclusion in your tree?
-
-Thanks,
-Thierry
-
->=20
-> diff --git a/drivers/misc/sram.c b/drivers/misc/sram.c
-> index 4c26b19f5154..f0e7f02605eb 100644
-> --- a/drivers/misc/sram.c
-> +++ b/drivers/misc/sram.c
-> @@ -371,6 +371,7 @@ static const struct of_device_id sram_dt_ids[] =3D {
->  	{ .compatible =3D "atmel,sama5d2-securam", .data =3D &atmel_securam_con=
-fig },
->  	{ .compatible =3D "nvidia,tegra186-sysram", .data =3D &tegra_sysram_con=
-fig },
->  	{ .compatible =3D "nvidia,tegra194-sysram", .data =3D &tegra_sysram_con=
-fig },
-> +	{ .compatible =3D "nvidia,tegra234-sysram", .data =3D &tegra_sysram_con=
-fig },
->  	{}
->  };
-> =20
-> --=20
-> 2.33.1
->=20
-
---zeOIG0z7395Yc90d
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGvgzAACgkQ3SOs138+
-s6FFww//R4hiT4esYUWFwYp5igNBAr6sYlk7+spTxbxaaLl0u/nQVRZdpRNa4GY9
-x4NDxlBdARrO/fM2FQulAWhwN/uVsTiGxX3DZa3jDmQbv4vi9l4FriZU1UrtwUKg
-rhc2GOV5GFOMq19hqiKgE2yw+xcbJG9iV2S8LnFiw8QeXhtc+4O7qk+nVg3VTHxr
-oF4PSSb73YRy7qYKJJsq/yCdEuMTafUIHtGqktD7fdxPQ97W8abGuxc12ZoagqaW
-xTx5ErpLKJsoji/x/MP9FprxK2Qt3DiSWh54bj6A5gur9ND8nRLAijl2MNRVrOvi
-o2lB6N2MySecoIpHOBNAHii6/9zUX0herJaImCtqTQmhAEmhsst3Z3Ub9ZhUs7J/
-WBp05Kt91SnWMedgdMOqh7O1p1hshM8ctBJ95lcdjeDZLUFoXUnbkmFA+vBXkBtU
-wyF2oiLj7/L/zEEe3dms9FQJs6AA1dPVBjJUVp76aeKq9dA8Mqn/kG/7Cnv1JxJy
-sI5fWkLYB+oTII9AwAF+yuMgTaJFRauCFJSigCmU1ZjNrgAT/T8+kwedU6Abr5qa
-aVOLgVd6qIkydgNbtZ3z0aTI2AUfG2M8C9rj4brunu6Hiqm4X//GDb0NQgokSnB6
-MFdYZQ4GqCq/tkdFLZrC0Pp0WG1DmHljUsBYCk29IlzIi6N0MJs=
-=QKiv
------END PGP SIGNATURE-----
-
---zeOIG0z7395Yc90d--
+Rob
