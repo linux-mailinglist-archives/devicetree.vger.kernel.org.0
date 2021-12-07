@@ -2,195 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7C0146BEFA
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 16:14:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5BCE46BF06
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 16:16:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234050AbhLGPRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 10:17:37 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:37537 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbhLGPRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 10:17:36 -0500
-Received: by mail-oi1-f172.google.com with SMTP id bj13so28281552oib.4;
-        Tue, 07 Dec 2021 07:14:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=gHLh/twxwqdkYak+CGLf6Up0AGsQd0DPoFCh/1guPoU=;
-        b=3+Xqc5oKBF2irowKGOlUommx+RVj8F0C5YAjCHz85trAG4F9ORXzjVPu8FYhVn9zxr
-         uDngpyjOvhK3dzcz4iVHk8FNW+GKGTgqw/jr2dFStp2LvgO5U/hbUcO/PT3vGC9PWOUb
-         fl2Jq8qSF/mzvsDliQ7p0OnXm7sRh91zB0MOzLfgBCAjdPBBWwltm5hGsOdH9Mav5rcm
-         9evQblu9DidPgPdd9uqdEPQkOWYGNoKZuMzcfrlmB/9POVCnjh4t2WKZ5loQTkr7MuAZ
-         X0Wq01m9lqqUUTaILESrZrlQsRAxP1VmwHgVerB0HefJTted4FocjmJFIENxm1dURIlG
-         Od4A==
-X-Gm-Message-State: AOAM533Ml31iCzR90UUcJaxLg5zy0Hak6lAM3Ww8SOhPcoei2RyVUe/N
-        811aJF3mHrBVfB+yqplECAnZPW47QA==
-X-Google-Smtp-Source: ABdhPJxIOWxApR2yPnoWn9mY/qhX8SpsrfoNf6wadNvZU6y0quA1Gbdi2DDCY4nBeHPW8uEW3WuDhA==
-X-Received: by 2002:a54:438d:: with SMTP id u13mr5649541oiv.156.1638890045676;
-        Tue, 07 Dec 2021 07:14:05 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 184sm3297341oih.58.2021.12.07.07.14.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 07:14:04 -0800 (PST)
-Received: (nullmailer pid 59673 invoked by uid 1000);
-        Tue, 07 Dec 2021 15:14:03 -0000
-Date:   Tue, 7 Dec 2021 09:14:03 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-media@vger.kernel.org, cphealy@gmail.com,
-        benjamin.gaignard@collabora.com, hverkuil@xs4all.nl,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-Subject: Re: [RFC V2 3/6] dt-bindings: media: nxp,imx8mq-vpu: Update the
- bindings for G2 support
-Message-ID: <Ya96O6VXuIDdcM8p@robh.at.kernel.org>
-References: <20211207015446.1250854-1-aford173@gmail.com>
- <20211207015446.1250854-4-aford173@gmail.com>
+        id S234447AbhLGPT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 10:19:58 -0500
+Received: from m43-7.mailgun.net ([69.72.43.7]:51339 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234407AbhLGPT5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 10:19:57 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1638890187; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=lhmLEurJtruYbgU84VYlYJYpIAj8F3QlaKT0LNANdlo=; b=xULvUiBI/JSmZk23O4Jk/koD3+UXPvrl8MITC95nSWWiOP88ZzTE0J3E45WiqYaxBzMt4wYn
+ crboqepW7aOjEXg4UqADnP1CDYeAi+/d2oSTy7iuudZTGLU3OrYCntguaTzH6yjEe8dIRxL5
+ 05HlYjEuSUrhLLrp5dfFPwxKEsE=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 61af7aca4fca5da46dfa76a9 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 07 Dec 2021 15:16:26
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id A47D0C43635; Tue,  7 Dec 2021 15:16:26 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-5.3 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+        version=3.4.0
+Received: from [10.242.143.72] (unknown [202.46.23.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BD688C4338F;
+        Tue,  7 Dec 2021 15:16:18 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org BD688C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH v4 4/5] pinctrl: qcom: Update clock voting as optional
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.com>
+Cc:     agross@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org, Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org,
+        Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <1638531140-25899-1-git-send-email-srivasam@codeaurora.com>
+ <1638531140-25899-5-git-send-email-srivasam@codeaurora.com>
+ <Ya13Bl66oS1hgHFd@ripper>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <bf2b48fc-d97d-d5a5-e934-6c0a8cae72fe@codeaurora.org>
+Date:   Tue, 7 Dec 2021 20:46:16 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211207015446.1250854-4-aford173@gmail.com>
+In-Reply-To: <Ya13Bl66oS1hgHFd@ripper>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 06, 2021 at 07:54:42PM -0600, Adam Ford wrote:
-> From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> 
-> Introducing the G2 hevc video decoder requires modifications of the bindings to allow
-> one node per VPU.
 
-Why? It looks like the G2 part was already described. If you are 
-changing this because you want 2 drivers for G1 and G2, then NAK. DT 
-nodes and drivers don't have to be 1:1. This change is breaking 
-compatibility.
+On 12/6/2021 8:05 AM, Bjorn Andersson wrote:
+Thanks for Your Time Bjorn!!!
+> On Fri 03 Dec 03:32 PST 2021, Srinivasa Rao Mandadapu wrote:
+>
+>> From: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>>
+>> Update bulk clock voting to optional voting as ADSP bypass platform doesn't
+>> need macro and decodec clocks, these are maintained as power domains and
+>> operated from lpass audio core cc.
+>>
+>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+>> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+>> ---
+>>   drivers/pinctrl/qcom/pinctrl-lpass-lpi.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+>> index bcc12f6..c2a1110 100644
+>> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+>> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+>> @@ -394,7 +394,7 @@ int lpi_pinctrl_probe(struct platform_device *pdev)
+>>   		return dev_err_probe(dev, PTR_ERR(pctrl->slew_base),
+>>   				     "Slew resource not provided\n");
+>>   
+>> -	ret = devm_clk_bulk_get(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
+>> +	ret = devm_clk_bulk_get_optional(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
+> If some platforms requires this clock and others doesn't have one, then
+> please make this statement conditional on the compatible, rather than
+> making it optional on both.
+>
+> Thanks,
+> Bjorn
+Okay. will add one flag in lpi_pinctrl_variant_data structure and handle 
+it accordingly.
+>>   	if (ret)
+>>   		return dev_err_probe(dev, ret, "Can't get clocks\n");
+>>   
+>> -- 
+>> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+>> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+>>
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
-> 
-> VPUs share one hardware control block which is provided as a phandle on
-> a syscon.
-
-That's not really ideal. Is this really a separate block?
-
-> Each node has now one reg and one interrupt.
-> Add a compatible for G2 hardware block: nxp,imx8mq-vpu-g2.
-> 
-> To be compatible with older DT the driver is still capable to use the 'ctrl'
-> reg-name even if it is deprecated now.
-> 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> index 762be3f96ce9..eaeba4ce262a 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> @@ -15,37 +15,36 @@ description:
->  
->  properties:
->    compatible:
-> -    const: nxp,imx8mq-vpu
-> +    oneOf:
-> +      - const: nxp,imx8mq-vpu-g1
-> +      - const: nxp,imx8mq-vpu-g2
->  
->    reg:
-> -    maxItems: 3
-> -
-> -  reg-names:
-> -    items:
-> -      - const: g1
-> -      - const: g2
-> -      - const: ctrl
-> +    maxItems: 1
->  
->    interrupts:
-> -    maxItems: 2
-> +    maxItems: 1
->  
->    interrupt-names:
-> -    items:
-> +    oneOf:
->        - const: g1
->        - const: g2
->  
->    clocks:
-> -    maxItems: 3
-> +    maxItems: 1
->  
->    clock-names:
-> -    items:
-> +    oneOf:
->        - const: g1
->        - const: g2
-> -      - const: bus
->  
->    power-domains:
->      maxItems: 1
->  
-> +  nxp,imx8m-vpu-ctrl:
-> +    description: Specifies a phandle to syscon VPU hardware control block
-> +    $ref: "/schemas/types.yaml#/definitions/phandle"
-
-This is optional?
-
-> +
->  required:
->    - compatible
->    - reg
-> @@ -60,20 +59,27 @@ additionalProperties: false
->  examples:
->    - |
->          #include <dt-bindings/clock/imx8mq-clock.h>
-> +        #include <dt-bindings/power/imx8mq-power.h>
->          #include <dt-bindings/interrupt-controller/arm-gic.h>
->  
-> -        vpu: video-codec@38300000 {
-> +        vpu_g1: video-codec@38300000 {
->                  compatible = "nxp,imx8mq-vpu";
-> -                reg = <0x38300000 0x10000>,
-> -                      <0x38310000 0x10000>,
-> -                      <0x38320000 0x10000>;
-> -                reg-names = "g1", "g2", "ctrl";
-> -                interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> -                             <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> -                interrupt-names = "g1", "g2";
-> -                clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
-> -                         <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
-> -                         <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
-> -                clock-names = "g1", "g2", "bus";
-> -                power-domains = <&pgc_vpu>;
-> +                reg = <0x38300000 0x10000>;
-> +                reg-names "g1";
-> +                interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +                interrupt-names = "g1";
-> +                clocks = <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
-> +                clock-names = "g1";
-> +                power-domains = <&vpu_blk_ctrl IMX8MQ_VPUBLK_PD_G1>;
-> +        };
-> +
-> +        vpu_g2: video-codec@38310000 {
-> +                compatible = "nxp,imx8mq-vpu-g2";
-> +                reg = <0x38300000 0x10000>;
-> +                reg-names "g2";
-> +                interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> +                interrupt-names = "g2";
-> +                clocks = <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
-> +                clock-names = "g2";
-> +                power-domains = <&vpu_blk_ctrl IMX8MQ_VPUBLK_PD_G2>;
->          };
-> -- 
-> 2.32.0
-> 
-> 
