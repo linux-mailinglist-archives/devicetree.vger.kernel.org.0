@@ -2,298 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4446346C016
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 16:56:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E27B146C045
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 17:04:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239293AbhLGQAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 11:00:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37980 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239259AbhLGQAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 11:00:07 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7163C061574
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 07:56:36 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id t9so30424557wrx.7
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 07:56:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=s04DWXu5NLwyK43+n0H/Fmx6iCKArUlT2QSk1QCIXEA=;
-        b=leLkaw4Wq4nrnYqRR9i+abimOSRyJ+xJHXAVfqjj+KuC25tQnYy5B0vVrQS/qMzUfv
-         Nzx0Yc1/d8FmVVwS6NNwL81AmJmkekro1sv4KyZcFuf5jb+l3iQQ9lQk6kCK1ld3pvr1
-         dMnxEv9T1vJTd9yaSL8QI8qOi/YqngfClRtusBdrp2eD85vVar9OmInaq8LtUAXrzbqB
-         x2iYS+0r4q9sXr5Owqi3XjZXwMC0tOOYiLSPKJl62VOEL0rpErsrHTYOm5lzHy5tjOL2
-         jiF7lRj7rSuVlNwYEensr/mIw6DHml4OQsxn7aicDRaCL2JCH/4JMQH4nEdm372RUWHy
-         1H+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=s04DWXu5NLwyK43+n0H/Fmx6iCKArUlT2QSk1QCIXEA=;
-        b=Cj91Jdp8Q/Kbv3SG0intRRqlsMokJkAb34YRzvkSrBjxqXLrBCuD0Nm8j20tf7mnln
-         af/HBfc9zjW6zFfJ9rHBkHYteMinQ07aRzMdrM/5Ak14tZxX3bkHbwt7KeZ2HKLHJJzf
-         8GFJtibux4P8bSoEvZLcPSkDYYZCIpJeko3drFDIbv7ufByvcld8klSlE3YohmIuVMrL
-         8d+GTbaDEONTFysfR1QF4WqCLM8U1jsi0kUbiONXcsP8MSRloJSJJmQDj2orHapC5H6I
-         TzFzcoIVezu7c4reMMdZHgToFfmUuMD8eHn/4QI0rkXRFsA2ZAwN4ylvrMd8BRU7AG2x
-         mrdw==
-X-Gm-Message-State: AOAM533sB5rJ8nreXpc241W5G1xvAocZyg4yVnHkQ1Dun43fQ85SDQYw
-        XzXuYzXlPgUc9GRlpmlI6SOVcA==
-X-Google-Smtp-Source: ABdhPJxQBhRnVCXcNj/xSOYLWlR2ziSKQKPnBd1I2FJAjBpy539Q0U8rvPoTbp2fFBr9e85jDnZDXQ==
-X-Received: by 2002:adf:ed83:: with SMTP id c3mr50812916wro.169.1638892595418;
-        Tue, 07 Dec 2021 07:56:35 -0800 (PST)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id j17sm11346wmq.41.2021.12.07.07.56.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Dec 2021 07:56:34 -0800 (PST)
-Subject: Re: [PATCH] dt-bindings: misc: convert Qualcomm FastRPC bindings to
- the YAML schema
-To:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211206193849.109079-1-david@ixit.cz>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <4f631075-85d0-7362-e3d6-b3abaec465e0@linaro.org>
-Date:   Tue, 7 Dec 2021 15:56:33 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S239440AbhLGQHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 11:07:05 -0500
+Received: from foss.arm.com ([217.140.110.172]:35658 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239434AbhLGQHA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 11:07:00 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8E84711D4;
+        Tue,  7 Dec 2021 08:03:29 -0800 (PST)
+Received: from FVFF77S0Q05N (unknown [10.57.67.24])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 590DF3F5A1;
+        Tue,  7 Dec 2021 08:03:28 -0800 (PST)
+Date:   Tue, 7 Dec 2021 16:03:25 +0000
+From:   Mark Rutland <mark.rutland@arm.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Will Deacon <will@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/3] arm64: perf: Support Denver and Carmel PMUs
+Message-ID: <Ya+FzVuvQ3W8LOyl@FVFF77S0Q05N>
+References: <20211207150746.444478-1-thierry.reding@gmail.com>
+ <20211207150746.444478-2-thierry.reding@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20211206193849.109079-1-david@ixit.cz>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211207150746.444478-2-thierry.reding@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi David,
-
-Thanks for the patch,
-
-
-On 06/12/2021 19:38, David Heidelberg wrote:
-> Switch the DT binding to a YAML schema to enable the DT validation.
+On Tue, Dec 07, 2021 at 04:07:45PM +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Also:
->   - simplify example
->   - embrace compute-cb@ subnodes instead of just cb@
+> Add support for the NVIDIA Denver and Carmel PMUs using the generic
+> PMUv3 event map for now.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-
-
-There is already a similar patch [1] in the list. If you have noticed 
-it, Its better to let the author know about your plans so that we do not 
-duplicate the same thing.
-
-Your patch seems to have addressed issues with subnode names and example.
-
-so am okay with this patch.
-
-Acked-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
-
-FastRPC patches normally go via char-misc tree, so if Rob acks can you 
-send it to Greg as well.
-
-
---srini
-
-
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->   .../devicetree/bindings/misc/qcom,fastrpc.txt | 78 ---------------
->   .../bindings/misc/qcom,fastrpc.yaml           | 94 +++++++++++++++++++
->   2 files changed, 94 insertions(+), 78 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
->   create mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+>  arch/arm64/kernel/perf_event.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt b/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-> deleted file mode 100644
-> index 2a1827ab50d2..000000000000
-> --- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-> +++ /dev/null
-> @@ -1,78 +0,0 @@
-> -Qualcomm Technologies, Inc. FastRPC Driver
-> -
-> -The FastRPC implements an IPC (Inter-Processor Communication)
-> -mechanism that allows for clients to transparently make remote method
-> -invocations across DSP and APPS boundaries. This enables developers
-> -to offload tasks to the DSP and free up the application processor for
-> -other tasks.
-> -
-> -- compatible:
-> -	Usage: required
-> -	Value type: <stringlist>
-> -	Definition: must be "qcom,fastrpc"
-> -
-> -- label
-> -	Usage: required
-> -	Value type: <string>
-> -	Definition: should specify the dsp domain name this fastrpc
-> -	corresponds to. must be one of this: "adsp", "mdsp", "sdsp", "cdsp"
-> -
-> -- #address-cells
-> -	Usage: required
-> -	Value type: <u32>
-> -	Definition: Must be 1
-> -
-> -- #size-cells
-> -	Usage: required
-> -	Value type: <u32>
-> -	Definition: Must be 0
-> -
-> -= COMPUTE BANKS
-> -Each subnode of the Fastrpc represents compute context banks available
-> -on the dsp.
-> -- All Compute context banks MUST contain the following properties:
-> -
-> -- compatible:
-> -	Usage: required
-> -	Value type: <stringlist>
-> -	Definition: must be "qcom,fastrpc-compute-cb"
-> -
-> -- reg
-> -	Usage: required
-> -	Value type: <u32>
-> -	Definition: Context Bank ID.
-> -
-> -- qcom,nsessions:
-> -	Usage: Optional
-> -	Value type: <u32>
-> -	Defination: A value indicating how many sessions can share this
-> -		    context bank. Defaults to 1 when this property
-> -		    is not specified.
-> -
-> -Example:
-> -
-> -adsp-pil {
-> -	compatible = "qcom,msm8996-adsp-pil";
-> -	...
-> -	smd-edge {
-> -		label = "lpass";
-> -		fastrpc {
-> -			compatible = "qcom,fastrpc";
-> -			qcom,smd-channels = "fastrpcsmd-apps-dsp";
-> -			label = "adsp";
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
-> -
-> -			cb@1 {
-> -				compatible = "qcom,fastrpc-compute-cb";
-> -				reg = <1>;
-> -			};
-> -
-> -			cb@2 {
-> -				compatible = "qcom,fastrpc-compute-cb";
-> -				reg = <2>;
-> -			};
-> -			...
-> -		};
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> new file mode 100644
-> index 000000000000..f42ab208a7fc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/misc/qcom,fastrpc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> diff --git a/arch/arm64/kernel/perf_event.c b/arch/arm64/kernel/perf_event.c
+> index b4044469527e..8c8cf369c450 100644
+> --- a/arch/arm64/kernel/perf_event.c
+> +++ b/arch/arm64/kernel/perf_event.c
+> @@ -1247,6 +1247,18 @@ static int armv8_vulcan_pmu_init(struct arm_pmu *cpu_pmu)
+>  				       armv8_vulcan_map_event);
+>  }
+>  
+> +static int armv8_denver_pmu_init(struct arm_pmu *cpu_pmu)
+> +{
+> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_nvidia_denver",
+> +				       armv8_pmuv3_map_event);
+> +}
 > +
-> +title: Qualcomm FastRPC Driver
+> +static int armv8_carmel_pmu_init(struct arm_pmu *cpu_pmu)
+> +{
+> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_nvidia_carmel",
+> +				       armv8_pmuv3_map_event);
+> +}
 > +
-> +maintainers:
-> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> +
-> +description: |
-> +  The FastRPC implements an IPC (Inter-Processor Communication)
-> +  mechanism that allows for clients to transparently make remote method
-> +  invocations across DSP and APPS boundaries. This enables developers
-> +  to offload tasks to the DSP and free up the application processor for
-> +  other tasks.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: qcom,fastrpc
-> +
-> +  label:
-> +    items:
-> +      enum:
-> +        - adsp
-> +        - mdsp
-> +        - sdsp
-> +        - cdsp
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  "(compute-)?cb@[0-9]$":
-> +    type: object
-> +
-> +    description: >
-> +      Each subnode of the Fastrpc represents compute context banks available on the dsp.
-> +
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - const: qcom,fastrpc-compute-cb
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      qcom,nsession:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        default: 1
-> +        description: >
-> +          A value indicating how many sessions can share this context bank.
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +
-> +    additionalProperties: true
-> +
-> +required:
-> +  - compatible
-> +  - label
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    smd-edge {
-> +        label = "lpass";
-> +        fastrpc {
-> +            compatible = "qcom,fastrpc";
-> +            label = "adsp";
-> +            qcom,smd-channels = "fastrpcsmd-apps-dsp";
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            compute-cb@1 {
-> +                compatible = "qcom,fastrpc-compute-cb";
-> +                reg = <1>;
-> +            };
-> +
-> +            compute-cb@2 {
-> +                compatible = "qcom,fastrpc-compute-cb";
-> +                reg = <2>;
-> +            };
-> +        };
-> +    };
+>  static const struct of_device_id armv8_pmu_of_device_ids[] = {
+>  	{.compatible = "arm,armv8-pmuv3",	.data = armv8_pmuv3_init},
+>  	{.compatible = "arm,cortex-a34-pmu",	.data = armv8_a34_pmu_init},
+> @@ -1265,6 +1277,8 @@ static const struct of_device_id armv8_pmu_of_device_ids[] = {
+>  	{.compatible = "arm,neoverse-n1-pmu",	.data = armv8_n1_pmu_init},
+>  	{.compatible = "cavium,thunder-pmu",	.data = armv8_thunder_pmu_init},
+>  	{.compatible = "brcm,vulcan-pmu",	.data = armv8_vulcan_pmu_init},
+> +	{.compatible = "nvidia,denver-pmu",	.data = armv8_denver_pmu_init},
+> +	{.compatible = "nvidia,carmel-pmu",	.data = armv8_carmel_pmu_init},
+
+Super trivial nit, but could we please organise this alphabetically (i.e. with carmel first?)
+
+With that:
+
+Acked-by: Mark Rutland <mark.rutland@arm.com>
+
+I see now that we messed up the order of "cavium,thunder-pmu" and
+"brcm,vulcan-pmu", but otherwise this is ordered, and it's be nice to keep it
+that way. I can fix the order of those two in a separate patch.
+
+Thanks,
+Mark.
+
+>  	{},
+>  };
+>  
+> -- 
+> 2.33.1
 > 
-[1] 
-https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20211130092846.18804-1-srinivas.kandagatla@linaro.org/
