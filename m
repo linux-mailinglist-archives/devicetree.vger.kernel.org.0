@@ -2,90 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB27C46BAA8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:05:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D597B46BAB1
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:05:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231641AbhLGMIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 07:08:37 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:60862 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231576AbhLGMIh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 07:08:37 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 682DFCE1A7E;
-        Tue,  7 Dec 2021 12:05:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC0A1C341C3;
-        Tue,  7 Dec 2021 12:05:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638878703;
-        bh=ujCHnMR34AzoG3Vi8aJNN8FINppyuK04wRnq0gfNiQk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MZoqarWRRmjq2S95AYjelwGU5/W9x8CNj0QiHigq0C1l9A5f2d31V2UOqzQpHQpNk
-         G6N7GU7Cl5HYfJkeRrJsyy/JE2KLDapb8lJnhKYkdYZqco9sy2gm5h3fTztMKRiDih
-         E6NpUpWLQ0jFms5nBU05FQ2OAkH7NZBl+hHBlGmFG31S5/cAnamjaARGcPCg+42Q4L
-         kbtGwgxiSSecsQFgy63b1QH2yF+AAHrmwGBD6qVc82OCt+CeP7C0rpz/8ta1SQxGIx
-         gJ3ktWVVbQswr9+p5D2Y5e7zp68iKGMm64Lg7D+c+S4Ejl50IwDP09QsCRGyGxVsDX
-         noNVVuLEFk49g==
-Date:   Tue, 7 Dec 2021 17:34:59 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Kuogee Hsieh <khsieh@codeaurora.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
-        robdclark@gmail.com, robh+dt@kernel.org, sean@poorly.run,
-        abhinavk@codeaurora.org, aravindh@codeaurora.org,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kishon@ti.com, p.zabel@pengutronix.de
-Subject: Re: [PATCH v4] phy: qcom-qmp: add support for display port voltage
- and pre-emphasis swing
-Message-ID: <Ya9N65mseobpBrYx@matsya>
-References: <1631637901-11603-1-git-send-email-khsieh@codeaurora.org>
- <CAE-0n50R1wfw=V7o19N20YOqSrRZKR7Zd4QLcRcjYQNsdf3QHg@mail.gmail.com>
- <CAE-0n51OA3c_hcnpJ-k5ZQvCN3kv8PcjLMRw4BLx9OKZPjGLcA@mail.gmail.com>
+        id S236053AbhLGMJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 07:09:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38844 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236052AbhLGMJQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 07:09:16 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97D7CC061574;
+        Tue,  7 Dec 2021 04:05:45 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id bi37so33081777lfb.5;
+        Tue, 07 Dec 2021 04:05:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=5KguUb/6H3/lFEhf1osMyGDeEZ7yTTjU3cEIbM5ujcg=;
+        b=IsyGD1u7lrKJX2EiEtATetS94Wv2RLht0Q+4fMKQzjV4ZwywlvXHU6hGjX4Un7/vwo
+         y/g37T90X0gd0o42hntPjoKihVG44480rF3scm3+BpmSYLegLdkoeXGN1ra1ortv5mWv
+         lF7aDu88gO+lHbuVsDVc+skOhdZAzkHxnu5vjDP0aKiIkn7MSzLKteiZxoFqRsD83EKO
+         yVRAGq5rJVQG2yqV+U/axnGP86PWWTKGbXx34+UDTjfdMU6FHJyQ++MxOJWd5XHG+EKi
+         /CZmuI6NsQsAFmiYDJgiUUbb/4J2KQXkExK8v9g6+yiK68gNIU/C9UEonnNeRKh/XUAw
+         HETw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=5KguUb/6H3/lFEhf1osMyGDeEZ7yTTjU3cEIbM5ujcg=;
+        b=q0t0t+9J2Jf4Usz10N6cGf9ksquk39RyOwWT18FAoMaeEFrEvTcMNEaDv90d/h6KYZ
+         dQnvC7O5MJqOi4MZ13wGJoVnHXWCknzOlL/7WWzD30xQyo3vJ/tqzCxgD8YfsAvhJOkz
+         2BNWLz1Stf/gg3Sv3Oph+t7uIQxB2JftiRjNO0P3q6maeaw5siNKczSZ7cJSTxvVcDdA
+         x4CyAmyLS/lBUpzN+uJ1EsJRB2FpWNJfTMsrkhgaCql+BBBzQY8DwYAbjI7AnOcU25SD
+         7FN8vT182KhB5a/rW52wvDL/kdo93YOYY+Er/JkhmL4vOGuAf7XVAGj/rFcjsJfq4WCt
+         OLJA==
+X-Gm-Message-State: AOAM531OIZdJnmq1NuWDGKfwqqO2GFWOP3ySu6M4SNPFnGPB3h6l+Pad
+        C4V9kGN5VfP7LxPD/fr4VTTtHhfjGZY=
+X-Google-Smtp-Source: ABdhPJx4NtgiFUA11M9GWn2N+bw7b/A2Y96uMLskZdbgm8PDefZKgiFTwWLlFC/3Iw5WpMq6kwTR8w==
+X-Received: by 2002:a05:6512:1192:: with SMTP id g18mr40937025lfr.40.1638878743940;
+        Tue, 07 Dec 2021 04:05:43 -0800 (PST)
+Received: from [192.168.2.145] (94-29-46-111.dynamic.spd-mgts.ru. [94.29.46.111])
+        by smtp.googlemail.com with ESMTPSA id s15sm1663658lfp.252.2021.12.07.04.05.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Dec 2021 04:05:43 -0800 (PST)
+Subject: Re: [PATCH 1/3] ALSA: hda/tegra: Skip reset on BPMP devices
+To:     Sameer Pujar <spujar@nvidia.com>, tiwai@suse.com,
+        broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, perex@perex.cz
+Cc:     jonathanh@nvidia.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Mohan Kumar <mkumard@nvidia.com>
+References: <1638858770-22594-1-git-send-email-spujar@nvidia.com>
+ <1638858770-22594-2-git-send-email-spujar@nvidia.com>
+ <7742adae-cdbe-a9ea-2cef-f63363298d73@gmail.com>
+ <8fd704d9-43ce-e34a-a3c0-b48381ef0cd8@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <56bb43b6-8d72-b1de-4402-a2cb31707bd9@gmail.com>
+Date:   Tue, 7 Dec 2021 15:05:42 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE-0n51OA3c_hcnpJ-k5ZQvCN3kv8PcjLMRw4BLx9OKZPjGLcA@mail.gmail.com>
+In-Reply-To: <8fd704d9-43ce-e34a-a3c0-b48381ef0cd8@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02-12-21, 14:51, Stephen Boyd wrote:
-> Quoting Stephen Boyd (2021-09-14 12:49:13)
-> > Quoting Kuogee Hsieh (2021-09-14 09:45:01)
-> > > Both voltage and pre-emphasis swing level are set during link training
-> > > negotiation between host and sink. There are totally four tables added.
-> > > A voltage swing table for both hbr and hbr1, a voltage table for both
-> > > hbr2 and hbr3, a pre-emphasis table for both hbr and hbr1 and a pre-emphasis
-> > > table for both hbr2 and hbr3. In addition, write 0x0a to TX_TX_POL_INV is
-> > > added to complete the sequence of configure dp phy base on HPG.
-> > >
-> > > Chnages in v2:
-> > > -- revise commit test
-> > > -- add Fixes tag
-> > > -- replaced voltage_swing_cfg with voltage
-> > > -- replaced pre_emphasis_cfg with emphasis
-> > > -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_v4_phy_configure_dp_swing()
-> > > -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_phy_configure_dp_swing()
-> > >
-> > > Changes in V3:
-> > > -- add __qcom_qmp_phy_configure_dp_swing() to commit swing/pre-emphasis level
-> > >
-> > > Changes in V4:
-> > > -- pass 2D array to __qcom_qmp_phy_configure_dp_swing()
-> > >
-> > > Fixes: aff188feb5e1 ("phy: qcom-qmp: add support for sm8250-usb3-dp phy")
-> > > Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
-> > > ---
-> >
-> > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+07.12.2021 15:00, Sameer Pujar пишет:
 > 
-> Can this patch be picked up?
+> 
+> On 12/7/2021 3:52 PM, Dmitry Osipenko wrote:
+>> 07.12.2021 09:32, Sameer Pujar пишет:
+>>> HDA regression is recently reported on Tegra194 based platforms.
+>>> This happens because "hda2codec_2x" reset does not really exist
+>>> in Tegra194 and it causes probe failure. All the HDA based audio
+>>> tests fail at the moment. This underlying issue is exposed by
+>>> commit c045ceb5a145 ("reset: tegra-bpmp: Handle errors in BPMP
+>>> response") which now checks return code of BPMP command response.
+>>>
+>>> The failure can be fixed by avoiding above reset in the driver,
+>>> but the explicit reset is not necessary for Tegra devices which
+>>> depend on BPMP. On such devices, BPMP ensures reset application
+>>> during unpowergate calls. Hence skip reset on these devices
+>>> which is applicable for Tegra186 and later.
+>> The power domain is shared with the display, AFAICS. The point of reset
+>> is to bring h/w into predictable state. It doesn't make sense to me to
+>> skip the reset.
+> 
+> Yes the power-domain is shared with display. As mentioned above,
+> explicit reset in driver is not really necessary since BPMP is already
+> doing it during unpowergate stage. So the h/w is already ensured to be
+> in a good state.
 
-Somehow this is not in my queue. Kuogee can you add tags received and
-rebase and send please
-
-
--- 
-~Vinod
+If you'll reload the driver module, then h/w won't be reset.
