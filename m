@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6958246B061
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 03:00:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C9FE46B08C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 03:24:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229605AbhLGCED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 21:04:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40654 "EHLO
+        id S240876AbhLGC2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 21:28:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230367AbhLGCEC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 21:04:02 -0500
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 851DCC0613F8
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 18:00:32 -0800 (PST)
-Received: by mail-qk1-x731.google.com with SMTP id i9so13198751qki.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 18:00:32 -0800 (PST)
+        with ESMTP id S232569AbhLGC2V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 21:28:21 -0500
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1B38C061746
+        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 18:24:51 -0800 (PST)
+Received: by mail-yb1-xb36.google.com with SMTP id d10so36934224ybn.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 18:24:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=google.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=LHUXbPRT25ZDGyYQUP9EBdAS2w1po8K23wsE9IxclQk=;
-        b=qlYV3iClS+ewTz9MNtRVV068VCFdmh32g7bxah8hRW43G3UhX8MDE0ve7Rv1DOE7BY
-         Q/O/2i/m3At0lBx/bfJfJWjxy+9FHg5G0pjtLuG0/Zu7IkAI3tIKe3hd7onOt+jlYPH8
-         CMa+YMPbdvXUlkHEh5DAFrVexOfscXuuDXujz/+/Q//NV14eKWnqyJmqmP3YtYV5j2FS
-         lwbDHQYWCbKVw07jcvyxPffdZZ08K36mNnnnKNKLL2PVlARA8cXmDvauPU/l811uzvr7
-         aaw4IpslGK20NREkJB3aaEq1D1D+pNlIQOGwngIN/G8OyonYFwMnvFmteEJAhZeNmdQk
-         NIpQ==
+        bh=2OMixw9Me0yHhWDDFaCGdGZaAxF8n91aCEtHks1Fm+k=;
+        b=CGZbhBmdY5MHv2LFP5YUvDRPTzIFRZu1FsTDtGhF9qgzXDYoAsK68UvPmq/QhFY3QQ
+         YTV2rd/IMY67472eI/UY7WiVkJVpuHBh+G/8pL2L+YMYp74z6CvHMdq66+3k9QBNNe7M
+         DJPZZCKaRNNgydzIVvjFBowrz6D3uPn1B26YVmO/7KotpsKxVZefoSJDStMkcqM8QHPZ
+         VHaQw4MNp+i6h/y4Z+6P57te1oqSWi6wYCAPPH+FKhoZhyxLUWhQ9aNcTG/v2YkqBerO
+         sSpb0CLj897HnY35eaZkBYwTlBj0fofJzClPY3052lGVbwBXiDWlLynvOB7audlWW4Lu
+         KWRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=LHUXbPRT25ZDGyYQUP9EBdAS2w1po8K23wsE9IxclQk=;
-        b=IUA5mUeYgoind+5DO8XzRiI4mUyziA8X4soALvEFhwArcLRzwdYw/h3v2AHMEe09jG
-         LGFbzGGIAWeRJ+YsXEMIQmWjkScbJOfeEfkl6o0T2uBIoyQSPDiyvoSvq66OoObItWIJ
-         /t/jNoL29R+DQSHB0ZFLlryGdT3DcJ3TkdUmQFBwv+obJyI0yO39Em1vMLtXnhuvqfqn
-         yjApDcTWVEZ1cjFPWOSGrcalPFGXDjINHGY1hik0ZYp6tzy3O027guDtyCJioaw+pjNV
-         iXy7Pvq2HnvQEzpzummssj0sE4iIJzk5JeAyqCjqQO7mxLCDntIAuqJuHZl24KiEz4M4
-         0oRQ==
-X-Gm-Message-State: AOAM531e/99EniiGiWP/43boeYEtsVVGEbIseFJSgGoVZscWhH35gcbH
-        p2/Ywgw10fqzGsLWHuQrf+0dKZxFfwF7+8tIbGPLsA==
-X-Google-Smtp-Source: ABdhPJw97MStNRFea+NYyfM5DcUImSj/8TRCrOrCZq/Nm/PIVjOTf+7OL70Rwjttb0VO9ssJzBfqKKOJBNi7jXWamEc=
-X-Received: by 2002:a05:620a:c50:: with SMTP id u16mr38296709qki.203.1638842431627;
- Mon, 06 Dec 2021 18:00:31 -0800 (PST)
+        bh=2OMixw9Me0yHhWDDFaCGdGZaAxF8n91aCEtHks1Fm+k=;
+        b=K3VEEmv86rwzWcpFvi9i4l0XD5olu0J7NYmDQYxNYcP8MT0jTIgDhvzZig8Uds4tCw
+         tYPjvFAdYR6ttcoznk+9AOgutdnTzepl9xt32Yz5GGUmWGM0+7GrkF/2D5fG+D58ezqg
+         hNIUb/Rp8NI3JW9fxOo2FHNIcnwNRThaq2qZs07RJnbjsQrEVqCrZ6LjTetCVRzqrGBS
+         7kZ94nDyihsEQoOI1JYeYTYnL2iGqVzKlm7Ue1xUR6sblOpfLvBv2dZGmZs50iAkOyYT
+         IF/Ua0EN/1MIu0WF4wz4vcb9KqHke3Zdt79mSbb9nSt5FgQZHeqV9Quy5vhBVjC1Z3gl
+         NZkg==
+X-Gm-Message-State: AOAM532JKZuVIIbtz7l2hNWYHOjm9q0KcxLK80PiE0lASfhGmDINctQS
+        snfI6ufDgprAzAd6gHo+apFsh25qcIjPLdCJY+366Q==
+X-Google-Smtp-Source: ABdhPJz4iot5xR5ycz2pnVGAMO4lq4a50xzmyMnRXGumF6yGCeBGm4Djut0AsSC8Z9NssHyuMmZxcc3IN0gvH+mqqqk=
+X-Received: by 2002:a25:6c6:: with SMTP id 189mr47279877ybg.753.1638843890905;
+ Mon, 06 Dec 2021 18:24:50 -0800 (PST)
 MIME-Version: 1.0
 References: <20211125183622.597177-1-dmitry.baryshkov@linaro.org>
  <CAGETcx-_6OvcJM1nAoX3pxE3Rard5CRxEuEsmhfLANOzOS1BSQ@mail.gmail.com>
- <CAGETcx86iFm04PxnmrRQhooxtd4_kv87rAu=T0RauqFXmRLKNA@mail.gmail.com> <CAA8EJpr4+B1Q3voOr__3M37jxxBRi0g3avzE1Y8CDLkZB+rSGg@mail.gmail.com>
-In-Reply-To: <CAA8EJpr4+B1Q3voOr__3M37jxxBRi0g3avzE1Y8CDLkZB+rSGg@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 7 Dec 2021 05:00:20 +0300
-Message-ID: <CAA8EJpr47F6x+GhV1z_uLWmGFKCdYCoohvi_A83SBynKGf=qkA@mail.gmail.com>
+ <CAGETcx86iFm04PxnmrRQhooxtd4_kv87rAu=T0RauqFXmRLKNA@mail.gmail.com>
+ <CAA8EJpr4+B1Q3voOr__3M37jxxBRi0g3avzE1Y8CDLkZB+rSGg@mail.gmail.com> <CAA8EJpr47F6x+GhV1z_uLWmGFKCdYCoohvi_A83SBynKGf=qkA@mail.gmail.com>
+In-Reply-To: <CAA8EJpr47F6x+GhV1z_uLWmGFKCdYCoohvi_A83SBynKGf=qkA@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 6 Dec 2021 18:24:15 -0800
+Message-ID: <CAGETcx9kaFw3sG8bPdDin8pCBzwzZ70ZnZhpkF2ZHq0U4OHJ9A@mail.gmail.com>
 Subject: Re: [PATCH] of: property: do not create clocks device link for clock controllers
-To:     Saravana Kannan <saravanak@google.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
@@ -65,134 +66,153 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Saravana,
-
-On Tue, 30 Nov 2021 at 03:24, Dmitry Baryshkov
+On Mon, Dec 6, 2021 at 6:00 PM Dmitry Baryshkov
 <dmitry.baryshkov@linaro.org> wrote:
 >
-> On Tue, 30 Nov 2021 at 02:53, Saravana Kannan <saravanak@google.com> wrote:
+> Hi Saravana,
+>
+> On Tue, 30 Nov 2021 at 03:24, Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
 > >
-> > On Mon, Nov 29, 2021 at 3:48 PM Saravana Kannan <saravanak@google.com> wrote:
+> > On Tue, 30 Nov 2021 at 02:53, Saravana Kannan <saravanak@google.com> wrote:
 > > >
-> > > On Thu, Nov 25, 2021 at 10:36 AM Dmitry Baryshkov
-> > > <dmitry.baryshkov@linaro.org> wrote:
+> > > On Mon, Nov 29, 2021 at 3:48 PM Saravana Kannan <saravanak@google.com> wrote:
 > > > >
-> > > > Do not create device link for clock controllers.
-> > >
-> > > Nak.
-> > >
-> > > > Some of the clocks
-> > > > provided to the device via OF can be the clocks that are just parents to
-> > > > the clocks provided by this clock controller. Clock subsystem already
-> > > > has support for handling missing clock parents correctly (clock
-> > > > orphans). Later when the parent clock is registered, clocks get
-> > > > populated properly.
+> > > > On Thu, Nov 25, 2021 at 10:36 AM Dmitry Baryshkov
+> > > > <dmitry.baryshkov@linaro.org> wrote:
+> > > > >
+> > > > > Do not create device link for clock controllers.
 > > > >
-> > > > An example of the system where this matters is the SDM8450 MTP board
-> > > > (see arch/arm64/boot/dts/qcom/sdm845-mtp.dts). Here the dispcc uses
-> > > > clocks provided by dsi0_phy and dsi1_phy device tree nodes. However the
-> > > > dispcc itself provides clocks to both PHYs, to the PHY parent device,
-> > > > etc. With just dsi0_phy in place devlink is able to break the
-> > > > dependency,
-> > >
-> > > Right, because I wrote code to make sure we handle these clock
-> > > controller cases properly. If that logic isn't smart enough, let's fix
-> > > that.
->
-> As I said, devlink was delaying dispcc probing ,waiting for the second
-> DSI PHY clock provider.
-> Thus came my proposal to let clock orphans handle the case (which it
-> does perfectly).
->
-> > >
-> > > > but with two PHYs, dispcc doesn't get probed at all, thus
-> > > > breaking display support.
-> > >
-> > > Then let's find out why and fix this instead of hiding some
-> > > dependencies from fw_devlink. You could be breaking other cases/boards
-> > > with this change you are making.
+> > > > Nak.
+> > > >
+> > > > > Some of the clocks
+> > > > > provided to the device via OF can be the clocks that are just parents to
+> > > > > the clocks provided by this clock controller. Clock subsystem already
+> > > > > has support for handling missing clock parents correctly (clock
+> > > > > orphans). Later when the parent clock is registered, clocks get
+> > > > > populated properly.
+> > > > >
+> > > > > An example of the system where this matters is the SDM8450 MTP board
+> > > > > (see arch/arm64/boot/dts/qcom/sdm845-mtp.dts). Here the dispcc uses
+> > > > > clocks provided by dsi0_phy and dsi1_phy device tree nodes. However the
+> > > > > dispcc itself provides clocks to both PHYs, to the PHY parent device,
+> > > > > etc. With just dsi0_phy in place devlink is able to break the
+> > > > > dependency,
+> > > >
+> > > > Right, because I wrote code to make sure we handle these clock
+> > > > controller cases properly. If that logic isn't smart enough, let's fix
+> > > > that.
 > >
-> > Btw, forgot to mention. I'll look into this one and try to find the
-> > reason why it wasn't handled automatically. And then come up with a
-> > fix.
+> > As I said, devlink was delaying dispcc probing ,waiting for the second
+> > DSI PHY clock provider.
+> > Thus came my proposal to let clock orphans handle the case (which it
+> > does perfectly).
 > >
-> > If you want to find out why fw_devlink didn't notice the cycle
-> > correctly for the case of 2 PHYs vs 1 PHY, I'd appreciate that too.
+> > > >
+> > > > > but with two PHYs, dispcc doesn't get probed at all, thus
+> > > > > breaking display support.
+> > > >
+> > > > Then let's find out why and fix this instead of hiding some
+> > > > dependencies from fw_devlink. You could be breaking other cases/boards
+> > > > with this change you are making.
+> > >
+> > > Btw, forgot to mention. I'll look into this one and try to find the
+> > > reason why it wasn't handled automatically. And then come up with a
+> > > fix.
+> > >
+> > > If you want to find out why fw_devlink didn't notice the cycle
+> > > correctly for the case of 2 PHYs vs 1 PHY, I'd appreciate that too.
+> > >
+> > > Btw, same comment for remote-endpoint. I'll look into what's going on
+> > > in that case. Btw, I'm assuming all the code and DT you are testing
+> > > this on is already upstream. Can you please confirm that?
 > >
-> > Btw, same comment for remote-endpoint. I'll look into what's going on
-> > in that case. Btw, I'm assuming all the code and DT you are testing
-> > this on is already upstream. Can you please confirm that?
->
-> All the code and basic DT is upstreamed. The DT part I
-> referenced/posted was written for the custom extender for the
-> qrb5165-rb5 board that I use here to test MSM DRM driver, but the
-> result DT should be more or less the same as smd845-mtp.
+> > All the code and basic DT is upstreamed. The DT part I
+> > referenced/posted was written for the custom extender for the
+> > qrb5165-rb5 board that I use here to test MSM DRM driver, but the
+> > result DT should be more or less the same as smd845-mtp.
 
-So, is there a way we can assist you in debugging these issues? I
-still can not get dual DSI setup to work without this patch (or
-without disabling fw_devlink).
+Can you point me to some upstream DTS file (not dtsi) that you think
+will definitely have this issue (ideally you've actually hit it), and
+the specific DT nodes in question? That'd make it much easier for me
+to jump in and look as I'm not up to speed on all the MSM boards.
+
+> So, is there a way we can assist you in debugging these issues? I
+> still can not get dual DSI setup to work without this patch (or
+> without disabling fw_devlink).
+
+Sorry I've been a bit swamped. I'll try to take a look at this soon.
+
+Another thing you could do is look at the existing code that detects
+these cycles and fixes them up and figure out why it's not noticing a
+cycle for your use case or not fixing the cycle correctly. You'll want
+to look at calls to fw_devlink_relax_cycle() inside
+fw_devlink_create_devlink().
+
+-Saravana
 
 >
-> >
-> > -Saravana
 > >
 > > >
 > > > -Saravana
 > > >
-> > > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > > Cc: Stephen Boyd <swboyd@chromium.org>
-> > > > Cc: Saravana Kannan <saravanak@google.com>
-> > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > > ---
-> > > >  drivers/of/property.c | 16 +++++++++++++++-
-> > > >  1 file changed, 15 insertions(+), 1 deletion(-)
 > > > >
-> > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > > index a3483484a5a2..f7229e4030e3 100644
-> > > > --- a/drivers/of/property.c
-> > > > +++ b/drivers/of/property.c
-> > > > @@ -1264,7 +1264,6 @@ struct supplier_bindings {
-> > > >         bool node_not_dev;
-> > > >  };
+> > > > -Saravana
 > > > >
-> > > > -DEFINE_SIMPLE_PROP(clocks, "clocks", "#clock-cells")
-> > > >  DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
-> > > >  DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
-> > > >  DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
-> > > > @@ -1294,6 +1293,21 @@ DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
-> > > >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
-> > > >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
-> > > >
-> > > > +static struct device_node *parse_clocks(struct device_node *np,
-> > > > +                                       const char *prop_name, int index)
-> > > > +{
-> > > > +       /*
-> > > > +        * Do not create clock-related device links for clocks controllers,
-> > > > +        * clock orphans will handle missing clock parents automatically.
-> > > > +        */
-> > > > +       if (!strcmp(prop_name, "clocks") &&
-> > > > +           of_find_property(np, "#clock-cells", NULL))
-> > > > +               return NULL;
-> > > > +
-> > > > +       return parse_prop_cells(np, prop_name, index, "clocks",
-> > > > +                                      "#clock-cells");
-> > > > +}
-> > > > +
-> > > >  static struct device_node *parse_gpios(struct device_node *np,
-> > > >                                        const char *prop_name, int index)
-> > > >  {
-> > > > --
-> > > > 2.33.0
-> > > >
+> > > > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > > Cc: Stephen Boyd <swboyd@chromium.org>
+> > > > > Cc: Saravana Kannan <saravanak@google.com>
+> > > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > > ---
+> > > > >  drivers/of/property.c | 16 +++++++++++++++-
+> > > > >  1 file changed, 15 insertions(+), 1 deletion(-)
+> > > > >
+> > > > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > > > index a3483484a5a2..f7229e4030e3 100644
+> > > > > --- a/drivers/of/property.c
+> > > > > +++ b/drivers/of/property.c
+> > > > > @@ -1264,7 +1264,6 @@ struct supplier_bindings {
+> > > > >         bool node_not_dev;
+> > > > >  };
+> > > > >
+> > > > > -DEFINE_SIMPLE_PROP(clocks, "clocks", "#clock-cells")
+> > > > >  DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
+> > > > >  DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
+> > > > >  DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
+> > > > > @@ -1294,6 +1293,21 @@ DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
+> > > > >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+> > > > >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+> > > > >
+> > > > > +static struct device_node *parse_clocks(struct device_node *np,
+> > > > > +                                       const char *prop_name, int index)
+> > > > > +{
+> > > > > +       /*
+> > > > > +        * Do not create clock-related device links for clocks controllers,
+> > > > > +        * clock orphans will handle missing clock parents automatically.
+> > > > > +        */
+> > > > > +       if (!strcmp(prop_name, "clocks") &&
+> > > > > +           of_find_property(np, "#clock-cells", NULL))
+> > > > > +               return NULL;
+> > > > > +
+> > > > > +       return parse_prop_cells(np, prop_name, index, "clocks",
+> > > > > +                                      "#clock-cells");
+> > > > > +}
+> > > > > +
+> > > > >  static struct device_node *parse_gpios(struct device_node *np,
+> > > > >                                        const char *prop_name, int index)
+> > > > >  {
+> > > > > --
+> > > > > 2.33.0
+> > > > >
+> >
+> >
+> >
+> > --
+> > With best wishes
+> > Dmitry
 >
 >
 >
 > --
 > With best wishes
 > Dmitry
-
-
-
--- 
-With best wishes
-Dmitry
