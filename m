@@ -2,133 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CF0D46C30B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 19:44:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A6DF46C326
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 19:51:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240667AbhLGSro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 13:47:44 -0500
-Received: from foss.arm.com ([217.140.110.172]:38930 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230001AbhLGSro (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Dec 2021 13:47:44 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BB2741063;
-        Tue,  7 Dec 2021 10:44:13 -0800 (PST)
-Received: from FVFF77S0Q05N (unknown [10.57.67.24])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 55D843F73B;
-        Tue,  7 Dec 2021 10:44:12 -0800 (PST)
-Date:   Tue, 7 Dec 2021 18:44:06 +0000
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     will@kernel.org, catalin.marinas@arm.com, robh+dt@kernel.org,
-        suzuki.poulose@arm.com, thierry.reding@gmail.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/5] arm64: perf: Support new DT compatibles
-Message-ID: <Ya+rdqYBe7AyKoF6@FVFF77S0Q05N>
-References: <cover.1638900542.git.robin.murphy@arm.com>
- <579f301dbf5347d20cfdf49480b850cba82c1ca2.1638900542.git.robin.murphy@arm.com>
+        id S236056AbhLGSy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 13:54:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51808 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236052AbhLGSy7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 13:54:59 -0500
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B03A5C061574;
+        Tue,  7 Dec 2021 10:51:28 -0800 (PST)
+Received: by mail-qk1-x72b.google.com with SMTP id t83so15641075qke.8;
+        Tue, 07 Dec 2021 10:51:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=cSWJVy3Qek8jdmG8QIzpHbMKdFfl7J7QDZ7fULdlY1s=;
+        b=fcUqtoJRKONoB+Rm6NeF8NLsI0tPZUiFdDizKcNmF2+08E42HOAUTfZR0K8N2BMZ9l
+         9kXuRIQeX1VV/N+OsYN8vvnl6P5N3uoHWCxeBoL2xvS20aY1wDdxicwdYH7ZqToAcvIx
+         IX45xtQEQN9X+HaqaXI3CtIrlwLh7IdM+5VIYTge4JkZGCFmgL8WwjztYNCw7odzVgCJ
+         vBpm9EfQEgIMKnC5EnDbsNhvoh15kxHPjD+RZu4S5GbnymUfibChfskPfyMu5zTu4QTa
+         qhJzpZoUxpncjiunB5ep2vTRtxKxMRcEjrBVXJuPqakQUlh1BxGotGC6kiJAUObhgpys
+         eFXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cSWJVy3Qek8jdmG8QIzpHbMKdFfl7J7QDZ7fULdlY1s=;
+        b=jxSLmqD/SlzDLijYRpPPaZgth1njZ64uZ2KGOIfX6g5xg4ENitK35TUlKD8yo80XDx
+         eLEKYuY3OJ3uqAQmzoHF4YsC2hvTiElG4NzEL7XWNEOzrHvyZVCxRB4eP0kUlQzzQm/A
+         K1EMuJP57hTHlNoeKW2peG1ygG+Pjz8nBQjfNTxW95liktICKfFB0pBLl6SunX9xV8NX
+         FyHVH/ZWGuBGSpYvxj1BZ1dcTOv4X/gCjPYKUz3yFMevVz/B2wwfLQijkNPRhPfT0YjL
+         S0S/hWI1KoLYQ198ozY6rZs5ThBJp0U9A7X3K60cU3SYeVV/1ItIsRfrehSc96QuYjFi
+         Byhg==
+X-Gm-Message-State: AOAM530zL9IQsbZorPrlOQvzfYjj+gYk1t08mdu4ZTTnK69znLKWBLbG
+        yF/zSPAztwfywj7g9Sr6txo=
+X-Google-Smtp-Source: ABdhPJyFCG4ijT/B741AVvwG7qx4iLLq2KBtdAH45c1K3ulMd2Ov6nrSILSk0YC7oh0fcpIJ1ne/+Q==
+X-Received: by 2002:a37:502:: with SMTP id 2mr1156992qkf.701.1638903087896;
+        Tue, 07 Dec 2021 10:51:27 -0800 (PST)
+Received: from errol.ini.cmu.edu (pool-108-39-235-221.pitbpa.fios.verizon.net. [108.39.235.221])
+        by smtp.gmail.com with ESMTPSA id t6sm249736qkj.33.2021.12.07.10.51.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Dec 2021 10:51:27 -0800 (PST)
+Date:   Tue, 7 Dec 2021 13:51:25 -0500
+From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Kamil Rakoczy <krakoczy@antmicro.com>,
+        mdudek@internships.antmicro.com,
+        Paul Mackerras <paulus@ozlabs.org>,
+        Stafford Horne <shorne@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        david.abdurachmanov@sifive.com,
+        Florent Kermarrec <florent@enjoy-digital.fr>
+Subject: Re: [PATCH v1 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+Message-ID: <Ya+tLfsaPd/EFppJ@errol.ini.cmu.edu>
+References: <20211203234155.2319803-1-gsomlo@gmail.com>
+ <20211203234155.2319803-4-gsomlo@gmail.com>
+ <CACPK8XfO_8=vgedmZddz1YmWbyxiM1-azF_j88wEBHzXnP6y_g@mail.gmail.com>
+ <Ya63gv21Dmhi6J0s@errol.ini.cmu.edu>
+ <CACPK8Xeg2UoAqp55R+UrRLFJqerc1Kqrubh3BiEpSon+Q6bGyQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <579f301dbf5347d20cfdf49480b850cba82c1ca2.1638900542.git.robin.murphy@arm.com>
+In-Reply-To: <CACPK8Xeg2UoAqp55R+UrRLFJqerc1Kqrubh3BiEpSon+Q6bGyQ@mail.gmail.com>
+X-Clacks-Overhead: GNU Terry Pratchett
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 07, 2021 at 06:20:41PM +0000, Robin Murphy wrote:
-> Wire up the new DT compatibles so we can present appropriate
-> PMU names to userspace for the latest and greatest CPUs.
+Hi Joel,
+
+On Tue, Dec 07, 2021 at 02:46:03AM +0000, Joel Stanley wrote:
+> On Tue, 7 Dec 2021 at 01:23, Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+> > > > [...]
+> > > > +
+> > > > +       ret = dma_set_mask(&pdev->dev, DMA_BIT_MASK(32));
+> > >
+> > > Is this going to be true on all platforms? How do we handle those
+> > > where it's not true?
+> >
+> > I'll need to do a bit of digging here, unless anyone has ideas ready
+> > to go...
 > 
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> ---
->  arch/arm64/kernel/perf_event.c | 36 ++++++++++++++++++++++++++++++++++
->  1 file changed, 36 insertions(+)
+> I'm not an expert either, so let's consult the docs:
 > 
-> diff --git a/arch/arm64/kernel/perf_event.c b/arch/arm64/kernel/perf_event.c
-> index 57720372da62..3fe4dcfc28d4 100644
-> --- a/arch/arm64/kernel/perf_event.c
-> +++ b/arch/arm64/kernel/perf_event.c
-> @@ -1215,6 +1215,26 @@ static int armv8_a78_pmu_init(struct arm_pmu *cpu_pmu)
->  	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a78", NULL);
->  }
->  
-> +static int armv9_a510_pmu_init(struct arm_pmu *cpu_pmu)
-> +{
-> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv9_cortex_a510", NULL);
-> +}
-> +
-> +static int armv9_a710_pmu_init(struct arm_pmu *cpu_pmu)
-> +{
-> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv9_cortex_a710", NULL);
-> +}
-> +
-> +static int armv8_x1_pmu_init(struct arm_pmu *cpu_pmu)
-> +{
-> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_x1", NULL);
-> +}
-> +
-> +static int armv9_x2_pmu_init(struct arm_pmu *cpu_pmu)
-> +{
-> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv9_cortex_x2", NULL);
-> +}
+> Documentation/core-api/dma-api-howto.rst
+> 
+> This suggests we should be using dma_set_mask_and_coherent?
+> 
+> But we're setting the mask to 32, which is the default, so perhaps we
+> don't need this call at all?
+> 
+> (I was thinking of the microwatt soc, which is a 64 bit soc but the
+> peripherals are on a 32 bit bus, and some of the devices are behind a
+> smaller bus again. But I think we're ok, as the DMA wishbone is
+> 32-bit).
+ 
+So I did a bit of digging, and as it turns out the LiteX DMA base
+registers are 64-bit wide, which I think means that they can
+essentially do `xlen` bits of DMA addressing, at least when used
+as part of a LiteX SoC (no idea what additional quirks occur if/when
+LiteSDCard, or any other 64-bit-DMA-capable LiteX IP block would be
+used as a standalone component in a different system).
 
-I wonder if it'd be better to do something like:
+Does this mean that, depending on maybe CONFIG_ARCH_DMA_ADDR_T_64BIT
+or something similar, we should actually set DMA_BIT_MASK(64)? Maybe
+something like:
 
-#define PMU_INIT_SIMPLE(name)						\
-static int name##_pmu_init(struct arm_pmu *cpu_pmu)			\
-{
-	return armv8_pmu_init_nogroups(cpu_pmu, #name, NULL);		\
-}
+#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
+	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(64));
+	if (ret)
+		goto err;
+#endif
 
-PMU_INIT_SIMPLE(armv9_cortex_a510)
-PMU_INIT_SIMPLE(armv9_cortex_a710)
-PMU_INIT_SIMPLE(armv8_xortex_x1)
-PMU_INIT_SIMPLE(armv9_xortex_x2)
+Leave it to the default 32 unless we're on a 64-bit-DMA capable
+system, in which case it's safe to assume we need the above setting?
 
-... and fix up the armv8_pmu_of_device_ids[] table to use the longer init names
-that results in?
-
-Otherwise, looks good to me.
+What do you think, does that make sense?
 
 Thanks,
-Mark.
-
-> +
->  static int armv8_e1_pmu_init(struct arm_pmu *cpu_pmu)
->  {
->  	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_neoverse_e1", NULL);
-> @@ -1225,6 +1245,16 @@ static int armv8_n1_pmu_init(struct arm_pmu *cpu_pmu)
->  	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_neoverse_n1", NULL);
->  }
->  
-> +static int armv9_n2_pmu_init(struct arm_pmu *cpu_pmu)
-> +{
-> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv9_neoverse_n2", NULL);
-> +}
-> +
-> +static int armv8_v1_pmu_init(struct arm_pmu *cpu_pmu)
-> +{
-> +	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_neoverse_v1", NULL);
-> +}
-> +
->  static int armv8_thunder_pmu_init(struct arm_pmu *cpu_pmu)
->  {
->  	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cavium_thunder",
-> @@ -1251,8 +1281,14 @@ static const struct of_device_id armv8_pmu_of_device_ids[] = {
->  	{.compatible = "arm,cortex-a76-pmu",	.data = armv8_a76_pmu_init},
->  	{.compatible = "arm,cortex-a77-pmu",	.data = armv8_a77_pmu_init},
->  	{.compatible = "arm,cortex-a78-pmu",	.data = armv8_a78_pmu_init},
-> +	{.compatible = "arm,cortex-a510-pmu",	.data = armv9_a510_pmu_init},
-> +	{.compatible = "arm,cortex-a710-pmu",	.data = armv9_a710_pmu_init},
-> +	{.compatible = "arm,cortex-x1-pmu",	.data = armv8_x1_pmu_init},
-> +	{.compatible = "arm,cortex-x2-pmu",	.data = armv9_x2_pmu_init},
->  	{.compatible = "arm,neoverse-e1-pmu",	.data = armv8_e1_pmu_init},
->  	{.compatible = "arm,neoverse-n1-pmu",	.data = armv8_n1_pmu_init},
-> +	{.compatible = "arm,neoverse-n2-pmu",	.data = armv9_n2_pmu_init},
-> +	{.compatible = "arm,neoverse-v1-pmu",	.data = armv8_v1_pmu_init},
->  	{.compatible = "cavium,thunder-pmu",	.data = armv8_thunder_pmu_init},
->  	{.compatible = "brcm,vulcan-pmu",	.data = armv8_vulcan_pmu_init},
->  	{},
-> -- 
-> 2.28.0.dirty
-> 
+--Gabriel
