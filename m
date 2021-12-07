@@ -2,115 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D601F46BBEC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:56:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA12C46BBF4
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:57:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235539AbhLGNAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 08:00:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50914 "EHLO
+        id S231181AbhLGNBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 08:01:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232439AbhLGNAR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 08:00:17 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A7F4C061574;
-        Tue,  7 Dec 2021 04:56:47 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id p27-20020a05600c1d9b00b0033bf8532855so2169245wms.3;
-        Tue, 07 Dec 2021 04:56:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9rOcjGde/KWZTwQaV5kkIYXKq8iKi5wvGnMXIJC9BmY=;
-        b=gKXl3jtmK9PAW3g+l/f23cqipT04ctuh1p9+Ctxo3MKut5fRKjyk5uuy0UxKeLiwYf
-         jQsVTtq6Kaa6qQMXjEBvWWogCiHSCX44S4psHcncMC0QClUxOwUk/qYelfqepvbXRjR+
-         82eJIr+jdaJRygnJTe/IJIAIecz/5d+XiJ22v3mgKCrzDrPNv/vRr2sxRPnZ5b0f7ktN
-         o5xA4lEP657wE+DcBPgVksW6LzuHanHnirWE83OpUMqrlwZzD5JmsdXrfTkbJ0dYXnab
-         IvoXs2PlI7bvFBPnKPK9crMCETR9hFdXtBhzOkbWfTO7FvDVoOPwLyC4C3aS6hDym4xt
-         q8Hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9rOcjGde/KWZTwQaV5kkIYXKq8iKi5wvGnMXIJC9BmY=;
-        b=J/1MuzopF1kWrGkOm7bIKTNITrYdau909aHZex68Na+6IyCnn4Euxcdn3zeihyysDf
-         pOlHUYL/QDwIRnfk+1+bsXz9jqaH9MxWO/FfI70V4m3l2Ti3PM37wVWQcfK3d6vQSa6J
-         upoEC/nylVmKfIIL/9sb/z2VciarxaE6V6DXMD11fJcl/tUT1noNyy77oRJMlozTp2kJ
-         pmS6BPH+lMlMFbhfCm7cr5WZgRrlbbhMtkVh4kpqAHPEBCoRBiwHWg50xF/DR0Syei2g
-         efI8ExPwNnQ7MCkDtWWyqzktHeeeDkiqcOE8+rEZb/QfZHV1HBpSwUlbCwzyG7WhwG3D
-         f/Sg==
-X-Gm-Message-State: AOAM531eO8iVUmA4b5iWT2x+8zp2t3cIdeeVeEIdnDMTtSEQ6a9Yc0d9
-        CTy3pofHhu1lY68YLe1imda5Z6bH6h/yxA==
-X-Google-Smtp-Source: ABdhPJywW1ADwejKnwk8LQyR/oXFaJVF6S9ZfE2i9/4YMeVwRRfL98gwKQaDdJCGFwPoFukc3xxQWQ==
-X-Received: by 2002:a1c:9d13:: with SMTP id g19mr6788144wme.41.1638881806164;
-        Tue, 07 Dec 2021 04:56:46 -0800 (PST)
-Received: from localhost ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id p27sm2467605wmi.28.2021.12.07.04.56.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 04:56:45 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] ARM: tegra: Add compatible string for built-in ASIX on Colibri boards
-Date:   Tue,  7 Dec 2021 13:56:43 +0100
-Message-Id: <20211207125643.400976-1-thierry.reding@gmail.com>
+        with ESMTP id S236645AbhLGNBG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 08:01:06 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D137FC061574;
+        Tue,  7 Dec 2021 04:57:35 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 954B3B817A2;
+        Tue,  7 Dec 2021 12:57:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B99DC341C3;
+        Tue,  7 Dec 2021 12:57:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638881853;
+        bh=Vsakwz4v3KTwZtfP7ooJ1vlV9GwLJQmR6q3SYZ0oB6g=;
+        h=From:To:Cc:Subject:Date:From;
+        b=A6YasNxTZVPG9rVx1R+x6jDLUObYgtxaK/sxcnTOKUhXS84A3C7Z7TepavtJOeLcv
+         YKtEN13PCUFLALzqnpEqTHLb5We5PZBbmr7mB2mokQmek/dNrj3FXr4uQypXrjqohl
+         rSFXd+ZNxhQ4IaOtmQJOZ38pFUgIx0lFImPxxTr9Y0rCqfbd6x9XIh6K02MAiQbPVT
+         vK1FTF1F9Ml58IyrW+xK7h7b1elxAnxnaDp6nCN5/VSN4qAkf+pXSg34CSxBRtFBwc
+         j9H/A23lJGz+2S4gaY9VvXbGirMnwt3BqLDy6EHB1D3HTumsHd9P52bqFGknqT+6wp
+         f+B9kg3V4szcQ==
+Received: from mchehab by mail.kernel.org with local (Exim 4.94.2)
+        (envelope-from <mchehab@kernel.org>)
+        id 1mua2F-00BYbD-0g; Tue, 07 Dec 2021 13:57:31 +0100
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Wei Xu" <xuwei5@hisilicon.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: [PATCH] dt-bindings: usb: hisilicon,hi3670-dwc3: add binding for Kirin970
+Date:   Tue,  7 Dec 2021 13:57:29 +0100
+Message-Id: <fec9df1a99ad8639f23edc24cdcc3ec78ea31575.1638881845.git.mchehab+huawei@kernel.org>
 X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+Add documentation for the DWC3 USB3 controller found on Kirin970
+CPUs.
 
-The device tree node for the built-in ASIX Ethernet device on Colibri
-boards needs a compatible string in order to pass DT schema validation.
-Add the USB VID,PID compatible string as required by the DT schema for
-USB devices.
-
-Signed-off-by: Thierry Reding <treding@nvidia.com>
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 ---
-Marcel, Philippe, I've used the USB vendor and device IDs from the ASIX
-driver match entry for the AX88772B module, but do you have a quick way
-of verifying that that's indeed the ID that the device reports in those
-systems?
+ .../bindings/usb/hisilicon,hi3670-dwc3.yaml   | 105 ++++++++++++++++++
+ 1 file changed, 105 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/hisilicon,hi3670-dwc3.yaml
 
-Rob, I do get a checkpatch.pl warning for this new compatible string,
-but I'm not sure there's anything easy that could be done about this,
-other than perhaps making checkpatch.pl aware of the special USB (and
-potentially PCI) compatible strings as well.
----
- arch/arm/boot/dts/tegra20-colibri.dtsi | 1 +
- arch/arm/boot/dts/tegra30-colibri.dtsi | 1 +
- 2 files changed, 2 insertions(+)
-
-diff --git a/arch/arm/boot/dts/tegra20-colibri.dtsi b/arch/arm/boot/dts/tegra20-colibri.dtsi
-index 2350fda3be6a..c5c401edd0bf 100644
---- a/arch/arm/boot/dts/tegra20-colibri.dtsi
-+++ b/arch/arm/boot/dts/tegra20-colibri.dtsi
-@@ -689,6 +689,7 @@ usb@c5004000 {
- 		#size-cells = <0>;
- 
- 		asix@1 {
-+			compatible = "usbb95,772b";
- 			reg = <1>;
- 			local-mac-address = [00 00 00 00 00 00];
- 		};
-diff --git a/arch/arm/boot/dts/tegra30-colibri.dtsi b/arch/arm/boot/dts/tegra30-colibri.dtsi
-index e89b4e5a238d..4361b93d0934 100644
---- a/arch/arm/boot/dts/tegra30-colibri.dtsi
-+++ b/arch/arm/boot/dts/tegra30-colibri.dtsi
-@@ -950,6 +950,7 @@ usb@7d004000 {
- 		#size-cells = <0>;
- 
- 		asix@1 {
-+			compatible = "usbb95,772b";
- 			reg = <1>;
- 			local-mac-address = [00 00 00 00 00 00];
- 		};
+diff --git a/Documentation/devicetree/bindings/usb/hisilicon,hi3670-dwc3.yaml b/Documentation/devicetree/bindings/usb/hisilicon,hi3670-dwc3.yaml
+new file mode 100644
+index 000000000000..309a876ea615
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/hisilicon,hi3670-dwc3.yaml
+@@ -0,0 +1,105 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/hisilicon,hi3670-dwc3.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: HiSilicon Kirin970 USB3 Controller
++
++maintainers:
++  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
++
++description:
++  Bindings for the USB3 DWC3 controller present on Kirin970.
++
++properties:
++  compatible:
++    const: hisilicon,hi3670-dwc3
++
++  clocks:
++    maxItems: 4
++
++  clock-names:
++    items:
++      - const: clk_gate_abb_usb
++      - const: hclk_gate_usb3otg
++      - const: clk_gate_usb3otg_ref
++      - const: aclk_gate_usb3dvfs
++
++  ranges: true
++
++  assigned-clocks:
++    maxItems: 1
++
++  assigned-clock-rates:
++    maxItems: 1
++
++  resets:
++    maxItems: 4
++
++  '#address-cells':
++    const: 2
++
++  '#size-cells':
++    const: 2
++
++# Required child node:
++
++patternProperties:
++  "^usb@[0-9a-f]+$":
++    $ref: snps,dwc3.yaml#
++
++required:
++  - compatible
++  - ranges
++  - clocks
++  - clock-names
++  - assigned-clocks
++  - assigned-clock-rates
++  - resets
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/hi3670-clock.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    bus {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      usb3: hisi_dwc3 {
++        compatible = "hisilicon,hi3670-dwc3";
++        #address-cells = <2>;
++        #size-cells = <2>;
++        ranges;
++
++        clocks = <&crg_ctrl HI3670_CLK_GATE_ABB_USB>,
++                 <&crg_ctrl HI3670_HCLK_GATE_USB3OTG>,
++                 <&crg_ctrl HI3670_CLK_GATE_USB3OTG_REF>,
++                 <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
++        clock-names = "clk_gate_abb_usb",
++                      "hclk_gate_usb3otg",
++                      "clk_gate_usb3otg_ref",
++                      "aclk_gate_usb3dvfs";
++
++        assigned-clocks = <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
++        assigned-clock-rates = <238000000>;
++        resets = <&crg_rst 0x90 6>,
++                 <&crg_rst 0x90 7>,
++                 <&usb31_misc_rst 0xA0 8>,
++                 <&usb31_misc_rst 0xA0 9>;
++
++        dwc3: usb@ff100000 {
++          compatible = "snps,dwc3";
++          reg = <0x0 0xff100000 0x0 0x100000>;
++
++          interrupts = <0 159 IRQ_TYPE_LEVEL_HIGH>,
++                       <0 161 IRQ_TYPE_LEVEL_HIGH>;
++
++          phys = <&usb_phy>;
++          phy-names = "usb3-phy";
++        };
++      };
++    };
 -- 
 2.33.1
 
