@@ -2,123 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0349146C17C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 18:16:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 194D746C1A6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 18:21:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234977AbhLGRTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 12:19:54 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:43440 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229971AbhLGRTy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 12:19:54 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 6B474CE1C4B;
-        Tue,  7 Dec 2021 17:16:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE93EC341C3;
-        Tue,  7 Dec 2021 17:16:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1638897380;
-        bh=msCm2s4EM69yiV9jR5VyG96141b9uBc0mx/hEdnJskA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=q/F77Mmsls3bReyCvn2u/26L70wkiszfZIJAsC7wBaaRr7Wnv3owVzcr24Q5CFXcF
-         ql342dQdxb/2WVNsEJIxM1aOAJQUCfFeExGEqutHCBt3vH6DR/YjZxjC4ZtNUOLVJt
-         NWJbdIujJG0cqCIP1/je2taKojOct3RmHWpCCAbU=
-Date:   Tue, 7 Dec 2021 18:16:17 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     David Brazdil <dbrazdil@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hans de Goede <hdegoede@redhat.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, Andrew Scull <ascull@google.com>,
-        Will Deacon <will@kernel.org>
-Subject: Re: [PATCH 2/2] misc: dice: Add driver to forward secrets to
- userspace
-Message-ID: <Ya+W4YpxtB08F1sd@kroah.com>
-References: <20211207123617.3040177-1-dbrazdil@google.com>
- <20211207123617.3040177-3-dbrazdil@google.com>
- <Ya9cwZ94QatewwIc@kroah.com>
- <Ya+PYiP43YxfLS4x@google.com>
+        id S230139AbhLGRZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 12:25:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58684 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229957AbhLGRZX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 12:25:23 -0500
+Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A968C061574;
+        Tue,  7 Dec 2021 09:21:52 -0800 (PST)
+Received: by mail-oo1-xc30.google.com with SMTP id w5-20020a4a2745000000b002c2649b8d5fso5591389oow.10;
+        Tue, 07 Dec 2021 09:21:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=wcvqGk84EZ35PlZnCOG85oW3RjIk0x8a8jSTbQt+xZQ=;
+        b=Xs6mZUdK2kV+Cg3jGc26ags7g3oKqXCZLLXLadNeobZG1KsKsl+5Dp9PcDVrb0r8GL
+         GLQykT5xwpTvgtHl9p349jTfqsD+L6E1PNizxxylMIJRUaQnPQpWnMbmWm+J4kvU/Mhc
+         9eGeNUC5qOzzlSFJ78O+cHTKItP9rY6WmA/arrZ5CDR4ev0SceJMODjUkJFLOdqIl7Vb
+         Ah66jBAph9vVX4wTMZTeVvLXSxK1y439tPnddGEkYmRW7RcAymn/T//iOFKHuWLMjj0A
+         UXCq2PG9BmgWACpCAvgDSBLNCoAZ8RffC16tM9FDERA7JCSIo50o2EyJHTm4wnxjsX5a
+         Vj5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=wcvqGk84EZ35PlZnCOG85oW3RjIk0x8a8jSTbQt+xZQ=;
+        b=BZuRNZ0rB7AfLPC73NUxEBwcDkhiHLi9sWe6YXD504cISQSj+OERMeawDbBrAw3crm
+         +YnoB+eDNQcFNWbXjngvXnLhw2lrT8kW8py2vJAaEK9RwvhVQVpxYDGA9OCXh5CDFXKY
+         Iom0lfWH7ZBr0Xii0RcN6VgMCA3NRpYlMa8iF/J1zIDYdDb8iLrlL41Ho8CBZBmvoa35
+         EunijusfFBDwfhEUhZm523XSxrBW3CGi56PFxUVsoc+M0vijZm7JUWDidiZrDJR6sFUJ
+         9d624xD/2nk1dG9wiwYFRsEBjpDUATI4iHyg9Hi0hqMxm0z3RzWQx3/RFoovw+Jpmpg7
+         yM9A==
+X-Gm-Message-State: AOAM531XpE971r7epNlN0izxAOGZfTDkgSag+w/QuHiL9aFTIpBFtA9r
+        RNZfsq8ZtbO1ZAm2p9gB4Q7WLCd8VUk=
+X-Google-Smtp-Source: ABdhPJzzrwfZsAZrp0U7K2cvXWTtkpwdoReJvu46U4rGr2IYYloOpfhTlYj1oiiLo3bPjIAg8sME/A==
+X-Received: by 2002:a05:6820:1609:: with SMTP id bb9mr27706490oob.37.1638897711606;
+        Tue, 07 Dec 2021 09:21:51 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id t14sm30723oth.81.2021.12.07.09.21.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Dec 2021 09:21:50 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v5 0/2] Add WDT driver for RZ/G2L
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20211130195357.18626-1-biju.das.jz@bp.renesas.com>
+ <OS0PR01MB5922D81A09F4B51C771FE6D5866E9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <cea6840b-31a8-d02c-19fc-9964f4d0be5b@roeck-us.net>
+Date:   Tue, 7 Dec 2021 09:21:48 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Ya+PYiP43YxfLS4x@google.com>
+In-Reply-To: <OS0PR01MB5922D81A09F4B51C771FE6D5866E9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 07, 2021 at 04:44:18PM +0000, David Brazdil wrote:
-> Hi Greg,
+On 12/7/21 8:07 AM, Biju Das wrote:
+> Hi All,
 > 
-> On Tue, Dec 07, 2021 at 02:08:17PM +0100, Greg Kroah-Hartman wrote:
-> > On Tue, Dec 07, 2021 at 12:36:17PM +0000, David Brazdil wrote:
-> > > Open Profile for DICE is a protocol for deriving unique secrets at boot,
-> > > used by some Android devices. The firmware/bootloader hands over secrets
-> > > in a reserved memory region, this driver takes ownership of the memory
-> > > region and exposes it to userspace via a character device that
-> > > lets userspace mmap the memory region into its process.
-> > > 
-> > > The character device can only be opened once at any given time.
-> > 
-> > Why?  That should not matter.  And your code (correctly), does not check
-> > for that.  So why say that here?
+> Gentle ping.
 > 
-> It does check - open() returns -EBUSY if cmpxchg of the state from READY
-> to BUSY fails. I agree this is a bit unconventional but it makes things
-> easier to reason about. With multiple open FDs the driver would have to
-> wait for all of them to get released before wiping, so one user could
-> block the wiping requested by others by holding the FD indefinitely.
-> And wiping despite other open FDs seems wrong, too. Is there a better
-> way of doing this?
-
-Yes, totally ignore it from the kernel point of view.  You don't know
-what userspace just did with that FD the kernel gave it, it could have
-sent it across a pipe, run dup() on it, or any sort of other things.
-Just rely on open/release to know when the device is opened, and then
-when that instance is released.  If userspace wants to do looney things,
-and oddities happen, that's userspace's problem, not yours :)
-
-
-> > > +#include <linux/cdev.h>
-> > > +#include <linux/dice.h>
-> > > +#include <linux/io.h>
-> > > +#include <linux/mm.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/of_reserved_mem.h>
-> > > +#include <linux/platform_device.h>
-> > > +
-> > > +#define DICE_MKDEV		MKDEV(MAJOR(dice_devt), 0)
-> > > +#define DICE_MINOR_COUNT	1
-> > 
-> > Please just use the misc_device api, no need to try to claim a major
-> > number for just one device node.  That will simplify your code a lot as
-> > well.
+> Are we happy with this patch series? Please let me know.
 > 
-> Ok, I'll look into it.
+
+I think so. You retained my Reviewed-by: tag, so I did not see
+a need to reply (again).
+
+Guenter
+
+> Regards,
+> Biju
 > 
-> > > +static int dice_open(struct inode *inode, struct file *filp)
-> > > +{
-> > > +	struct dice_data *data;
-> > > +
-> > > +	data = container_of(inode->i_cdev, struct dice_data, cdev);
-> > > +
-> > > +	/* Never allow write access. */
-> > > +	if (filp->f_mode & FMODE_WRITE)
-> > > +		return -EROFS;
-> > 
-> > Why do you care?  Writes just will not work anyway, right?
 > 
-> There is nothing else preventing writes, the reserved memory is just plain
-> old RAM.
+>> Subject: [PATCH v5 0/2] Add WDT driver for RZ/G2L
+>>
+>> This patch series aims to add WDT driver support for RZ/G2L SoC's.
+>>
+>> WDT has 3 channels
+>> 1) CH0 to check the operation of Cortex-A55-CPU Core0
+>> 2) CH1 to check the operation of Cortex-A55-CPU Core1
+>> 3) CH2 to check the operation of Cortex-M33 CPU
+>>
+>> WDT IP supports
+>> 1) Normal Watchdog Timer Function
+>> 2) Reset Request Function due to CPU Parity Error
+>>
+>> Once the software activates the watchdog timer, the watchdog timer does
+>> not stop until it is reset.
+>>
+>> Current driver supports Normal Watchdog Timer basic functionality.
+>>
+>> Tested WDT driver with selftests tool and reboot command
+>>
+>> All 3 channels tested with below command.
+>>
+>> cat /dev/watchdog  & for i in {1..60}; do sleep 1; echo $i; devmem2
+>> 0x12800808; done cat /dev/watchdog1  & for i in {1..60}; do sleep 1; echo
+>> $i; devmem2 0x12800c08; done cat /dev/watchdog2 & for i in {1..60}; do
+>> sleep 1; echo $i; devmem2 0x12800408; done
+>>
+>> v4->v5:
+>>   * Started using the macros MICRO and USEC_PER_SEC
+>>   * Renamed rzg2l_wdt_get_cycle_msec() to rzg2l_wdt_get_cycle_usec()
+>>   * Fixed the value of priv->wdev.max_timeout in seconds.
+>> V3->V4:
+>>   * Fixed the build issue reported by kernel test robot
+>> V2->V3:
+>>   * Added Rb tag from Guenter Roeck
+>>   * Removed Removed patch#1, as the clock changes related to WDT reset
+>> selection
+>>     will be handled in TF-A.
+>> V1->V2:
+>>   * started using clk_get/put instead of devm_clk_get/put
+>>   * Moved devm_add_action_or_reset after set_drvdata() and
+>>   * removed redundant action on devm_add_action_or_reset() failure.
+>> RFC->V1
+>>   * Removed patch#3, the clk patch is queued for 5.17
+>>   * Added clock-names and interrupt-names as required properties for RZ/G2L
+>>   * Re-order clocknames with internal module clock first
+>>   * Removed pclk_rate from priv.
+>>   * rzg2l_wdt_write() returns void and Removed tiemout related to register
+>> update
+>>   * rzg2l_wdt_init_timeout() returns void and removed delays.
+>>   * removed set_bit(WDOG_HW_RUNNING,..) as we can stop watchdog
+>>   * renamed reset_assert_clock_disable->reset_assert_pm_disable_put
+>>   * started using devm_reset_control_get_exclusive()
+>>   * removed platform_set_drvdata(pdev, priv) as there is no user
+>>   * removed watchdog_set_restart_priority(&priv->wdev, 0) as 0 is the
+>> default.
+>>   * removed remove callback as it is empty.
+>>
+>> Biju Das (2):
+>>    dt-bindings: watchdog: renesas,wdt: Add support for RZ/G2L
+>>    watchdog: Add Watchdog Timer driver for RZ/G2L
+>>
+>>   .../bindings/watchdog/renesas,wdt.yaml        |  75 +++--
+>>   drivers/watchdog/Kconfig                      |   8 +
+>>   drivers/watchdog/Makefile                     |   1 +
+>>   drivers/watchdog/rzg2l_wdt.c                  | 263 ++++++++++++++++++
+>>   4 files changed, 329 insertions(+), 18 deletions(-)  create mode 100644
+>> drivers/watchdog/rzg2l_wdt.c
+>>
+>> --
+>> 2.17.1
+> 
 
-And you can rely on this check only?  Nothing else needed with mmap?
-And why can't userspace write to this?  What's wrong with that
-happening?
-
-thanks,
-
-greg k-h
