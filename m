@@ -2,116 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A133C46C0AD
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 17:27:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BA4F46C0B8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 17:29:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239632AbhLGQa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 11:30:58 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:55566
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239628AbhLGQa6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 11:30:58 -0500
-Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S229795AbhLGQdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 11:33:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45884 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234951AbhLGQdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 11:33:08 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4897C061746;
+        Tue,  7 Dec 2021 08:29:37 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8AA5F3F1F0
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 16:27:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638894444;
-        bh=xM0l6E3jMAiAL33QZvvnbCIHqgFt7ZY4OmXToVTpadE=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=ObgLC9LZJ/iwPo3Tte5xYQO/4ThNZVpvrWfOX4ItFgrLvj1N6SW3AdU9F4aTbGdZM
-         1cToYTp54XUISo2F/R36hjqnBF3Y4JWlxuU1WdIRcW5muoRp+0UX/f52mScGCsLZeI
-         MuizMMqbdR4axJLa6vEr0mEZobsQv8Eq8W2TTQSr++Vw9eAHlCprLd508FY/lGp01s
-         U+05e8C93KlIDsBUwR7njOpHB0nGmvltC6LC68gQyfx5A8YV7uLP6aT9uNV0m+ovKP
-         Pbmmq+4z0q550splcmId/8l3Nkadni37f+XewloScA2i6Fr0SCOJt5JEHoxCy96LT7
-         WYC7DTcJTsOQQ==
-Received: by mail-lj1-f197.google.com with SMTP id q19-20020a05651c055300b0021a259ae8bbso4690936ljp.4
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 08:27:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xM0l6E3jMAiAL33QZvvnbCIHqgFt7ZY4OmXToVTpadE=;
-        b=G19NunlGkBje46edfl0poCcP/ljotmqDhgi4fpjhfZ3dX2tmGHLyOepxA/Eadx0qFb
-         5jJ7l1/7CFy4nPb6yE3ejwEas31p/YuAe0mtJN6IpZk/NyPFbmS9VVR4K0Yf3Pb573f1
-         y20U2Ilc8AHSxQNGcpY+PtS58wqJKyEJPow6/win45Md7oEijMnnLUg5wYjTJxSGlc3o
-         719ZCVXzpKXSMuD7vFsJ8gxUyaTZuRDZZpalVHcTJ6OgaiZ047un/xdQo5KIxwIpoJ+D
-         RZTZmLdzr5DGkCJB4ZNhb37l3/0HgetaN1TUdBUp6mxb0odnwtEe6geYTuo+c3I45lrH
-         Mjug==
-X-Gm-Message-State: AOAM530OHWiLHNM077aKGToxQXLC3ErZJJS/IqI+g2agQveJJXr7Y2/O
-        0FCWQlwF8mOSTU4xK2f/G0F0W1Z6xLk8g8g49c5Gmdoj8kLzsudpeWpfWK0i8YDSLtVo9BI32Vr
-        lq1qWrvYXLl5OJnRTsUn4rxawiDuumvLHJk29aPQ=
-X-Received: by 2002:a05:6512:3251:: with SMTP id c17mr40905498lfr.440.1638894443828;
-        Tue, 07 Dec 2021 08:27:23 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyPlvTlKBjaqxG6K7rwhBvJnMmqJFIA3cH7OtYj4hNRFmF9NhNCnZdVDoq/XHpFZc+BQBwwpQ==
-X-Received: by 2002:a05:6512:3251:: with SMTP id c17mr40905480lfr.440.1638894443619;
-        Tue, 07 Dec 2021 08:27:23 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id w6sm4208lfr.11.2021.12.07.08.27.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Dec 2021 08:27:23 -0800 (PST)
-Message-ID: <9a412f16-9375-32ae-cbda-ae9f38332887@canonical.com>
-Date:   Tue, 7 Dec 2021 17:27:22 +0100
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2E9FBB81CF5;
+        Tue,  7 Dec 2021 16:29:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFBCEC341C8;
+        Tue,  7 Dec 2021 16:29:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638894574;
+        bh=EhrcWI9mWDI5wSadeNb9DYuTlUXsfjqAGucxFodehUM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=sQiCDWKiLCt0NYliDY3ZjcINoLTG/4QT0oVjoabAyZ+yDpwc0LjgCzZ+QYjIKNofo
+         W8U0FzINZwNMBUYC+/3guo1B+Q1s97eIGgwBYFh35WC4I09oNJa+al4875PoPPdm/A
+         nsuuPnN+W+AGfVRzlWZSi/l8DyHgMLVpiyLG3Sokl+kaABQq8T9rjWSHn+l4OyYx+U
+         yQsERvQsP4mMZ592gPkb+am1UBSEm4PZdHlO7978P2Iy6rbSzaTCFnGQwkxJJ0oIk3
+         OZLU+MXeRKy4684n4eCl6Bw9FkJCY9yVpYKf57y1YBEShZrkVBoBPHcoDaOySDvz6b
+         trvI76qcWbeZQ==
+Received: by mail-ed1-f47.google.com with SMTP id g14so58582781edb.8;
+        Tue, 07 Dec 2021 08:29:34 -0800 (PST)
+X-Gm-Message-State: AOAM532f2W9ZreoQH9VcOnFC/ifB5eVRJCe17HoxaICUtglcqoNo6f8m
+        mX43EIyA+RbtmUWESsQQE92lFP4/0AtpMTzo/w==
+X-Google-Smtp-Source: ABdhPJz98fbAnvVe1AhaSmP08wxHXrR8BpSqIXazh8lXQCVGqRo0DowpOQD1f/F8ykH7vGksg5xQxq1VgImntCBby0Y=
+X-Received: by 2002:a05:6402:84f:: with SMTP id b15mr5840714edz.342.1638894573258;
+ Tue, 07 Dec 2021 08:29:33 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH] dt-bindings: memory-controllers: ti,gpmc: Drop incorrect
- unevaluatedProperties
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Tony Lindgren <tony@atomide.com>,
-        Roger Quadros <rogerq@kernel.org>, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
+References: <20211206174153.2296977-1-robh@kernel.org> <Ya8cZ69WGfeh0G4I@orome.fritz.box>
+In-Reply-To: <Ya8cZ69WGfeh0G4I@orome.fritz.box>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 7 Dec 2021 10:29:21 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLmeLKeORpPtUFAZc9Uy7uFc0DnVQuczkkEvDq8CyQN1w@mail.gmail.com>
+Message-ID: <CAL_JsqLmeLKeORpPtUFAZc9Uy7uFc0DnVQuczkkEvDq8CyQN1w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: net: Add missing properties used in examples
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
+        "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        Christophe Roullier <christophe.roullier@foss.st.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
         linux-kernel@vger.kernel.org
-References: <20211206174215.2297796-1-robh@kernel.org>
- <9400d57e-7db7-0f58-b391-417e103576cd@canonical.com>
- <CAL_JsqKBE5p2hA0F4DqrzA1ERA484kzDsZP2u1nq79yTG2nM+A@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAL_JsqKBE5p2hA0F4DqrzA1ERA484kzDsZP2u1nq79yTG2nM+A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/12/2021 16:54, Rob Herring wrote:
-> On Tue, Dec 7, 2021 at 3:12 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->>
->> On 06/12/2021 18:42, Rob Herring wrote:
->>> With 'unevaluatedProperties' support implemented, the TI GPMC example
->>> has a warning:
->>>
->>> Documentation/devicetree/bindings/mtd/ti,gpmc-onenand.example.dt.yaml: memory-controller@6e000000: onenand@0,0: Unevaluated properties are not allowed ('compatible', '#address-cells', '#size-cells', 'partition@0', 'partition@100000' were unexpected)
->>>
->>> The child node definition for GPMC is not a complete binding, so specifying
->>> 'unevaluatedProperties: false' for it is not correct and should be
->>> dropped.
->>>
->>> Fixup the unnecessary 'allOf' while we're here.
->>>
->>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->>> Cc: Tony Lindgren <tony@atomide.com>
->>> Cc: Roger Quadros <rogerq@kernel.org>
->>> Signed-off-by: Rob Herring <robh@kernel.org>
->>> ---
->>>  .../devicetree/bindings/memory-controllers/ti,gpmc.yaml      | 5 +----
->>>  1 file changed, 1 insertion(+), 4 deletions(-)
->>>
->>
->> Looks good. Rob, do you want to take it via your tree or I should handle it?
-> 
-> I'll take it given there's also the somewhat related "dt-bindings:
-> mtd: ti,gpmc-nand: Add missing 'rb-gpios'"
+On Tue, Dec 7, 2021 at 2:33 AM Thierry Reding <thierry.reding@gmail.com> wr=
+ote:
+>
+> On Mon, Dec 06, 2021 at 11:41:52AM -0600, Rob Herring wrote:
+> > With 'unevaluatedProperties' support implemented, the following warning=
+s
+> > are generated in the net bindings:
+> >
+> > Documentation/devicetree/bindings/net/actions,owl-emac.example.dt.yaml:=
+ ethernet@b0310000: Unevaluated properties are not allowed ('mdio' was unex=
+pected)
+> > Documentation/devicetree/bindings/net/intel,dwmac-plat.example.dt.yaml:=
+ ethernet@3a000000: Unevaluated properties are not allowed ('snps,pbl', 'md=
+io0' were unexpected)
+> > Documentation/devicetree/bindings/net/qca,ar71xx.example.dt.yaml: ether=
+net@19000000: Unevaluated properties are not allowed ('qca,ethcfg' was unex=
+pected)
+> > Documentation/devicetree/bindings/net/qca,ar71xx.example.dt.yaml: ether=
+net@1a000000: Unevaluated properties are not allowed ('mdio' was unexpected=
+)
+> > Documentation/devicetree/bindings/net/stm32-dwmac.example.dt.yaml: ethe=
+rnet@40028000: Unevaluated properties are not allowed ('reg-names', 'snps,p=
+bl' were unexpected)
+> > Documentation/devicetree/bindings/net/ti,cpsw-switch.example.dt.yaml: m=
+dio@1000: Unevaluated properties are not allowed ('clocks', 'clock-names' w=
+ere unexpected)
+> > Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.example.dt.=
+yaml: mdio@f00: Unevaluated properties are not allowed ('clocks', 'clock-na=
+mes' were unexpected)
+> >
+> > Add the missing properties/nodes as necessary.
+> >
+> > Cc: "David S. Miller" <davem@davemloft.net>
+> > Cc: Jakub Kicinski <kuba@kernel.org>
+> > Cc: "Andreas F=C3=A4rber" <afaerber@suse.de>
+> > Cc: Manivannan Sadhasivam <mani@kernel.org>
+> > Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> > Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> > Cc: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> > Cc: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > Cc: "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>
+> > Cc: Oleksij Rempel <o.rempel@pengutronix.de>
+> > Cc: Christophe Roullier <christophe.roullier@foss.st.com>
+> > Cc: Grygorii Strashko <grygorii.strashko@ti.com>
+> > Cc: netdev@vger.kernel.org
+> > Cc: linux-arm-kernel@lists.infradead.org
+> > Cc: linux-actions@lists.infradead.org
+> > Cc: linux-stm32@st-md-mailman.stormreply.com
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../devicetree/bindings/net/actions,owl-emac.yaml          | 3 +++
+> >  .../devicetree/bindings/net/intel,dwmac-plat.yaml          | 2 +-
+> >  Documentation/devicetree/bindings/net/qca,ar71xx.yaml      | 5 ++++-
+> >  Documentation/devicetree/bindings/net/stm32-dwmac.yaml     | 6 ++++++
+> >  Documentation/devicetree/bindings/net/ti,davinci-mdio.yaml | 7 +++++++
+> >  .../devicetree/bindings/net/toshiba,visconti-dwmac.yaml    | 5 ++++-
+> >  6 files changed, 25 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/actions,owl-emac.yam=
+l b/Documentation/devicetree/bindings/net/actions,owl-emac.yaml
+> > index 1626e0a821b0..e9c0d6360e74 100644
+> > --- a/Documentation/devicetree/bindings/net/actions,owl-emac.yaml
+> > +++ b/Documentation/devicetree/bindings/net/actions,owl-emac.yaml
+> > @@ -51,6 +51,9 @@ properties:
+> >      description:
+> >        Phandle to the device containing custom config.
+> >
+> > +  mdio:
+> > +    type: object
+>
+> In one of the conversions I've been working on, I've used this construct
+> for the mdio node:
+>
+>         mdio:
+>           $ref: mdio.yaml
+>
+> In the cases here this may not be necessary because we could also match
+> on the compatible string, but for the example that I've been working on
+> there is no compatible string for the MDIO bus, so that's not an option.
 
-Sure, then:
+$nodename is also used to match if there's no compatible, so the above
+is somewhat redundant (the schema will be applied twice). Matching on
+the node name is useful where we don't have a specific schema in place
+or if you want to validate DT files with just that schema, but that's
+becoming less useful as we get schemas for everything.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Thinking about this some more, what we need for these is:
 
+mdio:
+  $ref: mdio.yaml
+  unevaluatedProperties: false
 
-Best regards,
-Krzysztof
+Because mdio.yaml on its own is incomplete and allows for additional
+properties. That ensures all the properties are documented and no
+extra properties are present.
+
+> On the other hand, it looks like the snps,dwmac-mdio that the examples
+> here use don't end up including mdio.yaml, so no validation (or rather
+> only very limited validation) will be performed on their properties and
+> children.
+
+There is more validation than you were thinking, but it also needs the
+above added.
+
+Rob
