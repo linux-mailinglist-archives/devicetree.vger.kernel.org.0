@@ -2,77 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1B2346B65F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:49:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C95C146B663
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:49:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233263AbhLGIw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 03:52:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48904 "EHLO
+        id S233296AbhLGIwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 03:52:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233250AbhLGIw0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:52:26 -0500
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C5CEC061746;
-        Tue,  7 Dec 2021 00:48:56 -0800 (PST)
-Received: from hatter.bewilderbeest.net (174-21-184-96.tukw.qwest.net [174.21.184.96])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 08CB513C;
-        Tue,  7 Dec 2021 00:48:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1638866936;
-        bh=rFG3fPh/GO6YZe67EweUIEV/cR182XtK+FWjQnWRVC8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dKANB7yzY70JDvU99+fu26wXvQtyT4eeJlWmbsq4yWKP2qhUAG0P/RnG8GgmoOScb
-         Bm9rDusBbcmf7Uco8MZNIM8cNBbXWwyGl6JR4V04xYIfzq8e3u4WelOSnzr74RunT5
-         uCEYQ5ztHKOrqbGBxILlwE8equ6/r0lb+msO12oI=
-Date:   Tue, 7 Dec 2021 00:48:51 -0800
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-hwmon@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>, openbmc@lists.ozlabs.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] dt-bindings: add Delta AHE-50DC fan control module
-Message-ID: <Ya8f81AQKTmQnYde@hatter.bewilderbeest.net>
-References: <20211207071521.543-1-zev@bewilderbeest.net>
- <20211207071521.543-3-zev@bewilderbeest.net>
- <498caafa-fdc5-eb5a-312f-13968a088448@kernel.org>
+        with ESMTP id S233270AbhLGIwq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:52:46 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1508C061746;
+        Tue,  7 Dec 2021 00:49:16 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id y196so10110085wmc.3;
+        Tue, 07 Dec 2021 00:49:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=QR97QPW6f+NCgAfPv43w1fjZD41f7yPQgmLStq1mi9A=;
+        b=gRh0LSOOXgIypuCdQaadqe7XgZFROTeqpk1WWlszBVKUUUiTyjV00+KOcnYsNRAX47
+         5X3ALW2nTtvtWHqgaUe9zA4UUUjrNu10vXPJPvxB58W9EN1tSP8hz05dDkuR0k+s+AZh
+         xrzBKOxupUAn/CqiBNghQJtdF4tjfmSatN2sUUoqaqD3IEIMToLSi2Ke5c6iim46iQys
+         Kb/0orwNvVJywlOh8k9fd9C/fPMILruFbp5RSzOfYaZ5dPnRThCRcSGb3qjJ9RpA3+KZ
+         yn3g2KlCui30P8L+KmIAw671RtfrcvdbaCtIGh26eFGhOlnNJG3uH0yXlWBodbi7NoaO
+         BQNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=QR97QPW6f+NCgAfPv43w1fjZD41f7yPQgmLStq1mi9A=;
+        b=JOKMMOYIi1pQwIW3h1tbV3EawCj2DQtxRQRgSFmhGwtP1ew4d44KWkaJbuUG5YyOP+
+         F+rBeaFU0UWLkac4/Zg1vanOUrH6s1GPsmu8/KUXaY211WrSPNHeuThst0LTZE3/3L/Y
+         5jVL43mjeEsJQnpuz7smPZSTpRWsJ/Xoqn8FhIijAUA4pe6Bj3CSXZqTlXxE3iOOzgN6
+         6tE58d9DHK2XY10YT6aOwpvdS9BCws/5Sa+YnPwhDiHijx7C2nSH5ttILlWlBQy39hvc
+         UnWBn2dGEsMKdKlFR34ef780zOswc20KHw0wrzDUFAv447KGIEHsbthXao8UE9SgA83L
+         OliA==
+X-Gm-Message-State: AOAM530euGvqYrQMSW/1HlaUKXtGDV3oVajbaR/oj+4ofoPTLLQyXgNs
+        ZLBhypjIPOsCP2AXKAAjYV8=
+X-Google-Smtp-Source: ABdhPJwlcEDhqDKisTkge+HksHvcucpIyuEWBZi2ohpxLgw/uhMKKUgIA3jxgrmbJ1OgEC7tsfbrEQ==
+X-Received: by 2002:a7b:c407:: with SMTP id k7mr5272284wmi.35.1638866955262;
+        Tue, 07 Dec 2021 00:49:15 -0800 (PST)
+Received: from orome.fritz.box ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id x1sm13693748wru.40.2021.12.07.00.49.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Dec 2021 00:49:14 -0800 (PST)
+Date:   Tue, 7 Dec 2021 09:49:11 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Rayn Chen <rayn_chen@aspeedtech.com>,
+        devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
+        openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c: aspeed: Drop stray '#interrupt-cells'
+Message-ID: <Ya8gB4mu3yFYCbhp@orome.fritz.box>
+References: <20211206174237.2298580-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ICqRkSFbTbP5VtpW"
 Content-Disposition: inline
-In-Reply-To: <498caafa-fdc5-eb5a-312f-13968a088448@kernel.org>
+In-Reply-To: <20211206174237.2298580-1-robh@kernel.org>
+User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 06, 2021 at 11:58:14PM PST, Krzysztof Kozlowski wrote:
->On 07/12/2021 08:15, Zev Weiss wrote:
->> This is the integrated fan control module of the Delta AHE-50DC Open19
->> power shelf.
->>
->> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
->> ---
->>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->>  1 file changed, 2 insertions(+)
->
->This is a third version sent within one night, without changelog and any
->indication why sending the same three times. Please do not send multiple
->versions the same day and give people some time to respond. When
->creating a new version, add a changelog under ---.
->
 
-Sorry for the noise -- I wrote changelogs in the cover letter 
-(https://lore.kernel.org/linux-hwmon/20211207071521.543-1-zev@bewilderbeest.net/), 
-but forgot to include all the recipients of the component patches in the 
-CC list of the cover (which I presume would have been preferred), I just 
-used git send-email's --cc-cmd flag with get_maintainer.pl.
+--ICqRkSFbTbP5VtpW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Dec 06, 2021 at 11:42:37AM -0600, Rob Herring wrote:
+> '#interrupt-cells' is not documented which causes a warning when
+> 'unevaluatedProperties' is implemented. Unless the I2C controller is
+> also an interrupt controller, '#interrupt-cells' is not valid. This
+> doesn't appear to be the case from the driver, so just remove it from
+> the example.
+>=20
+> Cc: Brendan Higgins <brendanhiggins@google.com>
+> Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+> Cc: Joel Stanley <joel@jms.id.au>
+> Cc: Andrew Jeffery <andrew@aj.id.au>
+> Cc: Rayn Chen <rayn_chen@aspeedtech.com>
+> Cc: linux-i2c@vger.kernel.org
+> Cc: openbmc@lists.ozlabs.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-aspeed@lists.ozlabs.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 
-Zev
+Interestingly I have a patch for this as well but it does the opposite
+and adds interrupt-controller and #interrupt-cells. Upon closer
+inspection I was tricked into this because the i2c-aspeed driver
+includes linux/irqchip/chained_irq.h and linux/irqdomain.h and therefore
+I assumed that it was indeed implementing an interrupt controller. But
+none of the symbols in those files are ever used, so your version seems
+to be correct.
 
+Reviewed-by: Thierry Reding <treding@nvidia.com>
+
+--ICqRkSFbTbP5VtpW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGvIAcACgkQ3SOs138+
+s6HGYg/+O+id0oZwHJkCp6siA2gEqNUXVYkH6mzWDT9oDmO7ABtPrYBDdQi8FLda
+Y2GS9i6jKuW6j/EP8fDX61ksJhBBuu1Aj89ivX3aPE9QwZXOHCUaVYnRjEVPyUN3
+eFv0QSBMWxsLDNQ0bpOFA5ZpxkJ87wnh1z9u5Vkf4F9q6yUZcWuICwJJImgF5Udm
+LcUaBVBLys7gLX4ixJPHymnB9ogCxS87QTdGXSY94E3iR46Spkr2LKOXVaKbqVKJ
+OBQIdlk64ZSpQOQ1mUDRAdkSoZtyEik4MBbdOwb5/9bT9QvPu7h1Yi+DWxwJpW9x
+40KZD8JDK0xNlJAlUtkiwbu9frmpZrSz359rnQ9HXLbze5p89xsvpLtOiYDemTBW
+VYfFjGVMYAhLx5UgIMDTO4f5oQeBeG4N7XkrSAIEK4zZ9OAjwJ25w5aojJuULqgH
+/jtYeTcU6dkJ0RD3V7+vhaiznwlPZr4tfu63Fqt3Ai3EVYMqKks78wZhwtrrhrOO
+/SpWSv4jyAC7Mh1R6KnDD193ar6IPdW6DkCeuEokRVCpdRjtBGSX2aplXgVlRk+r
+YB3WdOKqkaJuEqKhzYuUdaHsTyRSdzSrb19hWbtHjZc+nuQHLs4GqpAxCxNHoXNR
+V8bGdcm7GQOiVRbaaY9a0+d82p6+hk0rvv9TtKqE+afw/enojQI=
+=8Ial
+-----END PGP SIGNATURE-----
+
+--ICqRkSFbTbP5VtpW--
