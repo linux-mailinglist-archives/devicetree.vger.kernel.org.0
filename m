@@ -2,103 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62EDA46B655
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:47:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DCD146B65B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:47:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232726AbhLGIub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 03:50:31 -0500
-Received: from szxga01-in.huawei.com ([45.249.212.187]:32884 "EHLO
-        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229846AbhLGIub (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:50:31 -0500
-Received: from dggeme758-chm.china.huawei.com (unknown [172.30.72.56])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4J7YnN5wX1zcbr5;
-        Tue,  7 Dec 2021 16:46:48 +0800 (CST)
-Received: from [127.0.0.1] (10.67.102.125) by dggeme758-chm.china.huawei.com
- (10.3.19.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.20; Tue, 7
- Dec 2021 16:47:00 +0800
-Message-ID: <61AF1F83.6010707@hisilicon.com>
-Date:   Tue, 7 Dec 2021 16:46:59 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+        id S233216AbhLGIvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 03:51:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48604 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233209AbhLGIvM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:51:12 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE20BC061748;
+        Tue,  7 Dec 2021 00:47:41 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id i63so26088508lji.3;
+        Tue, 07 Dec 2021 00:47:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=0uSyaAUNppffTOcVSgH8pF3DWHllS5e4jSCWi3CbVRU=;
+        b=DLhE/wJtJGzkmzn6YdOY285UPhKw3ior+eCjvDV79MEijP9C8rGpWH5OZR3XwvfyNY
+         iMAZH709PlWmdRKeR9bE29QDAXM9HcigJIT5aC24E34gEIB7yuBSXf19mBA9xaALuOzu
+         Bhja3WSixwiCc1Ve3NhlMsrast3nWRCiM7TroabUwGDZ1PnjIwGf6qmX7sp+hwboQ8li
+         8gf0XcU8CBRDbJBtytLCCGPOr+alvraWawXDDWT8S/LLoF6ywOExH/cif2NK43F9E38+
+         04wv0s9rsFa0lCanCoROIWe9EoTl/JQ8uYjfqqiug1sNgnes7s3LfNB6+gmQSR/Whek/
+         FCtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=0uSyaAUNppffTOcVSgH8pF3DWHllS5e4jSCWi3CbVRU=;
+        b=25VPnMMD1wc3VC7cmxeEc3YOV4BAzgh1HL/kirrcvxW+v7TCddvlp0diXg/2n4xYhf
+         vEHnF87sSWo8L6adSXhyHc2cg8LRuQ+YltAeb1ri8xmUdLiCnSGybQ8bvTf+7z9OgOni
+         QYtYNUGKu7G2AdxBM3804/2k5V3Y++TBeJDujkfi5SzUGSfp/6OEelZqw12TQU9Mtw4p
+         HddPGIbQQztyIITWCdzviMriyE9wWN398MV79ZfpbhhXPUqGBgi9YqIweOznsZuRkIi2
+         aoJvg0diZfdcf6vuveLUZWakoliKZzv3dZeE3H/3bJNuCf7g3yZRokLHDJH1PRaLVlKr
+         X+cQ==
+X-Gm-Message-State: AOAM530Rk1Ko09vrB38LAFv6nJJzK6IXxEICS16ByGktxW9pdikIcMJ6
+        AzcEcbm7Mufk5qtyIeZ5CnU=
+X-Google-Smtp-Source: ABdhPJxA60eQmQODrZjSo13ntrCNG2of1qXkEz0ceSr5uIL9jxgV9DCNDho+mgwSqw1fleO/JFY3AA==
+X-Received: by 2002:a2e:b816:: with SMTP id u22mr41598831ljo.51.1638866860217;
+        Tue, 07 Dec 2021 00:47:40 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id s4sm1579690ljp.40.2021.12.07.00.47.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Dec 2021 00:47:39 -0800 (PST)
+Message-ID: <c2afe6fe-d4d2-c9c3-eb36-90969a0b657d@gmail.com>
+Date:   Tue, 7 Dec 2021 09:47:38 +0100
 MIME-Version: 1.0
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>, <linuxarm@huawei.com>,
-        <mauro.chehab@huawei.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/5] arm64: dts: HiSilicon: Add support for HiKey 970
- PCIe controller hardware
-References: <cover.1637063775.git.mchehab+huawei@kernel.org>    <884b83c1aed70735883e15f032f9668ebfd77a01.1637063775.git.mchehab+huawei@kernel.org>     <61AF16AC.1080506@hisilicon.com> <20211207093926.24f26dae@coco.lan>
-In-Reply-To: <20211207093926.24f26dae@coco.lan>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.67.102.125]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggeme758-chm.china.huawei.com (10.3.19.104)
-X-CFilter-Loop: Reflected
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101
+ Thunderbird/95.0
+Subject: Re: [PATCH REBASE] dt-bindings: pinctrl: use pinctrl.yaml
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        patches@opensource.cirrus.com
+References: <20211202063216.24439-1-zajec5@gmail.com>
+ <CAL_JsqL=4iUJjQXjGc7eacbYW5YE-VRC4yGhu8pLVd-zUKvhHQ@mail.gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <CAL_JsqL=4iUJjQXjGc7eacbYW5YE-VRC4yGhu8pLVd-zUKvhHQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
-
-On 2021/12/7 16:39, Mauro Carvalho Chehab wrote:
-> Em Tue, 7 Dec 2021 16:09:16 +0800
-> Wei Xu <xuwei5@hisilicon.com> escreveu:
-> 
->> Hi Mauro,
+On 06.12.2021 23:50, Rob Herring wrote:
+> On Thu, Dec 2, 2021 at 12:32 AM Rafał Miłecki <zajec5@gmail.com> wrote:
 >>
->> On 2021/11/16 19:59, Mauro Carvalho Chehab wrote:
->>> From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->>>
->>> Add DTS bindings for the HiKey 970 board's PCIe hardware.
->>>
->>> Co-developed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
->>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->>> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
->>> ---
->>>
->>> To mailbombing on a large number of people, only mailing lists were C/C on the cover.
->>> See [PATCH 0/5] at: https://lore.kernel.org/all/cover.1637063775.git.mchehab+huawei@kernel.org/
->>>
->>>  arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 107 ++++++++++++++++++++++
->>>  1 file changed, 107 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
->>> index 636c8817df7e..225dccbcb064 100644
->>> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
->>> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
->>> @@ -176,6 +176,12 @@ sctrl: sctrl@fff0a000 {
->>>  			#clock-cells = <1>;
->>>  		};
->>>  
->>> +		pmctrl: pmctrl@fff31000 {
->>> +			compatible = "hisilicon,hi3670-pmctrl", "syscon";  
+>> From: Rafał Miłecki <rafal@milecki.pl>
 >>
->> The "hi3670-pmctrl" is not documented in the devicetree binding documents yet.
->> Could we remove this part this time?
+>> Also fix some examples to avoid warnings like:
+>> brcm,ns-pinmux.example.dt.yaml: pin-controller@1800c1c0: $nodename:0: 'pin-controller@1800c1c0' does not match '^pinctrl|pinmux@[0-9a-f]+$'
 > 
-> Without that, the PCI PHY won't work.
-> 
-> IMO, the best would be to just add this compatible to hi3670-clock,
-> where it belongs.
-> 
-> Just sent a patch.
+> I think you missed some. linux-next now has these warnings:
 
-Got it.
-Thanks!
+Oops, sorry, I think I didn't test MFD bindings *after* modifying
+pinctrl bindings.
 
-Best Regards,
-Wei
 
-> 
-> Regards,
-> Mauro
-> 
-> .
-> 
+> /builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/cirrus,madera.example.dt.yaml:
+> codec@1a: $nodename:0: 'codec@1a' does not match
+> '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
+>  From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml
 
+I'm not sure how to deal with this one. If you take a look at
+cirrus,madera.yaml it seems to be some complex MFD that is a sound
+device with pin controller and regulator.
+
+I'm not sure: is using pinctrl@ node for that hardware is a correct
+choice?
