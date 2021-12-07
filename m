@@ -2,111 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07A5546BF48
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 16:29:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1121746BF4B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 16:29:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238597AbhLGPco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 10:32:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59450 "EHLO
+        id S238711AbhLGPc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 10:32:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233423AbhLGPco (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 10:32:44 -0500
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF9CEC061574;
-        Tue,  7 Dec 2021 07:29:13 -0800 (PST)
-Received: by mail-oi1-x233.google.com with SMTP id be32so28269846oib.11;
-        Tue, 07 Dec 2021 07:29:13 -0800 (PST)
+        with ESMTP id S233423AbhLGPc6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 10:32:58 -0500
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7820DC061574
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 07:29:28 -0800 (PST)
+Received: by mail-oi1-x22e.google.com with SMTP id bk14so28337897oib.7
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 07:29:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:to:cc:references:from:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=z9RUOEZo4xree+0izzh+j6TqNLpi9ndJ337BRAB5cjo=;
-        b=V5jAqa69DXXVJn1NPFefZbN39FxlV+q8NtDBmuHQaVxWna0NRwk+XVcV/QcvpXxk9I
-         8Am8PoJ0+U/pOwKIwDICYVYdrFDCQq8GJFRO5yIKMIdvQvVDMW4s7ZRj4RdDFgHzu0DO
-         1bDhEsCt2VHh/sSBZtmFWoY4I2HQMrQCW10LmygGAYuzTAF2E2Yw18M20aEcmKiDovd2
-         8UKO6bucKhTDRcXq8qVSjrcnsjA3CF0zHK9hyZUlXTQldChF5Y63iKYT4ANNaOLVbdxu
-         nS4vIqcx/8BCtGRMyIh67aPLntGCZwhmGc7XF9x9EN+XTeLrqrsv+j7juS20wXAbSWNF
-         3XBw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3v1bWCAfgXuqzDilZqGGMpPIb4q0JIBN6jFwOUm5278=;
+        b=HMHriM1Mu58q8gApV9rfw5KqGymBPX6gLuNgRoA5L8d7brqhr18J8BdvGw2cAdHB4N
+         zXUclQwAE7fqtES5vJZk6BqcL/2nyr27UqmLk9gzwizyTetHKV18D59HIaYNC+OTXXwz
+         Kltb5TcSSE3IhiMoFIZp3kmQjDnhTMKXpactPNHQD7+fQ9vQTspEEtcJcZ6QLMNWU9TB
+         EuNTYFgPSD4n0FxhHrV7PhVweSVjLmNWRgl7TVQ/ItqzeuCFxkLLhIRUUGlKOdGv3o+6
+         P9NW20aK1oW8wee2Ln/GUY7hW0zRUhTu1FN/Y/5NeiZ23u0kW07h3qTrVZXXwLn2EYze
+         CkLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=z9RUOEZo4xree+0izzh+j6TqNLpi9ndJ337BRAB5cjo=;
-        b=yYNr2Flt+wuvrumA4qB3jJCVtu4zmm3ygHXM4fm70W6VkEHdnTt39JRNHtb7oPeCkt
-         p3RkPgnuDHMA/eIpI3puJ1rTeJ+BUXoNr5Y3vZJztN0YOHODCudwwSX8no/LsawBXwvB
-         fNXFbBybEYzmOdnBKzKQgN18N9wz9ohu1UjsTaqxwXpHyF84NPpvdeuWudY2Nfhi0m3M
-         JshYUTZsO7hRC1sbT2iWVfSRQ14gIsg6/8OdLewL3aPmaFSBZh5s9dFb5fKHvBkhxmcT
-         xYyFyu6/TO4l5W+KycU0EP8iwnMc68VkqHH85anI47LlepQhXjh4inGgXGeU5G1GUvjz
-         Vw6Q==
-X-Gm-Message-State: AOAM533Aydm8u+LDiO6udk2YPESQaj/wGyffo6nf/7CMaPHgu8tL0EXh
-        abh0M4DWclioIEvSwOAtpka9f4hb2OA=
-X-Google-Smtp-Source: ABdhPJy4dsAuklFeKUGXZcITAIs4kzrxEkRN0AXTM7reS8PLGa4kqJDl0yEKR/93R3qzODqZ2+Z5Dw==
-X-Received: by 2002:a05:6808:228a:: with SMTP id bo10mr5880704oib.72.1638890953384;
-        Tue, 07 Dec 2021 07:29:13 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id bd6sm3527674oib.53.2021.12.07.07.29.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Dec 2021 07:29:12 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Justin Chen <justinpopo6@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Rob Herring <robh@kernel.org>
-References: <Ya3NaVKf1NRc8rrx@google.com>
- <89b9512d-2e5e-c23a-d1f2-62172c8f68f7@gmail.com>
- <Ya3SU6U6YT6mlFu8@google.com>
- <f5745952-9e3c-ed7a-cced-ce42d3da2276@gmail.com>
- <Ya5ctkIU+jNzDfBc@google.com>
- <f4af4971-7047-80c9-69ae-e6587979ecd5@roeck-us.net>
- <e1fa1683-a0a6-8ee0-9da5-8e97dd9c820a@gmail.com>
- <432664af-5660-aaad-bf75-81e4d61cb078@roeck-us.net>
- <46a88b40-6d92-727c-7adc-5723921d08e3@gmail.com>
- <20211206195115.GC3759192@roeck-us.net> <Ya8xhUR5GbTxVE8w@google.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH V4 RESEND 1/2] dt-bindings: watchdog: convert Broadcom's
- WDT to the json-schema
-Message-ID: <a86d5998-8d84-7afe-e34e-a632aa890683@roeck-us.net>
-Date:   Tue, 7 Dec 2021 07:29:09 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3v1bWCAfgXuqzDilZqGGMpPIb4q0JIBN6jFwOUm5278=;
+        b=DeuN/PkgaMGKzyhdTed7WzEj6lBUFri4I95vhiWa9m1b3UL+UikwGN/66XKl/NeuT1
+         OBNfYja8ybRHB4VmvPyFF+q3rDccTYogHfnDjNLUse9y6Kg5E9FfvqThDWLdChsfSDOy
+         V+YaDa+awFxNQOUEudLTq1XLqrrv0qAB9GeQEnKiKBCGs/fQ8s2ezEshQCAgUgKqTI9C
+         Uxc3E0E4UB5i0TCDDtBgdL9ldLJ5U/oxJlswxbIr1MN522pHMofDYGdOUGpPe76Yv67Q
+         oSv/6Rvxd3cp8BcNStwa+9ZTSfrHipJXZIjoiNlS07yXY+42PvkOBIglHcdPlJEgvfnq
+         jgUQ==
+X-Gm-Message-State: AOAM531dwKBYB7a82Uf/YggQczVTuOyUgTxPJZChRBDEODbCk3mevmQi
+        InFcF3GdoDedOKOntuUujzGm1iVvCQMnDVRRztfF1A==
+X-Google-Smtp-Source: ABdhPJxvof557q23el0Q5xSTZDI0BT2tg0o4/kEoX/tBZ01elYBOoldfCw4wCxNmQ5H0Fh6lko3OW2ykx4vYG2exTM8=
+X-Received: by 2002:a54:4791:: with SMTP id o17mr5944391oic.114.1638890966412;
+ Tue, 07 Dec 2021 07:29:26 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <Ya8xhUR5GbTxVE8w@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20211206092237.4105895-1-phil@raspberrypi.com>
+ <20211206092237.4105895-3-phil@raspberrypi.com> <CACRpkdYJAZcr_PPCGPYcitfcwd9GDFf+7hPJkOmjomqCrruNfw@mail.gmail.com>
+ <04acf5f1-7d82-b12b-f70f-1712a4a2610c@gmail.com>
+In-Reply-To: <04acf5f1-7d82-b12b-f70f-1712a4a2610c@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 7 Dec 2021 16:29:14 +0100
+Message-ID: <CACRpkdaK9swgQa3G1z2+e7Tazn+TGHpzfcFjdMbNytHJ8gxYnQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ARM: dts: gpio-ranges property is now required
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Phil Elwell <phil@raspberrypi.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Thierry Reding <treding@nvidia.com>,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/7/21 2:03 AM, Lee Jones wrote:
-[ ... ]
->> It sounded to me like Lee wanted an immutable branch for that
-> 
-> Not exactly, I said:
-> 
->    "> Suppose we should take patch #2 via [Watchdog] as well.
-> 
->     If that happens, I would like a PR to an immutable branch."
-> 
-> The alternative is that I take the patch and provide an immutable
-> branch to you, which I am in a position to do.
-> 
+On Mon, Dec 6, 2021 at 6:25 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+[Me]
+> > Please funnel this patch through the SoC tree.
+>
+> This one was definitively going to go via ARM SoC in the absence of any
+> explicit routing, did you mean that patch #1 should also be routed via
+> ARM SoC?
 
-I understand, only I am not in a position to take it since my tree
-isn't the official watchdog-next tree, and it doesn't show up in -next.
-If Wim takes it into the official watchdog-next tree or not would be
-completely up to him.
+No just over-clarifying.
+I will merge patch #1 after some review slack.
 
-I personally don't care if the bindings check is clean in my inofficial
-tree, so maybe this is a non-issue.
-
-Guenter
+Yours,
+Linus Walleij
