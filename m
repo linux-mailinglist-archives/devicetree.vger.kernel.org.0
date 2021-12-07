@@ -2,111 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 614FC46C3D1
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 20:42:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43EBD46C3C2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 20:40:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233723AbhLGTqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 14:46:03 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:37008 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbhLGTqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 14:46:03 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8C697B81E22;
-        Tue,  7 Dec 2021 19:42:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39AA7C341C3;
-        Tue,  7 Dec 2021 19:42:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638906150;
-        bh=XVX9o3VWrtvyVxiDPrxlrr7aFHBobyjCRBFZ0nPdMxo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=DYv9u6HVviK0Smafd1q+EzWY9bH9ejahYC7E05S2eATigMcvoxljcEVfx7Ab4eo5q
-         fvctc8Qq9KphJ3AubOca5WhDu5emB/gB3hzSvy2v85qhDMOlGc3pXkYCAGPMOLFiEx
-         lARO9om7j1QKkkMl1Xe7PTWxvupKcTFN+EEj9unffQ+obZyLNcC6TvMPSLJHpExlRl
-         B2TaBSOxKdY4Szym0GIbcBl29q8VQcky3CoRb+3MJxHoLv3fUN9T0pkbvXN2gHCDNy
-         c+m+hq6CkW+2kZlcrqzWt9xpTDjs4WKcA3JGgDJM361IVZMjaAZv8kUyN+veD3+VAN
-         6t+ZNB9vXPTSw==
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1mugM7-00AarY-Tn; Tue, 07 Dec 2021 19:42:28 +0000
+        id S235917AbhLGTnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 14:43:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35136 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231629AbhLGTnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 14:43:53 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B41BC061574;
+        Tue,  7 Dec 2021 11:40:22 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id z7so702610lfi.11;
+        Tue, 07 Dec 2021 11:40:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:content-language:to:cc
+         :references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=lJUPRmvzGBYlX226TjBuiYmtUf9jUn5G93+KA16LjAg=;
+        b=N6dpjqjSGXJte521IlFBV3JwwBDYSI3jUNgG7vtsLv2egTWEUMbr6ffb6gexw+xZgO
+         MJw07re/mwKoJsjygSKKeTnXfWMN1H0c4Ywt1Ums0+LkmTRdvqoqWsnpAADjZyQ4jf66
+         omAWJ3HlFasrghRBVxCq33dqszE2xRUfWFXzmTGXlrE6jiI8Rv9qt5GeR2vLr/Y4CgCm
+         C1Uk36jREfGSnQAO1Ua+bJ2wztS8eJ/wr0ezCvK82B8V+rmwc2cAJd6fEgFt999UYXPh
+         Ujz4ngGsWTEsoI635i1clIuyfdidjm2dilIIplYQZsrApMn1FdTDQGMoiCRwRTWW5rqR
+         oZBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=lJUPRmvzGBYlX226TjBuiYmtUf9jUn5G93+KA16LjAg=;
+        b=NcTx8jo+bk1bx1+j0iwiK6YSTpkyUKXFauljiKlvAsSW0viKQfyc5gelWzW5n5REQr
+         4tWcOu4HEZm+X1FzWRP8wKbKS7VUTVq7oHqcY27uYumRJQgpPmveodXIrhT7cOS2TZVS
+         jFrW50c3Q0RgXw0Vy/90xNtRJHWkCjtxkESco43t3QgYrM7vsg3jO5eSV0+dAmp1Cg0b
+         qYuPqPKhnk81drj+R7jnUO2gFYnhbFKWF0afwrVlQYsJHAZSIA1Vdn8zxvnAsjGQiyeI
+         RpyOwhwoB0kober8/WPzLrVVUQmzZcyu3GEJ9lRguFZdEfhmvFubcmi9QriQhYFED4ft
+         ekYQ==
+X-Gm-Message-State: AOAM532r+FOK44sWc8xFm5vqv/Aalx/tTDoi+IjBFNwgmsSmXHNDjPP1
+        XD4X1zcJF6L5vtGjuEnCCMg=
+X-Google-Smtp-Source: ABdhPJyr4zizRPTfcscSDF65TlfDwku/yypVsSmIKZoDc7b4l/BC9epnqQcHVd81tlPlhrwQ26x3pg==
+X-Received: by 2002:a05:6512:ac5:: with SMTP id n5mr41852984lfu.246.1638906020361;
+        Tue, 07 Dec 2021 11:40:20 -0800 (PST)
+Received: from [10.0.0.42] (91-153-170-164.elisa-laajakaista.fi. [91.153.170.164])
+        by smtp.gmail.com with ESMTPSA id p10sm51919lja.0.2021.12.07.11.40.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Dec 2021 11:40:19 -0800 (PST)
+Message-ID: <b6af56f1-7e6b-81ca-7bae-8f2a2dfaf0eb@gmail.com>
+Date:   Tue, 7 Dec 2021 21:44:48 +0200
 MIME-Version: 1.0
-Date:   Tue, 07 Dec 2021 19:42:27 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     David Virag <virag.david003@gmail.com>
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 7/7] arm64: dts: exynos: Add initial device tree
- support for Exynos7885 SoC
-In-Reply-To: <20211206153124.427102-8-virag.david003@gmail.com>
-References: <20211206153124.427102-1-virag.david003@gmail.com>
- <20211206153124.427102-8-virag.david003@gmail.com>
-User-Agent: Roundcube Webmail/1.4.12
-Message-ID: <b0f95b77e335596ee567ae83c1cbe549@misterjones.org>
-X-Sender: maz@kernel.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: virag.david003@gmail.com, semen.protsenko@linaro.org, krzysztof.kozlowski@canonical.com, robh+dt@kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com, cw00.choi@samsung.com, mturquette@baylibre.com, sboyd@kernel.org, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Content-Language: en-US
+To:     Jayesh Choudhary <j-choudhary@ti.com>, robh+dt@kernel.org
+Cc:     lgirdwood@gmail.com, broonie@kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211203120243.24173-1-j-choudhary@ti.com>
+ <ed6c9be9-32d3-719a-ee0d-608b228f36b3@gmail.com>
+ <20449d7b-0524-a8df-7852-a4c495157682@ti.com>
+From:   =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+Subject: Re: [PATCH v4] ASoC: dt-bindings: davinci-mcasp: convert McASP
+ bindings to yaml schema
+In-Reply-To: <20449d7b-0524-a8df-7852-a4c495157682@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-12-06 15:31, David Virag wrote:
-> Add initial Exynos7885 device tree nodes with dts for the Samsung 
-> Galaxy
-> A8 (2018), a.k.a. "jackpotlte", with model number "SM-A530F".
-> Currently this includes some clock support, UART support, and I2C 
-> nodes.
+Hi,
+
+On 12/7/21 07:03, Jayesh Choudhary wrote:
+>>> +  tdm-slots:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: number of channels over one serializer
+>>> +    maxItems: 1
+>>
+>> and it has to be between 2 and 32, ignored in DIT mode (384 slots)
+>>
 > 
-> Signed-off-by: David Virag <virag.david003@gmail.com>
+> Will add minimum and maximum. Should this be added as a conditional
+> property when op-mode is 0 (I2S mode) and mark it as required?
 
-[...]
+That would make it much nicer, yes, thank you!
 
-> +	psci {
-> +		compatible = "arm,psci";
-> +		method = "smc";
-> +		cpu_suspend = <0xc4000001>;
-> +		cpu_off = <0x84000002>;
-> +		cpu_on = <0xc4000003>;
+>>> +  port:
+>>> +    description: connection for when McASP is used via graph card
+>>> +    type: object
+>>
+>> I understand that it can be present under the mcasp node as it is part
+>> of the graph card binding (or a card binding using graph).
+>> I mean if a new card binding comes around then we need to document it
+>> here as well?
+>>
+> 
+> Specific properties are not marked for the port. So it should not be an
+> issue. Other alternative is to mark the additional properties as true
+> but that is not preferred.
 
-Aren't these the standard PSCI 0.2 function numbers? Can't you
-make the compatible "arm,psci-0.2" instead?
+If the McASP is used with simple-sound-card (as it is the case most of
+the time) then the port is not present under the node for this device as
+the card is not using graph.
+I consider the port (and the #sound-dai-cells if we are here) not part
+of the McASP hardware description as they are part of the graph or
+simple-card binding.
 
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		/* Hypervisor Virtual Timer interrupt is not wired to GIC */
+I'm fine if the port remains here
 
-I don't understand this comment. You seem to have a bunch of
-ARMv8.0 cores, for which there is no such thing as a hypervisor
-virtual timer (this is an ARMv8.1 addition).
+> Peter,
+> Any other changes I should make?
 
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | 
-> IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-> +	};
+Not much, this already looking good.
+I would fix the dts files which generates warning/error with this yaml
+as they are incorrect.
 
-Thanks,
-
-         M.
 -- 
-Jazz is not dead. It just smells funny...
+Péter
