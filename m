@@ -2,161 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46D2B46B0B7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 03:35:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7E0846B0D0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 03:46:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231921AbhLGCjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 21:39:09 -0500
-Received: from mx0b-00069f02.pphosted.com ([205.220.177.32]:41014 "EHLO
-        mx0b-00069f02.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231468AbhLGCjI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 21:39:08 -0500
-Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
-        by mx0b-00069f02.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1B6M56st019273;
-        Tue, 7 Dec 2021 02:35:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=to : cc : subject :
- from : message-id : references : date : in-reply-to : content-type :
- mime-version; s=corp-2021-07-09;
- bh=VXFXs7vESWELA+v1GT6+ejRlmOawDMHhsvOVPUe4JFI=;
- b=FBn7SS1J0mdX4RGqd/ZZqwfKvwPtRbrVWtqYFi1KctFDpFNZPtHJnqlNnMgAMYyHsOXC
- 9di4mHtX37O7dbxW7CbEycRph+lsTCskf5gJg1RAVIE0ve4Mrs8U486BM8v+8HqbpmBA
- jsVlLNzizcki6DigTKSGidRx+XthdPO44brzGHOJHTTewTgndB3hnrSeE39SMIcbxG1k
- 4R6Md3Dk2yvFbzr3bpnmQ+a5iBB0qbAVpanEIH1suRcAXmXls99zzrf7H6NKqDh4t24x
- W9NipbSkgXfX3aH1ugwlbFyxbRqVdJ16gihYnATBmcBHnof49NSI1DD95R/u8Jcf66e+ Nw== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
-        by mx0b-00069f02.pphosted.com with ESMTP id 3csbbqmds3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 07 Dec 2021 02:35:15 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
-        by userp3020.oracle.com (8.16.1.2/8.16.1.2) with SMTP id 1B72GdIJ077251;
-        Tue, 7 Dec 2021 02:35:14 GMT
-Received: from nam11-bn8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2175.outbound.protection.outlook.com [104.47.58.175])
-        by userp3020.oracle.com with ESMTP id 3cr1sn5cyc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 07 Dec 2021 02:35:14 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Plgwrsly/BAFmxZ/NY2ScugJzrtczpOkhjtD/vhN4Ew9qikTomlJUzx8IP0XtsSsK5xKgSCOIAmV7W4NdNSNXjaqPFidkAGkCOyfcC8Flw+70Xqbw0XYm2REUEguKIPeQlsDdcuG06zlom47KILlFw8TD7aV2tRhNJoYGUeQ57nBss8s1qoyDHrDc6bVcREldp2bbl6sbf5e4EDJEUHGrpnAEIjMwye/fj0fH7kIgGAmyZNnAmLIbcUdLfZO+N3rNTf0BYjJj9KwWhyGjbwbK6joAQkd2wklKsFTXsnYlK+37aMvAhL5RJ59NhhIemau9zNBwhoOqQPj/XRwfClXeQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VXFXs7vESWELA+v1GT6+ejRlmOawDMHhsvOVPUe4JFI=;
- b=lgLPEHwwBvqRZ9zX2eCwnixz1fF2wyOdUtiSX/QeuVuHlc2aTuaAMIC1lH7SY5B5b/cfxH7cKp/jv0vdjsTcxErVoV37vVRL/hm6Rk43A9mmiEplS/0wv0aAl6qqVl9jRbEEwMPXaFJhqYVhYeCQMxIUOMPGfGArdwHWbAup2HzQ6wap0ISmRmQ+xwLiTBayBmzsOmrCW4U3ZEs/Z3gCDvzN8dJg2ivzVBIXR5GHNF9Ljy+5nb2v3vFU0iI3vDohRjNfsccdb2YmboQpIJtw7RNI7bu4Nu0odKIDTscixckCvRcQEaZZF5RvY9AHcukEcUERCM0g2lfdhyum6p7TpQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
+        id S229494AbhLGCts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 21:49:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50942 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229449AbhLGCtr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 21:49:47 -0500
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17438C061746;
+        Mon,  6 Dec 2021 18:46:18 -0800 (PST)
+Received: by mail-qk1-x734.google.com with SMTP id p4so13296101qkm.7;
+        Mon, 06 Dec 2021 18:46:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VXFXs7vESWELA+v1GT6+ejRlmOawDMHhsvOVPUe4JFI=;
- b=TsYaECSGEUiotxeAGazAUI+9RLHUOM9FfyWI3iGmkoWtBbSsJAo9TFhIiLSBYaI3PFFFv++vFe7lpPxoWmcshUi8NBy84XzJZtfKQOTRYYiqw4Th+vQJxU4EaZhKK+o2zYNvp31pbFoyNUP3eMzQTNSeVW+ArzJfkIU+FJ32Hko=
-Received: from PH0PR10MB4759.namprd10.prod.outlook.com (2603:10b6:510:3d::12)
- by PH0PR10MB5626.namprd10.prod.outlook.com (2603:10b6:510:f9::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.11; Tue, 7 Dec
- 2021 02:35:12 +0000
-Received: from PH0PR10MB4759.namprd10.prod.outlook.com
- ([fe80::f4fb:f2ea:bda5:441e]) by PH0PR10MB4759.namprd10.prod.outlook.com
- ([fe80::f4fb:f2ea:bda5:441e%6]) with mapi id 15.20.4755.022; Tue, 7 Dec 2021
- 02:35:12 +0000
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] scsi|phy: Add SM8450 UFS & Phy support
-From:   "Martin K. Petersen" <martin.petersen@oracle.com>
-Organization: Oracle Corporation
-Message-ID: <yq1ilw1uout.fsf@ca-mkp.ca.oracle.com>
-References: <20211201074456.3969849-1-vkoul@kernel.org>
-        <yq135nawg3q.fsf@ca-mkp.ca.oracle.com> <YapW+EY/IeUk1BLz@matsya>
-Date:   Mon, 06 Dec 2021 21:35:09 -0500
-In-Reply-To: <YapW+EY/IeUk1BLz@matsya> (Vinod Koul's message of "Fri, 3 Dec
-        2021 23:12:16 +0530")
-Content-Type: text/plain
-X-ClientProxiedBy: SN1PR12CA0081.namprd12.prod.outlook.com
- (2603:10b6:802:21::16) To PH0PR10MB4759.namprd10.prod.outlook.com
- (2603:10b6:510:3d::12)
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=SElHe6V0YIn8colM6BdilzON7/VtRRQaE57fWBbme4w=;
+        b=j+HfX+x3n+d58EEidEQwNvGEmYKdyLpokG49/XjKUfTHUGXs31CRN0OQOlZke/zeWo
+         p1wLIblH0iNthwvMeStNAqsf5J3QsY+7Jt1yzrH9Pl0uZDOTKtJW/+ki+soBQDRSzTqe
+         3XXyTjJbf3tYvad0LbqKQyNJy8Z0/K/j37Ojw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SElHe6V0YIn8colM6BdilzON7/VtRRQaE57fWBbme4w=;
+        b=tNOxLnqJGDJtjXk+9IACQ6ObRdgTiNinYOPOUISIzydxvnAnkwrTGcXSmZFeiH6X/A
+         ohMGaSTphB4trBOikPziIyCzgJLUArXc/BuQhZHm2nmTVzhoypANAyU7U9SxxB5qc2Oj
+         hzIlo7AX2Yr1OPVIJui2koACXuEEYqXjPBnMP5ep80hz+m8FGOXTt1Am0445V5JlTAhH
+         +rh/Nke2F1+ZCwpPRGZMYx/FkFaDELeVz9FloZt+2gVt3E+ZfqhZkFevne3AEYeMZIE/
+         3MO402vjKC9OFt1CV+43qIOHfLWF2MP4HSVN5s0Kd3H0vuW8p06XXzLsufmyEXJ3IScC
+         c7Lw==
+X-Gm-Message-State: AOAM532XfVvEVWD38M78ExG/Oh7DeY1ZimzQVXoPFKxnx9gz0GSeaGiG
+        ZrRZr510AhcLtZwyvRXk/jMJFwNkDhumjmAI+6A=
+X-Google-Smtp-Source: ABdhPJxdO+vcgbH9/n5MHHody6QQzCajhH0mrh7jeXVqDcyalUyocJUw/GB0vHySRmA4DDXXHyGt6XppaSYhFtUTB4s=
+X-Received: by 2002:a05:620a:4081:: with SMTP id f1mr36607665qko.165.1638845177061;
+ Mon, 06 Dec 2021 18:46:17 -0800 (PST)
 MIME-Version: 1.0
-Received: from ca-mkp.ca.oracle.com (138.3.201.56) by SN1PR12CA0081.namprd12.prod.outlook.com (2603:10b6:802:21::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.16 via Frontend Transport; Tue, 7 Dec 2021 02:35:11 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0e05f24c-d933-4fc7-e4f0-08d9b92a31ab
-X-MS-TrafficTypeDiagnostic: PH0PR10MB5626:EE_
-X-Microsoft-Antispam-PRVS: <PH0PR10MB56261F967AEDF9746DBED0FB8E6E9@PH0PR10MB5626.namprd10.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 58zQ5vhDU3Y53T0xXEfxLFIh9UFAn7q5FVPAp3q1dI5Rxc6NoRPNDYetgFxYEO+uO1cmgnCfLpLrG1rj0pPZKk/hUp8bBlcCGy5/38Pi7tYRPSinPkVP3Z48Lk8dH5EQLejuQZbO2v62El9km7sc3J/gMmAYJzxkexrkKsBfBJkY99LdQbMUxz04MexqS3fQLMpKWbR3uiUuFWU3gM/+0nLoLv0yCmn4v2vgEvdZ+hMBUBTlZcYjjI+qRP/M7dIdUipFCafgXQr18u2P1xbayFnUWJIUNY7aguiqbXQzLcFfk7FDiQfjoaX2M4D98gfxG9KGCm5DuIaAX4+eu7r3AuSUKU4h89/JZVia4lLdS4F1aHe0SjtKLdirGkDQBZKiaNIoLm5fVGAEl0qBzl5ui1iKBVAMEM3zz7cqNEft9p0o9rw5oavVnYGUuAMJVhfjORl2fH1E4ETSlA8LfjxhxOdkCdk7W8bjv0AYsrop1DNGNWbYmtSNiJiFxhXEkX3j/u+2R4ctz4TPYPZ2GEvYOd4pULYrX5f2mwlhh++sabT6TvgNpiUWyORUQIBSAdxs49BQOdHLEcgP5QA1IpsSVllN0/mDIZeGeXSPZ10jWPGBI+csfsXATbgDYLQhQiv3sWU7BA5WM/bV5Gcfu12QNjnfWcIm0ztK6R4xbH+en8hbQyAXHhrDAW2Xej/QuFZbrmLZ/XT2tjam6rdzst0j9A==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR10MB4759.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(4744005)(54906003)(38100700002)(26005)(8676002)(6916009)(86362001)(8936002)(38350700002)(55016003)(5660300002)(66946007)(316002)(508600001)(186003)(4326008)(36916002)(66556008)(52116002)(66476007)(7696005)(2906002)(956004);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YVQrFvzYGjjLRO5bhfLEqP7NaUHsS5ZRxCgzXaDjM5bisfxyPO8xHlC6RjCP?=
- =?us-ascii?Q?/sBPzia/ZPiTDmdIhxik0ZPHslLyq+qCc/vXKGF0l2M7obmPPDISEOZsLt1V?=
- =?us-ascii?Q?7W1ZWk/bVT2Akt2c8HDOoa7zouBRvT7oNkKSTpgCuXvmYxTRBf72GPiRCD9V?=
- =?us-ascii?Q?5XHND47pjXGDKWjBNnW5mtrEvGFLYEmMXD2Wd1fn8VMfZYeLoNlZVwf64oAB?=
- =?us-ascii?Q?Qz4Xlj7Ts7y8r2tS2VXqKVcX9rykwudvZcUG65qEf+2GtP6QRicPW4lHfk1I?=
- =?us-ascii?Q?sqHsV+jI4TcwEBLQocmogrK6nt55uKyRjlfv89bQ8nWkFKYbElLNU0jGbnxj?=
- =?us-ascii?Q?VxrUcyt+GmslCMr6hPgN9ibzxcLgKtbC2vuNp9AS/xsObbD1PSpBSJCZsIW7?=
- =?us-ascii?Q?qkXDCH8U1I7c+986tjLn/248b8Mw8KN6GyzzBVySWKyhewKuslgNa6GHTrGD?=
- =?us-ascii?Q?DISS/lcHR7qUqMnm9Va5ZibgAQab4nzQZSMaikZlRMNBW7LtfSFJxRTbJDtH?=
- =?us-ascii?Q?uCJsTXHWNLUGrD0Hc/HXWSp8ZkWn0vAJhbxPYwr4UU/Dt6pmVJxEO+HbYOkj?=
- =?us-ascii?Q?Zp7uNuUQksByHb5p7ATfOJwEGnCwlI8aRNN5+7JX2khjq2FRPZjATE+91KnS?=
- =?us-ascii?Q?Jji4EMhVOI+IuoROFPhZ1ZNgJ9YtPE2tq8ucEOSWOgcmm+IHIn7wXClNeR2N?=
- =?us-ascii?Q?VNgrkshca8wRoB7u2wEh8ZurKRJY7ccvdey+lw+ZdF4S06NNDbr1cdLBijax?=
- =?us-ascii?Q?dSkP3Kq6hYOQ7owms03ts5oOTPd/h/2pPv/XD9ftYZoFm1PKHxtO52sIEjtA?=
- =?us-ascii?Q?sZllmthsqLnLveWIlQdbxH/EOC/uZFU4/lih/GbjtmUGCVWwxUTPAIdmf4rs?=
- =?us-ascii?Q?6Xv4pZQ4W8Q6Wy5ryWdYduJv7/+EeBMZDPCzwyfnYkAB6Xiyr+QJk9/vATI6?=
- =?us-ascii?Q?Q1j4Xb3fzePrOk93QWbgTRcclCjvW8won14lZq0VVk9jalAjE7JXSmS3q7GE?=
- =?us-ascii?Q?r6kLBOA5G6qb8QYTh5rfeTLgl6XDg9qwLWG/LHPqzNQvH6rx/cC9YUr2gAM5?=
- =?us-ascii?Q?by+F6L8fHqhyVxBIdXOb3i/a13mhUvW1+co2N6jT/1P0cJDS+5F8yTvw09lU?=
- =?us-ascii?Q?CBto09VMc3VB4UKcGuiPTaD5Dd/kTBgV4OkxyBO6toW+2wuz5xKp40XNoAwM?=
- =?us-ascii?Q?UzZRpT1SkoOBgROF+Ve2sdWXaliJIZ0kW2C6L5GUcBp8IFqQTa+L/S4G1eE2?=
- =?us-ascii?Q?CplL74jFUSH34GniKGzDIUDltqwHiWjKsA+GS5zmTjWqDVO73NyuINGJvEah?=
- =?us-ascii?Q?P9MrVBfdvWtQxFz+7U10DbEQqGJRi9RqzkPhxuVLolHZVcK5dPl4LFIF+4F9?=
- =?us-ascii?Q?ZH8WzY2xVQApBFw02Ypa6xnOBpNG+scS1+nBl9iVJ7XbW3FRpSyIhkF77TGl?=
- =?us-ascii?Q?UXGhroqEqoshyJdl29T6K0C75rOuM9hp1Hkp5h4KggoaLW1d37HfVs8y5AIj?=
- =?us-ascii?Q?kKs9Fwrh1Zy46F6Pv02jtWXeqYB/RVS9vK04S749LuYDRBsELOOwhyHf+nuz?=
- =?us-ascii?Q?bjwerz2EemPzTweb1GVH7SvFWu2ruWM1mSdlny22CxQAWns7MN1Wc2E+h5uL?=
- =?us-ascii?Q?g66udtSQSsyRUZVbFQY3gzeMUFt6JONHeDQQCy0NLIDnRbsPisrEwCt8iD8T?=
- =?us-ascii?Q?uRg4VA=3D=3D?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e05f24c-d933-4fc7-e4f0-08d9b92a31ab
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR10MB4759.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2021 02:35:12.3843
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QrGgp8+HftMlmUUI2lEQkXNG05X3/9CYzJXPHv7Tv4Fa4KEXsBHEVjhYyjRdbcmijqpANT/vTwThTEFeMhzw+1ofl95Z6Z/KxVgy2v/yRIU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB5626
-X-Proofpoint-Virus-Version: vendor=nai engine=6300 definitions=10190 signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=961 mlxscore=0 spamscore=0
- phishscore=0 bulkscore=0 suspectscore=0 malwarescore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
- definitions=main-2112070014
-X-Proofpoint-GUID: q4OlCSDti9b2GBVNxMdMPqao3g9aTJh3
-X-Proofpoint-ORIG-GUID: q4OlCSDti9b2GBVNxMdMPqao3g9aTJh3
+References: <20211203234155.2319803-1-gsomlo@gmail.com> <20211203234155.2319803-4-gsomlo@gmail.com>
+ <CACPK8XfO_8=vgedmZddz1YmWbyxiM1-azF_j88wEBHzXnP6y_g@mail.gmail.com> <Ya63gv21Dmhi6J0s@errol.ini.cmu.edu>
+In-Reply-To: <Ya63gv21Dmhi6J0s@errol.ini.cmu.edu>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 7 Dec 2021 02:46:03 +0000
+Message-ID: <CACPK8Xeg2UoAqp55R+UrRLFJqerc1Kqrubh3BiEpSon+Q6bGyQ@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Kamil Rakoczy <krakoczy@antmicro.com>,
+        mdudek@internships.antmicro.com,
+        Paul Mackerras <paulus@ozlabs.org>,
+        Stafford Horne <shorne@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        david.abdurachmanov@sifive.com,
+        Florent Kermarrec <florent@enjoy-digital.fr>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 7 Dec 2021 at 01:23, Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+> I can remove dependency on "LITEX" and, with that, succesfully build
+> the driver as a module -- same principle as the LiteETH driver.
+> I'm queueing that up for the long promised v3, soon as I clear up a
+> few remaining questions... :)
 
-Vinod,
+If we have the driver as a 'tristate' we should make sure it loads and
+works as a module.
 
->> No objections from me. However, these patches should go through the
->> DT and phy trees.
 >
-> Ok I can pick these up wearing my phy maintainer hat, can u pls ack
-> it...
+> Right now I have:
+>
+>         depends on OF || COMPILE_TEST
 
-This series doesn't touch anything under SCSI. But it does look OK to
-me, so...
+The OF dependency is a requirement for the symbols you're using. See
+the discussion I had with Greet, I think going with this is reasonable
+for the first pass:
 
-Acked-by: Martin K. Petersen <martin.petersen@oracle.com>
+ depends on OF
+ depends on PPC_MICROWATT || LITEX || COMPILE_TEST
 
--- 
-Martin K. Petersen	Oracle Linux Engineering
+> > > +static int
+> > > +litex_get_cd(struct mmc_host *mmc)
+> > > +{
+> > > +       struct litex_mmc_host *host = mmc_priv(mmc);
+> > > +       int ret;
+> > > +
+> > > +       if (!mmc_card_is_removable(mmc))
+> > > +               return 1;
+> > > +
+> > > +       ret = mmc_gpio_get_cd(mmc);
+> >
+> > Bindings.
+>
+> This was part of the original Antmicro version of the driver, but I
+> have never actually used gpio based card detection. I'm inclined to
+> remove it from this submission entirely (and keep it around as an
+> out-of-tree fixup patch) until someone with the appropriate hardware
+> setup can provide a "tested-by" (and preferably an example on how to
+> configure it in DT).
+
+Agreed, if it's untested and unused then delete it.
+
+> > > +static u32
+> > > +litex_response_len(struct mmc_command *cmd)
+
+something else I noticed when re-reading the code; we can put the
+return arguments on the same line as the functions. The kernel has a
+nice long column limit now, so there's no need to shorten lines
+unncessarily. Feel free to go through the driver and fix that up.
+
+> > Can you put all of the irq handling together? Move the hardware sanity
+> > checking up higher and put it together too:
+
+> I moved it all as close together as possible, but it has to all go
+> *after* all of the `dev_platform_ioremap_resource[_byname]()` calls,
+> since those pointers are all used when calling `litex_write*()`.
+
+Makes sense.
+
+> I'll have it in v3, and you can let me know then if it's OK or still
+> needs yet more work.
+
+> > > +
+> > > +       ret = dma_set_mask(&pdev->dev, DMA_BIT_MASK(32));
+> >
+> > Is this going to be true on all platforms? How do we handle those
+> > where it's not true?
+>
+> I'll need to do a bit of digging here, unless anyone has ideas ready
+> to go...
+
+I'm not an expert either, so let's consult the docs:
+
+Documentation/core-api/dma-api-howto.rst
+
+This suggests we should be using dma_set_mask_and_coherent?
+
+But we're setting the mask to 32, which is the default, so perhaps we
+don't need this call at all?
+
+(I was thinking of the microwatt soc, which is a 64 bit soc but the
+peripherals are on a 32 bit bus, and some of the devices are behind a
+smaller bus again. But I think we're ok, as the DMA wishbone is
+32-bit).
+
+>
+> > > +       if (ret)
+> > > +               goto err_free_host;
+> > > +
+> > > +       host->buf_size = mmc->max_req_size * 2;
+> > > +       host->buffer = dma_alloc_coherent(&pdev->dev, host->buf_size,
+> > > +                                         &host->dma, GFP_DMA);
+> >
+> > dmam_alloc_coherent?
+>
+> Does this mean I no longer have to `dma[m]_free_coherent()` at [1] and
+> [2] below, since it's automatically handled by the "managed" bits?
+
+Yep spot on.
+
+> > > +       mmc->ocr_avail = MMC_VDD_32_33 | MMC_VDD_33_34;
+> > > +       mmc->ops = &litex_mmc_ops;
+> > > +
+> > > +       mmc->f_min = 12.5e6;
+> > > +       mmc->f_max = 50e6;
+> >
+> > How did you pick these?
+> >
+> > Are these always absolute? (wouldn't they depend on the system they
+> > are in? host clocks?)
+>
+> They are the minimum and maximum frequency empirically observed to work
+> on typical sdcard media with LiteSDCard, in the wild. I can state that
+> in a comment (after I do another pass of double-checking, crossing Ts
+> and dotting Is), hope that's what you were looking for.
+
+Lets add a comment describing that.
+
+> > > +
+> > > +       return 0;
+> > > +
+> > > +err_free_dma:
+> > > +       dma_free_coherent(&pdev->dev, host->buf_size, host->buffer, host->dma);
+>
+> [1] is this made optional by having used `dmam_alloc_coherent()` above?
+
+Yes, we can remove this.
+
+> > > +err_free_host:
+> > > +       mmc_free_host(mmc);
+> > > +       return ret;
+> > > +}
+> > > +
+> > > +static int
+> > > +litex_mmc_remove(struct platform_device *pdev)
+> > > +{
+> > > +       struct litex_mmc_host *host = dev_get_drvdata(&pdev->dev);
+> > > +
+> > > +       if (host->irq > 0)
+> > > +               free_irq(host->irq, host->mmc);
+> > > +       mmc_remove_host(host->mmc);
+> > > +       dma_free_coherent(&pdev->dev, host->buf_size, host->buffer, host->dma);
+>
+> [2] ditto?
+
+Yep.
+
+> Thanks again for all the help and advice!
+
+No problem. Thanks for taking the time to upstream the code.
