@@ -2,96 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD19546C0E6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 17:44:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 594FC46C0E9
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 17:44:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230316AbhLGQru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 11:47:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49762 "EHLO
+        id S238746AbhLGQrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 11:47:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229837AbhLGQru (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 11:47:50 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2595C061574
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 08:44:19 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4F70F556;
-        Tue,  7 Dec 2021 17:44:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1638895457;
-        bh=bWd6lEiREDRAZ+PDNC285hxwR6IPlUo4UOngm3Ag1Rc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vvf11SNig+AISPQZgOWs4IVJVw8w4TpobVC0ZeGsWIY6m8GlycE1D4l6/3VnWV9oq
-         gFUKidx6WLphcY54U5GvBnBTwVLSV6CJhVO3luz1H6a5UBbLh0AA6La3p1DOZ7ggP0
-         8cgL0CEbfHmt+fv/ye1dW2eHxwDV68MEBvMhUzjQ=
-Date:   Tue, 7 Dec 2021 18:43:48 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Marek Vasut <marex@denx.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: display: bridge: tc358867: Document DPI
- output support
-Message-ID: <Ya+PRMvq3cjJ46s/@pendragon.ideasonboard.com>
-References: <20211127032405.283435-1-marex@denx.de>
+        with ESMTP id S238710AbhLGQrz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 11:47:55 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56792C061746
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 08:44:24 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id p3-20020a05600c1d8300b003334fab53afso2187279wms.3
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 08:44:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Evtwdp0F9CASt8s98IiNqsHnMJqbM0dH0j742Zmjcgs=;
+        b=QcY/o/w1adog/4VwTjHK+e+xcsur2NL0TkmoVhLdYf2dtij241TiNUyCMyNjaWNH8m
+         2MZzhgX0qRWGIELKj91clucc8g3YsBw86gXyS1TKG2ajPJxZFzIobEnwCE1stUQniy/q
+         +Z3gyoIPtr8ijXRKkyz8B11PoR/vUOfJbv2f65SyT1BiUyIeHRMULGt8al3f6dDvcmle
+         ID44FVG10fmCM/5jkq5S6wOtzVWZuR4fAROko5qeH4FUqyU1dOpInscGp3vS9Tx7qvCo
+         yHCr3XntZd+fU3oMukBaovWt3dAy7RLlx2GPVnV3ORjpjQxstCTTiX2SX1+W3Apmu0CS
+         tONA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Evtwdp0F9CASt8s98IiNqsHnMJqbM0dH0j742Zmjcgs=;
+        b=t7OoO8j9qHdX1gkI3phQ1Yi86/S1b1K5weLVYa30pKckEMAGrRSLRCXz+Z5B8kRZmu
+         VebYOWzfTNrSyhc4rHpspl1Vk9JVXw0keEE4BnE3t1R/xl7gipcMVulxeMQy/9BU0q9Y
+         d13NmYlMUVBJPlSxO0lNNv33QlCm/zox3mJViMCderBeqEKfQRPaqG/++onjs8Ok2YPN
+         t1NNtEGfBn5MzEbR8f3sOdnM5SzWiSKfGIS8tJFDEeMTZA6cfzciMx5Zpeu4He6SSlsI
+         3nHNWdeVA51KS22sF7WRNE4BpbaSQDHT/J1lkXov09JIWqD+C49ED1Cc3oQ+yzq1c3xW
+         PtGQ==
+X-Gm-Message-State: AOAM5313FI0h8dP7U8Rbg5YTKTjh7426n2II0j3Ec/brVImpom9WMEwn
+        FyXAbg/DeD5WkWpN/uBo+EpZSAMdzzs00A==
+X-Google-Smtp-Source: ABdhPJyJxH1wEpFMJ2iJ8B3H7fwk5UFk46IyfHNTSGcmnwxnz1fR7flpDgHrqJfGkPsvrVwJ2i2syQ==
+X-Received: by 2002:a05:600c:2dc1:: with SMTP id e1mr8407723wmh.170.1638895462695;
+        Tue, 07 Dec 2021 08:44:22 -0800 (PST)
+Received: from google.com ([2a00:79e0:d:209:cb8b:b013:316d:b2f1])
+        by smtp.gmail.com with ESMTPSA id z14sm191565wrp.70.2021.12.07.08.44.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Dec 2021 08:44:22 -0800 (PST)
+Date:   Tue, 7 Dec 2021 16:44:18 +0000
+From:   David Brazdil <dbrazdil@google.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hans de Goede <hdegoede@redhat.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, Andrew Scull <ascull@google.com>,
+        Will Deacon <will@kernel.org>
+Subject: Re: [PATCH 2/2] misc: dice: Add driver to forward secrets to
+ userspace
+Message-ID: <Ya+PYiP43YxfLS4x@google.com>
+References: <20211207123617.3040177-1-dbrazdil@google.com>
+ <20211207123617.3040177-3-dbrazdil@google.com>
+ <Ya9cwZ94QatewwIc@kroah.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211127032405.283435-1-marex@denx.de>
+In-Reply-To: <Ya9cwZ94QatewwIc@kroah.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Hi Greg,
 
-Thank you for the patch.
-
-On Sat, Nov 27, 2021 at 04:24:02AM +0100, Marek Vasut wrote:
-> The TC358767/TC358867/TC9595 are all capable of operating in multiple
-> modes, DPI-to-(e)DP, DSI-to-(e)DP, DSI-to-DPI. Document support for the
-> DPI output port, which can now be connected both as input and output.
+On Tue, Dec 07, 2021 at 02:08:17PM +0100, Greg Kroah-Hartman wrote:
+> On Tue, Dec 07, 2021 at 12:36:17PM +0000, David Brazdil wrote:
+> > Open Profile for DICE is a protocol for deriving unique secrets at boot,
+> > used by some Android devices. The firmware/bootloader hands over secrets
+> > in a reserved memory region, this driver takes ownership of the memory
+> > region and exposes it to userspace via a character device that
+> > lets userspace mmap the memory region into its process.
+> > 
+> > The character device can only be opened once at any given time.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Andrzej Hajda <a.hajda@samsung.com>
-> Cc: Jernej Skrabec <jernej.skrabec@siol.net>
-> Cc: Jonas Karlman <jonas@kwiboo.se>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: devicetree@vger.kernel.org
-> To: dri-devel@lists.freedesktop.org
-> ---
->  .../devicetree/bindings/display/bridge/toshiba,tc358767.yaml  | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Why?  That should not matter.  And your code (correctly), does not check
+> for that.  So why say that here?
+
+It does check - open() returns -EBUSY if cmpxchg of the state from READY
+to BUSY fails. I agree this is a bit unconventional but it makes things
+easier to reason about. With multiple open FDs the driver would have to
+wait for all of them to get released before wiping, so one user could
+block the wiping requested by others by holding the FD indefinitely.
+And wiping despite other open FDs seems wrong, too. Is there a better
+way of doing this?
+
+> > +#include <linux/cdev.h>
+> > +#include <linux/dice.h>
+> > +#include <linux/io.h>
+> > +#include <linux/mm.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of_reserved_mem.h>
+> > +#include <linux/platform_device.h>
+> > +
+> > +#define DICE_MKDEV		MKDEV(MAJOR(dice_devt), 0)
+> > +#define DICE_MINOR_COUNT	1
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-> index f1541cc05297..5cfda6f2ba69 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-> @@ -61,8 +61,8 @@ properties:
->        port@1:
->          $ref: /schemas/graph.yaml#/properties/port
->          description: |
-> -            DPI input port. The remote endpoint phandle should be a
-> -            reference to a valid DPI output endpoint node
-> +            DPI input/output port. The remote endpoint phandle should be a
-> +            reference to a valid DPI output or input endpoint node.
+> Please just use the misc_device api, no need to try to claim a major
+> number for just one device node.  That will simplify your code a lot as
+> well.
 
-I assume the mode of operation (input or output) will be fixed for a
-given hardware design. Isn't this something that should be recorded in
-DT ? It would simplify configuration of the device in the driver.
+Ok, I'll look into it.
 
->  
->        port@2:
->          $ref: /schemas/graph.yaml#/properties/port
+> > +static int dice_open(struct inode *inode, struct file *filp)
+> > +{
+> > +	struct dice_data *data;
+> > +
+> > +	data = container_of(inode->i_cdev, struct dice_data, cdev);
+> > +
+> > +	/* Never allow write access. */
+> > +	if (filp->f_mode & FMODE_WRITE)
+> > +		return -EROFS;
 > 
+> Why do you care?  Writes just will not work anyway, right?
 
--- 
-Regards,
+There is nothing else preventing writes, the reserved memory is just plain
+old RAM.
 
-Laurent Pinchart
+Thanks,
+David
