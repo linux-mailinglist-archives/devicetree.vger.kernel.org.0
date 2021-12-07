@@ -2,176 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58AB146BA95
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:01:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F3B246BAA5
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 13:04:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236011AbhLGMEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 07:04:41 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:57214 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230444AbhLGMEi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 07:04:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1638878468; x=1670414468;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=R4oNkyXHoIArR8CahcGG7a0KgMyQw239IP2710b1DoQ=;
-  b=Q1EDsc/+dqKzBPxHkO6YAKLhmMMVguoVwPQJwWLDYl5WZ2Zx+FuNF4Zo
-   fH5y7tgRi/7TAXuNfGBQQ/99CIS2DCRDGz9XY/Bie/WtYz5IzCtjikXx/
-   k0Cjn8N/1sac+RBmTYVJnWB1DDHSykj5ML2fZl0b0E/s/epfc5mjKjZY5
-   PRn4o+WlazvefPxrpaZ6jo0eMICWLMAQD3E5WoT3YAxU+pv+q7zO8a9VT
-   Gg0TjxWdh00Ge0aQz+cYXhfe8ZuovvopgUAQbBvCmT1rYSPgt81oNh0kl
-   ZZ96MIDs/x00XmNyCT8IoWPVIMAsJOlSnCs3fxbGnW8FESm95A7pHyVRr
-   g==;
-IronPort-SDR: +4OBppKR0MVRMNiqXr7QfLHFNcuaZ5Ut5RRC7yBandQmsoAxU1I3P1a9J1SJg3FdCzIxpCAjCl
- i/HjpEI4RtvamtrlbN/rI17tLvqetkTw1E0TqzBGNKPKMdT+4azGs7hgNYYkynfck8Wp50k/GV
- wWqPeoF8RPUgbyG1jlNnW5Xt7DoQPeTbmoHm0kkvqpc3YkiDYxQTf1DYiyQivnlQMHs3PWOMs5
- 9OUy967MtoZezxx+flO3WfWuFRMakjodQJWb+Av/k5PBdVbREZ00SpCKjX3S12YT1yORM6ejyl
- 5CqGx/viqkfRevfX6qRrZPjS
-X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; 
-   d="scan'208";a="146370055"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Dec 2021 05:01:08 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 7 Dec 2021 05:01:08 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Tue, 7 Dec 2021 05:01:07 -0700
-Date:   Tue, 7 Dec 2021 13:03:05 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-CC:     <davem@davemloft.net>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <linux@armlinux.org.uk>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next 3/6] net: lan966x: add support for interrupts
- from analyzer
-Message-ID: <20211207120305.atm3xhyhz4xl7vqw@soft-dev3-1.localhost>
-References: <20211203104645.1476704-1-horatiu.vultur@microchip.com>
- <20211203104645.1476704-4-horatiu.vultur@microchip.com>
- <20211206182456.4494c5f6@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        id S231638AbhLGMIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 07:08:09 -0500
+Received: from foss.arm.com ([217.140.110.172]:58234 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231576AbhLGMIJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 07:08:09 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 97E7911FB;
+        Tue,  7 Dec 2021 04:04:38 -0800 (PST)
+Received: from [10.57.34.58] (unknown [10.57.34.58])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F11633F5A1;
+        Tue,  7 Dec 2021 04:04:36 -0800 (PST)
+Message-ID: <766ac58a-ffb7-f673-709b-0f0f740f3cfd@arm.com>
+Date:   Tue, 7 Dec 2021 12:04:32 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20211206182456.4494c5f6@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH v2 3/3] perf/smmuv3: Synthesize IIDR from CoreSight ID
+ registers
+Content-Language: en-GB
+To:     John Garry <john.garry@huawei.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        robh+dt@kernel.org
+Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, uchida.jun@socionext.com,
+        leo.yan@linaro.org, will@kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20211117144844.241072-1-jean-philippe@linaro.org>
+ <20211117144844.241072-4-jean-philippe@linaro.org>
+ <e60b15db-4e52-b5a6-1b17-203d250f1e65@huawei.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <e60b15db-4e52-b5a6-1b17-203d250f1e65@huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 12/06/2021 18:24, Jakub Kicinski wrote:
+On 2021-12-07 09:14, John Garry wrote:
+> On 17/11/2021 14:48, Jean-Philippe Brucker wrote:
+>> From: Robin Murphy<robin.murphy@arm.com>
+>>
+>> The SMMU_PMCG_IIDR register was not present in older revisions of the
+>> Arm SMMUv3 spec. On Arm Ltd. implementations, the IIDR value consists of
+>> fields from several PIDR registers, allowing us to present a
+>> standardized identifier to userspace.
+>>
+> So is there some userspace part to go with this now?
 
-Hi Jakub,
+FWIW I've not looked into it - is it just a case of someone knocking out 
+some JSON from the MMU-600/700 TRMs, or is there still mroe to do? I had 
+the impression that *some* part of the process was stalled until 
+implementations can start providing meaningful IIDRs, but I wasn't sure 
+whether that was tooling or just data. I just work the low-level 
+enablement angle :)
 
-> 
-> On Fri, 3 Dec 2021 11:46:42 +0100 Horatiu Vultur wrote:
-> > This patch adds support for handling the interrupts generated by the
-> > analyzer. Currently, only the MAC table generates these interrupts.
-> > The MAC table will generate an interrupt whenever it learns or forgets
-> > an entry in the table. It is the SW responsibility figure out which
-> > entries were added/removed.
-> >
-> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> 
-> > +static struct lan966x_mac_entry *lan966x_mac_alloc_entry(struct lan966x *lan966x,
-> > +                                                      const unsigned char *mac,
-> > +                                                      u16 vid, u16 port_index)
-> > +{
-> > +     struct lan966x_mac_entry *mac_entry;
-> > +
-> > +     mac_entry = devm_kzalloc(lan966x->dev,
-> > +                              sizeof(*mac_entry), GFP_ATOMIC);
-> 
-> Is it really necessary to use devm_ allocation for the mac entries?
-> It's 2x memory overhead.
-
-It is not necessary.
-
-> 
-> Also why GFP_ATOMIC? Memory allocations are _a lot_ less likely with
-> GFP_KERNEL.
-
-Initially I thought this is called also in some context where it
-couldn't sleep. But I was wrong.
-
-I will change these in the next version.
-
-> 
-> > +     if (!mac_entry)
-> > +             return NULL;
-> > +
-> > +     memcpy(mac_entry->mac, mac, ETH_ALEN);
-> > +     mac_entry->vid = vid;
-> > +     mac_entry->port_index = port_index;
-> > +     mac_entry->row = LAN966X_MAC_INVALID_ROW;
-> > +     return mac_entry;
-> > +}
-> 
-> > +static void lan966x_mac_process_raw_entry(struct lan966x_mac_raw_entry *raw_entry,
-> > +                                       u8 *mac, u16 *vid, u32 *dest_idx)
-> > +{
-> > +     mac[0] = (raw_entry->mach >> 8)  & 0xff;
-> > +     mac[1] = (raw_entry->mach >> 0)  & 0xff;
-> > +     mac[2] = (raw_entry->macl >> 24) & 0xff;
-> > +     mac[3] = (raw_entry->macl >> 16) & 0xff;
-> > +     mac[4] = (raw_entry->macl >> 8)  & 0xff;
-> > +     mac[5] = (raw_entry->macl >> 0)  & 0xff;
-> > +
-> > +     *vid = (raw_entry->mach >> 16) & 0xfff;
-> > +     *dest_idx  = ANA_MACACCESS_DEST_IDX_GET(raw_entry->maca);
-> 
-> Double space before =
-> 
-> > +}
-> > +
-> > +static void lan966x_mac_irq_process(struct lan966x *lan966x, u32 row,
-> > +                                 struct lan966x_mac_raw_entry *raw_entries)
-> > +{
-> > +     struct lan966x_mac_entry *mac_entry, *tmp;
-> > +     unsigned long flags;
-> > +     char mac[ETH_ALEN];
-> > +     u32 dest_idx;
-> > +     u32 column;
-> > +     u16 vid;
-> > +
-> > +     spin_lock_irqsave(&lan966x->mac_lock, flags);
-> > +     list_for_each_entry_safe(mac_entry, tmp, &lan966x->mac_entries, list) {
-> > +             bool founded = false;
-> 
-> s/founded/found/
-> 
-> > +             if (mac_entry->row != row)
-> > +                     continue;
-> > +
-> > +             for (column = 0; column < LAN966X_MAC_COLUMNS; ++column) {
-> > +                     /* All the valid entries are at the start of the row,
-> > +                      * so when get one invalid entry it can just skip the
-> > +                      * rest of the columns
-> > +                      */
-> > +                     if (!ANA_MACACCESS_VALID_GET(raw_entries[column].maca))
-> > +                             break;
-> > +
-> > +                     lan966x_mac_process_raw_entry(&raw_entries[column],
-> > +                                                   mac, &vid, &dest_idx);
-> > +                     WARN_ON(dest_idx > lan966x->num_phys_ports);
-> > +
-> > +                     /* If the entry in SW is found, then there is nothing
-> > +                      * to do
-> > +                      */
-> > +                     if (mac_entry->vid == vid &&
-> > +                         ether_addr_equal(mac_entry->mac, mac) &&
-> 
-> You need to add __aligned(2) to mac, ether_addr_equal() needs aligned
-> arguments.
-> 
-> > +                         mac_entry->port_index == dest_idx) {
-> > +                             raw_entries[column].process = true;
-> > +                             founded = true;
-> > +                             break;
-> > +                     }
-> > +             }
-
--- 
-/Horatiu
+Robin.
