@@ -2,193 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB23046C13E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 18:01:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3E8046C149
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 18:03:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229874AbhLGRFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 12:05:01 -0500
-Received: from foss.arm.com ([217.140.110.172]:36698 "EHLO foss.arm.com"
+        id S239780AbhLGRHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 12:07:21 -0500
+Received: from mail.iot.bzh ([51.75.236.24]:2363 "EHLO frontal.iot.bzh"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239733AbhLGRFA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Dec 2021 12:05:00 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 36F9011D4;
-        Tue,  7 Dec 2021 09:01:30 -0800 (PST)
-Received: from [10.57.34.58] (unknown [10.57.34.58])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 57E6C3F73B;
-        Tue,  7 Dec 2021 09:01:28 -0800 (PST)
-Message-ID: <d9646a05-2588-339f-24f6-e8cd2f2de746@arm.com>
-Date:   Tue, 7 Dec 2021 17:01:20 +0000
+        id S235159AbhLGRHV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 12:07:21 -0500
+Received: from frontal.iot.bzh (localhost [127.0.0.1])
+        by frontal.iot.bzh (Proxmox) with ESMTP id B87F245628;
+        Tue,  7 Dec 2021 18:03:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iot.bzh; h=cc:cc
+        :content-transfer-encoding:content-type:content-type:date:from
+        :from:in-reply-to:message-id:mime-version:references:reply-to
+        :subject:subject:to:to; s=iot.bzh; bh=95kJ63C8iLSh74RZfruzyxgCWL
+        zqRZfg00BCSQvmIG0=; b=XWvSp1CrWQeyX5mtI0gLQ3sncOVNoOZnO49YVxOVG0
+        dsrqVVuiV1m7i9fHqhQbduRTKr/O5IGx/msi27jXwUkF1rcyr2B63FtajcAKjlX0
+        X0ZjZ2Ox7oLTYNHISQPD4/YhxwhnMrrokBH6T9K6fmqXUt9/e66WT01l5o+NHSSc
+        GJIejrk7g24y66wWgNOmVnRITnC33Dz49gAPzOubzSWWymAwT+RstHn4gjBKpryC
+        Lg2r7dwh/8niLFYmsFJs4IixfrhFbFPiJ0O/rvWiCic8rtBQNuC+yTDfmg98vas7
+        zmgbmfTrCojnrBkt1TKSFriaCmU1ww9xVvX7/sEVgkpA==
+Message-ID: <4cf20793-9795-4126-4293-217041101852@iot.bzh>
+Date:   Tue, 7 Dec 2021 18:03:42 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH 04/12] drm/rockchip: dw_hdmi: add regulator support
-Content-Language: en-GB
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20211117143347.314294-1-s.hauer@pengutronix.de>
- <20211117143347.314294-5-s.hauer@pengutronix.de>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20211117143347.314294-5-s.hauer@pengutronix.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [PATCH v2 2/2] remoteproc: Add Renesas rcar driver
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     =?UTF-8?Q?Bj=c3=b6rn_Andersson?= <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <20211130100049.129418-1-julien.massot@iot.bzh>
+ <20211130100049.129418-3-julien.massot@iot.bzh>
+ <CAMuHMdUuYHxNe_XOBGt+6cdB49zF5W0p25DbQJ0CZ7A=dE8pyg@mail.gmail.com>
+From:   Julien Massot <julien.massot@iot.bzh>
+In-Reply-To: <CAMuHMdUuYHxNe_XOBGt+6cdB49zF5W0p25DbQJ0CZ7A=dE8pyg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-11-17 14:33, Sascha Hauer wrote:
-> The RK3568 has HDMI_TX_AVDD0V9 and HDMI_TX_AVDD_1V8 supply inputs needed
-> for the HDMI port. add support for these to the driver for boards which
-> have them supplied by switchable regulators.
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->   .../display/rockchip/rockchip,dw-hdmi.yaml    |  6 ++
->   drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   | 58 ++++++++++++++++++-
->   2 files changed, 61 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> index 53fa42479d5b7..293b2cfbf739f 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> @@ -28,6 +28,12 @@ properties:
->     reg-io-width:
->       const: 4
->   
-> +  avdd-0v9-supply:
-> +    description: A 0.9V supply that powers up the SoC internal circuitry.
-> +
-> +  avdd-1v8-supply:
-> +    description: A 0.9V supply that powers up the SoC internal circuitry.
-> +
->     clocks:
->       minItems: 2
->       items:
-> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> index 29608c25e2d0e..b8fe56c89cdc9 100644
-> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> @@ -9,6 +9,7 @@
->   #include <linux/platform_device.h>
->   #include <linux/phy/phy.h>
->   #include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
->   
->   #include <drm/bridge/dw_hdmi.h>
->   #include <drm/drm_edid.h>
-> @@ -83,6 +84,8 @@ struct rockchip_hdmi {
->   	struct clk *vpll_clk;
->   	struct clk *grf_clk;
->   	struct dw_hdmi *hdmi;
-> +	struct regulator *avdd_0v9;
-> +	struct regulator *avdd_1v8;
->   	struct phy *phy;
->   };
->   
-> @@ -222,6 +225,22 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
->   	hdmi->vpll_clk = hdmi->clks[RK_HDMI_CLK_VPLL].clk;
->   	hdmi->grf_clk = hdmi->clks[RK_HDMI_CLK_GRF].clk;
->   
-> +	hdmi->avdd_0v9 = devm_regulator_get_optional(hdmi->dev, "avdd-0v9");
+Hi Geert,
+Thanks for taking time to review my patch.
 
-These are clearly *not* optional, unless the HDMI block is magic and can 
-still work without physical power. Use devm_regulator_get(), and if the 
-real supply is missing from the DT for whatever reason you should get a 
-dummy regulator back, which you can then successfully disable and enable 
-without all the conditional mess.
-
-Robin.
-
-> +	if (IS_ERR(hdmi->avdd_0v9)) {
-> +		if (PTR_ERR(hdmi->avdd_0v9) != -ENODEV)
-> +			return PTR_ERR(hdmi->avdd_0v9);
-> +
-> +		hdmi->avdd_0v9 = NULL;
-> +	}
-> +
-> +	hdmi->avdd_1v8 = devm_regulator_get_optional(hdmi->dev, "avdd-1v8");
-> +	if (IS_ERR(hdmi->avdd_1v8)) {
-> +		if (PTR_ERR(hdmi->avdd_1v8) != -ENODEV)
-> +			return PTR_ERR(hdmi->avdd_1v8);
-> +
-> +		hdmi->avdd_1v8 = NULL;
-> +	}
-> +
->   	return 0;
->   }
->   
-> @@ -559,11 +578,27 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
->   		return ret;
->   	}
->   
-> +	if (hdmi->avdd_0v9) {
-> +		ret = regulator_enable(hdmi->avdd_0v9);
-> +		if (ret) {
-> +			DRM_DEV_ERROR(hdmi->dev, "failed to enable avdd0v9: %d\n", ret);
-> +			goto err_avdd_0v9;
-> +		}
-> +	}
-> +
-> +	if (hdmi->avdd_1v8) {
-> +		ret = regulator_enable(hdmi->avdd_1v8);
-> +		if (ret) {
-> +			DRM_DEV_ERROR(hdmi->dev, "failed to enable avdd1v8: %d\n", ret);
-> +			goto err_avdd_1v8;
-> +		}
-> +	}
-> +
->   	ret = clk_bulk_prepare_enable(RK_HDMI_NCLOCKS_HDMI, hdmi->clks);
->   	if (ret) {
->   		DRM_DEV_ERROR(hdmi->dev, "Failed to enable HDMI vpll: %d\n",
->   			      ret);
-> -		return ret;
-> +		goto err_clk;
->   	}
->   
->   	if (hdmi->chip_data == &rk3568_chip_data) {
-> @@ -587,10 +622,21 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
->   	 */
->   	if (IS_ERR(hdmi->hdmi)) {
->   		ret = PTR_ERR(hdmi->hdmi);
-> -		drm_encoder_cleanup(encoder);
-> -		clk_bulk_disable_unprepare(RK_HDMI_NCLOCKS_HDMI, hdmi->clks);
-> +		goto err_bind;
->   	}
->   
-> +	return 0;
-> +
-> +err_bind:
-> +	clk_bulk_disable_unprepare(RK_HDMI_NCLOCKS_HDMI, hdmi->clks);
-> +	drm_encoder_cleanup(encoder);
-> +err_clk:
-> +	if (hdmi->avdd_1v8)
-> +		regulator_disable(hdmi->avdd_1v8);
-> +err_avdd_1v8:
-> +	if (hdmi->avdd_0v9)
-> +		regulator_disable(hdmi->avdd_0v9);
-> +err_avdd_0v9:
->   	return ret;
->   }
->   
-> @@ -601,6 +647,12 @@ static void dw_hdmi_rockchip_unbind(struct device *dev, struct device *master,
->   
->   	dw_hdmi_unbind(hdmi->hdmi);
->   	clk_bulk_disable_unprepare(RK_HDMI_NCLOCKS_HDMI, hdmi->clks);
-> +
-> +	if (hdmi->avdd_1v8)
-> +		regulator_disable(hdmi->avdd_1v8);
-> +
-> +	if (hdmi->avdd_0v9)
-> +		regulator_disable(hdmi->avdd_0v9);
->   }
->   
->   static const struct component_ops dw_hdmi_rockchip_ops = {
+On 12/2/21 14:40, Geert Uytterhoeven wrote:
+> Hi Julien,
 > 
+> Thanks for your patch!
+> 
+> On Tue, Nov 30, 2021 at 11:01 AM Julien Massot <julien.massot@iot.bzh> wrote:
+>> Renesas Gen3 platform includes a Cortex-r7 processor.
+>>
+>> Both: the application cores (A5x) and the realtime core (CR7)
+>> share access to the RAM and devices with the same address map,
+>> so device addresses are equal to the Linux physical addresses.
+>>
+>> In order to initialize this remote processor we need to:
+>> - power on the realtime core
+>> - put the firmware in a ram area
+> 
+> RAM
+fixed
+> 
+>> - set the boot address for this firmware (reset vector)
+>> - Deassert the reset
+>>
+>> This initial driver allows to start and stop the Cortex R7
+>> processor.
+>>
+>> Signed-off-by: Julien Massot <julien.massot@iot.bzh>
+> 
+>> --- a/drivers/remoteproc/Kconfig
+>> +++ b/drivers/remoteproc/Kconfig
+>> @@ -283,6 +283,17 @@ config QCOM_WCNSS_PIL
+>>            verified and booted with the help of the Peripheral Authentication
+>>            System (PAS) in TrustZone.
+>>
+>> +config RCAR_REMOTEPROC
+>> +       tristate "Renesas R-CAR Gen3 remoteproc support"
+> 
+> R-Car
+fixed
+> 
+>> +       depends on ARCH_RENESAS
+> 
+> || COMPILE_TEST?
+COMPILE_TEST has been added to v3
+
+> 
+>> +       help
+>> +         Say y here to support R-Car realtime processor via the
+>> +         remote processor framework. An elf firmware can be loaded
+> 
+> ELF
+ok
+> 
+>> +         thanks to sysfs remoteproc entries. The remote processor
+>> +         can be started and stopped.
+>> +         This can be either built-in or a loadable module.
+>> +         If compiled as module (M), the module name is rcar_rproc.
+>> +
+>>   config ST_REMOTEPROC
+>>          tristate "ST remoteproc support"
+>>          depends on ARCH_STI
+> 
+>> --- /dev/null
+>> +++ b/drivers/remoteproc/rcar_rproc.c
+> 
+>> +static int rcar_rproc_mem_alloc(struct rproc *rproc,
+>> +                                struct rproc_mem_entry *mem)
+>> +{
+>> +       struct device *dev = &rproc->dev;
+>> +       void *va;
+>> +
+>> +       dev_dbg(dev, "map memory: %pa+%zx\n", &mem->dma, mem->len);
+>> +       va = ioremap_wc(mem->dma, mem->len);
+>> +       if (IS_ERR_OR_NULL(va)) {
+> 
+> I think ioremap_*() never returns an error code, only NULL for failure.
+Changed to check against NULL.
+> 
+>> +               dev_err(dev, "Unable to map memory region: %pa+%zx\n",
+>> +                       &mem->dma, mem->len);
+>> +               return -ENOMEM;
+>> +       }
+>> +
+>> +       /* Update memory entry va */
+>> +       mem->va = va;
+>> +
+>> +       return 0;
+>> +}
+> 
+>> +static int rcar_rproc_prepare(struct rproc *rproc)
+>> +{
+>> +       struct device *dev = rproc->dev.parent;
+>> +       struct device_node *np = dev->of_node;
+>> +       struct of_phandle_iterator it;
+>> +       struct rproc_mem_entry *mem;
+>> +       struct reserved_mem *rmem;
+>> +       u64 da;
+>> +
+>> +       /* Register associated reserved memory regions */
+>> +       of_phandle_iterator_init(&it, np, "memory-region", NULL, 0);
+>> +       while (of_phandle_iterator_next(&it) == 0) {
+>> +
+>> +               rmem = of_reserved_mem_lookup(it.node);
+>> +               if (!rmem) {
+>> +                       dev_err(&rproc->dev,
+>> +                               "unable to acquire memory-region\n");
+>> +                       return -EINVAL;
+>> +               }
+>> +
+>> +               /* No need to translate pa to da, R-Car use same map */
+>> +               da = rmem->base;
+>> +
+>> +               mem = rproc_mem_entry_init(dev, NULL,
+>> +                                          (dma_addr_t)rmem->base,
+> 
+> Do you need this cast?
+Looks like not. removed in v3
+
+> 
+>> +                                          rmem->size, da,
+> 
+> da is u64, and thus truncated to u32.
+Ok thats indeed a limitation between the AP cores and the realtime core.
+In v3 there is a check for bad input from device tree.
+
+> 
+>> +                                          rcar_rproc_mem_alloc,
+>> +                                          rcar_rproc_mem_release,
+>> +                                          it.node->name);
+>> +
+>> +               if (!mem)
+>> +                       return -ENOMEM;
+>> +
+>> +               rproc_add_carveout(rproc, mem);
+>> +       }
+>> +
+>> +       return 0;
+>> +}
+> 
+>> +static int rcar_rproc_probe(struct platform_device *pdev)
+>> +{
+>> +       struct device *dev = &pdev->dev;
+>> +       struct device_node *np = dev->of_node;
+>> +       struct rcar_rproc *priv;
+>> +       struct rproc *rproc;
+>> +       int ret;
+>> +
+>> +       rproc = rproc_alloc(dev, np->name, &rcar_rproc_ops,
+>> +                           NULL, sizeof(*priv));
+> 
+> devm_rproc_alloc(), to simplify cleanup?
+Indeed devm_rproc_alloc is used in v3.
+> 
+>> +       if (!rproc)
+>> +               return -ENOMEM;
+>> +
+>> +       priv = rproc->priv;
+>> +
+>> +       priv->rst = devm_reset_control_get_exclusive(dev, NULL);
+>> +       if (IS_ERR(priv->rst)) {
+>> +               ret = PTR_ERR(priv->rst);
+>> +               dev_err(dev, "fail to acquire rproc reset\n");
+> 
+> dev_err_probe() (which handles -EPROBE_DEFER, too)
+ok
+> 
+>> +               goto free_rproc;
+>> +       }
+>> +
+>> +       pm_runtime_enable(dev);
+>> +       ret = pm_runtime_get_sync(dev);
+>> +       if (ret) {
+>> +               dev_err(dev, "failed to power up\n");
+>> +               goto free_rproc;
+>> +       }
+>> +
+>> +       dev_set_drvdata(dev, rproc);
+>> +
+>> +       /* Manually start the rproc */
+>> +       rproc->auto_boot = false;
+>> +
+>> +       ret = rproc_add(rproc);
+> 
+> devm_rproc_add()?
+devm_rproc_add is now used in v3.
+
+> 
+>> +       if (ret) {
+>> +               dev_err(dev, "rproc_add failed\n");
+>> +               goto pm_disable;
+>> +       }
+>> +
+>> +       return 0;
+>> +
+>> +pm_disable:
+>> +       pm_runtime_disable(dev);
+>> +free_rproc:
+>> +       rproc_free(rproc);
+>> +
+>> +       return ret;
+>> +}
+> 
+>> +MODULE_LICENSE("GPL v2");
+>> +MODULE_DESCRIPTION("Renesas Gen3 R-Car remote processor control driver");
+> 
+> R-Car Gen3
+Ok
+
+All requested changes should be addressed in v3.
+
+Regards,
+-- 
+Julien Massot [IoT.bzh]
+
