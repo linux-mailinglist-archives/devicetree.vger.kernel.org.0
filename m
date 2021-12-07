@@ -2,165 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F23A446B17E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 04:29:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 015C446B18F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 04:41:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234125AbhLGDd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Dec 2021 22:33:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60718 "EHLO
+        id S234310AbhLGDp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Dec 2021 22:45:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232168AbhLGDd0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 22:33:26 -0500
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 612BFC061746;
-        Mon,  6 Dec 2021 19:29:57 -0800 (PST)
-Received: by mail-qk1-x733.google.com with SMTP id b67so13387556qkg.6;
-        Mon, 06 Dec 2021 19:29:57 -0800 (PST)
+        with ESMTP id S234282AbhLGDp0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Dec 2021 22:45:26 -0500
+Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4279BC061746;
+        Mon,  6 Dec 2021 19:41:57 -0800 (PST)
+Received: by mail-ua1-x92e.google.com with SMTP id l24so23994291uak.2;
+        Mon, 06 Dec 2021 19:41:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=7roDkg3KrE7fLZXK82trfY03V59oVuH/SpXZx6lh9oQ=;
-        b=azUrlGXnBPtCnMt/9o5J4bQPvIsW8BR0symPEnaaE4xgK/AuuiP1v8QBXxG8hH3TIS
-         jOh9gIK+xKPgduYo/jzMVwMQSDFjPHb0bOogL3BL0ql+jzlT4pjf1ZAUkD3mjOBRSWNC
-         qoZlnMdHb+wcOFSnWjjMr7YsHQTCjw7TOb3Ks=
+         :cc;
+        bh=+WjCLq5iyPbhZoOVbo+nvWb9Wp/JdlLnIPR31C337C8=;
+        b=mZiJ1JWBFc1OWU2CphwdToWib2Fs7VeoMvRyd6OGAUdTYE7JuVX3y18pFnbL9d0SYR
+         qnkGAcFy4HWByFCmfen3y9B+gsUBd2Z4vpiAY8cExnT/X6456PRBzYpHz5lzE8xWOBLE
+         /Opn0hwl+/WEjMpD3cFa2zhWfG+2VM8IZAoAwDwKw4uis+328EKo2LCeWhkZKeKEAT9k
+         n3UXrAemi7nOM0I+lBZxbPlnpXZXWks7fOWw21TwqOUg6+DtBOdhLAZp7S1avVtceNWO
+         6hIZiEiJ4irNSwTkZ0WAOuxz06b1U7vebIqVBU87ZImLwZxD31NuI/0Q7jK48HpCxsG6
+         jbJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=7roDkg3KrE7fLZXK82trfY03V59oVuH/SpXZx6lh9oQ=;
-        b=OiQKMJKCrzAv0rYnRqjiGcoJoiEzbZMF1x4arN5x+TyEmAHjucyAzXj/JXDy7x6UR+
-         mfg6jLrxvp/PX8TKduOCxEO+rmC2NJzJC74OBTR+Gsfvq2bGNVVtE9RmnTVgmFVqB5pW
-         /V+JLSC8eTpUY6pcxWvkYjQA+aGphZeQIZ0iUsStSfncCLYbRBMGF6CjumaYVY/hzUZ4
-         rcRicSewUcaRqLQyAcZo4rrxBlfsLbW3rlxOAFFK+f9n3tyxtjPGBETAKqfUR/ayxbld
-         a8xAOQLCN1bhSaLINm3X+6AFkrHMYgiDlJRAbc1oQIO0PHpQrbCcH4eq5uWasc/Pr5aP
-         296A==
-X-Gm-Message-State: AOAM530Ej3xHs7DQ183Ma8Kn+6SjpzDG4YNDfLziwF15wjJwPba7AhUF
-        31uuY3Q03sVcyE6pUOOLz7XNLJLbeU1PbsfGrfg=
-X-Google-Smtp-Source: ABdhPJzqqZnGA8mDLqBmrvcztTUSfOqGT68qRSrRQy+N3lGeHB2yc7Q/8VaVw3Nd7JAGTZvPx56kgOqtko7zdRJuoss=
-X-Received: by 2002:a05:620a:1004:: with SMTP id z4mr36775157qkj.243.1638847796330;
- Mon, 06 Dec 2021 19:29:56 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=+WjCLq5iyPbhZoOVbo+nvWb9Wp/JdlLnIPR31C337C8=;
+        b=5b7/eFbJEOeL9ZNIuyZyAlpO52UWbGZLaf1bg2jfeQ4GVl9evTE4oJzyD9m1cSI9P/
+         DVPyXnB3/68ID+cisJSTq0toGmcK37hgecZUF+s5nTmSNshi7xyjIvERRCANsf5p2Cef
+         yJcC3400mMfT63OzCTqBEdCLqzU8xaCSeUwhc4bGPHFTFKW2b3+ptNWmWBzWiIc0kMa9
+         vZG8GfYGc42M+t896RoqpVEKnJpiKiqgug+D23TQaG32kECWATHpfW8SP/GLfqEUa5hf
+         WwNhY9eNgtRg13me9cjXzUQuEuMd15/WNRvBlpPMtNKPGOv6A2JBl3sGakYnONJo0rIu
+         Ki8w==
+X-Gm-Message-State: AOAM532t6a257QWxIXJkyZ7p6GAsPVSWe/vD+jR6CfEsncfkwhk3ZcV8
+        X+LhJLOcsUU2w0747qhtduReT7g/GebIhBzAkg0d1blr0+c=
+X-Google-Smtp-Source: ABdhPJx6RQZ3n6olyV3sCz9AbKmYBKhNAk0yZ773fOAPjf8R3q9XrHTi0PcC2P6/Zcqz0XN+NMNLS7cMSGYejK/S3F0=
+X-Received: by 2002:ab0:6813:: with SMTP id z19mr46872879uar.28.1638848516162;
+ Mon, 06 Dec 2021 19:41:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20211201033738.121846-1-howard.chiu@quantatw.com>
- <Ya5/v+VhOM9o9BtQ@heinlein> <CACPK8XdCjqB+HZ_g9O=gjnSne3=iV44i6jKP5M8yWcsjnttaog@mail.gmail.com>
- <HKAPR04MB40033D58E2C1F96DDF16C13C966E9@HKAPR04MB4003.apcprd04.prod.outlook.com>
-In-Reply-To: <HKAPR04MB40033D58E2C1F96DDF16C13C966E9@HKAPR04MB4003.apcprd04.prod.outlook.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 7 Dec 2021 03:29:43 +0000
-Message-ID: <CACPK8Xd93Kmvh7kT+4tbMO0+6LWa-2ORmt_KNB_hpqMYhso46A@mail.gmail.com>
-Subject: Re: [PATCH v6] ARM: dts: aspeed: Adding Facebook Bletchley BMC
-To:     =?UTF-8?B?SG93YXJkIENoaXUgKOmCseWGoOedvyk=?= 
-        <Howard.Chiu@quantatw.com>
-Cc:     Patrick Williams <patrick@stwcx.xyz>,
-        Howard Chiu <howard10703049@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>
+References: <20211206182616.2089677-1-f.fainelli@gmail.com> <20211206182616.2089677-6-f.fainelli@gmail.com>
+In-Reply-To: <20211206182616.2089677-6-f.fainelli@gmail.com>
+From:   Gregory Fong <gregory.0xf0@gmail.com>
+Date:   Mon, 6 Dec 2021 19:41:29 -0800
+Message-ID: <CADtm3G5Sh5sFhq7ye=aJbzd0v_FiqOPt_RAE3v_qWFQ+jH5bEQ@mail.gmail.com>
+Subject: Re: [PATCH v2 05/14] dt-bindings: gpio: Convert Broadcom STB GPIO to YAML
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Markus Mayer <mmayer@broadcom.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Al Cooper <alcooperx@gmail.com>,
+        Doug Berger <opendmb@gmail.com>,
+        "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" 
+        <linux-ide@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:MULTIMEDIA CARD (MMC), SECURE DIGITAL (SD) AND..." 
+        <linux-mmc@vger.kernel.org>,
+        "open list:PWM SUBSYSTEM" <linux-pwm@vger.kernel.org>,
+        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
+        <linux-crypto@vger.kernel.org>,
+        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
+        <linux-rtc@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 7 Dec 2021 at 02:53, Howard Chiu (=E9=82=B1=E5=86=A0=E7=9D=BF) <How=
-ard.Chiu@quantatw.com> wrote:
+On Mon, Dec 6, 2021 at 10:26 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
 >
-> Hi Joel
+> Convert the Broadcom STB GPIO Device Tree binding to YAML to help with
+> validation.
 >
-> Bletchley platform needs to support fan control.
-> Since Billy's patch for upstream is still under review, I can't add pwm/t=
-ach node into dts or the build would fail.
->
-> As you know, I had committed the pwm/tach driver for ast26xx to OpenBMC l=
-inux, could I commit the dts to OpenBMC linux instead of upstream for early=
- build?
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 
-I'd suggest no, omit those features for now, and you can add them in
-once we have a driver. The device tree bindings for the tach/pwm need
-some work before they can be approved.
-
-When I asked you to fix the patch, I was referring to the usb-c
-warnings that I posted about the other week.
-
->
-> Howard
->
-> > -----Original Message-----
-> > From: Joel Stanley <joel@jms.id.au>
-> > Sent: Tuesday, December 7, 2021 6:52 AM
-> > To: Patrick Williams <patrick@stwcx.xyz>
-> > Cc: Howard Chiu <howard10703049@gmail.com>; Arnd Bergmann
-> > <arnd@arndb.de>; Olof Johansson <olof@lixom.net>; SoC Team
-> > <soc@kernel.org>; Rob Herring <robh+dt@kernel.org>; Andrew Jeffery
-> > <andrew@aj.id.au>; Linux ARM <linux-arm-kernel@lists.infradead.org>;
-> > devicetree <devicetree@vger.kernel.org>; Linux Kernel Mailing List
-> > <linux-kernel@vger.kernel.org>; linux-aspeed <linux-aspeed@lists.ozlabs=
-.org>;
-> > Howard Chiu (=E9=82=B1=E5=86=A0=E7=9D=BF) <Howard.Chiu@quantatw.com>
-> > Subject: Re: [PATCH v6] ARM: dts: aspeed: Adding Facebook Bletchley BMC
-> >
-> > On Mon, 6 Dec 2021 at 21:25, Patrick Williams <patrick@stwcx.xyz> wrote=
-:
-> > >
-> > > On Wed, Dec 01, 2021 at 11:37:38AM +0800, Howard Chiu wrote:
-> > > > Initial introduction of Facebook Bletchley equipped with
-> > > > Aspeed 2600 BMC SoC.
-> > > >
-> > > > Signed-off-by: Howard Chiu <howard.chiu@quantatw.com>
-> > > >
-> > >
-> > > ...
-> > >
-> > > > Change since v2:
-> > > > - Remove uart5 workaround
-> > > > - Remove gpio nodes of pca9552/pca9539
-> > > > - Modify gpio-line-name of led/power/presence pins with openbmc
-> > pattern
-> > >
-> > > A number of the GPIOs do not have defined openbmc patterns for them y=
-et.
-> > The
-> > > names you have chosen are ok for now, but we will be changing them as=
- we
-> > refine
-> > > development of this machine further.
-> > >
-> > > > +             gpio-line-names =3D
-> > > > +
-> > "SLED0_MS_DETECT1","SLED0_VBUS_BMC_EN","SLED0_INA230_ALERT","SLE
-> > D0_P12V_STBY_ALERT",
-> > > > +
-> > "SLED0_SSD_ALERT","SLED0_MS_DETECT0","SLED0_RST_CCG5","SLED0_FUSB
-> > 302_INT",
-> > > > +
-> > "SLED0_MD_STBY_RESET","SLED0_MD_IOEXP_EN_FAULT","SLED0_MD_DIR","
-> > SLED0_MD_DECAY",
-> > > > +
-> > "SLED0_MD_MODE1","SLED0_MD_MODE2","SLED0_MD_MODE3","power-ho
-> > st0";
-> > >
-> > > Such as these...
-> > >
-> > > > --
-> > > > 2.25.1
-> > > >
-> > >
-> > > Otherwise,
-> > >
-> > > Reviewed-by: Patrick Williams <patrick@stwcx.xyz>
-> >
-> > Thanks for reviewing.
-> >
-> > Howard, I'm merging patches for v5.17 but I can't apply this until you
-> > fix the warnings I mentioned.
-> >
-> > Cheers,
-> >
-> > Jeol
-> > >
-> > > --
-> > > Patrick Williams
+Acked-by: Gregory Fong <gregory.0xf0@gmail.com>
