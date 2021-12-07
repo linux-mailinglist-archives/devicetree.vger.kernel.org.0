@@ -2,122 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 832EB46B726
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 10:33:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EC4146B747
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 10:34:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232193AbhLGJgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 04:36:36 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:36600
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233719AbhLGJgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 04:36:35 -0500
-Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 162E840048
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 09:33:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638869585;
-        bh=BEdVsoIuFxM799cTbQkXLyx5ca2h6q0N/IASsw9oLV4=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=WJfpJf9yzKjRLd13tGz/qbf0vAw8krN5pm7AuyHUBNC7nuuPTL7E8n0YFnKi1OqA0
-         zMaObJD4Ihm2VFCjhvux3wkCD0/qml6Amlc0+R2oWXowG4RxdW8FNKHKOr9YcmWf9u
-         yCTnNPW0UOKhcC2v5GZUhHvghThQ1C5KteLw6EO2l9XbZrviGQGDzBQ6Iqm728QooT
-         WjNViXFSbijmeeb8nv/uC7wVxhrvDjcWz8ugvaQM4zl0XdZ1ufuD3I4BeN5yZgmTMe
-         zx4yKVeKdaIb8i7r8nRJOQfHfvaTfP6EdvSdKnDaS3BJFBr8XA2MHT7c85qUV3Gob3
-         Adyb0+MgiHNJA==
-Received: by mail-lj1-f200.google.com with SMTP id h18-20020a05651c159200b0021cf7c089d0so4158836ljq.21
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 01:33:05 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=BEdVsoIuFxM799cTbQkXLyx5ca2h6q0N/IASsw9oLV4=;
-        b=MrcWbp4vCC2gSDBTTNL4yyBOHZmcVAtCq5rV5dMgMEm4yQ26vkbGSAjnGLu8oYiwDC
-         cz188TLnl4b+VEF0YBZsti2eDVQLZfSYByNTYqHdNOIVCKvSOsVXGixZaInjeAlE6h+Z
-         +xZJSwBQUSNqHWz9rAdjoJ3LxatU3lJ/yLsutABx8HeekWgfp9koDuslk2D2BsazLBCC
-         411rrEOz9WvuWlSyXDNeM5aT21Bchx8vN0fAPNdmJFS8sP59QrfAyLfD1vcNsKj6p4y1
-         +ROC4AoGC+NA00h14cUg7jf0Rr5Cn+yRTwMqBXyBOS/u7UOk9wkD19y+afGL97tHOpD1
-         /ixg==
-X-Gm-Message-State: AOAM532MVYwDn5WMapX1XjdZ3U8GY1pXWE8+FK/zelxMM/wZykUXILQb
-        nXhMNs4R6qBMLSy7U2legvgxkphnjuwmb7NQ4cFL4yVPIDwCukuLX35rUWDc+2OgGbd/ksjbHqa
-        +j8lbzETj3OcQo7C6gnDvOuldAwDMAsdAzxgH1HY=
-X-Received: by 2002:ac2:4568:: with SMTP id k8mr39785447lfm.80.1638869584476;
-        Tue, 07 Dec 2021 01:33:04 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyJnVDk3iH40oUmSMxetPRxhkoJ0C7h06clV4jQucaTt6d1WFAgv+kKH51sPo13Jm0l9iRrdA==
-X-Received: by 2002:ac2:4568:: with SMTP id k8mr39785427lfm.80.1638869584282;
-        Tue, 07 Dec 2021 01:33:04 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id l5sm1553513ljh.66.2021.12.07.01.33.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Dec 2021 01:33:03 -0800 (PST)
-Message-ID: <314c4616-7151-f854-2ee4-9ab8d25ef0fb@canonical.com>
-Date:   Tue, 7 Dec 2021 10:33:02 +0100
+        id S234088AbhLGJiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 04:38:03 -0500
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:46185 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234026AbhLGJh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 04:37:57 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id D1F1860007;
+        Tue,  7 Dec 2021 09:34:22 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        <linux-mtd@lists.infradead.org>, Mark Brown <broonie@kernel.org>,
+        <linux-spi@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Xiangsheng Hou <Xiangsheng.Hou@mediatek.com>,
+        Julien Su <juliensu@mxic.com.tw>,
+        Jaime Liao <jaimeliao@mxic.com.tw>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v3 00/22] External ECC engines & Macronix support
+Date:   Tue,  7 Dec 2021 10:34:00 +0100
+Message-Id: <20211207093422.166934-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v4 6/7] clk: samsung: Add initial Exynos7885 clock driver
-Content-Language: en-US
-To:     David Virag <virag.david003@gmail.com>
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20211206153124.427102-1-virag.david003@gmail.com>
- <20211206153124.427102-7-virag.david003@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211206153124.427102-7-virag.david003@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/12/2021 16:31, David Virag wrote:
-> This is an initial implementation adding basic clocks, such as UART,
-> USI, I2C, WDT, ect. and their parent clocks. It is heavily based on the
-> Exynos850 clock driver at 'drivers/clk/samsung/clk-exynos850.c' which
-> was made by Sam Protsenko, thus the copyright and author lines were
-> kept.
-> 
-> Bus clocks are enabled by default as well to avoid hangs while trying to
-> access CMU registers.
-> 
-> Only the parts of CMU_TOP needed for CMU_CORE and CMU_PERI, a bit of
-> CMU_CORE, and most of CMU_PERI is implemented as of now.
-> 
-> Signed-off-by: David Virag <virag.david003@gmail.com>
-> ---
-> Changes in v2:
->   - Use shared code between Exynos850 and 7885 clock drivers
->   - As the code that was from the Exynos850 clock driver was moved to
->     clk-exynos-arm64.c and what remains is mostly SoC specific data,
->     move the Linaro copyright and Sam Protsenko author lines there.
-> 
-> Changes in v3:
->   - Nothing
-> 
-> Changes in v4:
->   - Fixed missing headers
-> 
->  drivers/clk/samsung/Makefile         |   1 +
->  drivers/clk/samsung/clk-exynos7885.c | 597 +++++++++++++++++++++++++++
->  2 files changed, 598 insertions(+)
->  create mode 100644 drivers/clk/samsung/clk-exynos7885.c
-> 
+Hello all,
 
+~~~
+Mark, I've added your Reviewed-by on all the SPI related patches, please
+check and tell me if I made a mistake. In particular, I've added
+something since v2: the spi-mxic.c driver now also depends on
+MTD_NAND_ECC in order to avoid faulty situations where MTD/NAND=m and
+SPI=y. Let me know if this does not work for you.
+~~~
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+This series is now stable and brings support for external/modular ECC
+engines, and let SPI controller using the ECC framework.
 
+As a first example, Macronix ECC engine can be used as an
+external engine (takes the data, proceeds to the calculations, writes
+back the ECC bytes) or as a pipelined engine doing on-the-fly
+calculations (which is very common in the raw NAND world).
 
-Best regards,
-Krzysztof
+In the device tree, the ECC engine should be described as a separated DT
+node. Then:
+* external case: the flash node should provide a nand-ecc-engine
+  property pointing to the ECC engine node.
+* pipelined case: the flash node should provide a nand-ecc-engine
+  property pointing to the SPI controller, itself with another
+  nand-ecc-engine property pointing at the ECC engine node.
+
+This series comes with a bunch of improvements on the binding side as
+well.
+
+Cheers,
+Miquèl
+
+Changes in v3:
+* Added Mark's R-by.
+* Added a commit changing the initialization order between the dirmaps
+  and the ECC engine so that the core might now if we are using a
+  pipelined engine or not.
+* Stopped creating additional dirmaps with ECC if the engine is not a
+  pipelined engine.
+* Solved the kernel test robot reports. In particular, I added a
+  dependency on MTD_NAND_ECC to Macronix SPI controller driver.
+* Added a patch to clean the NAND controller yaml file before moving
+  some bits to nand-chip.yaml. This addresses the comments made by Rob
+  about the useless allOf's.
+* Used platform_get_irq_byname_optional() in order to avoid useless
+  warnings when there is no IRQ.
+
+Changes in v2:
+* Fixed the bindings and added Rob's acks when relevant.
+* Added locking in the ECC engine driver.
+* Brought more changes in the core in order to bring the ECC information
+  into the spi_mem_op structure with the idea of avoiding any races
+  between parallel calls on the same engine.
+* Reorganized the ECC driver entirely in order to have a per-engine mxic
+  structure plus a per-NAND context. This lead to a number of changes
+  internally which cannot all be listed.
+
+Changes since the RFC:
+* Rebased on top of v5.15-rc1.
+* Fixed the dirmap configuration.
+* Added the various tags received.
+* Fixed the bindings as reported by the robots.
+* Fixed the return value of the helper counting bitflips.
+* Included a fix from Jaime Liao in the external pattern logic.
+* Added the yaml conversion of Macronix SPI controller description.
+* Added the yaml conversion of the SPI-NAND description.
+* Created a nand-chip.yaml file to share properties between SPI-NAND and
+  raw NAND.
+
+Mason Yang (1):
+  mtd: spinand: macronix: Use random program load
+
+Miquel Raynal (21):
+  dt-bindings: mtd: nand-controller: Fix the reg property description
+  dt-bindings: mtd: nand-controller: Fix a comment in the examples
+  dt-bindings: mtd: nand-controller: Harmonize the property types
+  dt-bindings: mtd: nand-chip: Create a NAND chip description
+  dt-bindings: mtd: spi-nand: Convert spi-nand description file to yaml
+  dt-bindings: vendor-prefixes: Clarify Macronix prefix
+  dt-bindings: spi: mxic: The interrupt property is not mandatory
+  dt-bindings: spi: mxic: Convert to yaml
+  dt-bindings: spi: mxic: Document the nand-ecc-engine property
+  dt-bindings: mtd: Describe Macronix NAND ECC engine
+  mtd: nand: ecc: Add infrastructure to support hardware engines
+  mtd: nand: Add a new helper to retrieve the ECC context
+  mtd: nand: mxic-ecc: Add Macronix external ECC engine support
+  mtd: nand: mxic-ecc: Support SPI pipelined mode
+  mtd: spinand: Delay a little bit dirmap creation
+  mtd: spinand: Create direct mapping descriptors for ECC operations
+  spi: mxic: Fix the transmit path
+  spi: mxic: Create a helper to configure the controller before an
+    operation
+  spi: mxic: Create a helper to ease the start of an operation
+  spi: mxic: Add support for direct mapping
+  spi: mxic: Add support for pipelined ECC operations
+
+ .../bindings/mtd/mxicy,nand-ecc-engine.yaml   |  77 ++
+ .../devicetree/bindings/mtd/nand-chip.yaml    |  70 ++
+ .../bindings/mtd/nand-controller.yaml         |  62 +-
+ .../devicetree/bindings/mtd/spi-nand.txt      |   5 -
+ .../devicetree/bindings/mtd/spi-nand.yaml     |  27 +
+ .../bindings/spi/mxicy,mx25f0a-spi.yaml       |  66 ++
+ .../devicetree/bindings/spi/spi-mxic.txt      |  34 -
+ .../devicetree/bindings/vendor-prefixes.yaml  |   3 +
+ drivers/mtd/nand/Kconfig                      |   6 +
+ drivers/mtd/nand/Makefile                     |   1 +
+ drivers/mtd/nand/core.c                       |  10 +-
+ drivers/mtd/nand/ecc-mxic.c                   | 900 ++++++++++++++++++
+ drivers/mtd/nand/ecc.c                        |  88 ++
+ drivers/mtd/nand/spi/core.c                   |  51 +-
+ drivers/mtd/nand/spi/macronix.c               |   2 +-
+ drivers/spi/Kconfig                           |   2 +-
+ drivers/spi/spi-mxic.c                        | 326 ++++++-
+ include/linux/mtd/nand-ecc-mxic.h             |  49 +
+ include/linux/mtd/nand.h                      |  33 +
+ include/linux/mtd/spinand.h                   |   2 +
+ include/linux/spi/spi-mem.h                   |   3 +
+ 21 files changed, 1656 insertions(+), 161 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/mxicy,nand-ecc-engine.yaml
+ create mode 100644 Documentation/devicetree/bindings/mtd/nand-chip.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/mxicy,mx25f0a-spi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-mxic.txt
+ create mode 100644 drivers/mtd/nand/ecc-mxic.c
+ create mode 100644 include/linux/mtd/nand-ecc-mxic.h
+
+-- 
+2.27.0
+
