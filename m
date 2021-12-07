@@ -2,184 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 444CC46BD72
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:20:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED07E46BD8B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:24:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237315AbhLGOYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 09:24:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42242 "EHLO
+        id S233329AbhLGO2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 09:28:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229615AbhLGOX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 09:23:59 -0500
-Received: from lb2-smtp-cloud8.xs4all.net (lb2-smtp-cloud8.xs4all.net [IPv6:2001:888:0:108::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA1EFC061574;
-        Tue,  7 Dec 2021 06:20:27 -0800 (PST)
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud8.xs4all.net with ESMTPA
-        id ubKHm0IBcQyExubKLm7GOu; Tue, 07 Dec 2021 15:20:25 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1638886825; bh=nHsNw5awsuV5Hy14rbgowmf8bWApqDSwX8s3aD8P2yI=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=ZtHZie7OZNJDrjzcX/OzbGFws1fkSDvkAmwqmRqFMDyC6kl6L9JwM/bSQa0zYS9H5
-         yCCdKE3dfyD0WnY1Y5qqCt3kPByAAqRr9rJ610n86EDf24LB7lAbqu9mPX2Mye+TWO
-         BmDMnr/CjutYkSEFRIEUiGZqxZEWyHA0P29css3/Mo0xdXUHerysMqaY1rhFnvSmiM
-         VT8Z4MBOMbWyBZVbvSvYukRMPnfIq7zWBsRV/aF8f+hldQGVZg6clCvtKzac3kSKBG
-         Ns0Oc1pzE2TfO+PSzPczni1VapTqWhORAS3rkQTDfDynw+JXfCnl3+sU6037OBM/tM
-         SCgHQI6Th8gtg==
-Subject: Re: [PATCH v10 3/3] media: platform: mtk-mdp3: add Mediatek MDP3
- driver
-To:     Moudy Ho <moudy.ho@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
-        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        menghui.lin@mediatek.com, sj.huang@mediatek.com,
-        allen-kh.cheng@mediatek.com, randy.wu@mediatek.com,
-        jason-jh.lin@mediatek.com, roy-cw.yeh@mediatek.com,
-        river.cheng@mediatek.com, srv_heupstream@mediatek.com
-References: <20211202062733.20338-1-moudy.ho@mediatek.com>
- <20211202062733.20338-4-moudy.ho@mediatek.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Message-ID: <c48154b9-b202-c47c-c27e-53aa97877430@xs4all.nl>
-Date:   Tue, 7 Dec 2021 15:20:13 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S233312AbhLGO2Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 09:28:25 -0500
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDA6BC061748
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 06:24:54 -0800 (PST)
+Received: by mail-oi1-x232.google.com with SMTP id u74so27945776oie.8
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 06:24:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=vfUP7dJBnmi/OcEPVE2ezJwiVV1EUyQRW+Qu6djHyYk=;
+        b=cKbadL6aJ141eWrYwPOtTIb0RT1sCruIZCJFoP3Mp+GlRexPjDyuc8ORvvqpOGPI1c
+         l0Q/5hwYs4n0G1leCMsw87+GWF6OZpHgo8YIyepUw/4rHrx+431NSShPxQ4XY3okTLa8
+         HwSnvvrIrkX0keGoEVQdundcorMDqQ27ophbgoPuODQ2JZlnfAXNkeajGQs8hTBaOEE+
+         tfNVXSTRb1khLmksktzI+A1fCA7nAeKuYnBaiDuAC7lDS6fudXxOnBhurhdFC+dbdupb
+         HrktztM6Z/tJsuUKo9lz9L63DiAo+6AKFnLGh/Kh9yS9pjnT0scMalVf0onw8bQ6HQ8C
+         /3Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vfUP7dJBnmi/OcEPVE2ezJwiVV1EUyQRW+Qu6djHyYk=;
+        b=H5W1icipqCjx/Rxb4UwKtnWzSVLyKL7WJMQ+WCRVSCD9zNXyURSuqTTrY0jMz+Ur6H
+         SFndDvWZR+9oj4YiWC/tS/MIMfsXCEZ6xa1el7LPZxQZt2KO/O0he+kG23KUknQNw56v
+         AMLWvd7W1gPsHOzDntOUHrLHusk665JaU/OavsvLzqGwDSS2YX1obf2k9Y35MKo635Z6
+         +O6233kmHEfutH1FMvSvY56Hgd5aCz2q/o19Vc1OuWTaMlzqu5uI9cc0Og8L0ZWQUVuM
+         s+ZJboNb4mk3/dgdcNoyepXhKY1tAzvT1outo25rvXhI4VS2q8ysIgC8/0JtCO0XCWww
+         fe2g==
+X-Gm-Message-State: AOAM530wMk4tYhwg8nlfbly8Cwnf3Xr4C3Vk8KeYSJgbZx6uphVq73sC
+        RBgLFi80m2KWXegol6rUWuWdbA==
+X-Google-Smtp-Source: ABdhPJydN+P5ZwkGLoLxJVSNSXypXum05RxX0N3o4pvwaY6rUeQx4TwAfDK8+ATcN4/uje330Luq4A==
+X-Received: by 2002:a05:6808:150d:: with SMTP id u13mr5398185oiw.155.1638887094092;
+        Tue, 07 Dec 2021 06:24:54 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id e26sm2672959oog.46.2021.12.07.06.24.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Dec 2021 06:24:53 -0800 (PST)
+Date:   Tue, 7 Dec 2021 06:26:18 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Wilczy??ski <kw@linux.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v1 02/10] dt-bindings: phy: qcom,qmp: Add SM8450 PCIe PHY
+ bindings
+Message-ID: <Ya9vCkillZqKc6o2@ripper>
+References: <20211202141726.1796793-1-dmitry.baryshkov@linaro.org>
+ <20211202141726.1796793-3-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20211202062733.20338-4-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfOWUbPfTiPTqirbiNfEpShw1ekwWSNVBklXd6tW+PX5RoibUYVNnPuH1W0Sv0F/PxUpzjBPYWp0cFS0vnE0gpKSfURIOaucsX732AgIM+ukOGzSQ9wNA
- nNnYbD1UZ18/W5nHu8Jdnsu5LExcznoZ96e4mfwARYr8+Z0HfVPAMBfun5q680aBlYglJgElkR85tMLPnuGafp2JNHqwZo4voWHP3kkJAL4ku+Ey5XUMj5Hl
- R6Cw+5fE4WW1/x0VYrv8uDcKit8XpThhu57lAawTiJY+TAy/d1wqcdF29tLhKe5/uyM9i7bEhtH+SBJiby48tziakD1nL7UU97IX2QMi7/zDEk65wzk6O2+v
- +7ClTGLyDmjZTsq5jiebvx/jkJug7aBm/ngg8QRc3NleZLDdUONuEU69khFL/DUTnwNtIsf0S+ypPvi9SpUwMrzOlEP8op9f4FSJuuArR6HAF8EhXgaWqI5L
- sKg2tn3nrnXEc/Lyai9bQ2GCFiG7lrbCcYIMxJ8hc4dPqh4Wt/s/uOc35CiEKFGrUmWRLusxLk+U8EGs71Fq5rVP9VtAgoaljmREZjXLnQmoIl9QW0UeDYwN
- 0Zju9vqI3wGRJQPd7mU0XeCaTSv/lsAvgun6F9aXDf3Nsb9biM4ZBw1orB07QHtS0kg/HMGln/Fs9UAaZgPN3zwedh7sVxdm+RJTjeDX6BTP/IXJURYXroSJ
- PMiBIWTVEPbAgDPRnLs1KlsswAiaPOShDBmyaXsbR+rjrPcQUl2fE5pvS4a524SBwYerXIjYWa6pgJojCm/8VXZqvFWriISWzcrSxMcQ87KejhSrH58jJV9P
- 1ip6T8HAuYJeQnakhyJvnJzJoiHP+D0Seqv1AZKrGNie5N3N5O8hhcJ+nTZjq6WNQTm8UqDliBTI/Wla1eARP6k5cf/5cpNb39QYCHU/C2NVKB2aUW5+z9n8
- D666FGOVbX9MXHfdDgpcPlCSt4NdXu7T6m4hWKjCEk/jyWGt8SeTWlNwZT3tnb0gvt2S/XL/aOX9ZYSvVbv3I2wlg1fmKBPQZmurZGXo1bG2yg7TsHhtZhZ+
- 4qqZ3FMxz4TQ6MMGbv2VNXPyTtUOg9j+M1ou4j/rvwQsyHV/vDHX0XdfajSbtToN2/qoTaaWu9J6yvnbtB7PMr8U/KGItkRPAbzfjvjF89hv3fcgpEdj2m80
- mF4aMINaCg/sPBn5NMJ/cYyMTgc51/C+aWz0cgNDOnm7sccv+xSleD8ON+tEeF80URdI2LEWbuJPF2HP5uI3PBbFpPjcAYrko85mxOI++BFm5lTwaLAEP6ma
- C3VMFSKoUv7SjFozzjEDwedHPTjBFVyeI5EOh9uV5qzroYDxVk4Q9nQJf20a2ahuF30LnYL+aQqi8zA4FvPgjBz8w+mUl1z9vJ/UIkrIHiwYqGyFMpaqEb9l
- 8TEivMpj4iTZNGVI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211202141726.1796793-3-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/2/21 7:27 AM, Moudy Ho wrote:
-> This patch adds driver for Mediatek's Media Data Path ver.3 (MDP3).
-> It provides the following functions:
->   color transform, format conversion, resize, crop, rotate, flip
->   and additional image quality enhancement.
+On Thu 02 Dec 06:17 PST 2021, Dmitry Baryshkov wrote:
+
+> There are two different PCIe PHYs on SM8450, one having one lane and
+> another with two lanes. Add DT bindings for the first one. Support for
+> second PCIe host and PHY will be submitted separately.
 > 
-> The MDP3 driver is mainly used for Google Chromebook products to
-> import the new architecture to set the HW settings as shown below:
->   User -> V4L2 framework
->     -> MDP3 driver -> SCP (setting calculations)
->       -> MDP3 driver -> CMDQ (GCE driver) -> HW
-> 
-> Each modules' related operation control is sited in mtk-mdp3-comp.c
-> Each modules' register table is defined in file with "mdp_reg_" prefix
-> GCE related API, operation control  sited in mtk-mdp3-cmdq.c
-> V4L2 m2m device functions are implemented in mtk-mdp3-m2m.c
-> Probe, power, suspend/resume, system level functions are defined in
-> mtk-mdp3-core.c
-> 
-> Signed-off-by: Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
-> Signed-off-by: daoyuan huang <daoyuan.huang@mediatek.com>
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> Reported-by: kernel test robot <lkp@intel.com>
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  drivers/media/platform/Kconfig                |   19 +
->  drivers/media/platform/Makefile               |    2 +
->  drivers/media/platform/mtk-mdp3/Makefile      |    6 +
->  .../media/platform/mtk-mdp3/mdp_reg_ccorr.h   |   19 +
->  drivers/media/platform/mtk-mdp3/mdp_reg_isp.h |   27 +
->  .../media/platform/mtk-mdp3/mdp_reg_rdma.h    |   65 +
->  drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h |   39 +
->  .../media/platform/mtk-mdp3/mdp_reg_wdma.h    |   47 +
->  .../media/platform/mtk-mdp3/mdp_reg_wrot.h    |   55 +
->  drivers/media/platform/mtk-mdp3/mtk-img-ipi.h |  280 ++++
->  .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.c   |  505 +++++++
->  .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.h   |   46 +
->  .../media/platform/mtk-mdp3/mtk-mdp3-comp.c   | 1264 +++++++++++++++++
->  .../media/platform/mtk-mdp3/mtk-mdp3-comp.h   |  147 ++
->  .../media/platform/mtk-mdp3/mtk-mdp3-core.c   |  338 +++++
->  .../media/platform/mtk-mdp3/mtk-mdp3-core.h   |   76 +
->  .../media/platform/mtk-mdp3/mtk-mdp3-m2m.c    |  789 ++++++++++
->  .../media/platform/mtk-mdp3/mtk-mdp3-m2m.h    |   49 +
->  .../media/platform/mtk-mdp3/mtk-mdp3-regs.c   |  737 ++++++++++
->  .../media/platform/mtk-mdp3/mtk-mdp3-regs.h   |  372 +++++
->  .../media/platform/mtk-mdp3/mtk-mdp3-vpu.c    |  312 ++++
->  .../media/platform/mtk-mdp3/mtk-mdp3-vpu.h    |   78 +
->  22 files changed, 5272 insertions(+)
->  create mode 100644 drivers/media/platform/mtk-mdp3/Makefile
->  create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_ccorr.h
->  create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_isp.h
->  create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rdma.h
->  create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h
->  create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wdma.h
->  create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wrot.h
->  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-img-ipi.h
->  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.c
->  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.h
->  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.c
->  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.h
->  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
->  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-core.h
->  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.c
->  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.h
->  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.c
->  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.h
->  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.c
->  create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.h
+>  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
-> index cf4adc64c953..e6c1e8892154 100644
-> --- a/drivers/media/platform/Kconfig
-> +++ b/drivers/media/platform/Kconfig
-> @@ -315,6 +315,25 @@ config VIDEO_MEDIATEK_MDP
->  	    To compile this driver as a module, choose M here: the
->  	    module will be called mtk-mdp.
->  
-> +config VIDEO_MEDIATEK_MDP3
-> +	tristate "Mediatek MDP v3 driver"
-> +	depends on MTK_IOMMU || COMPLIE_TEST
-
-Typo: COMPLIE_TEST -> COMPILE_TEST
-
-After fixing this, trying to build this driver on my PC results in:
-
-ERROR: modpost: "mtk_mmsys_mdp_connect" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mmsys_mdp_camin_ctrl" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mmsys_mdp_isp_ctrl" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mutex_prepare" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mmsys_mdp_disconnect" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mutex_unprepare" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mutex_get_mdp_mod" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mutex_put" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mutex_mdp_get" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-ERROR: modpost: "mtk_mutex_add_mod_by_cmdq" [drivers/media/platform/mtk-mdp3/mtk-mdp3.ko] undefined!
-WARNING: modpost: suppressed 1 unresolved symbol warnings because there were too many)
-
-include/linux/soc/mediatek/mtk-mmsys.h should probably provide dummy functions
-if CONFIG_MTK_MMSYS is undefined. Ditto for include/linux/soc/mediatek/mtk-mutex.h.
-
-Regards,
-
-	Hans
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> index c59bbca9a900..d18075cb2b5d 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> @@ -50,6 +50,7 @@ properties:
+>        - qcom,sm8350-qmp-ufs-phy
+>        - qcom,sm8350-qmp-usb3-phy
+>        - qcom,sm8350-qmp-usb3-uni-phy
+> +      - qcom,sm8450-qmp-gen3x1-pcie-phy
+>        - qcom,sm8450-qmp-ufs-phy
+>        - qcom,sdx55-qmp-pcie-phy
+>        - qcom,sdx55-qmp-usb3-uni-phy
+> @@ -333,6 +334,7 @@ allOf:
+>                - qcom,sm8250-qmp-gen3x1-pcie-phy
+>                - qcom,sm8250-qmp-gen3x2-pcie-phy
+>                - qcom,sm8250-qmp-modem-pcie-phy
+> +              - qcom,sm8450-qmp-gen3x1-pcie-phy
+>      then:
+>        properties:
+>          clocks:
+> -- 
+> 2.33.0
+> 
