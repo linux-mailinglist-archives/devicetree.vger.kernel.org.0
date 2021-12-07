@@ -2,110 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED07E46BD8B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:24:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 685DA46BD9A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 15:27:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233329AbhLGO2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 09:28:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43326 "EHLO
+        id S230355AbhLGOb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 09:31:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233312AbhLGO2Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 09:28:25 -0500
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDA6BC061748
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 06:24:54 -0800 (PST)
-Received: by mail-oi1-x232.google.com with SMTP id u74so27945776oie.8
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 06:24:54 -0800 (PST)
+        with ESMTP id S229925AbhLGOb0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 09:31:26 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03485C061574;
+        Tue,  7 Dec 2021 06:27:56 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id gt5so10439427pjb.1;
+        Tue, 07 Dec 2021 06:27:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vfUP7dJBnmi/OcEPVE2ezJwiVV1EUyQRW+Qu6djHyYk=;
-        b=cKbadL6aJ141eWrYwPOtTIb0RT1sCruIZCJFoP3Mp+GlRexPjDyuc8ORvvqpOGPI1c
-         l0Q/5hwYs4n0G1leCMsw87+GWF6OZpHgo8YIyepUw/4rHrx+431NSShPxQ4XY3okTLa8
-         HwSnvvrIrkX0keGoEVQdundcorMDqQ27ophbgoPuODQ2JZlnfAXNkeajGQs8hTBaOEE+
-         tfNVXSTRb1khLmksktzI+A1fCA7nAeKuYnBaiDuAC7lDS6fudXxOnBhurhdFC+dbdupb
-         HrktztM6Z/tJsuUKo9lz9L63DiAo+6AKFnLGh/Kh9yS9pjnT0scMalVf0onw8bQ6HQ8C
-         /3Ng==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rZImP3iwshfoecOxdndHZuIOFh7XKnqEjO0XNsB2s2E=;
+        b=QqLJT8VKxXMYb63z1HHhTzqMZS/F2KUKinSJ0AqFuPZgoQhaUKVKQJcVcNU952xAau
+         eUlcXQPy2u4zMhn0Ee+/ywYb7z8kV3l1PMsp+a2auxwtwHNbbgmzMvouvbF8PKEzUnfh
+         g7VmTSrjPHr7vB8KPUa7e4K7e9sM+M+ew0ca00gPFX7xpx3MHMtIZ/Me85MuqH0p2eRp
+         8bSB/+/7y+jOrrGxyWRqiHRmbyF7so2kr6zzURkYAR+yaLJjs9zusAo8JTSjXjF6vwlH
+         jYCbYGrpahoSHfuG4roqrvCPCplwhRGCg2SkYV7rULUTL1B28yyJxrnIaYrzzvqgAefL
+         fQHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vfUP7dJBnmi/OcEPVE2ezJwiVV1EUyQRW+Qu6djHyYk=;
-        b=H5W1icipqCjx/Rxb4UwKtnWzSVLyKL7WJMQ+WCRVSCD9zNXyURSuqTTrY0jMz+Ur6H
-         SFndDvWZR+9oj4YiWC/tS/MIMfsXCEZ6xa1el7LPZxQZt2KO/O0he+kG23KUknQNw56v
-         AMLWvd7W1gPsHOzDntOUHrLHusk665JaU/OavsvLzqGwDSS2YX1obf2k9Y35MKo635Z6
-         +O6233kmHEfutH1FMvSvY56Hgd5aCz2q/o19Vc1OuWTaMlzqu5uI9cc0Og8L0ZWQUVuM
-         s+ZJboNb4mk3/dgdcNoyepXhKY1tAzvT1outo25rvXhI4VS2q8ysIgC8/0JtCO0XCWww
-         fe2g==
-X-Gm-Message-State: AOAM530wMk4tYhwg8nlfbly8Cwnf3Xr4C3Vk8KeYSJgbZx6uphVq73sC
-        RBgLFi80m2KWXegol6rUWuWdbA==
-X-Google-Smtp-Source: ABdhPJydN+P5ZwkGLoLxJVSNSXypXum05RxX0N3o4pvwaY6rUeQx4TwAfDK8+ATcN4/uje330Luq4A==
-X-Received: by 2002:a05:6808:150d:: with SMTP id u13mr5398185oiw.155.1638887094092;
-        Tue, 07 Dec 2021 06:24:54 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id e26sm2672959oog.46.2021.12.07.06.24.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 06:24:53 -0800 (PST)
-Date:   Tue, 7 Dec 2021 06:26:18 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Wilczy??ski <kw@linux.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v1 02/10] dt-bindings: phy: qcom,qmp: Add SM8450 PCIe PHY
- bindings
-Message-ID: <Ya9vCkillZqKc6o2@ripper>
-References: <20211202141726.1796793-1-dmitry.baryshkov@linaro.org>
- <20211202141726.1796793-3-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rZImP3iwshfoecOxdndHZuIOFh7XKnqEjO0XNsB2s2E=;
+        b=fKLznM+Mz6YifXBHjalqxvF8nI7b9+HD1tBCiaVRVpJnWDO6GhwtJYwwG3NUGEbueq
+         4aaDNlTHAyizyqRSsnsfUQw00G3Dr/TAGy6N8e4eK0zHUBrgBgfzp8q3419R2vD6dpGn
+         cLGfCR5YedjONCqLbT44z2U9aQZPNPyR/6feXNFB3Q5U/P5F0CYnWoQr39ASoCfwYcUf
+         +m9yrSW6XnOdaLySainniocEWuBeRH1PwRe5weVJ9Ezm2pN8/lodlydC+PMInTQiCkXJ
+         FLnbxz5B01z76fgBxdfVZ0drpPpns/foUC/PC7DKkXECtptNfxr4v5j4cOUTmFjOpdXv
+         Za5Q==
+X-Gm-Message-State: AOAM53308pXMNnf8I78ihy34mExPqH4tnlr1NZyEhf0xYVldiO1cLsNx
+        rV94g3XgkLQvhxWMj5V1wtI=
+X-Google-Smtp-Source: ABdhPJxeMS57uFE9g0CClBlUFMnDSb3wIrBRa27M2/wHfp364QSXBSL37EyF+Uz4KE/X49RG6XcBnQ==
+X-Received: by 2002:a17:902:654d:b0:141:7df3:b94 with SMTP id d13-20020a170902654d00b001417df30b94mr50804329pln.60.1638887275144;
+        Tue, 07 Dec 2021 06:27:55 -0800 (PST)
+Received: from nj08008nbu.spreadtrum.com ([103.6.5.6])
+        by smtp.gmail.com with ESMTPSA id d20sm16373247pfl.88.2021.12.07.06.27.45
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 07 Dec 2021 06:27:54 -0800 (PST)
+From:   Kevin Tang <kevin3.tang@gmail.com>
+To:     maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, mark.rutland@arm.com, kevin3.tang@gmail.com,
+        pony1.wu@gmail.com
+Cc:     orsonzhai@gmail.com, zhang.lyra@gmail.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v8 0/6] Add Unisoc's drm kms module
+Date:   Tue,  7 Dec 2021 22:27:11 +0800
+Message-Id: <20211207142717.30296-1-kevin3.tang@gmail.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211202141726.1796793-3-dmitry.baryshkov@linaro.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 02 Dec 06:17 PST 2021, Dmitry Baryshkov wrote:
+ChangeList:
+RFC v1:
+1. only upstream modeset and atomic at first commit.
+2. remove some unused code;
+3. use alpha and blend_mode properties;
+3. add yaml support;
+4. remove auto-adaptive panel driver;
+5. bugfix
 
-> There are two different PCIe PHYs on SM8450, one having one lane and
-> another with two lanes. Add DT bindings for the first one. Support for
-> second PCIe host and PHY will be submitted separately.
-> 
+RFC v2:
+1. add sprd crtc and plane module for KMS, preparing for multi crtc&encoder
+2. remove gem drivers, use generic CMA handlers
+3. remove redundant "module_init", all the sub modules loading by KMS
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+RFC v3:
+1. multi crtc&encoder design have problem, so rollback to v1
 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> index c59bbca9a900..d18075cb2b5d 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> @@ -50,6 +50,7 @@ properties:
->        - qcom,sm8350-qmp-ufs-phy
->        - qcom,sm8350-qmp-usb3-phy
->        - qcom,sm8350-qmp-usb3-uni-phy
-> +      - qcom,sm8450-qmp-gen3x1-pcie-phy
->        - qcom,sm8450-qmp-ufs-phy
->        - qcom,sdx55-qmp-pcie-phy
->        - qcom,sdx55-qmp-usb3-uni-phy
-> @@ -333,6 +334,7 @@ allOf:
->                - qcom,sm8250-qmp-gen3x1-pcie-phy
->                - qcom,sm8250-qmp-gen3x2-pcie-phy
->                - qcom,sm8250-qmp-modem-pcie-phy
-> +              - qcom,sm8450-qmp-gen3x1-pcie-phy
->      then:
->        properties:
->          clocks:
-> -- 
-> 2.33.0
-> 
+RFC v4:
+1. update to gcc-linaro-7.5.0
+2. update to Linux 5.6-rc3
+3. remove pm_runtime support
+4. add COMPILE_TEST, remove unused kconfig
+5. "drm_dev_put" on drm_unbind
+6. fix some naming convention issue
+7. remove semaphore lock for crtc flip
+8. remove static variables
+
+RFC v5:
+1. optimize encoder and connector code implementation
+2. use "platform_get_irq" and "platform_get_resource"
+3. drop useless function return type, drop unless debug log
+4. custom properties should be separate, so drop it
+5. use DRM_XXX replase pr_xxx
+6. drop dsi&dphy hal callback ops
+7. drop unless callback ops checking
+8. add comments for sprd dpu structure
+
+RFC v6:
+1. Access registers via readl/writel
+2. Checking for unsupported KMS properties (format, rotation, blend_mode, etc) on plane_check ops
+3. Remove always true checks for dpu core ops
+
+RFC v7:
+1. Fix DTC unit name warnings
+2. Fix the problem of maintainers
+3. Call drmm_mode_config_init to mode config init
+4. Embed drm_device in sprd_drm and use devm_drm_dev_alloc
+5. Replace DRM_XXX with drm_xxx on KMS module, but not suitable for other subsystems
+6. Remove plane_update stuff, dpu handles all the HW update in crtc->atomic_flush
+7. Dsi&Dphy Code structure adjustment, all move to "sprd/"
+
+v0:
+1. Remove dpu_core_ops stuff layer for sprd drtc driver, but dpu_layer need to keeping.
+   Because all the HW update in crtc->atomic_flush, we need temporary storage all layers for
+   the dpu pageflip of atomic_flush.
+2. Add ports subnode with port@X.
+
+v1:
+1. Remove dphy and dsi graph binding, merge the dphy driver into the dsi.
+2. Add commit messages for Unisoc's virtual nodes.
+
+v2:
+1. Use drm_xxx to replace all DRM_XXX.
+2. Use kzalloc to replace devm_kzalloc for sprd_dsi/sprd_dpu structure init.
+3. Remove dpu_core_ops midlayer.
+
+v3:
+1. Remove dpu_layer midlayer and commit layers by aotmic_update
+
+v4:
+1. Move the devm_drm_dev_alloc to master_ops->bind function.
+2. The managed drmm_mode_config_init() it is no longer necessary for drivers to explicitly call drm_mode_config_cleanup, so delete it.
+3. Use drmm_helpers to allocate crtc ,planes and encoder.
+4. Move allocate crtc ,planes, encoder to bind funtion.
+5. Move rotation enum definitions to crtc layer reg bitfields.
+
+v5:
+1. Remove subdir-ccflgas-y for Makefile.
+2. Keep the selects sorted by alphabet for Kconfig.
+3. Fix the checkpatch warnings.
+4. Use mode_set_nofb instead of mode_valid callback.
+5. Follow the OF-Graph bindings, use of_graph_get_port_by_id instead of of_parse_phandle.
+6. Use zpos to represent the layer position.
+7. Rebase to last drm misc branch.
+8. Remove panel_in port for dsi node.
+9. Drop the dsi ip file prefix.
+10. Add Signed-off-by for dsi&dphy patch.
+11. Use the mode_flags of mipi_dsi_device to setup crtc DPI and EDPI mode.
+
+v6:
+1. Disable and clear interrupts before register dpu IRQ
+2. Init dpi config used by crtc_state->adjusted_mode on mode_set_nofb
+3. Remove enable_irq and disable_irq function call.
+4. Remove drm_format_info function call.
+5. Redesign the way to access the dsi register.
+6. Reduce the dsi_context member variables.
+
+v7:
+1. Fix codeing style issue by checkpatch.
+2. Drop the pll registers structure define.
+3. Use bridge API instead of drm panel API.
+4. Register mipi_dsi_host on probe phase;
+5. Remove iommu error interrupt handling function.
+6. Remove some unused function.
+
+v8:
+1. Fix missing signed-off-by.
+2. Move component_add to dsi_host.attach callback.
+
+Kevin Tang (6):
+  dt-bindings: display: add Unisoc's drm master bindings
+  drm/sprd: add Unisoc's drm kms master
+  dt-bindings: display: add Unisoc's dpu bindings
+  drm/sprd: add Unisoc's drm display controller driver
+  dt-bindings: display: add Unisoc's mipi dsi controller bindings
+  drm/sprd: add Unisoc's drm mipi dsi&dphy driver
+
+ .../display/sprd/sprd,display-subsystem.yaml  |   64 +
+ .../display/sprd/sprd,sharkl3-dpu.yaml        |   77 ++
+ .../display/sprd/sprd,sharkl3-dsi-host.yaml   |   88 ++
+ drivers/gpu/drm/Kconfig                       |    2 +
+ drivers/gpu/drm/Makefile                      |    1 +
+ drivers/gpu/drm/sprd/Kconfig                  |   13 +
+ drivers/gpu/drm/sprd/Makefile                 |    8 +
+ drivers/gpu/drm/sprd/megacores_pll.c          |  305 +++++
+ drivers/gpu/drm/sprd/sprd_dpu.c               |  880 ++++++++++++++
+ drivers/gpu/drm/sprd/sprd_dpu.h               |  109 ++
+ drivers/gpu/drm/sprd/sprd_drm.c               |  205 ++++
+ drivers/gpu/drm/sprd/sprd_drm.h               |   19 +
+ drivers/gpu/drm/sprd/sprd_dsi.c               | 1073 +++++++++++++++++
+ drivers/gpu/drm/sprd/sprd_dsi.h               |  126 ++
+ 14 files changed, 2970 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,display-subsystem.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml
+ create mode 100644 drivers/gpu/drm/sprd/Kconfig
+ create mode 100644 drivers/gpu/drm/sprd/Makefile
+ create mode 100644 drivers/gpu/drm/sprd/megacores_pll.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dpu.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dpu.h
+ create mode 100644 drivers/gpu/drm/sprd/sprd_drm.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_drm.h
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dsi.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dsi.h
+
+-- 
+2.29.0
+
