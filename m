@@ -2,306 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED2646C08F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 17:17:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A133C46C0AD
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 17:27:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239405AbhLGQVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 11:21:03 -0500
-Received: from ixit.cz ([94.230.151.217]:58628 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234804AbhLGQVC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Dec 2021 11:21:02 -0500
-Received: from [127.0.0.1] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+        id S239632AbhLGQa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 11:30:58 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:55566
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S239628AbhLGQa6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 11:30:58 -0500
+Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 22D9A21F5E;
-        Tue,  7 Dec 2021 17:17:29 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1638893849;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=GovhpTPYK5Ht0VODNqAF4QQig7BvnuyGrtziIctHJUY=;
-        b=IWq9cZBv2U+D3hknfdxz5TGB4+SON4bp5ECA52njYU3/rX2LVbzbuRqaKpYaVqDwNnVj+1
-        XSGVaQYAdXkzDyRecvUvx9uzHB3iFa00vFga5epWaShNT+dzL5Mh8UQCtJ6t6F7mMQ1/QZ
-        drNmePGOXDoT3WAeuIurwRfjRLwMJ/4=
-Date:   Tue, 07 Dec 2021 16:17:28 +0000
-From:   David Heidelberg <david@ixit.cz>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH=5D_dt-bindings=3A_misc=3A_convert_Qu?= =?US-ASCII?Q?alcomm_FastRPC_bindings_to_the_YAML_schema?=
-In-Reply-To: <4f631075-85d0-7362-e3d6-b3abaec465e0@linaro.org>
-References: <20211206193849.109079-1-david@ixit.cz> <4f631075-85d0-7362-e3d6-b3abaec465e0@linaro.org>
-Message-ID: <285F17B6-686B-4DAB-B396-12D1E35F7023@ixit.cz>
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8AA5F3F1F0
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 16:27:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1638894444;
+        bh=xM0l6E3jMAiAL33QZvvnbCIHqgFt7ZY4OmXToVTpadE=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=ObgLC9LZJ/iwPo3Tte5xYQO/4ThNZVpvrWfOX4ItFgrLvj1N6SW3AdU9F4aTbGdZM
+         1cToYTp54XUISo2F/R36hjqnBF3Y4JWlxuU1WdIRcW5muoRp+0UX/f52mScGCsLZeI
+         MuizMMqbdR4axJLa6vEr0mEZobsQv8Eq8W2TTQSr++Vw9eAHlCprLd508FY/lGp01s
+         U+05e8C93KlIDsBUwR7njOpHB0nGmvltC6LC68gQyfx5A8YV7uLP6aT9uNV0m+ovKP
+         Pbmmq+4z0q550splcmId/8l3Nkadni37f+XewloScA2i6Fr0SCOJt5JEHoxCy96LT7
+         WYC7DTcJTsOQQ==
+Received: by mail-lj1-f197.google.com with SMTP id q19-20020a05651c055300b0021a259ae8bbso4690936ljp.4
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 08:27:24 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=xM0l6E3jMAiAL33QZvvnbCIHqgFt7ZY4OmXToVTpadE=;
+        b=G19NunlGkBje46edfl0poCcP/ljotmqDhgi4fpjhfZ3dX2tmGHLyOepxA/Eadx0qFb
+         5jJ7l1/7CFy4nPb6yE3ejwEas31p/YuAe0mtJN6IpZk/NyPFbmS9VVR4K0Yf3Pb573f1
+         y20U2Ilc8AHSxQNGcpY+PtS58wqJKyEJPow6/win45Md7oEijMnnLUg5wYjTJxSGlc3o
+         719ZCVXzpKXSMuD7vFsJ8gxUyaTZuRDZZpalVHcTJ6OgaiZ047un/xdQo5KIxwIpoJ+D
+         RZTZmLdzr5DGkCJB4ZNhb37l3/0HgetaN1TUdBUp6mxb0odnwtEe6geYTuo+c3I45lrH
+         Mjug==
+X-Gm-Message-State: AOAM530OHWiLHNM077aKGToxQXLC3ErZJJS/IqI+g2agQveJJXr7Y2/O
+        0FCWQlwF8mOSTU4xK2f/G0F0W1Z6xLk8g8g49c5Gmdoj8kLzsudpeWpfWK0i8YDSLtVo9BI32Vr
+        lq1qWrvYXLl5OJnRTsUn4rxawiDuumvLHJk29aPQ=
+X-Received: by 2002:a05:6512:3251:: with SMTP id c17mr40905498lfr.440.1638894443828;
+        Tue, 07 Dec 2021 08:27:23 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyPlvTlKBjaqxG6K7rwhBvJnMmqJFIA3cH7OtYj4hNRFmF9NhNCnZdVDoq/XHpFZc+BQBwwpQ==
+X-Received: by 2002:a05:6512:3251:: with SMTP id c17mr40905480lfr.440.1638894443619;
+        Tue, 07 Dec 2021 08:27:23 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id w6sm4208lfr.11.2021.12.07.08.27.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Dec 2021 08:27:23 -0800 (PST)
+Message-ID: <9a412f16-9375-32ae-cbda-ae9f38332887@canonical.com>
+Date:   Tue, 7 Dec 2021 17:27:22 +0100
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH] dt-bindings: memory-controllers: ti,gpmc: Drop incorrect
+ unevaluatedProperties
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Tony Lindgren <tony@atomide.com>,
+        Roger Quadros <rogerq@kernel.org>, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org
+References: <20211206174215.2297796-1-robh@kernel.org>
+ <9400d57e-7db7-0f58-b391-417e103576cd@canonical.com>
+ <CAL_JsqKBE5p2hA0F4DqrzA1ERA484kzDsZP2u1nq79yTG2nM+A@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <CAL_JsqKBE5p2hA0F4DqrzA1ERA484kzDsZP2u1nq79yTG2nM+A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Oh, I see!
+On 07/12/2021 16:54, Rob Herring wrote:
+> On Tue, Dec 7, 2021 at 3:12 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
+>>
+>> On 06/12/2021 18:42, Rob Herring wrote:
+>>> With 'unevaluatedProperties' support implemented, the TI GPMC example
+>>> has a warning:
+>>>
+>>> Documentation/devicetree/bindings/mtd/ti,gpmc-onenand.example.dt.yaml: memory-controller@6e000000: onenand@0,0: Unevaluated properties are not allowed ('compatible', '#address-cells', '#size-cells', 'partition@0', 'partition@100000' were unexpected)
+>>>
+>>> The child node definition for GPMC is not a complete binding, so specifying
+>>> 'unevaluatedProperties: false' for it is not correct and should be
+>>> dropped.
+>>>
+>>> Fixup the unnecessary 'allOf' while we're here.
+>>>
+>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>>> Cc: Tony Lindgren <tony@atomide.com>
+>>> Cc: Roger Quadros <rogerq@kernel.org>
+>>> Signed-off-by: Rob Herring <robh@kernel.org>
+>>> ---
+>>>  .../devicetree/bindings/memory-controllers/ti,gpmc.yaml      | 5 +----
+>>>  1 file changed, 1 insertion(+), 4 deletions(-)
+>>>
+>>
+>> Looks good. Rob, do you want to take it via your tree or I should handle it?
+> 
+> I'll take it given there's also the somewhat related "dt-bindings:
+> mtd: ti,gpmc-nand: Add missing 'rb-gpios'"
 
-Maybe we can do some kind of merge of our almost 99=2E9% same patches or y=
-ou want to just nitpick bits from mine?
+Sure, then:
 
-Also, are you on some Matrix / IRC channel?
-
-Thank you
-David
-
-
--------- P=C5=AFvodn=C3=AD zpr=C3=A1va --------
-Odes=C3=ADlatel: Srinivas Kandagatla <srinivas=2Ekandagatla@linaro=2Eorg>
-Odesl=C3=A1no: 7=2E prosince 2021 15:56:33 UTC
-Komu: David Heidelberg <david@ixit=2Ecz>, Andy Gross <agross@kernel=2Eorg>=
-, Bjorn Andersson <bjorn=2Eandersson@linaro=2Eorg>, Rob Herring <robh+dt@ke=
-rnel=2Eorg>
-Kopie: ~okias/devicetree@lists=2Esr=2Eht, linux-arm-msm@vger=2Ekernel=2Eor=
-g, devicetree@vger=2Ekernel=2Eorg, linux-kernel@vger=2Ekernel=2Eorg
-P=C5=99edm=C4=9Bt: Re: [PATCH] dt-bindings: misc: convert Qualcomm FastRPC=
- bindings to the YAML schema
-
-Hi David,
-
-Thanks for the patch,
-
-
-On 06/12/2021 19:38, David Heidelberg wrote:
-> Switch the DT binding to a YAML schema to enable the DT validation=2E
->=20
-> Also:
->   - simplify example
->   - embrace compute-cb@ subnodes instead of just cb@
->=20
-> Signed-off-by: David Heidelberg <david@ixit=2Ecz>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
 
-There is already a similar patch [1] in the list=2E If you have noticed it=
-, Its better to let the author know about your plans so that we do not dupl=
-icate the same thing=2E
-
-Your patch seems to have addressed issues with subnode names and example=
-=2E
-
-so am okay with this patch=2E
-
-Acked-by: Srinivas Kandagatla <srinivas=2Ekandagatla@linaro=2Eorg>
-
-
-FastRPC patches normally go via char-misc tree, so if Rob acks can you sen=
-d it to Greg as well=2E
-
-
---srini
-
-
-> ---
->   =2E=2E=2E/devicetree/bindings/misc/qcom,fastrpc=2Etxt | 78 -----------=
-----
->   =2E=2E=2E/bindings/misc/qcom,fastrpc=2Eyaml           | 94 +++++++++++=
-++++++++
->   2 files changed, 94 insertions(+), 78 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc=
-=2Etxt
->   create mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc=
-=2Eyaml
->=20
-> diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc=2Etxt b=
-/Documentation/devicetree/bindings/misc/qcom,fastrpc=2Etxt
-> deleted file mode 100644
-> index 2a1827ab50d2=2E=2E000000000000
-> --- a/Documentation/devicetree/bindings/misc/qcom,fastrpc=2Etxt
-> +++ /dev/null
-> @@ -1,78 +0,0 @@
-> -Qualcomm Technologies, Inc=2E FastRPC Driver
-> -
-> -The FastRPC implements an IPC (Inter-Processor Communication)
-> -mechanism that allows for clients to transparently make remote method
-> -invocations across DSP and APPS boundaries=2E This enables developers
-> -to offload tasks to the DSP and free up the application processor for
-> -other tasks=2E
-> -
-> -- compatible:
-> -	Usage: required
-> -	Value type: <stringlist>
-> -	Definition: must be "qcom,fastrpc"
-> -
-> -- label
-> -	Usage: required
-> -	Value type: <string>
-> -	Definition: should specify the dsp domain name this fastrpc
-> -	corresponds to=2E must be one of this: "adsp", "mdsp", "sdsp", "cdsp"
-> -
-> -- #address-cells
-> -	Usage: required
-> -	Value type: <u32>
-> -	Definition: Must be 1
-> -
-> -- #size-cells
-> -	Usage: required
-> -	Value type: <u32>
-> -	Definition: Must be 0
-> -
-> -=3D COMPUTE BANKS
-> -Each subnode of the Fastrpc represents compute context banks available
-> -on the dsp=2E
-> -- All Compute context banks MUST contain the following properties:
-> -
-> -- compatible:
-> -	Usage: required
-> -	Value type: <stringlist>
-> -	Definition: must be "qcom,fastrpc-compute-cb"
-> -
-> -- reg
-> -	Usage: required
-> -	Value type: <u32>
-> -	Definition: Context Bank ID=2E
-> -
-> -- qcom,nsessions:
-> -	Usage: Optional
-> -	Value type: <u32>
-> -	Defination: A value indicating how many sessions can share this
-> -		    context bank=2E Defaults to 1 when this property
-> -		    is not specified=2E
-> -
-> -Example:
-> -
-> -adsp-pil {
-> -	compatible =3D "qcom,msm8996-adsp-pil";
-> -	=2E=2E=2E
-> -	smd-edge {
-> -		label =3D "lpass";
-> -		fastrpc {
-> -			compatible =3D "qcom,fastrpc";
-> -			qcom,smd-channels =3D "fastrpcsmd-apps-dsp";
-> -			label =3D "adsp";
-> -			#address-cells =3D <1>;
-> -			#size-cells =3D <0>;
-> -
-> -			cb@1 {
-> -				compatible =3D "qcom,fastrpc-compute-cb";
-> -				reg =3D <1>;
-> -			};
-> -
-> -			cb@2 {
-> -				compatible =3D "qcom,fastrpc-compute-cb";
-> -				reg =3D <2>;
-> -			};
-> -			=2E=2E=2E
-> -		};
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc=2Eyaml =
-b/Documentation/devicetree/bindings/misc/qcom,fastrpc=2Eyaml
-> new file mode 100644
-> index 000000000000=2E=2Ef42ab208a7fc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc=2Eyaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: (GPL-2=2E0-only OR BSD-2-Clause)
-> +%YAML 1=2E2
-> +---
-> +$id: "http://devicetree=2Eorg/schemas/misc/qcom,fastrpc=2Eyaml#"
-> +$schema: "http://devicetree=2Eorg/meta-schemas/core=2Eyaml#"
-> +
-> +title: Qualcomm FastRPC Driver
-> +
-> +maintainers:
-> +  - Srinivas Kandagatla <srinivas=2Ekandagatla@linaro=2Eorg>
-> +
-> +description: |
-> +  The FastRPC implements an IPC (Inter-Processor Communication)
-> +  mechanism that allows for clients to transparently make remote method
-> +  invocations across DSP and APPS boundaries=2E This enables developers
-> +  to offload tasks to the DSP and free up the application processor for
-> +  other tasks=2E
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: qcom,fastrpc
-> +
-> +  label:
-> +    items:
-> +      enum:
-> +        - adsp
-> +        - mdsp
-> +        - sdsp
-> +        - cdsp
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  "(compute-)?cb@[0-9]$":
-> +    type: object
-> +
-> +    description: >
-> +      Each subnode of the Fastrpc represents compute context banks avai=
-lable on the dsp=2E
-> +
-> +    properties:
-> +      compatible:
-> +        items:
-> +          - const: qcom,fastrpc-compute-cb
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      qcom,nsession:
-> +        $ref: /schemas/types=2Eyaml#/definitions/uint32
-> +        default: 1
-> +        description: >
-> +          A value indicating how many sessions can share this context b=
-ank=2E
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +
-> +    additionalProperties: true
-> +
-> +required:
-> +  - compatible
-> +  - label
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    smd-edge {
-> +        label =3D "lpass";
-> +        fastrpc {
-> +            compatible =3D "qcom,fastrpc";
-> +            label =3D "adsp";
-> +            qcom,smd-channels =3D "fastrpcsmd-apps-dsp";
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +
-> +            compute-cb@1 {
-> +                compatible =3D "qcom,fastrpc-compute-cb";
-> +                reg =3D <1>;
-> +            };
-> +
-> +            compute-cb@2 {
-> +                compatible =3D "qcom,fastrpc-compute-cb";
-> +                reg =3D <2>;
-> +            };
-> +        };
-> +    };
->=20
-[1] https://patchwork=2Eozlabs=2Eorg/project/devicetree-bindings/patch/202=
-11130092846=2E18804-1-srinivas=2Ekandagatla@linaro=2Eorg/
+Best regards,
+Krzysztof
