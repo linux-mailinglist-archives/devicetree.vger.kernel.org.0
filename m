@@ -2,158 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86CDE46C1EF
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 18:38:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EC2D46C206
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 18:44:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240076AbhLGRlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 12:41:42 -0500
-Received: from mail-bn8nam11on2058.outbound.protection.outlook.com ([40.107.236.58]:40800
-        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232939AbhLGRlm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Dec 2021 12:41:42 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XB2QwAGFFbcZM16t3hfMBBDH7oMqOJw9s/B5U+phnHnc6p2/FQdKTMx8epV37vUnkh43MOty39V+5cG1oQJDgV3hWaK7ubgvV1QHvcyiZpanYPPPYW/wwC84DAEL0XgiyzAUvoNCTSMTR8HvgQ8667GNG/hPAxCTTsmDbDNj12ViY6AmkVvzWKCZoibG22V7k1ASzvQljDNyYuemLlL+eUfSzPgE8USLRped7Y959FzsilRZo1N5nk8Kbk8n0ueLZNfF3VknwwK7nCb6zPjWxLuLhKmD7V+TBOdeHAyHZIh07fES6ecAQBWrx05khSAjXD78FnKImwJejkkUxKaVLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EtIhKTuKWdYcH/nUGdVVBUU2ch1PweIlk6gios2vq5s=;
- b=bzFOqiqpZaRQtKHyPvH1nveDE1vys2aNE8hiULJu6yWhJVvqZt+aASztTUMmm2vjgC/d1d5KtqmGYEkBS+fMX7Vfl8qSAYMsekXciJjiKVsSxiTdWt2qO403NL0kRs1RVaXPYykJLeLsoG6vHxPdQ/RvQh06FBAUJwrYUfuxNPjr01qIC/8J8DlZ83EmTamZQEDFebRM5Sv13T8jLCbyM/ZLWlAunZ4tu7MBYDnCAlqrRVq09PInaccVctM0kOLwJNZiJOTyYujXQtiuFoLCk1IGKmq+doCfPYQN9Rtm8S+WKVpK5bGJXnxWnsuj4G/vU20UM0kGqlqEK6Ga6E3l1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EtIhKTuKWdYcH/nUGdVVBUU2ch1PweIlk6gios2vq5s=;
- b=kHB5LZ2j/Ft+Fk6RBTm0W9HuB+eNLbuxftGz4F4jbc/FN5RTZXsR0KcrBFnOHndfMIC68mIYs/1JC4chrkKye24IRZOQ/iMDPIOZILijbNpT172MPDmBkhqKbye6O32QJwkcykJRnt17SOC23KSPGWYDqX4TMqTVcnrCYjHxUNSUKhT7qFao3dCzZIQp+qCQgG6fJM3RsScpeoXzd9GhlCpiataq8XKvgFsbDSd0dQIjbVNk+VQc64KSNLly27JyPH6WZmVPsJq+Zq7LDWywzE9yyatKfz6Bs6RJb7Z3EtYjUNAOe8/3UQNFAq40rFNr7k/JjzDLBZVJlEaSIlerjA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CY4PR12MB1576.namprd12.prod.outlook.com (2603:10b6:910:10::9)
- by CY4PR1201MB0007.namprd12.prod.outlook.com (2603:10b6:903:d4::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.16; Tue, 7 Dec
- 2021 17:38:05 +0000
-Received: from CY4PR12MB1576.namprd12.prod.outlook.com
- ([fe80::24b0:46e7:d3c0:a77b]) by CY4PR12MB1576.namprd12.prod.outlook.com
- ([fe80::24b0:46e7:d3c0:a77b%7]) with mapi id 15.20.4755.022; Tue, 7 Dec 2021
- 17:38:05 +0000
-Subject: Re: [PATCH 1/3] ALSA: hda/tegra: Skip reset on BPMP devices
-To:     Dmitry Osipenko <digetx@gmail.com>, tiwai@suse.com,
-        broonie@kernel.org, lgirdwood@gmail.com, thierry.reding@gmail.com,
-        perex@perex.cz
-Cc:     jonathanh@nvidia.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        Mohan Kumar <mkumard@nvidia.com>, robh+dt@kernel.org
-References: <1638858770-22594-1-git-send-email-spujar@nvidia.com>
- <1638858770-22594-2-git-send-email-spujar@nvidia.com>
- <7742adae-cdbe-a9ea-2cef-f63363298d73@gmail.com>
- <8fd704d9-43ce-e34a-a3c0-b48381ef0cd8@nvidia.com>
- <56bb43b6-8d72-b1de-4402-a2cb31707bd9@gmail.com>
- <4855e9c4-e4c2-528b-c9ad-2be7209dc62a@nvidia.com>
- <5d441571-c1c2-5433-729f-86d6396c2853@gmail.com>
- <f32cde65-63dc-67f8-ded8-b58ea5e89f4e@nvidia.com>
- <95cc7efa-251c-690b-9afa-53ee9e052c34@gmail.com>
-From:   Sameer Pujar <spujar@nvidia.com>
-Message-ID: <148fba18-5d14-d342-0eb9-4ff224cc58ad@nvidia.com>
-Date:   Tue, 7 Dec 2021 23:07:51 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
-In-Reply-To: <95cc7efa-251c-690b-9afa-53ee9e052c34@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-GB
-X-ClientProxiedBy: MA1PR0101CA0072.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:20::34) To CY4PR12MB1576.namprd12.prod.outlook.com
- (2603:10b6:910:10::9)
+        id S235310AbhLGRr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 12:47:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35738 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233774AbhLGRr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 12:47:59 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0044C061574;
+        Tue,  7 Dec 2021 09:44:28 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id np3so17592pjb.4;
+        Tue, 07 Dec 2021 09:44:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=hSAdXrk133U0WbgiFQpHMNwpQjObfpGgkUoZBDfK8aM=;
+        b=ZW2X6Chr61FyM8paaiD7DtUYLVYMawzF9J3JPVfmVehO2SrFRzHFpE51kokgyB9q3p
+         faXp/dG2Nr91/Uv0bx8zeHqAxC3h+Epq5IG1cifsCh9vv7gaA4E3QgVYGmTldE89h1HQ
+         ER84O+v5cYSMdgSVsvxsmdAwRABpvPfo8kieXcf7bYoAY7l3vZ1rCLLWdNcsbeXet1OU
+         Wd7ok58VbEAHvyCLGJV3pay+R0suRSMO+TzTOG7L2pi+l5Jhg54at19kSkwuqVQkTWFK
+         K2Wl01diiUR69yuvzOwJnjnpjNqaYONN3scndrieFPB0uemD/3ZVnKBdUqY4wuOnHugV
+         JyXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=hSAdXrk133U0WbgiFQpHMNwpQjObfpGgkUoZBDfK8aM=;
+        b=fGjrnBEOaYn/FP1kuMo+3Y+o1jaAKZ7OskPHmelsewx3PiYnGyIxLka0r1yLDaW485
+         g2FkX+HBnt7PuoR5063X4hhIUEKj0K05oHkssvZDYWIwjzgHtjt+xsHVso5hPzkuR8R4
+         gjAAPmi0+v6WVo+HLP25V7OTtggesNRt6FCBXpp4xp3BAzInqf3L2WTXnExfnWy4yiDF
+         Yhq2O0k0SV/hynNUQHh4D3aHtk9ojK/m0gy96/ddqAdt1Rh4tUCBPGYjH0Qq6q5rUl//
+         Gu15vuZrVsaOAArn7SY5daz9LlGn1Brz5oEBwQBzLBEsJc4uH+j8zb716eTKQEe41asE
+         jkbA==
+X-Gm-Message-State: AOAM5333hJsoDzrKfQ1ubRncnFV6WGF4BhN3sNnNyFy3BSjUiA7iPQmi
+        MaERVLMBSXX931byxJYI6aNi0RVLXTs=
+X-Google-Smtp-Source: ABdhPJxoHTi/6QQhPLP4vbrWSm4ju6gS+9r4Z/Q+R8wI5UKhwYmHmiZUZ7getrMg5lPDVCuF4BsCfg==
+X-Received: by 2002:a17:902:c643:b0:141:cf6b:6999 with SMTP id s3-20020a170902c64300b00141cf6b6999mr53212481pls.80.1638899067843;
+        Tue, 07 Dec 2021 09:44:27 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id j15sm319231pfh.35.2021.12.07.09.44.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Dec 2021 09:44:26 -0800 (PST)
+Subject: Re: [PATCH v2 1/5] ARM: dts: Cygnus: Fixed iProc PCIe controller
+ properties
+To:     Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     devicetree@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM IPROC ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
+        "moderated list:BROADCOM IPROC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20211206185242.2098683-1-f.fainelli@gmail.com>
+ <20211206185242.2098683-2-f.fainelli@gmail.com>
+ <CAL_JsqKaOkByjwYzyW6G_b90zRjCWVHvi2V0gBx_MJ8v2FmOaw@mail.gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <fc263ef8-10f8-206e-5df7-76f0b9d50fae@gmail.com>
+Date:   Tue, 7 Dec 2021 09:44:25 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Received: from [10.25.102.117] (202.164.25.5) by MA1PR0101CA0072.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:20::34) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.16 via Frontend Transport; Tue, 7 Dec 2021 17:38:00 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0b3bd43a-b12f-4b18-ad31-08d9b9a85361
-X-MS-TrafficTypeDiagnostic: CY4PR1201MB0007:EE_
-X-Microsoft-Antispam-PRVS: <CY4PR1201MB0007722212ACD47BF5D00DB0A76E9@CY4PR1201MB0007.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DgyuEOyoVMPwdyLoNxrMAbj0xiMflKRq0dC19MTHdXTWWEDYXEMDeVoES7KvuN2s/xxd7K9OfVYW8QEm1xGW9i2OXOLBhAIck50Y0W9Jrc1WXaoTXsNP98hFDM6XcJk/ZY60dI5rymTJLOi3IxRoeO1JFOzYQ1+TXUJSE4oV0CQqexWFZ7fO16bojkZneRhZ6R7GOXg8oZigetpv0QA6DtJ9lprDZkzSZQ+HWlsHQdP6ElIso+5O0cAFXh4wYAKB7c+quzaiGsnX7DA/tLpxR4N9MF1XsKXD0V5yGb8BGR/8gK5EnaLDNOSszPJUt/9OnRnWFGzCaN7Z5rkllKOOX+SOdFMfrc4L2LNWocIPerM5uBq8yamzAqbjEX9nS0c+U3MEs3EG0NK9uzBRhdBbu/BqURRH9mnd1+4nSiqjq0UdlpTV7kPesPgjIBQRk2Z7YOiiIdzTrVU/YbzCBfvzelb36W/xm1JnvoBiB+Tb9LqLTvIXyrseSf/u6buveMP+8zw7B8dixCFj4SUUCNRnNP2DEG0X3g7LBFQeccfaRz/gvzVrmb16oiIv97DJ+JKwsn3N7xsyWHbeYgnkKGVKqPAAT69QjvF51XWDtRl1Wbgg6exv6NYIFsKRPEfrVEK3Z5T3D+Zyvgv2evC/5ZQquh0agqs7AQlh6tfCRKr2L3JsehoA46r4ee5lnmVLnaMb/edP+46V+xn5s0Hqoqgmb40GuvZTm7h7dErJrn5+lbM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR12MB1576.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(2616005)(316002)(508600001)(86362001)(53546011)(38100700002)(31696002)(8936002)(26005)(4326008)(7416002)(6486002)(83380400001)(16576012)(6666004)(5660300002)(36756003)(186003)(66946007)(2906002)(8676002)(66476007)(956004)(66556008)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZnJzVWZ1QU9OWTVzUnZ4WHFvbGoxbVZWVzQ1RkthTXFsTUduelVKNjBvV3hF?=
- =?utf-8?B?bHhibjQ4eXZ1ckVUUFdVdHBHeVEvWVA1QXkzWGtXdWRiaUowc01Oa1hGdGZO?=
- =?utf-8?B?TnJlU25Dbkl5Q0NvMDgrZ2Jmdk16UU1Rajk1TkVtTUtjek5tdUJUVkhRKy9J?=
- =?utf-8?B?cFM4OTNVTTdONjRXem5iSEZ2a1d4NGpaZW4xdW5oQlcyRHpjSHc2eDZBNGtN?=
- =?utf-8?B?a3o0UXRKUTBZMTlBalRFNU9PUW54ajhjWkdZZ2NZZllUY3JRZm5PQTZYQ05C?=
- =?utf-8?B?RDN3MUxJWmhFNUhUWkp0eFZWb0ZvdzVzTk1hS3dpMElYc0U0T3VnVi9kRFRB?=
- =?utf-8?B?UE0raGdOUzJOSUJ0SDJHME90bHMwdWw4cnV5L3ZQaHNKUGZ4a21rcm5yaFFw?=
- =?utf-8?B?VyttV2lnREFwdnBXVFFZK2hWb2RremN2ZGVMTWtMQTE4Mmgzd2FHVmpLcXlZ?=
- =?utf-8?B?TWF6VnhNbjMvMTF1cW1DMGdqTnRza2ZuMWJxTzdBMTVDQ1UrV3NNV3Z6Qmlm?=
- =?utf-8?B?NjVzdWhDTVgySC9DKytVd3ZyUk9LVnNJL0dpMFRJTWpQSXJzOERGaHRkMTJT?=
- =?utf-8?B?d2pPK01HcUMrT2FVN2NPSDNVMnV0WEJ0TDgxYUtsbW5XaEdyZ2o4bVhITHg4?=
- =?utf-8?B?UnB5TzdOVm4vSXl4R2h2ZEZXVkE4M1J4Nnk2UEd1ZHdjV24wcDRIUnJiaEx0?=
- =?utf-8?B?cEF1SDJTdFdvMmQ0YzJyQzFmNVZ6elJwQmZ0dDZXaERhVDMvK0RkY09GWGth?=
- =?utf-8?B?UHZTMmxpTWxwV0UwMnNJeDB5RE5oTjBNY1lUYXVtR2EwLzhQZ2RCTFBBSndT?=
- =?utf-8?B?WnRNVlk3YUZUM0M1em9yaFNSS09jUUZ1RXB5U1k3WkVOdWh1dVM2Qk8vQUdX?=
- =?utf-8?B?Njd0OFdCMEJEQXhtU05sOFp5akV4dWF3UG9OSkVCZU5oZ2x3ZXQ1elZPTk5K?=
- =?utf-8?B?LzdFUzlJN09kazdPalAwK09VN3o0MXZCbEg2WURiM041UVVVK2ZQM01BWmdu?=
- =?utf-8?B?VFgwS1F4N2JuSUIxVFYzeEZNbjBJTTZDbVhVYWVLWDlDZmYyeHBZTndPeWl0?=
- =?utf-8?B?QytPenlyYzhVLytVWHMvZ2hoUXJEQm9SUlNjQTJXRWZFbEN0R0RtSU12NVVs?=
- =?utf-8?B?c3NuU1g0ZTFrVDNIRmd1NFlML3MybDRRQXRSUHE4R3NCV01ydlVqcU9zbGVw?=
- =?utf-8?B?RHErM3JUNmt5U1hsYk9zQnh3MWFEb0phcWZWL2UvRVo0L2ZQSDl3T2RJMTg3?=
- =?utf-8?B?V3N4aXZDUkp4bXBCazhTNFdUS1BUcUdwVTBaKzZlRGNuU2NWNW9mWmltVUoy?=
- =?utf-8?B?dWpweEFmY1d1VjQwcW42REl3Q3E1dU1yZGhrVkFHQktPaVlVcjdndmU3TGNl?=
- =?utf-8?B?MU52NkFiT2g5RXNSQ3I4SHRtWDc5eUp6VFliUTJuVmZMMFZSZUxmc0ROUmpW?=
- =?utf-8?B?S0JsRk84OGc4QkkweTE5blp3NVZwTWx2YVNCUkRUSFFMRzY3dWpjSVk1L1N2?=
- =?utf-8?B?dDBXbU16S3F0UHBFREJ0eVBydTVnUGIyV1dXdG4xU1doZGhXWkZFdTc5SHpJ?=
- =?utf-8?B?Q1RaN0E3MDdaeURIWnpjdmRZZU12cUhpTXo5aGJ3aitIZTBGRHdRUnFJWW10?=
- =?utf-8?B?Rk40TU8rajR5Q0JSeDRRdXNxamJXUXZMMVVWSEp4ck9GZVZOOFJUdkl5MkU1?=
- =?utf-8?B?UERId2VMM1RJUEYvL29USW5ja3ZOMklUK1BmM3NDamVwWE80c2xmRHRKL3Vr?=
- =?utf-8?B?cGRDczlIU1RCRWVLZG5nR0cyUHJMRXBUWmd2KzBvdmlDcVF5T2ROTWJ5bmNt?=
- =?utf-8?B?WmxUQlJqVjFSdXhVNzl2dS9Za0ZPMjBkY2tobDFxUUExNG4vbzYxK3dseXNS?=
- =?utf-8?B?dVdhK0hCcWlFbFlMbEFJU3FEZTZFd1AvL1pENkFTdDZkUUZYOHdERkNxOVV6?=
- =?utf-8?B?amRRYUdKbFhseXBnZ2phdzRxbnpmY283N0cybTZMTklrQ3YwK1pUTE14WHA4?=
- =?utf-8?B?TkZBeG9DajF6WGc1UUljcit2S2xHR1ltM1RSQTJpeDVWdmh6YTlWL1EweEdp?=
- =?utf-8?B?WmN6bEo4M0RaSFBaQkphdTVGTGRkRk53N3NFVUlDdWRDdnVPanJONnhUelI4?=
- =?utf-8?B?WG9PLy9PMFNqMmF3aVZmTVZvc3lqNXRBeWZmTDdldmFhNC95Qy9sallWZytX?=
- =?utf-8?Q?ynKRGSE4gDd/42xxTf3r8iw=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b3bd43a-b12f-4b18-ad31-08d9b9a85361
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR12MB1576.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2021 17:38:05.5809
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ax1ysECkNaA3q2LvRyhepN8CzjdNJmrunY0AOLEA6OToGF2c2EGY3m4H4NcsC25NVsRwPlVwqtC3I1Dwx8CkKg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0007
+In-Reply-To: <CAL_JsqKaOkByjwYzyW6G_b90zRjCWVHvi2V0gBx_MJ8v2FmOaw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/7/21 5:49 AM, Rob Herring wrote:
+> On Mon, Dec 6, 2021 at 12:52 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+>>
+>> Rename the msi controller unit name to 'msi' to avoid collisions
+>> with the 'msi-controller' boolean property and add the missing
+>> 'interrupt-controller' property which is necessary. We also need to
+>> re-arrange the 'ranges' property to show the two cells as being separate
+>> instead of combined since the DT checker is not able to differentiate
+>> otherwise.
+>>
+>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+>> ---
+>>  arch/arm/boot/dts/bcm-cygnus.dtsi | 14 ++++++++------
+>>  1 file changed, 8 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/bcm-cygnus.dtsi b/arch/arm/boot/dts/bcm-cygnus.dtsi
+>> index 8ecb7861ce10..ea19d1b56400 100644
+>> --- a/arch/arm/boot/dts/bcm-cygnus.dtsi
+>> +++ b/arch/arm/boot/dts/bcm-cygnus.dtsi
+>> @@ -263,6 +263,7 @@ pcie0: pcie@18012000 {
+>>                         compatible = "brcm,iproc-pcie";
+>>                         reg = <0x18012000 0x1000>;
+>>
+>> +                       interrupt-controller;
+> 
+> How is this a fix? This doesn't even work before v5.16 with commit
+> 041284181226 ("of/irq: Allow matching of an interrupt-map local to an
+> interrupt controller").
 
-
-On 12/7/2021 9:05 PM, Dmitry Osipenko wrote:
-> External email: Use caution opening links or attachments
->
->
-> 07.12.2021 17:49, Sameer Pujar пишет:
-> ...
->>>> How the reload case would be different? Can you please specify more
->>>> details if you are referring to a particular scenario?
->>> You have a shared power domain. Since power domain can be turned off
->>> only when nobody keeps domain turned on, you now making reset of HDA
->>> controller dependent on the state of display driver.
->> I don't think that the state of display driver would affect. The HDA
->> driver itself can issue unpowergate calls which in turn ensures h/w
->> reset. If display driver is already runtime active, HDA driver runtime
->> resume after this would be still fine since h/w reset is already applied
->> during display runtime resume. Note that both HDA and display resets are
->> connected to this power-domain and BPMP applies these resets during
->> unpowergate.
-> HDA won't be reset while display is active on T186+.
-
-No. HDA reset is applied whenever power-domain is ungated. It can happen 
-when either HDA or display device becomes active. So I don't think that 
-it is inconsistent.
+What is the path forward? I suppose I could make the
+interrupt-controller property not required for this controller but then
+the default interrupt-controller schema is not terribly happy about
+seeing an interrupt-map/interrupt-map-mask properties without
+interrupt-controller.
+-- 
+Florian
