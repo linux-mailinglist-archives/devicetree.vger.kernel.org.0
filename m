@@ -2,121 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B2D746BA2C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 12:37:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D0E646BA37
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 12:40:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231137AbhLGLlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 06:41:10 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:52342 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229733AbhLGLlK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 06:41:10 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B7BbM5i035913;
-        Tue, 7 Dec 2021 05:37:22 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1638877042;
-        bh=lsPU1sVuM9YQc8e1ZuZsItTT3uiO0gxI5yOh88zpvGA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=hOIFvibEoFzrWm238T1w03PDbY1hPLs0JhUv5BZFY1SxPJVZy0lUl4ET4ubWtDe+a
-         WWhAEto+wGPyLixlBZSFBssP2HC5FFMEbEbStzfMalnLtxnLOCsycZclrOJITcVzdd
-         wG5q47XiGSYvOY/z8QjC6vwM2CfUwfYJgZ3CaUoM=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B7BbLiu033261
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 7 Dec 2021 05:37:22 -0600
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 7
- Dec 2021 05:37:21 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 7 Dec 2021 05:37:21 -0600
-Received: from [10.250.232.32] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B7BbGY4029453;
-        Tue, 7 Dec 2021 05:37:17 -0600
-Subject: Re: [PATCH v5 1/6] arm64: dts: ti: k3-am65-mcu: Add Support for MCAN
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Marc Kleine-Budde <mkl@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Faiz Abbas <faiz_abbas@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20211122134159.29936-1-a-govindraju@ti.com>
- <20211122134159.29936-2-a-govindraju@ti.com>
-From:   Apurva Nandan <a-nandan@ti.com>
-Message-ID: <d48d949c-6212-3b90-3c85-4176be9f2bbd@ti.com>
-Date:   Tue, 7 Dec 2021 17:07:15 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S231282AbhLGLnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 06:43:51 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:50034 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231258AbhLGLnu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 06:43:50 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 87EFFB8174B;
+        Tue,  7 Dec 2021 11:40:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC3D5C341C3;
+        Tue,  7 Dec 2021 11:40:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638877218;
+        bh=s4wkP8QFJJDrpKObfWQlsbk6GV7MZa4F1T931fS2ovc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=uQicVVwR5R3FFMcw/xf1Q1Rpp3kzB+592zmR4hgvYvWXU8r1JYd4RI/oiMDMDZH4R
+         Pg2L/mO3YRmlnXEW0pfgyIFnQw19HLbw8eMBcDlakzJL5obfQJ3cC6qA4TTMdyKP24
+         9ifEhdFJtkBcF3vAEH/lFEn70KHLqZPtTYKHcDgOSnM1OPwZKL4Dcufa41vgIU644M
+         /kUfv2MPsP0c5qoGj8OIA9OlIYRaCuMw8rNyCGNUzvdjV80d2VqepckQSBk3puiO8z
+         c7dylFapxjyJcW4MsG3Y5L8tFdSC4JHXD9xRn6NTqyYQScHvzYDit0B+Eg6fUv0shu
+         7JiRfxQYdSkEA==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Vamsi Krishna Lanka <quic_vamslank@quicinc.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] clk: qcom: Add clocks for SM8450 SoC
+Date:   Tue,  7 Dec 2021 17:10:01 +0530
+Message-Id: <20211207114003.100693-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20211122134159.29936-2-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds the GCC clock support required for SM8450 SoC
+along with devicetree binding for these clocks.
 
-On 22/11/21 7:11 pm, Aswath Govindraju wrote:
-> From: Faiz Abbas <faiz_abbas@ti.com>
->
-> Add Support for two MCAN controllers present on the am65x SOC. Both support
-> classic CAN messages as well as CAN-FD.
->
-> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+Please note that the GCC driver patch depends on new alpha LUCID_EVO
+introduced by Vamsi in [1]. That would be required to be picked before this
+patch can be applied.
 
-Reviewed-by: Apurva Nandan <a-nandan@ti.com>
+[1]: https://lore.kernel.org/all/a0b04869a20a0afef99dd457ebb6474f50591210.1637302009.git.quic_vamslank@quicinc.com/
 
-> ---
->   arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi | 30 +++++++++++++++++++++++++
->   1 file changed, 30 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> index c93ff1520a0e..8d592bf41d6f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-> @@ -159,6 +159,36 @@
->   		};
->   	};
->   
-> +	m_can0: mcan@40528000 {
-> +		compatible = "bosch,m_can";
-> +		reg = <0x0 0x40528000 0x0 0x400>,
-> +		      <0x0 0x40500000 0x0 0x4400>;
-> +		reg-names = "m_can", "message_ram";
-> +		power-domains = <&k3_pds 102 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 102 5>, <&k3_clks 102 0>;
-> +		clock-names = "hclk", "cclk";
-> +		interrupt-parent = <&gic500>;
-> +		interrupts = <GIC_SPI 544 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 545 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-names = "int0", "int1";
-> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
-> +	};
-> +
-> +	m_can1: mcan@40568000 {
-> +		compatible = "bosch,m_can";
-> +		reg = <0x0 0x40568000 0x0 0x400>,
-> +		      <0x0 0x40540000 0x0 0x4400>;
-> +		reg-names = "m_can", "message_ram";
-> +		power-domains = <&k3_pds 103 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 103 5>, <&k3_clks 103 0>;
-> +		clock-names = "hclk", "cclk";
-> +		interrupt-parent = <&gic500>;
-> +		interrupts = <GIC_SPI 547 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 548 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-names = "int0", "int1";
-> +		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
-> +	};
-> +
->   	fss: fss@47000000 {
->   		compatible = "simple-bus";
->   		#address-cells = <2>;
+
+Changes in v2:
+ - Drop rpmhcc patches as they are picked by Bjorn
+ - Fix the multi line comment and drop noise in probe
+ - Remove .name in clocks coming from firmware
+
+Vinod Koul (2):
+  dt-bindings: clock: Add SM8450 GCC clock bindings
+  clk: qcom: Add clock driver for SM8450
+
+ .../bindings/clock/qcom,gcc-sm8450.yaml       |   85 +
+ drivers/clk/qcom/Kconfig                      |    8 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/gcc-sm8450.c                 | 3303 +++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sm8450.h   |  244 ++
+ 5 files changed, 3641 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm8450.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sm8450.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sm8450.h
+
+-- 
+2.31.1
+
