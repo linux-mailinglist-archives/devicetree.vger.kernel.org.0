@@ -2,79 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADFC146B891
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 11:14:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CDDF46B893
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 11:14:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229611AbhLGKRv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 05:17:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41160 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229818AbhLGKRu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 05:17:50 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10FBFC061746;
-        Tue,  7 Dec 2021 02:14:19 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id bi37so32419837lfb.5;
-        Tue, 07 Dec 2021 02:14:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=e8kee/N0as/hz/cg2sQd2lCPZnQthggdydHn9mrSiqU=;
-        b=Vn7zKGINM/TVnj1QqZzCB4RhDZXr5GvFm0DDRUrZ6icbPApcWsfZsMgO3UiLD70BCF
-         uOkV0ROYdKwHyS8iLSIkN28MswjzfnkK5zQDX5w224RopqbJPh2c+yUgiSikKsyGin03
-         THJ+OPgdAymtIiMRMASPqRzXhZL6jKYBt2KKP6DzuUDGusT7YXjoPRgF0Xq9gcmi2jiJ
-         PiEKuxjAGYMU0ndESLlKnF9fIjcWEAYuIQmKAbIaND9+F8vbhETUOZVOY+We4DEiyjzL
-         6kOT3gjLdor4/ZjtlRdY3Ue7n6NZ39ksC0xMa7w/Cc5QVbmHESP1CAm2AFRocceomZbv
-         FMSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=e8kee/N0as/hz/cg2sQd2lCPZnQthggdydHn9mrSiqU=;
-        b=VmVHrNCgJ1/Lq5D1ZwATV4m4aczyJzFDrhOF+yPJgy2pbq/FUrqPCywCliwqTv0/O6
-         TKJGvpLVE1io6LAGXhOZx0832SNNQYxESnZHMow66oS9d1V0JYK/Jpyn/bMFtkwl1t5j
-         gKef/nFmJQES6vNkIKV56tbGeU9mpr8oOqZQhJEliTHuvld5wkkGAev3Ylo4mjs85Am0
-         xmpWj6bxhiKj7qT46FT3DVasHP6riEeY0+u40HBBqf4vkUnXYRUkfBHAq9TjsURHRLre
-         QQQr6WbcpcDbbk+vleF76VC/md+kTz7aEbo+lpbzIzpa2I293Y7VC+7U92imr2qmFpfU
-         HeFw==
-X-Gm-Message-State: AOAM533vgzm6/pR5+/1GCOpMcFtXpD+rUFGRHsTriKvuXZ5muoJdrNPE
-        eoYReOzF4sBe68nNg+JiIA03kT4Nt3s=
-X-Google-Smtp-Source: ABdhPJzQGDXpxQbq645M+Cx7NqFq4GuTvMkGZHqWfLldEcnTBw1AkZi7CP1LNhMvfB00h76mxuu0Lw==
-X-Received: by 2002:a05:6512:39d3:: with SMTP id k19mr39194848lfu.81.1638872057999;
-        Tue, 07 Dec 2021 02:14:17 -0800 (PST)
-Received: from [192.168.2.145] (94-29-46-111.dynamic.spd-mgts.ru. [94.29.46.111])
-        by smtp.googlemail.com with ESMTPSA id i18sm1635047lfu.67.2021.12.07.02.14.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Dec 2021 02:14:17 -0800 (PST)
-Subject: Re: [PATCH 2/3] dt-bindings: sound: tegra: Update HDA resets
-To:     Sameer Pujar <spujar@nvidia.com>, tiwai@suse.com,
-        broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, perex@perex.cz
-Cc:     jonathanh@nvidia.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1638858770-22594-1-git-send-email-spujar@nvidia.com>
- <1638858770-22594-3-git-send-email-spujar@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <13d20227-ec6b-03db-01dc-b4b00038a15c@gmail.com>
-Date:   Tue, 7 Dec 2021 13:14:16 +0300
+        id S230145AbhLGKS1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 05:18:27 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:19875 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229818AbhLGKS0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 05:18:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1638872096; x=1670408096;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=Bo9IYL4ZSYRCBcfdD1wFpX2LdtkM98KISonDXEfcFbE=;
+  b=1e2twhaLiu2uK77sl4qykKtRhxhYNngtlqLw7eWXT1FC09bp+rYryEKA
+   VkfT+RcWI86/5J228bR2/3PYDVaxTrxNIjZWhEzijciikrbAE4NqSwaZZ
+   Y0cY7VVehRFy9TETe3R5GNPhkMdZ4XygzGlMvuHV6CZwhZKYxLMRhPOvP
+   F7Mw2sNxcRrViD96bzKA79uAsZSG1FTMfC4JdTcnyRfiLB1Pg+OMIV0AV
+   KyezyO5uCtrqYPcfNCq5Dr+qRph7vxit3ep2WIRNqsc/JVkdzSFrrzAID
+   bURU+ILIEoQNnl9sQhTkNhdBuv+mPw2//aVdz7ciyc9kkoEQw1rk2XLjv
+   A==;
+IronPort-SDR: Ct9G3iLqJ3ea57o09sbbcmculpE4mZ8xstdTdzWaK1YnmGXTs/AsJuWEP6dI75FAznhgEUO/Dw
+ 2VNiz/LoCZFE1RcazShTme6leRnjYJ/ajGmN0dqwzsfKkQBJO9Ma3qQmBiG4t4UbpSMeGGXiTK
+ /94jj+gWN2wR+lff0rx4Z9QipsG6CXlBs3jYujIGubIIBuVivZm++VeiX+rYlhAuYZ35oA76sY
+ j3/p3PF4ZU7d+XaCKgTCpzSaM4wURvVXbPQcoNy4aeWlSSBHv+4jShdMjDSziVza82RAU7uVjj
+ OjpOibU0cOJusIGV/7CjxNET
+X-IronPort-AV: E=Sophos;i="5.87,293,1631602800"; 
+   d="scan'208";a="145783939"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Dec 2021 03:14:56 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Tue, 7 Dec 2021 03:14:55 -0700
+Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Tue, 7 Dec 2021 03:14:52 -0700
+Subject: Re: [PATCH] dt-bindings: watchdog: atmel: Add missing 'interrupts'
+ property
+To:     Rob Herring <robh@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Eugen Hristev <eugen.hristev@microchip.com>
+CC:     <devicetree@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        <linux-watchdog@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20211206174045.2294873-1-robh@kernel.org>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <b6944a02-ba13-2a0d-6ed4-7b1330348d68@microchip.com>
+Date:   Tue, 7 Dec 2021 11:14:51 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <1638858770-22594-3-git-send-email-spujar@nvidia.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20211206174045.2294873-1-robh@kernel.org>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-07.12.2021 09:32, Sameer Pujar пишет:
-> Tegra194 HDA has only two resets unlike the previous generations of
-> Tegra SoCs. Hence update the reset list accordingly.
+On 06/12/2021 at 18:40, Rob Herring wrote:
+> With 'unevaluatedProperties' support implemented, the atmel,sama5d4-wdt
+> example has the following warning:
 > 
-> Fixes: 2d8f8955fe02 ("dt-bindings: tegra: Convert HDA doc to json-schema")
+> /home/rob/proj/git/linux-dt/.build-arm64/Documentation/devicetree/bindings/watchdog/atmel,sama5d4-wdt.example.dt.yaml: watchdog@fc068640: Unevaluated properties are not allowed ('interrupts' was unexpected)
+> 
+> Document the missing 'interrupts' property.
+> 
+> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-The original txt binding was already wrong, this "fixes" tag is wrong.
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+Thanks for the fix Rob!
+Best regards,
+   Nicolas
+
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
+> Cc: Eugen Hristev <eugen.hristev@microchip.com>
+> Cc: linux-watchdog@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>   .../devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml        | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml b/Documentation/devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml
+> index 9856cd76c28d..a9635c03761c 100644
+> --- a/Documentation/devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml
+> @@ -22,6 +22,9 @@ properties:
+>     reg:
+>       maxItems: 1
+> 
+> +  interrupts:
+> +    maxItems: 1
+> +
+>     atmel,watchdog-type:
+>       $ref: /schemas/types.yaml#/definitions/string
+>       description: should be hardware or software.
+> --
+> 2.32.0
+> 
+
+
+-- 
+Nicolas Ferre
