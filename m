@@ -2,135 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0300246C7BE
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 23:49:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F8E546C7F1
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 00:02:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242356AbhLGWxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 17:53:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52546 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240577AbhLGWxT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 17:53:19 -0500
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B779C061574;
-        Tue,  7 Dec 2021 14:49:48 -0800 (PST)
-Received: by mail-pf1-x434.google.com with SMTP id p13so789332pfw.2;
-        Tue, 07 Dec 2021 14:49:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=EdYea8gkEDGih1RnGbJo2dm6hJijWB5dNAEaQbMNm28=;
-        b=XK03meLzpPySHZumczyM01BVWrjErrL8miiNiU6yeobYKNBv9QSMaGdcEymmy8pKvA
-         hexe8G+raZtoCzLR6fX/tLWlgGWKycTffZxAk8iprUJzUvfjMMyd/hrtO35PebHSp8Iz
-         4ks7sXJKDtLEWXdPE+gPQrNiPfaIxR+TGRRhK6E6T9ijNgXLM3tsR+ekbTYauL/fd0ra
-         59eRWmywLaxmZd0TZtnrWWA+ZFVmxsjjcZ130/3mefw98BsQQiqrmtJ3COxu5wpgIhTN
-         srIW00HiEdJaWNZRd9RrjBJzL2RTfIOWBGe05GMM9SadGETUQ8ttOkoAtV9YOABRAy73
-         HZ5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=EdYea8gkEDGih1RnGbJo2dm6hJijWB5dNAEaQbMNm28=;
-        b=TACjGOUe130Hx3WewdWtK3CNUSosohxd0CcjJqKC0D5CbtpGqDOnuN4g6FWpWQgN/m
-         RVl8w8QBuL6dPF9DbVSpPS0YjNNURkWPcWfBXMHh43l86rTMWNGakxYv8IdT7I/4Yovn
-         S/BNQsuM4s/EeRf7EiPibhh64ziNjpLOnMA+mCV4vkvkNDY3Zh0AXlm8NDk2RvGVeco9
-         v0fKCLqdXXLbSKax9gAE4wj1iLEspvhXfKWhY3l2HQiiT9GWtiZabQQu8JEEhaqUetfJ
-         /1ONyRYvP0FK0jsOM8rFcKRbOrCByw3dG+Rq/WjG5r0lctxWGiIa4d0GpsCyXm8bO7YZ
-         +uIQ==
-X-Gm-Message-State: AOAM533VuqrZrk19NJAnxnvKb0lFigW/Bg8fNoFVKUv+DUyC940/Ljog
-        UeExjKYvGnNzVoIyE/yfyyglnGwaZyI=
-X-Google-Smtp-Source: ABdhPJyBJRO4d61TzlSU1qqEV5Y3OLwZjRUGoq8bqkPyJdODmb4ru8puCWYQVdpmuJEv7I7g8yJr9A==
-X-Received: by 2002:a63:4e1c:: with SMTP id c28mr23399855pgb.318.1638917387522;
-        Tue, 07 Dec 2021 14:49:47 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id na13sm551019pjb.11.2021.12.07.14.49.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Dec 2021 14:49:46 -0800 (PST)
-Subject: Re: [PATCH v2 1/5] ARM: dts: Cygnus: Fixed iProc PCIe controller
- properties
-To:     Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     devicetree@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        "maintainer:BROADCOM IPROC ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
-        "moderated list:BROADCOM IPROC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20211206185242.2098683-1-f.fainelli@gmail.com>
- <20211206185242.2098683-2-f.fainelli@gmail.com>
- <CAL_JsqKaOkByjwYzyW6G_b90zRjCWVHvi2V0gBx_MJ8v2FmOaw@mail.gmail.com>
- <fc263ef8-10f8-206e-5df7-76f0b9d50fae@gmail.com>
- <CAL_JsqL6HV-C6+9Pna_8GVT5V+uEzcYcPDaS1m6AK8LhsWnFaw@mail.gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <745799e8-dc2e-359a-0d35-58e74bf86055@gmail.com>
-Date:   Tue, 7 Dec 2021 14:49:45 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S229605AbhLGXGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 18:06:15 -0500
+Received: from mail-db8eur05on2133.outbound.protection.outlook.com ([40.107.20.133]:56288
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234310AbhLGXGO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 18:06:14 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CyLXN+eyy1n7Nub+IKhhCjtIzxGgsoTWjQhjypDWO6+RsbYEDRS0EQ1/CbvF8pvNYiq9M9iaqNLoH4Q0MZA7EknC4FjmVYEsfmva8KS+t7BaNqbNO3YcrrbsQiQylmR6UgdswgCHjCK6SrA27mdJTVaDEX4mAyF7GPJ/WINs1AJx0yjG89pCE5lUaf8f+s52g3K7MHCuLkVbFxs+Xhw4iVSGFiAeJPbyRUB66VoVmu+CAQJZM+ptvUgi8vWYUycWlb5I/KqqrUrV8nvzclix6ANDqghiCYz9zbbSlVwcqAxHmGpgcYE4Tlp+iI6ecZjLYrfhAQ4gTlZwW09PexSZvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aDpH36F9nvIPoLFlkslZMVxBZ4XnFBTT8Rhe+rZNPAw=;
+ b=K8FROsZcbIQnFkZ1lA/tANZDQXIlUDShIdA292sqkn7qiYygu9uElyzSfge//eforTZivggZU72DFezubNtjup7v0ymNvoVE14l7OJ01EZAyncRmMePyQuPh4zZDKrLbPPUuLqwz51GKVos1ajkJBaUCNJnPvR4ldNXVjSvomIdITdzGxGd/NaNSbeYoJYd5NJ1oXHQi8DWHROtPPlT+x1AEwTNKMRj2uttQRyyj7eRZfclUr+GxpaxaZMq8DiaAiT5ZxEEPvIAEfuOvWLDytqHLrPPK9ttkbbYcgr2SFgUQGAyYY3kn0VwwgPpjsY0U5C2/yT31nIUkVrEoY4qbhQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=leica-geosystems.com; dmarc=pass action=none
+ header.from=leica-geosystems.com; dkim=pass header.d=leica-geosystems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aDpH36F9nvIPoLFlkslZMVxBZ4XnFBTT8Rhe+rZNPAw=;
+ b=T+z8dkWfuj2xcfIJ7oE7Iu8scsZWLdAH1NMYZfXiIHpBXptkoXpSL/y6rYuJnC1ItWUl/zqzBcO4O7xTdHm9EU0eJ0RH/IDCWFeJJXvbYgHUmnxT9IcX6Sb6JgtTQYCrQUCjdhC1txgxGf954ohQWJkqArN1y1UmABsAIPG7ikU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=leica-geosystems.com;
+Received: from VI1PR06MB3102.eurprd06.prod.outlook.com (2603:10a6:802:c::17)
+ by VI1PR0602MB2910.eurprd06.prod.outlook.com (2603:10a6:800:b8::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.21; Tue, 7 Dec
+ 2021 23:02:39 +0000
+Received: from VI1PR06MB3102.eurprd06.prod.outlook.com
+ ([fe80::9c38:9d12:599a:a1cf]) by VI1PR06MB3102.eurprd06.prod.outlook.com
+ ([fe80::9c38:9d12:599a:a1cf%4]) with mapi id 15.20.4734.031; Tue, 7 Dec 2021
+ 23:02:38 +0000
+From:   Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, michael@walle.cc,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, horia.geanta@nxp.com, pankaj.gupta@nxp.com,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        l.stach@pengutronix.de, qiangqing.zhang@nxp.com, peng.fan@nxp.com,
+        alice.guo@nxp.com, aford173@gmail.com, frieder.schrempf@kontron.de,
+        krzk@kernel.org, shengjiu.wang@nxp.com, gregkh@linuxfoundation.org,
+        ping.bai@nxp.com, daniel.baluta@nxp.com, jun.li@nxp.com,
+        marex@denx.de, thunder.leizhen@huawei.com, martink@posteo.de,
+        leonard.crestez@nxp.com, hongxing.zhu@nxp.com, agx@sigxcpu.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, op-tee@lists.trustedfirmware.org,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>
+Subject: [PATCH v3 0/2] CAAM Driver: re-factor and set proper JR status
+Date:   Wed,  8 Dec 2021 00:02:04 +0100
+Message-Id: <20211207230206.14637-1-andrey.zhizhikin@leica-geosystems.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211111164601.13135-1-andrey.zhizhikin@leica-geosystems.com>
+References: <20211111164601.13135-1-andrey.zhizhikin@leica-geosystems.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: AM6P192CA0069.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:209:82::46) To VI1PR06MB3102.eurprd06.prod.outlook.com
+ (2603:10a6:802:c::17)
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqL6HV-C6+9Pna_8GVT5V+uEzcYcPDaS1m6AK8LhsWnFaw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from GEO-HfyyrYQLnZo.lgs-net.com (146.185.2.7) by AM6P192CA0069.EURP192.PROD.OUTLOOK.COM (2603:10a6:209:82::46) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.17 via Frontend Transport; Tue, 7 Dec 2021 23:02:36 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7192a0f3-449a-4916-6fc8-08d9b9d5aa36
+X-MS-TrafficTypeDiagnostic: VI1PR0602MB2910:EE_
+X-Microsoft-Antispam-PRVS: <VI1PR0602MB2910EFA4FBA6C8F482CBA5A3A66E9@VI1PR0602MB2910.eurprd06.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6rYZ7wQQiinyNjhMH5LQq7NfuL1ZKvYXohYdcHh08I/aoTW7gbL3ou0kCtskZP6+xvkexhnfQ5NjYssMwCBBPohUOr/GOF64isdYR5uRjEYYgDSZ0gCypA/49996+XIFsIHk7P/IrN4DidWGucPxpZieBs0PB3uXhik5zANDfhedOzc1oJr9quWRLwDblJGrXuuSYmkPKtwnbW+Rhdeba3bt9AVTtKGXbKd+fxt2FxEnjcrNh9zCk4sByHK7DSs41gqqvtQ8nD5oCuDm5CzXQFKlZ/ZYAqu9niACO10ZGTECoKzIns5o8zMBY4ZKWZqm75N6UFm260nLCtkPBkAipwfOOYIQ3K+e1s831DjVcQtsDcGcZC0xOimmKCn0ezXnDW9/fxqpR9CG7X0D1B4aJwBogKEq1fOCzQQg8aEAoVn4jVJRheplORA6i5P/YczESQsho8pjqRoOBtYbKCKwJotSAHywfsb4r8a43ZAiMdoyy6ISWk37vD699Ag7f+beb7Nseit4tZnw7WCXuJE9zWbzxyljhV3hHerX9nrdESsKxN1r675EUuewVyj51I2o1Cd68vI/p1tN0/HARsd2RTFidWSep9RQkst8L4jhCJlyniuxsCgwm6D/6CjQwb1J1V95C9qTPG/6x14AMAe8CgHjusoRsNK7StGoefkl+zlK+FDBKifNX4GADjko/6xeuj5mCUt8dlcEz9zoh6sYRw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR06MB3102.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(36756003)(316002)(86362001)(83380400001)(52116002)(38100700002)(6486002)(6512007)(66556008)(66946007)(38350700002)(6506007)(956004)(6916009)(2616005)(4326008)(6666004)(7416002)(2906002)(7406005)(26005)(186003)(107886003)(44832011)(8676002)(8936002)(1076003)(66476007)(5660300002)(508600001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?20v7vVAjULvXNMIEjlA0LZH+Hxticse3ktwgsDR08UGU6rtpK5lv/GvDG1d7?=
+ =?us-ascii?Q?mmgd32HmgOMrbj6bP5e8OLUlGQxjDUS+Cucw58U3p0k+peJLPIqb3JIWQi8t?=
+ =?us-ascii?Q?TBkLh+lVAPajTWYqtMojqwAyadZmys3a+2CCw6KPxMBb9fciGptrxPUDSj4k?=
+ =?us-ascii?Q?3Z0OW/SUMHAILUbY7H5agIy1CTeVlbgu1THOYffc10U0Seyvmwo9PXYUQWKs?=
+ =?us-ascii?Q?XepgCKfDohxKy8dptxACMKjHg1ZYpNsUzir++NeJqKOKDOY/tBNp4DUaXPaL?=
+ =?us-ascii?Q?RqX3qgcTRs9ZgDb/lUXcuylvT0ignwLT21QydAS5K53ju4piCEYxvGUYzTRF?=
+ =?us-ascii?Q?dM+SMTej3yZVS8kD6Fec6FcVN435iXfWoWxqC1Vxud9QLDMM/j0+aYpm6yXj?=
+ =?us-ascii?Q?EfvhPRB/ALmWa60F4xPtoMuGEr3TANruN1zkX0UHWF18niRpeMOXUdWCbhOB?=
+ =?us-ascii?Q?9mWvMKChZwIfrX1Q1aZtLY0a9oD69UoJidn/tGWXryNTpVo7y+SumkGNiuuq?=
+ =?us-ascii?Q?5kVYGy6Bpia0thuw8MPwSKrK7lF8X2VzCod77XhMpBhIDSstgzflmSYVjWYU?=
+ =?us-ascii?Q?j8G6FmkesLr8U9FBLIB+luf2Gfml2MM7ebJU6jwUAzz0T1TCmddh2dcpP0AB?=
+ =?us-ascii?Q?Ztk4tjHi6+No+5JFVB9MMw9nCLWsEDaii6g/PJIpRNodxr9yrAfonyNftklb?=
+ =?us-ascii?Q?2dWOs2x93dMl6+MlBOLgAuAbt+NxHm8f3o9wOB1vAa4n40lOEJ7IkZuZEctP?=
+ =?us-ascii?Q?XgJZMuW835aPjfuEVWiYpeiJT7ZqsAkuhxIQPNmn1zKouYTJiCG3Sl3iiB+Z?=
+ =?us-ascii?Q?C0M2TrdwvDzavE9gd6kSnKYY2BwIJit5BkUJajmnD1iysL2fkI+7DNb8++9U?=
+ =?us-ascii?Q?FJuhUaslb/fQ5ZciTJSMbQ+ATR4IKpskYpGOKiL3PFK1zBHOeKOzVuRX/KyZ?=
+ =?us-ascii?Q?vhLk2SUaS2bKUtiCeo3c4aEYJshVtUzeNX9BCCrk9tw7N0mn+7YgUqzL12p/?=
+ =?us-ascii?Q?raZAsO+TdqDCAWXyruFZMw1feXJMpMNnQMPxRZwHnH9pCr1AWxUBBvCXr1tv?=
+ =?us-ascii?Q?XaN4/JpIs1oqlNOxn/aUXh8jnEK0csYvtJFPVpcM3STzHxRfjfwROSKwNms8?=
+ =?us-ascii?Q?i1f9ZbdonaMjdV3AV/eAkFkfwnGA8AjW64/dyXOLtkOWE/k7dwnBEJLemDk4?=
+ =?us-ascii?Q?CDbQZuzgWAVvyDR0bokr+8LzHwkk+jce4YlLVLGtE8yIWdOs83YlSNyIMNuh?=
+ =?us-ascii?Q?Qus0Z4Wy0xpN6qpy+XpYHI+PFUlff4DA88HYzUxepI0nyQcsvTcABNhLk4uv?=
+ =?us-ascii?Q?9Id8ujfAJhoajwdIa62wwFhOuLmTDdrt/Z0r8hYdS7Mx0zncrpivJSas4RXm?=
+ =?us-ascii?Q?LZQFJElzsKW/S2yE3p1RuJsH2DXyN5em7EvAxGiXfu8wuunPDG7fYywtAyWM?=
+ =?us-ascii?Q?5lTzWtmNcSWhiKMUQPyLuX6sdl28c+YAYs5svRGpdzT35U57ZFMCKdFf1twZ?=
+ =?us-ascii?Q?jKMsSvs+cYl2vuIiRx4EyU/r/UB/4o8u0cx8lzyK2Y2xyBVgoXsOYgaHsB4c?=
+ =?us-ascii?Q?UOHGSpzbGRztY5+mgME1kYI1D0MiLkzRqmgY/IbRCNyg3bwZzq5aT7Rvh67a?=
+ =?us-ascii?Q?yNq5kFi3KPLLWktODauBlSZlw1hab1u8/IEZbn7I0ZlZviY/bPH8O2sQLdww?=
+ =?us-ascii?Q?iQxk0v+jNeJC7B9vuFuhDIdgmvc=3D?=
+X-OriginatorOrg: leica-geosystems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7192a0f3-449a-4916-6fc8-08d9b9d5aa36
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR06MB3102.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2021 23:02:38.7231
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ph7tZnwliYFsXoHH9fSHTt9wLEyACvHtKT14PQG/Zel3N2nENxJfzrSD/65IutyrfBID1Me5Yh4OooPeiMX22g+NX2HCXDygHgp2QRdsQXs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0602MB2910
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/7/21 12:08 PM, Rob Herring wrote:
-> On Tue, Dec 7, 2021 at 11:44 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
->>
->> On 12/7/21 5:49 AM, Rob Herring wrote:
->>> On Mon, Dec 6, 2021 at 12:52 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
->>>>
->>>> Rename the msi controller unit name to 'msi' to avoid collisions
->>>> with the 'msi-controller' boolean property and add the missing
->>>> 'interrupt-controller' property which is necessary. We also need to
->>>> re-arrange the 'ranges' property to show the two cells as being separate
->>>> instead of combined since the DT checker is not able to differentiate
->>>> otherwise.
->>>>
->>>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
->>>> ---
->>>>  arch/arm/boot/dts/bcm-cygnus.dtsi | 14 ++++++++------
->>>>  1 file changed, 8 insertions(+), 6 deletions(-)
->>>>
->>>> diff --git a/arch/arm/boot/dts/bcm-cygnus.dtsi b/arch/arm/boot/dts/bcm-cygnus.dtsi
->>>> index 8ecb7861ce10..ea19d1b56400 100644
->>>> --- a/arch/arm/boot/dts/bcm-cygnus.dtsi
->>>> +++ b/arch/arm/boot/dts/bcm-cygnus.dtsi
->>>> @@ -263,6 +263,7 @@ pcie0: pcie@18012000 {
->>>>                         compatible = "brcm,iproc-pcie";
->>>>                         reg = <0x18012000 0x1000>;
->>>>
->>>> +                       interrupt-controller;
->>>
->>> How is this a fix? This doesn't even work before v5.16 with commit
->>> 041284181226 ("of/irq: Allow matching of an interrupt-map local to an
->>> interrupt controller").
->>
->> What is the path forward? I suppose I could make the
->> interrupt-controller property not required for this controller but then
->> the default interrupt-controller schema is not terribly happy about
->> seeing an interrupt-map/interrupt-map-mask properties without
->> interrupt-controller.
-> 
-> There's certainly no requirement for having 'interrupt-controller'.
-> What error are you getting?
+This V3 series covers points uncovered during the review of the previous
+series, one major point being that register readout should not be used
+for dynamic JR availability check due to its unreliability.
 
-This was the error I was getting because I had made the
-'interrupt-controller' a required property in the brcm,iproc-pcie.yaml
-binding, silly me:
+Instead, JR should have a proper status set in FDT which indicates the
+availability of the ring in NS-World. This status is aligned with what
+BootROM code configures, and can be modified by all actors in the boot
+chain.
 
-/home/fainelli/dev/linux/arch/arm/boot/dts/bcm958300k.dt.yaml:
-pcie@18012000: 'interrupt-controller' is a required property
-        From schema:
-/home/fainelli/dev/linux/Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
+Therefore, patch in V2 series that was handling the dynamic JR
+availability check is dropped in this series and replaced by the patch
+which sets proper DT status for JR nodes.
 
-after taking it out from the required property there are no more
-warnings, I will spin a v3 with the changes, thanks!
+Andrey Zhizhikin (2):
+  crypto: caam - convert to use capabilities
+  arm64: dts: imx8m: define proper status for caam jr
+
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi |   4 +
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi |   4 +
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi |   4 +
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi |   4 +
+ drivers/crypto/caam/caamalg_qi.c          |   2 +-
+ drivers/crypto/caam/ctrl.c                | 115 ++++++++++++++--------
+ drivers/crypto/caam/intern.h              |  20 ++--
+ drivers/crypto/caam/jr.c                  |  19 +++-
+ drivers/crypto/caam/regs.h                |   2 -
+ 9 files changed, 122 insertions(+), 52 deletions(-)
+
+
+base-commit: 04fe99a8d936d46a310ca61b8b63dc270962bf01
 -- 
-Florian
+2.25.1
+
