@@ -2,198 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2CAE46B66B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:50:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78ACC46B66F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:53:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233271AbhLGIyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 03:54:22 -0500
-Received: from szxga08-in.huawei.com ([45.249.212.255]:29096 "EHLO
-        szxga08-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232813AbhLGIyW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:54:22 -0500
-Received: from dggeme755-chm.china.huawei.com (unknown [172.30.72.56])
-        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4J7Ypn0Nywz1DDBs;
-        Tue,  7 Dec 2021 16:48:01 +0800 (CST)
-Received: from [127.0.0.1] (10.67.102.125) by dggeme755-chm.china.huawei.com
- (10.3.19.101) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.20; Tue, 7
- Dec 2021 16:50:50 +0800
-Message-ID: <61AF2069.5030607@hisilicon.com>
-Date:   Tue, 7 Dec 2021 16:50:49 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
-MIME-Version: 1.0
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linuxarm@huawei.com>, <mauro.chehab@huawei.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/5] arm64: dts: HiSilicon: Add support for HiKey 970
- USB3 PHY
-References: <cover.1637063775.git.mchehab+huawei@kernel.org> <97d470290e81ac40023bdcc7e2d796796421b737.1637063775.git.mchehab+huawei@kernel.org>
-In-Reply-To: <97d470290e81ac40023bdcc7e2d796796421b737.1637063775.git.mchehab+huawei@kernel.org>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.67.102.125]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- dggeme755-chm.china.huawei.com (10.3.19.101)
-X-CFilter-Loop: Reflected
+        id S229974AbhLGI5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 03:57:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50058 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229455AbhLGI5X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:57:23 -0500
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C18C6C061746;
+        Tue,  7 Dec 2021 00:53:53 -0800 (PST)
+Received: by mail-qv1-xf35.google.com with SMTP id jo22so12450162qvb.13;
+        Tue, 07 Dec 2021 00:53:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=gkU8ZGrtdv6KeZ4SARKs+Erno67wfX9YW3loioaG/vI=;
+        b=WyZwKDXmOr67lxO+CzCH6lcLOIns0TFP2cDCXQL5Ec4KlNAtLv48Gon6haQwGA/pmt
+         /nhgvOSUhv039ZR0oz4Ks58JZ6NuzFMLcfhrbXSU0ygeYn7dgwURIUYYu2lEJxdcavzf
+         KAxBt4QTy+/dBPmVoVfHPFgk4m2z29S/gVikNWOFIVt9iPgwaa7vdyYVj8X/7lX4vM6j
+         +gy+bWKHxbCDEUZ23Kg/E2ue8JrjRmSAtoz/B7ccL/MXApbD5s8qa4OUoK/ERtxtMY0z
+         AXGcuhT7RGqJRS4rJdIZVpdY305BVXURjK1YcokidxJJFePMqHGsALA/7Koy6XgKNUb4
+         jArw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=gkU8ZGrtdv6KeZ4SARKs+Erno67wfX9YW3loioaG/vI=;
+        b=E+2gDnLntzp0h/sH69VGUWxVXRMoc2yNcV9LWi+mhkPZFc+3HPbPP4I4AtPvgPCk3K
+         A4dAXvpzdH2O/pucx0QlVLgRl5RgBIznlPX8smmAcv3Pfv+BuTUQLNcgZ8XTQaOj6/LA
+         pIy2jCcSJjS90s/kpzZERRDzbsztVe5R7wQ3O0Z4TB45nC3x9hPPQ+cbqnHMzBJgnYdy
+         qEtqusyaEISHtcMv+vBO8+ISHKleXH3zf8XA17e1uD5LjSG4JxPG5njpHgkf2Oe4tdpR
+         fusqVCTeZKRKFBK6Q3QHBESEJg7z+HHOY61mwFt3+QUP7XsGRtI3PJvYCJATVzaZfVp4
+         CuRg==
+X-Gm-Message-State: AOAM5314COFfv6vNfUGaStOaXpghtEBc3TaHEqFfx9890lYQI+7S/vtk
+        U+pRR53NYmZhcPTJFDl4UzQ=
+X-Google-Smtp-Source: ABdhPJxbEEwvxKZWa10mczQ9gxuDSJCurhieezGW69b2VSaAyrmDYkskDLgAgw+7lGm69+i1IyHfjg==
+X-Received: by 2002:ad4:5f0f:: with SMTP id fo15mr44078462qvb.129.1638867231899;
+        Tue, 07 Dec 2021 00:53:51 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id bp38sm7797797qkb.66.2021.12.07.00.53.49
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 07 Dec 2021 00:53:51 -0800 (PST)
+From:   Vincent Shih <vincent.sunplus@gmail.com>
+To:     srinivas.kandagatla@linaro.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        wells.lu@sunplus.com
+Cc:     Vincent Shih <vincent.sunplus@gmail.com>
+Subject: [PATCH v2 0/2] Add driver for OCOTP in Sunplus SP7021
+Date:   Tue,  7 Dec 2021 16:53:51 +0800
+Message-Id: <1638867233-8383-1-git-send-email-vincent.sunplus@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
+This is a patch series for OCOTP driver for Sunplus SP7021 SoC.
 
-On 2021/11/16 19:59, Mauro Carvalho Chehab wrote:
-> Add the USB3 bindings for Kirin 970 phy and HiKey 970 board.
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
-> 
-> To mailbombing on a large number of people, only mailing lists were C/C on the cover.
-> See [PATCH 0/5] at: https://lore.kernel.org/all/cover.1637063775.git.mchehab+huawei@kernel.org/
-> 
->  .../boot/dts/hisilicon/hi3670-hikey970.dts    | 83 +++++++++++++++++++
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi     | 56 +++++++++++++
->  2 files changed, 139 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> index 7c32f5fd5cc5..60594db07041 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> @@ -430,3 +430,86 @@ &uart6 {
->  	label = "LS-UART1";
->  	status = "okay";
->  };
-> +
-> +&usb_phy {
-> +	phy-supply = <&ldo17>;
-> +};
-> +
-> +&i2c1 {
-> +	status = "okay";
-> +
-> +	rt1711h: rt1711h@4e {
-> +		compatible = "richtek,rt1711h";
-> +		reg = <0x4e>;
-> +		status = "okay";
-> +		interrupt-parent = <&gpio27>;
-> +		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&usb_cfg_func>;
-> +
-> +		usb_con: connector {
-> +			compatible = "usb-c-connector";
-> +			label = "USB-C";
-> +			data-role = "dual";
-> +			power-role = "dual";
-> +			try-power-role = "sink";
-> +			source-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)>;
-> +			sink-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)
-> +				PDO_VAR(5000, 5000, 1000)>;
-> +			op-sink-microwatt = <10000000>;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				port@1 {
-> +					reg = <1>;
-> +					usb_con_ss: endpoint {
-> +						remote-endpoint = <&dwc3_ss>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +		port {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			rt1711h_ep: endpoint@0 {
-> +				reg = <0>;
-> +				remote-endpoint = <&hikey_usb_ep1>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2c2 {
-> +	/* USB HUB is on this bus at address 0x44 */
-> +	status = "okay";
-> +};
-> +
-> +&dwc3 { /* USB */
-> +	dr_mode = "otg";
-> +	maximum-speed = "super-speed";
-> +	phy_type = "utmi";
-> +	snps,dis-del-phy-power-chg-quirk;
-> +	snps,dis_u2_susphy_quirk;
-> +	snps,dis_u3_susphy_quirk;
-> +	snps,tx_de_emphasis_quirk;
-> +	snps,tx_de_emphasis = <1>;
-> +	snps,dis-split-quirk;
-> +	snps,gctl-reset-quirk;
-> +	usb-role-switch;
-> +	role-switch-default-mode = "host";
-> +	port {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		dwc3_role_switch: endpoint@0 {
-> +			reg = <0>;
-> +			remote-endpoint = <&hikey_usb_ep0>;
-> +		};
-> +
-> +		dwc3_ss: endpoint@1 {
-> +			reg = <1>;
-> +			remote-endpoint = <&usb_con_ss>;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> index 225dccbcb064..b47654b50139 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> @@ -8,6 +8,7 @@
->  
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/clock/hi3670-clock.h>
-> +#include <dt-bindings/usb/pd.h>
->  
->  / {
->  	compatible = "hisilicon,hi3670";
-> @@ -892,5 +893,60 @@ i2c4: i2c@fdf0d000 {
->  			pinctrl-0 = <&i2c4_pmx_func &i2c4_cfg_func>;
->  			status = "disabled";
->  		};
-> +
-> +		usb3_otg_bc: usb3_otg_bc@ff200000 {
-> +			compatible = "syscon", "simple-mfd";
-> +			reg = <0x0 0xff200000 0x0 0x1000>;
-> +
-> +			usb_phy: usbphy {
-> +				compatible = "hisilicon,hi3670-usb-phy";
-> +				#phy-cells = <0>;
-> +				hisilicon,pericrg-syscon = <&crg_ctrl>;
-> +				hisilicon,pctrl-syscon = <&pctrl>;
-> +				hisilicon,sctrl-syscon = <&sctrl>;
-> +				hisilicon,eye-diagram-param = <0xFDFEE4>;
-> +				hisilicon,tx-vboost-lvl = <0x5>;
-> +			};
-> +		};
-> +
-> +		usb31_misc_rst: usb31_misc_rst_controller {
-> +			compatible = "hisilicon,hi3660-reset";
-> +			#reset-cells = <2>;
-> +			hisi,rst-syscon = <&usb3_otg_bc>;
-> +		};
-> +
-> +		usb3: hisi_dwc3 {
-> +			compatible = "hisilicon,hi3670-dwc3";
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD Card and
+etc.) into a single chip. It is designed for industrial control.
 
-Could you please also add a binding document for the "hi3670-dwc3"?
-The driver part has added the compatible string as you pointed out before.
-Thanks!
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-Best Regards,
-Wei
+Vincent Shih (2):
+  nvmem: Add driver for OCOTP in Sunplus SP7021
+  dt-bindings: nvmem: Add bindings doc for Sunplus OCOTP driver
+
+ .../bindings/nvmem/sunplus,sp7021-ocotp.yaml       |  86 +++++++
+ MAINTAINERS                                        |   6 +
+ drivers/nvmem/Kconfig                              |  12 +
+ drivers/nvmem/Makefile                             |   2 +
+ drivers/nvmem/sunplus-ocotp.c                      | 268 +++++++++++++++++++++
+ 5 files changed, 374 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
+ create mode 100644 drivers/nvmem/sunplus-ocotp.c
+
+-- 
+2.7.4
 
