@@ -2,58 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95FD046C4B0
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 21:32:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45C2746C4B2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 21:33:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231894AbhLGUg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 15:36:27 -0500
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:45845 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231393AbhLGUg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 15:36:26 -0500
-Received: by mail-ot1-f51.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso380507otf.12
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 12:32:55 -0800 (PST)
+        id S231393AbhLGUgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 15:36:41 -0500
+Received: from mail-oo1-f49.google.com ([209.85.161.49]:39862 "EHLO
+        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231583AbhLGUgk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 15:36:40 -0500
+Received: by mail-oo1-f49.google.com with SMTP id d1-20020a4a3c01000000b002c2612c8e1eso112741ooa.6
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 12:33:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=314Swo2giBxC8EAz4uaaC4iyUFE8uIac74Qo/PcmRic=;
-        b=3T6f/hf6Doe1ysrEXGlPh3Ey3hC0fD+j3PMYqf0iPGO38vveNaOZz37hlDraAF5Led
-         wSnSK7kRLLxjuKObHTRS5wlbmM8l3g0SXYexccVFs2SQG8UsuEsawV8BmeRoZL2njcAb
-         ESudrDM4be45Xp0QSdI+Lb5lcKz0SU0aN0lNa1a4kQHwhFSuBxUiU9RtBEV6yVkroClR
-         hB/eQ36oIYycuPQkMx0rMncqMttn6u1YvD90E8dkjkaa6fj80+R6AULbYpIB3QG6ciOB
-         d+/BMYmTZua87aXea2n8zcyVXaXdZJna/NZf5Mnqm6EMirJTly2FFRDpWcql831n91cS
-         6icg==
-X-Gm-Message-State: AOAM532g+BdwA5O5TgVKvpWvNUB8UulEQ9EdS10h6bTVmQcM9MJUmj3d
-        nMeRlzBlHHxtjTrPe/xV/g==
-X-Google-Smtp-Source: ABdhPJwmwqyWszM7wAkHKCXFeC9992SwWhCxDr+taxAFXXrkLvZu46vQNX5neqr6hql5wgb3jZ/RxQ==
-X-Received: by 2002:a05:6830:2aa7:: with SMTP id s39mr37943969otu.151.1638909174916;
-        Tue, 07 Dec 2021 12:32:54 -0800 (PST)
+        bh=xA0nPE6R9nK4ea4eTkYln2f/j9/KE4TsDRpF5BuqXeU=;
+        b=u3/Zgs5NT1A+UJZONK8elyFtN+0a0FOYWM+MKxs6Rh5JV6PK8mnFZtmWv+3U1oGh7s
+         d6f1B9xYlg85aR/Dhg/ZOWlSjolUK6/rpdRiMUE90KPOC838ZVxlVrKY3dWS2NyMnPRP
+         CAxbtqF6wORLlo/FiQ5iHJenaxCj93rpXkfSlez28QGGb9x9KONj5GbnA798YBq5yTFg
+         0rNfZQs0d/278C+5dd7q4Vp39B51J5ZSm3yGeFoxhmEjFIrNg+g6nnFIsAHaGskmj2Mo
+         R/DlUZqhirNTA0yFJSY+aEVe398Sv/mEnVYBPZeQmHlkm83fdcEunEoVL7Mw+hXwIEpQ
+         H2Gg==
+X-Gm-Message-State: AOAM532o52B7wKwDv3GQmeg4Gfdf0NNHxJUkl/jDiT90gKE4ewk33W5q
+        dOVo0GWkf9qbDxG/0JM8+Q==
+X-Google-Smtp-Source: ABdhPJwWWcfkVKcf53vjPAef3PQc1CO1KAF2Iyz9J/Jc878jOTzCjyP94u7dHBwv0jMkcX90NFycCQ==
+X-Received: by 2002:a4a:3744:: with SMTP id r65mr28060318oor.11.1638909189142;
+        Tue, 07 Dec 2021 12:33:09 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o6sm141750oou.41.2021.12.07.12.32.53
+        by smtp.gmail.com with ESMTPSA id l39sm140462otv.63.2021.12.07.12.33.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 12:32:53 -0800 (PST)
-Received: (nullmailer pid 781221 invoked by uid 1000);
-        Tue, 07 Dec 2021 20:32:52 -0000
-Date:   Tue, 7 Dec 2021 14:32:52 -0600
+        Tue, 07 Dec 2021 12:33:08 -0800 (PST)
+Received: (nullmailer pid 781697 invoked by uid 1000);
+        Tue, 07 Dec 2021 20:33:07 -0000
+Date:   Tue, 7 Dec 2021 14:33:07 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Marek Vasut <marex@denx.de>
 Cc:     Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: Add Team Source Display Technology
- vendor prefix
-Message-ID: <Ya/E9B3HNR9UI+nX@robh.at.kernel.org>
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 2/3] dt-bindings: display: simple: Add Team Source
+ Display TST043015CMHX panel
+Message-ID: <Ya/FA4U+oJ1aejeo@robh.at.kernel.org>
 References: <20211127031909.283383-1-marex@denx.de>
+ <20211127031909.283383-2-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211127031909.283383-1-marex@denx.de>
+In-Reply-To: <20211127031909.283383-2-marex@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 27 Nov 2021 04:19:07 +0100, Marek Vasut wrote:
-> Add vendor prefix for Team Source Display Technology Co., Ltd.
+On Sat, 27 Nov 2021 04:19:08 +0100, Marek Vasut wrote:
+> Add Team Source Display TST043015CMHX 4.3" 480x272 DPI panel
+> compatible string.
 > 
 > Signed-off-by: Marek Vasut <marex@denx.de>
 > Cc: Rob Herring <robh+dt@kernel.org>
@@ -61,10 +64,7 @@ On Sat, 27 Nov 2021 04:19:07 +0100, Marek Vasut wrote:
 > Cc: devicetree@vger.kernel.org
 > To: dri-devel@lists.freedesktop.org
 > ---
-> NOTE: All the documentation abbreviates the company name as TSD,
->       but that vendor prefix is already taken.
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
 >  1 file changed, 2 insertions(+)
 > 
 
