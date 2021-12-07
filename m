@@ -2,102 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 918AD46C0CB
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 17:35:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD19546C0E6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 17:44:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237786AbhLGQiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 11:38:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47322 "EHLO
+        id S230316AbhLGQru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 11:47:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230168AbhLGQis (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 11:38:48 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01B04C061574;
-        Tue,  7 Dec 2021 08:35:18 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id v11so30644672wrw.10;
-        Tue, 07 Dec 2021 08:35:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=nBq4z9ubkSuyUZ2LTFKYRzb3ppMDEl5CP7+PtRSNmXc=;
-        b=D0IRMe2Htb9T/77xDfXkyxJINLH0czmMGkVrouVFzqVMSOZOrsylqTk/YrKWdWVVHy
-         KpFhEHpGO5nf2x5Tt6dDSidZ8o3v9ZMuYv1ufOhaKFobyPmAw2IPyFV6vwY0KAOKRV7h
-         Cs+Bhcy+ZA8w5EVwCP/n4+ykr3kICEtRT/mLPrXuBrBNw5IQfGcjUyUUSsDfUurZIBhk
-         XvzVmUlETE3hvSdtfFFpy+7cmLXEVfsaVuYe7y90IRg3V3UNhWUJTzjzdWG5o7jy9JPm
-         dVJQKr+NhKzoAGGMz8HptWrwE4MyYj9lOTebF30CyGtm4gh1MCVIwKaAYvmPTwSw3NCp
-         zUlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=nBq4z9ubkSuyUZ2LTFKYRzb3ppMDEl5CP7+PtRSNmXc=;
-        b=4I+OF+70TTjpD8CxeokEEc5h/8rkxFaP0ljDG3LFVRw78OXwdrfraycioaIRTjxo0Y
-         3orPrlGbnLSCsBqcy4uE4DDmyvDH24EKV8Jc+wlIPri8smlZeRM7R72jkFw0O1Od6Wf+
-         pH+9ypJ84uIFDrZF/TItyRVGNNFT46B/SjXz/1uCwdan8NbSwMx5b/4APPF/Yn6gu4hi
-         KsOz9SJwGPiyZUeeglRpAY1bgLZpoxzXry+DBCw22owaFKdKTfRYzECVzZ236cY8Vxok
-         jWSx3KtVQxi7nMEsDoNU7FaKv0YS7Zj2LlmxLD7xtBbcMm1oOAM1XQNTS5sxj05SZH5S
-         rYHA==
-X-Gm-Message-State: AOAM532q2RE5zz+YN/FvQymB8WQYn82L0b80VxeXI690tWbDoHdVs371
-        WLhqMEeMDzvTdmMhMoEly+Y=
-X-Google-Smtp-Source: ABdhPJyErV7Ldoev0AkP7ge08IK0PwnZRV4VTGR3iDstNcFEMnhrUQP8nEqTFb67Xngi/5irPBooBQ==
-X-Received: by 2002:adf:8bda:: with SMTP id w26mr52392964wra.440.1638894916603;
-        Tue, 07 Dec 2021 08:35:16 -0800 (PST)
-Received: from ?IPv6:2a02:ab88:368f:2080:eab:126a:947d:3008? ([2a02:ab88:368f:2080:eab:126a:947d:3008])
-        by smtp.gmail.com with ESMTPSA id p8sm189854wrx.25.2021.12.07.08.35.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 08:35:16 -0800 (PST)
-Message-ID: <d54b9767cf76e7d4cf1a1dcf8f7efae12d0f25e3.camel@gmail.com>
-Subject: Re: [PATCH 0/6] Initial Samsung Galaxy A8 (2018) support
-From:   David Virag <virag.david003@gmail.com>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        with ESMTP id S229837AbhLGQru (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 11:47:50 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2595C061574
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 08:44:19 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4F70F556;
+        Tue,  7 Dec 2021 17:44:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1638895457;
+        bh=bWd6lEiREDRAZ+PDNC285hxwR6IPlUo4UOngm3Ag1Rc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=vvf11SNig+AISPQZgOWs4IVJVw8w4TpobVC0ZeGsWIY6m8GlycE1D4l6/3VnWV9oq
+         gFUKidx6WLphcY54U5GvBnBTwVLSV6CJhVO3luz1H6a5UBbLh0AA6La3p1DOZ7ggP0
+         8cgL0CEbfHmt+fv/ye1dW2eHxwDV68MEBvMhUzjQ=
+Date:   Tue, 7 Dec 2021 18:43:48 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Neil Armstrong <narmstrong@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Date:   Tue, 07 Dec 2021 17:34:28 +0100
-In-Reply-To: <20211207082656.GA12097@duo.ucw.cz>
-References: <20211205153302.76418-1-virag.david003@gmail.com>
-         <20211207082656.GA12097@duo.ucw.cz>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.2 
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: display: bridge: tc358867: Document DPI
+ output support
+Message-ID: <Ya+PRMvq3cjJ46s/@pendragon.ideasonboard.com>
+References: <20211127032405.283435-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211127032405.283435-1-marex@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+Hi Marek,
 
-On Tue, 2021-12-07 at 09:26 +0100, Pavel Machek wrote:
-> Hi!
-> 
-> > Add basic initial support for the Samsung Galaxy A8 (2018)
-> > smartphone.
-> > This phone is also known as "jackpotlte" and under the model name
-> > "SM-A530F". In its current state this should work on most if not
-> > all
-> > Exynos7885 phones/devices released.
-> 
-> Thank you, it is good to see support for more hardware.
-> 
-> Can I get you to cc phone-devel@vger.kernel.org mailing list in
-> future?
+Thank you for the patch.
 
-Sure, I did not know about this mailing list. I will CC it in the
-future!
-
+On Sat, Nov 27, 2021 at 04:24:02AM +0100, Marek Vasut wrote:
+> The TC358767/TC358867/TC9595 are all capable of operating in multiple
+> modes, DPI-to-(e)DP, DSI-to-(e)DP, DSI-to-DPI. Document support for the
+> DPI output port, which can now be connected both as input and output.
 > 
-> Besst regards,
->                                                                 Pavel
->                                                                 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Andrzej Hajda <a.hajda@samsung.com>
+> Cc: Jernej Skrabec <jernej.skrabec@siol.net>
+> Cc: Jonas Karlman <jonas@kwiboo.se>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
+> ---
+>  .../devicetree/bindings/display/bridge/toshiba,tc358767.yaml  | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+> index f1541cc05297..5cfda6f2ba69 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+> @@ -61,8 +61,8 @@ properties:
+>        port@1:
+>          $ref: /schemas/graph.yaml#/properties/port
+>          description: |
+> -            DPI input port. The remote endpoint phandle should be a
+> -            reference to a valid DPI output endpoint node
+> +            DPI input/output port. The remote endpoint phandle should be a
+> +            reference to a valid DPI output or input endpoint node.
+
+I assume the mode of operation (input or output) will be fixed for a
+given hardware design. Isn't this something that should be recorded in
+DT ? It would simplify configuration of the device in the driver.
+
+>  
+>        port@2:
+>          $ref: /schemas/graph.yaml#/properties/port
 > 
 
-Best regards,
-David
+-- 
+Regards,
+
+Laurent Pinchart
