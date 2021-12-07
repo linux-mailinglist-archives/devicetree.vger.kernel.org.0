@@ -2,91 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B40946C699
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 22:20:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E17ED46C69F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 22:21:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235125AbhLGVXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 16:23:30 -0500
-Received: from mail-oo1-f42.google.com ([209.85.161.42]:38887 "EHLO
-        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233795AbhLGVX3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 16:23:29 -0500
-Received: by mail-oo1-f42.google.com with SMTP id w15-20020a4a9d0f000000b002c5cfa80e84so150140ooj.5;
-        Tue, 07 Dec 2021 13:19:58 -0800 (PST)
+        id S232893AbhLGVZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 16:25:19 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:35647 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232128AbhLGVZT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 16:25:19 -0500
+Received: by mail-oi1-f178.google.com with SMTP id m6so1069306oim.2;
+        Tue, 07 Dec 2021 13:21:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=TDybkYmRgN7ASFL9lU803KLgt8MDRIp7lKanWAFVy8w=;
-        b=vIrkEJqBtQ72BkRPn0vsp3EPkYea6bruoBesaf8cXk53P5nO4zCmSQETK+xjTAoKRb
-         zRO2xyRurEyZBCFCe89QU7rOFov1H9NADnUiBvcvg0/j2YwVdMxhe9Av4iPZ98m5fwr+
-         kI0SOOB11fK2OK8qcXn51bPmvKpyuTEACk5XD8fyxwWY4TvzX2DBYkFVoTITP+EgK5HM
-         9VYomR/Nt7IrfelUikjjcAjG20hqbkXAch0I9C/v3aiUbkjX9qINMG456zc17HbYFoP1
-         GhU0c2jxjGpY51HkrRoNNiP5tpGN9XGhPsznoVUBDAR34JAVsIna/pUIVzSrYNZtespk
-         DU3w==
-X-Gm-Message-State: AOAM532dFr3NnHejE4qLwu4YP9kqU5QzcgoSeOs9QCTRnXW8tKSMJbiV
-        K1paGShK6u6ehpcliPobbg==
-X-Google-Smtp-Source: ABdhPJzQx6ifBIeo7YNw/4J7ZMf9KeE80PBI87o4MLSSxGDKBHAC15DEydOg8wZjHXu+Y1USi6AwDQ==
-X-Received: by 2002:a4a:b00e:: with SMTP id f14mr27855125oon.10.1638911997778;
-        Tue, 07 Dec 2021 13:19:57 -0800 (PST)
+        bh=YHFDCx8cz0OBlLogJ/xFHdL4cUOdiVDHhIchnRBaE9Q=;
+        b=1dXjWW1AKqCe8DQsYUvw6oN8hdcwVhDeLKC2+Vt0aJScYAgHjenhn3lZC6MeVkKHZ1
+         iyHcoAMPOh1wAgpwlvHaIrAL3SfPJQu77jlOInQwi4qpYaH3dWXFSv/AJzPjGbjd6nvw
+         WmDbuMmCuCeLDHGOwqBYtmfy1ouojhXeF3irAaDMLID1YMBDqwoH8NAjqo/z5bHM5YCd
+         UQO8NUZyOPqsDZ/pJiplcV6VTcQLqRYt8ZxuaaB6KkTXqE7jvq611kHSK3lv74UEMakq
+         S4C9o2ATh0LHH1JAjMqJtIiy90IVHys81DJcGBeUHKpDCYT/rkkOqPrPklciqE9PmpPr
+         6uUw==
+X-Gm-Message-State: AOAM532G4q/vOsmQgBeY8OFtOm0p3vagIIko6gfmqR/NG9byMDMjYaQu
+        37NCqFYQcDIVzIzU1Y60pQ==
+X-Google-Smtp-Source: ABdhPJzA4YcDlmXoSGBF16wJC5CXRfHtRRFgKj56o15+uWhHftO8cS/FG3AQ4zcnAI4JBgHR1AfAXA==
+X-Received: by 2002:aca:1115:: with SMTP id 21mr7495706oir.137.1638912108077;
+        Tue, 07 Dec 2021 13:21:48 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o2sm214597oik.11.2021.12.07.13.19.56
+        by smtp.gmail.com with ESMTPSA id w24sm133958ots.10.2021.12.07.13.21.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 13:19:56 -0800 (PST)
-Received: (nullmailer pid 850716 invoked by uid 1000);
-        Tue, 07 Dec 2021 21:19:55 -0000
-Date:   Tue, 7 Dec 2021 15:19:55 -0600
+        Tue, 07 Dec 2021 13:21:47 -0800 (PST)
+Received: (nullmailer pid 853594 invoked by uid 1000);
+        Tue, 07 Dec 2021 21:21:46 -0000
+Date:   Tue, 7 Dec 2021 15:21:46 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Billy Tsai <billy_tsai@aspeedtech.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe Kleine-Konig <u.kleine-koenig@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-hwmon@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-pwm@vger.kernel.org, BMC-SW <BMC-SW@aspeedtech.com>
-Subject: Re: [v14 0/2] Support pwm driver for aspeed ast26xx
-Message-ID: <Ya/P+4CNTnUUqlG9@robh.at.kernel.org>
-References: <20211130055933.32708-1-billy_tsai@aspeedtech.com>
- <CACPK8XfM4C7v3keXaxMs9SkqNzb8XWbZ6QvcZXWcy3ZKJCrvWQ@mail.gmail.com>
+To:     Christian Hewitt <christianshewitt@gmail.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Benoit Masson <yahoo@perenite.com>
+Subject: Re: [RFC PATCH 2/9] dt-bindings: arm: amlogic: add X96-AIR bindings
+Message-ID: <Ya/Qask7Fpb6mTxb@robh.at.kernel.org>
+References: <20211130060523.19161-1-christianshewitt@gmail.com>
+ <20211130060523.19161-3-christianshewitt@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CACPK8XfM4C7v3keXaxMs9SkqNzb8XWbZ6QvcZXWcy3ZKJCrvWQ@mail.gmail.com>
+In-Reply-To: <20211130060523.19161-3-christianshewitt@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 07, 2021 at 06:45:47AM +0000, Joel Stanley wrote:
-> Hi Billy,
-> 
-> On Tue, 30 Nov 2021 at 05:58, Billy Tsai <billy_tsai@aspeedtech.com> wrote:
-> >
-> > The legacy driver of aspeed pwm is binding with tach controller and it
-> > doesn't follow the pwm framworks usage. In addition, the pwm register
-> > usage of the 6th generation of ast26xx has drastic change. So these
-> > patch serials add the new aspeed pwm driver to fix up the problem above.
-> 
-> Sorry for not taking a look earlier. Well done on making it this far.
-> 
-> There's a few things that need to be addressed before merging this.
-> 
-> Firstly, the bindings need fixing up. I think these should be the one
-> file. The device tree bindings are supposed to describe the hardware,
-> and it doesn't make sense to separate them out just because we plan on
-> using two subsystems to implement the functionality.
-> 
-> Rob, please chime in if you would prefer something different.
+On Tue, Nov 30, 2021 at 06:05:16AM +0000, Christian Hewitt wrote:
+> Add board bindings for the Amediatech X96-AIR STB which ships with
+> model variants distiguished by Ethernet configuration: models using
+> internal 10/100 PHY have a -100 suffix, while models using external
+> Gigabit PHY have a -1000 suffix.
 
-I prefer to see a common binding for fans which I said multiple times 
-on this series. As the same thing keeps getting posted, I've stopped 
-looking at this one.
+Isn't the phy described in DT? Why do you need to describe this 1 
+difference at the top level?
 
-Rob
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> index 36081734f720..e9ab0ffe8be7 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> @@ -170,6 +170,8 @@ properties:
+>        - description: Boards with the Amlogic Meson SM1 S905X3/D3/Y3 SoC
+>          items:
+>            - enum:
+> +              - amediatech,x96-air-100
+> +              - amediatech,x96-air-1000
+>                - bananapi,bpi-m5
+>                - hardkernel,odroid-c4
+>                - hardkernel,odroid-hc4
+> -- 
+> 2.17.1
+> 
+> 
