@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04CD146C32E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 19:54:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83E6946C341
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 20:00:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240770AbhLGS5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 13:57:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52422 "EHLO
+        id S240805AbhLGTE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 14:04:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236278AbhLGS5a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 13:57:30 -0500
-Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD9E7C061574
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 10:53:59 -0800 (PST)
-Received: by mail-ua1-x92d.google.com with SMTP id w23so273271uao.5
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 10:53:59 -0800 (PST)
+        with ESMTP id S231778AbhLGTE1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 14:04:27 -0500
+Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com [IPv6:2607:f8b0:4864:20::92a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F8DC061746
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 11:00:56 -0800 (PST)
+Received: by mail-ua1-x92a.google.com with SMTP id n6so358917uak.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 11:00:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=IgJEQWAIZy11LVGEGdPek9pRf1DjP8rskBl5TjrZwEs=;
-        b=AUpkaYG4/MTv2iN75c8FIC4dCq/csivQOnd1uJjuDvW1w7zB9AY/W6cNIl+AFr+h18
-         QhT2gbuEq6tQlTzhZ6swWRtQzJ+/xJByKRY+aREeY+SKpzzRJV8y0gCI+6MiA0j+O7hN
-         wzD/CQMvqiYRFRMx3M0jeOC1QcwADGTao0rhhwKzxgSgUKPfIadHxYd+vOHMTMZLh38a
-         d8O7eNC3xh2JLj8Di3VqJg7CkEVPexGfEs1Ji6pu7wT6hvOTfW501yTYA+ZQknUVkx/q
-         kom9ou1w7xcBqWVEeSWSK3GgjEDS+oG8e2hJ/bcr8rOJQl/JUS05XXT4V1U089DGOkiF
-         6+wg==
+         :cc;
+        bh=XUW31wASrpej0TIE+YgQ7k+2lttAbs6gSJFGK6RBLPs=;
+        b=KotoaVRcY7w9F5qPYhg8uT5YU7vXM9Nap2d+E1Jj1bxEtOYIf9ruXQ2RAO0t2oh1Lx
+         w1kS4gQlcV9cDX0SNOXlr102ieZAo7dWvX6DG4HYvRvBteqXn+BEqg240XGceQWaoTVE
+         DCCPrFe/J/E5/oWvBD53iiUij4SwsK1uBtxB1d6Olh2xg74wAlivLavVKKltnXLE0SHT
+         1qUkOGdgwae3JKT9EC7iLcVsFbHX7Q3ZeyNwsEfuTFZYHsT6aDnQTw/qeOq7dzDcpSUo
+         dzAscOhwDrMuPGwa/hjXZ2imTvQxdzS7Q4UvbKsiAh2ygvo0cIqjg3oztvLwmNrGuAbe
+         TgDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=IgJEQWAIZy11LVGEGdPek9pRf1DjP8rskBl5TjrZwEs=;
-        b=ltbiAkbT8kL6AvQvX77YIsSJRxHn4LLgTLr5AaL+hBfoSf59AeSM2bRecHh+eHcV2k
-         t6b5NeOBgRWh2ZpRRVZBJ6bQ8iNYnGk0U00RNQHgsI/AiCkaqQ2V6mo0iVFC8sXB4iAj
-         3Z2Lsz6HaXrFTOsjq6C0zpDW6r8azbqbkIb2ZzNhIWidiBgzHk/067AKjkfAYz+RcXKa
-         rap3APVq4/vGP2PX+itvrU8OxitjVcPdv/AzsrFLUIzOxPa74gb/SzkT2Irj4FNoyAq7
-         kBsPIXv0Mv7T++2xyMecifHrBrlxFpAZPWZRB87QeHxRx/DIoDoOfmvAwARHhdbp8qGU
-         dn/A==
-X-Gm-Message-State: AOAM531j3N3fD7AhLyZSTbA0Jy3YE8Dyk/z6RMNKKnPrXw/j4OYr4gGv
-        NuYEak62mSVxEnWD4vXU1dAYlkgpoD8jRvr8yaJ5FA==
-X-Google-Smtp-Source: ABdhPJxe/hEEJ+Zjw5CuU9SoEdWiEkXc5nbuj9rWKPJ0T+16zckbpdj2xWp8namjdZAtHzJhSY9INfbAojqSTzLz1fs=
-X-Received: by 2002:a67:3382:: with SMTP id z124mr46887694vsz.57.1638903238896;
- Tue, 07 Dec 2021 10:53:58 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=XUW31wASrpej0TIE+YgQ7k+2lttAbs6gSJFGK6RBLPs=;
+        b=zjsoPlAdpB+cdlGHL7RUUxkaCdV57b+tiaTFxOo3fJaSulZcbKLQivFCV2WTKG7bQz
+         EOoQL18j2WI5+lw4uSx81Zs2sa6xcU+DJzYtnuewNSUahRurlz2DWyizsyZne1AKNJaw
+         Q6a3r0yLC2t+7QAB1ITbYmZBmDJq8Sf6DOfRmTOZd63FWG2YrUKXQdzs1Br/LQMoZIsa
+         9WVQqXQ6mThC6X9Yd5FyYpU66PZjNk9QTx7nt54U/oCmX4KnjBaH2g+DH8dvKlh8J6pS
+         bktMkrqW/7ZGDXHiIk9IiAW/DFxIvGO3flA9q2mhAKO1hOBFqQi2IOqPNZ57lRS6Z2Ui
+         x3Aw==
+X-Gm-Message-State: AOAM533iOBUC1bENbD2hocE7Xb3jp0PTRWJoFkg2DeifnYrrTyUH2dyj
+        2Bk9Nws1UH96JzIvTK0K6KItSQjHEvgztZEOVSVvEg==
+X-Google-Smtp-Source: ABdhPJzv2fTwd3ja4cBNvXF6S3n5jGC34sPus7OnJwNyYndFTy2ncbXaEU8Qldo0qciKxLX0Ic5B597EeLxHxyLu55o=
+X-Received: by 2002:a67:3382:: with SMTP id z124mr46939269vsz.57.1638903656074;
+ Tue, 07 Dec 2021 11:00:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20211206153124.427102-1-virag.david003@gmail.com> <20211206153124.427102-5-virag.david003@gmail.com>
-In-Reply-To: <20211206153124.427102-5-virag.david003@gmail.com>
+References: <20211206153124.427102-1-virag.david003@gmail.com> <20211206153124.427102-6-virag.david003@gmail.com>
+In-Reply-To: <20211206153124.427102-6-virag.david003@gmail.com>
 From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Tue, 7 Dec 2021 20:53:47 +0200
-Message-ID: <CAPLW+4m6aMx3T7Rsh39zuNqrd1r_US1WWeU+5KRR5GGjOvyDcA@mail.gmail.com>
-Subject: Re: [PATCH v4 4/7] clk: samsung: Make exynos850_register_cmu shared
+Date:   Tue, 7 Dec 2021 21:00:44 +0200
+Message-ID: <CAPLW+4kSDHUsvHo0njykTTRGqaAehRt6MXdJF73OzR47avOm9Q@mail.gmail.com>
+Subject: Re: [PATCH v4 5/7] clk: samsung: clk-pll: Add support for pll1417x
 To:     David Virag <virag.david003@gmail.com>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -62,336 +62,69 @@ Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, 6 Dec 2021 at 17:32, David Virag <virag.david003@gmail.com> wrote:
 >
-> Rename exynos850_register_cmu to exynos_arm64_register_cmu and move it
-> to a new file called "clk-exynos-arm64.c".
+> pll1417x is used in Exynos7885 SoC for top-level integer PLLs.
+> It is similar enough to pll0822x that practically the same code can
+> handle both. The difference that's to be noted is that when defining a
+> pl1417x PLL, the "con" parameter of the PLL macro should be set to the
+> CON1 register instead of CON3, like this:
 >
-> This should have no functional changes, but it will allow this code to
-> be shared between other arm64 Exynos SoCs, like the Exynos7885 and
-> possibly ExynosAuto V9.
+>     PLL(pll_1417x, CLK_FOUT_SHARED0_PLL, "fout_shared0_pll", "oscclk",
+>         PLL_LOCKTIME_PLL_SHARED0, PLL_CON0_PLL_SHARED0,
+>         NULL),
 >
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > Signed-off-by: David Virag <virag.david003@gmail.com>
 > ---
 > Changes in v2:
->   - New patch
+>   - Nothing
 >
 > Changes in v3:
->   - Fix SPDX comment style in clk-exynos-arm64.h
+>   - Nothing
 >
 > Changes in v4:
->   - Fix missing headers but still remove of_address.h
->   - "__SAMSUNG_CLK_ARM64_H" -> "__CLK_EXYNOS_ARM64_H" in
->     clk-exynos-arm64.h everywhere (only the comment at the end had the
->     latter by accident)
+>   - Added R-b tag by Krzysztof Kozlowski
 >
->  drivers/clk/samsung/Makefile           |  1 +
->  drivers/clk/samsung/clk-exynos-arm64.c | 94 ++++++++++++++++++++++++++
->  drivers/clk/samsung/clk-exynos-arm64.h | 20 ++++++
->  drivers/clk/samsung/clk-exynos850.c    | 88 ++----------------------
->  4 files changed, 119 insertions(+), 84 deletions(-)
->  create mode 100644 drivers/clk/samsung/clk-exynos-arm64.c
->  create mode 100644 drivers/clk/samsung/clk-exynos-arm64.h
+>  drivers/clk/samsung/clk-pll.c | 1 +
+>  drivers/clk/samsung/clk-pll.h | 1 +
+>  2 files changed, 2 insertions(+)
 >
-> diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
-> index c46cf11e4d0b..901e6333c5f0 100644
-> --- a/drivers/clk/samsung/Makefile
-> +++ b/drivers/clk/samsung/Makefile
-> @@ -16,6 +16,7 @@ obj-$(CONFIG_EXYNOS_5420_COMMON_CLK)  +=3D clk-exynos5-=
-subcmu.o
->  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)  +=3D clk-exynos5433.o
->  obj-$(CONFIG_EXYNOS_AUDSS_CLK_CON) +=3D clk-exynos-audss.o
->  obj-$(CONFIG_EXYNOS_CLKOUT)    +=3D clk-exynos-clkout.o
-> +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)  +=3D clk-exynos-arm64.o
->  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)  +=3D clk-exynos7.o
->  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)  +=3D clk-exynos850.o
->  obj-$(CONFIG_S3C2410_COMMON_CLK)+=3D clk-s3c2410.o
-> diff --git a/drivers/clk/samsung/clk-exynos-arm64.c b/drivers/clk/samsung=
-/clk-exynos-arm64.c
-> new file mode 100644
-> index 000000000000..b921b9a1134a
-> --- /dev/null
-> +++ b/drivers/clk/samsung/clk-exynos-arm64.c
-> @@ -0,0 +1,94 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2021 Linaro Ltd.
-> + * Copyright (C) 2021 D=C3=A1vid Vir=C3=A1g <virag.david003@gmail.com>
-> + * Author: Sam Protsenko <semen.protsenko@linaro.org>
-> + * Author: D=C3=A1vid Vir=C3=A1g <virag.david003@gmail.com>
-> + *
-> + * This file contains shared functions used by some arm64 Exynos SoCs,
-> + * such as Exynos7885 or Exynos850 to register and init CMUs.
-> + */
+> diff --git a/drivers/clk/samsung/clk-pll.c b/drivers/clk/samsung/clk-pll.c
+> index 83d1b03647db..70cdc87f714e 100644
+> --- a/drivers/clk/samsung/clk-pll.c
+> +++ b/drivers/clk/samsung/clk-pll.c
+> @@ -1476,6 +1476,7 @@ static void __init _samsung_clk_register_pll(struct samsung_clk_provider *ctx,
+>                 else
+>                         init.ops = &samsung_pll35xx_clk_ops;
+>                 break;
+> +       case pll_1417x:
 
-Please add empty line here (if you're going to send another version).
-Other than that:
+I wonder why this switch have a bunch of fall through cases, but none
+marked with "fallthrough;" line, and both checkpatch and "make" turn
+blind eye on that? Anyway, I guess it's ok as is, just an observation.
 
 Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-> +#include <linux/clk.h>
-> +#include <linux/of_address.h>
-> +
-> +#include "clk-exynos-arm64.h"
-> +
-> +/* Gate register bits */
-> +#define GATE_MANUAL            BIT(20)
-> +#define GATE_ENABLE_HWACG      BIT(28)
-> +
-> +/* Gate register offsets range */
-> +#define GATE_OFF_START         0x2000
-> +#define GATE_OFF_END           0x2fff
-> +
-> +/**
-> + * exynos_arm64_init_clocks - Set clocks initial configuration
-> + * @np:                        CMU device tree node with "reg" property =
-(CMU addr)
-> + * @reg_offs:          Register offsets array for clocks to init
-> + * @reg_offs_len:      Number of register offsets in reg_offs array
-> + *
-> + * Set manual control mode for all gate clocks.
-> + */
-> +static void __init exynos_arm64_init_clocks(struct device_node *np,
-> +               const unsigned long *reg_offs, size_t reg_offs_len)
-> +{
-> +       void __iomem *reg_base;
-> +       size_t i;
-> +
-> +       reg_base =3D of_iomap(np, 0);
-> +       if (!reg_base)
-> +               panic("%s: failed to map registers\n", __func__);
-> +
-> +       for (i =3D 0; i < reg_offs_len; ++i) {
-> +               void __iomem *reg =3D reg_base + reg_offs[i];
-> +               u32 val;
-> +
-> +               /* Modify only gate clock registers */
-> +               if (reg_offs[i] < GATE_OFF_START || reg_offs[i] > GATE_OF=
-F_END)
-> +                       continue;
-> +
-> +               val =3D readl(reg);
-> +               val |=3D GATE_MANUAL;
-> +               val &=3D ~GATE_ENABLE_HWACG;
-> +               writel(val, reg);
-> +       }
-> +
-> +       iounmap(reg_base);
-> +}
-> +
-> +/**
-> + * exynos_arm64_register_cmu - Register specified Exynos CMU domain
-> + * @dev:       Device object; may be NULL if this function is not being
-> + *             called from platform driver probe function
-> + * @np:                CMU device tree node
-> + * @cmu:       CMU data
-> + *
-> + * Register specified CMU domain, which includes next steps:
-> + *
-> + * 1. Enable parent clock of @cmu CMU
-> + * 2. Set initial registers configuration for @cmu CMU clocks
-> + * 3. Register @cmu CMU clocks using Samsung clock framework API
-> + */
-> +void __init exynos_arm64_register_cmu(struct device *dev,
-> +               struct device_node *np, const struct samsung_cmu_info *cm=
-u)
-> +{
-> +       /* Keep CMU parent clock running (needed for CMU registers access=
-) */
-> +       if (cmu->clk_name) {
-> +               struct clk *parent_clk;
-> +
-> +               if (dev)
-> +                       parent_clk =3D clk_get(dev, cmu->clk_name);
-> +               else
-> +                       parent_clk =3D of_clk_get_by_name(np, cmu->clk_na=
-me);
-> +
-> +               if (IS_ERR(parent_clk)) {
-> +                       pr_err("%s: could not find bus clock %s; err =3D =
-%ld\n",
-> +                              __func__, cmu->clk_name, PTR_ERR(parent_cl=
-k));
-> +               } else {
-> +                       clk_prepare_enable(parent_clk);
-> +               }
-> +       }
-> +
-> +       exynos_arm64_init_clocks(np, cmu->clk_regs, cmu->nr_clk_regs);
-> +       samsung_cmu_register_one(np, cmu);
-> +}
-> diff --git a/drivers/clk/samsung/clk-exynos-arm64.h b/drivers/clk/samsung=
-/clk-exynos-arm64.h
-> new file mode 100644
-> index 000000000000..0dd174693935
-> --- /dev/null
-> +++ b/drivers/clk/samsung/clk-exynos-arm64.h
-> @@ -0,0 +1,20 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (C) 2021 Linaro Ltd.
-> + * Copyright (C) 2021 D=C3=A1vid Vir=C3=A1g <virag.david003@gmail.com>
-> + * Author: Sam Protsenko <semen.protsenko@linaro.org>
-> + * Author: D=C3=A1vid Vir=C3=A1g <virag.david003@gmail.com>
-> + *
-> + * This file contains shared functions used by some arm64 Exynos SoCs,
-> + * such as Exynos7885 or Exynos850 to register and init CMUs.
-> + */
-> +
-> +#ifndef __CLK_EXYNOS_ARM64_H
-> +#define __CLK_EXYNOS_ARM64_H
-> +
-> +#include "clk.h"
-> +
-> +void exynos_arm64_register_cmu(struct device *dev,
-> +               struct device_node *np, const struct samsung_cmu_info *cm=
-u);
-> +
-> +#endif /* __CLK_EXYNOS_ARM64_H */
-> diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/cl=
-k-exynos850.c
-> index 568ac97c8120..17413135196d 100644
-> --- a/drivers/clk/samsung/clk-exynos850.c
-> +++ b/drivers/clk/samsung/clk-exynos850.c
-> @@ -9,93 +9,13 @@
->  #include <linux/clk.h>
->  #include <linux/clk-provider.h>
->  #include <linux/of.h>
-> -#include <linux/of_address.h>
->  #include <linux/of_device.h>
->  #include <linux/platform_device.h>
->
->  #include <dt-bindings/clock/exynos850.h>
->
->  #include "clk.h"
-> -
-> -/* Gate register bits */
-> -#define GATE_MANUAL            BIT(20)
-> -#define GATE_ENABLE_HWACG      BIT(28)
-> -
-> -/* Gate register offsets range */
-> -#define GATE_OFF_START         0x2000
-> -#define GATE_OFF_END           0x2fff
-> -
-> -/**
-> - * exynos850_init_clocks - Set clocks initial configuration
-> - * @np:                        CMU device tree node with "reg" property =
-(CMU addr)
-> - * @reg_offs:          Register offsets array for clocks to init
-> - * @reg_offs_len:      Number of register offsets in reg_offs array
-> - *
-> - * Set manual control mode for all gate clocks.
-> - */
-> -static void __init exynos850_init_clocks(struct device_node *np,
-> -               const unsigned long *reg_offs, size_t reg_offs_len)
-> -{
-> -       void __iomem *reg_base;
-> -       size_t i;
-> -
-> -       reg_base =3D of_iomap(np, 0);
-> -       if (!reg_base)
-> -               panic("%s: failed to map registers\n", __func__);
-> -
-> -       for (i =3D 0; i < reg_offs_len; ++i) {
-> -               void __iomem *reg =3D reg_base + reg_offs[i];
-> -               u32 val;
-> -
-> -               /* Modify only gate clock registers */
-> -               if (reg_offs[i] < GATE_OFF_START || reg_offs[i] > GATE_OF=
-F_END)
-> -                       continue;
-> -
-> -               val =3D readl(reg);
-> -               val |=3D GATE_MANUAL;
-> -               val &=3D ~GATE_ENABLE_HWACG;
-> -               writel(val, reg);
-> -       }
-> -
-> -       iounmap(reg_base);
-> -}
-> -
-> -/**
-> - * exynos850_register_cmu - Register specified Exynos850 CMU domain
-> - * @dev:       Device object; may be NULL if this function is not being
-> - *             called from platform driver probe function
-> - * @np:                CMU device tree node
-> - * @cmu:       CMU data
-> - *
-> - * Register specified CMU domain, which includes next steps:
-> - *
-> - * 1. Enable parent clock of @cmu CMU
-> - * 2. Set initial registers configuration for @cmu CMU clocks
-> - * 3. Register @cmu CMU clocks using Samsung clock framework API
-> - */
-> -static void __init exynos850_register_cmu(struct device *dev,
-> -               struct device_node *np, const struct samsung_cmu_info *cm=
-u)
-> -{
-> -       /* Keep CMU parent clock running (needed for CMU registers access=
-) */
-> -       if (cmu->clk_name) {
-> -               struct clk *parent_clk;
-> -
-> -               if (dev)
-> -                       parent_clk =3D clk_get(dev, cmu->clk_name);
-> -               else
-> -                       parent_clk =3D of_clk_get_by_name(np, cmu->clk_na=
-me);
-> -
-> -               if (IS_ERR(parent_clk)) {
-> -                       pr_err("%s: could not find bus clock %s; err =3D =
-%ld\n",
-> -                              __func__, cmu->clk_name, PTR_ERR(parent_cl=
-k));
-> -               } else {
-> -                       clk_prepare_enable(parent_clk);
-> -               }
-> -       }
-> -
-> -       exynos850_init_clocks(np, cmu->clk_regs, cmu->nr_clk_regs);
-> -       samsung_cmu_register_one(np, cmu);
-> -}
-> +#include "clk-exynos-arm64.h"
->
->  /* ---- CMU_TOP --------------------------------------------------------=
------ */
->
-> @@ -404,7 +324,7 @@ static const struct samsung_cmu_info top_cmu_info __i=
-nitconst =3D {
->
->  static void __init exynos850_cmu_top_init(struct device_node *np)
->  {
-> -       exynos850_register_cmu(NULL, np, &top_cmu_info);
-> +       exynos_arm64_register_cmu(NULL, np, &top_cmu_info);
->  }
->
->  /* Register CMU_TOP early, as it's a dependency for other early domains =
-*/
-> @@ -892,7 +812,7 @@ static const struct samsung_cmu_info peri_cmu_info __=
-initconst =3D {
->
->  static void __init exynos850_cmu_peri_init(struct device_node *np)
->  {
-> -       exynos850_register_cmu(NULL, np, &peri_cmu_info);
-> +       exynos_arm64_register_cmu(NULL, np, &peri_cmu_info);
->  }
->
->  /* Register CMU_PERI early, as it's needed for MCT timer */
-> @@ -1069,7 +989,7 @@ static int __init exynos850_cmu_probe(struct platfor=
-m_device *pdev)
->         struct device *dev =3D &pdev->dev;
->
->         info =3D of_device_get_match_data(dev);
-> -       exynos850_register_cmu(dev, dev->of_node, info);
-> +       exynos_arm64_register_cmu(dev, dev->of_node, info);
->
->         return 0;
->  }
+>         case pll_0822x:
+>                 pll->enable_offs = PLL0822X_ENABLE_SHIFT;
+>                 pll->lock_offs = PLL0822X_LOCK_STAT_SHIFT;
+> diff --git a/drivers/clk/samsung/clk-pll.h b/drivers/clk/samsung/clk-pll.h
+> index a739f2b7ae80..c83a20195f6d 100644
+> --- a/drivers/clk/samsung/clk-pll.h
+> +++ b/drivers/clk/samsung/clk-pll.h
+> @@ -32,6 +32,7 @@ enum samsung_pll_type {
+>         pll_2550xx,
+>         pll_2650x,
+>         pll_2650xx,
+> +       pll_1417x,
+>         pll_1450x,
+>         pll_1451x,
+>         pll_1452x,
 > --
 > 2.34.1
 >
