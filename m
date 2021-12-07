@@ -2,213 +2,312 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02A7E46BC18
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 14:01:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E267646BC2C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 14:08:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236776AbhLGNFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 08:05:08 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:48156 "EHLO
+        id S236397AbhLGNLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 08:11:54 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:50060 "EHLO
         sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236717AbhLGNFI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 08:05:08 -0500
+        with ESMTP id S232552AbhLGNLy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 08:11:54 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 12FE3CE19BC;
-        Tue,  7 Dec 2021 13:01:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BBCFC341C6;
-        Tue,  7 Dec 2021 13:01:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638882095;
-        bh=keBxHbjB8AP5/qJ3hn2VYj4CVUnlvblJ9kiHbZyhIyI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=H5jGQFIDljWiKDSiiEUkSEykimksJFlsuIHKR30/CUpBDa+Tuo8R9JTMY/NhASA+i
-         ntTcB2eD4ZZraXe1zI9gbaF1rgG6p1Xqack/Zbf+ATVFt7L0J9CUTN+ypxglHKUq3/
-         V4ij+2wdC2JsvdfiLr87ISG2EdzZqz2z7hn8GjptnBXxaeb1mwB5sUvp1YrNYQeZEX
-         09nmzSa8JFIWMOnm+V7XSTGsritQ20aWVLJY1aTCS/ZvUpq+THe7CaSY7nGNOto6hT
-         QchKQ2OeridOoGd/hU4VnmCI6+/r7CxchCENMcubEWUVluEpsKN5GqVAga1Pz3ufAf
-         ngsFRtzGkBP0g==
-Date:   Tue, 7 Dec 2021 14:01:30 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Wei Xu <xuwei5@hisilicon.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, <linuxarm@huawei.com>,
-        <mauro.chehab@huawei.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Felipe Balbi <balbi@ti.com>
-Subject: Re: [PATCH 3/5] arm64: dts: HiSilicon: Add support for HiKey 970
- USB3 PHY
-Message-ID: <20211207140048.3d54c55f@coco.lan>
-In-Reply-To: <61AF2069.5030607@hisilicon.com>
-References: <cover.1637063775.git.mchehab+huawei@kernel.org>
-        <97d470290e81ac40023bdcc7e2d796796421b737.1637063775.git.mchehab+huawei@kernel.org>
-        <61AF2069.5030607@hisilicon.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-redhat-linux-gnu)
+        by sin.source.kernel.org (Postfix) with ESMTPS id D59CBCE1AA3;
+        Tue,  7 Dec 2021 13:08:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84257C341C1;
+        Tue,  7 Dec 2021 13:08:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1638882500;
+        bh=K9zNh0bHKvKySji7UxHLTM/rwJ1vrX1xw1Z10O3pD+Y=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FhvalWCgCHWRni0bv3Tp2q3OivrGkVigo0Y/b8pXMb2bkaDHJhBZ789zTqb84jOtK
+         UJx3suQZWK713/h+uLGG2qi0uGV8f7aYjNSFfTHUVSv7AQpxqqQNXfYOEzLb2jQcaG
+         oi5c8ZjcXKzuYgvWdQbZghflgt0KGcr+LDZ0Xya8=
+Date:   Tue, 7 Dec 2021 14:08:17 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     David Brazdil <dbrazdil@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hans de Goede <hdegoede@redhat.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, Andrew Scull <ascull@google.com>,
+        Will Deacon <will@kernel.org>
+Subject: Re: [PATCH 2/2] misc: dice: Add driver to forward secrets to
+ userspace
+Message-ID: <Ya9cwZ94QatewwIc@kroah.com>
+References: <20211207123617.3040177-1-dbrazdil@google.com>
+ <20211207123617.3040177-3-dbrazdil@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211207123617.3040177-3-dbrazdil@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Tue, 7 Dec 2021 16:50:49 +0800
-Wei Xu <xuwei5@hisilicon.com> escreveu:
-
-> Hi Mauro,
+On Tue, Dec 07, 2021 at 12:36:17PM +0000, David Brazdil wrote:
+> Open Profile for DICE is a protocol for deriving unique secrets at boot,
+> used by some Android devices. The firmware/bootloader hands over secrets
+> in a reserved memory region, this driver takes ownership of the memory
+> region and exposes it to userspace via a character device that
+> lets userspace mmap the memory region into its process.
 > 
-> On 2021/11/16 19:59, Mauro Carvalho Chehab wrote:
-> > Add the USB3 bindings for Kirin 970 phy and HiKey 970 board.
-> > 
-> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > ---
-> > 
-> > To mailbombing on a large number of people, only mailing lists were C/C on the cover.
-> > See [PATCH 0/5] at: https://lore.kernel.org/all/cover.1637063775.git.mchehab+huawei@kernel.org/
-> > 
-> >  .../boot/dts/hisilicon/hi3670-hikey970.dts    | 83 +++++++++++++++++++
-> >  arch/arm64/boot/dts/hisilicon/hi3670.dtsi     | 56 +++++++++++++
-> >  2 files changed, 139 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> > index 7c32f5fd5cc5..60594db07041 100644
-> > --- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> > +++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> > @@ -430,3 +430,86 @@ &uart6 {
-> >  	label = "LS-UART1";
-> >  	status = "okay";
-> >  };
-> > +
-> > +&usb_phy {
-> > +	phy-supply = <&ldo17>;
-> > +};
-> > +
-> > +&i2c1 {
-> > +	status = "okay";
-> > +
-> > +	rt1711h: rt1711h@4e {
-> > +		compatible = "richtek,rt1711h";
-> > +		reg = <0x4e>;
-> > +		status = "okay";
-> > +		interrupt-parent = <&gpio27>;
-> > +		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&usb_cfg_func>;
-> > +
-> > +		usb_con: connector {
-> > +			compatible = "usb-c-connector";
-> > +			label = "USB-C";
-> > +			data-role = "dual";
-> > +			power-role = "dual";
-> > +			try-power-role = "sink";
-> > +			source-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)>;
-> > +			sink-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)
-> > +				PDO_VAR(5000, 5000, 1000)>;
-> > +			op-sink-microwatt = <10000000>;
-> > +
-> > +			ports {
-> > +				#address-cells = <1>;
-> > +				#size-cells = <0>;
-> > +				port@1 {
-> > +					reg = <1>;
-> > +					usb_con_ss: endpoint {
-> > +						remote-endpoint = <&dwc3_ss>;
-> > +					};
-> > +				};
-> > +			};
-> > +		};
-> > +		port {
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +
-> > +			rt1711h_ep: endpoint@0 {
-> > +				reg = <0>;
-> > +				remote-endpoint = <&hikey_usb_ep1>;
-> > +			};
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&i2c2 {
-> > +	/* USB HUB is on this bus at address 0x44 */
-> > +	status = "okay";
-> > +};
-> > +
-> > +&dwc3 { /* USB */
-> > +	dr_mode = "otg";
-> > +	maximum-speed = "super-speed";
-> > +	phy_type = "utmi";
-> > +	snps,dis-del-phy-power-chg-quirk;
-> > +	snps,dis_u2_susphy_quirk;
-> > +	snps,dis_u3_susphy_quirk;
-> > +	snps,tx_de_emphasis_quirk;
-> > +	snps,tx_de_emphasis = <1>;
-> > +	snps,dis-split-quirk;
-> > +	snps,gctl-reset-quirk;
-> > +	usb-role-switch;
-> > +	role-switch-default-mode = "host";
-> > +	port {
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +		dwc3_role_switch: endpoint@0 {
-> > +			reg = <0>;
-> > +			remote-endpoint = <&hikey_usb_ep0>;
-> > +		};
-> > +
-> > +		dwc3_ss: endpoint@1 {
-> > +			reg = <1>;
-> > +			remote-endpoint = <&usb_con_ss>;
-> > +		};
-> > +	};
-> > +};
-> > diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> > index 225dccbcb064..b47654b50139 100644
-> > --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> > +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> > @@ -8,6 +8,7 @@
-> >  
-> >  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >  #include <dt-bindings/clock/hi3670-clock.h>
-> > +#include <dt-bindings/usb/pd.h>
-> >  
-> >  / {
-> >  	compatible = "hisilicon,hi3670";
-> > @@ -892,5 +893,60 @@ i2c4: i2c@fdf0d000 {
-> >  			pinctrl-0 = <&i2c4_pmx_func &i2c4_cfg_func>;
-> >  			status = "disabled";
-> >  		};
-> > +
-> > +		usb3_otg_bc: usb3_otg_bc@ff200000 {
-> > +			compatible = "syscon", "simple-mfd";
-> > +			reg = <0x0 0xff200000 0x0 0x1000>;
-> > +
-> > +			usb_phy: usbphy {
-> > +				compatible = "hisilicon,hi3670-usb-phy";
-> > +				#phy-cells = <0>;
-> > +				hisilicon,pericrg-syscon = <&crg_ctrl>;
-> > +				hisilicon,pctrl-syscon = <&pctrl>;
-> > +				hisilicon,sctrl-syscon = <&sctrl>;
-> > +				hisilicon,eye-diagram-param = <0xFDFEE4>;
-> > +				hisilicon,tx-vboost-lvl = <0x5>;
-> > +			};
-> > +		};
-> > +
-> > +		usb31_misc_rst: usb31_misc_rst_controller {
-> > +			compatible = "hisilicon,hi3660-reset";
-> > +			#reset-cells = <2>;
-> > +			hisi,rst-syscon = <&usb3_otg_bc>;
-> > +		};
-> > +
-> > +		usb3: hisi_dwc3 {
-> > +			compatible = "hisilicon,hi3670-dwc3";  
+> The character device can only be opened once at any given time.
+
+Why?  That should not matter.  And your code (correctly), does not check
+for that.  So why say that here?
+
+> Userspace can issue an ioctl requesting that the memory be wiped after
+> the current FD is released. In that case, the driver will clear
+> the buffer and refuse to open any new FDs.
 > 
-> Could you please also add a binding document for the "hi3670-dwc3"?
-> The driver part has added the compatible string as you pointed out before.
+> Cc: Andrew Scull <ascull@google.com>
+> Cc: Will Deacon <will@kernel.org>
+> Signed-off-by: David Brazdil <dbrazdil@google.com>
 
-Just sent a patch adding a compatible for it:
+Some minor comments on the code:
 
-	https://lore.kernel.org/all/fec9df1a99ad8639f23edc24cdcc3ec78ea31575.1638881845.git.mchehab+huawei@kernel.org/T/#u
+> +#include <linux/cdev.h>
+> +#include <linux/dice.h>
+> +#include <linux/io.h>
+> +#include <linux/mm.h>
+> +#include <linux/module.h>
+> +#include <linux/of_reserved_mem.h>
+> +#include <linux/platform_device.h>
+> +
+> +#define DICE_MKDEV		MKDEV(MAJOR(dice_devt), 0)
+> +#define DICE_MINOR_COUNT	1
 
-This is basically a DWC3 driver, using drivers/usb/dwc3/dwc3-of-simple.c
-to setup the needed clocks and reset pins needed by the DWC3 driver.
+Please just use the misc_device api, no need to try to claim a major
+number for just one device node.  That will simplify your code a lot as
+well.
 
-Thanks,
-Mauro
+> +enum dice_state {
+> +	DICE_STATE_READY = 0,
+> +	DICE_STATE_BUSY,
+> +	DICE_STATE_BUSY_WIPE_ON_CLOSE,
+> +	DICE_STATE_WIPED,
+> +};
+> +
+> +struct dice_data {
+> +	struct device *dev;
+
+What is this for?  The parent?  If so, say parent :)
+
+> +	struct cdev cdev;
+> +	atomic_t state;
+> +	phys_addr_t base;
+> +	size_t size;
+> +};
+> +
+> +static dev_t dice_devt;
+> +static struct class *dice_class;
+> +
+> +static int dice_open(struct inode *inode, struct file *filp)
+> +{
+> +	struct dice_data *data;
+> +
+> +	data = container_of(inode->i_cdev, struct dice_data, cdev);
+> +
+> +	/* Never allow write access. */
+> +	if (filp->f_mode & FMODE_WRITE)
+> +		return -EROFS;
+
+Why do you care?  Writes just will not work anyway, right?
+
+> +
+> +	switch (atomic_cmpxchg(&data->state, DICE_STATE_READY, DICE_STATE_BUSY)) {
+> +	case DICE_STATE_READY:
+> +		break;
+> +	case DICE_STATE_WIPED:
+> +		/* Return error to inform caller memory has been wiped. */
+> +		return -EACCES;
+> +	default:
+> +		return -EBUSY;
+> +	}
+> +
+> +	filp->private_data = data;
+> +	nonseekable_open(inode, filp);
+> +	return 0;
+> +}
+> +
+> +static int dice_release(struct inode *inode, struct file *filp)
+> +{
+> +	struct dice_data *data = filp->private_data;
+> +	void *base;
+> +
+> +	if (atomic_read(&data->state) == DICE_STATE_BUSY_WIPE_ON_CLOSE) {
+> +		base = devm_memremap(data->dev, data->base, data->size, MEMREMAP_WT);
+> +		if (!WARN_ON(!base)) {
+> +			memzero_explicit(base, data->size);
+> +			devm_memunmap(data->dev, base);
+> +		}
+> +		atomic_set(&data->state, DICE_STATE_WIPED);
+> +		return 0;
+> +	}
+> +
+> +	atomic_set(&data->state, DICE_STATE_READY);
+> +	return 0;
+> +}
+> +
+> +static int dice_mmap(struct file *filp, struct vm_area_struct *vma)
+> +{
+> +	struct dice_data *data = filp->private_data;
+> +
+> +	vma->vm_flags |= VM_DONTCOPY;
+> +	return vm_iomap_memory(vma, data->base, data->size);
+> +}
+> +
+> +static long dice_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+> +{
+> +	struct dice_data *data = filp->private_data;
+> +
+> +	switch (cmd) {
+> +	case DICE_GET_SIZE:
+> +		/* Checked against INT_MAX in dice_probe(). */
+> +		return data->size;
+> +	case DICE_SET_WIPE_ON_CLOSE:
+> +		atomic_set(&data->state, DICE_STATE_BUSY_WIPE_ON_CLOSE);
+> +		return 0;
+> +	}
+> +
+> +	return -EINVAL;
+
+Wrong error value for invalid ioctl.
+
+And why do these have to be ioctls at all?  I guess sysfs could be used,
+but if you are comfortable with ioctls, that's fine.
+
+> +}
+> +
+> +static const struct file_operations dice_fops = {
+> +	.open = dice_open,
+> +	.release = dice_release,
+> +	.mmap = dice_mmap,
+> +	.unlocked_ioctl = dice_ioctl,
+> +	.llseek = no_llseek,
+> +};
+> +
+> +static int __init dice_probe(struct platform_device *pdev)
+> +{
+> +	struct device *chr_dev, *dev = &pdev->dev;
+> +	struct device_node *rmem_np;
+> +	struct reserved_mem *rmem;
+> +	struct dice_data *data;
+> +	int ret;
+> +
+> +	rmem_np = of_parse_phandle(dev->of_node, "memory-region", 0);
+> +	if (!rmem_np) {
+> +		dev_err(dev, "missing 'memory-region' property\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	rmem = of_reserved_mem_lookup(rmem_np);
+> +	of_node_put(rmem_np);
+> +	if (!rmem) {
+> +		dev_err(dev, "failed to lookup reserved memory\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (!PAGE_ALIGNED(rmem->base) || !PAGE_ALIGNED(rmem->size)) {
+> +		dev_err(dev, "memory region must be page-aligned\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (rmem->size > INT_MAX) {
+> +		dev_err(dev, "memory region too large\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	data = devm_kmalloc(dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	*data = (struct dice_data){
+> +		.dev = dev,
+> +		.base = rmem->base,
+> +		.size = rmem->size,
+> +		.state = ATOMIC_INIT(DICE_STATE_READY),
+> +	};
+> +
+> +	cdev_init(&data->cdev, &dice_fops);
+
+Again a misc device will make this much simpler.
+
+> +	data->cdev.owner = THIS_MODULE;
+> +	ret = cdev_add(&data->cdev, DICE_MKDEV, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	chr_dev = device_create(dice_class, dev, DICE_MKDEV, NULL, "dice");
+> +	if (IS_ERR(chr_dev)) {
+> +		cdev_del(&data->cdev);
+> +		return PTR_ERR(chr_dev);
+> +	}
+> +
+> +	platform_set_drvdata(pdev, data);
+> +	return 0;
+> +}
+> +
+> +static int dice_remove(struct platform_device *pdev)
+> +{
+> +	struct dice_data *data = platform_get_drvdata(pdev);
+> +
+> +	cdev_del(&data->cdev);
+> +	device_destroy(dice_class, DICE_MKDEV);
+> +	return 0;
+> +}
+> +
+> +static char *dice_devnode(struct device *dev, umode_t *mode)
+> +{
+> +	/* Initial permissions: read-only by owner */
+> +	if (mode)
+> +		*mode = 0400;
+> +	return NULL;
+
+Put the mode in the misc device structure please.
+
+> +}
+> +
+> +static const struct of_device_id dice_of_match[] = {
+> +	{ .compatible = "google,dice" },
+> +	{},
+> +};
+> +
+> +static struct platform_driver dice_driver = {
+> +	.remove = dice_remove,
+> +	.driver = {
+> +		.name = "dice",
+> +		.of_match_table = dice_of_match,
+> +	},
+> +};
+> +
+> +static int __init dice_init(void)
+> +{
+> +	int ret;
+> +
+> +	ret = alloc_chrdev_region(&dice_devt, 0, DICE_MINOR_COUNT, "dice");
+> +	if (ret)
+> +		return ret;
+> +
+> +	dice_class = class_create(THIS_MODULE, "dice");
+> +	if (IS_ERR(dice_class)) {
+> +		ret = PTR_ERR(dice_class);
+> +		goto fail;
+> +	}
+> +	dice_class->devnode = dice_devnode;
+
+Never create a class and reserve things like this, if you do not even
+know if your hardware is present or not.  That just wastes resources.
+Only allocate it if your device probes properly.
+
+And again, moving to a misc_device makes this all much simpler and your
+whole init function can go away.
+
+thanks,
+
+greg k-h
