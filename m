@@ -2,134 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A828F46B56B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:12:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DB1646B56D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 09:13:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230228AbhLGIPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 03:15:38 -0500
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:62102 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S230132AbhLGIPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:15:38 -0500
-Received: from pps.filterd (m0098414.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1B77lpH7027926;
-        Tue, 7 Dec 2021 08:12:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=in-reply-to : from : to
- : cc : date : message-id : content-transfer-encoding : content-type :
- mime-version : references : subject; s=pp1;
- bh=e3i33fvRShRQ8hY+plFklJnA1FZzrtnngpYW8P/UTBM=;
- b=DTNdPiwlYZyBHJQAAmodrpviD8HMTZkRnq217cVJVlUaUA0uQmfXN5mp7WdpQL+M3MkF
- uctxfXXm3me0GWq1VEWMV+cQpUZeptP0VETxAR6KHt1M34c5IZcY0CDarnfBAtLttpKI
- JaQhgfejv63kbzdry2tqN2aMN0eZcpLjGAdMtZH6oHFIY9Zy6YSkcOydFzym8jjfafNI
- l+Nda6m194Gvx3W/rt8+IWNAcfRA32gKZDUuf3V9yY18UioWpgsQ9Qohuiv9VLr5db85
- zry3LWK4iONmNvauMs8D4KnTzkQSJe2l/7vPzVal0GcZTOE+bjs7w3yhvAwhwCWGiltH RQ== 
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 3ct3hs0esg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 07 Dec 2021 08:12:01 +0000
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
-        by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 1B787mou025040;
-        Tue, 7 Dec 2021 08:12:00 GMT
-Received: from b03cxnp07029.gho.boulder.ibm.com (b03cxnp07029.gho.boulder.ibm.com [9.17.130.16])
-        by ppma03dal.us.ibm.com with ESMTP id 3cqyyajp2p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 07 Dec 2021 08:12:00 +0000
-Received: from b03ledav006.gho.boulder.ibm.com (b03ledav006.gho.boulder.ibm.com [9.17.130.237])
-        by b03cxnp07029.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 1B78BxPg54526264
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 7 Dec 2021 08:11:59 GMT
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 9ABB7C6059;
-        Tue,  7 Dec 2021 08:11:59 +0000 (GMT)
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 863D3C6069;
-        Tue,  7 Dec 2021 08:11:59 +0000 (GMT)
-Received: from mww0332.dal12m.mail.ibm.com (unknown [9.208.69.80])
-        by b03ledav006.gho.boulder.ibm.com (Postfix) with ESMTPS;
-        Tue,  7 Dec 2021 08:11:59 +0000 (GMT)
-In-Reply-To: <CACPK8Xcpg+V7BB6vq8oqqu=g7FRoTLLmz7-4G5Cp=hn0ziEuyw@mail.gmail.com>
-From:   "Milton Miller II" <miltonm@us.ibm.com>
-To:     "Joel Stanley" <joel@jms.id.au>
-Cc:     "Andrei Kartashev" <a.kartashev@yadro.com>,
-        "Andrew Jeffery" <andrew@aj.id.au>,
-        "devicetree" <devicetree@vger.kernel.org>,
-        "OpenBMC Maillist" <openbmc@lists.ozlabs.org>
-Date:   Tue, 7 Dec 2021 08:11:57 +0000
-Message-ID: <OF32EA8A79.571186E8-ON002587A4.002D0A6E-002587A4.002D0A73@ibm.com>
+        id S232257AbhLGIRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 03:17:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40232 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232243AbhLGIRO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 03:17:14 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE167C061746;
+        Tue,  7 Dec 2021 00:13:44 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id t26so31633845lfk.9;
+        Tue, 07 Dec 2021 00:13:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=8VBBrS5Mji35H9dzLgGDSTzu48sYhkKhDmT2w5684vA=;
+        b=eyXrksDMf/c8wg8yU3nEVAiX4ThD9uL4nYKBMpSP08/SJDscsXoQ3FzXsgC9+P3LEe
+         A+unKaG3TKNJcWInaAHtmO01SNVmsc3kQHsY/JpdfgBzKEHUapjP71W1ba0+WyYMosG9
+         MGsgDAxpp5uM74/IyF9oJGD9/y/iAS6TG+lyA4t4SqTTmy0zPVEnMrhQU6xPCTJohUU1
+         ttXiyiRck6cuK0fterlCb1n9EH1daWTCRC4XLUqtBvVp82MYWo338tPocDkQ3Typ2/fo
+         7/r0Wso/pdbrybIDMf5Vigw0KoiUs+8r7tmdu8nZucPx8WSLguXLFZHuAW+7YAE6VF21
+         Ab4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=8VBBrS5Mji35H9dzLgGDSTzu48sYhkKhDmT2w5684vA=;
+        b=i6v63kNwhFfWLpK5EptpFSH2xVNc6I4ZHCDo0iS8yt1xcFDoADp/AVG3DIe3jCwXfc
+         PDUg+CVKefgBqVwiBDagmQQ9EnTPsQYM0uhZN3I4143nUWlM80ZcPi0hcSKQtECHtYcK
+         OR9cvLQIAeBJ3dtwVShmWtnDinRGisgL02OmUAZJy8y6QaDOekuss0HrqC1Tn35VZ5NW
+         wXMzuWEsGWOoyO4VD6otfTxRyTb/kiIt3yNLajPSpl4vSBzPp1SFFcQTX0o7iqJLijqn
+         5wmXwPuizk7X7ay2bxnedNqpcc3agEHbIry5KUwnUdnpkuT5q6lwrWzs6klU2PHgelbD
+         Kd4w==
+X-Gm-Message-State: AOAM531tQNNzMGDe8DV9HNogMQCsUF+xIg9uI+3wsT9ks0zECa26yHqv
+        nGLIGFtqcMi0AXy77OSm8GI=
+X-Google-Smtp-Source: ABdhPJzvorYiMqU8lsAb1gx1vK3Pmj3BOFvmYw5exgUvQft5nH1yGsRO1olpZhwCPkIhGOaZq5LqrQ==
+X-Received: by 2002:ac2:4c4e:: with SMTP id o14mr40231404lfk.148.1638864823066;
+        Tue, 07 Dec 2021 00:13:43 -0800 (PST)
+Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
+        by smtp.gmail.com with ESMTPSA id p22sm1599842lfe.257.2021.12.07.00.13.42
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 07 Dec 2021 00:13:42 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
+Subject: Re: [RFC PATCH 3/9] arm64: dts: meson: add initial device-trees for
+ X96-AIR
+From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <20211130060523.19161-4-christianshewitt@gmail.com>
+Date:   Tue, 7 Dec 2021 09:13:38 +0100
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-amlogic@lists.infradead.org" 
+        <linux-amlogic@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Benoit Masson <yahoo@perenite.com>
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-MIME-Version: 1.0
-Sensitivity: 
-Importance: Normal
-X-Priority: 3 (Normal)
-References: <CACPK8Xcpg+V7BB6vq8oqqu=g7FRoTLLmz7-4G5Cp=hn0ziEuyw@mail.gmail.com>,<20211119120057.12118-1-a.kartashev@yadro.com>
- <20211119120057.12118-3-a.kartashev@yadro.com>
- <FA1B4FAF-387D-4D71-952A-D44B493FC67B@gmail.com>
- <368313b889cbadc267b053cd808b080e9f6470a0.camel@yadro.com>
-X-Mailer: Lotus Domino Web Server Release 11.0.1FP2HF125   November 22, 2021
-X-MIMETrack: Serialize by http on MWW0332/03/M/IBM at 12/07/2021 08:11:58,Serialize
- complete at 12/07/2021 08:11:58
-X-Disclaimed: 62399
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: gY7fALezt1YQBqwtREv4W_IRlJjGfL4t
-X-Proofpoint-GUID: gY7fALezt1YQBqwtREv4W_IRlJjGfL4t
-Subject: RE: [PATCH v2 2/2] ARM: dts: aspeed: add device tree for YADRO VEGMAN BMC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2021-12-07_03,2021-12-06_02,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- impostorscore=0 mlxscore=0 phishscore=0 spamscore=0 clxscore=1011
- malwarescore=0 suspectscore=0 priorityscore=1501 adultscore=0 bulkscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2110150000 definitions=main-2112070047
+Message-Id: <FD127A47-ED36-40C6-B3A0-238166F727E7@gmail.com>
+References: <20211130060523.19161-1-christianshewitt@gmail.com>
+ <20211130060523.19161-4-christianshewitt@gmail.com>
+To:     Christian Hewitt <christianshewitt@gmail.com>
+X-Mailer: Apple Mail (2.3654.120.0.1.13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday, December 6, 2021, Joel Stanley wrote:
 
->On Sat, 20 Nov 2021 at 15:51, Andrei Kartashev
-><a.kartashev@yadro.com> wrote:
->>
->> >
->> > Can we utilize
->> >
-[ gpio naming ]
->> > to get some consistent naming across the GPIO=E2=80=99s on OpenBMC
->machines?
->> >
->>
->> Some names here are standard for Intel daemons like
->x86-power-control,
->> host-error-monitor, pfr-manager, IntrusionSensor and so on. Other
->lines
->> just called same as in schematics to make it easy for our engineers
->to
->> understand what does it refer to. BTW, most of the lines there not
->used
->> by software and appeared just because dts files are supposed to be
->> hardware description and thus we describe all we have in
->schematics.
->>
->> We can rename all this according to guide you mention, but are you
->> sure, there is any sense to do so?
->> Keep in mind, currently there are lot of dts files which also don't
->> follow convention, so I believe, it is unnecessary work.
->
->I have a strong preference for using the naming document. It provides
->consistency, which makes it easier to review. I'm encouraging that
->for
->any new dts.
->
->If you think it makes the descriptions less useful for your platform
->then that's a reasonable reason to not follow the convention.
->
 
-Actually, what I would prefer is that these well established signal
-names that appear in the x86 industry servers be enumerated in the
-gpio naming document and be accepted like the original OpenPOWER
-legacy names were.   This will clearly show the names that appear=20
-on other systems and will help reviewing things like power control=20
-applications.
+> Wiadomo=C5=9B=C4=87 napisana przez Christian Hewitt =
+<christianshewitt@gmail.com> w dniu 30.11.2021, o godz. 07:05:
+>=20
+>=20
+> =E2=80=93 2GB DDR3 + 16GB eMMC + WiFi b/g/n (no BT) + 10/100 Ethernet
+Tested-by: Piotr Oniszczuk <piotr.oniszczuk@gmail.com> #
+X96-Air with 10/100 Eth
 
-Andrei does this sound reasonable?
