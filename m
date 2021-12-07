@@ -2,191 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C229A46B29D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 06:49:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A62B246B29A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 06:48:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231538AbhLGFwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 00:52:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35036 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbhLGFwv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 00:52:51 -0500
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FC26C061746
-        for <devicetree@vger.kernel.org>; Mon,  6 Dec 2021 21:49:21 -0800 (PST)
-Received: by mail-pl1-x636.google.com with SMTP id b11so8637182pld.12
-        for <devicetree@vger.kernel.org>; Mon, 06 Dec 2021 21:49:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=oI+jB1Oj81gXS93Xi29AaslGAFYJbNNV4lBDuspdSkg=;
-        b=aD7fgD5LTK8MWJl4lGl9/zRHzyFMuYTjK9vhN/DHaxea9kN80NfS9CBIiWBd2QF0uj
-         /OFuKR87C0jT18REyVVVYFBTuHbQUprfLfQJ7I84hDzDCB82OKlc8nQp6pKkWXESNOwo
-         tkd9A3NCuRXTQ8UP/yjWLJOfIk9Y6ENffTUGE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=oI+jB1Oj81gXS93Xi29AaslGAFYJbNNV4lBDuspdSkg=;
-        b=rID6d4/n0VqtFQhj3et+VJTy2vKsEGHTFac7yN5dki6tdd+xnWLhvB5PRnOUMK2evW
-         PU1F4O4uoQKE4OiPlHi+L/9IXAdfOHj+itctgodnVo7WdCAMFk6YqhMsZVqHPYawjLZM
-         YYZ1rupaWj0qzZhtrQJaPV627pAezyoVi6jVRxMyxyzNOuSmCHwhfLmyy93leTKE1kB4
-         gsKA8DKenGIQ6IiVt68CaWd7qb0CEV/QzOQr0Do7/gQ4BEbxeTjGVBeBcOA1IxaKprkR
-         xDC48OaDLDImKIBV1/PjT1fBFodMmUJzThdlJp/DQcYROrGA7CSa8YBD9inllnE7z3j9
-         z1oQ==
-X-Gm-Message-State: AOAM530GIRrlF8+2Xiq0/aNXRb9m3AzlQp4c0nFzy0aq/8gAGm+/gwnk
-        qRwIqWFZBdRzcPw8oD4edamHRXA5OmOHuJtr
-X-Google-Smtp-Source: ABdhPJzqYAuDg9SPTB9iVcEKJRtHJqbkNJOZt+mrbWxaDzG706lJJJpliN0ULvEdQTq0pYRt1Ij2ZA==
-X-Received: by 2002:a17:903:285:b0:142:21ba:2191 with SMTP id j5-20020a170903028500b0014221ba2191mr48896433plr.28.1638856161190;
-        Mon, 06 Dec 2021 21:49:21 -0800 (PST)
-Received: from localhost.localdomain ([2405:201:c00a:a0a9:ac1e:ca0f:5f0a:c85a])
-        by smtp.gmail.com with ESMTPSA id f7sm14496352pfv.89.2021.12.06.21.49.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Dec 2021 21:49:20 -0800 (PST)
-From:   Jagan Teki <jagan@amarulasolutions.com>
+        id S230448AbhLGFwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 00:52:21 -0500
+Received: from mail-tycjpn01on2119.outbound.protection.outlook.com ([40.107.114.119]:31394
+        "EHLO JPN01-TYC-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229487AbhLGFwU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 00:52:20 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FTwwBZtoGFv8eDl7oNFrSOt9IB2sGAiZKjM/QZBDNji1lQl5ZpPCHlO3d+MPDLvlwce2KJ9GcfjMGF5hq+1J/mdfSOnpfBnL4OfETCxlMzsgbxg6mDkP+2zX2kVyoXrvLBr7hTztjNYWPsflMlI3QVi4IjwnSWcB4zwzB7t67gtUf0Kk4kAMVheIY6imT20bASCynvpbjG9GVRu73XLRAkhk5k4ncqzo635Hf+3dLw9m3xnrPHpgCArpmNw0HZ+DG9gtkuX9k0eaxFkSyDwpymXN5hFzdy4ItyncAsbwF/dkXDOcG4OlvMBJUXnATSZ6g0T+zBddlkM4NMkkl1CbSA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cf3kyd8FdTQo92SFt2zWgtwMkWOR1fA5hsbJHxIHE24=;
+ b=n0YC9zGdFn0xtOTXoXWMUgcYIX1AD51j/htHHNiMhSzCIO/PtjHzyuZVBQlh2qWMOoO/U0SNPBM3gvFV0Jl7LGe8igC7eytJItMqplkPqgir/0MlNjbva9RjZ+MXNdLstbey6f20k6iyz+ZPDIwtUG9jIVO6/gHB6kLSD9H3K0hA79gC6QsX4Xzq/w1sg3eIqnQOOiNPMA2g9ew7fYJOubvoXW/iUwKtznEL56bgpqjDUnO4BQtOF7luzJsmzsOwcOGBf3FHNpgQYrPKvngxCTPwFORRxrk6Y2rfrBtrroDol+EXgyugUF5kmpsoyfas01aQUqJ3pIKm22e0SwA2og==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cf3kyd8FdTQo92SFt2zWgtwMkWOR1fA5hsbJHxIHE24=;
+ b=NU7K4wHkaUla9rFz4x6t7L6dRdYNmJMGRYSZwbmGupqgst+x0VBArB34pd3BK0h2YR97zS6sS8c23PuMrlP7PFxHeoILmqEyDQqa/jVQdx9VY+OgY3XOGUBfYQvkmC2qKIFPHR5Ud/6egYbZAlaX+V+RQ0eeG/jRLhNo6ywkxwY=
+Received: from TYCPR01MB5581.jpnprd01.prod.outlook.com (2603:1096:400:a::10)
+ by TYCPR01MB5678.jpnprd01.prod.outlook.com (2603:1096:400:42::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.16; Tue, 7 Dec
+ 2021 05:48:48 +0000
+Received: from TYCPR01MB5581.jpnprd01.prod.outlook.com
+ ([fe80::3d74:9c2e:e85a:df82]) by TYCPR01MB5581.jpnprd01.prod.outlook.com
+ ([fe80::3d74:9c2e:e85a:df82%5]) with mapi id 15.20.4755.022; Tue, 7 Dec 2021
+ 05:48:48 +0000
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Andrzej Hajda <a.hajda@samsung.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 2/2] drm: of: Lookup if child node is panel or bridge
-Date:   Tue,  7 Dec 2021 11:17:47 +0530
-Message-Id: <20211207054747.461029-3-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211207054747.461029-1-jagan@amarulasolutions.com>
-References: <20211207054747.461029-1-jagan@amarulasolutions.com>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: How to indicate both flag/phandle for same property in devicetree
+ yaml ?
+Thread-Topic: How to indicate both flag/phandle for same property in
+ devicetree yaml ?
+Thread-Index: AdfrLfnQ/uwhyoOeSu2jU5kHNHccpg==
+Date:   Tue, 7 Dec 2021 05:48:48 +0000
+Message-ID: <TYCPR01MB55812348CE5E507748E7F1E2D46E9@TYCPR01MB5581.jpnprd01.prod.outlook.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f510325e-1ab4-42b5-49a9-08d9b9453d94
+x-ms-traffictypediagnostic: TYCPR01MB5678:EE_
+x-microsoft-antispam-prvs: <TYCPR01MB567803DCE248105427D68B08D46E9@TYCPR01MB5678.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 2r5XVc9vb27xonMtvHi+b0WCKnb2O3xkOI12LUpREZbSpie4+F/2T1VX6J7WPd5Ufgw+QpnkRfCP4Jo1rMetB8oF4dzyB+zW0kty9Zqdanrb/BinwxN6FvuGwW4GJmwGYvymE3WswndxILT5jcyQb6Yj5eAz6RMDoeqWIUPkysgUywFzmt14JU+vu+rsEqtGrjNDFI9Gjgjbp7HLA0ef8+X+G6NiSrCl4ENYs8c1AVcsD5nTqGqJX1sAqQC6X9D0U6RxyaKcc/cj5gGj+Dm9y0N4PBiOeC8gMxRux0o/MmtXUFIyDhFHbK+Mz/b/rJE8bVOsMsyZXePuwlrENPHM07HnBZQbyYjI8VU3YmVRVdBPgyr7JUvqohyvb5ThSjDYOhWORI7xrL4s6MgIaHFFoAPtbYTwUY9ji9qPKnuhd+/XKWvjBFYqQR5WtFv9DKtrcUAA3d4uAkQxAzcXjOlZKDEZOvyA4cXSF1cZTBjuC8iLnh/1P9sUuBXdOZYHio578IfhSllHinqcDDBcNdGvqLd4zpAsko2JtwsS4MWQi8mT1rcTm3KgckEEzDbpdraFgR8/Cg0wJrS5W1lx2d3Wbq7ZSFZXtnTON1z5G30LRKjfmWSdjl+UH49q0lqqtHLh4CMEmXD/+v8g+OtI94IhicxhqFW2LVRUoykw/N3UgZCmR6tj4XkR6oRgdp9RjhNcVpvXy5o5l1msGKk1l91gHw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB5581.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66476007)(8936002)(2906002)(6506007)(66556008)(8676002)(66446008)(186003)(110136005)(71200400001)(316002)(66946007)(64756008)(76116006)(86362001)(38070700005)(52536014)(508600001)(26005)(9686003)(5660300002)(33656002)(55016003)(7696005)(83380400001)(122000001)(38100700002)(4744005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?LrkN8UJBUm/1lh2uNY5SndzYY12DvslwTTH6ME4mw6vA8hpSwq1Sy8TS7LAk?=
+ =?us-ascii?Q?IX0TYfQYz7sluWehwdeggHLC39vItEks4wj/a++hsg4KJeEfKi0B4QHnkqWJ?=
+ =?us-ascii?Q?tWqFd1KklzU8nLWiAGykcPv7AkcN89rK9IWArDweOsET4eDOb4WvxZdgIUck?=
+ =?us-ascii?Q?LYZEEuEDy08UW0gd+yhcydXswIax0S2DfghHdOQwBqP8fUwfEIzY+kOkrxok?=
+ =?us-ascii?Q?hW0Kbws1vL67AvL9mXIV3ODMC+2Wp36QYcwjnPGMi3tFFronE8aHsw4bM/uV?=
+ =?us-ascii?Q?b4cKyB+eiOyXIgDmBWg0gJxVU8FCIV0w4wwTa2Ro22gmeD8ibf9nlNDzWJv2?=
+ =?us-ascii?Q?/q+7JXlLnlNne2R/nfVyvBZ2yFo91x8K8DmWX6ja7h814J8346tgxnZQTxd2?=
+ =?us-ascii?Q?WQugeO1syyV4uYB+/3WbfvXVEzk/mgCCx9zGUnz3LeuyUfpj3TA2AQxwA5/C?=
+ =?us-ascii?Q?RUoQHqD9kwPhFftN3vilLNEEhvtY2n1aygDIDknjnWivy/imvlbr/guvSx+i?=
+ =?us-ascii?Q?6o0+886pBhJWad7HZgvHDvXj2iiP/rXZI3PNlCWcRSAZf4+Z5vaQqaALKRBc?=
+ =?us-ascii?Q?LL7i/vjish6g3oM6pfvTP0Ta+ivBgSNMGlDLI7vfN50P0/pEriYdO6RcU3n7?=
+ =?us-ascii?Q?wBNNIW19qz1cw0l+ldEW8xFZ+RD8zmJMHugx9bC7AQ2tSRAcJNW8YNX01FZw?=
+ =?us-ascii?Q?xNO7BpZWqx3ViwPArQe29WpshZXfkerScCrPbKIzplMZOaoX1UChVrU88ptm?=
+ =?us-ascii?Q?57yqd/hgO7lT8QyZmfesdTCt6nZonSqlKr3/KM6YGqr0uKNmZfkR4gFAhYwv?=
+ =?us-ascii?Q?laLZyFE0uU+nAH60ptZoWurTq/4SUAl68OhQOKucL7LarfRHqnDADIU27/1D?=
+ =?us-ascii?Q?3EUlw00HpjmlroSO2igaR4CKD6e9O/reODjzZ7QJSSznHOhQfRIVzmTTjYC3?=
+ =?us-ascii?Q?TTES3LcLYUIxQlgsaJvfGS8hM9booFrriivFmWzAB8ak33MUwK2y7xXsOhHN?=
+ =?us-ascii?Q?V1aTvCOt1n6RYva5bus/QXJagocUCamokJfylS3787nPCG5mh//wkj1spsiW?=
+ =?us-ascii?Q?7zdVBIKq/jFR9ebGB+DKvm4XYSx/7fjPL44AtBzIr0TTx44Z+jZPsr6X7XY9?=
+ =?us-ascii?Q?9qiwShAr0GS0h+5nqcfr089ZyFatnmBPW3C3abh3WOZPXBixlu5RzkgoiE9x?=
+ =?us-ascii?Q?R/s7B3kkP7unXKAEUy/UoguLpk5cNBMyU73tiMBqduHkjM5pR4CHxAHYu3Lv?=
+ =?us-ascii?Q?qXKs9zy/34VS3HxC7xHCTOhdanvoN0YtVg78HI2R4NwcvFcsjLAOouyP9he+?=
+ =?us-ascii?Q?5MIauZZ9+d18D2/FRKZZ2G4H6MTnUkvDwQB11TU9RCUdBsf7s7w/XZM9mLj2?=
+ =?us-ascii?Q?jTcAiRYP1nGlSTg6NAxzQvl+jDdEJm4MUMyPMNED41U2vX0trrheHZe54DON?=
+ =?us-ascii?Q?GTGSO8avqFjMmie+10olJlbf8pyLNH89GJqoPkj+nTWZvzuzJyFqEytMhqDg?=
+ =?us-ascii?Q?hRwNvMHBfyf/8EBaXE5D1dRO6FWecgBgEenDLAaEj+R4KXfKPprAuYCYrr/c?=
+ =?us-ascii?Q?9Sh4xBjCA9N/lGP1JgW7yISBR5OLI522+gsw8Y0lDwq2dWwPL24mSdlA8j/6?=
+ =?us-ascii?Q?Llz2U6XB4ZoTYc2jKO+SswnvaSGMfknhkMuUX4Dhdy+1X+21bYNq14eWAxfo?=
+ =?us-ascii?Q?8R/B4Hry5KsuuX5lK3KQJr8pOLvlU5ZxisqVjLKDNIi8saw7IrBfk4fGZNQd?=
+ =?us-ascii?Q?h83loPlVwg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB5581.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f510325e-1ab4-42b5-49a9-08d9b9453d94
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Dec 2021 05:48:48.5708
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KQE6GYqVfV/bpB8CGTtJok/WGoSRAobGCk4Y+stJdYN2QfhWjNhYB9vY10vccJ7QzwnjT8JWboEh4d9sMF1oNVYc+00l4HPs6oTfZ7RzycPZYegfzcrwZst1kzkNhf6n
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB5678
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-drm_of_find_panel_or_bridge can lookup panel or bridge for
-a given node based on the OF graph port and endpoint and it
-fails to use if the given node has a child panel or bridge.
 
-This patch add support to lookup that given node has child
-panel or bridge however that child node cannot be a 'port'.
+Hi Rob, Frank
+=20
+I'm not familiar with DT yaml,
+but how to enable both flag and phandle on same property ?
 
-Examples OF graph representation of DSI host, which doesn't
-have 'ports'
+For example, bitclock-master can be both flag/phandle.
 
-dsi {
-	compatible = "allwinner,sun6i-a31-mipi-dsi";
-	#address-cells = <1>;
-	#size-cells = <0>;
+	// flag style.
+	// This driver is provider if it has flag.
+	// (No flag means consumer)
+	bitclock-master;
 
-	port {
-		dsi_in_tcon0: endpoint {
-			remote-endpoint = <tcon0_out_dsi>;
-	};
+	// phandle style.
+	// specified driver is provider
+	bitclock-master =3D <&xxxx>
 
-	panel@0 {
-		reg = <0>;
-	};
-};
+I tried many yamls, but all case will be error.
+How to incicate both flag/phandle in this case ?
 
-dsi {
-	compatible = "allwinner,sun6i-a31-mipi-dsi";
-	#address-cells = <1>;
-	#size-cells = <0>;
+bitclock-master:
+  description: Indicates dai-link bit clock master
+  $ref: /schemas/types.yaml#/definitions/phandle
+  $ref: /schemas/types.yaml#/definitions/flag
 
-	port {
-		dsi_in_tcon0: endpoint {
-			remote-endpoint = <tcon0_out_dsi>;
-	};
 
-	bridge@0 {
-		reg = <0>;
-
-		ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			bridge_out: port@1 {
-				reg = <1>;
-
-				bridge_out_panel: endpoint {
-					remote-endpoint = <&panel_out_bridge>;
-				};
-			};
-		};
-	};
-};
-
-dsi0 {
-	compatible = "ste,mcde-dsi";
-	#address-cells = <1>;
-	#size-cells = <0>;
-
-	panel@0 {
-		reg = <0>;
-	};
-};
-
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+Best regards
 ---
- drivers/gpu/drm/drm_of.c | 36 ++++++++++++++++++++++++++----------
- 1 file changed, 26 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
-index 59d368ea006b..1c4cb809d7bc 100644
---- a/drivers/gpu/drm/drm_of.c
-+++ b/drivers/gpu/drm/drm_of.c
-@@ -249,18 +249,34 @@ int drm_of_find_panel_or_bridge(const struct device_node *np,
- 	if (panel)
- 		*panel = NULL;
- 
--	/*
--	 * of_graph_get_remote_node() produces a noisy error message if port
--	 * node isn't found and the absence of the port is a legit case here,
--	 * so at first we silently check whether graph presents in the
--	 * device-tree node.
-+	/**
-+	 * Some OF graphs don't require 'ports' to represent the next output
-+	 * instead, it simply adds a child node on a given parent node.
-+	 * Lookup that child node for a given parent however that child
-+	 * cannot be a 'port'.
-+	 *
-+	 * Add precedence to lookup non port child as of_graph_get_remote_node()
-+	 * returns valid even if OF graph has 'port' but that OF graph remote
-+	 * node is not register panel or bridge.
- 	 */
--	if (!of_graph_is_present(np))
--		return -ENODEV;
-+	if (!of_get_child_by_name(np, "ports")) {
-+		remote = of_get_non_port_child(np);
-+		if (!remote)
-+			return -ENODEV;
-+	} else {
-+		/*
-+		 * of_graph_get_remote_node() produces a noisy error message if port
-+		 * node isn't found and the absence of the port is a legit case here,
-+		 * so at first we silently check whether graph presents in the
-+		 * device-tree node.
-+		 */
-+		if (!of_graph_is_present(np))
-+			return -ENODEV;
- 
--	remote = of_graph_get_remote_node(np, port, endpoint);
--	if (!remote)
--		return -ENODEV;
-+		remote = of_graph_get_remote_node(np, port, endpoint);
-+		if (!remote)
-+			return -ENODEV;
-+	}
- 
- 	if (panel) {
- 		*panel = of_drm_find_panel(remote);
--- 
-2.25.1
-
+Kuninori Morimoto
