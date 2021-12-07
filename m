@@ -2,109 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 829B346B85F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 11:04:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2A9146B85B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 11:04:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234640AbhLGKHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 05:07:32 -0500
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:44250 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231667AbhLGKHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 05:07:32 -0500
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1B77N2Zr027880;
-        Tue, 7 Dec 2021 04:03:44 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- content-transfer-encoding : in-reply-to; s=PODMain02222019;
- bh=3jBwxfmb5H1j9Y4065aGPwjoj5+fDbxOpxnZYCYBUI8=;
- b=geRSci6C2gxHPnOH1mWPqO2efkzkvJb/TMafSsbx2IjD8sXTkxI84Lubf9RBbQpAK7hq
- n4yLYju0futPoDgxnjvcHkzlXyWTeT4sRIpq0LGZTvhZQtM3TPPr/8G1oTiUOfhrJWhx
- t/vyIIxTEs9uqYLlU+RfZAwTzHx9hlDUz2fRHg8rjHmBuOl5y5Z+s2har8tu5kSnZTRO
- Tc9DFv+BaFxgvLk1G0BJY4dSp5rx+395hV7UHrSMPeG2qi2Lv0Vc9CF7pD0LpiOXkgk+
- Ao1uyIt2QGWum2K4Mw+zxd4y02DyQVQA1/2EZsUgrYpoO+MXvEUgj3hoeRkGfGT8xcaG 5Q== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3csbp49nv9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Tue, 07 Dec 2021 04:03:44 -0600
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Tue, 7 Dec
- 2021 10:03:42 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Tue, 7 Dec 2021 10:03:42 +0000
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 926C2B10;
-        Tue,  7 Dec 2021 10:03:42 +0000 (UTC)
-Date:   Tue, 7 Dec 2021 10:03:42 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        id S234667AbhLGKH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 05:07:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38718 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234646AbhLGKHY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 05:07:24 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E139C061354
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 02:03:53 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id t18so4401113wrg.11
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 02:03:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=YMXGNl+2STyhxzO3HVuriZuNvccL7QLCPDwSy26sqQI=;
+        b=k31XRrWxV+zeine2/5ZK0CSlMZrpZRSLjBrKRrd8jyX0X4uWq2r9UvB5dRWfBQf8ZY
+         60uqwiAb3a3oYm+p7qxcQ7aduV8SnLgOx1HUnTV8eE9g1Nd+mkxjXE66XXF32SYBW8PS
+         Nwc75fKd6Eb9Ce5MgSETVlJwiCiQ5YXCmLiaIk0QQ1arktl/WSEeDcw56Vn7PH5R9ywW
+         ROWWsBa+UqXhS4rvSsg0hnhYU8w0L0RN3N3dWzcdv5K9bVQQufsrhHViiBZdYAQS5cCU
+         +1U20lxpF4xmGkGuX1tIix41TwCTY6HP/iEAowkXqiy9dHhe7i/0YDkIl64Dnzlft/ZL
+         aTvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=YMXGNl+2STyhxzO3HVuriZuNvccL7QLCPDwSy26sqQI=;
+        b=OV1a0U755e14c8+4HKtQeTI2TprFyixLbVZU9SnT7Kbq/ygEjniUQrhD03CZlj8OyV
+         mSqnmY+eEdl+mgEn+U1CYiN1jDYRNju1YsonkLx0D4ivsZ1mhtjQNOyHPt23vRSa58aM
+         q8J2LVTqpweaybTmuk7LZUi3rqQTvSmxJvYK1hBEBO+npmFxr1EyTA1q/bGKb1lQZESW
+         4ABfVe867PbbH0FFPJMBRJI99RRDPlOHiE1GmuiXdHtSbGknJvPwvP9INRWQP6gsi2sh
+         7DtXdpHh+J8mW++ap9g18sC+anT4DVY1fioXUVaDzWfn6W0TFePgs+FIJmoV9wSJlACp
+         nNng==
+X-Gm-Message-State: AOAM532s6SQwhjkjxAYAA0lmUjC0mMWZWDZ891o7u1gmhMubbtsqCQ0N
+        26jLdHckRwp8wEkVr0XsgNQ9iw==
+X-Google-Smtp-Source: ABdhPJwYUZnANnjuqYc9L3SYbaNbTuNKVK7/vPDMWrjfEVPdCx7HOqfB+V2StymL2HCWR8V0Rk3J5A==
+X-Received: by 2002:a5d:588b:: with SMTP id n11mr49739256wrf.344.1638871432163;
+        Tue, 07 Dec 2021 02:03:52 -0800 (PST)
+Received: from google.com ([2.31.167.18])
+        by smtp.gmail.com with ESMTPSA id c1sm13827383wrt.14.2021.12.07.02.03.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Dec 2021 02:03:51 -0800 (PST)
+Date:   Tue, 7 Dec 2021 10:03:49 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Justin Chen <justinpopo6@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org,
         =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        <patches@opensource.cirrus.com>
-Subject: Re: [PATCH REBASE] dt-bindings: pinctrl: use pinctrl.yaml
-Message-ID: <20211207100342.GN18506@ediswmail.ad.cirrus.com>
-References: <20211202063216.24439-1-zajec5@gmail.com>
- <CAL_JsqL=4iUJjQXjGc7eacbYW5YE-VRC4yGhu8pLVd-zUKvhHQ@mail.gmail.com>
- <c2afe6fe-d4d2-c9c3-eb36-90969a0b657d@gmail.com>
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH V4 RESEND 1/2] dt-bindings: watchdog: convert Broadcom's
+ WDT to the json-schema
+Message-ID: <Ya8xhUR5GbTxVE8w@google.com>
+References: <Ya3NaVKf1NRc8rrx@google.com>
+ <89b9512d-2e5e-c23a-d1f2-62172c8f68f7@gmail.com>
+ <Ya3SU6U6YT6mlFu8@google.com>
+ <f5745952-9e3c-ed7a-cced-ce42d3da2276@gmail.com>
+ <Ya5ctkIU+jNzDfBc@google.com>
+ <f4af4971-7047-80c9-69ae-e6587979ecd5@roeck-us.net>
+ <e1fa1683-a0a6-8ee0-9da5-8e97dd9c820a@gmail.com>
+ <432664af-5660-aaad-bf75-81e4d61cb078@roeck-us.net>
+ <46a88b40-6d92-727c-7adc-5723921d08e3@gmail.com>
+ <20211206195115.GC3759192@roeck-us.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c2afe6fe-d4d2-c9c3-eb36-90969a0b657d@gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-ORIG-GUID: m3adqQEBD5ecAP5cgU7jn8eRlzygOPOv
-X-Proofpoint-GUID: m3adqQEBD5ecAP5cgU7jn8eRlzygOPOv
-X-Proofpoint-Spam-Reason: safe
+In-Reply-To: <20211206195115.GC3759192@roeck-us.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 07, 2021 at 09:47:38AM +0100, Rafał Miłecki wrote:
-> On 06.12.2021 23:50, Rob Herring wrote:
-> >On Thu, Dec 2, 2021 at 12:32 AM Rafał Miłecki <zajec5@gmail.com> wrote:
-> >>
-> >>From: Rafał Miłecki <rafal@milecki.pl>
-> >>
-> >>Also fix some examples to avoid warnings like:
-> >>brcm,ns-pinmux.example.dt.yaml: pin-controller@1800c1c0: $nodename:0: 'pin-controller@1800c1c0' does not match '^pinctrl|pinmux@[0-9a-f]+$'
-> >
-> >I think you missed some. linux-next now has these warnings:
-> 
-> Oops, sorry, I think I didn't test MFD bindings *after* modifying
-> pinctrl bindings.
-> 
-> 
-> >/builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/cirrus,madera.example.dt.yaml:
-> >codec@1a: $nodename:0: 'codec@1a' does not match
-> >'^(pinctrl|pinmux)(@[0-9a-f]+)?$'
-> > From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml
-> 
-> I'm not sure how to deal with this one. If you take a look at
-> cirrus,madera.yaml it seems to be some complex MFD that is a sound
-> device with pin controller and regulator.
-> 
-> I'm not sure: is using pinctrl@ node for that hardware is a correct
-> choice?
+Florian Fainelli wrote:
+> I don't see why you should be creating an immutable branch for Lee and
+> not simply merge Rafal's "[PATCH V4 RESEND 2/2] dt-bindings: mfd: add
+> Broadcom's Timer-Watchdog block" patch with Lee's ack directly. This is
+> a new file, so I don't see how it would create conflicts as long as we
+> don't pile up changes on top.
 
-Yeah historically there has been some contention around how to
-implement MFD devices, the Madera devices have a single node for
-the whole chip, rather than a sub-node for each driver. In many
-ways this does make sense since DT should describe the hardware
-and hardware wise this is a single chip, the fact linux breaks it
-down into separate drivers is really a linux specific
-implementation. Although the Lochnagar stuff from your other
-patch was steered in the direction of a sub-node for each driver
-during review.
+Rafał Miłecki wrote:
+> would that be OK for you to simply ack 2/2? So Guenter can pick my
+> patch without the whole immutable branch & PR thing?                   
 
-But either way the Madera binding is a bit old to be majorly
-changing at this point, and does have quite a few out of tree
-users. Not really sure how to fix this one either, the name of
-codec for the node is really correct as that is what the node is.
+Guenter Roeck wrote:
+> I don't entirely see the point of that complexity for dt changes,    
+> but whatever. Since my tree is not the official watchdog-next tree,  
+> that means I can not take the entire series (which goes way beyond   
+> the dt changes and also drops the bcm63xx driver). Unless I hear     
+> otherwise, I'll drop the series from my tree for the time being      
+> and wait for the dt changes to be sorted out.                        
 
-Thanks,
-Charles
+If Rob wants `dt_binding_check` to run cleanly in -next, we have to
+treat the DT documentation in the same manner we do for real code
+when build dependencies exist between patches.  Simply sucking them up
+through a single repo is just dandy until subsequent changes are
+required, which unfortunately is often the case.
+
+Being the Maintainer of MFD, which is often the centre point of
+cross-subsystems patch sets, I've been bitten by this too many times.
+Hence my hesitancy to 'just Ack it and be done'.
+
+I've been pushing back on the requirement for clean `dt_binding_check`
+runs in -next for a while and would much prefer to treat it the same
+way we do `checkpatch.pl`, whereby a clean run is not a hard
+requirement.  Instead it is used as one of many tools to check for
+inconsistencies prior to submission (as possibly against patch-sets
+once they are posted onto the list).  However, just as we see false
+positives in `checkpatch.pl` we should see them in `dt_binding_check`
+where patches have simply been applied into different trees and may
+lag each other by a week or two.
+
+> It sounded to me like Lee wanted an immutable branch for that
+
+Not exactly, I said:
+
+  "> Suppose we should take patch #2 via [Watchdog] as well.
+
+   If that happens, I would like a PR to an immutable branch."
+
+The alternative is that I take the patch and provide an immutable
+branch to you, which I am in a position to do.
+
+Of course all of this hassle just goes away if the clean
+`dt_binding_check` run on -next requirement is laxed and we can just
+take our own patches without fear of wrath.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
