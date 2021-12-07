@@ -2,116 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6889F46B7AD
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 10:41:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1139A46B7C0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 10:43:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234209AbhLGJpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 04:45:12 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:60520
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234155AbhLGJpG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 04:45:06 -0500
-Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E8FA03F1F0
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 09:41:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638870095;
-        bh=qLCDTAsKhjfBLk9Ve3yIdzH9fR1aqVaxiH+88h3GaWI=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=Irx9o6VQpcEcNGsRfw34l9OMCN2X9fvfJQcMPFaXvndcKQCNFO+qO2Iu4pKpVy52W
-         gFA4z+CS+r6kctf9M7Usw4LfCRVFtjb9AljREAfSjWmmaCE3Ja97yTa+0NhwssADrU
-         YDAjqBA85ZScBLQ7GivNPZpwNxvRiyISXKYjrlGmOfwI6Bx279Xs5LS5xmd6tsnTTk
-         8NO1CyljoWoRe4RO9cEG/fyNVaPCgtZvpQnAh5TwxSM4sZH67l5xs0+7wWIj6CC/7h
-         kOzYXZPGs821FtpxGTSMtPIAUCXMmla8oCWU8daE42h/vx0g+5x45QA4xVLG2OyB66
-         Qmy4exgGgWMpg==
-Received: by mail-lf1-f70.google.com with SMTP id k32-20020a0565123da000b0041643c6a467so5069605lfv.5
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 01:41:35 -0800 (PST)
+        id S234469AbhLGJrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 04:47:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33812 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234249AbhLGJrV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 04:47:21 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 103ADC061574;
+        Tue,  7 Dec 2021 01:43:51 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id o20so54585907eds.10;
+        Tue, 07 Dec 2021 01:43:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UU1/t4X8+MQnTRzRZn6r9WXq8E13rlpQ4l+fCMHOnaQ=;
+        b=k4R7PX+H/o77fWd2kHJhnzwIhzT+6cH/c825HDwWoy14BEgwxmI42mXx4OqR7Y802m
+         UCoYoS3ZM/tne+guovxsPvUire9986Y139Wz2JS5t7X85faWnxT9g8LAonzQOsTAq1YS
+         T7C+amxtmzY+/HGsODJcYg1Nr+XrPdkKU2X6II36SWSNBtWsAl7JSqvqvnmdSf/MOSHp
+         Eqo970ojY4i7G4ACLBcBGVqvf18vwLFDXdUsOQFGZmyzKO9RLIDLAYaI3/3RZh6Mlt48
+         /RzRXuyY/1tqmzmMcbgP1tW0J9spISapei++nhS4aNGntN1ey4s+NSqXleYugVQ5ttBl
+         Pp9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=qLCDTAsKhjfBLk9Ve3yIdzH9fR1aqVaxiH+88h3GaWI=;
-        b=Um0/UyRV1TOo/cF4B+FkRu60fusW1BnfhWwx4QtAm+5k32GuW2R3H/yi0kOqvmDEJz
-         qYkXMGrqT1xT/bPxc+X7mhz4IM3xzdZzoy/HrNK1oFXS6QmPeDaM9mpFAFfbmUjnf4bD
-         /yWqKfnJL+SUDGPN8UOnCTfYiA437IwR7fltDitfddoZCyyUbEHPTy7lcFvRR+bmVkD+
-         2xp+o6WOOWiSVdNpMAdih7dwqyEiHkb/faafxKkecPYV3gofnFdI9cumxzR8dyY0C/uQ
-         MycS5Ou5NlhGkDh1L1F0a23fwStnN6JDYnU495eoLbj/KUQa6D666uuQkYFqMPgQqzAr
-         7RJg==
-X-Gm-Message-State: AOAM532rpqlWtytydEyYX40TYhpe+IbJeRRThrpuyDHMvIDc0+n501xp
-        Ae3Ktv56m2RBRyGSIrBV4U8aVqP8kqYWwDrCkmCx6/BixE+UV52Vg2rTR3yxG9RCLiMSKE7dC3u
-        GhHet43gdId49Ziq4wNcdnZr4kIa/PGHissdVsvk=
-X-Received: by 2002:a2e:b88b:: with SMTP id r11mr41747250ljp.280.1638870095359;
-        Tue, 07 Dec 2021 01:41:35 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwTIIHv+OTH72uTn3pxiMOlzQZ3JgtLIY2GTKOhXzdm0Y5VXk7QWDAiHXPLov1dDK7gUn1uEA==
-X-Received: by 2002:a2e:b88b:: with SMTP id r11mr41747234ljp.280.1638870095183;
-        Tue, 07 Dec 2021 01:41:35 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id f14sm1790586lfv.180.2021.12.07.01.41.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Dec 2021 01:41:34 -0800 (PST)
-Message-ID: <59812744-9335-62de-11a3-8d321d66f335@canonical.com>
-Date:   Tue, 7 Dec 2021 10:41:33 +0100
+        bh=UU1/t4X8+MQnTRzRZn6r9WXq8E13rlpQ4l+fCMHOnaQ=;
+        b=JbHl0cMipk+xnw1bFeClno5sExj5VZi6X6UfSC656bgpMFmkFjHCT0rAkYO90F610D
+         4/gqiZy2Pe6lELVGM+Ual64HitMjwHrgXwl1bXDdKR3ozcZju3jKM5rRxZQqU0dAjnXE
+         AsFNPQy1xwiCVJNtBQHpDeyc0XOZvdrq8inEOgdnaQwT7Ck2OnBGc+krrosTWN0UD+f6
+         WiVagLjZMPhiDf/bkHUJ/BVbZOTKJ6VC5AmpayOraBQzeLiK8ieBYsItQMytclNnYPdn
+         HKN6wk47nKmLseoMJjOQMNclZeoTgay/8HJmoK2SzaHtykjkzOEf2dbNf4ffWDExzUbM
+         cD/Q==
+X-Gm-Message-State: AOAM532dIwdHsfVpu0V99Y/BgY9DUwhBsKRANAQAh8DQUgdNgFAo2jGw
+        rE72p4vU+bOWaMnLPcWV0lmB7BWiglxxQxd9
+X-Google-Smtp-Source: ABdhPJzXjUZR/Ov3+apGBk57MQehtxqBM3stRssYbklI9JaIUsIR7rjwpTnSMrQmIDOOyel5iDNKrQ==
+X-Received: by 2002:a05:6402:270c:: with SMTP id y12mr7385669edd.258.1638870229672;
+        Tue, 07 Dec 2021 01:43:49 -0800 (PST)
+Received: from demon-pc.localdomain ([188.24.96.74])
+        by smtp.gmail.com with ESMTPSA id h7sm11336159ede.40.2021.12.07.01.43.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Dec 2021 01:43:49 -0800 (PST)
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+X-Google-Original-From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+Cc:     cosmin.tanislav@analog.com, demonsingur@gmail.com,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] Add ADXL367 driver
+Date:   Tue,  7 Dec 2021 11:43:35 +0200
+Message-Id: <20211207094337.59300-1-cosmin.tanislav@analog.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v2 3/4] mmc: dw_mmc: Add quirk for extended data read
- timeout
-Content-Language: en-US
-To:     =?UTF-8?Q?M=c3=a5rten_Lindahl?= <marten.lindahl@axis.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>
-Cc:     Doug Anderson <dianders@google.com>, kernel@axis.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20211206142929.26729-1-marten.lindahl@axis.com>
- <20211206142929.26729-4-marten.lindahl@axis.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211206142929.26729-4-marten.lindahl@axis.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/12/2021 15:29, Mårten Lindahl wrote:
-> Current dw_mci driver supports a TMOUT register which consists of a 24
-> bit field (TMOUT[31:8]) for the DATA_TIMEOUT. The maximum value of this
-> field is 0xFFFFFF, which with a 200MHz clock will give a full DRTO of:
-> 
-> 0xFFFFFF / 200000000 => ~84 ms
-> 
-> However, the ARTPEC-8 SoC DWMMC IP version has a TMOUT register with an
-> extended DATA_TIMEOUT field, which supports longer timers for the DRTO.
-> In this version the DATA_TIMEOUT field is split into two, which with the
-> same 200MHz clock as above will allow a maximum timeout of:
-> 
-> ((TMOUT[10:8] -1) * 0xFFFFFF + TMOUT[31:11] * 8) / 200000000 => ~587 ms
-> 
-> Add a quirk to support this. The quirk is enabled for ARTPEC-8 SoCs.
-> 
-> Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
-> ---
-> 
-> v2:
->  - Removed unnecessary comment
->  - Change 1<<0 to BIT(0)
-> 
->  drivers/mmc/host/dw_mmc-exynos.c |  5 +++++
->  drivers/mmc/host/dw_mmc.c        | 33 ++++++++++++++++++++++++++++----
->  drivers/mmc/host/dw_mmc.h        |  6 ++++++
->  3 files changed, 40 insertions(+), 4 deletions(-)
-> 
+The ADXL367 is an ultralow power, 3-axis MEMS accelerometer.
 
+The ADXL367 does not alias input signals to achieve ultralow power
+consumption, it samples the full bandwidth of the sensor at all
+data rates. Measurement ranges of +-2g, +-4g, and +-8g are available,
+with a resolution of 0.25mg/LSB on the +-2 g range.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In addition to its ultralow power consumption, the ADXL367
+has many features to enable true system level power reduction.
+It includes a deep multimode output FIFO, a built-in micropower
+temperature sensor, and an internal ADC for synchronous conversion
+of an additional analog input.
 
+V1 -> V2
+ * add support for vdd and vddio supplies
+ * lock fifo_watermark retrieval
+ * fix indentation of sysfs_emit for fifo_mode
+ * dt-bindings: add spi-max-frequency: true
+ * dt-bindings: remove cs-gpios property
+ * dt-bindings: remove status property
+ * dt-bindings: add support for vdd
 
-Best regards,
-Krzysztof
+I have one question that is not actually specific to this driver but would
+help me clear up some issues.
+
+I used mutex_lock and mutex_unlock when accessing anything in driver's
+state that could potentially be written by another process in parallel.
+
+I heard mixed opinions about this. Some people said that it is not
+necessary to lock everywhere because loads and stores for data with size
+smaller or equal than register size would be done in one single atomic
+instruction.
+
+On the other hand, I also heard that this is not true unless WRITE_ONCE
+and READ_ONCE is used.
+
+It felt weird using WRITE_ONCE and READ_ONCE in this driver, so I kept
+using mutexes.
+
+Could I get some opinions on this matter?
+
+Cosmin Tanislav (2):
+  dt-bindings: iio: accel: add ADXL367
+  iio: accel: add ADXL367 driver
+
+ .../bindings/iio/accel/adi,adxl367.yaml       |   79 +
+ MAINTAINERS                                   |   11 +
+ drivers/iio/accel/Kconfig                     |   27 +
+ drivers/iio/accel/Makefile                    |    3 +
+ drivers/iio/accel/adxl367.c                   | 1696 +++++++++++++++++
+ drivers/iio/accel/adxl367.h                   |   24 +
+ drivers/iio/accel/adxl367_i2c.c               |   89 +
+ drivers/iio/accel/adxl367_spi.c               |  151 ++
+ 8 files changed, 2080 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl367.yaml
+ create mode 100644 drivers/iio/accel/adxl367.c
+ create mode 100644 drivers/iio/accel/adxl367.h
+ create mode 100644 drivers/iio/accel/adxl367_i2c.c
+ create mode 100644 drivers/iio/accel/adxl367_spi.c
+
+-- 
+2.34.1
+
