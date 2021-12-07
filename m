@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C24246C6A5
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 22:23:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9CFF46C6A8
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 22:23:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241812AbhLGV0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 16:26:55 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:40491 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233742AbhLGV0y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 16:26:54 -0500
-Received: by mail-ot1-f42.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so556144otj.7;
-        Tue, 07 Dec 2021 13:23:24 -0800 (PST)
+        id S241847AbhLGV1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 16:27:12 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:44732 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232531AbhLGV1L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 16:27:11 -0500
+Received: by mail-ot1-f47.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso532655otj.11;
+        Tue, 07 Dec 2021 13:23:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wTGBwhPj40CR1g2mGQdatX2+v0ySWURSaUSpv1NBdsE=;
-        b=GDmf25bsjlr4cahqPlyYWVkeHqsn/R7B1Hr9/b9k+pUGXr7QcDg3m3feH66xVtije6
-         QVrTLlxIuRB/m47xOq8QmL+g+iGPbKJb0BIfWgDZObGohFrulp6CVm7dGnfEdXrziLF4
-         MrHHCRh/INnO1lQSFVEZq9bjNng+wL/sgc3iG0knBvWoLsWz0t+3qEABKvhmX6F+g5Rx
-         q8+Ju8II7UalH/6uYSo1zvSVP8aWwpInhW+cRlutWzoawq6HRgNASYrLTD/dbzfoYF14
-         QD7oKd3qY/TFv+LX3jow6brrw1GAqnTFrysFJvpEl8qfTwG7Kfhe5H388dERyY5YeS6O
-         pEfw==
-X-Gm-Message-State: AOAM531ZJUzUWYGvuOZdBONg+MBl83kCfD0Sk9RjrR0Jpj1bjmDQiyGN
-        Mn8qj4qBKNkPdfelrcEWSQ==
-X-Google-Smtp-Source: ABdhPJzvyqjJ/2s0aqvVtAfSL4kD9uoQXETopuH9p57MR6ljTsRHggf0g95JO90lUzCXrwDFTYd4Kg==
-X-Received: by 2002:a05:6830:4414:: with SMTP id q20mr37704267otv.14.1638912203643;
-        Tue, 07 Dec 2021 13:23:23 -0800 (PST)
+        bh=wLQUVhoOIrV+SG+OfV5ZhN+x+ayCKbri/7qd97/xTXE=;
+        b=AigEuYBabWnDtamdMdWIbbSsxvqEAYQBNrffDMqcPDfyrkE4vEeS4cderx4O5D7C5o
+         UgfmRGHduazb10C5PgjNfWp1erOrohvUGkOA2WmbSADGOFCJ2LDuzEaxOqWnmLPFyvb/
+         jtFwDvqzLFZedS4v/dB5w4yWg3wOr7S4QwKBBCNpbjBCoJUuriGSs8cx8qZCoNOKTVQS
+         Z9OLSr2EB5XatQHyayI3GhvB0uMTDg4pQzOzDRPQCHmB7rgJR0IDGARRDZC7+39SmYeb
+         lj5RWSz1pRTb4DjfZQKOfKN5dS48dgd4VxhRX0ofCu+0ZXplbYkuIMKT8MOxp1aItisC
+         OTFA==
+X-Gm-Message-State: AOAM530F2cgpRVf9NN1xgYBfyVQ404GW4EY2lztLgeZU0PITZIyCc3J2
+        XV7Z+FC+vDQ0cmRnydOf+g==
+X-Google-Smtp-Source: ABdhPJyTL3O6ptXUFAKiAPyylqoTjSIYVcDq6UiJTyxMVOCdO27TZ8dpog3aaOBIPjPhG9TL27sZEQ==
+X-Received: by 2002:a9d:6a84:: with SMTP id l4mr37543822otq.216.1638912220695;
+        Tue, 07 Dec 2021 13:23:40 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w18sm140924otm.1.2021.12.07.13.23.22
+        by smtp.gmail.com with ESMTPSA id ay40sm187979oib.1.2021.12.07.13.23.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 13:23:23 -0800 (PST)
-Received: (nullmailer pid 856283 invoked by uid 1000);
-        Tue, 07 Dec 2021 21:23:22 -0000
-Date:   Tue, 7 Dec 2021 15:23:22 -0600
+        Tue, 07 Dec 2021 13:23:40 -0800 (PST)
+Received: (nullmailer pid 856815 invoked by uid 1000);
+        Tue, 07 Dec 2021 21:23:39 -0000
+Date:   Tue, 7 Dec 2021 15:23:39 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Christian Hewitt <christianshewitt@gmail.com>
-Cc:     devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Benoit Masson <yahoo@perenite.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
+Cc:     linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Benoit Masson <yahoo@perenite.com>,
         Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [RFC PATCH 7/9] dt-bindings: vendor-prefixes: add haochuangyi
- prefix
-Message-ID: <Ya/QynWdRdyeU6s+@robh.at.kernel.org>
+Subject: Re: [RFC PATCH 8/9] dt-bindings: arm: amlogic: add H96-Max bindings
+Message-ID: <Ya/Q284LTMwVMEbE@robh.at.kernel.org>
 References: <20211130060523.19161-1-christianshewitt@gmail.com>
- <20211130060523.19161-8-christianshewitt@gmail.com>
+ <20211130060523.19161-9-christianshewitt@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211130060523.19161-8-christianshewitt@gmail.com>
+In-Reply-To: <20211130060523.19161-9-christianshewitt@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Nov 2021 06:05:21 +0000, Christian Hewitt wrote:
-> Shenzhen Haochuangyi Technology Co.,Ltd are a manufcaturer of Android
-> Set-Top Box devices.
+On Tue, 30 Nov 2021 06:05:22 +0000, Christian Hewitt wrote:
+> Add the board binding for the Haochuangyi H96-Max STB device.
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
