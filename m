@@ -2,29 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E046946C295
-	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 19:20:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDEFA46C296
+	for <lists+devicetree@lfdr.de>; Tue,  7 Dec 2021 19:20:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236071AbhLGSYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 13:24:21 -0500
-Received: from foss.arm.com ([217.140.110.172]:38342 "EHLO foss.arm.com"
+        id S236073AbhLGSYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 13:24:22 -0500
+Received: from foss.arm.com ([217.140.110.172]:38354 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231712AbhLGSYU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Dec 2021 13:24:20 -0500
+        id S231712AbhLGSYV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 13:24:21 -0500
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BEF8413A1;
-        Tue,  7 Dec 2021 10:20:49 -0800 (PST)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1D311143B;
+        Tue,  7 Dec 2021 10:20:51 -0800 (PST)
 Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id A44943F73B;
-        Tue,  7 Dec 2021 10:20:48 -0800 (PST)
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id F1F663F73B;
+        Tue,  7 Dec 2021 10:20:49 -0800 (PST)
 From:   Robin Murphy <robin.murphy@arm.com>
 To:     will@kernel.org, catalin.marinas@arm.com, robh+dt@kernel.org
 Cc:     mark.rutland@arm.com, suzuki.poulose@arm.com,
         thierry.reding@gmail.com, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 1/5] dt-bindings: arm: Catch up with Cortex/Neoverse CPUs again
-Date:   Tue,  7 Dec 2021 18:20:39 +0000
-Message-Id: <a36014d06d308c73d3fa1ed55e8967fb8adadf0d.1638900542.git.robin.murphy@arm.com>
+Subject: [PATCH 2/5] arm64: perf: Simplify registration boilerplate
+Date:   Tue,  7 Dec 2021 18:20:40 +0000
+Message-Id: <487243cf1a402d8b23bc517f271225fefe3d0e42.1638900542.git.robin.murphy@arm.com>
 X-Mailer: git-send-email 2.28.0.dirty
 In-Reply-To: <cover.1638900542.git.robin.murphy@arm.com>
 References: <cover.1638900542.git.robin.murphy@arm.com>
@@ -34,60 +34,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the 2020 and 2021 cohorts of Cortex-A and Neoverse
-CPUs, now featuring their Cortex-X cousins as well.
+The arm_pmu framework requires map_event to be non-NULL, so let
+armv8_pmu_init() treat NULL as a default value for the generic PMUv3
+event map and simplify the boilerplate in the callers a bit.
 
 Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 ---
- Documentation/devicetree/bindings/arm/cpus.yaml | 6 ++++++
- Documentation/devicetree/bindings/arm/pmu.yaml  | 6 ++++++
- 2 files changed, 12 insertions(+)
+ arch/arm64/kernel/perf_event.c | 32 +++++++++++---------------------
+ 1 file changed, 11 insertions(+), 21 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
-index 452bfd1d4ecc..e81dfb81230a 100644
---- a/Documentation/devicetree/bindings/arm/cpus.yaml
-+++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-@@ -138,6 +138,8 @@ properties:
-       - arm,cortex-a76
-       - arm,cortex-a77
-       - arm,cortex-a78
-+      - arm,cortex-a510
-+      - arm,cortex-a710
-       - arm,cortex-m0
-       - arm,cortex-m0+
-       - arm,cortex-m1
-@@ -146,8 +148,12 @@ properties:
-       - arm,cortex-r4
-       - arm,cortex-r5
-       - arm,cortex-r7
-+      - arm,cortex-x1
-+      - arm,cortex-x2
-       - arm,neoverse-e1
-       - arm,neoverse-n1
-+      - arm,neoverse-n2
-+      - arm,neoverse-v1
-       - brcm,brahma-b15
-       - brcm,brahma-b53
-       - brcm,vulcan
-diff --git a/Documentation/devicetree/bindings/arm/pmu.yaml b/Documentation/devicetree/bindings/arm/pmu.yaml
-index e17ac049e890..541a483ec8d7 100644
---- a/Documentation/devicetree/bindings/arm/pmu.yaml
-+++ b/Documentation/devicetree/bindings/arm/pmu.yaml
-@@ -44,8 +44,14 @@ properties:
-           - arm,cortex-a76-pmu
-           - arm,cortex-a77-pmu
-           - arm,cortex-a78-pmu
-+          - arm,cortex-a510-pmu
-+          - arm,cortex-a710-pmu
-+          - arm,cortex-x1-pmu
-+          - arm,cortex-x2-pmu
-           - arm,neoverse-e1-pmu
-           - arm,neoverse-n1-pmu
-+          - arm,neoverse-n2-pmu
-+          - arm,neoverse-v1-pmu
-           - brcm,vulcan-pmu
-           - cavium,thunder-pmu
-           - qcom,krait-pmu
+diff --git a/arch/arm64/kernel/perf_event.c b/arch/arm64/kernel/perf_event.c
+index b4044469527e..57720372da62 100644
+--- a/arch/arm64/kernel/perf_event.c
++++ b/arch/arm64/kernel/perf_event.c
+@@ -1128,7 +1128,7 @@ static int armv8_pmu_init(struct arm_pmu *cpu_pmu, char *name,
+ 	cpu_pmu->filter_match		= armv8pmu_filter_match;
+ 
+ 	cpu_pmu->name			= name;
+-	cpu_pmu->map_event		= map_event;
++	cpu_pmu->map_event		= map_event ?: armv8_pmuv3_map_event;
+ 	cpu_pmu->attr_groups[ARMPMU_ATTR_GROUP_EVENTS] = events ?
+ 			events : &armv8_pmuv3_events_attr_group;
+ 	cpu_pmu->attr_groups[ARMPMU_ATTR_GROUP_FORMATS] = format ?
+@@ -1147,14 +1147,12 @@ static int armv8_pmu_init_nogroups(struct arm_pmu *cpu_pmu, char *name,
+ 
+ static int armv8_pmuv3_init(struct arm_pmu *cpu_pmu)
+ {
+-	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_pmuv3",
+-				       armv8_pmuv3_map_event);
++	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_pmuv3", NULL);
+ }
+ 
+ static int armv8_a34_pmu_init(struct arm_pmu *cpu_pmu)
+ {
+-	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a34",
+-				       armv8_pmuv3_map_event);
++	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a34", NULL);
+ }
+ 
+ static int armv8_a35_pmu_init(struct arm_pmu *cpu_pmu)
+@@ -1171,8 +1169,7 @@ static int armv8_a53_pmu_init(struct arm_pmu *cpu_pmu)
+ 
+ static int armv8_a55_pmu_init(struct arm_pmu *cpu_pmu)
+ {
+-	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a55",
+-				       armv8_pmuv3_map_event);
++	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a55", NULL);
+ }
+ 
+ static int armv8_a57_pmu_init(struct arm_pmu *cpu_pmu)
+@@ -1183,8 +1180,7 @@ static int armv8_a57_pmu_init(struct arm_pmu *cpu_pmu)
+ 
+ static int armv8_a65_pmu_init(struct arm_pmu *cpu_pmu)
+ {
+-	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a65",
+-				       armv8_pmuv3_map_event);
++	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a65", NULL);
+ }
+ 
+ static int armv8_a72_pmu_init(struct arm_pmu *cpu_pmu)
+@@ -1201,38 +1197,32 @@ static int armv8_a73_pmu_init(struct arm_pmu *cpu_pmu)
+ 
+ static int armv8_a75_pmu_init(struct arm_pmu *cpu_pmu)
+ {
+-	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a75",
+-				       armv8_pmuv3_map_event);
++	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a75", NULL);
+ }
+ 
+ static int armv8_a76_pmu_init(struct arm_pmu *cpu_pmu)
+ {
+-	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a76",
+-				       armv8_pmuv3_map_event);
++	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a76", NULL);
+ }
+ 
+ static int armv8_a77_pmu_init(struct arm_pmu *cpu_pmu)
+ {
+-	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a77",
+-				       armv8_pmuv3_map_event);
++	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a77", NULL);
+ }
+ 
+ static int armv8_a78_pmu_init(struct arm_pmu *cpu_pmu)
+ {
+-	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a78",
+-				       armv8_pmuv3_map_event);
++	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_cortex_a78", NULL);
+ }
+ 
+ static int armv8_e1_pmu_init(struct arm_pmu *cpu_pmu)
+ {
+-	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_neoverse_e1",
+-				       armv8_pmuv3_map_event);
++	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_neoverse_e1", NULL);
+ }
+ 
+ static int armv8_n1_pmu_init(struct arm_pmu *cpu_pmu)
+ {
+-	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_neoverse_n1",
+-				       armv8_pmuv3_map_event);
++	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_neoverse_n1", NULL);
+ }
+ 
+ static int armv8_thunder_pmu_init(struct arm_pmu *cpu_pmu)
 -- 
 2.28.0.dirty
 
