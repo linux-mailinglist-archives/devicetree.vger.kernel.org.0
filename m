@@ -2,145 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D01C46D726
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 16:39:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D0AE46D743
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 16:45:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236156AbhLHPnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 10:43:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58136 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236173AbhLHPnB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 10:43:01 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66071C061746
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 07:39:29 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1muz2N-0000ft-SH; Wed, 08 Dec 2021 16:39:19 +0100
-Message-ID: <7bbcee7d8d52cab00635037c35c81b43ce34ec76.camel@pengutronix.de>
-Subject: Re: [RFC V2 0/6] media: Hantro: Split iMX8MQ VPU into G1 and G2
- with blk-ctrl support
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Adam Ford <aford173@gmail.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc:     linux-media <linux-media@vger.kernel.org>,
-        Chris Healy <cphealy@gmail.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Date:   Wed, 08 Dec 2021 16:39:16 +0100
-In-Reply-To: <CAHCN7xJJfBXdK6B1tHXjmja4Lr=Q-Uony+QWcvVqoQp36RLY=w@mail.gmail.com>
-References: <20211207015446.1250854-1-aford173@gmail.com>
-         <f85da774-ccb3-85de-edd6-5333ed8d0503@collabora.com>
-         <5a8b84e91bd8e7670a0d0108e4affe9b964202cb.camel@pengutronix.de>
-         <4cc3404b-7f8a-6c87-8c1c-ace399f9edd3@collabora.com>
-         <CAHCN7xJJfBXdK6B1tHXjmja4Lr=Q-Uony+QWcvVqoQp36RLY=w@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        id S233906AbhLHPsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 10:48:32 -0500
+Received: from mout.kundenserver.de ([217.72.192.73]:40691 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233650AbhLHPsc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 10:48:32 -0500
+Received: from localhost.localdomain ([87.166.17.165]) by
+ mrelayeu.kundenserver.de (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MUXlG-1n3kX70mm0-00QTkp; Wed, 08 Dec 2021 16:44:53 +0100
+From:   Jens Renner <renner@efe-gmbh.de>
+To:     linux-clk@vger.kernel.org
+Cc:     mturquette@baylibre.com, sboyd@kernel.org,
+        sebastian.hesselbarth@gmail.com, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, renner@efe-gmbh.de
+Subject: [PATCH v2 0/2] clk: si5351: Add phase offset for clock output
+Date:   Wed,  8 Dec 2021 16:44:40 +0100
+Message-Id: <20211208154440.72087-1-renner@efe-gmbh.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Provags-ID: V03:K1:6UNAKkwdaxNIDxYRTMJHPTjMCd0Hn5kleY5QSOgYt7KkDli14RW
+ ikaU1PGjpNpDEzo2SFM/D0UIdDefpk5XJqy2UkhRPEF/jG82GCdbVdeqLyDjG2PVHaz+Sfi
+ pJAmV2n5W66T39aTjA0TcPIouhevuvcJGtXuhlWURrpmCAfS7DPkvZTWzusorUc5obrQ30O
+ 8el96Jp92SuZW0L90gtJg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Rtwi4w+ds4A=:vNf0l6zQlG/DeAurniYGwO
+ qXWhXggaPVCuxm3zAC7ChZwukAdzTL1JT6LPMLIL2irCsh+ePizMYsRTXv6zzO0ryxk5Fyb/B
+ ke2ulA9+EUZD0bXt49x+mCjUtgiY1tbkF/0GIYnEzYyKxfiD+hru0kkkKBXuCOcMiCGmSBXxx
+ 78hola/Vag33pjKkVMvimXQ2uy/z92LNrYLI0sljx9fo3nrXzyHQbcNbHLcEswV/hWzN8m5jc
+ g26O7M4rT59g9n0CeRcbNz9BUcckPpTSbkKOgSeW97UbgBA/9dww3uNs+vugn4ypD9mSX6lVg
+ lrrvl9VKGmtgceNOFa38kLvFWzXptPx4hDPchsL5ZZlD7Z8iTCclfeLIovDIxS6d3bvEmBnXp
+ TidtFKJuKvSVIyVzg9EHixfN5UTzUpG9EjRc8qeQAm8R06VxRLN4dZEjw4DvtXMACOuHOS/1p
+ JQSudK1YTPEM0p0LJFkF0bM6ZZt3nuLPu3tYmN8vJnt8ELN++ro/DJidLKtJ52u3WkeWILuBl
+ JRbOw6JxuiMNTCnGLwMQtZgIjQ5mpoCqYyxWT15TQCLBCeG9Ot9bYf9NncZRxMCWfXwUaQROT
+ mLl0xB4DxcELVXlRKsFnfEeZJahj2tazIdfTWHduibjhziV9qeZ2+V+ZXwLF7ZBACut0MzEXl
+ RKEklrrjYyK30PrU7elBKQs1rll2BobmFXctc2ldkrXK4TJLQ6R3CryWbMI/06+1vusY=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, dem 08.12.2021 um 09:13 -0600 schrieb Adam Ford:
-> On Wed, Dec 8, 2021 at 7:36 AM Benjamin Gaignard
-> <benjamin.gaignard@collabora.com> wrote:
-> > 
-> > 
-> > Le 08/12/2021 à 11:32, Lucas Stach a écrit :
-> > > Am Mittwoch, dem 08.12.2021 um 10:32 +0100 schrieb Benjamin Gaignard:
-> > > > Le 07/12/2021 à 02:54, Adam Ford a écrit :
-> > > > 
-> > > > > Currently, the VPU in the i.MQ8MQ is appearing as one codec, but in
-> > > > > reality, it's two IP blocks called G1 and G2.  There is initialization
-> > > > > code in VPU code to pull some clocks, resets and other features which
-> > > > > has been integrated into the vpu-blk-ctrl for the i.MX8M Mini and a
-> > > > > similar method can be used to make the VPU codec's operate as
-> > > > > stand-alone cores without having to know the details of each other
-> > > > > or the quirks unique to the i.MX8MQ, so the remaining code can be
-> > > > > left more generic.
-> > > > > 
-> > > > > This series was started by Lucas Stach with one by Benjamin Gaignard.
-> > > > > Most patches have been modified slightly by me.  It's in an RFC state
-> > > > > because I wasn't sure how to best handle the signatures and wasn't sure
-> > > > > if I could base it off the branch I did.
-> > > > > 
-> > > > > Since the g-streamer and media trees are in a constant state of
-> > > > > change, this series is based on
-> > > > > 
-> > > > > git://linuxtv.org/hverkuil/media_tree.git for-v5.17e
-> > > > > 
-> > > > > The downstream code from NXP shows the G1 and G2 clocks running
-> > > > > at 600MHz, but between the TRM and the datasheet, there is some
-> > > > > discrepancy.  Because the NXP reference code used 600MHz, that is
-> > > > > what was chosen here.  Users who need to adjust their G1 and G2
-> > > > > clocks can do so in their board files.
-> > > > Hi Adam,
-> > > > 
-> > > > Thanks for your patches, I have been able to reproduce VP9 results on my side (Fluster 147/303).
-> > > > In past I have notice spurious errors when using 600MHz clock on HEVC decode but not with 300MHz.
-> > 
-> > The results for Fluster HEVC are 77/147 so no regressions :-)
-> > 
-> > Regards,
-> > Benjamin
-> > 
-> > > > The max supported G2 clock frequency is 660MHz but needs a higher
-> > > > voltage. The maximum supported  frequency at the default 0.9V is
-> > > > 550MHz. We should not configure the clocks for the higher than that, as
-> > > > long as there is no support in the VPU driver to scale the voltage
-> > > > along with the frequency. Same as with the GPU we should stick to base
-> > > > frequency levels for the nominal operating mode.
-> 
-> Lucas,
-> 
-> After reviewing the comments from Benjamin, I re-ran the VP9 tests
-> with the G2 running at 300MHz,and the number of passing VP9 tests
-> increased to 148 from 144 with an increase of time to 250.502 secs
-> from 162.665 secs.
-> 
-> While the datasheet reads that the G2 can run faster, the i.MX 8M
-> Dual/8M QuadLite/8M Quad Applications Processors Reference Manual,
-> Rev. 3.1, 06/2021, table 5-1  shows the VPU_G2_CLK_ROOT has a max
-> clock of 300MHz.  I might be inclined to agree with Benjamin on the
-> 300MHz and let people who want to push their hardware overwrite the
-> default clocks since it increases functionality.
-> 
-I'm quite surprised that the G2 codec should have such a much lower max
-frequency compared with the G1. While the table from the RM hasn't been
-obviously incorrect for any other clock, I'm still inclined to believe
-the frequencies stated in the datasheet.
+This patch series adds a phase offset feature to the SI5351 clock
+outputs. This is necessary to generate differential clocks or
+arbitrary phase shifts with respect to other clock outputs.
 
-> I wonder if someone from NXP can comment
-> 
-Yea, not sure how to proceed here. 300MHz is the safe bet, but we are
-leaving quite some performance on the table if the datasheet is
-correct. Without some help from NXP it's probably hard to validate 
-which max frequency statement is correct. It doesn't really help that
-the NXP downstream kernel seems to drive the G2 at 600MHz, which is
-neither the 550MHz nominal mode max, nor the 660MHz overdrive mode max.
+Patch 1 adds the DT documentation to configure the phase offset.
 
-Regards,
-Lucas
+Patch 2 implements the phase offset feature by adding *_set_phase()
+functions to the multisynth and clockout stages.
+
+Tested on a Xilinx Zynq (ARM Cortex-A9) board with Si5351A-B-GT for
+several frequencies and phase offsets.
+
+Changes in v2:
+  - Use vendor-specific DT property silabs,clock-phase
+
+Jens Renner (2):
+  clk: si5351: Add DT property for phase offset
+  clk: si5351: Add clock output phase offset
+
+ .../bindings/clock/silabs,si5351.txt          |  10 +-
+ drivers/clk/clk-si5351.c                      | 234 +++++++++++++++++-
+ drivers/clk/clk-si5351.h                      |   1 +
+ include/linux/platform_data/si5351.h          |   2 +
+ 4 files changed, 243 insertions(+), 4 deletions(-)
+
+-- 
+2.30.2
 
