@@ -2,70 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AF4746DC1C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 20:23:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3E4B46DC30
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 20:27:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232176AbhLHT1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 14:27:21 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:40526 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229710AbhLHT1V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 14:27:21 -0500
-Received: by mail-oi1-f173.google.com with SMTP id bk14so5441772oib.7;
-        Wed, 08 Dec 2021 11:23:49 -0800 (PST)
+        id S236122AbhLHTaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 14:30:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55696 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236074AbhLHTaf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 14:30:35 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A0F9C061746;
+        Wed,  8 Dec 2021 11:27:03 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id x15so12029596edv.1;
+        Wed, 08 Dec 2021 11:27:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AWD7QTQTBQY0167hHhHNyiI2iGNEXy68navUB5oHGUE=;
+        b=iSZTWbJ7elOMhCtyRV3gCY3YEcdNsYC0etFgSecojjiDddrZpHh0dZpj+JKUit4IUn
+         TPf5R08JhwFogiAMb20Uw19jpkgUVpwpXrl5Nmw60SN9FihLEVo3FonfJFoOVWRDkvl/
+         pg1EQLV6Am3db39uVxCPqoUu9Px+caoJpKBoovyDWGxynNS9Lp4lWroLgj6PZsWMeL3x
+         NnkcO4rcqmkLoqalctqqtMkZxYRY9rqaCG+XFnf+fWR3nexTXT+tS7faolzpRmpYJKpJ
+         zVh7udvLi0x7PblFLQ7kI4SpEHuy/RIGqXAg4n0f9esL7GRVb95XRII5JKIf+sevOl9q
+         5htw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vMPOCqmX2rqJjII8l8BhrszWEXK/3JkPbo/jt/J6tZo=;
-        b=RH53txauN7nrHA+BYEiPd8+VSNdMy4AMeK+jb0SlaIkLsh42moSdPORVWtxBd1tKAk
-         QgJu6HITkpEeEqkMUyvWmxouIoKJEnheBfgYDvflEA63Di7DlThpsHmYRcRvwrVucXXW
-         bM+iuRBeQ7RNXEO2FCcUN1rl6rCuPjmJql94IPlvZXVZfTkOtdUtseAsGW3PIW8vFJuk
-         POHBjp3daYJPQCuMQzm7K4jJdgpgsrDcr/asvrIz+a3Ukpdai+J5LFkQeodzBH0dV72G
-         VLO2NnO22GZe0TErcVHOmW8UgqWrARU5TPamUXIb7xIAcJakabZnC98ZmRUu3tv5c13X
-         1lKw==
-X-Gm-Message-State: AOAM531tm6AkgfLxdgS515E38IGk4v7O/fMlX8OF5ducAx7FZTU/zlld
-        BvPPaSmGWySbOecmmCXpuw==
-X-Google-Smtp-Source: ABdhPJwVkrkrr5nVAI0j0IIW3IPYeAO5ORB1xsKyTnQoRXndakA8lAglSly8T50huhEZYmPSG7nbuw==
-X-Received: by 2002:a05:6808:171b:: with SMTP id bc27mr1486405oib.21.1638991428735;
-        Wed, 08 Dec 2021 11:23:48 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bd6sm913921oib.53.2021.12.08.11.23.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 11:23:48 -0800 (PST)
-Received: (nullmailer pid 184533 invoked by uid 1000);
-        Wed, 08 Dec 2021 19:23:47 -0000
-Date:   Wed, 8 Dec 2021 13:23:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Nagarjuna Kristam <nkristam@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, JC Kuo <jckuo@nvidia.com>,
-        linux-usb@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH] dt-bindings: usb: tegra-xudc: Document interconnects and
- iommus properties
-Message-ID: <YbEGQ3C/Ha9dRyEF@robh.at.kernel.org>
-References: <20211206155559.232550-1-thierry.reding@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AWD7QTQTBQY0167hHhHNyiI2iGNEXy68navUB5oHGUE=;
+        b=FM8KdGop1BW/Xzhxst9eSgb0Ld/ar9CJGjlzzz4i8g4em/4LG7nZvnuL6K73sDJBKS
+         I2/BxnJpV+CHx9k0Z/LXNwj8Ebg6eqJ0vwXqKgkz8BWVOkLHK85KVviE3oGHo9rqZztq
+         sMRnq9ujOi+iXbkDeJetUqtK+muODcV+2hj1oFwwZvoS3GzxdgDYYgA3BNQaFbyLllnj
+         fZFvLxUYR4rrVkJe/tnssx4Mn48Cx3xjM17GDNsfQC830l+MI0+co8udJOAUR7pzBqYd
+         V2dQmftTGW4PaXgptM3bH1wuyuDyLGVrUf+STpzCfxQzUFb7bPTQaoQ+Myrn4bCFGLVR
+         Vuyg==
+X-Gm-Message-State: AOAM530TRatFjEcCO7k7VvWfhE0UKIZm4f1wr85az2A4e4MAd9CtaRJZ
+        OwllI1GV4xQw+WGAAYA8OUh/pXRaw6fifsH2Vck=
+X-Google-Smtp-Source: ABdhPJzoERlw0Vv5BhJzcvYMSnhWpELuiIRivq7dAufjb2jsbOPA74SlD1zKjdTqM3xQlceQ9GciFnUok0X8pmA1IR8=
+X-Received: by 2002:a17:907:7294:: with SMTP id dt20mr9714680ejc.321.1638991621643;
+ Wed, 08 Dec 2021 11:27:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211206155559.232550-1-thierry.reding@gmail.com>
+References: <20211208192009.322190-1-ariel.dalessandro@collabora.com> <20211208192009.322190-6-ariel.dalessandro@collabora.com>
+In-Reply-To: <20211208192009.322190-6-ariel.dalessandro@collabora.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 8 Dec 2021 16:26:50 -0300
+Message-ID: <CAOMZO5CnzVm83yHbzg2OD8HqNEV0-sXduDH9zPHctRy2i9ErDA@mail.gmail.com>
+Subject: Re: [PATCH v3 5/5] arm: dts: imx8ulz-bsh-smm-m2: Add BSH SMM-M2
+ IMX6ULZ SystemMaster
+To:     "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
+        ioana.ciornei@nxp.com, jagan@amarulasolutions.com,
+        kernel@pengutronix.de, krzk@kernel.org, linux-imx@nxp.com,
+        matt@traverse.com.au, matteo.lisi@engicam.com,
+        meenakshi.aggarwal@nxp.com, michael@amarulasolutions.com,
+        nathan@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
+        shawnguo@kernel.org, tharvey@gateworks.com, robh@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Dec 2021 16:55:59 +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Add the interconnects, interconnect-names and iommus properties to the
-> device tree bindings for the Tegra XUDC controller. These are used to
-> describe the device's paths to and from memory.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+On Wed, Dec 8, 2021 at 4:21 PM Ariel D'Alessandro
+<ariel.dalessandro@collabora.com> wrote:
+>
+> From: Michael Trimarchi <michael@amarulasolutions.com>
+>
+> Add DTS of BSH SMM-M2 SystemMaster.
+>
+> This version comes with:
+> - 128 MiB DDR3 RAM
+> - 256 MiB Nand
+> - wifi
+> - bluetooth
+>
+> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
 > ---
->  .../devicetree/bindings/usb/nvidia,tegra-xudc.yaml  | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
+>  arch/arm/boot/dts/Makefile               |   3 +-
+>  arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts | 146 +++++++++++++++++++++++
 
-Acked-by: Rob Herring <robh@kernel.org>
+There is a typo in the Subject: it says imx8ulz, but it should be
+imx6ulz instead.
+
+> +/ {
+> +       model = "BSH SMM M2";
+> +       compatible = "bsh,imx6ulz-bsh-smm-m2", "fsl,imx6ull";
+
+Shouldn't "fsl,imx6ulz" also be added here like it is done in
+imx6ulz-14x14-evk.dts?
