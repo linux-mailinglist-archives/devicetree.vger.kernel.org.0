@@ -2,75 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A35846DED4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 00:06:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0182346DED8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 00:06:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237516AbhLHXKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 18:10:21 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:38760 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237479AbhLHXKV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 18:10:21 -0500
-Received: by mail-oi1-f181.google.com with SMTP id r26so6213808oiw.5;
-        Wed, 08 Dec 2021 15:06:48 -0800 (PST)
+        id S241081AbhLHXKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 18:10:25 -0500
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:33301 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237479AbhLHXKX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 18:10:23 -0500
+Received: by mail-oi1-f179.google.com with SMTP id q25so6325108oiw.0;
+        Wed, 08 Dec 2021 15:06:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=ZTyMJI4hTyE9L4Zhb7j0sOWecejaECV3ht0mOq9ry8g=;
-        b=KhSsnwmpoa1/V85OtmTMczw3ctercu6HA+1scTqeB/KOkfrxoYuicysXJwpjjWLFHc
-         VBXtFrt/d05XF0phu2NZ6aVxBvyix5dNAPTaWJzeWNkEKHrfmxcp9dhHOhrmE1Kg5543
-         LKq5Kqe2cxb1AZPevWTFLe3Asc3Dz8FIs+4XlXhnjPDONQvXO5UYEHyuuA3imrnpxCvD
-         rt5M2bImX5DQRhR81eoq7c14Q/AENgrKPJHndK7qfCN7je9jRw4Kzp9/8FtX3cTwnoCN
-         4J7ZTOKXGsuw2ssf0nNOkyQ/feYNGbdVE9CFLh2XE8f7TA8B/LY90nWEzkCGcu9D88gA
-         x11Q==
-X-Gm-Message-State: AOAM530/xNwUgSGNjq0RHew1Is2U+2Btlf4viLvPxYHLUhSAI6Z4bRxq
-        ApGLoijfOMwv8Oo3YBR4TfArf0OKqw==
-X-Google-Smtp-Source: ABdhPJy572TEFvmQ84InPEY2Apekh9OAe6oDDy5/LdsgMAOOq8+29sIsh1dXymCw8zpSWn7RI+0T4Q==
-X-Received: by 2002:a05:6808:350:: with SMTP id j16mr2336064oie.47.1639004808210;
-        Wed, 08 Dec 2021 15:06:48 -0800 (PST)
+        bh=ll0hgXB6QKSXcz3wvMWYKBUTCF61BHlIO4zVInsEN+A=;
+        b=jFgePZXCy1ptrnT+bSG6HxhCHgX5wBsLRZ709PYCKyT+K45IQ7vQHg7uRLWnEVUgJU
+         8quWNEJy7bZQVxWB/EKgpZQTwk/zPbOQxyF0utzU/ZRc7ooF6asLLkaQdas6hUCWm0cq
+         U8C5DSfEYHpJB78EyCsnQMS3HF4XSFdo2BNKvVSr1bb/CeDY6fm35vrqJXixZ3IRbmnK
+         E6iANigyPYKT3cOf+1JDphGeBMFFuB1FiwZwynbe+nub9ka4hAx+Aa/me+gqv9GkK+V/
+         9bm5wn7ppEBG7hQhhgQXQc6pt0KrHOu+Yk0/CsHvcCfnVk8QiwFIidSF/9FE3BA7WP4Z
+         1dsA==
+X-Gm-Message-State: AOAM532gfWSMnYG7hkmqD50P62DCH9yEv1WNrV6NZUwm7qru+nFidknD
+        yyg2FaYvN82col5G8PImFw==
+X-Google-Smtp-Source: ABdhPJyKrXjVKkuOfhmRDVvFPcKq3T0vMckZHAdY/lgNGpD5c7GFTTsDFTsrYeAhUYH6UWHNCMt05A==
+X-Received: by 2002:a05:6808:1389:: with SMTP id c9mr2380757oiw.55.1639004809800;
+        Wed, 08 Dec 2021 15:06:49 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t14sm751222oth.81.2021.12.08.15.06.46
+        by smtp.gmail.com with ESMTPSA id g2sm835707oic.35.2021.12.08.15.06.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 15:06:47 -0800 (PST)
-Received: (nullmailer pid 596178 invoked by uid 1000);
+        Wed, 08 Dec 2021 15:06:49 -0800 (PST)
+Received: (nullmailer pid 596181 invoked by uid 1000);
         Wed, 08 Dec 2021 23:06:46 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Gabriel Somlo <gsomlo@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, kgugala@antmicro.com,
-        mdudek@internships.antmicro.com, rdunlap@infradead.org,
-        paulus@ozlabs.org, joel@jms.id.au, geert@linux-m68k.org,
-        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
-        linux-mmc@vger.kernel.org, shorne@gmail.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krakoczy@antmicro.com, ulf.hansson@linaro.org,
-        mholenko@antmicro.com
-In-Reply-To: <20211208132042.3226275-3-gsomlo@gmail.com>
-References: <20211208132042.3226275-1-gsomlo@gmail.com> <20211208132042.3226275-3-gsomlo@gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: mmc: Add bindings for LiteSDCard
+To:     Loic Poulain <loic.poulain@linaro.org>
+Cc:     bjorn.andersson@linaro.org, shawn.guo@linaro.org,
+        linux-clk@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, agross@kernel.org
+In-Reply-To: <1638983841-23773-2-git-send-email-loic.poulain@linaro.org>
+References: <1638983841-23773-1-git-send-email-loic.poulain@linaro.org> <1638983841-23773-2-git-send-email-loic.poulain@linaro.org>
+Subject: Re: [PATCH 2/2] dt-bindings: clock: Add qualcomm QCM2290 DISPCC bindings
 Date:   Wed, 08 Dec 2021 17:06:46 -0600
-Message-Id: <1639004806.166681.596177.nullmailer@robh.at.kernel.org>
+Message-Id: <1639004806.181222.596180.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Dec 2021 08:20:41 -0500, Gabriel Somlo wrote:
-> LiteSDCard is a small footprint, configurable SDCard core for FPGA
-> based system on chips.
+On Wed, 08 Dec 2021 18:17:21 +0100, Loic Poulain wrote:
+> Add device tree bindings for display clock controller on QCM2290 SoCs.
 > 
-> Signed-off-by: Gabriel Somlo <gsomlo@gmail.com>
-> Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
 > ---
-> 
-> New in v3:
->   - picked up r/b Geert Uytterhoeven <geert@linux-m68k.org> in DT
->     bindings document (please let me know if that was premature, and
->     happy to take further review if needed :)
->   - add dedicated DT property for source clock frequency
-> 
->  .../devicetree/bindings/mmc/litex,mmc.yaml    | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/litex,mmc.yaml
+>  .../bindings/clock/qcom,qcm2290-dispcc.yaml        | 87 ++++++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -79,24 +65,18 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.yaml: properties:reg-names:items: 'oneOf' conditional failed, one must be fixed:
-	[{'const': 'phy'}, {'const': 'core'}, {'const': 'reader'}, {'const': 'writer'}, {'const': 'irq (optional)'}] is not of type 'object'
-	'irq (optional)' does not match '^[a-zA-Z0-9,.\\-_ #+/]+$'
-	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.yaml: properties:reg: {'items': [{'description': 'PHY registers'}, {'description': 'CORE registers'}, {'description': 'DMA Reader buffer'}, {'description': 'DMA Writer buffer'}, {'description': 'IRQ registers (optional)'}], 'minItems': 4, 'maxItems': 5} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.yaml: properties:reg-names: {'items': [{'const': 'phy'}, {'const': 'core'}, {'const': 'reader'}, {'const': 'writer'}, {'const': 'irq (optional)'}], 'minItems': 4, 'maxItems': 5} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.yaml: ignoring, error in schema: properties: reg-names: items
-warning: no schema found in file: ./Documentation/devicetree/bindings/mmc/litex,mmc.yaml
-Documentation/devicetree/bindings/mmc/litex,mmc.example.dt.yaml:0:0: /example-0/mmc@12005000: failed to match any schema with compatible: ['litex,mmc']
+Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.example.dts:19:18: fatal error: dt-bindings/clock/qcom,dispcc-qcm2290.h: No such file or directory
+   19 |         #include <dt-bindings/clock/qcom,dispcc-qcm2290.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1413: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
 
-See https://patchwork.ozlabs.org/patch/1565210
+See https://patchwork.ozlabs.org/patch/1565377
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
