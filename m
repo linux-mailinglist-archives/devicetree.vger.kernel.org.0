@@ -2,129 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32DDD46D5EB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:41:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C2AB46D5EE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:42:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235291AbhLHOor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 09:44:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44204 "EHLO
+        id S235288AbhLHOpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 09:45:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235288AbhLHOor (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:44:47 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48AF3C061746;
-        Wed,  8 Dec 2021 06:41:15 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id c4so4428949wrd.9;
-        Wed, 08 Dec 2021 06:41:15 -0800 (PST)
+        with ESMTP id S235279AbhLHOpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:45:35 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38A16C061746
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 06:42:03 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id z7so5972822lfi.11
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 06:42:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=qU1Nu0uDwKbv0ASOHzlGRqdEWy8QYeodVW7QKE4d9jc=;
-        b=e1sLGHX6mQCWpJirLRXjSEaGkieK0VAKI7A2fk3H8MHttiuvepmwLmO+st0hCPWgEF
-         CvPaIbZZQwDUym08o43M5ojFZ14id+AvjHPWdcF63CgF9V5Q1RHbnP/cg9Ny1OU8qiAh
-         bNXJEY0nwMHj5NqLb6Xon67Ah8OHuwJpfYwYBuDQHEEM7BSWPtrkHLs9NQmfYZD8wFCO
-         JrYCVsPL8WKK2fSDATR/uvNvl6BJsmEvLw2kNKNXUBciiZ2rK+vY35rdZIkTXptd1p5Y
-         LvxwQpEUKD2EOPikX92/5q9UOsGGBju5U3IjGcbSXRO3EzTPbMJ1n44/S3M3I8ESRXTM
-         Z2AQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=xNnl/bq9XM/DC6ymRmm5/FHnKK1n0tNt9MfNZG44+LA=;
+        b=mKOXC6iPF0/Xtg4TshGCe/sCxmgR+Ts9zEiwqmhydToDUrBTPLal+G8YHzgVGdPvEo
+         zP0LN73heWTPQiCVje1xUJb2399SG2prnlZ8OOl5LrW515XDmTz6ZR+kjN/v1bQClKhS
+         PHGDEi5hUm2vkQQ/00nHTOZ1nXpB7uqOBjrwI+YPQ94EQSp2g+Ga/ZYReKLtnOXAxlZp
+         +F5VAApv3cYsdt1EWGtFHPxLrglt1AFPE0J+32FB+AYiZQbkhU9M1l3Aej0bV/ciHOd8
+         tZ/6631KTDujlbyYNmEpZfyMoDbc0dnnH+gf430BAvIZzlCvRNLD+5Y/IcU4ToPqtcJI
+         sYMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=qU1Nu0uDwKbv0ASOHzlGRqdEWy8QYeodVW7QKE4d9jc=;
-        b=3++YLLo2CUOamvHzQCe/tOxu0uLqZglHw0ys4mrum94RIvdZdglZkPMa1+xAVUFoER
-         4tRk0ZY8qq/wPVdrwxHJTQd0WMZ55zthdoTZNKK3cubq5XAgpeA3kBTkX6r5otzCHawH
-         MRfDN470dlALzltiLlJa6aEUpn/15GxjYScvLEBBrlWezE5S84N4SA/O0KH6k3dlQS65
-         GCWhsaibtcUx+SrRF0Hl5W8ZHN20CHs6SaWCjlJvYAXJnm9Xs4qjy/q+z+9vzuD4xthN
-         baqWbaYjPm0a3j5LxEX8KJgZalCQVnrAN9/rgyspD8WE5dsd0xyxxelotgXDbSZlzRXF
-         WpFA==
-X-Gm-Message-State: AOAM530RTjzRwiMOKnLkmRhZvTukJbckKEhi6mhmGQ0iSNWB56lq4FOv
-        yNP/omz2gdf4v9FxC/qMUUSWAz/a4ZqUAw==
-X-Google-Smtp-Source: ABdhPJy9BHQ5CRCgi7+6wu0Kn/3eNG2H9FWUXW9u1ZoHxzHaz8hcEZykhJyYzBLqVWZJeRs9Rr1+8g==
-X-Received: by 2002:a05:6000:18a3:: with SMTP id b3mr59981274wri.343.1638974473830;
-        Wed, 08 Dec 2021 06:41:13 -0800 (PST)
-Received: from orome ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id e8sm2841189wrr.26.2021.12.08.06.41.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 06:41:12 -0800 (PST)
-Date:   Wed, 8 Dec 2021 15:41:09 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: arm: pmu: Document Denver and Carmel
- PMUs
-Message-ID: <YbDEBexUo8WYKVwd@orome>
-References: <20211207150746.444478-1-thierry.reding@gmail.com>
- <1638971068.754546.3857733.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=xNnl/bq9XM/DC6ymRmm5/FHnKK1n0tNt9MfNZG44+LA=;
+        b=yB1KuUHL7KjO+azu3Bep1N6VcLUz2ASPAmBS4kkNi1IfaNVS+Ck80gfm92pQb1F3PY
+         Ym9YKrSWJ9YweZk622Uwl9ZvzX7cHevZItWxc0kFqF8DGeRxXiBBkHM97wo+uRFxYqmd
+         Th7rIjXGCt6P5GFpmlJH2H07OGZRELCkVGTIYWzwj3HivFggtuRXZiWdifuynO7B6oHb
+         8EBUBUnxFfXSdjlU8tEP3Krmzj4wP0N1YgR3cBjwHrPrAb+4fBUDkCHuEbvy4xT74sn+
+         IN9TYuMlH5rxzc6DHlTqe+kn+hBo4p2IyFDlnBeqSo6WoR+y9opgDkzTjunMjH9pkyRD
+         TPMA==
+X-Gm-Message-State: AOAM531y0pXuFC1HiAfnU/FFgG4yOCApEEU/FLrz00Bs4tbNohSZgPnK
+        cVF1waRCwTiRU3zhw5n0REfJ0i8DKnnmEs95EIbZjVBgyfGwDg==
+X-Google-Smtp-Source: ABdhPJwnNWxiVQyM5jyoLCnaX5WsUlHB+5BzUKtHT3LR9ora7p9fYWTM4XzioYjqYEeyc3N3H4B3mbNUkBkfn0e/4hE=
+X-Received: by 2002:a05:6512:3e04:: with SMTP id i4mr48946228lfv.167.1638974521403;
+ Wed, 08 Dec 2021 06:42:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="KuCPuRyt1LA+wE+Y"
-Content-Disposition: inline
-In-Reply-To: <1638971068.754546.3857733.nullmailer@robh.at.kernel.org>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+References: <20211206142929.26729-1-marten.lindahl@axis.com> <20211206142929.26729-4-marten.lindahl@axis.com>
+In-Reply-To: <20211206142929.26729-4-marten.lindahl@axis.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 8 Dec 2021 15:41:24 +0100
+Message-ID: <CAPDyKFqB9EV9ZGwnJ+dddJGMXUpv8OpvgY5ta_a_=_An=Ca2SQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] mmc: dw_mmc: Add quirk for extended data read timeout
+To:     =?UTF-8?Q?M=C3=A5rten_Lindahl?= <marten.lindahl@axis.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Doug Anderson <dianders@google.com>, kernel@axis.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 6 Dec 2021 at 15:29, M=C3=A5rten Lindahl <marten.lindahl@axis.com> =
+wrote:
+>
+> Current dw_mci driver supports a TMOUT register which consists of a 24
+> bit field (TMOUT[31:8]) for the DATA_TIMEOUT. The maximum value of this
+> field is 0xFFFFFF, which with a 200MHz clock will give a full DRTO of:
+>
+> 0xFFFFFF / 200000000 =3D> ~84 ms
+>
+> However, the ARTPEC-8 SoC DWMMC IP version has a TMOUT register with an
+> extended DATA_TIMEOUT field, which supports longer timers for the DRTO.
+> In this version the DATA_TIMEOUT field is split into two, which with the
+> same 200MHz clock as above will allow a maximum timeout of:
+>
+> ((TMOUT[10:8] -1) * 0xFFFFFF + TMOUT[31:11] * 8) / 200000000 =3D> ~587 ms
+>
+> Add a quirk to support this. The quirk is enabled for ARTPEC-8 SoCs.
+>
+> Signed-off-by: M=C3=A5rten Lindahl <marten.lindahl@axis.com>
+> ---
+>
+> v2:
+>  - Removed unnecessary comment
+>  - Change 1<<0 to BIT(0)
+>
+>  drivers/mmc/host/dw_mmc-exynos.c |  5 +++++
+>  drivers/mmc/host/dw_mmc.c        | 33 ++++++++++++++++++++++++++++----
+>  drivers/mmc/host/dw_mmc.h        |  6 ++++++
+>  3 files changed, 40 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/mmc/host/dw_mmc-exynos.c b/drivers/mmc/host/dw_mmc-e=
+xynos.c
+> index 86486e6659de..1b625642c5b4 100644
+> --- a/drivers/mmc/host/dw_mmc-exynos.c
+> +++ b/drivers/mmc/host/dw_mmc-exynos.c
+> @@ -127,6 +127,11 @@ static int dw_mci_exynos_priv_init(struct dw_mci *ho=
+st)
+>                                 DQS_CTRL_GET_RD_DELAY(priv->saved_strobe_=
+ctrl);
+>         }
+>
+> +       if (priv->ctrl_type =3D=3D DW_MCI_TYPE_ARTPEC8) {
+> +               /* Quirk needed for ARTPEC-8 SoCs */
+> +               host->quirks |=3D DW_MMC_QUIRK_EXTENDED_TMOUT;
+> +       }
+> +
+>         host->bus_hz /=3D (priv->ciu_div + 1);
+>
+>         return 0;
+> diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
+> index f2a14a434bef..45ea9fd97a6a 100644
+> --- a/drivers/mmc/host/dw_mmc.c
+> +++ b/drivers/mmc/host/dw_mmc.c
+> @@ -1289,6 +1289,7 @@ static void dw_mci_set_data_timeout(struct dw_mci *=
+host,
+>  {
+>         u32 clk_div, tmout;
+>         u64 tmp;
+> +       unsigned int tmp2;
+>
+>         clk_div =3D (mci_readl(host, CLKDIV) & 0xFF) * 2;
+>         if (clk_div =3D=3D 0)
+> @@ -1301,10 +1302,28 @@ static void dw_mci_set_data_timeout(struct dw_mci=
+ *host,
+>         tmout =3D 0xFF; /* Set maximum */
+>
+>         /* TMOUT[31:8] (DATA_TIMEOUT) */
+> -       if (!tmp || tmp > 0xFFFFFF)
+> -               tmout |=3D (0xFFFFFF << 8);
+> -       else
+> -               tmout |=3D (tmp & 0xFFFFFF) << 8;
+> +       if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT) {
 
---KuCPuRyt1LA+wE+Y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Adding an option for dealing with quirks, should be avoided if
+possible. That's because we want to avoid sprinkling common dw_mmc
+code with variant specific code, as it will sooner or later turn into
+a nightmare to maintain.
 
-On Wed, Dec 08, 2021 at 07:44:28AM -0600, Rob Herring wrote:
-> On Tue, 07 Dec 2021 16:07:44 +0100, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Add compatible strings for the NVIDIA Denver and Carmel PMUs.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/pmu.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >=20
->=20
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
->=20
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
->=20
-> Full log is available here: https://patchwork.ozlabs.org/patch/1564747
+In this case, I suggest you look into extending the struct
+dw_mci_drv_data with some new callback (perhaps ->set_data_timeout())
+and then implement it for your variant.
+If that callback is present, it should take precedence over the
+generic dw_mci_set_data_timeout(), if you get what I mean.
 
-Yikes, that's a lot of warnings. I've got local patches to fix up the
-Tegra-specific ones, but I could look at fixing up the others as well,
-provided that you or anyone else aren't looking at this yet.
+Moreover, if some common dw_mmc code needs to be called from your
+callback, I suggest we make that code available through exported
+dw_mmc library functions instead.
 
-On that note: do you know of a simple trick to get the dtbs_check target
-to run on all DTB files? The only way I've found so far is to manually
-select all Kconfig options that would enable a specific subset, but it'd
-be great if we could just run the checks on all irrespective of .config.
+> +               /*
+> +                * Extended HW timer (max =3D 0x6FFFFF2):
+> +                * ((TMOUT[10:8] - 1) * 0xFFFFFF + TMOUT[31:11] * 8)
+> +                */
+> +               if (!tmp || tmp > 0x6FFFFF2)
+> +                       tmout |=3D (0xFFFFFF << 8);
+> +               else {
+> +                       /* TMOUT[10:8] */
+> +                       tmp2 =3D (((unsigned int)tmp / 0xFFFFFF) + 1) & 0=
+x7;
+> +                       tmout |=3D tmp2 << 8;
+> +
+> +                       /* TMOUT[31:11] */
+> +                       tmp =3D tmp - ((tmp2 - 1) * 0xFFFFFF);
+> +                       tmout |=3D (tmp & 0xFFFFF8) << 8;
+> +               }
+> +       } else {
+> +               if (!tmp || tmp > 0xFFFFFF)
+> +                       tmout |=3D (0xFFFFFF << 8);
+> +               else
+> +                       tmout |=3D (tmp & 0xFFFFFF) << 8;
+> +       }
+>
+>         mci_writel(host, TMOUT, tmout);
+>         dev_dbg(host->dev, "timeout_ns: %u =3D> TMOUT[31:8]: 0x%#08x",
+> @@ -2005,9 +2024,15 @@ static void dw_mci_set_drto(struct dw_mci *host)
+>         if (drto_div =3D=3D 0)
+>                 drto_div =3D 1;
+>
+> +       if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
+> +               drto_clks =3D (((drto_clks & 0x7) - 1) * 0xFFFFFF) +
+> +                       ((drto_clks & 0xFFFFF8));
+> +
+>         drto_ms =3D DIV_ROUND_UP_ULL((u64)MSEC_PER_SEC * drto_clks * drto=
+_div,
+>                                    host->bus_hz);
+>
+> +       dev_dbg(host->dev, "drto_ms: %u\n", drto_ms);
+> +
+>         /* add a bit spare time */
+>         drto_ms +=3D 10;
+>
+> diff --git a/drivers/mmc/host/dw_mmc.h b/drivers/mmc/host/dw_mmc.h
+> index 771d5afa3136..3b6510d4a684 100644
+> --- a/drivers/mmc/host/dw_mmc.h
+> +++ b/drivers/mmc/host/dw_mmc.h
+> @@ -118,6 +118,7 @@ struct dw_mci_dma_slave {
+>   * @part_buf: Simple buffer for partial fifo reads/writes.
+>   * @push_data: Pointer to FIFO push function.
+>   * @pull_data: Pointer to FIFO pull function.
+> + * @quirks: Set of quirks that apply to specific versions of the IP.
+>   * @vqmmc_enabled: Status of vqmmc, should be true or false.
+>   * @irq_flags: The flags to be passed to request_irq.
+>   * @irq: The irq value to be passed to request_irq.
+> @@ -223,6 +224,8 @@ struct dw_mci {
+>         void (*push_data)(struct dw_mci *host, void *buf, int cnt);
+>         void (*pull_data)(struct dw_mci *host, void *buf, int cnt);
+>
+> +       u32                     quirks;
+> +
+>         bool                    vqmmc_enabled;
+>         unsigned long           irq_flags; /* IRQ flags */
+>         int                     irq;
+> @@ -274,6 +277,9 @@ struct dw_mci_board {
+>         struct dma_pdata *data;
+>  };
+>
+> +/* Support for longer data read timeout */
+> +#define DW_MMC_QUIRK_EXTENDED_TMOUT            BIT(0)
+> +
+>  #define DW_MMC_240A            0x240a
+>  #define DW_MMC_280A            0x280a
+>
 
-Thierry
-
---KuCPuRyt1LA+wE+Y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGwxAUACgkQ3SOs138+
-s6Hetg/+JJQtnLCDBwikRv38CHKdGaRq2lC4boCxd+kHMDh+LcYF6KX55dSLV8l2
-gdqjETipx/c/azJV6aaoIPbQFZmfus90ENpzCx0+o61kacH3U1RIKPqrIPBFMWY2
-H+33qyaswXhR32uUJS50fWLoufGse9c17fxZ+2pTM8qY+Bw97FHqyrmZNeubWWxu
-P80ql6PXVuZsNH6hqRkPVmRaMKeajXpyIx6hjjgMOgUMP9GtsC0jC4Cgbc7sr5AG
-hvXvcFQZ2BcSA/nr3QyaTJdmr6OQJW1Zph0GonwK6e7F6hdZ3lr7ijNP5fBgtD8j
-9a2QnSueIUN8aawvZTbN1RznY9YEON+YixxhJTEbXcUjWeZkUVeVzrPN6GF7slq8
-h4DqcgyNM+CQXFp5kf112Odq1vZ1oSWmnKuP5lNVq5Drmco4VVzsoLv+81PAzuSS
-T/vUHP25U4gcCfJ67SHYtYvAK33a1YBBsfklPG12iuDNbWB9SNtwRzUg3Da5p2xW
-Ck0akKmEnzA2iIapWpVTb3o17bFrbOLOA7NIXBD9z59v7oGADwnUfrdMr215X0tK
-gD5sImDWT0t4QkepgUXxS0+RbFXRwBjYB7oIrZpGvwEzGShEZb8wfT/L+lJv9VqC
-2en6ErjxdkjFSLuK5AStGxkjOgSkBb3Q7ugY1Ld13RXRmZv/Eic=
-=jAaG
------END PGP SIGNATURE-----
-
---KuCPuRyt1LA+wE+Y--
+Kind regards
+Uffe
