@@ -2,229 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C2AB46D5EE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:42:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEDB646D5F2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:42:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235288AbhLHOpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 09:45:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44388 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235279AbhLHOpf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:45:35 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38A16C061746
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 06:42:03 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id z7so5972822lfi.11
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 06:42:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=xNnl/bq9XM/DC6ymRmm5/FHnKK1n0tNt9MfNZG44+LA=;
-        b=mKOXC6iPF0/Xtg4TshGCe/sCxmgR+Ts9zEiwqmhydToDUrBTPLal+G8YHzgVGdPvEo
-         zP0LN73heWTPQiCVje1xUJb2399SG2prnlZ8OOl5LrW515XDmTz6ZR+kjN/v1bQClKhS
-         PHGDEi5hUm2vkQQ/00nHTOZ1nXpB7uqOBjrwI+YPQ94EQSp2g+Ga/ZYReKLtnOXAxlZp
-         +F5VAApv3cYsdt1EWGtFHPxLrglt1AFPE0J+32FB+AYiZQbkhU9M1l3Aej0bV/ciHOd8
-         tZ/6631KTDujlbyYNmEpZfyMoDbc0dnnH+gf430BAvIZzlCvRNLD+5Y/IcU4ToPqtcJI
-         sYMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=xNnl/bq9XM/DC6ymRmm5/FHnKK1n0tNt9MfNZG44+LA=;
-        b=yB1KuUHL7KjO+azu3Bep1N6VcLUz2ASPAmBS4kkNi1IfaNVS+Ck80gfm92pQb1F3PY
-         Ym9YKrSWJ9YweZk622Uwl9ZvzX7cHevZItWxc0kFqF8DGeRxXiBBkHM97wo+uRFxYqmd
-         Th7rIjXGCt6P5GFpmlJH2H07OGZRELCkVGTIYWzwj3HivFggtuRXZiWdifuynO7B6oHb
-         8EBUBUnxFfXSdjlU8tEP3Krmzj4wP0N1YgR3cBjwHrPrAb+4fBUDkCHuEbvy4xT74sn+
-         IN9TYuMlH5rxzc6DHlTqe+kn+hBo4p2IyFDlnBeqSo6WoR+y9opgDkzTjunMjH9pkyRD
-         TPMA==
-X-Gm-Message-State: AOAM531y0pXuFC1HiAfnU/FFgG4yOCApEEU/FLrz00Bs4tbNohSZgPnK
-        cVF1waRCwTiRU3zhw5n0REfJ0i8DKnnmEs95EIbZjVBgyfGwDg==
-X-Google-Smtp-Source: ABdhPJwnNWxiVQyM5jyoLCnaX5WsUlHB+5BzUKtHT3LR9ora7p9fYWTM4XzioYjqYEeyc3N3H4B3mbNUkBkfn0e/4hE=
-X-Received: by 2002:a05:6512:3e04:: with SMTP id i4mr48946228lfv.167.1638974521403;
- Wed, 08 Dec 2021 06:42:01 -0800 (PST)
+        id S235314AbhLHOqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 09:46:21 -0500
+Received: from mga07.intel.com ([134.134.136.100]:16609 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229611AbhLHOqU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Dec 2021 09:46:20 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="301223952"
+X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; 
+   d="scan'208";a="301223952"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2021 06:42:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; 
+   d="scan'208";a="612108832"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 08 Dec 2021 06:42:46 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1muy9d-0000gf-OI; Wed, 08 Dec 2021 14:42:45 +0000
+Date:   Wed, 8 Dec 2021 22:41:45 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Joseph CHANG <josright123@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     kbuild-all@lists.01.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] net: Add DM9051 driver
+Message-ID: <202112082228.stoSxUom-lkp@intel.com>
+References: <20211202204656.4411-3-josright123@gmail.com>
 MIME-Version: 1.0
-References: <20211206142929.26729-1-marten.lindahl@axis.com> <20211206142929.26729-4-marten.lindahl@axis.com>
-In-Reply-To: <20211206142929.26729-4-marten.lindahl@axis.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 8 Dec 2021 15:41:24 +0100
-Message-ID: <CAPDyKFqB9EV9ZGwnJ+dddJGMXUpv8OpvgY5ta_a_=_An=Ca2SQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] mmc: dw_mmc: Add quirk for extended data read timeout
-To:     =?UTF-8?Q?M=C3=A5rten_Lindahl?= <marten.lindahl@axis.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Doug Anderson <dianders@google.com>, kernel@axis.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211202204656.4411-3-josright123@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Dec 2021 at 15:29, M=C3=A5rten Lindahl <marten.lindahl@axis.com> =
-wrote:
->
-> Current dw_mci driver supports a TMOUT register which consists of a 24
-> bit field (TMOUT[31:8]) for the DATA_TIMEOUT. The maximum value of this
-> field is 0xFFFFFF, which with a 200MHz clock will give a full DRTO of:
->
-> 0xFFFFFF / 200000000 =3D> ~84 ms
->
-> However, the ARTPEC-8 SoC DWMMC IP version has a TMOUT register with an
-> extended DATA_TIMEOUT field, which supports longer timers for the DRTO.
-> In this version the DATA_TIMEOUT field is split into two, which with the
-> same 200MHz clock as above will allow a maximum timeout of:
->
-> ((TMOUT[10:8] -1) * 0xFFFFFF + TMOUT[31:11] * 8) / 200000000 =3D> ~587 ms
->
-> Add a quirk to support this. The quirk is enabled for ARTPEC-8 SoCs.
->
-> Signed-off-by: M=C3=A5rten Lindahl <marten.lindahl@axis.com>
-> ---
->
-> v2:
->  - Removed unnecessary comment
->  - Change 1<<0 to BIT(0)
->
->  drivers/mmc/host/dw_mmc-exynos.c |  5 +++++
->  drivers/mmc/host/dw_mmc.c        | 33 ++++++++++++++++++++++++++++----
->  drivers/mmc/host/dw_mmc.h        |  6 ++++++
->  3 files changed, 40 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/mmc/host/dw_mmc-exynos.c b/drivers/mmc/host/dw_mmc-e=
-xynos.c
-> index 86486e6659de..1b625642c5b4 100644
-> --- a/drivers/mmc/host/dw_mmc-exynos.c
-> +++ b/drivers/mmc/host/dw_mmc-exynos.c
-> @@ -127,6 +127,11 @@ static int dw_mci_exynos_priv_init(struct dw_mci *ho=
-st)
->                                 DQS_CTRL_GET_RD_DELAY(priv->saved_strobe_=
-ctrl);
->         }
->
-> +       if (priv->ctrl_type =3D=3D DW_MCI_TYPE_ARTPEC8) {
-> +               /* Quirk needed for ARTPEC-8 SoCs */
-> +               host->quirks |=3D DW_MMC_QUIRK_EXTENDED_TMOUT;
-> +       }
-> +
->         host->bus_hz /=3D (priv->ciu_div + 1);
->
->         return 0;
-> diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
-> index f2a14a434bef..45ea9fd97a6a 100644
-> --- a/drivers/mmc/host/dw_mmc.c
-> +++ b/drivers/mmc/host/dw_mmc.c
-> @@ -1289,6 +1289,7 @@ static void dw_mci_set_data_timeout(struct dw_mci *=
-host,
->  {
->         u32 clk_div, tmout;
->         u64 tmp;
-> +       unsigned int tmp2;
->
->         clk_div =3D (mci_readl(host, CLKDIV) & 0xFF) * 2;
->         if (clk_div =3D=3D 0)
-> @@ -1301,10 +1302,28 @@ static void dw_mci_set_data_timeout(struct dw_mci=
- *host,
->         tmout =3D 0xFF; /* Set maximum */
->
->         /* TMOUT[31:8] (DATA_TIMEOUT) */
-> -       if (!tmp || tmp > 0xFFFFFF)
-> -               tmout |=3D (0xFFFFFF << 8);
-> -       else
-> -               tmout |=3D (tmp & 0xFFFFFF) << 8;
-> +       if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT) {
+Hi Joseph,
 
-Adding an option for dealing with quirks, should be avoided if
-possible. That's because we want to avoid sprinkling common dw_mmc
-code with variant specific code, as it will sooner or later turn into
-a nightmare to maintain.
+Thank you for the patch! Perhaps something to improve:
 
-In this case, I suggest you look into extending the struct
-dw_mci_drv_data with some new callback (perhaps ->set_data_timeout())
-and then implement it for your variant.
-If that callback is present, it should take precedence over the
-generic dw_mci_set_data_timeout(), if you get what I mean.
+[auto build test WARNING on ce83278f313ce65a9bbd780a3e07fa3f62d82525]
 
-Moreover, if some common dw_mmc code needs to be called from your
-callback, I suggest we make that code available through exported
-dw_mmc library functions instead.
+url:    https://github.com/0day-ci/linux/commits/Joseph-CHANG/ADD-DM9051-NET-DEVICE/20211208-193833
+base:   ce83278f313ce65a9bbd780a3e07fa3f62d82525
+config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20211208/202112082228.stoSxUom-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/9ee7a9a16698431c764b4b21a0839e87f3692078
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Joseph-CHANG/ADD-DM9051-NET-DEVICE/20211208-193833
+        git checkout 9ee7a9a16698431c764b4b21a0839e87f3692078
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash drivers/net/ethernet/davicom/
 
-> +               /*
-> +                * Extended HW timer (max =3D 0x6FFFFF2):
-> +                * ((TMOUT[10:8] - 1) * 0xFFFFFF + TMOUT[31:11] * 8)
-> +                */
-> +               if (!tmp || tmp > 0x6FFFFF2)
-> +                       tmout |=3D (0xFFFFFF << 8);
-> +               else {
-> +                       /* TMOUT[10:8] */
-> +                       tmp2 =3D (((unsigned int)tmp / 0xFFFFFF) + 1) & 0=
-x7;
-> +                       tmout |=3D tmp2 << 8;
-> +
-> +                       /* TMOUT[31:11] */
-> +                       tmp =3D tmp - ((tmp2 - 1) * 0xFFFFFF);
-> +                       tmout |=3D (tmp & 0xFFFFF8) << 8;
-> +               }
-> +       } else {
-> +               if (!tmp || tmp > 0xFFFFFF)
-> +                       tmout |=3D (0xFFFFFF << 8);
-> +               else
-> +                       tmout |=3D (tmp & 0xFFFFFF) << 8;
-> +       }
->
->         mci_writel(host, TMOUT, tmout);
->         dev_dbg(host->dev, "timeout_ns: %u =3D> TMOUT[31:8]: 0x%#08x",
-> @@ -2005,9 +2024,15 @@ static void dw_mci_set_drto(struct dw_mci *host)
->         if (drto_div =3D=3D 0)
->                 drto_div =3D 1;
->
-> +       if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
-> +               drto_clks =3D (((drto_clks & 0x7) - 1) * 0xFFFFFF) +
-> +                       ((drto_clks & 0xFFFFF8));
-> +
->         drto_ms =3D DIV_ROUND_UP_ULL((u64)MSEC_PER_SEC * drto_clks * drto=
-_div,
->                                    host->bus_hz);
->
-> +       dev_dbg(host->dev, "drto_ms: %u\n", drto_ms);
-> +
->         /* add a bit spare time */
->         drto_ms +=3D 10;
->
-> diff --git a/drivers/mmc/host/dw_mmc.h b/drivers/mmc/host/dw_mmc.h
-> index 771d5afa3136..3b6510d4a684 100644
-> --- a/drivers/mmc/host/dw_mmc.h
-> +++ b/drivers/mmc/host/dw_mmc.h
-> @@ -118,6 +118,7 @@ struct dw_mci_dma_slave {
->   * @part_buf: Simple buffer for partial fifo reads/writes.
->   * @push_data: Pointer to FIFO push function.
->   * @pull_data: Pointer to FIFO pull function.
-> + * @quirks: Set of quirks that apply to specific versions of the IP.
->   * @vqmmc_enabled: Status of vqmmc, should be true or false.
->   * @irq_flags: The flags to be passed to request_irq.
->   * @irq: The irq value to be passed to request_irq.
-> @@ -223,6 +224,8 @@ struct dw_mci {
->         void (*push_data)(struct dw_mci *host, void *buf, int cnt);
->         void (*pull_data)(struct dw_mci *host, void *buf, int cnt);
->
-> +       u32                     quirks;
-> +
->         bool                    vqmmc_enabled;
->         unsigned long           irq_flags; /* IRQ flags */
->         int                     irq;
-> @@ -274,6 +277,9 @@ struct dw_mci_board {
->         struct dma_pdata *data;
->  };
->
-> +/* Support for longer data read timeout */
-> +#define DW_MMC_QUIRK_EXTENDED_TMOUT            BIT(0)
-> +
->  #define DW_MMC_240A            0x240a
->  #define DW_MMC_280A            0x280a
->
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Kind regards
-Uffe
+All warnings (new ones prefixed by >>):
+
+   drivers/net/ethernet/davicom/dm9051.c: In function 'dm9051_read_mac_to_dev':
+   drivers/net/ethernet/davicom/dm9051.c:255:35: error: assignment of read-only location '*(ndev->dev_addr + (sizetype)i)'
+     255 |                 ndev->dev_addr[i] = ior(db, DM9051_PAR + i);
+         |                                   ^
+   drivers/net/ethernet/davicom/dm9051.c:260:43: error: assignment of read-only location '*(ndev->dev_addr + (sizetype)i)'
+     260 |                         ndev->dev_addr[i] = ior(db, DM9051_PAR + i);
+         |                                           ^
+   drivers/net/ethernet/davicom/dm9051.c: In function 'dm_set_mac_lock':
+>> drivers/net/ethernet/davicom/dm9051.c:341:57: warning: passing argument 3 of 'dm_write_eeprom_func' discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+     341 |                         dm_write_eeprom_func(db, i / 2, &ndev->dev_addr[i]);
+         |                                                         ^~~~~~~~~~~~~~~~~~
+   drivers/net/ethernet/davicom/dm9051.c:156:73: note: expected 'u8 *' {aka 'unsigned char *'} but argument is of type 'const unsigned char *'
+     156 | static void dm_write_eeprom_func(struct board_info *db, int offset, u8 *data)
+         |                                                                     ~~~~^~~~
+
+
+vim +341 drivers/net/ethernet/davicom/dm9051.c
+
+   318	
+   319	/* set mac permanently
+   320	 */
+   321	static void dm_set_mac_lock(struct board_info *db)
+   322	{
+   323		struct net_device *ndev = db->ndev;
+   324	
+   325		if (db->enter_setmac) {
+   326			int i, oft;
+   327	
+   328			db->enter_setmac = 0;
+   329			netdev_info(ndev, "set_mac_address %02x %02x %02x  %02x %02x %02x\n",
+   330				    ndev->dev_addr[0], ndev->dev_addr[1], ndev->dev_addr[2],
+   331				    ndev->dev_addr[3], ndev->dev_addr[4], ndev->dev_addr[5]);
+   332	
+   333			/* write to net device and chip */
+   334			ADDR_LOCK_HEAD_ESSENTIAL(db); //mutex_lock
+   335			for (i = 0, oft = DM9051_PAR; i < ETH_ALEN; i++, oft++)
+   336				iow(db, oft, ndev->dev_addr[i]);
+   337			ADDR_LOCK_TAIL_ESSENTIAL(db); //mutex_unlock
+   338	
+   339			/* write to EEPROM */
+   340			for (i = 0; i < ETH_ALEN; i += 2)
+ > 341				dm_write_eeprom_func(db, i / 2, &ndev->dev_addr[i]);
+   342		}
+   343	}
+   344	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
