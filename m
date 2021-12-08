@@ -2,128 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEAC346D7A7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 17:02:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 808D646D7E2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 17:16:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236460AbhLHQFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 11:05:54 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:40008 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236426AbhLHQFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 11:05:54 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id A67FECE2207;
-        Wed,  8 Dec 2021 16:02:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAEA9C00446;
-        Wed,  8 Dec 2021 16:02:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638979338;
-        bh=aYzMTGF66BBpR2FANCUsedAiT55w3D5TjpGIfAfKn1Q=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ULuDyyrIlxD/4XyzOSQyQM7tCBY/fMl3HwzHkXWZW4WoPCwXCdr+JomLb3OsNorTA
-         PN8OIRJkJTpOPeXycNVMq3LB8hDUJkZVvJ+rQjFqxbV852WEQGxIDaakhBH0cBd4HY
-         yTtwhAOlcIqP3oj1OduxhAbLKV/l/P67A5PYL6lZLR0eDVxN0RU3qb+q0H2YJmjRK3
-         dzsO7ln3IN9c87hCXD6briXJfpujzj8NutqyliZphyRDAhIUqa8t6z7JbG7EwZBpAa
-         MUadmBF9t4LR80ws8rW+Feg+XI3t4u/+L6K4c36UldbGnAqUjX0A6Zgb5GFvmjuAjX
-         nnB5vHnWCA7cg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1muzOa-00AoNQ-Q0; Wed, 08 Dec 2021 16:02:16 +0000
-Date:   Wed, 08 Dec 2021 16:02:16 +0000
-Message-ID: <87a6hb13w7.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     =?UTF-8?B?InFpbmppYW5b6KaD5YGlXSI=?= <qinjian@cqplus1.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S232824AbhLHQT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 11:19:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38480 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236667AbhLHQTz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 11:19:55 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC6CC061746
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 08:16:23 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id c4so4937526wrd.9
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 08:16:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=s3S6Qu67tEui0DUsR7g/4/F35A73+SPBA+zRxkUhaG8=;
+        b=MOtB1a6nj3/eQ3UtTDyQj1j+VVPdxYy6CedR8STiP6JvFUMlapTFPLi4UqGLNvsarp
+         LBJcZFgfWEfjBSAAsypXx6MZtRZIkpUiNnsuhfbv/v8ov6rSYP/ZvOMQGqIat3nqxTUE
+         sZT4IGJtCEQtYlnhi+uHHCl8gv/wD/2me2DEVJy3eYtdc4A+xHBTdxA1EjO3til/UDMm
+         H/1edaw3ZvxzNZs7S/nWmnPAoIfTzxFkuQvzRY5Zg2TIP1/22hviuBUTchcYCqzkEiCs
+         YLG2lwVRBbHfl0Z0TO8HEmsEIUF8y/l4xfS0BqKLlBXZ8DuHBBHsxnhYUoXSD5M9ohK7
+         erVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=s3S6Qu67tEui0DUsR7g/4/F35A73+SPBA+zRxkUhaG8=;
+        b=iD5tT9ySMOyX711Sd1lGD7V4ShNmcKPsKISYsUK9HRBEG6mLIWk0w+NDbDJcd1Noxm
+         040PmvQrwxV4m8/hpLZ8z8pasvChhg9sIqLglynstUcqngd8kE0geMHh0GbUnvOpigdE
+         OBAYEp+VXQnFrXIPzcekIALRz6mxpDqySJR1W5C1bS9ZlJMQhUlgCc/Pkx3Rx2rlAM5X
+         NvMqE2pJzxcvQcIdr7+gypafbZt6hpfYHBqCLhCLd7lhTgIwoM/sDCD9uQPBpKLCx5Nu
+         Vse5LfG1FUgcR8yCkUrMKcPp70MtD/OGCXtMLnZ9Wm+VrKHjZPalTdJnVZEvVHFVyFfD
+         diVA==
+X-Gm-Message-State: AOAM532dQb9Lp4Pe1cthwxBAsZtyCpiplUNXXeuqmn7MJjbcDPkyQnQV
+        N73TjRV/iifXwTeU2a9aaCDBXA==
+X-Google-Smtp-Source: ABdhPJyCcP3HTyvqGn8Z6fbCxuZdPjgKKEAI4N4Ibrf6Rk4KMeup+vzySvXG4xrGLqlNMeEqm37nlA==
+X-Received: by 2002:a5d:48cf:: with SMTP id p15mr60128362wrs.277.1638980181213;
+        Wed, 08 Dec 2021 08:16:21 -0800 (PST)
+Received: from ?IPv6:2a01:e34:ed2f:f020:8ae8:ca1f:ff1a:a23d? ([2a01:e34:ed2f:f020:8ae8:ca1f:ff1a:a23d])
+        by smtp.googlemail.com with ESMTPSA id r83sm6322557wma.22.2021.12.08.08.16.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Dec 2021 08:16:20 -0800 (PST)
+Subject: Re: [PATCH v2 2/5] arm64: dts: rockchip: Add powerzones definition
+ for rock960
+To:     Rob Herring <robh@kernel.org>
+Cc:     arnd@linaro.org, heiko@sntech.de, ulf.hansson@linaro.org,
+        rjw@rjwysocki.net, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        lukasz.luba@arm.com, Robin Murphy <robin.murphy@arm.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Helen Koike <helen.koike@collabora.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        "moderated list:ARM/Rockchip SoC support" 
         <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        Wells Lu =?UTF-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Subject: Re: [PATCH v5 08/10] irqchip: Add Sunplus SP7021 interrupt controller driver
-In-Reply-To: <8fa00c3b55874e90b5baae1f84010997@cqplus1.com>
-References: <cover.1638515726.git.qinjian@cqplus1.com>
-        <e88ea4cf28ba69a41f6d1b4dd4128b82a6095c29.1638515726.git.qinjian@cqplus1.com>
-        <87r1ao23fp.wl-maz@kernel.org>
-        <39f9b853af7c44cb94421354744512a8@cqplus1.com>
-        <ce867937861df454823eb703bfd29256@kernel.org>
-        <8fa00c3b55874e90b5baae1f84010997@cqplus1.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: qinjian@cqplus1.com, robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, tglx@linutronix.de, p.zabel@pengutronix.de, linux@armlinux.org.uk, broonie@kernel.org, arnd@arndb.de, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, wells.lu@sunplus.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        "open list:ARM/Rockchip SoC support" 
+        <linux-rockchip@lists.infradead.org>
+References: <20211126181500.3404129-1-daniel.lezcano@linaro.org>
+ <20211126181500.3404129-2-daniel.lezcano@linaro.org>
+ <CAL_JsqK1tsOqUYrLkZCo95BC=AXwZxai947x41zYpeHbodvwFg@mail.gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <82ac88d2-5419-4c1f-e81a-154c65b39c1b@linaro.org>
+Date:   Wed, 8 Dec 2021 17:16:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <CAL_JsqK1tsOqUYrLkZCo95BC=AXwZxai947x41zYpeHbodvwFg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Dec 2021 09:28:42 +0000,
-"qinjian[=E8=A6=83=E5=81=A5]" <qinjian@cqplus1.com> wrote:
->=20
-> > -----Original Message-----
-> > From: Marc Zyngier <maz@kernel.org>
-> > Sent: Wednesday, December 8, 2021 3:45 PM
-> > To: qinjian[=E8=A6=83=E5=81=A5] <qinjian@cqplus1.com>
-> > Cc: robh+dt@kernel.org; mturquette@baylibre.com; sboyd@kernel.org; tglx=
-@linutronix.de; p.zabel@pengutronix.de;
-> > linux@armlinux.org.uk; broonie@kernel.org; arnd@arndb.de; linux-arm-ker=
-nel@lists.infradead.org; devicetree@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; linux-clk@vger.kernel.org; Wells Lu =E5=91=82=
-=E8=8A=B3=E9=A8=B0 <wells.lu@sunplus.com>
-> > Subject: Re: [PATCH v5 08/10] irqchip: Add Sunplus SP7021 interrupt con=
-troller driver
-> >=20
-> > On 2021-12-08 07:15, qinjian[=E8=A6=83=E5=81=A5] wrote:
-> > >> > +void sp_intc_set_ext(u32 hwirq, int ext_num)
-> > >> > +{
-> > >> > +	sp_intc_assign_bit(hwirq, REG_INTR_PRIORITY, !ext_num);
-> > >> > +}
-> > >> > +EXPORT_SYMBOL_GPL(sp_intc_set_ext);
-> > >>
-> > >> No way. We don't export random symbols without a good justification,
-> > >> and you didn't give any.
-> > >>
-> > >
-> > > This function called by SP7021 display driver to decide DISPLAY_IRQ
-> > > routing to which parent irq (EXT_INT0 or EXT_INT1).
-> >=20
-> > Based on what? How can a display driver decide which parent is
-> > appropriate? What improvement does this bring?
->=20
-> In default, all IRQ routing to EXT_INT0, which processed by CPU0
-> Some device's IRQ need low latency, like display, so routing
-> DISPLAY_IRQ to EXT_INT1, which processed by CPU1 (set
-> /proc/irq/<EXT_INT1>/smp_affinity_list)
 
-Why would that have a lower latency? What if CPU1 is busy with
-interrupts disabled most of the time? How does the display driver
-finds out what is better?
+Hi Rob,
 
-And if you really wanted a lower latency, why route the interrupt via
-a secondary interrupt controller, instead of attaching it directly to
-the upstream GIC?
+On 07/12/2021 19:41, Rob Herring wrote:
 
-I really don't think this is an acceptable thing to do. Configure the
-interrupt route statically if you want, but we're not exposing this
-sort of SoC-specific API to other drivers.
+[ ... ]
 
-	M.
+>>         thermal_zones: thermal-zones {
+>>                 cpu_thermal: cpu-thermal {
+>>                         polling-delay-passive = <100>;
+>> @@ -2027,6 +2050,8 @@ gpu: gpu@ff9a0000 {
+>>                 clocks = <&cru ACLK_GPU>;
+>>                 #cooling-cells = <2>;
+>>                 power-domains = <&power RK3399_PD_GPU>;
+>> +               #powerzone-cells = <0>;
+>> +               powerzone = <&PKG_PZ>;
+> 
+> Every CPU and the GPU are in the same powerzone. What is the point? Do
+> you really have to be told that CPUs and GPU are a source of heat and
+> might need to be limited?
 
---=20
-Without deviation from the norm, progress is not possible.
+A powerzone ==> can read power && set power limit
+
+Every CPU is a powerzone as well as the GPU.
+
+They are all grouped under PKG_PZ.
+
+That means we have:
+
+ pkg
+  |-- cpu0-3
+  |
+  |-- cpu4-7
+  |
+  `-- gpu
+
+We can read the power consumption of cpu0-3, cpu4-7 or gpu and set their
+power limit.
+
+We can read the power consumption of pkg (which is the sum of the power
+consumption of cpu0-3, cpu4-7 and gpu) and I can set the power limit
+which will ensure powerof(cpu0-3 + cpu4-7 + gpu) <= powerof(pkg).
+
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
