@@ -2,71 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B58646DB93
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 19:51:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C21046DB98
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 19:55:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239409AbhLHSzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 13:55:04 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:38900 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233006AbhLHSzE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 13:55:04 -0500
-Received: by mail-oi1-f180.google.com with SMTP id r26so5345669oiw.5;
-        Wed, 08 Dec 2021 10:51:32 -0800 (PST)
+        id S239425AbhLHS6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 13:58:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48138 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232216AbhLHS6e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 13:58:34 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BA46C061746;
+        Wed,  8 Dec 2021 10:55:02 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id x6so11657491edr.5;
+        Wed, 08 Dec 2021 10:55:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bnPHoPGFbiP7HW6F6zOKM0rgVaYMVXPavRbOAOjdXS4=;
+        b=YWUipWbNKn+WE4X1AJBFj6SdUdsfpJqfWH6KTGw7YQhc/rEDxoiDdvt28tCKJq22vt
+         ihppBznyw20mhvOswtn5Dp7/zLuf/4KdBBeQAEgpEAyS2bHI8Y3DQ2NmyoCy9pFrSL+g
+         jNJBapMSBkC6ewyy893GUlJMxa7MTJvW46aITAD2ItCH4DpwDGTO9T7/Nd4uXlcmqdjL
+         E186Psi3QOmIclSqydJjkygbITDeFwK1nGsWVZy1jgMol+rY6X72Nlp8FqmRHa4GkYdW
+         tAwOO+0UJfh6RIFAwQ3eNCs//f7aSI7tt9rzSYH9RjHHN+Mn5A9yXF8wKme2Z19xclgx
+         HOxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=DA206Skj/zOS4Jfg8GLV2jzG+Ni8Fuw90HwODp0h61E=;
-        b=NdXIKeyqcMt4qMJrOBJc1z8DXaWKATPD63EK0yqrJKIGajv6DlU5iJTpFoOocD24eI
-         MlxFrCEQjEKd6/JIIS6KlivUQWCGG9ie7tWuuhiUdePhotmdhAyp2ftIH1eWsQQfETvO
-         jjWGjbc/77w+1h9NIAJA5vUM1RMulPruKAXxh54boNxuZkvaXEt+sXhc0X/Ki8cpss4t
-         fe8ycmDv6/NJZCbV84IsTXlNUbESgW1cJFUJhbzUp4H2dZlD1Zm40c8CycYOYMAEeGsj
-         5TkYusvDNb6qIy8pAd9fKSHAQhMq6PYqm44sSooNzT7rRM6QHCT7EjPgngJTld4VTrBV
-         Ajjg==
-X-Gm-Message-State: AOAM5308zAJqk5ad7l67nUzICq8tHigmRutJv2NnNsu+dHeaXpkOVLvr
-        oGxrY4FTql8F5F9BoRL2RaVSQV3C+g==
-X-Google-Smtp-Source: ABdhPJyloECLmJdVsA+9Pm32hGNPi6Qteyx6HkJDDB2ngniyWXNjz9UXihx+YUz5y4IBeg3ycKRUWQ==
-X-Received: by 2002:a54:4494:: with SMTP id v20mr1320403oiv.95.1638989492068;
-        Wed, 08 Dec 2021 10:51:32 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q44sm632245otv.80.2021.12.08.10.51.31
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bnPHoPGFbiP7HW6F6zOKM0rgVaYMVXPavRbOAOjdXS4=;
+        b=S3yw32OHU3J/xobk3BKjcN/lAO42rOuX45pM/zuRcFr8kyw37nOwqz2G5Ilo9BbUCl
+         Wp1KJu+O8uYqZbkdkXbWzvYgLqdc1OJ27YdvdZw6ug7LvZIgR+ITpu5i/42kZ5KlWFBy
+         KYOT5ScvDCJvTmt8zYXFqCwrOH3vXnsG5odt61/rrE5kn4cFcmmnZ9yxPoiROUt9lE4z
+         l41ELp6kUtCiNdQB+ci2NCWtcnEHbACyK4iXuBOHho8tCuLd5DoWYVGgAVNgirxmXQak
+         B8cTmBN8VU7DQ+YvELBrhCx8ZaYR7hcDr3J82ucv+WradSg9iN3NSXybI+NG4wTb8PD7
+         TNpw==
+X-Gm-Message-State: AOAM533ZC+j/qscRq/mEPjXNfNFrrLoNRlNg4FKkNU+Blz5cVIgSF1vO
+        MpmFnBO2hGISw/CiTcRp0Jc=
+X-Google-Smtp-Source: ABdhPJznVmQ3VvZ89Mh6gdPWTlgjs19404uNVgYQF8HGSOYkSiNmrgRb9fWkKB9AG0atjUTx1+KUog==
+X-Received: by 2002:a17:907:7ba8:: with SMTP id ne40mr9599335ejc.391.1638989701002;
+        Wed, 08 Dec 2021 10:55:01 -0800 (PST)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id g18sm1862273ejt.36.2021.12.08.10.55.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 10:51:31 -0800 (PST)
-Received: (nullmailer pid 137568 invoked by uid 1000);
-        Wed, 08 Dec 2021 18:51:30 -0000
-Date:   Wed, 8 Dec 2021 12:51:30 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Wed, 08 Dec 2021 10:55:00 -0800 (PST)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, kishon@ti.com, vkoul@kernel.org,
+        p.zabel@pengutronix.de, yifeng.zhao@rock-chips.com,
+        kever.yang@rock-chips.com, cl@rock-chips.com,
+        linux-phy@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: arm: pmu: Document Denver and Carmel
- PMUs
-Message-ID: <YbD+suEe7J+Nft0H@robh.at.kernel.org>
-References: <20211207150746.444478-1-thierry.reding@gmail.com>
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [RFC PATCH v4 0/4] Add Naneng combo PHY support for RK3568
+Date:   Wed,  8 Dec 2021 19:54:45 +0100
+Message-Id: <20211208185449.16763-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211207150746.444478-1-thierry.reding@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 07 Dec 2021 16:07:44 +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Add compatible strings for the NVIDIA Denver and Carmel PMUs.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  Documentation/devicetree/bindings/arm/pmu.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+This phy can be used as pcie-phy, usb3-phy, sata-phy or sgmii-phy.
 
-Given the other compatible string additions I picked up, I applied this 
-one too.
+=============================================
 
-Rob
+Changed V4 by Johan Jonker:
+  TEST COMPILED ONLY!
+  Driver not verified with hardware!
+  Produced in the hope that we can get some review progress
+  with this serie for the documents and driver.
+  Use at your own risk!
+
+  restyle
+  add devm_reset_control_array_get()
+  remove clk structure
+  change refclk DT parse
+  change dev_err message
+  add dot to phrase
+  add ext_refclk variable
+  add enable_ssc variable
+  rename rockchip_combphy_param_write
+  remove param_read
+  replace rockchip-naneng-combphy driver name
+
+  rename node name
+  remove reset-names
+  move #phy-cells
+  add rockchip,rk3568-pipe-grf
+  add rockchip,rk3568-pipe-phy-grf
+
+=============================================
+
+Changes V3:
+  Using api devm_reset_control_get_optional_exclusive and dev_err_probe
+  Remove apb_rst
+  Redefine registers address
+  Move pipe_phy_grf0 to rk3568.dtsi
+
+Changes V2:
+  Fix dtschema/dtc warnings/errors
+  Using api devm_platform_get_and_ioremap_resource.
+  Modify rockchip_combphy_set_Mode.
+  Add some PHY registers definition.
+  Move phy0 to rk3568.dtsi
+
+Johan Jonker (1):
+  dt-bindings: mfd: syscon: add naneng combo phy register compatible
+
+Yifeng Zhao (3):
+  dt-bindings: phy: rockchip: Add Naneng combo PHY bindings
+  phy: rockchip: add naneng combo phy for RK3568
+  arm64: dts: rockchip: add naneng combo phy nodes for rk3568
+
+ .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+ .../phy/phy-rockchip-naneng-combphy.yaml      | 127 ++++
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  21 +
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  47 ++
+ drivers/phy/rockchip/Kconfig                  |   8 +
+ drivers/phy/rockchip/Makefile                 |   1 +
+ .../rockchip/phy-rockchip-naneng-combphy.c    | 608 ++++++++++++++++++
+ 7 files changed, 814 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml
+ create mode 100644 drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+
+-- 
+2.20.1
+
