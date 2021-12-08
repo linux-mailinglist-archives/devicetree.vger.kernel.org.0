@@ -2,103 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8671046D497
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 14:44:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFED646D4C4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 14:48:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234533AbhLHNsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 08:48:07 -0500
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:35698 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbhLHNsF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 08:48:05 -0500
-Received: by mail-oi1-f170.google.com with SMTP id m6so4216376oim.2;
-        Wed, 08 Dec 2021 05:44:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=2FBGOv0PegNkvtOMGaZYa1BsopYp6ezUI2k+MFWsRkg=;
-        b=nlLsGUpnHCqMAlLAFSY375HXjgICUEj8obcHsY6kaZ/Vx+bKE12600ErleFCALgEZ1
-         +bUxXf4Tk7NNWbuQABWIQjahI+C9wO63fdkBdxirPwT4W2yNk7ArWv55BUOb1eOG07gM
-         XJmVgmfu1I05eBUc3TOUawO4+aZDEXn5bGESflCZk39MnxZN1etnF87AV679kj0zAv2v
-         jCijUWqgeICL5YH+EezRhrnlX2LTRd0rzR7Ad3rrkrX0bPoieujVJq4p5D1ZlqLu4SLu
-         RWDDKqjlh3wlaBJM9mXsHhKvyv/xIUYqDD5uSmMPehvEstDSyG0cenyvGa3FQAA2rHJl
-         XbIg==
-X-Gm-Message-State: AOAM531+hYRQ6sn3rbnOo2Wa8YMBO1PwHNnvdNNzCKTMvGCEc95rbhCi
-        Kg5taQ2oO7Li62HVJ1Eu9dWkitZCQw==
-X-Google-Smtp-Source: ABdhPJy4QOKFBXVt9kjHp3l6spBp74LPhwun2A8oRCnVjLpYafUk8Begm5tyq5EWMDExu9pfz3il7Q==
-X-Received: by 2002:a54:4402:: with SMTP id k2mr11425020oiw.141.1638971072200;
-        Wed, 08 Dec 2021 05:44:32 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 109sm477713otv.30.2021.12.08.05.44.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 05:44:31 -0800 (PST)
-Received: (nullmailer pid 3857740 invoked by uid 1000);
-        Wed, 08 Dec 2021 13:44:28 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Biao Huang <biao.huang@mediatek.com>
-Cc:     Jose Abreu <joabreu@synopsys.com>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, macpaul.lin@mediatek.com,
-        netdev@vger.kernel.org, angelogioacchino.delregno@collabora.com,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        devicetree@vger.kernel.org,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
-        srv_heupstream@mediatek.com, dkirjanov@suse.de,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>
-In-Reply-To: <20211208054716.603-5-biao.huang@mediatek.com>
-References: <20211208054716.603-1-biao.huang@mediatek.com> <20211208054716.603-5-biao.huang@mediatek.com>
-Subject: Re: [PATCH net-next v7 4/6] net: dt-bindings: dwmac: Convert mediatek-dwmac to DT schema
-Date:   Wed, 08 Dec 2021 07:44:28 -0600
-Message-Id: <1638971068.792969.3857739.nullmailer@robh.at.kernel.org>
+        id S232511AbhLHNv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 08:51:59 -0500
+Received: from comms.puri.sm ([159.203.221.185]:40606 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232823AbhLHNv7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Dec 2021 08:51:59 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 453BADF33E;
+        Wed,  8 Dec 2021 05:47:57 -0800 (PST)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id l-SkG54PBIr2; Wed,  8 Dec 2021 05:47:56 -0800 (PST)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     l.stach@pengutronix.de
+Cc:     aford173@gmail.com, devicetree@vger.kernel.org, festevam@gmail.com,
+        frieder.schrempf@kontron.de, kernel@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        marex@denx.de, patchwork-lst@pengutronix.de, robh@kernel.org,
+        shawnguo@kernel.org, tharvey@gateworks.com,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Subject: [PATCH] hack: soc: imx: gpcv2: avoid unbalanced powering off of one device
+Date:   Wed,  8 Dec 2021 14:47:25 +0100
+Message-Id: <20211208134725.3328030-1-martin.kepplinger@puri.sm>
+In-Reply-To: <20211002005954.1367653-8-l.stach@pengutronix.de>
+References: <20211002005954.1367653-8-l.stach@pengutronix.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Dec 2021 13:47:14 +0800, Biao Huang wrote:
-> Convert mediatek-dwmac to DT schema, and delete old mediatek-dwmac.txt.
-> And there are some changes in .yaml than .txt, others almost keep the same:
->   1. compatible "const: snps,dwmac-4.20".
->   2. delete "snps,reset-active-low;" in example, since driver remove this
->      property long ago.
->   3. add "snps,reset-delay-us = <0 10000 10000>" in example.
->   4. the example is for rgmii interface, keep related properties only.
-> 
-> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
-> ---
->  .../bindings/net/mediatek-dwmac.txt           |  91 ----------
->  .../bindings/net/mediatek-dwmac.yaml          | 156 ++++++++++++++++++
->  2 files changed, 156 insertions(+), 91 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.txt
->  create mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-> 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Hi Lucas,
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+I've posted this hack with a report here a few days back:
+https://lore.kernel.org/linux-arm-kernel/20211122115145.177196-1-martin.kepplinger@puri.sm/
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1565082
+But now that I see these suspend/resume callback additions things
+again go wrong on my imx8mq system.
+
+With a v5.16-rc4 based tree and printing on regulator enable/disable,
+system suspend + resume looks like so:
+
+[   47.559681] imx-pgc imx-pgc-domain.5: enable
+[   47.584679] imx-pgc imx-pgc-domain.0: disable
+[   47.646592] imx-pgc imx-pgc-domain.5: disable
+[   47.823627] imx-pgc imx-pgc-domain.5: enable
+[   47.994805] imx-pgc imx-pgc-domain.5: disable
+[   48.664018] imx-pgc imx-pgc-domain.5: enable
+[   48.805828] imx-pgc imx-pgc-domain.5: disable
+[   49.909579] imx-pgc imx-pgc-domain.6: enable
+[   50.013079] imx-pgc imx-pgc-domain.6: failed to enable regulator: -110
+[   50.013686] imx-pgc imx-pgc-domain.5: enable
+[   50.120224] imx-pgc imx-pgc-domain.5: failed to enable regulator: -110
+[   50.120324] imx-pgc imx-pgc-domain.0: enable
+[   53.703468] imx-pgc imx-pgc-domain.0: disable
+[   53.746368] imx-pgc imx-pgc-domain.5: disable
+[   53.754452] imx-pgc imx-pgc-domain.5: failed to disable regulator: -5
+[   53.765045] imx-pgc imx-pgc-domain.6: disable
+[   53.822269] imx-pgc imx-pgc-domain.6: failed to disable regulator: -5
 
 
-ethernet@1101c000: clock-names: ['axi', 'apb', 'mac_main', 'ptp_ref'] is too short
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+But my main point is that the situation is a bit hard to understand
+right now. when transitioning to system suspend we expect (if disabled)
+enable+disable to happen, right? and after resuming: enable (+ runtime disable).
+Makes sense functinally, but I wonder if we could implement it a bit clearer?
 
-ethernet@1101c000: clocks: [[27, 34], [27, 37], [6, 154], [6, 155]] is too short
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+Anyway I'm also not sure whether imx8mq might be different than your
+imx8mm system.
 
-ethernet@1101c000: compatible: ['mediatek,mt2712-gmac'] does not contain items matching the given schema
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+When I revert your one patch and add my hack below again, things
+work again and the system resumes without errors.
 
-ethernet@1101c000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+Can you imagine what might be missing here?
 
-ethernet@1101c000: Unevaluated properties are not allowed ('compatible', 'reg', 'interrupts', 'interrupt-names', 'mac-address', 'clock-names', 'clocks', 'power-domains', 'snps,axi-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,txpbl', 'snps,rxpbl', 'clk_csr', 'phy-mode', 'phy-handle', 'snps,reset-gpio', 'mdio' were unexpected)
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+thanks a lot for working on this!
+
+                               martin
+---
+ drivers/soc/imx/gpcv2.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+index 07610bf87854..898886c9d799 100644
+--- a/drivers/soc/imx/gpcv2.c
++++ b/drivers/soc/imx/gpcv2.c
+@@ -319,6 +319,9 @@ static int imx_pgc_power_down(struct generic_pm_domain *genpd)
+ 	u32 reg_val, pgc;
+ 	int ret;
+ 
++	if (pm_runtime_suspended(domain->dev))
++		return 0;
++
+ 	/* Enable reset clocks for all devices in the domain */
+ 	if (!domain->keep_clocks) {
+ 		ret = clk_bulk_prepare_enable(domain->num_clks, domain->clks);
+-- 
+2.30.2
 
