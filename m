@@ -2,90 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B92346D957
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 18:13:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB9E846D95C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 18:14:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234597AbhLHRRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 12:17:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52140 "EHLO
+        id S234579AbhLHRSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 12:18:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234579AbhLHRRT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 12:17:19 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AAB0C061746;
-        Wed,  8 Dec 2021 09:13:47 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 64C7DB821DC;
-        Wed,  8 Dec 2021 17:13:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63ACAC00446;
-        Wed,  8 Dec 2021 17:13:41 +0000 (UTC)
-Date:   Wed, 8 Dec 2021 17:13:38 +0000
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
-        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
-        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S237658AbhLHRSU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 12:18:20 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEDFDC0617A2
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 09:14:47 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id k37so6961457lfv.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 09:14:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=y5DqbsAczzIDbPjb8Q5k9xE5iuuwEbj+RJ3i6IjnaB0=;
+        b=MpXwQTluI1THfP0K3jQ8aG7sz9yjvYEm0DF2Oa1EreGb+6TA6HraO0gxv3OfVhwa5D
+         eDVzi1TrLwrzYZouGqvSTSdbCKPI915q3PGf51k4xrj7lxBbpp7x80jwW9W5UJOs6PUg
+         DbFV5B1GXgK/2s38+XC/cdxYM4DGmN3hebL5XTlEB77o/p3HmVI71OwXvShPPzQBJ+Pj
+         b10rDQSUEsImvz4Lu/JLa2dTHcQFsyifmd8YWxaqi/pw7+7xRZrt6GONLhasd6a/vJOr
+         MRzZQES1WJcajLnMx4bl1B7Ck7wNSNWS3yh30Bf0cID3ZWtRaVzEuhCpkvnIcGP2mE3x
+         xzDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=y5DqbsAczzIDbPjb8Q5k9xE5iuuwEbj+RJ3i6IjnaB0=;
+        b=b5vNaqotXTwnrdMqChTx01rl42HU3g+xYvq2YPl3v/CnJ2aqNRTnj/81Lj1+nu40ZZ
+         YCSzyXj1u/EzfrL0GNFiUO1AQO+7k3ElfhqClmRBFHO4xYy4HkoMgAEAxIu1serXmuQW
+         XQ2hBImTx3pLMt0bZks86LuKNQ/++kOpmGjO1b2O3Qj1XoCnyAz6XoKf4+E1cqqFaK2B
+         m7AAS0UFW71738/nHbEBEBsTXtLT4R1Aahmu8a76qmDHS4Fbxnx1e5fVMBdIFKTNHwjx
+         XYbiZ/707sxR/TJo8h91ywFJ+0RhfJbXRoqhHk0aRD5jdCOeL/CrmN0CFG/Am2g4es87
+         CycA==
+X-Gm-Message-State: AOAM5309a/mxqoeAqNGxjTt9KnQZ4zOsrjUZL8EdbC+T7+cvkzQ5vXjF
+        DKjOUb/5ToWwQ38ZLhMSWLN/gw==
+X-Google-Smtp-Source: ABdhPJwNddYOmUQWWSCyrFz4mrMmtkHCl4efTtefvONi9p1mMLG0kQrDAh7KuusRm3WeD01Fr3TnVA==
+X-Received: by 2002:a19:4f02:: with SMTP id d2mr655934lfb.547.1638983686032;
+        Wed, 08 Dec 2021 09:14:46 -0800 (PST)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id t9sm307213lfe.88.2021.12.08.09.14.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Dec 2021 09:14:45 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-Subject: Re: [PATCH v16 00/11] support reserving crashkernel above 4G on
- arm64 kdump
-Message-ID: <YbDnwol20HrRl4uL@arm.com>
-References: <20211123124646.1995-1-thunder.leizhen@huawei.com>
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: [PATCH v2 00/10] qcom: add support for PCIe0 on SM8450 platform
+Date:   Wed,  8 Dec 2021 20:14:32 +0300
+Message-Id: <20211208171442.1327689-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211123124646.1995-1-thunder.leizhen@huawei.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 23, 2021 at 08:46:35PM +0800, Zhen Lei wrote:
-> Chen Zhou (10):
->   x86: kdump: replace the hard-coded alignment with macro CRASH_ALIGN
->   x86: kdump: make the lower bound of crash kernel reservation
->     consistent
->   x86: kdump: use macro CRASH_ADDR_LOW_MAX in functions
->     reserve_crashkernel()
->   x86: kdump: move xen_pv_domain() check and insert_resource() to
->     setup_arch()
->   x86: kdump: move reserve_crashkernel[_low]() into crash_core.c
->   arm64: kdump: introduce some macros for crash kernel reservation
->   arm64: kdump: reimplement crashkernel=X
->   x86, arm64: Add ARCH_WANT_RESERVE_CRASH_KERNEL config
->   of: fdt: Add memory for devices by DT property
->     "linux,usable-memory-range"
->   kdump: update Documentation about crashkernel
-> 
-> Zhen Lei (1):
->   of: fdt: Aggregate the processing of "linux,usable-memory-range"
+There are two different PCIe controllers and PHYs on SM8450, one having
+one lane and another with two lanes. This set of patches adds support
+for the first PCIe phy and controller only, support for the second PCIe
+part will come later.
 
-Apart from a minor comment I made on patch 8 and some comments from Rob
-that need addressing, the rest looks fine to me.
+Changes since v1:
+ - Fix capitalization/wording of PCI patch subjects
+ - Add missing gen3x1 specification to PHY table names
 
-Ingo stated in the past that he's happy to ack the x86 changes as long
-as there's no functional change (and that's the case AFAICT). Ingo, does
-your conditional ack still stand?
+----------------------------------------------------------------
+Dmitry Baryshkov (10):
+      dt-bindings: pci: qcom: Document PCIe bindings for SM8450
+      dt-bindings: phy: qcom,qmp: Add SM8450 PCIe PHY bindings
+      phy: qcom-qmp: Add SM8450 PCIe0 PHY support
+      PCI: qcom: Remove redundancy between qcom_pcie and qcom_pcie_cfg
+      PCI: qcom: Add ddrss_sf_tbu flag
+      PCI: qcom: Add SM8450 PCIe support
+      arm64: dts: qcom: sm8450: add PCIe0 PHY node
+      arm64: dts: qcom: sm8450: add PCIe0 RC device
+      arm64: dts: qcom: sm8450-qrd: enable PCIe0 PHY device
+      arm64: dts: qcom: sm8450-qrd: enable PCIe0 host
 
-In terms of merging, I'm happy to take it all through the arm64 tree
-with acks from the x86 maintainers. Alternatively, with the change I
-mentioned for patch 8, the first 5 patches could be queued via the tip
-tree on a stable branch and I can base the rest of the arm64 on top.
+ .../devicetree/bindings/pci/qcom,pcie.txt          |  21 ++-
+ .../devicetree/bindings/phy/qcom,qmp-phy.yaml      |   2 +
+ arch/arm64/boot/dts/qcom/sm8450-qrd.dts            |  14 ++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 143 ++++++++++++++++++++-
+ drivers/pci/controller/dwc/pcie-qcom.c             |  89 ++++++++-----
+ drivers/phy/qualcomm/phy-qcom-qmp.c                | 125 ++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp.h                |  33 +++++
+ 7 files changed, 389 insertions(+), 38 deletions(-)
 
-Thomas, Ingo, Peter, any preference?
 
-Thanks.
-
--- 
-Catalin
