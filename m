@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC0F046D69E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 16:13:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA6D646D6A2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 16:13:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235805AbhLHPQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 10:16:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51958 "EHLO
+        id S235810AbhLHPQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 10:16:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235807AbhLHPQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 10:16:45 -0500
+        with ESMTP id S235756AbhLHPQq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 10:16:46 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EB39C0617A1
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 07:13:13 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE7AC061A32
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 07:13:14 -0800 (PST)
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1muyco-0004UV-KI; Wed, 08 Dec 2021 16:12:54 +0100
+        id 1muyck-0004UW-7E; Wed, 08 Dec 2021 16:12:50 +0100
 Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1muycd-00FVZX-2Q; Wed, 08 Dec 2021 16:12:43 +0100
+        id 1muycd-00FVZa-31; Wed, 08 Dec 2021 16:12:43 +0100
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -33,9 +33,9 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
         Peter Geis <pgwipeout@gmail.com>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH 10/18] dt-bindings: display: rockchip: Add binding for VOP2
-Date:   Wed,  8 Dec 2021 16:12:22 +0100
-Message-Id: <20211208151230.3695378-11-s.hauer@pengutronix.de>
+Subject: [PATCH 11/18] arm64: dts: rockchip: rk356x: Add VOP2 nodes
+Date:   Wed,  8 Dec 2021 16:12:23 +0100
+Message-Id: <20211208151230.3695378-12-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20211208151230.3695378-1-s.hauer@pengutronix.de>
 References: <20211208151230.3695378-1-s.hauer@pengutronix.de>
@@ -49,140 +49,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The VOP2 is found on newer Rockchip SoCs like the rk3568 or the rk3566.
-The binding differs slightly from the existing VOP binding, so add a new
-binding file for it.
+The VOP2 is the display output controller on the RK3568. Add the node
+for it to the dtsi file along with the required display-subsystem node
+and the iommu node.
 
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
- .../display/rockchip/rockchip-vop2.yaml       | 118 ++++++++++++++++++
- 1 file changed, 118 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+ arch/arm64/boot/dts/rockchip/rk3566.dtsi |  4 ++
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi |  4 ++
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi | 51 ++++++++++++++++++++++++
+ include/dt-bindings/soc/rockchip,vop2.h  | 14 +++++++
+ 4 files changed, 73 insertions(+)
+ create mode 100644 include/dt-bindings/soc/rockchip,vop2.h
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566.dtsi b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+index 3839eef5e4f76..595fa2562cb8e 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+@@ -18,3 +18,7 @@ power-domain@RK3568_PD_PIPE {
+ 		#power-domain-cells = <0>;
+ 	};
+ };
++
++&vop {
++	compatible = "rockchip,rk3566-vop";
++};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+index 2fd313a295f8a..1e55efb6fcfde 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+@@ -95,3 +95,7 @@ power-domain@RK3568_PD_PIPE {
+ 		#power-domain-cells = <0>;
+ 	};
+ };
++
++&vop {
++	compatible = "rockchip,rk3568-vop";
++};
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+index 46d9552f60284..3c1e65e851023 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -10,6 +10,7 @@
+ #include <dt-bindings/pinctrl/rockchip.h>
+ #include <dt-bindings/power/rk3568-power.h>
+ #include <dt-bindings/soc/rockchip,boot-mode.h>
++#include <dt-bindings/soc/rockchip,vop2.h>
+ #include <dt-bindings/thermal/thermal.h>
+ 
+ / {
+@@ -125,6 +126,11 @@ opp-1800000000 {
+ 		};
+ 	};
+ 
++	display_subsystem: display-subsystem {
++		compatible = "rockchip,display-subsystem";
++		ports = <&vop_out>;
++	};
++
+ 	firmware {
+ 		scmi: scmi {
+ 			compatible = "arm,scmi-smc";
+@@ -447,6 +453,51 @@ gmac1_mtl_tx_setup: tx-queues-config {
+ 		};
+ 	};
+ 
++	vop: vop@fe040000 {
++		reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
++		reg-names = "regs", "gamma_lut";
++		interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>, <&cru DCLK_VOP0>, <&cru DCLK_VOP1>, <&cru DCLK_VOP2>;
++		clock-names = "aclk_vop", "hclk_vop", "dclk_vp0", "dclk_vp1", "dclk_vp2";
++		iommus = <&vop_mmu>;
++		power-domains = <&power RK3568_PD_VO>;
++		rockchip,grf = <&grf>;
++		status = "disabled";
++
++		vop_out: ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			vp0: port@0 {
++				reg = <0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
++
++			vp1: port@1 {
++				reg = <1>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
++
++			vp2: port@2 {
++				reg = <2>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
++		};
++	};
++
++	vop_mmu: iommu@fe043e00 {
++		compatible = "rockchip,rk3568-iommu";
++		reg = <0x0 0xfe043e00 0x0 0x100>, <0x0 0xfe043f00 0x0 0x100>;
++		interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>;
++		clock-names = "aclk", "iface";
++		#iommu-cells = <0>;
++		status = "disabled";
++	};
++
+ 	qos_gpu: qos@fe128000 {
+ 		compatible = "rockchip,rk3568-qos", "syscon";
+ 		reg = <0x0 0xfe128000 0x0 0x20>;
+diff --git a/include/dt-bindings/soc/rockchip,vop2.h b/include/dt-bindings/soc/rockchip,vop2.h
 new file mode 100644
-index 0000000000000..6533c4ae4ec3a
+index 0000000000000..0a87bc90564a7
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-@@ -0,0 +1,118 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/rockchip/rockchip-vop2.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/include/dt-bindings/soc/rockchip,vop2.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
 +
-+title: Rockchip SoC display controller (VOP2)
++#ifndef __DT_BINDINGS_ROCKCHIP_VOP2_H
++#define __DT_BINDINGS_ROCKCHIP_VOP2_H
 +
-+description:
-+  VOP2 (Video Output Processor v2) is the display controller for the Rockchip
-+  series of SoCs which transfers the image data from a video memory
-+  buffer to an external LCD interface.
++#define RK3568_VOP2_EP_RGB	0
++#define RK3568_VOP2_EP_HDMI	1
++#define RK3568_VOP2_EP_EDP	2
++#define RK3568_VOP2_EP_MIPI0	3
++#define RK3568_VOP2_EP_LVDS0	4
++#define RK3568_VOP2_EP_MIPI1	5
++#define RK3568_VOP2_EP_LVDS1	6
 +
-+maintainers:
-+  - Sandy Huang <hjc@rock-chips.com>
-+  - Heiko Stuebner <heiko@sntech.de>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - rockchip,rk3566-vop
-+      - rockchip,rk3568-vop
-+
-+  reg:
-+    minItems: 1
-+    items:
-+      - description:
-+          Must contain one entry corresponding to the base address and length
-+          of the register space.
-+      - description:
-+          Can optionally contain a second entry corresponding to
-+          the CRTC gamma LUT address.
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      The VOP interrupt is shared by several interrupt sources, such as
-+      frame start (VSYNC), line flag and other status interrupts.
-+
-+  clocks:
-+    items:
-+      - description: Clock for ddr buffer transfer.
-+      - description: Clock for the ahb bus to R/W the phy regs.
-+      - description: Pixel clock for video port 0.
-+      - description: Pixel clock for video port 1.
-+      - description: Pixel clock for video port 2.
-+
-+  clock-names:
-+    items:
-+      - const: aclk_vop
-+      - const: hclk_vop
-+      - const: dclk_vp0
-+      - const: dclk_vp1
-+      - const: dclk_vp2
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+
-+  assigned-clocks:
-+    maxItems: 2
-+
-+  assigned-clock-rates:
-+    maxItems: 2
-+
-+  iommus:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+        #include <dt-bindings/clock/rk3568-cru.h>
-+        #include <dt-bindings/interrupt-controller/arm-gic.h>
-+        #include <dt-bindings/power/rk3568-power.h>
-+        bus {
-+            #address-cells = <2>;
-+            #size-cells = <2>;
-+            vop: vop@fe040000 {
-+                compatible = "rockchip,rk3568-vop";
-+                reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
-+                interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+                clocks = <&cru ACLK_VOP>,
-+                         <&cru HCLK_VOP>,
-+                         <&cru DCLK_VOP0>,
-+                         <&cru DCLK_VOP1>,
-+                         <&cru DCLK_VOP2>;
-+                clock-names = "aclk_vop",
-+                              "hclk_vop",
-+                              "dclk_vp0",
-+                              "dclk_vp1",
-+                              "dclk_vp2";
-+                power-domains = <&power RK3568_PD_VO>;
-+                iommus = <&vop_mmu>;
-+                vop_out: port {
-+                    #address-cells = <1>;
-+                    #size-cells = <0>;
-+                    vp0_out_dsi0: endpoint@0 {
-+                        reg = <0>;
-+                        remote-endpoint = <&dsi0_in_vp0>;
-+                    };
-+                    vp0_out_hdmi: endpoint@1 {
-+                        reg = <1>;
-+                        remote-endpoint = <&hdmi0_in_vp0>;
-+                    };
-+                };
-+            };
-+        };
++#endif /* __DT_BINDINGS_ROCKCHIP_VOP2_H */
 -- 
 2.30.2
 
