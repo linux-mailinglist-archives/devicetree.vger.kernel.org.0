@@ -2,71 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6425D46DDAF
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 22:37:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3ED846DDB8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 22:39:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238234AbhLHVkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 16:40:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56946 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237354AbhLHVkt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 16:40:49 -0500
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34FF6C061746
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 13:37:17 -0800 (PST)
-Received: from hatter.bewilderbeest.net (174-21-184-96.tukw.qwest.net [174.21.184.96])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        id S237398AbhLHVnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 16:43:16 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:54044 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234333AbhLHVnP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 16:43:15 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 715D072A;
-        Wed,  8 Dec 2021 13:37:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1638999436;
-        bh=DLYbN0BwJINAopqXYHsMVrIfzEfDIDq+91j/Sj5/ryo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Q0rc554wzqolxE3STaPq6ZFtZkTTLpPZZbiuemNsTTH3GEYR0bm0uEDhRuKaPZ7vK
-         4UCNMMc51KZUWcDFnrSqlFb0Ir3ZlRqGPdqZdC+QA58RYkWLfXrvLB08ILVyhi25QK
-         nQD5lFE7qjmfL8X73ogBQ81yQ4yTw+r1i97zjtnA=
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     linux-hwmon@vger.kernel.org
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>, openbmc@lists.ozlabs.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Zev Weiss <zev@bewilderbeest.net>
-Subject: [PATCH v4 2/2] dt-bindings: add Delta AHE-50DC fan control module
-Date:   Wed,  8 Dec 2021 13:37:03 -0800
-Message-Id: <20211208213703.2577-3-zev@bewilderbeest.net>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211208213703.2577-1-zev@bewilderbeest.net>
-References: <20211208213703.2577-1-zev@bewilderbeest.net>
+        by ams.source.kernel.org (Postfix) with ESMTPS id A3047B822DB;
+        Wed,  8 Dec 2021 21:39:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20650C00446;
+        Wed,  8 Dec 2021 21:39:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638999581;
+        bh=7FUEvofvc+6QUUkmMfaiQ+4CgoHOoxX7tWRkFyorGD0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=tHhT784ShmUxmZ+qnUE0EbLPO0qwghx/66ELcHb1a5eXlSiN8uK1bt7tvf4OgdafN
+         IJE8fJY83R1jkd9mtE+AfslhLVCe2CEgKf2Vl0HagLYbf6whNc1IotfIShtotKOJq1
+         ab6SXCpTD8dsgC+4UAKCEA/4eGeUZvRrre42Dp0CSG5jumdVU7W26f16v01/5Hbnyv
+         tu6RPygqNOFq+U4NReQGVFSHLLHH6lN29Q4uYY+LKEqCAAcpuVTletXQUD/RxvBGPR
+         TYdHe5hcV7vLfPpIbz0ABBdF6GR8FTC5QpJSAykeQFwcKhGaLwy+mxt2giaIAgsO/l
+         th8wXLLyi3Z9w==
+Date:   Wed, 8 Dec 2021 13:39:40 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Joseph CHANG <josright123@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/2] *** ADD DM9051 NET DEVICE ***
+Message-ID: <20211208133940.3c152e4f@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20211202204656.4411-1-josright123@gmail.com>
+References: <20211202204656.4411-1-josright123@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is the integrated fan control module of the Delta AHE-50DC Open19
-power shelf.
+On Fri,  3 Dec 2021 04:46:54 +0800 Joseph CHANG wrote:
+> *** DM9051 is a SPI interface ethernet controller chip ***
+> *** For a embedded Linux device to construct an ethernet port ***
+> *** Fewer CPU interface pins is its advantage comapre to DM9000 ***
+> *** It need only cs / mosi / miso / clock and an interrupt pin ***
 
-Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+No need for the *** markings in the subject and message body.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 791079021f1b..1c43cc91f804 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -73,6 +73,8 @@ properties:
-           - dallas,ds4510
-             # Digital Thermometer and Thermostat
-           - dallas,ds75
-+            # Delta AHE-50DC Open19 power shelf fan control module
-+          - delta,ahe50dc-fan
-             # Delta Electronics DPS-650-AB power supply
-           - delta,dps650ab
-           # Delta Electronics DPS920AB 920W 54V Power Supply
--- 
-2.34.1
-
+Please make sure to fix the dates on the patches, they are two weeks 
+in the future.
