@@ -2,217 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8302C46C958
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 01:39:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0920F46C98C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 01:46:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234302AbhLHAmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 19:42:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49014 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242978AbhLHAmH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 19:42:07 -0500
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33398C061D60;
-        Tue,  7 Dec 2021 16:38:25 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id y8so435197plg.1;
-        Tue, 07 Dec 2021 16:38:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=JUJ+46P2lZKqa9GcjTNExLZ59H82MAk46ZsUw+ykybM=;
-        b=kQ0dGckuvSlzfYtts51242F5CMsaON2/XWosifujj1OMevtvE8s8o+x2hEmyqjR296
-         Rjo8XuMSfhfnNDstj9x5usYa45ihtX+adV+5Pa4VEDUceF1kS22LYEM4ntE86YdxyFcu
-         NvAE38uaWoOH1b50xOQgJ0B/iK4/DE6Kgagwgh1hF09m6qCgpR6c+qBigjztEEDtQstm
-         j6ujntMmtpLHaJCjrd7XkgJvZldlYqvqGUtw/71SPXAD/cujUmMav3y9gpQsPSah/lqZ
-         yp27+NOYeTenDiIYk2izEbfGLyFHrZriZmjY0ZWghbmeSZlQKTslVxSWFSLxND0sXaPs
-         g8Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=JUJ+46P2lZKqa9GcjTNExLZ59H82MAk46ZsUw+ykybM=;
-        b=nPj6y7YW8as83Pf7zs/sJoTPQCzUjr/IuDAi8V/I5H0/bhnmM5NulxMZgeLGgezn9u
-         xtUps364jIf5+MkdAVduR4s8psr0D6BQKLUlAZZ6ZUY6us5/QgSX9lt6sgVgPMiTeaC3
-         fT8NSTl7FonwHhuw39tx7hJCGVfVUsYpWndjNd/ak4bNB197Tard8cb1PZPjxWqjrFCs
-         Yi6M8F9WoAY2afPEXn/guCEjitsLgOWqOHA/Ho5fyTcNtkYsrTedfZte7yKgK+Ad0R2K
-         dPnkywgkGHPehU5MODOoJqtmMu/1N9GZCxFRbZL3D9G8gAJiFic9fKsE0C7eI97ChvrU
-         coUQ==
-X-Gm-Message-State: AOAM530Lxx+Um+mu70rUCaNQSXHBkXJQBoQRbqTUUvmVtZNbVcmPk4pc
-        SY0catwDVQjOeq0L8BcheraMEZD9fkE=
-X-Google-Smtp-Source: ABdhPJzVbER2RheX/nv5rcxYawrN9DtJW3SXUAwEk5X0CPHTSNXtz/nbDTEHH763N0Nyw1JfyW5MFA==
-X-Received: by 2002:a17:90b:1c8d:: with SMTP id oo13mr3064193pjb.239.1638923904298;
-        Tue, 07 Dec 2021 16:38:24 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id n16sm926379pfv.123.2021.12.07.16.38.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Dec 2021 16:38:23 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM BCM7XXX ARM
-        ARCHITECTURE), Gregory Fong <gregory.0xf0@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Markus Mayer <mmayer@broadcom.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Al Cooper <alcooperx@gmail.com>,
-        Doug Berger <opendmb@gmail.com>,
-        linux-ide@vger.kernel.org (open list:LIBATA SUBSYSTEM (Serial and
-        Parallel ATA drivers)), linux-kernel@vger.kernel.org (open list),
-        linux-gpio@vger.kernel.org (open list:GPIO SUBSYSTEM),
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
-        ARM ARCHITECTURE),
-        linux-mmc@vger.kernel.org (open list:MULTIMEDIA CARD (MMC), SECURE
-        DIGITAL (SD) AND...),
-        linux-pwm@vger.kernel.org (open list:PWM SUBSYSTEM),
-        linux-crypto@vger.kernel.org (open list:HARDWARE RANDOM NUMBER
-        GENERATOR CORE),
-        linux-rtc@vger.kernel.org (open list:REAL TIME CLOCK (RTC) SUBSYSTEM),
-        linux-pm@vger.kernel.org (open list:THERMAL),
-        linux-usb@vger.kernel.org (open list:USB SUBSYSTEM)
-Subject: [PATCH v3 15/15] dt-bindings: usb: Convert BDC to YAML
-Date:   Tue,  7 Dec 2021 16:37:26 -0800
-Message-Id: <20211208003727.3596577-16-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211208003727.3596577-1-f.fainelli@gmail.com>
-References: <20211208003727.3596577-1-f.fainelli@gmail.com>
+        id S235054AbhLHAtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 19:49:53 -0500
+Received: from mailout1.samsung.com ([203.254.224.24]:35299 "EHLO
+        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234092AbhLHAtv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 19:49:51 -0500
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20211208004618epoutp015f5bb8eaf807947a8219cdb239e74861~_oQnzJZ5Y0723307233epoutp015
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 00:46:18 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20211208004618epoutp015f5bb8eaf807947a8219cdb239e74861~_oQnzJZ5Y0723307233epoutp015
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1638924378;
+        bh=tuFbGFhELyilz/bf0UDgiX4X5oOjHV6AIspL4h3G3r4=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=MxkIpwx7X3job34naOqcqT/gVQDLCCSAGzgviPxEoNkMReHomZ6mMzzkk8ub3tDeR
+         hLCpOJSo1IpLFk+vl0MdtvMWxXyRWpdDSZEdD/AZ0S4yFy9/JSWy/9BunmLPpZnJKT
+         FAPGJUQrkUlsDvyvJRBuwtU9dZi5HggwvSvNRNf4=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+        20211208004618epcas2p403faed6ea0baab88c34371e83a65c1de~_oQnZspbh1590815908epcas2p4t;
+        Wed,  8 Dec 2021 00:46:18 +0000 (GMT)
+Received: from epsmges2p1.samsung.com (unknown [182.195.36.89]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4J7z4P2VN8z4x9QY; Wed,  8 Dec
+        2021 00:46:13 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        70.84.51767.15000B16; Wed,  8 Dec 2021 09:46:09 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+        20211208004609epcas2p11185399272e994c19fd8ce8cfd18cc7d~_oQfBPQyX0734207342epcas2p1W;
+        Wed,  8 Dec 2021 00:46:09 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20211208004609epsmtrp23800cfb081f75e0f89e907f745c5c866~_oQfAlRvh0662306623epsmtrp2W;
+        Wed,  8 Dec 2021 00:46:09 +0000 (GMT)
+X-AuditID: b6c32a45-447ff7000000ca37-f7-61b000510b9f
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        92.35.08738.14000B16; Wed,  8 Dec 2021 09:45:53 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20211208004608epsmtip26c45c47c6195ea25816698d6d8e52a78~_oQe0twCS2024820248epsmtip2x;
+        Wed,  8 Dec 2021 00:46:08 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Chanho Park <chanho61.park@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>
+Subject: [PATCH] arm64: dts: exynosautov9: convert serial_0 for USI
+Date:   Wed,  8 Dec 2021 09:39:46 +0900
+Message-Id: <20211208003946.139423-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmphk+LIzCtJLcpLzFFi42LZdljTVDeQYUOiwbTPEhaX92tbzD9yjtVi
+        49sfTBabHl9jtZhxfh+TReveI+wWz/v2MTmwe8xq6GXz2LSqk83jzrU9bB6bl9R79G1Zxejx
+        eZNcAFtUtk1GamJKapFCal5yfkpmXrqtkndwvHO8qZmBoa6hpYW5kkJeYm6qrZKLT4CuW2YO
+        0CVKCmWJOaVAoYDE4mIlfTubovzSklSFjPziElul1IKUnALzAr3ixNzi0rx0vbzUEitDAwMj
+        U6DChOyMO3c3shRsEat4s/w1awPjJqEuRk4OCQETibZdP5i7GLk4hAR2MEqc6JoL5XxilPjY
+        dBTK+cwocfPCPGaYlgd7n0EldjFKHFr7mh3C+cgocXvLQ7AqNgFdiS3PXzGC2CIC8RJX17ey
+        gRQxCxxglFix6jcrSEJYwFlibfdxNhCbRUBV4vTU32DNvAL2Ens+fWWEWCcvsf/gWai4oMTJ
+        mU9YQGxmoHjz1tlgZ0gIXGKXeDf7AztEg4vEjY8NrBC2sMSr41ug4lISn9/tZYNo6GaUaH30
+        HyqxmlGis9EHwraX+DV9C1AzB9AGTYn1u/RBTAkBZYkjt6D28kl0HP7LDhHmlehogwakusSB
+        7dNZIGxZie45n6Eu8JDYcGQt2PlCArES03ZsY5rAKD8LyTezkHwzC2HvAkbmVYxiqQXFuemp
+        xUYFhvBoTc7P3cQITo5arjsYJ7/9oHeIkYmD8RCjBAezkgiv2sO1iUK8KYmVValF+fFFpTmp
+        xYcYTYHhO5FZSjQ5H5ie80riDU0sDUzMzAzNjUwNzJXEeT/4T08UEkhPLEnNTk0tSC2C6WPi
+        4JRqYDpvvipegqGk9PSmPY+fvBe+1tTsUpF9/fLtrk1MMc7Zu/vnhwo/ZQ++Y3J3/ouUlNby
+        Q/fluFr4Jhb9CXkZuavm111O58zbOcsKKzSVp37v/dWblZBa/m8r7/c9T1LUCuS23W7LqOMt
+        ctvhKKt3SKKJ57m0vW8jY/6pGMXHEw1vWkUJzi3Y7hLuu9VI48fS+Q/ebDqyI/GZyavj02ad
+        EP6z69Dxm3sOcYbLX+lJFk93PzxbLKz92dHpOpeLdylpzZuZ+qZW7/wK96VMSf++eVmtWnNV
+        PVV1Xfmi8xOO/6qccMj2tLvHs+svuH48ENmfuDU849vcOQG/fq9ois3jWW/X+Zxl56aZLLaM
+        Ea5v9i5QYinOSDTUYi4qTgQAutX1uhcEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrMLMWRmVeSWpSXmKPExsWy7bCSvK4jw4ZEgzOreS0u79e2mH/kHKvF
+        xrc/mCw2Pb7GajHj/D4mi9a9R9gtnvftY3Jg95jV0MvmsWlVJ5vHnWt72Dw2L6n36NuyitHj
+        8ya5ALYoLpuU1JzMstQifbsErow7dzeyFGwRq3iz/DVrA+MmoS5GTg4JAROJB3ufMXcxcnEI
+        CexglFi06wILREJW4tm7HewQtrDE/ZYjrBBF7xklbi5ZwAaSYBPQldjy/BUjiC0iEC8xc9MG
+        NpAiZoEjjBKPpneAFQkLOEus7T4OZrMIqEqcnvqbGcTmFbCX2PPpKyPEBnmJ/QfPQsUFJU7O
+        fAJ2BTNQvHnrbOYJjHyzkKRmIUktYGRaxSiZWlCcm55bbFhglJdarlecmFtcmpeul5yfu4kR
+        HK5aWjsY96z6oHeIkYmD8RCjBAezkgiv2sO1iUK8KYmVValF+fFFpTmpxYcYpTlYlMR5L3Sd
+        jBcSSE8sSc1OTS1ILYLJMnFwSjUw2fDdmcQz89nGkFtx13yiVp998ZP/eZh+37cS1cKIC5VZ
+        0bFzzzpyPZqXF8tywHE268SFE7i/d+7f+iF6Tc5Jtu+cIpMtzQ4usNy7/ltig9/FqmJGx7NL
+        N6ib/07cs03zqktU32en6cmVhhtkW6sPCiyTyj2fdmpFfUPrrSDb3byyF2cqTL3evtHi7pOU
+        mKot2vOUu4T4P9+tFMnsLI45mrLe18WnMcrytWzwpag191ZOvTTdwCYyY/rhf//nLtqXll4f
+        pbZ1lfKZowuCHuRczOu9daXXcd8x3zlmnMV7jiVvvpyxSyx6V/OZyUevXQ7Z2d7+4UMqD6fe
+        a5WE/yf5uV0Pa05yZdgxe0OAvLDPFSWW4oxEQy3mouJEAGbS5UbGAgAA
+X-CMS-MailID: 20211208004609epcas2p11185399272e994c19fd8ce8cfd18cc7d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20211208004609epcas2p11185399272e994c19fd8ce8cfd18cc7d
+References: <CGME20211208004609epcas2p11185399272e994c19fd8ce8cfd18cc7d@epcas2p1.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Broadcom BDC device controller Device Tree binding to YAML
-to help with validation.
+According to USI v2 driver change[1], serial_0 node should be converted to
+use the USI node hierarchy. syscon_peric0 will be used as a syscon node
+to control the USI00_USI_SW_CONF register.
+This also changes the serial node name from uart@ to serial@.
 
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+[1]: https://lore.kernel.org/linux-samsung-soc/20211204195757.8600-2-semen.protsenko@linaro.org/
+
+Cc: Sam Protsenko <semen.protsenko@linaro.org>
+Signed-off-by: Chanho Park <chanho61.park@samsung.com>
 ---
- .../devicetree/bindings/usb/brcm,bdc.txt      | 29 ------------
- .../devicetree/bindings/usb/brcm,bdc.yaml     | 46 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 47 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/usb/brcm,bdc.txt
- create mode 100644 Documentation/devicetree/bindings/usb/brcm,bdc.yaml
+ .../boot/dts/exynos/exynosautov9-sadk.dts     |  4 +++
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi  | 36 ++++++++++++++-----
+ 2 files changed, 32 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/brcm,bdc.txt b/Documentation/devicetree/bindings/usb/brcm,bdc.txt
-deleted file mode 100644
-index c9f52b97cef1..000000000000
---- a/Documentation/devicetree/bindings/usb/brcm,bdc.txt
-+++ /dev/null
-@@ -1,29 +0,0 @@
--Broadcom USB Device Controller (BDC)
--====================================
--
--Required properties:
--
--- compatible: must be one of:
--                "brcm,bdc-udc-v2"
--                "brcm,bdc"
--- reg: the base register address and length
--- interrupts: the interrupt line for this controller
--
--Optional properties:
--
--On Broadcom STB platforms, these properties are required:
--
--- phys: phandle to one or two USB PHY blocks
--        NOTE: Some SoC's have a single phy and some have
--        USB 2.0 and USB 3.0 phys
--- clocks: phandle to the functional clock of this block
--
--Example:
--
--        bdc@f0b02000 {
--                compatible = "brcm,bdc-udc-v2";
--                reg = <0xf0b02000 0xfc4>;
--                interrupts = <0x0 0x60 0x0>;
--                phys = <&usbphy_0 0x0>;
--                clocks = <&sw_usbd>;
--        };
-diff --git a/Documentation/devicetree/bindings/usb/brcm,bdc.yaml b/Documentation/devicetree/bindings/usb/brcm,bdc.yaml
-new file mode 100644
-index 000000000000..48831b62ab31
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/brcm,bdc.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/brcm,bdc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom USB Device Controller (BDC)
-+
-+maintainers:
-+  - Al Cooper <alcooperx@gmail.com>
-+  - Florian Fainelli <f.fainelli@gmail.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - brcm,bdc-udc-v2
-+          - brcm,bdc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts: true
-+
-+  phys:
-+    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+        bdc@f0b02000 {
-+                compatible = "brcm,bdc-udc-v2";
-+                reg = <0xf0b02000 0xfc4>;
-+                interrupts = <0x0 0x60 0x0>;
-+                phys = <&usbphy_0 0x0>;
-+                clocks = <&sw_usbd>;
-+        };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2109b6fe8ea3..b18c7fa42a4f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3679,7 +3679,7 @@ M:	Al Cooper <alcooperx@gmail.com>
- L:	linux-usb@vger.kernel.org
- L:	bcm-kernel-feedback-list@broadcom.com
- S:	Maintained
--F:	Documentation/devicetree/bindings/usb/brcm,bdc.txt
-+F:	Documentation/devicetree/bindings/usb/brcm,bdc.yaml
- F:	drivers/usb/gadget/udc/bdc/
+diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
+index ef46d7aa6e28..6cc903443809 100644
+--- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
++++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
+@@ -41,6 +41,10 @@ ufs_0_fixed_vcc_reg: regulator-0 {
+ 	};
+ };
  
- BROADCOM BMIPS CPUFREQ DRIVER
++&usi_0 {
++	status = "okay";
++};
++
+ &serial_0 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+index a960c0bc2dba..de8fcb82eaec 100644
+--- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+@@ -7,6 +7,7 @@
+  */
+ 
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/soc/samsung,exynos-usi.h>
+ 
+ / {
+ 	compatible = "samsung,exynosautov9";
+@@ -256,16 +257,35 @@ syscon_fsys2: syscon@17c20000 {
+ 			reg = <0x17c20000 0x1000>;
+ 		};
+ 
+-		/* USI: UART */
+-		serial_0: uart@10300000 {
+-			compatible = "samsung,exynos850-uart";
+-			reg = <0x10300000 0x100>;
+-			interrupts = <GIC_SPI 345 IRQ_TYPE_LEVEL_HIGH>;
+-			pinctrl-names = "default";
+-			pinctrl-0 = <&uart0_bus_dual>;
++		syscon_peric0: syscon@10220000 {
++			compatible = "samsung,exynosautov9-sysreg", "syscon";
++			reg = <0x10220000 0x2000>;
++		};
++
++		usi_0: usi@103000c0 {
++			compatible = "samsung,exynos850-usi";
++			reg = <0x103000c0 0x20>;
++			samsung,sysreg = <&syscon_peric0 0x1000>;
++			samsung,mode = <USI_V2_UART>;
++			samsung,clkreq-on; /* needed for UART mode */
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges;
+ 			clocks = <&uart_clock>, <&uart_clock>;
+-			clock-names = "uart", "clk_uart_baud0";
++			clock-names = "pclk", "ipclk";
+ 			status = "disabled";
++
++			/* USI: UART */
++			serial_0: serial@10300000 {
++				compatible = "samsung,exynos850-uart";
++				reg = <0x10300000 0xc0>;
++				interrupts = <GIC_SPI 345 IRQ_TYPE_LEVEL_HIGH>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&uart0_bus_dual>;
++				clocks = <&uart_clock>, <&uart_clock>;
++				clock-names = "uart", "clk_uart_baud0";
++				status = "disabled";
++			};
+ 		};
+ 
+ 		ufs_0_phy: ufs0-phy@17e04000 {
 -- 
-2.25.1
+2.34.1
 
