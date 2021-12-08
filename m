@@ -2,143 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D7F846D024
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 10:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01C4946D02B
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 10:35:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229462AbhLHJgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 04:36:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56708 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbhLHJgc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 04:36:32 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74184C0617A1;
-        Wed,  8 Dec 2021 01:33:00 -0800 (PST)
-Received: from [IPv6:2a01:e0a:120:3210:9928:73b0:79a4:e623] (unknown [IPv6:2a01:e0a:120:3210:9928:73b0:79a4:e623])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 39CCF1F45A1D;
-        Wed,  8 Dec 2021 09:32:58 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1638955978; bh=qdoGNUS0B38g/vQl8OYWvSbXd37jJA7vB7+2VrQDEBo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=nJ8VNPLOSjOYZBedj0grLrp18tc5OnjuKMsPV07CFaOr4tQuywGpklRmMhlMXjMJe
-         kpthjLYUO6CMUJGV5jxCi1qX9YhRPVDNIs2zAL0QmV2eh8j7imKbYNpQFLRSFa1VuS
-         G+8lxXDTfyUi1KlHQh9LQkMCg1DlXLkZP/ngthXFt2cC6QStIBGAIEBrSEm6J4zIL0
-         EXorkYrmiitvE9lQLwyTxnHXSMk2PrUsdEimtUT46tb0ualBFzLQmGcYCz5GGO5tBL
-         t1wIc1nA2WdnH1QCeaaXG/9IyrMeIaXf5B4KzrRehwz20bE4HRzXh3dRZ7cLvCin3Y
-         /+txpI5hwgjvQ==
-Subject: Re: [RFC V2 0/6] media: Hantro: Split iMX8MQ VPU into G1 and G2 with
- blk-ctrl support
-To:     Adam Ford <aford173@gmail.com>, linux-media@vger.kernel.org
-Cc:     cphealy@gmail.com, hverkuil@xs4all.nl,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-References: <20211207015446.1250854-1-aford173@gmail.com>
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Message-ID: <f85da774-ccb3-85de-edd6-5333ed8d0503@collabora.com>
-Date:   Wed, 8 Dec 2021 10:32:55 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S230312AbhLHJjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 04:39:11 -0500
+Received: from mail-ua1-f42.google.com ([209.85.222.42]:34353 "EHLO
+        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229449AbhLHJjK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 04:39:10 -0500
+Received: by mail-ua1-f42.google.com with SMTP id n6so3647451uak.1;
+        Wed, 08 Dec 2021 01:35:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZvTD69XJxS18ehgvPHba0VP69gYvcD1gn33TndAh+h4=;
+        b=omBOX9bBtopmUScdkT/uMJSDpkJ20z6XmMZc/cuvW2Q7g8FwlYYj571wVe741f6L2D
+         jU8/yaOgj2wxhBndLLzpuNXJbwIfoaOXFNuMB92IpCiB2OOxA1KOlp/4UYxKrtt2TPvN
+         0Few9DRvRmdvUqPnVvE1H+8tyVB4kNP9hr65S2iXQdlbRfVzwbgQ8pj07XnMx3V4FlMG
+         jpCYvj+cP9f6HPERRemhbuFvLNAG2EpnjDs/In0MTqhvhyiUo5DEquxDIC1h9B8WwVIj
+         mGmo6FWNRsHHuyaBHORAe5jXsLf8i3rQq6KGEQkw7iCdPYGapSPWDlc6vMWZlQLn3/BX
+         +9NQ==
+X-Gm-Message-State: AOAM533GveE1YmlK1Xis8KdyS/kd00oHHN9tczJMk2LqWoN10suPjPW5
+        LikmjAClxnI9BABSdYwnTivZtZSPE0+U9w==
+X-Google-Smtp-Source: ABdhPJxgHe/XB3CzJK5Q++jXvfeFpRK1f83XicK5Pg7Vi6MiuKUnHRTBYq/PSbWJXjc/EJcveIoBcA==
+X-Received: by 2002:a67:d994:: with SMTP id u20mr51380410vsj.12.1638956138397;
+        Wed, 08 Dec 2021 01:35:38 -0800 (PST)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id e13sm1432029vkd.21.2021.12.08.01.35.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Dec 2021 01:35:37 -0800 (PST)
+Received: by mail-ua1-f54.google.com with SMTP id a14so3713943uak.0;
+        Wed, 08 Dec 2021 01:35:37 -0800 (PST)
+X-Received: by 2002:a67:c106:: with SMTP id d6mr53071891vsj.77.1638956137319;
+ Wed, 08 Dec 2021 01:35:37 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20211207015446.1250854-1-aford173@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+References: <20211204204121.2367127-1-gsomlo@gmail.com> <20211204204121.2367127-4-gsomlo@gmail.com>
+ <CAMuHMdXkmJ8qxk48AaiC=o0x4manGrL2-J3W0v8GkTaoFoAXuw@mail.gmail.com>
+ <Ya9rSz4KJTwiy830@errol.ini.cmu.edu> <CAMuHMdWQryaYmbaakx3oFHMcuN4==ScPJBmxzbp+ewVqiqnbDQ@mail.gmail.com>
+ <Ya/SbwzYUD3gwwOL@errol.ini.cmu.edu>
+In-Reply-To: <Ya/SbwzYUD3gwwOL@errol.ini.cmu.edu>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 8 Dec 2021 10:35:26 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXm=FNJ7-4emwDPdd3cpCneXL3EiGGzZNqt0DCQOS+pag@mail.gmail.com>
+Message-ID: <CAMuHMdXm=FNJ7-4emwDPdd3cpCneXL3EiGGzZNqt0DCQOS+pag@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Kamil Rakoczy <krakoczy@antmicro.com>,
+        mdudek@internships.antmicro.com,
+        Paul Mackerras <paulus@ozlabs.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Stafford Horne <shorne@gmail.com>,
+        david.abdurachmanov@sifive.com,
+        Florent Kermarrec <florent@enjoy-digital.fr>,
+        Randy Dunlap <rdunlap@infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Gabriel,
 
-Le 07/12/2021 à 02:54, Adam Ford a écrit :
+On Tue, Dec 7, 2021 at 10:30 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+> On Tue, Dec 07, 2021 at 03:16:22PM +0100, Geert Uytterhoeven wrote:
+> > On Tue, Dec 7, 2021 at 3:10 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+> > > On Mon, Dec 06, 2021 at 01:24:49PM +0100, Geert Uytterhoeven wrote:
+> > > > On Sat, Dec 4, 2021 at 9:41 PM Gabriel Somlo <gsomlo@gmail.com> wrote:
+> > > > > LiteX (https://github.com/enjoy-digital/litex) is a SoC framework
+> > > > > that targets FPGAs. LiteSDCard is a small footprint, configurable
+> > > > > SDCard core commonly used in LiteX designs.
+> > > > >
+> > > > > The driver was first written in May 2020 and has been maintained
+> > > > > cooperatively by the LiteX community. Thanks to all contributors!
+> > > > >
+> > > > > Co-developed-by: Kamil Rakoczy <krakoczy@antmicro.com>
+> > > > > Signed-off-by: Kamil Rakoczy <krakoczy@antmicro.com>
+> > > > > Co-developed-by: Maciej Dudek <mdudek@internships.antmicro.com>
+> > > > > Signed-off-by: Maciej Dudek <mdudek@internships.antmicro.com>
+> > > > > Co-developed-by: Paul Mackerras <paulus@ozlabs.org>
+> > > > > Signed-off-by: Paul Mackerras <paulus@ozlabs.org>
+> > > > > Signed-off-by: Gabriel Somlo <gsomlo@gmail.com>
+> >
+> > > > > +       host->clock = 0;
+> > > > > +       cpu = of_get_next_cpu_node(NULL);
+> > > > > +       ret = of_property_read_u32(cpu, "clock-frequency", &host->freq);
+> > > > > +       of_node_put(cpu);
+> > > > > +       if (ret) {
+> > > > > +               dev_err(&pdev->dev, "No \"clock-frequency\" property in DT\n");
+> > > > > +               goto err_free_host;
+> > > > > +       }
+> > > >
+> > > > This looks fragile.
+> > > > Shouldn't the clock be obtained from a clock property in the mmc
+> > > > device node, pointing to a clock provider?
+> > > > How does the real clock tree look like?
+> > >
+> > > In a full LiteX SoC, the main sys_clock is used for cpu, buses, and as a
+> > > input source for peripherals such as LiteSDCard (which then further
+> > > subdivides it to obtain a 12.5--50.0 MHz sd_clock.
+> > >
+> > > But since we're considering supporting LiteSDCard as an independent IP
+> > > block, the "source clock" frequency should indeed be specified as a DT
+> > > property in the MMC device node. (I'll have to add that to the list of
+> > > updates for litex_json2dts_linux.py as well, once we settle on what it
+> > > will look like -- I'll try to make the change and corresponding update
+> > > to the devicetree bindings doc for v3).
+> > >
+> > > LMK what you think.
+> >
+> > Ideally there should be a "clocks" property with a phandle pointing to a
+> > clock controller node (compatible with "litex,clk").
+> >
+> > How does drivers/tty/serial/liteuart.c handle this? Oh, it doesn't ;-)
+>
+> Assuming LiteX's `litex_json2dts_linux.py` is modified to include:
+>
+>         ...
+>         clocks {
+>                 sys_clk: litex_sys_clk {
+>                         #clock-cells = <0>;
+>                         compatible = "fixed-clock";
+>                         clock-frequency = <50000000>;
+>                 };
+>         };
+>         ...
+>
+> in the generated .dts (where `clock-frequency` is whatever the sys_clk
+> happens to be for that particular SoC gateware), we can then write the
+> mmc node like so:
+>
+>         soc {
+>                 ...
+>                 mmc0: mmc@12005000 {
+>                         compatible = "litex,mmc";
+>                         reg = <0x12005000 0x100>,
+>                                 <0x12003800 0x100>,
+>                                 <0x12003000 0x100>,
+>                                 <0x12004800 0x100>,
+>                                 <0x12004000 0x100>;
+>                         reg-names = "phy", "core", "reader", "writer", "irq";
+>                         clocks = <&sys_clk>;
+>                         interrupt-parent = <&L1>;
+>                         interrupts = <4>;
+>                 };
+>                 ...
+>         };
 
-> Currently, the VPU in the i.MQ8MQ is appearing as one codec, but in
-> reality, it's two IP blocks called G1 and G2.  There is initialization
-> code in VPU code to pull some clocks, resets and other features which
-> has been integrated into the vpu-blk-ctrl for the i.MX8M Mini and a
-> similar method can be used to make the VPU codec's operate as
-> stand-alone cores without having to know the details of each other
-> or the quirks unique to the i.MX8MQ, so the remaining code can be
-> left more generic.
->
-> This series was started by Lucas Stach with one by Benjamin Gaignard.
-> Most patches have been modified slightly by me.  It's in an RFC state
-> because I wasn't sure how to best handle the signatures and wasn't sure
-> if I could base it off the branch I did.
->
-> Since the g-streamer and media trees are in a constant state of
-> change, this series is based on
->
-> git://linuxtv.org/hverkuil/media_tree.git for-v5.17e
->
-> The downstream code from NXP shows the G1 and G2 clocks running
-> at 600MHz, but between the TRM and the datasheet, there is some
-> discrepancy.  Because the NXP reference code used 600MHz, that is
-> what was chosen here.  Users who need to adjust their G1 and G2
-> clocks can do so in their board files.
+LGTM.
 
-Hi Adam,
+> The LiteSDCard clock initialization can then look like this:
+>
+>         ...
+>         /* initialize clock source */
+>         clk = devm_clk_get(&pdev->dev, NULL);
+>         if (IS_ERR(clk)) {
+>                 ret = PTR_ERR(clk);
+>                 dev_err(&pdev->dev, "can't get clock: %d\n", ret);
 
-Thanks for your patches, I have been able to reproduce VP9 results on my side (Fluster 147/303).
-In past I have notice spurious errors when using 600MHz clock on HEVC decode but not with 300MHz.
+Please use
 
-Regards,
-Benjamin
+    ret = dev_err_probe(&pdev->dev, PTR_ERR(clk), "can't get clock\n");
 
+to avoid printing the error in case of probe deferral.
+
+>                 goto err;
+>         }
+>         host->freq = clk_get_rate(clk); /* source (sys_clock) frequency */
+>         host->clock = 0;                /* calculated sdclock frequency */
+>         ...
 >
-> Fluster Results:
+> As discussed before, I'll post a `litex_json2dts_linux.py` patch once
+> we've settled on a mutually agreeable solution, but I think this might
+> be it. If you agree, I'll also update the DT binding document to
+> require `clocks` as part of the mmc node.
 >
-> ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
-> Ran 90/135 tests successfully               in 61.966 secs
+> I tested this in my v3 candidate, and it seems to be working OK.
 >
-> ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
-> Ran 55/61 tests successfully               in 7.660 secs
->
->
-> ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
-> Ran 144/303 tests successfully               in 162.665 secs
->
-> Changes log:
->
-> V2:  Make vpu-blk-ctrl enable G2 clock when enabling fuses.
->       Remove syscon from device tree and binding example
->       Added modified nxp,imx8mq-vpu.yaml from Benjamin Gaignard
->
-> Adam Ford (2):
->    media: hantro: split i.MX8MQ G1 and G2 code
->    arm64: dts: imx8mq: Split i.MX8MQ G1 and G2 with vpu-blk-ctrl
->
-> Benjamin Gaignard (1):
->    dt-bindings: media: nxp,imx8mq-vpu: Update the bindings for G2 support
->
-> Lucas Stach (3):
->    dt-bindings: power: imx8mq: add defines for VPU blk-ctrl domains
->    dt-bindings: soc: add binding for i.MX8MQ VPU blk-ctrl
->    soc: imx: imx8m-blk-ctrl: add i.MX8MQ VPU blk-ctrl
->
->   .../bindings/media/nxp,imx8mq-vpu.yaml        |  58 +++++----
->   .../soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml      |  71 +++++++++++
->   arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  69 ++++++----
->   drivers/soc/imx/imx8m-blk-ctrl.c              |  68 +++++++++-
->   drivers/staging/media/hantro/hantro_drv.c     |   4 +-
->   drivers/staging/media/hantro/hantro_hw.h      |   2 +-
->   drivers/staging/media/hantro/imx8m_vpu_hw.c   | 119 +++---------------
->   include/dt-bindings/power/imx8mq-power.h      |   3 +
->   8 files changed, 237 insertions(+), 157 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml
->
->
-> base-commit: d1888b0bfd2ddef2e8a81505ffa200b92cc32e0c
+> LMK what you think, and/or if you have any suggestions for additional
+> improvements.
+
+Nice, that's a good solution, until the full clock tree is exposed in
+the DTS. Thanks a lot!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
