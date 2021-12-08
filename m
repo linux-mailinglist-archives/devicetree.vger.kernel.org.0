@@ -2,428 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E03C746D823
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 17:29:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 100A546D81F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 17:28:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236912AbhLHQcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 11:32:41 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:36780
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236910AbhLHQci (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 11:32:38 -0500
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 9B34C3F1FD
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 16:28:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638980939;
-        bh=/UnCaMOaE0r0Za7l2CYHdzK3LVhxC/oQzEtsFORObJY=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=eBltkhulkEnWks06n3yrtporlKrTwYo8lFhzdFtatvhDwmVYkCN9wwdG0lR7/B9/E
-         zOdgLhaqX2qtMONhfXXfZg0O7Swf+2BZABfsJFhE8zgTASD72KkLP3pcFMY09BGrEA
-         sjfh8wE/Yp5CuIT1t66i7G2SB+yBHgFSIFfOf7spSCiW+omf8t397p5f4qADMZmMcO
-         1TaeaNVq0yUoYjG80JT0Wz2EtW9EDJ52aOHVM8eUScrAmrOb4JS7+HygWGq7jYddDb
-         Xuz8BzGr1mEZBXQ8qPgtXQEv9hz4I1Qx8c+StPeE25QuAmLuxkXV8iRxYDm8blGVtm
-         vpE+cog4KjaDA==
-Received: by mail-lf1-f72.google.com with SMTP id z8-20020a056512370800b0041bf49128a9so1294854lfr.8
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 08:28:59 -0800 (PST)
+        id S232478AbhLHQcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 11:32:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41418 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236890AbhLHQcX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 11:32:23 -0500
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A08FC0617A2
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 08:28:51 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id x43-20020a056830246b00b00570d09d34ebso3279211otr.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 08:28:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=0uojmEd83LkJuzCYT6podOVDiCxgCvMKz9HRzNZD9MY=;
+        b=AxhCixMlmNZ/PTZOHbbF1wFDPddUi6YRqetROQzhA1iabJnNk1vIbl0cW1+PFlYtHg
+         VEIvFrYuVZTbSZXE0ECPRMPgMVVzPJgeUQZ81su5/4DJWxbGRW72oJQwM0BTb79f/qlP
+         iUByQXI0brVZLSUcmhku6RnYtGKJJtbHnt6qfN1XuLaQ5oVYaB0hJpZDfsX1h20p0ZUV
+         x9yZHRSPWwXIA1sxc9LNBg2xT6o+glgO2agkDrY6IIVdnle476kqREw4cA0ARHVWk22I
+         i+23PtpdBDozZmiuc1FyGTy9LPkLVvo3ecQW59Wr9Hn2Eg30OrUz5GCit99Y+t2sv1XF
+         t+mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/UnCaMOaE0r0Za7l2CYHdzK3LVhxC/oQzEtsFORObJY=;
-        b=onZQbgKf5dvzBpx2MeIiBnF3T9k44dNDjUCjt/ASFgj5EM+lcQZIezfUu072UiJVqH
-         KZerSb/pgWQn89uyetqb8zq31YNsnAXRiK3rjz/ICq1jUjZYjqBhIeJaKmH9VIPuplLV
-         618YIHWvUcR8Vu1WbMO6sZHCYtrayl0ZV9hMo1Wt3gr5AY7UvlQVSwCRoWd3v3ntQXma
-         x2R8iqczwqX79JDu5zdoaPJjxWenIxl+1xG3WuCNZVQwHhbL+0sLrMkMFBG+vNaVkM81
-         c4hQPH39FMpRnmSECtczbOoAX+2qwxHq6YkLp60DtXrDnwQZooCUKRALgFLR2T+nBoHt
-         SVfw==
-X-Gm-Message-State: AOAM533KL0G37trdNkfecWwF2hpMDyzphOsqzMaJ7pos4dAbiH9MYC/F
-        hnWHukNGzSifFGw2QP3d95n1UcwIIMi1czuC+oNiZvYLP6yqJwVel4xWuSbTHdEXiI0+wb6GH7H
-        Tw2X1Blxpmzr3bMyqORPH5OlhrbIeliPXd8TiI+s=
-X-Received: by 2002:a2e:9107:: with SMTP id m7mr461290ljg.209.1638980937682;
-        Wed, 08 Dec 2021 08:28:57 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwIwQU+X8t7tOP0ejJnpUdJkw86nIEXKXWXgD13uXER76HySFNl3iap+u968szw5hY15UDOBw==
-X-Received: by 2002:a2e:9107:: with SMTP id m7mr461247ljg.209.1638980937283;
-        Wed, 08 Dec 2021 08:28:57 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id m13sm296123lfl.131.2021.12.08.08.28.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Dec 2021 08:28:56 -0800 (PST)
-Message-ID: <a7d5f290-7992-b37c-fe2c-90bf3e5e83ce@canonical.com>
-Date:   Wed, 8 Dec 2021 17:28:55 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v4 7/7] arm64: dts: exynos: Add initial device tree
- support for Exynos7885 SoC
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     David Virag <virag.david003@gmail.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0uojmEd83LkJuzCYT6podOVDiCxgCvMKz9HRzNZD9MY=;
+        b=BY9JYCY/n6xCiIZ6C7QiSab9rgvXa4VkGbUthJA/LarzPqJ22aHJH+5o2gWeBPZ/SK
+         NUZUa0PcbEb8bHWgNMvaRdvmwWiVHMsU6GthLSvuY3cFyATAr4EL5ECI+x6u3ZFsBt9y
+         rYp/MjnLI9GSSCDCDANSVfzwoqcWDnR2J0phMsTdlUn3hy+b7RN6Lj3oTFCfY4joVT1A
+         8e1Cv/6JBZbbI52xnO/HLNs4SSlCWsuKjZ6w2YauRfvuwFeWZjR5ok2mhPjHNWAIZdOk
+         OHYSXL2O0zuIS0TXcLGweZi/sH47e9FsdrDzDLy359OyLaMoKHFp/wEa2RdnOfioViui
+         6qpA==
+X-Gm-Message-State: AOAM533IK0es2tQ3D71tkt2d5g4cuy4MT/QwyF8Qmj3OSm+xVe05Qced
+        SJmj4Wuf3fynXYPf0SOwxzIw2w==
+X-Google-Smtp-Source: ABdhPJzxeuG+wEfmBti/OH0rRqnpL9CyfVvwdbxvKCiXcuU4YQtjtCJxFoyuWwVl6g9gwc/PSVd6NQ==
+X-Received: by 2002:a05:6830:2712:: with SMTP id j18mr490847otu.302.1638980930305;
+        Wed, 08 Dec 2021 08:28:50 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id bh12sm745103oib.25.2021.12.08.08.28.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Dec 2021 08:28:49 -0800 (PST)
+Date:   Wed, 8 Dec 2021 08:30:16 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20211206153124.427102-1-virag.david003@gmail.com>
- <20211206153124.427102-8-virag.david003@gmail.com>
- <CAPLW+4k3Vmg0W0jVsTChHTG8+eeg=5QF+actz1Tk0vNV9w-y-A@mail.gmail.com>
- <0c7fc14b-a0d0-7d31-3a33-623f07114a80@canonical.com>
- <CAPLW+4=ioLewf5Hv5FO1jXjxaLrgedrzyKNtNtevTGADF9rBmw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAPLW+4=ioLewf5Hv5FO1jXjxaLrgedrzyKNtNtevTGADF9rBmw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add SM8450 pinctrl
+ bindings
+Message-ID: <YbDdmHnHTU45OOXI@ripper>
+References: <20211201072434.3968768-1-vkoul@kernel.org>
+ <20211201072434.3968768-2-vkoul@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211201072434.3968768-2-vkoul@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/12/2021 16:37, Sam Protsenko wrote:
-> On Wed, 8 Dec 2021 at 11:05, Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->>
->> On 07/12/2021 21:19, Sam Protsenko wrote:
->>> On Mon, 6 Dec 2021 at 17:32, David Virag <virag.david003@gmail.com> wrote:
->>>>
->>>> Add initial Exynos7885 device tree nodes with dts for the Samsung Galaxy
->>>> A8 (2018), a.k.a. "jackpotlte", with model number "SM-A530F".
->>>> Currently this includes some clock support, UART support, and I2C nodes.
->>>>
->>>> Signed-off-by: David Virag <virag.david003@gmail.com>
->>>> ---
->>>> Changes in v2:
->>>>   - Remove address-cells, and size-cells from dts, since they are
->>>>     already in the dtsi.
->>>>   - Lower case hex in memory node
->>>>   - Fix node names with underscore instead of hyphen
->>>>   - Fix line breaks
->>>>   - Fix "-key" missing from gpio keys node names
->>>>   - Use the form without "key" in gpio key labels on all keys
->>>>   - Suffix pin configuration node names with "-pins"
->>>>   - Remove "fimc_is_mclk" nodes from pinctrl dtsi for now
->>>>   - Use macros for "samsung,pin-con-pdn", and "samsung,pin-con-pdn"
->>>>   - Add comment about Arm PMU
->>>>   - Rename "clock-oscclk" to "osc-clock"
->>>>   - Include exynos-syscon-restart.dtsi instead of rewriting its contents
->>>>
->>>> Changes in v3:
->>>>   - Fix typo (seperate -> separate)
->>>>
->>>> Changes in v4:
->>>>   - Fixed leading 0x in clock-controller nodes
->>>>   - Actually suffixed pin configuration node names with "-pins"
->>>>   - Seperated Cortex-A53 and Cortex-A73 PMU
->>>>
->>>>  arch/arm64/boot/dts/exynos/Makefile           |   7 +-
->>>>  .../boot/dts/exynos/exynos7885-jackpotlte.dts |  95 ++
->>>>  .../boot/dts/exynos/exynos7885-pinctrl.dtsi   | 865 ++++++++++++++++++
->>>>  arch/arm64/boot/dts/exynos/exynos7885.dtsi    | 438 +++++++++
->>>>  4 files changed, 1402 insertions(+), 3 deletions(-)
->>>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
->>>
->>> Shouldn't SoC and board files be sent as two separate patches? For
->>> example, I've checked exynos5433 and exynos7, SoC support
->>
->> Does not have to be. DTSI by itself cannot be even compiled, so keeping
->> it a separate commit does not bring that much benefits. Especially if it
->> is only one DTSI and one DTS.
->>
+On Tue 30 Nov 23:24 PST 2021, Vinod Koul wrote:
+
+> Add device tree binding Documentation details for Qualcomm SM8450
+> TLMM device
 > 
-> Right, the only theoretical benefit I can see is reverting the board
-> dts in future, if another board already uses SoC dtsi. Or
-> cherry-picking in similar manner. Not my call though, for me it just
-> seems easier to review it that way, and more atomic.
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Regards,
+Bjorn
+
+> ---
+>  .../bindings/pinctrl/qcom,sm8450-pinctrl.yaml | 143 ++++++++++++++++++
+>  1 file changed, 143 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8450-pinctrl.yaml
 > 
->>>
->>>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos7885-pinctrl.dtsi
->>>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos7885.dtsi
->>>>
->>>> diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
->>>> index b41e86df0a84..c68c4ad577ac 100644
->>>> --- a/arch/arm64/boot/dts/exynos/Makefile
->>>> +++ b/arch/arm64/boot/dts/exynos/Makefile
->>>> @@ -1,6 +1,7 @@
->>>>  # SPDX-License-Identifier: GPL-2.0
->>>>  dtb-$(CONFIG_ARCH_EXYNOS) += \
->>>> -       exynos5433-tm2.dtb      \
->>>> -       exynos5433-tm2e.dtb     \
->>>> -       exynos7-espresso.dtb    \
->>>> +       exynos5433-tm2.dtb              \
->>>> +       exynos5433-tm2e.dtb             \
->>>> +       exynos7-espresso.dtb            \
->>>> +       exynos7885-jackpotlte.dtb       \
->>>>         exynosautov9-sadk.dtb
->>>> diff --git a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
->>>> new file mode 100644
->>>> index 000000000000..f5941dc4c374
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
->>>> @@ -0,0 +1,95 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +/*
->>>> + * Samsung Galaxy A8 2018 (jackpotlte/SM-A530F) device tree source
->>>> + *
->>>> + * Copyright (c) 2021 Samsung Electronics Co., Ltd.
->>>> + * Copyright (c) 2021 Dávid Virág
->>>> + *
->>>
->>> This line is not needed.
->>>
->>>> + */
->>>> +
->>>> +/dts-v1/;
->>>
->>> Suggest adding empty line here.
->>>
->>>> +#include "exynos7885.dtsi"
->>>> +#include <dt-bindings/gpio/gpio.h>
->>>> +#include <dt-bindings/input/input.h>
->>>> +#include <dt-bindings/interrupt-controller/irq.h>
->>>> +
->>>> +/ {
->>>> +       model = "Samsung Galaxy A8 (2018)";
->>>> +       compatible = "samsung,jackpotlte", "samsung,exynos7885";
->>>> +       chassis-type = "handset";
->>>> +
->>>> +       aliases {
->>>> +               serial0 = &serial_0;
->>>> +               serial1 = &serial_1;
->>>> +               serial2 = &serial_2;
->>>
->>> Suggestion: add aliases also for i2c nodes, to keep i2c instance
->>> numbers fixed in run-time (e.g. in "i2cdetect -l" output).
->>>
->>>> +       };
->>>> +
->>>> +       chosen {
->>>> +               stdout-path = &serial_2;
->>>> +       };
->>>> +
->>>> +       memory@80000000 {
->>>> +               device_type = "memory";
->>>> +               reg = <0x0 0x80000000 0x3da00000>,
->>>> +                     <0x0 0xc0000000 0x40000000>,
->>>> +                     <0x8 0x80000000 0x40000000>;
->>>> +       };
->>>> +
->>>> +       gpio-keys {
->>>> +               compatible = "gpio-keys";
->>>> +               pinctrl-names = "default";
->>>> +               pinctrl-0 = <&key_volup &key_voldown &key_power>;
->>>> +
->>>> +               volup-key {
->>>> +                       label = "Volume Up";
->>>> +                       interrupts = <5 IRQ_TYPE_LEVEL_HIGH 0>;
->>>
->>> Here and below: what is 0, why it's needed? Also, isn't it enough to
->>> have just "gpios", and remove interrupt*? Need to check "gpio-keys"
->>> driver and bindings doc, but AFAIR it should be enough to have just
->>> "gpios =" or just "interrupts =".
->>
->> "gpios" is enough, because the IRQ line is derived from it. However
->> explicitly describing interrupts seems like a more detailed hardware
->> description.
->>
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..9c891246245b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8450-pinctrl.yaml
+> @@ -0,0 +1,143 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,sm8450-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. SM8450 TLMM block
+> +
+> +maintainers:
+> +  - Vinod Koul <vkoul@kernel.org>
+> +
+> +description: |
+> +  This binding describes the Top Level Mode Multiplexer (TLMM) block found
+> +  in the SM8450 platform.
+> +
+> +allOf:
+> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sm8450-tlmm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts: true
+> +  interrupt-controller: true
+> +  '#interrupt-cells': true
+> +  gpio-controller: true
+> +  gpio-reserved-ranges: true
+> +  '#gpio-cells': true
+> +  gpio-ranges: true
+> +  wakeup-parent: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +patternProperties:
+> +  '-state$':
+> +    oneOf:
+> +      - $ref: "#/$defs/qcom-sm8450-tlmm-state"
+> +      - patternProperties:
+> +          ".*":
+> +            $ref: "#/$defs/qcom-sm8450-tlmm-state"
+> +
+> +$defs:
+> +  qcom-sm8450-tlmm-state:
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          List of gpio pins affected by the properties specified in this
+> +          subnode.
+> +        items:
+> +          oneOf:
+> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-9][0-9]|20[0-9])$"
+> +            - enum: [ ufs_reset, sdc2_clk, sdc2_cmd, sdc2_data ]
+> +        minItems: 1
+> +        maxItems: 36
+> +
+> +      function:
+> +        description:
+> +          Specify the alternative function to be configured for the specified
+> +          pins.
+> +        enum: [ aon_cam, atest_char, atest_usb, audio_ref, cam_mclk, cci_async,
+> +                cci_i2c, cci_timer, cmu_rng, coex_uart1, coex_uart2, cri_trng,
+> +                cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1,
+> +                ddr_pxi2, ddr_pxi3, dp_hot, gcc_gp1, gcc_gp2, gcc_gp3,
+> +                gpio, ibi_i3c, jitter_bist, mdp_vsync, mdp_vsync0, mdp_vsync1,
+> +                mdp_vsync2, mdp_vsync3, mi2s0_data0, mi2s0_data1, mi2s0_sck,
+> +                mi2s0_ws, mi2s2_data0, mi2s2_data1, mi2s2_sck, mi2s2_ws,
+> +                mss_grfc0, mss_grfc1, mss_grfc10, mss_grfc11, mss_grfc12,
+> +                mss_grfc2, mss_grfc3, mss_grfc4, mss_grfc5, mss_grfc6,
+> +                mss_grfc7, mss_grfc8, mss_grfc9, nav, pcie0_clkreqn,
+> +                pcie1_clkreqn, phase_flag, pll_bist, pll_clk, pri_mi2s,
+> +                prng_rosc, qdss_cti, qdss_gpio, qlink0_enable, qlink0_request,
+> +                qlink0_wmss, qlink1_enable, qlink1_request, qlink1_wmss,
+> +                qlink2_enable, qlink2_request, qlink2_wmss, qspi0, qspi1,
+> +                qspi2, qspi3, qspi_clk, qspi_cs, qup0, qup1, qup10, qup11,
+> +                qup12, qup13, qup14, qup15, qup16, qup17, qup18, qup19, qup2,
+> +                qup20, qup21, qup3, qup4, qup5, qup6, qup7, qup8, qup9, qup_l4,
+> +                qup_l5, qup_l6, sd_write, sdc40, sdc41, sdc42, sdc43, sdc4_clk,
+> +                sdc4_cmd, sec_mi2s, tb_trig, tgu_ch0, tgu_ch1, tgu_ch2,
+> +                tgu_ch3, tmess_prng0, tmess_prng1, tmess_prng2, tmess_prng3,
+> +                tsense_pwm1, tsense_pwm2, uim0_clk, uim0_data, uim0_present,
+> +                uim0_reset, uim1_clk, uim1_data, uim1_present, uim1_reset,
+> +                usb2phy_ac, usb_phy, vfr_0, vfr_1, vsense_trigger ]
+> +
+> +      bias-disable: true
+> +      bias-pull-down: true
+> +      bias-pull-up: true
+> +      drive-strength: true
+> +      input-enable: true
+> +      output-high: true
+> +      output-low: true
+> +
+> +    required:
+> +      - pins
+> +      - function
+> +
+> +    additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +        pinctrl@f100000 {
+> +                compatible = "qcom,sm8450-tlmm";
+> +                reg = <0x0f100000 0x300000>;
+> +                gpio-controller;
+> +                #gpio-cells = <2>;
+> +                gpio-ranges = <&tlmm 0 0 211>;
+> +                interrupt-controller;
+> +                #interrupt-cells = <2>;
+> +                interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +                gpio-wo-subnode-state {
+> +                        pins = "gpio1";
+> +                        function = "gpio";
+> +                };
+> +
+> +                uart-w-subnodes-state {
+> +                    rx {
+> +                            pins = "gpio26";
+> +                            function = "qup7";
+> +                            bias-pull-up;
+> +                    };
+> +
+> +                    tx {
+> +                            pins = "gpio27";
+> +                            function = "qup7";
+> +                            bias-disable;
+> +                    };
+> +               };
+> +        };
+> +...
+> -- 
+> 2.31.1
 > 
-> Frankly I don't think it's more detailed, it states the same thing
-> (gpa1 controller, line=5).
-
-It states that interrupt is exactly the same as GPIO which not
-explicitly coming from bindings.
-
-> Also not sure if level interrupt is needed
-> for a key, maybe edge type would be better. Also, I still don't
-> understand 0 in the end. 
-
-Indeed this part looks not correct - the leve and 0 at the end. In such
-case better to skip it then define misleading property.
-
-> Checking existing dts's, most of those only
-> define "gpios". I'd say having only "gpios" is more obvious, and will
-> work the same way. But that's not a strong preference on my side, just
-> think it's a bit misleading right now.
-
-Yep.
-
-> 
->>>
->>>
->>>> +                       interrupt-parent = <&gpa1>;
->>>> +                       linux,code = <KEY_VOLUMEUP>;
->>>> +                       gpios = <&gpa1 5 GPIO_ACTIVE_LOW>;
->>>> +               };
->>>> +
->>>> +               voldown-key {
->>>> +                       label = "Volume Down";
->>>> +                       interrupts = <6 IRQ_TYPE_LEVEL_HIGH 0>;
->>>> +                       interrupt-parent = <&gpa1>;
->>>> +                       linux,code = <KEY_VOLUMEDOWN>;
->>>> +                       gpios = <&gpa1 6 GPIO_ACTIVE_LOW>;
->>>> +               };
->>>> +
->>>> +               power-key {
->>>> +                       label = "Power";
->>>> +                       interrupts = <7 IRQ_TYPE_LEVEL_HIGH 0>;
->>>> +                       interrupt-parent = <&gpa1>;
->>>> +                       linux,code = <KEY_POWER>;
->>>> +                       gpios = <&gpa1 7 GPIO_ACTIVE_LOW>;
->>>> +                       wakeup-source;
->>>> +               };
->>>> +       };
->>>> +};
->>>> +
->>>
->>> If there are some LEDs by chance on that board -- it might be useful
->>> to define those here with "gpio-leds" as well. Maybe even set some
->>> default trigger like "heartbeat".
->>>
->>>> +&serial_2 {
->>>> +       status = "okay";
->>>> +};
->>>> +
->>>> +&pinctrl_alive {
->>>> +       key_volup: key-volup-pins {
->>>> +               samsung,pins = "gpa1-5";
->>>> +               samsung,pin-function = <EXYNOS_PIN_FUNC_F>;
->>>
->>> Maybe EXYNOS_PIN_FUNC_EINT is more self-explanatory? Just a suggestion though.
->>>
->>>> +               samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
->>>> +               samsung,pin-drv = <0>;
->>>
->>> Here and below: please use EXYNOS5420_PIN_DRV_LV1 (means drive level = 1x).
->>
->> But are these drive level 1x? The Exynos Auto v9 has different values
->> than older ones.
->>
-> 
-> It should be that. One way to implicitly figure that out is to look at
-> nodes like "sd0_clk_fast_slew_rate_3x" and those pin-drv properties.
-> Also, in Exynos850 for most of domains those constants are
-> appropriate, that's why I mentioned that.
-
-Then I agree, use existing macros. The macros can be skipped for cases
-when the meaning is different.
-
-> 
->>>
->>>> +       };
->>>> +
->>>> +       key_voldown: key-voldown-pins {
->>>> +               samsung,pins = "gpa1-6";
->>>> +               samsung,pin-function = <EXYNOS_PIN_FUNC_F>;
->>>> +               samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
->>>> +               samsung,pin-drv = <0>;
->>>> +       };
->>>> +
->>>> +       key_power: key-power-pins {
->>>> +               samsung,pins = "gpa1-7";
->>>> +               samsung,pin-function = <EXYNOS_PIN_FUNC_F>;
->>>> +               samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
->>>> +               samsung,pin-drv = <0>;
->>>> +       };
->>>> +};
->>>> diff --git a/arch/arm64/boot/dts/exynos/exynos7885-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynos7885-pinctrl.dtsi
->>>> new file mode 100644
->>>> index 000000000000..8336b2e48858
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/exynos/exynos7885-pinctrl.dtsi
->>>> @@ -0,0 +1,865 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +/*
->>>> + * Samsung Exynos7885 SoC pin-mux and pin-config device tree source
->>>> + *
->>>> + * Copyright (c) 2017 Samsung Electronics Co., Ltd.
->>>> + * Copyright (c) 2021 Dávid Virág
->>>> + *
->>>> + * Samsung's Exynos7885 SoC pin-mux and pin-config options are listed as
->>>> + * device tree nodes in this file.
->>>> + */
->>>> +
->>>> +#include <dt-bindings/pinctrl/samsung.h>
->>>
->>> You probably also need <dt-bindings/interrupt-controller/arm-gic.h>
->>> here for GIC_SPI definition.
->>>
->>>> +
->>>> +&pinctrl_alive {
->>>> +       etc0: etc0 {
->>>> +               gpio-controller;
->>>> +               #gpio-cells = <2>;
->>>> +
->>>> +               interrupt-controller;
->>>> +               #interrupt-cells = <2>;
->>>> +       };
->>>> +
->>>> +       etc1: etc1 {
->>>> +               gpio-controller;
->>>> +               #gpio-cells = <2>;
->>>> +
->>>> +               interrupt-controller;
->>>> +               #interrupt-cells = <2>;
->>>> +       };
->>>
->>> Hmm, what are these two? I can't find anything related in
->>> exynos7885.dtsi. If it's just some leftover from downstream vendor
->>> kernel -- please remove it.
->>
->> This is a pinctrl DTSI file. What do you expect to find in
->> exynos7885.dtsi for these? Why removing them?
-> 
-> etc0 and etc1 nodes are defined as gpio-controller and
-> interrupt-controller. So "compatible" should be provided somewhere for
-> those nodes. For example, for "gpa0" node below you can find its
-> compatible in exynos7885.dtsi. 
-
-I am sorry, I still don't get it. gpa0 below does not have compatible.
-
-> Right now I don't understand how those
-> etc0 and etc1 can be used at all.
-
-Exactly the same as gpa0, nothing changes here.
-
->  So maybe it's better to just remove
-> those? Those are not used anywhere and we probably don't even know
-> what those nodes represent. My point is, if those are actually some
-> leftovers from vendor kernel and those are not going to be used (and I
-> don't see how, without "compatible"), then we probablly better off
-> without those.
-
-I don't have the manual but in other SoCs these are not left-overs, but
-real GPIO banks. Their configurability depends on the SoCs. I agree that
-usually they are not used (because one of the uses is debugging), but
-they can be included for completness of HW description. Assuming they exist.
-
-(...)
-
->>>> +#include "exynos7885-pinctrl.dtsi"
->>>> +#include "arm/exynos-syscon-restart.dtsi"
->>>
->>> Have you verified both reboot and power off functions from this file?
->>> I guess if some doesn't work, it's better to avoid including this, but
->>> instead add corresponding sub-nodes into your pmu_sytem_controller.
->>
->> Why open-coding same code work and including would not? Assuming that it
->> compiles, of course.
->>
-> 
-> For example, in case of Exynos850 the "power off" node from this file
-> wasn't suitable. In that case it's not worth including it. But David
-> already confirmed both work fine for him, so it doesn't matter
-> anymore.
-
-These nodes were here before and since they duplicated common syscon, I
-asked to use DTSI. The boards which do not use the same syscon
-registers/methods should not include it, obviously. :)
-
-
-Best regards,
-Krzysztof
