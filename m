@@ -2,58 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C664E46D33C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 13:25:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB45546D360
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 13:34:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbhLHM31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 07:29:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40352 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbhLHM30 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 07:29:26 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9923C061746;
-        Wed,  8 Dec 2021 04:25:54 -0800 (PST)
+        id S233466AbhLHMh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 07:37:59 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:39842 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229598AbhLHMh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 07:37:58 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 3A661CE1EC7;
-        Wed,  8 Dec 2021 12:25:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F04BEC00446;
-        Wed,  8 Dec 2021 12:25:48 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id D1936CE1FCB;
+        Wed,  8 Dec 2021 12:34:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CE5AC00446;
+        Wed,  8 Dec 2021 12:34:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638966350;
-        bh=AwNlKNs1o1R/cPh2iXFM9XUEhK9Xrwq6BwJUnSoKZuc=;
+        s=k20201202; t=1638966864;
+        bh=zqmFWgeSsu2Lf8ivAqpIogjZ+EweMK4Re1qHpp/FbKw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=m0GZGrdd+EOOVhOEGW4olK3AWSdS29U6DZc5HJimnjiEU1BtHB55EPbqgFn+M/Nn9
-         mQCZi2O3kNaU1uSkj7BrRw8gWCCEPEnpqi04yMnxPH2KwT+biKCPf0Z17XRtlxZBWk
-         rPnfFA5qiMiFsjvgXAh8b0qjATSXlOUBV8zapWYayVrxky4HR+PhHsDZhcqS88ol/F
-         ZtL857YzRi7NFSnhUX7JIqXewtsbZPLqivTxh55y51CdTsZAHffHwKRdX7rgmp0Fnk
-         8WkLw5slyMRtxZMHC1/JMGynGdznFuTzI0AL8p+R0FvzB2OwVHht31OzwSbuwkDOIN
-         gVWIOecj/Mb4Q==
-Date:   Wed, 8 Dec 2021 20:25:44 +0800
+        b=p9ImSDYgg2lWXmB2xXVnHlSvlD9mK+5jGarMy6R5zXG82i0SZsmfN3FP8LWDYgSR8
+         5W76r8Ge5u2yYfAWdsTqbT8YJc4ACWRjouVmO3nN0PFMVx83GUCTjHZXmMPhWtrcd5
+         H0UTYCqGs0dBVlQ8X+vAue9ChHoYCnzm+qr/uwUaCqjnUpONPlJhy/tGUd+qslfdOb
+         rZKhxLRPar3Jb47CQryqiIL3ARoRhOz3OIChWtB43p0fWqTCUKPmvm6VT2s3a0PzmJ
+         LnfrnWfVTj4jce2RPzQyC1eR89gVO0asNlY/t9Pa+yeIBRWWUaPd4s+VDPvTdadaeW
+         klmmMdTNze1Jg==
+Date:   Wed, 8 Dec 2021 20:34:18 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/7] arm64: dts: imx8mn-evk: add hardware reset for FEC
- PHY
-Message-ID: <20211208122544.GH4216@dragon>
-References: <20211123080506.21424-1-qiangqing.zhang@nxp.com>
- <20211123080506.21424-2-qiangqing.zhang@nxp.com>
+To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH] ARM: dts: imx6dl-yapp4: Remove not-yet added support for
+ sound from Crux
+Message-ID: <20211208123417.GJ4216@dragon>
+References: <202112061855.SidQyicE-lkp@intel.com>
+ <20211206142601.373807-1-michal.vokac@ysoft.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211123080506.21424-2-qiangqing.zhang@nxp.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211206142601.373807-1-michal.vokac@ysoft.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 23, 2021 at 04:05:00PM +0800, Joakim Zhang wrote:
-> Add hardware reset for FEC PHY.
+On Mon, Dec 06, 2021 at 03:26:01PM +0100, Michal Vokáč wrote:
+> Remove mistakingly added support for audio codec. We support the coded
+> by our downstream patches but the appropriate driver and bindings are not
+> in mainline yet.
 > 
-> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Fixes: a4d744ac2bab ("ARM: dts: imx6dl-yapp4: Add Y Soft IOTA Crux/Crux+ board")
+> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
 
-Applied all, thanks!
+Amended, thanks!
