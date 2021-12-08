@@ -2,107 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BCB846CD89
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 07:16:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A92546CDB6
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 07:26:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237588AbhLHGTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 01:19:45 -0500
-Received: from o1.ptr2625.egauge.net ([167.89.112.53]:45720 "EHLO
-        o1.ptr2625.egauge.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230139AbhLHGTo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 01:19:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=egauge.net;
-        h=from:subject:in-reply-to:references:mime-version:to:cc:
-        content-transfer-encoding:content-type;
-        s=sgd; bh=9O84YlDTJBrDvppEZlV/mmasG/m+M/ZBthbQsXfcgJM=;
-        b=AI2On6MNhsKORHTwS7K/yPsiVBkKzciZzGu0Zscuh62HCqAHeLZS6AYmxT4R/1jKWt6j
-        kjezu1NxlPypWdapEX8UUdlfN9Xt03E4Iyd9aV7mzcqXDMkVaoND+S66qno3MYxXGEHWol
-        fdYGaJx8lzodHVsqCYq2EyQAVdTR7jR0d9XmfC+1xMqzdYOW6B4/GrJCGNe9gwxpvUa5go
-        TI7l+uyigUJLaObsEPSGkQ8Hic1l7OEX+uRYYgli/mjjGmsAP960Xuh959aFc+W3OUaXjT
-        nFwZ9LPhdB2z+L9yOyxXN9rmFQEVXA4X4Rx6aJZpLZ99nC5LSV/BY8TGWc67hg+w==
-Received: by filterdrecv-64fcb979b9-tjknx with SMTP id filterdrecv-64fcb979b9-tjknx-1-61B04DAC-5
-        2021-12-08 06:16:12.120358724 +0000 UTC m=+7366714.923877139
-Received: from pearl.egauge.net (unknown)
-        by geopod-ismtpd-5-0 (SG)
-        with ESMTP
-        id fktlyEjKRAOSgOxelA7WCA
-        Wed, 08 Dec 2021 06:16:11.911 +0000 (UTC)
-Received: by pearl.egauge.net (Postfix, from userid 1000)
-        id 649C2700371; Tue,  7 Dec 2021 23:16:11 -0700 (MST)
-From:   David Mosberger-Tang <davidm@egauge.net>
-Subject: [PATCH v2 2/2] wilc1000: Document enable-gpios and reset-gpios
- properties
-Date:   Wed, 08 Dec 2021 06:16:12 +0000 (UTC)
-Message-Id: <20211208061559.3404738-3-davidm@egauge.net>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211208061559.3404738-1-davidm@egauge.net>
-References: <20211208061559.3404738-1-davidm@egauge.net>
+        id S239692AbhLHG3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 01:29:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42702 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239648AbhLHG3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 01:29:50 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE863C061574
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 22:26:16 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id x15so4883259edv.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 22:26:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JDOyr+F9YK+WldbZFLV08gsVPZC6GDloFu/EtSqXU8s=;
+        b=gJ5KzNYh3GeuKAN/Li1gWkIkBM72iAQTEnS8YcttO5U7xeFcCryDGjycIYA3M5ET5B
+         MQDrHXzEwYWUtvdsGK2mr30pKX+SKiZUiHlB+DU28/VScGvD1SYhela1XEwMlEjE11JV
+         SNH1U90P0YqVQYcFJ2O7o8WQ/7myncG3QV4Lo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JDOyr+F9YK+WldbZFLV08gsVPZC6GDloFu/EtSqXU8s=;
+        b=A7FINdbYhCpajYYIRk1lC/1fuwerwrQXtQOHHIWs7xX2sBAmClqjN+oPmMcnSg0A2V
+         uXs+GCRJpKvG4pMrOWQMeLkws5mhzcBTbhU7+6EbhU6z4GY9XVl/xLbL2koaiSdfoIJd
+         CSq+toJ6B+e3kq2IBUKx5xXwzuCUCCR7WfC7Mo2K2GaLjFXAPEKuNsk+i52q2ZHCN1a/
+         WAyI22D8c+ist8YH6Fy+x7xE9YYd33/AGbb+rGWhdaHc7Mqn0VjEaBNzBg2AW5LSoduW
+         Ajd09hjTHWsZGJdiTk28XWbTWGLC28dSgZJ7kOJKWxahWZRkPCyxvMigDhPVTDnK+1sR
+         sDbw==
+X-Gm-Message-State: AOAM530ijNzq4QyH81dXiLjokjBGGFDvXS8NHPsfbVVSdUdC1225pR+s
+        EW2lRrDejUfNwm6/P9a3ZSE/Am43tzTpaG2u+hJlGg==
+X-Google-Smtp-Source: ABdhPJyDJiW45X33EnCeIgOElIPrAA45rk8jwtzJh/1J7ctIB/q4SOcISVO8qCUn5LDbikO3e0xUrh6fYuIjAnIj4ZE=
+X-Received: by 2002:a05:6402:1768:: with SMTP id da8mr16837011edb.252.1638944775240;
+ Tue, 07 Dec 2021 22:26:15 -0800 (PST)
 MIME-Version: 1.0
-X-SG-EID: =?us-ascii?Q?+kMxBqj35EdRUKoy8diX1j4AXmPtd302oan+iXZuF8m2Nw4HRW2irNspffT=2Fkh?=
- =?us-ascii?Q?ET6RJF6+Prbl0h=2FEtF1rRLvHDkHtRhmBzQDo+NU?=
- =?us-ascii?Q?s0KNI7fyoAERCfLen8t3LrrHc2oVhzYWo0vWwGP?=
- =?us-ascii?Q?TscrxfSDDs5HaTjLzmPLRN39PI=2FULZ9FpEOLqyd?=
- =?us-ascii?Q?iUzzvI3Vb4gJ=2Fa=2FQf5O0sad1nn3i57wr4h=2FODyX?=
- =?us-ascii?Q?YqNTgKVw1CQJY2qjNk=2FI1CpxzBUcU2Oy0iGL5L6?=
- =?us-ascii?Q?HU1=2FKUGSTorVlep3pHHaw=3D=3D?=
-To:     Ajay Singh <ajay.kathat@microchip.com>
-Cc:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Adham Abozaeid <adham.abozaeid@microchip.com>,
-        devicetree@vger.kernel.org,
-        David Mosberger-Tang <davidm@egauge.net>
-X-Entity-ID: Xg4JGAcGrJFIz2kDG9eoaQ==
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=us-ascii
+References: <20211207054747.461029-1-jagan@amarulasolutions.com>
+ <20211207054747.461029-2-jagan@amarulasolutions.com> <CAL_JsqKj_ToLpoGR6XLgAu=+THit6jhdzAvxMiCCNmWg5zbQ0A@mail.gmail.com>
+In-Reply-To: <CAL_JsqKj_ToLpoGR6XLgAu=+THit6jhdzAvxMiCCNmWg5zbQ0A@mail.gmail.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Wed, 8 Dec 2021 11:56:04 +0530
+Message-ID: <CAMty3ZCO3yYcZhggorPBhywBs8=KjE3Mrv7573TrPQyzfPPiaA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] of: Add helper to lookup non port child node
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-amarula@amarulasolutions.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the ENABLE and RESET GPIOs that may be needed by
-wilc1000-spi.
+On Wed, Dec 8, 2021 at 2:20 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Mon, Dec 6, 2021 at 11:49 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> >
+> > Add of_get_non_port_child() helper that can be used to lookup
+> > non port child nodes.
+> >
+> > Some OF graphs don't require 'ports' to represent the next output
+> > instead, it simply adds a child node on a given parent node. This
+> > helper lookup that child node, however that child node is not a
+> > 'port' on given parent as 'port' based nodes are looked up via
+> > of_graph_get_remote_node().
+> >
+> > Example OF graph representation of DSI host, which doesn't
+> > have 'ports'.
+>
+> This seems pretty specific to DSI and also can't handle there being
+> more than 1 non-port node. That's allowed for DSI too, but I don't
+> think I've ever seen a case. Anyways, I'd just move this to DRM rather
+> than common DT code. One comment on the implementation that will
+> shrink it.
 
-Signed-off-by: David Mosberger-Tang <davidm@egauge.net>
----
- .../bindings/net/wireless/microchip,wilc1000.yaml | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+I think it can be possible to OF graph even for non-DSI, however if
+the end-node outputs to a panel or bridge. At the moment, I can one
+use case on the non-DSI side is rcar du encoder.
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/gpu/drm/rcar-du/rcar_du_encoder.c#n68
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
-index 6c35682377e6..e4da2a58fcb2 100644
---- a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
-@@ -32,6 +32,19 @@ properties:
-   clock-names:
-     const: rtc
- 
-+  enable-gpios:
-+    maxItems: 1
-+    description: Used by wilc1000-spi to determine the GPIO line
-+      connected to the ENABLE line.  Unless special external circuitry
-+      is used, reset-gpios must be specified when enable-gpios is
-+      specified as otherwise the driver cannot ensure the proper
-+      ENABLE/RESET sequence when enabling the chip.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: Used by wilc1000-spi to determine the GPIO line
-+      connected to the RESET line.
-+
- required:
-   - compatible
-   - interrupts
-@@ -51,6 +64,8 @@ examples:
-         interrupts = <27 0>;
-         clocks = <&pck1>;
-         clock-names = "rtc";
-+        enable-gpios = <&pioA 5 0>;
-+        reset-gpios = <&pioA 6 0>;
-       };
-     };
- 
--- 
-2.25.1
+I'm not sure this can be done existing of_graph_get_remote_node, but an example.
 
+>
+> >
+> > dsi {
+> >         #address-cells = <1>;
+> >         #size-cells = <0>;
+> >
+> >         port {
+> >                 dsi_in_tcon0: endpoint {
+> >                         remote-endpoint = <tcon0_out_dsi>;
+> >         };
+> >
+> >         panel@0 {
+> >                 reg = <0>;
+> >         };
+> > };
+> >
+> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > ---
+> >  drivers/of/base.c  | 29 +++++++++++++++++++++++++++++
+> >  include/linux/of.h |  6 ++++++
+> >  2 files changed, 35 insertions(+)
+> >
+> > diff --git a/drivers/of/base.c b/drivers/of/base.c
+> > index 61de453b885c..31bbf885b0f8 100644
+> > --- a/drivers/of/base.c
+> > +++ b/drivers/of/base.c
+> > @@ -854,6 +854,35 @@ struct device_node *of_get_compatible_child(const struct device_node *parent,
+> >  }
+> >  EXPORT_SYMBOL(of_get_compatible_child);
+> >
+> > +/**
+> > + * of_get_non_port_child - Find the non port child node for a given parent
+> > + * @node:      parent node
+> > + *
+> > + * This function looks for child node which is not port child for given parent.
+> > + *
+> > + * Return: A node pointer if found, with refcount incremented, use
+> > + * of_node_put() on it when done.
+> > + * Returns NULL if node is not found.
+> > + */
+> > +struct device_node *of_get_non_port_child(const struct device_node *parent)
+> > +{
+> > +       struct device_node *child;
+> > +
+> > +       for_each_child_of_node(parent, child) {
+>
+> for_each_available_child_of_node
+
+Look like this simplifies not required to use of_device_is_available,
+I will use it in v2.
+
+Thanks,
+Jagan.
