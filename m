@@ -2,185 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD0CA46D309
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 13:08:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 348D546D30F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 13:10:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231583AbhLHMMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 07:12:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36484 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233064AbhLHMMR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 07:12:17 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBE6DC061746
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 04:08:45 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id az34-20020a05600c602200b0033bf8662572so1671275wmb.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 04:08:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=R1D6vu1LwULEAHB02GfzTtDg6CGj6MOMTTzNmc1nbxo=;
-        b=KQcEugiexb23klmZMI5tSlYPQm99/Zv4PPINCgHpDwY3fjhv8d0Zyt/TJihnvq0Ubc
-         ulosvJ/VXLX1hsUssnt5uBohWJZavOjioliqCxG6+Fd8okWoYwHI2BVepUSR0LBr86HD
-         skDjsgdbR4jSE6lb4q4Zlx9xgvaWcPL5d3HZlJwf7MaAII/UBpHDs5GKMn8vC3hcqSa3
-         j4/ExVLga/qmDqhXUjoeArZW4LSTad6LvvGw661WNvCjd6p1lh2C7KtyBv3dDjDaftSb
-         XhUy+zdWjtjEKSsqIID9dZjM+D3L0QtRBY1Wti5aUSzDt2JGywGA79EdQUO47xDDGRwp
-         aTAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=R1D6vu1LwULEAHB02GfzTtDg6CGj6MOMTTzNmc1nbxo=;
-        b=1djNn6UYpmg3x1EARe15i8JcZPcumiaYBslTcTqmaxPYBpDkjswOUA0R71F0YgaJkg
-         L5tv3Vk6wu09RTfBj7zH/R5a0g4w/+wBcwTzMWSgPcnTCn9fowPy6E66y6FG/gAEKAOy
-         4M71cdOZ6YyozAsPDa6RYudYWMz8FAxVoTyS1gunJTSRmoSRV1oFCV7lLGXVIvWmAy9i
-         w+3hVfZGX11NOw4CWfxerdD3eFZHVu+Ir2tJFsA1gZuk2iioDy2foffGD2eFQYdquFQw
-         Mbjbv4C0WVkDOS9pxczFgWO41APzFpAh2OOvphNX6X28A/cXHYgmFXjBDV+tRfptoUOa
-         PKhA==
-X-Gm-Message-State: AOAM532+BYh4ZCag+DpM5oRTYaEQa1Wqfs3mEpOVBZDp0yj5ZlBgFled
-        CEcT9PQuqc7n8KWaaSG/LsM62w==
-X-Google-Smtp-Source: ABdhPJwP41Y8jw1WGUE8GAzmHo4vkR9Ff92/aNI150r9LWBWlHejIG/y9c1S8ZGyrHAs6k1jt25u+w==
-X-Received: by 2002:a05:600c:2252:: with SMTP id a18mr15774810wmm.133.1638965324354;
-        Wed, 08 Dec 2021 04:08:44 -0800 (PST)
-Received: from google.com ([2.31.167.18])
-        by smtp.gmail.com with ESMTPSA id u13sm6297713wmq.14.2021.12.08.04.08.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 04:08:43 -0800 (PST)
-Date:   Wed, 8 Dec 2021 12:08:41 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Cc:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Rob Herring <robh@kernel.org>,
-        Olivier MOYSAN <olivier.moysan@foss.st.com>,
-        Fabrice GASNIER <fabrice.gasnier@st.com>,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        alain.volmat@foss.st.com, arnaud.pouliquen@foss.st.com,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [Linux-stm32] [PATCH v2 1/4] ASoC: dt-bindings: stm32: i2s: add
- audio-graph-card port
-Message-ID: <YbCgSeA1++U82jtn@google.com>
-References: <20211125144053.774-1-olivier.moysan@foss.st.com>
- <20211125144053.774-2-olivier.moysan@foss.st.com>
- <1637875562.357461.2858318.nullmailer@robh.at.kernel.org>
- <237f56b3-0597-2526-a182-f1fbdd327338@foss.st.com>
- <Yaf4jiZIp8+ndaXs@robh.at.kernel.org>
- <627777a4-7458-88ed-e7c5-d11e3db847b5@foss.st.com>
- <cf5f994b-aecf-e051-f5c9-4a46e6414207@pengutronix.de>
- <cb7f19c0-3826-fcc8-227c-982838acf599@foss.st.com>
+        id S233140AbhLHMNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 07:13:47 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:58752 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233089AbhLHMNr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 07:13:47 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id D3C2DCE1FD6;
+        Wed,  8 Dec 2021 12:10:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BA5BC341CA;
+        Wed,  8 Dec 2021 12:10:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638965411;
+        bh=Jm3qvJnwIM8XkCcFVtPu2jUX5ZvPVIUSd05PWLnQZVg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r1/uJZzfEdzN3Gwp+kH3PV1cdXDThRlyeFXjz5XqfG+6JxzCuSxr4KrRAzS9oFfTj
+         IQ/EsM2UykeTj2auyLkz04w67GadPXi3Slfha4S5nvkXKPlmFd6W52G1xo5lCysol1
+         FsJexiVqTQ3aXBJEtpkRag71KH+jCwi2bffNq9VZHdA05Sy0mBN1HIdqbch0FfnhXZ
+         w1J6xOmT5BB8e2Pe6PJclPQ1We+1MhpaQvm+lP4iLhSP2uTqM8g9mSSD3UXjYhaiUO
+         4Vdc/Kr3RsFuObnptku8mrinUKJWHd6oj3UKlLpirSImVxTdnD3hz/vNcn6A2GLJcv
+         uLzYJU+pJsiBQ==
+Date:   Wed, 8 Dec 2021 20:10:00 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, ping.bai@nxp.com,
+        aisheng.dong@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 2/3] arm64: dts: imx8ulp: add scmi firmware node
+Message-ID: <20211208121000.GG4216@dragon>
+References: <20211117032740.2518926-1-peng.fan@oss.nxp.com>
+ <20211117032740.2518926-3-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cb7f19c0-3826-fcc8-227c-982838acf599@foss.st.com>
+In-Reply-To: <20211117032740.2518926-3-peng.fan@oss.nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Dec 2021, Alexandre TORGUE wrote:
-
-> Hi Ahmad
+On Wed, Nov 17, 2021 at 11:27:39AM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> On 12/7/21 2:59 PM, Ahmad Fatoum wrote:
-> > Hello Alex,
-> > 
-> > On 07.12.21 14:52, Alexandre TORGUE wrote:
-> > > Hi Rob
-> > > 
-> > > On 12/1/21 11:34 PM, Rob Herring wrote:
-> > > > On Fri, Nov 26, 2021 at 11:25:27AM +0100, Olivier MOYSAN wrote:
-> > > > > Hi Rob,
-> > > > > 
-> > > > > On 11/25/21 10:26 PM, Rob Herring wrote:
-> > > > > > On Thu, 25 Nov 2021 15:40:50 +0100, Olivier Moysan wrote:
-> > > > > > > The STM2 I2S DAI can be connected via the audio-graph-card.
-> > > > > > > Add port entry into the bindings.
-> > > > > > > 
-> > > > > > > Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
-> > > > > > > ---
-> > > > > > >     Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml | 5 +++++
-> > > > > > >     1 file changed, 5 insertions(+)
-> > > > > > > 
-> > > > > > 
-> > > > > > Running 'make dtbs_check' with the schema in this patch gives the
-> > > > > > following warnings. Consider if they are expected or the schema is
-> > > > > > incorrect. These may not be new warnings.
-> > > > > > 
-> > > > > > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> > > > > > This will change in the future.
-> > > > > > 
-> > > > > > Full log is available here: https://patchwork.ozlabs.org/patch/1559750
-> > > > > > 
-> > > > > > 
-> > > > > > audio-controller@4000b000: 'port' does not match any of the regexes: '^port@[0-9]', 'pinctrl-[0-9]+'
-> > > > > >      arch/arm/boot/dts/stm32mp157a-dk1.dt.yaml
-> > > > > >      arch/arm/boot/dts/stm32mp157c-dk2.dt.yaml
-> > > > > > 
-> > > > > 
-> > > > > This warning is not a new one.
-> > > > > 
-> > > > > The i2s2 node in stm32mp15xx-dkx.dtsi would require the following binding:
-> > > > > port:
-> > > > >      $ref: audio-graph-port.yaml#
-> > > > >      unevaluatedProperties: false
-> > > > > 
-> > > > > However the spi binding requires to introduce a unit address:
-> > > > > patternProperties:
-> > > > >     '^port@[0-9]':
-> > > > >       $ref: audio-graph-port.yaml#
-> > > > >       unevaluatedProperties: false
-> > > > > 
-> > > > > The warning can be removed by re-ordering the bindings patches in the serie,
-> > > > > as "additionalProperties: true" makes the check more tolerant on extra
-> > > > > properties.
-> > > > 
-> > > > That's never right.
-> > > > 
-> > > > > The patch "ASoC: dt-bindings: stm32: i2s: add audio-graph-card port" can
-> > > > > even be merely dropped.
-> > > > > So, I suggest to resend the serie without audio-graph-card patch.
-> > > > 
-> > > > Only if you aren't using audio-graph-card.
-> > > > 
-> > > > > 
-> > > > > Does it sound too permissive to you ?
-> > > > 
-> > > > I think perhaps you need to combine the schemas into 1. Or you need to
-> > > > restructure your dtsi files such that you only add spi specific
-> > > > properties when spi mode is enabled and only add i2s specific properties
-> > > > when i2s mode is enabled. Or use the /delete-property/ directive.
-> > > 
-> > > Initially the aim of this series was to fix a "make W=1" warnings seen on spi and i2s nodes (duplicate unit-address). Moving both nodes in a common node + using a different compatible depending on SPI or I2S usage sounded good) but it is not enough. In this series the common node is named as following: "spi2s2: spi@4000b000". It is fine for a spi usage but if we want to use this "common node" with I2S compatible and specific bindings, the node name remains spi@... and then specific spi checks are done. For this with this series applied we got this issue reported by spi-controller.yaml:
-> > > 
-> > > spi@4000b000: port@0: 'compatible' is a required property
-> > > 
-> > > So, if we use two separates nodes we got W=1 warning and if we use a common node we got yaml check issue. One possibility would be to use a common node with a new node name (for example i2spi@...) but I think it is not acceptable.
-> > > 
-> > > How to progress ?
-> > 
-> > Atmel Flexcom can be configured to be either UART, SPI or i2c. Functions
-> > are child nodes of the flexcom node and the MFD driver matching against it,
-> > just configure the operating mode and then calls of_platform_populate.
-> > 
-> > Would something along these lines fit here as well?
+> i.MX8ULP use scmi firmware based power domain and sensor support.
+> So add the firmware node and the sram it uses.
 > 
-> Yes it could but in my mind it was not a MFD as both feature cannot be used
-> at the same time: it is either SPI or I2S and choice is done "statically" in
-> device tree depending board usage.
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 35 ++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
 > 
-> Lee, what it is your feeling about that ? Will you accept to add a MFD
-> driver for this SPI/I2S peripheral whose prurpose is only to populate child
-> node (either SPI or I2S) ?
+> diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+> index fb8714379026..d567ef93f8d8 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+> @@ -6,6 +6,7 @@
+>  #include <dt-bindings/clock/imx8ulp-clock.h>
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/power/imx8ulp-power.h>
+>  
+>  #include "imx8ulp-pinfunc.h"
+>  
+> @@ -102,6 +103,40 @@ sosc: clock-sosc {
+>  		#clock-cells = <0>;
+>  	};
+>  
+> +	sram@2201f000 {
+> +		compatible = "mmio-sram";
+> +		reg = <0x0 0x2201f000 0x0 0x1000>;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0 0x0 0x2201f000 0x1000>;
+> +
+> +		scmi_buf: scmi_buf@0 {
 
-From your description, this doesn't sound like a good fit for MFD.
+Hyphen is more recommended than underscore for node name.  Or just
+follow the naming in arm,scmi.yaml example?
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Shawn
+
+> +			compatible = "arm,scmi-shmem";
+> +			reg = <0x0 0x400>;
+> +		};
+> +	};
+> +
+> +	firmware {
+> +		scmi {
+> +			compatible = "arm,scmi-smc";
+> +			arm,smc-id = <0xc20000fe>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			shmem = <&scmi_buf>;
+> +
+> +			scmi_devpd: protocol@11 {
+> +				reg = <0x11>;
+> +				#power-domain-cells = <1>;
+> +			};
+> +
+> +			scmi_sensor: protocol@15 {
+> +				reg = <0x15>;
+> +				#thermal-sensor-cells = <0>;
+> +			};
+> +		};
+> +	};
+> +
+>  	soc@0 {
+>  		compatible = "simple-bus";
+>  		#address-cells = <1>;
+> -- 
+> 2.25.1
+> 
