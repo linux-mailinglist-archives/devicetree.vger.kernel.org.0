@@ -2,68 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C828E46D3E3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 13:58:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7ACD46D3FE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 14:05:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233904AbhLHNBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 08:01:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48122 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233920AbhLHNBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 08:01:24 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD94BC061A72
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 04:57:52 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id v15so3842608ljc.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 04:57:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=UXZtwM0lWDeGy5nge6H1IgLYqHbHbRiSBEY8ZBnX2uI=;
-        b=O9Cp4KKUt6Lc33WveKlX0ng18lgH92WyyXrs0S86aDjJUDr5gGyin+wMSyDEs2JAdX
-         eRpWmmbKo63O5NsrSE+NbCtFNiJM8ZtmJXSEtwivi07wN0nHhFjoxbxGQhRyFc8FTYen
-         wXlkfqQkWz1myyHTnZ3dt7CIYBEBCLxflXOrpL+7Dro4w/Kq0m8Aj9cSkDrbAz27Hmpm
-         LeDLCtcGBszutx5b3d3FX98Y9hpTvlRQGnHbvg/rvQeZq3tU/2M7M14hoCf9gw9C7X0+
-         sI3Z/297Pg6X35EWB12yY2txU1RSFaVaXGmpPG/dMUF3Rl+aHkAC/Zp8AOVhBB1ZTJKW
-         i28A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=UXZtwM0lWDeGy5nge6H1IgLYqHbHbRiSBEY8ZBnX2uI=;
-        b=eDj+VkLdX4+OgGFaMzkrQ0g6jtZBrDHTPN2VXgE/lOK5KT4aiULTgYdq+PbzuvIX73
-         rmXCR9DDztapN/+BvMHCREIGSSZCkhE5PuX4YZU+M2gyHbWLo7wF4BKx7uMdyyRpJGuX
-         9X2lF8AbHmLgDdv8OKJm2wngovETSYEniDFFSQSroYb9wEQVwjRpMuObY3J0mU4GaYNp
-         dI2Mv1UilZQXKHo0SbQU961zIIKcIpU9Sw2dSMNyTv4svj260k/nJE3ISjavcb5dgoIj
-         HUCNZXvHHzUy0RSAc2jYn+s/ah5YP9KKIfIfKGZoMIedB/protPB9XKk/XQdnFQZTyPR
-         Gsjw==
-X-Gm-Message-State: AOAM533pWbquKZz1MhNUadAXPlXomMr4KKJjWpELbe83mBRKacgQvlL6
-        hAmMBzXoNKl8yHftD9VXETNUzvx6xMqDwJ2fwFg=
-X-Google-Smtp-Source: ABdhPJxj2h3fSmVTOGZIxpOyidkcYcG9uwJRygUnaFJts4nDr642EQkeHSjW/KWLSUclAW1YSfdSb/AchOMh81F1Lpo=
-X-Received: by 2002:a2e:83cc:: with SMTP id s12mr3409900ljh.508.1638968271085;
- Wed, 08 Dec 2021 04:57:51 -0800 (PST)
+        id S234023AbhLHNJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 08:09:23 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:41162 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S234015AbhLHNJX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 08:09:23 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1B89suIU020237;
+        Wed, 8 Dec 2021 14:05:32 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=YruwVjLhOuyRwp87HtHoBSfI756j7x4WprXuWb8kmQU=;
+ b=ULNIpxXU26WqGpYwneKnj2WsdbtDWMOK+z/UR44DMk6spe0WYDyWEuw6LFiU/M79TE4s
+ Z0zHnN6BfMLvTcbgyirlrDNAdX5o2wg63MPS05e8D2wrAc8+QQ8OH9xs6CkEJ7YUziOB
+ PF8JnSbutOCP/rfo65VW29DEsQbs+LaeJ5gRg8gxWg6rY/cWnbo9TISFsWdV5Un9AWFI
+ mzZ/AKvo3dFIaxS8bTmwsDC44Dq6BSS60GmJYvR3TKGC7SWkMQGmq3+0NVBc4XFmWrOB
+ 2+EjLb5sr9fLyJRPs0YgTgZuYRhRs0XxctR7ZpRfmD4n5VsWsXcNtHvgmwPD93nFniaA gA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3cttga922r-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 08 Dec 2021 14:05:32 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8D6F810002A;
+        Wed,  8 Dec 2021 14:05:31 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8242B24DE9D;
+        Wed,  8 Dec 2021 14:05:31 +0100 (CET)
+Received: from localhost (10.75.127.47) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 8 Dec 2021 14:05:31
+ +0100
+From:   Alexandre Torgue <alexandre.torgue@foss.st.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>, <alexandre.torgue@foss.st.com>
+Subject: [PATCH 0/3] Add STM32MP13 EXTI support
+Date:   Wed, 8 Dec 2021 14:04:53 +0100
+Message-ID: <20211208130456.4002-1-alexandre.torgue@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Received: by 2002:a19:6a14:0:0:0:0:0 with HTTP; Wed, 8 Dec 2021 04:57:50 -0800 (PST)
-Reply-To: dwilliamssdavid@gmail.com
-From:   "Mr.David Williams" <chrisolukolade11@gmail.com>
-Date:   Wed, 8 Dec 2021 13:57:50 +0100
-Message-ID: <CA+hQ6Ppmo7TeLTwij-RFNq5GOT16Echc=-4VWb7zQtVHoyvM-g@mail.gmail.com>
-Subject: Did you authorize Mr. Liu Kong Nam
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2021-12-08_04,2021-12-08_01,2021-12-02_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello ,
+Enhance stm32-exti driver to support STM32MP13 SoC. This SoC uses the same
+hardware version than STM32MP15. Only EXTI line mapping is changed and
+following EXTI lines are supported: GPIO, RTC, I2C[1-5], UxART[1-8],
+USBH_EHCI, USBH_OHCI, USB_OTG, LPTIM[1-5], ETH[1-2].
 
-Did you authorize Mr. Liu Kong Nam of Kemuning Ray Street
-NO.8,Tomang.Jakarta, Indonesia to pay the pending wire transfer
-activation charges and claim your WORLD BANK/IMF compensation payment
-the sum of Seven million two hundred thousand US dollars?.
+regards
+Alex
 
-Get back to me with your details.
+Alexandre Torgue (3):
+  dt-bindings: interrupt-controller: stm32-exti: document
+    st,stm32mp13-exti
+  irqchip/stm32-exti: add STM32MP13 support
+  ARM: dts: stm32: Enable EXTI on stm32mp13
 
-Regards
-Mr. David Williams
-E-Mail: ( williamsmrdavid60@gmail.com )
+ .../interrupt-controller/st,stm32-exti.yaml   |  1 +
+ arch/arm/boot/dts/stm32mp131.dtsi             |  7 +++
+ drivers/irqchip/irq-stm32-exti.c              | 50 +++++++++++++++++++
+ 3 files changed, 58 insertions(+)
+
+-- 
+2.17.1
+
