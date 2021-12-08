@@ -2,110 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3AF746D5B6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:32:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC5FB46D5BC
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:33:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235147AbhLHOfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 09:35:39 -0500
-Received: from mga05.intel.com ([192.55.52.43]:30385 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231398AbhLHOfj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Dec 2021 09:35:39 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="324096873"
-X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; 
-   d="scan'208";a="324096873"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2021 06:31:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,189,1635231600"; 
-   d="scan'208";a="479917593"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by orsmga002.jf.intel.com with ESMTP; 08 Dec 2021 06:31:46 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1muxyz-0000fS-FK; Wed, 08 Dec 2021 14:31:45 +0000
-Date:   Wed, 8 Dec 2021 22:31:28 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Gwendal Grignou <gwendal@chromium.org>, jic23@kernel.org,
-        lars@metafoo.de, swboyd@chromium.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, Gwendal Grignou <gwendal@chromium.org>
-Subject: Re: [PATCH v5 3/5] iio: proximity: Add SX9324 support
-Message-ID: <202112082214.pv3MKwkH-lkp@intel.com>
-References: <20211208004311.3098571-4-gwendal@chromium.org>
+        id S235169AbhLHOgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 09:36:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42274 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231398AbhLHOgo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:36:44 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B263DC061746;
+        Wed,  8 Dec 2021 06:33:12 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id i5so4445453wrb.2;
+        Wed, 08 Dec 2021 06:33:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=39lIMxgrwq27ig8P6denT2mMVO2CMALEl/L6qk1MSlw=;
+        b=JtEhhV/3OsCVNKtVxGRsPOCwZjA+3WyQQxXW/Nx43mO38j/E0IHJV9ERxxaLvYlBzZ
+         dKP/hHDAxYOCj+ZdmCGdM6cZX+k8LTiGOpSlqhYmzoceA4lYh7mI6AoGcxx06LxnPRfW
+         pjHJMc5J2QxFMsWP206FOyky5k4pX8UZekvaw3tGtw3T5DvgX5wyp4WYLXPjhKkE6+Xw
+         o8qqBb5TfDjnwp+fe2ALenIm/ap9PXi7jYagITFqA9/av8Xj3kNofUKIKkzO58ewdZpt
+         mqQ2GDh8Bf1quM2t5CrWn1Blf07iEMmgsv8fhKX8Zjx9GYeMN2cOG07CjGAAdz5oq11m
+         T5FQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=39lIMxgrwq27ig8P6denT2mMVO2CMALEl/L6qk1MSlw=;
+        b=Ttk88ENw9wITUu2wRwKPzy23U+kLXQkg6APl8vtH+7vJ2Iz6rIUjqLGrRwpBdcPqU8
+         QAkyY6d1BVvZVxLjtqxHRC0u5QBgvRq33ZckrcGsyJjVsKlchPEh5CoJalal/rinoHSH
+         zvmQbmNOBKzmwTNFGrRytKYBujyaE3aTMdXMkZpNiiMQUsraFqXIdIUIEMoRYtizBvm6
+         7kB1NoXnoYtVAM3H5bZwSuIwmcazC07zzJ1wnKVSASkmZLcdHDkkGoGAA7NdAmlYWaQo
+         xh2PVFkPXSQG1oSeqFt+qaOqAjHArGnLgp8eBoVl9jJdjwdO7LSUb5TMP81fRAiNL63g
+         9/Rw==
+X-Gm-Message-State: AOAM533hYkywAe+t0LcDRAglVA5YFMg/r8ZS7UGcm2L8LooQypKWxrSY
+        7rfMVa3Gs1gZVZ0xFXCGQRc=
+X-Google-Smtp-Source: ABdhPJwWTNyt+tu68nlcPAXHYCsr3Kz0aNCgZ4k+O7Z3QNsjkhCB6o73TXh/P52/hWhGUrIOiKKRnQ==
+X-Received: by 2002:adf:e84d:: with SMTP id d13mr59588374wrn.72.1638973991225;
+        Wed, 08 Dec 2021 06:33:11 -0800 (PST)
+Received: from localhost ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id h16sm3118034wrm.27.2021.12.08.06.33.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Dec 2021 06:33:10 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: i2c: tegra-bpmp: Convert to json-schema
+Date:   Wed,  8 Dec 2021 15:33:06 +0100
+Message-Id: <20211208143306.534700-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211208004311.3098571-4-gwendal@chromium.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gwendal,
+From: Thierry Reding <treding@nvidia.com>
 
-Thank you for the patch! Perhaps something to improve:
+Convert the NVIDIA Tegra186 (and later) BPMP I2C bindings from the
+free-form text format to json-schema.
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on v5.16-rc4 next-20211208]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Gwendal-Grignou/Expand-Semtech-SAR-Sensors-support/20211208-084635
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-config: arm-randconfig-c002-20211208 (https://download.01.org/0day-ci/archive/20211208/202112082214.pv3MKwkH-lkp@intel.com/config)
-compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 097a1cb1d5ebb3a0ec4bcaed8ba3ff6a8e33c00a)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm cross compiling tool for clang build
-        # apt-get install binutils-arm-linux-gnueabi
-        # https://github.com/0day-ci/linux/commit/d02716a5c3a619239e594e6ba6af2ec38fd3de3d
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Gwendal-Grignou/Expand-Semtech-SAR-Sensors-support/20211208-084635
-        git checkout d02716a5c3a619239e594e6ba6af2ec38fd3de3d
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/iio/proximity/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/iio/proximity/sx9324.c:166:9: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
-           int i, ret, pin_idx;
-                  ^
-   1 warning generated.
-
-
-vim +/ret +166 drivers/iio/proximity/sx9324.c
-
-   158	
-   159	static ssize_t sx9324_phase_configuration_show(struct iio_dev *indio_dev,
-   160						       uintptr_t private,
-   161						       const struct iio_chan_spec *chan,
-   162						       char *buf)
-   163	{
-   164		struct sx_common_data *data = iio_priv(indio_dev);
-   165		unsigned int val;
- > 166		int i, ret, pin_idx;
-   167		size_t len = 0;
-   168	
-   169		ret = regmap_read(data->regmap, SX9324_REG_AFE_PH0 + chan->channel, &val);
-   170	
-   171		for (i = 0; i < SX9324_NUM_PINS; i++) {
-   172			pin_idx = (val & SX9324_REG_AFE_PH0_PIN_MASK(i)) >> (2 * i);
-   173			len += scnprintf(buf + len, PAGE_SIZE - len, "%s,",
-   174					 sx9324_cs_pin_usage[pin_idx]);
-   175		}
-   176		buf[len - 1] = '\n';
-   177		return len;
-   178	}
-   179	
-
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 ---
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Changes in v3:
+- include i2c-controller.yaml and use unevaluatedProperties: false
+
+Changes in v2:
+- add missing additionalProperties: false
+
+ .../bindings/i2c/nvidia,tegra186-bpmp-i2c.txt | 42 -----------------
+ .../i2c/nvidia,tegra186-bpmp-i2c.yaml         | 45 +++++++++++++++++++
+ 2 files changed, 45 insertions(+), 42 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.yaml
+
+diff --git a/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.txt b/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.txt
+deleted file mode 100644
+index ab240e10debc..000000000000
+--- a/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.txt
++++ /dev/null
+@@ -1,42 +0,0 @@
+-NVIDIA Tegra186 BPMP I2C controller
+-
+-In Tegra186, the BPMP (Boot and Power Management Processor) owns certain HW
+-devices, such as the I2C controller for the power management I2C bus. Software
+-running on other CPUs must perform IPC to the BPMP in order to execute
+-transactions on that I2C bus. This binding describes an I2C bus that is
+-accessed in such a fashion.
+-
+-The BPMP I2C node must be located directly inside the main BPMP node. See
+-../firmware/nvidia,tegra186-bpmp.txt for details of the BPMP binding.
+-
+-This node represents an I2C controller. See ../i2c/i2c.txt for details of the
+-core I2C binding.
+-
+-Required properties:
+-- compatible:
+-    Array of strings.
+-    One of:
+-    - "nvidia,tegra186-bpmp-i2c".
+-- #address-cells: Address cells for I2C device address.
+-    Single-cell integer.
+-    Must be <1>.
+-- #size-cells:
+-    Single-cell integer.
+-    Must be <0>.
+-- nvidia,bpmp-bus-id:
+-    Single-cell integer.
+-    Indicates the I2C bus number this DT node represent, as defined by the
+-    BPMP firmware.
+-
+-Example:
+-
+-bpmp {
+-	...
+-
+-	i2c {
+-		compatible = "nvidia,tegra186-bpmp-i2c";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		nvidia,bpmp-bus-id = <5>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.yaml b/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.yaml
+new file mode 100644
+index 000000000000..b8319dcf3d8a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i2c/nvidia,tegra186-bpmp-i2c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NVIDIA Tegra186 (and later) BPMP I2C controller
++
++maintainers:
++  - Thierry Reding <thierry.reding@gmail.com>
++  - Jon Hunter <jonathanh@nvidia.com>
++
++description: |
++  In Tegra186 and later, the BPMP (Boot and Power Management Processor)
++  owns certain HW devices, such as the I2C controller for the power
++  management I2C bus. Software running on other CPUs must perform IPC to
++  the BPMP in order to execute transactions on that I2C bus. This
++  binding describes an I2C bus that is accessed in such a fashion.
++
++  The BPMP I2C node must be located directly inside the main BPMP node.
++  See ../firmware/nvidia,tegra186-bpmp.yaml for details of the BPMP
++  binding.
++
++  This node represents an I2C controller. See ../i2c/i2c.txt for details
++  of the core I2C binding.
++
++properties:
++  compatible:
++    const: nvidia,tegra186-bpmp-i2c
++
++  nvidia,bpmp-bus-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Indicates the I2C bus number this DT node represents,
++      as defined by the BPMP firmware.
++
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++  - "#address-cells"
++  - "#size-cells"
++  - nvidia,bpmp-bus-id
+-- 
+2.34.1
+
