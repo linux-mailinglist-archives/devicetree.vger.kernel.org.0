@@ -2,116 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B661546D5FF
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:45:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24C3346D609
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:47:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233093AbhLHOsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 09:48:55 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:47470 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233216AbhLHOsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:48:55 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 613B5B8212D;
-        Wed,  8 Dec 2021 14:45:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA22DC00446;
-        Wed,  8 Dec 2021 14:45:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638974721;
-        bh=7W3w8DusrddBYtU8JLe+sO2l0PnENj0zsm2FWvdtJDU=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=lAxmSoOKjRrYJODMrXM+Gvw1tg73NpHH6I3Jts6iyOgzFSuMy7oPYgzPIHE278sNC
-         2wtANVjIhkuk7AX3tctnEs2TdSAMejIDuZ3ZKiFfP0iBwsLMKcrmdhNrR79A/hcGHJ
-         dip17NF5Tq3GOeS8m0jp0YQlPKzdzN5qsXiSH6PB5JgxaIDAvbsYm1xBOJZRwX4lNK
-         s8lGQJvOMhPXllJOs6QT9VWxcYTtzQCRYjycLGsdyYtxSpXYhQqNqTqX/vdUjukmga
-         4ZkXaJ5n8DQa8t9JIVAUysNk+1v6kDo8Fg4zCunOQDqJg21VksaB4XFNzH0FhXQ3jy
-         u9SCFt1zeXGmw==
-Subject: Re: [PATCH 4/4] mtd: nand: omap2: Add support for NAND Controller on
- AM64 SoC
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>, richard@nod.at,
-        vigneshr@ti.com, kishon@ti.com, tony@atomide.com,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-References: <20211123103609.14063-1-rogerq@kernel.org>
- <20211123103609.14063-5-rogerq@kernel.org> <20211124131552.6b9bc506@xps13>
- <e52141a6-96fc-97d6-95d7-3e26276fbac3@kernel.org>
- <20211126104231.7cc43149@xps13>
- <917ac002-9d4b-237d-94f3-bcd05f481f39@kernel.org>
- <20211129043633.myxmgp6idbrqvx5p@unlisted>
-From:   Roger Quadros <rogerq@kernel.org>
-Message-ID: <e36c46e2-1d0d-4dac-e9a0-3a0cbdd023fa@kernel.org>
-Date:   Wed, 8 Dec 2021 16:45:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S235409AbhLHOuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 09:50:44 -0500
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:39771 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232932AbhLHOun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:50:43 -0500
+Received: by mail-ot1-f51.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso2940546ots.6;
+        Wed, 08 Dec 2021 06:47:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=buknLEPiljUfS2B22B7J//dmCPA4Jy3FaQSdKUP3e+w=;
+        b=gfvODuoQki5aiZbfhpFM8QiFHci1kTE4vAjObHKO+ogc+2aht340k2DokX/Owfwz9I
+         mFr4prjj/b02YSOOXLYm7XSIg/Hf+R79tDv3sQrrm3gplPHfj4RRWW5t5fD5CvDoIriB
+         WAWkdOScjtxrrXQ7Rpa7yrOesEroj/SbgS2+eB0vwdeCwY2FdNAbAmxKuvdlfmVeFv7N
+         +h1PK6ifRnRRDOGLekIJPa+s28G+Q8MgeNK5Ynkv46+ATO5M+QYZ3NwSblShORHpmpam
+         6Sp6xaZJBr03jdfuNKHCSJv9oxSFuhoORGS9yib7JWwgm6ooGx9wjOw8LGC0oH0NImMU
+         YGRw==
+X-Gm-Message-State: AOAM533uiEiKn+FzCCahnZ1bPx/sOZ03L1BogLoLZR0NsEgK0a+tNjk1
+        EuUZ2cvCexm9PU3BxSaE7KtqzUyZ9Q==
+X-Google-Smtp-Source: ABdhPJxs1ghPJ4vN60wkuCNrY9iCYpx7WoaP2dDzxeFkG8VpKJqgcGyVDbMM4iv3QvIYNW/hskCkrA==
+X-Received: by 2002:a9d:4f0e:: with SMTP id d14mr41842978otl.137.1638974831552;
+        Wed, 08 Dec 2021 06:47:11 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id v12sm502385ote.9.2021.12.08.06.47.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Dec 2021 06:47:10 -0800 (PST)
+Received: (nullmailer pid 3986422 invoked by uid 1000);
+        Wed, 08 Dec 2021 14:47:09 -0000
+Date:   Wed, 8 Dec 2021 08:47:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: usb: Add missing properties used in examples
+Message-ID: <YbDFbTQW8Cv38fON@robh.at.kernel.org>
+References: <20211206174113.2295616-1-robh@kernel.org>
+ <Ya5VhX8TA0LBn4Qd@kroah.com>
 MIME-Version: 1.0
-In-Reply-To: <20211129043633.myxmgp6idbrqvx5p@unlisted>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Ya5VhX8TA0LBn4Qd@kroah.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+On Mon, Dec 06, 2021 at 07:25:09PM +0100, Greg Kroah-Hartman wrote:
+> On Mon, Dec 06, 2021 at 11:41:12AM -0600, Rob Herring wrote:
+> > With 'unevaluatedProperties' support implemented, the following warnings
+> > are generated in the usb examples:
+> > 
+> > Documentation/devicetree/bindings/usb/intel,keembay-dwc3.example.dt.yaml: usb: usb@34000000: Unevaluated properties are not allowed ('reg' was unexpected)
+> > Documentation/devicetree/bindings/usb/snps,dwc3.example.dt.yaml: usb@4a030000: Unevaluated properties are not allowed ('reg' was unexpected)
+> > 
+> > Add the missing property definitions.
+> > 
+> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Cc: Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+> > Cc: Felipe Balbi <balbi@kernel.org>
+> > Cc: linux-usb@vger.kernel.org
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../devicetree/bindings/usb/intel,keembay-dwc3.yaml         | 3 +++
+> >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml        | 6 ++++++
+> >  2 files changed, 9 insertions(+)
+> 
+> Do you want me to take these in my tree?  If not, you can take them in
+> yours:
+> 	Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> 
+> Which ever is easier for you.
 
-On 29/11/2021 06:36, Nishanth Menon wrote:
-> On 13:10-20211126, Roger Quadros wrote:
-> [...]
-> 
->>>>>> +	/* Some SoC's have 32-bit at least, read limitation */
->>>>>> +	if (soc_device_match(k3_soc_devices)) {
->>>>>> +		dev_info(&pdev->dev, "force 32-bit\n");
->>>>>> +		info->force_32bit = true;
->>>>>> +	}
->>>>>> +  
->>>>>
->>>>> As suggested above, just adding a capability structure tied to the
->>>>> compatible string and retrieved with of_device_get_match_data() should
->>>>> be enough and replace this manual tree research.  
->>>>
->>>> The trouble comes when TI updates the silicon revision to "SR2.0" and that has the issue fixed
->>>> but still uses the same compatible. So compatible string by itself is not sufficient to identify
->>>> the troubled devices. soc_device_match() was the easiest way to address this.
->>>
->>> This is precisely what compatibles are for, I believe we should declare
->>> the necessary additional compatibles and fix the device trees that are
->>> wrong.
->>
->> AFAIK TI SoCs don't have different compatibles for different revisions of the same SoC.
->> My understanding is that the SoC is the same so compatible shouldn't change. Just that there were some
->> hardware fixes and some quirks may not be needed anymore.
->>
->> Nishanth,
->>
->> Could you please chime in on why SoC revisions can't use different compatibles?
->>
-> 
-> The permutations of boards (with add-on cards) and SRs become
-> un-manageable esp when Silicon Revisions(SRs) dont actually get into
-> production. Instead, what we do suggest are one of two things:
-> a) The dts in k.org always reflect the latest SR for the chip that is
->    going into production. Older SR revisions are supported as overlays on top
->    of the dtb.
-> b) Where possible, use the chip-id framework[1] to dynamically detect
->    the variations. This might be easier with newer K3 generation SoCs.
-> 
-> 
-> In this instance, an overlay corresponding to older SoC might be
-> feasible.
-> 
+I'll take them.
 
-Did I understand correctly that we can use a different compatible for older SoC
-in the overlay? e.g. ti,am642-es1.0 ?
-
-If so then I can get rid of soc_device_match and use compatibles matching only in this patch.
-
-> 
-> 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/soc/ti/k3-socinfo.yaml
-> 
-
-cheers,
--roger
+Rob
