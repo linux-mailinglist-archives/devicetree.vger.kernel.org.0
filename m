@@ -2,154 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3072746DDF5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 23:01:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAADB46DDEF
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 23:01:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237771AbhLHWFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 17:05:18 -0500
-Received: from smtp2.axis.com ([195.60.68.18]:42852 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229604AbhLHWFS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Dec 2021 17:05:18 -0500
+        id S234750AbhLHWFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 17:05:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34202 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229604AbhLHWFA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 17:05:00 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31A60C061746;
+        Wed,  8 Dec 2021 14:01:28 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id i8-20020a7bc948000000b0030db7b70b6bso5230346wml.1;
+        Wed, 08 Dec 2021 14:01:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1639000905;
-  x=1670536905;
-  h=date:to:cc:subject:message-id:references:mime-version:
-   content-transfer-encoding:in-reply-to:from;
-  bh=VRt6/LjubwnNkpPYOgxI34z0OGVQF3Sie8iEQwlJ3so=;
-  b=prnJ8F9BBJZO0uWpzTpMiGIc00SqYOUITLSLpPlni1aWrTGrf2PgcfaZ
-   j79LQkxfHC9c5O41nJX3LPP9dW0Ort4V/DCtxm/NdvzEJP7kqfGhecqW/
-   LSP5FhIULtOrDcs3R9Lnjhs6qtqu9Rp89592iLiodqg8byJV9LC61MErj
-   IksL77EagIeB2SMxhiNC8Cx3hEOi0bE6eTyRjKDC7uh5v28YyzJN7ldJL
-   cQAt4C2G14VbilnFDiVHJuUs0IFVrVBUZ9yEcFm8JffXYqyHzDh9Ey4zi
-   KUUZwpCQwJPwKaPZOKdMkZyOdah+uVSWXSVhDKqtU57MZGzUqvkyYI8N0
-   g==;
-Date:   Wed, 8 Dec 2021 23:01:44 +0100
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-CC:     =?iso-8859-1?Q?M=E5rten?= Lindahl <Marten.Lindahl@axis.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Doug Anderson <dianders@google.com>, kernel <kernel@axis.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>
-Subject: Re: [PATCH v2 4/4] mmc: dw_mmc: Do not wait for DTO in case of error
-Message-ID: <20211208220144.GA10156@axis.com>
-References: <20211206142929.26729-1-marten.lindahl@axis.com>
- <20211206142929.26729-5-marten.lindahl@axis.com>
- <CAPDyKFojCipHMwmCZB3h7CdYP+eSSikA=d=G701Y5+9xeQKxgg@mail.gmail.com>
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=78Ifs23TtoxatfN7VFvq9AEVPiNcwkeZ+FD9JLKmw8c=;
+        b=eoOfS+6CmChrGqIET8UbG2Mcyt7PpnxNsqQBcTKKvvFva2oPLikaLax+o6UFRiitOo
+         F75w0TsDGEYb+iHtNj/MgluUFT8K+9sdMVBYHdnKn5GGTM4IuGFSYqfLbj6lKsZVw3cG
+         jkY6YDhnrUB/XZ8F7VksJaZbQUZWqAPSCh/CTY1a+j5/SNACoVhI16F5r8rjuQ+8b68t
+         RlDrDjlTixZBpkLzx/KRMVrwiNoSvRbJdoOr7k33A/FURILhHfRcEoENHTDBQoChozph
+         8NGQBK13gFNv9z3teV47WwN0Voj2yeN7eK9RoFG8b2QlNdIn6hIX4dOGfm0uf5tiwJKZ
+         w2Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=78Ifs23TtoxatfN7VFvq9AEVPiNcwkeZ+FD9JLKmw8c=;
+        b=Y6WU6el+J/Vrq+CMe9Z7DA8dXzOZiaTc9gHm885EXex5K0hl3qQxZ/XpNpkKafdoQB
+         mwXF4eO81/uqCLa/tAHJ9ACJLvDLRFfl3Qh5XV2ZrO+ghjqkJ4Ez6DWIkVhA/2ZH0l0l
+         iCwghNp/hARpQZDk3EavLf3xvdXyTKvkcl8AO4xFY24hVK2fya6w7HprRNB6Gm9o+TYz
+         JIRhf8jxsHts2QqCKEIQrWqxxrxKeg5y/GJlc0aTbCiSjKr/91tuBmNF3kZMEjyAgwQV
+         RUm7JPpfTu2KWL/FxSpLZccVP/PCQLeqScN31aA49d/suP20V/1LkTBVWGlgNBvI1yrI
+         kKpQ==
+X-Gm-Message-State: AOAM532ky9U06wFoj597pDX6HdlMwPGrw2CsIa77WT4BBTAmjKoKOTUt
+        I2U6lqFadCJuSdM1LmQ5f9LDlMM14pON2tGSp9c=
+X-Google-Smtp-Source: ABdhPJx4+51IKWNFMWdRf7kFk0fQGiVNH4ObQU0Pt5G58JOq7C+3hI5cdOhoebAHEgcFR4QJtJpoZ99D+N6A9Eu9azc=
+X-Received: by 2002:a05:600c:4f4b:: with SMTP id m11mr1665243wmq.151.1639000886773;
+ Wed, 08 Dec 2021 14:01:26 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPDyKFojCipHMwmCZB3h7CdYP+eSSikA=d=G701Y5+9xeQKxgg@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-From:   Marten Lindahl <martenli@axis.com>
+References: <20211105030434.2828845-1-sean@poorly.run> <20211105030434.2828845-14-sean@poorly.run>
+In-Reply-To: <20211105030434.2828845-14-sean@poorly.run>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Wed, 8 Dec 2021 14:06:43 -0800
+Message-ID: <CAF6AEGv9ghHcd1zhWiBQ40pwx1uMeJ=Y_T5EVo2EV5gTRTtAew@mail.gmail.com>
+Subject: Re: [Freedreno] [PATCH v4 13/14] arm64: dts: qcom: sc7180: Add
+ support for HDCP in dp-controller
+To:     Sean Paul <sean@poorly.run>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Jani Nikula <jani.nikula@intel.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Sean Paul <seanpaul@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 08, 2021 at 03:53:54PM +0100, Ulf Hansson wrote:
-> On Mon, 6 Dec 2021 at 15:29, Mårten Lindahl <marten.lindahl@axis.com> wrote:
-> >
-> > When running the ARTPEC-8 DWMMC IP version, and a data error interrupt
-> > comes during a data read transfer, there is no guarantee for the data
-> > transfer over interrupt (DTO) to come within the specified data timeout.
-> > This case is handled by the dto_timer handler which will complete the
-> > request with the comment:
-> >
-> >  /*
-> >   * If DTO interrupt does NOT come in sending data state,
-> >   * we should notify the driver to terminate current transfer
-> >   * and report a data timeout to the core.
-> >   */
-> >
-> > But since the ARTPEC-8 DWMMC IP version, supports an extended TMOUT
-> > register which allows longer timeouts than the non ARTPEC-8 version
-> > does, waiting for the dto_timer to complete the request in error cases
-> > may cause the request to take significantly longer time than necessary.
-> > This is specifically true for the failing steps during tuning of a
-> > device.
-> >
-> > Fix this by completing the request when the error interrupt comes.
-> >
-> > Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
-> 
+On Thu, Nov 4, 2021 at 8:05 PM Sean Paul <sean@poorly.run> wrote:
+>
+> From: Sean Paul <seanpaul@chromium.org>
+>
+> This patch adds the register ranges required for HDCP key injection and
+> HDCP TrustZone interaction as described in the dt-bindings for the
+> sc7180 dp controller. Now that these are supported, change the
+> compatible string to "dp-hdcp".
+>
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> Link: https://patchwork.freedesktop.org/patch/msgid/20210913175747.47456-15-sean@poorly.run #v1
+> Link: https://patchwork.freedesktop.org/patch/msgid/20210915203834.1439-14-sean@poorly.run #v2
+> Link: https://patchwork.freedesktop.org/patch/msgid/20211001151145.55916-14-sean@poorly.run #v3
+>
+> Changes in v3:
+> -Split off into a new patch containing just the dts change (Stephen)
+> -Add hdcp compatible string (Stephen)
+> Changes in v4:
+> -Rebase on Bjorn's multi-dp patchset
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index c8921e2d6480..838270f70b62 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -3088,7 +3088,13 @@ mdss_dp: displayport-controller@ae90000 {
+>                                 compatible = "qcom,sc7180-dp";
+>                                 status = "disabled";
+>
+> -                               reg = <0 0x0ae90000 0 0x1400>;
+> +                               reg = <0 0x0ae90000 0 0x200>,
+> +                                     <0 0x0ae90200 0 0x200>,
+> +                                     <0 0x0ae90400 0 0xc00>,
+> +                                     <0 0x0ae91000 0 0x400>,
+> +                                     <0 0x0ae91400 0 0x400>,
+> +                                     <0 0x0aed1000 0 0x175>,
+> +                                     <0 0x0aee1000 0 0x2c>;
 
-Hi Ulf!
+So one small issue, if someone tries to get linux running on a sc7180
+windows laptop (which uses qcom's tz instead of the CrOS tz), things
+will go BOOM!
 
-> Okay, this change looks a bit inconvenient to move into variant
-> specific callbacks. So, maybe the "quirks" flag makes sense, after
-> all. However, I would still look at using callbacks and library
-> functions, for the part implemented in patch3.
+We might want instead to move this somewhere chromebook specific,
+maybe sc7180-trogdor.dtsi?
 
-Yes, I don't see how this patch can be easily made with callbacks, but
-definitely for patch3. So then I move the definition of the quirk from
-patch3 to this patch.
+BR,
+-R
 
-> 
-> When it comes to the order of the patches in the series, I suggest
-> flipping things around and making patch2 the final piece. Otherwise
-> the support for the artpec variant will be broken between patch2 and
-> patch4, right?
-
-Ok, you mean there may be a risk that the ARTPEC-8 dw_mmc does not work
-if the support is enabled in patch2, but patch3 and patch4 is not in
-place? That is a good point, but it actually does work quite fine (most
-of the time) without the extended timeout function. But it does not use
-the full function of the data timeout, and the HW timeout is most often
-set to full timeout (0xFFFFFF => 587ms with 200MHz), but the SW timer is
-limited to a lower value (0xFFFFFF => 84 + 10 ms with 200MHz).
-
-My reasoning is:
-patch1 - dtbindings for ARTPEC-8
-patch2 - adding ARTPEC-8 to dw_mmc-exynos
-patch3 - implement ARTPEC-8 specific function for data timeout
-patch4 - add quirk to abort the extended timeout in case of errors, used
-by ARTPEC-8
-
-so, this means patch3 and patch4 depends on patch2, and patch4 depends
-on patch3.
-
-Kind regards
-Mårten
-
-> 
-> Kind regards
-> Uffe
-> 
-> > ---
-> >  drivers/mmc/host/dw_mmc.c | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >
-> > diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
-> > index 45ea9fd97a6a..d6b76f47b1a2 100644
-> > --- a/drivers/mmc/host/dw_mmc.c
-> > +++ b/drivers/mmc/host/dw_mmc.c
-> > @@ -2777,11 +2777,19 @@ static irqreturn_t dw_mci_interrupt(int irq, void *dev_id)
-> >                 if (pending & DW_MCI_DATA_ERROR_FLAGS) {
-> >                         spin_lock(&host->irq_lock);
-> >
-> > +                       if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
-> > +                               del_timer(&host->dto_timer);
-> > +
-> >                         /* if there is an error report DATA_ERROR */
-> >                         mci_writel(host, RINTSTS, DW_MCI_DATA_ERROR_FLAGS);
-> >                         host->data_status = pending;
-> >                         smp_wmb(); /* drain writebuffer */
-> >                         set_bit(EVENT_DATA_ERROR, &host->pending_events);
-> > +
-> > +                       if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
-> > +                               /* In case of error, we cannot expect a DTO */
-> > +                               set_bit(EVENT_DATA_COMPLETE, &host->pending_events);
-> > +
-> >                         tasklet_schedule(&host->tasklet);
-> >
-> >                         spin_unlock(&host->irq_lock);
-> > --
-> > 2.20.1
-> >
+>
+>                                 interrupt-parent = <&mdss>;
+>                                 interrupts = <12>;
+> --
+> Sean Paul, Software Engineer, Google / Chromium OS
+>
