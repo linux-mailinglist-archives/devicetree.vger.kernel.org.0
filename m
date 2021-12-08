@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67B5C46D6A3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 16:13:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B1D046D6AA
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 16:13:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235756AbhLHPQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 10:16:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51982 "EHLO
+        id S235816AbhLHPQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 10:16:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235808AbhLHPQr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 10:16:47 -0500
+        with ESMTP id S235841AbhLHPQw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 10:16:52 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22C21C061746
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 07:13:15 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6C4FC0617A2
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 07:13:19 -0800 (PST)
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1muyck-0004UR-71; Wed, 08 Dec 2021 16:12:50 +0100
+        id 1muyck-0004US-7G; Wed, 08 Dec 2021 16:12:50 +0100
 Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1muycc-00FVZL-W0; Wed, 08 Dec 2021 16:12:42 +0100
+        id 1muycd-00FVZO-0X; Wed, 08 Dec 2021 16:12:43 +0100
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -33,9 +33,9 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
         Peter Geis <pgwipeout@gmail.com>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH 06/18] dt-bindings: display: rockchip: dw-hdmi: Make unwedge pinctrl optional
-Date:   Wed,  8 Dec 2021 16:12:18 +0100
-Message-Id: <20211208151230.3695378-7-s.hauer@pengutronix.de>
+Subject: [PATCH 07/18] dt-bindings: display: rockchip: dw-hdmi: Allow "ref" as clock name
+Date:   Wed,  8 Dec 2021 16:12:19 +0100
+Message-Id: <20211208151230.3695378-8-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20211208151230.3695378-1-s.hauer@pengutronix.de>
 References: <20211208151230.3695378-1-s.hauer@pengutronix.de>
@@ -49,26 +49,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-None of the upstream device tree files has a "unwedge" pinctrl
-specified. Make it optional.
+"vpll" is a misnomer. A clock input to a device should be named after
+the usage in the device, not after the clock that drives it. On the
+rk3568 the same clock is driven by the HPLL.
+To fix that, this patch renames the vpll clock to ref clock.  The clock
+name "vpll" is left for compatibility to old device trees.
 
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
- .../devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml   | 1 +
- 1 file changed, 1 insertion(+)
+ .../bindings/display/rockchip/rockchip,dw-hdmi.yaml         | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-index 45cae4f57a1c1..6e09dd2ee05ac 100644
+index 6e09dd2ee05ac..2ab6578033da2 100644
 --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
 +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-@@ -73,6 +73,7 @@ properties:
-       The unwedge pinctrl entry shall drive the DDC SDA line low. This is
-       intended to work around a hardware errata that can cause the DDC I2C
-       bus to be wedged.
-+    minItems: 1
-     items:
-       - const: default
-       - const: unwedge
+@@ -48,10 +48,14 @@ properties:
+           - cec
+           - grf
+           - vpll
++          - ref
+       - enum:
+           - grf
+           - vpll
+-      - const: vpll
++          - ref
++      - enum:
++          - vpll
++          - ref
+ 
+   ddc-i2c-bus:
+     $ref: /schemas/types.yaml#/definitions/phandle
 -- 
 2.30.2
 
