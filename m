@@ -2,109 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0600046D0BA
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 11:14:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 891C646D0CD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 11:18:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbhLHKSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 05:18:08 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:19880 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbhLHKSI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 05:18:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1638958477; x=1670494477;
-  h=subject:to:references:from:message-id:date:mime-version:
-   in-reply-to:content-transfer-encoding;
-  bh=8fvNVbusAPRFGuvksh4uPO16Z5rLgfIbr2/Vq3gqWxk=;
-  b=15GhdyjMp9i1PUJyeBGZagzwcDvR+VoCOY5HGtrcKjNhVBJlJIFuRV3S
-   jdUacb8XfMYum6RkwCvXI/kJ1Tnz7uaMENcyBtnG9fLMS6uDU5zNj26U8
-   sP4oSzXcUyt0TQq7++jDkoG+LE5M/ZdSI1bOsuHkXZo/lFNJMKd0b2i7K
-   YuymcNnKDv2aShMMoq9gqSlr3ae1KvJhraw74Gavm5RZrFlIzKqfRkc9I
-   It7lOMZW+ujX5GNdGIugGLhRIEg886eKwKywQIZLgCqX77DjMV2VDtUhk
-   ig8OjOem/epPWaUNAUuTY+t7/J+G+T0d0y5eiA86kie3ba/+LqqrpkJBN
-   w==;
-IronPort-SDR: SF+n8McBnVIdD0Slhu+E814mhYylefqWCwIv8j7JwMJSCW/2NQC18cqXvwRhXccOeIAAhk+Nxa
- U3EY/RojxlizwMfR5Y6SFXKxLA01+7lfMa/IFIgMq/lHpDSS6T6f1hHAZrnTY9aEm+RKEtERGe
- laf//jHD2WlwMB0C/RnHnReJSsnbfYbaQCUx49OjA4KONCk1tTyLTV0XRTW3p9GGQ/HHTqendU
- B0354f0LM7nrAYx2GZLi+LpE1n1ReKZPZ9IFH8LmFzPgtVlWx9P98fpUA5da//8WUzcipR+p31
- nh2ZQpJQUsydHLXcKsjuldbV
-X-IronPort-AV: E=Sophos;i="5.87,297,1631602800"; 
-   d="scan'208";a="154692092"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Dec 2021 03:14:36 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 8 Dec 2021 03:14:36 -0700
-Received: from [10.12.73.2] (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Wed, 8 Dec 2021 03:14:35 -0700
-Subject: Re: [RFC PATCH v4 0/4] Extend lan966x clock driver for clock gating
- support
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <kavyasree.kotagiri@microchip.com>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20211103085102.1656081-1-horatiu.vultur@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-Message-ID: <0308422f-4a97-8d7e-8e03-ad03129db6ae@microchip.com>
-Date:   Wed, 8 Dec 2021 11:14:34 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S231431AbhLHKVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 05:21:45 -0500
+Received: from ixit.cz ([94.230.151.217]:60090 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231423AbhLHKVp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Dec 2021 05:21:45 -0500
+Received: from localhost.localdomain (unknown [213.151.89.154])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 45A2F21F5E;
+        Wed,  8 Dec 2021 11:18:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1638958690;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=QJ2xEIeX42XFq2W7dJr/T6LZGzm+TwSyalep9iOyqKQ=;
+        b=u+iDm3qsiBKaRMPieLRRF9atqBQDKJv2T5k8iTz1FadF1HGK9M7wNd1V58WNHuoGFudbm+
+        C9HQd+c9UuWZtqxm32gskCfXuvltLdrjk6F0YDga+t3t6fes2IfxqjebvhOUtcogrYuILa
+        AZ56vlh+fo2vM7QUR9TGzpyJ3bm3jBg=
+From:   David Heidelberg <david@ixit.cz>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4] dt-bindings: misc: fastrpc convert bindings to yaml
+Date:   Wed,  8 Dec 2021 11:15:08 +0100
+Message-Id: <20211208101508.24582-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <20211103085102.1656081-1-horatiu.vultur@microchip.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2021 at 09:50, Horatiu Vultur wrote:
-> This patch series depends on the following series, therefor keep it as RFC.
-> https://www.spinics.net/lists/linux-clk/msg62795.html
-> 
-> This patch series extend the clock driver to support also clock gating.
-> 
-> v3->v4:
->   - fix reg property in the schema file
-> 
-> v2->v3:
->   - add devm_clk_hw_register_gate function
-> 
-> v1->v2:
->   - add Acked-by tag for patch 2
->   - make the resource for clock gating as an optional resource
-> 
-> Horatiu Vultur (4):
->    clk: gate: Add devm_clk_hw_register_gate()
->    dt-bindings: clock: lan966x: Extend for clock gate support
->    dt-bindings: clock: lan966x: Extend includes with clock gates
->    clk: lan966x: Extend lan966x clock driver for clock gating support
+Convert Qualcomm FastRPC bindings to yaml format, so that we could validate
+dt-entries correctly and any future additions can go into yaml format.
 
-For whole series:
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+Also:
+ - simplify example
+ - embrace compute-cb@ subnodes instead of just cb@
 
-I'm queuing these patches on clk-at91 branch and plan to seed a 
-pull-request to Stephen soon.
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ v4:
+ - combined mine and Srinivas versions of the patch
+ - previously found issues should be fixed
 
-In the meantime it's sitting in the at91-next branch as well which is 
-picked up by linux-next.
+ .../devicetree/bindings/misc/qcom,fastrpc.txt | 78 ---------------
+ .../bindings/misc/qcom,fastrpc.yaml           | 94 +++++++++++++++++++
+ 2 files changed, 94 insertions(+), 78 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
+ create mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
 
-Best regards,
-   Nicolas
-
->   .../bindings/clock/microchip,lan966x-gck.yaml |  5 +-
->   drivers/clk/clk-gate.c                        | 35 +++++++++++
->   drivers/clk/clk-lan966x.c                     | 59 ++++++++++++++++++-
->   include/dt-bindings/clock/microchip,lan966x.h |  8 ++-
->   include/linux/clk-provider.h                  | 23 ++++++++
->   5 files changed, 125 insertions(+), 5 deletions(-)
-> 
-
-
+diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt b/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
+deleted file mode 100644
+index 2a1827ab50d2..000000000000
+--- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
++++ /dev/null
+@@ -1,78 +0,0 @@
+-Qualcomm Technologies, Inc. FastRPC Driver
+-
+-The FastRPC implements an IPC (Inter-Processor Communication)
+-mechanism that allows for clients to transparently make remote method
+-invocations across DSP and APPS boundaries. This enables developers
+-to offload tasks to the DSP and free up the application processor for
+-other tasks.
+-
+-- compatible:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: must be "qcom,fastrpc"
+-
+-- label
+-	Usage: required
+-	Value type: <string>
+-	Definition: should specify the dsp domain name this fastrpc
+-	corresponds to. must be one of this: "adsp", "mdsp", "sdsp", "cdsp"
+-
+-- #address-cells
+-	Usage: required
+-	Value type: <u32>
+-	Definition: Must be 1
+-
+-- #size-cells
+-	Usage: required
+-	Value type: <u32>
+-	Definition: Must be 0
+-
+-= COMPUTE BANKS
+-Each subnode of the Fastrpc represents compute context banks available
+-on the dsp.
+-- All Compute context banks MUST contain the following properties:
+-
+-- compatible:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: must be "qcom,fastrpc-compute-cb"
+-
+-- reg
+-	Usage: required
+-	Value type: <u32>
+-	Definition: Context Bank ID.
+-
+-- qcom,nsessions:
+-	Usage: Optional
+-	Value type: <u32>
+-	Defination: A value indicating how many sessions can share this
+-		    context bank. Defaults to 1 when this property
+-		    is not specified.
+-
+-Example:
+-
+-adsp-pil {
+-	compatible = "qcom,msm8996-adsp-pil";
+-	...
+-	smd-edge {
+-		label = "lpass";
+-		fastrpc {
+-			compatible = "qcom,fastrpc";
+-			qcom,smd-channels = "fastrpcsmd-apps-dsp";
+-			label = "adsp";
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			cb@1 {
+-				compatible = "qcom,fastrpc-compute-cb";
+-				reg = <1>;
+-			};
+-
+-			cb@2 {
+-				compatible = "qcom,fastrpc-compute-cb";
+-				reg = <2>;
+-			};
+-			...
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+new file mode 100644
+index 000000000000..f42ab208a7fc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+@@ -0,0 +1,94 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/misc/qcom,fastrpc.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm FastRPC Driver
++
++maintainers:
++  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
++
++description: |
++  The FastRPC implements an IPC (Inter-Processor Communication)
++  mechanism that allows for clients to transparently make remote method
++  invocations across DSP and APPS boundaries. This enables developers
++  to offload tasks to the DSP and free up the application processor for
++  other tasks.
++
++properties:
++  compatible:
++    items:
++      - const: qcom,fastrpc
++
++  label:
++    items:
++      enum:
++        - adsp
++        - mdsp
++        - sdsp
++        - cdsp
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++patternProperties:
++  "(compute-)?cb@[0-9]$":
++    type: object
++
++    description: >
++      Each subnode of the Fastrpc represents compute context banks available on the dsp.
++
++    properties:
++      compatible:
++        items:
++          - const: qcom,fastrpc-compute-cb
++
++      reg:
++        maxItems: 1
++
++      qcom,nsession:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        default: 1
++        description: >
++          A value indicating how many sessions can share this context bank.
++
++    required:
++      - compatible
++      - reg
++
++    additionalProperties: true
++
++required:
++  - compatible
++  - label
++  - '#address-cells'
++  - '#size-cells'
++
++additionalProperties: true
++
++examples:
++  - |
++    smd-edge {
++        label = "lpass";
++        fastrpc {
++            compatible = "qcom,fastrpc";
++            label = "adsp";
++            qcom,smd-channels = "fastrpcsmd-apps-dsp";
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            compute-cb@1 {
++                compatible = "qcom,fastrpc-compute-cb";
++                reg = <1>;
++            };
++
++            compute-cb@2 {
++                compatible = "qcom,fastrpc-compute-cb";
++                reg = <2>;
++            };
++        };
++    };
 -- 
-Nicolas Ferre
+2.33.0
+
