@@ -2,74 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A68846CE4A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 08:21:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDFB546CE53
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 08:22:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235691AbhLHHYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 02:24:48 -0500
-Received: from [113.204.237.245] ([113.204.237.245]:47078 "EHLO
-        test.cqplus1.com" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S244473AbhLHHYr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 02:24:47 -0500
-X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
-        R,40,3)
-Received: from 172.27.96.203
-        by cqmailgates with MailGates ESMTP Server V5.0(21501:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Wed, 08 Dec 2021 15:16:01 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 8 Dec 2021 15:15:58 +0800
-Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
- ([::1]) with mapi id 15.01.2375.017; Wed, 8 Dec 2021 15:15:58 +0800
-From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-To:     Marc Zyngier <maz@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Subject: RE: [PATCH v5 08/10] irqchip: Add Sunplus SP7021 interrupt controller
- driver
-Thread-Topic: [PATCH v5 08/10] irqchip: Add Sunplus SP7021 interrupt
- controller driver
-Thread-Index: AQHX6BmQ/JspEgyikE+suUmdAKG1nqwmO/YAgAHtkbA=
-Date:   Wed, 8 Dec 2021 07:15:57 +0000
-Message-ID: <39f9b853af7c44cb94421354744512a8@cqplus1.com>
-References: <cover.1638515726.git.qinjian@cqplus1.com>
-        <e88ea4cf28ba69a41f6d1b4dd4128b82a6095c29.1638515726.git.qinjian@cqplus1.com>
- <87r1ao23fp.wl-maz@kernel.org>
-In-Reply-To: <87r1ao23fp.wl-maz@kernel.org>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.18]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S240646AbhLHHZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 02:25:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55206 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240620AbhLHHZr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 02:25:47 -0500
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E862C061746
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 23:22:16 -0800 (PST)
+Received: by mail-io1-xd34.google.com with SMTP id x10so1781419ioj.9
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 23:22:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=I8JmcggFnRKzbTH7VEx1kayDWaOV/lgpkD7s/ofbGg8=;
+        b=I7QZQW6H8U+yKCjH+YJ0rqdYXrci8uiYeTUbALQdBpQXNzCaEWqgLASzqX6O/nwj8D
+         3yOkcF5Xv9VCQbMszPlG/T4hBw8OdayD4aOx9EeMTrmBHe2YoI5G1Ghzf7IQYkqmasU7
+         NbeYt8iWdUDwAmvuo1pIqWuwkQixoc2Cw6t6g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=I8JmcggFnRKzbTH7VEx1kayDWaOV/lgpkD7s/ofbGg8=;
+        b=sZefQnzJp4GbrD+wlJ8rKF2GKQuTLfmQn4nayB3FZrhMOwsMYvdIiXGdDDBucfWwrh
+         3SdI3PNFhTRvdjlS5J0CacezbXtBcQhOOQmZODjBH32gWxrECxy34iq9eaHLHCy8iq0/
+         kAswQ+cQCnlRrk01emTYcmTx+xgdj/FxWPr5pOwJtUBZgqKPw0l4mwDGRQ8OEEEJC6Z9
+         GG/n/YOl88MIDsuoC4wp3514rrz48FRqE9E+Ij76HpuiD7TC98VByoQljpvWY8trPTaq
+         da2Rf6gE81BmyDFJDJ7QnY27vaezplKktlPnD1gIythkkwEYO5OHu15Peb4CLVaK8PSI
+         L8XA==
+X-Gm-Message-State: AOAM532MeesvcRZnuLuEbODNkkKtCl9toO41h+lzM3Dkf0OBZhszWJrJ
+        nBiUMbudbc41LRGuYAraaqqmy+BJF7VlsDZPs5+tve6Q0QI=
+X-Google-Smtp-Source: ABdhPJyo5Tr6qVYiAXKv4dkXejHYsdpA0lUOx6EH7RMnI0wz8q5tsoZIlFka3t4Wr7qYwi3954U50Y+blUe08R1qtpo=
+X-Received: by 2002:a05:6602:8ce:: with SMTP id h14mr3915950ioz.177.1638948135681;
+ Tue, 07 Dec 2021 23:22:15 -0800 (PST)
 MIME-Version: 1.0
+References: <20211208004311.3098571-1-gwendal@chromium.org>
+ <20211208004311.3098571-5-gwendal@chromium.org> <CAE-0n50Jz0qu+8tog3ex5K+LL4fBTxOxnM0u5TNq5E8M+kRNAQ@mail.gmail.com>
+In-Reply-To: <CAE-0n50Jz0qu+8tog3ex5K+LL4fBTxOxnM0u5TNq5E8M+kRNAQ@mail.gmail.com>
+From:   Gwendal Grignou <gwendal@chromium.org>
+Date:   Tue, 7 Dec 2021 23:22:04 -0800
+Message-ID: <CAPUE2uuZ0-ABtgOBY=XXCXAe3hyS552a3XsNt1PwCZz_nYk0-g@mail.gmail.com>
+Subject: Re: [PATCH v5 4/5] dt-bindings: iio: Add sx9324 binding
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+ICt2b2lkIHNwX2ludGNfc2V0X2V4dCh1MzIgaHdpcnEsIGludCBleHRfbnVtKQ0KPiA+ICt7
-DQo+ID4gKwlzcF9pbnRjX2Fzc2lnbl9iaXQoaHdpcnEsIFJFR19JTlRSX1BSSU9SSVRZLCAhZXh0
-X251bSk7DQo+ID4gK30NCj4gPiArRVhQT1JUX1NZTUJPTF9HUEwoc3BfaW50Y19zZXRfZXh0KTsN
-Cj4gDQo+IE5vIHdheS4gV2UgZG9uJ3QgZXhwb3J0IHJhbmRvbSBzeW1ib2xzIHdpdGhvdXQgYSBn
-b29kIGp1c3RpZmljYXRpb24sDQo+IGFuZCB5b3UgZGlkbid0IGdpdmUgYW55Lg0KPiANCg0KVGhp
-cyBmdW5jdGlvbiBjYWxsZWQgYnkgU1A3MDIxIGRpc3BsYXkgZHJpdmVyIHRvIGRlY2lkZSBESVNQ
-TEFZX0lSUQ0Kcm91dGluZyB0byB3aGljaCBwYXJlbnQgaXJxIChFWFRfSU5UMCBvciBFWFRfSU5U
-MSkuDQoNCkluIHByZXZpb3VzIHBhdGNoZXMsIHdoaWNoIGRlZmluZWQgaW4gRFQsIHBhcnNlZCAm
-IHByb2Nlc3NlZCBAIHNwX2ludGNfeGxhdGVfb2YoKQ0KRnJvbSB5b3VyIGNvbW1lbnQsIHRoaXMg
-aXMgYSBTVyBkZWNpc2lvbi4gU28gSSByZW1vdmVkIGl0IGZyb20gRFQgJiBpbnRjIGRyaXZlciwg
-b25seSANCmV4cG9ydCB0aGlzIGZ1bmN0aW9uIHRvIGFjY2VzcyB0aGUgcmVsYXRlZCBpbnRjIHJl
-Zy4NCg0K
+On Tue, Dec 7, 2021 at 8:42 PM Stephen Boyd <swboyd@chromium.org> wrote:
+>
+> +Rob *crosses fingers*
+>
+> Quoting Gwendal Grignou (2021-12-07 16:43:10)
+> > Similar to SX9310, add biddings to setup sx9324 hardware properties.
+> > SX9324 is a little different, introduce 4 phases to be configured in 2
+> > pairs over 3 antennas.
+> >
+> > Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
+> > ---
+> > Changes in v5:
+> > - Use consistent field naming, prefixed with phX.
+> >
+> > Changes in v4:
+> > - Use const instead of single enum
+> > - Specify ph0-pin better
+> > - Recopy type information for phX-pin
+> > - Fix cut and paste errors.
+> >
+> > Changes in v3:
+> > - Remove duplicate information.
+> > - Use intervals instead of enum.
+> > - Fix filter description.
+> >
+> > Changes in v2:
+> > - Fix interrupt documentation wording.
+> >
+> >  .../iio/proximity/semtech,sx9324.yaml         | 161 ++++++++++++++++++
+>
+> Please add Rob for dt binding review. I'm not sure if the
+> semi-autonomous robot runs without Cc robh+dt
+>
+> >  1 file changed, 161 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
+> > new file mode 100644
+> > index 00000000000000..ac9581b0d31364
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
+> > @@ -0,0 +1,161 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/proximity/semtech,sx9324.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Semtech's SX9324 capacitive proximity sensor
+> > +
+> > +maintainers:
+> > +  - Gwendal Grignou <gwendal@chromium.org>
+> > +  - Daniel Campello <campello@chromium.org>
+> > +
+> > +description: |
+> > +  Semtech's SX9324 proximity sensor.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: semtech,sx9324
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    description:
+> > +      Generated by device to announce preceding read request has finished
+> > +      and data is available or that a close/far proximity event has happened.
+> > +    maxItems: 1
+> > +
+> > +  vdd-supply:
+> > +    description: Main power supply
+> > +
+> > +  svdd-supply:
+> > +    description: Host interface power supply
+> > +
+> > +  "#io-channel-cells":
+> > +    const: 1
+> > +
+> > +  semtech,ph0-pin:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    description: |
+> > +      Array of 3 entries. Index represent the id of the CS pin.
+> > +      Value indicates how each CS pin is used during phase 0.
+> > +      Each of the 3 pins have the following value -
+> > +      0 : unused (high impedance)
+> > +      1 : measured input
+> > +      2 : dynamic shield
+> > +      3 : grounded.
+> > +      For instance, CS0 measured, CS1 shield and CS2 ground is [1, 2, 3]
+> > +    items:
+> > +      enum: [ 0, 1, 2, 3 ]
+> > +    minItems: 3
+> > +    maxItems: 3
+> > +
+> > +  semtech,ph1-pin:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    description: Same as ph0-pin for phase 1.
+> > +    items:
+> > +      enum: [ 0, 1, 2, 3 ]
+> > +    minItems: 3
+> > +    maxItems: 3
+> > +
+> > +  semtech,ph2-pin:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    description: Same as ph0-pin for phase 2.
+> > +    items:
+> > +      enum: [ 0, 1, 2, 3 ]
+> > +    minItems: 3
+> > +    maxItems: 3
+> > +
+> > +  semtech,ph3-pin:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    description: Same as ph0-pin for phase 3.
+> > +    items:
+> > +      enum: [ 0, 1, 2, 3 ]
+> > +    minItems: 3
+> > +    maxItems: 3
+> > +
+> > +
+> > +  semtech,ph01-resolution:
+> > +    $ref: /schemas/types.yaml#definitions/uint32
+> > +    enum: [8, 16, 32, 64, 128, 256, 512, 1024]
+> > +    description:
+> > +      Capacitance measurement resolution. For phase 0 and 1.
+> > +      Higher the number, higher the resolution.
+> > +    default: 128
+> > +
+> > +  semtech,ph23-resolution:
+> > +    $ref: /schemas/types.yaml#definitions/uint32
+> > +    enum: [8, 16, 32, 64, 128, 256, 512, 1024]
+> > +    description:
+> > +      Capacitance measurement resolution. For phase 2 and 3
+> > +    default: 128
+> > +
+> > +  semtech,startup-sensor:
+> > +    $ref: /schemas/types.yaml#definitions/uint32
+> > +    enum: [0, 1, 2, 3]
+> > +    default: 0
+> > +    description: |
+> > +      Phase used for start-up proximity detection.
+> > +      It is used when we enable a phase to remove static offset and measure
+> > +      only capacitance changes introduced by the user.
+> > +
+> > +  semtech,ph01-proxraw-strength:
+> > +    $ref: /schemas/types.yaml#definitions/uint32
+> > +    min: 0
+> > +    max: 7
+> > +    default: 1
+> > +    description:
+> > +      PROXRAW filter strength for phase 0 and 1. A value of 0 represents off,
+> > +      and other values represent 1-1/2^N.
+> > +
+> > +  semtech,ph23-proxraw-strength:
+> > +    $ref: /schemas/types.yaml#definitions/uint32
+> > +    min: 0
+> > +    max: 7
+> > +    default: 1
+> > +    description:
+> > +      Same as proxraw-strength01, for phase 2 and 3.
+>
+> We could have a single property then that uses index 0 for phase 0 and 1
+> and index 1 for phase 2 and 3 if we're worried about them being
+> different between the two joined phases. Same comment applies to the
+> resolution.
+>
+> > +
+> > +  semtech,avg-pos-strength:
+> > +    $ref: /schemas/types.yaml#definitions/uint32
+> > +    enum: [0, 16, 64, 128, 256, 512, 1024, 4294967295]
+> > +    default: 16
+> > +    description: |
+> > +      Average positive filter strength. A value of 0 represents off and
+> > +      UINT_MAX (4294967295) represents infinite. Other values
+> > +      represent 1-1/N.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - "#io-channel-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    i2c {
+> > +      #address-cells = <1>;
+> > +      #size-cells = <0>;
+> > +      proximity@28 {
+> > +        compatible = "semtech,sx9324";
+> > +        reg = <0x28>;
+> > +        interrupt-parent = <&pio>;
+> > +        interrupts = <5 IRQ_TYPE_LEVEL_LOW 5>;
+> > +        vdd-supply = <&pp3300_a>;
+> > +        svdd-supply = <&pp1800_prox>;
+> > +        #io-channel-cells = <1>;
+> > +        semtech,ph0-pin = <1, 2, 3>;
+> > +        semtech,ph1-pin = <3, 2, 1>;
+> > +        semtech,ph2-pin = <1, 2, 3>;
+> > +        semtech,ph3-pin = <3, 2, 1>;
+>
+> The comma should be removed. Have you run 'make dt_binding_check'?
+I did not, and it spotted a lot of errors. I will resend this patch.
+>
+> > +        semtech,ph01-resolution = 2;
+> > +        semtech,ph23-resolution = 2;
+> > +        semtech,startup-sensor = <1>;
+> > +        semtech,ph01-proxraw-strength = <2>;
+> > +        semtech,ph23-proxraw-strength = <2>;
+> > +        semtech,avg-pos-strength = <64>;
+> > +      };
+> > +    };
