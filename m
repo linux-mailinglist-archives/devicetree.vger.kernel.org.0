@@ -2,137 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC41646D506
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:05:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E62246D567
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:16:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234558AbhLHOI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 09:08:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35650 "EHLO
+        id S232995AbhLHOTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 09:19:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234653AbhLHOI6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:08:58 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FE1CC061746
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 06:05:26 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1muxZT-0004P3-UM; Wed, 08 Dec 2021 15:05:24 +0100
-Message-ID: <e9758aac9a0ce296353f5484694c9db14962dfd7.camel@pengutronix.de>
-Subject: Re: [PATCH] hack: soc: imx: gpcv2: avoid unbalanced powering off of
- one device
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     aford173@gmail.com, devicetree@vger.kernel.org, festevam@gmail.com,
-        frieder.schrempf@kontron.de, kernel@pengutronix.de,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        marex@denx.de, patchwork-lst@pengutronix.de, robh@kernel.org,
-        shawnguo@kernel.org, tharvey@gateworks.com
-Date:   Wed, 08 Dec 2021 15:05:22 +0100
-In-Reply-To: <20211208134725.3328030-1-martin.kepplinger@puri.sm>
-References: <20211002005954.1367653-8-l.stach@pengutronix.de>
-         <20211208134725.3328030-1-martin.kepplinger@puri.sm>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S231815AbhLHOTp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:19:45 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06B83C061746;
+        Wed,  8 Dec 2021 06:16:13 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id e3so8889791edu.4;
+        Wed, 08 Dec 2021 06:16:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=KLhxQdlpjbVMTlQMKSpDlPMiN1Zg/spaNOwCNsIH3Sg=;
+        b=p1Jz0sTM/Vr8aJXiXX2cTU0ZaW24RdBC0G6MsKG8vXLzNQmp0CBoFth4oGQKT7AYSQ
+         sVdgm1Qdbhs604SbT++465MGrJNGbPKr8fOi6tjtX4SHJeGgvnHtPspMLUsAo4GoDKyx
+         RhQynqskCeaZEsH1zDJWAMxlo2sZnFN+gmWnzmIoX11NNibMzJ1Qd76SA63CP8vxdTUr
+         Di1TYFCBrcTv2ZI4X0MvbGwD1xUhyR/eRy04DLA39spqCNR6a/fVDgxmpxqMZX1XP3/t
+         0smt8iDCgijczUdlTvQpD46T+okPKBFrL6BjPyZsHxHrUJakRyhcq8QxrFU0fUFhwVTX
+         moMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=KLhxQdlpjbVMTlQMKSpDlPMiN1Zg/spaNOwCNsIH3Sg=;
+        b=jREvoC0JBZKAIouVCyzkNO42zocodzJS4Wl7iNbvW1a1ne0pwkrSCDqhU0jRupfoup
+         YGb1TrUuSDHjwKXMd2ElpWwNsfc06c2R46hjTM/1282Xer4usLju6WlrZC6XO9GEukIh
+         IzY8xNTRm30uU50cg4QK6BaoVWmFG9Uvs+dVTKw8qAh8NzDUykVZ3yCgVGwsAb3ZCbos
+         0ak8XD7iTIs6mjjoewbKuaKJFk4f1N9m5KXN+Gk9XkVwYctbtgHxh4a818wmCUSqNJKZ
+         ZRLJ56nHE9JDKQaAA5BfEWnWIKvfFrcaKjq7QsvwMpCDDSXnxqMowQMygk3sRVk52keC
+         vWYQ==
+X-Gm-Message-State: AOAM5310RVytHMkFq7aXQIQQrGePkmHc7arMZ29z8YCOa2qkjJnno20W
+        aDoZb3ld81LuStkHaTkILi8WXK3cgYy/ygIW+oM=
+X-Google-Smtp-Source: ABdhPJxhOheYtaqyypDuzPCT0bxzTxaW5/lEo+dd8oH4Y3ZMYqGNankJpzTTMosXhJhZ79j9Rg9FaLxll18EF6B6K14=
+X-Received: by 2002:a17:906:6a0a:: with SMTP id qw10mr8177164ejc.141.1638972971450;
+ Wed, 08 Dec 2021 06:16:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20211207210823.1975632-1-j.neuschaefer@gmx.net>
+ <20211207210823.1975632-6-j.neuschaefer@gmx.net> <CAHp75Vew=M_ofNM5pmeHtTJHXRUbbO4RrtgYAtLBznTBm3CS6Q@mail.gmail.com>
+ <YbC6Bv2teZ5CFhFQ@latitude>
+In-Reply-To: <YbC6Bv2teZ5CFhFQ@latitude>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 8 Dec 2021 16:14:38 +0200
+Message-ID: <CAHp75VdYtLbCLi7iD0UT7MrPi9oxJLWA9ZCBo7uGbWxNCBdGyw@mail.gmail.com>
+Subject: Re: [PATCH v2 5/8] pinctrl: nuvoton: Add driver for WPCM450
+To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Cc:     "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+On Wed, Dec 8, 2021 at 3:58 PM Jonathan Neusch=C3=A4fer
+<j.neuschaefer@gmx.net> wrote:
+> On Wed, Dec 08, 2021 at 01:24:18PM +0200, Andy Shevchenko wrote:
+> > On Tuesday, December 7, 2021, Jonathan Neusch=C3=A4fer <j.neuschaefer@g=
+mx.net>
+> > wrote:
 
-Am Mittwoch, dem 08.12.2021 um 14:47 +0100 schrieb Martin Kepplinger:
-> Hi Lucas,
-> 
-> I've posted this hack with a report here a few days back:
-> https://lore.kernel.org/linux-arm-kernel/20211122115145.177196-1-martin.kepplinger@puri.sm/
-> 
-> But now that I see these suspend/resume callback additions things
-> again go wrong on my imx8mq system.
-> 
-> With a v5.16-rc4 based tree and printing on regulator enable/disable,
-> system suspend + resume looks like so:
-> 
-> [   47.559681] imx-pgc imx-pgc-domain.5: enable
-> [   47.584679] imx-pgc imx-pgc-domain.0: disable
-> [   47.646592] imx-pgc imx-pgc-domain.5: disable
-> [   47.823627] imx-pgc imx-pgc-domain.5: enable
-> [   47.994805] imx-pgc imx-pgc-domain.5: disable
-> [   48.664018] imx-pgc imx-pgc-domain.5: enable
-> [   48.805828] imx-pgc imx-pgc-domain.5: disable
-> [   49.909579] imx-pgc imx-pgc-domain.6: enable
-> [   50.013079] imx-pgc imx-pgc-domain.6: failed to enable regulator: -110
-> [   50.013686] imx-pgc imx-pgc-domain.5: enable
-> [   50.120224] imx-pgc imx-pgc-domain.5: failed to enable regulator: -110
-> [   50.120324] imx-pgc imx-pgc-domain.0: enable
-> [   53.703468] imx-pgc imx-pgc-domain.0: disable
-> [   53.746368] imx-pgc imx-pgc-domain.5: disable
-> [   53.754452] imx-pgc imx-pgc-domain.5: failed to disable regulator: -5
-> [   53.765045] imx-pgc imx-pgc-domain.6: disable
-> [   53.822269] imx-pgc imx-pgc-domain.6: failed to disable regulator: -5
-> 
-> 
-> But my main point is that the situation is a bit hard to understand
-> right now. when transitioning to system suspend we expect (if disabled)
-> enable+disable to happen, right? and after resuming: enable (+ runtime disable).
+...
 
-Right.
+> > > +       ours =3D ((1UL << gpio->num_irqs) - 1) << gpio->first_irq_bit=
+;
+> >
+> > BIT()
+>
+> I'll use it, but in this case, I think it doesn't simplify much the
+> whole expression all that much.
 
-> Makes sense functinally, but I wonder if we could implement it a bit clearer?
+It is still better to use in my opinion.
 
-Unfortunately, I don't think there is a way to do this in a much
-cleaner way. 
-> 
-> Anyway I'm also not sure whether imx8mq might be different than your
-> imx8mm system.
+> Is there perhaps a macro that
+> constructs a continuous bitmask of N bits, perhaps additionally
+> left-shifted by M bits?
 
-imx8mq, without the upcoming VPU blk-ctrl, has no nested power domains,
-which are the main reason for the power domain runtime resume before
-the system suspend. If they aren't resumed before the suspend the
-nested domains will not be able to power up their parent domains on
-resume, due to runtime PM being unavailable at this stage. All of
-8mm/8mn/8mp have some sorts of nested power domains.
+> Maybe somewhere in the bitmap_* API...
 
-> 
-> When I revert your one patch and add my hack below again, things
-> work again and the system resumes without errors.
-> 
-> Can you imagine what might be missing here?
-> 
-I would like to understand why the runtime resume of the power domain
-isn't working for you. Is this a i2c attached regulator? There might be
-some RPM dependency handling (device link) missing to keep the i2c bus
-alive until the power domains finished their suspend handling.
+Maybe, I dunno since I haven't clearly got this code anyway, so up to
+you to check and see what to do about it.
 
-Regards,
-Lucas
+...
 
-> thanks a lot for working on this!
-> 
->                                martin
-> ---
->  drivers/soc/imx/gpcv2.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-> index 07610bf87854..898886c9d799 100644
-> --- a/drivers/soc/imx/gpcv2.c
-> +++ b/drivers/soc/imx/gpcv2.c
-> @@ -319,6 +319,9 @@ static int imx_pgc_power_down(struct generic_pm_domain *genpd)
->  	u32 reg_val, pgc;
->  	int ret;
->  
-> +	if (pm_runtime_suspended(domain->dev))
-> +		return 0;
-> +
->  	/* Enable reset clocks for all devices in the domain */
->  	if (!domain->keep_clocks) {
->  		ret = clk_bulk_prepare_enable(domain->num_clks, domain->clks);
+> > > +       struct fwnode_handle *np;
+> >
+> >  Either be fully OF, or don=E2=80=99t name =E2=80=98np' here. We usuall=
+y use fwnode or
+> > =E2=80=98child=E2=80=99 in this case.
+>
+> Ah, I thought "np" (=3D node pointer) was still appropriate because I'm
+> dealing with firmware _nodes_. My intention was indeed to switch fully
+> to the fwnode API.
 
+Just a convention "de facto".
 
+...
+
+> > > +               ret =3D gpiochip_add_pin_range(&gpio->gc,
+> > > dev_name(pctrl->dev),
+> > > +                                            0, bank->base, bank->len=
+gth);
+> > > +               if (ret) {
+> > > +                       dev_err(pctrl->dev, "Failed to add pin range =
+for
+> > > GPIO bank %u\n", reg);
+> > > +                       return ret;
+> > > +               }
+> >
+> > Please move it to the corresponding callback.
+>
+> What's the corresponding callback?
+
+https://elixir.bootlin.com/linux/latest/source/include/linux/gpio/driver.h#=
+L400
+
+--=20
+With Best Regards,
+Andy Shevchenko
