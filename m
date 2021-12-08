@@ -2,86 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7032C46CC9D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 05:38:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 672C546CCA2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 05:41:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244240AbhLHEli (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 23:41:38 -0500
-Received: from 113.196.136.146.ll.static.sparqnet.net ([113.196.136.146]:57098
-        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S240064AbhLHElh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 23:41:37 -0500
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.202
-        by mg02.sunplus.com with MailGates ESMTP Server V5.0(31386:0:AUTH_RELAY)
-        (envelope-from <wells.lu@sunplus.com>); Wed, 08 Dec 2021 12:38:00 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.23; Wed, 8 Dec 2021 12:37:59 +0800
-Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
- ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Wed, 8 Dec 2021
- 12:37:59 +0800
-From:   =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
-To:     Jakub Kicinski <kuba@kernel.org>, Wells Lu <wellslutw@gmail.com>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        =?big5?B?VmluY2VudCBTaGloIKxJwEPCRQ==?= <vincent.shih@sunplus.com>
-Subject: RE: [PATCH net-next v4 2/2] net: ethernet: Add driver for Sunplus
- SP7021
-Thread-Topic: [PATCH net-next v4 2/2] net: ethernet: Add driver for Sunplus
- SP7021
-Thread-Index: AQHX60F8YLhxpbct+0aHjLW9kGkiW6wm7LuAgAEXAgA=
-Date:   Wed, 8 Dec 2021 04:37:59 +0000
-Message-ID: <ba5fe14be8d2434793713bd13abccb28@sphcmbx02.sunplus.com.tw>
-References: <1638864419-17501-1-git-send-email-wellslutw@gmail.com>
-        <1638864419-17501-3-git-send-email-wellslutw@gmail.com>
- <20211207115735.4d665759@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20211207115735.4d665759@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.39]
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        id S239754AbhLHEpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 23:45:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47852 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235223AbhLHEpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 23:45:08 -0500
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6A9C061574
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 20:41:37 -0800 (PST)
+Received: by mail-pg1-x529.google.com with SMTP id 71so1030019pgb.4
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 20:41:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gVTXx2Ftul3axT9kG8wb/hHelrk+iyq3wOYFqWlWjWk=;
+        b=oWcfD5XcW0oT9QFTheXHFeLXwtCC85oNZb8SpB3TnmgJmQgEaF2RvSXun/lAaoTTLn
+         cUNhQlmRfL9ts8Yr+zpOIuQp0wWgqy7/6K7CDt6WERgsv0lc8h8CmyYLRDb4Yh5g3Hmh
+         x1bpMJ/+rpJauk9VAdSxWjo3RiSYO2u2eEwo15VHIOuba1OcvFT/no/dfewvTd+YzJ7t
+         m5wXVhaMvjcyWjeKMbynqLt1BFnov51x1kxoICPkAYX051Y9SvX8puihTyZjM7xFz+zU
+         SRIvuYmKEFw2TWB2RYfSCObmlbpwY6Ifsiy7tx3NjceTY+63A4OEShHOYVmnzpXM+bqH
+         xfVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=gVTXx2Ftul3axT9kG8wb/hHelrk+iyq3wOYFqWlWjWk=;
+        b=0lMH0nqcwXw2X4CXqM9XBVgyYxiUr398PUVQzdr2bej4T/xi3FVirXUb2RQkYT0G4Q
+         Ll6xbZbjy6A6MlC6RjiKEesF569SPT+WwZmAjYJFKmxfliCqAu1F0u4PMb0NijB1EFzQ
+         0HFyYg6pX91QmN72GnT4ZCpICU2kjzdLRyv2ci7L7qNNQ+mhZXvbmA3qR3a3pTN+4Zeh
+         9i0m4uJdxSSMXixjpAEMFlQRnY3siuVtEUn3W+GI0SwJJWHEyzb8fb2uujFHh6GlmPMS
+         SAqQD1EdPk+64ya1uS/lgecZoAqBCNlqJ1WIK59wxbLlR8duIk1OcxPUxuVEiFKr+iyf
+         +HwQ==
+X-Gm-Message-State: AOAM53292HSHaYBsQ66/plk+EMVX4IIoEIobnmNjul5+soAnX3POsUwE
+        nHI8hhO4E1rKUKX9g5W+A+trMjPC+KxYrQ==
+X-Google-Smtp-Source: ABdhPJxs2WOshOlJoxL1kNg/Hwp/A6wY4SGHd6+tt5PnePyQJwe3IBGTnJriHXVFxjPsS/FNyLIfvg==
+X-Received: by 2002:a63:1166:: with SMTP id 38mr27404118pgr.368.1638938496739;
+        Tue, 07 Dec 2021 20:41:36 -0800 (PST)
+Received: from localhost.localdomain (fs76eeeb6c.tkyc601.ap.nuro.jp. [118.238.235.108])
+        by smtp.gmail.com with ESMTPSA id l2sm1469249pfc.42.2021.12.07.20.41.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Dec 2021 20:41:36 -0800 (PST)
+Sender: Kuninori Morimoto <kuninori.morimoto.gx@gmail.com>
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH 1/1] ASoC: dt-bindings: audio-graph-port: enable both flag/phandle for bitclock/frame-master
+Date:   Wed,  8 Dec 2021 13:41:03 +0900
+Message-Id: <20211208044103.405292-1-kuninori.morimoto.gx@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgSmFrdWIsDQoNClRoYW5rIHlvdSBmb3IgcmV2aWV3Lg0KDQpJJ2xsIGZpeCB0aGUgd2Fybmlu
-Z3MgcmVwb3J0ZWQgZnJvbSBjbGFuZyBuZXh0IHBhdGNoLg0KDQoNCkJlc3QgcmVnYXJkcywNCldl
-bGxzIEx1DQoNCg0KPiBPbiBUdWUsICA3IERlYyAyMDIxIDE2OjA2OjU5ICswODAwIFdlbGxzIEx1
-IHdyb3RlOg0KPiA+IEFkZCBkcml2ZXIgZm9yIFN1bnBsdXMgU1A3MDIxIFNvQy4NCj4gPg0KPiA+
-IFNpZ25lZC1vZmYtYnk6IFdlbGxzIEx1IDx3ZWxsc2x1dHdAZ21haWwuY29tPg0KPiANCj4gY2xh
-bmcgcG9pbnRzIG91dDoNCj4gDQo+IGRyaXZlcnMvbmV0L2V0aGVybmV0L3N1bnBsdXMvc3BsMnN3
-X2RyaXZlci5jOjIyMzo2NTogd2FybmluZzogcmVzdWx0IG9mIGNvbXBhcmlzb24gb2YNCj4gY29u
-c3RhbnQgMTg4IHdpdGggZXhwcmVzc2lvbiBvZiB0eXBlICdjaGFyJyBpcyBhbHdheXMgdHJ1ZQ0K
-PiBbLVd0YXV0b2xvZ2ljYWwtY29uc3RhbnQtb3V0LW9mLXJhbmdlLWNvbXBhcmVdDQo+ICAgICAg
-ICAgICAgIChtYWNfYWRkclswXSAhPSAweEZDIHx8IG1hY19hZGRyWzFdICE9IDB4NEIgfHwgbWFj
-X2FkZHJbMl0gIT0gMHhCQykpIHsNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICB+fn5+fn5+fn5+fiBeICB+fn5+DQo+IGRyaXZlcnMv
-bmV0L2V0aGVybmV0L3N1bnBsdXMvc3BsMnN3X2RyaXZlci5jOjIyMzoxOTogd2FybmluZzogcmVz
-dWx0IG9mIGNvbXBhcmlzb24gb2YNCj4gY29uc3RhbnQgMjUyIHdpdGggZXhwcmVzc2lvbiBvZiB0
-eXBlICdjaGFyJyBpcyBhbHdheXMgdHJ1ZQ0KPiBbLVd0YXV0b2xvZ2ljYWwtY29uc3RhbnQtb3V0
-LW9mLXJhbmdlLWNvbXBhcmVdDQo+ICAgICAgICAgICAgIChtYWNfYWRkclswXSAhPSAweEZDIHx8
-IG1hY19hZGRyWzFdICE9IDB4NEIgfHwgbWFjX2FkZHJbMl0gIT0gMHhCQykpIHsNCj4gICAgICAg
-ICAgICAgIH5+fn5+fn5+fn5+IF4gIH5+fn4NCj4gZHJpdmVycy9uZXQvZXRoZXJuZXQvc3VucGx1
-cy9zcGwyc3dfZHJpdmVyLmM6MjIyOjY0OiB3YXJuaW5nOiByZXN1bHQgb2YgY29tcGFyaXNvbiBv
-Zg0KPiBjb25zdGFudCAxODggd2l0aCBleHByZXNzaW9uIG9mIHR5cGUgJ2NoYXInIGlzIGFsd2F5
-cyBmYWxzZQ0KPiBbLVd0YXV0b2xvZ2ljYWwtY29uc3RhbnQtb3V0LW9mLXJhbmdlLWNvbXBhcmVd
-DQo+ICAgICAgICAgaWYgKG1hY19hZGRyWzVdID09IDB4RkMgJiYgbWFjX2FkZHJbNF0gPT0gMHg0
-QiAmJiBtYWNfYWRkclszXSA9PSAweEJDICYmDQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB+fn5+fn5+fn5+fiBeICB+fn5+DQo+IGRy
-aXZlcnMvbmV0L2V0aGVybmV0L3N1bnBsdXMvc3BsMnN3X2RyaXZlci5jOjIyMjoxODogd2Fybmlu
-ZzogcmVzdWx0IG9mIGNvbXBhcmlzb24gb2YNCj4gY29uc3RhbnQgMjUyIHdpdGggZXhwcmVzc2lv
-biBvZiB0eXBlICdjaGFyJyBpcyBhbHdheXMgZmFsc2UNCj4gWy1XdGF1dG9sb2dpY2FsLWNvbnN0
-YW50LW91dC1vZi1yYW5nZS1jb21wYXJlXQ0KPiAgICAgICAgIGlmIChtYWNfYWRkcls1XSA9PSAw
-eEZDICYmIG1hY19hZGRyWzRdID09IDB4NEIgJiYgbWFjX2FkZHJbM10gPT0gMHhCQyAmJg0KPiAg
-ICAgICAgICAgICB+fn5+fn5+fn5+fiBeICB+fn5+DQo=
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+
+snd_soc_daifmt_parse_clock_provider_raw() is handling both
+bitclock/frame-master, and is supporting both flag/phandle.
+Current DT is assuming it is flag style.
+This patch allows both case.
+
+Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+---
+ .../bindings/sound/audio-graph-port.yaml      | 23 +++++++++++++++++--
+ 1 file changed, 21 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+index 43e7f86e3b23..6c3645a0d36b 100644
+--- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
++++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+@@ -14,6 +14,24 @@ select: false
+ allOf:
+   - $ref: /schemas/graph.yaml#/$defs/port-base
+ 
++definitions:
++  flag_or_phandle:
++    oneOf:
++      - type: boolean
++        const: true
++      - type: 'null'
++      - type: array
++        minItems: 1
++        maxItems: 1
++        items:
++          type: array
++          items:
++            phandle: true
++            type: integer
++            maximum: 0xffffffff
++          minItems: 1
++          maxItems: 1
++
+ properties:
+   prefix:
+     description: "device name prefix"
+@@ -42,10 +60,11 @@ patternProperties:
+         $ref: /schemas/types.yaml#/definitions/flag
+       frame-master:
+         description: Indicates dai-link frame master.
+-        $ref: /schemas/types.yaml#/definitions/phandle
++        $ref: "#/definitions/flag_or_phandle"
+       bitclock-master:
+         description: Indicates dai-link bit clock master
+-        $ref: /schemas/types.yaml#/definitions/phandle
++        $ref: "#/definitions/flag_or_phandle"
++
+       dai-format:
+         description: audio format.
+         items:
+-- 
+2.25.1
+
