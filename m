@@ -2,133 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41CD846DDEC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 22:59:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3072746DDF5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 23:01:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231363AbhLHWDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 17:03:09 -0500
-Received: from mga05.intel.com ([192.55.52.43]:9415 "EHLO mga05.intel.com"
+        id S237771AbhLHWFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 17:05:18 -0500
+Received: from smtp2.axis.com ([195.60.68.18]:42852 "EHLO smtp2.axis.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237675AbhLHWDJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Dec 2021 17:03:09 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="324219501"
-X-IronPort-AV: E=Sophos;i="5.88,190,1635231600"; 
-   d="scan'208";a="324219501"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2021 13:51:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,190,1635231600"; 
-   d="scan'208";a="564284920"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by fmsmga008.fm.intel.com with ESMTP; 08 Dec 2021 13:50:58 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mv4q2-00015x-1C; Wed, 08 Dec 2021 21:50:58 +0000
-Date:   Thu, 9 Dec 2021 05:50:49 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH 17/18] drm: rockchip: Add VOP2 driver
-Message-ID: <202112090519.Beunfs20-lkp@intel.com>
-References: <20211208151230.3695378-18-s.hauer@pengutronix.de>
+        id S229604AbhLHWFS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Dec 2021 17:05:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1639000905;
+  x=1670536905;
+  h=date:to:cc:subject:message-id:references:mime-version:
+   content-transfer-encoding:in-reply-to:from;
+  bh=VRt6/LjubwnNkpPYOgxI34z0OGVQF3Sie8iEQwlJ3so=;
+  b=prnJ8F9BBJZO0uWpzTpMiGIc00SqYOUITLSLpPlni1aWrTGrf2PgcfaZ
+   j79LQkxfHC9c5O41nJX3LPP9dW0Ort4V/DCtxm/NdvzEJP7kqfGhecqW/
+   LSP5FhIULtOrDcs3R9Lnjhs6qtqu9Rp89592iLiodqg8byJV9LC61MErj
+   IksL77EagIeB2SMxhiNC8Cx3hEOi0bE6eTyRjKDC7uh5v28YyzJN7ldJL
+   cQAt4C2G14VbilnFDiVHJuUs0IFVrVBUZ9yEcFm8JffXYqyHzDh9Ey4zi
+   KUUZwpCQwJPwKaPZOKdMkZyOdah+uVSWXSVhDKqtU57MZGzUqvkyYI8N0
+   g==;
+Date:   Wed, 8 Dec 2021 23:01:44 +0100
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+CC:     =?iso-8859-1?Q?M=E5rten?= Lindahl <Marten.Lindahl@axis.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Doug Anderson <dianders@google.com>, kernel <kernel@axis.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>
+Subject: Re: [PATCH v2 4/4] mmc: dw_mmc: Do not wait for DTO in case of error
+Message-ID: <20211208220144.GA10156@axis.com>
+References: <20211206142929.26729-1-marten.lindahl@axis.com>
+ <20211206142929.26729-5-marten.lindahl@axis.com>
+ <CAPDyKFojCipHMwmCZB3h7CdYP+eSSikA=d=G701Y5+9xeQKxgg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20211208151230.3695378-18-s.hauer@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPDyKFojCipHMwmCZB3h7CdYP+eSSikA=d=G701Y5+9xeQKxgg@mail.gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
+From:   Marten Lindahl <martenli@axis.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sascha,
+On Wed, Dec 08, 2021 at 03:53:54PM +0100, Ulf Hansson wrote:
+> On Mon, 6 Dec 2021 at 15:29, Mårten Lindahl <marten.lindahl@axis.com> wrote:
+> >
+> > When running the ARTPEC-8 DWMMC IP version, and a data error interrupt
+> > comes during a data read transfer, there is no guarantee for the data
+> > transfer over interrupt (DTO) to come within the specified data timeout.
+> > This case is handled by the dto_timer handler which will complete the
+> > request with the comment:
+> >
+> >  /*
+> >   * If DTO interrupt does NOT come in sending data state,
+> >   * we should notify the driver to terminate current transfer
+> >   * and report a data timeout to the core.
+> >   */
+> >
+> > But since the ARTPEC-8 DWMMC IP version, supports an extended TMOUT
+> > register which allows longer timeouts than the non ARTPEC-8 version
+> > does, waiting for the dto_timer to complete the request in error cases
+> > may cause the request to take significantly longer time than necessary.
+> > This is specifically true for the failing steps during tuning of a
+> > device.
+> >
+> > Fix this by completing the request when the error interrupt comes.
+> >
+> > Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
+> 
 
-Thank you for the patch! Perhaps something to improve:
+Hi Ulf!
 
-[auto build test WARNING on rockchip/for-next]
-[also build test WARNING on drm/drm-next drm-intel/for-linux-next drm-exynos/exynos-drm-next v5.16-rc4]
-[cannot apply to drm-tip/drm-tip tegra-drm/drm/tegra/for-next airlied/drm-next next-20211208]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+> Okay, this change looks a bit inconvenient to move into variant
+> specific callbacks. So, maybe the "quirks" flag makes sense, after
+> all. However, I would still look at using callbacks and library
+> functions, for the part implemented in patch3.
 
-url:    https://github.com/0day-ci/linux/commits/Sascha-Hauer/drm-rockchip-RK356x-VOP2-support/20211208-231502
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-config: mips-allmodconfig (https://download.01.org/0day-ci/archive/20211209/202112090519.Beunfs20-lkp@intel.com/config)
-compiler: mips-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/8d57a528cbdfec4716a21d22d3d6c04c40451355
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Sascha-Hauer/drm-rockchip-RK356x-VOP2-support/20211208-231502
-        git checkout 8d57a528cbdfec4716a21d22d3d6c04c40451355
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=mips SHELL=/bin/bash drivers/gpu/drm/rockchip/
+Yes, I don't see how this patch can be easily made with callbacks, but
+definitely for patch3. So then I move the definition of the quirk from
+patch3 to this patch.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+> 
+> When it comes to the order of the patches in the series, I suggest
+> flipping things around and making patch2 the final piece. Otherwise
+> the support for the artpec variant will be broken between patch2 and
+> patch4, right?
 
-All warnings (new ones prefixed by >>):
+Ok, you mean there may be a risk that the ARTPEC-8 dw_mmc does not work
+if the support is enabled in patch2, but patch3 and patch4 is not in
+place? That is a good point, but it actually does work quite fine (most
+of the time) without the extended timeout function. But it does not use
+the full function of the data timeout, and the HW timeout is most often
+set to full timeout (0xFFFFFF => 587ms with 200MHz), but the SW timer is
+limited to a lower value (0xFFFFFF => 84 + 10 ms with 200MHz).
 
-   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_setup_cluster_alpha':
->> drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:1861:33: warning: variable 'top_win_pstate' set but not used [-Wunused-but-set-variable]
-    1861 |         struct drm_plane_state *top_win_pstate;
-         |                                 ^~~~~~~~~~~~~~
+My reasoning is:
+patch1 - dtbindings for ARTPEC-8
+patch2 - adding ARTPEC-8 to dw_mmc-exynos
+patch3 - implement ARTPEC-8 specific function for data timeout
+patch4 - add quirk to abort the extended timeout in case of errors, used
+by ARTPEC-8
 
+so, this means patch3 and patch4 depends on patch2, and patch4 depends
+on patch3.
 
-vim +/top_win_pstate +1861 drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+Kind regards
+Mårten
 
-  1855	
-  1856	static void vop2_setup_cluster_alpha(struct vop2 *vop2, struct vop2_win *main_win)
-  1857	{
-  1858		uint32_t offset = (main_win->data->phys_id * 0x10);
-  1859		struct vop2_alpha_config alpha_config;
-  1860		struct vop2_alpha alpha;
-> 1861		struct drm_plane_state *top_win_pstate;
-  1862		struct drm_plane_state *bottom_win_pstate;
-  1863		bool src_pixel_alpha_en = false;
-  1864		uint16_t src_glb_alpha_val, dst_glb_alpha_val;
-  1865		bool premulti_en = false;
-  1866		bool swap = false;
-  1867	
-  1868		/* At one win mode, win0 is dst/bottom win, and win1 is a all zero src/top win */
-  1869		top_win_pstate = NULL;
-  1870		bottom_win_pstate = main_win->base.state;
-  1871		src_glb_alpha_val = 0;
-  1872		dst_glb_alpha_val = main_win->base.state->alpha;
-  1873	
-  1874		if (!bottom_win_pstate->fb)
-  1875			return;
-  1876	
-  1877		alpha_config.src_premulti_en = premulti_en;
-  1878		alpha_config.dst_premulti_en = false;
-  1879		alpha_config.src_pixel_alpha_en = src_pixel_alpha_en;
-  1880		alpha_config.dst_pixel_alpha_en = true; /* alpha value need transfer to next mix */
-  1881		alpha_config.src_glb_alpha_value = src_glb_alpha_val;
-  1882		alpha_config.dst_glb_alpha_value = dst_glb_alpha_val;
-  1883		vop2_parse_alpha(&alpha_config, &alpha);
-  1884	
-  1885		alpha.src_color_ctrl.bits.src_dst_swap = swap;
-  1886		vop2_writel(vop2, RK3568_CLUSTER0_MIX_SRC_COLOR_CTRL + offset,
-  1887			    alpha.src_color_ctrl.val);
-  1888		vop2_writel(vop2, RK3568_CLUSTER0_MIX_DST_COLOR_CTRL + offset,
-  1889			    alpha.dst_color_ctrl.val);
-  1890		vop2_writel(vop2, RK3568_CLUSTER0_MIX_SRC_ALPHA_CTRL + offset,
-  1891			    alpha.src_alpha_ctrl.val);
-  1892		vop2_writel(vop2, RK3568_CLUSTER0_MIX_DST_ALPHA_CTRL + offset,
-  1893			    alpha.dst_alpha_ctrl.val);
-  1894	}
-  1895	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> 
+> Kind regards
+> Uffe
+> 
+> > ---
+> >  drivers/mmc/host/dw_mmc.c | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
+> > index 45ea9fd97a6a..d6b76f47b1a2 100644
+> > --- a/drivers/mmc/host/dw_mmc.c
+> > +++ b/drivers/mmc/host/dw_mmc.c
+> > @@ -2777,11 +2777,19 @@ static irqreturn_t dw_mci_interrupt(int irq, void *dev_id)
+> >                 if (pending & DW_MCI_DATA_ERROR_FLAGS) {
+> >                         spin_lock(&host->irq_lock);
+> >
+> > +                       if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
+> > +                               del_timer(&host->dto_timer);
+> > +
+> >                         /* if there is an error report DATA_ERROR */
+> >                         mci_writel(host, RINTSTS, DW_MCI_DATA_ERROR_FLAGS);
+> >                         host->data_status = pending;
+> >                         smp_wmb(); /* drain writebuffer */
+> >                         set_bit(EVENT_DATA_ERROR, &host->pending_events);
+> > +
+> > +                       if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
+> > +                               /* In case of error, we cannot expect a DTO */
+> > +                               set_bit(EVENT_DATA_COMPLETE, &host->pending_events);
+> > +
+> >                         tasklet_schedule(&host->tasklet);
+> >
+> >                         spin_unlock(&host->irq_lock);
+> > --
+> > 2.20.1
+> >
