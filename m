@@ -2,184 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C442846D9B8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 18:30:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2FDD46D9C3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 18:32:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237900AbhLHRe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 12:34:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56168 "EHLO
+        id S235084AbhLHRgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 12:36:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233218AbhLHRe3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 12:34:29 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC6E1C061746;
-        Wed,  8 Dec 2021 09:30:56 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id i5so5374045wrb.2;
-        Wed, 08 Dec 2021 09:30:56 -0800 (PST)
+        with ESMTP id S234854AbhLHRgO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 12:36:14 -0500
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C4D5C061746;
+        Wed,  8 Dec 2021 09:32:42 -0800 (PST)
+Received: by mail-pf1-x42e.google.com with SMTP id p13so3078710pfw.2;
+        Wed, 08 Dec 2021 09:32:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Q/52o+kc2MtRpGoc1ftGEIAfPJErHeiY54BAoO2W19M=;
-        b=XvCDmhfgXKl46EM/TMVCpB2Da5+zxl6FG50TESZ+kTHS/fRnJGtmRSbtXOFDwTL0w6
-         xmQC5k2p1qptWlaZ/Qh302jQ6QmXxpCDqTLL/lhMb/MO6F/pO3SizHtRvC6yg8JxHqT5
-         2KWjOoTY/8+UPxyEqG3+LEiXXXgyUSXIYClxRmTunDLS8vuarDox0Z1gqcMs4CwB/Wk9
-         RngXxgxJ9zFntRpfg58EeqDzeSX84gyltcdElZ/qOJDh9kqWEoDFu2V4O49egUxjLEmC
-         UBxrmi+5Sql+vaOUimxYWZQ8/XjF1SJybEAVCebWrifzZcrbN4OY12ggOylYZa76QEeX
-         K25A==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=GTnOygRYVjIjLSwuhIL1Lc+5UjBjxzuVt14IqySkkNA=;
+        b=OoXxuvNL1SZdgC7J4oqN/PTzUJDiznDtwII7++hd6xtR4ZdlzCPnHavbNPFnzI/alb
+         4TrfjC2Me0CcfnKVxl3HMhb4pTYxYXCCLzyaFIWAg3vwiFEwxNBBK+sanGRjt7Zpjt6c
+         9gTAlh1T5INoGRdwUpY1wx35x+rp346uy2fI9aSXJDiADe1iwQCx92+KV5ntDXaPTXxL
+         hNWoA8rLAhi8p6n8GqI9pGkIHlwvf57/Gw9zx98myvRo7oyzlJqsDL/YEJUe8zs0GN+2
+         TZPL2RlJY7/CB5ldhl4Mqz5X74nFZ2OmbRQt6Ynq3nRIQADWYNXNLB6fIQujNivo979M
+         +Dng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Q/52o+kc2MtRpGoc1ftGEIAfPJErHeiY54BAoO2W19M=;
-        b=wew5uvoZQF3VLVbLXrxJUqCRANJh70oTtlRpzFPiQeFX9ymxIdCMO/0Xe12TbgD0Oj
-         7Yp/Jm4GQstNig874vdNO/FL5fWAPYpmZs2OCcztuf2LqzlBtOsL79HahkCYvyQ6OAlh
-         V2HnWGvqI2KJjnmXFSRbP90AvLuZq9Qjm/7Y5+ywL2+Uar8aT5PMhp7aAfUcVpJgEti5
-         gnJIYnyYsD4sY20ejHAvIF+ih9Hov7SmBxlahD+mnAA8nU2UAeHSGNPVC1rezFDw5oMG
-         fVnQ6laaoCsOde4TkZpI7ot0IiRbr6sn6gWTOn0bJlfOpG7DypRru1KV2ajg2hPw9usF
-         wtdQ==
-X-Gm-Message-State: AOAM53310gVWp5WpKbh3WNH2emtFj8GGrnOmjyspro8ZphnInTZIgRr0
-        jNpsWXACsp+uaKe3qlJRLiw=
-X-Google-Smtp-Source: ABdhPJzv7xyWLFzBvWYa7qYzgoNnc0Wi2a3JnMztiZHuoZLeT/+n0BrfcrhUQV/lrWCN7MgVDKtYng==
-X-Received: by 2002:a5d:4f12:: with SMTP id c18mr19712wru.547.1638984655400;
-        Wed, 08 Dec 2021 09:30:55 -0800 (PST)
-Received: from localhost ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id r11sm3381983wrw.5.2021.12.08.09.30.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 09:30:54 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        Prathamesh Shete <pshete@nvidia.com>,
-        linux-gpio@vger.kernel.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 3/6] dt-bindings: gpio: Add Tegra234 support
-Date:   Wed,  8 Dec 2021 18:30:44 +0100
-Message-Id: <20211208173047.558108-3-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211208173047.558108-1-thierry.reding@gmail.com>
-References: <20211208173047.558108-1-thierry.reding@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=GTnOygRYVjIjLSwuhIL1Lc+5UjBjxzuVt14IqySkkNA=;
+        b=Nh9TtDXxW+QnyCWCDMbG2DeCqUTKK1DZHJ2grK/8FycAqKybhcDZyny5Gy+O0242GB
+         0NFrRGn03qYPMFnmLRrnqLa25iM9bnjtOi8pnxCOBOI8GnbA2yg+Z5XPAQhTosHxnJb0
+         B62aKRCPP0f5dVLNVqvv686rjQ8lhaDC52oeiho24yfA2k0U05FGXUzHqWTbfikGfjkk
+         3HoPyYDSM99IaLjKSJJmhFoIX4Ot9ZWmRTRSgR2pHIbE1jRfKeSvNrQZ5WUW6cUBBP6s
+         rEq3uU2G13EV3WNz/0824niyZ3MHknKbNJUBs2Bp4zfvCajwUZJir9Ho2BO3prECE0RL
+         8u5Q==
+X-Gm-Message-State: AOAM533UBDU8osQbgFZ2O4EG632xLrGGokhkOyUq0UYNA99o0pEob86O
+        ew9WVAI6hUwPKjHL4QyeMu/UhY1S7R8=
+X-Google-Smtp-Source: ABdhPJyDDF2CspZ7OwtoageGUQ3rKh88TPg58DGSzt6iO8ytJwslleC2V3vOwFN7Ff8aBMLU3SUsIg==
+X-Received: by 2002:a63:4458:: with SMTP id t24mr30420895pgk.236.1638984761057;
+        Wed, 08 Dec 2021 09:32:41 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id i3sm3941617pfe.75.2021.12.08.09.32.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Dec 2021 09:32:40 -0800 (PST)
+Subject: Re: [PATCH v3 6/6] dt-bindings: pci: Convert iProc PCIe to YAML
+To:     Rob Herring <robh@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Ray Jui <rjui@broadcom.com>, devicetree@vger.kernel.org,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        bcm-kernel-feedback-list@broadcom.com, linux-pci@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Scott Branden <sbranden@broadcom.com>,
+        linux-kernel@vger.kernel.org
+References: <20211208040432.3658355-1-f.fainelli@gmail.com>
+ <20211208040432.3658355-7-f.fainelli@gmail.com>
+ <1638971068.781821.3857737.nullmailer@robh.at.kernel.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <536cbdb6-a541-2f86-faa6-acb1a4e1c173@gmail.com>
+Date:   Wed, 8 Dec 2021 09:32:39 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1638971068.781821.3857737.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Prathamesh Shete <pshete@nvidia.com>
+On 12/8/21 5:44 AM, Rob Herring wrote:
+> On Tue, 07 Dec 2021 20:04:32 -0800, Florian Fainelli wrote:
+>> Conver the iProc PCIe controller Device Tree binding to YAML now that
+>> all DTS in arch/arm and arch/arm64 have been fixed to be compliant.
+>>
+>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+>> ---
+>>  .../bindings/pci/brcm,iproc-pcie.txt          | 133 -------------
+>>  .../bindings/pci/brcm,iproc-pcie.yaml         | 176 ++++++++++++++++++
+>>  2 files changed, 176 insertions(+), 133 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/pci/brcm,iproc-pcie.txt
+>>  create mode 100644 Documentation/devicetree/bindings/pci/brcm,iproc-pcie.yaml
+>>
+> 
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/1565076
+> 
+> 
+> pcie@18012000: msi-controller: 'oneOf' conditional failed, one must be fixed:
+> 	arch/arm/boot/dts/bcm53340-ubnt-unifi-switch8.dt.yaml
+> 	arch/arm/boot/dts/bcm911360_entphn.dt.yaml
+> 	arch/arm/boot/dts/bcm911360k.dt.yaml
+> 	arch/arm/boot/dts/bcm958300k.dt.yaml
+> 	arch/arm/boot/dts/bcm958305k.dt.yaml
+> 	arch/arm/boot/dts/bcm958522er.dt.yaml
+> 	arch/arm/boot/dts/bcm958525er.dt.yaml
+> 	arch/arm/boot/dts/bcm958525xmc.dt.yaml
+> 	arch/arm/boot/dts/bcm958622hr.dt.yaml
+> 	arch/arm/boot/dts/bcm958623hr.dt.yaml
+> 	arch/arm/boot/dts/bcm958625hr.dt.yaml
+> 	arch/arm/boot/dts/bcm958625k.dt.yaml
+> 	arch/arm/boot/dts/bcm958625-meraki-mx64-a0.dt.yaml
+> 	arch/arm/boot/dts/bcm958625-meraki-mx64.dt.yaml
+> 	arch/arm/boot/dts/bcm958625-meraki-mx64w-a0.dt.yaml
+> 	arch/arm/boot/dts/bcm958625-meraki-mx64w.dt.yaml
+> 	arch/arm/boot/dts/bcm958625-meraki-mx65.dt.yaml
+> 	arch/arm/boot/dts/bcm958625-meraki-mx65w.dt.yaml
+> 	arch/arm/boot/dts/bcm988312hr.dt.yaml
 
-Extend the existing Tegra186 GPIO controller device tree bindings with
-support for the GPIO controller found on Tegra234. The number of pins is
-slightly different, but the programming model remains the same.
-
-Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
-[treding@nvidia.com: update device tree bindings]
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- .../bindings/gpio/nvidia,tegra186-gpio.yaml   |  4 ++
- include/dt-bindings/gpio/tegra234-gpio.h      | 63 +++++++++++++++++++
- 2 files changed, 67 insertions(+)
- create mode 100644 include/dt-bindings/gpio/tegra234-gpio.h
-
-diff --git a/Documentation/devicetree/bindings/gpio/nvidia,tegra186-gpio.yaml b/Documentation/devicetree/bindings/gpio/nvidia,tegra186-gpio.yaml
-index ad4deb5959fb..be2344344f6b 100644
---- a/Documentation/devicetree/bindings/gpio/nvidia,tegra186-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/nvidia,tegra186-gpio.yaml
-@@ -83,6 +83,8 @@ properties:
-       - nvidia,tegra186-gpio-aon
-       - nvidia,tegra194-gpio
-       - nvidia,tegra194-gpio-aon
-+      - nvidia,tegra234-gpio
-+      - nvidia,tegra234-gpio-aon
- 
-   reg-names:
-     items:
-@@ -148,6 +150,7 @@ allOf:
-             enum:
-               - nvidia,tegra186-gpio
-               - nvidia,tegra194-gpio
-+              - nvidia,tegra234-gpio
-     then:
-       properties:
-         interrupts:
-@@ -161,6 +164,7 @@ allOf:
-             enum:
-               - nvidia,tegra186-gpio-aon
-               - nvidia,tegra194-gpio-aon
-+              - nvidia,tegra234-gpio-aon
-     then:
-       properties:
-         interrupts:
-diff --git a/include/dt-bindings/gpio/tegra234-gpio.h b/include/dt-bindings/gpio/tegra234-gpio.h
-new file mode 100644
-index 000000000000..d7a1f2e298e8
---- /dev/null
-+++ b/include/dt-bindings/gpio/tegra234-gpio.h
-@@ -0,0 +1,63 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/* Copyright (c) 2020, NVIDIA CORPORATION. All rights reserved. */
-+
-+/*
-+ * This header provides constants for binding nvidia,tegra234-gpio*.
-+ *
-+ * The first cell in Tegra's GPIO specifier is the GPIO ID. The macros below
-+ * provide names for this.
-+ *
-+ * The second cell contains standard flag values specified in gpio.h.
-+ */
-+
-+#ifndef _DT_BINDINGS_GPIO_TEGRA234_GPIO_H
-+#define _DT_BINDINGS_GPIO_TEGRA234_GPIO_H
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/* GPIOs implemented by main GPIO controller */
-+#define TEGRA234_MAIN_GPIO_PORT_A   0
-+#define TEGRA234_MAIN_GPIO_PORT_B   1
-+#define TEGRA234_MAIN_GPIO_PORT_C   2
-+#define TEGRA234_MAIN_GPIO_PORT_D   3
-+#define TEGRA234_MAIN_GPIO_PORT_E   4
-+#define TEGRA234_MAIN_GPIO_PORT_F   5
-+#define TEGRA234_MAIN_GPIO_PORT_G   6
-+#define TEGRA234_MAIN_GPIO_PORT_H   7
-+#define TEGRA234_MAIN_GPIO_PORT_I   8
-+#define TEGRA234_MAIN_GPIO_PORT_J   9
-+#define TEGRA234_MAIN_GPIO_PORT_K  10
-+#define TEGRA234_MAIN_GPIO_PORT_L  11
-+#define TEGRA234_MAIN_GPIO_PORT_M  12
-+#define TEGRA234_MAIN_GPIO_PORT_N  13
-+#define TEGRA234_MAIN_GPIO_PORT_P  14
-+#define TEGRA234_MAIN_GPIO_PORT_Q  15
-+#define TEGRA234_MAIN_GPIO_PORT_R  16
-+#define TEGRA234_MAIN_GPIO_PORT_S  17
-+#define TEGRA234_MAIN_GPIO_PORT_T  18
-+#define TEGRA234_MAIN_GPIO_PORT_U  19
-+#define TEGRA234_MAIN_GPIO_PORT_V  20
-+#define TEGRA234_MAIN_GPIO_PORT_X  21
-+#define TEGRA234_MAIN_GPIO_PORT_Y  22
-+#define TEGRA234_MAIN_GPIO_PORT_Z  23
-+#define TEGRA234_MAIN_GPIO_PORT_AC 24
-+#define TEGRA234_MAIN_GPIO_PORT_AD 25
-+#define TEGRA234_MAIN_GPIO_PORT_AE 26
-+#define TEGRA234_MAIN_GPIO_PORT_AF 27
-+#define TEGRA234_MAIN_GPIO_PORT_AG 28
-+
-+#define TEGRA234_MAIN_GPIO(port, offset) \
-+	((TEGRA234_MAIN_GPIO_PORT_##port * 8) + offset)
-+
-+/* GPIOs implemented by AON GPIO controller */
-+#define TEGRA234_AON_GPIO_PORT_AA 0
-+#define TEGRA234_AON_GPIO_PORT_BB 1
-+#define TEGRA234_AON_GPIO_PORT_CC 2
-+#define TEGRA234_AON_GPIO_PORT_DD 3
-+#define TEGRA234_AON_GPIO_PORT_EE 4
-+#define TEGRA234_AON_GPIO_PORT_GG 5
-+
-+#define TEGRA234_AON_GPIO(port, offset) \
-+	((TEGRA234_AON_GPIO_PORT_##port * 8) + offset)
-+
-+#endif
+Those would mean that the binding patch was applied without the DTS
+patches earlier in the series?
 -- 
-2.34.1
-
+Florian
