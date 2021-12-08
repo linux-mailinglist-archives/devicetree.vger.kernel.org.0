@@ -2,84 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24C3346D609
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:47:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1230A46D61F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:51:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235409AbhLHOuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 09:50:44 -0500
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:39771 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232932AbhLHOun (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:50:43 -0500
-Received: by mail-ot1-f51.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso2940546ots.6;
-        Wed, 08 Dec 2021 06:47:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=buknLEPiljUfS2B22B7J//dmCPA4Jy3FaQSdKUP3e+w=;
-        b=gfvODuoQki5aiZbfhpFM8QiFHci1kTE4vAjObHKO+ogc+2aht340k2DokX/Owfwz9I
-         mFr4prjj/b02YSOOXLYm7XSIg/Hf+R79tDv3sQrrm3gplPHfj4RRWW5t5fD5CvDoIriB
-         WAWkdOScjtxrrXQ7Rpa7yrOesEroj/SbgS2+eB0vwdeCwY2FdNAbAmxKuvdlfmVeFv7N
-         +h1PK6ifRnRRDOGLekIJPa+s28G+Q8MgeNK5Ynkv46+ATO5M+QYZ3NwSblShORHpmpam
-         6Sp6xaZJBr03jdfuNKHCSJv9oxSFuhoORGS9yib7JWwgm6ooGx9wjOw8LGC0oH0NImMU
-         YGRw==
-X-Gm-Message-State: AOAM533uiEiKn+FzCCahnZ1bPx/sOZ03L1BogLoLZR0NsEgK0a+tNjk1
-        EuUZ2cvCexm9PU3BxSaE7KtqzUyZ9Q==
-X-Google-Smtp-Source: ABdhPJxs1ghPJ4vN60wkuCNrY9iCYpx7WoaP2dDzxeFkG8VpKJqgcGyVDbMM4iv3QvIYNW/hskCkrA==
-X-Received: by 2002:a9d:4f0e:: with SMTP id d14mr41842978otl.137.1638974831552;
-        Wed, 08 Dec 2021 06:47:11 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v12sm502385ote.9.2021.12.08.06.47.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 06:47:10 -0800 (PST)
-Received: (nullmailer pid 3986422 invoked by uid 1000);
-        Wed, 08 Dec 2021 14:47:09 -0000
-Date:   Wed, 8 Dec 2021 08:47:09 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: Add missing properties used in examples
-Message-ID: <YbDFbTQW8Cv38fON@robh.at.kernel.org>
-References: <20211206174113.2295616-1-robh@kernel.org>
- <Ya5VhX8TA0LBn4Qd@kroah.com>
+        id S235503AbhLHOyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 09:54:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46664 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235471AbhLHOyo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:54:44 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CA00C061746;
+        Wed,  8 Dec 2021 06:51:12 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EF5B1B8212D;
+        Wed,  8 Dec 2021 14:51:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A8A4C00446;
+        Wed,  8 Dec 2021 14:51:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638975069;
+        bh=yGjzonjEv/so3t2HT7veoFlNxdzM4AIgobZRia0+8Sc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=SaI+ztZkpI1ebk9ZRj7Dsd8J038h00I02vrcqTsq/qZIWKsOnX7pr2a/VBb9k56OS
+         6KAW3YB6jYlry/hpF/8lmLwbPmSyX+GUon9bYf2TZhLk3TAeHsIxX+FudMv/LxiTiM
+         kVfenrfDavWWBro0la9B/lpWJA/ENAOm0rp17n4N0AzzSjO4ELIO49nBoSU5o97DT8
+         +AKEt8ZEfNJF5R6b14Cm2F7HgWtaPIH9bnd/Isiru6mo5BX4kj5pJ4snR4A2T7Afoy
+         3af4tttNQsvo+O7YRy/wpE4tWvUlCO9xsub5p6terbp4+UNRhRsuGxfujy2FCb6Fqy
+         r5N2DSbUWSkSg==
+Date:   Wed, 8 Dec 2021 06:51:08 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Denis Kirjanov <dkirjanov@suse.de>,
+        Julian Wiedmann <jwi@linux.ibm.com>
+Subject: Re: [PATCH net-next v6 4/4] net: ocelot: add FDMA support
+Message-ID: <20211208065108.27a2a3eb@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20211208085814.19e4ec71@fixe.home>
+References: <20211207154839.1864114-1-clement.leger@bootlin.com>
+        <20211207154839.1864114-5-clement.leger@bootlin.com>
+        <20211207194514.32218911@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        <20211208085814.19e4ec71@fixe.home>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Ya5VhX8TA0LBn4Qd@kroah.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 06, 2021 at 07:25:09PM +0100, Greg Kroah-Hartman wrote:
-> On Mon, Dec 06, 2021 at 11:41:12AM -0600, Rob Herring wrote:
-> > With 'unevaluatedProperties' support implemented, the following warnings
-> > are generated in the usb examples:
-> > 
-> > Documentation/devicetree/bindings/usb/intel,keembay-dwc3.example.dt.yaml: usb: usb@34000000: Unevaluated properties are not allowed ('reg' was unexpected)
-> > Documentation/devicetree/bindings/usb/snps,dwc3.example.dt.yaml: usb@4a030000: Unevaluated properties are not allowed ('reg' was unexpected)
-> > 
-> > Add the missing property definitions.
-> > 
-> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Cc: Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-> > Cc: Felipe Balbi <balbi@kernel.org>
-> > Cc: linux-usb@vger.kernel.org
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../devicetree/bindings/usb/intel,keembay-dwc3.yaml         | 3 +++
-> >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml        | 6 ++++++
-> >  2 files changed, 9 insertions(+)
-> 
-> Do you want me to take these in my tree?  If not, you can take them in
-> yours:
-> 	Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> 
-> Which ever is easier for you.
+On Wed, 8 Dec 2021 08:58:14 +0100 Cl=C3=A9ment L=C3=A9ger wrote:
+> > drivers/net/ethernet/mscc/ocelot_fdma.h:156: warning: Function paramete=
+r or member 'napi' not described in 'ocelot_fdma' =20
+>=20
+> And base does not exists anymore. I will also reorder the members in
+> the doc to match the struct.
 
-I'll take them.
-
-Rob
+Hah, curious that the kdoc script did not catch that.
