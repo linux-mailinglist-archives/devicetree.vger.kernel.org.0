@@ -2,139 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAE6E46D62F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:54:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD5D046D650
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:59:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233585AbhLHO6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 09:58:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47484 "EHLO
+        id S233711AbhLHPDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 10:03:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233488AbhLHO6E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:58:04 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAC86C0617A2
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 06:54:32 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id n12so6161826lfe.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 06:54:32 -0800 (PST)
+        with ESMTP id S233020AbhLHPDX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 10:03:23 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF4C7C061746;
+        Wed,  8 Dec 2021 06:59:51 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id c4so4525576wrd.9;
+        Wed, 08 Dec 2021 06:59:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=+3GG8yVaw/Cu9lTA3ESz9IPLwx5hb6gqwcTKh9yEKdg=;
-        b=TDm+2l2xQjZJXAxHF1lIIxq7JT5vtwrGoUj0p2di74w5etDUHGR+7Eei8GyOEwgCiY
-         +JgKdh6kbNJUdZDykDefycaRA4jnFuIlOMZFw3sZV9zpc3Ox1hNieOEsWFMJcfqK4BG0
-         a9Z3Mr/kGhvXEugaD3MXqXjomrMITXbod3Yd+qyGqzRIXADCWE7zJgRVe8EOy/lX9Ar0
-         gqp7TTQYGlm2LjyCmgOUzHAkqrcq9vlLUlzgfYbwFKA5e9QpBROxcSulY2JT0cvRpl43
-         rKC7ZrXhUs+IyPbDhJAoLaes33mTxdtRXbljv3dTwpfZL2lL5S8DFR+9GPnKXH3vi+So
-         rqOw==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=bOrXaXtCZ9KNFIVYTUvhsQjGQXROR8j2pxTSi4qiSrc=;
+        b=BAsi0OIdPypri44k4P8PULRMyLSRmymbkeiBC5Z4gfq+Ci2nZSnS2OymMdUzkNt/Ll
+         8UYqZvZ7E/xatq29jicbYwqWSky/usEZMab2Tk7OJnR4TqOJ0eJHhyPLTHBL/T5CEm0c
+         aTt/frh4eMo4OboQKq/G7kGHVffmwarFiHXSW5uebmiTn6y9Vrk56mgW/mYhPuzgEYNR
+         zCmubx32RyDzG6EdMEG4xYJC0rPJ1vbQSO5LGZjTyM2hajKDuMJoL/gTsYj+duk/axR5
+         HYopLxa8fUGUzRxkr9uIq+yYEU9Z1tWenUdn9o0n66ESgN6P23NfbsCbqW/Zo8gFjV0s
+         mE/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=+3GG8yVaw/Cu9lTA3ESz9IPLwx5hb6gqwcTKh9yEKdg=;
-        b=7ZdhyKuE2OC7dua3hh5E5B4Mw56R2unByJ82SoLFt7JNtdTsPE9/uMTIgLZul+6iCT
-         1C7dg6gSpRI8KWuXv9hwM03UjEPHXOqiJBPtzZRJc6QN7l6ytls26605D4FI0Jd3wFNT
-         sG8cmxd8GDLL0lOHbC5BKCeqAClC51fqLBmShBsBt41QsHuACFcaxkIM91ZJxohbshQF
-         f4tsVfnojlnHj6O+wwUpvW7J2mStuI2hcFJ+Zy58WI1ni70YMqU7GOmmHLL6II8w7s6+
-         cIWbDR0ZWwfCopUy4qDalUZhUdVqZPiWz9AyFarHhAVwFPGTNJlwhhF+aC4dCvLNrWVh
-         dYFA==
-X-Gm-Message-State: AOAM533zFG2X4bVnGJD2edFuUbJmKlWoA67plGs6S+Jq3KD1EvZF2CV7
-        gTZCtjatSBgJ27IR9GocmTvABob36n484hiqRa4Vfg==
-X-Google-Smtp-Source: ABdhPJz60+87r/gCmKRcwLcSv+19OvrFvH2SxIm+ME7dXLi7kpfr2caY9CmueMindoWcUiYaCTOk5ISfR/KRB8+C3YI=
-X-Received: by 2002:a05:6512:3e04:: with SMTP id i4mr49006555lfv.167.1638975270897;
- Wed, 08 Dec 2021 06:54:30 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=bOrXaXtCZ9KNFIVYTUvhsQjGQXROR8j2pxTSi4qiSrc=;
+        b=1dT4uyBIb/xReyKgYKJt6x7vVT/0fqfj48iwW1ntv4Qg9oWvQTcIVpc94AiQwK5YsD
+         ET83s3MHSKZ7Fmbj5QE7Icn0m94HvBn7Q20p8PXoGDiyJyPAMG7UOXNLz0+dtEpuutwm
+         5i3N54Q7Jb1q6XCYVSQJlc8QdtIhDa8MDGBTiJ+E9JboRfcd0tw9ISfbsaE8OxT3g1jm
+         8V+8oo46l6mfC7fgWuqdE54IjVcMOyFnQ4TvKBLC0je7hMSqA3+KzZel4IA3b89MMl3h
+         DSmfvFC3HA+kI9NGG8WZH4ajdCo76Qg43uEII6F7q4QHbbJ14fPHEaYSHrxm67K2P5QH
+         XN4Q==
+X-Gm-Message-State: AOAM5320WqK6KvfpgYAKBh0jwRUMT5Sj7XqhVtRaksgY316XwNLy3T+3
+        kZ0nufjLiKmyRiZguCjFKiA=
+X-Google-Smtp-Source: ABdhPJyzN8uSVBhpNPJUedYx1HnawjOIPV8adrA+A2kEOhZ0ujFTWa+oY/m5egy8kD90+lMHJRxAaQ==
+X-Received: by 2002:a5d:48cf:: with SMTP id p15mr59630400wrs.277.1638975590304;
+        Wed, 08 Dec 2021 06:59:50 -0800 (PST)
+Received: from orome ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id w15sm2960057wrk.77.2021.12.08.06.59.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Dec 2021 06:59:49 -0800 (PST)
+Date:   Wed, 8 Dec 2021 15:59:46 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] ARM: tegra: Drop reg-shift for Tegra HS UART
+Message-ID: <YbDIYjlActbuTuyf@orome>
+References: <20211207101316.381031-1-thierry.reding@gmail.com>
+ <91755ddf-0b4d-aa73-f898-f15ccc214804@gmail.com>
+ <24a7e99e-0a00-08c9-eb32-b9b64d747bac@gmail.com>
 MIME-Version: 1.0
-References: <20211206142929.26729-1-marten.lindahl@axis.com> <20211206142929.26729-5-marten.lindahl@axis.com>
-In-Reply-To: <20211206142929.26729-5-marten.lindahl@axis.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 8 Dec 2021 15:53:54 +0100
-Message-ID: <CAPDyKFojCipHMwmCZB3h7CdYP+eSSikA=d=G701Y5+9xeQKxgg@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] mmc: dw_mmc: Do not wait for DTO in case of error
-To:     =?UTF-8?Q?M=C3=A5rten_Lindahl?= <marten.lindahl@axis.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Doug Anderson <dianders@google.com>, kernel@axis.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="SqIWivl+XAjBz5NP"
+Content-Disposition: inline
+In-Reply-To: <24a7e99e-0a00-08c9-eb32-b9b64d747bac@gmail.com>
+User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Dec 2021 at 15:29, M=C3=A5rten Lindahl <marten.lindahl@axis.com> =
-wrote:
->
-> When running the ARTPEC-8 DWMMC IP version, and a data error interrupt
-> comes during a data read transfer, there is no guarantee for the data
-> transfer over interrupt (DTO) to come within the specified data timeout.
-> This case is handled by the dto_timer handler which will complete the
-> request with the comment:
->
->  /*
->   * If DTO interrupt does NOT come in sending data state,
->   * we should notify the driver to terminate current transfer
->   * and report a data timeout to the core.
->   */
->
-> But since the ARTPEC-8 DWMMC IP version, supports an extended TMOUT
-> register which allows longer timeouts than the non ARTPEC-8 version
-> does, waiting for the dto_timer to complete the request in error cases
-> may cause the request to take significantly longer time than necessary.
-> This is specifically true for the failing steps during tuning of a
-> device.
->
-> Fix this by completing the request when the error interrupt comes.
->
-> Signed-off-by: M=C3=A5rten Lindahl <marten.lindahl@axis.com>
 
-Okay, this change looks a bit inconvenient to move into variant
-specific callbacks. So, maybe the "quirks" flag makes sense, after
-all. However, I would still look at using callbacks and library
-functions, for the part implemented in patch3.
+--SqIWivl+XAjBz5NP
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-When it comes to the order of the patches in the series, I suggest
-flipping things around and making patch2 the final piece. Otherwise
-the support for the artpec variant will be broken between patch2 and
-patch4, right?
+On Tue, Dec 07, 2021 at 05:41:52PM +0300, Dmitry Osipenko wrote:
+> 07.12.2021 17:19, Dmitry Osipenko =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > 07.12.2021 13:13, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> >> From: Thierry Reding <treding@nvidia.com>
+> >>
+> >> When the Tegra High-Speed UART is used instead of the regular UART, the
+> >> reg-shift property is implied from the compatible string and should not
+> >> be explicitly listed.
+> >>
+> >> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> >> ---
+> >>  arch/arm/boot/dts/tegra124-apalis-v1.2.dtsi               | 3 +++
+> >>  arch/arm/boot/dts/tegra124-jetson-tk1.dts                 | 2 ++
+> >>  arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi | 2 ++
+> >>  arch/arm/boot/dts/tegra30-colibri.dtsi                    | 2 ++
+> >>  4 files changed, 9 insertions(+)
+> >=20
+> > What about Ouya?
+> >=20
+>=20
+> What about T20?
 
-Kind regards
-Uffe
+I went through all of the above based on results from a dtbs_check run.
+I don't see these errors flagged for Ouya or any Tegra20 boards. I have
+no idea why and will need to look into it some more.
 
-> ---
->  drivers/mmc/host/dw_mmc.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
-> index 45ea9fd97a6a..d6b76f47b1a2 100644
-> --- a/drivers/mmc/host/dw_mmc.c
-> +++ b/drivers/mmc/host/dw_mmc.c
-> @@ -2777,11 +2777,19 @@ static irqreturn_t dw_mci_interrupt(int irq, void=
- *dev_id)
->                 if (pending & DW_MCI_DATA_ERROR_FLAGS) {
->                         spin_lock(&host->irq_lock);
->
-> +                       if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
-> +                               del_timer(&host->dto_timer);
-> +
->                         /* if there is an error report DATA_ERROR */
->                         mci_writel(host, RINTSTS, DW_MCI_DATA_ERROR_FLAGS=
-);
->                         host->data_status =3D pending;
->                         smp_wmb(); /* drain writebuffer */
->                         set_bit(EVENT_DATA_ERROR, &host->pending_events);
-> +
-> +                       if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
-> +                               /* In case of error, we cannot expect a D=
-TO */
-> +                               set_bit(EVENT_DATA_COMPLETE, &host->pendi=
-ng_events);
-> +
->                         tasklet_schedule(&host->tasklet);
->
->                         spin_unlock(&host->irq_lock);
-> --
-> 2.20.1
->
+Thierry
+
+--SqIWivl+XAjBz5NP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGwyGAACgkQ3SOs138+
+s6EBUg//RgCUWXzWaIO6Bq/4Ve+G2tnfIf4eGViK1dNwO+nW9PlNPGPwEJBq9HGA
+LDJ8kKRX33Ta2ceqRrx6UJ6Cx32jhvWNwFsZq6Xj+ey0nwCg6KxRSNZ9Gmd5cSv7
+/5l7fLm7C0KEu55MIzr8GW0SScIsMEIGrBk1k+aRuL750h8Ff1ThV2jPfrK2Fz+/
+7HKRTRBU1F+WxvuZdEYQ5Fev2iOMqTDnfGYyZp2Wy2Ovv2dsY5EmKDLmazEhcf8K
+2Gapk3U9tvNkKIOSpnriYW/WUp2eq5xCae5K88rWZApBv+iZaiLNYYB1CK0y0TJT
+S5SPy5ApvWAjCekYvpUcowsgwJgMxgZWqe96zT9ktE3kH3jTN/J2l2CfpZx2xfiO
+CmrayBNSOsOlZ2UAiOyzgjP/kD6QAg1w/ojnI36LaL6grmpiYm8a57n0QOrhwT/m
+WzMu3H0FgUpAtZYnYNCeS3CkwoiQLiONSWMXLIxYmcbb1dwroJZGCUQCfhqWCWKe
+ZN1TsdvAahax0DaMlPGO36axekNlKyUusK1thXHvWc2aSdMZ2vWSGU56UmixheVK
+r2c5EaLWvPvtT9FzeRVWaYD0tbmFkU44HKnf1K4aYh3jwGm4chVN5g7ReFlVHs6W
+/cv/81t0kSdohlvmE+OhUGpHdxlzoNWmXT+km++zzblkXAMeLVw=
+=U6hF
+-----END PGP SIGNATURE-----
+
+--SqIWivl+XAjBz5NP--
