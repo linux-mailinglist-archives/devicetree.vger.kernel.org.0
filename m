@@ -2,84 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A79146D5E3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:38:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32DDD46D5EB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:41:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233315AbhLHOl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 09:41:59 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:33546 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbhLHOl6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:41:58 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 6C2E7CE2193;
-        Wed,  8 Dec 2021 14:38:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B87CC00446;
-        Wed,  8 Dec 2021 14:38:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638974302;
-        bh=yXfh7LEnE2SBFeZnbDCRhoa2fYrDl431va9ASGoK3xc=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ePG6a3u+RKIuDqJvkYwSIhSrvLzAwk4R95Pz004tE+MKwsjneRc5qYZ1ctrybVWOx
-         8OvzKebSMPv5AfTSRecr9VYHmJ5hom8mKWPiK9FnmH7VfkC4ixVpbOGT5skIyoPUbQ
-         6X/FaLA+Cj3RbknoaO8q1u8ejxdobhWnoj77nH8Z2V2cJmdT6K+LG0ZHWjiJDUakDu
-         jDXyyJ1/5leDAVknYJWaR288T5WP0UUwWDa5HNTtHk7VyVQRNVdBZHgBBxOL/J+t8F
-         j3oPmxrCA9IppRlr3Yrc5DOkm9tmQJvJY0GHT6+MYvjbAnyRUIzxrM798ub7keO9rN
-         Jxz4n1SQ5XnZQ==
-Date:   Wed, 8 Dec 2021 06:38:20 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Biao Huang <biao.huang@mediatek.com>
-Cc:     <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>,
-        <angelogioacchino.delregno@collabora.com>, <dkirjanov@suse.de>
-Subject: Re: [PATCH net-next v7 5/6] stmmac: dwmac-mediatek: add support for
- mt8195
-Message-ID: <20211208063820.264df62d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20211208054716.603-6-biao.huang@mediatek.com>
-References: <20211208054716.603-1-biao.huang@mediatek.com>
-        <20211208054716.603-6-biao.huang@mediatek.com>
+        id S235291AbhLHOor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 09:44:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44204 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235288AbhLHOor (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:44:47 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48AF3C061746;
+        Wed,  8 Dec 2021 06:41:15 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id c4so4428949wrd.9;
+        Wed, 08 Dec 2021 06:41:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=qU1Nu0uDwKbv0ASOHzlGRqdEWy8QYeodVW7QKE4d9jc=;
+        b=e1sLGHX6mQCWpJirLRXjSEaGkieK0VAKI7A2fk3H8MHttiuvepmwLmO+st0hCPWgEF
+         CvPaIbZZQwDUym08o43M5ojFZ14id+AvjHPWdcF63CgF9V5Q1RHbnP/cg9Ny1OU8qiAh
+         bNXJEY0nwMHj5NqLb6Xon67Ah8OHuwJpfYwYBuDQHEEM7BSWPtrkHLs9NQmfYZD8wFCO
+         JrYCVsPL8WKK2fSDATR/uvNvl6BJsmEvLw2kNKNXUBciiZ2rK+vY35rdZIkTXptd1p5Y
+         LvxwQpEUKD2EOPikX92/5q9UOsGGBju5U3IjGcbSXRO3EzTPbMJ1n44/S3M3I8ESRXTM
+         Z2AQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=qU1Nu0uDwKbv0ASOHzlGRqdEWy8QYeodVW7QKE4d9jc=;
+        b=3++YLLo2CUOamvHzQCe/tOxu0uLqZglHw0ys4mrum94RIvdZdglZkPMa1+xAVUFoER
+         4tRk0ZY8qq/wPVdrwxHJTQd0WMZ55zthdoTZNKK3cubq5XAgpeA3kBTkX6r5otzCHawH
+         MRfDN470dlALzltiLlJa6aEUpn/15GxjYScvLEBBrlWezE5S84N4SA/O0KH6k3dlQS65
+         GCWhsaibtcUx+SrRF0Hl5W8ZHN20CHs6SaWCjlJvYAXJnm9Xs4qjy/q+z+9vzuD4xthN
+         baqWbaYjPm0a3j5LxEX8KJgZalCQVnrAN9/rgyspD8WE5dsd0xyxxelotgXDbSZlzRXF
+         WpFA==
+X-Gm-Message-State: AOAM530RTjzRwiMOKnLkmRhZvTukJbckKEhi6mhmGQ0iSNWB56lq4FOv
+        yNP/omz2gdf4v9FxC/qMUUSWAz/a4ZqUAw==
+X-Google-Smtp-Source: ABdhPJy9BHQ5CRCgi7+6wu0Kn/3eNG2H9FWUXW9u1ZoHxzHaz8hcEZykhJyYzBLqVWZJeRs9Rr1+8g==
+X-Received: by 2002:a05:6000:18a3:: with SMTP id b3mr59981274wri.343.1638974473830;
+        Wed, 08 Dec 2021 06:41:13 -0800 (PST)
+Received: from orome ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id e8sm2841189wrr.26.2021.12.08.06.41.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Dec 2021 06:41:12 -0800 (PST)
+Date:   Wed, 8 Dec 2021 15:41:09 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: arm: pmu: Document Denver and Carmel
+ PMUs
+Message-ID: <YbDEBexUo8WYKVwd@orome>
+References: <20211207150746.444478-1-thierry.reding@gmail.com>
+ <1638971068.754546.3857733.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="KuCPuRyt1LA+wE+Y"
+Content-Disposition: inline
+In-Reply-To: <1638971068.754546.3857733.nullmailer@robh.at.kernel.org>
+User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 8 Dec 2021 13:47:15 +0800 Biao Huang wrote:
-> Add Ethernet support for MediaTek SoCs from the mt8195 family.
-> 
-> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
-> Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-sparse reports whole bunch of warnings like this:
+--KuCPuRyt1LA+wE+Y
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:213:30: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:217:30: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:228:38: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:232:38: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:247:46: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:255:46: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:273:30: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:277:30: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:375:30: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:379:30: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:390:43: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:397:43: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:415:46: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:426:46: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:439:35: warning: dubious: x & !y
-drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c:443:30: warning: dubious: x & !y
+On Wed, Dec 08, 2021 at 07:44:28AM -0600, Rob Herring wrote:
+> On Tue, 07 Dec 2021 16:07:44 +0100, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > Add compatible strings for the NVIDIA Denver and Carmel PMUs.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/pmu.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >=20
+>=20
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+>=20
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+>=20
+> Full log is available here: https://patchwork.ozlabs.org/patch/1564747
 
-Any idea on where these come from?
+Yikes, that's a lot of warnings. I've got local patches to fix up the
+Tegra-specific ones, but I could look at fixing up the others as well,
+provided that you or anyone else aren't looking at this yet.
+
+On that note: do you know of a simple trick to get the dtbs_check target
+to run on all DTB files? The only way I've found so far is to manually
+select all Kconfig options that would enable a specific subset, but it'd
+be great if we could just run the checks on all irrespective of .config.
+
+Thierry
+
+--KuCPuRyt1LA+wE+Y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGwxAUACgkQ3SOs138+
+s6Hetg/+JJQtnLCDBwikRv38CHKdGaRq2lC4boCxd+kHMDh+LcYF6KX55dSLV8l2
+gdqjETipx/c/azJV6aaoIPbQFZmfus90ENpzCx0+o61kacH3U1RIKPqrIPBFMWY2
+H+33qyaswXhR32uUJS50fWLoufGse9c17fxZ+2pTM8qY+Bw97FHqyrmZNeubWWxu
+P80ql6PXVuZsNH6hqRkPVmRaMKeajXpyIx6hjjgMOgUMP9GtsC0jC4Cgbc7sr5AG
+hvXvcFQZ2BcSA/nr3QyaTJdmr6OQJW1Zph0GonwK6e7F6hdZ3lr7ijNP5fBgtD8j
+9a2QnSueIUN8aawvZTbN1RznY9YEON+YixxhJTEbXcUjWeZkUVeVzrPN6GF7slq8
+h4DqcgyNM+CQXFp5kf112Odq1vZ1oSWmnKuP5lNVq5Drmco4VVzsoLv+81PAzuSS
+T/vUHP25U4gcCfJ67SHYtYvAK33a1YBBsfklPG12iuDNbWB9SNtwRzUg3Da5p2xW
+Ck0akKmEnzA2iIapWpVTb3o17bFrbOLOA7NIXBD9z59v7oGADwnUfrdMr215X0tK
+gD5sImDWT0t4QkepgUXxS0+RbFXRwBjYB7oIrZpGvwEzGShEZb8wfT/L+lJv9VqC
+2en6ErjxdkjFSLuK5AStGxkjOgSkBb3Q7ugY1Ld13RXRmZv/Eic=
+=jAaG
+-----END PGP SIGNATURE-----
+
+--KuCPuRyt1LA+wE+Y--
