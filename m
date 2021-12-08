@@ -2,105 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC27446D6A7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 16:13:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9868046D691
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 16:12:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235825AbhLHPQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 10:16:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52014 "EHLO
+        id S235770AbhLHPQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 10:16:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235840AbhLHPQw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 10:16:52 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9F60C061A72
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 07:13:18 -0800 (PST)
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1muyco-0004Uf-KE; Wed, 08 Dec 2021 16:12:54 +0100
-Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <sha@pengutronix.de>)
-        id 1muycd-00FVZv-9s; Wed, 08 Dec 2021 16:12:43 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH 18/18] [HACK, RFC] clk: rk3568: do not divide dclk_vop0
-Date:   Wed,  8 Dec 2021 16:12:30 +0100
-Message-Id: <20211208151230.3695378-19-s.hauer@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211208151230.3695378-1-s.hauer@pengutronix.de>
-References: <20211208151230.3695378-1-s.hauer@pengutronix.de>
+        with ESMTP id S231429AbhLHPQT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 10:16:19 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA56BC061746;
+        Wed,  8 Dec 2021 07:12:47 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id t18so4587126wrg.11;
+        Wed, 08 Dec 2021 07:12:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=+3+k5Qx2WYCX3YZQ8Luc5I7tkoXV9xRTkByLcpdAiwU=;
+        b=YWhqbUPttCn+X67fi/wKarcbdzupYVzlL4pQ53rAI4v3yx57aMgCf/tbRXaCemGEnK
+         Y7wadIFzQ6yCN5l67Wl0HakPcRUhzgDO4l9/w3c2spBw95qYtshTcgD2J4/6pAC3LuYx
+         TgKBN1WrCR7ZlUlgliojtYn8Ya3S+ra2Er0mnxv2eNhhSxhxpXmetSC5/hTQfLTP0mad
+         yFONotMPR0faWmCohUllhJXEm+8uXefwKYL07uaNCQxPkZK9EBkAnGn09SgE/LJsecwC
+         4mU+72NE8H/ZrlDUSJjNf+FyuaokocrtIdvrzn6nrcMLVKlgcjXIx25LSV5CLG8ifzS2
+         3KgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=+3+k5Qx2WYCX3YZQ8Luc5I7tkoXV9xRTkByLcpdAiwU=;
+        b=cZ9zrp7uGhLBiJz3cYS9lOSSGdyg/EGZOV9atTvIz2jk5wCJ3twOgTrVbTaZSZxJEZ
+         69QnL5+AV5l/tFt1qbtpllVL/7hH2Q6smap2k1yHPlIbknX7IJm6LxaZjfXu8DSw5LGs
+         zpkgt4GgE/tO/wifwEVLB0CmUIcK2o1EHssfzwwvVuK4bCxYlRWa2gNmmMk4brh05D7w
+         WHiLKorGq1NnrMeoe4VE7/TkHt0+zy/AgPV7WMAWX0E8ggoijZCneYxYpebAbkr2F3XJ
+         wVXgu//bJemq85Uf89HRKGNPh4N4Q8LBdPqqkdUGxsPu0i+ZqtqLWnoanmEVtEDbHU5A
+         +pwQ==
+X-Gm-Message-State: AOAM53020/7XwETA/MG7hZHGFR/8ofsj6rHDgZAxtHF/fchRp4P80MNG
+        JasjjxVFSXtzh4Dyz29Kp0Q=
+X-Google-Smtp-Source: ABdhPJzViu+/GkUGBZH3tJStOMrixDVj2U/cFGWrX4eMv/2jgCnOnUWv7dihWvS30wEIymh0cerMBw==
+X-Received: by 2002:a5d:4e10:: with SMTP id p16mr58343234wrt.454.1638976366069;
+        Wed, 08 Dec 2021 07:12:46 -0800 (PST)
+Received: from orome ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id p27sm2901958wmi.28.2021.12.08.07.12.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Dec 2021 07:12:45 -0800 (PST)
+Date:   Wed, 8 Dec 2021 16:12:42 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] ARM: tegra: Drop reg-shift for Tegra HS UART
+Message-ID: <YbDLaiT+D16f0Hv4@orome>
+References: <20211207101316.381031-1-thierry.reding@gmail.com>
+ <91755ddf-0b4d-aa73-f898-f15ccc214804@gmail.com>
+ <24a7e99e-0a00-08c9-eb32-b9b64d747bac@gmail.com>
+ <YbDIYjlActbuTuyf@orome>
+ <97c48f01-1224-2538-9368-41d23b617bd2@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="13V5rdJe8LG75oPP"
+Content-Disposition: inline
+In-Reply-To: <97c48f01-1224-2538-9368-41d23b617bd2@gmail.com>
+User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On the rk3568 we have this (simplified) situation:
 
- .--------.     .-----.    .---------.
--| hpll   |--.--| /n  |----|dclk_vop0|-
- `--------´  |  `-----´    `---------´
-             |  .-----.    .---------.
-             `--| /m  |----|dclk_vop1|-
-             |  `-----´    `---------´
-             |             .---------.
-             `-------------|hdmi_ref |-
-                           `---------´
+--13V5rdJe8LG75oPP
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-hpll is the PLL that drives the HDMI reference clock and the pixel
-clocks for the different CRTCs (dclk_vop0/1). Between the pixel clocks
-and the hpll there are programmable dividers whereas the HDMI reference
-clock is directly connected to the hpll.
+On Wed, Dec 08, 2021 at 06:04:45PM +0300, Dmitry Osipenko wrote:
+> 08.12.2021 17:59, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > On Tue, Dec 07, 2021 at 05:41:52PM +0300, Dmitry Osipenko wrote:
+> >> 07.12.2021 17:19, Dmitry Osipenko =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> >>> 07.12.2021 13:13, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> >>>> From: Thierry Reding <treding@nvidia.com>
+> >>>>
+> >>>> When the Tegra High-Speed UART is used instead of the regular UART, =
+the
+> >>>> reg-shift property is implied from the compatible string and should =
+not
+> >>>> be explicitly listed.
+> >>>>
+> >>>> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> >>>> ---
+> >>>>  arch/arm/boot/dts/tegra124-apalis-v1.2.dtsi               | 3 +++
+> >>>>  arch/arm/boot/dts/tegra124-jetson-tk1.dts                 | 2 ++
+> >>>>  arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi | 2 ++
+> >>>>  arch/arm/boot/dts/tegra30-colibri.dtsi                    | 2 ++
+> >>>>  4 files changed, 9 insertions(+)
+> >>>
+> >>> What about Ouya?
+> >>>
+> >>
+> >> What about T20?
+> >=20
+> > I went through all of the above based on results from a dtbs_check run.
+> > I don't see these errors flagged for Ouya or any Tegra20 boards. I have
+> > no idea why and will need to look into it some more.
+>=20
+> Alright, something is wrong then. The serial@70006200 node on Ouya is
+> exactly the same as on Nexus7, T20 Acer A500 is almost the same.
 
-For the HDMI output to work the pixel clock must be the same as the HDMI
-reference clock, hence the dividers must be programmed to 1. Normally a
-rate change on dclk_vop0/1 propagates through to the hpll and the clock
-framework picks a suitable combination of hpll and divider settings. by
-accident it picks a divider setting of 1 for the standard 1080p case,
-but other divider settings for most other resolutions leaving the HDMI
-port non working.
+Indeed, looks like I no longer get any reg-shift related warnings even
+if I revert this patch in my tree. I don't immediately see why that
+would be. The reg-shift property is definitely not defined by either the
+HSUART bindings or anywhere that it references.
 
-This patch is not a solution, it merely puts the finger in the wound. We
-leave out the divider for the composite clock for dclk_vop0 which then
-leaves the divider at the bootloader default setting of 1. I assume
-the divider is disturbing only for the HDMI case, but needed for other
-outputs. Any thoughts how this can be handled?
+Rob, any idea where this might be coming from? Doesn't look like
+reg-shift is defined anywhere in the core schema either. Is this perhaps
+some fallout from the additionalProperties: true fixup? Perhaps that's
+not applied correctly in all cases?
 
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
----
- drivers/clk/rockchip/clk-rk3568.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Thierry
 
-diff --git a/drivers/clk/rockchip/clk-rk3568.c b/drivers/clk/rockchip/clk-rk3568.c
-index 69a9e8069a486..2d04d8253ca22 100644
---- a/drivers/clk/rockchip/clk-rk3568.c
-+++ b/drivers/clk/rockchip/clk-rk3568.c
-@@ -1038,8 +1038,8 @@ static struct rockchip_clk_branch rk3568_clk_branches[] __initdata = {
- 			RK3568_CLKGATE_CON(20), 8, GFLAGS),
- 	GATE(HCLK_VOP, "hclk_vop", "hclk_vo", 0,
- 			RK3568_CLKGATE_CON(20), 9, GFLAGS),
--	COMPOSITE(DCLK_VOP0, "dclk_vop0", hpll_vpll_gpll_cpll_p, CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
--			RK3568_CLKSEL_CON(39), 10, 2, MFLAGS, 0, 8, DFLAGS,
-+	COMPOSITE_NODIV(DCLK_VOP0, "dclk_vop0", hpll_vpll_gpll_cpll_p, CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
-+			RK3568_CLKSEL_CON(39), 10, 2, MFLAGS,
- 			RK3568_CLKGATE_CON(20), 10, GFLAGS),
- 	COMPOSITE(DCLK_VOP1, "dclk_vop1", hpll_vpll_gpll_cpll_p, CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
- 			RK3568_CLKSEL_CON(40), 10, 2, MFLAGS, 0, 8, DFLAGS,
--- 
-2.30.2
+--13V5rdJe8LG75oPP
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGwy2cACgkQ3SOs138+
+s6EJvA/+IxWXkotbbQ4bqPvyIViCKlnFmE/ckPNiZEyxr2igm07MPMWOcRUZovr9
+StO5usOjOCNv5999zKePwE7uMdMpsvu6TWSzjeWl4jVDqDKxFlibi8pbvXKO5WfU
+1H03IuwER86kYk6ynNs0fubDjm+TfpaU1XRxAxL/KmI/WVPdS6yb1gbD2FgPKPqK
+K+BIetr+/ZjnAGHXdn80Xqrn6kUjSEZjMAPbjOJs3iDhwkMj0hRddWZ0mC5lT27G
+z22e8eKFmDv6Sqp0LQ0YRFpHfGNNV1nIJ6QypqVOCUB5g88iHOQhDRarhIxXUBc8
+5wYLCFVSH4Y0kTbrmt51A9EX4L74zL2tPTtbED1vNlNYKSTO5yTkBBov8k3REEFx
+kmKvtJc6BMBr3476deX2los3WhwQyY2Rjk7hvF3cj000goES0ES1QNZ0hbfOyHZG
+aQOsKSKsxGZXHNDAFlHIigkmUV3KaW9Q9uGtfHjIPLRIhJwsUfyUTfl0V9Mk7vFL
+itd44w76nydbT/VG/BJhZggRr/ucIu5n9TGjcCXpjkPIAikerV/t9Gs2PUbMLQ6m
+p8ylHFzBemftm+FuwXoxkO7NFsrs8zOHFfm5tG1LVxgd6Ep8YK9yuqjpaSJoQo8V
+8cPimVWmwkk5yORa4KLA+3RyhWR66bI7Xlmg4l1q7Z+SLEBoUZg=
+=YcMT
+-----END PGP SIGNATURE-----
+
+--13V5rdJe8LG75oPP--
