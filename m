@@ -2,167 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A8D546D683
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 16:11:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22F5F46D6A8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 16:13:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235718AbhLHPO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 10:14:59 -0500
-Received: from smtp2.axis.com ([195.60.68.18]:14130 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235708AbhLHPO7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Dec 2021 10:14:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1638976287;
-  x=1670512287;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=VrsMtFlyBxgWCf0bvKnofWFvEDY3FGaJ9B55+Jf6Fi0=;
-  b=EJM08TmMuJS3cJWFdIyO/g/heugf5P65iFayKn2fzs0Mivz5GlAzjkYC
-   lZnO+XOAJHfxAv9043X0X7rJPsegS86JSCwNTBy8/fcUu6jos8+SDwOjS
-   NzKKP8Ce1ijqwqwrkO1dKYuXUs8lN/ArOfQVCX2WcUDOG+wXE4Mj4wt8j
-   lYEoNAplmTQJUqO0GssosfirXoCuyvjpwx4dXCs8BY6n1fHaHFH3KKOnm
-   Kc3i12h7BhoTLpKR2YgJE0RihE/muQMvNRdEmMTF2u/4Zir7k44dPK3gM
-   CYXSFIn6f+ZVxUvvR50pT8A67R8AffQvHafWZ8vIAtpGDFqW/XUavxAVF
-   w==;
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     <jdike@addtoit.com>, <richard@nod.at>,
-        <anton.ivanov@cambridgegreys.com>
-CC:     <kernel@axis.com>, <linux-kernel@vger.kernel.org>,
-        <linux-um@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>
-Subject: [PATCH 2/2] um: Add devicetree support
-Date:   Wed, 8 Dec 2021 16:11:23 +0100
-Message-ID: <20211208151123.29313-3-vincent.whitchurch@axis.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211208151123.29313-1-vincent.whitchurch@axis.com>
-References: <20211208151123.29313-1-vincent.whitchurch@axis.com>
+        id S235821AbhLHPQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 10:16:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51990 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235837AbhLHPQw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 10:16:52 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA2E5C0698CA
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 07:13:17 -0800 (PST)
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1muyck-0004UL-79; Wed, 08 Dec 2021 16:12:50 +0100
+Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1muycc-00FVZ4-SF; Wed, 08 Dec 2021 16:12:42 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v2 00/18] drm/rockchip: RK356x VOP2 support
+Date:   Wed,  8 Dec 2021 16:12:12 +0100
+Message-Id: <20211208151230.3695378-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a dtb=<filename> option to boot UML with a devicetree blob.  This
-can be used for testing driver code using UML.
+This is the second round of the vop2 series. There are still some issues open,
+but I thought it's about time to let people see and test it. I integrated the
+review feedback I got from v1. Other changes include:
 
-Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
----
- arch/um/Kconfig          |  1 +
- arch/um/kernel/Makefile  |  1 +
- arch/um/kernel/dtb.c     | 41 ++++++++++++++++++++++++++++++++++++++++
- arch/um/kernel/um_arch.c |  3 +++
- arch/um/kernel/um_arch.h |  6 ++++++
- 5 files changed, 52 insertions(+)
- create mode 100644 arch/um/kernel/dtb.c
+All framesync waiting is gone from the driver which makes it more straight
+forward. To accomplish this the port_mux setup is now static in the driver.
+This means each video port has a fixed maximum number of planes which is less
+flexible but much easier to handle.
 
-diff --git a/arch/um/Kconfig b/arch/um/Kconfig
-index c18b45f75d41..1cf7ef3a2b81 100644
---- a/arch/um/Kconfig
-+++ b/arch/um/Kconfig
-@@ -18,6 +18,7 @@ config UML
- 	select HAVE_DEBUG_KMEMLEAK
- 	select HAVE_DEBUG_BUGVERBOSE
- 	select NO_DMA if !UML_DMA_EMULATION
-+	select OF_EARLY_FLATTREE
- 	select GENERIC_IRQ_SHOW
- 	select GENERIC_CPU_DEVICES
- 	select HAVE_GCC_PLUGINS
-diff --git a/arch/um/kernel/Makefile b/arch/um/kernel/Makefile
-index 92692bfef7ae..ebd0cca3ff26 100644
---- a/arch/um/kernel/Makefile
-+++ b/arch/um/kernel/Makefile
-@@ -22,6 +22,7 @@ obj-y += load_file.o
- 
- obj-$(CONFIG_BLK_DEV_INITRD) += initrd.o
- obj-$(CONFIG_GPROF)	+= gprof_syms.o
-+obj-$(CONFIG_OF) += dtb.o
- obj-$(CONFIG_EARLY_PRINTK) += early_printk.o
- obj-$(CONFIG_STACKTRACE) += stacktrace.o
- obj-$(CONFIG_GENERIC_PCI_IOMAP) += ioport.o
-diff --git a/arch/um/kernel/dtb.c b/arch/um/kernel/dtb.c
-new file mode 100644
-index 000000000000..ca69d72025f3
---- /dev/null
-+++ b/arch/um/kernel/dtb.c
-@@ -0,0 +1,41 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include <linux/init.h>
-+#include <linux/of_fdt.h>
-+#include <linux/printk.h>
-+#include <linux/memblock.h>
-+#include <init.h>
-+
-+#include "um_arch.h"
-+
-+static char *dtb __initdata;
-+
-+void uml_dtb_init(void)
-+{
-+	long long size;
-+	void *area;
-+
-+	area = uml_load_file(dtb, &size);
-+	if (!area)
-+		return;
-+
-+	if (!early_init_dt_scan(area)) {
-+		pr_err("invalid DTB %s\n", dtb);
-+		memblock_free(area, size);
-+		return;
-+	}
-+
-+	unflatten_device_tree();
-+	early_init_fdt_scan_reserved_mem();
-+}
-+
-+static int __init uml_dtb_setup(char *line, int *add)
-+{
-+	dtb = line;
-+	return 0;
-+}
-+
-+__uml_setup("dtb=", uml_dtb_setup,
-+"dtb=<file>\n"
-+"    Boot the kernel with the devicetree blob from the specified file.\n"
-+);
-diff --git a/arch/um/kernel/um_arch.c b/arch/um/kernel/um_arch.c
-index 54447690de11..abceeabe29b9 100644
---- a/arch/um/kernel/um_arch.c
-+++ b/arch/um/kernel/um_arch.c
-@@ -29,6 +29,8 @@
- #include <mem_user.h>
- #include <os.h>
- 
-+#include "um_arch.h"
-+
- #define DEFAULT_COMMAND_LINE_ROOT "root=98:0"
- #define DEFAULT_COMMAND_LINE_CONSOLE "console=tty"
- 
-@@ -407,6 +409,7 @@ void __init setup_arch(char **cmdline_p)
- 	stack_protections((unsigned long) &init_thread_info);
- 	setup_physmem(uml_physmem, uml_reserved, physmem_size, highmem);
- 	mem_total_pages(physmem_size, iomem_size, highmem);
-+	uml_dtb_init();
- 	read_initrd();
- 
- 	paging_init();
-diff --git a/arch/um/kernel/um_arch.h b/arch/um/kernel/um_arch.h
-index b195df3a09a0..1e07fb7ee35e 100644
---- a/arch/um/kernel/um_arch.h
-+++ b/arch/um/kernel/um_arch.h
-@@ -5,4 +5,10 @@
- 
- extern void * __init uml_load_file(const char *filename, unsigned long long *size);
- 
-+#ifdef CONFIG_OF
-+extern void __init uml_dtb_init(void);
-+#else
-+static inline void uml_dtb_init(void) { }
-+#endif
-+
- #endif
+I also removed much of the register mapping and shadow register handling around
+struct vop_reg. This basically resembles regmap and can eventually replaced by
+regmap. Some places are still left in the driver, I plan to remove those in
+later versions.
+
+I think I have found the issue why only 1080p resolutions work, this seems to
+be an issue in the way the clock tree is arranged. See the last patch in this
+series which points to the problem, so far I don't have a good solution for it.
+
+As usual, all comments and feedback welcome.
+
+Sascha
+
+Changes since v1:
+- drop all unnecessary waiting for frames within atomic modeset and plane update
+- Cluster subwin support removed
+- gamma support removed
+- unnecessary irq_lock removed
+- interrupt handling simplified
+- simplified zpos handling
+- drop is_alpha_support(), use fb->format->has_alpha instead
+- use devm_regulator_get() rather than devm_regulator_get_optional() for hdmi regulators
+- Use fixed number of planes per video port
+- Drop homegrown regmap code from vop2 driver (not complete yet)
+- Add separate include file for vop2 driver to not pollute the vop include
+
+Andy Yan (1):
+  drm: rockchip: Add VOP2 driver
+
+Benjamin Gaignard (1):
+  dt-bindings: display: rockchip: dw-hdmi: Add compatible for rk3568
+    HDMI
+
+Michael Riesch (1):
+  arm64: dts: rockchip: enable vop2 and hdmi tx on quartz64a
+
+Sascha Hauer (15):
+  drm/rockchip: dw_hdmi: Do not leave clock enabled in error case
+  drm/rockchip: dw_hdmi: rename vpll clock to reference clock
+  drm/rockchip: dw_hdmi: add rk3568 support
+  drm/rockchip: dw_hdmi: add regulator support
+  dt-bindings: display: rockchip: dw-hdmi: Make unwedge pinctrl optional
+  dt-bindings: display: rockchip: dw-hdmi: Allow "ref" as clock name
+  dt-bindings: display: rockchip: dw-hdmi: Add regulator support
+  arm64: dts: rockchip: rk3399: reorder hmdi clocks
+  dt-bindings: display: rockchip: Add binding for VOP2
+  arm64: dts: rockchip: rk356x: Add VOP2 nodes
+  arm64: dts: rockchip: rk356x: Add HDMI nodes
+  arm64: dts: rockchip: rk3568-evb: Enable VOP2 and hdmi
+  drm/encoder: Add of_graph port to struct drm_encoder
+  drm/rockchip: Make VOP driver optional
+  [HACK, RFC] clk: rk3568: do not divide dclk_vop0
+
+ .../display/rockchip/rockchip,dw-hdmi.yaml    |   14 +-
+ .../display/rockchip/rockchip-vop2.yaml       |  118 +
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |    6 +-
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   |   31 +
+ arch/arm64/boot/dts/rockchip/rk3566.dtsi      |    4 +
+ .../boot/dts/rockchip/rk3568-evb1-v10.dts     |   31 +
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |    4 +
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   75 +
+ drivers/clk/rockchip/clk-rk3568.c             |    4 +-
+ drivers/gpu/drm/rockchip/Kconfig              |   14 +
+ drivers/gpu/drm/rockchip/Makefile             |    4 +-
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   |  107 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |    3 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |    7 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.c    |    2 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.h   |   15 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 2636 +++++++++++++++++
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h  |  625 ++++
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  |  505 ++++
+ include/drm/drm_encoder.h                     |    2 +
+ include/dt-bindings/soc/rockchip,vop2.h       |   14 +
+ 21 files changed, 4193 insertions(+), 28 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+ create mode 100644 include/dt-bindings/soc/rockchip,vop2.h
+
 -- 
-2.33.1
+2.30.2
 
