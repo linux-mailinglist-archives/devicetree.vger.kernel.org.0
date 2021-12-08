@@ -2,93 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BC1646D937
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 18:06:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7290646D946
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 18:09:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233320AbhLHRJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 12:09:58 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:38920 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231757AbhLHRJ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 12:09:58 -0500
+        id S234518AbhLHRNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 12:13:06 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:35964 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234407AbhLHRNF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 12:13:05 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 7EBA5CE213A;
-        Wed,  8 Dec 2021 17:06:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7B15C00446;
-        Wed,  8 Dec 2021 17:06:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638983182;
-        bh=7cbK4ZCKsJNgfLZ67xcyKxGuyBMvGclVY550dwepVlM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=RNvCh2LbWYgEfBml/ykEHlFfNYm+tuGdyfb+yA2PUOznq1wx1p8fO6iP0xccUJoFo
-         VnIOIPzKVqVLAzXq6U8xOMRMzWcA+w/UkQrbhy6xrVi04+2IJJP8aEhtynjnHdHzel
-         inPmCGXZrL2HMikJs9QLyME7zszaYLHZtgpEe63i1vGcKWzBYI9lUo7QSMb5lRMQGp
-         Ci2M19dXKVOJ/d48oIJV8dwzliyMhawwrxY6ge8Xc36aNU8cscd1P6dpPBLUyX0OLN
-         ri2UlAfoCDv+2IVP6W2wvmX75Fh5j8f/EGUdtuO4YcvKn4U/m8t4+FMzmb7gojk2MT
-         B4TwMNyqAd9BA==
-Received: by mail-ed1-f54.google.com with SMTP id e3so10685787edu.4;
-        Wed, 08 Dec 2021 09:06:22 -0800 (PST)
-X-Gm-Message-State: AOAM532Wm4xzbuKd+O97vxHIvC0I1fqceXRReU6kqbDEZpWHgPs7nAUm
-        6IjDpSOYDr9iHS/2yOX7VIunWLN5dXcU60Z27Q==
-X-Google-Smtp-Source: ABdhPJzpAG8fio4RrcP6KmTzb1JRqJQLvVchEP25YK3OI2ZO2Ok1tmqcBh2smrezDvXdWKq2fL6Je64NRj/D+cFWs1E=
-X-Received: by 2002:a17:907:3f24:: with SMTP id hq36mr8851438ejc.390.1638983180992;
- Wed, 08 Dec 2021 09:06:20 -0800 (PST)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 99CC9B8219C;
+        Wed,  8 Dec 2021 17:09:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90B11C00446;
+        Wed,  8 Dec 2021 17:09:27 +0000 (UTC)
+Date:   Wed, 8 Dec 2021 17:09:24 +0000
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+Subject: Re: [PATCH v16 08/11] x86, arm64: Add ARCH_WANT_RESERVE_CRASH_KERNEL
+ config
+Message-ID: <YbDmxIPdk7TKIKAU@arm.com>
+References: <20211123124646.1995-1-thunder.leizhen@huawei.com>
+ <20211123124646.1995-9-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-References: <20211207150746.444478-1-thierry.reding@gmail.com>
- <1638971068.754546.3857733.nullmailer@robh.at.kernel.org> <YbDEBexUo8WYKVwd@orome>
-In-Reply-To: <YbDEBexUo8WYKVwd@orome>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 8 Dec 2021 11:06:08 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+tqCsan1WgLZqJTeUxdHY4QhJqPYzwF3vMz7yMFdvPKA@mail.gmail.com>
-Message-ID: <CAL_Jsq+tqCsan1WgLZqJTeUxdHY4QhJqPYzwF3vMz7yMFdvPKA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: arm: pmu: Document Denver and Carmel PMUs
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211123124646.1995-9-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 8, 2021 at 8:41 AM Thierry Reding <thierry.reding@gmail.com> wrote:
->
-> On Wed, Dec 08, 2021 at 07:44:28AM -0600, Rob Herring wrote:
-> > On Tue, 07 Dec 2021 16:07:44 +0100, Thierry Reding wrote:
-> > > From: Thierry Reding <treding@nvidia.com>
-> > >
-> > > Add compatible strings for the NVIDIA Denver and Carmel PMUs.
-> > >
-> > > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/arm/pmu.yaml | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >
-> >
-> > Running 'make dtbs_check' with the schema in this patch gives the
-> > following warnings. Consider if they are expected or the schema is
-> > incorrect. These may not be new warnings.
-> >
-> > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> > This will change in the future.
-> >
-> > Full log is available here: https://patchwork.ozlabs.org/patch/1564747
->
-> Yikes, that's a lot of warnings. I've got local patches to fix up the
-> Tegra-specific ones, but I could look at fixing up the others as well,
-> provided that you or anyone else aren't looking at this yet.
+On Tue, Nov 23, 2021 at 08:46:43PM +0800, Zhen Lei wrote:
+> diff --git a/arch/Kconfig b/arch/Kconfig
+> index 26b8ed11639da46..19256aa924c3b2c 100644
+> --- a/arch/Kconfig
+> +++ b/arch/Kconfig
+> @@ -24,6 +24,9 @@ config KEXEC_ELF
+>  config HAVE_IMA_KEXEC
+>  	bool
+>  
+> +config ARCH_WANT_RESERVE_CRASH_KERNEL
+> +	bool
+> +
+>  config SET_FS
+>  	bool
+>  
+> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+> index c4207cf9bb17ffb..4b99efa36da3793 100644
+> --- a/arch/arm64/Kconfig
+> +++ b/arch/arm64/Kconfig
+> @@ -95,6 +95,7 @@ config ARM64
+>  	select ARCH_WANT_FRAME_POINTERS
+>  	select ARCH_WANT_HUGE_PMD_SHARE if ARM64_4K_PAGES || (ARM64_16K_PAGES && !ARM64_VA_BITS_36)
+>  	select ARCH_WANT_LD_ORPHAN_WARN
+> +	select ARCH_WANT_RESERVE_CRASH_KERNEL if KEXEC_CORE
+>  	select ARCH_WANTS_NO_INSTR
+>  	select ARCH_HAS_UBSAN_SANITIZE_ALL
+>  	select ARM_AMBA
+> diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
+> index 7399327d1eff79d..528034b4276ecf8 100644
+> --- a/arch/x86/Kconfig
+> +++ b/arch/x86/Kconfig
+> @@ -12,6 +12,7 @@ config X86_32
+>  	depends on !64BIT
+>  	# Options that are inherently 32-bit kernel only:
+>  	select ARCH_WANT_IPC_PARSE_VERSION
+> +	select ARCH_WANT_RESERVE_CRASH_KERNEL if KEXEC_CORE
+>  	select CLKSRC_I8253
+>  	select CLONE_BACKWARDS
+>  	select GENERIC_VDSO_32
+> @@ -28,6 +29,7 @@ config X86_64
+>  	select ARCH_HAS_GIGANTIC_PAGE
+>  	select ARCH_SUPPORTS_INT128 if CC_HAS_INT128
+>  	select ARCH_USE_CMPXCHG_LOCKREF
+> +	select ARCH_WANT_RESERVE_CRASH_KERNEL if KEXEC_CORE
+>  	select HAVE_ARCH_SOFT_DIRTY
+>  	select MODULES_USE_ELF_RELA
+>  	select NEED_DMA_MAP_STATE
+> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
+> index 4dc2643fcbccf99..b23cfc0ca8905fd 100644
+> --- a/kernel/crash_core.c
+> +++ b/kernel/crash_core.c
+> @@ -321,9 +321,7 @@ int __init parse_crashkernel_low(char *cmdline,
+>   * --------- Crashkernel reservation ------------------------------
+>   */
+>  
+> -#ifdef CONFIG_KEXEC_CORE
+> -
+> -#if defined(CONFIG_X86) || defined(CONFIG_ARM64)
+> +#ifdef CONFIG_ARCH_WANT_RESERVE_CRASH_KERNEL
+>  static int __init reserve_crashkernel_low(void)
+>  {
+>  #ifdef CONFIG_64BIT
+> @@ -451,8 +449,7 @@ void __init reserve_crashkernel(void)
+>  	crashk_res.start = crash_base;
+>  	crashk_res.end   = crash_base + crash_size - 1;
+>  }
+> -#endif
+> -#endif /* CONFIG_KEXEC_CORE */
+> +#endif /* CONFIG_ARCH_WANT_RESERVE_CRASH_KERNEL */
 
-I sent it because I saw the tegra ones.
+Nitpick mostly but it may simplify the patches if the x86, arch/Kconfig
+and crash_core.c changes here could be moved to patch 5. The remaining
+select for arm64 should be moved to patch 7 and drop the #if change in
+that patch.
 
-> On that note: do you know of a simple trick to get the dtbs_check target
-> to run on all DTB files? The only way I've found so far is to manually
-> select all Kconfig options that would enable a specific subset, but it'd
-> be great if we could just run the checks on all irrespective of .config.
+This way we can keep the x86 patches on a separate branch.
 
-Yes, there's a config option hidden behind COMPILE_TEST. I just use
-allmodconfig/allyesconfig when I want to do that.
+Thanks.
 
-Rob
+-- 
+Catalin
