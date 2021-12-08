@@ -2,68 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1230A46D61F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:51:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCAAF46D626
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:52:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235503AbhLHOyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 09:54:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46664 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235471AbhLHOyo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:54:44 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CA00C061746;
-        Wed,  8 Dec 2021 06:51:12 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id EF5B1B8212D;
-        Wed,  8 Dec 2021 14:51:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A8A4C00446;
-        Wed,  8 Dec 2021 14:51:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638975069;
-        bh=yGjzonjEv/so3t2HT7veoFlNxdzM4AIgobZRia0+8Sc=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=SaI+ztZkpI1ebk9ZRj7Dsd8J038h00I02vrcqTsq/qZIWKsOnX7pr2a/VBb9k56OS
-         6KAW3YB6jYlry/hpF/8lmLwbPmSyX+GUon9bYf2TZhLk3TAeHsIxX+FudMv/LxiTiM
-         kVfenrfDavWWBro0la9B/lpWJA/ENAOm0rp17n4N0AzzSjO4ELIO49nBoSU5o97DT8
-         +AKEt8ZEfNJF5R6b14Cm2F7HgWtaPIH9bnd/Isiru6mo5BX4kj5pJ4snR4A2T7Afoy
-         3af4tttNQsvo+O7YRy/wpE4tWvUlCO9xsub5p6terbp4+UNRhRsuGxfujy2FCb6Fqy
-         r5N2DSbUWSkSg==
-Date:   Wed, 8 Dec 2021 06:51:08 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
+        id S235531AbhLHOzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 09:55:43 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:52584 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S235530AbhLHOzn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:55:43 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1B89sqIR020212;
+        Wed, 8 Dec 2021 15:51:52 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=IpuZOGwO/v7ipbt03x8yTn8Car/0TQpCG5NiK+X11ao=;
+ b=8ck3ngzmTL3Z/pah5tFBBSgSPJFOfn5R30BELfAYwrlYVBzDmNKFT5Z1/GUmtaE/cHhi
+ uXxs2YXAfZTlz1e8ute9dZP+JiMY76u5dWLV86a15TQYfIT3KskJTzQC2mP75Fxx2Njw
+ hx7HHLlwoqOPKtS/SfsNMTTySxEcjL2bpFrYKdjpxcxVpltFPFvR8kbTfA9ZCYRuZcoq
+ pLYYRRHauF4g7gzOdm3WdzyNt1i1wxEYGMJjsF/5GYMWfBYoPAjQgOruUslvwbMGLhsu
+ 9Pop5tMVGjmyGczLWotKmu34RlDFNujAZkI5ByCJhAlgVLFLjgUxwfq9S8csDivcJMkH Uw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3cttga9kby-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 08 Dec 2021 15:51:52 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0DFC010002A;
+        Wed,  8 Dec 2021 15:51:51 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 00A7E22CD49;
+        Wed,  8 Dec 2021 15:51:51 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.45) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 8 Dec
+ 2021 15:51:49 +0100
+Subject: Re: [PATCH 2/3] irqchip/stm32-exti: add STM32MP13 support
+To:     Marc Zyngier <maz@kernel.org>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Denis Kirjanov <dkirjanov@suse.de>,
-        Julian Wiedmann <jwi@linux.ibm.com>
-Subject: Re: [PATCH net-next v6 4/4] net: ocelot: add FDMA support
-Message-ID: <20211208065108.27a2a3eb@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20211208085814.19e4ec71@fixe.home>
-References: <20211207154839.1864114-1-clement.leger@bootlin.com>
-        <20211207154839.1864114-5-clement.leger@bootlin.com>
-        <20211207194514.32218911@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-        <20211208085814.19e4ec71@fixe.home>
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>
+References: <20211208130456.4002-1-alexandre.torgue@foss.st.com>
+ <20211208130456.4002-3-alexandre.torgue@foss.st.com>
+ <87fsr31aex.wl-maz@kernel.org>
+ <fffb9758-8071-edd8-8fe9-d0d2a57fac05@foss.st.com>
+ <87ee6n18im.wl-maz@kernel.org>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <701f4954-5dc8-9b4f-674c-c40d7e6e3df1@foss.st.com>
+Date:   Wed, 8 Dec 2021 15:51:49 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <87ee6n18im.wl-maz@kernel.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2021-12-08_05,2021-12-08_01,2021-12-02_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 8 Dec 2021 08:58:14 +0100 Cl=C3=A9ment L=C3=A9ger wrote:
-> > drivers/net/ethernet/mscc/ocelot_fdma.h:156: warning: Function paramete=
-r or member 'napi' not described in 'ocelot_fdma' =20
->=20
-> And base does not exists anymore. I will also reorder the members in
-> the doc to match the struct.
+On 12/8/21 3:22 PM, Marc Zyngier wrote:
+> Hi Alexandre,
+> 
+> On Wed, 08 Dec 2021 13:58:46 +0000,
+> Alexandre TORGUE <alexandre.torgue@foss.st.com> wrote:
+>>
+>>> Why does the driver need to carry these tables? This sort of
+>>> information should really come from DT, instead of being hardcoded in
+>>> the driver and bloating it for no reason. This all has a funny taste
+>>> of the board files we used to have pre-DT.
+>>>
+>>
+>> There are absolutely no reason to have it in driver. Honestly It has
+>> been done in this way to have minimal changes adding this new SoC
+>> support (and it's not smart, I agree).
+>>
+>> I think it is better to abandon this series. I will create a new one
+>> which moves mapping table for MP15 and adds MP13 support to.
+> 
+> I'm afraid you'll have to keep the in-kernel table for MP15, since the
+> driver needs to work with old DTs. For new SoCs (such as MP13), moving
+> the table into DT would be good.
 
-Hah, curious that the kdoc script did not catch that.
+I can try to have both for MP15:use new mechanism as MP13 and keep the 
+table inside the driver as a fallback if DT mapping is not provided (for 
+old DT).
+
+Thanks
+
+> 
+> Thanks,
+> 
+> 	M.
+> 
+
