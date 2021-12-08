@@ -2,105 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCAAF46D626
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:52:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAE6E46D62F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:54:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235531AbhLHOzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 09:55:43 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:52584 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S235530AbhLHOzn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:55:43 -0500
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1B89sqIR020212;
-        Wed, 8 Dec 2021 15:51:52 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=IpuZOGwO/v7ipbt03x8yTn8Car/0TQpCG5NiK+X11ao=;
- b=8ck3ngzmTL3Z/pah5tFBBSgSPJFOfn5R30BELfAYwrlYVBzDmNKFT5Z1/GUmtaE/cHhi
- uXxs2YXAfZTlz1e8ute9dZP+JiMY76u5dWLV86a15TQYfIT3KskJTzQC2mP75Fxx2Njw
- hx7HHLlwoqOPKtS/SfsNMTTySxEcjL2bpFrYKdjpxcxVpltFPFvR8kbTfA9ZCYRuZcoq
- pLYYRRHauF4g7gzOdm3WdzyNt1i1wxEYGMJjsF/5GYMWfBYoPAjQgOruUslvwbMGLhsu
- 9Pop5tMVGjmyGczLWotKmu34RlDFNujAZkI5ByCJhAlgVLFLjgUxwfq9S8csDivcJMkH Uw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3cttga9kby-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 08 Dec 2021 15:51:52 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0DFC010002A;
-        Wed,  8 Dec 2021 15:51:51 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 00A7E22CD49;
-        Wed,  8 Dec 2021 15:51:51 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.45) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 8 Dec
- 2021 15:51:49 +0100
-Subject: Re: [PATCH 2/3] irqchip/stm32-exti: add STM32MP13 support
-To:     Marc Zyngier <maz@kernel.org>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>
-References: <20211208130456.4002-1-alexandre.torgue@foss.st.com>
- <20211208130456.4002-3-alexandre.torgue@foss.st.com>
- <87fsr31aex.wl-maz@kernel.org>
- <fffb9758-8071-edd8-8fe9-d0d2a57fac05@foss.st.com>
- <87ee6n18im.wl-maz@kernel.org>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <701f4954-5dc8-9b4f-674c-c40d7e6e3df1@foss.st.com>
-Date:   Wed, 8 Dec 2021 15:51:49 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S233585AbhLHO6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 09:58:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47484 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233488AbhLHO6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:58:04 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAC86C0617A2
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 06:54:32 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id n12so6161826lfe.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 06:54:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=+3GG8yVaw/Cu9lTA3ESz9IPLwx5hb6gqwcTKh9yEKdg=;
+        b=TDm+2l2xQjZJXAxHF1lIIxq7JT5vtwrGoUj0p2di74w5etDUHGR+7Eei8GyOEwgCiY
+         +JgKdh6kbNJUdZDykDefycaRA4jnFuIlOMZFw3sZV9zpc3Ox1hNieOEsWFMJcfqK4BG0
+         a9Z3Mr/kGhvXEugaD3MXqXjomrMITXbod3Yd+qyGqzRIXADCWE7zJgRVe8EOy/lX9Ar0
+         gqp7TTQYGlm2LjyCmgOUzHAkqrcq9vlLUlzgfYbwFKA5e9QpBROxcSulY2JT0cvRpl43
+         rKC7ZrXhUs+IyPbDhJAoLaes33mTxdtRXbljv3dTwpfZL2lL5S8DFR+9GPnKXH3vi+So
+         rqOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=+3GG8yVaw/Cu9lTA3ESz9IPLwx5hb6gqwcTKh9yEKdg=;
+        b=7ZdhyKuE2OC7dua3hh5E5B4Mw56R2unByJ82SoLFt7JNtdTsPE9/uMTIgLZul+6iCT
+         1C7dg6gSpRI8KWuXv9hwM03UjEPHXOqiJBPtzZRJc6QN7l6ytls26605D4FI0Jd3wFNT
+         sG8cmxd8GDLL0lOHbC5BKCeqAClC51fqLBmShBsBt41QsHuACFcaxkIM91ZJxohbshQF
+         f4tsVfnojlnHj6O+wwUpvW7J2mStuI2hcFJ+Zy58WI1ni70YMqU7GOmmHLL6II8w7s6+
+         cIWbDR0ZWwfCopUy4qDalUZhUdVqZPiWz9AyFarHhAVwFPGTNJlwhhF+aC4dCvLNrWVh
+         dYFA==
+X-Gm-Message-State: AOAM533zFG2X4bVnGJD2edFuUbJmKlWoA67plGs6S+Jq3KD1EvZF2CV7
+        gTZCtjatSBgJ27IR9GocmTvABob36n484hiqRa4Vfg==
+X-Google-Smtp-Source: ABdhPJz60+87r/gCmKRcwLcSv+19OvrFvH2SxIm+ME7dXLi7kpfr2caY9CmueMindoWcUiYaCTOk5ISfR/KRB8+C3YI=
+X-Received: by 2002:a05:6512:3e04:: with SMTP id i4mr49006555lfv.167.1638975270897;
+ Wed, 08 Dec 2021 06:54:30 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <87ee6n18im.wl-maz@kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2021-12-08_05,2021-12-08_01,2021-12-02_01
+References: <20211206142929.26729-1-marten.lindahl@axis.com> <20211206142929.26729-5-marten.lindahl@axis.com>
+In-Reply-To: <20211206142929.26729-5-marten.lindahl@axis.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 8 Dec 2021 15:53:54 +0100
+Message-ID: <CAPDyKFojCipHMwmCZB3h7CdYP+eSSikA=d=G701Y5+9xeQKxgg@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] mmc: dw_mmc: Do not wait for DTO in case of error
+To:     =?UTF-8?Q?M=C3=A5rten_Lindahl?= <marten.lindahl@axis.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Doug Anderson <dianders@google.com>, kernel@axis.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/8/21 3:22 PM, Marc Zyngier wrote:
-> Hi Alexandre,
-> 
-> On Wed, 08 Dec 2021 13:58:46 +0000,
-> Alexandre TORGUE <alexandre.torgue@foss.st.com> wrote:
->>
->>> Why does the driver need to carry these tables? This sort of
->>> information should really come from DT, instead of being hardcoded in
->>> the driver and bloating it for no reason. This all has a funny taste
->>> of the board files we used to have pre-DT.
->>>
->>
->> There are absolutely no reason to have it in driver. Honestly It has
->> been done in this way to have minimal changes adding this new SoC
->> support (and it's not smart, I agree).
->>
->> I think it is better to abandon this series. I will create a new one
->> which moves mapping table for MP15 and adds MP13 support to.
-> 
-> I'm afraid you'll have to keep the in-kernel table for MP15, since the
-> driver needs to work with old DTs. For new SoCs (such as MP13), moving
-> the table into DT would be good.
+On Mon, 6 Dec 2021 at 15:29, M=C3=A5rten Lindahl <marten.lindahl@axis.com> =
+wrote:
+>
+> When running the ARTPEC-8 DWMMC IP version, and a data error interrupt
+> comes during a data read transfer, there is no guarantee for the data
+> transfer over interrupt (DTO) to come within the specified data timeout.
+> This case is handled by the dto_timer handler which will complete the
+> request with the comment:
+>
+>  /*
+>   * If DTO interrupt does NOT come in sending data state,
+>   * we should notify the driver to terminate current transfer
+>   * and report a data timeout to the core.
+>   */
+>
+> But since the ARTPEC-8 DWMMC IP version, supports an extended TMOUT
+> register which allows longer timeouts than the non ARTPEC-8 version
+> does, waiting for the dto_timer to complete the request in error cases
+> may cause the request to take significantly longer time than necessary.
+> This is specifically true for the failing steps during tuning of a
+> device.
+>
+> Fix this by completing the request when the error interrupt comes.
+>
+> Signed-off-by: M=C3=A5rten Lindahl <marten.lindahl@axis.com>
 
-I can try to have both for MP15:use new mechanism as MP13 and keep the 
-table inside the driver as a fallback if DT mapping is not provided (for 
-old DT).
+Okay, this change looks a bit inconvenient to move into variant
+specific callbacks. So, maybe the "quirks" flag makes sense, after
+all. However, I would still look at using callbacks and library
+functions, for the part implemented in patch3.
 
-Thanks
+When it comes to the order of the patches in the series, I suggest
+flipping things around and making patch2 the final piece. Otherwise
+the support for the artpec variant will be broken between patch2 and
+patch4, right?
 
-> 
-> Thanks,
-> 
-> 	M.
-> 
+Kind regards
+Uffe
 
+> ---
+>  drivers/mmc/host/dw_mmc.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
+> index 45ea9fd97a6a..d6b76f47b1a2 100644
+> --- a/drivers/mmc/host/dw_mmc.c
+> +++ b/drivers/mmc/host/dw_mmc.c
+> @@ -2777,11 +2777,19 @@ static irqreturn_t dw_mci_interrupt(int irq, void=
+ *dev_id)
+>                 if (pending & DW_MCI_DATA_ERROR_FLAGS) {
+>                         spin_lock(&host->irq_lock);
+>
+> +                       if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
+> +                               del_timer(&host->dto_timer);
+> +
+>                         /* if there is an error report DATA_ERROR */
+>                         mci_writel(host, RINTSTS, DW_MCI_DATA_ERROR_FLAGS=
+);
+>                         host->data_status =3D pending;
+>                         smp_wmb(); /* drain writebuffer */
+>                         set_bit(EVENT_DATA_ERROR, &host->pending_events);
+> +
+> +                       if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
+> +                               /* In case of error, we cannot expect a D=
+TO */
+> +                               set_bit(EVENT_DATA_COMPLETE, &host->pendi=
+ng_events);
+> +
+>                         tasklet_schedule(&host->tasklet);
+>
+>                         spin_unlock(&host->irq_lock);
+> --
+> 2.20.1
+>
