@@ -2,288 +2,703 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C461D46DA97
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 18:58:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABB7246DA9E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 19:00:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236396AbhLHSBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 13:01:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34642 "EHLO
+        id S238426AbhLHSDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 13:03:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232082AbhLHSBf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 13:01:35 -0500
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24544C0617A1
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 09:58:03 -0800 (PST)
-Received: by mail-io1-xd36.google.com with SMTP id 14so3723636ioe.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 09:58:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=S3HXA1Ve98WII4shKQ11gzv1Wq/UjFYizlO2WiLM/Mk=;
-        b=gwCHnY7kjXA5Eb70ZKvE32AjrpYIkrhWgOut6jE7VVk4sxtz8Dx9w/yVluLk2vWwnF
-         PLrbfvsFiAhN79RqMvukqR68/5Rgss8OYLZI6uYFDYIgz+b4FP8m0kjLX+zTEABONG4I
-         iOMBJ3B8wL6GI5tD3cLTJxgp0Bj+uigWg+podPVMM74J8wSxyIofsxclJmRoz1eVOqqt
-         KuZRgxxYgsS/wZJoAUqoQnxJnjrDOBOfaJucu9glWaQRp3nw8Md0LD+xLCkzqH06SzgK
-         1Dp8ddRoSVRlodbMXspa+BQNIHgrm7xPuaOGN8F6QccCZce/zFaONbDT8Z5SSkzXnDzi
-         F/Dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=S3HXA1Ve98WII4shKQ11gzv1Wq/UjFYizlO2WiLM/Mk=;
-        b=CDefNGJuNk9PE3Zp+l8xpP0PhUMCAPr1drqjwU5NOdTageZFzLh71Arm63eFHId/QV
-         fFDDPc7ZrfNeruALpIzOyTPrkTS3jNDoamNR3q48LA99F15Gn6SLjeFjCmReTl96tAqc
-         IA6R163lDe2VbImkmI0f92d73UNGgdDTSlIj+mQV3XwQ3N8ux1WjAJTOXMMetq8rb3dc
-         vWO+5jpLy1jxq0sBbJwXOUXIMKjVf+RwVf2ELnK6Kfl2BWsGLmeInild1+A/CGX8jBoM
-         +ftYjHwSTSpPcRtg8RxCSigEtX9p3MlPMEReN3ZRKKF50MhUIjIab/d5xenqSUUhnxiF
-         VeOw==
-X-Gm-Message-State: AOAM5334BLDiLhhHG9BswZkLLf7NVHXcO23QZ+fTvyTWquIToAp9kTbX
-        fI9apk627S6stL4iQ+1Sm7DOASx+tXn7U4kdQrniWw==
-X-Google-Smtp-Source: ABdhPJyaGUfzlgGbnqNRRCg6oJVT6F24bwuXMAp2oCdmOJvfdCfF9ozrmWn9AYp0979OpBasyY+B7nT7SjP3j46xb6k=
-X-Received: by 2002:a02:ba07:: with SMTP id z7mr1415602jan.84.1638986282362;
- Wed, 08 Dec 2021 09:58:02 -0800 (PST)
+        with ESMTP id S238424AbhLHSDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 13:03:55 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FE7CC061746;
+        Wed,  8 Dec 2021 10:00:23 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: adalessandro)
+        with ESMTPSA id 943451F45A0E
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1638986422; bh=XCm28hU9HPWkmkaUPQpW0Hj5YSqPLSwjey8J57GSNrA=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=KxZqEHE7HWDVOD5q/ofvJ7mIYXMI1Db0IwjuNk50OufbjyqlB+tJvwFkM6+8MTqDI
+         CV3fJGIhPdgl11C8j0P83STE9RMSi3+3XWH12PqcRvYX3tGCuLf+ik+LyDtI4RmRXC
+         VPv1Vf51NFtCRf+BeIj9aEDO7CxzrMlR/rpq6kIqxyMGawGNVIJrLS3pe/XpfrEdCp
+         fuDmDseHF8Q3IxkY0t21MK3LEXyZXhy1bGielDgdlD9+buwYzemGpFlnjYs3ncfNjr
+         R8z24920b2gb3KNzhjflrh1vjsVgdM8rOmDJc+UfbfKCGryjWE15uaPJtwh1/D8XvB
+         txLJsxVkTeWJg==
+Subject: Re: [PATCH v2 3/5] arm64: dts: imx8mn-bsh-smm-s2/pro: Add iMX8MN BSH
+ SMM S2 boards
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
+        festevam@gmail.com, ioana.ciornei@nxp.com,
+        jagan@amarulasolutions.com, kernel@pengutronix.de, krzk@kernel.org,
+        linux-imx@nxp.com, matt@traverse.com.au, matteo.lisi@engicam.com,
+        meenakshi.aggarwal@nxp.com, michael@amarulasolutions.com,
+        nathan@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
+        tharvey@gateworks.com
+References: <20211123151252.143631-1-ariel.dalessandro@collabora.com>
+ <20211123151252.143631-4-ariel.dalessandro@collabora.com>
+ <20211206012933.GN4216@dragon>
+From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+Message-ID: <d75386b3-6e2a-a779-6da2-9ceb892f22a2@collabora.com>
+Date:   Wed, 8 Dec 2021 15:00:10 -0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20211109113239.93493-1-robert.marko@sartura.hr> <20211109113239.93493-5-robert.marko@sartura.hr>
-In-Reply-To: <20211109113239.93493-5-robert.marko@sartura.hr>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Wed, 8 Dec 2021 18:57:51 +0100
-Message-ID: <CA+HBbNHj-SU2kETsxA52Xq7qkJJnEtB_b8OCuv_kksYGQnX++A@mail.gmail.com>
-Subject: Re: [PATCH v9 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Michael Walle <michael@walle.cc>, Andrew Lunn <andrew@lunn.ch>
-Cc:     Luka Perkov <luka.perkov@sartura.hr>,
-        Bruno Banelli <bruno.banelli@sartura.hr>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211206012933.GN4216@dragon>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 9, 2021 at 12:32 PM Robert Marko <robert.marko@sartura.hr> wrote:
->
-> Add binding documents for the Delta TN48M CPLD drivers.
->
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
-> Changes in v7:
-> * Update bindings to reflect driver updates
->
-> Changes in v3:
-> * Include bindings for reset driver
->
-> Changes in v2:
-> * Implement MFD as a simple I2C MFD
-> * Add GPIO bindings as separate
-> ---
->  .../bindings/gpio/delta,tn48m-gpio.yaml       | 39 ++++++++
->  .../bindings/mfd/delta,tn48m-cpld.yaml        | 90 +++++++++++++++++++
->  .../bindings/reset/delta,tn48m-reset.yaml     | 35 ++++++++
->  3 files changed, 164 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
->  create mode 100644 Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
->
-> diff --git a/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> new file mode 100644
-> index 000000000000..e3e668a12091
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/delta,tn48m-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Delta Networks TN48M CPLD GPIO controller
-> +
-> +maintainers:
-> +  - Robert Marko <robert.marko@sartura.hr>
-> +
-> +description: |
-> +  This module is part of the Delta TN48M multi-function device. For more
-> +  details see ../mfd/delta,tn48m-cpld.yaml.
-> +
-> +  Delta TN48M has an onboard Lattice CPLD that is used as an GPIO expander.
-> +  It provides 12 pins in total, they are input-only or ouput-only type.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - delta,tn48m-gpo
-> +      - delta,tn48m-gpi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#gpio-cells"
-> +  - gpio-controller
-> +
-> +additionalProperties: false
-> diff --git a/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml b/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> new file mode 100644
-> index 000000000000..f6967c1f6235
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> @@ -0,0 +1,90 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/delta,tn48m-cpld.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Delta Networks TN48M CPLD controller
-> +
-> +maintainers:
-> +  - Robert Marko <robert.marko@sartura.hr>
-> +
-> +description: |
-> +  Lattice CPLD onboard the TN48M switches is used for system
-> +  management.
-> +
-> +  It provides information about the hardware model, revision,
-> +  PSU status etc.
-> +
-> +  It is also being used as a GPIO expander and reset controller
-> +  for the switch MAC-s and other peripherals.
-> +
-> +properties:
-> +  compatible:
-> +    const: delta,tn48m-cpld
-> +
-> +  reg:
-> +    description:
-> +      I2C device address.
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +patternProperties:
-> +  "^gpio(@[0-9a-f]+)?$":
-> +    $ref: ../gpio/delta,tn48m-gpio.yaml
-> +
-> +  "^reset-controller?$":
-> +    $ref: ../reset/delta,tn48m-reset.yaml
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        cpld@41 {
-> +            compatible = "delta,tn48m-cpld";
-> +            reg = <0x41>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            gpio@31 {
-> +                compatible = "delta,tn48m-gpo";
-> +                reg = <0x31>;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +            };
-> +
-> +            gpio@3a {
-> +                compatible = "delta,tn48m-gpi";
-> +                reg = <0x3a>;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +            };
-> +
-> +            gpio@40 {
-> +                compatible = "delta,tn48m-gpi";
-> +                reg = <0x40>;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +            };
-> +
-> +            reset-controller {
-> +              compatible = "delta,tn48m-reset";
-> +              #reset-cells = <1>;
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml b/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
-> new file mode 100644
-> index 000000000000..0e5ee8decc0d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
-> @@ -0,0 +1,35 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reset/delta,tn48m-reset.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Delta Networks TN48M CPLD reset controller
-> +
-> +maintainers:
-> +  - Robert Marko <robert.marko@sartura.hr>
-> +
-> +description: |
-> +  This module is part of the Delta TN48M multi-function device. For more
-> +  details see ../mfd/delta,tn48m-cpld.yaml.
-> +
-> +  Reset controller modules provides resets for the following:
-> +  * 88F7040 SoC
-> +  * 88F6820 SoC
-> +  * 98DX3265 switch MAC-s
-> +  * 88E1680 PHY-s
-> +  * 88E1512 PHY
-> +  * PoE PSE controller
-> +
-> +properties:
-> +  compatible:
-> +    const: delta,tn48m-reset
-> +
-> +  "#reset-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - "#reset-cells"
-> +
-> +additionalProperties: false
-> --
-> 2.33.1
->
+Hi Shawn,
 
-Linus, do you have any improvement points to the bindings?
+Thanks a lot for the review.
+
+On 12/5/21 10:29 PM, Shawn Guo wrote:
+> On Tue, Nov 23, 2021 at 12:12:50PM -0300, Ariel D'Alessandro wrote:
+>> Introduce BSH SystemMaster (SMM) S2 board family, which consists of:
+>> iMX8MN SMM S2 and iMX8MN SMM S2 PRO boards.
+>>
+>> Add support for iMX8MN BSH SMM S2 board:
+>>
+>> - 256 MiB DDR3 RAM
+>> - 512 MiB NAND
+>> - Megabit Ethernet PHY
+>> - Wi-Fi 802.11 a/b/g/n/ac with Bluetooth 5.0
+>> - USB-OTG (peripheral mode)
+>>
+>> Add support for iMX8MN BSH SMM S2 PRO board:
+>>
+>> - 512 MiB DDR3 RAM
+>> - 8 GiB eMMC
+>> - Megabit Ethernet PHY
+>> - Wi-Fi 802.11 a/b/g/n/ac with Bluetooth 5.0
+>> - USB-OTG (peripheral mode)
+>>
+>> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+>> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+>> ---
+>>  arch/arm64/boot/dts/freescale/Makefile        |   2 +
+>>  .../freescale/imx8mn-bsh-smm-s2-common.dtsi   | 426 ++++++++++++++++++
+>>  .../boot/dts/freescale/imx8mn-bsh-smm-s2.dts  |  48 ++
+>>  .../dts/freescale/imx8mn-bsh-smm-s2pro.dts    |  80 ++++
+>>  4 files changed, 556 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+>>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2.dts
+>>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+>> index a14a6173b765..c3e01c94ff7f 100644
+>> --- a/arch/arm64/boot/dts/freescale/Makefile
+>> +++ b/arch/arm64/boot/dts/freescale/Makefile
+>> @@ -47,6 +47,8 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
+>>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
+>>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
+>>  dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
+>> +dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2.dtb
+>> +dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2pro.dtb
+>>  dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
+>>  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
+>>  dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
+>> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+>> new file mode 100644
+>> index 000000000000..a49528e1601c
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+>> @@ -0,0 +1,426 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Copyright 2021 Collabora Ltd.
+>> + * Copyright 2021 BSH Hausgeraete GmbH
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "imx8mn.dtsi"
+>> +
+>> +/ {
+>> +	chosen {
+>> +		stdout-path = &uart4;
+>> +	};
+>> +
+>> +	fec_supply: fec_supply_en {
+> 
+> Hyphen is recommended in node name.
+
+Fixed in v3.
+
+> 
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "tja1101_en";
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		gpio = <&gpio2 20 GPIO_ACTIVE_HIGH>;
+>> +		vin-supply = <&buck4_reg>;
+>> +		enable-active-high;
+> 
+> Put it right below 'gpio' line.
+
+Fixed in v3.
+
+> 
+>> +	};
+>> +
+>> +	usdhc2_pwrseq: usdhc2_pwrseq {
+>> +		compatible = "mmc-pwrseq-simple";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_usdhc2_pwrseq>;
+>> +		reset-gpios = <&gpio4 27 GPIO_ACTIVE_LOW>;
+>> +	};
+>> +};
+>> +
+>> +&A53_0 {
+>> +	cpu-supply = <&buck2_reg>;
+>> +};
+>> +
+>> +&A53_1 {
+>> +	cpu-supply = <&buck2_reg>;
+>> +};
+>> +
+>> +&A53_2 {
+>> +	cpu-supply = <&buck2_reg>;
+>> +};
+>> +
+>> +&A53_3 {
+>> +	cpu-supply = <&buck2_reg>;
+>> +};
+>> +
+>> +&ecspi2 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_espi2>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&fec1 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_fec1>;
+>> +	phy-mode = "rmii";
+>> +	phy-handle = <&ethphy0>;
+>> +	phy-supply = <&fec_supply>;
+>> +	fsl,magic-packet;
+>> +	status = "okay";
+>> +
+>> +	mdio {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		ethphy0: ethernet-phy@0 {
+>> +			compatible = "ethernet-phy-ieee802.3-c22";
+>> +			reg = <0>;
+>> +			reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
+>> +			reset-assert-us = <20>;
+>> +			reset-deassert-us = <2000>;
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&i2c1 {
+>> +	clock-frequency = <400000>;
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_i2c1>;
+>> +	status = "okay";
+>> +
+>> +	bd71847: pmic@4b {
+>> +		compatible = "rohm,bd71847";
+>> +		reg = <0x4b>;
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_pmic>;
+>> +		interrupt-parent = <&gpio1>;
+>> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+>> +		rohm,reset-snvs-powered;
+>> +
+>> +		#clock-cells = <0>;
+>> +		clocks = <&osc_32k 0>;
+>> +		clock-output-names = "clk-32k-out";
+>> +
+>> +		regulators {
+>> +			buck1_reg: BUCK1 {
+>> +				/* PMIC_BUCK1 - VDD_SOC */
+>> +				regulator-name = "buck1";
+>> +				regulator-min-microvolt = <700000>;
+>> +				regulator-max-microvolt = <1300000>;
+>> +				regulator-boot-on;
+>> +				regulator-always-on;
+>> +				regulator-ramp-delay = <1250>;
+>> +			};
+>> +
+>> +			buck2_reg: BUCK2 {
+>> +				/* PMIC_BUCK2 - VDD_ARM */
+>> +				regulator-name = "buck2";
+>> +				regulator-min-microvolt = <700000>;
+>> +				regulator-max-microvolt = <1300000>;
+>> +				regulator-boot-on;
+>> +				regulator-always-on;
+>> +				regulator-ramp-delay = <1250>;
+>> +			};
+>> +
+>> +			buck3_reg: BUCK3 {
+>> +				/* PMIC_BUCK5 - VDD_DRAM_VPU_GPU */
+>> +				regulator-name = "buck3";
+>> +				regulator-min-microvolt = <700000>;
+>> +				regulator-max-microvolt = <1350000>;
+>> +				regulator-boot-on;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			buck4_reg: BUCK4 {
+>> +				/* PMIC_BUCK6 - VDD_3V3 */
+>> +				regulator-name = "buck4";
+>> +				regulator-min-microvolt = <3000000>;
+>> +				regulator-max-microvolt = <3300000>;
+>> +				regulator-boot-on;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			buck5_reg: BUCK5 {
+>> +				/* PMIC_BUCK7 - VDD_1V8 */
+>> +				regulator-name = "buck5";
+>> +				regulator-min-microvolt = <1605000>;
+>> +				regulator-max-microvolt = <1995000>;
+>> +				regulator-boot-on;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			buck6_reg: BUCK6 {
+>> +				/* PMIC_BUCK8 - NVCC_DRAM */
+>> +				regulator-name = "buck6";
+>> +				regulator-min-microvolt = <800000>;
+>> +				regulator-max-microvolt = <1400000>;
+>> +				regulator-boot-on;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			ldo1_reg: LDO1 {
+>> +				/* PMIC_LDO1 - NVCC_SNVS_1V8 */
+>> +				regulator-name = "ldo1";
+>> +				regulator-min-microvolt = <1600000>;
+>> +				regulator-max-microvolt = <1900000>;
+>> +				regulator-boot-on;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			ldo2_reg: LDO2 {
+>> +				/* PMIC_LDO2 - VDD_SNVS_0V8 */
+>> +				regulator-name = "ldo2";
+>> +				regulator-min-microvolt = <800000>;
+>> +				regulator-max-microvolt = <900000>;
+>> +				regulator-boot-on;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			ldo3_reg: LDO3 {
+>> +				/* PMIC_LDO3 - VDDA_1V8 */
+>> +				regulator-name = "ldo3";
+>> +				regulator-min-microvolt = <1800000>;
+>> +				regulator-max-microvolt = <3300000>;
+>> +				regulator-boot-on;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			ldo4_reg: LDO4 {
+>> +				/* PMIC_LDO4 - VDD_MIPI_0V9 */
+>> +				regulator-name = "ldo4";
+>> +				regulator-min-microvolt = <900000>;
+>> +				regulator-max-microvolt = <1800000>;
+>> +				regulator-boot-on;
+>> +				regulator-always-on;
+>> +			};
+>> +
+>> +			ldo6_reg: LDO6 {
+>> +				/* PMIC_LDO6 - VDD_MIPI_1V2 */
+>> +				regulator-name = "ldo6";
+>> +				regulator-min-microvolt = <900000>;
+>> +				regulator-max-microvolt = <1800000>;
+>> +				regulator-boot-on;
+>> +				regulator-always-on;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&i2c3 {
+>> +	clock-frequency = <400000>;
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_i2c3>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&i2c4 {
+>> +	clock-frequency = <400000>;
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_i2c4>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&uart2 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_uart2>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&uart3 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_uart3>;
+>> +	assigned-clocks = <&clk IMX8MN_CLK_UART3>;
+>> +	assigned-clock-parents = <&clk IMX8MN_SYS_PLL1_80M>;
+>> +	uart-has-rtscts;
+>> +	status = "okay";
+>> +
+>> +	bluetooth {
+>> +		compatible = "brcm,bcm43438-bt";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_bluetooth>;
+>> +		shutdown-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
+>> +		device-wakeup-gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
+>> +		host-wakeup-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+>> +		max-speed = <3000000>;
+>> +	};
+>> +};
+>> +
+>> +/* Console */
+>> +&uart4 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_uart4>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usbotg1 {
+>> +	dr_mode = "peripheral";
+>> +	disable-over-current;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usdhc2 {
+>> +	#address-cells = <1>;
+>> +	#size-cells = <0>;
+>> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+>> +	pinctrl-0 = <&pinctrl_usdhc2>;
+>> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
+>> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
+>> +	mmc-pwrseq = <&usdhc2_pwrseq>;
+>> +	bus-width = <4>;
+>> +	non-removable;
+>> +	status = "okay";
+>> +
+>> +	brcmf: bcrmf@1 {
+>> +		compatible = "brcm,bcm4329-fmac";
+>> +		reg = <1>;
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_wlan>;
+>> +		interrupt-parent = <&gpio1>;
+>> +		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+>> +		interrupt-names = "host-wake";
+>> +	};
+>> +};
+>> +
+>> +&wdog1 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_wdog>;
+>> +	fsl,ext-reset-output;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&iomuxc {
+>> +	pinctrl_espi2: espi2grp {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK            0x082
+>> +			MX8MN_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI            0x082
+>> +			MX8MN_IOMUXC_ECSPI2_MISO_ECSPI2_MISO            0x082
+>> +			MX8MN_IOMUXC_ECSPI2_SS0_ECSPI2_SS0		0x040
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c1: i2c1grp {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_I2C1_SCL_I2C1_SCL			0x400000c2
+>> +			MX8MN_IOMUXC_I2C1_SDA_I2C1_SDA			0x400000c2
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c3: i2c3grp {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_I2C3_SCL_I2C3_SCL			0x400000c2
+>> +			MX8MN_IOMUXC_I2C3_SDA_I2C3_SDA			0x400000c2
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_i2c4: i2c4grp {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_I2C4_SCL_I2C4_SCL			0x400000c2
+>> +			MX8MN_IOMUXC_I2C4_SDA_I2C4_SDA			0x400000c2
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_pmic: pmicirq {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x040
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_uart4: uart4grp {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_UART4_RXD_UART4_DCE_RX		0x040
+>> +			MX8MN_IOMUXC_UART4_TXD_UART4_DCE_TX		0x040
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc2_pwrseq: usdhc2pwrseqgrp {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_SAI2_MCLK_GPIO4_IO27		0x040	/* WL_REG_ON */
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc2: usdhc2grp {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK			0x090
+>> +			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD			0x0d0
+>> +			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x0d0
+>> +			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x0d0
+>> +			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x0d0
+>> +			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x0d0
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK			0x094
+>> +			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD			0x0d4
+>> +			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x0d4
+>> +			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x0d4
+>> +			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x0d4
+>> +			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x0d4
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK			0x096
+>> +			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD			0x0d6
+>> +			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x0d6
+>> +			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x0d6
+>> +			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x0d6
+>> +			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x0d6
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_wlan: wlangrp {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_GPIO1_IO00_GPIO1_IO0		0x0d6	/* GPIO_0 - WIFI_GPIO_0 */
+>> +			MX8MN_IOMUXC_GPIO1_IO08_GPIO1_IO8		0x0d6	/* GPIO_1 - WIFI_GPIO_1 */
+>> +			MX8MN_IOMUXC_GPIO1_IO04_GPIO1_IO4		0x0d6	/* BT_GPIO_5 - WIFI_GPIO_5 */
+>> +			MX8MN_IOMUXC_SPDIF_RX_GPIO5_IO4			0x0d6	/* I2S_CLK - WIFI_GPIO_6 */
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_uart2: uart2grp {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_UART2_RXD_UART2_DCE_RX		0x040
+>> +			MX8MN_IOMUXC_UART2_TXD_UART2_DCE_TX		0x040
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_uart3: uart3grp {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_UART3_TXD_UART3_DCE_TX		0x040
+>> +			MX8MN_IOMUXC_UART3_RXD_UART3_DCE_RX		0x040
+>> +			MX8MN_IOMUXC_ECSPI1_MISO_UART3_DCE_CTS_B	0x040
+>> +			MX8MN_IOMUXC_ECSPI1_SS0_UART3_DCE_RTS_B		0x040
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_bluetooth: bluetoothgrp {
+> 
+> Out of alphabetical order.
+
+Fixed in v3.
+
+> 
+> Shawn
+> 
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_GPIO1_IO15_GPIO1_IO15		0x044	/* BT_REG_ON */
+>> +			MX8MN_IOMUXC_ENET_TD3_GPIO1_IO18		0x046	/* BT_DEV_WAKE */
+>> +			MX8MN_IOMUXC_ENET_RD2_GPIO1_IO28		0x090	/* BT_HOST_WAKE */
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_wdog: wdoggrp {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0x046
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_fec1: fec1grp {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_ENET_MDC_ENET1_MDC			0x002
+>> +			MX8MN_IOMUXC_ENET_MDIO_ENET1_MDIO		0x002
+>> +			MX8MN_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x090
+>> +			MX8MN_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x090
+>> +			MX8MN_IOMUXC_ENET_RXC_ENET1_RX_ER		0x090
+>> +			MX8MN_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x016
+>> +			MX8MN_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x016
+>> +			MX8MN_IOMUXC_ENET_TD2_ENET1_TX_CLK		0x016
+>> +			MX8MN_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x016
+>> +			MX8MN_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x090
+>> +			MX8MN_IOMUXC_ENET_TXC_ENET1_TX_ER		0x016
+>> +			MX8MN_IOMUXC_SD2_CD_B_GPIO2_IO12		0x150	/* RMII_INT - ENET_INT */
+>> +			MX8MN_IOMUXC_SD2_WP_GPIO2_IO20			0x150	/* RMII_EN - ENET_EN */
+>> +			MX8MN_IOMUXC_SD2_RESET_B_GPIO2_IO19		0x016	/* RMII_WAKE - GPIO_ENET_WAKE */
+>> +			MX8MN_IOMUXC_ENET_RD3_GPIO1_IO29		0x016	/* RMII_RESET - GPIO_ENET_RST */
+>> +		>;
+>> +	};
+>> +};
+>> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2.dts b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2.dts
+>> new file mode 100644
+>> index 000000000000..33f98582eace
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2.dts
+>> @@ -0,0 +1,48 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Copyright 2021 Collabora Ltd.
+>> + * Copyright 2021 BSH Hausgeraete GmbH
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "imx8mn-bsh-smm-s2-common.dtsi"
+>> +
+>> +/ {
+>> +	model = "BSH SMM S2";
+>> +	compatible = "bsh,imx8mn-bsh-smm-s2", "fsl,imx8mn";
+>> +
+>> +	memory@40000000 {
+>> +		device_type = "memory";
+>> +		reg = <0x0 0x40000000 0x0 0x10000000>;
+>> +	};
+>> +};
+>> +
+>> +&gpmi {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_gpmi_nand>;
+>> +	nand-on-flash-bbt;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&iomuxc {
+>> +	pinctrl_gpmi_nand: gpmi-nand {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_NAND_ALE_RAWNAND_ALE		0x00000096
+>> +			MX8MN_IOMUXC_NAND_CE0_B_RAWNAND_CE0_B		0x00000096
+>> +			MX8MN_IOMUXC_NAND_CLE_RAWNAND_CLE		0x00000096
+>> +			MX8MN_IOMUXC_NAND_DATA00_RAWNAND_DATA00		0x00000096
+>> +			MX8MN_IOMUXC_NAND_DATA01_RAWNAND_DATA01		0x00000096
+>> +			MX8MN_IOMUXC_NAND_DATA02_RAWNAND_DATA02		0x00000096
+>> +			MX8MN_IOMUXC_NAND_DATA03_RAWNAND_DATA03		0x00000096
+>> +			MX8MN_IOMUXC_NAND_DATA04_RAWNAND_DATA04		0x00000096
+>> +			MX8MN_IOMUXC_NAND_DATA05_RAWNAND_DATA05		0x00000096
+>> +			MX8MN_IOMUXC_NAND_DATA06_RAWNAND_DATA06		0x00000096
+>> +			MX8MN_IOMUXC_NAND_DATA07_RAWNAND_DATA07		0x00000096
+>> +			MX8MN_IOMUXC_NAND_RE_B_RAWNAND_RE_B		0x00000096
+>> +			MX8MN_IOMUXC_NAND_READY_B_RAWNAND_READY_B	0x00000056
+>> +			MX8MN_IOMUXC_NAND_WE_B_RAWNAND_WE_B		0x00000096
+>> +			MX8MN_IOMUXC_NAND_WP_B_RAWNAND_WP_B		0x00000096
+>> +		>;
+>> +	};
+>> +};
+>> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts
+>> new file mode 100644
+>> index 000000000000..c6a8ed6745c1
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts
+>> @@ -0,0 +1,80 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Copyright 2021 Collabora Ltd.
+>> + * Copyright 2021 BSH Hausgeraete GmbH
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "imx8mn-bsh-smm-s2-common.dtsi"
+>> +
+>> +/ {
+>> +	model = "BSH SMM S2 PRO";
+>> +	compatible = "bsh,imx8mn-bsh-smm-s2pro", "fsl,imx8mn";
+>> +
+>> +	memory@40000000 {
+>> +		device_type = "memory";
+>> +		reg = <0x0 0x40000000 0x0 0x20000000>;
+>> +	};
+>> +};
+>> +
+>> +/* eMMC */
+>> +&usdhc1 {
+>> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+>> +	pinctrl-0 = <&pinctrl_usdhc1>;
+>> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
+>> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+>> +	bus-width = <8>;
+>> +	non-removable;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&iomuxc {
+>> +	pinctrl_usdhc1: usdhc1grp {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_SD1_CLK_USDHC1_CLK			0x40000090
+>> +			MX8MN_IOMUXC_SD1_CMD_USDHC1_CMD			0x0d0
+>> +			MX8MN_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x0d0
+>> +			MX8MN_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x0d0
+>> +			MX8MN_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x0d0
+>> +			MX8MN_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x0d0
+>> +			MX8MN_IOMUXC_SD1_DATA4_USDHC1_DATA4		0x0d0
+>> +			MX8MN_IOMUXC_SD1_DATA5_USDHC1_DATA5		0x0d0
+>> +			MX8MN_IOMUXC_SD1_DATA6_USDHC1_DATA6		0x0d0
+>> +			MX8MN_IOMUXC_SD1_DATA7_USDHC1_DATA7		0x0d0
+>> +			MX8MN_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x090
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_SD1_CLK_USDHC1_CLK			0x40000094
+>> +			MX8MN_IOMUXC_SD1_CMD_USDHC1_CMD			0x0d4
+>> +			MX8MN_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x0d4
+>> +			MX8MN_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x0d4
+>> +			MX8MN_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x0d4
+>> +			MX8MN_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x0d4
+>> +			MX8MN_IOMUXC_SD1_DATA4_USDHC1_DATA4		0x0d4
+>> +			MX8MN_IOMUXC_SD1_DATA5_USDHC1_DATA5		0x0d4
+>> +			MX8MN_IOMUXC_SD1_DATA6_USDHC1_DATA6		0x0d4
+>> +			MX8MN_IOMUXC_SD1_DATA7_USDHC1_DATA7		0x0d4
+>> +			MX8MN_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x094
+>> +		>;
+>> +	};
+>> +
+>> +	pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
+>> +		fsl,pins = <
+>> +			MX8MN_IOMUXC_SD1_CLK_USDHC1_CLK			0x40000096
+>> +			MX8MN_IOMUXC_SD1_CMD_USDHC1_CMD			0x0d6
+>> +			MX8MN_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x0d6
+>> +			MX8MN_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x0d6
+>> +			MX8MN_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x0d6
+>> +			MX8MN_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x0d6
+>> +			MX8MN_IOMUXC_SD1_DATA4_USDHC1_DATA4		0x0d6
+>> +			MX8MN_IOMUXC_SD1_DATA5_USDHC1_DATA5		0x0d6
+>> +			MX8MN_IOMUXC_SD1_DATA6_USDHC1_DATA6		0x0d6
+>> +			MX8MN_IOMUXC_SD1_DATA7_USDHC1_DATA7		0x0d6
+>> +			MX8MN_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x096
+>> +		>;
+>> +	};
+>> +};
+>> -- 
+>> 2.30.2
+>>
+
 Regards,
-Robert
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Ariel
