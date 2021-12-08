@@ -2,108 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6698E46D493
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 14:44:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D04346D4A4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 14:44:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231358AbhLHNsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 08:48:02 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:39731 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbhLHNsC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 08:48:02 -0500
-Received: by mail-ot1-f50.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso2756768ots.6;
-        Wed, 08 Dec 2021 05:44:30 -0800 (PST)
+        id S234680AbhLHNsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 08:48:16 -0500
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:35713 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234640AbhLHNsL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 08:48:11 -0500
+Received: by mail-oi1-f171.google.com with SMTP id m6so4216701oim.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 05:44:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=R3u0Jcq+1B2bYajxbvWH6IM09BiTGDSY3O2hAAldlZg=;
-        b=TT308n322+aZP4foGi1c1B98n+fdEQmxiXotEa26fI2hcTzFrxQ1HzrFYo3xF1wPoT
-         S1WPkb4tSyuSj92/s4G/oXT7frgcO9VdmIa080xJTLgK2Q0DR4EK6nuFvH7uS8GGsHpS
-         FVlqlq7x9igZxMEYvtSq9LXCqjcaby26FEq3z1oHn8hJwqM/LyZLdSmVr1n4L5MBxLlf
-         0K2jwkSphDtGOwu7csaT7uWySbP6XanzoCy+61f6974bo387NfrFAQEN6MmFv3jd+VGc
-         PUwo59gOjfb7O5m/A3FL1j+EPV/8BT6k42AVSieHDuWErYVKTmGw1Aqlf3CHrdSVyMoY
-         /MYA==
-X-Gm-Message-State: AOAM530z7A1vCuur+tJJtAbQ84mlwpQvcJ+9qaoyND0n1d7pyrmzj1H9
-        vTSrPfKlCgzTcr5NQsAGuMGd//G+xw==
-X-Google-Smtp-Source: ABdhPJzEQAjqqEGZTfISEAmYosVzB9TyjiJ4GChjsHU0BlHDB8tVJohP9sTIWYNuIGclEQr55whIGA==
-X-Received: by 2002:a9d:7a8c:: with SMTP id l12mr40072823otn.84.1638971070238;
-        Wed, 08 Dec 2021 05:44:30 -0800 (PST)
+        bh=z+Kkqa49Eb0mJ9fc4D+xOUrJNAJs/6p5WWReX6xnZBw=;
+        b=nrf9yVoU3lsW16TSAqzFIl1qSSdUuxpQXL5c/GE+zX2MivLm5cXPmLB/NBZwRv74PA
+         Qlu1uH8aERrtXEpIu1XcldqYZVVQMadvbAro4IL10Z//xJvdXpcps0giPBFNhDeOQoXJ
+         1mTp1/o3bncj+VdXfGiWVlgSpzocMmjhefEr53bIRdtNNuT3ZVdON1cMv2kDohfGgpHT
+         +jwMaJGF95gyM2c4G0DQ151vMHvCT5qjtKEJD3dyEnQ0y0KAB9MXFCROjppGEidHdQ2h
+         phtYXUqf+oAmShHryR32/pB4ubiHS5dTtzncSI4NhUhTQOcRzCRZIs04FA4GU+N7OKJx
+         aULA==
+X-Gm-Message-State: AOAM532vCEN578XndJmnKsPCBdow5ZRYzvvfTtVJg/e6QMmC4l/pbUq2
+        GhfcLdjvKpKg96eDDE/jKA==
+X-Google-Smtp-Source: ABdhPJxWeCQdOf2cEzd2UfwGTxIDI0rYi6NS4badygRgF87d/iOcIHkR0rnxehYXGYuSQFVr4kapGw==
+X-Received: by 2002:a05:6808:a1b:: with SMTP id n27mr11588567oij.111.1638971078812;
+        Wed, 08 Dec 2021 05:44:38 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m12sm673427oiw.23.2021.12.08.05.44.29
+        by smtp.gmail.com with ESMTPSA id t12sm474637oor.21.2021.12.08.05.44.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 05:44:29 -0800 (PST)
-Received: (nullmailer pid 3857723 invoked by uid 1000);
+        Wed, 08 Dec 2021 05:44:38 -0800 (PST)
+Received: (nullmailer pid 3857726 invoked by uid 1000);
         Wed, 08 Dec 2021 13:44:28 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Joseph CHANG <josright123@gmail.com>
-Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>
-In-Reply-To: <20211202204656.4411-2-josright123@gmail.com>
-References: <20211202204656.4411-1-josright123@gmail.com> <20211202204656.4411-2-josright123@gmail.com>
-Subject: Re: [PATCH 1/2] yaml: Add dm9051 SPI network yaml file
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     devicetree@vger.kernel.org, suzuki.poulose@arm.com,
+        linux-arm-kernel@lists.infradead.org, mark.rutland@arm.com,
+        thierry.reding@gmail.com, will@kernel.org, robh+dt@kernel.org,
+        catalin.marinas@arm.com
+In-Reply-To: <9530f441a62c72c5a22a7b555ea42bbcd3b145a1.1638900542.git.robin.murphy@arm.com>
+References: <cover.1638900542.git.robin.murphy@arm.com> <9530f441a62c72c5a22a7b555ea42bbcd3b145a1.1638900542.git.robin.murphy@arm.com>
+Subject: Re: [PATCH 4/5] dt-bindings: perf: Convert Arm DSU to schema
 Date:   Wed, 08 Dec 2021 07:44:28 -0600
-Message-Id: <1638971068.694210.3857722.nullmailer@robh.at.kernel.org>
+Message-Id: <1638971068.709003.3857725.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Dec 2021 04:46:55 +0800, Joseph CHANG wrote:
-> For support davicom dm9051 device tree configuration
+On Tue, 07 Dec 2021 18:20:42 +0000, Robin Murphy wrote:
+> Convert the DSU binding to schema, as one does.
 > 
-> Signed-off-by: Joseph CHANG <josright123@gmail.com>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 > ---
->  .../bindings/net/davicom,dm9051.yaml          | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+>  .../devicetree/bindings/arm/arm-dsu-pmu.txt   | 27 ------------
+>  .../devicetree/bindings/perf/arm,dsu-pmu.yaml | 41 +++++++++++++++++++
+>  2 files changed, 41 insertions(+), 27 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
+>  create mode 100644 Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/davicom,dm9051.yaml:62:7: [error] no new line character at the end of file (new-line-at-end-of-file)
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/net/davicom,dm9051.example.dts:29.34-35 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/net/davicom,dm9051.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1413: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml: properties:cpus: 'minitems' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'type', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml: properties:cpus: 'maxitems' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'type', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml: ignoring, error in schema: properties: cpus
+warning: no schema found in file: ./Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
 
 doc reference errors (make refcheckdocs):
-Documentation/Makefile:39: The 'sphinx-build' command was not found. Make sure you have Sphinx installed and in PATH, or set the SPHINXBUILD make variable to point to the full path of the 'sphinx-build' executable.
 
-Detected OS: DISTRIB_ID=Ubuntu
-DISTRIB_RELEASE=20.04
-DISTRIB_CODENAME=focal
-DISTRIB_DESCRIPTION="Ubuntu 20.04.3 LTS".
-Warning: better to also install "convert".
-Warning: better to also install "dot".
-Warning: better to also install "dvipng".
-ERROR: please install "ensurepip", otherwise, build won't work.
-Warning: better to also install "fonts-dejavu".
-Warning: better to also install "fonts-noto-cjk".
-Warning: better to also install "latexmk".
-Warning: better to also install "rsvg-convert".
-Warning: better to also install "xelatex".
-You should run:
-
-	sudo apt-get install imagemagick graphviz dvipng python3-venv fonts-dejavu fonts-noto-cjk latexmk librsvg2-bin texlive-xetex
-note: If you want pdf, you need at least Sphinx 2.4.4.
-To upgrade Sphinx, use:
-
-Can't build as 2 mandatory dependencies are missing at ./scripts/sphinx-pre-install line 953.
-	/usr/bin/python3 -m venv sphinx_2.4.4
-	. sphinx_2.4.4/bin/activate
-	pip install -r ./Documentation/sphinx/requirements.txt
-
-If you want to exit the virtualenv, you can use:
-	deactivate
-
-See https://patchwork.ozlabs.org/patch/1565174
+See https://patchwork.ozlabs.org/patch/1564818
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
