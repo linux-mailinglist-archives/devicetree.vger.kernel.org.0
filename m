@@ -2,272 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9E3E46D4AE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 14:45:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8671046D497
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 14:44:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234693AbhLHNsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 08:48:24 -0500
-Received: from mail-oo1-f44.google.com ([209.85.161.44]:44879 "EHLO
-        mail-oo1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234664AbhLHNsU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 08:48:20 -0500
-Received: by mail-oo1-f44.google.com with SMTP id t9-20020a4a8589000000b002c5c4d19723so810293ooh.11;
-        Wed, 08 Dec 2021 05:44:48 -0800 (PST)
+        id S234533AbhLHNsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 08:48:07 -0500
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:35698 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229648AbhLHNsF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 08:48:05 -0500
+Received: by mail-oi1-f170.google.com with SMTP id m6so4216376oim.2;
+        Wed, 08 Dec 2021 05:44:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=bGYILhGKiOz1OwrfVDoygkYtWCyIstR2qaWFjn+VxLE=;
-        b=HRU4lKDIT/WDSvAZG+Jw6234pYrA9v9O8mXp2PrFkmbqLskq6a/r08UgVDaY6UV0Ct
-         dXN/pJy9RfO/Ss+jJDsiOqzX0f8y/qzxtdwQQc2IC/zb81jrolUNfgmymMRg/Sah7GDl
-         c0JMVckHpthgQbfsjI7MRtIdFYkof3M6i4sqwKS3OJ67NSui6ULjZcu3NI0qt6tCiOaM
-         NeLPpHgmReh6/wI7IghEg5miGi+iB/Ro4qK0/UGBuT/lDi6F+KnAJEJ0sMdnl+6bpNWk
-         2GLhFhFYCK2HRdv1fZvlyZyey08HlOo255wR4cAzpyPCLf0Zj0Szm9PVJE/rmyrHSpJt
-         kStg==
-X-Gm-Message-State: AOAM531B0dWU8TczCNansvUVSVwisuTSGtho0iMgR5fUaH0H00qOgL35
-        WOWXLrc0rO86bnOaoyzc0A==
-X-Google-Smtp-Source: ABdhPJzJYI9dabKVh7ZALOHjcahemXR4MVEdi0zmW+neS40YFgfCxk0d7/kBLE6Hg6GCMxOHsp3PTg==
-X-Received: by 2002:a4a:d1b3:: with SMTP id z19mr30579325oor.14.1638971088201;
-        Wed, 08 Dec 2021 05:44:48 -0800 (PST)
+        bh=2FBGOv0PegNkvtOMGaZYa1BsopYp6ezUI2k+MFWsRkg=;
+        b=nlLsGUpnHCqMAlLAFSY375HXjgICUEj8obcHsY6kaZ/Vx+bKE12600ErleFCALgEZ1
+         +bUxXf4Tk7NNWbuQABWIQjahI+C9wO63fdkBdxirPwT4W2yNk7ArWv55BUOb1eOG07gM
+         XJmVgmfu1I05eBUc3TOUawO4+aZDEXn5bGESflCZk39MnxZN1etnF87AV679kj0zAv2v
+         jCijUWqgeICL5YH+EezRhrnlX2LTRd0rzR7Ad3rrkrX0bPoieujVJq4p5D1ZlqLu4SLu
+         RWDDKqjlh3wlaBJM9mXsHhKvyv/xIUYqDD5uSmMPehvEstDSyG0cenyvGa3FQAA2rHJl
+         XbIg==
+X-Gm-Message-State: AOAM531+hYRQ6sn3rbnOo2Wa8YMBO1PwHNnvdNNzCKTMvGCEc95rbhCi
+        Kg5taQ2oO7Li62HVJ1Eu9dWkitZCQw==
+X-Google-Smtp-Source: ABdhPJy4QOKFBXVt9kjHp3l6spBp74LPhwun2A8oRCnVjLpYafUk8Begm5tyq5EWMDExu9pfz3il7Q==
+X-Received: by 2002:a54:4402:: with SMTP id k2mr11425020oiw.141.1638971072200;
+        Wed, 08 Dec 2021 05:44:32 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e14sm588501oie.7.2021.12.08.05.44.46
+        by smtp.gmail.com with ESMTPSA id 109sm477713otv.30.2021.12.08.05.44.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 05:44:47 -0800 (PST)
-Received: (nullmailer pid 3857732 invoked by uid 1000);
+        Wed, 08 Dec 2021 05:44:31 -0800 (PST)
+Received: (nullmailer pid 3857740 invoked by uid 1000);
         Wed, 08 Dec 2021 13:44:28 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Gwendal Grignou <gwendal@chromium.org>
-Cc:     swboyd@chromium.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, lars@metafoo.de,
-        andy.shevchenko@gmail.com, jic23@kernel.org
-In-Reply-To: <20211208004311.3098571-5-gwendal@chromium.org>
-References: <20211208004311.3098571-1-gwendal@chromium.org> <20211208004311.3098571-5-gwendal@chromium.org>
-Subject: Re: [PATCH v5 4/5] dt-bindings: iio: Add sx9324 binding
+To:     Biao Huang <biao.huang@mediatek.com>
+Cc:     Jose Abreu <joabreu@synopsys.com>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, macpaul.lin@mediatek.com,
+        netdev@vger.kernel.org, angelogioacchino.delregno@collabora.com,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        devicetree@vger.kernel.org,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+        srv_heupstream@mediatek.com, dkirjanov@suse.de,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>
+In-Reply-To: <20211208054716.603-5-biao.huang@mediatek.com>
+References: <20211208054716.603-1-biao.huang@mediatek.com> <20211208054716.603-5-biao.huang@mediatek.com>
+Subject: Re: [PATCH net-next v7 4/6] net: dt-bindings: dwmac: Convert mediatek-dwmac to DT schema
 Date:   Wed, 08 Dec 2021 07:44:28 -0600
-Message-Id: <1638971068.743379.3857731.nullmailer@robh.at.kernel.org>
+Message-Id: <1638971068.792969.3857739.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 07 Dec 2021 16:43:10 -0800, Gwendal Grignou wrote:
-> Similar to SX9310, add biddings to setup sx9324 hardware properties.
-> SX9324 is a little different, introduce 4 phases to be configured in 2
-> pairs over 3 antennas.
+On Wed, 08 Dec 2021 13:47:14 +0800, Biao Huang wrote:
+> Convert mediatek-dwmac to DT schema, and delete old mediatek-dwmac.txt.
+> And there are some changes in .yaml than .txt, others almost keep the same:
+>   1. compatible "const: snps,dwmac-4.20".
+>   2. delete "snps,reset-active-low;" in example, since driver remove this
+>      property long ago.
+>   3. add "snps,reset-delay-us = <0 10000 10000>" in example.
+>   4. the example is for rgmii interface, keep related properties only.
 > 
-> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
+> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
 > ---
-> Changes in v5:
-> - Use consistent field naming, prefixed with phX.
-> 
-> Changes in v4:
-> - Use const instead of single enum
-> - Specify ph0-pin better
-> - Recopy type information for phX-pin
-> - Fix cut and paste errors.
-> 
-> Changes in v3:
-> - Remove duplicate information.
-> - Use intervals instead of enum.
-> - Fix filter description.
-> 
-> Changes in v2:
-> - Fix interrupt documentation wording.
-> 
->  .../iio/proximity/semtech,sx9324.yaml         | 161 ++++++++++++++++++
->  1 file changed, 161 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
+>  .../bindings/net/mediatek-dwmac.txt           |  91 ----------
+>  .../bindings/net/mediatek-dwmac.yaml          | 156 ++++++++++++++++++
+>  2 files changed, 156 insertions(+), 91 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-yamllint warnings/errors:
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml: properties:semtech,ph01-proxraw-strength: 'min' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'type', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml: properties:semtech,ph01-proxraw-strength: 'max' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'type', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml: properties:semtech,ph23-proxraw-strength: 'min' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'type', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml: properties:semtech,ph23-proxraw-strength: 'max' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'type', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml: properties:semtech,avg-pos-strength: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('default', 'enum', '$ref' were unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('default', '$ref' were unexpected)
-		hint: A vendor string property with exact values has an implicit type
-	'/schemas/types.yaml#definitions/uint32' does not match 'types.yaml#/definitions/'
-		hint: A vendor property needs a $ref to types.yaml
-	0 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	16 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	64 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	128 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	256 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	512 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	1024 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	4294967295 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml: properties:semtech,ph01-proxraw-strength: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('min', 'max', 'default', '$ref' were unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml: properties:semtech,ph01-proxraw-strength: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	'/schemas/types.yaml#definitions/uint32' does not match 'types.yaml#/definitions/'
-		hint: A vendor property needs a $ref to types.yaml
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml: properties:semtech,ph23-resolution: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('default', 'enum', '$ref' were unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('default', '$ref' were unexpected)
-		hint: A vendor string property with exact values has an implicit type
-	'/schemas/types.yaml#definitions/uint32' does not match 'types.yaml#/definitions/'
-		hint: A vendor property needs a $ref to types.yaml
-	8 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	16 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	32 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	64 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	128 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	256 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	512 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	1024 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml: properties:semtech,ph23-proxraw-strength: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('min', 'max', 'default', '$ref' were unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml: properties:semtech,ph23-proxraw-strength: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	'/schemas/types.yaml#definitions/uint32' does not match 'types.yaml#/definitions/'
-		hint: A vendor property needs a $ref to types.yaml
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml: properties:semtech,ph01-resolution: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('default', 'enum', '$ref' were unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('default', '$ref' were unexpected)
-		hint: A vendor string property with exact values has an implicit type
-	'/schemas/types.yaml#definitions/uint32' does not match 'types.yaml#/definitions/'
-		hint: A vendor property needs a $ref to types.yaml
-	8 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	16 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	32 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	64 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	128 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	256 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	512 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	1024 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml: properties:semtech,startup-sensor: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('default', 'enum', '$ref' were unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('default', '$ref' were unexpected)
-		hint: A vendor string property with exact values has an implicit type
-	'/schemas/types.yaml#definitions/uint32' does not match 'types.yaml#/definitions/'
-		hint: A vendor property needs a $ref to types.yaml
-	0 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	1 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	2 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	3 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml: ignoring, error in schema: properties: semtech,ph23-proxraw-strength
-warning: no schema found in file: ./Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-Error: Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.example.dts:31.33-34 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1413: dt_binding_check] Error 2
+Full log is available here: https://patchwork.ozlabs.org/patch/1565082
 
-doc reference errors (make refcheckdocs):
-Documentation/Makefile:39: The 'sphinx-build' command was not found. Make sure you have Sphinx installed and in PATH, or set the SPHINXBUILD make variable to point to the full path of the 'sphinx-build' executable.
 
-Detected OS: DISTRIB_ID=Ubuntu
-DISTRIB_RELEASE=20.04
-DISTRIB_CODENAME=focal
-DISTRIB_DESCRIPTION="Ubuntu 20.04.3 LTS".
-Warning: better to also install "convert".
-Warning: better to also install "dot".
-Warning: better to also install "dvipng".
-ERROR: please install "ensurepip", otherwise, build won't work.
-Warning: better to also install "fonts-dejavu".
-Warning: better to also install "fonts-noto-cjk".
-Warning: better to also install "latexmk".
-Warning: better to also install "rsvg-convert".
-Warning: better to also install "xelatex".
-You should run:
+ethernet@1101c000: clock-names: ['axi', 'apb', 'mac_main', 'ptp_ref'] is too short
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
 
-	sudo apt-get install imagemagick graphviz dvipng python3-venv fonts-dejavu fonts-noto-cjk latexmk librsvg2-bin texlive-xetex
-note: If you want pdf, you need at least Sphinx 2.4.4.
-To upgrade Sphinx, use:
+ethernet@1101c000: clocks: [[27, 34], [27, 37], [6, 154], [6, 155]] is too short
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
 
-Can't build as 2 mandatory dependencies are missing at ./scripts/sphinx-pre-install line 953.
-	/usr/bin/python3 -m venv sphinx_2.4.4
-	. sphinx_2.4.4/bin/activate
-	pip install -r ./Documentation/sphinx/requirements.txt
+ethernet@1101c000: compatible: ['mediatek,mt2712-gmac'] does not contain items matching the given schema
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
 
-If you want to exit the virtualenv, you can use:
-	deactivate
+ethernet@1101c000: compatible: 'oneOf' conditional failed, one must be fixed:
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
 
-See https://patchwork.ozlabs.org/patch/1565029
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+ethernet@1101c000: Unevaluated properties are not allowed ('compatible', 'reg', 'interrupts', 'interrupt-names', 'mac-address', 'clock-names', 'clocks', 'power-domains', 'snps,axi-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,txpbl', 'snps,rxpbl', 'clk_csr', 'phy-mode', 'phy-handle', 'snps,reset-gpio', 'mdio' were unexpected)
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
 
