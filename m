@@ -2,289 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA43546C988
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 01:45:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B93746C997
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 01:52:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229879AbhLHAsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 19:48:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50252 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238352AbhLHAqy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 19:46:54 -0500
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31414C061574
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 16:43:23 -0800 (PST)
-Received: by mail-pf1-x430.google.com with SMTP id g19so962361pfb.8
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 16:43:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=4F4EbPUt7EtrJJvibYxN3NdN+PNF9DLnCpFTCxD5lMk=;
-        b=TOb3TU7cQ7ks/8I6a4VY/xCwzY3O6iBur9qrMeefpyW0NwKWPaKUN2Iv0UzvfGf3Ax
-         2LosrpgM9Wfk0tX+Csx8fBrsCBEP2onoYGyOCJ6B+6KuOHAW9wihYpxrN1z2ohRwcL+b
-         N70NcNL1Muxv6NS6ALj+JnCHQVk8g7kumcAm4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4F4EbPUt7EtrJJvibYxN3NdN+PNF9DLnCpFTCxD5lMk=;
-        b=rriAB0auV5FcyAr53gVLQl+ILy/HuNiqgVBYvX4F4dSIEc8G769bh+ziCc3/500Inu
-         XicDNoTfGZ2N9cVGYUpirw30BwqSIHV6DPZjpdi61LRT0vxCFayM6bD9Xjb22DFL9l7j
-         0uAHkJoL2kt4Hdk1ijQCXh2enJTFXs0kBOtYUQNsupCXn2f57SoQ+E8oUKaerfpH6xeh
-         zgULKzxsi5Nko9cNsgqvPBIA4uXxGovCYmbjz1lJrAs0n9lfGzTpJ143BPyvpR8vuZ8T
-         MYpbmVK2GsDYOxtrgYHgTthJF3OZ7ilHee0ALhaXBXZH89tczPsFl2B07gdtU749XXvv
-         dxYQ==
-X-Gm-Message-State: AOAM531MZ+yR9GdtdbwpnfqPABNTEmu19ax0yVBxADd/079f+XISkKFI
-        0hCat+fslf8SIwWQENXarWxTYQ==
-X-Google-Smtp-Source: ABdhPJwGazY7VJWo2081XvR+Gz4S9zmg3+jXf+CQgckWYpuF3RlOYXpVTPIRVE8eXX20zIJBWvLvsA==
-X-Received: by 2002:a63:2a8a:: with SMTP id q132mr26588624pgq.23.1638924202728;
-        Tue, 07 Dec 2021 16:43:22 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:e4:362a:40f4:7f9f])
-        by smtp.gmail.com with UTF8SMTPSA id e4sm627490pgi.21.2021.12.07.16.43.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Dec 2021 16:43:22 -0800 (PST)
-From:   Gwendal Grignou <gwendal@chromium.org>
-To:     jic23@kernel.org, lars@metafoo.de, swboyd@chromium.org
-Cc:     andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, Gwendal Grignou <gwendal@chromium.org>
-Subject: [PATCH v5 5/5] iio: sx9324: Add dt_binding support
-Date:   Tue,  7 Dec 2021 16:43:11 -0800
-Message-Id: <20211208004311.3098571-6-gwendal@chromium.org>
-X-Mailer: git-send-email 2.34.1.400.ga245620fadb-goog
-In-Reply-To: <20211208004311.3098571-1-gwendal@chromium.org>
-References: <20211208004311.3098571-1-gwendal@chromium.org>
+        id S238750AbhLHAzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 19:55:53 -0500
+Received: from mga01.intel.com ([192.55.52.88]:30546 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234627AbhLHAzx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Dec 2021 19:55:53 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="261799135"
+X-IronPort-AV: E=Sophos;i="5.87,295,1631602800"; 
+   d="scan'208";a="261799135"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2021 16:52:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,295,1631602800"; 
+   d="scan'208";a="749253709"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by fmsmga006.fm.intel.com with ESMTP; 07 Dec 2021 16:52:19 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mulBy-000NA6-NP; Wed, 08 Dec 2021 00:52:18 +0000
+Date:   Wed, 8 Dec 2021 08:51:58 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Joel Stanley <joel@jms.id.au>, linux-kernel@vger.kernel.org,
+        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
+Subject: Re: [PATCH v2 5/8] pinctrl: nuvoton: Add driver for WPCM450
+Message-ID: <202112080810.lGBV2yEm-lkp@intel.com>
+References: <20211207210823.1975632-6-j.neuschaefer@gmx.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211207210823.1975632-6-j.neuschaefer@gmx.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Based on bindings/iio/proximity/semtech,sx9324.yaml, implement
-retrieving sensor hardware property and alter default values.
+Hi "Jonathan,
 
-Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
+I love your patch! Perhaps something to improve:
+
+[auto build test WARNING on linusw-pinctrl/devel]
+[also build test WARNING on robh/for-next linus/master v5.16-rc4 next-20211207]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Jonathan-Neusch-fer/Nuvoton-WPCM450-pinctrl-and-GPIO-driver/20211208-051101
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
+config: h8300-randconfig-r024-20211207 (https://download.01.org/0day-ci/archive/20211208/202112080810.lGBV2yEm-lkp@intel.com/config)
+compiler: h8300-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/c08fb0aafb60234854aa86433da809fe5112f55e
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Jonathan-Neusch-fer/Nuvoton-WPCM450-pinctrl-and-GPIO-driver/20211208-051101
+        git checkout c08fb0aafb60234854aa86433da809fe5112f55e
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=h8300 SHELL=/bin/bash drivers/pinctrl/nuvoton/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/linux/device.h:15,
+                    from drivers/pinctrl/nuvoton/pinctrl-npcm7xx.c:5:
+   drivers/pinctrl/nuvoton/pinctrl-npcm7xx.c: In function 'npcm7xx_get_groups_count':
+>> drivers/pinctrl/nuvoton/pinctrl-npcm7xx.c:1564:28: warning: format '%d' expects argument of type 'int', but argument 4 has type 'long unsigned int' [-Wformat=]
+    1564 |         dev_dbg(npcm->dev, "group size: %d\n", ARRAY_SIZE(npcm7xx_groups));
+         |                            ^~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:129:41: note: in definition of macro 'dev_printk'
+     129 |                 _dev_printk(level, dev, fmt, ##__VA_ARGS__);            \
+         |                                         ^~~
+   include/linux/dev_printk.h:158:37: note: in expansion of macro 'dev_fmt'
+     158 |         dev_printk(KERN_DEBUG, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                     ^~~~~~~
+   drivers/pinctrl/nuvoton/pinctrl-npcm7xx.c:1564:9: note: in expansion of macro 'dev_dbg'
+    1564 |         dev_dbg(npcm->dev, "group size: %d\n", ARRAY_SIZE(npcm7xx_groups));
+         |         ^~~~~~~
+   drivers/pinctrl/nuvoton/pinctrl-npcm7xx.c:1564:42: note: format string is defined here
+    1564 |         dev_dbg(npcm->dev, "group size: %d\n", ARRAY_SIZE(npcm7xx_groups));
+         |                                         ~^
+         |                                          |
+         |                                          int
+         |                                         %ld
+
+
+vim +1564 drivers/pinctrl/nuvoton/pinctrl-npcm7xx.c
+
+3b588e43ee5c7a Tomer Maimon 2018-08-08  1559  
+3b588e43ee5c7a Tomer Maimon 2018-08-08  1560  static int npcm7xx_get_groups_count(struct pinctrl_dev *pctldev)
+3b588e43ee5c7a Tomer Maimon 2018-08-08  1561  {
+3b588e43ee5c7a Tomer Maimon 2018-08-08  1562  	struct npcm7xx_pinctrl *npcm = pinctrl_dev_get_drvdata(pctldev);
+3b588e43ee5c7a Tomer Maimon 2018-08-08  1563  
+3b588e43ee5c7a Tomer Maimon 2018-08-08 @1564  	dev_dbg(npcm->dev, "group size: %d\n", ARRAY_SIZE(npcm7xx_groups));
+3b588e43ee5c7a Tomer Maimon 2018-08-08  1565  	return ARRAY_SIZE(npcm7xx_groups);
+3b588e43ee5c7a Tomer Maimon 2018-08-08  1566  }
+3b588e43ee5c7a Tomer Maimon 2018-08-08  1567  
+
 ---
-Changes in v5:
-- Use prefixed binding names.
-- Fix long lines.
-
-Changes in v4:
-- Fix spelling in commit title.
-
-Changes in v3:
-- Remove duplicate information.
-- Use intervals instead of enum.
-- Fix filter description.
-
-Changes in v2:
-- Fix interrupt documentation wording.
-
- drivers/iio/proximity/sx9324.c | 164 +++++++++++++++++++++++++++++++++
- 1 file changed, 164 insertions(+)
-
-diff --git a/drivers/iio/proximity/sx9324.c b/drivers/iio/proximity/sx9324.c
-index a27aae64e6d4e1..86b7c83ea644e8 100644
---- a/drivers/iio/proximity/sx9324.c
-+++ b/drivers/iio/proximity/sx9324.c
-@@ -77,6 +77,7 @@
- #define SX9324_REG_PROX_CTRL0		0x30
- #define SX9324_REG_PROX_CTRL0_GAIN_MASK	GENMASK(5, 3)
- #define SX9324_REG_PROX_CTRL0_GAIN_1		0x80
-+#define SX9324_REG_PROX_CTRL0_RAWFILT_MASK	GENMASK(2, 0)
- #define SX9324_REG_PROX_CTRL0_RAWFILT_1P50	0x01
- #define SX9324_REG_PROX_CTRL1		0x31
- #define SX9324_REG_PROX_CTRL2		0x32
-@@ -751,6 +752,74 @@ static int sx9324_write_raw(struct iio_dev *indio_dev,
- 	return -EINVAL;
- }
- 
-+static const struct sx_common_reg_default sx9324_default_regs[] = {
-+	{ SX9324_REG_IRQ_MSK, 0x00 },
-+	{ SX9324_REG_IRQ_CFG0, 0x00 },
-+	{ SX9324_REG_IRQ_CFG1, SX9324_REG_IRQ_CFG1_FAILCOND },
-+	{ SX9324_REG_IRQ_CFG2, 0x00 },
-+	{ SX9324_REG_GNRL_CTRL0, SX9324_REG_GNRL_CTRL0_SCANPERIOD_100MS },
-+	/*
-+	 * The lower 4 bits should not be set as it enable sensors measurements.
-+	 * Turning the detection on before the configuration values are set to
-+	 * good values can cause the device to return erroneous readings.
-+	 */
-+	{ SX9324_REG_GNRL_CTRL1, SX9324_REG_GNRL_CTRL1_PAUSECTRL },
-+
-+	{ SX9324_REG_AFE_CTRL0, 0x00 },
-+	{ SX9324_REG_AFE_CTRL3, 0x00 },
-+	{ SX9324_REG_AFE_CTRL4, SX9324_REG_AFE_CTRL4_FREQ_83_33HZ |
-+		SX9324_REG_AFE_CTRL4_RES_100 },
-+	{ SX9324_REG_AFE_CTRL6, 0x00 },
-+	{ SX9324_REG_AFE_CTRL7, SX9324_REG_AFE_CTRL4_FREQ_83_33HZ |
-+		SX9324_REG_AFE_CTRL4_RES_100 },
-+
-+	/* TODO(gwendal): PHx use chip default or all grounded? */
-+	{ SX9324_REG_AFE_PH0, 0x29 },
-+	{ SX9324_REG_AFE_PH1, 0x26 },
-+	{ SX9324_REG_AFE_PH2, 0x1a },
-+	{ SX9324_REG_AFE_PH3, 0x16 },
-+
-+	{ SX9324_REG_AFE_CTRL8, SX9324_REG_AFE_CTRL8_RESFILTN_4KOHM },
-+	{ SX9324_REG_AFE_CTRL9, SX9324_REG_AFE_CTRL9_AGAIN_1 },
-+
-+	{ SX9324_REG_PROX_CTRL0, SX9324_REG_PROX_CTRL0_GAIN_1 |
-+		SX9324_REG_PROX_CTRL0_RAWFILT_1P50 },
-+	{ SX9324_REG_PROX_CTRL1, SX9324_REG_PROX_CTRL0_GAIN_1 |
-+		SX9324_REG_PROX_CTRL0_RAWFILT_1P50 },
-+	{ SX9324_REG_PROX_CTRL2, SX9324_REG_PROX_CTRL2_AVGNEG_THRESH_16K },
-+	{ SX9324_REG_PROX_CTRL3, SX9324_REG_PROX_CTRL3_AVGDEB_2SAMPLES |
-+		SX9324_REG_PROX_CTRL3_AVGPOS_THRESH_16K },
-+	{ SX9324_REG_PROX_CTRL4, SX9324_REG_PROX_CTRL4_AVGNEG_FILT_2 |
-+		SX9324_REG_PROX_CTRL3_AVGPOS_FILT_256 },
-+	{ SX9324_REG_PROX_CTRL5, 0x00 },
-+	{ SX9324_REG_PROX_CTRL6, SX9324_REG_PROX_CTRL6_PROXTHRESH_32 },
-+	{ SX9324_REG_PROX_CTRL7, SX9324_REG_PROX_CTRL6_PROXTHRESH_32 },
-+	{ SX9324_REG_ADV_CTRL0, 0x00 },
-+	{ SX9324_REG_ADV_CTRL1, 0x00 },
-+	{ SX9324_REG_ADV_CTRL2, 0x00 },
-+	{ SX9324_REG_ADV_CTRL3, 0x00 },
-+	{ SX9324_REG_ADV_CTRL4, 0x00 },
-+	{ SX9324_REG_ADV_CTRL5, SX9324_REG_ADV_CTRL5_STARTUP_SENSOR_1 |
-+		SX9324_REG_ADV_CTRL5_STARTUP_METHOD_1 },
-+	{ SX9324_REG_ADV_CTRL6, 0x00 },
-+	{ SX9324_REG_ADV_CTRL7, 0x00 },
-+	{ SX9324_REG_ADV_CTRL8, 0x00 },
-+	{ SX9324_REG_ADV_CTRL9, 0x00 },
-+	/* Body/Table threshold */
-+	{ SX9324_REG_ADV_CTRL10, 0x00 },
-+	{ SX9324_REG_ADV_CTRL11, 0x00 },
-+	{ SX9324_REG_ADV_CTRL12, 0x00 },
-+	/* TODO(gwendal): SAR currenly disabled */
-+	{ SX9324_REG_ADV_CTRL13, 0x00 },
-+	{ SX9324_REG_ADV_CTRL14, 0x00 },
-+	{ SX9324_REG_ADV_CTRL15, 0x00 },
-+	{ SX9324_REG_ADV_CTRL16, 0x00 },
-+	{ SX9324_REG_ADV_CTRL17, 0x00 },
-+	{ SX9324_REG_ADV_CTRL18, 0x00 },
-+	{ SX9324_REG_ADV_CTRL19, SX9324_REG_ADV_CTRL19_HIGHT_FAILURE_THRESH_SATURATION },
-+	{ SX9324_REG_ADV_CTRL20, SX9324_REG_ADV_CTRL19_HIGHT_FAILURE_THRESH_SATURATION },
-+};
-+
- /* Activate all channels and perform an initial compensation. */
- static int sx9324_init_compensation(struct iio_dev *indio_dev)
- {
-@@ -775,6 +844,99 @@ static int sx9324_init_compensation(struct iio_dev *indio_dev)
- 	return ret;
- }
- 
-+static const struct sx_common_reg_default *
-+sx9324_get_default_reg(struct device *dev, int idx,
-+		       struct sx_common_reg_default *reg_def)
-+{
-+#define SX9324_PIN_DEF "semtech,ph0-pin"
-+#define SX9324_RESOLUTION_DEF "semtech,ph01-resolution"
-+#define SX9324_PROXRAW_DEF "semtech,ph01-proxraw-strength"
-+	unsigned int pin_defs[SX9324_NUM_PINS];
-+	char prop[] = SX9324_PROXRAW_DEF;
-+	u32 start = 0, raw = 0, pos = 0;
-+	int ret, count, ph, pin;
-+
-+	memcpy(reg_def, &sx9324_default_regs[idx], sizeof(*reg_def));
-+	switch (reg_def->reg) {
-+	case SX9324_REG_AFE_PH0:
-+	case SX9324_REG_AFE_PH1:
-+	case SX9324_REG_AFE_PH2:
-+	case SX9324_REG_AFE_PH3:
-+		ph = reg_def->reg - SX9324_REG_AFE_PH0;
-+		scnprintf(prop, ARRAY_SIZE(prop), "semtech,ph%d-pin", ph);
-+
-+		count = device_property_count_u32(dev, prop);
-+		if (count != ARRAY_SIZE(pin_defs))
-+			break;
-+		ret = device_property_read_u32_array(dev, prop, pin_defs,
-+						     ARRAY_SIZE(pin_defs));
-+		for (pin = 0; pin < SX9324_NUM_PINS; pin++)
-+			raw |= (pin_defs[pin] << (2 * pin)) &
-+			       SX9324_REG_AFE_PH0_PIN_MASK(pin);
-+		reg_def->def = raw;
-+		break;
-+	case SX9324_REG_AFE_CTRL4:
-+	case SX9324_REG_AFE_CTRL7:
-+		if (reg_def->reg == SX9324_REG_AFE_CTRL4)
-+			strncpy(prop, "semtech,ph01-resolution",
-+				ARRAY_SIZE(prop));
-+		else
-+			strncpy(prop, "semtech,ph23-resolution",
-+				ARRAY_SIZE(prop));
-+
-+		ret = device_property_read_u32(dev, prop, &raw);
-+		if (ret)
-+			break;
-+
-+		raw = ilog2(raw) - 3;
-+
-+		reg_def->def &= ~SX9324_REG_AFE_CTRL4_RESOLUTION_MASK;
-+		reg_def->def |= FIELD_PREP(SX9324_REG_AFE_CTRL4_RESOLUTION_MASK,
-+					   raw);
-+		break;
-+	case SX9324_REG_ADV_CTRL5:
-+		ret = device_property_read_u32(dev, "semtech,startup-sensor",
-+					       &start);
-+		if (ret)
-+			break;
-+
-+		reg_def->def &= ~SX9324_REG_ADV_CTRL5_STARTUPSENS_MASK;
-+		reg_def->def |= FIELD_PREP(SX9324_REG_ADV_CTRL5_STARTUPSENS_MASK,
-+					   start);
-+		break;
-+	case SX9324_REG_PROX_CTRL4:
-+		ret = device_property_read_u32(dev, "semtech,avg-pos-strength",
-+					       &pos);
-+		if (ret)
-+			break;
-+
-+		/* Powers of 2, except for a gap between 16 and 64 */
-+		raw = clamp(ilog2(pos), 3, 11) - (pos >= 32 ? 4 : 3);
-+
-+		reg_def->def &= ~SX9324_REG_PROX_CTRL4_AVGPOSFILT_MASK;
-+		reg_def->def |= FIELD_PREP(SX9324_REG_PROX_CTRL4_AVGPOSFILT_MASK,
-+					   raw);
-+		break;
-+	case SX9324_REG_PROX_CTRL0:
-+	case SX9324_REG_PROX_CTRL1:
-+		if (reg_def->reg == SX9324_REG_PROX_CTRL0)
-+			strncpy(prop, "semtech,ph01-proxraw-strength",
-+				ARRAY_SIZE(prop));
-+		else
-+			strncpy(prop, "semtech,ph23-proxraw-strength",
-+				ARRAY_SIZE(prop));
-+		ret = device_property_read_u32(dev, prop, &raw);
-+		if (ret)
-+			break;
-+
-+		reg_def->def &= ~SX9324_REG_PROX_CTRL0_RAWFILT_MASK;
-+		reg_def->def |= FIELD_PREP(SX9324_REG_PROX_CTRL0_RAWFILT_MASK,
-+					   raw);
-+		break;
-+	}
-+	return reg_def;
-+}
-+
- static int sx9324_check_whoami(struct device *dev,
- 			       struct iio_dev *indio_dev)
- {
-@@ -795,12 +957,14 @@ static const struct sx_common_chip_info sx9324_chip_info = {
- 	.mask_enable_chan = SX9324_REG_GNRL_CTRL1_PHEN_MASK,
- 	.irq_msk_offset = 3,
- 	.num_channels = SX9324_NUM_CHANNELS,
-+	.num_default_regs = ARRAY_SIZE(sx9324_default_regs),
- 
- 	.ops = {
- 		.read_prox_data = sx9324_read_prox_data,
- 		.check_whoami = sx9324_check_whoami,
- 		.init_compensation = sx9324_init_compensation,
- 		.wait_for_sample = sx9324_wait_for_sample,
-+		.get_default_reg = sx9324_get_default_reg,
- 	},
- 
- 	.iio_channels = sx9324_channels,
--- 
-2.34.1.400.ga245620fadb-goog
-
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
