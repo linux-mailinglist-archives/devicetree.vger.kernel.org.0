@@ -2,157 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0F2746D142
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 11:45:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C668B46D150
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 11:48:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbhLHKt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 05:49:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45172 "EHLO
+        id S231861AbhLHKvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 05:51:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbhLHKt1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 05:49:27 -0500
-Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B49C0617A1
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 02:45:55 -0800 (PST)
-Received: by mail-ua1-x92e.google.com with SMTP id l24so3934910uak.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 02:45:55 -0800 (PST)
+        with ESMTP id S231862AbhLHKvu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 05:51:50 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D74EBC061A72
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 02:48:18 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id v15so3305243ljc.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 02:48:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=/r6Dv/N7sjx+bdz8SBfuwnr1RHZrgVW/J013I8U9x04=;
-        b=kqpTzFcpDLa+L+CfslxnwWddQibBmhRZXFxvkDULtr5SJGg/AqPmo5t8/GXQGfWq+W
-         D+vsfikzO/R7omHoURsl8SnVEw4FDgblW/Nq0cTkrXl2Li+DlBR8BeJ0UjA0hfF1baNO
-         2CbS6pROiu9yJRUMVJcRh8gPa1lWiiLFdKhMXI/Imvimz+4a9G2Oc+CTw4VGA2A1YQzl
-         I8edQOEjgcfYlI+1Gp8IfDh0/gv5V0wEJ7KSBKIDYGFJgvZv0hl2h3YTI8ET8BjVrAXM
-         ZxdTsc6TaGDYRVL0clyiIjkpEWHIhRyWhCOGsqNzO38cg6BrgvUjhFV2ZE46fhfGRr3T
-         oqUA==
+        bh=E62B7WGzX8nf4wabBN3Nuyo8QyNx1GyQDY+Jwu7/Il0=;
+        b=KIQR0nZenE6WiBwGcCP6vJ0l75O11bgeJJNpP3vZMnAUqwhO8tlOLDS1lu4f04muiu
+         LB8koX9b1hTnsC/rPf08wfBN6J8H4T2YBlb834pNCZFRULw+q08j4hk1RInoX36kQO5S
+         rb9fmIROHpiJWsLVFwCfCZfJszXYxHNHw+0Oq0Fo5+nWgAztO7VcXfcD35XLOd8jinSx
+         FOgAeyW9y+5LWhdatDM/JhSGvqzAyjIWPUs6CzeJYHrCoC0Tjcy/GJ0fngcs9EVwtT/B
+         6Q8g8UhNDxe0N7WcQvfVUzdEyXOTS94E7gMkyO8gZ8S9rRXBrT1UgkqyfenpDmNIiUey
+         avMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=/r6Dv/N7sjx+bdz8SBfuwnr1RHZrgVW/J013I8U9x04=;
-        b=nagilXtb/RUZkzFmJ1NWB8hxa2ZTVUUaAstF6zbr9mDlbtHqckiMW0SAlovtDNg0mq
-         Pgfzx2hWJFWqJr0GKPQ5FYviTE9+dqaG5mAZQ9wyw3Yhi1x3Wo9E2bbWe7LDOOche9IF
-         wdZm7wrN3uimOw7YvyL3cf1zGyGliLRGof3G+jU/47KNKJRJHj2qY54g9oH98M3B7Z0w
-         yRWeeQ3q1WMIuZ6/3Ih2AOam9VNIrQvBAQV2Dl3cbmnz2d76mDzXTTItpUbdiP+nQlPW
-         8YRMnKRg0JkrngoP32iWNSftmYLPpIes2xRhMg34Itt1SlIgRZ+F1SY2JSPEx9SaISUH
-         sElg==
-X-Gm-Message-State: AOAM533p3BLDJnUWHS3GPinIQsswc7EcFYDjvmpwabS/wSA6W+ukAI4/
-        iMx1iNpBAwCFPDjLW42kai0i4BNFO1p5H6TNdd/UAQ==
-X-Google-Smtp-Source: ABdhPJwEqgwHp9fBL0Ka1YyTVXJEg1K8ymi3U5TF0WZlUtAyDHkKDuzEEXMhA04java4DL+Ds36B1OPNYlQHNBZM6Wk=
-X-Received: by 2002:a05:6102:f10:: with SMTP id v16mr53676115vss.86.1638960354687;
- Wed, 08 Dec 2021 02:45:54 -0800 (PST)
+        bh=E62B7WGzX8nf4wabBN3Nuyo8QyNx1GyQDY+Jwu7/Il0=;
+        b=MLGeAqiq+ijM9zAg+idWZmSenYkO966J75yzPGeYpR6hHjywuX7oG8uavedDuV6gs2
+         FswXIMQ5NcEVf5TwInN12FqCNzPXBHH4DJ/uX+XxlNX/6Fr7aIepIFsRb5QmWsFPydHZ
+         renKfwPkcCrwoZv8RtAguu0nNffJLSFarV7vmpf6txwFgrygjJAZ2FVgfWNJN+28PHtT
+         eWEGxu9/kTl+Eog+0ajq3N5DjTjS906xofb5W5oUe30gv7P3Hc9cNR7oStM44iciQDZ0
+         cYEWPrWqoII3IRlGdoIQo2KmiNauAkQ9LrqFOKoNL8UkQBn/8Cydoczr76KkwOiRjJbl
+         dd6A==
+X-Gm-Message-State: AOAM530yO7JMRAEjg0Il01zJBZ4TSvl+1p5a2SZu/2qI47U3scn+Eqwa
+        SXPtAinimZ8YYXfxLGrdmFXYQPMti+pJ8ZU3OUw9KQ==
+X-Google-Smtp-Source: ABdhPJzXfR8qOAF/m2qhhgl5Acc3CRElQWGZIWAeKDmrdGuMwdUITXnr9Tae73rE3jghR+UE+v0pecgM4kb5GiRKDcI=
+X-Received: by 2002:a2e:80c3:: with SMTP id r3mr49750019ljg.4.1638960496893;
+ Wed, 08 Dec 2021 02:48:16 -0800 (PST)
 MIME-Version: 1.0
-References: <CGME20211208092527epcas2p28f6688d5a2742c03cf474d8b2fa773cd@epcas2p2.samsung.com>
- <20211208091853.8557-1-chanho61.park@samsung.com>
-In-Reply-To: <20211208091853.8557-1-chanho61.park@samsung.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Wed, 8 Dec 2021 12:45:43 +0200
-Message-ID: <CAPLW+4m_NBisjR5s_a-HUS8cwnpkAPVAAG--o65fKj9Njmo==g@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: exynosautov9: convert serial_0 for USI
-To:     Chanho Park <chanho61.park@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+References: <20211204061042.1248028-1-Mr.Bossman075@gmail.com> <20211204061042.1248028-11-Mr.Bossman075@gmail.com>
+In-Reply-To: <20211204061042.1248028-11-Mr.Bossman075@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 8 Dec 2021 11:47:40 +0100
+Message-ID: <CAPDyKFrgfqCbWh6BjSn-dM=pVf+eCGwWfQ9r0Y32hXahd=GnWw@mail.gmail.com>
+Subject: Re: [PATCH v4 10/13] dt-bindings: mmc: fsl-imx-esdhc: add i.MXRT
+ compatible string
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     linux-imx@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        Kernel@pengutronix.de, festevam@gmail.com, aisheng.dong@nxp.com,
+        stefan@agner.ch, linus.walleij@linaro.org,
+        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
+        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
+        adrian.hunter@intel.com, jirislaby@kernel.org,
+        giulio.benetti@benettiengineering.com,
+        nobuhiro1.iwamatsu@toshiba.co.jp, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 8 Dec 2021 at 11:25, Chanho Park <chanho61.park@samsung.com> wrote:
+On Sat, 4 Dec 2021 at 07:11, Jesse Taube <mr.bossman075@gmail.com> wrote:
 >
-> According to USI v2 driver change[1], serial_0 node should be converted to
-> use the USI node hierarchy. syscon_peric0 will be used as a syscon node
-> to control the USI00_USI_SW_CONF register.
-> This also changes the serial node name from uart@ to serial@.
+> From: Jesse Taube <mr.bossman075@gmail.com>
 >
-> [1]: https://lore.kernel.org/linux-samsung-soc/20211204195757.8600-2-semen.protsenko@linaro.org/
+> Add i.MXRT documentation for compatible string.
 >
-> Cc: Sam Protsenko <semen.protsenko@linaro.org>
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+No need to resend this, it's already been applied.
+
+Kind regards
+Uffe
+
+
+
 > ---
-
-Thanks for helping us out!
-
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-
-> Change from v1:
-> - Put usi_0 node alphabetically in sadk.dts
+> V1->V2:
+> * Nothing done
+> V2->V3:
+> * Rename imxrt to imxrt1050
+> V3->V4:
+> * Nothing done
+> ---
+>  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 >
->  .../boot/dts/exynos/exynosautov9-sadk.dts     |  4 +++
->  arch/arm64/boot/dts/exynos/exynosautov9.dtsi  | 36 ++++++++++++++-----
->  2 files changed, 32 insertions(+), 8 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-> index ef46d7aa6e28..57518cb5e8c4 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-> @@ -54,3 +54,7 @@ &ufs_0 {
->         vcc-supply = <&ufs_0_fixed_vcc_reg>;
->         vcc-fixed-regulator;
->  };
-> +
-> +&usi_0 {
-> +       status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> index a960c0bc2dba..de8fcb82eaec 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> @@ -7,6 +7,7 @@
->   */
->
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/soc/samsung,exynos-usi.h>
->
->  / {
->         compatible = "samsung,exynosautov9";
-> @@ -256,16 +257,35 @@ syscon_fsys2: syscon@17c20000 {
->                         reg = <0x17c20000 0x1000>;
->                 };
->
-> -               /* USI: UART */
-> -               serial_0: uart@10300000 {
-> -                       compatible = "samsung,exynos850-uart";
-> -                       reg = <0x10300000 0x100>;
-> -                       interrupts = <GIC_SPI 345 IRQ_TYPE_LEVEL_HIGH>;
-> -                       pinctrl-names = "default";
-> -                       pinctrl-0 = <&uart0_bus_dual>;
-> +               syscon_peric0: syscon@10220000 {
-> +                       compatible = "samsung,exynosautov9-sysreg", "syscon";
-> +                       reg = <0x10220000 0x2000>;
-> +               };
-> +
-> +               usi_0: usi@103000c0 {
-> +                       compatible = "samsung,exynos850-usi";
-> +                       reg = <0x103000c0 0x20>;
-> +                       samsung,sysreg = <&syscon_peric0 0x1000>;
-> +                       samsung,mode = <USI_V2_UART>;
-> +                       samsung,clkreq-on; /* needed for UART mode */
-> +                       #address-cells = <1>;
-> +                       #size-cells = <1>;
-> +                       ranges;
->                         clocks = <&uart_clock>, <&uart_clock>;
-> -                       clock-names = "uart", "clk_uart_baud0";
-> +                       clock-names = "pclk", "ipclk";
->                         status = "disabled";
-> +
-> +                       /* USI: UART */
-> +                       serial_0: serial@10300000 {
-> +                               compatible = "samsung,exynos850-uart";
-> +                               reg = <0x10300000 0xc0>;
-> +                               interrupts = <GIC_SPI 345 IRQ_TYPE_LEVEL_HIGH>;
-> +                               pinctrl-names = "default";
-> +                               pinctrl-0 = <&uart0_bus_dual>;
-> +                               clocks = <&uart_clock>, <&uart_clock>;
-> +                               clock-names = "uart", "clk_uart_baud0";
-> +                               status = "disabled";
-> +                       };
->                 };
->
->                 ufs_0_phy: ufs0-phy@17e04000 {
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> index 19621a2f8beb..0912055b4089 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> @@ -34,6 +34,7 @@ properties:
+>            - fsl,imx6ull-usdhc
+>            - fsl,imx7d-usdhc
+>            - fsl,imx7ulp-usdhc
+> +          - fsl,imxrt1050-usdhc
+>            - nxp,s32g2-usdhc
+>        - items:
+>            - enum:
 > --
-> 2.34.1
+> 2.34.0
 >
