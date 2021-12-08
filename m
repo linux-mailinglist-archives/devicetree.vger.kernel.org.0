@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89A3E46D395
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 13:46:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C828E46D3E3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 13:58:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233712AbhLHMuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 07:50:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45272 "EHLO
+        id S233904AbhLHNBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 08:01:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233662AbhLHMuC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 07:50:02 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21800C061746;
-        Wed,  8 Dec 2021 04:46:30 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DFB3CB81F79;
-        Wed,  8 Dec 2021 12:46:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E570C341C3;
-        Wed,  8 Dec 2021 12:46:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638967587;
-        bh=uf6JxDdnzyqJElQbsppbLQiVy+i5ap0eM73vSTE5d94=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=p9jQomTAPi9TsgGgqYNNVfKKHiDmpjZM9GJCQDnLj9BAopHck6E6GsczJ7gN+IIiz
-         /hPbWVQ+GHSe5kAkDsVKhOU31SNC+TVekRnBhnj73bYTSGFDkQrxSo3a7hnNByRDim
-         ATKylPzARZ8Nm5oKnTmthQfsheC5me91tVMUFRRPNqdlkV0kU88cw6NDIhx3CqxZaS
-         naM7MJ60xGJVDPow/6Cza8D/tOwrsLAKx9LTZcK/I/wQGd1FbSY/7s4l4U5d4laNS/
-         1LSags3INEDIsc7paGenzcWjnEDtSSdo0DSB/0/XGbF+773BbPgy12UqLcSoLbFcuG
-         rDu9jwi6nY5uw==
-From:   Roger Quadros <rogerq@kernel.org>
-To:     krzysztof.kozlowski@canonical.com, tony@atomide.com
-Cc:     kishon@ti.com, nm@ti.com, vigneshr@ti.com,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Roger Quadros <rogerq@kernel.org>
-Subject: [PATCH v2 4/4] arm64: arch_k3: Select GPMC device driver
-Date:   Wed,  8 Dec 2021 14:46:11 +0200
-Message-Id: <20211208124611.16843-4-rogerq@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211208124611.16843-1-rogerq@kernel.org>
-References: <20211208124611.16843-1-rogerq@kernel.org>
+        with ESMTP id S233920AbhLHNBY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 08:01:24 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD94BC061A72
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 04:57:52 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id v15so3842608ljc.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 04:57:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=UXZtwM0lWDeGy5nge6H1IgLYqHbHbRiSBEY8ZBnX2uI=;
+        b=O9Cp4KKUt6Lc33WveKlX0ng18lgH92WyyXrs0S86aDjJUDr5gGyin+wMSyDEs2JAdX
+         eRpWmmbKo63O5NsrSE+NbCtFNiJM8ZtmJXSEtwivi07wN0nHhFjoxbxGQhRyFc8FTYen
+         wXlkfqQkWz1myyHTnZ3dt7CIYBEBCLxflXOrpL+7Dro4w/Kq0m8Aj9cSkDrbAz27Hmpm
+         LeDLCtcGBszutx5b3d3FX98Y9hpTvlRQGnHbvg/rvQeZq3tU/2M7M14hoCf9gw9C7X0+
+         sI3Z/297Pg6X35EWB12yY2txU1RSFaVaXGmpPG/dMUF3Rl+aHkAC/Zp8AOVhBB1ZTJKW
+         i28A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=UXZtwM0lWDeGy5nge6H1IgLYqHbHbRiSBEY8ZBnX2uI=;
+        b=eDj+VkLdX4+OgGFaMzkrQ0g6jtZBrDHTPN2VXgE/lOK5KT4aiULTgYdq+PbzuvIX73
+         rmXCR9DDztapN/+BvMHCREIGSSZCkhE5PuX4YZU+M2gyHbWLo7wF4BKx7uMdyyRpJGuX
+         9X2lF8AbHmLgDdv8OKJm2wngovETSYEniDFFSQSroYb9wEQVwjRpMuObY3J0mU4GaYNp
+         dI2Mv1UilZQXKHo0SbQU961zIIKcIpU9Sw2dSMNyTv4svj260k/nJE3ISjavcb5dgoIj
+         HUCNZXvHHzUy0RSAc2jYn+s/ah5YP9KKIfIfKGZoMIedB/protPB9XKk/XQdnFQZTyPR
+         Gsjw==
+X-Gm-Message-State: AOAM533pWbquKZz1MhNUadAXPlXomMr4KKJjWpELbe83mBRKacgQvlL6
+        hAmMBzXoNKl8yHftD9VXETNUzvx6xMqDwJ2fwFg=
+X-Google-Smtp-Source: ABdhPJxj2h3fSmVTOGZIxpOyidkcYcG9uwJRygUnaFJts4nDr642EQkeHSjW/KWLSUclAW1YSfdSb/AchOMh81F1Lpo=
+X-Received: by 2002:a2e:83cc:: with SMTP id s12mr3409900ljh.508.1638968271085;
+ Wed, 08 Dec 2021 04:57:51 -0800 (PST)
+MIME-Version: 1.0
+Received: by 2002:a19:6a14:0:0:0:0:0 with HTTP; Wed, 8 Dec 2021 04:57:50 -0800 (PST)
+Reply-To: dwilliamssdavid@gmail.com
+From:   "Mr.David Williams" <chrisolukolade11@gmail.com>
+Date:   Wed, 8 Dec 2021 13:57:50 +0100
+Message-ID: <CA+hQ6Ppmo7TeLTwij-RFNq5GOT16Echc=-4VWb7zQtVHoyvM-g@mail.gmail.com>
+Subject: Did you authorize Mr. Liu Kong Nam
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GPMC controller is present on some K3 SoCs.
-It provides access to NOR/NAND flashes and asynchronous
-SRAM-like memories and ASICs.
+Hello ,
 
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
----
- arch/arm64/Kconfig.platforms | 1 +
- 1 file changed, 1 insertion(+)
+Did you authorize Mr. Liu Kong Nam of Kemuning Ray Street
+NO.8,Tomang.Jakarta, Indonesia to pay the pending wire transfer
+activation charges and claim your WORLD BANK/IMF compensation payment
+the sum of Seven million two hundred thousand US dollars?.
 
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index 1aa8b7073218..f447b120f863 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -122,6 +122,7 @@ config ARCH_K3
- 	select TI_SCI_INTR_IRQCHIP
- 	select TI_SCI_INTA_IRQCHIP
- 	select TI_K3_SOCINFO
-+	select OMAP_GPMC
- 	help
- 	  This enables support for Texas Instruments' K3 multicore SoC
- 	  architecture.
--- 
-2.17.1
+Get back to me with your details.
 
+Regards
+Mr. David Williams
+E-Mail: ( williamsmrdavid60@gmail.com )
