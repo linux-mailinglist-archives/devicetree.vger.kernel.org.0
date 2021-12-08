@@ -2,289 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD9C846DDD2
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 22:46:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41CD846DDEC
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 22:59:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239608AbhLHVuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 16:50:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59014 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239575AbhLHVuG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 16:50:06 -0500
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D55C0C061A32
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 13:46:33 -0800 (PST)
-Received: by mail-ot1-x32f.google.com with SMTP id n104-20020a9d2071000000b005799790cf0bso4169562ota.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 13:46:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Yk17ZzWUHbqpSdQ87ZtHlIePjFkvqbkWw/I/IO9o50Q=;
-        b=O+Ao8mjKqQGG65pz4p8CRueZd6rURGFpdfPVQMw+rc2qJ6FRxq+m1QQKRVmgrmVPut
-         moGf+o8MvRxXC4R1IlwpWM1sqBMiKigF3ggQGKttU8E67TC57dIfvRBCbjbSZm50L0y+
-         Q+HVcpetSD4JUg2rMuaF91QKVqZAGB5IZijShzyv8ga4IwQDivC6jeBgMm3wUUvh7raJ
-         jcmECrAqkxFNOxqJMW6ARXhcK3oiEl8/6XoMQoyOiwNjAjlxxnkKDReTyZi9Pj2VmslM
-         LiBwmiKx7duJjCEg8Warb398u/CA3zuTbkpI2etekAN93jfTRBibmVEHUFSCAMj43hf3
-         fBXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Yk17ZzWUHbqpSdQ87ZtHlIePjFkvqbkWw/I/IO9o50Q=;
-        b=svMGOIkWDthHT5097pD4N5UKGnYouBgrIq+hpQbeFzEmexLAnP6TLgmnCvTrBhZ1un
-         ayuy71OJe43HAXio2boY9XQ1ZUHFU5l0Btu4i43TEKIIuBJsX/YQVQWgGfIZBaj8RFL+
-         ww7DvRCPmrbBdgHcqEM1iE5s/HaXZA4Yz9sKVwWh2WVSunnBhGOd3IWHgbuOhIez9cDW
-         9XE2BiniJTHyLO0W9yCKzrm87GONB8xZMwcZayc2v5Ci/bfUs1/VPg2/3wG65pwPissB
-         kt9xPs8H6sVFs14yyHaQWBW9SaObFReWDOQc8ft/Fh6bvUTt/z2iNVt4PhS2kwWn8/SP
-         CtYg==
-X-Gm-Message-State: AOAM532N73U9WNztDXGybmcMPnabniVmDnty1OGivKS7PToxHkEJgnl8
-        WzgDOhYvp58ZUoZTq+2z3wHyhg==
-X-Google-Smtp-Source: ABdhPJwC7+QElHOUrDWWWt1xqmuVqMxEcFYT8epWsNivSmScQYHI4GyIs/H/Cr7TzBJJX5YB54Q0ew==
-X-Received: by 2002:a9d:58f:: with SMTP id 15mr1836337otd.11.1638999992369;
-        Wed, 08 Dec 2021 13:46:32 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id j5sm692221ots.68.2021.12.08.13.46.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 13:46:31 -0800 (PST)
-Date:   Wed, 8 Dec 2021 13:47:58 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Kuogee Hsieh <quic_khsieh@quicinc.com>
-Cc:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
-        vkoul@kernel.org, agross@kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, quic_abhinavk@quicinc.com,
-        aravindh@codeaurora.org, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kishon@ti.com, p.zabel@pengutronix.de,
-        Kuogee Hsieh <khsieh@codeaurora.org>
-Subject: Re: [PATCH v6] phy: qcom-qmp: add display port v4 voltage and
- pre-emphasis swing tables
-Message-ID: <YbEoDrXRwBVGx21B@ripper>
-References: <1638998533-3729-1-git-send-email-quic_khsieh@quicinc.com>
+        id S231363AbhLHWDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 17:03:09 -0500
+Received: from mga05.intel.com ([192.55.52.43]:9415 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237675AbhLHWDJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Dec 2021 17:03:09 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="324219501"
+X-IronPort-AV: E=Sophos;i="5.88,190,1635231600"; 
+   d="scan'208";a="324219501"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2021 13:51:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,190,1635231600"; 
+   d="scan'208";a="564284920"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by fmsmga008.fm.intel.com with ESMTP; 08 Dec 2021 13:50:58 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mv4q2-00015x-1C; Wed, 08 Dec 2021 21:50:58 +0000
+Date:   Thu, 9 Dec 2021 05:50:49 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org
+Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH 17/18] drm: rockchip: Add VOP2 driver
+Message-ID: <202112090519.Beunfs20-lkp@intel.com>
+References: <20211208151230.3695378-18-s.hauer@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1638998533-3729-1-git-send-email-quic_khsieh@quicinc.com>
+In-Reply-To: <20211208151230.3695378-18-s.hauer@pengutronix.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 08 Dec 13:22 PST 2021, Kuogee Hsieh wrote:
+Hi Sascha,
 
-> From: Kuogee Hsieh <khsieh@codeaurora.org>
-> 
-> "add support for sm8250-usb3-dp phy" patch added functions to support V4
-> phy. But it did not update voltage and pre-emphasis tables accordingly.
-> This patch add v4 voltage and pre-emphasis swing tables to complete v4
-> phy implementation. Both voltage and pre-emphasis swing level are set
-> during link training negotiation between host and sink. There are totally
-> four tables added.  A voltage swing table for both hbr and hbr1, a voltage
-> table for both hbr2 and hbr3, a pre-emphasis table for both hbr and hbr1
-> and a pre-emphasis table for both hbr2 and hbr3. In addition, write 0x0a
-> to TX_TX_POL_INV is added to complete the sequence of configure dp phy
-> base on HPG.
-> 
-> Chnages in v2:
-> -- revise commit test
-> -- add Fixes tag
-> -- replaced voltage_swing_cfg with voltage
-> -- replaced pre_emphasis_cfg with emphasis
-> -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_v4_phy_configure_dp_swing()
-> -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_phy_configure_dp_swing()
-> 
-> Changes in V3:
-> -- add __qcom_qmp_phy_configure_dp_swing() to commit swing/pre-emphasis level
-> 
-> Changes in V4:
-> -- pass 2D array to __qcom_qmp_phy_configure_dp_swing()
-> 
-> Changes in V5:
-> -- rebase on msm-next
-> 
-> Changes in V6:
-> -- change commit text title
-> -- re wording commit text
+Thank you for the patch! Perhaps something to improve:
 
-The changelog still don't belong in the commit message, perhaps Vinod
-can drop that as he applies the patch.
+[auto build test WARNING on rockchip/for-next]
+[also build test WARNING on drm/drm-next drm-intel/for-linux-next drm-exynos/exynos-drm-next v5.16-rc4]
+[cannot apply to drm-tip/drm-tip tegra-drm/drm/tegra/for-next airlied/drm-next next-20211208]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+url:    https://github.com/0day-ci/linux/commits/Sascha-Hauer/drm-rockchip-RK356x-VOP2-support/20211208-231502
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+config: mips-allmodconfig (https://download.01.org/0day-ci/archive/20211209/202112090519.Beunfs20-lkp@intel.com/config)
+compiler: mips-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/8d57a528cbdfec4716a21d22d3d6c04c40451355
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Sascha-Hauer/drm-rockchip-RK356x-VOP2-support/20211208-231502
+        git checkout 8d57a528cbdfec4716a21d22d3d6c04c40451355
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=mips SHELL=/bin/bash drivers/gpu/drm/rockchip/
 
-Regards,
-Bjorn
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-> 
-> Fixes: aff188feb5e1 ("phy: qcom-qmp: add support for sm8250-usb3-dp phy")
-> Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp.c | 97 +++++++++++++++++++++++++------------
->  1 file changed, 66 insertions(+), 31 deletions(-)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> index 456a59d..1f3585d 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> @@ -4283,12 +4283,17 @@ static const u8 qmp_dp_v3_voltage_swing_hbr_rbr[4][4] = {
->  	{ 0x1f, 0xff, 0xff, 0xff }
->  };
->  
-> -static int qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
-> -		unsigned int drv_lvl_reg, unsigned int emp_post_reg)
-> +static int __qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
-> +				unsigned int drv_lvl_reg,
-> +				unsigned int emp_post_reg,
-> +				const u8 voltage_swing_hbr_rbr[4][4],
-> +				const u8 pre_emphasis_hbr_rbr[4][4],
-> +				const u8 voltage_swing_hbr3_hbr2[4][4],
-> +				const u8 pre_emphasis_hbr3_hbr2[4][4])
->  {
->  	const struct phy_configure_opts_dp *dp_opts = &qphy->dp_opts;
->  	unsigned int v_level = 0, p_level = 0;
-> -	u8 voltage_swing_cfg, pre_emphasis_cfg;
-> +	u8 voltage, emphasis;
->  	int i;
->  
->  	for (i = 0; i < dp_opts->lanes; i++) {
-> @@ -4297,26 +4302,25 @@ static int qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
->  	}
->  
->  	if (dp_opts->link_rate <= 2700) {
-> -		voltage_swing_cfg = qmp_dp_v3_voltage_swing_hbr_rbr[v_level][p_level];
-> -		pre_emphasis_cfg = qmp_dp_v3_pre_emphasis_hbr_rbr[v_level][p_level];
-> +		voltage = voltage_swing_hbr_rbr[v_level][p_level];
-> +		emphasis = pre_emphasis_hbr_rbr[v_level][p_level];
->  	} else {
-> -		voltage_swing_cfg = qmp_dp_v3_voltage_swing_hbr3_hbr2[v_level][p_level];
-> -		pre_emphasis_cfg = qmp_dp_v3_pre_emphasis_hbr3_hbr2[v_level][p_level];
-> +		voltage = voltage_swing_hbr3_hbr2[v_level][p_level];
-> +		emphasis = pre_emphasis_hbr3_hbr2[v_level][p_level];
->  	}
->  
->  	/* TODO: Move check to config check */
-> -	if (voltage_swing_cfg == 0xFF && pre_emphasis_cfg == 0xFF)
-> +	if (voltage == 0xFF && emphasis == 0xFF)
->  		return -EINVAL;
->  
->  	/* Enable MUX to use Cursor values from these registers */
-> -	voltage_swing_cfg |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
-> -	pre_emphasis_cfg |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
-> -
-> -	writel(voltage_swing_cfg, qphy->tx + drv_lvl_reg);
-> -	writel(pre_emphasis_cfg, qphy->tx + emp_post_reg);
-> -	writel(voltage_swing_cfg, qphy->tx2 + drv_lvl_reg);
-> -	writel(pre_emphasis_cfg, qphy->tx2 + emp_post_reg);
-> +	voltage |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
-> +	emphasis |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
->  
-> +	writel(voltage, qphy->tx + drv_lvl_reg);
-> +	writel(emphasis, qphy->tx + emp_post_reg);
-> +	writel(voltage, qphy->tx2 + drv_lvl_reg);
-> +	writel(emphasis, qphy->tx2 + emp_post_reg);
->  	return 0;
->  }
->  
-> @@ -4325,9 +4329,13 @@ static void qcom_qmp_v3_phy_configure_dp_tx(struct qmp_phy *qphy)
->  	const struct phy_configure_opts_dp *dp_opts = &qphy->dp_opts;
->  	u32 bias_en, drvr_en;
->  
-> -	if (qcom_qmp_phy_configure_dp_swing(qphy,
-> -				QSERDES_V3_TX_TX_DRV_LVL,
-> -				QSERDES_V3_TX_TX_EMP_POST1_LVL) < 0)
-> +	if (__qcom_qmp_phy_configure_dp_swing(qphy,
-> +			QSERDES_V3_TX_TX_DRV_LVL,
-> +			QSERDES_V3_TX_TX_EMP_POST1_LVL,
-> +			qmp_dp_v3_voltage_swing_hbr_rbr,
-> +			qmp_dp_v3_pre_emphasis_hbr_rbr,
-> +			qmp_dp_v3_voltage_swing_hbr3_hbr2,
-> +			qmp_dp_v3_pre_emphasis_hbr3_hbr2) < 0)
->  		return;
->  
->  	if (dp_opts->lanes == 1) {
-> @@ -4465,6 +4473,35 @@ static int qcom_qmp_v3_dp_phy_calibrate(struct qmp_phy *qphy)
->  	return 0;
->  }
->  
-> +/* The values in these tables are given without MUX_EN (0x20) bit set */
-> +static const u8 qmp_dp_v4_pre_emphasis_hbr3_hbr2[4][4] = {
-> +	{ 0x00, 0x0c, 0x15, 0x1b },
-> +	{ 0x02, 0x0e, 0x16, 0xff },
-> +	{ 0x02, 0x11, 0xff, 0xff },
-> +	{ 0x04, 0xff, 0xff, 0xff }
-> +};
-> +
-> +static const u8 qmp_dp_v4_voltage_swing_hbr3_hbr2[4][4] = {
-> +	{ 0x02, 0x12, 0x16, 0x1a },
-> +	{ 0x09, 0x19, 0x1f, 0xff },
-> +	{ 0x10, 0x1f, 0xff, 0xff },
-> +	{ 0x1f, 0xff, 0xff, 0xff }
-> +};
-> +
-> +static const u8 qmp_dp_v4_pre_emphasis_hbr_rbr[4][4] = {
-> +	{ 0x00, 0x0e, 0x15, 0x1b },
-> +	{ 0x00, 0x0e, 0x15, 0xff },
-> +	{ 0x00, 0x0e, 0xff, 0xff },
-> +	{ 0x04, 0xff, 0xff, 0xff }
-> +};
-> +
-> +static const u8 qmp_dp_v4_voltage_swing_hbr_rbr[4][4] = {
-> +	{ 0x08, 0x0f, 0x16, 0x1f },
-> +	{ 0x11, 0x1e, 0x1f, 0xff },
-> +	{ 0x16, 0x1f, 0xff, 0xff },
-> +	{ 0x1f, 0xff, 0xff, 0xff }
-> +};
-> +
->  static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
->  {
->  	writel(DP_PHY_PD_CTL_PWRDN | DP_PHY_PD_CTL_PSR_PWRDN | DP_PHY_PD_CTL_AUX_PWRDN |
-> @@ -4494,16 +4531,13 @@ static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
->  
->  static void qcom_qmp_v4_phy_configure_dp_tx(struct qmp_phy *qphy)
->  {
-> -	/* Program default values before writing proper values */
-> -	writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
-> -	writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
-> -
-> -	writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
-> -	writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
-> -
-> -	qcom_qmp_phy_configure_dp_swing(qphy,
-> +	__qcom_qmp_phy_configure_dp_swing(qphy,
->  			QSERDES_V4_TX_TX_DRV_LVL,
-> -			QSERDES_V4_TX_TX_EMP_POST1_LVL);
-> +			QSERDES_V4_TX_TX_EMP_POST1_LVL,
-> +			qmp_dp_v4_voltage_swing_hbr_rbr,
-> +			qmp_dp_v4_pre_emphasis_hbr_rbr,
-> +			qmp_dp_v4_voltage_swing_hbr3_hbr2,
-> +			qmp_dp_v4_pre_emphasis_hbr3_hbr2);
->  }
->  
->  static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
-> @@ -4622,6 +4656,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
->  	writel(drvr1_en, qphy->tx2 + QSERDES_V4_TX_HIGHZ_DRVR_EN);
->  	writel(bias1_en, qphy->tx2 + QSERDES_V4_TX_TRANSCEIVER_BIAS_EN);
->  
-> +	writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
-> +	writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
-> +
->  	writel(0x18, qphy->pcs + QSERDES_DP_PHY_CFG);
->  	udelay(2000);
->  	writel(0x19, qphy->pcs + QSERDES_DP_PHY_CFG);
-> @@ -4633,11 +4670,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
->  			10000))
->  		return -ETIMEDOUT;
->  
-> -	writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
-> -	writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
->  
-> -	writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
-> -	writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
-> +	writel(0x22, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
-> +	writel(0x22, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
->  
->  	writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
->  	writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
+All warnings (new ones prefixed by >>):
+
+   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_setup_cluster_alpha':
+>> drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:1861:33: warning: variable 'top_win_pstate' set but not used [-Wunused-but-set-variable]
+    1861 |         struct drm_plane_state *top_win_pstate;
+         |                                 ^~~~~~~~~~~~~~
+
+
+vim +/top_win_pstate +1861 drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+
+  1855	
+  1856	static void vop2_setup_cluster_alpha(struct vop2 *vop2, struct vop2_win *main_win)
+  1857	{
+  1858		uint32_t offset = (main_win->data->phys_id * 0x10);
+  1859		struct vop2_alpha_config alpha_config;
+  1860		struct vop2_alpha alpha;
+> 1861		struct drm_plane_state *top_win_pstate;
+  1862		struct drm_plane_state *bottom_win_pstate;
+  1863		bool src_pixel_alpha_en = false;
+  1864		uint16_t src_glb_alpha_val, dst_glb_alpha_val;
+  1865		bool premulti_en = false;
+  1866		bool swap = false;
+  1867	
+  1868		/* At one win mode, win0 is dst/bottom win, and win1 is a all zero src/top win */
+  1869		top_win_pstate = NULL;
+  1870		bottom_win_pstate = main_win->base.state;
+  1871		src_glb_alpha_val = 0;
+  1872		dst_glb_alpha_val = main_win->base.state->alpha;
+  1873	
+  1874		if (!bottom_win_pstate->fb)
+  1875			return;
+  1876	
+  1877		alpha_config.src_premulti_en = premulti_en;
+  1878		alpha_config.dst_premulti_en = false;
+  1879		alpha_config.src_pixel_alpha_en = src_pixel_alpha_en;
+  1880		alpha_config.dst_pixel_alpha_en = true; /* alpha value need transfer to next mix */
+  1881		alpha_config.src_glb_alpha_value = src_glb_alpha_val;
+  1882		alpha_config.dst_glb_alpha_value = dst_glb_alpha_val;
+  1883		vop2_parse_alpha(&alpha_config, &alpha);
+  1884	
+  1885		alpha.src_color_ctrl.bits.src_dst_swap = swap;
+  1886		vop2_writel(vop2, RK3568_CLUSTER0_MIX_SRC_COLOR_CTRL + offset,
+  1887			    alpha.src_color_ctrl.val);
+  1888		vop2_writel(vop2, RK3568_CLUSTER0_MIX_DST_COLOR_CTRL + offset,
+  1889			    alpha.dst_color_ctrl.val);
+  1890		vop2_writel(vop2, RK3568_CLUSTER0_MIX_SRC_ALPHA_CTRL + offset,
+  1891			    alpha.src_alpha_ctrl.val);
+  1892		vop2_writel(vop2, RK3568_CLUSTER0_MIX_DST_ALPHA_CTRL + offset,
+  1893			    alpha.dst_alpha_ctrl.val);
+  1894	}
+  1895	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
