@@ -2,91 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A33246D12E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 11:40:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0F2746D142
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 11:45:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231808AbhLHKoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 05:44:13 -0500
-Received: from relmlor2.renesas.com ([210.160.252.172]:59747 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231804AbhLHKoN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 05:44:13 -0500
-X-IronPort-AV: E=Sophos;i="5.87,297,1631545200"; 
-   d="scan'208";a="103225009"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 08 Dec 2021 19:40:40 +0900
-Received: from localhost.localdomain (unknown [10.226.92.71])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 9A38B4256968;
-        Wed,  8 Dec 2021 19:40:38 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 3/3] arm64: dts: renesas: rzg2l-smarc-som: Add vdd core regulator
-Date:   Wed,  8 Dec 2021 10:40:26 +0000
-Message-Id: <20211208104026.421-4-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211208104026.421-1-biju.das.jz@bp.renesas.com>
-References: <20211208104026.421-1-biju.das.jz@bp.renesas.com>
+        id S229481AbhLHKt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 05:49:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45172 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229448AbhLHKt1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 05:49:27 -0500
+Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B49C0617A1
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 02:45:55 -0800 (PST)
+Received: by mail-ua1-x92e.google.com with SMTP id l24so3934910uak.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 02:45:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/r6Dv/N7sjx+bdz8SBfuwnr1RHZrgVW/J013I8U9x04=;
+        b=kqpTzFcpDLa+L+CfslxnwWddQibBmhRZXFxvkDULtr5SJGg/AqPmo5t8/GXQGfWq+W
+         D+vsfikzO/R7omHoURsl8SnVEw4FDgblW/Nq0cTkrXl2Li+DlBR8BeJ0UjA0hfF1baNO
+         2CbS6pROiu9yJRUMVJcRh8gPa1lWiiLFdKhMXI/Imvimz+4a9G2Oc+CTw4VGA2A1YQzl
+         I8edQOEjgcfYlI+1Gp8IfDh0/gv5V0wEJ7KSBKIDYGFJgvZv0hl2h3YTI8ET8BjVrAXM
+         ZxdTsc6TaGDYRVL0clyiIjkpEWHIhRyWhCOGsqNzO38cg6BrgvUjhFV2ZE46fhfGRr3T
+         oqUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/r6Dv/N7sjx+bdz8SBfuwnr1RHZrgVW/J013I8U9x04=;
+        b=nagilXtb/RUZkzFmJ1NWB8hxa2ZTVUUaAstF6zbr9mDlbtHqckiMW0SAlovtDNg0mq
+         Pgfzx2hWJFWqJr0GKPQ5FYviTE9+dqaG5mAZQ9wyw3Yhi1x3Wo9E2bbWe7LDOOche9IF
+         wdZm7wrN3uimOw7YvyL3cf1zGyGliLRGof3G+jU/47KNKJRJHj2qY54g9oH98M3B7Z0w
+         yRWeeQ3q1WMIuZ6/3Ih2AOam9VNIrQvBAQV2Dl3cbmnz2d76mDzXTTItpUbdiP+nQlPW
+         8YRMnKRg0JkrngoP32iWNSftmYLPpIes2xRhMg34Itt1SlIgRZ+F1SY2JSPEx9SaISUH
+         sElg==
+X-Gm-Message-State: AOAM533p3BLDJnUWHS3GPinIQsswc7EcFYDjvmpwabS/wSA6W+ukAI4/
+        iMx1iNpBAwCFPDjLW42kai0i4BNFO1p5H6TNdd/UAQ==
+X-Google-Smtp-Source: ABdhPJwEqgwHp9fBL0Ka1YyTVXJEg1K8ymi3U5TF0WZlUtAyDHkKDuzEEXMhA04java4DL+Ds36B1OPNYlQHNBZM6Wk=
+X-Received: by 2002:a05:6102:f10:: with SMTP id v16mr53676115vss.86.1638960354687;
+ Wed, 08 Dec 2021 02:45:54 -0800 (PST)
+MIME-Version: 1.0
+References: <CGME20211208092527epcas2p28f6688d5a2742c03cf474d8b2fa773cd@epcas2p2.samsung.com>
+ <20211208091853.8557-1-chanho61.park@samsung.com>
+In-Reply-To: <20211208091853.8557-1-chanho61.park@samsung.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Wed, 8 Dec 2021 12:45:43 +0200
+Message-ID: <CAPLW+4m_NBisjR5s_a-HUS8cwnpkAPVAAG--o65fKj9Njmo==g@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: exynosautov9: convert serial_0 for USI
+To:     Chanho Park <chanho61.park@samsung.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add vdd core regulator (1.1 V).
+On Wed, 8 Dec 2021 at 11:25, Chanho Park <chanho61.park@samsung.com> wrote:
+>
+> According to USI v2 driver change[1], serial_0 node should be converted to
+> use the USI node hierarchy. syscon_peric0 will be used as a syscon node
+> to control the USI00_USI_SW_CONF register.
+> This also changes the serial node name from uart@ to serial@.
+>
+> [1]: https://lore.kernel.org/linux-samsung-soc/20211204195757.8600-2-semen.protsenko@linaro.org/
+>
+> Cc: Sam Protsenko <semen.protsenko@linaro.org>
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
 
-This patch add regulator support for gpu.
+Thanks for helping us out!
 
-The H/W manual mentions nothing about a gpu regulator. So using vdd
-core regulator for gpu.
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2->v3:
- * Updated the commit description. Thanks to Sergey Shtylyov.
-v1->v2:
- * Added Rb tag from Geert.
----
- arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-index a4fc9517a0de..4ce799314f0f 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-@@ -52,6 +52,15 @@
- 		regulator-always-on;
- 	};
- 
-+	reg_1p1v: regulator-vdd-core {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-1.1V";
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1100000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
- 	vccq_sdhi0: regulator-vccq-sdhi0 {
- 		compatible = "regulator-gpio";
- 
-@@ -130,6 +139,10 @@
- 	clock-frequency = <24000000>;
- };
- 
-+&gpu {
-+	mali-supply = <&reg_1p1v>;
-+};
-+
- &ostm1 {
- 	status = "okay";
- };
--- 
-2.17.1
-
+> Change from v1:
+> - Put usi_0 node alphabetically in sadk.dts
+>
+>  .../boot/dts/exynos/exynosautov9-sadk.dts     |  4 +++
+>  arch/arm64/boot/dts/exynos/exynosautov9.dtsi  | 36 ++++++++++++++-----
+>  2 files changed, 32 insertions(+), 8 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
+> index ef46d7aa6e28..57518cb5e8c4 100644
+> --- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
+> +++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
+> @@ -54,3 +54,7 @@ &ufs_0 {
+>         vcc-supply = <&ufs_0_fixed_vcc_reg>;
+>         vcc-fixed-regulator;
+>  };
+> +
+> +&usi_0 {
+> +       status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+> index a960c0bc2dba..de8fcb82eaec 100644
+> --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+> @@ -7,6 +7,7 @@
+>   */
+>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/soc/samsung,exynos-usi.h>
+>
+>  / {
+>         compatible = "samsung,exynosautov9";
+> @@ -256,16 +257,35 @@ syscon_fsys2: syscon@17c20000 {
+>                         reg = <0x17c20000 0x1000>;
+>                 };
+>
+> -               /* USI: UART */
+> -               serial_0: uart@10300000 {
+> -                       compatible = "samsung,exynos850-uart";
+> -                       reg = <0x10300000 0x100>;
+> -                       interrupts = <GIC_SPI 345 IRQ_TYPE_LEVEL_HIGH>;
+> -                       pinctrl-names = "default";
+> -                       pinctrl-0 = <&uart0_bus_dual>;
+> +               syscon_peric0: syscon@10220000 {
+> +                       compatible = "samsung,exynosautov9-sysreg", "syscon";
+> +                       reg = <0x10220000 0x2000>;
+> +               };
+> +
+> +               usi_0: usi@103000c0 {
+> +                       compatible = "samsung,exynos850-usi";
+> +                       reg = <0x103000c0 0x20>;
+> +                       samsung,sysreg = <&syscon_peric0 0x1000>;
+> +                       samsung,mode = <USI_V2_UART>;
+> +                       samsung,clkreq-on; /* needed for UART mode */
+> +                       #address-cells = <1>;
+> +                       #size-cells = <1>;
+> +                       ranges;
+>                         clocks = <&uart_clock>, <&uart_clock>;
+> -                       clock-names = "uart", "clk_uart_baud0";
+> +                       clock-names = "pclk", "ipclk";
+>                         status = "disabled";
+> +
+> +                       /* USI: UART */
+> +                       serial_0: serial@10300000 {
+> +                               compatible = "samsung,exynos850-uart";
+> +                               reg = <0x10300000 0xc0>;
+> +                               interrupts = <GIC_SPI 345 IRQ_TYPE_LEVEL_HIGH>;
+> +                               pinctrl-names = "default";
+> +                               pinctrl-0 = <&uart0_bus_dual>;
+> +                               clocks = <&uart_clock>, <&uart_clock>;
+> +                               clock-names = "uart", "clk_uart_baud0";
+> +                               status = "disabled";
+> +                       };
+>                 };
+>
+>                 ufs_0_phy: ufs0-phy@17e04000 {
+> --
+> 2.34.1
+>
