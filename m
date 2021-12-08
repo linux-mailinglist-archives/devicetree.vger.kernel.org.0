@@ -2,151 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FCCB46D02F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 10:36:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14F2E46D06E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 10:55:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231185AbhLHJjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 04:39:40 -0500
-Received: from mail-os0jpn01on2094.outbound.protection.outlook.com ([40.107.113.94]:6882
-        "EHLO JPN01-OS0-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230486AbhLHJjj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Dec 2021 04:39:39 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sshsu8jZJBLuCUfJRkHR6vGaRkrjtZIJ9LKh+7qgz5kiPTTqChg6Bk1qbkcj5Zlxt6PwdZr9sgYwXi7s6MbZmdnmh7KKKw+1owNKP7VontdHG5nm8b1jA9YeyLB2X5FtFFh40UXaQflEbZvBQhQm2ynXYbfEjPENs4eKpGbAwHMUDb6MzI7vBo0Pp5dM0IUR8iXlsv/yxkebcjKoHD2a8qh7EZM4FWMIuKDowvZQ3L844Lld5Tb2i0Oev5M54J/2JCoNkbLEyIMNtNxTAfWJJaaadTJ5vcdBl3rqHDKAtau/r7TY9u0Y2lkpVNObVYpuWkNrA/Xyrq+SgE476+rfbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wtW/oS36Nim031aUiu2Jnxacs6kAU5PLZNhxzbtsuWk=;
- b=W6U5KtB0jeB8acvDcM0IAlwovOkAjHcM/2F4amGF48xQRdX1Eqn6PlnUciFp+QlCMgwWDTGzDXlV++7EevaLTuYr8vwiPrl4T6Q4my67YjtA4HtUrg0Ei81I9wLuzKDLq66hoJv8zXwlmT7jumetJ4IAaFjXMA0nKy0POYBKAxvj78pPclDUWwVLajvs6l/qCn63Xtwcd32p4xMGyrsngbGFHw12QRysJBH+QrGtrRoaVZig768eSLtpCRsBYKNeA/GCD3ALgJ+KRuIZMVROzq3wcxJiOyrv+8WSqFwobeallgm15buqGd7TMoaxQ2lHq4R/Q6QORJ64gyJhkG5iAQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wtW/oS36Nim031aUiu2Jnxacs6kAU5PLZNhxzbtsuWk=;
- b=Tuw8R5qK8Op/Pl/9mKybeVNOMzZNbhmApXxrarNETkMhfm0jwq+oN8VVmt32Q/pEgpHEjtRf8+NrCn8/Kxzh5uHrlFU2BZdom+a8K4t0NxJ2t+YdS4SydYnBzAkgtLZ371D6HqYWcw2DUA72cdyZLYJQh789IklK7zAztEBKKjE=
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
- by TYAPR01MB2672.jpnprd01.prod.outlook.com (2603:1096:404:8f::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.12; Wed, 8 Dec
- 2021 09:36:04 +0000
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::b0dd:ed1e:5cfc:f408]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::b0dd:ed1e:5cfc:f408%3]) with mapi id 15.20.4755.023; Wed, 8 Dec 2021
- 09:36:04 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Takehito Nakamura <takehito.nakamura.nx@renesas.com>
-Subject: RE: [PATCH 15/16] arm64: dts: renesas: Add Renesas Spider boards
- support
-Thread-Topic: [PATCH 15/16] arm64: dts: renesas: Add Renesas Spider boards
- support
-Thread-Index: AQHX2r2INnp2XIwXG0KJ2GxVDwsUeawSw4SAgBWw8ICAAAOj4A==
-Date:   Wed, 8 Dec 2021 09:36:04 +0000
-Message-ID: <TY2PR01MB3692D5C8F73A0AB673830D00D86F9@TY2PR01MB3692.jpnprd01.prod.outlook.com>
-References: <20211116074130.107554-1-yoshihiro.shimoda.uh@renesas.com>
- <20211116074130.107554-16-yoshihiro.shimoda.uh@renesas.com>
- <CAMuHMdVZrGdwKnN=VKTiGp_Vj6CXgE=G_1OfDf29wHGd22q=Tg@mail.gmail.com>
- <CAMuHMdUyRt4cXzJ-dC9Z5unCZq2CfDsDrUQNckWXP2gxcsDAcw@mail.gmail.com>
-In-Reply-To: <CAMuHMdUyRt4cXzJ-dC9Z5unCZq2CfDsDrUQNckWXP2gxcsDAcw@mail.gmail.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f34e253d-3b67-47ee-1448-08d9ba2e278b
-x-ms-traffictypediagnostic: TYAPR01MB2672:EE_
-x-microsoft-antispam-prvs: <TYAPR01MB267212CE66E1D4C692A8E3B8D86F9@TYAPR01MB2672.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3513;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: kwYV+Jy82UB2Dyo4Jpz/okdcJQepBUy0F4u/m16o2AtTWNk+l3bRboynB8lRzRZhUyPAtONfxFx2sfFMChcLuw44J/brdmklfr6PQXuFD9HaOhvg2ZE41KuS/cWJ/HC5hAUm4lUTcN3e/5zFHB+5o4xGwb4bbTI25x/0piqy+tTdmnZ3rVCtqlK9I+BvvAeJ/WtMqOXzhBRTY670fMiabeZgMXRbaNJN0ldg6gsLQw0mLgBEoruOVdWfyZw/k3O0Wp0kGY+CvKYDAmZC6CmNK9wTqek9wPgGuqEsn4zxhE5FMw9dLo0oRM6KCXVBhDGpud3NwhSyWbqdlikHdgVuNlFAvQY062uUBrLdjxPBxJMVENA/i25yO9+fL0xMmJD9tWjxwCG9zimONuhrSWFzidEbLnHtNWCrwoW2+JsL5U9lrgN4c51yfDrsYv9lGeMeShW9GXunMcC+MI59SqXSzIDcP7EoYPXDfVxy4zxmJPqRE7AttlphzNzGZhh5GqsP1cNFRmz0vtXgU/LOdjJ/mJo+b7jaHGLSaJcL0ME4Ug8BKu77cuNLw5AIJ9GkYy7Ctags4nLYMNvsmaQ3H3fwBmph0MzQoAn4oC33LeLdh8GwmHveRUkR8rIdvNgv4B3OsbfDy39loiuhGyL5RMXw+MgPG/9Pk69IBqwojzRhaAM8W+2qu9JYtzlaOlnkxLYrzl/YE/7Jrslrrt1Nrt3VtA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(2906002)(52536014)(6506007)(53546011)(71200400001)(6916009)(8676002)(7696005)(86362001)(316002)(54906003)(38070700005)(8936002)(26005)(55016003)(107886003)(186003)(4744005)(38100700002)(76116006)(122000001)(33656002)(4326008)(66946007)(66446008)(64756008)(66476007)(66556008)(5660300002)(83380400001)(9686003)(508600001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TWhlbFJjM0cwT01wbmxWdjBTN2MwUVBKdCttMy9FV1d0RTJuVjRWeFlKc3Nm?=
- =?utf-8?B?QlM4c24zNVEwaVNSRjZzSzhIRWhkc3BMcEFZeS9WZGMyRURoRGdtMHJRSmxN?=
- =?utf-8?B?TGtPYTRsSmpsTjY3M0Q3RHBnelpHb29wdGhiV0tsSllwOThjUjFSOEJ3cFB3?=
- =?utf-8?B?ZUFzM0pQOE1xOTFqZWYzTklUZXFWSzlJaU5ENFVZcTBqZzM3OHIvdEpQdjVn?=
- =?utf-8?B?OU5oZ1d2ZnFUS3V6MWNlVExLdWcvbW9hMHJNekxQV0pGRnh2d1pROGd3Z3hk?=
- =?utf-8?B?Uk9DWVliQVBXd1gzYU5YM04vTEtadGlIODE2NnErN3ZGS2FwdWV5bFFVbVVW?=
- =?utf-8?B?dThqc2d0THdFakhxTG9DR3pjUVJldHplNWx3VnRnaHJUMmdZd0Z0OTQ2ZXU0?=
- =?utf-8?B?WGVlQnlRaGdJVjJraVZTVndaaWk3NjZ1TlRRTEl1Z0QzTGxwZllpUW5SZEho?=
- =?utf-8?B?WUk0b29idVFUNFFucXVHcWEyU2U3NDEwU2NFMVVVcHRMUFJFLy82K1RCbzE5?=
- =?utf-8?B?cmM5RlloMlk1bnI0TnlmZUZQYnVIdC8xaW85c29DbkNOVXZ2SHR0RVN2Zktk?=
- =?utf-8?B?UkpURDhMSytuSkNoNnRBakxHN04yVy93c0llMlc2YXAxT0M3Qkx6T1o3Zk1i?=
- =?utf-8?B?bEtEVHM1aGhMZnFHUVZ5OUJZSHgybldwazhGcjV1Ymt2R0Y2VjZGYmcvT2s0?=
- =?utf-8?B?VWRMWCtLa2RIcHVRY0hURGNQM1F1SWtSRkQ2MlU4UDJJcjlzaSt5NGlWMkpK?=
- =?utf-8?B?SUpDTXB2SWwvYnE4R0tpOE1jMHZpLytLWFNINHgvK1BKdEhQdWxjN2svR3Fh?=
- =?utf-8?B?Tk91SUZSaXNSNFp1UUlDOWptc3lVL2hjMTVYZ01qZlJEOUlvOW9NeU01VnRn?=
- =?utf-8?B?VmVsTWp3SmFLd2pWeW42SER2WVdGTWUxZFR4eFM3eFVtYWh1N09LOU9wKzln?=
- =?utf-8?B?a3AvRW1uTFFzSEFBczI3Y2VIdytqZG5rU1RLQ3JtTTlEZXdJaExFYVZweEsv?=
- =?utf-8?B?Y0dxbERXRDNHNjlXQUNIMEZoN2syUG02YU1OaXpIcE53ZzhkWktxVy93cDJx?=
- =?utf-8?B?OXhJUjJQZ1ZObjhPNjdnUlpENlFNaXdmYmoxeTBMZFJlS3dYcU9XNUZOcS9Z?=
- =?utf-8?B?eHVUZWh0aC9UYWZJMGhzQzBTaGt1YjlXKzZBK2lqVml0ajNHUC9ReTlMYzhZ?=
- =?utf-8?B?Ukd3WHYxLzNkV2dRVkpIdmU1VTBFeVg4Q25HNnBOTXZzamM3eUhyN0NDT1ZD?=
- =?utf-8?B?eVBoanhUVmlUWjhoTm41QXR3S2huSDViT1V1RVhXTVUvSW85S3M5RkpmTzhS?=
- =?utf-8?B?Y242OERKT0tGNGNYR0owWjVlMEJuamxYTENtMy9URDd6MVZxOXlWWkQxdXlL?=
- =?utf-8?B?SEpRbkJXVFNQYmtncnVBSzJPUGxhSFM3QzRaaEQ4a0hCWVVWQjlzVndsZndP?=
- =?utf-8?B?YnN3czhDcGE0Qmt2YTg2ZTdsVzJkQTA1eFpnYXo3aDlyU2twZ2xveFBoZ0ho?=
- =?utf-8?B?WlJtK1JQNTc1VmJKRlZIRy9jRXNzWUVLMGV1ZjhVQkIyemNKcVdORmRJKzBz?=
- =?utf-8?B?TTM4cWFGQThMQURBWG0wdllJM0dKSmFYV0RRVGFhOGNERUs2WHV1TEFJaHZO?=
- =?utf-8?B?TklXWTYyWW9INHVQdG9iMXAyd3g4NVl2Zk40eThMZDFqYk9iMjVLOTh5UzFz?=
- =?utf-8?B?YTBoY0NlWHMwbERVa0JpS1lKekUwTGo3MHhhQ1QvUXFBV1FZOWhjWXZ4WHg5?=
- =?utf-8?B?R0VNaWs4KytTUHdZUjk1TW1aSy85bVVxeFRSSW91QW9nNytuaGZKVmZJekc4?=
- =?utf-8?B?R2Y5SXRkZnNNdU03Q01FNEx3ZVRuMjNoY0s2NWhhejRiRUlFSDdaelhEUE5E?=
- =?utf-8?B?TzJxbWtpdEIyYlUzalVUTFNUQTZORjNrbDlrbnBIK0kwSjZVRy9mVVFCT1p3?=
- =?utf-8?B?Nm42c1ppd3BydXJzZU1TSGtPV2xETk4rTkc4TUVUejhmQVUrVHVLdDhxcDdX?=
- =?utf-8?B?aUFlTjlURFN5dHo1RWxFRDlPTUxINmc4cFpiRVUvT2JWbkMxVExmRUV6Zm1w?=
- =?utf-8?B?MUNld2VsSW5WRzBTd01EWFY5NlY5SzNEeFlKN0cwMDNzS1pLRzlsUFlpMGJr?=
- =?utf-8?B?Z3YrenB6ZW1YaFpxbW54RjJOT2hYdlNZanQvNk5DTU5sWW4wdlZYZncrekQz?=
- =?utf-8?B?d2F6WWo0UWtnYkNYWnp1azJHMDArUzNYbzVpTE1yMFpOTGxyMkRGOGJVTSs5?=
- =?utf-8?B?cEVUM3BsMDcyNCtqa2hKbzNiYnVoSklObVpZWEFSN3k4TkJDRzhyc0dESE5E?=
- =?utf-8?B?RzZydDFMbU5UZG5LRk5mNlFFb25xeVdQRG1qZ2ZDNFFKeCtxb1cxdz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S231247AbhLHJ7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 04:59:25 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:48696 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230491AbhLHJ7Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 04:59:25 -0500
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1B83PgUK015911;
+        Wed, 8 Dec 2021 10:55:26 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=TyAvxbW9AUw+fp0lLnm8rh6Mts5UvlpDwToo1N9WL3M=;
+ b=QsNAjIL9gWzh2LxtdywE0Iduw0i4x8rwbTEOtjDnC9sAAp892JBLEswJwOWLIIedPV07
+ U3Gl3cJiDw1KCiSM8YIqyBd12765x10brSZHOzRLBQD0Wh3J6C1EPAgMaeXXIyuniSpe
+ 8pbrN14ZxPtUEw664MuG4Safds5bgItPP0L1QCexvqL9p2MLr0vXm7Vw3j5UDohUSE+j
+ 6n9vjFC5CS7r8xQPUoDdHyW6Y9RZ9V1H11QmNTjbdjUfA6SbPZUzP3GSjMo4uDZ3bViE
+ iY7Jbutdg8f7qvfTqBvBmEAXkk4RlDn/3NVl+I+7VoiRHDf0Kia8VSrqg0KguZ/38JSM aA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ctmsrhq7n-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 08 Dec 2021 10:55:26 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BB5A210002A;
+        Wed,  8 Dec 2021 10:55:23 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A8BC02259A3;
+        Wed,  8 Dec 2021 10:55:21 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.47) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 8 Dec
+ 2021 10:55:20 +0100
+Subject: Re: [Linux-stm32] [PATCH v2 1/4] ASoC: dt-bindings: stm32: i2s: add
+ audio-graph-card port
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Rob Herring <robh@kernel.org>,
+        Olivier MOYSAN <olivier.moysan@foss.st.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Fabrice GASNIER <fabrice.gasnier@st.com>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        Mark Brown <broonie@kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <alain.volmat@foss.st.com>, <arnaud.pouliquen@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20211125144053.774-1-olivier.moysan@foss.st.com>
+ <20211125144053.774-2-olivier.moysan@foss.st.com>
+ <1637875562.357461.2858318.nullmailer@robh.at.kernel.org>
+ <237f56b3-0597-2526-a182-f1fbdd327338@foss.st.com>
+ <Yaf4jiZIp8+ndaXs@robh.at.kernel.org>
+ <627777a4-7458-88ed-e7c5-d11e3db847b5@foss.st.com>
+ <cf5f994b-aecf-e051-f5c9-4a46e6414207@pengutronix.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <cb7f19c0-3826-fcc8-227c-982838acf599@foss.st.com>
+Date:   Wed, 8 Dec 2021 10:55:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f34e253d-3b67-47ee-1448-08d9ba2e278b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Dec 2021 09:36:04.3144
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6xp2/qEYwa333L8lL9hwkJAx7UXRGJrFwVRyLDZcDUQ13ERwEQJYZtNtVEm808+3szoo1vx22zd0b7F8irWb/pAsAjrhplJqHYI2qArXVAGCBP8FclRS798U/rxUmB5I
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB2672
+In-Reply-To: <cf5f994b-aecf-e051-f5c9-4a46e6414207@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2021-12-08_03,2021-12-06_02,2021-12-02_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQtc2FuLA0KDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiwgU2VudDogV2VkbmVz
-ZGF5LCBEZWNlbWJlciA4LCAyMDIxIDY6MjEgUE0NCj4gDQo+IEhpIFNoaW1vZGEtc2FuLA0KPiAN
-Cj4gT24gV2VkLCBOb3YgMjQsIDIwMjEgYXQgMzowNiBQTSBHZWVydCBVeXR0ZXJob2V2ZW4gPGdl
-ZXJ0QGxpbnV4LW02OGsub3JnPiB3cm90ZToNCj4gPiBPbiBUdWUsIE5vdiAxNiwgMjAyMSBhdCA4
-OjQyIEFNIFlvc2hpaGlybyBTaGltb2RhDQo+ID4gPHlvc2hpaGlyby5zaGltb2RhLnVoQHJlbmVz
-YXMuY29tPiB3cm90ZToNCj4gPiA+IEluaXRpYWwgc3VwcG9ydCBmb3IgdGhlIFJlbmVzYXMgU3Bp
-ZGVyIENQVSBhbmQgQnJlYWtPdXQgYm9hcmRzDQo+ID4gPiBzdXBwb3J0Lg0KPiA+ID4NCj4gPiA+
-IFNpZ25lZC1vZmYtYnk6IFlvc2hpaGlybyBTaGltb2RhIDx5b3NoaWhpcm8uc2hpbW9kYS51aEBy
-ZW5lc2FzLmNvbT4NCj4gPiA+IFRlc3RlZC1ieTogVGFrZWhpdG8gTmFrYW11cmEgPHRha2VoaXRv
-Lm5ha2FtdXJhLm54QHJlbmVzYXMuY29tPg0KPiA+DQo+ID4gUmV2aWV3ZWQtYnk6IEdlZXJ0IFV5
-dHRlcmhvZXZlbiA8Z2VlcnQrcmVuZXNhc0BnbGlkZXIuYmU+DQo+ID4gKGFzc3VtaW5nIG1lbW9y
-eSBzaXplLCBleHRhbCBjbG9jayBmcmVxdWVuY3ksIGFuZCBzZXJpYWwgY29uc29sZSBwb3J0DQo+
-ID4gIGFyZSBjb3JyZWN0KQ0KPiANCj4gKHdpdGggdGhlIHNjaGVtYXRpY3MpDQo+IFNvIHRoZSBj
-b25zb2xlIGlzIGFjdHVhbGx5IFNDSUYzIHBpbm11eGVkIHRvIHRoZSBIU0NJRjAgcGlucyBvbiB0
-aGUNCj4gRGVidWcgU2VyaWFsIFVTQiBjb25uZWN0b3Igb24gdGhlIENQVSBib2FyZD8NCg0KWWVz
-LCB0aGUgY29uc29sZSBpcyBTQ0lGMy4NCg0KQmVzdCByZWdhcmRzLA0KWW9zaGloaXJvIFNoaW1v
-ZGENCg0K
+Hi Ahmad
+
+On 12/7/21 2:59 PM, Ahmad Fatoum wrote:
+> Hello Alex,
+> 
+> On 07.12.21 14:52, Alexandre TORGUE wrote:
+>> Hi Rob
+>>
+>> On 12/1/21 11:34 PM, Rob Herring wrote:
+>>> On Fri, Nov 26, 2021 at 11:25:27AM +0100, Olivier MOYSAN wrote:
+>>>> Hi Rob,
+>>>>
+>>>> On 11/25/21 10:26 PM, Rob Herring wrote:
+>>>>> On Thu, 25 Nov 2021 15:40:50 +0100, Olivier Moysan wrote:
+>>>>>> The STM2 I2S DAI can be connected via the audio-graph-card.
+>>>>>> Add port entry into the bindings.
+>>>>>>
+>>>>>> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+>>>>>> ---
+>>>>>>     Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml | 5 +++++
+>>>>>>     1 file changed, 5 insertions(+)
+>>>>>>
+>>>>>
+>>>>> Running 'make dtbs_check' with the schema in this patch gives the
+>>>>> following warnings. Consider if they are expected or the schema is
+>>>>> incorrect. These may not be new warnings.
+>>>>>
+>>>>> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+>>>>> This will change in the future.
+>>>>>
+>>>>> Full log is available here: https://patchwork.ozlabs.org/patch/1559750
+>>>>>
+>>>>>
+>>>>> audio-controller@4000b000: 'port' does not match any of the regexes: '^port@[0-9]', 'pinctrl-[0-9]+'
+>>>>>      arch/arm/boot/dts/stm32mp157a-dk1.dt.yaml
+>>>>>      arch/arm/boot/dts/stm32mp157c-dk2.dt.yaml
+>>>>>
+>>>>
+>>>> This warning is not a new one.
+>>>>
+>>>> The i2s2 node in stm32mp15xx-dkx.dtsi would require the following binding:
+>>>> port:
+>>>>      $ref: audio-graph-port.yaml#
+>>>>      unevaluatedProperties: false
+>>>>
+>>>> However the spi binding requires to introduce a unit address:
+>>>> patternProperties:
+>>>>     '^port@[0-9]':
+>>>>       $ref: audio-graph-port.yaml#
+>>>>       unevaluatedProperties: false
+>>>>
+>>>> The warning can be removed by re-ordering the bindings patches in the serie,
+>>>> as "additionalProperties: true" makes the check more tolerant on extra
+>>>> properties.
+>>>
+>>> That's never right.
+>>>
+>>>> The patch "ASoC: dt-bindings: stm32: i2s: add audio-graph-card port" can
+>>>> even be merely dropped.
+>>>> So, I suggest to resend the serie without audio-graph-card patch.
+>>>
+>>> Only if you aren't using audio-graph-card.
+>>>
+>>>>
+>>>> Does it sound too permissive to you ?
+>>>
+>>> I think perhaps you need to combine the schemas into 1. Or you need to
+>>> restructure your dtsi files such that you only add spi specific
+>>> properties when spi mode is enabled and only add i2s specific properties
+>>> when i2s mode is enabled. Or use the /delete-property/ directive.
+>>
+>> Initially the aim of this series was to fix a "make W=1" warnings seen on spi and i2s nodes (duplicate unit-address). Moving both nodes in a common node + using a different compatible depending on SPI or I2S usage sounded good) but it is not enough. In this series the common node is named as following: "spi2s2: spi@4000b000". It is fine for a spi usage but if we want to use this "common node" with I2S compatible and specific bindings, the node name remains spi@... and then specific spi checks are done. For this with this series applied we got this issue reported by spi-controller.yaml:
+>>
+>> spi@4000b000: port@0: 'compatible' is a required property
+>>
+>> So, if we use two separates nodes we got W=1 warning and if we use a common node we got yaml check issue. One possibility would be to use a common node with a new node name (for example i2spi@...) but I think it is not acceptable.
+>>
+>> How to progress ?
+> 
+> Atmel Flexcom can be configured to be either UART, SPI or i2c. Functions
+> are child nodes of the flexcom node and the MFD driver matching against it,
+> just configure the operating mode and then calls of_platform_populate.
+> 
+> Would something along these lines fit here as well?
+
+Yes it could but in my mind it was not a MFD as both feature cannot be 
+used at the same time: it is either SPI or I2S and choice is done 
+"statically" in device tree depending board usage.
+
+Lee, what it is your feeling about that ? Will you accept to add a MFD 
+driver for this SPI/I2S peripheral whose prurpose is only to populate 
+child node (either SPI or I2S) ?
+
+Cheers
+Alex
+
+> 
+> Cheers,
+> Ahmad
+> 
+>>
+>> Thanks
+>> Alex
+>>
+>>
+>>> Rob
+>>>
+>>
+>> _______________________________________________
+>> Linux-stm32 mailing list
+>> Linux-stm32@st-md-mailman.stormreply.com
+>> https://st-md-mailman.stormreply.com/mailman/listinfo/linux-stm32
+>>
+> 
+> 
+
