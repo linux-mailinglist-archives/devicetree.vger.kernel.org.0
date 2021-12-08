@@ -2,321 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A30346DADC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 19:16:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1602046DADB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 19:16:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238747AbhLHSTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 13:19:39 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:48132 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238745AbhLHSTh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 13:19:37 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: adalessandro)
-        with ESMTPSA id 73E001F45E34
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1638987363; bh=uggevhDieBIc9MGw0HoYM200jvIxsQdtuVaY41rH6Zc=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=e36RXq6Bzr82IdRsGqUoAXx342axRfgCWwGm4m+NlUBA5SeKH0GcW3VHunPXKBGwk
-         Rjt5wxfZ4RFM+as61t+zS8OKrhojIofFcsPa17nZ1oGwhZ55ZIfoJL9NKcefskl3Nr
-         OTEmoxKI2OZjA44MtxHP9y9GCgAzbjjasDPpW/zyzEBVFGAUkV99sazJmLMkyMxPgr
-         gUfy7Jf/I1o6qjGp+2If6v4NHidA3dLGBaWddNby+GHKKgXbZUllbK6mlXo++fKBRp
-         VMbi936C4krB2SI+QcshsjBtSpT/1yuqZ1G2uttZMo1f97a43cdb/cYNOQOrpJI8+v
-         jdQXzdeKfBpfQ==
-Subject: Re: [PATCH v2 5/5] arm: dts: imx8ulz-bsh-smm-m2: Add BSH SMM-M2
- IMX6ULZ SystemMaster
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
-        festevam@gmail.com, ioana.ciornei@nxp.com,
-        jagan@amarulasolutions.com, kernel@pengutronix.de, krzk@kernel.org,
-        linux-imx@nxp.com, matt@traverse.com.au, matteo.lisi@engicam.com,
-        meenakshi.aggarwal@nxp.com, michael@amarulasolutions.com,
-        nathan@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
-        tharvey@gateworks.com
-References: <20211123151252.143631-1-ariel.dalessandro@collabora.com>
- <20211123151252.143631-6-ariel.dalessandro@collabora.com>
- <20211206013531.GO4216@dragon>
-From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Message-ID: <4dbe2516-3a72-8c01-d0c9-fa4cfdddf4f6@collabora.com>
-Date:   Wed, 8 Dec 2021 15:15:52 -0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S238746AbhLHSTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 13:19:35 -0500
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:33593 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238716AbhLHSTf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 13:19:35 -0500
+Received: by mail-ot1-f43.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso3658140otf.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 10:16:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=XJotKmVeKA5kF7Hhvq4nJ90VJRFbtJ+uslv7swmc13k=;
+        b=XVLoX3SUlfv53WRkDhM3ZFXVK9KiNVPrukQ5eGeSAJpAI0ZxZJouLaQ4KFM+/Tr5IC
+         gL7CY62aDHIRkQ3WQ8Mybtd3674LXeuEuXWnzeZwEpODBe9vClFRh8SzYBhXIpeXqElS
+         sweumH6DfhAbMHHZHbxpfBQxtlflb/K320se4A1fi24vgdwh6dl/9d/k2LkxsVbZIg3o
+         DsBb2btgCUTOlPERgJVUEYEme+tNA+ivrNHoLcJDDebT7+OsrOIKflTi8b1BgQ6OTPHU
+         GmA160vULeBKZ+GPYkBtEGK2Bv4iqRcWa8V0d2GoWSODzjWFXxd93jwXzBSG4TCODz7Y
+         wn+Q==
+X-Gm-Message-State: AOAM530p0klMkc96s4bfEDHDUDEdCOP+kL8tu04GGEkoHfa6GAHBBuZh
+        ecgo7PPdsrQZQsZpQ2rthJoSv6Fa0A==
+X-Google-Smtp-Source: ABdhPJz30uYRA7CeRFR4nW7EzeqGZo3eYoOiFPEue43vOesGSO07EMMjCHBoV3bLHkSF2wYB1GJqtg==
+X-Received: by 2002:a9d:70ce:: with SMTP id w14mr1023485otj.77.1638987363122;
+        Wed, 08 Dec 2021 10:16:03 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id y192sm745006oie.21.2021.12.08.10.16.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Dec 2021 10:16:02 -0800 (PST)
+Received: (nullmailer pid 85688 invoked by uid 1000);
+        Wed, 08 Dec 2021 18:16:01 -0000
+Date:   Wed, 8 Dec 2021 12:16:01 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     will@kernel.org, catalin.marinas@arm.com, mark.rutland@arm.com,
+        suzuki.poulose@arm.com, thierry.reding@gmail.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/5] dt-bindings: perf: Convert Arm DSU to schema
+Message-ID: <YbD2Yb7+F41pR0hx@robh.at.kernel.org>
+References: <cover.1638900542.git.robin.murphy@arm.com>
+ <9530f441a62c72c5a22a7b555ea42bbcd3b145a1.1638900542.git.robin.murphy@arm.com>
 MIME-Version: 1.0
-In-Reply-To: <20211206013531.GO4216@dragon>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9530f441a62c72c5a22a7b555ea42bbcd3b145a1.1638900542.git.robin.murphy@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shawn,
-
-On 12/5/21 10:35 PM, Shawn Guo wrote:
-> On Tue, Nov 23, 2021 at 12:12:52PM -0300, Ariel D'Alessandro wrote:
->> From: Michael Trimarchi <michael@amarulasolutions.com>
->>
->> Add DTS of BSH SMM-M2 SystemMaster.
->>
->> This version comes with:
->> - 128 MiB DDR3 RAM
->> - 256 MiB Nand
->> - wifi
->> - bluetooth
->>
->> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
->> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
->> ---
->>  arch/arm/boot/dts/Makefile               |   3 +-
->>  arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts | 153 +++++++++++++++++++++++
->>  2 files changed, 155 insertions(+), 1 deletion(-)
->>  create mode 100644 arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts
->>
->> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
->> index 0de64f237cd8..e6d4ad497985 100644
->> --- a/arch/arm/boot/dts/Makefile
->> +++ b/arch/arm/boot/dts/Makefile
->> @@ -693,7 +693,8 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
->>  	imx6ull-phytec-segin-ff-rdk-nand.dtb \
->>  	imx6ull-phytec-segin-ff-rdk-emmc.dtb \
->>  	imx6ull-phytec-segin-lc-rdk-nand.dtb \
->> -	imx6ulz-14x14-evk.dtb
->> +	imx6ulz-14x14-evk.dtb \
->> +	imx6ulz-bsh-smm-m2.dts
->>  dtb-$(CONFIG_SOC_IMX7D) += \
->>  	imx7d-cl-som-imx7.dtb \
->>  	imx7d-colibri-aster.dtb \
->> diff --git a/arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts b/arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts
->> new file mode 100644
->> index 000000000000..9e82860469e3
->> --- /dev/null
->> +++ b/arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts
->> @@ -0,0 +1,153 @@
->> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
->> +/*
->> + * Copyright (C) 2021 BSH Hausgeraete GmbH
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include <dt-bindings/input/input.h>
->> +#include "imx6ulz.dtsi"
->> +
->> +/ {
->> +	model = "BSH SMM M2";
->> +	compatible = "bsh,imx6ulz-bsh-smm-m2", "fsl,imx6ull";
->> +
->> +	chosen {
->> +		stdout-path = &uart4;
->> +	};
->> +
->> +	usdhc2_pwrseq: usdhc2_pwrseq {
->> +		compatible = "mmc-pwrseq-simple";
->> +		reset-gpios = <&gpio2 21 GPIO_ACTIVE_LOW>;
->> +		status = "okay";
+On Tue, Dec 07, 2021 at 06:20:42PM +0000, Robin Murphy wrote:
+> Convert the DSU binding to schema, as one does.
 > 
-> "okay" status is generally used to flip "disabled" devices.
-
-Fixed in v3.
-
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+>  .../devicetree/bindings/arm/arm-dsu-pmu.txt   | 27 ------------
+>  .../devicetree/bindings/perf/arm,dsu-pmu.yaml | 41 +++++++++++++++++++
+>  2 files changed, 41 insertions(+), 27 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
+>  create mode 100644 Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
 > 
->> +	};
->> +
->> +};
->> +
->> +&uart3 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_bluetooth_uart>;
->> +	uart-has-rtscts;
->> +
+> diff --git a/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt b/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
+> deleted file mode 100644
+> index 6efabba530f1..000000000000
+> --- a/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
+> +++ /dev/null
+> @@ -1,27 +0,0 @@
+> -* ARM DynamIQ Shared Unit (DSU) Performance Monitor Unit (PMU)
+> -
+> -ARM DyanmIQ Shared Unit (DSU) integrates one or more CPU cores
+> -with a shared L3 memory system, control logic and external interfaces to
+> -form a multicore cluster. The PMU enables to gather various statistics on
+> -the operations of the DSU. The PMU provides independent 32bit counters that
+> -can count any of the supported events, along with a 64bit cycle counter.
+> -The PMU is accessed via CPU system registers and has no MMIO component.
+> -
+> -** DSU PMU required properties:
+> -
+> -- compatible	: should be one of :
+> -
+> -		"arm,dsu-pmu"
+> -
+> -- interrupts	: Exactly 1 SPI must be listed.
+> -
+> -- cpus		: List of phandles for the CPUs connected to this DSU instance.
+> -
+> -
+> -** Example:
+> -
+> -dsu-pmu-0 {
+> -	compatible = "arm,dsu-pmu";
+> -	interrupts = <GIC_SPI 02 IRQ_TYPE_LEVEL_HIGH>;
+> -	cpus = <&cpu_0>, <&cpu_1>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
+> new file mode 100644
+> index 000000000000..b78b6b0fce66
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2021 Arm Ltd.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/perf/arm,dsu-pmu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ARM DynamIQ Shared Unit (DSU) Performance Monitor Unit (PMU)
+> +
+> +maintainers:
+> +  - Suzuki K Poulose <suzuki.poulose@arm.com>
+> +  - Robin Murphy <robin.murphy@arm.com>
+> +
+> +description:
+> +  ARM DyanmIQ Shared Unit (DSU) integrates one or more CPU cores with a shared
+> +  L3 memory system, control logic and external interfaces to form a multicore
+> +  cluster. The PMU enables gathering various statistics on the operation of the
+> +  DSU. The PMU provides independent 32-bit counters that can count any of the
+> +  supported events, along with a 64-bit cycle counter. The PMU is accessed via
+> +  CPU system registers and has no MMIO component.
+> +
+> +properties:
+> +  compatible:
+> +    const: "arm,dsu-pmu"
+
+Don't need quotes.
+
+> +
+> +  interrupts:
+> +    items:
+> +      description: nCLUSTERPMUIRQ interrupt
+
+         - description: nCLUSTERPMUIRQ interrupt
+
+> +
+> +  cpus:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    minitems: 1
+> +    maxitems: 8
+> +    description: List of phandles for the CPUs connected to this DSU instance.
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - cpus
+> +
+> +additionalProperties: false
+> -- 
+> 2.28.0.dirty
 > 
-> Unneeded newline.
-
-Fixed in v3.
-
 > 
->> +	status = "okay";
->> +
->> +	bluetooth {
->> +		compatible = "brcm,bcm4330-bt";
->> +		max-speed = <3000000>;
->> +		shutdown-gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
->> +		device-wakeup-gpios = <&gpio2 17 GPIO_ACTIVE_HIGH>;
->> +		host-wakeup-gpios = <&gpio2 13 GPIO_ACTIVE_HIGH>;
->> +	};
->> +};
->> +
->> +&uart4 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_debug_uart>;
->> +	status = "okay";
->> +};
->> +
->> +&usbotg1 {
->> +	dr_mode = "peripheral";
->> +	srp-disable;
->> +	hnp-disable;
->> +	adp-disable;
->> +	status = "okay";
->> +};
->> +
->> +&usbphy1 {
->> +	fsl,tx-d-cal = <106>;
->> +};
->> +
->> +&usdhc2 {
->> +	#address-cells = <1>;
->> +	#size-cells = <0>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_wlan>;
->> +	bus-width = <4>;
->> +	no-1-8-v;
->> +	non-removable;
->> +	cap-power-off-card;
->> +	pm-ignore-notify;
-> 
-> What is this?
-
-Wrong vendor property, removed in v3.
-
-Interesting there're other cases as well:
-
-$ git grep -w pm-ignore-notify
-arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts:       pm-ignore-notify;
-arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi:   pm-ignore-notify;
-arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-ctouch2.dts:
-pm-ignore-notify;
-arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts:
-pm-ignore-notify;
-arch/arm64/boot/dts/freescale/imx8mn-beacon-som.dtsi:   pm-ignore-notify;
-arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi:    pm-ignore-notify;
-
-> 
->> +	keep-power-in-suspend;
->> +	wifi-host;
-> 
-> and this?
-
-Wrong vendor property, removed in v3.
-
-> 
->> +	cap-sdio-irq;
->> +	mmc-pwrseq = <&usdhc2_pwrseq>;
->> +	status = "okay";
->> +
->> +	brcmf: wifi@1 {
->> +		reg = <1>;
->> +		compatible = "brcm,bcm4329-fmac";
->> +		interrupt-parent = <&gpio1>;
->> +		interrupts = <18 IRQ_TYPE_LEVEL_HIGH>;
->> +		interrupt-names = "host-wake";
->> +	};
->> +};
->> +
->> +&wdog1 {
->> +	status = "okay";
->> +};
->> +
->> +&gpmi {
-> 
-> Out of alphabetical order.
-
-Fixed in v3.
-
-> 
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_gpmi_nand>;
->> +	status = "okay";
-> 
-> End property list with status.
-
-Fixed in v3.
-
-> 
->> +	nand-on-flash-bbt;
->> +};
->> +
->> +&iomuxc {
->> +	pinctrl_bluetooth_uart: uart3grp {
-> 
-> Name label and node consistently.
-
-Fixed in v3.
-
-> 
->> +		fsl,pins = <
->> +			MX6UL_PAD_UART3_TX_DATA__UART3_DCE_TX	0x1b0b1
->> +			MX6UL_PAD_UART3_RX_DATA__UART3_DCE_RX	0x1b099
->> +			MX6UL_PAD_UART3_RTS_B__UART3_DCE_RTS	0x1b0b1
->> +			MX6UL_PAD_UART3_CTS_B__UART3_DCE_CTS	0x1b099
->> +
-> 
-> Unnecessary newline.
-
-Fixed in v3.
-
-> 
->> +			MX6UL_PAD_GPIO1_IO01__GPIO1_IO01	0x79		/* BT_REG_ON */
->> +			MX6UL_PAD_SD1_CLK__GPIO2_IO17		0x100b1		/* BT_DEV_WAKE out */
->> +			MX6UL_PAD_ENET2_TX_EN__GPIO2_IO13	0x1b0b0		/* BT_HOST_WAKE in */
->> +		>;
->> +	};
->> +
->> +	pinctrl_debug_uart: uart4grp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_UART4_TX_DATA__UART4_DCE_TX	0x1b0b1
->> +			MX6UL_PAD_UART4_RX_DATA__UART4_DCE_RX	0x1b0b1
->> +		>;
->> +	};
->> +
->> +	pinctrl_gpmi_nand: gpmi-nand {
-> 
-> Name node in the same style as others.
-
-Fixed in v3.
-
-> 
-> Shawn
-> 
->> +		fsl,pins = <
->> +			MX6UL_PAD_NAND_CLE__RAWNAND_CLE		0xb0b1
->> +			MX6UL_PAD_NAND_ALE__RAWNAND_ALE		0xb0b1
->> +			MX6UL_PAD_NAND_WP_B__RAWNAND_WP_B	0xb0b1
->> +			MX6UL_PAD_NAND_READY_B__RAWNAND_READY_B	0xb000
->> +			MX6UL_PAD_NAND_CE0_B__RAWNAND_CE0_B	0xb0b1
->> +			MX6UL_PAD_NAND_RE_B__RAWNAND_RE_B	0xb0b1
->> +			MX6UL_PAD_NAND_WE_B__RAWNAND_WE_B	0xb0b1
->> +			MX6UL_PAD_NAND_DATA00__RAWNAND_DATA00	0xb0b1
->> +			MX6UL_PAD_NAND_DATA01__RAWNAND_DATA01	0xb0b1
->> +			MX6UL_PAD_NAND_DATA02__RAWNAND_DATA02	0xb0b1
->> +			MX6UL_PAD_NAND_DATA03__RAWNAND_DATA03	0xb0b1
->> +			MX6UL_PAD_NAND_DATA04__RAWNAND_DATA04	0xb0b1
->> +			MX6UL_PAD_NAND_DATA05__RAWNAND_DATA05	0xb0b1
->> +			MX6UL_PAD_NAND_DATA06__RAWNAND_DATA06	0xb0b1
->> +			MX6UL_PAD_NAND_DATA07__RAWNAND_DATA07	0xb0b1
->> +		>;
->> +	};
->> +
->> +	pinctrl_wlan: wlangrp {
->> +		fsl,pins = <
->> +			MX6UL_PAD_CSI_HSYNC__USDHC2_CMD		0x17059
->> +			MX6UL_PAD_CSI_VSYNC__USDHC2_CLK		0x10059
->> +			MX6UL_PAD_CSI_DATA00__USDHC2_DATA0	0x17059
->> +			MX6UL_PAD_CSI_DATA01__USDHC2_DATA1	0x17059
->> +			MX6UL_PAD_CSI_DATA02__USDHC2_DATA2	0x17059
->> +			MX6UL_PAD_CSI_DATA03__USDHC2_DATA3	0x17059
->> +
->> +			MX6UL_PAD_SD1_DATA3__GPIO2_IO21		0x79		/* WL_REG_ON */
->> +			MX6UL_PAD_UART2_CTS_B__GPIO1_IO22	0x100b1		/* WL_DEV_WAKE - WiFi_GPIO_4 - WiFi FW UART */
->> +			MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0x1b0b1		/* WL_HOST_WAKE - WIFI_GPIO_0 - OOB IRQ */
->> +			MX6UL_PAD_ENET1_RX_EN__OSC32K_32K_OUT	0x4001b031	/* OSC 32Khz wifi clk in */
->> +		>;
->> +	};
->> +};
->> -- 
->> 2.30.2
->>
-
-Regards,
-Ariel
