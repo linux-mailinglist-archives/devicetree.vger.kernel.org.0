@@ -2,112 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86FB546CB89
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 04:26:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B21CF46CBB7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 04:45:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243846AbhLHD35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 22:29:57 -0500
-Received: from mga06.intel.com ([134.134.136.31]:36822 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S243839AbhLHD35 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Dec 2021 22:29:57 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10191"; a="298542677"
-X-IronPort-AV: E=Sophos;i="5.87,296,1631602800"; 
-   d="scan'208";a="298542677"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Dec 2021 19:26:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,296,1631602800"; 
-   d="scan'208";a="462603579"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by orsmga006.jf.intel.com with ESMTP; 07 Dec 2021 19:26:23 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1munb4-000NLE-Oc; Wed, 08 Dec 2021 03:26:22 +0000
-Date:   Wed, 8 Dec 2021 11:26:01 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Gwendal Grignou <gwendal@chromium.org>, jic23@kernel.org,
-        lars@metafoo.de, swboyd@chromium.org
-Cc:     kbuild-all@lists.01.org, andy.shevchenko@gmail.com,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Gwendal Grignou <gwendal@chromium.org>
-Subject: Re: [PATCH v5 3/5] iio: proximity: Add SX9324 support
-Message-ID: <202112081125.pcOSkAMQ-lkp@intel.com>
-References: <20211208004311.3098571-4-gwendal@chromium.org>
+        id S231156AbhLHDsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 22:48:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34920 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230023AbhLHDsw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 22:48:52 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11930C061574;
+        Tue,  7 Dec 2021 19:45:21 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 30F1ACE1F9B;
+        Wed,  8 Dec 2021 03:45:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C03FCC00446;
+        Wed,  8 Dec 2021 03:45:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638935116;
+        bh=46wLcB7r3H9zQ70Kio1fqmSd6TE5pgs+NV5gDht8ovI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=AKmOMZzuxiUPyZuHwsCw9HcFTFefSXZ14xe8Ey3DLERFLp6mLHBOxc08PHuO8HLNa
+         QrZslUCdu49HSBZPo8iv1z5xvbFJ3mYgrRlkQsH/fYgfscIalhwzEI2t0iHnBpXymD
+         LWUz+2WXPFlrDPNy722D8nVkbTgUV/BeUGCTz4b+I8PsXDw38a+/Q3suXHVI0+H1Uq
+         F9j57Up+wNaXN4PDQA5XVsqtDkEfm4tCioMsizNM9Nketyr+D82E4b1GMUWydjSWQX
+         OeM6+EJ4HwKJGlpg6aon/TsArtsZhQ9B5g1sUlswPasuDUADVvjXpftSjM5+NB+ehD
+         6GnCW3hPLTr5Q==
+Date:   Tue, 7 Dec 2021 19:45:14 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Denis Kirjanov <dkirjanov@suse.de>,
+        Julian Wiedmann <jwi@linux.ibm.com>
+Subject: Re: [PATCH net-next v6 4/4] net: ocelot: add FDMA support
+Message-ID: <20211207194514.32218911@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20211207154839.1864114-5-clement.leger@bootlin.com>
+References: <20211207154839.1864114-1-clement.leger@bootlin.com>
+        <20211207154839.1864114-5-clement.leger@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211208004311.3098571-4-gwendal@chromium.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gwendal,
+On Tue,  7 Dec 2021 16:48:39 +0100 Cl=C3=A9ment L=C3=A9ger wrote:
+> + * struct ocelot_fdma - FDMA struct
+> + *
+> + * @ocelot: Pointer to ocelot struct
+> + * @base: base address of FDMA registers
+> + * @irq: FDMA interrupt
+> + * @ndev: Net device used to initialize NAPI
+> + * @dcbs_base: Memory coherent DCBs
+> + * @dcbs_dma_base: DMA base address of memory coherent DCBs
+> + * @tx_ring: Injection ring
+> + * @rx_ring: Extraction ring
+> + */
+> +struct ocelot_fdma {
+> +	int irq;
+> +	struct net_device *ndev;
+> +	struct ocelot_fdma_dcb *dcbs_base;
+> +	dma_addr_t dcbs_dma_base;
+> +	struct ocelot_fdma_tx_ring tx_ring;
+> +	struct ocelot_fdma_rx_ring rx_ring;
+> +	struct napi_struct napi;
+> +	struct ocelot *ocelot;
 
-Thank you for the patch! Perhaps something to improve:
+one more nit:
 
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on v5.16-rc4 next-20211207]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Gwendal-Grignou/Expand-Semtech-SAR-Sensors-support/20211208-084635
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-config: nios2-allyesconfig (https://download.01.org/0day-ci/archive/20211208/202112081125.pcOSkAMQ-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/d02716a5c3a619239e594e6ba6af2ec38fd3de3d
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Gwendal-Grignou/Expand-Semtech-SAR-Sensors-support/20211208-084635
-        git checkout d02716a5c3a619239e594e6ba6af2ec38fd3de3d
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=nios2 SHELL=/bin/bash drivers/iio/proximity/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   drivers/iio/proximity/sx9324.c: In function 'sx9324_phase_configuration_show':
->> drivers/iio/proximity/sx9324.c:166:16: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
-     166 |         int i, ret, pin_idx;
-         |                ^~~
-   At top level:
-   drivers/iio/proximity/sx9324.c:871:36: warning: 'sx9324_acpi_match' defined but not used [-Wunused-const-variable=]
-     871 | static const struct acpi_device_id sx9324_acpi_match[] = {
-         |                                    ^~~~~~~~~~~~~~~~~
-
-
-vim +/ret +166 drivers/iio/proximity/sx9324.c
-
-   158	
-   159	static ssize_t sx9324_phase_configuration_show(struct iio_dev *indio_dev,
-   160						       uintptr_t private,
-   161						       const struct iio_chan_spec *chan,
-   162						       char *buf)
-   163	{
-   164		struct sx_common_data *data = iio_priv(indio_dev);
-   165		unsigned int val;
- > 166		int i, ret, pin_idx;
-   167		size_t len = 0;
-   168	
-   169		ret = regmap_read(data->regmap, SX9324_REG_AFE_PH0 + chan->channel, &val);
-   170	
-   171		for (i = 0; i < SX9324_NUM_PINS; i++) {
-   172			pin_idx = (val & SX9324_REG_AFE_PH0_PIN_MASK(i)) >> (2 * i);
-   173			len += scnprintf(buf + len, PAGE_SIZE - len, "%s,",
-   174					 sx9324_cs_pin_usage[pin_idx]);
-   175		}
-   176		buf[len - 1] = '\n';
-   177		return len;
-   178	}
-   179	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+drivers/net/ethernet/mscc/ocelot_fdma.h:156: warning: Function parameter or=
+ member 'napi' not described in 'ocelot_fdma'
