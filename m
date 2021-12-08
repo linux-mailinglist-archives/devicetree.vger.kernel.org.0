@@ -2,103 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1267946DDA5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 22:32:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0401E46DDAC
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 22:37:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237305AbhLHVfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 16:35:37 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:40000 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234396AbhLHVfg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 16:35:36 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S238346AbhLHVks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 16:40:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56934 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229735AbhLHVks (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 16:40:48 -0500
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51954C061746;
+        Wed,  8 Dec 2021 13:37:16 -0800 (PST)
+Received: from hatter.bewilderbeest.net (174-21-184-96.tukw.qwest.net [174.21.184.96])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 47562CE2399;
-        Wed,  8 Dec 2021 21:32:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76CEFC341CA;
-        Wed,  8 Dec 2021 21:32:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638999121;
-        bh=yhrzuMW9YYQ7UR0VBpz4C0h74qTHz8keosLP2Pf/vio=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Mml5LULHYenyToqH6V6LXxc6yhqpP5JPmiaYYJDBAahG9Dzuk8KJ/364S9i+/R9Hm
-         txfgFhVSC4Q9X7wEz5AniMaroB9BFO7bwQz5wLjbbS3DdoJp0TBptgrMCx5L0dMu/E
-         +eW7MQ/5l5G632FfH8c6qfe4P6xzDc/JHb6CIsT90rROMPRRFZrtcPgUFUmk7fVYFj
-         +tTuuPKtV7s976AcJZcwOk0NECn3qZGx8JAbfeLz35OBPy7RBmWRgHbY9ObdJC6Lgm
-         z32u3l/hgrN0A+qBWWfupjW+mPhnEokclbT8/cAovyaw9+GwUJyQJio6LH9pVU0op9
-         p5rOASrKLKnKQ==
-Received: by mail-ed1-f44.google.com with SMTP id t5so13094286edd.0;
-        Wed, 08 Dec 2021 13:32:01 -0800 (PST)
-X-Gm-Message-State: AOAM530U+hIEKqc8DSX8/Gwh0W8D/qIrv0rTgEliLGMzCORRER3IWU6N
-        nVpGr2BiJ4Ja4AoY2o5dbCoNxVjd6iafqTv2/A==
-X-Google-Smtp-Source: ABdhPJxR12yWCxhEZ+okix4EY0gXy1Xr5hoe1N6Uc2GmwXxG9eWnj8jvtLZaWjb+VzJpJ6iTANmHfu3YKthHUUjupQY=
-X-Received: by 2002:a17:907:3f24:: with SMTP id hq36mr10407723ejc.390.1638999119781;
- Wed, 08 Dec 2021 13:31:59 -0800 (PST)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id E6BC1500;
+        Wed,  8 Dec 2021 13:37:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1638999436;
+        bh=DFS4xFVoWu3eIZ8C+hKS8xqrLjmyqO7+PD3wjn4s/TA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=DUihA1g+gL8KLIYS6nxLj3FiJTBi4UTbuhhU7fEGCmzbQV22O9zo24E9H0rryuQeH
+         CmFZAIu30o3/oZtgAq9gEyfGbks4mKmXaXo+kY9WHBqhlNRUSYROOpqhdfPePOHyvD
+         jP5YzfldCXJzmOrK5UPiN1tVmtLR5pOPGbzb6OZg=
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     linux-hwmon@vger.kernel.org
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>, openbmc@lists.ozlabs.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Zev Weiss <zev@bewilderbeest.net>
+Subject: [PATCH v4 0/2] hwmon: (pmbus) Add Delta AHE-50DC fan control module driver
+Date:   Wed,  8 Dec 2021 13:37:01 -0800
+Message-Id: <20211208213703.2577-1-zev@bewilderbeest.net>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20210913145146.766080-1-robh@kernel.org> <cc083619-3744-5979-4750-9c26f016505c@alliedtelesis.co.nz>
-In-Reply-To: <cc083619-3744-5979-4750-9c26f016505c@alliedtelesis.co.nz>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 8 Dec 2021 15:31:48 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKqcCD+0ymW_km874A+HMeONBCF5Zgu352mwr-nNjDeqA@mail.gmail.com>
-Message-ID: <CAL_JsqKqcCD+0ymW_km874A+HMeONBCF5Zgu352mwr-nNjDeqA@mail.gmail.com>
-Subject: Re: [PATCH v2] kbuild: Enable DT schema checks for %.dtb targets
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Tom Rini <trini@konsulko.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        "linux-kbuild@vger.kernel.org" <linux-kbuild@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 6, 2021 at 1:34 AM Chris Packham
-<Chris.Packham@alliedtelesis.co.nz> wrote:
->
-> Hi Rob,
->
-> On 14/09/21 2:51 am, Rob Herring wrote:
-> > It is possible to build a single dtb, but not with DT schema validation
-> > enabled. Enable the schema validation to run for %.dtb and %.dtbo
-> > targets. Anyone building a dtb for a specific platform *should* pay
-> > attention to schema warnings.
-> >
-> > This could be supported with a separate %.dt.yaml target instead.
-> > However, the .dt.yaml format is considered an intermediate format and
-> > could possibly go away at some point if schema checking is integrated
-> > into dtc. Also, the plan is to enable the schema checks by default once
-> > platforms are free of warnings, and this is a move in that direction.
->
-> Just started building 5.16-rc4 and hit the following error
->
-> /usr/src/linux/scripts/dtc/Makefile:23: *** dtc needs libyaml for DT
-> schema validation support. Install the necessary libyaml development
-> package..  Stop.
-> make: *** [/usr/src/linux/Makefile:1405: scripts_dtc] Error 2
-> make: *** Waiting for unfinished jobs....
->
-> I tracked it back to this patch and I gather that the "error" is very
-> much intended. Fixing it means I need to get a native libyaml into my
-> cross toolchain, which is doable but a bit of a hassle. This probably
-> affects other meta build systems like buildroot and yocto.
+Hello,
 
-Yes. I'm going to revert this for now.
+These patches add a hwmon pmbus driver for the integrated fan control
+module in the Delta AHE-50DC Open19 power shelf.  I don't know of a
+datasheet or any proper documentation for it.  It's a PMBus device,
+but supports a fairly limited set of commands.  The ones it does
+support have deen deduced from a combination of an existing GPL driver
+in a code release from LinkedIn [0] and some manual experimentation
+with i2c-tools commands.  In addition to some standard PMBus sensors
+(three temperature readings, four fan speeds, and a vin voltage), it
+also has a manufacturer-specific fourth temperature reading available,
+which is supported via a virtual second page (the device itself is not
+paged, but the driver remaps PMBUS_READ_TEMPERATURE_1 in page 1 to the
+manufacturer-specific TEMPERATURE_4).
 
-Are python dependencies any easier? The libyaml dtc dependency may
-actually go away, but dtschema and it's dependencies will remain.
 
-> I think I understand what you're getting at but is it possible to have
-> some kind of escape hatch to avoid having to add a build time tool
-> dependency (or even bundling libyaml next to scripts/dtc)?
+Thanks,
+Zev Weiss
 
-My current thought is to make it a kconfig option. I assume that would
-work for you?
+Changes since v3 [3]:
+ - fixed header inclusion order
+ - removed spurious select/depends Kconfig lines
+ - added comment explaining PMBUS_NO_CAPABILITY
+ - added command-filtering to read_word_data callback to avoid
+   producing bogus sensor limits
+ - updated commit message
 
-> I also notice that when I do supply a toolchain with libyaml the build
-> times are impacted by a noticable factor.
+Changes since v2 [2]:
+ - converted to pmbus driver
 
-How many dtbs are you building?
+Changes since v1 [1]:
+ - fixed invalid name warning from __hwmon_device_register()
 
-Rob
+[0] https://github.com/linkedin/o19-bmc-firmware/blob/master/meta-openbmc/meta-linkedin/meta-deltapower/recipes-kernel/fancontrol-mod/files/fancontrol.c
+[1] https://lore.kernel.org/linux-hwmon/20211206224419.15736-1-zev@bewilderbeest.net/
+[2] https://lore.kernel.org/linux-hwmon/20211206230153.16891-1-zev@bewilderbeest.net/
+[3] https://lore.kernel.org/linux-hwmon/20211207071521.543-1-zev@bewilderbeest.net/
+
+
+Zev Weiss (2):
+  hwmon: (pmbus) Add Delta AHE-50DC fan control module driver
+  dt-bindings: add Delta AHE-50DC fan control module
+
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/hwmon/pmbus/Kconfig                   |  10 ++
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/delta-ahe50dc-fan.c       | 114 ++++++++++++++++++
+ 5 files changed, 133 insertions(+)
+ create mode 100644 drivers/hwmon/pmbus/delta-ahe50dc-fan.c
+
+-- 
+2.34.1
+
