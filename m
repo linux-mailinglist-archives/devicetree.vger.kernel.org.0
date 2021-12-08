@@ -2,89 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57D7346D043
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 10:41:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D7F846D024
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 10:33:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbhLHJpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 04:45:12 -0500
-Received: from [106.84.20.49] ([106.84.20.49]:9011 "EHLO test.cqplus1.com"
-        rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229498AbhLHJpM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Dec 2021 04:45:12 -0500
-X-Greylist: delayed 628 seconds by postgrey-1.27 at vger.kernel.org; Wed, 08 Dec 2021 04:45:11 EST
-X-MailGates: (compute_score:DELIVER,40,3)
-Received: from 172.27.96.203
-        by cqmailgates with MailGates ESMTP Server V5.0(21478:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Wed, 08 Dec 2021 17:28:45 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 8 Dec 2021 17:28:42 +0800
-Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
- ([::1]) with mapi id 15.01.2375.017; Wed, 8 Dec 2021 17:28:42 +0800
-From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-To:     Marc Zyngier <maz@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Subject: RE: [PATCH v5 08/10] irqchip: Add Sunplus SP7021 interrupt controller
- driver
-Thread-Topic: [PATCH v5 08/10] irqchip: Add Sunplus SP7021 interrupt
- controller driver
-Thread-Index: AQHX6BmQ/JspEgyikE+suUmdAKG1nqwmO/YAgAHtkbD//484gIAAn6dA
-Date:   Wed, 8 Dec 2021 09:28:42 +0000
-Message-ID: <8fa00c3b55874e90b5baae1f84010997@cqplus1.com>
-References: <cover.1638515726.git.qinjian@cqplus1.com>
- <e88ea4cf28ba69a41f6d1b4dd4128b82a6095c29.1638515726.git.qinjian@cqplus1.com>
- <87r1ao23fp.wl-maz@kernel.org> <39f9b853af7c44cb94421354744512a8@cqplus1.com>
- <ce867937861df454823eb703bfd29256@kernel.org>
-In-Reply-To: <ce867937861df454823eb703bfd29256@kernel.org>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.18]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S229462AbhLHJgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 04:36:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56708 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229449AbhLHJgc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 04:36:32 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74184C0617A1;
+        Wed,  8 Dec 2021 01:33:00 -0800 (PST)
+Received: from [IPv6:2a01:e0a:120:3210:9928:73b0:79a4:e623] (unknown [IPv6:2a01:e0a:120:3210:9928:73b0:79a4:e623])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: benjamin.gaignard)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 39CCF1F45A1D;
+        Wed,  8 Dec 2021 09:32:58 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1638955978; bh=qdoGNUS0B38g/vQl8OYWvSbXd37jJA7vB7+2VrQDEBo=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=nJ8VNPLOSjOYZBedj0grLrp18tc5OnjuKMsPV07CFaOr4tQuywGpklRmMhlMXjMJe
+         kpthjLYUO6CMUJGV5jxCi1qX9YhRPVDNIs2zAL0QmV2eh8j7imKbYNpQFLRSFa1VuS
+         G+8lxXDTfyUi1KlHQh9LQkMCg1DlXLkZP/ngthXFt2cC6QStIBGAIEBrSEm6J4zIL0
+         EXorkYrmiitvE9lQLwyTxnHXSMk2PrUsdEimtUT46tb0ualBFzLQmGcYCz5GGO5tBL
+         t1wIc1nA2WdnH1QCeaaXG/9IyrMeIaXf5B4KzrRehwz20bE4HRzXh3dRZ7cLvCin3Y
+         /+txpI5hwgjvQ==
+Subject: Re: [RFC V2 0/6] media: Hantro: Split iMX8MQ VPU into G1 and G2 with
+ blk-ctrl support
+To:     Adam Ford <aford173@gmail.com>, linux-media@vger.kernel.org
+Cc:     cphealy@gmail.com, hverkuil@xs4all.nl,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev
+References: <20211207015446.1250854-1-aford173@gmail.com>
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Message-ID: <f85da774-ccb3-85de-edd6-5333ed8d0503@collabora.com>
+Date:   Wed, 8 Dec 2021 10:32:55 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <20211207015446.1250854-1-aford173@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBNYXJjIFp5bmdpZXIgPG1hekBr
-ZXJuZWwub3JnPg0KPiBTZW50OiBXZWRuZXNkYXksIERlY2VtYmVyIDgsIDIwMjEgMzo0NSBQTQ0K
-PiBUbzogcWluamlhblvopoPlgaVdIDxxaW5qaWFuQGNxcGx1czEuY29tPg0KPiBDYzogcm9iaCtk
-dEBrZXJuZWwub3JnOyBtdHVycXVldHRlQGJheWxpYnJlLmNvbTsgc2JveWRAa2VybmVsLm9yZzsg
-dGdseEBsaW51dHJvbml4LmRlOyBwLnphYmVsQHBlbmd1dHJvbml4LmRlOw0KPiBsaW51eEBhcm1s
-aW51eC5vcmcudWs7IGJyb29uaWVAa2VybmVsLm9yZzsgYXJuZEBhcm5kYi5kZTsgbGludXgtYXJt
-LWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsg
-bGludXgtDQo+IGtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWNsa0B2Z2VyLmtlcm5lbC5v
-cmc7IFdlbGxzIEx1IOWRguiKs+mosCA8d2VsbHMubHVAc3VucGx1cy5jb20+DQo+IFN1YmplY3Q6
-IFJlOiBbUEFUQ0ggdjUgMDgvMTBdIGlycWNoaXA6IEFkZCBTdW5wbHVzIFNQNzAyMSBpbnRlcnJ1
-cHQgY29udHJvbGxlciBkcml2ZXINCj4gDQo+IE9uIDIwMjEtMTItMDggMDc6MTUsIHFpbmppYW5b
-6KaD5YGlXSB3cm90ZToNCj4gPj4gPiArdm9pZCBzcF9pbnRjX3NldF9leHQodTMyIGh3aXJxLCBp
-bnQgZXh0X251bSkNCj4gPj4gPiArew0KPiA+PiA+ICsJc3BfaW50Y19hc3NpZ25fYml0KGh3aXJx
-LCBSRUdfSU5UUl9QUklPUklUWSwgIWV4dF9udW0pOw0KPiA+PiA+ICt9DQo+ID4+ID4gK0VYUE9S
-VF9TWU1CT0xfR1BMKHNwX2ludGNfc2V0X2V4dCk7DQo+ID4+DQo+ID4+IE5vIHdheS4gV2UgZG9u
-J3QgZXhwb3J0IHJhbmRvbSBzeW1ib2xzIHdpdGhvdXQgYSBnb29kIGp1c3RpZmljYXRpb24sDQo+
-ID4+IGFuZCB5b3UgZGlkbid0IGdpdmUgYW55Lg0KPiA+Pg0KPiA+DQo+ID4gVGhpcyBmdW5jdGlv
-biBjYWxsZWQgYnkgU1A3MDIxIGRpc3BsYXkgZHJpdmVyIHRvIGRlY2lkZSBESVNQTEFZX0lSUQ0K
-PiA+IHJvdXRpbmcgdG8gd2hpY2ggcGFyZW50IGlycSAoRVhUX0lOVDAgb3IgRVhUX0lOVDEpLg0K
-PiANCj4gQmFzZWQgb24gd2hhdD8gSG93IGNhbiBhIGRpc3BsYXkgZHJpdmVyIGRlY2lkZSB3aGlj
-aCBwYXJlbnQgaXMNCj4gYXBwcm9wcmlhdGU/IFdoYXQgaW1wcm92ZW1lbnQgZG9lcyB0aGlzIGJy
-aW5nPw0KDQpJbiBkZWZhdWx0LCBhbGwgSVJRIHJvdXRpbmcgdG8gRVhUX0lOVDAsIHdoaWNoIHBy
-b2Nlc3NlZCBieSBDUFUwDQpTb21lIGRldmljZSdzIElSUSBuZWVkIGxvdyBsYXRlbmN5LCBsaWtl
-IGRpc3BsYXksIHNvIHJvdXRpbmcgRElTUExBWV9JUlEgdG8gRVhUX0lOVDEsDQp3aGljaCBwcm9j
-ZXNzZWQgYnkgQ1BVMSAoc2V0IC9wcm9jL2lycS88RVhUX0lOVDE+L3NtcF9hZmZpbml0eV9saXN0
-KQ0K
+
+Le 07/12/2021 à 02:54, Adam Ford a écrit :
+
+> Currently, the VPU in the i.MQ8MQ is appearing as one codec, but in
+> reality, it's two IP blocks called G1 and G2.  There is initialization
+> code in VPU code to pull some clocks, resets and other features which
+> has been integrated into the vpu-blk-ctrl for the i.MX8M Mini and a
+> similar method can be used to make the VPU codec's operate as
+> stand-alone cores without having to know the details of each other
+> or the quirks unique to the i.MX8MQ, so the remaining code can be
+> left more generic.
+>
+> This series was started by Lucas Stach with one by Benjamin Gaignard.
+> Most patches have been modified slightly by me.  It's in an RFC state
+> because I wasn't sure how to best handle the signatures and wasn't sure
+> if I could base it off the branch I did.
+>
+> Since the g-streamer and media trees are in a constant state of
+> change, this series is based on
+>
+> git://linuxtv.org/hverkuil/media_tree.git for-v5.17e
+>
+> The downstream code from NXP shows the G1 and G2 clocks running
+> at 600MHz, but between the TRM and the datasheet, there is some
+> discrepancy.  Because the NXP reference code used 600MHz, that is
+> what was chosen here.  Users who need to adjust their G1 and G2
+> clocks can do so in their board files.
+
+Hi Adam,
+
+Thanks for your patches, I have been able to reproduce VP9 results on my side (Fluster 147/303).
+In past I have notice spurious errors when using 600MHz clock on HEVC decode but not with 300MHz.
+
+Regards,
+Benjamin
+
+>
+> Fluster Results:
+>
+> ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
+> Ran 90/135 tests successfully               in 61.966 secs
+>
+> ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
+> Ran 55/61 tests successfully               in 7.660 secs
+>
+>
+> ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
+> Ran 144/303 tests successfully               in 162.665 secs
+>
+> Changes log:
+>
+> V2:  Make vpu-blk-ctrl enable G2 clock when enabling fuses.
+>       Remove syscon from device tree and binding example
+>       Added modified nxp,imx8mq-vpu.yaml from Benjamin Gaignard
+>
+> Adam Ford (2):
+>    media: hantro: split i.MX8MQ G1 and G2 code
+>    arm64: dts: imx8mq: Split i.MX8MQ G1 and G2 with vpu-blk-ctrl
+>
+> Benjamin Gaignard (1):
+>    dt-bindings: media: nxp,imx8mq-vpu: Update the bindings for G2 support
+>
+> Lucas Stach (3):
+>    dt-bindings: power: imx8mq: add defines for VPU blk-ctrl domains
+>    dt-bindings: soc: add binding for i.MX8MQ VPU blk-ctrl
+>    soc: imx: imx8m-blk-ctrl: add i.MX8MQ VPU blk-ctrl
+>
+>   .../bindings/media/nxp,imx8mq-vpu.yaml        |  58 +++++----
+>   .../soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml      |  71 +++++++++++
+>   arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  69 ++++++----
+>   drivers/soc/imx/imx8m-blk-ctrl.c              |  68 +++++++++-
+>   drivers/staging/media/hantro/hantro_drv.c     |   4 +-
+>   drivers/staging/media/hantro/hantro_hw.h      |   2 +-
+>   drivers/staging/media/hantro/imx8m_vpu_hw.c   | 119 +++---------------
+>   include/dt-bindings/power/imx8mq-power.h      |   3 +
+>   8 files changed, 237 insertions(+), 157 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml
+>
+>
+> base-commit: d1888b0bfd2ddef2e8a81505ffa200b92cc32e0c
