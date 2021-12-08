@@ -2,82 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7AD846D898
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 17:35:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D57046D89C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 17:36:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234688AbhLHQjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 11:39:23 -0500
-Received: from foss.arm.com ([217.140.110.172]:36156 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237137AbhLHQjQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Dec 2021 11:39:16 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 55774101E;
-        Wed,  8 Dec 2021 08:35:44 -0800 (PST)
-Received: from [10.57.34.58] (unknown [10.57.34.58])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 45FB63F5A1;
-        Wed,  8 Dec 2021 08:35:42 -0800 (PST)
-Message-ID: <948a1248-29b4-cf4c-4d12-4889afee80a7@arm.com>
-Date:   Wed, 8 Dec 2021 16:35:38 +0000
+        id S237135AbhLHQj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 11:39:57 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:57630 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234717AbhLHQj5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 11:39:57 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B8GZwTu049909;
+        Wed, 8 Dec 2021 10:35:58 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1638981358;
+        bh=tw3OwjdRj9vPXb5r6L5qlp2b1Rq60gScqhejarKuboQ=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=phbfquo7sSUEfHU3aehyPafiMJo3S0rXoxXzAtxBVx3QZ0HamrR/0CUim9lktODSN
+         s1eGtSrDum7rCKBfDsfn8S5h+wdpPkNhICmhgtoj9HikZfKwTu3xsYPL1EPdm3a/1g
+         Z0mHyVdb4CyP8pZXtM2Ojfscbd/ejU9F/4zG3MNA=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B8GZwZI066212
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 8 Dec 2021 10:35:58 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 8
+ Dec 2021 10:35:58 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 8 Dec 2021 10:35:58 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B8GZw1I075184;
+        Wed, 8 Dec 2021 10:35:58 -0600
+Date:   Wed, 8 Dec 2021 10:35:58 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Roger Quadros <rogerq@kernel.org>
+CC:     Miquel Raynal <miquel.raynal@bootlin.com>, <richard@nod.at>,
+        <vigneshr@ti.com>, <kishon@ti.com>, <tony@atomide.com>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 4/4] mtd: nand: omap2: Add support for NAND Controller on
+ AM64 SoC
+Message-ID: <20211208163558.5pvs7j7cmwwpmzrk@trickily>
+References: <20211123103609.14063-1-rogerq@kernel.org>
+ <20211123103609.14063-5-rogerq@kernel.org>
+ <20211124131552.6b9bc506@xps13>
+ <e52141a6-96fc-97d6-95d7-3e26276fbac3@kernel.org>
+ <20211126104231.7cc43149@xps13>
+ <917ac002-9d4b-237d-94f3-bcd05f481f39@kernel.org>
+ <20211129043633.myxmgp6idbrqvx5p@unlisted>
+ <e36c46e2-1d0d-4dac-e9a0-3a0cbdd023fa@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH 08/18] dt-bindings: display: rockchip: dw-hdmi: Add
- regulator support
-Content-Language: en-GB
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20211208151230.3695378-1-s.hauer@pengutronix.de>
- <20211208151230.3695378-9-s.hauer@pengutronix.de>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20211208151230.3695378-9-s.hauer@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <e36c46e2-1d0d-4dac-e9a0-3a0cbdd023fa@kernel.org>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-12-08 15:12, Sascha Hauer wrote:
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->   .../bindings/display/rockchip/rockchip,dw-hdmi.yaml         | 6 ++++++
->   1 file changed, 6 insertions(+)
+On 16:45-20211208, Roger Quadros wrote:
+[..]
+
+> Did I understand correctly that we can use a different compatible for older SoC
+> in the overlay? e.g. ti,am642-es1.0 ?
+
+If that is what we would desire. There are a few SR1.0 (not ES1.0)
+examples for previous devices in [1]
+
+NOTE: the dts in k.org will always point to the latest production SRx.y
+device that has been released to market (aka products going to market).
+previous pre-production SR support tends to be with overlays for various
+quirks.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> index 2ab6578033da2..b9dca49aa6e05 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> @@ -28,6 +28,12 @@ properties:
->     reg-io-width:
->       const: 4
->   
-> +  avdd-0v9-supply:
-> +    description: A 0.9V supply that powers up the SoC internal circuitry.
+> If so then I can get rid of soc_device_match and use compatibles matching only in this patch.
 
-Might be worth calling out the actual pin name so it's abundantly clear 
-for DT authors cross-referencing schematics. Annoyingly, some SoCs have 
-HDMI_AVDD_1V0 instead of HDMI_AVDD_0V9 - I'm not sure it's worth 
-splitting hairs that far in terms of the property name itself, but I'll 
-leave that for others to decide.
+As appropriate for the subsystem.
 
-> +  avdd-1v8-supply:
-> +    description: A 1.8V supply that powers up the SoC internal circuitry.
 
-At least HDMI_AVDD_1V8 seems more consistent.
+[1] https://git.ti.com/cgit/ti-linux-kernel/ti-upstream-tools/tree/arch/arm64/boot/dts/ti
 
-Thanks,
-Robin.
-
-> +
->     clocks:
->       minItems: 2
->       items:
-> 
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
