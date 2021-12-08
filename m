@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF6D046C982
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 01:43:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA43546C988
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 01:45:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234381AbhLHArL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Dec 2021 19:47:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50236 "EHLO
+        id S229879AbhLHAsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Dec 2021 19:48:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234581AbhLHAqw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 19:46:52 -0500
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD717C061746
-        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 16:43:21 -0800 (PST)
-Received: by mail-pj1-x1034.google.com with SMTP id k6-20020a17090a7f0600b001ad9d73b20bso788916pjl.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 16:43:21 -0800 (PST)
+        with ESMTP id S238352AbhLHAqy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Dec 2021 19:46:54 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31414C061574
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 16:43:23 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id g19so962361pfb.8
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 16:43:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=DLoDAYgE5smo+nUXu2ZwJvkcMy+PmsnqgZA10JWXv6E=;
-        b=WiuUUDydPCBMHRA0Vpn6JGqMpSshAKyJQXjzA3r3TgPl8MFrgFG03DxznHxPgruURY
-         M63cz18Fe9+yxUVk3Ii4yuR/JopuWkFuWo9+d6DqDcCMX8z0zFhQHQsaoNG0AMbvqCjG
-         QT6L6aEjIPfXOvxz7hdeyo6ronme2NLyBeats=
+        bh=4F4EbPUt7EtrJJvibYxN3NdN+PNF9DLnCpFTCxD5lMk=;
+        b=TOb3TU7cQ7ks/8I6a4VY/xCwzY3O6iBur9qrMeefpyW0NwKWPaKUN2Iv0UzvfGf3Ax
+         2LosrpgM9Wfk0tX+Csx8fBrsCBEP2onoYGyOCJ6B+6KuOHAW9wihYpxrN1z2ohRwcL+b
+         N70NcNL1Muxv6NS6ALj+JnCHQVk8g7kumcAm4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=DLoDAYgE5smo+nUXu2ZwJvkcMy+PmsnqgZA10JWXv6E=;
-        b=r5oqf5VznISf+dhtM8jnugU+3bGKRSUXB+MPA0NPspRmgF1sqJggrvsTFyduRsvPqe
-         jHQ4Q+FQBGC1GMmLqXKTG0kAk83+53jg7FFDGAHCgbZ8mBT9IN8sJ+U41zr+EChqRAI7
-         CUlDPuy9fHjwQg8ebQnTMisDXeoEfdPP2ZtnGVyRhrw2YtLT3El4WFQ6bt5PyXmazOrh
-         aBxK/7OQx+O6PEVPqn6tm1ti/twwzSCeJnGaNmMJgF/qkK+I545QVvxxTfy6QswK1/uD
-         xVOvO73NSudcyNuaV8GebZHR8D6pQTjSM/qxdcuUPOM4aWe58SSKWZtgy5d6n5B+Q075
-         emOw==
-X-Gm-Message-State: AOAM531++dsK18NAWl7tZdWDl2f9yGLZOPl5yCWfNX7x/hyb6ms4Z8D7
-        bfZh6RCI6qCiHqzC62BUb+ctEg==
-X-Google-Smtp-Source: ABdhPJzdc7+Onm+4JBw3LC08ExrOvIHBwtHdOd4srKUTatUmZdz77Au4SXS12+TgNTMSaTkmWXtiJg==
-X-Received: by 2002:a17:902:e5c9:b0:142:53c4:478d with SMTP id u9-20020a170902e5c900b0014253c4478dmr54181446plf.33.1638924201259;
-        Tue, 07 Dec 2021 16:43:21 -0800 (PST)
+        bh=4F4EbPUt7EtrJJvibYxN3NdN+PNF9DLnCpFTCxD5lMk=;
+        b=rriAB0auV5FcyAr53gVLQl+ILy/HuNiqgVBYvX4F4dSIEc8G769bh+ziCc3/500Inu
+         XicDNoTfGZ2N9cVGYUpirw30BwqSIHV6DPZjpdi61LRT0vxCFayM6bD9Xjb22DFL9l7j
+         0uAHkJoL2kt4Hdk1ijQCXh2enJTFXs0kBOtYUQNsupCXn2f57SoQ+E8oUKaerfpH6xeh
+         zgULKzxsi5Nko9cNsgqvPBIA4uXxGovCYmbjz1lJrAs0n9lfGzTpJ143BPyvpR8vuZ8T
+         MYpbmVK2GsDYOxtrgYHgTthJF3OZ7ilHee0ALhaXBXZH89tczPsFl2B07gdtU749XXvv
+         dxYQ==
+X-Gm-Message-State: AOAM531MZ+yR9GdtdbwpnfqPABNTEmu19ax0yVBxADd/079f+XISkKFI
+        0hCat+fslf8SIwWQENXarWxTYQ==
+X-Google-Smtp-Source: ABdhPJwGazY7VJWo2081XvR+Gz4S9zmg3+jXf+CQgckWYpuF3RlOYXpVTPIRVE8eXX20zIJBWvLvsA==
+X-Received: by 2002:a63:2a8a:: with SMTP id q132mr26588624pgq.23.1638924202728;
+        Tue, 07 Dec 2021 16:43:22 -0800 (PST)
 Received: from localhost ([2620:15c:202:201:e4:362a:40f4:7f9f])
-        by smtp.gmail.com with UTF8SMTPSA id w37sm586015pgk.87.2021.12.07.16.43.20
+        by smtp.gmail.com with UTF8SMTPSA id e4sm627490pgi.21.2021.12.07.16.43.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Dec 2021 16:43:20 -0800 (PST)
+        Tue, 07 Dec 2021 16:43:22 -0800 (PST)
 From:   Gwendal Grignou <gwendal@chromium.org>
 To:     jic23@kernel.org, lars@metafoo.de, swboyd@chromium.org
 Cc:     andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
         devicetree@vger.kernel.org, Gwendal Grignou <gwendal@chromium.org>
-Subject: [PATCH v5 4/5] dt-bindings: iio: Add sx9324 binding
-Date:   Tue,  7 Dec 2021 16:43:10 -0800
-Message-Id: <20211208004311.3098571-5-gwendal@chromium.org>
+Subject: [PATCH v5 5/5] iio: sx9324: Add dt_binding support
+Date:   Tue,  7 Dec 2021 16:43:11 -0800
+Message-Id: <20211208004311.3098571-6-gwendal@chromium.org>
 X-Mailer: git-send-email 2.34.1.400.ga245620fadb-goog
 In-Reply-To: <20211208004311.3098571-1-gwendal@chromium.org>
 References: <20211208004311.3098571-1-gwendal@chromium.org>
@@ -60,20 +60,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Similar to SX9310, add biddings to setup sx9324 hardware properties.
-SX9324 is a little different, introduce 4 phases to be configured in 2
-pairs over 3 antennas.
+Based on bindings/iio/proximity/semtech,sx9324.yaml, implement
+retrieving sensor hardware property and alter default values.
 
 Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
 ---
 Changes in v5:
-- Use consistent field naming, prefixed with phX.
+- Use prefixed binding names.
+- Fix long lines.
 
 Changes in v4:
-- Use const instead of single enum
-- Specify ph0-pin better
-- Recopy type information for phX-pin
-- Fix cut and paste errors.
+- Fix spelling in commit title.
 
 Changes in v3:
 - Remove duplicate information.
@@ -83,177 +80,211 @@ Changes in v3:
 Changes in v2:
 - Fix interrupt documentation wording.
 
- .../iio/proximity/semtech,sx9324.yaml         | 161 ++++++++++++++++++
- 1 file changed, 161 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
+ drivers/iio/proximity/sx9324.c | 164 +++++++++++++++++++++++++++++++++
+ 1 file changed, 164 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-new file mode 100644
-index 00000000000000..ac9581b0d31364
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-@@ -0,0 +1,161 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/proximity/semtech,sx9324.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/iio/proximity/sx9324.c b/drivers/iio/proximity/sx9324.c
+index a27aae64e6d4e1..86b7c83ea644e8 100644
+--- a/drivers/iio/proximity/sx9324.c
++++ b/drivers/iio/proximity/sx9324.c
+@@ -77,6 +77,7 @@
+ #define SX9324_REG_PROX_CTRL0		0x30
+ #define SX9324_REG_PROX_CTRL0_GAIN_MASK	GENMASK(5, 3)
+ #define SX9324_REG_PROX_CTRL0_GAIN_1		0x80
++#define SX9324_REG_PROX_CTRL0_RAWFILT_MASK	GENMASK(2, 0)
+ #define SX9324_REG_PROX_CTRL0_RAWFILT_1P50	0x01
+ #define SX9324_REG_PROX_CTRL1		0x31
+ #define SX9324_REG_PROX_CTRL2		0x32
+@@ -751,6 +752,74 @@ static int sx9324_write_raw(struct iio_dev *indio_dev,
+ 	return -EINVAL;
+ }
+ 
++static const struct sx_common_reg_default sx9324_default_regs[] = {
++	{ SX9324_REG_IRQ_MSK, 0x00 },
++	{ SX9324_REG_IRQ_CFG0, 0x00 },
++	{ SX9324_REG_IRQ_CFG1, SX9324_REG_IRQ_CFG1_FAILCOND },
++	{ SX9324_REG_IRQ_CFG2, 0x00 },
++	{ SX9324_REG_GNRL_CTRL0, SX9324_REG_GNRL_CTRL0_SCANPERIOD_100MS },
++	/*
++	 * The lower 4 bits should not be set as it enable sensors measurements.
++	 * Turning the detection on before the configuration values are set to
++	 * good values can cause the device to return erroneous readings.
++	 */
++	{ SX9324_REG_GNRL_CTRL1, SX9324_REG_GNRL_CTRL1_PAUSECTRL },
 +
-+title: Semtech's SX9324 capacitive proximity sensor
++	{ SX9324_REG_AFE_CTRL0, 0x00 },
++	{ SX9324_REG_AFE_CTRL3, 0x00 },
++	{ SX9324_REG_AFE_CTRL4, SX9324_REG_AFE_CTRL4_FREQ_83_33HZ |
++		SX9324_REG_AFE_CTRL4_RES_100 },
++	{ SX9324_REG_AFE_CTRL6, 0x00 },
++	{ SX9324_REG_AFE_CTRL7, SX9324_REG_AFE_CTRL4_FREQ_83_33HZ |
++		SX9324_REG_AFE_CTRL4_RES_100 },
 +
-+maintainers:
-+  - Gwendal Grignou <gwendal@chromium.org>
-+  - Daniel Campello <campello@chromium.org>
++	/* TODO(gwendal): PHx use chip default or all grounded? */
++	{ SX9324_REG_AFE_PH0, 0x29 },
++	{ SX9324_REG_AFE_PH1, 0x26 },
++	{ SX9324_REG_AFE_PH2, 0x1a },
++	{ SX9324_REG_AFE_PH3, 0x16 },
 +
-+description: |
-+  Semtech's SX9324 proximity sensor.
++	{ SX9324_REG_AFE_CTRL8, SX9324_REG_AFE_CTRL8_RESFILTN_4KOHM },
++	{ SX9324_REG_AFE_CTRL9, SX9324_REG_AFE_CTRL9_AGAIN_1 },
 +
-+properties:
-+  compatible:
-+    const: semtech,sx9324
++	{ SX9324_REG_PROX_CTRL0, SX9324_REG_PROX_CTRL0_GAIN_1 |
++		SX9324_REG_PROX_CTRL0_RAWFILT_1P50 },
++	{ SX9324_REG_PROX_CTRL1, SX9324_REG_PROX_CTRL0_GAIN_1 |
++		SX9324_REG_PROX_CTRL0_RAWFILT_1P50 },
++	{ SX9324_REG_PROX_CTRL2, SX9324_REG_PROX_CTRL2_AVGNEG_THRESH_16K },
++	{ SX9324_REG_PROX_CTRL3, SX9324_REG_PROX_CTRL3_AVGDEB_2SAMPLES |
++		SX9324_REG_PROX_CTRL3_AVGPOS_THRESH_16K },
++	{ SX9324_REG_PROX_CTRL4, SX9324_REG_PROX_CTRL4_AVGNEG_FILT_2 |
++		SX9324_REG_PROX_CTRL3_AVGPOS_FILT_256 },
++	{ SX9324_REG_PROX_CTRL5, 0x00 },
++	{ SX9324_REG_PROX_CTRL6, SX9324_REG_PROX_CTRL6_PROXTHRESH_32 },
++	{ SX9324_REG_PROX_CTRL7, SX9324_REG_PROX_CTRL6_PROXTHRESH_32 },
++	{ SX9324_REG_ADV_CTRL0, 0x00 },
++	{ SX9324_REG_ADV_CTRL1, 0x00 },
++	{ SX9324_REG_ADV_CTRL2, 0x00 },
++	{ SX9324_REG_ADV_CTRL3, 0x00 },
++	{ SX9324_REG_ADV_CTRL4, 0x00 },
++	{ SX9324_REG_ADV_CTRL5, SX9324_REG_ADV_CTRL5_STARTUP_SENSOR_1 |
++		SX9324_REG_ADV_CTRL5_STARTUP_METHOD_1 },
++	{ SX9324_REG_ADV_CTRL6, 0x00 },
++	{ SX9324_REG_ADV_CTRL7, 0x00 },
++	{ SX9324_REG_ADV_CTRL8, 0x00 },
++	{ SX9324_REG_ADV_CTRL9, 0x00 },
++	/* Body/Table threshold */
++	{ SX9324_REG_ADV_CTRL10, 0x00 },
++	{ SX9324_REG_ADV_CTRL11, 0x00 },
++	{ SX9324_REG_ADV_CTRL12, 0x00 },
++	/* TODO(gwendal): SAR currenly disabled */
++	{ SX9324_REG_ADV_CTRL13, 0x00 },
++	{ SX9324_REG_ADV_CTRL14, 0x00 },
++	{ SX9324_REG_ADV_CTRL15, 0x00 },
++	{ SX9324_REG_ADV_CTRL16, 0x00 },
++	{ SX9324_REG_ADV_CTRL17, 0x00 },
++	{ SX9324_REG_ADV_CTRL18, 0x00 },
++	{ SX9324_REG_ADV_CTRL19, SX9324_REG_ADV_CTRL19_HIGHT_FAILURE_THRESH_SATURATION },
++	{ SX9324_REG_ADV_CTRL20, SX9324_REG_ADV_CTRL19_HIGHT_FAILURE_THRESH_SATURATION },
++};
 +
-+  reg:
-+    maxItems: 1
+ /* Activate all channels and perform an initial compensation. */
+ static int sx9324_init_compensation(struct iio_dev *indio_dev)
+ {
+@@ -775,6 +844,99 @@ static int sx9324_init_compensation(struct iio_dev *indio_dev)
+ 	return ret;
+ }
+ 
++static const struct sx_common_reg_default *
++sx9324_get_default_reg(struct device *dev, int idx,
++		       struct sx_common_reg_default *reg_def)
++{
++#define SX9324_PIN_DEF "semtech,ph0-pin"
++#define SX9324_RESOLUTION_DEF "semtech,ph01-resolution"
++#define SX9324_PROXRAW_DEF "semtech,ph01-proxraw-strength"
++	unsigned int pin_defs[SX9324_NUM_PINS];
++	char prop[] = SX9324_PROXRAW_DEF;
++	u32 start = 0, raw = 0, pos = 0;
++	int ret, count, ph, pin;
 +
-+  interrupts:
-+    description:
-+      Generated by device to announce preceding read request has finished
-+      and data is available or that a close/far proximity event has happened.
-+    maxItems: 1
++	memcpy(reg_def, &sx9324_default_regs[idx], sizeof(*reg_def));
++	switch (reg_def->reg) {
++	case SX9324_REG_AFE_PH0:
++	case SX9324_REG_AFE_PH1:
++	case SX9324_REG_AFE_PH2:
++	case SX9324_REG_AFE_PH3:
++		ph = reg_def->reg - SX9324_REG_AFE_PH0;
++		scnprintf(prop, ARRAY_SIZE(prop), "semtech,ph%d-pin", ph);
 +
-+  vdd-supply:
-+    description: Main power supply
++		count = device_property_count_u32(dev, prop);
++		if (count != ARRAY_SIZE(pin_defs))
++			break;
++		ret = device_property_read_u32_array(dev, prop, pin_defs,
++						     ARRAY_SIZE(pin_defs));
++		for (pin = 0; pin < SX9324_NUM_PINS; pin++)
++			raw |= (pin_defs[pin] << (2 * pin)) &
++			       SX9324_REG_AFE_PH0_PIN_MASK(pin);
++		reg_def->def = raw;
++		break;
++	case SX9324_REG_AFE_CTRL4:
++	case SX9324_REG_AFE_CTRL7:
++		if (reg_def->reg == SX9324_REG_AFE_CTRL4)
++			strncpy(prop, "semtech,ph01-resolution",
++				ARRAY_SIZE(prop));
++		else
++			strncpy(prop, "semtech,ph23-resolution",
++				ARRAY_SIZE(prop));
 +
-+  svdd-supply:
-+    description: Host interface power supply
++		ret = device_property_read_u32(dev, prop, &raw);
++		if (ret)
++			break;
 +
-+  "#io-channel-cells":
-+    const: 1
++		raw = ilog2(raw) - 3;
 +
-+  semtech,ph0-pin:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: |
-+      Array of 3 entries. Index represent the id of the CS pin.
-+      Value indicates how each CS pin is used during phase 0.
-+      Each of the 3 pins have the following value -
-+      0 : unused (high impedance)
-+      1 : measured input
-+      2 : dynamic shield
-+      3 : grounded.
-+      For instance, CS0 measured, CS1 shield and CS2 ground is [1, 2, 3]
-+    items:
-+      enum: [ 0, 1, 2, 3 ]
-+    minItems: 3
-+    maxItems: 3
++		reg_def->def &= ~SX9324_REG_AFE_CTRL4_RESOLUTION_MASK;
++		reg_def->def |= FIELD_PREP(SX9324_REG_AFE_CTRL4_RESOLUTION_MASK,
++					   raw);
++		break;
++	case SX9324_REG_ADV_CTRL5:
++		ret = device_property_read_u32(dev, "semtech,startup-sensor",
++					       &start);
++		if (ret)
++			break;
 +
-+  semtech,ph1-pin:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: Same as ph0-pin for phase 1.
-+    items:
-+      enum: [ 0, 1, 2, 3 ]
-+    minItems: 3
-+    maxItems: 3
++		reg_def->def &= ~SX9324_REG_ADV_CTRL5_STARTUPSENS_MASK;
++		reg_def->def |= FIELD_PREP(SX9324_REG_ADV_CTRL5_STARTUPSENS_MASK,
++					   start);
++		break;
++	case SX9324_REG_PROX_CTRL4:
++		ret = device_property_read_u32(dev, "semtech,avg-pos-strength",
++					       &pos);
++		if (ret)
++			break;
 +
-+  semtech,ph2-pin:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: Same as ph0-pin for phase 2.
-+    items:
-+      enum: [ 0, 1, 2, 3 ]
-+    minItems: 3
-+    maxItems: 3
++		/* Powers of 2, except for a gap between 16 and 64 */
++		raw = clamp(ilog2(pos), 3, 11) - (pos >= 32 ? 4 : 3);
 +
-+  semtech,ph3-pin:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: Same as ph0-pin for phase 3.
-+    items:
-+      enum: [ 0, 1, 2, 3 ]
-+    minItems: 3
-+    maxItems: 3
++		reg_def->def &= ~SX9324_REG_PROX_CTRL4_AVGPOSFILT_MASK;
++		reg_def->def |= FIELD_PREP(SX9324_REG_PROX_CTRL4_AVGPOSFILT_MASK,
++					   raw);
++		break;
++	case SX9324_REG_PROX_CTRL0:
++	case SX9324_REG_PROX_CTRL1:
++		if (reg_def->reg == SX9324_REG_PROX_CTRL0)
++			strncpy(prop, "semtech,ph01-proxraw-strength",
++				ARRAY_SIZE(prop));
++		else
++			strncpy(prop, "semtech,ph23-proxraw-strength",
++				ARRAY_SIZE(prop));
++		ret = device_property_read_u32(dev, prop, &raw);
++		if (ret)
++			break;
 +
++		reg_def->def &= ~SX9324_REG_PROX_CTRL0_RAWFILT_MASK;
++		reg_def->def |= FIELD_PREP(SX9324_REG_PROX_CTRL0_RAWFILT_MASK,
++					   raw);
++		break;
++	}
++	return reg_def;
++}
 +
-+  semtech,ph01-resolution:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    enum: [8, 16, 32, 64, 128, 256, 512, 1024]
-+    description:
-+      Capacitance measurement resolution. For phase 0 and 1.
-+      Higher the number, higher the resolution.
-+    default: 128
-+
-+  semtech,ph23-resolution:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    enum: [8, 16, 32, 64, 128, 256, 512, 1024]
-+    description:
-+      Capacitance measurement resolution. For phase 2 and 3
-+    default: 128
-+
-+  semtech,startup-sensor:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    enum: [0, 1, 2, 3]
-+    default: 0
-+    description: |
-+      Phase used for start-up proximity detection.
-+      It is used when we enable a phase to remove static offset and measure
-+      only capacitance changes introduced by the user.
-+
-+  semtech,ph01-proxraw-strength:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    min: 0
-+    max: 7
-+    default: 1
-+    description:
-+      PROXRAW filter strength for phase 0 and 1. A value of 0 represents off,
-+      and other values represent 1-1/2^N.
-+
-+  semtech,ph23-proxraw-strength:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    min: 0
-+    max: 7
-+    default: 1
-+    description:
-+      Same as proxraw-strength01, for phase 2 and 3.
-+
-+  semtech,avg-pos-strength:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    enum: [0, 16, 64, 128, 256, 512, 1024, 4294967295]
-+    default: 16
-+    description: |
-+      Average positive filter strength. A value of 0 represents off and
-+      UINT_MAX (4294967295) represents infinite. Other values
-+      represent 1-1/N.
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#io-channel-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      proximity@28 {
-+        compatible = "semtech,sx9324";
-+        reg = <0x28>;
-+        interrupt-parent = <&pio>;
-+        interrupts = <5 IRQ_TYPE_LEVEL_LOW 5>;
-+        vdd-supply = <&pp3300_a>;
-+        svdd-supply = <&pp1800_prox>;
-+        #io-channel-cells = <1>;
-+        semtech,ph0-pin = <1, 2, 3>;
-+        semtech,ph1-pin = <3, 2, 1>;
-+        semtech,ph2-pin = <1, 2, 3>;
-+        semtech,ph3-pin = <3, 2, 1>;
-+        semtech,ph01-resolution = 2;
-+        semtech,ph23-resolution = 2;
-+        semtech,startup-sensor = <1>;
-+        semtech,ph01-proxraw-strength = <2>;
-+        semtech,ph23-proxraw-strength = <2>;
-+        semtech,avg-pos-strength = <64>;
-+      };
-+    };
+ static int sx9324_check_whoami(struct device *dev,
+ 			       struct iio_dev *indio_dev)
+ {
+@@ -795,12 +957,14 @@ static const struct sx_common_chip_info sx9324_chip_info = {
+ 	.mask_enable_chan = SX9324_REG_GNRL_CTRL1_PHEN_MASK,
+ 	.irq_msk_offset = 3,
+ 	.num_channels = SX9324_NUM_CHANNELS,
++	.num_default_regs = ARRAY_SIZE(sx9324_default_regs),
+ 
+ 	.ops = {
+ 		.read_prox_data = sx9324_read_prox_data,
+ 		.check_whoami = sx9324_check_whoami,
+ 		.init_compensation = sx9324_init_compensation,
+ 		.wait_for_sample = sx9324_wait_for_sample,
++		.get_default_reg = sx9324_get_default_reg,
+ 	},
+ 
+ 	.iio_channels = sx9324_channels,
 -- 
 2.34.1.400.ga245620fadb-goog
 
