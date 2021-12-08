@@ -2,122 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 087E346D5F9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:43:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B661546D5FF
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 15:45:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233105AbhLHOqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 09:46:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44702 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232999AbhLHOqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:46:47 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2D54C061746;
-        Wed,  8 Dec 2021 06:43:15 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id p27-20020a05600c1d9b00b0033bf8532855so1929822wms.3;
-        Wed, 08 Dec 2021 06:43:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=gkckMTiZfRwVNN4itkbvhr/VyfBzxnDGQ/5xxIOPdP8=;
-        b=jwHiPKQtQZ2UJMeEteCcSTn1pH8heQ7r4zZDRd+DA0hbuMlvQa0OPs1SNFyNMEyPNj
-         8fzfdfsQD0zGipjDUaBJCxoHgHBFIezBuGd0v+RwoyXOvpRvEeSseDNbH0p9kHyYK2/h
-         cqjAjTDg1jWeZpB5WO3rlJ6CWg9mTnByDDzAI+cuU/A2JbGBO9tdfJiBaAhz+ZofAy6n
-         BByH0tY54Ao+itOckYdsWmSkdpWgaxSh42f8POO/wqQbJWx4lovIz6h4NF3IyAs11HFp
-         Q4Vg27HOcR29r6mthZlfHOIUZliGAmvzYKQUMpDStpo/Rl2yIAfDzQ3W0hh7ejGm36At
-         HKhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=gkckMTiZfRwVNN4itkbvhr/VyfBzxnDGQ/5xxIOPdP8=;
-        b=37Pcagpa4ZxBtwKyeWlQQXW6B7/Tus7n48Y3dev8nhiicjr91QN6MjzeAkkdqmsKgG
-         XpHl0gzqnCgFVpqq7u9lkxyzcEiCX8gJsGIUya0veo7IwwYFf7aopx2mzyGX1JfL+x34
-         AveEijTswkpREstENsVuX32rLz3p3dNt8ubqDOVNKzuhwndmSNqlLDMuHzIAg9ThSzdk
-         TZPqTtvPWlzWcAq9NsysnpLT7gMENNaQTEqAu2AvQEAAEWFvW/tBV6iMWnyZuj7gvOnK
-         irPt/F2Rd31GcsZvGJ0Jti1jZLNtlAuIN4L5+kOlcNZrhVAMGxI5F+koEE8kOfkW1GfC
-         ATyw==
-X-Gm-Message-State: AOAM530jwWbroFIs8WbFRtH82T7P0JDVd7bZz2JNNN0u0PllIjaFsfch
-        9e/CruNZB3JlNUZxdYemxD0=
-X-Google-Smtp-Source: ABdhPJz7/W5CBLFVMWOOtUxYXPDa6nVfnt98Y0vRzXNYiq3jlJc65jPiIT+FJ5Bdr9F/LXZCqLBTdg==
-X-Received: by 2002:a7b:c94e:: with SMTP id i14mr16559721wml.85.1638974594333;
-        Wed, 08 Dec 2021 06:43:14 -0800 (PST)
-Received: from orome ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id f7sm3651944wri.74.2021.12.08.06.43.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 06:43:13 -0800 (PST)
-Date:   Wed, 8 Dec 2021 15:43:10 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: i2c: tegra-bpmp: Convert to json-schema
-Message-ID: <YbDEfhIp5FCTZ8rS@orome>
-References: <20211208143306.534700-1-thierry.reding@gmail.com>
+        id S233093AbhLHOsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 09:48:55 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:47470 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233216AbhLHOsz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 09:48:55 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 613B5B8212D;
+        Wed,  8 Dec 2021 14:45:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA22DC00446;
+        Wed,  8 Dec 2021 14:45:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638974721;
+        bh=7W3w8DusrddBYtU8JLe+sO2l0PnENj0zsm2FWvdtJDU=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=lAxmSoOKjRrYJODMrXM+Gvw1tg73NpHH6I3Jts6iyOgzFSuMy7oPYgzPIHE278sNC
+         2wtANVjIhkuk7AX3tctnEs2TdSAMejIDuZ3ZKiFfP0iBwsLMKcrmdhNrR79A/hcGHJ
+         dip17NF5Tq3GOeS8m0jp0YQlPKzdzN5qsXiSH6PB5JgxaIDAvbsYm1xBOJZRwX4lNK
+         s8lGQJvOMhPXllJOs6QT9VWxcYTtzQCRYjycLGsdyYtxSpXYhQqNqTqX/vdUjukmga
+         4ZkXaJ5n8DQa8t9JIVAUysNk+1v6kDo8Fg4zCunOQDqJg21VksaB4XFNzH0FhXQ3jy
+         u9SCFt1zeXGmw==
+Subject: Re: [PATCH 4/4] mtd: nand: omap2: Add support for NAND Controller on
+ AM64 SoC
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>, richard@nod.at,
+        vigneshr@ti.com, kishon@ti.com, tony@atomide.com,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+References: <20211123103609.14063-1-rogerq@kernel.org>
+ <20211123103609.14063-5-rogerq@kernel.org> <20211124131552.6b9bc506@xps13>
+ <e52141a6-96fc-97d6-95d7-3e26276fbac3@kernel.org>
+ <20211126104231.7cc43149@xps13>
+ <917ac002-9d4b-237d-94f3-bcd05f481f39@kernel.org>
+ <20211129043633.myxmgp6idbrqvx5p@unlisted>
+From:   Roger Quadros <rogerq@kernel.org>
+Message-ID: <e36c46e2-1d0d-4dac-e9a0-3a0cbdd023fa@kernel.org>
+Date:   Wed, 8 Dec 2021 16:45:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="6v150EU9JdEI1kSj"
-Content-Disposition: inline
-In-Reply-To: <20211208143306.534700-1-thierry.reding@gmail.com>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+In-Reply-To: <20211129043633.myxmgp6idbrqvx5p@unlisted>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Nishanth,
 
---6v150EU9JdEI1kSj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 29/11/2021 06:36, Nishanth Menon wrote:
+> On 13:10-20211126, Roger Quadros wrote:
+> [...]
+> 
+>>>>>> +	/* Some SoC's have 32-bit at least, read limitation */
+>>>>>> +	if (soc_device_match(k3_soc_devices)) {
+>>>>>> +		dev_info(&pdev->dev, "force 32-bit\n");
+>>>>>> +		info->force_32bit = true;
+>>>>>> +	}
+>>>>>> +  
+>>>>>
+>>>>> As suggested above, just adding a capability structure tied to the
+>>>>> compatible string and retrieved with of_device_get_match_data() should
+>>>>> be enough and replace this manual tree research.  
+>>>>
+>>>> The trouble comes when TI updates the silicon revision to "SR2.0" and that has the issue fixed
+>>>> but still uses the same compatible. So compatible string by itself is not sufficient to identify
+>>>> the troubled devices. soc_device_match() was the easiest way to address this.
+>>>
+>>> This is precisely what compatibles are for, I believe we should declare
+>>> the necessary additional compatibles and fix the device trees that are
+>>> wrong.
+>>
+>> AFAIK TI SoCs don't have different compatibles for different revisions of the same SoC.
+>> My understanding is that the SoC is the same so compatible shouldn't change. Just that there were some
+>> hardware fixes and some quirks may not be needed anymore.
+>>
+>> Nishanth,
+>>
+>> Could you please chime in on why SoC revisions can't use different compatibles?
+>>
+> 
+> The permutations of boards (with add-on cards) and SRs become
+> un-manageable esp when Silicon Revisions(SRs) dont actually get into
+> production. Instead, what we do suggest are one of two things:
+> a) The dts in k.org always reflect the latest SR for the chip that is
+>    going into production. Older SR revisions are supported as overlays on top
+>    of the dtb.
+> b) Where possible, use the chip-id framework[1] to dynamically detect
+>    the variations. This might be easier with newer K3 generation SoCs.
+> 
+> 
+> In this instance, an overlay corresponding to older SoC might be
+> feasible.
+> 
 
-On Wed, Dec 08, 2021 at 03:33:06PM +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
->=20
-> Convert the NVIDIA Tegra186 (and later) BPMP I2C bindings from the
-> free-form text format to json-schema.
->=20
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
-> Changes in v3:
-> - include i2c-controller.yaml and use unevaluatedProperties: false
->=20
-> Changes in v2:
-> - add missing additionalProperties: false
->=20
->  .../bindings/i2c/nvidia,tegra186-bpmp-i2c.txt | 42 -----------------
->  .../i2c/nvidia,tegra186-bpmp-i2c.yaml         | 45 +++++++++++++++++++
->  2 files changed, 45 insertions(+), 42 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/i2c/nvidia,tegra186=
--bpmp-i2c.txt
->  create mode 100644 Documentation/devicetree/bindings/i2c/nvidia,tegra186=
--bpmp-i2c.yaml
+Did I understand correctly that we can use a different compatible for older SoC
+in the overlay? e.g. ti,am642-es1.0 ?
 
-Rob, for context, I've split this one out of the 16-patch series since
-you had reviewed the other 15 already. This is the updated version that
-came out of the discussion we had regarding unevaluatedProperties not
-working correctly because of additionalProperties: true.
+If so then I can get rid of soc_device_match and use compatibles matching only in this patch.
 
-Thierry
+> 
+> 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/soc/ti/k3-socinfo.yaml
+> 
 
---6v150EU9JdEI1kSj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGwxH4ACgkQ3SOs138+
-s6GPJA//SMiwEDapgISMALUXnq/+FRmIHvDGIzzKCYG5+zAcX8pQ7kS2zGmfJlXp
-a011IkNqJoDai1DvSQihlygX3V4LE3Fgg+uh4m3hFyTIk+L7KWdfc5JqriVBXWSK
-slUp7ct0dTp0jqu8bjDhhF3Jj6slIg2AMKJWUBXLO/H/9maTsnj/68sgfIr/5RV9
-MPYGn74mVp2sVuTK0Kx5qZlI2cQrVoIhtbMC9JXfWnWFPrHKwgbx02uT160ChY5V
-b7VhC3kdy25ePdEuhCPjv5eSVrNGHyKOgbd7CGnKQfSmHzbFtC4gIBC99MPWb4Pc
-YayaEyMepdejMK/u2d3mGaDY0TQYU+O002t8HyZTTwUjXRFMTDvW6gT2uQXzDoUJ
-4oN81QycQXk8hMCYuUh4auebWxupNrj4X/Y8b7E2kgENtQnqh5JLTvUH5DT8ZYwR
-hc7mY2W8jsmChuAPkwMRDQ83BtxL9pCJtq7h7fKcb9wkIAaM5Fg2434LTYGhpBNK
-AqQYrXk1NFi4cRL23qjqqCHf7XnBgpUGKGHfrDA3CoE+gL5ZrGvZidpqrT42TaNe
-Nn/3rsRgvv0ycSy55f8YEOqKzL3fodXIJhHsBynPTuPoOhXZSB36b9CByjStdhrH
-+VmRry0Cm00+zLuqVr/LjNOy+WbQzkb/nHyj+NAbB/e35pLM5Wk=
-=zZyG
------END PGP SIGNATURE-----
-
---6v150EU9JdEI1kSj--
+cheers,
+-roger
