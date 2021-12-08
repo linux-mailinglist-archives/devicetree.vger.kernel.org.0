@@ -2,112 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 606F346DEF7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 00:18:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1768246DF19
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 00:45:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237966AbhLHXVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 18:21:37 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:56056 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235101AbhLHXVh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 18:21:37 -0500
-Received: from linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net (linux.microsoft.com [13.77.154.182])
-        by linux.microsoft.com (Postfix) with ESMTPSA id A971720B7179;
-        Wed,  8 Dec 2021 15:18:04 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com A971720B7179
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1639005484;
-        bh=phg/pXljnj81eIgtyw2wI2IJJBRwkKF0EKzr0UxFgHE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Lx9Oimo/YOc+kFVdqrZ1Fkvzrs3nj5Nbhtat1TZe/y0AFAbAAujhd/LQW+uuVlnzs
-         gzIY9HeZ53FQUKeAuJ6foCxSIlNUBPQRcFgMy/LtRFy2oqPmwjgwy13FprmtG9E4AQ
-         I9itPr5bBQpF2z7O2WA9c0wAexS2aAL4LVcNCWk4=
-Date:   Wed, 8 Dec 2021 15:18:03 -0800
-From:   Katherine Perez <kaperez@linux.microsoft.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Felipe Balbi <balbi@kernel.org>
-Subject: Re: [PATCH v2 2/2] arm64: dts: sm8350: fix tlmm base address
-Message-ID: <20211208231803.GA8413@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <20211122190552.74073-1-kaperez@linux.microsoft.com>
- <20211122190552.74073-3-kaperez@linux.microsoft.com>
- <YZxoGp33Seaa2WEG@matsya>
- <Yabo0fGXC1rITmsM@builder.lan>
- <Ya9JhqZ/Hyj9HdRk@matsya>
- <20211208022103.GA15963@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <YbAZ/YHMWQZ27NrG@ripper>
+        id S238035AbhLHXtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 18:49:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57604 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235293AbhLHXtP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 18:49:15 -0500
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A56C061746
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 15:45:43 -0800 (PST)
+Received: by mail-ot1-x330.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so4442686otj.7
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 15:45:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YldXPNriDKYtYwgx9lykZV2BMiK32i6pAMV1HydoZJ4=;
+        b=jbRdDuLKzRdq4WaF/RveHO3Iwd+Uf37BlD6z0i/teP9u1E1B0YckJQGWWEb6ASr5zS
+         PY9BQEfLcfYCipMN4FtfXRtNqjqXp8oTVTZehDA1NhXijMpSBjQBwzuAQCeuXItzUxuW
+         ZVvmUUZJgKEWimwPLJyBNnZnaDEZXlMsrR1GzAHotPE8dHNqmhaK8mCMWVckWRFGfMq8
+         4eqnJARG9TVe7z4xW8eOinSJUAWxfhvm0bBwKkFiIcCfA/mSmC5d6r71bMugeuaSycv1
+         MNS/3MY5j0S5ulZcrtdPY57qHYbjCHnmyB2oFZxEfjaBmKBzMwVvzHYWVC+ypjECo6t5
+         Ex8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YldXPNriDKYtYwgx9lykZV2BMiK32i6pAMV1HydoZJ4=;
+        b=c1gRriVatgfAXzfchqMWfy09GrsfN+cs6Kyli+ET1eoA6sa4bi3wl0EEptbqxyKCoU
+         w6xuAfC48tPmYzi9tgbkYqCtNPlJ1YUY0NXXfjJfHtge9DWJJLaYRL/2g7kRaPQKycPv
+         UpM2LH8Wn/y3FPX/6cYnBEYcslNJ5VJ7Wkh5dL4TJrbO9OrX0mAm5KDabd25Is2sk1jP
+         8EBP0La/FWqWQ+zDqVA1Z7Pana58enZemdEhhEALnA+cJz63E2xokRwEYekB7u7iyQbo
+         zrCujxWneQ7Z7EbULvpOCwXN7r4JzxbqBQIXvv+z6ZcTnNXVUeidlf7TGBkrCN7vtPUE
+         71eg==
+X-Gm-Message-State: AOAM530xHgcFnBhSiH+4oGC5+tcmkb2Oq4O8JzOKsbR1DxKL/Kh7QH7F
+        Dnlpv3kSKljwScfA2wVKqpZ+Li6mg10PbKsYLGFbMzqPrbzKi53y
+X-Google-Smtp-Source: ABdhPJz+TYvULfXNcHlTeVjt7r6Fzb/nBNqiICpe2bk497QivS3rHldEp1qzveW+p5MgMm0Z1QqbNnvgQivsBvDD2gc=
+X-Received: by 2002:a9d:7586:: with SMTP id s6mr2431922otk.158.1639007142820;
+ Wed, 08 Dec 2021 15:45:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YbAZ/YHMWQZ27NrG@ripper>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+References: <20211203181714.3138611-1-dinguyen@kernel.org> <20211206102242.e2ql7kcgzivh75v4@ti.com>
+In-Reply-To: <20211206102242.e2ql7kcgzivh75v4@ti.com>
+From:   Dinh Nguyen <dinh.linux@gmail.com>
+Date:   Wed, 8 Dec 2021 17:45:31 -0600
+Message-ID: <CADhT+wfrtqO6dDSUbq-eeyRodzigA7Gsce0xgK6mzLo0ujb5AQ@mail.gmail.com>
+Subject: Re: [PATCHv2 1/3] dt-bindings: spi: cadence-quadspi: document "cdns,qspi-nor-ver-00-10"
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Dinh Nguyen <dinguyen@kernel.org>, devicetree@vger.kernel.org,
+        broonie@kernel.org, robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 07, 2021 at 06:35:41PM -0800, Bjorn Andersson wrote:
-> On Tue 07 Dec 18:21 PST 2021, Katherine Perez wrote:
-> 
-> > On Tue, Dec 07, 2021 at 05:16:14PM +0530, Vinod Koul wrote:
-> > > On 30-11-21, 21:15, Bjorn Andersson wrote:
-> > > > On Mon 22 Nov 22:03 CST 2021, Vinod Koul wrote:
-> > > > 
-> > > > > On 22-11-21, 11:05, Katherine Perez wrote:
-> > > > > > TLMM controller base address is incorrect and will hang on some platforms.
-> > > > > > Fix by giving the correct address.
-> > > > > 
-> > > > > Thanks, recheck the spec this looks correct. We should have tlmm reg
-> > > > > space here and not tlmm base which also contains xpu region (thus hang)
-> > > > > 
-> > > > 
-> > > > Aren't you reading the patch backwards?
-> > > 
-> > > I guess :(
-> > > 
-> > > > Afaict downstream the driver carries an offset of 0x100000, which we
-> > > > dropped as we upstreamed the driver. As such changing reg to 0x0f000000
-> > > > should cause most gpio register accesses to fall outside the actual
-> > > > register window.
-> > > > 
-> > > > Or perhaps I'm missing something here?
-> > > 
-> > > I relooked and XPU is at 0xF000000 and Reg at 0xF100000
-> > > So this patch should be dropped as such. The size mentioned in
-> > > documentation is also correct
-> > > 
-> > > Katherine, can you elaborate more on the hang you have observed? Any
-> > > specific pins you use which causes this?
-> > 
-> > Hi Vinod,
-> > 
-> > Yes, it seems to hang in msm_pinctrl_probe. Specifically, line 734 in
-> > gpiolib.c: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpio/gpiolib.c#n734.
-> > On i=4, it hangs on assign_bit and the system goes into a reboot loop.
-> > When I set the TLMM address to f000000, I don't see this issue at all.
-> > 
-> 
-> The cause for that is quite likely that gc->get_direction() will read
-> the configuration from gpio<i>'s registers and gpio4 in your system is
-> reserved for use by some trusted application.
-> 
-> When you change the TLMM address you avoid this problem by just reading
-> random registers outside the region that contains protected registers.
-> 
-> 
-> Adjust the gpio-reserved-ranges in your device's tlmm node to mark gpio4
-> (probably 4 pins long) as "invalid", gpiolib will then not touch them.
-> 
-> Regards,
-> Bjorn
+On Mon, Dec 6, 2021 at 9:51 PM Pratyush Yadav <p.yadav@ti.com> wrote:
+>
+> On 03/12/21 12:17PM, Dinh Nguyen wrote:
+> > The QSPI controller on Intel's SoCFPGA platform does not implement the
+> > CQSPI_REG_WR_COMPLETION_CTRL register, thus a write to this register
+> > results in a crash.
+> >
+> > The module/revision ID is written in the MODULE_ID register. For this
+> > variance, bits 23-8 is 0x0010.
+>
+> When I looked at your original patches I was under the impression that
+> this was a SoCFPGA specific thing and did not apply to other
+> implementation of the IP in general.
+>
+> If this is indeed a generic thing and we can detect it via the MODULE_ID
+> register [0], then why not just read that register at probe time and
+> apply this quirk based on the ID? Why then do we need a separate
+> compatible at all?
+>
+> [0] I would like to see it stated explicitly somewhere that version
+> 0x0010 does not support the WR_COMPLETION_CTRL register.
+>
 
-Thanks, Bjorn. That makes sense. I'll resubmit with the changes to my
-device's TLMM node and will drop this patch.
+I cannot for sure confirm that this condition applies to only 0x0010
+version of the
+IP. I can verify that the IP that is in all 3 generations of SoCFPGA
+devices, all have
+MODULE_ID value of 0x0010 and all do not have the WR_COMPLETION_CTRL
+register implemented.
 
--Katherine
-> 
-> > > 
-> > > 
-> > > -- 
-> > > ~Vinod
+I'm almost certain this feature is not SoCFPGA specific, but
+since I only had SoCFPGA hardware, that was my initial patch. I made the mistake
+of not CC'ing the devicetree maintainers until I sent the DTS binding
+patch change,
+and he rightly suggested making the binding something more generic.
+
+I do like your idea of making a determination in the driver without
+being dependent
+on a dts binding. I'd like to know the impetus behind your original
+patch of removing the
+dependency of "if (f_pdata->dtr)"  for the write to the WR_COMPLETION_CTRL
+register? Perhaps there's some other common property that we can key
+off for why the register
+is not implemented?
+
+Dinh
