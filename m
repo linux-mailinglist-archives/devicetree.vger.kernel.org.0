@@ -2,118 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 275F846CEC7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 09:20:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D162546CF7A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 09:50:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244727AbhLHIYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 03:24:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39888 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244726AbhLHIYM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 03:24:12 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB69AC061574
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 00:20:40 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id p18so1161164wmq.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 00:20:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1w3QG5L2wJSdawJv13n1fbqmjL3sgSHFT+7XbyAvU6U=;
-        b=55DNvAYxUXa+yKMvFNkcwxQcyuMG4hyrlqdl8GCYFqXE/nvB5hzQFKynb0amMmXyPj
-         gvr6FYs5uEqtTr3S1cxwe8elBx06xxnm+aXZmnSmTpE4iBiqlMFjwG+Li/AZafgjjQ/J
-         kfVWr21Ir4haj+rGGcA+A6kC8FsP9DhwqqdIrnTSjtTK4yLGw15m+Fd/QX/zYcNaeN60
-         jtM6G0eR3psmmQ/Vrui/nwb1ZCQ7eo7nG2CngnGrj5nFE7X5MYrE/QmSZM/j7QIf17OY
-         st+lLoPx7tEWVC/AA0P3vn93dIiI37Cp8OTaqRFkScrNd9NRbxdAWoF5gSyjRXVXUDfE
-         vffQ==
+        id S229782AbhLHIx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 03:53:58 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:56964
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229759AbhLHIx5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 03:53:57 -0500
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 264854005D
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 08:50:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1638953425;
+        bh=R8HBwd4TyGLCA760Ss3CKjibTlYQFYE0uO0PD5BwZvw=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=TK0WCa9J9IFlY7mzQvHVgfMZXFEnQ54MInc2YbNefqh0iGz+VidrMOTxFuhBB1hd2
+         uQPjtEFcjyU6qb08brxPtkMYTUSSCMxRJ/X+hTaZz1Ia1pUE8ZYpcP1ki7YEWQ4z/E
+         al2ry8hDQMK84PCKznnRFQWCfXWedb4BH5a5SnSKIsDgTJsQczkQ44mRLIHVHBidxk
+         OTjOZa2RQQoh7uP6NPmd3nBCofroaFuXBQYss9960rC4UAvsKV1XBe6SNOZiczNEXl
+         nRGWV8/lHglkGGgXdBFz4jn+PINV7UxuCaMOJhqqHJjxm5/e9K/T3pjq7pFzjE2PcS
+         hCTvdEHZFegAw==
+Received: by mail-lf1-f69.google.com with SMTP id o11-20020a056512230b00b0041ca68ddf35so797721lfu.22
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 00:50:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=1w3QG5L2wJSdawJv13n1fbqmjL3sgSHFT+7XbyAvU6U=;
-        b=Ea3dIwwvlN3kJK9pPI8h3N2o3qB++2RJNCEd6bbCM57bxr2yHs2xWucM7m23z2DMXJ
-         e6ldOn++OxhPguoK59vhYSdVa9j1BUUy6HDR9x7EGFQnUNXaTr/w4x91ZqXC6SCRLmFi
-         gGr57nrTPaNlY6cQeSCQQlcWHsEFrcIMze+h4CMow02TU7JVc5SMKp9H3tk6sCGOqSk6
-         6khaB/MXOMKTgVsl43SFn3CnzNKmc+H+0xYpxfnBlTeQT9GOYTZ3wBcYEzxCY8H85wMX
-         D/t/HzuJbZrG8RnGasafhqtiV49ZFRtsMXlKCpX4DrZgid0higxOv4lwfySJejiobZTD
-         4Beg==
-X-Gm-Message-State: AOAM531xX1BNPMaGqG+dm109W9vBN7UFqtN/sygzNvVFcMrSpNp/1Cmc
-        1OEEKjlWZibwSyBlBkFUuDl+Ug==
-X-Google-Smtp-Source: ABdhPJzG/TNg3Piyp5TseF8rLfJFvZTaZFXGKZz5otMT3tS+daO2oHy7ZCllGK9433G4TB+hyrdAQg==
-X-Received: by 2002:a7b:c24a:: with SMTP id b10mr14015235wmj.166.1638951639255;
-        Wed, 08 Dec 2021 00:20:39 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:5245:80ea:cf46:35bb? ([2001:861:44c0:66c0:5245:80ea:cf46:35bb])
-        by smtp.gmail.com with ESMTPSA id i7sm2022410wro.58.2021.12.08.00.20.38
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=R8HBwd4TyGLCA760Ss3CKjibTlYQFYE0uO0PD5BwZvw=;
+        b=GyB5x0lzWp3LryWtNfpcZnUSbFD4SvU/TOWJQgXC2MqceLgOfVdSE5NUJdwgZ1C2Vr
+         3LjgUrVrV1IUlrmTJEeQV4Qaf0snbgcw6t1cDrITwUQqI+e+5/C2Htp9cfFbmzwtQrE/
+         2DIPXZpI0Fl/erhmy3nuORMGtniesD6+aSoOpZdlfXq8SyoXoqtXLghHgTsk/xcaWvgm
+         UkuI4ZaFJ7Cbc5IXRhVhChuEMuxcXOPPpgTWs5FPkl5PXWRdf5pq04pixBMH7WF0qqnp
+         WjJQusXj3cMh0dziOPGBV0EoKfucb7diLwPL89Nt/dTjTal21MzYAoTBP5oze7y33fJL
+         rmRQ==
+X-Gm-Message-State: AOAM533uc60I2iPg1ZoKqGO14hbCP48ZJjILjZQ6/Pl+YZgDy63mNhMy
+        emIjeQS+XDHkps2ncBEaZTHB6dDBXlPceX6NvjMdzaQuv8AFnCFPpPud4ssmz4KSkpZyoWIoaiH
+        dp6whL3T3IRKj9/4c8A7lV03Syd/awEbm+NpE/cY=
+X-Received: by 2002:a05:651c:1788:: with SMTP id bn8mr47211495ljb.521.1638953424527;
+        Wed, 08 Dec 2021 00:50:24 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzzfdCt+FdQcXzsA+ZSP+aXR+YS39/y+RSedwOythLdxan/1Eq+7ijqqQmxhwnxOGZyrtJWww==
+X-Received: by 2002:a05:651c:1788:: with SMTP id bn8mr47211452ljb.521.1638953424236;
+        Wed, 08 Dec 2021 00:50:24 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id k14sm207087ljk.57.2021.12.08.00.50.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Dec 2021 00:20:38 -0800 (PST)
-Subject: Re: [RFC PATCH 0/9] arm64: dts: meson: add support for aac2xx devices
-To:     Kevin Hilman <khilman@baylibre.com>,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Benoit Masson <yahoo@perenite.com>
-References: <20211130060523.19161-1-christianshewitt@gmail.com>
- <7hilw14nhx.fsf@baylibre.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <e3b404f8-758e-ba97-37c6-0178231119dd@baylibre.com>
-Date:   Wed, 8 Dec 2021 09:20:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Wed, 08 Dec 2021 00:50:23 -0800 (PST)
+Message-ID: <b7f5a30c-4148-32d8-39b2-2ba8bb64635a@canonical.com>
+Date:   Wed, 8 Dec 2021 09:50:22 +0100
 MIME-Version: 1.0
-In-Reply-To: <7hilw14nhx.fsf@baylibre.com>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v4 5/7] clk: samsung: clk-pll: Add support for pll1417x
 Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        David Virag <virag.david003@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20211206153124.427102-1-virag.david003@gmail.com>
+ <20211206153124.427102-6-virag.david003@gmail.com>
+ <CAPLW+4kSDHUsvHo0njykTTRGqaAehRt6MXdJF73OzR47avOm9Q@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <CAPLW+4kSDHUsvHo0njykTTRGqaAehRt6MXdJF73OzR47avOm9Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/12/2021 19:06, Kevin Hilman wrote:
-> Christian Hewitt <christianshewitt@gmail.com> writes:
+On 07/12/2021 20:00, Sam Protsenko wrote:
+> On Mon, 6 Dec 2021 at 17:32, David Virag <virag.david003@gmail.com> wrote:
+>>
+>> pll1417x is used in Exynos7885 SoC for top-level integer PLLs.
+>> It is similar enough to pll0822x that practically the same code can
+>> handle both. The difference that's to be noted is that when defining a
+>> pl1417x PLL, the "con" parameter of the PLL macro should be set to the
+>> CON1 register instead of CON3, like this:
+>>
+>>     PLL(pll_1417x, CLK_FOUT_SHARED0_PLL, "fout_shared0_pll", "oscclk",
+>>         PLL_LOCKTIME_PLL_SHARED0, PLL_CON0_PLL_SHARED0,
+>>         NULL),
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> Signed-off-by: David Virag <virag.david003@gmail.com>
+>> ---
+>> Changes in v2:
+>>   - Nothing
+>>
+>> Changes in v3:
+>>   - Nothing
+>>
+>> Changes in v4:
+>>   - Added R-b tag by Krzysztof Kozlowski
+>>
+>>  drivers/clk/samsung/clk-pll.c | 1 +
+>>  drivers/clk/samsung/clk-pll.h | 1 +
+>>  2 files changed, 2 insertions(+)
+>>
+>> diff --git a/drivers/clk/samsung/clk-pll.c b/drivers/clk/samsung/clk-pll.c
+>> index 83d1b03647db..70cdc87f714e 100644
+>> --- a/drivers/clk/samsung/clk-pll.c
+>> +++ b/drivers/clk/samsung/clk-pll.c
+>> @@ -1476,6 +1476,7 @@ static void __init _samsung_clk_register_pll(struct samsung_clk_provider *ctx,
+>>                 else
+>>                         init.ops = &samsung_pll35xx_clk_ops;
+>>                 break;
+>> +       case pll_1417x:
 > 
->> This series adds support for several popular Amlogic S905X3 (SM1) Android
->> Set-Top Box devices. Like most Android box devices, they ship in variants
->> with multiple RAM, eMMC, WiFi and BT configurations. RAM and eMMC are not
->> something we need to consider to get a working boot, but we do need to get
->> the correct connectivity spec.
-> 
-> The reason we don't need to care about RAM differences is because u-boot
-> takes care of that, and updates the DT nodes accordingly.
-> 
-> In general, I'm not a fan of leaving these decisions up to u-boot,
-> but...  as an option...
-
-For now we always set "safe" values for RAM in DT so it could work
-even if not the entire memory is configured.
-
-Since there is no way to detect this from Linux on ARM64, we have no choice
-but hoping U-boot sets the right value...
-
-> 
-> I'm pondering if we should do the same for the connectivity settings?  A
-> properly configured u-boot already knows if it's an internal/external
-> PHY, Mbit vs Gbit etc. so in a similar way could enable/disable the
-> right nodes.
-> 
-> We could have a single DTS for each of these board families which
-> has some reasonable defaults, then u-boot would enable/disable nodes
-> accordingly.
-
-Yes it's technically possible, but it puts a larger dependency on the bootloader.
-
-Having a lower RAM value is not idea but the system will work, having the wrong
-PHY setup simply doesn't work.
-
-Neil
-
-> 
-> Kevin
-> 
+> I wonder why this switch have a bunch of fall through cases, but none
+> marked with "fallthrough;" line, and both checkpatch and "make" turn
+> blind eye on that? Anyway, I guess it's ok as is, just an observation.
 > 
 
+I think the fallthrough is needed for non-obvious cases where one case
+has some code and misses a break. Something like:
+
+switch () {
+case a:
+case b:
+case c:
+    foobar();
+}
+
+is obvious/explicit and does not need fallthrough.
+
+Best regards,
+Krzysztof
