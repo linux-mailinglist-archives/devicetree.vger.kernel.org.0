@@ -2,133 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D802046CDE3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 07:45:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1580546CDE7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 07:49:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230031AbhLHGtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 01:49:25 -0500
-Received: from mail-os0jpn01on2119.outbound.protection.outlook.com ([40.107.113.119]:10562
-        "EHLO JPN01-OS0-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229700AbhLHGtZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Dec 2021 01:49:25 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aD2p7H5fshio5ZtfQCRCh/iCgDjQLgRqhTZ4KVmK4kZ7cX0ba02Ef/35WT1pdowSH+yenQuEDXskhIJxbR09NXcrhFMDnpuyxx0Tjnlfx5w9f4BoDPT9Ne+t1thY98pmAiLx/IdzCN3bJl5SRCr6BCAH56mk2yoM64w4zcJlgXw53uu5TNQzwhL5P4RDyU70XSygOu2q0Q2oqdu8KG+GgOrMyYvHjFZs+HwWgfZsEwqt+7KYqQQQi0fCbkXVVh3tOUD75IeNU5iNWG0nL0D70mPVKtywh3yDOEGrU0EQ9YpWvPYXQDgkTSx+L60PN1eE2mAgPyZC2ugW8u0v9Hcvhw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uypsIkPi6m3Xy1DL9Ex24s/2aWIMTTTWG681RBh5Kgo=;
- b=QHnzGWpAyT9V4/tlXn4d0nDvQHwkODFMpXyxhPrPwGo1itsOuvDQWnTjRiLzuNWfDpo3lootM8zoeONwTw5KWnDDTCqEodhIFRD9m7HbSNe2vTulM4MVOAkt9ZCPpJtiOh2c437BTp5HEIWPovOJN6QzRXJgePtWExR4ljenPybOer/HKavHTBZJunns3xXnSShdKlzz806HuJH4D9X7v2YodgIEdDDHhctihNPlBuRQ7we+X9pzfePKFBKLpQrdaLwCAMI0euWuLE5IRUj7MoWrfl0fjoIGV+atS3db/18hlsHuXmwwwMyy+D6PfMxCFJmjKXuFf77DajG6ns9Tgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uypsIkPi6m3Xy1DL9Ex24s/2aWIMTTTWG681RBh5Kgo=;
- b=O/ZqsckTr27ysot/I58FT87ZoB/LZAau1bm/SHf08cbJsZMOA3sMk9TvhnTZ4pQ9HSszl+lDIUgLsH/sAkQ1TZM4nmvHVnkI36TuyayVxTka/skjbmMoBspkMN80lKlPJzf1Jeq6CPrb+oS2hBGF+fP2OP/0Km4C8pEcpYYg5RA=
-Received: from TYCPR01MB5581.jpnprd01.prod.outlook.com (2603:1096:400:a::10)
- by TYXPR01MB1856.jpnprd01.prod.outlook.com (2603:1096:403:c::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.11; Wed, 8 Dec
- 2021 06:45:52 +0000
-Received: from TYCPR01MB5581.jpnprd01.prod.outlook.com
- ([fe80::3d74:9c2e:e85a:df82]) by TYCPR01MB5581.jpnprd01.prod.outlook.com
- ([fe80::3d74:9c2e:e85a:df82%5]) with mapi id 15.20.4755.023; Wed, 8 Dec 2021
- 06:45:52 +0000
+        id S234281AbhLHGwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 01:52:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47764 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231206AbhLHGwp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 01:52:45 -0500
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9172BC061574
+        for <devicetree@vger.kernel.org>; Tue,  7 Dec 2021 22:49:14 -0800 (PST)
+Received: by mail-pg1-x534.google.com with SMTP id k4so1250279pgb.8
+        for <devicetree@vger.kernel.org>; Tue, 07 Dec 2021 22:49:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=z1p7M/LYCK4ZSTVRRFaVS0/yRQ76HczsAM++YTNxVk0=;
+        b=gH1OAMKZIbiCurLwwowWbfcMH6OFe1lcc7DRY2TXI47rbdcCKYijsRMUyJV9mN20O0
+         m44aBHnbRhgYsBfQidng2wgBjSYA/a8kLEFQOv9KK99Vs7PrmwexJ41iJfnPoduNy8g9
+         Ei3BNIK+8jRP4AFgYtovTr/E5+0QSKhp3LdwESCeebMgdPNBLAqtGDg5id6yi5EyiEQH
+         70QPW8NvlJY+PRVYzOtioxqZwDyCnP0RPgGsFb8x1ECWXGFfRX7riZac/8bVHNAi+e+N
+         XahLpYJSGOzb3cLS6GC1Dcsz0WiDqM5g+Pnk7OofoHL8r8jGmBBV7jayxzl9wqTht0t9
+         QV1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=z1p7M/LYCK4ZSTVRRFaVS0/yRQ76HczsAM++YTNxVk0=;
+        b=ucBAIlvXx0gLjFtiSXYS2gIOR2VjRm8QsL3hI5FLAjN7VaZSCGKRC1HcW5dORJ/uwL
+         SUdpdg+D/ZujvWp/Zpprk/cZ7wLXYWscvMAsraNho5HH+JIFOjxl3TpPvK1ot6hymFkc
+         A0/tbc3NdM608xTKy0kyDW1mayRcLsd6DRNjOjgFtvbsnqL65k6WMDh+3d+Ni4mi8fUa
+         tjJAqqYoPAMiSsVoobfb4yIz6bkO/H0SjR/BPsOgMwB98zkHHR/65jz/jJrvk2D19k83
+         T3FgXzmrt3ro0bkgH0q21Dsy1xhl0438iPzaNP0ZbVhkQtHA66of4AIpswO3MVHwA8Rw
+         bo8Q==
+X-Gm-Message-State: AOAM532KZegqxwANa7VqgbGBsxOP1N4OqBY+PUJiKbGvJDuD0CwJmu0h
+        IFTKiWdWHB8n5BKcAWflX9YJ9LB7OIUl0A==
+X-Google-Smtp-Source: ABdhPJwIp6pPGibbmSNn5RgsgKJtj5oMsZgc1+pRk8v12IodpeiXSoONr/LaWwn11qGGttXMOXx2kw==
+X-Received: by 2002:a05:6a00:cc9:b0:49f:b439:8930 with SMTP id b9-20020a056a000cc900b0049fb4398930mr4048379pfv.86.1638946153607;
+        Tue, 07 Dec 2021 22:49:13 -0800 (PST)
+Received: from localhost.localdomain (fs76eeeb6c.tkyc601.ap.nuro.jp. [118.238.235.108])
+        by smtp.gmail.com with ESMTPSA id h5sm2029396pfi.46.2021.12.07.22.49.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Dec 2021 22:49:13 -0800 (PST)
+Sender: Kuninori Morimoto <kuninori.morimoto.gx@gmail.com>
 From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH 1/1] ASoC: dt-bindings: audio-graph-port: enable both
- flag/phandle for bitclock/frame-master
-Thread-Topic: [PATCH 1/1] ASoC: dt-bindings: audio-graph-port: enable both
- flag/phandle for bitclock/frame-master
-Thread-Index: AQHX6+3kxOnKp+yLJE2VMnL4RP3HuKwoJkgA
-Date:   Wed, 8 Dec 2021 06:45:52 +0000
-Message-ID: <TYCPR01MB55814B9B0A8EB9AD0193A00ED46F9@TYCPR01MB5581.jpnprd01.prod.outlook.com>
-References: <20211208044103.405292-1-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <20211208044103.405292-1-kuninori.morimoto.gx@renesas.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 67124897-c4b4-45f7-7382-08d9ba1660dc
-x-ms-traffictypediagnostic: TYXPR01MB1856:EE_
-x-microsoft-antispam-prvs: <TYXPR01MB185631027B9557047BA35DEBD46F9@TYXPR01MB1856.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1247;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: zeBOE6z1+CXykRW7xyoT+rw2pqUA9BlBa5rt/1i4pMoV4wPaq1IX5DjFVKDfu3kuUbkrYgDeHhJyWlnRP0Ygezs0BXPqyxTc2ca3kouyeikdcRQN6tl2fHK+geNmBfsPhMhnfFSdMeK2zq/KO+eVvhPj22h37UWw3C7hklrdQAvfrpdRNVhqOoqAuHuU9ExNu7E6ILQoxMmlzWfX6gV0SBWfUfpP5lkTtyXvC8Gwih6FOEzht4NvYHlKb93oUMptKkk0Y20biSuX50SQ8ibsPdgWikp3fuzDGvXpX74bS3mq/LIFk9kzAJglZGrC2NJGqZX56bxV1hvJ4H/l/qhSIMwWIswV4wc0poJ9ip9/4hqx36oacBIUbvENVQLXZhAxmZ6V6u1SWRMpP2cUuvHkN7GSfzK3oz76Hh9chIKm0v8dAGLY5N1YG5a4YJEiYMpX1YgY0o6J2qoNgFWRGjjSeqAjG+2Lh5oAFFZHCXZ1YqgD05AqO6gn3WtN+/E66gHzm9JWvmCsEAgJzAYQnIbgSWb/L6SDn1jpVu/TefPDmKhc0wWrpNaQqC9gBP17zTLKXNJ7gCTuW/wU/XOQOtc19umxBLQBiRsacmi6G1lbtzETQ++wN7QuV32shyO1SpbaDQhRTZT4b6ACmL3IyiLFHsUmIo+PzeBUQjC5RXpJCp4nyLoEq7B+0o2MKdVeyRvER1ngQEp0BDcwbwuMJXLqRA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB5581.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(86362001)(33656002)(38070700005)(83380400001)(55016003)(6506007)(54906003)(26005)(316002)(5660300002)(76116006)(4326008)(66946007)(7696005)(110136005)(508600001)(9686003)(52536014)(38100700002)(122000001)(186003)(66446008)(8676002)(8936002)(66476007)(66556008)(64756008)(71200400001)(4744005)(2906002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?DUVF/qg8ol32XEhp7J5f3HZsgIminTkU8QwxK7pDHQB+uWa9o04adDjD/hoZ?=
- =?us-ascii?Q?n23GveN0XcKLOW4IQazpdoFN0EZHlg9vR3vIFgTYIL2qVGGE66VUGWfRI+xi?=
- =?us-ascii?Q?GlS+vIFRBvY4fjoc0PO/zoSECf25nW861qqNoeWjcvnGUz+013kOwnXjIaK0?=
- =?us-ascii?Q?ObTPGeA73k7FcFzDh33hyOjQy5MlfeokmdYEQxYCEDTQanBA+lBxauG13ZGQ?=
- =?us-ascii?Q?oiax1EesmFwc596KfciPHhpcIuuPon6oM3prZ8sp9FjSNhHltqpJ5pPBglag?=
- =?us-ascii?Q?8v8h02fdRgNCPRefYPM01NWKz6Wgn18Aq9L00O5MuWOxRHkvlE9R5J4TgUgg?=
- =?us-ascii?Q?/9AS7z93QoWFs3/W32+lu8Ky6OcTFuz3f7k3TxHlcYVmh+P4nmj/3bYrfjop?=
- =?us-ascii?Q?6N6spT/cjcoMW6+leOf5iW3406cEJ9vyK+aWP5dVqd4D+EMZct4MFBTWvsaf?=
- =?us-ascii?Q?mTJyF/SdHj02aDUpWFyiuWiOqeFoS0ADxMcMHh3Qn1pRtST9P8uuiUjjIyKQ?=
- =?us-ascii?Q?OOkpSyuV5Ep4DZd/RhQSksje37zeetII9FTPvsx+1y6PjeFSG20YayMJC7T1?=
- =?us-ascii?Q?ndatIufnqlw1npZ8tcAIfJeB3zvCDhL3S4k64zyz3QTtABWr+BDO53k/6Fno?=
- =?us-ascii?Q?GzH/oZ8PtmkxLfLcPQ75y+sSV0HQszVcTajgoaVZNZnMmoT2nci8DjS2BxeR?=
- =?us-ascii?Q?bDapOXeU7KaKOWHgVO8ijKvlqoPvvEEJsOYxUncxt7wzl7naVHMZl7w2MVFi?=
- =?us-ascii?Q?WIQirLITwNaGbmyBwxdOHsi55cgv8IetttDN0eVxAqAq5a+mTF/W+6qy4tMX?=
- =?us-ascii?Q?wYq/ewzATP23uqdnEzfLspgF0t59koLSokWkbTD/GmAibpQPNMBNlgZKYp6B?=
- =?us-ascii?Q?2pSxDsNke7Gqg6df6kCUrqk5yqqXDR5UJDxp/f1c1Ah61Aei7y4+N27NIJq3?=
- =?us-ascii?Q?G3bJCqqkzE85YtyUJyiV4OTojwHJqWe1T0rVV9utDhWHxR84JmouDYvTy0V4?=
- =?us-ascii?Q?x480ZrtnVTVBfMUqoCJQ9ODnHMooKvhmkG8tMoLW3XWxp3ittjw5ekqFZebD?=
- =?us-ascii?Q?ROz0aKowa4yKPgNcFztyAG2Dq/QusznylPEygqJKczBK0/U0N3Hx1T2FWEaU?=
- =?us-ascii?Q?WPw98oczZT4VBUjxSqBMkUeILThNVsZxFi9BkJpWq4HHgdzUldvb2Pgq0TEv?=
- =?us-ascii?Q?4X7ewuddJ1gxfkmnfa3KnGjAFPcTNpvDfaQeBKFzdTzD+4H2X+EQ9CXtyZvD?=
- =?us-ascii?Q?pXAwiPb0kpYaOjsOMv1hAbpBCuoforSZsqLu+42CkwVHMehOBuIJd1Y6zUYA?=
- =?us-ascii?Q?zQZcVu55nH3Cht7+9zp+ZKF1ptKU7O+pMQjkRueiu9tMecomkL8kzFeFrClI?=
- =?us-ascii?Q?l0O5UB8lZcRKZhXezxsK5CCK1PaMAWHozRQvU3mpvv8bwJyfseSR8QMf3uwk?=
- =?us-ascii?Q?BqqJymganaRwfPUJouu585gADv+cKi6fYmV+XT7OgX6pmhH01sjA2GHILkA0?=
- =?us-ascii?Q?a+dEJdbBFdlf4zKgBrFODiDlkaSeDguxTYCFm5II7iLS6QNgkzv+Qf6/7BoF?=
- =?us-ascii?Q?oYxEiieG7D02g3vewdwoJ46ZWqvp16JYyKKBqNpxUWhCGOG0drtPZUOJM/nh?=
- =?us-ascii?Q?wKR/+M7F/6pNlYbQA8j840PVe4+ojBJcoe3LlQ1hFZ09eLh/nBJTuBGR3ePO?=
- =?us-ascii?Q?1XebwmqIcSEIAs0eo/P8VUUnWPEiRy4wz1ZVb732CHI1Aq92+lTniwbqLBTk?=
- =?us-ascii?Q?30wnMYEKtQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH v2] ASoC: dt-bindings: audio-graph-port: enable both flag/phandle for bitclock/frame-master
+Date:   Wed,  8 Dec 2021 15:48:52 +0900
+Message-Id: <20211208064852.507977-1-kuninori.morimoto.gx@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB5581.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 67124897-c4b4-45f7-7382-08d9ba1660dc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Dec 2021 06:45:52.5649
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JZxpIO3WOY5VDygSOLkr0nEkE+Hfz4hcotBERAmfThSrnFcBMh9vhzlXP5ymndEC/N8rEj8uRDFhC2AkQv4Lt7+AI/2YDl82GOJVLvAgUJ8MDn0zPFPmfNbxjOO6pV4T
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYXPR01MB1856
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-Hi Mark, Rob
+snd_soc_daifmt_parse_clock_provider_raw() is handling both
+bitclock/frame-master, and is supporting both flag/phandle.
+Current DT is assuming it is flag style.
+This patch allows both case.
 
-> snd_soc_daifmt_parse_clock_provider_raw() is handling both
-> bitclock/frame-master, and is supporting both flag/phandle.
-> Current DT is assuming it is flag style.
-> This patch allows both case.
->
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-
-It was not good patch.
-I will re-post v2 patch. Please drop this.
-
-Best regards
+Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 ---
-Kuninori Morimoto
+ .../devicetree/bindings/sound/audio-graph-port.yaml      | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+index 43e7f86e3b23..7d0248be08c5 100644
+--- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
++++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+@@ -42,10 +42,15 @@ patternProperties:
+         $ref: /schemas/types.yaml#/definitions/flag
+       frame-master:
+         description: Indicates dai-link frame master.
+-        $ref: /schemas/types.yaml#/definitions/phandle
++        anyOf:
++          - $ref: /schemas/types.yaml#/definitions/flag
++          - $ref: /schemas/types.yaml#/definitions/phandle
+       bitclock-master:
+         description: Indicates dai-link bit clock master
+-        $ref: /schemas/types.yaml#/definitions/phandle
++        anyOf:
++          - $ref: /schemas/types.yaml#/definitions/flag
++          - $ref: /schemas/types.yaml#/definitions/phandle
++
+       dai-format:
+         description: audio format.
+         items:
+-- 
+2.25.1
+
