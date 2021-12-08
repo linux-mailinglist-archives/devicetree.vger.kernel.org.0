@@ -2,101 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C894C46D2E9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 13:06:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD0CA46D309
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 13:08:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232840AbhLHMJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 07:09:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35762 "EHLO
+        id S231583AbhLHMMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 07:12:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229675AbhLHMJ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 07:09:29 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6FF0C061746;
-        Wed,  8 Dec 2021 04:05:57 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id k37so5227416lfv.3;
-        Wed, 08 Dec 2021 04:05:57 -0800 (PST)
+        with ESMTP id S233064AbhLHMMR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 07:12:17 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBE6DC061746
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 04:08:45 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id az34-20020a05600c602200b0033bf8662572so1671275wmb.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 04:08:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=WBqTn91DshTm+EF7h4CWYhAUdvliMN1/YG7EIZemZ/A=;
-        b=hC7KXTCq18inK8j/wksZ8jk/R0Jn1EVYKEjxi8PhAlPDhDWvamWsADzhKyxUK24M7r
-         64AnzN9j+c3KdoF24P/p0+2fNjgiEtiL2j7l2Yhkpkkj5S8vO0Pq5g5HrHrFT9JngQ5O
-         W6TMzBmSxZAfBjetJMD+jcape9iTT1TRtdfPzSWY6Gz3GTG2w173DwOGi3Srg1/ZoFGg
-         jCBfyxbpbDapehEblZJN+AhuYjdDmxRvH82LV5pr/CoVX2leC03F2Hmqpimt3ZZTT7Eh
-         g2w2P+OvDKPxFHjEmb2B3NYdedix4iF3t2OSi5buom7RX1Fk14htuGrAKbALtzc4klOO
-         jEdw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=R1D6vu1LwULEAHB02GfzTtDg6CGj6MOMTTzNmc1nbxo=;
+        b=KQcEugiexb23klmZMI5tSlYPQm99/Zv4PPINCgHpDwY3fjhv8d0Zyt/TJihnvq0Ubc
+         ulosvJ/VXLX1hsUssnt5uBohWJZavOjioliqCxG6+Fd8okWoYwHI2BVepUSR0LBr86HD
+         skDjsgdbR4jSE6lb4q4Zlx9xgvaWcPL5d3HZlJwf7MaAII/UBpHDs5GKMn8vC3hcqSa3
+         j4/ExVLga/qmDqhXUjoeArZW4LSTad6LvvGw661WNvCjd6p1lh2C7KtyBv3dDjDaftSb
+         XhUy+zdWjtjEKSsqIID9dZjM+D3L0QtRBY1Wti5aUSzDt2JGywGA79EdQUO47xDDGRwp
+         aTAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=WBqTn91DshTm+EF7h4CWYhAUdvliMN1/YG7EIZemZ/A=;
-        b=2FURFxspTjDK6bjS44wDbwGM+uXBc+ctF1mWk/AFyl89sBZdRJIRaJ00btyktNpAH+
-         3nWtE4etSNI9cdBR+3fmT779OhDJbRtelRRVKyXGd8C0UvCaZYtbnOBIwriMhycBOUxy
-         CzffiSkcoIxswTxBQTB+GeAW2Ptr9AQJiqfDQ8Y9Q7KdELz8hPg3WI008Kxz1xNJ0Vqi
-         aWJ4qRynLZc9xcDFycjtaB/f37kWBpKM1yOTlgZJHc7tsVrMuZiL8GWjucL7Q3spKNdY
-         Gz1/KR2kwwwwLc5qetFyNDgRf2FkK8YFy7nfTVpZpPw1nnUJGn9xUfP+OtlYVUTeuKV+
-         6lbA==
-X-Gm-Message-State: AOAM533Asuk3DLYjvz4eIYPXbX4xMhL6vZjAJ1H3UNnCorfIBJx5Ur2g
-        eDOj+D1rYSNTAw3GngzTweU=
-X-Google-Smtp-Source: ABdhPJwRAoidBQuHR+uavIg6rJVFE4uuyU2sNZRE3wZOa/3r0nA9fKFSbBYkuJLzyDryl1L7J2lJwA==
-X-Received: by 2002:ac2:4e98:: with SMTP id o24mr37516701lfr.639.1638965155879;
-        Wed, 08 Dec 2021 04:05:55 -0800 (PST)
-Received: from [192.168.2.145] (94-29-46-111.dynamic.spd-mgts.ru. [94.29.46.111])
-        by smtp.googlemail.com with ESMTPSA id j20sm269214lfh.190.2021.12.08.04.05.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Dec 2021 04:05:55 -0800 (PST)
-Subject: Re: [PATCH 1/3] ALSA: hda/tegra: Skip reset on BPMP devices
-To:     Sameer Pujar <spujar@nvidia.com>, tiwai@suse.com,
-        broonie@kernel.org, lgirdwood@gmail.com, thierry.reding@gmail.com,
-        perex@perex.cz
-Cc:     jonathanh@nvidia.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        Mohan Kumar <mkumard@nvidia.com>, robh+dt@kernel.org
-References: <1638858770-22594-1-git-send-email-spujar@nvidia.com>
- <1638858770-22594-2-git-send-email-spujar@nvidia.com>
- <7742adae-cdbe-a9ea-2cef-f63363298d73@gmail.com>
- <8fd704d9-43ce-e34a-a3c0-b48381ef0cd8@nvidia.com>
- <56bb43b6-8d72-b1de-4402-a2cb31707bd9@gmail.com>
- <4855e9c4-e4c2-528b-c9ad-2be7209dc62a@nvidia.com>
- <5d441571-c1c2-5433-729f-86d6396c2853@gmail.com>
- <f32cde65-63dc-67f8-ded8-b58ea5e89f4e@nvidia.com>
- <95cc7efa-251c-690b-9afa-53ee9e052c34@gmail.com>
- <148fba18-5d14-d342-0eb9-4ff224cc58ad@nvidia.com>
- <3b0de739-7866-3886-be9c-a853c746f8b7@gmail.com>
- <73d04377-9898-930b-09db-bb6c4b3eb90a@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <ad388f5e-6f60-cf78-8510-87aec8524e33@gmail.com>
-Date:   Wed, 8 Dec 2021 15:05:54 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=R1D6vu1LwULEAHB02GfzTtDg6CGj6MOMTTzNmc1nbxo=;
+        b=1djNn6UYpmg3x1EARe15i8JcZPcumiaYBslTcTqmaxPYBpDkjswOUA0R71F0YgaJkg
+         L5tv3Vk6wu09RTfBj7zH/R5a0g4w/+wBcwTzMWSgPcnTCn9fowPy6E66y6FG/gAEKAOy
+         4M71cdOZ6YyozAsPDa6RYudYWMz8FAxVoTyS1gunJTSRmoSRV1oFCV7lLGXVIvWmAy9i
+         w+3hVfZGX11NOw4CWfxerdD3eFZHVu+Ir2tJFsA1gZuk2iioDy2foffGD2eFQYdquFQw
+         Mbjbv4C0WVkDOS9pxczFgWO41APzFpAh2OOvphNX6X28A/cXHYgmFXjBDV+tRfptoUOa
+         PKhA==
+X-Gm-Message-State: AOAM532+BYh4ZCag+DpM5oRTYaEQa1Wqfs3mEpOVBZDp0yj5ZlBgFled
+        CEcT9PQuqc7n8KWaaSG/LsM62w==
+X-Google-Smtp-Source: ABdhPJwP41Y8jw1WGUE8GAzmHo4vkR9Ff92/aNI150r9LWBWlHejIG/y9c1S8ZGyrHAs6k1jt25u+w==
+X-Received: by 2002:a05:600c:2252:: with SMTP id a18mr15774810wmm.133.1638965324354;
+        Wed, 08 Dec 2021 04:08:44 -0800 (PST)
+Received: from google.com ([2.31.167.18])
+        by smtp.gmail.com with ESMTPSA id u13sm6297713wmq.14.2021.12.08.04.08.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Dec 2021 04:08:43 -0800 (PST)
+Date:   Wed, 8 Dec 2021 12:08:41 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Cc:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Rob Herring <robh@kernel.org>,
+        Olivier MOYSAN <olivier.moysan@foss.st.com>,
+        Fabrice GASNIER <fabrice.gasnier@st.com>,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        alain.volmat@foss.st.com, arnaud.pouliquen@foss.st.com,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [Linux-stm32] [PATCH v2 1/4] ASoC: dt-bindings: stm32: i2s: add
+ audio-graph-card port
+Message-ID: <YbCgSeA1++U82jtn@google.com>
+References: <20211125144053.774-1-olivier.moysan@foss.st.com>
+ <20211125144053.774-2-olivier.moysan@foss.st.com>
+ <1637875562.357461.2858318.nullmailer@robh.at.kernel.org>
+ <237f56b3-0597-2526-a182-f1fbdd327338@foss.st.com>
+ <Yaf4jiZIp8+ndaXs@robh.at.kernel.org>
+ <627777a4-7458-88ed-e7c5-d11e3db847b5@foss.st.com>
+ <cf5f994b-aecf-e051-f5c9-4a46e6414207@pengutronix.de>
+ <cb7f19c0-3826-fcc8-227c-982838acf599@foss.st.com>
 MIME-Version: 1.0
-In-Reply-To: <73d04377-9898-930b-09db-bb6c4b3eb90a@nvidia.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <cb7f19c0-3826-fcc8-227c-982838acf599@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-08.12.2021 08:22, Sameer Pujar пишет:
-> 
-> 
-> On 12/7/2021 11:32 PM, Dmitry Osipenko wrote
->> If display is already active, then shared power domain is already
->> ungated.
-> 
-> If display is already active, then shared power domain is already
-> ungated. HDA reset is already applied during this ungate. In other
-> words, HDA would be reset as well when display ungates power-domain.
+On Wed, 08 Dec 2021, Alexandre TORGUE wrote:
 
-Now, if you'll reload the HDA driver module while display is active,
-you'll get a different reset behaviour. HDA hardware will be reset on
-pre-T186, on T186+ it won't be reset.
+> Hi Ahmad
+> 
+> On 12/7/21 2:59 PM, Ahmad Fatoum wrote:
+> > Hello Alex,
+> > 
+> > On 07.12.21 14:52, Alexandre TORGUE wrote:
+> > > Hi Rob
+> > > 
+> > > On 12/1/21 11:34 PM, Rob Herring wrote:
+> > > > On Fri, Nov 26, 2021 at 11:25:27AM +0100, Olivier MOYSAN wrote:
+> > > > > Hi Rob,
+> > > > > 
+> > > > > On 11/25/21 10:26 PM, Rob Herring wrote:
+> > > > > > On Thu, 25 Nov 2021 15:40:50 +0100, Olivier Moysan wrote:
+> > > > > > > The STM2 I2S DAI can be connected via the audio-graph-card.
+> > > > > > > Add port entry into the bindings.
+> > > > > > > 
+> > > > > > > Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> > > > > > > ---
+> > > > > > >     Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml | 5 +++++
+> > > > > > >     1 file changed, 5 insertions(+)
+> > > > > > > 
+> > > > > > 
+> > > > > > Running 'make dtbs_check' with the schema in this patch gives the
+> > > > > > following warnings. Consider if they are expected or the schema is
+> > > > > > incorrect. These may not be new warnings.
+> > > > > > 
+> > > > > > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> > > > > > This will change in the future.
+> > > > > > 
+> > > > > > Full log is available here: https://patchwork.ozlabs.org/patch/1559750
+> > > > > > 
+> > > > > > 
+> > > > > > audio-controller@4000b000: 'port' does not match any of the regexes: '^port@[0-9]', 'pinctrl-[0-9]+'
+> > > > > >      arch/arm/boot/dts/stm32mp157a-dk1.dt.yaml
+> > > > > >      arch/arm/boot/dts/stm32mp157c-dk2.dt.yaml
+> > > > > > 
+> > > > > 
+> > > > > This warning is not a new one.
+> > > > > 
+> > > > > The i2s2 node in stm32mp15xx-dkx.dtsi would require the following binding:
+> > > > > port:
+> > > > >      $ref: audio-graph-port.yaml#
+> > > > >      unevaluatedProperties: false
+> > > > > 
+> > > > > However the spi binding requires to introduce a unit address:
+> > > > > patternProperties:
+> > > > >     '^port@[0-9]':
+> > > > >       $ref: audio-graph-port.yaml#
+> > > > >       unevaluatedProperties: false
+> > > > > 
+> > > > > The warning can be removed by re-ordering the bindings patches in the serie,
+> > > > > as "additionalProperties: true" makes the check more tolerant on extra
+> > > > > properties.
+> > > > 
+> > > > That's never right.
+> > > > 
+> > > > > The patch "ASoC: dt-bindings: stm32: i2s: add audio-graph-card port" can
+> > > > > even be merely dropped.
+> > > > > So, I suggest to resend the serie without audio-graph-card patch.
+> > > > 
+> > > > Only if you aren't using audio-graph-card.
+> > > > 
+> > > > > 
+> > > > > Does it sound too permissive to you ?
+> > > > 
+> > > > I think perhaps you need to combine the schemas into 1. Or you need to
+> > > > restructure your dtsi files such that you only add spi specific
+> > > > properties when spi mode is enabled and only add i2s specific properties
+> > > > when i2s mode is enabled. Or use the /delete-property/ directive.
+> > > 
+> > > Initially the aim of this series was to fix a "make W=1" warnings seen on spi and i2s nodes (duplicate unit-address). Moving both nodes in a common node + using a different compatible depending on SPI or I2S usage sounded good) but it is not enough. In this series the common node is named as following: "spi2s2: spi@4000b000". It is fine for a spi usage but if we want to use this "common node" with I2S compatible and specific bindings, the node name remains spi@... and then specific spi checks are done. For this with this series applied we got this issue reported by spi-controller.yaml:
+> > > 
+> > > spi@4000b000: port@0: 'compatible' is a required property
+> > > 
+> > > So, if we use two separates nodes we got W=1 warning and if we use a common node we got yaml check issue. One possibility would be to use a common node with a new node name (for example i2spi@...) but I think it is not acceptable.
+> > > 
+> > > How to progress ?
+> > 
+> > Atmel Flexcom can be configured to be either UART, SPI or i2c. Functions
+> > are child nodes of the flexcom node and the MFD driver matching against it,
+> > just configure the operating mode and then calls of_platform_populate.
+> > 
+> > Would something along these lines fit here as well?
+> 
+> Yes it could but in my mind it was not a MFD as both feature cannot be used
+> at the same time: it is either SPI or I2S and choice is done "statically" in
+> device tree depending board usage.
+> 
+> Lee, what it is your feeling about that ? Will you accept to add a MFD
+> driver for this SPI/I2S peripheral whose prurpose is only to populate child
+> node (either SPI or I2S) ?
 
-Please make v2 using devm_reset_control_bulk_get_exclusive(), skipping
-the non-existent reset, or move the workaround to the BPMP driver like I
-suggested in the other reply.
+From your description, this doesn't sound like a good fit for MFD.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
