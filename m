@@ -2,88 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B089746F2DD
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 19:19:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAD3946F2F9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 19:25:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243210AbhLISWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 13:22:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34072 "EHLO
+        id S234562AbhLIS2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 13:28:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237501AbhLISWo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 13:22:44 -0500
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80548C061746
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 10:19:10 -0800 (PST)
-Received: by mail-oi1-x22e.google.com with SMTP id r26so9840758oiw.5
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 10:19:10 -0800 (PST)
+        with ESMTP id S229710AbhLIS2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 13:28:42 -0500
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3697C061746;
+        Thu,  9 Dec 2021 10:25:08 -0800 (PST)
+Received: by mail-qt1-x82f.google.com with SMTP id m25so6093470qtq.13;
+        Thu, 09 Dec 2021 10:25:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=S0JQyjTunbOQRpAL1mfHYhxPgZ8eEhJSSXuzKq/Hnog=;
-        b=mBM67eTxzKmcGwpgfzYUDIksjk4bYHhq/DkzT+XlRAyOh6vx+mzzjkJK1WPPB19zk2
-         khhojfdUeocsVBNypzUwhe9OYapsIs6Ajc9yyfzkpBi9HpT1V4Zn7q9+66nvAlRFuKTZ
-         6+YTVGSpOu3WDlFhD3EHZ3uRgwvnz0CaWtctmEMONcsDsxn3CbGtxSvsYbj9h5cmvafl
-         Rv/MweraiRnxUmjJw/sy+2ys8kvfuMMObR8QX9ndQzexAzdw0r8feotJ9Zb1WUzWiF/9
-         ettAfnqws5qF1a/+lVCjkvg9jbteHZW0Aeuq8dLQDQW0LbRNGM4V61Z1Bg4ZroMbrwPZ
-         7Q4g==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=tY3Uj57fP/HW8NzRsCUcgjaQafL0bIk8XDbY/Pd7ACE=;
+        b=QryBhz3Xqfd4fQ0HZA1L9YeanmPSAQPQQccArGMyyDF2W+7UyhDWjPiK7yky70y0cW
+         VqPV9XOFn+DD26ZOViHGxYHFnnRUuZDodtNlNyyRh15siVli3AzUdrcuL1z9UC6jdgIv
+         bUoHyL6IuVd94gjcpa0KWRm8QZEb79P/+S1rOG7wmzugvZjyNSd6+uflDF0gRVe617tT
+         XwaBmoTwvmii51heLs05d7KTSELlQ4MkK4QGkWDyG0toEXLTWRZwztoUAX4JokN7yamI
+         cNwuDC8DDYgrHvQqdKjv2WILMCmzQofK//+a/lkwFu1WOvDMTSb6nrNVx+9bC6l+p7GG
+         H+TA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=S0JQyjTunbOQRpAL1mfHYhxPgZ8eEhJSSXuzKq/Hnog=;
-        b=btravO3QTkbRBMcvxPS4sE2qPvoc+PmD1Etxo+zsyC9ooRcMxlFmHfHVAP8aTdGLul
-         kPS8C+/kVyE70tDQeNZrhpiFOIbn3x9XpnDW9Rq2h7O/vqBhfqSa9cFvFTBvOVpGShXW
-         LjMOGfvk3XlRKpLzPu3D3zAf5CqWAZYh6A5Wvj0nelc0VLFHFhyYctFYkRTt4wYovA35
-         g2Nx+CyYh2UfI6SJUMBilnVgSCIXqEbLwMSUI8FqDgyI6tWeHZ1cM1yFMHV03Zm71FDl
-         OGDQibu7P0ejb8dhvFpAsuWGl4CBfb6ypnQpZUeh5LxzHh20UIWz4AIo8LD9XXqfYXfW
-         cAzg==
-X-Gm-Message-State: AOAM530iXd9KaEJarkfnoMyKE+czPNbRUSp8elcI452LNrHKH3eMzx5o
-        is8mJWK6zOUkyv9woGzyfgBibg==
-X-Google-Smtp-Source: ABdhPJwfjtg5LsFtSz5hYVc+XaPozIdUdnYNLwCPuRc4y9HIqO0mAIRwgLIhdD9OO+U/LU/BHO9toA==
-X-Received: by 2002:a05:6808:d48:: with SMTP id w8mr7676796oik.135.1639073949927;
-        Thu, 09 Dec 2021 10:19:09 -0800 (PST)
-Received: from [192.168.11.48] (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
-        by smtp.gmail.com with ESMTPSA id q2sm111497otg.64.2021.12.09.10.19.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Dec 2021 10:19:09 -0800 (PST)
-Message-ID: <c003889c-fe1c-0a85-5b2b-2875a909b1b7@kali.org>
-Date:   Thu, 9 Dec 2021 12:19:08 -0600
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tY3Uj57fP/HW8NzRsCUcgjaQafL0bIk8XDbY/Pd7ACE=;
+        b=w+2nAaY1P0+QZhw3F9vqgolIg/hDnxG2cOlOrk8urQ9/h2bQR8L230QMrmO8r0+3F7
+         KmPdPZlnoeWzLSCTc37+L58pgUyeQvSkFQWPKQQRFftiorNIr9/0tl35/pUEvs/G4bxj
+         Q2bPRo7p5J816VDEnsu0Y3Zx5GwSadFVc9a4pv+RNgeaxeZjTkc+r8I71PHD/5Lf1TaT
+         PQHjmUxYpfqjva1ntJs7XL7MNVXMkYKdIMAR8y8H+izmrSfCWSAtar8GVhc8q+o05AXm
+         1UmmL+qkXUl2mfm7NAr7o1XYClroM5iIEXWAftwnJkB84G2L2TdpOTxW0S6QoHypZwB+
+         9TJQ==
+X-Gm-Message-State: AOAM533tEpGcZMWELovV3K5agHe7AbWdC1Sq95OA6izjWZAQ6yUEFxOf
+        EgM8QIflayKd0xvDr9yUCzU=
+X-Google-Smtp-Source: ABdhPJw9rRcXu4b7ubdzWIhDayDhLG2/5CbNs1jDNpnbUQyq3/1A3IHPJP1WWUvPycpWEFqW1fwa0g==
+X-Received: by 2002:ac8:588e:: with SMTP id t14mr19589500qta.437.1639074307876;
+        Thu, 09 Dec 2021 10:25:07 -0800 (PST)
+Received: from errol.ini.cmu.edu (pool-108-39-235-221.pitbpa.fios.verizon.net. [108.39.235.221])
+        by smtp.gmail.com with ESMTPSA id m9sm309862qtn.73.2021.12.09.10.25.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Dec 2021 10:25:07 -0800 (PST)
+Date:   Thu, 9 Dec 2021 13:25:01 -0500
+From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        mdudek@internships.antmicro.com,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Paul Mackerras <paulus@ozlabs.org>,
+        Joel Stanley <joel@jms.id.au>, david.abdurachmanov@sifive.com,
+        Florent Kermarrec <florent@enjoy-digital.fr>,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        Stafford Horne <shorne@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kamil Rakoczy <krakoczy@antmicro.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mateusz Holenko <mholenko@antmicro.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: mmc: Add bindings for LiteSDCard
+Message-ID: <YbJJ/UqCeFJa5HGF@errol.ini.cmu.edu>
+References: <20211208132042.3226275-1-gsomlo@gmail.com>
+ <20211208132042.3226275-3-gsomlo@gmail.com>
+ <1639004806.166681.596177.nullmailer@robh.at.kernel.org>
+ <YbFXERe0K3rfzZem@glsvmlin.ini.cmu.edu>
+ <CAMuHMdVJZdzRMedn9L_Jb=0MYB_Bxs90v+iH7UaDBzup-qzp8A@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.3.2
-Subject: Re: [PATCH 0/2] arm64: dts: qcom: c630: update sound card setup
-Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        bjorn.andersson@linaro.org
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20211209175342.20386-1-srinivas.kandagatla@linaro.org>
-From:   Steev Klimaszewski <steev@kali.org>
-In-Reply-To: <20211209175342.20386-1-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdVJZdzRMedn9L_Jb=0MYB_Bxs90v+iH7UaDBzup-qzp8A@mail.gmail.com>
+X-Clacks-Overhead: GNU Terry Pratchett
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Dec 09, 2021 at 09:37:27AM +0100, Geert Uytterhoeven wrote:
+> Hi Gabriel,
+> 
+> On Thu, Dec 9, 2021 at 2:08 AM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+> > ... which took care of the bulk of the error messages reported. However,
+> > I'm still getting the one below, whether or not I leave the `maxItems 1`
+> > line there under `clocks:`
+> >
+> > $ make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu-  dt_binding_check
+> >   LINT    Documentation/devicetree/bindings
+> >   CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
+> > /home/somlo/linux/Documentation/devicetree/bindings/clock/litex,clock.yaml: properties:clock-output-names: {'description': 'List of strings of clock output signal names indexed by the first cell in the clock specifier.', 'minItems': 1, 'maxItems': 7, 'items': [{'const': 'CLKOUT0'}, {'const': 'CLKOUT1'}, {'const': 'CLKOUT2'}, {'const': 'CLKOUT3'}, {'const': 'CLKOUT4'}, {'const': 'CLKOUT5'}, {'const': 'CLKOUT6'}]} should not be valid under {'required': ['maxItems']}
+> >         hint: "maxItems" is not needed with an "items" list
+> >         from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+> >   SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
+> > /home/somlo/linux/Documentation/devicetree/bindings/clock/litex,clock.yaml: ignoring, error in schema: properties: clock-output-names
+> > warning: no schema found in file: ./Documentation/devicetree/bindings/clock/litex,clock.yaml
+> >   DTEX    Documentation/devicetree/bindings/mmc/litex,mmc.example.dts
+> >   DTEX    Documentation/devicetree/bindings/media/renesas,imr.example.dts
+> >   ...
+> 
+> --- a/Documentation/devicetree/bindings/clock/litex,clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/litex,clock.yaml
+> @@ -45,7 +45,6 @@ properties:
+>        List of strings of clock output signal names indexed
+>        by the first cell in the clock specifier.
+>      minItems: 1
+> -    maxItems: 7
+>      items:
+>        - const: CLKOUT0
+>        - const: CLKOUT1
+> 
+> I have that in my local tree, but hadn't sent it to you yet, because
+> litex,clock definitely need more work.
+> 
+> > It appears as though `make dt_binding_check` is trying to read from
+> > `Documentation/devicetree/bindings/clock/litex,clock.yaml`, which
+> > does not exist. The clock reference I'm talking about could be *any*
+> 
+> Oh, it does exist in your tree ;-)
+> To check the examples, it has to apply all other binding files that
+> might apply, hence some checks are always run.
+> 
+> You can avoid some (but not all) such checks by adding
+> 
+>     DT_SCHEMA_FILES=Documentation/devicetree/bindings/path/to/binding.yaml
+> 
+> > clock elsewhere in the dts!
+> >
+> > This wasn't part of the originally reported errors, not sure why I'm
+> > seeing it now. Also, not sure what (if anything) I still need to do
+> > about it, any advice much appreciated!
+> 
+> Of course, as Rob doesn't have that file in his tree.
 
-On 12/9/21 11:53 AM, Srinivas Kandagatla wrote:
-> This patchset fixes issue a with existing sound card setup on c630 and
-> also adds Headset button threshold values for button detection.
->
-> relevant UCM changes are at
-> https://git.linaro.org/people/srinivas.kandagatla/alsa-ucm-conf.git/log/?h=v1.2.5/c630
->
-> Srinivas Kandagatla (2):
->    arm64: dts: qcom: c630: Fix soundcard setup
->    arm64: dts: qcom: c630: add headset jack and button detection support
->
->   .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 30 +++++++++++++++++++
->   1 file changed, 30 insertions(+)
->
-Tested on Lenovo Yoga C630
+Oh, I'm working on the `litex-rebase` branch, which does have the
+litex,clock file. Running the check on the Linus master with litex_mmc
+v4 on top now passes the check without any errors or warnings. I'll
+incorporate the fixes pointed out by Rob when I publish v4.
 
-Tested-By: Steev Klimaszewski <steev@kali.org>
+Sorry for the misunderstanding, thanks Geert for pointing out the
+source of my confusion -- I think all's well now on the dt-bindings
+front w.r.t. litex_mmc... :)
 
+Cheers,
+--Gabriel
