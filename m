@@ -2,53 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D2EF46E0E9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 03:35:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAD9F46E0FB
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 03:42:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230184AbhLICjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 21:39:08 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:46762 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230183AbhLICjI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Dec 2021 21:39:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=xvjfcGkDo5VKLzCtT1tmROpEHad8dy2GmeskSllniN4=; b=gW4WZIqWMbpj955cV83NA8iEfR
-        7T2MZwvT6IeoEzguqVxPY5YjN/oznYmJtOzS2f4ZGDmAVdtOWxVF5xKc3801GsN2gO63idHkcW7KG
-        mrhlE+eXWj0liULRX2xxlzxmcEFuKUY8uVDEBAr4SYsmPcZzT9FrG59JO+m+LWNrMQ2c=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mv9HO-00FwZI-GN; Thu, 09 Dec 2021 03:35:30 +0100
-Date:   Thu, 9 Dec 2021 03:35:30 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Wells Lu <wellslutw@gmail.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        wells.lu@sunplus.com, vincent.shih@sunplus.com
-Subject: Re: [PATCH net-next v4 2/2] net: ethernet: Add driver for Sunplus
- SP7021
-Message-ID: <YbFrcjO8p5ii1zCG@lunn.ch>
-References: <1638864419-17501-1-git-send-email-wellslutw@gmail.com>
- <1638864419-17501-3-git-send-email-wellslutw@gmail.com>
+        id S230007AbhLICpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 21:45:54 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:42798 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229455AbhLICpx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 21:45:53 -0500
+X-UUID: 1101619a108744398bc64b14bfa4ae0d-20211209
+X-UUID: 1101619a108744398bc64b14bfa4ae0d-20211209
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2124787856; Thu, 09 Dec 2021 10:42:16 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 9 Dec 2021 10:42:15 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 9 Dec
+ 2021 10:42:14 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkcas10.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Thu, 9 Dec 2021 10:42:13 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>
+Subject: [next PATCH] dt-bindings: nvmem: convert mtk-efuse.txt to YAML schema
+Date:   Thu, 9 Dec 2021 10:42:13 +0800
+Message-ID: <20211209024213.16612-1-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1638864419-17501-3-git-send-email-wellslutw@gmail.com>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 07, 2021 at 04:06:59PM +0800, Wells Lu wrote:
-> Add driver for Sunplus SP7021 SoC.
+Convert mtk-efuse.txt to YAML schema mediatek,efuse.yaml
 
-I reviewed phy, mdio, ethtool. That all looks good.
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+ .../bindings/nvmem/mediatek,efuse.yaml        | 89 +++++++++++++++++++
+ .../devicetree/bindings/nvmem/mtk-efuse.txt   | 43 ---------
+ 2 files changed, 89 insertions(+), 43 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+ delete mode 100644 Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
 
-I did not look at any of the packet transfer etc.
+diff --git a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+new file mode 100644
+index 000000000000..7332195e7f00
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek efuse device tree bindings
++
++description: |
++  MediaTek's efuse is used for storing calibration data, it can be accessed
++  on ARM devices usiong I/O mapped memory.
++
++maintainers:
++  - Andrew-CT Chen <andrew-ct.chen@mediatek.com>
++
++allOf:
++  - $ref: "nvmem.yaml#"
++
++properties:
++  $nodename:
++    pattern: "^efuse@[0-9a-f]+$"
++
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - mediatek,mt7622-efuse
++              - mediatek,mt7623-efuse
++              - mediatek,mt8173-efuse
++              - mediatek,mt8192-efuse
++              - mediatek,mt8195-efuse
++              - mediatek,mt8516-efuse
++          - const: mediatek,efuse
++      - const: mediatek,mt8173-efuse
++        deprecated: true
++
++  reg:
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 1
++
++patternProperties:
++  "^.*@[0-9a-f]+$":
++    type: object
++
++    properties:
++      reg:
++        maxItems: 1
++
++      bits:
++        maxItems: 1
++
++    required:
++      - reg
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    efuse@10206000 {
++        compatible = "mediatek,mt8173-efuse";
++        reg = <0x10206000 0x1000>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        u2_intr_p0: usb2-intr-p0@188 {
++            reg = <0x188 0x1>;
++            bits = <0 5>;
++        };
++
++        u2_intr_p1: usb2-intr-p1@188 {
++            reg = <0x188 0x2>;
++            bits = <5 5>;
++        };
++
++        thermal_calibration: calib@528 {
++            reg = <0x528 0xc>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
+deleted file mode 100644
+index 39d529599444..000000000000
+--- a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-= Mediatek MTK-EFUSE device tree bindings =
+-
+-This binding is intended to represent MTK-EFUSE which is found in most Mediatek SOCs.
+-
+-Required properties:
+-- compatible: should be
+-	      "mediatek,mt7622-efuse", "mediatek,efuse": for MT7622
+-	      "mediatek,mt7623-efuse", "mediatek,efuse": for MT7623
+-	      "mediatek,mt8173-efuse" or "mediatek,efuse": for MT8173
+-	      "mediatek,mt8192-efuse", "mediatek,efuse": for MT8192
+-	      "mediatek,mt8195-efuse", "mediatek,efuse": for MT8195
+-	      "mediatek,mt8516-efuse", "mediatek,efuse": for MT8516
+-- reg: Should contain registers location and length
+-- bits: contain the bits range by offset and size
+-
+-= Data cells =
+-Are child nodes of MTK-EFUSE, bindings of which as described in
+-bindings/nvmem/nvmem.txt
+-
+-Example:
+-
+-	efuse: efuse@10206000 {
+-		compatible = "mediatek,mt8173-efuse";
+-		reg	   = <0 0x10206000 0 0x1000>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-
+-		/* Data cells */
+-		thermal_calibration: calib@528 {
+-			reg = <0x528 0xc>;
+-		};
+-	};
+-
+-= Data consumers =
+-Are device nodes which consume nvmem data cells.
+-
+-For example:
+-
+-	thermal {
+-		...
+-		nvmem-cells = <&thermal_calibration>;
+-		nvmem-cell-names = "calibration";
+-	};
+-- 
+2.18.0
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-
-    Andrew
