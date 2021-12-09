@@ -2,291 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61E4D46DFEA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 01:58:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1D0346E010
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 02:08:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241765AbhLIBBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 20:01:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45580 "EHLO
+        id S238588AbhLIBMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 20:12:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241745AbhLIBBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 20:01:51 -0500
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 965E5C0617A1
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 16:58:18 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id j5-20020a17090a318500b001a6c749e697so5051660pjb.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 16:58:18 -0800 (PST)
+        with ESMTP id S234907AbhLIBMS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 20:12:18 -0500
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09EA6C061746;
+        Wed,  8 Dec 2021 17:08:46 -0800 (PST)
+Received: by mail-qv1-xf36.google.com with SMTP id u16so3834164qvk.4;
+        Wed, 08 Dec 2021 17:08:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=YgfUazmwYWsfRzuNVdBPJhwCYunsfEpYK/qfZiNgtQc=;
-        b=PnwhhLd5kJ2E7bvzzoEgxlBaJPhpM3i7yWeEdVB7NGZxQvoxYE0jpp0W4y1zQyYjL9
-         KP3Jz6WLTZLy0lTRUxN2CotLPb1NNdppdgzaBHz3CnuXGTxqRfX6DdxdYZrVuWj/7DBr
-         fYEvcOgy29LBq2zM9qUNbiNwBHFTmWh0MKjFo=
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=bQfC/GjazGM6i3ob6YqlN4SlMkdDBtM8EjnGT/4dlHA=;
+        b=n5KQPA9KckKPDYCGROCtWZ7JDe9N0w1yHfaF4JKcmcQRoFQ9zmED72mSjErMvXSNBO
+         nlQmP/UxVlNwJhJkCfAfDeISKRdobvvBBdROq0aDOI1C7oWcFKC5lLW9NiiHaXYlEVrl
+         2qGeQxnsl5nujBvbXDyuLDnIzgpr+scmg6B13xVLqgNVwjLM+yZzUAdsN7mCyWJToPQs
+         12BL2tbmTFqnkN6F6JCgdFc71kmU8S92egLuvkrMqagdG0AEiQhlRfLD42rv7VRg/3UX
+         BAZL/7MrRwc7iMFGNUZ+kNmgA04Mgk7X3F1tR1lDqXvxmutFLNyd06FHvpPaoXJgWu7/
+         0y/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=YgfUazmwYWsfRzuNVdBPJhwCYunsfEpYK/qfZiNgtQc=;
-        b=F0tTI1PpV83+7eA95yNd7ucbSUDCCbqPqDzllgA0AIc4C3aSvmNGQtWF1FUNlF4k2m
-         QSC9mzIRSibnOAHI65cCfFjxTDpI5GT2Bo4n3kH/XhQbKk8ZqUmOc6P8B4h27BP6W4y2
-         GKxrq3U21EJbHf7eMozfom49q+Q4MXwmAveZxhZzREwybKhpRUt527xjLVdOsP0uMEq/
-         cSEMnGPvvFwVdw2FuhGiiHFVHFLgXn3U+4gUKJQJJzUYz70AgW05fM0obIAsZC/oUbyY
-         ltPrPQ4Rr1Z4zR3FUkVdqyktDTZjb0/X1wGNKZVE9wiUkolupb6KxsFeIqBja8oYIaQF
-         pBLA==
-X-Gm-Message-State: AOAM531AIOH57EcXZSVhIXlmpEta3H/HiVitBMsIhfP9j0cqTAAGQ/fb
-        yigCpEv2GyvsnhrB34n5Ye94Ng==
-X-Google-Smtp-Source: ABdhPJyH4nxPmAEoJqvmRQKP+KnqyKAG0SCxZE7dEeaxa6Ahinxk/saYKK+1qcgycG5sS2t9Cag1PQ==
-X-Received: by 2002:a17:902:c245:b0:141:f279:1c72 with SMTP id 5-20020a170902c24500b00141f2791c72mr63163638plg.18.1639011498059;
-        Wed, 08 Dec 2021 16:58:18 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:16e0:43f4:4e33:993b])
-        by smtp.gmail.com with UTF8SMTPSA id l21sm7151218pjt.24.2021.12.08.16.58.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Dec 2021 16:58:17 -0800 (PST)
-From:   Gwendal Grignou <gwendal@chromium.org>
-To:     robh+dt@kernel.org, jic23@kernel.org, lars@metafoo.de,
-        swboyd@chromium.org
-Cc:     andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, Gwendal Grignou <gwendal@chromium.org>
-Subject: [PATCH v6 5/5] iio: sx9324: Add dt_binding support
-Date:   Wed,  8 Dec 2021 16:58:06 -0800
-Message-Id: <20211209005806.3575399-6-gwendal@chromium.org>
-X-Mailer: git-send-email 2.34.1.400.ga245620fadb-goog
-In-Reply-To: <20211209005806.3575399-1-gwendal@chromium.org>
-References: <20211209005806.3575399-1-gwendal@chromium.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bQfC/GjazGM6i3ob6YqlN4SlMkdDBtM8EjnGT/4dlHA=;
+        b=qQIIqj4Ne7WdX3LEMChoWCNPPTnuvshJuzdLuLQx/dcLDr3UbrEUbdDq2Pz10gf60q
+         FIcA33IIO2bPuEPxJPUOG20oNJkLD0qHWR9CzVpE9XKFfxNMXKMIvjotJ/tJrIhJRtTp
+         pYGYS7NdsWuixUMVvrjV6RfGjWo+gLRau00Y/c8Eam9Bw2Vvc0iSkNU5cWOyjZoAwQFN
+         llh63THaIM1X7QcJ5ftWP3Y4LNYXeMOw2sHI2f/NW1vAmTxxFRLSk9plLGaJIQ2go5Nf
+         4zSaXvfgr3NFT2y0UX9Km7OLO2o0iktN0koTNBtAp3X1GLjWabJNFBUA88uy5UqepH/3
+         ZIOA==
+X-Gm-Message-State: AOAM532UFSjMsLAo/4Uv+n0de1eMbdZSq6s3ftyl4lWxCAr67tC9YVlX
+        8euGTzYEbJ4cx3opKeBPEW8lXESaZYruMw==
+X-Google-Smtp-Source: ABdhPJxJdFHNn8qL8IGdjSDFKRLcBH1y5qpJE6kmuOrHiZQ1byqi6q+7qQf6gL8D+Qhd6zFeI/rI3Q==
+X-Received: by 2002:a0c:ef03:: with SMTP id t3mr11648614qvr.32.1639012121554;
+        Wed, 08 Dec 2021 17:08:41 -0800 (PST)
+Received: from glsvmlin.ini.cmu.edu (GLSVMLIN.INI.CMU.EDU. [128.2.16.9])
+        by smtp.gmail.com with ESMTPSA id l2sm2682113qtk.41.2021.12.08.17.08.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Dec 2021 17:08:41 -0800 (PST)
+Date:   Wed, 8 Dec 2021 20:08:33 -0500
+From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, kgugala@antmicro.com,
+        mdudek@internships.antmicro.com, rdunlap@infradead.org,
+        paulus@ozlabs.org, joel@jms.id.au, geert@linux-m68k.org,
+        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
+        linux-mmc@vger.kernel.org, shorne@gmail.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        krakoczy@antmicro.com, ulf.hansson@linaro.org,
+        mholenko@antmicro.com
+Subject: Re: [PATCH v3 2/3] dt-bindings: mmc: Add bindings for LiteSDCard
+Message-ID: <YbFXERe0K3rfzZem@glsvmlin.ini.cmu.edu>
+References: <20211208132042.3226275-1-gsomlo@gmail.com>
+ <20211208132042.3226275-3-gsomlo@gmail.com>
+ <1639004806.166681.596177.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1639004806.166681.596177.nullmailer@robh.at.kernel.org>
+X-Clacks-Overhead: GNU Terry Pratchett
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Based on bindings/iio/proximity/semtech,sx9324.yaml, implement
-retrieving sensor hardware property and alter default values.
+On Wed, Dec 08, 2021 at 05:06:46PM -0600, Rob Herring wrote:
+> On Wed, 08 Dec 2021 08:20:41 -0500, Gabriel Somlo wrote:
+> > LiteSDCard is a small footprint, configurable SDCard core for FPGA
+> > based system on chips.
+> > 
+> > Signed-off-by: Gabriel Somlo <gsomlo@gmail.com>
+> > Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> > ---
+> > 
+> > New in v3:
+> >   - picked up r/b Geert Uytterhoeven <geert@linux-m68k.org> in DT
+> >     bindings document (please let me know if that was premature, and
+> >     happy to take further review if needed :)
+> >   - add dedicated DT property for source clock frequency
+> > 
+> >  .../devicetree/bindings/mmc/litex,mmc.yaml    | 72 +++++++++++++++++++
+> >  1 file changed, 72 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mmc/litex,mmc.yaml
+> > 
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.yaml: properties:reg-names:items: 'oneOf' conditional failed, one must be fixed:
+> 	[{'const': 'phy'}, {'const': 'core'}, {'const': 'reader'}, {'const': 'writer'}, {'const': 'irq (optional)'}] is not of type 'object'
+> 	'irq (optional)' does not match '^[a-zA-Z0-9,.\\-_ #+/]+$'
+> 	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.yaml: properties:reg: {'items': [{'description': 'PHY registers'}, {'description': 'CORE registers'}, {'description': 'DMA Reader buffer'}, {'description': 'DMA Writer buffer'}, {'description': 'IRQ registers (optional)'}], 'minItems': 4, 'maxItems': 5} should not be valid under {'required': ['maxItems']}
+> 	hint: "maxItems" is not needed with an "items" list
+> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.yaml: properties:reg-names: {'items': [{'const': 'phy'}, {'const': 'core'}, {'const': 'reader'}, {'const': 'writer'}, {'const': 'irq (optional)'}], 'minItems': 4, 'maxItems': 5} should not be valid under {'required': ['maxItems']}
+> 	hint: "maxItems" is not needed with an "items" list
+> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.yaml: ignoring, error in schema: properties: reg-names: items
+> warning: no schema found in file: ./Documentation/devicetree/bindings/mmc/litex,mmc.yaml
+> Documentation/devicetree/bindings/mmc/litex,mmc.example.dt.yaml:0:0: /example-0/mmc@12005000: failed to match any schema with compatible: ['litex,mmc']
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> 
+> See https://patchwork.ozlabs.org/patch/1565210
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+> 
 
-Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
----
-No changes in v6.
-Changes in v5:
-- Use prefixed binding names.
-- Fix long lines.
+Thanks! 
 
-Changes in v4:
-- Fix spelling in commit title.
+I made the following changes:
 
-Changes in v3:
-- Remove duplicate information.
-- Use intervals instead of enum.
-- Fix filter description.
+--- a/Documentation/devicetree/bindings/mmc/litex,mmc.yaml
++++ b/Documentation/devicetree/bindings/mmc/litex,mmc.yaml
+@@ -29,9 +29,8 @@ properties:
+       - description: CORE registers
+       - description: DMA Reader buffer
+       - description: DMA Writer buffer
+-      - description: IRQ registers (optional)
++      - description: IRQ registers
+     minItems: 4
+-    maxItems: 5
 
-Changes in v2:
-- Fix interrupt documentation wording.
+   reg-names:
+     items:
+@@ -39,12 +38,13 @@ properties:
+       - const: core
+       - const: reader
+       - const: writer
+-      - const: irq (optional)
++      - const: irq
+     minItems: 4
+-    maxItems: 5
 
- drivers/iio/proximity/sx9324.c | 164 +++++++++++++++++++++++++++++++++
- 1 file changed, 164 insertions(+)
+   clocks:
+     maxItems: 1
++    description:
++      Handle to reference clock.
 
-diff --git a/drivers/iio/proximity/sx9324.c b/drivers/iio/proximity/sx9324.c
-index ed7ac30e1915d5..78a173aeccf5ac 100644
---- a/drivers/iio/proximity/sx9324.c
-+++ b/drivers/iio/proximity/sx9324.c
-@@ -77,6 +77,7 @@
- #define SX9324_REG_PROX_CTRL0		0x30
- #define SX9324_REG_PROX_CTRL0_GAIN_MASK	GENMASK(5, 3)
- #define SX9324_REG_PROX_CTRL0_GAIN_1		0x80
-+#define SX9324_REG_PROX_CTRL0_RAWFILT_MASK	GENMASK(2, 0)
- #define SX9324_REG_PROX_CTRL0_RAWFILT_1P50	0x01
- #define SX9324_REG_PROX_CTRL1		0x31
- #define SX9324_REG_PROX_CTRL2		0x32
-@@ -753,6 +754,74 @@ static int sx9324_write_raw(struct iio_dev *indio_dev,
- 	return -EINVAL;
- }
- 
-+static const struct sx_common_reg_default sx9324_default_regs[] = {
-+	{ SX9324_REG_IRQ_MSK, 0x00 },
-+	{ SX9324_REG_IRQ_CFG0, 0x00 },
-+	{ SX9324_REG_IRQ_CFG1, SX9324_REG_IRQ_CFG1_FAILCOND },
-+	{ SX9324_REG_IRQ_CFG2, 0x00 },
-+	{ SX9324_REG_GNRL_CTRL0, SX9324_REG_GNRL_CTRL0_SCANPERIOD_100MS },
-+	/*
-+	 * The lower 4 bits should not be set as it enable sensors measurements.
-+	 * Turning the detection on before the configuration values are set to
-+	 * good values can cause the device to return erroneous readings.
-+	 */
-+	{ SX9324_REG_GNRL_CTRL1, SX9324_REG_GNRL_CTRL1_PAUSECTRL },
-+
-+	{ SX9324_REG_AFE_CTRL0, 0x00 },
-+	{ SX9324_REG_AFE_CTRL3, 0x00 },
-+	{ SX9324_REG_AFE_CTRL4, SX9324_REG_AFE_CTRL4_FREQ_83_33HZ |
-+		SX9324_REG_AFE_CTRL4_RES_100 },
-+	{ SX9324_REG_AFE_CTRL6, 0x00 },
-+	{ SX9324_REG_AFE_CTRL7, SX9324_REG_AFE_CTRL4_FREQ_83_33HZ |
-+		SX9324_REG_AFE_CTRL4_RES_100 },
-+
-+	/* TODO(gwendal): PHx use chip default or all grounded? */
-+	{ SX9324_REG_AFE_PH0, 0x29 },
-+	{ SX9324_REG_AFE_PH1, 0x26 },
-+	{ SX9324_REG_AFE_PH2, 0x1a },
-+	{ SX9324_REG_AFE_PH3, 0x16 },
-+
-+	{ SX9324_REG_AFE_CTRL8, SX9324_REG_AFE_CTRL8_RESFILTN_4KOHM },
-+	{ SX9324_REG_AFE_CTRL9, SX9324_REG_AFE_CTRL9_AGAIN_1 },
-+
-+	{ SX9324_REG_PROX_CTRL0, SX9324_REG_PROX_CTRL0_GAIN_1 |
-+		SX9324_REG_PROX_CTRL0_RAWFILT_1P50 },
-+	{ SX9324_REG_PROX_CTRL1, SX9324_REG_PROX_CTRL0_GAIN_1 |
-+		SX9324_REG_PROX_CTRL0_RAWFILT_1P50 },
-+	{ SX9324_REG_PROX_CTRL2, SX9324_REG_PROX_CTRL2_AVGNEG_THRESH_16K },
-+	{ SX9324_REG_PROX_CTRL3, SX9324_REG_PROX_CTRL3_AVGDEB_2SAMPLES |
-+		SX9324_REG_PROX_CTRL3_AVGPOS_THRESH_16K },
-+	{ SX9324_REG_PROX_CTRL4, SX9324_REG_PROX_CTRL4_AVGNEG_FILT_2 |
-+		SX9324_REG_PROX_CTRL3_AVGPOS_FILT_256 },
-+	{ SX9324_REG_PROX_CTRL5, 0x00 },
-+	{ SX9324_REG_PROX_CTRL6, SX9324_REG_PROX_CTRL6_PROXTHRESH_32 },
-+	{ SX9324_REG_PROX_CTRL7, SX9324_REG_PROX_CTRL6_PROXTHRESH_32 },
-+	{ SX9324_REG_ADV_CTRL0, 0x00 },
-+	{ SX9324_REG_ADV_CTRL1, 0x00 },
-+	{ SX9324_REG_ADV_CTRL2, 0x00 },
-+	{ SX9324_REG_ADV_CTRL3, 0x00 },
-+	{ SX9324_REG_ADV_CTRL4, 0x00 },
-+	{ SX9324_REG_ADV_CTRL5, SX9324_REG_ADV_CTRL5_STARTUP_SENSOR_1 |
-+		SX9324_REG_ADV_CTRL5_STARTUP_METHOD_1 },
-+	{ SX9324_REG_ADV_CTRL6, 0x00 },
-+	{ SX9324_REG_ADV_CTRL7, 0x00 },
-+	{ SX9324_REG_ADV_CTRL8, 0x00 },
-+	{ SX9324_REG_ADV_CTRL9, 0x00 },
-+	/* Body/Table threshold */
-+	{ SX9324_REG_ADV_CTRL10, 0x00 },
-+	{ SX9324_REG_ADV_CTRL11, 0x00 },
-+	{ SX9324_REG_ADV_CTRL12, 0x00 },
-+	/* TODO(gwendal): SAR currenly disabled */
-+	{ SX9324_REG_ADV_CTRL13, 0x00 },
-+	{ SX9324_REG_ADV_CTRL14, 0x00 },
-+	{ SX9324_REG_ADV_CTRL15, 0x00 },
-+	{ SX9324_REG_ADV_CTRL16, 0x00 },
-+	{ SX9324_REG_ADV_CTRL17, 0x00 },
-+	{ SX9324_REG_ADV_CTRL18, 0x00 },
-+	{ SX9324_REG_ADV_CTRL19, SX9324_REG_ADV_CTRL19_HIGHT_FAILURE_THRESH_SATURATION },
-+	{ SX9324_REG_ADV_CTRL20, SX9324_REG_ADV_CTRL19_HIGHT_FAILURE_THRESH_SATURATION },
-+};
-+
- /* Activate all channels and perform an initial compensation. */
- static int sx9324_init_compensation(struct iio_dev *indio_dev)
- {
-@@ -777,6 +846,99 @@ static int sx9324_init_compensation(struct iio_dev *indio_dev)
- 	return ret;
- }
- 
-+static const struct sx_common_reg_default *
-+sx9324_get_default_reg(struct device *dev, int idx,
-+		       struct sx_common_reg_default *reg_def)
-+{
-+#define SX9324_PIN_DEF "semtech,ph0-pin"
-+#define SX9324_RESOLUTION_DEF "semtech,ph01-resolution"
-+#define SX9324_PROXRAW_DEF "semtech,ph01-proxraw-strength"
-+	unsigned int pin_defs[SX9324_NUM_PINS];
-+	char prop[] = SX9324_PROXRAW_DEF;
-+	u32 start = 0, raw = 0, pos = 0;
-+	int ret, count, ph, pin;
-+
-+	memcpy(reg_def, &sx9324_default_regs[idx], sizeof(*reg_def));
-+	switch (reg_def->reg) {
-+	case SX9324_REG_AFE_PH0:
-+	case SX9324_REG_AFE_PH1:
-+	case SX9324_REG_AFE_PH2:
-+	case SX9324_REG_AFE_PH3:
-+		ph = reg_def->reg - SX9324_REG_AFE_PH0;
-+		scnprintf(prop, ARRAY_SIZE(prop), "semtech,ph%d-pin", ph);
-+
-+		count = device_property_count_u32(dev, prop);
-+		if (count != ARRAY_SIZE(pin_defs))
-+			break;
-+		ret = device_property_read_u32_array(dev, prop, pin_defs,
-+						     ARRAY_SIZE(pin_defs));
-+		for (pin = 0; pin < SX9324_NUM_PINS; pin++)
-+			raw |= (pin_defs[pin] << (2 * pin)) &
-+			       SX9324_REG_AFE_PH0_PIN_MASK(pin);
-+		reg_def->def = raw;
-+		break;
-+	case SX9324_REG_AFE_CTRL4:
-+	case SX9324_REG_AFE_CTRL7:
-+		if (reg_def->reg == SX9324_REG_AFE_CTRL4)
-+			strncpy(prop, "semtech,ph01-resolution",
-+				ARRAY_SIZE(prop));
-+		else
-+			strncpy(prop, "semtech,ph23-resolution",
-+				ARRAY_SIZE(prop));
-+
-+		ret = device_property_read_u32(dev, prop, &raw);
-+		if (ret)
-+			break;
-+
-+		raw = ilog2(raw) - 3;
-+
-+		reg_def->def &= ~SX9324_REG_AFE_CTRL4_RESOLUTION_MASK;
-+		reg_def->def |= FIELD_PREP(SX9324_REG_AFE_CTRL4_RESOLUTION_MASK,
-+					   raw);
-+		break;
-+	case SX9324_REG_ADV_CTRL5:
-+		ret = device_property_read_u32(dev, "semtech,startup-sensor",
-+					       &start);
-+		if (ret)
-+			break;
-+
-+		reg_def->def &= ~SX9324_REG_ADV_CTRL5_STARTUPSENS_MASK;
-+		reg_def->def |= FIELD_PREP(SX9324_REG_ADV_CTRL5_STARTUPSENS_MASK,
-+					   start);
-+		break;
-+	case SX9324_REG_PROX_CTRL4:
-+		ret = device_property_read_u32(dev, "semtech,avg-pos-strength",
-+					       &pos);
-+		if (ret)
-+			break;
-+
-+		/* Powers of 2, except for a gap between 16 and 64 */
-+		raw = clamp(ilog2(pos), 3, 11) - (pos >= 32 ? 4 : 3);
-+
-+		reg_def->def &= ~SX9324_REG_PROX_CTRL4_AVGPOSFILT_MASK;
-+		reg_def->def |= FIELD_PREP(SX9324_REG_PROX_CTRL4_AVGPOSFILT_MASK,
-+					   raw);
-+		break;
-+	case SX9324_REG_PROX_CTRL0:
-+	case SX9324_REG_PROX_CTRL1:
-+		if (reg_def->reg == SX9324_REG_PROX_CTRL0)
-+			strncpy(prop, "semtech,ph01-proxraw-strength",
-+				ARRAY_SIZE(prop));
-+		else
-+			strncpy(prop, "semtech,ph23-proxraw-strength",
-+				ARRAY_SIZE(prop));
-+		ret = device_property_read_u32(dev, prop, &raw);
-+		if (ret)
-+			break;
-+
-+		reg_def->def &= ~SX9324_REG_PROX_CTRL0_RAWFILT_MASK;
-+		reg_def->def |= FIELD_PREP(SX9324_REG_PROX_CTRL0_RAWFILT_MASK,
-+					   raw);
-+		break;
-+	}
-+	return reg_def;
-+}
-+
- static int sx9324_check_whoami(struct device *dev,
- 			       struct iio_dev *indio_dev)
- {
-@@ -797,12 +959,14 @@ static const struct sx_common_chip_info sx9324_chip_info = {
- 	.mask_enable_chan = SX9324_REG_GNRL_CTRL1_PHEN_MASK,
- 	.irq_msk_offset = 3,
- 	.num_channels = SX9324_NUM_CHANNELS,
-+	.num_default_regs = ARRAY_SIZE(sx9324_default_regs),
- 
- 	.ops = {
- 		.read_prox_data = sx9324_read_prox_data,
- 		.check_whoami = sx9324_check_whoami,
- 		.init_compensation = sx9324_init_compensation,
- 		.wait_for_sample = sx9324_wait_for_sample,
-+		.get_default_reg = sx9324_get_default_reg,
- 	},
- 
- 	.iio_channels = sx9324_channels,
--- 
-2.34.1.400.ga245620fadb-goog
+   interrupts:
+     maxItems: 1
 
+... which took care of the bulk of the error messages reported. However,
+I'm still getting the one below, whether or not I leave the `maxItems 1`
+line there under `clocks:`
+
+$ make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu-  dt_binding_check
+  LINT    Documentation/devicetree/bindings
+  CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
+/home/somlo/linux/Documentation/devicetree/bindings/clock/litex,clock.yaml: properties:clock-output-names: {'description': 'List of strings of clock output signal names indexed by the first cell in the clock specifier.', 'minItems': 1, 'maxItems': 7, 'items': [{'const': 'CLKOUT0'}, {'const': 'CLKOUT1'}, {'const': 'CLKOUT2'}, {'const': 'CLKOUT3'}, {'const': 'CLKOUT4'}, {'const': 'CLKOUT5'}, {'const': 'CLKOUT6'}]} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+  SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
+/home/somlo/linux/Documentation/devicetree/bindings/clock/litex,clock.yaml: ignoring, error in schema: properties: clock-output-names
+warning: no schema found in file: ./Documentation/devicetree/bindings/clock/litex,clock.yaml
+  DTEX    Documentation/devicetree/bindings/mmc/litex,mmc.example.dts
+  DTEX    Documentation/devicetree/bindings/media/renesas,imr.example.dts
+  ...
+
+It appears as though `make dt_binding_check` is trying to read from
+`Documentation/devicetree/bindings/clock/litex,clock.yaml`, which
+does not exist. The clock reference I'm talking about could be *any*
+clock elsewhere in the dts!
+
+This wasn't part of the originally reported errors, not sure why I'm
+seeing it now. Also, not sure what (if anything) I still need to do
+about it, any advice much appreciated!
+
+Thanks,
+--Gabriel
