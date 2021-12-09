@@ -2,95 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27E0946E5F2
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 10:51:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82D7146E60D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 10:59:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229574AbhLIJyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 04:54:50 -0500
-Received: from mout.kundenserver.de ([212.227.17.13]:38873 "EHLO
+        id S229863AbhLIKCy convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Dec 2021 05:02:54 -0500
+Received: from mout.kundenserver.de ([212.227.17.10]:37219 "EHLO
         mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229566AbhLIJyt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 04:54:49 -0500
-Received: from mail-wm1-f53.google.com ([209.85.128.53]) by
- mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MBE3k-1mqMH70IvO-00CmWq; Thu, 09 Dec 2021 10:51:15 +0100
-Received: by mail-wm1-f53.google.com with SMTP id y196so3694461wmc.3;
-        Thu, 09 Dec 2021 01:51:14 -0800 (PST)
-X-Gm-Message-State: AOAM532reFSc8qA5W3dqvnB43755Mk/DPeS1e5lTUURCKBMWZNvhHyh+
-        Yg9zLHOycfQEpy9mIAF6RdadrrqzKKwTdjCFXfc=
-X-Google-Smtp-Source: ABdhPJwsuOvM1/O8jYYNdv4ItTLWZ2lls/dbnVjnRNOupRV+K5wwYTXPPlK/3x0ieTJtdga3aOMcxHv7KRNJiPvKmwg=
-X-Received: by 2002:a1c:23d4:: with SMTP id j203mr5540436wmj.35.1639043474655;
- Thu, 09 Dec 2021 01:51:14 -0800 (PST)
+        with ESMTP id S231687AbhLIKB5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 05:01:57 -0500
+Received: from mail-wr1-f43.google.com ([209.85.221.43]) by
+ mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MmCyE-1mD9zy2Z0a-00iBc1; Thu, 09 Dec 2021 10:58:22 +0100
+Received: by mail-wr1-f43.google.com with SMTP id u1so8625702wru.13;
+        Thu, 09 Dec 2021 01:58:22 -0800 (PST)
+X-Gm-Message-State: AOAM533TaK5xNNPLIK81SuVkcExGkRnp4gIGS+bGh0oLTse3XG6+I3Jk
+        TwvBrSsxVrJCvUIzuc4ZovJWDt1w+IweLU4dOw0=
+X-Google-Smtp-Source: ABdhPJyxeLV7UtF1l/rFSuX941psQjIIY4BAsfEbKAiHX5Z3htWVEMTxwBq+97o3qdAvmBEF6L1VG6S/My2R0ahy3xE=
+X-Received: by 2002:a05:6000:110b:: with SMTP id z11mr5321203wrw.32.1639043901966;
+ Thu, 09 Dec 2021 01:58:21 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1639039163.git.tonyhuang.sunplus@gmail.com> <bc15d5e8d7a5ec96582799fe513de4ace6fd4b8b.1639039163.git.tonyhuang.sunplus@gmail.com>
-In-Reply-To: <bc15d5e8d7a5ec96582799fe513de4ace6fd4b8b.1639039163.git.tonyhuang.sunplus@gmail.com>
+References: <cover.1638515726.git.qinjian@cqplus1.com> <eabfe1b84b889e4aa95e24c30a114c68ef95fd07.1638515726.git.qinjian@cqplus1.com>
+ <CAK8P3a1_coAnp8P3L2UA+smxuRL9widFQv9Y5ZZ0X_Sr9zsZtg@mail.gmail.com>
+ <88f8cc0b1334467aae7a5a4b0643176a@cqplus1.com> <CAK8P3a1-4XnrkWc_0SPns9xj9Yp4xWhEahLOkeafXmAYWfbYJA@mail.gmail.com>
+ <6a8271f5c6b74ce7874b7583b8d7eee4@cqplus1.com>
+In-Reply-To: <6a8271f5c6b74ce7874b7583b8d7eee4@cqplus1.com>
 From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Thu, 9 Dec 2021 10:50:58 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a2UGr6ZbHk6G=wh5XG_EGdJxGf6SfyN1sTb4aaUgiK8Lw@mail.gmail.com>
-Message-ID: <CAK8P3a2UGr6ZbHk6G=wh5XG_EGdJxGf6SfyN1sTb4aaUgiK8Lw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] misc: Add iop driver for Sunplus SP7021
-To:     Tony Huang <tonyhuang.sunplus@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Date:   Thu, 9 Dec 2021 10:58:05 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2w2rava_ozRfWizYDYRe7J3j-=wMgzGA_9t0kd3qJ1NA@mail.gmail.com>
+Message-ID: <CAK8P3a2w2rava_ozRfWizYDYRe7J3j-=wMgzGA_9t0kd3qJ1NA@mail.gmail.com>
+Subject: Re: [PATCH v5 09/10] ARM: sunplus: Add initial support for Sunplus
+ SP7021 SoC
+To:     =?UTF-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Mark Brown <broonie@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         DTML <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        gregkh <gregkh@linuxfoundation.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
         =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
-        Tony Huang <tony.huang@sunplus.com>
+        Ard Biesheuvel <ardb@kernel.org>,
+        Linus Walleij <linusw@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:XqlSS2Iql3zpbpcZnCD+8f101DACUu+CivcTz6dTxv7ILtzl7q6
- LadlwyDrPmHmuNkZOR5K/PDveVZlcS0JDeyesK8Ad3rhqmGcl5wU67xfRaHhHodsLy3Dsta
- wsUWzpa1R/MdjKXR6ZqwkQv4Q4S8kGshGmK9diBSN5GgPpU6pGDbkNMzT+EqU/yOBwPZAH1
- mjTS+GLFYsHHTvY7sup2A==
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:QAcfvcI3XDtNhINEM/3DMhz24D80X89c80Oc/nY3jPP6W9CBF0t
+ +uth+3os0iMJmnomH082T9XrdsDqw8XbwSi80MeGw1bavNkRlYlTPfFAKLhymMLLxASm5to
+ 2J3BTtCN6YrUQ3YYYkGE9ujN8bqSgLpqYia8gmB8EgGZ9S6hh7cSHnyS+gXfWWzdly88jtS
+ Sq0UNSmJTjvkogttqtSrw==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:pfnCvxY2LkY=:HGkxj1fn5n+B8ZJd2oQlwi
- q1DdXZpFYUhGTPUK4XLfB4yj0VIANcnOAHrZ3ik+AfRFhR7jHqJWPIOLIBjgtfadrtVHHRDwl
- xzgGTrBO71mXuw7vhDzbi2s41s/Q2Ks1et2LiIzLvDZk3SzmeBbiDx+6Of4TW6SSKwr3XB1VJ
- DCo/Gp+QdQPOABGk6cZsr49nbtIgdoHJ23q4s/M/EjbcqPWGLizafajFdET5BYbjs2aYDHTNp
- YBx+BU2k7Ei+A59jyI3zhO42/Q/63ToJTXdQ/tNZ79uDLp7cvGq3WwqIebuaTfDGmk6flB5bo
- TCehBkZmWWGa0s+f9VuAlXTUvafyWdgfg7NjvUAH9T4K9pzUSbx2JmA54EzbVhAnVL6biOOEM
- 57TfZbTUooMz/Uckb3NV6Mi6MaJ+TJRxc+I8fdxQZ1aoCOJNO+2n2XFPRR+Rr6ptNzA1c6qKp
- QwjJpuDk/0w+YAkDhgegKpf5EjWML6SXnKt9AKmux+rDEGTGqM/QH1l3uDl9ANC7jtLex9fOU
- /CVungM+4DCvrwfQbYtx3AtZyLMJlM7ArqOwH6zIpBdfwlHs+cCOFR8AMk4C2Lg48u06X8ndl
- 62A9QJ7cKIqYonLFwi/J82gMWuwO//l2L42AvUDEptFHFDFun20p2tIvvdAaON9jWwNK4LLgS
- vgg6jy57PsOfJDXCpMn/OgqMDTmNzOy5rn4UAygoGt489SJCTsXGKrh2FVTueMp97nJw=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:JWRrvN909fA=:Bf0onvZHiT3E4v21aA2ME4
+ pvWY7lbL+lu5AuEYI0Hm66ujadoSYN0q08aqUyHSWkBJD4pt2lHZe3stjsccXEtaWPUZRhFv9
+ 1iqqnGgY37aE9c4Im9B7akaOUGEIu9zTQHET5ZDXdcFBRnkNiFAMe0X6BhXqBPWfBSjDZ2EsH
+ RjUzEfv8LzBVhglfc2x6Bge//eHeJZlXf6YuaXHfQ3GXLkqz/P5F9JyuUMN52LwjcU0h2cM9m
+ PqUcQgIETwy4lKV0S8IcWhingxc+50ZBgu/N+q0ng4PdS0/WZo1cs8YlGvZmFSNxBK3Fj+eoe
+ OzFf/3vLLupRCR6mqm8tramovo7+QW4mDEBw4JcKRP0Qo7MkkvBhmN9aCE6sPuCzE2Zj/MviZ
+ fHMZ2aF95AI8HEBq/0VigX/3VKUa0VihXlqPzrDqz8NoQBZD6EtpUOLoyCH1uE7MEVdxq1aI7
+ VJppnOHWSola+yMncOPv6koEOQlIDndEeD+bY8jEkfD/2yqRUn88nECoalA+bMuKwRAD0MSs0
+ vIKguaKaktogTBAqXRJzfmhB7oGi1NNNwDaGsBoJ7uDb+G+4ItaSh8EhVj8v+QoBXJ14pyy0t
+ HRPmjNlqfPqmnaLFv0WJTatiJ4IVJigxyLzzCX/RwCXptv7fsdkilXnz07UQJHODdqRD/t+ll
+ eeIIt2hY25UeiyT2pYYrB+GTk+vAInl+NTzeR4E7QKevSf5MxbIsClNqEV9wAlxGAjsEwV+F8
+ vjyDA83jo/QmnbyIB+aU3gX9f/e7kotgfX3I2TH6bJ5irbvxNBbSg1ib7f2WNa76Ojk8uqBx7
+ ipqSniZ0TXjqdpAV8YTAnJMcJKw4HNw8RgfyKbdiIZbgg1LNSE=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 9, 2021 at 9:58 AM Tony Huang <tonyhuang.sunplus@gmail.com> wrote:
+On Thu, Dec 9, 2021 at 9:49 AM qinjian[覃健] <qinjian@cqplus1.com> wrote:
+> > On Tue, Dec 7, 2021 at 8:21 AM qinjian[覃健] <qinjian@cqplus1.com> wrote:
+> > > > > @@ -152,6 +152,7 @@ textofs-$(CONFIG_ARCH_MSM8X60) := 0x00208000
+> > > > >  textofs-$(CONFIG_ARCH_MSM8960) := 0x00208000
+> > > > >  textofs-$(CONFIG_ARCH_MESON) := 0x00208000
+> > > > >  textofs-$(CONFIG_ARCH_AXXIA) := 0x00308000
+> > > > > +textofs-$(CONFIG_ARCH_SUNPLUS) := 0x00308000
+> > > >
+> > > > What is this needed for? If it boots without this line, better avoid
+> > > > adding it, because
+> > > > it will increase the kernel size for everyone else (unless they also enable
+> > > > AXXIA).
+> > > >
+> > >
+> > > SP7021 reserved the 1st 1MB memory for ARM926@P-Chip using,
+> > > The 2nd 1MB memory for IOP device and the 3rd 1MB memory for bootloader.
+> > > I'll add these comments at next commit.
+> >
+> > I think you can just remove the memory from the system memory map in the
+> > device tree and pretend it only starts after the bootloader. It's been a while
+> > since I looked at this though, so I could be misremembering what the minimum
+> > boundaries are for doing this.
 >
-> IOP (IO Processor) embedded inside SP7021 which is used as
-> Processor for I/O control, RTC wake-up and cooperation with
-> CPU & PMC in power management purpose.
-> The IOP core is DQ8051, so also named IOP8051,
-> it supports dedicated JTAG debug pins which share with SP7021.
-> In standby mode operation, the power spec reach 400uA.
+> I have test following 3 methods:
+
+Right, I was thinking of the third method here, which has the advantage of
+not requiring the same odd base address for all other platforms, this
+is important to us.
+I don't see what the problem is with it in your example, does that mean you
+have a little less usable memory, or that something fails to work right? I don't
+know what the requirements are for memreserve.
+
+Adding a few more people to Cc, maybe they have ideas about how this
+was solved elsewhere.
+
+          Arnd
+
+> 1. current patch
+> DT:
+>         memory {
+>                 reg = <0x00000000 0x20000000>; /* 512MB */
+>         };
 >
-> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
-
-Thanks for the improvements, this again looks better than the previous version.
-I still have some minor comments, and there are a couple of details I have
-commented on before that would need to be addressed, but let's focus
-on the one main issue for now:
-
-The driver still doesn't actually /do/ anything: you load the firmware when
-the driver is loaded, and you shut it down when the driver is removed, but
-otherwise there is no way to interact with the iop. You had the miscdevice
-earlier, and you still register that, but there are no file_operations
-associated
-with it, so it still doesn't have any effect.
-
-In the original version you had a couple of user-side interfaces, for which
-Greg and I commented that they were not using the correct abstractions,
-and you still list them in the changelog text as "I/O control, RTC wake-up
-and cooperation with CPU & PMC in power management".
-
-If you want to make any progress with adding the driver, I'd say you
-should implement at least two of those high-level interfaces that interact
-with the respective kernel subsystems in order to show that the
-abstraction works.
-
-        Arnd
+>         reserved-memory {
+>                 #address-cells = <1>;
+>                 #size-cells = <1>;
+>                 ranges;
+>
+>                 iop_reserve: iop_device {
+>                         no-map;
+>                         reg = <0x00100000 0x00100000>;
+>                 };
+>                 a926_reserve: a926_memory {
+>                         no-map;
+>                         reg = <0x00000000 0x00100000>;
+>                 };
+>         };
+> arch/arm/Makefile:
+>         textofs-$(CONFIG_ARCH_SUNPLUS) := 0x00308000
+>
+> bootlog & meminfo :
+> [    0.000000] Zone ranges:
+> [    0.000000]   Normal   [mem 0x0000000000000000-0x000000001fffffff]
+> [    0.000000] Movable zone start for each node
+> [    0.000000] Early memory node ranges
+> [    0.000000]   node   0: [mem 0x0000000000000000-0x00000000001fffff]
+> [    0.000000]   node   0: [mem 0x0000000000200000-0x000000001fffffff]
+> [    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000001fffffff]
+>
+> ~ # cat /proc/meminfo
+> MemTotal:         514008 kB
+> MemFree:          491960 kB
+> MemAvailable:     488608 kB
+>
+>
+>
+> 2. DT same as case 1, but no modify @ arch/arm/Makefile
+>
+> bootlog & meminfo :
+> [    0.000000] OF: fdt: Reserved memory: failed to reserve memory for node 'iop_device': base 0x00100000, size 1 MiB
+> [    0.000000] OF: fdt: Reserved memory: failed to reserve memory for node 'a926_memory': base 0x00000000, size 1 MiB
+> ...
+> [    0.000000] Zone ranges:
+> [    0.000000]   Normal   [mem 0x0000000000000000-0x000000001fffffff]
+> [    0.000000] Movable zone start for each node
+> [    0.000000] Early memory node ranges
+> [    0.000000]   node   0: [mem 0x0000000000000000-0x000000001fffffff]
+> [    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000001fffffff]
+>
+> ~ # cat /proc/meminfo
+> MemTotal:         516056 kB
+> MemFree:          493928 kB
+> MemAvailable:     490572 kB
+>
+>
+>
+> 3. DT:
+>         memory {
+>                 reg = <0x00300000 0x1FD00000>; /* 512 - 3 MB */
+>         };
+> no modify @ arch/arm/Makefile
+>
+> bootlog & meminfo :
+> [    0.000000] Zone ranges:
+> [    0.000000]   Normal   [mem 0x0000000000400000-0x000000001fffffff]
+> [    0.000000] Movable zone start for each node
+> [    0.000000] Early memory node ranges
+> [    0.000000]   node   0: [mem 0x0000000000400000-0x000000001fffffff]
+> [    0.000000] Initmem setup node 0 [mem 0x0000000000400000-0x000000001fffffff]
+>
+> ~ # cat /proc/meminfo
+> MemTotal:         511964 kB
+> MemFree:          489636 kB
+> MemAvailable:     486292 kB
+>
+>
+>
+> I think method 1 should be correct (compare method 2) & better (compare method 3).
+>
