@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB90146F283
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:53:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3217F46F286
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:53:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231889AbhLIR5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 12:57:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56450 "EHLO
+        id S242096AbhLIR5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 12:57:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242058AbhLIR5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 12:57:21 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47279C0617A1
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 09:53:47 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id j140-20020a1c2392000000b003399ae48f58so7170692wmj.5
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 09:53:47 -0800 (PST)
+        with ESMTP id S242058AbhLIR5W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 12:57:22 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44CABC061746
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 09:53:48 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id u1so10995141wru.13
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 09:53:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=GYIcm+On64qCfpZ2eH3+P9ik2NWtxGyTHRmC1bAWfRY=;
-        b=bsYFxvYmSQYm7NeQAO00CN7jlRDtboUWvn5snTdck0i0yjpBCBwT8XgcmojbgqSvmK
-         HnnGeluMgSIPTlfCdiJyf0kScDqqZfpWxZMSYL8sosnerXmXexwDaXAz6+YS9O/dlecC
-         v0ybD6h4ks8/n2N2cf584k3fFoxqQFSiqE6O/GlQ5AE1p0zBltHOVwQ+I8q8RlwwCftU
-         JKK6X3eTpVpSMiCoheQJ6i+Vc7oWLbaM/UXDeqW24gGaOneP8O9GrQ/ZdY5ljS6pJAsC
-         /pvzSP+j11uJsXoe3gJawIACNFHkXzmUs7lbBy9OqanC6UDgQSymAct3hMS6MJ2dSUL1
-         j1dw==
+        bh=3EeMUG1qvuM/qX7FAy1NtSSg8Cr0Oe9i2F6xtVsTAsk=;
+        b=NwauIgLhbK6cxKweAx81wNMIr2TyLR6KduThbMS7ZM6lRsa5n8E7hlEBeogyRZoBpI
+         qt08lcWktby/rNs0K9BhnFKNRc4eH6xOycdU8QfUoOPVRF6JuevBk3H5b1xBmgiW3wM7
+         TSF/9cznTfuGikWkbkzxVPlA3t5ZhKnXYB239odNgApUA2xbrOXNDfVAwWsDofrx6H85
+         ZPVlx/rEiuf+ccqGhgcayQgKxVEw2LQ20OC+xQoqYBtNVUceCjsqg4m0BrkwGmSytJFO
+         MpD81IRMS5FgNCk1qwwy/F1cGpHmgfGHWWFAvbjLmzN7mYQPqkdGXkY2Ny2vN8BxvXl0
+         g2jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=GYIcm+On64qCfpZ2eH3+P9ik2NWtxGyTHRmC1bAWfRY=;
-        b=qM31iH8I7xbXwWc+hZwqx0d6iuuX0oExcUqQhba2Ed64AI43WopWB9r9yvI0ENWWR5
-         1A5q+Db0z0orFoj3FIJ+WPC+AJiF7pWhLplH5wI5WaC3ygEYZZcoAqx0UYW1qqFgebOO
-         X0WV/eMyOmx4dJeIgCVuvWXpaYfyf+kxVWjuA1mvSf5asu84dC51IkZaU4Af+c+ehrLg
-         FjBRGAv+QrHY6zok3JrPbBFGDwLCj2O4cxQ7rTzjNouY6VIZthsrzdGzBf1m5kiZ72oG
-         7DyfB2Mm11JEgIBz8/+7kvMKyA+w9zVfzBgOVjetbwVGKjTQwunr0CTBTtFAs/JGdI6k
-         55iw==
-X-Gm-Message-State: AOAM532Gxglroj7qooA7CvyvAUDFClZgy7SRDEftbd367+KomLDwJBxg
-        MnKFkyfSM9xDEmEqP1jT/A6VYw==
-X-Google-Smtp-Source: ABdhPJzZ0OnJ3/bqMa9Pj95cVSmdT7z8dVLPkkE+VXumh7OJptbj0hDaPn5jf+mDhhtdfPw67wwUOw==
-X-Received: by 2002:a05:600c:4108:: with SMTP id j8mr8949856wmi.139.1639072425843;
-        Thu, 09 Dec 2021 09:53:45 -0800 (PST)
+        bh=3EeMUG1qvuM/qX7FAy1NtSSg8Cr0Oe9i2F6xtVsTAsk=;
+        b=LZeBShBsJ8WQ5C8JhW/9CA7B+v8WtI4go0151Gwi1CalVsl7qmzuS1sqDZxGSmwoaP
+         pfZB/cSonBL3DY/Zo6p2SmFLglaZrMP1x0AMRzwYqtLuhhVfo0j34yZllfSZTc2iiOFa
+         oByeG1+Y6MqPxosVhq1o7DzDfBA8Ce1tcZ12ifk7PjEaZM7d+vrcWeMLoeUSrJ38nhRf
+         R04KuBBfLFHNEdCQzc1DogMnTxW9esJh7DYQS5ZKDsuN5SWD59oXXQ0RSMnu9+vJppPM
+         EDjE9kKrkgMa9pifZs7MkTKFgRq7gu6oE5t/jlVpgzFIrPfY2EdPmGFy57ScryDcFsw+
+         dF6w==
+X-Gm-Message-State: AOAM530/eh4UFN2JPkQ42eKSGZn94vCvA6Vig7KAC+W0+SC0TgisD8kU
+        XlCnU3zNnrVSXOkFGMmdax1YxQ==
+X-Google-Smtp-Source: ABdhPJxdCUCgj3MOtm05/Du3xejIgP7JuYpbhLpHNE2pNdC9MuloUHl7Nc2IN7djm8O/xB3rBNvpew==
+X-Received: by 2002:adf:a319:: with SMTP id c25mr8155672wrb.629.1639072426823;
+        Thu, 09 Dec 2021 09:53:46 -0800 (PST)
 Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
         by smtp.gmail.com with ESMTPSA id 21sm427004wmj.18.2021.12.09.09.53.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Dec 2021 09:53:45 -0800 (PST)
+        Thu, 09 Dec 2021 09:53:46 -0800 (PST)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     bjorn.andersson@linaro.org
 Cc:     agross@kernel.org, robh+dt@kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 1/2] arm64: dts: qcom: c630: Fix soundcard setup
-Date:   Thu,  9 Dec 2021 17:53:41 +0000
-Message-Id: <20211209175342.20386-2-srinivas.kandagatla@linaro.org>
+Subject: [PATCH 2/2] arm64: dts: qcom: c630: add headset jack and button detection support
+Date:   Thu,  9 Dec 2021 17:53:42 +0000
+Message-Id: <20211209175342.20386-3-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20211209175342.20386-1-srinivas.kandagatla@linaro.org>
 References: <20211209175342.20386-1-srinivas.kandagatla@linaro.org>
@@ -64,79 +64,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently Soundcard has 1 rx device for headset and SoundWire Speaker Playback.
+Add MBHC support available in WCD934X codec.
 
-This setup has issues, ex if we try to play on headset the audio stream is
-also sent to SoundWire Speakers and we will hear sound in both headsets and speakers.
-
-Make a seperate device for Speakers and Headset so that the streams are
-different and handled properly.
-
-Fixes: 45021d35fcb2 ("arm64: dts: qcom: c630: Enable audio support")
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index d6b2ba4396f6..2e882a977e2c 100644
+index 2e882a977e2c..58845a14805f 100644
 --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
 +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -523,6 +523,10 @@
- 	dai@1 {
- 		reg = <1>;
- 	};
-+
-+	dai@2 {
-+		reg = <2>;
-+	};
- };
+@@ -771,6 +771,9 @@
+ 	vdd-tx-supply = <&vreg_s4a_1p8>;
+ 	vdd-rx-supply = <&vreg_s4a_1p8>;
+ 	vdd-io-supply = <&vreg_s4a_1p8>;
++	qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
++	qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
++	qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
  
- &sound {
-@@ -535,6 +539,7 @@
- 		"SpkrLeft IN", "SPK1 OUT",
- 		"SpkrRight IN", "SPK2 OUT",
- 		"MM_DL1",  "MultiMedia1 Playback",
-+		"MM_DL3",  "MultiMedia3 Playback",
- 		"MultiMedia2 Capture", "MM_UL2";
- 
- 	mm1-dai-link {
-@@ -551,6 +556,13 @@
- 		};
- 	};
- 
-+	mm3-dai-link {
-+		link-name = "MultiMedia3";
-+		cpu {
-+			sound-dai = <&q6asmdai  MSM_FRONTEND_DAI_MULTIMEDIA3>;
-+		};
-+	};
-+
- 	slim-dai-link {
- 		link-name = "SLIM Playback";
- 		cpu {
-@@ -580,6 +592,21 @@
- 			sound-dai = <&wcd9340 1>;
- 		};
- 	};
-+
-+	slim-wcd-dai-link {
-+		link-name = "SLIM WCD Playback";
-+		cpu {
-+			sound-dai = <&q6afedai SLIMBUS_1_RX>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6routing>;
-+		};
-+
-+		codec {
-+			sound-dai =  <&wcd9340 2>;
-+		};
-+	};
- };
- 
- &tlmm {
+ 	swm: swm@c85 {
+ 		left_spkr: wsa8810-left{
 -- 
 2.21.0
 
