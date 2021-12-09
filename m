@@ -2,176 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4AE646E91D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 14:27:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BA1546E936
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 14:35:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233316AbhLINbb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 08:31:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47618 "EHLO
+        id S238031AbhLINif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 08:38:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231508AbhLINba (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 08:31:30 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28C99C061746;
-        Thu,  9 Dec 2021 05:27:57 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id g14so19150026edb.8;
-        Thu, 09 Dec 2021 05:27:57 -0800 (PST)
+        with ESMTP id S238030AbhLINie (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 08:38:34 -0500
+Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14848C061353
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 05:35:01 -0800 (PST)
+Received: by mail-ua1-x92e.google.com with SMTP id 30so10699642uag.13
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 05:35:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=vk2daIF5OXYXtedM90x7+5/RslfJ4qFjoxA4nldC5xI=;
-        b=Q0Gd2NGlWZwB0ffQwyngb7goPVM+F4uqnbrLSKeTgqWNX/Orlc4nOU/zFVRvQwAjyw
-         eOjidV+BAKiiEGOMtYKpomvwBg9zNwg6FoVXc9pzlN393aslRq1j6L7n4B1PuNrmRDFm
-         oQzgVPwZTdSKjBKWWZMTztQe7lEYDC+FRaB5uTbEY8emBDvwjEd4uvtNI6Q8K2eahbJ1
-         PEGTXpzUEIPIk3Z9YZg6Ty2OxWlfwm7JG8owrpfRGA294YyYZE5HOj45YiSoF+ldsXW2
-         BvGt5w14sp2qXvDRxIc1oYY9TX9zsi52OfuBi10qW6Jw8rbO++BGabpTtOtRMqmX4IuF
-         JKpg==
+        bh=rVYnS72yP3Vfzg3mEeaHx/Hrk/5oTnnL8AOPR30dVy0=;
+        b=YNbIIe25vYO60B6ne+3R6oyfuOlsSlaiSJ0awd9eU4155uIpSononUMENtDdIgoDmf
+         BHGw6HYe99GQZYx9FfYPR8miMIoI0Dtz2f1PZPZFMkPAVp0S9+XG+uNykXR9qJNgSAuq
+         OwN1NDferXQYxSFnieDZV9txPPv08yqtPTq7nPWE9OWy9s96iwlSTw22Je/e+l3z/KKA
+         FktQa5MebX9P8KMB0z0adm2hvv4i9Ubi9l8auMtQ7Olh7f2Xyt4OOC5EzAVNu7Pc55oA
+         0yR9r2Tfui1h/D2pFxSsLygQdkVj0xZ+Kq+ruVSC1VN5L6FQRFTcsppM489BWXqikkhS
+         VM+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=vk2daIF5OXYXtedM90x7+5/RslfJ4qFjoxA4nldC5xI=;
-        b=tNeofs2EcdVwgAIbK88stXMf2aY/L35vQSHnE3apvLkaoHdFqOccrYik9EHd1ER3Cw
-         v/ogU3J/QGmNjNrr9ulF7CDTDsw0pXwmSKW7RKEpejeEmATfTOvSID5Wd8h3UR6hs6yf
-         rXn3X24LgOPbjYjXbiZ9lBIWZrLLsL+g6dCFiDgNZFxr+SbCwK5DsA6ZXiq6M5EIpNL9
-         B0SwPu8FC1FC/vUSLxlKisM+iBjSM80HrLHX57Pwk4zjQoInVmfCwavhK79DL/yZrFCL
-         mw60zlwvhhTWA4u2HtXJ5cERa60jVmAHOiDGHX0JZhv9zD5708XzD+u0tZyjMPug/shZ
-         0OAA==
-X-Gm-Message-State: AOAM5316xywLtq9FqSCkk+KRw23Gk6HmVSZn01j6Tnudbfojldgeoi/h
-        Bik0SDLjkLbYqvYTwvbf0sbD55Lpw3dwP+9FQFc=
-X-Google-Smtp-Source: ABdhPJyfw2zPYQLV3YO7vMfLh0nkkIcyyqRHexzFZSK4l5QwlPaQAtz8JK/Q6+yGjiySlrzL92jZW60N8glP6JBv4cQ=
-X-Received: by 2002:a17:907:1b17:: with SMTP id mp23mr14969273ejc.521.1639056473627;
- Thu, 09 Dec 2021 05:27:53 -0800 (PST)
+        bh=rVYnS72yP3Vfzg3mEeaHx/Hrk/5oTnnL8AOPR30dVy0=;
+        b=qhqLxuyLt6xRfSgzlO1y21BASlalNSKGDD7aR8Q9LhSXTsH/VLWQr1gQYZGJlPEvod
+         YlqcyfdCpvfNI+XshWOZeJeLRaGp/HWPUTKdtsU9bMkaUvdSKKkYPgxLFjR+3TmAsO86
+         28+kYzlt610Y7dS2AOtSL8LQdGI+A5Uu2Rxf47NQ22j1fbmguRhD09dHhrSq6kbJRvLv
+         VdvpUYYT6fmB5ZLB/vTiGmeo3p3gWrCDM+1OCWewFlw5QrRGw6qHBk2hN4MoOV0m64k/
+         CpMhuKFf9KaKCfPhkmxnkd1qCKq+7fxrdMt8oq8h10q/1/bJJAwPqINS8t3wx7fSgk5L
+         hTCw==
+X-Gm-Message-State: AOAM530PpSXySkDgpd4KcOIDAXxo2KT4o9F/+gZxpNe5AV36AdMXnGVO
+        4N45PyfuPiAz2kON3QZ+3H9udJi/DTOHMqXCQiS5Kg==
+X-Google-Smtp-Source: ABdhPJxt91N8G6WCwX4/8szQ/jRPc67Jnft4mCDcv3HJQElj92b5iS0Vgpy3Lmy7HyhnoVglAwtQnGhOm6TIe36Ga5s=
+X-Received: by 2002:a67:be0f:: with SMTP id x15mr7817987vsq.86.1639056899865;
+ Thu, 09 Dec 2021 05:34:59 -0800 (PST)
 MIME-Version: 1.0
-References: <20211202143828.3335-1-aford173@gmail.com>
-In-Reply-To: <20211202143828.3335-1-aford173@gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Thu, 9 Dec 2021 07:27:42 -0600
-Message-ID: <CAHCN7xKGq4ajoKCpTwPhwd45xrRecsh7_uqC4TLEahhZxvL8aA@mail.gmail.com>
-Subject: Re: [PATCH V6 1/2] dt-bindings: soc: imx: Add binding doc for spba bus
-To:     arm-soc <linux-arm-kernel@lists.infradead.org>
-Cc:     Adam Ford-BE <aford@beaconembedded.com>,
+References: <20211204215820.17378-1-semen.protsenko@linaro.org> <20211204215820.17378-7-semen.protsenko@linaro.org>
+In-Reply-To: <20211204215820.17378-7-semen.protsenko@linaro.org>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Thu, 9 Dec 2021 15:34:47 +0200
+Message-ID: <CAPLW+4kCH7Z3ZJrYcHtjMeq1_mhPg1FusBQb5KyV2nvBc60n5Q@mail.gmail.com>
+Subject: Re: [PATCH v2 RESEND 6/8] i2c: exynos5: Mention Exynos850 and
+ ExynosAutoV9 in Kconfig
+To:     Wolfram Sang <wsa@kernel.org>
+Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        Arnd Bergmann <arnd@arndb.de>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 2, 2021 at 8:38 AM Adam Ford <aford173@gmail.com> wrote:
+On Sat, 4 Dec 2021 at 23:58, Sam Protsenko <semen.protsenko@linaro.org> wrote:
 >
-> Add binding doc for fsl,spba-bus.
+> I2C controller chosen by I2C_EXYNOS5 config option is also suitable for
+> Exynos850 and ExynosAutoV9 SoCs. State that specifically in I2C_EXYNOS5
+> symbol help section.
 >
-
-Rob / Shawn,
-
-Any feedback on this series?  I am not very good with YAML, but my
-intent was to name the bus 'spba-bus' and the second patch in the
-series was designed to go through all the SoC device trees and update
-them to reflect this name to remove a bunch of the splat generated
-when building various imx boards.
-
-thanks
-
-adam
-
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Reviewed-by: Chanho Park <chanho61.park@samsung.com>
 > ---
-> V6:  Rebase on 5.16-rc and rename spba@xxxx to spba-bus@xxxx since
->      most dsti files use that naming convention.
+
+Wolfram, can you please also take this one in your tree?
+
+> Changes in v2:
+>   - Added R-b tag by Krzysztof Kozlowski
+>   - Added R-b tag by Chanho Park
 >
-> V5:  Rebase on 5.10-rc2 to be able to check yaml
->      Add Reg entry
+>  drivers/i2c/busses/Kconfig | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> V4:  Remove an accidental makefile change
->      Move type:object under additional properties
+> diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
+> index df89cb809330..42da31c1ab70 100644
+> --- a/drivers/i2c/busses/Kconfig
+> +++ b/drivers/i2c/busses/Kconfig
+> @@ -617,7 +617,7 @@ config I2C_EXYNOS5
+>         help
+>           High-speed I2C controller on Samsung Exynos5 and newer Samsung SoCs:
+>           Exynos5250, Exynos5260, Exynos5410, Exynos542x, Exynos5800,
+> -         Exynos5433 and Exynos7.
+> +         Exynos5433, Exynos7, Exynos850 and ExynosAutoV9.
+>           Choose Y here only if you build for such Samsung SoC.
 >
-> V3:  Rebase sample from aips-bus example
->      Split off from series adding i.MX8M Nano functions to reduce noise
->
-> V2:  Attempted to update yaml from feedback
->
-> diff --git a/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
-> new file mode 100644
-> index 000000000000..d42dbb0bbc2e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bus/fsl,spba-bus.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Shared Peripherals Bus Interface
-> +
-> +maintainers:
-> +  - Shawn Guo <shawnguo@kernel.org>
-> +
-> +description: |
-> +  A simple bus enabling access to shared peripherals.
-> +
-> +  The "spba-bus" follows the "simple-bus" set of properties, as
-> +  specified in the Devicetree Specification.  It is an extension of
-> +  "simple-bus" because the SDMA controller uses this compatible flag to
-> +  determine which peripherals are available to it and the range over which
-> +  the SDMA can access.  There are no special clocks for the bus, because
-> +  the SDMA controller itself has its interrupt and clock assignments.
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: fsl,spba-bus
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^spba-bus(@[0-9a-f]+)?$"
-> +
-> +  compatible:
-> +    items:
-> +      - const: fsl,spba-bus
-> +      - const: simple-bus
-> +
-> +  '#address-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +  '#size-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ranges: true
-> +
-> +required:
-> +  - compatible
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +  - reg
-> +  - ranges
-> +
-> +additionalProperties:
-> +  type: object
-> +
-> +examples:
-> +  - |
-> +    spba-bus@30000000 {
-> +        compatible = "fsl,spba-bus", "simple-bus";
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        reg = <0x30000000 0x100000>;
-> +        ranges;
-> +    };
+>  config I2C_GPIO
 > --
-> 2.32.0
+> 2.30.2
 >
