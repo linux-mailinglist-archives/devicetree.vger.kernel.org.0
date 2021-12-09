@@ -2,127 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1155046F495
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 21:05:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 967D046F4D2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 21:23:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231621AbhLIUJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 15:09:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59226 "EHLO
+        id S231833AbhLIU1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 15:27:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231569AbhLIUJW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 15:09:22 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4459C061746;
-        Thu,  9 Dec 2021 12:05:48 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id b40so14117640lfv.10;
-        Thu, 09 Dec 2021 12:05:48 -0800 (PST)
+        with ESMTP id S229487AbhLIU1H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 15:27:07 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FC5CC061746;
+        Thu,  9 Dec 2021 12:23:33 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id r25so22865599edq.7;
+        Thu, 09 Dec 2021 12:23:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=g9AJiL9uTfpDDMd7SS4C6nAmWL0XZo0V0ZfDFdYmLjY=;
-        b=COAXXVLnmQmpr5BGzCN9BcuqWFvHw2ocxZLxo6ryJ5Lhw+xJPSJQG8U5fyMK+rUwSi
-         EYiKUFWwRjqcCV5YBfFzHQXgooJ8gBMmNeHvmX/AgiZxPAVXkq9PVW+yvKPlmzOl4aYu
-         W2uDd1pXtu8UqzUIkvBXbL2Ch/O5tKOkr88Ei7WEG/HFl30t6yY/I9V2vtZteJYlrLxv
-         iWHYSmmfEP5O8RSy/8n2R2GZzIGviX+SR5pmTvEBaL0XRT/AWDwa2km8xegEcMSEcF2l
-         kf/OIUNJdOMax5XXVTNReI1Ic72Mf3qeSkVeziNzAaC0ItMUN+asYzsXxndrXbw7kj4E
-         Rwbg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=f8uvUI5BY3lo9YiSsZpgDXouT/InJg5cLCGaYQDFMDU=;
+        b=nYXL+CAv+6QxavEh4bK9TyRI0H7FFAu5kIG571p+0okcqYHPoLxy/rwoAsMiTiasLX
+         AV+iICnoMjMBDCty3a9Be0SMAM6NpbBhC3miCmkXpkL43R9eMPKk6txHRd2I3u+e7t2h
+         RT/iLkcIcBMmdXy2F1lbk1Mco8W9/qBIriNuFusQyVtAeWzLaybg32y+1z2QcVKqgqPw
+         6s6MdfebKjaq55otMnWJQUTIx3F+LUmwwvWXIJ1B6lNImPmFS57EUsN544UoIGlph0gK
+         ZFWv3CbSDzbcNXboQVqBBGQZwKCg68UMlKJySN3yV9f7iC7w2AyR9XhoNROSgGNHRGhn
+         NZKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=g9AJiL9uTfpDDMd7SS4C6nAmWL0XZo0V0ZfDFdYmLjY=;
-        b=0U5MynlwcWqnfHghabiMKK/GMfpqDO6MVdNejJ0ZfpfnHYKxZ2kJBNO/45YDdwaPsJ
-         yHp/s6aUYJJm9mrjjviluMrVrcG+1EFS2TJahOaT6YsPNf2ZmiAK3PLMo47bxtfHdGMt
-         xsWNhLNlpYrVX8AAehHfIvLN+vl5ugzGddVpExFCR+RsscQYMfFASc1HqCRFtMZy9Li1
-         J3/pRLP5wjwHXuKSiokjnQ5pWYVCWP1rktoEGzDqEzJgkjO+4lCEYYXx7pat3hI+LL/6
-         U95i4GdDTX91Bd7qbFOhWUPYVSU2jFfx/pjhhyI3g0QccfOtZptTUAASRzbXAXW1dBQ7
-         N0yA==
-X-Gm-Message-State: AOAM531DGqMzPsqmp4XIUdocZUUds8vCXyOA+xp6YYmOm7Bnihd/7kL6
-        aRc/xpqxZIjLxBJqw/GYousJ7N/rec2bYg==
-X-Google-Smtp-Source: ABdhPJyxDwm4qD0w1ssRjatqaxocOTEkFxXrsK+gDNk3bFfYXhmsC90Kh+C73THhn+OlTC99iNMRWQ==
-X-Received: by 2002:a05:6512:ea2:: with SMTP id bi34mr8469336lfb.12.1639080346992;
-        Thu, 09 Dec 2021 12:05:46 -0800 (PST)
-Received: from otyshchenko.router ([212.22.223.21])
-        by smtp.gmail.com with ESMTPSA id o12sm87371lft.134.2021.12.09.12.05.46
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 09 Dec 2021 12:05:46 -0800 (PST)
-From:   Oleksandr Tyshchenko <olekstysh@gmail.com>
-To:     xen-devel@lists.xenproject.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Julien Grall <julien@xen.org>
-Subject: [PATCH V4 6/6] dt-bindings: xen: Clarify "reg" purpose
-Date:   Thu,  9 Dec 2021 22:05:36 +0200
-Message-Id: <1639080336-26573-7-git-send-email-olekstysh@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1639080336-26573-1-git-send-email-olekstysh@gmail.com>
-References: <1639080336-26573-1-git-send-email-olekstysh@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=f8uvUI5BY3lo9YiSsZpgDXouT/InJg5cLCGaYQDFMDU=;
+        b=VUz4PRAbfDcyCdWzSz0oP+fyT+P+/WIPGfZIt6wjk/iI8H0oDiPiwjdseUcNN0EyxT
+         8NvX07u+NrA49ROdk/QvJSw3qDtAWbFCR1HfiH92NMRvRbq6AKzELnfY6tS1y3GTrqSM
+         P3aQJMGLZR6wPX3kgY2gmPqPLS/ovBjgp3Irbeko3kqI38Mh04dFU5E51jfBdKnhLJYG
+         G9fnQw8DbcVqik/LrB3On10i8BghmNeGxWzatkwOVIjvOuCVrhw1O0gG83KXogRGo80/
+         zEvrx2s0MmFkZczF/3ylpXZA78LKJ3Fxxqc9LG6M4O29BDfQQGhe3z+6H6smfZX1o0Kt
+         716A==
+X-Gm-Message-State: AOAM532oeKPddMLyWrXHggqGYjU21cuJjezoRrl77Fxgx6jYpUQq5naW
+        6yCAiIRc5QWmsFnER6P/fSA=
+X-Google-Smtp-Source: ABdhPJwqn80d7WMYeeRVDvMjwthOeqjTwODQh53soK5bLNBK2hF/ACz4RFStJzO2lKP6Uwi7LNxgYw==
+X-Received: by 2002:a17:907:97c3:: with SMTP id js3mr18676561ejc.240.1639081411604;
+        Thu, 09 Dec 2021 12:23:31 -0800 (PST)
+Received: from skbuf ([188.25.173.50])
+        by smtp.gmail.com with ESMTPSA id hz15sm404252ejc.63.2021.12.09.12.23.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Dec 2021 12:23:31 -0800 (PST)
+Date:   Thu, 9 Dec 2021 22:23:29 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "vivien.didelot@gmail.com" <vivien.didelot@gmail.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>
+Subject: Re: [PATCH net-next v3 2/6] dt-bindings: net: lan966x: Extend with
+ the analyzer interrupt
+Message-ID: <20211209202329.6ogowkumh3lz3ve7@skbuf>
+References: <20211209094615.329379-1-horatiu.vultur@microchip.com>
+ <20211209094615.329379-3-horatiu.vultur@microchip.com>
+ <20211209105857.n3mnmbnjom3f7rg3@skbuf>
+ <20211209154247.kzsrwli5fqautqtm@soft-dev3-1.localhost>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211209154247.kzsrwli5fqautqtm@soft-dev3-1.localhost>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+On Thu, Dec 09, 2021 at 04:42:47PM +0100, Horatiu Vultur wrote:
+> The 12/09/2021 10:58, Vladimir Oltean wrote:
+> > 
+> > On Thu, Dec 09, 2021 at 10:46:11AM +0100, Horatiu Vultur wrote:
+> > > Extend dt-bindings for lan966x with analyzer interrupt.
+> > > This interrupt can be generated for example when the HW learn/forgets
+> > > an entry in the MAC table.
+> > >
+> > > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > > ---
+> > 
+> > Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> > 
+> > Why don't you describe your hardware in the device tree all at once?
+> > Doing it piece by piece means that every time when you add a new
+> > functionality you need to be compatible with the absence of a certain
+> > reg, interrupt etc.
+> 
+> I though it is more clear what is added in the patch series.
+> But then, if for example add more interrupts in DT than what the
+> driver support, that would not be an issue?
 
-Xen on Arm has gained new support recently to calculate and report
-extended regions (unused address space) safe to use for external
-mappings. These regions are reported via "reg" property under
-"hypervisor" node in the guest device-tree. As region 0 is reserved
-for grant table space (always present), the indexes for extended
-regions are 1...N.
-
-No device-tree bindings update is needed (except clarifying the text)
-as guest infers the presence of extended regions from the number
-of regions in "reg" property.
-
-While at it, remove the following sentence:
-"This property is unnecessary when booting Dom0 using ACPI."
-for "reg" and "interrupts" properties as the initialization is not
-done via device-tree "hypervisor" node in that case anyway.
-
-Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
-Reviewed-by: Stefano Stabellini <sstabellini@kernel.org>
-Acked-by: Rob Herring <robh@kernel.org>
----
-Changes V2 -> V3:
-   - new patch
-
-Changes V3 -> V4:
-   - add Stefano's R-b and Rob's A-b
-   - remove sentence about ACPI for "reg" and "interrupts"
-     properties
----
- Documentation/devicetree/bindings/arm/xen.txt | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/arm/xen.txt b/Documentation/devicetree/bindings/arm/xen.txt
-index db5c56d..61d77ac 100644
---- a/Documentation/devicetree/bindings/arm/xen.txt
-+++ b/Documentation/devicetree/bindings/arm/xen.txt
-@@ -7,15 +7,17 @@ the following properties:
- 	compatible = "xen,xen-<version>", "xen,xen";
-   where <version> is the version of the Xen ABI of the platform.
- 
--- reg: specifies the base physical address and size of a region in
--  memory where the grant table should be mapped to, using an
--  HYPERVISOR_memory_op hypercall. The memory region is large enough to map
--  the whole grant table (it is larger or equal to gnttab_max_grant_frames()).
--  This property is unnecessary when booting Dom0 using ACPI.
-+- reg: specifies the base physical address and size of the regions in memory
-+  where the special resources should be mapped to, using an HYPERVISOR_memory_op
-+  hypercall.
-+  Region 0 is reserved for mapping grant table, it must be always present.
-+  The memory region is large enough to map the whole grant table (it is larger
-+  or equal to gnttab_max_grant_frames()).
-+  Regions 1...N are extended regions (unused address space) for mapping foreign
-+  GFNs and grants, they might be absent if there is nothing to expose.
- 
- - interrupts: the interrupt used by Xen to inject event notifications.
-   A GIC node is also required.
--  This property is unnecessary when booting Dom0 using ACPI.
- 
- To support UEFI on Xen ARM virtual platforms, Xen populates the FDT "uefi" node
- under /hypervisor with following parameters:
--- 
-2.7.4
-
+I haven't kept track of the lan966x driver development. It looks like it
+is pretty new, so I think it's ok in this case. But I've also seen
+features introduced years after the driver was initially published (see
+ocelot fdma) where device tree updates were still necessary, due to
+minor things like these: an interrupt isn't there, the registers for
+FDMA aren't there, etc. After that kind of time you'd expect the DT
+to no longer require updates unless there is some unforeseen event
+(something is broken, a driver is radically rethought). Sure there's a
+fine line between how much you can add to the device tree and the
+how many consumers there are in the kernel, but on the other hand the
+kernel doesn't have to use everything that's in the device tree.
+For example, at Mark Brown's suggestion, the DSPI nodes in ls1028a.dtsi
+declare their DMA channels even though the driver does not use them
+(it could, though, but it would be slower). Similarly, the DSPI driver
+for LS1021A has had a while in which it ignored the interrupt line from
+the device tree, because poll mode was simply faster. To me, this kind
+of approach where the device tree is provisioned even for configurations
+that aren't supported today makes sense, precisely because the DT blob
+and the kernel have different lifetimes. It's better to have the
+interrupt and not use it than to need it and not have it.
