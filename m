@@ -2,79 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6756646E518
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 10:06:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31B8246E539
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 10:11:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236290AbhLIJJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 04:09:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42668 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236106AbhLIJJQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 04:09:16 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 436EEC0698E1;
-        Thu,  9 Dec 2021 01:05:26 -0800 (PST)
+        id S233612AbhLIJOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 04:14:43 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:45748 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229379AbhLIJOn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 04:14:43 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 90433CE2534;
-        Thu,  9 Dec 2021 09:05:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 597A7C341C8;
-        Thu,  9 Dec 2021 09:05:20 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 6EE47CE24D8;
+        Thu,  9 Dec 2021 09:11:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC0A1C004DD;
+        Thu,  9 Dec 2021 09:11:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639040722;
-        bh=LBmhnf0dVpaCEhWvKn4Yu0weT1lsq5kGXmqi1azjEcg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Auni7Z2cL/8AjhnGEUBqK9u57c+Vya/MAbCPZ4siy3xeTcHU7chBUM8s2qGEIGn1G
-         uJrAiD4VCYTNNGMINYH5pQE+x4QWBxAVQAc5hWEFYoYS7xHFX6AA66VD+hc1VWCjUL
-         0lM68eUI9Vk5kcjB0CcdEIC3ze+G9ZBIdNvumEJiwlL5QlDR/K3O+rvT7bTM8ZeXh+
-         QfymTXc1z9eetyvy0ziojn/0W7ydemRlMnTGJ6ER1/uue/FYi4QJFj8tdIdDz0/RWP
-         YzU8VUvIfxMMYItElcPiSM1aZXka4/gm1DARMw0euPNfZQe/imBAVs+8GmlqqsCPz8
-         fTWhO59Ckja5g==
-From:   Roger Quadros <rogerq@kernel.org>
-To:     miquel.raynal@bootlin.com, richard@nod.at
-Cc:     vigneshr@ti.com, kishon@ti.com, nm@ti.com, tony@atomide.com,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Roger Quadros <rogerq@kernel.org>
-Subject: [PATCH v2 6/6] mtd: rawnand: omap2: drop unused variable
-Date:   Thu,  9 Dec 2021 11:04:58 +0200
-Message-Id: <20211209090458.24830-7-rogerq@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211209090458.24830-1-rogerq@kernel.org>
-References: <20211209090458.24830-1-rogerq@kernel.org>
+        s=k20201202; t=1639041066;
+        bh=lIySVKXJuzGaf+4L/Kkc4vKVZBxYKOBXLWu6InjMYnc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YzxCZutR528C/jiJpyR77xJewU1gXCej9Lap4rPnXSAUOGhHaG+rmcBEvUAdtG2Yz
+         u3wIxbpcURLID0ZFTGDnhfyv9VEw7YUuiPMsmsU6GRFIkF5OVXhlJCvAUBhxkILxm4
+         A8hll0Ih5VoFDRQbQpZbiQWDP3yZXqniavr2X4NoP0Lmf9lImGNuLXz6aNbLiqn8Pj
+         M3KAovvuu/fU67RlykNI9c0BrBN+smwoseHJvvdAMl2lzEAMRIJrUB1DsjOiY54Lli
+         u37m27sq/tar7nNCxdOj0zUrBgOlHbrk9T10AUIWlML+RhsGJZHvNrzuoUPJtZ89qh
+         5Bh1fq9rEyrxQ==
+Date:   Thu, 9 Dec 2021 10:11:03 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        Arnd Bergmann <arnd@arndb.de>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v2 RESEND 1/8] dt-bindings: i2c: exynos5: Convert to
+ dtschema
+Message-ID: <YbHIJ7zFCHO6XkOO@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        Arnd Bergmann <arnd@arndb.de>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+References: <20211204215820.17378-1-semen.protsenko@linaro.org>
+ <20211204215820.17378-2-semen.protsenko@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="giaOf9sbUdGXrwm3"
+Content-Disposition: inline
+In-Reply-To: <20211204215820.17378-2-semen.protsenko@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-devsize is not used anywhere in code. Drop it.
 
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
----
- drivers/mtd/nand/raw/omap2.c | 4 ----
- 1 file changed, 4 deletions(-)
+--giaOf9sbUdGXrwm3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/mtd/nand/raw/omap2.c b/drivers/mtd/nand/raw/omap2.c
-index 2b58ddea3b01..cc61f4858a3b 100644
---- a/drivers/mtd/nand/raw/omap2.c
-+++ b/drivers/mtd/nand/raw/omap2.c
-@@ -148,7 +148,6 @@ struct omap_nand_info {
- 	int				gpmc_cs;
- 	bool				dev_ready;
- 	enum nand_io			xfer_type;
--	int				devsize;
- 	enum omap_ecc			ecc_opt;
- 	struct device_node		*elm_of_node;
- 
-@@ -2246,9 +2245,6 @@ static int omap_nand_probe(struct platform_device *pdev)
- 	if (info->flash_bbt)
- 		nand_chip->bbt_options |= NAND_BBT_USE_FLASH;
- 
--	/* scan NAND device connected to chip controller */
--	nand_chip->options |= info->devsize & NAND_BUSWIDTH_16;
--
- 	/* default operations */
- 	info->data_in = omap_nand_data_in;
- 	info->data_out = omap_nand_data_out;
--- 
-2.17.1
+On Sat, Dec 04, 2021 at 11:58:13PM +0200, Sam Protsenko wrote:
+> Convert Samsung Exynos High Speed I2C bindings doc to DT schema format.
+>=20
+> Changes during bindings conversion:
+> 1. Added missing required clock properties (driver fails when it's
+>    unable to get the clock)
+> 2. Removed properties and descriptions that can be found in
+>    schemas/i2c/i2c-controller.yaml [1]
+> 3. Fixed the example so it can be validated by dtschema
+>=20
+> [1] https://github.com/robherring/dt-schema/blob/master/schemas/i2c/i2c-c=
+ontroller.yaml
+>=20
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
+Applied to for-next, thanks!
+
+
+--giaOf9sbUdGXrwm3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGxyCcACgkQFA3kzBSg
+Kbbgfg/+N6I9YiB/OeiO8TIJzRRs46AjSaMxoUTMGyNoeAdTKdGEge6M69k5vEhW
+GIYg//REisF8PaUa5Ip9AyJ+MzFb8wXxN9yP/MNRgLbwiJqcPbfkFyRroCSGzKnw
+B/VnjQoxfrtN2tZNKkww4WrFxszd6o6v/7HHjyacasSSQJuejq3eNdU37MeTKnN8
+J4G0fsNLg3TSdRMu2VA18smaapalnswO57tQ0PjN5Y5c2b4LYvA22xTo8muW+AON
+ywd0YD3M9FgBMUdU4udl3eNdZf6QklZAyCkdiascvvXJJpOLMCP7CKygG+wNMER8
+fcTnlRdG3DNLMedBSNTK92sl1whq9D2HL13A8QZpv7yTpqViZ9XveTsTPjbNe5pF
++UiHJ3WcuiKjq13j3dzeOqV0qc0Q6Fx5cyDzjUHbYYk9EEMKFN3YY+4PFFiGkr5Q
+sz3gxcU5QYfv3zQUTYEDi6F7RxxW41bL0vNsfGtmP6kdR+ap8RZQ247qtpM3xJ0b
+UUivFs3JrNU2Az8wy0HyWvNgOURnDPWSD2pijBGds653k3R9wrCxIZUvYVmQ2wbE
+E5Rvog3ONBZ7AX1GDIz0FCW2gw2BKdSoyh16GeVXPGMd6554Mm5l7RMNYX/PieiZ
+Yh4xXqE6BawZXGtSXtGLj7oBmVKaebGwVDBpU3OmOuRYYfuwkHU=
+=YpRu
+-----END PGP SIGNATURE-----
+
+--giaOf9sbUdGXrwm3--
