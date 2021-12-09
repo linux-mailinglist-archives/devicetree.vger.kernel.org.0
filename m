@@ -2,89 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3217F46F286
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:53:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 785A646F29B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:57:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242096AbhLIR5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 12:57:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56452 "EHLO
+        id S237660AbhLISAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 13:00:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242058AbhLIR5W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 12:57:22 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44CABC061746
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 09:53:48 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id u1so10995141wru.13
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 09:53:48 -0800 (PST)
+        with ESMTP id S237632AbhLISAq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 13:00:46 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81787C061746
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 09:57:12 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id i12so6112916pfd.6
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 09:57:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3EeMUG1qvuM/qX7FAy1NtSSg8Cr0Oe9i2F6xtVsTAsk=;
-        b=NwauIgLhbK6cxKweAx81wNMIr2TyLR6KduThbMS7ZM6lRsa5n8E7hlEBeogyRZoBpI
-         qt08lcWktby/rNs0K9BhnFKNRc4eH6xOycdU8QfUoOPVRF6JuevBk3H5b1xBmgiW3wM7
-         TSF/9cznTfuGikWkbkzxVPlA3t5ZhKnXYB239odNgApUA2xbrOXNDfVAwWsDofrx6H85
-         ZPVlx/rEiuf+ccqGhgcayQgKxVEw2LQ20OC+xQoqYBtNVUceCjsqg4m0BrkwGmSytJFO
-         MpD81IRMS5FgNCk1qwwy/F1cGpHmgfGHWWFAvbjLmzN7mYQPqkdGXkY2Ny2vN8BxvXl0
-         g2jg==
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=z5+7qgzAffjpX4D95KV24/hFMJKfChebjkYZm32y/ck=;
+        b=jyspa9LuAGELzKCkE/6331dnNKz+fXgXIkDJg0UAW3jIHrGlb+2HZyHuAvVu/+bidM
+         HxB+px2X0+5PBTPriw6JeTqrk5jxe47Gh7bi3vhkpkgatveqszajG6VJe0xUvU4O3LSM
+         PnUQ/UwihSWvqoNW8suzbtZ6WRI1l4J0NJKsX15oQ2tRUcrCKim5VWBKn5ZEFqJ/BAkV
+         hZY4LlOhknxyeJ7ace8N5RT2mufFJwAXxZIq/ybTHU7CW+M0RiuEiPAuniK1k+tvbI4M
+         T7md4t7amc3xbtjWIw+SDGpWSiaILycQPD1iq2cXg+0n180ZdNdYRGe0cNifQqSPKk0t
+         Sb5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3EeMUG1qvuM/qX7FAy1NtSSg8Cr0Oe9i2F6xtVsTAsk=;
-        b=LZeBShBsJ8WQ5C8JhW/9CA7B+v8WtI4go0151Gwi1CalVsl7qmzuS1sqDZxGSmwoaP
-         pfZB/cSonBL3DY/Zo6p2SmFLglaZrMP1x0AMRzwYqtLuhhVfo0j34yZllfSZTc2iiOFa
-         oByeG1+Y6MqPxosVhq1o7DzDfBA8Ce1tcZ12ifk7PjEaZM7d+vrcWeMLoeUSrJ38nhRf
-         R04KuBBfLFHNEdCQzc1DogMnTxW9esJh7DYQS5ZKDsuN5SWD59oXXQ0RSMnu9+vJppPM
-         EDjE9kKrkgMa9pifZs7MkTKFgRq7gu6oE5t/jlVpgzFIrPfY2EdPmGFy57ScryDcFsw+
-         dF6w==
-X-Gm-Message-State: AOAM530/eh4UFN2JPkQ42eKSGZn94vCvA6Vig7KAC+W0+SC0TgisD8kU
-        XlCnU3zNnrVSXOkFGMmdax1YxQ==
-X-Google-Smtp-Source: ABdhPJxdCUCgj3MOtm05/Du3xejIgP7JuYpbhLpHNE2pNdC9MuloUHl7Nc2IN7djm8O/xB3rBNvpew==
-X-Received: by 2002:adf:a319:: with SMTP id c25mr8155672wrb.629.1639072426823;
-        Thu, 09 Dec 2021 09:53:46 -0800 (PST)
-Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.gmail.com with ESMTPSA id 21sm427004wmj.18.2021.12.09.09.53.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Dec 2021 09:53:46 -0800 (PST)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     bjorn.andersson@linaro.org
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: c630: add headset jack and button detection support
-Date:   Thu,  9 Dec 2021 17:53:42 +0000
-Message-Id: <20211209175342.20386-3-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20211209175342.20386-1-srinivas.kandagatla@linaro.org>
-References: <20211209175342.20386-1-srinivas.kandagatla@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=z5+7qgzAffjpX4D95KV24/hFMJKfChebjkYZm32y/ck=;
+        b=Q+ehENlggmjYTAvK3I/9k0Wy/qYcAoAnJULFdcymfDgAszKtl+EO2OpCuPnR9Z2ErX
+         TMq13cGZFBVTQ1hgXi9z5fb45Nl/Fwe9Mz/LGx2F5trDXLpaNYtJBjP64JftxpuCeD+Y
+         ssASLEy4Xy0Bzu5+FUbVDxONKec2f0EjEctJh1q7S3gnxPK7UjfplaoaaeIQcjjRYov4
+         t2pNdYeP91TKCboM490zym/HXZK6LsYtled+CetraUT0vniGuDTrILhzYB3P0F95ATU9
+         LYnHI6/aaTvDunhvLwYOx79O6tWMEnOM2Ed4sgprgcNdBsUjizk8yrDejxKAB0knh84t
+         Eedg==
+X-Gm-Message-State: AOAM530kOeuMncLmswZ6UgnaQQ13majPMIne5Uw2JniW6yefk9/2b5pW
+        Xz53pUTV8HGQr94MHedoliUAQKcA2rFq5DWSRfRG8A==
+X-Google-Smtp-Source: ABdhPJx6hBQ91azuKOfGobN3Ack6F3SygyEarJ5hhT0+0li8k4m/3gKLjBxF2S8c7NTS1BnlwndszH4XY3pW8v//DII=
+X-Received: by 2002:a62:8786:0:b0:4b1:1ef1:2063 with SMTP id
+ i128-20020a628786000000b004b11ef12063mr1114345pfe.73.1639072631890; Thu, 09
+ Dec 2021 09:57:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210704090230.26489-1-jagan@amarulasolutions.com>
+ <YP2ZvoVQyvwTXP++@ravnborg.org> <CAMty3ZANJz=HSKFzZ8gn896uw98iVwMEpGhmanXNbj77Ren4hw@mail.gmail.com>
+ <CAJ+vNU1Hy_94TYgs0isNc2pmiH2sOReZJLhphzQFTN2Z50JPrA@mail.gmail.com>
+ <CAOf5uwm6+tFS8temhPmSx6nFVTSyk0Ckd9eDEToQNmNaiO2c=A@mail.gmail.com>
+ <CAJ+vNU2pQCHqnyNJnz_rhczGRwcU=9XDFG1ix_V=Sc-1oWvhjA@mail.gmail.com> <CAOf5uw=Cts+V+amSrTzVyRyFZA=eKSVtRPtXae40-4M0bu6pwg@mail.gmail.com>
+In-Reply-To: <CAOf5uw=Cts+V+amSrTzVyRyFZA=eKSVtRPtXae40-4M0bu6pwg@mail.gmail.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Thu, 9 Dec 2021 09:57:00 -0800
+Message-ID: <CAJ+vNU0_CguvaLjGEQ3tTiJq1bqOQYb+o1e1OvbPCmtTW9iGiA@mail.gmail.com>
+Subject: Re: [RFC PATCH 00/17] drm: bridge: Samsung MIPI DSIM bridge
+To:     Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Cc:     Jagan Teki <jagan@amarulasolutions.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Marek Vasut <marex@denx.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <Linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MBHC support available in WCD934X codec.
+On Thu, Dec 9, 2021 at 9:09 AM Michael Nazzareno Trimarchi
+<michael@amarulasolutions.com> wrote:
+>
+> Hi Tim
+>
+> On Thu, Dec 9, 2021 at 5:40 PM Tim Harvey <tharvey@gateworks.com> wrote:
+> >
+> > On Thu, Dec 9, 2021 at 12:36 AM Michael Nazzareno Trimarchi
+> > <michael@amarulasolutions.com> wrote:
+> > >
+> > > Hi Tim
+> > >
+> > > On Tue, Oct 5, 2021 at 11:43 PM Tim Harvey <tharvey@gateworks.com> wrote:
+> > > >
+> > > > On Sun, Jul 25, 2021 at 10:14 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> > > > >
+> > > > > Hi Sam,
+> > > > >
+> > > > > On Sun, Jul 25, 2021 at 10:35 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+> > > > > >
+> > > > > > Hi Jagan,
+> > > > > >
+> > > > > > On Sun, Jul 04, 2021 at 02:32:13PM +0530, Jagan Teki wrote:
+> > > > > > > This series supports common bridge support for Samsung MIPI DSIM
+> > > > > > > which is used in Exynos and i.MX8MM SoC's.
+> > > > > > >
+> > > > > > > The final bridge supports both the Exynos and i.MX8MM DSI devices.
+> > > > > > >
+> > > > > > > Right now bridge offers two sets of implementations.
+> > > > > > >
+> > > > > > > A. With component_ops and exynos specific code exclusively for
+> > > > > > >    exynos dsi drivers and it's legacy bindings.
+> > > > > > >
+> > > > > > > B. Without componenet_ops for newly implemented bridges and its
+> > > > > > >    users like i.MX8MM.
+> > > > > > >
+> > > > > > > The future plan is to fix the implementation A) by dropping
+> > > > > > > component_ops and fixing exynos specific code in order to make
+> > > > > > > the bridge more mature to use and the same is mentioned in
+> > > > > > > drivers TODO.
+> > > > > > >
+> > > > > > > Patch 0001 - 0006: Bridge conversion
+> > > > > > > Patch 0007 - 0017: Samsung MIPI DSIM bridge fixes, additions
+> > > > > > >
+> > > > > > > Tested in Engicam i.Core MX8M Mini SoM.
+> > > > > > >
+> > > > > > > Anyone interest, please have a look on this repo
+> > > > > > > https://github.com/openedev/linux/tree/070421-imx8mm-dsim
+> > > > > > >
+> > > > > > > Would appreciate anyone from the exynos team to test it on
+> > > > > > > the exynos platform?
+> > > > > > >
+> > > > > > > Any inputs?
+> > > > > >
+> > > > > > I really like where you are headign with this!
+> > > > > > No testing - sorry. But I will try to provide a bit of feedback on the
+> > > > > > individual patches.
+> > > > > >
+> > > > > > I hope you find a way to move forward with this.
+> > > > >
+> > > > > Thanks for the response.
+> > > > >
+> > > > > We have found some issues with Bridge conversion on existing exynos
+> > > > > drivers. The component based DSI drivers(like exynos) are difficult to
+> > > > > attach if it involves kms hotplug. kms hotplug would require drm
+> > > > > pointer and that pointer would only available after the bind call
+> > > > > finishes. But the bridge attach in bind call will defer till it find
+> > > > > the attached bridge.
+> > > > >
+> > > > > Right now I'm trying to find the proper way to attach the bridges for
+> > > > > component based DSI drivers which involves kms hot-plug.
+> > > > >
+> > > > > If you have any ideas on this, please let me know.
+> > > > >
+> > > >
+> > > > Jagan,
+> > > >
+> > > > How is your progress on this series? Looking at your repo it looks
+> > > > like you've rebased on top of 5.13-rc3 in your 070121-imx8mm-dsim
+> > > > branch but you've got a lot of things there that are likely not
+> > > > related to this series?
+> > >
+> > > I have a bit of work on those patches and tested on imx8mn. Basically:
+> > >
+> > > - add the dsi timing calculation
+> > > - change few difference with samsung bridge
+> > > - fix crashes of my dsi panels
+> > > - compare with NXP driver the final results
+> > >
+> > > I found that I have one problem that gives me some instability. In the
+> > > NXP original driver the panel needs to be
+> > > enabled in bridge_enable before out the standby. If I understand
+> > > correctly, our standby should be done after.
+> > > I would like to have some feedback and help and testing on other
+> > > boards/devices and some suggestions on how to handle
+> > > some of the differences. Another big problem is etnavi that is not stable
+> > >
+> >
+> > Michael,
+> >
+> > Where can I find your patches?
+> >
+>
+> I will push on some tree and share
+>
+> > What do you mean by etnaviv not being stable?
+> >
+> > I did some limited testing with etnaviv on imx8mm with 5.15 + dsi
+>
+>
+>
+> > patches on an Ubuntu focal root filesystem by:
+> > apt update
+> > apt install gnome-session gnome-terminal
+> > ^^^ 2D hardware acceleration appears to be working (dragging opaque
+> > windows around)
+> > apt install mesa-utils glmark2
+> > glxgears
+> > ^^^ ~160fps on IMX8MM
+> > glmark2
+> > ^^^ score of 39 on IMX8MM
+> >
+> > I haven't seen any updates from Jagan since Nov 24
+> > (https://www.spinics.net/lists/dri-devel/msg324059.html) and am not
+> > sure if he's been able to work through drm/exynos issues that have
+> > been blocking his progress.
+>
+> I plan to push on github
+>
+> [17:07:42.315] Sending ready to systemd
+> [  214.052085] etnaviv-gpu 38000000.gpu: recover hung GPU!
+> [  214.595998] etnaviv-gpu 38000000.gpu: recover hung GPU!
+>
+> ** (maynard:386): WARNING **: 17:07:43.874: failed to setup mixer: Success
+> [17:07:44.175] Added surface 0xaaab02630440, app_id (null) to pending list
+> [17:07:44.176] Added surface 0xaaab026172b0, app_id (null) to pending list
+> ** Message: 17:07:44.289: New advertisement app id maynard
+> ** Message: 17:07:44.290: New advertisement app id maynard
+> [17:07:45.171] (background) position view 0xaaab0261f860, x 0, y 0, on
+> output DSI-1
+> [17:07:45.171] (panel) geom.width 100, geom.height 480, geom.x 0, geom.y 0
+> [17:07:45.171] (panel) edge 2 position view 0xaaab02634510, x 0, y 0
+> [17:07:45.172] panel type 2 inited on output DSI-1
+> [17:07:45.172] Usable area: 380x480+100,0
+> [  216.932080] etnaviv-gpu 38000000.gpu: recover hung GPU!
+> [  217.476015] etnaviv-gpu 38000000.gpu: recover hung GPU!
+> [  218.020157] etnaviv-gpu 38000000.gpu: recover hung GPU!
+>
+> This is my problem on imx8mn
+>
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 3 +++
- 1 file changed, 3 insertions(+)
+Do you have an imx8mm to compare with? Unfortunately I do not have an
+imx8mn with a MIPI DSI connector and can only test with imx8mm.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index 2e882a977e2c..58845a14805f 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -771,6 +771,9 @@
- 	vdd-tx-supply = <&vreg_s4a_1p8>;
- 	vdd-rx-supply = <&vreg_s4a_1p8>;
- 	vdd-io-supply = <&vreg_s4a_1p8>;
-+	qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
-+	qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
-+	qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
- 
- 	swm: swm@c85 {
- 		left_spkr: wsa8810-left{
--- 
-2.21.0
+What software (other than kernel which you will share) do you have
+installed above and how is it configured or run to show the issue?
 
+Best regards,
+
+Tim
