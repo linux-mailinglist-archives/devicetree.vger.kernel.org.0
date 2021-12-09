@@ -2,241 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8439646F0F6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:09:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F19A46F110
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:10:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239160AbhLIRND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 12:13:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45066 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242503AbhLIRNC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 12:13:02 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F72C061A32
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 09:09:28 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id h24so4933588pjq.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 09:09:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SVQ+YMlt28Ir8xyFyWE5Df0gZJmNCYigQmtRvCGp//o=;
-        b=X11M2TlDgjJ6Jnz85pZfgXoUvRxyk1Ep1uRScdCq8JZU3KIc8cO5QEBB/cAjCTfQc1
-         swVoiOjEgYcQM3REh+hW80fuK6KE+lXnItAif+OK22UB0KfXph/sZ/Y/dkDPMNf1HmpR
-         B31RZ2iWJuzDd3YfQRhYWY/j2Vi92o3+q374Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SVQ+YMlt28Ir8xyFyWE5Df0gZJmNCYigQmtRvCGp//o=;
-        b=g0Rgg/QEVtRaGCwngs8ZU+FqjtqMuzvyd29ZReO/OspFDLkTxyLo0zyFjfPCBnyUYS
-         zTeRmYHZ+o+vlJsuO5SjwhtwVyIHZCCLfK+1BSe8gHUJ9+Ze3it2/9JgpB2P6d6/noMB
-         aV/T1lmd7EJ+2tU/lHfOkiNuU6QR7KZTo6hTFzuyJFgp9t9mRgs5XUmmZ+Si5HFUibq2
-         9bIF4w5oJoltKdj+e6kOPdr+IdfArei3mGGjWQHPV7muNeskvDmO0HB6WWufwIk9hAhL
-         w6ZkY/0EVPvoG59Q9da13dYML8O3vuYoe8BAAbMzWgtSUy5Y11rlI+nWCdFIFn7ZGwAy
-         i2/g==
-X-Gm-Message-State: AOAM5324AZqX6TBWsNB74us44/iVh5PjR44u1wT5aYmoy8EOsRCqWTAr
-        qdbqsFLXMInulAe9+BtAi0c3msoidX6CDrIA6J6xyg==
-X-Google-Smtp-Source: ABdhPJyCX8wQ+HUvA4s6g4Ya2TOcMuKHFO5FqSEOA83hPmJ1hZu9RpPCK5Uynse9z8q6es/uaeEeJTvXzf2twhi5B5E=
-X-Received: by 2002:a17:90b:3758:: with SMTP id ne24mr17081019pjb.59.1639069767405;
- Thu, 09 Dec 2021 09:09:27 -0800 (PST)
+        id S233044AbhLIRNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 12:13:24 -0500
+Received: from out28-170.mail.aliyun.com ([115.124.28.170]:39368 "EHLO
+        out28-170.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242534AbhLIRNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 12:13:21 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07438399|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.261443-0.00124629-0.73731;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047207;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=5;RT=5;SR=0;TI=SMTPD_---.M7Y.VxB_1639069785;
+Received: from 192.168.88.129(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.M7Y.VxB_1639069785)
+          by smtp.aliyun-inc.com(10.147.40.44);
+          Fri, 10 Dec 2021 01:09:46 +0800
+Subject: Re: [PATCH v2] MIPS: Ingenic: Add system type for new Ingenic SoCs.
+From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
+To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <1639068516-5577-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1639068516-5577-4-git-send-email-zhouyanjie@wanyeetech.com>
+Message-ID: <ee8248e4-337c-0da2-471e-f8bbb43c3a2d@wanyeetech.com>
+Date:   Fri, 10 Dec 2021 01:09:24 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20210704090230.26489-1-jagan@amarulasolutions.com>
- <YP2ZvoVQyvwTXP++@ravnborg.org> <CAMty3ZANJz=HSKFzZ8gn896uw98iVwMEpGhmanXNbj77Ren4hw@mail.gmail.com>
- <CAJ+vNU1Hy_94TYgs0isNc2pmiH2sOReZJLhphzQFTN2Z50JPrA@mail.gmail.com>
- <CAOf5uwm6+tFS8temhPmSx6nFVTSyk0Ckd9eDEToQNmNaiO2c=A@mail.gmail.com> <CAJ+vNU2pQCHqnyNJnz_rhczGRwcU=9XDFG1ix_V=Sc-1oWvhjA@mail.gmail.com>
-In-Reply-To: <CAJ+vNU2pQCHqnyNJnz_rhczGRwcU=9XDFG1ix_V=Sc-1oWvhjA@mail.gmail.com>
-From:   Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Date:   Thu, 9 Dec 2021 18:09:15 +0100
-Message-ID: <CAOf5uw=Cts+V+amSrTzVyRyFZA=eKSVtRPtXae40-4M0bu6pwg@mail.gmail.com>
-Subject: Re: [RFC PATCH 00/17] drm: bridge: Samsung MIPI DSIM bridge
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Marek Vasut <marex@denx.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <Linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <1639068516-5577-4-git-send-email-zhouyanjie@wanyeetech.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tim
+Hi,
 
-On Thu, Dec 9, 2021 at 5:40 PM Tim Harvey <tharvey@gateworks.com> wrote:
+Sorry, this was sent by mistake, please ignore it.
+
+On 2021/12/10 上午12:48, 周琰杰 (Zhou Yanjie) wrote:
+> Add JZ4730, JZ4750, JZ4755, JZ4760, JZ4760B, X2000H, and X2100 system
+> type for cat /proc/cpuinfo to give out JZ4730, JZ4750, JZ4755, JZ4760,
+> JZ4760B, X2000H, and X2100.
 >
-> On Thu, Dec 9, 2021 at 12:36 AM Michael Nazzareno Trimarchi
-> <michael@amarulasolutions.com> wrote:
-> >
-> > Hi Tim
-> >
-> > On Tue, Oct 5, 2021 at 11:43 PM Tim Harvey <tharvey@gateworks.com> wrote:
-> > >
-> > > On Sun, Jul 25, 2021 at 10:14 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
-> > > >
-> > > > Hi Sam,
-> > > >
-> > > > On Sun, Jul 25, 2021 at 10:35 PM Sam Ravnborg <sam@ravnborg.org> wrote:
-> > > > >
-> > > > > Hi Jagan,
-> > > > >
-> > > > > On Sun, Jul 04, 2021 at 02:32:13PM +0530, Jagan Teki wrote:
-> > > > > > This series supports common bridge support for Samsung MIPI DSIM
-> > > > > > which is used in Exynos and i.MX8MM SoC's.
-> > > > > >
-> > > > > > The final bridge supports both the Exynos and i.MX8MM DSI devices.
-> > > > > >
-> > > > > > Right now bridge offers two sets of implementations.
-> > > > > >
-> > > > > > A. With component_ops and exynos specific code exclusively for
-> > > > > >    exynos dsi drivers and it's legacy bindings.
-> > > > > >
-> > > > > > B. Without componenet_ops for newly implemented bridges and its
-> > > > > >    users like i.MX8MM.
-> > > > > >
-> > > > > > The future plan is to fix the implementation A) by dropping
-> > > > > > component_ops and fixing exynos specific code in order to make
-> > > > > > the bridge more mature to use and the same is mentioned in
-> > > > > > drivers TODO.
-> > > > > >
-> > > > > > Patch 0001 - 0006: Bridge conversion
-> > > > > > Patch 0007 - 0017: Samsung MIPI DSIM bridge fixes, additions
-> > > > > >
-> > > > > > Tested in Engicam i.Core MX8M Mini SoM.
-> > > > > >
-> > > > > > Anyone interest, please have a look on this repo
-> > > > > > https://github.com/openedev/linux/tree/070421-imx8mm-dsim
-> > > > > >
-> > > > > > Would appreciate anyone from the exynos team to test it on
-> > > > > > the exynos platform?
-> > > > > >
-> > > > > > Any inputs?
-> > > > >
-> > > > > I really like where you are headign with this!
-> > > > > No testing - sorry. But I will try to provide a bit of feedback on the
-> > > > > individual patches.
-> > > > >
-> > > > > I hope you find a way to move forward with this.
-> > > >
-> > > > Thanks for the response.
-> > > >
-> > > > We have found some issues with Bridge conversion on existing exynos
-> > > > drivers. The component based DSI drivers(like exynos) are difficult to
-> > > > attach if it involves kms hotplug. kms hotplug would require drm
-> > > > pointer and that pointer would only available after the bind call
-> > > > finishes. But the bridge attach in bind call will defer till it find
-> > > > the attached bridge.
-> > > >
-> > > > Right now I'm trying to find the proper way to attach the bridges for
-> > > > component based DSI drivers which involves kms hot-plug.
-> > > >
-> > > > If you have any ideas on this, please let me know.
-> > > >
-> > >
-> > > Jagan,
-> > >
-> > > How is your progress on this series? Looking at your repo it looks
-> > > like you've rebased on top of 5.13-rc3 in your 070121-imx8mm-dsim
-> > > branch but you've got a lot of things there that are likely not
-> > > related to this series?
-> >
-> > I have a bit of work on those patches and tested on imx8mn. Basically:
-> >
-> > - add the dsi timing calculation
-> > - change few difference with samsung bridge
-> > - fix crashes of my dsi panels
-> > - compare with NXP driver the final results
-> >
-> > I found that I have one problem that gives me some instability. In the
-> > NXP original driver the panel needs to be
-> > enabled in bridge_enable before out the standby. If I understand
-> > correctly, our standby should be done after.
-> > I would like to have some feedback and help and testing on other
-> > boards/devices and some suggestions on how to handle
-> > some of the differences. Another big problem is etnavi that is not stable
-> >
+> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+> Reviewed-by: Paul Cercueil <paul@crapouillou.net>
+> ---
 >
-> Michael,
+> Notes:
+>      v1->v2:
+>      1.Add system type for JZ4750 and JZ4755 as Paul Cercueil's suggestion.
+>      2.Add Paul Cercueil's Reviewed-by.
 >
-> Where can I find your patches?
+>   arch/mips/generic/board-ingenic.c | 21 +++++++++++++++++++++
+>   arch/mips/include/asm/bootinfo.h  |  3 +++
+>   arch/mips/include/asm/cpu.h       |  4 ++--
+>   3 files changed, 26 insertions(+), 2 deletions(-)
 >
-
-I will push on some tree and share
-
-> What do you mean by etnaviv not being stable?
->
-> I did some limited testing with etnaviv on imx8mm with 5.15 + dsi
-
-
-
-> patches on an Ubuntu focal root filesystem by:
-> apt update
-> apt install gnome-session gnome-terminal
-> ^^^ 2D hardware acceleration appears to be working (dragging opaque
-> windows around)
-> apt install mesa-utils glmark2
-> glxgears
-> ^^^ ~160fps on IMX8MM
-> glmark2
-> ^^^ score of 39 on IMX8MM
->
-> I haven't seen any updates from Jagan since Nov 24
-> (https://www.spinics.net/lists/dri-devel/msg324059.html) and am not
-> sure if he's been able to work through drm/exynos issues that have
-> been blocking his progress.
-
-I plan to push on github
-
-[17:07:42.315] Sending ready to systemd
-[  214.052085] etnaviv-gpu 38000000.gpu: recover hung GPU!
-[  214.595998] etnaviv-gpu 38000000.gpu: recover hung GPU!
-
-** (maynard:386): WARNING **: 17:07:43.874: failed to setup mixer: Success
-[17:07:44.175] Added surface 0xaaab02630440, app_id (null) to pending list
-[17:07:44.176] Added surface 0xaaab026172b0, app_id (null) to pending list
-** Message: 17:07:44.289: New advertisement app id maynard
-** Message: 17:07:44.290: New advertisement app id maynard
-[17:07:45.171] (background) position view 0xaaab0261f860, x 0, y 0, on
-output DSI-1
-[17:07:45.171] (panel) geom.width 100, geom.height 480, geom.x 0, geom.y 0
-[17:07:45.171] (panel) edge 2 position view 0xaaab02634510, x 0, y 0
-[17:07:45.172] panel type 2 inited on output DSI-1
-[17:07:45.172] Usable area: 380x480+100,0
-[  216.932080] etnaviv-gpu 38000000.gpu: recover hung GPU!
-[  217.476015] etnaviv-gpu 38000000.gpu: recover hung GPU!
-[  218.020157] etnaviv-gpu 38000000.gpu: recover hung GPU!
-
-This is my problem on imx8mn
-
-Michael
-
-Michael
-> Best regards,
->
-> Tim
-
---
-Michael Nazzareno Trimarchi
-Co-Founder & Chief Executive Officer
-M. +39 347 913 2170
-michael@amarulasolutions.com
-__________________________________
-
-Amarula Solutions BV
-Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
-T. +31 (0)85 111 9172
-info@amarulasolutions.com
-www.amarulasolutions.com
+> diff --git a/arch/mips/generic/board-ingenic.c b/arch/mips/generic/board-ingenic.c
+> index dd855b7..4774636 100644
+> --- a/arch/mips/generic/board-ingenic.c
+> +++ b/arch/mips/generic/board-ingenic.c
+> @@ -21,6 +21,10 @@
+>   static __init char *ingenic_get_system_type(unsigned long machtype)
+>   {
+>   	switch (machtype) {
+> +	case MACH_INGENIC_X2100:
+> +		return "X2100";
+> +	case MACH_INGENIC_X2000H:
+> +		return "X2000H";
+>   	case MACH_INGENIC_X2000E:
+>   		return "X2000E";
+>   	case MACH_INGENIC_X2000:
+> @@ -37,8 +41,18 @@ static __init char *ingenic_get_system_type(unsigned long machtype)
+>   		return "JZ4775";
+>   	case MACH_INGENIC_JZ4770:
+>   		return "JZ4770";
+> +	case MACH_INGENIC_JZ4760B:
+> +		return "JZ4760B";
+> +	case MACH_INGENIC_JZ4760:
+> +		return "JZ4760";
+> +	case MACH_INGENIC_JZ4755:
+> +		return "JZ4755";
+> +	case MACH_INGENIC_JZ4750:
+> +		return "JZ4750";
+>   	case MACH_INGENIC_JZ4725B:
+>   		return "JZ4725B";
+> +	case MACH_INGENIC_JZ4730:
+> +		return "JZ4730";
+>   	default:
+>   		return "JZ4740";
+>   	}
+> @@ -61,8 +75,13 @@ static __init const void *ingenic_fixup_fdt(const void *fdt, const void *match_d
+>   }
+>   
+>   static const struct of_device_id ingenic_of_match[] __initconst = {
+> +	{ .compatible = "ingenic,jz4730", .data = (void *)MACH_INGENIC_JZ4730 },
+>   	{ .compatible = "ingenic,jz4740", .data = (void *)MACH_INGENIC_JZ4740 },
+>   	{ .compatible = "ingenic,jz4725b", .data = (void *)MACH_INGENIC_JZ4725B },
+> +	{ .compatible = "ingenic,jz4750", .data = (void *)MACH_INGENIC_JZ4750 },
+> +	{ .compatible = "ingenic,jz4755", .data = (void *)MACH_INGENIC_JZ4755 },
+> +	{ .compatible = "ingenic,jz4760", .data = (void *)MACH_INGENIC_JZ4760 },
+> +	{ .compatible = "ingenic,jz4760b", .data = (void *)MACH_INGENIC_JZ4760B },
+>   	{ .compatible = "ingenic,jz4770", .data = (void *)MACH_INGENIC_JZ4770 },
+>   	{ .compatible = "ingenic,jz4775", .data = (void *)MACH_INGENIC_JZ4775 },
+>   	{ .compatible = "ingenic,jz4780", .data = (void *)MACH_INGENIC_JZ4780 },
+> @@ -71,6 +90,8 @@ static const struct of_device_id ingenic_of_match[] __initconst = {
+>   	{ .compatible = "ingenic,x1830", .data = (void *)MACH_INGENIC_X1830 },
+>   	{ .compatible = "ingenic,x2000", .data = (void *)MACH_INGENIC_X2000 },
+>   	{ .compatible = "ingenic,x2000e", .data = (void *)MACH_INGENIC_X2000E },
+> +	{ .compatible = "ingenic,x2000h", .data = (void *)MACH_INGENIC_X2000H },
+> +	{ .compatible = "ingenic,x2100", .data = (void *)MACH_INGENIC_X2100 },
+>   	{}
+>   };
+>   
+> diff --git a/arch/mips/include/asm/bootinfo.h b/arch/mips/include/asm/bootinfo.h
+> index 4c2e817..2128ba9 100644
+> --- a/arch/mips/include/asm/bootinfo.h
+> +++ b/arch/mips/include/asm/bootinfo.h
+> @@ -75,6 +75,7 @@ enum ingenic_machine_type {
+>   	MACH_INGENIC_JZ4750,
+>   	MACH_INGENIC_JZ4755,
+>   	MACH_INGENIC_JZ4760,
+> +	MACH_INGENIC_JZ4760B,
+>   	MACH_INGENIC_JZ4770,
+>   	MACH_INGENIC_JZ4775,
+>   	MACH_INGENIC_JZ4780,
+> @@ -83,6 +84,8 @@ enum ingenic_machine_type {
+>   	MACH_INGENIC_X1830,
+>   	MACH_INGENIC_X2000,
+>   	MACH_INGENIC_X2000E,
+> +	MACH_INGENIC_X2000H,
+> +	MACH_INGENIC_X2100,
+>   };
+>   
+>   extern char *system_type;
+> diff --git a/arch/mips/include/asm/cpu.h b/arch/mips/include/asm/cpu.h
+> index 35072c4..6ceb5bd 100644
+> --- a/arch/mips/include/asm/cpu.h
+> +++ b/arch/mips/include/asm/cpu.h
+> @@ -46,8 +46,8 @@
+>   #define PRID_COMP_NETLOGIC	0x0c0000
+>   #define PRID_COMP_CAVIUM	0x0d0000
+>   #define PRID_COMP_LOONGSON	0x140000
+> -#define PRID_COMP_INGENIC_13	0x130000	/* X2000 */
+> -#define PRID_COMP_INGENIC_D0	0xd00000	/* JZ4740, JZ4750, X1830 */
+> +#define PRID_COMP_INGENIC_13	0x130000	/* X2000, X2100 */
+> +#define PRID_COMP_INGENIC_D0	0xd00000	/* JZ4730, JZ4740, JZ4750, JZ4755, JZ4760, X1830 */
+>   #define PRID_COMP_INGENIC_D1	0xd10000	/* JZ4770, JZ4775, X1000 */
+>   #define PRID_COMP_INGENIC_E1	0xe10000	/* JZ4780 */
+>   
