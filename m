@@ -2,168 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A785846E984
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 14:57:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEF4A46E9B8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 15:16:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238273AbhLIOAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 09:00:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54456 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238206AbhLIOAv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 09:00:51 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85E4FC0617A2
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 05:57:17 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id t18so9795423wrg.11
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 05:57:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=INUpPFFgEt5pw9ophBKKAQ7IapQv4sE23ioeoEBE0OY=;
-        b=yTYRX1BSqSSSdFgijh0cLEViDk4dB5eLUObNtmJczcLpYCTsB2VrlnSkNskPDGqKl8
-         0IHz+0IJ6pwtvPRswOw77ZDR+njkaIcb7ehm+t6kSZPIwUAeujBerNUGFVQiLhScPo9k
-         +7DwBG0QqP7eDyf7Wbj+hllerKIszULRjDow+uEDM8IiOX3mKVozkR+qSORtJEHKLKDv
-         eRiUGWuNZcNZWzGXdK4Z/il74NkyoIl3+CONRd3UR8vzuN4OBTHEWNLG2fM9MBo4E/uB
-         kpI3rzWWbhTZMDFo7dwgITzGwvAuiY4GAHbK4DHe0fv4vhzYVkbOFHQ8dbzdg8Y0RX6+
-         T8Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=INUpPFFgEt5pw9ophBKKAQ7IapQv4sE23ioeoEBE0OY=;
-        b=2vqWeRhDtTpx0C91fCoMnDgZuydsEE5z89FMkvhUvn4OrNly4bu9u2JYs0KMWOyE6C
-         zsP/WIwVDVdoKR7r/au01cDAGY27e0CvbcDtCXO5ihs9zaFgwm3E6baPrAAQNjkNxomj
-         mX3MagXZva4w0BWWaKsjtupA0K9LEG4qoUCbZS//Hx96lmlGXfPMOzq+V4Yj5KDXzZHr
-         8cHCuEoep0muKOGPmIVGS6rFPExQG/12PToGcYvb2oJFXclYeYvyzeAnANkMLd18+GEk
-         HnRtwGpRftW3Lh2qNjIGLBHZo2pZzH4+zD1Jv01fxDMAS5mJP4hJTCklmGoqbauOKzU9
-         9Yew==
-X-Gm-Message-State: AOAM531Cc4qVJbvB8dTKgTg6D76I0KY9LTLgQ2Z2gDVNYyH8WABUNKyL
-        5OxjbPBhUcBZsI/o8hZU9OwO1g==
-X-Google-Smtp-Source: ABdhPJyteSOjZHYvMVrscybKNvrFHSauqZNNp92GwrEYHMpr8Q7vb/TI6ndQLPx5MNNvHshkcb3ZhA==
-X-Received: by 2002:a05:6000:156a:: with SMTP id 10mr6554478wrz.87.1639058236017;
-        Thu, 09 Dec 2021 05:57:16 -0800 (PST)
-Received: from localhost.localdomain ([88.160.176.23])
-        by smtp.gmail.com with ESMTPSA id d15sm7919295wri.50.2021.12.09.05.57.14
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 09 Dec 2021 05:57:15 -0800 (PST)
-From:   Loic Poulain <loic.poulain@linaro.org>
-To:     bjorn.andersson@linaro.org, agross@kernel.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, shawn.guo@linaro.org,
-        Loic Poulain <loic.poulain@linaro.org>
-Subject: [PATCH v2 2/2] dt-bindings: clock: Add qualcomm QCM2290 DISPCC bindings
-Date:   Thu,  9 Dec 2021 15:09:11 +0100
-Message-Id: <1639058951-12660-2-git-send-email-loic.poulain@linaro.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1639058951-12660-1-git-send-email-loic.poulain@linaro.org>
-References: <1639058951-12660-1-git-send-email-loic.poulain@linaro.org>
+        id S235466AbhLIOTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 09:19:54 -0500
+Received: from sibelius.xs4all.nl ([83.163.83.176]:59245 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230048AbhLIOTy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 09:19:54 -0500
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 95a57f88;
+        Thu, 9 Dec 2021 15:16:17 +0100 (CET)
+Date:   Thu, 9 Dec 2021 15:16:17 +0100 (CET)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     sven@svenpeter.dev, jassisinghbrar@gmail.com, robh+dt@kernel.org,
+        marcan@marcan.st, alyssa@rosenzweig.io, kettenis@openbsd.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20211209055049.99205-2-marcan@marcan.st> (message from Hector
+        Martin on Thu, 9 Dec 2021 14:50:48 +0900)
+Subject: Re: [PATCH 1/2] dt-bindings: mailbox: apple,
+ mailbox: Add generic and t6000 compatibles
+References: <20211209055049.99205-1-marcan@marcan.st> <20211209055049.99205-2-marcan@marcan.st>
+Message-ID: <d3cb3991a2be5ea4@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for display clock controller on QCM2290 SoCs.
+> From: Hector Martin <marcan@marcan.st>
+> Date: Thu,  9 Dec 2021 14:50:48 +0900
+> 
+> Much as we've done with other blocks, let's introduce generic
+> compatibles so drivers can bind to those and still work with future
+> SoCs, as long as the hardware remains the same. Also go ahead and add
+> compatibles for the new t600x SoCs (we group those as t6000).
+> 
+> Note that no DTs instantiate devices with this binding yet.
 
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
----
- v2: no change
+I think this makes sense.  There is no OpenBSD driver for this yet and
+my U-Boot driver has not been submitted upstream yet.  So I think
+there are no real backwards compatibility issues.
 
- .../bindings/clock/qcom,qcm2290-dispcc.yaml        | 87 ++++++++++++++++++++++
- 1 file changed, 87 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.yaml
+Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.yaml
-new file mode 100644
-index 00000000..44d5ce7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.yaml
-@@ -0,0 +1,87 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,qcm2290-dispcc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Display Clock & Reset Controller Binding for qcm2290
-+
-+maintainers:
-+  - Loic Poulain <loic.poulain@linaro.org>
-+
-+description: |
-+  Qualcomm display clock control module which supports the clocks, resets and
-+  power domains on qcm2290.
-+
-+  See also dt-bindings/clock/qcom,dispcc-qcm2290.h.
-+
-+properties:
-+  compatible:
-+    const: qcom,qcm2290-dispcc
-+
-+  clocks:
-+    items:
-+      - description: Board XO source
-+      - description: Board active-only XO source
-+      - description: GPLL0 source from GCC
-+      - description: GPLL0 div source from GCC
-+      - description: Byte clock from DSI PHY
-+      - description: Pixel clock from DSI PHY
-+
-+  clock-names:
-+    items:
-+      - const: bi_tcxo
-+      - const: bi_tcxo_ao
-+      - const: gcc_disp_gpll0_clk_src
-+      - const: gcc_disp_gpll0_div_clk_src
-+      - const: dsi0_phy_pll_out_byteclk
-+      - const: dsi0_phy_pll_out_dsiclk
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  '#reset-cells':
-+    const: 1
-+
-+  '#power-domain-cells':
-+    const: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+  - '#reset-cells'
-+  - '#power-domain-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,dispcc-qcm2290.h>
-+    #include <dt-bindings/clock/qcom,gcc-qcm2290.h>
-+    #include <dt-bindings/clock/qcom,rpmcc.h>
-+    clock-controller@5f00000 {
-+            compatible = "qcom,qcm2290-dispcc";
-+            reg = <0x5f00000 0x20000>;
-+            clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-+                     <&rpmcc RPM_SMD_XO_A_CLK_SRC>,
-+                     <&gcc GCC_DISP_GPLL0_CLK_SRC>,
-+                     <&gcc GCC_DISP_GPLL0_DIV_CLK_SRC>,
-+                     <&dsi0_phy 0>,
-+                     <&dsi0_phy 1>;
-+            clock-names = "bi_tcxo",
-+                          "bi_tcxo_ao",
-+                          "gcc_disp_gpll0_clk_src",
-+                          "gcc_disp_gpll0_div_clk_src",
-+                          "dsi0_phy_pll_out_byteclk",
-+                          "dsi0_phy_pll_out_dsiclk";
-+            #clock-cells = <1>;
-+            #reset-cells = <1>;
-+            #power-domain-cells = <1>;
-+    };
-+...
--- 
-2.7.4
-
+>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  .../devicetree/bindings/mailbox/apple,mailbox.yaml   | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml b/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+> index 2c1704b34e7a..58007c789671 100644
+> --- a/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+> @@ -27,14 +27,20 @@ properties:
+>            for example for the display controller, the system management
+>            controller and the NVMe coprocessor.
+>          items:
+> -          - const: apple,t8103-asc-mailbox
+> +          - enum:
+> +              - apple,t8103-asc-mailbox
+> +              - apple,t6000-asc-mailbox
+> +          - const: apple,asc-mailbox
+>  
+>        - description:
+>            M3 mailboxes are an older variant with a slightly different MMIO
+>            interface still found on the M1. It is used for the Thunderbolt
+>            co-processors.
+>          items:
+> -          - const: apple,t8103-m3-mailbox
+> +          - enum:
+> +              - apple,t8103-m3-mailbox
+> +              - apple,t6000-m3-mailbox
+> +          - const: apple,m3-mailbox
+>  
+>    reg:
+>      maxItems: 1
+> @@ -68,7 +74,7 @@ additionalProperties: false
+>  examples:
+>    - |
+>          mailbox@77408000 {
+> -                compatible = "apple,t8103-asc-mailbox";
+> +                compatible = "apple,t8103-asc-mailbox", "apple,asc-mailbox";
+>                  reg = <0x77408000 0x4000>;
+>                  interrupts = <1 583 4>, <1 584 4>, <1 585 4>, <1 586 4>;
+>                  interrupt-names = "send-empty", "send-not-empty",
+> -- 
+> 2.33.0
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
