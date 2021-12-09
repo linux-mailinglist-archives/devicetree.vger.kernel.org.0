@@ -2,136 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D2ED46F14A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:11:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24C8446F15D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:12:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242649AbhLIROe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 12:14:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45530 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239053AbhLIROa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 12:14:30 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C73C0617A1;
-        Thu,  9 Dec 2021 09:10:56 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id i12so4757503wmq.4;
-        Thu, 09 Dec 2021 09:10:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Eey3ZpemVIQey3aUEzHauqKMAedPhaSMvKYTLO4vJR4=;
-        b=Qr3xahMG7jgbSv1CijjihRMn2tiI3uX2hR/Gkaf/95cs09uLEwDwKhlBxwc6pVw1vh
-         4CRnzMxg878ulkS/uKwKFyds2J0OIOmS45QKqBFNhii84FJO5Fpx/ZhV+/G0a5RBpukV
-         pKeQD5arDVdJaCNyZ1LegrU9/sxVSzi1B2R1sLN+yDSlEiCHt+RsmFah+W9J2utelPj3
-         d3SrFVfAR4moqxHbJNlwGIve7w/XnP6/ELecyY5YS7wKd38IV+KCvGPZJgPjOJH5Ar6L
-         Tz4+FmbMFpajSuO9eCUcMpsCfb+rL/u/WquNC7DRyB2leWQRL6kv8l68Cj3HQsjuECZV
-         OHDA==
+        id S232913AbhLIRQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 12:16:28 -0500
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:39784 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234694AbhLIRQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 12:16:28 -0500
+Received: by mail-ot1-f48.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso6870609ots.6;
+        Thu, 09 Dec 2021 09:12:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Eey3ZpemVIQey3aUEzHauqKMAedPhaSMvKYTLO4vJR4=;
-        b=I8R7OeACJxezrmy38mq5p/drxF/coaOCno2YMqNGb0/N7wknstZ0v3/HUZbVUwHvuB
-         Zv+Sdu3huCQyi7gPsr5BtEZLvdh634ix9AutrFbADZsym5ylptJnOhBxDgNleBUJcDSN
-         heMijvHzh9s4nCpD9bM1Cmw+cUK1pbjQZK+QTkndPUOW2jpL/RZeux6/BTP2KylaweYQ
-         hoImmaQGdPw0baqwj/wD/OxQHo5T0HH7QcDz7Mvr4TnXs+xWdQPlu/tl5zbQ9Lzpegrb
-         ZYyz2I3P9AtbmuU6S0TVrzaRQdaHqxcJL/usKdmPmimIFjWb30ULmffQQarh1v7acNoy
-         68HQ==
-X-Gm-Message-State: AOAM532wDGAvdWYm7pedd31txIQxH9fVJDuFNkZVQDnzWN2Q9JTll6ho
-        HE1sLAJ8MkocWnhu4SoYRMQ=
-X-Google-Smtp-Source: ABdhPJxHfxQx2i1K4jKrLcQ+S1rdfCLHuZD0YQJBWS/cYW5VUOZTrDT446KMNTbFtpsPPGA6oOJLBA==
-X-Received: by 2002:a05:600c:1d01:: with SMTP id l1mr9141930wms.44.1639069854820;
-        Thu, 09 Dec 2021 09:10:54 -0800 (PST)
-Received: from orome ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id z8sm275504wrh.54.2021.12.09.09.10.51
+         :mime-version:content-disposition:in-reply-to;
+        bh=4Bi3Hs0dz1zLMbmU20z1hBT7554DenEcOj+Mm3ASJ9o=;
+        b=2LmhSlTHLx57M6P3Bchg8GVM74wbEmFz9zv9gf6/GCDgnc5f+vEfAoUGCHx/k4IZdg
+         7y6MZpxEdPODinZUE4mlQ3YFNw8OkMTF3UuqyEaHk6dNUiGMafa9FZsdgP9LFOF1XiNS
+         uuklLem0Ij/U4v2bD1V1ZIMpnIjXaQTEg3JFoi0bKAxcta0zp4+ilx4dkuCCgCOCpuo/
+         ak3DYKCnkdQvebVtLfeVXx2BmgFPoz5nLCNuIDQAsNf5kLVoaBOs9N6V4ABzjqRjafv8
+         w27wE9uaMrSSkmG7fKMfU4KcHyt1IM3onCNilK/Cma/AdVu7e+02zlV5a39Z+f0wSMcp
+         342Q==
+X-Gm-Message-State: AOAM5306UFiSzWD0wkodx27ehecs1U9VZG/Kr08/B8v/kAu/WDOkGOHG
+        gVibxEV+NLB1lm7fP+cD4A==
+X-Google-Smtp-Source: ABdhPJwOWbvOoLjUB66dcX6BdXi20kQtW84xHwSzlBDrIMbpmbcILSEgsrRy5KzEJICOytZ0YWU7Gg==
+X-Received: by 2002:a05:6830:310f:: with SMTP id b15mr6391242ots.31.1639069974305;
+        Thu, 09 Dec 2021 09:12:54 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id j5sm67192oou.23.2021.12.09.09.12.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Dec 2021 09:10:53 -0800 (PST)
-Date:   Thu, 9 Dec 2021 18:10:50 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Akhil R <akhilrajeev@nvidia.com>
-Cc:     dan.j.williams@intel.com, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org, jonathanh@nvidia.com,
-        kyarlagadda@nvidia.com, ldewangan@nvidia.com,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        p.zabel@pengutronix.de, rgumasta@nvidia.com, robh+dt@kernel.org,
-        vkoul@kernel.org, Pavan Kunapuli <pkunapuli@nvidia.com>
-Subject: Re: [PATCH v14 2/4] dmaengine: tegra: Add tegra gpcdma driver
-Message-ID: <YbI4mtV3npK87c26@orome>
-References: <1638795639-3681-1-git-send-email-akhilrajeev@nvidia.com>
- <1638795639-3681-3-git-send-email-akhilrajeev@nvidia.com>
+        Thu, 09 Dec 2021 09:12:53 -0800 (PST)
+Received: (nullmailer pid 3101528 invoked by uid 1000);
+        Thu, 09 Dec 2021 17:12:52 -0000
+Date:   Thu, 9 Dec 2021 11:12:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     devicetree@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Sven Peter <sven@svenpeter.dev>
+Subject: Re: [PATCH 1/4] dt-bindings: arm: apple: Add t6000/t6001 MacBook Pro
+ 14/16" compatibles
+Message-ID: <YbI5FB3n2HHwTj3A@robh.at.kernel.org>
+References: <20211209051001.70235-1-marcan@marcan.st>
+ <20211209051001.70235-2-marcan@marcan.st>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="7mqnZnHDnajOmsOv"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1638795639-3681-3-git-send-email-akhilrajeev@nvidia.com>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+In-Reply-To: <20211209051001.70235-2-marcan@marcan.st>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---7mqnZnHDnajOmsOv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Dec 06, 2021 at 06:30:37PM +0530, Akhil R wrote:
-> Adding GPC DMA controller driver for Tegra186 and Tegra194. The driver
-> supports dma transfers between memory to memory, IO peripheral to memory
-> and memory to IO peripheral.
->=20
-> Signed-off-by: Pavan Kunapuli <pkunapuli@nvidia.com>
-> Signed-off-by: Rajesh Gumasta <rgumasta@nvidia.com>
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+On Thu, 09 Dec 2021 14:09:58 +0900, Hector Martin wrote:
+> This adds the initial apple,t6000 platforms:
+> 
+> - apple,j314s - MacBook Pro (14-inch, M1 Pro, 2021)
+> - apple,j316s - MacBook Pro (16-inch, M1 Pro, 2021)
+> 
+> And the initial apple,t6001 platforms:
+> 
+> - apple,j314c - MacBook Pro (14-inch, M1 Max, 2021)
+> - apple,j316c - MacBook Pro (16-inch, M1 Max, 2021)
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
->  drivers/dma/Kconfig            |   12 +
->  drivers/dma/Makefile           |    1 +
->  drivers/dma/tegra186-gpc-dma.c | 1284 ++++++++++++++++++++++++++++++++++=
-++++++
->  3 files changed, 1297 insertions(+)
->  create mode 100644 drivers/dma/tegra186-gpc-dma.c
->=20
-> diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-> index 80c2c03..35095ae 100644
-> --- a/drivers/dma/Kconfig
-> +++ b/drivers/dma/Kconfig
-> @@ -629,6 +629,18 @@ config TXX9_DMAC
->  	  Support the TXx9 SoC internal DMA controller.  This can be
->  	  integrated in chips such as the Toshiba TX4927/38/39.
-> =20
-> +config TEGRA186_GPC_DMA
-> +	tristate "NVIDIA Tegra GPC DMA support"
-> +	depends on ARCH_TEGRA_186_SOC || ARCH_TEGRA_194_SOC || COMPILE_TEST
+>  .../devicetree/bindings/arm/apple.yaml        | 21 +++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
 
-I wonder if we want to maybe make this depend on ARCH_TEGRA instead to
-avoid having to add dependencies on newer SoCs (presumably Tegra234 will
-feature this GPC DMA as well).
-
-Not worth a respin, but perhaps something to consider when adding
-Tegra234 support.
-
-Thierry
-
---7mqnZnHDnajOmsOv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGyOJoACgkQ3SOs138+
-s6FQLw//YQbWddZFUUepCv0b7YpjZTW7Vbd3JWuPDsETBN2QinnTKblQ/sAwEPcd
-Szvbiym/rYEjolSaVq0LMnE8N6Yt4UYGNpPpZYygbfzQGXZDMLwWkSv5u9SYGxbC
-89erpmqFUUEFmJWqtW9AnsiUCacYyOuLbNJHbjPQnP5ogpOu/AHCcD5iKn9guF+4
-cpYDuo6+8Ywwt4E5fa8WjgoKSoDWeGbGdhF8Ysac6b6ImI+6MFbZUJUDSxvfn9wa
-IVH5zl5eB01o0AD7DPtTRaKGKIIukylqg2UxYKROdMUWLP3L0YdgPF8ekNI8oz4J
-bcsSdYt0Sw2kcYzVVOqQrF3cFdYvf18XrO+UOUQA0r2B/hyopqsBKXQ9+5HOToj9
-ynQBSNcvj72AGc87pnjYmZPD63UO4kw1Zz7O77WVQClpIj/KKCFKRMLUSyk2QteI
-XHPiLLFBFkyueptQpeaAWXZCNbnE4b2BYk/DuMjfdyB7awww82GnMDD1Lj/pjguZ
-0JntM8RHgCSRSTx6rmEHnWrcmHvX0vmUseAVjTaK03rH5AqIRMmEJuaaypvseYqV
-pHHKnSs2obuHaQ0UVl95LFvjJaNhWISwdvteLhjvEOWqQd5zNClWHVA427MOwF74
-tGtvLslwUzPBjbtPps5ebvJwiURyfrAP9J+3ntTV83JEw3qgweU=
-=za4a
------END PGP SIGNATURE-----
-
---7mqnZnHDnajOmsOv--
+Acked-by: Rob Herring <robh@kernel.org>
