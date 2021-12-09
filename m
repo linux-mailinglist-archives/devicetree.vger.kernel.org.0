@@ -2,176 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA26646E616
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 11:01:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8656C46E625
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 11:06:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231296AbhLIKEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 05:04:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55700 "EHLO
+        id S232278AbhLIKJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 05:09:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230336AbhLIKEo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 05:04:44 -0500
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CB01C061746;
-        Thu,  9 Dec 2021 02:01:11 -0800 (PST)
-Received: by mail-yb1-xb2b.google.com with SMTP id 131so12374190ybc.7;
-        Thu, 09 Dec 2021 02:01:11 -0800 (PST)
+        with ESMTP id S232215AbhLIKJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 05:09:45 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 648A1C061746
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 02:06:11 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id m27so10894290lfj.12
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 02:06:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+sMjbqSAt/gq7+I0wM/bKh0O+Cxr7Xc7+5bjGHY2cn0=;
-        b=A2CBzi6vl+yTrQp3xgyFDy6w2zVzfeMe9pwcmxAQ7EOeOA4jO/78PNA1XktRQDcTAt
-         /9xJ3S4TmtJtzpJzANN5GvaFeesYCq7qFlhelqztnrHNhrt7yI06MVJf5KxgSeWQ6cpe
-         4INOtMCmwpVJYYvNTLbz+zbiKph2GYUcyZxde7otdN5I/ODjC8QSpqEWQi5v5US1/UG4
-         GXXAJP1iA4062Y46B3sofrpb4SyUfx/cY3dgGCXdkE4O7wfxZxR1D0G7rAiocUrctwjw
-         cnFeL1hCadhE0jgqKDPPx09Ag36ZVng8ciohIlhO12MSe4rJTeNeJ0ilQCnca/bZNSJh
-         ENkg==
+        bh=F1owymgiCbwjtMOY3GwDKTTRv4aRJ4ddqlYjVacAxeY=;
+        b=IEAlki6D4NihEbGixc0ZB8q1mWKYeVyBm450yjRD6H+nFTePjftgbNP1DSbjKJC/wn
+         aA6G1S7zyTmWIk2wnFu1f0vt67RzKqsiulULcMDgUC+z69q+XtVhP3Eu0UC0yezAwjNB
+         vX82i6L0vOPMOqpqTVSvYYCMeFCK7iTHxJMGDkkT5ZH+GnHs9SODYR5MYMhq1DGi4GzO
+         jzkp592RVDVKnCu1VIpNL7vqWdE78LfoQ/N7ed/l18v1uQfKPEjZBRH2eRUjtNTKCBPA
+         nWa9O+uPUfVM+lsrddwkRKNoYhpf4nu+XyMW4JWKq2CaEyoOmsYKC8jQgxIh6QFH8/oT
+         jcsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+sMjbqSAt/gq7+I0wM/bKh0O+Cxr7Xc7+5bjGHY2cn0=;
-        b=bojCvUqw8uY8pdGob/cqQkztZVlFapULZIE9RqWxN6MishDoT7P9Qm2cvfQ2lrg78m
-         Wh6bOclfAoW8rquFQYU94nJHuJmQkxJnWb7ublA004NtF8mjgM9XyM0txYXwcwEqzcoH
-         z693B+I4SPZzlErYXiLpPp7msS0VSOUhHG6lFesbVAixOA+tYRPKqC0UNWIyS1y6pz0T
-         7tnIIJHncHfg7XIrYy5MIUbiZ06JNsQFp+IAevcQ0np8vn11qTjgf3Y3r01dUxi6zWBj
-         1qtNbpMcN445xWZF2pVKdh/2n2pSQv5mJjYN4UPGQAq1cyKgAQ+aFyyV4P5QpzUMPeyk
-         fO/A==
-X-Gm-Message-State: AOAM531VmjmJQvMcenKcH/sADEf4aD6N7amFdqa9xOtLHYJMc4WhGRpd
-        EGzk9HVjOGjCtbZuF1SyGHW0qc9W/KkGPY3BeBA=
-X-Google-Smtp-Source: ABdhPJxkqTNzFZZ+Ck7d92ZE1ZAfXj2zcB8ZxPu3bDQaYZ/Mv5OLSdAsJE/gVJ1RtqC4/z619MV2SF8IWLWyqrFK0Bw=
-X-Received: by 2002:a25:84c1:: with SMTP id x1mr4984988ybm.690.1639044070671;
- Thu, 09 Dec 2021 02:01:10 -0800 (PST)
+        bh=F1owymgiCbwjtMOY3GwDKTTRv4aRJ4ddqlYjVacAxeY=;
+        b=GzIAFRrHVH1Q1cpIAenY24oNDREXcWkBLjCGUHM6WbKq4AM0otncvXs3d6ft7qMLvr
+         vhDNABReK869il59tgMLfz+B6h4EcPoRfDtaEG3rRQfSgcdopXsIc+x4ou+hDesx0lr2
+         P1Rex26jIueoMvAH/CBOw8Oe8NwsHwg2BekO4x5VGzGlDdoC8BkQ93ZBvJW/5zXUcJLT
+         JWr5dNCuLg5AgcfQQxyUPcXjL67aztfX6e+WOUoVRUFWUMxy0lpfPLy8+6yjr1aVq0/L
+         wWOogH6/QYIq/xLyfs3LZR7SX5n6iE9RaGfof8lJrPd+7yeLB6P7fReVRaHABITAbiZ8
+         qXPA==
+X-Gm-Message-State: AOAM533RrSFKj7e31yZ7jKY9BqfIPTkKvA2IR4l5YMxXaL9pO8kiPswC
+        risCp5t7RNvfkYMmZnH5Pn90twl3BY11m0MZI7ab1w==
+X-Google-Smtp-Source: ABdhPJwOXRN/8lU2AYgTrJejBXDpm4hFI6pejaLy27VCQ/luFqzDGRy/0PN4sedVg8qGNEQznzbU3QCdxNwh1mp0znQ=
+X-Received: by 2002:a05:6512:10c4:: with SMTP id k4mr4875603lfg.373.1639044369640;
+ Thu, 09 Dec 2021 02:06:09 -0800 (PST)
 MIME-Version: 1.0
-References: <20211209001056.29774-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <d290850bf95f4bdf0c329f278db458c7@kernel.org>
-In-Reply-To: <d290850bf95f4bdf0c329f278db458c7@kernel.org>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Thu, 9 Dec 2021 10:00:44 +0000
-Message-ID: <CA+V-a8vUCXQa38NmYu9znakcq4A=Uedyn8w5+hXQ_WKf58oHRQ@mail.gmail.com>
-Subject: Re: [RFC PATCH] of: platform: Skip mapping of interrupts in of_device_alloc()
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20211206174201.2297265-1-robh@kernel.org>
+In-Reply-To: <20211206174201.2297265-1-robh@kernel.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 9 Dec 2021 11:05:33 +0100
+Message-ID: <CAPDyKFpd=bdMOCe2cScdLjhr97bZ+VLFr7yn8j48d4KCcHaqtw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: Add missing properties used in examples
+To:     Rob Herring <robh@kernel.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <Kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+On Mon, 6 Dec 2021 at 18:42, Rob Herring <robh@kernel.org> wrote:
+>
+> When 'unevaluatedProperties' support is enabled, the following warnings
+> are generated in the mmc bindings:
+>
+> Documentation/devicetree/bindings/mmc/mtk-sd.example.dt.yaml: mmc@11230000: Unevaluated properties are not allowed ('reg', 'interrupts' were unexpected)
+> Documentation/devicetree/bindings/mmc/sdhci-am654.example.dt.yaml: mmc@4f80000: Unevaluated properties are not allowed ('sdhci-caps-mask' was unexpected)
+> Documentation/devicetree/bindings/mmc/socionext,uniphier-sd.example.dt.yaml: mmc@5a400000: Unevaluated properties are not allowed ('dma-names', 'dmas' were unexpected)
+> Documentation/devicetree/bindings/mmc/arm,pl18x.example.dt.yaml: mmc@80126000: Unevaluated properties are not allowed ('dmas', 'dma-names' were unexpected)
+> Documentation/devicetree/bindings/mmc/arasan,sdhci.example.dt.yaml: mmc@80420000: Unevaluated properties are not allowed ('resets' was unexpected)
+> Documentation/devicetree/bindings/mmc/arm,pl18x.example.dt.yaml: mmc@52007000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
+> Documentation/devicetree/bindings/clock/imx8qxp-lpcg.example.dt.yaml: mmc@5b010000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+>
+> Add the missing properties as necessary. For pl18x, drop interrupt-names
+> as there isn't any use of it when there are 2 interrupts.
+>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Chaotian Jing <chaotian.jing@mediatek.com>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> Cc: Masami Hiramatsu <mhiramat@kernel.org>
+> Cc: Adrian Hunter <adrian.hunter@intel.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Wenbin Mei <wenbin.mei@mediatek.com>
+> Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
+> Cc: linux-mmc@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-mediatek@lists.infradead.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Thank you for the review.
+Applied for next, thanks!
 
-On Thu, Dec 9, 2021 at 8:07 AM Marc Zyngier <maz@kernel.org> wrote:
->
-> On 2021-12-09 00:10, Lad Prabhakar wrote:
-> > of_device_alloc() in early boot stage creates a interrupt mapping if
-> > there exists a "interrupts" property in the node.
-> >
-> > For hierarchical interrupt domains using "interrupts" property in the
-> > node
-> > bypassed the hierarchical setup and messed up the irq setup.
-> >
-> > This patch adds a check in of_device_alloc() to skip interrupt mapping
-> > if
-> > "not-interrupt-producer" property is present in the node. This allows
-> > nodes to describe the interrupts using "interrupts" property.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > Hi All,
-> >
-> > Spawning from discussion [1], here is simple patch (not the ideal
-> > probably
-> > welcome for suggestions) from stopping the OF code from creating a map
-> > for
-> > the interrupts when using "interrupts" property.
-> >
-> > [1] https://lore.kernel.org/lkml/87pmqrck2m.wl-maz@kernel.org/
-> >     T/#mbd1e47c1981082aded4b32a52e2c04291e515508
-> >
-> > Cheers,
-> > Prabhakar
-> > ---
-> >  drivers/of/platform.c | 13 ++++++++++---
-> >  1 file changed, 10 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> > index b3faf89744aa..629776ca1721 100644
-> > --- a/drivers/of/platform.c
-> > +++ b/drivers/of/platform.c
-> > @@ -114,7 +114,7 @@ struct platform_device *of_device_alloc(struct
-> > device_node *np,
-> >                                 struct device *parent)
-> >  {
-> >       struct platform_device *dev;
-> > -     int rc, i, num_reg = 0, num_irq;
-> > +     int rc, i, num_reg = 0, num_irq = 0;
-> >       struct resource *res, temp_res;
-> >
-> >       dev = platform_device_alloc("", PLATFORM_DEVID_NONE);
-> > @@ -124,7 +124,14 @@ struct platform_device *of_device_alloc(struct
-> > device_node *np,
-> >       /* count the io and irq resources */
-> >       while (of_address_to_resource(np, num_reg, &temp_res) == 0)
-> >               num_reg++;
-> > -     num_irq = of_irq_count(np);
-> > +
-> > +     /*
-> > +      * we don't want to map the interrupts of hierarchical interrupt
-> > domain
-> > +      * into the parent domain yet. This will be the job of the
-> > hierarchical
-> > +      * interrupt driver code to map the interrupts as and when needed.
-> > +      */
-> > +     if (!of_property_read_bool(np, "not-interrupt-producer"))
->
-> I don't think this is right. If anything, the expected behaviour should
-> be
-> indicated by the driver and not the device node.
->
-> > +             num_irq = of_irq_count(np);
-> >
-> >       /* Populate the resource table */
-> >       if (num_irq || num_reg) {
-> > @@ -140,7 +147,7 @@ struct platform_device *of_device_alloc(struct
-> > device_node *np,
-> >                       rc = of_address_to_resource(np, i, res);
-> >                       WARN_ON(rc);
-> >               }
-> > -             if (of_irq_to_resource_table(np, res, num_irq) != num_irq)
-> > +             if (num_irq && of_irq_to_resource_table(np, res, num_irq) !=
-> > num_irq)
-> >                       pr_debug("not all legacy IRQ resources mapped for %pOFn\n",
-> >                                np);
-> >       }
->
-> The root of the issue is that all the resource allocation is done
-> upfront,
-> way before we even have a driver that could potentially deal with this
-> device. This is a potential waste of resource, and it triggers the
-> issue you noticed.
->
-> If you delay the resource allocation until there is an actual match with
-> a
-> driver, you could have a per-driver flag telling you whether the IRQ
-> allocation should be performed before the probe() function is called.
->
-As suggested by Rob, if we switch the drivers to use
-platform_get_resource(pdev, IORESOURCE_IRQ, n) call with
-platform_get_irq() this code should go away and with this switch the
-resource allocation will happen demand. Is this approach OK?
+Kind regards
+Uffe
 
-Cheers,
-Prabhakar
 
->          M.
+> ---
+>  Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml  | 3 +++
+>  Documentation/devicetree/bindings/mmc/arm,pl18x.yaml     | 9 ++++++++-
+>  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 3 +++
+>  Documentation/devicetree/bindings/mmc/mtk-sd.yaml        | 6 ++++++
+>  Documentation/devicetree/bindings/mmc/sdhci-am654.yaml   | 2 ++
+>  .../devicetree/bindings/mmc/socionext,uniphier-sd.yaml   | 6 ++++++
+>  6 files changed, 28 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> index de6f076e0ece..83be9e93d221 100644
+> --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
+> @@ -118,6 +118,9 @@ properties:
+>    phy-names:
+>      const: phy_arasan
+>
+> +  resets:
+> +    maxItems: 1
+> +
+>    arasan,soc-ctl-syscon:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+> diff --git a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+> index 47595cb483be..fbc866d9bb2f 100644
+> --- a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+> @@ -60,6 +60,14 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>
+> +  dmas:
+> +    maxItems: 2
+> +
+> +  dma-names:
+> +    items:
+> +      - const: rx
+> +      - const: tx
+> +
+>    power-domains: true
+>
+>    resets:
+> @@ -213,7 +221,6 @@ examples:
+>        arm,primecell-periphid = <0x10153180>;
+>        reg = <0x52007000 0x1000>;
+>        interrupts = <49>;
+> -      interrupt-names = "cmd_irq";
+>        clocks = <&rcc 0>;
+>        clock-names = "apb_pclk";
+>        resets = <&rcc 1>;
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> index 19621a2f8beb..8d5cef0d3039 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> @@ -116,6 +116,9 @@ properties:
+>        - const: ahb
+>        - const: per
+>
+> +  power-domains:
+> +    maxItems: 1
+> +
+>    pinctrl-names:
+>      oneOf:
+>        - minItems: 3
+> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> index 82768a807294..faf89b0c918f 100644
+> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> @@ -36,6 +36,9 @@ properties:
+>            - const: mediatek,mt8195-mmc
+>            - const: mediatek,mt8183-mmc
+>
+> +  reg:
+> +    maxItems: 1
+> +
+>    clocks:
+>      description:
+>        Should contain phandle for the clock feeding the MMC controller.
+> @@ -62,6 +65,9 @@ properties:
+>        - const: axi_cg
+>        - const: ahb_cg
+>
+> +  interrupts:
+> +    maxItems: 1
+> +
+>    pinctrl-names:
+>      items:
+>        - const: default
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+> index 224303f5b913..9fbf16b3bc8d 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+> @@ -48,6 +48,8 @@ properties:
+>        - const: clk_ahb
+>        - const: clk_xin
+>
+> +  sdhci-caps-mask: true
+> +
+>    # PHY output tap delays:
+>    # Used to delay the data valid window and align it to the sampling clock.
+>    # Binding needs to be provided for each supported speed mode otherwise the
+> diff --git a/Documentation/devicetree/bindings/mmc/socionext,uniphier-sd.yaml b/Documentation/devicetree/bindings/mmc/socionext,uniphier-sd.yaml
+> index 56f9ff12742d..a586fad0a46b 100644
+> --- a/Documentation/devicetree/bindings/mmc/socionext,uniphier-sd.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/socionext,uniphier-sd.yaml
+> @@ -26,6 +26,12 @@ properties:
+>    clocks:
+>      maxItems: 1
+>
+> +  dmas:
+> +    maxItems: 1
+> +
+> +  dma-names:
+> +    const: rx-tx
+> +
+>    reset-names:
+>      description: |
+>        There are three reset signals at maximum
 > --
-> Jazz is not dead. It just smells funny...
+> 2.32.0
+>
