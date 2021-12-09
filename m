@@ -2,90 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F097546EB0B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 16:22:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 849A946EB14
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 16:25:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236244AbhLIP0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 10:26:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46272 "EHLO
+        id S239303AbhLIP2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 10:28:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235376AbhLIP0Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 10:26:24 -0500
-Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D85E2C061746
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 07:22:50 -0800 (PST)
-Received: by mail-ua1-x931.google.com with SMTP id r15so11412378uao.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 07:22:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=1J+XmU+DI+E9grUJzbC6kqmpdJljZUH9ERdWF3VqDW4=;
-        b=wdLsu7dxo6JsUsOMFhDQbVF/7k6JWW4SfduROl3lRRispvueS+VzjduoBSJdTfWBEd
-         6WSFxBtUmOKlOmMhQ3z/jkIE7pzpINk0xwSI/SPkCItxTti5tDk/k0IhLQHC+8Px4tjb
-         opJUQAh2haWglvTbBYOWb8wBDboplqK/k1wz7pMdWd6wdnUQ/lntzIFt6iSZTILpnD8i
-         54xvkltZMUQI8d/TgbxN0KHDTzZgDh9qR2+z7YHpzTmSmEOViRiW6faiJb/MrojlY22z
-         iqhnQCWYXF/aRrptPwEpnmuIlyCMxU2JXz5pvmM6Y/9El6BpFI85smH7ropsRnktM+lU
-         pV4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=1J+XmU+DI+E9grUJzbC6kqmpdJljZUH9ERdWF3VqDW4=;
-        b=ywg9+VNLyx1+7eJ4EAfxJR3WdDuibz4kCVql6mSCm04HUGxe7q4rihfg3O0bIKBcRP
-         6s6m2GQP8DU5V28pKD/HDkZPrW+qEcNDq9i2R9nRyYDdajV3Hm+iVgozgWkp5U/K0CTC
-         hbWaS73UMMopfiZVN7/hYggGFG/M2H9/MgKKVdegvRLV4/ilGyc/moiVpexu78Y9TfbR
-         DbvtVqiHJFPw7/SU8thJK6NH8xj6oOdm4qfEo9MP5bb5nRsBNbFpUni2XaZfVug/FL6f
-         hJAisKTRCWavJGEq7kec1dUL8z2rPWqH1bjpKFhI7SeglSPCAb60PCoka180hSTfwv6Z
-         RAhA==
-X-Gm-Message-State: AOAM533xtmUHONY+Y8VR0aBgqnU7QtXHB4ITsI7C0vC567jxGGWEKJ4l
-        DfGzX4Xeqgh3qoSF/i09yI2qTMsFU/Ub0btO/XeThg==
-X-Google-Smtp-Source: ABdhPJzCfp+KpbSMOwI8zmZeJ5bMvIl0+2m+q7morIH15CbHe7sXKx+R0flGIAcP0B04JBjStSt4FQXkkLNvJzN85pA=
-X-Received: by 2002:a67:3382:: with SMTP id z124mr7978137vsz.57.1639063370025;
- Thu, 09 Dec 2021 07:22:50 -0800 (PST)
-MIME-Version: 1.0
-References: <20211204215820.17378-1-semen.protsenko@linaro.org>
- <20211204215820.17378-8-semen.protsenko@linaro.org> <YbIXVw+as1Sj6yDW@ninjato>
-In-Reply-To: <YbIXVw+as1Sj6yDW@ninjato>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Thu, 9 Dec 2021 17:22:38 +0200
-Message-ID: <CAPLW+4kOr8NBUpgDXCcALP0BbnQ=w0v_oW24Vsa3e90TBxrHyQ@mail.gmail.com>
-Subject: Re: [PATCH v2 RESEND 7/8] arm: dts: exynos: Rename hsi2c nodes to i2c
- for Exynos5260
-To:     Wolfram Sang <wsa@kernel.org>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        with ESMTP id S236184AbhLIP2d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 10:28:33 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5728C061746;
+        Thu,  9 Dec 2021 07:24:59 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id CC3D7CE2643;
+        Thu,  9 Dec 2021 15:24:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D5F2C004DD;
+        Thu,  9 Dec 2021 15:24:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639063496;
+        bh=B5dv0/+MUM9oeHXzMFpUBKtqk3u7pAyJk0ljTkdMwRA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=KZhLtnyfdT9f4HXlQNvdDgEe1zBQkQzNOYmlLuIBmfd/1r5AnjnL/krHaFq4SlUJT
+         +54/40V0YTfYd1QavyaVdXFoyR7F1je1Kii9xZm7NzyfKSxfFWFqCj4Bk278sWVEK8
+         Ubu9EL1jGm9jXCNMElmuB9R4Anvy40vcjckbc3QtzUly+lPz8hEuePcjlF4ho5Mk+q
+         UPAgc5It/BW6CdhMeCWrT43RZvrUJoEeYzVtG0aHViBbVXc/miLhbL9DKzrrB3qGOa
+         JvLIheYBLbzetUrzYJGDyIWKFukVxUbGWbYaocXR4liCu+RhJhAhKJ/XfQ9Gs9L0zx
+         0+z2TQ5O7TGQA==
+Date:   Thu, 9 Dec 2021 07:24:54 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaewon Kim <jaewon02.kim@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        Arnd Bergmann <arnd@arndb.de>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Denis Kirjanov <dkirjanov@suse.de>,
+        Julian Wiedmann <jwi@linux.ibm.com>
+Subject: Re: [PATCH net-next v7 0/4] Add FDMA support on ocelot switch
+ driver
+Message-ID: <20211209072454.154b90cd@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20211209104306.986188-1-clement.leger@bootlin.com>
+References: <20211209104306.986188-1-clement.leger@bootlin.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 9 Dec 2021 at 16:49, Wolfram Sang <wsa@kernel.org> wrote:
->
-> On Sat, Dec 04, 2021 at 11:58:19PM +0200, Sam Protsenko wrote:
-> > In Device Tree specification it's recommended to use "i2c" name for I2C
-> > nodes. Now that i2c-exynos5 dt-schema binding was added, it shows some
-> > warnings like this when validating HS-I2C nodes:
-> >
-> >     hsi2c@xxxxxxxxx: $nodename:0: 'hsi2c@xxxxxxxx' does not match
-> >                                   '^i2c(@.*)?'
-> >     From schema: Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
-> >
-> > Rename hsi2c@* to i2c@* to fix those warnings.
-> >
-> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
->
-> Applied to for-next, thanks!
->
+On Thu,  9 Dec 2021 11:43:02 +0100 Cl=C3=A9ment L=C3=A9ger wrote:
+> This series adds support for the Frame DMA present on the VSC7514
+> switch. The FDMA is able to extract and inject packets on the various
+> ethernet interfaces present on the switch.
 
-Just a heads up: Krzysztof has already taken patches #7 and #8 to his
-tree: [1]. Other than that, thanks a lot for handling this series!
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git/log/?h=for-next
+Does not apply, please rebase.
