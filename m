@@ -2,193 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82D7146E60D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 10:59:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA26646E616
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 11:01:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229863AbhLIKCy convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Dec 2021 05:02:54 -0500
-Received: from mout.kundenserver.de ([212.227.17.10]:37219 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231687AbhLIKB5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 05:01:57 -0500
-Received: from mail-wr1-f43.google.com ([209.85.221.43]) by
- mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MmCyE-1mD9zy2Z0a-00iBc1; Thu, 09 Dec 2021 10:58:22 +0100
-Received: by mail-wr1-f43.google.com with SMTP id u1so8625702wru.13;
-        Thu, 09 Dec 2021 01:58:22 -0800 (PST)
-X-Gm-Message-State: AOAM533TaK5xNNPLIK81SuVkcExGkRnp4gIGS+bGh0oLTse3XG6+I3Jk
-        TwvBrSsxVrJCvUIzuc4ZovJWDt1w+IweLU4dOw0=
-X-Google-Smtp-Source: ABdhPJyxeLV7UtF1l/rFSuX941psQjIIY4BAsfEbKAiHX5Z3htWVEMTxwBq+97o3qdAvmBEF6L1VG6S/My2R0ahy3xE=
-X-Received: by 2002:a05:6000:110b:: with SMTP id z11mr5321203wrw.32.1639043901966;
- Thu, 09 Dec 2021 01:58:21 -0800 (PST)
+        id S231296AbhLIKEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 05:04:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55700 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230336AbhLIKEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 05:04:44 -0500
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CB01C061746;
+        Thu,  9 Dec 2021 02:01:11 -0800 (PST)
+Received: by mail-yb1-xb2b.google.com with SMTP id 131so12374190ybc.7;
+        Thu, 09 Dec 2021 02:01:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+sMjbqSAt/gq7+I0wM/bKh0O+Cxr7Xc7+5bjGHY2cn0=;
+        b=A2CBzi6vl+yTrQp3xgyFDy6w2zVzfeMe9pwcmxAQ7EOeOA4jO/78PNA1XktRQDcTAt
+         /9xJ3S4TmtJtzpJzANN5GvaFeesYCq7qFlhelqztnrHNhrt7yI06MVJf5KxgSeWQ6cpe
+         4INOtMCmwpVJYYvNTLbz+zbiKph2GYUcyZxde7otdN5I/ODjC8QSpqEWQi5v5US1/UG4
+         GXXAJP1iA4062Y46B3sofrpb4SyUfx/cY3dgGCXdkE4O7wfxZxR1D0G7rAiocUrctwjw
+         cnFeL1hCadhE0jgqKDPPx09Ag36ZVng8ciohIlhO12MSe4rJTeNeJ0ilQCnca/bZNSJh
+         ENkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+sMjbqSAt/gq7+I0wM/bKh0O+Cxr7Xc7+5bjGHY2cn0=;
+        b=bojCvUqw8uY8pdGob/cqQkztZVlFapULZIE9RqWxN6MishDoT7P9Qm2cvfQ2lrg78m
+         Wh6bOclfAoW8rquFQYU94nJHuJmQkxJnWb7ublA004NtF8mjgM9XyM0txYXwcwEqzcoH
+         z693B+I4SPZzlErYXiLpPp7msS0VSOUhHG6lFesbVAixOA+tYRPKqC0UNWIyS1y6pz0T
+         7tnIIJHncHfg7XIrYy5MIUbiZ06JNsQFp+IAevcQ0np8vn11qTjgf3Y3r01dUxi6zWBj
+         1qtNbpMcN445xWZF2pVKdh/2n2pSQv5mJjYN4UPGQAq1cyKgAQ+aFyyV4P5QpzUMPeyk
+         fO/A==
+X-Gm-Message-State: AOAM531VmjmJQvMcenKcH/sADEf4aD6N7amFdqa9xOtLHYJMc4WhGRpd
+        EGzk9HVjOGjCtbZuF1SyGHW0qc9W/KkGPY3BeBA=
+X-Google-Smtp-Source: ABdhPJxkqTNzFZZ+Ck7d92ZE1ZAfXj2zcB8ZxPu3bDQaYZ/Mv5OLSdAsJE/gVJ1RtqC4/z619MV2SF8IWLWyqrFK0Bw=
+X-Received: by 2002:a25:84c1:: with SMTP id x1mr4984988ybm.690.1639044070671;
+ Thu, 09 Dec 2021 02:01:10 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1638515726.git.qinjian@cqplus1.com> <eabfe1b84b889e4aa95e24c30a114c68ef95fd07.1638515726.git.qinjian@cqplus1.com>
- <CAK8P3a1_coAnp8P3L2UA+smxuRL9widFQv9Y5ZZ0X_Sr9zsZtg@mail.gmail.com>
- <88f8cc0b1334467aae7a5a4b0643176a@cqplus1.com> <CAK8P3a1-4XnrkWc_0SPns9xj9Yp4xWhEahLOkeafXmAYWfbYJA@mail.gmail.com>
- <6a8271f5c6b74ce7874b7583b8d7eee4@cqplus1.com>
-In-Reply-To: <6a8271f5c6b74ce7874b7583b8d7eee4@cqplus1.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Thu, 9 Dec 2021 10:58:05 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a2w2rava_ozRfWizYDYRe7J3j-=wMgzGA_9t0kd3qJ1NA@mail.gmail.com>
-Message-ID: <CAK8P3a2w2rava_ozRfWizYDYRe7J3j-=wMgzGA_9t0kd3qJ1NA@mail.gmail.com>
-Subject: Re: [PATCH v5 09/10] ARM: sunplus: Add initial support for Sunplus
- SP7021 SoC
-To:     =?UTF-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+References: <20211209001056.29774-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <d290850bf95f4bdf0c329f278db458c7@kernel.org>
+In-Reply-To: <d290850bf95f4bdf0c329f278db458c7@kernel.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Thu, 9 Dec 2021 10:00:44 +0000
+Message-ID: <CA+V-a8vUCXQa38NmYu9znakcq4A=Uedyn8w5+hXQ_WKf58oHRQ@mail.gmail.com>
+Subject: Re: [RFC PATCH] of: platform: Skip mapping of interrupts in of_device_alloc()
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Mark Brown <broonie@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Linus Walleij <linusw@kernel.org>
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Provags-ID: V03:K1:QAcfvcI3XDtNhINEM/3DMhz24D80X89c80Oc/nY3jPP6W9CBF0t
- +uth+3os0iMJmnomH082T9XrdsDqw8XbwSi80MeGw1bavNkRlYlTPfFAKLhymMLLxASm5to
- 2J3BTtCN6YrUQ3YYYkGE9ujN8bqSgLpqYia8gmB8EgGZ9S6hh7cSHnyS+gXfWWzdly88jtS
- Sq0UNSmJTjvkogttqtSrw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:JWRrvN909fA=:Bf0onvZHiT3E4v21aA2ME4
- pvWY7lbL+lu5AuEYI0Hm66ujadoSYN0q08aqUyHSWkBJD4pt2lHZe3stjsccXEtaWPUZRhFv9
- 1iqqnGgY37aE9c4Im9B7akaOUGEIu9zTQHET5ZDXdcFBRnkNiFAMe0X6BhXqBPWfBSjDZ2EsH
- RjUzEfv8LzBVhglfc2x6Bge//eHeJZlXf6YuaXHfQ3GXLkqz/P5F9JyuUMN52LwjcU0h2cM9m
- PqUcQgIETwy4lKV0S8IcWhingxc+50ZBgu/N+q0ng4PdS0/WZo1cs8YlGvZmFSNxBK3Fj+eoe
- OzFf/3vLLupRCR6mqm8tramovo7+QW4mDEBw4JcKRP0Qo7MkkvBhmN9aCE6sPuCzE2Zj/MviZ
- fHMZ2aF95AI8HEBq/0VigX/3VKUa0VihXlqPzrDqz8NoQBZD6EtpUOLoyCH1uE7MEVdxq1aI7
- VJppnOHWSola+yMncOPv6koEOQlIDndEeD+bY8jEkfD/2yqRUn88nECoalA+bMuKwRAD0MSs0
- vIKguaKaktogTBAqXRJzfmhB7oGi1NNNwDaGsBoJ7uDb+G+4ItaSh8EhVj8v+QoBXJ14pyy0t
- HRPmjNlqfPqmnaLFv0WJTatiJ4IVJigxyLzzCX/RwCXptv7fsdkilXnz07UQJHODdqRD/t+ll
- eeIIt2hY25UeiyT2pYYrB+GTk+vAInl+NTzeR4E7QKevSf5MxbIsClNqEV9wAlxGAjsEwV+F8
- vjyDA83jo/QmnbyIB+aU3gX9f/e7kotgfX3I2TH6bJ5irbvxNBbSg1ib7f2WNa76Ojk8uqBx7
- ipqSniZ0TXjqdpAV8YTAnJMcJKw4HNw8RgfyKbdiIZbgg1LNSE=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 9, 2021 at 9:49 AM qinjian[覃健] <qinjian@cqplus1.com> wrote:
-> > On Tue, Dec 7, 2021 at 8:21 AM qinjian[覃健] <qinjian@cqplus1.com> wrote:
-> > > > > @@ -152,6 +152,7 @@ textofs-$(CONFIG_ARCH_MSM8X60) := 0x00208000
-> > > > >  textofs-$(CONFIG_ARCH_MSM8960) := 0x00208000
-> > > > >  textofs-$(CONFIG_ARCH_MESON) := 0x00208000
-> > > > >  textofs-$(CONFIG_ARCH_AXXIA) := 0x00308000
-> > > > > +textofs-$(CONFIG_ARCH_SUNPLUS) := 0x00308000
-> > > >
-> > > > What is this needed for? If it boots without this line, better avoid
-> > > > adding it, because
-> > > > it will increase the kernel size for everyone else (unless they also enable
-> > > > AXXIA).
-> > > >
-> > >
-> > > SP7021 reserved the 1st 1MB memory for ARM926@P-Chip using,
-> > > The 2nd 1MB memory for IOP device and the 3rd 1MB memory for bootloader.
-> > > I'll add these comments at next commit.
+Hi Marc,
+
+Thank you for the review.
+
+On Thu, Dec 9, 2021 at 8:07 AM Marc Zyngier <maz@kernel.org> wrote:
+>
+> On 2021-12-09 00:10, Lad Prabhakar wrote:
+> > of_device_alloc() in early boot stage creates a interrupt mapping if
+> > there exists a "interrupts" property in the node.
 > >
-> > I think you can just remove the memory from the system memory map in the
-> > device tree and pretend it only starts after the bootloader. It's been a while
-> > since I looked at this though, so I could be misremembering what the minimum
-> > boundaries are for doing this.
+> > For hierarchical interrupt domains using "interrupts" property in the
+> > node
+> > bypassed the hierarchical setup and messed up the irq setup.
+> >
+> > This patch adds a check in of_device_alloc() to skip interrupt mapping
+> > if
+> > "not-interrupt-producer" property is present in the node. This allows
+> > nodes to describe the interrupts using "interrupts" property.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > Hi All,
+> >
+> > Spawning from discussion [1], here is simple patch (not the ideal
+> > probably
+> > welcome for suggestions) from stopping the OF code from creating a map
+> > for
+> > the interrupts when using "interrupts" property.
+> >
+> > [1] https://lore.kernel.org/lkml/87pmqrck2m.wl-maz@kernel.org/
+> >     T/#mbd1e47c1981082aded4b32a52e2c04291e515508
+> >
+> > Cheers,
+> > Prabhakar
+> > ---
+> >  drivers/of/platform.c | 13 ++++++++++---
+> >  1 file changed, 10 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> > index b3faf89744aa..629776ca1721 100644
+> > --- a/drivers/of/platform.c
+> > +++ b/drivers/of/platform.c
+> > @@ -114,7 +114,7 @@ struct platform_device *of_device_alloc(struct
+> > device_node *np,
+> >                                 struct device *parent)
+> >  {
+> >       struct platform_device *dev;
+> > -     int rc, i, num_reg = 0, num_irq;
+> > +     int rc, i, num_reg = 0, num_irq = 0;
+> >       struct resource *res, temp_res;
+> >
+> >       dev = platform_device_alloc("", PLATFORM_DEVID_NONE);
+> > @@ -124,7 +124,14 @@ struct platform_device *of_device_alloc(struct
+> > device_node *np,
+> >       /* count the io and irq resources */
+> >       while (of_address_to_resource(np, num_reg, &temp_res) == 0)
+> >               num_reg++;
+> > -     num_irq = of_irq_count(np);
+> > +
+> > +     /*
+> > +      * we don't want to map the interrupts of hierarchical interrupt
+> > domain
+> > +      * into the parent domain yet. This will be the job of the
+> > hierarchical
+> > +      * interrupt driver code to map the interrupts as and when needed.
+> > +      */
+> > +     if (!of_property_read_bool(np, "not-interrupt-producer"))
 >
-> I have test following 3 methods:
+> I don't think this is right. If anything, the expected behaviour should
+> be
+> indicated by the driver and not the device node.
+>
+> > +             num_irq = of_irq_count(np);
+> >
+> >       /* Populate the resource table */
+> >       if (num_irq || num_reg) {
+> > @@ -140,7 +147,7 @@ struct platform_device *of_device_alloc(struct
+> > device_node *np,
+> >                       rc = of_address_to_resource(np, i, res);
+> >                       WARN_ON(rc);
+> >               }
+> > -             if (of_irq_to_resource_table(np, res, num_irq) != num_irq)
+> > +             if (num_irq && of_irq_to_resource_table(np, res, num_irq) !=
+> > num_irq)
+> >                       pr_debug("not all legacy IRQ resources mapped for %pOFn\n",
+> >                                np);
+> >       }
+>
+> The root of the issue is that all the resource allocation is done
+> upfront,
+> way before we even have a driver that could potentially deal with this
+> device. This is a potential waste of resource, and it triggers the
+> issue you noticed.
+>
+> If you delay the resource allocation until there is an actual match with
+> a
+> driver, you could have a per-driver flag telling you whether the IRQ
+> allocation should be performed before the probe() function is called.
+>
+As suggested by Rob, if we switch the drivers to use
+platform_get_resource(pdev, IORESOURCE_IRQ, n) call with
+platform_get_irq() this code should go away and with this switch the
+resource allocation will happen demand. Is this approach OK?
 
-Right, I was thinking of the third method here, which has the advantage of
-not requiring the same odd base address for all other platforms, this
-is important to us.
-I don't see what the problem is with it in your example, does that mean you
-have a little less usable memory, or that something fails to work right? I don't
-know what the requirements are for memreserve.
+Cheers,
+Prabhakar
 
-Adding a few more people to Cc, maybe they have ideas about how this
-was solved elsewhere.
-
-          Arnd
-
-> 1. current patch
-> DT:
->         memory {
->                 reg = <0x00000000 0x20000000>; /* 512MB */
->         };
->
->         reserved-memory {
->                 #address-cells = <1>;
->                 #size-cells = <1>;
->                 ranges;
->
->                 iop_reserve: iop_device {
->                         no-map;
->                         reg = <0x00100000 0x00100000>;
->                 };
->                 a926_reserve: a926_memory {
->                         no-map;
->                         reg = <0x00000000 0x00100000>;
->                 };
->         };
-> arch/arm/Makefile:
->         textofs-$(CONFIG_ARCH_SUNPLUS) := 0x00308000
->
-> bootlog & meminfo :
-> [    0.000000] Zone ranges:
-> [    0.000000]   Normal   [mem 0x0000000000000000-0x000000001fffffff]
-> [    0.000000] Movable zone start for each node
-> [    0.000000] Early memory node ranges
-> [    0.000000]   node   0: [mem 0x0000000000000000-0x00000000001fffff]
-> [    0.000000]   node   0: [mem 0x0000000000200000-0x000000001fffffff]
-> [    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000001fffffff]
->
-> ~ # cat /proc/meminfo
-> MemTotal:         514008 kB
-> MemFree:          491960 kB
-> MemAvailable:     488608 kB
->
->
->
-> 2. DT same as case 1, but no modify @ arch/arm/Makefile
->
-> bootlog & meminfo :
-> [    0.000000] OF: fdt: Reserved memory: failed to reserve memory for node 'iop_device': base 0x00100000, size 1 MiB
-> [    0.000000] OF: fdt: Reserved memory: failed to reserve memory for node 'a926_memory': base 0x00000000, size 1 MiB
-> ...
-> [    0.000000] Zone ranges:
-> [    0.000000]   Normal   [mem 0x0000000000000000-0x000000001fffffff]
-> [    0.000000] Movable zone start for each node
-> [    0.000000] Early memory node ranges
-> [    0.000000]   node   0: [mem 0x0000000000000000-0x000000001fffffff]
-> [    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x000000001fffffff]
->
-> ~ # cat /proc/meminfo
-> MemTotal:         516056 kB
-> MemFree:          493928 kB
-> MemAvailable:     490572 kB
->
->
->
-> 3. DT:
->         memory {
->                 reg = <0x00300000 0x1FD00000>; /* 512 - 3 MB */
->         };
-> no modify @ arch/arm/Makefile
->
-> bootlog & meminfo :
-> [    0.000000] Zone ranges:
-> [    0.000000]   Normal   [mem 0x0000000000400000-0x000000001fffffff]
-> [    0.000000] Movable zone start for each node
-> [    0.000000] Early memory node ranges
-> [    0.000000]   node   0: [mem 0x0000000000400000-0x000000001fffffff]
-> [    0.000000] Initmem setup node 0 [mem 0x0000000000400000-0x000000001fffffff]
->
-> ~ # cat /proc/meminfo
-> MemTotal:         511964 kB
-> MemFree:          489636 kB
-> MemAvailable:     486292 kB
->
->
->
-> I think method 1 should be correct (compare method 2) & better (compare method 3).
->
+>          M.
+> --
+> Jazz is not dead. It just smells funny...
