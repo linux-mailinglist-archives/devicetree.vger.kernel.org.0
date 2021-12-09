@@ -2,136 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78B8E46E6CC
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 11:36:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5775146E6D3
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 11:40:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235108AbhLIKjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 05:39:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35810 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235261AbhLIKjd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 05:39:33 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07566C061A32;
-        Thu,  9 Dec 2021 02:36:00 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 5339FCE257D;
-        Thu,  9 Dec 2021 10:35:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A65DCC341EE;
-        Thu,  9 Dec 2021 10:35:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639046156;
-        bh=hy/ZuyOjHqnswqkjaBTlL9ZQIsvxOkLLm4CahiCjlDw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=HAtKet/4EAFoliscCEWAzPWkzKC2MrcpLwLTkehMH/rSGZas98JM0HZ+HeW2MPzrx
-         6+3MgXeTSJ/5R63HunsfVr9jP0N9fk4RwTDfIkJ5PEGHiXGiVhg+TepupFD0gXj0i5
-         697YUZk7xgziYwbj6hthmKLRNvFq7hykquUXspXPE8tuB1OtIZHegy7ySyWWU3EKtL
-         XNCOOSUTJIFElmgHu/U8NZUi8gnreL38PABM72VREK9F30daJU3pxsPBJUAgyA/DWv
-         U4tIQKegHk7gbT41/R08twf+ZbjfVTcQFK8/Yy2EOa6U3zcSrLKhNPVswhnM8iNgIn
-         RbrD+KnDzvWmw==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH v2 13/13] arm64: dts: qcom: sm8450: add i2c13 and i2c14 device nodes
-Date:   Thu,  9 Dec 2021 16:05:05 +0530
-Message-Id: <20211209103505.197453-14-vkoul@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211209103505.197453-1-vkoul@kernel.org>
-References: <20211209103505.197453-1-vkoul@kernel.org>
+        id S232591AbhLIKoQ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Dec 2021 05:44:16 -0500
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:33219 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229451AbhLIKoP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 05:44:15 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 9BB56240010;
+        Thu,  9 Dec 2021 10:40:39 +0000 (UTC)
+Date:   Thu, 9 Dec 2021 11:40:38 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Roger Quadros <rogerq@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mtd: ti,gpmc-nand: Add missing 'rb-gpios'
+Message-ID: <20211209114038.710139a8@xps13>
+In-Reply-To: <bebef734-d0d3-e78e-e07a-9160ead1f673@kernel.org>
+References: <20211206174209.2297565-1-robh@kernel.org>
+        <20211209104224.41d42cca@xps13>
+        <bebef734-d0d3-e78e-e07a-9160ead1f673@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Hi Roger,
 
-Add device tree nodes for two i2c blocks: i2c13 and i2c14.
+rogerq@kernel.org wrote on Thu, 9 Dec 2021 12:08:07 +0200:
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 52 ++++++++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
+> Hi Miquel,
+> 
+> On 09/12/2021 11:42, Miquel Raynal wrote:
+> > Hi Rob,
+> > 
+> > robh@kernel.org wrote on Mon,  6 Dec 2021 11:42:09 -0600:
+> >   
+> >> With 'unevaluatedProperties' support implemented, the TI GPMC example
+> >> has a warning:
+> >>
+> >> Documentation/devicetree/bindings/memory-controllers/ti,gpmc.example.dt.yaml: nand@0,0: Unevaluated properties are not allowed ('rb-gpios' was unexpected)
+> >>
+> >> Add the missing definition for 'rb-gpios'.  
+> > 
+> > rb-gpios is already defined in nand-controller.yaml. I seems like the
+> > real problem is that this file does not refer to it. Can you update the
+> > fix?  
+> 
+> I don't think we can refer to nand-controller.yaml right now as we are not
+> fully compatible with it yet. Please see examples below.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 94bc8b352547..c214ab89b44c 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -583,6 +583,44 @@ uart7: serial@99c000 {
- 			};
- 		};
- 
-+		qupv3_id_1: geniqup@ac0000 {
-+			compatible = "qcom,geni-se-qup";
-+			reg = <0x0 0x00ac0000 0x0 0x6000>;
-+			clock-names = "m-ahb", "s-ahb";
-+			clocks = <&gcc GCC_QUPV3_WRAP_1_M_AHB_CLK>,
-+				 <&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+			status = "disabled";
-+
-+			i2c13: i2c@a94000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0 0x00a94000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_i2c13_data_clk>;
-+				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
-+			i2c14: i2c@a98000 {
-+				compatible = "qcom,geni-i2c";
-+				reg = <0 0x00a98000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S6_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_i2c14_data_clk>;
-+				interrupts = <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+		};
-+
- 		config_noc: interconnect@1500000 {
- 			compatible = "qcom,sm8450-config-noc";
- 			reg = <0 0x01500000 0 0x1c000>;
-@@ -683,6 +721,20 @@ tlmm: pinctrl@f100000 {
- 			gpio-ranges = <&tlmm 0 0 211>;
- 			wakeup-parent = <&pdc>;
- 
-+			qup_i2c13_data_clk: qup-i2c13-data-clk {
-+				pins = "gpio48", "gpio49";
-+				function = "qup13";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
-+			qup_i2c14_data_clk: qup-i2c14-data-clk {
-+				pins = "gpio52", "gpio53";
-+				function = "qup14";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
- 			qup_uart7_rx: qup-uart7-rx {
- 				pins = "gpio26";
- 				function = "qup7";
--- 
-2.31.1
+This is a *very* wrong way of defining a NAND setup. I will take the
+patch to silence the warning, but please convert this representation to
+the 'new' one. I believe on the driver side it should not be too
+complicated to support having a few of these properties moved to a NAND
+chip subnode and still support the below binding. Just be very clear
+that if the legacy bindings are used, only a single chip is supported.
 
+> ti,gpmc-nand example:
+> 
+>       nand@0,0 {
+>         compatible = "ti,omap2-nand";
+>         reg = <0 0 4>;          /* device IO registers */
+>         interrupt-parent = <&gpmc>;
+>         interrupts = <0 IRQ_TYPE_NONE>, /* fifoevent */
+>                      <1 IRQ_TYPE_NONE>; /* termcount */
+>         ti,nand-xfer-type = "prefetch-dma";
+>         ti,nand-ecc-opt = "bch16";
+>         ti,elm-id = <&elm>;
+>         #address-cells = <1>;
+>         #size-cells = <1>;
+> 
+>         /* NAND generic properties */
+>         nand-bus-width = <8>;
+>         rb-gpios = <&gpmc 0 GPIO_ACTIVE_HIGH>;  /* gpmc_wait0 */
+> 
+>         /* GPMC properties*/
+>         gpmc,device-width = <1>;
+> 
+>         partition@0 {
+>           label = "NAND.SPL";
+>           reg = <0x00000000 0x00040000>;
+>         };
+>         partition@1 {
+>           label = "NAND.SPL.backup1";
+>           reg = <0x00040000 0x00040000>;
+>         };
+>       };
+> 
+> 
+> nand-controller example:
+> 
+>     nand-controller {
+>       #address-cells = <1>;
+>       #size-cells = <0>;
+>       cs-gpios = <0>, <&gpioA 1>; /* A single native CS is available */
+> 
+>       /* controller specific properties */
+> 
+>       nand@0 {
+>         reg = <0>; /* Native CS */
+>         nand-use-soft-ecc-engine;
+>         nand-ecc-algo = "bch";
+> 
+>         /* controller specific properties */
+>       };
+> 
+>       nand@1 {
+>         reg = <1>; /* GPIO CS */
+>       };
+>     };
+> 
+> 
+> > 
+> > While at it you might also want to drop the rb-gpios property from
+> > ingenic,nand.yaml, which also defines it a second time.
+> >   
+> >> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+> >> Cc: Richard Weinberger <richard@nod.at>
+> >> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> >> Cc: Tony Lindgren <tony@atomide.com>
+> >> Cc: Roger Quadros <rogerq@kernel.org>
+> >> Cc: linux-mtd@lists.infradead.org
+> >> Signed-off-by: Rob Herring <robh@kernel.org>
+> >> ---
+> >>  Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml | 5 +++++
+> >>  1 file changed, 5 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml b/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
+> >> index beb26b9bcfb2..1c280f52baa0 100644
+> >> --- a/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
+> >> +++ b/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
+> >> @@ -53,6 +53,11 @@ properties:
+> >>      enum: [8, 16]
+> >>      default: 8
+> >>  
+> >> +  rb-gpios:
+> >> +    description:
+> >> +      GPIO connection to R/B signal from NAND chip
+> >> +    maxItems: 1
+> >> +
+> >>  patternProperties:
+> >>    "@[0-9a-f]+$":
+> >>      $ref: "/schemas/mtd/partitions/partition.yaml"  
+> > 
+> > Thanks,
+> > Miquèl
+> >   
+> 
+> cheers,
+> -roger
+> 
+
+Thanks,
+Miquèl
