@@ -2,88 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E80646ED23
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 17:35:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 922DC46ED27
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 17:36:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235555AbhLIQij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 11:38:39 -0500
-Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:44637 "EHLO
-        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233322AbhLIQij (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 11:38:39 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 7D4FD3201E5F;
-        Thu,  9 Dec 2021 11:35:04 -0500 (EST)
-Received: from imap47 ([10.202.2.97])
-  by compute3.internal (MEProxy); Thu, 09 Dec 2021 11:35:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type; s=fm3; bh=/e88EbDdXsuP52MMub+jSVQ7BFtV
-        yh6OPrdW20e5hGY=; b=TVZvqq3u6iz/ZaRSOwU6x+1owKQNRCTZH3yOocrG+EOd
-        z5NR2onPA2Yq2G72BVrlDFXr0FeepmEcA71DFXNrXIkKabK50VAweEx6/oQAVauG
-        EEx82SDYsRqoWQZilc9+HuHbtFboyO7ywoz+hPkT2OL6f8IpYUaNAyXgUa6eYefD
-        nRO7w+RyfeDuvlHLM6+WVgiNbfdeiWqFHiQ9pIzh7/nmLpkm4/QXXy4l2ysZE8Od
-        hESuXnGieJ0z7BWB+G+TscV6OrIek/HdJvDG06vaG/E7H+/hGWgiZ8UnYXIProC3
-        qgsFP6Vtjp6JtMT1F9GzHj6UlpbK5e4BOb+PV0dSNg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=/e88Eb
-        DdXsuP52MMub+jSVQ7BFtVyh6OPrdW20e5hGY=; b=S2ehSz91dwQ7M6SHUEIgBJ
-        tu6UEcBUssIRIpU82dgzPYx9Q80YoLL0QfP9jBZrpagu8f3riuiQ6Eps/vhGLrG3
-        jL9RheNmqfB3/kZdAro8OVSEpyn7h6SLLztI6KZxmdC94h1WKkQWtbBeAOW7uj11
-        EES1RCo3gfDeuBy8xlegi05T/OCYn7nPpEv+HHzOYiydxrZdNVH4X5j2oOcZGwDk
-        fkaJBUjrQKq0FGkF7t8fqx6qFKQxCxztKVRRhQjXIXPRokHq9GodKSBvBNhzpreZ
-        v7Y1xTK2ru2j3EqsEm9xIsvhZ5aou7XZz2eMldHsX35YFytNvdXB3+m6AkY1JIDw
-        ==
-X-ME-Sender: <xms:NzCyYeJPdyEVqlVIRfkmieNsB7eJ9PfAOG7L4QwQyFzl92Wu_OHsEw>
-    <xme:NzCyYWIr4FkctHszNZlzGtOFYoiD1eNK4rHxu6VvNXg37e-icdXTjJoAU55QzQQZM
-    YJYuonbyq24zoLPBos>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrkedtgdelfecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhvvghn
-    ucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrth
-    htvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudehvdef
-    keffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsh
-    hvvghnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:NzCyYevcJJ1gdsCRtbyTeMIiR3adWIHvp4FqF8Qe7RTIG0Gv7ZgL4Q>
-    <xmx:NzCyYTaetL68F-j1sZ5bWCZ4A6N1RN1pIQPJ3ri26hYUUOGnz0ZD6A>
-    <xmx:NzCyYValF2NEm1Rg91K6s1bNfwaAL4aWpWy_Me34Wqm1W4IXZxOfhQ>
-    <xmx:NzCyYYyZhaag6RzuShXHmu6qAlZoHMUHDBeJeTufgQYvNEh29H7JGw>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 4EEAE274050D; Thu,  9 Dec 2021 11:35:03 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-4506-g4374de3f18-fm-20211208.001-g4374de3f
-Mime-Version: 1.0
-Message-Id: <338871e4-f856-44dc-9721-8cfd2f2382c2@www.fastmail.com>
-In-Reply-To: <20211209051001.70235-3-marcan@marcan.st>
-References: <20211209051001.70235-1-marcan@marcan.st>
- <20211209051001.70235-3-marcan@marcan.st>
-Date:   Thu, 09 Dec 2021 17:34:43 +0100
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Hector Martin" <marcan@marcan.st>,
-        "Rob Herring" <robh+dt@kernel.org>
-Cc:     "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Mark Kettenis" <kettenis@openbsd.org>,
-        "Marc Zyngier" <maz@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: i2c: apple,i2c: Add apple,t6000-i2c compatible
-Content-Type: text/plain
+        id S233280AbhLIQjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 11:39:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36112 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233948AbhLIQjl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 11:39:41 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E4ECC0617A2;
+        Thu,  9 Dec 2021 08:36:08 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id g191-20020a1c9dc8000000b0032fbf912885so4537232wme.4;
+        Thu, 09 Dec 2021 08:36:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iI3azBWTRCFEeeRKyJXboLUDLxUqU0ShZoPCiSe0QHI=;
+        b=IvslFsKP2cSAAyw81pK4hpkGOzTdSo/ctRvboBfXswKfysT5fU5LhL/9bRxSPuRWgL
+         iBZHmyOuf9rQ3ILzAxwW6IBHw5NxZDxhUcTtbubGfDs+NS9kEWGeBug16SAcrC+ihzbP
+         Y3NV2KEG6CbS3lZBJtG6eSob23mqkyF0FaClUFW8/vr9tbAJgmVFGqD9wjFdu9Wl+yIA
+         3hDivw4Ft7xhzx9V2B2OYa9GYDE6KxbUjOC4Y6qvBD6wE6wigFf+MoZHwU0x06SElhur
+         aGAHOZGlfXkirYozfV96mJpJ8ROZP5bUeGazugVqBgrCOBWWtYSbV9Q8+3+bnxK/uSY0
+         mVNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iI3azBWTRCFEeeRKyJXboLUDLxUqU0ShZoPCiSe0QHI=;
+        b=vw5+cfzTThSfLG5kkCNDO/7LYnfXA9o0YqumdUq7dznb8QgLHt/0NPT8AMb1+pKsIg
+         urcWsFiGRFFoMGgXIj82+2GzhkGzxmxRpYtOXbflxQh63zYRcNRtboBoj/RgBEBROojw
+         Ph31DPriMJeuS7yJXEcy4Jy8z5Rr+Bnf/kcACULivkpCT2G0kwhhy0pdlO55cXgqMjyK
+         BLubMOmFSP4JI1jNWL2aXo4Zz5ON2+Vp+Hah9mUnU1sHGRffXGnB93tCJyaDzuRrrqOs
+         4Qy7auenm0y/MauG9zMblyvTDQkBzSNY0eff6A7zAD3ehYp4fGREVcZzHl+dekWyeN3m
+         ftwA==
+X-Gm-Message-State: AOAM532Tn1wHVaI7HeIrpShHF6Nb+7kViNAD7XJ4zl7qykvpBn39+prS
+        FMNFPozushQcwY6sFy4jlbE=
+X-Google-Smtp-Source: ABdhPJy/sovjJ1DaI6y5oVUNi8kEueGlCXRc+ly7iHh3Okas8Ii3nmU4WWUlC+CLCxJuYru8/SPnpw==
+X-Received: by 2002:a1c:1c1:: with SMTP id 184mr8636459wmb.1.1639067766782;
+        Thu, 09 Dec 2021 08:36:06 -0800 (PST)
+Received: from localhost ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id r62sm284530wmr.35.2021.12.09.08.36.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Dec 2021 08:36:06 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 1/4] dt-bindings: arm-smmu: Document nvidia,memory-controller property
+Date:   Thu,  9 Dec 2021 17:35:57 +0100
+Message-Id: <20211209163600.609613-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Thierry Reding <treding@nvidia.com>
 
+On NVIDIA SoC's the ARM SMMU needs to interact with the memory
+controller in order to map memory clients to the corresponding stream
+IDs. Document how the nvidia,memory-controller property can be used to
+achieve this.
 
-On Thu, Dec 9, 2021, at 06:09, Hector Martin wrote:
-> This block is compatible with t8103, so just add the new per-SoC
-> compatible under apple,i2c.
->
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  Documentation/devicetree/bindings/i2c/apple,i2c.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+Note that this is a backwards-incompatible change that is, however,
+necessary to ensure correctness. Without the new property, most of the
+devices would still work but it is not guaranteed that all will.
 
-Reviewed-by: Sven Peter <sven@svenpeter.dev>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+Changes in v2:
+- clarify why the new nvidia,memory-controller property is required
+
+ .../devicetree/bindings/iommu/arm,smmu.yaml     | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+index f66a3effba73..e239157eb30c 100644
+--- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
++++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+@@ -155,6 +155,17 @@ properties:
+   power-domains:
+     maxItems: 1
+ 
++  nvidia,memory-controller:
++    description: |
++      A phandle to the memory controller on NVIDIA Tegra186 and later SoCs.
++      The memory controller needs to be programmed with a mapping of memory
++      client IDs to ARM SMMU stream IDs.
++
++      If this property is absent, the mapping programmed by early firmware
++      will be used and it is not guaranteed that IOMMU translations will be
++      enabled for any given device.
++    $ref: /schemas/types.yaml#/definitions/phandle
++
+ required:
+   - compatible
+   - reg
+@@ -177,6 +188,12 @@ allOf:
+         reg:
+           minItems: 1
+           maxItems: 2
++
++      # The reference to the memory controller is required to ensure that the
++      # memory client to stream ID mapping can be done synchronously with the
++      # IOMMU attachment.
++      required:
++        - nvidia,memory-controller
+     else:
+       properties:
+         reg:
+-- 
+2.34.1
+
