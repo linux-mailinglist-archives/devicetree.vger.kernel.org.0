@@ -2,89 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13E0E46F145
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:11:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D2ED46F14A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:11:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242608AbhLIRO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 12:14:28 -0500
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:44562 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242644AbhLIROS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 12:14:18 -0500
-Received: by mail-oi1-f170.google.com with SMTP id be32so9509875oib.11;
-        Thu, 09 Dec 2021 09:10:44 -0800 (PST)
+        id S242649AbhLIROe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 12:14:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45530 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239053AbhLIROa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 12:14:30 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C73C0617A1;
+        Thu,  9 Dec 2021 09:10:56 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id i12so4757503wmq.4;
+        Thu, 09 Dec 2021 09:10:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Eey3ZpemVIQey3aUEzHauqKMAedPhaSMvKYTLO4vJR4=;
+        b=Qr3xahMG7jgbSv1CijjihRMn2tiI3uX2hR/Gkaf/95cs09uLEwDwKhlBxwc6pVw1vh
+         4CRnzMxg878ulkS/uKwKFyds2J0OIOmS45QKqBFNhii84FJO5Fpx/ZhV+/G0a5RBpukV
+         pKeQD5arDVdJaCNyZ1LegrU9/sxVSzi1B2R1sLN+yDSlEiCHt+RsmFah+W9J2utelPj3
+         d3SrFVfAR4moqxHbJNlwGIve7w/XnP6/ELecyY5YS7wKd38IV+KCvGPZJgPjOJH5Ar6L
+         Tz4+FmbMFpajSuO9eCUcMpsCfb+rL/u/WquNC7DRyB2leWQRL6kv8l68Cj3HQsjuECZV
+         OHDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=MmKmadbDU+t3SApKL7eCSJuoBOShdi6C4ig+UXVsOhY=;
-        b=nQDkHzMHMlX/++CmRBEw9CjBI0EaITgT7B0BdpD90REfzcNzbV2dr+h4cf6LWgPz86
-         uBKKL+IF/zn13Ua7OYKOnHRY7dgUymM286/Geng5li6mRSibE0OG4/FmrRDZnRoJQauB
-         zMxhi7fuN4QVq8tba1FuZQD2MrDZkC/Wfj4RE5fdIV2i+MF2CFkCRCboTjbhZRdEEpUr
-         3+ZuPIkFOZm8GUcCnlqGqlREglKuP5zU4BT+e6fQNshMWAo3wOaW5ZiVByQfp21ZLeaX
-         wht8bgK4Ashy46a1KEHuasX/bVqhP0EKnHLxwAYHzxaSWCBrppPSRgt0GvQPeTANJukE
-         nr2Q==
-X-Gm-Message-State: AOAM531ezArIS2if4jsEE2P4T95R1zX6celUhzYyPTrdlu1bKsKZExi5
-        357SyLBh5Ubf5EVZOa4taw==
-X-Google-Smtp-Source: ABdhPJzMAA3qYw58cb2DgCapo43JOGd4Pt6H+SOH2dZxKpX5098kYRqh67QJ6qu4GgGT7/+dbR8UvQ==
-X-Received: by 2002:a05:6808:171c:: with SMTP id bc28mr7092157oib.102.1639069844436;
-        Thu, 09 Dec 2021 09:10:44 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w19sm84120oih.44.2021.12.09.09.10.43
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Eey3ZpemVIQey3aUEzHauqKMAedPhaSMvKYTLO4vJR4=;
+        b=I8R7OeACJxezrmy38mq5p/drxF/coaOCno2YMqNGb0/N7wknstZ0v3/HUZbVUwHvuB
+         Zv+Sdu3huCQyi7gPsr5BtEZLvdh634ix9AutrFbADZsym5ylptJnOhBxDgNleBUJcDSN
+         heMijvHzh9s4nCpD9bM1Cmw+cUK1pbjQZK+QTkndPUOW2jpL/RZeux6/BTP2KylaweYQ
+         hoImmaQGdPw0baqwj/wD/OxQHo5T0HH7QcDz7Mvr4TnXs+xWdQPlu/tl5zbQ9Lzpegrb
+         ZYyz2I3P9AtbmuU6S0TVrzaRQdaHqxcJL/usKdmPmimIFjWb30ULmffQQarh1v7acNoy
+         68HQ==
+X-Gm-Message-State: AOAM532wDGAvdWYm7pedd31txIQxH9fVJDuFNkZVQDnzWN2Q9JTll6ho
+        HE1sLAJ8MkocWnhu4SoYRMQ=
+X-Google-Smtp-Source: ABdhPJxHfxQx2i1K4jKrLcQ+S1rdfCLHuZD0YQJBWS/cYW5VUOZTrDT446KMNTbFtpsPPGA6oOJLBA==
+X-Received: by 2002:a05:600c:1d01:: with SMTP id l1mr9141930wms.44.1639069854820;
+        Thu, 09 Dec 2021 09:10:54 -0800 (PST)
+Received: from orome ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id z8sm275504wrh.54.2021.12.09.09.10.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Dec 2021 09:10:43 -0800 (PST)
-Received: (nullmailer pid 3089521 invoked by uid 1000);
-        Thu, 09 Dec 2021 17:10:42 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     JosephCHANG <josright123@gmail.com>
-Cc:     joseph_chang@davicom.com.tw,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-In-Reply-To: <20211209100702.5609-2-josright123@gmail.com>
-References: <20211209100702.5609-1-josright123@gmail.com> <20211209100702.5609-2-josright123@gmail.com>
-Subject: Re: [PATCH v2, 1/2] yaml: Add dm9051 SPI network yaml file
-Date:   Thu, 09 Dec 2021 11:10:42 -0600
-Message-Id: <1639069842.726112.3089520.nullmailer@robh.at.kernel.org>
+        Thu, 09 Dec 2021 09:10:53 -0800 (PST)
+Date:   Thu, 9 Dec 2021 18:10:50 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Akhil R <akhilrajeev@nvidia.com>
+Cc:     dan.j.williams@intel.com, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org, jonathanh@nvidia.com,
+        kyarlagadda@nvidia.com, ldewangan@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        p.zabel@pengutronix.de, rgumasta@nvidia.com, robh+dt@kernel.org,
+        vkoul@kernel.org, Pavan Kunapuli <pkunapuli@nvidia.com>
+Subject: Re: [PATCH v14 2/4] dmaengine: tegra: Add tegra gpcdma driver
+Message-ID: <YbI4mtV3npK87c26@orome>
+References: <1638795639-3681-1-git-send-email-akhilrajeev@nvidia.com>
+ <1638795639-3681-3-git-send-email-akhilrajeev@nvidia.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="7mqnZnHDnajOmsOv"
+Content-Disposition: inline
+In-Reply-To: <1638795639-3681-3-git-send-email-akhilrajeev@nvidia.com>
+User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 09 Dec 2021 18:07:01 +0800, JosephCHANG wrote:
-> For support davicom dm9051 device tree config
-> 
-> Signed-off-by: JosephCHANG <josright123@gmail.com>
+
+--7mqnZnHDnajOmsOv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Dec 06, 2021 at 06:30:37PM +0530, Akhil R wrote:
+> Adding GPC DMA controller driver for Tegra186 and Tegra194. The driver
+> supports dma transfers between memory to memory, IO peripheral to memory
+> and memory to IO peripheral.
+>=20
+> Signed-off-by: Pavan Kunapuli <pkunapuli@nvidia.com>
+> Signed-off-by: Rajesh Gumasta <rgumasta@nvidia.com>
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
->  .../bindings/net/davicom,dm9051.yaml          | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/davicom,dm9051.yaml
-> 
+>  drivers/dma/Kconfig            |   12 +
+>  drivers/dma/Makefile           |    1 +
+>  drivers/dma/tegra186-gpc-dma.c | 1284 ++++++++++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 1297 insertions(+)
+>  create mode 100644 drivers/dma/tegra186-gpc-dma.c
+>=20
+> diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+> index 80c2c03..35095ae 100644
+> --- a/drivers/dma/Kconfig
+> +++ b/drivers/dma/Kconfig
+> @@ -629,6 +629,18 @@ config TXX9_DMAC
+>  	  Support the TXx9 SoC internal DMA controller.  This can be
+>  	  integrated in chips such as the Toshiba TX4927/38/39.
+> =20
+> +config TEGRA186_GPC_DMA
+> +	tristate "NVIDIA Tegra GPC DMA support"
+> +	depends on ARCH_TEGRA_186_SOC || ARCH_TEGRA_194_SOC || COMPILE_TEST
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I wonder if we want to maybe make this depend on ARCH_TEGRA instead to
+avoid having to add dependencies on newer SoCs (presumably Tegra234 will
+feature this GPC DMA as well).
 
-yamllint warnings/errors:
+Not worth a respin, but perhaps something to consider when adding
+Tegra234 support.
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/net/davicom,dm9051.example.dts:29.34-35 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/net/davicom,dm9051.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1413: dt_binding_check] Error 2
+Thierry
 
-doc reference errors (make refcheckdocs):
+--7mqnZnHDnajOmsOv
+Content-Type: application/pgp-signature; name="signature.asc"
 
-See https://patchwork.ozlabs.org/patch/1565710
+-----BEGIN PGP SIGNATURE-----
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGyOJoACgkQ3SOs138+
+s6FQLw//YQbWddZFUUepCv0b7YpjZTW7Vbd3JWuPDsETBN2QinnTKblQ/sAwEPcd
+Szvbiym/rYEjolSaVq0LMnE8N6Yt4UYGNpPpZYygbfzQGXZDMLwWkSv5u9SYGxbC
+89erpmqFUUEFmJWqtW9AnsiUCacYyOuLbNJHbjPQnP5ogpOu/AHCcD5iKn9guF+4
+cpYDuo6+8Ywwt4E5fa8WjgoKSoDWeGbGdhF8Ysac6b6ImI+6MFbZUJUDSxvfn9wa
+IVH5zl5eB01o0AD7DPtTRaKGKIIukylqg2UxYKROdMUWLP3L0YdgPF8ekNI8oz4J
+bcsSdYt0Sw2kcYzVVOqQrF3cFdYvf18XrO+UOUQA0r2B/hyopqsBKXQ9+5HOToj9
+ynQBSNcvj72AGc87pnjYmZPD63UO4kw1Zz7O77WVQClpIj/KKCFKRMLUSyk2QteI
+XHPiLLFBFkyueptQpeaAWXZCNbnE4b2BYk/DuMjfdyB7awww82GnMDD1Lj/pjguZ
+0JntM8RHgCSRSTx6rmEHnWrcmHvX0vmUseAVjTaK03rH5AqIRMmEJuaaypvseYqV
+pHHKnSs2obuHaQ0UVl95LFvjJaNhWISwdvteLhjvEOWqQd5zNClWHVA427MOwF74
+tGtvLslwUzPBjbtPps5ebvJwiURyfrAP9J+3ntTV83JEw3qgweU=
+=za4a
+-----END PGP SIGNATURE-----
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+--7mqnZnHDnajOmsOv--
