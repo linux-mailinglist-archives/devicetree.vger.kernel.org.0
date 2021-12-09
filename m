@@ -2,108 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF8F646F739
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 00:06:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB64146F759
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 00:24:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230053AbhLIXKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 18:10:20 -0500
-Received: from mga04.intel.com ([192.55.52.120]:25561 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229455AbhLIXKT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Dec 2021 18:10:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1639091206; x=1670627206;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CK0iXov/RfjLTe8Mtz7TqGBq7eDW3otA38apvaR9H5A=;
-  b=XrAisUd2Id1OAgJt9hzTKPpFJxQZGVbipwYF4jUbAG/g0zlz3IwZAaT/
-   E1B0r6L88YN/TEhyTbT12Otoq3zjrn+AA0fIkudDnI/36jRiqQYjQqQz2
-   4m2AB3q2fIOrd30Gvsv8DMS90l7u0G8LRl5zYxXwp138dPsYF0sQYj5Ga
-   fdO78UcZVg7shnnQ5EVVBAhobta6x5ny7hgqeKcdFwQsDoEoQVCVzoead
-   kTvDc0BbNSAfcNhUk8JGMj93q4qW61//+72PJqWwN70Z6Ce38T+8c6I9o
-   By8TQ7JJbZjQ49784H9jrryvRBW4Zq1c8GHXIcq3QxTp1AXrEecSDujQz
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="236961874"
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; 
-   d="scan'208";a="236961874"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Dec 2021 15:06:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,193,1635231600"; 
-   d="scan'208";a="463439409"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by orsmga006.jf.intel.com with ESMTP; 09 Dec 2021 15:06:42 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mvSUs-0002UF-6f; Thu, 09 Dec 2021 23:06:42 +0000
-Date:   Fri, 10 Dec 2021 07:06:36 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     kbuild-all@lists.01.org, linux-arm-msm@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 05/13] arm64: dts: qcom: Add base SM8450 QRD DTS
-Message-ID: <202112100623.XZwPiDOL-lkp@intel.com>
-References: <20211209103505.197453-6-vkoul@kernel.org>
+        id S234289AbhLIX1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 18:27:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48458 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229760AbhLIX1u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 18:27:50 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2A9CC0617A1
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 15:24:16 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso7879448otj.11
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 15:24:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=v9nxTGqrdRICpvkQsPbmnD13xDFxVdmSzzLDOAXPlv8=;
+        b=L1r3iWYZRcxcJR9rMapow8zqwR4ttCHdDzxTYrB8LYeqJUjgyRGC334CKzn5MWSYN2
+         zX1GIfsEegZAvdGIJm1EKSuT6Basev6QkhxLkunFHpICVEklSBvnCGTau9hz7g5T7RSl
+         2tiTDu3o9yR0N3cBTifD5621joJGOBfp0/zdhpgq6Dp+KWGFPXQOPR/7sj0duqK6jb34
+         1ChOrTCut2Jj/LMUHz2OH+3WSb8H49R2nkUR7DkRPSz+fjF05p/Y73WyM8qZj3YnFXDQ
+         TRgUckCyt0y77wuVvlWmNn81vckzQUZqEHX3MItqktIai8z9jJDXVV0VouB3MONX3yLh
+         RGMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=v9nxTGqrdRICpvkQsPbmnD13xDFxVdmSzzLDOAXPlv8=;
+        b=D2OF84WnVX0BHg14rlgKDf3oGrwzpTqmebEwetPzhtWyWzIblmAVCBvF0xrZvEvmpS
+         Kjc4/J39g6IBa2ejfww8+quEnMba+ZGmUFLnESoVkPDP3buDBW8gLaU/k1Ax8izIHXck
+         swy0PcUrmrruuiVjBVaYFjrMP9ONv2pj4YqONht4O4qnl0qYH9FxLntD/jGI0mNSBdxs
+         niQwHLFytUKjoRbbQPu1YoTYPoE7fgV8RNXd/4u3IRdj4i2SsJ68mPyYm73DFR1BNn1M
+         EqWeLN7ecahxGHoLETfD216n7kKcAEGhZ6kO5Kdx/KW+7BIW20mT74WNBRHYmPWDU4eC
+         tH5Q==
+X-Gm-Message-State: AOAM530IlsuUS1MhyaQ7dwAWUbtpnMsCy6EhW6R2r0w//y3gaukpv0O8
+        pvvmk+aBgO3EMBUpeDLPMzfBk/2HnnwGI1ojHLJ/u5a45E8=
+X-Google-Smtp-Source: ABdhPJxAH20nnPjijr1ZwDomiy0VitqEs+B+FZGyYxGmIhbVYIwjCcbC1mIFjUzABE/Y2y2c07Pdzu94bn24eLLhAmQ=
+X-Received: by 2002:a9d:ed6:: with SMTP id 80mr8386942otj.35.1639092256225;
+ Thu, 09 Dec 2021 15:24:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211209103505.197453-6-vkoul@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20211206092237.4105895-1-phil@raspberrypi.com> <20211206092237.4105895-2-phil@raspberrypi.com>
+In-Reply-To: <20211206092237.4105895-2-phil@raspberrypi.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 10 Dec 2021 00:24:05 +0100
+Message-ID: <CACRpkdZ95bCJVDo4tCXsMnsXax4+ZydoLS7AsM-yzMjXbONk=w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] pinctrl: bcm2835: Change init order for gpio hogs
+To:     Phil Elwell <phil@raspberrypi.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Thierry Reding <treding@nvidia.com>,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+On Mon, Dec 6, 2021 at 10:22 AM Phil Elwell <phil@raspberrypi.com> wrote:
 
-I love your patch! Yet something to improve:
+> ...and gpio-ranges
+>
+> pinctrl-bcm2835 is a combined pinctrl/gpio driver. Currently the gpio
+> side is registered first, but this breaks gpio hogs (which are
+> configured during gpiochip_add_data). Part of the hog initialisation
+> is a call to pinctrl_gpio_request, and since the pinctrl driver hasn't
+> yet been registered this results in an -EPROBE_DEFER from which it can
+> never recover.
+>
+> Change the initialisation sequence to register the pinctrl driver
+> first.
+>
+> This also solves a similar problem with the gpio-ranges property, which
+> is required in order for released pins to be returned to inputs.
+>
+> Fixes: 73345a18d464b ("pinctrl: bcm2835: Pass irqchip when adding gpiochip")
+> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on v5.16-rc4]
-[cannot apply to next-20211208]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+This patch (1/2) applied for fixes.
 
-url:    https://github.com/0day-ci/linux/commits/Vinod-Koul/arm64-dts-qcom-Add-support-for-SM8450-SoC-and-QRD-board/20211209-183713
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: arm64-randconfig-r032-20211207 (https://download.01.org/0day-ci/archive/20211210/202112100623.XZwPiDOL-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/636d2456715b3aba9cf1fa47931c6e381ca62e00
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Vinod-Koul/arm64-dts-qcom-Add-support-for-SM8450-SoC-and-QRD-board/20211209-183713
-        git checkout 636d2456715b3aba9cf1fa47931c6e381ca62e00
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   In file included from arch/arm64/boot/dts/qcom/sm8450-qrd.dts:8:
->> arch/arm64/boot/dts/qcom/sm8450.dtsi:7:10: fatal error: dt-bindings/clock/qcom,gcc-sm8450.h: No such file or directory
-       7 | #include <dt-bindings/clock/qcom,gcc-sm8450.h>
-         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
-
-
-vim +7 arch/arm64/boot/dts/qcom/sm8450.dtsi
-
-244741584ca1ceb Vinod Koul 2021-12-09  @7  #include <dt-bindings/clock/qcom,gcc-sm8450.h>
-244741584ca1ceb Vinod Koul 2021-12-09   8  #include <dt-bindings/clock/qcom,rpmh.h>
-244741584ca1ceb Vinod Koul 2021-12-09   9  #include <dt-bindings/gpio/gpio.h>
-244741584ca1ceb Vinod Koul 2021-12-09  10  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-244741584ca1ceb Vinod Koul 2021-12-09  11  
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Yours,
+Linus Walleij
