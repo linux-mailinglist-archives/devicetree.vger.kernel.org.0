@@ -2,74 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8365046E0A9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 03:02:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D5D046E0B2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 03:06:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229745AbhLICGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 21:06:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60204 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229583AbhLICGE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 21:06:04 -0500
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAEB6C061746
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 18:02:31 -0800 (PST)
-Received: by mail-oi1-x22a.google.com with SMTP id be32so6652238oib.11
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 18:02:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=i8K3bG06x/4Qcc20a3im8lkNmJGI7KGAZkSewlAH7Ic=;
-        b=hbEBZYfCJ7j5wm9xIF0hzQZiJGXk6e83kLO58LTAkWQqt6LBo5fjaRYwbB7B3df7FX
-         /deh+sF65RsILVht4N6YxfwYv75j7Cdx384iTgycWw6tej3js5HOQabpe8xLbHW+IhKR
-         2NOxZhfxxa6SBEqFGHyCdvxvJwx+Ov2hSQZt6ev08fR57PgOkE70hX7AKRro5UxWUgvb
-         vD6kb4S+CA+xFMLpI7bjKYTFyGEuvZrxqyLXmvv7oOSo76T1gUJ/tlHAhcIErd/yNqG+
-         cu0dgjOKOVsun0wP0C5Dn/EfWyl/mu7Hl7cXRnQQ9CG/ZIUk86BnKO4SHNaVn8Qlj+SG
-         S/oA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i8K3bG06x/4Qcc20a3im8lkNmJGI7KGAZkSewlAH7Ic=;
-        b=mvTlm+D4gvyRHYNARqPiEJJtFmZeKhpG8+HtDEKNS+Pxpy+mkLVXkaFsLEsjixLMK5
-         a08RWZIXnFxpFZth5BAEeEl5Jk2CN6o9eB7gMSsOXpHe+XnTA1Qv9B4BU7lR/l2qpNT8
-         SB7CN1T/f0dqS7+q6e7Yyo/XI1sU8CMhkO9AZjFWU+zD86DtOdW1gJ1Ea1yjAKsSGfTM
-         I/4a5ve35neOCTCCASNdnhb0euNRCFh6zLyuF3taXXxVV6F4XP8UWVHibko7rtjoBmUx
-         rHTeKa+sz8hyG7DZrw19jVNSxW3ExB5LUF3gc2ju/sjrS4I48eifbU9WCXsTKYm8fnjb
-         zBtQ==
-X-Gm-Message-State: AOAM530tyLXrxagSdyzUYFSUnskqmtoDhWwVE0pKSYgWj08QD7CrIZEa
-        b/ZTHyYcHahrQGgRRgfPEAVrurJ57taJeUX0Rx52ig==
-X-Google-Smtp-Source: ABdhPJzCzGNZwo5zhe/Xg4dWDfMmoCYErIh/bGdFKt4jw38rx+SAbxKy4CMNvHObhJWo2OyEZLQY/O0LIL+U1EGgjcs=
-X-Received: by 2002:a54:4791:: with SMTP id o17mr3263096oic.114.1639015351156;
- Wed, 08 Dec 2021 18:02:31 -0800 (PST)
+        id S229767AbhLICJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 21:09:59 -0500
+Received: from szxga02-in.huawei.com ([45.249.212.188]:16348 "EHLO
+        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229534AbhLICJ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 21:09:59 -0500
+Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.53])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4J8cnj5tNWz91gw;
+        Thu,  9 Dec 2021 10:05:45 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 9 Dec 2021 10:06:24 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 9 Dec 2021 10:06:23 +0800
+Subject: Re: [PATCH v16 08/11] x86, arm64: Add ARCH_WANT_RESERVE_CRASH_KERNEL
+ config
+To:     Catalin Marinas <catalin.marinas@arm.com>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>, Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+References: <20211123124646.1995-1-thunder.leizhen@huawei.com>
+ <20211123124646.1995-9-thunder.leizhen@huawei.com> <YbDmxIPdk7TKIKAU@arm.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <092fd3d7-240a-da47-f252-c3c570cb8389@huawei.com>
+Date:   Thu, 9 Dec 2021 10:06:23 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20211201072434.3968768-1-vkoul@kernel.org> <20211201072434.3968768-3-vkoul@kernel.org>
-In-Reply-To: <20211201072434.3968768-3-vkoul@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 9 Dec 2021 03:02:18 +0100
-Message-ID: <CACRpkdYLvEBMzkWgErXNM-NZ3HXrK=stL68Eu2wzaSi8yG8Bvw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] pinctrl: qcom: Add SM8450 pinctrl driver
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YbDmxIPdk7TKIKAU@arm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 1, 2021 at 8:24 AM Vinod Koul <vkoul@kernel.org> wrote:
 
-> This adds pincontrol driver for tlmm block found in SM8450 SoC
->
-> This patch is based on initial code downstream by
-> Elliot Berman <eberman@codeaurora.org>
->
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
 
-Patch applied!
+On 2021/12/9 1:09, Catalin Marinas wrote:
+> On Tue, Nov 23, 2021 at 08:46:43PM +0800, Zhen Lei wrote:
+>> diff --git a/arch/Kconfig b/arch/Kconfig
+>> index 26b8ed11639da46..19256aa924c3b2c 100644
+>> --- a/arch/Kconfig
+>> +++ b/arch/Kconfig
+>> @@ -24,6 +24,9 @@ config KEXEC_ELF
+>>  config HAVE_IMA_KEXEC
+>>  	bool
+>>  
+>> +config ARCH_WANT_RESERVE_CRASH_KERNEL
+>> +	bool
+>> +
+>>  config SET_FS
+>>  	bool
+>>  
+>> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+>> index c4207cf9bb17ffb..4b99efa36da3793 100644
+>> --- a/arch/arm64/Kconfig
+>> +++ b/arch/arm64/Kconfig
+>> @@ -95,6 +95,7 @@ config ARM64
+>>  	select ARCH_WANT_FRAME_POINTERS
+>>  	select ARCH_WANT_HUGE_PMD_SHARE if ARM64_4K_PAGES || (ARM64_16K_PAGES && !ARM64_VA_BITS_36)
+>>  	select ARCH_WANT_LD_ORPHAN_WARN
+>> +	select ARCH_WANT_RESERVE_CRASH_KERNEL if KEXEC_CORE
+>>  	select ARCH_WANTS_NO_INSTR
+>>  	select ARCH_HAS_UBSAN_SANITIZE_ALL
+>>  	select ARM_AMBA
+>> diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
+>> index 7399327d1eff79d..528034b4276ecf8 100644
+>> --- a/arch/x86/Kconfig
+>> +++ b/arch/x86/Kconfig
+>> @@ -12,6 +12,7 @@ config X86_32
+>>  	depends on !64BIT
+>>  	# Options that are inherently 32-bit kernel only:
+>>  	select ARCH_WANT_IPC_PARSE_VERSION
+>> +	select ARCH_WANT_RESERVE_CRASH_KERNEL if KEXEC_CORE
+>>  	select CLKSRC_I8253
+>>  	select CLONE_BACKWARDS
+>>  	select GENERIC_VDSO_32
+>> @@ -28,6 +29,7 @@ config X86_64
+>>  	select ARCH_HAS_GIGANTIC_PAGE
+>>  	select ARCH_SUPPORTS_INT128 if CC_HAS_INT128
+>>  	select ARCH_USE_CMPXCHG_LOCKREF
+>> +	select ARCH_WANT_RESERVE_CRASH_KERNEL if KEXEC_CORE
+>>  	select HAVE_ARCH_SOFT_DIRTY
+>>  	select MODULES_USE_ELF_RELA
+>>  	select NEED_DMA_MAP_STATE
+>> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
+>> index 4dc2643fcbccf99..b23cfc0ca8905fd 100644
+>> --- a/kernel/crash_core.c
+>> +++ b/kernel/crash_core.c
+>> @@ -321,9 +321,7 @@ int __init parse_crashkernel_low(char *cmdline,
+>>   * --------- Crashkernel reservation ------------------------------
+>>   */
+>>  
+>> -#ifdef CONFIG_KEXEC_CORE
+>> -
+>> -#if defined(CONFIG_X86) || defined(CONFIG_ARM64)
+>> +#ifdef CONFIG_ARCH_WANT_RESERVE_CRASH_KERNEL
+>>  static int __init reserve_crashkernel_low(void)
+>>  {
+>>  #ifdef CONFIG_64BIT
+>> @@ -451,8 +449,7 @@ void __init reserve_crashkernel(void)
+>>  	crashk_res.start = crash_base;
+>>  	crashk_res.end   = crash_base + crash_size - 1;
+>>  }
+>> -#endif
+>> -#endif /* CONFIG_KEXEC_CORE */
+>> +#endif /* CONFIG_ARCH_WANT_RESERVE_CRASH_KERNEL */
+> 
+> Nitpick mostly but it may simplify the patches if the x86, arch/Kconfig
+> and crash_core.c changes here could be moved to patch 5. The remaining
+> select for arm64 should be moved to patch 7 and drop the #if change in
+> that patch.
+> 
+> This way we can keep the x86 patches on a separate branch.
 
-Yours,
-Linus Walleij
+That's a good suggestion. I will do it.
+
+> 
+> Thanks.
+> 
