@@ -2,109 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9550B46E7A8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 12:35:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D222F46E7AB
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 12:36:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232989AbhLILic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 06:38:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49718 "EHLO
+        id S233120AbhLILjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 06:39:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236782AbhLILib (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 06:38:31 -0500
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5964FC0617A2;
-        Thu,  9 Dec 2021 03:34:58 -0800 (PST)
-Received: by mail-yb1-xb2f.google.com with SMTP id j2so12893089ybg.9;
-        Thu, 09 Dec 2021 03:34:58 -0800 (PST)
+        with ESMTP id S233082AbhLILjt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 06:39:49 -0500
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14245C061746;
+        Thu,  9 Dec 2021 03:36:16 -0800 (PST)
+Received: by mail-pj1-x1029.google.com with SMTP id iq11so4229361pjb.3;
+        Thu, 09 Dec 2021 03:36:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+Qzm7wYG9ZciI4zZVR/FeupzR+998EmmJYs04gZjZoA=;
-        b=CjvzscSz4UDWQXqAb2EwgOt+lcqBkKYW1sQMhhKk/xc4wCOECW3En24eLcHcDmS2Yv
-         U8KbHS8OWR3lWskB92QsZ1kwGmfBh5vEuCcXlO/1g4ilxsAaDFrTz7FBc9nQL6q6+B9m
-         cPFRDd5Dv1J/Zogu+hXt9Ci4iC46I/WXRapmJ///L6V971L6bSIrcR+SMfTWghv7kMQ7
-         PO2QMKNlb2pckomCNtDApJcy7KvLLQq5rcHQzU/jyBiEMh7PKNC4gl+Pb3zhg3aMUizz
-         eznyf418d/pOEFvsf637sOr9rnRJvxcyT9terPGlRK9EFsewbu12yI547zwW6IIEyUAE
-         tvaQ==
+        bh=YoYlDGHcE++hoSY6ZVFqrlcPmhHst+Nh5O9zF+9ID0A=;
+        b=C5MxMByG1d46tu0nP4WWc7YtP2g+HlCrS4Q58e0HMAzEc6XIYFQCXxurTsuODJrpQq
+         ug2eARypP4m0uXcjmATAas4wHQgoIkufhUAjVZ55mBd8CgGvuL+PtnNMbP0frz9HJaoK
+         8pR+8+qM3ogjftYU+wI5xxFRiTF+YKuVphNvh+YURzhRxmfXPuEjh3u9b3pJyOPmjkaz
+         GrjwfAPNTk31bVBPtLv1NFe3d/TfVmXKaAjj9NjBSVBjCtDZtfEnYVxkMKOshVCEZO13
+         25K7tpPYpGAwrYVQvF7SAy/y1fyq/hprMnVKTo/5AcV41Q+494Ko6wk7gVWqWz2s+kEx
+         xkww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+Qzm7wYG9ZciI4zZVR/FeupzR+998EmmJYs04gZjZoA=;
-        b=cm59UFDpiHyKU1NcOamEaoKQC1FS0bCx+yI/SLcsrIL5xGPcpf4VDAHrY5yzxq2JBd
-         2YCfuj9bOjPPOwJlqwTU2uvn5pv5SdayhzXEPiOtS9BodzkCwyTUe9e0MOlPEtERYok/
-         q8Gjn/M/I/K2c/UcrztMFCAxmBTrtvFEXeCQOC9lkbz90+Y1FZyO2pYYqadsYDyJKeah
-         Y5xlzkbjawMBF2LeVnuHX00+hMZ4R31VfaaNVj2yzYLHtQvc92oBQj+IGWn5PTx8dGM+
-         Avt2YVODrK20BfW4ZsD9P0kIHtw26io1NqEESfT+qGMZ7yYJTUZGdV9n1kICTCQhvqJV
-         wM9g==
-X-Gm-Message-State: AOAM532MGjjrwU9ZBfw3WCJ1wDnBszkBQDU4+c0E70VQ2sqhoRuNnUs8
-        kugkuASBzYHcgWKoQcz8x5PdJqreXRnwNjKnGE0=
-X-Google-Smtp-Source: ABdhPJxYGi4Nwb7BPYFDpZXxFLOTJ2Dp1KV+llUINC4s9jk+k/qQIwHYsWiQVwivyTumCfgyYN4XTEtES/E+I1HAr9o=
-X-Received: by 2002:a25:348b:: with SMTP id b133mr5360337yba.251.1639049697530;
- Thu, 09 Dec 2021 03:34:57 -0800 (PST)
+        bh=YoYlDGHcE++hoSY6ZVFqrlcPmhHst+Nh5O9zF+9ID0A=;
+        b=k+MvlK+U0AH4/LpeGJVu+IXIrPpZI0pfz5mIiSMItuJjRxLdS0Hnvr2admQgZbGotM
+         6y+ic4JEFPaGjA2TPxR6nyKB2Yj3RKhdtDCffAZs94VIcI/TinIi0LFHNJU2qS20Ar6W
+         oqw0mpx9KoSOxOQgjrGzpzn6egDmeNsFlF5WVI3+AHH1p+xZrExFgDBc0ZG7py7GFapZ
+         rjkb1JPCLb7lkKr+scYNeKxbdqslJkD08O05befje9k7iljGLJGgP0fabM1Whklt6ZmD
+         J4KYsuVID3/RO0qXRJqMwnnII3UdfkPrSPb/kbwBaTKS0swoMCA4SCkSOcGqIHAT1Dwu
+         nNhQ==
+X-Gm-Message-State: AOAM533NVipUGXcI3Hba8l6ZOFCPsgYmHF1Er7LSMdQ7nClmuzv67Lar
+        WP7ahEI3kgLZIbfKdI4YrGl1SS04XnpszlmefVI=
+X-Google-Smtp-Source: ABdhPJwq+r3dJUSaaBmgvKaAn7aOWjmT9Sb06BNDEIhYhf+ifwp0vF3TudHH330L4TiH4gY+XUGW8edZmE6uY8NN2qk=
+X-Received: by 2002:a17:90a:c287:: with SMTP id f7mr15170681pjt.114.1639049775292;
+ Thu, 09 Dec 2021 03:36:15 -0800 (PST)
 MIME-Version: 1.0
-References: <20211209001056.29774-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <d290850bf95f4bdf0c329f278db458c7@kernel.org> <CA+V-a8vUCXQa38NmYu9znakcq4A=Uedyn8w5+hXQ_WKf58oHRQ@mail.gmail.com>
- <875yry1316.wl-maz@kernel.org>
-In-Reply-To: <875yry1316.wl-maz@kernel.org>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Thu, 9 Dec 2021 11:34:31 +0000
-Message-ID: <CA+V-a8vNUhVBFNf-M6s1BmXbdCpdyJOx2g=t=QJf1jQzUA3xow@mail.gmail.com>
-Subject: Re: [RFC PATCH] of: platform: Skip mapping of interrupts in of_device_alloc()
-To:     Rob Herring <robh+dt@kernel.org>, Marc Zyngier <maz@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20211208225030.2018923-1-aford173@gmail.com> <20211208225030.2018923-5-aford173@gmail.com>
+ <YbHZvysazqYeZ8h3@eze-laptop>
+In-Reply-To: <YbHZvysazqYeZ8h3@eze-laptop>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Thu, 9 Dec 2021 05:36:04 -0600
+Message-ID: <CAHCN7xKrHSSsqS9DNL1tMH1Ctpz16FsSgcVbSHXzUWF98v738Q@mail.gmail.com>
+Subject: Re: [PATCH 04/10] dt-bindings: media: nxp,imx8mq-vpu: Support split
+ G1 and G2 nodes with vpu-blk-ctrl
+To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Cc:     linux-media <linux-media@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Chris Healy <cphealy@gmail.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob and Marc,
-
-On Thu, Dec 9, 2021 at 10:33 AM Marc Zyngier <maz@kernel.org> wrote:
+On Thu, Dec 9, 2021 at 4:26 AM Ezequiel Garcia
+<ezequiel@vanguardiasur.com.ar> wrote:
 >
-> On Thu, 09 Dec 2021 10:00:44 +0000,
-> "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> Hi,
+>
+> Thanks for the patch.
+>
+> On Wed, Dec 08, 2021 at 04:50:23PM -0600, Adam Ford wrote:
+> > The G1 and G2 are separate decoder blocks that are enabled by the
+> > vpu-blk-ctrl power-domain controller, which now has a proper driver.
+> > Update the bindings to support separate nodes for the G1 and G2
+> > decoders using the proper driver or the older unified node with
+> > the legacy controls.
 > >
-> > > The root of the issue is that all the resource allocation is done
-> > > upfront, way before we even have a driver that could potentially
-> > > deal with this device. This is a potential waste of resource, and
-> > > it triggers the issue you noticed.
-> > >
-> > > If you delay the resource allocation until there is an actual
-> > > match with a driver, you could have a per-driver flag telling you
-> > > whether the IRQ allocation should be performed before the probe()
-> > > function is called.
-> > >
-> > As suggested by Rob, if we switch the drivers to use
-> > platform_get_resource(pdev, IORESOURCE_IRQ, n) call with
-> > platform_get_irq() this code should go away and with this switch the
-> > resource allocation will happen demand. Is this approach OK?
+> > To be compatible with older DT the driver, mark certain items as
+> > deprecated and retain the backwards compatible example.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > ---
+> >  .../bindings/media/nxp,imx8mq-vpu.yaml        | 83 ++++++++++++++-----
+> >  1 file changed, 64 insertions(+), 19 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
+> > index 762be3f96ce9..eeb7bd6281f9 100644
+> > --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
+> > +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
+> > @@ -15,29 +15,39 @@ description:
+> >
+> >  properties:
+> >    compatible:
+> > -    const: nxp,imx8mq-vpu
+> > +    oneOf:
+> > +      - const: nxp,imx8mq-vpu
+> > +        deprecated: true
+> > +      - const: nxp,imx8mq-vpu-g1
+> > +      - const: nxp,imx8mq-vpu-g2
+> >
+> >    reg:
+> > +    minItems: 1
+> >      maxItems: 3
 >
-> If you get rid of of_irq_to_resource_table() altogether, then yes,
-> this has a fighting chance to work.
->
-Yes, switching to platform_get_irq() will eventually cause
-of_irq_to_resource_table() to go away.
+> Is it really useful to keep the deprecated binding nxp,imx8mq-vpu
+> as something supported by the binding file?
 
-On second thought, instead of touching all the drivers, if we update
-platform_get_resource/platform_get_resource_byname to internally call
-platform_get_irq() internally if it's a IORESOURCE_IRQ resource. Does
-that sound good or should I just get on changing all the drivers to
-use platform_get_irq() instead?
-
-Cheers,
-Prabhakar
-
->         M.
+Since I was told that the driver needed to be backwards compatible, i
+wanted to make sure that any attempts to build the old device tree
+would not fail
 >
+> In other words, can we drop the deprecated binding from this file,
+> while keeping the support in the driver for legacy device-trees?
+
+I was trying to represent both the old driver binding and the new one
+at the same time.  I thought that's what I was told to do.
 >
-> --
-> Without deviation from the norm, progress is not possible.
+> [..]
+> > +
+> > +  # VPU G1 with vpu-blk-ctrl
+> > +  - |
+> > +    #include <dt-bindings/clock/imx8mq-clock.h>
+> > +    #include <dt-bindings/power/imx8mq-power.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    vpu_g1: video-codec@38300000 {
+> > +        compatible = "nxp,imx8mq-vpu-g1";
+> > +        reg = <0x38300000 0x10000>;
+> > +        reg-names "g1";
+> > +        interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> > +        interrupt-names = "g1";
+> > +        clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>;
+> > +        clock-names = "g1";
+>
+> reg-names, interrupt-names and clock-names should be removed
+> given for this device there's only one of each.
+>
+
+I attempted to remove the reg-names, but it failed to enumerate for me
+when I did that.
+
+> This will make the binding actually quite easier, but it also
+> means you need to make some changes to struct hantro_variant imx8mq_vpu_g1_variant
+> to make it work properly.
+>
+> See Rob's feedback on the SAMA5 VPU binding:
+>
+> https://yhbt.net/lore/all/20210324151715.GA3070006@robh.at.kernel.org/
+>
+> Also, take a look at drivers/staging/media/hantro/sama5d4_vdec_hw.c
+> for reference.
+
+I can try again using this as an example.
+
+>
+> > +        power-domains = <&vpu_blk_ctrl IMX8MQ_VPUBLK_PD_G1>;
+> > +    };
+> > +
+> > +  # VPU G2 with vpu-blk-ctrl
+> > +  - |
+> > +    #include <dt-bindings/clock/imx8mq-clock.h>
+> > +    #include <dt-bindings/power/imx8mq-power.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    vpu_g2: video-codec@38310000 {
+> > +        compatible = "nxp,imx8mq-vpu-g2";
+> > +        reg = <0x38310000 0x10000>;
+> > +        reg-names "g2";
+>
+> And same here.
+>
+> Thanks!
+> Ezequiel
