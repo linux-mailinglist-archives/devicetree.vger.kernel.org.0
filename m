@@ -2,79 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADEE046E191
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 05:38:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B10D746E1A9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 05:46:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229873AbhLIElv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 23:41:51 -0500
-Received: from mail-vk1-f171.google.com ([209.85.221.171]:46957 "EHLO
-        mail-vk1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbhLIElu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 23:41:50 -0500
-Received: by mail-vk1-f171.google.com with SMTP id m16so2911082vkl.13;
-        Wed, 08 Dec 2021 20:38:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1BrJIivy5ULsFEw3z8mK7xap0WSge261MqOp/JZDTo8=;
-        b=A0wt1CMda7yMU5cxAC2VIA+LpjGjvpbvhbmVxlkg6F9kG6axwQP7ZFXUGihefp2wOt
-         s5L/QfOK2uCpMqrGW/nKLaaDmNl8+iUf7n6DxH04H3Ftm1rTGpYgsmVeUxA4WJt+NPdU
-         2y0QKNBvHLItg0b+uwMxcAIVhg4LAm2vbOCTjU6lVrP7u/BLU8rERqqaOMnKyUc381f4
-         VwAJcGUME4rqQ5rnIOFPMWrctpNzw6RTgL/wa2mNLE+AMCHZ7YITn1ozucbWBnA32pDq
-         Md9iN9necMmWa218DgwjBUz8Qo9GynJQMuhVPdEkYzdKwSdBYpAfohWYt6pXvrLqgSZn
-         YCpg==
-X-Gm-Message-State: AOAM533tb5VBW4+VAh3Nz22Rr6gAxYMGMbuM4iTRus7/tYyY4cypetFz
-        9+pp4jqTUAMGzg9z0roXkkWTwxTWQEKfg1XgkZY=
-X-Google-Smtp-Source: ABdhPJzSEdRFkQlrsU6LaBJXJV+aoGM05IKnp1wULRAtWmhxiPu+RBIET8ui3f40bJ3D15iquJlaXgHFN/RJYjnJ5Vw=
-X-Received: by 2002:a1f:c193:: with SMTP id r141mr5251257vkf.27.1639024696997;
- Wed, 08 Dec 2021 20:38:16 -0800 (PST)
+        id S229489AbhLIEtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 23:49:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39896 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229450AbhLIEtm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 23:49:42 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA938C061746
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 20:46:09 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: hector@marcansoft.com)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 2F72441E64;
+        Thu,  9 Dec 2021 04:46:05 +0000 (UTC)
+From:   Hector Martin <marcan@marcan.st>
+To:     Sven Peter <sven@svenpeter.dev>, Rob Herring <robh+dt@kernel.org>
+Cc:     Hector Martin <marcan@marcan.st>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/3] Apple PMGR fixup: Implement support for min-ps
+Date:   Thu,  9 Dec 2021 13:44:58 +0900
+Message-Id: <20211209044501.67028-1-marcan@marcan.st>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <104dcbfd22f95fc77de9fe15e8abd83869603ea5.1637927673.git.geert@linux-m68k.org>
- <YagEai+VPAnjAq4X@robh.at.kernel.org> <CAMuHMdW5Ng9225a6XK0VKd0kj=m8a1xr_oKeazQYxdpvn4Db=g@mail.gmail.com>
- <CAL_JsqJHkL_Asqd5WPc7rfqXkbz1dpYfR0zxp5erVCyLiHaJNQ@mail.gmail.com>
-In-Reply-To: <CAL_JsqJHkL_Asqd5WPc7rfqXkbz1dpYfR0zxp5erVCyLiHaJNQ@mail.gmail.com>
-From:   Harini Katakam <harinik@xilinx.com>
-Date:   Thu, 9 Dec 2021 10:08:06 +0530
-Message-ID: <CAFcVEC++u1DxG+DNa+rpAQZ-LXtyFApiK3wgjZPDdU27Xp0ccg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: net: cdns,macb: Convert to json-schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob, Geert,
+Hi folks,
 
-On Mon, Dec 6, 2021 at 6:32 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Dec 2, 2021 at 4:10 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> >
-> > Hi Rob,
-> >
-> > CC Michal
-> >
-<snip>
-> >
-> > It wasn't clear to me if this is still needed, or legacy. Michal?
->
-> They should update to the iommu binding instead of the legacy smmu
-> one. It's been around for years now.
+Just a brief add-on series to the PMGR submission, which adds support
+for configuring the minimum power state for auto-PM mode. This is
+apparently required to avoid breaking DCP (which isn't upstream yet).
 
-Yes, this is a legacy entry and not used anymore. We'll plan to update our
-devicetree.
+This applies on top of the previous PMGR submission [1]
 
-Regards,
-Harini
+[1] https://lore.kernel.org/linux-arm-kernel/20211124073419.181799-1-marcan@marcan.st/
+
+Hector Martin (3):
+  dt-bindings: power: apple,pmgr-pwrstate: Add apple,min-ps prop
+  soc: apple: apple-pmgr-pwrstate: Add auto-PM min level support
+  arm64: dts: apple: t8103: Add apple,min-ps to DCP PMGR nodes
+
+ .../devicetree/bindings/power/apple,pmgr-pwrstate.yaml    | 8 ++++++++
+ arch/arm64/boot/dts/apple/t8103-pmgr.dtsi                 | 2 ++
+ drivers/soc/apple/apple-pmgr-pwrstate.c                   | 8 ++++++++
+ 3 files changed, 18 insertions(+)
+
+-- 
+2.33.0
+
