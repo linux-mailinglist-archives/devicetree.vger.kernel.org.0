@@ -2,192 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1D0346E010
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 02:08:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBA8946E054
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 02:42:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238588AbhLIBMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 20:12:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47990 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234907AbhLIBMS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 20:12:18 -0500
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09EA6C061746;
-        Wed,  8 Dec 2021 17:08:46 -0800 (PST)
-Received: by mail-qv1-xf36.google.com with SMTP id u16so3834164qvk.4;
-        Wed, 08 Dec 2021 17:08:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bQfC/GjazGM6i3ob6YqlN4SlMkdDBtM8EjnGT/4dlHA=;
-        b=n5KQPA9KckKPDYCGROCtWZ7JDe9N0w1yHfaF4JKcmcQRoFQ9zmED72mSjErMvXSNBO
-         nlQmP/UxVlNwJhJkCfAfDeISKRdobvvBBdROq0aDOI1C7oWcFKC5lLW9NiiHaXYlEVrl
-         2qGeQxnsl5nujBvbXDyuLDnIzgpr+scmg6B13xVLqgNVwjLM+yZzUAdsN7mCyWJToPQs
-         12BL2tbmTFqnkN6F6JCgdFc71kmU8S92egLuvkrMqagdG0AEiQhlRfLD42rv7VRg/3UX
-         BAZL/7MrRwc7iMFGNUZ+kNmgA04Mgk7X3F1tR1lDqXvxmutFLNyd06FHvpPaoXJgWu7/
-         0y/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bQfC/GjazGM6i3ob6YqlN4SlMkdDBtM8EjnGT/4dlHA=;
-        b=qQIIqj4Ne7WdX3LEMChoWCNPPTnuvshJuzdLuLQx/dcLDr3UbrEUbdDq2Pz10gf60q
-         FIcA33IIO2bPuEPxJPUOG20oNJkLD0qHWR9CzVpE9XKFfxNMXKMIvjotJ/tJrIhJRtTp
-         pYGYS7NdsWuixUMVvrjV6RfGjWo+gLRau00Y/c8Eam9Bw2Vvc0iSkNU5cWOyjZoAwQFN
-         llh63THaIM1X7QcJ5ftWP3Y4LNYXeMOw2sHI2f/NW1vAmTxxFRLSk9plLGaJIQ2go5Nf
-         4zSaXvfgr3NFT2y0UX9Km7OLO2o0iktN0koTNBtAp3X1GLjWabJNFBUA88uy5UqepH/3
-         ZIOA==
-X-Gm-Message-State: AOAM532UFSjMsLAo/4Uv+n0de1eMbdZSq6s3ftyl4lWxCAr67tC9YVlX
-        8euGTzYEbJ4cx3opKeBPEW8lXESaZYruMw==
-X-Google-Smtp-Source: ABdhPJxJdFHNn8qL8IGdjSDFKRLcBH1y5qpJE6kmuOrHiZQ1byqi6q+7qQf6gL8D+Qhd6zFeI/rI3Q==
-X-Received: by 2002:a0c:ef03:: with SMTP id t3mr11648614qvr.32.1639012121554;
-        Wed, 08 Dec 2021 17:08:41 -0800 (PST)
-Received: from glsvmlin.ini.cmu.edu (GLSVMLIN.INI.CMU.EDU. [128.2.16.9])
-        by smtp.gmail.com with ESMTPSA id l2sm2682113qtk.41.2021.12.08.17.08.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Dec 2021 17:08:41 -0800 (PST)
-Date:   Wed, 8 Dec 2021 20:08:33 -0500
-From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, kgugala@antmicro.com,
-        mdudek@internships.antmicro.com, rdunlap@infradead.org,
-        paulus@ozlabs.org, joel@jms.id.au, geert@linux-m68k.org,
-        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
-        linux-mmc@vger.kernel.org, shorne@gmail.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krakoczy@antmicro.com, ulf.hansson@linaro.org,
-        mholenko@antmicro.com
-Subject: Re: [PATCH v3 2/3] dt-bindings: mmc: Add bindings for LiteSDCard
-Message-ID: <YbFXERe0K3rfzZem@glsvmlin.ini.cmu.edu>
-References: <20211208132042.3226275-1-gsomlo@gmail.com>
- <20211208132042.3226275-3-gsomlo@gmail.com>
- <1639004806.166681.596177.nullmailer@robh.at.kernel.org>
+        id S231534AbhLIBpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 20:45:47 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:54064 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229680AbhLIBpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 20:45:47 -0500
+X-UUID: b23cf152a0104789ba9f02164db44517-20211209
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=JEt3XG4GHhG9WFakPdTvxOX/lsmWXLVPAlDuPpzKZro=;
+        b=okq6CjmdpC/VGZ97YGqF9AStRZdzKofxz0leGxwBj+1pfGc/1T67zHe00GHDhNwQQ1fcQokayO6cdMUWbENJcebobO/G3KfH3Re9WNtoX46CWCjl62/XUtodVbu8G51MzWSF0iaGYQjDiK/htxnh0ajm55F446joIriJegqgOLk=;
+X-UUID: b23cf152a0104789ba9f02164db44517-20211209
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1554230953; Thu, 09 Dec 2021 09:42:11 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 9 Dec 2021 09:42:10 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 9 Dec 2021 09:42:09 +0800
+Message-ID: <5713fa6121effde79c19e0b4475d02389d72d2cc.camel@mediatek.com>
+Subject: Re: [PATCH net-next v7 5/6] stmmac: dwmac-mediatek: add support for
+ mt8195
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     Jakub Kicinski <kuba@kernel.org>
+CC:     <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>,
+        <angelogioacchino.delregno@collabora.com>, <dkirjanov@suse.de>
+Date:   Thu, 9 Dec 2021 09:42:08 +0800
+In-Reply-To: <20211208063820.264df62d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+References: <20211208054716.603-1-biao.huang@mediatek.com>
+         <20211208054716.603-6-biao.huang@mediatek.com>
+         <20211208063820.264df62d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1639004806.166681.596177.nullmailer@robh.at.kernel.org>
-X-Clacks-Overhead: GNU Terry Pratchett
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 08, 2021 at 05:06:46PM -0600, Rob Herring wrote:
-> On Wed, 08 Dec 2021 08:20:41 -0500, Gabriel Somlo wrote:
-> > LiteSDCard is a small footprint, configurable SDCard core for FPGA
-> > based system on chips.
-> > 
-> > Signed-off-by: Gabriel Somlo <gsomlo@gmail.com>
-> > Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> > ---
-> > 
-> > New in v3:
-> >   - picked up r/b Geert Uytterhoeven <geert@linux-m68k.org> in DT
-> >     bindings document (please let me know if that was premature, and
-> >     happy to take further review if needed :)
-> >   - add dedicated DT property for source clock frequency
-> > 
-> >  .../devicetree/bindings/mmc/litex,mmc.yaml    | 72 +++++++++++++++++++
-> >  1 file changed, 72 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mmc/litex,mmc.yaml
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.yaml: properties:reg-names:items: 'oneOf' conditional failed, one must be fixed:
-> 	[{'const': 'phy'}, {'const': 'core'}, {'const': 'reader'}, {'const': 'writer'}, {'const': 'irq (optional)'}] is not of type 'object'
-> 	'irq (optional)' does not match '^[a-zA-Z0-9,.\\-_ #+/]+$'
-> 	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.yaml: properties:reg: {'items': [{'description': 'PHY registers'}, {'description': 'CORE registers'}, {'description': 'DMA Reader buffer'}, {'description': 'DMA Writer buffer'}, {'description': 'IRQ registers (optional)'}], 'minItems': 4, 'maxItems': 5} should not be valid under {'required': ['maxItems']}
-> 	hint: "maxItems" is not needed with an "items" list
-> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.yaml: properties:reg-names: {'items': [{'const': 'phy'}, {'const': 'core'}, {'const': 'reader'}, {'const': 'writer'}, {'const': 'irq (optional)'}], 'minItems': 4, 'maxItems': 5} should not be valid under {'required': ['maxItems']}
-> 	hint: "maxItems" is not needed with an "items" list
-> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.yaml: ignoring, error in schema: properties: reg-names: items
-> warning: no schema found in file: ./Documentation/devicetree/bindings/mmc/litex,mmc.yaml
-> Documentation/devicetree/bindings/mmc/litex,mmc.example.dt.yaml:0:0: /example-0/mmc@12005000: failed to match any schema with compatible: ['litex,mmc']
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> 
-> See https://patchwork.ozlabs.org/patch/1565210
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+RGVhciBKYWt1YiwNCg0KQWxsIHRoZXNlIHdhcm5pbmcgbGluZXMgc2hhcmUgYSBzaW1pbGFyIHNl
+bWFudGljczoNCmRlbGF5X3ZhbCB8PSBGSUVMRF9QUkVQKHh4eCwgISF2YWwpOw0KDQphbmQsIHNo
+b3VsZCBjb21lIGZyb20gdGhlIGV4cGFuc2lvbiBvZiBGSUVMRF9QUkVQIGluDQppbmNsdWRlL2xp
+bnV4L2JpdGZpbGVkLmg6DQoNCiAgRklFTEQgX1BSRVAgLS0+IF9fQkZfRklMRURfQ0hFQ0sgLS0+
+ICJ+KChfbWFzaykgPj4gX19iZl9zaGYoX21hc2spKSAmDQooX3ZhbCkgOiAwLCINCg0KPT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+DQpfX0JGX0ZJTEVEX0NIRUNLIHsNCi4uLg0KICBCVUlMRF9CVUdfT05fTVNHKF9fYnVpbHRpbl9j
+b25zdGFudF9wKF92YWwpID8gICAgICAgICAgIFwNCiAgICAgICAgICAgICAgICAgICB+KChfbWFz
+aykgPj4gX19iZl9zaGYoX21hc2spKSAmIChfdmFsKSA6IDAsIFwNCiAgICAgICAgICAgICAgICAg
+ICBfcGZ4ICJ2YWx1ZSB0b28gbGFyZ2UgZm9yIHRoZSBmaWVsZCIpOyBcDQouLi4NCj09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0K
+DQpTaG91bGQgSSBmaXggaXQgYnkgY29udmVydGluZw0KICBkZWxheV92YWwgfD0gRklFTERfUFJF
+UChFVEhfRExZX1RYQ19FTkFCTEUsICEhbWFjX2RlbGF5LT50eF9kZWxheSk7DQp0bw0KICBlbl92
+YWwgPSAhIW1hY19kZWxheS0+dHhfZGVsYXk7DQogIGRlbGF5X3ZhbCB8PSBGSUVMRF9QUkVQKEVU
+SF9ETFlfVFhDX0VOQUJMRSwgISFlbl92YWwpOw0KDQpvciBvdGhlciBzdWdnZXN0aW9ucyBmb3Ig
+dGhlc2Ugd2FybmluZ3M/DQoNClRoYW5rc34NCg0KT24gV2VkLCAyMDIxLTEyLTA4IGF0IDA2OjM4
+IC0wODAwLCBKYWt1YiBLaWNpbnNraSB3cm90ZToNCj4gT24gV2VkLCA4IERlYyAyMDIxIDEzOjQ3
+OjE1ICswODAwIEJpYW8gSHVhbmcgd3JvdGU6DQo+ID4gQWRkIEV0aGVybmV0IHN1cHBvcnQgZm9y
+IE1lZGlhVGVrIFNvQ3MgZnJvbSB0aGUgbXQ4MTk1IGZhbWlseS4NCj4gPiANCj4gPiBTaWduZWQt
+b2ZmLWJ5OiBCaWFvIEh1YW5nIDxiaWFvLmh1YW5nQG1lZGlhdGVrLmNvbT4NCj4gPiBBY2tlZC1i
+eTogQW5nZWxvR2lvYWNjaGlubyBEZWwgUmVnbm8gPA0KPiA+IGFuZ2Vsb2dpb2FjY2hpbm8uZGVs
+cmVnbm9AY29sbGFib3JhLmNvbT4NCj4gDQo+IHNwYXJzZSByZXBvcnRzIHdob2xlIGJ1bmNoIG9m
+IHdhcm5pbmdzIGxpa2UgdGhpczoNCj4gDQo+IGRyaXZlcnMvbmV0L2V0aGVybmV0L3N0bWljcm8v
+c3RtbWFjL2R3bWFjLW1lZGlhdGVrLmM6MjEzOjMwOiB3YXJuaW5nOg0KPiBkdWJpb3VzOiB4ICYg
+IXkNCj4gZHJpdmVycy9uZXQvZXRoZXJuZXQvc3RtaWNyby9zdG1tYWMvZHdtYWMtbWVkaWF0ZWsu
+YzoyMTc6MzA6IHdhcm5pbmc6DQo+IGR1YmlvdXM6IHggJiAheQ0KPiBkcml2ZXJzL25ldC9ldGhl
+cm5ldC9zdG1pY3JvL3N0bW1hYy9kd21hYy1tZWRpYXRlay5jOjIyODozODogd2FybmluZzoNCj4g
+ZHViaW91czogeCAmICF5DQo+IGRyaXZlcnMvbmV0L2V0aGVybmV0L3N0bWljcm8vc3RtbWFjL2R3
+bWFjLW1lZGlhdGVrLmM6MjMyOjM4OiB3YXJuaW5nOg0KPiBkdWJpb3VzOiB4ICYgIXkNCj4gZHJp
+dmVycy9uZXQvZXRoZXJuZXQvc3RtaWNyby9zdG1tYWMvZHdtYWMtbWVkaWF0ZWsuYzoyNDc6NDY6
+IHdhcm5pbmc6DQo+IGR1YmlvdXM6IHggJiAheQ0KPiBkcml2ZXJzL25ldC9ldGhlcm5ldC9zdG1p
+Y3JvL3N0bW1hYy9kd21hYy1tZWRpYXRlay5jOjI1NTo0Njogd2FybmluZzoNCj4gZHViaW91czog
+eCAmICF5DQo+IGRyaXZlcnMvbmV0L2V0aGVybmV0L3N0bWljcm8vc3RtbWFjL2R3bWFjLW1lZGlh
+dGVrLmM6MjczOjMwOiB3YXJuaW5nOg0KPiBkdWJpb3VzOiB4ICYgIXkNCj4gZHJpdmVycy9uZXQv
+ZXRoZXJuZXQvc3RtaWNyby9zdG1tYWMvZHdtYWMtbWVkaWF0ZWsuYzoyNzc6MzA6IHdhcm5pbmc6
+DQo+IGR1YmlvdXM6IHggJiAheQ0KPiBkcml2ZXJzL25ldC9ldGhlcm5ldC9zdG1pY3JvL3N0bW1h
+Yy9kd21hYy1tZWRpYXRlay5jOjM3NTozMDogd2FybmluZzoNCj4gZHViaW91czogeCAmICF5DQo+
+IGRyaXZlcnMvbmV0L2V0aGVybmV0L3N0bWljcm8vc3RtbWFjL2R3bWFjLW1lZGlhdGVrLmM6Mzc5
+OjMwOiB3YXJuaW5nOg0KPiBkdWJpb3VzOiB4ICYgIXkNCj4gZHJpdmVycy9uZXQvZXRoZXJuZXQv
+c3RtaWNyby9zdG1tYWMvZHdtYWMtbWVkaWF0ZWsuYzozOTA6NDM6IHdhcm5pbmc6DQo+IGR1Ymlv
+dXM6IHggJiAheQ0KPiBkcml2ZXJzL25ldC9ldGhlcm5ldC9zdG1pY3JvL3N0bW1hYy9kd21hYy1t
+ZWRpYXRlay5jOjM5Nzo0Mzogd2FybmluZzoNCj4gZHViaW91czogeCAmICF5DQo+IGRyaXZlcnMv
+bmV0L2V0aGVybmV0L3N0bWljcm8vc3RtbWFjL2R3bWFjLW1lZGlhdGVrLmM6NDE1OjQ2OiB3YXJu
+aW5nOg0KPiBkdWJpb3VzOiB4ICYgIXkNCj4gZHJpdmVycy9uZXQvZXRoZXJuZXQvc3RtaWNyby9z
+dG1tYWMvZHdtYWMtbWVkaWF0ZWsuYzo0MjY6NDY6IHdhcm5pbmc6DQo+IGR1YmlvdXM6IHggJiAh
+eQ0KPiBkcml2ZXJzL25ldC9ldGhlcm5ldC9zdG1pY3JvL3N0bW1hYy9kd21hYy1tZWRpYXRlay5j
+OjQzOTozNTogd2FybmluZzoNCj4gZHViaW91czogeCAmICF5DQo+IGRyaXZlcnMvbmV0L2V0aGVy
+bmV0L3N0bWljcm8vc3RtbWFjL2R3bWFjLW1lZGlhdGVrLmM6NDQzOjMwOiB3YXJuaW5nOg0KPiBk
+dWJpb3VzOiB4ICYgIXkNCj4gDQo+IEFueSBpZGVhIG9uIHdoZXJlIHRoZXNlIGNvbWUgZnJvbT8N
+Cg==
 
-Thanks! 
-
-I made the following changes:
-
---- a/Documentation/devicetree/bindings/mmc/litex,mmc.yaml
-+++ b/Documentation/devicetree/bindings/mmc/litex,mmc.yaml
-@@ -29,9 +29,8 @@ properties:
-       - description: CORE registers
-       - description: DMA Reader buffer
-       - description: DMA Writer buffer
--      - description: IRQ registers (optional)
-+      - description: IRQ registers
-     minItems: 4
--    maxItems: 5
-
-   reg-names:
-     items:
-@@ -39,12 +38,13 @@ properties:
-       - const: core
-       - const: reader
-       - const: writer
--      - const: irq (optional)
-+      - const: irq
-     minItems: 4
--    maxItems: 5
-
-   clocks:
-     maxItems: 1
-+    description:
-+      Handle to reference clock.
-
-   interrupts:
-     maxItems: 1
-
-... which took care of the bulk of the error messages reported. However,
-I'm still getting the one below, whether or not I leave the `maxItems 1`
-line there under `clocks:`
-
-$ make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu-  dt_binding_check
-  LINT    Documentation/devicetree/bindings
-  CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
-/home/somlo/linux/Documentation/devicetree/bindings/clock/litex,clock.yaml: properties:clock-output-names: {'description': 'List of strings of clock output signal names indexed by the first cell in the clock specifier.', 'minItems': 1, 'maxItems': 7, 'items': [{'const': 'CLKOUT0'}, {'const': 'CLKOUT1'}, {'const': 'CLKOUT2'}, {'const': 'CLKOUT3'}, {'const': 'CLKOUT4'}, {'const': 'CLKOUT5'}, {'const': 'CLKOUT6'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-  SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-/home/somlo/linux/Documentation/devicetree/bindings/clock/litex,clock.yaml: ignoring, error in schema: properties: clock-output-names
-warning: no schema found in file: ./Documentation/devicetree/bindings/clock/litex,clock.yaml
-  DTEX    Documentation/devicetree/bindings/mmc/litex,mmc.example.dts
-  DTEX    Documentation/devicetree/bindings/media/renesas,imr.example.dts
-  ...
-
-It appears as though `make dt_binding_check` is trying to read from
-`Documentation/devicetree/bindings/clock/litex,clock.yaml`, which
-does not exist. The clock reference I'm talking about could be *any*
-clock elsewhere in the dts!
-
-This wasn't part of the originally reported errors, not sure why I'm
-seeing it now. Also, not sure what (if anything) I still need to do
-about it, any advice much appreciated!
-
-Thanks,
---Gabriel
