@@ -2,266 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77C1F46E971
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 14:53:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3939C46E979
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 14:55:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238214AbhLIN5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 08:57:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53590 "EHLO
+        id S238272AbhLIN6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 08:58:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238204AbhLIN5N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 08:57:13 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E6D9C0617A1;
-        Thu,  9 Dec 2021 05:53:39 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 070FFCE25DC;
-        Thu,  9 Dec 2021 13:53:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81E0FC004DD;
-        Thu,  9 Dec 2021 13:53:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639058015;
-        bh=IkoYjFYwSgIGb1h6PAXZF+r0CsqV1xIDg7gWCjBL3Bo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ffRH7NrQlR5/gDfJjqiahs00/kO+nhPTdtlebmcUCJRyKfJm6q9r1n/5xVYkdydIy
-         X6F9QX7MCncn5deMXHABA0H8TPnEiTxDN8tHlQvL8ul2pjaMc+gsDcjzJxKsLMCY4J
-         2OaBSNdNVmQBv/YcExewg+IeC9w1azpwu1b6GBk7cZOQk5hbvCOERS6mLqfS95QYct
-         Lrtlp6nnMdZvSeDGOVhSgBhNoogFsTe4J3SC+d9+CpoUfrWYCzGWbEigMFQ6w6j//q
-         BTkr5UwhE1HKk8F7gs2GRZzM12hJUdpOEylanUczGaEQAqnVjVx60rF7RxF4NzHv7u
-         FNpEpoeFeXfKQ==
-Date:   Thu, 9 Dec 2021 15:53:31 +0200
-From:   Leon Romanovsky <leon@kernel.org>
-To:     JosephCHANG <josright123@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, joseph_chang@davicom.com.tw,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2, 2/2] net: Add DM9051 driver
-Message-ID: <YbIKW9R5iyK7sQqg@unreal>
-References: <20211209100702.5609-1-josright123@gmail.com>
- <20211209100702.5609-3-josright123@gmail.com>
+        with ESMTP id S238247AbhLIN6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 08:58:53 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A10C061746
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 05:55:20 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id d9so9842672wrw.4
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 05:55:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=k6D23PRYBlWqPCsXrjjZTcI35QWh4xDYmb3kATWIYYs=;
+        b=tAqbIzrQWUGIuhELs8cbNcSzSxLueX8Rcy6bGeSDvz6Nbddcp0rkKg0RIAzljiAYEc
+         VPT8BUEsDLTqs94qFhJtDE2WGLElxfXM/o+SFD9zDQ6imWsmLoekHAwTJSOPE+5BX4De
+         Q5qcnvc7KJDs1dwBFr2jf8XcRhfIuW+Ax6HoIPrr6cRfja81kZTRWlkVt6x1YJ/JOfHk
+         7EdP2H0ao3GLv95VWzVzi75I6t/nE7qpT4X3UeFo0sHMOrck7hEInlf2RNJXfQOz9q5C
+         nUnApD2esIP9yMrkyq0LYut8fFuoQVyQkn5alGsivxzqEZslMBwNMmfEkQR2fW0k48Cy
+         2+7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=k6D23PRYBlWqPCsXrjjZTcI35QWh4xDYmb3kATWIYYs=;
+        b=FfgaZlVILZbVA1MCOkh4LCOq1ATqQeUFR/RUWfXiTy/gw/cRtm2IaWkN2FwZlzEGoO
+         I2osn9coh9KwizYfHQZWH9nVGN/ljmkFSQcWl23qjktjZcbkO3ZGYKJeYJ18zfijDhJ3
+         cPHSfon/mHAE7kIQRW5rYKMkblO0jiyrRERYU80Om2iwENn/tyu+u03Cvtx49yDEafuT
+         ekdCgDZ0pJTbAE4mHBApAsUAG66Ubvwat5Z0r1rBMjdgT0o24nzKZskZNTPTm/6OGUpx
+         s1KGSPRJvYlLdIBDCSxDdrrNTcVq66j3Q65npEUPxjC9Y+BcV6Wc0CyVkb6MiIAWRotx
+         f9PA==
+X-Gm-Message-State: AOAM532W5cLvZcliuz6DIDmIigfkcsoESisqEZCgB0fly8wZRJirsH/R
+        XUyotNhOkOZjbnB7bcyZRGWOlzL8pjB2q1m1
+X-Google-Smtp-Source: ABdhPJySirDudXteZbllUEbTOz80rbMsSMq1yM/rsW2kfUU7cBaW4uudUASmKQofLV8xkerHOjnpIA==
+X-Received: by 2002:a5d:674f:: with SMTP id l15mr6451322wrw.624.1639058117689;
+        Thu, 09 Dec 2021 05:55:17 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:ee1f:92e9:bcbf:be87? ([2001:861:44c0:66c0:ee1f:92e9:bcbf:be87])
+        by smtp.gmail.com with ESMTPSA id q4sm5665421wrs.56.2021.12.09.05.55.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Dec 2021 05:55:16 -0800 (PST)
+Subject: Re: [PATCH] dt-bindings: arm: amlogic: add S4 based AQ222 bindings
+To:     "xianwei.zhao" <xianwei.zhao@amlogic.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Vyacheslav Bocharov <adeep@lexina.in>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20211208093347.4837-1-xianwei.zhao@amlogic.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <bd981d0c-af5c-2b29-0ae3-df6bf01ea485@baylibre.com>
+Date:   Thu, 9 Dec 2021 14:55:15 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211209100702.5609-3-josright123@gmail.com>
+In-Reply-To: <20211208093347.4837-1-xianwei.zhao@amlogic.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 09, 2021 at 06:07:02PM +0800, JosephCHANG wrote:
-> Add davicom dm9051 SPI ethernet driver. The driver work with dts
-> for:
-> 
->      - spi bus number
->      - spi chip select
->      - spi clock frequency
->      - interrupt gpio pin
->      - interrupt polarity fixed as low
-> 
->     Test OK with Rpi 2 and Rpi 4. Max spi speed is 31200000.
++cc linux-amlogic@lists.infradead.org linux-arm-kernel@lists.infradead.org
 
-Please don't do this type of formatting, where you added extra
-indentations without reason.
-
+On 08/12/2021 10:33, xianwei.zhao wrote:
+> Add bindings for the new Amlogic S4 SoC family,
+> and the compatible for the Amlogic S4 Based AQ222 board.
 > 
-> Signed-off-by: JosephCHANG <josright123@gmail.com>
-> [Submit v1 has Reported-by: kernel test robot <lkp@intel.com>]
+> S4 is an application processor designed for hybrid OTT/IP Set To
+> Box(STB) and high-end media box applications, with quad core Cortex-A35.
+> 
+> Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
 > ---
->  drivers/net/ethernet/davicom/Kconfig  |  30 +
->  drivers/net/ethernet/davicom/Makefile |   1 +
->  drivers/net/ethernet/davicom/dm9051.c | 967 ++++++++++++++++++++++++++
->  drivers/net/ethernet/davicom/dm9051.h | 248 +++++++
->  4 files changed, 1246 insertions(+)
->  create mode 100644 drivers/net/ethernet/davicom/dm9051.c
->  create mode 100644 drivers/net/ethernet/davicom/dm9051.h
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/drivers/net/ethernet/davicom/Kconfig b/drivers/net/ethernet/davicom/Kconfig
-> index 7af86b6d4150..9c00328f6e05 100644
-> --- a/drivers/net/ethernet/davicom/Kconfig
-> +++ b/drivers/net/ethernet/davicom/Kconfig
-> @@ -3,6 +3,20 @@
->  # Davicom device configuration
->  #
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> index 36081734f720..63037ebdd7bf 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> @@ -183,6 +183,12 @@ properties:
+>                - amlogic,ad401
+>            - const: amlogic,a1
 >  
-> +config NET_VENDOR_DAVICOM
-> +	bool "Davicom devices"
-> +	depends on ARM || MIPS || COLDFIRE || NIOS2 || COMPILE_TEST || SPI
-> +	default y
-> +	help
-> +	  If you have a network (Ethernet) card belonging to this class, say Y.
+> +      - description: Boards with the Amlogic Meson S4 AQ222 SoC
+> +        items:
+> +          - enum:
+> +              - amlogic,aq222
+> +          - const: amlogic,s4
 > +
-> +	  Note that the answer to this question doesn't directly affect the
-> +	  kernel: saying N will just cause the configurator to skip all
-> +	  the questions about Davicom devices. If you say Y, you will be asked
-> +	  for your specific card in the following selections.
-> +
-> +if NET_VENDOR_DAVICOM
-> +
->  config DM9000
->  	tristate "DM9000 support"
->  	depends on ARM || MIPS || COLDFIRE || NIOS2 || COMPILE_TEST
-> @@ -22,3 +36,19 @@ config DM9000_FORCE_SIMPLE_PHY_POLL
->  	  bit to determine if the link is up or down instead of the more
->  	  costly MII PHY reads. Note, this will not work if the chip is
->  	  operating with an external PHY.
-> +
-> +config DM9051
-> +	tristate "DM9051 SPI support"
-> +	depends on SPI
-> +	select CRC32
-> +	select MII
-> +	help
-> +	  Support for DM9051 SPI chipset.
-> +
-> +	  To compile this driver as a module, choose M here.  The module
-> +	  will be called dm9051.
-> +
-> +	  The SPI mode for the host's SPI master to access DM9051 is mode
-> +	  0 on the SPI bus.
-> +
-> +endif # NET_VENDOR_DAVICOM
-> diff --git a/drivers/net/ethernet/davicom/Makefile b/drivers/net/ethernet/davicom/Makefile
-> index 173c87d21076..225f85bc1f53 100644
-> --- a/drivers/net/ethernet/davicom/Makefile
-> +++ b/drivers/net/ethernet/davicom/Makefile
-> @@ -4,3 +4,4 @@
->  #
+>  additionalProperties: true
 >  
->  obj-$(CONFIG_DM9000) += dm9000.o
-> +obj-$(CONFIG_DM9051) += dm9051.o
-> diff --git a/drivers/net/ethernet/davicom/dm9051.c b/drivers/net/ethernet/davicom/dm9051.c
-> new file mode 100644
-> index 000000000000..cdcf9d37ed7f
-> --- /dev/null
-> +++ b/drivers/net/ethernet/davicom/dm9051.c
-> @@ -0,0 +1,967 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + *	Ethernet driver for the Davicom DM9051 chip.
-> + *
-> + *	This program is free software; you can redistribute it and/or
-> + *	modify it under the terms of the GNU General Public License
-> + *	as published by the Free Software Foundation; either version 2
-> + *	of the License, or (at your option) any later version.
-> + *
-> + *	This program is distributed in the hope that it will be useful,
-> + *	but WITHOUT ANY WARRANTY; without even the implied warranty of
-> + *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> + *	GNU General Public License for more details.
+>  ...
+> 
+> base-commit: a3ebdcc8fb3d94de390e58ad3da6161826a58a87
+> 
 
-Please don't add license text. The SPDX line is more than enough.
-
-> + *
-> + *	Copyright 2021 Davicom Semiconductor,Inc.
-> + *	http://www.davicom.com.tw/
-> + *	Joseph CHANG <joseph_chang@davicom.com.tw>
-> + *	20211110b, Total 933 lines
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/kernel.h>
-> +#include <linux/netdevice.h>
-> +#include <linux/etherdevice.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/skbuff.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/cache.h>
-> +#include <linux/crc32.h>
-> +#include <linux/mii.h>
-> +#include <linux/ethtool.h>
-> +#include <linux/delay.h>
-> +#include <linux/irq.h>
-> +#include <linux/slab.h>
-> +#include <linux/gpio.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/of_gpio.h>
-> +#include <linux/spi/spi.h>
-> +
-> +#include "dm9051.h"
-> +
-> +#define	DRV_PRODUCT_NAME	"dm9051"
-> +#define	DRV_VERSION_CODE	DM_VERSION(5, 0, 5)			//(VER5.0.0= 0x050000)
-> +#define	DRV_VERSION_DATE	"20211209"				//(update)"
-
-Two points.
-1. Try to avoid vertical alignment. It adds churn when backporting.
-2. Don't add DRV_VERSION_CODE and DRV_VERSION_DATE. It is useless in
-upstream kernel.
-
-> +
-> +/* spi-spi_sync, low level code */
-> +static int burst_xfer(struct board_info *db, u8 cmdphase, u8 *txb, u8 *rxb, unsigned int len)
-> +{
-> +	struct device *dev = &db->spidev->dev;
-> +	int ret = 0;
-> +
-> +	db->cmd[0] = cmdphase;
-> +	db->spi_xfer2[0].tx_buf = &db->cmd[0];
-> +	db->spi_xfer2[0].rx_buf = NULL;
-> +	db->spi_xfer2[0].len = 1;
-> +	if (!rxb) { //write
-
-"//"is C++ coding style, which is also in C99 standard.
-Is it ok to use such comment style in netdev?
-
-<...>
-
-> +	//rcr_reg_start(db, db->rcr_all); //rx enable later
-
-I spotted many commented functions. They shouldn't be part of
-submission.
-
-<...>
-
-> +static void dm_msg_open(struct net_device *ndev)
-> +{
-> +	struct board_info *db = netdev_priv(ndev);
-> +	struct device *dev = &db->spidev->dev;
-> +
-> +	snprintf(db->DRV_VERSION, sizeof(db->DRV_VERSION), "%s_V%d.%d.%d_date_%s",
-> +		 DRV_PRODUCT_NAME, (DRV_VERSION_CODE >> 16 & 0xff),
-> +		 (DRV_VERSION_CODE >> 8 & 0xff),
-> +		 (DRV_VERSION_CODE & 0xff),
-> +		 DRV_VERSION_DATE);
-> +	dev_info(dev, "version: %s\n", db->DRV_VERSION);
-> +}
-
-This should go.
-
-<...>
-
-> +++ b/drivers/net/ethernet/davicom/dm9051.h
-> @@ -0,0 +1,248 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright 2021 Davicom Semiconductor,Inc.
-> + *	http://www.davicom.com.tw
-> + *	2014/03/11  Joseph CHANG  v1.0  Create
-> + *	2021/10/26  Joseph CHANG  v5.0.1  Update
-> + *	2021/12/09  Joseph CHANG  v5.0.5  Update
-
-It is new file, there is no value in off-tree history.
-
-> + *
-> + * DM9051 register definitions
-> + *
-> + * This program is free software; you can redistribute it and/or modify
-> + * it under the terms of the GNU General Public License version 2 as
-> + * published by the Free Software Foundation.
-
-No need.
-
-<...>
-
-> +#define DM9051_PIDL		0x2A
-> +#define DM9051_PIDH		0x2B
-> +#define DM9051_SMCR		0x2F
-> +#define	DM9051_ATCR		0x30
-> +#define	DM9051_SPIBCR		0x38
-
-Please be consistent.
-
-Thanks
