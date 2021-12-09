@@ -2,133 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65E0246E461
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 09:38:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3E4946E487
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 09:46:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234973AbhLIIlz convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Dec 2021 03:41:55 -0500
-Received: from mail-ua1-f50.google.com ([209.85.222.50]:33625 "EHLO
-        mail-ua1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234997AbhLIIlN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 03:41:13 -0500
-Received: by mail-ua1-f50.google.com with SMTP id a14so9465030uak.0;
-        Thu, 09 Dec 2021 00:37:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=/wHJKw72IgLDQBov78fTqhQ5wmrHUQsgonD8JrpOVc0=;
-        b=nNVyCZItkQB6t0PxUpdQqno4RTxV1HcmPXFb8Zm06syLcue/y5Csyc3kDBs/C4Uf/D
-         SBBNGQFYvdbNCCVubLG+EZAX21pslPS7JX7CMO9LET8aOnEnM6GdMm48mPZbyvXDU4k/
-         CDd/u/LIeX9RplhfymLptmwru04Y0IqhM5eWTFiRNZS4uu7hyzO8x5M0STOkN6uVziVm
-         h/oBIx31KZolXnpx37pj/q2KK3o9YdOIwcFXFAaroqEzVL1XFn7F7v2ganpVKlhn/1TH
-         QcZ7yyHZKIA2YhhW4ComOLFHZ8DCQPzG2oQVUnuK+U7LHuePNrsZGmEP1JuGieXMJh8B
-         7OYw==
-X-Gm-Message-State: AOAM530cxmCaEhUvt9S8tT0aJIm49X7iRY/Zx7ahoQ6z+GUhz8sPSAdP
-        4352gl3LMp9VyUO1kL2l7nHg1V4xZ8CHlw==
-X-Google-Smtp-Source: ABdhPJwbCkbduIdqNrb1k4q817zDR8z5HkgwiI7O7a6DY7GEyzlrguZexBsOBQQEQ75c9KecMvwdbQ==
-X-Received: by 2002:a67:fdc3:: with SMTP id l3mr5815925vsq.42.1639039059186;
-        Thu, 09 Dec 2021 00:37:39 -0800 (PST)
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com. [209.85.221.181])
-        by smtp.gmail.com with ESMTPSA id j19sm903vka.4.2021.12.09.00.37.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Dec 2021 00:37:38 -0800 (PST)
-Received: by mail-vk1-f181.google.com with SMTP id s1so3242919vks.9;
-        Thu, 09 Dec 2021 00:37:38 -0800 (PST)
-X-Received: by 2002:a05:6122:2193:: with SMTP id j19mr6958885vkd.7.1639039058208;
- Thu, 09 Dec 2021 00:37:38 -0800 (PST)
+        id S232979AbhLIIuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 03:50:01 -0500
+Received: from mail.baikalelectronics.com ([87.245.175.226]:37858 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229613AbhLIIuB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 03:50:01 -0500
+X-Greylist: delayed 340 seconds by postgrey-1.27 at vger.kernel.org; Thu, 09 Dec 2021 03:50:00 EST
+Received: from mail.baikalelectronics.ru (unknown [192.168.51.25])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 26E5D800204B;
+        Thu,  9 Dec 2021 11:40:41 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.ru 26E5D800204B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baikalelectronics.ru; s=mail; t=1639039241;
+        bh=rOcoTfjRSCRchgIuYZjTj+60s0rm+FkZVRl2tknoAWw=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To:From;
+        b=dUau/5goq4H5p5k0bZDgQxrh6FYYQV5uabZl+6ilNUQkBbZ2P8MyZ21b+bAGnthf3
+         beyaM5iIZEQ/+Xud3M11MdOhcVMeglkbD53XFPq1vdzQWkqfd/NSs0rGmS7Ry03CMx
+         X6n4KYAip1FadVZJiSBxITUDH8LnLqreC5yWP4eA=
+Received: from mobilestation (192.168.168.10) by mail (192.168.51.25) with
+ Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 9 Dec 2021 11:40:12 +0300
+Date:   Thu, 9 Dec 2021 11:40:40 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     "Srikandan, Nandhini" <nandhini.srikandan@intel.com>
+CC:     - Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Pan, Kris" <kris.pan@intel.com>,
+        "Demakkanavar, Kenchappa" <kenchappa.demakkanavar@intel.com>,
+        "Zhou, Furong" <furong.zhou@intel.com>,
+        "Sangannavar, Mallikarjunappa" 
+        <mallikarjunappa.sangannavar@intel.com>,
+        "Vaidya, Mahesh R" <mahesh.r.vaidya@intel.com>,
+        "A, Rashmi" <rashmi.a@intel.com>
+Subject: Re: [PATCH v3 3/5] spi: dw: Add support for master mode selection
+ for DWC SSI controller
+Message-ID: <20211209084040.623u3nqfxxdmsyme@mobilestation>
+References: <20211111065201.10249-1-nandhini.srikandan@intel.com>
+ <20211111065201.10249-4-nandhini.srikandan@intel.com>
+ <YY0lpZkIsJih+g2o@sirena.org.uk>
+ <20211111145246.dj4gogl4rlbem6qc@mobilestation>
+ <YY0zUjjVobtg85o6@sirena.org.uk>
+ <20211111160627.fcgrvj2k7x3lwtkp@mobilestation>
+ <YY1D3tM4fg8h6mmj@sirena.org.uk>
+ <20211116191542.vc42cxvflzn66ien@mobilestation>
+ <BN0PR11MB5727E5AF778F8B504F009554859A9@BN0PR11MB5727.namprd11.prod.outlook.com>
+ <SJ0PR11MB5816530165EEFCE780F1CDB0856F9@SJ0PR11MB5816.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-References: <20211208132042.3226275-1-gsomlo@gmail.com> <20211208132042.3226275-3-gsomlo@gmail.com>
- <1639004806.166681.596177.nullmailer@robh.at.kernel.org> <YbFXERe0K3rfzZem@glsvmlin.ini.cmu.edu>
-In-Reply-To: <YbFXERe0K3rfzZem@glsvmlin.ini.cmu.edu>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 9 Dec 2021 09:37:27 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVJZdzRMedn9L_Jb=0MYB_Bxs90v+iH7UaDBzup-qzp8A@mail.gmail.com>
-Message-ID: <CAMuHMdVJZdzRMedn9L_Jb=0MYB_Bxs90v+iH7UaDBzup-qzp8A@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: mmc: Add bindings for LiteSDCard
-To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        mdudek@internships.antmicro.com,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Paul Mackerras <paulus@ozlabs.org>,
-        Joel Stanley <joel@jms.id.au>, david.abdurachmanov@sifive.com,
-        Florent Kermarrec <florent@enjoy-digital.fr>,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        Stafford Horne <shorne@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Kamil Rakoczy <krakoczy@antmicro.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mateusz Holenko <mholenko@antmicro.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <SJ0PR11MB5816530165EEFCE780F1CDB0856F9@SJ0PR11MB5816.namprd11.prod.outlook.com>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gabriel,
+On Wed, Dec 08, 2021 at 11:03:03AM +0000, Srikandan, Nandhini wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Srikandan, Nandhini
+> > Sent: Wednesday, November 17, 2021 5:29 PM
+> > To: Serge Semin <fancer.lancer@gmail.com>; Mark Brown
+> > <broonie@kernel.org>
+> > Cc: Serge Semin <Sergey.Semin@baikalelectronics.ru>; robh+dt@kernel.org;
+> > linux-spi@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > devicetree@vger.kernel.org; mgross@linux.intel.com; Pan, Kris
+> > <kris.pan@intel.com>; Demakkanavar, Kenchappa
+> > <kenchappa.demakkanavar@intel.com>; Zhou, Furong
+> > <furong.zhou@intel.com>; Sangannavar, Mallikarjunappa
+> > <mallikarjunappa.sangannavar@intel.com>; Vaidya, Mahesh R
+> > <mahesh.r.vaidya@intel.com>; A, Rashmi <Rashmi.A@intel.com>
+> > Subject: RE: [PATCH v3 3/5] spi: dw: Add support for master mode selection
+> > for DWC SSI controller
+> > 
+> > 
+> > 
+> > > -----Original Message-----
+> > > From: Serge Semin <fancer.lancer@gmail.com>
+> > > Sent: Wednesday, November 17, 2021 12:46 AM
+> > > To: Mark Brown <broonie@kernel.org>; Srikandan, Nandhini
+> > > <nandhini.srikandan@intel.com>
+> > > Cc: Serge Semin <Sergey.Semin@baikalelectronics.ru>;
+> > > robh+dt@kernel.org; linux-spi@vger.kernel.org;
+> > > linux-kernel@vger.kernel.org; devicetree@vger.kernel.org;
+> > > mgross@linux.intel.com; Pan, Kris <kris.pan@intel.com>; Demakkanavar,
+> > > Kenchappa <kenchappa.demakkanavar@intel.com>; Zhou, Furong
+> > > <furong.zhou@intel.com>; Sangannavar, Mallikarjunappa
+> > > <mallikarjunappa.sangannavar@intel.com>; Vaidya, Mahesh R
+> > > <mahesh.r.vaidya@intel.com>; A, Rashmi <rashmi.a@intel.com>
+> > > Subject: Re: [PATCH v3 3/5] spi: dw: Add support for master mode
+> > > selection for DWC SSI controller
+> > >
+> > > On Thu, Nov 11, 2021 at 04:25:02PM +0000, Mark Brown wrote:
+> > > > On Thu, Nov 11, 2021 at 07:06:27PM +0300, Serge Semin wrote:
+> > > > > On Thu, Nov 11, 2021 at 03:14:26PM +0000, Mark Brown wrote:
+> > > >
+> > > > > > Given that people seem to frequently customise these IPs when
+> > > > > > integrating them I wouldn't trust people not to have added some
+> > > > > > other control into that reserved bit doing some magic stuff
+> > > > > > that's useful in their system.
+> > > >
+> > > > > In that case the corresponding platform code would have needed to
+> > > > > have that peculiarity properly handled and not to use a generic
+> > > > > compatibles like "snps,dwc-ssi-1.01a" or "snps,dw-apb-ssi", which
+> > > > > are supposed to be utilized for the default IP-core configs only.
+> > > > > For the sake of the code simplification I'd stick to setting that
+> > > > > flag for each generic DWC SSI-compatible device. That will be also
+> > > > > helpful for DWC SSIs which for some reason have the slave-mode
+> > > enabled by default.
+> > > >
+> > >
+> > > > That's easier right up until the point where it explodes - I'd
+> > > > prefer to be more conservative here.  Fixing things up after the
+> > > > fact gets painful when people end up only finding the bug in
+> > > > released kernels, especially if it's distro end users or similar rather than
+> > developers.
+> > >
+> > > Since IP-core and components versions is now supported that will easy
+> > > to implement. Thanks for merging the corresponding series in BTW.
+> > >
+> > > >
+> > > > > Alternatively the driver could read the IP-core version from the
+> > > > > DW_SPI_VERSION register, parse it (since it's in ASCII) and then
+> > > > > use it in the conditional Master mode activation here. But that
+> > > > > could have been a better solution in case if the older IP-cores
+> > > > > would have used that bit for something special, while Nandhini
+> > > > > claims it was
+> > > reserved.
+> > > > > So in this case I would stick with a simpler approach until we get
+> > > > > to face any problem in this matter, especially seeing we already
+> > > > > pocking the reserved bits of the CTRL0 register in this driver in
+> > > > > the
+> > > > > spi_hw_init() method when it comes to the DFS field width detection.
+> > > >
+> > > > If the device has a version register checking that seems ideal - the
+> > > > infrastructure will most likely be useful in future anyway.  A bit
+> > > > of a shame that it's an ASCII string though.
+> > >
+> > > That's what the patchset has been implemented for in the first place
+> > > https://lore.kernel.org/linux-spi/20211115181917.7521-1-
+> > > Sergey.Semin@baikalelectronics.ru/
+> > >
+> > > Nandhini, Mark has just merged in the series that adds the IP-core
+> > > versions infrastructure support to the DW SSI driver.  So now you can
+> > > easily convert this patch to be using that new interface like this:
+> > > -               if (dws->caps & DW_SPI_CAP_KEEMBAY_MST)
+> > > -                       cr0 |= DWC_SSI_CTRLR0_KEEMBAY_MST;
+> > > +               /* CTRLR0[31] MST */
+> > > +		if (dw_spi_ver_is_ge(dws, HSSI, 102A))
+> > > +       	        cr0 |= DWC_HSSI_CTRLR0_MST;
+> > >
+> > > Please don't forget to convert the DWC_SSI_CTRLR0_KEEMBAY_MST name
+> > to
+> > > something like DWC_HSSI_CTRLR0_MST and place it at the top of the DWC
+> > > HSSI CTRLR0 register macros list.
+> > >
+> > > -Sergey
+> > Sure, I will test this patch set on our hardware and then use the IP-core
+> > version infrastructure support and make the changes as mentioned for MST
+> > bit.
+> > 
+> > - Nandhini
 
-On Thu, Dec 9, 2021 at 2:08 AM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
-> ... which took care of the bulk of the error messages reported. However,
-> I'm still getting the one below, whether or not I leave the `maxItems 1`
-> line there under `clocks:`
->
-> $ make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu-  dt_binding_check
->   LINT    Documentation/devicetree/bindings
->   CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
-> /home/somlo/linux/Documentation/devicetree/bindings/clock/litex,clock.yaml: properties:clock-output-names: {'description': 'List of strings of clock output signal names indexed by the first cell in the clock specifier.', 'minItems': 1, 'maxItems': 7, 'items': [{'const': 'CLKOUT0'}, {'const': 'CLKOUT1'}, {'const': 'CLKOUT2'}, {'const': 'CLKOUT3'}, {'const': 'CLKOUT4'}, {'const': 'CLKOUT5'}, {'const': 'CLKOUT6'}]} should not be valid under {'required': ['maxItems']}
->         hint: "maxItems" is not needed with an "items" list
->         from schema $id: http://devicetree.org/meta-schemas/items.yaml#
->   SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-> /home/somlo/linux/Documentation/devicetree/bindings/clock/litex,clock.yaml: ignoring, error in schema: properties: clock-output-names
-> warning: no schema found in file: ./Documentation/devicetree/bindings/clock/litex,clock.yaml
->   DTEX    Documentation/devicetree/bindings/mmc/litex,mmc.example.dts
->   DTEX    Documentation/devicetree/bindings/media/renesas,imr.example.dts
->   ...
+> I have tested the patches on our hardware and it is working fine. When would these patches be available in mainline? So that I can start applying the changes on top of these patches and share for review.
+> - Nandhini 
 
---- a/Documentation/devicetree/bindings/clock/litex,clock.yaml
-+++ b/Documentation/devicetree/bindings/clock/litex,clock.yaml
-@@ -45,7 +45,6 @@ properties:
-       List of strings of clock output signal names indexed
-       by the first cell in the clock specifier.
-     minItems: 1
--    maxItems: 7
-     items:
-       - const: CLKOUT0
-       - const: CLKOUT1
+These changes have been merged into the Mark' repo in the spi-next
+branch:
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/log/?h=for-next
+The series together with the rest of the SPI-related changed will get
+into the mainline during the merge window.
+For the time being you can rebase your patches on top of the Mark' repo
+and if it works well for you just post it out for review. If it looks
+good you'll even be able to have your series merged into the kernel in
+the next merge-window.
 
-I have that in my local tree, but hadn't sent it to you yet, because
-litex,clock definitely need more work.
+-Sergey
 
-> It appears as though `make dt_binding_check` is trying to read from
-> `Documentation/devicetree/bindings/clock/litex,clock.yaml`, which
-> does not exist. The clock reference I'm talking about could be *any*
-
-Oh, it does exist in your tree ;-)
-To check the examples, it has to apply all other binding files that
-might apply, hence some checks are always run.
-
-You can avoid some (but not all) such checks by adding
-
-    DT_SCHEMA_FILES=Documentation/devicetree/bindings/path/to/binding.yaml
-
-> clock elsewhere in the dts!
->
-> This wasn't part of the originally reported errors, not sure why I'm
-> seeing it now. Also, not sure what (if anything) I still need to do
-> about it, any advice much appreciated!
-
-Of course, as Rob doesn't have that file in his tree.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> 
