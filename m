@@ -2,205 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7879746E81C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 13:07:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE50746E825
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 13:08:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237314AbhLIMKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 07:10:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57130 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237202AbhLIMKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 07:10:41 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93B95C0698C5
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 04:07:07 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id u17so9333342wrt.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 04:07:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/yLbHMPc4fjBfcCF0phtg6VZEZ5ftsCYoS5ciOiSFeU=;
-        b=ms6+lIoVD5aNOBnWiJw4l8WclwmAL7F9FXiPl6e5amw+1IiTB9DzQcs8uYLiV+cUGE
-         KKuSfDkp8HRA+czZK5aK4t9wvKGjTbl5NH+bJaVVDVBsvrUKRe1qDyD+hN9ViINoWD6+
-         lqZTxLzaoHIJTVtKByCfFSTXexbI0FiJ+v56DmllxdtiBagBRLBv3oOZyBQWhAGgfzYB
-         KeQGO7euVmv/mCmkMFo1OfiShZRmJMaErnWCMBb2yyEgmsRtikNs9EIqymf+QHijb7pl
-         b6PbVEX4J9T0xLpKdq4bO/XHFaQQ7DNpwE/8S3MI+nfQvvBpyxBiYIgZv6V44dVcLUHB
-         XVrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/yLbHMPc4fjBfcCF0phtg6VZEZ5ftsCYoS5ciOiSFeU=;
-        b=E5B06fM0yTih5U8I9zUXgK2S/JNAvdSyx0NKQxC4PJ5ZFXzNYncw6ecLDY1n/Ffoa7
-         h7X7jryJOt3xEVYuG8F7gIGxKw7u2jpWmzA8tVtZ6tLqWnw+bIr6R2HpRZHg6rFFtDQY
-         J4P68kfiunMZ4DVEkWq/WpNn8t5mYUpP4MrO3yVNLwTtJiM7yQuv2ARORRNfzxPALsvX
-         81ZXQa21ZinIFrE9aHEkiXUrm1IGW7CxzSEaCxOnpkA4vYU1XjYp1GIiCYUkOhrQGFMh
-         jjBYbOUzibr8n6+y9AeJMw5wVNtr1pz2EVYRB/YLNjaHYEPQTuXUYgT9AGS+NPGJYhn+
-         e1Qg==
-X-Gm-Message-State: AOAM532eo+MFjgJJaGd6uMT+utaclFfYIeGwzkc9eB0X6RlkbjtiRXYK
-        LriHL1RffSEPSF2aNLdIF67MCQ==
-X-Google-Smtp-Source: ABdhPJw8A0ceeX5B3052YIiAS+wQV5uUHv/XXGVeWUYkOE3fe0yKYjHZPtOjTtTjlS00CW7zJOohqQ==
-X-Received: by 2002:adf:c5d1:: with SMTP id v17mr5748532wrg.571.1639051626129;
-        Thu, 09 Dec 2021 04:07:06 -0800 (PST)
-Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.gmail.com with ESMTPSA id 4sm7513289wrz.90.2021.12.09.04.07.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Dec 2021 04:07:05 -0800 (PST)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     robh+dt@kernel.org, gregkh@linuxfoundation.org
-Cc:     devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
-        jeyr@codeaurora.org, bkumar@qti.qualcomm.com,
-        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 8/8] arm64: dts: qcom: add non-secure domain property to fastrpc nodes
-Date:   Thu,  9 Dec 2021 12:06:26 +0000
-Message-Id: <20211209120626.26373-9-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20211209120626.26373-1-srinivas.kandagatla@linaro.org>
-References: <20211209120626.26373-1-srinivas.kandagatla@linaro.org>
+        id S231205AbhLIMLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 07:11:33 -0500
+Received: from mail.emtrion.de ([87.139.198.129]:27485 "EHLO mail3.emtrion.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S237113AbhLIMLc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Dec 2021 07:11:32 -0500
+Received: from EMT-KA-S004.emtrion.local (2003:f9:5824:1:c59f:32f4:72e5:b9e1)
+ by EMT-KA-S004.emtrion.local (2003:f9:5824:1:c59f:32f4:72e5:b9e1) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Thu, 9 Dec 2021
+ 13:07:54 +0100
+Received: from EMT-KA-S004.emtrion.local ([fe80::c59f:32f4:72e5:b9e1]) by
+ EMT-KA-S004.emtrion.local ([fe80::c59f:32f4:72e5:b9e1%11]) with mapi id
+ 15.02.0922.019; Thu, 9 Dec 2021 13:07:54 +0100
+From:   "Mueller, Reinhold" <Reinhold.Mueller@emtrion.de>
+To:     'Rob Herring' <robh@kernel.org>
+CC:     "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        LinuxArmKernelMailingListe <linux-arm-kernel@lists.infradead.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>
+Subject: AW: [PATCH v2] arm64: dts: imx8mm: Add support for emtrion emCON-MX8M
+ Mini
+Thread-Topic: [PATCH v2] arm64: dts: imx8mm: Add support for emtrion
+ emCON-MX8M Mini
+Thread-Index: AQHX4St09HHwq9gIu0qwmNPMBO9JfqwqI2Ow
+Date:   Thu, 9 Dec 2021 12:07:54 +0000
+Message-ID: <491d378434cc4157895ea40f03f099f1@emtrion.de>
+References: 1635185813.782599.824871.nullmailer@robh.at.kernel.org
+In-Reply-To: 1635185813.782599.824871.nullmailer@robh.at.kernel.org
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2003:f9:5824:1:5c90:40d3:cc94:d44e]
+x-c2processedorg: 5b249fcb-306f-4927-9982-5d11b1d300ce
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jeya R <jeyr@codeaurora.org>
-
-FastRPC DSP domain would be set as secure if non-secure dsp property is not
-added to the fastrpc DT node. Add this property to DT files of msm8916,
-sdm845, sm8150, sm8250 and sm8350 so that nothing is broken after secure
-domain patchset.
-
-This patch is purely for backward compatibility reasons.
-
-Signed-off-by: Jeya R <jeyr@codeaurora.org>
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 1 +
- arch/arm64/boot/dts/qcom/sdm845.dtsi  | 2 ++
- arch/arm64/boot/dts/qcom/sm8150.dtsi  | 3 +++
- arch/arm64/boot/dts/qcom/sm8250.dtsi  | 3 +++
- arch/arm64/boot/dts/qcom/sm8350.dtsi  | 3 +++
- 5 files changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index c1c42f26b61e..137a479449d4 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -1365,6 +1365,7 @@
- 					compatible = "qcom,fastrpc";
- 					qcom,smd-channels = "fastrpcsmd-apps-dsp";
- 					label = "adsp";
-+					qcom,non-secure-domain;
- 
- 					#address-cells = <1>;
- 					#size-cells = <0>;
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 526087586ba4..4aebfed4ec00 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -838,6 +838,7 @@
- 				compatible = "qcom,fastrpc";
- 				qcom,glink-channels = "fastrpcglink-apps-dsp";
- 				label = "adsp";
-+				qcom,non-secure-domain;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 
-@@ -888,6 +889,7 @@
- 				compatible = "qcom,fastrpc";
- 				qcom,glink-channels = "fastrpcglink-apps-dsp";
- 				label = "cdsp";
-+				qcom,non-secure-domain;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 81b4ff2cc4cd..9ac213bb96b7 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -1751,6 +1751,7 @@
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
- 					label = "sdsp";
-+					qcom,non-secure-domain;
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 
-@@ -2994,6 +2995,7 @@
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
- 					label = "cdsp";
-+					qcom,non-secure-domain;
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 
-@@ -3439,6 +3441,7 @@
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
- 					label = "adsp";
-+					qcom,non-secure-domain;
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index f0d342aa662d..06be221ad5b6 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2265,6 +2265,7 @@
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
- 					label = "sdsp";
-+					qcom,non-secure-domain;
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 
-@@ -2330,6 +2331,7 @@
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
- 					label = "cdsp";
-+					qcom,non-secure-domain;
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 
-@@ -4100,6 +4102,7 @@
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
- 					label = "adsp";
-+					qcom,non-secure-domain;
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index d134280e2939..80f753cbe91c 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -1278,6 +1278,7 @@
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
- 					label = "sdsp";
-+					qcom,non-secure-domain;
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 
-@@ -1347,6 +1348,7 @@
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
- 					label = "cdsp";
-+					qcom,non-secure-domain;
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 
-@@ -1643,6 +1645,7 @@
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
- 					label = "adsp";
-+					qcom,non-secure-domain;
- 					#address-cells = <1>;
- 					#size-cells = <0>;
- 
--- 
-2.21.0
-
+SGkgUm9iLA0KDQpzb3JyeSBmb3IgdGhlIGxhdGUgcmVzcG9uc2UuDQpUaGUgZm9ybWVyIGd1eSBo
+YXMgbGVmdCB0aGUgY29tcGFueS4gU28gaSBoYXZlIHRha2VuIHRoZSB3b3JrIGZvciBub3cuDQoN
+Ckkgc3BsaXR0ZWQgdGhlIHJlY2VudCBwYXRjaDoNCltQQVRDSCB2Ml0gYXJtNjQ6IGR0czogaW14
+OG1tOiBBZGQgc3VwcG9ydCBmb3IgZW10cmlvbiBlbUNPTi1NWDhNIE1pbmkNCmluIGR0cyBwYXRj
+aGVzIGFuZCB5YW1sIHBhdGNoZXMgYW5kIGRpZCB0aGUgbmVjZXNzYXJ5IGNoZWNrcy4NCg0KSSB3
+aWxsIHJlc2VudCB0aGUgbmV3IHBhdGNoc2V0OiBuZXcgZW10cmlvbiBoYXJkd2FyZSBlbUNPTi1N
+WDhNIE1pbmkNCg0KUmVnYXJkcw0KUmVpbmhvbGQNCg0KDQpSZWluaG9sZCBNdWVsbGVyDQpTb2Z0
+d2FyZSBlbmdpbmVlcg0KDQoNCmVtdHJpb24gR21iSA0KQW0gSGFzZW5iaWVsIDYgfCA3NjI5NyBT
+dHV0ZW5zZWUgfCBHZXJtYW55DQoNClBob25lICs0OSA3MjQ0IDYyNjk0IDIwDQpGYXggKzQ5IDcy
+NDQgNjI2OTQgMTkNCkVtYWlsIFJlaW5ob2xkLk11ZWxsZXJAZW10cmlvbi5kZQ0KT25saW5lIHd3
+dy5lbXRyaW9uLmRlDQoNCg0KDQoNCmVtdHJpb24gR21iSCDigKIgQW10c2dlcmljaHQgTWFubmhl
+aW0g4oCiIEhSQiAxMTAgMzAwIOKAoiBHZXNjaMOkZnRzZsO8aHJlcjogUmFtb25hIE1hdXJlciwg
+QWNobWVkIEhhZGRvdSDigKIgVW1zYXR6c3RldWVyaWRlbnRpZmlrYXRpb25zbnVtbWVyOkRFODEz
+Njk0MjYwIOKAoiBJbXByZXNzdW06IHd3dy5lbXRyaW9uLmRlL2RlL2ltcHJlc3N1bS5odG1sDQoN
+CkhJTldFSVM6IFBlcnNvbmVuYmV6b2dlbmUgRGF0ZW4sIGRpZSBTaWUgcGVyIEUtTWFpbCBhbiB1
+bnMgw7xiZXJtaXR0ZWxuLCB3ZXJkZW4gYmVpIHVucyBnZXNwZWljaGVydCB1bmQgdmVyYXJiZWl0
+ZXQuIEluZm9ybWF0aW9uZW4genUgdW5zZXJlbiBnZXNldHpsaWNoZW4gSW5mb3JtYXRpb25zcGZs
+aWNodGVuLCB6dSB1bnMgdW5kIHVuc2VyZW4gRGllbnN0bGVpc3R1bmdlbiBmaW5kZW4gU2llIGlu
+IHVuc2VyZW4gRGF0ZW5zY2h1dHpoaW53ZWlzZW4uDQpEaWVzZSBFLU1haWwga2FubiB2ZXJ0cmF1
+bGljaGUgdW5kIC8gb2RlciByZWNodGxpY2ggZ2VzY2jDvHR6dGUgSW5mb3JtYXRpb25lbiBlbnRo
+YWx0ZW4uIFdlbm4gU2llIG5pY2h0IGRlciByaWNodGlnZSBBZHJlc3NhdCBzaW5kLCBvZGVyIGRp
+ZXNlIEUtTWFpbCBpcnJ0w7xtbGljaCBlcmhhbHRlbiBoYWJlbiwgaW5mb3JtaWVyZW4gU2llIGJp
+dHRlIGRlbiBBYnNlbmRlciB1bmQgdmVybmljaHRlbiBkaWVzZSBNYWlsLiBEYXMgdW5lcmxhdWJ0
+ZSBrb3BpZXJlbiwgc293aWUgZGllIHVuYmVmdWd0ZSBXZWl0ZXJnYWJlIGRpZXNlciBNYWlsIGlz
+dCBuaWNodCBnZXN0YXR0ZXQuDQo+IC0tLS0tVXJzcHLDvG5nbGljaGUgTmFjaHJpY2h0LS0tLS0N
+Cj4gVm9uOiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPg0KPiBHZXNlbmRldDogTW9udGFn
+LCAyNS4gT2t0b2JlciAyMDIxIDIwOjE3DQo+IEFuOiBTcmVlcmFtYSwgVGhhbnVzaHJlZSA8VGhh
+bnVzaHJlZS5TcmVlcmFtYUBlbXRyaW9uLmRlPg0KPiBDYzogbGludXgtaW14QG54cC5jb207IGRl
+dmljZXRyZWVAdmdlci5rZXJuZWwub3JnOw0KPiBzaGF3bmd1b0BrZXJuZWwub3JnOyByb2JoK2R0
+QGtlcm5lbC5vcmc7IEVyZHJpY2gsIEZyYW5rDQo+IDxGcmFuay5FcmRyaWNoQGVtdHJpb24uZGU+
+OyBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7IGxpbnV4LQ0KPiBrZXJuZWxAdmdlci5rZXJuZWwub3Jn
+OyBMaW51eEFybUtlcm5lbE1haWxpbmdMaXN0ZSA8bGludXgtYXJtLQ0KPiBrZXJuZWxAbGlzdHMu
+aW5mcmFkZWFkLm9yZz47IHMuaGF1ZXJAcGVuZ3V0cm9uaXguZGU7DQo+IGZlc3RldmFtQGdtYWls
+LmNvbQ0KPiBCZXRyZWZmOiBSZTogW1BBVENIIHYyXSBhcm02NDogZHRzOiBpbXg4bW06IEFkZCBz
+dXBwb3J0IGZvciBlbXRyaW9uDQo+IGVtQ09OLU1YOE0gTWluaQ0KPg0KPiBPbiBNb24sIDI1IE9j
+dCAyMDIxIDE4OjE1OjA5ICswMjAwLCB0aGFudXNocmVlLnNyZWVyYW1hQGVtdHJpb24uY29tDQo+
+IHdyb3RlOg0KPiA+IEZyb206IFRoYW51c2hyZWUgU3JlZXJhbWEgPHRoYW51c2hyZWUuc3JlZXJh
+bWFAZW10cmlvbi5jb20+DQo+ID4NCj4gPiBUaGlzIHBhdGNoIGFkZHMgc3VwcG9ydCBmb3IgdGhl
+IGVtdHJpb24gR21iSCBlbUNPTi1NWDhNIE1pbmkNCj4gbW9kdWxlcy4NCj4gPiBUaGV5IGFyZSBh
+dmFpbGFibGUgd2l0aCBOWFAgaS5NWCA4TSBNaW5pIGVxdWlwcGVkIHdpdGggMiBvciA0IEdCDQo+
+IE1lbW9yeS4NCj4gPg0KPiA+IFRoZSBkZXZpY2V0cmVlIGlteDhtbS1lbWNvbi5kdHNpIGlzIHRo
+ZSBjb21tb24gcGFydCBwcm92aWRpbmcgYWxsDQo+ID4gbW9kdWxlIGNvbXBvbmVudHMgYW5kIHRo
+ZSBiYXNpYyBzdXBwb3J0IGZvciB0aGUgU29DLiBUaGUgc3VwcG9ydCBmb3IgdGhlDQo+ID4gYXZh
+cmkgYmFzZWJvYXJkIGluIHRoZSBkZXZlbG9wZXIta2l0IGNvbmZpZ3VyYXRpb24gaXMgcHJvdmlk
+ZWQgYnkgdGhlDQo+ID4gZW1jb24tYXZhcmkgZHRzIGZpbGVzLg0KPiA+DQo+ID4gU2lnbmVkLW9m
+Zi1ieTogVGhhbnVzaHJlZSBTcmVlcmFtYQ0KPiA8dGhhbnVzaHJlZS5zcmVlcmFtYUBlbXRyaW9u
+LmNvbT4NCj4gPiBSZXZpZXdlZCBieTogRnJhbmsgRXJkcmljaCA8ZnJhbmsuZXJkcmljaEBlbXRy
+aW9uLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZzbC55
+YW1sICAgICAgICAgIHwgICAxICsNCj4gPiAgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUv
+TWFrZWZpbGUgICAgICAgIHwgICAzICstDQo+ID4gIC4uLi9ib290L2R0cy9mcmVlc2NhbGUvaW14
+OG1tLWVtY29uLWF2YXJpLmR0cyB8ICAyMyArDQo+ID4gIC4uLi9kdHMvZnJlZXNjYWxlL2lteDht
+bS1lbWNvbi1hdmFyaS5kdHNpICAgICB8IDE0MSArKysrDQo+ID4gIC4uLi9ib290L2R0cy9mcmVl
+c2NhbGUvaW14OG1tLWVtY29uLmR0c2kgICAgICB8IDY0NQ0KPiArKysrKysrKysrKysrKysrKysN
+Cj4gPiAgNSBmaWxlcyBjaGFuZ2VkLCA4MTIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0K
+PiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14
+OG1tLWVtY29uLQ0KPiBhdmFyaS5kdHMNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJt
+NjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS1lbWNvbi0NCj4gYXZhcmkuZHRzaQ0KPiA+ICBj
+cmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLWVt
+Y29uLmR0c2kNCj4gPg0KPg0KPiBNeSBib3QgZm91bmQgZXJyb3JzIHJ1bm5pbmcgJ21ha2UgRFRf
+Q0hFQ0tFUl9GTEFHUz0tbQ0KPiBkdF9iaW5kaW5nX2NoZWNrJw0KPiBvbiB5b3VyIHBhdGNoIChE
+VF9DSEVDS0VSX0ZMQUdTIGlzIG5ldyBpbiB2NS4xMyk6DQo+DQo+IHlhbWxsaW50IHdhcm5pbmdz
+L2Vycm9yczoNCj4gLi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZzbC55
+YW1sOjcxNDoxOiBbZXJyb3JdIHN5bnRheA0KPiBlcnJvcjogZm91bmQgY2hhcmFjdGVyICdcdCcg
+dGhhdCBjYW5ub3Qgc3RhcnQgYW55IHRva2VuIChzeW50YXgpDQo+DQo+IGR0c2NoZW1hL2R0YyB3
+YXJuaW5ncy9lcnJvcnM6DQo+IG1ha2VbMV06ICoqKiBEZWxldGluZyBmaWxlDQo+ICdEb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZzbC5leGFtcGxlLmR0cycNCj4gVHJhY2Vi
+YWNrIChtb3N0IHJlY2VudCBjYWxsIGxhc3QpOg0KPiAgIEZpbGUgIi91c3IvbG9jYWwvYmluL2R0
+LWV4dHJhY3QtZXhhbXBsZSIsIGxpbmUgNDUsIGluIDxtb2R1bGU+DQo+ICAgICBiaW5kaW5nID0g
+eWFtbC5sb2FkKG9wZW4oYXJncy55YW1sZmlsZSwgZW5jb2Rpbmc9J3V0Zi04JykucmVhZCgpKQ0K
+PiAgIEZpbGUgIi91c3IvbG9jYWwvbGliL3B5dGhvbjMuOC9kaXN0LXBhY2thZ2VzL3J1YW1lbC95
+YW1sL21haW4ucHkiLCBsaW5lDQo+IDQzNCwgaW4gbG9hZA0KPiAgICAgcmV0dXJuIGNvbnN0cnVj
+dG9yLmdldF9zaW5nbGVfZGF0YSgpDQo+ICAgRmlsZSAiL3Vzci9sb2NhbC9saWIvcHl0aG9uMy44
+L2Rpc3QtcGFja2FnZXMvcnVhbWVsL3lhbWwvY29uc3RydWN0b3IucHkiLA0KPiBsaW5lIDEyMCwg
+aW4gZ2V0X3NpbmdsZV9kYXRhDQo+ICAgICBub2RlID0gc2VsZi5jb21wb3Nlci5nZXRfc2luZ2xl
+X25vZGUoKQ0KPiAgIEZpbGUgIl9ydWFtZWxfeWFtbC5weXgiLCBsaW5lIDcwNiwgaW4NCj4gX3J1
+YW1lbF95YW1sLkNQYXJzZXIuZ2V0X3NpbmdsZV9ub2RlDQo+ICAgRmlsZSAiX3J1YW1lbF95YW1s
+LnB5eCIsIGxpbmUgNzI0LCBpbg0KPiBfcnVhbWVsX3lhbWwuQ1BhcnNlci5fY29tcG9zZV9kb2N1
+bWVudA0KPiAgIEZpbGUgIl9ydWFtZWxfeWFtbC5weXgiLCBsaW5lIDc3NSwgaW4NCj4gX3J1YW1l
+bF95YW1sLkNQYXJzZXIuX2NvbXBvc2Vfbm9kZQ0KPiAgIEZpbGUgIl9ydWFtZWxfeWFtbC5weXgi
+LCBsaW5lIDg4OSwgaW4NCj4gX3J1YW1lbF95YW1sLkNQYXJzZXIuX2NvbXBvc2VfbWFwcGluZ19u
+b2RlDQo+ICAgRmlsZSAiX3J1YW1lbF95YW1sLnB5eCIsIGxpbmUgNzc1LCBpbg0KPiBfcnVhbWVs
+X3lhbWwuQ1BhcnNlci5fY29tcG9zZV9ub2RlDQo+ICAgRmlsZSAiX3J1YW1lbF95YW1sLnB5eCIs
+IGxpbmUgODg5LCBpbg0KPiBfcnVhbWVsX3lhbWwuQ1BhcnNlci5fY29tcG9zZV9tYXBwaW5nX25v
+ZGUNCj4gICBGaWxlICJfcnVhbWVsX3lhbWwucHl4IiwgbGluZSA3NzUsIGluDQo+IF9ydWFtZWxf
+eWFtbC5DUGFyc2VyLl9jb21wb3NlX25vZGUNCj4gICBGaWxlICJfcnVhbWVsX3lhbWwucHl4Iiwg
+bGluZSA4ODksIGluDQo+IF9ydWFtZWxfeWFtbC5DUGFyc2VyLl9jb21wb3NlX21hcHBpbmdfbm9k
+ZQ0KPiAgIEZpbGUgIl9ydWFtZWxfeWFtbC5weXgiLCBsaW5lIDc3MywgaW4NCj4gX3J1YW1lbF95
+YW1sLkNQYXJzZXIuX2NvbXBvc2Vfbm9kZQ0KPiAgIEZpbGUgIl9ydWFtZWxfeWFtbC5weXgiLCBs
+aW5lIDg1MCwgaW4NCj4gX3J1YW1lbF95YW1sLkNQYXJzZXIuX2NvbXBvc2Vfc2VxdWVuY2Vfbm9k
+ZQ0KPiAgIEZpbGUgIl9ydWFtZWxfeWFtbC5weXgiLCBsaW5lIDc3NSwgaW4NCj4gX3J1YW1lbF95
+YW1sLkNQYXJzZXIuX2NvbXBvc2Vfbm9kZQ0KPiAgIEZpbGUgIl9ydWFtZWxfeWFtbC5weXgiLCBs
+aW5lIDg4OSwgaW4NCj4gX3J1YW1lbF95YW1sLkNQYXJzZXIuX2NvbXBvc2VfbWFwcGluZ19ub2Rl
+DQo+ICAgRmlsZSAiX3J1YW1lbF95YW1sLnB5eCIsIGxpbmUgNzczLCBpbg0KPiBfcnVhbWVsX3lh
+bWwuQ1BhcnNlci5fY29tcG9zZV9ub2RlDQo+ICAgRmlsZSAiX3J1YW1lbF95YW1sLnB5eCIsIGxp
+bmUgODUwLCBpbg0KPiBfcnVhbWVsX3lhbWwuQ1BhcnNlci5fY29tcG9zZV9zZXF1ZW5jZV9ub2Rl
+DQo+ICAgRmlsZSAiX3J1YW1lbF95YW1sLnB5eCIsIGxpbmUgNzc1LCBpbg0KPiBfcnVhbWVsX3lh
+bWwuQ1BhcnNlci5fY29tcG9zZV9ub2RlDQo+ICAgRmlsZSAiX3J1YW1lbF95YW1sLnB5eCIsIGxp
+bmUgODg5LCBpbg0KPiBfcnVhbWVsX3lhbWwuQ1BhcnNlci5fY29tcG9zZV9tYXBwaW5nX25vZGUN
+Cj4gICBGaWxlICJfcnVhbWVsX3lhbWwucHl4IiwgbGluZSA3NzMsIGluDQo+IF9ydWFtZWxfeWFt
+bC5DUGFyc2VyLl9jb21wb3NlX25vZGUNCj4gICBGaWxlICJfcnVhbWVsX3lhbWwucHl4IiwgbGlu
+ZSA4NTIsIGluDQo+IF9ydWFtZWxfeWFtbC5DUGFyc2VyLl9jb21wb3NlX3NlcXVlbmNlX25vZGUN
+Cj4gICBGaWxlICJfcnVhbWVsX3lhbWwucHl4IiwgbGluZSA5MDQsIGluDQo+IF9ydWFtZWxfeWFt
+bC5DUGFyc2VyLl9wYXJzZV9uZXh0X2V2ZW50DQo+IHJ1YW1lbC55YW1sLnNjYW5uZXIuU2Nhbm5l
+ckVycm9yOiB3aGlsZSBzY2FubmluZyBmb3IgdGhlIG5leHQgdG9rZW4NCj4gZm91bmQgY2hhcmFj
+dGVyIHRoYXQgY2Fubm90IHN0YXJ0IGFueSB0b2tlbg0KPiAgIGluICI8dW5pY29kZSBzdHJpbmc+
+IiwgbGluZSA3MTQsIGNvbHVtbiAxDQo+IG1ha2VbMV06ICoqKiBbRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL01ha2VmaWxlOjIwOg0KPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvYXJtL2ZzbC5leGFtcGxlLmR0c10gRXJyb3IgMQ0KPiBtYWtlWzFdOiAqKiogV2Fp
+dGluZyBmb3IgdW5maW5pc2hlZCBqb2JzLi4uLg0KPiAuL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
+ZS9iaW5kaW5ncy9hcm0vZnNsLnlhbWw6ICB3aGlsZSBzY2FubmluZyBmb3IgdGhlDQo+IG5leHQg
+dG9rZW4NCj4gZm91bmQgY2hhcmFjdGVyIHRoYXQgY2Fubm90IHN0YXJ0IGFueSB0b2tlbg0KPiAg
+IGluICI8dW5pY29kZSBzdHJpbmc+IiwgbGluZSA3MTQsIGNvbHVtbiAxDQo+IC9idWlsZHMvcm9i
+aGVycmluZy9saW51eC1kdC0NCj4gcmV2aWV3L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
+aW5ncy9hcm0vZnNsLnlhbWw6IGlnbm9yaW5nLCBlcnJvcg0KPiBwYXJzaW5nIGZpbGUNCj4gd2Fy
+bmluZzogbm8gc2NoZW1hIGZvdW5kIGluIGZpbGU6DQo+IC4vRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbA0KPiBtYWtlOiAqKiogW01ha2VmaWxlOjE0NDE6IGR0
+X2JpbmRpbmdfY2hlY2tdIEVycm9yIDINCj4NCj4gZG9jIHJlZmVyZW5jZSBlcnJvcnMgKG1ha2Ug
+cmVmY2hlY2tkb2NzKToNCj4NCj4gU2VlIGh0dHBzOi8vcGF0Y2h3b3JrLm96bGFicy5vcmcvcGF0
+Y2gvMTU0NTgzNQ0KPg0KPiBUaGlzIGNoZWNrIGNhbiBmYWlsIGlmIHRoZXJlIGFyZSBhbnkgZGVw
+ZW5kZW5jaWVzLiBUaGUgYmFzZSBmb3IgYSBwYXRjaA0KPiBzZXJpZXMgaXMgZ2VuZXJhbGx5IHRo
+ZSBtb3N0IHJlY2VudCByYzEuDQo+DQo+IElmIHlvdSBhbHJlYWR5IHJhbiAnbWFrZSBkdF9iaW5k
+aW5nX2NoZWNrJyBhbmQgZGlkbid0IHNlZSB0aGUgYWJvdmUNCj4gZXJyb3IocyksIHRoZW4gbWFr
+ZSBzdXJlICd5YW1sbGludCcgaXMgaW5zdGFsbGVkIGFuZCBkdC1zY2hlbWEgaXMgdXAgdG8NCj4g
+ZGF0ZToNCj4NCj4gcGlwMyBpbnN0YWxsIGR0c2NoZW1hIC0tdXBncmFkZQ0KPg0KPiBQbGVhc2Ug
+Y2hlY2sgYW5kIHJlLXN1Ym1pdC4NCg==
