@@ -2,538 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B46046E4BA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 09:58:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E82F846E6F3
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 11:45:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235479AbhLIJBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 04:01:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40850 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229784AbhLIJBq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 04:01:46 -0500
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16BB6C061746;
-        Thu,  9 Dec 2021 00:58:13 -0800 (PST)
-Received: by mail-pf1-x436.google.com with SMTP id x131so4770218pfc.12;
-        Thu, 09 Dec 2021 00:58:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=JDMokaVTYTVwlqCsIdJNDsu02GWjiO4qpEPRBz/Krgw=;
-        b=LcTBZ3B+JlfbDgnxndESKzB5GBme6XqEP5GZ7WGviSlw3eR0h+qrAsakZNtrJXhfq1
-         ULr6m7T0RUFbncx3H82Fl/z0KL8zGVk9XrHn1L1IQVbXlLSeB6jaqbOTngjO3eUUmENp
-         15K+SdbxVUmZ6Fv5yeidnFnLSVLqa0KZO4bi5XNch7X6OZCwSR36b/F30jAe8F2GFkan
-         yDOkTQowb4YNKM/DPrYfLhHVUr2wyIQizoZORhwVDsOJDCHuHJgVm++otaPpTXusZT5u
-         /QuCQO8XWNZpDscwFexmNtCWnhIgOnYFejMw6ZDDKPQj0tk6nNSyyk+AJJBShYpF78us
-         f4yA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=JDMokaVTYTVwlqCsIdJNDsu02GWjiO4qpEPRBz/Krgw=;
-        b=AuLM0FKv24R5G5LKf7TyRBPE/0C78o3ykfYlKb9QYYKDjHutxMYWipBLU/LeRdTlFz
-         7t/LnJlTGw4e7IoWuGDkK5SY7R6a64AUMt9cN9MWwIW+8BqkCTxwCkhtdp1F5T1xNmK1
-         eiSAAH8pDf6yUDU707/UTiFCchSvc997SO1vaC/rqiXSGs/wxEF50VYim8a0GTwymETC
-         AHKIx2zB8Jmh4Eu/oSZPgk7uY7keZ6cOZg77kxkkrWHWzqpl8jE1xqEI3n08CM8/MmlX
-         T/Bpx4oG1fLmacdll7SxWWcc5Q1VJzzehf2LmBwDZcdveM93omSEclXor1uRok9Mjxfg
-         8Yrw==
-X-Gm-Message-State: AOAM531kJr38+nRf16zp0z+qEWT8Kg7hAHCmJxmFdMpyY8DzvrND0p2s
-        ZdYBz9oeZXI0e5cTdCSpjcc=
-X-Google-Smtp-Source: ABdhPJzyeCsxnUMeXraAM5OttbwD8fA6M7FYUhMClHOH1R+Q8G9pjRD1jLxyXN+2XFWb1YKHn+3fJw==
-X-Received: by 2002:a65:58cc:: with SMTP id e12mr30542117pgu.59.1639040292532;
-        Thu, 09 Dec 2021 00:58:12 -0800 (PST)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id n15sm5008881pgs.59.2021.12.09.00.58.10
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 09 Dec 2021 00:58:12 -0800 (PST)
-From:   Tony Huang <tonyhuang.sunplus@gmail.com>
-To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, derek.kiernan@xilinx.com,
-        dragan.cvetic@xilinx.com, arnd@arndb.de, gregkh@linuxfoundation.org
-Cc:     wells.lu@sunplus.com, tony.huang@sunplus.com,
-        Tony Huang <tonyhuang.sunplus@gmail.com>
-Subject: [PATCH v3 2/2] misc: Add iop driver for Sunplus SP7021
-Date:   Thu,  9 Dec 2021 16:58:09 +0800
-Message-Id: <bc15d5e8d7a5ec96582799fe513de4ace6fd4b8b.1639039163.git.tonyhuang.sunplus@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1639039163.git.tonyhuang.sunplus@gmail.com>
-References: <cover.1639039163.git.tonyhuang.sunplus@gmail.com>
-In-Reply-To: <cover.1639039163.git.tonyhuang.sunplus@gmail.com>
-References: <cover.1639039163.git.tonyhuang.sunplus@gmail.com>
+        id S235200AbhLIKtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 05:49:01 -0500
+Received: from mx0a-00268f01.pphosted.com ([148.163.148.236]:31556 "EHLO
+        mx0a-00268f01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235093AbhLIKtB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 05:49:01 -0500
+X-Greylist: delayed 8320 seconds by postgrey-1.27 at vger.kernel.org; Thu, 09 Dec 2021 05:49:00 EST
+Received: from pps.filterd (m0165119.ppops.net [127.0.0.1])
+        by mx0a-00268f01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1B983QBa008153;
+        Thu, 9 Dec 2021 08:26:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=equinix.com; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-id : content-transfer-encoding : mime-version; s=pps202002;
+ bh=lf1PydKwrCQ84/tL2JP9+Rbt4qM3KNoM1xj7krOWvFU=;
+ b=L70xmdXopSDPIi49qAVpmSFp6R82TsjIXbk1k8Af0Izq9a94hbqb1QtbzjMKdpLovHSg
+ jcYVyv7oTBTTL0TsPqALvKcpwp8CJHz+Z7X6uRKQQLVGid6qGjNyQFJsJnu6ckCwSJZf
+ iTS5wE0CjO15Erf9D0uM0vhkbgEn2Tgn50PIy+TlUT+lsxMZzib6L+IoTz/JWHagzYQJ
+ aZzqeSF2eh9mBTToaUHtLiwkjfQ3tEj807PY9iBxT1EOEG/jO8cMnQR6mOUZT0/Upucv
+ IeLg//40ZBsyyfGiwg0wZ49RC3XIWoKPEK/zKJYJS24OWoJNYjDIlH72nEMmKa+NGTW/ 9w== 
+Received: from nam04-dm6-obe.outbound.protection.outlook.com (mail-dm6nam08lp2042.outbound.protection.outlook.com [104.47.73.42])
+        by mx0a-00268f01.pphosted.com (PPS) with ESMTPS id 3ctyfbty00-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 09 Dec 2021 08:26:25 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cOqtxn2Gb/W7wGdGnUQVOUtXpSBDzpBHqg+dwJ63ERyJBhqpwiVIWAjLHR3lOPrgfpLtcOjUzaRTuLSUetW708RuXZiTcqioZNo/QcSjmy3dBB6D4wMCfPCTgtHF2RUdBI1p/sjqD/FxzPL6u8BqOsK/tl8sXAptQi35CGPjo6tutvJ98PyxJuqEe1qQpFw5WnQIi/fsDnA2bWMuYWJDNUtKFlZQuskE0jITbbEuy1KR4+wSGpMQGzU7EODE5JXAN0ioQZNe+FktL3PxctfWIvniGdGBGWF7THxPWbsmJv29TUg2Skr2O/IIPRdi3fQzV+JhZnMeI759i4sTgSmdtA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lf1PydKwrCQ84/tL2JP9+Rbt4qM3KNoM1xj7krOWvFU=;
+ b=BJ7OMSXqmwO/seQV5t6rCaPDNtdwYcWn1iCrMLUyQlDQYGVJSP+QT0YAfbR1ypQYnvOp4nT71zj+S2x3cFo6HbG9KyOCuSCsTmBMRsI5KoGv1qX/wdDGtxW+35PfhxYqP1GEejV1TdB+I3DJPWJI6zxZr0giEywQeAgw5gFuYQehsejjj8qBZlbusi1Ds9/bcoQYjmhOJjlbcC47ys689wJhPBfi7RRGlsDb2gQnef4QpUdG2zPdd5auyHMG+v3nhhWKj4LbxqFmD8S/b9zq6xi+u2xBfVGWOT6SWDeMBB284dHG1uDFO6z60sQrMQqi/X4zfw+9+vq+rxMUPIMlew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=equinix.com; dmarc=pass action=none header.from=equinix.com;
+ dkim=pass header.d=equinix.com; arc=none
+Received: from DM8PR04MB8007.namprd04.prod.outlook.com (2603:10b6:5:314::20)
+ by DM8PR04MB7944.namprd04.prod.outlook.com (2603:10b6:8:6::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4755.20; Thu, 9 Dec 2021 08:26:24 +0000
+Received: from DM8PR04MB8007.namprd04.prod.outlook.com
+ ([fe80::61fc:37a:892f:c6b9]) by DM8PR04MB8007.namprd04.prod.outlook.com
+ ([fe80::61fc:37a:892f:c6b9%8]) with mapi id 15.20.4778.013; Thu, 9 Dec 2021
+ 08:26:24 +0000
+From:   Zev Weiss <zweiss@equinix.com>
+To:     =?iso-8859-1?Q?Jonathan_Neusch=E4fer?= <j.neuschaefer@gmx.net>
+CC:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v2 5/8] pinctrl: nuvoton: Add driver for WPCM450
+Thread-Topic: [PATCH v2 5/8] pinctrl: nuvoton: Add driver for WPCM450
+Thread-Index: AQHX7NZz4X2KiWn6NUSUMKT7zlTdMg==
+Date:   Thu, 9 Dec 2021 08:26:24 +0000
+Message-ID: <20211209082623.GF25091@packtop>
+References: <20211207210823.1975632-1-j.neuschaefer@gmx.net>
+ <20211207210823.1975632-6-j.neuschaefer@gmx.net>
+ <CAHp75Vew=M_ofNM5pmeHtTJHXRUbbO4RrtgYAtLBznTBm3CS6Q@mail.gmail.com>
+ <YbC6Bv2teZ5CFhFQ@latitude>
+In-Reply-To: <YbC6Bv2teZ5CFhFQ@latitude>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1e1e5df5-9eaf-4fea-8b43-08d9baed9660
+x-ms-traffictypediagnostic: DM8PR04MB7944:EE_
+x-microsoft-antispam-prvs: <DM8PR04MB7944EE49A34BD388A5B7B1D5C3709@DM8PR04MB7944.namprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5236;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: OUupv1fjkM3/tat2YSUeGBgOQnPZeF0BOviiBDvHHsgsjBXhp9dysjtMG38gYNQv5xUfLa5I1DE6asnLSKV0mEBofZynMudBFbu/Ay+soeLNHGtd1AUNE/G9TAb9xDUxP1w7KZSnbtKPJ0GsuaYFfK7BxBd5VtntrP5oBvPNKGXjVQ6K1jqL2aq79tpVSCaKO1x/UwsQ8S0jnQqYApo2irZ1RGX4wWj+HLRjEA605DXO64Jdc/jcihU4ZhXX3bylg62SBrfnLnu4aqUlBlus26BCBSGGJtPTjy2brPac+tBkLVoaGeaSCUorFt7Cnat/90MYFEc01oLkuq+Qx2XbSbo5/Uwuxh6YOP3iixh1CvdM3NuxbLaWep+eXzv/pOvPZ/bd5loiyTEON84QECoqNpM3K4uCLdtFHkgb78Pn0LgepsBFopLUINJygs9QpI5tWx+8UDhcvibNKN8ao+VfAr7ooKxBgwC5SqFYhwsxJbUJVBwXD/FEQOjK8Btw9v87c3nfUC8C8lENxd94u9u0VWd3Fnn9rrcT+cCRjL0qmUl/DArI3x7dxd4884eYbI2V5ByQO7xHEpTZEqK34tEtN9bqlMKJKNEwK285kdCggWWtUN8xqjjgnLYlnVitAakUrtwAB8/XtzWPY3+1LlVXkaYv4MKtn0LFSoXYOiqfphHT5UrfXFVdkBWGa2cOH1bLyulAw5ArWeLn1iLLBNdt6g==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR04MB8007.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(366004)(38070700005)(122000001)(8936002)(5660300002)(8676002)(186003)(86362001)(316002)(38100700002)(6506007)(66556008)(66446008)(33716001)(71200400001)(66946007)(64756008)(26005)(66476007)(6512007)(66574015)(54906003)(6486002)(508600001)(91956017)(9686003)(76116006)(33656002)(1076003)(6916009)(2906002)(4326008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?csTLhhqKPdJ6OPUhgbwD78Daf0LcNYnv5M1pGfXD4RVeIWKTnfu7o2nrxq?=
+ =?iso-8859-1?Q?R4OlNNz4y+cwb0GQEOPXbP0m8wau8QHwo27BOXkWnikpn06c4788gC2kk7?=
+ =?iso-8859-1?Q?AZcDi0Gi9Z5U6lEdDIHo00aYCa8FpCQ0Sjv74u9uypUKEdDYpUGbpnBqxS?=
+ =?iso-8859-1?Q?ohjlZzXeITdIQltrTnIRU3Pthaq6SxYw3ChQEkyxkXVz+7FgXaXj+5zBSV?=
+ =?iso-8859-1?Q?P1dTSSIXha/rJZ1vBb1W2tfb9pZNVkHn2PMZR0kLIddqEAkR5p1AMvY9dR?=
+ =?iso-8859-1?Q?SY+9wROmK37Q95h3VZe68PJx7r8ADPDEGR42OUwQPP4Xc57Slh8+qS/R9I?=
+ =?iso-8859-1?Q?Mg+K26StqTC/W5e0CdgjETda9mDl+Ymfxh77yq+nrzRt/rCNtZGsDNWqiH?=
+ =?iso-8859-1?Q?8Ny+RoIeiGpAm9JbZndU/OrOOcBNZSaxmIQlolxGRH+djuh2JavpsZxmkM?=
+ =?iso-8859-1?Q?RFUvNsQKtDwcuGSrb1jVYd9Y9fNhq4b4fJji52zCHi/JO5VQCYprqNuIT3?=
+ =?iso-8859-1?Q?+TyWw8+FKGYZYQyaFVRxkJdEp2oJw0l0CttHMnh02PCO1ZXz/glx4/r66b?=
+ =?iso-8859-1?Q?kSWlEibUkZJr1TzQuSCn8RXXHBTwDpetFJ2fYeLY6FGJri1ejiTzC4Sk7C?=
+ =?iso-8859-1?Q?fiJasL2LOPh4b5TSosXmDQ1rlMwC/3BlXCrr7xHGN7TI73YGnqBz9qcEG6?=
+ =?iso-8859-1?Q?cbhYVZEtaQZ/5ORdxWk7Ok+WL4h7Y9JfysfbC9WK2yGT0/FGuWrbvI0cWX?=
+ =?iso-8859-1?Q?+8ezkMO6pd87qgnD2MFuz2WcTAuRR6mt1an+PprzDa10i1ixF4zR/juDMe?=
+ =?iso-8859-1?Q?3kt41j3O6zSlbzSzfhx3W3Qhu/mJfXR6zSYG+qQbRqDB5fKquJswJDZF8y?=
+ =?iso-8859-1?Q?E0Kp0VsyihHo4EW2cAOEMB2OV8gTxdOXziScrryOV4bCXCfLq6wjkO5/HX?=
+ =?iso-8859-1?Q?8F6o9+0sxSfGu3TYrMQDoChLE1+74Qznet88OAf7JLmOJ77m62+7tUoKrf?=
+ =?iso-8859-1?Q?+bfNaDadNwpQSZqvGvhloJmD1jkzRW/eU7yh3rvViyvp6YGM4CUGC7nwSm?=
+ =?iso-8859-1?Q?jfuwOq28+V08ckd99D5qid6ouKAkJOP4nehhqb8tUDYM7kOSgsQsl6WHPG?=
+ =?iso-8859-1?Q?jzYwCQlLyl13TAWZbpVjksXcM/oR/1PzEC9i6043DKbunVslv3YTFCAqNq?=
+ =?iso-8859-1?Q?8c+7PP/vJqt1Q5FTy3g6QdEFx8EgOM1u1KhxZrvLa3lzwuv1TEg55cgFcs?=
+ =?iso-8859-1?Q?nOkwaSYy2l816IB7kZIBX/b8RKIENscn23OtzKkTFyOaDTR4WwcI1yE2PT?=
+ =?iso-8859-1?Q?pODXnCvQjsqIN/V7i36JvYAJ2XoNm2NGd9zaz8YvGTulJIi4oJl1UQjKvE?=
+ =?iso-8859-1?Q?ZwbOH7cDFXa95njFBZjYrebRxdjyVyjBQVtGn34NXO5n65sHmc6zFNqUCR?=
+ =?iso-8859-1?Q?sa2E9tHv2T7TZT6S2X91+YflNrEp08ALgOQUiUpZx0r1gdOeKoQVvX264A?=
+ =?iso-8859-1?Q?CszC7kG0ko5sPGMmYT5g3pVXE9dEYQc3vctGLRmmzRWExOav5ujzt6FAbW?=
+ =?iso-8859-1?Q?vSg8U9cr7L0lLn1kWzlANEAidha0Eg0x6C+GrPuGUlEnaPh2TQThAc5Lzw?=
+ =?iso-8859-1?Q?tDcA2rkxmigLnqX+xqaDG8A5gNUOocD7LAacRBajZBrn8mFKqw9jpNs5oj?=
+ =?iso-8859-1?Q?9q7AOADJOBKHkvgJj9c=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <5E60DF1721D9D245A7F75B8F76B0AAE8@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: equinix.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR04MB8007.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e1e5df5-9eaf-4fea-8b43-08d9baed9660
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Dec 2021 08:26:24.0918
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 72adb271-2fc7-4afe-a5ee-9de6a59f6bfb
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HVg0eiAqopFJNIJzbLs34QuOyg/EcF00Z/Xo1IgBC4a3hEUD6asL72ybANw9BbuSKiPfKx5SRt2bGQ2jrISkmA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR04MB7944
+X-Proofpoint-GUID: GSu-yJY626MFc2Vj6OqkrD57I2stm8zy
+X-Proofpoint-ORIG-GUID: GSu-yJY626MFc2Vj6OqkrD57I2stm8zy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2021-12-09_03,2021-12-08_01,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
+ mlxscore=0 suspectscore=0 lowpriorityscore=0 malwarescore=0 clxscore=1011
+ phishscore=0 mlxlogscore=999 bulkscore=0 priorityscore=1501
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2110150000 definitions=main-2112090044
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IOP (IO Processor) embedded inside SP7021 which is used as
-Processor for I/O control, RTC wake-up and cooperation with
-CPU & PMC in power management purpose.
-The IOP core is DQ8051, so also named IOP8051,
-it supports dedicated JTAG debug pins which share with SP7021.
-In standby mode operation, the power spec reach 400uA.
+On Wed, Dec 08, 2021 at 05:58:30AM PST, Jonathan Neusch=E4fer wrote:
+>Hi,
+>
+>On Wed, Dec 08, 2021 at 01:24:18PM +0200, Andy Shevchenko wrote:
+>> On Tuesday, December 7, 2021, Jonathan Neusch=E4fer <j.neuschaefer@gmx.n=
+et>
+>
+><snip>
+>
+>> > +static void wpcm450_gpio_irqhandler(struct irq_desc *desc)
+>> > +{
+>> > +       struct wpcm450_gpio *gpio =3D gpiochip_get_data(irq_desc_
+>> > get_handler_data(desc));
+>> > +       struct wpcm450_pinctrl *pctrl =3D gpio->pctrl;
+>> > +       struct irq_chip *chip =3D irq_desc_get_chip(desc);
+>> > +       unsigned long pending;
+>> > +       unsigned long flags;
+>> > +       unsigned long ours;
+>> > +       unsigned int bit;
+>> > +
+>> > +       ours =3D ((1UL << gpio->num_irqs) - 1) << gpio->first_irq_bit;
+>>
+>>
+>> BIT()
+>
+>I'll use it, but in this case, I think it doesn't simplify much the
+>whole expression all that much. Is there perhaps a macro that
+>constructs a continuous bitmask of N bits, perhaps additionally
+>left-shifted by M bits?
+>
+>Maybe somewhere in the bitmap_* API...
+>
 
-Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
----
-Changes in v3:
- - Addressed comments from Arnd Bergmann.
- - Addressed comments from Greg KH.
- - Addressed comments from kernel test robot.
+There's GENMASK(), though it takes a high bit and low bit rather than a
+bit position and count, so it'd require a small bit of arithmetic, e.g.
 
- MAINTAINERS                |   1 +
- drivers/misc/Kconfig       |  12 ++
- drivers/misc/Makefile      |   1 +
- drivers/misc/sunplus_iop.c | 395 +++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 409 insertions(+)
- create mode 100644 drivers/misc/sunplus_iop.c
+  lastbit =3D gpio->first_irq_bit + gpio->num_irqs - 1;
+  ours =3D GENMASK(lastbit, gpio->first_irq_bit);
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 071b5e6..a763088 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17949,6 +17949,7 @@ SUNPLUS IOP DRIVER
- M:	Tony Huang <tonyhuang.sunplus@gmail.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/misc/sunplu-iop.yaml
-+F:	drivers/misc/sunplus_iop.c
- 
- SUPERH
- M:	Yoshinori Sato <ysato@users.sourceforge.jp>
-diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-index 0f5a49f..f19533b 100644
---- a/drivers/misc/Kconfig
-+++ b/drivers/misc/Kconfig
-@@ -470,6 +470,18 @@ config HISI_HIKEY_USB
- 	  switching between the dual-role USB-C port and the USB-A host ports
- 	  using only one USB controller.
- 
-+config SUNPLUS_IOP
-+	tristate "Sunplus IOP support"
-+	default ARCH_SUNPLUS
-+	help
-+	  Sunplus I/O processor (8051) driver.
-+	  Processor for I/O control, RTC wake-up proceduce management,
-+	  and cooperation with CPU&PMC in power management.
-+	  Need Install DQ8051, The DQ8051 bin file generated by keil C.
-+
-+	  This driver can also be built as a module.  If so, the module
-+	  will be called ad525x_dpot.
-+
- source "drivers/misc/c2port/Kconfig"
- source "drivers/misc/eeprom/Kconfig"
- source "drivers/misc/cb710/Kconfig"
-diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-index a086197..eafeab6 100644
---- a/drivers/misc/Makefile
-+++ b/drivers/misc/Makefile
-@@ -52,6 +52,7 @@ obj-$(CONFIG_DW_XDATA_PCIE)	+= dw-xdata-pcie.o
- obj-$(CONFIG_PCI_ENDPOINT_TEST)	+= pci_endpoint_test.o
- obj-$(CONFIG_OCXL)		+= ocxl/
- obj-$(CONFIG_BCM_VK)		+= bcm-vk/
-+obj-$(CONFIG_SUNPLUS_IOP)	+= sunplus_iop.o
- obj-y				+= cardreader/
- obj-$(CONFIG_PVPANIC)   	+= pvpanic/
- obj-$(CONFIG_HABANA_AI)		+= habanalabs/
-diff --git a/drivers/misc/sunplus_iop.c b/drivers/misc/sunplus_iop.c
-new file mode 100644
-index 0000000..92ec0e9
---- /dev/null
-+++ b/drivers/misc/sunplus_iop.c
-@@ -0,0 +1,395 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include <linux/module.h>
-+#include <linux/miscdevice.h>
-+#include <linux/of_platform.h>
-+#include <linux/firmware.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/of_address.h>
-+#include <linux/delay.h>
-+
-+enum IOP_Status_e {
-+	IOP_SUCCESS,                /* successful */
-+	IOP_ERR_IOP_BUSY,           /* IOP is busy */
-+};
-+
-+struct regs_moon0 {
-+	u32 stamp;         /* 00 */
-+	u32 clken[10];     /* 01~10 */
-+	u32 gclken[10];    /* 11~20 */
-+	u32 reset[10];     /* 21~30 */
-+	u32 sfg_cfg_mode;  /* 31 */
-+};
-+
-+struct regs_iop {
-+	u32 iop_control;/* 00 */
-+	u32 iop_reg1;/* 01 */
-+	u32 iop_bp;/* 02 */
-+	u32 iop_regsel;/* 03 */
-+	u32 iop_regout;/* 04 */
-+	u32 iop_reg5;/* 05 */
-+	u32 iop_resume_pcl;/* 06 */
-+	u32 iop_resume_pch;/* 07 */
-+	u32 iop_data0;/* 08 */
-+	u32 iop_data1;/* 09 */
-+	u32 iop_data2;/* 10 */
-+	u32 iop_data3;/* 11 */
-+	u32 iop_data4;/* 12 */
-+	u32 iop_data5;/* 13 */
-+	u32 iop_data6;/* 14 */
-+	u32 iop_data7;/* 15 */
-+	u32 iop_data8;/* 16 */
-+	u32 iop_data9;/* 17 */
-+	u32 iop_data10;/* 18 */
-+	u32 iop_data11;/* 19 */
-+	u32 iop_base_adr_l;/* 20 */
-+	u32 iop_base_adr_h;/* 21 */
-+	u32 Memory_bridge_control;/* 22 */
-+	u32 iop_regmap_adr_l;/* 23 */
-+	u32 iop_regmap_adr_h;/* 24 */
-+	u32 iop_direct_adr;/* 25*/
-+	u32 reserved[6];/* 26~31 */
-+};
-+
-+struct regs_iop_pmc {
-+	u32 PMC_TIMER;/* 00 */
-+	u32 PMC_CTRL;/* 01 */
-+	u32 XTAL27M_PASSWORD_I;/* 02 */
-+	u32 XTAL27M_PASSWORD_II;/* 03 */
-+	u32 XTAL32K_PASSWORD_I;/* 04 */
-+	u32 XTAL32K_PASSWORD_II;/* 05 */
-+	u32 CLK27M_PASSWORD_I;/* 06 */
-+	u32 CLK27M_PASSWORD_II;/* 07 */
-+	u32 PMC_TIMER2;/* 08 */
-+	u32 reserved[23];/* 9~31 */
-+};
-+
-+#define NORMAL_CODE_MAX_SIZE 0X1000
-+#define STANDBY_CODE_MAX_SIZE 0x4000
-+struct sp_iop {
-+	struct miscdevice dev;			// iop device
-+	struct mutex write_lock;
-+	void __iomem *iop_regs;
-+	void __iomem *pmc_regs;
-+	void __iomem *moon0_regs;
-+	int irq;
-+	unsigned char iop_normal_code[NORMAL_CODE_MAX_SIZE];
-+	unsigned char iop_standby_code[STANDBY_CODE_MAX_SIZE];
-+	resource_size_t iop_mem_start;
-+	resource_size_t iop_mem_size;
-+};
-+
-+static void sp_iop_normal_mode(struct sp_iop *iop)
-+{
-+	struct regs_iop *p_iop_reg = (struct regs_iop *)iop->iop_regs;
-+	struct regs_moon0 *p_moon0_reg = (struct regs_moon0 *)iop->moon0_regs;
-+	void __iomem *iop_kernel_base;
-+	unsigned int reg;
-+
-+	iop_kernel_base = ioremap(iop->iop_mem_start, NORMAL_CODE_MAX_SIZE);
-+	memset(iop_kernel_base, 0, NORMAL_CODE_MAX_SIZE);
-+	memcpy(iop_kernel_base, iop->iop_normal_code, NORMAL_CODE_MAX_SIZE);
-+
-+	writel(0x00100010, &p_moon0_reg->clken[0]);
-+
-+	reg = readl(&p_iop_reg->iop_control);
-+	reg |= 0x01;
-+	writel(reg, &p_iop_reg->iop_control);
-+
-+	reg = readl(&p_iop_reg->iop_control);
-+	reg &= ~(0x8000);
-+	writel(reg, &p_iop_reg->iop_control);
-+
-+	reg = readl(&p_iop_reg->iop_control);
-+	reg |= 0x0200;//disable watchdog event reset IOP
-+	writel(reg, &p_iop_reg->iop_control);
-+
-+	reg = (iop->iop_mem_start & 0xFFFF);
-+	writel(reg, &p_iop_reg->iop_base_adr_l);
-+	reg	= (iop->iop_mem_start >> 16);
-+	writel(reg, &p_iop_reg->iop_base_adr_h);
-+
-+	reg = readl(&p_iop_reg->iop_control);
-+	reg &= ~(0x01);
-+	writel(reg, &p_iop_reg->iop_control);
-+}
-+
-+static void sp_iop_standby_mode(struct sp_iop *iop)
-+{
-+	struct regs_iop *p_iop_reg = (struct regs_iop *)iop->iop_regs;
-+	struct regs_moon0 *p_moon0_reg = (struct regs_moon0 *)iop->moon0_regs;
-+	void __iomem *iop_kernel_base;
-+	unsigned long reg;
-+
-+	iop_kernel_base = ioremap(iop->iop_mem_start, STANDBY_CODE_MAX_SIZE);
-+	memset(iop_kernel_base, 0, STANDBY_CODE_MAX_SIZE);
-+	memcpy(iop_kernel_base, iop->iop_standby_code, STANDBY_CODE_MAX_SIZE);
-+
-+	writel(0x00100010, &p_moon0_reg->clken[0]);
-+
-+	reg = readl(&p_iop_reg->iop_control);
-+	reg |= 0x01;
-+	writel(reg, &p_iop_reg->iop_control);
-+
-+	reg = readl(&p_iop_reg->iop_control);
-+	reg &= ~(0x8000);
-+	writel(reg, &p_iop_reg->iop_control);
-+
-+	reg = readl(&p_iop_reg->iop_control);
-+	reg |= 0x0200;//disable watchdog event reset IOP
-+	writel(reg, &p_iop_reg->iop_control);
-+
-+	reg = (iop->iop_mem_start & 0xFFFF);
-+	writel(reg, &p_iop_reg->iop_base_adr_l);
-+	reg = (iop->iop_mem_start >> 16);
-+	writel(reg, &p_iop_reg->iop_base_adr_h);
-+
-+	reg = readl(&p_iop_reg->iop_control);
-+	reg &= ~(0x01);
-+	writel(reg, &p_iop_reg->iop_control);
-+}
-+
-+#define IOP_READY	0x4
-+#define RISC_READY	0x8
-+static void sp_iop_shutdown(struct sp_iop *iop)
-+{
-+	struct regs_iop *p_iop_reg = (struct regs_iop *)iop->iop_regs;
-+	struct regs_moon0 *p_moon0_reg = (struct regs_moon0 *)iop->moon0_regs;
-+	struct regs_iop_pmc *p_iop_pmc_reg = (struct regs_iop_pmc *)iop->pmc_regs;
-+	unsigned int reg;
-+
-+	writel(0x00100010, &p_moon0_reg->clken[0]);
-+
-+	reg = readl(&p_iop_reg->iop_control);
-+	reg &= ~(0x8000);
-+	writel(reg, &p_iop_reg->iop_control);
-+
-+	reg = readl(&p_iop_reg->iop_control);
-+	reg |= 0x1;
-+	writel(reg, &p_iop_reg->iop_control);
-+
-+	//PMC set
-+	writel(0x00010001, &p_iop_pmc_reg->PMC_TIMER);
-+	reg = readl(&p_iop_pmc_reg->PMC_CTRL);
-+	reg |= 0x23;// disable system reset PMC, enalbe power down 27M, enable gating 27M
-+	writel(reg, &p_iop_pmc_reg->PMC_CTRL);
-+
-+	writel(0x55aa00ff, &p_iop_pmc_reg->XTAL27M_PASSWORD_I);
-+	writel(0x00ff55aa, &p_iop_pmc_reg->XTAL27M_PASSWORD_II);
-+	writel(0xaa00ff55, &p_iop_pmc_reg->XTAL32K_PASSWORD_I);
-+	writel(0xff55aa00, &p_iop_pmc_reg->XTAL32K_PASSWORD_II);
-+	writel(0xaaff0055, &p_iop_pmc_reg->CLK27M_PASSWORD_I);
-+	writel(0x5500aaff, &p_iop_pmc_reg->CLK27M_PASSWORD_II);
-+	writel(0x01000100, &p_iop_pmc_reg->PMC_TIMER2);
-+
-+	//IOP Hardware IP reset
-+	reg = readl(&p_moon0_reg->reset[0]);
-+	reg |= 0x10;
-+	writel(reg, (&p_moon0_reg->reset[0]));
-+	reg &= ~(0x10);
-+	writel(reg, (&p_moon0_reg->reset[0]));
-+
-+	writel(0x00ff0085, (iop->moon0_regs + 32*4*1 + 4*1));
-+
-+	reg = readl(iop->moon0_regs + 32*4*1 + 4*2);
-+	reg |= 0x08000800;
-+	writel(reg, (iop->moon0_regs + 32*4*1 + 4*2));
-+
-+	reg = readl(&p_iop_reg->iop_control);
-+	reg |= 0x0200;//disable watchdog event reset IOP
-+	writel(reg, &p_iop_reg->iop_control);
-+
-+	reg = (iop->iop_mem_start & 0xFFFF);
-+	writel(reg, &p_iop_reg->iop_base_adr_l);
-+	reg = (iop->iop_mem_start >> 16);
-+	writel(reg, &p_iop_reg->iop_base_adr_h);
-+
-+	reg = readl(&p_iop_reg->iop_control);
-+	reg &= ~(0x01);
-+	writel(reg, &p_iop_reg->iop_control);
-+	while ((p_iop_reg->iop_data2&IOP_READY) != IOP_READY)
-+		;
-+
-+	writel(RISC_READY, &p_iop_reg->iop_data2);
-+	writel(0x00, &p_iop_reg->iop_data5);
-+	writel(0x60, &p_iop_reg->iop_data6);
-+	while (1) {
-+		if (p_iop_reg->iop_data7 == 0xaaaa)
-+			break;
-+	}
-+
-+	writel(0xdd, &p_iop_reg->iop_data1);//8051 bin file call Ultra low function.
-+	mdelay(10);
-+}
-+
-+static int  sp_iop_get_normal_code(struct device *dev, struct sp_iop *iop)
-+{
-+	const struct firmware *fw;
-+	static const char file[] = "normal.bin";
-+	unsigned int err, i;
-+
-+	dev_info(dev, "normal code\n");
-+	err = request_firmware(&fw, file, dev);
-+	if (err) {
-+		dev_info(dev, "get bin file error\n");
-+		return err;
-+	}
-+
-+	for (i = 0; i < NORMAL_CODE_MAX_SIZE; i++) {
-+		char temp;
-+
-+		temp = fw->data[i];
-+		iop->iop_normal_code[i] = temp;
-+	}
-+	release_firmware(fw);
-+	return err;
-+}
-+
-+static int  sp_iop_get_standby_code(struct device *dev, struct sp_iop *iop)
-+{
-+	const struct firmware *fw;
-+	static const char file[] = "standby.bin";
-+	unsigned int err, i;
-+
-+	dev_info(dev, "standby code\n");
-+	err = request_firmware(&fw, file, dev);
-+	if (err) {
-+		dev_info(dev, "get bin file error\n");
-+		return err;
-+	}
-+
-+	for (i = 0; i < STANDBY_CODE_MAX_SIZE; i++) {
-+		char temp;
-+
-+		temp = fw->data[i];
-+		iop->iop_standby_code[i] = temp;
-+	}
-+	release_firmware(fw);
-+	return err;
-+}
-+
-+static int sp_iop_get_resources(struct platform_device *pdev,
-+	struct sp_iop *pstSpIOPInfo)
-+{
-+	struct resource *r;
-+
-+	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, "iop");
-+	pstSpIOPInfo->iop_regs = devm_ioremap_resource(&pdev->dev, r);
-+	if (IS_ERR(pstSpIOPInfo->iop_regs)) {
-+		dev_err(&pdev->dev, "ioremap fail\n");
-+		return PTR_ERR(pstSpIOPInfo->iop_regs);
-+	}
-+
-+	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, "iop_pmc");
-+	pstSpIOPInfo->pmc_regs = devm_ioremap_resource(&pdev->dev, r);
-+	if (IS_ERR(pstSpIOPInfo->pmc_regs)) {
-+		dev_err(&pdev->dev, "ioremap fail\n");
-+		return PTR_ERR(pstSpIOPInfo->pmc_regs);
-+	}
-+
-+	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, "moon0");
-+	pstSpIOPInfo->moon0_regs = devm_ioremap_resource(&pdev->dev, r);
-+	if (IS_ERR(pstSpIOPInfo->moon0_regs)) {
-+		dev_err(&pdev->dev, "ioremap fail\n");
-+		return PTR_ERR(pstSpIOPInfo->moon0_regs);
-+	}
-+	return IOP_SUCCESS;
-+}
-+
-+static int sp_iop_platform_driver_probe(struct platform_device *pdev)
-+{
-+	int ret = -ENXIO;
-+	int rc;
-+	struct sp_iop *iop;
-+	struct device_node *memnp;
-+	struct resource mem_res;
-+
-+	iop = devm_kzalloc(&pdev->dev, sizeof(struct sp_iop), GFP_KERNEL);
-+	if (iop == NULL) {
-+		ret	= -ENOMEM;
-+		goto fail_kmalloc;
-+	}
-+	/* init */
-+	mutex_init(&iop->write_lock);
-+	/* register device */
-+	iop->dev.name  = "sp_iop";
-+	iop->dev.minor = MISC_DYNAMIC_MINOR;
-+	ret = misc_register(&iop->dev);
-+	if (ret != 0) {
-+		dev_err(&pdev->dev, "sp_iop device register fail\n");
-+		goto fail_regdev;
-+	}
-+
-+	ret = sp_iop_get_resources(pdev, iop);
-+
-+	//Get reserve address
-+	memnp = of_parse_phandle(pdev->dev.of_node, "memory-region", 0);
-+	if (!memnp) {
-+		dev_err(&pdev->dev, "no memory-region node\n");
-+		return -EINVAL;
-+	}
-+
-+	rc = of_address_to_resource(memnp, 0, &mem_res);
-+	of_node_put(memnp);
-+	if (rc) {
-+		dev_err(&pdev->dev, "failed to translate memory-region to a resource\n");
-+		return -EINVAL;
-+	}
-+
-+	iop->iop_mem_start = mem_res.start;
-+	iop->iop_mem_size = resource_size(&mem_res);
-+
-+	ret = sp_iop_get_normal_code(&pdev->dev, iop);
-+	if (ret != 0) {
-+		dev_err(&pdev->dev, "get normal code err=%d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = sp_iop_get_standby_code(&pdev->dev, iop);
-+	if (ret != 0) {
-+		dev_err(&pdev->dev, "get standby code err=%d\n", ret);
-+		return ret;
-+	}
-+
-+	sp_iop_normal_mode(iop);
-+	platform_set_drvdata(pdev, iop);
-+	return 0;
-+
-+fail_regdev:
-+	mutex_destroy(&iop->write_lock);
-+fail_kmalloc:
-+	return ret;
-+
-+
-+}
-+
-+static void sp_iop_platform_driver_shutdown(struct platform_device *pdev)
-+{
-+	struct sp_iop *iop = platform_get_drvdata(pdev);
-+
-+	sp_iop_standby_mode(iop);
-+	sp_iop_shutdown(iop);
-+}
-+
-+static const struct of_device_id sp_iop_of_match[] = {
-+	{ .compatible = "sunplus,sp7021-iop" },
-+	{ /* sentinel */ },
-+};
-+
-+MODULE_DEVICE_TABLE(of, sp_iop_of_match);
-+
-+static struct platform_driver sp_iop_platform_driver = {
-+	.probe		= sp_iop_platform_driver_probe,
-+	.shutdown	= sp_iop_platform_driver_shutdown,
-+	.driver = {
-+		.name	= "sunplus,sp7021-iop",
-+		.owner	= THIS_MODULE,
-+		.of_match_table = of_match_ptr(sp_iop_of_match),
-+	}
-+};
-+
-+module_platform_driver(sp_iop_platform_driver);
-+
-+MODULE_AUTHOR("Tony Huang <tonyhuang.sunplus@gmail.com>");
-+MODULE_DESCRIPTION("Sunplus IOP Driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.7.4
+or a manual shift:
 
+  ours =3D GENMASK(gpio->num_irqs - 1, 0) << gpio->first_irq_bit;
+
+(I don't have any terribly strong opinions on which of these is best,
+personally.)
+
+
+
+Zev
