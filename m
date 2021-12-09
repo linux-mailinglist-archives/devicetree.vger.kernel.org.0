@@ -2,120 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 967D046F4D2
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 21:23:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC9E646F500
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 21:34:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231833AbhLIU1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 15:27:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35114 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbhLIU1H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 15:27:07 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FC5CC061746;
-        Thu,  9 Dec 2021 12:23:33 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id r25so22865599edq.7;
-        Thu, 09 Dec 2021 12:23:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=f8uvUI5BY3lo9YiSsZpgDXouT/InJg5cLCGaYQDFMDU=;
-        b=nYXL+CAv+6QxavEh4bK9TyRI0H7FFAu5kIG571p+0okcqYHPoLxy/rwoAsMiTiasLX
-         AV+iICnoMjMBDCty3a9Be0SMAM6NpbBhC3miCmkXpkL43R9eMPKk6txHRd2I3u+e7t2h
-         RT/iLkcIcBMmdXy2F1lbk1Mco8W9/qBIriNuFusQyVtAeWzLaybg32y+1z2QcVKqgqPw
-         6s6MdfebKjaq55otMnWJQUTIx3F+LUmwwvWXIJ1B6lNImPmFS57EUsN544UoIGlph0gK
-         ZFWv3CbSDzbcNXboQVqBBGQZwKCg68UMlKJySN3yV9f7iC7w2AyR9XhoNROSgGNHRGhn
-         NZKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=f8uvUI5BY3lo9YiSsZpgDXouT/InJg5cLCGaYQDFMDU=;
-        b=VUz4PRAbfDcyCdWzSz0oP+fyT+P+/WIPGfZIt6wjk/iI8H0oDiPiwjdseUcNN0EyxT
-         8NvX07u+NrA49ROdk/QvJSw3qDtAWbFCR1HfiH92NMRvRbq6AKzELnfY6tS1y3GTrqSM
-         P3aQJMGLZR6wPX3kgY2gmPqPLS/ovBjgp3Irbeko3kqI38Mh04dFU5E51jfBdKnhLJYG
-         G9fnQw8DbcVqik/LrB3On10i8BghmNeGxWzatkwOVIjvOuCVrhw1O0gG83KXogRGo80/
-         zEvrx2s0MmFkZczF/3ylpXZA78LKJ3Fxxqc9LG6M4O29BDfQQGhe3z+6H6smfZX1o0Kt
-         716A==
-X-Gm-Message-State: AOAM532oeKPddMLyWrXHggqGYjU21cuJjezoRrl77Fxgx6jYpUQq5naW
-        6yCAiIRc5QWmsFnER6P/fSA=
-X-Google-Smtp-Source: ABdhPJwqn80d7WMYeeRVDvMjwthOeqjTwODQh53soK5bLNBK2hF/ACz4RFStJzO2lKP6Uwi7LNxgYw==
-X-Received: by 2002:a17:907:97c3:: with SMTP id js3mr18676561ejc.240.1639081411604;
-        Thu, 09 Dec 2021 12:23:31 -0800 (PST)
-Received: from skbuf ([188.25.173.50])
-        by smtp.gmail.com with ESMTPSA id hz15sm404252ejc.63.2021.12.09.12.23.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Dec 2021 12:23:31 -0800 (PST)
-Date:   Thu, 9 Dec 2021 22:23:29 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "vivien.didelot@gmail.com" <vivien.didelot@gmail.com>,
-        "andrew@lunn.ch" <andrew@lunn.ch>
-Subject: Re: [PATCH net-next v3 2/6] dt-bindings: net: lan966x: Extend with
- the analyzer interrupt
-Message-ID: <20211209202329.6ogowkumh3lz3ve7@skbuf>
-References: <20211209094615.329379-1-horatiu.vultur@microchip.com>
- <20211209094615.329379-3-horatiu.vultur@microchip.com>
- <20211209105857.n3mnmbnjom3f7rg3@skbuf>
- <20211209154247.kzsrwli5fqautqtm@soft-dev3-1.localhost>
+        id S231135AbhLIUiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 15:38:05 -0500
+Received: from ns.lynxeye.de ([87.118.118.114]:35556 "EHLO lynxeye.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229446AbhLIUiB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Dec 2021 15:38:01 -0500
+X-Greylist: delayed 583 seconds by postgrey-1.27 at vger.kernel.org; Thu, 09 Dec 2021 15:37:59 EST
+Received: by lynxeye.de (Postfix, from userid 501)
+        id 8CDEBE74217; Thu,  9 Dec 2021 21:24:10 +0100 (CET)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on lynxeye.de
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=3.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=ham version=3.3.1
+Received: from [192.168.178.22] (a89-183-24-88.net-htp.de [89.183.24.88])
+        by lynxeye.de (Postfix) with ESMTPSA id E6DBFE74023;
+        Thu,  9 Dec 2021 21:24:07 +0100 (CET)
+Message-ID: <ad3feb990ea73d258075e9bf3d3034189266bad2.camel@lynxeye.de>
+Subject: Re: [RFC PATCH 00/17] drm: bridge: Samsung MIPI DSIM bridge
+From:   Lucas Stach <dev@lynxeye.de>
+To:     Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
+        Tim Harvey <tharvey@gateworks.com>
+Cc:     Marek Vasut <marex@denx.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        NXP Linux Team <Linux-imx@nxp.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Date:   Thu, 09 Dec 2021 21:24:07 +0100
+In-Reply-To: <CAOf5uw=Cts+V+amSrTzVyRyFZA=eKSVtRPtXae40-4M0bu6pwg@mail.gmail.com>
+References: <20210704090230.26489-1-jagan@amarulasolutions.com>
+         <YP2ZvoVQyvwTXP++@ravnborg.org>
+         <CAMty3ZANJz=HSKFzZ8gn896uw98iVwMEpGhmanXNbj77Ren4hw@mail.gmail.com>
+         <CAJ+vNU1Hy_94TYgs0isNc2pmiH2sOReZJLhphzQFTN2Z50JPrA@mail.gmail.com>
+         <CAOf5uwm6+tFS8temhPmSx6nFVTSyk0Ckd9eDEToQNmNaiO2c=A@mail.gmail.com>
+         <CAJ+vNU2pQCHqnyNJnz_rhczGRwcU=9XDFG1ix_V=Sc-1oWvhjA@mail.gmail.com>
+         <CAOf5uw=Cts+V+amSrTzVyRyFZA=eKSVtRPtXae40-4M0bu6pwg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211209154247.kzsrwli5fqautqtm@soft-dev3-1.localhost>
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 09, 2021 at 04:42:47PM +0100, Horatiu Vultur wrote:
-> The 12/09/2021 10:58, Vladimir Oltean wrote:
-> > 
-> > On Thu, Dec 09, 2021 at 10:46:11AM +0100, Horatiu Vultur wrote:
-> > > Extend dt-bindings for lan966x with analyzer interrupt.
-> > > This interrupt can be generated for example when the HW learn/forgets
-> > > an entry in the MAC table.
-> > >
-> > > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> > > ---
-> > 
-> > Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> > 
-> > Why don't you describe your hardware in the device tree all at once?
-> > Doing it piece by piece means that every time when you add a new
-> > functionality you need to be compatible with the absence of a certain
-> > reg, interrupt etc.
+Am Donnerstag, dem 09.12.2021 um 18:09 +0100 schrieb Michael Nazzareno
+Trimarchi:
+> Hi Tim
 > 
-> I though it is more clear what is added in the patch series.
-> But then, if for example add more interrupts in DT than what the
-> driver support, that would not be an issue?
+> On Thu, Dec 9, 2021 at 5:40 PM Tim Harvey <tharvey@gateworks.com> wrote:
+> > 
+> > On Thu, Dec 9, 2021 at 12:36 AM Michael Nazzareno Trimarchi
+> > <michael@amarulasolutions.com> wrote:
+> > > 
+> > > Hi Tim
+> > > 
+> > > On Tue, Oct 5, 2021 at 11:43 PM Tim Harvey <tharvey@gateworks.com> wrote:
+> > > > 
+> > > > On Sun, Jul 25, 2021 at 10:14 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> > > > > 
+> > > > > Hi Sam,
+> > > > > 
+> > > > > On Sun, Jul 25, 2021 at 10:35 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+> > > > > > 
+> > > > > > Hi Jagan,
+> > > > > > 
+> > > > > > On Sun, Jul 04, 2021 at 02:32:13PM +0530, Jagan Teki wrote:
+> > > > > > > This series supports common bridge support for Samsung MIPI DSIM
+> > > > > > > which is used in Exynos and i.MX8MM SoC's.
+> > > > > > > 
+> > > > > > > The final bridge supports both the Exynos and i.MX8MM DSI devices.
+> > > > > > > 
+> > > > > > > Right now bridge offers two sets of implementations.
+> > > > > > > 
+> > > > > > > A. With component_ops and exynos specific code exclusively for
+> > > > > > >    exynos dsi drivers and it's legacy bindings.
+> > > > > > > 
+> > > > > > > B. Without componenet_ops for newly implemented bridges and its
+> > > > > > >    users like i.MX8MM.
+> > > > > > > 
+> > > > > > > The future plan is to fix the implementation A) by dropping
+> > > > > > > component_ops and fixing exynos specific code in order to make
+> > > > > > > the bridge more mature to use and the same is mentioned in
+> > > > > > > drivers TODO.
+> > > > > > > 
+> > > > > > > Patch 0001 - 0006: Bridge conversion
+> > > > > > > Patch 0007 - 0017: Samsung MIPI DSIM bridge fixes, additions
+> > > > > > > 
+> > > > > > > Tested in Engicam i.Core MX8M Mini SoM.
+> > > > > > > 
+> > > > > > > Anyone interest, please have a look on this repo
+> > > > > > > https://github.com/openedev/linux/tree/070421-imx8mm-dsim
+> > > > > > > 
+> > > > > > > Would appreciate anyone from the exynos team to test it on
+> > > > > > > the exynos platform?
+> > > > > > > 
+> > > > > > > Any inputs?
+> > > > > > 
+> > > > > > I really like where you are headign with this!
+> > > > > > No testing - sorry. But I will try to provide a bit of feedback on the
+> > > > > > individual patches.
+> > > > > > 
+> > > > > > I hope you find a way to move forward with this.
+> > > > > 
+> > > > > Thanks for the response.
+> > > > > 
+> > > > > We have found some issues with Bridge conversion on existing exynos
+> > > > > drivers. The component based DSI drivers(like exynos) are difficult to
+> > > > > attach if it involves kms hotplug. kms hotplug would require drm
+> > > > > pointer and that pointer would only available after the bind call
+> > > > > finishes. But the bridge attach in bind call will defer till it find
+> > > > > the attached bridge.
+> > > > > 
+> > > > > Right now I'm trying to find the proper way to attach the bridges for
+> > > > > component based DSI drivers which involves kms hot-plug.
+> > > > > 
+> > > > > If you have any ideas on this, please let me know.
+> > > > > 
+> > > > 
+> > > > Jagan,
+> > > > 
+> > > > How is your progress on this series? Looking at your repo it looks
+> > > > like you've rebased on top of 5.13-rc3 in your 070121-imx8mm-dsim
+> > > > branch but you've got a lot of things there that are likely not
+> > > > related to this series?
+> > > 
+> > > I have a bit of work on those patches and tested on imx8mn. Basically:
+> > > 
+> > > - add the dsi timing calculation
+> > > - change few difference with samsung bridge
+> > > - fix crashes of my dsi panels
+> > > - compare with NXP driver the final results
+> > > 
+> > > I found that I have one problem that gives me some instability. In the
+> > > NXP original driver the panel needs to be
+> > > enabled in bridge_enable before out the standby. If I understand
+> > > correctly, our standby should be done after.
+> > > I would like to have some feedback and help and testing on other
+> > > boards/devices and some suggestions on how to handle
+> > > some of the differences. Another big problem is etnavi that is not stable
+> > > 
+> > 
+> > Michael,
+> > 
+> > Where can I find your patches?
+> > 
+> 
+> I will push on some tree and share
+> 
+> > What do you mean by etnaviv not being stable?
+> > 
+> > I did some limited testing with etnaviv on imx8mm with 5.15 + dsi
+> 
+> 
+> 
+> > patches on an Ubuntu focal root filesystem by:
+> > apt update
+> > apt install gnome-session gnome-terminal
+> > ^^^ 2D hardware acceleration appears to be working (dragging opaque
+> > windows around)
+> > apt install mesa-utils glmark2
+> > glxgears
+> > ^^^ ~160fps on IMX8MM
+> > glmark2
+> > ^^^ score of 39 on IMX8MM
+> > 
+> > I haven't seen any updates from Jagan since Nov 24
+> > (https://www.spinics.net/lists/dri-devel/msg324059.html) and am not
+> > sure if he's been able to work through drm/exynos issues that have
+> > been blocking his progress.
+> 
+> I plan to push on github
+> 
+> [17:07:42.315] Sending ready to systemd
+> [  214.052085] etnaviv-gpu 38000000.gpu: recover hung GPU!
+> [  214.595998] etnaviv-gpu 38000000.gpu: recover hung GPU!
+> 
+> ** (maynard:386): WARNING **: 17:07:43.874: failed to setup mixer: Success
+> [17:07:44.175] Added surface 0xaaab02630440, app_id (null) to pending list
+> [17:07:44.176] Added surface 0xaaab026172b0, app_id (null) to pending list
+> ** Message: 17:07:44.289: New advertisement app id maynard
+> ** Message: 17:07:44.290: New advertisement app id maynard
+> [17:07:45.171] (background) position view 0xaaab0261f860, x 0, y 0, on
+> output DSI-1
+> [17:07:45.171] (panel) geom.width 100, geom.height 480, geom.x 0, geom.y 0
+> [17:07:45.171] (panel) edge 2 position view 0xaaab02634510, x 0, y 0
+> [17:07:45.172] panel type 2 inited on output DSI-1
+> [17:07:45.172] Usable area: 380x480+100,0
+> [  216.932080] etnaviv-gpu 38000000.gpu: recover hung GPU!
+> [  217.476015] etnaviv-gpu 38000000.gpu: recover hung GPU!
+> [  218.020157] etnaviv-gpu 38000000.gpu: recover hung GPU!
+> 
+> This is my problem on imx8mn
 
-I haven't kept track of the lan966x driver development. It looks like it
-is pretty new, so I think it's ok in this case. But I've also seen
-features introduced years after the driver was initially published (see
-ocelot fdma) where device tree updates were still necessary, due to
-minor things like these: an interrupt isn't there, the registers for
-FDMA aren't there, etc. After that kind of time you'd expect the DT
-to no longer require updates unless there is some unforeseen event
-(something is broken, a driver is radically rethought). Sure there's a
-fine line between how much you can add to the device tree and the
-how many consumers there are in the kernel, but on the other hand the
-kernel doesn't have to use everything that's in the device tree.
-For example, at Mark Brown's suggestion, the DSPI nodes in ls1028a.dtsi
-declare their DMA channels even though the driver does not use them
-(it could, though, but it would be slower). Similarly, the DSPI driver
-for LS1021A has had a while in which it ignored the interrupt line from
-the device tree, because poll mode was simply faster. To me, this kind
-of approach where the device tree is provisioned even for configurations
-that aren't supported today makes sense, precisely because the DT blob
-and the kernel have different lifetimes. It's better to have the
-interrupt and not use it than to need it and not have it.
+Note that the GPU on the 8MN is from the GC7000 generation, which
+genreally has bogus feature registers, as VeriSilicon stopped using
+them in favor of a hardware database. To get the GPu working you need
+to transcribe the entry for this specific GPU from the downstream GPU
+driver into the etanviv HWDB format, to make the kernel and userspace
+driver aware of how to drive this GPU.
+
+Regards,
+Lucas
+
