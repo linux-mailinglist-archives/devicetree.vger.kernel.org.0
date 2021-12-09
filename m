@@ -2,111 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8656C46E625
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 11:06:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E8B546E633
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 11:06:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232278AbhLIKJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 05:09:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56848 "EHLO
+        id S232517AbhLIKKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 05:10:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232215AbhLIKJp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 05:09:45 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 648A1C061746
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 02:06:11 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id m27so10894290lfj.12
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 02:06:11 -0800 (PST)
+        with ESMTP id S232530AbhLIKKO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 05:10:14 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16D75C061353
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 02:06:41 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id m27so10897332lfj.12
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 02:06:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=F1owymgiCbwjtMOY3GwDKTTRv4aRJ4ddqlYjVacAxeY=;
-        b=IEAlki6D4NihEbGixc0ZB8q1mWKYeVyBm450yjRD6H+nFTePjftgbNP1DSbjKJC/wn
-         aA6G1S7zyTmWIk2wnFu1f0vt67RzKqsiulULcMDgUC+z69q+XtVhP3Eu0UC0yezAwjNB
-         vX82i6L0vOPMOqpqTVSvYYCMeFCK7iTHxJMGDkkT5ZH+GnHs9SODYR5MYMhq1DGi4GzO
-         jzkp592RVDVKnCu1VIpNL7vqWdE78LfoQ/N7ed/l18v1uQfKPEjZBRH2eRUjtNTKCBPA
-         nWa9O+uPUfVM+lsrddwkRKNoYhpf4nu+XyMW4JWKq2CaEyoOmsYKC8jQgxIh6QFH8/oT
-         jcsw==
+        bh=rR9HkzFTP4grkP6sg2UeJ3/DfSt5b0pBlUV4udB0Wac=;
+        b=IuTimkarfAf0OIwVa8DtZn2VMHFohSoEHB/6rR8h0PyKU00F0LvQfoIg20ew/3Ab7S
+         vZ6BR1Wt8CbkMEEKbToSFvc0EfxZ0YApVqFJBL7U//rCTjqVzxH+16As2m8alXUQcGHM
+         A+meSWcvJZU/BrDFFfomiiuaxu62dAInCU4w5KanxSvQOZiFsC9NbcJv9kFAV6OQ1dxb
+         43iUtyLNmDjKki7sIU9Ex4YftMq1UADsNvNrG496r1vILRaY3paQTwfy4z+nlseLVYpV
+         pSi3kU1pNxf93HbjcWyjQ8NzLfLcK6U492aOsvmt9ca/qen88qeMSBNr84CYQCevrdAq
+         cG1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=F1owymgiCbwjtMOY3GwDKTTRv4aRJ4ddqlYjVacAxeY=;
-        b=GzIAFRrHVH1Q1cpIAenY24oNDREXcWkBLjCGUHM6WbKq4AM0otncvXs3d6ft7qMLvr
-         vhDNABReK869il59tgMLfz+B6h4EcPoRfDtaEG3rRQfSgcdopXsIc+x4ou+hDesx0lr2
-         P1Rex26jIueoMvAH/CBOw8Oe8NwsHwg2BekO4x5VGzGlDdoC8BkQ93ZBvJW/5zXUcJLT
-         JWr5dNCuLg5AgcfQQxyUPcXjL67aztfX6e+WOUoVRUFWUMxy0lpfPLy8+6yjr1aVq0/L
-         wWOogH6/QYIq/xLyfs3LZR7SX5n6iE9RaGfof8lJrPd+7yeLB6P7fReVRaHABITAbiZ8
-         qXPA==
-X-Gm-Message-State: AOAM533RrSFKj7e31yZ7jKY9BqfIPTkKvA2IR4l5YMxXaL9pO8kiPswC
-        risCp5t7RNvfkYMmZnH5Pn90twl3BY11m0MZI7ab1w==
-X-Google-Smtp-Source: ABdhPJwOXRN/8lU2AYgTrJejBXDpm4hFI6pejaLy27VCQ/luFqzDGRy/0PN4sedVg8qGNEQznzbU3QCdxNwh1mp0znQ=
-X-Received: by 2002:a05:6512:10c4:: with SMTP id k4mr4875603lfg.373.1639044369640;
- Thu, 09 Dec 2021 02:06:09 -0800 (PST)
+        bh=rR9HkzFTP4grkP6sg2UeJ3/DfSt5b0pBlUV4udB0Wac=;
+        b=pTW5m7O0yRsl4dGK9wqb1Eq01gF33v22MoPUCGq1jurB9mTxQF2WEhn7B1AlwuQUE0
+         5dsXCg4lFcIp3zZE8zCkSJBLEf0UPeFyAI4bVfH5x8XzwaqHMmxiF4LmyO3ZPBfHq3be
+         KUsEDE63TH0OW1z1YWb8ZiKvPwfkjCnOur08HuPhtX2CBwP2lhGglvi9vHLLi5vXyi1j
+         t9acCfHPvVEC8H/oMnKwu9yMypOgCInYf+gCobkRd8jshKbJhfL1OA+6MoVqqkUmxKlZ
+         tQ3DeJ2QFmz9ldvncbjSn2DZb/oGVkyGeRFZgkboCFbl5KN0h4jMr6Vtp6MKy+j1vUap
+         jKnw==
+X-Gm-Message-State: AOAM532f+9bSz//+dycPgpCW6lxN+nF+G/IHucTDAmpaW+AU2bQpbrNh
+        ttcmJY0tWCzwejBA15gh/pmK+vdYHPKrOYzpPvEbJ9eil30=
+X-Google-Smtp-Source: ABdhPJwkdd82JBnjFtUXNmkhka2mBRwmZxvRO/lV8z12CK7y93SxJBpsK1/sKP0IR7oMTYn2fkm07zk+qba6CB2bh1A=
+X-Received: by 2002:ac2:4bc1:: with SMTP id o1mr5146148lfq.254.1639044399304;
+ Thu, 09 Dec 2021 02:06:39 -0800 (PST)
 MIME-Version: 1.0
-References: <20211206174201.2297265-1-robh@kernel.org>
-In-Reply-To: <20211206174201.2297265-1-robh@kernel.org>
+References: <20211208003727.3596577-1-f.fainelli@gmail.com> <20211208003727.3596577-2-f.fainelli@gmail.com>
+In-Reply-To: <20211208003727.3596577-2-f.fainelli@gmail.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 9 Dec 2021 11:05:33 +0100
-Message-ID: <CAPDyKFpd=bdMOCe2cScdLjhr97bZ+VLFr7yn8j48d4KCcHaqtw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: Add missing properties used in examples
-To:     Rob Herring <robh@kernel.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <Kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
+Date:   Thu, 9 Dec 2021 11:06:02 +0100
+Message-ID: <CAPDyKFqHCUcEPOy80x-5Mx9fC-jrfme9B2kaANtapdnzFj7qLw@mail.gmail.com>
+Subject: Re: [PATCH v3 01/15] dt-bindings: mmc: Convert Broadcom STB SDHCI
+ binding to YAML
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:MULTIMEDIA CARD (MMC), SECURE DIGITAL (SD) AND..." 
+        <linux-mmc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Dec 2021 at 18:42, Rob Herring <robh@kernel.org> wrote:
+- trimmed cc list
+
+On Wed, 8 Dec 2021 at 01:37, Florian Fainelli <f.fainelli@gmail.com> wrote:
 >
-> When 'unevaluatedProperties' support is enabled, the following warnings
-> are generated in the mmc bindings:
+> Convert the Broadcom STB SDHCI controller Device Tree binding to YAML.
 >
-> Documentation/devicetree/bindings/mmc/mtk-sd.example.dt.yaml: mmc@11230000: Unevaluated properties are not allowed ('reg', 'interrupts' were unexpected)
-> Documentation/devicetree/bindings/mmc/sdhci-am654.example.dt.yaml: mmc@4f80000: Unevaluated properties are not allowed ('sdhci-caps-mask' was unexpected)
-> Documentation/devicetree/bindings/mmc/socionext,uniphier-sd.example.dt.yaml: mmc@5a400000: Unevaluated properties are not allowed ('dma-names', 'dmas' were unexpected)
-> Documentation/devicetree/bindings/mmc/arm,pl18x.example.dt.yaml: mmc@80126000: Unevaluated properties are not allowed ('dmas', 'dma-names' were unexpected)
-> Documentation/devicetree/bindings/mmc/arasan,sdhci.example.dt.yaml: mmc@80420000: Unevaluated properties are not allowed ('resets' was unexpected)
-> Documentation/devicetree/bindings/mmc/arm,pl18x.example.dt.yaml: mmc@52007000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
-> Documentation/devicetree/bindings/clock/imx8qxp-lpcg.example.dt.yaml: mmc@5b010000: Unevaluated properties are not allowed ('power-domains' was unexpected)
->
-> Add the missing properties as necessary. For pl18x, drop interrupt-names
-> as there isn't any use of it when there are 2 interrupts.
->
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Chaotian Jing <chaotian.jing@mediatek.com>
-> Cc: Matthias Brugger <matthias.bgg@gmail.com>
-> Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> Cc: Masami Hiramatsu <mhiramat@kernel.org>
-> Cc: Adrian Hunter <adrian.hunter@intel.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Wenbin Mei <wenbin.mei@mediatek.com>
-> Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
-> Cc: linux-mmc@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-mediatek@lists.infradead.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 
 Applied for next, thanks!
 
@@ -115,123 +77,177 @@ Uffe
 
 
 > ---
->  Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml  | 3 +++
->  Documentation/devicetree/bindings/mmc/arm,pl18x.yaml     | 9 ++++++++-
->  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 3 +++
->  Documentation/devicetree/bindings/mmc/mtk-sd.yaml        | 6 ++++++
->  Documentation/devicetree/bindings/mmc/sdhci-am654.yaml   | 2 ++
->  .../devicetree/bindings/mmc/socionext,uniphier-sd.yaml   | 6 ++++++
->  6 files changed, 28 insertions(+), 1 deletion(-)
+>  .../bindings/mmc/brcm,sdhci-brcmstb.txt       |  53 ----------
+>  .../bindings/mmc/brcm,sdhci-brcmstb.yaml      | 100 ++++++++++++++++++
+>  2 files changed, 100 insertions(+), 53 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.txt
+>  create mode 100644 Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-> index de6f076e0ece..83be9e93d221 100644
-> --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-> @@ -118,6 +118,9 @@ properties:
->    phy-names:
->      const: phy_arasan
->
-> +  resets:
-> +    maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.txt b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.txt
+> deleted file mode 100644
+> index ae2074184528..000000000000
+> --- a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.txt
+> +++ /dev/null
+> @@ -1,53 +0,0 @@
+> -* BROADCOM BRCMSTB/BMIPS SDHCI Controller
+> -
+> -This file documents differences between the core properties in mmc.txt
+> -and the properties used by the sdhci-brcmstb driver.
+> -
+> -NOTE: The driver disables all UHS speed modes by default and depends
+> -on Device Tree properties to enable them for SoC/Board combinations
+> -that support them.
+> -
+> -Required properties:
+> -- compatible: should be one of the following
+> -  - "brcm,bcm7425-sdhci"
+> -  - "brcm,bcm7445-sdhci"
+> -  - "brcm,bcm7216-sdhci"
+> -
+> -Refer to clocks/clock-bindings.txt for generic clock consumer properties.
+> -
+> -Example:
+> -
+> -       sdhci@84b0000 {
+> -               sd-uhs-sdr50;
+> -               sd-uhs-ddr50;
+> -               sd-uhs-sdr104;
+> -               sdhci,auto-cmd12;
+> -               compatible = "brcm,bcm7216-sdhci",
+> -                          "brcm,bcm7445-sdhci",
+> -                          "brcm,sdhci-brcmstb";
+> -               reg = <0x84b0000 0x260 0x84b0300 0x200>;
+> -               reg-names = "host", "cfg";
+> -               interrupts = <0x0 0x26 0x4>;
+> -               interrupt-names = "sdio0_0";
+> -               clocks = <&scmi_clk 245>;
+> -               clock-names = "sw_sdio";
+> -       };
+> -
+> -       sdhci@84b1000 {
+> -               mmc-ddr-1_8v;
+> -               mmc-hs200-1_8v;
+> -               mmc-hs400-1_8v;
+> -               mmc-hs400-enhanced-strobe;
+> -               supports-cqe;
+> -               non-removable;
+> -               bus-width = <0x8>;
+> -               compatible = "brcm,bcm7216-sdhci",
+> -                          "brcm,bcm7445-sdhci",
+> -                          "brcm,sdhci-brcmstb";
+> -               reg = <0x84b1000 0x260 0x84b1300 0x200>;
+> -               reg-names = "host", "cfg";
+> -               interrupts = <0x0 0x27 0x4>;
+> -               interrupt-names = "sdio1_0";
+> -               clocks = <&scmi_clk 245>;
+> -               clock-names = "sw_sdio";
+> -       };
+> diff --git a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
+> new file mode 100644
+> index 000000000000..dccd5ad96981
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
+> @@ -0,0 +1,100 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/brcm,sdhci-brcmstb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->    arasan,soc-ctl-syscon:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
-> diff --git a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> index 47595cb483be..fbc866d9bb2f 100644
-> --- a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> @@ -60,6 +60,14 @@ properties:
->      minItems: 1
->      maxItems: 2
->
-> +  dmas:
-> +    maxItems: 2
+> +title: Broadcom BRCMSTB/BMIPS SDHCI Controller binding
 > +
-> +  dma-names:
-> +    items:
-> +      - const: rx
-> +      - const: tx
+> +maintainers:
+> +  - Al Cooper <alcooperx@gmail.com>
+> +  - Florian Fainelli <f.fainelli@gmail.com>
 > +
->    power-domains: true
->
->    resets:
-> @@ -213,7 +221,6 @@ examples:
->        arm,primecell-periphid = <0x10153180>;
->        reg = <0x52007000 0x1000>;
->        interrupts = <49>;
-> -      interrupt-names = "cmd_irq";
->        clocks = <&rcc 0>;
->        clock-names = "apb_pclk";
->        resets = <&rcc 1>;
-> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> index 19621a2f8beb..8d5cef0d3039 100644
-> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> @@ -116,6 +116,9 @@ properties:
->        - const: ahb
->        - const: per
->
-> +  power-domains:
-> +    maxItems: 1
+> +allOf:
+> +  - $ref: mmc-controller.yaml#
 > +
->    pinctrl-names:
->      oneOf:
->        - minItems: 3
-> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> index 82768a807294..faf89b0c918f 100644
-> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> @@ -36,6 +36,9 @@ properties:
->            - const: mediatek,mt8195-mmc
->            - const: mediatek,mt8183-mmc
->
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - brcm,bcm7216-sdhci
+> +          - const: brcm,bcm7445-sdhci
+> +          - const: brcm,sdhci-brcmstb
+> +      - items:
+> +          - enum:
+> +              - brcm,bcm7445-sdhci
+> +          - const: brcm,sdhci-brcmstb
+> +      - items:
+> +          - enum:
+> +              - brcm,bcm7425-sdhci
+> +          - const: brcm,sdhci-brcmstb
+> +
 > +  reg:
-> +    maxItems: 1
+> +    minItems: 2
 > +
->    clocks:
->      description:
->        Should contain phandle for the clock feeding the MMC controller.
-> @@ -62,6 +65,9 @@ properties:
->        - const: axi_cg
->        - const: ahb_cg
->
+> +  reg-names:
+> +    items:
+> +      - const: host
+> +      - const: cfg
+> +
 > +  interrupts:
 > +    maxItems: 1
 > +
->    pinctrl-names:
->      items:
->        - const: default
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
-> index 224303f5b913..9fbf16b3bc8d 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
-> @@ -48,6 +48,8 @@ properties:
->        - const: clk_ahb
->        - const: clk_xin
->
-> +  sdhci-caps-mask: true
-> +
->    # PHY output tap delays:
->    # Used to delay the data valid window and align it to the sampling clock.
->    # Binding needs to be provided for each supported speed mode otherwise the
-> diff --git a/Documentation/devicetree/bindings/mmc/socionext,uniphier-sd.yaml b/Documentation/devicetree/bindings/mmc/socionext,uniphier-sd.yaml
-> index 56f9ff12742d..a586fad0a46b 100644
-> --- a/Documentation/devicetree/bindings/mmc/socionext,uniphier-sd.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/socionext,uniphier-sd.yaml
-> @@ -26,6 +26,12 @@ properties:
->    clocks:
->      maxItems: 1
->
-> +  dmas:
+> +  clocks:
 > +    maxItems: 1
+> +    description:
+> +      handle to core clock for the sdhci controller.
 > +
-> +  dma-names:
-> +    const: rx-tx
+> +  clock-names:
+> +    items:
+> +      - const: sw_sdio
 > +
->    reset-names:
->      description: |
->        There are three reset signals at maximum
+> +  sdhci,auto-cmd12:
+> +    type: boolean
+> +    description: Specifies that controller should use auto CMD12
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    mmc@84b0000 {
+> +      sd-uhs-sdr50;
+> +      sd-uhs-ddr50;
+> +      sd-uhs-sdr104;
+> +      sdhci,auto-cmd12;
+> +      compatible = "brcm,bcm7216-sdhci",
+> +                   "brcm,bcm7445-sdhci",
+> +                   "brcm,sdhci-brcmstb";
+> +      reg = <0x84b0000 0x260>, <0x84b0300 0x200>;
+> +      reg-names = "host", "cfg";
+> +      interrupts = <0x0 0x26 0x4>;
+> +      interrupt-names = "sdio0_0";
+> +      clocks = <&scmi_clk 245>;
+> +      clock-names = "sw_sdio";
+> +    };
+> +
+> +    mmc@84b1000 {
+> +      mmc-ddr-1_8v;
+> +      mmc-hs200-1_8v;
+> +      mmc-hs400-1_8v;
+> +      mmc-hs400-enhanced-strobe;
+> +      supports-cqe;
+> +      non-removable;
+> +      bus-width = <0x8>;
+> +      compatible = "brcm,bcm7216-sdhci",
+> +           "brcm,bcm7445-sdhci",
+> +            "brcm,sdhci-brcmstb";
+> +      reg = <0x84b1000 0x260>, <0x84b1300 0x200>;
+> +      reg-names = "host", "cfg";
+> +      interrupts = <0x0 0x27 0x4>;
+> +      interrupt-names = "sdio1_0";
+> +      clocks = <&scmi_clk 245>;
+> +      clock-names = "sw_sdio";
+> +    };
 > --
-> 2.32.0
+> 2.25.1
 >
