@@ -2,61 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 717EF46EC24
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 16:48:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D213E46EC2C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 16:49:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240349AbhLIPvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 10:51:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52798 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240167AbhLIPvf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 10:51:35 -0500
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE72C0617A1
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 07:48:01 -0800 (PST)
-Received: from [10.1.250.9] (riviera.nat.ds.pw.edu.pl [194.29.137.1])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 9B577200DE;
-        Thu,  9 Dec 2021 16:47:59 +0100 (CET)
-Message-ID: <dbc46d99-cb29-f92b-39ed-4fd612140dbe@somainline.org>
-Date:   Thu, 9 Dec 2021 16:47:59 +0100
+        id S240371AbhLIPxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 10:53:24 -0500
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:36719 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234325AbhLIPxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 10:53:23 -0500
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id AF93EE0006;
+        Thu,  9 Dec 2021 15:49:46 +0000 (UTC)
+From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Denis Kirjanov <dkirjanov@suse.de>,
+        Julian Wiedmann <jwi@linux.ibm.com>
+Subject: [PATCH net-next v8 0/4] Add FDMA support on ocelot switch driver
+Date:   Thu,  9 Dec 2021 16:49:07 +0100
+Message-Id: <20211209154911.3152830-1-clement.leger@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.4.0
-Subject: Re: [PATCH v2 13/13] arm64: dts: qcom: sm8450: add i2c13 and i2c14
- device nodes
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211209103505.197453-1-vkoul@kernel.org>
- <20211209103505.197453-14-vkoul@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20211209103505.197453-14-vkoul@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/12/2021 11:35, Vinod Koul wrote:
-> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->
-> Add device tree nodes for two i2c blocks: i2c13 and i2c14.
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8450.dtsi | 52 ++++++++++++++++++++++++++++
->   1 file changed, 52 insertions(+)
+This series adds support for the Frame DMA present on the VSC7514
+switch. The FDMA is able to extract and inject packets on the various
+ethernet interfaces present on the switch.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+------------------
+Changes in V8:
+  - Rebase on net-next/master
 
+Changes in V7:
+  - Fix kernel doc for fdma struct
 
-Konrad
+Changes in V6:
+  - Remove dead code added in ocelot_vsc7514
+  - Remove useless include added in mscc/ocelot.h
+  - Remove trailing whitespace
+  - Move skb_tx_timestamp before sending the skb
+  - Fix a few long lines
+
+Changes in V5:
+  - Add skb freeing for TX and fix RX ring skb not being freed
+  - Fix napi init in case of netdev registration failure
+  - Reorganize FDMA register definitions
+  - Used regmap targets from ocelot structure to get fdma pointer
+  - s/page_count/page_ref_count
+  - Move napi back in struct ocelot_fdma
+
+Changes in V4:
+  - Use regmap for register access
+  - Removed yaml bindings convertion as well as mac address from dt
+  - Removed pre-computed IFH for the moment
+  - Fixed timestamp reading for PTP in FDMA
+  - Fixed wrong exit path for fdma netdev init
+  - Removed spinlock from TX cleanup
+  - Add asynchronous RX chan stop before refilling
+  - Reduce CH_SAFE wait time to 10us
+  - Reduce waiting time for channel to be safe
+  - Completely rework rx to use page recycling (code from gianfar)
+  - Reenable MTU change support since FDMA now supports it transparently
+  - Split TX and RX ring size
+  - Larger RX size to lower page allocation rate
+  - Add static key to check for FDMA to be enabled in fast path
+
+Changes in V3:
+  - Add timeouts for hardware registers read
+  - Add cleanup path in fdma_init
+  - Rework injection and extraction to used ring like structure
+  - Added PTP support to FDMA
+  - Use pskb_expand_head instead of skb_copy_expand in xmit
+  - Drop jumbo support
+  - Use of_get_ethdev_address
+  - Add ocelot_fdma_netdev_init/deinit
+
+Changes in V2:
+  - Read MAC for each port and not as switch base MAC address
+  - Add missing static for some functions in ocelot_fdma.c
+  - Split change_mtu from fdma commit
+  - Add jumbo support for register based xmit
+  - Move precomputed header into ocelot_port struct
+  - Remove use of QUIRK_ENDIAN_LITTLE due to misconfiguration for tests
+  - Remove fragmented packet sending which has not been tested
+
+Clément Léger (4):
+  net: ocelot: export ocelot_ifh_port_set() to setup IFH
+  net: ocelot: add and export ocelot_ptp_rx_timestamp()
+  net: ocelot: add support for ndo_change_mtu
+  net: ocelot: add FDMA support
+
+ drivers/net/ethernet/mscc/Makefile         |   1 +
+ drivers/net/ethernet/mscc/ocelot.c         |  59 +-
+ drivers/net/ethernet/mscc/ocelot.h         |   2 +
+ drivers/net/ethernet/mscc/ocelot_fdma.c    | 894 +++++++++++++++++++++
+ drivers/net/ethernet/mscc/ocelot_fdma.h    | 166 ++++
+ drivers/net/ethernet/mscc/ocelot_net.c     |  39 +-
+ drivers/net/ethernet/mscc/ocelot_vsc7514.c |  10 +
+ include/soc/mscc/ocelot.h                  |   6 +
+ 8 files changed, 1151 insertions(+), 26 deletions(-)
+ create mode 100644 drivers/net/ethernet/mscc/ocelot_fdma.c
+ create mode 100644 drivers/net/ethernet/mscc/ocelot_fdma.h
+
+-- 
+2.34.1
 
