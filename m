@@ -2,84 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CEB146F4E7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 21:28:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BE1646F4F0
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 21:31:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231132AbhLIUbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 15:31:34 -0500
-Received: from smtp2.axis.com ([195.60.68.18]:13580 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229850AbhLIUbe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Dec 2021 15:31:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1639081681;
-  x=1670617681;
-  h=date:to:cc:subject:message-id:references:mime-version:
-   content-transfer-encoding:in-reply-to:from;
-  bh=YyxODeDg+LRyAxMywwCmG089O/PaAP6cnlIZ8WqKBL8=;
-  b=J8o1qyweYVNODuOn5kQ30kqm/W9xotrupeOZPrpUMnjXazpyGj55PXEv
-   6RJi4g57HspvXNAxYKnZ9lVdmO1uraHSuCye6SzdZ8nbK2ngwyuZ4mOnA
-   uVn/wuSAFooQQBs+/zTIczYw44KhGnz2pDbJrChnipKR7oywgtQiD8Raw
-   yFJes9eXk3zyh2kx4A6NueKT1gLi9NsIVf9uYBleG8Q0rt++VSOV+TdWD
-   x08tttdDBRvP3xu25BwPywJ4KvlguwvCIV8oslwccpdDgz+D6DTBXMJUe
-   mS8RlgnlPh8oYz1ntQFyS/tPzUiNCv7Vd9G/8Zn/s+I7s20C0jsGPzQiJ
-   A==;
-Date:   Thu, 9 Dec 2021 21:27:59 +0100
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-CC:     =?iso-8859-1?Q?M=E5rten?= Lindahl <Marten.Lindahl@axis.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        id S232026AbhLIUe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 15:34:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36888 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229657AbhLIUe4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 15:34:56 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D2E3C061746;
+        Thu,  9 Dec 2021 12:31:22 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id B6730CE286A;
+        Thu,  9 Dec 2021 20:31:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B1A5C341C7;
+        Thu,  9 Dec 2021 20:31:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1639081878;
+        bh=6r/eB8lxbXJXe5tk1w6eUyewlp1rCQ3ywwINxscRZP4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TlVp4htbLaKOiksL0+1MDrhNtwbuvHq9L+yKgkg67hRZrgfc7y8SSCm7b1fhY6eke
+         bPYmtvvvYIVtjFphKbYsHIBuXUJAtUPb9AsmTgho/h7XvHqyzndnjRCQ0jiCWpUu+o
+         iPdd5jIiRsND4SZIWWhUEZxn/sRykzQA7b17DmIo=
+Date:   Thu, 9 Dec 2021 21:31:15 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     David Brazdil <dbrazdil@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Doug Anderson <dianders@google.com>, kernel <kernel@axis.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>
-Subject: Re: [PATCH v3 2/4] mmc: dw_mmc-exynos: Add support for ARTPEC-8
-Message-ID: <20211209202758.GB8509@axis.com>
-References: <20211209164558.13729-1-marten.lindahl@axis.com>
- <20211209164558.13729-3-marten.lindahl@axis.com>
- <cf76cbaa-5ea8-ebf1-73eb-7b99dc02f2c0@canonical.com>
+        Jonathan Corbet <corbet@lwn.net>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hans de Goede <hdegoede@redhat.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, Andrew Scull <ascull@google.com>,
+        Will Deacon <will@kernel.org>
+Subject: Re: [PATCH v2 2/2] misc: dice: Add driver to forward secrets to
+ userspace
+Message-ID: <YbJnk7elmP4kUZEH@kroah.com>
+References: <20211209151123.3759999-1-dbrazdil@google.com>
+ <20211209151123.3759999-3-dbrazdil@google.com>
+ <YbIhaWC8b2DV5C7Y@kroah.com>
+ <20211209193857.GA28088@duo.ucw.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cf76cbaa-5ea8-ebf1-73eb-7b99dc02f2c0@canonical.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-From:   Marten Lindahl <martenli@axis.com>
+In-Reply-To: <20211209193857.GA28088@duo.ucw.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 09, 2021 at 07:28:12PM +0100, Krzysztof Kozlowski wrote:
-> On 09/12/2021 17:45, Mårten Lindahl wrote:
-> > The ARTPEC-8 SoC has a DWMMC controller that is compatible with the
-> > Exynos 7 version v2.70a. The main differences from Exynos 7 is that it
-> > does not support HS400 and has extended data read timeout.
-> > 
-> > This patch adds compatibility string "axis,artpec8-dw-mshc" for
-> > ARTPEC-8, and DW_MCI_TYPE_ARTPEC8 is added to the dw_mci_exynos_type.
-> > 
-> > Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
-> > ---
-> > 
-> > v2:
-> >  - Change compatible string vendor prefix
-> > 
-> >  drivers/mmc/host/dw_mmc-exynos.c | 47 ++++++++++++++++++++++++--------
-> >  1 file changed, 36 insertions(+), 11 deletions(-)
-> >
-
-Hi Krzysztof!
+On Thu, Dec 09, 2021 at 08:38:57PM +0100, Pavel Machek wrote:
+> Hi!
 > 
-> Here you dropped my tag as well.
-
-I'm very sorry. I will of course add it right away.
-
-Kind regards
-Mårten
+> > > +	memzero_explicit(kaddr, dice_rmem->size);
+> > > +	devm_memunmap(dice_misc.this_device, kaddr);
+> > 
+> > Do you really need to call memzero_explicit()?  This isn't "local"
+> > memory, if the compiler "optimizes away" a normal call, it would be
+> > _VERY_ broken.
 > 
-> Best regards,
-> Krzysztof
+> For clearing secrets, I believe memzero_explicit is nice
+> documentation.
+
+Only if it's really needed please.
