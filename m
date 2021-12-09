@@ -2,240 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 785A646F29B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:57:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B089746F2DD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 19:19:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237660AbhLISAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 13:00:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57304 "EHLO
+        id S243210AbhLISWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 13:22:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237632AbhLISAq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 13:00:46 -0500
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81787C061746
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 09:57:12 -0800 (PST)
-Received: by mail-pf1-x433.google.com with SMTP id i12so6112916pfd.6
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 09:57:12 -0800 (PST)
+        with ESMTP id S237501AbhLISWo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 13:22:44 -0500
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80548C061746
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 10:19:10 -0800 (PST)
+Received: by mail-oi1-x22e.google.com with SMTP id r26so9840758oiw.5
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 10:19:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=z5+7qgzAffjpX4D95KV24/hFMJKfChebjkYZm32y/ck=;
-        b=jyspa9LuAGELzKCkE/6331dnNKz+fXgXIkDJg0UAW3jIHrGlb+2HZyHuAvVu/+bidM
-         HxB+px2X0+5PBTPriw6JeTqrk5jxe47Gh7bi3vhkpkgatveqszajG6VJe0xUvU4O3LSM
-         PnUQ/UwihSWvqoNW8suzbtZ6WRI1l4J0NJKsX15oQ2tRUcrCKim5VWBKn5ZEFqJ/BAkV
-         hZY4LlOhknxyeJ7ace8N5RT2mufFJwAXxZIq/ybTHU7CW+M0RiuEiPAuniK1k+tvbI4M
-         T7md4t7amc3xbtjWIw+SDGpWSiaILycQPD1iq2cXg+0n180ZdNdYRGe0cNifQqSPKk0t
-         Sb5A==
+        d=kali.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=S0JQyjTunbOQRpAL1mfHYhxPgZ8eEhJSSXuzKq/Hnog=;
+        b=mBM67eTxzKmcGwpgfzYUDIksjk4bYHhq/DkzT+XlRAyOh6vx+mzzjkJK1WPPB19zk2
+         khhojfdUeocsVBNypzUwhe9OYapsIs6Ajc9yyfzkpBi9HpT1V4Zn7q9+66nvAlRFuKTZ
+         6+YTVGSpOu3WDlFhD3EHZ3uRgwvnz0CaWtctmEMONcsDsxn3CbGtxSvsYbj9h5cmvafl
+         Rv/MweraiRnxUmjJw/sy+2ys8kvfuMMObR8QX9ndQzexAzdw0r8feotJ9Zb1WUzWiF/9
+         ettAfnqws5qF1a/+lVCjkvg9jbteHZW0Aeuq8dLQDQW0LbRNGM4V61Z1Bg4ZroMbrwPZ
+         7Q4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=z5+7qgzAffjpX4D95KV24/hFMJKfChebjkYZm32y/ck=;
-        b=Q+ehENlggmjYTAvK3I/9k0Wy/qYcAoAnJULFdcymfDgAszKtl+EO2OpCuPnR9Z2ErX
-         TMq13cGZFBVTQ1hgXi9z5fb45Nl/Fwe9Mz/LGx2F5trDXLpaNYtJBjP64JftxpuCeD+Y
-         ssASLEy4Xy0Bzu5+FUbVDxONKec2f0EjEctJh1q7S3gnxPK7UjfplaoaaeIQcjjRYov4
-         t2pNdYeP91TKCboM490zym/HXZK6LsYtled+CetraUT0vniGuDTrILhzYB3P0F95ATU9
-         LYnHI6/aaTvDunhvLwYOx79O6tWMEnOM2Ed4sgprgcNdBsUjizk8yrDejxKAB0knh84t
-         Eedg==
-X-Gm-Message-State: AOAM530kOeuMncLmswZ6UgnaQQ13majPMIne5Uw2JniW6yefk9/2b5pW
-        Xz53pUTV8HGQr94MHedoliUAQKcA2rFq5DWSRfRG8A==
-X-Google-Smtp-Source: ABdhPJx6hBQ91azuKOfGobN3Ack6F3SygyEarJ5hhT0+0li8k4m/3gKLjBxF2S8c7NTS1BnlwndszH4XY3pW8v//DII=
-X-Received: by 2002:a62:8786:0:b0:4b1:1ef1:2063 with SMTP id
- i128-20020a628786000000b004b11ef12063mr1114345pfe.73.1639072631890; Thu, 09
- Dec 2021 09:57:11 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=S0JQyjTunbOQRpAL1mfHYhxPgZ8eEhJSSXuzKq/Hnog=;
+        b=btravO3QTkbRBMcvxPS4sE2qPvoc+PmD1Etxo+zsyC9ooRcMxlFmHfHVAP8aTdGLul
+         kPS8C+/kVyE70tDQeNZrhpiFOIbn3x9XpnDW9Rq2h7O/vqBhfqSa9cFvFTBvOVpGShXW
+         LjMOGfvk3XlRKpLzPu3D3zAf5CqWAZYh6A5Wvj0nelc0VLFHFhyYctFYkRTt4wYovA35
+         g2Nx+CyYh2UfI6SJUMBilnVgSCIXqEbLwMSUI8FqDgyI6tWeHZ1cM1yFMHV03Zm71FDl
+         OGDQibu7P0ejb8dhvFpAsuWGl4CBfb6ypnQpZUeh5LxzHh20UIWz4AIo8LD9XXqfYXfW
+         cAzg==
+X-Gm-Message-State: AOAM530iXd9KaEJarkfnoMyKE+czPNbRUSp8elcI452LNrHKH3eMzx5o
+        is8mJWK6zOUkyv9woGzyfgBibg==
+X-Google-Smtp-Source: ABdhPJwfjtg5LsFtSz5hYVc+XaPozIdUdnYNLwCPuRc4y9HIqO0mAIRwgLIhdD9OO+U/LU/BHO9toA==
+X-Received: by 2002:a05:6808:d48:: with SMTP id w8mr7676796oik.135.1639073949927;
+        Thu, 09 Dec 2021 10:19:09 -0800 (PST)
+Received: from [192.168.11.48] (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
+        by smtp.gmail.com with ESMTPSA id q2sm111497otg.64.2021.12.09.10.19.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Dec 2021 10:19:09 -0800 (PST)
+Message-ID: <c003889c-fe1c-0a85-5b2b-2875a909b1b7@kali.org>
+Date:   Thu, 9 Dec 2021 12:19:08 -0600
 MIME-Version: 1.0
-References: <20210704090230.26489-1-jagan@amarulasolutions.com>
- <YP2ZvoVQyvwTXP++@ravnborg.org> <CAMty3ZANJz=HSKFzZ8gn896uw98iVwMEpGhmanXNbj77Ren4hw@mail.gmail.com>
- <CAJ+vNU1Hy_94TYgs0isNc2pmiH2sOReZJLhphzQFTN2Z50JPrA@mail.gmail.com>
- <CAOf5uwm6+tFS8temhPmSx6nFVTSyk0Ckd9eDEToQNmNaiO2c=A@mail.gmail.com>
- <CAJ+vNU2pQCHqnyNJnz_rhczGRwcU=9XDFG1ix_V=Sc-1oWvhjA@mail.gmail.com> <CAOf5uw=Cts+V+amSrTzVyRyFZA=eKSVtRPtXae40-4M0bu6pwg@mail.gmail.com>
-In-Reply-To: <CAOf5uw=Cts+V+amSrTzVyRyFZA=eKSVtRPtXae40-4M0bu6pwg@mail.gmail.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Thu, 9 Dec 2021 09:57:00 -0800
-Message-ID: <CAJ+vNU0_CguvaLjGEQ3tTiJq1bqOQYb+o1e1OvbPCmtTW9iGiA@mail.gmail.com>
-Subject: Re: [RFC PATCH 00/17] drm: bridge: Samsung MIPI DSIM bridge
-To:     Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Marek Vasut <marex@denx.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <Linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.3.2
+Subject: Re: [PATCH 0/2] arm64: dts: qcom: c630: update sound card setup
+Content-Language: en-US
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        bjorn.andersson@linaro.org
+Cc:     agross@kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20211209175342.20386-1-srinivas.kandagatla@linaro.org>
+From:   Steev Klimaszewski <steev@kali.org>
+In-Reply-To: <20211209175342.20386-1-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 9, 2021 at 9:09 AM Michael Nazzareno Trimarchi
-<michael@amarulasolutions.com> wrote:
->
-> Hi Tim
->
-> On Thu, Dec 9, 2021 at 5:40 PM Tim Harvey <tharvey@gateworks.com> wrote:
-> >
-> > On Thu, Dec 9, 2021 at 12:36 AM Michael Nazzareno Trimarchi
-> > <michael@amarulasolutions.com> wrote:
-> > >
-> > > Hi Tim
-> > >
-> > > On Tue, Oct 5, 2021 at 11:43 PM Tim Harvey <tharvey@gateworks.com> wrote:
-> > > >
-> > > > On Sun, Jul 25, 2021 at 10:14 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
-> > > > >
-> > > > > Hi Sam,
-> > > > >
-> > > > > On Sun, Jul 25, 2021 at 10:35 PM Sam Ravnborg <sam@ravnborg.org> wrote:
-> > > > > >
-> > > > > > Hi Jagan,
-> > > > > >
-> > > > > > On Sun, Jul 04, 2021 at 02:32:13PM +0530, Jagan Teki wrote:
-> > > > > > > This series supports common bridge support for Samsung MIPI DSIM
-> > > > > > > which is used in Exynos and i.MX8MM SoC's.
-> > > > > > >
-> > > > > > > The final bridge supports both the Exynos and i.MX8MM DSI devices.
-> > > > > > >
-> > > > > > > Right now bridge offers two sets of implementations.
-> > > > > > >
-> > > > > > > A. With component_ops and exynos specific code exclusively for
-> > > > > > >    exynos dsi drivers and it's legacy bindings.
-> > > > > > >
-> > > > > > > B. Without componenet_ops for newly implemented bridges and its
-> > > > > > >    users like i.MX8MM.
-> > > > > > >
-> > > > > > > The future plan is to fix the implementation A) by dropping
-> > > > > > > component_ops and fixing exynos specific code in order to make
-> > > > > > > the bridge more mature to use and the same is mentioned in
-> > > > > > > drivers TODO.
-> > > > > > >
-> > > > > > > Patch 0001 - 0006: Bridge conversion
-> > > > > > > Patch 0007 - 0017: Samsung MIPI DSIM bridge fixes, additions
-> > > > > > >
-> > > > > > > Tested in Engicam i.Core MX8M Mini SoM.
-> > > > > > >
-> > > > > > > Anyone interest, please have a look on this repo
-> > > > > > > https://github.com/openedev/linux/tree/070421-imx8mm-dsim
-> > > > > > >
-> > > > > > > Would appreciate anyone from the exynos team to test it on
-> > > > > > > the exynos platform?
-> > > > > > >
-> > > > > > > Any inputs?
-> > > > > >
-> > > > > > I really like where you are headign with this!
-> > > > > > No testing - sorry. But I will try to provide a bit of feedback on the
-> > > > > > individual patches.
-> > > > > >
-> > > > > > I hope you find a way to move forward with this.
-> > > > >
-> > > > > Thanks for the response.
-> > > > >
-> > > > > We have found some issues with Bridge conversion on existing exynos
-> > > > > drivers. The component based DSI drivers(like exynos) are difficult to
-> > > > > attach if it involves kms hotplug. kms hotplug would require drm
-> > > > > pointer and that pointer would only available after the bind call
-> > > > > finishes. But the bridge attach in bind call will defer till it find
-> > > > > the attached bridge.
-> > > > >
-> > > > > Right now I'm trying to find the proper way to attach the bridges for
-> > > > > component based DSI drivers which involves kms hot-plug.
-> > > > >
-> > > > > If you have any ideas on this, please let me know.
-> > > > >
-> > > >
-> > > > Jagan,
-> > > >
-> > > > How is your progress on this series? Looking at your repo it looks
-> > > > like you've rebased on top of 5.13-rc3 in your 070121-imx8mm-dsim
-> > > > branch but you've got a lot of things there that are likely not
-> > > > related to this series?
-> > >
-> > > I have a bit of work on those patches and tested on imx8mn. Basically:
-> > >
-> > > - add the dsi timing calculation
-> > > - change few difference with samsung bridge
-> > > - fix crashes of my dsi panels
-> > > - compare with NXP driver the final results
-> > >
-> > > I found that I have one problem that gives me some instability. In the
-> > > NXP original driver the panel needs to be
-> > > enabled in bridge_enable before out the standby. If I understand
-> > > correctly, our standby should be done after.
-> > > I would like to have some feedback and help and testing on other
-> > > boards/devices and some suggestions on how to handle
-> > > some of the differences. Another big problem is etnavi that is not stable
-> > >
-> >
-> > Michael,
-> >
-> > Where can I find your patches?
-> >
->
-> I will push on some tree and share
->
-> > What do you mean by etnaviv not being stable?
-> >
-> > I did some limited testing with etnaviv on imx8mm with 5.15 + dsi
->
->
->
-> > patches on an Ubuntu focal root filesystem by:
-> > apt update
-> > apt install gnome-session gnome-terminal
-> > ^^^ 2D hardware acceleration appears to be working (dragging opaque
-> > windows around)
-> > apt install mesa-utils glmark2
-> > glxgears
-> > ^^^ ~160fps on IMX8MM
-> > glmark2
-> > ^^^ score of 39 on IMX8MM
-> >
-> > I haven't seen any updates from Jagan since Nov 24
-> > (https://www.spinics.net/lists/dri-devel/msg324059.html) and am not
-> > sure if he's been able to work through drm/exynos issues that have
-> > been blocking his progress.
->
-> I plan to push on github
->
-> [17:07:42.315] Sending ready to systemd
-> [  214.052085] etnaviv-gpu 38000000.gpu: recover hung GPU!
-> [  214.595998] etnaviv-gpu 38000000.gpu: recover hung GPU!
->
-> ** (maynard:386): WARNING **: 17:07:43.874: failed to setup mixer: Success
-> [17:07:44.175] Added surface 0xaaab02630440, app_id (null) to pending list
-> [17:07:44.176] Added surface 0xaaab026172b0, app_id (null) to pending list
-> ** Message: 17:07:44.289: New advertisement app id maynard
-> ** Message: 17:07:44.290: New advertisement app id maynard
-> [17:07:45.171] (background) position view 0xaaab0261f860, x 0, y 0, on
-> output DSI-1
-> [17:07:45.171] (panel) geom.width 100, geom.height 480, geom.x 0, geom.y 0
-> [17:07:45.171] (panel) edge 2 position view 0xaaab02634510, x 0, y 0
-> [17:07:45.172] panel type 2 inited on output DSI-1
-> [17:07:45.172] Usable area: 380x480+100,0
-> [  216.932080] etnaviv-gpu 38000000.gpu: recover hung GPU!
-> [  217.476015] etnaviv-gpu 38000000.gpu: recover hung GPU!
-> [  218.020157] etnaviv-gpu 38000000.gpu: recover hung GPU!
->
-> This is my problem on imx8mn
->
 
-Do you have an imx8mm to compare with? Unfortunately I do not have an
-imx8mn with a MIPI DSI connector and can only test with imx8mm.
+On 12/9/21 11:53 AM, Srinivas Kandagatla wrote:
+> This patchset fixes issue a with existing sound card setup on c630 and
+> also adds Headset button threshold values for button detection.
+>
+> relevant UCM changes are at
+> https://git.linaro.org/people/srinivas.kandagatla/alsa-ucm-conf.git/log/?h=v1.2.5/c630
+>
+> Srinivas Kandagatla (2):
+>    arm64: dts: qcom: c630: Fix soundcard setup
+>    arm64: dts: qcom: c630: add headset jack and button detection support
+>
+>   .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 30 +++++++++++++++++++
+>   1 file changed, 30 insertions(+)
+>
+Tested on Lenovo Yoga C630
 
-What software (other than kernel which you will share) do you have
-installed above and how is it configured or run to show the issue?
+Tested-By: Steev Klimaszewski <steev@kali.org>
 
-Best regards,
-
-Tim
