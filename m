@@ -2,91 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E583346E93C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 14:36:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77C1F46E971
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 14:53:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238058AbhLINkR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 08:40:17 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:57596 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231810AbhLINkR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 08:40:17 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: adalessandro)
-        with ESMTPSA id 609A51F467CB
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1639057002; bh=BwWLLiPj4d7OGh1PWyvfAONfVoOgWMc8xrXlLBFUDyo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=LUJDSGW0FzY+eHALf/gQ7GQKEr2sV036I0SBFeSwyHgdTpeXkxP09J+9d+X/IoxAK
-         x5gKhvPItvyQVdFE0J6bCo/YGR5PH+GXb9DU6lykUidKxmztnkefPpF4VzfwUhYBT+
-         vMo4gqM6sLV1h0KGCKtueYazt8+fptAvdmtxbCQX4joleUutXMkAigm6njHQbbznMS
-         sQxbwMCDkC4IwqgkeZ9mYFOntebRRQNmaOad9w1utQzA3j+K3FiUOChMRlimtb4/X4
-         TZ5YqzSAL+KtLfjaBVpRdtv3GAu8wQQPBoB91qi+uiKZyjJtZnOyM05Q7gBhC0o4RE
-         vhdZjP5BJKNOg==
-Subject: Re: [PATCH v3 5/5] arm: dts: imx8ulz-bsh-smm-m2: Add BSH SMM-M2
- IMX6ULZ SystemMaster
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
-        ioana.ciornei@nxp.com, jagan@amarulasolutions.com,
-        kernel@pengutronix.de, krzk@kernel.org, linux-imx@nxp.com,
-        matt@traverse.com.au, matteo.lisi@engicam.com,
-        meenakshi.aggarwal@nxp.com, michael@amarulasolutions.com,
-        nathan@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
-        shawnguo@kernel.org, tharvey@gateworks.com, robh@kernel.org
-References: <20211208192009.322190-1-ariel.dalessandro@collabora.com>
- <20211208192009.322190-6-ariel.dalessandro@collabora.com>
- <CAOMZO5CnzVm83yHbzg2OD8HqNEV0-sXduDH9zPHctRy2i9ErDA@mail.gmail.com>
-From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Message-ID: <078e6466-121e-1f1d-625b-7a0ffa684501@collabora.com>
-Date:   Thu, 9 Dec 2021 10:36:31 -0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S238214AbhLIN5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 08:57:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53590 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238204AbhLIN5N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 08:57:13 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E6D9C0617A1;
+        Thu,  9 Dec 2021 05:53:39 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 070FFCE25DC;
+        Thu,  9 Dec 2021 13:53:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81E0FC004DD;
+        Thu,  9 Dec 2021 13:53:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639058015;
+        bh=IkoYjFYwSgIGb1h6PAXZF+r0CsqV1xIDg7gWCjBL3Bo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ffRH7NrQlR5/gDfJjqiahs00/kO+nhPTdtlebmcUCJRyKfJm6q9r1n/5xVYkdydIy
+         X6F9QX7MCncn5deMXHABA0H8TPnEiTxDN8tHlQvL8ul2pjaMc+gsDcjzJxKsLMCY4J
+         2OaBSNdNVmQBv/YcExewg+IeC9w1azpwu1b6GBk7cZOQk5hbvCOERS6mLqfS95QYct
+         Lrtlp6nnMdZvSeDGOVhSgBhNoogFsTe4J3SC+d9+CpoUfrWYCzGWbEigMFQ6w6j//q
+         BTkr5UwhE1HKk8F7gs2GRZzM12hJUdpOEylanUczGaEQAqnVjVx60rF7RxF4NzHv7u
+         FNpEpoeFeXfKQ==
+Date:   Thu, 9 Dec 2021 15:53:31 +0200
+From:   Leon Romanovsky <leon@kernel.org>
+To:     JosephCHANG <josright123@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, joseph_chang@davicom.com.tw,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2, 2/2] net: Add DM9051 driver
+Message-ID: <YbIKW9R5iyK7sQqg@unreal>
+References: <20211209100702.5609-1-josright123@gmail.com>
+ <20211209100702.5609-3-josright123@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAOMZO5CnzVm83yHbzg2OD8HqNEV0-sXduDH9zPHctRy2i9ErDA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211209100702.5609-3-josright123@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabio,
-
-On 12/8/21 4:26 PM, Fabio Estevam wrote:
-> On Wed, Dec 8, 2021 at 4:21 PM Ariel D'Alessandro
-> <ariel.dalessandro@collabora.com> wrote:
->>
->> From: Michael Trimarchi <michael@amarulasolutions.com>
->>
->> Add DTS of BSH SMM-M2 SystemMaster.
->>
->> This version comes with:
->> - 128 MiB DDR3 RAM
->> - 256 MiB Nand
->> - wifi
->> - bluetooth
->>
->> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
->> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
->> ---
->>  arch/arm/boot/dts/Makefile               |   3 +-
->>  arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts | 146 +++++++++++++++++++++++
+On Thu, Dec 09, 2021 at 06:07:02PM +0800, JosephCHANG wrote:
+> Add davicom dm9051 SPI ethernet driver. The driver work with dts
+> for:
 > 
-> There is a typo in the Subject: it says imx8ulz, but it should be
-> imx6ulz instead.
+>      - spi bus number
+>      - spi chip select
+>      - spi clock frequency
+>      - interrupt gpio pin
+>      - interrupt polarity fixed as low
+> 
+>     Test OK with Rpi 2 and Rpi 4. Max spi speed is 31200000.
 
-Ah, you're right. Will fix in v4.
+Please don't do this type of formatting, where you added extra
+indentations without reason.
 
 > 
->> +/ {
->> +       model = "BSH SMM M2";
->> +       compatible = "bsh,imx6ulz-bsh-smm-m2", "fsl,imx6ull";
+> Signed-off-by: JosephCHANG <josright123@gmail.com>
+> [Submit v1 has Reported-by: kernel test robot <lkp@intel.com>]
+> ---
+>  drivers/net/ethernet/davicom/Kconfig  |  30 +
+>  drivers/net/ethernet/davicom/Makefile |   1 +
+>  drivers/net/ethernet/davicom/dm9051.c | 967 ++++++++++++++++++++++++++
+>  drivers/net/ethernet/davicom/dm9051.h | 248 +++++++
+>  4 files changed, 1246 insertions(+)
+>  create mode 100644 drivers/net/ethernet/davicom/dm9051.c
+>  create mode 100644 drivers/net/ethernet/davicom/dm9051.h
 > 
-> Shouldn't "fsl,imx6ulz" also be added here like it is done in
-> imx6ulz-14x14-evk.dts?
+> diff --git a/drivers/net/ethernet/davicom/Kconfig b/drivers/net/ethernet/davicom/Kconfig
+> index 7af86b6d4150..9c00328f6e05 100644
+> --- a/drivers/net/ethernet/davicom/Kconfig
+> +++ b/drivers/net/ethernet/davicom/Kconfig
+> @@ -3,6 +3,20 @@
+>  # Davicom device configuration
+>  #
+>  
+> +config NET_VENDOR_DAVICOM
+> +	bool "Davicom devices"
+> +	depends on ARM || MIPS || COLDFIRE || NIOS2 || COMPILE_TEST || SPI
+> +	default y
+> +	help
+> +	  If you have a network (Ethernet) card belonging to this class, say Y.
+> +
+> +	  Note that the answer to this question doesn't directly affect the
+> +	  kernel: saying N will just cause the configurator to skip all
+> +	  the questions about Davicom devices. If you say Y, you will be asked
+> +	  for your specific card in the following selections.
+> +
+> +if NET_VENDOR_DAVICOM
+> +
+>  config DM9000
+>  	tristate "DM9000 support"
+>  	depends on ARM || MIPS || COLDFIRE || NIOS2 || COMPILE_TEST
+> @@ -22,3 +36,19 @@ config DM9000_FORCE_SIMPLE_PHY_POLL
+>  	  bit to determine if the link is up or down instead of the more
+>  	  costly MII PHY reads. Note, this will not work if the chip is
+>  	  operating with an external PHY.
+> +
+> +config DM9051
+> +	tristate "DM9051 SPI support"
+> +	depends on SPI
+> +	select CRC32
+> +	select MII
+> +	help
+> +	  Support for DM9051 SPI chipset.
+> +
+> +	  To compile this driver as a module, choose M here.  The module
+> +	  will be called dm9051.
+> +
+> +	  The SPI mode for the host's SPI master to access DM9051 is mode
+> +	  0 on the SPI bus.
+> +
+> +endif # NET_VENDOR_DAVICOM
+> diff --git a/drivers/net/ethernet/davicom/Makefile b/drivers/net/ethernet/davicom/Makefile
+> index 173c87d21076..225f85bc1f53 100644
+> --- a/drivers/net/ethernet/davicom/Makefile
+> +++ b/drivers/net/ethernet/davicom/Makefile
+> @@ -4,3 +4,4 @@
+>  #
+>  
+>  obj-$(CONFIG_DM9000) += dm9000.o
+> +obj-$(CONFIG_DM9051) += dm9051.o
+> diff --git a/drivers/net/ethernet/davicom/dm9051.c b/drivers/net/ethernet/davicom/dm9051.c
+> new file mode 100644
+> index 000000000000..cdcf9d37ed7f
+> --- /dev/null
+> +++ b/drivers/net/ethernet/davicom/dm9051.c
+> @@ -0,0 +1,967 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + *	Ethernet driver for the Davicom DM9051 chip.
+> + *
+> + *	This program is free software; you can redistribute it and/or
+> + *	modify it under the terms of the GNU General Public License
+> + *	as published by the Free Software Foundation; either version 2
+> + *	of the License, or (at your option) any later version.
+> + *
+> + *	This program is distributed in the hope that it will be useful,
+> + *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+> + *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> + *	GNU General Public License for more details.
 
-Yes, it should. Will fix in v4.
+Please don't add license text. The SPDX line is more than enough.
 
-Thanks a lot,
-Ariel
+> + *
+> + *	Copyright 2021 Davicom Semiconductor,Inc.
+> + *	http://www.davicom.com.tw/
+> + *	Joseph CHANG <joseph_chang@davicom.com.tw>
+> + *	20211110b, Total 933 lines
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/kernel.h>
+> +#include <linux/netdevice.h>
+> +#include <linux/etherdevice.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/skbuff.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/cache.h>
+> +#include <linux/crc32.h>
+> +#include <linux/mii.h>
+> +#include <linux/ethtool.h>
+> +#include <linux/delay.h>
+> +#include <linux/irq.h>
+> +#include <linux/slab.h>
+> +#include <linux/gpio.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/of_gpio.h>
+> +#include <linux/spi/spi.h>
+> +
+> +#include "dm9051.h"
+> +
+> +#define	DRV_PRODUCT_NAME	"dm9051"
+> +#define	DRV_VERSION_CODE	DM_VERSION(5, 0, 5)			//(VER5.0.0= 0x050000)
+> +#define	DRV_VERSION_DATE	"20211209"				//(update)"
+
+Two points.
+1. Try to avoid vertical alignment. It adds churn when backporting.
+2. Don't add DRV_VERSION_CODE and DRV_VERSION_DATE. It is useless in
+upstream kernel.
+
+> +
+> +/* spi-spi_sync, low level code */
+> +static int burst_xfer(struct board_info *db, u8 cmdphase, u8 *txb, u8 *rxb, unsigned int len)
+> +{
+> +	struct device *dev = &db->spidev->dev;
+> +	int ret = 0;
+> +
+> +	db->cmd[0] = cmdphase;
+> +	db->spi_xfer2[0].tx_buf = &db->cmd[0];
+> +	db->spi_xfer2[0].rx_buf = NULL;
+> +	db->spi_xfer2[0].len = 1;
+> +	if (!rxb) { //write
+
+"//"is C++ coding style, which is also in C99 standard.
+Is it ok to use such comment style in netdev?
+
+<...>
+
+> +	//rcr_reg_start(db, db->rcr_all); //rx enable later
+
+I spotted many commented functions. They shouldn't be part of
+submission.
+
+<...>
+
+> +static void dm_msg_open(struct net_device *ndev)
+> +{
+> +	struct board_info *db = netdev_priv(ndev);
+> +	struct device *dev = &db->spidev->dev;
+> +
+> +	snprintf(db->DRV_VERSION, sizeof(db->DRV_VERSION), "%s_V%d.%d.%d_date_%s",
+> +		 DRV_PRODUCT_NAME, (DRV_VERSION_CODE >> 16 & 0xff),
+> +		 (DRV_VERSION_CODE >> 8 & 0xff),
+> +		 (DRV_VERSION_CODE & 0xff),
+> +		 DRV_VERSION_DATE);
+> +	dev_info(dev, "version: %s\n", db->DRV_VERSION);
+> +}
+
+This should go.
+
+<...>
+
+> +++ b/drivers/net/ethernet/davicom/dm9051.h
+> @@ -0,0 +1,248 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright 2021 Davicom Semiconductor,Inc.
+> + *	http://www.davicom.com.tw
+> + *	2014/03/11  Joseph CHANG  v1.0  Create
+> + *	2021/10/26  Joseph CHANG  v5.0.1  Update
+> + *	2021/12/09  Joseph CHANG  v5.0.5  Update
+
+It is new file, there is no value in off-tree history.
+
+> + *
+> + * DM9051 register definitions
+> + *
+> + * This program is free software; you can redistribute it and/or modify
+> + * it under the terms of the GNU General Public License version 2 as
+> + * published by the Free Software Foundation.
+
+No need.
+
+<...>
+
+> +#define DM9051_PIDL		0x2A
+> +#define DM9051_PIDH		0x2B
+> +#define DM9051_SMCR		0x2F
+> +#define	DM9051_ATCR		0x30
+> +#define	DM9051_SPIBCR		0x38
+
+Please be consistent.
+
+Thanks
