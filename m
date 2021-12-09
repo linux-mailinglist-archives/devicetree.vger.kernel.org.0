@@ -2,89 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09E0B46EC7F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 17:04:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4B8C46ECF0
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 17:20:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236669AbhLIQII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 11:08:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56836 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236647AbhLIQIH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 11:08:07 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28CDAC061746;
-        Thu,  9 Dec 2021 08:04:34 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id m12so9711089ljj.6;
-        Thu, 09 Dec 2021 08:04:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=VyNNZFntqq/7S368iziv68PH8JNo+/JFrth8MiQPnN0=;
-        b=IA7AoXxTmmSQDOR+7JKZHyzbrQBtcmUHlvjNOsI6VhwUlOOkWTKICCOXFWDtkJ5+9I
-         zmOVovEwnkRPBJXuZusPYkhCOLHcCgFyE3xc/D0BrQ00tfWhCmYJJmylb1/Y6fqP08r4
-         VtKTR9+q0cQqyn7osxibjswsFTnwV8iUVhUnqyGnYlwBNoMD36ugcWUATRYKTXR+EOBQ
-         9Knz1bXER1N69YwSURq1/WRV9wNnH1jlUXPvem/b6QE7oAMoy997fsL6Z/0qTpEX9nmS
-         INuhBlkVetXa9YG9Rht9GQgAMN1x5HZzyYFVQZm2Ut1XbKhxW0rDJG6vAPYZ3624XIpL
-         vRfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=VyNNZFntqq/7S368iziv68PH8JNo+/JFrth8MiQPnN0=;
-        b=BIfp7Z8UIxalEDd5i/jZPGZ5p4pCjFVDONr/UxhCWVwB56+xPXC5tmISEfGwqCQTiu
-         fbn0Fg+C/mxD5MSWXmY6HWQ/xqNV6dWCs9y9Hxx8B3325XoG5UAQW5XjCV/RCSAElVmc
-         m9kWTqZKUvRZkmlb4q9eNKCg+T5sscr3QSc3FkOf3xZCVJeVtt9+J5q5TUSMkmjbEeSx
-         IZqOgt4wOj7huKKWlU81PaSVMp47Lcq8inb4mAzmUCyOdJ00NxYzxiBIpfQ7vS9vRGKa
-         AjYJ6isLyQ/u28fYKNluZ/gMHNg61C6Cq8nh9sUClN3u+TtPJma481MPZ6n8b4GjBMJZ
-         SsHA==
-X-Gm-Message-State: AOAM530gfTJ1Smcz6l5vR1pDzOCZx9JUQr7j76C9h7TUDwAL8wmUChog
-        5BhDLwqvdC6kaF4OZWqL888XBUpghDM=
-X-Google-Smtp-Source: ABdhPJyjIVIwTFb/jRVG1s/HtU+6iq+SlVSeTRgCyq6BgyCqa/f3O4tShJ7SxaDdE4z6Q6IQHg5qYA==
-X-Received: by 2002:a2e:aa14:: with SMTP id bf20mr7025963ljb.376.1639065872006;
-        Thu, 09 Dec 2021 08:04:32 -0800 (PST)
-Received: from [192.168.2.145] (94-29-46-111.dynamic.spd-mgts.ru. [94.29.46.111])
-        by smtp.googlemail.com with ESMTPSA id a23sm16158ljh.140.2021.12.09.08.04.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Dec 2021 08:04:31 -0800 (PST)
-Subject: Re: [PATCH 0/2] Add SMBus features to Tegra I2C
-To:     Akhil R <akhilrajeev@nvidia.com>, andy.shevchenko@gmail.com,
-        christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
-        jonathanh@nvidia.com, ldewangan@nvidia.com,
-        linaro-mm-sig@lists.linaro.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-tegra@vger.kernel.org, p.zabel@pengutronix.de,
-        sumit.semwal@linaro.org, thierry.reding@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-References: <1639062321-18840-1-git-send-email-akhilrajeev@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <e3deea6a-3854-e58c-0d27-602413f2a496@gmail.com>
-Date:   Thu, 9 Dec 2021 19:04:30 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S240987AbhLIQYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 11:24:19 -0500
+Received: from box.trvn.ru ([194.87.146.52]:43087 "EHLO box.trvn.ru"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240974AbhLIQYT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Dec 2021 11:24:19 -0500
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by box.trvn.ru (Postfix) with ESMTPSA id C09824016B;
+        Thu,  9 Dec 2021 21:20:32 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1639066836; bh=9FyqTnutPFDqkCaAlSKqgdtESMt8HmYG2QEpB4N70g8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=w7MGT+QGl9flIxRotCXNI/jWjtbGDY/8r17Pp6diy3j8DfUcZr4li2GvFZP0pibdF
+         Kp+0kMPrHYlneOfVnHBoWsEXY6rsFIbQ7hUAKHEsPU3rCC4Z0M+33ktZJ3jJNmcO4l
+         QsmKmUtb5LSgQQKnmSf+5CBAACnejKDfhD4FV5rHQTj2YoWXd6giOOIR6+I2lZP0yP
+         59zZjr0OpYY5rfPEKGXYMhyfckBLLJka0iU1oJIWeBQLJMFCOc09vCTaDHBBvoTOHk
+         //8394V42WLYK25p3pGBhOOG/zA/eJ41XSnTuw+oaSbT0f8Kf1t55kuvZ0dAwHMKgA
+         KSCSua4WkkIGw==
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     thierry.reding@gmail.com, lee.jones@linaro.org
+Cc:     u.kleine-koenig@pengutronix.de, robh+dt@kernel.org,
+        sboyd@kernel.org, linus.walleij@linaro.org, masneyb@onstation.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH 0/2] Clock based PWM output driver
+Date:   Thu,  9 Dec 2021 21:20:18 +0500
+Message-Id: <20211209162020.105255-1-nikita@trvn.ru>
 MIME-Version: 1.0
-In-Reply-To: <1639062321-18840-1-git-send-email-akhilrajeev@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-09.12.2021 18:05, Akhil R пишет:
-> Add support for SMBus Alert and SMBus block read functions to
-> i2c-tegra driver
-> 
-> Akhil R (2):
->   dt-bindings: i2c: tegra: Add SMBus feature properties
->   i2c: tegra: Add SMBus block read and SMBus alert functions
-> 
->  .../devicetree/bindings/i2c/nvidia,tegra20-i2c.txt |  4 ++
->  drivers/i2c/busses/i2c-tegra.c                     | 54 +++++++++++++++++++++-
->  2 files changed, 57 insertions(+), 1 deletion(-)
-> 
+This series introduces an "adapter" driver that allows PWM consumers
+to control clock outputs with duty-cycle control.
 
-How this was tested? This series must include the DT patch. If there is
-no real user in upstream for this feature, then I don't think that we
-should bother at all about it.
+Some platforms (e.g. some Qualcomm chipsets) have "General Purpose"
+clocks that can be muxed to GPIO outputs and used as PWM outputs. 
+Those outputs may be connected to various peripherals such as
+leds in display backlight or haptic feedback motor driver. 
+
+To avoid re-implementing every single PWM consumer driver with clk
+support (like in [1]) and don't put the burden of providing the PWM
+sources on the clock drivers (as was proposed in [2]), clk based
+pwm controller driver is introduced.
+
+There is an existing driver that provides the opposite function
+in drivers/clk/clk-pwm.c with a compatible "pwm-clock" so the new
+driver uses the opposite naming scheme: drivers/pwm/pwm-clk.c
+and compatible "clk-pwm". 
+
+[1] - https://lore.kernel.org/lkml/20191205002503.13088-1-masneyb@onstation.org/
+[2] - https://lore.kernel.org/lkml/CACRpkdZxu1LfK11OHEx5L_4kyjMZ7qERpvDzFj5u3Pk2kD1qRA@mail.gmail.com/
+
+Nikita Travkin (2):
+  dt-bindings: pwm: Document clk based PWM controller
+  pwm: Add clock based PWM output driver
+
+ .../devicetree/bindings/pwm/clk-pwm.yaml      |  45 +++++++
+ drivers/pwm/Kconfig                           |  10 ++
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-clk.c                         | 119 ++++++++++++++++++
+ 4 files changed, 175 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/clk-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-clk.c
+
+-- 
+2.30.2
+
