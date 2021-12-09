@@ -2,51 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCBA746EAD7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 16:11:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89E3746EAD9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 16:11:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234554AbhLIPPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 10:15:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43404 "EHLO
+        id S234794AbhLIPPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 10:15:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232836AbhLIPPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 10:15:07 -0500
+        with ESMTP id S234713AbhLIPPL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 10:15:11 -0500
 Received: from mail-wm1-x34a.google.com (mail-wm1-x34a.google.com [IPv6:2a00:1450:4864:20::34a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71708C061746
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 07:11:33 -0800 (PST)
-Received: by mail-wm1-x34a.google.com with SMTP id z138-20020a1c7e90000000b003319c5f9164so5000914wmc.7
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 07:11:33 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0367C061353
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 07:11:37 -0800 (PST)
+Received: by mail-wm1-x34a.google.com with SMTP id n41-20020a05600c502900b003335ab97f41so2614354wmr.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 07:11:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20210112;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=LBECnREKPHDRg4E+pCsN1I2d9IcImWBPu4S35mqNBKU=;
-        b=qi9qUTtTlW/2AeraLiOjix04O2Oby2w4PlV+g8wG73UkSDlX1bpswEXC/PfRH9WUSh
-         q0fyMUJ8EuHqUC4qyYU9I0+odvpizV7hJU6/K9AteffBtI3wE1W+4gEfchpVUzoJffCe
-         65ToPSigml+wiXpZgE1WLrszCfY/vPtOOxHQ+jeSd0pDeUUo0d7K0lFmb74ev1a4GUh1
-         VQDxa/WLtvbspIAkDezALjWdylXPksfUWFlG4O+9iuqV7jIkfeSJKoN8dz2pnbH69dDV
-         k78e4zS1c5LIRbYuImK+nSHx0zzCsY4KcaLXvzRisFih6doHEwDmKjE64C11ylIfiRvw
-         7rEw==
+        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
+         :cc;
+        bh=V5TQSSfxTa71RwkCaeGqnETGpTQ6ccmNH8CkGmdFAlk=;
+        b=OBetiTf53LxSp+bk74Hs8eu5oTWcqnkrZekegQV/NTcrBwmKwztbtikFBEhrtL5wAO
+         iCsLXknosy5bbtjTulVOnkvR7P6r707+xTUVyJ6SC18EgAbZPPcsK9K59syntyifRMx6
+         4HQttyc+1m6sVXvl2Xv5ZeXLutHNu+o0nWS0mm/MMm+WXXaa7DxqWt/WvpAQq2ijPKtS
+         NJ/SyHZ2L/ZmWPBIscQPrJW+c1OBww2cQWOiiPF8yzFDY/nd8DVby4NkhP8ncPu6KO+J
+         y6jjyY4CKZboHFv6ftJnBhY6iJ2KNTVcUVHqbEWdnjWtjjjqnoCWgSVeg3QG/UL7nlOC
+         mEyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=LBECnREKPHDRg4E+pCsN1I2d9IcImWBPu4S35mqNBKU=;
-        b=k4MOjGAeN1ciXrvn6m3DOWTetUb7qEce5JbBy0UGcQXT+TyoBOvKM1PZzJZEAe/hwW
-         lYY116CebQPEIGCCPoOPes6uGPpK/WkYE1UpmXorgSrSWfcIdJxuTHZtJOGmpNZzL8ej
-         aAY7CRKyrCfzNDYF7OiL6P8wO3bLF/UMYenaRvh68KzrSA3zSnnTDhFmoSdEif8EClTh
-         C1jN+0UgqYWbm9jEg0vArOpIsILbLUuWpMTXfYRgUHbvRudQP7qCcTSWOMDVF7yntSeC
-         dErH3fuke5aaQUIFJymOP15vxz7spO5Ve5/X/YuZG54/ES82Txz7CcqjIsUFwaYzAtc7
-         3G+A==
-X-Gm-Message-State: AOAM533Yhw+E1v0FFRRWMCQpRntwsGdCfz6l0G5RfjHZladaFzGFFArI
-        COEXtDdm3fQQ16G3yyNPsFRqYIzavnP+6w==
-X-Google-Smtp-Source: ABdhPJxefyUfmKB1JnifoUejTcXsS/4eT0tMAE1ICnNUQrSJ8Xh9cZtVmSfLkneejLBVmE/Hg5LMsux6iA130A==
+        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
+         :references:subject:from:to:cc;
+        bh=V5TQSSfxTa71RwkCaeGqnETGpTQ6ccmNH8CkGmdFAlk=;
+        b=kK+Wwt2tWN3bZzJlX5zcm995YP3E6BoBFgopn1q8wXVZIYfOIKUhF1q0QdnwzQA/Od
+         E2F5nCdmdH38vnC2eZ/bzX5VtFgYmaazOlmgu8h243aFXjkoSAWGIE5vmLJMWjkv/0lI
+         hqvlZWdWiOWON7Kc15qSBDCminaUT9EpJOhhLxvgat7rkzT1cZE31CbjLMgQZU6NSBuP
+         +VoC8EM60eRUTQtWL2tb5tQvF/Qr625GueQdgCWGn+XbWsm3JXuArH+1tR/Bk/etne4I
+         zhqF4UY5o/OLQjXb1LwMWfNKJSAKeDbpIokn/F6OVys2Id5D9IAmJEu7OgNS0lM4FDWv
+         jX2A==
+X-Gm-Message-State: AOAM5314SI5xpq/tUFc9VnIuEMjX13xQAfA/UPmtRQt+rqSyTWfJ8zpk
+        BAnTOM4hDup3eQoZcKSYihzlablhpBrqnw==
+X-Google-Smtp-Source: ABdhPJw+aD9tDsXIc9WxeE7eBXi5eTHGZ86Ep8A+qus/C/Tpz/TTiEmqTne30myFM+AJ0pDhesU3/2ZRbs8WIA==
 X-Received: from dbrazdil.lon.corp.google.com ([2a00:79e0:d:209:8f9e:94f7:810:211b])
- (user=dbrazdil job=sendgmr) by 2002:a1c:9d48:: with SMTP id
- g69mr8247086wme.188.1639062691952; Thu, 09 Dec 2021 07:11:31 -0800 (PST)
-Date:   Thu,  9 Dec 2021 15:11:21 +0000
-Message-Id: <20211209151123.3759999-1-dbrazdil@google.com>
+ (user=dbrazdil job=sendgmr) by 2002:a05:600c:1d06:: with SMTP id
+ l6mr7591025wms.97.1639062696474; Thu, 09 Dec 2021 07:11:36 -0800 (PST)
+Date:   Thu,  9 Dec 2021 15:11:22 +0000
+In-Reply-To: <20211209151123.3759999-1-dbrazdil@google.com>
+Message-Id: <20211209151123.3759999-2-dbrazdil@google.com>
 Mime-Version: 1.0
+References: <20211209151123.3759999-1-dbrazdil@google.com>
 X-Mailer: git-send-email 2.34.1.400.ga245620fadb-goog
-Subject: [PATCH v2 0/2] Driver for Open Profile for DICE
+Subject: [PATCH v2 1/2] dt-bindings: firmware: Add Open Profile for DICE
 From:   David Brazdil <dbrazdil@google.com>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc:     Rob Herring <robh+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
@@ -63,39 +67,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Open Profile for DICE is a secret derivation protocol used by some
-Android devices. The firmware/bootloader generates the secrets and hands
-them over to Linux in a reserved memory region.
-See https://pigweed.googlesource.com/open-dice for more details.
+Add DeviceTree bindings for Open Profile for DICE. DICE is a protocol
+for deriving Compound Device Identifier (CDI) certificates. These are
+generated by the firmware/bootloader and stored in memory. Location of
+the buffer is described as a reserved memory region referenced by
+a compatible DICE device node.
 
-This patchset adds the corresponding DeviceTree bindings and a driver
-that takes ownership of the memory region and exposes it to userspace
-via a misc device.
+See https://pigweed.googlesource.com/open-dice
 
-The patches are based on top of v5.16-rc4 and can also be found here:
-  https://android-kvm.googlesource.com/linux topic/dice_v2
-
-Changes since v1:
-  * converted to miscdevice
-  * all mappings now write-combine to simplify semantics
-  * removed atomic state, any attempt at exclusive access
-  * simplified wipe, applied on ioctl, not on release
-  * fixed ioctl return value
-
-David Brazdil (2):
-  dt-bindings: firmware: Add Open Profile for DICE
-  misc: dice: Add driver to forward secrets to userspace
-
- .../devicetree/bindings/firmware/dice.yaml    |  51 ++++++
- .../userspace-api/ioctl/ioctl-number.rst      |   1 +
- drivers/misc/Kconfig                          |   8 +
- drivers/misc/Makefile                         |   1 +
- drivers/misc/dice.c                           | 161 ++++++++++++++++++
- include/uapi/linux/dice.h                     |  14 ++
- 6 files changed, 236 insertions(+)
+Signed-off-by: David Brazdil <dbrazdil@google.com>
+---
+ .../devicetree/bindings/firmware/dice.yaml    | 51 +++++++++++++++++++
+ 1 file changed, 51 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/firmware/dice.yaml
- create mode 100644 drivers/misc/dice.c
- create mode 100644 include/uapi/linux/dice.h
 
---
+diff --git a/Documentation/devicetree/bindings/firmware/dice.yaml b/Documentation/devicetree/bindings/firmware/dice.yaml
+new file mode 100644
+index 000000000000..c0726109e73d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/firmware/dice.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/firmware/dice.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Open Profile for DICE Device Tree Bindings
++
++description: |
++  This binding represents a reserved memory region containing secrets derived
++  derived following the Open Profile for DICE.
++
++  See https://pigweed.googlesource.com/open-dice/
++
++maintainers:
++  - David Brazdil <dbrazdil@google.com>
++
++properties:
++  compatible:
++    enum:
++      - google,dice
++
++  memory-region:
++    maxItems: 1
++    description: |
++      phandle to the reserved memory node to be associated with the device
++      The reserved memory node should be defined as per the bindings,
++      Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
++
++required:
++  - compatible
++  - memory-region
++
++additionalProperties: false
++
++examples:
++  - |
++    reserved-memory {
++        #address-cells = <2>;
++        #size-cells = <1>;
++
++        dice_reserved: dice@12340000 {
++            reg = <0x00 0x12340000 0x2000>;
++            no-map;
++        };
++    };
++
++    dice {
++        compatible = "google,dice";
++        memory-region = <&dice_reserved>;
++    };
+-- 
 2.34.1.400.ga245620fadb-goog
+
