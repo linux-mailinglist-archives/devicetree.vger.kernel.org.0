@@ -2,90 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AAB746E06C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 02:51:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E98246E076
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 02:51:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232852AbhLIByi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 20:54:38 -0500
-Received: from mga18.intel.com ([134.134.136.126]:51646 "EHLO mga18.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233346AbhLIByi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Dec 2021 20:54:38 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="224863196"
-X-IronPort-AV: E=Sophos;i="5.88,190,1635231600"; 
-   d="scan'208";a="224863196"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2021 17:51:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,190,1635231600"; 
-   d="scan'208";a="612325895"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by orsmga004.jf.intel.com with ESMTP; 08 Dec 2021 17:51:02 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mv8aM-0001JT-47; Thu, 09 Dec 2021 01:51:02 +0000
-Date:   Thu, 9 Dec 2021 09:50:16 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Loic Poulain <loic.poulain@linaro.org>, bjorn.andersson@linaro.org,
-        agross@kernel.org
-Cc:     kbuild-all@lists.01.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        shawn.guo@linaro.org, Loic Poulain <loic.poulain@linaro.org>
-Subject: Re: [PATCH 1/2] clk: qcom: Add display clock controller driver for
- QCM2290
-Message-ID: <202112090948.3tbho958-lkp@intel.com>
-References: <1638983841-23773-1-git-send-email-loic.poulain@linaro.org>
+        id S237900AbhLIBzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 20:55:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57630 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233346AbhLIBzT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 20:55:19 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 020F3C061746;
+        Wed,  8 Dec 2021 17:51:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 74FD8B8236F;
+        Thu,  9 Dec 2021 01:51:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75921C00446;
+        Thu,  9 Dec 2021 01:51:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639014704;
+        bh=5T0ucDpr39HCf8PypsCLt5HtRmXScmsEPR83rW4e950=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=RYzHYbDzTs3jYNk+W5eTmiXbOhiozCA41/Erv8HRyDqrnhFPKC9OEd4iZWnpYJUNO
+         pS5lFHtiuHzaxlMwk/1CQfsb6etPcxjqmpqZWs1VXWXxSFncbYzNqaMAiTj+oyVo2k
+         i/Ou7QVxMlbBC7bhxogc21fbJr/e8QJcuoS30iz/+wD0XbJwo9LL6EnGVtd2p0GEzj
+         6hLKL27k+MshR0bsUZjU8orNwQ3rmfrqqw4DFSSBW+Ies3IKq4aIW5qBPf+kVKiGTW
+         W2Jj5UjhNGScILNtxukzyKWA0mBs4OUvTPkNzYK+nTD5R8Sg8yaCnEJcGccy1ECuC9
+         j+uHFjmarYwHA==
+Date:   Wed, 8 Dec 2021 17:51:42 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Biao Huang <biao.huang@mediatek.com>
+Cc:     <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>,
+        <angelogioacchino.delregno@collabora.com>, <dkirjanov@suse.de>
+Subject: Re: [PATCH net-next v7 5/6] stmmac: dwmac-mediatek: add support for
+ mt8195
+Message-ID: <20211208175142.1b63afea@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <39aa23e1a48bc36a631b3074af2abfd5d1e2256d.camel@mediatek.com>
+References: <20211208054716.603-1-biao.huang@mediatek.com>
+        <20211208054716.603-6-biao.huang@mediatek.com>
+        <20211208063820.264df62d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        <39aa23e1a48bc36a631b3074af2abfd5d1e2256d.camel@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1638983841-23773-1-git-send-email-loic.poulain@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Loic,
+On Thu, 9 Dec 2021 09:48:25 +0800 Biao Huang wrote:
+> Sorry for some typo in previous reply, fix it here.
+> 
+> All these warning lines share a similar semantics:
+> delay_val |= FIELD_PREP(xxx, !!val);
+> 
+> and, should come from the expansion of FIELD_PREP in
+> include/linux/bitfiled.h:
+> 
+>   FIELD _PREP --> __BF_FILED_CHECK --> "~((_mask) >> __bf_shf(_mask)) &
+> (_val) : 0,"
+> 
+> ===============================================================
+> __BF_FILED_CHECK {
+> ...
+>   BUILD_BUG_ON_MSG(__builtin_constant_p(_val) ?           \
+>                    ~((_mask) >> __bf_shf(_mask)) & (_val) : 0, \
+>                    _pfx "value too large for the field"); \ ...
+> ===============================================================
+> 
+> Should I fix it by converting
+>   delay_val |= FIELD_PREP(ETH_DLY_TXC_ENABLE, !!mac_delay->tx_delay);
+> to
+>   en_val = !!mac_delay->tx_delay;
+>   delay_val |= FIELD_PREP(ETH_DLY_TXC_ENABLE, en_val);
+> 
+> or other suggestions for these warnings?
 
-I love your patch! Yet something to improve:
-
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on v5.16-rc4 next-20211208]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Loic-Poulain/clk-qcom-Add-display-clock-controller-driver-for-QCM2290/20211209-010708
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20211209/202112090948.3tbho958-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/132fa9b498019a624b89dec6e53e34b480eb4be2
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Loic-Poulain/clk-qcom-Add-display-clock-controller-driver-for-QCM2290/20211209-010708
-        git checkout 132fa9b498019a624b89dec6e53e34b480eb4be2
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/clk/qcom/dispcc-qcm2290.c:16:10: fatal error: dt-bindings/clock/qcom,dispcc-qcm2290.h: No such file or directory
-      16 | #include <dt-bindings/clock/qcom,dispcc-qcm2290.h>
-         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
-
-
-vim +16 drivers/clk/qcom/dispcc-qcm2290.c
-
-    15	
-  > 16	#include <dt-bindings/clock/qcom,dispcc-qcm2290.h>
-    17	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+I see, thanks for explaining. The code is fine, we can simply ignore
+this warning IMHO.
