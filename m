@@ -2,113 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABDCC46F503
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 21:34:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C6DC46F52A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 21:48:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232047AbhLIUi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 15:38:29 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:33836 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbhLIUi3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 15:38:29 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id D600FCE25DC;
-        Thu,  9 Dec 2021 20:34:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0671FC341C7;
-        Thu,  9 Dec 2021 20:34:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639082092;
-        bh=8OIODPu60ojwJLuPAooGJ33W0G3lVL6ddOC3nAtXdcY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=anYTLate8ia7xVbzhhv7Gb24kTiUz12Mzmz/6Y1GG5G5AfbaVXVTCPiVN7s6bRhLM
-         MaWuyF2HWmYX86sMVu1brYdp2PWaKC4w4kQQGDX7nJfmJAWiVdjq/fbRIbNUp0KWEw
-         S3JAttR17lxhr+ckMTLScuGIEalH98V1XM6gsGuEkad4GuuxXFngl7GKJlbds4xaGj
-         u6fM2PHjp4RHypTKaQRZmjXpMHr8lBWiHx5lv1/QaW4YFEAtfQ9HH4LBxxpkos2TwG
-         o0Gb1ehjjDDSYf/ZBoS3KoJ5xZ8as/G2Q1gbQndz0rCCXmHXqTy7wTR6J6fgLtJ3dd
-         aFcxCF4Um9i9A==
-Received: by mail-ed1-f52.google.com with SMTP id x10so6143339edd.5;
-        Thu, 09 Dec 2021 12:34:51 -0800 (PST)
-X-Gm-Message-State: AOAM531X9tBcs2r80JgrmGksHXJruCfPW9spL6vE8LDHN8Zb6yhj2JUu
-        K0R71SZ4A1leRXLesPagOAbsz+ZnDZzpFDqmGQ==
-X-Google-Smtp-Source: ABdhPJxabk3IUkwoF8SyW/p7rw1cBHsKcMY0eJTM6vMEIFjCFicfsbuIVXNI72XoPrtQ3AEtms/uq8ddZt7bcqMYUaI=
-X-Received: by 2002:a05:6402:5c9:: with SMTP id n9mr31830041edx.306.1639082090290;
- Thu, 09 Dec 2021 12:34:50 -0800 (PST)
-MIME-Version: 1.0
-References: <20211209001056.29774-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <d290850bf95f4bdf0c329f278db458c7@kernel.org> <CA+V-a8vUCXQa38NmYu9znakcq4A=Uedyn8w5+hXQ_WKf58oHRQ@mail.gmail.com>
- <875yry1316.wl-maz@kernel.org> <CA+V-a8vNUhVBFNf-M6s1BmXbdCpdyJOx2g=t=QJf1jQzUA3xow@mail.gmail.com>
-In-Reply-To: <CA+V-a8vNUhVBFNf-M6s1BmXbdCpdyJOx2g=t=QJf1jQzUA3xow@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 9 Dec 2021 14:34:38 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+H54oX8GCHcwPVaUC3brjJa+5+OTU21D-3d7QUqM+jcg@mail.gmail.com>
-Message-ID: <CAL_Jsq+H54oX8GCHcwPVaUC3brjJa+5+OTU21D-3d7QUqM+jcg@mail.gmail.com>
-Subject: Re: [RFC PATCH] of: platform: Skip mapping of interrupts in of_device_alloc()
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S231271AbhLIUvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 15:51:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40550 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231230AbhLIUvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 15:51:06 -0500
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93749C061746;
+        Thu,  9 Dec 2021 12:47:32 -0800 (PST)
+Received: by mail-pg1-x535.google.com with SMTP id g16so6183671pgi.1;
+        Thu, 09 Dec 2021 12:47:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=o36OcVX9L7eLvFsZYgQvL9nIHhtbTrJVafPXVJFttzI=;
+        b=EvFvql7MpBWvp/CefTt46XcdvlSHzd9Do2EjU5AyumHQbSnSnOhDBpgkJ54qzhzwre
+         l82OVNKHLzUa9npZlgRFO536zfFBFJOfoO/pMmpJ545Bi014mwtwAOyEKNmUb/5oY1XH
+         meYglxSJC4ORz/3JpRNbX/mddrYhN5QWrGdY1SanPIEZsphY8cVm9HDW6cOWrEqaT1M+
+         QmWXh4Z/5U999UvRjjkZhbb+483lsrNOWdYYs9FFzRJRSej7zaVqCvVy1rd9777K06VI
+         uHqV9cD6fOHGKGOLeqd+ik/GDJP/rY8KucD9J6kEvEZs1daejx1Slnid79wQeVec48Bs
+         ozgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=o36OcVX9L7eLvFsZYgQvL9nIHhtbTrJVafPXVJFttzI=;
+        b=fSpp3sD2RRPxCqZSSIii0TdV1hAqXXRnkZC4oQlK0sTN4tMkNUBPmmSqCmb423MQDt
+         DvBMxT4Ujs107amcaMwqQwAsKPqJ0PnOXOi2cy5KExTxNEzmjhnankELizb4v4DCjofU
+         ukVLGGtgr88pmJCJGM+ySPfmGW3tpyIP8EPIOqC7EV7XgZ97fuduHIWmta2P20ZwK+pc
+         82dxCkHvNUHJMBQKQaV86bHNsMNuSdqnLtFNiLfgrjKrnHs2lp8hDSXLqSlahsuLkCB3
+         oiU1xWGmrDJCtZ06veUC2TBIbXlwTZzx60+BAjzbxCYLvCdQQEk93HVBbqqxfE3+VMQ5
+         Inag==
+X-Gm-Message-State: AOAM533Ael4+TFOdo3iHaMmrH3ikVsuNjvyO4thS/AwnELtOBZZJCNzH
+        s8z5EDYrN2WzOnKjlPh6J+WMm0qgZMU=
+X-Google-Smtp-Source: ABdhPJzvkVwKpNpwtnIgaVSHV1aGVVpxmbZF8wLif7t67aUOW7Ugbaqc6I5ed9ngYBtQuBa1jN6Kzg==
+X-Received: by 2002:a62:750e:0:b0:49f:a27d:62b3 with SMTP id q14-20020a62750e000000b0049fa27d62b3mr14030210pfc.37.1639082851868;
+        Thu, 09 Dec 2021 12:47:31 -0800 (PST)
+Received: from stbsrv-and-01.and.broadcom.net ([192.19.11.250])
+        by smtp.gmail.com with ESMTPSA id f185sm568370pfg.39.2021.12.09.12.47.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Dec 2021 12:47:31 -0800 (PST)
+From:   Jim Quinlan <jim2101024@gmail.com>
+To:     linux-pci@vger.kernel.org, linux-mips@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kevin Cernekee <cernekee@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
+        james.quinlan@broadcom.com
+Cc:     devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM
+        BCM2711/BCM2835 ARM ARCHITECTURE),
+        linux-kernel@vger.kernel.org (open list),
+        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
+        BCM2711/BCM2835 ARM ARCHITECTURE), Rob Herring <robh@kernel.org>,
+        Saenz Julienne <nsaenzjulienne@suse.de>
+Subject: [PATCH v1 0/4] PCI: brcmstb: Augment driver for MIPs SOCs
+Date:   Thu,  9 Dec 2021 15:47:21 -0500
+Message-Id: <20211209204726.6676-1-jim2101024@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 9, 2021 at 5:35 AM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
->
-> Hi Rob and Marc,
->
-> On Thu, Dec 9, 2021 at 10:33 AM Marc Zyngier <maz@kernel.org> wrote:
-> >
-> > On Thu, 09 Dec 2021 10:00:44 +0000,
-> > "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> > >
-> > > > The root of the issue is that all the resource allocation is done
-> > > > upfront, way before we even have a driver that could potentially
-> > > > deal with this device. This is a potential waste of resource, and
-> > > > it triggers the issue you noticed.
-> > > >
-> > > > If you delay the resource allocation until there is an actual
-> > > > match with a driver, you could have a per-driver flag telling you
-> > > > whether the IRQ allocation should be performed before the probe()
-> > > > function is called.
-> > > >
-> > > As suggested by Rob, if we switch the drivers to use
-> > > platform_get_resource(pdev, IORESOURCE_IRQ, n) call with
-> > > platform_get_irq() this code should go away and with this switch the
-> > > resource allocation will happen demand. Is this approach OK?
-> >
-> > If you get rid of of_irq_to_resource_table() altogether, then yes,
-> > this has a fighting chance to work.
-> >
-> Yes, switching to platform_get_irq() will eventually cause
-> of_irq_to_resource_table() to go away.
->
-> On second thought, instead of touching all the drivers, if we update
-> platform_get_resource/platform_get_resource_byname to internally call
-> platform_get_irq() internally if it's a IORESOURCE_IRQ resource. Does
-> that sound good or should I just get on changing all the drivers to
-> use platform_get_irq() instead?
+With this patchset, the Broadcom STB PCIe controller driver 
+supports Arm, Arm64, and now MIPs.
 
-Except that platform_get_irq() already internally calls
-platform_get_resource()... I think changing the drivers is the right
-way. Happy to do some if you want to divide it up.
+Jim Quinlan (4):
+  dt-bindings: PCI: Add compatible string for Brcmstb 74[23]5 MIPs SOCs
+  MIPS: bmips: Add support PCIe controller device nodes
+  MIPS: bmips: Remove obsolete DMA mapping support
+  PCI: brcmstb: Augment driver for MIPs SOCs
 
-Using coccigrep, I think I've found all the places using
-platform_device.resource directly. A large swath are Sparc drivers
-which don't matter. The few that do matter I've prepared patches for
-here[1]. Most of what I found were DT based drivers that copy
-resources to a child platform device. That case will not work with
-platform_get_irq() callers either unless the child device has it's DT
-node set to the parent node which is the change I made.
+ .../bindings/pci/brcm,stb-pcie.yaml           |   2 +
+ arch/mips/Kconfig                             |   1 -
+ arch/mips/bmips/dma.c                         | 106 +-----------------
+ arch/mips/boot/dts/brcm/bcm7425.dtsi          |  30 +++++
+ arch/mips/boot/dts/brcm/bcm7435.dtsi          |  30 +++++
+ arch/mips/boot/dts/brcm/bcm97425svmb.dts      |   9 ++
+ arch/mips/boot/dts/brcm/bcm97435svmb.dts      |   9 ++
+ drivers/pci/controller/Kconfig                |   2 +-
+ drivers/pci/controller/pcie-brcmstb.c         |  82 +++++++++++++-
+ 9 files changed, 161 insertions(+), 110 deletions(-)
 
-Rob
 
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-kernelci
+base-commit: ded746bfc94398d2ee9de315a187677b207b2004
+prerequisite-patch-id: d47ce1906f7e175cc394be96f85a6eade86a9097
+-- 
+2.17.1
+
