@@ -2,127 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A134E46DFC5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 01:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B617146DFD9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 01:56:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241566AbhLIAxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 19:53:39 -0500
-Received: from mga05.intel.com ([192.55.52.43]:23277 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238157AbhLIAxj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Dec 2021 19:53:39 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="324247402"
-X-IronPort-AV: E=Sophos;i="5.88,190,1635231600"; 
-   d="scan'208";a="324247402"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2021 16:50:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,190,1635231600"; 
-   d="scan'208";a="480130673"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by orsmga002.jf.intel.com with ESMTP; 08 Dec 2021 16:50:01 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mv7dJ-0001G9-01; Thu, 09 Dec 2021 00:50:01 +0000
-Date:   Thu, 9 Dec 2021 08:49:27 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH 17/18] drm: rockchip: Add VOP2 driver
-Message-ID: <202112090830.YVovXyce-lkp@intel.com>
-References: <20211208151230.3695378-18-s.hauer@pengutronix.de>
+        id S241655AbhLIBA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 20:00:29 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:60807 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241653AbhLIBA2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 20:00:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1639011416; x=1670547416;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=FX9/wHW1UB7swkH9l1Uv95qLCO4JveIAMi+icxTjyrs=;
+  b=tBbGxJDkbsOsTwaFDD6e86YD0/Cu3xGUCZKbEvzGdy97FbyglL6rPtxx
+   3aoIGqEo5VL9ZtPF3dMSmCT1eRIkiwGw8O6jfdUFWQTO3LmLkE8jriDe1
+   v6RuGUZF5t3aAgm9VJOQn38m6hliJyphBO4kSczHnfRxhwcPvFhlJnrW9
+   s=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 08 Dec 2021 16:56:55 -0800
+X-QCInternal: smtphost
+Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2021 16:56:55 -0800
+Received: from [10.46.160.247] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Wed, 8 Dec 2021
+ 16:56:50 -0800
+Subject: Re: [PATCH V4 1/6] dt-bindings: regulator: Add
+ "regulator-min-dropout-voltage-microvolt"
+To:     Mark Brown <broonie@kernel.org>,
+        "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, <swboyd@chromium.org>,
+        <subbaram@codeaurora.org>, Das Srinagesh <gurus@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1637314953-4215-2-git-send-email-quic_c_skakit@quicinc.com>
+ <YZ+o9sQpECZSrieN@sirena.org.uk>
+ <d828f2a1-03e8-d6ee-4ab7-39bf677093b7@quicinc.com>
+ <Ya5VhkggWdjYyTHL@sirena.org.uk>
+ <6a44cb99-6894-c9ce-4f1e-5dee0939598c@quicinc.com>
+ <Ya97cnuwM+MuNMg3@sirena.org.uk>
+From:   David Collins <quic_collinsd@quicinc.com>
+Message-ID: <23a47965-4ea9-5f6c-7e3c-27f5bd35f5b7@quicinc.com>
+Date:   Wed, 8 Dec 2021 16:56:48 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211208151230.3695378-18-s.hauer@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <Ya97cnuwM+MuNMg3@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sascha,
+On 12/7/21 7:19 AM, Mark Brown wrote:
+> On Tue, Dec 07, 2021 at 08:36:11PM +0530, Satya Priya Kakitapalli (Temp) wrote:
+>> On 12/6/2021 11:55 PM, Mark Brown wrote:
+>>> On Mon, Dec 06, 2021 at 06:33:26PM +0530, Satya Priya Kakitapalli (Temp) wrote:
+> 
+>>>> The min-dropout value (headroom) varies with boards, that's why we have a DT
+>>>> property for it. We overwrite the default value in driver with actual value
+>>>> read from DT
+> 
+>>> Interesting.  How exactly does that end up happening - presumably other
+>>> systems are going to run into it?
+> 
+>> The parent supplies such as "vdd-l1-l2" are coming from other pmic
+>> regulators, which are shared supplies with other subsystems like BT, Display
+>> etc, they vary between boards as per requirements, so we cannot expect these
+>> to be fixed and so are the headroom values. We get the headroom values from
+>> PMIC systems team for every target.
+> 
+> I don't think you're talking about the thing the code is saying it's
+> describing here.  The regulator API is referring to the minimum droput
+> voltage that individual regulators require, that is how much higher the
+> input to a single regulator must be than the voltage being output by
+> that regulator.  We absolutely can and do expect this to be board
+> independent, it's a function of the design of the regulator.  Sharing
+> the input supply has no impact on this, the input voltage that the
+> regulator needs just get fed into the requiremnts on the supply voltage.
+> 
+> If there is a board specific constraint on the minimum voltage that a
+> given supply can have then that should be expressed using the normal
+> constraint mechanism, that's nothing to do with the headroom that the
+> regulators require to operate though.
 
-Thank you for the patch! Yet something to improve:
+The PM8008 LDOs are low noise LDOs intended to supply noise sensitive
+camera sensor hardware.  They can maintain output regulation with a
+fixed headroom voltage.  However, in order to guarantee high PSRR, the
+headroom voltage must be scaled according to the peak load expected from
+the each LDO on a given board.  Thus, we included support for a DT
+property to specify the headroom per LDO to meet noise requirements
+across boards.
 
-[auto build test ERROR on rockchip/for-next]
-[also build test ERROR on drm/drm-next drm-intel/for-linux-next drm-exynos/exynos-drm-next v5.16-rc4]
-[cannot apply to drm-tip/drm-tip tegra-drm/drm/tegra/for-next airlied/drm-next next-20211208]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+As a minor note the PM8008 chip package has a single pin to supply LDOs
+1 and 2 along with a single pin for LDOs 3 and 4.  That is why
+vdd_l1_l2-supply is specified instead of vdd_l1-supply and vdd_l2-supply.
 
-url:    https://github.com/0day-ci/linux/commits/Sascha-Hauer/drm-rockchip-RK356x-VOP2-support/20211208-231502
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20211209/202112090830.YVovXyce-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/8d57a528cbdfec4716a21d22d3d6c04c40451355
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Sascha-Hauer/drm-rockchip-RK356x-VOP2-support/20211208-231502
-        git checkout 8d57a528cbdfec4716a21d22d3d6c04c40451355
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_dither_setup':
->> drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:1489:22: error: implicit declaration of function 'FIELD_PREP' [-Werror=implicit-function-declaration]
-    1489 |         *dsp_ctrl |= FIELD_PREP(RK3568_VP_DSP_CTRL__DITHER_DOWN_SEL,
-         |                      ^~~~~~~~~~
-   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_setup_cluster_alpha':
-   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:1861:33: warning: variable 'top_win_pstate' set but not used [-Wunused-but-set-variable]
-    1861 |         struct drm_plane_state *top_win_pstate;
-         |                                 ^~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +/FIELD_PREP +1489 drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-
-  1463	
-  1464	static void vop2_dither_setup(struct drm_crtc *crtc, uint32_t *dsp_ctrl)
-  1465	{
-  1466		struct rockchip_crtc_state *vcstate = to_rockchip_crtc_state(crtc->state);
-  1467	
-  1468		switch (vcstate->bus_format) {
-  1469		case MEDIA_BUS_FMT_RGB565_1X16:
-  1470			*dsp_ctrl |= RK3568_VP_DSP_CTRL__DITHER_DOWN_EN;
-  1471			break;
-  1472		case MEDIA_BUS_FMT_RGB666_1X18:
-  1473		case MEDIA_BUS_FMT_RGB666_1X24_CPADHI:
-  1474		case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:
-  1475			*dsp_ctrl |= RK3568_VP_DSP_CTRL__DITHER_DOWN_EN;
-  1476			*dsp_ctrl |= RGB888_TO_RGB666;
-  1477			break;
-  1478		case MEDIA_BUS_FMT_YUV8_1X24:
-  1479		case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-  1480			*dsp_ctrl |= RK3568_VP_DSP_CTRL__PRE_DITHER_DOWN_EN;
-  1481			break;
-  1482		default:
-  1483			break;
-  1484		}
-  1485	
-  1486		if (vcstate->output_mode != ROCKCHIP_OUT_MODE_AAAA)
-  1487			*dsp_ctrl |= RK3568_VP_DSP_CTRL__PRE_DITHER_DOWN_EN;
-  1488	
-> 1489		*dsp_ctrl |= FIELD_PREP(RK3568_VP_DSP_CTRL__DITHER_DOWN_SEL,
-  1490					DITHER_DOWN_ALLEGRO);
-  1491	}
-  1492	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Take care,
+David
