@@ -2,98 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30E7C46F773
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 00:30:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 287E546F7A3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 00:44:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234399AbhLIXeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 18:34:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49848 "EHLO
+        id S234503AbhLIXs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 18:48:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233035AbhLIXeB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 18:34:01 -0500
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEB4CC061746
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 15:30:26 -0800 (PST)
-Received: by mail-ot1-x333.google.com with SMTP id x43-20020a056830246b00b00570d09d34ebso7952082otr.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 15:30:26 -0800 (PST)
+        with ESMTP id S229760AbhLIXs0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 18:48:26 -0500
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EE0DC061746
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 15:44:52 -0800 (PST)
+Received: by mail-qv1-xf30.google.com with SMTP id gu12so6605685qvb.6
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 15:44:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=FepkuaMI2E0UPC3u5jnuq0Z4zznACFIsmRE29I20zT4=;
-        b=vA+YadHRzPiZ920qQWf6itnhO6cSlzRKGuvpku8VZtT0Uqiz+NwyEt4u1SNE8hc5Gd
-         3fiOKtPTqIImMKKkKPlIFip3/X4egE1tGJeZoJ67NcKvNMeeSGF9du3e7p3Xec16v58R
-         s2GL9rbaQTK18Xzy4IVsoqNNwxN5vshCpTT5Lzp+BeL3lnsJLo6YB7rExN13MZsG7/CQ
-         W4UVAda0tc0DjmKQcJTcVVKRGspWmgL9hLwh9q6vO1pvXvtV8GI8SA3rhzN1P9Rw5zZY
-         31eU62nQV2RnUvTT6cH3UjtGs9kB497qC1Q6CJw0PMTTCUfLj4RYtCGSkn33rxBGS3I1
-         l3OQ==
+        bh=z8ul/68TTMd0vCXelwEXbTf2Y8+4CmIOh8pjnYzpEeY=;
+        b=HKchMdZDouQpqT1O5HjguvjPWBPz5meO4ShyPblqGvL14MCZ+bL7PTDY/4z9k56BpQ
+         KZCb2a2oVelWePKPdWYqk3djkd1IimxvXoic+QwJFtOjUv8T6uBHfuHOfBVQOVd6sOaW
+         fQJ5P1RPrRuXBjunLQ+OT9IAVh/3dd4uJx0Bg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=FepkuaMI2E0UPC3u5jnuq0Z4zznACFIsmRE29I20zT4=;
-        b=Z4wFTJd2uDkSLNAJCwEPAT9NbhB1vxw2SQQWJscROOtQEjHxrBEQPrOQgE+c0g4EHN
-         /zpN13DVpTN5QnB1y2nCPlxD/z2ZA0nLq7vmIteso6ukcdM0xgid7Vung3U/zXaJ/AXM
-         oKYyPcwbOSTFtIAHWO77TE9IoP0GlLkcklVdYISrcKqb3T1+gWHekXOtt1gqZ24JStNT
-         Rz1sT0uCcFTbtjhJAtsyicqn8FKnKceLRXh4FLxKBnOidtmKVzbSagDP/nQIuM52FHux
-         ALAvzPY5+/OMk81E0SOIP8fSyO5jfHwGRiLWAWzvZyP5Qypb6GNSAjeIMdgur8j5dtCE
-         cQfg==
-X-Gm-Message-State: AOAM531G2kGk4e/AGcSp/2RHZP6PHWYJOi543Qa9JXdVchzCGcNsazZH
-        w15qN+F0Mtwzgnk3khH2PV6pq8kX/vd7q+VQ3nyhzOBM43m8IQ==
-X-Google-Smtp-Source: ABdhPJzSklHE2PEylrgMnWrf65WLYMvroWGO2JaHYj9wv9SCkHxG+y59KeRCyqzJbEZxRSlsELsaDB97OqqkhPeFuuI=
-X-Received: by 2002:a9d:a42:: with SMTP id 60mr8513360otg.179.1639092625198;
- Thu, 09 Dec 2021 15:30:25 -0800 (PST)
+        bh=z8ul/68TTMd0vCXelwEXbTf2Y8+4CmIOh8pjnYzpEeY=;
+        b=sIgqE1PFKo4OSxg1I5HIPCArOg+xnAtc3YrJA4jiTpIveYPV3/eH1yuOCgPH7Za0w3
+         B2QUYQx4GNfRv2ww/GnB4cJWx4WJflQIaEqcwNkvC21KUDrzsak3OX7fiEbYnKWJys9O
+         D9oi3S1kU+CI6kN39tI4h+psXjOP3F6EYuMwVdYs1N6Gr2Nd8xPZAW/FvwA7OrdPBmZu
+         alPlPfm+xy9G6mX2HRxgEHfO2NDt+ALIgbVDqNedSK96wsCG2ruHKZjKrPs2X6Cb5tLl
+         BKUZvGle3jZZMr2P4yPmzxsX+d1VamjjYzRuZiixAmlRygRxfEDa47aOIwliGKrRo5Ve
+         iTBQ==
+X-Gm-Message-State: AOAM532B5+Xau5Ku3FGyy+ZmB3rP/0A+IE1/y+oi1RgKZ0OrTmQpJ2KX
+        BQBZfYdHxwxJPxrWKc1zYnZmHZjnizSO/xouAxuqtw==
+X-Google-Smtp-Source: ABdhPJzV6/TnXjUOLjFzM/ma9fmG9Nt8FCU/gSZz36pPI4LByD43heeF0Dr9GJ2LVcnM2DQhO0cSrj4qiEKvoaPI/+c=
+X-Received: by 2002:a05:6214:5193:: with SMTP id kl19mr20845472qvb.77.1639093491509;
+ Thu, 09 Dec 2021 15:44:51 -0800 (PST)
 MIME-Version: 1.0
-References: <1638850665-9474-1-git-send-email-wellslutw@gmail.com> <1638850665-9474-2-git-send-email-wellslutw@gmail.com>
-In-Reply-To: <1638850665-9474-2-git-send-email-wellslutw@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 10 Dec 2021 00:30:13 +0100
-Message-ID: <CACRpkdaBV81OCwHuFCObwv_t55B9ANHaF5jEc=oorZdjpey0Ug@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: Add dt-bindings for Sunplus SP7021
-To:     Wells Lu <wellslutw@gmail.com>
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, wells.lu@sunplus.com,
-        dvorkin@tibbo.com
+References: <20211202034544.2750-1-yunfei.dong@mediatek.com> <20211202034544.2750-14-yunfei.dong@mediatek.com>
+In-Reply-To: <20211202034544.2750-14-yunfei.dong@mediatek.com>
+From:   Steve Cho <stevecho@chromium.org>
+Date:   Thu, 9 Dec 2021 15:44:41 -0800
+Message-ID: <CAC-pXoPV0MrX91DfuiscmkOwviJ6Gh4RcYRZ+GW6482NpMGFtg@mail.gmail.com>
+Subject: Re: [PATCH v12, 13/19] media: mtk-vcodec: Add work queue for core
+ hardware decode
+To:     Yunfei Dong <yunfei.dong@mediatek.com>
+Cc:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 7, 2021 at 5:17 AM Wells Lu <wellslutw@gmail.com> wrote:
-
-> Add dt-bindings header files and documentation for Sunplus SP7021 SoC.
+On Wed, Dec 1, 2021 at 7:46 PM Yunfei Dong <yunfei.dong@mediatek.com> wrote:
 >
-> Signed-off-by: Wells Lu <wellslutw@gmail.com>
-
-> +patternProperties:
-> +  '-pins$':
-> +    if:
-> +      type: object
-> +    then:
-> +      description: |
-> +        A pinctrl node should contain at least one subnodes representing the
-> +        pins or function-pins group available on the machine. Each subnode
-> +        will list the pins it needs, and how they should be configured.
+> Add work queue to process core hardware information.
+> First, get lat_buf from message queue, then call core
+> hardware of each codec(H264/VP9/AV1) to decode, finally
+> puts lat_buf back to the message.
+>
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> ---
+>  .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  | 16 +++++++-
+>  .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  3 ++
+>  .../platform/mtk-vcodec/vdec_msg_queue.c      | 41 ++++++++++++++++---
+>  .../platform/mtk-vcodec/vdec_msg_queue.h      |  8 ++--
+>  4 files changed, 57 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
+> index d460703f335d..4fbff61d2334 100644
+> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
+> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
+> @@ -341,6 +341,17 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+>                 goto err_dec_pm;
+>         }
+>
+> +       if (IS_VDEC_LAT_ARCH(dev->vdec_pdata->hw_arch)) {
+> +               vdec_msg_queue_init_ctx(&dev->msg_queue_core_ctx, MTK_VDEC_CORE);
+> +               dev->core_workqueue = alloc_ordered_workqueue("core-decoder",
+> +                       WQ_MEM_RECLAIM | WQ_FREEZABLE);
+> +               if (!dev->core_workqueue) {
+> +                       mtk_v4l2_err("Failed to create core workqueue");
+> +                       ret = -EINVAL;
+> +                       goto err_res;
+> +               }
+> +       }
 > +
-> +        Pinctrl node's client devices use subnodes for desired pin
-> +        configuration. Client device subnodes use below standard properties.
+>         for (i = 0; i < MTK_VDEC_HW_MAX; i++)
+>                 mutex_init(&dev->dec_mutex[i]);
+>         spin_lock_init(&dev->irqlock);
+> @@ -351,7 +362,7 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+>         ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
+>         if (ret) {
+>                 mtk_v4l2_err("v4l2_device_register err=%d", ret);
+> -               goto err_res;
+> +               goto err_core_workq;
+>         }
+>
+>         init_waitqueue_head(&dev->queue);
+> @@ -450,6 +461,9 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+>         video_unregister_device(vfd_dec);
+>  err_dec_alloc:
+>         v4l2_device_unregister(&dev->v4l2_dev);
+> +err_core_workq:
+> +       if (IS_VDEC_LAT_ARCH(dev->vdec_pdata->hw_arch))
+> +               destroy_workqueue(dev->core_workqueue);
+>  err_res:
+>         mtk_vcodec_release_dec_pm(&dev->pm);
+>  err_dec_pm:
+> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
+> index cbaed96dcfa2..a558cc16026d 100644
+> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
+> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
+> @@ -27,6 +27,7 @@
+>  #define MTK_VCODEC_MAX_PLANES  3
+>  #define MTK_V4L2_BENCHMARK     0
+>  #define WAIT_INTR_TIMEOUT_MS   1000
+> +#define IS_VDEC_LAT_ARCH(hw_arch) ((hw_arch) >= MTK_VDEC_LAT_SINGLE_CORE)
 
-I don't understand this if type object stuff here, Rob, help...
+Basic question: What is practical meaning of this? What architectures
+are supported?
 
-> +      properties:
-> +        pins:
-> +          description: |
-> +            Define pins which are used by pinctrl node's client device.
-(...)
-> +          $ref: /schemas/types.yaml#/definitions/uint32-array
+>
+>  /*
+>   * enum mtk_hw_reg_idx - MTK hw register base index
+> @@ -464,6 +465,7 @@ struct mtk_vcodec_enc_pdata {
+>   * @dec_capability: used to identify decode capability, ex: 4k
+>   * @enc_capability: used to identify encode capability
+>   *
+> + * @core_workqueue: queue used for core hardware decode
+>   * @msg_queue_core_ctx: msg queue context used for core workqueue
+>   *
+>   * @subdev_dev: subdev hardware device
+> @@ -506,6 +508,7 @@ struct mtk_vcodec_dev {
+>         unsigned int dec_capability;
+>         unsigned int enc_capability;
+>
+> +       struct workqueue_struct *core_workqueue;
+>         struct vdec_msg_queue_ctx msg_queue_core_ctx;
+>
+>         void *subdev_dev[MTK_VDEC_HW_MAX];
+> diff --git a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
+> index 913aefa67618..24f1d03df9f1 100644
+> --- a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
+> +++ b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
+> @@ -68,6 +68,9 @@ int vdec_msg_queue_qbuf(struct vdec_msg_queue_ctx *msg_ctx, struct vdec_lat_buf
+>
+>         if (msg_ctx->hardware_index != MTK_VDEC_CORE)
+>                 wake_up_all(&msg_ctx->ready_to_use);
+> +       else
+> +               queue_work(buf->ctx->dev->core_workqueue,
+> +                       &buf->ctx->msg_queue.core_work);
 
-Why can this not $ref the standard binings in
-Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml
+need {} for else here?
 
-See for example
-Documentation/devicetree/bindings/pinctrl/actions,s500-pinctrl.yaml
-for a nice example of how to use this.
+>
+>         mtk_v4l2_debug(3, "enqueue buf type: %d addr: 0x%p num: %d",
+>                 msg_ctx->hardware_index, buf, msg_ctx->ready_num);
+> @@ -169,8 +172,7 @@ bool vdec_msg_queue_wait_lat_buf_full(struct vdec_msg_queue *msg_queue)
+>         return false;
+>  }
+>
+> -void vdec_msg_queue_deinit(
+> -       struct vdec_msg_queue *msg_queue,
+> +void vdec_msg_queue_deinit(struct vdec_msg_queue *msg_queue,
+>         struct mtk_vcodec_ctx *ctx)
+>  {
+>         struct vdec_lat_buf *lat_buf;
+> @@ -196,10 +198,36 @@ void vdec_msg_queue_deinit(
+>         }
+>  }
+>
+> -int vdec_msg_queue_init(
+> -       struct vdec_msg_queue *msg_queue,
+> -       struct mtk_vcodec_ctx *ctx,
+> -       core_decode_cb_t core_decode,
+> +static void vdec_msg_queue_core_work(struct work_struct *work)
+> +{
+> +       struct vdec_msg_queue *msg_queue =
+> +               container_of(work, struct vdec_msg_queue, core_work);
+> +       struct mtk_vcodec_ctx *ctx =
+> +               container_of(msg_queue, struct mtk_vcodec_ctx, msg_queue);
+> +       struct mtk_vcodec_dev *dev = ctx->dev;
+> +       struct vdec_lat_buf *lat_buf;
+> +
+> +       lat_buf = vdec_msg_queue_dqbuf(&dev->msg_queue_core_ctx);
+> +       if (!lat_buf)
+> +               return;
 
-Yours,
-Linus Walleij
+If we were to return in this error condition,
+isn't it better to also differentiate this error with return code and
+change void return type?
+
+> +
+> +       ctx = lat_buf->ctx;
+> +       mtk_vcodec_set_curr_ctx(dev, ctx, MTK_VDEC_CORE);
+> +
+> +       lat_buf->core_decode(lat_buf);
+> +
+> +       mtk_vcodec_set_curr_ctx(dev, NULL, MTK_VDEC_CORE);
+> +       vdec_msg_queue_qbuf(&ctx->msg_queue.lat_ctx, lat_buf);
+> +
+> +       if (!list_empty(&ctx->msg_queue.lat_ctx.ready_queue)) {
+> +               mtk_v4l2_debug(3, "re-schedule to decode for core",
+> +                       dev->msg_queue_core_ctx.ready_num);
+> +               queue_work(dev->core_workqueue, &msg_queue->core_work);
+> +       }
+> +}
+> +
+> +int vdec_msg_queue_init(struct vdec_msg_queue *msg_queue,
+> +       struct mtk_vcodec_ctx *ctx,     core_decode_cb_t core_decode,
+>         int private_size)
+>  {
+>         struct vdec_lat_buf *lat_buf;
+> @@ -210,6 +238,7 @@ int vdec_msg_queue_init(
+>                 return 0;
+>
+>         vdec_msg_queue_init_ctx(&msg_queue->lat_ctx, MTK_VDEC_LAT0);
+> +       INIT_WORK(&msg_queue->core_work, vdec_msg_queue_core_work);
+>         msg_queue->wdma_addr.size = vde_msg_queue_get_trans_size(
+>                 ctx->picinfo.buf_w, ctx->picinfo.buf_h);
+>
+> diff --git a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.h b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.h
+> index 21a9c0aeb1b4..43eae638a2a8 100644
+> --- a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.h
+> +++ b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.h
+> @@ -67,6 +67,7 @@ struct vdec_lat_buf {
+>   * @wdma_addr: wdma address used for ube
+>   * @wdma_rptr_addr: ube read point
+>   * @wdma_wptr_addr: ube write point
+> + * @core_work: core hardware work
+>   * @lat_ctx: used to store lat buffer list
+>   */
+>  struct vdec_msg_queue {
+> @@ -76,6 +77,7 @@ struct vdec_msg_queue {
+>         uint64_t wdma_rptr_addr;
+>         uint64_t wdma_wptr_addr;
+>
+> +       struct work_struct core_work;
+>         struct vdec_msg_queue_ctx lat_ctx;
+>  };
+>
+> @@ -86,10 +88,8 @@ struct vdec_msg_queue {
+>   * @core_decode: core decode callback for each codec
+>   * @private_size: the private data size used to share with core
+>   */
+> -int vdec_msg_queue_init(
+> -       struct vdec_msg_queue *msg_queue,
+> -       struct mtk_vcodec_ctx *ctx,
+> -       core_decode_cb_t core_decode,
+> +int vdec_msg_queue_init(struct vdec_msg_queue *msg_queue,
+> +       struct mtk_vcodec_ctx *ctx,     core_decode_cb_t core_decode,
+
+Not sure about the formatting rule, but is it supposed to be one param per line?
+If so, this comment also applied to function definition part.
+
+>         int private_size);
+>
+>  /**
+> --
+> 2.25.1
+>
