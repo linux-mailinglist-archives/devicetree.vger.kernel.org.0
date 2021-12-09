@@ -2,133 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5B2446ED51
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 17:44:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B593546ED71
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 17:47:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235998AbhLIQsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 11:48:19 -0500
-Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:38429 "EHLO
-        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233501AbhLIQsS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 11:48:18 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 630BA3201EA6;
-        Thu,  9 Dec 2021 11:44:44 -0500 (EST)
-Received: from imap47 ([10.202.2.97])
-  by compute3.internal (MEProxy); Thu, 09 Dec 2021 11:44:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type; s=fm3; bh=Fb3YAThB7Ts2CehfhGQ6o7m7fEEu
-        BDFlgntPwARqXhQ=; b=gnm7hIzDu6Df7g7pBoYtmcFplKBEaDsyjio/BrR9Yqfj
-        q0GZFYUlm28gWXOQLkkuLLCZstfdbgx7+BwHHNZo330kD+mrLwtyoMv4CB1JQqz6
-        7RhPF2/e5bZB8XlBx5/V9TDkMVS89D2TQi7SGPLfXkXBjMDq0BxK/Uew9gY6vTuG
-        ZNHWuPXMZr+Q0tWbEOtnVQUZW8z3YYAyl1CC7EPfhA8jQCtLLDKScDGlFARdPKKd
-        k+CLe+ytnd0D6cDKH65EM6QspNy53D8yWKrMwV+hnt3ZB/JbZKPlnJT8XLBdJy5p
-        lC8/YZOmggm1vPo+OKpvh79pOn90QobFDIXBW4L+Kw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Fb3YAT
-        hB7Ts2CehfhGQ6o7m7fEEuBDFlgntPwARqXhQ=; b=TMYyE2/TK51I83uW0VdS62
-        ejyniY9vv17ibX90xoZy50WJHJcLVt3qAijjA2rn8UcFkaz0jdlpvsMSr2ZbajCQ
-        coz+iaYW+ZG6t0ttvn1SLuVsv2kkKx2eOpIe6GIykdh/Dn0F3rLTjWhQhOOkNCA8
-        6edcM1MlJjn4f6c6MDEnPDcKozupoTCXOkw9M+IBjWJo2JMFF0ehntLCZnoEeU4D
-        FSvMH22dt1mfSgmG2N1lVm1D/43Tm2KeY/gJCtbt1d62otihiXCeQc6yGHLXj7X5
-        i+3YEcLPerpt+OfVBMgWSpiaHUlHNpcL4kRazuf+LkjQXB8DTduhbIyn0m+kxr9A
-        ==
-X-ME-Sender: <xms:ezKyYb1KOv6b9OzEMj5IRbrt9Ai-4KwfWz0TJF0PcWnAldWZ45_s-A>
-    <xme:ezKyYaG8KbJgxnDiN7ITimHL0Hv4YMtkjgrm_vkj1x-VKATOR6fnVKqmPOb4mj4ZV
-    0Ru04jKIHNdf6TbzU4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrkedtgdelhecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhvvghn
-    ucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrth
-    htvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudehvdef
-    keffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsh
-    hvvghnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:ezKyYb5OCtWyBu3l6mB0DZjqispDvdYr0gw9TdtKrFsBBmx1r4s6lw>
-    <xmx:ezKyYQ2nLZj4VI6IW_xqTzmNro4ZqJkLm3m7KnqoGn89GFaQ3b72Dw>
-    <xmx:ezKyYeGSxVGFcG3gIrybpUE3VcZOjyqAhbAOnGTnBz6DLE-tysQgJQ>
-    <xmx:ezKyYaB23HSnGhYctozElo0TaXL8TlIrO1WDgG1CAUcOwMCX4WsWdA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 7EC4E27406B6; Thu,  9 Dec 2021 11:44:43 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-4506-g4374de3f18-fm-20211208.001-g4374de3f
-Mime-Version: 1.0
-Message-Id: <7569fe04-5c9e-4bc3-b046-c210490b570c@www.fastmail.com>
-In-Reply-To: <20211209044501.67028-3-marcan@marcan.st>
-References: <20211209044501.67028-1-marcan@marcan.st>
- <20211209044501.67028-3-marcan@marcan.st>
-Date:   Thu, 09 Dec 2021 17:44:20 +0100
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Hector Martin" <marcan@marcan.st>,
-        "Rob Herring" <robh+dt@kernel.org>
-Cc:     "Mark Kettenis" <kettenis@openbsd.org>,
-        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] soc: apple: apple-pmgr-pwrstate: Add auto-PM min level support
-Content-Type: text/plain
+        id S236975AbhLIQue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 11:50:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38780 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233270AbhLIQud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 11:50:33 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76BDEC061746
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 08:46:57 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id v1so21716490edx.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 08:46:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DUAsoZN2GGfXs7xQeUpyANUvSViGhaNjFhPoPPs6f6w=;
+        b=RpGzTAlgLa3PO+98+sxBAbJQER/+75BJLrqyfbj/7lQCThJk8X1lniI4djnUqtNlYu
+         80sTAOOhS+raFRuicrgI0z7zBxkKAV/xSc03ImNww6wNqn0MUk2hp6LCQuOsvpPvlZSX
+         zgMEummyAHUQoVNwNw6swxxwAaWXSLnT9OHEY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DUAsoZN2GGfXs7xQeUpyANUvSViGhaNjFhPoPPs6f6w=;
+        b=AxiuFF8wWPu6sY5+YMz00Gu3yf1666y8NuMxy1pvplkvOmjifWtX/rIwe63A/ynnZU
+         5Mp/s0TjCDiZ8FbY/SUGnQnqwy4ruQk3MukPt/EVgozjKiYnQt3HFrrLPnYF+zekpz5Z
+         Tr8HrU+5w6F+XYsLc9S6Lac72ZXTuxUfptJ4fHzsPU3dH6tIZ62h9AwhnGfVUoxOIgNl
+         7yBNvM+V4h/buDs9VcV6bgftwUaUkDFkWdKuKpYhtnh+k7i1u9Abyg7N2yVIEcqf2eAI
+         x+7HLkifPnaNZ1gRRPuucYYRMucnMDGiXw5Y0PAvnfVyuTr068/HSnRDUr/i8/awk5D4
+         51kQ==
+X-Gm-Message-State: AOAM531sRKoWWxeMyUFJvwafEvR/CooxpveSwfX8wRVgx95x3yyG5B1F
+        m9mtkjj5zrq8G7KbSfVjslpJr6Qab49r3yZh/7gISQ==
+X-Google-Smtp-Source: ABdhPJyZzquwre+pYVHYp87LvqgSYqSMCpLuONQzj5RR6wgSoijqysjMjPU/d1+HrNnE2sU69dCeTVN4iRq0C4XuGoY=
+X-Received: by 2002:a17:907:6d28:: with SMTP id sa40mr16885730ejc.201.1639068308655;
+ Thu, 09 Dec 2021 08:45:08 -0800 (PST)
+MIME-Version: 1.0
+References: <20211118091955.3009900-1-alexander.stein@ew.tq-group.com>
+ <20211118091955.3009900-5-alexander.stein@ew.tq-group.com>
+ <CAMty3ZCQ+JDvojX0QiLEJLSA=J+kzi9kY1QE+dzf35fgO3T4aQ@mail.gmail.com> <YbIxGc8faqUQhUWP@pendragon.ideasonboard.com>
+In-Reply-To: <YbIxGc8faqUQhUWP@pendragon.ideasonboard.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Thu, 9 Dec 2021 22:14:57 +0530
+Message-ID: <CAMty3ZA+BwtGLhFM8gS5f_=j4JnMrvnqf01bTW4mbe0ddyiG-Q@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] drm/bridge: ti-sn65dsi83: Add vcc supply regulator support
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 9, 2021, at 05:45, Hector Martin wrote:
-> This is seemingly required for DCP/DCPEXT, without which they refuse to
-> boot properly. They need to be set to minimum state 4 (clock gated).
+Hi Laurent,
+
+On Thu, Dec 9, 2021 at 10:09 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
 >
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  drivers/soc/apple/apple-pmgr-pwrstate.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> Hi Jagan,
 >
-> diff --git a/drivers/soc/apple/apple-pmgr-pwrstate.c 
-> b/drivers/soc/apple/apple-pmgr-pwrstate.c
-> index 8ad9d5fdefbf..590bb7439372 100644
-> --- a/drivers/soc/apple/apple-pmgr-pwrstate.c
-> +++ b/drivers/soc/apple/apple-pmgr-pwrstate.c
-> @@ -20,6 +20,7 @@
->  #define APPLE_PMGR_RESET        BIT(31)
->  #define APPLE_PMGR_AUTO_ENABLE  BIT(28)
->  #define APPLE_PMGR_PS_AUTO      GENMASK(27, 24)
-> +#define APPLE_PMGR_PS_MIN       GENMASK(19, 16)
->  #define APPLE_PMGR_PARENT_OFF   BIT(11)
->  #define APPLE_PMGR_DEV_DISABLE  BIT(10)
->  #define APPLE_PMGR_WAS_CLKGATED BIT(9)
-> @@ -42,6 +43,7 @@ struct apple_pmgr_ps {
->  	struct reset_controller_dev rcdev;
->  	struct regmap *regmap;
->  	u32 offset;
-> +	u32 min_state;
->  };
-> 
->  #define genpd_to_apple_pmgr_ps(_genpd) container_of(_genpd, struct 
-> apple_pmgr_ps, genpd)
-> @@ -224,6 +226,12 @@ static int apple_pmgr_ps_probe(struct 
-> platform_device *pdev)
->  	ps->genpd.power_on = apple_pmgr_ps_power_on;
->  	ps->genpd.power_off = apple_pmgr_ps_power_off;
-> 
-> +	ret = of_property_read_u32(node, "apple,min-state", &ps->min_state);
-> +	if (ret >= 0) {
+> On Thu, Dec 09, 2021 at 12:34:49PM +0530, Jagan Teki wrote:
+> > On Thu, Nov 18, 2021 at 2:50 PM Alexander Stein wrote:
+> > >
+> > > VCC needs to be enabled before releasing the enable GPIO.
+> > >
+> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > ---
+> > >  drivers/gpu/drm/bridge/ti-sn65dsi83.c | 19 +++++++++++++++++++
+> > >  1 file changed, 19 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> > > index 065610edc37a..54d18e82ed74 100644
+> > > --- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> > > +++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> > > @@ -33,6 +33,7 @@
+> > >  #include <linux/of_device.h>
+> > >  #include <linux/of_graph.h>
+> > >  #include <linux/regmap.h>
+> > > +#include <linux/regulator/consumer.h>
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_bridge.h>
+> > > @@ -143,6 +144,7 @@ struct sn65dsi83 {
+> > >         struct mipi_dsi_device          *dsi;
+> > >         struct drm_bridge               *panel_bridge;
+> > >         struct gpio_desc                *enable_gpio;
+> > > +       struct regulator                *vcc;
+> > >         int                             dsi_lanes;
+> > >         bool                            lvds_dual_link;
+> > >         bool                            lvds_dual_link_even_odd_swap;
+> > > @@ -337,6 +339,12 @@ static void sn65dsi83_atomic_enable(struct drm_bridge *bridge,
+> > >         u16 val;
+> > >         int ret;
+> > >
+> > > +       ret = regulator_enable(ctx->vcc);
+> > > +       if (ret) {
+> > > +               dev_err(ctx->dev, "Failed to enable vcc\n");
+> > > +               return;
+> > > +       }
+> >
+> > Better check the vcc and enable it since it is an optional one.
+>
+> Won't the regulator core create a dummy regulator if none is specified
+> in DT ?
 
+Agreed, thanks (Usually I do check to avoid NULL pointer if any).
 
-I think of_property_read_u32 never returns anything > 0 such that
-"if (ret == 0)" should be enough. You could also add a check that min_state
-must be <= 0b1111 here if you're feeling paranoid.
-
-Either way,
-
-Reviewed-by: Sven Peter <sven@svenpeter.dev>
-
-
-
-> +		regmap_update_bits(regmap, ps->offset, APPLE_PMGR_FLAGS | APPLE_PMGR_PS_MIN,
-> +				   FIELD_PREP(APPLE_PMGR_PS_MIN, ps->min_state));
-> +	}
-> +
->  	active = apple_pmgr_ps_is_active(ps);
->  	if (of_property_read_bool(node, "apple,always-on")) {
->  		ps->genpd.flags |= GENPD_FLAG_ALWAYS_ON;
-> -- 
-> 2.33.0
+Jagan.
