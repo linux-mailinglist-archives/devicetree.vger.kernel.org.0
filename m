@@ -2,155 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95A1746F557
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 21:56:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B60246F55A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 21:58:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232519AbhLIU7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 15:59:48 -0500
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:46932 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232405AbhLIU7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 15:59:44 -0500
-Received: by mail-ot1-f53.google.com with SMTP id x3-20020a05683000c300b0057a5318c517so7486285oto.13;
-        Thu, 09 Dec 2021 12:56:10 -0800 (PST)
+        id S231197AbhLIVBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 16:01:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229957AbhLIVBm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 16:01:42 -0500
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D173C061746;
+        Thu,  9 Dec 2021 12:58:08 -0800 (PST)
+Received: by mail-qv1-xf30.google.com with SMTP id kl8so6267785qvb.3;
+        Thu, 09 Dec 2021 12:58:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=/WyWSC2YtM3cDUHS9kzZYwAFpru5cbBUBJ8qwTc/wi4=;
+        b=DM3MGj0fQ3LesrSQ2yAwTf/GBpGv020HhiV85FT2JMg9VzK7y0T9H6ytvgGPVB0w5h
+         eEZFoqIsZRuh6GPouv3YnXbiB9tGP5vE1nG62+rROCCkxFSq5nEmlyq0UzHLR6cVRHpW
+         RMIn2t2PknAUM5k3S9F7qAKU1qS0VCFa7aNSc/dWCf1U+inrCY1Z32Uqv0NHgi9ZZGkh
+         cVF0HE75Npt74+UekHakng+i6EZwjV5QvbGR1sD3jhv+iOptr+hep5C5nlCY2qN8obju
+         UuE9BJW1vx/rSO2CY/smQ0zORUOYkoOKvOloZWMRts4KUwwkgGu8V9iPRnSi4T7+wLqA
+         uoZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=xankO6gBp3GIQVGfoW7EkvgG0j2YUNnq+3nk9J8aM3Y=;
-        b=Lvfr31Ir4ToOrOTOil/D++KrmODrCf3+6M26h9rzY6nM4yTc/E3lfaHYgt2VqgY5SV
-         we5AR30VOPTPnHY+KmEQfjfeEjP3ndPoCxpDf7jhS4+gn1ZyAHuT+L7LY3IIDp52a5Fw
-         LDesJf/mpWNizZAjq/rlB4PGpn/C246IRs8D7jwQOl0abA5+Ki3BESuPsyL0Ikt9ixIF
-         DMc8iaqIm8XPy0oOK0SsGA4hJHgjEMXHPap2DjBaNok54pt9RKpkPDj5zw/cIZF8hKeO
-         75XQ0Y0zzzrhI0tYDjsfMwiMhktEn6T5RSPT6Wzuu/zw8ckGvXlI0AVAIdui9T3/ZTl/
-         VUXw==
-X-Gm-Message-State: AOAM533TOyoRjzuDrWTP6oXfLaojLaN75+O6waJAUXC8W/eutYDv2qtC
-        H8ndtfSOf0QpZR6iykusEDjRzzcdrQ==
-X-Google-Smtp-Source: ABdhPJwdiucO7zUXMfidK1yeB7NQIdXOz8owmo+BnV3zHDhRQCqAGR9lTU/GuZ9/jhRAnrnrc0psMg==
-X-Received: by 2002:a05:6830:410a:: with SMTP id w10mr7711368ott.55.1639083369909;
-        Thu, 09 Dec 2021 12:56:09 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w71sm181746oiw.6.2021.12.09.12.56.08
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/WyWSC2YtM3cDUHS9kzZYwAFpru5cbBUBJ8qwTc/wi4=;
+        b=b1mqVdwyZU0RR47gYrbivkNUZK3zyl7FPJWEkuP4lNsAo1MTkVzIKie2n5y1qfFRmn
+         PiMAigIYkkpzYQ7j4O5xVly6986gRqYF9D29k4JV2hCAvZERLVigzRxWRZDsXyXz5/1O
+         IEoA12TawXuUSZH3XRSjuBFdyj6Rm/vIpx2OhXBLk8mBp2vjEd9f4f7aI3u+DoHOR7BD
+         Tw4MO8e2QGyujfvw5LV5DFUG4rw+kowB+NpmQLaSzINWPZxG1Z79WfW8HODbXqwWwG6E
+         rphd/yfufYLHKZOdZwrWI0bbUz7GxOO6078gKnea+sToHn013qo7BlF3dZoOxU8IW2GL
+         S1Yw==
+X-Gm-Message-State: AOAM533M6fTPZX2QyMNFxQPeM+4f6T45tXONrs2tn/hEYRHjHF3nSVaS
+        EO7+kge7rkbF9hp3TdtyaZk=
+X-Google-Smtp-Source: ABdhPJwz2i7GVDppYMLqDPKpuLgs6D27v/T6htkLgqZ2LjS8oWEexUOuMvLfun7c9pbd+M3uvb9D4A==
+X-Received: by 2002:a05:6214:20ee:: with SMTP id 14mr20556590qvk.94.1639083487357;
+        Thu, 09 Dec 2021 12:58:07 -0800 (PST)
+Received: from errol.ini.cmu.edu (pool-108-39-235-221.pitbpa.fios.verizon.net. [108.39.235.221])
+        by smtp.gmail.com with ESMTPSA id u9sm568402qta.17.2021.12.09.12.58.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Dec 2021 12:56:09 -0800 (PST)
-Received: (nullmailer pid 3925942 invoked by uid 1000);
-        Thu, 09 Dec 2021 20:55:59 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Sumit Gupta <sumitg@nvidia.com>
-Cc:     robh+dt@kernel.org, vsethi@nvidia.com, jonathanh@nvidia.com,
-        bbasu@nvidia.com, devicetree@vger.kernel.org, jsequeira@nvidia.com,
-        thierry.reding@gmail.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-In-Reply-To: <20211209172206.17778-3-sumitg@nvidia.com>
-References: <20211209172206.17778-1-sumitg@nvidia.com> <20211209172206.17778-3-sumitg@nvidia.com>
-Subject: Re: [Patch Resend v1 2/8] dt-bindings: arm: tegra: Add NVIDIA Tegra194 CBB1.0 binding
-Date:   Thu, 09 Dec 2021 14:55:59 -0600
-Message-Id: <1639083359.653823.3925941.nullmailer@robh.at.kernel.org>
+        Thu, 09 Dec 2021 12:58:06 -0800 (PST)
+Date:   Thu, 9 Dec 2021 15:58:04 -0500
+From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Kamil Rakoczy <krakoczy@antmicro.com>,
+        mdudek@internships.antmicro.com,
+        Paul Mackerras <paulus@ozlabs.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Stafford Horne <shorne@gmail.com>,
+        david.abdurachmanov@sifive.com,
+        Florent Kermarrec <florent@enjoy-digital.fr>,
+        Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [PATCH v2 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+Message-ID: <YbJt3NLU9KPO+ERu@errol.ini.cmu.edu>
+References: <20211204204121.2367127-1-gsomlo@gmail.com>
+ <20211204204121.2367127-4-gsomlo@gmail.com>
+ <CAMuHMdXh6YfRdGi8gYc4hJuTwogme6+Esn9Mf1vr9MFO=f8mAg@mail.gmail.com>
+ <YbESHK06Tpw3typS@errol.ini.cmu.edu>
+ <CAMuHMdV6fttX6Jn06WJacNh+1pLz1RfYf82B2fB1D+=Kb9FmMA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdV6fttX6Jn06WJacNh+1pLz1RfYf82B2fB1D+=Kb9FmMA@mail.gmail.com>
+X-Clacks-Overhead: GNU Terry Pratchett
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 09 Dec 2021 22:52:00 +0530, Sumit Gupta wrote:
-> Add device-tree binding documentation to represent the error handling
-> driver for Control Backbone (CBB) version 1.0 used in Tegra194 SOC.
-> The driver prints debug information about failed transactions due to
-> illegal register accesses on receiving interrupt from CBB.
+On Thu, Dec 09, 2021 at 09:31:49AM +0100, Geert Uytterhoeven wrote:
+> Hi Gabriel,
 > 
-> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
-> ---
->  .../arm/tegra/nvidia,tegra194-cbb.yaml        | 121 ++++++++++++++++++
->  1 file changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-cbb.yaml
+> On Wed, Dec 8, 2021 at 9:14 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+> > I did *some* of this for v3, but since figured out how to use `pahole` :)
 > 
+> Right, pahole.
+> 
+> > On Mon, Dec 06, 2021 at 11:07:56AM +0100, Geert Uytterhoeven wrote:
+> > > > +struct litex_mmc_host {
+> > > > +       struct mmc_host *mmc;
+> > > > +       struct platform_device *dev;
+> > > > +
+> > > > +       void __iomem *sdphy;
+> > > > +       void __iomem *sdcore;
+> > > > +       void __iomem *sdreader;
+> > > > +       void __iomem *sdwriter;
+> > > > +       void __iomem *sdirq;
+> > > > +
+> > > > +       u32 resp[4];
+> > > > +       u16 rca;
+> > > > +
+> > > > +       void *buffer;
+> > > > +       size_t buf_size;
+> > > > +       dma_addr_t dma;
+> > > > +
+> > > > +       unsigned int freq;
+> > > > +       unsigned int clock;
+> > > > +       bool is_bus_width_set;
+> > > > +       bool app_cmd;
+> > > > +
+> > > > +       int irq;
+> > > > +       struct completion cmd_done;
+> > >
+> > > You may want to reorder the members to avoid implicit gaps
+> > > (i.e. structs first, followed by integral types in decreasing size).
+> >
+> > So, for v4, I'll have it looking like this, which `pahole` says is
+> > optimally packed:
+> >
+> > struct litex_mmc_host {
+> >         struct mmc_host *          mmc;                  /*     0     8 */
+> >         struct platform_device *   dev;                  /*     8     8 */
+> >         void *                     sdphy;                /*    16     8 */
+> >         void *                     sdcore;               /*    24     8 */
+> >         void *                     sdreader;             /*    32     8 */
+> >         void *                     sdwriter;             /*    40     8 */
+> >         void *                     sdirq;                /*    48     8 */
+> >         void *                     buffer;               /*    56     8 */
+> >         /* --- cacheline 1 boundary (64 bytes) --- */
+> >         size_t                     buf_size;             /*    64     8 */
+> 
+> size_t is 32-bit on RV32, so you may want to move it below cmd_done.
+> 
+> >         dma_addr_t                 dma;                  /*    72     8 */
+> >         struct completion          cmd_done;             /*    80    32 */
+> >         int                        irq;                  /*   112     4 */
+> >         unsigned int               ref_clk;              /*   116     4 */
+> >         unsigned int               sd_clk;               /*   120     4 */
+> >         u32                        resp[4];              /*   124    16 */
+> >         /* --- cacheline 2 boundary (128 bytes) was 12 bytes ago --- */
+> >         u16                        rca;                  /*   140     2 */
+> >         bool                       is_bus_width_set;     /*   142     1 */
+> >         bool                       app_cmd;              /*   143     1 */
+> >
+> >         /* size: 144, cachelines: 3, members: 18 */
+> >         /* last cacheline: 16 bytes */
+> > };
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+After a bit of a fight, I managed to wrestle `pahole` to display useful
+information for 32-bit (rv32imac) builds:
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-cbb.yaml:96:1: [error] duplication of key "properties" in mapping (key-duplicates)
-./Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-cbb.yaml:109:1: [error] duplication of key "examples" in mapping (key-duplicates)
+struct litex_mmc_host {
+	struct mmc_host *          mmc;                  /*     0     4 */
+	struct platform_device *   dev;                  /*     4     4 */
+	void *                     sdphy;                /*     8     4 */
+	void *                     sdcore;               /*    12     4 */
+	void *                     sdreader;             /*    16     4 */
+	void *                     sdwriter;             /*    20     4 */
+	void *                     sdirq;                /*    24     4 */
+	void *                     buffer;               /*    28     4 */
+	size_t                     buf_size;             /*    32     4 */
+	dma_addr_t                 dma;                  /*    36     4 */
+	struct completion          cmd_done;             /*    40    16 */
+	int                        irq;                  /*    56     4 */
+	unsigned int               ref_clk;              /*    60     4 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	unsigned int               sd_clk;               /*    64     4 */
+	u32                        resp[4];              /*    68    16 */
+	u16                        rca;                  /*    84     2 */
+	bool                       is_bus_width_set;     /*    86     1 */
+	bool                       app_cmd;              /*    87     1 */
 
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-cbb.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 121, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 131, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 674, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 445, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 263, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 294, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 5, column 1
-found duplicate key "properties" with value "{}" (original value: "{}")
-  in "<unicode string>", line 96, column 1
+	/* size: 88, cachelines: 2, members: 18 */
+	/* last cacheline: 24 bytes */
+};
 
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
+Looks like even with `size_t buf_size` where it is right now, there
+still are no holes. I like it where it is, as it's related to the
+field immediately preceding it (`buffer`). I'd rather not move it,
+particularly since we're not actually eliminating any additional
+holes.
 
-make[1]: *** [Documentation/devicetree/bindings/Makefile:25: Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-cbb.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-doc-validate", line 25, in check_doc
-    testtree = dtschema.load(filename, line_number=line_number)
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 656, in load
-    return yaml.load(f.read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 121, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 131, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 674, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 445, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 263, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 294, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 5, column 1
-found duplicate key "properties" with value "{}" (original value: "{}")
-  in "<unicode string>", line 96, column 1
+What do you think (i.e., is there a configuration where there's still
+a chance we may run into trouble)?
 
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
-
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-doc-validate", line 67, in <module>
-    ret = check_doc(f)
-  File "/usr/local/bin/dt-doc-validate", line 30, in check_doc
-    print(filename + ":", exc.path[-1], exc.message, file=sys.stderr)
-AttributeError: 'DuplicateKeyError' object has no attribute 'path'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-cbb.yaml: ignoring, error parsing file
-warning: no schema found in file: ./Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-cbb.yaml
-make: *** [Makefile:1413: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1565943
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Thanks,
+--Gabriel
