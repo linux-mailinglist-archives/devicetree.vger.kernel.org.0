@@ -2,70 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12C4146E22F
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 06:51:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 428BD46E250
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 07:11:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232524AbhLIFyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 00:54:46 -0500
-Received: from marcansoft.com ([212.63.210.85]:44926 "EHLO mail.marcansoft.com"
+        id S232705AbhLIGOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 01:14:45 -0500
+Received: from mail.pr-group.ru ([178.18.215.3]:58758 "EHLO mail.pr-group.ru"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232503AbhLIFyo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Dec 2021 00:54:44 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: hector@marcansoft.com)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 0218F41EA7;
-        Thu,  9 Dec 2021 05:51:07 +0000 (UTC)
-From:   Hector Martin <marcan@marcan.st>
-To:     Sven Peter <sven@svenpeter.dev>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
+        id S230221AbhLIGOp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Dec 2021 01:14:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:
+         references;
+        bh=2ievsv+Pi9EcsCik6OtDMThaORs4vt2G2gNNZVLnLvc=;
+        b=InreG1UTyTn+fX/6/HgJYoVDqtAQHWNkIdd7oxytOlsue3y+bKsSf6YuO+2X5IZlRhXIHNDo8HWH9
+         OjIGfaoCzr+3QMP1m1u49jG08wfuc+LWBFCuc3uGjCOSPNRi3i2D5CmKHDnxwZn5/AR9IOcftaNh6+
+         tFFj1qRsdX72hg6Rot5ItZqARXlY0cxgitZC3lPuLBgUEzI6ufFKnb9OKBXfN8voFQAK38we+DbpL6
+         bmk5IvkaGkm3++cnFTkikmEMWM/BahS9bTv6koxyG/8dosfMFoDmrMJLlpw4O964/OEwXRFjRxKznD
+         Ic6GTGnMF4C8Dg3o5pDZ5ru6uxaqY9Q==
+X-Spam-Status: No, hits=0.0 required=3.4
+        tests=BAYES_00: -1.665, CUSTOM_RULE_FROM: ALLOW, TOTAL_SCORE: -1.665,autolearn=ham
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from dhcp-179.ddg ([85.143.252.66])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Thu, 9 Dec 2021 09:10:51 +0300
+Date:   Thu, 9 Dec 2021 09:10:41 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     i.bornyakov@metrotek.ru
+Cc:     system@metrotek.ru, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/2] mailbox: apple: Bind to generic compatibles
-Date:   Thu,  9 Dec 2021 14:50:49 +0900
-Message-Id: <20211209055049.99205-3-marcan@marcan.st>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211209055049.99205-1-marcan@marcan.st>
-References: <20211209055049.99205-1-marcan@marcan.st>
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] bus: imx-weim: optionally enable continuous burst
+ clock
+Message-ID: <20211209061041.zuhdx5ctukfkdylz@dhcp-179.ddg>
+References: <20211202055724.4416-1-i.bornyakov@metrotek.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211202055724.4416-1-i.bornyakov@metrotek.ru>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As with other blocks, we intend to have drivers bind to generic
-compatibles as long as there are no SoC-specific quirks. This allows
-forward-compatibility with future SoCs.
+On Thu, Dec 02, 2021 at 08:57:22AM +0300, Ivan Bornyakov wrote:
+> Introduce option to enable continuous burst clock, if burst clock itself
+> is enabled.
+> 
+> Changelog:
+>   v1 -> v2:
+>     * documentation about this option added to
+>       Documentation/devicetree/bindings/bus/imx-weim.txt
+>   v2 -> v3:
+>     * added missing Signed-off-by line
+> 
+> 
+> Ivan Bornyakov (2):
+>   bus: imx-weim: optionally enable continuous burst clock
+>   dt-bindings: bus: imx-weim: add words about continuous bclk
+> 
+>  .../devicetree/bindings/bus/imx-weim.txt       |  5 +++++
+>  drivers/bus/imx-weim.c                         | 18 ++++++++++++++++--
+>  2 files changed, 21 insertions(+), 2 deletions(-)
+> 
+> -- 
+> 2.32.0
+> 
 
-No upstream DTs instantiate this yet, so it's still safe to make this
-breaking change.
-
-Signed-off-by: Hector Martin <marcan@marcan.st>
----
- drivers/mailbox/apple-mailbox.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/mailbox/apple-mailbox.c b/drivers/mailbox/apple-mailbox.c
-index 72942002a54a..f9704332cda3 100644
---- a/drivers/mailbox/apple-mailbox.c
-+++ b/drivers/mailbox/apple-mailbox.c
-@@ -364,8 +364,8 @@ static const struct apple_mbox_hw apple_mbox_m3_hw = {
- };
- 
- static const struct of_device_id apple_mbox_of_match[] = {
--	{ .compatible = "apple,t8103-asc-mailbox", .data = &apple_mbox_asc_hw },
--	{ .compatible = "apple,t8103-m3-mailbox", .data = &apple_mbox_m3_hw },
-+	{ .compatible = "apple,asc-mailbox", .data = &apple_mbox_asc_hw },
-+	{ .compatible = "apple,m3-mailbox", .data = &apple_mbox_m3_hw },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, apple_mbox_of_match);
--- 
-2.33.0
+Kindly ping.
 
