@@ -2,149 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32A4D46F1F9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:32:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C80B46F232
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:38:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243014AbhLIRgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 12:36:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51286 "EHLO
+        id S239321AbhLIRlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 12:41:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242971AbhLIRgO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 12:36:14 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3147C061746
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 09:32:40 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id i5so11003019wrb.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 09:32:40 -0800 (PST)
+        with ESMTP id S239086AbhLIRle (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 12:41:34 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FF42C061746
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 09:38:01 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id r25so21456123edq.7
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 09:38:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=MnZ8XxoV/JNSKycvbGgmmnjtRwN6D7AwRUUOOMU+Mdw=;
-        b=OXy7hbkQO4VBUZfxujencxRfCDtrWn8l6ADXaQvtZONpuVXUqGlbnDZjZ6MYuMK1kz
-         Ib3+YPOGQf+l6YXBcy77E5yJhWCLMJLfnSc+oILTWxWFa2l4sODvgwlLmizQlFSkQVGZ
-         Q8wvY/71JnyrCRlesbrXOThx1t+k9w6VSJrDRdVAeAIeHjlHKYQIJAdHfu8s8j0CgF8C
-         8WD6l2kzyF4IYzuoSIiIJSf4FZPrv0C525Yge9d8DrcLl3zkupxnFmoq75rR/0xMCHZf
-         4cKv2Of8mh0o1luLsCFTPJsObWh1beMOJpmmJm8RUsJNaRoEKNqCrjcM+26S9S2rBzr1
-         TZOA==
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AQBlBcjP6KU5uEntMJe5O4a6k8Z/3VB3sqbxnkmyvcM=;
+        b=AVXspGxsqbNkb9qLtrf/m8PsipZVTU/koLOnnlhmcUutzHApS+tJzgYLZC9aHwIdXs
+         Gj2YL9nNbf4RnWb8qOfzLvvXHs8RbusLsXOZ12l/MOUfnaqdN90wchs/GyR+GfCzc+xO
+         veEbVr5mVTM6LENi+W2DzQA5bRunZNpJ5waB4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=MnZ8XxoV/JNSKycvbGgmmnjtRwN6D7AwRUUOOMU+Mdw=;
-        b=D1PbJ/lfU5x3MtrlD3BW+Q3yi48KKuO/TFDwcg/DKvoK7X9dB9Aq2GGEVP6SdGkYhS
-         r+eoZzq0JhalnN/CzysqAxvkey7mftDbSCHp45Rovr6XKtgdwIQLLokCF+XjkoUulxas
-         d8Q315mAZUPVVEHncOp/Lt2f5bct8iXuX/148jwAHZS/TvBDunn6Vzq0oeuGEP9ihhYC
-         8C/TxoP3uVvCcjRCHKhPMYizwrxGXmWt7/yjSW+jB9e/PxYKKck1CJKOhSzKpGKguRPX
-         lRZ/jmDJ5HncJfRTw+iw1T3yZxDvVuwnoS1ST4aCNqnsjNz1Px8EcSwRl2e+gGwolWD/
-         9H8g==
-X-Gm-Message-State: AOAM5328KDaYIQ4+2BrPPNEKa1XOBYiMZnK56v1vhzzrG16WDDjg+O0V
-        P/0c9ypreXHA3bLd3pXxdFB1Mw==
-X-Google-Smtp-Source: ABdhPJwEZnAMTP1IrzgOOydDuBQdzc5f1/tqdbw72jT2SJXr29DrudN2m4jy01eVW1SRHN131+SAhQ==
-X-Received: by 2002:a5d:6d8c:: with SMTP id l12mr8053459wrs.435.1639071159488;
-        Thu, 09 Dec 2021 09:32:39 -0800 (PST)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id d188sm9692560wmd.3.2021.12.09.09.32.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Dec 2021 09:32:39 -0800 (PST)
-Subject: Re: [PATCH] dt-bindings: nvmem: Add missing 'reg' property
-To:     Rob Herring <robh@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Saenz Julienne <nsaenzjulienne@suse.de>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc:     devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20211206174133.2296265-1-robh@kernel.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <c676e23c-3c44-c28c-d572-499fe8d4ee8f@linaro.org>
-Date:   Thu, 9 Dec 2021 17:32:38 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AQBlBcjP6KU5uEntMJe5O4a6k8Z/3VB3sqbxnkmyvcM=;
+        b=g+wNNwVOzgzgAf2lWL68MF3V3jERDuxp/tMubF0rFFXv/Mdl7bxO5WsiANHLlcpdUo
+         PaLINfyXhk++4nqvHo8Wbs76ABX1l5j8R1hah/b+cTD+7iQ3ZqgXFX0CpnZhlYHd5294
+         4zp/gVlQlmRbqxpiooFMROeXEM1TAJPHEJ+ofa9AhxnkaLqIZt2Xu4SEkrs3VSy++rnW
+         mCPBZ4VYNhBPNUwjNTpfRbqxiQU2WODe00D4UIK5GajIUai8Byx9wxMpXFtD+c/bFNo5
+         XifAX85GGvluL3RAgkoUivsiHdyDnBjc36Y85ogf+RhDdU88lDSVOGnafeWgA52U0NCV
+         5cqA==
+X-Gm-Message-State: AOAM530lCu65UI1grvWGWpBtv0roNmhCYdwoe6/wmI1pfrqL3E8jZBoZ
+        Ej9Jb13yzkoDvaZFBBqCOg3YYDIU+wCEk3YPkoPwsA==
+X-Google-Smtp-Source: ABdhPJxeJtYCKaIxva4XOy/kJpcEADFymC/qRVkliAiJo2JxIeWtVodZlP1/RhK6lfHsM5oRz49mCcXXCAFetiCLDWQ=
+X-Received: by 2002:a05:6402:2552:: with SMTP id l18mr30512010edb.368.1639071318398;
+ Thu, 09 Dec 2021 09:35:18 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20211206174133.2296265-1-robh@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20211207054747.461029-1-jagan@amarulasolutions.com>
+ <20211207054747.461029-2-jagan@amarulasolutions.com> <CAL_JsqKj_ToLpoGR6XLgAu=+THit6jhdzAvxMiCCNmWg5zbQ0A@mail.gmail.com>
+ <CAMty3ZCO3yYcZhggorPBhywBs8=KjE3Mrv7573TrPQyzfPPiaA@mail.gmail.com>
+In-Reply-To: <CAMty3ZCO3yYcZhggorPBhywBs8=KjE3Mrv7573TrPQyzfPPiaA@mail.gmail.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Thu, 9 Dec 2021 23:05:07 +0530
+Message-ID: <CAMty3ZAjfF7wVD-zHM-465Q3T-aCOmcXUKJsL93+SBq+fuKwjA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] of: Add helper to lookup non port child node
+To:     Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Robert Foss <robert.foss@linaro.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-amarula@amarulasolutions.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob and Laurent,
 
+On Wed, Dec 8, 2021 at 11:56 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
+>
+> On Wed, Dec 8, 2021 at 2:20 AM Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> > On Mon, Dec 6, 2021 at 11:49 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> > >
+> > > Add of_get_non_port_child() helper that can be used to lookup
+> > > non port child nodes.
+> > >
+> > > Some OF graphs don't require 'ports' to represent the next output
+> > > instead, it simply adds a child node on a given parent node. This
+> > > helper lookup that child node, however that child node is not a
+> > > 'port' on given parent as 'port' based nodes are looked up via
+> > > of_graph_get_remote_node().
+> > >
+> > > Example OF graph representation of DSI host, which doesn't
+> > > have 'ports'.
+> >
+> > This seems pretty specific to DSI and also can't handle there being
+> > more than 1 non-port node. That's allowed for DSI too, but I don't
+> > think I've ever seen a case. Anyways, I'd just move this to DRM rather
+> > than common DT code. One comment on the implementation that will
+> > shrink it.
+>
+> I think it can be possible to OF graph even for non-DSI, however if
+> the end-node outputs to a panel or bridge. At the moment, I can one
+> use case on the non-DSI side is rcar du encoder.
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/gpu/drm/rcar-du/rcar_du_encoder.c#n68
 
-On 06/12/2021 17:41, Rob Herring wrote:
-> With 'unevaluatedProperties' support implemented, the following warnings
-> are generated in the nvmem examples:
-> 
-> Documentation/devicetree/bindings/nvmem/st,stm32-romem.example.dt.yaml: efuse@1fff7800: Unevaluated properties are not allowed ('reg' was unexpected)
-> Documentation/devicetree/bindings/nvmem/rmem.example.dt.yaml: nvram@10000000: Unevaluated properties are not allowed ('reg' was unexpected)
-> Documentation/devicetree/bindings/nvmem/brcm,nvram.example.dt.yaml: nvram@1eff0000: Unevaluated properties are not allowed ('reg' was unexpected)
-> 
-> Add the missing 'reg' property definition.
-> 
-> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Rafał Miłecki <rafal@milecki.pl>
-> Cc: Saenz Julienne <nsaenzjulienne@suse.de>
-> Cc: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Do you see any point to make this helper in of/base based on above
+rcar_du_encoder usage? if not i can directly use this functionality in
+panel_or_bridge finding code itself.
 
-Applied thanks,
+Please let me know.
 
---srini
-> ---
->   Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml     | 3 +++
->   Documentation/devicetree/bindings/nvmem/rmem.yaml           | 3 +++
->   Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml | 3 +++
->   3 files changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml b/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
-> index 58ff6b0bdb1a..8c3f0cd22821 100644
-> --- a/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/brcm,nvram.yaml
-> @@ -24,6 +24,9 @@ properties:
->     compatible:
->       const: brcm,nvram
->   
-> +  reg:
-> +    maxItems: 1
-> +
->   unevaluatedProperties: false
->   
->   examples:
-> diff --git a/Documentation/devicetree/bindings/nvmem/rmem.yaml b/Documentation/devicetree/bindings/nvmem/rmem.yaml
-> index 1d85a0a30846..a4a755dcfc43 100644
-> --- a/Documentation/devicetree/bindings/nvmem/rmem.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/rmem.yaml
-> @@ -19,6 +19,9 @@ properties:
->             - raspberrypi,bootloader-config
->         - const: nvmem-rmem
->   
-> +  reg:
-> +    maxItems: 1
-> +
->     no-map:
->       $ref: /schemas/types.yaml#/definitions/flag
->       description:
-> diff --git a/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml b/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-> index a48c8fa56bce..448a2678dc62 100644
-> --- a/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-> @@ -24,6 +24,9 @@ properties:
->         - st,stm32f4-otp
->         - st,stm32mp15-bsec
->   
-> +  reg:
-> +    maxItems: 1
-> +
->   patternProperties:
->     "^.*@[0-9a-f]+$":
->       type: object
-> 
+Thanks,
+Jagan.
