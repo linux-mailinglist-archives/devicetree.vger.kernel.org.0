@@ -2,206 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BAD9F46E0FB
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 03:42:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6D5346E11D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 04:08:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230007AbhLICpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 21:45:54 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:42798 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229455AbhLICpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 21:45:53 -0500
-X-UUID: 1101619a108744398bc64b14bfa4ae0d-20211209
-X-UUID: 1101619a108744398bc64b14bfa4ae0d-20211209
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2124787856; Thu, 09 Dec 2021 10:42:16 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 9 Dec 2021 10:42:15 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 9 Dec
- 2021 10:42:14 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkcas10.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Thu, 9 Dec 2021 10:42:13 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>
-Subject: [next PATCH] dt-bindings: nvmem: convert mtk-efuse.txt to YAML schema
-Date:   Thu, 9 Dec 2021 10:42:13 +0800
-Message-ID: <20211209024213.16612-1-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+        id S231299AbhLIDLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 22:11:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46512 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229453AbhLIDLu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 22:11:50 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B76FC061746;
+        Wed,  8 Dec 2021 19:08:16 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1A947B8236F;
+        Thu,  9 Dec 2021 03:08:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB985C341C7;
+        Thu,  9 Dec 2021 03:08:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639019293;
+        bh=OwC5+HVjHuesgoVGYQ3WpeyASnIQ6aFbde6At4MqiYU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=H1rVBputbwW8bKidazrvgL1kTOJqHgHjwCvPn1Q7z3qF8xuu1iDO5Pknyavnr6CH0
+         mOB5tQMl0V91tJlXEisLIKSpKvWcdD7iMEBGdN16oyKbPQzX9dbRC+A/MBBc87R8YL
+         DVBXre0gAd2m9mP6TtxFIvMIR6ftOeuRp04J/n4/vgOIGIQoo7ZiUkPy5iWt8K7Ui/
+         J/uIYwH8G2cbz4S8079/+ugjaX5gnlfpy1kReWmJcAS3CapZdwtDmP82DlIiOy2Le3
+         D0n6ZWosDaq+7fVUmn5qBia5GPE66bo3X631kFC9tel3kpTTJrBMiVHZd5WRd2MxVb
+         llJUSmo8JspRg==
+Received: by mail-ed1-f48.google.com with SMTP id w1so14937050edc.6;
+        Wed, 08 Dec 2021 19:08:13 -0800 (PST)
+X-Gm-Message-State: AOAM532qaSgAUiaC/rE7d2xrpK3TJSy56bVbUJJI5OE5XEHU56giHH+g
+        6tj6bt6h36lzXQjR5mZbvgwQux2NXV7mLeW0sg==
+X-Google-Smtp-Source: ABdhPJyyND1t4VP0cquujrBH74RIM5qxBBAuG9q2A50vzIHpbIMiHVFHDXaavM0IHgf/bAan7vOUKxqc6AZgDTvQ+Kk=
+X-Received: by 2002:a05:6402:4251:: with SMTP id g17mr24808372edb.89.1639019292065;
+ Wed, 08 Dec 2021 19:08:12 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+References: <20211209001056.29774-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20211209001056.29774-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 8 Dec 2021 21:08:00 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJUS0-ZNus__7nJJ-BaJBqQcS0NZ8a4o5QheLt4g8oK+Q@mail.gmail.com>
+Message-ID: <CAL_JsqJUS0-ZNus__7nJJ-BaJBqQcS0NZ8a4o5QheLt4g8oK+Q@mail.gmail.com>
+Subject: Re: [RFC PATCH] of: platform: Skip mapping of interrupts in of_device_alloc()
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert mtk-efuse.txt to YAML schema mediatek,efuse.yaml
+On Wed, Dec 8, 2021 at 6:11 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+>
+> of_device_alloc() in early boot stage creates a interrupt mapping if
+> there exists a "interrupts" property in the node.
+>
+> For hierarchical interrupt domains using "interrupts" property in the node
+> bypassed the hierarchical setup and messed up the irq setup.
+>
+> This patch adds a check in of_device_alloc() to skip interrupt mapping if
+> "not-interrupt-producer" property is present in the node. This allows
+> nodes to describe the interrupts using "interrupts" property.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> Hi All,
+>
+> Spawning from discussion [1], here is simple patch (not the ideal probably
+> welcome for suggestions) from stopping the OF code from creating a map for
+> the interrupts when using "interrupts" property.
+>
+> [1] https://lore.kernel.org/lkml/87pmqrck2m.wl-maz@kernel.org/
+>     T/#mbd1e47c1981082aded4b32a52e2c04291e515508
+>
+> Cheers,
+> Prabhakar
+> ---
+>  drivers/of/platform.c | 13 ++++++++++---
+>  1 file changed, 10 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index b3faf89744aa..629776ca1721 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -114,7 +114,7 @@ struct platform_device *of_device_alloc(struct device_node *np,
+>                                   struct device *parent)
+>  {
+>         struct platform_device *dev;
+> -       int rc, i, num_reg = 0, num_irq;
+> +       int rc, i, num_reg = 0, num_irq = 0;
+>         struct resource *res, temp_res;
+>
+>         dev = platform_device_alloc("", PLATFORM_DEVID_NONE);
+> @@ -124,7 +124,14 @@ struct platform_device *of_device_alloc(struct device_node *np,
+>         /* count the io and irq resources */
+>         while (of_address_to_resource(np, num_reg, &temp_res) == 0)
+>                 num_reg++;
+> -       num_irq = of_irq_count(np);
+> +
+> +       /*
+> +        * we don't want to map the interrupts of hierarchical interrupt domain
+> +        * into the parent domain yet. This will be the job of the hierarchical
+> +        * interrupt driver code to map the interrupts as and when needed.
+> +        */
+> +       if (!of_property_read_bool(np, "not-interrupt-producer"))
+> +               num_irq = of_irq_count(np);
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
- .../bindings/nvmem/mediatek,efuse.yaml        | 89 +++++++++++++++++++
- .../devicetree/bindings/nvmem/mtk-efuse.txt   | 43 ---------
- 2 files changed, 89 insertions(+), 43 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
- delete mode 100644 Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
+The property won't fly for sure. A compatible match table could work
+here, but I don't really want another temporary solution.
 
-diff --git a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-new file mode 100644
-index 000000000000..7332195e7f00
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-@@ -0,0 +1,89 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek efuse device tree bindings
-+
-+description: |
-+  MediaTek's efuse is used for storing calibration data, it can be accessed
-+  on ARM devices usiong I/O mapped memory.
-+
-+maintainers:
-+  - Andrew-CT Chen <andrew-ct.chen@mediatek.com>
-+
-+allOf:
-+  - $ref: "nvmem.yaml#"
-+
-+properties:
-+  $nodename:
-+    pattern: "^efuse@[0-9a-f]+$"
-+
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - mediatek,mt7622-efuse
-+              - mediatek,mt7623-efuse
-+              - mediatek,mt8173-efuse
-+              - mediatek,mt8192-efuse
-+              - mediatek,mt8195-efuse
-+              - mediatek,mt8516-efuse
-+          - const: mediatek,efuse
-+      - const: mediatek,mt8173-efuse
-+        deprecated: true
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+patternProperties:
-+  "^.*@[0-9a-f]+$":
-+    type: object
-+
-+    properties:
-+      reg:
-+        maxItems: 1
-+
-+      bits:
-+        maxItems: 1
-+
-+    required:
-+      - reg
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    efuse@10206000 {
-+        compatible = "mediatek,mt8173-efuse";
-+        reg = <0x10206000 0x1000>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        u2_intr_p0: usb2-intr-p0@188 {
-+            reg = <0x188 0x1>;
-+            bits = <0 5>;
-+        };
-+
-+        u2_intr_p1: usb2-intr-p1@188 {
-+            reg = <0x188 0x2>;
-+            bits = <5 5>;
-+        };
-+
-+        thermal_calibration: calib@528 {
-+            reg = <0x528 0xc>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-deleted file mode 100644
-index 39d529599444..000000000000
---- a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--= Mediatek MTK-EFUSE device tree bindings =
--
--This binding is intended to represent MTK-EFUSE which is found in most Mediatek SOCs.
--
--Required properties:
--- compatible: should be
--	      "mediatek,mt7622-efuse", "mediatek,efuse": for MT7622
--	      "mediatek,mt7623-efuse", "mediatek,efuse": for MT7623
--	      "mediatek,mt8173-efuse" or "mediatek,efuse": for MT8173
--	      "mediatek,mt8192-efuse", "mediatek,efuse": for MT8192
--	      "mediatek,mt8195-efuse", "mediatek,efuse": for MT8195
--	      "mediatek,mt8516-efuse", "mediatek,efuse": for MT8516
--- reg: Should contain registers location and length
--- bits: contain the bits range by offset and size
--
--= Data cells =
--Are child nodes of MTK-EFUSE, bindings of which as described in
--bindings/nvmem/nvmem.txt
--
--Example:
--
--	efuse: efuse@10206000 {
--		compatible = "mediatek,mt8173-efuse";
--		reg	   = <0 0x10206000 0 0x1000>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--
--		/* Data cells */
--		thermal_calibration: calib@528 {
--			reg = <0x528 0xc>;
--		};
--	};
--
--= Data consumers =
--Are device nodes which consume nvmem data cells.
--
--For example:
--
--	thermal {
--		...
--		nvmem-cells = <&thermal_calibration>;
--		nvmem-cell-names = "calibration";
--	};
--- 
-2.18.0
+>         /* Populate the resource table */
+>         if (num_irq || num_reg) {
+> @@ -140,7 +147,7 @@ struct platform_device *of_device_alloc(struct device_node *np,
+>                         rc = of_address_to_resource(np, i, res);
+>                         WARN_ON(rc);
+>                 }
+> -               if (of_irq_to_resource_table(np, res, num_irq) != num_irq)
+> +               if (num_irq && of_irq_to_resource_table(np, res, num_irq) != num_irq)
 
+You might want to look at commit 9ec36cafe43b ("of/irq: do irq
+resolution in platform_get_irq"). The intent was to remove this code,
+but looks like the cleanup has a ways to go 7 years on. Primarily,
+it's convert any platform_get_resource(pdev, IORESOURCE_IRQ, n) call
+to platform_get_irq(). There's ~169 of those.
+
+There are probably some open coded accesses to pdev->resources too,
+but I didn't spot any.
+
+Rob
