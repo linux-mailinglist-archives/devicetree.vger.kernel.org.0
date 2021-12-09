@@ -2,164 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD70646E5EB
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 10:49:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27E0946E5F2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 10:51:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229791AbhLIJwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 04:52:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52940 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229707AbhLIJwy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 04:52:54 -0500
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20CEC061746;
-        Thu,  9 Dec 2021 01:49:21 -0800 (PST)
-Received: by mail-yb1-xb31.google.com with SMTP id x32so12254680ybi.12;
-        Thu, 09 Dec 2021 01:49:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hQpKpHEkZnskW/9rn7pkazm2zuLSSCZbHGXMjb0S1Wk=;
-        b=XBnCHNEgWLjtlTJj5RH4gDr/J4mLQ3IMBPl5zArkIT3jGgHg8Vz1VPkef3Ubsghmrx
-         ytbn6u2DzlwZvvlj6hj75kvYnOBSbRUJZqdkYebWpFfnl80ybMNcAfbBueTUjK4Av40m
-         mKcWUnevstM6SvuU6c/ME+KvHEg6NHAZrc+zgaxNA2MQ2C7uqe/40yRRXZ/IJGSNXnDv
-         GPv+MkdG+89uuAiuGlmA72SJNeigaeM+youZDh5GWC4UE3q+C9mX6v+865Vd2ZnIvtYj
-         mOY8DA34y4IhukbxEEA5mnDWFQ8bwGXKfkKfttvNiVt9YY0TezVPbS6X7m3pLj+8fKqE
-         DWag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hQpKpHEkZnskW/9rn7pkazm2zuLSSCZbHGXMjb0S1Wk=;
-        b=P54CHF/nEG50ADm+z36ko1XXVdDAb8zD7Cv3pZZ4EIMAeb8pweqKn+9Tz069k/TvVL
-         8FuBF/5r8F7XfNHh8PrT/sijYNfbxk3LwEPwNh995H/E+QLMeKKla+Olz1fAbQnuXwUQ
-         WUQePOhK3ngvrjQvZqGuJr6TKtJFYXLwzyKTlQEjRBr+dP88oVpX1pRqze+ne6bxpuUg
-         atqbZ9Mb6RrA+kF/wLxzTuqJVqHLtV0/5cIj21/nNebOytQerQaL2F4py/hcoQnRtlRd
-         8iSRfnVhHYN+7SxZPbwoQt6o2y/mt7ZT/whMU2DSdXuwXEpIooLNkJWeR5b3cFGg/CIC
-         9kcg==
-X-Gm-Message-State: AOAM531kAeek6Yq/c7IM1dbRx+vYi44wvDopDy0kZHCZ4GmRge1SbFtU
-        sc9IxpRSf9AnvlcKQvI2+78zuzdnLLX06O0eEsE=
-X-Google-Smtp-Source: ABdhPJwJrt1HtCmQ3QFj4TeC573hRGf90SYf4SX6X0oN2z2dXeh9DDAsPpP7YPGoHlBVqv63FWeLsm+YoCTLwhp6toU=
-X-Received: by 2002:a25:4213:: with SMTP id p19mr5032651yba.41.1639043360866;
- Thu, 09 Dec 2021 01:49:20 -0800 (PST)
+        id S229574AbhLIJyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 04:54:50 -0500
+Received: from mout.kundenserver.de ([212.227.17.13]:38873 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229566AbhLIJyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 04:54:49 -0500
+Received: from mail-wm1-f53.google.com ([209.85.128.53]) by
+ mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MBE3k-1mqMH70IvO-00CmWq; Thu, 09 Dec 2021 10:51:15 +0100
+Received: by mail-wm1-f53.google.com with SMTP id y196so3694461wmc.3;
+        Thu, 09 Dec 2021 01:51:14 -0800 (PST)
+X-Gm-Message-State: AOAM532reFSc8qA5W3dqvnB43755Mk/DPeS1e5lTUURCKBMWZNvhHyh+
+        Yg9zLHOycfQEpy9mIAF6RdadrrqzKKwTdjCFXfc=
+X-Google-Smtp-Source: ABdhPJwsuOvM1/O8jYYNdv4ItTLWZ2lls/dbnVjnRNOupRV+K5wwYTXPPlK/3x0ieTJtdga3aOMcxHv7KRNJiPvKmwg=
+X-Received: by 2002:a1c:23d4:: with SMTP id j203mr5540436wmj.35.1639043474655;
+ Thu, 09 Dec 2021 01:51:14 -0800 (PST)
 MIME-Version: 1.0
-References: <20211209001056.29774-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAL_JsqJUS0-ZNus__7nJJ-BaJBqQcS0NZ8a4o5QheLt4g8oK+Q@mail.gmail.com>
-In-Reply-To: <CAL_JsqJUS0-ZNus__7nJJ-BaJBqQcS0NZ8a4o5QheLt4g8oK+Q@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Thu, 9 Dec 2021 09:48:54 +0000
-Message-ID: <CA+V-a8s5TpsXCFLFxzzsWj0ho3Hu+pS93mqXdHsCCh2LdzSQuQ@mail.gmail.com>
-Subject: Re: [RFC PATCH] of: platform: Skip mapping of interrupts in of_device_alloc()
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+References: <cover.1639039163.git.tonyhuang.sunplus@gmail.com> <bc15d5e8d7a5ec96582799fe513de4ace6fd4b8b.1639039163.git.tonyhuang.sunplus@gmail.com>
+In-Reply-To: <bc15d5e8d7a5ec96582799fe513de4ace6fd4b8b.1639039163.git.tonyhuang.sunplus@gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 9 Dec 2021 10:50:58 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2UGr6ZbHk6G=wh5XG_EGdJxGf6SfyN1sTb4aaUgiK8Lw@mail.gmail.com>
+Message-ID: <CAK8P3a2UGr6ZbHk6G=wh5XG_EGdJxGf6SfyN1sTb4aaUgiK8Lw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] misc: Add iop driver for Sunplus SP7021
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        gregkh <gregkh@linuxfoundation.org>,
+        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        Tony Huang <tony.huang@sunplus.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:XqlSS2Iql3zpbpcZnCD+8f101DACUu+CivcTz6dTxv7ILtzl7q6
+ LadlwyDrPmHmuNkZOR5K/PDveVZlcS0JDeyesK8Ad3rhqmGcl5wU67xfRaHhHodsLy3Dsta
+ wsUWzpa1R/MdjKXR6ZqwkQv4Q4S8kGshGmK9diBSN5GgPpU6pGDbkNMzT+EqU/yOBwPZAH1
+ mjTS+GLFYsHHTvY7sup2A==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:pfnCvxY2LkY=:HGkxj1fn5n+B8ZJd2oQlwi
+ q1DdXZpFYUhGTPUK4XLfB4yj0VIANcnOAHrZ3ik+AfRFhR7jHqJWPIOLIBjgtfadrtVHHRDwl
+ xzgGTrBO71mXuw7vhDzbi2s41s/Q2Ks1et2LiIzLvDZk3SzmeBbiDx+6Of4TW6SSKwr3XB1VJ
+ DCo/Gp+QdQPOABGk6cZsr49nbtIgdoHJ23q4s/M/EjbcqPWGLizafajFdET5BYbjs2aYDHTNp
+ YBx+BU2k7Ei+A59jyI3zhO42/Q/63ToJTXdQ/tNZ79uDLp7cvGq3WwqIebuaTfDGmk6flB5bo
+ TCehBkZmWWGa0s+f9VuAlXTUvafyWdgfg7NjvUAH9T4K9pzUSbx2JmA54EzbVhAnVL6biOOEM
+ 57TfZbTUooMz/Uckb3NV6Mi6MaJ+TJRxc+I8fdxQZ1aoCOJNO+2n2XFPRR+Rr6ptNzA1c6qKp
+ QwjJpuDk/0w+YAkDhgegKpf5EjWML6SXnKt9AKmux+rDEGTGqM/QH1l3uDl9ANC7jtLex9fOU
+ /CVungM+4DCvrwfQbYtx3AtZyLMJlM7ArqOwH6zIpBdfwlHs+cCOFR8AMk4C2Lg48u06X8ndl
+ 62A9QJ7cKIqYonLFwi/J82gMWuwO//l2L42AvUDEptFHFDFun20p2tIvvdAaON9jWwNK4LLgS
+ vgg6jy57PsOfJDXCpMn/OgqMDTmNzOy5rn4UAygoGt489SJCTsXGKrh2FVTueMp97nJw=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-Thank you for the review.
-
-On Thu, Dec 9, 2021 at 3:08 AM Rob Herring <robh+dt@kernel.org> wrote:
+On Thu, Dec 9, 2021 at 9:58 AM Tony Huang <tonyhuang.sunplus@gmail.com> wrote:
 >
-> On Wed, Dec 8, 2021 at 6:11 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> >
-> > of_device_alloc() in early boot stage creates a interrupt mapping if
-> > there exists a "interrupts" property in the node.
-> >
-> > For hierarchical interrupt domains using "interrupts" property in the node
-> > bypassed the hierarchical setup and messed up the irq setup.
-> >
-> > This patch adds a check in of_device_alloc() to skip interrupt mapping if
-> > "not-interrupt-producer" property is present in the node. This allows
-> > nodes to describe the interrupts using "interrupts" property.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > Hi All,
-> >
-> > Spawning from discussion [1], here is simple patch (not the ideal probably
-> > welcome for suggestions) from stopping the OF code from creating a map for
-> > the interrupts when using "interrupts" property.
-> >
-> > [1] https://lore.kernel.org/lkml/87pmqrck2m.wl-maz@kernel.org/
-> >     T/#mbd1e47c1981082aded4b32a52e2c04291e515508
-> >
-> > Cheers,
-> > Prabhakar
-> > ---
-> >  drivers/of/platform.c | 13 ++++++++++---
-> >  1 file changed, 10 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> > index b3faf89744aa..629776ca1721 100644
-> > --- a/drivers/of/platform.c
-> > +++ b/drivers/of/platform.c
-> > @@ -114,7 +114,7 @@ struct platform_device *of_device_alloc(struct device_node *np,
-> >                                   struct device *parent)
-> >  {
-> >         struct platform_device *dev;
-> > -       int rc, i, num_reg = 0, num_irq;
-> > +       int rc, i, num_reg = 0, num_irq = 0;
-> >         struct resource *res, temp_res;
-> >
-> >         dev = platform_device_alloc("", PLATFORM_DEVID_NONE);
-> > @@ -124,7 +124,14 @@ struct platform_device *of_device_alloc(struct device_node *np,
-> >         /* count the io and irq resources */
-> >         while (of_address_to_resource(np, num_reg, &temp_res) == 0)
-> >                 num_reg++;
-> > -       num_irq = of_irq_count(np);
-> > +
-> > +       /*
-> > +        * we don't want to map the interrupts of hierarchical interrupt domain
-> > +        * into the parent domain yet. This will be the job of the hierarchical
-> > +        * interrupt driver code to map the interrupts as and when needed.
-> > +        */
-> > +       if (!of_property_read_bool(np, "not-interrupt-producer"))
-> > +               num_irq = of_irq_count(np);
+> IOP (IO Processor) embedded inside SP7021 which is used as
+> Processor for I/O control, RTC wake-up and cooperation with
+> CPU & PMC in power management purpose.
+> The IOP core is DQ8051, so also named IOP8051,
+> it supports dedicated JTAG debug pins which share with SP7021.
+> In standby mode operation, the power spec reach 400uA.
 >
-> The property won't fly for sure. A compatible match table could work
-> here, but I don't really want another temporary solution.
->
-Agreed.
+> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
 
-> >         /* Populate the resource table */
-> >         if (num_irq || num_reg) {
-> > @@ -140,7 +147,7 @@ struct platform_device *of_device_alloc(struct device_node *np,
-> >                         rc = of_address_to_resource(np, i, res);
-> >                         WARN_ON(rc);
-> >                 }
-> > -               if (of_irq_to_resource_table(np, res, num_irq) != num_irq)
-> > +               if (num_irq && of_irq_to_resource_table(np, res, num_irq) != num_irq)
->
-> You might want to look at commit 9ec36cafe43b ("of/irq: do irq
-> resolution in platform_get_irq"). The intent was to remove this code,
-> but looks like the cleanup has a ways to go 7 years on. Primarily,
-> it's convert any platform_get_resource(pdev, IORESOURCE_IRQ, n) call
-> to platform_get_irq(). There's ~169 of those.
->
-That's a good point converting all the drivers to use
-platform_get_irq() so that the resource allocation happens on demand,
-and the above code can be dropped.
+Thanks for the improvements, this again looks better than the previous version.
+I still have some minor comments, and there are a couple of details I have
+commented on before that would need to be addressed, but let's focus
+on the one main issue for now:
 
-> There are probably some open coded accesses to pdev->resources too,
-> but I didn't spot any.
->
-I'll have a closer look.
+The driver still doesn't actually /do/ anything: you load the firmware when
+the driver is loaded, and you shut it down when the driver is removed, but
+otherwise there is no way to interact with the iop. You had the miscdevice
+earlier, and you still register that, but there are no file_operations
+associated
+with it, so it still doesn't have any effect.
 
-Cheers,
-Prabhakar
+In the original version you had a couple of user-side interfaces, for which
+Greg and I commented that they were not using the correct abstractions,
+and you still list them in the changelog text as "I/O control, RTC wake-up
+and cooperation with CPU & PMC in power management".
 
-> Rob
+If you want to make any progress with adding the driver, I'd say you
+should implement at least two of those high-level interfaces that interact
+with the respective kernel subsystems in order to show that the
+abstraction works.
+
+        Arnd
