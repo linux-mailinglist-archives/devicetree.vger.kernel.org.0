@@ -2,125 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A632246E4A0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 09:51:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEBB346E4B3
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 09:57:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235243AbhLIIy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 03:54:59 -0500
-Received: from [106.84.20.49] ([106.84.20.49]:8840 "EHLO test.cqplus1.com"
-        rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232177AbhLIIy7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Dec 2021 03:54:59 -0500
-X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
-        R,40,3)
-Received: from 172.27.96.203
-        by cqmailgates with MailGates ESMTP Server V5.0(8764:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Thu, 09 Dec 2021 16:49:59 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 9 Dec 2021 16:49:55 +0800
-Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
- ([::1]) with mapi id 15.01.2375.017; Thu, 9 Dec 2021 16:49:55 +0800
-From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-To:     Arnd Bergmann <arnd@arndb.de>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Mark Brown <broonie@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Subject: RE: [PATCH v5 09/10] ARM: sunplus: Add initial support for Sunplus
- SP7021 SoC
-Thread-Topic: [PATCH v5 09/10] ARM: sunplus: Add initial support for Sunplus
- SP7021 SoC
-Thread-Index: AQHX6BmLzMMFC/bfnUOF4rJ/hd0nkqwgNNgAgAZiSeD//6d5gIADTshg
-Date:   Thu, 9 Dec 2021 08:49:55 +0000
-Message-ID: <6a8271f5c6b74ce7874b7583b8d7eee4@cqplus1.com>
-References: <cover.1638515726.git.qinjian@cqplus1.com>
- <eabfe1b84b889e4aa95e24c30a114c68ef95fd07.1638515726.git.qinjian@cqplus1.com>
- <CAK8P3a1_coAnp8P3L2UA+smxuRL9widFQv9Y5ZZ0X_Sr9zsZtg@mail.gmail.com>
- <88f8cc0b1334467aae7a5a4b0643176a@cqplus1.com>
- <CAK8P3a1-4XnrkWc_0SPns9xj9Yp4xWhEahLOkeafXmAYWfbYJA@mail.gmail.com>
-In-Reply-To: <CAK8P3a1-4XnrkWc_0SPns9xj9Yp4xWhEahLOkeafXmAYWfbYJA@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.18]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S233215AbhLIJAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 04:00:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40590 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232038AbhLIJAi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 04:00:38 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 750A7C061746;
+        Thu,  9 Dec 2021 00:57:05 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id B42ECCE245E;
+        Thu,  9 Dec 2021 08:57:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FE2DC004DD;
+        Thu,  9 Dec 2021 08:57:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639040221;
+        bh=HUS9Ptxfx1asXriXFVwCYuojXtKlYmv3/KEbAbzET0s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LNK7id6T0M3fR3WbL33MKzfJGTaydjTX9Yii7StWqsEjMkHNxMddbLU3KCqdN330C
+         iqvqvaMFVKSga6+n9NB6IqtoiZR8EH/flgdu93L052OBfNyVNL4dUyPNiAB8dwbmWD
+         vboOOEco3u78aSMrvshsFXV2WjKJJ6hgvc6sBsU7rRxaaFpwkqWfCv8EHHzsWDrp2L
+         y1/qh64t1+HGvTs1hTipMNrOzlXQNVQt92j+hWy2TNafd5vRJrPB3Cq4/MtnlI+GL1
+         0fN4aiv61TlPYDDPlZK6I76FnsVgy9R6eGWy4JxrYRKB/BsOEHW7HxmkJ+NrrJPAVu
+         zREt2HRf22KUw==
+Date:   Thu, 9 Dec 2021 09:56:58 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Stephen Warren <swarren@wwwdotorg.org>,
+        ~okias/devicetree@lists.sr.ht, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c: brcm,bcm2835-i2c: convert to YAML
+ schema
+Message-ID: <YbHE2nR2T+o9o8ji@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        David Heidelberg <david@ixit.cz>, Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Stephen Warren <swarren@wwwdotorg.org>,
+        ~okias/devicetree@lists.sr.ht, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20211206184613.100809-1-david@ixit.cz>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="xJzInEz65zJn2DKF"
+Content-Disposition: inline
+In-Reply-To: <20211206184613.100809-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBPbiBUdWUsIERlYyA3LCAyMDIxIGF0IDg6MjEgQU0gcWluamlhblvopoPlgaVdIDxxaW5qaWFu
-QGNxcGx1czEuY29tPiB3cm90ZToNCj4gPiA+ID4gQEAgLTE1Miw2ICsxNTIsNyBAQCB0ZXh0b2Zz
-LSQoQ09ORklHX0FSQ0hfTVNNOFg2MCkgOj0gMHgwMDIwODAwMA0KPiA+ID4gPiAgdGV4dG9mcy0k
-KENPTkZJR19BUkNIX01TTTg5NjApIDo9IDB4MDAyMDgwMDANCj4gPiA+ID4gIHRleHRvZnMtJChD
-T05GSUdfQVJDSF9NRVNPTikgOj0gMHgwMDIwODAwMA0KPiA+ID4gPiAgdGV4dG9mcy0kKENPTkZJ
-R19BUkNIX0FYWElBKSA6PSAweDAwMzA4MDAwDQo+ID4gPiA+ICt0ZXh0b2ZzLSQoQ09ORklHX0FS
-Q0hfU1VOUExVUykgOj0gMHgwMDMwODAwMA0KPiA+ID4NCj4gPiA+IFdoYXQgaXMgdGhpcyBuZWVk
-ZWQgZm9yPyBJZiBpdCBib290cyB3aXRob3V0IHRoaXMgbGluZSwgYmV0dGVyIGF2b2lkDQo+ID4g
-PiBhZGRpbmcgaXQsIGJlY2F1c2UNCj4gPiA+IGl0IHdpbGwgaW5jcmVhc2UgdGhlIGtlcm5lbCBz
-aXplIGZvciBldmVyeW9uZSBlbHNlICh1bmxlc3MgdGhleSBhbHNvIGVuYWJsZQ0KPiA+ID4gQVhY
-SUEpLg0KPiA+ID4NCj4gPg0KPiA+IFNQNzAyMSByZXNlcnZlZCB0aGUgMXN0IDFNQiBtZW1vcnkg
-Zm9yIEFSTTkyNkBQLUNoaXAgdXNpbmcsDQo+ID4gVGhlIDJuZCAxTUIgbWVtb3J5IGZvciBJT1Ag
-ZGV2aWNlIGFuZCB0aGUgM3JkIDFNQiBtZW1vcnkgZm9yIGJvb3Rsb2FkZXIuDQo+ID4gSSdsbCBh
-ZGQgdGhlc2UgY29tbWVudHMgYXQgbmV4dCBjb21taXQuDQo+IA0KPiBJIHRoaW5rIHlvdSBjYW4g
-anVzdCByZW1vdmUgdGhlIG1lbW9yeSBmcm9tIHRoZSBzeXN0ZW0gbWVtb3J5IG1hcCBpbiB0aGUN
-Cj4gZGV2aWNlIHRyZWUgYW5kIHByZXRlbmQgaXQgb25seSBzdGFydHMgYWZ0ZXIgdGhlIGJvb3Rs
-b2FkZXIuIEl0J3MgYmVlbiBhIHdoaWxlDQo+IHNpbmNlIEkgbG9va2VkIGF0IHRoaXMgdGhvdWdo
-LCBzbyBJIGNvdWxkIGJlIG1pc3JlbWVtYmVyaW5nIHdoYXQgdGhlIG1pbmltdW0NCj4gYm91bmRh
-cmllcyBhcmUgZm9yIGRvaW5nIHRoaXMuDQo+IA0KPiAgICAgICAgIEFybmQNCg0KSSBoYXZlIHRl
-c3QgZm9sbG93aW5nIDMgbWV0aG9kczoNCg0KMS4gY3VycmVudCBwYXRjaA0KRFQ6DQoJbWVtb3J5
-IHsNCgkJcmVnID0gPDB4MDAwMDAwMDAgMHgyMDAwMDAwMD47IC8qIDUxMk1CICovDQoJfTsNCg0K
-CXJlc2VydmVkLW1lbW9yeSB7DQoJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KCQkjc2l6ZS1jZWxs
-cyA9IDwxPjsNCgkJcmFuZ2VzOw0KDQoJCWlvcF9yZXNlcnZlOiBpb3BfZGV2aWNlIHsNCgkJCW5v
-LW1hcDsNCgkJCXJlZyA9IDwweDAwMTAwMDAwIDB4MDAxMDAwMDA+OyANCgkJfTsNCgkJYTkyNl9y
-ZXNlcnZlOiBhOTI2X21lbW9yeSB7DQoJCQluby1tYXA7DQoJCQlyZWcgPSA8MHgwMDAwMDAwMCAw
-eDAwMTAwMDAwPjsNCgkJfTsNCgl9Ow0KYXJjaC9hcm0vTWFrZWZpbGU6DQoJdGV4dG9mcy0kKENP
-TkZJR19BUkNIX1NVTlBMVVMpIDo9IDB4MDAzMDgwMDANCg0KYm9vdGxvZyAmIG1lbWluZm8gOg0K
-WyAgICAwLjAwMDAwMF0gWm9uZSByYW5nZXM6DQpbICAgIDAuMDAwMDAwXSAgIE5vcm1hbCAgIFtt
-ZW0gMHgwMDAwMDAwMDAwMDAwMDAwLTB4MDAwMDAwMDAxZmZmZmZmZl0NClsgICAgMC4wMDAwMDBd
-IE1vdmFibGUgem9uZSBzdGFydCBmb3IgZWFjaCBub2RlDQpbICAgIDAuMDAwMDAwXSBFYXJseSBt
-ZW1vcnkgbm9kZSByYW5nZXMNClsgICAgMC4wMDAwMDBdICAgbm9kZSAgIDA6IFttZW0gMHgwMDAw
-MDAwMDAwMDAwMDAwLTB4MDAwMDAwMDAwMDFmZmZmZl0NClsgICAgMC4wMDAwMDBdICAgbm9kZSAg
-IDA6IFttZW0gMHgwMDAwMDAwMDAwMjAwMDAwLTB4MDAwMDAwMDAxZmZmZmZmZl0NClsgICAgMC4w
-MDAwMDBdIEluaXRtZW0gc2V0dXAgbm9kZSAwIFttZW0gMHgwMDAwMDAwMDAwMDAwMDAwLTB4MDAw
-MDAwMDAxZmZmZmZmZl0NCg0KfiAjIGNhdCAvcHJvYy9tZW1pbmZvDQpNZW1Ub3RhbDogICAgICAg
-ICA1MTQwMDgga0INCk1lbUZyZWU6ICAgICAgICAgIDQ5MTk2MCBrQg0KTWVtQXZhaWxhYmxlOiAg
-ICAgNDg4NjA4IGtCDQoNCg0KDQoyLiBEVCBzYW1lIGFzIGNhc2UgMSwgYnV0IG5vIG1vZGlmeSBA
-IGFyY2gvYXJtL01ha2VmaWxlDQoNCmJvb3Rsb2cgJiBtZW1pbmZvIDoNClsgICAgMC4wMDAwMDBd
-IE9GOiBmZHQ6IFJlc2VydmVkIG1lbW9yeTogZmFpbGVkIHRvIHJlc2VydmUgbWVtb3J5IGZvciBu
-b2RlICdpb3BfZGV2aWNlJzogYmFzZSAweDAwMTAwMDAwLCBzaXplIDEgTWlCDQpbICAgIDAuMDAw
-MDAwXSBPRjogZmR0OiBSZXNlcnZlZCBtZW1vcnk6IGZhaWxlZCB0byByZXNlcnZlIG1lbW9yeSBm
-b3Igbm9kZSAnYTkyNl9tZW1vcnknOiBiYXNlIDB4MDAwMDAwMDAsIHNpemUgMSBNaUINCi4uLg0K
-WyAgICAwLjAwMDAwMF0gWm9uZSByYW5nZXM6DQpbICAgIDAuMDAwMDAwXSAgIE5vcm1hbCAgIFtt
-ZW0gMHgwMDAwMDAwMDAwMDAwMDAwLTB4MDAwMDAwMDAxZmZmZmZmZl0NClsgICAgMC4wMDAwMDBd
-IE1vdmFibGUgem9uZSBzdGFydCBmb3IgZWFjaCBub2RlDQpbICAgIDAuMDAwMDAwXSBFYXJseSBt
-ZW1vcnkgbm9kZSByYW5nZXMNClsgICAgMC4wMDAwMDBdICAgbm9kZSAgIDA6IFttZW0gMHgwMDAw
-MDAwMDAwMDAwMDAwLTB4MDAwMDAwMDAxZmZmZmZmZl0NClsgICAgMC4wMDAwMDBdIEluaXRtZW0g
-c2V0dXAgbm9kZSAwIFttZW0gMHgwMDAwMDAwMDAwMDAwMDAwLTB4MDAwMDAwMDAxZmZmZmZmZl0N
-Cg0KfiAjIGNhdCAvcHJvYy9tZW1pbmZvDQpNZW1Ub3RhbDogICAgICAgICA1MTYwNTYga0INCk1l
-bUZyZWU6ICAgICAgICAgIDQ5MzkyOCBrQg0KTWVtQXZhaWxhYmxlOiAgICAgNDkwNTcyIGtCDQoN
-Cg0KDQozLiBEVDoNCgltZW1vcnkgew0KCQlyZWcgPSA8MHgwMDMwMDAwMCAweDFGRDAwMDAwPjsg
-LyogNTEyIC0gMyBNQiAqLw0KCX07DQpubyBtb2RpZnkgQCBhcmNoL2FybS9NYWtlZmlsZQ0KDQpi
-b290bG9nICYgbWVtaW5mbyA6DQpbICAgIDAuMDAwMDAwXSBab25lIHJhbmdlczoNClsgICAgMC4w
-MDAwMDBdICAgTm9ybWFsICAgW21lbSAweDAwMDAwMDAwMDA0MDAwMDAtMHgwMDAwMDAwMDFmZmZm
-ZmZmXQ0KWyAgICAwLjAwMDAwMF0gTW92YWJsZSB6b25lIHN0YXJ0IGZvciBlYWNoIG5vZGUNClsg
-ICAgMC4wMDAwMDBdIEVhcmx5IG1lbW9yeSBub2RlIHJhbmdlcw0KWyAgICAwLjAwMDAwMF0gICBu
-b2RlICAgMDogW21lbSAweDAwMDAwMDAwMDA0MDAwMDAtMHgwMDAwMDAwMDFmZmZmZmZmXQ0KWyAg
-ICAwLjAwMDAwMF0gSW5pdG1lbSBzZXR1cCBub2RlIDAgW21lbSAweDAwMDAwMDAwMDA0MDAwMDAt
-MHgwMDAwMDAwMDFmZmZmZmZmXQ0KDQp+ICMgY2F0IC9wcm9jL21lbWluZm8NCk1lbVRvdGFsOiAg
-ICAgICAgIDUxMTk2NCBrQg0KTWVtRnJlZTogICAgICAgICAgNDg5NjM2IGtCDQpNZW1BdmFpbGFi
-bGU6ICAgICA0ODYyOTIga0INCg0KDQoNCkkgdGhpbmsgbWV0aG9kIDEgc2hvdWxkIGJlIGNvcnJl
-Y3QgKGNvbXBhcmUgbWV0aG9kIDIpICYgYmV0dGVyIChjb21wYXJlIG1ldGhvZCAzKS4NCg0K
+
+--xJzInEz65zJn2DKF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Dec 06, 2021 at 07:46:12PM +0100, David Heidelberg wrote:
+> Switch the DT binding to a YAML schema to enable the DT validation.
+>=20
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+
+Applied to for-next, thanks!
+
+David: Please quote only relevant parts of the messages when replying.
+You quoted Florian's tags as well and so they ended up twice. Also, it
+is easier to read, then.
+
+
+--xJzInEz65zJn2DKF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGxxNoACgkQFA3kzBSg
+Kbanow//U0RpDjbOB8K6jH1RIrbx00AN3tnq7Cu0C0YP/0CSQ5si9aoNbirxI46o
+kjEV5NAgHxZKjo6wfz9ZMsenfqarDC40XRPs+JVsY2LaMWA6/i/8Lc2WPkpV8B4S
+ulkhIqW59iC9cMEGGgfNTU9euvRzqtfMQYYXVCwqXA8P4rw0F+7CrmyU/MtCec0H
+YxoHG/wiQyy4cMVN+NWYLA3pQVccb9QDO8DUBe4tKKhFUOYcchIZNA1u1MbYTA5X
+TKcSYj0RGWz8Ut5yxHji1nJf9g7G8ajEnV7m/kWmx30o1A2Q2yRmYah18j/6YEG9
+aQGVglG14ZcaE9vHxoQGMuy7KwTjX1ECyOg4EeQKMUQRi0tGM4MHd7Zy1+y5P5qG
+qZwgtx0P4uGIKGk6o9rhHDr7D/OeTxl0eW6CFJXylqR9giFrzPkRxgUJIo4+KA19
+eyZ4yGCPMIWC4HzCYPP3TfzYD6etk7d7b4i/1BYGS1AHqzXxVxiayO6wlSHAXdWz
+hNMP05D7kpWpADnSzrmLywvb3LVXKEg32H+hVobZ8SHUHvsGN76SXFU6m2WNHGAb
+rFPwYfiaa0WqGSx7ZmfmTGT2YoAoAk7NOz/F2/sfmaYIJbx+35BhV7TsOuxGVz/S
+lwGMfZ2greQ1GfJxINEZNaKKHr5nuZa5Q64oS28mIItYaROkykI=
+=oC/n
+-----END PGP SIGNATURE-----
+
+--xJzInEz65zJn2DKF--
