@@ -2,86 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1897B46E081
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 02:55:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEC4E46E09E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 02:59:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237906AbhLIB6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 20:58:33 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:47452 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233346AbhLIB6c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 20:58:32 -0500
-X-UUID: 976cb222604948b6b6e4e47fc25af019-20211209
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=WIV75YWZapc7GJoPTfjsaqgrja4fRL9eKNuW62oS71w=;
-        b=ZZ8ZvMmlCr8vWKjA5sifCtDeR/aJWGNcK5jWlU6ckU3/NGwlMmbeHzY9eT47F4NFiTmU361PmD19Fqv2qw7OgI37PfyXrLAlVyuCs1gK+udEnCHS7k3ZcWcaRrw5Vk0ziU9xwDYiowBbNW8d7JUScFJb98dYtFyNp7dCnKZvOI8=;
-X-UUID: 976cb222604948b6b6e4e47fc25af019-20211209
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <biao.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1238356704; Thu, 09 Dec 2021 09:54:56 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 9 Dec 2021 09:54:54 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 9 Dec 2021 09:54:53 +0800
-Message-ID: <6deeba8396a72d3d0bb3cb6630bc0c36f652de80.camel@mediatek.com>
-Subject: Re: [PATCH net-next v7 5/6] stmmac: dwmac-mediatek: add support for
- mt8195
-From:   Biao Huang <biao.huang@mediatek.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-CC:     <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        id S229697AbhLICCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 21:02:48 -0500
+Received: from szxga08-in.huawei.com ([45.249.212.255]:29107 "EHLO
+        szxga08-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229694AbhLICCs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 21:02:48 -0500
+Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.56])
+        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4J8cZt1sw4z1DK2C;
+        Thu,  9 Dec 2021 09:56:22 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 9 Dec 2021 09:59:13 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 9 Dec 2021 09:59:12 +0800
+Subject: Re: [PATCH v16 10/11] of: fdt: Add memory for devices by DT property
+ "linux,usable-memory-range"
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>,
-        <angelogioacchino.delregno@collabora.com>, <dkirjanov@suse.de>
-Date:   Thu, 9 Dec 2021 09:54:53 +0800
-In-Reply-To: <20211208175142.1b63afea@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-References: <20211208054716.603-1-biao.huang@mediatek.com>
-         <20211208054716.603-6-biao.huang@mediatek.com>
-         <20211208063820.264df62d@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-         <39aa23e1a48bc36a631b3074af2abfd5d1e2256d.camel@mediatek.com>
-         <20211208175142.1b63afea@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        "Frank Rowand" <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+References: <20211123124646.1995-1-thunder.leizhen@huawei.com>
+ <20211123124646.1995-11-thunder.leizhen@huawei.com>
+ <YaaitPTArUZEriob@robh.at.kernel.org>
+ <0dc664f7-65ae-767c-3fe6-d1bcf50d41e1@huawei.com>
+Message-ID: <281c8196-2a5c-28cf-346a-0ae2f7182f1b@huawei.com>
+Date:   Thu, 9 Dec 2021 09:59:11 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <0dc664f7-65ae-767c-3fe6-d1bcf50d41e1@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIxLTEyLTA4IGF0IDE3OjUxIC0wODAwLCBKYWt1YiBLaWNpbnNraSB3cm90ZToN
-Cj4gT24gVGh1LCA5IERlYyAyMDIxIDA5OjQ4OjI1ICswODAwIEJpYW8gSHVhbmcgd3JvdGU6DQo+
-ID4gU29ycnkgZm9yIHNvbWUgdHlwbyBpbiBwcmV2aW91cyByZXBseSwgZml4IGl0IGhlcmUuDQo+
-ID4gDQo+ID4gQWxsIHRoZXNlIHdhcm5pbmcgbGluZXMgc2hhcmUgYSBzaW1pbGFyIHNlbWFudGlj
-czoNCj4gPiBkZWxheV92YWwgfD0gRklFTERfUFJFUCh4eHgsICEhdmFsKTsNCj4gPiANCj4gPiBh
-bmQsIHNob3VsZCBjb21lIGZyb20gdGhlIGV4cGFuc2lvbiBvZiBGSUVMRF9QUkVQIGluDQo+ID4g
-aW5jbHVkZS9saW51eC9iaXRmaWxlZC5oOg0KPiA+IA0KPiA+ICAgRklFTEQgX1BSRVAgLS0+IF9f
-QkZfRklMRURfQ0hFQ0sgLS0+ICJ+KChfbWFzaykgPj4NCj4gPiBfX2JmX3NoZihfbWFzaykpICYN
-Cj4gPiAoX3ZhbCkgOiAwLCINCj4gPiANCj4gPiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCj4gPiBfX0JGX0ZJTEVEX0NIRUNL
-IHsNCj4gPiAuLi4NCj4gPiAgIEJVSUxEX0JVR19PTl9NU0coX19idWlsdGluX2NvbnN0YW50X3Ao
-X3ZhbCkgPyAgICAgICAgICAgXA0KPiA+ICAgICAgICAgICAgICAgICAgICB+KChfbWFzaykgPj4g
-X19iZl9zaGYoX21hc2spKSAmIChfdmFsKSA6IDAsIFwNCj4gPiAgICAgICAgICAgICAgICAgICAg
-X3BmeCAidmFsdWUgdG9vIGxhcmdlIGZvciB0aGUgZmllbGQiKTsgXCAuLi4NCj4gPiA9PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0N
-Cj4gPiANCj4gPiBTaG91bGQgSSBmaXggaXQgYnkgY29udmVydGluZw0KPiA+ICAgZGVsYXlfdmFs
-IHw9IEZJRUxEX1BSRVAoRVRIX0RMWV9UWENfRU5BQkxFLCAhIW1hY19kZWxheS0NCj4gPiA+dHhf
-ZGVsYXkpOw0KPiA+IHRvDQo+ID4gICBlbl92YWwgPSAhIW1hY19kZWxheS0+dHhfZGVsYXk7DQo+
-ID4gICBkZWxheV92YWwgfD0gRklFTERfUFJFUChFVEhfRExZX1RYQ19FTkFCTEUsIGVuX3ZhbCk7
-DQo+ID4gDQo+ID4gb3Igb3RoZXIgc3VnZ2VzdGlvbnMgZm9yIHRoZXNlIHdhcm5pbmdzPw0KPiAN
-Cj4gSSBzZWUsIHRoYW5rcyBmb3IgZXhwbGFpbmluZy4gVGhlIGNvZGUgaXMgZmluZSwgd2UgY2Fu
-IHNpbXBseSBpZ25vcmUNCj4gdGhpcyB3YXJuaW5nIElNSE8uDQpPSywgdGhhbmtzIGZvciB5b3Vy
-IGNvbW1lbnRzfg0K
 
+
+On 2021/12/1 10:55, Leizhen (ThunderTown) wrote:
+>>> +	}
+>>>  
+>>> -	memblock_cap_memory_range(cap_mem_addr, cap_mem_size);
+>>> +	memblock_cap_memory_range(rgn[0].base, rgn[0].size);
+>>> +	for (i = 1; i < MAX_USABLE_RANGES && rgn[i].size; i++)
+>> s/ &&/,/
+
+Hi Rob:
+  I want to keep "&&" unchanged, do you mind? I'm going to post an
+updated version tomorrow, hopefully the last.
+
+> Hi Rob:
+> 
+> The comma operator may not be suitable for logical judgment. The logical judgment
+> before commas (,) is ignored.
+> 
+> Here's my test：
+> 
+> C code：
+> int main()
+> {
+>         int i, j;
+> 
+>         printf("&&:\n");
+>         for (i = 0, j = 0; i < 2 && j < 3; i++, j++)
+>                 printf("i=%d, j=%d\n", i, j);
+> 
+>         printf("\ncomma:\n");
+>         for (i = 0, j = 0; i < 2, j < 3; i++, j++)	//(i < 2） before comma is ignored
+>                 printf("i=%d, j=%d\n", i, j);
+> 
+>         return 0;
+> }
+> 
+> Output：
+> &&:
+> i=0, j=0
+> i=1, j=1
+> 
+> comma:
+> i=0, j=0
+> i=1, j=1
+> i=2, j=2
+> 
+> 
