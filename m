@@ -2,148 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BAD3946F2F9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 19:25:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEC0F46F304
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 19:26:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234562AbhLIS2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 13:28:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35502 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229710AbhLIS2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 13:28:42 -0500
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3697C061746;
-        Thu,  9 Dec 2021 10:25:08 -0800 (PST)
-Received: by mail-qt1-x82f.google.com with SMTP id m25so6093470qtq.13;
-        Thu, 09 Dec 2021 10:25:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=tY3Uj57fP/HW8NzRsCUcgjaQafL0bIk8XDbY/Pd7ACE=;
-        b=QryBhz3Xqfd4fQ0HZA1L9YeanmPSAQPQQccArGMyyDF2W+7UyhDWjPiK7yky70y0cW
-         VqPV9XOFn+DD26ZOViHGxYHFnnRUuZDodtNlNyyRh15siVli3AzUdrcuL1z9UC6jdgIv
-         bUoHyL6IuVd94gjcpa0KWRm8QZEb79P/+S1rOG7wmzugvZjyNSd6+uflDF0gRVe617tT
-         XwaBmoTwvmii51heLs05d7KTSELlQ4MkK4QGkWDyG0toEXLTWRZwztoUAX4JokN7yamI
-         cNwuDC8DDYgrHvQqdKjv2WILMCmzQofK//+a/lkwFu1WOvDMTSb6nrNVx+9bC6l+p7GG
-         H+TA==
+        id S238088AbhLIS36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 13:29:58 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:47364
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238043AbhLIS35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 13:29:57 -0500
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 075F040192
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 18:26:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1639074378;
+        bh=bnnx6rQGK8n7h6ddt6DQom8TrVyPspLo7R1sX2CesnA=;
+        h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+         In-Reply-To:Content-Type;
+        b=Az07j4PMtkxjV12gLkaWoxA0nwnXVT/T9K3dcrzSAVRPysrfxTc3Sbl8uRPpkTFLT
+         HqXm1L0/+Gzc1ET3ERcQfygbqWH1hwllw8LA+trjsACdXqgfSqGQu0eadnBE2AmYgI
+         7zSqn8YjXNzqDV/0zT5aGC3wBQ4+V7NXrUDgouU+Ocmr2XnJ6e9zDEli/TgA68wrhu
+         k8BLDKN8K7BQ4lKzYXAqGSIO2Ex9Ap9xEXVvmwwgYx6HbvOPOSav3gLikCsEeqoQlv
+         DbflfoDjXU4NYbMd89/0dLRIHakWEe8h7qgM+zUbo6IQilYZlKO7VpDsxhEpy/U5pe
+         KrUw8rT0ikiQQ==
+Received: by mail-lf1-f70.google.com with SMTP id f15-20020a056512228f00b004037c0ab223so2973046lfu.16
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 10:26:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tY3Uj57fP/HW8NzRsCUcgjaQafL0bIk8XDbY/Pd7ACE=;
-        b=w+2nAaY1P0+QZhw3F9vqgolIg/hDnxG2cOlOrk8urQ9/h2bQR8L230QMrmO8r0+3F7
-         KmPdPZlnoeWzLSCTc37+L58pgUyeQvSkFQWPKQQRFftiorNIr9/0tl35/pUEvs/G4bxj
-         Q2bPRo7p5J816VDEnsu0Y3Zx5GwSadFVc9a4pv+RNgeaxeZjTkc+r8I71PHD/5Lf1TaT
-         PQHjmUxYpfqjva1ntJs7XL7MNVXMkYKdIMAR8y8H+izmrSfCWSAtar8GVhc8q+o05AXm
-         1UmmL+qkXUl2mfm7NAr7o1XYClroM5iIEXWAftwnJkB84G2L2TdpOTxW0S6QoHypZwB+
-         9TJQ==
-X-Gm-Message-State: AOAM533tEpGcZMWELovV3K5agHe7AbWdC1Sq95OA6izjWZAQ6yUEFxOf
-        EgM8QIflayKd0xvDr9yUCzU=
-X-Google-Smtp-Source: ABdhPJw9rRcXu4b7ubdzWIhDayDhLG2/5CbNs1jDNpnbUQyq3/1A3IHPJP1WWUvPycpWEFqW1fwa0g==
-X-Received: by 2002:ac8:588e:: with SMTP id t14mr19589500qta.437.1639074307876;
-        Thu, 09 Dec 2021 10:25:07 -0800 (PST)
-Received: from errol.ini.cmu.edu (pool-108-39-235-221.pitbpa.fios.verizon.net. [108.39.235.221])
-        by smtp.gmail.com with ESMTPSA id m9sm309862qtn.73.2021.12.09.10.25.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Dec 2021 10:25:07 -0800 (PST)
-Date:   Thu, 9 Dec 2021 13:25:01 -0500
-From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        mdudek@internships.antmicro.com,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Paul Mackerras <paulus@ozlabs.org>,
-        Joel Stanley <joel@jms.id.au>, david.abdurachmanov@sifive.com,
-        Florent Kermarrec <florent@enjoy-digital.fr>,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        Stafford Horne <shorne@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Kamil Rakoczy <krakoczy@antmicro.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mateusz Holenko <mholenko@antmicro.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: mmc: Add bindings for LiteSDCard
-Message-ID: <YbJJ/UqCeFJa5HGF@errol.ini.cmu.edu>
-References: <20211208132042.3226275-1-gsomlo@gmail.com>
- <20211208132042.3226275-3-gsomlo@gmail.com>
- <1639004806.166681.596177.nullmailer@robh.at.kernel.org>
- <YbFXERe0K3rfzZem@glsvmlin.ini.cmu.edu>
- <CAMuHMdVJZdzRMedn9L_Jb=0MYB_Bxs90v+iH7UaDBzup-qzp8A@mail.gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=bnnx6rQGK8n7h6ddt6DQom8TrVyPspLo7R1sX2CesnA=;
+        b=ag1b0hvceGd0XsgAvpT2wWK5jHaGUwr1ypdJ87cjI/kaxDE+rJD+AFdNoTZHQSyXMy
+         sD0qAIwtkQHSSgb5Qxe2J6t535Q5ZOQBQTulqDPOejT42byPLxNebhSasbTamwQjaYPd
+         +zS6Iwsz1roLvvrLBiPYEkVlgMr11dcZEe1SuFxydgjd3m61tXnfVAw8EPjpDEOLl3kc
+         mtoxSjuCuOeqs++aDWN9sSGBCPMdgkxCQxG3KncV+ezYaY8JTuXD6OZrPvgqI5pDVddb
+         pIC2aUbt1fY5w8tV4F4Xw6bJx6LYVntozW1x/iOggXjmsQjp9r7mCaZH1KDe52bud713
+         n8tQ==
+X-Gm-Message-State: AOAM53185jAR35Ti+nIzgJkdnVnT057VdYwj4gMNrK8f9PYii3rhhFaz
+        qhZ5Q2kiVNFaUrd0dbIgwSR7OhmC5dNzMYMfM2hmZiEyDxHsuTatLPEKYmPo6aflwRcbKCIkRRb
+        a2/VC6XDQmF5J1FB3uFb97Jcn4F6g6dRkqCjUmkc=
+X-Received: by 2002:a2e:b907:: with SMTP id b7mr8105545ljb.214.1639074377378;
+        Thu, 09 Dec 2021 10:26:17 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwbURx088TRAYYq+SKkON5HsFd14aKjJlvCcvIqppT8KViqIKSlq9u0BdyeXxUl2UrGefiszw==
+X-Received: by 2002:a2e:b907:: with SMTP id b7mr8105529ljb.214.1639074377174;
+        Thu, 09 Dec 2021 10:26:17 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id s6sm58531lfo.48.2021.12.09.10.26.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Dec 2021 10:26:16 -0800 (PST)
+Message-ID: <f0e01fda-b153-9d74-ae7d-7ef0fc2112aa@canonical.com>
+Date:   Thu, 9 Dec 2021 19:26:15 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdVJZdzRMedn9L_Jb=0MYB_Bxs90v+iH7UaDBzup-qzp8A@mail.gmail.com>
-X-Clacks-Overhead: GNU Terry Pratchett
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v2 RESEND 7/8] arm: dts: exynos: Rename hsi2c nodes to i2c
+ for Exynos5260
+Content-Language: en-US
+To:     Wolfram Sang <wsa@kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        Arnd Bergmann <arnd@arndb.de>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+References: <20211204215820.17378-1-semen.protsenko@linaro.org>
+ <20211204215820.17378-8-semen.protsenko@linaro.org>
+ <YbIXVw+as1Sj6yDW@ninjato>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <YbIXVw+as1Sj6yDW@ninjato>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 09, 2021 at 09:37:27AM +0100, Geert Uytterhoeven wrote:
-> Hi Gabriel,
+On 09/12/2021 15:48, Wolfram Sang wrote:
+> On Sat, Dec 04, 2021 at 11:58:19PM +0200, Sam Protsenko wrote:
+>> In Device Tree specification it's recommended to use "i2c" name for I2C
+>> nodes. Now that i2c-exynos5 dt-schema binding was added, it shows some
+>> warnings like this when validating HS-I2C nodes:
+>>
+>>     hsi2c@xxxxxxxxx: $nodename:0: 'hsi2c@xxxxxxxx' does not match
+>>                                   '^i2c(@.*)?'
+>>     From schema: Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
+>>
+>> Rename hsi2c@* to i2c@* to fix those warnings.
+>>
+>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > 
-> On Thu, Dec 9, 2021 at 2:08 AM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
-> > ... which took care of the bulk of the error messages reported. However,
-> > I'm still getting the one below, whether or not I leave the `maxItems 1`
-> > line there under `clocks:`
-> >
-> > $ make ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu-  dt_binding_check
-> >   LINT    Documentation/devicetree/bindings
-> >   CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
-> > /home/somlo/linux/Documentation/devicetree/bindings/clock/litex,clock.yaml: properties:clock-output-names: {'description': 'List of strings of clock output signal names indexed by the first cell in the clock specifier.', 'minItems': 1, 'maxItems': 7, 'items': [{'const': 'CLKOUT0'}, {'const': 'CLKOUT1'}, {'const': 'CLKOUT2'}, {'const': 'CLKOUT3'}, {'const': 'CLKOUT4'}, {'const': 'CLKOUT5'}, {'const': 'CLKOUT6'}]} should not be valid under {'required': ['maxItems']}
-> >         hint: "maxItems" is not needed with an "items" list
-> >         from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-> >   SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-> > /home/somlo/linux/Documentation/devicetree/bindings/clock/litex,clock.yaml: ignoring, error in schema: properties: clock-output-names
-> > warning: no schema found in file: ./Documentation/devicetree/bindings/clock/litex,clock.yaml
-> >   DTEX    Documentation/devicetree/bindings/mmc/litex,mmc.example.dts
-> >   DTEX    Documentation/devicetree/bindings/media/renesas,imr.example.dts
-> >   ...
-> 
-> --- a/Documentation/devicetree/bindings/clock/litex,clock.yaml
-> +++ b/Documentation/devicetree/bindings/clock/litex,clock.yaml
-> @@ -45,7 +45,6 @@ properties:
->        List of strings of clock output signal names indexed
->        by the first cell in the clock specifier.
->      minItems: 1
-> -    maxItems: 7
->      items:
->        - const: CLKOUT0
->        - const: CLKOUT1
-> 
-> I have that in my local tree, but hadn't sent it to you yet, because
-> litex,clock definitely need more work.
-> 
-> > It appears as though `make dt_binding_check` is trying to read from
-> > `Documentation/devicetree/bindings/clock/litex,clock.yaml`, which
-> > does not exist. The clock reference I'm talking about could be *any*
-> 
-> Oh, it does exist in your tree ;-)
-> To check the examples, it has to apply all other binding files that
-> might apply, hence some checks are always run.
-> 
-> You can avoid some (but not all) such checks by adding
-> 
->     DT_SCHEMA_FILES=Documentation/devicetree/bindings/path/to/binding.yaml
-> 
-> > clock elsewhere in the dts!
-> >
-> > This wasn't part of the originally reported errors, not sure why I'm
-> > seeing it now. Also, not sure what (if anything) I still need to do
-> > about it, any advice much appreciated!
-> 
-> Of course, as Rob doesn't have that file in his tree.
+> Applied to for-next, thanks!
 
-Oh, I'm working on the `litex-rebase` branch, which does have the
-litex,clock file. Running the check on the Linus master with litex_mmc
-v4 on top now passes the check without any errors or warnings. I'll
-incorporate the fixes pointed out by Rob when I publish v4.
+I applied the DTS patches, because they should go via arm-soc tree.
+Please drop them from I2C.
 
-Sorry for the misunderstanding, thanks Geert for pointing out the
-source of my confusion -- I think all's well now on the dt-bindings
-front w.r.t. litex_mmc... :)
-
-Cheers,
---Gabriel
+Best regards,
+Krzysztof
