@@ -2,156 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEDF146ED6E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 17:46:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F20246ED73
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 17:49:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232330AbhLIQtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 11:49:42 -0500
-Received: from smtp1.axis.com ([195.60.68.17]:29391 "EHLO smtp1.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237817AbhLIQtl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Dec 2021 11:49:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1639068369;
-  x=1670604369;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Tfd8JzoTNty+dgBSO5PshmUJLY9QA3r2dO3VaUEjoeY=;
-  b=k72tFwlZceGcAzpSAoEf9RNp0jEFBJW/tRWw78/Zt98aCKRQvpXhmHY9
-   35M45vl8gLIl6flqJZjmHJ1YIsyJIFAiuYNdQEkTHk+bxrUiqo7DVinLG
-   vzGE7+JcRI/oskSzBO45/3DBAsTGbNZQdlHL5ptLoVNwvAjYkGeN1/eav
-   LM3d484/ggVY/NEvaaSSWwD0dNACTaFPi0/8+nbcG0a9sstrASx+8V1rd
-   kVR/S+rar9+mdojYWH/IL8nTetI3c7o7giVeL8IPG8YFzK1LWtYIkjoOt
-   a7gKcpPRpsqY61PHiAOwt7vV11EhfRRXv+upeQAKFB+51caBpGv3gutuN
-   Q==;
-From:   =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Jaehoon Chung <jh80.chung@samsung.com>
-CC:     Doug Anderson <dianders@google.com>, <kernel@axis.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>,
-        =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
-Subject: [PATCH v3 4/4] mmc: dw_mmc: Do not wait for DTO in case of error
-Date:   Thu, 9 Dec 2021 17:45:58 +0100
-Message-ID: <20211209164558.13729-5-marten.lindahl@axis.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20211209164558.13729-1-marten.lindahl@axis.com>
-References: <20211209164558.13729-1-marten.lindahl@axis.com>
+        id S237908AbhLIQwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 11:52:39 -0500
+Received: from out28-194.mail.aliyun.com ([115.124.28.194]:60533 "EHLO
+        out28-194.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233270AbhLIQwX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 11:52:23 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.2773259|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0127988-0.00456519-0.982636;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047192;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=5;RT=5;SR=0;TI=SMTPD_---.M7WqoBf_1639068516;
+Received: from zhouyanjie-virtual-machine.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.M7WqoBf_1639068516)
+          by smtp.aliyun-inc.com(10.147.44.145);
+          Fri, 10 Dec 2021 00:48:47 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/2] Add SMP/SMT support for Ingenic sysost driver.
+Date:   Fri, 10 Dec 2021 00:48:33 +0800
+Message-Id: <1639068516-5577-1-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When running the ARTPEC-8 DWMMC IP version, and a data error interrupt
-comes during a data read transfer, there is no guarantee for the data
-transfer over interrupt (DTO) to come within the specified data timeout.
-This case is handled by the dto_timer handler which will complete the
-request with the comment:
+1.The OST in Ingenic XBurst®2 SoCs has a global timer and
+  up to 16 event timers, add support for the event timers.
+2.Add dt-bindings and compatible strings for the X1600 SoC,
+  the X1830 SoC, the X2000 SoC, and the X2500 SoC.
 
- /*
-  * If DTO interrupt does NOT come in sending data state,
-  * we should notify the driver to terminate current transfer
-  * and report a data timeout to the core.
-  */
+周琰杰 (Zhou Yanjie) (2):
+  dt-bindings: timer: Add bindings for new Ingenic SoCs.
+  clocksource: Ingenic: Add SMP/SMT support for sysost driver.
 
-But since the ARTPEC-8 DWMMC IP version, supports an extended TMOUT
-register which allows longer timeouts than the non ARTPEC-8 version
-does, waiting for the dto_timer to complete the request in error cases
-may cause the request to take significantly longer time than necessary.
-This is specifically true for the failing steps during tuning of a
-device.
+ .../devicetree/bindings/timer/ingenic,sysost.yaml  |   7 +-
+ drivers/clocksource/ingenic-sysost.c               | 403 ++++++++++++++++-----
+ 2 files changed, 310 insertions(+), 100 deletions(-)
 
-Fix this by completing the request when the error interrupt comes. Since
-this fix is specific for the ARTPEC-8, a quirk is added.
-
-Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
----
-
-v3:
- - Define DW_MMC_QUIRK_EXTENDED_TMOUT.
- - Implement DW_MMC_QUIRK_EXTENDED_TMOUT for the ARTPEC-8 SoC.
-
- drivers/mmc/host/dw_mmc-exynos.c | 5 +++++
- drivers/mmc/host/dw_mmc.c        | 9 +++++++++
- drivers/mmc/host/dw_mmc.h        | 5 +++++
- 3 files changed, 19 insertions(+)
-
-diff --git a/drivers/mmc/host/dw_mmc-exynos.c b/drivers/mmc/host/dw_mmc-exynos.c
-index 4e5612d04504..70ff7597f2b0 100644
---- a/drivers/mmc/host/dw_mmc-exynos.c
-+++ b/drivers/mmc/host/dw_mmc-exynos.c
-@@ -127,6 +127,11 @@ static int dw_mci_exynos_priv_init(struct dw_mci *host)
- 				DQS_CTRL_GET_RD_DELAY(priv->saved_strobe_ctrl);
- 	}
- 
-+	if (priv->ctrl_type == DW_MCI_TYPE_ARTPEC8) {
-+		/* Quirk needed for the ARTPEC-8 SoC */
-+		host->quirks |= DW_MMC_QUIRK_EXTENDED_TMOUT;
-+	}
-+
- 	host->bus_hz /= (priv->ciu_div + 1);
- 
- 	return 0;
-diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
-index a7745e193afa..da09a06898c9 100644
---- a/drivers/mmc/host/dw_mmc.c
-+++ b/drivers/mmc/host/dw_mmc.c
-@@ -2762,11 +2762,20 @@ static irqreturn_t dw_mci_interrupt(int irq, void *dev_id)
- 		if (pending & DW_MCI_DATA_ERROR_FLAGS) {
- 			spin_lock(&host->irq_lock);
- 
-+			if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
-+				del_timer(&host->dto_timer);
-+
- 			/* if there is an error report DATA_ERROR */
- 			mci_writel(host, RINTSTS, DW_MCI_DATA_ERROR_FLAGS);
- 			host->data_status = pending;
- 			smp_wmb(); /* drain writebuffer */
- 			set_bit(EVENT_DATA_ERROR, &host->pending_events);
-+
-+			if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
-+				/* In case of error, we cannot expect a DTO */
-+				set_bit(EVENT_DATA_COMPLETE,
-+					&host->pending_events);
-+
- 			tasklet_schedule(&host->tasklet);
- 
- 			spin_unlock(&host->irq_lock);
-diff --git a/drivers/mmc/host/dw_mmc.h b/drivers/mmc/host/dw_mmc.h
-index 0a85d05eaf12..7f1e38621d13 100644
---- a/drivers/mmc/host/dw_mmc.h
-+++ b/drivers/mmc/host/dw_mmc.h
-@@ -118,6 +118,7 @@ struct dw_mci_dma_slave {
-  * @part_buf: Simple buffer for partial fifo reads/writes.
-  * @push_data: Pointer to FIFO push function.
-  * @pull_data: Pointer to FIFO pull function.
-+ * @quirks: Set of quirks that apply to specific versions of the IP.
-  * @vqmmc_enabled: Status of vqmmc, should be true or false.
-  * @irq_flags: The flags to be passed to request_irq.
-  * @irq: The irq value to be passed to request_irq.
-@@ -223,6 +224,7 @@ struct dw_mci {
- 	void (*push_data)(struct dw_mci *host, void *buf, int cnt);
- 	void (*pull_data)(struct dw_mci *host, void *buf, int cnt);
- 
-+	u32			quirks;
- 	bool			vqmmc_enabled;
- 	unsigned long		irq_flags; /* IRQ flags */
- 	int			irq;
-@@ -274,6 +276,9 @@ struct dw_mci_board {
- 	struct dma_pdata *data;
- };
- 
-+/* Support for longer data read timeout */
-+#define DW_MMC_QUIRK_EXTENDED_TMOUT            BIT(0)
-+
- #define DW_MMC_240A		0x240a
- #define DW_MMC_280A		0x280a
- 
 -- 
-2.20.1
+2.7.4
 
