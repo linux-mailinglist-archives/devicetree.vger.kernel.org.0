@@ -2,162 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FBA446F5EA
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 22:28:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DAD146F5ED
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 22:30:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231224AbhLIVcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 16:32:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50168 "EHLO
+        id S231390AbhLIVdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 16:33:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbhLIVcN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 16:32:13 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53A1EC061746
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 13:28:39 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 9EF11CE289F
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 21:28:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBEF8C341C6
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 21:28:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639085315;
-        bh=KVnqwJNCU1k264ybp58mfd+XaEdcTxCNIxyFR0lDK10=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Jg7KFeaB/siysdHuvhvsWnlbaa1P39AguantLmTc5jqUQF6WmLQcWyh2t3W6qmMNC
-         r+ddGr1LsIfArdiBWmBqTsKpzH0eHRc0tjsTIUmFBt+CdhB5FgpXlXkyuL4N/+j5dr
-         EyhoLlrNaKTVPJXdxaBd9QqBXdAdNntSvJbdhr8vtq9SCDabC+25XfKOGu+vAjBhRk
-         gbiPEIQk2NJSQDza8VfetN4wR+LH8Pe/jIgPagkn1xCAM07w+EhdCJ3ONxkOEmBOLG
-         eURv4FoeXzQSdZuskpFwf4c+9dbxooBIYXPR5glClijMPQcA/L7FZhY94vQ47FgHlG
-         +8uHwFlo1SxMQ==
-Received: by mail-ed1-f48.google.com with SMTP id w1so23685405edc.6
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 13:28:35 -0800 (PST)
-X-Gm-Message-State: AOAM5332Y+54O4eBEvE+A041AJm5En7VPr0UCt9wRbkzbV5ZvLSMD72h
-        n5P6bAA9c2RVBbTCietytBbu7Ndub3DUXNeoiA==
-X-Google-Smtp-Source: ABdhPJzon9vYLRGGDbDWMlS015feOASbjF/BGcFwN/cqIGqJWawh6rBZ6Sdc8TzNUfcAI7qoz59P6v4KbRXA2uW2UVg=
-X-Received: by 2002:a17:906:5e14:: with SMTP id n20mr18760803eju.466.1639085314118;
- Thu, 09 Dec 2021 13:28:34 -0800 (PST)
+        with ESMTP id S229505AbhLIVdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 16:33:38 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A300FC061746;
+        Thu,  9 Dec 2021 13:30:04 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id o14so4872091plg.5;
+        Thu, 09 Dec 2021 13:30:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=RiC7G24eWy//YmTynebfX9hiLgZoILqeHM51jdKCP6k=;
+        b=CzspmICW/W3o3Kyp6lRJiRRrGWA0P+056LHBQD4WI/6ZdYk/bhUTsP1JWlH2EwYPkP
+         aWekYL/8GxJ8mzwkG0jYhXpGj0j4IAchwVL5dyA+go+L+vxdvraYszk9plcztXGsVdAM
+         2HZqaZ79OHj2Gl76dZ7GnKq9ph4Ne/xgvTwHl04Rad+KeLo8NXxJFxbcdey9ahGkp1as
+         A/xgWKiPqXWGQlwNJD1cmo9YzmKV2CnxzDzt9iPNocIgzqx1l7FX0z1Wt85MV6MJuMZS
+         E48gg7+9m101NVSClMU+hz90pn3aGMcSVcG6rp+PngquaZCNm2U/V4sTvJ8N0HOR1Iea
+         QX9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=RiC7G24eWy//YmTynebfX9hiLgZoILqeHM51jdKCP6k=;
+        b=Yde8iy5/CdaKPf5TfhMb7jytYG+z1ETnYsfFzda2K864KEaEOrTSJJ63Za/G81pmL+
+         ifFTJw6Z1llwHQrW3QPkI06SqNHvKjM6LpN3nz3nw8wRBdadn+lXGwDmD3+1s0yIShm6
+         6jyd7kk9ZkCtan5PD0xEkwGAK0NXD/UrcstZuuBWKCEKiMZ6gILawJL4CE1Ei1VYqsNA
+         nm7LknIjMabhJLz240Fa5kBMtQUnpKytNndef4yz5kbKrXSU6dPNoT9umQGqIE9PL+Ne
+         ABQnNLxQ61KOJBO9Yy4jOBbrLKez2oug//VxJXYyD+NSG2rcMyJ3mWJMchbENuzFBm70
+         wEcQ==
+X-Gm-Message-State: AOAM533+GbYTgsYQHtjH+Y2VyX0/46W7r1TvJnpTy445grZ192KeSqWP
+        S1vR2J3i3pTCOR2xUcWWyMPySrIaIl8=
+X-Google-Smtp-Source: ABdhPJw6q1SUp3qx/RZ//ts6kYrqMBWTCt8KCFxfZwjPLvBhCMyt8OQM4nLMJ7dW04ZGkA1xPr6ZYw==
+X-Received: by 2002:a17:90a:300c:: with SMTP id g12mr18602577pjb.94.1639085403765;
+        Thu, 09 Dec 2021 13:30:03 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id 59sm541244pjz.34.2021.12.09.13.30.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Dec 2021 13:30:02 -0800 (PST)
+Subject: Re: [PATCH v1 1/4] dt-bindings: PCI: Add compatible string for
+ Brcmstb 74[23]5 MIPs SOCs
+To:     Jim Quinlan <jim2101024@gmail.com>, linux-pci@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kevin Cernekee <cernekee@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Saenz Julienne <nsaenzjulienne@suse.de>,
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20211209204726.6676-1-jim2101024@gmail.com>
+ <20211209204726.6676-2-jim2101024@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <592b3630-864f-7616-eb0a-ae6faf6dc9d7@gmail.com>
+Date:   Thu, 9 Dec 2021 13:29:59 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20211120000356.1850639-1-sjg@chromium.org>
-In-Reply-To: <20211120000356.1850639-1-sjg@chromium.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 9 Dec 2021 15:28:22 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLWOXhwsUzGjbZtTb46a6qQSn3S2rRPYd3C03kHijopcw@mail.gmail.com>
-Message-ID: <CAL_JsqLWOXhwsUzGjbZtTb46a6qQSn3S2rRPYd3C03kHijopcw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: u-boot: Add a few more options bindings
-To:     Simon Glass <sjg@chromium.org>
-Cc:     devicetree@vger.kernel.org, Tom Rini <trini@konsulko.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211209204726.6676-2-jim2101024@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 19, 2021 at 6:04 PM Simon Glass <sjg@chromium.org> wrote:
->
-> This adds three new options with varying degree of interest / precedent.
+On 12/9/21 12:47 PM, Jim Quinlan wrote:
+> The Broadcom STB Arm and MIPs SOCs use the same PCIe controller
+> HW, although the MIPs version is older.
+> 
+> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
 
-Send these to devicetree-spec list so it's not in the flood of
-devicetree-discuss.
-
->
-> This being sent to the mailing list since it might attract more review.
-> A PR will be sent when this has had some review. That is why the file
-> path is set up for https://github.com/devicetree-org/dt-schema rather
-> than the Linux kernel.
->
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> ---
->
->  schemas/options/u-boot.yaml | 51 +++++++++++++++++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
->
-> diff --git a/schemas/options/u-boot.yaml b/schemas/options/u-boot.yaml
-> index 71dfda7..b8bdec1 100644
-> --- a/schemas/options/u-boot.yaml
-> +++ b/schemas/options/u-boot.yaml
-> @@ -71,6 +71,37 @@ properties:
->        2: use simplified command line (e.g. avoid hush)
->        3... reserved
->
-> +  load-environment:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 1
-> +    maximum: 1
-> +    description: |
-> +      This allows control over whether U-Boot loads its environment after
-> +      relocation. This normally happens automatically, but can pose a security
-> +      risk, so disabling it in certain situations is useful.
-> +
-> +      Note: This could be a boolean. It is defined as an integer since that
-> +      allows changing the value without resizing the devicetree. I'm not sure
-> +      how ugly that is, but IMO the fact that 'false' boolean values are
-> +      represented by being missing is a bit of a pain. One must either add or
-
-But they do save space. ;)
-
-> +      delete the property.
-> +
-> +      Values:
-> +
-> +      0: don't load the environment
-> +      1: do load the environment
-> +
-> +  no-apm-final:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      For devices running on coreboot, this tells U-Boot not to lock down the
-> +      Intel Management Engine (ME) registers. This allows U-Boot to access the
-> +      hardware more fully for platforms that need it.
-> +
-> +      Absence of this property indicates that the ME registers should be locked
-> +      down as part of U-Boot's start-up sequence and before the command line is
-> +      available.
-
-Perhaps prefix with 'intel' given it is Intel specific.
-
-> +
->    silent-console:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      default: 0
-> @@ -88,6 +119,23 @@ properties:
->          enabled)
->        2: console output is suppressed and not recorded
->
-> +  spl-payload-offset:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 0
-> +    description: |
-> +      If present (and SPL is controlled by the devicetree), this allows the
-> +      offset of the SPL payload (typically U-Boot) to be specified. The offset
-> +      is in bytes from the start of the media (typically SPI flash).
-> +
-> +      Note: This is quite widely used in U-Boot, but since v2018.01 it is
-> +      possible to use Binman instead, to provide this offset (and various
-> +      others) to SPL, or even to U-Boot proper. So far I have not tried sending
-> +      the Binman bindings upstream, but perhaps that should be done instead.
-
-At this point, you are the upstream for binman...
-
-> +
-> +      See here for details:
-> +
-> +      https://u-boot.readthedocs.io/en/latest/develop/package/binman.html#image-description-format
-> +
->  required:
->    - compatible
->
-> @@ -101,6 +149,9 @@ examples:
->          bootcmd = "vboot go auto";
->          bootdelay-sec = <(-1)>;
->          bootsecure = <1>;
-> +        load-environment = <0>;
-> +        no-apm-final;
->          silent-console = <1>;
-> +        spl-payload-offset = <0x40000>;   /* 256K */
->        };
->      };
-> --
-> 2.34.0.rc2.393.gf8c9666880-goog
->
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
