@@ -2,119 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C303B46F167
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:14:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37F4846F16D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 18:15:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235111AbhLIRSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 12:18:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46616 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232916AbhLIRST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 12:18:19 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04CE9C061746;
-        Thu,  9 Dec 2021 09:14:46 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id j3so10946185wrp.1;
-        Thu, 09 Dec 2021 09:14:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=1WIvJ0cMOzreLs80b+VI49//n3XG9dDrPeLotL/bUDk=;
-        b=oqzKpfW6ahOYYATVIkEj8+lMiWjswlMB490eQDhQzqTkdBoYBxVz6oCWiFV/xwT5Oh
-         2zwt1J27fHtPih1bTtyzmIb22poeL+8f4G9QFBl2a0IHg88+ro2SVpxfQ3qA/uMyQohk
-         K/Fdko4eX9WIuFgKG3B5fszYGZ85o0k5t+ujX3JW2YpaZYvQtdJeVMiLKhr7iZQ2VOq2
-         qaCorvae4NsYjQos9Ec18lMAjPp/e5srRCLT3OaZebntpm71zDUTVyO/N90+B3hbFuhA
-         2bwQ1pGVg29nqlVEaGEM8jbBwJE8jhNXFhchkQDUHTakaXWTCHjRk7jZxmFhtGnu7Yp9
-         9ikw==
+        id S235383AbhLIRTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 12:19:13 -0500
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:44563 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234299AbhLIRTM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 12:19:12 -0500
+Received: by mail-ot1-f52.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso6853987otj.11;
+        Thu, 09 Dec 2021 09:15:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=1WIvJ0cMOzreLs80b+VI49//n3XG9dDrPeLotL/bUDk=;
-        b=4blH4YEd+OcNW/SW1hrUhK6hDHNfg3BGJrOKAK5St0Rzg8VMoBskuwmeYeL89a2Tbj
-         L6ENWB4REZzu33RxHRSKKR7aUS6MpeIuCnZmJgLeX6pG1pslhjo4u7h/ARkLd7Oh/7Me
-         e1Fl22PdYA2x8SklloUllZRHyX6fgV6MucIpU6GA5i6sIU2irpKrVuKRNMp+k7YmlIHC
-         YCMWvt91eR6DXFChA1Qdk6hhH+6absy1AKJxT5eerBkRwYjVHmcXc73UKpxe9GJWooG2
-         LmEAOlD+BK2Hu7qooT6sUyic8il57M72QjwaQehqrHS3IvllAZmiFFIB6UBp6HupR3nd
-         WW/g==
-X-Gm-Message-State: AOAM532v7RPRmlb0FtDP76A2PCnZGu5dly2jO1dLGE+nA3CXi5cSH1V7
-        I5PU7ovrfTtoUx3osy6HzTc=
-X-Google-Smtp-Source: ABdhPJwRktuofTJyEgBTDGYurKcdU9wj/SmOmXpVhXUyg/Sq8RhVLeGQ9B/NPgxX1W3cbakHx1IwjA==
-X-Received: by 2002:adf:f1cc:: with SMTP id z12mr7880445wro.395.1639070084560;
-        Thu, 09 Dec 2021 09:14:44 -0800 (PST)
-Received: from orome ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id u15sm298752wmq.13.2021.12.09.09.14.42
+         :mime-version:content-disposition:in-reply-to;
+        bh=nSukUYeagf4Tnng/ksS/gcxkNP9zX8DKonoFbajwVGo=;
+        b=6ks91g9H+3tr2toRfogwmAw7sNIkirWP9G9kOJa8N4P3du7IprPCT7RoAJsrzf/cTV
+         KqrLgeq7HEjotRgNdzqLohAh9hoP8W7f0cCXCA4ESVbsEfLucoi3g6Kxk63Z4AARsxJe
+         /nvLU0GbxJToRliKrVQc523H3zOH62/7cvnXvtgCOWiE6cQh2JbD3apCzSpXd4+LtdSN
+         wIqGMuW8gep5tzhJOW9xzuqpNH/IyRtRnNLheC2urfcGQ1bOMt3m6KaT9iGOAHRy4y8w
+         xU0zufNxRmLQ1mhjL+tPQmjFAVk4sY/g6fgUjaN9yQCq9i4T0k8tC01y4e28beKeUXVc
+         IoQQ==
+X-Gm-Message-State: AOAM5334s+4Uy7DjhvZHALLHfkllrlaj2WJ3ip4YqoEBbdVM1kEViS3P
+        MTwIEpP8Vqb1l2bEnUNo0Q==
+X-Google-Smtp-Source: ABdhPJw0M7kd1XRLCQjKyI5gXvmUn0fvT7NhByKejFd9B1GWARaqIlq83SGfKVgR18ju4BI76k3hfg==
+X-Received: by 2002:a05:6830:4d1:: with SMTP id s17mr6595739otd.246.1639070138515;
+        Thu, 09 Dec 2021 09:15:38 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id bq5sm111149oib.55.2021.12.09.09.15.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Dec 2021 09:14:43 -0800 (PST)
-Date:   Thu, 9 Dec 2021 18:14:40 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@freescale.com>,
-        Nagarjuna Kristam <nkristam@nvidia.com>,
-        JC Kuo <jckuo@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH 4/4] dt-bindings: usb: tegra-xudc: Document interconnects
- and iommus properties
-Message-ID: <YbI5gNIitiikI+JF@orome>
-References: <20211209165339.614498-1-thierry.reding@gmail.com>
- <20211209165339.614498-4-thierry.reding@gmail.com>
+        Thu, 09 Dec 2021 09:15:37 -0800 (PST)
+Received: (nullmailer pid 3113423 invoked by uid 1000);
+        Thu, 09 Dec 2021 17:15:36 -0000
+Date:   Thu, 9 Dec 2021 11:15:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Rob Herring <robh+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Sven Peter <sven@svenpeter.dev>, linux-kernel@vger.kernel.org,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>
+Subject: Re: [PATCH 3/4] dt-bindings: pci: apple,pcie: Add t6000 support
+Message-ID: <YbI5uK2w5vQ4xBrm@robh.at.kernel.org>
+References: <20211209051001.70235-1-marcan@marcan.st>
+ <20211209051001.70235-4-marcan@marcan.st>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="XphOr6ZdSFzXaAAr"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211209165339.614498-4-thierry.reding@gmail.com>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+In-Reply-To: <20211209051001.70235-4-marcan@marcan.st>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---XphOr6ZdSFzXaAAr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Dec 09, 2021 at 05:53:39PM +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
->=20
-> Add the interconnects, interconnect-names and iommus properties to the
-> device tree bindings for the Tegra XUDC controller. These are used to
-> describe the device's paths to and from memory.
->=20
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+On Thu, 09 Dec 2021 14:10:00 +0900, Hector Martin wrote:
+> This new SoC is compatible with the existing driver, but the block
+> supports 4 downstream ports, so we need to adjust the binding to
+> allow that.
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
->  .../devicetree/bindings/usb/nvidia,tegra-xudc.yaml  | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-
-Sorry Rob, I realized you already reviewed this one earlier:
-
-	http://patchwork.ozlabs.org/project/linux-tegra/patch/20211206155559.23255=
-0-1-thierry.reding@gmail.com/
-
-so technically:
+>  .../devicetree/bindings/pci/apple,pcie.yaml   | 28 ++++++++++++++-----
+>  1 file changed, 21 insertions(+), 7 deletions(-)
+> 
 
 Acked-by: Rob Herring <robh@kernel.org>
-
---XphOr6ZdSFzXaAAr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGyOYAACgkQ3SOs138+
-s6FZsRAAgcx3SMFsP4NMdw0V3PGov6oKJS5d1KilhVi55+DsHH1TRPEJgU3xY1/K
-15DCTeDj8vSPSvPLNh92yhkD43B4/i71Sc7dNy4KYycCGRt/UEzKPL0jPahKFnl/
-Z2PzcrUtYDWN2B1AhbHvoRvyWj8oQ8C7BerPGqtFPnfJuML5g1kqcon0PmD9cZB3
-HzJAakuRXjM3SC1RDLxFK0YCQJ7+HIydTtQ2q1/Tglb7wW4sv9FSUgI8PWWbdo1+
-Id7xZT2SWVxaiUtdrYsLFzxdXaEU8EuOi84OdA5ZE25RE9+KhrLi9wlDHS12RZaL
-LNLMkdFm1KKxsUeF4mTlXleH6i17wU2TZbzNxZaEV15chLgJwvDuA0TEPTnU60wW
-JOPb2TUJV7CCaDvbRLc6kKqcnfJCmh/1gHJM2FFaOrzTd3OHNYSPH6cCP0EQfSyM
-Pg9hpx+0iwS54ghSKqIkTWinyyY2llhpSeXIXCMnw6B/iCxGXhJbSmyJR8vZLV4h
-14zNkQp4yhcN4sEbwZVH6WiRtn/yF5MShDNY4KHuLa/UaqzecQlrFf5dmtUGT1R9
-cWevfQ7xuCgzcuC+5Cisuu+oKSo48vqAgQH6ChkbDy+qrdINHVtLB0Fj0gtBFH/y
-2pDwJodmvvm2dT3etM+ukefKkLM7uWldb+A1Ky0IIQeoioBIJpk=
-=72yo
------END PGP SIGNATURE-----
-
---XphOr6ZdSFzXaAAr--
