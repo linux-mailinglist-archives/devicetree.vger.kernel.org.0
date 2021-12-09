@@ -2,85 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09C3146E227
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 06:49:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E398A46E22B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 06:51:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230183AbhLIFxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 00:53:00 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:41772 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230154AbhLIFw7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 00:52:59 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B95n9QI054338;
-        Wed, 8 Dec 2021 23:49:09 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1639028949;
-        bh=3DzJ5UfTbjOyfKamsLgBOyMkZhB6TUL60sGkvETPZm4=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=ITeY9XQJRzzelezhViOi+Fk2Xp7xyDTwYTSPuxE9K9mkOeJeL+39V9ybyw0kPjUM1
-         nVRpPx17xZUyUoDrCIdcGM74dwgUAjbPolswAN5mZzKjDRZ68+6hGI53umAIR/3/Bo
-         dOVgSf9M15pH21HW+P+LWkWtnepvzNrZhRy4viDg=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B95n8kn040541
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 8 Dec 2021 23:49:09 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 8
- Dec 2021 23:49:08 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 8 Dec 2021 23:49:08 -0600
-Received: from [172.24.145.75] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B95n6S9013694;
-        Wed, 8 Dec 2021 23:49:06 -0600
-Subject: Re: [PATCH v4] ASoC: dt-bindings: davinci-mcasp: convert McASP
- bindings to yaml schema
-To:     =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
-        <robh+dt@kernel.org>
-CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20211203120243.24173-1-j-choudhary@ti.com>
- <ed6c9be9-32d3-719a-ee0d-608b228f36b3@gmail.com>
- <20449d7b-0524-a8df-7852-a4c495157682@ti.com>
- <b6af56f1-7e6b-81ca-7bae-8f2a2dfaf0eb@gmail.com>
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-Message-ID: <5c032067-3396-dcf2-5f1a-09aca6f8e647@ti.com>
-Date:   Thu, 9 Dec 2021 11:19:05 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S232456AbhLIFyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 00:54:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54596 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230334AbhLIFyj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 00:54:39 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B9FAC061746;
+        Wed,  8 Dec 2021 21:51:06 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: hector@marcansoft.com)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id C8D513FA67;
+        Thu,  9 Dec 2021 05:51:01 +0000 (UTC)
+From:   Hector Martin <marcan@marcan.st>
+To:     Sven Peter <sven@svenpeter.dev>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/2] Apple mailbox fixup: switch to generic compatibles
+Date:   Thu,  9 Dec 2021 14:50:47 +0900
+Message-Id: <20211209055049.99205-1-marcan@marcan.st>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <b6af56f1-7e6b-81ca-7bae-8f2a2dfaf0eb@gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi folks,
 
+Just a quick fix for the Apple mailbox compatible. Similar to [1], we
+intend to use SoC-specific compatibles only for potential quirks, and
+rely on a generic compatible to allow for forward-compatibility as long
+as things don't break.
 
-On 08/12/21 1:14 am, Péter Ujfalusi wrote:
+Since this isn't instantiated in any upstream DT yet, I think we can
+afford the compatibility break now.
 
-> 
-> I'm fine if the port remains here
-> 
->> Peter,
->> Any other changes I should make?
-> 
-> Not much, this already looking good.
-> I would fix the dts files which generates warning/error with this yaml
-> as they are incorrect.
-> 
+This also goes ahead and adds the compatible for the new t600x SoCs.
 
-One patch has already been sent for the typo error in the dts file which
-generates a warning:
-https://lore.kernel.org/all/20211125105326.17000-1-j-choudhary@ti.com/
+[1] https://lore.kernel.org/linux-arm-kernel/20211121171545.27402-3-j@jannau.net/
 
-The 'num-serializer' issue needs to be fixed.
+Hector Martin (2):
+  dt-bindings: mailbox: apple,mailbox: Add generic and t6000 compatibles
+  mailbox: apple: Bind to generic compatibles
 
--Jayesh
+ .../devicetree/bindings/mailbox/apple,mailbox.yaml   | 12 +++++++++---
+ drivers/mailbox/apple-mailbox.c                      |  4 ++--
+ 2 files changed, 11 insertions(+), 5 deletions(-)
+
+-- 
+2.33.0
+
