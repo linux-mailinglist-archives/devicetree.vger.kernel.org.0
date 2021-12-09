@@ -2,99 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEF4A46E9B8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 15:16:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B08E046E9D6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 15:20:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235466AbhLIOTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 09:19:54 -0500
-Received: from sibelius.xs4all.nl ([83.163.83.176]:59245 "EHLO
+        id S232667AbhLIOXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 09:23:04 -0500
+Received: from sibelius.xs4all.nl ([83.163.83.176]:50079 "EHLO
         sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230048AbhLIOTy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 09:19:54 -0500
+        with ESMTP id S232049AbhLIOXE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 09:23:04 -0500
 Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 95a57f88;
-        Thu, 9 Dec 2021 15:16:17 +0100 (CET)
-Date:   Thu, 9 Dec 2021 15:16:17 +0100 (CET)
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id d1a74329;
+        Thu, 9 Dec 2021 15:19:29 +0100 (CET)
+Date:   Thu, 9 Dec 2021 15:19:29 +0100 (CET)
 From:   Mark Kettenis <mark.kettenis@xs4all.nl>
 To:     Hector Martin <marcan@marcan.st>
-Cc:     sven@svenpeter.dev, jassisinghbrar@gmail.com, robh+dt@kernel.org,
-        marcan@marcan.st, alyssa@rosenzweig.io, kettenis@openbsd.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <20211209055049.99205-2-marcan@marcan.st> (message from Hector
-        Martin on Thu, 9 Dec 2021 14:50:48 +0900)
-Subject: Re: [PATCH 1/2] dt-bindings: mailbox: apple,
- mailbox: Add generic and t6000 compatibles
-References: <20211209055049.99205-1-marcan@marcan.st> <20211209055049.99205-2-marcan@marcan.st>
-Message-ID: <d3cb3991a2be5ea4@bloch.sibelius.xs4all.nl>
+Cc:     sven@svenpeter.dev, robh+dt@kernel.org, marcan@marcan.st,
+        alyssa@rosenzweig.io, kettenis@openbsd.org, maz@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20211209051001.70235-2-marcan@marcan.st> (message from Hector
+        Martin on Thu, 9 Dec 2021 14:09:58 +0900)
+Subject: Re: [PATCH 1/4] dt-bindings: arm: apple: Add t6000/t6001 MacBook Pro
+ 14/16" compatibles
+References: <20211209051001.70235-1-marcan@marcan.st> <20211209051001.70235-2-marcan@marcan.st>
+Message-ID: <d3cb39b15900ad62@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 > From: Hector Martin <marcan@marcan.st>
-> Date: Thu,  9 Dec 2021 14:50:48 +0900
+> Date: Thu,  9 Dec 2021 14:09:58 +0900
 > 
-> Much as we've done with other blocks, let's introduce generic
-> compatibles so drivers can bind to those and still work with future
-> SoCs, as long as the hardware remains the same. Also go ahead and add
-> compatibles for the new t600x SoCs (we group those as t6000).
+> This adds the initial apple,t6000 platforms:
 > 
-> Note that no DTs instantiate devices with this binding yet.
-
-I think this makes sense.  There is no OpenBSD driver for this yet and
-my U-Boot driver has not been submitted upstream yet.  So I think
-there are no real backwards compatibility issues.
+> - apple,j314s - MacBook Pro (14-inch, M1 Pro, 2021)
+> - apple,j316s - MacBook Pro (16-inch, M1 Pro, 2021)
+> 
+> And the initial apple,t6001 platforms:
+> 
+> - apple,j314c - MacBook Pro (14-inch, M1 Max, 2021)
+> - apple,j316c - MacBook Pro (16-inch, M1 Max, 2021)
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  .../devicetree/bindings/arm/apple.yaml        | 21 +++++++++++++++++++
+>  1 file changed, 21 insertions(+)
 
 Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
 
->
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  .../devicetree/bindings/mailbox/apple,mailbox.yaml   | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml b/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
-> index 2c1704b34e7a..58007c789671 100644
-> --- a/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
-> @@ -27,14 +27,20 @@ properties:
->            for example for the display controller, the system management
->            controller and the NVMe coprocessor.
->          items:
-> -          - const: apple,t8103-asc-mailbox
-> +          - enum:
-> +              - apple,t8103-asc-mailbox
-> +              - apple,t6000-asc-mailbox
-> +          - const: apple,asc-mailbox
+> diff --git a/Documentation/devicetree/bindings/arm/apple.yaml b/Documentation/devicetree/bindings/arm/apple.yaml
+> index b23c8dc5a27d..8d93e8a6cc18 100644
+> --- a/Documentation/devicetree/bindings/arm/apple.yaml
+> +++ b/Documentation/devicetree/bindings/arm/apple.yaml
+> @@ -19,6 +19,13 @@ description: |
+>    - MacBook Air (M1, 2020)
+>    - iMac (24-inch, M1, 2021)
 >  
->        - description:
->            M3 mailboxes are an older variant with a slightly different MMIO
->            interface still found on the M1. It is used for the Thunderbolt
->            co-processors.
->          items:
-> -          - const: apple,t8103-m3-mailbox
-> +          - enum:
-> +              - apple,t8103-m3-mailbox
-> +              - apple,t6000-m3-mailbox
-> +          - const: apple,m3-mailbox
+> +  And devices based on the "M1 Pro" and "M1 Max" SoCs:
+> +
+> +  - MacBook Pro (14-inch, M1 Pro, 2021)
+> +  - MacBook Pro (14-inch, M1 Max, 2021)
+> +  - MacBook Pro (16-inch, M1 Pro, 2021)
+> +  - MacBook Pro (16-inch, M1 Max, 2021)
+> +
+>    The compatible property should follow this format:
 >  
->    reg:
->      maxItems: 1
-> @@ -68,7 +74,7 @@ additionalProperties: false
->  examples:
->    - |
->          mailbox@77408000 {
-> -                compatible = "apple,t8103-asc-mailbox";
-> +                compatible = "apple,t8103-asc-mailbox", "apple,asc-mailbox";
->                  reg = <0x77408000 0x4000>;
->                  interrupts = <1 583 4>, <1 584 4>, <1 585 4>, <1 586 4>;
->                  interrupt-names = "send-empty", "send-not-empty",
+>    compatible = "apple,<targettype>", "apple,<socid>", "apple,arm-platform";
+> @@ -60,6 +67,20 @@ properties:
+>                - apple,j457 # iMac (24-inch, 2x USB-C, M1, 2021)
+>            - const: apple,t8103
+>            - const: apple,arm-platform
+> +      - description: Apple M1 Pro SoC based platforms
+> +        items:
+> +          - enum:
+> +              - apple,j314s # MacBook Pro (14-inch, M1 Pro, 2021)
+> +              - apple,j316s # MacBook Pro (16-inch, M1 Pro, 2021)
+> +          - const: apple,t6000
+> +          - const: apple,arm-platform
+> +      - description: Apple M1 Max SoC based platforms
+> +        items:
+> +          - enum:
+> +              - apple,j314c # MacBook Pro (14-inch, M1 Max, 2021)
+> +              - apple,j316c # MacBook Pro (16-inch, M1 Max, 2021)
+> +          - const: apple,t6001
+> +          - const: apple,arm-platform
+>  
+>  additionalProperties: true
+>  
 > -- 
 > 2.33.0
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
