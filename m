@@ -2,95 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B42F46DFB6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 01:49:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A134E46DFC5
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 01:50:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235616AbhLIAwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 19:52:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43500 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229846AbhLIAwu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 19:52:50 -0500
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A793C061746;
-        Wed,  8 Dec 2021 16:49:18 -0800 (PST)
-Received: by mail-pg1-x52e.google.com with SMTP id j11so3590704pgs.2;
-        Wed, 08 Dec 2021 16:49:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ArpiXiiRMMNxywH9lYO6hlsz/ack8Tk8QW26jOZRnm8=;
-        b=pAnnUjRJ6KTfjhp0QbYQ18ZlE64fms2JaW1eUx5oAgZcjZOb5LsL4jzWZA1SkdYQme
-         FP1AonXHEsGpDtk+a7xcz+VVXjzdPLBK2KjXvg+mApc/qzw4hX+ffRO8PfB3PQK9VLUJ
-         9xNqakaGjNti85h6da08tssU4zmdV0w9Jrw710DL9XxpYJ1+c5lFyIdToZxJQW3o0toi
-         oJUz7cQtRc08b7QCTVuK2aEsx4Ouz4wQXgLVnLGvevuB9jU/1sYI1OOJccxBJ3AApluo
-         u9P5NPCMn+Xv3kgeUljbDjbMZ03LOPMjGaYDQFNmr2640+iZs38zfkK6xWUFjEYGuju2
-         xBrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ArpiXiiRMMNxywH9lYO6hlsz/ack8Tk8QW26jOZRnm8=;
-        b=aswPckOdPykFbYoaMxMXktTlym3XXgwP5YLEKU+ybtR+72jUpEJvcJ6r6YJV3drkoG
-         oPN+6/dsNUFQMxdGQunmoS+Rd+KfuWvQmPLoQ2ytuo8x62IqJlmkiQVR56oNvBPGuo3i
-         hPzkDAFcN0O+Lyp9FJi61wuTXWLFYLX2bKBK6lhuTEs7EpvjRzJmJpwGaD+g6bLOgFo5
-         sO0W4BDlv36/Fyaz56bnREf+susBlNkB6OGYnxwQ6T/QV4T4Qav7O92FcAU7Gj+tGRxI
-         j12lFBtMDIh1n7KedylDSpHAaZ0FdEBz5xroWqafq4RkCFt+HP5T4+P8M+x0SV6UBSXw
-         BQmg==
-X-Gm-Message-State: AOAM531KcecrmjGsN1yotYCKbx5IXSyA2zf6blrHY5jQhQsfGBa5oZxI
-        lnwyD0Qo1PDc5iLxdq4drM8reiqGHic=
-X-Google-Smtp-Source: ABdhPJy24uNaIqk2mAh7Sg6mshvNbMFAbEi8B5kihXavLvtINv7CSfPlFg51iL0asEPbw9ZJPTocqg==
-X-Received: by 2002:a62:6dc4:0:b0:4ac:fd66:b746 with SMTP id i187-20020a626dc4000000b004acfd66b746mr8813020pfc.17.1639010957153;
-        Wed, 08 Dec 2021 16:49:17 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id j7sm8386764pjf.41.2021.12.08.16.49.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Dec 2021 16:49:16 -0800 (PST)
-Subject: Re: [PATCH v4 2/2] dt-bindings: net: Convert SYSTEMPORT to YAML
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-kernel@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-References: <20211208202801.3706929-1-f.fainelli@gmail.com>
- <20211208202801.3706929-3-f.fainelli@gmail.com>
- <YbEoC3e709/feQc4@robh.at.kernel.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <7f9bb4e7-2560-bf06-b5de-0886c7d749da@gmail.com>
-Date:   Wed, 8 Dec 2021 16:49:14 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S241566AbhLIAxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 19:53:39 -0500
+Received: from mga05.intel.com ([192.55.52.43]:23277 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238157AbhLIAxj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Dec 2021 19:53:39 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10192"; a="324247402"
+X-IronPort-AV: E=Sophos;i="5.88,190,1635231600"; 
+   d="scan'208";a="324247402"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2021 16:50:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,190,1635231600"; 
+   d="scan'208";a="480130673"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by orsmga002.jf.intel.com with ESMTP; 08 Dec 2021 16:50:01 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mv7dJ-0001G9-01; Thu, 09 Dec 2021 00:50:01 +0000
+Date:   Thu, 9 Dec 2021 08:49:27 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org
+Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH 17/18] drm: rockchip: Add VOP2 driver
+Message-ID: <202112090830.YVovXyce-lkp@intel.com>
+References: <20211208151230.3695378-18-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <YbEoC3e709/feQc4@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211208151230.3695378-18-s.hauer@pengutronix.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/8/21 1:47 PM, Rob Herring wrote:
-> On Wed, 08 Dec 2021 12:28:01 -0800, Florian Fainelli wrote:
->> Convert the Broadcom SYSTEMPORT Ethernet controller Device Tree binding
->> to YAML.
->>
->> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
->> ---
->>  .../bindings/net/brcm,systemport.txt          | 38 --------
->>  .../bindings/net/brcm,systemport.yaml         | 88 +++++++++++++++++++
->>  MAINTAINERS                                   |  1 +
->>  3 files changed, 89 insertions(+), 38 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/net/brcm,systemport.txt
->>  create mode 100644 Documentation/devicetree/bindings/net/brcm,systemport.yaml
->>
-> 
-> Applied, thanks!
+Hi Sascha,
 
-Thanks for applying the patches and fixing up my mistakes in the process.
--- 
-Florian
+Thank you for the patch! Yet something to improve:
+
+[auto build test ERROR on rockchip/for-next]
+[also build test ERROR on drm/drm-next drm-intel/for-linux-next drm-exynos/exynos-drm-next v5.16-rc4]
+[cannot apply to drm-tip/drm-tip tegra-drm/drm/tegra/for-next airlied/drm-next next-20211208]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Sascha-Hauer/drm-rockchip-RK356x-VOP2-support/20211208-231502
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20211209/202112090830.YVovXyce-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/8d57a528cbdfec4716a21d22d3d6c04c40451355
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Sascha-Hauer/drm-rockchip-RK356x-VOP2-support/20211208-231502
+        git checkout 8d57a528cbdfec4716a21d22d3d6c04c40451355
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_dither_setup':
+>> drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:1489:22: error: implicit declaration of function 'FIELD_PREP' [-Werror=implicit-function-declaration]
+    1489 |         *dsp_ctrl |= FIELD_PREP(RK3568_VP_DSP_CTRL__DITHER_DOWN_SEL,
+         |                      ^~~~~~~~~~
+   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_setup_cluster_alpha':
+   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:1861:33: warning: variable 'top_win_pstate' set but not used [-Wunused-but-set-variable]
+    1861 |         struct drm_plane_state *top_win_pstate;
+         |                                 ^~~~~~~~~~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +/FIELD_PREP +1489 drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+
+  1463	
+  1464	static void vop2_dither_setup(struct drm_crtc *crtc, uint32_t *dsp_ctrl)
+  1465	{
+  1466		struct rockchip_crtc_state *vcstate = to_rockchip_crtc_state(crtc->state);
+  1467	
+  1468		switch (vcstate->bus_format) {
+  1469		case MEDIA_BUS_FMT_RGB565_1X16:
+  1470			*dsp_ctrl |= RK3568_VP_DSP_CTRL__DITHER_DOWN_EN;
+  1471			break;
+  1472		case MEDIA_BUS_FMT_RGB666_1X18:
+  1473		case MEDIA_BUS_FMT_RGB666_1X24_CPADHI:
+  1474		case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:
+  1475			*dsp_ctrl |= RK3568_VP_DSP_CTRL__DITHER_DOWN_EN;
+  1476			*dsp_ctrl |= RGB888_TO_RGB666;
+  1477			break;
+  1478		case MEDIA_BUS_FMT_YUV8_1X24:
+  1479		case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
+  1480			*dsp_ctrl |= RK3568_VP_DSP_CTRL__PRE_DITHER_DOWN_EN;
+  1481			break;
+  1482		default:
+  1483			break;
+  1484		}
+  1485	
+  1486		if (vcstate->output_mode != ROCKCHIP_OUT_MODE_AAAA)
+  1487			*dsp_ctrl |= RK3568_VP_DSP_CTRL__PRE_DITHER_DOWN_EN;
+  1488	
+> 1489		*dsp_ctrl |= FIELD_PREP(RK3568_VP_DSP_CTRL__DITHER_DOWN_SEL,
+  1490					DITHER_DOWN_ALLEGRO);
+  1491	}
+  1492	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
