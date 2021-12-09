@@ -2,77 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53E0146E2E9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 08:07:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 087D146E2EA
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 08:08:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233470AbhLIHLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 02:11:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43578 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231572AbhLIHLS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 02:11:18 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71BC3C061746
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 23:07:45 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id z5so16385991edd.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 23:07:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NW4Te5KT8RywZLAuo2ZfeBAFffXT3U9YKMlaGLK1mhI=;
-        b=Q88N14t0tBnLbGIq3e/NPlPtuFANXa6rJURj0gRGgPqfSaOB7tSEOPqld30GzxDv81
-         aBOxp2GhUcyBkaqNfZNn4E6drFm2t1GtRxN4Ms78Qz0eaoptMOVuJYloQZg0F+bI77ZF
-         N94SB4kUcC8W86uXarfk90mwFfhHVQIWH5CuU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NW4Te5KT8RywZLAuo2ZfeBAFffXT3U9YKMlaGLK1mhI=;
-        b=lfNiewXp4OJubkvLo779V2tRMWV/oOmUJkPE3DmB6SpSzgWX2CVKcAhj8B+1S5UwhI
-         zejW1OmJe7jKpawYcWFIaw8fCAofM98zHBQGZcWv12vEUnitEAg6VvL2KX8OYqnvMbJq
-         y9KIPjw9NPHnv2rALyCn08EvRVvG8OFaGf52pm0jH4eviOQZY6aJ/cJcgnqFZpwU4+mZ
-         Iwxi8VgG4Btx2vScaZyhrLygPS+aSnHkvUsa6J/M6ZFvrDCFSiIDbe4mRQlmKDbYw76F
-         mS2GfRS81qZ0tjSmSqUrzYmeyiVOfAqhpZp65rsdEk/+Qoi5rGNe0/uNfOOV3HGnUEaF
-         plJQ==
-X-Gm-Message-State: AOAM531BcbkjdEXjoDUag/VqjmH9cRoiWhQgTeIVJURBZCUK6rOyvqnP
-        wUf2MR4l0IxMJdtG500RjQ+srgQYUcEtabk9WD0rTg==
-X-Google-Smtp-Source: ABdhPJwY+75DQZYXB+oeBio1GxAeI2nXtnrDaL/tLtJd3UFELFDSODnnKe8N0hbncOE9M1IDExKcWekXwrLqDw3e358=
-X-Received: by 2002:a05:6402:1768:: with SMTP id da8mr27012500edb.252.1639033663999;
- Wed, 08 Dec 2021 23:07:43 -0800 (PST)
+        id S233491AbhLIHLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 02:11:45 -0500
+Received: from muru.com ([72.249.23.125]:36310 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231572AbhLIHLo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 9 Dec 2021 02:11:44 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id E1C8B80A3;
+        Thu,  9 Dec 2021 07:08:51 +0000 (UTC)
+Date:   Thu, 9 Dec 2021 09:08:08 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     Yongqin Liu <yongqin.liu@linaro.org>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Gowtham Tammana <g-tammana@ti.com>,
+        Jyri Sarha <jsarha@ti.com>
+Subject: Re: [PATCH v2 1/1] ARM: dts: dra7: add entry for bb2d module
+Message-ID: <YbGrWGuIWdMNqNqU@atomide.com>
+References: <20210921071807.30978-1-narmstrong@baylibre.com>
+ <20210921071807.30978-2-narmstrong@baylibre.com>
+ <YV1UdSVOrZ3B9pq/@atomide.com>
+ <CAMSo37UN78k=WE0CwRyNNV3P9kau+JzVZ7mHOMMvh5Bn=+=jAQ@mail.gmail.com>
+ <78b51650-0e32-e81f-0191-2222580e7343@baylibre.com>
+ <CAMSo37X1BA1cYYxwjWBo_dhjpGYuYD2KK00+3ZWAwNeJq8UfxQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <20211118091955.3009900-1-alexander.stein@ew.tq-group.com> <20211118091955.3009900-2-alexander.stein@ew.tq-group.com>
-In-Reply-To: <20211118091955.3009900-2-alexander.stein@ew.tq-group.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Thu, 9 Dec 2021 12:37:33 +0530
-Message-ID: <CAMty3ZA7d9bSvmG4nGd9Lncw9wm6wiAq1pKSOFX03h_BU7JR-A@mail.gmail.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: display: bridge: sn65dsi83: Make
- enable GPIO optional
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMSo37X1BA1cYYxwjWBo_dhjpGYuYD2KK00+3ZWAwNeJq8UfxQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 18, 2021 at 2:50 PM Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
->
-> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->
-> The SN65DSI8x EN signal may be tied to VCC, or otherwise controlled by
-> means not available to the kernel. Make the GPIO optional.
+* Yongqin Liu <yongqin.liu@linaro.org> [211123 17:27]:
+> Hi, Neil
+> 
+> On Tue, 23 Nov 2021 at 20:47, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> >
+> > Hi,
+> >
+> > On 23/11/2021 13:17, Yongqin Liu wrote:
+> > > Hi, Neil, Tony
+> > >
+> > > # sorry for the confusion if you have received the mail which I sent
+> > > before, which is not in plain text mode.
+> > >
+> > > We have one out of tree change to enable the SGX544 gpu for the
+> > > beagleboard-X15 Android build,
+> > >     https://android-review.linaro.org/c/kernel/common/+/20521/11/arch/arm/boot/dts/dra7.dtsi
+> > >
+> > > and that seems to conflict with this BB2D enabling change,
+> > > Could you please help give some suggestions on how we should update our patch
+> > > to make it work with BB2D, without the revert of this change?
+> >
+> > This BB2D patch alters the target-module@59000000 while your SGX
+> > change alters the target-module@56000000.
+> >
+> > Please rebase your patches.
+> I am sorry if the "conflict" I used previously caused the confusion.
+> What I meant with the "conflict" word is the feature conflict, not the
+> patch merge conflict.
+> 
+> I could merge my SGX change with the BB2D change there, but then my
+> build could not boot successfully to the homescreen,
+> I need to revert the BB2D change to have it boot to the homescreen successfully.
+> 
+> Here are the serial console output in case you want to check:
+> https://pastebin.com/RY472b96  work with the BB2D change reverted
+> https://pastebin.com/aP97r7rJ    does not work with the BB2D change.
+> 
+> Not sure if you have any idea about the problem.
+> Please help give some suggestions on what I could try.
 
-Sorry, I couldn't understand what it means. Does it mean VCC enabled
-designs no need to enable GPIO? I've a design that do support both EN
-and VCC.
+Sounds like your out of tree SGX patches also tinker with the BB2D module.
 
-Jagan.
+To me it sounds like you can just tag the new target-module@59000000 added
+by this patch with status = "disabled" in your SGX patch until you have
+updated the driver code.
+
+I'm adding this patch into omap-for-v5.17/dt as for 2D acceleration there
+is the etnaviv driver in the mainline kernel that should be usable to
+some extent.
+
+Regards,
+
+Tony
+
+
