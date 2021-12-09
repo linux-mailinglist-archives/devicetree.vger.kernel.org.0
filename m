@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAEF146E2E1
-	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 08:05:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53E0146E2E9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Dec 2021 08:07:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231804AbhLIHIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 02:08:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42966 "EHLO
+        id S233470AbhLIHLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 02:11:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229919AbhLIHIh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 02:08:37 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E153AC061746
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 23:05:01 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id y12so15985949eda.12
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 23:05:01 -0800 (PST)
+        with ESMTP id S231572AbhLIHLS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 02:11:18 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71BC3C061746
+        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 23:07:45 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id z5so16385991edd.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 23:07:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=qVU5Loc6hksTp1952+Z9jZgUOebCMuiLV3i1M3R7u/E=;
-        b=doCHp4Kq4AF0PDScixlzQBJCNH1ws9hIs0ub9VwDZ7mR1+4izBKgBN6KpNRnn4ze/w
-         cn8RnXEueo697Yc6vv1gsXrMQ6UKLY+DG1D9BV3CtbF087/zxc6emw9SSMs1R2tYf7+1
-         oVZoeQ7t7MUfIBddhgEer2OLv2//p/ANqVB08=
+        bh=NW4Te5KT8RywZLAuo2ZfeBAFffXT3U9YKMlaGLK1mhI=;
+        b=Q88N14t0tBnLbGIq3e/NPlPtuFANXa6rJURj0gRGgPqfSaOB7tSEOPqld30GzxDv81
+         aBOxp2GhUcyBkaqNfZNn4E6drFm2t1GtRxN4Ms78Qz0eaoptMOVuJYloQZg0F+bI77ZF
+         N94SB4kUcC8W86uXarfk90mwFfhHVQIWH5CuU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=qVU5Loc6hksTp1952+Z9jZgUOebCMuiLV3i1M3R7u/E=;
-        b=ceqL/xFoRYHaSycWBgISwpQDdjAFBYWcz20Vfu+EKls5CoAIDNGN/xtBZyIpAZrV8B
-         oGcTL4XcxHJHNofS9K9OKuceQRI0sIJbVNWAJpkNJzpB1wyS+7x3N/HbX5ePvBD79N4R
-         wpNbdAESXhAucfs0Uy+9NoxrATRQUnp1D2fQDuVWu0dRuKW8fedzQlh1SCdT4awNxBXG
-         PQKMOJPOE8rY0ixRLxttQnfu3eD4NgR9luItJdZmvyg07btejyfQmqpTaICzS+dB6UnS
-         9lqct7qlLkiiX5rdP+To10bzeLtZ6rugUWHux2IXaxK9kZO6mA2QfjYcsMWPndx3UEZw
-         iVXg==
-X-Gm-Message-State: AOAM532qVtEqpxMxuttZvGAgH8fyoxAe0QhVf0fh33I1pbRGSGhaNWQB
-        Qar21KKuSJ1iyOroJEXRk2UTcRwfXXnz/XuNczmC+w==
-X-Google-Smtp-Source: ABdhPJwrjTA8RhjI1067mxUfhRrV0zOMawErdKNO7fuIBJSU8tX+H8HT66FUPa6ZclkaRuZTdTjz8FF3/mmGTR+dOw8=
-X-Received: by 2002:a17:907:1c82:: with SMTP id nb2mr12787011ejc.218.1639033500339;
- Wed, 08 Dec 2021 23:05:00 -0800 (PST)
+        bh=NW4Te5KT8RywZLAuo2ZfeBAFffXT3U9YKMlaGLK1mhI=;
+        b=lfNiewXp4OJubkvLo779V2tRMWV/oOmUJkPE3DmB6SpSzgWX2CVKcAhj8B+1S5UwhI
+         zejW1OmJe7jKpawYcWFIaw8fCAofM98zHBQGZcWv12vEUnitEAg6VvL2KX8OYqnvMbJq
+         y9KIPjw9NPHnv2rALyCn08EvRVvG8OFaGf52pm0jH4eviOQZY6aJ/cJcgnqFZpwU4+mZ
+         Iwxi8VgG4Btx2vScaZyhrLygPS+aSnHkvUsa6J/M6ZFvrDCFSiIDbe4mRQlmKDbYw76F
+         mS2GfRS81qZ0tjSmSqUrzYmeyiVOfAqhpZp65rsdEk/+Qoi5rGNe0/uNfOOV3HGnUEaF
+         plJQ==
+X-Gm-Message-State: AOAM531BcbkjdEXjoDUag/VqjmH9cRoiWhQgTeIVJURBZCUK6rOyvqnP
+        wUf2MR4l0IxMJdtG500RjQ+srgQYUcEtabk9WD0rTg==
+X-Google-Smtp-Source: ABdhPJwY+75DQZYXB+oeBio1GxAeI2nXtnrDaL/tLtJd3UFELFDSODnnKe8N0hbncOE9M1IDExKcWekXwrLqDw3e358=
+X-Received: by 2002:a05:6402:1768:: with SMTP id da8mr27012500edb.252.1639033663999;
+ Wed, 08 Dec 2021 23:07:43 -0800 (PST)
 MIME-Version: 1.0
-References: <20211118091955.3009900-1-alexander.stein@ew.tq-group.com> <20211118091955.3009900-5-alexander.stein@ew.tq-group.com>
-In-Reply-To: <20211118091955.3009900-5-alexander.stein@ew.tq-group.com>
+References: <20211118091955.3009900-1-alexander.stein@ew.tq-group.com> <20211118091955.3009900-2-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20211118091955.3009900-2-alexander.stein@ew.tq-group.com>
 From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Thu, 9 Dec 2021 12:34:49 +0530
-Message-ID: <CAMty3ZCQ+JDvojX0QiLEJLSA=J+kzi9kY1QE+dzf35fgO3T4aQ@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] drm/bridge: ti-sn65dsi83: Add vcc supply regulator support
+Date:   Thu, 9 Dec 2021 12:37:33 +0530
+Message-ID: <CAMty3ZA7d9bSvmG4nGd9Lncw9wm6wiAq1pKSOFX03h_BU7JR-A@mail.gmail.com>
+Subject: Re: [PATCH v4 1/4] dt-bindings: display: bridge: sn65dsi83: Make
+ enable GPIO optional
 To:     Alexander Stein <alexander.stein@ew.tq-group.com>
 Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
@@ -65,43 +66,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Thu, Nov 18, 2021 at 2:50 PM Alexander Stein
 <alexander.stein@ew.tq-group.com> wrote:
 >
-> VCC needs to be enabled before releasing the enable GPIO.
+> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 >
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  drivers/gpu/drm/bridge/ti-sn65dsi83.c | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->
-> diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> index 065610edc37a..54d18e82ed74 100644
-> --- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> +++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> @@ -33,6 +33,7 @@
->  #include <linux/of_device.h>
->  #include <linux/of_graph.h>
->  #include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
->
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_bridge.h>
-> @@ -143,6 +144,7 @@ struct sn65dsi83 {
->         struct mipi_dsi_device          *dsi;
->         struct drm_bridge               *panel_bridge;
->         struct gpio_desc                *enable_gpio;
-> +       struct regulator                *vcc;
->         int                             dsi_lanes;
->         bool                            lvds_dual_link;
->         bool                            lvds_dual_link_even_odd_swap;
-> @@ -337,6 +339,12 @@ static void sn65dsi83_atomic_enable(struct drm_bridge *bridge,
->         u16 val;
->         int ret;
->
-> +       ret = regulator_enable(ctx->vcc);
-> +       if (ret) {
-> +               dev_err(ctx->dev, "Failed to enable vcc\n");
-> +               return;
-> +       }
+> The SN65DSI8x EN signal may be tied to VCC, or otherwise controlled by
+> means not available to the kernel. Make the GPIO optional.
 
-Better check the vcc and enable it since it is an optional one.
+Sorry, I couldn't understand what it means. Does it mean VCC enabled
+designs no need to enable GPIO? I've a design that do support both EN
+and VCC.
 
 Jagan.
