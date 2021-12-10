@@ -2,95 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60C0D470258
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 15:03:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF6E3470256
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 15:03:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239350AbhLJOGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 09:06:42 -0500
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:35636 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239289AbhLJOGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 09:06:41 -0500
-Received: by mail-ot1-f49.google.com with SMTP id x43-20020a056830246b00b00570d09d34ebso9727720otr.2;
-        Fri, 10 Dec 2021 06:03:06 -0800 (PST)
+        id S238474AbhLJOGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 09:06:36 -0500
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:42999 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239260AbhLJOGg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 09:06:36 -0500
+Received: by mail-oi1-f175.google.com with SMTP id n66so13312778oia.9;
+        Fri, 10 Dec 2021 06:03:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=qFj8K3WFpcuS6IdcgSs6T2eGLRNYj7TpTJrIpVhra44=;
-        b=t9qrPmKVNBPUFFzRZnxuT5Ns2+7PeQSjQ/EqrycRjGN7V/ATokYbPwSt6ko2h/x5nv
-         a89zw00Quvvk2kZiM7FFzjnVmTatpSNxW+smlI/uE/gcyQyuFApgMoc4mfQGDz3yGkmP
-         VrYHL1Nlre5PbhccicRkDpmmZXxw6FqJGM6vECUufHVtkRqRrlxT059e8A6qa7tgQzzv
-         BsmM6bNYyxl5WoNq9udleW31JzfJ/TRclIERkr//MYqIKLytqOC/+NaSxKLorzuNRRIv
-         3YynmPb8TWM8sVufwVV1+hwOjcHvglsXZxuPkMWf9cy6DcTzDSs70dE+W9CtQdFoy7RA
-         zpmg==
-X-Gm-Message-State: AOAM531z4WjYrjN13qxIbWEjEEtU7Rt6gMriXGZDmWXY2bWoffb9ccu8
-        f1OobPnNfmzprmpcR8SCQg==
-X-Google-Smtp-Source: ABdhPJxGA9LwgjCGvSQm44Ms90YQCfR3aM+imwu+hZ7RRERaZQjBVA7pPuzIZen5MPrjMTwZuS9PoA==
-X-Received: by 2002:a9d:1b0f:: with SMTP id l15mr10945246otl.38.1639144983324;
-        Fri, 10 Dec 2021 06:03:03 -0800 (PST)
+        bh=yERcZG0LYZMGlslnxe6v1+iJXRzLWJCmIMN6Bxt3k18=;
+        b=dRbbVitx3qe69y1xQS5gBMRbdeMDWXEsHywwbjIvO9A/ZTlpyNGea5HWXjJTeSrJGc
+         wrl+ylBzH1J1116X0g+Mz49MO924q+6TdFmcm5AGzseMAJFrgiKW/0GbW3VAjUEht6uH
+         6nBrvncyV1mh6/90+sXNww+6GmzVd0dvcP/W0/0EFDz4bPu28/Mn714vAymcW5RjBcSk
+         rYaYI+nkFSOEfWYPtGOSyTHU+U4E7mHLpRRKozSs6GMc7IFi1Wkp1e8mWjKYF8Hd6ms8
+         GhuRFRmcLo73Zg4Wi8OQtrZEIimP4n1YXA5TvbghZw9f5Em0BYacdSy2hrX8z8I10StC
+         6nRA==
+X-Gm-Message-State: AOAM532JHWGzkrG7BUuE7hQmOHoHfXGw0IsWz/6VeE9hKlKpbAwr8C2T
+        lQztkGz1kf/NZVMtwmpUXw==
+X-Google-Smtp-Source: ABdhPJwza5Xh7FjwPl3bUzlD3XI4unHXX0Rpc+dEnENgFFOxb0gtCfEVpj1oA58lBte6xxH8FCh5RQ==
+X-Received: by 2002:aca:ab84:: with SMTP id u126mr12182021oie.41.1639144979805;
+        Fri, 10 Dec 2021 06:02:59 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id y192sm673672oie.21.2021.12.10.06.03.00
+        by smtp.gmail.com with ESMTPSA id a5sm532423otd.74.2021.12.10.06.02.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 06:03:00 -0800 (PST)
-Received: (nullmailer pid 1252262 invoked by uid 1000);
+        Fri, 10 Dec 2021 06:02:59 -0800 (PST)
+Received: (nullmailer pid 1252253 invoked by uid 1000);
         Fri, 10 Dec 2021 14:02:56 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Biao Huang <biao.huang@mediatek.com>
-Cc:     Jose Abreu <joabreu@synopsys.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        srv_heupstream@mediatek.com, macpaul.lin@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     linux-gpio@vger.kernel.org,
+        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        angelogioacchino.delregno@collabora.com,
-        linux-kernel@vger.kernel.org, dkirjanov@suse.de,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        davem@davemloft.net, Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org
-In-Reply-To: <20211210013129.811-7-biao.huang@mediatek.com>
-References: <20211210013129.811-1-biao.huang@mediatek.com> <20211210013129.811-7-biao.huang@mediatek.com>
-Subject: Re: [PATCH net-next v8 6/6] net: dt-bindings: dwmac: add support for mt8195
+        Linus Walleij <linus.walleij@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Tony Lindgren <tony@atomide.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+In-Reply-To: <20211210114222.26581-3-zajec5@gmail.com>
+References: <20211210114222.26581-1-zajec5@gmail.com> <20211210114222.26581-3-zajec5@gmail.com>
+Subject: Re: [PATCH V3 2/2] dt-bindings: pinctrl: brcm,ns-pinmux: describe pins, groups & functions
 Date:   Fri, 10 Dec 2021 08:02:56 -0600
-Message-Id: <1639144976.235371.1252261.nullmailer@robh.at.kernel.org>
+Message-Id: <1639144976.220651.1252252.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Dec 2021 09:31:29 +0800, Biao Huang wrote:
-> Add binding document for the ethernet on mt8195.
+On Fri, 10 Dec 2021 12:42:22 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
+> Use and extend generic pinctrl binding to include info about pins,
+> groups & functions.
+> 
+> Northstar platform pins have numbers assigned to them (they are needed
+> for mux programming) so add a custom "number" property for that.
+> 
+> Extend example to provide a complete binding of a single / random
+> function.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  .../bindings/net/mediatek-dwmac.yaml          | 86 +++++++++++++++----
->  1 file changed, 70 insertions(+), 16 deletions(-)
+>  .../bindings/pinctrl/brcm,ns-pinmux.yaml      | 38 ++++++++++++++++++-
+>  1 file changed, 37 insertions(+), 1 deletion(-)
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1566168
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml: 'additionalProperties' is a required property
+	hint: A schema without a "$ref" to another schema must define all properties and use "additionalProperties"
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+schemas/pinctrl/brcm,ns-pinmux.yaml: ignoring, error in schema: 
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
+Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.example.dt.yaml:0:0: /example-0/pin-controller@1800c1c0: failed to match any schema with compatible: ['brcm,bcm4708-pinmux']
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml'
+schemas/pinctrl/brcm,ns-pinmux.yaml: ignoring, error in schema: 
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-validate", line 170, in <module>
+    sg.check_trees(filename, testtree)
+  File "/usr/local/bin/dt-validate", line 119, in check_trees
+    self.check_subtree(dt, subtree, False, "/", "/", filename)
+  File "/usr/local/bin/dt-validate", line 110, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+  File "/usr/local/bin/dt-validate", line 110, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+  File "/usr/local/bin/dt-validate", line 105, in check_subtree
+    self.check_node(tree, subtree, disabled, nodename, fullname, filename)
+  File "/usr/local/bin/dt-validate", line 49, in check_node
+    errors = sorted(dtschema.DTValidator(schema).iter_errors(node), key=lambda e: e.linecol)
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 766, in iter_errors
+    for error in super().iter_errors(instance, _schema):
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 224, in iter_errors
+    for error in errors:
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/_validators.py", line 25, in patternProperties
+    yield from validator.descend(
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 240, in descend
+    for error in self.evolve(schema=schema).iter_errors(instance):
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 766, in iter_errors
+    for error in super().iter_errors(instance, _schema):
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 224, in iter_errors
+    for error in errors:
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/_validators.py", line 298, in ref
+    yield from validator.descend(instance, resolved)
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 240, in descend
+    for error in self.evolve(schema=schema).iter_errors(instance):
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 766, in iter_errors
+    for error in super().iter_errors(instance, _schema):
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 214, in iter_errors
+    scope = id_of(_schema)
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 90, in _id_of
+    return schema.get("$id", "")
+AttributeError: 'NoneType' object has no attribute 'get'
+make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1413: dt_binding_check] Error 2
 
+doc reference errors (make refcheckdocs):
 
-ethernet@1101c000: clock-names: ['axi', 'apb', 'mac_main', 'ptp_ref'] is too short
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+See https://patchwork.ozlabs.org/patch/1566458
 
-ethernet@1101c000: clocks: [[27, 34], [27, 37], [6, 154], [6, 155]] is too short
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-ethernet@1101c000: compatible: ['mediatek,mt2712-gmac'] does not contain items matching the given schema
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-ethernet@1101c000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+pip3 install dtschema --upgrade
 
-ethernet@1101c000: Unevaluated properties are not allowed ('compatible', 'reg', 'interrupts', 'interrupt-names', 'mac-address', 'clock-names', 'clocks', 'assigned-clocks', 'assigned-clock-parents', 'power-domains', 'snps,axi-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,txpbl', 'snps,rxpbl', 'clk_csr', 'phy-mode', 'phy-handle', 'snps,reset-gpio', 'mdio' were unexpected)
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+Please check and re-submit.
 
