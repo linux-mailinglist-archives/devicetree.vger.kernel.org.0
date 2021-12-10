@@ -2,109 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4325C47059A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 17:26:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2020A4705AE
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 17:29:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237845AbhLJQ3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 11:29:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55618 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233008AbhLJQ3z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 11:29:55 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18E59C061746;
-        Fri, 10 Dec 2021 08:26:20 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id bi37so19041185lfb.5;
-        Fri, 10 Dec 2021 08:26:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=dW//pQ14dQ1neJjGOt42iXxni2fzAcbg0k81zdgp73Y=;
-        b=eSud5R9akWmbTEfdL7A6s+3p+ryMAKG/sfOxkfpbVJzjJL/Aq/jHNZnbhoS3XSfuvE
-         D/3sm6183CkqZ/6H8uD9SKNH69dvZ1TpP6f8G0rLoVIPXawaWOVEJQwam5ewY+w1SSEF
-         PbW9ivtB54N5dcIIhJlgHJidL3akAAUjUANbReZoqHhIRHieZd9RmIljBrjhTe6Zbmzy
-         eSDvIy7//CPL5ti0q8L0unk6vuccgOwpxLfoci4DHqd7gyT60qk9EJKVoWUrtgv3Lq7B
-         ab+fUaU7EggaDrexZyAHd1BkHMSbRC1fHm4oUfUfmx/9S2S/2orp2pNBXBBoiGAbk7Xm
-         KmVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=dW//pQ14dQ1neJjGOt42iXxni2fzAcbg0k81zdgp73Y=;
-        b=Vr/+NQMrVeyYJoqlnudn2GQ37DZBhfoLoomIRMyoX8HF0h8+KwqBk3uNuacs0+WZQQ
-         S90DhrR3PLRhc7hojlgbHhfZ0vWpBwhUHHhdBiikK0SFHDoucnIzf3kFCi6WQKVIOTmw
-         IyykL6ZNXXgF/2vACmVGnyetnGKhYZbfqgKi0MkxVgY1B0dcMzyFuXzgYbkdguT+2CjR
-         d8l+LLpSRNIC0/BaBwq9jkWpj43I0JoHyQWFSbUhigV796AG1XJ/XdahbsngDZ5UVBqw
-         NGJPFcpdX3X/wPdvobGxTijANoHdhnw8ufbfKdQegaqit1kxW7O7XUqiQnw+uaOFRQrh
-         YyAg==
-X-Gm-Message-State: AOAM530RRAwDNECol1/yw0eSyWZUcCwp3fkNmhXuhdcPEGz0WAGd7cFm
-        uijuN52i2/H2hvpTYRDZsTVWb6MNBmU=
-X-Google-Smtp-Source: ABdhPJzT/Df5+k6cta9cAqQTJP6CH13OgF3rJyFR0ZVS+3uqQtuTTCy9/XPqtLZ668nUXnYhYM7ccw==
-X-Received: by 2002:a05:6512:1194:: with SMTP id g20mr12780423lfr.58.1639153578243;
-        Fri, 10 Dec 2021 08:26:18 -0800 (PST)
-Received: from [192.168.2.145] (94-29-46-111.dynamic.spd-mgts.ru. [94.29.46.111])
-        by smtp.googlemail.com with ESMTPSA id i18sm352419lfe.186.2021.12.10.08.26.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Dec 2021 08:26:17 -0800 (PST)
-Subject: Re: [PATCH v5 03/24] ARM: tegra: Add labels to tegra30.dtsi
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        David Heidelberg <david@ixit.cz>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Anton Bambura <jenneron@protonmail.com>,
-        Antoni Aloy Torrens <aaloytorrens@gmail.com>,
-        Nikola Milosavljevic <mnidza@outlook.com>,
-        Ion Agorria <ion@agorria.com>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        Ihor Didenko <tailormoon@rambler.ru>,
-        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
-        Jasper Korten <jja2000@gmail.com>,
-        Thomas Graichen <thomas.graichen@gmail.com>,
-        Stefan Eichenberger <stefan.eichenberger@toradex.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211208173609.4064-1-digetx@gmail.com>
- <20211208173609.4064-4-digetx@gmail.com> <YbNwpWpEW4EKHd2R@orome>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <5a684edd-aaa4-f96e-a72b-bb6d388e6b30@gmail.com>
-Date:   Fri, 10 Dec 2021 19:26:16 +0300
+        id S240234AbhLJQcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 11:32:51 -0500
+Received: from mga01.intel.com ([192.55.52.88]:57296 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240513AbhLJQcv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Dec 2021 11:32:51 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="262486162"
+X-IronPort-AV: E=Sophos;i="5.88,196,1635231600"; 
+   d="scan'208";a="262486162"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2021 08:29:16 -0800
+X-IronPort-AV: E=Sophos;i="5.88,196,1635231600"; 
+   d="scan'208";a="612974184"
+Received: from lclopezf-mobl.amr.corp.intel.com (HELO [10.209.164.172]) ([10.209.164.172])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2021 08:29:15 -0800
+Subject: Re: [PATCH 2/2] ASoC: convert Everest ES8156 binding to yaml
+To:     Shumin Chen <chenshumin86@sina.com>, perex@perex.cz,
+        tiwai@suse.com, lgirdwood@gmail.com, broonie@kernel.org
+Cc:     alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20211210151041.108751-1-chenshumin86@sina.com>
+ <20211210151041.108751-3-chenshumin86@sina.com>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <4c665ce2-1df3-5fc3-018a-e8eff49794a2@linux.intel.com>
+Date:   Fri, 10 Dec 2021 10:29:14 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ Firefox/78.0 Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <YbNwpWpEW4EKHd2R@orome>
+In-Reply-To: <20211210151041.108751-3-chenshumin86@sina.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-10.12.2021 18:22, Thierry Reding пишет:
-> On Wed, Dec 08, 2021 at 08:35:48PM +0300, Dmitry Osipenko wrote:
->> From: Michał Mirosław <mirq-linux@rere.qmqm.pl>
->>
->> Add phandle names for memory/I2C/SPI/USB/SDMMC controller nodes to allow
->> for cleaner device descriptions.
->>
->> Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
->> ---
->>  arch/arm/boot/dts/tegra30.dtsi | 36 +++++++++++++++++-----------------
->>  1 file changed, 18 insertions(+), 18 deletions(-)
+
+
+On 12/10/21 9:10 AM, Shumin Chen wrote:
+> This patch converts Everest Semiconductor ES8156 low power audio
+> CODEC binding to DT schema.
+
+this doesn't really convert anything but *adds* properties for ES8156.
+
+You're probably missing the device tree folks, added Rob + device tree
+mailing list in CC:
+
 > 
-> We typically only add those when they are really needed. These are
-> technically harmless because without a reference, DTC won't actually
-> create a phandle property, but dangling labels are the kind of thing
-> that some janitor may at some point want to remove with some scripts,
-> so I'm hesitant to apply this because it'll likely cause churn in the
-> future.
-
-The plan is to add labels for T20 and switch all DTs to use those
-phandles consistently, but that's the plan for the next kernel release.
-
-Those labels are practically useful when you porting something from old
-downstream kernel because it uses those human-readable names instead of
-the addresses.
+> Signed-off-by: Shumin Chen <chenshumin86@sina.com>
+> ---
+>  .../bindings/sound/everest,es8156.yaml        | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/everest,es8156.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/everest,es8156.yaml b/Documentation/devicetree/bindings/sound/everest,es8156.yaml
+> new file mode 100644
+> index 000000000000..695d542013c2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/everest,es8156.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/everest,es8156.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Everest ES8156 audio CODEC
+> +
+> +maintainers:
+> +  - Shumin Chen <chenshumin86@sina.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: everest,es8156
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: clock for master clock (MCLK)
+> +
+> +  clock-names:
+> +    items:
+> +      - const: mclk
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#sound-dai-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c0 {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      es8156: codec@8 {
+> +        compatible = "everest,es8156";
+> +        reg = <0x11>;
+> +        clocks = <&clks 10>;
+> +        clock-names = "mclk";
+> +        #sound-dai-cells = <0>;
+> +      };
+> +    };
+> 
