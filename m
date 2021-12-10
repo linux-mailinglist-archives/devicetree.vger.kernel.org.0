@@ -2,236 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F43D470182
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 14:24:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FABD4701FE
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 14:41:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241776AbhLJN1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 08:27:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40608 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241752AbhLJN1s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 08:27:48 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33BEDC061746;
-        Fri, 10 Dec 2021 05:24:13 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: adalessandro)
-        with ESMTPSA id 6F7461F4769E
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1639142652; bh=jn3Q5hMiZ4bqia1dYJ2+YWGsPl5k7hiO7khIbp05KaE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=X3DuS+Japqya2XMbSjwuTpnb07hziy+GdUyoOBHobGDwt8FDqMTs2aYO5Voq9Bx3t
-         HQeABXQpwZGadegJsFVOxfoisjWSLWeYgqCcXVWzMCeQh5lTZ0tyuUfcatjEEteRbQ
-         2+zbcpMkLIxQL9Tx2Abke9d23ORqAtyA3ncXxtl1UYneOih+sL1n+hvfm44YgpD4CN
-         9VHV2YR2AHUdNi8IHgyXCSKxOmcF1GhYvWEMnKDSYmC+f4f+z6fuRXgGtQ/0bUJIeR
-         9FCzSFrrYS4sgPmYuTURGVEL3ir+GM5+GeGt3bKleBoBs1+qFwOQ8pHBNuPa9Y/yOW
-         N0f1zmq46edPw==
-From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     aisheng.dong@nxp.com, ariel.dalessandro@collabora.com,
-        festevam@gmail.com, ioana.ciornei@nxp.com,
-        jagan@amarulasolutions.com, kernel@pengutronix.de, krzk@kernel.org,
-        linux-imx@nxp.com, matt@traverse.com.au, matteo.lisi@engicam.com,
-        meenakshi.aggarwal@nxp.com, michael@amarulasolutions.com,
-        nathan@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
-        shawnguo@kernel.org, tharvey@gateworks.com, robh@kernel.org
-Subject: [PATCH v4 5/5] arm: dts: imx6ulz-bsh-smm-m2: Add BSH SMM-M2 IMX6ULZ SystemMaster
-Date:   Fri, 10 Dec 2021 10:23:19 -0300
-Message-Id: <20211210132319.61196-6-ariel.dalessandro@collabora.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211210132319.61196-1-ariel.dalessandro@collabora.com>
-References: <20211210132319.61196-1-ariel.dalessandro@collabora.com>
+        id S229997AbhLJNpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 08:45:30 -0500
+Received: from mail-mw2nam10on2069.outbound.protection.outlook.com ([40.107.94.69]:4065
+        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229984AbhLJNpa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Dec 2021 08:45:30 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IqOlyh5Z26TmaHIszcVNwjj/dBUsENMIEKLaQNDLOV3jJ57O16rwDOPF01sg2nfXkBxRZ4zxj2ObLPtu2fs9RJwlClu6Y6lfuDfCkzqhDiG5nxuOGX71n6om+7etJJ6kNBhD2N0NLzo14TBsEZ8M2mA5z4uTtslUMWpgcrk12cvSSNNk8DEUYCBVzp/eKlueQecsvtv2a+BxWccP54W39QL4bia0LOxmX8WqR+BoO5sjDSPsrJ8k1R5bqJWZxrxdR4y1Vs5F0kuHoSVR9Kj/CRI75zhRUmxSLSR+UnaMo8wzEyd+YrNnHKwEKG+9BtoUMoKRUEi4VOYfTtcjH1CXlg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dJvz0YdImIEJbQfStYPkPDHAg6FB0GayaOcjt1QYk/E=;
+ b=Oeo+DW2LdgWBXVanT0u+vg84EPZ1L4DjzjsJ6snV9Y7H70xGYWRtHW2aj2gHMKiVqTU6A6P/T+1qB8XaPl1INExGIjFmC5vwInEwZWo32elbTlIyvlPTWGrz2kkf6SNRmRNHUU9TlpqeGHJ3GTXBmxe5iyvGPe484GPFy+qH3zxvdFooSSdvlQbgQ4DAeljhNrzCdbulUV/RvqYC0aolAfvgIfuw/cNn+ybQXR1W7+djbLVR8aUDJQTnoWM/ra4yMFPgTpxcPhO2lFL6NS3zJbBYUXuvu74q4HlWcX7vg9w2XrpxisgyUISn3SKb7PMIXh23b46dA5G/y3HNnFgO9Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dJvz0YdImIEJbQfStYPkPDHAg6FB0GayaOcjt1QYk/E=;
+ b=LFt5mRGYElBS2krBeKcajgy43c5s1G7dBufgAMNUHqAMifgm4fx5iS8HBaQgc+s9pBtEZ3e7PZ8zTF5lOkpP5jvAUPm1vICiqDO25OnF8b2v7ctEOpNn9UGEj0gFU7wG/VVkR/c5TZgsKgi+NAsonrZdBVroUQ+JOfRzdTuY440=
+Received: from DM6PR02MB6635.namprd02.prod.outlook.com (2603:10b6:5:221::18)
+ by DM6PR02MB6985.namprd02.prod.outlook.com (2603:10b6:5:25d::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.20; Fri, 10 Dec
+ 2021 13:41:53 +0000
+Received: from DM6PR02MB6635.namprd02.prod.outlook.com
+ ([fe80::34ae:48da:1b03:553a]) by DM6PR02MB6635.namprd02.prod.outlook.com
+ ([fe80::34ae:48da:1b03:553a%4]) with mapi id 15.20.4778.015; Fri, 10 Dec 2021
+ 13:41:53 +0000
+From:   Shubhrajyoti Datta <shubhraj@xilinx.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        Raviteja Narayanam <rna@xlnx.xilinx.com>
+Subject: RE: [PATCH 1/2] dt-bindings: serial: pl011: Add 'arm,xlnx-uart'
+Thread-Topic: [PATCH 1/2] dt-bindings: serial: pl011: Add 'arm,xlnx-uart'
+Thread-Index: AQHX2tuZuKAQ26hOP0aW5QzRukRvFawbJZYAgBClDzA=
+Date:   Fri, 10 Dec 2021 13:41:53 +0000
+Message-ID: <DM6PR02MB663589B3489C53A34DC25A31AA719@DM6PR02MB6635.namprd02.prod.outlook.com>
+References: <cover.1637061057.git.shubhrajyoti.datta@xilinx.com>
+ <e1d6913bfe5ce023d7f6ea106d0359142063e694.1637061057.git.shubhrajyoti.datta@xilinx.com>
+ <YaVPYiGmDsqY+1at@robh.at.kernel.org>
+In-Reply-To: <YaVPYiGmDsqY+1at@robh.at.kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=xilinx.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 75d0c635-a9d6-455b-ac90-08d9bbe2d384
+x-ms-traffictypediagnostic: DM6PR02MB6985:EE_
+x-microsoft-antispam-prvs: <DM6PR02MB6985C1DC8F245C9231FFC129AA719@DM6PR02MB6985.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3276;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: EM9xwjiZcNN3gYlx/UQQ09tCKwCoSxAZ6RpJQj13JP41rEJvC/CzM58UKObpOEypTPLlwJwqCUjJQzHmOfOC7avvSWQhPSo4/uQ9+K0/mWWnOSD5gAqeWirCYxTTF2WdaSDzhqmsd6r11dCkBg10yG1J+Pj+KgxVuzK8KLf4XX4HxCddZ6+ARodXe5/+GrCdWjtrYikzjPI+BIZJm81fw0zJHJ9jKY7Uk4Xyx8DaMRai01YMuyX4AvmkCPHCgGexLnu2l7TSHCgPyavQs/gB3aq+gzhO426pPkmYQ/phcEpRcmnADC15Q5xTWc2RPDKBaH0753y/PDS7WPuMeWueQ3P7A8KAJYUwEJ+OWlDrQJXtkrpaeWsH1jl/XOuOnwlFgvog7kVbS/Bc2e0BAboiY2LE2LxYnDBiBzkvmKVHEgubmwwfts0ck+oTEZKiD77VJptF2mndqbjoEGqZs9xEQa3qqeDlDefpLXlIMA/cijLiuRdVqnt9m6f0UHuGnI/J8c6RC4R/cUYzejL+BfoGkGUiirVnIen7w/XO+ZGS9jDTEJYoXGScrNz36WDWlUOy0EesqfuFxg1ddxnfU3fwiBRKrx2ZbZ1SBMKTLY68zdHb6L+l07nppk9L7NF4zZUlnfZzr15RbmF29W7tFqxJjkdgSbYgnRK/hH9YzuIOt5bA/4/5afPKhvWYPDuGSC2Rvicy4sGPH5Qx+CcbDCy/NQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR02MB6635.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(55016003)(5660300002)(2906002)(122000001)(86362001)(71200400001)(8676002)(54906003)(4326008)(316002)(6916009)(8936002)(52536014)(6506007)(107886003)(53546011)(33656002)(76116006)(38070700005)(26005)(38100700002)(9686003)(66946007)(186003)(66446008)(64756008)(66556008)(66476007)(7696005)(508600001)(83380400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?82iDYRglQBmhxsjRjPT13KMvBwFUIOj6jxnqTUykT+pdgTFzbqMuvvw2pyoM?=
+ =?us-ascii?Q?jw8almqij8xtvkI/OvIZqTp5QdXVdQ3nea71oaiINlO7hT4CDTva0+cdWv37?=
+ =?us-ascii?Q?JxaBi0lpZXYNxOyt1WaYRqHIxrvJfwe+4xrfm44zOku2KripSCPOh/693yGU?=
+ =?us-ascii?Q?zRzPgZZ1kaIOKWghupem4V+Hq8vFQ0WcF3mQzxvEBk3NXRmJzxf4aTuKeIe3?=
+ =?us-ascii?Q?fufYtra0ALWrJdvFhPk4QvNtWH5JONR9hNLNm7luGxe3bMdJXDoeZ72bgrfb?=
+ =?us-ascii?Q?zn7gRq6YoijRHiwg/YlyBTHtDLRcRnq9hZmhyXLS3ZC/aVbcY2btBPXEozaQ?=
+ =?us-ascii?Q?Z/VE7DcEU1WIGi2ta7VPBnfhtSofjVM/yftWkh4NnsR1RgKj1Ms9PLsMgjMX?=
+ =?us-ascii?Q?86CRYwR4IVrGCP8ZFMoXy4og7gKWWfHMGrQHEA+zngRjC7FQvCKemTrig1P1?=
+ =?us-ascii?Q?g4XCfiJW1ughDL0YfLVrfBKLn314rD0/X5XjvveRTN4o622MWugsf1Za6abL?=
+ =?us-ascii?Q?w1Cpl9UYLEAiaJHDyLPMDrdCTy37cheu1j3vEWa4kbYJparE8zA3V+xfNg0R?=
+ =?us-ascii?Q?ctw5j6wLqBnPvszZd4bAkE/9wNob82SA7djJn4gCJi3Gum95qTepWIykdBGn?=
+ =?us-ascii?Q?brzZ1Xt+bS78xmRaJl7+DIvVpTOxt5P/FAUPgoHbb6mH7xZwmuu05TI/Zuc+?=
+ =?us-ascii?Q?rjUprKAeqiteyzMAaLh6ktrarLd7F6yCOJHYnqAq5AjDGvA6g4hwOYfTpjor?=
+ =?us-ascii?Q?0qBoVQFeOSRV5fJWYwIctVzhedyyzogfDgQ0N/OCo/gOQ/FP2sNollnyjVoS?=
+ =?us-ascii?Q?noGAbCWSQT5/c+IRczOvKpGnANQd8j4Lh5g7gVVRw7AZ3K8+zWTLUi+fl1Im?=
+ =?us-ascii?Q?qr6RuTVO59UUDNlJjXnWMR+xOMDAZMV91BqM5HCCQjXTGD+6aoac/QXr4vcK?=
+ =?us-ascii?Q?HBgpcvRs04QWEt5J5rNFEb0rB8tokrlRhRhakl9WJDIAACovsfmzQa2UYQmI?=
+ =?us-ascii?Q?unLBuRlLOBFFVG1sRwi5j7YCNOg3BvsNbI+yvDW4F3FAVXPxgtOFkmV4iT50?=
+ =?us-ascii?Q?VL8Jnb8vE9jlEbqDrRc9R7uLCLjJa3qA96874dYtQhb01N4socBLTDhJoJ+N?=
+ =?us-ascii?Q?MaS2a6S6tgVxrReeDxoTRiLrVW3t3sVVVSZeON/0eAMfpu00yWMfFVkGt2ja?=
+ =?us-ascii?Q?zsKgco1THWb59TjPdPE3kBCt6m3MbaUxocxqXRKHbzu/hQ4DmPwuXo1hkskJ?=
+ =?us-ascii?Q?7ifBLosx0V/oyiOSt0zM0u8EnnhrxYr5Sgw7SIeLR0hO1KgW4XWkP/jNosm0?=
+ =?us-ascii?Q?Almi++ye0+d36gGdDbUkVJHNxzEWpji1HhRwBCmHG3FcQsZ3XVd6L/JWx0qj?=
+ =?us-ascii?Q?OOTqROhSeEvDpE40SOasWtC5xmAXrlyi/kMm30y+0Hys1szXBDPVovQLuSAQ?=
+ =?us-ascii?Q?LpJGwP+VmBcXxf1KrCQvGCqu0gxRGyO4Y376uBIG9qENFk5OREGkD4+doHue?=
+ =?us-ascii?Q?oKOuoKDyhBARVRPWksjgInOlRUo3SehRQbJwPR70S8Q7QVeiy5XLfohoLJg+?=
+ =?us-ascii?Q?v7Zc4joDwQVGr5SnCFRb8F3WgUkrYRfwIJcglx9t047wIE56YvNpYNKnF9om?=
+ =?us-ascii?Q?2y2kaNqqO6/vWvV0wyZfl70=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR02MB6635.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75d0c635-a9d6-455b-ac90-08d9bbe2d384
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Dec 2021 13:41:53.3106
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: haxnXivcMTfe32cWmkuYCEbbIfh1dNJwMFHfFD6HPskpLKC8yynqZXFIJoRRwBb6gQxW43cPwdWINl/F9eeong==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB6985
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Trimarchi <michael@amarulasolutions.com>
 
-Add DTS of BSH SMM-M2 SystemMaster.
 
-This version comes with:
-- 128 MiB DDR3 RAM
-- 256 MiB Nand
-- wifi
-- bluetooth
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Tuesday, November 30, 2021 3:39 AM
+> To: Shubhrajyoti Datta <shubhraj@xilinx.com>
+> Cc: linux-serial@vger.kernel.org; devicetree@vger.kernel.org;
+> gregkh@linuxfoundation.org; Raviteja Narayanam <rna@xlnx.xilinx.com>
+> Subject: Re: [PATCH 1/2] dt-bindings: serial: pl011: Add 'arm,xlnx-uart'
+>=20
+> On Tue, Nov 16, 2021 at 04:47:45PM +0530, Shubhrajyoti Datta wrote:
+> > Add support for Uart used in Xilinx Versal SOCs as a platform device.
+>=20
+> No. Why would we want to do that?
+Apologies did not understand that.=20
 
-Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
----
- arch/arm/boot/dts/Makefile               |   3 +-
- arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts | 146 +++++++++++++++++++++++
- 2 files changed, 148 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts
+>=20
+> >
+> > Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> > Signed-off-by: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
+> > ---
+> >  Documentation/devicetree/bindings/serial/pl011.yaml | 10 +++++++---
+> >  1 file changed, 7 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/serial/pl011.yaml
+> > b/Documentation/devicetree/bindings/serial/pl011.yaml
+> > index 5ea00f8a283d..6c73923dd15e 100644
+> > --- a/Documentation/devicetree/bindings/serial/pl011.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/pl011.yaml
+> > @@ -24,9 +24,13 @@ select:
+> >
+> >  properties:
+> >    compatible:
+> > -    items:
+> > -      - const: arm,pl011
+> > -      - const: arm,primecell
+> > +    oneOf:
+> > +      - items:
+> > +          - const: arm,pl011
+> > +          - const: arm,primecell
+> > +      - items:
+> > +          - const: arm,pl011
+> > +          - const: arm,xlnx-uart # xilinx uart as platform device
+>=20
+> 'arm,primecell' means the block has ID registers. Are you saying this
+> implementation doesn't?
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 0de64f237cd8..e6d4ad497985 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -693,7 +693,8 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
- 	imx6ull-phytec-segin-ff-rdk-nand.dtb \
- 	imx6ull-phytec-segin-ff-rdk-emmc.dtb \
- 	imx6ull-phytec-segin-lc-rdk-nand.dtb \
--	imx6ulz-14x14-evk.dtb
-+	imx6ulz-14x14-evk.dtb \
-+	imx6ulz-bsh-smm-m2.dts
- dtb-$(CONFIG_SOC_IMX7D) += \
- 	imx7d-cl-som-imx7.dtb \
- 	imx7d-colibri-aster.dtb \
-diff --git a/arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts b/arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts
-new file mode 100644
-index 000000000000..59bcfc9a6b10
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts
-@@ -0,0 +1,146 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2021 BSH Hausgeraete GmbH
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/input/input.h>
-+#include "imx6ulz.dtsi"
-+
-+/ {
-+	model = "BSH SMM M2";
-+	compatible = "bsh,imx6ulz-bsh-smm-m2", "fsl,imx6ull", "fsl,imx6ulz";
-+
-+	chosen {
-+		stdout-path = &uart4;
-+	};
-+
-+	usdhc2_pwrseq: usdhc2-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio2 21 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&gpmi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpmi_nand>;
-+	nand-on-flash-bbt;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm4330-bt";
-+		max-speed = <3000000>;
-+		shutdown-gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
-+		device-wakeup-gpios = <&gpio2 17 GPIO_ACTIVE_HIGH>;
-+		host-wakeup-gpios = <&gpio2 13 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart4>;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	dr_mode = "peripheral";
-+	srp-disable;
-+	hnp-disable;
-+	adp-disable;
-+	status = "okay";
-+};
-+
-+&usbphy1 {
-+	fsl,tx-d-cal = <106>;
-+};
-+
-+&usdhc2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wlan>;
-+	bus-width = <4>;
-+	no-1-8-v;
-+	non-removable;
-+	cap-power-off-card;
-+	keep-power-in-suspend;
-+	cap-sdio-irq;
-+	mmc-pwrseq = <&usdhc2_pwrseq>;
-+	status = "okay";
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <18 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
-+&wdog1 {
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_gpmi_nand: gpmi-nand {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_CLE__RAWNAND_CLE		0xb0b1
-+			MX6UL_PAD_NAND_ALE__RAWNAND_ALE		0xb0b1
-+			MX6UL_PAD_NAND_WP_B__RAWNAND_WP_B	0xb0b1
-+			MX6UL_PAD_NAND_READY_B__RAWNAND_READY_B	0xb000
-+			MX6UL_PAD_NAND_CE0_B__RAWNAND_CE0_B	0xb0b1
-+			MX6UL_PAD_NAND_RE_B__RAWNAND_RE_B	0xb0b1
-+			MX6UL_PAD_NAND_WE_B__RAWNAND_WE_B	0xb0b1
-+			MX6UL_PAD_NAND_DATA00__RAWNAND_DATA00	0xb0b1
-+			MX6UL_PAD_NAND_DATA01__RAWNAND_DATA01	0xb0b1
-+			MX6UL_PAD_NAND_DATA02__RAWNAND_DATA02	0xb0b1
-+			MX6UL_PAD_NAND_DATA03__RAWNAND_DATA03	0xb0b1
-+			MX6UL_PAD_NAND_DATA04__RAWNAND_DATA04	0xb0b1
-+			MX6UL_PAD_NAND_DATA05__RAWNAND_DATA05	0xb0b1
-+			MX6UL_PAD_NAND_DATA06__RAWNAND_DATA06	0xb0b1
-+			MX6UL_PAD_NAND_DATA07__RAWNAND_DATA07	0xb0b1
-+		>;
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART3_TX_DATA__UART3_DCE_TX	0x1b0b1
-+			MX6UL_PAD_UART3_RX_DATA__UART3_DCE_RX	0x1b099
-+			MX6UL_PAD_UART3_RTS_B__UART3_DCE_RTS	0x1b0b1
-+			MX6UL_PAD_UART3_CTS_B__UART3_DCE_CTS	0x1b099
-+			MX6UL_PAD_GPIO1_IO01__GPIO1_IO01	0x79		/* BT_REG_ON */
-+			MX6UL_PAD_SD1_CLK__GPIO2_IO17		0x100b1		/* BT_DEV_WAKE out */
-+			MX6UL_PAD_ENET2_TX_EN__GPIO2_IO13	0x1b0b0		/* BT_HOST_WAKE in */
-+		>;
-+	};
-+
-+	pinctrl_uart4: uart4grp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART4_TX_DATA__UART4_DCE_TX	0x1b0b1
-+			MX6UL_PAD_UART4_RX_DATA__UART4_DCE_RX	0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_wlan: wlangrp {
-+		fsl,pins = <
-+			MX6UL_PAD_CSI_HSYNC__USDHC2_CMD		0x17059
-+			MX6UL_PAD_CSI_VSYNC__USDHC2_CLK		0x10059
-+			MX6UL_PAD_CSI_DATA00__USDHC2_DATA0	0x17059
-+			MX6UL_PAD_CSI_DATA01__USDHC2_DATA1	0x17059
-+			MX6UL_PAD_CSI_DATA02__USDHC2_DATA2	0x17059
-+			MX6UL_PAD_CSI_DATA03__USDHC2_DATA3	0x17059
-+			MX6UL_PAD_SD1_DATA3__GPIO2_IO21		0x79		/* WL_REG_ON */
-+			MX6UL_PAD_UART2_CTS_B__GPIO1_IO22	0x100b1		/* WL_DEV_WAKE - WiFi_GPIO_4 - WiFi FW UART */
-+			MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0x1b0b1		/* WL_HOST_WAKE - WIFI_GPIO_0 - OOB IRQ */
-+			MX6UL_PAD_ENET1_RX_EN__OSC32K_32K_OUT	0x4001b031	/* OSC 32Khz wifi clk in */
-+		>;
-+	};
-+};
--- 
-2.30.2
-
+The ID registers do not have any Xilinx specific identifiers.
+However there are differences  like 32-bit access.
+>=20
+> >
+> >    reg:
+> >      maxItems: 1
+> > --
+> > 2.25.1
+> >
+> >
