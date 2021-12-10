@@ -2,67 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FDC1470260
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 15:03:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D3BB470262
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 15:04:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235694AbhLJOHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S241957AbhLJOHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 10 Dec 2021 09:07:03 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:39783 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238527AbhLJOHC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 09:07:02 -0500
-Received: by mail-ot1-f44.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso9696272ots.6;
-        Fri, 10 Dec 2021 06:03:27 -0800 (PST)
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:44748 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239304AbhLJOHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 09:07:03 -0500
+Received: by mail-oi1-f169.google.com with SMTP id be32so13296089oib.11;
+        Fri, 10 Dec 2021 06:03:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=rVRrTBb9q/NCoqfDDtJ8WKORuC9JyQfXU3LAsb0zmuQ=;
-        b=i++gI6AaUWjZXe6AB3rI4w2ILQfbS1GtUWNKvB+amKE7lh5lsreWmCeOsKjaS44NSm
-         KQ08kRRMqra478Luq1uliqRanfAL7LrAsmOu7bwauEQErt2zWwj42DamCXGIzAj+Acvk
-         u6i3Azl6pvlXNB02XayRxzxHw0a8ttEYZWrDz32MJkVSiuSFImxF1sPiQRv0rHmaRoBn
-         19SWiqGfc8eipi7BSCYk4eaKYWesn9pDzR//as+zPoMA8//0DCid4W/W1haZZwYRi+XP
-         3ow2TnQAoB0YIWNMQ+7NBsbA3loSJniasa9JFZgsTR30oRmEYnv2FUJbtilx0OhO5pgF
-         +T3g==
-X-Gm-Message-State: AOAM53287GxJ16MrhMFqHIuWdpK1w5eDCsz8cTiLZnI+DaSRI/3w92jo
-        qUNsn8aWEs6HIyIvyKP/Fg==
-X-Google-Smtp-Source: ABdhPJzN2rZdC0uEutsphHM9PYfxPzgBhWCxfsRbj5UYe++lcRt03vRrmfIyfu/AMzS+uRmmQ2tx5g==
-X-Received: by 2002:a9d:4b09:: with SMTP id q9mr11055852otf.140.1639144978004;
-        Fri, 10 Dec 2021 06:02:58 -0800 (PST)
+        bh=cmSW+URoSJmxzdlkdp7KmlXjXD8YhbaUa3uiUwCEFPQ=;
+        b=0ht3f9gCPLh+hkhb1+M87KY2NzhAd9GnDHtOdf9Q0rCbWjuPYTnOa+aaCw8cMwwyp9
+         XvYYqzK0LhRwPc9FpzgbOP4hWzMo23UyDRNEyquvYKFjIosAY1HwTObY4cN4K1Kthz+A
+         RJs+wWnvM10GOyEIPh9mkR+G8TCqkvfkRRBlxDQ1l3BkuXw466+JXKf64pgZrvM2cjZa
+         96G5cXcjp6ok7ZK3ZJcCzXggUywS8vzAxSKuyroKx+vOdzJEdtQmeUjE0q0g5OkjH5mT
+         OcYg8J75f/yBjOhuOCLQXdfT18pXqiKgaIB3LVtvvqkcOEc3rlqYx4v4nxxp+9dNUq93
+         801g==
+X-Gm-Message-State: AOAM53092grA7BAkqAUPcfcmluWD3O0Jfc+I36bsWua+Ji0Q3KshzziJ
+        BimbiuUERHuUWO/j5SUa+Uj55pZ6iA==
+X-Google-Smtp-Source: ABdhPJwvuCzn8GNvs/o/qd74p21TOX8Jbd/TVv7jRdtB9heZ54fYoxEFk1kpIpUHBJdFORqkVelUSA==
+X-Received: by 2002:aca:5983:: with SMTP id n125mr12248280oib.153.1639144987822;
+        Fri, 10 Dec 2021 06:03:07 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j20sm517383ota.76.2021.12.10.06.02.56
+        by smtp.gmail.com with ESMTPSA id h3sm527714ooe.13.2021.12.10.06.03.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 06:02:57 -0800 (PST)
-Received: (nullmailer pid 1252238 invoked by uid 1000);
+        Fri, 10 Dec 2021 06:03:06 -0800 (PST)
+Received: (nullmailer pid 1252251 invoked by uid 1000);
         Fri, 10 Dec 2021 14:02:56 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Caleb Connolly <caleb@connolly.tech>
-Cc:     Andy Gross <agross@kernel.org>, Joel Selvaraj <jo@jsfamily.in>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20211210022639.2779173-2-caleb@connolly.tech>
-References: <20211210022639.2779173-1-caleb@connolly.tech> <20211210022639.2779173-2-caleb@connolly.tech>
-Subject: Re: [PATCH v4 1/6] dt-bindings: input: add Qualcomm SPMI haptics driver
+To:     JosephCHANG <josright123@gmail.com>
+Cc:     Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, joseph_chang@davicom.com.tw,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>
+In-Reply-To: <20211210084021.13993-2-josright123@gmail.com>
+References: <20211210084021.13993-1-josright123@gmail.com> <20211210084021.13993-2-josright123@gmail.com>
+Subject: Re: [PATCH v3, 1/2] yaml: Add dm9051 SPI network yaml file
 Date:   Fri, 10 Dec 2021 08:02:56 -0600
-Message-Id: <1639144976.203271.1252236.nullmailer@robh.at.kernel.org>
+Message-Id: <1639144976.213447.1252247.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Dec 2021 02:26:52 +0000, Caleb Connolly wrote:
-> Add bindings for qcom PMIC SPMI haptics driver.
+On Fri, 10 Dec 2021 16:40:20 +0800, JosephCHANG wrote:
+> For support davicom dm9051 device tree configure
 > 
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+> Signed-off-by: JosephCHANG <josright123@gmail.com>
 > ---
->  .../bindings/input/qcom,spmi-haptics.yaml     | 123 ++++++++++++++++++
->  include/dt-bindings/input/qcom,spmi-haptics.h |  32 +++++
->  2 files changed, 155 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml
->  create mode 100644 include/dt-bindings/input/qcom,spmi-haptics.h
+>  .../bindings/net/davicom,dm9051.yaml          | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/davicom,dm9051.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -71,16 +66,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml: properties:qcom,wave-play-rate-us: '$ref' should not be valid under {'const': '$ref'}
-	hint: Standard unit suffix properties don't need a type $ref
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml: ignoring, error in schema: properties: qcom,wave-play-rate-us
-warning: no schema found in file: ./Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml
-Documentation/devicetree/bindings/input/qcom,spmi-haptics.example.dt.yaml:0:0: /example-0/spmi/haptics@c000: failed to match any schema with compatible: ['qcom,pmi8998-haptics']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/davicom,dm9051.example.dt.yaml: dm9051@0: $nodename:0: 'dm9051@0' does not match '^ethernet(@.*)?$'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/davicom,dm9051.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1566175
+See https://patchwork.ozlabs.org/patch/1566354
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
