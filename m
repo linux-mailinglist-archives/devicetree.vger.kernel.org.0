@@ -2,206 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D6F147000C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 12:35:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6748470024
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 12:36:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240585AbhLJLiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 06:38:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43932 "EHLO
+        id S238325AbhLJLk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 06:40:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237724AbhLJLiv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 06:38:51 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929B4C061746
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 03:35:16 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id y13so28576359edd.13
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 03:35:16 -0800 (PST)
+        with ESMTP id S240554AbhLJLk1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 06:40:27 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7939CC0617A1;
+        Fri, 10 Dec 2021 03:36:52 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id d10so17519981lfg.6;
+        Fri, 10 Dec 2021 03:36:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=sHUQnknpRoRpINaobvY2dor6jsSdIZSUoZ8Zm4a2q70=;
-        b=LadmZCjaZOlcssnT0OFEV4tiYNuniS1zjMbnun6AR2XupZ5FHTEh+sbVXdnATwo0XX
-         YHHOr3n+69Mbvv55eH7BOrXueoWN6mAmF+irOtwoIcFiUxXPMMJ40dSK6aIuzvMicgtP
-         5CWdUJmIpooWMNySNL11fA+tq2liADfyiULGsbwe0bJrEolmvlpI0f0cp44u8bt8aHtn
-         bEjoLPfT0VlGidN+XNd7gA61tRT71HFaxa1z6MZ6FrHVpyaiTvyqg1yk3lxDuRrHGrXo
-         PaYIetNfeTrrxatKOVumscoyVV5hPXXgue56dK0D0neUfogL/gkLb2xDxjGzQnjRL4T0
-         7h1Q==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=q0EX2c887v+fPFHULPYX+g0HtB41ahOOyTy81jfN7fA=;
+        b=QFq3dfEuaC/ZrR9cXElNTzTKqK6fX2+DXYCfLxD1Y9fFygejwQK+MmoAwbRE8J+uOT
+         zeS3bSIDwqVavq/FS2H67pebzo4N8j2Px8nUCvx40EmGl6amObvoLXNf7hpJcT333n15
+         SmzGx3weO44DWQDIbq4dDvkCKdFM/o4i2eHU5HCEXQ1Bh1hZOshjF+cK20j8Xv7I83O8
+         QB9QqLTEy/K3BJcRSgKLRqvQ1bGFrMkYvftxQDZubsW6H0izMf+/mbjN+hAthkKWi+Tg
+         fN9x3VjsjO1iDNnQwfbZ5YpGdNwYCqzrxIAYT6ga13p5VY3z61Tq+mmDXiPWI6chDC1B
+         9LLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=sHUQnknpRoRpINaobvY2dor6jsSdIZSUoZ8Zm4a2q70=;
-        b=Z33bYMUP78XB/hySeB+Vc+PfFe4dkhyuHkN8IT7q68nd9LHjNqQ1nTLkP+eUAv1ZcM
-         urYu7+fFuIvx7r6CzhDYA4C2x17p13L2DlLtbZxUr/XoS6Z/H1KQ1eW6iTiUNT5PQGaX
-         C3+WEcZys1X1rFaKZzz9e2vcgZK51tbK5FBljDgwbKOvuPgn7HuYjnqAXQGYBZd1Spgn
-         /4KzpFjUCJBjh5tLqVsMBDPduwHTBdC7l89B8mWlh/ayY7Gjb7TDM6rU2z8VziJmgh87
-         Md3sRS8+CKfqvAgg2l0b8fMojGMDxtMc3HM9jdWIjkCdejy1OGzJnkOFwW6bdX9HalZG
-         4mMQ==
-X-Gm-Message-State: AOAM533H306KMRCGDbv76au6kRBwl2B/aqmmjcqQJqSRebZukvGag+nZ
-        RJcHHrYdHYlCu4wCqFyzTYQddg==
-X-Google-Smtp-Source: ABdhPJzsYrBDIoY58eWULptlz5iAZzxR1uzAUkqovIWOgsfT1CCTkFzLpJgHyonknttyFtOH9BeMBA==
-X-Received: by 2002:a17:907:d0b:: with SMTP id gn11mr22731241ejc.355.1639136114749;
-        Fri, 10 Dec 2021 03:35:14 -0800 (PST)
-Received: from myrica (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
-        by smtp.gmail.com with ESMTPSA id g9sm1373553edb.52.2021.12.10.03.35.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 03:35:14 -0800 (PST)
-Date:   Fri, 10 Dec 2021 11:34:52 +0000
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jay Chen <jkchen@linux.alibaba.com>,
-        Leo Yan <leo.yan@linaro.org>, uchida.jun@socionext.com
-Subject: Re: [PATCH 1/2] dt-bindings: Add Arm SMMUv3 PMCG binding
-Message-ID: <YbM7XNz9V/zbQuyF@myrica>
-References: <20211116113536.69758-1-jean-philippe@linaro.org>
- <20211116113536.69758-2-jean-philippe@linaro.org>
- <CAL_JsqJ6v6HKA3ifQoeVh+2iABL7fBPCS0ntTXb0BA8LO0vi8g@mail.gmail.com>
- <2f17b812-367c-da75-a2a6-0c16a93cf4a3@arm.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2f17b812-367c-da75-a2a6-0c16a93cf4a3@arm.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=q0EX2c887v+fPFHULPYX+g0HtB41ahOOyTy81jfN7fA=;
+        b=6DzYEqJqacPZiFXXJblHr4YeF4g3QoldEBI96/TRkU4l5ddRiG2kxaGTLFjoMcbZfd
+         Qgylu4gd16RRBhsDt2ROD4jOWw6QkSPxd7F8agvVORZO/q62e1xqxgciuN+FMkSr1OyL
+         Xq7cYH2JWmxjLJ/h4Zvp6yxNbajdfcOPlt+RNx28gOox22DQFsdVaBjfbCgV6PCrmZ9D
+         Lr2wvIt15jdZE9xe57dztB5QVKLF0joUGGusqTWKd30rDa9oDDH11lolx9mgrRYVQlY+
+         Nas+YH0CNfFI/yphRbIQdTJavJDcyQ2MP8ma7MPhv06Ywn5l2b7Qa5NOeGa0+rJ3toIF
+         0IHg==
+X-Gm-Message-State: AOAM532KT177y7cxf7crplMXOKK9QQf1KhjoDpOvHT0kw3V2Y27TUS/3
+        rSEfpP+KqKR3OZjxsupHNpA=
+X-Google-Smtp-Source: ABdhPJw5t4mb+80yXTBjzMnq1ZoZI2s9GRnKP6bfIY+UCxPG1pIehe8j8CjKjA9WLpHwTnfsNtCSdA==
+X-Received: by 2002:a05:6512:685:: with SMTP id t5mr12006434lfe.84.1639136210663;
+        Fri, 10 Dec 2021 03:36:50 -0800 (PST)
+Received: from otyshchenko.router ([212.22.223.21])
+        by smtp.gmail.com with ESMTPSA id i8sm285074lfl.287.2021.12.10.03.36.50
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 10 Dec 2021 03:36:50 -0800 (PST)
+From:   Oleksandr Tyshchenko <olekstysh@gmail.com>
+To:     xen-devel@lists.xenproject.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Cc:     Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Julien Grall <julien@xen.org>
+Subject: [PATCH V4 6/6] dt-bindings: xen: Clarify "reg" purpose
+Date:   Fri, 10 Dec 2021 13:36:41 +0200
+Message-Id: <1639136201-27530-1-git-send-email-olekstysh@gmail.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <35ee3534-9e24-5a11-0bf1-a5dd0b640186@gmail.com>
+References: <35ee3534-9e24-5a11-0bf1-a5dd0b640186@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 18, 2021 at 03:50:54PM +0000, Robin Murphy wrote:
-> > > +  An SMMUv3 may have several Performance Monitor Counter Group (PMCG).
-> > > +  They are standalone performance monitoring units that support both
-> > > +  architected and IMPLEMENTATION DEFINED event counters.
-> > 
-> > Humm, I don't know that I agree they are standalone. They could be I
-> > guess, but looking at the MMU-600 spec the PMCG looks like it's just a
-> > subset of registers in a larger block. This seems similar to MPAM
-> > (which I'm working on a binding for) where it's just a register map
-> > and interrupts, but every other possible resource is unspecified by
-> > the architecture.
-> 
-> They're "standalone" in the sense that they don't have to be part of an
-> SMMU, they could be part of a PCIe root complex or other SoC device that
-> couples to an SMMU (e.g. anything that can speak AMBA DTI, in the case of
-> our SMMU implementations).
+From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
 
-The "standalone" word came from the SMMUv3 spec (IHI0070D.b 10.1):
+Xen on Arm has gained new support recently to calculate and report
+extended regions (unused address space) safe to use for external
+mappings. These regions are reported via "reg" property under
+"hypervisor" node in the guest device-tree. As region 0 is reserved
+for grant table space (always present), the indexes for extended
+regions are 1...N.
 
-  The Performance Monitor Counter Groups are standalone monitoring
-  facilities and, as such, can be implemented in separate components that
-  are all associated with (but not necessarily part of) an SMMU.
+No device-tree bindings update is needed (except clarifying the text)
+as guest infers the presence of extended regions from the number
+of regions in "reg" property.
 
-> 
-> In fact our SMMU TBUs are pretty much separate devices themselves, they just
-> *only* speak DTI, so access to their registers is proxied through the TCU
-> programming interface.
-> 
-> > The simplest change from this would be just specifying that the PMCG
-> > is child node(s) of whatever it is part of. The extreme would be this
-> > is all part of the SMMU binding (i.e. reg entry X is PMCG registers,
-> > interrupts entry Y is pmu irq).
-> 
-> Being a child of its associated device doesn't seem too bad semantically,
-> however how would we describe a PMCG as a child of a PCIe node when its
-> "reg" property still exists in the parent address space and not PCI
-> config/memory space like any of its siblings? Also in practical terms,
-> consuming that binding in Linux and getting the things to probe when it may
-> want to be independent of whether we even understand the parent node at all
-> could be... unpleasant.
+Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+---
+Changes V2 -> V3:
+   - new patch
 
-So there are multiple options for what "the PMCG is part of".
+Changes V3 -> V4:
+   - add Stefano's R-b and Rob's A-b
+   - remove sentence about ACPI for "reg" and "interrupts"
+     properties
 
-(a) The SMMU: the spec guarantees that a PMCG is associated with an SMMU.
+Changes V4 -> V4.1
+   - bring the mentioning of ACPI back which, as was pointed out by Julien,
+     fits in the context:
+     https://lore.kernel.org/xen-devel/9602b019-6c20-cdc7-23f3-9e4f8fd720f6@xen.org/T/#t
+     so technically restore V3 state
+   - remove Stefano's R-b and Rob's A-b as I am not 100% sure they are
+     happy with that
+---
+ Documentation/devicetree/bindings/arm/xen.txt | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-(b) The MMIO region: may be within the SMMU (as with MMU-600), outside of
-    it (as does another implementation, two 64k pages after the SMMU base)
-    or, theoretically, within a separate device (e.g. PCIe controller).
+diff --git a/Documentation/devicetree/bindings/arm/xen.txt b/Documentation/devicetree/bindings/arm/xen.txt
+index db5c56d..156fe10b 100644
+--- a/Documentation/devicetree/bindings/arm/xen.txt
++++ b/Documentation/devicetree/bindings/arm/xen.txt
+@@ -7,10 +7,14 @@ the following properties:
+ 	compatible = "xen,xen-<version>", "xen,xen";
+   where <version> is the version of the Xen ABI of the platform.
+ 
+-- reg: specifies the base physical address and size of a region in
+-  memory where the grant table should be mapped to, using an
+-  HYPERVISOR_memory_op hypercall. The memory region is large enough to map
+-  the whole grant table (it is larger or equal to gnttab_max_grant_frames()).
++- reg: specifies the base physical address and size of the regions in memory
++  where the special resources should be mapped to, using an HYPERVISOR_memory_op
++  hypercall.
++  Region 0 is reserved for mapping grant table, it must be always present.
++  The memory region is large enough to map the whole grant table (it is larger
++  or equal to gnttab_max_grant_frames()).
++  Regions 1...N are extended regions (unused address space) for mapping foreign
++  GFNs and grants, they might be absent if there is nothing to expose.
+   This property is unnecessary when booting Dom0 using ACPI.
+ 
+ - interrupts: the interrupt used by Xen to inject event notifications.
+-- 
+2.7.4
 
-(c) The thing being measured: does not necessarily match the MMIO region.
-    For example a TBU attached to the PCIe RC but the PMCG MMIO is within
-    the SMMU region.
-
-(d) None: the PMCG can be probed and driven separately from the SMMU and
-    other components, as demonstrated by Linux.
-
-Which one is normally picked to decide where to insert a devicetree node?
-I guess (b)?  I picked (d) so far as the easiest choice.
-
-(a) is also a reasonable choice, being based on the spec, but it might be
-confusing to have a PMCG node inside the SMMU node when the MMIO region is
-external, possibly belonging to another device. For the same reason we
-could discard (c).
-
-(b) feels more natural, although it's not clear what to do when the PMCG
-MMIO region is external or adjacent to the SMMU region. Does the node go
-inside the SMMU node or one level up?
-
-Thanks,
-Jean
-
-> 
-> Robin.
-> 
-> > > +
-> > > +properties:
-> > > +  $nodename:
-> > > +    pattern: "^pmu@[0-9a-f]*"
-> > 
-> > s/*/+/
-> > 
-> > Need at least 1 digit.
-> > 
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - items:
-> > > +        - enum:
-> > > +          - hisilicon,smmu-v3-pmcg-hip08
-> > > +        - const: arm,smmu-v3-pmcg
-> > > +      - const: arm,smmu-v3-pmcg
-> > > +
-> > > +  reg:
-> > > +    description: |
-> > > +      Base addresses of the PMCG registers. Either a single address for Page 0
-> > > +      or an additional address for Page 1, where some registers can be
-> > > +      relocated with SMMU_PMCG_CFGR.RELOC_CTRS.
-> > > +    minItems: 1
-> > > +    maxItems: 2
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  msi-parent: true
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |+
-> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +
-> > > +    pmu@2b420000 {
-> > > +            compatible = "arm,smmu-v3-pmcg";
-> > > +            reg = <0 0x2b420000 0 0x1000>,
-> > > +                  <0 0x2b430000 0 0x1000>;
-> > > +            interrupts = <GIC_SPI 80 IRQ_TYPE_EDGE_RISING>;
-> > > +            msi-parent = <&its 0xff0000>;
-> > > +    };
-> > > +
-> > > +    pmu@2b440000 {
-> > > +            compatible = "arm,smmu-v3-pmcg";
-> > > +            reg = <0 0x2b440000 0 0x1000>,
-> > > +                  <0 0x2b450000 0 0x1000>;
-> > > +            interrupts = <GIC_SPI 81 IRQ_TYPE_EDGE_RISING>;
-> > > +            msi-parent = <&its 0xff0000>;
-> > > +    };
-> > > --
-> > > 2.33.1
-> > > 
