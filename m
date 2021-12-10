@@ -2,143 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12530470527
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 17:02:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7EEC470547
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 17:06:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238646AbhLJQGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 11:06:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49974 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238225AbhLJQGC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 11:06:02 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF419C061746;
-        Fri, 10 Dec 2021 08:02:26 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id v11so15655395wrw.10;
-        Fri, 10 Dec 2021 08:02:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=BjXW6fm0PtmxnDuZ5f1C1GLdB8wT64MP92DyErb42Vo=;
-        b=AHPTEPEkmkZBW/y95HtVx67utNlKCNQCCPEUZCPZIUcAJ82n5XUTzyGyBjzwmYr3QQ
-         sUhZOtD6fDyEkTGeFAV8SPSDgT4ySzhiaEsEmoWUYkLhJFd4NCkYm5Re3HDrKDxYPetZ
-         NMlDdZsdm6mCDZi+zsefMQRbNa9r1JVd9F2jxJc8K4hJmItHAKteefYfwpuIzEKPT90g
-         +tMyi41dNSxpFKlm639o1JJmJ0F7UFy+jrFnk1+G1w73Arzyc2bfahRyg74C/vIGulSP
-         teIkhAftKUUszZ3k0mROLjCh+qr+7QtRMkUg1u1OhlFB/2ArDEUHHoj1ISnkLABHIc3f
-         9opA==
+        id S235374AbhLJQKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 11:10:08 -0500
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:39934 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233882AbhLJQKI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 11:10:08 -0500
+Received: by mail-oi1-f173.google.com with SMTP id bf8so13836899oib.6;
+        Fri, 10 Dec 2021 08:06:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=BjXW6fm0PtmxnDuZ5f1C1GLdB8wT64MP92DyErb42Vo=;
-        b=EuMeCRfxaiVquoomUvUB5efI5W6qPcLf5okuHoaBSiUMFvYO3JrO1YQzcinLDFtdsZ
-         Q1v/bJMtJSUjXF6h38bcLcmteJ6Kj5Dr7laaU+/QalXnmY4fWJdvR6T9FbnP1NbooCSf
-         7U8bd6KFv9q/qX20zS7d8HokvwlB6DyjcADpMNmnzIsgSymOoDFWeKuudlxMxJdm5u+C
-         cwoyx9mYG+YcWh+hzYD3HcY0kiVbaZp6PD8XuZbc9cWdHtqbtY6FOGvTe2kZnZqEtHQM
-         xuB1caomVSlphBgLXs1LQP9SXbKClVUTmu9+AxtO8eSXiQFGOK/1bvumscpm0e92pVTt
-         FQJA==
-X-Gm-Message-State: AOAM531BiM6jkxOmrTyi1b7NtyEc2xlsUGHhU0z2zJGnPEDbQoL/QVe9
-        MKtkwpY6UJYn/gtjU4iz/w8=
-X-Google-Smtp-Source: ABdhPJx7s5fHaG4DshNEy4UGX63HmLh4wX5XY4VXIO2k6ftnMSJq6QFDpn6k4ktnPk7ZDmb+3Ziayw==
-X-Received: by 2002:adf:e387:: with SMTP id e7mr14598425wrm.412.1639152144848;
-        Fri, 10 Dec 2021 08:02:24 -0800 (PST)
-Received: from localhost ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id k13sm2871809wri.6.2021.12.10.08.02.23
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dAnAsqrDSDhfamLtx23MuUTnyYgeJjRMBuZI8nDebcE=;
+        b=EfFLolP8n/ORGBb8ds194ShPW4gx9UC3FDscuN8qBYvsLvaNV70Tk0MVo9sR6lK7Ji
+         iPQBp8Saj2LLQvH8ETeblH/TOKopj33WJZ4veu8pfZMO8nwfsNvzyatB/Stcwwg+9glC
+         YkX2D0HJmepOkzHNCUSB26hFEFQgKNCWnrRQIflm2cmYqf6u/Tu/txLPdyqRPOiUzR6z
+         m6zD1ZzswjD7npApwNxrpG9/pBnHb5pe7hHd1hNyhwQ42arQbTN54ctAs+L46DyA3jY9
+         iJg7AuQlZovFGPe3RPJ+SLOuSrYlvdgS5AweBeAFKVKdvjiX5yqKuGFglWXx/GP2MM/f
+         GaEg==
+X-Gm-Message-State: AOAM532N/L/arwwhQAAZUbn9F/nMGbb5jlwJ9FBy+UFOksnlSZlKNe/4
+        eayTbCuXgscZnevf+gMHTg==
+X-Google-Smtp-Source: ABdhPJx/D0lhYrSL3dsY/Ab91GTKDE/ZDm7LRsWk8edmx6lOlOHlR5AxG7FnFFO4BED6RrRQRRESIg==
+X-Received: by 2002:a05:6808:180c:: with SMTP id bh12mr13589719oib.152.1639152392520;
+        Fri, 10 Dec 2021 08:06:32 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id k8sm599409oon.2.2021.12.10.08.06.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 08:02:23 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Prathamesh Shete <pshete@nvidia.com>,
-        linux-gpio@vger.kernel.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v4 6/6] arm64: tegra: Enable gpio-keys on Jetson AGX Orin Developer Kit
-Date:   Fri, 10 Dec 2021 17:02:06 +0100
-Message-Id: <20211210160206.872998-6-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211210160206.872998-1-thierry.reding@gmail.com>
-References: <20211210160206.872998-1-thierry.reding@gmail.com>
+        Fri, 10 Dec 2021 08:06:30 -0800 (PST)
+Received: (nullmailer pid 1438117 invoked by uid 1000);
+        Fri, 10 Dec 2021 16:06:29 -0000
+Date:   Fri, 10 Dec 2021 10:06:29 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     JosephCHANG <josright123@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, joseph_chang@davicom.com.tw,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3, 1/2] yaml: Add dm9051 SPI network yaml file
+Message-ID: <YbN7BU7bOKGbvFMK@robh.at.kernel.org>
+References: <20211210084021.13993-1-josright123@gmail.com>
+ <20211210084021.13993-2-josright123@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211210084021.13993-2-josright123@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On Fri, Dec 10, 2021 at 04:40:20PM +0800, JosephCHANG wrote:
 
-Expose power, force-recovery and sleep buttons via a gpio-keys device so
-that userspace can receive events from them.
+Follow the subject style used for the directory. 'dt-bindings: net: ...'
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- .../nvidia/tegra234-p3737-0000+p3701-0000.dts | 31 +++++++++++++++++++
- arch/arm64/boot/dts/nvidia/tegra234.dtsi      |  1 +
- 2 files changed, 32 insertions(+)
+> For support davicom dm9051 device tree configure
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-index e3bb874869df..699eaa66824d 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-@@ -1,6 +1,9 @@
- // SPDX-License-Identifier: GPL-2.0
- /dts-v1/;
- 
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/input/gpio-keys.h>
-+
- #include "tegra234-p3701-0000.dtsi"
- #include "tegra234-p3737-0000.dtsi"
- 
-@@ -18,6 +21,34 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		status = "okay";
-+
-+		force-recovery {
-+			label = "Force Recovery";
-+			gpios = <&gpio TEGRA234_MAIN_GPIO(G, 0) GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_KEY>;
-+			linux,code = <BTN_1>;
-+		};
-+
-+		power-key {
-+			label = "Power";
-+			gpios = <&gpio_aon TEGRA234_AON_GPIO(EE, 4) GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_KEY>;
-+			linux,code = <KEY_POWER>;
-+			wakeup-event-action = <EV_ACT_ASSERTED>;
-+			wakeup-source;
-+		};
-+
-+		suspend {
-+			label = "Suspend";
-+			gpios = <&gpio TEGRA234_MAIN_GPIO(G, 2) GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_KEY>;
-+			linux,code = <KEY_SLEEP>;
-+		};
-+	};
-+
- 	tcu {
- 		status = "okay";
- 	};
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index f715671f0333..f8061b452046 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- 
- #include <dt-bindings/clock/tegra234-clock.h>
-+#include <dt-bindings/gpio/tegra234-gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/mailbox/tegra186-hsp.h>
- #include <dt-bindings/reset/tegra234-reset.h>
--- 
-2.34.1
+Complete sentences please.
 
+> 
+> Signed-off-by: JosephCHANG <josright123@gmail.com>
+
+space?                 ^
+
+> ---
+>  .../bindings/net/davicom,dm9051.yaml          | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/davicom,dm9051.yaml b/Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+> new file mode 100644
+> index 000000000000..4c2dd0362f7a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/davicom,dm9051.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Davicom DM9051 SPI Ethernet Controller
+> +
+> +maintainers:
+> +  - Joseph CHANG <josright123@gmail.com>
+> +
+> +description: |
+> +  The DM9051 is a fully integrated and cost-effective low pin count single
+> +  chip Fast Ethernet controller with a Serial Peripheral Interface (SPI).
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: davicom,dm9051
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 45000000
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  local-mac-address: true
+> +
+> +  mac-address: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - spi-max-frequency
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Raspberry Pi platform
+> +  - |
+> +    /* for Raspberry Pi with pin control stuff for GPIO irq */
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        dm9051@0 {
+
+ethernet@...
+
+> +            compatible = "davicom,dm9051";
+> +            reg = <0>; /* spi chip select */
+> +            local-mac-address = [00 00 00 00 00 00];
+> +            pinctrl-names = "default";
+> +            pinctrl-0 = <&eth_int_pins>;
+> +            interrupt-parent = <&gpio>;
+> +            interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
+> +            spi-max-frequency = <31200000>;
+> +        };
+> +    };
+> +    gpio {
+
+This part is not relevant to the binding example.
+
+> +        eth_int_pins {
+> +            brcm,pins = <26>;
+> +            brcm,function = <0>; /* in */
+> +            brcm,pull = <0>; /* none */
+> +        };
+> +    };
+> -- 
+> 2.20.1
+> 
+> 
