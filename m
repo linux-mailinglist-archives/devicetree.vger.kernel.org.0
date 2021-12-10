@@ -2,109 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84E8B470E38
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 23:50:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45502470EA9
+	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 00:26:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237686AbhLJWyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 17:54:10 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:36508 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235394AbhLJWyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 17:54:10 -0500
-Received: by mail-ot1-f46.google.com with SMTP id w6-20020a9d77c6000000b0055e804fa524so11133133otl.3;
-        Fri, 10 Dec 2021 14:50:34 -0800 (PST)
+        id S243160AbhLJXab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 18:30:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41968 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236262AbhLJXab (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 18:30:31 -0500
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95D27C0617A1
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 15:26:55 -0800 (PST)
+Received: by mail-ot1-x32a.google.com with SMTP id w6-20020a9d77c6000000b0055e804fa524so11208207otl.3
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 15:26:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=79vI1NIk+laQzOU68I94bqeIMQr1o28LL9pW3tDSdD4=;
+        b=SvbhddfMgD9HanlXe7y3VkxWUVq7MPOmoEK6rMTj3gpg5ZPygaMy1bZnCSqqk9fwNV
+         R5tWPX4S+hGl2NczNk18G23tGxQ5hmPPP4zG4TF9Y1SeV/hM4ZMfnCOCQDRSznPgZdiB
+         sduFqNGxjYoSJE4QvopPMTHdakMIBR6F0AK08NAaD25alhHjIQ3MFy1tiqDjbW6pOD/9
+         rb4qlr4yiEe4NJCS5OxlfPAvetkswtaeKjskVh1Wb60m3YI8Xi3EyOGwzL/QLyXWfzA5
+         RgTrd0fToQNQ3yCZeR/P9CkkjCDcYDHtY5z2puw3lBz4/oSRTXaXNw1Wv9HrUrkdzkPY
+         BMjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=Zv2SJEG7dxMT51xWLzKdjvzE+4GfXvYq6wZ2VXGzv9A=;
-        b=uo7fcPL/+Zasn78MQZZt5zjyGkN2y0vcj4IWg7KsPEpnidUVbmJegRh60roARgq/D7
-         XWKWYcX97C3Njq37S+QpaYA3ZBc3V42k9NjazLeHwM1uCMltFmekfdWqC0JTK2XNeElR
-         b8JGnb6zj41e0H5wzrDL/gXloeSybxPXr7vkj5Gv5S9bSydD2kveQbOIiFslDnUidEBZ
-         0GnMrQ23OhCrvzghenlHh2566a5j7rap4Qt9/YXIHDRkRImD7qYBU6BEGFeutE+RTkfY
-         pzu9VqniVSiaBg+jPHIrBXaEd133a4z9Zm61P+Tp7zX8cRZ86qOM1UxZ3Z2FBYisEOdd
-         0Klw==
-X-Gm-Message-State: AOAM530nLYpmri04JyCl+vbRqBURpdsXbl4jxNXtm1PCmGPooflgWFu+
-        r17PgeTe5vOKxtkHf1UbRhmTuzGsUQ==
-X-Google-Smtp-Source: ABdhPJx0YTX39U6qxWVSVn8sYrAZymigT2bu+Oc2vgoThaoj7OWiZr9KcK5fFUw1763UCfk6BZQNsw==
-X-Received: by 2002:a05:6830:1d68:: with SMTP id l8mr13679456oti.21.1639176634128;
-        Fri, 10 Dec 2021 14:50:34 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j20sm998396oig.52.2021.12.10.14.50.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 14:50:33 -0800 (PST)
-Received: (nullmailer pid 2077795 invoked by uid 1000);
-        Fri, 10 Dec 2021 22:50:32 -0000
-Date:   Fri, 10 Dec 2021 16:50:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [GIT PULL] Devicetree fixes for v5.16, take 2
-Message-ID: <YbPZuCq+xIc6tqaZ@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=79vI1NIk+laQzOU68I94bqeIMQr1o28LL9pW3tDSdD4=;
+        b=B4pGSR0XDkrI4XtocrTQO5hX0xITIZucm8y3tWAZSFE0we2/nicBlm8oQZk1EKcqZy
+         HiX5/bwQO8mhKT7rk8dW4LkfXKq9Kubyg00eK5V1Frj7PoTNIb/h1kN3MgRdizLHQ/1I
+         sYgGrP0ydMfmsbkhpBaN4MzTUPDEDEM6B7Z0ObVhqMSO/jaB9yKelXhlgo8dqhDezo+f
+         azmjM4R5MWrmbohJ8Ugi2TPHDB/AcnRofcbrsTmzwbtTG0yRfU7/j85PpK0cX7atczgn
+         xFu2QOazMdlj7BygGO9ipCFBJJH4iGgH14pi7s4cv6uqDd1ejPWkjxxbdJFsww3eNR3i
+         tyww==
+X-Gm-Message-State: AOAM533CL2HWQg0j86OXjieVAMuTwV0kWyP4FNpwEpeT503YQIPkWr14
+        EtnnwsVuNoYF/ioTDHFn4UjHMYNArv5CFoGdTteuqg==
+X-Google-Smtp-Source: ABdhPJw7MPDjy5jN2QA10VHjXtV8hz9J1nqSiEB+sbB/AhvHsDNJnBlR0cW9mjd0RDRt14jx/+z60PNhHFeD7FolqBg=
+X-Received: by 2002:a9d:ed6:: with SMTP id 80mr13479805otj.35.1639178814350;
+ Fri, 10 Dec 2021 15:26:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20211210114222.26581-1-zajec5@gmail.com> <20211210114222.26581-2-zajec5@gmail.com>
+In-Reply-To: <20211210114222.26581-2-zajec5@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sat, 11 Dec 2021 00:26:43 +0100
+Message-ID: <CACRpkdbsb63EN5hmGws1eLaARg2VRXXhz+5AM_x7OhaS_ceGow@mail.gmail.com>
+Subject: Re: [PATCH V3 1/2] dt-bindings: pinctrl: support specifying pins,
+ groups & functions
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+On Fri, Dec 10, 2021 at 12:42 PM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com>=
+ wrote:
 
-Please pull a few more DT fixes.
+> This binding change is meant to introduce a generic way of describing
+> pinctrl blocks details. Every pinmux block is expected to have:
+> 1. Named pins
+> 2. Named groups containing one or more pins
+> 3. Named functions referencing one or more groups
+>
+> It doesn't describe how hw should be programmed. That remains binding
+> and driver specific.
 
-Rob
+So what this does is to take a large chunk of data that we known to be
+associated with the compatible string (names of pins, groups and functions,
+etc) and put it into the device tree instead of the alternative, which is
+what most drivers do, and that is to compile in the data into the
+operating system and just look it up by using a compatible
+string.
 
+The DT maintainers have already indicated that this is not desirable
+and I don't see it getting merged before it has a Reviewed-by
+tag from one of the DT binding maintainers.
 
-The following changes since commit fa55b7dcdc43c1aa1ba12bca9d2dd4318c2a0dbf:
+I think we need to know what the USP (unique selling point) is?
 
-  Linux 5.16-rc1 (2021-11-14 13:56:52 -0800)
+Would it be something like not having to duplicate work across some
+boot loaders and operating systems? (Well they all need to parse this
+type of description but that can be put into a library.)
 
-are available in the Git repository at:
+Or something else?
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.16-2
-
-for you to fetch changes up to 75e895343d5a2fcbdf4cb3d31ab7492bd65925f0:
-
-  Revert "kbuild: Enable DT schema checks for %.dtb targets" (2021-12-08 15:41:19 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for v5.16-rc, take 2:
-
-- Revert schema checks on %.dtb targets. This was problematic for some
-  external build tools.
-
-- A few DT binding example fixes
-
-- Add back dropped 'enet-phy-lane-no-swap' Ethernet PHY property
-
-- Drop erroneous if/then schema in nxp,imx7-mipi-csi2
-
-- Add a quirk to fix some interrupt controllers use of 'interrupt-map'
-
-----------------------------------------------------------------
-Alexander Stein (1):
-      dt-bindings: net: Reintroduce PHY no lane swap binding
-
-Geert Uytterhoeven (2):
-      dt-bindings: iio: adc: exynos-adc: Fix node name in example
-      dt-bindings: input: gpio-keys: Fix interrupts in example
-
-Marc Zyngier (1):
-      of/irq: Add a quirk for controllers with their own definition of interrupt-map
-
-Rob Herring (2):
-      dt-bindings: media: nxp,imx7-mipi-csi2: Drop bad if/then schema
-      Revert "kbuild: Enable DT schema checks for %.dtb targets"
-
-Thierry Reding (1):
-      dt-bindings: bq25980: Fixup the example
-
- .../bindings/iio/adc/samsung,exynos-adc.yaml       |  2 +-
- .../devicetree/bindings/input/gpio-keys.yaml       |  2 +-
- .../bindings/media/nxp,imx7-mipi-csi2.yaml         | 14 ++---------
- .../devicetree/bindings/net/ethernet-phy.yaml      |  8 +++++++
- .../devicetree/bindings/power/supply/bq25980.yaml  |  2 +-
- Makefile                                           | 10 ++++----
- drivers/of/irq.c                                   | 27 ++++++++++++++++++++--
- 7 files changed, 43 insertions(+), 22 deletions(-)
+Yours,
+Linus Walleij
