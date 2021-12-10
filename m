@@ -2,132 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B7B146F851
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 02:16:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9498646F85A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 02:19:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235191AbhLJBUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 20:20:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45108 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233408AbhLJBUE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 20:20:04 -0500
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E902C061746;
-        Thu,  9 Dec 2021 17:16:30 -0800 (PST)
-Received: by mail-yb1-xb31.google.com with SMTP id d10so18068494ybn.0;
-        Thu, 09 Dec 2021 17:16:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IzF//cxh++7fl5oK5N1nlCJSs8gKOydYYvwI+sG8Nkk=;
-        b=oUyCEOYXobkE9c8v7AkpKo03GKXQYNonPFc4GsR6Yd/oozwbufcEPK+xU+PQeGZMcv
-         RBhMPr81/0cf7azfxhKN2sAsrb8mZfRMVMjZavfnuHMzZJaZTymHSnh0d5TKy+QnUwsL
-         QoDF3W4sruBhDWF5Z8WV2ZNA8U6g3hn93wqWK0GX4aeywJp1rQfB9CjE9gN6Y3YGP1o3
-         quMmIENfv7LVmS+Y78+/NHm4M/SCJFCgPOZi0CoM/nAZTFF3hFIF7g0l9nEcJ4+eDHwQ
-         QmHDswP3Hr8QUblcWW31k9F8gXRCvT24zB91EABvVLpshoqIHT6548YajmrZ/iEBUyHf
-         yA0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IzF//cxh++7fl5oK5N1nlCJSs8gKOydYYvwI+sG8Nkk=;
-        b=IamugYemQX5u1s299FBogY/GAtDezk9oVQny6JosDQ+v3i2PB20AQxQDn+VtQu2+Hj
-         rMTs/I3S7DUVpJKj5nXGVbRCI/a/w9HNXa2FlPBd+cnOxEb/Q0u451GSbNqVDtTwFe/4
-         Fe06k4NBI/hgFgJYjIvkWPR7JTWZUkdCyGwjjdNL0n1TyAdbq/50nhod4a+l7Iz/fXSV
-         CGm7Wkeu+j5bmCF4OIup1uM76NBbfMSUt8z5aANHK7IMsd4DHD8TVrV2lKj13wghpRzv
-         968FnBE8wzehI+U8T8LZIiAp7zHnWlU6jmejfjRAJbYLzVyAS/yD5k5wmgUh+SDNdLX7
-         DwRA==
-X-Gm-Message-State: AOAM533MPju0TREUDVdRiiwW9qY2VbAMO9ZALMcTMZy4MvGWOUSw9v9s
-        aWTLaRyczUFctH6xIsJRoGoBPGRalbx8W84FOuk=
-X-Google-Smtp-Source: ABdhPJzwFimI1+VRQrsmQwEHXhmAjCTPDBK4hAnThE66/C2wXJhAJNyp5y934A5gGV20vQG7sPvqeXMAcCYd4OGoqrk=
-X-Received: by 2002:a25:abe3:: with SMTP id v90mr10236514ybi.315.1639098989622;
- Thu, 09 Dec 2021 17:16:29 -0800 (PST)
+        id S229752AbhLJBXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 20:23:03 -0500
+Received: from mswedge1.sunplus.com ([60.248.182.113]:44472 "EHLO
+        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231239AbhLJBXD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 20:23:03 -0500
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.202
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(5128:0:AUTH_RELAY)
+        (envelope-from <tony.huang@sunplus.com>); Fri, 10 Dec 2021 09:19:23 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Fri, 10 Dec 2021 09:19:24 +0800
+Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
+ ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Fri, 10 Dec
+ 2021 09:19:25 +0800
+From:   =?big5?B?VG9ueSBIdWFuZyC2wMNoq3A=?= <tony.huang@sunplus.com>
+To:     Greg KH <gregkh@linuxfoundation.org>,
+        Tony Huang <tonyhuang.sunplus@gmail.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "derek.kiernan@xilinx.com" <derek.kiernan@xilinx.com>,
+        "dragan.cvetic@xilinx.com" <dragan.cvetic@xilinx.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
+Subject: RE: [PATCH v3 2/2] misc: Add iop driver for Sunplus SP7021
+Thread-Topic: [PATCH v3 2/2] misc: Add iop driver for Sunplus SP7021
+Thread-Index: AQHX7Nr0VlQujKq+xkKIOnlLCZbqnqwpakSAgAGDliA=
+Date:   Fri, 10 Dec 2021 01:19:25 +0000
+Message-ID: <e27e199247d44e31bb71a80ba14f833d@sphcmbx02.sunplus.com.tw>
+References: <cover.1639039163.git.tonyhuang.sunplus@gmail.com>
+ <bc15d5e8d7a5ec96582799fe513de4ace6fd4b8b.1639039163.git.tonyhuang.sunplus@gmail.com>
+ <YbHWKx6AU4z/TJS1@kroah.com>
+In-Reply-To: <YbHWKx6AU4z/TJS1@kroah.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.54]
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20211209001056.29774-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <d290850bf95f4bdf0c329f278db458c7@kernel.org> <CA+V-a8vUCXQa38NmYu9znakcq4A=Uedyn8w5+hXQ_WKf58oHRQ@mail.gmail.com>
- <875yry1316.wl-maz@kernel.org> <CA+V-a8vNUhVBFNf-M6s1BmXbdCpdyJOx2g=t=QJf1jQzUA3xow@mail.gmail.com>
- <CAL_Jsq+H54oX8GCHcwPVaUC3brjJa+5+OTU21D-3d7QUqM+jcg@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+H54oX8GCHcwPVaUC3brjJa+5+OTU21D-3d7QUqM+jcg@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 10 Dec 2021 01:16:03 +0000
-Message-ID: <CA+V-a8sifb8zpMB=VwBn6qXob=3JRQdMTh1PWD-M7SquP9S9+g@mail.gmail.com>
-Subject: Re: [RFC PATCH] of: platform: Skip mapping of interrupts in of_device_alloc()
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 9, 2021 at 8:34 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Thu, Dec 9, 2021 at 5:35 AM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
-> >
-> > Hi Rob and Marc,
-> >
-> > On Thu, Dec 9, 2021 at 10:33 AM Marc Zyngier <maz@kernel.org> wrote:
-> > >
-> > > On Thu, 09 Dec 2021 10:00:44 +0000,
-> > > "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> > > >
-> > > > > The root of the issue is that all the resource allocation is done
-> > > > > upfront, way before we even have a driver that could potentially
-> > > > > deal with this device. This is a potential waste of resource, and
-> > > > > it triggers the issue you noticed.
-> > > > >
-> > > > > If you delay the resource allocation until there is an actual
-> > > > > match with a driver, you could have a per-driver flag telling you
-> > > > > whether the IRQ allocation should be performed before the probe()
-> > > > > function is called.
-> > > > >
-> > > > As suggested by Rob, if we switch the drivers to use
-> > > > platform_get_resource(pdev, IORESOURCE_IRQ, n) call with
-> > > > platform_get_irq() this code should go away and with this switch the
-> > > > resource allocation will happen demand. Is this approach OK?
-> > >
-> > > If you get rid of of_irq_to_resource_table() altogether, then yes,
-> > > this has a fighting chance to work.
-> > >
-> > Yes, switching to platform_get_irq() will eventually cause
-> > of_irq_to_resource_table() to go away.
-> >
-> > On second thought, instead of touching all the drivers, if we update
-> > platform_get_resource/platform_get_resource_byname to internally call
-> > platform_get_irq() internally if it's a IORESOURCE_IRQ resource. Does
-> > that sound good or should I just get on changing all the drivers to
-> > use platform_get_irq() instead?
->
-> Except that platform_get_irq() already internally calls
-> platform_get_resource()... I think changing the drivers is the right
-> way. Happy to do some if you want to divide it up.
->
-Thank you, I think I'll manage.
-
-> Using coccigrep, I think I've found all the places using
-> platform_device.resource directly. A large swath are Sparc drivers
-> which don't matter. The few that do matter I've prepared patches for
-> here[1]. Most of what I found were DT based drivers that copy
-> resources to a child platform device. That case will not work with
-> platform_get_irq() callers either unless the child device has it's DT
-> node set to the parent node which is the change I made.
->
-Thank you for getting this done. Do you want me to include those along
-with my conversion patches?
-Any reason why we dont care for Sparc drivers?
-
-> Rob
->
-> [1] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-kernelci
-
-Cheers,
-Prabhakar
+RGVhciBHcmVnOg0KDQo+IE9uIFRodSwgRGVjIDA5LCAyMDIxIGF0IDA0OjU4OjA5UE0gKzA4MDAs
+IFRvbnkgSHVhbmcgd3JvdGU6DQo+ID4gKwl3aGlsZSAoMSkgew0KPiA+ICsJCWlmIChwX2lvcF9y
+ZWctPmlvcF9kYXRhNyA9PSAweGFhYWEpDQo+ID4gKwkJCWJyZWFrOw0KPiA+ICsJfQ0KPiANCj4g
+WW91IGNhbiBub3QgY3JlYXRlIGEgbG9vcCB0aGF0IGNvdWxkIG5ldmVyIGV4aXQuICBQbGVhc2Ug
+Zml4Lg0KPiANCg0KT0ssIEkgd2lsbCBtb2RpZnkgaXQuDQoNCj4gQWxzbywgd2hhdCBwcmV2ZW50
+cyB0aGUgY29tcGlsZXIgZnJvbSBvcHRpbWl6aW5nIHRoaXMgYXdheSBpbnRvIG5vdGhpbmc/DQo+
+IFRoaXMgY29kZSBkb2VzIG5vdCBsb29rIGNvcnJlY3QgYXQgYWxsLg0KPiANCj4gPiArDQo+ID4g
+Kwl3cml0ZWwoMHhkZCwgJnBfaW9wX3JlZy0+aW9wX2RhdGExKTsvLzgwNTEgYmluIGZpbGUgY2Fs
+bCBVbHRyYSBsb3cNCj4gZnVuY3Rpb24uDQo+ID4gKwltZGVsYXkoMTApOw0KPiA+ICt9DQo+ID4g
+Kw0KPiA+ICtzdGF0aWMgaW50ICBzcF9pb3BfZ2V0X25vcm1hbF9jb2RlKHN0cnVjdCBkZXZpY2Ug
+KmRldiwgc3RydWN0IHNwX2lvcA0KPiA+ICsqaW9wKSB7DQo+ID4gKwljb25zdCBzdHJ1Y3QgZmly
+bXdhcmUgKmZ3Ow0KPiA+ICsJc3RhdGljIGNvbnN0IGNoYXIgZmlsZVtdID0gIm5vcm1hbC5iaW4i
+Ow0KPiA+ICsJdW5zaWduZWQgaW50IGVyciwgaTsNCj4gPiArDQo+ID4gKwlkZXZfaW5mbyhkZXYs
+ICJub3JtYWwgY29kZVxuIik7DQo+IA0KPiBQbGVhc2UgYWx3YXlzIGRlbGV0ZSB5b3VyIGRlYnVn
+Z2luZyBjb2RlIGJlZm9yZSBzdWJtaXR0aW5nIGEgcGF0Y2guDQo+IA0KDQpPSywgSSB3aWxsIGRl
+bGV0ZSBpdC4NCg0KPiBBbHNvLCBwbGVhc2UgcnVuIGNoZWNrcGF0Y2gucGwgb24geW91ciBjaGFu
+Z2VzIGJlZm9yZSBzdWJtaXR0aW5nIHRoZW0uDQo+IA0KPiB0aGFua3MsDQo+IA0KPiBncmVnIGst
+aA0K
