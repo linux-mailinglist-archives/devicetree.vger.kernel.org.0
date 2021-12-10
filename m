@@ -2,155 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47A8847002A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 12:37:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED623470041
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 12:42:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240603AbhLJLlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 06:41:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44526 "EHLO
+        id S240508AbhLJLqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 06:46:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240672AbhLJLlD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 06:41:03 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D2E8C061746
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 03:37:28 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id k26so8203774pfp.10
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 03:37:28 -0800 (PST)
+        with ESMTP id S233311AbhLJLqG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 06:46:06 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD297C061746;
+        Fri, 10 Dec 2021 03:42:31 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id b1so17445234lfs.13;
+        Fri, 10 Dec 2021 03:42:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=qi2ii7axpVPM6M5j9yKMozSkF/k3GbmTDPLNt+E5MLk=;
-        b=acwYIZDGWQoJ31rdBIRmigTvMAK5hGgUACwg6gzz1XMlcC9WQ8kOCqLsqu8YRJMOa5
-         vrOQL9I+1esExYHfkA0CK1Qy5Mr7ckRp/7xgLfEvhia4KNQBgRP2yhHnAD+36zUSmKei
-         xVbkcpaE4FvukexOVlXNRY4NSx2BnFPjIwOAPqbU14ON2flSKlOfUYL5yxT1j5wLSQrq
-         mdoOIYNV0uY0aDoFDE2p7Q0CFWl7RcDiz2r+u9sl7I+ulHus7icfWSLBkqtkVSnVCKMF
-         uiASmCzf0QK1EF7/KPUQuTmBDxJobM6ofAZ505tFZF4q3NBX3z5a2/hO21VgfFgzMwzh
-         c5Xw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6ObDcMYbFb8Q/B5RNxet7nNCWx66ODqNzEQgdnxZJ2c=;
+        b=ch0nfpynEWYkw0i1yiE9lmy36+mnwU7ZnwPcyFxbs/5k4IcwO1Wgg1VZojF3XZbNnj
+         em+Oit3Y9uOq4Oxpsv9OhO0uQHGaf6EYLuowQHYg14RGGWJG7inurDmxo5ktSOu7DU1c
+         p3Fy87o7rQRkPfdWOxlDQC7h+Cr2w+t57WdoCODzOHkcnHftjr5fG+M6K+hFUnDvgvnA
+         6NjIrKV0SN2lG7KceH1USflJfzx3tQMJuiFyYAIFWaDBjmhoUKg0f1npJ4h4kXM8NenX
+         X41RJPB6Jukr3y/4/GOJFZkGYKWq/ZF+huA/e8J+3jf/ALsCaQb1wZ/VOMoJZH8g6WlB
+         LKIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qi2ii7axpVPM6M5j9yKMozSkF/k3GbmTDPLNt+E5MLk=;
-        b=CrdBb+DPRBES9iioGWKKjyGj1mfADi8jkqr3t+52ce9wuifXrqH0zyYhvnY1K9ZEtE
-         b3FKq10pV6Y1xluQQVFnxO7LxyPk+vvj71c+iWd9yWwQpmkAnZ+YFEwWrg6HaKXNGC9Z
-         6ggrVNY0NLAREgITTHZNiLkGt32e5S/qEq0kdaOB1TFPlPVqQLImAHU226AIoVTT8x/F
-         GfdOUlsPZxZFCvl14iq/43hgJNkITUt0tVrRDg1cC58S/PctA96vi31TSzRYrwXs7o44
-         aI7er1Qu4DcbGhNVr8PH3LPnhymvHXrHoqPnduidBgcoQbw61hrLnKKwtSioLiujI90Y
-         9Nmg==
-X-Gm-Message-State: AOAM533wHygqMTWcLQkx6VpCZ7HetLzZnmpv+FFzTKTeBTYLW1dgYTRW
-        Mh1cVRlSaGbRs6cFRihjPueOxqbSOa6W
-X-Google-Smtp-Source: ABdhPJwZJzp1BvF7xLuULGMdYqjjGXpKYnPljTi18kLCPgfMUUNFpVqPsqgVa6itGcnUd1l3myVGpg==
-X-Received: by 2002:a62:1a03:0:b0:494:64b5:3e01 with SMTP id a3-20020a621a03000000b0049464b53e01mr17584648pfa.35.1639136247602;
-        Fri, 10 Dec 2021 03:37:27 -0800 (PST)
-Received: from thinkpad ([202.21.42.75])
-        by smtp.gmail.com with ESMTPSA id kk7sm14517702pjb.19.2021.12.10.03.37.23
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6ObDcMYbFb8Q/B5RNxet7nNCWx66ODqNzEQgdnxZJ2c=;
+        b=P5dOjf/alQ9gBF53HWBfg8nfFF/TzTet2rYqNWytYukLmo1zrNO4bchOIs0TI0OOlw
+         TjhHNTMLdUN3liBejI819T4GQlffY96DPm3p1QycFLLmlCvtT2yyJzLDJZoun8Ga5qhM
+         dgUzrtZ4CHX6p/GcSkCX3DU5KfxDOxQjArJXo3J2BChG2I/9L/wrDRRUXzOai7C+0kl/
+         2bkv9ZA2HrZfmsCFqTN2nk3ducU+FJ5ByauciGi2bvr0INwxn/qP6glL1XOlTH0hKrKx
+         5kjr9Az4TgIcHjv2wiFDpkwUsqYzLOKtRziL/Akcu3U4WW+Yc/MDTV3Lhkz0P+T2wnoL
+         66Jw==
+X-Gm-Message-State: AOAM5318SIzbmRBflhYwnjUJ1rlR3bxAcnK3xzAk+mpqIfNVgJ8ptiSM
+        rv2sq6pyC68Lpdg1OMTBgbc=
+X-Google-Smtp-Source: ABdhPJw8Z1ozsrU5pIlEsbRzMtYFT+g918PCOytccNAVj056XAU0Fbgx+K+BGtLXs8mnK1JyDTRD0g==
+X-Received: by 2002:a19:d61a:: with SMTP id n26mr12108046lfg.313.1639136549971;
+        Fri, 10 Dec 2021 03:42:29 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id j15sm289375lfe.157.2021.12.10.03.42.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 03:37:27 -0800 (PST)
-Date:   Fri, 10 Dec 2021 17:07:20 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v2 07/10] arm64: dts: qcom: sm8450: add PCIe0 PHY node
-Message-ID: <20211210113720.GG1734@thinkpad>
-References: <20211208171442.1327689-1-dmitry.baryshkov@linaro.org>
- <20211208171442.1327689-8-dmitry.baryshkov@linaro.org>
+        Fri, 10 Dec 2021 03:42:29 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Tony Lindgren <tony@atomide.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V3 0/2] dt-bindings: pinctrl: pins, groups & functions
+Date:   Fri, 10 Dec 2021 12:42:20 +0100
+Message-Id: <20211210114222.26581-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211208171442.1327689-8-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 08, 2021 at 08:14:39PM +0300, Dmitry Baryshkov wrote:
-> Add device tree node for the first PCIe PHY device found on the Qualcomm
-> SM8450 platform.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8450.dtsi | 42 ++++++++++++++++++++++++++--
->  1 file changed, 40 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 16a789cacb65..a047d8a22897 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -558,8 +558,12 @@ gcc: clock-controller@100000 {
->  			#clock-cells = <1>;
->  			#reset-cells = <1>;
->  			#power-domain-cells = <1>;
-> -			clock-names = "bi_tcxo", "sleep_clk";
-> -			clocks = <&rpmhcc RPMH_CXO_CLK>, <&sleep_clk>;
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +				 <&pcie0_lane>,
-> +				 <&sleep_clk>;
-> +			clock-names = "bi_tcxo",
-> +				      "pcie_0_pipe_clk",
-> +				      "sleep_clk";
->  		};
->  
->  		qupv3_id_0: geniqup@9c0000 {
-> @@ -625,6 +629,40 @@ i2c14: i2c@a98000 {
->  			};
->  		};
->  
-> +		pcie0_phy: phy@1c06000 {
-> +			compatible = "qcom,sm8450-qmp-gen3x1-pcie-phy";
-> +			reg = <0 0x01c06000 0 0x200>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
-> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
-> +				 <&gcc GCC_PCIE_0_CLKREF_EN>,
-> +				 <&gcc GCC_PCIE_0_PHY_RCHNG_CLK>;
-> +			clock-names = "aux", "cfg_ahb", "ref", "refgen";
-> +
-> +			resets = <&gcc GCC_PCIE_0_PHY_BCR>;
-> +			reset-names = "phy";
-> +
-> +			assigned-clocks = <&gcc GCC_PCIE_0_PHY_RCHNG_CLK>;
-> +			assigned-clock-rates = <100000000>;
-> +
-> +			status = "disabled";
-> +
-> +			pcie0_lane: lanes@1c06200 {
-> +				reg = <0 0x1c06e00 0 0x200>, /* tx */
-> +				      <0 0x1c07000 0 0x200>, /* rx */
-> +				      <0 0x1c06200 0 0x200>, /* pcs */
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Oh, so this platform has "PCS" at the starting offset? This is different
-compared to other platforms as "TX" always comes first.
+This is my minimalized attempt of setting up pins, groups & functions
+bindings.
 
-And the size is "0x200" for all?
+I've been warned that Linux pinctrl subsystem may require refactoring
+before it's ready to handle such bindings properly and that appears to
+be correct. I'll need to invest more time into reorganizing Linux
+structs. Right now it's not ready for tree-like design and it uses
+more-or-less magic numbers to handle pins <-> groups relation.
 
-Thanks,
-Mani
+Meanwhile I'd like to get dt-bindings reviewed & possibly merged. To be
+honest - my initial reason for that work was developing U-Boot drivers.
 
-> +				      <0 0x1c06600 0 0x200>; /* pcs_pcie */
-> +				clocks = <&gcc GCC_PCIE_0_PIPE_CLK>;
-> +				clock-names = "pipe0";
-> +
-> +				#clock-cells = <0>;
-> +				#phy-cells = <0>;
-> +				clock-output-names = "pcie_0_pipe_clk";
-> +			};
-> +		};
-> +
->  		config_noc: interconnect@1500000 {
->  			compatible = "qcom,sm8450-config-noc";
->  			reg = <0 0x01500000 0 0x1c000>;
-> -- 
-> 2.33.0
-> 
+Please kindly review those bindings and optionally treat my WIP work on
+Linux implementation as proof of concept.
+
+Reference:
+RFC: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20211110231436.8866-1-zajec5@gmail.com/
+V1: https://patchwork.ozlabs.org/project/linux-gpio/list/?series=272685&submitter=&state=*&q=&archive=&delegate=
+V2: https://patchwork.ozlabs.org/project/linux-gpio/list/?series=273711&submitter=&state=*&q=&archive=&delegate=
+
+Rafał Miłecki (2):
+  dt-bindings: pinctrl: support specifying pins, groups & functions
+  dt-bindings: pinctrl: brcm,ns-pinmux: describe pins, groups &
+    functions
+
+ .../bindings/pinctrl/brcm,ns-pinmux.yaml      | 38 ++++++++++++++++++-
+ .../devicetree/bindings/pinctrl/pinctrl.yaml  | 34 +++++++++++++++++
+ 2 files changed, 71 insertions(+), 1 deletion(-)
+
+-- 
+2.31.1
+
