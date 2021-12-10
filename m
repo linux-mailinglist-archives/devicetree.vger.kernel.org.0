@@ -2,111 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA2B346F987
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 04:15:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7446C46F9B0
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 04:53:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236304AbhLJDSg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 22:18:36 -0500
-Received: from mga12.intel.com ([192.55.52.136]:59045 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231277AbhLJDSg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 9 Dec 2021 22:18:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1639106102; x=1670642102;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=I+q/DqXldwHz9cyiUYWrfRwsQh9NHxK0ytftOvAtfmo=;
-  b=X3VG1/Y6ROtR3QpQ9sEjOTOUidu/KzNnz1Cj8ano3JD23h6XiOJLeqMK
-   SzECHWV2FBBPvynXiQLrsHvpxRlefv8K7r/Y5AK1Ees7ONJATLq4d6vN+
-   OiubU+kkEc6rqoW6p/V1dtaBrjU79EqXRPDQgLTMoQPsIyZeO2npMjyhQ
-   /9GQtAHEYDdx4arZVELvuhoNX3gOWmOX2c/G6nl1apTHUUlsnJdReA1Lw
-   xje4vpfpCwBekaMHv23QVKazlZ7hcHxPMv3Hrdv7QzD0moJjg2+sL5ncK
-   Upmhr4Bd1Jh7LEA4bvlYLXBHrLLKhQZFOxBAk8RL7/bM+BkSJshYwriy4
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="218285298"
-X-IronPort-AV: E=Sophos;i="5.88,194,1635231600"; 
-   d="scan'208";a="218285298"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Dec 2021 19:14:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,194,1635231600"; 
-   d="scan'208";a="543829948"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by orsmga001.jf.intel.com with ESMTP; 09 Dec 2021 19:14:53 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mvWN1-0002hQ-86; Fri, 10 Dec 2021 03:14:51 +0000
-Date:   Fri, 10 Dec 2021 11:13:51 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Andy Gross <agross@kernel.org>,
+        id S236486AbhLJD4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 22:56:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51782 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236478AbhLJD4m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 22:56:42 -0500
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6533FC0617A2
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 19:53:08 -0800 (PST)
+Received: by mail-pj1-x1031.google.com with SMTP id w33-20020a17090a6ba400b001a722a06212so7371562pjj.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 19:53:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=BzSbfZd4JQBrY56BTZ7Ukbk+6z7XGMbbqjBNLXp9q7o=;
+        b=UHFsxs1Qanuf6rGkoZ0V/xVRoh9AFiGYUrAsN32lvoaESAlJj78UgYYPbF5vdPL3Bk
+         KtVW3YtfGpkBjSpoksdlvQYscYisY6IH/di0J/uQNG3BDGvnY/m8LmuvoBEEFBk/YnIF
+         2Tq8LeJWpft5cpTDPJAesyQkERwlynZMDPxlSNUqiTEZgZoCOb5zP54GlSVYZQsZ87dj
+         +Sso4/pGzUoeBcWwqToiUeYbiB53AR0hds3lrl1kltJd8c0bqkINPVLqRStgt5o5gC+C
+         TzHDzuBGuAZSQY8WYOF67DQc8b2dvJY6XBQVLxc2Xmrn+Qdz7QU87vY3MKifOuGrKs4+
+         fN6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=BzSbfZd4JQBrY56BTZ7Ukbk+6z7XGMbbqjBNLXp9q7o=;
+        b=lAIG3AWFIurY28eiCrD03magrYIHV0NmRopANzbyEq2GA9Lum6wnJjyAuvn57ps3LJ
+         71DbPrRgqdY2Pmsv6Ft+b59gWOJtzhK7XOV0rsGmjCe6+hlY9ByKWw0obh5pBSQfeVpy
+         xBn4R10pzW1CV3NOOHEc1GbO9xG5V7bbJ+k5TZpjF+XKuHNk5HRipFZZ2gn3W1KLyR4j
+         kLM3xyE81fuG3OZ3OKqnat7IE4SNFw+ZizDv1NX7k/IGKpfAfOmVqrPUMbkzpq1/JY9z
+         qYcPYjA3YSyFfq2nEqUPZWakUihXYtXClEw5rktvwFaFHO087CXcjwuH9LisSrCVeYQD
+         rVeg==
+X-Gm-Message-State: AOAM530aQwK9fVOvremKWg9aaMhLWjfi78XnOnVpo5aEs0LuxBhi4BU+
+        YVVNBoJJE+amfokkbehzhjarB5niCy9sXA==
+X-Google-Smtp-Source: ABdhPJz1NGw0NPJFcUffa8z/0UBVpMhqf1ZVaIjsYAonkfNcQGbolrZHg/tdq7hiD4WTlFandL5Y1w==
+X-Received: by 2002:a17:90b:11c1:: with SMTP id gv1mr20848816pjb.208.1639108387855;
+        Thu, 09 Dec 2021 19:53:07 -0800 (PST)
+Received: from localhost ([106.201.42.111])
+        by smtp.gmail.com with ESMTPSA id p124sm1151703pfg.110.2021.12.09.19.53.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Dec 2021 19:53:07 -0800 (PST)
+Date:   Fri, 10 Dec 2021 09:23:05 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 05/13] arm64: dts: qcom: Add base SM8450 QRD DTS
-Message-ID: <202112101124.H3KNjjaf-lkp@intel.com>
-References: <20211209103505.197453-6-vkoul@kernel.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: Remove unsupported properties for STMPE MFD
+Message-ID: <20211210035305.35hhxovruk5otqpg@vireshk-i7>
+References: <20211209173009.618162-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211209103505.197453-6-vkoul@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20211209173009.618162-1-thierry.reding@gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+On 09-12-21, 18:30, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Some users of the STMPE MFD bindings use unsupported properties such as
+> "id", "blocks" and "irq-trigger". These look like they may have been
+> under discussion at some point but never made it into the bindings that
+> were accepted upstream.
+> 
+> Remove these unknown properties from the device trees to avoid errors
+> during validation against the DT schema.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  arch/arm/boot/dts/spear1310-evb.dts        | 1 -
+>  arch/arm/boot/dts/spear1340-evb.dts        | 2 --
+>  arch/arm/boot/dts/spear320-hmi.dts         | 3 ---
 
-I love your patch! Yet something to improve:
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on v5.16-rc4]
-[cannot apply to next-20211208]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Vinod-Koul/arm64-dts-qcom-Add-support-for-SM8450-SoC-and-QRD-board/20211209-183713
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: arm64-randconfig-r022-20211207 (https://download.01.org/0day-ci/archive/20211210/202112101124.H3KNjjaf-lkp@intel.com/config)
-compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 097a1cb1d5ebb3a0ec4bcaed8ba3ff6a8e33c00a)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm64 cross compiling tool for clang build
-        # apt-get install binutils-aarch64-linux-gnu
-        # https://github.com/0day-ci/linux/commit/636d2456715b3aba9cf1fa47931c6e381ca62e00
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Vinod-Koul/arm64-dts-qcom-Add-support-for-SM8450-SoC-and-QRD-board/20211209-183713
-        git checkout 636d2456715b3aba9cf1fa47931c6e381ca62e00
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   In file included from arch/arm64/boot/dts/qcom/sm8450-qrd.dts:8:
->> arch/arm64/boot/dts/qcom/sm8450.dtsi:7:10: fatal error: 'dt-bindings/clock/qcom,gcc-sm8450.h' file not found
-   #include <dt-bindings/clock/qcom,gcc-sm8450.h>
-            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 error generated.
-
-
-vim +7 arch/arm64/boot/dts/qcom/sm8450.dtsi
-
-244741584ca1ceb Vinod Koul 2021-12-09  @7  #include <dt-bindings/clock/qcom,gcc-sm8450.h>
-244741584ca1ceb Vinod Koul 2021-12-09   8  #include <dt-bindings/clock/qcom,rpmh.h>
-244741584ca1ceb Vinod Koul 2021-12-09   9  #include <dt-bindings/gpio/gpio.h>
-244741584ca1ceb Vinod Koul 2021-12-09  10  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-244741584ca1ceb Vinod Koul 2021-12-09  11  
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+-- 
+viresh
