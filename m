@@ -2,117 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2020A4705AE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 17:29:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D70754705E8
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 17:38:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240234AbhLJQcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 11:32:51 -0500
-Received: from mga01.intel.com ([192.55.52.88]:57296 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240513AbhLJQcv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 Dec 2021 11:32:51 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10193"; a="262486162"
-X-IronPort-AV: E=Sophos;i="5.88,196,1635231600"; 
-   d="scan'208";a="262486162"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2021 08:29:16 -0800
-X-IronPort-AV: E=Sophos;i="5.88,196,1635231600"; 
-   d="scan'208";a="612974184"
-Received: from lclopezf-mobl.amr.corp.intel.com (HELO [10.209.164.172]) ([10.209.164.172])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2021 08:29:15 -0800
-Subject: Re: [PATCH 2/2] ASoC: convert Everest ES8156 binding to yaml
-To:     Shumin Chen <chenshumin86@sina.com>, perex@perex.cz,
-        tiwai@suse.com, lgirdwood@gmail.com, broonie@kernel.org
-Cc:     alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20211210151041.108751-1-chenshumin86@sina.com>
- <20211210151041.108751-3-chenshumin86@sina.com>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <4c665ce2-1df3-5fc3-018a-e8eff49794a2@linux.intel.com>
-Date:   Fri, 10 Dec 2021 10:29:14 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.14.0
+        id S238426AbhLJQl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 11:41:59 -0500
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:38701 "EHLO
+        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243846AbhLJQl6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 11:41:58 -0500
+Received: by mail-oi1-f174.google.com with SMTP id r26so13940441oiw.5;
+        Fri, 10 Dec 2021 08:38:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7t0xxkQq4dvEg89M2pLQwLR7F/DdLFsPTuqlvZl+6Lo=;
+        b=OsWJdskyZeZeocj8jwNhE9h96X80dAgrJhV9LD9Kf07n5i8MnmXMYiGw7RgUENifDe
+         JDdhPjXsYYd5Pe8kjHRbaOXP4V2uVdi1IEYGCnSjh2V/hRUVZLcCswU2Ot9kafBdEHRg
+         5F8q7sTI4868GD1ipmaFZUUlnAs5OUL7oxWk8dVZcP2DIZ68S3UOo6xwT+uw3Moor/gI
+         +J2hN6aOYcf4qEij6r52J/Lnev95KTMBBwKsorUOxoOcL6zzimFT3zbKii9cfS06zZHa
+         CRNU1WPFW+NaFMWxWxgvLMMRn7iSWopMMIEaK6fyCwUfooD1qBz/0YlvInfQY4WWQ40G
+         MGaw==
+X-Gm-Message-State: AOAM532B+56X3SQCr7+tV6aKvsdzdhB8+1EhhzoBN9fCOXS0U1adClYx
+        GvgEf4+1U6SaSPNXHROj+5LG6VR2JA==
+X-Google-Smtp-Source: ABdhPJw4qx+vlwG4ihilVW8fP+eVFFfTfUZ7fYCsAYIgP0kZhTRiYhSxk7TScDqQEUjM2gn8ZhFiGA==
+X-Received: by 2002:a05:6808:1811:: with SMTP id bh17mr12837135oib.105.1639154302623;
+        Fri, 10 Dec 2021 08:38:22 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 186sm761131oig.28.2021.12.10.08.38.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Dec 2021 08:38:22 -0800 (PST)
+Received: (nullmailer pid 1488787 invoked by uid 1000);
+        Fri, 10 Dec 2021 16:38:21 -0000
+Date:   Fri, 10 Dec 2021 10:38:21 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc:     robh+dt@kernel.org, jic23@kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/4] dt-bindings:iio:filter: add admv8818 doc
+Message-ID: <YbOCfcMS+tlSqgT5@robh.at.kernel.org>
+References: <20211207155445.247444-1-antoniu.miclaus@analog.com>
+ <20211207155445.247444-3-antoniu.miclaus@analog.com>
 MIME-Version: 1.0
-In-Reply-To: <20211210151041.108751-3-chenshumin86@sina.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211207155445.247444-3-antoniu.miclaus@analog.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 12/10/21 9:10 AM, Shumin Chen wrote:
-> This patch converts Everest Semiconductor ES8156 low power audio
-> CODEC binding to DT schema.
-
-this doesn't really convert anything but *adds* properties for ES8156.
-
-You're probably missing the device tree folks, added Rob + device tree
-mailing list in CC:
-
+On Tue, 07 Dec 2021 17:54:44 +0200, Antoniu Miclaus wrote:
+> Add device tree bindings for the ADMV8818 Filter.
 > 
-> Signed-off-by: Shumin Chen <chenshumin86@sina.com>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 > ---
->  .../bindings/sound/everest,es8156.yaml        | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/everest,es8156.yaml
+> changes in v3:
+>  - remove clock from `required` since it is optional.
+>  .../bindings/iio/filter/adi,admv8818.yaml     | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/everest,es8156.yaml b/Documentation/devicetree/bindings/sound/everest,es8156.yaml
-> new file mode 100644
-> index 000000000000..695d542013c2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/everest,es8156.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/everest,es8156.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Everest ES8156 audio CODEC
-> +
-> +maintainers:
-> +  - Shumin Chen <chenshumin86@sina.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: everest,es8156
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: clock for master clock (MCLK)
-> +
-> +  clock-names:
-> +    items:
-> +      - const: mclk
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#sound-dai-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c0 {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      es8156: codec@8 {
-> +        compatible = "everest,es8156";
-> +        reg = <0x11>;
-> +        clocks = <&clks 10>;
-> +        clock-names = "mclk";
-> +        #sound-dai-cells = <0>;
-> +      };
-> +    };
-> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
