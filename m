@@ -2,290 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AF594708CE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 19:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98F574708DD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 19:33:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245389AbhLJSeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 13:34:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57838 "EHLO
+        id S245406AbhLJSgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 13:36:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245395AbhLJSeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 13:34:15 -0500
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A8C3C061353
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 10:30:40 -0800 (PST)
-Received: by mail-pf1-x42d.google.com with SMTP id g19so9192581pfb.8
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 10:30:40 -0800 (PST)
+        with ESMTP id S245102AbhLJSgn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 13:36:43 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1E41C0617A2
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 10:33:07 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id y13so32215838edd.13
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 10:33:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1vbLoZFeX18k2i89+E/2LJ8CE62fO5bOF5Z5zzeYz9Y=;
-        b=dKjcu0tSgEQnn3G+sesO429TiEEhC/e1BrpV9ViYAGZdZ4k5O1J8aU0z7bvuS8I6WT
-         09Ocdk7P7+1DuCwmEyBcnPPfaKsrqAw19nwOA1w/BjpZCmvph6lkuK4sTlIFWqshyrM3
-         wiJLdbXRK+RcikjIeHOudRG4Vr4JxSNeV/xQ4=
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=R+5wfzvY98r911pdlNHS5MRZhjqkHPF9SqDy5RQ+nGs=;
+        b=0FrAeyHRpiQDLNRCH38LGYEW5OlercFk3DROOyI+5MF4Aiw8BvLF+GCTJpv3NKxJy8
+         w6XzrFa0A4VvMMlEU5z/Z298tMnaEJKBq6VeGIjX+thf/iO5KbDMg1BG2s0ux0pQV0XL
+         L0w0pukiLEDpC5eKc8vPyhFf4+3+6sceGamqAVhs5Kn+fhrwpRXew7EnfGZfjV1KOpOo
+         GsbDXtupxwNXVLa7onRj0aOr7ByIMeeLVr8b9i5Ih2ez3BMkuu+Noz8qQcPqLFM956T3
+         mU1cLd9j/5Aeb5XROTdKgsLG6YeZUnyInnb8MjJCX3TEKg+E78spgZbNmQA8jGbD++MV
+         Xm+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1vbLoZFeX18k2i89+E/2LJ8CE62fO5bOF5Z5zzeYz9Y=;
-        b=CuKhXDIsc4RBMym5NpAPFdYOpe/JSsh1nvQ71Nd0eApxHFA2hQfvT0sfS16XiGH4Pv
-         zVsx4uEc2ySPKIP1RV94rn3WAzDOnug0k0PqrsO5/cr8cuTax+n+Ie0UCGMeUhOEYT8i
-         oj1HAwUT+SB1wDsQC5rVfsSJXO1aDB0ET+QalETsx7rlns5L7NYTN23xWRadpHP4xUES
-         h7GyEWB8ueR/MknQJla/Rf07kJA1w9djjEgrxDU06qDXPB2uAW7+ORV6l8+yiFxo7Hfe
-         kLGlVcx9RwJeIDPNZ533/n4aAL9e4aXmOeS73iiLE8209h4b7maKBR3KKCihXeUE7L/A
-         jvhg==
-X-Gm-Message-State: AOAM530jIZ6nw3Vy4lcrsHR8ys5tDDH5YHDH8FY4saQinGCNz6pDWCH7
-        ZOdhBjxUS3fp1uYPFdjVypD6CQ==
-X-Google-Smtp-Source: ABdhPJzKbfNUfNrvfamlxPPEgL0lRrazYIHnF+DpjN4vzrxLbzynSp7vd4fDyHEOFVxq3CmBdp2fwQ==
-X-Received: by 2002:a63:6e0c:: with SMTP id j12mr28816807pgc.117.1639161040018;
-        Fri, 10 Dec 2021 10:30:40 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:d386:8bb1:aaa7:a294])
-        by smtp.gmail.com with UTF8SMTPSA id u17sm1811909pfk.179.2021.12.10.10.30.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Dec 2021 10:30:39 -0800 (PST)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>
-Cc:     Peter Chen <peter.chen@kernel.org>, linux-kernel@vger.kernel.org,
-        Bastien Nocera <hadess@hadess.net>, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v18 5/5] arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub
-Date:   Fri, 10 Dec 2021 10:30:21 -0800
-Message-Id: <20211210102923.v18.5.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
-X-Mailer: git-send-email 2.34.1.173.g76aa8bc2d0-goog
-In-Reply-To: <20211210183021.3500376-1-mka@chromium.org>
-References: <20211210183021.3500376-1-mka@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=R+5wfzvY98r911pdlNHS5MRZhjqkHPF9SqDy5RQ+nGs=;
+        b=eEb0L4puTCnU+cEbCGFouQBB06+/7AGVgphXAmLvWJ+W1HPFW0L5XhMBn7eJF/5YQY
+         umXmdUYzWDDeZBL+FuvFDfPwY0uM5BdXcRGdLmk29BGdCHSpzrffKDSWsUKZ82uAVDbt
+         SFUtXNGPeadQTg3xgGkdAjlZ+HfhhE8I+F3yXUOi2Vs4OGSLaB9wipxvvEqoJz2m9zw0
+         ngzlTl6ggmiySRK8sfo8rr2nNSt6rYtaBdu+F3I2AtMGwD2TLLzYUsysu9v9v5TK6njy
+         zl3wnRn2MAT0wje62A+G2Pj/Rf8ifK0l/UQUn+TpR0uBV1qK4iZP/sdLhblb1IC00gfK
+         QqBw==
+X-Gm-Message-State: AOAM532l+2WcdsGWPY8ODx3yLtl7RCnMbETCy+3XTt0HG/i0Ks29sFui
+        jFysCqD833dqS3ozH4btrcZnu7AGTIszAlKzNxUkVw==
+X-Google-Smtp-Source: ABdhPJw2lS/O2yAfLVTw6WVq78ELyMdt5/AEs5anuvPRPowAgkoa3NmZtsHE2c0DEj0r6fuPtxiB7KX0gypvQotrn6Q=
+X-Received: by 2002:aa7:c30e:: with SMTP id l14mr40506518edq.370.1639161186439;
+ Fri, 10 Dec 2021 10:33:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211208225030.2018923-1-aford173@gmail.com> <20211208225030.2018923-5-aford173@gmail.com>
+ <YbHZvysazqYeZ8h3@eze-laptop> <CAHCN7xKrHSSsqS9DNL1tMH1Ctpz16FsSgcVbSHXzUWF98v738Q@mail.gmail.com>
+ <YbNz94G3vwbHCMdB@robh.at.kernel.org> <c88b7a90f7a3bf94fc0cbb9a6f967ce769d5c03b.camel@pengutronix.de>
+ <CAHCN7xLQrYy6H3U_yjCevu7F3AtEJJNbA7gdig=dn08hQfXCUA@mail.gmail.com>
+In-Reply-To: <CAHCN7xLQrYy6H3U_yjCevu7F3AtEJJNbA7gdig=dn08hQfXCUA@mail.gmail.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Fri, 10 Dec 2021 15:32:54 -0300
+Message-ID: <CAAEAJfAuH_cupFkEN=5M3fy-JJ401EB3f2-6yvXFt9zJ4rYW4A@mail.gmail.com>
+Subject: Re: [PATCH 04/10] dt-bindings: media: nxp,imx8mq-vpu: Support split
+ G1 and G2 nodes with vpu-blk-ctrl
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Lucas Stach <l.stach@pengutronix.de>,
+        Rob Herring <robh@kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Chris Healy <cphealy@gmail.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for the onboard USB hub on trogdor devices. Remove the
-'always-on' property from the hub regulator, since the regulator
-is now managed by the onboard_usb_hub driver.
+> >
+> > I'm in favor of dropping the old binding from the schema. New DTs
+> > should clearly use the new binding and old DTs shouldn't change
+> > anymore, so validation is less useful there.
+>
+> I wonder if it makes sense to have a more standardized hantro schema
+> for all the users instead of one dedicated to each platform using a
+> hantro driver.  The unified schema could have all the various
+> compatible flags so the driver still knows which features are
+> enabled/disabled and it's very clear who all the users are for it. I
+> would think it could cover both the encoder and decoder variants as
+> well.  We do something similar for 8250 serial ports.
+>
+> If so, can someone from the media group suggest the best one to
+> follow?  Ezequiel suggested I look at the sama5d4-vdec to help reduce
+> some clutter in the driver.  If that binding is good enough, should I
+> just add the compatible flags to that and potentially rename it.
+>
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+A unified schema might sound elegant and compelling, but I suspect
+it can bite us down the road, due to differences in the platform integration.
 
-Changes in v18:
-- also adjust config for pompom rev1
+Seems we are all on-board going forward with a patch similar to this one,
+but also dropping the deprecated binding from the schema (while of course
+still supporting old DTBs on new kernels).
 
-Changes in v17:
-- none
+Rob's suggestion about having a warning in the platform if the binding has
+not been updated, sounds like very useful too.
 
-Changes in v16:
-- none
+Keep in mind v5.16-rc5 is near, which means we still have a few weeks to
+discuss this patch, until the next linux-media merge season.
 
-Changes in v15:
-- none
-
-Changes in v14:
-- none
-
-Changes in v13:
-- none
-
-Changes in v12:
-- none
-
-Changes in v11:
-- rebased on qcom/arm64-for-5.14 (with the rest of the series)
-
-Changes in v10:
-- keep 'regulator-boot-on' property
-- updated commit message
-
-Changes in v9:
-- none
-
-Changes in v8:
-- none
-
-Changes in v7:
-- rebased on qcom/arm64-for-5.13 (with the rest of the series)
-
-Changes in v6:
-- added 'companion-hub' entry to both USB devices
-- added 'vdd-supply' also to hub@2
-
-Changes in v5:
-- patch added to the series
-
- .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts | 19 ++++++++-----------
- .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts | 12 +++++-------
- .../dts/qcom/sc7180-trogdor-pompom-r1.dts     | 11 ++++-------
- .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts | 19 ++++++++-----------
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 19 ++++++++++++++++++-
- 5 files changed, 43 insertions(+), 37 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-index 30e3e769d2b4..5fb8e12af1a0 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-@@ -14,17 +14,6 @@ / {
- 	compatible = "google,lazor-rev0", "qcom,sc7180";
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
--};
--
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
--};
--
- &sn65dsi86_out {
- 	/*
- 	 * Lane 0 was incorrectly mapped on the cable, but we've now decided
-@@ -33,3 +22,11 @@ &sn65dsi86_out {
- 	 */
- 	lane-polarities = <1 0>;
- };
-+
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-+
-+&usb_hub_3_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-index c2ef06367baf..1dae714250f5 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-@@ -14,13 +14,11 @@ / {
- 	compatible = "google,lazor-rev1", "google,lazor-rev2", "qcom,sc7180";
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
-+
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
- };
- 
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
-+&usb_hub_3_0 {
-+	 vdd-supply = <&pp3300_l7c>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts
-index 76a130bad60a..c913bb5677e5 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dts
-@@ -34,13 +34,10 @@ &pm6150_adc_tm {
- 	/delete-node/ charger-thermistor@0;
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
- };
- 
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
-+&usb_hub_3_0 {
-+	 vdd-supply = <&pp3300_l7c>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-index 457c25499863..8477c82c410a 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-@@ -43,17 +43,6 @@ &panel {
- 	compatible = "auo,b116xa01";
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
--};
--
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
--};
--
- &sdhc_2 {
- 	status = "okay";
- };
-@@ -62,6 +51,14 @@ &trackpad {
- 	interrupts = <58 IRQ_TYPE_EDGE_FALLING>;
- };
- 
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-+
-+&usb_hub_3_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-+
- /* PINCTRL - modifications to sc7180-trogdor.dtsi */
- 
- &trackpad_int_1v8_odl {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index d4f4441179fc..cd31460b3bd6 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -202,7 +202,6 @@ pp3300_hub: pp3300-hub {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&en_pp3300_hub>;
- 
--		regulator-always-on;
- 		regulator-boot-on;
- 
- 		vin-supply = <&pp3300_a>;
-@@ -839,6 +838,24 @@ &usb_1 {
- 
- &usb_1_dwc3 {
- 	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* 2.0 hub on port 1 */
-+	usb_hub_2_0: hub@1 {
-+		compatible = "usbbda,5411";
-+		reg = <1>;
-+		vdd-supply = <&pp3300_hub>;
-+		companion-hub = <&usb_hub_3_0>;
-+	};
-+
-+	/* 3.0 hub on port 2 */
-+	usb_hub_3_0: hub@2 {
-+		compatible = "usbbda,411";
-+		reg = <2>;
-+		vdd-supply = <&pp3300_hub>;
-+		companion-hub = <&usb_hub_2_0>;
-+	};
- };
- 
- &usb_1_hsphy {
--- 
-2.34.1.173.g76aa8bc2d0-goog
-
+Thanks,
+Ezequiel
