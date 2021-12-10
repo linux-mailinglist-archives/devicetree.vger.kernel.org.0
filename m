@@ -2,120 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 548D646FACF
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 07:53:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 866AC46FAD5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 07:56:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232231AbhLJG5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 01:57:09 -0500
-Received: from pv50p00im-hyfv10021501.me.com ([17.58.6.48]:43472 "EHLO
-        pv50p00im-hyfv10021501.me.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231272AbhLJG5I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 Dec 2021 01:57:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-        s=1a1hai; t=1639119213;
-        bh=jAwhqI+j2+6olMnTrv6REzC7x4spgPUsERXxblhsXZA=;
-        h=From:Content-Type:Mime-Version:Subject:Message-Id:Date:To;
-        b=lry7z4tCYfA7coaBOa6YOdfP7VtaQFPz01Cb2grMl6i3m6qhy1ufMszYCtcojfVgN
-         vrC8I2atbp/7bjOuDnBL5y/9Z6S5ab/wlK6MEWYdgvB4INMnRj3jXX4A8fpIEGlFOd
-         hE07SPhtS6LW2Mq2lmqn5HQfikEHR8c6UaHuRrEdbDCi8jObvEUAPubtj1FyUhEc/B
-         vhw50/d16gIrf58E6luRnI6DetWUyHUcI9ak5v5qrDWW/2UmxaIpxu+EN+oiuxseLT
-         zr5o/sM9wDOXMzH4yk7dZDghT1CX2J5s3gEVFMhhT3dhfsgeQnJyJAs63Q0zw1sUe5
-         z1Nnjsyi7x51A==
-Received: from smtpclient.apple (125-227-78-46.hinet-ip.hinet.net [125.227.78.46])
-        by pv50p00im-hyfv10021501.me.com (Postfix) with ESMTPSA id 0495954072C;
-        Fri, 10 Dec 2021 06:53:27 +0000 (UTC)
-From:   Lisa Hill <f11o1iomh3dmt141n@icloud.com>
-Content-Type: text/plain;
-        charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.20.0.1.32\))
-Subject: [PATCH] ARM: dts: BCM5301X: Add USB GPIO and missing LEDs on Netgear 
- R6300v2
-Message-Id: <74E33696-D05A-4009-8C40-927A4DBDD4EF@icloud.com>
-Date:   Fri, 10 Dec 2021 14:53:24 +0800
-Cc:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        id S236723AbhLJHAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 02:00:08 -0500
+Received: from szxga02-in.huawei.com ([45.249.212.188]:16355 "EHLO
+        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231272AbhLJHAI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 02:00:08 -0500
+Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.55])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4J9M9z5MnBz93FP;
+        Fri, 10 Dec 2021 14:55:51 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Fri, 10 Dec 2021 14:56:31 +0800
+Received: from thunder-town.china.huawei.com (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Fri, 10 Dec 2021 14:56:30 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>
-X-Mailer: Apple Mail (2.3693.20.0.1.32)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.425,18.0.790
- definitions=2021-12-08_08:2021-12-08,2021-12-08 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 clxscore=1015 mlxscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-2009150000 definitions=main-2112100040
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+Subject: [PATCH v17 00/10] support reserving crashkernel above 4G on arm64 kdump
+Date:   Fri, 10 Dec 2021 14:55:23 +0800
+Message-ID: <20211210065533.2023-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Set GPIO controlling power for both USB ports properly and add two WAN =
-LEDs and a USB LED missing for the Netgear R6300v2.
+There are following issues in arm64 kdump:
+1. We use crashkernel=X to reserve crashkernel below 4G, which
+will fail when there is no enough low memory.
+2. If reserving crashkernel above 4G, in this case, crash dump
+kernel will boot failure because there is no low memory available
+for allocation.
 
-Signed-off-by: Lisa Hill <f11o1iomh3dmt141n@icloud.com>
----
- .../arm/boot/dts/bcm4708-netgear-r6300-v2.dts | 27 ++++++++++++++++---
- 1 file changed, 24 insertions(+), 3 deletions(-)
+To solve these issues, change the behavior of crashkernel=X.
+crashkernel=X tries low allocation in DMA zone and fall back to high
+allocation if it fails.
 
-diff --git a/arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dts =
-b/arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dts
-index 4c60eda296d973..5810c95ab239ae 100644
---- a/arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dts
-+++ b/arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dts
-@@ -34,20 +34,33 @@
- 			linux,default-trigger =3D "default-on";
- 		};
-=20
--		power0 {
-+		power-green {
- 			label =3D "bcm53xx:green:power";
- 			gpios =3D <&chipcommon 2 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger =3D "default-on";
- 		};
-=20
--		power1 {
-+		power-amber {
- 			label =3D "bcm53xx:amber:power";
- 			gpios =3D <&chipcommon 3 GPIO_ACTIVE_LOW>;
--			linux,default-trigger =3D "default-on";
- 		};
-=20
- 		usb {
- 			label =3D "bcm53xx:blue:usb";
- 			gpios =3D <&chipcommon 8 GPIO_ACTIVE_LOW>;
-+			trigger-sources =3D <&ohci_port1>, =
-<&ehci_port1>, <&xhci_port1>;
-+			linux,default-trigger =3D "usbport";
-+		};
-+	=09
-+		wan-green {
-+			label =3D "bcm53xx:green:wan";
-+			gpios =3D <&chipcommon 10 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger =3D "default-on";
-+		};
-+	=09
-+		wan-amber {
-+			label =3D "bcm53xx:amber:wan";
-+			gpios =3D <&chipcommon 10 GPIO_ACTIVE_HIGH>;
- 		};
-=20
- 		wireless {
-@@ -79,6 +92,14 @@
- 	};
- };
-=20
-+&usb2 {
-+	vcc-gpio =3D <&chipcommon 0 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&usb3 {
-+	vcc-gpio =3D <&chipcommon 0 GPIO_ACTIVE_HIGH>;
-+};
-+
- &spi_nor {
- 	status =3D "okay";
- };
+We can also use "crashkernel=X,high" to select a high region above
+DMA zone, which also tries to allocate at least 256M low memory in
+DMA zone automatically and "crashkernel=Y,low" can be used to allocate
+specified size low memory.
+
+When reserving crashkernel in high memory, some low memory is reserved
+for crash dump kernel devices. So there may be two regions reserved for
+crash dump kernel.
+In order to distinct from the high region and make no effect to the use
+of existing kexec-tools, rename the low region as "Crash kernel (low)",
+and pass the low region by reusing DT property
+"linux,usable-memory-range". We made the low memory region as the last
+range of "linux,usable-memory-range" to keep compatibility with existing
+user-space and older kdump kernels.
+
+Besides, we need to modify kexec-tools:
+arm64: support more than one crash kernel regions(see [1])
+
+Another update is document about DT property 'linux,usable-memory-range':
+schemas: update 'linux,usable-memory-range' node schema(see [2])
+
+This patchset contains the following 10 patches:
+
+0001-0004 are some x86 cleanups which prepares for making functionsreserve_crashkernel[_low]() generic.
+0005 makes functions reserve_crashkernel[_low]() generic.
+0006-0007 reimplements arm64 crashkernel=X.
+0008-0009 adds memory for devices by DT property linux,usable-memory-range.
+0010 updates the doc.
+
+Changes since [v16]
+- Because no functional changes in this version, so add
+  "Tested-by: Dave Kleikamp <dave.kleikamp@oracle.com>" for patch 1-9
+- Add "Reviewed-by: Rob Herring <robh@kernel.org>" for patch 8
+- Update patch 9 based on the review comments of Rob Herring
+- As Catalin Marinas's suggestion, merge the implementation of
+  ARCH_WANT_RESERVE_CRASH_KERNEL into patch 5. Ensure that the
+  contents of X86 and ARM64 do not overlap, and reduce unnecessary
+  temporary differences.
+
+Changes since [v15]
+-  Aggregate the processing of "linux,usable-memory-range" into one function.
+   Only patch 9-10 have been updated.
+
+Changes since [v14]
+- Recovering the requirement that the CrashKernel memory regions on X86
+  only requires 1 MiB alignment.
+- Combine patches 5 and 6 in v14 into one. The compilation warning fixed
+  by patch 6 was introduced by patch 5 in v14.
+- As with crashk_res, crashk_low_res is also processed by
+  crash_exclude_mem_range() in patch 7.
+- Due to commit b261dba2fdb2 ("arm64: kdump: Remove custom linux,usable-memory-range handling")
+  has removed the architecture-specific code, extend the property "linux,usable-memory-range"
+  in the platform-agnostic FDT core code. See patch 9.
+- Discard the x86 description update in the document, because the description
+  has been updated by commit b1f4c363666c ("Documentation: kdump: update kdump guide").
+- Change "arm64" to "ARM64" in Doc.
+
+
+Changes since [v13]
+- Rebased on top of 5.11-rc5.
+- Introduce config CONFIG_ARCH_WANT_RESERVE_CRASH_KERNEL.
+Since reserve_crashkernel[_low]() implementations are quite similar on
+other architectures, so have CONFIG_ARCH_WANT_RESERVE_CRASH_KERNEL in
+arch/Kconfig and select this by X86 and ARM64.
+- Some minor cleanup.
+
+Changes since [v12]
+- Rebased on top of 5.10-rc1.
+- Keep CRASH_ALIGN as 16M suggested by Dave.
+- Drop patch "kdump: add threshold for the required memory".
+- Add Tested-by from John.
+
+Changes since [v11]
+- Rebased on top of 5.9-rc4.
+- Make the function reserve_crashkernel() of x86 generic.
+Suggested by Catalin, make the function reserve_crashkernel() of x86 generic
+and arm64 use the generic version to reimplement crashkernel=X.
+
+Changes since [v10]
+- Reimplement crashkernel=X suggested by Catalin, Many thanks to Catalin.
+
+Changes since [v9]
+- Patch 1 add Acked-by from Dave.
+- Update patch 5 according to Dave's comments.
+- Update chosen schema.
+
+Changes since [v8]
+- Reuse DT property "linux,usable-memory-range".
+Suggested by Rob, reuse DT property "linux,usable-memory-range" to pass the low
+memory region.
+- Fix kdump broken with ZONE_DMA reintroduced.
+- Update chosen schema.
+
+Changes since [v7]
+- Move x86 CRASH_ALIGN to 2M
+Suggested by Dave and do some test, move x86 CRASH_ALIGN to 2M.
+- Update Documentation/devicetree/bindings/chosen.txt.
+Add corresponding documentation to Documentation/devicetree/bindings/chosen.txt
+suggested by Arnd.
+- Add Tested-by from Jhon and pk.
+
+Changes since [v6]
+- Fix build errors reported by kbuild test robot.
+
+Changes since [v5]
+- Move reserve_crashkernel_low() into kernel/crash_core.c.
+- Delete crashkernel=X,high.
+- Modify crashkernel=X,low.
+If crashkernel=X,low is specified simultaneously, reserve spcified size low
+memory for crash kdump kernel devices firstly and then reserve memory above 4G.
+In addition, rename crashk_low_res as "Crash kernel (low)" for arm64, and then
+pass to crash dump kernel by DT property "linux,low-memory-range".
+- Update Documentation/admin-guide/kdump/kdump.rst.
+
+Changes since [v4]
+- Reimplement memblock_cap_memory_ranges for multiple ranges by Mike.
+
+Changes since [v3]
+- Add memblock_cap_memory_ranges back for multiple ranges.
+- Fix some compiling warnings.
+
+Changes since [v2]
+- Split patch "arm64: kdump: support reserving crashkernel above 4G" as
+two. Put "move reserve_crashkernel_low() into kexec_core.c" in a separate
+patch.
+
+Changes since [v1]:
+- Move common reserve_crashkernel_low() code into kernel/kexec_core.c.
+- Remove memblock_cap_memory_ranges() i added in v1 and implement that
+in fdt_enforce_memory_region().
+There are at most two crash kernel regions, for two crash kernel regions
+case, we cap the memory range [min(regs[*].start), max(regs[*].end)]
+and then remove the memory range in the middle.
+
+[1]: http://lists.infradead.org/pipermail/kexec/2020-June/020737.html
+[2]: https://github.com/robherring/dt-schema/pull/19 
+[v1]: https://lkml.org/lkml/2019/4/2/1174
+[v2]: https://lkml.org/lkml/2019/4/9/86
+[v3]: https://lkml.org/lkml/2019/4/9/306
+[v4]: https://lkml.org/lkml/2019/4/15/273
+[v5]: https://lkml.org/lkml/2019/5/6/1360
+[v6]: https://lkml.org/lkml/2019/8/30/142
+[v7]: https://lkml.org/lkml/2019/12/23/411
+[v8]: https://lkml.org/lkml/2020/5/21/213
+[v9]: https://lkml.org/lkml/2020/6/28/73
+[v10]: https://lkml.org/lkml/2020/7/2/1443
+[v11]: https://lkml.org/lkml/2020/8/1/150
+[v12]: https://lkml.org/lkml/2020/9/7/1037
+[v13]: https://lkml.org/lkml/2020/10/31/34
+[v14]: https://lkml.org/lkml/2021/1/30/53
+[v15]: https://lkml.org/lkml/2021/10/19/1405
+[v16]: https://lkml.org/lkml/2021/11/23/435
+
+
+Chen Zhou (9):
+  x86: kdump: replace the hard-coded alignment with macro CRASH_ALIGN
+  x86: kdump: make the lower bound of crash kernel reservation
+    consistent
+  x86: kdump: use macro CRASH_ADDR_LOW_MAX in functions
+    reserve_crashkernel()
+  x86: kdump: move xen_pv_domain() check and insert_resource() to
+    setup_arch()
+  x86: kdump: move reserve_crashkernel[_low]() into crash_core.c
+  arm64: kdump: introduce some macros for crash kernel reservation
+  arm64: kdump: reimplement crashkernel=X
+  of: fdt: Add memory for devices by DT property
+    "linux,usable-memory-range"
+  kdump: update Documentation about crashkernel
+
+Zhen Lei (1):
+  of: fdt: Aggregate the processing of "linux,usable-memory-range"
+
+ Documentation/admin-guide/kdump/kdump.rst     |  11 +-
+ .../admin-guide/kernel-parameters.txt         |  11 +-
+ arch/Kconfig                                  |   3 +
+ arch/arm64/Kconfig                            |   1 +
+ arch/arm64/include/asm/kexec.h                |  10 ++
+ arch/arm64/kernel/machine_kexec_file.c        |  12 +-
+ arch/arm64/kernel/setup.c                     |  13 +-
+ arch/arm64/mm/init.c                          |  59 ++-----
+ arch/x86/Kconfig                              |   2 +
+ arch/x86/include/asm/elf.h                    |   3 +
+ arch/x86/include/asm/kexec.h                  |  31 +++-
+ arch/x86/kernel/setup.c                       | 163 ++----------------
+ drivers/of/fdt.c                              |  42 +++--
+ include/linux/crash_core.h                    |   3 +
+ include/linux/kexec.h                         |   2 -
+ kernel/crash_core.c                           | 156 +++++++++++++++++
+ kernel/kexec_core.c                           |  17 --
+ 17 files changed, 301 insertions(+), 238 deletions(-)
+
+-- 
+2.25.1
 
