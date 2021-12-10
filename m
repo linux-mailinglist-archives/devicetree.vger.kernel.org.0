@@ -2,84 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA0AA46F8F4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 03:05:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7E5A46F8FD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 03:12:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235735AbhLJCJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 21:09:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56354 "EHLO
+        id S235806AbhLJCPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 21:15:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbhLJCJ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 21:09:27 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66992C061746;
-        Thu,  9 Dec 2021 18:05:53 -0800 (PST)
+        with ESMTP id S235781AbhLJCPv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 21:15:51 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A05D7C061746;
+        Thu,  9 Dec 2021 18:12:17 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id B1F98CE2997;
-        Fri, 10 Dec 2021 02:05:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFA4DC004DD;
-        Fri, 10 Dec 2021 02:05:49 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5F357B82644;
+        Fri, 10 Dec 2021 02:12:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EE19C004DD;
+        Fri, 10 Dec 2021 02:12:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639101949;
-        bh=n8sUWaojW+htl7NSLd54cmcp05O+wNy2FaoS7mT4384=;
+        s=k20201202; t=1639102335;
+        bh=0tqoAYcVsMV4yoz2DptTe40PGDGwUzmdYpssOWCmJZ8=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=lr/ZjvJzpGDYyRNWbaZolttNd06leFWgfEieqKY8FNO4dNWx58jAA8vrIEHagAjaC
-         Y3iO+a3J2L/Q6FJfmBj2/nOyw+waHF4l/L81nnZEgZbT4IO+CmlBAb5EFQEbHwDOKQ
-         +eIYb0tn+VyJiFQ2dnaWc5lK3pMGM7XzoO/jZaId1kEY9Fbsgmj6H2BTuDqGGsNhSC
-         BGXK3ENBG/Zc9ZZ8WrVu/2kD6h3drZQGGJMic32dhyNpLjrv9hqN4SBh3txZ4MsSi/
-         FMtTSd58v84IzJWfwzb25FZnJAZxEqQ5ez3h4oeUUTdNmAoX6oYpzEcnEtGEf/o/tW
-         3Vt61vL59FI/Q==
+        b=Lc02yxYh8yVztBMSpXcmOQkmurXdIXFIdmhtWNg7IQcoXQf2o7/s7uaQagTirX8Tm
+         Qag65LTxZ/r/9QGSQ6AYnTzuKrN9/fxiKXYj/9sJnueRWEidB65qfYU/mu2jxGQXff
+         Hk2wZPC4sFRSTOfm1YSIqHVuOwFQ7tWHN75hSr06EslVpuwLjDmXizmBt8Lh2gk3LD
+         sL1DGqGoCDkfChN9LKG5TTrCtc3seb3zzfl5d4obtwJJc3xvY0nVLMasqLHqZQnrQJ
+         /KHoRvrEE3bOOL0dTFX6aTkeMo+ALb1paP2xkyI/npf3EI0iWOM75tdp4Swk0lXI3m
+         5q1Ejn5eqNixw==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1638453489.532760.3736891.nullmailer@robh.at.kernel.org>
-References: <1638403212-29265-1-git-send-email-quic_fenglinw@quicinc.com> <1638403212-29265-11-git-send-email-quic_fenglinw@quicinc.com> <1638453489.532760.3736891.nullmailer@robh.at.kernel.org>
-Subject: Re: [RESEND PATCH v3 10/10] dt-bindings: convert qcom,spmi-pmic-arb binding to YAML format
+In-Reply-To: <20211119034613.32489-1-james.lo@mediatek.com>
+References: <20211119034613.32489-1-james.lo@mediatek.com>
+Subject: Re: [PATCH v16 0/4] Add SPMI support for Mediatek SoC IC
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>,
-        collinsd@codeaurora.org, Andy Gross <agross@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        subbaram@codeaurora.org, tglx@linutronix.de, maz@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Fenglin Wu <quic_fenglinw@quicinc.com>,
-        Rob Herring <robh@kernel.org>
-Date:   Thu, 09 Dec 2021 18:05:48 -0800
+Cc:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        James Lo <james.lo@mediatek.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+To:     James Lo <james.lo@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 09 Dec 2021 18:12:13 -0800
 User-Agent: alot/0.9.1
-Message-Id: <20211210020549.BFA4DC004DD@smtp.kernel.org>
+Message-Id: <20211210021215.0EE19C004DD@smtp.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rob Herring (2021-12-02 05:58:09)
-> On Thu, 02 Dec 2021 08:00:12 +0800, Fenglin Wu wrote:
-> > Convert the SPMI PMIC arbiter documentation to JSON/yaml. While at it,
-> > update SPMI bus "reg" items constraint for SPMI PMIC arbiter to carry
-> > it and update it with a smaller range.
-> >=20
-> > Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
-> > ---
-> >  .../bindings/spmi/qcom,spmi-pmic-arb.txt           |  67 -----------
-> >  .../bindings/spmi/qcom,spmi-pmic-arb.yaml          | 128 +++++++++++++=
-++++++++
-> >  Documentation/devicetree/bindings/spmi/spmi.yaml   |   3 +-
-> >  3 files changed, 130 insertions(+), 68 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/spmi/qcom,spmi-pm=
-ic-arb.txt
-> >  create mode 100644 Documentation/devicetree/bindings/spmi/qcom,spmi-pm=
-ic-arb.yaml
-> >=20
+Quoting James Lo (2021-11-18 19:46:09)
+> This series adds support for new SoC MT6873/MT8192/MT8195 to the spmi dri=
+ver.
+> This series is based on Chun-Jie's patches[1].
 >=20
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
->=20
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
->=20
-> Full log is available here: https://patchwork.ozlabs.org/patch/1562483
+> [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=3D52=
+1655
 
-Are any of these problems going to be fixed?
+This isn't needed though right? I've picked these four patches up into
+spmi-next.
