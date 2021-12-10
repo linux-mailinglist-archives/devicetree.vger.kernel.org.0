@@ -2,103 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07F3746F8D1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 02:55:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED93B46F8F0
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 03:05:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235572AbhLJB6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 20:58:49 -0500
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:6689 "EHLO
-        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232822AbhLJB6s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 20:58:48 -0500
+        id S235732AbhLJCId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 21:08:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56132 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234091AbhLJCId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 21:08:33 -0500
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A35CC0617A1
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 18:04:59 -0800 (PST)
+Received: by mail-ot1-x32a.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so8221678otl.8
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 18:04:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1639101314; x=1670637314;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=RcDUI0O2vEznTQ0sfknLbOncw+pzz8jl9FF8nIbdcf0=;
-  b=zX2oJMOMMgaUvh9Ee5c5FcZRsA7Y3jV98hNk2fxjZJish66h3d4yxFrS
-   4eZu9YRBSX+6FscJ7yF3YvpxOLxOFq24mBNTf+Ods00u5Y2CoSNpQd/Au
-   l6Wm9vHHkaXOWRnQSc6O1XrBc/lgLCE7xCNKKFGEkBeozyI+PjPhFVjWM
-   8=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 09 Dec 2021 17:55:14 -0800
-X-QCInternal: smtphost
-Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Dec 2021 17:55:13 -0800
-Received: from collinsd-linux.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Thu, 9 Dec 2021 17:55:13 -0800
-From:   David Collins <quic_collinsd@quicinc.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        <devicetree@vger.kernel.org>
-CC:     David Collins <quic_collinsd@quicinc.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        "Subbaraman Narayanamurthy" <quic_subbaram@quicinc.com>
-Subject: [PATCH 1/2] dt-bindings: firmware: arm,scmi: define support for name based regulators
-Date:   Thu, 9 Dec 2021 17:54:41 -0800
-Message-ID: <2d78b0f19991f8028d9be913be0a5aefd7d1ee17.1639099631.git.quic_collinsd@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1639099631.git.quic_collinsd@quicinc.com>
-References: <cover.1639099631.git.quic_collinsd@quicinc.com>
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Mk4inzLW8Nyomvz0lak/GtO/CGQzqzuOwnVgsqNwCQI=;
+        b=qn0qlQ/bPPEacAJ+PQi0Et4rabWTmURuuO4Tc0/Od9nlXX+zbCQnAvPxRNcnWQXplH
+         asYldO3ujBfe5CzmGIsmgJtHJ2zhLvD7W2/er0RpvRosq8R8wYBVU05x3odJTertmWDw
+         kzyjVQiwV6Kd5RFy7Ip7wjkypWSSPTWCY3ZBnNRbD7ClexTUynp1aruiM/TUzzv/xC0S
+         ilXuITXUkYATsWGGWQp0SBAfM0S8YIPi6d5kS4RtxUObu0F6bEOVdo6YnzeJlwjbNMMz
+         rl54efomNmzAjBIjc/fRw9bRMP1uT2EFtE7cuI4bk30OMLGgNpCr0QTfwuufjFW1JYqg
+         /RYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Mk4inzLW8Nyomvz0lak/GtO/CGQzqzuOwnVgsqNwCQI=;
+        b=ZUCh2Y2pqFTszyEijS78O6PmE58lL/Wk1y4XXCMRyG5X5CTG9820LTkb+w2uUiUUrD
+         qlDQ8kWcU2AF/ow3LPBHAk9dcPosQyFaBApSvG1WabkH+6rmgCwp9TUrVzQUPm9iIOqQ
+         DW9JCSofCzJRqSu7Q7/i0rnPJ5XxBczqZq2hh4/h9FLPeDQsyj6bpNRFg1MxADJ5rdE6
+         rYCDS7Y9/GagFFf0D+7t9xJ3U1YweV53/XU4CVI1mKwOdM7RjkBeKRL+z2lJwowe+FXr
+         Tx8PstsoHOkYiQPJhOQj5cEuCgRHkQ1UrOBI7JOxgGeKMJ1Ly3gTIH0xLbQIQsIptFm5
+         nqFw==
+X-Gm-Message-State: AOAM532I5ABeC/X/rYeZnx1ZZ5cewnAQ1F3jnoFTtADLB8uJiFA5nAf+
+        mrxMlJ2d8BJvBTqF1blLPjK2j3lD16zb94yTmlDz5A==
+X-Google-Smtp-Source: ABdhPJzLKqHHsTQQ+/DZQJn7ag2tMY4yD2GC75lI7BjHJO46vCOl7pBNn7BESbjJFbsLDzye2ZYwZLbcWHnoSS+csIs=
+X-Received: by 2002:a9d:74d0:: with SMTP id a16mr8719458otl.237.1639101898426;
+ Thu, 09 Dec 2021 18:04:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
+References: <20211110225808.16388-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CA+V-a8sCVkbwYeVGsQpv2q0OjwUSB_jqmjPptHN-ENSdU+pT1Q@mail.gmail.com> <CA+V-a8tTm=n+TuE5N1Ptkvh6n1sYjSZWpQpmY1F5RiwK-ocvFQ@mail.gmail.com>
+In-Reply-To: <CA+V-a8tTm=n+TuE5N1Ptkvh6n1sYjSZWpQpmY1F5RiwK-ocvFQ@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 10 Dec 2021 03:04:46 +0100
+Message-ID: <CACRpkdYDNQGWr8u18K7duy9MUd-njuyFQkXvZ4VQuvxXNOOicw@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 0/7] Renesas RZ/G2L IRQC support
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow SCMI regulator subnodes to be specified either by ID using
-the "reg" property or by name using the "regulator-name" property.
+On Fri, Dec 10, 2021 at 2:09 AM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
 
-Name based SCMI regulator specification helps ensure that an SCMI
-agent doesn't need to be aware of the numbering scheme used for
-Voltage Domains by the SCMI platform.  It also ensures that the
-correct Voltage Domain is selected for a given physical regulator.
-This cannot be guaranteed with numeric Voltage Domain IDs alone.
+> I plan to post a non RFC version soon, can I have your feedback on this please.
 
-Signed-off-by: David Collins <quic_collinsd@quicinc.com>
----
- .../devicetree/bindings/firmware/arm,scmi.yaml        | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+I actually cannot see the patches (just this cover letter) I wonder if
+they got stuck.
 
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 5c4c6782e052..bc4a84fe25d2 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -155,7 +155,7 @@ properties:
-           The list of all regulators provided by this SCMI controller.
- 
-         patternProperties:
--          '^regulators@[0-9a-f]+$':
-+          '^regulator.+$':
-             type: object
-             $ref: "../regulator/regulator.yaml#"
- 
-@@ -164,8 +164,13 @@ properties:
-                 maxItems: 1
-                 description: Identifier for the voltage regulator.
- 
--            required:
--              - reg
-+              regulator-name: true
-+
-+            anyOf:
-+              - required:
-+                  - reg
-+              - required:
-+                  - regulator-name
- 
- additionalProperties: false
- 
--- 
-2.17.1
+For
+gpio: gpiolib: Allow free() callback to be overridden
+gpio: gpiolib: Add ngirq member to struct gpio_irq_chip
 
+I trust whatever Marc
+says. If he agrees we need this, then we need this.
+
+Yours,
+Linus Walleij
