@@ -2,96 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BAF147060B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 17:43:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B894F470615
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 17:44:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243852AbhLJQqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 11:46:53 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:40727 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231180AbhLJQqx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 11:46:53 -0500
-Received: by mail-ot1-f44.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so10173556otj.7;
-        Fri, 10 Dec 2021 08:43:17 -0800 (PST)
+        id S243895AbhLJQru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 11:47:50 -0500
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:36779 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243892AbhLJQrt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 11:47:49 -0500
+Received: by mail-oi1-f175.google.com with SMTP id t23so14008622oiw.3;
+        Fri, 10 Dec 2021 08:44:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ZwDLkPobIqK5v1+DIR9VlqySsN5PRct8i+lUCHBrkFg=;
-        b=kj/i9D9Y9/Vqdt/AWmRLtIUbAX2VDoQhZx1FmDC6n6EZM42M4fEg04w/HyBcuP/2QT
-         I5cB4HOKdM7aFsNsTJ32al1ikLzIiesSfKJdzYQJeK0Vx18rtnfvf5YIR4qDjbf87OAy
-         aiiToGuPvbe92orrXHFgSheUWhNhUA+E42/xHzKOd8kM2K5N0yMrs5lD8UpN5c840alr
-         uKjY6Ktgwj/l7cuR93flIyfYSWf/O+a9JozwG/LJ/4Ex7f+LOiKQovQIbPwy0LShNBD1
-         yb0EH2EcClFVaqfET9PLEohq+XYUP1Vm9nkRHzA0q6p8Tv81H/vz7Jw2Ndnp24pFwmZi
-         fzhg==
-X-Gm-Message-State: AOAM531Co40dOME/0V7V2lZ9JmD96rkTFsaTbJkVhPwX1clGD6Q+MPlY
-        dMN2m2cMf8pqoAMhfaAf2w==
-X-Google-Smtp-Source: ABdhPJwdcBz7WV5SZemj6BK7U1UUeg/obVDS8OyD99mYsandiDs9PU4igyuiQc5l59usoJWA1UTy9Q==
-X-Received: by 2002:a05:6830:8:: with SMTP id c8mr11873067otp.115.1639154597413;
-        Fri, 10 Dec 2021 08:43:17 -0800 (PST)
+        bh=Mm8SQmiLhjU20BvDtVazDvNimPphReV+xWj5pzJFCQ4=;
+        b=teumkqxGEULFbt80aB983J0vBRQWoUai4i91HsRZgtn0Hx10EVjYxE3+ygXmgxkA6T
+         57r3ejj7R217M7SYFB6hC5k/JVvKnE4gpZYhmfSOlOKMEYvFveNjcPbMXi9tghcHK/k9
+         9tnbq1f2ItzEQV/r7I7m3OWav4uHy1Mzfa1vfTWzu8gqv9uwzIaOwmgpQ5L3NgwaBfzE
+         Z5tqiEzNKHM7e8QdO7qnnThkl6LOlKdSOqyZagCHdZESxQQS5rAySuayJsHmcQd+9OT8
+         BUXIdBa8f9Z6USo6zU0SRjwRqjSD8noEp1uJ1m0SPJonhQcWaz+IMTY8GFGPWRnqu6wL
+         +F9Q==
+X-Gm-Message-State: AOAM530tzi8TYlpxMq8OH5SntWwVszTWfAPPPjTm4xx4WdoEAE3yybcf
+        14oYpmA6np+wwQGoScmVWA==
+X-Google-Smtp-Source: ABdhPJy8HYzrYSz/WeaRmKgp2Gue2wXup/OLnqK1pePjZ+PMhr/kETAotUtsNeRaSSB7jB1G2/YZ8g==
+X-Received: by 2002:a05:6808:2205:: with SMTP id bd5mr13249606oib.12.1639154654011;
+        Fri, 10 Dec 2021 08:44:14 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id a3sm571677oti.29.2021.12.10.08.43.15
+        by smtp.gmail.com with ESMTPSA id h3sm610770oon.34.2021.12.10.08.44.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 08:43:16 -0800 (PST)
-Received: (nullmailer pid 1497925 invoked by uid 1000);
-        Fri, 10 Dec 2021 16:43:15 -0000
-Date:   Fri, 10 Dec 2021 10:43:15 -0600
+        Fri, 10 Dec 2021 08:44:13 -0800 (PST)
+Received: (nullmailer pid 1499436 invoked by uid 1000);
+        Fri, 10 Dec 2021 16:44:12 -0000
+Date:   Fri, 10 Dec 2021 10:44:12 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     linux-kernel@vger.kernel.org, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        linux-doc@vger.kernel.org,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Will Deacon <will@kernel.org>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "H . Peter Anvin" <hpa@zytor.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        kexec@lists.infradead.org, Baoquan He <bhe@redhat.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        linux-arm-kernel@lists.infradead.org,
-        Dave Young <dyoung@redhat.com>, devicetree@vger.kernel.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Vivek Goyal <vgoyal@redhat.com>
-Subject: Re: [PATCH v17 09/10] of: fdt: Add memory for devices by DT property
- "linux,usable-memory-range"
-Message-ID: <YbODo3WbV27NyL7h@robh.at.kernel.org>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <20211210065533.2023-10-thunder.leizhen@huawei.com>
+To:     Akhil R <akhilrajeev@nvidia.com>
+Cc:     rgumasta@nvidia.com, robh+dt@kernel.org, ldewangan@nvidia.com,
+        thierry.reding@gmail.com, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, jonathanh@nvidia.com,
+        p.zabel@pengutronix.de, kyarlagadda@nvidia.com,
+        dan.j.williams@intel.com, vkoul@kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v14 1/4] dt-bindings: dmaengine: Add doc for tegra gpcdma
+Message-ID: <YbOD3F2DvkAz3tLK@robh.at.kernel.org>
+References: <1638795639-3681-1-git-send-email-akhilrajeev@nvidia.com>
+ <1638795639-3681-2-git-send-email-akhilrajeev@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211210065533.2023-10-thunder.leizhen@huawei.com>
+In-Reply-To: <1638795639-3681-2-git-send-email-akhilrajeev@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Dec 2021 14:55:32 +0800, Zhen Lei wrote:
-> From: Chen Zhou <chenzhou10@huawei.com>
+On Mon, 06 Dec 2021 18:30:36 +0530, Akhil R wrote:
+> Add DT binding document for Nvidia Tegra GPCDMA controller.
 > 
-> When reserving crashkernel in high memory, some low memory is reserved
-> for crash dump kernel devices and never mapped by the first kernel.
-> This memory range is advertised to crash dump kernel via DT property
-> under /chosen,
->         linux,usable-memory-range = <BASE1 SIZE1 [BASE2 SIZE2]>
-> 
-> We reused the DT property linux,usable-memory-range and made the low
-> memory region as the second range "BASE2 SIZE2", which keeps compatibility
-> with existing user-space and older kdump kernels.
-> 
-> Crash dump kernel reads this property at boot time and call memblock_add()
-> to add the low memory region after memblock_cap_memory_range() has been
-> called.
-> 
-> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> Tested-by: Dave Kleikamp <dave.kleikamp@oracle.com>
+> Signed-off-by: Rajesh Gumasta <rgumasta@nvidia.com>
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
->  drivers/of/fdt.c | 33 +++++++++++++++++++++++----------
->  1 file changed, 23 insertions(+), 10 deletions(-)
+>  .../bindings/dma/nvidia,tegra186-gpc-dma.yaml      | 110 +++++++++++++++++++++
+>  1 file changed, 110 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
