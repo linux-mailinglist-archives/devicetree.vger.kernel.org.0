@@ -2,67 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87F3A470C6B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 22:18:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C43D470C77
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 22:23:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235799AbhLJVWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 16:22:34 -0500
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:36813 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237810AbhLJVWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 16:22:33 -0500
-Received: by mail-ot1-f41.google.com with SMTP id w6-20020a9d77c6000000b0055e804fa524so10923432otl.3;
-        Fri, 10 Dec 2021 13:18:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Our/pN1IyVCtIS8mIewFtFMewda+bHas4rs49FN0p6s=;
-        b=AuD+fk2nosTEh3Czs84hVGel+XuphL6XD0oHAoZvNTMmyuGgYU9ib5o7Xn21WIVLA2
-         O31RA1ulWt9PdwwYSR8wwTlzDDURuIuBry6QAeBcxmXOC2wOCtahCLjzKAD+XlST2c8O
-         BPMoRreQPOmTLApoiRuC//rWZtGaQGZQxTmKov5UCP049NHSMwICKx73V9TSjBs5Z5bU
-         fTrtiOmHv1fIQGgodnAT4OSodD/tC/m+1QtgGSS/XVI2AtAU0gGE2pUsJiKYk5WkOz0v
-         3NH4SjCVIJ+KeC4d+hCmpK0cEEq8FBtvPRShZe2H/XHfIBPlS2voOPcEbEYg6M7q3D8I
-         mUWQ==
-X-Gm-Message-State: AOAM532gW0RqLzV8ooRoJWeLPn3xTUc2GaxXEgvW4PW6LXSUbhzJ66Oo
-        jFyCNzL/XMlnz0JSw9krprvrrh9tjQ==
-X-Google-Smtp-Source: ABdhPJyHmK8KkTYDC8dC39vS4BDv14WHjiA1TtUa3WbDo5zSxnrrirNWYG/gK9DPHglZ1YKjtd2FmQ==
-X-Received: by 2002:a9d:1e1:: with SMTP id e88mr12745468ote.75.1639171137206;
-        Fri, 10 Dec 2021 13:18:57 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x16sm741453otq.47.2021.12.10.13.18.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 13:18:56 -0800 (PST)
-Received: (nullmailer pid 1916612 invoked by uid 1000);
-        Fri, 10 Dec 2021 21:18:55 -0000
-Date:   Fri, 10 Dec 2021 15:18:55 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Tommy Haung <tommy_huang@aspeedtech.com>
-Cc:     linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        airlied@linux.ie, linux-aspeed@lists.ozlabs.org,
-        devicetree@vger.kernel.org, joel@jms.id.au,
-        linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com,
-        dri-devel@lists.freedesktop.org, daniel@ffwll.ch, andrew@aj.id.au
-Subject: Re: [PATCH v5 7/7] dt-bindings:ast2600-clock Add CRT reset define
-Message-ID: <YbPEP9VoYdDWitez@robh.at.kernel.org>
-References: <20211208013337.13806-1-tommy_huang@aspeedtech.com>
- <20211208013337.13806-8-tommy_huang@aspeedtech.com>
+        id S239799AbhLJV1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 16:27:20 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:58864 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237368AbhLJV1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 16:27:20 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 0FF3DCE2D41;
+        Fri, 10 Dec 2021 21:23:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAE7BC00446;
+        Fri, 10 Dec 2021 21:23:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639171421;
+        bh=WZhMzHgknQpWsqrRNERS1gjjZ0fPcQiMPzk5ltfw6kc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TlDxseGnBGuKdK+5tchCA7yu/kVuWetPW6/apm/qXwr6f9dbFpQq1jXk5ghwAa8qK
+         fx6ht9/XzG9kFq/R4quwslmi2c81DEDz48Sp3uTUBOHnQnVedV8xEgAu0G8eAz7Wzp
+         K+9iQEx9ZVdXxbMOU6aqxpBPBu7OBILsvwNP+lVNLDjRF8np4JX6eBHdh7d8jpzzax
+         /XOVCdgoasqYkNZvnhD9KJdMWnhkGSqHrJCaKIS7ST3tkqR8mvxH2xzYUGcIfORDiQ
+         L7FkGiL06ULu27og9Ai0zOAb8Z+N/+vuBUxQvIW4qudhlZ/NW0+lW+JUVv8FG4dYJi
+         OeB0ga/43vtAA==
+Date:   Fri, 10 Dec 2021 22:23:35 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Akhil R <akhilrajeev@nvidia.com>
+Cc:     andy.shevchenko@gmail.com, christian.koenig@amd.com,
+        digetx@gmail.com, jonathanh@nvidia.com, ldewangan@nvidia.com,
+        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, p.zabel@pengutronix.de,
+        sumit.semwal@linaro.org, thierry.reding@gmail.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] i2c: tegra: use i2c_timings for bus clock freq
+Message-ID: <YbPFV39VU4YY9SOn@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Akhil R <akhilrajeev@nvidia.com>, andy.shevchenko@gmail.com,
+        christian.koenig@amd.com, digetx@gmail.com, jonathanh@nvidia.com,
+        ldewangan@nvidia.com, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        p.zabel@pengutronix.de, sumit.semwal@linaro.org,
+        thierry.reding@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+References: <1639138557-1709-1-git-send-email-akhilrajeev@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="S5JuNTA1eC+dxV7V"
 Content-Disposition: inline
-In-Reply-To: <20211208013337.13806-8-tommy_huang@aspeedtech.com>
+In-Reply-To: <1639138557-1709-1-git-send-email-akhilrajeev@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Dec 2021 09:33:37 +0800, Tommy Haung wrote:
-> Add new CRT reset define for ast2600.
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Tommy Haung <tommy_huang@aspeedtech.com>
-> ---
->  include/dt-bindings/clock/ast2600-clock.h | 1 +
->  1 file changed, 1 insertion(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+--S5JuNTA1eC+dxV7V
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Dec 10, 2021 at 05:45:57PM +0530, Akhil R wrote:
+> Use i2c_timings struct and corresponding methods to get bus clock frequen=
+cy
+>=20
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> Suggested-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+
+Applied to for-next, thanks!
+
+
+--S5JuNTA1eC+dxV7V
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGzxVMACgkQFA3kzBSg
+KbZebg//SU+X/Tm0ervkH0g5sxrsw9ac426lDyOrd0/0YbXjCiHaQZxi6HJMzRht
+h6nEUbpTDnX5qgNZ/zJ79AYReqm8huhZzb6I0a3neNTlMTrJoUg1iykXGAO9QHGo
+Hj9R7dwJpMJRHonGvOVqi9uPLpGxOMQyQuBS1kX4DxuEwRTjLiqhWKYzEn6nvVnY
+Y65hmkT0NjpzmvFVx9fT7PFudSp5+0jyFIkj3AOi+p/N5WGr7EI+wLE9CwrLuIAa
+vzEIlaPa6+43SDSGSrzjmACNFjodEgLNuhK8Aor4DUiMKRGC45Bj1qIN7fYRNPbU
+wT2QQ8vHO2ooPVZWFdGJ4G8jjxzF4Q0dqNNuTXD6m3pZAELN/5vmnxyPVG0Tk0Q3
+8hrfg+1uYXQuIdbfjduZNLSdXfHcT76NVrT+WftJMQmadt9AURZ9Olhjmx2uJHuW
+QruqXLmM9iku3QFO74puRcWDNEDuQn2fGWzhhR7/zyt6MMS7Agd69O+nFHofbeE1
+OMs9kigGD2fU8PlVQ+AzUJbiUvHCxdKd3zFbWpiHhDDTYooMlMCAv85RH44c7WBV
+P9PDA4ArgughAcFS/F6PhVpuUcsUec6RpuU8UsUdfqSWdkUmdym21/GglwaxUVMw
+eM8jTFJ6HSWeg3ePu/FEv/tFUsJiSpW1n8kgsR1lf3rhBWKg/pw=
+=2KoO
+-----END PGP SIGNATURE-----
+
+--S5JuNTA1eC+dxV7V--
