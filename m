@@ -2,65 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2B67470B98
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 21:11:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9310E470BA4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 21:12:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344108AbhLJUPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 15:15:07 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:35761 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344094AbhLJUPG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 15:15:06 -0500
-Received: by mail-oi1-f169.google.com with SMTP id m6so14747880oim.2;
-        Fri, 10 Dec 2021 12:11:31 -0800 (PST)
+        id S1344083AbhLJUQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 15:16:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54102 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242705AbhLJUQW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 15:16:22 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E0D5C0617A2
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 12:12:47 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id u74so14693442oie.8
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 12:12:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=slzGBePYCrgaDRnlPEDIBIMYbsbR6khnbp5/bRRqlbA=;
+        b=cgXPDoiQUDpeq4SoOZku+p8ATEz18iL0zuiQKUBqGKXZmWLg7N1xkBU7LxNzEr5n9C
+         NlSafWcjVHHsq/jSot7wUqy68WmnXBHH7t2G0ORUHaCHWjrNaJn8tdeT+eEzlaC/dGXv
+         Zh+4PNLER4mqQ0AxF+WAX0Lz/opfSGHBLeB8jPEA62LRIEzPwu3W9KuDQXpk7EytOcTI
+         CjX0JWg9VsIt497fo1SNCZBUfS5NmHy17dcyghuw7wFYB+nEUP98Yc/TvX7VWGj+Z06N
+         wu0Y471tKEkarz22PSdgrFT/Z5/8hGbuVhiTi6lpEV3/IgE1lXLji6ATu9jzOulRAPik
+         x8RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=AIgIhmMESH4FjIJ34+1ORZDQ3lYypzCaTtbkFwa/xAY=;
-        b=yjchkiDhKDaRMyVMxixe/pta/puwmSpi1NQeiwC935C+o1Acy+4fQBkbQgB7yTHXyR
-         IuRliEN4UO224ZRR2Y6bYCeLjFTvJkCxfmQMfzFT19tu7fi4C8KxjktagjWlbNG63WMk
-         UDt32DpLXL5mxEJw7glnP9W3hAq+qLYdZeYN63KG1F/Cs9l4zEihSJoasV0sP4SGGcVm
-         4FxCDQ8GDuemaju2IvFg/bL+iRY/RQuLQ+2fSAPkyikr2XZw26kg5HGHdsQ9aLOJfGY9
-         N0bLB+zo7tZ17e6q+Lrer2hZeGgrvmS+bhCGo9o1PW1+GrG2tdoJoqaMZWCqqKuszL6K
-         h86A==
-X-Gm-Message-State: AOAM533O9F+1OsEZJJF6eyQIqH8kpzudUSYp6D2R02TPSXjZXb4x5K3+
-        SAJgsyeHMWrZwlC7v7w3eZQ17axQdw==
-X-Google-Smtp-Source: ABdhPJyUF6S3BHq6kagxqU7F/ujngmftOIXv6P1mFAJL840F4X3rpva//gPw21G8+PIAT7r055b85Q==
-X-Received: by 2002:aca:30c5:: with SMTP id w188mr13759572oiw.35.1639167091003;
-        Fri, 10 Dec 2021 12:11:31 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bg38sm972401oib.40.2021.12.10.12.11.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 12:11:30 -0800 (PST)
-Received: (nullmailer pid 1815088 invoked by uid 1000);
-        Fri, 10 Dec 2021 20:11:29 -0000
-Date:   Fri, 10 Dec 2021 14:11:29 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org, jic23@kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] dt-bindings:iio:dac: add ad7293 doc
-Message-ID: <YbO0cauDANNaPiGV@robh.at.kernel.org>
-References: <20211202150819.24832-1-antoniu.miclaus@analog.com>
- <20211202150819.24832-2-antoniu.miclaus@analog.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=slzGBePYCrgaDRnlPEDIBIMYbsbR6khnbp5/bRRqlbA=;
+        b=XW1ZKlUUwWnUIPyaOfsW0Ts/agBUEz2WRlycmzURQsE7Dz12OkAr5sLYlFew8+h6IP
+         bJ6GwJb1POST7WAf47IzrSL++950wWrM7HdHraIFlWQTn5RtNBvr/+jK467naRlJYC79
+         BRgULdRCjHbPwjRlG0OyB+pzDJ+PHSSwnEYG/ARYqhHvjZcioHF3kt9uKcdKK9zlv/xs
+         TUFlV+uP0/lFMc3IxEJjXO+BqERsU9RrNXQ+XERo2441mKbkiVw28W4HgtUIqCYxYoM0
+         mR2lEegdJ23x/ZB37s77IY0iBlAPP0bJVzFSO8twlt/CY6qleetLUshu7R6/H9Y1a8HG
+         94nw==
+X-Gm-Message-State: AOAM530eJQhngl0vbgeHmwDbnM99jE2/s1nKV+vNWKMKZK8chjYtYgnL
+        9QsO9U7ssV0YSlShImO25EAeWT1en5rQsrN6WfI03g==
+X-Google-Smtp-Source: ABdhPJzMR2vznEDF8swuHq63lynTYGhs4v11eF+LAnUSFHWHggwuzwRmt93CPGXvBFj9Zfzps2o47kI7iQ/XPRY7uE4=
+X-Received: by 2002:a05:6808:60e:: with SMTP id y14mr13991533oih.162.1639167166807;
+ Fri, 10 Dec 2021 12:12:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211202150819.24832-2-antoniu.miclaus@analog.com>
+References: <20211210091834.28958-1-yann.gautier@foss.st.com>
+In-Reply-To: <20211210091834.28958-1-yann.gautier@foss.st.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 10 Dec 2021 21:12:34 +0100
+Message-ID: <CACRpkdZtRqr0xnS849ZEsDGMtnDNKgOZu=7ww5H_fvxoTDQpag@mail.gmail.com>
+Subject: Re: [PATCH] mmc: mmci: add st,stm32-sdmmc2 compatible
+To:     Yann Gautier <yann.gautier@foss.st.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loic.pallardy@foss.st.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 02 Dec 2021 17:08:19 +0200, Antoniu Miclaus wrote:
-> Add device tree bindings for the AD7293 Power Amplifier.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> no changes in v6.
->  .../bindings/iio/dac/adi,ad7293.yaml          | 61 +++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad7293.yaml
-> 
+On Fri, Dec 10, 2021 at 10:19 AM Yann Gautier <yann.gautier@foss.st.com> wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> Although this compatible is not used in kernel, as we use the common
+> MMCI driver, it is used by bootloaders. The U-Boot driver was merged
+> before the kernel driver and uses this compatible.
+> To avoid issues when aligning device tree files between kernel and
+> boot loader, the ST dedicated compatible is added to bindings file.
+>
+> Signed-off-by: Yann Gautier <yann.gautier@foss.st.com>
+
+Why not
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
+
+> +      - description: Entry for STMicroelectronics variant of PL18x.
+> +          This dedicated compatible is used by bootloaders.
+> +        items:
+> +          - const: st,stm32-sdmmc2
+> +          - const: arm,pl18x
+> +          - const: arm,primecell
+
+You *could* mark it deprecated if it's not supposed to be used.
+But no strong opinion.
+
+Yours,
+Linus Walleij
