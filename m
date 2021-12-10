@@ -2,86 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9310E470BA4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 21:12:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60E50470BC3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 21:19:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344083AbhLJUQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 15:16:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54102 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242705AbhLJUQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 15:16:22 -0500
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E0D5C0617A2
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 12:12:47 -0800 (PST)
-Received: by mail-oi1-x236.google.com with SMTP id u74so14693442oie.8
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 12:12:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=slzGBePYCrgaDRnlPEDIBIMYbsbR6khnbp5/bRRqlbA=;
-        b=cgXPDoiQUDpeq4SoOZku+p8ATEz18iL0zuiQKUBqGKXZmWLg7N1xkBU7LxNzEr5n9C
-         NlSafWcjVHHsq/jSot7wUqy68WmnXBHH7t2G0ORUHaCHWjrNaJn8tdeT+eEzlaC/dGXv
-         Zh+4PNLER4mqQ0AxF+WAX0Lz/opfSGHBLeB8jPEA62LRIEzPwu3W9KuDQXpk7EytOcTI
-         CjX0JWg9VsIt497fo1SNCZBUfS5NmHy17dcyghuw7wFYB+nEUP98Yc/TvX7VWGj+Z06N
-         wu0Y471tKEkarz22PSdgrFT/Z5/8hGbuVhiTi6lpEV3/IgE1lXLji6ATu9jzOulRAPik
-         x8RQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=slzGBePYCrgaDRnlPEDIBIMYbsbR6khnbp5/bRRqlbA=;
-        b=XW1ZKlUUwWnUIPyaOfsW0Ts/agBUEz2WRlycmzURQsE7Dz12OkAr5sLYlFew8+h6IP
-         bJ6GwJb1POST7WAf47IzrSL++950wWrM7HdHraIFlWQTn5RtNBvr/+jK467naRlJYC79
-         BRgULdRCjHbPwjRlG0OyB+pzDJ+PHSSwnEYG/ARYqhHvjZcioHF3kt9uKcdKK9zlv/xs
-         TUFlV+uP0/lFMc3IxEJjXO+BqERsU9RrNXQ+XERo2441mKbkiVw28W4HgtUIqCYxYoM0
-         mR2lEegdJ23x/ZB37s77IY0iBlAPP0bJVzFSO8twlt/CY6qleetLUshu7R6/H9Y1a8HG
-         94nw==
-X-Gm-Message-State: AOAM530eJQhngl0vbgeHmwDbnM99jE2/s1nKV+vNWKMKZK8chjYtYgnL
-        9QsO9U7ssV0YSlShImO25EAeWT1en5rQsrN6WfI03g==
-X-Google-Smtp-Source: ABdhPJzMR2vznEDF8swuHq63lynTYGhs4v11eF+LAnUSFHWHggwuzwRmt93CPGXvBFj9Zfzps2o47kI7iQ/XPRY7uE4=
-X-Received: by 2002:a05:6808:60e:: with SMTP id y14mr13991533oih.162.1639167166807;
- Fri, 10 Dec 2021 12:12:46 -0800 (PST)
+        id S1344169AbhLJUWk convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 10 Dec 2021 15:22:40 -0500
+Received: from aposti.net ([89.234.176.197]:46794 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234163AbhLJUWh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Dec 2021 15:22:37 -0500
+Date:   Fri, 10 Dec 2021 20:18:43 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v11 3/8] dt-bindings: display: Add ingenic,jz4780-dw-hdmi
+ DT Schema
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org
+Message-Id: <7R1X3R.HSAT8MYJAY6M2@crapouillou.net>
+In-Reply-To: <YbOF/pwib/VXoqkx@robh.at.kernel.org>
+References: <cover.1638470392.git.hns@goldelico.com>
+        <ac147196cd7744a7d50cf25197fe08bf9e81f88a.1638470392.git.hns@goldelico.com>
+        <YbOF/pwib/VXoqkx@robh.at.kernel.org>
 MIME-Version: 1.0
-References: <20211210091834.28958-1-yann.gautier@foss.st.com>
-In-Reply-To: <20211210091834.28958-1-yann.gautier@foss.st.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 10 Dec 2021 21:12:34 +0100
-Message-ID: <CACRpkdZtRqr0xnS849ZEsDGMtnDNKgOZu=7ww5H_fvxoTDQpag@mail.gmail.com>
-Subject: Re: [PATCH] mmc: mmci: add st,stm32-sdmmc2 compatible
-To:     Yann Gautier <yann.gautier@foss.st.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loic.pallardy@foss.st.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 10, 2021 at 10:19 AM Yann Gautier <yann.gautier@foss.st.com> wrote:
+Hi Nikolaus,
 
-> Although this compatible is not used in kernel, as we use the common
-> MMCI driver, it is used by bootloaders. The U-Boot driver was merged
-> before the kernel driver and uses this compatible.
-> To avoid issues when aligning device tree files between kernel and
-> boot loader, the ST dedicated compatible is added to bindings file.
->
-> Signed-off-by: Yann Gautier <yann.gautier@foss.st.com>
+Le ven., déc. 10 2021 at 10:53:18 -0600, Rob Herring <robh@kernel.org> 
+a écrit :
+> On Thu, Dec 02, 2021 at 07:39:48PM +0100, H. Nikolaus Schaller wrote:
+>>  From: Sam Ravnborg <sam@ravnborg.org>
+>> 
+>>  Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
+>>  Based on .txt binding from Zubair Lutfullah Kakakhel
+>> 
+>>  We also add generic ddc-i2c-bus to synopsys,dw-hdmi.yaml
+>> 
+>>  Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+>>  Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+>>  Cc: Rob Herring <robh@kernel.org>
+>>  Cc: devicetree@vger.kernel.org
+>>  ---
+>>   .../display/bridge/ingenic,jz4780-hdmi.yaml   | 78 
+>> +++++++++++++++++++
+>>   .../display/bridge/synopsys,dw-hdmi.yaml      |  3 +
+>>   2 files changed, 81 insertions(+)
+>>   create mode 100644 
+>> Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+>> 
+>>  diff --git 
+>> a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml 
+>> b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+>>  new file mode 100644
+>>  index 0000000000000..49ae1130efded
+>>  --- /dev/null
+>>  +++ 
+>> b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+>>  @@ -0,0 +1,78 @@
+>>  +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>  +%YAML 1.2
+>>  +---
+>>  +$id: 
+>> http://devicetree.org/schemas/display/bridge/ingenic,jz4780-hdmi.yaml#
+>>  +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>  +
+>>  +title: Bindings for Ingenic JZ4780 HDMI Transmitter
+>>  +
+>>  +maintainers:
+>>  +  - H. Nikolaus Schaller <hns@goldelico.com>
+>>  +
+>>  +description: |
+>>  +  The HDMI Transmitter in the Ingenic JZ4780 is a Synopsys 
+>> DesignWare HDMI 1.4
+>>  +  TX controller IP with accompanying PHY IP.
+>>  +
+>>  +allOf:
+>>  +  - $ref: synopsys,dw-hdmi.yaml#
+>>  +
+>>  +properties:
+>>  +  compatible:
+>>  +    const: ingenic,jz4780-dw-hdmi
+>>  +
+>>  +  reg-io-width:
+>>  +    const: 4
+>>  +
+>>  +  clocks:
+>>  +    maxItems: 2
+>>  +
+>>  +  hdmi-5v-supply:
+>>  +    description: regulator to provide +5V at the connector
+> 
+> Being part of the connector, that belongs in a connector node.
 
-Why not
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+I believe that means adding .atomic_{enable,disable} callbacks to the 
+display-connector bridge (drivers/gpu/drm/bridge/display-connector.c) 
+which would enable/disable the regulator.
 
-> +      - description: Entry for STMicroelectronics variant of PL18x.
-> +          This dedicated compatible is used by bootloaders.
-> +        items:
-> +          - const: st,stm32-sdmmc2
-> +          - const: arm,pl18x
-> +          - const: arm,primecell
+Unless it messes up with e.g. cable detection (which I believe requires 
+the regulator to be enabled), in that case unconditionally enable it in 
+the connector's probe function.
 
-You *could* mark it deprecated if it's not supposed to be used.
-But no strong opinion.
+>>  +
+>>  +  ports:
+>>  +    $ref: /schemas/graph.yaml#/properties/ports
+> 
+> You need to define what each 'port' node is.
 
-Yours,
-Linus Walleij
+Have a look at 
+Documentation/devicetree/bindings/display/ingenic,lcd.yaml for an 
+example on how to do this.
+
+>>  +
+>>  +required:
+>>  +  - compatible
+>>  +  - clocks
+>>  +  - clock-names
+>>  +  - hdmi-5v-supply
+>>  +  - ports
+>>  +  - reg-io-width
+>>  +
+>>  +unevaluatedProperties: false
+>>  +
+>>  +examples:
+>>  +  - |
+>>  +    #include <dt-bindings/clock/ingenic,jz4780-cgu.h>
+>>  +
+>>  +    hdmi: hdmi@10180000 {
+>>  +        compatible = "ingenic,jz4780-dw-hdmi";
+>>  +        reg = <0x10180000 0x8000>;
+>>  +        reg-io-width = <4>;
+>>  +        ddc-i2c-bus = <&i2c4>;
+>>  +        interrupt-parent = <&intc>;
+>>  +        interrupts = <3>;
+>>  +        clocks = <&cgu JZ4780_CLK_AHB0>, <&cgu JZ4780_CLK_HDMI>;
+>>  +        clock-names = "iahb", "isfr";
+>>  +        hdmi-5v-supply = <&hdmi_power>;
+>>  +
+>>  +        ports {
+>>  +            #address-cells = <1>;
+>>  +            #size-cells = <0>;
+>>  +            hdmi_in: port@0 {
+>>  +                reg = <0>;
+>>  +                dw_hdmi_in: endpoint {
+>>  +                    remote-endpoint = <&jz4780_lcd_out>;
+>>  +                };
+>>  +            };
+>>  +            hdmi_out: port@1 {
+>>  +                reg = <1>;
+>>  +                dw_hdmi_out: endpoint {
+>>  +                    remote-endpoint = <&hdmi_con>;
+>>  +                };
+>>  +            };
+>>  +        };
+>>  +    };
+>>  +
+>>  +...
+>>  diff --git 
+>> a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml 
+>> b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+>>  index 9be44a682e67a..9cbeabaee0968 100644
+>>  --- 
+>> a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+>>  +++ 
+>> b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+>>  @@ -50,6 +50,9 @@ properties:
+>>     interrupts:
+>>       maxItems: 1
+>> 
+>>  +  ddc-i2c-bus:
+>>  +    description: An I2C interface if the internal DDC I2C driver 
+>> is not to be used
+> 
+> That too is already defined to be part of the connector node.
+
+Just remove the property then, since you don't use it in the ci20 
+bindings.
+
+Cheers,
+-Paul
+
+>>  +
+>>   additionalProperties: true
+>> 
+>>   ...
+>>  --
+>>  2.33.0
+>> 
+>> 
+
+
