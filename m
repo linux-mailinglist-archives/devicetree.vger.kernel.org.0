@@ -2,198 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81AD746FFE0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 12:30:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D6F147000C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 12:35:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240477AbhLJLeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 06:34:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42814 "EHLO
+        id S240585AbhLJLiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 06:38:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240453AbhLJLeO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 06:34:14 -0500
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AA87C0617A2
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 03:30:40 -0800 (PST)
-Received: by mail-pj1-x1033.google.com with SMTP id np3so6626711pjb.4
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 03:30:40 -0800 (PST)
+        with ESMTP id S237724AbhLJLiv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 06:38:51 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929B4C061746
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 03:35:16 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id y13so28576359edd.13
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 03:35:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=mf7EFsdPh5sDDWteoiVVZdM8qPQLJMGyfkrlgZ74xeY=;
-        b=HThkS3HbsJBlF2DX5Z9qMXGASrSSCSbcTk1HDtf+7uzIQ8lnNJaRWittq9kY0BQ4TS
-         Oy478dfdZF1jGmL2kKwIM5QWccFEA0ekfRjvntK1nX+79MlXJbghKgBFqfQk5RwUrnhu
-         WZbEVu2sAsLZR6bopF256YMXASTMBRY7Q5CFHuDYZXav6pBdgX7czSjFEGkJMkT6zLPU
-         XXE8PlWukszoNseRcJMWrD2UbVtjUo7makUk43A+SS39uKWZHQ748QDzsh3y1JkqJK99
-         uwrIo8SPDGAd4jJ5SM9DPuKy5kuT2pc0tOhUVjtyqsFCcAxrqIwSJ1D2l42NTA1ywLlc
-         gv5g==
+        bh=sHUQnknpRoRpINaobvY2dor6jsSdIZSUoZ8Zm4a2q70=;
+        b=LadmZCjaZOlcssnT0OFEV4tiYNuniS1zjMbnun6AR2XupZ5FHTEh+sbVXdnATwo0XX
+         YHHOr3n+69Mbvv55eH7BOrXueoWN6mAmF+irOtwoIcFiUxXPMMJ40dSK6aIuzvMicgtP
+         5CWdUJmIpooWMNySNL11fA+tq2liADfyiULGsbwe0bJrEolmvlpI0f0cp44u8bt8aHtn
+         bEjoLPfT0VlGidN+XNd7gA61tRT71HFaxa1z6MZ6FrHVpyaiTvyqg1yk3lxDuRrHGrXo
+         PaYIetNfeTrrxatKOVumscoyVV5hPXXgue56dK0D0neUfogL/gkLb2xDxjGzQnjRL4T0
+         7h1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=mf7EFsdPh5sDDWteoiVVZdM8qPQLJMGyfkrlgZ74xeY=;
-        b=tt4ZeBRXM4IXhkOwlH91Ir9Co84t3d5QMMQL7J83+Z6jQLqABmCUEdRJ79utSTyu9c
-         B3twIuFXhQypDkRmexdtynO1d1VNgQUm1Bo4EFdkO7BrE1Gk/M3Cpe0KjmhNwh8PgTPo
-         wD0FSloBVuliTKGJesPQnmQSnfL5xF0jzdZlm7KmiJy33OUyTh2KB/99taV3S2pNq1v4
-         d1u8ffUROssE+Eh/2peSLnhZW5p8mPVQ8mWPsmZRcpwhfuM63sb+OcbhgE3AA8y6iGAr
-         yhFWVkoeuesnUj2DMUvC38As7mH7CRy41CgyeewTzPhFCsiiwHsB7tJHuwrqjOjEyZT0
-         tn5w==
-X-Gm-Message-State: AOAM533TqirlD+qJk/yvvJNzK4P71wyNBCd0Bz7XpInNSgQHQjp9GhvQ
-        7Ga4BqN72BWMQO/4BJYahuPl
-X-Google-Smtp-Source: ABdhPJzzW3+g14DNBEC2/eMHzu4q8zNdxPCQFcBzEoA9TpbXUIjeKvrwxO/S/qr8v/dl9cj1ngVgpw==
-X-Received: by 2002:a17:90a:fd13:: with SMTP id cv19mr23371091pjb.54.1639135839629;
-        Fri, 10 Dec 2021 03:30:39 -0800 (PST)
-Received: from thinkpad ([202.21.42.75])
-        by smtp.gmail.com with ESMTPSA id a26sm2834527pfh.161.2021.12.10.03.30.33
+        bh=sHUQnknpRoRpINaobvY2dor6jsSdIZSUoZ8Zm4a2q70=;
+        b=Z33bYMUP78XB/hySeB+Vc+PfFe4dkhyuHkN8IT7q68nd9LHjNqQ1nTLkP+eUAv1ZcM
+         urYu7+fFuIvx7r6CzhDYA4C2x17p13L2DlLtbZxUr/XoS6Z/H1KQ1eW6iTiUNT5PQGaX
+         C3+WEcZys1X1rFaKZzz9e2vcgZK51tbK5FBljDgwbKOvuPgn7HuYjnqAXQGYBZd1Spgn
+         /4KzpFjUCJBjh5tLqVsMBDPduwHTBdC7l89B8mWlh/ayY7Gjb7TDM6rU2z8VziJmgh87
+         Md3sRS8+CKfqvAgg2l0b8fMojGMDxtMc3HM9jdWIjkCdejy1OGzJnkOFwW6bdX9HalZG
+         4mMQ==
+X-Gm-Message-State: AOAM533H306KMRCGDbv76au6kRBwl2B/aqmmjcqQJqSRebZukvGag+nZ
+        RJcHHrYdHYlCu4wCqFyzTYQddg==
+X-Google-Smtp-Source: ABdhPJzsYrBDIoY58eWULptlz5iAZzxR1uzAUkqovIWOgsfT1CCTkFzLpJgHyonknttyFtOH9BeMBA==
+X-Received: by 2002:a17:907:d0b:: with SMTP id gn11mr22731241ejc.355.1639136114749;
+        Fri, 10 Dec 2021 03:35:14 -0800 (PST)
+Received: from myrica (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
+        by smtp.gmail.com with ESMTPSA id g9sm1373553edb.52.2021.12.10.03.35.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 03:30:39 -0800 (PST)
-Date:   Fri, 10 Dec 2021 17:00:31 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v2 06/10] PCI: qcom: Add SM8450 PCIe support
-Message-ID: <20211210113031.GF1734@thinkpad>
-References: <20211208171442.1327689-1-dmitry.baryshkov@linaro.org>
- <20211208171442.1327689-7-dmitry.baryshkov@linaro.org>
+        Fri, 10 Dec 2021 03:35:14 -0800 (PST)
+Date:   Fri, 10 Dec 2021 11:34:52 +0000
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jay Chen <jkchen@linux.alibaba.com>,
+        Leo Yan <leo.yan@linaro.org>, uchida.jun@socionext.com
+Subject: Re: [PATCH 1/2] dt-bindings: Add Arm SMMUv3 PMCG binding
+Message-ID: <YbM7XNz9V/zbQuyF@myrica>
+References: <20211116113536.69758-1-jean-philippe@linaro.org>
+ <20211116113536.69758-2-jean-philippe@linaro.org>
+ <CAL_JsqJ6v6HKA3ifQoeVh+2iABL7fBPCS0ntTXb0BA8LO0vi8g@mail.gmail.com>
+ <2f17b812-367c-da75-a2a6-0c16a93cf4a3@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211208171442.1327689-7-dmitry.baryshkov@linaro.org>
+In-Reply-To: <2f17b812-367c-da75-a2a6-0c16a93cf4a3@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 08, 2021 at 08:14:38PM +0300, Dmitry Baryshkov wrote:
-> On SM8450 platform PCIe hosts do not use all the clocks (and add several
-> additional clocks), so expand the driver to handle these requirements.
+On Thu, Nov 18, 2021 at 03:50:54PM +0000, Robin Murphy wrote:
+> > > +  An SMMUv3 may have several Performance Monitor Counter Group (PMCG).
+> > > +  They are standalone performance monitoring units that support both
+> > > +  architected and IMPLEMENTATION DEFINED event counters.
+> > 
+> > Humm, I don't know that I agree they are standalone. They could be I
+> > guess, but looking at the MMU-600 spec the PMCG looks like it's just a
+> > subset of registers in a larger block. This seems similar to MPAM
+> > (which I'm working on a binding for) where it's just a register map
+> > and interrupts, but every other possible resource is unspecified by
+> > the architecture.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 47 +++++++++++++++++++-------
->  1 file changed, 34 insertions(+), 13 deletions(-)
+> They're "standalone" in the sense that they don't have to be part of an
+> SMMU, they could be part of a PCIe root complex or other SoC device that
+> couples to an SMMU (e.g. anything that can speak AMBA DTI, in the case of
+> our SMMU implementations).
+
+The "standalone" word came from the SMMUv3 spec (IHI0070D.b 10.1):
+
+  The Performance Monitor Counter Groups are standalone monitoring
+  facilities and, as such, can be implemented in separate components that
+  are all associated with (but not necessarily part of) an SMMU.
+
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 803d3ac18c56..ada9c816395d 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -161,7 +161,7 @@ struct qcom_pcie_resources_2_3_3 {
->  
->  /* 6 clocks typically, 7 for sm8250 */
->  struct qcom_pcie_resources_2_7_0 {
-> -	struct clk_bulk_data clks[7];
-> +	struct clk_bulk_data clks[9];
->  	int num_clks;
->  	struct regulator_bulk_data supplies[2];
->  	struct reset_control *pci_reset;
-> @@ -196,7 +196,10 @@ struct qcom_pcie_cfg {
->  	const struct qcom_pcie_ops *ops;
->  	/* flags for ops 2.7.0 and 1.9.0 */
->  	unsigned int pipe_clk_need_muxing:1;
-> +	unsigned int has_tbu_clk:1;
->  	unsigned int has_ddrss_sf_tbu_clk:1;
-> +	unsigned int has_aggre0_clk:1;
-> +	unsigned int has_aggre1_clk:1;
->  };
->  
->  struct qcom_pcie {
-> @@ -1147,6 +1150,7 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
->  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
->  	struct dw_pcie *pci = pcie->pci;
->  	struct device *dev = pci->dev;
-> +	unsigned int idx;
+> In fact our SMMU TBUs are pretty much separate devices themselves, they just
+> *only* speak DTI, so access to their registers is proxied through the TCU
+> programming interface.
+> 
+> > The simplest change from this would be just specifying that the PMCG
+> > is child node(s) of whatever it is part of. The extreme would be this
+> > is all part of the SMMU binding (i.e. reg entry X is PMCG registers,
+> > interrupts entry Y is pmu irq).
+> 
+> Being a child of its associated device doesn't seem too bad semantically,
+> however how would we describe a PMCG as a child of a PCIe node when its
+> "reg" property still exists in the parent address space and not PCI
+> config/memory space like any of its siblings? Also in practical terms,
+> consuming that binding in Linux and getting the things to probe when it may
+> want to be independent of whether we even understand the parent node at all
+> could be... unpleasant.
 
-u32?
+So there are multiple options for what "the PMCG is part of".
 
->  	int ret;
->  
->  	res->pci_reset = devm_reset_control_get_exclusive(dev, "pci");
-> @@ -1160,18 +1164,22 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
->  	if (ret)
->  		return ret;
->  
-> -	res->clks[0].id = "aux";
-> -	res->clks[1].id = "cfg";
-> -	res->clks[2].id = "bus_master";
-> -	res->clks[3].id = "bus_slave";
-> -	res->clks[4].id = "slave_q2a";
-> -	res->clks[5].id = "tbu";
-> -	if (pcie->cfg->has_ddrss_sf_tbu_clk) {
-> -		res->clks[6].id = "ddrss_sf_tbu";
-> -		res->num_clks = 7;
-> -	} else {
-> -		res->num_clks = 6;
-> -	}
-> +	idx = 0;
-> +	res->clks[idx++].id = "aux";
-> +	res->clks[idx++].id = "cfg";
-> +	res->clks[idx++].id = "bus_master";
-> +	res->clks[idx++].id = "bus_slave";
-> +	res->clks[idx++].id = "slave_q2a";
-> +	if (pcie->cfg->has_tbu_clk)
-> +		res->clks[idx++].id = "tbu";
-> +	if (pcie->cfg->has_ddrss_sf_tbu_clk)
-> +		res->clks[idx++].id = "ddrss_sf_tbu";
-> +	if (pcie->cfg->has_aggre0_clk)
-> +		res->clks[idx++].id = "aggre0";
-> +	if (pcie->cfg->has_aggre1_clk)
-> +		res->clks[idx++].id = "aggre1";
-> +
-> +	res->num_clks = idx;
+(a) The SMMU: the spec guarantees that a PMCG is associated with an SMMU.
 
-res->num_clks = idx + 1?
+(b) The MMIO region: may be within the SMMU (as with MMU-600), outside of
+    it (as does another implementation, two 64k pages after the SMMU base)
+    or, theoretically, within a separate device (e.g. PCIe controller).
+
+(c) The thing being measured: does not necessarily match the MMIO region.
+    For example a TBU attached to the PCIe RC but the PMCG MMIO is within
+    the SMMU region.
+
+(d) None: the PMCG can be probed and driven separately from the SMMU and
+    other components, as demonstrated by Linux.
+
+Which one is normally picked to decide where to insert a devicetree node?
+I guess (b)?  I picked (d) so far as the easiest choice.
+
+(a) is also a reasonable choice, being based on the spec, but it might be
+confusing to have a PMCG node inside the SMMU node when the MMIO region is
+external, possibly belonging to another device. For the same reason we
+could discard (c).
+
+(b) feels more natural, although it's not clear what to do when the PMCG
+MMIO region is external or adjacent to the SMMU region. Does the node go
+inside the SMMU node or one level up?
 
 Thanks,
-Mani
+Jean
 
->  
->  	ret = devm_clk_bulk_get(dev, res->num_clks, res->clks);
->  	if (ret < 0)
-> @@ -1510,15 +1518,27 @@ static const struct qcom_pcie_cfg ipq4019_cfg = {
->  
->  static const struct qcom_pcie_cfg sdm845_cfg = {
->  	.ops = &ops_2_7_0,
-> +	.has_tbu_clk = true,
->  };
->  
->  static const struct qcom_pcie_cfg sm8250_cfg = {
->  	.ops = &ops_1_9_0,
-> +	.has_tbu_clk = true,
->  	.has_ddrss_sf_tbu_clk = true,
->  };
->  
-> +/* Only for the PCIe0! */
-> +static const struct qcom_pcie_cfg sm8450_cfg = {
-> +	.ops = &ops_1_9_0,
-> +	.has_ddrss_sf_tbu_clk = true,
-> +	.pipe_clk_need_muxing = true,
-> +	.has_aggre0_clk = true,
-> +	.has_aggre1_clk = true,
-> +};
-> +
->  static const struct qcom_pcie_cfg sc7280_cfg = {
->  	.ops = &ops_1_9_0,
-> +	.has_tbu_clk = true,
->  	.pipe_clk_need_muxing = true,
->  };
->  
-> @@ -1626,6 +1646,7 @@ static const struct of_device_id qcom_pcie_match[] = {
->  	{ .compatible = "qcom,pcie-sdm845", .data = &sdm845_cfg },
->  	{ .compatible = "qcom,pcie-sm8250", .data = &sm8250_cfg },
->  	{ .compatible = "qcom,pcie-sc8180x", .data = &sm8250_cfg },
-> +	{ .compatible = "qcom,pcie-sm8450", .data = &sm8450_cfg },
->  	{ .compatible = "qcom,pcie-sc7280", .data = &sc7280_cfg },
->  	{ }
->  };
-> -- 
-> 2.33.0
 > 
+> Robin.
+> 
+> > > +
+> > > +properties:
+> > > +  $nodename:
+> > > +    pattern: "^pmu@[0-9a-f]*"
+> > 
+> > s/*/+/
+> > 
+> > Need at least 1 digit.
+> > 
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - items:
+> > > +        - enum:
+> > > +          - hisilicon,smmu-v3-pmcg-hip08
+> > > +        - const: arm,smmu-v3-pmcg
+> > > +      - const: arm,smmu-v3-pmcg
+> > > +
+> > > +  reg:
+> > > +    description: |
+> > > +      Base addresses of the PMCG registers. Either a single address for Page 0
+> > > +      or an additional address for Page 1, where some registers can be
+> > > +      relocated with SMMU_PMCG_CFGR.RELOC_CTRS.
+> > > +    minItems: 1
+> > > +    maxItems: 2
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  msi-parent: true
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |+
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +
+> > > +    pmu@2b420000 {
+> > > +            compatible = "arm,smmu-v3-pmcg";
+> > > +            reg = <0 0x2b420000 0 0x1000>,
+> > > +                  <0 0x2b430000 0 0x1000>;
+> > > +            interrupts = <GIC_SPI 80 IRQ_TYPE_EDGE_RISING>;
+> > > +            msi-parent = <&its 0xff0000>;
+> > > +    };
+> > > +
+> > > +    pmu@2b440000 {
+> > > +            compatible = "arm,smmu-v3-pmcg";
+> > > +            reg = <0 0x2b440000 0 0x1000>,
+> > > +                  <0 0x2b450000 0 0x1000>;
+> > > +            interrupts = <GIC_SPI 81 IRQ_TYPE_EDGE_RISING>;
+> > > +            msi-parent = <&its 0xff0000>;
+> > > +    };
+> > > --
+> > > 2.33.1
+> > > 
