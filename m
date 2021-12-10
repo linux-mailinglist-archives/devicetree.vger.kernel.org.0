@@ -2,77 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8F4946FF91
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 12:12:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 738A946FF9F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 12:15:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237471AbhLJLPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 06:15:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38638 "EHLO
+        id S237636AbhLJLTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 06:19:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237605AbhLJLPt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 06:15:49 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F8BAC061A32;
-        Fri, 10 Dec 2021 03:12:14 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id CC207CE2A91;
-        Fri, 10 Dec 2021 11:12:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6252C341C8;
-        Fri, 10 Dec 2021 11:12:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639134731;
-        bh=TgqAl8ITfVtfwDaQ625BpAv4Rdz1KSLtUuyWsSaIkbY=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=FEvIQYvjN4SHAVlInPu2HL8XALbPobfrV3SS8c7/xrYs21OHgHv3iA+7odMte0J8V
-         JmMjarZOf705yUVhjGpI9TeFOEmJP/JTzGbWsXPxzCX53mPYXW3t+CkgcCIKJs8W7c
-         RUEWx44L5GqJsjtqeowfaQVJpSDJJwuwj+pYeSxnRB8udOq2WMIKeRVynUBnKLMeBy
-         BgTSB6dAoL4gioUEsR0clsFBXD6SxMYKCe0R9tVEUyikLUncTvVKe2xkXsCwfSjUv+
-         lDvOohj1UiFJUr8PmeX5l3T7QmLUaY75bpLzw9cbDzdsVbFikOZDmjs6F5FZsQIlTF
-         NkpWVkyvu4zsQ==
-Message-ID: <9fc29e688951c7afe4504ae787ef7806ee4dbb7f.camel@kernel.org>
-Subject: Re: [PATCH v2 2/2] ARM: dts: gpio-ranges property is now required
-From:   nicolas saenz julienne <nsaenz@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Phil Elwell <phil@raspberrypi.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Thierry Reding <treding@nvidia.com>,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org
-Date:   Fri, 10 Dec 2021 12:12:03 +0100
-In-Reply-To: <CACRpkdYJAZcr_PPCGPYcitfcwd9GDFf+7hPJkOmjomqCrruNfw@mail.gmail.com>
-References: <20211206092237.4105895-1-phil@raspberrypi.com>
-         <20211206092237.4105895-3-phil@raspberrypi.com>
-         <CACRpkdYJAZcr_PPCGPYcitfcwd9GDFf+7hPJkOmjomqCrruNfw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.1 (3.42.1-1.fc35) 
+        with ESMTP id S233117AbhLJLTX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 06:19:23 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D49B9C061746
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 03:15:48 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id k4so6054112plx.8
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 03:15:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=qYllIsVSqbDs4dUz+zHNMI4+DHlEEtES2AFLDR4RsZs=;
+        b=lJMJZNQwKKu3LXLTLiiAMsOb/MOH+BlpVy5hjylkJ5ZbqhJVb+i9WuizTmYNqqHd8i
+         GU+rvIFnESSUy8bcVLcsBqzhh9Xe7ZKHtd66uad0C+bNYUCVUZEXQU2FfQhH64QHf+w2
+         DZeQs6EI23KdzoHltL53EfUJLeAwCbNOvO2A9AS4OzfacF6kMvd1ADO9icjkU3oMmLfG
+         Ug7mI0GUaQpoLPuBMGo/gfOLKrpONc+ZCH/T+Ss+ffigflymQglRnDhkSdOY3r18eteM
+         4BZDg3PbylTiHWEKQ82AojRHPaVn4EbqpMAFJQkBcq569ZFD3oTvthmgOnuO2rL7h3q/
+         LXow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qYllIsVSqbDs4dUz+zHNMI4+DHlEEtES2AFLDR4RsZs=;
+        b=vFl907mg+qw/jsQD0irfSafBm5KuxWHqpTX/nZh2yqNMlaH0AsoRUAU4rYKGeu/9JN
+         grwHfB/fRWlHImwI1meRy0nyO7nKlTs04pei2OPcqQEVsALNRotyURJwiVuchPBgJuZF
+         hdLwvHNft1SyyO9RSurlRqsmcDxnvU/DV5tbMKT83rmrLat3wq1hKhS4uszplsd2j998
+         KTUXkC4aR8Qxghm2rgPoHf6PiIyHeaNQTqD6v6e4cdqOsvWWIWfmb2Za56hx103WGsr+
+         2GjjTPKGLngNwOA6DC94hzLHEDek43kU7cLlOL9UJ+BlazQRd1mmyXdx0aGgU18rER5K
+         Ib0A==
+X-Gm-Message-State: AOAM530KWwLHLdkU0VaTr1dmEHBWqY3ElEd2n+p3Vv9yEJF45QV38tA5
+        oGtmr7gsQzo6VbkxNIk96eI5
+X-Google-Smtp-Source: ABdhPJzERHijcXGBjTizLrbvJuz4CCYCfVW96LQWzIIDzO445NjwhkHNujDFBQnjjnIQB6Atf/1YQw==
+X-Received: by 2002:a17:902:e842:b0:142:dbc:bade with SMTP id t2-20020a170902e84200b001420dbcbademr75107587plg.45.1639134948281;
+        Fri, 10 Dec 2021 03:15:48 -0800 (PST)
+Received: from thinkpad ([202.21.42.75])
+        by smtp.gmail.com with ESMTPSA id s19sm2944131pfu.104.2021.12.10.03.15.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Dec 2021 03:15:47 -0800 (PST)
+Date:   Fri, 10 Dec 2021 16:45:41 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v2 04/10] PCI: qcom: Remove redundancy between qcom_pcie
+ and qcom_pcie_cfg
+Message-ID: <20211210111541.GD1734@thinkpad>
+References: <20211208171442.1327689-1-dmitry.baryshkov@linaro.org>
+ <20211208171442.1327689-5-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211208171442.1327689-5-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-12-06 at 11:33 +0100, Linus Walleij wrote:
-> On Mon, Dec 6, 2021 at 10:22 AM Phil Elwell <phil@raspberrypi.com> wrote:
+On Wed, Dec 08, 2021 at 08:14:36PM +0300, Dmitry Baryshkov wrote:
+> In preparation to adding more flags to configuration data, use struct
+> qcom_pcie_cfg directly inside struct qcom_pcie, rather than duplicating
+> all its fields. This would save us from the boilerplate code that just
+> copies flags values from one sruct to another one.
 > 
-> > Since [1], added in 5.7, the absence of a gpio-ranges property has
-> > prevented GPIOs from being restored to inputs when released.
-> > Add those properties for BCM283x and BCM2711 devices.
-> > 
-> > [1] commit 2ab73c6d8323 ("gpio: Support GPIO controllers without
-> >     pin-ranges")
-> > 
-> > Fixes: 2ab73c6d8323 ("gpio: Support GPIO controllers without pin-ranges")
-> > Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 39 +++++++++++---------------
+>  1 file changed, 17 insertions(+), 22 deletions(-)
 > 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> 
-> Please funnel this patch through the SoC tree.
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 1c3d1116bb60..51a0475173fb 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -204,8 +204,7 @@ struct qcom_pcie {
+>  	union qcom_pcie_resources res;
+>  	struct phy *phy;
+>  	struct gpio_desc *reset;
+> -	const struct qcom_pcie_ops *ops;
+> -	unsigned int pipe_clk_need_muxing:1;
+> +	const struct qcom_pcie_cfg *cfg;
 
-Applied for fixes.
+There is no change in this patch that adds "pipe_clk_need_muxing" to
+qcom_pcie_cfg.
 
 Thanks,
-Nicolas
+Mani
+
+>  };
+>  
+>  #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
+> @@ -229,8 +228,8 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
+>  	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+>  
+>  	/* Enable Link Training state machine */
+> -	if (pcie->ops->ltssm_enable)
+> -		pcie->ops->ltssm_enable(pcie);
+> +	if (pcie->cfg->ops->ltssm_enable)
+> +		pcie->cfg->ops->ltssm_enable(pcie);
+>  
+>  	return 0;
+>  }
+> @@ -1176,7 +1175,7 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	if (pcie->pipe_clk_need_muxing) {
+> +	if (pcie->cfg->pipe_clk_need_muxing) {
+>  		res->pipe_clk_src = devm_clk_get(dev, "pipe_mux");
+>  		if (IS_ERR(res->pipe_clk_src))
+>  			return PTR_ERR(res->pipe_clk_src);
+> @@ -1209,7 +1208,7 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
+>  	}
+>  
+>  	/* Set TCXO as clock source for pcie_pipe_clk_src */
+> -	if (pcie->pipe_clk_need_muxing)
+> +	if (pcie->cfg->pipe_clk_need_muxing)
+>  		clk_set_parent(res->pipe_clk_src, res->ref_clk_src);
+>  
+>  	ret = clk_bulk_prepare_enable(res->num_clks, res->clks);
+> @@ -1284,7 +1283,7 @@ static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+>  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+>  
+>  	/* Set pipe clock as clock source for pcie_pipe_clk_src */
+> -	if (pcie->pipe_clk_need_muxing)
+> +	if (pcie->cfg->pipe_clk_need_muxing)
+>  		clk_set_parent(res->pipe_clk_src, res->phy_pipe_clk);
+>  
+>  	return clk_prepare_enable(res->pipe_clk);
+> @@ -1384,7 +1383,7 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
+>  
+>  	qcom_ep_reset_assert(pcie);
+>  
+> -	ret = pcie->ops->init(pcie);
+> +	ret = pcie->cfg->ops->init(pcie);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -1392,16 +1391,16 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
+>  	if (ret)
+>  		goto err_deinit;
+>  
+> -	if (pcie->ops->post_init) {
+> -		ret = pcie->ops->post_init(pcie);
+> +	if (pcie->cfg->ops->post_init) {
+> +		ret = pcie->cfg->ops->post_init(pcie);
+>  		if (ret)
+>  			goto err_disable_phy;
+>  	}
+>  
+>  	qcom_ep_reset_deassert(pcie);
+>  
+> -	if (pcie->ops->config_sid) {
+> -		ret = pcie->ops->config_sid(pcie);
+> +	if (pcie->cfg->ops->config_sid) {
+> +		ret = pcie->cfg->ops->config_sid(pcie);
+>  		if (ret)
+>  			goto err;
+>  	}
+> @@ -1410,12 +1409,12 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
+>  
+>  err:
+>  	qcom_ep_reset_assert(pcie);
+> -	if (pcie->ops->post_deinit)
+> -		pcie->ops->post_deinit(pcie);
+> +	if (pcie->cfg->ops->post_deinit)
+> +		pcie->cfg->ops->post_deinit(pcie);
+>  err_disable_phy:
+>  	phy_power_off(pcie->phy);
+>  err_deinit:
+> -	pcie->ops->deinit(pcie);
+> +	pcie->cfg->ops->deinit(pcie);
+>  
+>  	return ret;
+>  }
+> @@ -1531,7 +1530,6 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  	struct pcie_port *pp;
+>  	struct dw_pcie *pci;
+>  	struct qcom_pcie *pcie;
+> -	const struct qcom_pcie_cfg *pcie_cfg;
+>  	int ret;
+>  
+>  	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+> @@ -1553,15 +1551,12 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  
+>  	pcie->pci = pci;
+>  
+> -	pcie_cfg = of_device_get_match_data(dev);
+> -	if (!pcie_cfg || !pcie_cfg->ops) {
+> +	pcie->cfg = of_device_get_match_data(dev);
+> +	if (!pcie->cfg || !pcie->cfg->ops) {
+>  		dev_err(dev, "Invalid platform data\n");
+>  		return -EINVAL;
+>  	}
+>  
+> -	pcie->ops = pcie_cfg->ops;
+> -	pcie->pipe_clk_need_muxing = pcie_cfg->pipe_clk_need_muxing;
+> -
+>  	pcie->reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
+>  	if (IS_ERR(pcie->reset)) {
+>  		ret = PTR_ERR(pcie->reset);
+> @@ -1586,7 +1581,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  		goto err_pm_runtime_put;
+>  	}
+>  
+> -	ret = pcie->ops->get_resources(pcie);
+> +	ret = pcie->cfg->ops->get_resources(pcie);
+>  	if (ret)
+>  		goto err_pm_runtime_put;
+>  
+> -- 
+> 2.33.0
+> 
