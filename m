@@ -2,124 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D228947065F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 17:51:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8019B47066E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 17:53:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237689AbhLJQyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 11:54:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34190 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234977AbhLJQyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 11:54:55 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34288C0617A2
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 08:51:20 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id l18so3857410pgj.9
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 08:51:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=7WxCqvv4ObUVtEOab2u1wdUa6vtacHS/9P1D+Qu3Q4I=;
-        b=Pz7q1yMrprNeLuXSehtn+mjl+OolYIRza+5Q+bVzL5P0PJkqAptjr+rq47XyVZ6A+2
-         CWs4P9jqt34H45D18Jtu3XCmfnX3/fo2tC88wYLD7uyZLJ14trpEUFqQA68hzvjqcoS7
-         TqoOyHlngnRLK9zeiwKDPaXGnvkrSkzAoejZw=
+        id S244234AbhLJQ5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 11:57:05 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:41851 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233469AbhLJQ44 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 11:56:56 -0500
+Received: by mail-ot1-f41.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so10199925otl.8;
+        Fri, 10 Dec 2021 08:53:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7WxCqvv4ObUVtEOab2u1wdUa6vtacHS/9P1D+Qu3Q4I=;
-        b=PHhBfAYmZ9EVFq5U1w/suHg+V/efyg6/l7IWwaqSc34R3CTqjTKu9cSfb9+NT3PhY1
-         o+YBg6JuDz3p/AmvWYo5T0IfjPgGHooK8YUhxLJYbCQ0hKGwucs0HPWIZ5T5KUwJWOJ9
-         rKUt4Gsf5ZxLSl6nft5LM9KDNyu+AMdvWGBTxPYqi9M0uQqXECCslwjsWc9jQIuhmYRj
-         Ap0/0X5VJF//wI+k3/zbaYul9a581GGloo3OXO0rS9RsXZBLRv67ccagNLhD+KumBvti
-         xdwpXn4I8RkJr/iEZcVj+rvh5+6VFPFaqDxkC8OEhmNKrAijoDTFEKlYhAbIL1FQlXeo
-         3y3A==
-X-Gm-Message-State: AOAM532obC7NOAsA4omVA6UDcxjGC2sOUmtGnBnL0OKPnO8kivc1yzlZ
-        EnQAMdVfbcrKbeIp87A2q3DWkQ==
-X-Google-Smtp-Source: ABdhPJwrDkvAU1dIOXyjaCC1yzNcBxHY1hnaRtjYvmiv1zAZE1OYcWlBpJH14W2wnL+jMKjPtDtXcA==
-X-Received: by 2002:a63:135a:: with SMTP id 26mr40251046pgt.87.1639155079759;
-        Fri, 10 Dec 2021 08:51:19 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:d386:8bb1:aaa7:a294])
-        by smtp.gmail.com with UTF8SMTPSA id l9sm4030038pfu.55.2021.12.10.08.51.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Dec 2021 08:51:19 -0800 (PST)
-Date:   Fri, 10 Dec 2021 08:51:17 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, Roger Quadros <rogerq@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>
-Subject: Re: [PATCH v17 1/7] usb: misc: Add onboard_usb_hub driver
-Message-ID: <YbOFhcICfrbl6bZV@google.com>
-References: <20211116200739.924401-1-mka@chromium.org>
- <20211116120642.v17.1.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <CAD=FV=VnRQzvgjVzTNgx5kaC6VDvFGvTx2njtdTo27LW1zxWJA@mail.gmail.com>
- <YZaS3NpfUqqg4L+v@google.com>
+        bh=f2wp1hAWgrRC49VCftrTow4JceyJ/E3jGWRhqUONy3E=;
+        b=wnVZ7aE/7pzWydFTFjv8IPgHP+7V7/g4LZWukrtFscqm8ufs6bsz/HRXdGpDZdUGVG
+         CfN78XYK97ECTZpbkxCdXLnp2j9Qbe+nYyCu+icb/xBM54Xm9to1YKUwfXEfk+/krTX1
+         /rmlIU+mJxnG7Ya+6W8G3y9o4kTfDog3AhjsXZFg5MafDD/tlqfJPTH06qXqmFs3k4/Q
+         u/5Lxns6aXKxjIQ340es7y45ZqOBnqiG9+0KpcsZMHp4BPMMsP4KMMigTDZhku3ZQUJg
+         +U6j8de+oqs08HRLw0MIUwc6fHw87r0RWTcwhIGCqeXqhbTb49zWbKNizAkFwrM24H7W
+         WZBQ==
+X-Gm-Message-State: AOAM530DDPi7fRMw2stmN6LnBDm5hk+3iPQZZ2GLc7qdjz6Ptfiy5SFG
+        yNBEvnKUhSobmQZ6Br2IcQ==
+X-Google-Smtp-Source: ABdhPJxhzRUkJAKFVqmngli/4xluAGV/SNq6SdpzNQU9xFUHh/yAnJa6IWohu6L2xwq0z1bo5kLV7A==
+X-Received: by 2002:a9d:6d98:: with SMTP id x24mr11507597otp.371.1639155200962;
+        Fri, 10 Dec 2021 08:53:20 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id f9sm587878oto.56.2021.12.10.08.53.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Dec 2021 08:53:20 -0800 (PST)
+Received: (nullmailer pid 1513473 invoked by uid 1000);
+        Fri, 10 Dec 2021 16:53:18 -0000
+Date:   Fri, 10 Dec 2021 10:53:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Paul Cercueil <paul@crapouillou.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v11 3/8] dt-bindings: display: Add ingenic,jz4780-dw-hdmi
+ DT Schema
+Message-ID: <YbOF/pwib/VXoqkx@robh.at.kernel.org>
+References: <cover.1638470392.git.hns@goldelico.com>
+ <ac147196cd7744a7d50cf25197fe08bf9e81f88a.1638470392.git.hns@goldelico.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YZaS3NpfUqqg4L+v@google.com>
+In-Reply-To: <ac147196cd7744a7d50cf25197fe08bf9e81f88a.1638470392.git.hns@goldelico.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 18, 2021 at 09:52:28AM -0800, Matthias Kaehlcke wrote:
-> On Wed, Nov 17, 2021 at 04:11:34PM -0800, Doug Anderson wrote:
-> > Hi,
-> > 
-> > On Tue, Nov 16, 2021 at 12:07 PM Matthias Kaehlcke <mka@chromium.org> wrote:
-> > >
-> > > --- a/drivers/usb/misc/Kconfig
-> > > +++ b/drivers/usb/misc/Kconfig
-> > > @@ -284,3 +284,20 @@ config BRCM_USB_PINMAP
-> > >           This option enables support for remapping some USB external
-> > >           signals, which are typically on dedicated pins on the chip,
-> > >           to any gpio.
-> > > +
-> > > +config USB_ONBOARD_HUB
-> > > +       tristate "Onboard USB hub support"
-> > 
-> > Aren't you back to shenanigans now that you're being called straight
-> > from the USB core? What if you're a module and the USB core is
-> > builtin? It can't call you, right? ...or what if you're builtin but
-> > the USB core is a module (yeah, I know that sounds insane but I don't
-> > think anything technically prevents it)?
+On Thu, Dec 02, 2021 at 07:39:48PM +0100, H. Nikolaus Schaller wrote:
+> From: Sam Ravnborg <sam@ravnborg.org>
 > 
-> Indeed, a dependency involving USB host mode is needed, as previously
-> with xhci_plat.
+> Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
+> Based on .txt binding from Zubair Lutfullah Kakakhel
 > 
-> > Can you just add a dependency here such that if the USB core is a
-> > module that you're a module and if the USB core is builtin that you're
-> > builtin?
+> We also add generic ddc-i2c-bus to synopsys,dw-hdmi.yaml
 > 
-> I couldn't find a way to specify that in the config options of the driver
-> itself. I fear the dependency has to be specified in CONFIG_USB, like it
-> was done previously with USB_XHCI_PLATFORM:
+> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> ---
+>  .../display/bridge/ingenic,jz4780-hdmi.yaml   | 78 +++++++++++++++++++
+>  .../display/bridge/synopsys,dw-hdmi.yaml      |  3 +
+>  2 files changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
 > 
-> https://patchwork.kernel.org/project/linux-usb/patch/20210813125146.v16.6.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid/
-> 
-> Hope that isn't controversial.
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+> new file mode 100644
+> index 0000000000000..49ae1130efded
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/ingenic,jz4780-hdmi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bindings for Ingenic JZ4780 HDMI Transmitter
+> +
+> +maintainers:
+> +  - H. Nikolaus Schaller <hns@goldelico.com>
+> +
+> +description: |
+> +  The HDMI Transmitter in the Ingenic JZ4780 is a Synopsys DesignWare HDMI 1.4
+> +  TX controller IP with accompanying PHY IP.
+> +
+> +allOf:
+> +  - $ref: synopsys,dw-hdmi.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ingenic,jz4780-dw-hdmi
+> +
+> +  reg-io-width:
+> +    const: 4
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  hdmi-5v-supply:
+> +    description: regulator to provide +5V at the connector
 
-Ugh, actually adding
+Being part of the connector, that belongs in a connector node.
 
-  depends on USB_ONBOARD_HUB || !USB_ONBOARD_HUB
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
 
-to CONFIG_USB does not work. The problem is that USB_ONBOARD_HUB depends on
-CONFIG_USB (not through an explicit dependency, but the 'misc' directory it
-resides in is only included when CONFIG_USB=y/m), so the above rule would
-introduce a circular dependency.
+You need to define what each 'port' node is.
 
-Unless there is some other way to specify "don't allow building
-USB_ONBOARD_HUB as a module, unless USB is a module" I fear USB_ONBOARD_HUB
-must be bool, which isn't really great :(
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +  - hdmi-5v-supply
+> +  - ports
+> +  - reg-io-width
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/ingenic,jz4780-cgu.h>
+> +
+> +    hdmi: hdmi@10180000 {
+> +        compatible = "ingenic,jz4780-dw-hdmi";
+> +        reg = <0x10180000 0x8000>;
+> +        reg-io-width = <4>;
+> +        ddc-i2c-bus = <&i2c4>;
+> +        interrupt-parent = <&intc>;
+> +        interrupts = <3>;
+> +        clocks = <&cgu JZ4780_CLK_AHB0>, <&cgu JZ4780_CLK_HDMI>;
+> +        clock-names = "iahb", "isfr";
+> +        hdmi-5v-supply = <&hdmi_power>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            hdmi_in: port@0 {
+> +                reg = <0>;
+> +                dw_hdmi_in: endpoint {
+> +                    remote-endpoint = <&jz4780_lcd_out>;
+> +                };
+> +            };
+> +            hdmi_out: port@1 {
+> +                reg = <1>;
+> +                dw_hdmi_out: endpoint {
+> +                    remote-endpoint = <&hdmi_con>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+> index 9be44a682e67a..9cbeabaee0968 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
+> @@ -50,6 +50,9 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  ddc-i2c-bus:
+> +    description: An I2C interface if the internal DDC I2C driver is not to be used
+
+That too is already defined to be part of the connector node.
+
+> +
+>  additionalProperties: true
+>  
+>  ...
+> -- 
+> 2.33.0
+> 
+> 
