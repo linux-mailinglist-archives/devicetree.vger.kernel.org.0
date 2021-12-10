@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9498646F85A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 02:19:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43A4846F85D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 02:20:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229752AbhLJBXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 20:23:03 -0500
-Received: from mswedge1.sunplus.com ([60.248.182.113]:44472 "EHLO
-        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231239AbhLJBXD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 20:23:03 -0500
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.202
-        by mg01.sunplus.com with MailGates ESMTP Server V5.0(5128:0:AUTH_RELAY)
-        (envelope-from <tony.huang@sunplus.com>); Fri, 10 Dec 2021 09:19:23 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.23; Fri, 10 Dec 2021 09:19:24 +0800
-Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
- ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Fri, 10 Dec
- 2021 09:19:25 +0800
-From:   =?big5?B?VG9ueSBIdWFuZyC2wMNoq3A=?= <tony.huang@sunplus.com>
-To:     Greg KH <gregkh@linuxfoundation.org>,
-        Tony Huang <tonyhuang.sunplus@gmail.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "derek.kiernan@xilinx.com" <derek.kiernan@xilinx.com>,
-        "dragan.cvetic@xilinx.com" <dragan.cvetic@xilinx.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
-Subject: RE: [PATCH v3 2/2] misc: Add iop driver for Sunplus SP7021
-Thread-Topic: [PATCH v3 2/2] misc: Add iop driver for Sunplus SP7021
-Thread-Index: AQHX7Nr0VlQujKq+xkKIOnlLCZbqnqwpakSAgAGDliA=
-Date:   Fri, 10 Dec 2021 01:19:25 +0000
-Message-ID: <e27e199247d44e31bb71a80ba14f833d@sphcmbx02.sunplus.com.tw>
-References: <cover.1639039163.git.tonyhuang.sunplus@gmail.com>
- <bc15d5e8d7a5ec96582799fe513de4ace6fd4b8b.1639039163.git.tonyhuang.sunplus@gmail.com>
- <YbHWKx6AU4z/TJS1@kroah.com>
-In-Reply-To: <YbHWKx6AU4z/TJS1@kroah.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.54]
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        id S235267AbhLJBXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 20:23:34 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:41090 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231239AbhLJBXe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 20:23:34 -0500
+X-UUID: 9a336d24d0074c3b83b4b2734464980f-20211210
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=1ZZO+ETOhfDa+Z01cdd25TwcHTHZC47+w8uPmJpLwqs=;
+        b=iRRcQh+SEOFPdzh0m0f4Ik6IffPiuHF+IvOwARYMCtkrU79k0NSu4nXgoLxMATLkD86WvkiscbPvF0fnzF4YVk1BHk7wVgAQQV2ycESORFr5KBWvelnRlgUoEgJ9xp7P5Gj3mLpvMuXsU73YX0bMOlq0tA7yblUy/e04sgLJNgI=;
+X-UUID: 9a336d24d0074c3b83b4b2734464980f-20211210
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1755670767; Fri, 10 Dec 2021 09:19:56 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 10 Dec 2021 09:19:55 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 10 Dec 2021 09:19:54 +0800
+Message-ID: <37f9979ef59c84525faaa66c40c094a72751c8cb.camel@mediatek.com>
+Subject: Re: [PATCH net-next v7 1/6] stmmac: dwmac-mediatek: add platform
+ level clocks management
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>,
+        <dkirjanov@suse.de>
+Date:   Fri, 10 Dec 2021 09:19:55 +0800
+In-Reply-To: <2e8ccd43-bba0-9695-8d6d-d37e0b71fa7d@collabora.com>
+References: <20211208054716.603-1-biao.huang@mediatek.com>
+         <20211208054716.603-2-biao.huang@mediatek.com>
+         <2e8ccd43-bba0-9695-8d6d-d37e0b71fa7d@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RGVhciBHcmVnOg0KDQo+IE9uIFRodSwgRGVjIDA5LCAyMDIxIGF0IDA0OjU4OjA5UE0gKzA4MDAs
-IFRvbnkgSHVhbmcgd3JvdGU6DQo+ID4gKwl3aGlsZSAoMSkgew0KPiA+ICsJCWlmIChwX2lvcF9y
-ZWctPmlvcF9kYXRhNyA9PSAweGFhYWEpDQo+ID4gKwkJCWJyZWFrOw0KPiA+ICsJfQ0KPiANCj4g
-WW91IGNhbiBub3QgY3JlYXRlIGEgbG9vcCB0aGF0IGNvdWxkIG5ldmVyIGV4aXQuICBQbGVhc2Ug
-Zml4Lg0KPiANCg0KT0ssIEkgd2lsbCBtb2RpZnkgaXQuDQoNCj4gQWxzbywgd2hhdCBwcmV2ZW50
-cyB0aGUgY29tcGlsZXIgZnJvbSBvcHRpbWl6aW5nIHRoaXMgYXdheSBpbnRvIG5vdGhpbmc/DQo+
-IFRoaXMgY29kZSBkb2VzIG5vdCBsb29rIGNvcnJlY3QgYXQgYWxsLg0KPiANCj4gPiArDQo+ID4g
-Kwl3cml0ZWwoMHhkZCwgJnBfaW9wX3JlZy0+aW9wX2RhdGExKTsvLzgwNTEgYmluIGZpbGUgY2Fs
-bCBVbHRyYSBsb3cNCj4gZnVuY3Rpb24uDQo+ID4gKwltZGVsYXkoMTApOw0KPiA+ICt9DQo+ID4g
-Kw0KPiA+ICtzdGF0aWMgaW50ICBzcF9pb3BfZ2V0X25vcm1hbF9jb2RlKHN0cnVjdCBkZXZpY2Ug
-KmRldiwgc3RydWN0IHNwX2lvcA0KPiA+ICsqaW9wKSB7DQo+ID4gKwljb25zdCBzdHJ1Y3QgZmly
-bXdhcmUgKmZ3Ow0KPiA+ICsJc3RhdGljIGNvbnN0IGNoYXIgZmlsZVtdID0gIm5vcm1hbC5iaW4i
-Ow0KPiA+ICsJdW5zaWduZWQgaW50IGVyciwgaTsNCj4gPiArDQo+ID4gKwlkZXZfaW5mbyhkZXYs
-ICJub3JtYWwgY29kZVxuIik7DQo+IA0KPiBQbGVhc2UgYWx3YXlzIGRlbGV0ZSB5b3VyIGRlYnVn
-Z2luZyBjb2RlIGJlZm9yZSBzdWJtaXR0aW5nIGEgcGF0Y2guDQo+IA0KDQpPSywgSSB3aWxsIGRl
-bGV0ZSBpdC4NCg0KPiBBbHNvLCBwbGVhc2UgcnVuIGNoZWNrcGF0Y2gucGwgb24geW91ciBjaGFu
-Z2VzIGJlZm9yZSBzdWJtaXR0aW5nIHRoZW0uDQo+IA0KPiB0aGFua3MsDQo+IA0KPiBncmVnIGst
-aA0K
+RGVhciBBbmdlbG8sDQoJVGhhbmtzIGZvciB5b3VyIGNvbW1lbnRzfg0KT24gVGh1LCAyMDIxLTEy
+LTA5IGF0IDExOjUxICswMTAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBSZWdubyB3cm90ZToNCj4g
+SWwgMDgvMTIvMjEgMDY6NDcsIEJpYW8gSHVhbmcgaGEgc2NyaXR0bzoNCj4gPiBUaGlzIHBhdGNo
+IGltcGxlbWVudHMgY2xrc19jb25maWcgY2FsbGJhY2sgZm9yIGR3bWFjLW1lZGlhdGVrDQo+ID4g
+cGxhdGZvcm0sDQo+ID4gd2hpY2ggY291bGQgc3VwcG9ydCBwbGF0Zm9ybSBsZXZlbCBjbG9ja3Mg
+bWFuYWdlbWVudC4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBCaWFvIEh1YW5nIDxiaWFvLmh1
+YW5nQG1lZGlhdGVrLmNvbT4NCj4gDQo+IFNvcnJ5LCBJJ3ZlIHNlbnQgbXkgYWNrIG9uIHY2LiBT
+ZW5kaW5nIGl0IG9uIHY3Lg0KPiANCj4gQWNrZWQtYnk6IEFuZ2Vsb0dpb2FjY2hpbm8gRGVsIFJl
+Z25vIDwNCj4gYW5nZWxvZ2lvYWNjaGluby5kZWxyZWdub0Bjb2xsYWJvcmEuY29tPg0KSSdsbCBh
+ZGQgImFja2VkLWJ5IiBpbiBuZXh0IHNlbmQuDQo=
+
