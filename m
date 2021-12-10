@@ -2,115 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A75044708A8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 19:27:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AFAB4708BB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 19:30:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245313AbhLJSaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 13:30:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56996 "EHLO
+        id S245357AbhLJSeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 13:34:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245107AbhLJSaj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 13:30:39 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C142C061746;
-        Fri, 10 Dec 2021 10:27:03 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id p18-20020a17090ad31200b001a78bb52876so10022106pju.3;
-        Fri, 10 Dec 2021 10:27:03 -0800 (PST)
+        with ESMTP id S237062AbhLJSeE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 13:34:04 -0500
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 705B5C061746
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 10:30:29 -0800 (PST)
+Received: by mail-pf1-x42e.google.com with SMTP id z6so9174017pfe.7
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 10:30:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Ivr1CtMEzoAswhXgOrAn3TQUCIgfiuUzQn7jPUFw3T8=;
-        b=BW+0H+e4QrSwTk1qlN93GbqnnYZhT3nKUQa2BdTcXOHaFNkFivnIbovLfDcAC51Hrp
-         ZDaOAIQbd8fPd7sjRlD44uwNxbhqJPOCxSpK4dAVdqkrZMkod0lrOaSv/RenqZDAt8HD
-         NzmA8mbeTY9F/TdGKYh7XHGY8Be1CVaWgewNj2KeanFgTUQSHwY7jb+mz3fMaYXWQ2ND
-         MWTuxC5UUlie70EfttVaZN64JU0GR/FZTGKxLoTJIg6unL4FlT8VUmOB84/g+VvlDq9E
-         ZrPiFAnQCQhCijiX9GnB2Nd2SfFuWw6w/UddTIkGInc2NUrgyRVrR4rP/gKjWNuxLqtA
-         pj9w==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=e5UF0v0pRJ3BBctlRwMcx8kqkF/zxc0LiqUCJM1Ey1Y=;
+        b=UI0vfay4J/HvqefT+gOHa5yc4eAwcee+tx8Qx1NavkyDo3RqtikTAWOd92z2isdQR1
+         aFYAlN6xdMtMLymuWWLuv/xyyDKDGrMrwqE9+1qqz9hKuCB7gbFSs7Sm4TdF+Ve3PyI3
+         GMuuGfDgstkRRY19jqyS/4pUmdB0OcZdFCq5M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Ivr1CtMEzoAswhXgOrAn3TQUCIgfiuUzQn7jPUFw3T8=;
-        b=LgJ7hr5GbkJiRpNY92ssdFCEqBCwIYy94ydSDb/nvIeE/wp0hv5nfe4XMPP2CHZJYx
-         msvsAHPGiJsxIgD+DbyZIJwnCKFQ+4tKkO8+nfU7QmDtfFmrVAkuIN2hBQXeUDvlsmE3
-         6zXdYrofhCWx+rdCK7hHSI6mPWYUme1N9Yvx9/yNAMPstQZqK16E3CQzVREFSJzk5idq
-         hNE2iQjlLK/iNFQv/bx4JkeJ+y5/SYxeTuBhAf+/fuMYaeuqZmNLoY8Gt3fQ/k2WUleI
-         iWyn7UVIElrloU5a8E8NkJdZ0wcGHJgkNmMzRBbdRAwI+2AJF46mElLPanr5kfp3pP45
-         KnMA==
-X-Gm-Message-State: AOAM531MzpuA5uCZ5RBRqbHBzw3Mb/wPdY+g+JXIyW91Dv/uiWYUoqDe
-        dMFFkOSXudVeKsftRoyfeTc7Js50YE8=
-X-Google-Smtp-Source: ABdhPJw5GEP3fdO2hw64UN7kqCTtIB83hoxp6xtXwUTG9QBrIVsXNkgDcO0Iwe5bTfH67b4a8hb8EA==
-X-Received: by 2002:a17:90a:fe14:: with SMTP id ck20mr25992259pjb.72.1639160823082;
-        Fri, 10 Dec 2021 10:27:03 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id mm22sm3470328pjb.28.2021.12.10.10.27.01
+        bh=e5UF0v0pRJ3BBctlRwMcx8kqkF/zxc0LiqUCJM1Ey1Y=;
+        b=ktDs9ZKhuDZdgQaA0JG8iGLgorYHaSI0LvRu5ocd0jJilDCAtgb28sGJQlIeoVc8Mo
+         FgtWtkkT3Tz3+0R4p5Tg9zVLyxWtKvqKXGVBoZdWsldeazyxs6muC2s+Ds1TvzJwG7Pz
+         tlANAPOaUgn7enzYsunzAipihg9AU0Mv4OYoRXbxOTuN7kEbe8grTE22MOJXgHfV82AG
+         W9HINg+KDL+Q7ob4inC/jhv6HbHTtZTWE+1wd5huffXGD+LlwQt4SnLppMnDyLdVdeha
+         xq5moFZM69sYMxHgBNIYk28/fqb/yBiX2rqjXxouNWs4d/kzgmooq35LcZtDrPEuuH15
+         Bo9g==
+X-Gm-Message-State: AOAM533WgPPYQw5Wj6TnxgdvSXQvMag1CG/2TtFNjN/22tZIiG454LW9
+        U0oaisfLhHW5Z3Iqao16fmWfQw==
+X-Google-Smtp-Source: ABdhPJy7dl7SiqDb8r+5i0XpAnsEFGh2HW8mkwc90RbUiLT/XAN3/K37A8kbwNp/4kI8jwh9cdHrfg==
+X-Received: by 2002:a63:1754:: with SMTP id 20mr39724542pgx.559.1639161028901;
+        Fri, 10 Dec 2021 10:30:28 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:d386:8bb1:aaa7:a294])
+        by smtp.gmail.com with UTF8SMTPSA id t4sm4186959pfj.168.2021.12.10.10.30.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Dec 2021 10:27:02 -0800 (PST)
-Subject: Re: [PATCH v1] of: unittest: fix warning on PowerPC frame size
- warning
-To:     Jim Quinlan <jim2101024@gmail.com>, Christoph Hellwig <hch@lst.de>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        Fri, 10 Dec 2021 10:30:28 -0800 (PST)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20211210171258.41138-1-jim2101024@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <31d35f52-2551-05a0-7aa1-7a2e87ab62c9@gmail.com>
-Date:   Fri, 10 Dec 2021 10:27:00 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>
+Cc:     Peter Chen <peter.chen@kernel.org>, linux-kernel@vger.kernel.org,
+        Bastien Nocera <hadess@hadess.net>, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Andrey Konovalov <andreyknvl@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Li Jun <jun.li@nxp.com>, Peter Chen <peter.chen@nxp.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Sasha Levin <sashal@kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v18 0/5] usb: misc: Add onboard_usb_hub driver
+Date:   Fri, 10 Dec 2021 10:30:16 -0800
+Message-Id: <20211210183021.3500376-1-mka@chromium.org>
+X-Mailer: git-send-email 2.34.1.173.g76aa8bc2d0-goog
 MIME-Version: 1.0
-In-Reply-To: <20211210171258.41138-1-jim2101024@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/10/21 9:12 AM, Jim Quinlan wrote:
-> The struct device variable "dev_bogus" was triggering this warning
-> on a PowerPC build:
-> 
->     drivers/of/unittest.c: In function 'of_unittest_dma_ranges_one.constprop':
->     [...] >> The frame size of 1424 bytes is larger than 1024 bytes
->              [-Wframe-larger-than=]
-> 
-> This variable is now dynamically allocated.
-> 
-> Fixes: e0d072782c734 ("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
-> ---
->  drivers/of/unittest.c | 15 +++++++++++----
->  1 file changed, 11 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> index 481ba8682ebf..945cda299a63 100644
-> --- a/drivers/of/unittest.c
-> +++ b/drivers/of/unittest.c
-> @@ -911,11 +911,18 @@ static void __init of_unittest_dma_ranges_one(const char *path,
->  	if (!rc) {
->  		phys_addr_t	paddr;
->  		dma_addr_t	dma_addr;
-> -		struct device	dev_bogus;
-> +		struct device	*dev_bogus;
->  
-> -		dev_bogus.dma_range_map = map;
-> -		paddr = dma_to_phys(&dev_bogus, expect_dma_addr);
-> -		dma_addr = phys_to_dma(&dev_bogus, expect_paddr);
-> +		dev_bogus = kzalloc(sizeof(struct device), GFP_KERNEL);
-> +		if (!dev_bogus) {
-> +			unittest(0, "kzalloc() failed\n");
-> +			kfree(map);
-> +			return;
-> +		}
+This series adds:
+- the onboard_usb_hub_driver
+- glue in the generic HCD code to create and destroy the
+  onboard_usb_hub platform devices if needed
+- device tree changes that add RTS5411 entries for the QCA SC7180
+  based boards trogdor and lazor
+- a couple of stubs for platform device functions to avoid
+  unresolved symbols with certain kernel configs
 
-You are leaking dev_bogus here.
+The main issue the driver addresses is that a USB hub needs to be
+powered before it can be discovered. For discrete onboard hubs (an
+example for such a hub is the Realtek RTS5411) this is often solved
+by supplying the hub with an 'always-on' regulator, which is kind
+of a hack. Some onboard hubs may require further initialization
+steps, like changing the state of a GPIO or enabling a clock, which
+requires even more hacks. This driver creates a platform device
+representing the hub which performs the necessary initialization.
+Currently it only supports switching on a single regulator, support
+for multiple regulators or other actions can be added as needed.
+Different initialization sequences can be supported based on the
+compatible string.
+
+Besides performing the initialization the driver can be configured
+to power the hub off during system suspend. This can help to extend
+battery life on battery powered devices which have no requirements
+to keep the hub powered during suspend. The driver can also be
+configured to leave the hub powered when a wakeup capable USB device
+is connected when suspending, and power it off otherwise.
+
+Changes in v18:
+- introduced hidden Kconfig option to align module vs. builtin
+  choice with CONFIG_USB (thanks Doug!)
+- added patch 'driver core: Export device_is_bound()'
+- also adjust device tree of pompom rev1
+- dropped the following patches, which aren't needed anymore by this
+  series (though they might still be useful on their own):
+  - usb: Specify dependencies on USB_XHCI_PLATFORM with 'depends on'
+  - arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM
+  - ARM: configs: Explicitly enable USB_XHCI_PLATFORM where needed
+
+Changes in v17:
+- rebased on top of v5.16-rc1
+- moved creation of onboard_hub platform devices from xhci_platform
+  to the generic HCD code
+- addressed review comments for the onboard_hub driver
+- moved Kconfig/defconfig changes to the end of the series. The
+  onboard_hub driver doesn't depend on XHCI_PLATFORM anymore,
+  hence these changes aren't really required for the driver, but
+  they still seem to be a worthwhile improvement
+
+Changes in v16:
+- added patch 'ARM: configs: Explicitly enable USB_XHCI_PLATFORM
+  where needed' to keep arm32 defconfigs effectively unchanged
+
+Changes in v15:
+- adjusted dependencies of USB_DWC3_CORE to make sure it can only
+  be enabled when at least one of USB_DWC3_HOST, USB_DWC3_GADGET
+  or USB_DWC3_DUAL_ROLE is selectable
+
+Changes in v14:
+- rebased on top of v5.14-rc1
+- dropped DT binding patch which landed in v5.13
+
+Changes in v13:
+- added patch "usb: Specify dependency on USB_XHCI_PLATFORM with
+  'depends on'" to the series to avoid Kconfig conflicts
+- added patch "arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM"
+  to the series to keep effective defconfig unchanged
+
+Changes in v12:
+- onboard_hub driver: use IS_ENABLED(CONFIG_USB_ONBOARD_HUB_MODULE)
+  in onboard_hub.h to also check for the driver built as module
+- onboard_hub_driver: include onboard_hub.h again to make sure there
+  are prototype declarations for the public functions
+
+Changes in v11:
+- support multiple onboard hubs connected to the same parent
+- don't include ‘onboard_hub.h’ from the onboard hub driver
+
+Changes in v10:
+- always use of_is_onboard_usb_hub() stub unless ONBOARD_USB_HUB=y/m
+- keep 'regulator-boot-on' property for pp3300_hub
+
+Changes in v9:
+- added dependency on ONBOARD_USB_HUB (or !ONBOARD_USB_HUB) to
+  USB_PLATFORM_XHCI
+
+Changes in v7:
+- updated DT binding
+- series rebased on qcom/arm64-for-5.13
+
+Changes in v6:
+- updated summary
+
+Changes in v5:
+- cover letter added
+
+Matthias Kaehlcke (5):
+  of/platform: Add stubs for of_platform_device_create/destroy()
+  driver core: Export device_is_bound()
+  usb: misc: Add onboard_usb_hub driver
+  usb: core: hcd: Create platform devices for onboard hubs in probe()
+  arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub
+
+ .../sysfs-bus-platform-onboard-usb-hub        |   8 +
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts |  19 +-
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts |  12 +-
+ .../dts/qcom/sc7180-trogdor-pompom-r1.dts     |  11 +-
+ .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |  19 +-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  19 +-
+ drivers/base/dd.c                             |   1 +
+ drivers/usb/core/hcd.c                        |   6 +
+ drivers/usb/misc/Kconfig                      |  23 +
+ drivers/usb/misc/Makefile                     |   1 +
+ drivers/usb/misc/onboard_usb_hub.c            | 490 ++++++++++++++++++
+ include/linux/of_platform.h                   |  22 +-
+ include/linux/usb/hcd.h                       |   1 +
+ include/linux/usb/onboard_hub.h               |  18 +
+ 15 files changed, 616 insertions(+), 41 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-onboard-usb-hub
+ create mode 100644 drivers/usb/misc/onboard_usb_hub.c
+ create mode 100644 include/linux/usb/onboard_hub.h
+
 -- 
-Florian
+2.34.1.173.g76aa8bc2d0-goog
+
