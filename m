@@ -2,129 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B40D4703BD
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 16:22:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7698F4703C1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 16:23:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242804AbhLJPZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 10:25:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40178 "EHLO
+        id S242805AbhLJP0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 10:26:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242805AbhLJPZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 10:25:55 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5B04C061746;
-        Fri, 10 Dec 2021 07:22:19 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id j3so15551485wrp.1;
-        Fri, 10 Dec 2021 07:22:19 -0800 (PST)
+        with ESMTP id S239300AbhLJP0o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 10:26:44 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3A19C061746
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 07:23:08 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id e3so31675618edu.4
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 07:23:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Jnwba4bZjLq5RdhOQVSpoiV3VIIFnQHgzq6yln7hbIM=;
-        b=ipFuXk59Dbzxv+IW1pqe3zwl2tPFuRdtGzbi2GkerIVVR5YEUtK6VhO11qqcECuezO
-         BxCc1PLVya1tw6yxoJWafKOag64FcjhVA8Do8a/AfI80Napz3R6tH67rgZT5cCR+gTIo
-         LPkdIYHBhkw59s7633lktVm1mNSr4SEW1jLHHTOe81bBJMD2bl45ixAC2UVUYWYnt0Nt
-         aC9R7Tl3p6aSeAWQ3i3N0cIvjqJi8JanNGecB2W49UtVj9aF5efFHVxHcxXI21bgdyQ7
-         YYgJILE1tsXuFtEq7e9EH5hPyGfytKaa3dvUPYFCpzXpovzAA6bvp/yR/zQ1YACjZ/Xz
-         J5RA==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CaWHeGP0DuwfkbKXUdYIJmX8F+biVrGWME72+JdzhqU=;
+        b=MgLv3YrA9NlwpapqjGWsPaT057Lv4NTkMge5x9aYIzLu/EWTNZl9PQJ3i9HcLMOx6B
+         B9IguP3K+gzGh6KfKbYSO8oxGj7MjYa00frl0BCd7lnk7OkZoOhbnGk36UU3KzWuB3In
+         ZXMjkVs8K5nE10yvrBZiB/8HDzocgX7Too6WWjeeDpdcoaRlxj/sgAghwl/0IvTuGbeh
+         fAFYqtmGZZZiSOSvOT+oAtgE4HrF1eec+d4mRi7xCG+BmEL2kk0ZRTS2b7waN3H1I0k/
+         3ly7VwemPgrnfSjfL1C507DwBcuWSj3OL9qXJWKAX4/7OLRZbrfLo/DTY1QGnfnvK/nI
+         rVzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Jnwba4bZjLq5RdhOQVSpoiV3VIIFnQHgzq6yln7hbIM=;
-        b=hpfDBdhI9qZAk9C/M1wCBM3F+Kasfmkb/wZDbsnpWQlpqbHXRLc2MC6dFDoebptASD
-         Q9M3ncXzCBMLE1DrP705xYGYxHeKeRLUw6iI7eWTrhYQbGlQbRFAlz+Mm/qaUS4SDebB
-         XqzOmYHVrymEWHPG/0kDuGhN7OR/uu2VQgxhcWHdxwgg2OPSXaFl+uyxV4tk47bfcLO/
-         PDQ3JiVzFgyOW1dOWoKq7K+Rjg3lWGOAfhWWVD9I+NGJuwsa4U5OLIsQ5m62NP6gssCo
-         j716HRpZXBZKWX4axNisf77nmMn2LmNXVlAwlcGXZ1xu60NJu7aPUNOxMRff3Wh366GG
-         6ddg==
-X-Gm-Message-State: AOAM532NatNfILUB7nhKwk6McRFfPDRjg9QyIYbd0+VDnhmy/773PMBm
-        URPlIJhRO6fIf8ri/HQXPgU=
-X-Google-Smtp-Source: ABdhPJxzXqCHZ5Qv9ATTXNRDO6EVE3SyE7fZi3Qxy3ZhjwIYvc/zez/pO+TuwILJQi6/dxfae5AkxA==
-X-Received: by 2002:adf:cd06:: with SMTP id w6mr15078105wrm.431.1639149737976;
-        Fri, 10 Dec 2021 07:22:17 -0800 (PST)
-Received: from orome ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id t127sm12355478wma.9.2021.12.10.07.22.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 07:22:16 -0800 (PST)
-Date:   Fri, 10 Dec 2021 16:22:13 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        David Heidelberg <david@ixit.cz>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Anton Bambura <jenneron@protonmail.com>,
-        Antoni Aloy Torrens <aaloytorrens@gmail.com>,
-        Nikola Milosavljevic <mnidza@outlook.com>,
-        Ion Agorria <ion@agorria.com>,
-        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        Ihor Didenko <tailormoon@rambler.ru>,
-        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
-        Jasper Korten <jja2000@gmail.com>,
-        Thomas Graichen <thomas.graichen@gmail.com>,
-        Stefan Eichenberger <stefan.eichenberger@toradex.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 03/24] ARM: tegra: Add labels to tegra30.dtsi
-Message-ID: <YbNwpWpEW4EKHd2R@orome>
-References: <20211208173609.4064-1-digetx@gmail.com>
- <20211208173609.4064-4-digetx@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CaWHeGP0DuwfkbKXUdYIJmX8F+biVrGWME72+JdzhqU=;
+        b=JN/Lzi2R6onYnKXrGtWoe170tGMrknuA/YMGONH2HW1tAGS7h8NBPM8HeK5qzfTiMU
+         RWrEBDzzyX2QNui87dqN1EsnB2R0G604fv9ev+n2X59zJt8bI2aNB7yKcA4cPdJoZuVL
+         kLcAKvp7SZlfe2o/SIJYBwmneFjK64YmLVWz41PJg9XKS+0I3pjvSrMX2ZYLmXZVsCq1
+         d31RdK4GT2QbK1h6lG+d2S1cY6OAfoTsbbDcyYOecqXMGiVmCTI33hHBT+Y1aFacxsvH
+         FQqpFP6KCak+lmmQvamkx4qZ00Oa09gFYp7tbu/CaWXOHkwvNYh6n2NVfV/YRExZRTKB
+         cpbQ==
+X-Gm-Message-State: AOAM531gR0/dD/vj5WAg6NuSclZSzsfJdxggzHZJnhYSelpSCeBIcbZn
+        XWJRT5dCfpHyX6EZ1Jv5D5LPAQbHDINL9dd011s/jw==
+X-Google-Smtp-Source: ABdhPJzwyJoQo5zS+XCmbkGk9eGVm61YMp0R/nIUhpMaAI0dyZLbksovDhkrc3SVhNC+OXjC0RSzQ3wiLRH8X7JDAvI=
+X-Received: by 2002:a05:6402:2805:: with SMTP id h5mr38690255ede.267.1639149780836;
+ Fri, 10 Dec 2021 07:23:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="RFgBf0dxqJCnzj+c"
-Content-Disposition: inline
-In-Reply-To: <20211208173609.4064-4-digetx@gmail.com>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+References: <20211208003727.3596577-1-f.fainelli@gmail.com> <20211208003727.3596577-6-f.fainelli@gmail.com>
+In-Reply-To: <20211208003727.3596577-6-f.fainelli@gmail.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Fri, 10 Dec 2021 16:22:50 +0100
+Message-ID: <CAMRc=MdmP5UCi2SJq9Ybhe9evUmM_PhpSUfzRF24yYUiRG+MNg@mail.gmail.com>
+Subject: Re: [PATCH v3 05/15] dt-bindings: gpio: Convert Broadcom STB GPIO to YAML
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        Gregory Fong <gregory.0xf0@gmail.com>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Markus Mayer <mmayer@broadcom.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Al Cooper <alcooperx@gmail.com>,
+        Doug Berger <opendmb@gmail.com>,
+        "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" 
+        <linux-ide@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:MULTIMEDIA CARD (MMC), SECURE DIGITAL (SD) AND..." 
+        <linux-mmc@vger.kernel.org>,
+        "open list:PWM SUBSYSTEM" <linux-pwm@vger.kernel.org>,
+        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
+        <linux-crypto@vger.kernel.org>,
+        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
+        <linux-rtc@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---RFgBf0dxqJCnzj+c
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Dec 08, 2021 at 08:35:48PM +0300, Dmitry Osipenko wrote:
-> From: Micha=C5=82 Miros=C5=82aw <mirq-linux@rere.qmqm.pl>
->=20
-> Add phandle names for memory/I2C/SPI/USB/SDMMC controller nodes to allow
-> for cleaner device descriptions.
->=20
-> Signed-off-by: Micha=C5=82 Miros=C5=82aw <mirq-linux@rere.qmqm.pl>
+On Wed, Dec 8, 2021 at 1:37 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
+>
+> Convert the Broadcom STB GPIO Device Tree binding to YAML to help with
+> validation.
+>
+> Acked-by: Gregory Fong <gregory.0xf0@gmail.com>
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 > ---
->  arch/arm/boot/dts/tegra30.dtsi | 36 +++++++++++++++++-----------------
->  1 file changed, 18 insertions(+), 18 deletions(-)
 
-We typically only add those when they are really needed. These are
-technically harmless because without a reference, DTC won't actually
-create a phandle property, but dangling labels are the kind of thing
-that some janitor may at some point want to remove with some scripts,
-so I'm hesitant to apply this because it'll likely cause churn in the
-future.
-
-Thierry
-
---RFgBf0dxqJCnzj+c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGzcKUACgkQ3SOs138+
-s6GftA/+KbVHvJu3VYIbmIUpoJYVbJBgJIylYA73m5ii010cLhvZb8ojspNZLof6
-VaHjhKCUqfYy3BabVIbMqLleHzCIBZPSw9SWGkP/yp8SajHZxKrT3ZGqzTnl+QAF
-OZVDjO65wWx81upZHinaysN3tEPJaRjrJhaq0QoiNVnyO8AYvvgq7E8SyfBYBd6B
-mp+gomXAjzn2I/TxP2xpIJesaYnUURATdbu/Sb4S/r1x4eoIH7tELC8LSgAqNfZy
-GPUPFJ6Fd4TS4YCFuC2/5oJt5Cfsw4wz/uA2AlGhWiI9zoHcKj2B4D0sOVwnn0AZ
-Wso4V9kfiZ1+eeALg5q14CU3YFfb/CmsyFrwEdQKV4V+Kvg5VMHIYHOhMgBtO+AR
-jS6cGt4NrgfRNq2PELeT3ns9/nUR7vyW+faJ9r6vXcH/HyB5JcF0ZSDQusVlO+3V
-GTmiIQ0NWwHCckD0l3Ha5tZhfG6X124fV4nX4R7JcP4sMxX8+GtX985Ab/Xusmnt
-VKgUytPXJ3Mj2eOHEca9WgvtNxESOc1Ki7qDbq2bAI7RxxZcND4JwSqE7dLfy1RA
-3+9KTAi4+MrK26QUv1FDSLIDNtwu1cOJx7Rjzg1UswoZuVZY8MxzYiz5qzLSvsIr
-ddK9gDNE1V+4S2H8gc6yF5+NwdrQADORfe4/N6P1+4ww+1nrVhc=
-=WGJZ
------END PGP SIGNATURE-----
-
---RFgBf0dxqJCnzj+c--
+Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
