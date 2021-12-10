@@ -2,216 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60E50470BC3
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 21:19:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EC15470BDD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 21:31:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344169AbhLJUWk convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 10 Dec 2021 15:22:40 -0500
-Received: from aposti.net ([89.234.176.197]:46794 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234163AbhLJUWh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 Dec 2021 15:22:37 -0500
-Date:   Fri, 10 Dec 2021 20:18:43 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v11 3/8] dt-bindings: display: Add ingenic,jz4780-dw-hdmi
- DT Schema
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        id S1344207AbhLJUex (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 15:34:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58224 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344211AbhLJUew (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 15:34:52 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C37E9C0617A1;
+        Fri, 10 Dec 2021 12:31:16 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id k4so7003371plx.8;
+        Fri, 10 Dec 2021 12:31:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=jw1R+y/hcHxw2PT0p++dPCEF0COGjgzOAfMrHqXYnmM=;
+        b=Bj+eXpOd8SzmrJr7YedQ/prWz5Nhb/UwYzn4LYbYC36INmkJgXTghx2tdmOgL51KpZ
+         /NMu5KRvGw6V/m3A81JqHlgtdx0VwVYcS1qmRcwsxnxxQ1mctQXAHoAIGvp5cplvrgLu
+         oGsDF+VTRyiY7OIaz/t2SwS32w4Ab/92XtjcZ8UgvbUQIUjp9d2JJa0h1oQDDpVg0SnS
+         5WcE6IcGXwGx3JcCw4uuBDKQoJ1FDnoNeYvK1/D7i5mp3wCbZIMdFTM5JrZCkKMJWavw
+         v6Ig7kgp4cQxi9sQs4wAAf/gEPRhgqNdInYf9Hw6F6bEGgAPnNV8KBREpolxKgqZe2gv
+         8E/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jw1R+y/hcHxw2PT0p++dPCEF0COGjgzOAfMrHqXYnmM=;
+        b=HTCoyHaNSrnNgV4VO0+qe6bJynT+0tRFwgSTmb+C6NRHUKPsj6uI0O6mSzekUOpHhf
+         wGoj001YXmOtQorFnJuazZMZGMIj+3w7xNrxnmbC9KQjgGzBprYl5hARqTPsUN01hU/R
+         iPCTMpHj1ahx32jYRMNmcMtR/t0i6eTxB4XyblKQYhvA8WLbrrI3jROrZ4Rf558NT5TR
+         IVNniGg5yac51DL1pmdWQPMA6PM2VMb8qfwPr3UneyVPqyQfmeI/+ONQ3XyEQCj7qk+t
+         7umirB8Ap9BRRVNjUKDWRn5sEn7FOzU9TX4AX5ksUsP0Pv7QHsJNdeo6qBrl0Sss84gh
+         3yHw==
+X-Gm-Message-State: AOAM531k3nSqmID+DUYV/K2NWUF9JsZvcWQVQEoZGsM5/dTTIHhgWHBd
+        doLKZk43kHunWRp2KpqMkkM=
+X-Google-Smtp-Source: ABdhPJxTn8cdjm0nDrmj3G2/X5TV7UORnvYHQW3Jxaa+vjIKePL9ujp9yEQXIZ3Pnlrd8hZuQYmxdw==
+X-Received: by 2002:a17:90b:1e07:: with SMTP id pg7mr26302078pjb.185.1639168276271;
+        Fri, 10 Dec 2021 12:31:16 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id s19sm4434823pfu.137.2021.12.10.12.31.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Dec 2021 12:31:15 -0800 (PST)
+Subject: Re: [PATCH v10 0/7] PCI: brcmstb: root port turns on sub-device power
+To:     Rob Herring <robh@kernel.org>, Jim Quinlan <jim2101024@gmail.com>
+Cc:     linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Message-Id: <7R1X3R.HSAT8MYJAY6M2@crapouillou.net>
-In-Reply-To: <YbOF/pwib/VXoqkx@robh.at.kernel.org>
-References: <cover.1638470392.git.hns@goldelico.com>
-        <ac147196cd7744a7d50cf25197fe08bf9e81f88a.1638470392.git.hns@goldelico.com>
-        <YbOF/pwib/VXoqkx@robh.at.kernel.org>
+        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Saenz Julienne <nsaenzjulienne@suse.de>
+References: <20211209211407.8102-1-jim2101024@gmail.com>
+ <YbOf836C58fUSmCO@robh.at.kernel.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <d659ec6c-ddf8-87b9-ebf1-b32c3730d038@gmail.com>
+Date:   Fri, 10 Dec 2021 12:31:10 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+In-Reply-To: <YbOf836C58fUSmCO@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus,
-
-Le ven., déc. 10 2021 at 10:53:18 -0600, Rob Herring <robh@kernel.org> 
-a écrit :
-> On Thu, Dec 02, 2021 at 07:39:48PM +0100, H. Nikolaus Schaller wrote:
->>  From: Sam Ravnborg <sam@ravnborg.org>
->> 
->>  Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
->>  Based on .txt binding from Zubair Lutfullah Kakakhel
->> 
->>  We also add generic ddc-i2c-bus to synopsys,dw-hdmi.yaml
->> 
->>  Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
->>  Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->>  Cc: Rob Herring <robh@kernel.org>
->>  Cc: devicetree@vger.kernel.org
->>  ---
->>   .../display/bridge/ingenic,jz4780-hdmi.yaml   | 78 
->> +++++++++++++++++++
->>   .../display/bridge/synopsys,dw-hdmi.yaml      |  3 +
->>   2 files changed, 81 insertions(+)
->>   create mode 100644 
->> Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
->> 
->>  diff --git 
->> a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml 
->> b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
->>  new file mode 100644
->>  index 0000000000000..49ae1130efded
->>  --- /dev/null
->>  +++ 
->> b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
->>  @@ -0,0 +1,78 @@
->>  +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>  +%YAML 1.2
->>  +---
->>  +$id: 
->> http://devicetree.org/schemas/display/bridge/ingenic,jz4780-hdmi.yaml#
->>  +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>  +
->>  +title: Bindings for Ingenic JZ4780 HDMI Transmitter
->>  +
->>  +maintainers:
->>  +  - H. Nikolaus Schaller <hns@goldelico.com>
->>  +
->>  +description: |
->>  +  The HDMI Transmitter in the Ingenic JZ4780 is a Synopsys 
->> DesignWare HDMI 1.4
->>  +  TX controller IP with accompanying PHY IP.
->>  +
->>  +allOf:
->>  +  - $ref: synopsys,dw-hdmi.yaml#
->>  +
->>  +properties:
->>  +  compatible:
->>  +    const: ingenic,jz4780-dw-hdmi
->>  +
->>  +  reg-io-width:
->>  +    const: 4
->>  +
->>  +  clocks:
->>  +    maxItems: 2
->>  +
->>  +  hdmi-5v-supply:
->>  +    description: regulator to provide +5V at the connector
+On 12/10/21 10:44 AM, Rob Herring wrote:
+> On Thu, Dec 09, 2021 at 04:13:58PM -0500, Jim Quinlan wrote:
+>> v10 -- Bindings commit example: in comment, refer to bridge under
+>>        controller node as a root port. (Pali)
+>>     -- Bindings commit example: remove three properties that are not
+>>        appropriate for a PCIe endpoint node. (Rob)
+>>
+>> v9  -- Simplify where this mechanism works: instead of looking for
+>>        regulators below every bridge, just look for them at the
+>>        bridge under the root bus (root port).  Now there is no
+>>        modification of portdrv_{pci,core}.c in this submission.
+>>     -- Although Pali is working on support for probing native
+>>        PCIe controller drivers, this work may take some time to
+>>        implement and it still might not be able to accomodate
+>>        our driver's requirements (e.g. vreg suspend/resume control).
+>>     -- Move regulator suspend/resume control to Brcm RC driver.  It
+>>        must reside there because (a) in order to know when to
+>>        initiate linkup during resume and (b) to turn on the
+>>        regulators before any config-space accesses occur.
 > 
-> Being part of the connector, that belongs in a connector node.
-
-I believe that means adding .atomic_{enable,disable} callbacks to the 
-display-connector bridge (drivers/gpu/drm/bridge/display-connector.c) 
-which would enable/disable the regulator.
-
-Unless it messes up with e.g. cable detection (which I believe requires 
-the regulator to be enabled), in that case unconditionally enable it in 
-the connector's probe function.
-
->>  +
->>  +  ports:
->>  +    $ref: /schemas/graph.yaml#/properties/ports
+> You now have a mixture of 'generic' add/remove_bus hooks and the host 
+> controller suspend/resume managing the regulators. I think long term, 
+> the portdrv is going to be the right place for all of this with some 
+> interface defined for link control. So I think this solution moves 
+> sideways rather than towards anything common.
 > 
-> You need to define what each 'port' node is.
+> Unfortunately, the only leverage maintainers have to get folks to care 
+> about any refactoring is to reject features. We're lucky to find anyone 
+> to test refactoring when posted if done independently. There's a long 
+> list of commits of PCI hosts that I've broken to prove that. So it's 
+> up to Lorenzo and Bjorn on what they want to do here.
 
-Have a look at 
-Documentation/devicetree/bindings/display/ingenic,lcd.yaml for an 
-example on how to do this.
+After version 10, it would seem pretty clear that we are still very much
+committed to and interested in getting that set merged and do it the
+most acceptable way possible. Common code with a single user is always a
+little bit of a grey area to me as it tends to be developed to cater for
+the specific needs of that single user, so the entire common aspect is
+debatable. I suppose as long as we have the binding right, the code can
+change at will.
 
->>  +
->>  +required:
->>  +  - compatible
->>  +  - clocks
->>  +  - clock-names
->>  +  - hdmi-5v-supply
->>  +  - ports
->>  +  - reg-io-width
->>  +
->>  +unevaluatedProperties: false
->>  +
->>  +examples:
->>  +  - |
->>  +    #include <dt-bindings/clock/ingenic,jz4780-cgu.h>
->>  +
->>  +    hdmi: hdmi@10180000 {
->>  +        compatible = "ingenic,jz4780-dw-hdmi";
->>  +        reg = <0x10180000 0x8000>;
->>  +        reg-io-width = <4>;
->>  +        ddc-i2c-bus = <&i2c4>;
->>  +        interrupt-parent = <&intc>;
->>  +        interrupts = <3>;
->>  +        clocks = <&cgu JZ4780_CLK_AHB0>, <&cgu JZ4780_CLK_HDMI>;
->>  +        clock-names = "iahb", "isfr";
->>  +        hdmi-5v-supply = <&hdmi_power>;
->>  +
->>  +        ports {
->>  +            #address-cells = <1>;
->>  +            #size-cells = <0>;
->>  +            hdmi_in: port@0 {
->>  +                reg = <0>;
->>  +                dw_hdmi_in: endpoint {
->>  +                    remote-endpoint = <&jz4780_lcd_out>;
->>  +                };
->>  +            };
->>  +            hdmi_out: port@1 {
->>  +                reg = <1>;
->>  +                dw_hdmi_out: endpoint {
->>  +                    remote-endpoint = <&hdmi_con>;
->>  +                };
->>  +            };
->>  +        };
->>  +    };
->>  +
->>  +...
->>  diff --git 
->> a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml 
->> b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
->>  index 9be44a682e67a..9cbeabaee0968 100644
->>  --- 
->> a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
->>  +++ 
->> b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
->>  @@ -50,6 +50,9 @@ properties:
->>     interrupts:
->>       maxItems: 1
->> 
->>  +  ddc-i2c-bus:
->>  +    description: An I2C interface if the internal DDC I2C driver 
->> is not to be used
-> 
-> That too is already defined to be part of the connector node.
-
-Just remove the property then, since you don't use it in the ci20 
-bindings.
-
-Cheers,
--Paul
-
->>  +
->>   additionalProperties: true
->> 
->>   ...
->>  --
->>  2.33.0
->> 
->> 
-
-
+Not trying to coerce Bjorn and Lorenzo into accepting these patches if
+they don't feel comfortable, but what about getting it included so we
+can sort of move on from that topic for a little bit (as we have other
+PCIe changes coming in, supporting additional chips etc.) and we work
+with Pali on a common solution and ensure it works on our pcie-brcmstb.c
+based devices? We are not going to vanish and not come back looking at this.
+-- 
+Florian
