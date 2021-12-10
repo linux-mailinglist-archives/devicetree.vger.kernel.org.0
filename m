@@ -2,141 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F12846FDC8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 10:31:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B61546FDCC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 10:33:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234263AbhLJJfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 04:35:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42872 "EHLO
+        id S234448AbhLJJgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 04:36:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231384AbhLJJfU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 04:35:20 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 133DBC061746
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 01:31:45 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id c32so16987867lfv.4
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 01:31:44 -0800 (PST)
+        with ESMTP id S231384AbhLJJgu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 04:36:50 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D332FC061746;
+        Fri, 10 Dec 2021 01:33:15 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id t26so16938725lfk.9;
+        Fri, 10 Dec 2021 01:33:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=WMI/y1U0D7nOaSQBJKUvEGaWTKasRYagNwwJMVS/g64=;
-        b=aGijpqYEnDCEJDmN+rmKNzRumcgbjubj9rf6I2eyghJ5+P2aQXhcFxSXA05aJIus+c
-         YkT9A0OaN6FVS4pHLFXL7yjY6HN+QyUPB0P5uqKanKppOEmVd4eKj8pJWCsiFPqUPyCE
-         cb+iQtndSN56T0XtxkmwvXflOMzlRp5/jX6gasgOXstcEKmCy33Ivv7bTlAxmhBL5yDl
-         pdeZ3DEyeRE3vZ7B7xtN6gkzFXsK8b2UAP6kyoN5gw2eQAKXOGORg03x4cacOAiJv1Oj
-         k0IgWU4XlFz+JiHWDkSKpjtENGFWohIi6uPLXxBn6AtgKfVcMtRSxPGkJ+Bv6y0Fhw/d
-         yRFQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=1sKsqu13f1fJ8ZVjtTiFIs7M6/v2yiKCto4Y2goIhtY=;
+        b=gegr37rT1wvk5/wIHoT3HG7CbFisDJJ4qe7XzDTdtRmUZejW6aDzDd79UpHl8InFNC
+         Aav2ZhWN7fwu3X0v/aE89Aw3XSuHOBWjTUXuS08G6a53BhERGxk+ge/9uOOtbkqHNmgb
+         MoJZlh7AwjhHDayjdbsuG/3Q0h1neeOtb+eNY+EgK6GT9rHBwt8YAyq6IvVCDr3pO26l
+         HAnOi+dsKwsTag1DeO8AbaabSQ2CLSMuvxJeKT04xZCkvOu+Z3PXKa6G9dWDMSK8DId3
+         4B3MJliyAYL16Dmvpz/AGxNLYDhl40rwyQIQcyt7MD1w5vB8GcKk1scbGe0WZI0ZOvzP
+         XpBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=WMI/y1U0D7nOaSQBJKUvEGaWTKasRYagNwwJMVS/g64=;
-        b=q4ynjxYgQoSDxDlvfTfGbTrjxaKQ6Inq132YHoaW+i1UrFcl4G6DWHuPkHabqaVe6t
-         WD8Iv38zRgTEpnXewwqbnu60kSSdDq5VuvKeN9Mmtu2SMMuz+Icm9bufaIEfyDeMDHRB
-         z+rF8138AgSn/+SiD/6cC+PQeuB03JfGrehesDMe8IhOzSZFviMTzRQ2eL4dvli3jIvT
-         AarPhptRqwJaWMhcvi97srm3VBvDrFJIdQeEhbOZ4q1lHOmxPxzz/mgks0sEqN5JqdGi
-         LWcZy8lDflyQKARsYzmid0co1zqDMwvNSQ2iOdnmqpbjK5a0z+fa4SKboftJrmhpJ5YB
-         Kb1w==
-X-Gm-Message-State: AOAM533kn4GxakGDPTLLZ/l57yjtofus1fmtM19RQ4vOmIJh058SjO7J
-        JK6x/v/I4rpbeeXydJ/LM7o=
-X-Google-Smtp-Source: ABdhPJzoRTqVcB69pA97vjriiBVPT/iIhofIFnRsig/MTccZ1qBEwnxfHn3FOxRWxdeadKju++vjtA==
-X-Received: by 2002:a19:3846:: with SMTP id d6mr11828272lfj.74.1639128703298;
-        Fri, 10 Dec 2021 01:31:43 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id s15sm256498ljj.14.2021.12.10.01.31.42
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=1sKsqu13f1fJ8ZVjtTiFIs7M6/v2yiKCto4Y2goIhtY=;
+        b=NguCNx1zV30Hb5rtZ8kB48SsdTxBzENrytlAzS5ImUEuoXZBazVJldryo+bqzCh0gc
+         MEbhsHwKumUR9OQNu8hfDf+eJgbxvkENYomjMGuhMnTPIt39Pdq3tqNNjY9XUczBJyBC
+         l3ZJqI5Kbd5RzTrR2AJTJUnGDqD4C7G8r5QHhp4AGeg88FFTv01rIU6JbiCunzH7NCCB
+         Ttr7N1nnB0bT23pAv8nrqZnxd6CKj+vKemJkxzoKpCO8n9DQYdZv9D/ovmQ7U1HC66Uc
+         q/n4Jn48E+10X+rFlJ5B+910t5ex6rMbsyvycaLaJKFIWI8i9wX2pmhdPMZxLyPpOQeB
+         geZg==
+X-Gm-Message-State: AOAM532gKncsFVShysEiWrWgdMhT4kIQJjgVeBg6HWtGKTR13fovqdv7
+        TmPp/wiGrdrsJ7rE8NqTXveurRpsAGRRqg==
+X-Google-Smtp-Source: ABdhPJy0jBvkn2hW116jh/1FKkNOWkwWVSWrraWcHOTZPFv9s8mfwd+5sJqH2upmSWbUncVjhxEwpQ==
+X-Received: by 2002:a05:6512:1047:: with SMTP id c7mr11615784lfb.26.1639128794039;
+        Fri, 10 Dec 2021 01:33:14 -0800 (PST)
+Received: from [192.168.1.7] ([212.22.223.21])
+        by smtp.gmail.com with ESMTPSA id c13sm254687lfv.293.2021.12.10.01.33.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Dec 2021 01:31:42 -0800 (PST)
-Message-ID: <85b703f6-1e21-46d0-02ae-19e529a635a2@gmail.com>
-Date:   Fri, 10 Dec 2021 10:31:41 +0100
+        Fri, 10 Dec 2021 01:33:13 -0800 (PST)
+Subject: Re: [PATCH V4 6/6] dt-bindings: xen: Clarify "reg" purpose
+To:     Julien Grall <julien@xen.org>
+Cc:     xen-devel@lists.xenproject.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Stefano Stabellini <sstabellini@kernel.org>
+References: <1639080336-26573-1-git-send-email-olekstysh@gmail.com>
+ <1639080336-26573-7-git-send-email-olekstysh@gmail.com>
+ <669d3f56-13b8-f159-2053-b39f1ba4222f@xen.org>
+From:   Oleksandr <olekstysh@gmail.com>
+Message-ID: <35ee3534-9e24-5a11-0bf1-a5dd0b640186@gmail.com>
+Date:   Fri, 10 Dec 2021 11:33:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Add USB GPIO and missing LEDs on
- Netgear R6300v2
-To:     Lisa Hill <f11o1iomh3dmt141n@icloud.com>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-References: <74E33696-D05A-4009-8C40-927A4DBDD4EF@icloud.com>
- <cc83723a-cf88-66bc-9ab9-101355f3801f@gmail.com>
- <C624909D-1513-4256-BCC1-50C7B43402CC@icloud.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <C624909D-1513-4256-BCC1-50C7B43402CC@icloud.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <669d3f56-13b8-f159-2053-b39f1ba4222f@xen.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10.12.2021 10:18, Lisa Hill wrote:
-> On Dec 10, 2021, at 15:39, Rafał Miłecki <zajec5@gmail.com> wrote:
-> 
->> One more comment on sending patches: please configure your e-mail client
->> to send text only (text/plain) without extra HTML version (text/html).
+
+On 10.12.21 11:09, Julien Grall wrote:
+> Hi Oleksandr,
+
+
+Hi Julien
+
+
+>
+> On 09/12/2021 20:05, Oleksandr Tyshchenko wrote:
+>> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
 >>
->> If you can't configure your e-mail easily you can also try
->> "git send-email" command line tool.
+>> Xen on Arm has gained new support recently to calculate and report
+>> extended regions (unused address space) safe to use for external
+>> mappings. These regions are reported via "reg" property under
+>> "hypervisor" node in the guest device-tree. As region 0 is reserved
+>> for grant table space (always present), the indexes for extended
+>> regions are 1...N.
 >>
->> See:
->> https://www.kernel.org/doc/html/v5.15/process/submitting-patches.html#no-mime-no-links-no-compression-no-attachments-just-plain-text
->> https://www.kernel.org/doc/html/v5.15/process/email-clients.html
+>> No device-tree bindings update is needed (except clarifying the text)
+>> as guest infers the presence of extended regions from the number
+>> of regions in "reg" property.
 >>
->> Also see comments below.
->>
-> 
-> Thanks for your help. I have noticed the #no-mime-no-links-no-compression-no-attachments-just-plain-text warning from The Linux Kernel documentation. However I sent a Safari-copied html mail by accident which was rejected by linux-arm-kernel@lists.infradead.org. Now I have configured my e-mail client to send plain text by default. Can you verify that on my reply?
+>> While at it, remove the following sentence:
+>> "This property is unnecessary when booting Dom0 using ACPI."
+>> for "reg" and "interrupts" properties as the initialization is not
+>> done via device-tree "hypervisor" node in that case anyway.
+> You sent a similar patch for Xen and have already commented there [1] 
+> . In short, the OS will be using the node to discover whether it is 
+> running on Xen for both ACPI and DT. The hypervisor node also contain 
+> the UEFI information for dom0.
 
-It's perfect.
-
-
-> Should I cc to Florian Fainelli <f.fainelli@gmail.com> and Hauke Mehrtens <hauke@hauke-m.de> any more?  I have noticed your two e-mail clients from commits: rafal@milecki.pl and zajec5@gmail.com. Which one should I use to contact you? Should I cc to another?
-
-Yes, please include Florian & Hauke.
-Either of my addresses is fine.
-
-
->>> +		};
->>> +		
->>
->> No tabs in empty separator line please.
->>
-> 
-> I forgot to remove tabs when I made this commit on Github. Sorry for that.
-> 
-> The linux repo is too big for me to clone. I have to use the fork feature in Github if I want to use git diff to create the patch. That’s why I can’t use "git send-email” which is recommended by The Linux Kernel documentation. Do you have any idea how I can send you the patch directly from Github instead of a 3rd e-mail client?
-
-You can limit amount of cloned data by using --depth. Maybe that will
-help.
-
-git clone -–depth 10 git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
-
-I'm not familiar with GitHub, I don't know if it supports sending
-patches.
+I agree with your comments. The sentence should remain in this case. 
+Thank you for pointing this out.
 
 
-> Since I can’t reply to your comment and provide a clean modified patch at the same time, I will send you a modified patch later.
-> 
->>> +		wan-amber {
->>> +			label = "bcm53xx:amber:wan";
->>> +			gpios = <&chipcommon 10 GPIO_ACTIVE_HIGH>;
->>>   		};
->>
->> It's unlikely both WAN LEDs (green & amber) are controlled by the same
->> GPIO (10). Please verify that.
-> 
-> I did verify that following the "Adding new device support” guide from OpenWrt. It bothered me too since I have never noticed this thing on any other device. I think you can verify that on your Netgear R6250 since they are very similar. I will remove the wan-amber LED later to respond to your concern.
+>
+>
+> Cheers,
+>
+> [1] 
+> https://lore.kernel.org/xen-devel/9602b019-6c20-cdc7-23f3-9e4f8fd720f6@xen.org/T/#t
+>
+-- 
+Regards,
 
-Well, please just double check what *really* happens when you set GPIO
-10 to 0/1 value. Which LED does really turn on/off? Please don't just
-randomly add/remove info from DT. Please verify it instead and provide
-accurate changes.
+Oleksandr Tyshchenko
 
-
-> However, I haven't verified the vcc-gpio configuration for USB port and I just ported this feature from the dts file of Netgear R6250.
-
-Then please kindly verify that. Please check if USB devices get detected
-without this change. Please don't send random / untested changes.
