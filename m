@@ -2,147 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCDC446FB1D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 08:08:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B470A46FB22
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 08:10:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234960AbhLJHLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 02:11:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38114 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233193AbhLJHLo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 02:11:44 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02B18C061746
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 23:08:10 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id 133so6121725wme.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 23:08:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=mEi8zG32L5BM4knFZEh4X58cQ8vPXgu19KLr41BpThw=;
-        b=Z6V9lTHVh6jLpNPghCGj0gBazVEG9jUCUKQWeKb4JW40szPdmPOHXRE2VDcDyyV0C9
-         216/e2PXEPymhtk8ZdEzo8o17umAnx1VNG1xZeLO6Qth4w6tgfsdsZgbFBtvokkBlCXO
-         ZdkyjO5ptGLEECJp2DrTBIDDjFTmx+e2ggwmOo1+/ldTOkHLBvRwTA4sxulgG1Q3MYr8
-         BIDCb+NzWAiEpcJ+282vAucKi7ooalkj1EG7Spu9OqHH45JbMxCRNb7LokrTxsgSP1EM
-         lboVleVDZfsOBzQ4jBbLnyEILNrEoArDU83Jk2WAcCoFIDugCqG9dOrN7cbVL/hl0BGG
-         p4mA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=mEi8zG32L5BM4knFZEh4X58cQ8vPXgu19KLr41BpThw=;
-        b=1sq+S766cLANitTYcUkSjIYbpHSN7gK9+5MP6gfIvpZt4P8KsdZDt3BMUV0MkmoCe6
-         KNrl/6VMLVYDS8dSs+bI5GbAYKRh74qPRxJxOaAWXm2hjrQ5l5Afk8EF/10BT0wIrvO/
-         H2Z7JqtROayRHbbTQ8k44duwAGPcfy6e8cNsqe4tg+FZQWxbuI8pzskFbQPx5ufmtLb7
-         mqQnZpCwFtBoi8RQn41hoX3JxRZOiaM+0IFopXmtPLC5JRf9jA2IPPEI0XsS3+M/XP+N
-         kzlTMo7JhhaDJYwUo9BOyb5zESj9/UwkH1QCWAPUv5ug2KUh96HePpegR0RzhdCqUxID
-         eTSg==
-X-Gm-Message-State: AOAM532ky53Z9rFDAyDXuFlDP6FpeHk6C3xXkK7EVj+AgF/WnWYaN4Iz
-        dw1nw6uh7ORcWZ3epCLW6voMtA==
-X-Google-Smtp-Source: ABdhPJxTuFvBSTJZKodLxPpdabMZCi2ERxfZPpgov67fsd+HFyE6MnNUboiG7cgRHbbzpq0oG6+31A==
-X-Received: by 2002:a05:600c:3489:: with SMTP id a9mr14243155wmq.120.1639120087972;
-        Thu, 09 Dec 2021 23:08:07 -0800 (PST)
-Received: from google.com ([2.31.167.18])
-        by smtp.gmail.com with ESMTPSA id p27sm1922934wmi.28.2021.12.09.23.08.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Dec 2021 23:08:07 -0800 (PST)
-Date:   Fri, 10 Dec 2021 07:08:05 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Michael Walle <michael@walle.cc>, Andrew Lunn <andrew@lunn.ch>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Bruno Banelli <bruno.banelli@sartura.hr>
-Subject: Re: [PATCH v9 3/6] dt-bindings: reset: Add Delta TN48M
-Message-ID: <YbL81TEMp8CA7Sam@google.com>
-References: <20211109113239.93493-1-robert.marko@sartura.hr>
- <20211109113239.93493-3-robert.marko@sartura.hr>
- <CA+HBbNGH9ih5RovU9YHL91osFxDJbWw2Qk=ed30GGQvndNJPKw@mail.gmail.com>
- <33ab37f5b30252e41f3e0769c7702764a9e77d7f.camel@pengutronix.de>
- <CA+HBbNH5Hq7WC7PkpFt=hUsTRstP3KrNCsbWWy5QaZRFDvZDKA@mail.gmail.com>
+        id S235038AbhLJHOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 02:14:24 -0500
+Received: from mail-am6eur05on2080.outbound.protection.outlook.com ([40.107.22.80]:17185
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231245AbhLJHOY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Dec 2021 02:14:24 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z4G4WGwgwI5AGKrx9x+BdBRna5mLwu1cRDGQTReipLVYec5zXlVbCSz+GNVo/YzhsOMEgyUB3HrACfMWeOMVcqMcVQQU2fQ/uaUKKb8WzagTKp33azI4XRKjDarzr2uDecyNJlN4s+msACBwzi2e3rWpJl51MqEomhM2BUsv+8p8aQExjtz8+m897bDO5OoF1hz3j9Vxx0WCXv0+eeuHGS2eISuUqJIP4EGWt7fXCyX+cGaXdnpfPb1+gh8A0Po+Ni+pceZA5gzf8+61UMCOn/TImINSqZ7OGY55OHRq4irvNzrISEPD/R0oBGekPGWFkVbdxKWruHog+XkaNdM1bQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+4n2+p/maTxhVmrtcDVTeSIvhPx0fgGyVNSQaIMRB2E=;
+ b=jddct7jVUnRzP5ofIjRxadv142Y7Ak5DzUyIB1zenuxuqZGeygpAXqB8vYvRnjfdN2J5mKsI7qmqCD5E0rSDgfGUAU9YuIuwHF4Fsod5nXE9O73YHmcwA6HHZHdyHfZcgmvaDjEHKhj7rYgocJ1qkvbnt/gNgYutSpkz/8LXXwdJqX6EN2500cduhpQ7YeZBzXbLSL5AyW1jM6hpT9GUtxBlX6PLbEHiLq3gWXvYfoQJ1CDueSmnT0LZ9jZ9ibJP39GvL2WLEcNvrnbHe7MX4qIaGfh5BzPPadAGUYa1j8LJ69DOJ0l3zypM6lNvGBTA3hzx8WqCSCO8AkhEEuDT6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 194.138.21.73) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=siemens.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=siemens.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+4n2+p/maTxhVmrtcDVTeSIvhPx0fgGyVNSQaIMRB2E=;
+ b=nUD/YUauc/ohfnwTbiRp2Y29FyWr91FLQPlcIt+vR5K9wwjfkgi/Nk0FJeqnxbU5eEasBU+M+8hApFH8hMZiPpiBVS7+KRdRA63ciQGGen9yBghxOmdBF0W036Lp+gihPqOho+Xohv/LE9wFSb6lCp1da2lS3BMDd+kgT9Tr3WIg6w/Y5iP38C9PRhA8go9ylOybBPovyMCrK4CKiMPfVaKx7Ooqcx6EW5uVCJcNYN8s5bJzxen/iyJxlWLiQzMHQUs7HqAPIDwqgjoVlzDIqHeTGfK9/vIOhcZVXAp9BlNEPik8F1R6U5zUqdk8wxPw1AWmVDTKhH5jRxDmZrB4HQ==
+Received: from SV0P279CA0065.NORP279.PROD.OUTLOOK.COM (2603:10a6:f10:14::16)
+ by PRAPR10MB5227.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:29a::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.24; Fri, 10 Dec
+ 2021 07:10:48 +0000
+Received: from HE1EUR01FT043.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:f10:14:cafe::17) by SV0P279CA0065.outlook.office365.com
+ (2603:10a6:f10:14::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.20 via Frontend
+ Transport; Fri, 10 Dec 2021 07:10:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 194.138.21.73)
+ smtp.mailfrom=siemens.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=siemens.com;
+Received-SPF: Pass (protection.outlook.com: domain of siemens.com designates
+ 194.138.21.73 as permitted sender) receiver=protection.outlook.com;
+ client-ip=194.138.21.73; helo=hybrid.siemens.com;
+Received: from hybrid.siemens.com (194.138.21.73) by
+ HE1EUR01FT043.mail.protection.outlook.com (10.152.0.207) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4778.12 via Frontend Transport; Fri, 10 Dec 2021 07:10:47 +0000
+Received: from DEMCHDC8A0A.ad011.siemens.net (139.25.226.106) by
+ DEMCHDC9SNA.ad011.siemens.net (194.138.21.73) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 10 Dec 2021 08:10:47 +0100
+Received: from [139.22.134.185] (139.22.134.185) by
+ DEMCHDC8A0A.ad011.siemens.net (139.25.226.106) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 10 Dec 2021 08:10:46 +0100
+Subject: Re: [PATCH] arm64: dts: ti: iot2050: Disable mcasp nodes at dtsi
+ level
+To:     Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20211117053806.10095-1-j-choudhary@ti.com>
+From:   Jan Kiszka <jan.kiszka@siemens.com>
+Message-ID: <24cbe5c0-3f23-d1a0-02ca-8a4e656811f2@siemens.com>
+Date:   Fri, 10 Dec 2021 08:10:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+HBbNH5Hq7WC7PkpFt=hUsTRstP3KrNCsbWWy5QaZRFDvZDKA@mail.gmail.com>
+In-Reply-To: <20211117053806.10095-1-j-choudhary@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [139.22.134.185]
+X-ClientProxiedBy: DEMCHDC89XA.ad011.siemens.net (139.25.226.103) To
+ DEMCHDC8A0A.ad011.siemens.net (139.25.226.106)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9e3300be-75eb-4d71-0e8d-08d9bbac30d4
+X-MS-TrafficTypeDiagnostic: PRAPR10MB5227:EE_
+X-Microsoft-Antispam-PRVS: <PRAPR10MB522785C663AACCB98D18469595719@PRAPR10MB5227.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5eV7n9h6AZxs2vOUFcN+2zxToniAUd7gIJb0B5Mx/HXQg+0bzXRlQIaGjGXbpgY0VH83Gv5tX6pld/kuFZk1cLCEgBsmC4LDOYezIV3tbIr05L1DaG7ZpM5E5OtHYTR27hE+5Gp0v+0MX9jTwP3IEUWXiOKsBnMi5HDENqXM0ABeAzVqEVKaVTw6oh9qVeKYWw0UkY/UnTYsxZkJETxJ0dg+RYg9KMNoL25TEO9EAHB/EsKo3YT2JwztT+helYf6KQN9DZX/5Gptnp32n3KQXFvDHqT5jXlbdi3rqu7FPUOxmVvQXX/DZ4NnfC7uxxoezCCuou+HLB8rxA6hOJ2NOSt0y5RR2dfllKVs4SwftarHYrLFUhd1ROJPkYZwhCkwNB70X4/+uKmgTVJtIxpR1T+w0WaNMMIS4uGZi9dL6v3oxVpPMp6jq98OURwEv1nAv4IwsnRbG1JuuJSmNQUK0RvPBeoWHH6G2tNuEiVqH+6G86WgHaZVtw5AWt9ALPoOiWdYrndYG1I8hwzMizY6ksDl8h3iGsJcSePjcsWvJR8nJYGNNxcL0k3EhpPtD1YlmW5C167oq3Y9hy57BlT1xa+aAL/EZPQ4+P2I9Tr4rgSCyNSxYgaXsCTC8U7qdHNKSji+SW+G4jxgHHXehNa/8XI3lo1EKv+MA7+py9+GkbIKERVkwDlRIedCk9mHmH17cyz/0oZCL4xVj0ZEGh2mOf6l3Btlzk5P9DDGp4vum5vbpvWJPTiNA4g31DNkLgIvz8BFXgLYxjYuBa1ejIbu4wpZYYm5jX5KqH5V4Hm5bsQ=
+X-Forefront-Antispam-Report: CIP:194.138.21.73;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:hybrid.siemens.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(2906002)(31686004)(53546011)(110136005)(81166007)(86362001)(36860700001)(8936002)(508600001)(70206006)(54906003)(2616005)(83380400001)(316002)(70586007)(82960400001)(44832011)(31696002)(356005)(36756003)(5660300002)(16526019)(186003)(4326008)(47076005)(336012)(16576012)(956004)(26005)(8676002)(6706004)(82310400004)(3940600001)(36900700001)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2021 07:10:47.6202
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e3300be-75eb-4d71-0e8d-08d9bbac30d4
+X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;Ip=[194.138.21.73];Helo=[hybrid.siemens.com]
+X-MS-Exchange-CrossTenant-AuthSource: HE1EUR01FT043.eop-EUR01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PRAPR10MB5227
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 09 Dec 2021, Robert Marko wrote:
-
-> On Thu, Dec 9, 2021 at 10:40 AM Philipp Zabel <p.zabel@pengutronix.de> wrote:
-> >
-> > Hi Robert,
-> >
-> > On Wed, 2021-12-01 at 22:28 +0100, Robert Marko wrote:
-> > > On Tue, Nov 9, 2021 at 12:32 PM Robert Marko <robert.marko@sartura.hr> wrote:
-> > > >
-> > > > Add header for the Delta TN48M CPLD provided
-> > > > resets.
-> > > >
-> > > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > > > ---
-> > > >  include/dt-bindings/reset/delta,tn48m-reset.h | 20 +++++++++++++++++++
-> > > >  1 file changed, 20 insertions(+)
-> > > >  create mode 100644 include/dt-bindings/reset/delta,tn48m-reset.h
-> > > >
-> > > > diff --git a/include/dt-bindings/reset/delta,tn48m-reset.h b/include/dt-bindings/reset/delta,tn48m-reset.h
-> > > > new file mode 100644
-> > > > index 000000000000..d4e9ed12de3e
-> > > > --- /dev/null
-> > > > +++ b/include/dt-bindings/reset/delta,tn48m-reset.h
-> > > > @@ -0,0 +1,20 @@
-> > > > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > > > +/*
-> > > > + * Delta TN48M CPLD GPIO driver
-> > > > + *
-> > > > + * Copyright (C) 2021 Sartura Ltd.
-> > > > + *
-> > > > + * Author: Robert Marko <robert.marko@sartura.hr>
-> > > > + */
-> > > > +
-> > > > +#ifndef _DT_BINDINGS_RESET_TN48M_H
-> > > > +#define _DT_BINDINGS_RESET_TN48M_H
-> > > > +
-> > > > +#define CPU_88F7040_RESET      0
-> > > > +#define CPU_88F6820_RESET      1
-> > > > +#define MAC_98DX3265_RESET     2
-> > > > +#define PHY_88E1680_RESET      3
-> > > > +#define PHY_88E1512_RESET      4
-> > > > +#define POE_RESET              5
-> > > > +
-> > > > +#endif /* _DT_BINDINGS_RESET_TN48M_H */
-> > > >
-> > >
-> > > Does anybody have any comments on the patch as the reset driver got reviewed and
-> > > the bindings have not?
-> >
-> > Not much to review here, I can't tell if the indices are correct.
-> >
-> > Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
-> >
-> > To be merged with the rest of the series. Or do you want me to pick up
-> > the reset parts individually? In that case you'd have to split out the
-> > reset bindings into a separate patch.
+On 17.11.21 06:38, Jayesh Choudhary wrote:
+> Disable mcasp nodes 0-2 because several required properties
+> are not present in the dtsi file as they are board specific.
+> These nodes can be enabled via an overlay whenever required.
 > 
-> Thanks,
-> It has to go with the rest of the series as it all depends on the MFD.
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> We are just waiting for the MFD dt-bindings to be reviewed.
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> index 65da226847f4..c9407ed67866 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> @@ -731,3 +731,15 @@
+>  &icssg2_mdio {
+>  	status = "disabled";
+>  };
+> +
+> +&mcasp0 {
+> +	status = "disabled";
+> +};
+> +
+> +&mcasp1 {
+> +	status = "disabled";
+> +};
+> +
+> +&mcasp2 {
+> +	status = "disabled";
+> +};
+> 
 
-We need Rob to review the set.  Then I'll happily take it.
+Acked-by: Jan Kiszka <jan.kiszka@siemens.com>
+
+Sorry for the delay.
+
+Jan
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Siemens AG, T RDA IOT
+Corporate Competence Center Embedded Linux
