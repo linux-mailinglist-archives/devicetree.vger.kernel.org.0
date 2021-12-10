@@ -2,75 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73205470CDF
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 23:10:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C7E0470CE9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 23:11:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233285AbhLJWNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 17:13:47 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:39585 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230078AbhLJWNq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 17:13:46 -0500
-Received: by mail-oi1-f175.google.com with SMTP id bf8so15121616oib.6;
-        Fri, 10 Dec 2021 14:10:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UI69fhIlE5XSdCKJ2yMxqg1dIhXQ3tzeJCksSrXFyqs=;
-        b=dZRbekPlPrQRu6qQjV/3j/hsdWXFRXCuueAZ+bh8cLVcr2yhLgCaqfmPcLRaotqNM8
-         gvKVCPxzZAwzNDPhhHU78qYI9yUh4ocjMxmf+Aqy7F22NvpXjC+3dXk/uzUmyLRQJKaX
-         CrKLaHbpXsCHtDYPOgMOGxingtVXEv1Q0ri518IpJSNO1Ik0hbVnh9LZv85i4puVwtPr
-         W+mEefmyl929fSo97jB3TS2IZ8qzy6JXW0DDPgloz6+e/We6YBjH9KV9Lx2aR15uiQ5r
-         aIiqEmUv0US9pUkRaZ1PNTpp2RI/6hJJ2JIwHVf5yYz/0KxNS8SckJXzhc9zeW6/0kd6
-         Dxuw==
-X-Gm-Message-State: AOAM531SYHtJXBhHFQe7Eoow9mgkVK+5dnf7M2nNJL+FDrBbh+4dVXkk
-        y/0ypUXOHVEVKtMQU7Y/Yg==
-X-Google-Smtp-Source: ABdhPJyuH5wrjmW02k4zGvufnnUCm+yF6g/3zXu5CgTcTDxczhAk1nmsNkvG9DN2qh3G2mtjVBOmkw==
-X-Received: by 2002:a05:6808:1509:: with SMTP id u9mr15617399oiw.13.1639174210918;
-        Fri, 10 Dec 2021 14:10:10 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id y17sm747594ote.48.2021.12.10.14.10.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 14:10:10 -0800 (PST)
-Received: (nullmailer pid 2017305 invoked by uid 1000);
-        Fri, 10 Dec 2021 22:10:09 -0000
-Date:   Fri, 10 Dec 2021 16:10:09 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Fenglin Wu <quic_fenglinw@quicinc.com>
-Cc:     sboyd@kernel.org, devicetree@vger.kernel.org,
-        collinsd@codeaurora.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, subbaram@codeaurora.org,
-        maz@kernel.org, linux-kernel@vger.kernel.org, tglx@linutronix.de
-Subject: Re: [RESEND PATCH v3 07/10] bindings: spmi: spmi-pmic-arb: mark
- interrupt properties as optional
-Message-ID: <YbPQQdXbJOO1gGDp@robh.at.kernel.org>
-References: <1638403212-29265-1-git-send-email-quic_fenglinw@quicinc.com>
- <1638403212-29265-8-git-send-email-quic_fenglinw@quicinc.com>
+        id S1344649AbhLJWPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 17:15:25 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:31569 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1344629AbhLJWPW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Dec 2021 17:15:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1639174306;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=RG+vJicMqSML39k3bi7zqu+k/AVkghfoYq9xbLHJFcw=;
+        b=hdN/r+1V7Y6odQmsIuNx1HQPH4vUCdFOcmn5/5NBpMC9Zw5WqIq7keGLl88Gq5NuKHCOVE
+        HFm8XOthU/t+g4qmbPdxNiEKcIOGqbU1LYzGDN6N7vVfC/AMYcU1PFids8MuGvE+S9xOVP
+        y/nHe81DIfn8CtuInCz/IM190SY7CHU=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-511-qQA2S4h9PEiQPydKxuH8vg-1; Fri, 10 Dec 2021 17:11:45 -0500
+X-MC-Unique: qQA2S4h9PEiQPydKxuH8vg-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com [10.5.11.13])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id B99358042E0;
+        Fri, 10 Dec 2021 22:11:43 +0000 (UTC)
+Received: from cmirabil.remote.csb (unknown [10.22.8.67])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id BE64677F29;
+        Fri, 10 Dec 2021 22:11:41 +0000 (UTC)
+From:   Charles Mirabile <cmirabil@redhat.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Charles Mirabile <cmirabil@redhat.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Serge Schneider <serge@raspberrypi.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Nicolas Saenz Julienne <nsaenzju@redhat.com>,
+        Mattias Brugger <mbrugger@suse.com>,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, fedora-rpi@googlegroups.com,
+        Mwesigwa Guma <mguma@redhat.com>,
+        Joel Savitz <jsavitz@redhat.com>
+Subject: [PATCH V5 4/6] dt-bindings: mfd: sensehat: Add Raspberry Pi Sense HAT schema
+Date:   Fri, 10 Dec 2021 17:10:31 -0500
+Message-Id: <20211210221033.912430-5-cmirabil@redhat.com>
+In-Reply-To: <20211210221033.912430-1-cmirabil@redhat.com>
+References: <20211210221033.912430-1-cmirabil@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1638403212-29265-8-git-send-email-quic_fenglinw@quicinc.com>
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 02 Dec 2021 08:00:09 +0800, Fenglin Wu wrote:
-> From: David Collins <collinsd@codeaurora.org>
-> 
-> Mark all interrupt related properties as optional instead of
-> required.  Some boards do not required PMIC IRQ support and it
-> isn't needed to handle SPMI bus transactions, so specify it as
-> optional.
-> 
-> Signed-off-by: David Collins <collinsd@codeaurora.org>
-> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+This patch adds the device tree binding
+for the Sense HAT in yaml form.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
+Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
+Co-developed-by: Joel Savitz <jsavitz@redhat.com>
+Signed-off-by: Joel Savitz <jsavitz@redhat.com>
+---
+ .../bindings/mfd/raspberrypi,sensehat.yaml    | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
+
+diff --git a/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml b/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
+new file mode 100644
+index 000000000000..a57d1face50e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++$id: http://devicetree.org/schemas/mfd/raspberrypi,sensehat.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Raspberry Pi Sensehat
++
++maintainers:
++  - Charles Mirabile <cmirabil@redhat.com>
++  - Mwesigwa Guma <mguma@redhat.com>
++  - Joel Savitz <jsavitz@redhat.com>
++
++description:
++  The Raspberry Pi Sensehat is an addon board originally developed
++  for the Raspberry Pi that has a joystick and an 8x8 RGB LED display
++  as well as several environmental sensors. It connects via i2c and
++  a gpio for irq.
++
++properties:
++  compatible:
++    const: raspberrypi,sensehat
++
++  reg:
++    items:
++      - description: i2c bus address
++
++  interrupts:
++    items:
++      - description: pin number for joystick interrupt
++
++  interrupt-parent:
++    items:
++      - description: gpio pin bank for interrupt pin
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-parent
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      sensehat@46 {
++        compatible = "raspberrypi,sensehat";
++        reg = <0x46>;
++        interrupts = <23 GPIO_ACTIVE_HIGH>;
++        interrupt-parent = <&gpio>;
++      };
++    };
+-- 
+2.31.1
+
