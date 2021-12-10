@@ -2,86 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40FF5470735
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 18:31:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 892E747085A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 19:17:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237989AbhLJRel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 12:34:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43640 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236018AbhLJRek (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 12:34:40 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31414C061746
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 09:31:05 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id y13so31721572edd.13
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 09:31:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=51mpXfg7k7qDketSblbwy3oymqbMO4GZFD8rTFCIIgQ=;
-        b=FqHMuV+rMEQOwiqb+MecfWY4PwLPML0NcO3kymlTESovCi7SLEvWjWlRmyIT8h5R/7
-         9EiWc6jGzGT2JnPLmwD8wBbplKfiws62mTdg4225Lx2EVWPnnNZJQ9h7xiLrLBJ1P2Pz
-         E33ZF1WgL45nK8rIHX9P4SImRSKSQnojNS5OcZtwT6zLGYKhyzVa+5iI+oDQgtFj7W3Z
-         x8MCn2EF/zTFzdq4VX26y+9HAs16UsbMPE0qJcGBrhIuGx6zK+Ot5iTvX49494NDqzZG
-         p+teT2Msj/LYIFVdOAw1yPS8Z0GsciGMlAFAHglCEJtANEMAe/Qk52F53MVJcPENTkXd
-         qYkg==
+        id S241961AbhLJSVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 13:21:01 -0500
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:44991 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236861AbhLJSVB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 13:21:01 -0500
+Received: by mail-oi1-f179.google.com with SMTP id be32so14272730oib.11;
+        Fri, 10 Dec 2021 10:17:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=51mpXfg7k7qDketSblbwy3oymqbMO4GZFD8rTFCIIgQ=;
-        b=KbN3poyWlr3AMUwJW9N8llfzv0UruiTfXH7gdXIN4i0YnEmPFX1NAZNYl6TyzEH+7Z
-         dwkjxMoKxQranTJ+E2rr0kmBuQwZWRyIm1iuV06J+9gr3GnCXcHwqcJgx7u7JkkVktEs
-         c6ZVRQp4/NMf7jzj1DVISLKG9f9M9iF2RwMO1X53floGNHaMdT4F+W41btrMvV2VZigA
-         sXglJtLm4kkTmFZfDNyRD8xb+vo0wyQiwNkuqrmi81bseguFDTnZsr7nkMNnwoKg8atN
-         GPHpAL1t+zIPaejToLSZCk/et4k2tN8Ju5WBvqqhh/mC+uGruFaTj2qyZI95S/WLsVbk
-         x9gg==
-X-Gm-Message-State: AOAM531qp4uxOiRBA39hFsQbaHRLiggoIEXUlxUB+v3ERgGoSnXkXM+7
-        10Sz6kz5dJVdtkkn7qnZJEeIPhoIs3fex5k+W90=
-X-Google-Smtp-Source: ABdhPJxuWN7a8+UpcMif5k6HQr03CHfXFZnCr9TH2oG0wRBrfz4dsPX1ovgPTqP+Qt6WOwVbseh/n0JLSdyD5hw0EJo=
-X-Received: by 2002:a17:907:3e8a:: with SMTP id hs10mr25623877ejc.404.1639157463082;
- Fri, 10 Dec 2021 09:31:03 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YU9YCbZbDktrwFwYhXC085Scw8TfNhTNhBZqDcowh58=;
+        b=2LVjZJyHC0bzx2BkJAb0Cm1VRMu1LuzLm69vTEyVoyl28sBTPhrsz4MjkOX1TIriOM
+         UDRa4oyC7Xn84PCypw+esFRELdoUY719T1TOgQKhavbnMRpiI+vhfggsZyPkHu0U9atr
+         PR283SAEBY1bSqBdpeXpIxUBqhN6vCzIAl8yQXlQ9WFTtDWmKZn+9/5vQN1lKVg9tcSh
+         wAMERXlr9AILLVeB+U4G+cUdxJ9BXJIZjWIMSxDkxxMDHEzf3SL8p/7S5s1AEOfsJK3V
+         W2e37I8dX60CU4/A4sTu+9792RnQiy6HawkCS58YX2u+T8O0oA82RCjlg6Eu1iV6mjO2
+         kJ7Q==
+X-Gm-Message-State: AOAM531WBz3H2q+Dc3owQkCIbLYw0oEEGnYhcbHFNY7jBBohKN+Uqszr
+        JGF6S/kQUNcATYRKJv3Dxwktm7jVHA==
+X-Google-Smtp-Source: ABdhPJyvpSgennWM9D8Uf+LQaqbHK2gVSasZ6S9vGBlFwcRSN30Q22MHR58rfH44QR08viRIKDt9jQ==
+X-Received: by 2002:a54:4692:: with SMTP id k18mr13899661oic.93.1639160245462;
+        Fri, 10 Dec 2021 10:17:25 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id bq5sm930460oib.55.2021.12.10.10.17.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Dec 2021 10:17:24 -0800 (PST)
+Received: (nullmailer pid 1641340 invoked by uid 1000);
+        Fri, 10 Dec 2021 18:17:21 -0000
+Date:   Fri, 10 Dec 2021 12:17:21 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Moudy Ho <moudy.ho@mediatek.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
+        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        menghui.lin@mediatek.com, sj.huang@mediatek.com,
+        allen-kh.cheng@mediatek.com, randy.wu@mediatek.com,
+        jason-jh.lin@mediatek.com, roy-cw.yeh@mediatek.com,
+        river.cheng@mediatek.com, srv_heupstream@mediatek.com
+Subject: Re: [PATCH v10 1/3] dt-binding: mt8183: add Mediatek MDP3 dt-bindings
+Message-ID: <YbOZsd+zNmwOpB4x@robh.at.kernel.org>
+References: <20211202062733.20338-1-moudy.ho@mediatek.com>
+ <20211202062733.20338-2-moudy.ho@mediatek.com>
 MIME-Version: 1.0
-Sender: alimahazem02@gmail.com
-Received: by 2002:ab4:a1e1:0:0:0:0:0 with HTTP; Fri, 10 Dec 2021 09:31:02
- -0800 (PST)
-From:   Anderson Theresa <ndersontheresa.24@gmail.com>
-Date:   Fri, 10 Dec 2021 09:31:02 -0800
-X-Google-Sender-Auth: nGtoM2bZh8yynPz3-RZknSEjmFg
-Message-ID: <CABBDEbgQfzeTwz-2VU_=upZ1QyCAaEvQybpC8xehCO9xKG-AYQ@mail.gmail.com>
-Subject: Re: Greetings My Dear,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211202062733.20338-2-moudy.ho@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings,
+On Thu, Dec 02, 2021 at 02:27:31PM +0800, Moudy Ho wrote:
+> This patch adds DT binding document for Media Data Path 3 (MDP3)
+> a unit in multimedia system used for scaling and color format convert.
+> 
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
+>  .../bindings/media/mediatek,mdp3-rsz.yaml     |  65 ++++++
+>  .../bindings/media/mediatek,mdp3-wrot.yaml    |  67 ++++++
+>  .../bindings/soc/mediatek/mediatek,ccorr.yaml |  57 +++++
+>  .../bindings/soc/mediatek/mediatek,rdma.yaml  | 216 ++++++++++++++++++
+>  .../bindings/soc/mediatek/mediatek,wdma.yaml  |  68 ++++++
+>  5 files changed, 473 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+>  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
+>  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,rdma.yaml
+>  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,wdma.yaml
 
-I sent this mail praying it will find you in a good condition, since I
-myself am in a very critical health condition in which I sleep every
-night without knowing if I may be alive to see the next day. I am
-Mrs.Anderson Theresa, a widow suffering from a long time illness. I
-have some funds I inherited from my late husband, the sum of
-($11,000,000.00, Eleven Million Dollars) my Doctor told me recently
-that I have serious sickness which is a cancer problem. What disturbs
-me most is my stroke sickness. Having known my condition, I decided to
-donate this fund to a good person that will utilize it the way I am
-going to instruct herein. I need a very honest God.
+I'm not a fan of bindings/soc/ either. Put everything in 
+bindings/media/. What's the difference between these blocks here and 
+the version used for display? If they are the same h/w, then the binding 
+needs to be the same. How they get used is the kernel's problem. 
 
-fearing a person who can claim this money and use it for Charity
-works, for orphanages, widows and also build schools for less
-privileges that will be named after my late husband if possible and to
-promote the word of God and the effort that the house of God is
-maintained. I do not want a situation where this money will be used in
-an ungodly manner. That's why I' making this decision. I'm not afraid
-of death so I know where I'm going. I accept this decision because I
-do not have any child who will inherit this money after I die. Please
-I want your sincere and urgent answer to know if you will be able to
-execute this project, and I will give you more information on how the
-fund will be transferred to your bank account. I am waiting for your
-reply.
+It looks like the display ccorr, rdma, and wdma aren't documented. Fix 
+that before you add new stuff.
 
-May God Bless you,
-Mrs.Anderson Theresa,
+
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+> new file mode 100644
+> index 000000000000..d7f104a0f165
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/mediatek,mdp3-rsz.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek Resizer
+> +
+> +maintainers:
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
+> +
+> +description: |
+> +  One of Media Data Path 3 (MDP3) components used to do frame resizing.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mediatek,mt8183-mdp3-rsz
+> +
+> +  mediatek,mdp3-id:
+> +    description: There may be multiple components with the same function but
+> +      different addresses in MDP3. The MDP3 driver can select one or zero of
+> +      them and connect other components in series according to the current
+> +      application to form one or more data paths. This property indicate the
+> +      selection order of the same components.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3]
+
+Again, an index nor an alias is the right approach for this. Use DT 
+graph like others do. 'It's too complicated' is not a reason unless you 
+show how and why it won't work.
+
+Rob
