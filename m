@@ -2,132 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EA3446FD16
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 09:56:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D87A646FD44
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 10:02:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238794AbhLJJAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 04:00:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34542 "EHLO
+        id S236261AbhLJJGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 04:06:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238778AbhLJJAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 04:00:09 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 061E9C061746;
-        Fri, 10 Dec 2021 00:56:35 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id 137so6257016wma.1;
-        Fri, 10 Dec 2021 00:56:34 -0800 (PST)
+        with ESMTP id S231148AbhLJJGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 04:06:19 -0500
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 328B9C061746;
+        Fri, 10 Dec 2021 01:02:45 -0800 (PST)
+Received: by mail-pl1-x62f.google.com with SMTP id m24so5831931pls.10;
+        Fri, 10 Dec 2021 01:02:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ugWZHzEIl/ed3UDm2nkNMQGNSpbu5KKxXnSYP4z8tmE=;
-        b=V1Hc554AnCsotFmE/SYmLUYY13GxEa0a/+6yg6iYQxXVQooWp4UIl1EXOR/ohWtaoh
-         SSDSNJHt4bNUl/dJwy0wej4Ep8UARUR21gHDlk+x663IHiyy4a/NgKCRovFDYw/X0GqK
-         B0GvmtraFjTWvvl8t8r0RLTXTsXkqXtW8LJlkQ+OKgUTPFT8X4K/hmLXYq6iNBIRHRDE
-         5fEAb3Dz3vp1/xo0UjoVyow4VJpvk8nnqABG1vfT3GWt/VPgf3y2fDFVg0N08aw/nD4M
-         9oCdjVfig+4ewNy8Vv94fP+lE9ZFAlF1cWVDMK/Bm2xCoBxzeXAVuJWqn4ALjpPKRpg0
-         0oAQ==
+        h=from:to:cc:subject:date:message-id;
+        bh=zjGrLEJQQKxdlnPKbJJ8rsTwPtpYOohHU907jjB+Mzc=;
+        b=ZE4Fp+fTi63cl/sylsyNDEtXaauHjbcMpEoFh/4WnWdtV70Ez/pT6YdAO6TDpZk1/u
+         cYS1jS2fE8iD9M5lnzbR3vswN6cgDpmbQ6hWcTM+hPx21C2mfM7xum6iEw9w9qnZimAV
+         tJJAZ1Zhd/xi62aoBETOXioltb21rVyYBwyizKn/8UvJcBy3YGHb8u/qPgLbP4yQOS7Q
+         S9OO/DYsrdX0VBg9qekO3iHcUPElULKdIdI0eIZqg9sqdBdrhp6fu+c6an0WxaPyEjuo
+         dB0LVi1bnA4YyG2V5cZef7STnhfQcTfvSRKiu9Ey0C9V2/1DsG4aj5+nEtbH7Zasv4kR
+         6QKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ugWZHzEIl/ed3UDm2nkNMQGNSpbu5KKxXnSYP4z8tmE=;
-        b=l6EXYA/wM2UiddIMUCSQmpRhx/f7KcHM6rtEFKRqioHPqC+HHcfikGa4rW5Jd+/AqX
-         MTpVjA3BqQDzqQKiC2keOu9FdyKS+mxuWXH5YQkPpXfWbYClnoSRBcEhPohDP0owmDws
-         VHtdmv3ALrqfbYV95Z6iqa36FeXgvXTMAcHxJv/HLurY+TUgwVwsbRjyZJztFdn1qKPy
-         fNQ97xkBAOL9RFD2L3qD7QKdT5TmvE4OxVJV4oRZut49hnzs56EvR/m3pfgXWi/f/rnd
-         eYKcrzKnFEyDoX+R5SWxxXojkYRF/CKhgTQyZGTrUn4yXrOJT4T98Ry1e4XoWtDD6Pkp
-         spcA==
-X-Gm-Message-State: AOAM532INNuYhk6r36cVY12fdNjhAU5cPiay8wpzAwGRwIOWu5oluY3l
-        fjJ5+2gOPLavV/ryLtfIz5U=
-X-Google-Smtp-Source: ABdhPJzpGB9V66upS/EkyZnBy/vCflZB/b4r7xftEE8qItQGNebjwjNFs3haPcemiq8JZjpXgnqFTw==
-X-Received: by 2002:a05:600c:3489:: with SMTP id a9mr14966701wmq.53.1639126593509;
-        Fri, 10 Dec 2021 00:56:33 -0800 (PST)
-Received: from orome ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id w17sm2333809wmc.14.2021.12.10.00.56.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 00:56:32 -0800 (PST)
-Date:   Fri, 10 Dec 2021 09:56:28 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Akhil R <akhilrajeev@nvidia.com>, andy.shevchenko@gmail.com,
-        christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
-        jonathanh@nvidia.com, ldewangan@nvidia.com,
-        linaro-mm-sig@lists.linaro.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-tegra@vger.kernel.org, p.zabel@pengutronix.de,
-        sumit.semwal@linaro.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/2] Add SMBus features to Tegra I2C
-Message-ID: <YbMWPGMcHEQXGkHf@orome>
-References: <1639062321-18840-1-git-send-email-akhilrajeev@nvidia.com>
- <e3deea6a-3854-e58c-0d27-602413f2a496@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2IhQJxqBxhd1xrh2"
-Content-Disposition: inline
-In-Reply-To: <e3deea6a-3854-e58c-0d27-602413f2a496@gmail.com>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=zjGrLEJQQKxdlnPKbJJ8rsTwPtpYOohHU907jjB+Mzc=;
+        b=xgfyP20aa8pY0DJYvEzG8MUw8E3vJVjUvNe9Lquyk1ptgK3FuTgduF3dYFq4oVnz8i
+         pvbjp6iQe0CV2toyZe8GQhUySm5fabNQAj70vH0X3DWHhh9Hw5wcweqqbHRN3FWIoSOG
+         X7guRfpT+vVqu4fDeyQYi0PWbHSB5xM/0QxUcPDCrFj/+Hr91DtqGuxuswe6Zucuew4x
+         eulv1SRfjhB8kbp0UQS7JevcdR0w6XYx2YlEkzbMG/c3/85VAitH5R3w+/COkY8fxeGu
+         le0HIyonszFGKmMeG3UMxZw7fIqa6XebbABjhLyJk8e2+pISq1qqFMj8z/j1ZycIpySj
+         Qf0w==
+X-Gm-Message-State: AOAM530IbeuBAUeoM0CRLIciij/pFpwzB3j42R0ecc9kZ/CKiAmdlgPA
+        cMXY3fFqPABFGiPA48mk0CY=
+X-Google-Smtp-Source: ABdhPJx1oMfzN1r5NOaYNNJNEkhs4jlLGQX5RklNyt7Nyls++EZH5cc9hJTANChqv/BpPZ7PgeyYbg==
+X-Received: by 2002:a17:90b:30c4:: with SMTP id hi4mr22435897pjb.12.1639126964605;
+        Fri, 10 Dec 2021 01:02:44 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id h15sm2540790pfc.134.2021.12.10.01.02.42
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 10 Dec 2021 01:02:44 -0800 (PST)
+From:   Li-hao Kuo <lhjeff911@gmail.com>
+To:     p.zabel@pengutronix.de, broonie@kernel.org,
+        andyshevchenko@gmail.com, robh+dt@kernel.org,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com,
+        "Li-hao Kuo" <lhjeff911@gmail.com>
+Subject: [PATCH v4 0/2] Add SPI control driver for Sunplus SP7021 SoC
+Date:   Fri, 10 Dec 2021 17:02:46 +0800
+Message-Id: <cover.1639123362.git.lhjeff911@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: "Li-hao Kuo" <lhjeff911@gmail.com>
 
---2IhQJxqBxhd1xrh2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is a patch series for SPI driver for Sunplus SP7021 SoC.
 
-On Thu, Dec 09, 2021 at 07:04:30PM +0300, Dmitry Osipenko wrote:
-> 09.12.2021 18:05, Akhil R =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > Add support for SMBus Alert and SMBus block read functions to
-> > i2c-tegra driver
-> >=20
-> > Akhil R (2):
-> >   dt-bindings: i2c: tegra: Add SMBus feature properties
-> >   i2c: tegra: Add SMBus block read and SMBus alert functions
-> >=20
-> >  .../devicetree/bindings/i2c/nvidia,tegra20-i2c.txt |  4 ++
-> >  drivers/i2c/busses/i2c-tegra.c                     | 54 ++++++++++++++=
-+++++++-
-> >  2 files changed, 57 insertions(+), 1 deletion(-)
-> >=20
->=20
-> How this was tested? This series must include the DT patch. If there is
-> no real user in upstream for this feature, then I don't think that we
-> should bother at all about it.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-This is primarily used by a device that uses ACPI and the driver uses
-the firmware-agnostic APIs to get at this. However, it also means that
-the driver effectively provides this same support for DT via those APIs
-and therefore it makes sense to document that part even if there are no
-current users of the DT bits.
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-One big advantage of this is that it helps keep the ACPI and DT bindings
-in sync, and document this on the DT side also allows us to document the
-ACPI side of things where no formal documentation exists, as far as I
-know.
+LH.Kuo (2):
+  SPI: Add SPI driver for Sunplus SP7021
+  devicetree: bindings SPI Add bindings doc for Sunplus SP7021
 
-Thierry
+ .../bindings/spi/spi-sunplus-sp7021.yaml           |  81 +++
+ MAINTAINERS                                        |   7 +
+ drivers/spi/Kconfig                                |  11 +
+ drivers/spi/Makefile                               |   1 +
+ drivers/spi/spi-sunplus-sp7021.c                   | 609 +++++++++++++++++++++
+ 5 files changed, 709 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
+ create mode 100644 drivers/spi/spi-sunplus-sp7021.c
 
---2IhQJxqBxhd1xrh2
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.7.4
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGzFjwACgkQ3SOs138+
-s6F8mQ/9Fc5fNDbeJjUOJvaNOnGBiFoOwLTvUU5rJe09sJUQNqqXte8PM4BhTxGm
-rnqsAjSmfY3Hgw9XbdIad4hEj3GAtKavsAdK5oyDcqmCyyIcP2k2DxcPSP+LsOCN
-MnH6Byzm6HeMPX+FunjtCXxuJT1Htsb+Uy5iUkGctqZeW13f60qMSfmyKlcX6uxJ
-b4///ebppLbU9u989KnLx6WDQX9tfppHzCqYR8K9yYH25nidvmr5uu8EHUBYq0s2
-t+CyKM+IXbpCsk6ZS1eIPuKIkKntvl8DHkIiEMUX3Vs45DGWc6oYYF/Wa9GSZn3q
-xBI1B2nUfQCvumi0cyTwjJBSpkSjnBFLon3KAoqs20LygKF6XLjcHJZDtltuLKXB
-XqXCOoR2qoH6JwxdpXgYAr+pXEz1XJeKfQCZ61RDWI34I/nt2SYUxmEJIzFUXhmJ
-VgrugrKVa3yeGz8H6oni8YvQLufMPn+MrInuvAy24ndt0ICnB9f970tZwEngFacp
-YlxjV63f+KvH78B2KWjxtTTzqExZi393GHoxLjahWWx+EYXrYIdh2F+7DDwHN+NI
-6Ac+uWK3ZJZuoLADboTmoc45ShoN0NTkFjIiIGzmzU2cgcxG0D8d33+kT6GBNNPi
-z2ZODA/uePOon1EdVR6lbdAFMTA/8RnKQbK5BtuNEZ+YcRnRFqY=
-=eLpi
------END PGP SIGNATURE-----
-
---2IhQJxqBxhd1xrh2--
