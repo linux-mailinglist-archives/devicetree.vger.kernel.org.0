@@ -2,160 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B163947050A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 16:58:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54EA2470512
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 17:01:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235853AbhLJQCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 11:02:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48884 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238089AbhLJQCA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 11:02:00 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF96C061746
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 07:58:25 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mviHl-00088l-3t; Fri, 10 Dec 2021 16:58:13 +0100
-Message-ID: <c88b7a90f7a3bf94fc0cbb9a6f967ce769d5c03b.camel@pengutronix.de>
-Subject: Re: [PATCH 04/10] dt-bindings: media: nxp,imx8mq-vpu: Support split
- G1 and G2 nodes with vpu-blk-ctrl
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>, Adam Ford <aford173@gmail.com>
-Cc:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        linux-media <linux-media@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Chris Healy <cphealy@gmail.com>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Date:   Fri, 10 Dec 2021 16:58:10 +0100
-In-Reply-To: <YbNz94G3vwbHCMdB@robh.at.kernel.org>
-References: <20211208225030.2018923-1-aford173@gmail.com>
-         <20211208225030.2018923-5-aford173@gmail.com> <YbHZvysazqYeZ8h3@eze-laptop>
-         <CAHCN7xKrHSSsqS9DNL1tMH1Ctpz16FsSgcVbSHXzUWF98v738Q@mail.gmail.com>
-         <YbNz94G3vwbHCMdB@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        id S235793AbhLJQFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 11:05:18 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:33230 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231806AbhLJQFS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 11:05:18 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4C933B827BE;
+        Fri, 10 Dec 2021 16:01:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B51CC00446;
+        Fri, 10 Dec 2021 16:01:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1639152101;
+        bh=mSGFDf1CkIFsGekXfmMO0AqQmx5MaFE6V3Bsm58SZG8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NWXzI+IucunN+dQi05Qnbj5uNQFd3uU/DUc4a/2YoHqqrOl/slpnyrJgKBsLQQ7nr
+         yci3st/7U4uyfkBo8+dtD/hd62iaeORwXk8G6dosrfHJai7pY4PGCbxKF0d4a8w5jU
+         FdZhdQa+N9w08pC44ijbOWmNG8S5rYyp6yXDwaDc=
+Date:   Fri, 10 Dec 2021 17:01:38 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     David Brazdil <dbrazdil@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hans de Goede <hdegoede@redhat.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, Andrew Scull <ascull@google.com>,
+        Will Deacon <will@kernel.org>
+Subject: Re: [PATCH v2 2/2] misc: dice: Add driver to forward secrets to
+ userspace
+Message-ID: <YbN54u4fEKx54Gvc@kroah.com>
+References: <20211209151123.3759999-1-dbrazdil@google.com>
+ <20211209151123.3759999-3-dbrazdil@google.com>
+ <YbIhaWC8b2DV5C7Y@kroah.com>
+ <YbM29thQ7U4oUmhi@google.com>
+ <YbNmsFAYDVUYopFO@kroah.com>
+ <YbN2tbYZyLBdyEfS@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YbN2tbYZyLBdyEfS@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, dem 10.12.2021 um 09:36 -0600 schrieb Rob Herring:
-> On Thu, Dec 09, 2021 at 05:36:04AM -0600, Adam Ford wrote:
-> > On Thu, Dec 9, 2021 at 4:26 AM Ezequiel Garcia
-> > <ezequiel@vanguardiasur.com.ar> wrote:
-> > > 
-> > > Hi,
-> > > 
-> > > Thanks for the patch.
-> > > 
-> > > On Wed, Dec 08, 2021 at 04:50:23PM -0600, Adam Ford wrote:
-> > > > The G1 and G2 are separate decoder blocks that are enabled by the
-> > > > vpu-blk-ctrl power-domain controller, which now has a proper driver.
-> > > > Update the bindings to support separate nodes for the G1 and G2
-> > > > decoders using the proper driver or the older unified node with
-> > > > the legacy controls.
-> > > > 
-> > > > To be compatible with older DT the driver, mark certain items as
-> > > > deprecated and retain the backwards compatible example.
-> > > > 
-> > > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > > > ---
-> > > >  .../bindings/media/nxp,imx8mq-vpu.yaml        | 83 ++++++++++++++-----
-> > > >  1 file changed, 64 insertions(+), 19 deletions(-)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> > > > index 762be3f96ce9..eeb7bd6281f9 100644
-> > > > --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> > > > +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> > > > @@ -15,29 +15,39 @@ description:
-> > > > 
-> > > >  properties:
-> > > >    compatible:
-> > > > -    const: nxp,imx8mq-vpu
-> > > > +    oneOf:
-> > > > +      - const: nxp,imx8mq-vpu
-> > > > +        deprecated: true
-> > > > +      - const: nxp,imx8mq-vpu-g1
-> > > > +      - const: nxp,imx8mq-vpu-g2
-> > > > 
-> > > >    reg:
-> > > > +    minItems: 1
-> > > >      maxItems: 3
-> > > 
-> > > Is it really useful to keep the deprecated binding nxp,imx8mq-vpu
-> > > as something supported by the binding file?
-> > 
-> > Since I was told that the driver needed to be backwards compatible, i
-> > wanted to make sure that any attempts to build the old device tree
-> > would not fail
-> 
-> I'm not convinced changing the binding at all is correct. 'The driver 
-> structure is changing and I want the binding to align with it' is not a 
-> reason. Are G1 and G2 actually separate, independent blocks where we 
-> could have 1 or both of them? And what about other platforms using this 
-> block?
+On Fri, Dec 10, 2021 at 03:48:05PM +0000, David Brazdil wrote:
+> In your first email you also mentioned removing the check in dice_probe()
+> that only allows a single instance. On a second thought, I think it's
+> simpler to keep it there for now, even if the memory is dynamically
+> allocated, which I agree makes the code cleaner.
 
-Yes, they are totally independent video decoder peripherals, handling
-different codecs. While I'm not aware that there is a SKU that only
-uses one of them, there is a provision in the fuses to disable either
-one of the VPU peripherals, so they clearly can work independently.
+I don't remember what check you are talking about at all, sorry.
 
-Smashing them together in one DT node was a mistake IMO. Both VPUs do
-not share more than a common power-domain and use the same AMBA domain
-bridge to hook into to SoC NoC. On the i.MX8M Mini we have a similar
-VPU subsystem, but with nested power domains, so G1, G2 and the new H1
-encoder on this chip can even be powered-gated individually.
+Remember some of us review hundreds of patches each week :(
 
-I agree that the commit message should point out that new DT + old
-kernel is not a supported configuration. It isn't optimal, but IMHO a
-small price to pay for the ability to handle all the i.MX8M* family VPU
-subsystems in the same way with a proper blk-ctrl driver for the common
-clock and reset block and the VPUs being independent peripherals.
+> The reason being that if we allowed multiple instances, we'd also need
+> some static unique identifier that ties the cdev filename to the DT entry,
+> same as /dev/disk/by-uuid/. Just adding an index number to the misc
+> device nodename based on DT probe order sounds very fragile, and
+> anything more sophisticated sounds like too much trouble for something
+> we don't have a clear use case for right now.
 
-> 
-> Even if the driver handles the old binding, a new dtb with an old kernel 
-> is broken. It's up to the platform to care or not, but you have to 
-> highlight that.
-> 
-> 
-> > > In other words, can we drop the deprecated binding from this file,
-> > > while keeping the support in the driver for legacy device-trees?
-> > 
-> > I was trying to represent both the old driver binding and the new one
-> > at the same time.  I thought that's what I was told to do.
-> 
-> I don't care so much if we have a schema for old binding. I'd rather 
-> have warnings if the binding has not been updated. Eventually I want to 
-> be able to test for compatibility by testing DTs with different schema 
-> versions. We've got to get to 0 warnings first though...
+Just add a number to the device node name like every other device in the
+system has.  Nothing new or special here, right?
 
-I'm in favor of dropping the old binding from the schema. New DTs
-should clearly use the new binding and old DTs shouldn't change
-anymore, so validation is less useful there.
+thanks,
 
-Regards,
-Lucas
-
+greg k-h
