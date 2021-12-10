@@ -2,86 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A84AB4705F9
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 17:40:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F03E470603
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 17:41:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243684AbhLJQne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 11:43:34 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:37808 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234718AbhLJQne (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 11:43:34 -0500
-Received: by mail-ot1-f46.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so10149187otg.4;
-        Fri, 10 Dec 2021 08:39:59 -0800 (PST)
+        id S234718AbhLJQpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 11:45:30 -0500
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:37645 "EHLO
+        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231180AbhLJQp3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 11:45:29 -0500
+Received: by mail-oi1-f174.google.com with SMTP id bj13so13995991oib.4;
+        Fri, 10 Dec 2021 08:41:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=U8AzNdkQs1VFeOH+BSfiPv2cItiIyXIcpLga5ITOTUg=;
-        b=LD8aUDFOwo2E6o21G/fRYBTqh4IVM6NFqa14VqESmo3c15IksVLucr2bsD9LsgSZiq
-         S+PrOINKDut3KqZujO8XcUyFPItqr3arONgc0U6g5l6ik3CmzyW35kJubMPLd6Vr6Qbs
-         WQ47zqte9MUksVFaYO0FYr2QIttMjZO3fU55HWBRVPxjF3Ti6OCGk29FcuydSwx5weq3
-         ma+4ybna04xH47iDPYoEWR0eTiaXTMw5ufslA6RqByanF6SUpFah7GG+I8+uqp9kr9Ns
-         sJDRphaAhQGZSjTt1FXBqPgBbWUCUEPXPyBbfWadUTDEl+JySNg+bkC7nYk4m1hD+hxH
-         NwuQ==
-X-Gm-Message-State: AOAM530Hqfimm6khvLG3elEi+XPQTwRJ68iDNQMcVkRB9zOZ1l1NVY6E
-        ymupAmztSQMmKRgmnxCylg==
-X-Google-Smtp-Source: ABdhPJymSnAwtWRFNniWT4nkI6ZJg0484AHzkAllwJwxXceIA97LSLGuBuaFZadbFlvA0zXECbbnHA==
-X-Received: by 2002:a05:6830:3155:: with SMTP id c21mr11900196ots.183.1639154398721;
-        Fri, 10 Dec 2021 08:39:58 -0800 (PST)
+        bh=mzRHekSe+1ItE0g/B1/sdKOqQcFEHI9ComSVVLd1nlI=;
+        b=TTEWzUZowR8hAXZcifoY53v6LZGp/anjN7BQ6eVa5ypdPPwVeH6szjYg36BvKRHl3D
+         d5SCIknGTgOFhKCEwhc78XBSiKDPXAmXrIiP/TsrPpIl/0KqUyADalWHOMqGlItyEuNa
+         y//0cYtzSguMxqWoDQRRZSC7hvr9dO8qNxAsnBPkcMpga+s9AWZTinW8vsVLuKSIu3qB
+         Y3Kn3+8O9jfXpuJnZn68BCAOafdBzaRr8n4VSR3zD6mO//HbPydIcikF6heoAmT+5Uk/
+         FsB9qdMTcMWkNHK2Wh7qPu4ATVGvTYetAT7TIsn4CICCNqXz0mzLJE8wzRGw04kIaFai
+         Tf3w==
+X-Gm-Message-State: AOAM532ssIjzgNXG24AAXExx1VNozB6bJcJs4JPel6shKMnnX+MjTygv
+        WeWzqjDPqoJlzEwgSX/4WQ==
+X-Google-Smtp-Source: ABdhPJwRv+kMCf78RcI/EgKRH+ISPL3AxEehRdB9Ai5HD06TXa1RnLKZV2R7Cgi/ZzR5zEXSnPJELw==
+X-Received: by 2002:a05:6808:649:: with SMTP id z9mr12919308oih.125.1639154514388;
+        Fri, 10 Dec 2021 08:41:54 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w71sm732337oiw.6.2021.12.10.08.39.57
+        by smtp.gmail.com with ESMTPSA id m12sm600169ots.59.2021.12.10.08.41.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 08:39:58 -0800 (PST)
-Received: (nullmailer pid 1492155 invoked by uid 1000);
-        Fri, 10 Dec 2021 16:39:56 -0000
-Date:   Fri, 10 Dec 2021 10:39:56 -0600
+        Fri, 10 Dec 2021 08:41:53 -0800 (PST)
+Received: (nullmailer pid 1495271 invoked by uid 1000);
+        Fri, 10 Dec 2021 16:41:52 -0000
+Date:   Fri, 10 Dec 2021 10:41:52 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        devicetree@vger.kernel.org, Eric Biederman <ebiederm@xmission.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Borislav Petkov <bp@alien8.de>, linux-kernel@vger.kernel.org,
+To:     Oleksandr Tyshchenko <olekstysh@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Dave Young <dyoung@redhat.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        "H . Peter Anvin" <hpa@zytor.com>, Will Deacon <will@kernel.org>,
-        Ingo Molnar <mingo@redhat.com>, kexec@lists.infradead.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>, x86@kernel.org,
-        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        linux-doc@vger.kernel.org
-Subject: Re: [PATCH v17 08/10] of: fdt: Aggregate the processing of
- "linux,usable-memory-range"
-Message-ID: <YbOC3NmxXsQb/Te/@robh.at.kernel.org>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <20211210065533.2023-9-thunder.leizhen@huawei.com>
+        xen-devel@lists.xenproject.org, Julien Grall <julien@xen.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V4 6/6] dt-bindings: xen: Clarify "reg" purpose
+Message-ID: <YbODUP7jnSWffumD@robh.at.kernel.org>
+References: <35ee3534-9e24-5a11-0bf1-a5dd0b640186@gmail.com>
+ <1639136201-27530-1-git-send-email-olekstysh@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211210065533.2023-9-thunder.leizhen@huawei.com>
+In-Reply-To: <1639136201-27530-1-git-send-email-olekstysh@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Dec 2021 14:55:31 +0800, Zhen Lei wrote:
-> Currently, we parse the "linux,usable-memory-range" property in
-> early_init_dt_scan_chosen(), to obtain the specified memory range of the
-> crash kernel. We then reserve the required memory after
-> early_init_dt_scan_memory() has identified all available physical memory.
-> Because the two pieces of code are separated far, the readability and
-> maintainability are reduced. So bring them together.
+On Fri, 10 Dec 2021 13:36:41 +0200, Oleksandr Tyshchenko wrote:
+> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
 > 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> Tested-by: Dave Kleikamp <dave.kleikamp@oracle.com>
+> Xen on Arm has gained new support recently to calculate and report
+> extended regions (unused address space) safe to use for external
+> mappings. These regions are reported via "reg" property under
+> "hypervisor" node in the guest device-tree. As region 0 is reserved
+> for grant table space (always present), the indexes for extended
+> regions are 1...N.
+> 
+> No device-tree bindings update is needed (except clarifying the text)
+> as guest infers the presence of extended regions from the number
+> of regions in "reg" property.
+> 
+> Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
 > ---
->  drivers/of/fdt.c | 15 +++++++++++----
->  1 file changed, 11 insertions(+), 4 deletions(-)
+> Changes V2 -> V3:
+>    - new patch
+> 
+> Changes V3 -> V4:
+>    - add Stefano's R-b and Rob's A-b
+>    - remove sentence about ACPI for "reg" and "interrupts"
+>      properties
+> 
+> Changes V4 -> V4.1
+>    - bring the mentioning of ACPI back which, as was pointed out by Julien,
+>      fits in the context:
+>      https://lore.kernel.org/xen-devel/9602b019-6c20-cdc7-23f3-9e4f8fd720f6@xen.org/T/#t
+>      so technically restore V3 state
+>    - remove Stefano's R-b and Rob's A-b as I am not 100% sure they are
+>      happy with that
+> ---
+>  Documentation/devicetree/bindings/arm/xen.txt | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
