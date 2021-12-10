@@ -2,253 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FEEE47030D
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 15:44:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBE96470331
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 15:54:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238683AbhLJOrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 09:47:47 -0500
-Received: from mail-tycjpn01on2102.outbound.protection.outlook.com ([40.107.114.102]:8597
-        "EHLO JPN01-TYC-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234944AbhLJOrq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 Dec 2021 09:47:46 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kEwf6nK4dCbjqCZX6r/J/GbMMsPLcdmAoJy0tGZW9J3hiHZ7etuMgXEAWqw8fA0QwM7VH7HBp4XCZTeuWMJkCnsJjDK7mwD4xpGjAsXQ/p74Y5+GkgXlY55gOeiH8CbWU8JK4mgTuuo1O5Sf7bb2ynAI/+wzdBqirD6UV3LgHWdjDlf3KSyk8I9dRticJs108WcVgv2PlVleCe+InMC88Szwbdq3RD1zGWcv8v1RhC+SCJVg5lmh3T1IIQsY1bB6U8vSBmuQuwOs+SCv0ZVK51jFzv6hfe2KSGKJJ69jTNeKnHTO+imynNqDCyzNL6KxyF3ocfDCIo9hbNeDSjss/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hgppcsRyDwzhVjvOayfLgCBEEN4h3JLcBMyAkYZsmR8=;
- b=H6FdxB4T2RkFhXvd7/vUr6efyZIquQ1P3WzTkh+XcImEqgfJ+7D1FVeu8ES7a1f+T9f08GXqDdCjn76gUpd4J74n/2zTRj7wsLHQjlTQrwgGYRo1DYSfxHLQvlwBLGmCfBH+vrhE66R3EvWRe5FDW9zYRdJ5BYeDBFeJVxJk0SaBVrUIaMLZJ4VS1VQGomCzUIudDwEkPBUhw/+5v600Zn96eHLFpSQOQVfoQvaqtNV2HN5LDwJeDuGisxzjrzrdLmIrbpZcItxPyDzIe5pwEcLNasLXrc9584eZOZbpSm3Sd8OzRNxTimItOvLUhx/PjfFV9dDfMv/2eQiQgFLiMA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hgppcsRyDwzhVjvOayfLgCBEEN4h3JLcBMyAkYZsmR8=;
- b=NOfbGbJCUmjCasEaJWInplpKRVBi1LJdsIQIvvY9x52P0Erej3DdPtu200ykzJNLPTHYd5qoJiPA6mXsB3utK/fHeESEPbldR3jzh4w/vq8KuaAW0JAKAzzN39kHqahB5uIxsdhdYcXUebLqa7MV51IwqXpMVGdCkVU8IP2rpeo=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OSAPR01MB4804.jpnprd01.prod.outlook.com (2603:1096:604:69::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.12; Fri, 10 Dec
- 2021 14:44:06 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::c0bd:405a:cdd3:f153]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::c0bd:405a:cdd3:f153%9]) with mapi id 15.20.4755.022; Fri, 10 Dec 2021
- 14:44:06 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Steven Price <steven.price@arm.com>,
-        "tomeu.vizoso@collabora.com" <tomeu.vizoso@collabora.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v3 1/3] dt-bindings: gpu: mali-bifrost: Document RZ/G2L
- support
-Thread-Topic: [PATCH v3 1/3] dt-bindings: gpu: mali-bifrost: Document RZ/G2L
- support
-Thread-Index: AQHX7CAJAEphcwzTrE2piMcyHlnd6awr0F5g
-Date:   Fri, 10 Dec 2021 14:44:06 +0000
-Message-ID: <OS0PR01MB592202E727C32991DB852AA186719@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20211208104026.421-1-biju.das.jz@bp.renesas.com>
- <20211208104026.421-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20211208104026.421-2-biju.das.jz@bp.renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3ffe5af0-22fd-4884-1d21-08d9bbeb8497
-x-ms-traffictypediagnostic: OSAPR01MB4804:EE_
-x-microsoft-antispam-prvs: <OSAPR01MB4804EB33E59F298EA604859586719@OSAPR01MB4804.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 92Z/hdeeSrLLESCB10TuS8OUEyMwjwHwkDp7G6wkDcv0FL+96jxwb/KLfOHJJKveiJxFfCIhLP0Wxg3fzQhmvhvapKiFF6+WFNO6EvnRIRScPtx6UtP2yQrMd8ujH1vVHnoYrtxqBJzNXozf4UvA4w0XFK+mQ4gpFr0l2AlnVuOWO/FendVd/NTXFWIZewOyFP77HLbiIYM4GXKzLXVDT89Ri3fs34rSB6UdAQ0nQrqDgPZLGWq9P5Ie2XZjPCfqqrsjNaroyw4ASnINKL5hkSe9wj7+o1PQ8hGB0MYKRtrTHrE7WhR6SHUC2S0iQLYKA3j7Fw8Tpr2EbtjQoRi0sbrdueaY7zbRbcRvwQ1Ix4HHEXXwOWnq8VX6UeQjdXO6Y7IOtGOvYIDtpt/kZaTF8GPPCuNQ8gMYi7oPH6ID2xHhaFpVMbJ1jus7+gqjdhVOB9x9EYruKtJzFdfef13bTzI+Hw/tFm0R/btKZaDWoG/KeAHfn2oXh3F4zi6N6X6Dlm9M81g4Qwi3zqYWdwcUeac5cKG3bPj+GMABlwl9QqsUoYpTsy9Hf7pRPegJI5qEjZgtSREtzaqW/15QuP/ea8jTkvR2W67O+I2Y3G+T2nofnTODHzUvYIf7Bsg6yrhUK5jfUIUnxRIUCB5PqilBDH+59jPb3stTyQP9aqXEQwElsApdYue5ixZB47FVXRitzH/0degrx/xWW07gpxGx0A==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(83380400001)(86362001)(76116006)(8936002)(7696005)(38100700002)(7416002)(38070700005)(66946007)(64756008)(5660300002)(66476007)(66556008)(66446008)(55016003)(9686003)(122000001)(186003)(33656002)(110136005)(52536014)(26005)(8676002)(508600001)(71200400001)(6506007)(2906002)(316002)(4326008)(54906003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?n//4+xN2dOmV5DrrsQH6b6vfwh4IoYQ/0DwZ43zN+lCaM5/SVKpYA0Rh8tzj?=
- =?us-ascii?Q?P6HjSEUAuNo3TW/TJ1ymsWalh9dnaO4pARqF4L/vDUm1begXA466yfhFXPI9?=
- =?us-ascii?Q?xCin/r8phiTZvfMzcrxLR/ETVyPQStWAjTWZF0ziXmEq2/myg8AdGAf+tFPj?=
- =?us-ascii?Q?iN8c155RW2AwjpXbxGsymTVRXLvJEgGC1lOUPC+JukhC5N/+4/xs7QWRrqm7?=
- =?us-ascii?Q?KaHAzZZcCxrp8OOFIv9GHwhDvcaJsdB9pQAc7L2WQIjmXy+gO3BgoCKzkCYg?=
- =?us-ascii?Q?otEL7k7Kn891xJqv2ECzry1AGdxjnkYkl2djHHsczyfUsgqzzyZXRG7ulvyY?=
- =?us-ascii?Q?c+rmVM/H6kbrEz7QDv3Qselg7L4dBhAemONfNPl7/+BgowgXhh0NAR76KY8z?=
- =?us-ascii?Q?ko1aSIQAWOscaRjqup0dSvi9RRUPYKradr1MqM17t6vzRP0lwC/6ewx/rdhK?=
- =?us-ascii?Q?hEijO3Z+atJ0B1S7CHCYzGEa6BP4WtviRy7AVMX0Guz9JJ6RS0G4fDbLv+DV?=
- =?us-ascii?Q?bRrVjj088gNwVlVTb6vP9kXiD5kGzD4Z3/JlppYChIPg4kAWyGRwrjJTYOZj?=
- =?us-ascii?Q?Wdms5Nm+48UV4ESd66PrPaN/DjxuN9grH7qiBw2mARMm2AOUkE1p6zVBht3K?=
- =?us-ascii?Q?DDaQQ9K07zV03Ko34DKuClgt1R5nazqnHvA+jfZsN1xD1hGe+9Wy93wL2RQf?=
- =?us-ascii?Q?OA/5g637UIFVi8ms9NtzaqTPwbbddXMkaF3xL+ZxiH+OTjYMEcfH8kOL2U7r?=
- =?us-ascii?Q?jO5Th+I7JscYeAvyJYHYOhOMdPeseZ8+hqs4TxGD0SYzmA/p0ZbNYuPHIv1C?=
- =?us-ascii?Q?8j7Ax9lMHmL0hynmqPS6KyugpubSvtjszay+Cg5laFDtJw2iEMkqudE6C2Vx?=
- =?us-ascii?Q?E3W2s2YWeM+nGqd5USEUh+ARPDOs3Tv1MxreFZI0BZm2KEv6u6k0GXpdDx7x?=
- =?us-ascii?Q?ki4lNswFuI/2ulAzTFephp9WNJ5FYuNiymrhiU8UN4Lgm+6lMFW3zU4uiIw4?=
- =?us-ascii?Q?dT6SC6B/FNqosmMWsVEvpE8peTu+W9MtFXUrVZahCLAquwkwiiUxX1yS0Fv8?=
- =?us-ascii?Q?zu9hMXclVontkh5pI0KkTuERN4JsKRdcrDF5cpYXnLnbUiDoYhoAGVUspHWy?=
- =?us-ascii?Q?No/oUdYZscTpopN9wBK7eJBUvmhswgL9SHafYHUIlSuUYlvGKG0chrOfqWht?=
- =?us-ascii?Q?utUT9+CwMxTVFEqV/KIWfsK1q74KqSAu2wm7qSIpHbl3ouemub2KZZT1aEr3?=
- =?us-ascii?Q?2xiZV8MF0yTnyKcvwlk/Um5fhMhkcLI4HsbWLYKlmEMWSEElj2oITY0LnUOJ?=
- =?us-ascii?Q?nDoYCLjUz62hib1DxRa7T93GgOB+BNs3KmVKbRd6ikM4oq1DW7hwRgdm+A1g?=
- =?us-ascii?Q?/NIx1JLlf19TIoO62dyDJdb/3ufZqEcsRCKSB4m+bS+luoz5RAipHYmt4jVL?=
- =?us-ascii?Q?Bh/LcWcFjdqzIe+yXPImJMuebS4nzUU9Kb4UyNU/CEjnLn8M/mq/hVIveszf?=
- =?us-ascii?Q?jjVmIucuJO5TD4/HKlSvKctgYBgtEQP0sguQ71URmWAcbrf9aI2fxaV9hns0?=
- =?us-ascii?Q?wZq1qVDm7y45vcg47joahf4LdAxTX/EoYxAHsTnZjI7MjMr6/oysBvWvmdNu?=
- =?us-ascii?Q?hSqtoYPvlSpOmey/eTU2raH/8F4/DWP+NrpWQUrByDcxcgQ0MsYDwvI+CRaV?=
- =?us-ascii?Q?GvMp7Q=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S242442AbhLJO6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 09:58:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33432 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242434AbhLJO6N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 09:58:13 -0500
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 792B0C0617A1;
+        Fri, 10 Dec 2021 06:54:38 -0800 (PST)
+Received: by mail-qv1-xf29.google.com with SMTP id s9so8134707qvk.12;
+        Fri, 10 Dec 2021 06:54:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Wf4BKyY2V/pYVycdF/iVPuxJUBo+0n5Ukb8K0eQFB9k=;
+        b=O9jMv+DstPd3YNF26JQDDo67u8zqEd2XnFDpn1ktGI+Xb5ZhccxA1VRgCeLpy+3i+q
+         Vfq2tVQFGLY2YqJGjvwYrSztXsPjVNSVb9szMcOH0ilZxHYc0vcNxiRnvEzmrHpVAuqY
+         mRpdERRm1vyioWpxaAcCjeS1yAfjTJm9Ep68JMBJOliNlmtzUrz47yvGY3cKX84DQ22C
+         qCOiJb6bSO7qgKvcgdi41vpTe3ffHVHDgbwMtSo/O9b5IG5yYZ92mARCfFGclJy7ZNeL
+         lMDQynyDd7FcHsIwRTuB+Oet2JjCoRukKyDN0+EDz2bRyPjJTL6UPaXOkExDdumOE+eA
+         yfmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Wf4BKyY2V/pYVycdF/iVPuxJUBo+0n5Ukb8K0eQFB9k=;
+        b=D/OFIsxCRrxWLV9L6aYQwYea+Yuxm/WeUjQTqYuDmest8DLuoxv6ckg3yA2wlzohIY
+         1PZ9rPAySkTbxQFMtLjM135FlbaP4sp5F+yUgntaLLSWE/yCIQ7EH7BTkEux5AJYeVS8
+         i279bDPREG1lKv9m23aVd6rq012lrPGqGhkia6FF7n+E1HNtGzYU2973TvMVCoVfY2Op
+         dV+LwwW5pg0prbjl++Xzf4+K5PMkcjL9P3DjcsZts/+Jmp300AQeVDV8rBddwlaYAZVC
+         IhQglyGBj/hNqUi4n6HZyTnLcqEo4/LmYY0qfJ5hY7EOopHW0YcyjMHrWvisXSqQVEtg
+         G20w==
+X-Gm-Message-State: AOAM531s8b9cpFwSVPL+00pcQ9aCWWukMrFoPD/4NF1nieyKNwtqrDLX
+        NSXp8HYvtR0sioIPJFdp+DYIgWTVGSqjJQ==
+X-Google-Smtp-Source: ABdhPJxYBPATqlm2AedtfAOqYyiUmxASWxP4cwy6gkN25/SShjIaSq39miYc93hPB8rjQZ7154Jo6w==
+X-Received: by 2002:a05:6214:1c85:: with SMTP id ib5mr26507493qvb.72.1639148077376;
+        Fri, 10 Dec 2021 06:54:37 -0800 (PST)
+Received: from glsvmlin.ini.cmu.edu (GLSVMLIN.INI.CMU.EDU. [128.2.16.9])
+        by smtp.gmail.com with ESMTPSA id a3sm2054681qtx.59.2021.12.10.06.54.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Dec 2021 06:54:36 -0800 (PST)
+From:   Gabriel Somlo <gsomlo@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        kgugala@antmicro.com, mholenko@antmicro.com, krakoczy@antmicro.com,
+        mdudek@internships.antmicro.com, paulus@ozlabs.org, joel@jms.id.au,
+        shorne@gmail.com, geert@linux-m68k.org,
+        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
+        rdunlap@infradead.org
+Subject: [PATCH v4 0/3] mmc: Add LiteSDCard mmc driver
+Date:   Fri, 10 Dec 2021 09:54:27 -0500
+Message-Id: <20211210145430.3707463-1-gsomlo@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ffe5af0-22fd-4884-1d21-08d9bbeb8497
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Dec 2021 14:44:06.4695
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: KqpfagtKCdjO0dvnuUPzlin/LCxhImeCDUe9yy9BJJkX/4HimaP+xlqEP3Xz7efXafe9q0Gae6vQkYmzbGHmcq9UIK7kVbXF+wsFfFK9Txg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB4804
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi All,
+Add support for the LiteX SD-Card device, LiteSDCard.
 
-Gentle ping.
+LiteSDCard is a simple SD-Card interface available as part of the LiteX
+environment, used with various RISC-V and other FPGA based SoCs.
 
-Cheers,
-Biju
+New in v4:
 
-> Subject: [PATCH v3 1/3] dt-bindings: gpu: mali-bifrost: Document RZ/G2L
-> support
->=20
-> The Renesas RZ/G2{L, LC} SoC (a.k.a R9A07G044) has a Bifrost Mali-G31 GPU=
-,
-> add a compatible string for it.
->=20
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v2->v3:
->  * Moved optional clock-names and reset-names to SoC-specific conditional
-> schemas.
->  * minimum number of reset for the generic GPU is set to 1.
->  * Documented number of clocks, resets, interrupts and interrupt-names in
-> RZ/G2L
->    SoC-specific conditional schemas.
-> v1->v2:
->  * Updated minItems for resets as 2
->  * Documented optional property reset-names
->  * Documented reset-names as required property for RZ/G2L SoC.
-> ---
->  .../bindings/gpu/arm,mali-bifrost.yaml        | 45 ++++++++++++++++++-
->  1 file changed, 43 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> index 6f98dd55fb4c..63a08f3f321d 100644
-> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> @@ -19,6 +19,7 @@ properties:
->            - amlogic,meson-g12a-mali
->            - mediatek,mt8183-mali
->            - realtek,rtd1619-mali
-> +          - renesas,r9a07g044-mali
->            - rockchip,px30-mali
->            - rockchip,rk3568-mali
->        - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is
-> fully discoverable @@ -27,19 +28,26 @@ properties:
->      maxItems: 1
->=20
->    interrupts:
-> +    minItems: 3
->      items:
->        - description: Job interrupt
->        - description: MMU interrupt
->        - description: GPU interrupt
-> +      - description: Event interrupt
->=20
->    interrupt-names:
-> +    minItems: 3
->      items:
->        - const: job
->        - const: mmu
->        - const: gpu
-> +      - const: event
->=20
->    clocks:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  clock-names: true
->=20
->    mali-supply: true
->=20
-> @@ -52,7 +60,10 @@ properties:
->      maxItems: 3
->=20
->    resets:
-> -    maxItems: 2
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  reset-names: true
->=20
->    "#cooling-cells":
->      const: 2
-> @@ -94,6 +105,36 @@ allOf:
->      then:
->        required:
->          - resets
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a07g044-mali
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 4
-> +        interrupt-names:
-> +          minItems: 4
-> +        clocks:
-> +          minItems: 3
-> +        clock-names:
-> +          items:
-> +            - const: gpu
-> +            - const: bus
-> +            - const: bus_ace
-> +        resets:
-> +          minItems: 3
-> +        reset-names:
-> +          items:
-> +            - const: rst
-> +            - const: axi_rst
-> +            - const: ace_rst
-> +      required:
-> +        - clock-names
-> +        - power-domains
-> +        - resets
-> +        - reset-names
->    - if:
->        properties:
->          compatible:
-> --
-> 2.17.1
+Doc/dt/bindings/mmc/litex,mmc.yaml:
+
+  - fixed `dt_binding_check` errors uncovered by Rob's script
+
+drivers/mmc/host/litex_mmc.c:
+
+  - struct litex_mmc_host fields re-ordered so that `pahole` reports
+    no holes in either 32- or 64-bit builds
+  - litex_mmc_set_bus_width() now encapsulates check for
+    host->is_bus_width_set
+  - litex_mmc_request() - factor out dma data setup into separate
+    helper function: litex_mmc_do_dma()
+
+>New in v3:
+>
+>  MAINTAINERS:
+>
+>  - picked up acked-by Joel
+>  - added listing for liteeth driver
+>  - added Joel as additional co-maintainer (thanks!)
+>
+>  Doc/dt/bindings/mmc/litex,mmc.yaml:
+>
+>  - picked up r/b Geert Uytterhoeven <geert@linux-m68k.org> in DT
+>    bindings document (please let me know if that was premature, and
+>    happy to take further review if needed :)
+>  - add dedicated DT property for source clock frequency
+>
+>  drivers/mmc/host/litex_mmc.c:
+>
+>  - fixed function signature (no line split), and naming (litex_mmc_*)
+>  - more informative MODULE_AUTHOR() entries
+>    - also added matching "Copyright" entries in file header
+>  - fixed description in Kconfig
+>  - fixed DT documentation
+>  - removed magic constants
+>  - removed litex_map_status(), have sdcard_wait_done() return *real*
+>    error codes directly instead.
+>  - streamlined litex_mmc_reponse_len()
+>  - call litex_mmc_set_bus_width() only once, and ensure it returns
+>    correct error code(s)
+>  - use readx_poll_timeout() -- more concise -- instead of
+>    read_poll_timeout()
+>  - use dev_err() in litex_mmc_send_cmd() (instead of pr_err())
+>  - litex_mmc_setclk() will update host->clock before returning
+>  - separate irq initialization into its own function,
+>    litex_mmc_irq_init()
+>  - document rationale for f_min, f_max
+>  - use dmam_alloc_coherent(), which simplifies cleanup significantly
+>  - large `if (data) { ... }` block in litex_mmc_request() left as-is,
+>    there are too many variables shared with the rest of the parent
+>    function body to easily separate (e.g., `len`, `transfer`, `direct`).
+>    If this is indeed a blocker, I can take another shot at refactoring
+>    it in a future revision!
+>  - bump dma_set_mask_and_coherent() to 64-bits on suitable
+>    architectures
+>  - clock source picked up from dedicated DT clock reference property
+>  - remove gpio card-detect logic (needs testing and a dt binding
+>    example before being eligible for upstream inclusion)
+>
+>> New in v2:
+>>   - reword info message in litex_set_clk()
+>>   - streamline code in litex_map_status()
+>>   - fix typos in Kconfig (thanks Randy Dunlap <rdunlap@infradead.org>)
+>>   - improvements suggested by Stafford Horne <shorne@gmail.com>
+>>     - allow COMPILE_TEST in Kconfig
+>>     - use read_poll_timeout() when waiting for cmd/data/DMA
+>>       xfer completion
+>>   - include interrupt.h (thanks kernel test robot <lkp@intel.com>)
+
+Gabriel Somlo (3):
+  MAINTAINERS: co-maintain LiteX platform
+  dt-bindings: mmc: Add bindings for LiteSDCard
+  mmc: Add driver for LiteX's LiteSDCard interface
+
+ .../devicetree/bindings/mmc/litex,mmc.yaml    |  72 ++
+ MAINTAINERS                                   |   9 +-
+ drivers/mmc/host/Kconfig                      |   9 +
+ drivers/mmc/host/Makefile                     |   1 +
+ drivers/mmc/host/litex_mmc.c                  | 654 ++++++++++++++++++
+ 5 files changed, 743 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mmc/litex,mmc.yaml
+ create mode 100644 drivers/mmc/host/litex_mmc.c
+
+-- 
+2.31.1
 
