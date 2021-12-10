@@ -2,376 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8716846F7C0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 00:57:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3616646F844
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 02:09:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234711AbhLJABI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 19:01:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55906 "EHLO
+        id S235131AbhLJBMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 20:12:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234696AbhLJABH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 19:01:07 -0500
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEAA0C0617A1
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 15:57:33 -0800 (PST)
-Received: by mail-qk1-x732.google.com with SMTP id a11so6369589qkh.13
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 15:57:33 -0800 (PST)
+        with ESMTP id S235095AbhLJBMf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 20:12:35 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBFDCC061746;
+        Thu,  9 Dec 2021 17:09:00 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id v138so17895065ybb.8;
+        Thu, 09 Dec 2021 17:09:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Uki05wBt2Curw3Rk1sCic8HVPmQ/onh9arpdABDNhZE=;
-        b=Lx73rRhgsqhUQaq2ygcCUymM7fIcuNnfcFeVbUxwD4LvPpxCgPAdvZ+us2j5P0S0jG
-         qhNF9BmUY0cqiJcxQX/H4oxcFCz4hRaYAJD7ARBi58y7PGyKnMRXut/xnqbwbmOogJx1
-         rQkDuM1oiyGSNkU/IoqhRxoxesnfzWKAwbBBA=
+        bh=LfUTbG8PwhmwfcI3X4eb2ef5MT1XzgRcYrG9lHwsTDM=;
+        b=IfFmXxUkJzJv5XedaOJcGeZTWEVvHONM1QWiaQ4QURe5r6K11TQcHulAoe9T7u/Al8
+         SPYO35vHhZEVg/bdqf3ZLMMfJB3pTNFxDD/ta8gbV9TD7UeamfflV5FyV4EBozqvWNhd
+         wChWhBcY5E7Nlv7bhE0Bt6xQSh6sSdMPgih2niZLdLt+o7Tqe7nntUbRCgNT4Fpm3eWz
+         XJVr7mJqmq21Lfu0elFpWOvt6c2+5klaYnPZHoMSXLhkJBBM831Ai2uV1FSfJsu+TVDz
+         mMHGAyxXn91ffGaeHOesbzuWbdQROeKbYWkDs75kU+xPuUAkQkSn4ho9Yjg39426zYKD
+         uiTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Uki05wBt2Curw3Rk1sCic8HVPmQ/onh9arpdABDNhZE=;
-        b=zAszJCNNsEOaGbSQsnvG8Ta4hY/846iLk7nT6smlRMXBUaFktWBadi5GIMG/uo7rM9
-         BFWOd68jZXMWubDSs10+B/ZatFgXyasov+6x6MtJvXQQdgiORbCFbf2FKNSJgYhBtqSF
-         OySoD4yIiVeE3VhJq0fjpfSchFTyzAp0AP5Y3yajbyGQBYMDx5rM3R4ZuglG33snatni
-         mUN6Lh4/ZeCMGDcooAglEeQmzcO0tU2AFYGkayqh1rE2Ih3+GBtXvUjFoq7p3aY2K1s+
-         CdgVq9n/iXjai3QMwCVLlHwpa+e/ykO6AjktkeyMVoyYQfTjg4NENwjgrTQMg6n3EXhB
-         kAMA==
-X-Gm-Message-State: AOAM531vGaz9XiE/0xIbf+JZifLIQaPoafLfelPwArvDhUm6FwVvHsu0
-        mwrE9Ilfh84I/HFbkJxqBEx+bU18GUSSWzyHlsvo8w==
-X-Google-Smtp-Source: ABdhPJxoC/884U4HksLH+wuiXs0WNjfeYhB0s6I4Zf+ZCyxoMZNQDfLnuG+wprFJ15I8geJzMLWy+Mi42/aX2oXvpjU=
-X-Received: by 2002:a05:620a:4446:: with SMTP id w6mr17194393qkp.273.1639094252842;
- Thu, 09 Dec 2021 15:57:32 -0800 (PST)
+        bh=LfUTbG8PwhmwfcI3X4eb2ef5MT1XzgRcYrG9lHwsTDM=;
+        b=gpJAvAOudM+GmacPhHCBc6WRD/UGRq3x6rdBdYuviPv5v2DnPNJz0st607tklJfIEl
+         AFK3q1qcV/8gzIWScVbGkXW+Npiqn17imPMLO1vQFSrbtOi7M7+7zrrhCeBHtCrCiYd2
+         GJ81+A9gvUDdFFtaWCjlS9ypegu6VQALy931Pl+0a4/0605XWrZDNmPrzFhanU5SlCIh
+         yrvY9XlDirJqamNlJcDT8oAQrcFDIX5/k8cUMiLXMOePk5uQdjopvN8+xj9cJzK9j7RK
+         KCnkvlxdrH0z5vnkSmjJiPmNU3tOC8LF6QkgCO39slE5eTf3Z0WSpcf6NAvGZgJ7Wyhk
+         2QdA==
+X-Gm-Message-State: AOAM530CLrEOUDGOPYH7cHQedcNkBU0C9FIxpuzsWSVTEXpZvZy4RVSR
+        O+1ycTWmEp0R202IZ+/+bYDLUoLinqNw63nYfn8=
+X-Google-Smtp-Source: ABdhPJyR+xc9CjrTsAilDjNty8CnaRLCAIyuAyFILdVqL+SkY5euh9XGtuDIB32BdWzfsBWG7PDOh2I0pV/tDFk2e1I=
+X-Received: by 2002:a25:abe3:: with SMTP id v90mr10194282ybi.315.1639098540099;
+ Thu, 09 Dec 2021 17:09:00 -0800 (PST)
 MIME-Version: 1.0
-References: <20211202034544.2750-1-yunfei.dong@mediatek.com> <20211202034544.2750-16-yunfei.dong@mediatek.com>
-In-Reply-To: <20211202034544.2750-16-yunfei.dong@mediatek.com>
-From:   Steve Cho <stevecho@chromium.org>
-Date:   Thu, 9 Dec 2021 15:57:22 -0800
-Message-ID: <CAC-pXoNYXSoL0L8OEoVg+tU1JoMU5VU-voXNKQD1is0HBYmT_A@mail.gmail.com>
-Subject: Re: [PATCH v12, 15/19] dt-bindings: media: mtk-vcodec: Adds decoder
- dt-bindings for mt8192
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+References: <20211110225808.16388-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CA+V-a8sCVkbwYeVGsQpv2q0OjwUSB_jqmjPptHN-ENSdU+pT1Q@mail.gmail.com>
+In-Reply-To: <CA+V-a8sCVkbwYeVGsQpv2q0OjwUSB_jqmjPptHN-ENSdU+pT1Q@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 10 Dec 2021 01:08:34 +0000
+Message-ID: <CA+V-a8tTm=n+TuE5N1Ptkvh6n1sYjSZWpQpmY1F5RiwK-ocvFQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 0/7] Renesas RZ/G2L IRQC support
+To:     Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: Steve Cho <stevecho@chromium.org>
+Hi Marc and Linus,
 
-On Wed, Dec 1, 2021 at 7:46 PM Yunfei Dong <yunfei.dong@mediatek.com> wrote:
+On Mon, Nov 22, 2021 at 7:25 PM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
 >
-> Adds decoder dt-bindings for mt8192.
+> Hi Marc and Linus,
+>
+> On Wed, Nov 10, 2021 at 10:58 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> >
+> > Hi All,
+> >
+> > The RZ/G2L Interrupt Controller is a front-end for the GIC found on
+> > Renesas RZ/G2L SoC's with below pins:
+> > - IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI interrupts
+> > - GPIO pins used as external interrupt input pins out of GPIOINT0-122 a
+> >   maximum of only 32 can be mapped to 32 GIC SPI interrupts,
+> > - NMI edge select.
+> >
+> >                                                                 _____________
+> >                                                                 |    GIC     |
+> >                                                                 |  ________  |
+> >                                          ____________           | |        | |
+> > NMI ------------------------------------>|          |  SPI0-479 | | GIC-600| |
+> >                 _______                  |          |------------>|        | |
+> >                 |      |                 |          |  PPI16-31 | |        | |
+> >                 |      | IRQ0-IRQ8       |   IRQC   |------------>|        | |
+> > P0_P48_4 ------>| GPIO |---------------->|          |           | |________| |
+> >                 |      |GPIOINT0-122     |          |           |            |
+> >                 |      |---------------->| TINT0-31 |           |            |
+> >                 |______|                 |__________|           |____________|
+> >
+> > The proposed RFC patches, add the IRQ domains in GPIO (pinctrl driver) and the
+> > IRQC driver. The IRQC domain handles the actual SPI interrupt and upon reception
+> > of the interrupt it propagates to the GPIO IRQ domain to handle virq.
+> > Out of GPIOINT0-122 only 32 can be mapped to GIC SPI, this mapping is handled by
+> > the IRQC driver.
+> >
+> > Cheers,
+> > Prabhakar
+> >
+> > Changes for v3:
+> > -> Re-structured the driver as a hierarchical irq domain instead of chained
+> > -> made use of IRQCHIP_* macros
+> > -> dropped locking
+> > -> Added support for IRQ0-7 interrupts
+> > -> Introduced 2 new patches for GPIOLIB
+> > -> Switched to using GPIOLIB for irqdomains in pinctrl
+> >
+> Gentle ping.
+>
+I plan to post a non RFC version soon, can I have your feedback on this please.
 
-basic question: what is dt-bindings?
-
-Is this yaml file supposed to be used for some settings?
+Cheers,
+Prabhakar
 
 >
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
->  .../media/mediatek,vcodec-subdev-decoder.yaml | 266 ++++++++++++++++++
->  1 file changed, 266 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
->
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-> new file mode 100644
-> index 000000000000..67cbcf8b3373
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-> @@ -0,0 +1,266 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/media/mediatek,vcodec-subdev-decoder.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Mediatek Video Decode Accelerator With Multi Hardware
-
-Is Multi Hardware supposed to mean parent & child devices in this context?
-
-> +
-> +maintainers:
-> +  - Yunfei Dong <yunfei.dong@mediatek.com>
-> +
-> +description: |
-> +  Mediatek Video Decode is the video decode hardware present in Mediatek
-> +  SoCs which supports high resolution decoding functionalities. Required
-> +  parent and child device node.
-> +
-> +  About the Decoder Hardware Block Diagram, please check below:
-
-Great to see this diagram and description!
-
-
-> +
-> +    +---------------------------------+------------------------------------+
-> +    |                                 |                                    |
-> +    | input -> lat HW -> lat buffer --|--> lat buffer -> core HW -> output |
-> +    |            ||                   |                     ||             |
-> +    +------------||-------------------+---------------------||-------------+
-> +              lat workqueue           |              core workqueue     <parent>
-> +    -------------||-----------------------------------------||------------------
-> +                 ||                                         ||          <child>
-> +                 \/ <----------------HW index-------------->\/
-> +           +------------------------------------------------------+
-> +           |                    enable/disable                    |
-> +           |           clk     power    irq    iommu              |
-> +           |                 (lat/lat soc/core0/core1)            |
-> +           +------------------------------------------------------+
-> +
-> +  As above, there are parent and child devices, child mean each hardware. The child device
-> +  controls the information of each hardware independent which include clk/power/irq.
-> +
-> +  There are two workqueues in parent device: lat workqueue and core workqueue. They are used
-> +  to lat and core hardware deocder. Lat workqueue need to get input bitstream and lat buffer,
-> +  then enable lat to decode, writing the result to lat buffer, dislabe hardware when lat decode
-> +  done. Core workqueue need to get lat buffer and output buffer, then enable core to decode,
-> +  writing the result to output buffer, disable hardware when core decode done. These two
-> +  hardwares will decode each frame cyclically.
-> +
-> +  For the smi common may not the same for each hardware, can't combine all hardware in one node,
-> +  or leading to iommu fault when access dram data.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8192-vcodec-dec
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  iommus:
-> +    minItems: 1
-> +    maxItems: 32
-> +    description: |
-> +      List of the hardware port in respective IOMMU block for current Socs.
-> +      Refer to bindings/iommu/mediatek,iommu.yaml.
-> +
-> +  mediatek,scp:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    maxItems: 1
-> +    description: |
-> +      The node of system control processor (SCP), using
-> +      the remoteproc & rpmsg framework.
-> +      $ref: /schemas/remoteproc/mtk,scp.yaml
-> +
-> +  dma-ranges:
-> +    maxItems: 1
-> +    description: |
-> +      Describes the physical address space of IOMMU maps to memory.
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +# Required child node:
-> +patternProperties:
-> +  vcodec-lat:
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        const: mediatek,mtk-vcodec-lat
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      iommus:
-> +        minItems: 1
-> +        maxItems: 32
-> +        description: |
-> +          List of the hardware port in respective IOMMU block for current Socs.
-> +          Refer to bindings/iommu/mediatek,iommu.yaml.
-> +
-> +      clocks:
-> +        maxItems: 5
-> +
-> +      clock-names:
-> +        items:
-> +          - const: sel
-> +          - const: soc-vdec
-> +          - const: soc-lat
-> +          - const: vdec
-> +          - const: top
-> +
-> +      assigned-clocks:
-> +        maxItems: 1
-> +
-> +      assigned-clock-parents:
-> +        maxItems: 1
-> +
-> +      power-domains:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupts
-> +      - iommus
-> +      - clocks
-> +      - clock-names
-> +      - assigned-clocks
-> +      - assigned-clock-parents
-> +      - power-domains
-> +
-> +    additionalProperties: false
-> +
-> +  vcodec-core:
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        const: mediatek,mtk-vcodec-core
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      iommus:
-> +        minItems: 1
-> +        maxItems: 32
-> +        description: |
-> +          List of the hardware port in respective IOMMU block for current Socs.
-> +          Refer to bindings/iommu/mediatek,iommu.yaml.
-> +
-> +      clocks:
-> +        maxItems: 5
-> +
-> +      clock-names:
-> +        items:
-> +          - const: sel
-> +          - const: soc-vdec
-> +          - const: soc-lat
-> +          - const: vdec
-> +          - const: top
-> +
-> +      assigned-clocks:
-> +        maxItems: 1
-> +
-> +      assigned-clock-parents:
-> +        maxItems: 1
-> +
-> +      power-domains:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupts
-> +      - iommus
-> +      - clocks
-> +      - clock-names
-> +      - assigned-clocks
-> +      - assigned-clock-parents
-> +      - power-domains
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - iommus
-> +  - mediatek,scp
-> +  - dma-ranges
-> +  - ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/memory/mt8192-larb-port.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/mt8192-clk.h>
-> +    #include <dt-bindings/power/mt8192-power.h>
-> +
-> +    video-codec@16000000 {
-> +        compatible = "mediatek,mt8192-vcodec-dec";
-> +        mediatek,scp = <&scp>;
-> +        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
-> +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges = <0 0x16000000 0x40000>;
-> +        reg = <0x16000000 0x1000>;             /* VDEC_SYS */
-> +        vcodec-lat@10000 {
-> +            compatible = "mediatek,mtk-vcodec-lat";
-> +            reg = <0x10000 0x800>;
-> +            interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
-> +            iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
-> +            clocks = <&topckgen CLK_TOP_VDEC_SEL>,
-> +                <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
-> +                <&vdecsys_soc CLK_VDEC_SOC_LAT>,
-> +                <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
-> +                <&topckgen CLK_TOP_MAINPLL_D4>;
-> +            clock-names = "sel", "soc-vdec", "soc-lat", "vdec", "top";
-> +            assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
-> +            assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
-> +            power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
-> +        };
-> +
-> +        vcodec-core@25000 {
-> +            compatible = "mediatek,mtk-vcodec-core";
-> +            reg = <0x25000 0x1000>;
-> +            interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
-> +            iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_UFO_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_PP_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_PRED_RD_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_PRED_WR_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_PPWRAP_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_TILE_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_VLD_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_VLD2_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_AVC_MV_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
-> +            clocks = <&topckgen CLK_TOP_VDEC_SEL>,
-> +                <&vdecsys CLK_VDEC_VDEC>,
-> +                <&vdecsys CLK_VDEC_LAT>,
-> +                <&vdecsys CLK_VDEC_LARB1>,
-> +                <&topckgen CLK_TOP_MAINPLL_D4>;
-> +            clock-names = "sel", "soc-vdec", "soc-lat", "vdec", "top";
-> +            assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
-> +            assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
-> +            power-domains = <&spm MT8192_POWER_DOMAIN_VDEC2>;
-> +        };
-> +    };
-> --
-> 2.25.1
->
+> > RFC v2: https://patchwork.kernel.org/project/linux-renesas-soc/cover/
+> > 20210921193028.13099-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> > RFC v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/
+> > 20210803175109.1729-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> >
+> > Lad Prabhakar (7):
+> >   dt-bindings: interrupt-controller: Add Renesas RZ/G2L Interrupt
+> >     Controller
+> >   irqchip: Add RZ/G2L IA55 Interrupt Controller driver
+> >   soc: renesas: Enable IRQC driver for RZ/G2L
+> >   gpio: gpiolib: Allow free() callback to be overridden
+> >   gpio: gpiolib: Add ngirq member to struct gpio_irq_chip
+> >   pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain to handle GPIO
+> >     interrupt
+> >   arm64: dts: renesas: r9a07g044: Add IRQC node to SoC DTSI
+> >
+> >  .../renesas,rzg2l-irqc.yaml                   | 137 ++++++
+> >  arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |  60 +++
+> >  drivers/gpio/gpiolib.c                        |  13 +-
+> >  drivers/irqchip/Kconfig                       |   8 +
+> >  drivers/irqchip/Makefile                      |   1 +
+> >  drivers/irqchip/irq-renesas-rzg2l.c           | 465 ++++++++++++++++++
+> >  drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 197 ++++++++
+> >  drivers/soc/renesas/Kconfig                   |   1 +
+> >  include/linux/gpio/driver.h                   |   8 +
+> >  9 files changed, 885 insertions(+), 5 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+> >  create mode 100644 drivers/irqchip/irq-renesas-rzg2l.c
+> >
+> > --
+> > 2.17.1
+> >
