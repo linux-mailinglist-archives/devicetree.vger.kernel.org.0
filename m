@@ -2,76 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35BD647093A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 19:45:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25A1247093E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 19:46:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238721AbhLJStO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 13:49:14 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:36400 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235951AbhLJStO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 13:49:14 -0500
-Received: by mail-oi1-f175.google.com with SMTP id t23so14454618oiw.3;
-        Fri, 10 Dec 2021 10:45:39 -0800 (PST)
+        id S235992AbhLJSuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 13:50:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33388 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239334AbhLJSuQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 13:50:16 -0500
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0399C061746;
+        Fri, 10 Dec 2021 10:46:40 -0800 (PST)
+Received: by mail-pf1-x434.google.com with SMTP id z6so9210960pfe.7;
+        Fri, 10 Dec 2021 10:46:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=Dz+OquvZUJo0GA0GX6QGULnhdgKSzj2CeViGnWAWXRQ=;
+        b=PFyBSc6UDl8M1kgqSkVWlFCSLXFWLYqd194Yoe6oxbifSNwZ9x7YWKYH2Ir3vL3oiz
+         hvnlD4ntAmP9S7gei0HveDQkG4u6FlBE1YP+hhnVbj6xeSpHK/0TU1NGgKgHfl5Efn8b
+         c1e6lvxIN07L1YgfUxncaoA0VMz+GIdDT/HiZmbXvuiPti4V1ax+22xY1qn3iu64h5Ep
+         GpsuSAmz7o4kx9NxwZmv7ObEVKqx7KPYQOK5cT/MuqgBh0gdU7UJu88brIDBDlD1t3tn
+         /6rq/SIqXFpXE7WdHDfnFPoFL74c47Pf2lxlMfzUW2QlcGlraKOrOaRWaulOiaHTMN3F
+         1ebg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=RER/iWppV8hMmnZQD4dlpK+kku9THlBKxNx02Kauc1U=;
-        b=FgGKcxJ++K+AkvtDzpgMswQnLOliQJ8wzHOk5BrTgtczl9yNqFAHtQl1b2f6oyHjcP
-         whV6IvpKQQ0hSkJLYkqzroiaz8x6QubiNH+ujkzw8cqkrFGBJh7hi9t4N0RUCoWFovN0
-         +hMbsczMJVu8xCVHMD7cnLyIYCnm4U7njvLtvUz8OC1nHrYo1nU4e4q4MNzYutMF8ye8
-         uYxFCPYqybltjH/dYEdQJSrjNE+B+YsiTedQyMShpgS3Hs8Pn54QUYUMqeJeL4dScuOS
-         jELrS6PUnXxR+lcx00Q5YcgMu56mrlHGFtKazBlUUO7vVqnwbNVymsJdUlXR9cRe4I9t
-         n8zQ==
-X-Gm-Message-State: AOAM5337teQ3aJx2SNfTYiIMswmBmr9sOI/CbJB+pwXvONTDqpnrD4sM
-        WQUuQ/gOpmZnf+gpJrYbVA==
-X-Google-Smtp-Source: ABdhPJwT16W0aC4a3LaA1eXQEG2Ta3HqdgEh97oXtM7v5sDKulhdS+IbM7yFjdRFsiyNfNlmmQOhzA==
-X-Received: by 2002:aca:1a04:: with SMTP id a4mr13550300oia.153.1639161938754;
-        Fri, 10 Dec 2021 10:45:38 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m12sm963557oiw.23.2021.12.10.10.45.37
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Dz+OquvZUJo0GA0GX6QGULnhdgKSzj2CeViGnWAWXRQ=;
+        b=HEx5fxoW/NaXjxGOTkBlL8D40NCY+k/6k+Jr/QkrPLcg/XzwnleuEgq+t9DzVT2DQL
+         KaSFr9D10mDcTy/vQ/EZ0IGTnwFudEd4msvv5h4ITKuYxXihKJP3fS61iUsG4na67Xyg
+         7GK9vYQ25RbU8RtLHpqJKP6GUUY4srnx7GExzMF39FPZhmT0CnbZALvOG0RFxb7gDUj8
+         s9n2MgwmmDMqXyPDcZ6shQVwLORuFU+cfexzPlsfK7HJTlr/ATGsbw3+KZa9niFvqqPs
+         8cnY4HWZc1/dEYmGhvaK3etV/i8nPwoWB3HHKBfN/i0zRPkJBBy/+8MbqUG9ZJ/T1QEN
+         rfOA==
+X-Gm-Message-State: AOAM530OMta5DF7aXqVmf2b2fv6uORomWritMmoPyBSFdlS+OtBr6+6Y
+        NsquGLoSCWdXp8+Y7CdZ6gY=
+X-Google-Smtp-Source: ABdhPJxnpNEuElnGEflFQNStQArB0tzYSwC+HeXoDjwwD2MdSXaKQbkR4VHm+kgWae2Dulxqu93Alg==
+X-Received: by 2002:a05:6a00:234e:b0:4ae:2e0d:cc68 with SMTP id j14-20020a056a00234e00b004ae2e0dcc68mr19653053pfj.60.1639162000256;
+        Fri, 10 Dec 2021 10:46:40 -0800 (PST)
+Received: from stbsrv-and-01.and.broadcom.net ([192.19.11.250])
+        by smtp.gmail.com with ESMTPSA id w6sm4320334pfu.172.2021.12.10.10.46.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 10:45:37 -0800 (PST)
-Received: (nullmailer pid 1684290 invoked by uid 1000);
-        Fri, 10 Dec 2021 18:45:36 -0000
-Date:   Fri, 10 Dec 2021 12:45:36 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     bgoswami@codeaurora.org, plai@codeaurora.org,
-        srinivas.kandagatla@linaro.org, perex@perex.cz,
-        lgirdwood@gmail.com, rohitkr@codeaurora.org,
-        devicetree@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, robh+dt@kernel.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>,
-        broonie@kernel.org, alsa-devel@alsa-project.org, agross@kernel.org,
-        tiwai@suse.com
-Subject: Re: [RESEND, v9 09/10] ASoC: dt-bindings: Add SC7280 lpass cpu
- bindings
-Message-ID: <YbOgUPpQjBhqGhHC@robh.at.kernel.org>
-References: <1638800567-27222-1-git-send-email-quic_srivasam@quicinc.com>
- <1638800567-27222-10-git-send-email-quic_srivasam@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1638800567-27222-10-git-send-email-quic_srivasam@quicinc.com>
+        Fri, 10 Dec 2021 10:46:39 -0800 (PST)
+From:   Jim Quinlan <jim2101024@gmail.com>
+To:     Christoph Hellwig <hch@lst.de>,
+        bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
+        james.quinlan@broadcom.com
+Cc:     devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE), linux-kernel@vger.kernel.org (open list),
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+Subject: [PATCH v2 0/1] of: unittest: fix warning on PowerPC frame size warning
+Date:   Fri, 10 Dec 2021 13:46:34 -0500
+Message-Id: <20211210184636.7273-1-jim2101024@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Dec 2021 19:52:46 +0530, Srinivasa Rao Mandadapu wrote:
-> Add bindings for sc7280 lpass cpu driver which supports
-> audio over i2s based speaker, soundwire based headset, msm dmics
-> and HDMI Port.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> ---
->  .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  | 75 +++++++++++++++++++---
->  1 file changed, 67 insertions(+), 8 deletions(-)
-> 
+v2 -- Fix memory leak (Florian).
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+v1 -- Original.
+
+Jim Quinlan (1):
+  of: unittest: fix warning on PowerPC frame size warning
+
+ drivers/of/unittest.c | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+
+base-commit: c741e49150dbb0c0aebe234389f4aa8b47958fa8
+-- 
+2.17.1
+
