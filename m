@@ -2,74 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30868470232
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 14:59:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FDC1470260
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 15:03:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233723AbhLJOD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 09:03:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49104 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231716AbhLJOD0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 09:03:26 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85A7AC061746
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 05:59:51 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id x10so12933272edd.5
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 05:59:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=CCYx7ZOhPk8Hl+gXHfcP4uo6Qpi0fHd7h6HkE4Iph1M=;
-        b=abeUWfblH6m9QN9qBcBt1UR0y367eE0tBp+vwRFFlskrxheL5tARCB1RVs6YzURBfB
-         vjr4Bvc7f07Yb+tWtyospxZHxR6UX2DLFabtPRUkuh1mc8sg3hrw+K2wTtwDqmGXV49o
-         qMkBa89eb++zNkBO9OmFPhzYUZN9QzzIzY0o22fgPM3lctRAbwJIf8hrDY8QzSFPGLrx
-         p2z6ms2RK0eyrqYq1QJz5Z//SYrDHS3DRtlzSOp41Hrfxm6mzw50WIO5evFo+cFrFWEg
-         deln2mpBCspdh6aE8B1EvzUsDlbxes8mDcVcyD5pS/rmIqr3byOr58WaUyyGVjFJphu+
-         JtVw==
+        id S235694AbhLJOHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 09:07:03 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:39783 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238527AbhLJOHC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 09:07:02 -0500
+Received: by mail-ot1-f44.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso9696272ots.6;
+        Fri, 10 Dec 2021 06:03:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=CCYx7ZOhPk8Hl+gXHfcP4uo6Qpi0fHd7h6HkE4Iph1M=;
-        b=DVVDwfB+v08Y9tkqKgiOUV/jg7mCo5y0jiM5PDoROPWzvjFwRJ71YUOr8ZQb/++oxu
-         oJwzhnzUB8lq2y9REhm6F+IsI4sfu1wMjp90vhnLnQyrBWUex48TCAgLY+G01hnp9tqK
-         IaTLef2feFnhd8KQukonBGJEdp/2gzwac4lUhCaw0s5nBFQGaflhOztAy/LeYocVnFgZ
-         nCtrFZv5TKqSQY6eVr+GVC39nVyqCz8CeLgx2OqNZslC8vNHmIwmCAqtinzEzuJ1vbvi
-         eQYwdTdeA+EAo4TJgSEWik8KDDjkHxLeazDCkoZYvUAlYwhX7QZB3s8Xtr1dnNdi7tEF
-         hXnw==
-X-Gm-Message-State: AOAM533/S2Nsqyvw52JZ1CDL8N1Uzi6xw8pzG6s0j6jglkRn1KsBbZjb
-        eYa6ie2Yfh7s93IftIeLwAkgt2gEci/+0UnXeSk=
-X-Google-Smtp-Source: ABdhPJyfOuMoHgHCGM+5pzfjF2BtT1DUq2evr9edkDkJXCzSuGKzBxNisdDsu1nEwei8XRxGPrn+W1TfQRYdoBJI52U=
-X-Received: by 2002:a05:6402:40d1:: with SMTP id z17mr38803271edb.340.1639144787438;
- Fri, 10 Dec 2021 05:59:47 -0800 (PST)
-MIME-Version: 1.0
-Sender: reineyawoah@gmail.com
-Received: by 2002:a54:2311:0:0:0:0:0 with HTTP; Fri, 10 Dec 2021 05:59:46
- -0800 (PST)
-From:   Sophia Erick <sdltdkggl3455@gmail.com>
-Date:   Fri, 10 Dec 2021 14:59:46 +0100
-X-Google-Sender-Auth: Kr249-njE2sHUUNDdy9LrjcS8QY
-Message-ID: <CAO0UoeMPA81QeVM1HQYKJ1z-bciZtYPtHuoeLUgeL9kuH8gWvQ@mail.gmail.com>
-Subject: HELLO
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=rVRrTBb9q/NCoqfDDtJ8WKORuC9JyQfXU3LAsb0zmuQ=;
+        b=i++gI6AaUWjZXe6AB3rI4w2ILQfbS1GtUWNKvB+amKE7lh5lsreWmCeOsKjaS44NSm
+         KQ08kRRMqra478Luq1uliqRanfAL7LrAsmOu7bwauEQErt2zWwj42DamCXGIzAj+Acvk
+         u6i3Azl6pvlXNB02XayRxzxHw0a8ttEYZWrDz32MJkVSiuSFImxF1sPiQRv0rHmaRoBn
+         19SWiqGfc8eipi7BSCYk4eaKYWesn9pDzR//as+zPoMA8//0DCid4W/W1haZZwYRi+XP
+         3ow2TnQAoB0YIWNMQ+7NBsbA3loSJniasa9JFZgsTR30oRmEYnv2FUJbtilx0OhO5pgF
+         +T3g==
+X-Gm-Message-State: AOAM53287GxJ16MrhMFqHIuWdpK1w5eDCsz8cTiLZnI+DaSRI/3w92jo
+        qUNsn8aWEs6HIyIvyKP/Fg==
+X-Google-Smtp-Source: ABdhPJzN2rZdC0uEutsphHM9PYfxPzgBhWCxfsRbj5UYe++lcRt03vRrmfIyfu/AMzS+uRmmQ2tx5g==
+X-Received: by 2002:a9d:4b09:: with SMTP id q9mr11055852otf.140.1639144978004;
+        Fri, 10 Dec 2021 06:02:58 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id j20sm517383ota.76.2021.12.10.06.02.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Dec 2021 06:02:57 -0800 (PST)
+Received: (nullmailer pid 1252238 invoked by uid 1000);
+        Fri, 10 Dec 2021 14:02:56 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Caleb Connolly <caleb@connolly.tech>
+Cc:     Andy Gross <agross@kernel.org>, Joel Selvaraj <jo@jsfamily.in>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20211210022639.2779173-2-caleb@connolly.tech>
+References: <20211210022639.2779173-1-caleb@connolly.tech> <20211210022639.2779173-2-caleb@connolly.tech>
+Subject: Re: [PATCH v4 1/6] dt-bindings: input: add Qualcomm SPMI haptics driver
+Date:   Fri, 10 Dec 2021 08:02:56 -0600
+Message-Id: <1639144976.203271.1252236.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello My Dear,
+On Fri, 10 Dec 2021 02:26:52 +0000, Caleb Connolly wrote:
+> Add bindings for qcom PMIC SPMI haptics driver.
+> 
+> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+> ---
+>  .../bindings/input/qcom,spmi-haptics.yaml     | 123 ++++++++++++++++++
+>  include/dt-bindings/input/qcom,spmi-haptics.h |  32 +++++
+>  2 files changed, 155 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml
+>  create mode 100644 include/dt-bindings/input/qcom,spmi-haptics.h
+> 
 
-It is my pleasure to communicate with you, I know that this message
-will be a surprise to you my name is Mrs. Sophia Erick, I am diagnosed
-with ovarian cancer which my doctor have confirmed that I have only
-some weeks to live so I have decided you handover the sum of(Eleven
-Million Dollars) through I decided handover the money in my account to
-you for help of the orphanage homes and the needy once
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Please   kindly reply me here as soon as possible to enable me give
-you more information but before handing over my details to you please
-assure me that you will only take 30%  of the money and share the rest
-to the poor orphanage home and the needy once, thank you am waiting to
-hear from you
+yamllint warnings/errors:
 
-Mrs Sophia Erick.
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml: properties:qcom,wave-play-rate-us: '$ref' should not be valid under {'const': '$ref'}
+	hint: Standard unit suffix properties don't need a type $ref
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml: ignoring, error in schema: properties: qcom,wave-play-rate-us
+warning: no schema found in file: ./Documentation/devicetree/bindings/input/qcom,spmi-haptics.yaml
+Documentation/devicetree/bindings/input/qcom,spmi-haptics.example.dt.yaml:0:0: /example-0/spmi/haptics@c000: failed to match any schema with compatible: ['qcom,pmi8998-haptics']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1566175
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
