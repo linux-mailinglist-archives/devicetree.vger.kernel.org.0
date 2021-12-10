@@ -2,81 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 856DD46FDEC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 10:36:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BF0E46FD8F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 10:19:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232754AbhLJJka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 04:40:30 -0500
-Received: from mail.xenproject.org ([104.130.215.37]:39942 "EHLO
-        mail.xenproject.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231889AbhLJJka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 04:40:30 -0500
-X-Greylist: delayed 1643 seconds by postgrey-1.27 at vger.kernel.org; Fri, 10 Dec 2021 04:40:30 EST
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=xen.org;
-        s=20200302mail; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID;
-        bh=XIPmTl0d5WI5yvmsZC68H9GM8X6AE8QmvYsZDuBAoEE=; b=DAsHt0iao8iLhh+rTn9mpAfBR+
-        AlLZ/wBMxCdmwsRKyhB2ak8N1Pesu0q5DVqhjJHM6lzepefJrqh3NcuTpZgRMcoeoWoJ6sKYlGCax
-        KdArgvFYGwopIskFjLPr2NI+KzYJahIpPds+HfgTUK074fsfdXfkzXCnbyUJKmLpOUdU=;
-Received: from xenbits.xenproject.org ([104.239.192.120])
-        by mail.xenproject.org with esmtp (Exim 4.92)
-        (envelope-from <julien@xen.org>)
-        id 1mvbuF-0001k0-U0; Fri, 10 Dec 2021 09:09:31 +0000
-Received: from [54.239.6.184] (helo=[192.168.9.67])
-        by xenbits.xenproject.org with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <julien@xen.org>)
-        id 1mvbuF-0001kj-Ns; Fri, 10 Dec 2021 09:09:31 +0000
-Message-ID: <669d3f56-13b8-f159-2053-b39f1ba4222f@xen.org>
-Date:   Fri, 10 Dec 2021 09:09:29 +0000
+        id S239169AbhLJJWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 04:22:52 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:50628 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S239158AbhLJJWw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Dec 2021 04:22:52 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1BA8MGn8003616;
+        Fri, 10 Dec 2021 10:19:05 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=GD0iSo1NTLYV7EasCiFxi5eaAvDCn7ZEjTnRKBW5Tus=;
+ b=o+UG4VnFhk8QXeC4zOjkOKWogeHRU3Z49ToFV7PUu9ytngitiQHAadYAlf99xc2O1YdJ
+ qTsHtmt5/IJuo9XUrDKDXonZLIgQ3nAaWjqgKK9UGo/B3WskCewOIog7i1kP60wFh+CO
+ CBxothr50iptMW4QZHaa6Pt2gcgFj4n3z84/b0A4jw92e5qIwUEt0BPFDvdCigK2nKIS
+ +ybTaM05cU/Noc8fj6cubz71EmnWzvf7rByGX8hZ98aE0izLJ6s22OCrjlOhtgLqcrP3
+ sQqnX4PWqkAd/MjpdQIl+d23FdpcUS8r/JT0AxRmgs8g99sZ1yo+gxZX9EF7GEQOAURZ FQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3cv3asrbk0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 10 Dec 2021 10:19:05 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 324E310002A;
+        Fri, 10 Dec 2021 10:19:04 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 26DCC2224BC;
+        Fri, 10 Dec 2021 10:19:04 +0100 (CET)
+Received: from localhost (10.75.127.44) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.26; Fri, 10 Dec 2021 10:19:03
+ +0100
+From:   Yann Gautier <yann.gautier@foss.st.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <loic.pallardy@foss.st.com>
+CC:     <yann.gautier@foss.st.com>
+Subject: [PATCH] mmc: mmci: add st,stm32-sdmmc2 compatible
+Date:   Fri, 10 Dec 2021 10:18:34 +0100
+Message-ID: <20211210091834.28958-1-yann.gautier@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.4.0
-Subject: Re: [PATCH V4 6/6] dt-bindings: xen: Clarify "reg" purpose
-To:     Oleksandr Tyshchenko <olekstysh@gmail.com>,
-        xen-devel@lists.xenproject.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Stefano Stabellini <sstabellini@kernel.org>
-References: <1639080336-26573-1-git-send-email-olekstysh@gmail.com>
- <1639080336-26573-7-git-send-email-olekstysh@gmail.com>
-From:   Julien Grall <julien@xen.org>
-In-Reply-To: <1639080336-26573-7-git-send-email-olekstysh@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2021-12-10_03,2021-12-08_01,2021-12-02_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Oleksandr,
+Although this compatible is not used in kernel, as we use the common
+MMCI driver, it is used by bootloaders. The U-Boot driver was merged
+before the kernel driver and uses this compatible.
+To avoid issues when aligning device tree files between kernel and
+boot loader, the ST dedicated compatible is added to bindings file.
 
-On 09/12/2021 20:05, Oleksandr Tyshchenko wrote:
-> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
-> 
-> Xen on Arm has gained new support recently to calculate and report
-> extended regions (unused address space) safe to use for external
-> mappings. These regions are reported via "reg" property under
-> "hypervisor" node in the guest device-tree. As region 0 is reserved
-> for grant table space (always present), the indexes for extended
-> regions are 1...N.
-> 
-> No device-tree bindings update is needed (except clarifying the text)
-> as guest infers the presence of extended regions from the number
-> of regions in "reg" property.
-> 
-> While at it, remove the following sentence:
-> "This property is unnecessary when booting Dom0 using ACPI."
-> for "reg" and "interrupts" properties as the initialization is not
-> done via device-tree "hypervisor" node in that case anyway.
-You sent a similar patch for Xen and have already commented there [1] . 
-In short, the OS will be using the node to discover whether it is 
-running on Xen for both ACPI and DT. The hypervisor node also contain 
-the UEFI information for dom0.
+Signed-off-by: Yann Gautier <yann.gautier@foss.st.com>
+---
+ Documentation/devicetree/bindings/mmc/arm,pl18x.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Cheers,
-
-[1] 
-https://lore.kernel.org/xen-devel/9602b019-6c20-cdc7-23f3-9e4f8fd720f6@xen.org/T/#t
-
+diff --git a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+index 47595cb483be..eed54bee7665 100644
+--- a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
++++ b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+@@ -53,6 +53,12 @@ properties:
+         items:
+           - const: arm,pl18x
+           - const: arm,primecell
++      - description: Entry for STMicroelectronics variant of PL18x.
++          This dedicated compatible is used by bootloaders.
++        items:
++          - const: st,stm32-sdmmc2
++          - const: arm,pl18x
++          - const: arm,primecell
+ 
+   clocks:
+     description: One or two clocks, the "apb_pclk" and the "MCLK"
 -- 
-Julien Grall
+2.17.1
+
