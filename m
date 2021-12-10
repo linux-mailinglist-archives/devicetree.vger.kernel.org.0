@@ -2,64 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7E5A46F8FD
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 03:12:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A672546F91B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 03:27:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235806AbhLJCPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 21:15:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57734 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235781AbhLJCPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 21:15:51 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A05D7C061746;
-        Thu,  9 Dec 2021 18:12:17 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5F357B82644;
-        Fri, 10 Dec 2021 02:12:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EE19C004DD;
-        Fri, 10 Dec 2021 02:12:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639102335;
-        bh=0tqoAYcVsMV4yoz2DptTe40PGDGwUzmdYpssOWCmJZ8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=Lc02yxYh8yVztBMSpXcmOQkmurXdIXFIdmhtWNg7IQcoXQf2o7/s7uaQagTirX8Tm
-         Qag65LTxZ/r/9QGSQ6AYnTzuKrN9/fxiKXYj/9sJnueRWEidB65qfYU/mu2jxGQXff
-         Hk2wZPC4sFRSTOfm1YSIqHVuOwFQ7tWHN75hSr06EslVpuwLjDmXizmBt8Lh2gk3LD
-         sL1DGqGoCDkfChN9LKG5TTrCtc3seb3zzfl5d4obtwJJc3xvY0nVLMasqLHqZQnrQJ
-         /KHoRvrEE3bOOL0dTFX6aTkeMo+ALb1paP2xkyI/npf3EI0iWOM75tdp4Swk0lXI3m
-         5q1Ejn5eqNixw==
-Content-Type: text/plain; charset="utf-8"
+        id S235947AbhLJCad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 21:30:33 -0500
+Received: from mail-4317.proton.ch ([185.70.43.17]:51054 "EHLO
+        mail-4317.proton.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235928AbhLJCad (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 21:30:33 -0500
+Date:   Fri, 10 Dec 2021 02:26:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1639103217;
+        bh=mu0sqQvUggygf7jKzEWPGl0UelkYU3w40dJw8wgxBlw=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:From:To:Cc;
+        b=GNF8V+oQyEMMQAWhqMvw0m37ieasw0tmQ/6vl1VeJG9LqdAWQNa2nj6aMZQ205H1X
+         sdyB3eNYCd9kFOy+8NZlDc/u0MQtw9zwvU2NWsqll7bmvWpm9yPgbbNul04+k5uOC+
+         djvMa/6ak9/KlsYwyImgjxiQoOMNhNlX5/pGYgrU=
+To:     caleb@connolly.tech, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     Jami Kettunen <jami.kettunen@somainline.org>,
+        Joel Selvaraj <jo@jsfamily.in>
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: [PATCH v4 0/6] input: Introduce support for SPMI haptics found on Qcom PMICs
+Message-ID: <20211210022639.2779173-1-caleb@connolly.tech>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20211119034613.32489-1-james.lo@mediatek.com>
-References: <20211119034613.32489-1-james.lo@mediatek.com>
-Subject: Re: [PATCH v16 0/4] Add SPMI support for Mediatek SoC IC
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        James Lo <james.lo@mediatek.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-To:     James Lo <james.lo@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 09 Dec 2021 18:12:13 -0800
-User-Agent: alot/0.9.1
-Message-Id: <20211210021215.0EE19C004DD@smtp.kernel.org>
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting James Lo (2021-11-18 19:46:09)
-> This series adds support for new SoC MT6873/MT8192/MT8195 to the spmi dri=
-ver.
-> This series is based on Chun-Jie's patches[1].
->=20
-> [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=3D52=
-1655
+This series introduces a driver for the SPMI haptics hardware block
+found in Qualcomm PMICs. SPMI haptics support LRA (Linear Resonant
+Actuator) style haptics, as well as ERM (Eccentric Rotating Mass).
+It also supports several modes of driving the haptics, e.g. by loading
+the pattern to play into an internal buffer, or using PWM.
 
-This isn't needed though right? I've picked these four patches up into
-spmi-next.
+More information about the hardware can be found here:
+        https://gitlab.com/sdm845-mainline/linux/-/wikis/PMI8998-QPNP-Hapti=
+cs
+
+This driver has been written based on downstream sources as no public
+documentation is available. It includes initial support for LRA haptics
+in buffer mode, this combination seems to be the most common and will
+enable haptics on the OnePlus 6 and 6T, PocoPhone F1, OnePlus 5 and
+several other Qualcomm devices with mainline kernel support.
+
+The driver is implemented using the ff-memless (forcefeedback) input
+framework and makes an attempt to control the strength of vibration relativ=
+e
+to the magnitude set from userspace.
+
+Changes since v3:
+ - Adjust example DTS to avoid creating new warnings in dt_binding_check
+ - Address warnings from kernel test robot.
+
+Changes since v2:
+ - Addressed Rob's comments on dt-bindings (I'm not sure what to do
+   about the pmic compatible?)
+ - Fixed some typos
+
+Changes since v1:
+ - Replace old QPNP naming with SPMI
+ - Address Bjorn's comments on the driver, various style and code cleanups
+ - Address Bjorn's comments on the DT bindings and DTS
+ - Pickup patches from Joel and Jami to enable haptics on the OnePlus 5
+   and Poco F1.
+
+Caleb Connolly (4):
+  dt-bindings: input: add Qualcomm SPMI haptics driver
+  input: add Qualcomm SPMI haptics driver
+  arm64: dts: qcom: pmi8998: introduce spmi haptics
+  arm64: dts: qcom: sdm845-oneplus-common: add haptics
+
+Jami Kettunen (1):
+  arm64: dts: qcom: msm8998-oneplus-common: Enable PMI8998 haptics
+
+Joel Selvaraj (1):
+  arm64: dts: qcom: sdm845-xiaomi-beryllium: add haptics
+
+ .../bindings/input/qcom,spmi-haptics.yaml     | 123 +++
+ .../boot/dts/qcom/msm8998-oneplus-common.dtsi |   6 +
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |  15 +
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  |   6 +
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts |   5 +
+ drivers/input/misc/Kconfig                    |  12 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/qcom-spmi-haptics.c        | 977 ++++++++++++++++++
+ include/dt-bindings/input/qcom,spmi-haptics.h |  32 +
+ 9 files changed, 1177 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/qcom,spmi-hapti=
+cs.yaml
+ create mode 100644 drivers/input/misc/qcom-spmi-haptics.c
+ create mode 100644 include/dt-bindings/input/qcom,spmi-haptics.h
+
+--
+2.34.1
+
+
