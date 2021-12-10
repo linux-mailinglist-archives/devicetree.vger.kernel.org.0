@@ -2,214 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ADE147006C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 13:06:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 573A147007E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 13:16:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240864AbhLJMK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 07:10:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51214 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240860AbhLJMK2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 07:10:28 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E78FCC0617A1
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 04:06:53 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id k4so6140261plx.8
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 04:06:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=3A4XI+OFHkyTdDyIpE0tdpctLpghaRi+j3fzJm/k30s=;
-        b=NxQO28OFAuO1x8qjWF6ClHK13UOKJcSviAZySdHLBXdSYHiauW02iC2EoRwL7haQlC
-         ca+qRFCH80Ilal+g/OQz+DdOnDtPvdE8By0Gz6WT6mw+DbyoAJWYyVX35cr6NEmsx30r
-         92ATxeNcv/eIBmrbrfF1JnKHvHKRYJ+TeUTl164OK1luGH2Yp4YETlFZxLXqxPT3okOK
-         DQJv6d42Jb8Gf9GV2OhWk3/5aVMB06dJPSx8MR+BI1GFMMuba7mpOiDFc9F3utLyiZgE
-         QJwG2Lat6CfcbvWCXyC54RwTQclJic4ufQJNOtTTGZy5/DZvtJjLgyWA1CHN4rG/HI69
-         hw4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3A4XI+OFHkyTdDyIpE0tdpctLpghaRi+j3fzJm/k30s=;
-        b=RJ4fTleVQetQ+Ncy98ou+VL/0EGwj95eqiuJSv2bMmY2F2DXhu41+zcVf8GxcehXl7
-         ltaoWVkc6V9nB9iS6X6VHZqUcXmXwBqjwIiZ13e84RLgUKrfPwOvPAa5WJFLnqQHhoDs
-         iPLHCVeqezgPJh/zPw/n4N1kuYkb1DcmORENHpYofaCG1mGnqySwE9OWVkyKVMUU5PUQ
-         5QUN/Sk9g5t8gkK0kv8bbgS5gi+0L5Mq+N9tlSNy9z+MNWhoi+eJ83kuS/w6ol4ySNDe
-         q/rsx4U34KTwcM4BQPzY/9kZ9ho66CtPMqHINlQT9Tmv7vpmbiavyECu/Kffc2wMvHa7
-         HDjw==
-X-Gm-Message-State: AOAM533En27IaXihAiyQSkHyB8WaG74ZoqvbdWO0rpYmS5Hqsg4lnyBa
-        LZ+c7fpFF/jmCoxpVf7mvdnC
-X-Google-Smtp-Source: ABdhPJx7NRQ9KL4sHfSAmZceTnS+zlwI6FhjUAfWc3FXiSkZtyVwqnhSfrm25oAxMvD0xotqRn+QyQ==
-X-Received: by 2002:a17:902:bcc4:b0:141:bfc4:ada with SMTP id o4-20020a170902bcc400b00141bfc40adamr74670339pls.20.1639138013322;
-        Fri, 10 Dec 2021 04:06:53 -0800 (PST)
-Received: from thinkpad ([202.21.42.75])
-        by smtp.gmail.com with ESMTPSA id j20sm12273440pjl.3.2021.12.10.04.06.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 04:06:52 -0800 (PST)
-Date:   Fri, 10 Dec 2021 17:36:44 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v2 08/10] arm64: dts: qcom: sm8450: add PCIe0 RC device
-Message-ID: <20211210120644.GH1734@thinkpad>
-References: <20211208171442.1327689-1-dmitry.baryshkov@linaro.org>
- <20211208171442.1327689-9-dmitry.baryshkov@linaro.org>
+        id S229829AbhLJMTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 07:19:51 -0500
+Received: from mail-dm6nam10on2048.outbound.protection.outlook.com ([40.107.93.48]:46561
+        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229483AbhLJMTu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Dec 2021 07:19:50 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=crY3l2QmIbG5UzpPapu/BVG8+AKuJP3XDqw7LDAz549bD8GuWRppkIjQGZqGDcaYoETxrpnrYWGrrwjG+kui1DER9j1cXu2vZwAXObslxHDiqv+Z2OL+EeazLMOk8WZnQEJESwVUp8UNKU074KleR/NYAWhLGAcB6zeRKO8e8dA+dfxTtOJpjfVeOcLmUnTDKUdEE80lj72t1auPazwtmsEQLiAcJuSOmsHLZGrso+x90vsjnWAHJJljwL32B3YxgTjrILxJB56gGhAPSIDf8FQZNJ/SlK2ypigHF0djRX7KJmSIo/EZRS3wlZWgBRLZ0TOlMJUQ4lhY2pAjZPcMpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Slt+9fP9OeSpqNTHPmvrHG1E0ydNuIK6LJsqnPx5bv0=;
+ b=WbmnUf6jS8kfs5VK7NWpnUIej34JaZTjU/jT7SE0qlnqb3A1EvgJf5oIUr3UVXT8W/5XvgK3bTiHBMw0QlI4JsLgJi6QenWQntmgpYw2u196OZ3X3w6U5LDVkhizwWTvtTCl0Roo7aZk0lnV4J5PAVnvGdUjkRkv1nZ2ieAxgsSTMXaYedYRBmUO1CMbHAp3dgAbNkye/a8/5wq+RvG4nBgwtjZmdi2WfqoDbZw18eDeZI+e+FL2dOK6gH5Xl2Tavj3vVl1fwRQr97dMKB6qEKk5HMakwKmKB0EX96Umfb6O6QyGEYDI8gmpcUdYIdwZ/Oe13f4FsAfHbJXT+2pELw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=temperror (sender ip
+ is 203.18.50.13) smtp.rcpttodomain=amd.com smtp.mailfrom=nvidia.com;
+ dmarc=temperror action=none header.from=nvidia.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Slt+9fP9OeSpqNTHPmvrHG1E0ydNuIK6LJsqnPx5bv0=;
+ b=d1+ewM/qdKg444doSzK1fDWNDDsTNHVt2+4+PIL5YhBszYxRZdnBF2DrQ2yjADwmPwbquNS8I8VQbqCT2M+BPuqQsEDRxp3bWU9JKjkVg+oXNM77o/4u7IBQLsQBJWlaRGN70jE//b4RKZjDFo17UI2L+o9HWxeHn5OJPdvqCUJEHH7sUt8R+U1qHRXmyl0nB5gACN+f5ZcHXeGa61sv69xtD9SW3ZmQIwyGNmnjQ+rn6BuP30E4CzfsCDQUoHc3mLde/7bn3iIKHgZySoP/XV4/qlcTTT8ugcmYpjTPr9nqQqoAW10FqoNBU8+WkcRivP3us/sFFovcfExA9LFXuQ==
+Received: from BN6PR21CA0024.namprd21.prod.outlook.com (2603:10b6:404:8e::34)
+ by DM5PR12MB1148.namprd12.prod.outlook.com (2603:10b6:3:74::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.21; Fri, 10 Dec
+ 2021 12:16:14 +0000
+Received: from BN8NAM11FT034.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:404:8e:cafe::70) by BN6PR21CA0024.outlook.office365.com
+ (2603:10b6:404:8e::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.7 via Frontend
+ Transport; Fri, 10 Dec 2021 12:16:14 +0000
+X-MS-Exchange-Authentication-Results: spf=temperror (sender IP is
+ 203.18.50.13) smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=temperror action=none header.from=nvidia.com;
+Received-SPF: TempError (protection.outlook.com: error in processing during
+ lookup of nvidia.com: DNS Timeout)
+Received: from mail.nvidia.com (203.18.50.13) by
+ BN8NAM11FT034.mail.protection.outlook.com (10.13.176.139) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4778.13 via Frontend Transport; Fri, 10 Dec 2021 12:16:12 +0000
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HKMAIL102.nvidia.com
+ (10.18.16.11) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 10 Dec
+ 2021 12:16:10 +0000
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 10 Dec
+ 2021 12:16:08 +0000
+Received: from kyarlagadda-linux.nvidia.com (172.20.187.5) by mail.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
+ Transport; Fri, 10 Dec 2021 12:16:05 +0000
+From:   Akhil R <akhilrajeev@nvidia.com>
+To:     <andy.shevchenko@gmail.com>, <christian.koenig@amd.com>,
+        <digetx@gmail.com>, <jonathanh@nvidia.com>, <ldewangan@nvidia.com>,
+        <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <p.zabel@pengutronix.de>,
+        <sumit.semwal@linaro.org>, <thierry.reding@gmail.com>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+CC:     <akhilrajeev@nvidia.com>
+Subject: [PATCH v3] i2c: tegra: use i2c_timings for bus clock freq
+Date:   Fri, 10 Dec 2021 17:45:57 +0530
+Message-ID: <1639138557-1709-1-git-send-email-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211208171442.1327689-9-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a635cb6e-7b4a-4af8-e99d-08d9bbd6db91
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1148:EE_
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1148388F61484F277C4B8913C0719@DM5PR12MB1148.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:513;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: iBhzIT/rx9RhDhdTBc32frW6bIga/9kHrlH1ztWplmWkvPPGI/OaMFob5EgyHj86d/5kQCqe9ZIeJ2ZHdDwJ6PutO5LMoctOHLyOtcnJf9dkBeAqHc5yVujx6H/fWENKkxU6gJA2BBfDSGi3z7Xq83bLfcoZrf2yxh2jxPRbTLxn3oW4my/0qE/iE9tP9aiNcPm5AUBUvVtiFHaEOi445BhsPc+N706NEqWpblbBHG32pgRfOVoNAAVE2FUL7H/e8t9Coph0pQk3bND2QeDlGBrPBeHW0FKdZ1A12hdJefMixc5D0n9h4JCsLSt/7KLqwQv9tG8byefoQjRbVS79xs23EtK8tYrwIEXCLDUxG3jtVKx7USAXS80ljO6ugFHHsDOxRGYvcaO3+R7HquAL6YPERtfmMcySQDDkbw1+YFeaeViqtFceddCoQY6yOVGZJ32qPqVFDmBWxicCw8n64Sp5X4WeoR5KPqHGhaaLAqAMnzX06MgBjOAlz8ruLEqYBmy/+wIRsbO703sF6ZNbY/+RFwaDlt4REmotls0z1rEPR2boc7auGSbiU7pH6KU2TFEtRmh3/odKvFFIo3cOXlPQL0dkZar0ThBItPV9PND1f/GK6j/hF2PAJlwuNnDqheV5ASJJ1glvMwsJIReC7p7rI0RC+QSt+zEDdySyYYzhcXhgc/VyWR3UEzSgvaCSX5S0hgmX5mBzKNwa+Rr7rj0HmrSIovKS7BFxaWB1McaXr3DeKYgKSXmPagoKHTbpvKNbi3FqQPSLLW1umd+FqDj8BRVAreqAra6KZksn8AtqT5k1lnJtzohPL1kXSnBvEO/Pd7H2pmCgSTZRHhUrGGJd8wwmE5vs4frgI/vohHc=
+X-Forefront-Antispam-Report: CIP:203.18.50.13;CTRY:HK;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:hkhybrid02.nvidia.com;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(40470700001)(40460700001)(7416002)(356005)(6666004)(316002)(110136005)(34020700004)(63350400001)(7636003)(186003)(36756003)(2906002)(336012)(508600001)(70586007)(8936002)(86362001)(70206006)(7696005)(26005)(8676002)(82310400004)(83380400001)(921005)(5660300002)(2616005)(4326008)(47076005)(107886003)(426003)(36860700001)(63370400001)(83996005)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2021 12:16:12.5804
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a635cb6e-7b4a-4af8-e99d-08d9bbd6db91
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[203.18.50.13];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT034.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1148
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 08, 2021 at 08:14:40PM +0300, Dmitry Baryshkov wrote:
-> Add device tree node for the first PCIe host found on the Qualcomm
-> SM8450 platform.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8450.dtsi | 101 +++++++++++++++++++++++++++
->  1 file changed, 101 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index a047d8a22897..09087a34a007 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -627,6 +627,84 @@ i2c14: i2c@a98000 {
->  				#size-cells = <0>;
->  				status = "disabled";
->  			};
-> +		];
-> +
-> +		pcie0: pci@1c00000 {
-> +			compatible = "qcom,pcie-sm8450";
-> +			reg = <0 0x01c00000 0 0x3000>,
-> +			      <0 0x60000000 0 0xf1d>,
-> +			      <0 0x60000f20 0 0xa8>,
-> +			      <0 0x60001000 0 0x1000>,
-> +			      <0 0x60100000 0 0x100000>;
-> +			reg-names = "parf", "dbi", "elbi", "atu", "config";
-> +			device_type = "pci";
-> +			linux,pci-domain = <0>;
-> +			bus-range = <0x00 0xff>;
-> +			num-lanes = <1>;
-> +
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +
-> +			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
-> +				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
-> +
-> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "msi";
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 0x7>;
-> +			interrupt-map = <0 0 0 1 &intc 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
-> +					<0 0 0 2 &intc 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
-> +					<0 0 0 3 &intc 0 151 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
-> +					<0 0 0 4 &intc 0 152 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
-> +
-> +			clocks = <&gcc GCC_PCIE_0_PIPE_CLK>,
-> +				 <&gcc GCC_PCIE_0_PIPE_CLK_SRC>,
-> +				 <&pcie0_lane>,
-> +				 <&rpmhcc RPMH_CXO_CLK>,
-> +				 <&gcc GCC_PCIE_0_AUX_CLK>,
-> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
-> +				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
-> +				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
-> +				 <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>,
-> +				 <&gcc GCC_DDRSS_PCIE_SF_TBU_CLK>,
-> +				 <&gcc GCC_AGGRE_NOC_PCIE_0_AXI_CLK>,
-> +				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>;
-> +			clock-names = "pipe",
-> +				      "pipe_mux",
-> +				      "phy_pipe",
-> +				      "ref",
-> +				      "aux",
-> +				      "cfg",
-> +				      "bus_master",
-> +				      "bus_slave",
-> +				      "slave_q2a",
-> +				      "ddrss_sf_tbu",
-> +				      "aggre0",
-> +				      "aggre1";
-> +
-> +			iommus = <&apps_smmu 0x1c00 0x7f>;
-> +			iommu-map = <0x0   &apps_smmu 0x1c00 0x1>,
-> +				    <0x100 &apps_smmu 0x1c01 0x1>;
-> +
-> +			resets = <&gcc GCC_PCIE_0_BCR>;
-> +			reset-names = "pci";
-> +
-> +			power-domains = <&gcc PCIE_0_GDSC>;
-> +			power-domain-names = "gdsc";
-> +
-> +			phys = <&pcie0_lane>;
-> +			phy-names = "pciephy";
-> +
-> +			perst-gpio = <&tlmm 94 GPIO_ACTIVE_LOW>;
-> +			enable-gpio = <&tlmm 96 GPIO_ACTIVE_HIGH>;
+Use i2c_timings struct and corresponding methods to get bus clock frequency
 
-Wondering if this configuration varies between boards. If then, this should be
-moved to board dts. Other than this,
+Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+Suggested-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+---
+ drivers/i2c/busses/i2c-tegra.c | 21 +++++++++------------
+ 1 file changed, 9 insertions(+), 12 deletions(-)
 
-Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+v2->v3: Removed unused variable 'err'.
+v1->v2: Added temp var for i2c_timings struct in function.
 
-Thanks,
-Mani
+diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegra.c
+index a5be8f0..93b61c4 100644
+--- a/drivers/i2c/busses/i2c-tegra.c
++++ b/drivers/i2c/busses/i2c-tegra.c
+@@ -246,7 +246,7 @@ struct tegra_i2c_hw_feature {
+  * @msg_buf: pointer to current message data
+  * @msg_buf_remaining: size of unsent data in the message buffer
+  * @msg_read: indicates that the transfer is a read access
+- * @bus_clk_rate: current I2C bus clock rate
++ * @timings: i2c timings information like bus frequency
+  * @multimaster_mode: indicates that I2C controller is in multi-master mode
+  * @tx_dma_chan: DMA transmit channel
+  * @rx_dma_chan: DMA receive channel
+@@ -273,7 +273,7 @@ struct tegra_i2c_dev {
+ 	unsigned int nclocks;
+ 
+ 	struct clk *div_clk;
+-	u32 bus_clk_rate;
++	struct i2c_timings timings;
+ 
+ 	struct completion msg_complete;
+ 	size_t msg_buf_remaining;
+@@ -610,6 +610,7 @@ static int tegra_i2c_init(struct tegra_i2c_dev *i2c_dev)
+ {
+ 	u32 val, clk_divisor, clk_multiplier, tsu_thd, tlow, thigh, non_hs_mode;
+ 	acpi_handle handle = ACPI_HANDLE(i2c_dev->dev);
++	struct i2c_timings *t = &i2c_dev->timings;
+ 	int err;
+ 
+ 	/*
+@@ -642,14 +643,14 @@ static int tegra_i2c_init(struct tegra_i2c_dev *i2c_dev)
+ 	if (i2c_dev->is_vi)
+ 		tegra_i2c_vi_init(i2c_dev);
+ 
+-	switch (i2c_dev->bus_clk_rate) {
++	switch (t->bus_freq_hz) {
+ 	case I2C_MAX_STANDARD_MODE_FREQ + 1 ... I2C_MAX_FAST_MODE_PLUS_FREQ:
+ 	default:
+ 		tlow = i2c_dev->hw->tlow_fast_fastplus_mode;
+ 		thigh = i2c_dev->hw->thigh_fast_fastplus_mode;
+ 		tsu_thd = i2c_dev->hw->setup_hold_time_fast_fast_plus_mode;
+ 
+-		if (i2c_dev->bus_clk_rate > I2C_MAX_FAST_MODE_FREQ)
++		if (t->bus_freq_hz > I2C_MAX_FAST_MODE_FREQ)
+ 			non_hs_mode = i2c_dev->hw->clk_divisor_fast_plus_mode;
+ 		else
+ 			non_hs_mode = i2c_dev->hw->clk_divisor_fast_mode;
+@@ -685,7 +686,7 @@ static int tegra_i2c_init(struct tegra_i2c_dev *i2c_dev)
+ 	clk_multiplier = (tlow + thigh + 2) * (non_hs_mode + 1);
+ 
+ 	err = clk_set_rate(i2c_dev->div_clk,
+-			   i2c_dev->bus_clk_rate * clk_multiplier);
++			   t->bus_freq_hz * clk_multiplier);
+ 	if (err) {
+ 		dev_err(i2c_dev->dev, "failed to set div-clk rate: %d\n", err);
+ 		return err;
+@@ -724,7 +725,7 @@ static int tegra_i2c_disable_packet_mode(struct tegra_i2c_dev *i2c_dev)
+ 	 * before disabling the controller so that the STOP condition has
+ 	 * been delivered properly.
+ 	 */
+-	udelay(DIV_ROUND_UP(2 * 1000000, i2c_dev->bus_clk_rate));
++	udelay(DIV_ROUND_UP(2 * 1000000, i2c_dev->timings.bus_freq_hz));
+ 
+ 	cnfg = i2c_readl(i2c_dev, I2C_CNFG);
+ 	if (cnfg & I2C_CNFG_PACKET_MODE_EN)
+@@ -1254,7 +1255,7 @@ static int tegra_i2c_xfer_msg(struct tegra_i2c_dev *i2c_dev,
+ 	 * Total bits = 9 bits per byte (including ACK bit) + Start & stop bits
+ 	 */
+ 	xfer_time += DIV_ROUND_CLOSEST(((xfer_size * 9) + 2) * MSEC_PER_SEC,
+-				       i2c_dev->bus_clk_rate);
++				       i2c_dev->timings.bus_freq_hz);
+ 
+ 	int_mask = I2C_INT_NO_ACK | I2C_INT_ARBITRATION_LOST;
+ 	tegra_i2c_unmask_irq(i2c_dev, int_mask);
+@@ -1631,12 +1632,8 @@ static void tegra_i2c_parse_dt(struct tegra_i2c_dev *i2c_dev)
+ {
+ 	struct device_node *np = i2c_dev->dev->of_node;
+ 	bool multi_mode;
+-	int err;
+ 
+-	err = device_property_read_u32(i2c_dev->dev, "clock-frequency",
+-				       &i2c_dev->bus_clk_rate);
+-	if (err)
+-		i2c_dev->bus_clk_rate = I2C_MAX_STANDARD_MODE_FREQ;
++	i2c_parse_fw_timings(i2c_dev->dev, &i2c_dev->timings, true);
+ 
+ 	multi_mode = device_property_read_bool(i2c_dev->dev, "multi-master");
+ 	i2c_dev->multimaster_mode = multi_mode;
+-- 
+2.7.4
 
-> +
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pcie0_default_state>;
-> +
-> +			interconnects = <&pcie_noc MASTER_PCIE_0 &mc_virt SLAVE_EBI1>;
-> +			interconnect-names = "pci";
-> +
-> +			status = "disabled";
->  		};
->  
->  		pcie0_phy: phy@1c06000 {
-> @@ -763,6 +841,29 @@ tlmm: pinctrl@f100000 {
->  			gpio-ranges = <&tlmm 0 0 211>;
->  			wakeup-parent = <&pdc>;
->  
-> +			pcie0_default_state: pcie0-default {
-> +				perst {
-> +					pins = "gpio94";
-> +					function = "gpio";
-> +					drive-strength = <2>;
-> +					bias-pull-down;
-> +				};
-> +
-> +				clkreq {
-> +					pins = "gpio95";
-> +					function = "pcie0_clkreqn";
-> +					drive-strength = <2>;
-> +					bias-pull-up;
-> +				};
-> +
-> +				wake {
-> +					pins = "gpio96";
-> +					function = "gpio";
-> +					drive-strength = <2>;
-> +					bias-pull-up;
-> +				};
-> +			};
-> +
->  			qup_i2c13_default_state: qup-i2c13-default-state {
->  				mux {
->  					pins = "gpio48", "gpio49";
-> -- 
-> 2.33.0
-> 
