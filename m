@@ -2,110 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8834846F8B1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 02:44:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6773146F8C3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 02:47:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233797AbhLJBsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Dec 2021 20:48:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51562 "EHLO
+        id S235458AbhLJBux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Dec 2021 20:50:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233731AbhLJBsX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 20:48:23 -0500
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 533A9C061353
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 17:44:49 -0800 (PST)
-Received: by mail-ot1-x32b.google.com with SMTP id i5-20020a05683033e500b0057a369ac614so8160644otu.10
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 17:44:49 -0800 (PST)
+        with ESMTP id S231731AbhLJBuw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Dec 2021 20:50:52 -0500
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58925C0617A1
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 17:47:18 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso8274543otf.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 17:47:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+eO70K6UpvUWOOZ26eI9byqpsVA1ZqLATKw9Ubqfa08=;
-        b=vwyKOTWHjgLrit+GLm9IJ66Zn1fCOfM1L+YBmfjIKF1WCwaK3dzS3Olklz2j83VtRo
-         T4jlfQ0ubaLPKehFAlrC5ij37ETxxxsBxSQnoBTcj8pr2AENLzTyfqQps4Lke9spO05l
-         xk4vf9rHG9Ijo3AkNslw7pY7KKVDKQ5kmk/XOcky9KW+dCp1njcukQO+fH1g5yqUNVkm
-         eq2GwY8m1SEXsiDwtX55G9M3F0XmWaufzrVVBA9fIbADOXtbBGVaLVD7JUHJhraR9vAY
-         ClB67OR58t4WytNRPFup+KydBuZ0oEjeceswc8C+g4c3wFfNF5RQoLM+yd69ac1wWbi1
-         nugg==
+        bh=SB4uGKWGEZlPId4QacTW46ykEN+JrbNE3sc8enIlhxg=;
+        b=Tx8UqhdZwbSoZNvIHDfHO6iTw8T2hF9nDLgRFB2FT/3XrWJbwRK3TvErDUIXkqMnMp
+         0M5hyy/3ix6UwWdpsoEHgxBXy6ROwOEgmgUzm7CBJjwKiHWyaBy1FkI9Ihk4/sDqVzPB
+         x56NW3wkBnI+bS+ZaaPIk+8Lpe9rsaPzW5We87/7weSvN4JLKuybiqGsBBySACmO4fZu
+         BJzzwpMVCMErv/1xFh5SeA8Tsn9SwbNuuUp/Mfy1ROYoLRKln9GbBILjL++ttKpYfTxf
+         qAORx6HcCgzre/k2Kd5yhdsMXmzyCmBY5nhJUCzt1HbFb2EE33UVJ2LrrIfRYJo96gN6
+         D+Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+eO70K6UpvUWOOZ26eI9byqpsVA1ZqLATKw9Ubqfa08=;
-        b=Hza7qTkQ1hNQfETTNJSxL7t9NM9xRy3j2zcPQmwVYylm8vC6eOWOdQGPyCI2K3R7x5
-         7YnPpVcdUXiyhcK84LkOPdUBRm6soXTCVWV8MmxESdi8zrVoxVZeBBQLswVED9XF22cf
-         CYBdUe8KYQelKjZV2HguGYlGrJqZLVGBjEK69PkxSZj2gAwrbuzO8tG08BpFW201QoTo
-         aTHcR4tOEkTdOE5JCw+ZE0SySVVzcqBS8I/UJwgQjKPOv4nl7DNh73Rq8R5s63OeZ+5z
-         FFSibLiNedPy2Zjuy9Y8nrhK0YaSAiEkOL2YGd/MwOPpG+NQ5oy4/Ogspsd9vu1mGvNW
-         OJhw==
-X-Gm-Message-State: AOAM530iWs3Xu3JLTYVmlGGzOJs+fn4Jkde5IMRTRoT7+acU9vZgyeUr
-        nEntbsl2uWIgxxDuZiePSCMdAMK+i869Xwq5DyHacw==
-X-Google-Smtp-Source: ABdhPJwGGn/Iig24LM6iz+DDamWnJx6uVjLFPjLZrobVVHzAlLnv6hIu3SxbsvwG+AZSo3Ul47rGkcksDTGd/v0hlu4=
-X-Received: by 2002:a9d:74d0:: with SMTP id a16mr8654576otl.237.1639100688280;
- Thu, 09 Dec 2021 17:44:48 -0800 (PST)
+        bh=SB4uGKWGEZlPId4QacTW46ykEN+JrbNE3sc8enIlhxg=;
+        b=cJJa1YNqPAgopkgBD8c/PoUvfGZN+ShmA4vKDbskJGV4chX23t+E0FHZW+Vh2QOZt2
+         Z2gTAn3LNILRfIz/8yO0aMsdwxoAH3RnHeVLrWHDSBnjbhsx9UYS9UMQwNsOUbOdKO6g
+         +ol8UIiNqltfrmpWKGDU5NWtMkUrOdhwKr1rEt3Ed43TviA2YcXU4cww9TNmTk+JuYtA
+         xHKBCyLLUiuZ3XaWH469PzgyoCsw0+a3tLZV4mHi+zUXgtEKPRdQRMdjrQdiXkgAJ15l
+         DxYRtT/7ATc/0l9pi+BTsuMEi/XSf68XSdnXSNzmb8JeDrmiQnvp8kghOFTCLZq940h7
+         HldA==
+X-Gm-Message-State: AOAM532QB/MuLuGkayH96tfbvdb1MVv7BUNVXsuYCaAdtV1dQ4a8RTGz
+        TTDPCoXFm2EcIddWaKLfWPWDzUUrWtjMoL1/H2GUmw==
+X-Google-Smtp-Source: ABdhPJxv8IPgVTfY/Q+BKd6CxueTQ+0Us7H8rC65W8oBGtJ/enzhxxKOJo5nVWiuPmyY+HCgpF15ztyzXeiupqfFYjs=
+X-Received: by 2002:a9d:ed6:: with SMTP id 80mr8952047otj.35.1639100837724;
+ Thu, 09 Dec 2021 17:47:17 -0800 (PST)
 MIME-Version: 1.0
-References: <20211208003727.3596577-1-f.fainelli@gmail.com> <20211208003727.3596577-6-f.fainelli@gmail.com>
-In-Reply-To: <20211208003727.3596577-6-f.fainelli@gmail.com>
+References: <20211208173047.558108-1-thierry.reding@gmail.com>
+In-Reply-To: <20211208173047.558108-1-thierry.reding@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 10 Dec 2021 02:44:36 +0100
-Message-ID: <CACRpkdYmCT9imMFY_0ZHebAYj40D3m48X+DZnjPUGgAqHEpZqg@mail.gmail.com>
-Subject: Re: [PATCH v3 05/15] dt-bindings: gpio: Convert Broadcom STB GPIO to YAML
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     devicetree@vger.kernel.org, Gregory Fong <gregory.0xf0@gmail.com>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+Date:   Fri, 10 Dec 2021 02:47:06 +0100
+Message-ID: <CACRpkda6sLwmPWTmGBX=5x-2LFK9H0NUiSGXj_bqP0OWqGTL0g@mail.gmail.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: gpio: tegra: Convert to json-schema
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Markus Mayer <mmayer@broadcom.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Al Cooper <alcooperx@gmail.com>,
-        Doug Berger <opendmb@gmail.com>,
-        "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" 
-        <linux-ide@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:MULTIMEDIA CARD (MMC), SECURE DIGITAL (SD) AND..." 
-        <linux-mmc@vger.kernel.org>,
-        "open list:PWM SUBSYSTEM" <linux-pwm@vger.kernel.org>,
-        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
-        <linux-crypto@vger.kernel.org>,
-        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
-        <linux-rtc@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>
+        Jon Hunter <jonathanh@nvidia.com>,
+        Prathamesh Shete <pshete@nvidia.com>,
+        linux-gpio@vger.kernel.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 8, 2021 at 1:37 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
+On Wed, Dec 8, 2021 at 6:30 PM Thierry Reding <thierry.reding@gmail.com> wrote:
 
-> Convert the Broadcom STB GPIO Device Tree binding to YAML to help with
-> validation.
+> From: Thierry Reding <treding@nvidia.com>
 >
-> Acked-by: Gregory Fong <gregory.0xf0@gmail.com>
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> Convert the NVIDIA Tegra GPIO controller device tree bindings from
+> free-form text format to json-schema.
+>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 
-Looks good to me.
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
