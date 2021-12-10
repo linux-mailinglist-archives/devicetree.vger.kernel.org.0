@@ -2,103 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73666470DE6
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 23:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84E8B470E38
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 23:50:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243721AbhLJWfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 17:35:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57598 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243549AbhLJWfG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 17:35:06 -0500
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A214C061353
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 14:31:31 -0800 (PST)
-Received: by mail-io1-xd2c.google.com with SMTP id c3so12035852iob.6
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 14:31:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=CgSHoGMd3MZ0+RwfUhTHIWklywVMelQpZkd8mqp/LWA=;
-        b=e/JZEyXrKeEX9SR7YbajTX+JIlRKoyFcw5w6VW20SGiQT9UomhQ4hygaYNTaU4Bn01
-         8jkk0VcLBji3os506FJaVgwZgwj1N5OTLELoMWFtOCmdV1p/3vIWe9StYftFRvleNBVR
-         JgOtgzxPgk06gSQijatDKzxM2Z1y9E0wL1MwVw/IYiEeBdmpl8sZWi4fTEZzIp33r3MQ
-         0aXJHS/klf7yMjqp6LONi1tpQuxmjiq9OKWEKeFgLJqWIZllL2VvUP+ortPwC8KV2RYa
-         Pr6OJVg0oMChDBpG1wJ9T4l74ObuanDiExVOjlNC/9UeVZXYVSFBO5ZIqQM1yc3WbCXX
-         rdzw==
+        id S237686AbhLJWyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 17:54:10 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:36508 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235394AbhLJWyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 17:54:10 -0500
+Received: by mail-ot1-f46.google.com with SMTP id w6-20020a9d77c6000000b0055e804fa524so11133133otl.3;
+        Fri, 10 Dec 2021 14:50:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CgSHoGMd3MZ0+RwfUhTHIWklywVMelQpZkd8mqp/LWA=;
-        b=Yi1V7ND6u/K9JVZko7yGf1W8Ypr3pqvxHeh1c2t/fk341eK6tZaLbeSRdMPwWNjOGF
-         R5948KiayrhPWNms0zmzfqODRiorCmdpGtUrqwCLUT0Kwu5PgEJLmr8Yqf2lOe39OwQB
-         ixaHiqeWxo7IG/0teZarolw26kmFeCVrasJFmqD3Vgmxx4wuP1BDuZ9AGjWIizpXcJmv
-         DZ2VKw4TicbpRskpOWF6HVsy/0uybP7rkyUkne2Ly0T4eDy6EhHcHgOuPZYMM+7ymsxP
-         5vBtqZPkKiOMEPDjqCT1+ip0VTWOUdsM+MWOZB+BnDTtNFBaRVIoP/seGzctp7mfPXwE
-         gT8g==
-X-Gm-Message-State: AOAM530IGjbMWgkxHNT0hBB5aJz7AllA2zqZV8WbnSap68uF8u/P4I59
-        06P9zmYFvhK/He9WLgKUCwPhIA==
-X-Google-Smtp-Source: ABdhPJxJ2HPs8UlogyZ2Gs+icjZDUujFP0Gufzb4kOzlxXhOdNOSdtIYeCNaL34gHEkxdg3928jdGQ==
-X-Received: by 2002:a05:6638:130f:: with SMTP id r15mr20409986jad.19.1639175490311;
-        Fri, 10 Dec 2021 14:31:30 -0800 (PST)
-Received: from presto.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id q4sm1279879ilv.56.2021.12.10.14.31.28
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=Zv2SJEG7dxMT51xWLzKdjvzE+4GfXvYq6wZ2VXGzv9A=;
+        b=uo7fcPL/+Zasn78MQZZt5zjyGkN2y0vcj4IWg7KsPEpnidUVbmJegRh60roARgq/D7
+         XWKWYcX97C3Njq37S+QpaYA3ZBc3V42k9NjazLeHwM1uCMltFmekfdWqC0JTK2XNeElR
+         b8JGnb6zj41e0H5wzrDL/gXloeSybxPXr7vkj5Gv5S9bSydD2kveQbOIiFslDnUidEBZ
+         0GnMrQ23OhCrvzghenlHh2566a5j7rap4Qt9/YXIHDRkRImD7qYBU6BEGFeutE+RTkfY
+         pzu9VqniVSiaBg+jPHIrBXaEd133a4z9Zm61P+Tp7zX8cRZ86qOM1UxZ3Z2FBYisEOdd
+         0Klw==
+X-Gm-Message-State: AOAM530nLYpmri04JyCl+vbRqBURpdsXbl4jxNXtm1PCmGPooflgWFu+
+        r17PgeTe5vOKxtkHf1UbRhmTuzGsUQ==
+X-Google-Smtp-Source: ABdhPJx0YTX39U6qxWVSVn8sYrAZymigT2bu+Oc2vgoThaoj7OWiZr9KcK5fFUw1763UCfk6BZQNsw==
+X-Received: by 2002:a05:6830:1d68:: with SMTP id l8mr13679456oti.21.1639176634128;
+        Fri, 10 Dec 2021 14:50:34 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id j20sm998396oig.52.2021.12.10.14.50.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 14:31:29 -0800 (PST)
-From:   Alex Elder <elder@linaro.org>
-To:     davem@davemloft.net, kuba@kernel.org
-Cc:     david@ixit.cz, manivannan.sadhasivam@linaro.org,
-        jponduru@codeaurora.org, avuyyuru@codeaurora.org,
-        bjorn.andersson@linaro.org, agross@kernel.org, robh+dt@kernel.org,
-        cpratapa@codeaurora.org, subashab@codeaurora.org, mka@chromium.org,
-        evgreen@chromium.org, elder@kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH net-next v2 2/2] net: ipa: fix IPA v4.5 interconnect data
-Date:   Fri, 10 Dec 2021 16:31:23 -0600
-Message-Id: <20211210223123.98586-3-elder@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211210223123.98586-1-elder@linaro.org>
-References: <20211210223123.98586-1-elder@linaro.org>
+        Fri, 10 Dec 2021 14:50:33 -0800 (PST)
+Received: (nullmailer pid 2077795 invoked by uid 1000);
+        Fri, 10 Dec 2021 22:50:32 -0000
+Date:   Fri, 10 Dec 2021 16:50:32 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: [GIT PULL] Devicetree fixes for v5.16, take 2
+Message-ID: <YbPZuCq+xIc6tqaZ@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the definition of the IPA interconnects for IPA v4.5 so
-the path between IPA and system memory is represented by a single
-"memory" interconnect.
+Linus,
 
-Tested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Alex Elder <elder@linaro.org>
----
- drivers/net/ipa/ipa_data-v4.5.c | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
+Please pull a few more DT fixes.
 
-diff --git a/drivers/net/ipa/ipa_data-v4.5.c b/drivers/net/ipa/ipa_data-v4.5.c
-index e62ab9c3ac672..2da2c4194f2e6 100644
---- a/drivers/net/ipa/ipa_data-v4.5.c
-+++ b/drivers/net/ipa/ipa_data-v4.5.c
-@@ -420,15 +420,10 @@ static const struct ipa_mem_data ipa_mem_data = {
- /* Interconnect rates are in 1000 byte/second units */
- static const struct ipa_interconnect_data ipa_interconnect_data[] = {
- 	{
--		.name			= "memory-a",
-+		.name			= "memory",
- 		.peak_bandwidth		= 600000,	/* 600 MBps */
- 		.average_bandwidth	= 150000,	/* 150 MBps */
- 	},
--	{
--		.name			= "memory-b",
--		.peak_bandwidth		= 1804000,	/* 1.804 GBps */
--		.average_bandwidth	= 150000,	/* 150 MBps */
--	},
- 	/* Average rate is unused for the next two interconnects */
- 	{
- 		.name			= "imem",
--- 
-2.32.0
+Rob
 
+
+The following changes since commit fa55b7dcdc43c1aa1ba12bca9d2dd4318c2a0dbf:
+
+  Linux 5.16-rc1 (2021-11-14 13:56:52 -0800)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.16-2
+
+for you to fetch changes up to 75e895343d5a2fcbdf4cb3d31ab7492bd65925f0:
+
+  Revert "kbuild: Enable DT schema checks for %.dtb targets" (2021-12-08 15:41:19 -0600)
+
+----------------------------------------------------------------
+Devicetree fixes for v5.16-rc, take 2:
+
+- Revert schema checks on %.dtb targets. This was problematic for some
+  external build tools.
+
+- A few DT binding example fixes
+
+- Add back dropped 'enet-phy-lane-no-swap' Ethernet PHY property
+
+- Drop erroneous if/then schema in nxp,imx7-mipi-csi2
+
+- Add a quirk to fix some interrupt controllers use of 'interrupt-map'
+
+----------------------------------------------------------------
+Alexander Stein (1):
+      dt-bindings: net: Reintroduce PHY no lane swap binding
+
+Geert Uytterhoeven (2):
+      dt-bindings: iio: adc: exynos-adc: Fix node name in example
+      dt-bindings: input: gpio-keys: Fix interrupts in example
+
+Marc Zyngier (1):
+      of/irq: Add a quirk for controllers with their own definition of interrupt-map
+
+Rob Herring (2):
+      dt-bindings: media: nxp,imx7-mipi-csi2: Drop bad if/then schema
+      Revert "kbuild: Enable DT schema checks for %.dtb targets"
+
+Thierry Reding (1):
+      dt-bindings: bq25980: Fixup the example
+
+ .../bindings/iio/adc/samsung,exynos-adc.yaml       |  2 +-
+ .../devicetree/bindings/input/gpio-keys.yaml       |  2 +-
+ .../bindings/media/nxp,imx7-mipi-csi2.yaml         | 14 ++---------
+ .../devicetree/bindings/net/ethernet-phy.yaml      |  8 +++++++
+ .../devicetree/bindings/power/supply/bq25980.yaml  |  2 +-
+ Makefile                                           | 10 ++++----
+ drivers/of/irq.c                                   | 27 ++++++++++++++++++++--
+ 7 files changed, 43 insertions(+), 22 deletions(-)
