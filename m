@@ -2,180 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61F2B47026E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 15:07:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F59F47029E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 15:20:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234276AbhLJOLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 09:11:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50920 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232310AbhLJOLa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 09:11:30 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31429C061746;
-        Fri, 10 Dec 2021 06:07:55 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id r26so13356691oiw.5;
-        Fri, 10 Dec 2021 06:07:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=efi5YPskIPAQItI1z28rAsydjETkO5P0a3fdiWWyGao=;
-        b=DoDy0slgWAFCGlcqZSiJyt/Ig64ICzJGK5VkEsmphbnwYq3viqEW+F3IqoxobH0xiw
-         fdgpwg3rvTtwF2b/eE10P/HEBm2H9r7eeNkyg7pIgPTC0rAJAyLMOlk6NaDSe1Hr+QFb
-         1h0ILvQFWz8tZdm1UYjzFOnvznER2ViNvS4eOvQYiAWhaJxDi7ZHNip8ndBYTQtfgwN7
-         EGS0H9qhoZdmjz7k9yXEizGJHgsfXP8T4nIGb9obUNAYJRMkLTSjX/HriR4yhdnyR3QV
-         8PdryMLQBTGc6wqYFXMqNgZZSd/d1QRq+0oGiSH6N2aBxUZuBwKgAWo9V6d2+AADgAs9
-         Bp0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=efi5YPskIPAQItI1z28rAsydjETkO5P0a3fdiWWyGao=;
-        b=iulEHxQ4MvfkxWOsWXTCgFJPjSBY7dBbvLd/aDAGq/Qezw9RD8l1qlRQZq4kdnQbbT
-         blfz8btL1Y3EnWwEomBBsJxG2028DFYpTb3oZcih6HuNjt+Sm5hXo9kYTwxv/Alj63BH
-         /2Hl4e6ThragLZy70QlKW4ptgMX8x3cTIqWb8nVSXEEKw5QY6vGsj64iF4oN+YEchg/g
-         t6FsYRLPh2t1TQnayuy9IJiyz65KaTadxug8A3Cqz1WMZQmUlOjFthdfwvqFJYrIPc4m
-         DDqLiXWdl/kuGZ1BuZqDOlWzow83zd8vDEPHPCjeT2qcnvlp41cT8VPMq9tZSD91nFcG
-         DARg==
-X-Gm-Message-State: AOAM533kZCvsypeHK48aL3vyfyrI5IDtTiVA+hW8SUBRRF/TIZz9jzxf
-        DWXDfoVmMwdLbHVUfGdgW4AVm2vXzaTPIbIZFrz5nk4q
-X-Google-Smtp-Source: ABdhPJzQw8YMdNJFDSjbgmMRNZ+J5xIRiWQHpxMdISfSUi8FEdOFC5Wodk980GUGwT6w6RirYGv7y8K4T4SRf27i/VM=
-X-Received: by 2002:aca:2207:: with SMTP id b7mr12746627oic.24.1639145273996;
- Fri, 10 Dec 2021 06:07:53 -0800 (PST)
+        id S238899AbhLJOXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 09:23:53 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:43002 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232148AbhLJOXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 09:23:53 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BCE1FB8281A;
+        Fri, 10 Dec 2021 14:20:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A69CC00446;
+        Fri, 10 Dec 2021 14:20:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639146015;
+        bh=OfD1bwhUCRhdGG4qwjkqG1Z4nuGfYEuNGjW+M53Aq2o=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=S87YIK4gn3loT9LgN9GoEZnbH/gV2l5Nno7kMs3MSMcjvlMqe0BjqQsgP7cjA1mwQ
+         CU7AY4EUd5DEwfVITdXZNE0/UfWFulNhbfR7QQhrsKJxaob3DXOpDAOY+F5tCyVo1z
+         6PrlrL0jH+TCN+ElrokfPrkbbUbCYKy35HOaBHZC4hDbXg2bfQfItsmQboJ4W1vF+a
+         5gbn53DVQvKeyJF26U0C2IDGHAUPbQ45iWBLc2BNYeX5w0a+JUblwOL3VgA1gVaPjb
+         fBZ/r5+dsAVXqX2+XCkcAJpRNcRXdNjxNiV1T0c8aE+wzhWQ9mHZTVRhBdTupRaZEA
+         cPJpuZuvJ3lQA==
+Received: by mail-ed1-f50.google.com with SMTP id r11so29953103edd.9;
+        Fri, 10 Dec 2021 06:20:15 -0800 (PST)
+X-Gm-Message-State: AOAM532tyZvNl4H6Uz61O4JK4+AA/aoYtW08+1bKTsQp417lr0BwBjxB
+        7j78NSDFHACX6o1Z0Cm0WvEZPro6utlUNUWZZw==
+X-Google-Smtp-Source: ABdhPJwlX3Y0JajtJITVeG8yQcVy5/Ih1tDAFptuNFnlrG9NxFmfWWCyqf8KrMFgKkEjVaCJ4q9nYjRbaJZ+3MIn8uE=
+X-Received: by 2002:a17:906:fcbb:: with SMTP id qw27mr23796249ejb.320.1639146010345;
+ Fri, 10 Dec 2021 06:20:10 -0800 (PST)
 MIME-Version: 1.0
-References: <1638850665-9474-1-git-send-email-wellslutw@gmail.com>
- <1638850665-9474-2-git-send-email-wellslutw@gmail.com> <CACRpkdaBV81OCwHuFCObwv_t55B9ANHaF5jEc=oorZdjpey0Ug@mail.gmail.com>
-In-Reply-To: <CACRpkdaBV81OCwHuFCObwv_t55B9ANHaF5jEc=oorZdjpey0Ug@mail.gmail.com>
-From:   =?UTF-8?B?5ZGC6Iqz6aiw?= <wellslutw@gmail.com>
-Date:   Fri, 10 Dec 2021 22:07:43 +0800
-Message-ID: <CAFnkrskptpWwhKzBegUH8--sJJe5MJpJEnGSwQ2t1aj8i1CR2g@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: Add dt-bindings for Sunplus SP7021
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Wells Lu <wells.lu@sunplus.com>,
-        Dvorkin Dmitry <dvorkin@tibbo.com>
+References: <20211209001056.29774-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <d290850bf95f4bdf0c329f278db458c7@kernel.org> <CA+V-a8vUCXQa38NmYu9znakcq4A=Uedyn8w5+hXQ_WKf58oHRQ@mail.gmail.com>
+ <875yry1316.wl-maz@kernel.org> <CA+V-a8vNUhVBFNf-M6s1BmXbdCpdyJOx2g=t=QJf1jQzUA3xow@mail.gmail.com>
+ <CAL_Jsq+H54oX8GCHcwPVaUC3brjJa+5+OTU21D-3d7QUqM+jcg@mail.gmail.com> <CA+V-a8sifb8zpMB=VwBn6qXob=3JRQdMTh1PWD-M7SquP9S9+g@mail.gmail.com>
+In-Reply-To: <CA+V-a8sifb8zpMB=VwBn6qXob=3JRQdMTh1PWD-M7SquP9S9+g@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 10 Dec 2021 08:19:58 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+jyqbhA1jpgZ+yTwWGvCMRu9VmgoDq8MDM9SMqJ-XSBw@mail.gmail.com>
+Message-ID: <CAL_Jsq+jyqbhA1jpgZ+yTwWGvCMRu9VmgoDq8MDM9SMqJ-XSBw@mail.gmail.com>
+Subject: Re: [RFC PATCH] of: platform: Skip mapping of interrupts in of_device_alloc()
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Re-send this email because it was rejected due to the wrong email format!
-
-Hi Linus,
-
-Thank you very much for your review!
-
-Please see my answers below:
-
-> > Add dt-bindings header files and documentation for Sunplus SP7021 SoC.
+On Thu, Dec 9, 2021 at 7:16 PM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+>
+> On Thu, Dec 9, 2021 at 8:34 PM Rob Herring <robh+dt@kernel.org> wrote:
 > >
-> > Signed-off-by: Wells Lu <wellslutw@gmail.com>
+> > On Thu, Dec 9, 2021 at 5:35 AM Lad, Prabhakar
+> > <prabhakar.csengg@gmail.com> wrote:
+> > >
+> > > Hi Rob and Marc,
+> > >
+> > > On Thu, Dec 9, 2021 at 10:33 AM Marc Zyngier <maz@kernel.org> wrote:
+> > > >
+> > > > On Thu, 09 Dec 2021 10:00:44 +0000,
+> > > > "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> > > > >
+> > > > > > The root of the issue is that all the resource allocation is done
+> > > > > > upfront, way before we even have a driver that could potentially
+> > > > > > deal with this device. This is a potential waste of resource, and
+> > > > > > it triggers the issue you noticed.
+> > > > > >
+> > > > > > If you delay the resource allocation until there is an actual
+> > > > > > match with a driver, you could have a per-driver flag telling you
+> > > > > > whether the IRQ allocation should be performed before the probe()
+> > > > > > function is called.
+> > > > > >
+> > > > > As suggested by Rob, if we switch the drivers to use
+> > > > > platform_get_resource(pdev, IORESOURCE_IRQ, n) call with
+> > > > > platform_get_irq() this code should go away and with this switch the
+> > > > > resource allocation will happen demand. Is this approach OK?
+> > > >
+> > > > If you get rid of of_irq_to_resource_table() altogether, then yes,
+> > > > this has a fighting chance to work.
+> > > >
+> > > Yes, switching to platform_get_irq() will eventually cause
+> > > of_irq_to_resource_table() to go away.
+> > >
+> > > On second thought, instead of touching all the drivers, if we update
+> > > platform_get_resource/platform_get_resource_byname to internally call
+> > > platform_get_irq() internally if it's a IORESOURCE_IRQ resource. Does
+> > > that sound good or should I just get on changing all the drivers to
+> > > use platform_get_irq() instead?
+> >
+> > Except that platform_get_irq() already internally calls
+> > platform_get_resource()... I think changing the drivers is the right
+> > way. Happy to do some if you want to divide it up.
+> >
+> Thank you, I think I'll manage.
 >
-> > +patternProperties:
-> > +  '-pins$':
-> > +    if:
-> > +      type: object
-> > +    then:
-> > +      description: |
-> > +        A pinctrl node should contain at least one subnodes representing the
-> > +        pins or function-pins group available on the machine. Each subnode
-> > +        will list the pins it needs, and how they should be configured.
-> > +
-> > +        Pinctrl node's client devices use subnodes for desired pin
-> > +        configuration. Client device subnodes use below standard properties.
->
-> I don't understand this if type object stuff here, Rob, help...
+> > Using coccigrep, I think I've found all the places using
+> > platform_device.resource directly. A large swath are Sparc drivers
+> > which don't matter. The few that do matter I've prepared patches for
+> > here[1]. Most of what I found were DT based drivers that copy
+> > resources to a child platform device. That case will not work with
+> > platform_get_irq() callers either unless the child device has it's DT
+> > node set to the parent node which is the change I made.
+> >
+> Thank you for getting this done. Do you want me to include those along
+> with my conversion patches?
 
-I'll remove "if type object" stuff next patch since
-pinctrl node has no properties with "-pins" suffix.
-except sub nodes.
+No, I'll send them out.
 
+> Any reason why we dont care for Sparc drivers?
 
-> > +      properties:
-> > +        pins:
-> > +          description: |
-> > +            Define pins which are used by pinctrl node's client device.
-> (...)
-> > +          $ref: /schemas/types.yaml#/definitions/uint32-array
->
-> Why can this not $ref the standard binings in
-> Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml
->
-> See for example
-> Documentation/devicetree/bindings/pinctrl/actions,s500-pinctrl.yaml
-> for a nice example of how to use this.
-> Yours,
-> Linus Walleij
-The pins' types and control of SP7021 are a bit complex.
-Let me explain:
+Sparc does its own thing and doesn't use drivers/of/platform.c to
+create devices. I'm sure we could modernize a bunch of them, but
+that's not a blocker.
 
-SP7021 has 99 digital GPIO pins which are numbered from
-GPIO 0 to 98. All are multiplexed with some special function
-pins. There are 3 types special function pins:
-
-(1) function-pins:
-    For example, if control-field SPI_FLASH_SEL is set to 1,
-    GPIO 83, 84, 86 and 87 will be pins of SPI-NOR flash.
-    If it is set to 2, GPIO 76, 78, 79 and 81 will be pins of
-    SPI-NOR flash.
-
-    For example 2, if control-bit UA0_SEL is set to 1,
-    GPIO 88 and 89 will be TX and RX pins of UART_0
-    (UART channel 0).
-
-    For example 3, if control-bit EMMC_SEL is set to 1,
-    GPIO 72, 73, 74, 75, 76, 77, 78, 79, 80, 81 will be
-    pins of an eMMC device.
-
-    The driver defines properties "function" and "groups"
-    to select this kind of pins-function.
-
-(2) fully pin-mux pins:
-    GPIO 8 to 71 are 'fully pin-mux' pins.
-    Pins of peripherals of SP7021 (ex: UART_1, UART_2,
-    UART_3, UART_4, I2C_0, I2C_1, ..., SPI_0, SPI_1, ...
-    GPIO_INT0, GPIO_INT1, .., RMII_of_Ethernet, and etc.)
-    can be set to any pins of fully pin-mux pins.
-
-    EX1 (UART channel 1):
-    If control-field UA1_TX_SEL is set to 3, TX pin of
-    UART_1 will be routed to GPIO 10 (3 - 1 + 8 = 10)
-    If control-field UA1_RX_SEL is set to 4, RX pin of
-    UART_1 will be routed to GPIO 11 (4 - 1 + 8 = 11)
-    If control-field UA1_RTS_SEL is set to 5, RTS pin of
-    UART_1 will be routed to GPIO 12 (5 - 1 + 8 = 12)
-    If control-field UA1_CTS_SEL is set to 6, CTS pin of
-    UART_1 will be routed to GPIO 13 (6 - 1 + 8 = 13)
-
-    EX2 (I2C channel 0):
-    If control-field I2C0_CLK_SEL is set to 20, CLK pin
-    of I2C_0 will be routed to GPIO 27 (20 - 1 + 8 = 27)
-    If control-field I2C0_DATA_SEL is set to 21, DATA pin
-    of I2C_0 will be routed to GPIO 28 (21 - 1 + 9 = 28)
-
-    Totally, SP7021 has 120 peripheral pins. The
-    peripheral pins can be routed to any of 64  'fully
-     pin-mux' pins. So total combinations are:
-           120 x 64 = 7680
-     This is why we cannot enumerate all combinations.
-
-(3) I/O processor pins
-    SP7021 has a built-in I/O processor.
-    Any GPIO pins (GPIO 0 to 98) can be set to pins of
-    I/O processor.
-
-Property 'pins' is defined as uint32 array. Each item
-defines a pin as below:
-Bit 32~24 defines GPIO number. Its range is 0 ~ 98.
-Bit 23~16 defines types: digital GPIO pins (3), IO processor pins (2)
-or fully pin-mux pins (1)
-Bit 15~8 defines pins of peripherals which are defined in
-'include/dt-binging/pinctrl/sppctl.h'.
-Bit 7~0 defines types or initial-state of digital GPIO pins.
-
-
-Best regards,
-Wells
+Rob
