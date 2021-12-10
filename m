@@ -2,109 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7698F4703C1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 16:23:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 218284703FA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 16:36:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242805AbhLJP0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 10:26:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40372 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239300AbhLJP0o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 10:26:44 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3A19C061746
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 07:23:08 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id e3so31675618edu.4
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 07:23:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CaWHeGP0DuwfkbKXUdYIJmX8F+biVrGWME72+JdzhqU=;
-        b=MgLv3YrA9NlwpapqjGWsPaT057Lv4NTkMge5x9aYIzLu/EWTNZl9PQJ3i9HcLMOx6B
-         B9IguP3K+gzGh6KfKbYSO8oxGj7MjYa00frl0BCd7lnk7OkZoOhbnGk36UU3KzWuB3In
-         ZXMjkVs8K5nE10yvrBZiB/8HDzocgX7Too6WWjeeDpdcoaRlxj/sgAghwl/0IvTuGbeh
-         fAFYqtmGZZZiSOSvOT+oAtgE4HrF1eec+d4mRi7xCG+BmEL2kk0ZRTS2b7waN3H1I0k/
-         3ly7VwemPgrnfSjfL1C507DwBcuWSj3OL9qXJWKAX4/7OLRZbrfLo/DTY1QGnfnvK/nI
-         rVzg==
+        id S242921AbhLJPkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 10:40:01 -0500
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:45735 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242917AbhLJPkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 10:40:00 -0500
+Received: by mail-oi1-f170.google.com with SMTP id 7so13652468oip.12;
+        Fri, 10 Dec 2021 07:36:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CaWHeGP0DuwfkbKXUdYIJmX8F+biVrGWME72+JdzhqU=;
-        b=JN/Lzi2R6onYnKXrGtWoe170tGMrknuA/YMGONH2HW1tAGS7h8NBPM8HeK5qzfTiMU
-         RWrEBDzzyX2QNui87dqN1EsnB2R0G604fv9ev+n2X59zJt8bI2aNB7yKcA4cPdJoZuVL
-         kLcAKvp7SZlfe2o/SIJYBwmneFjK64YmLVWz41PJg9XKS+0I3pjvSrMX2ZYLmXZVsCq1
-         d31RdK4GT2QbK1h6lG+d2S1cY6OAfoTsbbDcyYOecqXMGiVmCTI33hHBT+Y1aFacxsvH
-         FQqpFP6KCak+lmmQvamkx4qZ00Oa09gFYp7tbu/CaWXOHkwvNYh6n2NVfV/YRExZRTKB
-         cpbQ==
-X-Gm-Message-State: AOAM531gR0/dD/vj5WAg6NuSclZSzsfJdxggzHZJnhYSelpSCeBIcbZn
-        XWJRT5dCfpHyX6EZ1Jv5D5LPAQbHDINL9dd011s/jw==
-X-Google-Smtp-Source: ABdhPJzwyJoQo5zS+XCmbkGk9eGVm61YMp0R/nIUhpMaAI0dyZLbksovDhkrc3SVhNC+OXjC0RSzQ3wiLRH8X7JDAvI=
-X-Received: by 2002:a05:6402:2805:: with SMTP id h5mr38690255ede.267.1639149780836;
- Fri, 10 Dec 2021 07:23:00 -0800 (PST)
-MIME-Version: 1.0
-References: <20211208003727.3596577-1-f.fainelli@gmail.com> <20211208003727.3596577-6-f.fainelli@gmail.com>
-In-Reply-To: <20211208003727.3596577-6-f.fainelli@gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 10 Dec 2021 16:22:50 +0100
-Message-ID: <CAMRc=MdmP5UCi2SJq9Ybhe9evUmM_PhpSUfzRF24yYUiRG+MNg@mail.gmail.com>
-Subject: Re: [PATCH v3 05/15] dt-bindings: gpio: Convert Broadcom STB GPIO to YAML
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        Gregory Fong <gregory.0xf0@gmail.com>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kCCPtwBcvbN1Xz9t9SiQk1iylp71eIv8+Pkz9dWfX/o=;
+        b=5mcXrRK5K7EY3Qd0xMxPM4LbDUs+KPXzUnaHP0IrH0eKVl8hAV58DmC890Sh/BeurZ
+         VHPPzVoVC56KM3UXeKiA5METAiP6f3Lp43xDyqG8BwFNUaxYwZSqgTgIdotwjiOtDfdL
+         PV65XAOpxGuk4U2tWUDaA8qg4qc/gp7TbTqmJazHu54UcGpHALlhTcmsRBX1nwv7R6Mj
+         cjakRp/Wu/2kJFG68dhfr3gLyWe+J4nB7ytjPFhSjyyg9EM1L9BAZoPrrlGazQNOJNVF
+         QHRTCKUmxGJ2dAKhP+V4HvyqRMh7pSXmyffsCghBD3WE5eOJj7ebisgGDWfQkzDJUkni
+         PQ9w==
+X-Gm-Message-State: AOAM531VKQi/7EfBqlfFCxLh1QqNlGkBftkibRxa73yn2GXOb4FK+t0r
+        TRu6TBmVU/wrvMytVNzA9A==
+X-Google-Smtp-Source: ABdhPJy6coMM+bLPVOCY2Fuho8xxQorQekIDB7d7Gxhw3bYyY/I6wGSBwaXEbWSrUY0EBeP0ei+R3w==
+X-Received: by 2002:a05:6808:10ce:: with SMTP id s14mr12444004ois.137.1639150585255;
+        Fri, 10 Dec 2021 07:36:25 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id r23sm588332ooj.37.2021.12.10.07.36.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Dec 2021 07:36:24 -0800 (PST)
+Received: (nullmailer pid 1396912 invoked by uid 1000);
+        Fri, 10 Dec 2021 15:36:23 -0000
+Date:   Fri, 10 Dec 2021 09:36:23 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-media <linux-media@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Chris Healy <cphealy@gmail.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Markus Mayer <mmayer@broadcom.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Al Cooper <alcooperx@gmail.com>,
-        Doug Berger <opendmb@gmail.com>,
-        "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" 
-        <linux-ide@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:MULTIMEDIA CARD (MMC), SECURE DIGITAL (SD) AND..." 
-        <linux-mmc@vger.kernel.org>,
-        "open list:PWM SUBSYSTEM" <linux-pwm@vger.kernel.org>,
-        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
-        <linux-crypto@vger.kernel.org>,
-        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
-        <linux-rtc@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Lucas Stach <l.stach@pengutronix.de>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Subject: Re: [PATCH 04/10] dt-bindings: media: nxp,imx8mq-vpu: Support split
+ G1 and G2 nodes with vpu-blk-ctrl
+Message-ID: <YbNz94G3vwbHCMdB@robh.at.kernel.org>
+References: <20211208225030.2018923-1-aford173@gmail.com>
+ <20211208225030.2018923-5-aford173@gmail.com>
+ <YbHZvysazqYeZ8h3@eze-laptop>
+ <CAHCN7xKrHSSsqS9DNL1tMH1Ctpz16FsSgcVbSHXzUWF98v738Q@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHCN7xKrHSSsqS9DNL1tMH1Ctpz16FsSgcVbSHXzUWF98v738Q@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 8, 2021 at 1:37 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
->
-> Convert the Broadcom STB GPIO Device Tree binding to YAML to help with
-> validation.
->
-> Acked-by: Gregory Fong <gregory.0xf0@gmail.com>
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-> ---
+On Thu, Dec 09, 2021 at 05:36:04AM -0600, Adam Ford wrote:
+> On Thu, Dec 9, 2021 at 4:26 AM Ezequiel Garcia
+> <ezequiel@vanguardiasur.com.ar> wrote:
+> >
+> > Hi,
+> >
+> > Thanks for the patch.
+> >
+> > On Wed, Dec 08, 2021 at 04:50:23PM -0600, Adam Ford wrote:
+> > > The G1 and G2 are separate decoder blocks that are enabled by the
+> > > vpu-blk-ctrl power-domain controller, which now has a proper driver.
+> > > Update the bindings to support separate nodes for the G1 and G2
+> > > decoders using the proper driver or the older unified node with
+> > > the legacy controls.
+> > >
+> > > To be compatible with older DT the driver, mark certain items as
+> > > deprecated and retain the backwards compatible example.
+> > >
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > ---
+> > >  .../bindings/media/nxp,imx8mq-vpu.yaml        | 83 ++++++++++++++-----
+> > >  1 file changed, 64 insertions(+), 19 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
+> > > index 762be3f96ce9..eeb7bd6281f9 100644
+> > > --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
+> > > @@ -15,29 +15,39 @@ description:
+> > >
+> > >  properties:
+> > >    compatible:
+> > > -    const: nxp,imx8mq-vpu
+> > > +    oneOf:
+> > > +      - const: nxp,imx8mq-vpu
+> > > +        deprecated: true
+> > > +      - const: nxp,imx8mq-vpu-g1
+> > > +      - const: nxp,imx8mq-vpu-g2
+> > >
+> > >    reg:
+> > > +    minItems: 1
+> > >      maxItems: 3
+> >
+> > Is it really useful to keep the deprecated binding nxp,imx8mq-vpu
+> > as something supported by the binding file?
+> 
+> Since I was told that the driver needed to be backwards compatible, i
+> wanted to make sure that any attempts to build the old device tree
+> would not fail
 
-Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
+I'm not convinced changing the binding at all is correct. 'The driver 
+structure is changing and I want the binding to align with it' is not a 
+reason. Are G1 and G2 actually separate, independent blocks where we 
+could have 1 or both of them? And what about other platforms using this 
+block?
+
+Even if the driver handles the old binding, a new dtb with an old kernel 
+is broken. It's up to the platform to care or not, but you have to 
+highlight that.
+
+
+> > In other words, can we drop the deprecated binding from this file,
+> > while keeping the support in the driver for legacy device-trees?
+> 
+> I was trying to represent both the old driver binding and the new one
+> at the same time.  I thought that's what I was told to do.
+
+I don't care so much if we have a schema for old binding. I'd rather 
+have warnings if the binding has not been updated. Eventually I want to 
+be able to test for compatibility by testing DTs with different schema 
+versions. We've got to get to 0 warnings first though...
+
+Rob
