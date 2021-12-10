@@ -2,150 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4589046FBEA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 08:39:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B830E46FC18
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 08:53:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230216AbhLJHnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 02:43:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45208 "EHLO
+        id S235770AbhLJH5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 02:57:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230138AbhLJHnP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 02:43:15 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E20EC061746
-        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 23:39:40 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id v15so12572332ljc.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 23:39:40 -0800 (PST)
+        with ESMTP id S235706AbhLJH5S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 02:57:18 -0500
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4812C0617A2
+        for <devicetree@vger.kernel.org>; Thu,  9 Dec 2021 23:53:43 -0800 (PST)
+Received: by mail-pg1-x536.google.com with SMTP id r138so7343704pgr.13
+        for <devicetree@vger.kernel.org>; Thu, 09 Dec 2021 23:53:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=AA2QRu1j+KXwSFiRDZh+BE+5TYK9vAtNOlEYRWlHjwQ=;
-        b=iLB0zxWOhbsp62cnauOqtvZ6GSyBPZbQExfccv/4o2moPwIprc7RSQwzcYV99OUe/N
-         Sesf3cT7VeUmkRc1MOsvC01BWcRAzKKl3EykUatzSdj+qASemVSPwTuDLTvGdJDlcjAW
-         G99wRC6nzM5tZ7ekoY1UXFyzrtBJ8SShlocWWIxh2IJi5RX5GAMB1bciPutc0M8kGieA
-         5zT/+0pl21B6Tl0/vR7uuBdTAzGxGq4PbsNRPcCt3V9YgXByhTKJNNhSEmFHeUDff323
-         XRgMk8CWMaga4RStZxIr2aPkjWJz5cBmL2HMm4ZwGQXbS9ROS7vFs885+Xqq2OcjKgE5
-         tyrg==
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=mJmmV17V4GqEpcKpliLXYPaRRnl952JuoJAtDoU5wX8=;
+        b=KpGsh35qG074zspucC5/tttr2xImfhgK6xeclO/jIK+uh8oGcuMlU0gctYClhQsyR6
+         RHkQne0c7wtceo51mXJZoVZhv55fcYG2K5cXhK51LJc5GBELhcCkkIVftmGwuE3TAG/4
+         nWxmgi66cLT6ngZ18NHZLTg9N8Hn7Jtj9ShR8YLPSivpRzpNAHnpymDR1SpdnPGbl/4+
+         mYlh5RrAnebcAYHdqGU7kZwCuA4pdlb1+fbpK0hLBzdnlp/w89dI/sNq/9YtJ4tkvksL
+         PXHvjva3lYtxFm3lL4vBlpS+SPzyG7VCDqR8k19wrbo3aIUkmgz70YUhaGnwCPxwMyf9
+         Yjvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=AA2QRu1j+KXwSFiRDZh+BE+5TYK9vAtNOlEYRWlHjwQ=;
-        b=DixohUw0cvi7VJtlKD9Iayp0YKkZ/af8XPWPCQXhPixVQlLC2dIlr4CfB+yreIQOSd
-         Kkay7B0NX80rZJriT/KO6yvXfBV8mJuA28t4xutKRlPngZ3xD9xuJYtelR8IjFVw7MfV
-         jhcrZ6lWmBaVVxdbunTqsdqSCvdGR2GePfK7OS573LE5P/sGQYEsJ+GSYdZwXlE7R7a7
-         GxWeGmeeieIMVLFkpYSIaE/NPi0y7AHX7DJSE/DrcHns63DNZNGHRKYtzfxSpyzn9fXF
-         4io/0aOtcFn34hXJo60ZTJ6ICTJ8l9BTYKqysq5rAlynvvh4tp1/QxX8580aBlZQ6yP5
-         JyPA==
-X-Gm-Message-State: AOAM531xIPEzDAnYtkFsvy24hcVwJ5s0lg4lFD7DxlI7hYn5yczG0mHy
-        eYs3rSvmY9bQwyVAqDvbim8=
-X-Google-Smtp-Source: ABdhPJw4Cy9i8/DIU7BY3H4BhSgH0WotzDqMUJWR7YNJ6RC4lYCVTNqnNLql4LM3f328MuMQfFIELQ==
-X-Received: by 2002:a2e:9ed6:: with SMTP id h22mr11106621ljk.410.1639121978673;
-        Thu, 09 Dec 2021 23:39:38 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id v2sm229254ljv.6.2021.12.09.23.39.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Dec 2021 23:39:38 -0800 (PST)
-Message-ID: <cc83723a-cf88-66bc-9ab9-101355f3801f@gmail.com>
-Date:   Fri, 10 Dec 2021 08:39:37 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mJmmV17V4GqEpcKpliLXYPaRRnl952JuoJAtDoU5wX8=;
+        b=z47Sj+CTRK//NYK7onpUpHh+BdJx3BeAPv/Agr2JzdO4rfXna4n1KBzZgDtna45KfE
+         lqKhDpC0g+DIshzb14FTSEXVhk3Mke0cxoVJ/R1GBT4xV/Ksd0zfzqsYqxtSNdEq/gZJ
+         YYizYYPJu9GOZhT0iSUkj5VQ7Z9E420nGWqXCytIXBL0BmA0OYWHXtuq0B+x9kAXXdwB
+         GNyB4Let+vlgOn0VfWQV9QJCh80VrhPb9d7XwhMQDmoN+urNNFREjaKuu34J3ofuRNzw
+         eUecGvBgxcTibCRiCpNa+pMSfZlI6DmEvEOEf+Aeg+9O0gHTytwTKNmEJ46MbIKUx35r
+         Y1sw==
+X-Gm-Message-State: AOAM530PAO7xVHgtx9/09x1VsJDM5plxYQVviMTI3wxoxUhNXveKk4x1
+        +WIGimMWxygjklDu+MJEtEoCBxPRBtaiOw==
+X-Google-Smtp-Source: ABdhPJyFZ5NC0bEPoezW7x/sYUWkU2IvA/4QqqzZpR7AeY1ioHFOCiUytzlpI/kl0W13hFp9IqqMiw==
+X-Received: by 2002:a63:d354:: with SMTP id u20mr38051850pgi.366.1639122822857;
+        Thu, 09 Dec 2021 23:53:42 -0800 (PST)
+Received: from google.com ([2401:fa00:1:10:7fdb:7edf:3c09:a8eb])
+        by smtp.gmail.com with ESMTPSA id m6sm1446947pfh.87.2021.12.09.23.53.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Dec 2021 23:53:42 -0800 (PST)
+Date:   Fri, 10 Dec 2021 15:53:38 +0800
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, nancy.lin@mediatek.com,
+        singo.chang@mediatek.com
+Subject: Re: [PATCH] mailbox: add control_by_sw for mt8195
+Message-ID: <YbMHgkG/MwKNu0v1@google.com>
+References: <20211210061138.9943-1-jason-jh.lin@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Add USB GPIO and missing LEDs on
- Netgear R6300v2
-To:     Lisa Hill <f11o1iomh3dmt141n@icloud.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-References: <74E33696-D05A-4009-8C40-927A4DBDD4EF@icloud.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <74E33696-D05A-4009-8C40-927A4DBDD4EF@icloud.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211210061138.9943-1-jason-jh.lin@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10.12.2021 07:53, Lisa Hill wrote:
-> Set GPIO controlling power for both USB ports properly and add two WAN LEDs and a USB LED missing for the Netgear R6300v2.
+On Fri, Dec 10, 2021 at 02:11:38PM +0800, jason-jh.lin wrote:
+> To make sure the GCE request signal to SPM is not trigger by
+> other HW modules and cause suspend premature wake.
 > 
-> Signed-off-by: Lisa Hill <f11o1iomh3dmt141n@icloud.com>
-
-Nice work!
-
-One more comment on sending patches: please configure your e-mail client
-to send text only (text/plain) without extra HTML version (text/html).
-
-If you can't configure your e-mail easily you can also try
-"git send-email" command line tool.
-
-See:
-https://www.kernel.org/doc/html/v5.15/process/submitting-patches.html#no-mime-no-links-no-compression-no-attachments-just-plain-text
-https://www.kernel.org/doc/html/v5.15/process/email-clients.html
-
-Also see comments below.
-
-
-> ---
->   .../arm/boot/dts/bcm4708-netgear-r6300-v2.dts | 27 ++++++++++++++++---
->   1 file changed, 24 insertions(+), 3 deletions(-)
+> Set 0x7 (the bit 0~2 as 1) to GCE_GCTL_VALUE, to configure the
+> request signal control by SW and release the request to SPM.
 > 
-> diff --git a/arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dts b/arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dts
-> index 4c60eda296d973..5810c95ab239ae 100644
-> --- a/arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dts
-> +++ b/arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dts
-> @@ -34,20 +34,33 @@
->   			linux,default-trigger = "default-on";
->   		};
->   
-> -		power0 {
-> +		power-green {
->   			label = "bcm53xx:green:power";
->   			gpios = <&chipcommon 2 GPIO_ACTIVE_LOW>;
-> +			linux,default-trigger = "default-on";
->   		};
->   
-> -		power1 {
-> +		power-amber {
->   			label = "bcm53xx:amber:power";
->   			gpios = <&chipcommon 3 GPIO_ACTIVE_LOW>;
-> -			linux,default-trigger = "default-on";
->   		};
->   
->   		usb {
->   			label = "bcm53xx:blue:usb";
->   			gpios = <&chipcommon 8 GPIO_ACTIVE_LOW>;
-> +			trigger-sources = <&ohci_port1>, <&ehci_port1>, <&xhci_port1>;
-> +			linux,default-trigger = "usbport";
-> +		};
-> +		
+> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
 
-No tabs in empty separator line please.
-
-
-> +		wan-green {
-> +			label = "bcm53xx:green:wan";
-> +			gpios = <&chipcommon 10 GPIO_ACTIVE_LOW>;
-> +			linux,default-trigger = "default-on";
-
-I think it's a rather bad idea to blindly set WAN LED on. It should be
-up to operating system to decide under what conditions turn it on.
-I think you should drop that linux,default-trigger.
-
-
-> +		};
-> +		
-
-No tabs in empty separator line please.
-
-> +		wan-amber {
-> +			label = "bcm53xx:amber:wan";
-> +			gpios = <&chipcommon 10 GPIO_ACTIVE_HIGH>;
->   		};
-
-It's unlikely both WAN LEDs (green & amber) are controlled by the same
-GPIO (10). Please verify that.
+Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
