@@ -2,169 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AB444704F1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 16:50:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B163947050A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Dec 2021 16:58:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234694AbhLJPyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 10:54:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46602 "EHLO
+        id S235853AbhLJQCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Dec 2021 11:02:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235843AbhLJPx6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 10:53:58 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52C2BC061A32;
-        Fri, 10 Dec 2021 07:50:23 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id c6-20020a05600c0ac600b0033c3aedd30aso6945584wmr.5;
-        Fri, 10 Dec 2021 07:50:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ODdzhhl8ZdFMrrK88abDusryGLbUIj0Lh4fOWPeWSw8=;
-        b=UCKM5bzxlPxFnJ3zWFXVphdgBxbCZqAN/l+8nsDHLrWoy2oNoiPnvkmo2wz+MuxLnW
-         WAcjVYytWMiYwOOmSJqovuzLx6kxJz+tj+g0jmIMJd6P5o3uep45cYp81kqkWnanQbyd
-         0CnK+Rbelqvs1WFLcKxLsqGI+77Ps6UXm11ghMiomm9fU+2jAgKjZsf9dp8aPA+F9PBY
-         JS83V+OSbMWeoWwsEtQ/26l7w1HX6IGyByVb3F1lOcyxHBTWqW/N61Op3cdPYLA+479y
-         sAojwaK3IHO9OD2dCOP9eZyNOiHbWTX8OKz9X4aDmw0h2787aG0p07CS5rPa9crKABP6
-         rFIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ODdzhhl8ZdFMrrK88abDusryGLbUIj0Lh4fOWPeWSw8=;
-        b=HMvR51grFe/tuejWAm8IrOxSgLYak2NOwcSpmtN5lFCxeUSsJiQHQAUEG9pi487n2X
-         XX2hahtmTVbxv9dyX7Li5RrGsTMobLN96R25x7MeuhNBRkiG8NIMXTlbfdJWO+p80YMr
-         xYfIe8IyN4fCE3bDXh0vqGqkyPF3yB3yO3NwRnqN4UA0Wwdd93ccsSCNuGQY2cnZxLEf
-         rVquZv2PAqbs9EkLyU/IftUc4Oi0R24y6mVhaoQOM/rNMSz0DcFA1/y0PEawLaGg/UWT
-         cUJz2wUtr021YAVWME/caHoOO6FJrXhhhKVDrmYcjXzLqk+x3CYEvQ0bhBZTnHOdNtYI
-         j0Ig==
-X-Gm-Message-State: AOAM532EvDj5FFp4CMj7hi0g+/6uNyAnOMALxHbQ7ADndEAP4uIPW0lu
-        0vjdvVxC3Sy0SiveM+p7G9Q=
-X-Google-Smtp-Source: ABdhPJwn8W7fYBHhMNf2ILi5nDjJiMbQppURBXn8/SyhkIy2O6pZw9xqlOBrICoPquz1+mvhTka/zw==
-X-Received: by 2002:a05:600c:4f03:: with SMTP id l3mr17707480wmq.47.1639151421878;
-        Fri, 10 Dec 2021 07:50:21 -0800 (PST)
-Received: from orome ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id g16sm4096240wmq.20.2021.12.10.07.50.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Dec 2021 07:50:20 -0800 (PST)
-Date:   Fri, 10 Dec 2021 16:50:17 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        David Heidelberg <david@ixit.cz>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Anton Bambura <jenneron@protonmail.com>,
-        Antoni Aloy Torrens <aaloytorrens@gmail.com>,
-        Nikola Milosavljevic <mnidza@outlook.com>,
-        Ion Agorria <ion@agorria.com>,
-        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        Ihor Didenko <tailormoon@rambler.ru>,
-        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
-        Jasper Korten <jja2000@gmail.com>,
-        Thomas Graichen <thomas.graichen@gmail.com>,
-        Stefan Eichenberger <stefan.eichenberger@toradex.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 06/24] ARM: tegra: Add common device-tree base for
- Tegra30 ASUS Transformers
-Message-ID: <YbN3OektEKoHY3s1@orome>
-References: <20211208173609.4064-1-digetx@gmail.com>
- <20211208173609.4064-7-digetx@gmail.com>
+        with ESMTP id S238089AbhLJQCA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 11:02:00 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF96C061746
+        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 07:58:25 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1mviHl-00088l-3t; Fri, 10 Dec 2021 16:58:13 +0100
+Message-ID: <c88b7a90f7a3bf94fc0cbb9a6f967ce769d5c03b.camel@pengutronix.de>
+Subject: Re: [PATCH 04/10] dt-bindings: media: nxp,imx8mq-vpu: Support split
+ G1 and G2 nodes with vpu-blk-ctrl
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>, Adam Ford <aford173@gmail.com>
+Cc:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-media <linux-media@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Chris Healy <cphealy@gmail.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Date:   Fri, 10 Dec 2021 16:58:10 +0100
+In-Reply-To: <YbNz94G3vwbHCMdB@robh.at.kernel.org>
+References: <20211208225030.2018923-1-aford173@gmail.com>
+         <20211208225030.2018923-5-aford173@gmail.com> <YbHZvysazqYeZ8h3@eze-laptop>
+         <CAHCN7xKrHSSsqS9DNL1tMH1Ctpz16FsSgcVbSHXzUWF98v738Q@mail.gmail.com>
+         <YbNz94G3vwbHCMdB@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="SxYMGIsuJmaT2LMM"
-Content-Disposition: inline
-In-Reply-To: <20211208173609.4064-7-digetx@gmail.com>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Am Freitag, dem 10.12.2021 um 09:36 -0600 schrieb Rob Herring:
+> On Thu, Dec 09, 2021 at 05:36:04AM -0600, Adam Ford wrote:
+> > On Thu, Dec 9, 2021 at 4:26 AM Ezequiel Garcia
+> > <ezequiel@vanguardiasur.com.ar> wrote:
+> > > 
+> > > Hi,
+> > > 
+> > > Thanks for the patch.
+> > > 
+> > > On Wed, Dec 08, 2021 at 04:50:23PM -0600, Adam Ford wrote:
+> > > > The G1 and G2 are separate decoder blocks that are enabled by the
+> > > > vpu-blk-ctrl power-domain controller, which now has a proper driver.
+> > > > Update the bindings to support separate nodes for the G1 and G2
+> > > > decoders using the proper driver or the older unified node with
+> > > > the legacy controls.
+> > > > 
+> > > > To be compatible with older DT the driver, mark certain items as
+> > > > deprecated and retain the backwards compatible example.
+> > > > 
+> > > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > > ---
+> > > >  .../bindings/media/nxp,imx8mq-vpu.yaml        | 83 ++++++++++++++-----
+> > > >  1 file changed, 64 insertions(+), 19 deletions(-)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
+> > > > index 762be3f96ce9..eeb7bd6281f9 100644
+> > > > --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
+> > > > +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
+> > > > @@ -15,29 +15,39 @@ description:
+> > > > 
+> > > >  properties:
+> > > >    compatible:
+> > > > -    const: nxp,imx8mq-vpu
+> > > > +    oneOf:
+> > > > +      - const: nxp,imx8mq-vpu
+> > > > +        deprecated: true
+> > > > +      - const: nxp,imx8mq-vpu-g1
+> > > > +      - const: nxp,imx8mq-vpu-g2
+> > > > 
+> > > >    reg:
+> > > > +    minItems: 1
+> > > >      maxItems: 3
+> > > 
+> > > Is it really useful to keep the deprecated binding nxp,imx8mq-vpu
+> > > as something supported by the binding file?
+> > 
+> > Since I was told that the driver needed to be backwards compatible, i
+> > wanted to make sure that any attempts to build the old device tree
+> > would not fail
+> 
+> I'm not convinced changing the binding at all is correct. 'The driver 
+> structure is changing and I want the binding to align with it' is not a 
+> reason. Are G1 and G2 actually separate, independent blocks where we 
+> could have 1 or both of them? And what about other platforms using this 
+> block?
 
---SxYMGIsuJmaT2LMM
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes, they are totally independent video decoder peripherals, handling
+different codecs. While I'm not aware that there is a SKU that only
+uses one of them, there is a provision in the fuses to disable either
+one of the VPU peripherals, so they clearly can work independently.
 
-On Wed, Dec 08, 2021 at 08:35:51PM +0300, Dmitry Osipenko wrote:
-> From: Svyatoslav Ryhel <clamor95@gmail.com>
->=20
-> Add common DTSI for Tegra30 ASUS Transformers. It will be used by multiple
-> device-trees of ASUS devices. The common part initially was born out of
-> the ASUS TF300T tablet's device-tree that was created by Micha=C5=82 Miro=
-s=C5=82aw.
-> It was heavily reworked and improved by Svyatoslav Ryhel, Maxim Schwalm,
-> Ion Agorria et al.
->=20
-> [digetx@gmail.com: factored out common part into separate patch and wrote=
- commit message]
-> Co-developed-by: Ion Agorria <ion@agorria.com>
-> Signed-off-by: Ion Agorria <ion@agorria.com>
-> Co-developed-by: Maxim Schwalm <maxim.schwalm@gmail.com>
-> Signed-off-by: Maxim Schwalm <maxim.schwalm@gmail.com>
-> Co-developed-by: Micha=C5=82 Miros=C5=82aw <mirq-linux@rere.qmqm.pl>
-> Signed-off-by: Micha=C5=82 Miros=C5=82aw <mirq-linux@rere.qmqm.pl>
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  .../dts/tegra30-asus-transformer-common.dtsi  | 1729 +++++++++++++++++
->  1 file changed, 1729 insertions(+)
->  create mode 100644 arch/arm/boot/dts/tegra30-asus-transformer-common.dtsi
->=20
-> diff --git a/arch/arm/boot/dts/tegra30-asus-transformer-common.dtsi b/arc=
-h/arm/boot/dts/tegra30-asus-transformer-common.dtsi
-> new file mode 100644
-> index 000000000000..be77212dd8c7
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/tegra30-asus-transformer-common.dtsi
-> @@ -0,0 +1,1729 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include <dt-bindings/input/gpio-keys.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/thermal/thermal.h>
-> +
-> +#include "tegra30.dtsi"
-> +#include "tegra30-cpu-opp.dtsi"
-> +#include "tegra30-cpu-opp-microvolt.dtsi"
-> +
-> +/ {
-> +	chassis-type =3D "convertible";
-> +
-> +	aliases {
-> +		mmc0 =3D &sdmmc4;	/* eMMC */
+Smashing them together in one DT node was a mistake IMO. Both VPUs do
+not share more than a common power-domain and use the same AMBA domain
+bridge to hook into to SoC NoC. On the i.MX8M Mini we have a similar
+VPU subsystem, but with nested power domains, so G1, G2 and the new H1
+encoder on this chip can even be powered-gated individually.
 
-Looks like a tab snuck in there... otherwise this also has some nodes
-sorted in the wrong order.
+I agree that the commit message should point out that new DT + old
+kernel is not a supported configuration. It isn't optimal, but IMHO a
+small price to pay for the ability to handle all the i.MX8M* family VPU
+subsystems in the same way with a proper blk-ctrl driver for the common
+clock and reset block and the VPUs being independent peripherals.
 
-[...]
-> +	pad-keys {
+> 
+> Even if the driver handles the old binding, a new dtb with an old kernel 
+> is broken. It's up to the platform to care or not, but you have to 
+> highlight that.
+> 
+> 
+> > > In other words, can we drop the deprecated binding from this file,
+> > > while keeping the support in the driver for legacy device-trees?
+> > 
+> > I was trying to represent both the old driver binding and the new one
+> > at the same time.  I thought that's what I was told to do.
+> 
+> I don't care so much if we have a schema for old binding. I'd rather 
+> have warnings if the binding has not been updated. Eventually I want to 
+> be able to test for compatibility by testing DTs with different schema 
+> versions. We've got to get to 0 warnings first though...
 
-Any specific reason why this is called pad-keys? We call it gpio-keys
-everywhere else.
+I'm in favor of dropping the old binding from the schema. New DTs
+should clearly use the new binding and old DTs shouldn't change
+anymore, so validation is less useful there.
 
-Thierry
+Regards,
+Lucas
 
---SxYMGIsuJmaT2LMM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGzdzgACgkQ3SOs138+
-s6Gy4Q//bskcxKccjBg6l0+Dg1tNy7cS+Zewx8+Q2m5+tAN8oea3chH8mWGp/utb
-XU3F0G8j7y75D+/v4KQVkFRI6OXN1owDxy6ClqFNKkPcXg4o6yBWzmny5HRGgLJI
-Ep4rMo6V7vV5cSdOfEHer/LEQKPDZE9x2itahoABxZYUUV6HAkNTES4RCNuqWLoD
-rt8JQ407o2c463lLozb/6xRj8VyJFYc/YRstsehXVSBxY5zdee4okLIOjGHbJoi0
-SaWej8nb0z5z/TFZqw19xf2urgU2McaO9UZNrpGEfajYBU2yLog5G7JMFqc/7mtB
-O5l1mMV5R93pRb/WfDFCc5bhbpkCkrg6MQODpvdcNkyFZsVg8OloPPbOz/BeUT44
-HZxoxs7HZ/JKy5S91YIsRLIkKpWUejv9SKdzXwfnW035Kc7JpT7pdmq9HjvE6xQ5
-CnO8KNGuH2H5UsAh0WswC1xBzIAhjUvRrt6iKz+DcVpZWnwyiQpdAUzlSDkhEsqd
-P6upWNO3Dmb0alXdsIkDj4zkGZJVgexhh37FdXJEsVCqjKquF+ETev9Jrrc+b50F
-IaHjNSy91rqymMkJYHxZ+VRRcMtoUFnI+TO+6rivjv4jqu+seQwGeQ9+xLpZKFVF
-R8yxGH3jurk9AIi4Hc3la/O3hgyRFCLGHx7/Xi04g+y/mppOUrI=
-=y1qL
------END PGP SIGNATURE-----
-
---SxYMGIsuJmaT2LMM--
