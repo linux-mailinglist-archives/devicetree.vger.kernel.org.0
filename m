@@ -2,156 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50185471122
-	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 04:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 933064711AF
+	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 06:20:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244456AbhLKDOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Dec 2021 22:14:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35552 "EHLO
+        id S229513AbhLKFXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Dec 2021 00:23:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244451AbhLKDOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Dec 2021 22:14:47 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7C96C061746
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 19:11:11 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id m24so9592223pgn.7
-        for <devicetree@vger.kernel.org>; Fri, 10 Dec 2021 19:11:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=wZPVLhTmfjbvLXy8wFUxjggNBQQIUKMzW/yUT1AkbIg=;
-        b=MsYzCgMk4JLhLMLV7WvCd6xB1q8NhaATEzsou9pc+5yIw8jz16Pojr5PkCg+GNQZwH
-         AUKsuvTFZdLNvJ5v5Tbp8QslJvhTIYkHENo+gv+UNGu6IPk6BCEK0nEvE/iYG/+x1+sG
-         9Gf+85gnPTKrexYtcSS1JoIiLgXRB/HVZ0z6QmDpzQmF+VTLE5l3UCpWic0HatC6vqsE
-         oHJdQ2exIMqZGYV3cp0D+xO2hKRQLTY/aIvLQ4DfSg/ID5T5eo7cbougTC4vRHXLdFMM
-         vzFHrhGhFVI3u46UKk0kGJeS+vzk2qYvfhoDc5FpCZ72e5LX+JBa6JcUYXdHCSdU1WyJ
-         KYqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=wZPVLhTmfjbvLXy8wFUxjggNBQQIUKMzW/yUT1AkbIg=;
-        b=BejAKu5yMjClBwSbUHznVxzfQyeo6kU1BTsL0SGL0n5eJKgSm1ETVn7lFH/HZDGAkY
-         6eAD7P3uUwqeiYQJcaBQci/Nj9MwQA4W9cOVvsELDlhcSX+sM2aCt4khK0Ttk1kO7Z1j
-         NEAN1UPoGR+asgj2SW0Dq9ZUg/vJcybTfRvci4M9mcWaxYGjbSWJgpi0r/ZImIXDWj6w
-         leR2TQe/OwpVqRQl7siQJ3nWg6GTWrOXb3SJILaysyJAGv1ttq2NZwJJK06KmMamP4Lc
-         vYwdQW87C/YP8/+UxlE5J7R2nEkBlPlcARyfCEZC9urLXizHslkqsjhLMi7VFRqBEzvu
-         zZVA==
-X-Gm-Message-State: AOAM533uHpcr9R0khcO+4P8bDUBKBSwCR4y8zlCEEgpfyYgxfL/YHuED
-        Kl+7C9p27j1bE0gkMWXQrEp/rPeB1PlI
-X-Google-Smtp-Source: ABdhPJzfchh3tDRiN4hj1vD/tbB0nD8iMxo/XxSFswJDLeGypxG5uepeX4JiFWmvYZpdUOFfDLT6kA==
-X-Received: by 2002:a05:6a00:b49:b0:49f:c8e0:51ff with SMTP id p9-20020a056a000b4900b0049fc8e051ffmr21021033pfo.36.1639192271182;
-        Fri, 10 Dec 2021 19:11:11 -0800 (PST)
-Received: from workstation ([202.21.42.75])
-        by smtp.gmail.com with ESMTPSA id m15sm3876838pgd.44.2021.12.10.19.11.07
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 10 Dec 2021 19:11:10 -0800 (PST)
-Date:   Sat, 11 Dec 2021 08:41:06 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v2 05/10] PCI: qcom: Add ddrss_sf_tbu flag
-Message-ID: <20211211031106.GB21304@workstation>
-References: <20211208171442.1327689-1-dmitry.baryshkov@linaro.org>
- <20211208171442.1327689-6-dmitry.baryshkov@linaro.org>
- <20211210112241.GE1734@thinkpad>
- <95401925-6e97-8fce-4fe6-4701c4fad301@linaro.org>
+        with ESMTP id S229452AbhLKFXu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Dec 2021 00:23:50 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D937C061714;
+        Fri, 10 Dec 2021 21:20:14 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id C8363CE2F2A;
+        Sat, 11 Dec 2021 05:20:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id F1350C341CC;
+        Sat, 11 Dec 2021 05:20:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639200011;
+        bh=bDE5jB5DJs4EW+BBUMZ7xF0HH/3wVQi6lfXAvPPLZTY=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=EuB+J43G1RjOnBPrMXqDFsR8/FCkaJ+Iw3qnf2dn/BLDew3yg+Gw5e6Nd8qnxqxCt
+         FnRH7qSVjtnk9DWJFxtm0bqnKlwGDlhLi2gCkyqLn3Kg/fMnGRUv6lBB1QfaidUpL3
+         GRClbFShnhTkrYL1wLsRuuyHaeyTay0JnqYHuBYRf3DSg2Ac9i7tncyXhX0TjzLp+1
+         KyrAgwxPmH8XrDERsURaie32d8jym6kFXrb0IBycWTnr5UZawdXiqbOYJnIqUXFbin
+         mQ5yttAk7ObrpYYhztu2iyj/eGa7B/pqa85ijjV5uOele4ooJaRgVMB70WrTePJWVC
+         7hgrbh7eanttQ==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id DCD7060A36;
+        Sat, 11 Dec 2021 05:20:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <95401925-6e97-8fce-4fe6-4701c4fad301@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v8 0/4] Add FDMA support on ocelot switch driver
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <163920001089.8891.12593419816777020015.git-patchwork-notify@kernel.org>
+Date:   Sat, 11 Dec 2021 05:20:10 +0000
+References: <20211209154911.3152830-1-clement.leger@bootlin.com>
+In-Reply-To: <20211209154911.3152830-1-clement.leger@bootlin.com>
+To:     =?utf-8?b?Q2zDqW1lbnQgTMOpZ2VyIDxjbGVtZW50LmxlZ2VyQGJvb3RsaW4uY29tPg==?=@ci.codeaurora.org
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        vladimir.oltean@nxp.com, claudiu.manoil@nxp.com,
+        alexandre.belloni@bootlin.com, UNGLinuxDriver@microchip.com,
+        andrew@lunn.ch, f.fainelli@gmail.com, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        dkirjanov@suse.de, jwi@linux.ibm.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 11, 2021 at 04:59:05AM +0300, Dmitry Baryshkov wrote:
-> On 10/12/2021 14:22, Manivannan Sadhasivam wrote:
-> > On Wed, Dec 08, 2021 at 08:14:37PM +0300, Dmitry Baryshkov wrote:
-> > > Qualcomm PCIe driver uses compatible string to check if the ddrss_sf_tbu
-> > > clock should be used. Since sc7280 support has added flags, switch to
-> > > the new mechanism to check if this clock should be used.
-> > > 
-> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > ---
-> > >   drivers/pci/controller/dwc/pcie-qcom.c | 5 ++++-
-> > >   1 file changed, 4 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > > index 51a0475173fb..803d3ac18c56 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> > > @@ -194,7 +194,9 @@ struct qcom_pcie_ops {
-> > >   struct qcom_pcie_cfg {
-> > >   	const struct qcom_pcie_ops *ops;
-> > > +	/* flags for ops 2.7.0 and 1.9.0 */
-> > 
-> > No need of this comment.
-> 
-> Dropping it
-> 
-> > 
-> > >   	unsigned int pipe_clk_need_muxing:1;
-> > 
-> > This should be added in the previous patch.
-> 
-> It exists already
-> 
+Hello:
 
-Ah, my tree was outdated. I do see it in -rc4.
+This series was applied to netdev/net-next.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
 
-> > 
-> > > +	unsigned int has_ddrss_sf_tbu_clk:1;
-> > 
-> > Wondering if we could make both the flags "bool" as the values passed to it
-> > are of boolean type. I don't think we could save a significant amount of
-> > memory using bitfields.
+On Thu,  9 Dec 2021 16:49:07 +0100 you wrote:
+> This series adds support for the Frame DMA present on the VSC7514
+> switch. The FDMA is able to extract and inject packets on the various
+> ethernet interfaces present on the switch.
 > 
-> I followed the existing pipe_clk_need_muxing. I have no strong preference
-> here, so let's see what Bjorn will prefer.
+> ------------------
+> Changes in V8:
+>   - Rebase on net-next/master
 > 
+> [...]
 
-Okay.
+Here is the summary with links:
+  - [net-next,v8,1/4] net: ocelot: export ocelot_ifh_port_set() to setup IFH
+    https://git.kernel.org/netdev/net-next/c/e5150f00721f
+  - [net-next,v8,2/4] net: ocelot: add and export ocelot_ptp_rx_timestamp()
+    https://git.kernel.org/netdev/net-next/c/b471a71e525c
+  - [net-next,v8,3/4] net: ocelot: add support for ndo_change_mtu
+    https://git.kernel.org/netdev/net-next/c/de5841e1c93f
+  - [net-next,v8,4/4] net: ocelot: add FDMA support
+    https://git.kernel.org/netdev/net-next/c/753a026cfec1
 
-Thanks,
-Mani
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-> > 
-> > Thanks,
-> > Mani
-> > >   };
-> > >   struct qcom_pcie {
-> > > @@ -1164,7 +1166,7 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
-> > >   	res->clks[3].id = "bus_slave";
-> > >   	res->clks[4].id = "slave_q2a";
-> > >   	res->clks[5].id = "tbu";
-> > > -	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sm8250")) {
-> > > +	if (pcie->cfg->has_ddrss_sf_tbu_clk) {
-> > >   		res->clks[6].id = "ddrss_sf_tbu";
-> > >   		res->num_clks = 7;
-> > >   	} else {
-> > > @@ -1512,6 +1514,7 @@ static const struct qcom_pcie_cfg sdm845_cfg = {
-> > >   static const struct qcom_pcie_cfg sm8250_cfg = {
-> > >   	.ops = &ops_1_9_0,
-> > > +	.has_ddrss_sf_tbu_clk = true,
-> > >   };
-> > >   static const struct qcom_pcie_cfg sc7280_cfg = {
-> > > -- 
-> > > 2.33.0
-> > > 
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
+
