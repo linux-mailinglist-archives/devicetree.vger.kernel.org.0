@@ -2,99 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E60C4471472
-	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 16:28:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA690471477
+	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 16:31:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229832AbhLKP2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Dec 2021 10:28:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53938 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbhLKP2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Dec 2021 10:28:54 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7A1BC061714;
-        Sat, 11 Dec 2021 07:28:53 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id t26so23192051lfk.9;
-        Sat, 11 Dec 2021 07:28:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=W+78tT7DvCusUKi3cge1x8a7J0QAvGLFsCIq9fOA3Jg=;
-        b=Sude1OT0MoUDKhSge1VsW272aWD8foR6kHOpmaKMbMBCZQUdAsS6scox7f7o5IXR+T
-         IMmPBAkAq/FpwQ+lMHlC3Q5gkf6vjm5cVEOihn4QXJY5gNzvFpYY+1DHFbMaDO15Sik2
-         17eRm7Q1qL3xVcHzN8g3w9Hkrqy/jzaDwVUupEiA78Vto/JKBvAnGdmmLsKOV1DcvNzp
-         4L14bPdPfzCd1hc/RFrKuOiJWcQObtq9vBbdJUVr7/w1ruoTMny7Y1jRER8enzlMhynY
-         PGtmifZp1cmIGl0oGqympohgatR9RVDcEqpZdR7PBSwoU4yDpfngR0cWfVSVd2EEBa7f
-         Z1XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=W+78tT7DvCusUKi3cge1x8a7J0QAvGLFsCIq9fOA3Jg=;
-        b=ca8NAPzSruo0I32d1wQWTAsZDaLOu1u2cF0lOLi4mL/BSyVaDxNHMjzhA0F/MwBGWo
-         WyBaSPb6woR/mQA/XHkT8JOMi23r5KRFV96FRvcXrOPQ7egsG7fqhmjwiI5WQj1mlO1F
-         qgh0w1cZfvD6qMW65636Cdh8tdCWfkEggcMUbOkbcZQE5SzyT9aYX8+vdlnIX3saOV9m
-         m0hCVt08QCtvfvp1YoVNdD6kbljok0QqEWUN2ZMyYXQ8wkngvdEd85Jin+azxTBXDr8e
-         s9tHoIVMkIX9znzwZGUANw7IAOCU3oY7LiuAZgWmcnJ0KtOLaFJKPNl6xI+LsnKcZXmj
-         LaDQ==
-X-Gm-Message-State: AOAM532qW50/oaQqdopeQ1vkNMO+cBD0yOtYZmNwaJDDDlvbKRjMMowW
-        WiLy/fUjOb048sAFTRQcbdly2LFfwNY=
-X-Google-Smtp-Source: ABdhPJxv4TmikjxD/+ijVr0Ajj6JZ0fjBKhtPlbI7Zdod50NnI3w0fRp49A6Ele6jDbhVL82+SUhxA==
-X-Received: by 2002:ac2:5e89:: with SMTP id b9mr9969602lfq.616.1639236531938;
-        Sat, 11 Dec 2021 07:28:51 -0800 (PST)
-Received: from [192.168.2.145] (94-29-46-111.dynamic.spd-mgts.ru. [94.29.46.111])
-        by smtp.googlemail.com with ESMTPSA id d24sm666372lfb.139.2021.12.11.07.28.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Dec 2021 07:28:51 -0800 (PST)
-Subject: Re: [PATCH v5 05/24] ARM: tegra: Add device-tree for ASUS Transformer
- EeePad TF101
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        David Heidelberg <david@ixit.cz>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Anton Bambura <jenneron@protonmail.com>,
-        Antoni Aloy Torrens <aaloytorrens@gmail.com>,
-        Nikola Milosavljevic <mnidza@outlook.com>,
-        Ion Agorria <ion@agorria.com>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        Ihor Didenko <tailormoon@rambler.ru>,
-        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
-        Jasper Korten <jja2000@gmail.com>,
-        Thomas Graichen <thomas.graichen@gmail.com>,
-        Stefan Eichenberger <stefan.eichenberger@toradex.com>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211208173609.4064-1-digetx@gmail.com>
- <20211208173609.4064-6-digetx@gmail.com> <YbN2T5guOfIRLXg1@orome>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <6c33db23-dfb9-bea2-f10f-02b9ed1558eb@gmail.com>
-Date:   Sat, 11 Dec 2021 18:28:50 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S231322AbhLKPbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Dec 2021 10:31:08 -0500
+Received: from 49-237-179-185.static.tentacle.fi ([185.179.237.49]:48268 "EHLO
+        bitmer.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229836AbhLKPbI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 Dec 2021 10:31:08 -0500
+Received: from 88-114-185-38.elisa-laajakaista.fi ([88.114.185.38] helo=[192.168.1.42])
+        by bitmer.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <jarkko.nikula@bitmer.com>)
+        id 1mw4L1-0005wU-GF; Sat, 11 Dec 2021 17:31:03 +0200
+Message-ID: <ef843afa-c99d-328d-853a-00ef293a47f2@bitmer.com>
+Date:   Sat, 11 Dec 2021 17:30:57 +0200
 MIME-Version: 1.0
-In-Reply-To: <YbN2T5guOfIRLXg1@orome>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH] ARM: dts: Fix timer regression for beagleboard revision c
 Content-Language: en-US
+To:     Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org
+Cc:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20211125144834.52457-1-tony@atomide.com>
+From:   Jarkko Nikula <jarkko.nikula@bitmer.com>
+In-Reply-To: <20211125144834.52457-1-tony@atomide.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-10.12.2021 18:46, Thierry Reding пишет:
-> Again, the memory-controller node needs to be sorted differently. There
-> are other occurrences of this throughout the file.
+Hi Tony
 
-Memory-controller node is placed on purpose in the end of DT to keep it
-readable. Those huge timings make it unreadable. I don't want to change
-it. Alternatively, we can factor out timings into separate DTSI, but
-it's unnecessary to me. I leave it up to you to decide what to do.
+On 11/25/21 16:48, Tony Lindgren wrote:
+> Commit e428e250fde6 ("ARM: dts: Configure system timers for omap3")
+> caused a timer regression for beagleboard revision c where the system
+> clockevent stops working if omap3isp module is unloaded.
+> 
+> Turns out we still have beagleboard revisions a-b4 capacitor c70 quirks
+> applied that limit the usable timers for no good reason. This also affects
+> the power management as we use the system clock instead of the 32k clock
+> source.
+> 
+> Let's fix the issue by adding a new omap3-beagle-ab4.dts for the old timer
+> quirks. This allows us to remove the timer quirks for later beagleboard
+> revisions. We also need to update the related timer quirk check for the
+> correct compatible property.
+> 
+> Fixes: e428e250fde6 ("ARM: dts: Configure system timers for omap3")
+> Cc: linux-kernel@vger.kernel.org
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Reported-by: Jarkko Nikula <jarkko.nikula@bitmer.com>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
 
-I'll reorder couple nodes alphabetically, those that don't have address
-and were missed by me. The by-address nodes are all okay to me.
+>  .../devicetree/bindings/arm/omap/omap.txt     |  3 ++
+>  arch/arm/boot/dts/Makefile                    |  1 +
+>  arch/arm/boot/dts/omap3-beagle-ab4.dts        | 47 +++++++++++++++++++
+>  arch/arm/boot/dts/omap3-beagle.dts            | 33 -------------
+>  drivers/clocksource/timer-ti-dm-systimer.c    |  2 +-
+>  5 files changed, 52 insertions(+), 34 deletions(-)
+>  create mode 100644 arch/arm/boot/dts/omap3-beagle-ab4.dts
+> 
+I must have some error in my methodology since I cannot see the issue
+being fixed with your patch :-(
 
-Please feel free to reorder nodes to yours liking by yourself while
-applying if I'll miss something.
+Testing at commit 6f513529296f ("Merge tag 'for-5.16-rc4-tag' of
+git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux")
+
+alias ma='nice make -j `getconf _NPROCESSORS_ONLN` ARCH=arm
+CROSS_COMPILE="ccache arm-linux-gnueabihf-"'
+
+make ARCH=arm omap2plus_defconfig
+ma
+cat arch/arm/boot/dts/omap3-beagle.dtb >>arch/arm/boot/zImage
+ma LOADADDR=0x80008000 uImage
+
+-> copy uImage & modules, boot
+# rmmod omap3_isp
+# sleep 1
+-> This is the regression. Sleep is blocked until I hit keys over serial
+console
+
+rm vmlinux arch/arm/boot/zImage
+patch -p1 </tmp/your-mail.eml
+
+ma
+cat arch/arm/boot/dts/omap3-beagle-ab4.dtb >>arch/arm/boot/zImage
+ma LOADADDR=0x80008000 uImage
+
+-> copy uImage & modules to µSD, boot
+# rmmod omap3_isp
+# sleep 1
+-> is still blocked until I hit keys over serial console
+
+When I compare the dmesg this is the only difference (along with "linux
+version" line) before user space starts. I.e. timer configuration is the
+same in both.
+
+[    0.000000] OF: fdt: Machine model: TI OMAP3 BeagleBoard
+->
+[    0.000000] OF: fdt: Machine model: TI OMAP3 BeagleBoard A to B4
+
+Jarkko
