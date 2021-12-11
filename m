@@ -2,96 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18D6C47144A
-	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 15:52:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EA54471499
+	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 17:02:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230154AbhLKOw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Dec 2021 09:52:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46052 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229945AbhLKOwZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Dec 2021 09:52:25 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ADA7C061714;
-        Sat, 11 Dec 2021 06:52:24 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id bu18so23244994lfb.0;
-        Sat, 11 Dec 2021 06:52:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=sVjMFdeuBLQSPpKHTdYhUbqD/ObKT0xUXQ+uzu60LvM=;
-        b=ofUbA147cPQrvvcyvnqccNBaic9AraNmvjEhJmPnUTFrGyDSJGkh3vtHA+UIZLPkk/
-         1w64GrW0fz2nKX1Hw/JucIpKjuEe+6SH8xGGf2+9j++kgUi1BY9+qcBGPq2z5jmCdk8C
-         pxE/LghkdGxS7xHc/F1ypn4FXOnWljj3R7TF6ZffGF/9a/6TqRDhkcEVwQU3wF1IuCk7
-         tbCb3RYhSEZvYt1dCZe55wIlOPSxm9DfdUJTne5/XUl7812n6UkBnJeXCyLYqFz03hQP
-         6ailwjtiMpLPVn4Zm9coy1QHJOGevs7VmPIkB7xCCISpdQLQVx4e9rKJTZgdgHxJOMgM
-         oufA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=sVjMFdeuBLQSPpKHTdYhUbqD/ObKT0xUXQ+uzu60LvM=;
-        b=fNjSequZT+WzdD+e9eUbTeX7ENBcZbV594Au1l/Oek/7Hr5AXi35iaQjRNCIvrtwd1
-         0UbGrvbpO+Ad3K9hLZTyr3fC2a6+PaaYwIADyooyjRzNKQti6o7+h4QVBBuB4FYa4jdM
-         GoF/ueIapZzca2+s2EGyjUadZJFfoxxrP4/h/kbTjWXgF3z/Hqqh+HjCInFkUEQH/TFo
-         lwGYNclgHwrW19atKYH9T0zQW9MYEee73cwXT4a3Dd3+XLyHkXQssgl5fi2Tx+oPQOcD
-         vfMEXA/O5xIs7xLtt1iUaWHTTJ+wblfyoTRnnYJ6iIOBosimxAxl6fZTXZtwFM20RWHC
-         WfJw==
-X-Gm-Message-State: AOAM532kQibfzyxu3eLS9sX/Hh9Wn5irQ9YxqoMClyMmDArX/XyLYo4y
-        2E5hZ4fJ41LRi1wMwc40F3Ovyz0jknw=
-X-Google-Smtp-Source: ABdhPJy0NhAEgx0YueavHkoSGEGm8/Mr33UwaW2jLvNQQvPaYv8aq5+3hyMTwVmG12Oro9tTskAoDA==
-X-Received: by 2002:a05:6512:3a5:: with SMTP id v5mr18645438lfp.250.1639234342465;
-        Sat, 11 Dec 2021 06:52:22 -0800 (PST)
-Received: from [192.168.2.145] (94-29-46-111.dynamic.spd-mgts.ru. [94.29.46.111])
-        by smtp.googlemail.com with ESMTPSA id p10sm679546lja.0.2021.12.11.06.52.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Dec 2021 06:52:21 -0800 (PST)
-Subject: Re: [PATCH v3] i2c: tegra: use i2c_timings for bus clock freq
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Akhil R <akhilrajeev@nvidia.com>,
-        Christian Koenig <christian.koenig@amd.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-References: <1639138557-1709-1-git-send-email-akhilrajeev@nvidia.com>
- <1056abdf-684b-b808-3471-d4733fd5e449@gmail.com>
- <CAHp75VfykSN6Jnoq6XsEL7W9+yCq-uwRdFRTSAJ6bBuYCuMa5Q@mail.gmail.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <e0d4a63f-b5c6-8c01-f11e-a0af331a5f0c@gmail.com>
-Date:   Sat, 11 Dec 2021 17:52:21 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S230215AbhLKQCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Dec 2021 11:02:31 -0500
+Received: from 6.mo583.mail-out.ovh.net ([178.32.119.138]:60731 "EHLO
+        6.mo583.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229953AbhLKQCb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Dec 2021 11:02:31 -0500
+X-Greylist: delayed 8401 seconds by postgrey-1.27 at vger.kernel.org; Sat, 11 Dec 2021 11:02:31 EST
+Received: from player728.ha.ovh.net (unknown [10.109.146.175])
+        by mo583.mail-out.ovh.net (Postfix) with ESMTP id B6DFC2382B
+        for <devicetree@vger.kernel.org>; Sat, 11 Dec 2021 11:16:38 +0000 (UTC)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player728.ha.ovh.net (Postfix) with ESMTPSA id AFDED252FE6FB;
+        Sat, 11 Dec 2021 11:16:26 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-106R006ee68d690-281d-46cf-ab24-dc9207cedc87,
+                    9D51A9F3B5077230D84BA813E842FC785A50A294) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Message-ID: <cadb38fd-a193-2706-b20e-2a1e5e64f9ca@milecki.pl>
+Date:   Sat, 11 Dec 2021 12:16:25 +0100
 MIME-Version: 1.0
-In-Reply-To: <CAHp75VfykSN6Jnoq6XsEL7W9+yCq-uwRdFRTSAJ6bBuYCuMa5Q@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH V3 1/2] dt-bindings: pinctrl: support specifying pins,
+ groups & functions
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Tony Lindgren <tony@atomide.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com
+References: <20211210114222.26581-1-zajec5@gmail.com>
+ <20211210114222.26581-2-zajec5@gmail.com>
+ <CACRpkdbsb63EN5hmGws1eLaARg2VRXXhz+5AM_x7OhaS_ceGow@mail.gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+In-Reply-To: <CACRpkdbsb63EN5hmGws1eLaARg2VRXXhz+5AM_x7OhaS_ceGow@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 9842054038587550554
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvuddrkeeggddvudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfhfhfgjtgfgsehtkeertddtfeejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeekieetveettefftdefjeffffefgfefveelffevvdevffelleeiteejieeghfekjeenucffohhmrghinhepohiilhgrsghsrdhorhhgnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhlrgihvghrjedvkedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-10.12.2021 23:07, Andy Shevchenko пишет:
-> On Fri, Dec 10, 2021 at 7:24 PM Dmitry Osipenko <digetx@gmail.com> wrote:
->> 10.12.2021 15:15, Akhil R пишет:
->>> Use i2c_timings struct and corresponding methods to get bus clock frequency
->>>
->>> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
->>> Suggested-by: Andy Shevchenko <andy.shevchenko@gmail.com>
->>> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
->>
->> Note that your s-b should be the last line of the commit message. No
->> need to resend for that.
-> 
-> AFAICT there is no such requirement in the documentation. It says that
-> SoB should be last among SoBs, which is not broken here.
+Rob: please kindly comment on this idea of storing pins/groups/functions
+in DT.
 
-Correct, that's why I said no need to resend.
+For a sample Linux implementation you can check (incomplete):
+[PATCH V2 4/6] pinctrl: support reading pins, groups & functions from DT
+https://patchwork.ozlabs.org/project/linux-gpio/patch/20211124230439.17531-5-zajec5@gmail.com/
+
+For a real life DT usage you can check:
+[PATCH V2 6/6] ARM: dts: BCM5301X: add pinctrl pins, groups & functions
+https://patchwork.ozlabs.org/project/linux-gpio/patch/20211124230439.17531-7-zajec5@gmail.com/
+
+Also see below inline comments.
+
+
+On 11.12.2021 00:26, Linus Walleij wrote:
+> On Fri, Dec 10, 2021 at 12:42 PM Rafał Miłecki <zajec5@gmail.com> wrote:
+> 
+>> This binding change is meant to introduce a generic way of describing
+>> pinctrl blocks details. Every pinmux block is expected to have:
+>> 1. Named pins
+>> 2. Named groups containing one or more pins
+>> 3. Named functions referencing one or more groups
+>>
+>> It doesn't describe how hw should be programmed. That remains binding
+>> and driver specific.
+> 
+> So what this does is to take a large chunk of data that we known to be
+> associated with the compatible string (names of pins, groups and functions,
+> etc) and put it into the device tree instead of the alternative, which is
+> what most drivers do, and that is to compile in the data into the
+> operating system and just look it up by using a compatible
+> string.
+
+Correct. It changes the place of storing platform specific data.
+
+
+> The DT maintainers have already indicated that this is not desirable
+> and I don't see it getting merged before it has a Reviewed-by
+> tag from one of the DT binding maintainers.
+
+Tony pointed out that it was back in 2011. It's worth reconsidering.
+https://patchwork.ozlabs.org/comment/2786915/
+
+Rob said it depends on whether "data be static (complete) and correct"
+https://patchwork.ozlabs.org/comment/2786688/
+
+I find it absolutely required to get Rob's Reviewed-by before we merge
+it. I hope we can get Rob's opinion on this.
+
+
+> I think we need to know what the USP (unique selling point) is?
+> 
+> Would it be something like not having to duplicate work across some
+> boot loaders and operating systems? (Well they all need to parse this
+> type of description but that can be put into a library.)
+> 
+> Or something else?
+
+There are two reasons for me to work on this binding:
+
+
+1. I think it's cleaner to keep pinctrl details in DT
+
+DT seems more natural (than C code) for:
+a) Translating info from datasheets
+b) Storing pin/group/function custom values
+c) Defining relations (phandles)
+d) Handling chip differences (adding new pins in newer revisions)
+
+Last time I learnt that pins don't always/usually have numbers (in
+datasheets) but are rather named. Still in the "pinctrl_pin_desc" we
+have "unsigned number" just to enumerate them and reference in groups.
+
+Adding or removing pins/groups/functions in DT is as simple as
+adding/deleting nodes. That also means less logic in C code.
+
+
+2. It avoids data duplication
+
+It allows me to keep pins/groups/functions data in one place (DT) and
+use it in both: Linux and U-Boot. No duplication & easier maintenance.
