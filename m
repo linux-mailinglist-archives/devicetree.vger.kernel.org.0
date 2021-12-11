@@ -2,162 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE8FD47154D
-	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 19:13:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EC6F471595
+	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 20:19:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231627AbhLKSN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Dec 2021 13:13:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33154 "EHLO
+        id S229560AbhLKTS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Dec 2021 14:18:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231682AbhLKSNY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Dec 2021 13:13:24 -0500
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A362C061751
-        for <devicetree@vger.kernel.org>; Sat, 11 Dec 2021 10:13:24 -0800 (PST)
-Received: by mail-oi1-x22b.google.com with SMTP id o4so17628638oia.10
-        for <devicetree@vger.kernel.org>; Sat, 11 Dec 2021 10:13:24 -0800 (PST)
+        with ESMTP id S231823AbhLKTSv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Dec 2021 14:18:51 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E27AC061714;
+        Sat, 11 Dec 2021 11:18:51 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id c4so20328237wrd.9;
+        Sat, 11 Dec 2021 11:18:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZKuXDdMqteEEKXb+96og2uMkZKlBM9xGB/3xrHMNNJ4=;
-        b=aWs1p9AyHBbvhMn//ieXmew23uafLMJkWDAEFpKLr/y3EDFmf/hAW9aqurfWekiYJa
-         5Y1mrm8+8O1+DctJZZ2x203nP/1PwLA1IforTxfWsg3iai7cKVIsegSiJtT77NzfsMxN
-         i3OAM1FhXsDcRi3Rl7pQZccNNGGmSlpGrh3CYXLV2Ka1U4baeL3O5R54nGYFWtIaq5Cq
-         IguHuhJ2jT5eEkAx5asn/T8vP7onjdwjd+qEmmL8QPvjHD6nlYJSopu5rLo2RVp7/kEZ
-         lZ6fMoyk0ht++uIEsgPGXNbCGBJAHDdAhzgeDYkqtfz7WC9AEbkZvfrZHVXfDsofSoF6
-         lMnA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=gOlTCB5g4Ul64JkhSPK2Bym/NyU9CnIoy/twmv8/VQM=;
+        b=fUqpRaZgBf7CEd3z2zVOe6jdnR/v8TZ2zI28oI+Jlz9SA22NR1gOn9jMaiJDtm3bEV
+         jZd077h7yeY1eNxjd7HU8UU9K/kTvPNtZulCXWxAS5efH3p/+NQ2oDeTfvmSHyScyv8L
+         a15EkJH3Rbn+ayd5Dzn9w7ZxClS7+WudFy1fgChiz94+PE6cRZ+gIvGhrpPOBnPOQc/9
+         3w2O0X1Mk9Hsjswuo4jLg92CpWUX0czhIvGUkR99LFenrkC+2EzEmB0itf83/eACQJpC
+         moTwP67Km7CGyNjJMXGQt4QjvsfTF2WedRTaxaXT15RlqMv8ip0TqL0BNu9TrRpgHR0O
+         QMuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZKuXDdMqteEEKXb+96og2uMkZKlBM9xGB/3xrHMNNJ4=;
-        b=2lc5m4nxfrCQ3wBx3gu+55MBwEm8Z+3rxPefr25ISlEAc07InHzaMZTCXtZ9rE0iet
-         g50CxrKOPODo2S5+M58Lu8nUmAmYmeDrgBB+Vu9v2+PsHRVfCsbV2YVU83k7L4qvET91
-         fvVdA3D4r5WUjajRKakwTT87RpSn18wMsiEr5uuUEDnKQbGaNdbHUvScSkulR9IogLPg
-         5clkcyke/cUC+1IMlJFF4wfObw8/Qv1VipxXm9rAZG8msqSEWu0Y/+P4Ur7ANR6IsXKw
-         jm4Oj4NM2ovvLgCFKEJ4RlGntTowp+M5cKm+mbHR8WqDH4DmdbjEg3VzhFsP8/3amJ5n
-         peXw==
-X-Gm-Message-State: AOAM530ui34OWKZDgEsNsOrkQor0znh0Z0BlbH1J2H29+8FvvHpjYmg5
-        s6Z4d/pLrJDcqRisl+2zuL8Mng==
-X-Google-Smtp-Source: ABdhPJwJgs25lTgbpqlRe9kzvrGm41yKRcwXPaPnmvLa062O2KlX0HXEsj/sNKm6DJR4tJAdo1WZPA==
-X-Received: by 2002:a05:6808:1a2a:: with SMTP id bk42mr19079854oib.118.1639246402724;
-        Sat, 11 Dec 2021 10:13:22 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id y12sm1641771oiv.49.2021.12.11.10.13.21
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=gOlTCB5g4Ul64JkhSPK2Bym/NyU9CnIoy/twmv8/VQM=;
+        b=IL6Eup17CfgWHRUKhczqr8aTSP52S7HoCUlNqc5ovXbWtrEVZxUhGlrW9x8TYKaikW
+         Dx1ECIiQY61IB4JGBZTBVHLYbP54hXvarJamNu+7yT9Cvn5oTS9hguEmZJVCi9L1KCF6
+         80ufWhJ1w4aa4uZATFzUiuN4N90tMrghPUaJbp+xRpIuPM3J7P5Txsw3w504PZhekgy4
+         9/D9sixF8CXowXSs7Y/2ZIfH6sDrDNUFzJcZz2xKz4wzWOcd5hz+onTC/wJB2p/Hzi/+
+         KvLZMPGcJ8O/W05kwqXZuLowShIak5YSkC3vIE4NATxgQky6+crBCHRJHqUITM0gt3Tn
+         l9Ig==
+X-Gm-Message-State: AOAM530ajXWm7jzzEMcz3+06QNH94LH3d2bggMWHk21qIOHlDKacq9p6
+        Hp+OcJYA2QTJct4gYzPk1PU=
+X-Google-Smtp-Source: ABdhPJzIhDx8ABRVZ0FCBxAK7JVUsBsAzr623bRju7te8XUPwtOqsjQL6wl7EZJAH5iXBIwoDCdt1w==
+X-Received: by 2002:a5d:5007:: with SMTP id e7mr21539594wrt.320.1639250329686;
+        Sat, 11 Dec 2021 11:18:49 -0800 (PST)
+Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id a3sm3116524wri.98.2021.12.11.11.18.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Dec 2021 10:13:22 -0800 (PST)
-Date:   Sat, 11 Dec 2021 12:13:17 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Vamsi Krishna Lanka <quic_vamslank@quicinc.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] clk: qcom: Add clock driver for SM8450
-Message-ID: <YbTqPfs7026l6LFE@builder.lan>
-References: <20211207114003.100693-1-vkoul@kernel.org>
- <20211207114003.100693-3-vkoul@kernel.org>
- <20211209082537.1AF6CC341C8@smtp.kernel.org>
+        Sat, 11 Dec 2021 11:18:49 -0800 (PST)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     heiko@sntech.de, linux-rockchip@lists.infradead.org
+Cc:     robh+dt@kernel.org, kishon@ti.com, vkoul@kernel.org,
+        p.zabel@pengutronix.de, yifeng.zhao@rock-chips.com,
+        kever.yang@rock-chips.com, cl@rock-chips.com,
+        linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Johan Jonker <jbx6244@gmail.com>
+Subject: Re: [RFC PATCH v4 0/4] Add Naneng combo PHY support for RK3568
+Date:   Sat, 11 Dec 2021 20:18:47 +0100
+Message-ID: <2461932.fyNAqVaUXx@archbook>
+In-Reply-To: <20211208185449.16763-1-jbx6244@gmail.com>
+References: <20211208185449.16763-1-jbx6244@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211209082537.1AF6CC341C8@smtp.kernel.org>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 09 Dec 02:25 CST 2021, Stephen Boyd wrote:
-
-> Quoting Vinod Koul (2021-12-07 03:40:03)
-> > diff --git a/drivers/clk/qcom/gcc-sm8450.c b/drivers/clk/qcom/gcc-sm8450.c
-> > new file mode 100644
-> > index 000000000000..82ac419718d7
-> > --- /dev/null
-> > +++ b/drivers/clk/qcom/gcc-sm8450.c
-> > @@ -0,0 +1,3303 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
-> > + * Copyright (c) 2021, Linaro Limited
-> > + */
-> > +
-> > +#include <linux/module.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#include <dt-bindings/clock/qcom,gcc-sm8450.h>
-> > +
-> > +#include "clk-alpha-pll.h"
-> > +#include "clk-branch.h"
-> > +#include "clk-rcg.h"
-> > +#include "clk-regmap.h"
-> > +#include "clk-regmap-divider.h"
-> > +#include "clk-regmap-mux.h"
-> > +#include "gdsc.h"
-> > +#include "reset.h"
-> > +
-> > +enum {
-> > +       P_BI_TCXO,
-> > +       P_GCC_GPLL0_OUT_EVEN,
-> > +       P_GCC_GPLL0_OUT_MAIN,
-> > +       P_GCC_GPLL4_OUT_MAIN,
-> > +       P_GCC_GPLL9_OUT_MAIN,
-> > +       P_PCIE_0_PIPE_CLK,
-> > +       P_PCIE_1_PHY_AUX_CLK,
-> > +       P_PCIE_1_PIPE_CLK,
-> > +       P_SLEEP_CLK,
-> > +       P_UFS_PHY_RX_SYMBOL_0_CLK,
-> > +       P_UFS_PHY_RX_SYMBOL_1_CLK,
-> > +       P_UFS_PHY_TX_SYMBOL_0_CLK,
-> > +       P_USB3_PHY_WRAPPER_GCC_USB30_PIPE_CLK,
-> > +};
-> > +
-> > +static struct clk_alpha_pll gcc_gpll0 = {
-> > +       .offset = 0x0,
-> > +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_EVO],
-> > +       .clkr = {
-> > +               .enable_reg = 0x62018,
-> > +               .enable_mask = BIT(0),
-> > +               .hw.init = &(struct clk_init_data){
-> > +                       .name = "gcc_gpll0",
-> > +                       .parent_data = &(const struct clk_parent_data){
-> > +                               .fw_name = "bi_tcxo",
+On Mittwoch, 8. Dezember 2021 19:54:45 CET Johan Jonker wrote:
+> This phy can be used as pcie-phy, usb3-phy, sata-phy or sgmii-phy.
 > 
-> Maybe you want to drop these strings and use the dt index directly? That
-> may actually be faster because we don't do as many string comparisons
-> and the code may be smaller if we don't have to store bi_tcxo. I suppose
-> to make it more readable we could have #defines for each DT index like
+> =============================================
 > 
->  #define DT_BI_TCXO	0
->  #define DT_SLEEP_CLK	1
+> Changed V4 by Johan Jonker:
+>   TEST COMPILED ONLY!
+>   Driver not verified with hardware!
+>   Produced in the hope that we can get some review progress
+>   with this serie for the documents and driver.
+>   Use at your own risk!
 > 
-> Blaze a new trail!
+>   restyle
+>   add devm_reset_control_array_get()
+>   remove clk structure
+>   change refclk DT parse
+>   change dev_err message
+>   add dot to phrase
+>   add ext_refclk variable
+>   add enable_ssc variable
+>   rename rockchip_combphy_param_write
+>   remove param_read
+>   replace rockchip-naneng-combphy driver name
+> 
+>   rename node name
+>   remove reset-names
+>   move #phy-cells
+>   add rockchip,rk3568-pipe-grf
+>   add rockchip,rk3568-pipe-phy-grf
+> 
+> =============================================
 > 
 
-I like the idea, and iiuc it's just a matter of replacing .fw_name with
-.index?
+Tested-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
 
-I am however worried that people will get the order wrong as they are
-hacking on their dts/drivers, because (at least in my view) the order of
-clocks & clock-names has been seen as "a dt binding requirement" up
-until such change. But if we replace the names with indices such enum
-would have to be kept in sync with the DT binding and there's no way to
-validate it.
-
-If we do this we should force the driver and dts-writers to rely on the
-binding document by omitting clock-names from the binding (and hence
-dts). Otherwise people will (I will) assume that the clock-names are
-still what matters...
+Applied this on top of 5.16-rc4, added the necessary device tree
+changes to rk356x.dtsi and rk3566-quartz64-a.dts and ran it on
+my Quartz64. I tested PCIe2x1 on the one combphy and SATA on the
+other, simultaneously. Devices were detected correctly (with some
+hiccups on SATA due to a Quartz64 Model A design issue, but it
+was detected eventually) and some transfers were done to ensure
+it's stable. It is stable.
 
 Regards,
-Bjorn
+Nicolas Frattaroli
 
-> > +                       },
-> > +                       .num_parents = 1,
-> > +                       .ops = &clk_alpha_pll_fixed_lucid_evo_ops,
-> > +               },
-> > +       },
-> > +};
+
