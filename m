@@ -2,82 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A3BA4713C3
-	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 13:28:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A41FA4713D0
+	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 13:40:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229723AbhLKM2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Dec 2021 07:28:17 -0500
-Received: from marcansoft.com ([212.63.210.85]:35036 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229668AbhLKM2R (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 11 Dec 2021 07:28:17 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 5FAAB42499;
-        Sat, 11 Dec 2021 12:28:13 +0000 (UTC)
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20211209043249.65474-1-marcan@marcan.st>
- <20211209043249.65474-2-marcan@marcan.st>
- <YbI8wBS2mrETiTfw@robh.at.kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH 1/6] dt-bindings: interrupt-controller: apple,aic: Add
- apple,aic2 support
-Message-ID: <8c099fc2-a319-7c80-3053-ed2b39b86835@marcan.st>
-Date:   Sat, 11 Dec 2021 21:28:10 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S229959AbhLKMkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Dec 2021 07:40:52 -0500
+Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:51681 "EHLO
+        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229668AbhLKMkw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 Dec 2021 07:40:52 -0500
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.west.internal (Postfix) with ESMTP id 673DB320210E;
+        Sat, 11 Dec 2021 07:40:51 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Sat, 11 Dec 2021 07:40:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=etmSmuHQy4+c+u468+BrAn+HWX
+        TE3u6TRE2AWVtCPec=; b=hLkzpOLJUeQTTDloTTW8r95Jd2qpOCr3VYM9l8aNPl
+        YKv7551ZWn6YQQM+WWPARwioNSvU/fjJuii4YJKG62hl8HseTKwDL2UfVEuma/rP
+        eoQacD+Rf2osiCBWo12xQCf069Uyn3vEzdIsZ8oCRENCEuN7C6UHliZ9GsjWyqBU
+        G7n8OPAGxRXZLWbW7Cb2jdb3DhvPnfbh+2mcc9KCWCTMDV6QUnv8RfSaSkDZKbSO
+        H0poKA372wV4ptqs/woF9p0V1rLpuh4a/0du+WYvkAfFpWF+BJ9Rx0+rLWmyYTcd
+        kPjjNb5D/EAPr6ipbBeqqIp0YmYjvGWTic81Lz+0oGFQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=etmSmuHQy4+c+u468
+        +BrAn+HWXTE3u6TRE2AWVtCPec=; b=EzmLr2Bdfy5V1fHSuQyJ+mjztj67S5Mqo
+        2dXNOW1Zh0dNjw2kbudvd0j0Ompou6RFMqid5fOZKa0124ShleNRnUT21QuY9vF0
+        lcVvI4OEHfPTRdX0MFWZMA0+orxPMjcuz8JyA+hMHC/aJJOnzI90t5XVq3Gk13J+
+        nsG+978q5fKAmZCK6zg42QxOfj8ntzYXbsT+Ks/MkcZcwyat+/JDJKrf/EmbRSDr
+        PZOkqXduQ3mUMnpgiILWQhBEDkNbjGyxvHfqCUXFD/sV1ogonHHa23nZlCwtY4Bj
+        lFiL4jAKXMNcrtG93U1rK15XAxYNadN6YTp5v+ekCFMm/lHBCXj+g==
+X-ME-Sender: <xms:Upy0YaZiuBBaIQ5iR8Q8CnXx9f41L42Q480Bm8tunPVxVxzb02o9Ag>
+    <xme:Upy0YdZAIfSKAe6yOSmWy23huv7P7lS_6RKPZ2XSrvfvZ2rkN-BR3XhEx1VKCrvDO
+    6dCcJsk76XUAdRGWXU>
+X-ME-Received: <xmr:Upy0YU83ESMHaSa0rRV3NMvCi9clM32CYiCKC32K_XrDZW60fTCSC6nrm7gS80Eb6gXkpHA-tZNcZKdfgkcwpgJQhLGmPzsp5zV4XdlUjRi3XSRrw9mgaqtL0ff2NQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrkeeggdefkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufhvvghnucfrvght
+    vghruceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrghtthgvrhhnpe
+    eugfelkedvtdejffefjeehveelfeevkefgudduhfeghfefgedtheevjeefffffgfenucev
+    lhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsvhgvnhessh
+    hvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:Upy0YcryvClt63K1SLj-MEFa8kDLUeuAq4Rx_bg2ag5QLTMmqgXoTA>
+    <xmx:Upy0YVqgEMKPLSGgmJb0d5nuw_67yt6PUF6jU6O7312QbooGWS1ILQ>
+    <xmx:Upy0YaS-A_Egw4UD5aey5oY2_1pdCQjWTzpzdXbJttHwvxbMeq3GIg>
+    <xmx:Upy0YeAJNsg2cdeYdI-8qcl8R3aBcCeFpgebveCIfPz3FmPnJ3ixBw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 11 Dec 2021 07:40:49 -0500 (EST)
+From:   Sven Peter <sven@svenpeter.dev>
+To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: apple: t8103: Add watchdog node
+Date:   Sat, 11 Dec 2021 13:40:44 +0100
+Message-Id: <20211211124044.4697-1-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.30.1 (Apple Git-130)
 MIME-Version: 1.0
-In-Reply-To: <YbI8wBS2mrETiTfw@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/12/2021 02.28, Rob Herring wrote:
-> On Thu, Dec 09, 2021 at 01:32:44PM +0900, Hector Martin wrote:
-<snip>
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - apple,aic2
->> +    then:
->> +      required:
->> +        - apple,event-reg
-> 
-> Is this property valid for aic1? If not, you need:
-> 
-> else:
->    not:
->      required:
->        - apple,event-reg
-> 
+Add the watchdog node which also enables reboot support on the t8103.
 
-Thanks, I wasn't sure how to do this. Took me a second to realize how 
-the logic works here, heh.
+Signed-off-by: Sven Peter <sven@svenpeter.dev>
+---
+ arch/arm64/boot/dts/apple/t8103.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-> 
-> I tend to think you should just make this a separate document. There's
-> not a whole lot of sharing (compared to any other interrupt controller).
-
-Good point. I just kind of defaulted to this way because the driver is 
-the same (and does share a bunch), but indeed the binding doesn't really 
-reflect any of that. I'll split it off into another document for v2. 
-Might as well make the 4-argument interrupt form mandatory then (we use 
-it for all DTs, even the current 1-die machines, on AICv2 SoCs; the 
-driver can handle both but we might as well be stricter with the binding).
-
+diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
+index fc8b2bb06ffe..6ef28d833e4f 100644
+--- a/arch/arm64/boot/dts/apple/t8103.dtsi
++++ b/arch/arm64/boot/dts/apple/t8103.dtsi
+@@ -199,6 +199,14 @@ pinctrl_nub: pinctrl@23d1f0000 {
+ 				     <AIC_IRQ 336 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
+ 
++		wdt: watchdog@23d2b0000 {
++			compatible = "apple,t8103-wdt", "apple,wdt";
++			reg = <0x2 0x3d2b0000 0x0 0x4000>;
++			clocks = <&clk24>;
++			interrupt-parent = <&aic>;
++			interrupts = <AIC_IRQ 338 IRQ_TYPE_LEVEL_HIGH>;
++		};
++
+ 		pinctrl_smc: pinctrl@23e820000 {
+ 			compatible = "apple,t8103-pinctrl", "apple,pinctrl";
+ 			reg = <0x2 0x3e820000 0x0 0x4000>;
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+2.25.1
+
