@@ -2,165 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 419A5471580
-	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 20:00:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE8FD47154D
+	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 19:13:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231790AbhLKTAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Dec 2021 14:00:23 -0500
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:46978 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231765AbhLKTAX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 11 Dec 2021 14:00:23 -0500
-Received: from [77.244.183.192] (port=64660 helo=melee.fritz.box)
-        by hostingweb31.netsons.net with esmtpa (Exim 4.94.2)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1mw6g3-0009HU-JY; Sat, 11 Dec 2021 19:00:55 +0100
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-To:     linux-kernel@vger.kernel.org
-Cc:     Luca Ceresoli <luca@lucaceresoli.net>, linux-rtc@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Randy Dunlap <rdunlap@infradead.org>
-Subject: [PATCH v5 6/9] watchdog: Kconfig: fix help text indentation
-Date:   Sat, 11 Dec 2021 18:59:48 +0100
-Message-Id: <20211211175951.30763-7-luca@lucaceresoli.net>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211211175951.30763-1-luca@lucaceresoli.net>
-References: <20211211175951.30763-1-luca@lucaceresoli.net>
+        id S231627AbhLKSN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Dec 2021 13:13:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33154 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231682AbhLKSNY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Dec 2021 13:13:24 -0500
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A362C061751
+        for <devicetree@vger.kernel.org>; Sat, 11 Dec 2021 10:13:24 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id o4so17628638oia.10
+        for <devicetree@vger.kernel.org>; Sat, 11 Dec 2021 10:13:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ZKuXDdMqteEEKXb+96og2uMkZKlBM9xGB/3xrHMNNJ4=;
+        b=aWs1p9AyHBbvhMn//ieXmew23uafLMJkWDAEFpKLr/y3EDFmf/hAW9aqurfWekiYJa
+         5Y1mrm8+8O1+DctJZZ2x203nP/1PwLA1IforTxfWsg3iai7cKVIsegSiJtT77NzfsMxN
+         i3OAM1FhXsDcRi3Rl7pQZccNNGGmSlpGrh3CYXLV2Ka1U4baeL3O5R54nGYFWtIaq5Cq
+         IguHuhJ2jT5eEkAx5asn/T8vP7onjdwjd+qEmmL8QPvjHD6nlYJSopu5rLo2RVp7/kEZ
+         lZ6fMoyk0ht++uIEsgPGXNbCGBJAHDdAhzgeDYkqtfz7WC9AEbkZvfrZHVXfDsofSoF6
+         lMnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZKuXDdMqteEEKXb+96og2uMkZKlBM9xGB/3xrHMNNJ4=;
+        b=2lc5m4nxfrCQ3wBx3gu+55MBwEm8Z+3rxPefr25ISlEAc07InHzaMZTCXtZ9rE0iet
+         g50CxrKOPODo2S5+M58Lu8nUmAmYmeDrgBB+Vu9v2+PsHRVfCsbV2YVU83k7L4qvET91
+         fvVdA3D4r5WUjajRKakwTT87RpSn18wMsiEr5uuUEDnKQbGaNdbHUvScSkulR9IogLPg
+         5clkcyke/cUC+1IMlJFF4wfObw8/Qv1VipxXm9rAZG8msqSEWu0Y/+P4Ur7ANR6IsXKw
+         jm4Oj4NM2ovvLgCFKEJ4RlGntTowp+M5cKm+mbHR8WqDH4DmdbjEg3VzhFsP8/3amJ5n
+         peXw==
+X-Gm-Message-State: AOAM530ui34OWKZDgEsNsOrkQor0znh0Z0BlbH1J2H29+8FvvHpjYmg5
+        s6Z4d/pLrJDcqRisl+2zuL8Mng==
+X-Google-Smtp-Source: ABdhPJwJgs25lTgbpqlRe9kzvrGm41yKRcwXPaPnmvLa062O2KlX0HXEsj/sNKm6DJR4tJAdo1WZPA==
+X-Received: by 2002:a05:6808:1a2a:: with SMTP id bk42mr19079854oib.118.1639246402724;
+        Sat, 11 Dec 2021 10:13:22 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id y12sm1641771oiv.49.2021.12.11.10.13.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Dec 2021 10:13:22 -0800 (PST)
+Date:   Sat, 11 Dec 2021 12:13:17 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Vamsi Krishna Lanka <quic_vamslank@quicinc.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] clk: qcom: Add clock driver for SM8450
+Message-ID: <YbTqPfs7026l6LFE@builder.lan>
+References: <20211207114003.100693-1-vkoul@kernel.org>
+ <20211207114003.100693-3-vkoul@kernel.org>
+ <20211209082537.1AF6CC341C8@smtp.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211209082537.1AF6CC341C8@smtp.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some entries indent their help text with 1 tab + 1 space or 1 tab only
-instead of 1 tab + 2 spaces. Add the missing spaces.
+On Thu 09 Dec 02:25 CST 2021, Stephen Boyd wrote:
 
-Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-Acked-by: Randy Dunlap <rdunlap@infradead.org>
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> Quoting Vinod Koul (2021-12-07 03:40:03)
+> > diff --git a/drivers/clk/qcom/gcc-sm8450.c b/drivers/clk/qcom/gcc-sm8450.c
+> > new file mode 100644
+> > index 000000000000..82ac419718d7
+> > --- /dev/null
+> > +++ b/drivers/clk/qcom/gcc-sm8450.c
+> > @@ -0,0 +1,3303 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
+> > + * Copyright (c) 2021, Linaro Limited
+> > + */
+> > +
+> > +#include <linux/module.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/regmap.h>
+> > +
+> > +#include <dt-bindings/clock/qcom,gcc-sm8450.h>
+> > +
+> > +#include "clk-alpha-pll.h"
+> > +#include "clk-branch.h"
+> > +#include "clk-rcg.h"
+> > +#include "clk-regmap.h"
+> > +#include "clk-regmap-divider.h"
+> > +#include "clk-regmap-mux.h"
+> > +#include "gdsc.h"
+> > +#include "reset.h"
+> > +
+> > +enum {
+> > +       P_BI_TCXO,
+> > +       P_GCC_GPLL0_OUT_EVEN,
+> > +       P_GCC_GPLL0_OUT_MAIN,
+> > +       P_GCC_GPLL4_OUT_MAIN,
+> > +       P_GCC_GPLL9_OUT_MAIN,
+> > +       P_PCIE_0_PIPE_CLK,
+> > +       P_PCIE_1_PHY_AUX_CLK,
+> > +       P_PCIE_1_PIPE_CLK,
+> > +       P_SLEEP_CLK,
+> > +       P_UFS_PHY_RX_SYMBOL_0_CLK,
+> > +       P_UFS_PHY_RX_SYMBOL_1_CLK,
+> > +       P_UFS_PHY_TX_SYMBOL_0_CLK,
+> > +       P_USB3_PHY_WRAPPER_GCC_USB30_PIPE_CLK,
+> > +};
+> > +
+> > +static struct clk_alpha_pll gcc_gpll0 = {
+> > +       .offset = 0x0,
+> > +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_EVO],
+> > +       .clkr = {
+> > +               .enable_reg = 0x62018,
+> > +               .enable_mask = BIT(0),
+> > +               .hw.init = &(struct clk_init_data){
+> > +                       .name = "gcc_gpll0",
+> > +                       .parent_data = &(const struct clk_parent_data){
+> > +                               .fw_name = "bi_tcxo",
+> 
+> Maybe you want to drop these strings and use the dt index directly? That
+> may actually be faster because we don't do as many string comparisons
+> and the code may be smaller if we don't have to store bi_tcxo. I suppose
+> to make it more readable we could have #defines for each DT index like
+> 
+>  #define DT_BI_TCXO	0
+>  #define DT_SLEEP_CLK	1
+> 
+> Blaze a new trail!
+> 
 
----
+I like the idea, and iiuc it's just a matter of replacing .fw_name with
+.index?
 
-Changes in v5: none
+I am however worried that people will get the order wrong as they are
+hacking on their dts/drivers, because (at least in my view) the order of
+clocks & clock-names has been seen as "a dt binding requirement" up
+until such change. But if we replace the names with indices such enum
+would have to be kept in sync with the DT binding and there's no way to
+validate it.
 
-Changes in v4: none
+If we do this we should force the driver and dts-writers to rely on the
+binding document by omitting clock-names from the binding (and hence
+dts). Otherwise people will (I will) assume that the clock-names are
+still what matters...
 
-Changes in v3: none
----
- drivers/watchdog/Kconfig | 48 ++++++++++++++++++++--------------------
- 1 file changed, 24 insertions(+), 24 deletions(-)
+Regards,
+Bjorn
 
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index 9d222ba17ec6..a6d97f30325a 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -680,10 +680,10 @@ config MAX77620_WATCHDOG
- 	depends on MFD_MAX77620 || COMPILE_TEST
- 	select WATCHDOG_CORE
- 	help
--	 This is the driver for the Max77620 watchdog timer.
--	 Say 'Y' here to enable the watchdog timer support for
--	 MAX77620 chips. To compile this driver as a module,
--	 choose M here: the module will be called max77620_wdt.
-+	  This is the driver for the Max77620 watchdog timer.
-+	  Say 'Y' here to enable the watchdog timer support for
-+	  MAX77620 chips. To compile this driver as a module,
-+	  choose M here: the module will be called max77620_wdt.
- 
- config IMX2_WDT
- 	tristate "IMX2+ Watchdog"
-@@ -1440,26 +1440,26 @@ config TQMX86_WDT
- 	depends on X86
- 	select WATCHDOG_CORE
- 	help
--	This is the driver for the hardware watchdog timer in the TQMX86 IO
--	controller found on some of their ComExpress Modules.
-+	  This is the driver for the hardware watchdog timer in the TQMX86 IO
-+	  controller found on some of their ComExpress Modules.
- 
--	To compile this driver as a module, choose M here; the module
--	will be called tqmx86_wdt.
-+	  To compile this driver as a module, choose M here; the module
-+	  will be called tqmx86_wdt.
- 
--	Most people will say N.
-+	  Most people will say N.
- 
- config VIA_WDT
- 	tristate "VIA Watchdog Timer"
- 	depends on X86 && PCI
- 	select WATCHDOG_CORE
- 	help
--	This is the driver for the hardware watchdog timer on VIA
--	southbridge chipset CX700, VX800/VX820 or VX855/VX875.
-+	  This is the driver for the hardware watchdog timer on VIA
-+	  southbridge chipset CX700, VX800/VX820 or VX855/VX875.
- 
--	To compile this driver as a module, choose M here; the module
--	will be called via_wdt.
-+	  To compile this driver as a module, choose M here; the module
-+	  will be called via_wdt.
- 
--	Most people will say N.
-+	  Most people will say N.
- 
- config W83627HF_WDT
- 	tristate "Watchdog timer for W83627HF/W83627DHG and compatibles"
-@@ -1745,10 +1745,10 @@ config BCM7038_WDT
- 	depends on HAS_IOMEM
- 	depends on ARCH_BRCMSTB || BMIPS_GENERIC || COMPILE_TEST
- 	help
--	 Watchdog driver for the built-in hardware in Broadcom 7038 and
--	 later SoCs used in set-top boxes.  BCM7038 was made public
--	 during the 2004 CES, and since then, many Broadcom chips use this
--	 watchdog block, including some cable modem chips.
-+	  Watchdog driver for the built-in hardware in Broadcom 7038 and
-+	  later SoCs used in set-top boxes.  BCM7038 was made public
-+	  during the 2004 CES, and since then, many Broadcom chips use this
-+	  watchdog block, including some cable modem chips.
- 
- config IMGPDC_WDT
- 	tristate "Imagination Technologies PDC Watchdog Timer"
-@@ -2109,12 +2109,12 @@ config KEEMBAY_WATCHDOG
- 	depends on ARCH_KEEMBAY || (ARM64 && COMPILE_TEST)
- 	select WATCHDOG_CORE
- 	help
--	 This option enable support for an In-secure watchdog timer driver for
--	 Intel Keem Bay SoC. This WDT has a 32 bit timer and decrements in every
--	 count unit. An interrupt will be triggered, when the count crosses
--	 the threshold configured in the register.
-+	  This option enable support for an In-secure watchdog timer driver for
-+	  Intel Keem Bay SoC. This WDT has a 32 bit timer and decrements in every
-+	  count unit. An interrupt will be triggered, when the count crosses
-+	  the threshold configured in the register.
- 
--	 To compile this driver as a module, choose M here: the
--	 module will be called keembay_wdt.
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called keembay_wdt.
- 
- endif # WATCHDOG
--- 
-2.25.1
-
+> > +                       },
+> > +                       .num_parents = 1,
+> > +                       .ops = &clk_alpha_pll_fixed_lucid_evo_ops,
+> > +               },
+> > +       },
+> > +};
