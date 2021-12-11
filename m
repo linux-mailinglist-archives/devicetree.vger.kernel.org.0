@@ -2,152 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AFEC4715BC
-	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 20:35:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 257F44715FD
+	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 20:59:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229795AbhLKTfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Dec 2021 14:35:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50774 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229642AbhLKTfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Dec 2021 14:35:01 -0500
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96100C061714;
-        Sat, 11 Dec 2021 11:35:01 -0800 (PST)
-Received: by mail-ot1-x336.google.com with SMTP id 47-20020a9d0332000000b005798ac20d72so13089103otv.9;
-        Sat, 11 Dec 2021 11:35:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6ThnTDByuTRKbLET20HfDuO4MA37AMxZPubz2iEC7OI=;
-        b=RXL9AOmQ11Mn+hQAi6ZAi1MF4MicKAvwf7/4iEGwvZCzF+iR6+xbEfB+9Pk4wnl32g
-         qdkjHMmB9ysF0BMPN3Tx46sh8oLvWHiR3TOMuCtI/QhAt+PQ5HhYzrca6XLp4BZM7gnx
-         9m+rZr3vv/NxT1hqm2ONPj4bi47DSY9HrvtaZOC1feO4UvwirHdVtVc7nH8ozoDVnbr/
-         tf2DjkaAODCX+2bWNFXHwII6c/ad5fr0lGnvOT/58bXfF9MKMjWpxG/0LnT452l3qwKP
-         CskNiFIt17J/YfxrEktUV3qAwhG7rddCzXMf9zMfWeG13r3U72h/B4bwRyryQvba8Jfn
-         7iHg==
+        id S232158AbhLKT7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Dec 2021 14:59:34 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:36708 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231229AbhLKT7d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Dec 2021 14:59:33 -0500
+Received: by mail-ot1-f44.google.com with SMTP id w6-20020a9d77c6000000b0055e804fa524so13175587otl.3;
+        Sat, 11 Dec 2021 11:59:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6ThnTDByuTRKbLET20HfDuO4MA37AMxZPubz2iEC7OI=;
-        b=FLMg/6VLoWBU4HxW0vacAAL3qN+9jLHPFsFr/Cgu5FNxRZ4X2JbEhvWQL6tT5bG0rb
-         1LKe5sl4OubanKXj7oExrMahwjrUt/heZZdDvo3TPhdtb8Y6C4ptO9euwtoYcOigK7aV
-         zMTBnrjMVzWBn9J5rOvu41ogXOJWX1S7FvIQ8cDvFntALHcK55ZWGCJIwEvG4Cf5AdAr
-         QHVMbsug2WlFcIDKygqoqp5FZI10Ttk30SyPyJfzAiMdRA3JA90n3Ebi73zKJ6gD6q86
-         ATgqbI4MFfzhavd4l6IC8rOVNBTP+PApL8S7TkJDslyadroVAPzcKRJ9uSNPs2WYvNw9
-         94HA==
-X-Gm-Message-State: AOAM532zE6Qg+kDvzOlsybsNdVL5SCw6KDyGReYh5DAQoMGNovZ8cqPH
-        DLZUMqOHSYNYLaA913yGEOIsCIpsNCnxvEI87yg=
-X-Google-Smtp-Source: ABdhPJxNEfKRHeU29NN6oWa8t/BJUcitJC2JZGrdiiUpp9GmzT5EwT4Ss9PMF7z5mqUUqag32OlCQpFbd3w0vP0yD4I=
-X-Received: by 2002:a05:6830:4d1:: with SMTP id s17mr17362637otd.246.1639251300939;
- Sat, 11 Dec 2021 11:35:00 -0800 (PST)
-MIME-Version: 1.0
-References: <1638864419-17501-1-git-send-email-wellslutw@gmail.com>
- <1638864419-17501-2-git-send-email-wellslutw@gmail.com> <YbPHxVf1vXZj9GOC@robh.at.kernel.org>
-In-Reply-To: <YbPHxVf1vXZj9GOC@robh.at.kernel.org>
-From:   =?UTF-8?B?5ZGC6Iqz6aiw?= <wellslutw@gmail.com>
-Date:   Sun, 12 Dec 2021 03:34:49 +0800
-Message-ID: <CAFnkrsmXu9ceSQ7rzOAFy_kP6JMa7GvY7HCbT=_wfskH6wXuSw@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 1/2] devicetree: bindings: net: Add bindings
- doc for Sunplus SP7021.
-To:     Rob Herring <robh@kernel.org>
-Cc:     davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de, Wells Lu <wells.lu@sunplus.com>,
-        vincent.shih@sunplus.com
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=QPfcHLAovIoOflHgk4Ai+A1x1hZ1x5e8vE0/cIOANFs=;
+        b=dfD21PpDacootpkNkN10jS2FzxXn5KGuuarKliUvMQBNtY9yAxwdVJlpXKwbnl3tbZ
+         GR0p+Z99VDYEUitP9ttvs1jv5Kj952WHNsJH0nRYCsN13//bY0cAniZP6d5y3snDKLNV
+         CBaXNIOtLOtcaonHAlfvEAXI4QxEmw2PVkbQxG4RTUwwiaXDvmNSYoDH4ezCCKc235To
+         39OsL94BnjPRlKnsNzjNjat3+87WcgDVIFk61gywFmA85y64PusP42mD6GcZ7G/FlMHj
+         gBm+3Bj74V46ByBSdltlG2FJmGoqXCAHv1jjDeEJ2+7QEBGe1MZyGdFciMd6oThHk/wE
+         m39w==
+X-Gm-Message-State: AOAM533ybuM5AiE+vBF6w4IsJsaS6cVuiWM38dWyQIP9NTZ4HCOJYFOA
+        6JSsqLIWqfcDTqa5L54F3z8elEimiw==
+X-Google-Smtp-Source: ABdhPJwQcaO7gNwT8rSD3SKfg90VmjK0dSIHk4htDtsUGW4+uvIPgmgBbO0n6tB9wy2fUoFWMVMMFw==
+X-Received: by 2002:a9d:798d:: with SMTP id h13mr16754818otm.132.1639252772888;
+        Sat, 11 Dec 2021 11:59:32 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id z7sm1551241oib.0.2021.12.11.11.59.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Dec 2021 11:59:32 -0800 (PST)
+Received: (nullmailer pid 3986889 invoked by uid 1000);
+        Sat, 11 Dec 2021 19:59:31 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Charles Mirabile <cmirabil@redhat.com>
+Cc:     linux-kernel@vger.kernel.org, Joel Savitz <jsavitz@redhat.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mwesigwa Guma <mguma@redhat.com>,
+        Nicolas Saenz Julienne <nsaenzju@redhat.com>,
+        Serge Schneider <serge@raspberrypi.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org,
+        Mattias Brugger <mbrugger@suse.com>,
+        fedora-rpi@googlegroups.com,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20211210221033.912430-5-cmirabil@redhat.com>
+References: <20211210221033.912430-1-cmirabil@redhat.com> <20211210221033.912430-5-cmirabil@redhat.com>
+Subject: Re: [PATCH V5 4/6] dt-bindings: mfd: sensehat: Add Raspberry Pi Sense HAT schema
+Date:   Sat, 11 Dec 2021 13:59:31 -0600
+Message-Id: <1639252771.082209.3986888.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Fri, 10 Dec 2021 17:10:31 -0500, Charles Mirabile wrote:
+> This patch adds the device tree binding
+> for the Sense HAT in yaml form.
+> 
+> Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+> Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
+> Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
+> Co-developed-by: Joel Savitz <jsavitz@redhat.com>
+> Signed-off-by: Joel Savitz <jsavitz@redhat.com>
+> ---
+>  .../bindings/mfd/raspberrypi,sensehat.yaml    | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
+> 
 
-Thank you very much for your review.
-Please see my replies below:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> Add bindings documentation for Sunplus SP7021.
->
-[...]
-> > +
-> > +  interrupts:
-> > +    description: |
-> > +      Contains number and type of interrupt. Number should be 66.
->
-> Drop. That's every 'interrupts' and the exact number is outside the
-> scope of the binding.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml:2:1: [error] missing document start "---" (document-start)
 
-Yes, I'll drop the descriptions next patch.
-interrupts property will be:
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml: properties:interrupt-parent: False schema does not allow {'items': [{'description': 'gpio pin bank for interrupt pin'}]}
+	from schema $id: http://devicetree.org/meta-schemas/interrupts.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml: ignoring, error in schema: properties: interrupt-parent
+warning: no schema found in file: ./Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
+Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.example.dt.yaml:0:0: /example-0/i2c/sensehat@46: failed to match any schema with compatible: ['raspberrypi,sensehat']
 
-  interrupts:
-    maxItems: 1
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/patch/1566669
 
-[...]
-> > +
-> > +  mdio:
->
-> Just need:
->
->        $ref: mdio.yaml#
->        unevaluatedProperties: false
->
-> and drop the rest.
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-Yes, I'll modify mdio node next patch.
-mdio node will be:
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-  mdio:
-    $ref: mdio.yaml#
-    unevaluatedProperties: false
+pip3 install dtschema --upgrade
 
+Please check and re-submit.
 
-> > +    type: object
-> > +    description: external MDIO Bus
-> > +
-> > +    properties:
-> > +      "#address-cells":
-> > +        const: 1
-> > +
-> > +      "#size-cells":
-> > +        const: 0
-> > +
-> > +    patternProperties:
-> > +      "^ethernet-phy@[0-9a-f]+$":
-> > +        type: object
-> > +        description: external PHY node
-> > +
-> > +        properties:
-> > +          reg:
-> > +            minimum: 0
-> > +            maximum: 30
-
-Can I limit value of 'reg' to no more than 30?
-
-
-> > +
-> > +        required:
-> > +          - reg
-> > +
-> > +additionalProperties: false
-> > +
-[...]
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    emac: emac@9c108000 {
->
-> ethernet@9c108000 {
-
-I'll modify it next patch.
-
-
-[...]
-> > 2.7.4
-> >
-
-
-Best regards,
-Wells
