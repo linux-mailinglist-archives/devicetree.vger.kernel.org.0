@@ -2,114 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA690471477
-	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 16:31:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0666047147E
+	for <lists+devicetree@lfdr.de>; Sat, 11 Dec 2021 16:38:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231322AbhLKPbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Dec 2021 10:31:08 -0500
-Received: from 49-237-179-185.static.tentacle.fi ([185.179.237.49]:48268 "EHLO
-        bitmer.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229836AbhLKPbI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 11 Dec 2021 10:31:08 -0500
-Received: from 88-114-185-38.elisa-laajakaista.fi ([88.114.185.38] helo=[192.168.1.42])
-        by bitmer.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <jarkko.nikula@bitmer.com>)
-        id 1mw4L1-0005wU-GF; Sat, 11 Dec 2021 17:31:03 +0200
-Message-ID: <ef843afa-c99d-328d-853a-00ef293a47f2@bitmer.com>
-Date:   Sat, 11 Dec 2021 17:30:57 +0200
+        id S231363AbhLKPiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Dec 2021 10:38:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55968 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230207AbhLKPiG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Dec 2021 10:38:06 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4919AC0617A1
+        for <devicetree@vger.kernel.org>; Sat, 11 Dec 2021 07:38:06 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id u17so19788945wrt.3
+        for <devicetree@vger.kernel.org>; Sat, 11 Dec 2021 07:38:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=14hpZi5v3aNrh/9Ioe+3lRJMRG1pjIx37V7z5Au41V8=;
+        b=cSbVP+x2VZfoV0X7cE7bOXst2+5FDLp+kop72YMbmbC4Dx15RxyO3f5N6lhZHF6FsX
+         Xvp68ItO9nx7S7UeJ1KoOO3j99mqWubneGUSdJN4n0RhhmjmuPQdIZnSsKoYqyypCvlx
+         Z1ZmGoJ1/gT0OufTudGl2XG0Lat8zuqYZr65PvGCixJNb9b7+BiTHXGN3Hj6S7Cz5jLR
+         ywp5Ytvt5rckHMQhWwK3D58PooS8umW2mfMxRc3QmJqLmf6urCQ5c17p0eMVnF3C3rzw
+         MDnKNPWM6v54FmfCXGS3QaX4jm0B1t0l8M9boUtIecVbmBeRycm8TqtJ/mJE0CbcYrwi
+         SUPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=14hpZi5v3aNrh/9Ioe+3lRJMRG1pjIx37V7z5Au41V8=;
+        b=4Dm1SjejBTlasmSelU4yF0BPDvSh51U3JkqJUuXUd3nMrmpm1KiPQkz3HbyTSgqIqO
+         u6DOZBNQs5AqeTzFqXxgKe8FH8O+rs4dwu7ubPRNLjaTZr2YF4DpUTi9ck4KURy06GU7
+         YuskjCBaI2sNC8MOJ6POftGvNJH1DGYPTDOdwDngGhV4RRGT5hRV0+RyGIlbsWwS13Aw
+         9WbjRqQfmGpDH3yjq8ZUIC0YZQZ3lJlx9ykn+EwZz0upQ2L13maDJGDTAIkXMtsAYtTt
+         cn5NtSb4gC0qKzzT7VQa73E1zc9EACnBWGZmvA4yFpE2nKMI2cmgpVhPnFMoEzQwfs11
+         wpXA==
+X-Gm-Message-State: AOAM532r8XU9dhspGJDJpdquSdGoBz7J6XqHO+yHU+NpY/G3YxVGCPvH
+        +WN5YKGhoAt5AwURiVhNk991j0rp8bylqNl+o/w=
+X-Google-Smtp-Source: ABdhPJxhs1K+b40FD/JLj/W9t8KxYF88aQsFH/vWB2MK2UaB6Kbe9paH+PEf6C9jQ+e3WBA0sgc1Hny7ftw+qwk2fEo=
+X-Received: by 2002:adf:ecce:: with SMTP id s14mr20025172wro.98.1639237084885;
+ Sat, 11 Dec 2021 07:38:04 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH] ARM: dts: Fix timer regression for beagleboard revision c
-Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org
-Cc:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20211125144834.52457-1-tony@atomide.com>
-From:   Jarkko Nikula <jarkko.nikula@bitmer.com>
-In-Reply-To: <20211125144834.52457-1-tony@atomide.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a05:6000:1869:0:0:0:0 with HTTP; Sat, 11 Dec 2021 07:38:04
+ -0800 (PST)
+Reply-To: advocate.barisozdogans@gmail.com
+From:   ABO <victoradraky@gmail.com>
+Date:   Sat, 11 Dec 2021 15:38:04 +0000
+Message-ID: <CANsKm4K-HQbgn7mPs-hk-j46PLerJjm8=CsEHs9jmehOO1fLyQ@mail.gmail.com>
+Subject: Hello
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tony
-
-On 11/25/21 16:48, Tony Lindgren wrote:
-> Commit e428e250fde6 ("ARM: dts: Configure system timers for omap3")
-> caused a timer regression for beagleboard revision c where the system
-> clockevent stops working if omap3isp module is unloaded.
-> 
-> Turns out we still have beagleboard revisions a-b4 capacitor c70 quirks
-> applied that limit the usable timers for no good reason. This also affects
-> the power management as we use the system clock instead of the 32k clock
-> source.
-> 
-> Let's fix the issue by adding a new omap3-beagle-ab4.dts for the old timer
-> quirks. This allows us to remove the timer quirks for later beagleboard
-> revisions. We also need to update the related timer quirk check for the
-> correct compatible property.
-> 
-> Fixes: e428e250fde6 ("ARM: dts: Configure system timers for omap3")
-> Cc: linux-kernel@vger.kernel.org
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Reported-by: Jarkko Nikula <jarkko.nikula@bitmer.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
-
->  .../devicetree/bindings/arm/omap/omap.txt     |  3 ++
->  arch/arm/boot/dts/Makefile                    |  1 +
->  arch/arm/boot/dts/omap3-beagle-ab4.dts        | 47 +++++++++++++++++++
->  arch/arm/boot/dts/omap3-beagle.dts            | 33 -------------
->  drivers/clocksource/timer-ti-dm-systimer.c    |  2 +-
->  5 files changed, 52 insertions(+), 34 deletions(-)
->  create mode 100644 arch/arm/boot/dts/omap3-beagle-ab4.dts
-> 
-I must have some error in my methodology since I cannot see the issue
-being fixed with your patch :-(
-
-Testing at commit 6f513529296f ("Merge tag 'for-5.16-rc4-tag' of
-git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux")
-
-alias ma='nice make -j `getconf _NPROCESSORS_ONLN` ARCH=arm
-CROSS_COMPILE="ccache arm-linux-gnueabihf-"'
-
-make ARCH=arm omap2plus_defconfig
-ma
-cat arch/arm/boot/dts/omap3-beagle.dtb >>arch/arm/boot/zImage
-ma LOADADDR=0x80008000 uImage
-
--> copy uImage & modules, boot
-# rmmod omap3_isp
-# sleep 1
--> This is the regression. Sleep is blocked until I hit keys over serial
-console
-
-rm vmlinux arch/arm/boot/zImage
-patch -p1 </tmp/your-mail.eml
-
-ma
-cat arch/arm/boot/dts/omap3-beagle-ab4.dtb >>arch/arm/boot/zImage
-ma LOADADDR=0x80008000 uImage
-
--> copy uImage & modules to µSD, boot
-# rmmod omap3_isp
-# sleep 1
--> is still blocked until I hit keys over serial console
-
-When I compare the dmesg this is the only difference (along with "linux
-version" line) before user space starts. I.e. timer configuration is the
-same in both.
-
-[    0.000000] OF: fdt: Machine model: TI OMAP3 BeagleBoard
-->
-[    0.000000] OF: fdt: Machine model: TI OMAP3 BeagleBoard A to B4
-
-Jarkko
+Hello friend,
+  How are you doing? Compliment of the season.
+Dear friend i have a deal to talk with you please, hope to hear from
+you as soon as you see the message.
+BEST Regard,
+Advocate Baris Ozdogan.
