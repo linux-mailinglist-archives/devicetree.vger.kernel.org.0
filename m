@@ -2,108 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE10847191F
-	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 08:30:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 724FC4719A6
+	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 11:45:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbhLLHa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Dec 2021 02:30:27 -0500
-Received: from marcansoft.com ([212.63.210.85]:38104 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229449AbhLLHa1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 12 Dec 2021 02:30:27 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 1B362424CD;
-        Sun, 12 Dec 2021 07:30:22 +0000 (UTC)
-Subject: Re: [PATCH v2 3/8] irqchip/apple-aic: Add cpumasks for E and P cores
-To:     Marc Zyngier <maz@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Mark Rutland <mark.rutland@arm.com>, Will Deacon <will@kernel.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        id S230120AbhLLKpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Dec 2021 05:45:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49232 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229622AbhLLKpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Dec 2021 05:45:03 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E27EC061714;
+        Sun, 12 Dec 2021 02:45:03 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id b11so9211011pld.12;
+        Sun, 12 Dec 2021 02:45:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rCn440tKtkzAwO1Bl/FgEJ2hmsU7YRbUmVeW5PxwasM=;
+        b=GnavoKbhE7V4CZiF+ENSkwT29zXiV4bKjZYKvRwIx976Al67IttZvFhf+nB+bcpcBi
+         XW2GTdmtqwETnrecyuhTURev8XPHr93nJvJwd9ml3ghjy9nhEHc9iZMXj/D0AnPb67hb
+         s+GZLBD/ODokJZkHmY0sfZyS+hilLpm5HKTwiku+uJjDv8D85j8k+aPlNkR0PWsEbmJV
+         gkzbbFNJ4Qngfd/1gayKkqFlnsj+NhPqZ9BLS1RZT1xbYdsnOJ/1WOOWgDRN0yc1krIw
+         Fcfe9/PysVmXFcZiCfP419D8iR7ZHIfd6aMtFvoErp5hJnWjdx6QmQ4p2yP/hI/Mr08y
+         UDIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rCn440tKtkzAwO1Bl/FgEJ2hmsU7YRbUmVeW5PxwasM=;
+        b=ZUUdM6WIQiPSy8Qo8zSA8YMnGf5jHeZ48B9DFd3m3wKjqmgRP1pqRTel5dFc4Wpp76
+         T8bcwX0FS/OpPr7rk70RZRvOV7P0zTj7LTyvYXrYVqYgRcBk5WWu+2yRkaK4ANUY/n8y
+         m6xdpOooIE/NMiSHIWCfQ8zHTX68lFFeTxUovBrh79ciyWF3i954Y2hDtmWTtsQi5xCH
+         WNq3GvDeejRt6ZYFJ6BZnmyBcQGE95AHQtcpPFpMa4EiD8pB3UPEwOrebGtlm90tsBIX
+         kiP+67BUFAc5326gsIh1IQ0WX1g98v6hBzNeJ/RVy+xqel6j4dcEQydHKTnfQtmnvsvN
+         tRkA==
+X-Gm-Message-State: AOAM531sCF42DunjEzHHOG21062n8bh2F5li7WLWDjx6CQvNuLw/FFeP
+        noDHklH6amxtv68PaNBQfRI//HjGfprrnA==
+X-Google-Smtp-Source: ABdhPJyyQqs5e2hm4kAqpUZ7gKLzmgvaVmuj3KuTVJQTQfa8q5uuSTPSCYfqiZrILD/EnyswXruo0Q==
+X-Received: by 2002:a17:90b:3ec2:: with SMTP id rm2mr37301920pjb.1.1639305902564;
+        Sun, 12 Dec 2021 02:45:02 -0800 (PST)
+Received: from LAPTOP-M5MOLEEC.localdomain (111-243-35-130.dynamic-ip.hinet.net. [111.243.35.130])
+        by smtp.gmail.com with ESMTPSA id k19sm8291722pff.20.2021.12.12.02.45.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Dec 2021 02:45:02 -0800 (PST)
+From:   Joseph CHANG <josright123@gmail.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Dougall <dougallj@gmail.com>, kernel-team@android.com
-References: <20211201134909.390490-1-maz@kernel.org>
- <20211201134909.390490-4-maz@kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <8bb14854-3377-4901-aaba-1a124c57cbec@marcan.st>
-Date:   Sun, 12 Dec 2021 16:30:20 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Joseph CHANG <josright123@gmail.com>,
+        joseph_chang@davicom.com.tw
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4, 0/2] ADD DM9051 ETHERNET DRIVER
+Date:   Sun, 12 Dec 2021 18:46:02 +0800
+Message-Id: <20211212104604.20334-1-josright123@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20211201134909.390490-4-maz@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/2021 22.49, Marc Zyngier wrote:
-> In order to be able to tell the core IRQ code about the affinity
-> of the PMU interrupt in later patches, compute the cpumasks of the
-> P and E cores at boot time.
-> 
-> This relies on the affinity scheme used by the vendor, which seems
-> to work for the couple of SoCs that are out in the wild.
-> 
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> ---
->   drivers/irqchip/irq-apple-aic.c | 14 ++++++++++++++
->   1 file changed, 14 insertions(+)
-> 
-> diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-aic.c
-> index 3759dc36cc8f..30ca80ccda8b 100644
-> --- a/drivers/irqchip/irq-apple-aic.c
-> +++ b/drivers/irqchip/irq-apple-aic.c
-> @@ -177,6 +177,8 @@ struct aic_irq_chip {
->   	void __iomem *base;
->   	struct irq_domain *hw_domain;
->   	struct irq_domain *ipi_domain;
-> +	struct cpumask ecore_mask;
-> +	struct cpumask pcore_mask;
->   	int nr_hw;
->   	int ipi_hwirq;
->   };
-> @@ -200,6 +202,11 @@ static void aic_ic_write(struct aic_irq_chip *ic, u32 reg, u32 val)
->   	writel_relaxed(val, ic->base + reg);
->   }
->   
-> +static bool __is_pcore(u64 mpidr)
-> +{
-> +	return MPIDR_AFFINITY_LEVEL(mpidr, 2) == 1;
-> +}
-> +
->   /*
->    * IRQ irqchip
->    */
-> @@ -833,6 +840,13 @@ static int __init aic_of_ic_init(struct device_node *node, struct device_node *p
->   		return -ENODEV;
->   	}
->   
-> +	for_each_possible_cpu(i) {
-> +		if (__is_pcore(cpu_logical_map(i)))
-> +			cpumask_set_cpu(i, &irqc->pcore_mask);
-> +		else
-> +			cpumask_set_cpu(i, &irqc->ecore_mask);
-> +	}
-> +
->   	set_handle_irq(aic_handle_irq);
->   	set_handle_fiq(aic_handle_fiq);
->   
-> 
+DM9051 is a spi interface ethernet controller chip
+Fewer connect pins to CPU compare to DM9000
 
-I'm okay with this approach, but if we want to be more explicit about 
-the affinities, maybe something like apple,pmu-irq-index in the CPU 
-nodes? Then we can either start at a higher FIQ offset for these (in 
-case we need to add more FIQs in the future), or just make up a new 
-AIC_PMU top level interrupt type and start at 0.
+Joseph CHANG (2):
+  yaml: Add dm9051 SPI network yaml file
+  net: Add dm9051 driver
 
+ .../bindings/net/davicom,dm9051.yaml          |  62 ++
+ drivers/net/ethernet/davicom/Kconfig          |  30 +
+ drivers/net/ethernet/davicom/Makefile         |   1 +
+ drivers/net/ethernet/davicom/dm9051.c         | 865 ++++++++++++++++++
+ drivers/net/ethernet/davicom/dm9051.h         | 225 +++++
+ 5 files changed, 1183 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+ create mode 100644 drivers/net/ethernet/davicom/dm9051.c
+ create mode 100644 drivers/net/ethernet/davicom/dm9051.h
+
+
+base-commit: 77ab714f00703c91d5a6e15d7445775c80358774
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+2.25.1
+
