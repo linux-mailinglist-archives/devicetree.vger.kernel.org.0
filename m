@@ -2,93 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32EE2471C39
-	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 19:27:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DC4B471C41
+	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 19:39:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230518AbhLLS1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Dec 2021 13:27:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37216 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230450AbhLLS1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Dec 2021 13:27:05 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B7D0C061714;
-        Sun, 12 Dec 2021 10:27:05 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S230386AbhLLSjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Dec 2021 13:39:17 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:41404
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231712AbhLLSjQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 12 Dec 2021 13:39:16 -0500
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BFB46B80D53;
-        Sun, 12 Dec 2021 18:27:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 847C1C341C5;
-        Sun, 12 Dec 2021 18:27:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639333622;
-        bh=1TOd/jHw/jPuDh743v2ULnEScRfPDeqdoIKwJGc3M/g=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=I1eYw+DVhzcRCLdO/+X05wG3POgkpF06K+2YsLOFxMbAD8Q2c/9AUEnDJZnMXfHUU
-         4nyszJ/zJLDdLK2a4x9dvoXbKZGfBS8aeuEGq9XLOgCOj6RBmnts6DmZG9TM0/VJJH
-         W1d5ipxii2/KYIVIlTlOeJYvmTAedD8VowqxpThg3AOn6oBTBt94fE/cO551F/s8z6
-         aSz4byKSXgAOctiznB4dvZoDa4OTvb82U2BxkK3RdJ6uzOv61ZJgELNMepfH8FvOEF
-         FQNz1CFZ9WdSFVijj3nmXZkUIpYEG2m75bGZFqTXjJoAMQrP9+3RCcPScRQy5MFJqR
-         o2OTgI8q3Maxg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1mwTYp-00BcwC-Bg; Sun, 12 Dec 2021 18:26:59 +0000
-Date:   Sun, 12 Dec 2021 18:26:58 +0000
-Message-ID: <87pmq1u1al.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3924A3F1FE
+        for <devicetree@vger.kernel.org>; Sun, 12 Dec 2021 18:39:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1639334355;
+        bh=QOLe+d7csrM+OPfnGCO79vniT112Eujdhj2JN4MALTY=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=EhYTMidWnkMC4/98ccp/2uKKFhs15LOCnpaLwlU69K9+DlBISSwTQooCrUvOmCTjf
+         idvlJtTuqHSk0ey5dmfQREu8ERYguOcl5vPGg8XwlBYwPwJpgArLaT4CFWWa59s6al
+         Ccyj0CT1uOntR4IZKjbUdH+3DLnOlnPUsoAH92zd4pqcPyLG1iYUNvQNF4P1JWZUpe
+         hUCk8x9MSxLIncEVT/w3DVsVRE1Eg6dD/j/5JOw8fmpb1hobceGHfR3ufsxzIZjtsE
+         EL3IibOzseEUg4xg9RECiJsw2CTTjbOdJ2mcCIJZRdjLOu9DPDh//jWb2vRLMJBVeR
+         JgyL8x9XVPLeQ==
+Received: by mail-lf1-f70.google.com with SMTP id h40-20020a0565123ca800b00402514d959fso6505049lfv.7
+        for <devicetree@vger.kernel.org>; Sun, 12 Dec 2021 10:39:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QOLe+d7csrM+OPfnGCO79vniT112Eujdhj2JN4MALTY=;
+        b=YgZ8lsU93bsdV55WDZ+mlqxTt0MiLAMQAQCHOsHOxOnSd75JrdyMSglBm+nw9TNMNd
+         AoPuW1U6cNn0JpaxH/cBLQynHHSFLLtVUyUXHz7GLZrLLMOTgl2cXTTa9l3dkgmYFA7o
+         M5RRDmbRIGD4tOneIfJvCKEZZP1gLiPNdOHGtAblbAMgpEwS7qB4aHa6JaoVOHcbyhst
+         Df0gi+tTPT+6qEBEqSEVPao3s84+w9nDWG+IQ7gl/J77gORkjwykIzZb5rugpC2Ak+IZ
+         WS44jx4rZ2XKZZYnoQbN6kDXc3J9CgHlIejssrIUQ6+XaFoCuOmMyz3L6QoHKOT2t02d
+         2VRQ==
+X-Gm-Message-State: AOAM532wYInJNwQOHYu/yAGj4Wb5f7sr75PRlM+NQQ6Pr6MVxpbOvnB3
+        ap1IahQsLcTQ0UYeiHqvRSyot5N0LgRbi3ho1x8BQNxTLUdhhym2mBSXOyselxGSDxe7vLKZ1eK
+        VCmHk2y5+JPrihH/YIeVnLaFPPwOaYySKqBWE/5k=
+X-Received: by 2002:a2e:9617:: with SMTP id v23mr24843162ljh.363.1639334354553;
+        Sun, 12 Dec 2021 10:39:14 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJx71+OYijueDFlqmStOqg4sDXiEX31XHw2Ry8T7iC/wKfGFnQGSIzUB9ek+aU57Ro0uZLRFZg==
+X-Received: by 2002:a2e:9617:: with SMTP id v23mr24843135ljh.363.1639334354271;
+        Sun, 12 Dec 2021 10:39:14 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id 1sm1101519ljq.102.2021.12.12.10.39.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 12 Dec 2021 10:39:13 -0800 (PST)
+Message-ID: <aa76e303-95ac-20ff-c0a9-26f7f8c6b2cb@canonical.com>
+Date:   Sun, 12 Dec 2021 19:39:12 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v4 1/7] dt-bindings: clock: Add bindings definitions for
+ Exynos7885 CMU
+Content-Language: en-US
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/6] irqchip/apple-aic: Dynamically compute register offsets
-In-Reply-To: <20211209043249.65474-5-marcan@marcan.st>
-References: <20211209043249.65474-1-marcan@marcan.st>
-        <20211209043249.65474-5-marcan@marcan.st>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: marcan@marcan.st, tglx@linutronix.de, robh+dt@kernel.org, sven@svenpeter.dev, alyssa@rosenzweig.io, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        David Virag <virag.david003@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20211206153124.427102-1-virag.david003@gmail.com>
+ <20211206153124.427102-2-virag.david003@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211206153124.427102-2-virag.david003@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 09 Dec 2021 04:32:47 +0000,
-Hector Martin <marcan@marcan.st> wrote:
+On 06/12/2021 16:31, David Virag wrote:
+> Just like on Exynos850, the clock controller driver is designed to have
+> separate instances for each particular CMU, so clock IDs start from 1
+> for each CMU in this bindings header too.
 > 
-> This allows us to support AIC variants with different numbers of IRQs
-> based on capability registers.
-> 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Signed-off-by: David Virag <virag.david003@gmail.com>
 > ---
->  drivers/irqchip/irq-apple-aic.c | 73 +++++++++++++++++++++++++--------
->  1 file changed, 56 insertions(+), 17 deletions(-)
+> Changes in v2:
+>   - Added R-b tag by Krzysztof Kozlowski
 > 
-> diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-aic.c
-> index 572d1af175fc..d03caed51d56 100644
-> --- a/drivers/irqchip/irq-apple-aic.c
-> +++ b/drivers/irqchip/irq-apple-aic.c
-> @@ -312,12 +326,15 @@ static int aic_irq_set_affinity(struct irq_data *d,
->  	struct aic_irq_chip *ic = irq_data_get_irq_chip_data(d);
->  	int cpu;
->  
-> +	if (!ic->info.target_cpu)
-> +		return -EINVAL;
+> Changes in v3:
+>   - Nothing
+> 
+> Changes in v4:
+>   - Nothing
+> 
+>  include/dt-bindings/clock/exynos7885.h | 115 +++++++++++++++++++++++++
+>  1 file changed, 115 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/exynos7885.h
+> 
 
-Can this even happen? And if it did, this should scream loudly,
-shouldn't it?
+Hi Sylwester,
 
-	M.
+The DTS/DTSI patch (7/7) depends on this one, just like the clock driver.
 
--- 
-Without deviation from the norm, progress is not possible.
+Since some time Arnd and Olof prefer not to have external trees going
+into the arm-soc, even if this is only the header change. They recommend
+one of:
+1. to hard-code the numbers in DTS and replace numbers->macros later,
+2. merge headers to arm-soc tree with DTS and provide the header to an
+external (e.g. clk) tree,
+3. wait with merging DTSI till headers reach mainline.
+
+I propose that I take the clock headers, put on separate branch and
+provide them to you as stable tag. You can base clk driver changes on
+top of it.
+
+Are you okay with this?
+
+Best regards,
+Krzysztof
