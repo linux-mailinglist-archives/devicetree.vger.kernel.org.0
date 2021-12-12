@@ -2,91 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04C16471E27
-	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 23:09:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66D85471E31
+	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 23:19:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229662AbhLLWJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Dec 2021 17:09:30 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:34730 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229584AbhLLWJa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 12 Dec 2021 17:09:30 -0500
-Received: from p508fc708.dip0.t-ipconnect.de ([80.143.199.8] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mwX24-0006Qe-S7; Sun, 12 Dec 2021 23:09:24 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     dri-devel@lists.freedesktop.org,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH 07/18] dt-bindings: display: rockchip: dw-hdmi: Allow "ref" as clock name
-Date:   Sun, 12 Dec 2021 23:09:24 +0100
-Message-ID: <3032544.f5MXlUzpl7@phil>
-In-Reply-To: <20211208151230.3695378-8-s.hauer@pengutronix.de>
-References: <20211208151230.3695378-1-s.hauer@pengutronix.de> <20211208151230.3695378-8-s.hauer@pengutronix.de>
+        id S229767AbhLLWTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Dec 2021 17:19:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45952 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229762AbhLLWTd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Dec 2021 17:19:33 -0500
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D63CC06173F;
+        Sun, 12 Dec 2021 14:19:33 -0800 (PST)
+Received: by mail-qv1-xf2b.google.com with SMTP id j9so12910908qvm.10;
+        Sun, 12 Dec 2021 14:19:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5/2Wze8vZRG9YKWtB/AhqKPwIShZlYfqbSfgNVc2Zmw=;
+        b=Y/vY1gwFL5MKOWON7KpUeBBaPUM0qdH0B18FP+J1/yQjsq3mc+DOOgJOkMcqnYDKgB
+         Pj5xqHpQpAD5bGsZohVnOWSyzrGElxwN70wKcl1kT4o1IVkyy6DV9IPOoW8I16wggf9n
+         5fxKoxYtflCYmBIV4z9dI5H0V1kl1fQiecwd4wy8mdA9AXXpBn+cfJQCvsgZ3fHkxpsB
+         lSeu48slHXfxgHvtUPN3VtCtkAbE0HBRsVpKOtR5dqR4qaLMbAVh9cbayw5zUz0tf53n
+         /TlwXqdDOg1P4rbNFOT3ZtFv9SK2FKnT0oxHALAJX/mBNHdIvyKCJzEm++9XduQMdOkQ
+         mZpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5/2Wze8vZRG9YKWtB/AhqKPwIShZlYfqbSfgNVc2Zmw=;
+        b=u6ioi4EKovlKos3ndtF8gF1Re/yLEiVteAFLkLUWVQ1Gd14F4ZPws4/ljM8ahg2m8o
+         7ljD2hSTB7Srx2gZEBwx6pnWi3JEo6IjvYyFTJApZ/Agf+DWpvBRIWYrTHlNZAcjyz2W
+         PVXngvpb9MNOoSgPftcgAvHt1qBbzz55RV5hLbJiAqLuBlRhGq9R08YAqlBE+vTNRKPd
+         c70gJU+0CyM080jb3++6NfNjpXfe/66V7MX/yKd9w9uD1RxbC1S06468LqruVO8b+aRB
+         mpG1J/un1MojaTDP/0vYmGvlzr+Yp1RH9TqGUacCfX390AIaX+YoR5UeULQPMl07vqod
+         lWKA==
+X-Gm-Message-State: AOAM5337jvOaKuH71b3925b7kiKs0Ct0aDXIo+5zxiG0YiqcbnB7WUO5
+        Xq50l6vLrkBa8LF6qidbLaU=
+X-Google-Smtp-Source: ABdhPJzHVYmFFDaQ4KwaHk9hBdAawKnLmvKnYnuJQrjEkU0ha16zl8yUT4O+EEYq1SzNNO3kOvfMGA==
+X-Received: by 2002:ad4:5cef:: with SMTP id iv15mr38245876qvb.86.1639347572362;
+        Sun, 12 Dec 2021 14:19:32 -0800 (PST)
+Received: from localhost.localdomain (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id x1sm2561065qtj.9.2021.12.12.14.19.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Dec 2021 14:19:31 -0800 (PST)
+From:   frowand.list@gmail.com
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] of: unittest: 64 bit dma address test requires arch support
+Date:   Sun, 12 Dec 2021 16:18:52 -0600
+Message-Id: <20211212221852.233295-1-frowand.list@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 8. Dezember 2021, 16:12:19 CET schrieb Sascha Hauer:
-> "vpll" is a misnomer. A clock input to a device should be named after
-> the usage in the device, not after the clock that drives it. On the
-> rk3568 the same clock is driven by the HPLL.
-> To fix that, this patch renames the vpll clock to ref clock.  The clock
-> name "vpll" is left for compatibility to old device trees.
+From: Frank Rowand <frank.rowand@sony.com>
 
-Can't we just say that the binding only takes the "ref" name, but
-the code still allows "vpll".
+If an architecture does not support 64 bit dma addresses then testing
+for an expected dma address >= 0x100000000 will fail.
 
-I think I remember Rob suggesting something similar in the past.
+Fixes: e0d072782c73 ("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset")
+Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+---
+ drivers/of/unittest.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-I don't think that we need to keep the binding(-validation)
-compatible with old devicetrees, but the kernel itself should stay
-compatible.
-
-
-Heiko
-
-
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->  .../bindings/display/rockchip/rockchip,dw-hdmi.yaml         | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> index 6e09dd2ee05ac..2ab6578033da2 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> @@ -48,10 +48,14 @@ properties:
->            - cec
->            - grf
->            - vpll
-> +          - ref
->        - enum:
->            - grf
->            - vpll
-> -      - const: vpll
-> +          - ref
-> +      - enum:
-> +          - vpll
-> +          - ref
->  
->    ddc-i2c-bus:
->      $ref: /schemas/types.yaml#/definitions/phandle
-> 
-
-
-
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index 481ba8682ebf..126020e9838a 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -934,8 +934,9 @@ static void __init of_unittest_parse_dma_ranges(void)
+ {
+ 	of_unittest_dma_ranges_one("/testcase-data/address-tests/device@70000000",
+ 		0x0, 0x20000000);
+-	of_unittest_dma_ranges_one("/testcase-data/address-tests/bus@80000000/device@1000",
+-		0x100000000, 0x20000000);
++	if (IS_ENABLED(CONFIG_ARCH_DMA_ADDR_T_64BIT))
++		of_unittest_dma_ranges_one("/testcase-data/address-tests/bus@80000000/device@1000",
++			0x100000000, 0x20000000);
+ 	of_unittest_dma_ranges_one("/testcase-data/address-tests/pci@90000000",
+ 		0x80000000, 0x20000000);
+ }
+-- 
+Frank Rowand <frank.rowand@sony.com>
 
