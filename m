@@ -2,139 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AAB6471E4E
-	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 23:47:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BBE8471E82
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 00:02:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230048AbhLLWr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Dec 2021 17:47:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52044 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229979AbhLLWr0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Dec 2021 17:47:26 -0500
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41D9DC06173F;
-        Sun, 12 Dec 2021 14:47:26 -0800 (PST)
-Received: by mail-qv1-xf31.google.com with SMTP id u16so12996726qvk.4;
-        Sun, 12 Dec 2021 14:47:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Ix+G0zc+g6/N6041+1Hk6LHt/Y4Z+qpp/k2nnjfJ76s=;
-        b=MpLM3+0TPWqdJ+7DzYXtgH/6RhHatrTyBWY6ICHaz9hQl4lExVUmsYY/G1zRoMz+Lp
-         E9TVClJlGi2yDDaKDBeL7HwrFj63stulPxpfeyJj3Ks1Az9f34PgGj9fZUGnaBxDKfor
-         N9F7IKATjEdFWllTPbqJ9hWb/JqSd3Ckb2bItL2pG1PsIMIIMH+eCtEUB810cwVWWswL
-         BN9c4dzXx6TYNet9IM5t3up8nSR6DNiMIYreCjdJNvaQGkhiGmAICaxtBUbCLuhBQGfT
-         TNdv9hfTVkAp/01h4xDg3alvxwCYoIDPUH/I9cl5QKyNgqbj8edwYNfFaklZOHrsMgkm
-         3zeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Ix+G0zc+g6/N6041+1Hk6LHt/Y4Z+qpp/k2nnjfJ76s=;
-        b=3BwSufZU6bWzAHHVvCW+VWYgJQtDbtU7sRDV08B67i2ypuN04by29PrzMb9a4nKxSo
-         TKfp/AcnoVvkFDjQjBvNAbuibkn5IQjW0B0hKayjQy1TSRs+PcmEYbfchfYcPGZVif4I
-         sI36EoCOVa4qoye3t/0g3608f8nQy6wQ3rC+LCmXvE8SXGtOXFCbigAzY7k0woPzDpYV
-         K4SZWgbkVk2qRL6XlSb8IiWFPIkbQmqawAom2RlZ3TCJxkNFuUMVUVcpxF5ek2BN5FSM
-         X0Nu2pVsQNVFvTX80CG9rupd3fsebeDC2mseonucAyeymDM55YONeiYtBSlhABYgAFnW
-         1h3A==
-X-Gm-Message-State: AOAM530s7tLfyfTZUXC45g7w6+QXeu0wn6fIj2q7C6IFf5m3/IcRHJbm
-        j6PDij+hkFVKSghmuLnlQF4k2CcuU2o=
-X-Google-Smtp-Source: ABdhPJx1M7WZxHZQTNZ/wYESqgILvAMdnpUS8cPtoHkLGib28aH89EBWD6xno9Y5OaASIppO0DuXbw==
-X-Received: by 2002:ad4:4b26:: with SMTP id s6mr39537389qvw.92.1639349245306;
-        Sun, 12 Dec 2021 14:47:25 -0800 (PST)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id s20sm8343124qtc.75.2021.12.12.14.47.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Dec 2021 14:47:25 -0800 (PST)
-Subject: Re: [PATCH v2 1/1] of: unittest: fix warning on PowerPC frame size
- warning
-To:     Jim Quinlan <jim2101024@gmail.com>, Christoph Hellwig <hch@lst.de>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
+        id S230210AbhLLXCT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Dec 2021 18:02:19 -0500
+Received: from mout.gmx.net ([212.227.17.20]:41771 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230204AbhLLXCQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 12 Dec 2021 18:02:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1639350129;
+        bh=pGlgCazVp8nQl5psPTq5BoguCoJqXSVkwS4YQtUO2Qk=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=aNoV0nm3MR+wa1YjB+hXPLMjVwuNE578mJY6SGCHBfMHcIappqtIGqATiBJK2ayNJ
+         2Evtiys5bdECP+jM+/2iiltqB4AsYOaFlix3+shbyre8SvabuwvaWbfxDTFkx5fO7z
+         LdI1hklCBL4ANFRkdLscunzh0t15AHiWHGCv3qnE=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([5.146.194.160]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MLiCu-1nE4hs3a7M-00HjIl; Mon, 13
+ Dec 2021 00:02:08 +0100
+Date:   Mon, 13 Dec 2021 00:02:07 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20211210184636.7273-1-jim2101024@gmail.com>
- <20211210184636.7273-2-jim2101024@gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <598c9bcd-a956-07f1-17a2-5177a8bd5458@gmail.com>
-Date:   Sun, 12 Dec 2021 16:47:24 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 5/8] pinctrl: nuvoton: Add driver for WPCM450
+Message-ID: <YbZ/byE4Sj/fxUrj@latitude>
+References: <20211207210823.1975632-1-j.neuschaefer@gmx.net>
+ <20211207210823.1975632-6-j.neuschaefer@gmx.net>
+ <CAHp75Vew=M_ofNM5pmeHtTJHXRUbbO4RrtgYAtLBznTBm3CS6Q@mail.gmail.com>
+ <YbC6Bv2teZ5CFhFQ@latitude>
+ <CAHp75VdYtLbCLi7iD0UT7MrPi9oxJLWA9ZCBo7uGbWxNCBdGyw@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20211210184636.7273-2-jim2101024@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="t24WkmUQOwokeUNJ"
+Content-Disposition: inline
+In-Reply-To: <CAHp75VdYtLbCLi7iD0UT7MrPi9oxJLWA9ZCBo7uGbWxNCBdGyw@mail.gmail.com>
+X-Provags-ID: V03:K1:yVb59m40aoo/YNSlVRYLEyk2zd8aBC3T0OVDCEh1lZ8U322m9/z
+ 29azbAowmCnvdVlo8413N504Fr2VNkIUEel040iCBouJNb/Nziz55dQNQT4zoju4iJrlug2
+ 1TwTD8leILU/N91SDCOIbLy7XjHmTpKm5lwHNLkrs9ECoWKoKSKANHwiNNQz3ziP3RLw2y7
+ IJfJNhDQO8f4POfBmh6eQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:4vW4Yo80IFk=:19Gq3SwuUqJiQ5Z7eD1paq
+ oUIpJ3J2IfH4HzXTR2nevThZn/npmI+ZSdbqSicl39PHNZjHYCeh0yqKkKIsl0tjjFTs+OVPD
+ brbwBncLbofy73Z3X6IPWLLWxd03IZZIqPH0mUmWlSPgRdJkgHaLn4me6WxgFVS5cM0ameVn2
+ b+cszw91kPEbKIrH+RWtO7YyrM+2d4yX3eHOEw+l5mLFJ/t8lZAlJVNdeQV7GNqQVzYIXbHiv
+ PVKHrVA5LB82oOWnq55DeZQFBt1aP9LBEyiHrrNH1ItvQp+za2VSlHViqmlBS/d9Xmkff2OfM
+ ACeFuUlBuCSb7fm7qBJiLdr2RAsVbaWNbAAIgUoFbNvBfMm2o8jbnqOwWD342dZV+tBDF27Vg
+ tGD4bsY+N6WTxGl7lcL2UTdEUo9v3N31k3RlcPf9k6GPNe18JZKp9pyACnx99UBVI5PIi1kLK
+ 845kUvSK9qVRTGxAK6W3VYISzQZDH42szBRHo8KPWw4awsMVpw5UJjtbvVho+dC6xTaaUBoqQ
+ 5k6RbXcaY7N5/n9RDxJ/mIii95+xBrUh+xLmvf+cMiZkzOBgYEYt6sbNfvy4Iu2O8FgHVEYgo
+ CmfWdTic3envNvZiquAHsyLi/XrTq1uiKzv8vFaHjPobjE17r5o39Lm2UV9ebon12yLc4REk6
+ tG7QGXaB/jYudKzeYKw28T4YwjmIKI4MFBnOId76/5F4zymqpfobiR4ZNnBHTcDPSzwTyaOq1
+ BrfZPUPrYANsCHAmfvKGQ9Qq/xtGHnQY2Gdw6iw/kbWDDlgPKjjwGpFyUPOTFlyzRkd3kxKQk
+ JUWzKt3XiK8jR4rTKUVlx9Q7JhFM+HXSQWPAdismKdo7EiwBT8hiq1hMYFA1Eooeoq/QdIwdB
+ Ns5MsOZGZcEmFguNJamadNb3g2bk73JxvMRwIY64UZ6+jnn7AFJY0FkvMYxuEgskKRvhQzhnO
+ Khq19aIiYB5uz+jy37BchSeGYr9K6k8iKiJS8ScB8+UVpSgEV3+8K/FthVlSbQcEi2URxyBxB
+ 3ABS3p1z/OfhlYySeIdogRC0IGCYAc+Xh1k1lenydNUjl56BBeMMKRlnfNGfCntivga9oDSz5
+ 3ZOwvhbohm4SSU=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-moved the file's maintainers from the "cc:" list to the "to:" list
 
-review comments below
+--t24WkmUQOwokeUNJ
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Dec 08, 2021 at 04:14:38PM +0200, Andy Shevchenko wrote:
+> On Wed, Dec 8, 2021 at 3:58 PM Jonathan Neusch=C3=A4fer <j.neuschaefer@gm=
+x.net> wrote:
+> > On Wed, Dec 08, 2021 at 01:24:18PM +0200, Andy Shevchenko wrote:
+> > > On Tuesday, December 7, 2021, Jonathan Neusch=C3=A4fer <j.neuschaefer=
+@gmx.net>
+> > > wrote:
+>=20
+> ...
+>=20
+> > > > +       ours =3D ((1UL << gpio->num_irqs) - 1) << gpio->first_irq_b=
+it;
+> > >
+> > > BIT()
+> >
+> > I'll use it, but in this case, I think it doesn't simplify much the
+> > whole expression all that much.
+>=20
+> It is still better to use in my opinion.
+
+Ok.
+
+>=20
+> > Is there perhaps a macro that
+> > constructs a continuous bitmask of N bits, perhaps additionally
+> > left-shifted by M bits?
+>=20
+> > Maybe somewhere in the bitmap_* API...
+>=20
+> Maybe, I dunno since I haven't clearly got this code anyway, so up to
+> you to check and see what to do about it.
+
+Right, I'll evaluate my options and come up with something.
+
+> ...
+>=20
+> > > > +       struct fwnode_handle *np;
+> > >
+> > >  Either be fully OF, or don=E2=80=99t name =E2=80=98np' here. We usua=
+lly use fwnode or
+> > > =E2=80=98child=E2=80=99 in this case.
+> >
+> > Ah, I thought "np" (=3D node pointer) was still appropriate because I'm
+> > dealing with firmware _nodes_. My intention was indeed to switch fully
+> > to the fwnode API.
+>=20
+> Just a convention "de facto".
+
+Ok, I'll change it.
 
 
-On 12/10/21 1:46 PM, Jim Quinlan wrote:
-> The struct device variable "dev_bogus" was triggering this warning
-> on a PowerPC build:
-> 
->     drivers/of/unittest.c: In function 'of_unittest_dma_ranges_one.constprop':
->     [...] >> The frame size of 1424 bytes is larger than 1024 bytes
->              [-Wframe-larger-than=]
-> 
-> This variable is now dynamically allocated.
+> > > > +               ret =3D gpiochip_add_pin_range(&gpio->gc, dev_name(=
+pctrl->dev),
+> > > > +                                            0, bank->base, bank->l=
+ength);
+> > > > +               if (ret) {
+> > > > +                       dev_err(pctrl->dev, "Failed to add pin rang=
+e for GPIO bank %u\n", reg);
+> > > > +                       return ret;
+> > > > +               }
+> > >
+> > > Please move it to the corresponding callback.
+> >
+> > What's the corresponding callback?
+>=20
+> https://elixir.bootlin.com/linux/latest/source/include/linux/gpio/driver.=
+h#L400
 
-A side effect of the change is that dev_bogus is initialized to all
-zeros instead of containing random data from the stack.
+Thanks.
 
-> 
-> Fixes: e0d072782c734 ("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
-> ---
->  drivers/of/unittest.c | 16 ++++++++++++----
->  1 file changed, 12 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> index 481ba8682ebf..02c5cd06ad19 100644
-> --- a/drivers/of/unittest.c
-> +++ b/drivers/of/unittest.c
-> @@ -911,11 +911,18 @@ static void __init of_unittest_dma_ranges_one(const char *path,
->  	if (!rc) {
->  		phys_addr_t	paddr;
->  		dma_addr_t	dma_addr;
-> -		struct device	dev_bogus;
-> +		struct device	*dev_bogus;
->  
-> -		dev_bogus.dma_range_map = map;
-> -		paddr = dma_to_phys(&dev_bogus, expect_dma_addr);
-> -		dma_addr = phys_to_dma(&dev_bogus, expect_paddr);
-> +		dev_bogus = kzalloc(sizeof(struct device), GFP_KERNEL);
-> +		if (!dev_bogus) {
-> +			unittest(0, "kzalloc() failed\n");
-> +			kfree(map);
-> +			return;
-> +		}
-> +
-> +		dev_bogus->dma_range_map = map;
-> +		paddr = dma_to_phys(dev_bogus, expect_dma_addr);
-> +		dma_addr = phys_to_dma(dev_bogus, expect_paddr);
->  
->  		unittest(paddr == expect_paddr,
->  			 "of_dma_get_range: wrong phys addr %pap (expecting %llx) on node %pOF\n",
-> @@ -925,6 +932,7 @@ static void __init of_unittest_dma_ranges_one(const char *path,
->  			 &dma_addr, expect_dma_addr, np);
->  
->  		kfree(map);
-> +		kfree(dev_bogus);
->  	}
->  	of_node_put(np);
->  #endif
-> 
 
-Reviewed-by: Frank Rowand <frank.rowand@sony.com>
+Best regards,
+Jonathan Neusch=C3=A4fer
+
+--t24WkmUQOwokeUNJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmG2f0MACgkQCDBEmo7z
+X9sYXA//SjVBvUSq+Vp4V6n3Mf8tpNS+Lo6WnaDVN1MdPICwlAu8ael1mV2LXLR8
+bl4LhyvW/Z4LejKiJP+ha0ex/9QH2AfmzPIzhcMPIMw7P4mKG9b62MG5Ny3Oh1x/
+6IlnwwNIg1Sl3RZVMqLStf8kFHzMRAsmtmWCWLEwI8fCrdgzJC4wJsMQ0Ersswig
+NIZ4+pnwIrNuE0nZ9fVZp5YMbV0revnIyuFOcQ6AJuKjstzeZkOf68apcEwafOU9
+ytEO9hybxRTJ5u0UFpwzvqb1oXWmoXx9dilWithnFFPbS1PZmWT5l9sAMuCyYoy4
+XpOpNvH6nyaaQDWbQ21fLNzRFZDmB8jEs2SSluFHPwWYQiKjf6c+dwtauKktw/Mb
+v4idD4xqvYK9LimE28vq+N5EuJZCXi4BXQ3GLiG2GTePrHp09+yGRrNowscta5+u
+dDAqt6PCuAMj1BZoaIZ4tczq6sE0p052Agarqt0Gk+IgZ6FIACnGL7OynU+GO0Ls
+PihSquVF09O5V9L2SktaFXvz0vZv7ab9tbQWD/qwjBj2+XJAo2xWpHnJwNF4S8r7
+wGQ1QNNO5AM+3mC8B28bCv13+bY3tfi4+PlPnPib3XZMiGOwOusgap8RargJS1x5
+9+PLYnHSkO9TvVEPwMm4qDvOFG/KR7VpHsfsYAG0HLYMoH0ZNzM=
+=4g/M
+-----END PGP SIGNATURE-----
+
+--t24WkmUQOwokeUNJ--
