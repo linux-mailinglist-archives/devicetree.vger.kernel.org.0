@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96320471907
-	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 08:15:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25716471910
+	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 08:22:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbhLLHPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Dec 2021 02:15:03 -0500
-Received: from smtpbg604.qq.com ([59.36.128.82]:59988 "EHLO smtpbg604.qq.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229518AbhLLHPD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 12 Dec 2021 02:15:03 -0500
-X-QQ-mid: bizesmtp46t1639293297tac9mnvn
-Received: from localhost.localdomain (unknown [182.132.179.213])
-        by esmtp6.qq.com (ESMTP) with 
-        id ; Sun, 12 Dec 2021 15:14:55 +0800 (CST)
-X-QQ-SSF: 01000000002000D0I000B00A0000000
-X-QQ-FEAT: 8QKpqxZbV7FYtRzLYMIsptAal0aV5pn5hYkqAwSjoSxsCPGc+6SNiywpXuteq
-        mVzKZwdqscScGXH8ot1LRy2u/ljJemuxh+mEAZMoyLNzfoOzgQChgaF7IZUd7rwpi36y291
-        7aEBEVatFAEynuK3rogtM9PSyttSTg+42EhVABl4+tLvyQavESvYBldxtFo1891d0eIYjF+
-        epuIxP263lEDKUOLMUxh+AjsSESkHYdXAQaH4Nz7jwxQDgJAREOiNdJ/7ueUUmJqWf0lJGQ
-        ncOLrpj4UgCSSy/H1/h5iSgqWog67D3Cmbk+5RhLpFjR11T95kh0FNsmQw8cVOZy93Ug2pF
-        kF9CL59Owfsi+AHBqXsOX3BSS/q8mb89RglyEOhY6UHdJu1gjs5MBt/Ynwnfg==
-X-QQ-GoodBg: 0
-From:   Jason Wang <wangborong@cdjrlc.com>
-To:     frowand.list@gmail.com
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jason Wang <wangborong@cdjrlc.com>
-Subject: [PATCH] of: unneed to initialise statics to 0 or NULL
-Date:   Sun, 12 Dec 2021 15:14:54 +0800
-Message-Id: <20211212071454.298251-1-wangborong@cdjrlc.com>
-X-Mailer: git-send-email 2.34.1
+        id S229715AbhLLHWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Dec 2021 02:22:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33828 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229450AbhLLHWH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Dec 2021 02:22:07 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 301CAC061714;
+        Sat, 11 Dec 2021 23:22:07 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 7A9C2424CD;
+        Sun, 12 Dec 2021 07:22:02 +0000 (UTC)
+Subject: Re: [PATCH v2 3/8] irqchip/apple-aic: Add cpumasks for E and P cores
+To:     Marc Zyngier <maz@kernel.org>, Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dougall <dougallj@gmail.com>, kernel-team@android.com
+References: <20211201134909.390490-1-maz@kernel.org>
+ <20211201134909.390490-4-maz@kernel.org> <Yaed7VAlwwCBcP13@FVFF77S0Q05N>
+ <87zgphlkdx.wl-maz@kernel.org>
+From:   Hector Martin <marcan@marcan.st>
+Message-ID: <d350f759-17de-907f-531b-127d2493d056@marcan.st>
+Date:   Sun, 12 Dec 2021 16:22:00 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:cdjrlc.com:qybgspam:qybgspam4
+In-Reply-To: <87zgphlkdx.wl-maz@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Static variables do not need to be initialised to 0 or NULL,
-because compilers will initialise all uninitialised statics
-to 0 or NULL. Thus, remove the unneeded initializations.
+On 04/12/2021 01.32, Marc Zyngier wrote:
+> On Wed, 01 Dec 2021 16:08:13 +0000,
+> Mark Rutland <mark.rutland@arm.com> wrote:
+>>
+>> On Wed, Dec 01, 2021 at 01:49:04PM +0000, Marc Zyngier wrote:
+>>> In order to be able to tell the core IRQ code about the affinity
+>>> of the PMU interrupt in later patches, compute the cpumasks of the
+>>> P and E cores at boot time.
+>>>
+>>> This relies on the affinity scheme used by the vendor, which seems
+>>> to work for the couple of SoCs that are out in the wild.
+>>
+>> ... but may change at any arbitrary point in future?
+> 
+> Crystal balls are in short supply, sorry! ;-)
 
-Signed-off-by: Jason Wang <wangborong@cdjrlc.com>
----
- drivers/of/pdt.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Considering Apple seem to rely on this all over the place, I think they 
+probably won't be changing the meaning of Aff2 at least until they 
+decide to come up with SoCs that have 3 types of cores, or something 
+like that :)
 
-diff --git a/drivers/of/pdt.c b/drivers/of/pdt.c
-index 7eda43c66c91..37d02fcb81d0 100644
---- a/drivers/of/pdt.c
-+++ b/drivers/of/pdt.c
-@@ -40,7 +40,7 @@ static inline void irq_trans_init(struct device_node *dp) { }
- 
- static char * __init of_pdt_build_full_name(struct device_node *dp)
- {
--	static int failsafe_id = 0; /* for generating unique names on failure */
-+	static int failsafe_id; /* for generating unique names on failure */
- 	const char *name;
- 	char path[256];
- 	char *buf;
-@@ -67,7 +67,7 @@ static struct property * __init of_pdt_build_one_prop(phandle node, char *prev,
- 					       void *special_val,
- 					       int special_len)
- {
--	static struct property *tmp = NULL;
-+	static struct property *tmp;
- 	struct property *p;
- 	int err;
- 
+But yeah, ultimately this is a guess.
+
 -- 
-2.34.1
-
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
