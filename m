@@ -2,127 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DC4B471C41
-	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 19:39:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BC50471C48
+	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 19:46:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230386AbhLLSjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Dec 2021 13:39:17 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:41404
+        id S231826AbhLLSqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Dec 2021 13:46:10 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:41478
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231712AbhLLSjQ (ORCPT
+        by vger.kernel.org with ESMTP id S231282AbhLLSqK (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Sun, 12 Dec 2021 13:39:16 -0500
+        Sun, 12 Dec 2021 13:46:10 -0500
 Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3924A3F1FE
-        for <devicetree@vger.kernel.org>; Sun, 12 Dec 2021 18:39:15 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 27C473F0EB
+        for <devicetree@vger.kernel.org>; Sun, 12 Dec 2021 18:46:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639334355;
-        bh=QOLe+d7csrM+OPfnGCO79vniT112Eujdhj2JN4MALTY=;
+        s=20210705; t=1639334769;
+        bh=vVmzi0LKYYg7ixdO/Dk9XoMf50KrjdNN8bDu23E8c2o=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=EhYTMidWnkMC4/98ccp/2uKKFhs15LOCnpaLwlU69K9+DlBISSwTQooCrUvOmCTjf
-         idvlJtTuqHSk0ey5dmfQREu8ERYguOcl5vPGg8XwlBYwPwJpgArLaT4CFWWa59s6al
-         Ccyj0CT1uOntR4IZKjbUdH+3DLnOlnPUsoAH92zd4pqcPyLG1iYUNvQNF4P1JWZUpe
-         hUCk8x9MSxLIncEVT/w3DVsVRE1Eg6dD/j/5JOw8fmpb1hobceGHfR3ufsxzIZjtsE
-         EL3IibOzseEUg4xg9RECiJsw2CTTjbOdJ2mcCIJZRdjLOu9DPDh//jWb2vRLMJBVeR
-         JgyL8x9XVPLeQ==
-Received: by mail-lf1-f70.google.com with SMTP id h40-20020a0565123ca800b00402514d959fso6505049lfv.7
-        for <devicetree@vger.kernel.org>; Sun, 12 Dec 2021 10:39:15 -0800 (PST)
+        b=mMcsrNG7e9HpAEThtez52XZddp6vLNfrlhFFw9IsouE7CwlodekjKqRcRcFw5Rymk
+         mcPGRqAg/Q9Tj3rO8i/6HxjjPz2mti635Ke2kB44Zuw/K5uaodYMvJc6KtxFgUmXJ2
+         lHHW6zecwmMenuPQI0y3Ncpglq/j8gHfJieIFys/4aC46q6bDoJM/zxNlMcIxdSPiK
+         JqtqaiV6BavlfJaLw6dda0JLLEZgXXuTRRBTd9ZsGAwOl5BtxudEPIp+U84En9jjma
+         pq2btc+sUMt2FaoNGWi9ZPHG28hcs89j/AgeloCGtgoZV9m8ZpXCBdgFKBQ5fOXS1H
+         5qC5qQS1FsgBg==
+Received: by mail-lf1-f70.google.com with SMTP id u20-20020a056512129400b0040373ffc60bso6438552lfs.15
+        for <devicetree@vger.kernel.org>; Sun, 12 Dec 2021 10:46:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=QOLe+d7csrM+OPfnGCO79vniT112Eujdhj2JN4MALTY=;
-        b=YgZ8lsU93bsdV55WDZ+mlqxTt0MiLAMQAQCHOsHOxOnSd75JrdyMSglBm+nw9TNMNd
-         AoPuW1U6cNn0JpaxH/cBLQynHHSFLLtVUyUXHz7GLZrLLMOTgl2cXTTa9l3dkgmYFA7o
-         M5RRDmbRIGD4tOneIfJvCKEZZP1gLiPNdOHGtAblbAMgpEwS7qB4aHa6JaoVOHcbyhst
-         Df0gi+tTPT+6qEBEqSEVPao3s84+w9nDWG+IQ7gl/J77gORkjwykIzZb5rugpC2Ak+IZ
-         WS44jx4rZ2XKZZYnoQbN6kDXc3J9CgHlIejssrIUQ6+XaFoCuOmMyz3L6QoHKOT2t02d
-         2VRQ==
-X-Gm-Message-State: AOAM532wYInJNwQOHYu/yAGj4Wb5f7sr75PRlM+NQQ6Pr6MVxpbOvnB3
-        ap1IahQsLcTQ0UYeiHqvRSyot5N0LgRbi3ho1x8BQNxTLUdhhym2mBSXOyselxGSDxe7vLKZ1eK
-        VCmHk2y5+JPrihH/YIeVnLaFPPwOaYySKqBWE/5k=
-X-Received: by 2002:a2e:9617:: with SMTP id v23mr24843162ljh.363.1639334354553;
-        Sun, 12 Dec 2021 10:39:14 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJx71+OYijueDFlqmStOqg4sDXiEX31XHw2Ry8T7iC/wKfGFnQGSIzUB9ek+aU57Ro0uZLRFZg==
-X-Received: by 2002:a2e:9617:: with SMTP id v23mr24843135ljh.363.1639334354271;
-        Sun, 12 Dec 2021 10:39:14 -0800 (PST)
+        bh=vVmzi0LKYYg7ixdO/Dk9XoMf50KrjdNN8bDu23E8c2o=;
+        b=K8iU88o6FLqIuPyBtfXruPU/BdO5ohFWfLeAfrLScgDHAY68V0uhY13ceLVyCKOi/4
+         u/sO0RNW9ahzz1X3ZTw5IYaUYbDCVo46nOy8jPB5d1LdKzYvKwEoAej3fTj6xbseLA/f
+         Tt+B6dZWiAjEgxihqeUT9GBRRU9tH9nCwGg4f5tH2SYhtZi0obhCEP4Dm1JqD/HmA9dC
+         VVnBnOaPspDUZPbl2RiIcYAixGBmx8Ar815GU+WhqId6qfSU/xwtKTEkJ91dnKZFrZI1
+         n8Qna0JwfRaLwDJ2Zp5yDgSmR8aoyyOcAWeUhhsSyOyJcoThw7RQ8bR3pxqU3J9plXgv
+         TrpQ==
+X-Gm-Message-State: AOAM533im28SoKfhpToYduPzuKyCu3sRCeiOeZOPiysSRGvuk/TX4UDS
+        zE0UoiDQk+LyQ1NwcZHSJSpfK5IznjoRfHTaj8OhQwoLv6moxb3aIbxFi47U8/3kbM6jZ5LCkH3
+        Tcsax0CPBCYkW0dInlFT9SR8rx3ntr+7UO7M1XdM=
+X-Received: by 2002:ac2:454b:: with SMTP id j11mr24306436lfm.41.1639334768470;
+        Sun, 12 Dec 2021 10:46:08 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxOgwlcKO57jGOmrAmTRgmvAh4zvqGMhAUOSl1PWLIyn+BOi5YBridhbzZTj3J1IT2ofufJzw==
+X-Received: by 2002:ac2:454b:: with SMTP id j11mr24306420lfm.41.1639334768302;
+        Sun, 12 Dec 2021 10:46:08 -0800 (PST)
 Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id 1sm1101519ljq.102.2021.12.12.10.39.13
+        by smtp.gmail.com with ESMTPSA id o17sm1153431lfn.50.2021.12.12.10.46.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Dec 2021 10:39:13 -0800 (PST)
-Message-ID: <aa76e303-95ac-20ff-c0a9-26f7f8c6b2cb@canonical.com>
-Date:   Sun, 12 Dec 2021 19:39:12 +0100
+        Sun, 12 Dec 2021 10:46:07 -0800 (PST)
+Message-ID: <ffb00485-ad21-a11a-03ea-3856e2212563@canonical.com>
+Date:   Sun, 12 Dec 2021 19:46:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.1
-Subject: Re: [PATCH v4 1/7] dt-bindings: clock: Add bindings definitions for
- Exynos7885 CMU
+Subject: Re: [PATCH v2 2/6] dt-bindings: memory: tegra: Add Tegra234 support
 Content-Language: en-US
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        David Virag <virag.david003@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20211206153124.427102-1-virag.david003@gmail.com>
- <20211206153124.427102-2-virag.david003@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+References: <20211210164741.881161-1-thierry.reding@gmail.com>
+ <20211210164741.881161-3-thierry.reding@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211206153124.427102-2-virag.david003@gmail.com>
+In-Reply-To: <20211210164741.881161-3-thierry.reding@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/12/2021 16:31, David Virag wrote:
-> Just like on Exynos850, the clock controller driver is designed to have
-> separate instances for each particular CMU, so clock IDs start from 1
-> for each CMU in this bindings header too.
+On 10/12/2021 17:47, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Signed-off-by: David Virag <virag.david003@gmail.com>
+> Document the variant of the memory controller and external memory
+> controllers found on Tegra234 and add some memory client and SMMU
+> stream ID definitions for use in device tree files.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
 > Changes in v2:
->   - Added R-b tag by Krzysztof Kozlowski
+> - conditionally set minItems for reg properties
 > 
-> Changes in v3:
->   - Nothing
-> 
-> Changes in v4:
->   - Nothing
-> 
->  include/dt-bindings/clock/exynos7885.h | 115 +++++++++++++++++++++++++
->  1 file changed, 115 insertions(+)
->  create mode 100644 include/dt-bindings/clock/exynos7885.h
+>  .../nvidia,tegra186-mc.yaml                   | 20 ++++++++++++
+>  include/dt-bindings/clock/tegra234-clock.h    |  9 ++++++
+>  include/dt-bindings/memory/tegra234-mc.h      | 32 +++++++++++++++++++
+>  3 files changed, 61 insertions(+)
+>  create mode 100644 include/dt-bindings/memory/tegra234-mc.h
 > 
 
-Hi Sylwester,
+(...)
 
-The DTS/DTSI patch (7/7) depends on this one, just like the clock driver.
+>  /** @brief output of mux controlled by CLK_RST_CONTROLLER_CLK_SOURCE_SDMMC4 */
+> diff --git a/include/dt-bindings/memory/tegra234-mc.h b/include/dt-bindings/memory/tegra234-mc.h
+> new file mode 100644
+> index 000000000000..2662f70c15c6
+> --- /dev/null
+> +++ b/include/dt-bindings/memory/tegra234-mc.h
+> @@ -0,0 +1,32 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +
+> +#ifndef DT_BINDINGS_MEMORY_TEGRA234_MC_H
+> +#define DT_BINDINGS_MEMORY_TEGRA234_MC_H
+> +
+> +/* special clients */
+> +#define TEGRA234_SID_INVALID		0x00
+> +#define TEGRA234_SID_PASSTHROUGH	0x7f
+> +
+> +
+> +/* NISO1 stream IDs */
+> +#define TEGRA234_SID_SDMMC4	0x02
+> +#define TEGRA234_SID_BPMP	0x10
+> +
+> +/*
+> + * memory client IDs
+> + */
+> +
+> +/* sdmmcd memory read client */
+> +#define TEGRA234_MEMORY_CLIENT_SDMMCRAB 0x63
+> +/* sdmmcd memory write client */
+> +#define TEGRA234_MEMORY_CLIENT_SDMMCWAB 0x67
+> +/* BPMP read client */
+> +#define TEGRA234_MEMORY_CLIENT_BPMPR 0x93
+> +/* BPMP write client */
+> +#define TEGRA234_MEMORY_CLIENT_BPMPW 0x94
+> +/* BPMPDMA read client */
+> +#define TEGRA234_MEMORY_CLIENT_BPMPDMAR 0x95
+> +/* BPMPDMA write client */
+> +#define TEGRA234_MEMORY_CLIENT_BPMPDMAW 0x96
+> +
 
-Since some time Arnd and Olof prefer not to have external trees going
-into the arm-soc, even if this is only the header change. They recommend
-one of:
-1. to hard-code the numbers in DTS and replace numbers->macros later,
-2. merge headers to arm-soc tree with DTS and provide the header to an
-external (e.g. clk) tree,
-3. wait with merging DTSI till headers reach mainline.
-
-I propose that I take the clock headers, put on separate branch and
-provide them to you as stable tag. You can base clk driver changes on
-top of it.
-
-Are you okay with this?
+This header is needed by the driver and DTS patches. One of us can apply
+it and provide to the other via stable-tag. I think Arnd and Olof prefer
+if headers are coming with DTS and are provided to other trees, so maybe
+you will take the bindings and provide a tag for me for the driver?
 
 Best regards,
 Krzysztof
