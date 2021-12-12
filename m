@@ -2,79 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DDC34717A9
-	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 02:36:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89EFD4717D3
+	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 03:23:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229754AbhLLBgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 11 Dec 2021 20:36:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44342 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbhLLBgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Dec 2021 20:36:18 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E8C6C061714;
-        Sat, 11 Dec 2021 17:36:18 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 5C1D742598;
-        Sun, 12 Dec 2021 01:36:14 +0000 (UTC)
-Subject: Re: [PATCH] arm64: dts: apple: t8103: Add watchdog node
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        id S232560AbhLLCXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Dec 2021 21:23:47 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:51146 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232495AbhLLCXr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 11 Dec 2021 21:23:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=5yrMToKMdkkVY4CQzgz+QrmftWNp5HW8nmVmkKpF9O0=; b=I//tJ1t3tCSfFCDcZY3VLsjTd3
+        kn9imk9KAK8crIJBLwKd21QkmHstp4Qz2IsIaOFemRYdgLTzlPjud6e+5rlz4QSCnf6xZM8u5IEuv
+        5H/IIYBgixE+fZ6O3jPHRljm1mdZSIATbOutx/WL44IPY1LfYjtzg3njWS0a3NZqbmBo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mwEWZ-00GISJ-F1; Sun, 12 Dec 2021 03:23:39 +0100
+Date:   Sun, 12 Dec 2021 03:23:39 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     JosephCHANG <josright123@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, joseph_chang@davicom.com.tw,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20211211124044.4697-1-sven@svenpeter.dev>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <1c094fdc-be38-8c54-8334-23dc4270fe0b@marcan.st>
-Date:   Sun, 12 Dec 2021 10:36:11 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Subject: Re: [PATCH v3, 2/2] net: Add dm9051 driver
+Message-ID: <YbVdK69SB0Ebt8C9@lunn.ch>
+References: <20211210084021.13993-1-josright123@gmail.com>
+ <20211210084021.13993-3-josright123@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20211211124044.4697-1-sven@svenpeter.dev>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211210084021.13993-3-josright123@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/12/2021 21.40, Sven Peter wrote:
-> Add the watchdog node which also enables reboot support on the t8103.
-> 
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
-> ---
->   arch/arm64/boot/dts/apple/t8103.dtsi | 8 ++++++++
->   1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-> index fc8b2bb06ffe..6ef28d833e4f 100644
-> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-> @@ -199,6 +199,14 @@ pinctrl_nub: pinctrl@23d1f0000 {
->   				     <AIC_IRQ 336 IRQ_TYPE_LEVEL_HIGH>;
->   		};
->   
-> +		wdt: watchdog@23d2b0000 {
-> +			compatible = "apple,t8103-wdt", "apple,wdt";
-> +			reg = <0x2 0x3d2b0000 0x0 0x4000>;
-> +			clocks = <&clk24>;
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 338 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
+> +/* netdev_ops
+> + */
+> +static int dm9051_open(struct net_device *dev);
+> +static int dm9051_stop(struct net_device *dev);
+> +static netdev_tx_t dm9051_start_xmit(struct sk_buff *skb, struct net_device *dev);
+> +static void dm9051_set_multicast_list_schedule(struct net_device *dev);
+> +static int dm9051_set_mac_address(struct net_device *dev, void *p);
+
+You should not need these. Move the code around so the functions come
+before there first use.
+
+> +/* carrier
+> + */
+> +#define	dm_carrier_init(db)			mii_check_link(&(db)->mii)
+> +#define	dm_carrier_poll(db)			mii_check_link(&(db)->mii)
+
+I requested you make use of phylib. Once you do, these will go away.
+
+> +#define	dm_carrier_off(dev)			netif_carrier_off(dev)
+
+No wrappers around standard functions. Also, once you use phylib, it
+will take care of the carrier for you.
+
 > +
->   		pinctrl_smc: pinctrl@23e820000 {
->   			compatible = "apple,t8103-pinctrl", "apple,pinctrl";
->   			reg = <0x2 0x3e820000 0x0 0x4000>;
-> 
+> +/* xmit support
+> + */
+> +#define	dm_sk_buff_head_init(db)		skb_queue_head_init(&(db)->txq)
+> +#define	dm_sk_buff_get(db)			skb_dequeue(&(db)->txq)
+> +#define	dm_sk_buff_set(db, skb)			skb_queue_tail(&(db)->txq, skb)
 
-Acked-by: Hector Martin <marcan@marcan.st>
+These wrappers should also be removed.
 
-Thanks! Applied to asahi-soc/dt :)
+> +/* spi transfers
+> + */
+> +#define ior					std_spi_read_reg			// read reg
+> +#define iior					disp_spi_read_reg			// read disp
+> +#define iow					std_spi_write_reg			// write reg
+> +#define dm9inblk				std_read_rx_buf_ncpy			// read buff
+> +#define dm9outblk				std_write_tx_buf			// write buf
+> +
+> +#define	ncr_reg_reset(db)			iow(db, DM9051_NCR, NCR_RST)		// reset
+> +#define	mbd_reg_byte(db)			iow(db, DM9051_MBNDRY, MBNDRY_BYTE)	// MemBound
+> +#define	fcr_reg_enable(db)			iow(db, DM9051_FCR, FCR_FLOW_ENABLE)	// FlowCtrl
+> +#define	ppcr_reg_seeting(db)			iow(db, DM9051_PPCR, PPCR_PAUSE_COUNT)	// PauPktCn
+> +#define	isr_reg_clear_to_stop_mrcmd(db)		iow(db, DM9051_ISR, 0xff)		// ClearISR
+> +#define rcr_reg_stop(db)			iow(db, DM9051_RCR, RCR_RX_DISABLE)	// DisabRX
+> +#define imr_reg_stop(db)			iow(db, DM9051_IMR, IMR_PAR)		// DisabAll
+> +#define rcr_reg_start(db, rcr_all)		iow(db, DM9051_RCR, rcr_all)		// EnabRX
+> +#define imr_reg_start(db, imr_all)		iow(db, DM9051_IMR, imr_all)		// Re-enab
+> +#define	intcr_reg_setval(db)			iow(db, DM9051_INTCR, INTCR_POL_LOW)	// INTCR
+> +#define	ledcr_reg_setting(db, lcr_all)		iow(db, DM9051_LMCR, lcr_all)		// LEDMode1
 
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Please remove all these wrapper.
+
+       Andrew
