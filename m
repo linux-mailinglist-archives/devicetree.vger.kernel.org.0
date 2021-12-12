@@ -2,91 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66D85471E31
-	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 23:19:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AAB6471E4E
+	for <lists+devicetree@lfdr.de>; Sun, 12 Dec 2021 23:47:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229767AbhLLWTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Dec 2021 17:19:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45952 "EHLO
+        id S230048AbhLLWr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Dec 2021 17:47:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229762AbhLLWTd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Dec 2021 17:19:33 -0500
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D63CC06173F;
-        Sun, 12 Dec 2021 14:19:33 -0800 (PST)
-Received: by mail-qv1-xf2b.google.com with SMTP id j9so12910908qvm.10;
-        Sun, 12 Dec 2021 14:19:33 -0800 (PST)
+        with ESMTP id S229979AbhLLWr0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Dec 2021 17:47:26 -0500
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41D9DC06173F;
+        Sun, 12 Dec 2021 14:47:26 -0800 (PST)
+Received: by mail-qv1-xf31.google.com with SMTP id u16so12996726qvk.4;
+        Sun, 12 Dec 2021 14:47:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5/2Wze8vZRG9YKWtB/AhqKPwIShZlYfqbSfgNVc2Zmw=;
-        b=Y/vY1gwFL5MKOWON7KpUeBBaPUM0qdH0B18FP+J1/yQjsq3mc+DOOgJOkMcqnYDKgB
-         Pj5xqHpQpAD5bGsZohVnOWSyzrGElxwN70wKcl1kT4o1IVkyy6DV9IPOoW8I16wggf9n
-         5fxKoxYtflCYmBIV4z9dI5H0V1kl1fQiecwd4wy8mdA9AXXpBn+cfJQCvsgZ3fHkxpsB
-         lSeu48slHXfxgHvtUPN3VtCtkAbE0HBRsVpKOtR5dqR4qaLMbAVh9cbayw5zUz0tf53n
-         /TlwXqdDOg1P4rbNFOT3ZtFv9SK2FKnT0oxHALAJX/mBNHdIvyKCJzEm++9XduQMdOkQ
-         mZpw==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Ix+G0zc+g6/N6041+1Hk6LHt/Y4Z+qpp/k2nnjfJ76s=;
+        b=MpLM3+0TPWqdJ+7DzYXtgH/6RhHatrTyBWY6ICHaz9hQl4lExVUmsYY/G1zRoMz+Lp
+         E9TVClJlGi2yDDaKDBeL7HwrFj63stulPxpfeyJj3Ks1Az9f34PgGj9fZUGnaBxDKfor
+         N9F7IKATjEdFWllTPbqJ9hWb/JqSd3Ckb2bItL2pG1PsIMIIMH+eCtEUB810cwVWWswL
+         BN9c4dzXx6TYNet9IM5t3up8nSR6DNiMIYreCjdJNvaQGkhiGmAICaxtBUbCLuhBQGfT
+         TNdv9hfTVkAp/01h4xDg3alvxwCYoIDPUH/I9cl5QKyNgqbj8edwYNfFaklZOHrsMgkm
+         3zeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=5/2Wze8vZRG9YKWtB/AhqKPwIShZlYfqbSfgNVc2Zmw=;
-        b=u6ioi4EKovlKos3ndtF8gF1Re/yLEiVteAFLkLUWVQ1Gd14F4ZPws4/ljM8ahg2m8o
-         7ljD2hSTB7Srx2gZEBwx6pnWi3JEo6IjvYyFTJApZ/Agf+DWpvBRIWYrTHlNZAcjyz2W
-         PVXngvpb9MNOoSgPftcgAvHt1qBbzz55RV5hLbJiAqLuBlRhGq9R08YAqlBE+vTNRKPd
-         c70gJU+0CyM080jb3++6NfNjpXfe/66V7MX/yKd9w9uD1RxbC1S06468LqruVO8b+aRB
-         mpG1J/un1MojaTDP/0vYmGvlzr+Yp1RH9TqGUacCfX390AIaX+YoR5UeULQPMl07vqod
-         lWKA==
-X-Gm-Message-State: AOAM5337jvOaKuH71b3925b7kiKs0Ct0aDXIo+5zxiG0YiqcbnB7WUO5
-        Xq50l6vLrkBa8LF6qidbLaU=
-X-Google-Smtp-Source: ABdhPJzHVYmFFDaQ4KwaHk9hBdAawKnLmvKnYnuJQrjEkU0ha16zl8yUT4O+EEYq1SzNNO3kOvfMGA==
-X-Received: by 2002:ad4:5cef:: with SMTP id iv15mr38245876qvb.86.1639347572362;
-        Sun, 12 Dec 2021 14:19:32 -0800 (PST)
-Received: from localhost.localdomain (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id x1sm2561065qtj.9.2021.12.12.14.19.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Dec 2021 14:19:31 -0800 (PST)
-From:   frowand.list@gmail.com
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] of: unittest: 64 bit dma address test requires arch support
-Date:   Sun, 12 Dec 2021 16:18:52 -0600
-Message-Id: <20211212221852.233295-1-frowand.list@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        bh=Ix+G0zc+g6/N6041+1Hk6LHt/Y4Z+qpp/k2nnjfJ76s=;
+        b=3BwSufZU6bWzAHHVvCW+VWYgJQtDbtU7sRDV08B67i2ypuN04by29PrzMb9a4nKxSo
+         TKfp/AcnoVvkFDjQjBvNAbuibkn5IQjW0B0hKayjQy1TSRs+PcmEYbfchfYcPGZVif4I
+         sI36EoCOVa4qoye3t/0g3608f8nQy6wQ3rC+LCmXvE8SXGtOXFCbigAzY7k0woPzDpYV
+         K4SZWgbkVk2qRL6XlSb8IiWFPIkbQmqawAom2RlZ3TCJxkNFuUMVUVcpxF5ek2BN5FSM
+         X0Nu2pVsQNVFvTX80CG9rupd3fsebeDC2mseonucAyeymDM55YONeiYtBSlhABYgAFnW
+         1h3A==
+X-Gm-Message-State: AOAM530s7tLfyfTZUXC45g7w6+QXeu0wn6fIj2q7C6IFf5m3/IcRHJbm
+        j6PDij+hkFVKSghmuLnlQF4k2CcuU2o=
+X-Google-Smtp-Source: ABdhPJx1M7WZxHZQTNZ/wYESqgILvAMdnpUS8cPtoHkLGib28aH89EBWD6xno9Y5OaASIppO0DuXbw==
+X-Received: by 2002:ad4:4b26:: with SMTP id s6mr39537389qvw.92.1639349245306;
+        Sun, 12 Dec 2021 14:47:25 -0800 (PST)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id s20sm8343124qtc.75.2021.12.12.14.47.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 12 Dec 2021 14:47:25 -0800 (PST)
+Subject: Re: [PATCH v2 1/1] of: unittest: fix warning on PowerPC frame size
+ warning
+To:     Jim Quinlan <jim2101024@gmail.com>, Christoph Hellwig <hch@lst.de>,
+        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20211210184636.7273-1-jim2101024@gmail.com>
+ <20211210184636.7273-2-jim2101024@gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <598c9bcd-a956-07f1-17a2-5177a8bd5458@gmail.com>
+Date:   Sun, 12 Dec 2021 16:47:24 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211210184636.7273-2-jim2101024@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Rowand <frank.rowand@sony.com>
+moved the file's maintainers from the "cc:" list to the "to:" list
 
-If an architecture does not support 64 bit dma addresses then testing
-for an expected dma address >= 0x100000000 will fail.
+review comments below
 
-Fixes: e0d072782c73 ("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset")
-Signed-off-by: Frank Rowand <frank.rowand@sony.com>
----
- drivers/of/unittest.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index 481ba8682ebf..126020e9838a 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -934,8 +934,9 @@ static void __init of_unittest_parse_dma_ranges(void)
- {
- 	of_unittest_dma_ranges_one("/testcase-data/address-tests/device@70000000",
- 		0x0, 0x20000000);
--	of_unittest_dma_ranges_one("/testcase-data/address-tests/bus@80000000/device@1000",
--		0x100000000, 0x20000000);
-+	if (IS_ENABLED(CONFIG_ARCH_DMA_ADDR_T_64BIT))
-+		of_unittest_dma_ranges_one("/testcase-data/address-tests/bus@80000000/device@1000",
-+			0x100000000, 0x20000000);
- 	of_unittest_dma_ranges_one("/testcase-data/address-tests/pci@90000000",
- 		0x80000000, 0x20000000);
- }
--- 
-Frank Rowand <frank.rowand@sony.com>
+On 12/10/21 1:46 PM, Jim Quinlan wrote:
+> The struct device variable "dev_bogus" was triggering this warning
+> on a PowerPC build:
+> 
+>     drivers/of/unittest.c: In function 'of_unittest_dma_ranges_one.constprop':
+>     [...] >> The frame size of 1424 bytes is larger than 1024 bytes
+>              [-Wframe-larger-than=]
+> 
+> This variable is now dynamically allocated.
 
+A side effect of the change is that dev_bogus is initialized to all
+zeros instead of containing random data from the stack.
+
+> 
+> Fixes: e0d072782c734 ("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset")
+> Reported-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
+> ---
+>  drivers/of/unittest.c | 16 ++++++++++++----
+>  1 file changed, 12 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+> index 481ba8682ebf..02c5cd06ad19 100644
+> --- a/drivers/of/unittest.c
+> +++ b/drivers/of/unittest.c
+> @@ -911,11 +911,18 @@ static void __init of_unittest_dma_ranges_one(const char *path,
+>  	if (!rc) {
+>  		phys_addr_t	paddr;
+>  		dma_addr_t	dma_addr;
+> -		struct device	dev_bogus;
+> +		struct device	*dev_bogus;
+>  
+> -		dev_bogus.dma_range_map = map;
+> -		paddr = dma_to_phys(&dev_bogus, expect_dma_addr);
+> -		dma_addr = phys_to_dma(&dev_bogus, expect_paddr);
+> +		dev_bogus = kzalloc(sizeof(struct device), GFP_KERNEL);
+> +		if (!dev_bogus) {
+> +			unittest(0, "kzalloc() failed\n");
+> +			kfree(map);
+> +			return;
+> +		}
+> +
+> +		dev_bogus->dma_range_map = map;
+> +		paddr = dma_to_phys(dev_bogus, expect_dma_addr);
+> +		dma_addr = phys_to_dma(dev_bogus, expect_paddr);
+>  
+>  		unittest(paddr == expect_paddr,
+>  			 "of_dma_get_range: wrong phys addr %pap (expecting %llx) on node %pOF\n",
+> @@ -925,6 +932,7 @@ static void __init of_unittest_dma_ranges_one(const char *path,
+>  			 &dma_addr, expect_dma_addr, np);
+>  
+>  		kfree(map);
+> +		kfree(dev_bogus);
+>  	}
+>  	of_node_put(np);
+>  #endif
+> 
+
+Reviewed-by: Frank Rowand <frank.rowand@sony.com>
