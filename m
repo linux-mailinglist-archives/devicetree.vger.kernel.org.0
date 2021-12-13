@@ -2,133 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F658473343
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 18:54:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B5E74733B6
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 19:12:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239350AbhLMRyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 12:54:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60986 "EHLO
+        id S241727AbhLMSMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 13:12:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234108AbhLMRyt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 12:54:49 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BE3DC061574;
-        Mon, 13 Dec 2021 09:54:49 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1890A6118A;
-        Mon, 13 Dec 2021 17:54:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9DA6C34602;
-        Mon, 13 Dec 2021 17:54:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639418088;
-        bh=qk6Bi7thbB3v296C67QONIDxHVUP0X+qynXl9syyNEE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qgPt4xEQghPOo/XV5QV+GLw7CBXeviHCRtRsKI+DauZwZekbcueyjjgDF/f0Osu03
-         OGOnkHrdwD8wzt2N3zXQMcP1+h4vef2y0r4Ypy2l1f+u3zuTwFKEvirMdZUBwX2bch
-         uRBsKrg3cnTTJ7RSIivudnOCkuyKoNUB8+HYWOMwIeEuOnn4u1lf/xr71ciasP8KDR
-         oihP80f2K+sM7RUx0i5Ke+8LBoRg0YAW+op4jxizWt+Ite43e7PzWsS3iTYRFw9L9a
-         9VC/i0oyQTQWzQzkzsm5vxmwwmzj2YAdkqYtWti9Y3XPNWyunSfyLmeNlFtb6Gbj75
-         1Wi5dI846GZZQ==
-Date:   Mon, 13 Dec 2021 17:54:43 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Sven Peter <sven@svenpeter.dev>, Rob Herring <robh+dt@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] spi: apple: Add driver for Apple SPI controller
-Message-ID: <YbeI45NiYnhMzCSk@sirena.org.uk>
-References: <20211212034726.26306-1-marcan@marcan.st>
- <20211212034726.26306-4-marcan@marcan.st>
- <YbaIwa/9utI9SD1u@sirena.org.uk>
- <d566c897-ee7d-f32f-1548-57f037c69c89@marcan.st>
- <YbdtLFSrwjYcz/zz@sirena.org.uk>
- <d87ae109-4b58-7465-b16e-3bf7c9d60f1f@marcan.st>
+        with ESMTP id S241489AbhLMSMo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 13:12:44 -0500
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D77B5C061574;
+        Mon, 13 Dec 2021 10:12:43 -0800 (PST)
+Received: by mail-pl1-x62f.google.com with SMTP id u17so11734174plg.9;
+        Mon, 13 Dec 2021 10:12:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=u0ZO5JNvqSiBr1Gz4xtJA4SS1i/fXSTFkbeq5Cx27ng=;
+        b=Gt0GqgJY2L29P7aI/85Q+Ze3nCh9Wex/Sk+1PpD07cGxKQWV/jXdliEWfftL5WMNBn
+         vWqC2xhhTLM861YeNbvtUYOBKwFM6qtcja9lpVvu33wpfQwrP2SKPPqgiBpRTCgf0rBF
+         kELoiDBW/A0w6vxkiG++zPLLBu3sSMEqGUV/W88C6yrcLVbxIgQ515r2eWm7wcV0k7iW
+         j9pognslXsdQMSHgGUtxnz5fmdaSORW4QajwoYfyJcmHjuP8E41znbj92qPfKlkCWl7d
+         L5RBdJkaWa5RdmPw3CpOOVhfExg2Sn8UeOsuLsyhX2/EjE6Eg1XeZydTQDaWYerPuqND
+         OA7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=u0ZO5JNvqSiBr1Gz4xtJA4SS1i/fXSTFkbeq5Cx27ng=;
+        b=Xgee228QAl8nMkbXJbR7Gzt82jopCvLr1AOBC8QZciTwYLtFJJJz2DhUJMTmDgOQco
+         wEMswPPlVU5ZPMuF+PISD37q24oexUnS4WitQUscW9luoWY8E9LM6EY/4RPjgQyPRx60
+         PXBjZXseVhGXER9lXJlYp3FlLBc6HW/lKrjY+T3Liw3Y6nF9WmoYeImIn/BiV1RDx507
+         YARqxqeyfmRs7PRTwnTDY2E+hqlyI5F1jd6vIUA1AkaRJk2s+t+m7y+XNubyprs8GeCh
+         kbbXA4YdAnrkDIsJ3+csxehThMTdjXldkUoNMMlE+D3PgEbhUGnvkJlNOdTeG/GArTYu
+         DihQ==
+X-Gm-Message-State: AOAM530pWbNMjqTM/d3y2hxKfhRHFcP7jigCUGhrUrqk+Iosv5b12Sjv
+        NdTrIALKtu6kwNp7fO1lkqaPyYcTEhc=
+X-Google-Smtp-Source: ABdhPJxgQPoTrHihd4oCjP/iXlWAJIQKycxrzp0sBWaGpDPvPv+Cj2TaTgRm7aP291CZRzVz/pPR7g==
+X-Received: by 2002:a17:903:2344:b0:142:25b4:76c1 with SMTP id c4-20020a170903234400b0014225b476c1mr98519066plh.43.1639419163018;
+        Mon, 13 Dec 2021 10:12:43 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id y11sm12697567pfg.204.2021.12.13.10.12.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Dec 2021 10:12:42 -0800 (PST)
+Subject: Re: [PATCH v2 1/1] of: unittest: fix warning on PowerPC frame size
+ warning
+To:     Jim Quinlan <jim2101024@gmail.com>, Christoph Hellwig <hch@lst.de>,
+        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20211210184636.7273-1-jim2101024@gmail.com>
+ <20211210184636.7273-2-jim2101024@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <3322403d-78e8-6d83-d466-f48bd723cbf4@gmail.com>
+Date:   Mon, 13 Dec 2021 10:12:40 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="MptNy4LA5HttZAK1"
-Content-Disposition: inline
-In-Reply-To: <d87ae109-4b58-7465-b16e-3bf7c9d60f1f@marcan.st>
-X-Cookie: No solicitors.
+In-Reply-To: <20211210184636.7273-2-jim2101024@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/10/21 10:46 AM, Jim Quinlan wrote:
+> The struct device variable "dev_bogus" was triggering this warning
+> on a PowerPC build:
+> 
+>     drivers/of/unittest.c: In function 'of_unittest_dma_ranges_one.constprop':
+>     [...] >> The frame size of 1424 bytes is larger than 1024 bytes
+>              [-Wframe-larger-than=]
+> 
+> This variable is now dynamically allocated.
+> 
+> Fixes: e0d072782c734 ("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset")
+> Reported-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
 
---MptNy4LA5HttZAK1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Tue, Dec 14, 2021 at 02:10:26AM +0900, Hector Martin wrote:
-> On 14/12/2021 00.56, Mark Brown wrote:
-> > On Mon, Dec 13, 2021 at 12:50:49PM +0900, Hector Martin wrote:
-
-> > > > Some brackets or an intermediate variable wouldn't hurt here, especially
-> > > > given the line length.
-
-> > > How about this?
-
-> > > return (200000 * t->bits_per_word * APPLE_SPI_FIFO_DEPTH / 2) <= t->speed_hz;
-
-> > That's better but it's still a very long line which is half the issue.
-
-> I think it's quite readable at this point (especially with the comment above
-> explaining it anyway). Note that these days a lot of people consider lines
-> up to 100 chars okay in the kernel, and checkpatch uses that limit. Do you
-> have a specific change in mind?
-
-The 100 characters is a "don't send silly checkpatch fixes" thing not a
-target to aim for (see also the ternery operator stuff).  Like I said an
-intermediate variable wouldn't hurt, for example for the FIFO trigger
-level into a fifo_trigger variable.
-
-> > There's currently a bit of a fashion for people with very old SPI blocks
-> > to make incompatible new versions recently, a lot of it seems to be
-> > driven by things like flash engine support.  Sometimes these things end
-> > up getting instantiated together as they have different purposes and the
-> > incompatibilties make the IPs larger.
-
-> I think if they haven't changed it by now they probably won't; e.g. they
-> tacked on DMA using a coprocessor instead of changing the block itself. I
-> don't think Apple uses SPI for anything performance-critical. They don't
-> even bother with QSPI for the NOR flash (which is mostly only used for
-> bootloaders and variable storage).
-
-This feels like tempting fate but I guess...
-
-> > Have you done a contrast and compare with the Samsung driver?  Given
-> > both this and your comments above about this dating back to the original
-> > iPhone...
-
-> You mean the *two* Samsung drivers? :-)
-
-> It seems Samsung like to keep making up incompatible SPI blocks. This one
-> shares a *few* bits in a *couple* registers with spi-s3c24xx driver, which
-> point to a common lineage, but those registers aren't even at the same
-> addresses. Not enough in common for it to make sense to try to use one
-> driver for both (unlike with UART, where it was close enough to be added as
-> a new Samsung UART variant, or I2C, where we could refactor the pasemi
-> driver to add a platform backend alongside the existing PCI support and
-> mostly use it as-is).
-
-Their older SPI block has quite a few issues IIRC, I think DMA was the
-big difference between the two but ICBW.
-
---MptNy4LA5HttZAK1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmG3iOMACgkQJNaLcl1U
-h9BrzQf/W82Fz9nvRR9H3dlCsuqCikPA3hH/AoM04l8YuQwBAK1QDHA9LnM5I0vl
-Sh7ykeZIsSG24jYrXvvQLR74yapBrU0M/LlmLUCDO50T2BqxeuM+d2B3qJ5Us/CO
-apICVuEqxBccwZYe9ZHR03mGeDOmEAYqc/K9UwMiIRgHzf4bpN4W3GJb54VWXWrK
-kgUVSbRgledypK5C2Kwh9ez3n7BXrR/Ka5x/Ne7l+90L62z24YFPnmAVNmhCaRCe
-jWlj9rawudJfkcP/3gSmAg0CrsYtfw0P9xe5KB14mjhDEq2Y+W8tLzc77IbCEJX7
-k6osUrmnWPJk6pIrIxNTfUMi97xTlw==
-=Rsct
------END PGP SIGNATURE-----
-
---MptNy4LA5HttZAK1--
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
