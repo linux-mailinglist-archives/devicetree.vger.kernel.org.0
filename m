@@ -2,73 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 349C04735DA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 21:26:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EE7C4735E1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 21:27:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235383AbhLMU0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 15:26:01 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:43639 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234464AbhLMU0A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 15:26:00 -0500
-Received: by mail-oi1-f180.google.com with SMTP id o4so24716729oia.10;
-        Mon, 13 Dec 2021 12:25:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=W2nr5lzeTuc4wVsr2H7zTWsAZoBJt4rbybjCxgiGF3o=;
-        b=Zk1wI3A9P+gvTRiStYTTCsvWzL+1+gT2hzYFWUujVJaim+gBGkTAiJdJOqySXmK9mD
-         +TzItdPZUcaLBvG46OFgxI//XJ34/iJLBSKASLf9SPDNLkDIqHOxti0VEdaJnP6rNpfn
-         3aV/E1o2bC4k2PCq7QUYpHgqGKuLDf4Rm+p/B4ItA4W1a+iMqVgSutEQJY/5+ZKdN66/
-         aI9vMmALze/dvB+z0YAOBJeHVKxokAxu8L60JajbBB4ME7bUw6Dq1m55p7m1FwlLYLKy
-         nhaOU+PlZpsVD7LjwPvbsQIdyae0wFFoGnaVu7VmoAzlaHybJBuQ7EMMaOFJE9+3lhDw
-         TVkw==
-X-Gm-Message-State: AOAM533Psxw6yG5BvSgNTzqqmDstf/eensL0h7+V4P67vA6VEpnliymI
-        yKtynx8foupzNDgzPhxLIg==
-X-Google-Smtp-Source: ABdhPJzV3OAQgZPJLeYTPL4sGb9aQ9kYn2FUqrWfgSHlsezxQ/4uq2Xl5gUxl58V5kLhQFdPJyFlHA==
-X-Received: by 2002:aca:1708:: with SMTP id j8mr795198oii.62.1639427159461;
-        Mon, 13 Dec 2021 12:25:59 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id n22sm2351916oop.29.2021.12.13.12.25.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 12:25:58 -0800 (PST)
-Received: (nullmailer pid 1512288 invoked by uid 1000);
-        Mon, 13 Dec 2021 20:25:57 -0000
-Date:   Mon, 13 Dec 2021 14:25:57 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     robert.foss@linaro.org, devicetree@vger.kernel.org,
-        todor.too@gmail.com, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        agross@kernel.org, mchehab@kernel.org, jgrahsl@snap.com,
-        andrey.konovalov@linaro.org, jonathan@marek.ca, hfink@snap.com
-Subject: Re: [RESEND PATCH v2 01/19] media: dt-bindings: media: camss: Add
- qcom,sm8250-camss binding
-Message-ID: <YbesVRKPOGUGZW/I@robh.at.kernel.org>
-References: <20211202153729.3362372-1-bryan.odonoghue@linaro.org>
- <20211202153729.3362372-2-bryan.odonoghue@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211202153729.3362372-2-bryan.odonoghue@linaro.org>
+        id S242848AbhLMU1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 15:27:55 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:35794 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234464AbhLMU1z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 15:27:55 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 24A1A61200;
+        Mon, 13 Dec 2021 20:27:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8317FC34600;
+        Mon, 13 Dec 2021 20:27:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639427274;
+        bh=Yjw6bg1gekwwsY/LqGhaG45DLxFWmxwnNpauqxNJ2GI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=CozIpispgLfF/vhao3uquUXnKp+ovMaohJRekbMRNiKnYT8RFlndPSOss8Auz8yb2
+         WV1dIu9Rg13uiMCTzhVZfHaGcoXlPUzTKzmIvjVmSpqrx50+nwtBr1Mo4uQL2PfMhl
+         wyen6LzriOUrE/BtPi6egEJYyl1x581jnsl6jqLkoLY3BJb3MToE34jiKrJ209g2HG
+         AH1V8Zu3YMgC8QV+/wC99ShuVRqsET5qvEl9+tN9/q7SelveMSc8uUKZ+hcXU0fSRI
+         LBITFHCaYi8gB6SLSHYoKVYl6mqeGlehRTmqGjluXbdqBvxQWYna6RfQ2jrC6PDuDe
+         4TrE8dUvKxa3Q==
+Received: from cfbb000407.r.cam.camfibre.uk ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mwrvL-00Btju-T9; Mon, 13 Dec 2021 20:27:52 +0000
+Date:   Mon, 13 Dec 2021 20:27:51 +0000
+Message-ID: <87k0g8jlmg.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel-team@android.com,
+        John Crispin <john@phrozen.org>, Biwen Li <biwen.li@nxp.com>,
+        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sander Vanheule <sander@svanheule.net>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Subject: Re: [PATCH v2] of/irq: Add a quirk for controllers with their own definition of interrupt-map
+In-Reply-To: <20211213195958.rn56nnhobl4nlmxx@skbuf>
+References: <20211201114102.13446-1-maz@kernel.org>
+        <20211213195958.rn56nnhobl4nlmxx@skbuf>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: olteanv@gmail.com, robh@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kernel-team@android.com, john@phrozen.org, biwen.li@nxp.com, Zhiqiang.Hou@nxp.com, chris.brandt@renesas.com, geert+renesas@glider.be, sander@svanheule.net, kurt@linutronix.de, shawnguo@kernel.org, leoyang.li@nxp.com, linux@rasmusvillemoes.dk
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 02 Dec 2021 15:37:11 +0000, Bryan O'Donoghue wrote:
-> From: Jonathan Marek <jonathan@marek.ca>
-> 
-> Add bindings for qcom,sm8250-camss in order to support the camera
-> subsystem for SM8250.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../bindings/media/qcom,sm8250-camss.yaml     | 450 ++++++++++++++++++
->  1 file changed, 450 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-> 
+Hi Vladimir,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Mon, 13 Dec 2021 19:59:58 +0000,
+Vladimir Oltean <olteanv@gmail.com> wrote:
+
+[...]
+
+>
+> I am a user of the ls-extirq driver which is responsible for 3 of the 7
+> compatible strings mentioned by you here. I have close to zero knowledge
+> of the irq subsystem, although I am looking forward to learn.
+
+Unfortunately, this has nothing to do with the IRQ subsystem, which
+doesn't really care about the firmware interfaces.
+
+> Could you please spend a few minutes to detail what you see as a possible
+> path forward for this driver?
+
+Define "path forward". My preference would be to travel back in time
+so that this driver doesn't make it into the tree, but it is an
+unlikely outcome. The only other solution is to leave it as is, but
+not to allow any further occurrence of the issue.
+
+> I am getting mixed impressions about what it's doing wrong.
+>
+> On one hand, it was requested by Rob during review that what used to be
+> called "fsl,extirq-map" should be named "interrupt-map" instead:
+> https://lore.kernel.org/lkml/20190928092331.GB1894@linutronix.de/
+
+I stand by my analysis that this is wrong, by the very letter of what
+an interrupt-map means. If the interrupt map points to an interrupt
+controller, that's the target for the interrupt. No ifs, no buts.
+
+> Then, you seem to suggest something's wrong with drivers privately using
+> that name and parsing a property which used to be ignored by the core,
+> due to your "silly-interrupt-map" comment:
+> https://lore.kernel.org/all/9c169aad-3c7b-2ffb-90a2-1ca791a3f411@phrozen.org/T/#ebae8f9231296dc936cb7c9791218fc6785a03390
+
+And I stand by this comment.
+
+> Then, Rob breaks the ls-extirq driver for platforms that have a GIC ITS*
+> defined in the device tree via commit 869f0ec048dc ("arm64: dts:
+> freescale: Fix 'interrupt-map' parent address cells") - this is also,
+> incidentally, the reason why I'm here.
+> * because the driver doesn't parse the "standard" format where the
+>   interrupt parent has a non-zero #address-cells - which the "arm,gic-v3"
+>   may have when there's a "arm,gic-v3-its" under it (although I don't
+>   necessarily see the relevance of the ITS being there to the needs of
+>   the ls-extirq - which are just a bijective mapping of IRQs - this
+>   driver simply drives a multi-channel logical inverter).
+
+And that's another reason why using interrupt-map is totally
+bonkers. You can't have your cake and eat it (in this case: use a
+standard property and yet attribute it some other semantics) -- at
+some point, these things break. And when they break, we're left with
+these stupid quirks to paper over the breakage.
+
+> So if I understand correctly, we keep ignoring the non-standard use of
+> the "interrupt-map" property in these abuser drivers, yet we patch their
+> device trees to have a more standard format in their non-standard use? :)
+
+I'm happy to drop support for these FSL/NXP machines immediately. Say
+the word, and I will merge the patch!
+
+Now, when it comes to Rob's patch, I think this was the logic thing to
+do, and that nobody realised how badly broken the whole thing was. I'm
+just as guilty to have merged some of these drivers without really
+checking what they were doing in their DT parsing (I tend to focus on
+the correctness of the runtime behaviour). Expect a lot more scrutiny
+for any new patch.
+
+> Since some breakage has already been introduced, for good or bad, I
+> think we can start discussing how things should have been done from the
+> beginning, and see if we can make those changes now.
+
+If using standard properties, this should have never been an
+interrupt-map. A whole collection of 'interrupts', maybe (we have some
+other issues with that, but nothing that cannot be fixed without
+changing the DT). Or the initially proposed fsl,blah. But if you are
+using a standard property, it is handled by the core code, and you
+have no business messing with it.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
