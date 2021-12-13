@@ -2,121 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A9A34730C3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 16:45:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC0E04730DF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 16:48:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237919AbhLMPpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 10:45:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58490 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237744AbhLMPpZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 10:45:25 -0500
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03421C061748
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 07:45:25 -0800 (PST)
-Received: by mail-ot1-x336.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso17802903otj.11
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 07:45:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=dQ0iYUP0JWxWxyVvkeGeGLlGPIXkHbinLcx5o3bfw2o=;
-        b=GT2LUf8AZMMbJBvm19dhzHYN+vNChABVOEFBTkozsYpZC7hM/deocMT5X5GMYIDOek
-         5LBXg6Ot9xO7cq/Jk7zgArH4zvnKvrbCFxFNX8dsF13FJEKUga57PYX+I8Hi1ZfJAIK/
-         lbC6PuujBugYWprOiaNoUFWcBjLuSQX8QIWYLTNOIErrR3PFA/R/NZ5OZ1BQe0cyH2u0
-         nAxuEZuXTWTPI8uD3iiMIhXC+C6hwff7Bfdc2WEeE81/t/APcJ7o3YcoRbMbC+3Gxrb6
-         F71aYRG/1GESx3DTZCuueBZ/iX706Ujvo4hj5uB/ty469INRnDEZrTlkBjMLNWhE+0OQ
-         nJPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=dQ0iYUP0JWxWxyVvkeGeGLlGPIXkHbinLcx5o3bfw2o=;
-        b=5NtQqWwh+QsaU/LAMs5rKOHpzsw1aajmBiHALpRHKESb3uQpW02NwGxg2uFAC8y0Q6
-         EFiAQhuAPJ/IyZWXgVIAR0EVuZf7Xce2uTBu3ZmKDXGyk/n7/UImmMthTvwgjraKkKPr
-         M+M7hKWghOWZ08YHt1yYedcKdyB+I6bxuE9zg8qATZiztcTJJhRQegE9xlxR5p6IXqmK
-         oi9uHwtaXUnGCXjGQcLJeKrdpWgBYT6GifhX88UFyOZM6lLzBIvEGMYzO2kh+fBCj8V1
-         l1CYFYn9RtCoEZ1Hhi2p3i8wSrhPV8MnPHae3xMwHsOf68TgavyQGPhLvgR2zvLDjV0S
-         3u3g==
-X-Gm-Message-State: AOAM532TXXmKDOd0XhaJjK/ClwrWt2QrGAMM9JiEkReX7Q9kgDCv/hoH
-        ts70YkKaQlLtSvmHcNn9c/l0ow==
-X-Google-Smtp-Source: ABdhPJzNsAq/rJmgcNdCPksFNXX6L/lDEXt5jzOfIQryTdTz3diL0hIrAXJ+3WKe0bwcch9hGMFEwQ==
-X-Received: by 2002:a9d:6f13:: with SMTP id n19mr24707012otq.317.1639410324291;
-        Mon, 13 Dec 2021 07:45:24 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id c8sm2281168otk.40.2021.12.13.07.45.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 07:45:23 -0800 (PST)
-Date:   Mon, 13 Dec 2021 07:46:42 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
-        devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
-        jeyr@codeaurora.org, bkumar@qti.qualcomm.com,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 5/8] dt-bindings: misc: add property to support
- non-secure DSP
-Message-ID: <Ybdq4qAeqK8C8Yvc@ripper>
-References: <20211209120626.26373-1-srinivas.kandagatla@linaro.org>
- <20211209120626.26373-6-srinivas.kandagatla@linaro.org>
+        id S239176AbhLMPsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 10:48:25 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:56880 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239266AbhLMPsZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 10:48:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1639410504; x=1670946504;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=XhWtFV7u63XPezj9PznQ9BhMGOrSptpvlb1wVN/lahw=;
+  b=nHslaDLXUBtcEQo5i0Fb5IE/QbvIt7xu6er4kkxyhV9Nz2C7mPJBL98M
+   QEBXez1qc3C2KDeYjaPTmTpfYKDn3YZbc1dxWrcMSdDIqL7UFHy8VbVfO
+   /sRPRbwc0H8IG4RQIEe9SbBseJB4IjG9jL4p7UU4f9Y922gMupqFK6hPN
+   dYosYBob3N5IfCxtvMRxtO6Iu+hPxrZ5W6+eFddl9GROS3HqD9y17mYdu
+   BB7IB+exFpT6u9in39RuBDTAhlGlI7A1CQQ7AmRF965L8zRcVjbmy4kgk
+   Cy1dSWJO3KHyiSPPe0x58Y82o/ZqheMz/OqmZXLnsZ1RTcoyO0BeLliHW
+   Q==;
+IronPort-SDR: AVUwnS3oZZh7vLD3iu65UD6twSY5iwrBrY6jLD2u2q5hGxQQpO2jPo9yiARUofFx8Ci4va1I92
+ KIb8/2wf+cvDzZfwXpVBhV2GGLHRM9WPEpOo40z/7XEg6fpkIe5vDOUjJSp3ED6I+1gPqdPJ+F
+ +d2yZ65Ay6gadn/XXr4CzjTH8ElSnQqNewRBT7jOaynBOLFoaF2Q3IaJg5jKaI18WoCjKIVM/b
+ fD4D1QAomtoiO0GSS4Cq1H9wv519l0bFh20SLY/Azjya0gFy4rMjKPG8YyhLEPbyOmYoG4eaeq
+ n60cRx6ohXCoyo9p33d5DEP5
+X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; 
+   d="scan'208";a="79373756"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Dec 2021 08:48:23 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Mon, 13 Dec 2021 08:48:22 -0700
+Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Mon, 13 Dec 2021 08:48:21 -0700
+Subject: Re: [PATCH] ARM: dts: at91: enable watchdog for SAMA5D3 Xplained
+To:     Michael Opdenacker <michael.opdenacker@bootlin.com>,
+        <robh+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20211209154540.6391-1-michael.opdenacker@bootlin.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <9f01d0c7-b5c3-1353-8cc6-ed797e466706@microchip.com>
+Date:   Mon, 13 Dec 2021 16:48:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211209120626.26373-6-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20211209154540.6391-1-michael.opdenacker@bootlin.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 09 Dec 04:06 PST 2021, Srinivas Kandagatla wrote:
+On 09/12/2021 at 16:45, Michael Opdenacker wrote:
+> Like on the SAMA5D2 and SAMA5D4 Xplained boards,
+> enable the watchdog device on the SAMA5D3 Xplained board.
+> 
+> As explained on drivers/watchdog/at91sam9_wdt.c,
+> for the watchdog driver to work in Linux, you need to make sure
+> that the bootstrap / bootloader doesn't disable the watchdog,
+> as the Watchdog Timer Mode Register can be only written to once.
+> 
+> Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
 
-> From: Jeya R <jeyr@codeaurora.org>
-> 
-> Add property to set DSP domain as non-secure.
-> 
-> ADSP/MDSP/SDSP are by default secured, where as CDSP can be either be
-> secured/unsecured.
-> non-secured Compute DSP would allow users to load unsigned process
-> and run hexagon instructions, but limiting access to secured hardware
-> within the DSP.
-> 
-> Based on this flag device nodes for secured and unsecured are created.
-> 
-> Signed-off-by: Jeya R <jeyr@codeaurora.org>
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Hi Michael,
+
+Thanks for your patch.
+
+Even if I understand the need for alignment with other sama5 SoCs, I'm 
+not planning to take this patch to enable the watchdog by default.
+
+As you highlight, this older watchdog, compared to the ones on sama5d4 
+or sama5d2, cannot be re-enabled.
+On our usual prebuilt demos and configurations, that don't have watchdog 
+support by default, enabling it triggers the following errors:
+at91_wdt fffffe40.watchdog: watchdog is disabled
+at91_wdt: probe of fffffe40.watchdog failed with error -22
+
+I prefer to let the user enable the watchdog explicitly, on the whole 
+chain of components for its use-case and make sure to "pet" it correctly.
+
+Best regards,
+   Nicolas
+
 > ---
+>   arch/arm/boot/dts/at91-sama5d3_xplained.dts | 4 ++++
+>   1 file changed, 4 insertions(+)
 > 
-> This patch has dependency this yaml conversion patch:
-> https://lore.kernel.org/lkml/20211208101508.24582-1-david@ixit.cz/T/
+> diff --git a/arch/arm/boot/dts/at91-sama5d3_xplained.dts b/arch/arm/boot/dts/at91-sama5d3_xplained.dts
+> index d72c042f2850..440eccc9eb38 100644
+> --- a/arch/arm/boot/dts/at91-sama5d3_xplained.dts
+> +++ b/arch/arm/boot/dts/at91-sama5d3_xplained.dts
+> @@ -79,6 +79,10 @@ timer1: timer@1 {
+>                                  };
+>                          };
 > 
->  Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> index f42ab208a7fc..f0df0a3bf69f 100644
-> --- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> +++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-> @@ -29,6 +29,11 @@ properties:
->          - sdsp
->          - cdsp
->  
-> +  qcom,non-secure-domain:
-> +    type: boolean
-> +    description: >
-> +      Property to specify that dsp domain is non-secure.
-
-"non-secure" feels vague, how about expressing it as "Specifies that the
-domains of this DSP instance may run unsigned programs."
-
-Perhaps even go so far to name the property
-qcom,allow-unsigned-programs? (Or some other word for "program"?)
-
-Regards,
-Bjorn
-
+> +                       watchdog: watchdog@fffffe40 {
+> +                               status = "okay";
+> +                       };
 > +
->    '#address-cells':
->      const: 1
->  
-> -- 
-> 2.21.0
+>                          i2c0: i2c@f0014000 {
+>                                  pinctrl-0 = <&pinctrl_i2c0_pu>;
+>                                  status = "okay";
+> --
+> 2.25.1
 > 
+
+
+-- 
+Nicolas Ferre
