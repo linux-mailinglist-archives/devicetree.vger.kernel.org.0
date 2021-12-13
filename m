@@ -2,107 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5972C472ACA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:00:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAF7B472AD8
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:07:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232449AbhLMLAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 06:00:31 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:34288
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232399AbhLMLA3 (ORCPT
+        id S232446AbhLMLHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 06:07:43 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:36894 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S231629AbhLMLHn (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 06:00:29 -0500
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id CBEBD3F200
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 11:00:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639393228;
-        bh=oPxIYppN3M08WPSh+FUwx/WTHd0f19tpTgpTR+J0vso=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=QEJQT1gCS2301OpKRzovG+KaKoPdq+9rSYdbrqwfp1g4lZ5rPHvFfawU2nXA4gcad
-         1jvbgAlhf6lTtvuO4odJKuhp65uIlnMmp4c1OkIOf5FSrB5Cz6wd+alrsFaJExAP+3
-         OrTkiIclSBI0FKoSiN/1z4XmS9oOnjV56NbYbUoAWczYAAI3GryG7/wdwqCfOGqKPe
-         jQAY7M0mLHbUtkECLKaMKlT/hL0BSs84OuSvW8VV5znc09TeHesCrhi994hxhpk+lw
-         Hi99iBCkf7pP4zmJT5iy+Clp7goBhHnm06Q8ucHarinHCYT1CrpEtKeX5A6p0lafLX
-         g6BdG2EQaDSUA==
-Received: by mail-lj1-f199.google.com with SMTP id p21-20020a2e9ad5000000b00219ee503efeso4338563ljj.14
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 03:00:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=oPxIYppN3M08WPSh+FUwx/WTHd0f19tpTgpTR+J0vso=;
-        b=eBtS0nlg4kQmIf+RWA+uyHVYSgJ7jnH7yOa8eWrB35l5cQa3QcfGIewXtLhUPo1QrB
-         6QknsBycszRFVaSsIEl4J9Eg1flflQp3fk2E0raALPrTDy5eqIFAUJUhkAom63/6tvxx
-         Enry3X/zyH4ScF+ZjNbbZBJe5X2FLWqZktU8s5OnkFnv3MOWO4XoN6ucfsNsSTNaUMMw
-         KIp6jC4pMmnLzl22OP2tDGdM7Yn3fZX6Qv+lkvvHg2qUsJM3FTN8b524Scl1lKEpIli3
-         BUI/2o92MjOY1s6fuldr79SsxTHvn0p7fCtjYnG4EQBkRD/fDofwGvD6WZr/Z8w+g9fj
-         njUg==
-X-Gm-Message-State: AOAM532Mvel1Ogy6VUNDQor2hdlUAoiCYib4DA09CEjdM3AWOqDX03Bn
-        rdPoiDnJ/mmaPTVoSnMoFTQE4H9bD7G/qgChR4MGEZzIqxgU+kU0gfUjPQCpUI6eyk7CyrgG+r0
-        rIWwH+QBGFX9nAPS8wZmaMS/fXa9g5YUvFlCWDcw=
-X-Received: by 2002:a05:6512:c25:: with SMTP id z37mr27246235lfu.160.1639393228087;
-        Mon, 13 Dec 2021 03:00:28 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyAhZVupAQj4Ctos4E4tzeNhHXTV3N6ad1L0/m+9uXiWRs4tbCEa22HF2XhyXJEMAq2lBo4Dg==
-X-Received: by 2002:a05:6512:c25:: with SMTP id z37mr27246200lfu.160.1639393227812;
-        Mon, 13 Dec 2021 03:00:27 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id g10sm1388745lfv.113.2021.12.13.03.00.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Dec 2021 03:00:27 -0800 (PST)
-Message-ID: <e9472cec-7aca-92c4-6184-f442c0f88d56@canonical.com>
-Date:   Mon, 13 Dec 2021 12:00:26 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v3 3/5] tty: serial: samsung: Remove USI initialization
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Mon, 13 Dec 2021 06:07:43 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1BDB0qrZ026371;
+        Mon, 13 Dec 2021 12:07:22 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=b+HsHRFaHh48h58DWF2zvvE7tLMBisSyPfnqh6tF6GE=;
+ b=OuQMkt+oOASSzcT0h9mm0raBeTRYgEXAidt36SmYrlFla+brohD0wBmveZjtrDuTKbz4
+ V9P1l7QBCmnPtDIR5/1zQ9L5A9A1D5vVatu6GUV7fg3WOhrtjAXoKKVGV40zubRGkCBB
+ 9mM/MTVsnsi65PvSJq1J1mOaqZyGEFX9kYqOWTAdLAkEG2/cJmhOYWn8EgwGmVzM1B81
+ zxc6comnvMajUnLwwFa4E2/4fpCGt4Gm5EeHyxc3GoW0pRz7BaYJ0rgko5ueOBeoegux
+ ITBw4n5+zpM+WegGmT439wgLRuPBKEgbpVUKCjnXbncGSy/p/CNKTkdztrxV4cyRf1/w SQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3cx0sqsmwg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 13 Dec 2021 12:07:22 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 85B3A100034;
+        Mon, 13 Dec 2021 12:07:21 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 681CF235F68;
+        Mon, 13 Dec 2021 12:07:21 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.47) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Mon, 13 Dec
+ 2021 12:07:20 +0100
+Subject: Re: [PATCH v3 3/3] ARM: dts: stm32: Add Engicam i.Core STM32MP1
+ C.TOUCH 2.0 10.1" OF
+To:     Jagan Teki <jagan@amarulasolutions.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20211204195757.8600-1-semen.protsenko@linaro.org>
- <20211204195757.8600-4-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211204195757.8600-4-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amarula@amarulasolutions.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>
+References: <20211203165435.8042-1-jagan@amarulasolutions.com>
+ <20211203165435.8042-3-jagan@amarulasolutions.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <efee8492-e8fd-92e4-61a3-f61275459824@foss.st.com>
+Date:   Mon, 13 Dec 2021 12:07:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <20211203165435.8042-3-jagan@amarulasolutions.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2021-12-13_04,2021-12-13_01,2021-12-02_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/12/2021 20:57, Sam Protsenko wrote:
-> USI control is now extracted to the dedicated USI driver. Remove USI
-> related code from serial driver to avoid conflicts and code duplication.
+On 12/3/21 5:54 PM, Jagan Teki wrote:
+> Engicam C.TOUCH 2.0 is an EDIMM compliant general purpose Carrier
+> board.
 > 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Genaral features:
+> - Ethernet 10/100
+> - Wifi/BT
+> - USB Type A/OTG
+> - Audio Out
+> - CAN
+> - 10" LVDS Panel (SN65DSI84 DSI-LVDS bridge on SoM)
+> 
+> i.Core STM32MP1 is an EDIMM SoM based on STM32MP157A from Engicam.
+> 
+> 10.1" OF is a capacitive touch 10.1" Open Frame panel solutions.
+> 
+> i.Core STM32MP1 needs to mount on top of C.TOUCH 2.0 carrier with
+> pluged 10.1" OF for creating complete i.Core STM32MP1 C.TOUCH 2.0
+> 10.1" Open Frame board.
+> 
+> Add support for it.
+> 
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+
+Series applied on stm32-next.
+
+Thanks
+Alex
+
+
 > ---
-> Changes in v3:
->   - Spell check fixes in commit message
+> Changes for v3:
+> - drop redundent commit details.
+> - fix dtbs_check
+> Changes for v2:
+> - none
 > 
-> Changes in v2:
->   - (none)
+>   arch/arm/boot/dts/Makefile                    |   1 +
+>   ...tm32mp157a-icore-stm32mp1-ctouch2-of10.dts | 132 ++++++++++++++++++
+>   2 files changed, 133 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
 > 
->  drivers/tty/serial/samsung_tty.c | 36 ++++----------------------------
->  include/linux/serial_s3c.h       |  9 --------
->  2 files changed, 4 insertions(+), 41 deletions(-)
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 8a2dfdf01ce3..47878c1e878b 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1140,6 +1140,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
+>   	stm32mp157a-microgea-stm32mp1-microdev2.0.dtb \
+>   	stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dtb \
+>   	stm32mp157a-icore-stm32mp1-ctouch2.dtb \
+> +	stm32mp157a-icore-stm32mp1-ctouch2-of10.dtb \
+>   	stm32mp157a-icore-stm32mp1-edimm2.2.dtb \
+>   	stm32mp157a-stinger96.dtb \
+>   	stm32mp157c-dhcom-pdk2.dtb \
+> diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
+> new file mode 100644
+> index 000000000000..2a2829283456
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
+> @@ -0,0 +1,132 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+> +/*
+> + * Copyright (c) STMicroelectronics 2019 - All Rights Reserved
+> + * Copyright (c) 2020 Engicam srl
+> + * Copyright (c) 2020 Amarula Solutons(India)
+> + */
+> +
+> +/dts-v1/;
+> +#include "stm32mp157.dtsi"
+> +#include "stm32mp157a-icore-stm32mp1.dtsi"
+> +#include "stm32mp15-pinctrl.dtsi"
+> +#include "stm32mp15xxaa-pinctrl.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +	model = "Engicam i.Core STM32MP1 C.TOUCH 2.0 10.1\" Open Frame";
+> +	compatible = "engicam,icore-stm32mp1-ctouch2-of10",
+> +		     "engicam,icore-stm32mp1", "st,stm32mp157";
+> +
+> +	aliases {
+> +		serial0 = &uart4;
+> +	};
+> +
+> +	backlight: backlight {
+> +		compatible = "gpio-backlight";
+> +		gpios = <&gpiod 13 GPIO_ACTIVE_HIGH>;
+> +		default-on;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	panel {
+> +		compatible = "ampire,am-1280800n3tzqw-t00h";
+> +		backlight = <&backlight>;
+> +		power-supply = <&v3v3>;
+> +
+> +		port {
+> +			panel_in_lvds: endpoint {
+> +				remote-endpoint = <&bridge_out>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&dsi {
+> +	status = "okay";
+> +	phy-dsi-supply = <&reg18>;
+> +
+> +	ports {
+> +		port@0 {
+> +			reg = <0>;
+> +			dsi_in: endpoint {
+> +				remote-endpoint = <&ltdc_ep0_out>;
+> +			};
+> +		};
+> +
+> +		port@1 {
+> +			reg = <1>;
+> +			dsi_out: endpoint {
+> +				remote-endpoint = <&bridge_in>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&i2c6 {
+> +	i2c-scl-falling-time-ns = <20>;
+> +	i2c-scl-rising-time-ns = <185>;
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&i2c6_pins_a>;
+> +	pinctrl-1 = <&i2c6_sleep_pins_a>;
+> +	status = "okay";
+> +
+> +	bridge@2c {
+> +		compatible = "ti,sn65dsi84";
+> +		reg = <0x2c>;
+> +		enable-gpios = <&gpiof 15 GPIO_ACTIVE_HIGH>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				bridge_in: endpoint {
+> +					remote-endpoint = <&dsi_out>;
+> +					data-lanes = <1 2>;
+> +				};
+> +			};
+> +
+> +			port@2 {
+> +				reg = <2>;
+> +				bridge_out: endpoint {
+> +					remote-endpoint = <&panel_in_lvds>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&ltdc {
+> +	status = "okay";
+> +
+> +	port {
+> +		ltdc_ep0_out: endpoint@0 {
+> +			reg = <0>;
+> +			remote-endpoint = <&dsi_in>;
+> +		};
+> +	};
+> +};
+> +
+> +&sdmmc1 {
+> +	bus-width = <4>;
+> +	disable-wp;
+> +	pinctrl-names = "default", "opendrain", "sleep";
+> +	pinctrl-0 = <&sdmmc1_b4_pins_a>;
+> +	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
+> +	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
+> +	st,neg-edge;
+> +	vmmc-supply = <&v3v3>;
+> +	status = "okay";
+> +};
+> +
+> +&uart4 {
+> +	pinctrl-names = "default", "sleep", "idle";
+> +	pinctrl-0 = <&uart4_pins_a>;
+> +	pinctrl-1 = <&uart4_sleep_pins_a>;
+> +	pinctrl-2 = <&uart4_idle_pins_a>;
+> +	status = "okay";
+> +};
 > 
 
-Hi Sam,
-
-Does this patch depend on USI driver? In cover letter you did not
-mention any dependency, so this can go via Greg's tree, right?
-
-Best regards,
-Krzysztof
