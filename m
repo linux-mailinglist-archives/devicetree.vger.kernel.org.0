@@ -2,189 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2C96473572
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 21:00:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE3F1473592
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 21:04:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238174AbhLMUAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 15:00:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33910 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236735AbhLMUAB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 15:00:01 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89091C061574;
-        Mon, 13 Dec 2021 12:00:01 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id y12so54999574eda.12;
-        Mon, 13 Dec 2021 12:00:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=df1mrl6TUbj08Ap84+KKpr9c3T5esAWxN7lTOKW2B+A=;
-        b=IAJXKHF8TvkZ7caeZi6MP/fyiR/QiCsVMvjaoMkkwEIIpc0mX0M5zXqLjcZn06hr/D
-         iW7DECP1T2pTm4f4uy+IbdggHnfZ+3RF0zQdf36nPyq5tEAXepg28cGCftajE5N2hYBI
-         lFxX4kJgpzwIDMHlZKwKccPMgJjIRp92ckJiUlW3y3lIGL8no/MgCVeBwgVQo2cP5EfJ
-         tfV0W5Gb3DD30ZyO/AwHn3n1QO7jAXDoXElyPzo5vuq4IusZ6kZpCPYVHGgzpw9/NEZv
-         pnq97kamAGlkRNYpl6h/R0wbt5hL/Iz72/eoHjHmQDLw7Rylrfbl+f6v9wyAewhopRd4
-         ghCg==
+        id S238863AbhLMUEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 15:04:00 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:41556 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229897AbhLMUEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 15:04:00 -0500
+Received: by mail-ot1-f45.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so18653668otl.8;
+        Mon, 13 Dec 2021 12:03:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=df1mrl6TUbj08Ap84+KKpr9c3T5esAWxN7lTOKW2B+A=;
-        b=wqRzleWRbPBW0Q4vA573psNbkHONw4RITgdmIB41vLXcU18zNTBExXRDre7J3W0Zvh
-         mldQrKcOyGpxANuNHlZOYn5U7cxwPMdRgAbq8dQ/gR9fUJiw0JBMuy+MeuRp0P2RpTAv
-         y+Ad3UWr4yD4K/bHvn3Ju4tKQ+WK+nrcJU7DGUL5QD3BlsIq5Gv4He60T3fb2HxepCZs
-         SXjZVnyZFbO87UCVco4xUc9/X2IcCqboMuJuu4HklTJ/ybVOKaO4ZChXu1XrUf9VaJoe
-         tifYMY8N/iIklqw4JqIIXSYVPbtZrt2z7H8n5u+7TwzuFFB9e4G/hCs6a+b5cd3+iVc6
-         Fe0w==
-X-Gm-Message-State: AOAM532DqZkxsZB77bRv9yDXxqxPaeIjyvZ661+1I3wcpMuYQIUldLPh
-        QkFVPUQeC79gVsuFAmAFhUw=
-X-Google-Smtp-Source: ABdhPJyNVwhMuVEwjTN5pONcPkkvomVyqscipdpoKrpUxG+iysNHugyvpgN2+kJtTk3cQE1VCBQppw==
-X-Received: by 2002:a05:6402:7d8:: with SMTP id u24mr1218127edy.215.1639425600065;
-        Mon, 13 Dec 2021 12:00:00 -0800 (PST)
-Received: from skbuf ([188.25.173.50])
-        by smtp.gmail.com with ESMTPSA id oz31sm6228527ejc.35.2021.12.13.11.59.58
+        bh=F+VkbINDZ3982NbklJtQQFI+CicmdRJDGJAAh3xSd9Q=;
+        b=dpVnZT81pZiMgEsp2nrNZ41l/5+XWzVKzr7JlCx9HEjISj3RBtmqgmuW0nF+aMQELz
+         CrO+tYVi6aZ1TG1p0HR55MPN8RFQZV9E0A9S9YS7FouifYUEkgG4UZIzUb28UsDUClAk
+         6ei/aBSfH9habOmntVLNuL5MZhrLULWk5fMZmU28u4kpxFRE9mWLmdL+mh9FrcVAg+kc
+         Sd/Sro5Ki6st3IoPDrwCo1E7UxVJcvkJCe4Kjx2ylpLZWO2F8CeMz51WHG6F2v5C64LG
+         khjJRxlr36WlmcPQIASzKoY0zjKGq4ykZ+1Dksl/6HB9q1sTjbqpeKDPsjvipyizSjr/
+         4DEQ==
+X-Gm-Message-State: AOAM530AZJM06DMYBPSoAMEugA3tHmCyCgCTl7ylr4bxx2xyxxJDwWtp
+        /3F65NkPn1RpnJ0cn4J53Q==
+X-Google-Smtp-Source: ABdhPJywftm6gboxmNC9EyDFlLflvbyYC+iKdPeAALWUM3Qhb8d9nY858CYgewg4q2ZFvDuTCjjq0A==
+X-Received: by 2002:a05:6830:3195:: with SMTP id p21mr614011ots.56.1639425838637;
+        Mon, 13 Dec 2021 12:03:58 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id h3sm2326962oon.34.2021.12.13.12.03.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 11:59:59 -0800 (PST)
-Date:   Mon, 13 Dec 2021 21:59:58 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel-team@android.com, John Crispin <john@phrozen.org>,
-        Biwen Li <biwen.li@nxp.com>,
-        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sander Vanheule <sander@svanheule.net>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Subject: Re: [PATCH v2] of/irq: Add a quirk for controllers with their own
- definition of interrupt-map
-Message-ID: <20211213195958.rn56nnhobl4nlmxx@skbuf>
-References: <20211201114102.13446-1-maz@kernel.org>
+        Mon, 13 Dec 2021 12:03:57 -0800 (PST)
+Received: (nullmailer pid 1478068 invoked by uid 1000);
+        Mon, 13 Dec 2021 20:03:56 -0000
+Date:   Mon, 13 Dec 2021 14:03:56 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, pure.logic@nexus-software.ie,
+        bjorn.andersson@linaro.org, greg@kroah.com,
+        linux-kernel@vger.kernel.org, quic_tsoni@quicinc.com,
+        quic_psodagud@quicinc.com, quic_satyap@quicinc.com,
+        quic_pheragu@quicinc.com, quic_rjendra@quicinc.com,
+        quic_sibis@quicinc.com, quic_saipraka@quicinc.com
+Subject: Re: [PATCH V2 4/8] usb: dwc3: drd: Register the eud connector child
+ node for dwc3
+Message-ID: <YbenLLPUYVX50CJc@robh.at.kernel.org>
+References: <cover.1638430506.git.quic_schowdhu@quicinc.com>
+ <bcb48839a520b8bfc9b09e7a26ba8a8459ab602d.1638430506.git.quic_schowdhu@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211201114102.13446-1-maz@kernel.org>
+In-Reply-To: <bcb48839a520b8bfc9b09e7a26ba8a8459ab602d.1638430506.git.quic_schowdhu@quicinc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marc,
-
-On Wed, Dec 01, 2021 at 11:41:02AM +0000, Marc Zyngier wrote:
-> Since 041284181226 ("of/irq: Allow matching of an interrupt-map local
-> to an interrupt controller"), a handful of interrupt controllers have
-> stopped working correctly. This is due to the DT exposing a non-sensical
-> interrupt-map property, and their drivers relying on the kernel ignoring
-> this property.
+On Thu, Dec 02, 2021 at 03:21:23PM +0530, Souradeep Chowdhury wrote:
+> Register the child node for dwc3 which is the "eud_usb_connector".
+> The eud driver will be able to switch the usb role from device to
+> host and vice versa using the role switch property of dwc3 node.
 > 
-> Since we cannot realistically fix this terrible behaviour, add a quirk
-> for the limited set of devices that have implemented this monster,
-> and document that this is a pretty bad practice.
-> 
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: John Crispin <john@phrozen.org>
-> Cc: Biwen Li <biwen.li@nxp.com>
-> Cc: Chris Brandt <chris.brandt@renesas.com>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Sander Vanheule <sander@svanheule.net>
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
+> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
 > ---
+>  drivers/usb/dwc3/drd.c | 26 ++++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
 > 
-> Notes:
->     v2: Switched over to of_device_compatible_match() as per Rob's
->         request.
-> 
->  drivers/of/irq.c | 28 ++++++++++++++++++++++++++--
->  1 file changed, 26 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-> index b10f015b2e37..65a325aad984 100644
-> --- a/drivers/of/irq.c
-> +++ b/drivers/of/irq.c
-> @@ -76,6 +76,26 @@ struct device_node *of_irq_find_parent(struct device_node *child)
+> diff --git a/drivers/usb/dwc3/drd.c b/drivers/usb/dwc3/drd.c
+> index d7f7683..b4ea55c 100644
+> --- a/drivers/usb/dwc3/drd.c
+> +++ b/drivers/usb/dwc3/drd.c
+> @@ -8,6 +8,7 @@
+>   */
+>  
+>  #include <linux/extcon.h>
+> +#include <linux/of_platform.h>
+>  #include <linux/of_graph.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/property.h>
+> @@ -164,6 +165,27 @@ static int dwc3_otg_get_irq(struct dwc3 *dwc)
+>  	return irq;
 >  }
->  EXPORT_SYMBOL_GPL(of_irq_find_parent);
 >  
-> +/*
-> + * These interrupt controllers abuse interrupt-map for unspeakable
-> + * reasons and rely on the core code to *ignore* it (the drivers do
-> + * their own parsing of the property).
-> + *
-> + * If you think of adding to the list for something *new*, think
-> + * again. There is a high chance that you will be sent back to the
-> + * drawing board.
-> + */
-> +static const char * const of_irq_imap_abusers[] = {
-> +	"CBEA,platform-spider-pic",
-> +	"sti,platform-spider-pic",
-> +	"realtek,rtl-intc",
-> +	"fsl,ls1021a-extirq",
-> +	"fsl,ls1043a-extirq",
-> +	"fsl,ls1088a-extirq",
-> +	"renesas,rza1-irqc",
-> +	NULL,
-> +};
+> +static int dwc3_register_eud(struct dwc3 *dwc)
+> +{
+> +	struct device		*dev = dwc->dev;
+> +	struct device_node	*np = dev->of_node;
+> +	int                     ret;
 > +
->  /**
->   * of_irq_parse_raw - Low level interrupt tree parsing
->   * @addr:	address specifier (start of "reg" property of the device) in be32 format
-> @@ -159,12 +179,16 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
->  		/*
->  		 * Now check if cursor is an interrupt-controller and
->  		 * if it is then we are done, unless there is an
-> -		 * interrupt-map which takes precedence.
-> +		 * interrupt-map which takes precedence if we're not
-> +		 * in presence of once of these broken platform that
-> +		 * want to parse interrupt-map themselves for $reason.
->  		 */
->  		bool intc = of_property_read_bool(ipar, "interrupt-controller");
-> +		bool imap_abuse;
->  
->  		imap = of_get_property(ipar, "interrupt-map", &imaplen);
-> -		if (imap == NULL && intc) {
-> +		imap_abuse = imap && of_device_compatible_match(ipar, of_irq_imap_abusers);
-> +		if (intc && (imap == NULL || imap_abuse)) {
->  			pr_debug(" -> got it !\n");
->  			return 0;
->  		}
+> +	of_get_child_by_name(np, "eud_usb_connector");
+
+Connector nodes are named 'connector' or possibly 'usb-connector'. If 
+you are creating an ABI with the node name, it should be documented. 
+However, it's preferred to use 'compatible' for identifying nodes rather 
+than a node name.
+
+> +	if (!np) {
+> +		dev_dbg(dev, "no usb_connector child node specified\n");
+> +		return 0;
+> +	}
+> +
+> +	ret = of_platform_populate(np, NULL, NULL, dev);
+
+But why is any of this needed. The connector doesn't have a driver (I 
+expect eventually we will) and the EUD device is not a child.
+
+> +	if (ret) {
+> +		dev_err(dev, "failed to register usb_connector - %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  void dwc3_otg_init(struct dwc3 *dwc)
+>  {
+>  	u32 reg;
+> @@ -580,6 +602,10 @@ int dwc3_drd_init(struct dwc3 *dwc)
+>  		ret = dwc3_setup_role_switch(dwc);
+>  		if (ret < 0)
+>  			return ret;
+> +
+> +		ret = dwc3_register_eud(dwc);
+> +		if (ret < 0)
+> +			return ret;
+>  	} else if (dwc->edev) {
+>  		dwc->edev_nb.notifier_call = dwc3_drd_notifier;
+>  		ret = extcon_register_notifier(dwc->edev, EXTCON_USB_HOST,
 > -- 
-> 2.30.2
+> 2.7.4
 > 
-
-I am a user of the ls-extirq driver which is responsible for 3 of the 7
-compatible strings mentioned by you here. I have close to zero knowledge
-of the irq subsystem, although I am looking forward to learn.
-
-Could you please spend a few minutes to detail what you see as a possible
-path forward for this driver? I am getting mixed impressions about what
-it's doing wrong.
-
-On one hand, it was requested by Rob during review that what used to be
-called "fsl,extirq-map" should be named "interrupt-map" instead:
-https://lore.kernel.org/lkml/20190928092331.GB1894@linutronix.de/
-Then, you seem to suggest something's wrong with drivers privately using
-that name and parsing a property which used to be ignored by the core,
-due to your "silly-interrupt-map" comment:
-https://lore.kernel.org/all/9c169aad-3c7b-2ffb-90a2-1ca791a3f411@phrozen.org/T/#ebae8f9231296dc936cb7c9791218fc6785a03390
-Then, Rob breaks the ls-extirq driver for platforms that have a GIC ITS*
-defined in the device tree via commit 869f0ec048dc ("arm64: dts:
-freescale: Fix 'interrupt-map' parent address cells") - this is also,
-incidentally, the reason why I'm here.
-* because the driver doesn't parse the "standard" format where the
-  interrupt parent has a non-zero #address-cells - which the "arm,gic-v3"
-  may have when there's a "arm,gic-v3-its" under it (although I don't
-  necessarily see the relevance of the ITS being there to the needs of
-  the ls-extirq - which are just a bijective mapping of IRQs - this
-  driver simply drives a multi-channel logical inverter).
-
-So if I understand correctly, we keep ignoring the non-standard use of
-the "interrupt-map" property in these abuser drivers, yet we patch their
-device trees to have a more standard format in their non-standard use? :)
-
-Since some breakage has already been introduced, for good or bad, I
-think we can start discussing how things should have been done from the
-beginning, and see if we can make those changes now.
+> 
