@@ -2,67 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7D234735E4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 21:28:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28DE44735E9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 21:29:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240958AbhLMU2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 15:28:44 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:42741 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234464AbhLMU2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 15:28:42 -0500
-Received: by mail-oi1-f176.google.com with SMTP id n66so24695481oia.9;
-        Mon, 13 Dec 2021 12:28:41 -0800 (PST)
+        id S234464AbhLMU3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 15:29:21 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:41956 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236582AbhLMU3U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 15:29:20 -0500
+Received: by mail-ot1-f45.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so18723233otl.8;
+        Mon, 13 Dec 2021 12:29:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=YFmay6qUpHi3+z9VRDi7SedXp1pOMgySV5sTOcIXTYc=;
-        b=mPOc3aV9KlujCXM76iIgy5Awzwtwq3DvhuFJmx23CXFJYpIGoQqxT3Ph2ykQOIqTqu
-         lQ8QRgMcSfwQtAyuqxIjEWHF9HMbnLNlzUesVvEKKwD0L+Q9WO9z8pf1Ud5CxLDKQBTJ
-         4Vn1ErEC8RxEnuopHpZnpaiMC4ZNnOKDEUvnCIQI8iiVbX+IKvxKmj1symYhS79VN+3c
-         JEhrSR3QNuR068pCFT/QM2Jpgdrzm9wVMTnGW9r2dITeS0m+4VWS+q5dMD0d3jvNY6d7
-         bIeUJMXt2EC7TiQoueKRcRl/WnCiIsFoFOzjhc/22ESHOVdKEuqvXTfl91ypFdGLR7kY
-         8kHA==
-X-Gm-Message-State: AOAM533DniMKl9zDS3DiQN5K2uToVbXG2wCAY32qoxFuSlB69ULV+Zi+
-        Z6UX+5EXsBKRr3MWaIJlCw==
-X-Google-Smtp-Source: ABdhPJzV1TjYgGt5HxFT08kuKYUZ33IRI7ikDFlxvtgdvwydt7/UvUj+lBOHF0s4EiHBTWBMJA/uHg==
-X-Received: by 2002:a54:4707:: with SMTP id k7mr28530003oik.163.1639427321464;
-        Mon, 13 Dec 2021 12:28:41 -0800 (PST)
+        bh=sp7soaG+93uM6HIRElJy0T0BN+OSm+e/LYzCLa9P4m4=;
+        b=zi7st9vLUwnQjxgYOk4SbvtP4A2MeQ6Ma+dHpyoGRewLc/oO3dgDVvnvB7irOj2D/3
+         CP9CwzhVJFvc/qlrVYb0jNizYF5lVGg3DeqDyAaYckCM3854QzzO49GQFEW98F8Wm4/8
+         KTsmuG5oFNXV3KHSs+76SwT77YDgRb3imQ8a4qhl9HLo4yp94xoNzvf+tfHmM4Fl7x9/
+         VWG789c/fHEF3b+IuKcnWZR5n8wtPebFfGFeVwoA69MFIYZgzWsYx6K80WHcrUyyh63D
+         9AjSjyOxdthjvz28VSnTPt85vhSE/umxe0B1spDLCPDQvwmgRflMhhPfpgmVulxtpBzh
+         NQvw==
+X-Gm-Message-State: AOAM530Jy00r6mMxWJG4VjVRWEfmBtRLed4e69AbLFdBPhv+9yvm2CzF
+        +an0X3aOwsxS6hGcXFGACKEQcy8+Vw==
+X-Google-Smtp-Source: ABdhPJwGTNJ0ypFWisjlBwDJw2AzFfuOaKfZPNCdJD2ujguuasN28S1+P/yQ1DAcPHPDpZ17m4Whew==
+X-Received: by 2002:a9d:17cc:: with SMTP id j70mr649269otj.313.1639427359961;
+        Mon, 13 Dec 2021 12:29:19 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t5sm2342755ool.10.2021.12.13.12.28.40
+        by smtp.gmail.com with ESMTPSA id a5sm2358231otd.74.2021.12.13.12.29.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 12:28:40 -0800 (PST)
-Received: (nullmailer pid 1516363 invoked by uid 1000);
-        Mon, 13 Dec 2021 20:28:40 -0000
-Date:   Mon, 13 Dec 2021 14:28:40 -0600
+        Mon, 13 Dec 2021 12:29:18 -0800 (PST)
+Received: (nullmailer pid 1517332 invoked by uid 1000);
+        Mon, 13 Dec 2021 20:29:17 -0000
+Date:   Mon, 13 Dec 2021 14:29:17 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Thara Gopinath <thara.gopinath@linaro.org>
-Cc:     robh+dt@kernel.org, daniel.lezcano@linaro.org,
-        linux-kernel@vger.kernel.org, rui.zhang@intel.com,
-        rafael@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: thermal: Add sm8150 compatible string
- for LMh
-Message-ID: <Ybes+EIOpXWiDyJH@robh.at.kernel.org>
-References: <20211202223802.382068-1-thara.gopinath@linaro.org>
- <20211202223802.382068-4-thara.gopinath@linaro.org>
+To:     Changming Huang <jerry.huang@nxp.com>
+Cc:     sebastian.reichel@collabora.com,
+        linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski@canonical.com, linux@rempel-privat.de,
+        olof@lixom.net, marcel.ziswiler@toradex.com,
+        jagan@amarulasolutions.com, festevam@gmail.com,
+        devicetree@vger.kernel.org, shawnguo@kernel.org, arnd@arndb.de,
+        cniedermaier@dh-electronics.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, soc@kernel.org, tharvey@gateworks.com,
+        leoyang.li@nxp.com, dev@lynxeye.de
+Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: add ls1021a-iot board
+Message-ID: <YbetHRxKVSF1Ex2a@robh.at.kernel.org>
+References: <20211203031332.902485-1-jerry.huang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211202223802.382068-4-thara.gopinath@linaro.org>
+In-Reply-To: <20211203031332.902485-1-jerry.huang@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 02 Dec 2021 17:38:02 -0500, Thara Gopinath wrote:
-> Extend the LMh dt binding document to include compatible string
-> supporting sm8150 SoC.
+On Fri, 03 Dec 2021 11:13:31 +0800, Changming Huang wrote:
+> Add the board ls1021a-iot in the binding docuemnt.
 > 
-> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
+> Signed-off-by: Changming Huang <jerry.huang@nxp.com>
 > ---
->  Documentation/devicetree/bindings/thermal/qcom-lmh.yaml | 1 +
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
