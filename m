@@ -2,120 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0983473475
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 19:57:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08A2547347A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 19:57:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242022AbhLMS5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 13:57:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47238 "EHLO
+        id S239775AbhLMS5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 13:57:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242038AbhLMS5B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 13:57:01 -0500
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9927C061751
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 10:57:00 -0800 (PST)
-Received: by mail-pj1-x1033.google.com with SMTP id j5-20020a17090a318500b001a6c749e697so13055074pjb.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 10:57:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=SJQo48NUmZkGZt1euitJNnArwB/A5OwQryrDW1DTEUY=;
-        b=mR4sP0FAduGkecIn78GO9pfQYM8sqxaO605tT2SSIoABlfHhgJEJtGLj1fKdGDYyha
-         JGusEx08UFDd9brckayAl3rjS3zMN9ufR3X1jGkfyUOMa1ukqvCyminJ3i5hRLHHknzf
-         Yk3sIFomgNgoq8rQ0hZA405oKbUVgSBZ/FCSZ7stLCH52jESvlh2txxomi8Ik+Gj9ivS
-         EsTK8YqAGFxPPDZBpnbNAkz6/60K4ZAXqoQdtAT7Y7dItfzAn5juFFIioZQz/vyisf+n
-         IZXjPKX7GOrmcrku+Z7/BwQZfyZwt8IS+BwZZmtcJ2PlvjYa1cnoDIGiGV4j4oXo+ho3
-         j9Dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SJQo48NUmZkGZt1euitJNnArwB/A5OwQryrDW1DTEUY=;
-        b=b+6U4103+xuhtS7QRsVnloqS7iZGIBzidcpvgc3pWc+xXfFodUT2hERoE9riYIuNx1
-         xplP0AqYVPm2LxT1VvUkFXq8bn2Bf9HAyB4WWNQZC6Z60+BDuTpdnp0ZwPeCPzWM/q/N
-         uVU4jIOjzJXNdRTZW6fzlCZLFQCGsep+dZHa78uCdlEJmfPcxzGMIURlwtLbs0ry2EmZ
-         UuR0aDAoSV/6biDct0Lg01xFWRop0qI5GsqxYvhbYg4J3ynyvd3ovca9N/SEtK6rezKw
-         7IqRj821tR7pKDino7wQ5tRzmz19l34ISF04BMNadKUPY9vVOI8xzAFF1uM/MjTD57Ds
-         fb1A==
-X-Gm-Message-State: AOAM531xKIq3aaN54Avn7L8myqiYEoZhMrF/ZxJNvQFScLTi5KdT1MrE
-        Sh2pQ+3UJYRIFjAsAwIq+oOYPQ==
-X-Google-Smtp-Source: ABdhPJxNnuxdKkqPual8sYPX1MjA5j+lejydfjOREey1YjoX3NWB2OsK6FTTT64wcd8+cJTIvJ6K5A==
-X-Received: by 2002:a17:90b:3850:: with SMTP id nl16mr160887pjb.10.1639421820424;
-        Mon, 13 Dec 2021 10:57:00 -0800 (PST)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id t191sm5615027pgd.3.2021.12.13.10.56.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 10:56:59 -0800 (PST)
-Date:   Mon, 13 Dec 2021 11:56:57 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Julien Massot <julien.massot@iot.bzh>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        geert+renesas@glider.be, linux-renesas-soc@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] Initial Renesas R-Car remoteproc support
-Message-ID: <20211213185657.GB1474575@p14s>
-References: <20211207165829.195537-1-julien.massot@iot.bzh>
+        with ESMTP id S236468AbhLMS5J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 13:57:09 -0500
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C45C061574;
+        Mon, 13 Dec 2021 10:57:09 -0800 (PST)
+Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id BA0771EC058C;
+        Mon, 13 Dec 2021 19:57:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1639421823;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=vug8c6LeiYsA8ecHoSXfAGDN69ymkQs1b6qpIjHtAAE=;
+        b=jaXPqYRD1U/EpsAljNHIQnZJtaf+hUyUFWtbuqD43Jf/AApyBPA7ymJZoxF8/uHXBJXYLH
+        J+hAKMqZn7J728aTOtDyDHG1AlBvR+BYoyc+qbyHjOfXQvC618ovAS0L4k7FrZBCP0FX+L
+        oLfQeqzBGjssQRAnKvq9Pg7ZaU0GOek=
+Date:   Mon, 13 Dec 2021 19:57:02 +0100
+From:   Borislav Petkov <bp@alien8.de>
+To:     john.p.donnelly@oracle.com
+Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
+        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
+        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+Subject: Re: [PATCH v17 00/10] support reserving crashkernel above 4G on
+ arm64 kdump
+Message-ID: <YbeXfkEkqp1Js3TP@zn.tnic>
+References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
+ <5ef3ef54-33db-3cb2-4908-8bd1254749e3@oracle.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211207165829.195537-1-julien.massot@iot.bzh>
+In-Reply-To: <5ef3ef54-33db-3cb2-4908-8bd1254749e3@oracle.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 07, 2021 at 05:58:27PM +0100, Julien Massot wrote:
-> Most of the SoCs in the R-Car gen3 SoC series such as
-> H3,M3 and E3 have an 'Arm Realtime Core'.
-> This Realtime core is an Arm Cortex-R7 clocked at 800MHz.
-> This series adds initial support to load a firmware and start
-> this remote processor through the remoteproc subsystem.
-> 
-> This series depends on
-> https://patchwork.kernel.org/project/linux-renesas-soc/patch/20211022122101.66998-1-julien.massot@iot.bzh/
-> to be able to set the Cortex-R7 boot address.
-> 
-> One of the way to test this driver is to use the zephyr upstream support
-> for h3ulcb board 'blinky' demo is my favorite testing firmware.
-> 
-> To generate a firmware with the zephyr project.
-> 
-> follow this starting guide
-> https://docs.zephyrproject.org/2.7.0/getting_started/index.html
-> 
-> Then compile your zephyr demo
-> west build -b rcar_h3ulcb_cr7 zephyr/samples/basic/blinky \
->     -DCONFIG_KERNEL_ENTRY=\"_vector_table\" \
->     --build-dir h3-blinky
-> 
-> Then you can use h3-blinky/zephyr/zephyr.elf as a testing
-> firmware.
-> 
-> Patch 1/2 adds the dt-bindings
-> 
-> Patch 2/2 is a small driver to cover basic remoteproc
-> usage: loading firmware from filesystem, starting and stopping the
-> Cortex-r7 processor.
-> 
-> Julien Massot (2):
->   dt-bindings: remoteproc: Add Renesas R-Car
->   remoteproc: Add Renesas rcar driver
-> 
->  .../remoteproc/renesas,rcar-rproc.yaml        |  65 +++++
->  drivers/remoteproc/Kconfig                    |  11 +
->  drivers/remoteproc/Makefile                   |   1 +
->  drivers/remoteproc/rcar_rproc.c               | 223 ++++++++++++++++++
+On Mon, Dec 13, 2021 at 08:37:48AM -0600, john.p.donnelly@oracle.com wrote:
+> After 2 years, and 17 versions, can we now get this series promoted into a
+> build ?
 
-I have applied this set.
+For example:
 
-Thanks,
-Mathieu
+$ ./scripts/get_maintainer.pl -f Documentation/admin-guide/kdump/kdump.rst
+Baoquan He <bhe@redhat.com> (maintainer:KDUMP)
+Vivek Goyal <vgoyal@redhat.com> (reviewer:KDUMP)
+Dave Young <dyoung@redhat.com> (reviewer:KDUMP)
+Jonathan Corbet <corbet@lwn.net> (maintainer:DOCUMENTATION)
+kexec@lists.infradead.org (open list:KDUMP)
 
->  4 files changed, 300 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
->  create mode 100644 drivers/remoteproc/rcar_rproc.c
-> 
-> -- 
-> 2.33.1
-> 
-> 
+I see only two acks from Baoquan.
+
+So yes, this needs to go through the normal review process first.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
