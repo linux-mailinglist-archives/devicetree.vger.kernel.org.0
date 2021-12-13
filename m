@@ -2,92 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DA77473542
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 20:51:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3F16473549
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 20:54:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240623AbhLMTvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 14:51:10 -0500
-Received: from ixit.cz ([94.230.151.217]:46550 "EHLO ixit.cz"
+        id S235864AbhLMTyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 14:54:13 -0500
+Received: from mail.skyhub.de ([5.9.137.197]:56746 "EHLO mail.skyhub.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233215AbhLMTvK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 14:51:10 -0500
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S233215AbhLMTyN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Dec 2021 14:54:13 -0500
+Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id BB75824AF5;
-        Mon, 13 Dec 2021 20:51:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1639425068;
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id B34901EC01FC;
+        Mon, 13 Dec 2021 20:54:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1639425247;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=eXNpgvmUGI/xsXfaBGu6T6lZYyCtjGgaudUrm9Xl7kI=;
-        b=b/Yc0pvVyMAefjGIHDSrUQVjDjxuarsUKhlfR9KK00OdgNdX790kmPP/ftDjsX/gFZlZMW
-        X82xt32gaXmpdEfEjKtPWtT+CRg4uMjNNjdYmKSXeu+kbPPy9bk/dYpftdG4yDydCk8jRi
-        QGMFDIILNndw3aueDRdTZtuKjd4nk3M=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=NEd6OKPHSoD8z7vKqqXLJ4dgN74etwHjBxhrJTz6IH0=;
+        b=RzwMR29Ko727bo6cOrhi74hHmC2Y27PBIAzfQnbe+PrtFhDVPHOaCqm2Xtsg1GwGVIrViW
+        QS8pYfJh7LuKxOGOPQW+9vWT4xgXazUDRAwp59pXLY9r2vrBKBHqyiM6hOD5UTBzjGsNa+
+        k87NSZrYVOvhM0vGa5wVBrClq3M7VLg=
+Date:   Mon, 13 Dec 2021 20:54:09 +0100
+From:   Borislav Petkov <bp@alien8.de>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
+        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
+        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Caleb Connolly <caleb@connolly.tech>,
-        David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sdm845: fix microphone bias properties and values
-Date:   Mon, 13 Dec 2021 20:51:04 +0100
-Message-Id: <20211213195105.114596-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+Subject: Re: [PATCH v17 01/10] x86: kdump: replace the hard-coded alignment
+ with macro CRASH_ALIGN
+Message-ID: <Ybek4VRr8RaLM7kD@zn.tnic>
+References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
+ <20211210065533.2023-2-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211210065533.2023-2-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-replace millivolt with correct microvolt and adjust value to
-the minimal value allowed by documentation.
+> Subject: Re: [PATCH v17 01/10] x86: kdump: replace the hard-coded alignment with macro CRASH_ALIGN
 
-Found with `make qcom/sdm845-oneplus-fajita.dtb`.
+From Documentation/process/maintainer-tip.rst:
 
-Fixes:
-arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: codec@1: 'qcom,micbias1-microvolt' is a required property
-        From schema: Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: codec@1: 'qcom,micbias2-microvolt' is a required property
-        From schema: Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: codec@1: 'qcom,micbias3-microvolt' is a required property
-        From schema: Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: codec@1: 'qcom,micbias4-microvolt' is a required property
-        From schema: Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
-arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: codec@1: 'qcom,micbias1-millivolt', 'qcom,micbias2-millivolt', 'qcom,micbias3-millivolt', 'qcom,micbias4-millivolt' do not match any of the regexes: '^.*@[0-9a-f]+$', 'pinctrl-[0-9]+'
+"Patch subject
+ ^^^^^^^^^^^^^
 
-Fixes: 27ca1de07dc3 ("arm64: dts: qcom: sdm845: add slimbus nodes")
+The tip tree preferred format for patch subject prefixes is
+'subsys/component:', e.g. 'x86/apic:', 'x86/mm/fault:', 'sched/fair:',
+'genirq/core:'. Please do not use file names or complete file paths as
+prefix. 'git log path/to/file' should give you a reasonable hint in most
+cases.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+The condensed patch description in the subject line should start with a
+uppercase letter and should be written in imperative tone."
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index cfdeaa81f1bb..1bb4d98db96f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -3613,10 +3613,10 @@ wcd9340: codec@1{
- 					#clock-cells = <0>;
- 					clock-frequency = <9600000>;
- 					clock-output-names = "mclk";
--					qcom,micbias1-millivolt = <1800>;
--					qcom,micbias2-millivolt = <1800>;
--					qcom,micbias3-millivolt = <1800>;
--					qcom,micbias4-millivolt = <1800>;
-+					qcom,micbias1-microvolt = <1800000>;
-+					qcom,micbias2-microvolt = <1800000>;
-+					qcom,micbias3-microvolt = <1800000>;
-+					qcom,micbias4-microvolt = <1800000>;
- 
- 					#address-cells = <1>;
- 					#size-cells = <1>;
+Please fix 1-5 for your next submission.
+
+Thx.
+
 -- 
-2.33.0
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
