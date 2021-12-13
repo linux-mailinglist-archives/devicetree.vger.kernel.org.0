@@ -2,114 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A944047295B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 11:20:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08AEF4729D3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 11:26:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242114AbhLMKUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 05:20:18 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:33204 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242169AbhLMKSS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 05:18:18 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 48C34B80FAF;
-        Mon, 13 Dec 2021 10:18:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A241C34600;
-        Mon, 13 Dec 2021 10:18:09 +0000 (UTC)
-Date:   Mon, 13 Dec 2021 10:18:06 +0000
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     john.p.donnelly@oracle.com
-Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
-        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
-        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-Subject: Re: [PATCH v16 00/11] support reserving crashkernel above 4G on
- arm64 kdump
-Message-ID: <Ybcd3r9AeV9vzuG4@arm.com>
-References: <20211123124646.1995-1-thunder.leizhen@huawei.com>
- <YbDnwol20HrRl4uL@arm.com>
- <db65cd76-e2c0-4d35-0dcc-d9f8c164f77e@oracle.com>
+        id S236367AbhLMKZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 05:25:32 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:65029 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242212AbhLMKXa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 05:23:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1639391011; x=1670927011;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RW19rszBP6toUbDeC1RTtY+8YV4n8NBBlhMnFptQuwU=;
+  b=yl3RvcKOWamkj9D0eynwoC70JxvShvWgd5bjOSIZJgA/2kOSqO15c9dx
+   wvDI6KpCM/Pa4yCIoUOPRm5pw8BFXy0qRQJVHTlK7oDDbD3hD3pTPC/n+
+   YuLQjdEJ+FsBSuu4YmWxa/cv5ITw4Wfrdpnf1j3NKnkl5ADA0e4Yxy706
+   fxB7ePP1oSgD3a+cLk0AKhT1+I9r4KFASnKvUztrOcK8AY6qmQPemTx6q
+   +hRn8JrqkM2SJOETFktdwE7UQU8qqQYJI12xnC4IT1+xtR8Nrs+VbFS1T
+   KNeF2+VAxmrT28j2Aaytq6EGvBpuRbZxDGMgSkziNwldhYMLbNA7w+cB5
+   g==;
+IronPort-SDR: /5CJsChaOHgaInoE5fLrPx6y/v9MLhiY6SQy3jAJfsvXR7CpYHiSkVhADnurO9b9y0i9D2hQuD
+ CyUj4SiFZ4loXQNxYEgA8E94tVFyifxY2kSB3H8raErHsU8cbQ/xPmX+0DC7USZQveydBwannF
+ PdxY534HzVKTtlZYsDfJSoQirHVMKA829NSfdjrFYhrgnxhg2r+X6hoz1OMykbjjAMvhhIdSqS
+ 3Fn6I11julh7rnjC886X+cIZ3u1RoePM1IJDGr6DW7CpCxSIJs+nADazf5T/Jd1vVaDQuQpjf3
+ 0CoroNbzkxLuh3D/DSvhY4b2
+X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; 
+   d="scan'208";a="146447267"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Dec 2021 03:23:29 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Mon, 13 Dec 2021 03:23:27 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Mon, 13 Dec 2021 03:23:27 -0700
+Date:   Mon, 13 Dec 2021 11:25:29 +0100
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "vivien.didelot@gmail.com" <vivien.didelot@gmail.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>
+Subject: Re: [PATCH net-next v3 6/6] net: lan966x: Add switchdev support
+Message-ID: <20211213102529.tzdvekwwngo4zgex@soft-dev3-1.localhost>
+References: <20211209094615.329379-1-horatiu.vultur@microchip.com>
+ <20211209094615.329379-7-horatiu.vultur@microchip.com>
+ <20211209133616.2kii2xfz5rioii4o@skbuf>
+ <20211209164311.agnofh275znn5t5c@soft-dev3-1.localhost>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <db65cd76-e2c0-4d35-0dcc-d9f8c164f77e@oracle.com>
+In-Reply-To: <20211209164311.agnofh275znn5t5c@soft-dev3-1.localhost>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 10, 2021 at 01:53:59PM -0600, john.p.donnelly@oracle.com wrote:
-> On 12/8/21 11:13 AM, Catalin Marinas wrote:
-> > On Tue, Nov 23, 2021 at 08:46:35PM +0800, Zhen Lei wrote:
-> > > Chen Zhou (10):
-> > >    x86: kdump: replace the hard-coded alignment with macro CRASH_ALIGN
-> > >    x86: kdump: make the lower bound of crash kernel reservation
-> > >      consistent
-> > >    x86: kdump: use macro CRASH_ADDR_LOW_MAX in functions
-> > >      reserve_crashkernel()
-> > >    x86: kdump: move xen_pv_domain() check and insert_resource() to
-> > >      setup_arch()
-> > >    x86: kdump: move reserve_crashkernel[_low]() into crash_core.c
-> > >    arm64: kdump: introduce some macros for crash kernel reservation
-> > >    arm64: kdump: reimplement crashkernel=X
-> > >    x86, arm64: Add ARCH_WANT_RESERVE_CRASH_KERNEL config
-> > >    of: fdt: Add memory for devices by DT property
-> > >      "linux,usable-memory-range"
-> > >    kdump: update Documentation about crashkernel
-> > > 
-> > > Zhen Lei (1):
-> > >    of: fdt: Aggregate the processing of "linux,usable-memory-range"
+The 12/09/2021 17:43, Horatiu Vultur wrote:
+> > > +int lan966x_register_notifier_blocks(struct lan966x *lan966x)
+> > > +{
+> > > +     int err;
+> > > +
+> > > +     lan966x->netdevice_nb.notifier_call = lan966x_netdevice_event;
+> > > +     err = register_netdevice_notifier(&lan966x->netdevice_nb);
+> > > +     if (err)
+> > > +             return err;
+> > > +
+> > > +     lan966x->switchdev_nb.notifier_call = lan966x_switchdev_event;
+> > > +     err = register_switchdev_notifier(&lan966x->switchdev_nb);
+> > > +     if (err)
+> > > +             goto err_switchdev_nb;
+> > > +
+> > > +     lan966x->switchdev_blocking_nb.notifier_call = lan966x_switchdev_blocking_event;
+> > > +     err = register_switchdev_blocking_notifier(&lan966x->switchdev_blocking_nb);
+> > > +     if (err)
+> > > +             goto err_switchdev_blocking_nb;
+> > > +
+> > > +     lan966x_owq = alloc_ordered_workqueue("lan966x_order", 0);
+> > > +     if (!lan966x_owq) {
+> > > +             err = -ENOMEM;
+> > > +             goto err_switchdev_blocking_nb;
+> > > +     }
 > > 
-> > Apart from a minor comment I made on patch 8 and some comments from Rob
-> > that need addressing, the rest looks fine to me.
-> > 
-> > Ingo stated in the past that he's happy to ack the x86 changes as long
-> > as there's no functional change (and that's the case AFAICT). Ingo, does
-> > your conditional ack still stand?
-> > 
-> > In terms of merging, I'm happy to take it all through the arm64 tree
-> > with acks from the x86 maintainers. Alternatively, with the change I
-> > mentioned for patch 8, the first 5 patches could be queued via the tip
-> > tree on a stable branch and I can base the rest of the arm64 on top.
-> > 
-> > Thomas, Ingo, Peter, any preference?
-> > 
-> > Thanks.
+> > These should be singleton objects, otherwise things get problematic if
+> > you have more than one switch device instantiated in the system.
 > 
-> If you notice the trend over the past year , some of additional review
-> requests are because the submitter had to rebase to the next version.
+> Yes, I will update this.
 
-Normally the reviews stand even if the series is rebased. You only drop
-them if there were non-trivial changes to the patches, not just because
-of a rebase.
+Actually I think they need to be part of lan966x.
+Because we want each lan966x instance to be independent of each other.
+This is not seen in this version but is more clear in the next version
+(v4).
 
-Ingo acked the x86 changes in the past but there were some functional
-changes to the minimum alignment, so the series had to be reworked and
-the ack not applied.
-
-https://lore.kernel.org/r/20200806133627.GB2077191@gmail.com
-
-> Can we get this acked and placed in a build so others can test and start
-> using it ?
-
-If Ingo's conditional ack (no functional changes, just a move) still
-stands over the five x86 patches now, I'm happy to queue them all via
-the arm64 tree. The latest series here:
-
-https://lore.kernel.org/r/20211210065533.2023-1-thunder.leizhen@huawei.com
+> 
+> > 
+> 
+> -- 
+> /Horatiu
 
 -- 
-Catalin
+/Horatiu
