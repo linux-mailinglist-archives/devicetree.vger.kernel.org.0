@@ -2,76 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DF02472D07
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 14:16:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34112472D0B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 14:17:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233533AbhLMNQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 08:16:00 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:60924 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233544AbhLMNPM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 08:15:12 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S233427AbhLMNRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 08:17:41 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:52717 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233288AbhLMNRk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Dec 2021 08:17:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1639401459;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=1z/oXnKbigNR72V6rUxvYybH8ETpkht3CxfyFrpc7CE=;
+        b=SylOnL0a+q1WGg38IaPMfTOdoiHcPai7JLAIUwYQWZZrlFcmVAYGIR0SNmX5IxSF9HdRD7
+        gARayawRjZPx8JHuIsZOT9Imb8iNmWtlcSL87mMyMpA7HZA2siG6vVPp4vnBBvrGQ4lKq/
+        foVoJtqra2Gu9tCdLJ0uuhqYp/jmC/w=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-507-0KdNIwMXNGqYAfCoLdZT8w-1; Mon, 13 Dec 2021 08:17:36 -0500
+X-MC-Unique: 0KdNIwMXNGqYAfCoLdZT8w-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com [10.5.11.16])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 04874B80ED7;
-        Mon, 13 Dec 2021 13:15:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B571C34601;
-        Mon, 13 Dec 2021 13:15:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639401309;
-        bh=cZk+G/uxRdIcbS2qNHDTMvTAAHkt6iWHVXw+x9mtf1M=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=pF+jHNSMao4zvFaYgX3+GJAXuQFv0OanSosnITkQs70StQQ+aYiheXr1f+slSMCl5
-         +gS3ZqJszfK2RRfkC7IBb8sZTA3hWUUigfwthydOEvqrKdUtnCZKGk/wYjr2B0nsw/
-         jrywZ+A7bQohMCabyvwxKtkvCYcfQcuM6rl+LoWl9NwVcmOmWaodL0tTSWbpeWMh2t
-         7OLk9NOt+pZPXeC0RE3Ix+JJ+KuS4HbCovcaJD84BRfPaSdH3jv6H1uYNfPOJMaHoK
-         rDMTYs83dDuZGv+YTC77gJcb3efyhHpMSWnhLHe3xpcVwougEi7wVfZnhHLyFxEZyY
-         H0ccv95hvjm2w==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Andy Gross <agross@kernel.org>,
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 810D38015CD;
+        Mon, 13 Dec 2021 13:17:33 +0000 (UTC)
+Received: from localhost (ovpn-12-202.pek2.redhat.com [10.72.12.202])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 10B5D18032;
+        Mon, 13 Dec 2021 13:17:15 +0000 (UTC)
+Date:   Mon, 13 Dec 2021 21:17:13 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] phy: qcom-qmp: Add SM8450 USB QMP PHYs
-Date:   Mon, 13 Dec 2021 18:44:50 +0530
-Message-Id: <20211213131450.535775-3-vkoul@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211213131450.535775-1-vkoul@kernel.org>
-References: <20211213131450.535775-1-vkoul@kernel.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+Subject: Re: [PATCH v17 01/10] x86: kdump: replace the hard-coded alignment
+ with macro CRASH_ALIGN
+Message-ID: <20211213131713.GA23510@MiWiFi-R3L-srv>
+References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
+ <20211210065533.2023-2-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211210065533.2023-2-thunder.leizhen@huawei.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the USB DP & UNI PHYs found on SM8450. This is same as
-the phy version used on SM8350 and sequences turned out to be same, so
-use the same table from SM8350 for this as well.
+On 12/10/21 at 02:55pm, Zhen Lei wrote:
+> From: Chen Zhou <chenzhou10@huawei.com>
+> 
+> Move CRASH_ALIGN to header asm/kexec.h for later use.
+> 
+> Suggested-by: Dave Young <dyoung@redhat.com>
+> Suggested-by: Baoquan He <bhe@redhat.com>
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- drivers/phy/qualcomm/phy-qcom-qmp.c | 3 +++
- 1 file changed, 3 insertions(+)
+I remember Dave and I discussed and suggested this when reviewing.
+You can remove my Suggested-by.
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-index a959c97a699f..13a249ec8ab6 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-@@ -5777,6 +5777,9 @@ static const struct of_device_id qcom_qmp_phy_of_match_table[] = {
- 	}, {
- 		.compatible = "qcom,sm8450-qmp-ufs-phy",
- 		.data = &sm8450_ufsphy_cfg,
-+	}, {
-+		.compatible = "qcom,sm8450-qmp-usb3-phy",
-+		.data = &sm8350_usb3phy_cfg,
- 	}, {
- 		.compatible = "qcom,qcm2290-qmp-usb3-phy",
- 		.data = &qcm2290_usb3phy_cfg,
--- 
-2.31.1
+For this one, I would like to add ack:
+
+Acked-by: Baoquan He <bhe@redhat.com>
+
+> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> Tested-by: John Donnelly <John.p.donnelly@oracle.com>
+> Tested-by: Dave Kleikamp <dave.kleikamp@oracle.com>
+> ---
+>  arch/x86/include/asm/kexec.h | 3 +++
+>  arch/x86/kernel/setup.c      | 3 ---
+>  2 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/x86/include/asm/kexec.h b/arch/x86/include/asm/kexec.h
+> index 11b7c06e2828c30..3a22e65262aa70b 100644
+> --- a/arch/x86/include/asm/kexec.h
+> +++ b/arch/x86/include/asm/kexec.h
+> @@ -18,6 +18,9 @@
+>  
+>  # define KEXEC_CONTROL_CODE_MAX_SIZE	2048
+>  
+> +/* 16M alignment for crash kernel regions */
+> +#define CRASH_ALIGN		SZ_16M
+> +
+>  #ifndef __ASSEMBLY__
+>  
+>  #include <linux/string.h>
+> diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
+> index 6a190c7f4d71b05..5cc60996eac56d6 100644
+> --- a/arch/x86/kernel/setup.c
+> +++ b/arch/x86/kernel/setup.c
+> @@ -392,9 +392,6 @@ static void __init memblock_x86_reserve_range_setup_data(void)
+>  
+>  #ifdef CONFIG_KEXEC_CORE
+>  
+> -/* 16M alignment for crash kernel regions */
+> -#define CRASH_ALIGN		SZ_16M
+> -
+>  /*
+>   * Keep the crash kernel below this limit.
+>   *
+> -- 
+> 2.25.1
+> 
 
