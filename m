@@ -2,103 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FC4F473133
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 17:05:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDB08473149
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 17:10:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235402AbhLMQFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 11:05:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35036 "EHLO
+        id S240445AbhLMQKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 11:10:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233834AbhLMQFB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 11:05:01 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8575C061574;
-        Mon, 13 Dec 2021 08:05:00 -0800 (PST)
+        with ESMTP id S240415AbhLMQKU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 11:10:20 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3219C061574;
+        Mon, 13 Dec 2021 08:10:19 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 3EB31CE1050;
-        Mon, 13 Dec 2021 16:04:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BDEDC34602;
-        Mon, 13 Dec 2021 16:04:50 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8F779B8119A;
+        Mon, 13 Dec 2021 16:10:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 373A5C34605;
+        Mon, 13 Dec 2021 16:10:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639411497;
-        bh=gYOJ0eE8CCvPr4jpfQ6mfS7kF4867UnqkkFizMYGLUA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OEHI0j2095rXs6qyE/vwCb7G7BeXofSW3mHQnzSYbR29Iwn7jCh6UkttvWGasKUJo
-         DT8rfc2EYHgv45v/xZS50BYt7BSApRXQ1IbpfZlhHKX/5PyGSBPvqRq4MWGW0A7NLN
-         CUQRM7EVsSh3Lv7dHK4gHd/RkaAQl2SZ+uGW4dazNJDZpE5I2Cq1UlOZH29aPLwLRt
-         PQ2B3LgQxbhyw2rRBtIQXFES8UHgh45V1qGNLxgxNhTAtLTZMnucEKmUUR8gSP7CgD
-         jwGwRR/QaVa+Ttfso4eNvjgkxKaY/UgNFkkaaPlS9ox5ZsG9e5V0Hf0wxk8iiR6yzP
-         51MtX4PP9gyyA==
-Date:   Mon, 13 Dec 2021 16:04:48 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     robh+dt@kernel.org, linus.walleij@linaro.org,
-        matthias.bgg@gmail.com, bgolaszewski@baylibre.com,
-        sean.wang@mediatek.com, bayi.cheng@mediatek.com,
-        gch981213@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v6 2/4] dt-bindings: spi: add new clock name 'axi' for
- spi nor
-Message-ID: <YbdvIPq1hKPmKXXs@sirena.org.uk>
-References: <20211211204014.8014-1-tinghan.shen@mediatek.com>
- <20211211204014.8014-3-tinghan.shen@mediatek.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="QwPrMVYnODoVzv3P"
-Content-Disposition: inline
-In-Reply-To: <20211211204014.8014-3-tinghan.shen@mediatek.com>
-X-Cookie: No solicitors.
+        s=k20201202; t=1639411817;
+        bh=7HtdPFNYEb4LaXUb12fHONdhZO/kQ3Sv3ZgpwATgqjU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Bi7qV+l8Er3xb9xSCeK7nIbcvMbzYbBc50smVyROK+SRti5R83RXvL+tStxxtEOU/
+         nanJhQmIsmctFiQp4i0QTSBmTJiMGf0DBgoMzGPVvJTxhclxtgpiHYB0OpsFuY1yv9
+         /UEUJ0l/ebQ9TDzuGjv4aveMtYXW4rnDQtJacmsjJCXkOepxrDVOjkHpG5KUWaIDh9
+         Xw880obgaOcxXzCOhugcUeC3bS/5907vaMzhg5w0WXS9Kps3FmLeggxwZMgBBTS8eE
+         DBB3GJDneROA0uZpu9IQX1uqsefOjgOVz9mqZC9Crtppi9jS8tkDzD9q5EB1bASlwq
+         LEIr1avCXZHwA==
+Received: from cfbb000407.r.cam.camfibre.uk ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mwnu3-00BqkU-9z; Mon, 13 Dec 2021 16:10:15 +0000
+Date:   Mon, 13 Dec 2021 16:10:14 +0000
+Message-ID: <87mtl4jxjt.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 5/6] irqchip/apple-aic: Support multiple dies
+In-Reply-To: <20211209043249.65474-6-marcan@marcan.st>
+References: <20211209043249.65474-1-marcan@marcan.st>
+        <20211209043249.65474-6-marcan@marcan.st>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: marcan@marcan.st, tglx@linutronix.de, robh+dt@kernel.org, sven@svenpeter.dev, alyssa@rosenzweig.io, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 09 Dec 2021 04:32:48 +0000,
+Hector Martin <marcan@marcan.st> wrote:
+> 
+> Multi-die support in AICv2 uses several sets of IRQ registers. Introduce
+> a die count and compute the register group offset based on the die ID
+> field of the hwirq number, as reported by the hardware.
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  drivers/irqchip/irq-apple-aic.c | 75 +++++++++++++++++++++++----------
+>  1 file changed, 53 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-aic.c
+> index d03caed51d56..46b7750548a0 100644
+> --- a/drivers/irqchip/irq-apple-aic.c
+> +++ b/drivers/irqchip/irq-apple-aic.c
 
---QwPrMVYnODoVzv3P
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+[...]
 
-On Sun, Dec 12, 2021 at 04:40:12AM +0800, Tinghan Shen wrote:
+> @@ -535,28 +545,41 @@ static int aic_irq_domain_translate(struct irq_domain *id,
+>  				    unsigned int *type)
+>  {
+>  	struct aic_irq_chip *ic = id->host_data;
+> +	u32 *args;
+> +	u32 die = 0;
+>  
+> -	if (fwspec->param_count != 3 || !is_of_node(fwspec->fwnode))
+> +	if (fwspec->param_count < 3 || fwspec->param_count > 4 ||
+> +	    !is_of_node(fwspec->fwnode))
+>  		return -EINVAL;
+>  
+> +	args = &fwspec->param[1];
+> +
+> +	if (fwspec->param_count == 4) {
+> +		die = args[0];
+> +		args++;
+> +	}
+> +
+>  	switch (fwspec->param[0]) {
+>  	case AIC_IRQ:
+> -		if (fwspec->param[1] >= ic->nr_irq)
+> +		if (die >= ic->nr_die)
+> +			return -EINVAL;
+> +		if (args[0] >= ic->nr_irq)
+>  			return -EINVAL;
+> -		*hwirq = (FIELD_PREP(AIC_EVENT_TYPE, AIC_EVENT_TYPE_HW) |
+> -			  FIELD_PREP(AIC_EVENT_NUM, fwspec->param[1]));
+> +		*hwirq = AIC_IRQ_HWIRQ(die, args[0]);
+>  		break;
 
-> Some mtk spi nor has dedicated dma(s) inside. Add a new clock name, axi,
-> for spi nor dma bus clock.
+A side issue with this is that it breaks MSIs, due to the way we
+construct the intspec (I did hit that when upgrading the M1 intspec to
+4 cells for the PMU). I have the following hack locally:
 
->    clock-names:
-> +    minItems: 2
->      items:
->        - const: spi
->        - const: sf
-> +      - const: axi
+diff --git a/drivers/pci/controller/pcie-apple.c b/drivers/pci/controller/pcie-apple.c
+index b090924b41fe..f7b4a67b13cf 100644
+--- a/drivers/pci/controller/pcie-apple.c
++++ b/drivers/pci/controller/pcie-apple.c
+@@ -218,7 +218,7 @@ static int apple_msi_domain_alloc(struct irq_domain *domain, unsigned int virq,
+ 	if (hwirq < 0)
+ 		return -ENOSPC;
+ 
+-	fwspec.param[1] += hwirq;
++	fwspec.param[1 + (fwspec.param_count == 4)] += hwirq;
+ 
+ 	ret = irq_domain_alloc_irqs_parent(domain, virq, nr_irqs, &fwspec);
+ 	if (ret)
 
-This will cause any existing DTs that don't have both spi and sf clocks
-defined to fail to validate which doesn't seem great.  Given that your
-commit message says this is only required for some SoCs shouldn't the
-minimum clocks requirement depend on which particular SoC/IP version is
-being used?  Not exactly sure how one specifies that in the YAML format.
+Thanks,
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+	M.
 
---QwPrMVYnODoVzv3P
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmG3bx8ACgkQJNaLcl1U
-h9Ay2Af/XYQhfVonsGxpzYrxDghq96zvyoZ2t9jIwoeVsBAchQw3sdWrmcW0wQNS
-s7GcStbgA5Kp6T6BLVIeXBNPpH5MmROzcbMYSGksS1OhNfSbC2TxR6P6eETIedRP
-4eZCrBxdVHUpBCbJANRPBu6/T8cidCWwuI6Jv+p3keelFFzDTqZlxN6ow+ixW9zj
-lqwk84moD5vigyuEGObDgdRTG987ruGDPpJH8hBqLzU0DzP8Hy7yi3jcodhwNwur
-QEOL/OYrFqarwAjYA5ozzzecflRBPcjZ/jJvcHRCJTAPldJmmgXZdbOqO3KiXP6i
-haN52/C0PIbcRtr6Aab/VWbZ6jKjSg==
-=8YG4
------END PGP SIGNATURE-----
-
---QwPrMVYnODoVzv3P--
+-- 
+Without deviation from the norm, progress is not possible.
