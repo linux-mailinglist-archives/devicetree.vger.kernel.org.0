@@ -2,72 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC81C47375E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 23:20:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90F3B473770
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 23:28:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243517AbhLMWUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 17:20:43 -0500
-Received: from mail-oo1-f53.google.com ([209.85.161.53]:45893 "EHLO
-        mail-oo1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241189AbhLMWUm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 17:20:42 -0500
-Received: by mail-oo1-f53.google.com with SMTP id v30-20020a4a315e000000b002c52d555875so4525604oog.12;
-        Mon, 13 Dec 2021 14:20:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ew+Sn87n5dgrSQQlksxlUR5i6NQ5of8Xi1jdPcN3mw4=;
-        b=rtErV75PsBS3XtTsUGSHa4yyupaOzDCbwUFfJx2mXE0Rb3AlAaOISpUB024UTLSHCF
-         11ccBn4IFJQmM0AUV9GScnnEdBVOEgMciMoP+CAxPp9/UwSzXs5R7lL/eVnpaQKjaJsB
-         6B9vjTzqWP0O6FQ0YhqFC0zMqmLmGICgT7aYGaOHdjp+dH4EyKxLItSJgylvnC9n4X/Z
-         H5LBmU1oPV8/jeN4BysFewdTR3Wh5RSojOKh1YWHI+VEGsKIdyRx6Uxtz6XmuIXxgAYB
-         fDDmjLVekPjpQTjKLNFsqc4znrUiudzfVsvS7+hFUF452S1rJGgihUd8HeBmqT7gIQyd
-         FrHA==
-X-Gm-Message-State: AOAM531SuejOLETkiWfZvJr29XE9lQzacL/jKTakgLulajsjz+XeTxMu
-        G7DRZqGbe5UjQK+0kG0wuq/J00aM+Q==
-X-Google-Smtp-Source: ABdhPJwqC3QI27RleQJCYcKMotxp9+X06R8vkDhazTd0yXRngflxKQGj8cSjF82QmUDQELfukNh5mg==
-X-Received: by 2002:a4a:85cf:: with SMTP id u15mr842353ooh.45.1639434041735;
-        Mon, 13 Dec 2021 14:20:41 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o19sm3079014oiw.22.2021.12.13.14.20.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 14:20:41 -0800 (PST)
-Received: (nullmailer pid 1681708 invoked by uid 1000);
-        Mon, 13 Dec 2021 22:20:40 -0000
-Date:   Mon, 13 Dec 2021 16:20:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Manish Narani <manish.narani@xilinx.com>
-Cc:     michal.simek@xilinx.com, gregkh@linuxfoundation.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-usb@vger.kernel.org, git@xilinx.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v2] dt-bindings: usb: dwc3-xilinx: Convert USB DWC3
- bindings
-Message-ID: <YbfHODV4JnyTl6/m@robh.at.kernel.org>
-References: <1638808021-26921-1-git-send-email-manish.narani@xilinx.com>
+        id S243571AbhLMW2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 17:28:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39980 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239112AbhLMW2x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 17:28:53 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B1B3C061574;
+        Mon, 13 Dec 2021 14:28:53 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 06ACDB80499;
+        Mon, 13 Dec 2021 22:28:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D8D1C34600;
+        Mon, 13 Dec 2021 22:28:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639434530;
+        bh=6ZHHElkpTM3plJJ+I8iwEra/ETUWjpU6A2mPMoWT/H0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=glzDrBZ3Vk0WvTyoNLzRduZlDCT6i0QGDRX/AM1/F7UFKcRWeanc1auT1wEWmmomv
+         OOeZvjIhbVNm5qM90rmdq8eggRkSRyq/GCC4ZVvUwJRmp9p6P8KmYv6hyouKGyIVdP
+         YUaqaroaGCfFOVHoBkG3ZMsAfMx4KqlChkcIoaZXCywfnVSa5qsfKsHOC+Vw0RP7qw
+         rxvo7Op+LZzHRnJ1UrYXwehxQWnmbxlf0ufaTO9T2A2ZPFr4GdQb6x1DoOLlrDZYGD
+         fdXstLhtlnkcGzNdMKeaiGeA2K/M30VLj216x068TNEVXNer5O+/E90VIINGUkrcPh
+         /5yRJ8tXKpwag==
+Message-ID: <be465db1-ed27-6111-71fb-9ef86b6ed6c0@kernel.org>
+Date:   Tue, 14 Dec 2021 00:28:46 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1638808021-26921-1-git-send-email-manish.narani@xilinx.com>
+Subject: Re: [PATCH v3 0/6] Add QCM2290 interconnect support
+Content-Language: en-US
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211206075808.18124-1-shawn.guo@linaro.org>
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <20211206075808.18124-1-shawn.guo@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Dec 2021 21:57:01 +0530, Manish Narani wrote:
-> Convert USB DWC3 bindings to DT schema format using json-schema.
+Hi Shawn,
+
+On 6.12.21 9:58, Shawn Guo wrote:
+> The series begins with a separate cleanup on icc-rpm, followed by a few
+> prep changes for QCM2290 support, and then adds bindings and
+> interconnect driver for QCM2290 platform.
+
+Thanks for working on this! I have applied patch 1/6. Please rebase the
+rest on linux-next.
+
+BR,
+Georgi
+
+> Changes for v3:
+> - Update bindings to define child interconnect provider nodes
 > 
-> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
-> ---
-> Changes in v2:
-> 	- Updated the schema with missing phy and phy-names properties
-> 	- Updated the interrupt-names property to resolve dtbs_check warnings
-> ---
->  .../devicetree/bindings/usb/dwc3-xilinx.txt        |  56 ---------
->  .../devicetree/bindings/usb/dwc3-xilinx.yaml       | 131 +++++++++++++++++++++
->  2 files changed, 131 insertions(+), 56 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
->  create mode 100644 Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> Changes for v2:
+> - Drop unneeded include of <dt-bindings/clock/qcom,gcc-qcm2290.h> from
+>    bindings.
+> 
+> Shawn Guo (6):
+>    interconnect: icc-rpm: Use NOC_QOS_MODE_INVALID for qos_mode check
+>    interconnect: icc-rpm: Define ICC device type
+>    interconnect: icc-rpm: Add QNOC type QoS support
+>    interconnect: icc-rpm: Support child NoC device probe
+>    dt-bindings: interconnect: Add Qualcomm QCM2290 NoC support
+>    interconnect: qcom: Add QCM2290 driver support
+> 
+>   .../bindings/interconnect/qcom,qcm2290.yaml   |  137 ++
+>   drivers/interconnect/qcom/Kconfig             |    9 +
+>   drivers/interconnect/qcom/Makefile            |    2 +
+>   drivers/interconnect/qcom/icc-rpm.c           |   56 +-
+>   drivers/interconnect/qcom/icc-rpm.h           |   14 +-
+>   drivers/interconnect/qcom/msm8916.c           |    4 +-
+>   drivers/interconnect/qcom/msm8939.c           |    5 +-
+>   drivers/interconnect/qcom/qcm2290.c           | 1363 +++++++++++++++++
+>   drivers/interconnect/qcom/sdm660.c            |    7 +-
+>   .../dt-bindings/interconnect/qcom,qcm2290.h   |   94 ++
+>   10 files changed, 1678 insertions(+), 13 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,qcm2290.yaml
+>   create mode 100644 drivers/interconnect/qcom/qcm2290.c
+>   create mode 100644 include/dt-bindings/interconnect/qcom,qcm2290.h
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
