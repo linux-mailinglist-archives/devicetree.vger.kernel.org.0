@@ -2,208 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E8B9471F63
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 03:41:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5C94471F99
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 04:33:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231342AbhLMClI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Dec 2021 21:41:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46040 "EHLO
+        id S229657AbhLMDdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Dec 2021 22:33:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231325AbhLMClH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Dec 2021 21:41:07 -0500
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18B16C061751
-        for <devicetree@vger.kernel.org>; Sun, 12 Dec 2021 18:41:07 -0800 (PST)
-Received: by mail-pl1-x62f.google.com with SMTP id y8so10189160plg.1
-        for <devicetree@vger.kernel.org>; Sun, 12 Dec 2021 18:41:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=H5kwivVF3x7ca3oQCkUe5KZchN/2sBJHEUtGxc/G+rk=;
-        b=RcvhX9GoM27q4Oq2GIDR6A3XXy4xBBIjWjLE1iOqUSATktPWKCOWlrNReJAcIAEzB5
-         NR2Tbu7Qh4j1q7bSQ6ASy6ZU2rkbrhgWAaHEOiMF0wA0KM4Q0Rru81KRT7Y30bHjfXHj
-         pcKzAyzr2VC9zfNqIBqq66m1XZdKBjcmQ0xW8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=H5kwivVF3x7ca3oQCkUe5KZchN/2sBJHEUtGxc/G+rk=;
-        b=d4vFuuG0/7clDhtAbxQSlaspIowQoEo/6mg2eKAbmmobxHYIW3sTWI+8cRRl4r2H76
-         mIuRVMOTa33y12jGfryXVO2NZYb2vBwlwx4aO7QCTzJbBR8ni5+SJWBnOSAFqTna21pM
-         tU5b0XEvd4IJPcpneVXx+KeaLpVxKSvLOKyIvJwkCoMNSnuMjBeHwyQZD/itBA2Jat32
-         pBtbClvp7G0uLtE13wvgprSDLCsX8yOT6AJFGi86IUe64TfPyPz+S1VAOBiY53f0psSN
-         qrCBDSUnx+RXtwh1d6rHvcbIY5MkMqSW8zBGgGhcR5Uez+lcwDowNVK1HE8xVq4T5znf
-         ZzZw==
-X-Gm-Message-State: AOAM531dbwuJZDA2xXMQmLXf/Emb7LAoO0N4olOZM0B9571RnG5bowdI
-        ResckCsRLkeQ+UwfGSE6erobkw==
-X-Google-Smtp-Source: ABdhPJxgVBxndwNfpeKY0YYyPfsJbj+fK4usMGIjhHEKrlU/oxB+sQCw/Z/ZD+V/iQMhyto5K8bpYw==
-X-Received: by 2002:a17:90a:c08a:: with SMTP id o10mr41492475pjs.44.1639363266616;
-        Sun, 12 Dec 2021 18:41:06 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:9cf8:7f4:ed82:2d07])
-        by smtp.gmail.com with UTF8SMTPSA id h15sm10802132pfc.134.2021.12.12.18.41.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Dec 2021 18:41:06 -0800 (PST)
-From:   Gwendal Grignou <gwendal@chromium.org>
-To:     robh+dt@kernel.org, jic23@kernel.org, lars@metafoo.de,
-        swboyd@chromium.org
-Cc:     andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, Gwendal Grignou <gwendal@chromium.org>
-Subject: [PATCH v3 4/4] iio: sx9360: Add dt-binding support
-Date:   Sun, 12 Dec 2021 18:40:57 -0800
-Message-Id: <20211213024057.3824985-5-gwendal@chromium.org>
-X-Mailer: git-send-email 2.34.1.173.g76aa8bc2d0-goog
-In-Reply-To: <20211213024057.3824985-1-gwendal@chromium.org>
-References: <20211213024057.3824985-1-gwendal@chromium.org>
+        with ESMTP id S229492AbhLMDdA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Dec 2021 22:33:00 -0500
+X-Greylist: delayed 85518 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 12 Dec 2021 19:33:00 PST
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E493C06173F;
+        Sun, 12 Dec 2021 19:33:00 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id A0FF8425B1;
+        Mon, 13 Dec 2021 03:32:54 +0000 (UTC)
+To:     Sven Peter <sven@svenpeter.dev>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20211212034726.26306-1-marcan@marcan.st>
+ <20211212034726.26306-4-marcan@marcan.st>
+ <2f23875c-ce8e-436a-837b-b8afb6e8411b@www.fastmail.com>
+From:   Hector Martin <marcan@marcan.st>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] spi: apple: Add driver for Apple SPI controller
+Message-ID: <49d1deeb-6d58-b1ca-addc-2505847d602f@marcan.st>
+Date:   Mon, 13 Dec 2021 12:32:52 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <2f23875c-ce8e-436a-837b-b8afb6e8411b@www.fastmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support to configure sx9360 from dt-binding, to match device
-hardware setup.
+Thanks for the review!
 
-Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
----
-Changes since v2:
-- Add include when needed.
-- Move default register constant to main patch.
+On 12/12/2021 21.39, Sven Peter wrote:
+>> +
+> 
+> #include <linux/bits.h> for GENMASK even though it's probably
+> pulled in by one of the #includes below
 
-No changes in v2.
+Ack, fixed for v2.
 
- drivers/iio/proximity/sx9360.c | 85 +++++++++++++++++++++++++++++++++-
- 1 file changed, 84 insertions(+), 1 deletion(-)
+>> +	/* We will want to poll if the time we need to wait is
+>> +	 * less than the context switching time.
+>> +	 * Let's call that threshold 5us. The operation will take:
+>> +	 *    bits_per_word * fifo_threshold / hz <= 5 * 10^-6
+>> +	 *    200000 * bits_per_word * fifo_threshold <= hz
+>> +	 */
+>> +	return 200000 * t->bits_per_word * APPLE_SPI_FIFO_DEPTH / 2 <=
+>> t->speed_hz;
+> 
+> Nice :-)
 
-diff --git a/drivers/iio/proximity/sx9360.c b/drivers/iio/proximity/sx9360.c
-index aebfbe541e0e04..30cc6549d301e6 100644
---- a/drivers/iio/proximity/sx9360.c
-+++ b/drivers/iio/proximity/sx9360.c
-@@ -18,6 +18,7 @@
- #include <linux/mod_devicetable.h>
- #include <linux/module.h>
- #include <linux/pm.h>
-+#include <linux/property.h>
- #include <linux/regmap.h>
- 
- #include <linux/iio/iio.h>
-@@ -64,6 +65,7 @@
- #define SX9360_REG_PROX_CTRL0_PHM	0x41
- #define SX9360_REG_PROX_CTRL0_GAIN_MASK	GENMASK(5, 3)
- #define SX9360_REG_PROX_CTRL0_GAIN_1		0x80
-+#define SX9360_REG_PROX_CTRL0_RAWFILT_MASK	GENMASK(2, 0)
- #define SX9360_REG_PROX_CTRL0_RAWFILT_1P50	0x01
- #define SX9360_REG_PROX_CTRL1		0x42
- #define SX9360_REG_PROX_CTRL1_AVGNEG_THRESH_MASK	GENMASK(5, 3)
-@@ -647,6 +649,41 @@ static int sx9360_write_raw(struct iio_dev *indio_dev,
- 	return -EINVAL;
- }
- 
-+static const struct sx_common_reg_default sx9360_default_regs[] = {
-+	{ SX9360_REG_IRQ_MSK, 0x00 },
-+	{ SX9360_REG_IRQ_CFG, 0x00 },
-+	/*
-+	 * The lower 2 bits should not be set as it enable sensors measurements.
-+	 * Turning the detection on before the configuration values are set to
-+	 * good values can cause the device to return erroneous readings.
-+	 */
-+	{ SX9360_REG_GNRL_CTRL0, 0x00 },
-+	{ SX9360_REG_GNRL_CTRL1, 0x00 },
-+	{ SX9360_REG_GNRL_CTRL2, SX9360_REG_GNRL_CTRL2_PERIOD_102MS },
-+
-+	{ SX9360_REG_AFE_CTRL1, 0x00 },
-+	{ SX9360_REG_AFE_PARAM0_PHR, SX9360_REG_AFE_PARAM0_RSVD |
-+		SX9360_REG_AFE_PARAM0_RESOLUTION_128 },
-+	{ SX9360_REG_AFE_PARAM1_PHR, SX9360_REG_AFE_PARAM1_AGAIN_PHM_6PF |
-+		SX9360_REG_AFE_PARAM1_FREQ_83_33HZ },
-+	{ SX9360_REG_AFE_PARAM0_PHM, SX9360_REG_AFE_PARAM0_RSVD |
-+		SX9360_REG_AFE_PARAM0_RESOLUTION_128 },
-+	{ SX9360_REG_AFE_PARAM1_PHM, SX9360_REG_AFE_PARAM1_AGAIN_PHM_6PF |
-+		SX9360_REG_AFE_PARAM1_FREQ_83_33HZ },
-+
-+	{ SX9360_REG_PROX_CTRL0_PHR, SX9360_REG_PROX_CTRL0_GAIN_1 |
-+		SX9360_REG_PROX_CTRL0_RAWFILT_1P50 },
-+	{ SX9360_REG_PROX_CTRL0_PHM, SX9360_REG_PROX_CTRL0_GAIN_1 |
-+		SX9360_REG_PROX_CTRL0_RAWFILT_1P50 },
-+	{ SX9360_REG_PROX_CTRL1, SX9360_REG_PROX_CTRL1_AVGNEG_THRESH_16K },
-+	{ SX9360_REG_PROX_CTRL2, SX9360_REG_PROX_CTRL2_AVGDEB_2SAMPLES |
-+		SX9360_REG_PROX_CTRL2_AVGPOS_THRESH_16K },
-+	{ SX9360_REG_PROX_CTRL3, SX9360_REG_PROX_CTRL3_AVGNEG_FILT_2 |
-+		SX9360_REG_PROX_CTRL3_AVGPOS_FILT_256 },
-+	{ SX9360_REG_PROX_CTRL4, 0x00 },
-+	{ SX9360_REG_PROX_CTRL5, SX9360_REG_PROX_CTRL5_PROXTHRESH_32 },
-+};
-+
- /* Activate all channels and perform an initial compensation. */
- static int sx9360_init_compensation(struct iio_dev *indio_dev)
- {
-@@ -671,6 +708,51 @@ static int sx9360_init_compensation(struct iio_dev *indio_dev)
- 	return ret;
- }
- 
-+static const struct sx_common_reg_default *
-+sx9360_get_default_reg(struct device *dev, int idx,
-+		       struct sx_common_reg_default *reg_def)
-+{
-+	u32 raw = 0, pos = 0;
-+	int ret;
-+
-+	memcpy(reg_def, &sx9360_default_regs[idx], sizeof(*reg_def));
-+	switch (reg_def->reg) {
-+	case SX9360_REG_AFE_PARAM0_PHR:
-+	case SX9360_REG_AFE_PARAM0_PHM:
-+		ret = device_property_read_u32(dev, "semtech,resolution", &raw);
-+		if (ret)
-+			break;
-+
-+		raw = ilog2(raw) - 3;
-+
-+		reg_def->def &= ~SX9360_REG_AFE_PARAM0_RESOLUTION_MASK;
-+		reg_def->def |= FIELD_PREP(SX9360_REG_AFE_PARAM0_RESOLUTION_MASK, raw);
-+		break;
-+	case SX9360_REG_PROX_CTRL0_PHR:
-+	case SX9360_REG_PROX_CTRL0_PHM:
-+		ret = device_property_read_u32(dev, "semtech,proxraw-strength", &raw);
-+		if (ret)
-+			break;
-+
-+		reg_def->def &= ~SX9360_REG_PROX_CTRL0_RAWFILT_MASK;
-+		reg_def->def |= FIELD_PREP(SX9360_REG_PROX_CTRL0_RAWFILT_MASK, raw);
-+		break;
-+	case SX9360_REG_PROX_CTRL3:
-+		ret = device_property_read_u32(dev, "semtech,avg-pos-strength",
-+					       &pos);
-+		if (ret)
-+			break;
-+
-+		/* Powers of 2, except for a gap between 16 and 64 */
-+		raw = clamp(ilog2(pos), 3, 11) - (pos >= 32 ? 4 : 3);
-+		reg_def->def &= ~SX9360_REG_PROX_CTRL3_AVGPOS_FILT_MASK;
-+		reg_def->def |= FIELD_PREP(SX9360_REG_PROX_CTRL3_AVGPOS_FILT_MASK, raw);
-+		break;
-+	}
-+
-+	return reg_def;
-+}
-+
- static int sx9360_check_whoami(struct device *dev,
- 			       struct iio_dev *indio_dev)
- {
-@@ -691,12 +773,14 @@ static const struct sx_common_chip_info sx9360_chip_info = {
- 	.mask_enable_chan = SX9360_REG_GNRL_CTRL0_PHEN_MASK,
- 	.stat_offset = 3,
- 	.num_channels = SX9360_NUM_CHANNELS,
-+	.num_default_regs = ARRAY_SIZE(sx9360_default_regs),
- 
- 	.ops = {
- 		.read_prox_data = sx9360_read_prox_data,
- 		.check_whoami = sx9360_check_whoami,
- 		.init_compensation = sx9360_init_compensation,
- 		.wait_for_sample = sx9360_wait_for_sample,
-+		.get_default_reg = sx9360_get_default_reg,
- 	},
- 
- 	.iio_channels = sx9360_channels,
+I stole this one from the sifive driver :-) (slightly adjusted)
+
+>> +static int apple_spi_probe(struct platform_device *pdev)
+>> +{
+>> +	struct apple_spi *spi;
+>> +	int ret, irq;
+>> +	struct spi_controller *ctlr;
+>> +
+>> +	ctlr = spi_alloc_master(&pdev->dev, sizeof(struct apple_spi));
+> 
+> devm_spi_alloc_master and then you can get rid of the spi_controller_put
+> error path.
+
+Ack, fixed for v2. That simplifies a bunch of the error handling.
+
+> 
+>> +	if (!ctlr) {
+>> +		dev_err(&pdev->dev, "out of memory\n");
+>> +		return -ENOMEM;
+>> +	}
+>> +
+>> +	spi = spi_controller_get_devdata(ctlr);
+>> +	init_completion(&spi->done);
+>> +	platform_set_drvdata(pdev, ctlr);
+>> +
+>> +	spi->regs = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(spi->regs)) {
+>> +		ret = PTR_ERR(spi->regs);
+>> +		goto put_ctlr;
+>> +	}
+>> +
+>> +	spi->clk = devm_clk_get(&pdev->dev, NULL);
+>> +	if (IS_ERR(spi->clk)) {
+>> +		dev_err(&pdev->dev, "Unable to find bus clock\n");
+>> +		ret = PTR_ERR(spi->clk);
+>> +		goto put_ctlr;
+>> +	}
+> 
+> dev_err_probe can be used here in case devm_clk_get returns -EPROBE_DEFER.
+
+Yup, good point. I switched most of the dev_errs to dev_err_probe.
+
+> 
+>> +
+>> +	irq = platform_get_irq(pdev, 0);
+>> +	if (irq < 0) {
+>> +		ret = irq;
+>> +		goto put_ctlr;
+>> +	}
+>> +
+>> +	ret = devm_request_irq(&pdev->dev, irq, apple_spi_irq, 0,
+>> +			       dev_name(&pdev->dev), spi);
+>> +	if (ret) {
+>> +		dev_err(&pdev->dev, "Unable to bind to interrupt\n");
+>> +		goto put_ctlr;
+>> +	}
+>> +
+>> +	ret = clk_prepare_enable(spi->clk);
+>> +	if (ret) {
+>> +		dev_err(&pdev->dev, "Unable to enable bus clock\n");
+>> +		goto put_ctlr;
+>> +	}
+> 
+> Unfortunately there's no devm_clk_prepare_enable but you could use
+> devm_add_action_or_reset like almost all watchdog drivers as well.
+
+Done.
+
+>> +
+>> +	ctlr->dev.of_node = pdev->dev.of_node;
+>> +	ctlr->bus_num = pdev->id;
+>> +	ctlr->num_chipselect = 1;
+>> +	ctlr->mode_bits = SPI_CPHA | SPI_CPOL | SPI_LSB_FIRST;
+>> +	ctlr->bits_per_word_mask = SPI_BPW_RANGE_MASK(1, 32);
+>> +	ctlr->flags = 0;
+>> +	ctlr->prepare_message = apple_spi_prepare_message;
+>> +	ctlr->set_cs = apple_spi_set_cs;
+>> +	ctlr->transfer_one = apple_spi_transfer_one;
+>> +	ctlr->auto_runtime_pm = true;
+>> +
+>> +	pm_runtime_set_active(&pdev->dev);
+>> +	pm_runtime_enable(&pdev->dev);
+> 
+> You could also use devm_pm_runtime_enable here and then everything
+> should be devres managed.
+
+Done, though I still need to wrap the remove remove function in 
+pm_runtime calls, since the device might be suspended when it gets called.
+
 -- 
-2.34.1.173.g76aa8bc2d0-goog
-
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
