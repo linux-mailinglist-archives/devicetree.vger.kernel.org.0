@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 070F8472263
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 09:24:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1D8E472262
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 09:24:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232943AbhLMIYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 03:24:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37384 "EHLO
+        id S232830AbhLMIYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 03:24:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232935AbhLMIYD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 03:24:03 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 017B9C061371
+        with ESMTP id S232943AbhLMIYE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 03:24:04 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC43AC061201
         for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 00:24:03 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id g14so48545714edb.8
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 00:24:02 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id e3so50025621edu.4
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 00:24:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=fairphone.com; s=fair;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=8/8AKmWnw90DFb6B7PF4iq5fumUb+K6Z3Aw6VBfY+z8=;
-        b=D9HefLZt+ts1nXZQn800eebajloSDymutWYMnZJwmzVTRpSnijW8g0RKq6BPaTS/q8
-         CNTTtb1V9MPaeRnB3V57I+s2Qd7kmoKuATz1JJNWD4MZpCNfQsWQG9+4qfc8U6CFsyri
-         YcYroSunyDeXypuGgG280DhT1podBpYMw4VPZMijTV1gGHUip7e3XIEfr6FElmrbOO/F
-         eHWhQDGfb+jBeYBMrO2jBJ5piEX5jmTbm1LuQ3xfAqWU5n72DXXOnbR9MGvpSz8OX5xt
-         ln7mKOdz2vOVrs+M+cTfdnK1tc5WiNrTW2s2t0Fot5JcK4AdTKxokH9ZYvPBpzSSusdp
-         GSIw==
+        bh=wJEEqyKISVmLwrKECRv9O+FIMtzdnCM3vrfkv5xHbbc=;
+        b=sEYiyL1t89Df2d2P9CNXHEX3r/4uu2WX6F+I0KEAC+I7PCIernl8hkV7r+MEwiKTRR
+         RqZS/NVJjvek2//+pd2bvuIxaaO99wbk7KF5DHUWLwEh5eWgy+ZV+u5ycLeF51OuJWxu
+         1zpWFPEOmFmaOq5I4y9FEcgpK9qEaDirikActt/MrVdhqXlT5qsPIdwwjaA2E3klstyq
+         5F6VxXlilh6cXL2MC8HFYnMtRJujRBqvp7aIqTMFkj6Rv09cSN7mF6sPVASZ35M3yZ+n
+         Epq13luQ+2oHZgtk5wml7yedMgZOfHm5xjB401+oZ2ptZxcsU4qNtDiJ8vr3G6825HIl
+         Me3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=8/8AKmWnw90DFb6B7PF4iq5fumUb+K6Z3Aw6VBfY+z8=;
-        b=H7M+l+tWcvjAjCdcTsZ/KHK+gMTKDxd3CqxS6Vr8r8mz1x3ziE7bH94gltH3if/Zl6
-         iBe5YO1QhYk1bHJtryekgcyW87OrQVwQhg2khG/GqlWpTyVTQH0YLZ7rY3iB5hXYNgoz
-         hi5srleZxZtJ6odRh424v6gQdu0Zok02AWj+VflhMf4WkOjiVDb/0YNixD/ZHwIT1huU
-         XemEaov3p/mnJN3wb7w09B2cS9sRhH68xGFkyGKTBVTkWAl8VIAx+Nsqj0gTbfvCiVTx
-         FMOnuaZ45cCUsCSYS9tsYPZmw/0G0M4AabRRhxrm5ZL0ikerlsCklfyUtcmBupG+Yf7n
-         k4Uw==
-X-Gm-Message-State: AOAM530/024SW9joG9oPz7SZyEf2SCTXnEvf/MWOfhHSPKjzZUORUyxU
-        NJaMrhGi4Dzjf0Ytccgs3/xbbA==
-X-Google-Smtp-Source: ABdhPJx/KKlVqiepCCfPU+AAbJjN0Qv76YpnNjgnYbuAI8eYXASvrOr/cgVyAjFV8pn7/FxbMl7xmw==
-X-Received: by 2002:a05:6402:40d2:: with SMTP id z18mr61860198edb.395.1639383841650;
-        Mon, 13 Dec 2021 00:24:01 -0800 (PST)
+        bh=wJEEqyKISVmLwrKECRv9O+FIMtzdnCM3vrfkv5xHbbc=;
+        b=uWgkM8DAEV+erBZpAQG1NQC8GnG/RXrLe3sw49EyTYwNThZn4d+qJ608yzOA/oqlTs
+         soFFDz41NYQNRLylzglcNh0HyrmNCOQqe6KV8x5f9oCP8RRtGcMd8aDHoqDzfL45ZV0R
+         aBMFHaJ3e0Iudm+xY3yaxnDvWi1LDSCPxA186AHQgDr0tarSkGD/9SJzS33siKCIRCa1
+         /gqvEPKZRDaIsRAq/RWZFJI5DSCQxoGy8iMy/LcUGDt8PyzNTk/adK7p4xU1O9l0CxKm
+         JCHRk12iqLxH7YvmMBYh6xCyZCsoBO6Z0hruOCzulKUBH4/5gXM4J5R9oQJ88U4QcMKR
+         Hyzg==
+X-Gm-Message-State: AOAM531+wFoVVBGeRvTrhpcb3uP5Fi3npjvzk7wCwwlqMvx/GJ7PMTWv
+        8JJEzsYNO3UbIeSeEotfaSsa1A==
+X-Google-Smtp-Source: ABdhPJxXH0Xjx9BHfJBCZNxrhpzIndXfY4yXe4yX22wm5K4vyrOQfvlwQcXd5uuh0zbYEkjW+Is7gQ==
+X-Received: by 2002:a17:906:c156:: with SMTP id dp22mr42976858ejc.36.1639383842380;
+        Mon, 13 Dec 2021 00:24:02 -0800 (PST)
 Received: from localhost.localdomain ([2a02:a210:20c5:8c80:7d0a:cd68:c339:f426])
         by smtp.gmail.com with ESMTPSA id nb17sm5535561ejc.7.2021.12.13.00.24.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 00:24:01 -0800 (PST)
+        Mon, 13 Dec 2021 00:24:02 -0800 (PST)
 From:   Luca Weiss <luca.weiss@fairphone.com>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
@@ -56,9 +56,9 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 7/8] arm64: dts: qcom: sm6350: Add CDSP nodes
-Date:   Mon, 13 Dec 2021 09:22:07 +0100
-Message-Id: <20211213082208.21492-8-luca.weiss@fairphone.com>
+Subject: [PATCH 8/8] arm64: dts: qcom: sm7225-fairphone-fp4: Enable ADSP, CDSP & MPSS
+Date:   Mon, 13 Dec 2021 09:22:08 +0100
+Message-Id: <20211213082208.21492-9-luca.weiss@fairphone.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20211213082208.21492-1-luca.weiss@fairphone.com>
 References: <20211213082208.21492-1-luca.weiss@fairphone.com>
@@ -68,154 +68,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the required nodes for booting the CDSP on sm6350.
+Enable the remoteprocs found on the SoC and add a qcom,rmtfs-mem node.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 122 +++++++++++++++++++++++++++
- 1 file changed, 122 insertions(+)
+ .../boot/dts/qcom/sm7225-fairphone-fp4.dts    | 31 +++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index 2ae7899bdc39..a7158fe9e192 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -385,6 +385,30 @@ smp2p_adsp_in: slave-kernel {
+diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+index ff07b7e8d64f..1ce606e66474 100644
+--- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
++++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+@@ -53,6 +53,27 @@ volume-up {
+ 			gpios = <&pm6350_gpios 2 GPIO_ACTIVE_LOW>;
  		};
  	};
- 
-+	smp2p-cdsp {
-+		compatible = "qcom,smp2p";
-+		qcom,smem = <94>, <432>;
-+		interrupts-extended = <&ipcc IPCC_CLIENT_CDSP
-+					     IPCC_MPROC_SIGNAL_SMP2P
-+					     IRQ_TYPE_EDGE_RISING>;
-+		mboxes = <&ipcc IPCC_CLIENT_CDSP
-+				IPCC_MPROC_SIGNAL_SMP2P>;
 +
-+		qcom,local-pid = <0>;
-+		qcom,remote-pid = <5>;
++	reserved-memory {
++		/*
++		 * The rmtfs memory region in downstream is 'dynamically allocated'
++		 * but given the same address every time. Hard code it as this address is
++		 * where the modem firmware expects it to be.
++		 */
++		memory@efe01000 {
++			compatible = "qcom,rmtfs-mem";
++			reg = <0 0xefe01000 0 0x600000>;
++			no-map;
 +
-+		smp2p_cdsp_out: master-kernel {
-+			qcom,entry-name = "master-kernel";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		smp2p_cdsp_in: slave-kernel {
-+			qcom,entry-name = "slave-kernel";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
++			qcom,client-id = <1>;
++			qcom,vmid = <15>;
 +		};
 +	};
++};
 +
- 	smp2p-mpss {
- 		compatible = "qcom,smp2p";
- 		qcom,smem = <435>, <428>;
-@@ -630,6 +654,104 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 			};
- 		};
++&adsp {
++	status = "okay";
++	firmware-name = "qcom/sm7225/fairphone4/adsp.mdt";
+ };
  
-+		cdsp: remoteproc@8300000 {
-+			compatible = "qcom,sm6350-cdsp-pas";
-+			reg = <0 0x08300000 0 0x10000>;
+ &apps_rsc {
+@@ -269,6 +290,16 @@ vreg_bob: bob {
+ 	};
+ };
+ 
++&cdsp {
++	status = "okay";
++	firmware-name = "qcom/sm7225/fairphone4/cdsp.mdt";
++};
 +
-+			interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&smp2p_cdsp_in 0 IRQ_TYPE_EDGE_RISING>,
-+					      <&smp2p_cdsp_in 1 IRQ_TYPE_EDGE_RISING>,
-+					      <&smp2p_cdsp_in 2 IRQ_TYPE_EDGE_RISING>,
-+					      <&smp2p_cdsp_in 3 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "wdog", "fatal", "ready",
-+					  "handover", "stop-ack";
++&mpss {
++	status = "okay";
++	firmware-name = "qcom/sm7225/fairphone4/modem.mdt";
++};
 +
-+			clocks = <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "xo";
-+
-+			power-domains = <&rpmhpd SM6350_CX>,
-+					<&rpmhpd SM6350_MX>;
-+			power-domain-names = "cx", "mx";
-+
-+			memory-region = <&pil_cdsp_mem>;
-+
-+			qcom,qmp = <&aoss_qmp>;
-+
-+			qcom,smem-states = <&smp2p_cdsp_out 0>;
-+			qcom,smem-state-names = "stop";
-+
-+			status = "disabled";
-+
-+			glink-edge {
-+				interrupts-extended = <&ipcc IPCC_CLIENT_CDSP
-+							     IPCC_MPROC_SIGNAL_GLINK_QMP
-+							     IRQ_TYPE_EDGE_RISING>;
-+				mboxes = <&ipcc IPCC_CLIENT_CDSP
-+						IPCC_MPROC_SIGNAL_GLINK_QMP>;
-+
-+				label = "cdsp";
-+				qcom,remote-pid = <5>;
-+
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "cdsp";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					compute-cb@1 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <1>;
-+						iommus = <&apps_smmu 0x1401 0x20>;
-+					};
-+
-+					compute-cb@2 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <2>;
-+						iommus = <&apps_smmu 0x1402 0x20>;
-+					};
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x1403 0x20>;
-+					};
-+
-+					compute-cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_smmu 0x1404 0x20>;
-+					};
-+
-+					compute-cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&apps_smmu 0x1405 0x20>;
-+					};
-+
-+					compute-cb@6 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <6>;
-+						iommus = <&apps_smmu 0x1406 0x20>;
-+					};
-+
-+					compute-cb@7 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <7>;
-+						iommus = <&apps_smmu 0x1407 0x20>;
-+					};
-+
-+					compute-cb@8 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <8>;
-+						iommus = <&apps_smmu 0x1408 0x20>;
-+					};
-+
-+					/* note: secure cb9 in downstream */
-+				};
-+			};
-+		};
-+
- 		sdhc_2: sdhci@8804000 {
- 			compatible = "qcom,sm6350-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0 0x08804000 0 0x1000>;
+ &pm6150l_wled {
+ 	status = "okay";
+ 
 -- 
 2.34.1
 
