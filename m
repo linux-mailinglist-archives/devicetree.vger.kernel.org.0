@@ -2,286 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E226472DA3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 14:43:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBEA7472DA4
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 14:43:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233445AbhLMNnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 08:43:00 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:52027 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231224AbhLMNm7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 08:42:59 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 97BAA58015F;
-        Mon, 13 Dec 2021 08:42:58 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Mon, 13 Dec 2021 08:42:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=l1keudBbcYflHzA+VfV7wDY95Z2
-        RSHR8BtlJIbIdBoc=; b=RJiuV9UFBq5vSb/7l8DbUaU72uLQuQVaxA3n8lN4q5a
-        1iS6BbDBXobi3/14XXUycDCxPbPBigW+VaUYlFeOtINd7wkSgYIV20wbGjGc9ZLP
-        tDqDQGzVrZGicgaiOL5t5Tb6scQgKhrLyJ9GnZZWK6FOt311p6v3kfjTr0urflFG
-        dh2zkhLQxNb/k+1xbOQ54LqhhblmnFGcaBm9+PiN9N7oYoIp4hyekBVmKbjs8NC9
-        8Y3+4LNsVgBjWuYiylvbFyiE+PqZbkurcMW4hOKBT0dV1cvKKlLvs+k/Eurhzhki
-        igG9A4z8K5TslK1lVy6hzTcrWtXFZXxax4QXR/huEdQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=l1keud
-        BbcYflHzA+VfV7wDY95Z2RSHR8BtlJIbIdBoc=; b=QXDAT5tBrVj4mCXb7kWKhc
-        nvM3VRpgH21pDkbkBoLwlI74yUB/JX0gYPBwieCRV1nzJpJ6j8meODq6x27gawhh
-        GTvteb4fewjSG0h3d3AqSCVvw8Z2EikpcdVeU/J74ek55fFDVKlTt5zJ52ib6Eev
-        Z7ME7r5d/JVXe88pKKfORO0T+GmfuiuEIw//2YOd7VayqtojT0tTGx5em0qfAez2
-        UcsTDTq+aBohIZ6lY9rSRh2+606VGL92gIKd1peDyxFfXiQGrSxU/vcc00/uELl4
-        9u9Ct4k8fIWRD9z5fkunlDOETEbRNwRtdY83CvI0QuVn8guM1jcz5XMNcIV2jSvA
-        ==
-X-ME-Sender: <xms:4U23Ycze2LhRmwrb5dUmMpqJ26-KKkXNP3RFLbz7mzm4bclvwC034g>
-    <xme:4U23YQRBiCA2CBtPPIt0qClYn2ecDx58eqB3tIlR5e6MtTWCPggNdpW1RObQ0kABz
-    -PMMBPIwjrfoXiuEzk>
-X-ME-Received: <xmr:4U23YeWefaM1Nadd6GAvPhqlKJJT-LF8959G5bT-R-fi4IZl1tO9waLfjkToGCk22cwn-XSOUaDxegbn86SM-nqmZMqJQhnKWXp-jkP2>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrkeekgdehhecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeejkeekffdtfffhhfevvddutefgtdeljeevffevvddvteegledtgfeghfehvdei
-    ffenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
-    enucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:4U23YajRPc-HlalMws3LYtaKCzrJJZvlDPPCFrU6wMVRfJTdY_xc6g>
-    <xmx:4U23YeD40voCHZ7CmjsRaEvAxlbKfd4bXauKhXxRlhc7tzpbluOjpg>
-    <xmx:4U23YbLT04Z9xwzW6BMj37XhsdL_uSW7eOINHf4q1NdJ0qaV90HAVg>
-    <xmx:4k23YWusijdcyXYn3-hvKIaq6wUFTSV3d_UpyAsZDfnggaOJfdXhCQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 13 Dec 2021 08:42:57 -0500 (EST)
-Date:   Mon, 13 Dec 2021 14:42:55 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com
-Subject: Re: [PATCH v2] drm: of: Lookup if child node has panel or bridge
-Message-ID: <20211213134255.g7xjtvladqaipnl6@houat>
-References: <20211213121613.3377432-1-jagan@amarulasolutions.com>
- <Ybc8dym7NWvBmYYf@pendragon.ideasonboard.com>
- <20211213130936.oz2qywi773dhh3cr@houat>
- <YbdMFNpRYWew+kth@pendragon.ideasonboard.com>
+        id S237226AbhLMNn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 08:43:27 -0500
+Received: from mail-am6eur05on2071.outbound.protection.outlook.com ([40.107.22.71]:57924
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231224AbhLMNn1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Dec 2021 08:43:27 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eVAYBcrDMC8YYDFWSVGQ2K7zor+oIyFFBI+hQnTCTLbW5jkh4f4SNyCmWlMTFfrwRHu0YWfaXY5848Hon05icspts4zRsNi9PD7lvVtuQiR6/1U580JmI4kr73ebw4bWnXWRm2uMBvM1WsAczLs1eNb3kij7qtRLIxZVvFHK9mTLoExGEvuVo7AJ3B1a1fs7LAlxTWFA39WZFEmBQEdGC0PKI0GUhrNxLzPW7Ka4N7+lWxx+Vl8EHgdEGr/PTKRDNUpe/NBQNrcKfvAG+DjnqHJpUM7r7bdOA8USq6dgwH6TtR4DS8WfCthVsncMbzO4EIP1Wd0bEWo7c3tv2ZSd9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6fllGMTV2A8FzoBbgfb0wJ57Q+u0QlV80Ok4JUebmwY=;
+ b=YdkPWOzd2xpeoI7yITmET6fmzAgT3VhqqSs8/e/rEa7kXRO1ktnQEUa89vxmN6ZbGFw9JhrtM8lOtBzymo4WgFUp3tGaYiLPZP52K7uFwaX2eQVxCEsvV3DMYmE2mJxZAKIODedo/rG70GIDBC6H/YVBc/x0RNtSdvlreBw+eBxH+V65vnISBWL/+p2f4y2dr5eirZV1HjIaASPEg75YzudL2mXZyz/HMChpmFJ/T4U+DYuurfCjiENrWt39PCJOQY6b6Cmkzn0wRGr3oHsSCWD0ppNYD/gi/Ba4lJAHl4EapnoczDthzj4RpXlrxuZJlq/sE/WBNCojgw2czeXz5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6fllGMTV2A8FzoBbgfb0wJ57Q+u0QlV80Ok4JUebmwY=;
+ b=W2Rx1fy7r6ofKdjYkpmX6SdFAkTsSTYUZ//c1LcI8WKc+64BOrak8NbgJc2VcpZYlwhDNQ8jtKg8ltcoyCBAWXDqEf4X2k0FmpjjLEzBmlqV129N8ZgmNZKOMORRFLaALW6z7O7Heoc4UPZ97WOp32Z1zEG2Jcz6w7AgRdSuARQ=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by VI1PR04MB4222.eurprd04.prod.outlook.com (2603:10a6:803:46::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.17; Mon, 13 Dec
+ 2021 13:43:20 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::c84:1f0b:cc79:9226]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::c84:1f0b:cc79:9226%3]) with mapi id 15.20.4755.028; Mon, 13 Dec 2021
+ 13:43:20 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "vivien.didelot@gmail.com" <vivien.didelot@gmail.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>
+Subject: Re: [PATCH net-next v3 6/6] net: lan966x: Add switchdev support
+Thread-Topic: [PATCH net-next v3 6/6] net: lan966x: Add switchdev support
+Thread-Index: AQHX7OGqma9W7JTLPke3A5iwt0gyh6wqKbcAgAA0OYCABd/MgIAAN0eA
+Date:   Mon, 13 Dec 2021 13:43:20 +0000
+Message-ID: <20211213134319.dp6b3or24pl3p4en@skbuf>
+References: <20211209094615.329379-1-horatiu.vultur@microchip.com>
+ <20211209094615.329379-7-horatiu.vultur@microchip.com>
+ <20211209133616.2kii2xfz5rioii4o@skbuf>
+ <20211209164311.agnofh275znn5t5c@soft-dev3-1.localhost>
+ <20211213102529.tzdvekwwngo4zgex@soft-dev3-1.localhost>
+In-Reply-To: <20211213102529.tzdvekwwngo4zgex@soft-dev3-1.localhost>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6b687a6e-5745-4194-7728-08d9be3e8690
+x-ms-traffictypediagnostic: VI1PR04MB4222:EE_
+x-microsoft-antispam-prvs: <VI1PR04MB4222345254A197F42A376142E0749@VI1PR04MB4222.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: lhKQPQfAdCBk9J3+NZYY8C6lLiJ8S9axeRv04fj+lmSk32i0YYx/j1lf7dhFgHeUW+uIVlzSHQftQ63Zar/PxhuUjLeeZXieiICKAbHSCI4vd+LxErVKWROb3aCanKVMJ93VZ9d0lsTD/bC8IJ9SaljbG/jdRa9E2P+W9GUjqJDi5DC9p2rK2UDgOwMvaZY1TNwoeJ+gDyPFYRGzhYcpPRnJIpFNyEZRwx5jLHgoVrNOOTGw0DQfYeWesi74Y4C/kSnhcmKR0g5BDQzWWGjKtAUZqU2z2x6R3IQb/dNDQa3I86qJrUolAvIbZLUeacb2ameY3+6H1NnKET2DfkVp6Gm5geVJXj8Edj8v3DzS7nPB+u9PGwIv3GHw//O1lFJR9STNEPP4JSNxd9rXTVNGZFQ1dkZva0ex1IGKzx6jGTjDcMXAX33XFOS5Waxpeg5gplaNuClUbjaDI360lvo7X1xl295C7d9DaoAUO4SyQBGl+cT2iKAe6o0WOadWeqdEWfvHqyZuwTlwR5sTva6WorBnDLuP53eqG6v/b9WV9DH9wN1b3C1K53tb/7Rd4jOTYhfExYlL+YZ/3c2KrDUkvufWyPJaFTqYX+2fq1H5ElM4wb/kNQHpzDj9CZFffbJAzqWMDvpANk3YgT3ZyzBQWQ/3UL78GdsV5jsebrrB1TtFIrV0BsxM5UDaMG6uFc2p8DgsWVq8TEfO3QC+pU2Zog==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(366004)(6486002)(9686003)(26005)(4326008)(316002)(8676002)(7416002)(38070700005)(6512007)(1076003)(186003)(6916009)(508600001)(2906002)(83380400001)(33716001)(8936002)(44832011)(5660300002)(76116006)(122000001)(66476007)(91956017)(66946007)(71200400001)(54906003)(66556008)(6506007)(86362001)(64756008)(38100700002)(66446008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?zW4cU+dct4q4uKZapO354cP2mI/j/WbPFcR+sbIHDO6lzaaDANeK0w+p6X9T?=
+ =?us-ascii?Q?G1ZyKQkJKFW1yKVrzXHZCrUMr1CbnWZqb/8hz7+Bw8K7uFs46VMFqVZapxC7?=
+ =?us-ascii?Q?embPpTdBhQi/LXPKjlxrTl7VJQsnScksIGXsTykHCBP+QNY0wjS5kXuE53mr?=
+ =?us-ascii?Q?5MbWsOv2JagqoAF6PlwARcxxp00DcrAqg1t/RhxIE8fvMtbozZ8cTBb7QN9/?=
+ =?us-ascii?Q?X+OlgqpgR0e80YJ9GA1cPbctx9yrdynKRqwprbqOMedciJ6ft/8LX3E4H5Yr?=
+ =?us-ascii?Q?2EY7hqy34GOSXw/O68bneDHpa4blNiVkgbUF4LELmK+erGRKzMYP8GUyfqNg?=
+ =?us-ascii?Q?F7ceBH23tAyN1+VUCdyQLL2fn6dXnRrSEXsFdHNRYS+go1d0GC/uuyuObS0Q?=
+ =?us-ascii?Q?qsGSNM2Jn8iL4uzXZ/NusYdGuOfC314EHNtuCsPCbgzICD4HRi0mdZE9AtlX?=
+ =?us-ascii?Q?HfEvgAcV55JHpE1QbbvpgDguGnWPoF7rIvla1o7wh69fkJd7bD4ZJ6oCpcpe?=
+ =?us-ascii?Q?P0+A8mzy4QmzcqYO1inpKQNZSYaBTUfROiDSJxdxYEbToejCdAi8hwH73IkS?=
+ =?us-ascii?Q?KZ0Vnp2tqs0qlQDWWeXIYkikWmMQT6iWaUj6DPXmE5epptEIYx7z3Bhkr1CT?=
+ =?us-ascii?Q?Stuuzkm+y2Hb0wU69D3uafk5woJwsvv3w1katp0YVa1B1yp6ePb42wSS+tZ3?=
+ =?us-ascii?Q?6FgGAfVC6nwkr0Uce5J6sKkB9VEROA60kbmOwfw2a8ogTvkPSopyWbyPizRk?=
+ =?us-ascii?Q?jkuxyJtA1ZjV0BB6bbMrxDLX7lzruI6P/SvJCfp19DepqmWgj0imbQ3lX0VC?=
+ =?us-ascii?Q?3RQv+vpcI2wRAZfB0jxLVwUxjMZ0tOutbrQWlRqG6KKtEUYpsCcMGeYq0fsL?=
+ =?us-ascii?Q?1okQsK56DdyDrGfGNIxkC53CNoLSTzeNqjW8Y+QpRWH+cPJzV4+n2gSTChk8?=
+ =?us-ascii?Q?OH+M56qvt8PzBlPR7JOA2iph2SPDK1EqzT6Ob/koxGYSs7owMN2zgo7Vjwf3?=
+ =?us-ascii?Q?E6+iVD1XKSWyo3YGf42ck1K/CKBq1leJ6CuMAq8Dk1FC2V1xpWBsrbH65vNm?=
+ =?us-ascii?Q?evYThYGdBKNG4WhyjHQtMdBp91ggd5+ODqPBTfQqL7CSzuHbacrm0t5iQHsj?=
+ =?us-ascii?Q?rrOsO5Ys1Gpn4Sq4SfKcuerDmGQBGzJWkJATvSc94IP+sRcgUKzqoJ4YbVRs?=
+ =?us-ascii?Q?S/qCyuQBxgvC06VXSyi07sqA1VfsvO6utUmFbS7uJQXTF73Re93imo58CZ1R?=
+ =?us-ascii?Q?kX19ovKUA5dts7mNFNwwJspylnszSKY2eF0V0Uh5x7DKU63VH3YPOt35N/jM?=
+ =?us-ascii?Q?6/arLK8SUZLZZOovca41JkiHfakwsv+GBCXbRQj4AVCHjqW3nyjE6F82PWF5?=
+ =?us-ascii?Q?w86q6n71+W4845/dmpWZXPcczjk8pErZEMlGBOZ1qWUPGp8AJWKMHW6bid/o?=
+ =?us-ascii?Q?Wpuvii3ragOdEInS8ZKxLgPf1WhuvyWNzSMSFOPoUh7AXhxNG2DEPKI/Tae0?=
+ =?us-ascii?Q?qSvbzw4eAYLIjXoBjof6TS7G5cIJhcIS0a6f7lQjBOzWjbF9KBsvzKHAWDcm?=
+ =?us-ascii?Q?ZyAcqe5qpxY478Bn97FLddC4Lbngwcb1CwZ/pgrr6asB9ipzW0gqYCbh5KCk?=
+ =?us-ascii?Q?wvZqCT0VujmSjTQRjDOv+xY=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <54F8B0CCE335CF4D896332986CAF404D@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ap4jkcfwkjpuihhz"
-Content-Disposition: inline
-In-Reply-To: <YbdMFNpRYWew+kth@pendragon.ideasonboard.com>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b687a6e-5745-4194-7728-08d9be3e8690
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Dec 2021 13:43:20.3562
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: k2dIjP/J8745CzkUljAcvd/DzzTDyRge0RsgAug+mWEi+awFZ3KqCFLTsn7XZ5QOzuAxNM5y7vHTPUvRu/u60Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4222
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---ap4jkcfwkjpuihhz
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Dec 13, 2021 at 03:35:16PM +0200, Laurent Pinchart wrote:
-> Hi Maxime,
->=20
-> On Mon, Dec 13, 2021 at 02:09:36PM +0100, Maxime Ripard wrote:
-> > On Mon, Dec 13, 2021 at 02:28:39PM +0200, Laurent Pinchart wrote:
-> > > On Mon, Dec 13, 2021 at 05:46:13PM +0530, Jagan Teki wrote:
-> > > > Some OF graphs don't require 'ports' to represent the
-> > > > downstream panel or bridge; instead it simply adds a child
-> > > > node on a given parent node.
-> > > >=20
-> > > > drm_of_find_panel_or_bridge can lookup panel or bridge for
-> > > > a given node based on the OF graph port and endpoint and it
-> > > > fails to use if the given node has a child panel or bridge.
-> > > >=20
-> > > > This patch add support to lookup that given node has child
-> > > > panel or bridge however=A0that child node cannot be a 'port'
-> > > > alone or it cannot be a 'port' node too.
-> > > >=20
-> > > > Example OF graph representation of DSI host, which doesn't
-> > > > have 'ports' and has child panel.
-> > > >=20
-> > > > dsi {
-> > > > 	compatible =3D "allwinner,sun6i-a31-mipi-dsi";
-> > > > 	#address-cells =3D <1>;
-> > > > 	#size-cells =3D <0>;
-> > > >=20
-> > > > 	port {
-> > > > 		dsi_in_tcon0: endpoint {
-> > > > 			remote-endpoint =3D <tcon0_out_dsi>;
-> > > > 	};
-> > > >=20
-> > > > 	panel@0 {
-> > > > 		reg =3D <0>;
-> > > > 	};
-> > > > };
-> > > >=20
-> > > > Example OF graph representation of DSI host, which doesn't
-> > > > have 'ports' and has child bridge.
-> > > >=20
-> > > > dsi {
-> > > > 	compatible =3D "allwinner,sun6i-a31-mipi-dsi";
-> > > > 	#address-cells =3D <1>;
-> > > > 	#size-cells =3D <0>;
-> > > >=20
-> > > > 	port {
-> > > > 		dsi_in_tcon0: endpoint {
-> > > > 			remote-endpoint =3D <tcon0_out_dsi>;
-> > > > 	};
-> > > >=20
-> > > > 	bridge@0 {
-> > > > 		reg =3D <0>;
-> > > >=20
-> > > > 		ports {
-> > > > 			#address-cells =3D <1>;
-> > > > 			#size-cells =3D <0>;
-> > > >=20
-> > > > 			bridge_out: port@1 {
-> > > > 				reg =3D <1>;
-> > > >=20
-> > > > 				bridge_out_panel: endpoint {
-> > > > 					remote-endpoint =3D <&panel_out_bridge>;
-> > > > 				};
-> > > > 			};
-> > > > 		};
-> > > > 	};
-> > > > };
-> > > >=20
-> > > > Example OF graph representation of DSI host, which doesn't
-> > > > have 'ports' or 'port' and has child panel.
-> > > >=20
-> > > > dsi0 {
-> > > > 	compatible =3D "ste,mcde-dsi";
-> > > > 	#address-cells =3D <1>;
-> > > > 	#size-cells =3D <0>;
-> > > >=20
-> > > > 	panel@0 {
-> > > > 		reg =3D <0>;
-> > > > 	};
-> > > > };
-> > > >=20
-> > > > Example OF graph representation of LTDC host, which doesn't
-> > > > have 'ports' or child panel/bridge and has 'port'.
-> > > >=20
-> > > > ltdc {
-> > > > 	compatible =3D "st,stm32-ltdc";
-> > > > 	#address-cells =3D <1>;
-> > > > 	#size-cells =3D <0>;
-> > > >=20
-> > > > 	port {
-> > > > 	};
-> > > > };
-> > > >=20
-> > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > > ---
-> > > > Changes for v2:
-> > > > - drop of helper
-> > > > https://patchwork.kernel.org/project/dri-devel/cover/20211207054747=
-=2E461029-1-jagan@amarulasolutions.com/
-> > > > - support 'port' alone OF graph
-> > > > - updated comments
-> > > > - added simple code
-> > > >=20
-> > > >  drivers/gpu/drm/drm_of.c | 23 +++++++++++++++++++++++
-> > > >  1 file changed, 23 insertions(+)
-> > > >=20
-> > > > diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
-> > > > index 59d368ea006b..7d018ff8bc83 100644
-> > > > --- a/drivers/gpu/drm/drm_of.c
-> > > > +++ b/drivers/gpu/drm/drm_of.c
-> > > > @@ -249,6 +249,27 @@ int drm_of_find_panel_or_bridge(const struct d=
-evice_node *np,
-> > > >  	if (panel)
-> > > >  		*panel =3D NULL;
-> > > > =20
-> > > > +	/**
-> > > > +	 * Some OF graphs don't require 'ports' to represent the downstre=
-am
-> > > > +	 * panel or bridge; instead it simply adds a child node on a given
-> > > > +	 * parent node.
-> > > > +	 *
-> > > > +	 * Lookup that child node for a given parent however that child
-> > > > +	 * cannot be a 'port' alone or it cannot be a 'port' node too.
-> > > > +	 */
-> > > > +	if (!of_get_child_by_name(np, "ports")) {
-> > > > +		if (of_get_child_by_name(np, "port") && (of_get_child_count(np) =
-=3D=3D 1))
-> > >=20
-> > > This messes up reference counting of device_node.
-> > >=20
-> > > > +			goto of_graph_get_remote;
+On Mon, Dec 13, 2021 at 11:25:29AM +0100, Horatiu Vultur wrote:
+> The 12/09/2021 17:43, Horatiu Vultur wrote:
+> > > > +int lan966x_register_notifier_blocks(struct lan966x *lan966x)
+> > > > +{
+> > > > +     int err;
 > > > > +
-> > > > +		for_each_available_child_of_node(np, remote) {
-> > > > +			if (of_node_name_eq(remote, "port"))
-> > > > +				continue;
+> > > > +     lan966x->netdevice_nb.notifier_call =3D lan966x_netdevice_eve=
+nt;
+> > > > +     err =3D register_netdevice_notifier(&lan966x->netdevice_nb);
+> > > > +     if (err)
+> > > > +             return err;
 > > > > +
-> > > > +			goto of_find_panel_or_bridge;
-> > > > +		}
-> > > > +	}
+> > > > +     lan966x->switchdev_nb.notifier_call =3D lan966x_switchdev_eve=
+nt;
+> > > > +     err =3D register_switchdev_notifier(&lan966x->switchdev_nb);
+> > > > +     if (err)
+> > > > +             goto err_switchdev_nb;
+> > > > +
+> > > > +     lan966x->switchdev_blocking_nb.notifier_call =3D lan966x_swit=
+chdev_blocking_event;
+> > > > +     err =3D register_switchdev_blocking_notifier(&lan966x->switch=
+dev_blocking_nb);
+> > > > +     if (err)
+> > > > +             goto err_switchdev_blocking_nb;
+> > > > +
+> > > > +     lan966x_owq =3D alloc_ordered_workqueue("lan966x_order", 0);
+> > > > +     if (!lan966x_owq) {
+> > > > +             err =3D -ENOMEM;
+> > > > +             goto err_switchdev_blocking_nb;
+> > > > +     }
 > > >=20
-> > > This really looks like a hack to me, I'm worried it may cause issues.=
- It
-> > > would be better, I think, to split the drm_of_find_panel_or_bridge()
-> > > function in two, with the of_graph_get_remote_node() call moved to a
-> > > wrapper function, calling an inner function that takes the remote
-> > > device_node pointer. For the DSI use case, you could either look up t=
-he
-> > > panel DT node in the display driver and call the inner function
-> > > directly, or implement a DSI-specific wrapper.
+> > > These should be singleton objects, otherwise things get problematic i=
+f
+> > > you have more than one switch device instantiated in the system.
 > >=20
-> > I disagree. The whole point of drm_of_find_panel_or_bridge was that it
-> > was a helper for the encoder / upstream bridge to retrieve whatever is
-> > there next. It's useful and removes boilerplate.
-> >=20
-> > We definitely want to have something just as convenient for DSI.
+> > Yes, I will update this.
 >=20
-> That could ba a drm_of_find_dsi_panel_or_bridge() :-) My point is that
-> I'd like to avoid making assumptions on node names in the lower layers.
->=20
-> I also have a different use case for a drm_of_find_panel_or_bridge()
-> function ta would take a device_node pointer, so moving the
-> of_graph_get_remote_node() lookup out would be useful there. We could
-> have (names to be bikeshedded)
->=20
-> - __drm_of_find_panel_or_bridge() without of_graph_get_remote_node()
-> - drm_of_find_panel_or_bridge() calling of_graph_get_remote_node() and
->   __drm_of_find_panel_or_bridge()
-> - drm_of_find_dsi_panel_or_bridge() getting the device_node pointer in a
->   way specific to DSI devices and calling
->   __drm_of_find_panel_or_bridge()
+> Actually I think they need to be part of lan966x.
+> Because we want each lan966x instance to be independent of each other.
+> This is not seen in this version but is more clear in the next version
+> (v4).
 
-I don't really like the idea of a DSI helper either. Those node names
-are reserved so I'm not sure we'll ever find a conflict, but can we base
-our decision on remote-endpoint (for ports/endpoints) or reg (for DSI
-devices)?
-
-> Ideally, though, the case where we have no port node should die out
-> slowly, even when DSI devices are children of the DSI controller, there
-> should be ports modelling the data connection.
-
-I'm not really in favor of that either, it looks like making the DT more
-complex than it needs to be for no particular reason, but I guess it's a
-very subjective matter :)
-
-Maxime
-
---ap4jkcfwkjpuihhz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYbdN3wAKCRDj7w1vZxhR
-xcBPAP9FXmsssZ7BD2jby3ILLGKIpJnusEzwgLStgDac+/BzvwD+IDJOjcO3nIhQ
-NctFmpZEEl1f/r1c4aWk/3+Kf22B8AY=
-=iRB1
------END PGP SIGNATURE-----
-
---ap4jkcfwkjpuihhz--
+They are independent of each other. You deduce the interface on which
+the notifier was emitted using switchdev_notifier_info_to_dev() and act
+upon it, if lan966x_netdevice_check() is true. The notifier handling
+code itself is stateless, all the state is per port / per switch.
+If you register one notifier handler per switch, lan966x_netdevice_check()
+would return true for each notifier handler instance, and you would
+handle each event twice, would you not? This is why I'm saying that the
+notifier handlers should be registered as singletons, like other drivers
+do.=
