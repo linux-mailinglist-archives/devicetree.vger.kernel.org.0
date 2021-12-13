@@ -2,215 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2642B472ADD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:08:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B332D472AF2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:11:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233166AbhLMLIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 06:08:39 -0500
-Received: from www381.your-server.de ([78.46.137.84]:46432 "EHLO
-        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229644AbhLMLIi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 06:08:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
-         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=Y4dtkF/fMMRIvoWTochjJh1M/yoOLIPvlhPe/ZJAB28=; b=bjFQDgK5Yh1g30FOoZQwC+sp7l
-        rH6to49nqPPpFkBQFGSDt4CeWPAiDRmaVy8K+ISajzCu1zk85vM5aQXM4MkUJ8ik/DtzX6ezn2dUK
-        ILDKZOVuGM+Qpr4PpBLV8NT4vObqrXXX5f59iYqZIBV3E6C2uF3PZI/nCD1/fy8c+fLj6wwnP2Khi
-        1COXitSPV6zePf/yeQ/CFdfa1smv1id7Rkq3EQBfkHZxDqW5fCvOi/DyLON7yKrRHTzQYS/4D3MtY
-        JYAYHR+LcJt7tE1mkdH6cUs8j8ffhNY/YwlCfp7KHtusBScnRUc4znFPCtagCTMrxMmkJUfbdobjJ
-        mEbbC7RQ==;
-Received: from [78.46.152.42] (helo=sslproxy04.your-server.de)
-        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <lars@metafoo.de>)
-        id 1mwjC6-000FYH-K0; Mon, 13 Dec 2021 12:08:34 +0100
-Received: from [2001:a61:2aa6:c001:9e5c:8eff:fe01:8578]
-        by sslproxy04.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <lars@metafoo.de>)
-        id 1mwjC6-000ObZ-97; Mon, 13 Dec 2021 12:08:34 +0100
-Subject: Re: [PATCH v2 6/6] drivers: remoteproc: Add Xilinx r5 remoteproc
- driver
-To:     Tanmay Shah <tanmay.shah@xilinx.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Ben Levinsky <ben.levinsky@xilinx.com>,
-        Bill Mills <bill.mills@linaro.org>,
-        Sergei Korneichuk <sergei.korneichuk@xilinx.com>,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20211123062050.1442712-1-tanmay.shah@xilinx.com>
- <20211123062050.1442712-7-tanmay.shah@xilinx.com>
-From:   Lars-Peter Clausen <lars@metafoo.de>
-Message-ID: <ab9e009a-5e35-ae49-2c8e-65be6ba36d7f@metafoo.de>
-Date:   Mon, 13 Dec 2021 12:08:33 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S234467AbhLMLL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 06:11:56 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:45940
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234158AbhLMLL4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Dec 2021 06:11:56 -0500
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4FCAD40192
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 11:11:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1639393915;
+        bh=TWX9z7B2SDW6pKVI7CzKeQKxNaS8eqsqW7IHGzb9lGc=;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version:Content-Type;
+        b=hvGsRPHH6yOZKiGMzHS3xbYMRc5kYRHK5/hRcp/3Xwe0cL3McN+40i/wn8/+HxbOE
+         CebspWW6O4QGfW1nsPmH6xCeESjiSQ1sccoJzkoI5tC5Acqy9SoPhmPb9P9QmCvkqu
+         oBZGLfcVgN4Dc7VNccn8p4EUJvsnO1KxCIstgZz4whKi7TSZgUEg39pzgcZ87izhst
+         kg7Fx0+BtdLUqo2L92sLfIB1RzKyny805+FOwMgqdJyoo1SUaEke86O3KpkT+7RNxm
+         tFcx0CNy61/ALByRxuzg/0cC2HMuuOq32kVK7GB9OHAZy6sSS3OXioE66pAZeurQMJ
+         iM4pCt2bqlaBg==
+Received: by mail-lf1-f72.google.com with SMTP id c40-20020a05651223a800b004018e2f2512so7392457lfv.11
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 03:11:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=TWX9z7B2SDW6pKVI7CzKeQKxNaS8eqsqW7IHGzb9lGc=;
+        b=6sxh7+TomDdPBM9eb3V23oc/QLNN0uQayYaVonEnyuhFW2mkk/o038d3VSt7GbvMy3
+         1gO2l29fOIgH+PpIAoVN615erTicALNWRlWVpCLvFXDPHpT4ODK9wcKpGswYBstWX171
+         FIlnCkxW6bfz8Tn++SiDke7sL//omM6YfuVNOZWyPbV1DE8oT01AMwLjOOI6XgR8DSqW
+         7JJdwOKIXwF4Lr8w2WcRgcUBgucSqvnfE8k58ny6AG1d4F4IggWS/bxSYA19oZ5ZTes3
+         mkSJbliD8eHyDJAeo9CFAesDwd55Gw9xtedof5KUCtLHGc4bky20vgnldG/EMlSMlwtH
+         6dQg==
+X-Gm-Message-State: AOAM530BS0DHIJjK0UI4gFb7lSB+z+tE1Ln+z2XlSXENuFdUX3fLwebg
+        JjuVgf2tKlnEkheqAwDFmfSAyNOE/6DCqD41hcNOpYPHmNziXxxEIBSWnG+3grOq+5G8n4DKWg+
+        +VOJ1Nxy9Ik9CFtFIdTudw3LXMYx9JBojT03nZTg=
+X-Received: by 2002:a05:6512:1324:: with SMTP id x36mr28203964lfu.495.1639393912437;
+        Mon, 13 Dec 2021 03:11:52 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwWh2zPqaJCAX9RF6Y9SF7zloH0bH/lomW9IUo3wlZ0O8nMKVcivVd3yVJlmERwPsJCKZYgAQ==
+X-Received: by 2002:a05:6512:1324:: with SMTP id x36mr28203947lfu.495.1639393912237;
+        Mon, 13 Dec 2021 03:11:52 -0800 (PST)
+Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id q19sm1381070lfa.266.2021.12.13.03.11.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Dec 2021 03:11:51 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Chanho Park <chanho61.park@samsung.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-samsung-soc@vger.kernel.org,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: exynosautov9: convert serial_0 for USI
+Date:   Mon, 13 Dec 2021 12:11:47 +0100
+Message-Id: <163939390678.7492.11668777657755718143.b4-ty@canonical.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20211208091853.8557-1-chanho61.park@samsung.com>
+References: <CGME20211208092527epcas2p28f6688d5a2742c03cf474d8b2fa773cd@epcas2p2.samsung.com> <20211208091853.8557-1-chanho61.park@samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <20211123062050.1442712-7-tanmay.shah@xilinx.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Authenticated-Sender: lars@metafoo.de
-X-Virus-Scanned: Clear (ClamAV 0.103.3/26385/Mon Dec 13 10:38:12 2021)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/23/21 7:20 AM, Tanmay Shah wrote:
+On Wed, 8 Dec 2021 18:18:53 +0900, Chanho Park wrote:
+> According to USI v2 driver change[1], serial_0 node should be converted to
+> use the USI node hierarchy. syscon_peric0 will be used as a syscon node
+> to control the USI00_USI_SW_CONF register.
+> This also changes the serial node name from uart@ to serial@.
+> 
+> [1]: https://lore.kernel.org/linux-samsung-soc/20211204195757.8600-2-semen.protsenko@linaro.org/
+> 
 > [...]
-> +/*
-> + * zynqmp_r5_rproc_mem_map
-> + * @rproc: single R5 core's corresponding rproc instance
-> + * @mem: mem entry to map
-> + *
-> + * Callback to map va for memory-region's carveout.
-> + *
-> + * return 0 on success, otherwise non-zero value on failure
-> + */
-> +static int zynqmp_r5_rproc_mem_map(struct rproc *rproc,
-> +				   struct rproc_mem_entry *mem)
-> +{
-> +	void __iomem *va;
-> +
-> +	va = ioremap_wc(mem->dma, mem->len);
 
-Since you want normal memory and not IO memory a better choice might be 
-memremap() with MEMREMAP_WC. Internally memremap() will call 
-ioremap_wc(), but this will make the intention clear and you do not have 
-to deal with the __iomem type cast.
+Applied, thanks!
 
-> +	if (IS_ERR_OR_NULL(va))
-> +		return -ENOMEM;
-> +
-> +	mem->va = (void *)va;
-> +
-> +	return 0;
-> +}
-> [...]
->
-> +static int add_tcm_banks(struct rproc *rproc)
-> +{
-> +	struct device *dev;
-> +	struct platform_device *parent_pdev;
-> +	struct zynqmp_r5_cluster *cluster;
-> +	struct zynqmp_r5_core *r5_core;
-> +
-> +	r5_core = (struct zynqmp_r5_core *)rproc->priv;
-> +	if (!r5_core)
-> +		return -EINVAL;
-> +
-> +	dev = r5_core->dev;
-> +	if (!dev) {
-> +		pr_err("r5 core device unavailable\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	parent_pdev = to_platform_device(dev->parent);
-> +	if (!parent_pdev) {
-> +		dev_err(dev, "parent platform dev unavailable\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	cluster = platform_get_drvdata(parent_pdev);
+[1/1] arm64: dts: exynosautov9: convert serial_0 for USI
+      commit: 7836149e155bd3c554571f135619f95932c841fc
 
-You could just use dev_get_drvdata() without having to cast back to the 
-platform_device first.
-
-
-> +	if (!cluster) {
-> +		dev_err(&parent_pdev->dev, "Invalid driver data\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (cluster->mode == SPLIT_MODE)
-> +		return add_tcm_carveout_split_mode(rproc);
-> +	else if (cluster->mode == LOCKSTEP_MODE)
-> +		return add_tcm_carveout_lockstep_mode(rproc);
-> +
-> +	dev_err(cluster->dev, "invalid cluster mode\n");
-> +	return -EINVAL;
-> +}
-> +
-> [...]
-> +
-> +static struct rproc_ops zynqmp_r5_rproc_ops = {
-const
-> +	.start		= zynqmp_r5_rproc_start,
-> +	.stop		= zynqmp_r5_rproc_stop,
-> +	.load		= rproc_elf_load_segments,
-> +	.parse_fw	= zynqmp_r5_parse_fw,
-> +	.find_loaded_rsc_table = rproc_elf_find_loaded_rsc_table,
-> +	.sanity_check	= rproc_elf_sanity_check,
-> +	.get_boot_addr	= rproc_elf_get_boot_addr,
-> +};
-> [....]
-> +static int zynqmp_r5_get_mem_region_node(struct zynqmp_r5_core *r5_core)
-> +{
-> [...]
-> +
-> +	for (i = 0; i < res_mem_count; i++) {
-> +		rmem_np = of_parse_phandle(np, "memory-region", i);
-> +		if (!rmem_np)
-> +			return -EINVAL;
-> +
-> +		rmem = of_reserved_mem_lookup(rmem_np);
-> +		if (!rmem) {
-> +			of_node_put(rmem_np);
-> +			return -EINVAL;
-> +		}
-> +
-> +		memcpy(&r5_core->res_mem[i], rmem,
-> +		       sizeof(struct reserved_mem));
-
-r5_core->res_mem[i] = *mem;
-
-This will give you proper type checking and is also a bit shorter.
-
-> +		of_node_put(rmem_np);
-> +	}
-> +
-> +	r5_core->res_mem_count = res_mem_count;
-> +
-> +	return 0;
-> +}
-> [...]
-> +
-> +static int zynqmp_r5_cluster_init(struct zynqmp_r5_cluster *cluster)
-> +{
-> [...]
-> +
->
-> +	i = 0;
-> +	for_each_available_child_of_node(dev_node, child) {
-> +		child_pdev = of_find_device_by_node(child);
-> +		if (!child_pdev)
-A return or a break in a for_each_available_child_of_node() will leak 
-the reference to the child node.
-> [...]
-> +	}
-> +
-> [...]
-> +
-> +	return 0;
-> +}
-> +
-> +static void zynqmp_r5_cluster_exit(void *data)
-> +{
-> +	struct platform_device *pdev = (struct platform_device *)data;
-> +
-> +	platform_set_drvdata(pdev, NULL);
-This is not needed. The device driver core will set drvdata to NULL when 
-the device is removed.
-> +
-> +	pr_info("Exit r5f subsystem driver\n");
-This is probably also not needed.
-> +}
-
-
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
