@@ -2,133 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E79E3472B7A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:33:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9FA8472B7D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:34:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232877AbhLMLdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 06:33:42 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:46826
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232888AbhLMLdl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 06:33:41 -0500
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 9943940265
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 11:33:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639395220;
-        bh=VzBGjYKrsgrY+fTF0zueaq+vb1uGxo85UvSFvdhw/Y4=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=H9NMiaZJfe7cpvcwFDFcKLQfo7Z/VOfIPVp3o2KuVxh1b99+Vg3XrBQn6+NzNJcZS
-         ++nMPfOYms8/HOVKDK2F98FyhPY105W+DqBGNWOT1IkKSy1f6hSxArd7B0BjURK0M8
-         FN1VOvB+0POEJpb4xrCdFCBVnaHBQAewoADUMBtfLNqrCFd+80/FEub8v7cNuiFeve
-         T9EklhQKTaWAuGQHlrTkiVPS9YpQfmSS9nR/mcCsXkXDcG/RLG4yJONaGAiMkkqnre
-         YmWs+MCy6bXBVpTx4tZ1zfwxb7ZuGWHHfXnGdvJCNIuv3EJ8G5b6Ay5yGuaTvm/Ig/
-         HQdwWAqDLN5xA==
-Received: by mail-lf1-f71.google.com with SMTP id o11-20020a056512230b00b0041ca68ddf35so7401216lfu.22
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 03:33:40 -0800 (PST)
+        id S232984AbhLMLeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 06:34:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55032 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229890AbhLMLeM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 06:34:12 -0500
+Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D679C061574
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 03:34:12 -0800 (PST)
+Received: by mail-ua1-x931.google.com with SMTP id n6so28641818uak.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 03:34:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tnFB07hsK5XkvGHZi6hdhLjHnaUmhTQUEDOX0Dxmz2U=;
+        b=V/QCekDXUtFDeJWc3Guqj5CwaRI2nanjmmMtONMvKfAxaUyZ2xiSUuDlZR+hIh9m8U
+         tpW01QKi23Ft4LchnK7hy11trVzF3SneZIIE0DCPswXNFNC4yVjiYSqsQtwB+me7wS0G
+         l7P32s5eThSknoErOznlfKMahbrWnMfjmuATIuBiNBqhcjzBvdaQEbCRzZy98r9RcC4z
+         exp3bN4g8fTpPCrL/NHoxaxKR/1bR3PxoOvH5gl1yBv1X8nN9nMIotShYqHa28/Vg4/F
+         YZSXzszFBk2ouC2Z0cTV9dU6sbth8A1qeyLA5yUnRni7JEhSiRIWoHda1xMBKUFqRQEF
+         rrzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=VzBGjYKrsgrY+fTF0zueaq+vb1uGxo85UvSFvdhw/Y4=;
-        b=adXXKGd57U/wxxw8ZITua8IbmPajgdzs4/u2YBBzNjRt2CEmvgKxBOhKYU37mbhQZA
-         AJSDJV/bAWNUp6TVZemMyXY7DH1/3Jtstbc5Gk+FzbLKjknM/7DoSOzh1hvVlelzNFNr
-         T8sqARezF1LpIKixQ44pGfUCEHF1/+crRZDElppCDO0TcaP88wbXwdcgZe49KNlSTgoq
-         O/d+st3KtNhL4reRjaP+R2YW5eYH77qSj7jSuGlyIeMUtzze2bVKJgiCqum8NBR5nWCN
-         YvTvo+GCD29I8ShclEkDpKPXGDpTxUKFa+QRMflMHoRfpg2bmf2gk4Hy6tx/yMiW7DDj
-         gYvw==
-X-Gm-Message-State: AOAM5302VFBWx6HOYjoaTo58omYzvtvVP1U6xFZ0q8mVEENa0kffUzXK
-        AYfvORl5gz2MD6lATmbnU4HeVVJF2BVYzeqIOMVc15sH0KophKSlJdEDrIcuhU7MRNVhW2gOvKd
-        llzzPAtSuGCorEshF54sX67cCS6dbx8/IApcNAfg=
-X-Received: by 2002:a05:651c:2011:: with SMTP id s17mr29173967ljo.397.1639395219868;
-        Mon, 13 Dec 2021 03:33:39 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwoh2aGuCAnYRxkKOajKxjFTPY5EBTPRy9GiGWCTv835HFbcvdhoyqGn2vWRqES/MVYmtkeRw==
-X-Received: by 2002:a05:651c:2011:: with SMTP id s17mr29173942ljo.397.1639395219673;
-        Mon, 13 Dec 2021 03:33:39 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id e3sm1386935lfc.259.2021.12.13.03.33.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Dec 2021 03:33:39 -0800 (PST)
-Message-ID: <fd19d251-355a-25c4-e255-97e43c20f251@canonical.com>
-Date:   Mon, 13 Dec 2021 12:33:38 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tnFB07hsK5XkvGHZi6hdhLjHnaUmhTQUEDOX0Dxmz2U=;
+        b=2lCYCjA611XhLKVIuDY6k6+v+yJKKiqVD1jvUv5j4X+hEPjXXCSxrRbPro+HxSSark
+         eUhzxm4+z4bPTWxneXNr0cJAdxVs8bJQCTZt1MQ6k5MnjpTqmWi35xPXpGR/7eIuh2kG
+         fRBcOlcu0s9iB6XJCia0y5p8oUCGQWgH9nWWfKt8BnvSN7trG31ZGio1ph0pofh7i29H
+         0Pbz1xCCPFUPWoGLFAY2cT3yBjC5sc/23yYP/rR4pQRmUx9u9z5dZSd+c15NjjEHxpPM
+         ku9e6GXJl8Sdcr4kEpxINpoup5Fi40h5EOYACuLDP+bGFUUoGvo7J7r4VLbMROQRxh+I
+         Tq1w==
+X-Gm-Message-State: AOAM5337UKXH+1U/wyTHb4j1iUO5ouF+2Ev1IiycOr8fIVrAS4jMFqRB
+        aBZvt9OmsWVY1LpHnnqWK0t9txmTrVTXvrG1Df+RfQ==
+X-Google-Smtp-Source: ABdhPJxCmFmaMKXhDCuUVHqkAQcSk0dJ1iili+sh1nfn+0rIG4S16VR6sZgNFjlIIn3wZYDvexK2Ml8HOrTPbSFdggQ=
+X-Received: by 2002:a05:6102:f10:: with SMTP id v16mr27816759vss.86.1639395251610;
+ Mon, 13 Dec 2021 03:34:11 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v3 3/5] tty: serial: samsung: Remove USI initialization
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jaewon Kim <jaewon02.kim@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20211204195757.8600-1-semen.protsenko@linaro.org>
- <20211204195757.8600-4-semen.protsenko@linaro.org>
- <e9472cec-7aca-92c4-6184-f442c0f88d56@canonical.com>
- <CAPLW+4kWmSK7rmUO-bBj-U=JyGWWgguBL2dLa6KCbX6q5CJshA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAPLW+4kWmSK7rmUO-bBj-U=JyGWWgguBL2dLa6KCbX6q5CJshA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20211213112057.16709-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211213112057.16709-1-krzysztof.kozlowski@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Mon, 13 Dec 2021 13:34:00 +0200
+Message-ID: <CAPLW+4kKu9Fh2cNJaiFEbeMYBMbZeDy_JEYHK+tAF5NJTW5OLA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: soc: samsung: keep SoC driver bindings together
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/12/2021 12:31, Sam Protsenko wrote:
-> On Mon, 13 Dec 2021 at 13:00, Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->>
->> On 04/12/2021 20:57, Sam Protsenko wrote:
->>> USI control is now extracted to the dedicated USI driver. Remove USI
->>> related code from serial driver to avoid conflicts and code duplication.
->>>
->>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
->>> ---
->>> Changes in v3:
->>>   - Spell check fixes in commit message
->>>
->>> Changes in v2:
->>>   - (none)
->>>
->>>  drivers/tty/serial/samsung_tty.c | 36 ++++----------------------------
->>>  include/linux/serial_s3c.h       |  9 --------
->>>  2 files changed, 4 insertions(+), 41 deletions(-)
->>>
->>
->> Hi Sam,
->>
->> Does this patch depend on USI driver? In cover letter you did not
->> mention any dependency, so this can go via Greg's tree, right?
->>
-> 
-> Hi Krzysztof,
-> 
-> TL;DR: Serial patches from this series don't really depend on USI
-> driver and can go via Greg's tree.
-> 
-> I'd say ideally those should be applied right after USI driver
-> patches. Because otherwise we'd have double initialization of USI
-> block (from USI driver and from serial driver), which wasn't tested
-> and may lead to not functional USI (though I think it should be fine).
-> That's why I decided to keep those in one single patch series. But if
-> we don't care about some short period of not tested behavior -- then
-> those can go via Greg's tree.
+On Mon, 13 Dec 2021 at 13:21, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> Recently added Samsung Exynos USI driver devicetree bindings were added
+> under ../bindings/soc/samsung/exynos-usi.yaml, so move there also two
+> other bindings for Exynos SoC drivers: the PMU and ChipID.
+>
+> Update Samsung Exynos MAINTAINERS entry to include this new path.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
 
-I think it is fine considering that only one board will be affected and
-it will be already non-bisectable due to DTS/driver changes going
-separate branches. More important is to get USI and serial driver
-changes in the same kernel release, so in v5.17.
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-
-Best regards,
-Krzysztof
+>  .../devicetree/bindings/{arm => soc}/samsung/exynos-chipid.yaml | 2 +-
+>  .../{arm/samsung/pmu.yaml => soc/samsung/exynos-pmu.yaml}       | 2 +-
+>  MAINTAINERS                                                     | 1 +
+>  3 files changed, 3 insertions(+), 2 deletions(-)
+>  rename Documentation/devicetree/bindings/{arm => soc}/samsung/exynos-chipid.yaml (93%)
+>  rename Documentation/devicetree/bindings/{arm/samsung/pmu.yaml => soc/samsung/exynos-pmu.yaml} (97%)
+>
+> diff --git a/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-chipid.yaml
+> similarity index 93%
+> rename from Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml
+> rename to Documentation/devicetree/bindings/soc/samsung/exynos-chipid.yaml
+> index bfc352a2fdd6..4bb8efb83ac1 100644
+> --- a/Documentation/devicetree/bindings/arm/samsung/exynos-chipid.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-chipid.yaml
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/arm/samsung/exynos-chipid.yaml#
+> +$id: http://devicetree.org/schemas/soc/samsung/exynos-chipid.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+>  title: Samsung Exynos SoC series Chipid driver
+> diff --git a/Documentation/devicetree/bindings/arm/samsung/pmu.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
+> similarity index 97%
+> rename from Documentation/devicetree/bindings/arm/samsung/pmu.yaml
+> rename to Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
+> index 0bbd89265b28..c30a6437030d 100644
+> --- a/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/arm/samsung/pmu.yaml#
+> +$id: http://devicetree.org/schemas/soc/samsung/exynos-pmu.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+>  title: Samsung Exynos SoC series Power Management Unit (PMU)
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 79ef55bf2ca7..8926b925514d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2554,6 +2554,7 @@ Q:        https://patchwork.kernel.org/project/linux-samsung-soc/list/
+>  F:     Documentation/arm/samsung/
+>  F:     Documentation/devicetree/bindings/arm/samsung/
+>  F:     Documentation/devicetree/bindings/power/pd-samsung.yaml
+> +F:     Documentation/devicetree/bindings/soc/samsung/
+>  F:     arch/arm/boot/dts/exynos*
+>  F:     arch/arm/boot/dts/s3c*
+>  F:     arch/arm/boot/dts/s5p*
+> --
+> 2.32.0
+>
