@@ -2,180 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AAEC4726BB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 10:57:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 019B0472A0B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 11:29:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238638AbhLMJyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 04:54:07 -0500
-Received: from smtp-out2.suse.de ([195.135.220.29]:48602 "EHLO
-        smtp-out2.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236275AbhLMJv1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 04:51:27 -0500
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id B674B1F3BB;
-        Mon, 13 Dec 2021 09:51:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1639389085; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=n3o3Ap6ZafSV2t0C6/1gPv7skxzJxUElwWKKmLwscj8=;
-        b=dtP1TVSbLtTSVypadD2H+/9Z71Pex7hkcYWddYwtFQv4hK+611YDfw05ItD4DtVbFGnqpE
-        UV4RWfk8KY8K/YpoOOswJZ2rXDRT41sZn1k6uBKp4B8KtnQ4Juk48cCiB8baw1AWjMCokt
-        KrmZ9PLf1sZnU5B12cZPHTbGD/Uopck=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1639389085;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=n3o3Ap6ZafSV2t0C6/1gPv7skxzJxUElwWKKmLwscj8=;
-        b=aIVZ9tG+zyvMBhdZjfeIbZ+Zot6OzTYG+uia2Oi6lcsMKNMfsTjCOhGx6fS6bSEneHSiWO
-        PKVIoVRt20wK1YBQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 5145213AFF;
-        Mon, 13 Dec 2021 09:51:25 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id DlrIEp0Xt2FULgAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Mon, 13 Dec 2021 09:51:25 +0000
-Message-ID: <2fe38e9f-372d-462e-783c-3e0432b704e5@suse.de>
-Date:   Mon, 13 Dec 2021 10:51:24 +0100
+        id S235654AbhLMK3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 05:29:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38642 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344661AbhLMK1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 05:27:41 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DE76C01DF14
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 02:01:28 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id n15-20020a17090a160f00b001a75089daa3so14283567pja.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 02:01:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RGPbS3ptpBIcspU7gfa8wTdMihj1/K3FQePm6Jj2a18=;
+        b=n4W8+INQiqKuO54BVtoc7ZlB77fNFPAgtFVxN/xdXWXzE0ojixqsah7MPgvurkOb6r
+         +UtsZIC1TBf+ogqAnUdwjlXZLGrUedgcaWAWnWWg+8PmTsOSC8c9i3e3d+ZfJPyRy8uQ
+         ITTTlGZWyqvi2vjjRuYy/dZHLHcoVkS65AnDc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RGPbS3ptpBIcspU7gfa8wTdMihj1/K3FQePm6Jj2a18=;
+        b=bOVwSWb64iDk2hnXlVZli+uNaP5lTjoPRRKFi0m8SFNeSgwvxN0eq7OlAFcme88hLP
+         AK8t5yNrx+eMePdhJoa+85BgpdxH+f4A8mqNsu+tdAeVKWm7nRheSiqkWAQXKbZBk3bX
+         A/EmnvXzlokSPbVkYuHYaD7lxTQK6PE9d0Fynr2YgMz+EsVTmki2mKSC1t8LrobYP6ci
+         BX1PqTJYoZPKDMMNCgnzl8azIXvIPTdm2LaK6rrBPzN+UgZTKDAvs1ivn6pFkbvfwllX
+         3dFmlK99VhBMZiZBYpdBR8v2vSylWg+DJZ32oYlhWAHYJwwU+9zDUs17TF+/xJrG3sgE
+         WUHQ==
+X-Gm-Message-State: AOAM533FzB6+ITlSecJTpS84BmyCxOFTLDzDc8xLRiWITmu8fNw6kEi+
+        fO9bm7XrUzeFyVrcGQn6LBLjf8EAIi/BiA==
+X-Google-Smtp-Source: ABdhPJxQO6GGkSA5nbBRrUUT0ZxaXAiaRWUDRWJlPmSjCn0sY8+ZitdbJ3EkmNVE0pW6juNXlpDSxg==
+X-Received: by 2002:a17:90b:3e85:: with SMTP id rj5mr43406785pjb.172.1639389687703;
+        Mon, 13 Dec 2021 02:01:27 -0800 (PST)
+Received: from shiro.work (p864106-ipngn200510sizuokaden.shizuoka.ocn.ne.jp. [180.9.58.106])
+        by smtp.googlemail.com with ESMTPSA id d185sm9953767pgc.58.2021.12.13.02.01.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Dec 2021 02:01:27 -0800 (PST)
+From:   Daniel Palmer <daniel@0x0f.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, romain.perier@gmail.com,
+        Daniel Palmer <daniel@0x0f.com>
+Subject: [PATCH 0/3] ARM: mstar: Initial Miyoo Mini support
+Date:   Mon, 13 Dec 2021 19:01:09 +0900
+Message-Id: <20211213100112.1791192-1-daniel@0x0f.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v3 2/3] drm/vc4: Remove conflicting framebuffers before
- callind bind_all
-Content-Language: en-US
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-To:     Maxime Ripard <maxime@cerno.tech>, Ray Jui <rjui@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>
-Cc:     devicetree@vger.kernel.org, Dom Cobley <dom@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20211213092503.57379-1-maxime@cerno.tech>
- <20211213092503.57379-3-maxime@cerno.tech>
- <f3514f59-5b97-26f8-ab9e-e592571cc13f@suse.de>
-In-Reply-To: <f3514f59-5b97-26f8-ab9e-e592571cc13f@suse.de>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------eex7iFbxDw0B6AIWcosOIOk0"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------eex7iFbxDw0B6AIWcosOIOk0
-Content-Type: multipart/mixed; boundary="------------nsSrEQmc3VudFkud8EN0kbnk";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Maxime Ripard <maxime@cerno.tech>, Ray Jui <rjui@broadcom.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Scott Branden <sbranden@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>,
- Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>
-Cc: devicetree@vger.kernel.org, Dom Cobley <dom@raspberrypi.com>,
- Tim Gover <tim.gover@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- dri-devel@lists.freedesktop.org, bcm-kernel-feedback-list@broadcom.com,
- linux-rpi-kernel@lists.infradead.org, Phil Elwell <phil@raspberrypi.com>,
- linux-arm-kernel@lists.infradead.org
-Message-ID: <2fe38e9f-372d-462e-783c-3e0432b704e5@suse.de>
-Subject: Re: [PATCH v3 2/3] drm/vc4: Remove conflicting framebuffers before
- callind bind_all
-References: <20211213092503.57379-1-maxime@cerno.tech>
- <20211213092503.57379-3-maxime@cerno.tech>
- <f3514f59-5b97-26f8-ab9e-e592571cc13f@suse.de>
-In-Reply-To: <f3514f59-5b97-26f8-ab9e-e592571cc13f@suse.de>
+Add a few device tree bits to support the Miyoo Mini
+which is retro emulation device based on the SigmaStar
+SSD202D.
 
---------------nsSrEQmc3VudFkud8EN0kbnk
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+http://linux-chenxing.org/infinity2/miyoomini/
 
-DQoNCkFtIDEzLjEyLjIxIHVtIDEwOjQ3IHNjaHJpZWIgVGhvbWFzIFppbW1lcm1hbm46DQo+
-IEhpIE1heGltZQ0KPiANCj4gQW0gMTMuMTIuMjEgdW0gMTA6MjUgc2NocmllYiBNYXhpbWUg
-UmlwYXJkOg0KPj4gVGhlIGJpbmQgaG9va3Mgd2lsbCBtb2RpZnkgdGhlaXIgY29udHJvbGxl
-ciByZWdpc3RlcnMsIHNvIHNpbXBsZWZiIGlzDQo+PiBnb2luZyB0byBiZSB1bnVzYWJsZSBh
-bnl3YXkuIExldCdzIGF2b2lkIGFueSB0cmFuc2llbnQgc3RhdGUgd2hlcmUgaXQNCj4+IGNv
-dWxkIHN0aWxsIGJlIGluIHRoZSBzeXN0ZW0gYnV0IG5vIGxvbmdlciBmdW5jdGlvbm5hbC4N
-Cj4+DQo+PiBBY2tlZC1ieTogTmljb2xhcyBTYWVueiBKdWxpZW5uZSA8bnNhZW56QGtlcm5l
-bC5vcmc+DQo+PiBTaWduZWQtb2ZmLWJ5OiBNYXhpbWUgUmlwYXJkIDxtYXhpbWVAY2Vybm8u
-dGVjaD4NCj4+IC0tLQ0KPj4gwqAgZHJpdmVycy9ncHUvZHJtL3ZjNC92YzRfZHJ2LmMgfCA4
-ICsrKystLS0tDQo+PiDCoCAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCA0IGRl
-bGV0aW9ucygtKQ0KPj4NCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdmM0L3Zj
-NF9kcnYuYyANCj4+IGIvZHJpdmVycy9ncHUvZHJtL3ZjNC92YzRfZHJ2LmMNCj4+IGluZGV4
-IDE2YWJjM2EzZDYwMS4uOGFiODlmODA1ODI2IDEwMDY0NA0KPj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL3ZjNC92YzRfZHJ2LmMNCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS92YzQvdmM0
-X2Rydi5jDQo+PiBAQCAtMjUxLDYgKzI1MSwxMCBAQCBzdGF0aWMgaW50IHZjNF9kcm1fYmlu
-ZChzdHJ1Y3QgZGV2aWNlICpkZXYpDQo+IA0KPiBTaW5jZSB5b3Ugd29yayBvbiB0aGlzLCBJ
-J2QgbGlrZSB0byBzdWdnZXN0IHRvIGNhbGwgDQo+IGRybV9maXJtd2FyZV9kcml2ZXJzX29u
-bHkoKSBhdCB0aGUgdmVyeSB0b3Agb2YgdGhpcyBmdW5jdGlvbi4gSXQncyBvdXIgDQo+IG5l
-dyBpbnRlcmZhY2UgZm9yIHRoZSBrZXJuZWwncyBub21vZGVzZXQgYXJndW1lbnQuIElmIGl0
-IHJldHVybnMgZmFsc2UsIA0KDQpzL2ZhbHNlL3RydWUNCg0KPiB0aGUgdXNlciBoYXMgZGlz
-YWJsZWQgbmF0aXZlIGRyaXZlcnMgZm9yIHRoaXMgYm9vdC4gVGhlIGdlbmVyaWMgRFJNIA0K
-PiBkcml2ZXIgd2lsbCBjb250aW51ZSB0byBydW4gdGhlIGRldmljZS4NCj4gDQo+PiDCoMKg
-wqDCoMKgIGlmIChyZXQpDQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIHJldDsNCj4+
-ICvCoMKgwqAgcmV0ID0gZHJtX2FwZXJ0dXJlX3JlbW92ZV9mcmFtZWJ1ZmZlcnMoZmFsc2Us
-ICZ2YzRfZHJtX2RyaXZlcik7DQo+PiArwqDCoMKgIGlmIChyZXQpDQo+PiArwqDCoMKgwqDC
-oMKgwqAgcmV0dXJuIHJldDsNCj4+ICsNCj4gDQo+IFRoZXJlJ3MgcXVpdGUgYSBiaXQgb2Yg
-d29yayBiZWluZyBkb25lIGJlZm9yZSBjYWxsaW5nIHRoaXMgZnVuY3Rpb24uIA0KPiBOb25l
-IG9mIGl0IGlzIGFsbG93ZWQgdG8gdG91Y2ggSFcuDQo+IA0KPiBJcyB0aGF0IHJlbGlhYmxl
-PyBJZiBzbywgdGhlIGNvZGUgaXMgZmluZSwgb3RoZXJ3aXNlIHRoZSBjYWxsIHNob3VsZCBn
-byANCj4gdG8gdGhlIHRvcCBvZiB0aGUgZnVuY3Rpb24uDQo+IA0KPiBCZXN0IHJlZ2FyZHMN
-Cj4gVGhvbWFzDQo+IA0KPj4gwqDCoMKgwqDCoCByZXQgPSBjb21wb25lbnRfYmluZF9hbGwo
-ZGV2LCBkcm0pOw0KPj4gwqDCoMKgwqDCoCBpZiAocmV0KQ0KPj4gwqDCoMKgwqDCoMKgwqDC
-oMKgIHJldHVybiByZXQ7DQo+PiBAQCAtMjU5LDEwICsyNjMsNiBAQCBzdGF0aWMgaW50IHZj
-NF9kcm1fYmluZChzdHJ1Y3QgZGV2aWNlICpkZXYpDQo+PiDCoMKgwqDCoMKgIGlmIChyZXQp
-DQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgZ290byB1bmJpbmRfYWxsOw0KPj4gLcKgwqDCoCBy
-ZXQgPSBkcm1fYXBlcnR1cmVfcmVtb3ZlX2ZyYW1lYnVmZmVycyhmYWxzZSwgJnZjNF9kcm1f
-ZHJpdmVyKTsNCj4+IC3CoMKgwqAgaWYgKHJldCkNCj4+IC3CoMKgwqDCoMKgwqDCoCBnb3Rv
-IHVuYmluZF9hbGw7DQo+PiAtDQo+PiDCoMKgwqDCoMKgIHJldCA9IHZjNF9rbXNfbG9hZChk
-cm0pOw0KPj4gwqDCoMKgwqDCoCBpZiAocmV0IDwgMCkNCj4+IMKgwqDCoMKgwqDCoMKgwqDC
-oCBnb3RvIHVuYmluZF9hbGw7DQo+Pg0KPiANCg0KLS0gDQpUaG9tYXMgWmltbWVybWFubg0K
-R3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcg0KU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2Vy
-bWFueSBHbWJIDQpNYXhmZWxkc3RyLiA1LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkNCihI
-UkIgMzY4MDksIEFHIE7DvHJuYmVyZykNCkdlc2Now6RmdHNmw7xocmVyOiBJdm8gVG90ZXYN
-Cg==
+Daniel Palmer (3):
+  dt-bindings: vendor-prefixes: Add prefix for Miyoo
+  dt-bindings: arm: mstar: Add compatible for Miyoo Mini
+  ARM: dts: mstar: Add a dts for Miyoo Mini
 
---------------nsSrEQmc3VudFkud8EN0kbnk--
+ .../devicetree/bindings/arm/mstar/mstar.yaml  |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
+ arch/arm/boot/dts/Makefile                    |  1 +
+ .../mstar-infinity2m-ssd202d-miyoo-mini.dts   | 25 +++++++++++++++++++
+ 4 files changed, 29 insertions(+)
+ create mode 100644 arch/arm/boot/dts/mstar-infinity2m-ssd202d-miyoo-mini.dts
 
---------------eex7iFbxDw0B6AIWcosOIOk0
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+-- 
+2.34.1
 
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmG3F5wFAwAAAAAACgkQlh/E3EQov+CH
-dBAAr5PRxIeb0FQW+kZtgMX4CQLTYgfU7umoXclXmSXLSED299tsxFPLN9kdZaYyL2j1uj0pldlu
-dId7Q/UATKUXtREK4W8kUB067xhBJy/psYR8H7wSz8IGuWFCZJ/YWtKeAX9EhdxyVgF7L1RyON76
-q/82TwVsqCQ56xJwYUWi5f6W5WhQ2tbLPbnTcYbcUGzSx3J53memSIObOrpvAu4qMcwqL6exiAv3
-i+zblQdfeHmuFFY4EjwP8i2qInYKNQ8xAmdA1ABFwJBjNkggZ7OAALDvyWcjTmhvKgqpcR3Zvzu2
-TF+6WrTGs1smyT5wz9UqRSdVvFxHiOWcNiInbxV6AmVxZFeOhDgnWLR0mSbrvkdo+pgmy2gs8qPG
-pXYsaiKoDNbjNHyCkQOonzFakQxCCpuIqa+SZaM6QP04tRJUN20al4U6Rq3pp5P2e1yjWfVLBsTH
-SgUsGiPtruI6uEzd9+lROTR7bNQBiSn+Pb8a1A8Afhgr+KUXylKc59OVwreEumK1yDaqY8urEzgc
-1pw6tNlzhKLSU8lcZukJmEKbd5Xg4RXtntDQr6D9qhNE8h6VqsHjDJkZ/Jk3vnhXFsDbFGeQD0eH
-a6e6OJRweSiXN/lS1B5zPD5vazismtRX763rOzAmtodKR6uYObyWQcRbNmb7XKM0aIupRkdnx4xO
-x9w=
-=QiqR
------END PGP SIGNATURE-----
-
---------------eex7iFbxDw0B6AIWcosOIOk0--
