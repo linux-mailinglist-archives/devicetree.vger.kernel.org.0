@@ -2,242 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF18A472C52
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 13:32:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB6FF472C58
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 13:35:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233028AbhLMMcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 07:32:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40056 "EHLO
+        id S235068AbhLMMfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 07:35:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231733AbhLMMcL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 07:32:11 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AC7DC061574
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 04:32:10 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 94BA751C;
-        Mon, 13 Dec 2021 13:32:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1639398727;
-        bh=xQ03FOJqcYuXMsXooM1iWEONBgogJ/EIPPCBSpZcQVo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=P1ESmKVEcmkDu3eAWXXnutLPnbZRAMfEWMl7yYCeswz1R3V8ggXFFNKaECWdHD0MY
-         W2+qgiiXmQQ9ug7H0Oc0/QbZJpWqGA/RBsqEXbAjDkzDf9JRMuN6UEdKXa2X0hMUP2
-         OWDFOWW2qCSSZ3EZ78qPa/mC7xbmRsD69UrDa/AA=
-Date:   Mon, 13 Dec 2021 14:31:37 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com
-Subject: Re: [PATCH] drm: bridge: tc358764: Use drm panel_bridge API
-Message-ID: <Ybc9KdVOb0bxknyQ@pendragon.ideasonboard.com>
-References: <20211213121929.3377752-1-jagan@amarulasolutions.com>
+        with ESMTP id S231733AbhLMMfo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 07:35:44 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09DF2C06173F
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 04:35:44 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id o19-20020a1c7513000000b0033a93202467so11466336wmc.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 04:35:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=NrWrAIpe9pazUTQmEvEFnlsq/023oiBWdv/1eOA6n3M=;
+        b=MQCEDJBkg3Ajjpv5LYNOqOuZLyedRNoejBeFXa5x14PbGoTrrXzqvnsX17CG2Hb6lG
+         MTwIFVwJoy27YGmhJ04sMR7gc1xX5bAA8PPEM4+YrWm2zLMgBdiLGI468k8fzgGMjq1X
+         HOK21Ua7FAxgylS8IM2MJYHZfBitWQs3JOFJH0TCe0tWBLVbB4Zqy1xQi34MFTCT3Mqz
+         TqQA6XqOPutIzc+KaEB+fAL8Von7GUuEdxEmK1RWLkOBiBrO3mxc7UcWE93NeUnADyep
+         K6m6awe/wldz8gwib4qZ6PRPoa2+TKGANOMQGh+Onrxp+X33rok56sRCy7rHEjpLPhNm
+         Eakg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=NrWrAIpe9pazUTQmEvEFnlsq/023oiBWdv/1eOA6n3M=;
+        b=4AWcs3U3Q+faFPKnkNaEPRlEUzX9oUUOZGjA/i5UVVYQpJzMJWiPCDi7dO55mbTz9f
+         2dj3k80ylMABI4h1rz0SjN1ajL3i81NYiUTRv/fEN0LRlLwc4Oh8MmqApWStBKRXj3Q3
+         m3RDb/pFt8wj2r9eo8gHe1qg/wKdmXZKN8KeAo+IJgsbrR3OqMprGSgVcOL3Mz8bmL5e
+         F3L3MT0e3BxTfOGfXpD+KXhqGPOvUnwNqNxj6IX6Pe97v6cO9Hr0iD6Tnnu4N4zO4xsx
+         BhpzdD8U5tWz4zAgGR4HgiVHbXUplAAYUWzYkzQrXcwX99mwwnDxOh3UnrfJwPfpPHGr
+         lShg==
+X-Gm-Message-State: AOAM531Ebji7yd7cEv8VXsXYvqOAFqw4r/0UfEP1T/naf1CKFyvQNxN0
+        mA0YZpf1iOOAVpxEPOa+69Z2+w==
+X-Google-Smtp-Source: ABdhPJx0AXHwveAoTUXAXQKi0oi8oGYQ7n7A1Y9V9fOzQY0WMPHI2NB1pIAmtMURkWklpfKXbmFu9Q==
+X-Received: by 2002:a05:600c:1083:: with SMTP id e3mr36980938wmd.167.1639398942534;
+        Mon, 13 Dec 2021 04:35:42 -0800 (PST)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id u13sm8260902wmq.14.2021.12.13.04.35.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Dec 2021 04:35:42 -0800 (PST)
+Subject: Re: [PATCH v2 5/8] dt-bindings: misc: add property to support
+ non-secure DSP
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
+        devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
+        jeyr@codeaurora.org, bkumar@qti.qualcomm.com,
+        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org
+References: <20211209120626.26373-1-srinivas.kandagatla@linaro.org>
+ <20211209120626.26373-6-srinivas.kandagatla@linaro.org>
+ <YbcnEp5+4y5qXC60@gerhold.net>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <ac2e9f8f-ea52-5676-baaa-9439e8b35d8f@linaro.org>
+Date:   Mon, 13 Dec 2021 12:35:40 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211213121929.3377752-1-jagan@amarulasolutions.com>
+In-Reply-To: <YbcnEp5+4y5qXC60@gerhold.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan,
 
-Thank you for the patch.
 
-On Mon, Dec 13, 2021 at 05:49:29PM +0530, Jagan Teki wrote:
-> Replace the manual panel handling code by a drm panel_bridge via
-> devm_drm_of_get_bridge().
+On 13/12/2021 10:57, Stephan Gerhold wrote:
+> On Thu, Dec 09, 2021 at 12:06:23PM +0000, Srinivas Kandagatla wrote:
+>> From: Jeya R <jeyr@codeaurora.org>
+>>
+>> Add property to set DSP domain as non-secure.
+>>
+>> ADSP/MDSP/SDSP are by default secured, where as CDSP can be either be
+>> secured/unsecured.
 > 
-> Adding panel_bridge handling,
+> Wouldn't it be easier to avoid the negation and add a "qcom,secure-domain"
+> property instead? Given PATCH 8/8 ("arm64: dts: qcom: add non-secure
+> domain property to fastrpc nodes") it looks like you are intentionally
+> breaking DT compatibility here, but this patch does not justify why this
+> is necessary.
+
+By default all ADSP/MDSP/SDSP are secured, so this property is only 
+required for something that is not default. Only case that is 
+configurable is the CDSP case where in by adding this flag we should be 
+able to load an unsigned process to dsp using unsecured node.
+
+Having said that, TBH When we first added the fastrpc patchset we did 
+not take care of this security feature properly :-)
+
+ From security point of view, its better to keep the default as secured 
+rather than unsecured in DT too.
+
+With this DTS patch older dts should continue to work.
+
+--srini
+
 > 
-> - Drops drm_connector and related operations as drm_bridge_attach
->   creates connector during attachment.
+> Thanks,
+> Stephan
 > 
-> - Drops panel pointer and panel healpers.
-> 
-> This simplifies the driver and allows all components in the display
-> pipeline to be treated as bridges.
-> 
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
->  drivers/gpu/drm/bridge/tc358764.c | 99 ++-----------------------------
->  1 file changed, 6 insertions(+), 93 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/tc358764.c b/drivers/gpu/drm/bridge/tc358764.c
-> index c1e35bdf9232..28480bdc4287 100644
-> --- a/drivers/gpu/drm/bridge/tc358764.c
-> +++ b/drivers/gpu/drm/bridge/tc358764.c
-> @@ -153,10 +153,9 @@ static const char * const tc358764_supplies[] = {
->  struct tc358764 {
->  	struct device *dev;
->  	struct drm_bridge bridge;
-> -	struct drm_connector connector;
-> +	struct drm_bridge *panel_bridge;
-
-s/panel_bridge/next_bridge/ as it may not be a panel.
-
->  	struct regulator_bulk_data supplies[ARRAY_SIZE(tc358764_supplies)];
->  	struct gpio_desc *gpio_reset;
-> -	struct drm_panel *panel;
-
-Are there #includes that you can drop ?
-
->  	int error;
->  };
->  
-> @@ -210,12 +209,6 @@ static inline struct tc358764 *bridge_to_tc358764(struct drm_bridge *bridge)
->  	return container_of(bridge, struct tc358764, bridge);
->  }
->  
-> -static inline
-> -struct tc358764 *connector_to_tc358764(struct drm_connector *connector)
-> -{
-> -	return container_of(connector, struct tc358764, connector);
-> -}
-> -
->  static int tc358764_init(struct tc358764 *ctx)
->  {
->  	u32 v = 0;
-> @@ -278,43 +271,11 @@ static void tc358764_reset(struct tc358764 *ctx)
->  	usleep_range(1000, 2000);
->  }
->  
-> -static int tc358764_get_modes(struct drm_connector *connector)
-> -{
-> -	struct tc358764 *ctx = connector_to_tc358764(connector);
-> -
-> -	return drm_panel_get_modes(ctx->panel, connector);
-> -}
-> -
-> -static const
-> -struct drm_connector_helper_funcs tc358764_connector_helper_funcs = {
-> -	.get_modes = tc358764_get_modes,
-> -};
-> -
-> -static const struct drm_connector_funcs tc358764_connector_funcs = {
-> -	.fill_modes = drm_helper_probe_single_connector_modes,
-> -	.destroy = drm_connector_cleanup,
-> -	.reset = drm_atomic_helper_connector_reset,
-> -	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
-> -	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
-> -};
-> -
-> -static void tc358764_disable(struct drm_bridge *bridge)
-> -{
-> -	struct tc358764 *ctx = bridge_to_tc358764(bridge);
-> -	int ret = drm_panel_disable(bridge_to_tc358764(bridge)->panel);
-> -
-> -	if (ret < 0)
-> -		dev_err(ctx->dev, "error disabling panel (%d)\n", ret);
-> -}
-> -
->  static void tc358764_post_disable(struct drm_bridge *bridge)
->  {
->  	struct tc358764 *ctx = bridge_to_tc358764(bridge);
->  	int ret;
->  
-> -	ret = drm_panel_unprepare(ctx->panel);
-> -	if (ret < 0)
-> -		dev_err(ctx->dev, "error unpreparing panel (%d)\n", ret);
->  	tc358764_reset(ctx);
->  	usleep_range(10000, 15000);
->  	ret = regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> @@ -335,72 +296,25 @@ static void tc358764_pre_enable(struct drm_bridge *bridge)
->  	ret = tc358764_init(ctx);
->  	if (ret < 0)
->  		dev_err(ctx->dev, "error initializing bridge (%d)\n", ret);
-> -	ret = drm_panel_prepare(ctx->panel);
-> -	if (ret < 0)
-> -		dev_err(ctx->dev, "error preparing panel (%d)\n", ret);
-> -}
-> -
-> -static void tc358764_enable(struct drm_bridge *bridge)
-> -{
-> -	struct tc358764 *ctx = bridge_to_tc358764(bridge);
-> -	int ret = drm_panel_enable(ctx->panel);
-> -
-> -	if (ret < 0)
-> -		dev_err(ctx->dev, "error enabling panel (%d)\n", ret);
->  }
->  
->  static int tc358764_attach(struct drm_bridge *bridge,
->  			   enum drm_bridge_attach_flags flags)
-> -{
-> -	struct tc358764 *ctx = bridge_to_tc358764(bridge);
-> -	struct drm_device *drm = bridge->dev;
-> -	int ret;
-> -
-> -	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR) {
-> -		DRM_ERROR("Fix bridge driver to make connector optional!");
-> -		return -EINVAL;
-> -	}
-> -
-> -	ctx->connector.polled = DRM_CONNECTOR_POLL_HPD;
-> -	ret = drm_connector_init(drm, &ctx->connector,
-> -				 &tc358764_connector_funcs,
-> -				 DRM_MODE_CONNECTOR_LVDS);
-> -	if (ret) {
-> -		DRM_ERROR("Failed to initialize connector\n");
-> -		return ret;
-> -	}
-> -
-> -	drm_connector_helper_add(&ctx->connector,
-> -				 &tc358764_connector_helper_funcs);
-> -	drm_connector_attach_encoder(&ctx->connector, bridge->encoder);
-> -	ctx->connector.funcs->reset(&ctx->connector);
-> -	drm_connector_register(&ctx->connector);
-> -
-> -	return 0;
-> -}
-> -
-> -static void tc358764_detach(struct drm_bridge *bridge)
->  {
->  	struct tc358764 *ctx = bridge_to_tc358764(bridge);
->  
-> -	drm_connector_unregister(&ctx->connector);
-> -	ctx->panel = NULL;
-> -	drm_connector_put(&ctx->connector);
-> +	return drm_bridge_attach(bridge->encoder, ctx->panel_bridge, bridge, flags);
->  }
->  
->  static const struct drm_bridge_funcs tc358764_bridge_funcs = {
-> -	.disable = tc358764_disable,
->  	.post_disable = tc358764_post_disable,
-> -	.enable = tc358764_enable,
->  	.pre_enable = tc358764_pre_enable,
->  	.attach = tc358764_attach,
-> -	.detach = tc358764_detach,
->  };
->  
->  static int tc358764_parse_dt(struct tc358764 *ctx)
->  {
->  	struct device *dev = ctx->dev;
-> -	int ret;
->  
->  	ctx->gpio_reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
->  	if (IS_ERR(ctx->gpio_reset)) {
-> @@ -408,12 +322,11 @@ static int tc358764_parse_dt(struct tc358764 *ctx)
->  		return PTR_ERR(ctx->gpio_reset);
->  	}
->  
-> -	ret = drm_of_find_panel_or_bridge(ctx->dev->of_node, 1, 0, &ctx->panel,
-> -					  NULL);
-> -	if (ret && ret != -EPROBE_DEFER)
-> -		dev_err(dev, "cannot find panel (%d)\n", ret);
-> +	ctx->panel_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-> +	if (IS_ERR(ctx->panel_bridge))
-> +		return PTR_ERR(ctx->panel_bridge);
->  
-> -	return ret;
-> +	return 0;
->  }
->  
->  static int tc358764_configure_regulators(struct tc358764 *ctx)
-
--- 
-Regards,
-
-Laurent Pinchart
