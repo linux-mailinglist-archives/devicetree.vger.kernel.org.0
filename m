@@ -2,70 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 981314720DF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 07:01:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC07B4720E8
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 07:04:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229472AbhLMGBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 01:01:12 -0500
-Received: from muru.com ([72.249.23.125]:37936 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229452AbhLMGBM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 01:01:12 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 736E3809F;
-        Mon, 13 Dec 2021 06:01:53 +0000 (UTC)
-Date:   Mon, 13 Dec 2021 08:01:09 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Merlijn Wajer <merlijn@wizzup.org>
-Cc:     Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-        Dev Null <devnull@uvos.xyz>,
-        Sebastian Reichel <sre@kernel.org>, linux-omap@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 2/2] Droid3: add initial DTS
-Message-ID: <Ybbhpahp20tlwEdH@atomide.com>
-References: <20211212230459.13579-1-merlijn@wizzup.org>
- <20211212230459.13579-3-merlijn@wizzup.org>
+        id S230260AbhLMGE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 01:04:58 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:52352 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229601AbhLMGE6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 01:04:58 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 80EFECE0D07;
+        Mon, 13 Dec 2021 06:04:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B052EC00446;
+        Mon, 13 Dec 2021 06:04:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639375494;
+        bh=mO2Am3NA7/Lh5otbQkMxGHOHLA4azyRI8FOw664jYZA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dJIvC0NjG1dQN83f4cQT9l9nYU2GNjxXklRZaIltoSdXRKwnVAkf2xEaWIvj079ef
+         KvYiONmN453WM5QYgG/e5EPipFQ8DFByGR5h2O3xLkCTsZ5CuiqGsDwcgW8fHHmsfa
+         0zEnGAJNb5Au5ctJNYO3EhdaeZ7odrvoQDnwX7PLKfq/OAc+ofm4NzE7h+vezRaWDN
+         +J/Cne2C3X5gF8c3rgkV8HFOar/QFnENt0sQZKGOk/7lA7gCaV92ROTyB6nm/RQx3b
+         2e2hVBZ6QOLNWvVyvbuHzaszZqZePu1TCZnVwKZWElLM3/pSFnieyVOM8FT5jloaHa
+         e645+vLxbfJnQ==
+Date:   Mon, 13 Dec 2021 11:34:50 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: dma: pl08x: Fix unevaluatedProperties
+ warnings
+Message-ID: <YbbigoCeQn0qM7jJ@matsya>
+References: <20211206174231.2298349-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211212230459.13579-3-merlijn@wizzup.org>
+In-Reply-To: <20211206174231.2298349-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Merlijn Wajer <merlijn@wizzup.org> [211212 23:00]:
-> @@ -35,7 +35,7 @@ reserved-memory {
->  		 * first 512K of that and just overwrite the rest and configure
->  		 * only 384K instead of 2M.
->  		 */
-> -		ramoops@a0080000 {
-> +		ramoops0: ramoops@a0080000 {
->  			compatible = "ramoops";
->  			reg = <0xa0080000 0x60000>;
->  			record-size = <0x20000>;
+On 06-12-21, 11:42, Rob Herring wrote:
+> With 'unevaluatedProperties' support implemented, the example has
+> warnings on primecell properties and 'resets':
+> 
+> Documentation/devicetree/bindings/dma/arm-pl08x.example.dt.yaml: dma-controller@67000000: Unevaluated properties are not allowed ('arm,primecell-periphid', 'resets' were unexpected)
+> 
+> Add the missing reference to primecell.yaml and definition for 'resets'.
 
-The stock kernel ramoops range might be different here because of less
-memory. If the stock kernel has it, it should be in the platform data
-somewhere in the stock kernel sources. Probably best to just leave it
-out for now.
+Applied, thanks
 
-> +// Do don't know if pstore is supported, but the current config causes panics,
-> +// so delete the node for now
-> +/delete-node/ &ramoops0;
-
-Just leave this out too, I don't think we have the ramoops configured in
-the mainline kernel.
-
-Otherwise looks good to me.
-
-Regards,
-
-Tony
+-- 
+~Vinod
