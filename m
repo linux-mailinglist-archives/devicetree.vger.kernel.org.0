@@ -2,85 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08A2547347A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 19:57:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 224BA473490
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 20:02:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239775AbhLMS5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 13:57:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47278 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236468AbhLMS5J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 13:57:09 -0500
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C45C061574;
-        Mon, 13 Dec 2021 10:57:09 -0800 (PST)
-Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id BA0771EC058C;
-        Mon, 13 Dec 2021 19:57:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1639421823;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=vug8c6LeiYsA8ecHoSXfAGDN69ymkQs1b6qpIjHtAAE=;
-        b=jaXPqYRD1U/EpsAljNHIQnZJtaf+hUyUFWtbuqD43Jf/AApyBPA7ymJZoxF8/uHXBJXYLH
-        J+hAKMqZn7J728aTOtDyDHG1AlBvR+BYoyc+qbyHjOfXQvC618ovAS0L4k7FrZBCP0FX+L
-        oLfQeqzBGjssQRAnKvq9Pg7ZaU0GOek=
-Date:   Mon, 13 Dec 2021 19:57:02 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     john.p.donnelly@oracle.com
-Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
-        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
+        id S234521AbhLMTCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 14:02:08 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:36610 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232697AbhLMTCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 14:02:08 -0500
+Received: by mail-oi1-f178.google.com with SMTP id t23so24456883oiw.3;
+        Mon, 13 Dec 2021 11:02:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tEbAdn5YlO0byAH0oTEvYwIYFWP4wTzxxA3rKsMqgPI=;
+        b=u36KqmyV6dkY02q5LDaZEHXGo8MV8d4BQeUxcGScFTcLU6lHR5Xjwq4QSme7yeijbn
+         Q3sveiw2kawjod1CYcDx7h1zMqobyMJWctqZdKgQe1jLA+9KGbkLQgFrmKn7XADT9YlO
+         B3IrT+ChlxamKQdJAz8UbU0AeZj8tMUeGjCQq9/OEAaRIcxTdvK/Hbj8S09kmy6J0l/N
+         zvzsc7Z1VMSHrfxd/wy5MXWRsCCdRGU3YZolgNaZhW3CXOfv+Ed9Y4NfpDFNDLikEsQw
+         rs1NtuBZf75q5H6SzflXmtYhYVwS5jKQOqJb/psa3Ajz7caOOzd7KEfw3SprmsD/x4Ce
+         TMpg==
+X-Gm-Message-State: AOAM531vZwjKKFh2dLhB9KeN7wpS6ZhXin4h32hwY5//ATbJkw2o+kSE
+        cDoRFKGr3Eeyn6uJdWxw2MTRnW5GYw==
+X-Google-Smtp-Source: ABdhPJwfmZKhTcyermRckjwVUR51Q+PIrNv5i9wFZsuWFt3sXBmR8hmteTCR1F2dx8sSDJV29rTUsg==
+X-Received: by 2002:aca:581:: with SMTP id 123mr440392oif.13.1639422127396;
+        Mon, 13 Dec 2021 11:02:07 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id a17sm2989012oiw.43.2021.12.13.11.02.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Dec 2021 11:02:06 -0800 (PST)
+Received: (nullmailer pid 1386389 invoked by uid 1000);
+        Mon, 13 Dec 2021 19:02:05 -0000
+Date:   Mon, 13 Dec 2021 13:02:05 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Will Deacon <will@kernel.org>,
+        iommu@lists.linux-foundation.org,
         linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-Subject: Re: [PATCH v17 00/10] support reserving crashkernel above 4G on
- arm64 kdump
-Message-ID: <YbeXfkEkqp1Js3TP@zn.tnic>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <5ef3ef54-33db-3cb2-4908-8bd1254749e3@oracle.com>
+        Robin Murphy <robin.murphy@arm.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Joerg Roedel <joro@8bytes.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm-smmu: Add compatible for SM8450 SoC
+Message-ID: <YbeYrZmavBECxE/O@robh.at.kernel.org>
+References: <20211201073943.3969549-1-vkoul@kernel.org>
+ <20211201073943.3969549-2-vkoul@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5ef3ef54-33db-3cb2-4908-8bd1254749e3@oracle.com>
+In-Reply-To: <20211201073943.3969549-2-vkoul@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 13, 2021 at 08:37:48AM -0600, john.p.donnelly@oracle.com wrote:
-> After 2 years, and 17 versions, can we now get this series promoted into a
-> build ?
+On Wed, 01 Dec 2021 13:09:42 +0530, Vinod Koul wrote:
+> Add the SoC specific compatible for SM8450 implementing
+> arm,mmu-500.
+> 
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-For example:
-
-$ ./scripts/get_maintainer.pl -f Documentation/admin-guide/kdump/kdump.rst
-Baoquan He <bhe@redhat.com> (maintainer:KDUMP)
-Vivek Goyal <vgoyal@redhat.com> (reviewer:KDUMP)
-Dave Young <dyoung@redhat.com> (reviewer:KDUMP)
-Jonathan Corbet <corbet@lwn.net> (maintainer:DOCUMENTATION)
-kexec@lists.infradead.org (open list:KDUMP)
-
-I see only two acks from Baoquan.
-
-So yes, this needs to go through the normal review process first.
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+Acked-by: Rob Herring <robh@kernel.org>
