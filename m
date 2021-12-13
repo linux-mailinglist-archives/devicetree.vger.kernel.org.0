@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 239C4472D77
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 14:36:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DD41472D78
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 14:36:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237587AbhLMNgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 08:36:36 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:62170 "EHLO mx1.tq-group.com"
+        id S237396AbhLMNgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 08:36:37 -0500
+Received: from mx1.tq-group.com ([93.104.207.81]:62187 "EHLO mx1.tq-group.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236001AbhLMNgg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S237341AbhLMNgg (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Mon, 13 Dec 2021 08:36:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
   t=1639402596; x=1670938596;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=ufYaztoM7btUy9LuPRGwqpeGKIKUMrwofkGEOKopoSs=;
-  b=jtm4ZNIf3xqQrjz8H8hg4lZMx+TjtJeSwqyOSIAoVwH7hxhkZlHL+wl+
-   LWk30eWoitFSMoJeVNNsKtmg0OGliSZoi2Bo0deyB7osMRAPvrltLWOOE
-   PkgEuFMox8k9AO35QL4IXLzxg8DT9y97O5vzxUvg5deob9CNVaU+nd1OT
-   oEClTh/EzfN+3TTFhIDXRDc10KpIVK53W7AIQl5Fbmx/vnSuRx0IWkdkA
-   ///RTXNgvuevlPHNv6k3wiIc6InAzq/r/Aw5/6FAAz390Oyy8Rxieza3I
-   zjeErvn7S9LFND3eYM0z+C/QFxVZl6lBEeM47XLsNXGEhzpujly88rNQd
-   g==;
+  bh=NmZSdW+5LVfKmAVPKZKf41GorbnUuDSvFzzyCMsfbWk=;
+  b=djeyDQ/S41RnAueMBoiPvfKAYMyj0BMBwCSyhQQYVXpOelNRqnOgERTC
+   X53s2OAq8Rl2zDDawIB2XtBI/IVrS6DaOIlzwQE3ZJNthFo32Q98JwZBm
+   6A8bc56GujdtDk1xV5U3qVqI3pvTsUbw0gSX2mZZAxn+Qc1gp/k5PNkUv
+   bbpE4HucDeYAY5+4fUnUZThhxbP2Fxiav8GVIIf4lII2thAEg0UGqEoyo
+   6T9zk+87niMDAwlk7CoZ6v6Jd39hweYFs4QFEz9TMSEI47Cv5RhVm2aZt
+   SqCQ+IjcasGIeoTtc2jbhdtU/u5Chi/wlzL+wIu1cKs0jnjQhtvdksVVM
+   A==;
 X-IronPort-AV: E=Sophos;i="5.88,202,1635199200"; 
-   d="scan'208";a="21012622"
+   d="scan'208";a="21012624"
 Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
   by mx1-pgp.tq-group.com with ESMTP; 13 Dec 2021 14:36:34 +0100
 Received: from mx1.tq-group.com ([192.168.6.7])
@@ -38,22 +38,22 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   t=1639402594; x=1670938594;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=ufYaztoM7btUy9LuPRGwqpeGKIKUMrwofkGEOKopoSs=;
-  b=KKj+3NMxyj6W07qYUFOR8sqRTVsvFBiGLmoZtc8gxWUUyxOpo6ggjE1X
-   dDGAo7aFwzbn9OuuduhVYRYQbxe/KtnNjnmMJKTxzcXf9GEkM+QHL2zqi
-   UoWf+HA/U8Fqms0QFKcJGR6VaQmmSAQybktKbMGoCjDppWWfPPigSP5RJ
-   ugl0ff+IoV/RQRMr8ND8WBk8TJ0JGaskMTBnfG0f075s6lq3Sr40tj4PA
-   p28kLvsYG+6YzruKHBZLmJJyz2Nm1Ee7tvAcjyyGuWJGA4+msOb31zbtH
-   vyMGYZ8Ps2jRlnAIanszLb3UjC/0ODf9Ahof5fvezIfgaAkKRPlLXxOFp
+  bh=NmZSdW+5LVfKmAVPKZKf41GorbnUuDSvFzzyCMsfbWk=;
+  b=Zop98oTzMsSSGvBHCFRovQoJG3cg0lGmyHvzmmihnsW8R6ahxsOSDyfJ
+   tQQ+9Z0gXPFgVkz2TsJXcXA11HXThBZx7B6IAVq+Cb5oAPchokfqjVNpD
+   WYEkcVoE9xxrtPCV4+mbA6E+AOVhExFo2Ed0aVKdbyMbHhwVh+T3z6SH8
+   j6qM+cJRp5gMnu1EQDQOeVbJYRZDpR+eq7/3zmXZIqRrjR9JBsobx/RDx
+   Wu0D6PEjYhcQnNIejDcoaNaVIw3EltlOfgxgtbulu93JfFl2n9lSkH99D
+   Ocif6SJFHxV9xlJoU0JqpuQJqz/2sdQzdyWMRmPzszu7QuARiHQF7tUl6
    A==;
 X-IronPort-AV: E=Sophos;i="5.88,202,1635199200"; 
-   d="scan'208";a="21012621"
+   d="scan'208";a="21012623"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
   by mx1.tq-group.com with ESMTP; 13 Dec 2021 14:36:34 +0100
 Received: from steina-w.tq-net.de (unknown [10.123.49.12])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 31B95280075;
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 78F6E280065;
         Mon, 13 Dec 2021 14:36:34 +0100 (CET)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
 To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
@@ -64,13 +64,13 @@ To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
         Jonas Karlman <jonas@kwiboo.se>,
         Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: [PATCH v5 1/4] dt-bindings: display: bridge: sn65dsi83: Make enable GPIO optional
-Date:   Mon, 13 Dec 2021 14:36:23 +0100
-Message-Id: <20211213133626.2498056-2-alexander.stein@ew.tq-group.com>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: [PATCH v5 2/4] drm/bridge: ti-sn65dsi83: Make enable GPIO optional
+Date:   Mon, 13 Dec 2021 14:36:24 +0100
+Message-Id: <20211213133626.2498056-3-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211213133626.2498056-1-alexander.stein@ew.tq-group.com>
 References: <20211213133626.2498056-1-alexander.stein@ew.tq-group.com>
@@ -80,30 +80,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+The enable signal may not be controllable by the kernel. Make it
+optional.
+This is a similar to commit bbda1704fc15 ("drm/bridge: ti-sn65dsi86: Make
+enable GPIO optional")
 
-The SN65DSI8x EN signal may be tied to VCC, or otherwise controlled by
-means not available to the kernel. Make the GPIO optional.
-
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml         | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-index b446d0f0f1b4..c3f3e73f740a 100644
---- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-@@ -91,7 +91,6 @@ properties:
- required:
-   - compatible
-   - reg
--  - enable-gpios
-   - ports
+diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+index 945f08de45f1..065610edc37a 100644
+--- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
++++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+@@ -662,7 +662,8 @@ static int sn65dsi83_probe(struct i2c_client *client,
+ 	}
  
- allOf:
+ 	/* Put the chip in reset, pull EN line low, and assure 10ms reset low timing. */
+-	ctx->enable_gpio = devm_gpiod_get(ctx->dev, "enable", GPIOD_OUT_LOW);
++	ctx->enable_gpio = devm_gpiod_get_optional(ctx->dev, "enable",
++						   GPIOD_OUT_LOW);
+ 	if (IS_ERR(ctx->enable_gpio))
+ 		return PTR_ERR(ctx->enable_gpio);
+ 
 -- 
 2.25.1
 
