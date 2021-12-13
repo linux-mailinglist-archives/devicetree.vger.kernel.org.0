@@ -2,246 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 453EF472C80
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 13:42:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43C5D472C8A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 13:46:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236928AbhLMMmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 07:42:25 -0500
-Received: from mickerik.phytec.de ([195.145.39.210]:64516 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236914AbhLMMmX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 07:42:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1639399340; x=1641991340;
-        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=NGlq9XGhNk/6Qyl8diek/rJVEG81o+VT/IU9qxD7V/k=;
-        b=GR6YuyOU4dhZlhjeJPpiKVANXmMYetZyHSyBLDLV7TW1pNIQNA6LUcw3yOutMH3y
-        QaflWZuJ+H/yDMob7N5LDOr2SJuekEKlRuot1KwK+KacZC7VQEK/IaIXdOoQaqhu
-        nfZht+abM3aF/CAqrJAszCkpTbZ/9Xk4+ftJJMHcbrU=;
-X-AuditID: c39127d2-4f7337000000426a-43-61b73fab2ca6
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id A9.E3.17002.BAF37B16; Mon, 13 Dec 2021 13:42:19 +0100 (CET)
-Received: from augenblix2.phytec.de ([172.16.0.56])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2021121313421971-2360043 ;
-          Mon, 13 Dec 2021 13:42:19 +0100 
-From:   Yunus Bas <y.bas@phytec.de>
-To:     shawnguo@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
-        devicetree@vger.kernel.org
-Cc:     festevam@gmail.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: imx6qdl: phycore-som: Add custom volt/freq table
-Date:   Mon, 13 Dec 2021 13:42:19 +0100
-Message-Id: <20211213124219.3065974-2-y.bas@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211213124219.3065974-1-y.bas@phytec.de>
-References: <20211213124219.3065974-1-y.bas@phytec.de>
+        id S236937AbhLMMq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 07:46:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43410 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236947AbhLMMq0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 07:46:26 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00622C06173F
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 04:46:25 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 686ED51C;
+        Mon, 13 Dec 2021 13:46:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1639399584;
+        bh=KQ96B45i/lTzOLGHI2+lyZPA4AlUEiN3tJ2ESzgxXkM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=L+59lYvgup1i+KDk+cBy5Dv/jQ5rkWxgnbyVDZpNEZgDSHrSIMw71nZckXJ5HzdYh
+         MRJnWStw7dZM94Ow9PsILkLmjVDTI09C5CcD4JoiCQFB/8ona1zKAMDARkLZDYnujk
+         P56QuNdkiIj8df0mVtvMy+n5RAZf7LCxoG1ZH6Dw=
+Date:   Mon, 13 Dec 2021 14:45:54 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com
+Subject: Re: [PATCH] drm: bridge: tc358764: Use drm panel_bridge API
+Message-ID: <YbdAglrp5ZNMm2Vx@pendragon.ideasonboard.com>
+References: <20211213121929.3377752-1-jagan@amarulasolutions.com>
+ <Ybc9KdVOb0bxknyQ@pendragon.ideasonboard.com>
+ <CAMty3ZCd9a8PZMEO_MhF7x4v_HoL9Bk6T-YiaUxF2R-YXQXxvw@mail.gmail.com>
 MIME-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 13.12.2021 13:42:19,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 13.12.2021 13:42:19
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: quoted-printable
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJLMWRmVeSWpSXmKPExsWyRoCBS3eN/fZEgztCFvOPnGO1eHjV32LT
-        42usFpd3zWGzaN17hN3i7/ZNLBYvtog7sHvsnHWX3WPTqk42j81L6j36/xp4fN4kF8AaxWWT
-        kpqTWZZapG+XwJXR8uMre8Fh9YpZx+azNDA+U+hi5OSQEDCRmLttN2MXIxeHkMBWRonVL9ez
-        QjgXGCUe3eplBKliE1CUOH/7LVCCg0NEIF7ixRt3kDCzQJTEh1+r2EDCwgL+Eu3fTUDCLAKq
-        Ejffr2AFsXkFzCS2HbjFDLFLXmLmpe/sIDangLnEjqY3YNOFgGp+d3xnhKgXlDg58wkLyAkS
-        AlcYJQ5MfA3VLCRxevFZZoi92hLLFr5mnsAoMAtJzywkqQWMTKsYhXIzk7NTizKz9QoyKktS
-        k/VSUjcxAoP38ET1SzsY++Z4HGJk4mA8xCjBwawkwvvSemuiEG9KYmVValF+fFFpTmrxIUZp
-        DhYlcd77PUyJQgLpiSWp2ampBalFMFkmDk6pBsbIud8/HdToVtJ+kKQza8JT3terrdpsHz67
-        0i8pMjXkvZrtQaui1r1W20NcLneGvgh0if275MeKiJV1Z4+eW+rXNj+ncN6WhtJJnHmO75ql
-        pFbv3RaTIRWtca3188fuVo/+1aE7UqoWMPexzeyT+y/YEWW7PMzo7s/f859K3XjSt27N2dPn
-        dMqVWIozEg21mIuKEwF3dMEPTAIAAA==
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAMty3ZCd9a8PZMEO_MhF7x4v_HoL9Bk6T-YiaUxF2R-YXQXxvw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PHYTEC phyCORE-i.MX6QDL SOM-modules are operating with a slightly
-different voltage and frequency values in contrast to the generic
-i.MX6Q/DL tables. The values have been adjusted to achieve the most
-stable condition for the PHYTEC-modules. Introduce imx6q- and
-imx6dl-phycore dtsi files with the modified power tables.
+On Mon, Dec 13, 2021 at 06:09:23PM +0530, Jagan Teki wrote:
+> Hi Laurent,
+> 
+> On Mon, Dec 13, 2021 at 6:02 PM Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
+> >
+> > Hi Jagan,
+> >
+> > Thank you for the patch.
+> >
+> > On Mon, Dec 13, 2021 at 05:49:29PM +0530, Jagan Teki wrote:
+> > > Replace the manual panel handling code by a drm panel_bridge via
+> > > devm_drm_of_get_bridge().
+> > >
+> > > Adding panel_bridge handling,
+> > >
+> > > - Drops drm_connector and related operations as drm_bridge_attach
+> > >   creates connector during attachment.
+> > >
+> > > - Drops panel pointer and panel healpers.
+> > >
+> > > This simplifies the driver and allows all components in the display
+> > > pipeline to be treated as bridges.
+> > >
+> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > ---
+> > >  drivers/gpu/drm/bridge/tc358764.c | 99 ++-----------------------------
+> > >  1 file changed, 6 insertions(+), 93 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/bridge/tc358764.c b/drivers/gpu/drm/bridge/tc358764.c
+> > > index c1e35bdf9232..28480bdc4287 100644
+> > > --- a/drivers/gpu/drm/bridge/tc358764.c
+> > > +++ b/drivers/gpu/drm/bridge/tc358764.c
+> > > @@ -153,10 +153,9 @@ static const char * const tc358764_supplies[] = {
+> > >  struct tc358764 {
+> > >       struct device *dev;
+> > >       struct drm_bridge bridge;
+> > > -     struct drm_connector connector;
+> > > +     struct drm_bridge *panel_bridge;
+> >
+> > s/panel_bridge/next_bridge/ as it may not be a panel.
+> 
+> Sometime, I'm a strong believer of my own notation (I may be wrong)
+> based on my understanding. This is downstream bridge and the only
+> option it to connect is panel and panel in bridge terminology are
+> treated as panel_bridge. This is the reason I have used panel_bridge.
+> next_bridge notation will be used if the bridge connected to any
+> downstream bridge, like we can use next_bridge notation in host bridge
+> drivers as host bridge can be an option of connecting downstream
+> bridge or panel.
 
-Signed-off-by: Yunus Bas <y.bas@phytec.de>
----
- .../boot/dts/imx6dl-phytec-mira-rdk-nand.dts  |  2 +-
- .../boot/dts/imx6dl-phytec-phycore-som.dtsi   | 25 ++++++
- .../boot/dts/imx6q-phytec-mira-rdk-emmc.dts   |  2 +-
- .../boot/dts/imx6q-phytec-mira-rdk-nand.dts   |  2 +-
- .../boot/dts/imx6q-phytec-phycore-som.dtsi    | 83 +++++++++++++++++++
- 5 files changed, 111 insertions(+), 3 deletions(-)
- create mode 100644 arch/arm/boot/dts/imx6dl-phytec-phycore-som.dtsi
- create mode 100644 arch/arm/boot/dts/imx6q-phytec-phycore-som.dtsi
+The downstream bridge doesn't have to be a DSI panel, it could be an
+LVDS-to-DPI bridge for instance, or an LVDS-to-HDMI encoder.
 
-diff --git a/arch/arm/boot/dts/imx6dl-phytec-mira-rdk-nand.dts b/arch/arm/b=
-oot/dts/imx6dl-phytec-mira-rdk-nand.dts
-index d906a7f05aaa..8ec27080ca1e 100644
---- a/arch/arm/boot/dts/imx6dl-phytec-mira-rdk-nand.dts
-+++ b/arch/arm/boot/dts/imx6dl-phytec-mira-rdk-nand.dts
-@@ -6,7 +6,7 @@
-=20
- /dts-v1/;
- #include "imx6dl.dtsi"
--#include "imx6qdl-phytec-phycore-som.dtsi"
-+#include "imx6dl-phytec-phycore-som.dtsi"
- #include "imx6qdl-phytec-mira.dtsi"
- #include "imx6qdl-phytec-mira-peb-eval-01.dtsi"
- #include "imx6qdl-phytec-mira-peb-av-02.dtsi"
-diff --git a/arch/arm/boot/dts/imx6dl-phytec-phycore-som.dtsi b/arch/arm/bo=
-ot/dts/imx6dl-phytec-phycore-som.dtsi
-new file mode 100644
-index 000000000000..0985453b5ad6
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-phytec-phycore-som.dtsi
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2021 PHYTEC Messtechnik GmbH
-+ * Author: Yunus Bas <y.bas@phytec.de>
-+ */
-+
-+#include "imx6qdl-phytec-phycore-som.dtsi"
-+
-+&cpu0 {
-+	operating-points =3D <
-+		/* kHz    uV */
-+		996000  1275000
-+		792000  1175000
-+		396000  1150000
-+	>;
-+};
-+
-+&cpu1 {
-+	operating-points =3D <
-+		/* kHz    uV */
-+		996000  1275000
-+		792000  1175000
-+		396000  1150000
-+	>;
-+};
-diff --git a/arch/arm/boot/dts/imx6q-phytec-mira-rdk-emmc.dts b/arch/arm/bo=
-ot/dts/imx6q-phytec-mira-rdk-emmc.dts
-index 322f071d972f..7d947762f3b9 100644
---- a/arch/arm/boot/dts/imx6q-phytec-mira-rdk-emmc.dts
-+++ b/arch/arm/boot/dts/imx6q-phytec-mira-rdk-emmc.dts
-@@ -6,7 +6,7 @@
-=20
- /dts-v1/;
- #include "imx6q.dtsi"
--#include "imx6qdl-phytec-phycore-som.dtsi"
-+#include "imx6q-phytec-phycore-som.dtsi"
- #include "imx6qdl-phytec-mira.dtsi"
- #include "imx6qdl-phytec-mira-peb-eval-01.dtsi"
- #include "imx6qdl-phytec-mira-peb-av-02.dtsi"
-diff --git a/arch/arm/boot/dts/imx6q-phytec-mira-rdk-nand.dts b/arch/arm/bo=
-ot/dts/imx6q-phytec-mira-rdk-nand.dts
-index 3f13726c8058..afbb6681a6b5 100644
---- a/arch/arm/boot/dts/imx6q-phytec-mira-rdk-nand.dts
-+++ b/arch/arm/boot/dts/imx6q-phytec-mira-rdk-nand.dts
-@@ -6,7 +6,7 @@
-=20
- /dts-v1/;
- #include "imx6q.dtsi"
--#include "imx6qdl-phytec-phycore-som.dtsi"
-+#include "imx6q-phytec-phycore-som.dtsi"
- #include "imx6qdl-phytec-mira.dtsi"
- #include "imx6qdl-phytec-mira-peb-eval-01.dtsi"
- #include "imx6qdl-phytec-mira-peb-av-02.dtsi"
-diff --git a/arch/arm/boot/dts/imx6q-phytec-phycore-som.dtsi b/arch/arm/boo=
-t/dts/imx6q-phytec-phycore-som.dtsi
-new file mode 100644
-index 000000000000..3ecb94379c8b
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6q-phytec-phycore-som.dtsi
-@@ -0,0 +1,83 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2021 PHYTEC Messtechnik GmbH
-+ * Author: Yunus Bas <y.bas@phytec.de>
-+ */
-+
-+#include "imx6qdl-phytec-phycore-som.dtsi"
-+
-+&cpu0 {
-+	operating-points =3D <
-+		/* KHz  uV */
-+		1200000 1300000
-+		996000  1250000
-+		852000  1250000
-+		792000  1175000
-+		396000  1075000
-+	>;
-+	fsl,soc-operating-points =3D <
-+		/* ARM kHz  SOC-PU uV */
-+		1200000 1275000
-+		996000	1250000
-+		852000	1250000
-+		792000	1250000
-+		396000	1250000
-+	>;
-+};
-+
-+&cpu1 {
-+	operating-points =3D <
-+		/* KHz  uV */
-+		1200000 1300000
-+		996000  1250000
-+		852000  1250000
-+		792000  1175000
-+		396000  1075000
-+	>;
-+	fsl,soc-operating-points =3D <
-+		/* ARM kHz  SOC-PU uV */
-+		1200000 1275000
-+		996000	1250000
-+		852000	1250000
-+		792000	1250000
-+		396000	1250000
-+	>;
-+};
-+
-+&cpu2 {
-+	operating-points =3D <
-+		/* KHz  uV */
-+		1200000 1300000
-+		996000  1250000
-+		852000  1250000
-+		792000  1175000
-+		396000  1075000
-+	>;
-+	fsl,soc-operating-points =3D <
-+		/* ARM kHz  SOC-PU uV */
-+		1200000 1275000
-+		996000	1250000
-+		852000	1250000
-+		792000	1250000
-+		396000	1250000
-+	>;
-+};
-+
-+&cpu3 {
-+	operating-points =3D <
-+		/* KHz  uV */
-+		1200000 1300000
-+		996000  1250000
-+		852000  1250000
-+		792000  1175000
-+		396000  1075000
-+	>;
-+	fsl,soc-operating-points =3D <
-+		/* ARM kHz  SOC-PU uV */
-+		1200000 1275000
-+		996000	1250000
-+		852000	1250000
-+		792000	1250000
-+		396000	1250000
-+	>;
-+};
---=20
-2.25.1
+> This is what I understood so-far with DRM bridges. May be you can
+> correct if I'm wrong.
+> 
+> > >       struct regulator_bulk_data supplies[ARRAY_SIZE(tc358764_supplies)];
+> > >       struct gpio_desc *gpio_reset;
+> > > -     struct drm_panel *panel;
+> >
+> > Are there #includes that you can drop ?
+> 
+> I think, yes. I will update it in v2.
 
+-- 
+Regards,
+
+Laurent Pinchart
