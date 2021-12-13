@@ -2,163 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD93E472131
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 07:48:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 249FB47215D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 08:10:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230341AbhLMGsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 01:48:54 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:51608 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230315AbhLMGsy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 01:48:54 -0500
-X-UUID: 32ab375df4d0450c883b8e6e68f01821-20211213
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=QzfN+FlUlQnx8BtRAnoYm3/IBA3s2vzJNiXDt9dMjuc=;
-        b=ado7JXbk+FUwxEeCldWs/n01lJJyV9VYOwKZu1DXH5Y7n3YYmxmB+BARRhvVhRReprAYcA2qs1ndQPeJit/MRIEEOpuDv5/KDCr3FRZTvkMAgL1RRG5jnQBa86MNwcVc3ldfILxvfXiW5Mxi7C+0nz+feqK4MBWvuLT4mXRrO4U=;
-X-UUID: 32ab375df4d0450c883b8e6e68f01821-20211213
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 340885932; Mon, 13 Dec 2021 14:48:52 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 13 Dec 2021 14:48:51 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 13 Dec 2021 14:48:49 +0800
-Message-ID: <5d1ebe0089acd28032b74e3a180466f418580805.camel@mediatek.com>
-Subject: Re: [PATCH 1/4] dt-bindings: memory: mediatek: Correct the minItems
- of clk for larbs
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Joerg Roedel <joro@8bytes.org>, <yi.kuo@mediatek.com>,
-        <anan.sun@mediatek.com>, "Will Deacon" <will@kernel.org>,
-        <devicetree@vger.kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        <anthony.huang@mediatek.com>, <lc.kan@mediatek.com>,
-        <srv_heupstream@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-mediatek@lists.infradead.org>, <youlin.pei@mediatek.com>
-Date:   Mon, 13 Dec 2021 14:48:52 +0800
-In-Reply-To: <1638574455.281202.1043012.nullmailer@robh.at.kernel.org>
-References: <20211203064027.14993-1-yong.wu@mediatek.com>
-         <20211203064027.14993-2-yong.wu@mediatek.com>
-         <1638574455.281202.1043012.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S232376AbhLMHKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 02:10:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48840 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230516AbhLMHKH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 02:10:07 -0500
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC32CC06173F;
+        Sun, 12 Dec 2021 23:10:06 -0800 (PST)
+Received: by mail-pf1-x434.google.com with SMTP id u80so14102686pfc.9;
+        Sun, 12 Dec 2021 23:10:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=DbYjXsVsDnXf9MOGkA15Ub6YmWn6ZhOqh6fUQBEWTkQ=;
+        b=dgM5jZrmjTluHCJALfo6f+Q76t7Hnuy6KZIe7jIfPmOeOKzh0NDYXXBl2Zd/UXobqZ
+         kSZWkrrhVOQAHM6hRxceuvj4BnYy6xGbiXTqZ7kmRLumGx5fO+8fdMx9i+25X5s66Ngf
+         RJ0jOLYsLQD0oJziodsCalG0sHfEqfHnXrbieg6GRMpe+oWwR3v36smznQ+v+ltuJMdp
+         zf6sgO5xLCT69y/bOv6tPbPp++YvS7qCfBwcb+k56a6+MTKhLhU8U7Sve6T/qgJBnjU7
+         Z7a0tdwSxejSAV144xTTQzS1gdjGg5hqJYrUzvuFVXgCPLKPY3+geZB834raPZLwT83x
+         o/SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=DbYjXsVsDnXf9MOGkA15Ub6YmWn6ZhOqh6fUQBEWTkQ=;
+        b=lFCY1z582tr2oaOkTm8LqnJss/bRO+5QcWK2iHUcQFPJVoZ0AbUwnfGPaYy5JRLTnU
+         Vr684IGaFmxJLTvKBdwk9xwO/hCArNX6mKIUgiGE7N1IbPkq/FKMY94izyhTnfzhW5+9
+         eI8GyAKTuiy5+rouBRjWh9skwu11T004M5NXhKzlQ9fkMfXwgyzhA4Qzf9NXHuYBLRRs
+         tNeZ20nkPHT2+aj4Ij8+CqX0v5NLd4yr/HrubbjYpxvNZJ1yv1dDjMSURBLIj6hCyh7r
+         XLpPcf8GnyRbueQEp8V8UP2nS8SgjVKwvcmpg3qcMcMg1LB/cl6qDpUsV1p0nB4lOT+G
+         L4JA==
+X-Gm-Message-State: AOAM532zYSn/hQ9eZ977f37Yib1qclBIsCUHghATejs2XCHn7nbRj+UM
+        2nESwuwicnpA7EyoCY8aX5E=
+X-Google-Smtp-Source: ABdhPJzpwBBJFZunMdShxanDdF5UXtKTmueKU4k5E3tKqH/2iBGT0C+ZdprB0EwtWC/2MbgmYGZURQ==
+X-Received: by 2002:a63:a50c:: with SMTP id n12mr18393607pgf.558.1639379406513;
+        Sun, 12 Dec 2021 23:10:06 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id x16sm10601848pfo.165.2021.12.12.23.10.04
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 12 Dec 2021 23:10:06 -0800 (PST)
+From:   Hammer Hsieh <hammerh0314@gmail.com>
+X-Google-Original-From: Hammer Hsieh <hammer.hsieh@sunplus.com>
+To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jirislaby@kernel.org,
+        p.zabel@pengutronix.de
+Cc:     wells.lu@sunplus.com, Hammer Hsieh <hammer.hsieh@sunplus.com>
+Subject: [PATCH v5 0/2] Add UART driver for Suplus SP7021 SoC
+Date:   Mon, 13 Dec 2021 15:10:05 +0800
+Message-Id: <1639379407-28607-1-git-send-email-hammer.hsieh@sunplus.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIxLTEyLTAzIGF0IDE3OjM0IC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gRnJpLCAwMyBEZWMgMjAyMSAxNDo0MDoyNCArMDgwMCwgWW9uZyBXdSB3cm90ZToNCj4gPiBJ
-ZiBhIHBsYXRmb3JtJ3MgbGFyYiBzdXBwb3J0IGdhbHMsIHRoZXJlIHdpbGwgYmUgc29tZSBsYXJi
-cyBoYXZlIGENCj4gPiBvbmUNCj4gPiBtb3JlICJnYWxzIiBjbG9jayB3aGlsZSB0aGUgb3RoZXJz
-IHN0aWxsIG9ubHkgbmVlZCAiYXBiIi8ic21pIg0KPiA+IGNsb2Nrcy4NCj4gPiB0aGVuIHRoZSBt
-aW5JdGVtcyBpcyAyIGFuZCB0aGUgbWF4SXRlbXMgaXMgMy4NCj4gPiANCj4gPiBGaXhlczogMjdi
-YjBlNDI4NTVhICgiZHQtYmluZGluZ3M6IG1lbW9yeTogbWVkaWF0ZWs6IENvbnZlcnQgU01JIHRv
-DQo+ID4gRFQgc2NoZW1hIikNCj4gPiBTaWduZWQtb2ZmLWJ5OiBZb25nIFd1IDx5b25nLnd1QG1l
-ZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2JpbmRpbmdzL21lbW9yeS1jb250cm9sbGVy
-cy9tZWRpYXRlayxzbWktbGFyYi55YW1sICAgICAgICAgIHwNCj4gPiAyICstDQo+ID4gIDEgZmls
-ZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQ0KPiA+IA0KPiANCj4gUnVu
-bmluZyAnbWFrZSBkdGJzX2NoZWNrJyB3aXRoIHRoZSBzY2hlbWEgaW4gdGhpcyBwYXRjaCBnaXZl
-cyB0aGUNCj4gZm9sbG93aW5nIHdhcm5pbmdzLiBDb25zaWRlciBpZiB0aGV5IGFyZSBleHBlY3Rl
-ZCBvciB0aGUgc2NoZW1hIGlzDQo+IGluY29ycmVjdC4gVGhlc2UgbWF5IG5vdCBiZSBuZXcgd2Fy
-bmluZ3MuDQo+IA0KPiBOb3RlIHRoYXQgaXQgaXMgbm90IHlldCBhIHJlcXVpcmVtZW50IHRvIGhh
-dmUgMCB3YXJuaW5ncyBmb3INCj4gZHRic19jaGVjay4NCj4gVGhpcyB3aWxsIGNoYW5nZSBpbiB0
-aGUgZnV0dXJlLg0KPiANCj4gRnVsbCBsb2cgaXMgYXZhaWxhYmxlIGhlcmU6IA0KPiBodHRwczov
-L3BhdGNod29yay5vemxhYnMub3JnL3BhdGNoLzE1NjMxMjcNCj4gDQo+IA0KPiBsYXJiQDE0MDE2
-MDAwOiAnbWVkaWF0ZWssbGFyYi1pZCcgaXMgYSByZXF1aXJlZCBwcm9wZXJ0eQ0KPiAJYXJjaC9h
-cm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxNjctcHVtcGtpbi5kdC55YW1sDQoNCkkgd2lsbCBm
-aXggdGhpcyBpbiBuZXh0IHZlcnNpb24uIFRoaXMgcHJvcGVydHkgaXMgbm90IG5lZWRlZCBpbiBt
-dDgxNjcuDQoNCj4gDQo+IGxhcmJAMTQwMTcwMDA6IGNsb2NrLW5hbWVzOiBbJ2FwYicsICdzbWkn
-XSBpcyB0b28gc2hvcnQNCj4gCWFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLWV2
-Yi5kdC55YW1sDQo+IAlhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4My1rdWt1aS1q
-YWN1enppLQ0KPiBidXJuZXQuZHQueWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRl
-ay9tdDgxODMta3VrdWktamFjdXp6aS1kYW11LmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9vdC9k
-dHMvbWVkaWF0ZWsvbXQ4MTgzLWt1a3VpLWphY3V6emktDQo+IGZlbm5lbDE0LmR0LnlhbWwNCj4g
-CWFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLWt1a3VpLWphY3V6emktZmVubmVs
-LQ0KPiBza3UxLmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgz
-LWt1a3VpLWphY3V6emktZmVubmVsLQ0KPiBza3U2LmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9v
-dC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLWt1a3VpLWphY3V6emktanVuaXBlci0NCj4gc2t1MTYuZHQu
-eWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMta3VrdWktamFjdXp6
-aS1rYXBwYS5kdC55YW1sDQo+IAlhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4My1r
-dWt1aS1qYWN1enppLWtlbnpvLmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0
-ZWsvbXQ4MTgzLWt1a3VpLWphY3V6emktd2lsbG93LQ0KPiBza3UwLmR0LnlhbWwNCj4gCWFyY2gv
-YXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLWt1a3VpLWphY3V6emktd2lsbG93LQ0KPiBz
-a3UxLmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLWt1a3Vp
-LWtha2FkdS5kdC55YW1sDQo+IAlhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4My1r
-dWt1aS1rb2RhbWEtc2t1MTYuZHQueWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRl
-ay9tdDgxODMta3VrdWkta29kYW1hLXNrdTI3Mi5kdC55YW1sDQo+IAlhcmNoL2FybTY0L2Jvb3Qv
-ZHRzL21lZGlhdGVrL210ODE4My1rdWt1aS1rb2RhbWEtc2t1Mjg4LmR0LnlhbWwNCj4gCWFyY2gv
-YXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLWt1a3VpLWtvZGFtYS1za3UzMi5kdC55YW1s
-DQo+IAlhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4My1rdWt1aS1rcmFuZS1za3Uw
-LmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLWt1a3VpLWty
-YW5lLXNrdTE3Ni5kdC55YW1sDQo+IAlhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4
-My1wdW1wa2luLmR0LnlhbWwNCg0KU29tZSBsYXJicyBvbmx5IGhhdmUgdHdvIGNsb2NrcyhhcGIv
-c21pKSBpbiBtdDgxODMuIHRodXMgaXQgaXMNCnJlYXNvbmFibGUgZm9yIG1lLiBJIHdvbid0IGZp
-eCB0aGlzIGluIG5leHQgdmVyc2lvbi4NCg0KUGxlYXNlIHRlbGwgbWUgaWYgSSBtaXNzIHNvbWV0
-aGluZy4NClRoYW5rcy4NCg0KPiANCj4gbGFyYkAxNTAwMTAwMDogJ21lZGlhdGVrLGxhcmItaWQn
-IGlzIGEgcmVxdWlyZWQgcHJvcGVydHkNCj4gCWFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsv
-bXQ4MTY3LXB1bXBraW4uZHQueWFtbA0KPiANCj4gbGFyYkAxNjAxMDAwMDogY2xvY2stbmFtZXM6
-IFsnYXBiJywgJ3NtaSddIGlzIHRvbyBzaG9ydA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRp
-YXRlay9tdDgxODMtZXZiLmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsv
-bXQ4MTgzLWt1a3VpLWphY3V6emktDQo+IGJ1cm5ldC5kdC55YW1sDQo+IAlhcmNoL2FybTY0L2Jv
-b3QvZHRzL21lZGlhdGVrL210ODE4My1rdWt1aS1qYWN1enppLWRhbXUuZHQueWFtbA0KPiAJYXJj
-aC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMta3VrdWktamFjdXp6aS0NCj4gZmVubmVs
-MTQuZHQueWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMta3VrdWkt
-amFjdXp6aS1mZW5uZWwtDQo+IHNrdTEuZHQueWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9t
-ZWRpYXRlay9tdDgxODMta3VrdWktamFjdXp6aS1mZW5uZWwtDQo+IHNrdTYuZHQueWFtbA0KPiAJ
-YXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMta3VrdWktamFjdXp6aS1qdW5pcGVy
-LQ0KPiBza3UxNi5kdC55YW1sDQo+IAlhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4
-My1rdWt1aS1qYWN1enppLWthcHBhLmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9vdC9kdHMvbWVk
-aWF0ZWsvbXQ4MTgzLWt1a3VpLWphY3V6emkta2Vuem8uZHQueWFtbA0KPiAJYXJjaC9hcm02NC9i
-b290L2R0cy9tZWRpYXRlay9tdDgxODMta3VrdWktamFjdXp6aS13aWxsb3ctDQo+IHNrdTAuZHQu
-eWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMta3VrdWktamFjdXp6
-aS13aWxsb3ctDQo+IHNrdTEuZHQueWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRl
-ay9tdDgxODMta3VrdWkta2FrYWR1LmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9vdC9kdHMvbWVk
-aWF0ZWsvbXQ4MTgzLWt1a3VpLWtvZGFtYS1za3UxNi5kdC55YW1sDQo+IAlhcmNoL2FybTY0L2Jv
-b3QvZHRzL21lZGlhdGVrL210ODE4My1rdWt1aS1rb2RhbWEtc2t1MjcyLmR0LnlhbWwNCj4gCWFy
-Y2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLWt1a3VpLWtvZGFtYS1za3UyODguZHQu
-eWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMta3VrdWkta29kYW1h
-LXNrdTMyLmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLWt1
-a3VpLWtyYW5lLXNrdTAuZHQueWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9t
-dDgxODMta3VrdWkta3JhbmUtc2t1MTc2LmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9vdC9kdHMv
-bWVkaWF0ZWsvbXQ4MTgzLXB1bXBraW4uZHQueWFtbA0KPiANCj4gbGFyYkAxNjAxMDAwMDogJ21l
-ZGlhdGVrLGxhcmItaWQnIGlzIGEgcmVxdWlyZWQgcHJvcGVydHkNCj4gCWFyY2gvYXJtNjQvYm9v
-dC9kdHMvbWVkaWF0ZWsvbXQ4MTY3LXB1bXBraW4uZHQueWFtbA0KPiANCj4gbGFyYkAxNzAxMDAw
-MDogY2xvY2stbmFtZXM6IFsnYXBiJywgJ3NtaSddIGlzIHRvbyBzaG9ydA0KPiAJYXJjaC9hcm02
-NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMtZXZiLmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9v
-dC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLWt1a3VpLWphY3V6emktDQo+IGJ1cm5ldC5kdC55YW1sDQo+
-IAlhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4My1rdWt1aS1qYWN1enppLWRhbXUu
-ZHQueWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMta3VrdWktamFj
-dXp6aS0NCj4gZmVubmVsMTQuZHQueWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRl
-ay9tdDgxODMta3VrdWktamFjdXp6aS1mZW5uZWwtDQo+IHNrdTEuZHQueWFtbA0KPiAJYXJjaC9h
-cm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMta3VrdWktamFjdXp6aS1mZW5uZWwtDQo+IHNr
-dTYuZHQueWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMta3VrdWkt
-amFjdXp6aS1qdW5pcGVyLQ0KPiBza3UxNi5kdC55YW1sDQo+IAlhcmNoL2FybTY0L2Jvb3QvZHRz
-L21lZGlhdGVrL210ODE4My1rdWt1aS1qYWN1enppLWthcHBhLmR0LnlhbWwNCj4gCWFyY2gvYXJt
-NjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLWt1a3VpLWphY3V6emkta2Vuem8uZHQueWFtbA0K
-PiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMta3VrdWktamFjdXp6aS13aWxs
-b3ctDQo+IHNrdTAuZHQueWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgx
-ODMta3VrdWktamFjdXp6aS13aWxsb3ctDQo+IHNrdTEuZHQueWFtbA0KPiAJYXJjaC9hcm02NC9i
-b290L2R0cy9tZWRpYXRlay9tdDgxODMta3VrdWkta2FrYWR1LmR0LnlhbWwNCj4gCWFyY2gvYXJt
-NjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLWt1a3VpLWtvZGFtYS1za3UxNi5kdC55YW1sDQo+
-IAlhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4My1rdWt1aS1rb2RhbWEtc2t1Mjcy
-LmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLWt1a3VpLWtv
-ZGFtYS1za3UyODguZHQueWFtbA0KPiAJYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgx
-ODMta3VrdWkta29kYW1hLXNrdTMyLmR0LnlhbWwNCj4gCWFyY2gvYXJtNjQvYm9vdC9kdHMvbWVk
-aWF0ZWsvbXQ4MTgzLWt1a3VpLWtyYW5lLXNrdTAuZHQueWFtbA0KPiAJYXJjaC9hcm02NC9ib290
-L2R0cy9tZWRpYXRlay9tdDgxODMta3VrdWkta3JhbmUtc2t1MTc2LmR0LnlhbWwNCj4gCWFyY2gv
-YXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTgzLXB1bXBraW4uZHQueWFtbA0KPiANCg==
+This is a patch series for UART driver for Suplus SP7021 SoC.
+
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART. I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
+
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
+
+Hammer Hsieh (2):
+  dt-bindings:serial:Add bindings doc for Sunplus SoC UART Driver
+  serial:sunplus-uart:Add Sunplus SoC UART Driver
+
+ .../bindings/serial/sunplus,sp7021-uart.yaml       |  56 ++
+ MAINTAINERS                                        |   6 +
+ drivers/tty/serial/Kconfig                         |  25 +
+ drivers/tty/serial/Makefile                        |   1 +
+ drivers/tty/serial/sunplus-uart.c                  | 782 +++++++++++++++++++++
+ include/uapi/linux/serial_core.h                   |   3 +
+ 6 files changed, 873 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
+ create mode 100644 drivers/tty/serial/sunplus-uart.c
+
+-- 
+2.7.4
 
