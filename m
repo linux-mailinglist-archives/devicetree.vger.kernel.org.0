@@ -2,153 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F30C472D7A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 14:36:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 085B7472D6F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 14:35:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235647AbhLMNgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 08:36:37 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:62187 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236001AbhLMNgh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 08:36:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1639402597; x=1670938597;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=f0TcSdjQnv9GI4VZ9011XTyB+4bRaVnjqp87fSW/zWM=;
-  b=UG9BmT5tn0YpkQHwt/MgUG3WMNIVPW5PQEuw+BhcVHFObA0RevFU5Zsb
-   3qnhmDxtLPGnaQXEmT9N+rc/tm1lmP1A2l4wQXQI+4s93x4N/3nUTjqEg
-   MfzB1KrDp7bYzFKuztkhsziA28pAz0q7eCdr+lKs/98bTkJVAN+Yqw0r3
-   JgLSz44iW3lnWUMM4SaUv19RvVjLxerU4ypUL3j90jIHC4+DPvjc2qjVN
-   wU1T6eWJu9aOxZ4FlhXAPZHZgTnR2eP4Muz/gr6pTZr0Fy/8TTIeRB5yN
-   yrRe46sICcd7qe8VrRaOLuZAmtXwAViE1TuqkRZf033+C6c1T5ZjJjkHt
-   g==;
-X-IronPort-AV: E=Sophos;i="5.88,202,1635199200"; 
-   d="scan'208";a="21012628"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 13 Dec 2021 14:36:35 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 13 Dec 2021 14:36:35 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 13 Dec 2021 14:36:35 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1639402595; x=1670938595;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=f0TcSdjQnv9GI4VZ9011XTyB+4bRaVnjqp87fSW/zWM=;
-  b=Dr2nCVGHANHuCzg4rh82qa6e9mJy9cG4zCKYc2jc+Gl3AwcoxnWERun6
-   tLF+Ot7f9p2/pT2HAP8RrIrSJwor7mWBsKKDIkBpJy7YrofJpeTdr756V
-   +IgxycZt29aTyf2NWe4jo/r5nsPPyk2Jwnap2W9L4+5X4hTHbw0q42ac/
-   UdfoWf4yrM5zC+M0Czix8o5GH9/gMoMBlzxehRzw+6JHHqvPJ4oFGOSG7
-   /G2ccplRJznAOlK8IcjIXAw5FXyMIif4xxJHkdTi9Y5bTscunAGcv1TdW
-   NyFJHEhBclNJ6JumDk+12eSXOdqpuuVfNpqG3+HvEdEGTAi6Mfko3j7fT
-   w==;
-X-IronPort-AV: E=Sophos;i="5.88,202,1635199200"; 
-   d="scan'208";a="21012627"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 13 Dec 2021 14:36:35 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id EEFF8280065;
-        Mon, 13 Dec 2021 14:36:34 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH v5 4/4] drm/bridge: ti-sn65dsi83: Add vcc supply regulator support
-Date:   Mon, 13 Dec 2021 14:36:26 +0100
-Message-Id: <20211213133626.2498056-5-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211213133626.2498056-1-alexander.stein@ew.tq-group.com>
-References: <20211213133626.2498056-1-alexander.stein@ew.tq-group.com>
+        id S233266AbhLMNf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 08:35:27 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:20137 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236166AbhLMNfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 08:35:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1639402516; x=1670938516;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RSFM3Z6HDJUr0fxzj0LErU5vN/FtBT1CCIoA1vLoXBA=;
+  b=TNeXgOeZN7rY8BFR9EQr9IRlRoLVJV12OBXIbNoPZcVgfRPcYLosLra8
+   MpIc4C4RyuwjsqJ0Vm5+gy+RAK0SExguhdgZAw11e+0doDJIzPNRsC2Kc
+   EZmNAidHtrFfMqgulX+dS45G8/nH0I4ZW5A946rGikqTQPcaHkI3eN+L4
+   /2L3MYuULnS+nHTGb7nyYmf/3Pw+RBhJ1iKdL8edZ61UI2u2EX07MFWS2
+   W9QG5WWzOX/eCRMAHkVn6cZmcHUGWSgBk1QLB0Y2pibCln3pTrpEzBMd6
+   bOdGfu0rkE6BYrK8AJw0JNcPqxHZgKEgoGzASiDIaph1YtYXTI6VPSCly
+   A==;
+IronPort-SDR: GGwYrh/hfgvdY9Tn1kTXmdf+0JaNKbf70Nrz+YrbmDWXS5q9DMNwDTKlDKbhmBSMmiTmob687x
+ xCsySKVvNFHMBMn/RqIe+vWvp5+6+0LPwatflFv/c/M8lUzObRWezaoUhEjpzHXmy/a5eDKvfD
+ a7Wa6wG7kb7zXsyIgptQwHUd+NOMDS7sXDZcpeh4KcO04/ICoWTyyKkgX4EinbUQb9wHrSewv+
+ ZFH4hsSlB8zWoOhXgLFnELkmsAdkuYroV4+a0xUuietpeyf+UbpgFQrduGjEMODyIKVcWrJJXr
+ Gr+/p6uQcZ+T2Wi3U85vI9Fm
+X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; 
+   d="scan'208";a="146464261"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Dec 2021 06:35:16 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Mon, 13 Dec 2021 06:35:14 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Mon, 13 Dec 2021 06:35:14 -0700
+Date:   Mon, 13 Dec 2021 14:37:16 +0100
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "vivien.didelot@gmail.com" <vivien.didelot@gmail.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>
+Subject: Re: [PATCH net-next v3 6/6] net: lan966x: Add switchdev support
+Message-ID: <20211213133716.sfcgl4zrmynwagbr@soft-dev3-1.localhost>
+References: <20211209094615.329379-1-horatiu.vultur@microchip.com>
+ <20211209094615.329379-7-horatiu.vultur@microchip.com>
+ <20211209133616.2kii2xfz5rioii4o@skbuf>
+ <20211209164311.agnofh275znn5t5c@soft-dev3-1.localhost>
+ <20211213114603.jdvv5htw22vd3azj@skbuf>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20211213114603.jdvv5htw22vd3azj@skbuf>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VCC needs to be enabled before releasing the enable GPIO.
+The 12/13/2021 11:46, Vladimir Oltean wrote:
+> 
+> On Thu, Dec 09, 2021 at 05:43:11PM +0100, Horatiu Vultur wrote:
+> > > My documentation of CPU_SRC_COPY_ENA says:
+> > >
+> > > If set, all frames received on this port are
+> > > copied to the CPU extraction queue given by
+> > > CPUQ_CFG.CPUQ_SRC_COPY.
+> > >
+> > > I think it was established a while ago that this isn't what promiscuous
+> > > mode is about? Instead it is about accepting packets on a port
+> > > regardless of whether the MAC DA is in their RX filter or not.
+> >
+> > Yes, I am aware that this change interprets the things differently and I
+> > am totally OK to drop this promisc if it is needed.
+> 
+> I think we just need to agree on the observable behavior. Promiscuous
+> means for an interface to receive packets with unknown destination, and
+> while in standalone mode you do support that, in bridge mode you're a
+> bit on the edge: the port accepts them but will deliver them anywhere
+> except to the CPU. I suppose you could try to make an argument that you
+> know better than the bridge, and as long as the use cases for that are
+> restricted enough, maybe it could work for most scenarios. I don't know.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- drivers/gpu/drm/bridge/ti-sn65dsi83.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+I think this requires some proper explanations of the intended
+behaviour for both the standalone and bridge mode. I will drop this
+promisc for now, as other drivers are doing it and at a later point
+send some patch series with all the explanations.
 
-diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-index 065610edc37a..5650a793db81 100644
---- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-+++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-@@ -33,6 +33,7 @@
- #include <linux/of_device.h>
- #include <linux/of_graph.h>
- #include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
-@@ -143,6 +144,7 @@ struct sn65dsi83 {
- 	struct mipi_dsi_device		*dsi;
- 	struct drm_bridge		*panel_bridge;
- 	struct gpio_desc		*enable_gpio;
-+	struct regulator		*vcc;
- 	int				dsi_lanes;
- 	bool				lvds_dual_link;
- 	bool				lvds_dual_link_even_odd_swap;
-@@ -337,6 +339,12 @@ static void sn65dsi83_atomic_enable(struct drm_bridge *bridge,
- 	u16 val;
- 	int ret;
- 
-+	ret = regulator_enable(ctx->vcc);
-+	if (ret) {
-+		dev_err(ctx->dev, "Failed to enable vcc: %d\n", ret);
-+		return;
-+	}
-+
- 	/* Deassert reset */
- 	gpiod_set_value(ctx->enable_gpio, 1);
- 	usleep_range(1000, 1100);
-@@ -486,11 +494,16 @@ static void sn65dsi83_atomic_disable(struct drm_bridge *bridge,
- 				     struct drm_bridge_state *old_bridge_state)
- {
- 	struct sn65dsi83 *ctx = bridge_to_sn65dsi83(bridge);
-+	int ret;
- 
- 	/* Put the chip in reset, pull EN line low, and assure 10ms reset low timing. */
- 	gpiod_set_value(ctx->enable_gpio, 0);
- 	usleep_range(10000, 11000);
- 
-+	ret = regulator_disable(ctx->vcc);
-+	if (ret)
-+		dev_err(ctx->dev, "Failed to disable vcc: %d\n", ret);
-+
- 	regcache_mark_dirty(ctx->regmap);
- }
- 
-@@ -599,6 +612,11 @@ static int sn65dsi83_parse_dt(struct sn65dsi83 *ctx, enum sn65dsi83_model model)
- 
- 	ctx->panel_bridge = panel_bridge;
- 
-+	ctx->vcc = devm_regulator_get(dev, "vcc");
-+	if (IS_ERR(ctx->vcc))
-+		return dev_err_probe(dev, PTR_ERR(ctx->vcc),
-+				     "Failed to get supply 'vcc'\n");
-+
- 	return 0;
- }
- 
+> 
+> > > Hence the oddity of your change. I understand what it intends to do:
+> > > if this is a standalone port you support IFF_UNICAST_FLT, so you drop
+> > > frames with unknown MAC DA. But if IFF_PROMISC is set, then why do you
+> > > copy all frames to the CPU? Why don't you just put the CPU in the
+> > > unknown flooding mask?
+> >
+> > Because I don't want the CPU to be in the unknown flooding mask. I want
+> > to send frames to the CPU only if it is required.
+> 
+> What is the strategy through which this driver accepts things like
+> pinging the bridge device over IPv6, with the Neighbor Discovery
+> protocol having the ICMP6 neighbor solicitation messages delivered to
+> (according to my knowledge) an unregistered IPv6 multicast address?
+> Whose responsibility is it to notify the driver of that address, and
+> does the driver copy those packets to the CPU in the right VLAN?
+
+I think in that case the CPU should be part of the multicast flooding
+mask. I will need to look more on this because I don't know much about
+the IPv6.
+
+> 
+> > > How do you handle migration of an FDB entry pointing towards the CPU,
+> > > towards one pointing towards a port?
+> >
+> > Shouldn't I get 2 calls that the entry is removed from CPU and then
+> > added to a port?
+> 
+> Ok.
+
 -- 
-2.25.1
-
+/Horatiu
