@@ -2,103 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A91A34737E2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 23:47:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68D494737FD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 23:51:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243852AbhLMWrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 17:47:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44642 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243847AbhLMWrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 17:47:48 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED703C061751
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 14:47:47 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id w6-20020a9d77c6000000b0055e804fa524so19065684otl.3
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 14:47:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=5H0qbzaIjgpKRl661XZSUbngEcJPf590BIus7cp6ncA=;
-        b=R8VoYyyDTSEuy9f0P5FaPR1C53Xu7aozxo+dMc2TKIiQHU8WDK78rkYLFGz2W9PvW7
-         Rc6ms+egFX7SkYxyk7zzCTGkoqVk2nv4iJcBSAVQj1h8PBYGZW8JwRQJdKGgD8Phe932
-         KV+utJuCmcnQ+tcsjSsktrHTtmEtTFAqyiYB9vzPdDOXCru6cQ6mPlh836V1XKUKnDqh
-         SWcROoMM2fPmQt51gazWdN+qK6SYOMXNj+hYfjdhxrdV+6XREu1aVl6wOX68d3Yj2D4L
-         +b1zOkEAWEoX/dF7bR6efzQ6uCVkvOcDlAzh8/KQIUx1KIdaiFUSMNQm3qSSXPga45Nr
-         p1QA==
+        id S243962AbhLMWvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 17:51:08 -0500
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:45929 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243945AbhLMWvH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 17:51:07 -0500
+Received: by mail-ot1-f52.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso19022930otf.12;
+        Mon, 13 Dec 2021 14:51:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5H0qbzaIjgpKRl661XZSUbngEcJPf590BIus7cp6ncA=;
-        b=W9MUqGJhU7eA4XwPtvUvO4bgJodR+wHcPbwSwRnIZw6uEZoI60AS1RDRjnZlXlzO3J
-         vWjrdObGUlWumGgLrjyA4ellRsEjkExqKMoHKD5WQqDFRWGvFn8ThUtfTdUG0l0+ajQ0
-         k6tTHIZ7fdyV6Ob5ATFSVeCsdbJ+1OmQmv6Aa5pHv6nndphqrGpEZfwCVaD6uWTIWBWM
-         N1L2sfFNl+xua8dNzvLR8wD4M5MX8myQ7uPcDwAzUVOhNz/cOmpX8FZbjcZYdyeCydAo
-         bWZR8U2vD7UOpc0dFV3FeeAD3gsjU1yMr5z0kYJ5PYDf2XcplF5pfNEe18IASIpg4yAM
-         p/Cw==
-X-Gm-Message-State: AOAM530ZLE0mNeYKRdRiLE4Ov+uo2f/lKLM0DacTDa0n3Uoz9xIxK+Z3
-        5vhwx7yw+TkIkR8dZOj45/fZcg==
-X-Google-Smtp-Source: ABdhPJxwfsPGVsS6Hn+ISBirM7ASf+Uy53iWfLYPVPoMDB+x0HE6I2kdL1NxQdLYbPLt8fOLBERuOw==
-X-Received: by 2002:a9d:6254:: with SMTP id i20mr1172374otk.343.1639435667299;
-        Mon, 13 Dec 2021 14:47:47 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id t14sm2473150oth.81.2021.12.13.14.47.46
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=TXNuhThSZzYh5dHlQEsy87eUYOOCcMvcopbthlMlzi0=;
+        b=NHPDWRJY/+FfnhFlo8/StQQ+lix2feBhwgfXhSCSiO3lqSaFC9aK5klIyX0bIKOqq4
+         HHfs6qnoFyW/3mk8l0wTklJHPBv+nG1uZ5pmNXORgvuSF8W1vqXW4OE8Ic3nMQbRNX76
+         bLgNrNFt2HJo37MWEWZSBZzccUAdXt9jKrnaJph+sexHaRUZpxMOXeDGKUEkODMn1sqf
+         holWK0Y4nu1UfZBywfZBkJwFZWhj9knd6HiG1otnj2VFrg44nmtrvSsky+gACpuROZW0
+         SJWFvh7dk0R4TI8nc1aolflDahHqmkwO9vWFvcxmduPvGFjrJAUDXa+edgZCAIebCMqc
+         8lkg==
+X-Gm-Message-State: AOAM532hNlfoi9aPPFOVXfjRghAHYtWeRu0BObA3ntUR3XRdgbV4ny86
+        3jmNvMw/NWsr/XzmqN+2Uw==
+X-Google-Smtp-Source: ABdhPJxCfZL3SzReunSYLPdv6bxyyePW0yFhigNTzi/mCZehsa7+8nCDGdg/U+lRD5jiU+CUp/zDpg==
+X-Received: by 2002:a9d:77d1:: with SMTP id w17mr1156068otl.329.1639435867068;
+        Mon, 13 Dec 2021 14:51:07 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id e4sm1490630oiy.12.2021.12.13.14.51.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 14:47:46 -0800 (PST)
-Date:   Mon, 13 Dec 2021 16:47:42 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] phy: qcom-qmp: Add SM8450 USB QMP PHYs
-Message-ID: <YbfNji+glICLDy76@builder.lan>
-References: <20211213131450.535775-1-vkoul@kernel.org>
- <20211213131450.535775-3-vkoul@kernel.org>
+        Mon, 13 Dec 2021 14:51:06 -0800 (PST)
+Received: (nullmailer pid 1725465 invoked by uid 1000);
+        Mon, 13 Dec 2021 22:51:05 -0000
+Date:   Mon, 13 Dec 2021 16:51:05 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+Cc:     Sandy Huang <hjc@rock-chips.com>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, - <opensource@rock-chips.com>,
+        David Heidelberg <david@ixit.cz>,
+        ~okias/devicetree@lists.sr.ht, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: convert power domain node for rockchip DW
+ MIPI DSI
+Message-ID: <YbfOWXZJAZDuEU1V@robh.at.kernel.org>
+References: <20211206212651.126405-1-david@ixit.cz>
+ <26502781.jAYDHVeSjN@diego>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20211213131450.535775-3-vkoul@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <26502781.jAYDHVeSjN@diego>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 13 Dec 07:14 CST 2021, Vinod Koul wrote:
-
-> Add support for the USB DP & UNI PHYs found on SM8450. This is same as
-> the phy version used on SM8350 and sequences turned out to be same, so
-> use the same table from SM8350 for this as well.
+On Sat, Dec 11, 2021 at 11:55:58AM +0100, Heiko Stübner wrote:
+> Hi David,
 > 
-
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-Regards,
-Bjorn
-
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp.c | 3 +++
->  1 file changed, 3 insertions(+)
+> Am Montag, 6. Dezember 2021, 22:26:50 CET schrieb David Heidelberg:
+> > Convert into YAML format into format, which can be validated.
+> > 
+> > Changes:
+> >  - drop panel from example
 > 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> index a959c97a699f..13a249ec8ab6 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> @@ -5777,6 +5777,9 @@ static const struct of_device_id qcom_qmp_phy_of_match_table[] = {
->  	}, {
->  		.compatible = "qcom,sm8450-qmp-ufs-phy",
->  		.data = &sm8450_ufsphy_cfg,
-> +	}, {
-> +		.compatible = "qcom,sm8450-qmp-usb3-phy",
-> +		.data = &sm8350_usb3phy_cfg,
->  	}, {
->  		.compatible = "qcom,qcm2290-qmp-usb3-phy",
->  		.data = &qcm2290_usb3phy_cfg,
-> -- 
-> 2.31.1
+> the patch subject is strange, talking about a "power domain node".
+> That needs a fix.
 > 
+> Some more things below.
+> 
+> 
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+> > +          - enum:
+> > +              - rockchip,px30-mipi-dsi
+> > +              - rockchip,rk3288-mipi-dsi
+> > +              - rockchip,rk3399-mipi-dsi
+> > +          - const: snps,dw-mipi-dsi
+> 
+> > +      - items:
+> > +          - const: rockchip,px30-mipi-dsi
+> > +      - items:
+> > +          - const: rockchip,rk3288-mipi-dsi
+> > +      - items:
+> > +          - const: rockchip,rk3399-mipi-dsi
+> 
+> what are these for?
+> 
+> I see that px30 uses the dsi without the snps part, but you
+> can also just add a patch adding that second compatible to px30.dtsi
+
+Or drop snps,dw-mipi-dsi as it doesn't seem to be all that meaningful. 
+But I guess that's more invasive so maybe stick with changing px30.
+
+> 
+> I don't think we need to support both ways.
+
+Agreed.
+
+Rob
