@@ -2,126 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34112472D0B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 14:17:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04C01472D13
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 14:19:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233427AbhLMNRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 08:17:41 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:52717 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233288AbhLMNRk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 08:17:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1639401459;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=1z/oXnKbigNR72V6rUxvYybH8ETpkht3CxfyFrpc7CE=;
-        b=SylOnL0a+q1WGg38IaPMfTOdoiHcPai7JLAIUwYQWZZrlFcmVAYGIR0SNmX5IxSF9HdRD7
-        gARayawRjZPx8JHuIsZOT9Imb8iNmWtlcSL87mMyMpA7HZA2siG6vVPp4vnBBvrGQ4lKq/
-        foVoJtqra2Gu9tCdLJ0uuhqYp/jmC/w=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-507-0KdNIwMXNGqYAfCoLdZT8w-1; Mon, 13 Dec 2021 08:17:36 -0500
-X-MC-Unique: 0KdNIwMXNGqYAfCoLdZT8w-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com [10.5.11.16])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 810D38015CD;
-        Mon, 13 Dec 2021 13:17:33 +0000 (UTC)
-Received: from localhost (ovpn-12-202.pek2.redhat.com [10.72.12.202])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 10B5D18032;
-        Mon, 13 Dec 2021 13:17:15 +0000 (UTC)
-Date:   Mon, 13 Dec 2021 21:17:13 +0800
-From:   Baoquan He <bhe@redhat.com>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
-        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-Subject: Re: [PATCH v17 01/10] x86: kdump: replace the hard-coded alignment
- with macro CRASH_ALIGN
-Message-ID: <20211213131713.GA23510@MiWiFi-R3L-srv>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <20211210065533.2023-2-thunder.leizhen@huawei.com>
+        id S233626AbhLMNTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 08:19:38 -0500
+Received: from mail.emtrion.de ([87.139.198.129]:48565 "EHLO mail3.emtrion.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S233448AbhLMNTh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Dec 2021 08:19:37 -0500
+Received: from EMT-KA-S004.emtrion.local (2003:f9:5824:1:c59f:32f4:72e5:b9e1)
+ by EMT-KA-S004.emtrion.local (2003:f9:5824:1:c59f:32f4:72e5:b9e1) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Mon, 13 Dec
+ 2021 14:19:34 +0100
+Received: from EMT-KA-S004.emtrion.local ([fe80::c59f:32f4:72e5:b9e1]) by
+ EMT-KA-S004.emtrion.local ([fe80::c59f:32f4:72e5:b9e1%11]) with mapi id
+ 15.02.0922.019; Mon, 13 Dec 2021 14:19:34 +0100
+From:   "Mueller, Reinhold" <Reinhold.Mueller@emtrion.de>
+To:     'Matti Vaittinen' <mazziesaccount@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "inux-arm-kernel@lists.infradead.org" 
+        <inux-arm-kernel@lists.infradead.org>
+Subject: AW: [PATCH 2/2] arm64: dts: imx8mm: Add support for emtrion
+ emCON-MX8M Mini
+Thread-Topic: [PATCH 2/2] arm64: dts: imx8mm: Add support for emtrion
+ emCON-MX8M Mini
+Thread-Index: AQHX7PWtMgh62TvYt0C+YH8pF7gByKwsF7EAgARVeKA=
+Date:   Mon, 13 Dec 2021 13:19:34 +0000
+Message-ID: <664b2f30a4b040829bc6cae4b6d6a318@emtrion.de>
+References: <20211209120934.4815-1-reinhold.mueller@emtrion.com>
+ <20211209120934.4815-3-reinhold.mueller@emtrion.com>
+ <29c8eeeb-2dee-6182-a2d3-90821cda975a@gmail.com>
+In-Reply-To: <29c8eeeb-2dee-6182-a2d3-90821cda975a@gmail.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2003:f9:5824:1:f844:a05a:aa3e:9bf0]
+x-c2processedorg: 5b249fcb-306f-4927-9982-5d11b1d300ce
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211210065533.2023-2-thunder.leizhen@huawei.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/10/21 at 02:55pm, Zhen Lei wrote:
-> From: Chen Zhou <chenzhou10@huawei.com>
-> 
-> Move CRASH_ALIGN to header asm/kexec.h for later use.
-> 
-> Suggested-by: Dave Young <dyoung@redhat.com>
-> Suggested-by: Baoquan He <bhe@redhat.com>
-
-I remember Dave and I discussed and suggested this when reviewing.
-You can remove my Suggested-by.
-
-For this one, I would like to add ack:
-
-Acked-by: Baoquan He <bhe@redhat.com>
-
-> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> Tested-by: John Donnelly <John.p.donnelly@oracle.com>
-> Tested-by: Dave Kleikamp <dave.kleikamp@oracle.com>
-> ---
->  arch/x86/include/asm/kexec.h | 3 +++
->  arch/x86/kernel/setup.c      | 3 ---
->  2 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/x86/include/asm/kexec.h b/arch/x86/include/asm/kexec.h
-> index 11b7c06e2828c30..3a22e65262aa70b 100644
-> --- a/arch/x86/include/asm/kexec.h
-> +++ b/arch/x86/include/asm/kexec.h
-> @@ -18,6 +18,9 @@
->  
->  # define KEXEC_CONTROL_CODE_MAX_SIZE	2048
->  
-> +/* 16M alignment for crash kernel regions */
-> +#define CRASH_ALIGN		SZ_16M
-> +
->  #ifndef __ASSEMBLY__
->  
->  #include <linux/string.h>
-> diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
-> index 6a190c7f4d71b05..5cc60996eac56d6 100644
-> --- a/arch/x86/kernel/setup.c
-> +++ b/arch/x86/kernel/setup.c
-> @@ -392,9 +392,6 @@ static void __init memblock_x86_reserve_range_setup_data(void)
->  
->  #ifdef CONFIG_KEXEC_CORE
->  
-> -/* 16M alignment for crash kernel regions */
-> -#define CRASH_ALIGN		SZ_16M
-> -
->  /*
->   * Keep the crash kernel below this limit.
->   *
-> -- 
-> 2.25.1
-> 
-
+SGkgTWF0dGksDQoNCnRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KUGxlYXNlIGxvb2sgYXQgdGhl
+IGNvbW1lbnQgYmVsb3cuDQoNClJlZ2FyZHMNClJlaW5ob2xkDQoNCg0KUmVpbmhvbGQgTXVlbGxl
+cg0KU29mdHdhcmUgZW5naW5lZXINCg0KDQplbXRyaW9uIEdtYkgNCkFtIEhhc2VuYmllbCA2IHwg
+NzYyOTcgU3R1dGVuc2VlIHwgR2VybWFueQ0KDQpQaG9uZSArNDkgNzI0NCA2MjY5NCAyMA0KRmF4
+ICs0OSA3MjQ0IDYyNjk0IDE5DQpFbWFpbCBSZWluaG9sZC5NdWVsbGVyQGVtdHJpb24uZGUNCk9u
+bGluZSB3d3cuZW10cmlvbi5kZQ0KDQoNCg0KDQplbXRyaW9uIEdtYkgg4oCiIEFtdHNnZXJpY2h0
+IE1hbm5oZWltIOKAoiBIUkIgMTEwIDMwMCDigKIgR2VzY2jDpGZ0c2bDvGhyZXI6IFJhbW9uYSBN
+YXVyZXIsIEFjaG1lZCBIYWRkb3Ug4oCiIFVtc2F0enN0ZXVlcmlkZW50aWZpa2F0aW9uc251bW1l
+cjpERTgxMzY5NDI2MCDigKIgSW1wcmVzc3VtOiB3d3cuZW10cmlvbi5kZS9kZS9pbXByZXNzdW0u
+aHRtbA0KDQpISU5XRUlTOiBQZXJzb25lbmJlem9nZW5lIERhdGVuLCBkaWUgU2llIHBlciBFLU1h
+aWwgYW4gdW5zIMO8YmVybWl0dGVsbiwgd2VyZGVuIGJlaSB1bnMgZ2VzcGVpY2hlcnQgdW5kIHZl
+cmFyYmVpdGV0LiBJbmZvcm1hdGlvbmVuIHp1IHVuc2VyZW4gZ2VzZXR6bGljaGVuIEluZm9ybWF0
+aW9uc3BmbGljaHRlbiwgenUgdW5zIHVuZCB1bnNlcmVuIERpZW5zdGxlaXN0dW5nZW4gZmluZGVu
+IFNpZSBpbiB1bnNlcmVuIERhdGVuc2NodXR6aGlud2Vpc2VuLg0KRGllc2UgRS1NYWlsIGthbm4g
+dmVydHJhdWxpY2hlIHVuZCAvIG9kZXIgcmVjaHRsaWNoIGdlc2Now7x0enRlIEluZm9ybWF0aW9u
+ZW4gZW50aGFsdGVuLiBXZW5uIFNpZSBuaWNodCBkZXIgcmljaHRpZ2UgQWRyZXNzYXQgc2luZCwg
+b2RlciBkaWVzZSBFLU1haWwgaXJydMO8bWxpY2ggZXJoYWx0ZW4gaGFiZW4sIGluZm9ybWllcmVu
+IFNpZSBiaXR0ZSBkZW4gQWJzZW5kZXIgdW5kIHZlcm5pY2h0ZW4gZGllc2UgTWFpbC4gRGFzIHVu
+ZXJsYXVidGUga29waWVyZW4sIHNvd2llIGRpZSB1bmJlZnVndGUgV2VpdGVyZ2FiZSBkaWVzZXIg
+TWFpbCBpc3QgbmljaHQgZ2VzdGF0dGV0Lg0KPiAtLS0tLVVyc3Byw7xuZ2xpY2hlIE5hY2hyaWNo
+dC0tLS0tDQo+IFZvbjogTWF0dGkgVmFpdHRpbmVuIDxtYXp6aWVzYWNjb3VudEBnbWFpbC5jb20+
+DQo+IEdlc2VuZGV0OiBGcmVpdGFnLCAxMC4gRGV6ZW1iZXIgMjAyMSAyMTowNQ0KPiBBbjogTXVl
+bGxlciwgUmVpbmhvbGQgPFJlaW5ob2xkLk11ZWxsZXJAZW10cmlvbi5kZT47DQo+IHJvYmgrZHRA
+a2VybmVsLm9yZw0KPiBDYzogc2hhd25ndW9Aa2VybmVsLm9yZzsgcy5oYXVlckBwZW5ndXRyb25p
+eC5kZTsNCj4ga2VybmVsQHBlbmd1dHJvbml4LmRlOyBmZXN0ZXZhbUBnbWFpbC5jb207IGxpbnV4
+LWlteEBueHAuY29tOw0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVs
+QHZnZXIua2VybmVsLm9yZzsgaW51eC1hcm0tDQo+IGtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3Jn
+DQo+IEJldHJlZmY6IFJlOiBbUEFUQ0ggMi8yXSBhcm02NDogZHRzOiBpbXg4bW06IEFkZCBzdXBw
+b3J0IGZvciBlbXRyaW9uDQo+IGVtQ09OLU1YOE0gTWluaQ0KPg0KPiBIaSBkZWUgSG8gUmVpbmhv
+bGQsDQo+DQo+DQo+IE9uIDEyLzkvMjEgMTQ6MDksIHJlaW5ob2xkLm11ZWxsZXJAZW10cmlvbi5j
+b20gd3JvdGU6DQo+ID4gRnJvbTogUmVpbmhvbGQgTXVlbGxlciA8cmVpbmhvbGQubXVlbGxlckBl
+bXRyaW9uLmNvbT4NCj4gPg0KPiA+IFRoaXMgcGF0Y2ggYWRkcyBzdXBwb3J0IGZvciB0aGUgZW10
+cmlvbiBHbWJIIGVtQ09OLU1YOE0gTWluaQ0KPiBtb2R1bGVzLg0KPiA+IFRoZXkgYXJlIGF2YWls
+YWJsZSB3aXRoIE5YUCBpLk1YIDhNIE1pbmkgZXF1aXBwZWQgd2l0aCAyIG9yIDQgR0INCj4gTWVt
+b3J5Lg0KPiA+DQo+ID4gVGhlIGRldmljZXRyZWUgaW14OG1tLWVtY29uLmR0c2kgaXMgdGhlIGNv
+bW1vbiBwYXJ0IHByb3ZpZGluZyBhbGwNCj4gPiBtb2R1bGUgY29tcG9uZW50cyBhbmQgdGhlIGJh
+c2ljIHN1cHBvcnQgZm9yIHRoZSBTb0MuIFRoZSBzdXBwb3J0IGZvciB0aGUNCj4gPiBhdmFyaSBi
+YXNlYm9hcmQgaW4gdGhlIGRldmVsb3Blci1raXQgY29uZmlndXJhdGlvbiBpcyBwcm92aWRlZCBi
+eSB0aGUNCj4gPiBlbWNvbi1hdmFyaSBkdHMgZmlsZXMuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5
+OiBSZWluaG9sZCBNdWVsbGVyIDxyZWluaG9sZC5tdWVsbGVyQGVtdHJpb24uY29tPg0KPiA+IC0t
+LQ0KPiA+ICAgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvTWFrZWZpbGUgICAgICAgIHwg
+ICAzICstDQo+ID4gICAuLi4vYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS1lbWNvbi1hdmFyaS5k
+dHMgfCAgMjMgKw0KPiA+ICAgLi4uL2R0cy9mcmVlc2NhbGUvaW14OG1tLWVtY29uLWF2YXJpLmR0
+c2kgICAgIHwgMTQxICsrKysNCj4gPiAgIC4uLi9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLWVt
+Y29uLmR0c2kgICAgICB8IDY0NQ0KPiArKysrKysrKysrKysrKysrKysNCj4gPiAgIDQgZmlsZXMg
+Y2hhbmdlZCwgODExIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkNCj4gPiAgIGNyZWF0ZSBt
+b2RlIDEwMDY0NCBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0tZW1jb24tDQo+
+IGF2YXJpLmR0cw0KPiA+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtNjQvYm9vdC9kdHMv
+ZnJlZXNjYWxlL2lteDhtbS1lbWNvbi0NCj4gYXZhcmkuZHRzaQ0KPiA+ICAgY3JlYXRlIG1vZGUg
+MTAwNjQ0IGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS1lbWNvbi5kdHNpDQo+
+ID4NCj4NCj4gPiArJmkyYzMgew0KPiA+ICtjbG9jay1mcmVxdWVuY3kgPSA8NDAwMDAwPjsNCj4g
+PiArcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsNCj4gPiArcGluY3RybC0wID0gPCZwaW5jdHJs
+X2kyYzM+Ow0KPiA+ICtzdGF0dXMgPSAib2theSI7DQo+ID4gKw0KPiA+ICtiZDcxODQ3OnBtaWNA
+NGIgew0KPiA+ICtjb21wYXRpYmxlID0gInJvaG0sYmQ3MTg0NyI7DQo+ID4gK3JlZyA9IDwweDRi
+PjsNCj4gPiArcGluY3RybC0wID0gPCZwaW5jdHJsX3BtaWM+Ow0KPiA+ICtpbnRlcnJ1cHQtcGFy
+ZW50ID0gPCZncGlvMz47DQo+ID4gK2ludGVycnVwdHMgPSA8MiBHUElPX0FDVElWRV9MT1c+Ow0K
+Pg0KPiBJIGFzc3VtZSB0aGlzIHNob3VsZCBiZSBJUlFfVFlQRV9MRVZFTF9MT1cNCj4NCllvdSBh
+cmUgcmlnaHQuIEkgd2lsbCB1cGRhdGUgdGhlIHBhdGNoc2V0Lg0KDQo+IEJlc3QgUmVnYXJkcw0K
+PiAtLSBNYXR0aSBWYWl0dGluZW4NCg==
