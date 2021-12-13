@@ -2,134 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCC74472002
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 05:34:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46CF547209B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 06:44:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231701AbhLMEeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Dec 2021 23:34:14 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:46214 "EHLO inva021.nxp.com"
+        id S231952AbhLMFoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 00:44:01 -0500
+Received: from muru.com ([72.249.23.125]:37822 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231620AbhLMEeO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 12 Dec 2021 23:34:14 -0500
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C5DDA20061A;
-        Mon, 13 Dec 2021 05:34:12 +0100 (CET)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8C9DA200616;
-        Mon, 13 Dec 2021 05:34:12 +0100 (CET)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 133EC183AC4C;
-        Mon, 13 Dec 2021 12:34:10 +0800 (+08)
-From:   Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com
-Cc:     linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, qiangqing.zhang@nxp.com,
-        xiaoliang.yang_1@nxp.com
-Subject: [PATCH v2] arm64: dts: imx8mp-evk: configure multiple queues on eqos
-Date:   Mon, 13 Dec 2021 12:45:46 +0800
-Message-Id: <20211213044546.9903-1-xiaoliang.yang_1@nxp.com>
-X-Mailer: git-send-email 2.17.1
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S230204AbhLMFoB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Dec 2021 00:44:01 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 2C9D7809F;
+        Mon, 13 Dec 2021 05:44:42 +0000 (UTC)
+Date:   Mon, 13 Dec 2021 07:43:58 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     Jarkko Nikula <jarkko.nikula@bitmer.com>
+Cc:     linux-omap@vger.kernel.org,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] ARM: dts: Fix timer regression for beagleboard revision c
+Message-ID: <Ybbdnr96H58TkytD@atomide.com>
+References: <20211125144834.52457-1-tony@atomide.com>
+ <ef843afa-c99d-328d-853a-00ef293a47f2@bitmer.com>
+ <20211212190455.qbggbhmr5nquw7bw@bitmer.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211212190455.qbggbhmr5nquw7bw@bitmer.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Eqos ethernet support five queues on hardware, enable these queues and
-configure the priority of each queue. Uses Strict Priority as scheduling
-algorithms to ensure that the TSN function works.
+* Jarkko Nikula <jarkko.nikula@bitmer.com> [211212 19:05]:
+> On Sat, Dec 11, 2021 at 05:30:57PM +0200, Jarkko Nikula wrote:
+> This I used years before your patch and by some reason I confused to use
+> new omap3-beagle-ab4.dtb when testing your patch yesterday:
+> 
+> > cat arch/arm/boot/dts/omap3-beagle-ab4.dtb >>arch/arm/boot/zImage
+> 
+> without realizing my Beagle Board version is not between A to B4 but C2.
+> So when using the omap3-beagle.dtb your patch fixes the regression I
+> found.
+> 
+> Tested-by: Jarkko Nikula <jarkko.nikula@bitmer.com>
 
-The priority of each queue is a bitmask value that maps VLAN tag
-priority to the queue. Since the hardware only supports five queues,
-this patch maps priority 0-4 to queues one by one, and priority 5-7 to
-queue 4.
+OK good to hear omap3-beagle.dtb now works for beagles that don't have
+the A to B4 hardware timer issue :) And thanks for testing.
 
-The total fifo size of 5 queues is 8192 bytes, if enable 5 queues with
-store-and-forward mode, it's not enough for large packets, which would
-trigger fifo overflow frequently. This patch set DMA to thresh mode to
-enable all 5 queues.
+It seems the beagle revisions A to B4 are broken for any kind of power
+management as the clockevent timer for those boards is not always on.
+Probably not worth spending much effort on those. Maybe the PMIC could
+be reconfigured on the buggy revisions in addition to the timer quirks
+if somebody still cares for those board revisions.
 
-Signed-off-by: Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 57 ++++++++++++++++++++
- 1 file changed, 57 insertions(+)
+Regards,
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index 7b99fad6e4d6..e4c69594f067 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -86,6 +86,9 @@
- 	pinctrl-0 = <&pinctrl_eqos>;
- 	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy0>;
-+	snps,force_thresh_dma_mode;
-+	snps,mtl-tx-config = <&mtl_tx_setup>;
-+	snps,mtl-rx-config = <&mtl_rx_setup>;
- 	status = "okay";
- 
- 	mdio {
-@@ -99,6 +102,60 @@
- 			eee-broken-1000t;
- 		};
- 	};
-+
-+	mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <5>;
-+		snps,tx-sched-sp;
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x1>;
-+		};
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x2>;
-+		};
-+		queue2 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x4>;
-+		};
-+		queue3 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x8>;
-+		};
-+		queue4 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0xf0>;
-+		};
-+	};
-+	mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <5>;
-+		snps,rx-sched-sp;
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x1>;
-+			snps,map-to-dma-channel = <0>;
-+		};
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x2>;
-+			snps,map-to-dma-channel = <1>;
-+		};
-+		queue2 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x4>;
-+			snps,map-to-dma-channel = <2>;
-+		};
-+		queue3 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x8>;
-+			snps,map-to-dma-channel = <3>;
-+		};
-+		queue4 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0xf0>;
-+			snps,map-to-dma-channel = <4>;
-+		};
-+	};
- };
- 
- &fec {
--- 
-2.17.1
-
+Tony
