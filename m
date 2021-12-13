@@ -2,74 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16FD34735F9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 21:31:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 724A8473600
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 21:35:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237470AbhLMUbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 15:31:35 -0500
-Received: from mail-oo1-f50.google.com ([209.85.161.50]:34389 "EHLO
-        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242877AbhLMUba (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 15:31:30 -0500
-Received: by mail-oo1-f50.google.com with SMTP id b1-20020a4a8101000000b002c659ab1342so4473205oog.1;
-        Mon, 13 Dec 2021 12:31:30 -0800 (PST)
+        id S241997AbhLMUfe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 15:35:34 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:44935 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238005AbhLMUfc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 15:35:32 -0500
+Received: by mail-ot1-f41.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso18698731otj.11;
+        Mon, 13 Dec 2021 12:35:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=6Jz4O5bCit+lttjk1cWgGeasdedfgCU+0At2jS7RFSQ=;
-        b=WcKl/R7Xblr8lT+3xop75dMYtdDAfdzESY2/kPgTjkjJ0fDUY7I53NmCfn365OYJp3
-         sK36+uJ8V8geR2vn8WHGJCCpXwjwfW6jXfuzPgiozUCCvWAEK/oSyJ0r0L8sCTFcPUXh
-         ZkWaFTLvhlEfbHg1rk/GRida77oMEPjsHTcx0Z6cOAnxCdlMFztmhaArdIrAm0qy9G7p
-         m4Tnyx3+/tOocVWDhE2wOyJcHL2hsmfVbalZi16tIg329qWMryEOJFNZLopVSdiRvfUh
-         y14uuV8fXVq/rGQV7XJz7xJJRsDz9C3Lgf9xkvpsKl4QdA0bhOdS2zX6NbG20NX4rkaO
-         nrhw==
-X-Gm-Message-State: AOAM530ak3f54J9el774me2SLvy2vcHKBQtgdQ/LzvIutcdItbLZ06Wf
-        VxdVZvPzazPcYisjM0SL0Q==
-X-Google-Smtp-Source: ABdhPJx7lUq1A20jc5mI60hoJ2qUBaBDpxbjw29ueJ948efm/GYtUpX11ooAyBeEUo7gl9BXh/sNbQ==
-X-Received: by 2002:a05:6820:151b:: with SMTP id ay27mr535785oob.22.1639427489902;
-        Mon, 13 Dec 2021 12:31:29 -0800 (PST)
+        bh=UjShsLmpN0SZM+m8SUUiNDWjd+SPX71KTwqzkwvysM0=;
+        b=0t9YK6lZuanHzXySrhR+ntHk+RgsYp8Z7MmNfE23arkMOtwKaBlNcYyeqF6KivBYQa
+         y+Dy3Y/xJvWkZNueQ0kScD6EEhhdymedREDQITXqKaq+bpE0l2NibkeHL0Bty35SgCQT
+         qfxzq83ESmT1RTda4Eh3GQds1IoD9WVeNTbzrVg9YB1A4OreVA4UXORcMcd2nvuDxibX
+         QLXnGFx2bWt0FnNaHxf0avKbWQuWkqXdjzhr+UHLmbdXZe/cBSZbjPGzGNfqIwwZjW7Y
+         W9vyoNi+wiWT9EsUW75jbG2021wWy5XW2mRZZ3ft+BzTtrYDljY5JrM7CUjbc5cI4lXn
+         3uyA==
+X-Gm-Message-State: AOAM530lquzBj7WOLObH3xnBjiA/3caNir8kyH5P2LjkNPhXUVQ5DhVI
+        31hmxJyWAqFmJaRiqxsJkQ==
+X-Google-Smtp-Source: ABdhPJy3T03Lv6DYRee0EAteJwqi9P/4wzvwMoGsPqpWTMFq+yupuVXKZwoG097ja4/X7OvByWI01w==
+X-Received: by 2002:a9d:6190:: with SMTP id g16mr742838otk.54.1639427731541;
+        Mon, 13 Dec 2021 12:35:31 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m22sm2534192ooj.8.2021.12.13.12.31.28
+        by smtp.gmail.com with ESMTPSA id p10sm2340679otp.53.2021.12.13.12.35.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 12:31:29 -0800 (PST)
-Received: (nullmailer pid 1520651 invoked by uid 1000);
-        Mon, 13 Dec 2021 20:31:28 -0000
-Date:   Mon, 13 Dec 2021 14:31:28 -0600
+        Mon, 13 Dec 2021 12:35:30 -0800 (PST)
+Received: (nullmailer pid 1526504 invoked by uid 1000);
+        Mon, 13 Dec 2021 20:35:29 -0000
+Date:   Mon, 13 Dec 2021 14:35:29 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     srv_heupstream@mediatek.com, Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        anan.sun@mediatek.com, yi.kuo@mediatek.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        iommu@lists.linux-foundation.org, Will Deacon <will@kernel.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, lc.kan@mediatek.com,
-        linux-kernel@vger.kernel.org, youlin.pei@mediatek.com,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        anthony.huang@mediatek.com, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: memory: mediatek: Add mt8186 support
-Message-ID: <YbetoA2JJtnXj7gm@robh.at.kernel.org>
-References: <20211203064027.14993-1-yong.wu@mediatek.com>
- <20211203064027.14993-3-yong.wu@mediatek.com>
+To:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, Xiubo.Lee@gmail.com,
+        bcousson@baylibre.com, broonie@kernel.org, festevam@gmail.com,
+        kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
+        michael@amarulasolutions.com, nicoleotsuka@gmail.com,
+        perex@perex.cz, shengjiu.wang@gmail.com, tiwai@suse.com,
+        tony@atomide.com
+Subject: Re: [PATCH 0/4] fsl-asoc-card: Add optional dt property for setting
+ mclk-id
+Message-ID: <YbeukcwXQueEquJZ@robh.at.kernel.org>
+References: <20211203134930.128703-1-ariel.dalessandro@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211203064027.14993-3-yong.wu@mediatek.com>
+In-Reply-To: <20211203134930.128703-1-ariel.dalessandro@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Dec 2021 14:40:25 +0800, Yong Wu wrote:
-> Add mt8186 smi support in the bindings.
+On Fri, Dec 03, 2021 at 10:49:26AM -0300, Ariel D'Alessandro wrote:
+> This is a follow up of patchset:
 > 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> ---
->  .../bindings/memory-controllers/mediatek,smi-common.yaml      | 4 +++-
->  .../bindings/memory-controllers/mediatek,smi-larb.yaml        | 3 +++
->  2 files changed, 6 insertions(+), 1 deletion(-)
-> 
+>     [RFC patch 0/5] Support BCLK input clock in tlv320aic31xx
 
-Acked-by: Rob Herring <robh@kernel.org>
+Link?
+
+> Sound cards may allow using different main clock inputs. In the generic
+> fsl-asoc-card driver, these values are hardcoded for each specific card
+> configuration.
+> 
+> Let's make it more flexible, allowing setting mclk-id from the
+> device-tree node.
+> 
+> Ariel D'Alessandro (4):
+>   dt-bindings: sound: Rename tlv320aic31xx-micbias as tlv320aic31xx
+>   dt-bindings: tlv320aic31xx: Define PLL clock inputs
+>   ASoC: fsl-asoc-card: Add optional dt property for setting mclk-id
+
+'mclk-id' is not documented.
+
+>   ASoC: fsl-asoc-card: Remove BCLK default value for tlv320aic31xx card
+> 
+>  .../devicetree/bindings/sound/fsl-asoc-card.txt    |  1 +
+>  .../devicetree/bindings/sound/tlv320aic31xx.txt    |  2 +-
+>  arch/arm/boot/dts/am43x-epos-evm.dts               |  2 +-
+>  include/dt-bindings/sound/tlv320aic31xx-micbias.h  |  9 ---------
+>  include/dt-bindings/sound/tlv320aic31xx.h          | 14 ++++++++++++++
+>  sound/soc/codecs/tlv320aic31xx.c                   |  2 +-
+>  sound/soc/fsl/fsl-asoc-card.c                      |  7 ++++++-
+>  7 files changed, 24 insertions(+), 13 deletions(-)
+>  delete mode 100644 include/dt-bindings/sound/tlv320aic31xx-micbias.h
+>  create mode 100644 include/dt-bindings/sound/tlv320aic31xx.h
+> 
+> -- 
+> 2.30.2
+> 
+> 
