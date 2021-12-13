@@ -2,132 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC978473063
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 16:26:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E488473095
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 16:32:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237019AbhLMP0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 10:26:24 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:59632 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234672AbhLMP0X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 10:26:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1639409183; x=1670945183;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Ryug1bVR3itCcTo+/NCw0RmB2Bhud42INAPy6OLzOeg=;
-  b=Ihs5M/iXTi7OsuF9EQXBC7plWp2AAiHFYrq3+Z+s2tn4/r5mq3BTSTTX
-   IcKXI5vIIhC0ItlV7bS1GVQD2hu1nrmKIbb7B4mope+smBYcI+FUIEstg
-   zGEiFtjhZmWTTqf/s6J5jseMXDWAz9xJSeoCkVpV2zScLDxtKJuuyNhlu
-   Fp/wraoEG1z0EfTtKOuLcpQql1uU/mtDLlzimPVk8CPHbhRHvex+Mk5n+
-   j567zZ75hNsuV41J+9/UyLaia3rdCbKN1yjEuyKvV0/trs3o7EnK014Oj
-   qnJrH3vf9CTl65JJRA77NflWhx4VcgrZ4Kn1grKgXWGs+2nPYwobjZfFn
-   w==;
-IronPort-SDR: 5iOVefQ3cbTdHXr4NHxdhWvPOJK0GKSCglZQrkhfsjf0Ol5Ymk15DHsss5hT87YPRylG51c4kd
- kUm9qq43I2AQprrVFz1bhldRUbdH+1A8P7hQVrHkl+xmM2mYnb9gzmYYM83olDTcUdeAwT+REU
- YZWxoLWqbC17tvV72bVlJLwWnIO6UluRncWgMZurBaRLl552MM6zgA8pAlWGx3khTUA8XXE5TM
- ltyVdJCyPnmznts33zrH2/N+oBGkIaMs7unUpZDImEVcoCozfA6bjPbWC0T10zPXQGOi18tyqu
- i/6JyAeAVxTPSX+W7ArEcNrL
-X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; 
-   d="scan'208";a="147044768"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Dec 2021 08:26:22 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 13 Dec 2021 08:26:22 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Mon, 13 Dec 2021 08:26:21 -0700
-Date:   Mon, 13 Dec 2021 16:28:24 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "vivien.didelot@gmail.com" <vivien.didelot@gmail.com>,
-        "andrew@lunn.ch" <andrew@lunn.ch>
-Subject: Re: [PATCH net-next v3 6/6] net: lan966x: Add switchdev support
-Message-ID: <20211213152824.22odaltycnotozkw@soft-dev3-1.localhost>
-References: <20211209094615.329379-1-horatiu.vultur@microchip.com>
- <20211209094615.329379-7-horatiu.vultur@microchip.com>
- <20211209133616.2kii2xfz5rioii4o@skbuf>
- <20211209164311.agnofh275znn5t5c@soft-dev3-1.localhost>
- <20211213102529.tzdvekwwngo4zgex@soft-dev3-1.localhost>
- <20211213134319.dp6b3or24pl3p4en@skbuf>
- <20211213142656.tfonhcmmtkelszvf@soft-dev3-1.localhost>
- <20211213142907.7s74smjudcecpgik@skbuf>
+        id S240140AbhLMPcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 10:32:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55512 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240137AbhLMPcU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 10:32:20 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8444EC061574
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 07:32:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 163ADB80EFB
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 15:32:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE79DC34602
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 15:32:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639409537;
+        bh=nNo2Jrlh2Rw+pIEvaW6ndQV7z9az7fUfMd3e9bWAXWU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=h66gORZ0JWZRYTMrxTWXtDh84hsBgxI1YIwlZSioAAhqtO63I7d6IwwKWBG+yO14S
+         nsy7D+CT9cZLw25W6fS0OMnftNCUY+lNJak8IHqepZM3/8f5BUfSKZ4PQkV2Vpiisy
+         tXoQoHLKM0br/4P44pM93wgLVMO52HS0iDp2tLTTTSWFaAfuX+BKJO0QlZl4FIzzrp
+         QjYCwxVs2kwKZ/O9cYaOWkVVZ39ujW7SXcCq+kg82pfkIbmmj/H2o0FiGe125BAY9O
+         L5pRjXkZIf/tgW5ItzEj9LBNqHl37/Z/zVUm479ieG/pd7eo1n5B86PGNd5zOdvkF4
+         Xksz4Ko9XDKtA==
+Received: by mail-ed1-f51.google.com with SMTP id g14so52516543edb.8
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 07:32:17 -0800 (PST)
+X-Gm-Message-State: AOAM531TaEJHhLIgftYsj2hrJ9s/vdmXuDgeXvBgTdxa1FopvOtF019v
+        3dXY7jJGrK8H42kMHvylDIzWdKIhzjw0eaelqw==
+X-Google-Smtp-Source: ABdhPJxb2PUU0DJJddHXBsD4oAS6GarsiokjSwhFN48u+QWqWqfgE29ut+BDZf5mFNvrX6upfDtdrcn+ctdCyMlFN4I=
+X-Received: by 2002:aa7:dc07:: with SMTP id b7mr63676574edu.327.1639409512437;
+ Mon, 13 Dec 2021 07:31:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20211213142907.7s74smjudcecpgik@skbuf>
+References: <20211213134745.43505-1-kernelfans@gmail.com>
+In-Reply-To: <20211213134745.43505-1-kernelfans@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 13 Dec 2021 09:31:41 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLtC3-rSTiN6_BuGVr8fqmNy0yxtjj1+NdfuTkVSjMDNA@mail.gmail.com>
+Message-ID: <CAL_JsqLtC3-rSTiN6_BuGVr8fqmNy0yxtjj1+NdfuTkVSjMDNA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: fdt: fix membock add/cap ordering
+To:     Pingfan Liu <kernelfans@gmail.com>,
+        Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Nick Terrell <terrelln@fb.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 12/13/2021 14:29, Vladimir Oltean wrote:
-> 
-> On Mon, Dec 13, 2021 at 03:26:56PM +0100, Horatiu Vultur wrote:
-> > > They are independent of each other. You deduce the interface on which
-> > > the notifier was emitted using switchdev_notifier_info_to_dev() and act
-> > > upon it, if lan966x_netdevice_check() is true. The notifier handling
-> > > code itself is stateless, all the state is per port / per switch.
-> > > If you register one notifier handler per switch, lan966x_netdevice_check()
-> > > would return true for each notifier handler instance, and you would
-> > > handle each event twice, would you not?
-> >
-> > That is correct, I will get the event twice which is a problem in the
-> > lan966x. The function lan966x_netdevice_check should be per instance, in
-> > this way each instance can filter the events.
-> > The reason why I am putting the notifier_block inside lan966x is to be
-> > able to get to the instance of lan966x even if I get a event that is not
-> > for lan966x port.
-> 
-> That isn't a problem, every netdevice notifier still sees all events.
++Zhen Lei
 
-Yes, that is correct.
-Sorry maybe I am still confused, but some things are still not right.
+On Mon, Dec 13, 2021 at 7:48 AM Pingfan Liu <kernelfans@gmail.com> wrote:
+>
+> During kdump kernel saves vmcore, it runs into the following bug:
+> ...
+> [   15.148919] usercopy: Kernel memory exposure attempt detected from SLU=
+B object 'kmem_cache_node' (offset 0, size 4096)!
+> [   15.159707] ------------[ cut here ]------------
+> [   15.164311] kernel BUG at mm/usercopy.c:99!
+> [   15.168482] Internal error: Oops - BUG: 0 [#1] SMP
+> [   15.173261] Modules linked in: xfs libcrc32c crct10dif_ce ghash_ce sha=
+2_ce sha256_arm64 sha1_ce sbsa_gwdt ast i2c_algo_bit drm_vram_helper drm_km=
+s_helper syscopyarea sysfillrect sysimgblt fb_sys_fops cec drm_ttm_helper t=
+tm drm nvme nvme_core xgene_hwmon i2c_designware_platform i2c_designware_co=
+re dm_mirror dm_region_hash dm_log dm_mod overlay squashfs zstd_decompress =
+loop
+> [   15.206186] CPU: 0 PID: 542 Comm: cp Not tainted 5.16.0-rc4 #1
+> [   15.212006] Hardware name: GIGABYTE R272-P30-JG/MP32-AR0-JG, BIOS F12 =
+(SCP: 1.5.20210426) 05/13/2021
+> [   15.221125] pstate: 60400009 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYP=
+E=3D--)
+> [   15.228073] pc : usercopy_abort+0x9c/0xa0
+> [   15.232074] lr : usercopy_abort+0x9c/0xa0
+> [   15.236070] sp : ffff8000121abba0
+> [   15.239371] x29: ffff8000121abbb0 x28: 0000000000003000 x27: 000000000=
+0000000
+> [   15.246494] x26: 0000000080000400 x25: 0000ffff885c7000 x24: 000000000=
+0000000
+> [   15.253617] x23: 000007ff80400000 x22: ffff07ff80401000 x21: 000000000=
+0000001
+> [   15.260739] x20: 0000000000001000 x19: ffff07ff80400000 x18: fffffffff=
+fffffff
+> [   15.267861] x17: 656a626f2042554c x16: 53206d6f72662064 x15: 657463657=
+4656420
+> [   15.274983] x14: 74706d6574746120 x13: 2129363930342065 x12: 7a6973202=
+c302074
+> [   15.282105] x11: ffffc8b041d1b148 x10: 00000000ffff8000 x9 : ffffc8b04=
+012812c
+> [   15.289228] x8 : 00000000ffff7fff x7 : ffffc8b041d1b148 x6 : 000000000=
+0000000
+> [   15.296349] x5 : 0000000000000000 x4 : 0000000000007fff x3 : 000000000=
+0000000
+> [   15.303471] x2 : 0000000000000000 x1 : ffff07ff8c064800 x0 : 000000000=
+000006b
+> [   15.310593] Call trace:
+> [   15.313027]  usercopy_abort+0x9c/0xa0
+> [   15.316677]  __check_heap_object+0xd4/0xf0
+> [   15.320762]  __check_object_size.part.0+0x160/0x1e0
+> [   15.325628]  __check_object_size+0x2c/0x40
+> [   15.329711]  copy_oldmem_page+0x7c/0x140
+> [   15.333623]  read_from_oldmem.part.0+0xfc/0x1c0
+> [   15.338142]  __read_vmcore.constprop.0+0x23c/0x350
+> [   15.342920]  read_vmcore+0x28/0x34
+> [   15.346309]  proc_reg_read+0xb4/0xf0
+> [   15.349871]  vfs_read+0xb8/0x1f0
+> [   15.353088]  ksys_read+0x74/0x100
+> [   15.356390]  __arm64_sys_read+0x28/0x34
+> ...
+>
+> This bug introduced by commit b261dba2fdb2 ("arm64: kdump: Remove custom
+> linux,usable-memory-range handling"), which moves
+> memblock_cap_memory_range() to fdt, but it breaches the rules that
+> memblock_cap_memory_range() should come after memblock_add() etc as said
+> in commit e888fa7bb882 ("memblock: Check memory add/cap ordering").
 
-So lets say there are two lan966x instances(A and B) and each one has 2
-ports(ethA0, ethA1, ethB0, ethB1).
-So with the current behaviour, if for example ethA0 is added in vlan
-100, then we get two callbacks for each lan966x instance(A and B) because
-each of them registered. And because of lan966x_netdevice_check() is true
-for ethA0 will do twice the work.
-And you propose to have a singleton notifier so we get only 1 callback
-and will be fine for this case. But if you add for example the bridge in
-vlan 200 then I will never be able to get to the lan966x instance which
-is needed in this case.
+Presumably only when using EFI boot which throws out any DT memblock setup.
 
-That is why if the lan966x_netdevice_check would be per instance, then
-we can filter like before, we still get call twice but then we filter for
-each instance. We get the lan966x instance from notifier_block and then
-we can check if the port netdev_ops is the same as the lan966x
-netdev_ops.
+>
+> As a consequence, the virtual address set up by copy_oldmem_page() does
+> not bail out from the test of virt_addr_valid() in check_heap_object(),
+> and finally hits the BUG_ON().
+>
+> Since memblock allocator has no idea about the time point of the full
+> memblock's population, resolving this issue at arch level code by
+> calling a new interface early_init_dt_cap_memory_range() exposed by fdt.
+>
+> Fixes: b261dba2fdb2 ("arm64: kdump: Remove custom linux,usable-memory-ran=
+ge handling")
+> Signed-off-by: Pingfan Liu <kernelfans@gmail.com>
+> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: Mike Rapoport <rppt@kernel.org>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Nick Terrell <terrelln@fb.com>
+> To: linux-arm-kernel@lists.infradead.org
+> To: devicetree@vger.kernel.org
+> ---
+>  arch/arm64/kernel/setup.c | 1 +
+>  drivers/of/fdt.c          | 5 +++++
+>  include/linux/of_fdt.h    | 1 +
+>  3 files changed, 7 insertions(+)
+>
+> diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
+> index be5f85b0a24d..353e5171a66c 100644
+> --- a/arch/arm64/kernel/setup.c
+> +++ b/arch/arm64/kernel/setup.c
+> @@ -331,6 +331,7 @@ void __init __no_sanitize_address setup_arch(char **c=
+mdline_p)
+>
+>         xen_early_init();
+>         efi_init();
+> +       early_init_dt_cap_memory_range();
 
-And in the other case we will still be able to get to the lan966x instance
-in case the bridge is added in a vlan.
+As it is efi_init() that does all the memblock setup, I think this
+belongs in efi_init() because it would be needed for any arch that
+uses EFI for memory setup.
 
-> DSA intercepts a lot of events which aren't directly emitted for its own
-> interfaces. You don't gain much by having one more, if anything.
-> 
-> > > notifier handlers should be registered as singletons, like other drivers
-> > > do.
-> >
-> > It looks like not all the other driver register them as singletone. For
-> > example: prestera, mlx5, sparx5. (I just have done a git grep for
-> > register_switchdev_notifier, I have not looked in details at the
-> > implementation).
-> 
-> Not all driver writers may have realized that it is an issue that needs
-> to be thought of.
+>
+>         if (!efi_enabled(EFI_BOOT) && ((u64)_text % MIN_KIMG_ALIGN) !=3D =
+0)
+>              pr_warn(FW_BUG "Kernel image misaligned at boot, please fix =
+your bootloader!");
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index bdca35284ceb..bb7e8fc3a334 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -1278,6 +1278,11 @@ void __init early_init_dt_scan_nodes(void)
+>         memblock_cap_memory_range(cap_mem_addr, cap_mem_size);
+>  }
+>
+> +void __init early_init_dt_cap_memory_range(void)
+> +{
+> +       memblock_cap_memory_range(cap_mem_addr, cap_mem_size);
 
--- 
-/Horatiu
+This code is changing in [1] which I think should make fixing this
+issue easier. I'd suggest making
+early_init_dt_check_for_usable_mem_range() non-static and the EFI code
+can call it.
+
+I'm also curious how folks testing that series don't hit this issue.
+
+Rob
+
+[1] https://lore.kernel.org/all/20211210065533.2023-9-thunder.leizhen@huawe=
+i.com/
