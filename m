@@ -2,201 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB6CE472B83
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:34:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7F83472B8F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:35:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236068AbhLMLe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 06:34:26 -0500
-Received: from mickerik.phytec.de ([195.145.39.210]:62280 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235966AbhLMLeY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 06:34:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1639395262; x=1641987262;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=+CfUaDtCzKMIec1hYZi6pt2waSX8RrwpItBr78PMMrU=;
-        b=poniwzXmLP7DcVElo5Shl1RwIl2mD9/3G9hQt40GccbfaO0ftJRbeH/amvEeW3BV
-        n2oFgJFlHYQ0xq7aywXQaLxVofbZKcJEpzQHQpmTUMVvXoaaQ3gkcb+ocm0She2M
-        EVWxL7w7SsBvf6tw12OG+aTXNPyl1FoozlhamOVMrSM=;
-X-AuditID: c39127d2-4ef327000000426a-5d-61b72fbeda71
-Received: from florix.phytec.de (florix.phytec.de [172.16.0.118])
-        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (Client did not present a certificate)
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 2E.13.17002.EBF27B16; Mon, 13 Dec 2021 12:34:22 +0100 (CET)
-Received: from Berlix.phytec.de (172.16.0.117) by Florix.phytec.de
- (172.16.0.118) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Mon, 13 Dec
- 2021 12:34:22 +0100
-Received: from Berlix.phytec.de ([fe80::1c1b:e8b7:a0d4:89b2]) by
- berlix.phytec.de ([fe80::1c1b:e8b7:a0d4:89b2%3]) with mapi id 15.01.2375.017;
- Mon, 13 Dec 2021 12:34:22 +0100
-From:   Yunus Bas <Y.Bas@phytec.de>
-To:     "shawnguo@kernel.org" <shawnguo@kernel.org>
-CC:     "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH 1/3] ARM: dts: imx6qdl: phytec: Add support for optional
- PEB-EVAL-01 board
-Thread-Topic: [PATCH 1/3] ARM: dts: imx6qdl: phytec: Add support for optional
- PEB-EVAL-01 board
-Thread-Index: AQHX5cnyF9MDax+eMkim9MW+ChwuEqwkug8AgAuUV4A=
-Date:   Mon, 13 Dec 2021 11:34:22 +0000
-Message-ID: <4b8ee4ab7ca758ea20ff535689665e96db9d012e.camel@phytec.de>
-References: <20211130085355.2291607-1-y.bas@phytec.de>
-         <20211206024433.GW4216@dragon>
-In-Reply-To: <20211206024433.GW4216@dragon>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.0.116]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <67F502BCEE5CC141924B004DC6A753F6@phytec.de>
-Content-Transfer-Encoding: base64
+        id S233079AbhLMLfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 06:35:20 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:46876
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233804AbhLMLfS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Dec 2021 06:35:18 -0500
+Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A542D40265
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 11:35:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1639395317;
+        bh=XmQFfZI2fAYBuLxinQknZKp6zP+Jb9M2TJ1/zIaaukg=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=hFToJ0egn6No8cyMxOJZoCfNmcvs4w7ltDErfwNsaqmDq7/z6xFysWULLCVQzXdn0
+         GFGNcM4ve+08mWgnTVIGsOlEUeTZfmsE0sOFiEjvcZwEV+Uqb1C4HmixC0OTwAJSW4
+         C3qtiYP6sc60X1h674xv6BrMuWVuVKP1YEYv+nMGaB5WVIEasb+UmqhXPu/uz8hl1t
+         z8TYjv46Tw4TpMc3RZY5tIG5ATVfUbBFP3V7RSTujyR4eJxl70jeO5JZ0ikxkV3Q3S
+         utxipmSH+ZBZLlbqFMdRkCk0ddJk2gEw+22tIKPTrzgG28ovaqpVlLlLczQUW6oFJq
+         o9yTCubQBwLqw==
+Received: by mail-lj1-f199.google.com with SMTP id i123-20020a2e2281000000b0021cfde1fa8eso4404322lji.7
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 03:35:17 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=XmQFfZI2fAYBuLxinQknZKp6zP+Jb9M2TJ1/zIaaukg=;
+        b=OmqJtjlXsRDsqsDNkvRQouwzEYzrZIrFUoPCupa1damVQYt3zrFYxnWlYXqKM8HBzN
+         BlhTKArFi+NcjVrpU0JjoWLKCrM7YHLnAud2J3Mb0ASWoFnJiksuisvdVAiHJvbFsgni
+         IVODHBzgY30DHGCf44pCidHDqHZ6Kh6GNpvSwY4XDoihK2BDb7KcxAXQSse6XpJuG8uP
+         yG4bVLC5Iu03DNBwd5MmWbV9KpvnFS0GAstV+vn54f4oGGTRP7F/wrijochoP+3HvqGD
+         vvm4b62bRJcyVCQM/x42PZZ8JZZTLwgmXKJe+mI86w1Bj/5SIzGG0sidHcgWJviO+4WW
+         xR3g==
+X-Gm-Message-State: AOAM530UBvWJzN9uK3wV5CcU3VCCOl3N73yoCKaKwPgc57R7UwwuS+ae
+        KtFi9XgJJ063NMef6s6qLq5+oN49FNurHkfEwEqpHWRUgRdho9gY0c5KghmIlBYdFE54TazXtKQ
+        myuP5l+XdWbkHlGeXI0Nu2RIzzXMS+2oSvMtBUSg=
+X-Received: by 2002:ac2:442e:: with SMTP id w14mr28227335lfl.577.1639395317045;
+        Mon, 13 Dec 2021 03:35:17 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzyzWy5HL/QnWHO5qDxOL75aUaoSjf/KHJ7CmIOs1qs+h5a0PiJHTIHJuv0mVfGli6MhqmdLA==
+X-Received: by 2002:ac2:442e:: with SMTP id w14mr28227316lfl.577.1639395316898;
+        Mon, 13 Dec 2021 03:35:16 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id j5sm1386457lfe.219.2021.12.13.03.35.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Dec 2021 03:35:16 -0800 (PST)
+Message-ID: <ab15a97b-9351-4d50-f392-21cbfdec1289@canonical.com>
+Date:   Mon, 13 Dec 2021 12:35:15 +0100
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrLIsWRmVeSWpSXmKPExsWyRoChTHef/vZEgzVtyhbzj5xjtXh41d9i
-        1dSdLBaXd81hs2jde4Td4u/2TSwWL7aIO7B77Jx1l91j06pONo/+vwYenzfJBbBEcdmkpOZk
-        lqUW6dslcGV8f/mSrWCPd8W71o2sDYxHPLsYOTkkBEwkJm+YxwxiCwksY5KY8rOoi5ELyH7E
-        KPFt7wVGCGcTo8SWVwtYuhg5ONgEFCWu3MoHaRAR0Jd4v+UvC0gNs8A+JokDjf+ZQBLCAgkS
-        HTcWskEUJUrMO7YSyraSeH5xI5jNIqAqsX/NTTCbV8BN4uKy7YwQV0RIXPz9GuwiTgFtiY3b
-        j4DVMArISmzYcB4sziwgLrHp2XdWiA8EJJbsgYhLCIhKvHz8DyquINHW08kEcjOzgKbE+l36
-        EK0WEv+PTmWBsBUlpnQ/ZIc4QVDi5MwnLBMYxWch2TALoXsWku5ZSLpnIelewMi6ilEoNzM5
-        O7UoM1uvIKOyJDVZLyV1EyMwSg9PVL+0g7FvjschRiYOxkOMEhzMSiK8L623JgrxpiRWVqUW
-        5ccXleakFh9ilOZgURLnvd/DlCgkkJ5YkpqdmlqQWgSTZeLglGpgrPxx8fff6JMPS/5YVcvc
-        T2D/Wm3vnlvxYPc6q4CXT+60rtT7ctU0LuT29MIzpb/spNyr3RosuEObi5iZ57H68thwvw2p
-        914d9WODxl6hbwd6/qyLS5gTIHY7cPGe43ZiqeVMGXvE7bM8J+1wf78iTtp6Fb/SXtHERYfq
-        z8mve5bXZ7g5WPOyEktxRqKhFnNRcSIAedClHcACAAA=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v3 3/5] tty: serial: samsung: Remove USI initialization
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20211204195757.8600-1-semen.protsenko@linaro.org>
+ <20211204195757.8600-4-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211204195757.8600-4-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgU2hhd24sCgpTb3JyeSBmb3IgdGhlIGxhdGUgcmVzcG9uc2UuIEkgd2FzIHNpY2sgZm9yIHRo
-ZSB3aG9sZSB3ZWVrLgoKQW0gTW9udGFnLCBkZW0gMDYuMTIuMjAyMSB1bSAxMDo0NCArMDgwMCBz
-Y2hyaWViIFNoYXduIEd1bzoKPiBPbiBUdWUsIE5vdiAzMCwgMjAyMSBhdCAwOTo1Mzo1M0FNICsw
-MTAwLCBZdW51cyBCYXMgd3JvdGU6Cj4gPiBUaGUgUEhZVEVDIFBFVi1FVkFMLTAxIGV4cGFuc2lv
-biBib2FyZCBhZGRzIHN1cHBvcnQgZm9yIGFkZGl0aW9uYWwKPiA+IGdwaW8tdHJpZ2dlcmVkIHVz
-ZXItbGVkcyBhbmQgZ3Bpby1rZXkgc3VwcG9ydC4KPiA+IAo+ID4gU2lnbmVkLW9mZi1ieTogWXVu
-dXMgQmFzIDx5LmJhc0BwaHl0ZWMuZGU+Cj4gPiAtLS0KPiA+IMKgLi4uL2Jvb3QvZHRzL2lteDZk
-bC1waHl0ZWMtbWlyYS1yZGstbmFuZC5kdHPCoCB8wqAgMSArCj4gPiDCoC4uLi9ib290L2R0cy9p
-bXg2cS1waHl0ZWMtbWlyYS1yZGstZW1tYy5kdHPCoMKgIHzCoCAxICsKPiA+IMKgLi4uL2Jvb3Qv
-ZHRzL2lteDZxLXBoeXRlYy1taXJhLXJkay1uYW5kLmR0c8KgwqAgfMKgIDEgKwo+ID4gwqAuLi4v
-ZHRzL2lteDZxZGwtcGh5dGVjLW1pcmEtcGViLWV2YWwtMDEuZHRzacKgIHwgNzEKPiA+ICsrKysr
-KysrKysrKysrKysrKysKPiA+IMKgLi4uL2Jvb3QvZHRzL2lteDZxcC1waHl0ZWMtbWlyYS1yZGst
-bmFuZC5kdHPCoCB8wqAgMSArCj4gPiDCoDUgZmlsZXMgY2hhbmdlZCwgNzUgaW5zZXJ0aW9ucygr
-KQo+ID4gwqBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm0vYm9vdC9kdHMvaW14NnFkbC1waHl0
-ZWMtbWlyYS1wZWItZXZhbC0KPiA+IDAxLmR0c2kKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2FyY2gv
-YXJtL2Jvb3QvZHRzL2lteDZkbC1waHl0ZWMtbWlyYS1yZGstbmFuZC5kdHMKPiA+IGIvYXJjaC9h
-cm0vYm9vdC9kdHMvaW14NmRsLXBoeXRlYy1taXJhLXJkay1uYW5kLmR0cwo+ID4gaW5kZXggOWY3
-ZjlmOTgxMzlkLi5iMDU3ZmE2NjRhNmIgMTAwNjQ0Cj4gPiAtLS0gYS9hcmNoL2FybS9ib290L2R0
-cy9pbXg2ZGwtcGh5dGVjLW1pcmEtcmRrLW5hbmQuZHRzCj4gPiArKysgYi9hcmNoL2FybS9ib290
-L2R0cy9pbXg2ZGwtcGh5dGVjLW1pcmEtcmRrLW5hbmQuZHRzCj4gPiBAQCAtOCw2ICs4LDcgQEAK
-PiA+IMKgI2luY2x1ZGUgImlteDZkbC5kdHNpIgo+ID4gwqAjaW5jbHVkZSAiaW14NnFkbC1waHl0
-ZWMtcGh5Y29yZS1zb20uZHRzaSIKPiA+IMKgI2luY2x1ZGUgImlteDZxZGwtcGh5dGVjLW1pcmEu
-ZHRzaSIKPiA+ICsjaW5jbHVkZSAiaW14NnFkbC1waHl0ZWMtbWlyYS1wZWItZXZhbC0wMS5kdHNp
-Igo+ID4gwqAKPiA+IMKgLyB7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgbW9kZWwgPSAiUEhZVEVDIHBo
-eUJPQVJELU1pcmEgRHVhbExpdGUvU29sbyBDYXJyaWVyLUJvYXJkCj4gPiB3aXRoIE5BTkQiOwo+
-ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDZxLXBoeXRlYy1taXJhLXJkay1l
-bW1jLmR0cwo+ID4gYi9hcmNoL2FybS9ib290L2R0cy9pbXg2cS1waHl0ZWMtbWlyYS1yZGstZW1t
-Yy5kdHMKPiA+IGluZGV4IDJlNzBlYTU2MjNjNi4uZGI2ZTJjYzM2NzU5IDEwMDY0NAo+ID4gLS0t
-IGEvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnEtcGh5dGVjLW1pcmEtcmRrLWVtbWMuZHRzCj4gPiAr
-KysgYi9hcmNoL2FybS9ib290L2R0cy9pbXg2cS1waHl0ZWMtbWlyYS1yZGstZW1tYy5kdHMKPiA+
-IEBAIC04LDYgKzgsNyBAQAo+ID4gwqAjaW5jbHVkZSAiaW14NnEuZHRzaSIKPiA+IMKgI2luY2x1
-ZGUgImlteDZxZGwtcGh5dGVjLXBoeWNvcmUtc29tLmR0c2kiCj4gPiDCoCNpbmNsdWRlICJpbXg2
-cWRsLXBoeXRlYy1taXJhLmR0c2kiCj4gPiArI2luY2x1ZGUgImlteDZxZGwtcGh5dGVjLW1pcmEt
-cGViLWV2YWwtMDEuZHRzaSIKPiA+IMKgCj4gPiDCoC8gewo+ID4gwqDCoMKgwqDCoMKgwqDCoG1v
-ZGVsID0gIlBIWVRFQyBwaHlCT0FSRC1NaXJhIFF1YWQgQ2Fycmllci1Cb2FyZCB3aXRoCj4gPiBl
-TU1DIjsKPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9pbXg2cS1waHl0ZWMtbWly
-YS1yZGstbmFuZC5kdHMKPiA+IGIvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnEtcGh5dGVjLW1pcmEt
-cmRrLW5hbmQuZHRzCj4gPiBpbmRleCA2NWQyZTQ4M2MxMzYuLjUxZmY2MDFiMWFlYyAxMDA2NDQK
-PiA+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDZxLXBoeXRlYy1taXJhLXJkay1uYW5kLmR0
-cwo+ID4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnEtcGh5dGVjLW1pcmEtcmRrLW5hbmQu
-ZHRzCj4gPiBAQCAtOCw2ICs4LDcgQEAKPiA+IMKgI2luY2x1ZGUgImlteDZxLmR0c2kiCj4gPiDC
-oCNpbmNsdWRlICJpbXg2cWRsLXBoeXRlYy1waHljb3JlLXNvbS5kdHNpIgo+ID4gwqAjaW5jbHVk
-ZSAiaW14NnFkbC1waHl0ZWMtbWlyYS5kdHNpIgo+ID4gKyNpbmNsdWRlICJpbXg2cWRsLXBoeXRl
-Yy1taXJhLXBlYi1ldmFsLTAxLmR0c2kiCj4gPiDCoAo+ID4gwqAvIHsKPiA+IMKgwqDCoMKgwqDC
-oMKgwqBtb2RlbCA9ICJQSFlURUMgcGh5Qk9BUkQtTWlyYSBRdWFkIENhcnJpZXItQm9hcmQgd2l0
-aAo+ID4gTkFORCI7Cj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnFkbC1w
-aHl0ZWMtbWlyYS1wZWItZXZhbC0wMS5kdHNpCj4gPiBiL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDZx
-ZGwtcGh5dGVjLW1pcmEtcGViLWV2YWwtMDEuZHRzaQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQK
-PiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uM2JjYWQ0MDJkM2VjCj4gPiAtLS0gL2Rldi9udWxsCj4g
-PiArKysgYi9hcmNoL2FybS9ib290L2R0cy9pbXg2cWRsLXBoeXRlYy1taXJhLXBlYi1ldmFsLTAx
-LmR0c2kKPiA+IEBAIC0wLDAgKzEsNzEgQEAKPiA+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmll
-cjogKEdQTC0yLjArIE9SIE1JVCkKPiA+ICsvKgo+ID4gKyAqIENvcHlyaWdodCAoQykgMjAxOCBQ
-SFlURUMgTWVzc3RlY2huaWsKPiA+ICsgKiBBdXRob3I6IENocmlzdGlhbiBIZW1wIDxjLmhlbXBA
-cGh5dGVjLmRlPgo+ID4gKyAqLwo+ID4gKwo+ID4gKyNpbmNsdWRlIDxkdC1iaW5kaW5ncy9pbnB1
-dC9pbnB1dC5oPgo+ID4gKwo+ID4gKy8gewo+ID4gK8KgwqDCoMKgwqDCoMKgZ3Bpby1rZXlzIHsK
-PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gImdwaW8ta2V5
-cyI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcGluY3RybC1uYW1lcyA9ICJk
-ZWZhdWx0IjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsLTAgPSA8
-JnBpbmN0cmxfZ3Bpb19rZXlzPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBz
-dGF0dXMgPSAiZGlzYWJsZWQiOwo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoGhvbWUgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqBsYWJlbCA9ICJIb21lIjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgZ3Bpb3MgPSA8JmdwaW82IDE4IEdQSU9fQUNUSVZFX0xPVz47Cj4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGxpbnV4LGNvZGUg
-PSA8S0VZX1NMRUVQPjsKPiAKPiBLRVlfU0xFRVAgZm9yIEhvbWU/CgpJJ2xsIGNoYW5nZSB0aGUg
-bm9kZSBuYW1lIGFuZCBsYWJlbCBpbiB2MgoKPiAKPiBTaGF3bgo+IAo+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gPiArCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgcG93ZXIgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqBsYWJlbCA9ICJQb3dlciBCdXR0b24iOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBncGlvcyA9IDwmZ3BpbzUgMjggR1BJT19BQ1RJVkVf
-TE9XPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-bGludXgsY29kZSA9IDxLRVlfV0FLRVVQPjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgd2FrZXVwLXNvdXJjZTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqB9Owo+ID4gK8KgwqDCoMKgwqDCoMKgfTsKPiA+ICsKPiA+ICvCoMKgwqDC
-oMKgwqDCoHVzZXJfbGVkczogdXNlci1sZWRzIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqBjb21wYXRpYmxlID0gImdwaW8tbGVkcyI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsLTAgPSA8JnBpbmN0cmxfdXNlcl9sZWRzPjsKPiA+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAiZGlzYWJsZWQiOwo+ID4gKwo+
-ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHVzZXItbGVkMSB7Cj4gPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGdwaW9zID0gPCZncGlvNyAx
-IEdQSU9fQUNUSVZFX0hJR0g+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqBsaW51eCxkZWZhdWx0LXRyaWdnZXIgPSAiZ3BpbyI7Cj4gPiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRlZmF1bHQtc3RhdGUgPSAi
-b24iOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gPiArCj4gPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdXNlci1sZWQyIHsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ3Bpb3MgPSA8JmdwaW83IDAgR1BJT19B
-Q1RJVkVfSElHSD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoGxpbnV4LGRlZmF1bHQtdHJpZ2dlciA9ICJncGlvIjsKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZGVmYXVsdC1zdGF0ZSA9ICJvbiI7Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiA+ICsKPiA+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqB1c2VyLWxlZDMgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBncGlvcyA9IDwmZ3BpbzUgMjkgR1BJT19BQ1RJVkVf
-SElHSD47Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGxpbnV4LGRlZmF1bHQtdHJpZ2dlciA9ICJncGlvIjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZGVmYXVsdC1zdGF0ZSA9ICJvbiI7Cj4gPiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiA+ICvCoMKgwqDCoMKgwqDCoH07Cj4gPiAr
-fTsKPiA+ICsKPiA+ICsmaW9tdXhjIHsKPiA+ICvCoMKgwqDCoMKgwqDCoHBpbmN0cmxfZ3Bpb19r
-ZXlzOiBncGlva2V5c2dycCB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZnNs
-LHBpbnMgPSA8Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoE1YNlFETF9QQURfU0QzX0RBVDZfX0dQSU82X0lPMTjCoMKgwqDCoMKgwqDCoMKgwqAweDEK
-PiA+IGIwYjAKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgTVg2UURMX1BBRF9DU0kwX0RBVDEwX19HUElPNV9JTzI4wqDCoMKgwqDCoMKgwqAweDEKPiA+
-IGIwYjAKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA+Owo+ID4gK8KgwqDCoMKg
-wqDCoMKgfTsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoHBpbmN0cmxfdXNlcl9sZWRzOiB1c2Vy
-bGVkc2dycCB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZnNsLHBpbnMgPSA8
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoE1YNlFE
-TF9QQURfU0QzX0RBVDRfX0dQSU83X0lPMDHCoMKgwqDCoMKgwqDCoMKgwqAweDEKPiA+IGIwYjAK
-PiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgTVg2UURM
-X1BBRF9TRDNfREFUNV9fR1BJTzdfSU8wMMKgwqDCoMKgwqDCoMKgwqDCoDB4MQo+ID4gYjBiMAo+
-ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBNWDZRRExf
-UEFEX0NTSTBfREFUMTFfX0dQSU81X0lPMjnCoMKgwqDCoMKgwqDCoDB4MQo+ID4gYjBiMAo+ID4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoD47Cj4gPiArwqDCoMKgwqDCoMKgwqB9Owo+
-ID4gK307Cj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvaW14NnFwLXBoeXRlYy1t
-aXJhLXJkay1uYW5kLmR0cwo+ID4gYi9hcmNoL2FybS9ib290L2R0cy9pbXg2cXAtcGh5dGVjLW1p
-cmEtcmRrLW5hbmQuZHRzCj4gPiBpbmRleCBmMjdkN2FiNDI2MjYuLjA2ZmUwYzUzMTVmYyAxMDA2
-NDQKPiA+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDZxcC1waHl0ZWMtbWlyYS1yZGstbmFu
-ZC5kdHMKPiA+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDZxcC1waHl0ZWMtbWlyYS1yZGst
-bmFuZC5kdHMKPiA+IEBAIC04LDYgKzgsNyBAQAo+ID4gwqAjaW5jbHVkZSAiaW14NnFwLmR0c2ki
-Cj4gPiDCoCNpbmNsdWRlICJpbXg2cWRsLXBoeXRlYy1waHljb3JlLXNvbS5kdHNpIgo+ID4gwqAj
-aW5jbHVkZSAiaW14NnFkbC1waHl0ZWMtbWlyYS5kdHNpIgo+ID4gKyNpbmNsdWRlICJpbXg2cWRs
-LXBoeXRlYy1taXJhLXBlYi1ldmFsLTAxLmR0c2kiCj4gPiDCoAo+ID4gwqAvIHsKPiA+IMKgwqDC
-oMKgwqDCoMKgwqBtb2RlbCA9ICJQSFlURUMgcGh5Qk9BUkQtTWlyYSBRdWFkUGx1cyBDYXJyaWVy
-LUJvYXJkIHdpdGgKPiA+IE5BTkQiOwo+ID4gLS0gCj4gPiAyLjI1LjEKPiA+IAoK
+On 04/12/2021 20:57, Sam Protsenko wrote:
+> USI control is now extracted to the dedicated USI driver. Remove USI
+> related code from serial driver to avoid conflicts and code duplication.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+> Changes in v3:
+>   - Spell check fixes in commit message
+> 
+> Changes in v2:
+>   - (none)
+> 
+>  drivers/tty/serial/samsung_tty.c | 36 ++++----------------------------
+>  include/linux/serial_s3c.h       |  9 --------
+>  2 files changed, 4 insertions(+), 41 deletions(-)
+> 
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
+Greg,
+If you are fine with the changes, please take the serial driver changes
+via your tree.
+
+Best regards,
+Krzysztof
