@@ -2,121 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC0E04730DF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 16:48:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 304264730F8
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 16:56:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239176AbhLMPsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 10:48:25 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:56880 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239266AbhLMPsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 10:48:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1639410504; x=1670946504;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=XhWtFV7u63XPezj9PznQ9BhMGOrSptpvlb1wVN/lahw=;
-  b=nHslaDLXUBtcEQo5i0Fb5IE/QbvIt7xu6er4kkxyhV9Nz2C7mPJBL98M
-   QEBXez1qc3C2KDeYjaPTmTpfYKDn3YZbc1dxWrcMSdDIqL7UFHy8VbVfO
-   /sRPRbwc0H8IG4RQIEe9SbBseJB4IjG9jL4p7UU4f9Y922gMupqFK6hPN
-   dYosYBob3N5IfCxtvMRxtO6Iu+hPxrZ5W6+eFddl9GROS3HqD9y17mYdu
-   BB7IB+exFpT6u9in39RuBDTAhlGlI7A1CQQ7AmRF965L8zRcVjbmy4kgk
-   Cy1dSWJO3KHyiSPPe0x58Y82o/ZqheMz/OqmZXLnsZ1RTcoyO0BeLliHW
-   Q==;
-IronPort-SDR: AVUwnS3oZZh7vLD3iu65UD6twSY5iwrBrY6jLD2u2q5hGxQQpO2jPo9yiARUofFx8Ci4va1I92
- KIb8/2wf+cvDzZfwXpVBhV2GGLHRM9WPEpOo40z/7XEg6fpkIe5vDOUjJSp3ED6I+1gPqdPJ+F
- +d2yZ65Ay6gadn/XXr4CzjTH8ElSnQqNewRBT7jOaynBOLFoaF2Q3IaJg5jKaI18WoCjKIVM/b
- fD4D1QAomtoiO0GSS4Cq1H9wv519l0bFh20SLY/Azjya0gFy4rMjKPG8YyhLEPbyOmYoG4eaeq
- n60cRx6ohXCoyo9p33d5DEP5
-X-IronPort-AV: E=Sophos;i="5.88,202,1635231600"; 
-   d="scan'208";a="79373756"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Dec 2021 08:48:23 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 13 Dec 2021 08:48:22 -0700
-Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Mon, 13 Dec 2021 08:48:21 -0700
-Subject: Re: [PATCH] ARM: dts: at91: enable watchdog for SAMA5D3 Xplained
-To:     Michael Opdenacker <michael.opdenacker@bootlin.com>,
-        <robh+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20211209154540.6391-1-michael.opdenacker@bootlin.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-Message-ID: <9f01d0c7-b5c3-1353-8cc6-ed797e466706@microchip.com>
-Date:   Mon, 13 Dec 2021 16:48:20 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S240240AbhLMP4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 10:56:35 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:50846 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238063AbhLMP4e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 10:56:34 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A1EE76115B;
+        Mon, 13 Dec 2021 15:56:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45393C34602;
+        Mon, 13 Dec 2021 15:56:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639410993;
+        bh=3FGWIya7q7VvGFx4Lkkcd0Ne7ihM+mYzlpUX97z0UNE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VP1+gsD0rXjVlGo5TX2Xt9z7yb/w6/tTvBPkNytu5AaJl9pqoyL+K2WPy6+WvKZ+k
+         7DENnYuGy0pIZ3Ja6/5FwPKCyyJrGGNEjV0/+VhRxjUMJv7wFLbmXRPMc4DfzTaIkl
+         3kTQ3r0muW4fAqeOzuab5VUg9lL2Xrti2TiuUZ2UeSfjC3/d+VUYPT6PRvX5QCBjAy
+         Rrbo9Bm3XNNG2PSYFASUbgV87Vqj71cXgyAH6SmrLuOabZGeX/5UGspY29seVlX31U
+         afY29edg+UhEaOqsxBj8D1u32khMKY8+MuvgJBAHnyoLM1xm1E9TDLkpRvoIYcmvB6
+         bUKf7FKr/Q6KA==
+Date:   Mon, 13 Dec 2021 15:56:28 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Sven Peter <sven@svenpeter.dev>, Rob Herring <robh+dt@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] spi: apple: Add driver for Apple SPI controller
+Message-ID: <YbdtLFSrwjYcz/zz@sirena.org.uk>
+References: <20211212034726.26306-1-marcan@marcan.st>
+ <20211212034726.26306-4-marcan@marcan.st>
+ <YbaIwa/9utI9SD1u@sirena.org.uk>
+ <d566c897-ee7d-f32f-1548-57f037c69c89@marcan.st>
 MIME-Version: 1.0
-In-Reply-To: <20211209154540.6391-1-michael.opdenacker@bootlin.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="hVycDoLG7hCwps6L"
+Content-Disposition: inline
+In-Reply-To: <d566c897-ee7d-f32f-1548-57f037c69c89@marcan.st>
+X-Cookie: No solicitors.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/12/2021 at 16:45, Michael Opdenacker wrote:
-> Like on the SAMA5D2 and SAMA5D4 Xplained boards,
-> enable the watchdog device on the SAMA5D3 Xplained board.
-> 
-> As explained on drivers/watchdog/at91sam9_wdt.c,
-> for the watchdog driver to work in Linux, you need to make sure
-> that the bootstrap / bootloader doesn't disable the watchdog,
-> as the Watchdog Timer Mode Register can be only written to once.
-> 
-> Signed-off-by: Michael Opdenacker <michael.opdenacker@bootlin.com>
 
-Hi Michael,
+--hVycDoLG7hCwps6L
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks for your patch.
+On Mon, Dec 13, 2021 at 12:50:49PM +0900, Hector Martin wrote:
+> On 13/12/2021 08.41, Mark Brown wrote:
+> > On Sun, Dec 12, 2021 at 12:47:26PM +0900, Hector Martin wrote:
 
-Even if I understand the need for alignment with other sama5 SoCs, I'm 
-not planning to take this patch to enable the watchdog by default.
+> > > @@ -0,0 +1,566 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Apple SoC SPI device driver
+> > > + *
 
-As you highlight, this older watchdog, compared to the ones on sama5d4 
-or sama5d2, cannot be re-enabled.
-On our usual prebuilt demos and configurations, that don't have watchdog 
-support by default, enabling it triggers the following errors:
-at91_wdt fffffe40.watchdog: watchdog is disabled
-at91_wdt: probe of fffffe40.watchdog failed with error -22
+> > Please keep the entire comment a C++ one so things look more
+> > intentional.
 
-I prefer to let the user enable the watchdog explicitly, on the whole 
-chain of components for its use-case and make sure to "pet" it correctly.
+> I thought this pattern was pretty much the standard style.
 
-Best regards,
-   Nicolas
+It's common, especially given all the automated conversions, but ugly.
 
-> ---
->   arch/arm/boot/dts/at91-sama5d3_xplained.dts | 4 ++++
->   1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/at91-sama5d3_xplained.dts b/arch/arm/boot/dts/at91-sama5d3_xplained.dts
-> index d72c042f2850..440eccc9eb38 100644
-> --- a/arch/arm/boot/dts/at91-sama5d3_xplained.dts
-> +++ b/arch/arm/boot/dts/at91-sama5d3_xplained.dts
-> @@ -79,6 +79,10 @@ timer1: timer@1 {
->                                  };
->                          };
-> 
-> +                       watchdog: watchdog@fffffe40 {
-> +                               status = "okay";
-> +                       };
-> +
->                          i2c0: i2c@f0014000 {
->                                  pinctrl-0 = <&pinctrl_i2c0_pu>;
->                                  status = "okay";
-> --
-> 2.25.1
-> 
+> > > +	/* We will want to poll if the time we need to wait is
+> > > +	 * less than the context switching time.
+> > > +	 * Let's call that threshold 5us. The operation will take:
+> > > +	 *    bits_per_word * fifo_threshold / hz <= 5 * 10^-6
+> > > +	 *    200000 * bits_per_word * fifo_threshold <= hz
+> > > +	 */
+> > > +	return 200000 * t->bits_per_word * APPLE_SPI_FIFO_DEPTH / 2 <= t->speed_hz;
 
+> > Some brackets or an intermediate variable wouldn't hurt here, especially
+> > given the line length.
 
--- 
-Nicolas Ferre
+> How about this?
+
+> return (200000 * t->bits_per_word * APPLE_SPI_FIFO_DEPTH / 2) <= t->speed_hz;
+
+That's better but it's still a very long line which is half the issue.
+
+> > > +static const struct of_device_id apple_spi_of_match[] = {
+> > > +	{ .compatible = "apple,spi", },
+> > > +	{}
+> > > +};
+> > > +MODULE_DEVICE_TABLE(of, apple_spi_of_match);
+
+> > This is an awfully generic compatible.  It's common to use the SoC name
+> > for the IP compatibles when they're not otherwise identified?
+
+> Apple like to keep blocks compatible across SoC generations - I think this
+> one dates, at least to some extent, to the original iPhone or thereabouts.
+> We do use per-SoC compatibles in the DTs in case we need to throw in per-SoC
+> quirks in the future ("apple,t8103-spi", "apple,spi"), but for drivers like
+> this we prefer to use generic compatibles as long as backwards compatibility
+> doesn't break. If Apple do something totally incompatible (like they did
+> with AIC2 in the latest chips), we'll bump to something like apple,spi2.
+> This happens quite rarely, so it makes sense to just keep things generic
+> except for these instances. That way old kernels will happily bind to the
+> block in newer SoCs if it is compatible.
+
+There's currently a bit of a fashion for people with very old SPI blocks
+to make incompatible new versions recently, a lot of it seems to be
+driven by things like flash engine support.  Sometimes these things end
+up getting instantiated together as they have different purposes and the
+incompatibilties make the IPs larger.
+
+> If we had a detailed lineage of what SoCs used what blocks and when things
+> changed we could try something else, like using the first SoC where the
+> specific block version was introduced, but we don't... so I think it makes
+> sense to just go with generic ones where we don't think things have changed
+> much since the dark ages. FWIW, Apple calls this one spi-1,spimc and claims
+> "spi-version = 1" and the driver has Samsung in the name... so the history
+> of this block definitely goes back quite a ways :-)
+
+Have you done a contrast and compare with the Samsung driver?  Given
+both this and your comments above about this dating back to the original
+iPhone...
+
+--hVycDoLG7hCwps6L
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmG3bSsACgkQJNaLcl1U
+h9Bzdwf+PGHs9oh8m1YUtFsWJbVlGeTVE/c3v5RRT2+tdSdxxMZvly6i9WXg7HvJ
+CS/CU9DD4Eyx2uaRh8ULfNBz50PweySACW0FZhFVDlOmPTYLHSFEDcQ9yVMV+xjc
+yYW3lcovDQ0zlvtBj0BbeI9l2K9cR7Iro98W5Vaa0DjdD9NpLeTfqxR++ZbWKe2s
+DjqL0MI5ZCxplrr192B/L3IrD87J22nEO6J/VCNTRoXmkXbkQj/hjXLwE43BBg9A
+fhuJTnmffWmLZTAVWp589+Pow69vF0fDHoXgbCUJGhb7h+y+kTzShIu6/N75bI6P
+6YUOGHhSYBAQEKRWPSIEQTiVvZu9zQ==
+=mLOb
+-----END PGP SIGNATURE-----
+
+--hVycDoLG7hCwps6L--
