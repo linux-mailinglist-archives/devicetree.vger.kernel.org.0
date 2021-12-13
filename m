@@ -2,154 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4810D4723C2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 10:25:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FF94472635
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 10:51:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232116AbhLMJZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 04:25:26 -0500
-Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:43299 "EHLO
-        wnew2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232047AbhLMJZZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 04:25:25 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.west.internal (Postfix) with ESMTP id 1A0442B0014C;
-        Mon, 13 Dec 2021 04:25:23 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Mon, 13 Dec 2021 04:25:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=7jmrCIXairoj2
-        k92Bls3rCi+HRGAZUgUDSdIAr+qd3w=; b=Xqu4nXaJgm0YY7mmzGaIkuQz+L+f+
-        tP4MzMaCWVmdfwFf+irFqEOPebvNpfSWFucam697d8KjfZXid0/KI76WLhEJDewv
-        y/HMj/HT7bsU2Y8VVzEfPrmEglS48ogrufABnfdZ3/ntRte5ltxy01One88kKcUt
-        1jECO91/HUVD5UXROkAEE0CdhKjgZjLVTdRdatEDxWwzvB/006C5+50o6THTSXYL
-        nmOH2nbHEHITZQCRP5azlBYLHZJSe+5+exDHSTZ1Z4mtWuPlA34KD8Mo0XKxpQyx
-        QIYW8Ygtuwoz+oG3PvX94mvGfvYZSiAT3EM8XepBu7iSmLDpy6bSaP5YA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=7jmrCIXairoj2k92Bls3rCi+HRGAZUgUDSdIAr+qd3w=; b=mcJ88QeW
-        9NdxXH/qUh2jzxaSt97jMZH/QO9N9jIsHUYZ8oWgtfSf2KibYVhgHxDKhM3WSY7l
-        JtdB93HGoOlo8nkib+G3g3VqeJPsXd8OL5hRlBpYPlmkHruc8FYbKGaCnw355l6S
-        U2h6ixmbg6BgmQD9obx0HB7W+KdNp07VuPoJbRw9mypilYqXxWoQcd6xPNtuE47g
-        UMda2Wr8nq4tLhiukA+UyDYQk5gF9W0h8XAtNDyy8sRrh3zT7gn7BVGeaeplmWkK
-        KPN/jrxTMOmAehkUvjHsX3ai2e3ooUNn0W1IKwMObQ/AI6hGYCJoeXcqtGD/Y4zq
-        JyJ8f2IyRBa25A==
-X-ME-Sender: <xms:ghG3YXwjESVYeU3CXShNEa3PuhJuhN8VORdk53BMGaltGNJ-7pAgUg>
-    <xme:ghG3YfSfc7T68_UrClJFmgTsVkyuxYV2cPuM8bzYLPEwtSLNLX1p3on2eHFFPSWz9
-    vHXxoHstOQXQhfFCgs>
-X-ME-Received: <xmr:ghG3YRWrQLtfS48tBz6GhRi4MKs3e44HjoYwiMv2sLuTklTNo9ARd7SvUTx9JuiADlHO3NWBvactKS4l6bnzkXHMbGCnQPBnIZEtHou6>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrkeekgddtgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
-    vdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:ghG3YRgifQZ5n98_ebHaChiFubIiu7fAZFNVoUBRl1S9Ys1dYArWaw>
-    <xmx:ghG3YZDYTKpzP5COzRvSlagxaC7P-chE2_vTZz2l8pUdetBGqS-pwg>
-    <xmx:ghG3YaIx8JJ9LiX5ZLkZPTd7IhIXlHk93N3VTH0TCUl-f6pDU5CRUg>
-    <xmx:ghG3YR5ep__OdL94e7nH0zM4gnnG2F1mg-UJ4njcsgY3BYHF8NfrqmEFkGM>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 13 Dec 2021 04:25:21 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Ray Jui <rjui@broadcom.com>,
+        id S236270AbhLMJta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 04:49:30 -0500
+Received: from smtp-out1.suse.de ([195.135.220.28]:39116 "EHLO
+        smtp-out1.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236484AbhLMJrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 04:47:12 -0500
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out1.suse.de (Postfix) with ESMTPS id 00B7E210E6;
+        Mon, 13 Dec 2021 09:47:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1639388830; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=PzHLrYaz9bHO/2aWJHbhv+jzKaT2GSRHB9B+UdXbU5A=;
+        b=CjdZi9gstin9qp9Hhf1mlnJuzQmzzcCBfAWmk/HowtzE7AcwEtb9NqtHHbSFKYlMPpMW5F
+        15qqha6x8ng9ql7vU0yRiBzp+SE4BzASBU2jnaFZPwntk6BZEWOmbTCctGwgpbJb7AClpV
+        5O+XkFzO7uS3fHsEUQJUTUV67RjkjjE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1639388830;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=PzHLrYaz9bHO/2aWJHbhv+jzKaT2GSRHB9B+UdXbU5A=;
+        b=IIMC5IOqacOI9/ivCsBq3Sa+WZBldHlQU/ixM5ofberpd1Bp4rwIQ97ePYV+Uapw3ZcY9U
+        zQKIaNnE98Pvw7Bw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 7E0CB13CCB;
+        Mon, 13 Dec 2021 09:47:09 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id 2EiTHZ0Wt2E5LAAAMHmgww
+        (envelope-from <tzimmermann@suse.de>); Mon, 13 Dec 2021 09:47:09 +0000
+Message-ID: <f3514f59-5b97-26f8-ab9e-e592571cc13f@suse.de>
+Date:   Mon, 13 Dec 2021 10:47:08 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH v3 2/3] drm/vc4: Remove conflicting framebuffers before
+ callind bind_all
+Content-Language: en-US
+To:     Maxime Ripard <maxime@cerno.tech>, Ray Jui <rjui@broadcom.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
         Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <maxime@cerno.tech>,
         Scott Branden <sbranden@broadcom.com>,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
         Daniel Vetter <daniel.vetter@intel.com>,
         David Airlie <airlied@linux.ie>,
         Nicolas Saenz Julienne <nsaenz@kernel.org>
-Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
+Cc:     devicetree@vger.kernel.org, Dom Cobley <dom@raspberrypi.com>,
         Tim Gover <tim.gover@raspberrypi.com>,
-        Dom Cobley <dom@raspberrypi.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        dri-devel@lists.freedesktop.org,
+        bcm-kernel-feedback-list@broadcom.com,
         linux-rpi-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com
-Subject: [PATCH v3 3/3] drm/vc4: Notify the firmware when DRM is in charge
-Date:   Mon, 13 Dec 2021 10:25:03 +0100
-Message-Id: <20211213092503.57379-4-maxime@cerno.tech>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211213092503.57379-1-maxime@cerno.tech>
+        Phil Elwell <phil@raspberrypi.com>,
+        linux-arm-kernel@lists.infradead.org
 References: <20211213092503.57379-1-maxime@cerno.tech>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ <20211213092503.57379-3-maxime@cerno.tech>
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <20211213092503.57379-3-maxime@cerno.tech>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------cZVaPsWLMQY8pJclBDvlqnUJ"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Once the call to drm_fb_helper_remove_conflicting_framebuffers() has
-been made, simplefb has been unregistered and the KMS driver is entirely
-in charge of the display.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------cZVaPsWLMQY8pJclBDvlqnUJ
+Content-Type: multipart/mixed; boundary="------------eTk85dGDI0MuIQRcDjw0Or02";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Maxime Ripard <maxime@cerno.tech>, Ray Jui <rjui@broadcom.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Scott Branden <sbranden@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc: devicetree@vger.kernel.org, Dom Cobley <dom@raspberrypi.com>,
+ Tim Gover <tim.gover@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ dri-devel@lists.freedesktop.org, bcm-kernel-feedback-list@broadcom.com,
+ linux-rpi-kernel@lists.infradead.org, Phil Elwell <phil@raspberrypi.com>,
+ linux-arm-kernel@lists.infradead.org
+Message-ID: <f3514f59-5b97-26f8-ab9e-e592571cc13f@suse.de>
+Subject: Re: [PATCH v3 2/3] drm/vc4: Remove conflicting framebuffers before
+ callind bind_all
+References: <20211213092503.57379-1-maxime@cerno.tech>
+ <20211213092503.57379-3-maxime@cerno.tech>
+In-Reply-To: <20211213092503.57379-3-maxime@cerno.tech>
 
-Thus, we can notify the firmware it can free whatever resource it was
-using to maintain simplefb functional.
+--------------eTk85dGDI0MuIQRcDjw0Or02
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
----
- drivers/gpu/drm/vc4/vc4_drv.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+SGkgTWF4aW1lDQoNCkFtIDEzLjEyLjIxIHVtIDEwOjI1IHNjaHJpZWIgTWF4aW1lIFJpcGFy
+ZDoNCj4gVGhlIGJpbmQgaG9va3Mgd2lsbCBtb2RpZnkgdGhlaXIgY29udHJvbGxlciByZWdp
+c3RlcnMsIHNvIHNpbXBsZWZiIGlzDQo+IGdvaW5nIHRvIGJlIHVudXNhYmxlIGFueXdheS4g
+TGV0J3MgYXZvaWQgYW55IHRyYW5zaWVudCBzdGF0ZSB3aGVyZSBpdA0KPiBjb3VsZCBzdGls
+bCBiZSBpbiB0aGUgc3lzdGVtIGJ1dCBubyBsb25nZXIgZnVuY3Rpb25uYWwuDQo+IA0KPiBB
+Y2tlZC1ieTogTmljb2xhcyBTYWVueiBKdWxpZW5uZSA8bnNhZW56QGtlcm5lbC5vcmc+DQo+
+IFNpZ25lZC1vZmYtYnk6IE1heGltZSBSaXBhcmQgPG1heGltZUBjZXJuby50ZWNoPg0KPiAt
+LS0NCj4gICBkcml2ZXJzL2dwdS9kcm0vdmM0L3ZjNF9kcnYuYyB8IDggKysrKy0tLS0NCj4g
+ICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQ0KPiAN
+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS92YzQvdmM0X2Rydi5jIGIvZHJpdmVy
+cy9ncHUvZHJtL3ZjNC92YzRfZHJ2LmMNCj4gaW5kZXggMTZhYmMzYTNkNjAxLi44YWI4OWY4
+MDU4MjYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS92YzQvdmM0X2Rydi5jDQo+
+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS92YzQvdmM0X2Rydi5jDQo+IEBAIC0yNTEsNiArMjUx
+LDEwIEBAIHN0YXRpYyBpbnQgdmM0X2RybV9iaW5kKHN0cnVjdCBkZXZpY2UgKmRldikNCg0K
+U2luY2UgeW91IHdvcmsgb24gdGhpcywgSSdkIGxpa2UgdG8gc3VnZ2VzdCB0byBjYWxsIA0K
+ZHJtX2Zpcm13YXJlX2RyaXZlcnNfb25seSgpIGF0IHRoZSB2ZXJ5IHRvcCBvZiB0aGlzIGZ1
+bmN0aW9uLiBJdCdzIG91ciANCm5ldyBpbnRlcmZhY2UgZm9yIHRoZSBrZXJuZWwncyBub21v
+ZGVzZXQgYXJndW1lbnQuIElmIGl0IHJldHVybnMgZmFsc2UsIA0KdGhlIHVzZXIgaGFzIGRp
+c2FibGVkIG5hdGl2ZSBkcml2ZXJzIGZvciB0aGlzIGJvb3QuIFRoZSBnZW5lcmljIERSTSAN
+CmRyaXZlciB3aWxsIGNvbnRpbnVlIHRvIHJ1biB0aGUgZGV2aWNlLg0KDQo+ICAgCWlmIChy
+ZXQpDQo+ICAgCQlyZXR1cm4gcmV0Ow0KPiAgIA0KPiArCXJldCA9IGRybV9hcGVydHVyZV9y
+ZW1vdmVfZnJhbWVidWZmZXJzKGZhbHNlLCAmdmM0X2RybV9kcml2ZXIpOw0KPiArCWlmIChy
+ZXQpDQo+ICsJCXJldHVybiByZXQ7DQo+ICsNCg0KVGhlcmUncyBxdWl0ZSBhIGJpdCBvZiB3
+b3JrIGJlaW5nIGRvbmUgYmVmb3JlIGNhbGxpbmcgdGhpcyBmdW5jdGlvbi4gDQpOb25lIG9m
+IGl0IGlzIGFsbG93ZWQgdG8gdG91Y2ggSFcuDQoNCklzIHRoYXQgcmVsaWFibGU/IElmIHNv
+LCB0aGUgY29kZSBpcyBmaW5lLCBvdGhlcndpc2UgdGhlIGNhbGwgc2hvdWxkIGdvIA0KdG8g
+dGhlIHRvcCBvZiB0aGUgZnVuY3Rpb24uDQoNCkJlc3QgcmVnYXJkcw0KVGhvbWFzDQoNCj4g
+ICAJcmV0ID0gY29tcG9uZW50X2JpbmRfYWxsKGRldiwgZHJtKTsNCj4gICAJaWYgKHJldCkN
+Cj4gICAJCXJldHVybiByZXQ7DQo+IEBAIC0yNTksMTAgKzI2Myw2IEBAIHN0YXRpYyBpbnQg
+dmM0X2RybV9iaW5kKHN0cnVjdCBkZXZpY2UgKmRldikNCj4gICAJaWYgKHJldCkNCj4gICAJ
+CWdvdG8gdW5iaW5kX2FsbDsNCj4gICANCj4gLQlyZXQgPSBkcm1fYXBlcnR1cmVfcmVtb3Zl
+X2ZyYW1lYnVmZmVycyhmYWxzZSwgJnZjNF9kcm1fZHJpdmVyKTsNCj4gLQlpZiAocmV0KQ0K
+PiAtCQlnb3RvIHVuYmluZF9hbGw7DQo+IC0NCj4gICAJcmV0ID0gdmM0X2ttc19sb2FkKGRy
+bSk7DQo+ICAgCWlmIChyZXQgPCAwKQ0KPiAgIAkJZ290byB1bmJpbmRfYWxsOw0KPiANCg0K
+LS0gDQpUaG9tYXMgWmltbWVybWFubg0KR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcg0KU1VT
+RSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJIDQpNYXhmZWxkc3RyLiA1LCA5MDQw
+OSBOw7xybmJlcmcsIEdlcm1hbnkNCihIUkIgMzY4MDksIEFHIE7DvHJuYmVyZykNCkdlc2No
+w6RmdHNmw7xocmVyOiBJdm8gVG90ZXYNCg==
 
-diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
-index 8ab89f805826..e26897cb49a9 100644
---- a/drivers/gpu/drm/vc4/vc4_drv.c
-+++ b/drivers/gpu/drm/vc4/vc4_drv.c
-@@ -37,6 +37,8 @@
- #include <drm/drm_fb_helper.h>
- #include <drm/drm_vblank.h>
- 
-+#include <soc/bcm2835/raspberrypi-firmware.h>
-+
- #include "uapi/drm/vc4_drm.h"
- 
- #include "vc4_drv.h"
-@@ -215,6 +217,7 @@ static void vc4_match_add_drivers(struct device *dev,
- static int vc4_drm_bind(struct device *dev)
- {
- 	struct platform_device *pdev = to_platform_device(dev);
-+	struct rpi_firmware *firmware = NULL;
- 	struct drm_device *drm;
- 	struct vc4_dev *vc4;
- 	struct device_node *node;
-@@ -251,10 +254,29 @@ static int vc4_drm_bind(struct device *dev)
- 	if (ret)
- 		return ret;
- 
-+	node = of_find_compatible_node(NULL, NULL, "raspberrypi,bcm2835-firmware");
-+	if (node) {
-+		firmware = rpi_firmware_get(node);
-+		of_node_put(node);
-+
-+		if (!firmware)
-+			return -EPROBE_DEFER;
-+	}
-+
- 	ret = drm_aperture_remove_framebuffers(false, &vc4_drm_driver);
- 	if (ret)
- 		return ret;
- 
-+	if (firmware) {
-+		ret = rpi_firmware_property(firmware,
-+					    RPI_FIRMWARE_NOTIFY_DISPLAY_DONE,
-+					    NULL, 0);
-+		if (ret)
-+			drm_warn(drm, "Couldn't stop firmware display driver: %d\n", ret);
-+
-+		rpi_firmware_put(firmware);
-+	}
-+
- 	ret = component_bind_all(dev, drm);
- 	if (ret)
- 		return ret;
--- 
-2.33.1
+--------------eTk85dGDI0MuIQRcDjw0Or02--
 
+--------------cZVaPsWLMQY8pJclBDvlqnUJ
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmG3FpwFAwAAAAAACgkQlh/E3EQov+Dl
+shAA0SMo8dNtWVtccyGM6EYrLCZW4bg54QQWtmLRy85u+C/3OVD3PBm7PAJAlejl0Z/w4T4pj1W3
+f87kjihz7Ke2yzYlwaMUAulxRDK1VCr7wbNihw1gipAlwRfOVeqwhswAbznakz8TCWM+OTLZeQwq
+5tlSm4i8sJf44nngCqgVssz9Ej3+3gkTV9zXgdwiP76aG8p0Vv4w8ibN10DDI9oUlk8kpgvXMwYD
+/+wB/viRfu2RuRvmkuJVCWTR2nVMBqOnJcnZxVvyWj0MiphpwJotuXzJzdjZoh5Uk0VjvkRhDT+S
+k+PUbHrgalH30l1Pn9eP9nxUCe5PmSJdGC/6wJTAvBI4uZ4foa0fG5wM3k6i0OFCr9Uk53UH5va8
+rNgtIEPb1V2oSkHkSoHKMT1ZMlhvhafzRo7FUJfsJ6yyPUWTCg8+RjhD3Ht7cZNqF/hgtsHULldZ
+6DbINaiKFEcbG1QsYtEkRNgaA56OSBR5CHkMh3blz49H9FgWtSloPn+oKfv4fC7VjZCEa9cs5MeI
+GUKJd2O6La0i46d88B2FrKZ4+jdlN0QdHU8snUwIycT97w/gOupuE5blcF4ArwN6SQxWDklYQKua
+CAaXB3umzw0EqUyRTSvJQnzkYMGK2ESLJ2vCYSZPQ+zePBXW0po83Tx8XOYDtvH4mfiwV0X0fFR8
+D70=
+=7BZD
+-----END PGP SIGNATURE-----
+
+--------------cZVaPsWLMQY8pJclBDvlqnUJ--
