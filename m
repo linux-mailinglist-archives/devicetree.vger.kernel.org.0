@@ -2,84 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3F16473549
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 20:54:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89573473565
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 20:58:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235864AbhLMTyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 14:54:13 -0500
-Received: from mail.skyhub.de ([5.9.137.197]:56746 "EHLO mail.skyhub.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233215AbhLMTyN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 14:54:13 -0500
-Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id B34901EC01FC;
-        Mon, 13 Dec 2021 20:54:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1639425247;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=NEd6OKPHSoD8z7vKqqXLJ4dgN74etwHjBxhrJTz6IH0=;
-        b=RzwMR29Ko727bo6cOrhi74hHmC2Y27PBIAzfQnbe+PrtFhDVPHOaCqm2Xtsg1GwGVIrViW
-        QS8pYfJh7LuKxOGOPQW+9vWT4xgXazUDRAwp59pXLY9r2vrBKBHqyiM6hOD5UTBzjGsNa+
-        k87NSZrYVOvhM0vGa5wVBrClq3M7VLg=
-Date:   Mon, 13 Dec 2021 20:54:09 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
-        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
+        id S242647AbhLMT6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 14:58:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33538 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242659AbhLMT6j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 14:58:39 -0500
+Received: from mail-ed1-x54a.google.com (mail-ed1-x54a.google.com [IPv6:2a00:1450:4864:20::54a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BED03C06173F
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 11:58:38 -0800 (PST)
+Received: by mail-ed1-x54a.google.com with SMTP id bx28-20020a0564020b5c00b003e7c42443dbso14842837edb.15
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 11:58:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=udaKVaiMgUS12kFr9msWra26CoDr7HydSsff/jVCEA8=;
+        b=cCkegL7xdBlYOrXrpsJvD3x/wwOLT8/KCoEFGlV5YjOoOcJXDP+pyahia4y5Zr93Bs
+         nEp9DD4NQ6pzZhGn/uXATEi14JGqh4wO1KJyU0NRusimI1G077wvD01qiTeX/C76R3JT
+         4zFJvs2/ty+l4bvrJXy4L4GzqC0qxh5U4KfojQy1xrEgYn8YMS/LOIR4D5VfatVJgDOu
+         BQAksxnRKVddshJ+BLgppBZegu4YifOMxerTkY2ddlOrJQFdL2osQEqDJ2BgO6YQupND
+         poI5R3WNRWo/8xC/Xl4SgL6LdyuGL7mkVgd2rOwlo8VSk8wL3Uo/8FKaKpnp6Fr8HJGJ
+         OX5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=udaKVaiMgUS12kFr9msWra26CoDr7HydSsff/jVCEA8=;
+        b=x9Es7Iy7e7ssQEq6Ooc+szKTb4Mzo3nF0cerRcfGtvQuYvxnsswMYL/Yb9v8bQ0zJZ
+         TAMyqkIEK1DwmFOY4v4TsE22HOMj6pLWBg50ymXqiXwbbeWzfuhren7MWou3ZxNeMS8q
+         NLyfWujERCgXsLrtHrTe+w547SRN0/1jeUVkrccwl27ZppA5Hdt2Jcgxc01mWcksmRci
+         hSVCSf0zfne/ExDt4seQ0BznLGNhp6RHE3sLNbKxB78SAGtQj7J6TOOW3yUmmfayG6x2
+         foZokPyWnNLhC5htU5rhF/+CH0ivB0rPkwGtnZ2dhEHhh355EPFL/3lShy4VmapHMWwj
+         jzHA==
+X-Gm-Message-State: AOAM531MyLxn0UunfnpAhJJwGaREZGwwXYil97TjuYnlNn2R14+UwJe6
+        gcxjSc8ZsvvpFeEVP0wC5/gFoie5OqsfKw==
+X-Google-Smtp-Source: ABdhPJx2xxRPbwTb61GuOX1MaGlWRA74KF441oqpKfnTeSymc3P+1m4i/8e/XKZ/eCS3994S+IEGe4orQCJO9g==
+X-Received: from dbrazdil.lon.corp.google.com ([2a00:79e0:d:209:3e63:6f60:9fab:4549])
+ (user=dbrazdil job=sendgmr) by 2002:a17:907:3e22:: with SMTP id
+ hp34mr465308ejc.491.1639425517186; Mon, 13 Dec 2021 11:58:37 -0800 (PST)
+Date:   Mon, 13 Dec 2021 19:58:31 +0000
+Message-Id: <20211213195833.772892-1-dbrazdil@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.34.1.173.g76aa8bc2d0-goog
+Subject: [PATCH v3 0/2] Driver for Open Profile for DICE
+From:   David Brazdil <dbrazdil@google.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        David Brazdil <dbrazdil@google.com>,
         Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-Subject: Re: [PATCH v17 01/10] x86: kdump: replace the hard-coded alignment
- with macro CRASH_ALIGN
-Message-ID: <Ybek4VRr8RaLM7kD@zn.tnic>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <20211210065533.2023-2-thunder.leizhen@huawei.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211210065533.2023-2-thunder.leizhen@huawei.com>
+        Andrew Scull <ascull@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Subject: Re: [PATCH v17 01/10] x86: kdump: replace the hard-coded alignment with macro CRASH_ALIGN
+Open Profile for DICE is an open protocol for measured boot compatible
+with the Trusted Computing Group's Device Identifier Composition
+Engine (DICE) specification. The generated Compound Device Identifier
+(CDI) certificates represent the measured hardware/software combination
+and can be used by userspace for remote attestation and sealing.
 
-From Documentation/process/maintainer-tip.rst:
+This patchset adds DeviceTree bindings for the DICE device referencing
+a reserved memory region containing the CDIs, and a driver that exposes
+the memory region to userspace via a misc device.
 
-"Patch subject
- ^^^^^^^^^^^^^
+See https://pigweed.googlesource.com/open-dice for more details.
 
-The tip tree preferred format for patch subject prefixes is
-'subsys/component:', e.g. 'x86/apic:', 'x86/mm/fault:', 'sched/fair:',
-'genirq/core:'. Please do not use file names or complete file paths as
-prefix. 'git log path/to/file' should give you a reasonable hint in most
-cases.
+The patches are based on top of v5.16-rc5 and can also be found here:
+  https://android-kvm.googlesource.com/linux topic/dice_v3
 
-The condensed patch description in the subject line should start with a
-uppercase letter and should be written in imperative tone."
+Changes since v2:
+  * renamed from 'dice' to 'open-dice'
+  * replaced ioctls with read/write
+  * replaced memzero_explicit with memset
+  * allowed multiple instances
+  * expanded Kconfig description
 
-Please fix 1-5 for your next submission.
+Changes since v1:
+  * converted to miscdevice
+  * all mappings now write-combine to simplify semantics
+  * removed atomic state, any attempt at exclusive access
+  * simplified wipe, applied on ioctl, not on release
+  * fixed ioctl return value
 
-Thx.
+David Brazdil (2):
+  dt-bindings: firmware: Add Open Profile for DICE
+  misc: open-dice: Add driver to expose DICE data to userspace
 
--- 
-Regards/Gruss,
-    Boris.
+ .../bindings/firmware/google,open-dice.yaml   |  51 +++++
+ drivers/misc/Kconfig                          |  12 ++
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/open-dice.c                      | 197 ++++++++++++++++++
+ 4 files changed, 261 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/firmware/google,open-dice.yaml
+ create mode 100644 drivers/misc/open-dice.c
 
-https://people.kernel.org/tglx/notes-about-netiquette
+--
+2.34.1.173.g76aa8bc2d0-goog
