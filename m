@@ -2,330 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58954472B88
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:34:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E79E3472B7A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:33:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232836AbhLMLeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 06:34:50 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:21024 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235966AbhLMLeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 06:34:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1639395281;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=yx4OND4XZ/UoBvD9jKN0hZ1Ukb9XdC+uOXmtavLgj3w=;
-    b=GLO5KsntEfC8y7nNLHAh0HeSMBZ1Nk3vu4aEyQHcvkYWlVAAq08OgmCDIAvtxRwaBE
-    EyqYFkrj/DiEL6dz/THIxZ365Cwg7NNYO4lxvv42CuWwnDMuCYErMhrzUgcDcfIbQ723
-    0XjabzSuNisimYc9zslOL47x/6xmsSLVDy5hcGWHKkEVQQBAAal4g1HpU3FRqHz5lRPF
-    ySLT2UHWUltln6hoQY+cDMddP8aaE1fYHyyBrjT5BDs8juPVe91DL6g964v5MhMt6Soj
-    a4+lPShxKpts5SshI4MKxOKDsUaEvfTBRBdIBTo99ANS8I+ZkFW/AxKT1PNtPBycInwm
-    xzdg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXQ7UOGqRde+a0fiL1OfxR"
-X-RZG-CLASS-ID: mo00
-Received: from droid..
-    by smtp.strato.de (RZmta 47.35.3 SBL|AUTH)
-    with ESMTPSA id j080d2xBDBYfJKA
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 13 Dec 2021 12:34:41 +0100 (CET)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 2/2] ARM: multi_v7_defconfig: Enable drivers for DragonBoard 410c
-Date:   Mon, 13 Dec 2021 12:32:50 +0100
-Message-Id: <20211213113250.4249-2-stephan@gerhold.net>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211213113250.4249-1-stephan@gerhold.net>
-References: <20211213113250.4249-1-stephan@gerhold.net>
+        id S232877AbhLMLdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 06:33:42 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:46826
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232888AbhLMLdl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Dec 2021 06:33:41 -0500
+Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 9943940265
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 11:33:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1639395220;
+        bh=VzBGjYKrsgrY+fTF0zueaq+vb1uGxo85UvSFvdhw/Y4=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=H9NMiaZJfe7cpvcwFDFcKLQfo7Z/VOfIPVp3o2KuVxh1b99+Vg3XrBQn6+NzNJcZS
+         ++nMPfOYms8/HOVKDK2F98FyhPY105W+DqBGNWOT1IkKSy1f6hSxArd7B0BjURK0M8
+         FN1VOvB+0POEJpb4xrCdFCBVnaHBQAewoADUMBtfLNqrCFd+80/FEub8v7cNuiFeve
+         T9EklhQKTaWAuGQHlrTkiVPS9YpQfmSS9nR/mcCsXkXDcG/RLG4yJONaGAiMkkqnre
+         YmWs+MCy6bXBVpTx4tZ1zfwxb7ZuGWHHfXnGdvJCNIuv3EJ8G5b6Ay5yGuaTvm/Ig/
+         HQdwWAqDLN5xA==
+Received: by mail-lf1-f71.google.com with SMTP id o11-20020a056512230b00b0041ca68ddf35so7401216lfu.22
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 03:33:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=VzBGjYKrsgrY+fTF0zueaq+vb1uGxo85UvSFvdhw/Y4=;
+        b=adXXKGd57U/wxxw8ZITua8IbmPajgdzs4/u2YBBzNjRt2CEmvgKxBOhKYU37mbhQZA
+         AJSDJV/bAWNUp6TVZemMyXY7DH1/3Jtstbc5Gk+FzbLKjknM/7DoSOzh1hvVlelzNFNr
+         T8sqARezF1LpIKixQ44pGfUCEHF1/+crRZDElppCDO0TcaP88wbXwdcgZe49KNlSTgoq
+         O/d+st3KtNhL4reRjaP+R2YW5eYH77qSj7jSuGlyIeMUtzze2bVKJgiCqum8NBR5nWCN
+         YvTvo+GCD29I8ShclEkDpKPXGDpTxUKFa+QRMflMHoRfpg2bmf2gk4Hy6tx/yMiW7DDj
+         gYvw==
+X-Gm-Message-State: AOAM5302VFBWx6HOYjoaTo58omYzvtvVP1U6xFZ0q8mVEENa0kffUzXK
+        AYfvORl5gz2MD6lATmbnU4HeVVJF2BVYzeqIOMVc15sH0KophKSlJdEDrIcuhU7MRNVhW2gOvKd
+        llzzPAtSuGCorEshF54sX67cCS6dbx8/IApcNAfg=
+X-Received: by 2002:a05:651c:2011:: with SMTP id s17mr29173967ljo.397.1639395219868;
+        Mon, 13 Dec 2021 03:33:39 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwoh2aGuCAnYRxkKOajKxjFTPY5EBTPRy9GiGWCTv835HFbcvdhoyqGn2vWRqES/MVYmtkeRw==
+X-Received: by 2002:a05:651c:2011:: with SMTP id s17mr29173942ljo.397.1639395219673;
+        Mon, 13 Dec 2021 03:33:39 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id e3sm1386935lfc.259.2021.12.13.03.33.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Dec 2021 03:33:39 -0800 (PST)
+Message-ID: <fd19d251-355a-25c4-e255-97e43c20f251@canonical.com>
+Date:   Mon, 13 Dec 2021 12:33:38 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v3 3/5] tty: serial: samsung: Remove USI initialization
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20211204195757.8600-1-semen.protsenko@linaro.org>
+ <20211204195757.8600-4-semen.protsenko@linaro.org>
+ <e9472cec-7aca-92c4-6184-f442c0f88d56@canonical.com>
+ <CAPLW+4kWmSK7rmUO-bBj-U=JyGWWgguBL2dLa6KCbX6q5CJshA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <CAPLW+4kWmSK7rmUO-bBj-U=JyGWWgguBL2dLa6KCbX6q5CJshA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DragonBoard 410c is mainly supported by the ARM64 architecture
-and defconfig, but it can also run well on the ARM32 architecture.
-Add the necessary options to the multi_v7_defconfig to simplify
-building an ARM32 kernel for DragonBoard 410c.
+On 13/12/2021 12:31, Sam Protsenko wrote:
+> On Mon, 13 Dec 2021 at 13:00, Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
+>>
+>> On 04/12/2021 20:57, Sam Protsenko wrote:
+>>> USI control is now extracted to the dedicated USI driver. Remove USI
+>>> related code from serial driver to avoid conflicts and code duplication.
+>>>
+>>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+>>> ---
+>>> Changes in v3:
+>>>   - Spell check fixes in commit message
+>>>
+>>> Changes in v2:
+>>>   - (none)
+>>>
+>>>  drivers/tty/serial/samsung_tty.c | 36 ++++----------------------------
+>>>  include/linux/serial_s3c.h       |  9 --------
+>>>  2 files changed, 4 insertions(+), 41 deletions(-)
+>>>
+>>
+>> Hi Sam,
+>>
+>> Does this patch depend on USI driver? In cover letter you did not
+>> mention any dependency, so this can go via Greg's tree, right?
+>>
+> 
+> Hi Krzysztof,
+> 
+> TL;DR: Serial patches from this series don't really depend on USI
+> driver and can go via Greg's tree.
+> 
+> I'd say ideally those should be applied right after USI driver
+> patches. Because otherwise we'd have double initialization of USI
+> block (from USI driver and from serial driver), which wasn't tested
+> and may lead to not functional USI (though I think it should be fine).
+> That's why I decided to keep those in one single patch series. But if
+> we don't care about some short period of not tested behavior -- then
+> those can go via Greg's tree.
 
-This is also a possible opportunity to slightly increase CI coverage
-for older Qualcomm-based ARM32 platforms that are currently not
-represented well in automated CI setups. The APQ8016 SoC used in DB410c
-is still quite similar to those. DB410c is already used in some CI systems
-so the same hardware could be re-used to get some basic ARM32 boot testing.
+I think it is fine considering that only one board will be affected and
+it will be already non-bisectable due to DTS/driver changes going
+separate branches. More important is to get USI and serial driver
+changes in the same kernel release, so in v5.17.
 
-When deciding between built-in (y) and module (m), I usually used the
-same that is already being used (and functional) in the ARM64 defconfig.
 
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
- arch/arm/configs/multi_v7_defconfig | 57 ++++++++++++++++++++++++++++-
- 1 file changed, 55 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index c951aeed2138..ae227d309dc1 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -75,6 +75,7 @@ CONFIG_SOC_AM43XX=y
- CONFIG_SOC_DRA7XX=y
- CONFIG_ARCH_QCOM=y
- CONFIG_ARCH_MSM8X60=y
-+CONFIG_ARCH_MSM8916=y
- CONFIG_ARCH_MSM8960=y
- CONFIG_ARCH_MSM8974=y
- CONFIG_ARCH_ROCKCHIP=y
-@@ -109,11 +110,13 @@ CONFIG_CPU_FREQ_GOV_CONSERVATIVE=m
- CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
- CONFIG_CPUFREQ_DT=y
- CONFIG_ARM_IMX6Q_CPUFREQ=y
-+CONFIG_ARM_QCOM_CPUFREQ_NVMEM=y
- CONFIG_ARM_RASPBERRYPI_CPUFREQ=y
- CONFIG_ARM_SCMI_CPUFREQ=y
- CONFIG_QORIQ_CPUFREQ=y
- CONFIG_CPU_IDLE=y
- CONFIG_ARM_CPUIDLE=y
-+CONFIG_ARM_PSCI_CPUIDLE=y
- CONFIG_ARM_ZYNQ_CPUIDLE=y
- CONFIG_ARM_EXYNOS_CPUIDLE=y
- CONFIG_ARM_TEGRA_CPUIDLE=y
-@@ -157,6 +160,8 @@ CONFIG_IPV6_MIP6=m
- CONFIG_IPV6_TUNNEL=m
- CONFIG_IPV6_MULTIPLE_TABLES=y
- CONFIG_NET_DSA=m
-+CONFIG_QRTR=m
-+CONFIG_QRTR_SMD=m
- CONFIG_CAN=y
- CONFIG_CAN_AT91=m
- CONFIG_CAN_FLEXCAN=m
-@@ -169,6 +174,7 @@ CONFIG_BT_HCIUART=m
- CONFIG_BT_HCIUART_BCM=y
- CONFIG_BT_MRVL=m
- CONFIG_BT_MRVL_SDIO=m
-+CONFIG_BT_QCOMSMD=m
- CONFIG_CFG80211=m
- CONFIG_MAC80211=m
- CONFIG_RFKILL=y
-@@ -225,6 +231,7 @@ CONFIG_AD525X_DPOT_I2C=y
- CONFIG_ICS932S401=y
- CONFIG_ATMEL_SSC=m
- CONFIG_QCOM_COINCELL=m
-+CONFIG_QCOM_FASTRPC=m
- CONFIG_APDS9802ALS=y
- CONFIG_ISL29003=y
- CONFIG_PCI_ENDPOINT_TEST=m
-@@ -288,6 +295,7 @@ CONFIG_USB_LAN78XX=m
- CONFIG_USB_USBNET=y
- CONFIG_USB_NET_SMSC75XX=y
- CONFIG_USB_NET_SMSC95XX=y
-+CONFIG_WCN36XX=m
- CONFIG_BRCMFMAC=m
- CONFIG_MWIFIEX=m
- CONFIG_MWIFIEX_SDIO=m
-@@ -316,6 +324,7 @@ CONFIG_TOUCHSCREEN_ST1232=m
- CONFIG_TOUCHSCREEN_STMPE=y
- CONFIG_TOUCHSCREEN_SUN4I=y
- CONFIG_INPUT_MISC=y
-+CONFIG_INPUT_PM8941_PWRKEY=y
- CONFIG_INPUT_MAX77693_HAPTIC=m
- CONFIG_INPUT_MAX8997_HAPTIC=m
- CONFIG_INPUT_CPCAP_PWRBUTTON=m
-@@ -397,6 +406,8 @@ CONFIG_I2C_IMX=y
- CONFIG_I2C_MESON=y
- CONFIG_I2C_MV64XXX=y
- CONFIG_I2C_OWL=y
-+CONFIG_I2C_QCOM_CCI=m
-+CONFIG_I2C_QUP=y
- CONFIG_I2C_RIIC=y
- CONFIG_I2C_RK3X=y
- CONFIG_I2C_S3C2410=y
-@@ -425,6 +436,7 @@ CONFIG_SPI_ORION=y
- CONFIG_SPI_PL022=y
- CONFIG_SPI_ROCKCHIP=m
- CONFIG_SPI_RSPI=y
-+CONFIG_SPI_QUP=m
- CONFIG_SPI_S3C64XX=m
- CONFIG_SPI_SH_MSIOF=m
- CONFIG_SPI_SH_HSPI=y
-@@ -475,6 +487,8 @@ CONFIG_GPIO_TWL4030=y
- CONFIG_POWER_RESET_AS3722=y
- CONFIG_POWER_RESET_GPIO=y
- CONFIG_POWER_RESET_GPIO_RESTART=y
-+CONFIG_POWER_RESET_MSM=y
-+CONFIG_POWER_RESET_QCOM_PON=y
- CONFIG_POWER_RESET_ST=y
- CONFIG_POWER_RESET_KEYSTONE=y
- CONFIG_POWER_RESET_RMOBILE=y
-@@ -515,6 +529,7 @@ CONFIG_ST_THERMAL_MEMMAP=y
- CONFIG_TEGRA_SOCTHERM=m
- CONFIG_TEGRA30_TSENSOR=m
- CONFIG_GENERIC_ADC_THERMAL=m
-+CONFIG_QCOM_TSENS=y
- CONFIG_UNIPHIER_THERMAL=y
- CONFIG_DA9063_WATCHDOG=m
- CONFIG_XILINX_WATCHDOG=y
-@@ -530,11 +545,13 @@ CONFIG_SUNXI_WATCHDOG=y
- CONFIG_IMX2_WDT=y
- CONFIG_ST_LPC_WATCHDOG=y
- CONFIG_TEGRA_WATCHDOG=m
-+CONFIG_QCOM_WDT=m
- CONFIG_MESON_WATCHDOG=y
- CONFIG_DIGICOLOR_WATCHDOG=y
- CONFIG_RENESAS_WDT=m
- CONFIG_RENESAS_RZAWDT=m
- CONFIG_STPMIC1_WATCHDOG=y
-+CONFIG_PM8916_WATCHDOG=m
- CONFIG_BCM47XX_WDT=y
- CONFIG_BCM2835_WDT=y
- CONFIG_BCM_KONA_WDT=y
-@@ -601,7 +618,8 @@ CONFIG_REGULATOR_PALMAS=y
- CONFIG_REGULATOR_PBIAS=y
- CONFIG_REGULATOR_PWM=y
- CONFIG_REGULATOR_QCOM_RPM=y
--CONFIG_REGULATOR_QCOM_SMD_RPM=m
-+CONFIG_REGULATOR_QCOM_SMD_RPM=y
-+CONFIG_REGULATOR_QCOM_SPMI=y
- CONFIG_REGULATOR_RK808=y
- CONFIG_REGULATOR_RN5T618=y
- CONFIG_REGULATOR_S2MPA01=m
-@@ -687,6 +705,7 @@ CONFIG_DRM_PANEL_ORISETECH_OTM8009A=m
- CONFIG_DRM_PANEL_RAYDIUM_RM68200=m
- CONFIG_DRM_PANEL_SAMSUNG_S6E63J0X03=m
- CONFIG_DRM_PANEL_SAMSUNG_S6E8AA0=m
-+CONFIG_DRM_DISPLAY_CONNECTOR=m
- CONFIG_DRM_NXP_PTN3460=m
- CONFIG_DRM_PARADE_PS8622=m
- CONFIG_DRM_SII902X=m
-@@ -736,6 +755,8 @@ CONFIG_SND_SOC_FSL_SAI=m
- CONFIG_SND_PXA_SOC_SSP=m
- CONFIG_SND_MMP_SOC_SSPA=m
- CONFIG_SND_PXA910_SOC=m
-+CONFIG_SND_SOC_QCOM=m
-+CONFIG_SND_SOC_APQ8016_SBC=m
- CONFIG_SND_SOC_ROCKCHIP=m
- CONFIG_SND_SOC_ROCKCHIP_SPDIF=m
- CONFIG_SND_SOC_ROCKCHIP_MAX98090=m
-@@ -768,6 +789,8 @@ CONFIG_SND_SOC_TEGRA_MAX98090=m
- CONFIG_SND_SOC_AK4642=m
- CONFIG_SND_SOC_CPCAP=m
- CONFIG_SND_SOC_CS42L51_I2C=m
-+CONFIG_SND_SOC_MSM8916_WCD_ANALOG=m
-+CONFIG_SND_SOC_MSM8916_WCD_DIGITAL=m
- CONFIG_SND_SOC_SGTL5000=m
- CONFIG_SND_SOC_STI_SAS=m
- CONFIG_SND_SOC_WM8978=m
-@@ -930,6 +953,7 @@ CONFIG_RTC_DRV_AT91SAM9=m
- CONFIG_RTC_DRV_VT8500=y
- CONFIG_RTC_DRV_SUNXI=y
- CONFIG_RTC_DRV_MV=y
-+CONFIG_RTC_DRV_PM8XXX=m
- CONFIG_RTC_DRV_TEGRA=y
- CONFIG_RTC_DRV_ST_LPC=y
- CONFIG_RTC_DRV_STM32=y
-@@ -977,26 +1001,47 @@ CONFIG_COMMON_CLK_SCMI=y
- CONFIG_COMMON_CLK_S2MPS11=m
- CONFIG_CLK_RASPBERRYPI=y
- CONFIG_COMMON_CLK_QCOM=y
-+CONFIG_QCOM_A53PLL=y
-+CONFIG_QCOM_CLK_APCS_MSM8916=y
- CONFIG_QCOM_CLK_RPM=y
-+CONFIG_QCOM_CLK_SMD_RPM=y
- CONFIG_APQ_MMCC_8084=y
- CONFIG_MSM_GCC_8660=y
-+CONFIG_MSM_GCC_8916=y
- CONFIG_MSM_MMCC_8960=y
- CONFIG_MSM_MMCC_8974=y
-+CONFIG_HWSPINLOCK=y
-+CONFIG_HWSPINLOCK_QCOM=y
- CONFIG_MICROCHIP_PIT64B=y
- CONFIG_BCM2835_MBOX=y
-+CONFIG_QCOM_APCS_IPC=y
-+CONFIG_QCOM_IPCC=y
- CONFIG_ROCKCHIP_IOMMU=y
- CONFIG_TEGRA_IOMMU_GART=y
- CONFIG_TEGRA_IOMMU_SMMU=y
- CONFIG_EXYNOS_IOMMU=y
-+CONFIG_QCOM_IOMMU=y
- CONFIG_REMOTEPROC=y
-+CONFIG_QCOM_Q6V5_MSS=m
-+CONFIG_QCOM_SYSMON=m
-+CONFIG_QCOM_WCNSS_PIL=m
- CONFIG_ST_REMOTEPROC=m
-+CONFIG_RPMSG_QCOM_SMD=y
- CONFIG_RPMSG_VIRTIO=m
- CONFIG_ASPEED_LPC_CTRL=m
- CONFIG_ASPEED_LPC_SNOOP=m
- CONFIG_ASPEED_P2A_CTRL=m
- CONFIG_RASPBERRYPI_POWER=y
-+CONFIG_QCOM_CPR=y
- CONFIG_QCOM_GSBI=y
--CONFIG_QCOM_SMD_RPM=m
-+CONFIG_QCOM_RMTFS_MEM=m
-+CONFIG_QCOM_RPMPD=y
-+CONFIG_QCOM_SMEM=y
-+CONFIG_QCOM_SMD_RPM=y
-+CONFIG_QCOM_SMP2P=y
-+CONFIG_QCOM_SMSM=y
-+CONFIG_QCOM_SOCINFO=m
-+CONFIG_QCOM_STATS=m
- CONFIG_QCOM_WCNSS_CTRL=m
- CONFIG_ARCH_EMEV2=y
- CONFIG_ARCH_R8A7794=y
-@@ -1029,6 +1074,7 @@ CONFIG_DEVFREQ_EVENT_EXYNOS_NOCP=m
- CONFIG_EXTCON_MAX14577=m
- CONFIG_EXTCON_MAX77693=m
- CONFIG_EXTCON_MAX8997=m
-+CONFIG_EXTCON_USB_GPIO=y
- CONFIG_TI_AEMIF=y
- CONFIG_STM32_FMC2_EBI=y
- CONFIG_EXYNOS5422_DMC=m
-@@ -1041,6 +1087,7 @@ CONFIG_BERLIN2_ADC=m
- CONFIG_CPCAP_ADC=m
- CONFIG_EXYNOS_ADC=m
- CONFIG_MESON_SARADC=m
-+CONFIG_QCOM_SPMI_VADC=m
- CONFIG_ROCKCHIP_SARADC=m
- CONFIG_STM32_ADC_CORE=m
- CONFIG_STM32_ADC=m
-@@ -1086,6 +1133,7 @@ CONFIG_PHY_BERLIN_USB=y
- CONFIG_PHY_MMP3_USB=m
- CONFIG_PHY_CPCAP_USB=m
- CONFIG_PHY_QCOM_APQ8064_SATA=m
-+CONFIG_PHY_QCOM_USB_HS=y
- CONFIG_PHY_RCAR_GEN2=m
- CONFIG_PHY_ROCKCHIP_DP=m
- CONFIG_PHY_ROCKCHIP_USB=y
-@@ -1103,6 +1151,7 @@ CONFIG_TI_PIPE3=y
- CONFIG_TWL4030_USB=m
- CONFIG_RAS=y
- CONFIG_NVMEM_IMX_OCOTP=y
-+CONFIG_QCOM_QFPROM=y
- CONFIG_ROCKCHIP_EFUSE=m
- CONFIG_NVMEM_SUNXI_SID=y
- CONFIG_NVMEM_VF610_OCOTP=y
-@@ -1115,6 +1164,8 @@ CONFIG_FSI_MASTER_ASPEED=m
- CONFIG_FSI_SCOM=m
- CONFIG_FSI_SBEFIFO=m
- CONFIG_FSI_OCC=m
-+CONFIG_INTERCONNECT_QCOM=y
-+CONFIG_INTERCONNECT_QCOM_MSM8916=y
- CONFIG_COUNTER=m
- CONFIG_STM32_TIMER_CNT=m
- CONFIG_STM32_LPTIMER_CNT=m
-@@ -1154,6 +1205,8 @@ CONFIG_CRYPTO_DEV_ATMEL_AES=m
- CONFIG_CRYPTO_DEV_ATMEL_TDES=m
- CONFIG_CRYPTO_DEV_ATMEL_SHA=m
- CONFIG_CRYPTO_DEV_MARVELL_CESA=m
-+CONFIG_CRYPTO_DEV_QCE=m
-+CONFIG_CRYPTO_DEV_QCOM_RNG=m
- CONFIG_CRYPTO_DEV_ROCKCHIP=m
- CONFIG_CRYPTO_DEV_STM32_CRC=m
- CONFIG_CRYPTO_DEV_STM32_HASH=m
--- 
-2.34.1
-
+Best regards,
+Krzysztof
