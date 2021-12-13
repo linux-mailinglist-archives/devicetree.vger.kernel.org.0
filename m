@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DE444730A6
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 16:34:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A9A34730C3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 16:45:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240160AbhLMPeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 10:34:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56108 "EHLO
+        id S237919AbhLMPpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 10:45:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235004AbhLMPeq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 10:34:46 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE2ABC061574
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 07:34:45 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso17786595ots.6
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 07:34:45 -0800 (PST)
+        with ESMTP id S237744AbhLMPpZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 10:45:25 -0500
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03421C061748
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 07:45:25 -0800 (PST)
+Received: by mail-ot1-x336.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso17802903otj.11
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 07:45:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=9UxEcNSwKoN2mFJyfZRLVmjwVvQHZtyiCY9mygjt3b0=;
-        b=hT1cyNUIs/Cld053RUbQRay51RV52B4dNNPvh5M6K0oE9LtogP9309HzTGyNDfD65Z
-         Fm3Y9VnMX7sLl0MytXQHC2w05h/HfkaELfBLJkh2FSfu+BRaxZ2dRpx6eXP33TsOg0gJ
-         pQ7RZXVIDCg7wbvlZZmOWj7bUCVXNLKMCpM1CP/kVaGiytaiK6cYVu/0oEtMc9zLV6kc
-         ZIC/n08WmpDBMBvIP8WLbnBO3RAB0Hd2ktu1pgtpOD2PCRMmqDHYZrWymDpdebEMdK/P
-         yDYQKW9tSwyss7oWRjShhuRgke66Kj6RbH9nXIOkBNeJktjFv8C7kebjvc8zzPejvmEM
-         fQNA==
+        bh=dQ0iYUP0JWxWxyVvkeGeGLlGPIXkHbinLcx5o3bfw2o=;
+        b=GT2LUf8AZMMbJBvm19dhzHYN+vNChABVOEFBTkozsYpZC7hM/deocMT5X5GMYIDOek
+         5LBXg6Ot9xO7cq/Jk7zgArH4zvnKvrbCFxFNX8dsF13FJEKUga57PYX+I8Hi1ZfJAIK/
+         lbC6PuujBugYWprOiaNoUFWcBjLuSQX8QIWYLTNOIErrR3PFA/R/NZ5OZ1BQe0cyH2u0
+         nAxuEZuXTWTPI8uD3iiMIhXC+C6hwff7Bfdc2WEeE81/t/APcJ7o3YcoRbMbC+3Gxrb6
+         F71aYRG/1GESx3DTZCuueBZ/iX706Ujvo4hj5uB/ty469INRnDEZrTlkBjMLNWhE+0OQ
+         nJPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=9UxEcNSwKoN2mFJyfZRLVmjwVvQHZtyiCY9mygjt3b0=;
-        b=4/tRi9de3h9DDflh1N65W0X3TwUR4YQl7S9kmRuxVYSLX0VTJOKAAz4RHSKHUPZYuj
-         CExvq5v3iPlQ9+uE8DWen5R1I1USw+vs9elsZwCKuXXuYM1f0SJ+Vm9X5wlOYiaDrVGX
-         PXCVQ5Y9g4CrPSHrDpKDYsMLoTl+pvU8vejZAX2lyGBMr9jhp6Lrqugo9wilAg42ISKi
-         y42RTU9wnmAarKDv1JhoRSmPFTk+NJ23QKI4ybiNZz9FvTzQXe5Z52kAkbWqn9WJVaOK
-         2nI9GX+pXz2C68BEJBaI4aiTmxnYxxrRC6uHpTjo5W10FkNEw4MGFUHdtw1ppOCMeA3B
-         YLVw==
-X-Gm-Message-State: AOAM531o69+ZqkKLPjOpkYW68PjbO/dVUv8g//iKAea5Oj9q6x4hNGyx
-        ULVyJGsfOmRH1QCRKrDOCepMiQ==
-X-Google-Smtp-Source: ABdhPJx81QSenwwldv/3J3MLPwfG5VTKRajH0fC/WJKcz6OkMHMJkY3dRqn27AaWUvRHqQKD7PX9tw==
-X-Received: by 2002:a05:6830:3185:: with SMTP id p5mr26271701ots.222.1639409685194;
-        Mon, 13 Dec 2021 07:34:45 -0800 (PST)
+        bh=dQ0iYUP0JWxWxyVvkeGeGLlGPIXkHbinLcx5o3bfw2o=;
+        b=5NtQqWwh+QsaU/LAMs5rKOHpzsw1aajmBiHALpRHKESb3uQpW02NwGxg2uFAC8y0Q6
+         EFiAQhuAPJ/IyZWXgVIAR0EVuZf7Xce2uTBu3ZmKDXGyk/n7/UImmMthTvwgjraKkKPr
+         M+M7hKWghOWZ08YHt1yYedcKdyB+I6bxuE9zg8qATZiztcTJJhRQegE9xlxR5p6IXqmK
+         oi9uHwtaXUnGCXjGQcLJeKrdpWgBYT6GifhX88UFyOZM6lLzBIvEGMYzO2kh+fBCj8V1
+         l1CYFYn9RtCoEZ1Hhi2p3i8wSrhPV8MnPHae3xMwHsOf68TgavyQGPhLvgR2zvLDjV0S
+         3u3g==
+X-Gm-Message-State: AOAM532TXXmKDOd0XhaJjK/ClwrWt2QrGAMM9JiEkReX7Q9kgDCv/hoH
+        ts70YkKaQlLtSvmHcNn9c/l0ow==
+X-Google-Smtp-Source: ABdhPJzNsAq/rJmgcNdCPksFNXX6L/lDEXt5jzOfIQryTdTz3diL0hIrAXJ+3WKe0bwcch9hGMFEwQ==
+X-Received: by 2002:a9d:6f13:: with SMTP id n19mr24707012otq.317.1639410324291;
+        Mon, 13 Dec 2021 07:45:24 -0800 (PST)
 Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a17sm2838627oiw.43.2021.12.13.07.34.44
+        by smtp.gmail.com with ESMTPSA id c8sm2281168otk.40.2021.12.13.07.45.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 07:34:44 -0800 (PST)
-Date:   Mon, 13 Dec 2021 07:36:03 -0800
+        Mon, 13 Dec 2021 07:45:23 -0800 (PST)
+Date:   Mon, 13 Dec 2021 07:46:42 -0800
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
         devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
         jeyr@codeaurora.org, bkumar@qti.qualcomm.com,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 8/8] arm64: dts: qcom: add non-secure domain property
- to fastrpc nodes
-Message-ID: <YbdoY9PgvZO7AX1T@ripper>
+Subject: Re: [PATCH v2 5/8] dt-bindings: misc: add property to support
+ non-secure DSP
+Message-ID: <Ybdq4qAeqK8C8Yvc@ripper>
 References: <20211209120626.26373-1-srinivas.kandagatla@linaro.org>
- <20211209120626.26373-9-srinivas.kandagatla@linaro.org>
+ <20211209120626.26373-6-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211209120626.26373-9-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20211209120626.26373-6-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
@@ -71,146 +71,51 @@ On Thu 09 Dec 04:06 PST 2021, Srinivas Kandagatla wrote:
 
 > From: Jeya R <jeyr@codeaurora.org>
 > 
-> FastRPC DSP domain would be set as secure if non-secure dsp property is not
-> added to the fastrpc DT node. Add this property to DT files of msm8916,
-> sdm845, sm8150, sm8250 and sm8350 so that nothing is broken after secure
-> domain patchset.
+> Add property to set DSP domain as non-secure.
 > 
-> This patch is purely for backward compatibility reasons.
+> ADSP/MDSP/SDSP are by default secured, where as CDSP can be either be
+> secured/unsecured.
+> non-secured Compute DSP would allow users to load unsigned process
+> and run hexagon instructions, but limiting access to secured hardware
+> within the DSP.
+> 
+> Based on this flag device nodes for secured and unsecured are created.
 > 
 > Signed-off-by: Jeya R <jeyr@codeaurora.org>
 > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/msm8916.dtsi | 1 +
->  arch/arm64/boot/dts/qcom/sdm845.dtsi  | 2 ++
->  arch/arm64/boot/dts/qcom/sm8150.dtsi  | 3 +++
->  arch/arm64/boot/dts/qcom/sm8250.dtsi  | 3 +++
->  arch/arm64/boot/dts/qcom/sm8350.dtsi  | 3 +++
->  5 files changed, 12 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> index c1c42f26b61e..137a479449d4 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> @@ -1365,6 +1365,7 @@
->  					compatible = "qcom,fastrpc";
->  					qcom,smd-channels = "fastrpcsmd-apps-dsp";
->  					label = "adsp";
-> +					qcom,non-secure-domain;
+> This patch has dependency this yaml conversion patch:
+> https://lore.kernel.org/lkml/20211208101508.24582-1-david@ixit.cz/T/
+> 
+>  Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+> index f42ab208a7fc..f0df0a3bf69f 100644
+> --- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+> +++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+> @@ -29,6 +29,11 @@ properties:
+>          - sdsp
+>          - cdsp
+>  
+> +  qcom,non-secure-domain:
+> +    type: boolean
+> +    description: >
+> +      Property to specify that dsp domain is non-secure.
 
-I was under the impression that the support for loading unsigned fastrpc
-applications was introduced in SM8150 or SM8250, can you confirm that
-this has been possible all along?
+"non-secure" feels vague, how about expressing it as "Specifies that the
+domains of this DSP instance may run unsigned programs."
+
+Perhaps even go so far to name the property
+qcom,allow-unsigned-programs? (Or some other word for "program"?)
 
 Regards,
 Bjorn
 
->  
->  					#address-cells = <1>;
->  					#size-cells = <0>;
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 526087586ba4..4aebfed4ec00 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -838,6 +838,7 @@
->  				compatible = "qcom,fastrpc";
->  				qcom,glink-channels = "fastrpcglink-apps-dsp";
->  				label = "adsp";
-> +				qcom,non-secure-domain;
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  
-> @@ -888,6 +889,7 @@
->  				compatible = "qcom,fastrpc";
->  				qcom,glink-channels = "fastrpcglink-apps-dsp";
->  				label = "cdsp";
-> +				qcom,non-secure-domain;
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> index 81b4ff2cc4cd..9ac213bb96b7 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> @@ -1751,6 +1751,7 @@
->  					compatible = "qcom,fastrpc";
->  					qcom,glink-channels = "fastrpcglink-apps-dsp";
->  					label = "sdsp";
-> +					qcom,non-secure-domain;
->  					#address-cells = <1>;
->  					#size-cells = <0>;
->  
-> @@ -2994,6 +2995,7 @@
->  					compatible = "qcom,fastrpc";
->  					qcom,glink-channels = "fastrpcglink-apps-dsp";
->  					label = "cdsp";
-> +					qcom,non-secure-domain;
->  					#address-cells = <1>;
->  					#size-cells = <0>;
->  
-> @@ -3439,6 +3441,7 @@
->  					compatible = "qcom,fastrpc";
->  					qcom,glink-channels = "fastrpcglink-apps-dsp";
->  					label = "adsp";
-> +					qcom,non-secure-domain;
->  					#address-cells = <1>;
->  					#size-cells = <0>;
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index f0d342aa662d..06be221ad5b6 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -2265,6 +2265,7 @@
->  					compatible = "qcom,fastrpc";
->  					qcom,glink-channels = "fastrpcglink-apps-dsp";
->  					label = "sdsp";
-> +					qcom,non-secure-domain;
->  					#address-cells = <1>;
->  					#size-cells = <0>;
->  
-> @@ -2330,6 +2331,7 @@
->  					compatible = "qcom,fastrpc";
->  					qcom,glink-channels = "fastrpcglink-apps-dsp";
->  					label = "cdsp";
-> +					qcom,non-secure-domain;
->  					#address-cells = <1>;
->  					#size-cells = <0>;
->  
-> @@ -4100,6 +4102,7 @@
->  					compatible = "qcom,fastrpc";
->  					qcom,glink-channels = "fastrpcglink-apps-dsp";
->  					label = "adsp";
-> +					qcom,non-secure-domain;
->  					#address-cells = <1>;
->  					#size-cells = <0>;
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> index d134280e2939..80f753cbe91c 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> @@ -1278,6 +1278,7 @@
->  					compatible = "qcom,fastrpc";
->  					qcom,glink-channels = "fastrpcglink-apps-dsp";
->  					label = "sdsp";
-> +					qcom,non-secure-domain;
->  					#address-cells = <1>;
->  					#size-cells = <0>;
->  
-> @@ -1347,6 +1348,7 @@
->  					compatible = "qcom,fastrpc";
->  					qcom,glink-channels = "fastrpcglink-apps-dsp";
->  					label = "cdsp";
-> +					qcom,non-secure-domain;
->  					#address-cells = <1>;
->  					#size-cells = <0>;
->  
-> @@ -1643,6 +1645,7 @@
->  					compatible = "qcom,fastrpc";
->  					qcom,glink-channels = "fastrpcglink-apps-dsp";
->  					label = "adsp";
-> +					qcom,non-secure-domain;
->  					#address-cells = <1>;
->  					#size-cells = <0>;
+> +
+>    '#address-cells':
+>      const: 1
 >  
 > -- 
 > 2.21.0
