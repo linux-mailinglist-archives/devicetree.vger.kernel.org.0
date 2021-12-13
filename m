@@ -2,97 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADAC1472D16
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 14:19:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CAE0472D41
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 14:29:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237143AbhLMNTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 08:19:50 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.51]:27711 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233448AbhLMNTu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 08:19:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1639401582;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=oXVz7j6O/sdvqTEmJzhaOnnNzeCFuCaYipshwhsdL/Q=;
-    b=BCQNJer+iBZnxYMyTRXMMbQrkgmxAC1RqtoT3/g9wCPqC+c7cHTtDqAclvXOZUwGgP
-    qcvxWtN5OE7qeBtN8fSMnwIdw6EjF/FJfYrJo723/1aD4HO4Us9AktnXT5W1/jAjsSL3
-    IbIpIHOUob281s5DXg93H22UTpHO23kbfyfyFoL6n525Ogkte1GW9f8QovS4XZOMPmju
-    7HuzzUpLuJKS8sG3Re0JFP5uOzUl8QYv4Hj2gBYac74oYuuhYUube0GWFhYRXaCQhDh4
-    LJqJL4qU3rtDONERW3/jc20za0b3eEDUI959TJoRcv9iHBrfQq6X5oQEula8O3Ozr+Kj
-    aIPg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrKw5+aY="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.35.3 SBL|AUTH)
-    with ESMTPSA id j080d2xBDDJgK7d
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 13 Dec 2021 14:19:42 +0100 (CET)
-Date:   Mon, 13 Dec 2021 14:19:38 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
-        devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
-        jeyr@codeaurora.org, bkumar@qti.qualcomm.com,
-        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 5/8] dt-bindings: misc: add property to support
- non-secure DSP
-Message-ID: <YbdIas4QE1z7alAc@gerhold.net>
-References: <20211209120626.26373-1-srinivas.kandagatla@linaro.org>
- <20211209120626.26373-6-srinivas.kandagatla@linaro.org>
- <YbcnEp5+4y5qXC60@gerhold.net>
- <ac2e9f8f-ea52-5676-baaa-9439e8b35d8f@linaro.org>
+        id S237525AbhLMN33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 08:29:29 -0500
+Received: from mail.emtrion.de ([87.139.198.129]:49314 "EHLO mail3.emtrion.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S237518AbhLMN31 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Dec 2021 08:29:27 -0500
+Received: from emtrion-yocto-comrzn1d.emtrion.local
+ (2003:f9:5824:1:20c:29ff:fe08:43c4) by EMT-KA-S004.emtrion.local
+ (2003:f9:5824:1:c59f:32f4:72e5:b9e1) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 13 Dec 2021 14:29:25 +0100
+From:   <reinhold.mueller@emtrion.com>
+To:     <robh+dt@kernel.org>
+CC:     <shawnguo@kernel.org>, <s.hauer@pengutronix.de>,
+        <kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <reinhold.mueller@emtrion.com>
+Subject: [PATCH v2 0/2] new emtrion hardware emCON-MX8M Mini
+Date:   Mon, 13 Dec 2021 14:29:07 +0100
+Message-ID: <20211213132909.41258-1-reinhold.mueller@emtrion.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ac2e9f8f-ea52-5676-baaa-9439e8b35d8f@linaro.org>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [2003:f9:5824:1:20c:29ff:fe08:43c4]
+X-ClientProxiedBy: EMT-KA-S004.emtrion.local
+ (2003:f9:5824:1:c59f:32f4:72e5:b9e1) To EMT-KA-S004.emtrion.local
+ (2003:f9:5824:1:c59f:32f4:72e5:b9e1)
+X-C2ProcessedOrg: 5b249fcb-306f-4927-9982-5d11b1d300ce
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 13, 2021 at 12:35:40PM +0000, Srinivas Kandagatla wrote:
-> On 13/12/2021 10:57, Stephan Gerhold wrote:
-> > On Thu, Dec 09, 2021 at 12:06:23PM +0000, Srinivas Kandagatla wrote:
-> > > From: Jeya R <jeyr@codeaurora.org>
-> > > 
-> > > Add property to set DSP domain as non-secure.
-> > > 
-> > > ADSP/MDSP/SDSP are by default secured, where as CDSP can be either be
-> > > secured/unsecured.
-> > 
-> > Wouldn't it be easier to avoid the negation and add a "qcom,secure-domain"
-> > property instead? Given PATCH 8/8 ("arm64: dts: qcom: add non-secure
-> > domain property to fastrpc nodes") it looks like you are intentionally
-> > breaking DT compatibility here, but this patch does not justify why this
-> > is necessary.
-> 
-> By default all ADSP/MDSP/SDSP are secured, so this property is only required
-> for something that is not default. Only case that is configurable is the
-> CDSP case where in by adding this flag we should be able to load an unsigned
-> process to dsp using unsecured node.
-> 
-> Having said that, TBH When we first added the fastrpc patchset we did not
-> take care of this security feature properly :-)
-> 
-> From security point of view, its better to keep the default as secured
-> rather than unsecured in DT too.
-> 
-> With this DTS patch older dts should continue to work.
-> 
+From: Reinhold Mueller <reinhold.mueller@emtrion.com>
 
-Is this a "default" on newer platforms only? Why do the existing
-platforms not use the "secure" setup then? Or is this perhaps firmware
-version/configuration specific?
+This patchset adds support for the emtrion emCON-MX8M Mini
 
-Basically I'm confused because you say that the "default" is the secured
-setup, but DT patch (8/8) suggests that non-secure is the default on
-pretty much all currently supported platforms (msm8916, sdm845, sm8150,
-sm8250, sm8350). :)
+Changes
 
-Thanks,
-Stephan
+v2:
+[PATCH 1/2]
+	- no fixes
+[PATCH 2/2]
+	- replaced GPIO_ACTIVE_LOW by IRQ_TYPE_LEVEL_LOW
+
+v1:
+[PATCH 0/2]
+	- split former patch in dts -and yaml patches
+[PATCH 1/2]
+	- removing character '\t'
+[PATCH 2/2]
+	- correct entry compatible in spi-flash@0
+
+Reinhold Mueller (2):
+  dt-bindings: arm: Add emtrion hardware emCON-MX8M Mini
+  arm64: dts: imx8mm: Add support for emtrion emCON-MX8M Mini
+
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   3 +-
+ .../boot/dts/freescale/imx8mm-emcon-avari.dts |  23 +
+ .../dts/freescale/imx8mm-emcon-avari.dtsi     | 141 ++++
+ .../boot/dts/freescale/imx8mm-emcon.dtsi      | 645 ++++++++++++++++++
+ 5 files changed, 812 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi
+
+-- 
+2.20.1
+
