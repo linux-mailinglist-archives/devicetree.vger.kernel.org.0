@@ -2,115 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43C5D472C8A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 13:46:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7F43472C8C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 13:47:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236937AbhLMMq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 07:46:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43410 "EHLO
+        id S231649AbhLMMrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 07:47:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236947AbhLMMq0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 07:46:26 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00622C06173F
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 04:46:25 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 686ED51C;
-        Mon, 13 Dec 2021 13:46:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1639399584;
-        bh=KQ96B45i/lTzOLGHI2+lyZPA4AlUEiN3tJ2ESzgxXkM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=L+59lYvgup1i+KDk+cBy5Dv/jQ5rkWxgnbyVDZpNEZgDSHrSIMw71nZckXJ5HzdYh
-         MRJnWStw7dZM94Ow9PsILkLmjVDTI09C5CcD4JoiCQFB/8ona1zKAMDARkLZDYnujk
-         P56QuNdkiIj8df0mVtvMy+n5RAZf7LCxoG1ZH6Dw=
-Date:   Mon, 13 Dec 2021 14:45:54 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com
-Subject: Re: [PATCH] drm: bridge: tc358764: Use drm panel_bridge API
-Message-ID: <YbdAglrp5ZNMm2Vx@pendragon.ideasonboard.com>
-References: <20211213121929.3377752-1-jagan@amarulasolutions.com>
- <Ybc9KdVOb0bxknyQ@pendragon.ideasonboard.com>
- <CAMty3ZCd9a8PZMEO_MhF7x4v_HoL9Bk6T-YiaUxF2R-YXQXxvw@mail.gmail.com>
+        with ESMTP id S236983AbhLMMq7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 07:46:59 -0500
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [IPv6:2404:9400:2:0:216:3eff:fee2:21ea])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBC04C061574;
+        Mon, 13 Dec 2021 04:46:58 -0800 (PST)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4JCLqg21XHz4xQs;
+        Mon, 13 Dec 2021 23:46:55 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+        s=201909; t=1639399616;
+        bh=W5VnYCvz7/mlHDYZbPhaQ5CNO1ZBQOxPjLpWHYJP0oo=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=FCYCETjAr0YAA0gTNjmpVVzSxElRjWZqAR1vlrvWLoAb7OiEpV7Mbp4Mnr7gQq4DX
+         Wtz0UJAt5d7bOKGQDXQT/bHJY4mhZPa2nAYEFaeR/DAWO2NeblIfVhGCVFkklHxN4g
+         JU8ToWI6dxI7oWuYorKFyadjdIAqoFQ1Sv7visIsjjFaMmAvnt4JjGoiDflRDXIJo2
+         Dh03DlQSGX9PkelFfqk88s5EAdyduc8VKFJW7CSqJUbPQObr5w9RjqjtftGLAnEkMJ
+         PtFUPSpkOjCetftc0sGd7fOtjnc7xTkpmBoWzd93b93LxlEz6P9sErMcB62uSXUX55
+         UGXkIkz3yUahA==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Rob Herring <robh@kernel.org>, John Crispin <john@phrozen.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] of/fdt: Rework early_init_dt_scan_memory() to call
+ directly
+In-Reply-To: <20211208155839.4084795-1-robh@kernel.org>
+References: <20211208155839.4084795-1-robh@kernel.org>
+Date:   Mon, 13 Dec 2021 23:46:51 +1100
+Message-ID: <87fsqwn03o.fsf@mpe.ellerman.id.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAMty3ZCd9a8PZMEO_MhF7x4v_HoL9Bk6T-YiaUxF2R-YXQXxvw@mail.gmail.com>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 13, 2021 at 06:09:23PM +0530, Jagan Teki wrote:
-> Hi Laurent,
-> 
-> On Mon, Dec 13, 2021 at 6:02 PM Laurent Pinchart
-> <laurent.pinchart@ideasonboard.com> wrote:
-> >
-> > Hi Jagan,
-> >
-> > Thank you for the patch.
-> >
-> > On Mon, Dec 13, 2021 at 05:49:29PM +0530, Jagan Teki wrote:
-> > > Replace the manual panel handling code by a drm panel_bridge via
-> > > devm_drm_of_get_bridge().
-> > >
-> > > Adding panel_bridge handling,
-> > >
-> > > - Drops drm_connector and related operations as drm_bridge_attach
-> > >   creates connector during attachment.
-> > >
-> > > - Drops panel pointer and panel healpers.
-> > >
-> > > This simplifies the driver and allows all components in the display
-> > > pipeline to be treated as bridges.
-> > >
-> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > ---
-> > >  drivers/gpu/drm/bridge/tc358764.c | 99 ++-----------------------------
-> > >  1 file changed, 6 insertions(+), 93 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/bridge/tc358764.c b/drivers/gpu/drm/bridge/tc358764.c
-> > > index c1e35bdf9232..28480bdc4287 100644
-> > > --- a/drivers/gpu/drm/bridge/tc358764.c
-> > > +++ b/drivers/gpu/drm/bridge/tc358764.c
-> > > @@ -153,10 +153,9 @@ static const char * const tc358764_supplies[] = {
-> > >  struct tc358764 {
-> > >       struct device *dev;
-> > >       struct drm_bridge bridge;
-> > > -     struct drm_connector connector;
-> > > +     struct drm_bridge *panel_bridge;
-> >
-> > s/panel_bridge/next_bridge/ as it may not be a panel.
-> 
-> Sometime, I'm a strong believer of my own notation (I may be wrong)
-> based on my understanding. This is downstream bridge and the only
-> option it to connect is panel and panel in bridge terminology are
-> treated as panel_bridge. This is the reason I have used panel_bridge.
-> next_bridge notation will be used if the bridge connected to any
-> downstream bridge, like we can use next_bridge notation in host bridge
-> drivers as host bridge can be an option of connecting downstream
-> bridge or panel.
+Rob Herring <robh@kernel.org> writes:
+> Use of the of_scan_flat_dt() function predates libfdt and is discouraged
+> as libfdt provides a nicer set of APIs. Rework
+> early_init_dt_scan_memory() to be called directly and use libfdt.
+...
+> diff --git a/arch/powerpc/kernel/prom.c b/arch/powerpc/kernel/prom.c
+> index 6e1a106f02eb..63762a3b75e8 100644
+> --- a/arch/powerpc/kernel/prom.c
+> +++ b/arch/powerpc/kernel/prom.c
+> @@ -532,19 +532,19 @@ static int  __init early_init_drmem_lmb(struct drmem_lmb *lmb,
+>  }
+>  #endif /* CONFIG_PPC_PSERIES */
+>  
+> -static int __init early_init_dt_scan_memory_ppc(unsigned long node,
+> -						const char *uname,
+> -						int depth, void *data)
+> +static int __init early_init_dt_scan_memory_ppc(void)
+>  {
+>  #ifdef CONFIG_PPC_PSERIES
+> -	if (depth == 1 &&
+> -	    strcmp(uname, "ibm,dynamic-reconfiguration-memory") == 0) {
+> +	const void *fdt = initial_boot_params;
+> +	int node = fdt_path_offset(fdt, "/ibm,dynamic-reconfiguration-memory");
+> +
+> +	if (node > 0) {
+>  		walk_drmem_lmbs_early(node, NULL, early_init_drmem_lmb);
+>  		return 0;
+>  	}
+>  #endif
+>  	
+> -	return early_init_dt_scan_memory(node, uname, depth, data);
+> +	return early_init_dt_scan_memory();
+>  }
+>  
+>  /*
+> @@ -749,7 +749,7 @@ void __init early_init_devtree(void *params)
+>  
+>  	/* Scan memory nodes and rebuild MEMBLOCKs */
+>  	early_init_dt_scan_root();
+> -	of_scan_flat_dt(early_init_dt_scan_memory_ppc, NULL);
+> +	early_init_dt_scan_memory_ppc();
+>  
+>  	parse_early_param();
+>  
+> @@ -858,7 +858,7 @@ void __init early_get_first_memblock_info(void *params, phys_addr_t *size)
+>  	 */
+>  	add_mem_to_memblock = 0;
+>  	early_init_dt_scan_root();
+> -	of_scan_flat_dt(early_init_dt_scan_memory_ppc, NULL);
+> +	early_init_dt_scan_memory_ppc();
+>  	add_mem_to_memblock = 1;
+>  
+>  	if (size)
 
-The downstream bridge doesn't have to be a DSI panel, it could be an
-LVDS-to-DPI bridge for instance, or an LVDS-to-HDMI encoder.
 
-> This is what I understood so-far with DRM bridges. May be you can
-> correct if I'm wrong.
-> 
-> > >       struct regulator_bulk_data supplies[ARRAY_SIZE(tc358764_supplies)];
-> > >       struct gpio_desc *gpio_reset;
-> > > -     struct drm_panel *panel;
-> >
-> > Are there #includes that you can drop ?
-> 
-> I think, yes. I will update it in v2.
+This blows up one of my machines with:
 
--- 
-Regards,
+  [    0.000000][    T0] printk: bootconsole [udbg0] enabled
+   -> early_setup(), dt_ptr: 0x1ec90000
+  [    0.000000][    T0] ------------[ cut here ]------------
+  [    0.000000][    T0] kernel BUG at arch/powerpc/mm/book3s64/hash_utils.c:2117!
+  [    0.000000][    T0] Oops: Exception in kernel mode, sig: 5 [#1]
+  [    0.000000][    T0] LE PAGE_SIZE=64K MMU=Hash SMP NR_CPUS=2048 NUMA
+  [    0.000000][    T0] Modules linked in:
+  [    0.000000][    T0] CPU: 0 PID: 0 Comm: swapper Not tainted 5.16.0-rc4-00073-g81291383ffde-dirty #69
+  [    0.000000][    T0] NIP:  c0000000000924d8 LR: c000000002009764 CTR: c0000000000924d0
+  [    0.000000][    T0] REGS: c000000002833bc0 TRAP: 0700   Not tainted  (5.16.0-rc4-00073-g81291383ffde-dirty)
+  [    0.000000][    T0] MSR:  8000000000021003 <SF,ME,RI,LE>  CR: 24000244  XER: 20000001
+  [    0.000000][    T0] CFAR: 0000000000000730 IRQMASK: 1
+  [    0.000000][    T0] GPR00: c000000002009764 c000000002833e60 c000000002834100 ffffffffffffffff
+  [    0.000000][    T0] GPR04: 0000000000000000 c000000002080866 0000000000000000 0000000000000000
+  [    0.000000][    T0] GPR08: c000000002080864 0000000000000001 c0000000028d4100 c000000000ffe598
+  [    0.000000][    T0] GPR12: c0000000000924d0 c000000002082200 0000000000000000 0000000000000000
+  [    0.000000][    T0] GPR16: 0000000000000000 0000000000000000 0000000000000000 0000000000000000
+  [    0.000000][    T0] GPR20: 0000000000000001 0000000010004604 0000000000000000 0000000010004bfc
+  [    0.000000][    T0] GPR24: 0000000000000000 c000000000000000 0000000002970000 c00000000008a480
+  [    0.000000][    T0] GPR28: c0000000028e19f8 c00000001ec90000 c000000002865af8 000000001ec90000
+  [    0.000000][    T0] NIP [c0000000000924d8] hash__setup_initial_memory_limit+0x18/0x110
+  [    0.000000][    T0] LR [c000000002009764] early_init_devtree+0x13c/0x4ec
+  [    0.000000][    T0] Call Trace:
+  [    0.000000][    T0] [c000000002833e60] [c0000000020096fc] early_init_devtree+0xd4/0x4ec (unreliable)
+  [    0.000000][    T0] [c000000002833f10] [c00000000200b008] early_setup+0xc8/0x22c
+  [    0.000000][    T0] [c000000002833f90] [000000000000d368] 0xd368
+  [    0.000000][    T0] Instruction dump:
+  [    0.000000][    T0] 4bffff0c eaa10028 4bffff44 60000000 60000000 60420000 3c4c027a 38421c40
+  [    0.000000][    T0] 7c0802a6 4bfe2e5d 3123ffff 7d291910 <0b090000> 3d220003 392919f8 e9290000
+  [    0.000000][    T0] random: get_random_bytes called from oops_exit+0x54/0xa0 with crng_init=0
+  [    0.000000][    T0] ---[ end trace 0000000000000000 ]---
 
-Laurent Pinchart
+
+It's complaining about memstart_addr being 0, which implies
+early_init_dt_add_memory_arch() was never called.
+
+Will try and get some more debug tomorrow.
+
+cheers
+
