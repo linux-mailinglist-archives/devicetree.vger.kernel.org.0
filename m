@@ -2,169 +2,379 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7603447322D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 17:46:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CEAB473293
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 17:58:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236048AbhLMQqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 11:46:20 -0500
-Received: from foss.arm.com ([217.140.110.172]:60116 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241018AbhLMQqH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 11:46:07 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8A3FD1FB;
-        Mon, 13 Dec 2021 08:46:05 -0800 (PST)
-Received: from [10.57.6.131] (unknown [10.57.6.131])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9DCE33F73B;
-        Mon, 13 Dec 2021 08:46:03 -0800 (PST)
-Subject: Re: [PATCH v3 1/3] dt-bindings: gpu: mali-bifrost: Document RZ/G2L
- support
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        tomeu.vizoso@collabora.com,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Robin Murphy <robin.murphy@arm.com>
-References: <20211208104026.421-1-biju.das.jz@bp.renesas.com>
- <20211208104026.421-2-biju.das.jz@bp.renesas.com>
-From:   Steven Price <steven.price@arm.com>
-Message-ID: <46cf467b-8385-167e-1fde-64fcb9859bc6@arm.com>
-Date:   Mon, 13 Dec 2021 16:46:01 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S237735AbhLMQ6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 11:58:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48056 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234200AbhLMQ6C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 11:58:02 -0500
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CACAC06173F
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 08:58:02 -0800 (PST)
+Received: by mail-oi1-x22d.google.com with SMTP id bf8so23967919oib.6
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 08:58:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=J+nedtdcLR++WJxBvny7mXCrzpGMYhJDkeejVaXULEs=;
+        b=kSefkk75L4mRSQ+0lX86dDfDuAUoaptSeRStEhIEJhWcdn/HEw9bBJrlrPDni8ADmI
+         OhTR6+Mz98vUP2Gc74kQ2JpLBSjMJiIPY1ehwnly6eYNT5ikKIq6K5Pb7Ejh+bKB6rtg
+         N9dFa6aXsBPhhGVMoJiSzDFq379Urb1mYd5tXOiUmgRZ2T8CJ5Z+3ovadeIWF4VYO7JO
+         4VcfJCPpnfUFLUenavOV90spizqDoC9h61gJjSUEPASfbMoMOtTSnETjvHvNKMTk0Cve
+         PcX0E8dBlFSOJrE16SciOBh3EvBNrixSMHWBAi7g4QDQJabMqCcFB1mA8TRf2Q0+0mny
+         iObg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=J+nedtdcLR++WJxBvny7mXCrzpGMYhJDkeejVaXULEs=;
+        b=GaCsbGiPLPlibYGzQlhGyPMT8jXU7Dj9lUzpkKhLK1alyODOOzBYvpC2LB5M8oX62E
+         vu8yqN9jZTBjBYQsZgmZcfBK8DVq5f0UF4niaNVbEEmCeQYQ9E4rKBkHCEVwitieP43u
+         M1KcxRbbMojR/7l4Oogbf3QMw9d3fnd0ptHGzCerggAsnpIqTmM7N57La8CCj0lLwWWi
+         STjF26xrsWkXXSBoB8QTEybAibxh3GoBmYKY+QyW1c4CC9gtce3rQBZMISzs2Nd1Rw4G
+         AqHRnstLZRfyVJXQLkjQ6B8hjgKFs/9jUtSpggsK2wKr2lrXPQ5BsMlqf+z0pMXgdj8A
+         A23w==
+X-Gm-Message-State: AOAM531a4RynMWaWef63uFg3bkx5keFXiH9WrVsGRsUgNbbQFdKQVdX5
+        gZvvRgwfvf4iIKHPPHp/gsCm7Q==
+X-Google-Smtp-Source: ABdhPJxkXq2zp/Uf5aLQMyip7F8P1T/T4CvcJySJDm6dnu7SMsac71xEHAiF+bnktV3vqW7DWFZqLw==
+X-Received: by 2002:a05:6808:682:: with SMTP id k2mr29770741oig.63.1639414681547;
+        Mon, 13 Dec 2021 08:58:01 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 186sm2678813oig.28.2021.12.13.08.58.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Dec 2021 08:58:01 -0800 (PST)
+Date:   Mon, 13 Dec 2021 10:57:56 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Julian Ribbeck <julian.ribbeck@gmx.de>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH] arm64: dts: qcom: Add device tree for Samsung J5 2015
+ (samsung-j5)
+Message-ID: <Ybd7lGatbtJMxwEw@builder.lan>
+References: <20211116200734.73920-1-julian.ribbeck@gmx.de>
+ <YZcam/pnh0CBjMIx@builder.lan>
+ <YZd0zzzuxgk2+x2b@gerhold.net>
 MIME-Version: 1.0
-In-Reply-To: <20211208104026.421-2-biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YZd0zzzuxgk2+x2b@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/12/2021 10:40, Biju Das wrote:
-> The Renesas RZ/G2{L, LC} SoC (a.k.a R9A07G044) has a Bifrost Mali-G31 GPU,
-> add a compatible string for it.
+On Fri 19 Nov 03:56 CST 2021, Stephan Gerhold wrote:
+
+> Hi Bjorn,
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v2->v3:
->  * Moved optional clock-names and reset-names to SoC-specific conditional schemas.
->  * minimum number of reset for the generic GPU is set to 1.
->  * Documented number of clocks, resets, interrupts and interrupt-names in RZ/G2L
->    SoC-specific conditional schemas.
-> v1->v2:
->  * Updated minItems for resets as 2
->  * Documented optional property reset-names
->  * Documented reset-names as required property for RZ/G2L SoC.
-> ---
->  .../bindings/gpu/arm,mali-bifrost.yaml        | 45 ++++++++++++++++++-
->  1 file changed, 43 insertions(+), 2 deletions(-)
+> Thanks a lot for your review!
 > 
-> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> index 6f98dd55fb4c..63a08f3f321d 100644
-> --- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-> @@ -19,6 +19,7 @@ properties:
->            - amlogic,meson-g12a-mali
->            - mediatek,mt8183-mali
->            - realtek,rtd1619-mali
-> +          - renesas,r9a07g044-mali
->            - rockchip,px30-mali
->            - rockchip,rk3568-mali
->        - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
-> @@ -27,19 +28,26 @@ properties:
->      maxItems: 1
->  
->    interrupts:
-> +    minItems: 3
->      items:
->        - description: Job interrupt
->        - description: MMU interrupt
->        - description: GPU interrupt
-> +      - description: Event interrupt
->  
->    interrupt-names:
-> +    minItems: 3
->      items:
->        - const: job
->        - const: mmu
->        - const: gpu
-> +      - const: event
-
-FWIW: I think it's fair to add the "event" interrupt even if it isn't
-included in the bindings for kbase. While pretty much useless on Bifrost
-it is a hardware feature and in theory it could be used.
-
-Reviewed-by: Steven Price <steven.price@arm.com>
-
-Steve
-
->  
->    clocks:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  clock-names: true
->  
->    mali-supply: true
->  
-> @@ -52,7 +60,10 @@ properties:
->      maxItems: 3
->  
->    resets:
-> -    maxItems: 2
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  reset-names: true
->  
->    "#cooling-cells":
->      const: 2
-> @@ -94,6 +105,36 @@ allOf:
->      then:
->        required:
->          - resets
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a07g044-mali
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 4
-> +        interrupt-names:
-> +          minItems: 4
-> +        clocks:
-> +          minItems: 3
-> +        clock-names:
-> +          items:
-> +            - const: gpu
-> +            - const: bus
-> +            - const: bus_ace
-> +        resets:
-> +          minItems: 3
-> +        reset-names:
-> +          items:
-> +            - const: rst
-> +            - const: axi_rst
-> +            - const: ace_rst
-> +      required:
-> +        - clock-names
-> +        - power-domains
-> +        - resets
-> +        - reset-names
->    - if:
->        properties:
->          compatible:
+> On Thu, Nov 18, 2021 at 09:31:39PM -0600, Bjorn Andersson wrote:
+> > On Tue 16 Nov 14:07 CST 2021, Julian Ribbeck wrote:
+> > 
+> > > Samsung J5 2015 is a MSM8916 based Smartphone. It is similar to some of the
+> > > other MSM8916 devices, especially the Samsung ones.
+> > > 
+> > > With this patch initial support for the following is added:
+> > >   - eMMC/SD card
+> > >   - Buttons
+> > >   - USB (although no suiting MUIC driver currently)
+> > >   - UART (untested for lack of equipment)
+> > >   - WiFi/Bluetooth (WCNSS)
+> > > 
+> > > It is worth noting that Samsung J5 with MSM8916 exists in different
+> > > generations (e.g Samsung J5 2015 and Samsung J5 2016) which each have
+> > > different models (e.g. samsung-j5nlte, samsung-j5xnlte, etc). This patch
+> > > is only regarding the 2015 generation, but should work with all of it's
+> > > models, as far as we could test.
+> > > 
+> > > Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
+> > > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > > Signed-off-by: Julian Ribbeck <julian.ribbeck@gmx.de>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+> > >  .../boot/dts/qcom/msm8916-samsung-j5.dts      | 209 ++++++++++++++++++
+> > >  2 files changed, 210 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > > index 6b816eb33309..08bfccb0daeb 100644
+> > > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > > @@ -15,6 +15,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-longcheer-l8910.dtb
+> > >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-mtp.dtb
+> > >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-a3u-eur.dtb
+> > >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-a5u-eur.dtb
+> > > +dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-j5.dtb
+> > >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-serranove.dtb
+> > >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
+> > >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-bullhead-rev-101.dtb
+> > > diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
+> > > new file mode 100644
+> > > index 000000000000..687bea438a57
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
+> > > @@ -0,0 +1,209 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > 
+> > If you authored this, could we please get it under BSD license?
+> > 
+> 
+> I'm afraid the same problem applies to all MSM8916-related device trees:
+> https://lore.kernel.org/linux-arm-msm/YMIznk4scPv1qOzP@gerhold.net/
+> 
+> Given the similarities between the devices it's easiest to take portions
+> from existing device trees and just change some properties. But this
+> means that many people were involved and I'm not sure if it is
+> appropriate to apply a different license without asking all of them.
+> 
+> It's an unfortunate situation that will likely also apply to more
+> MSM8916 device trees submitted in the future. I hope it's still
+> acceptable even with the GPL-2.0-only license. :)
 > 
 
+Unfortunate indeed, but now I've asked at least...
+
+> > > +
+> > > +/dts-v1/;
+> > > +
+> > > +#include "msm8916-pm8916.dtsi"
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +
+> > > +/ {
+> > > +	model = "Samsung Galaxy J5 (2015)";
+> > > +	compatible = "samsung,j5", "qcom,msm8916";
+> > > +	chassis-type = "handset";
+> > > +
+> > > +	aliases {
+> > > +		serial0 = &blsp1_uart2;
+> > > +	};
+> > > +
+> > > +	chosen {
+> > > +		stdout-path = "serial0";
+> > > +	};
+> > > +
+> > > +	reserved-memory {
+> > > +		/* Additional memory used by Samsung firmware modifications */
+> > > +		tz-apps@85500000 {
+> > > +			reg = <0x0 0x85500000 0x0 0xb00000>;
+> > > +			no-map;
+> > > +		};
+> > > +	};
+> > > +
+> > > +	gpio-keys {
+> > > +		compatible = "gpio-keys";
+> > > +
+> > > +		pinctrl-names = "default";
+> > > +		pinctrl-0 = <&gpio_keys_default>;
+> > > +
+> > > +		label = "GPIO Buttons";
+> > > +
+> > > +		volume-up {
+> > > +			label = "Volume Up";
+> > > +			gpios = <&msmgpio 107 GPIO_ACTIVE_LOW>;
+> > > +			linux,code = <KEY_VOLUMEUP>;
+> > > +		};
+> > > +
+> > > +		home-key {
+> > > +			lable = "Home Key";
+> > > +			gpios = <&msmgpio 109 GPIO_ACTIVE_LOW>;
+> > > +			linux,code = <KEY_HOMEPAGE>;
+> > > +		};
+> > > +	};
+> > > +};
+> > > +
+> > > +&blsp1_uart2 {
+> > 
+> > Can you please sort these nodes alphabetically?
+> > 
+> 
+> It looks mostly alphabetically ordered to me, could you clarify which
+> nodes you are referring to exactly?
+> 
+> The exceptions are &smd_rpm_regulators and &msmgpio, which are explicitly
+> at the end of the file (consistent with all other MSM8916 device trees).
+> I think it's easier to focus on the main interesting part of the device
+> tree that way (the device definitions). If you prefer to have strict
+> alphebtical order I can prepare a bulk patch that changes the order in
+> all the existing MSM8916 device trees. The most important thing for me
+> is that they are consistent.
+> 
+
+You're right, I had forgotten that we put the &smd_rpm_regulators at the
+end on these related devices. Should probably make this consistent
+across all platforms, but let's merge this for now.
+
+Thanks,
+Bjorn
+
+> Thanks,
+> Stephan
+> 
+> > 
+> > > +	status = "okay";
+> > > +};
+> > > +
+> > > +&pm8916_resin {
+> > > +	status = "okay";
+> > > +	linux,code = <KEY_VOLUMEDOWN>;
+> > > +};
+> > > +
+> > > +/* FIXME: Replace with SM5703 MUIC when driver is available */
+> > > +&pm8916_usbin {
+> > > +	status = "okay";
+> > > +};
+> > > +
+> > > +&pronto {
+> > > +	status = "okay";
+> > > +};
+> > > +
+> > > +&sdhc_1 {
+> > > +	status = "okay";
+> > > +
+> > > +	pinctrl-names = "default", "sleep";
+> > > +	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+> > > +	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+> > > +};
+> > > +
+> > > +&sdhc_2 {
+> > > +	status = "okay";
+> > > +
+> > > +	pinctrl-names = "default", "sleep";
+> > > +	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
+> > > +	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
+> > > +
+> > > +	cd-gpios = <&msmgpio 38 GPIO_ACTIVE_LOW>;
+> > > +};
+> > > +
+> > > +&usb {
+> > > +	status = "okay";
+> > > +	dr_mode = "peripheral";
+> > > +	extcon = <&pm8916_usbin>;
+> > > +};
+> > > +
+> > > +&usb_hs_phy {
+> > > +	extcon = <&pm8916_usbin>;
+> > > +	qcom,init-seq = /bits/ 8 <0x1 0x19 0x2 0x0b>;
+> > > +};
+> > > +
+> > > +&smd_rpm_regulators {
+> > > +	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+> > > +	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+> > > +	vdd_l7-supply = <&pm8916_s4>;
+> > > +
+> > > +	s3 {
+> > > +		regulator-min-microvolt = <1200000>;
+> > > +		regulator-max-microvolt = <1300000>;
+> > > +	};
+> > > +
+> > > +	s4 {
+> > > +		regulator-min-microvolt = <1800000>;
+> > > +		regulator-max-microvolt = <2100000>;
+> > > +	};
+> > > +
+> > > +	l1 {
+> > > +		regulator-min-microvolt = <1225000>;
+> > > +		regulator-max-microvolt = <1225000>;
+> > > +	};
+> > > +
+> > > +	l2 {
+> > > +		regulator-min-microvolt = <1200000>;
+> > > +		regulator-max-microvolt = <1200000>;
+> > > +	};
+> > > +
+> > > +	l4 {
+> > > +		regulator-min-microvolt = <2050000>;
+> > > +		regulator-max-microvolt = <2050000>;
+> > > +	};
+> > > +
+> > > +	l5 {
+> > > +		regulator-min-microvolt = <1800000>;
+> > > +		regulator-max-microvolt = <1800000>;
+> > > +	};
+> > > +
+> > > +	l6 {
+> > > +		regulator-min-microvolt = <1800000>;
+> > > +		regulator-max-microvolt = <1800000>;
+> > > +	};
+> > > +
+> > > +	l7 {
+> > > +		regulator-min-microvolt = <1800000>;
+> > > +		regulator-max-microvolt = <1800000>;
+> > > +	};
+> > > +
+> > > +	l8 {
+> > > +		regulator-min-microvolt = <2850000>;
+> > > +		regulator-max-microvolt = <2900000>;
+> > > +	};
+> > > +
+> > > +	l9 {
+> > > +		regulator-min-microvolt = <3300000>;
+> > > +		regulator-max-microvolt = <3300000>;
+> > > +	};
+> > > +
+> > > +	l10 {
+> > > +		regulator-min-microvolt = <2700000>;
+> > > +		regulator-max-microvolt = <2800000>;
+> > > +	};
+> > > +
+> > > +	l11 {
+> > > +		regulator-min-microvolt = <1800000>;
+> > > +		regulator-max-microvolt = <2950000>;
+> > > +		regulator-allow-set-load;
+> > > +		regulator-system-load = <200000>;
+> > > +	};
+> > > +
+> > > +	l12 {
+> > > +		regulator-min-microvolt = <1800000>;
+> > > +		regulator-max-microvolt = <2950000>;
+> > > +	};
+> > > +
+> > > +	l13 {
+> > > +		regulator-min-microvolt = <3075000>;
+> > > +		regulator-max-microvolt = <3075000>;
+> > > +	};
+> > > +
+> > > +	l14 {
+> > > +		regulator-min-microvolt = <1800000>;
+> > > +		regulator-max-microvolt = <3300000>;
+> > > +	};
+> > > +
+> > > +	l15 {
+> > > +		regulator-min-microvolt = <1800000>;
+> > > +		regulator-max-microvolt = <3300000>;
+> > > +	};
+> > > +
+> > > +	l16 {
+> > > +		regulator-min-microvolt = <1800000>;
+> > > +		regulator-max-microvolt = <3300000>;
+> > > +	};
+> > > +
+> > > +	l17 {
+> > > +		regulator-min-microvolt = <3000000>;
+> > > +		regulator-max-microvolt = <3000000>;
+> > > +	};
+> > > +
+> > > +	l18 {
+> > > +		regulator-min-microvolt = <2700000>;
+> > > +		regulator-max-microvolt = <2700000>;
+> > > +	};
+> > > +};
+> > > +
+> > > +&msmgpio {
+> > > +	gpio_keys_default: gpio-keys-default {
+> > > +		pins = "gpio107", "gpio109";
+> > > +		function = "gpio";
+> > > +
+> > > +		drive-strength = <2>;
+> > > +		bias-pull-up;
+> > > +	};
+> > > +};
+> > > --
+> > > 2.33.1
+> > > 
