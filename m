@@ -2,248 +2,533 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE95D472114
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 07:32:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2EB6472129
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 07:41:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232271AbhLMGcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 01:32:54 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:21723 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232373AbhLMGch (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 01:32:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1639377158; x=1670913158;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=g8lsAMov1n2QfEqTDS6fK2ugo04BuLQro85qDecXOYI=;
-  b=COoAxpo8gke76yd2FyLT1bkycqMFzQPV0DCuXScjqryB8Rz2Y0IB+2f9
-   R0y3umDwOGQoCP8Rz6ltmua4nzVsdNPC/aH09jlKoSIGfEB9Riy4GvBd7
-   OYiyaLFe+xw82HWV5tHVEd3Q+7zpY2LibXgY2Mui8IUd0wzTBtT8s5ye7
-   CdmPEEJ/rJw7ZZG2hoDViGyUy4q/xQ55XocZ5XOUaeASYGHtUdSulsPd0
-   D2N2UU6utIxJnIWSDFVVsTSe4wsT77UF3sn5SEvD0D7B0/qiuA9H02cFA
-   wlNUGOWL2tCLPFYg5EjCrECeD/lJeGjNDZp4lG4nwn3w26ddsRrxFjf3A
-   w==;
-IronPort-SDR: F/hQNeMwiRHmxT5BBmK5ix3QBQE7EnTvlEU7eFVGfQMzL7aZbap7pzJFcBRHWCOScbt0GmzFOj
- V6i5EB4w//SbrP6V36JiXG0+6G+3NgZHg47Q+wNUQxChpujzu7iocnrlaY07JOvnvzD7Of/BZ4
- Qs9tdwtE44zRi+O/11HDBxQ9QB7ZYZi9qZcrmXFyXWk5brqRPXHJqVJzSwqFkkFh7ija0txRPr
- boBMZcTVXuMxW3bz3y7Ks34O2WGM3tKzbAj0nJqZABZjjrXZfykAS9zD9fCbETkfIJRA/gdSWA
- TxYjLYmi3nJgJfrhc9yBMiti
-X-IronPort-AV: E=Sophos;i="5.88,201,1635231600"; 
-   d="scan'208";a="146420111"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Dec 2021 23:32:34 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Sun, 12 Dec 2021 23:32:32 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17 via Frontend Transport; Sun, 12 Dec 2021 23:32:32 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m/7vaEA/qwIMtW5WDcv0qELuf6PcrCpsJ1XPmxLw22XwMMV6zVzOSIyxNUALr/WEqe/ONj657X2YX0qT7NelBm8YQAUW8FSOmQr/wIBHH/kHGpHepA7EkOkKleJCRIlgfz6yGhKZ8Z8SYH39UsVtt+HK+XhRAe1VAwNjFsXmd4bgS00U0HUeV/HOia1Y2apgRHoQIqNzaNLMLlpWFLuPZPGRAZjBx4cwdJvxKQAZjNuE/6zO7w4gIKoYTmuempldhwUglntqGU76DOX8f3RUG33+rytF1d8PmW6B0qu8kNdPFkBMJcoZupWZvfhWGrjpGV24cYYjvW+v1lux9iyX0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g8lsAMov1n2QfEqTDS6fK2ugo04BuLQro85qDecXOYI=;
- b=P/7Rs0X/SqqbEPTqseyElNHeCo3fcXO4CIN+c9u0Vta7olz/HjO0Ikj37nvkcsl0C7A7RclE1iwjhN98Ma5DFfj6mtpBFtH0KTnIbIrgKjSWWzRCLReJSMWUXc8WloOFB8ZEQH6jL2UkhqmMKbx4KRCooyUVw1Wtb35wqkydHJIWTNDFJzFlPcrTlLG1lRRrya9D84bCdyzrsNJp3MTlL/upizPfmoTJCnVtmy77O3FxgF5LN6enrEavDQPjOH2TBZ+yibz/0G4/I6x3Rl6GjXUEuXKwZV7NnE65AHZ7hBJq9oUx7Xa7nafAHwNOz4U8NFxeXlgF/1G+c5coQR5M3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        id S230364AbhLMGl4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 01:41:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42660 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230341AbhLMGl4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 01:41:56 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0848C06173F;
+        Sun, 12 Dec 2021 22:41:55 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id b40so28877114lfv.10;
+        Sun, 12 Dec 2021 22:41:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g8lsAMov1n2QfEqTDS6fK2ugo04BuLQro85qDecXOYI=;
- b=cMudi+X8JNTb6vm2mFcMMhDF+I8nc91PZr4F1zJ56Tnaryn5UGAdD3GG13gqNHmQTLmfuhmA0qNG5ZPH/2f0pGtfrksR/vtosLt3k9jBp0Uk22v64duYg+iE4BYfTJPk9V+AO98TwqeD2qY9lGRgsJOJV3EtOPxJulDL1KrxtbQ=
-Received: from CO1PR11MB4769.namprd11.prod.outlook.com (2603:10b6:303:91::21)
- by MW5PR11MB5881.namprd11.prod.outlook.com (2603:10b6:303:19d::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.17; Mon, 13 Dec
- 2021 06:32:26 +0000
-Received: from CO1PR11MB4769.namprd11.prod.outlook.com
- ([fe80::bd93:cf07:ea77:3b50]) by CO1PR11MB4769.namprd11.prod.outlook.com
- ([fe80::bd93:cf07:ea77:3b50%7]) with mapi id 15.20.4778.017; Mon, 13 Dec 2021
- 06:32:26 +0000
-From:   <Claudiu.Beznea@microchip.com>
-To:     <davidm@egauge.net>, <Ajay.Kathat@microchip.com>
-CC:     <kvalo@codeaurora.org>, <davem@davemloft.net>, <kuba@kernel.org>,
-        <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <adham.abozaeid@microchip.com>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] wilc1000: Add reset/enable GPIO support to SPI
- driver
-Thread-Topic: [PATCH v2 1/2] wilc1000: Add reset/enable GPIO support to SPI
- driver
-Thread-Index: AQHX7+sxVJKk/gSTcECp4llNXYlhjA==
-Date:   Mon, 13 Dec 2021 06:32:26 +0000
-Message-ID: <0eba4b4c-7c00-291a-e9a3-c8c45fe4be86@microchip.com>
-References: <20211208061559.3404738-1-davidm@egauge.net>
- <20211208061559.3404738-2-davidm@egauge.net>
-In-Reply-To: <20211208061559.3404738-2-davidm@egauge.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 34e05464-e720-431e-dc94-08d9be025480
-x-ms-traffictypediagnostic: MW5PR11MB5881:EE_
-x-microsoft-antispam-prvs: <MW5PR11MB58812E60FA28EB1655B71EA387749@MW5PR11MB5881.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:469;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: VEHWCFTpcTeqyuC6UrhfrnxfH5kqGMnHV91/ZrkAP2h4pXTLEX0wSk7SYpHyzE6Q9TISNWszEgKw7k/AMePo4VDUibEnp6ATAYhgmeIG3+6UrPZyevoIEf+y9wdofzed3zXLZNfDWBKpu9uZfBDOovtous6yNxQTvEOTbJK6qPiupg0z0FAS+99XU4PGYdlTRDVqei8URs1YL1I/YvaJS0GIXnAFB5CKA+dT3uRCiX2LFEAtlP/aUpyfGp7+MAzMjqKWw453Atelc/4Ne2nh+OYvOireCeNWhnz1sFE9j/EumwW3JUzRsQBaWpw+R7dnYd40IdQiYuzV7vms/cdZeQF9aO+shU0Q9z6jB25g7BUcpESL4bPH6zS8rlQWb5C9SNEPLtu7c3P4/wVBxE+ceDniC4HQZ5WJMR0CjrB3xyfVavYI2XfefLURC1cX6WgT0eaCsekP7Dz86DaFW92k0eVKSudFag8IcsXxsw7qoh/8prvbSaZZuwRD99CNCHLJ+3gOHa34TCh9/4LSXuXZnIlHnTyZRAY1ofgAFfRNcyli+L+mea6tylyNi2vDxXCTbCQC5Koi2J9Lv/+E2/IbHISUUxqRwlzLiInEPWKdfHAkkIGCoJ07h+M6allCwPP2a4IV60iJBs8j5VgScnvW+q+798R6O0owh9yA0lGv3bdP9Gjm3l30FmdKNEBY8mVku8p//EBKMhqF929UrSIItPb0DSl0LVczchwnWz+YQigaiAU5U5ckDLrCCSJmRaYsb11C1lWqebxgTdlbcLAOMQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4769.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(86362001)(76116006)(4326008)(508600001)(5660300002)(26005)(66946007)(122000001)(66476007)(2906002)(6636002)(64756008)(36756003)(31696002)(66556008)(38070700005)(91956017)(66446008)(6486002)(6512007)(8936002)(31686004)(71200400001)(6506007)(316002)(8676002)(110136005)(54906003)(2616005)(186003)(83380400001)(38100700002)(53546011)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?N0NmM0FjUkZFTm1CMXplYllnMklSMHpwZ2VaRVd2eTJYZjdXSzR1cm9SSlJD?=
- =?utf-8?B?TU1GY1Q2a1dSUGdhRjZFK3VnZTg1bGd0eHhQUXlJNThzNEo4djFqVjBKVTlw?=
- =?utf-8?B?SFR5SnZSWGFLUjdUcy9KQTgwczRTWVJqc3oyWjNNTlEwd2ZRamJNV3ZHSVl0?=
- =?utf-8?B?YTdXVmQxOStVZjN1UlViRnNJUmNBRGM5TVEwUXYvM0NPNUxzWFY4SklRaVpz?=
- =?utf-8?B?b1lRRXR2VFZnVWxZUHk1a0pLczlhelZZVnRYWTh3WHhHN3ppd21OOHlDUk9E?=
- =?utf-8?B?VGY3SnEvWTRRa1VJZHVqUlM5UHVlR0cxVyttUkNyRzdzNTVwR3pLQkJzM0k2?=
- =?utf-8?B?a2luVnFDVU1KYmZvdjJuNFhkYmVOK0lVUmhCTWUyaXB2czJCbWRiVDVHZ1JV?=
- =?utf-8?B?SDFpQ2ZnTjZhSW5WV1Fub2x3dUJKMktHaHdaS0dnbk1UejNrUUdHc0NhdHRp?=
- =?utf-8?B?TmhuZlYxYjg1Y0U5M0FkNHVwbHNJQWFMUlYzUFEwUUd4RVNSbUp4KzNSd09L?=
- =?utf-8?B?MUZmWGxRakJvK0U0aHFHNUFRTDhXV3o4eWFib3BJbHBuOVRHWmlWTnA4Z1Jr?=
- =?utf-8?B?dU1pT0tqTkVwL3lacUFQVlZ3N0NnQTBOS3RRS0hNdDA0Nm9sSW05cFlZdmdI?=
- =?utf-8?B?RE90V293Rjl6WVJuRkoxYVltNDhHaDFuTllhZVRIRjFEa1Y1Zmk5TEFaMjF2?=
- =?utf-8?B?OVpyb0VTTzl3UGs5NThzejFRRFcvQWMwMk8xR1dOZ01Gak9GMml5Q05nWWdY?=
- =?utf-8?B?VXdzUFp1Wmc2NzhDdm9hSjhNU0hSU3h1d1ZqbHhSaEMzdTVacVA4S1pxUkwv?=
- =?utf-8?B?NDBYbnZjTEF2Z0NGeEw2ZXhrUHFrV0F4MjRrTWdnN2NCME9INTBWQWt6VVlt?=
- =?utf-8?B?N2VBS3F3SGxwYWlzMzRRWm5DTGcxck81WXAzL0dXTVlMbFBsb2tVNXk3ZTE1?=
- =?utf-8?B?KzEwYzRJbjZWL0NzZFgrMmh4TUticTBic0JLWGc0c3BweFd5WHZMU01NenRH?=
- =?utf-8?B?M001ZmthVnFPRXhLbXFIUUVJbVNsblQ4UmJEZXgyVzY3ZEQ3c3l3cHpHbFU5?=
- =?utf-8?B?TXJSUk5FSXN1UEZBc0h1cEZtR2dlZkFRNFUxdllZaUN5S0l3R0tJb3dmYjBn?=
- =?utf-8?B?eVFNbUZBQ3Jab0hvcllJb0tUUGhrdnVTZHBFOXFHNnZ5S0Q5ZjFLeERtdlFO?=
- =?utf-8?B?Wi9FeEtIL0Y2cHJLVlppclBZemU4S0dYQ0g2bWpBajkyK055TWxPM2R0TkxX?=
- =?utf-8?B?b04vOFJrQ1Nkclo5aWRrcXlsL0czLzZoWEFZVXlhU09YeXJYOFRCY1ZXZVZq?=
- =?utf-8?B?SGhvZElCbDBvaWpaRDZ5VWlqTWJBaTY3RjNRaGhITkMrdjVGV3Z0MEU5U1FI?=
- =?utf-8?B?M1MrVTkrOEIzZjFVQ0RFYXNuWEdrampNTnlOS1FSLzBvYWlrRkNuYXNnamxW?=
- =?utf-8?B?UEt2Y2IrSmJrN3R6YlhsWHUzSTdEWWVsRk9Fd0RWNUh4S0p0aTVvNHZJZERC?=
- =?utf-8?B?RGNDRGhxN0p4bnEwVWcxdmtMNmFSNDVIYzk1VXdqbXIvNXI2WW9KMzB3OFZI?=
- =?utf-8?B?L0hTTURkYUFRODd5bTBlZTlYSnVrdy83RlZFUXMrNmk0Nm5kcVQ0MVNYZTc2?=
- =?utf-8?B?d2NValY4aFh0VjhKdHpTSFpSZ25mZVFaald1cEhydkl3Y1BUN212RURtK2Np?=
- =?utf-8?B?ajZqR2Z5bXFhb2FEQkVieE4zUHFoNmQvZnVXUklRaS8zcVVWVGgyeGp5d0t4?=
- =?utf-8?B?Zjg3Y2JpZzVmSVVxL3d5MStGSDNTc2M2b1V1VCs4Qk9MemhxakhockU3dm1m?=
- =?utf-8?B?UCtjMUwwN1MyaWZ6Wk1hNlRjQ1g0TTRtS2RaQzA4QWVQV2dTa2Y3NXlua0pr?=
- =?utf-8?B?bjBZZjRjd240TUZ2RFkvR0VRV2tCU1FPMnl3M1d4Nk50a1Z1UHBjbjRtMmtl?=
- =?utf-8?B?ZHBkdnFyU3lTM0VzNmE4YWhpd0g1ejlMUkxySS9IeCtXWUc4NzBkZTRzVjhB?=
- =?utf-8?B?a1RHWVNBNVkySGw3VThBQjRORFdNSDVkTGhnaXZVbjg2ZVZLc0Vnc00xSCsz?=
- =?utf-8?B?dFROUGsvNHBiMlBYcnltTVVTcmN5Nk0xODAramVBWHR5UzZuR0hsUis2Q0RB?=
- =?utf-8?B?bXh2VndDaGpVci9ZWDdmcDNoMnR3dVRHL0FocnhXUEZGazRNV2kyNUNFa3pp?=
- =?utf-8?B?QWF4aTI5eDQxeGY4VStPSE5OU0Nsc3cyTnRBcEtCSEZCMVJBQ2ZZU0twK1Np?=
- =?utf-8?B?NVJ6akl6clRBWFU4OGx4U3h5dFp3PT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E9A21A12FEF6C74E859FF2631095B441@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=4C0uo0FkTEbupD5zDs1HjJiOHkOgPnFQD77QAX7qmos=;
+        b=H/j8JckHH2Tw0QAQp1rZKnr6dAKfsr9nRmJxABFKCUe+gn4ke703L9ftjTSwZiRR4O
+         g/ERIAs5YbQfYB51vZVOIqt9ykf4kfKkJDprqSHeA0jqWpMSFHYNFjMmAyVqk4W+C7NG
+         ZNnna6VvPV/xdRclNWU54WLiKg7OqDJfndp81z7qOjgHzxAdqruNRyqmUKsoQtf51xvq
+         QcV9Ul0o/XihzjDrXsf+PQbhGQ6kntipQcdj6+J+xRB6TvU1J18vjRoziqXaNAbuPjnU
+         +EKUvnBaq//2W97xuYDLB6QGYT9Jwk6U3W4I9F/umuo1qkAKDBEDTrSqymGZrFY5kAa6
+         PN3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=4C0uo0FkTEbupD5zDs1HjJiOHkOgPnFQD77QAX7qmos=;
+        b=CRuRAJ8G4LAUNdeyUCC9LE7fu/0AbQOtT1X6/p4qeu9R+B+lz8NoZVnJ+gss1H3Vvz
+         E9T+EKFZ7W0Jnderm3eoRJaNW8kgQSm5K9twExO/12e3O+9LowMfpBQPi+E+osktpgRR
+         WvAKWLOKWlJpG11PuVJwvCdr6nw91UmULlVE2PAmIDnUhJvLD4veDGR3kqddDEl6kBhh
+         dziDZ5AFnySsTe7K8Q5ipKpCG29YkTY5aCuh+zcsehgpMGsF8NglTnNkt3DKIugB9KV8
+         PsmQQLJkWtN7MNjI44RhRGqovRxgz75SjSnvC3wV+GCk45N7ZnhqYvqhIvOB+3DanVEw
+         9Www==
+X-Gm-Message-State: AOAM5319VoBi4cKwVrpRpeOxcNbp+LDJJK3OKfytv0hs/8MwT2edfzhY
+        KJfvMBYv7ZmjcFq5zEkKX5EX7nlmRG28bdifVi0=
+X-Google-Smtp-Source: ABdhPJw2NVb3r3al0+zxtEzVFJ70fbuoyfstES1ICeJjTZWd0MgL9BUuO5x/pWRZ4iW4KdrBubNaCEN8NCkl5PPG4dU=
+X-Received: by 2002:a05:6512:2081:: with SMTP id t1mr27321030lfr.348.1639377713726;
+ Sun, 12 Dec 2021 22:41:53 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4769.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34e05464-e720-431e-dc94-08d9be025480
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Dec 2021 06:32:26.5264
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: uliZd8YOSBWrsr26JrU4Jk3ZCVxJ+NW6xI8m16IMLKKcSxFTFOFJPMXVmlgoTDxmleVMtcg1JBbFtSpkd/tXTF2WzymT91y0YWcbyxLeEJA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5881
+References: <1638867233-8383-1-git-send-email-vincent.sunplus@gmail.com>
+ <1638867233-8383-2-git-send-email-vincent.sunplus@gmail.com> <1b336b98-7546-93e3-f1ed-92d041c2df35@linaro.org>
+In-Reply-To: <1b336b98-7546-93e3-f1ed-92d041c2df35@linaro.org>
+From:   =?UTF-8?B?5pa96YyV6bS7?= <vincent.sunplus@gmail.com>
+Date:   Mon, 13 Dec 2021 14:45:03 +0800
+Message-ID: <CAPvp3RgYxinTDU65wPL1t6b1AR3qNnZz4KDMJUp8ou97GvkJpA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] nvmem: Add driver for OCOTP in Sunplus SP7021
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, wells.lu@sunplus.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMDguMTIuMjAyMSAwODoxNiwgRGF2aWQgTW9zYmVyZ2VyLVRhbmcgd3JvdGU6DQo+IEVYVEVS
-TkFMIEVNQUlMOiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3Mg
-eW91IGtub3cgdGhlIGNvbnRlbnQgaXMgc2FmZQ0KPiANCj4gRm9yIHRoZSBTRElPIGRyaXZlciwg
-dGhlIFJFU0VUL0VOQUJMRSBwaW5zIG9mIFdJTEMxMDAwIGFyZSBjb250cm9sbGVkDQo+IHRocm91
-Z2ggdGhlIFNESU8gcG93ZXIgc2VxdWVuY2UgZHJpdmVyLiAgVGhpcyBjb21taXQgYWRkcyBhbmFs
-b2dvdXMNCj4gc3VwcG9ydCBmb3IgdGhlIFNQSSBkcml2ZXIuICBTcGVjaWZpY2FsbHksIGR1cmlu
-ZyBpbml0aWFsaXphdGlvbiwgdGhlDQo+IGNoaXAgd2lsbCBiZSBFTkFCTEVkIGFuZCB0YWtlbiBv
-dXQgb2YgUkVTRVQgYW5kIGR1cmluZw0KPiBkZWluaXRpYWxpemF0aW9uLCB0aGUgY2hpcCB3aWxs
-IGJlIHBsYWNlZCBiYWNrIGludG8gUkVTRVQgYW5kIGRpc2FibGVkDQo+IChib3RoIHRvIHJlZHVj
-ZSBwb3dlciBjb25zdW1wdGlvbiBhbmQgdG8gZW5zdXJlIHRoZSBXaUZpIHJhZGlvIGlzDQo+IG9m
-ZikuDQo+IA0KPiBCb3RoIFJFU0VUIGFuZCBFTkFCTEUgR1BJT3MgYXJlIG9wdGlvbmFsLiAgSG93
-ZXZlciwgaWYgdGhlIEVOQUJMRSBHUElPDQo+IGlzIHNwZWNpZmllZCwgdGhlbiB0aGUgUkVTRVQg
-R1BJTyBzaG91bGQgbm9ybWFsbHkgYWxzbyBiZSBzcGVjaWZpZWQgYXMNCj4gb3RoZXJ3aXNlIHRo
-ZXJlIGlzIG5vIHdheSB0byBlbnN1cmUgcHJvcGVyIHRpbWluZyBvZiB0aGUgRU5BQkxFL1JFU0VU
-DQo+IHNlcXVlbmNlLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogRGF2aWQgTW9zYmVyZ2VyLVRhbmcg
-PGRhdmlkbUBlZ2F1Z2UubmV0Pg0KPiAtLS0NCg0KUGxlYXNlIHNwZWNpZnkgd2hhdCBoYXZlIGJl
-ZW4gY2hhbmdlZCBzaW5jZSBwcmV2aW91cyB2ZXJzaW9uIGVpdGhlciBoZXJlDQp1bmRlciAiLS0t
-IiBvciBpbiBjb3ZlciBsZXR0ZXIuDQoNCj4gIGRyaXZlcnMvbmV0L3dpcmVsZXNzL21pY3JvY2hp
-cC93aWxjMTAwMC9zcGkuYyB8IDM2ICsrKysrKysrKysrKysrKysrLS0NCj4gIC4uLi9uZXQvd2ly
-ZWxlc3MvbWljcm9jaGlwL3dpbGMxMDAwL3dsYW4uYyAgICB8ICAyICstDQo+ICAyIGZpbGVzIGNo
-YW5nZWQsIDM0IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9uZXQvd2lyZWxlc3MvbWljcm9jaGlwL3dpbGMxMDAwL3NwaS5jIGIvZHJpdmVy
-cy9uZXQvd2lyZWxlc3MvbWljcm9jaGlwL3dpbGMxMDAwL3NwaS5jDQo+IGluZGV4IDY0MDg1MGY5
-ODlkZC4uMzcyMTVmY2MyN2UwIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL25ldC93aXJlbGVzcy9t
-aWNyb2NoaXAvd2lsYzEwMDAvc3BpLmMNCj4gKysrIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvbWlj
-cm9jaGlwL3dpbGMxMDAwL3NwaS5jDQo+IEBAIC04LDYgKzgsNyBAQA0KPiAgI2luY2x1ZGUgPGxp
-bnV4L3NwaS9zcGkuaD4NCj4gICNpbmNsdWRlIDxsaW51eC9jcmM3Lmg+DQo+ICAjaW5jbHVkZSA8
-bGludXgvY3JjLWl0dS10Lmg+DQo+ICsjaW5jbHVkZSA8bGludXgvb2ZfZ3Bpby5oPg0KDQpHUElP
-IGRlc2NyaXB0b3JzIGFyZSBjb3ZlcmVkIGJ5IDxsaW51eC9ncGlvL2NvbnN1bWVyLmg+DQoNCj4g
-DQo+ICAjaW5jbHVkZSAibmV0ZGV2LmgiDQo+ICAjaW5jbHVkZSAiY2ZnODAyMTEuaCINCj4gQEAg
-LTE1Miw2ICsxNTMsMzEgQEAgc3RydWN0IHdpbGNfc3BpX3NwZWNpYWxfY21kX3JzcCB7DQo+ICAg
-ICAgICAgdTggc3RhdHVzOw0KPiAgfSBfX3BhY2tlZDsNCj4gDQo+ICtzdGF0aWMgdm9pZCB3aWxj
-X3NldF9lbmFibGUoc3RydWN0IHNwaV9kZXZpY2UgKnNwaSwgYm9vbCBvbikNCg0KSSBsaWtlZCBi
-ZXR0ZXIgd2lsY193bGFuX3Bvd2VyKCkuDQoNCj4gK3sNCj4gKyAgICAgICBpbnQgZW5hYmxlX2dw
-aW8sIHJlc2V0X2dwaW87DQo+ICsNCj4gKyAgICAgICBlbmFibGVfZ3BpbyA9IG9mX2dldF9uYW1l
-ZF9ncGlvKHNwaS0+ZGV2Lm9mX25vZGUsICJjaGlwX2VuLWdwaW9zIiwgMCk7DQo+ICsgICAgICAg
-cmVzZXRfZ3BpbyA9IG9mX2dldF9uYW1lZF9ncGlvKHNwaS0+ZGV2Lm9mX25vZGUsICJyZXNldC1n
-cGlvcyIsIDApOw0KDQpUaGUgZXF1aXZhbGVudCBvZiBvZl9nZXRfbmFtZWRfZ3BpbygpLCBkZXZp
-Y2UgbWFuYWdlZCwgaXMNCmRldm1fZ3Bpb2RfZ2V0X2Zyb21fb2Zfbm9kZSgpIGFuZCBjb3VsZCBi
-ZSB1c2VkIG9uIGJlaGFsZiBvZiBzcGkgZGV2aWNlLg0KQnV0IEkgcHJlc3VtZSBkZXZtX2dwaW9k
-X2dldCgpL2Rldm1fZ3Bpb2RfZ2V0X29wdGlvbmFsKCkgY291bGQgYWxzbyBiZSB1c2VkDQpmb3Ig
-eW91ciB1c2UgY2FzZS4NCg0KQW5kIEkgd291bGQga2VlcCB0aGUgcGFyc2luZyBqdXN0IG9uZSB0
-aW1lLCBhdCBwcm9iZS4NCg0KPiArDQo+ICsgICAgICAgaWYgKG9uKSB7DQo+ICsgICAgICAgICAg
-ICAgICBpZiAoZ3Bpb19pc192YWxpZChlbmFibGVfZ3BpbykpDQo+ICsgICAgICAgICAgICAgICAg
-ICAgICAgIC8qIGFzc2VydCBFTkFCTEUgKi8NCj4gKyAgICAgICAgICAgICAgICAgICAgICAgZ3Bp
-b19kaXJlY3Rpb25fb3V0cHV0KGVuYWJsZV9ncGlvLCAxKTsNCj4gKyAgICAgICAgICAgICAgIG1k
-ZWxheSg1KTsgICAgICAvKiA1bXMgZGVsYXkgcmVxdWlyZWQgYnkgV0lMQzEwMDAgKi8NCj4gKyAg
-ICAgICAgICAgICAgIGlmIChncGlvX2lzX3ZhbGlkKHJlc2V0X2dwaW8pKQ0KPiArICAgICAgICAg
-ICAgICAgICAgICAgICAvKiBkZWFzc2VydCBSRVNFVCAqLw0KPiArICAgICAgICAgICAgICAgICAg
-ICAgICBncGlvX2RpcmVjdGlvbl9vdXRwdXQocmVzZXRfZ3BpbywgMSk7DQo+ICsgICAgICAgfSBl
-bHNlIHsNCj4gKyAgICAgICAgICAgICAgIGlmIChncGlvX2lzX3ZhbGlkKHJlc2V0X2dwaW8pKQ0K
-PiArICAgICAgICAgICAgICAgICAgICAgICAvKiBhc3NlcnQgUkVTRVQgKi8NCj4gKyAgICAgICAg
-ICAgICAgICAgICAgICAgZ3Bpb19kaXJlY3Rpb25fb3V0cHV0KHJlc2V0X2dwaW8sIDApOw0KPiAr
-ICAgICAgICAgICAgICAgaWYgKGdwaW9faXNfdmFsaWQoZW5hYmxlX2dwaW8pKQ0KPiArICAgICAg
-ICAgICAgICAgICAgICAgICAvKiBkZWFzc2VydCBFTkFCTEUgKi8NCj4gKyAgICAgICAgICAgICAg
-ICAgICAgICAgZ3Bpb19kaXJlY3Rpb25fb3V0cHV0KGVuYWJsZV9ncGlvLCAwKTsNCj4gKyAgICAg
-ICB9DQoNCldpdGggZ3BpbyBkZXNjcmlwdG9ycyBhcyBmYXIgYXMgSSBjYW4gdGVsbCB5b3UgZG9u
-J3QgaGF2ZSB0byBleHBsaWNpdGx5DQpjaGVjayB0aGUgdmFsaWRpdHkgb2YgZ3BpbyBhcyBpdCBp
-cyBlbWJlZGRlZCBpbiBncGlvZF9kaXJlY3Rpb25fb3V0cHV0KCkNCnNwZWNpZmljIGZ1bmN0aW9u
-IHRodXMgdGhlIGFib3ZlIGNvZGUgbWF5IGJlY29tZToNCg0KCWlmIChvbikgew0KCQlncGlvZF9k
-aXJlY3Rpb25fb3V0cHV0KGVuYWJsZV9ncGlvLCBvbik7DQoJCW1kZWxheSg1KTsNCgkJZ3Bpb2Rf
-ZGlyZWN0aW9uX291dHB1dChyZXNldF9ncGlvLCBvbik7DQoJfSBlbHNlIHsNCgkJZ3Bpb2RfZGly
-ZWN0aW9uX291dHB1dChyZXNldF9ncGlvLCBvbik7DQoJCWdwaW9kX2RpcmVjdGlvbl9vdXRwdXQo
-ZW5hYmxlX2dwaW8sIG9uKTsNCgl9DQo+ICt9DQo+ICsNCj4gIHN0YXRpYyBpbnQgd2lsY19idXNf
-cHJvYmUoc3RydWN0IHNwaV9kZXZpY2UgKnNwaSkNCj4gIHsNCj4gICAgICAgICBpbnQgcmV0Ow0K
-PiBAQCAtOTc3LDkgKzEwMDMsMTEgQEAgc3RhdGljIGludCB3aWxjX3NwaV9yZXNldChzdHJ1Y3Qg
-d2lsYyAqd2lsYykNCj4gDQo+ICBzdGF0aWMgaW50IHdpbGNfc3BpX2RlaW5pdChzdHJ1Y3Qgd2ls
-YyAqd2lsYykNCj4gIHsNCj4gLSAgICAgICAvKg0KPiAtICAgICAgICAqIFRPRE86DQo+IC0gICAg
-ICAgICovDQo+ICsgICAgICAgc3RydWN0IHNwaV9kZXZpY2UgKnNwaSA9IHRvX3NwaV9kZXZpY2Uo
-d2lsYy0+ZGV2KTsNCj4gKyAgICAgICBzdHJ1Y3Qgd2lsY19zcGkgKnNwaV9wcml2ID0gd2lsYy0+
-YnVzX2RhdGE7DQo+ICsNCj4gKyAgICAgICBzcGlfcHJpdi0+aXNpbml0ID0gZmFsc2U7DQo+ICsg
-ICAgICAgd2lsY19zZXRfZW5hYmxlKHNwaSwgZmFsc2UpOw0KPiAgICAgICAgIHJldHVybiAwOw0K
-PiAgfQ0KPiANCj4gQEAgLTEwMDAsNiArMTAyOCw4IEBAIHN0YXRpYyBpbnQgd2lsY19zcGlfaW5p
-dChzdHJ1Y3Qgd2lsYyAqd2lsYywgYm9vbCByZXN1bWUpDQo+ICAgICAgICAgICAgICAgICBkZXZf
-ZXJyKCZzcGktPmRldiwgIkZhaWwgY21kIHJlYWQgY2hpcCBpZC4uLlxuIik7DQo+ICAgICAgICAg
-fQ0KPiANCj4gKyAgICAgICB3aWxjX3NldF9lbmFibGUoc3BpLCB0cnVlKTsNCj4gKw0KPiAgICAg
-ICAgIC8qDQo+ICAgICAgICAgICogY29uZmlndXJlIHByb3RvY29sDQo+ICAgICAgICAgICovDQo+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC93aXJlbGVzcy9taWNyb2NoaXAvd2lsYzEwMDAvd2xh
-bi5jIGIvZHJpdmVycy9uZXQvd2lyZWxlc3MvbWljcm9jaGlwL3dpbGMxMDAwL3dsYW4uYw0KPiBp
-bmRleCA4MjU2NjU0NDQxOWEuLmYxZTRhYzNhMmFkNSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9u
-ZXQvd2lyZWxlc3MvbWljcm9jaGlwL3dpbGMxMDAwL3dsYW4uYw0KPiArKysgYi9kcml2ZXJzL25l
-dC93aXJlbGVzcy9taWNyb2NoaXAvd2lsYzEwMDAvd2xhbi5jDQo+IEBAIC0xMjUzLDcgKzEyNTMs
-NyBAQCB2b2lkIHdpbGNfd2xhbl9jbGVhbnVwKHN0cnVjdCBuZXRfZGV2aWNlICpkZXYpDQo+ICAg
-ICAgICAgd2lsYy0+cnhfYnVmZmVyID0gTlVMTDsNCj4gICAgICAgICBrZnJlZSh3aWxjLT50eF9i
-dWZmZXIpOw0KPiAgICAgICAgIHdpbGMtPnR4X2J1ZmZlciA9IE5VTEw7DQo+IC0gICAgICAgd2ls
-Yy0+aGlmX2Z1bmMtPmhpZl9kZWluaXQoTlVMTCk7DQo+ICsgICAgICAgd2lsYy0+aGlmX2Z1bmMt
-PmhpZl9kZWluaXQod2lsYyk7DQo+ICB9DQo+IA0KPiAgc3RhdGljIGludCB3aWxjX3dsYW5fY2Zn
-X2NvbW1pdChzdHJ1Y3Qgd2lsY192aWYgKnZpZiwgaW50IHR5cGUsDQo+IC0tDQo+IDIuMjUuMQ0K
-PiANCg0K
+hello
+
+Srinivas Kandagatla <srinivas.kandagatla@linaro.org> =E6=96=BC 2021=E5=B9=
+=B412=E6=9C=889=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=8811:50=E5=AF=
+=AB=E9=81=93=EF=BC=9A
+>
+>
+>
+> On 07/12/2021 08:53, Vincent Shih wrote:
+> > Add driver for OCOTP in Sunplus SP7021
+> >
+> > Signed-off-by: Vincent Shih <vincent.sunplus@gmail.com>
+> > ---
+> > Changes in v2:
+> >   - Merge sunplus-ocotp.h and sunplus-ocotp0.c to sunplus-ocotp.c
+> >   - Clean up codes.
+> >
+> >   MAINTAINERS                   |   5 +
+> >   drivers/nvmem/Kconfig         |  12 ++
+> >   drivers/nvmem/Makefile        |   2 +
+> >   drivers/nvmem/sunplus-ocotp.c | 268 +++++++++++++++++++++++++++++++++=
++++++++++
+> >   4 files changed, 287 insertions(+)
+> >   create mode 100644 drivers/nvmem/sunplus-ocotp.c
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 80eebc1..0e6593a 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -17947,6 +17947,11 @@ L:   netdev@vger.kernel.org
+> >   S:  Maintained
+> >   F:  drivers/net/ethernet/dlink/sundance.c
+> >
+> > +SUNPLUS OCOTP DRIVER
+> > +M:   Vincent Shih <vincent.sunplus@gmail.com>
+> > +S:   Maintained
+> > +F:   drivers/nvmem/sunplus-ocotp.c
+> > +
+> >   SUPERH
+> >   M:  Yoshinori Sato <ysato@users.sourceforge.jp>
+> >   M:  Rich Felker <dalias@libc.org>
+> > diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+> > index da41461..fb053d6 100644
+> > --- a/drivers/nvmem/Kconfig
+> > +++ b/drivers/nvmem/Kconfig
+> > @@ -300,4 +300,16 @@ config NVMEM_BRCM_NVRAM
+> >         This driver provides support for Broadcom's NVRAM that can be a=
+ccessed
+> >         using I/O mapping.
+> >
+> > +config NVMEM_SUNPLUS_OCOTP
+> > +     tristate "Sunplus SoC OTP support"
+> > +     depends on SOC_SP7021
+>
+> COMPILE_TEST ?
+>
+
+Yes, I will add it.
+
+> > +     depends on HAS_IOMEM
+> > +     help
+> > +       This is a driver for the On-chip OTP controller (OCOTP) availab=
+le
+> > +       on Sunplus SoCs. It provids access to 128 bytes of one-time
+>
+> s/provids/provides
+>
+
+Yes, I will modify it.
+
+
+> > +       programmable eFuse.
+> > +
+> > +       This driver can also be built as a module. If so, the module
+> > +       will be called nvmem-sunplus-ocotp.
+> > +
+> >   endif
+> > diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
+> > index dcbbde3..0f14cd9 100644
+> > --- a/drivers/nvmem/Makefile
+> > +++ b/drivers/nvmem/Makefile
+> > @@ -61,3 +61,5 @@ obj-$(CONFIG_NVMEM_RMEM)    +=3D nvmem-rmem.o
+> >   nvmem-rmem-y                        :=3D rmem.o
+> >   obj-$(CONFIG_NVMEM_BRCM_NVRAM)      +=3D nvmem_brcm_nvram.o
+> >   nvmem_brcm_nvram-y          :=3D brcm_nvram.o
+> > +obj-$(CONFIG_NVMEM_SUNPLUS_OCOTP)    +=3D nvmem_sunplus_ocotp.o
+> > +nvmem_sunplus_ocotp-y                :=3D sunplus-ocotp.o
+> > diff --git a/drivers/nvmem/sunplus-ocotp.c b/drivers/nvmem/sunplus-ocot=
+p.c
+> > new file mode 100644
+> > index 0000000..2997b29
+> > --- /dev/null
+> > +++ b/drivers/nvmem/sunplus-ocotp.c
+> > @@ -0,0 +1,268 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +/*
+> > + * The OCOTP driver for Sunplus      SP7021
+> > + *
+> > + * Copyright (C) 2019 Sunplus Technology Inc., All rights reseerved.
+>
+> reserved ?
+>
+
+Yes, I will modify it.
+
+> > + */
+> > +
+> > +#include <linux/clk.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/device.h>
+> > +#include <linux/io.h>
+> > +#include <linux/module.h>
+> > +#include <linux/nvmem-provider.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/platform_device.h>
+> > +
+> > +/*
+> > + * OTP memory
+> > + * Each bank contains 4 words (32 bits).
+> > + * Bank 0 starts at offset 0 from the base.
+> > + */
+> > +
+> > +#define OTP_WORDS_PER_BANK           4
+> > +#define OTP_WORD_SIZE                        sizeof(u32)
+> > +#define OTP_BIT_ADDR_OF_BANK         (8 * OTP_WORD_SIZE * OTP_WORDS_PE=
+R_BANK)
+> > +#define QAC628_OTP_NUM_BANKS            8
+> > +#define QAC628_OTP_SIZE                 (QAC628_OTP_NUM_BANKS * OTP_WO=
+RDS_PER_BANK * OTP_WORD_SIZE)
+> > +#define OTP_READ_TIMEOUT                20000
+> > +
+> > +/* HB_GPIO */
+> > +#define ADDRESS_8_DATA                       0x20
+> > +
+> > +/* OTP_RX */
+> > +#define OTP_CONTROL_2                        0x48
+> > +#define OTP_RD_PERIOD                        GENMASK(15, 8)
+> > +#define OTP_RD_PERIOD_MASK           ~GENMASK(15, 8)
+> > +#define ONE_CPU_CLOCK                        0x1
+> > +#define SEL_BAK_KEY2                 BIT(5)
+> > +#define SEL_BAK_KEY2_MASK            ~BIT(5)
+> > +#define SW_TRIM_EN                   BIT(4)
+> > +#define SW_TRIM_EN_MASK                      ~BIT(4)
+> > +#define SEL_BAK_KEY                  BIT(3)
+> > +#define SEL_BAK_KEY_MASK             ~BIT(3)
+> > +#define OTP_READ                     BIT(2)
+> > +#define OTP_LOAD_SECURE_DATA         BIT(1)
+> > +#define OTP_LOAD_SECURE_DATA_MASK    ~BIT(1)
+> > +#define OTP_DO_CRC                   BIT(0)
+> > +#define OTP_DO_CRC_MASK                      ~BIT(0)
+> > +#define OTP_STATUS                   0x4c
+> > +#define OTP_READ_DONE                        BIT(4)
+> > +#define OTP_READ_DONE_MASK           ~BIT(4)
+> > +#define OTP_LOAD_SECURE_DONE_MASK    ~BIT(2)
+> > +#define OTP_READ_ADDRESS             0x50
+> > +
+> > +enum base_type {
+> > +     HB_GPIO,
+> > +     OTPRX,
+> > +     BASEMAX,
+> > +};
+> > +
+> > +struct sp_otp_data_t {
+> > +     struct device *dev;
+> > +     void __iomem *base[BASEMAX];
+> > +     struct clk *clk;
+> > +     struct nvmem_config *config;
+>
+> totally redundant to store config in this stucture as you will never use
+> this after probe.
+>
+
+Yes, I will remove it.
+
+> > +};
+> > +
+> > +struct sp_otp_vX_t {
+>
+> does X needs to be caps?
+>
+
+Yes, I will modify it.
+
+> > +     int size;
+> > +};
+> > +
+> > +const struct sp_otp_vX_t  sp_otp_v0 =3D {
+> > +     .size =3D QAC628_OTP_SIZE,
+> > +};
+> > +
+> > +static int sp_otp_wait(void __iomem *reg_base)
+> > +{
+> > +     int timeout =3D OTP_READ_TIMEOUT;
+> > +     unsigned int status;
+> > +
+> > +     do {
+> > +             usleep_range(10);
+>
+> Doesn't this take two arguments?
+>
+
+I will replace sp_otp_wait() with readl_poll_timeout().
+
+> > +             if (timeout-- =3D=3D 0)
+> > +                     return -ETIMEDOUT;
+> > +
+> > +             status =3D readl(reg_base + OTP_STATUS);
+> > +     } while ((status & OTP_READ_DONE) !=3D OTP_READ_DONE);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int sp_otp_read_real(struct sp_otp_data_t *otp, int addr, char =
+*value)
+> > +{
+> > +     unsigned int addr_data;
+> > +     unsigned int byte_shift;
+> > +     int ret =3D 0;
+>
+> unnecessary initializatoin here.
+>
+
+Yes, I will modify it.
+
+> > +
+> > +     addr_data =3D addr % (OTP_WORD_SIZE * OTP_WORDS_PER_BANK);
+> > +     addr_data =3D addr_data / OTP_WORD_SIZE;
+> > +
+> > +     byte_shift =3D addr % (OTP_WORD_SIZE * OTP_WORDS_PER_BANK);
+> > +     byte_shift =3D byte_shift % OTP_WORD_SIZE;
+> > +
+> > +     addr =3D addr / (OTP_WORD_SIZE * OTP_WORDS_PER_BANK);
+> > +     addr =3D addr * OTP_BIT_ADDR_OF_BANK;
+> > +
+> > +     writel(readl(otp->base[OTPRX] + OTP_STATUS) & OTP_READ_DONE_MASK =
+&
+> > +                  OTP_LOAD_SECURE_DONE_MASK, otp->base[OTPRX] + OTP_ST=
+ATUS);
+> > +     writel(addr, otp->base[OTPRX] + OTP_READ_ADDRESS);
+> > +     writel(readl(otp->base[OTPRX] + OTP_CONTROL_2) | OTP_READ,
+> > +            otp->base[OTPRX] + OTP_CONTROL_2);
+> > +     writel(readl(otp->base[OTPRX] + OTP_CONTROL_2) & SEL_BAK_KEY2_MAS=
+K & SW_TRIM_EN_MASK
+> > +            & SEL_BAK_KEY_MASK & OTP_LOAD_SECURE_DATA_MASK & OTP_DO_CR=
+C_MASK,
+> > +            otp->base[OTPRX] + OTP_CONTROL_2);
+> > +     writel((readl(otp->base[OTPRX] + OTP_CONTROL_2) & OTP_RD_PERIOD_M=
+ASK) |
+> > +            ((ONE_CPU_CLOCK * 0x1e) << 8), otp->base[OTPRX] + OTP_CONT=
+ROL_2);
+> > +
+> > +     ret =3D sp_otp_wait(otp->base[OTPRX]);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +
+> > +     *value =3D (readl(otp->base[HB_GPIO] + ADDRESS_8_DATA + addr_data=
+ * OTP_WORD_SIZE)
+> > +                     >> (8 * byte_shift)) & 0xFF;
+> > +
+> > +     return ret;
+> > +}
+> > +
+> > +static int sp_ocotp_read(void *priv, unsigned int offset, void *value,=
+ size_t bytes)
+> > +{
+> > +     struct sp_otp_data_t *otp =3D priv;
+> > +     unsigned int addr;
+> > +     char *buf =3D value;
+> > +     char val[4];
+> > +     int ret;
+> > +
+> > +     dev_dbg(otp->dev, "OTP read %u bytes at %u", bytes, offset);
+> > +
+> why do we need all these debug ?
+>
+
+Yes, I will remove it.
+
+> > +     if (offset >=3D QAC628_OTP_SIZE || bytes =3D=3D 0 || ((offset + b=
+ytes) > QAC628_OTP_SIZE))
+> > +             return -EINVAL;
+>
+> Core should already do this sanity test, if not these checks belong to
+> nvmem core.
+>
+
+Yes, I will remove it.
+
+> > +
+> > +     ret =3D clk_enable(otp->clk);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     *buf =3D 0;
+> > +     for (addr =3D offset; addr < (offset + bytes); addr++) {
+> > +             ret =3D sp_otp_read_real(otp, addr, val);
+> > +             if (ret < 0) {
+> > +                     dev_err(otp->dev, "OTP read fail:%d at %d", ret, =
+addr);
+> > +                     goto disable_clk;
+> > +             }
+> > +
+> > +             *buf++ =3D *val;
+> > +     }
+> > +
+> > +disable_clk:
+> > +     clk_disable(otp->clk);
+> > +     dev_dbg(otp->dev, "OTP read complete");
+> > +
+> > +     return ret;
+> > +}
+> > +
+> > +static struct nvmem_config sp_ocotp_nvmem_config =3D {
+> > +     .name =3D "sp-ocotp",
+> > +     .read_only =3D true,
+> > +     .word_size =3D 1,
+> > +     .size =3D QAC628_OTP_SIZE,
+> > +     .stride =3D 1,
+> > +     .reg_read =3D sp_ocotp_read,
+> > +     .owner =3D THIS_MODULE,
+> > +};
+> > +
+> > +static int sp_ocotp_probe(struct platform_device *pdev)
+> > +{
+> > +     const struct of_device_id *match;
+> > +     const struct sp_otp_vX_t *sp_otp_vX;
+> > +     struct device *dev =3D &pdev->dev;
+> > +     struct nvmem_device *nvmem;
+> > +     struct sp_otp_data_t *otp;
+> > +     struct resource *res;
+> > +     int ret;
+> > +
+>
+> <---
+> > +     match =3D of_match_device(dev->driver->of_match_table, dev);
+> > +     if (match && match->data)
+> > +             sp_otp_vX =3D match->data;
+> > +     else
+> > +             dev_err(dev, "OTP vX does not match");
+> --->
+>
+> This looks like dead code, variable is set but not used anywhere.
+> Error case is ignored.
+>
+
+Yes, I will remove it.
+
+>
+> > +
+> > +     otp =3D devm_kzalloc(dev, sizeof(*otp), GFP_KERNEL);
+> > +     if (!otp)
+> > +             return -ENOMEM;
+> > +
+> > +     otp->dev =3D dev;
+> > +     otp->config =3D &sp_ocotp_nvmem_config;
+> > +
+> > +     res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "hb_gp=
+io");
+> > +     otp->base[HB_GPIO] =3D devm_ioremap_resource(dev, res);
+> > +     if (IS_ERR(otp->base[HB_GPIO]))
+> > +             return dev_err_probe(&pdev->dev, PTR_ERR(otp->base[HB_GPI=
+O]),
+> > +                                             "hb_gpio devm_ioremap_res=
+ource fail\n");
+>
+> printing error here is totally redundant.
+>
+> you could just do
+>
+> if (IS_ERR(otp->base[HB_GPIO]))
+>         return PTR_ERR(otp->base[HB_GPIO]);
+>
+
+Yes, I will modify it.
+
+>
+> > +
+> > +     res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "otprx=
+");
+> > +     otp->base[OTPRX] =3D devm_ioremap_resource(dev, res);
+> > +     if (IS_ERR(otp->base[OTPRX]))
+> > +             return dev_err_probe(&pdev->dev, PTR_ERR(otp->base[OTPRX]=
+),
+> > +                                             "otprx devm_ioremap_resou=
+rce fail\n");
+> > +
+> same here,
+>
+
+Yes, I will modify it.
+
+> > +     otp->clk =3D devm_clk_get(&pdev->dev, NULL);
+> > +     if (IS_ERR(otp->clk))
+> > +             return dev_err_probe(&pdev->dev, PTR_ERR(otp->clk),
+> > +                                             "devm_clk_get fail\n");
+> > +
+> > +     ret =3D clk_prepare(otp->clk);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "failed to prepare clk: %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     sp_ocotp_nvmem_config.priv =3D otp;
+> > +     sp_ocotp_nvmem_config.dev =3D dev;
+> > +
+> > +     nvmem =3D devm_nvmem_register(dev, &sp_ocotp_nvmem_config);
+> > +     if (IS_ERR(nvmem))
+> > +             return dev_err_probe(&pdev->dev, PTR_ERR(nvmem),
+> > +                                             "register nvmem device fa=
+il\n");
+> > +
+> > +     platform_set_drvdata(pdev, nvmem);
+> > +
+> > +     dev_dbg(dev, "banks:%d x wpb:%d x wsize:%d =3D %d",
+> > +             QAC628_OTP_NUM_BANKS, OTP_WORDS_PER_BANK,
+> > +             OTP_WORD_SIZE, QAC628_OTP_SIZE);
+> > +
+> > +     dev_info(dev, "by Sunplus (C) 2020");
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static const struct of_device_id sp_ocotp_dt_ids[] =3D {
+> > +     { .compatible =3D "sunplus,sp7021-ocotp", .data =3D &sp_otp_v0 },
+> > +     { }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, sp_ocotp_dt_ids);
+> > +
+> > +static struct platform_driver sp_otp_driver =3D {
+> > +     .probe     =3D sp_ocotp_probe,
+> > +     .driver    =3D {
+> > +             .name           =3D "sunplus,sp7021-ocotp",
+> > +             .of_match_table =3D sp_ocotp_dt_ids,
+> > +     }
+> > +};
+> > +
+> > +static int __init sp_otp0_drv_new(void)
+> > +{
+> > +     return platform_driver_register(&sp_otp_driver);
+> > +}
+> > +subsys_initcall(sp_otp0_drv_new);
+>
+> Why this needs to be subsys_initcall() why can't it be module_init?
+>
+
+The otp driver stores the mac address for the ethernet driver and
+disconnect voltage for USB2 one.
+Therefore, it must take priority over the other ones for the probe.
+
+>
+> > +
+> > +static void __exit sp_otp0_drv_del(void)
+> > +{
+> > +     platform_driver_unregister(&sp_otp_driver);
+> > +}
+> > +module_exit(sp_otp0_drv_del);
+> > +
+> > +MODULE_AUTHOR("Vincent Shih <vincent.sunplus@gmail.com>");
+> > +MODULE_DESCRIPTION("Sunplus On-Chip OTP driver");
+> > +MODULE_LICENSE("GPL v2");
+>
+> Just GPL should be good here.
+>
+
+Yes, I will modify it.
+
+> --srini
+> > +
+> >
+
+Thanks for your review.
