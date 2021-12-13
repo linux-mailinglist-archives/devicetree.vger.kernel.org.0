@@ -2,92 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C48834735BD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 21:19:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E76434735C2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 21:21:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237129AbhLMUTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 15:19:52 -0500
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:39653 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235878AbhLMUTv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 15:19:51 -0500
-Received: by mail-ot1-f43.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso18676944ots.6;
-        Mon, 13 Dec 2021 12:19:51 -0800 (PST)
+        id S241059AbhLMUVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 15:21:15 -0500
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:40840 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235878AbhLMUVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 15:21:14 -0500
+Received: by mail-ot1-f50.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so18703211otj.7;
+        Mon, 13 Dec 2021 12:21:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WN/EU3Tqk0e8ErBw3JtRSP5A6/xa+N6f3cKQLbPWvZw=;
-        b=W/8pwFExiybSs+T6jhTzFaHfgUTAB8sq60MSrEh4CNdPh6C10XIWE0rs2rhLEyekri
-         m0vZIJE6nMIjI2xIcb/brOmabwxv2eh93Ffmazc7gFFIFm0eKcvrLQsB1rQKrYGnRGAO
-         4tvnEVR68U8Taxm6aeLgJy2TwdtpURt4VyK0pOl3Kv6QgP+haBs79YsTVHAz3G21YEqF
-         kTVKCL9hZ2IiXKy7l+TBYsTkEmttXql0OGuJe4RygsxLTxtj3pWsdVKBe0vY4jNhpd/r
-         5hzSkg2EqkahYoTHU5KRVaYOpESwA51des80HfdX6aRNUWj5W+7yOzF6M3L7hUFetOdn
-         lvkg==
-X-Gm-Message-State: AOAM531gHOuZHjDJg04+jLQWEA3OwuICkH+tiIPJTn14KAFfqrdKqReQ
-        KiWQ9vKfzh10F8h+GSEdjA==
-X-Google-Smtp-Source: ABdhPJy/Kdpt3vHE/n5DWLa5z2zo9tRnw/q4qgWuWRbWc1zYTxCxupDXrhT9Yyr+7fnGb3/2r4HHOg==
-X-Received: by 2002:a9d:4543:: with SMTP id p3mr645542oti.99.1639426791186;
-        Mon, 13 Dec 2021 12:19:51 -0800 (PST)
+        bh=FBt0ubICNCgGkaELLaCLU2bVkOIIUBGePXG67VK50EU=;
+        b=7fZB9otSfAD3NT2DtQyUXRm7Nrf1cGURpavKiWWsVoypZRvJUxAsTx8UOPkVzwDOMf
+         CVZKfBwl+4uhSWRxs85bq2IOMlATYmVXLtcdfww3O2hl0B/1GS2OGInMBChncn4O3mYO
+         TKtlgHfrqYhhE1nx97+NlOJVMyb7DO7E6kB/Dq4CIN8cd1VsyBEbrFB7tUFZ4o+TJQ2l
+         dsVy5lttmFO4Ae75cjHxgcZqCQG6B7UhZt/IrMvt5wuKeOtjxgHW3duORMmLBRyazSYp
+         z1tDyFqOXmwTAfnPce6KdFpGWUc/joWCaQVkp10/bBXIV95EUKTEzE9hlVFzvjpwfYDP
+         LnmA==
+X-Gm-Message-State: AOAM531CG5qRRmQCm3q+/naziO+RXxAiTp+8TMiuB9lJMvMVOdRBqTNF
+        AVAwXNOuBg5dHlZ/irwF4Q==
+X-Google-Smtp-Source: ABdhPJyrqMJic+kGNvlxbkAlDzEbRjv+DjzQtpPWX4Vidllw/tObUb7QZzh90vXGdag0i2TFxngPZQ==
+X-Received: by 2002:a05:6830:33ce:: with SMTP id q14mr682223ott.346.1639426874303;
+        Mon, 13 Dec 2021 12:21:14 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bi20sm3047537oib.29.2021.12.13.12.19.50
+        by smtp.gmail.com with ESMTPSA id bf17sm2789682oib.27.2021.12.13.12.21.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 12:19:50 -0800 (PST)
-Received: (nullmailer pid 1502975 invoked by uid 1000);
-        Mon, 13 Dec 2021 20:19:49 -0000
-Date:   Mon, 13 Dec 2021 14:19:49 -0600
+        Mon, 13 Dec 2021 12:21:13 -0800 (PST)
+Received: (nullmailer pid 1505028 invoked by uid 1000);
+        Mon, 13 Dec 2021 20:21:12 -0000
+Date:   Mon, 13 Dec 2021 14:21:12 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, linux-can@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: phy: ti,tcan104x-can: Document
- mux-states property
-Message-ID: <Ybeq5dNYjN4GOzdV@robh.at.kernel.org>
-References: <20211202131002.12217-1-a-govindraju@ti.com>
- <20211202131002.12217-2-a-govindraju@ti.com>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     alsa-devel@alsa-project.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Subject: Re: [PATCH 1/5] ASoC: dt-bindings: qcom: sm8250: Drop redundant
+ MultiMedia routes
+Message-ID: <YberODnYzbpwYcLN@robh.at.kernel.org>
+References: <20211202145505.58852-1-stephan@gerhold.net>
+ <20211202145505.58852-2-stephan@gerhold.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211202131002.12217-2-a-govindraju@ti.com>
+In-Reply-To: <20211202145505.58852-2-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 02, 2021 at 06:40:01PM +0530, Aswath Govindraju wrote:
-> On some boards, for routing CAN signals from controller to transceivers,
-> muxes might need to be set. This can be implemented using mux-states
-> property. Therefore, document the same in the respective bindings.
+On Thu, 02 Dec 2021 15:55:01 +0100, Stephan Gerhold wrote:
+> The MultiMedia audio routes can be deduced from other parts of the
+> device tree (e.g. the definitions of the MultiMedia DAIs) and therefore
+> specifying them again in "audio-routing" is redundant and prone to
+> mistakes. This is no longer necessary since commit 6fd8d2d275f7
+> ("ASoC: qcom: qdsp6: Move frontend AIFs to q6asm-dai").
 > 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> Let's drop them from the example in the DT schema as well
+> to avoid confusion.
+> 
+> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
->  .../devicetree/bindings/phy/ti,tcan104x-can.yaml    | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+>  Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 5 +----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> index 6107880e5246..5b2b08016635 100644
-> --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> @@ -37,6 +37,18 @@ properties:
->        max bit rate supported in bps
->      minimum: 1
->  
-> +  mux-states:
-> +    description:
-> +      mux controller node to route the signals from controller to
-> +      transceiver. Depending on the mux chip and the control lines
-> +      in it, the first and second parameters can be used for
-> +      representing control line and state. The number of arguments
-> +      is to be used based on '#mux-state-cells' property in the
-> +      mux-controller node. If '#mux-state-cells' is equal to
-> +      one then, then the argument to be used would be the state.
-> +      If it is set to two, then the first argument is the control
-> +      line and the second argument would be its corresponding state.
 
-No need to redefine how a common property works here. What you do need 
-to define is how many entries and what they are for if more than 1. 
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
