@@ -2,56 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5823A4737A0
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 23:35:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE0F84737A3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 23:36:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236733AbhLMWf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 17:35:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41726 "EHLO
+        id S240454AbhLMWgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 17:36:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbhLMWf4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 17:35:56 -0500
-Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1016FC06173F
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 14:35:56 -0800 (PST)
-Received: by mail-il1-x12e.google.com with SMTP id s11so16341397ilv.3
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 14:35:56 -0800 (PST)
+        with ESMTP id S240402AbhLMWf7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 17:35:59 -0500
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5AC9C06173F
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 14:35:58 -0800 (PST)
+Received: by mail-io1-xd2e.google.com with SMTP id x6so20618965iol.13
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 14:35:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ieee.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=DBnoK0OyUlLAOuBvNnnmeaqng0RVQtz+D/6i7hX6jWw=;
-        b=Bhm14wsvKoSI0/zY2t5qbEGLX3rimfq0X7e4D6CRc/EBSTiB9tyTe1TdneBiH5ffsk
-         UaeScdmpN34MTic0smNzK4HLAIrGz4HI1eUbvWWeSWJJf5YBvXR8/Izobn+xDc23SYhN
-         u9/bNysjKr+Xj/qpL/UTFhyJZLm2uKT4zI95Y=
+        bh=g56lY2uZHfW8VuQb8w+7vuXp1OUfSK44r08Ap3amQlI=;
+        b=XtPPRXIBsShqS0QNIdOKkK7eoeW0R/M0Bb/Zd7YLdbXp4DIUpqZ3sDLinT6XzbdMnO
+         j38b+MEYzQCxmIT/0GmMlwa0mb5cM4m1oESIN3D8iRX5CxhLLvTx22NFuAm1Ye5tyQq6
+         HY3OFV/1bJEGfd6vZzcdejo3+lLnnCZ1FYUC4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=DBnoK0OyUlLAOuBvNnnmeaqng0RVQtz+D/6i7hX6jWw=;
-        b=oqArj2Xv0SS6/YnLbCuDJTF2VhdyCfp25r4UMRGgznGlyrO0sp4A8vtp8ftswlKOJH
-         QiGxCzsQbHsFfGpjUvl924vMuEGCdQDraRq3kKIxVVoV1mLCFJhEN0H9llzM1pK8E7J/
-         gOTRlUVBjM/dglTfQKC1IUcKGqwvLcwoGwMHWkzlGVxEjJ8zE56xVLJiTJxWjPLAH84M
-         js4RTITQ+GISLI0yfhvJDXwkySp+3XvqSAX6Wov7Pzlo3ju8rwS06goeHR3Tk5X1qaLA
-         gtUVkk9fFRIaKTgcVtct3ddp9DOMNINecb3HW/94Gr8mhuIkLdykYTAdDcfC5cn2xZnK
-         RWlg==
-X-Gm-Message-State: AOAM532taus524nqHUBEiDavgFoXL7PJ/JOEzHxmuAgFfPU2A0xZ7xWU
-        P+JIynFFzXAKcl8hGaKHyFCvLg==
-X-Google-Smtp-Source: ABdhPJyiXtBZAbBl/VCDVBUa2jlIRWHm5zgggZp0SD5B9ipv2ZOn3XqoayIO2zQUgkFfP9euHt3vmQ==
-X-Received: by 2002:a05:6e02:1c85:: with SMTP id w5mr978973ill.272.1639434955349;
-        Mon, 13 Dec 2021 14:35:55 -0800 (PST)
+        bh=g56lY2uZHfW8VuQb8w+7vuXp1OUfSK44r08Ap3amQlI=;
+        b=ywXomJV3xQlg9nYdCVSEx7uXY/twkPjSogX2ZAcA1BIeF/Z+GGwD2nF5gUOAs23W1b
+         xcijSMZ0oQ/aIX9I5flFOftX8tsS+1AkZfCgsEuhOKBcTQM9thE1VIozoLTnR+1JmOAJ
+         4J+Jzo5A/0kDChawu/4V9mI0+7VDBjgs48dAoIl4PMG4BbuP/OZkQEsZ75gu9qm0gMr0
+         wtPoJMsXsm9TwxrSMpKnEXC50g1Ihb/jEIREQ8TE6mM1a04hzeRNU+3sHgUmEiCcavwX
+         FRgg3MrfWC9FCjkxFQefA5+ls5ZSa6o7hXEtFb2gXuWJrJ2JajiHBgbssSSUVQuGgyj9
+         +yTw==
+X-Gm-Message-State: AOAM531Us15w02CKp4PDWdAYz044X0S8M9EAt1+CF4xj/n15YnZKEtgK
+        eqpb2Tu0k69rN4OY/ki5f636qg==
+X-Google-Smtp-Source: ABdhPJzqPTbNv/Y0INIGTu2ApU1UUda2oXCk6Y9BzHyhtuxNTFNX7LW0gOeGKHGi85PMOaN1Fgo6/w==
+X-Received: by 2002:a5d:8999:: with SMTP id m25mr1049672iol.185.1639434958287;
+        Mon, 13 Dec 2021 14:35:58 -0800 (PST)
 Received: from [172.22.22.4] (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.googlemail.com with ESMTPSA id f10sm7681208iob.7.2021.12.13.14.35.54
+        by smtp.googlemail.com with ESMTPSA id 8926c6da1cb9f-2faa6b4da11sm107913173.27.2021.12.13.14.35.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Dec 2021 14:35:54 -0800 (PST)
-Message-ID: <f283eb6c-fa39-c4bc-5da8-747ce20317da@ieee.org>
-Date:   Mon, 13 Dec 2021 16:35:53 -0600
+        Mon, 13 Dec 2021 14:35:57 -0800 (PST)
+Message-ID: <d476ec49-6bb5-de44-11f6-e4e0881acaae@ieee.org>
+Date:   Mon, 13 Dec 2021 16:35:57 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.1
-Subject: Re: [PATCH V6 0/7] Add driver support for Data Capture and Compare
- Engine(DCC) for SM8150,SC7280,SC7180,SDM845
+Subject: Re: [PATCH V6 1/7] dt-bindings: Added the yaml bindings for DCC
 Content-Language: en-US
 To:     Souradeep Chowdhury <schowdhu@codeaurora.org>,
         Andy Gross <agross@kernel.org>,
@@ -63,8 +62,9 @@ Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Sibi Sankar <sibis@codeaurora.org>,
         Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org
 References: <cover.1628617260.git.schowdhu@codeaurora.org>
+ <1765c436635ecc05fc463524c1e7517297660728.1628617260.git.schowdhu@codeaurora.org>
 From:   Alex Elder <elder@ieee.org>
-In-Reply-To: <cover.1628617260.git.schowdhu@codeaurora.org>
+In-Reply-To: <1765c436635ecc05fc463524c1e7517297660728.1628617260.git.schowdhu@codeaurora.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
@@ -72,210 +72,72 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 8/10/21 12:54 PM, Souradeep Chowdhury wrote:
-> DCC(Data Capture and Compare) is a DMA engine designed for debugging purposes.In case of a system
-> crash or manual software triggers by the user the DCC hardware stores the value at the register
-> addresses which can be used for debugging purposes.The DCC driver provides the user with sysfs
-> interface to configure the register addresses.The options that the DCC hardware provides include
-> reading from registers,writing to registers,first reading and then writing to registers and looping
-> through the values of the same register.
+> Documentation for Data Capture and Compare(DCC) device tree bindings
+> in yaml format.
 
-I realize this was posted a long time ago but I spent a little
-time on it today, and I have some comments for you to consider.
-You'll need to post another version of this series if you're
-going to address some of my comments.
-
-Most of the comments are in patch 2, which contains all the code
-and the sysfs documentation.  I have no comments on patches 3
-(MAINTAINERS update) or 4 through 7 (DTS updates for specific
-platforms).
-
-First, a few comments on this cover page.  The most trivial
-comment is:  Please make your lines narrower than 80 columns,
-like the rest of the patches.
-
-I appreciate that this goes into some detail about how this
-feature has been used.  But I think it could benefit from
-a little better high-level overview of what it *does*.
-Your first paragraph is a concise summary, but I find it
-doesn't evoke a model in my mind of what exactly is going
-on, or what the hardware is doing.  In fact, if you can
-provide a good high-level overview it might belong at the
-top of "dcc.c" in comments.
-
-Looking at the code (but not in any great depth), I see
-that there are "linked lists" of what appear to be things
-for the hardware to do with memory when this hardware is
-"triggered."  If I understand it right, there can be up
-to 8 of these lists (though some versions of hardware
-might advertise the number supported via a register).
-
-If the following is wrong, I hope you'll offer a comparable
-explanation and will correct my misunderstanding.
-
-Each list consists of a set of actions to take.  The actions
-available include: reading a register (possibly <count> times
-in succession); writing a register; and read/modify/writing
-a register (affecting only bits in a given mask).  Actually,
-the way looping works is a little confusing to me.
-
-Each list can be enabled and disabled separately.  When
-triggered, all lists are executed, and (somehow) the result
-is saved into a buffer that can be read via /dev/dcc_sram.
-
-So you use these sysfs files to configure the actions you'd
-like to take when a "trigger" is signaled.  The content of
-/dev/dcc_sram can then be read to see what output your
-lists produced.
-
-Is that close to correct?  If it is, great; I want to be
-sure I understand what the hardware is supposed to do
-before I comment much more on the way you represent it
-in the driver and in sysfs.
-
-> In certain cases a register write needs to be executed for accessing the rest of the registers,
-> also the user might want to record the changing values of a register with time for which he has the
-> option to use the loop feature.
-> 
-> The options mentioned above are exposed to the user by sysfs files once the driver is probed.The
-> details and usage of this sysfs files are documented in Documentation/ABI/testing/sysfs-driver-dcc.
-
-Once you've confirmed I understand what's supposed to happen
-when the trigger fires, I think I'll have some comments on
-the way you represent the actions in these lists.  But
-for now, maybe keep things as you have them, but address
-some of the comments I'm giving you today.  Copy me on
-future revisions and I'll plan to review again.
-
-OK, that's enough on this file for now.  Onto the binding and
-the code...
+Even though Rob has already reviewed this...  I think it
+would be nice if you gave these memory regions names, such
+as "config" for the first one and "sram" or something for
+the second one.  It's a little more descriptive than just
+looking them up using their positions.
 
 					-Alex
 
-> As an example let us consider a couple of debug scenarios where DCC has been proved to be effective
-> for debugging purposes:-
-> 
-> i)TimeStamp Related Issue
-> 
-> On SC7180, there was a coresight timestamp issue where it would occasionally be all 0 instead of proper
-> timestamp values.
-> 
-> Proper timestamp:
-> Idx:3373; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x13004d8f5b7aa; CC=0x9e
-> 
-> Zero timestamp:
-> Idx:3387; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x0; CC=0xa2
-> 
-> Now this is a non-fatal issue and doesn't need a system reset, but still needs
-> to be rootcaused and fixed for those who do care about coresight etm traces.
-> Since this is a timestamp issue, we would be looking for any timestamp related
-> clocks and such.
-> 
-> o we get all the clk register details from IP documentation and configure it
-> via DCC config syfs node. Before that we set the current linked list.
-> 
-> /* Set the current linked list */
-> echo 3 > /sys/bus/platform/devices/10a2000.dcc/curr_list
-> 
-> /* Program the linked list with the addresses */
-> echo 0x10c004 > /sys/bus/platform/devices/10a2000.dcc/config
-> echo 0x10c008 > /sys/bus/platform/devices/10a2000.dcc/config
-> echo 0x10c00c > /sys/bus/platform/devices/10a2000.dcc/config
-> echo 0x10c010 > /sys/bus/platform/devices/10a2000.dcc/config
-> ..... and so on for other timestamp related clk registers
-> 
-> /* Other way of specifying is in "addr len" pair, in below case it
-> specifies to capture 4 words starting 0x10C004 */
-> 
-> echo 0x10C004 4 > /sys/bus/platform/devices/10a2000.dcc/config
-> 
-> /* Enable DCC */
-> echo 1 > /sys/bus/platform/devices/10a2000.dcc/enable
-> 
-> /* Run the timestamp test for working case */
-> 
-> /* Send SW trigger */
-> echo 1 > /sys/bus/platform/devices/10a2000.dcc/trigger
-> 
-> /* Read SRAM */
-> cat /dev/dcc_sram > dcc_sram1.bin
-> 
-> /* Run the timestamp test for non-working case */
-> 
-> /* Send SW trigger */
-> echo 1 > /sys/bus/platform/devices/10a2000.dcc/trigger
-> 
-> /* Read SRAM */
-> cat /dev/dcc_sram > dcc_sram2.bin
-> 
-> Get the parser from [1] and checkout the latest branch.
-> 
-> /* Parse the SRAM bin */
-> python dcc_parser.py -s dcc_sram1.bin --v2 -o output/
-> python dcc_parser.py -s dcc_sram2.bin --v2 -o output/
-> 
-> Sample parsed output of dcc_sram1.bin:
-> 
-> <hwioDump version="1">
->          <timestamp>03/14/21</timestamp>
->              <generator>Linux DCC Parser</generator>
->                  <chip name="None" version="None">
->                  <register address="0x0010c004" value="0x80000000" />
->                  <register address="0x0010c008" value="0x00000008" />
->                  <register address="0x0010c00c" value="0x80004220" />
->                  <register address="0x0010c010" value="0x80000000" />
->              </chip>
->      <next_ll_offset>next_ll_offset : 0x1c </next_ll_offset>
-> </hwioDump>
-> 
-> ii)NOC register errors
-> 
-> A particular class of registers called NOC which are functional registers was reporting
-> errors while logging the values.To trace these errors the DCC has been used effectively.
-> The steps followed were similar to the ones mentioned above.
-> In addition to NOC registers a few other dependent registers were configured in DCC to
-> monitor it's values during a crash. A look at the dependent register values revealed that
-> the crash was happening due to a secured access to one of these dependent registers.
-> All these debugging activity and finding the root cause was achieved using DCC.
-> 
-> DCC parser is available at the following open source location
-> 
-> https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/tools/tree/dcc_parser
-> 
-> Changes in v6:
-> 
-> *Added support in the dcc driver to handle multiple Qualcomm SoCs including SC7180,SC7280,SDM845
->   along with existing SM8150.
->   
-> *Added the support node in the respective device tree files for SC7180,SC7280,SDM845.
-> 
-> Souradeep Chowdhury (7):
->    dt-bindings: Added the yaml bindings for DCC
->    soc: qcom: dcc:Add driver support for Data Capture and Compare
->      unit(DCC)
->    MAINTAINERS: Add the entry for DCC(Data Capture and Compare) driver
->      support
->    arm64: dts: qcom: sm8150: Add Data Capture and Compare(DCC) support
->      node
->    arm64: dts: qcom: sc7280: Add Data Capture and Compare(DCC) support
->      node
->    arm64: dts: qcom: sc7180: Add Data Capture and Compare(DCC) support
->      node
->    arm64: dts: qcom: sdm845: Add Data Capture and Compare(DCC) support
->      node
-> 
->   Documentation/ABI/testing/sysfs-driver-dcc         |  114 ++
->   .../devicetree/bindings/arm/msm/qcom,dcc.yaml      |   43 +
->   MAINTAINERS                                        |    8 +
->   arch/arm64/boot/dts/qcom/sc7180.dtsi               |    6 +
->   arch/arm64/boot/dts/qcom/sc7280.dtsi               |    6 +
->   arch/arm64/boot/dts/qcom/sdm845.dtsi               |    6 +
->   arch/arm64/boot/dts/qcom/sm8150.dtsi               |    6 +
->   drivers/soc/qcom/Kconfig                           |    8 +
->   drivers/soc/qcom/Makefile                          |    1 +
->   drivers/soc/qcom/dcc.c                             | 1549 ++++++++++++++++++++
->   10 files changed, 1747 insertions(+)
->   create mode 100644 Documentation/ABI/testing/sysfs-driver-dcc
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
+> ---
+>   .../devicetree/bindings/arm/msm/qcom,dcc.yaml      | 43 ++++++++++++++++++++++
+>   1 file changed, 43 insertions(+)
 >   create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
->   create mode 100644 drivers/soc/qcom/dcc.c
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml b/Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
+> new file mode 100644
+> index 0000000..b7a6619
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/msm/qcom,dcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Data Capture and Compare
+> +
+> +maintainers:
+> +  - Souradeep Chowdhury <schowdhu@codeaurora.org>
+> +
+> +description: |
+> +    DCC (Data Capture and Compare) is a DMA engine which is used to save
+> +    configuration data or system memory contents during catastrophic failure
+> +    or SW trigger. DCC is used to capture and store data for debugging purpose
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - qcom,sm8150-dcc
+> +          - qcom,sc7280-dcc
+> +          - qcom,sc7180-dcc
+> +          - qcom,sdm845-dcc
+> +      - const: qcom,dcc
+> +
+> +  reg:
+> +    items:
+> +      - description: DCC base register region
+> +      - description: DCC RAM base register region
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dma@10a2000{
+> +                compatible = "qcom,sm8150-dcc","qcom,dcc";
+> +                reg = <0x010a2000  0x1000>,
+> +                      <0x010ad000  0x2000>;
+> +    };
 > 
 
