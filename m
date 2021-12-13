@@ -2,367 +2,317 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91B3A473624
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 21:39:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17E11473631
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 21:41:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242021AbhLMUjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 15:39:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43056 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242984AbhLMUjR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 15:39:17 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF965C06173F
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 12:39:16 -0800 (PST)
-Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mws6J-0000YA-1x; Mon, 13 Dec 2021 21:39:11 +0100
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        patchwork-lst@pengutronix.de
-Subject: [PATCH 2/2] arm64: dts: imx: add Protonic PRT8MM board
-Date:   Mon, 13 Dec 2021 21:39:09 +0100
-Message-Id: <20211213203909.1260909-2-l.stach@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211213203909.1260909-1-l.stach@pengutronix.de>
-References: <20211213203909.1260909-1-l.stach@pengutronix.de>
+        id S237707AbhLMUlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 15:41:49 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:41734 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242986AbhLMUls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 15:41:48 -0500
+Received: by mail-ot1-f47.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so18755660otl.8;
+        Mon, 13 Dec 2021 12:41:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=25ioXPY/AOVS3YueKdRc1q0EVZSVsM2ElEwo/uzKcSo=;
+        b=IwaJyHuXOeVIm6z6gq8KItM3D9bowiLmVF86zsWjCgHXCG+T2vcfD9ABRAuQNGNKgv
+         AT1tjzTFXc5UGYS1IcAez+V5VUZP2tkdSihh74vRZZBbUPKBnAcvpq7M2jkmcmxHiO8u
+         XOXtYjdEljZhNeXE6WRctiiOnxyTQyDb6AHWPtVf9FbDhoB6H5qmB1SZc1ZmRwL7I+nr
+         Qfae/dqJ3MA40AOc8ZjRtS2Mz/WQmgvCbxSUYd6MRiH0PqjjpUqshNB4BAKpmrqe3EeR
+         8DpgD9dTm9vRDCB8xBPwwAfUod+OzyVKSSVJeTAGfYEY+BA6Q1z8dAFvV8z5F2yCnFLv
+         kxVQ==
+X-Gm-Message-State: AOAM533RDAH0f2ljAdgIvgxXkS74iB1gGxJvhxZhGqH6mUryzXfB3mSp
+        dsXhWpdo873M+S7v/0Cirg==
+X-Google-Smtp-Source: ABdhPJw9rRgNPRmGjpqVhqYCjMgYD/WWcd90egkMtWcWUVkoDSDb+PaT8MuUJqp2XV6XNys7VQ+Yfg==
+X-Received: by 2002:a05:6830:22cf:: with SMTP id q15mr703178otc.255.1639428108048;
+        Mon, 13 Dec 2021 12:41:48 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id t18sm2378936ott.2.2021.12.13.12.41.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Dec 2021 12:41:47 -0800 (PST)
+Received: (nullmailer pid 1535938 invoked by uid 1000);
+        Mon, 13 Dec 2021 20:41:46 -0000
+Date:   Mon, 13 Dec 2021 14:41:46 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Boris Brezillon <bbrezillon@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH/RFC v2] dt-bindings: display: bridge: sil,sii9022:
+ Convert to json-schema
+Message-ID: <YbewCv1uWhi5xPfW@robh.at.kernel.org>
+References: <3b2619682694050696e5c85269ccc4f864590e66.1638540704.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3b2619682694050696e5c85269ccc4f864590e66.1638540704.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Jander <david@protonic.nl>
+On Fri, Dec 03, 2021 at 03:14:07PM +0100, Geert Uytterhoeven wrote:
+> Convert the Silicon Image sii902x HDMI bridge Device Tree binding
+> documentation to json-schema.
+> 
+> Add missing sil,sii9022-cpi and sil,sii9022-tpi compatible values.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> RFC as I do not know the meaning of the various ports subnodes.
 
-The Protonic PRT8MM is a low-cost agricultural Virtual Terminal. This
-commit adds most of the board functionality sans the display output,
-as the i.MX8MM display support isn't ready yet.
+Is that too hard to figure out? There's no examples in the tree?
 
-Signed-off-by: David Jander <david@protonic.nl>
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
----
- .../boot/dts/freescale/imx8mm-prt8mm.dts      | 304 ++++++++++++++++++
- 1 file changed, 304 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts
+> 
+> v2:
+>   - Rework sil,i2s-data-lanes,
+>   - Add schema reference to ports.
+> ---
+>  .../bindings/display/bridge/sii902x.txt       |  78 ----------
+>  .../bindings/display/bridge/sil,sii9022.yaml  | 133 ++++++++++++++++++
+>  2 files changed, 133 insertions(+), 78 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/bridge/sii902x.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/sil,sii9022.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/sii902x.txt b/Documentation/devicetree/bindings/display/bridge/sii902x.txt
+> deleted file mode 100644
+> index 3bc760cc31cbbeee..0000000000000000
+> --- a/Documentation/devicetree/bindings/display/bridge/sii902x.txt
+> +++ /dev/null
+> @@ -1,78 +0,0 @@
+> -sii902x HDMI bridge bindings
+> -
+> -Required properties:
+> -	- compatible: "sil,sii9022"
+> -	- reg: i2c address of the bridge
+> -
+> -Optional properties:
+> -	- interrupts: describe the interrupt line used to inform the host
+> -	  about hotplug events.
+> -	- reset-gpios: OF device-tree gpio specification for RST_N pin.
+> -	- iovcc-supply: I/O Supply Voltage (1.8V or 3.3V)
+> -	- cvcc12-supply: Digital Core Supply Voltage (1.2V)
+> -
+> -	HDMI audio properties:
+> -	- #sound-dai-cells: <0> or <1>. <0> if only i2s or spdif pin
+> -	   is wired, <1> if the both are wired. HDMI audio is
+> -	   configured only if this property is found.
+> -	- sil,i2s-data-lanes: Array of up to 4 integers with values of 0-3
+> -	   Each integer indicates which i2s pin is connected to which
+> -	   audio fifo. The first integer selects i2s audio pin for the
+> -	   first audio fifo#0 (HDMI channels 1&2), second for fifo#1
+> -	   (HDMI channels 3&4), and so on. There is 4 fifos and 4 i2s
+> -	   pins (SD0 - SD3). Any i2s pin can be connected to any fifo,
+> -	   but there can be no gaps. E.g. an i2s pin must be mapped to
+> -	   fifo#0 and fifo#1 before mapping a channel to fifo#2. Default
+> -	   value is <0>, describing SD0 pin beiging routed to hdmi audio
+> -	   fifo #0.
+> -	- clocks: phandle and clock specifier for each clock listed in
+> -           the clock-names property
+> -	- clock-names: "mclk"
+> -	   Describes SII902x MCLK input. MCLK can be used to produce
+> -	   HDMI audio CTS values. This property follows
+> -	   Documentation/devicetree/bindings/clock/clock-bindings.txt
+> -	   consumer binding.
+> -
+> -	If HDMI audio is configured the sii902x device becomes an I2S
+> -	and/or spdif audio codec component (e.g a digital audio sink),
+> -	that can be used in configuring a full audio devices with
+> -	simple-card or audio-graph-card binding. See their binding
+> -	documents on how to describe the way the sii902x device is
+> -	connected to the rest of the audio system:
+> -	Documentation/devicetree/bindings/sound/simple-card.yaml
+> -	Documentation/devicetree/bindings/sound/audio-graph-card.yaml
+> -	Note: In case of the audio-graph-card binding the used port
+> -	index should be 3.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts b/arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts
-new file mode 100644
-index 000000000000..f83bfebd534d
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts
-@@ -0,0 +1,304 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2020 Protonic Holland
-+ * Copyright 2019 NXP
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/usb/pd.h>
-+#include "imx8mm.dtsi"
-+
-+/ {
-+	model = "Protonic PRT8MM";
-+	compatible = "prt,prt8mm", "fsl,imx8mm";
-+
-+	chosen {
-+		stdout-path = &uart4;
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x40000000 0 0x40000000>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_leds>;
-+
-+		debug-led0 {
-+			label = "DEBUG_LED0";
-+			gpios = <&gpio3 0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		debug-led1 {
-+			label = "DEBUG_LED1";
-+			gpios = <&gpio3 1 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "cpu";
-+		};
-+	};
-+
-+	sound-ssm2518 {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "ssm2518-audio";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,frame-master = <&cpudai>;
-+		simple-audio-card,bitclock-master = <&cpudai>;
-+
-+		cpudai: simple-audio-card,cpu {
-+			sound-dai = <&sai3>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&ssm2518>;
-+			clocks = <&clk IMX8MM_CLK_SAI3_ROOT>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	ssm2518: codec@34 {
-+		compatible = "adi,ssm2518";
-+		reg = <0x34>;
-+		#sound-dai-cells = <0>;
-+	};
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+
-+	regulator@60 {
-+		compatible = "fcs,fan53555";
-+		reg = <0x60>;
-+		regulator-name = "0V9_CORE";
-+		regulator-min-microvolt = <900000>;
-+		regulator-max-microvolt = <980000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+};
-+
-+&i2c3 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+
-+	rtc@51 {
-+		compatible = "nxp,pcf85363";
-+		reg = <0x51>;
-+	};
-+
-+	temp-sense@70 {
-+		compatible = "ti,tmp103";
-+		reg = <0x70>;
-+	};
-+
-+	touchscreeen@5d {
-+		compatible = "goodix,gt911";
-+		reg = <0x5d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_touchscreen>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <8 IRQ_TYPE_NONE>;
-+		irq-gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&sai3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai3>;
-+	assigned-clocks = <&clk IMX8MM_CLK_SAI3>;
-+	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <12288000>;
-+	fsl,sai-mclk-direction-output;
-+	fsl,sai-asynchronous;
-+	status = "okay";
-+};
-+
-+&snvs_pwrkey {
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart4>;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbotg1>;
-+	dr_mode = "host";
-+	disable-over-current;
-+	power-active-high;
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc2>;
-+	assigned-clocks = <&clk IMX8MM_CLK_USDHC2>;
-+	assigned-clock-rates = <100000000>;
-+	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&usdhc3 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-+	assigned-clocks = <&clk IMX8MM_CLK_USDHC3_ROOT>;
-+	assigned-clock-rates = <400000000>;
-+	bus-width = <8>;
-+	non-removable;
-+	no-sdio;
-+	no-sd;
-+	status = "okay";
-+};
-+
-+&wdog1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_gpio_leds: ledsgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_ALE_GPIO3_IO0			0x00
-+			MX8MM_IOMUXC_NAND_CE0_B_GPIO3_IO1		0x00
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL			0x400000c3
-+			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA			0x400000c3
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL			0x400000c3
-+			MX8MM_IOMUXC_I2C2_SDA_I2C2_SDA			0x400000c3
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL			0x400000c3
-+			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA			0x400000c3
-+		>;
-+	};
-+
-+	pinctrl_sai3: sai3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SAI3_TXFS_SAI3_TX_SYNC		0xd6
-+			MX8MM_IOMUXC_SAI3_TXC_SAI3_TX_BCLK		0xd6
-+			MX8MM_IOMUXC_SAI3_MCLK_SAI3_MCLK		0xd6
-+			MX8MM_IOMUXC_SAI3_TXD_SAI3_TX_DATA0		0xd6
-+		>;
-+	};
-+
-+	pinctrl_touchscreen: tsgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO08_GPIO1_IO8		0x80
-+			MX8MM_IOMUXC_GPIO1_IO09_GPIO1_IO9		0x80
-+		>;
-+	};
-+
-+	pinctrl_uart4: uart4grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART4_RXD_UART4_DCE_RX		0x040
-+			MX8MM_IOMUXC_UART4_TXD_UART4_DCE_TX		0x040
-+		>;
-+	};
-+
-+	pinctrl_usbotg1: usbotg1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO12_USB1_OTG_PWR		0x000
-+			MX8MM_IOMUXC_GPIO1_IO13_USB1_OTG_OC		0x000
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK			0x190
-+			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD			0x1d0
-+			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d0
-+			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d0
-+			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d0
-+			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d0
-+			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x0d4
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x190
-+			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d0
-+			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d0
-+			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d0
-+			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d0
-+			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d0
-+			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d0
-+			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d0
-+			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d0
-+			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d0
-+			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x190
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x194
-+			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d4
-+			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d4
-+			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d4
-+			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d4
-+			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d4
-+			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d4
-+			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d4
-+			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d4
-+			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d4
-+			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x194
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x196
-+			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d6
-+			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d6
-+			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d6
-+			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d6
-+			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d6
-+			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d6
-+			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d6
-+			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d6
-+			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d6
-+			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x196
-+		>;
-+	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0xc6
-+		>;
-+	};
-+};
--- 
-2.30.2
 
+At least the audio port was defined.
+
+
+> -
+> -Optional subnodes:
+> -	- video input: this subnode can contain a video input port node
+> -	  to connect the bridge to a display controller output (See this
+> -	  documentation [1]).
+> -
+> -[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
+> -
+> -Example:
+> -	hdmi-bridge@39 {
+> -		compatible = "sil,sii9022";
+> -		reg = <0x39>;
+> -		reset-gpios = <&pioA 1 0>;
+> -		iovcc-supply = <&v3v3_hdmi>;
+> -		cvcc12-supply = <&v1v2_hdmi>;
+> -
+> -		#sound-dai-cells = <0>;
+> -		sil,i2s-data-lanes = < 0 1 2 >;
+> -		clocks = <&mclk>;
+> -		clock-names = "mclk";
+> -
+> -		ports {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -
+> -			port@0 {
+> -				reg = <0>;
+> -				bridge_in: endpoint {
+> -					remote-endpoint = <&dc_out>;
+> -				};
+> -			};
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/display/bridge/sil,sii9022.yaml b/Documentation/devicetree/bindings/display/bridge/sil,sii9022.yaml
+> new file mode 100644
+> index 0000000000000000..b39537f4fe8694ef
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/sil,sii9022.yaml
+> @@ -0,0 +1,133 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/sil,sii9022.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Silicon Image sii902x HDMI bridge
+> +
+> +maintainers:
+> +  - Boris Brezillon <bbrezillon@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - sil,sii9022-cpi
+> +              - sil,sii9022-tpi
+> +          - const: sil,sii9022
+> +      - const: sil,sii9022
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description: Interrupt line used to inform the host about hotplug events.
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  iovcc-supply:
+> +    description: I/O Supply Voltage (1.8V or 3.3V)
+> +
+> +  cvcc12-supply:
+> +    description: Digital Core Supply Voltage (1.2V)
+> +
+> +  '#sound-dai-cells':
+> +    enum: [ 0, 1 ]
+> +    description: |
+> +      <0> if only i2s or spdif pin is wired,
+> +      <1> if both are wired.
+> +      HDMI audio is configured only if this property is found.
+> +      If HDMI audio is configured the sii902x device becomes an I2S and/or
+> +      spdif audio codec component (e.g. a digital audio sink), that can be used
+> +      in configuring a full audio devices with simple-card or audio-graph-card
+> +      binding. See their binding documents on how to describe the way the
+> +      sii902x device is connected to the rest of the audio system:
+> +      Documentation/devicetree/bindings/sound/simple-card.yaml
+> +      Documentation/devicetree/bindings/sound/audio-graph-card.yaml
+> +      Note: In case of the audio-graph-card binding the used port index should
+> +      be 3.
+> +
+> +  sil,i2s-data-lanes:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 4
+> +    uniqueItems: true
+> +    items:
+> +      enum: [ 0, 1, 2, 3 ]
+> +    description:
+> +      Each integer indicates which i2s pin is connected to which audio fifo.
+> +      The first integer selects i2s audio pin for the first audio fifo#0 (HDMI
+> +      channels 1&2), second for fifo#1 (HDMI channels 3&4), and so on. There
+> +      are 4 fifos and 4 i2s pins (SD0 - SD3). Any i2s pin can be connected to
+> +      any fifo, but there can be no gaps. E.g. an i2s pin must be mapped to
+> +      fifo#0 and fifo#1 before mapping a channel to fifo#2. Default value is
+> +      <0>, describing SD0 pin being routed to hdmi audio fifo #0.
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: MCLK input. MCLK can be used to produce HDMI audio CTS values.
+> +
+> +  clock-names:
+> +    const: mclk
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        type: object
+
+$ref: /schemas/graph.yaml#/properties/port
+
+> +        description: FIXME
+> +
+> +      port@1:
+> +        type: object
+
+$ref: /schemas/graph.yaml#/properties/port
+
+> +        description: FIXME
+> +
+> +      port@2:
+> +        type: object
+> +        description: FIXME
+> +
+> +      port@3:
+> +        type: object
+> +        description: FIXME
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        hdmi-bridge@39 {
+> +            compatible = "sil,sii9022";
+> +            reg = <0x39>;
+> +            reset-gpios = <&pioA 1 0>;
+> +            iovcc-supply = <&v3v3_hdmi>;
+> +            cvcc12-supply = <&v1v2_hdmi>;
+> +
+> +            #sound-dai-cells = <0>;
+> +            sil,i2s-data-lanes = < 0 1 2 >;
+> +            clocks = <&mclk>;
+> +            clock-names = "mclk";
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                port@0 {
+> +                    reg = <0>;
+> +                    bridge_in: endpoint {
+> +                        remote-endpoint = <&dc_out>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.25.1
+> 
+> 
