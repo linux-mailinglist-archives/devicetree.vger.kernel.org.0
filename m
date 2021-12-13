@@ -2,167 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 366A7471FAE
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 04:50:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC65F471FC4
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 04:55:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231500AbhLMDuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Dec 2021 22:50:55 -0500
-Received: from marcansoft.com ([212.63.210.85]:60178 "EHLO mail.marcansoft.com"
+        id S231549AbhLMDzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Dec 2021 22:55:46 -0500
+Received: from marcansoft.com ([212.63.210.85]:33182 "EHLO mail.marcansoft.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229724AbhLMDuz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 12 Dec 2021 22:50:55 -0500
+        id S229724AbhLMDzp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 12 Dec 2021 22:55:45 -0500
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
         (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 896F34258C;
-        Mon, 13 Dec 2021 03:50:50 +0000 (UTC)
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Sven Peter <sven@svenpeter.dev>, Rob Herring <robh+dt@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211212034726.26306-1-marcan@marcan.st>
- <20211212034726.26306-4-marcan@marcan.st> <YbaIwa/9utI9SD1u@sirena.org.uk>
+        by mail.marcansoft.com (Postfix) with ESMTPSA id D3E2C4258C;
+        Mon, 13 Dec 2021 03:55:41 +0000 (UTC)
+Subject: Re: [PATCH 0/2] Apple mailbox fixup: switch to generic compatibles
+To:     Sven Peter <sven@svenpeter.dev>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20211209055049.99205-1-marcan@marcan.st>
+ <3fb087c1-2d67-4527-ad63-1f8ce54e6965@www.fastmail.com>
 From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH 3/3] spi: apple: Add driver for Apple SPI controller
-Message-ID: <d566c897-ee7d-f32f-1548-57f037c69c89@marcan.st>
-Date:   Mon, 13 Dec 2021 12:50:49 +0900
+Message-ID: <caf8a7a4-bdb9-e1c9-871d-12c8d146376c@marcan.st>
+Date:   Mon, 13 Dec 2021 12:55:39 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <YbaIwa/9utI9SD1u@sirena.org.uk>
+In-Reply-To: <3fb087c1-2d67-4527-ad63-1f8ce54e6965@www.fastmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for the review!
-
-On 13/12/2021 08.41, Mark Brown wrote:
-> On Sun, Dec 12, 2021 at 12:47:26PM +0900, Hector Martin wrote:
+On 10/12/2021 01.33, Sven Peter wrote:
+> On Thu, Dec 9, 2021, at 06:50, Hector Martin wrote:
+>> Hi folks,
+>>
+>> Just a quick fix for the Apple mailbox compatible. Similar to [1], we
+>> intend to use SoC-specific compatibles only for potential quirks, and
+>> rely on a generic compatible to allow for forward-compatibility as long
+>> as things don't break.
 > 
-> This looks pretty good - one small issue and several stylistic nits
-> below.
+> I vaguely remember a brief discussion about this and I think we thought about
+> using "t6000-asc", "t8103-asc" in this case since this specific mailbox hardware
+> was only introduced in the M1. I think Apple calls this variant ascwrap-v4
+> and m3wrap-v2.
 > 
->> @@ -0,0 +1,566 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Apple SoC SPI device driver
->> + *
-> 
-> Please keep the entire comment a C++ one so things look more
-> intentional.
+> Doing it like you suggested is also fine with me though.
 
-I thought this pattern was pretty much the standard style.
+I think I remember that one... seems this is ascwrap-v4 in t8101 too, so 
+not quite introduced with M1. But that one doesn't have m3wraps (or 
+doesn't use them).
 
-$ grep -r -A1 "// SPDX" | grep '/\*' | wc -l
-13512
-
-$ grep -r -A1 "// SPDX" | grep -v SPDX | grep '//' | wc -l
-705
-
->> +#define APPLE_SPI_DRIVER_NAME           "apple_spi"
-> 
-> This is referenced exactly once, just inline it.
-Done. Also changed to "apple-spi" since all the other apple drivers use 
-the dash convention.
-
-> 
->> +	/* We will want to poll if the time we need to wait is
->> +	 * less than the context switching time.
->> +	 * Let's call that threshold 5us. The operation will take:
->> +	 *    bits_per_word * fifo_threshold / hz <= 5 * 10^-6
->> +	 *    200000 * bits_per_word * fifo_threshold <= hz
->> +	 */
->> +	return 200000 * t->bits_per_word * APPLE_SPI_FIFO_DEPTH / 2 <= t->speed_hz;
-> 
-> Some brackets or an intermediate variable wouldn't hurt here, especially
-> given the line length.
-
-How about this?
-
-return (200000 * t->bits_per_word * APPLE_SPI_FIFO_DEPTH / 2) <= 
-t->speed_hz;
-
->> +	struct apple_spi *spi = spi_controller_get_devdata(ctlr);
->> +	bool poll = apple_spi_prep_transfer(spi, t);
->> +	const void *tx_ptr = t->tx_buf;
->> +	void *rx_ptr = t->rx_buf;
->> +	unsigned int bytes_per_word = t->bits_per_word > 16 ? 4 : t->bits_per_word > 8 ? 2 : 1;
-> 
-> Please don't abuse the ternery operator like this - just write normal
-> conditional statements, they're much easier to read.  In general the
-> driver is a bit too enthusiastic about them and this one is next level.
-
-Ack, I switched it to an if chain. That does mean I had to move the 
-subsequent initializers out of the declarations section, so it's overall 
-a bit more verbose.
-
-	if (t->bits_per_word > 16)
-		bytes_per_word = 4;
-	else if (t->bits_per_word > 8)
-		bytes_per_word = 2;
-	else
-		bytes_per_word = 1;
-
-	words = t->len / bytes_per_word;
-	remaining_tx = tx_ptr ? words : 0;
-	remaining_rx = rx_ptr ? words : 0;
-
->> +static int apple_spi_remove(struct platform_device *pdev)
->> +{
->> +	struct spi_controller *ctlr = platform_get_drvdata(pdev);
->> +	struct apple_spi *spi = spi_controller_get_devdata(ctlr);
->> +
->> +	pm_runtime_disable(&pdev->dev);
->> +
->> +	/* Disable all the interrupts just in case */
->> +	reg_write(spi, APPLE_SPI_IE_FIFO, 0);
->> +	reg_write(spi, APPLE_SPI_IE_XFER, 0);
-> 
-> Since the driver registers with the SPI subsystem using devm and
-> remove() gets run before devm gets unwound we still potentially have
-> transfers running when the driver gets removed and this probably isn't
-> going to cause them to go well - obviously it's an edge case and it's
-> unclear when someone would be removing the driver but we still shouldn't
-> do this.
-
-With the other devm changes Sven suggested we don't need a remove 
-function at all, so I've just gotten rid of it wholesale.
-
->> +static const struct of_device_id apple_spi_of_match[] = {
->> +	{ .compatible = "apple,spi", },
->> +	{}
->> +};
->> +MODULE_DEVICE_TABLE(of, apple_spi_of_match);
-> 
-> This is an awfully generic compatible.  It's common to use the SoC name
-> for the IP compatibles when they're not otherwise identified?
-
-Apple like to keep blocks compatible across SoC generations - I think 
-this one dates, at least to some extent, to the original iPhone or 
-thereabouts. We do use per-SoC compatibles in the DTs in case we need to 
-throw in per-SoC quirks in the future ("apple,t8103-spi", "apple,spi"), 
-but for drivers like this we prefer to use generic compatibles as long 
-as backwards compatibility doesn't break. If Apple do something totally 
-incompatible (like they did with AIC2 in the latest chips), we'll bump 
-to something like apple,spi2. This happens quite rarely, so it makes 
-sense to just keep things generic except for these instances. That way 
-old kernels will happily bind to the block in newer SoCs if it is 
-compatible.
-
-If we had a detailed lineage of what SoCs used what blocks and when 
-things changed we could try something else, like using the first SoC 
-where the specific block version was introduced, but we don't... so I 
-think it makes sense to just go with generic ones where we don't think 
-things have changed much since the dark ages. FWIW, Apple calls this one 
-spi-1,spimc and claims "spi-version = 1" and the driver has Samsung in 
-the name... so the history of this block definitely goes back quite a 
-ways :-)
+Since Apple do have some kind of sane versioning for these it seems, 
+maybe we should follow their numbers and call them apple,asc-mailbox-v4 
+and apple,m3-mailbox-v2?
 
 -- 
 Hector Martin (marcan@marcan.st)
