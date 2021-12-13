@@ -2,70 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70A07473854
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 00:17:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0388A473862
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 00:23:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244095AbhLMXR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 18:17:58 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:45788 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243871AbhLMXR5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 18:17:57 -0500
-Received: by mail-ot1-f44.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso19082230otf.12;
-        Mon, 13 Dec 2021 15:17:57 -0800 (PST)
+        id S244186AbhLMXXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 18:23:54 -0500
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:35488 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237678AbhLMXXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 18:23:53 -0500
+Received: by mail-ot1-f53.google.com with SMTP id x43-20020a056830246b00b00570d09d34ebso19170357otr.2;
+        Mon, 13 Dec 2021 15:23:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xQPTmQrXfRx7KguRstavbiQoAcmuCotS7cZFs4UAP+4=;
-        b=OxRy4zgjSfv0eEC6MDHF/aijRyq77k45rCQMQTXiOKbiAqdfq1cFw0ipNjI1VMp4LQ
-         LQ2coJF8yeIwTEXRVMsC7fOiC7vjVtaexDBOyJcQHYegiogTFMRXvJMV88MOjKlJR947
-         Fdos6PX5QRWc+5N1RMxlCvgg9ociNg4fGBbRw8FknZMcLmhZF0FUZ/cSLNJiWaEY/t2T
-         f3wkHdch/hDud2uKnnmxjnMVKH0hW/fgREvbzg9Hv6YY8n4WV5sGG1vFUB0SK1ADVG6z
-         jPGr8NtINXIggkZjfqBUFY7RKokRhydEnuMgrZGY3sca2/IhkvsPwO24LVMmubMsgTWG
-         Q07w==
-X-Gm-Message-State: AOAM533t40JWEFvwWyFAVqMqkhzxiWgjAgdMTgmlGA4Wi8KalBKJMVB0
-        s2PjlNBv5BWjoiUPZZIYLfKP5X+QBQ==
-X-Google-Smtp-Source: ABdhPJwvn7kLDGtkfsA0DVEg7VB8TSohSce7x5r3spbf15NurssWz0rg1t/HXcCylFlyq/fbSKcxeQ==
-X-Received: by 2002:a05:6830:4090:: with SMTP id x16mr1317986ott.281.1639437477200;
-        Mon, 13 Dec 2021 15:17:57 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=MN07U4V1fbFM28Uah7L22YfdYwHkREoQZ5ADmY6LxmE=;
+        b=rSIVAvCmRlEKecklB/83Nk5Zt2JVCJ2KYc2JG5Js++zZkyfZt0b1gXnZvhcjlMMWq7
+         1UgDvmtqynKTst6eEGjcPyWgEM0oD5rVQBu72pRVnnXD1z4MRxWrjwyoFNjpajFJeHmx
+         +BZRMBOJDI2ndfsEywAN0fKpsbTiDJRlkCfTIc3FMXLnhNEXt9X8Ijj1HZnadBFMIrkt
+         /D021ucbYg1B49fl4RyPN5cEIbqgKFlMp6e/pvjVVjWG47pQ3YjSX2TK5GOsM2OTnUCS
+         rsr6LRGerbk6IP6yygudk+zcSjFloxZTEgHw8iZLiliT67DDiyL+/xD+B8dxvLm4iRYd
+         sNjQ==
+X-Gm-Message-State: AOAM5312dwZJqGB6+yn/7adYo2vbhrS9XP8uWcvKVLAwNRJj5fZZaAEJ
+        xOLyu5R96dmZznEIKkCpm+gR/erfdQ==
+X-Google-Smtp-Source: ABdhPJygG9UxSLszfKCq3BJLXLaO6nhd2/v54vOpy5+rwpMfGis0qNScFE8ZLYHpZVfIYMEj9h8b8g==
+X-Received: by 2002:a9d:2085:: with SMTP id x5mr1371352ota.228.1639437832980;
+        Mon, 13 Dec 2021 15:23:52 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l23sm2483640oti.16.2021.12.13.15.17.56
+        by smtp.gmail.com with ESMTPSA id e16sm2431958ook.38.2021.12.13.15.23.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 15:17:56 -0800 (PST)
-Received: (nullmailer pid 1764188 invoked by uid 1000);
-        Mon, 13 Dec 2021 23:17:55 -0000
-Date:   Mon, 13 Dec 2021 17:17:55 -0600
+        Mon, 13 Dec 2021 15:23:52 -0800 (PST)
+Received: (nullmailer pid 1773614 invoked by uid 1000);
+        Mon, 13 Dec 2021 23:23:49 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Vincent Shih <vincent.sunplus@gmail.com>
-Cc:     devicetree@vger.kernel.org, srinivas.kandagatla@linaro.org,
-        robh+dt@kernel.org, wells.lu@sunplus.com,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: nvmem: Add bindings doc for Sunplus
- OCOTP driver
-Message-ID: <YbfUo2dLIqpVhfPF@robh.at.kernel.org>
-References: <1638867233-8383-1-git-send-email-vincent.sunplus@gmail.com>
- <1638867233-8383-3-git-send-email-vincent.sunplus@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1638867233-8383-3-git-send-email-vincent.sunplus@gmail.com>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Caleb Connolly <caleb@connolly.tech>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Satya Priya <skakit@codeaurora.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rtc@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+In-Reply-To: <20211213192946.111320-1-david@ixit.cz>
+References: <20211213192946.111320-1-david@ixit.cz>
+Subject: Re: [PATCH] dt-bindings: rtc: qcom-pm8xxx-rtc: update register numbers
+Date:   Mon, 13 Dec 2021 17:23:49 -0600
+Message-Id: <1639437829.348405.1773613.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 07 Dec 2021 16:53:53 +0800, Vincent Shih wrote:
-> Add bindings doc for Sunplus OCOTP driver
+On Mon, 13 Dec 2021 20:29:45 +0100, David Heidelberg wrote:
+> Extend registers up to 2, also document their names.
 > 
-> Signed-off-by: Vincent Shih <vincent.sunplus@gmail.com>
+> Also fixes warnings generated by `make qcom/sdm845-oneplus-fajita.dtb`:
+> arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: rtc@6000: reg: [[24576], [24832]] is too long
+>         From schema: Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
+> arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: rtc@6000: 'reg-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+>         From schema: Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
-> Changes in v2:
->  - Address the comments from Mr. Rob Herring
-> 
->  .../bindings/nvmem/sunplus,sp7021-ocotp.yaml       | 86 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
+>  .../devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml         | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
+
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/1567467
+
+
+rtc@11d: compatible: Additional items are not allowed ('qcom,pm8921-rtc' was unexpected)
+	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
+
+rtc@11d: compatible: ['qcom,pm8018-rtc', 'qcom,pm8921-rtc'] is too long
+	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
+
