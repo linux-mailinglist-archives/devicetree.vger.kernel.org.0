@@ -2,123 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18ED3472C64
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 13:39:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDA81472C7C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 13:42:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233776AbhLMMjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 07:39:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41756 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231831AbhLMMjg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 07:39:36 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A09ECC061574
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 04:39:35 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id g14so50769753edb.8
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 04:39:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RWEOCMj0qpG/0DpAdqm0pF3v2BxX5aGkY8sxh3j19KM=;
-        b=EprchnaSWdm0Qwesf+0NfoybtR6KIwJX8Q5KXlA3KrYDThemGX3syydUBPT/7E/xiY
-         4c/chTWukVoKPP48ho2Fhlm80CYvnwwn73bz+sCzcWZLcAU+DvFOJdORhmkAgXpbQ2MY
-         kPAndWCppyVXVAd6ZMGy8/Zlue+teL5HCWLyc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RWEOCMj0qpG/0DpAdqm0pF3v2BxX5aGkY8sxh3j19KM=;
-        b=duv5cTcU5j0VWZIOCd4QKVtXGd0KvNYbafKGREZxN2r2hyuCqErOSUI9R4D4wRqsjo
-         e5f0VoLk0r9ksLKytsY87U/8AvG7PLmlsF/X0DRMxrt/gs4APABPZLLuWFTURhhwDajj
-         AEsBwT4wUk3M6gymlBbV/Vk0kDNbdCHpBI0hc8ApQK4o/WDOY13NIEjc8uE0XaCaCGYu
-         ec4yroIFvLzsGc/1PD9tKZDWz2Tx5XHl5gb2haPKLEobetvqmbpWB7BJfXN8M29JQlN9
-         YdgnifreT8QZlmpjaj9LfTUwtT3s9bEnnkoNz28Ss34Ipx60JOfVQVTAlp3nrBE6fBpU
-         FDXQ==
-X-Gm-Message-State: AOAM530ymtFiRMs9S1vBGTegGEfi3L7uE7MZSd+UjreJNy5/M7H+StvZ
-        zBaOmq6NCCoge90SJMZpGfGnMQXllo43UJsHIUsDXQ==
-X-Google-Smtp-Source: ABdhPJw5YrezlLZ1UgOrQkTPUtYJQI6VwPo8Vlu5CTQzlBcrJVI0Aa2UmOPP4WSLywzaFm6vgH9/7KDtF0XgucK60zo=
-X-Received: by 2002:a17:907:d89:: with SMTP id go9mr44287227ejc.330.1639399174070;
- Mon, 13 Dec 2021 04:39:34 -0800 (PST)
-MIME-Version: 1.0
-References: <20211213121929.3377752-1-jagan@amarulasolutions.com> <Ybc9KdVOb0bxknyQ@pendragon.ideasonboard.com>
-In-Reply-To: <Ybc9KdVOb0bxknyQ@pendragon.ideasonboard.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Mon, 13 Dec 2021 18:09:23 +0530
-Message-ID: <CAMty3ZCd9a8PZMEO_MhF7x4v_HoL9Bk6T-YiaUxF2R-YXQXxvw@mail.gmail.com>
-Subject: Re: [PATCH] drm: bridge: tc358764: Use drm panel_bridge API
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com
-Content-Type: text/plain; charset="UTF-8"
+        id S233244AbhLMMmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 07:42:13 -0500
+Received: from smtpcmd03117.aruba.it ([62.149.158.117]:37042 "EHLO
+        smtpcmd03117.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236879AbhLMMmK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 07:42:10 -0500
+Received: from smtpclient.apple ([146.241.138.59])
+        by Aruba Outgoing Smtp  with ESMTPA
+        id wkeYmWeD7Ni3cwkeZm3tZn; Mon, 13 Dec 2021 13:42:09 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1639399329; bh=HW8jnezXIp3XT9vHzTfAeit8KDYul5E/X+S8lIqCFzA=;
+        h=Content-Type:From:Mime-Version:Subject:Date:To;
+        b=bW3CLmmFgM9n0qt/F1+oAVzlHW1KaA7xfMT070F5NMPjdRZ5hWmmBluO4pAjko8/4
+         0uQHuJHjh2temvPV2ixXykmgaKp4IuDnV7gyp6WvpshPPBH7XffP5lgdr/CEV+xQvs
+         dGCIyTBvKycd3okFGdmY8kZuYnk2/Ar+gseo4RnbaYCFbiRd8KB/PmgD04lQXHspju
+         6cc4BH/0hG5VQM7uCpunOlqgsDdH+zcT3ImLxsVZiUY1F2J73gtL9re2/L1gnyIrSx
+         scXub6a9KanbmbW1+eyNhYCxSney0v5U9RrZp8H7htgb7Z76RSAL//kbtebRcm4oIx
+         8NJSNbOKo71qw==
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+Mime-Version: 1.0 (1.0)
+Subject: Re: [PATCH v4 07/13] clk: imx: Add initial support for i.MXRT clock driver
+Date:   Mon, 13 Dec 2021 13:42:02 +0100
+Message-Id: <3109BC68-D1F8-4972-9480-F26606085ECD@benettiengineering.com>
+References: <CAOMZO5D9ytHBACojwk3mtaypdc4s5gWT7ctJQiUzmmP15hzGww@mail.gmail.com>
+Cc:     Abel Vesa <abel.vesa@nxp.com>,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-serial@vger.kernel.org
+In-Reply-To: <CAOMZO5D9ytHBACojwk3mtaypdc4s5gWT7ctJQiUzmmP15hzGww@mail.gmail.com>
+To:     Fabio Estevam <festevam@gmail.com>
+X-Mailer: iPhone Mail (19B74)
+X-CMAE-Envelope: MS4wfPDFt+eQTTflaIECVpAthF57sEYmn4Q2RvQhp7B+4VH2gu3iPMFODYUJjPPdHcfy0G6Olr6hvCyb7WbX68JVtMjscZHWb2lZHmJjosX1cRt7ibrFNqkx
+ yF4kBPlqZgYTMtUOcVITfQfiy8VN4ivJgsklw/wIfMFkAaz5W4l+GIk5DlnbnTKasmv8O1VOWWFvDB9xXJ9rs7cKmMBXSZqagQ+7bcGB8eJmRs8pt4c7BBP5
+ h8jwR/Xvwg/l0J0Sse6morf+GOhc4gtceJsUYyxByex/TN6/8sg6ndnpGsvIEwngpHu1kbO9dxv3CTGNYWHPufEbxudq34t0e/h5yHqf75HBf0cl3fDNjUzP
+ vuCw1NQxNTL070XUcwWKHJHv25LhfHdbqbmWgDNh3rfg/WioktumTv17QRmidJM4cwyZ7xIrFda/3mLcYoHtjzLPui8KhJZAUrohDju+malebuF6Yx409YuS
+ tf6InUpQg6WS07uIRu96HGDbpY80pOmkk/+4oBPuvHe1dQNJLwWO/M2kIZ06Jl6zLXSqIL+CjCBmdGdeaW/YNcS/ZF8MpU1FPi0ZEVvUS+BFeNscbVqVoP/T
+ oI9igbJe+gzbmG9oSUOng9LZVe8tJ9+3ra1S3HioTmsF9xV+4E/qsDucSg+2JmXFMcaQLDpEliHoyJOwPpWSegkMpVumYTXcZQTkKcuShJa41AwKinGtORjc
+ yz7Yo8ByOADmKT6C7zPiigPbKclb3VoEQvHo1VC0/R/kdeLtmyevT9v7KqrwQUZXLRfp7sInHHi0TE4gGKHaRX0tL7/Y5fwvADXrWe4SnpkUwLXvbmh6WUXC
+ mmxOm9wVGMQsQ8J/AOE5zHu/xaGBMIkAHKCkBDIiTVCTuycnJsl8msxybTbFdnD3dO0iaN+cCDqv2kukEKc4WzBSYx22mUvptrinTtEtI5m8v3F2vwRF2E0i
+ nA5lw7ar99z1ELSnw4lOzhVik6K9W/PWVQ+MRGCUUd3kXFXbQoJDMzwYr1tRlAe3o21zoA/IoQhOOU4BgfW7ogB28mKV0UFdD1PUjL2EWoz6qvkyGUfGTqGq
+ DVRGthEjuA7rVNjOX+LkyY7aA3c0b0kBU1nrOoeXdDbzQT4QPcUxc+tTsiOGtwuhenm9GhKHEOoig7xzgy3CHtnrjIqH+w+S3hE=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Hi Fabio,
 
-On Mon, Dec 13, 2021 at 6:02 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Jagan,
->
-> Thank you for the patch.
->
-> On Mon, Dec 13, 2021 at 05:49:29PM +0530, Jagan Teki wrote:
-> > Replace the manual panel handling code by a drm panel_bridge via
-> > devm_drm_of_get_bridge().
-> >
-> > Adding panel_bridge handling,
-> >
-> > - Drops drm_connector and related operations as drm_bridge_attach
-> >   creates connector during attachment.
-> >
-> > - Drops panel pointer and panel healpers.
-> >
-> > This simplifies the driver and allows all components in the display
-> > pipeline to be treated as bridges.
-> >
-> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > ---
-> >  drivers/gpu/drm/bridge/tc358764.c | 99 ++-----------------------------
-> >  1 file changed, 6 insertions(+), 93 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/bridge/tc358764.c b/drivers/gpu/drm/bridge/tc358764.c
-> > index c1e35bdf9232..28480bdc4287 100644
-> > --- a/drivers/gpu/drm/bridge/tc358764.c
-> > +++ b/drivers/gpu/drm/bridge/tc358764.c
-> > @@ -153,10 +153,9 @@ static const char * const tc358764_supplies[] = {
-> >  struct tc358764 {
-> >       struct device *dev;
-> >       struct drm_bridge bridge;
-> > -     struct drm_connector connector;
-> > +     struct drm_bridge *panel_bridge;
->
-> s/panel_bridge/next_bridge/ as it may not be a panel.
+> Il giorno 13 dic 2021, alle ore 13:15, Fabio Estevam <festevam@gmail.com> h=
+a scritto:
+>=20
+> =EF=BB=BFHi Giulio,
+>=20
+> On Mon, Dec 13, 2021 at 9:06 AM Giulio Benetti
+> <giulio.benetti@benettiengineering.com> wrote:
+>=20
+>>> I would suggest module platform driver instead.
+>>=20
+>> Can you please point us an example?
+>=20
+> Here is an example of a commit that converts the imx8mm clk driver to
+> platform driver:
+> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?h=
+=3Dv5.15.7&id=3Daf7e7ee0e4280c29c41b6ec64b892bb53987a997
 
-Sometime, I'm a strong believer of my own notation (I may be wrong)
-based on my understanding. This is downstream bridge and the only
-option it to connect is panel and panel in bridge terminology are
-treated as panel_bridge. This is the reason I have used panel_bridge.
-next_bridge notation will be used if the bridge connected to any
-downstream bridge, like we can use next_bridge notation in host bridge
-drivers as host bridge can be an option of connecting downstream
-bridge or panel.
+Thanks a lot, this ease us
 
-This is what I understood so-far with DRM bridges. May be you can
-correct if I'm wrong.
+Best regards
+Giulio=
 
->
-> >       struct regulator_bulk_data supplies[ARRAY_SIZE(tc358764_supplies)];
-> >       struct gpio_desc *gpio_reset;
-> > -     struct drm_panel *panel;
->
-> Are there #includes that you can drop ?
-
-I think, yes. I will update it in v2.
-
-Thanks,
-Jagan.
