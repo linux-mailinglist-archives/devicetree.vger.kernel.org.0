@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CAF6472AF5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:12:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B223472AF9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:12:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234503AbhLMLMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 06:12:48 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:34822
+        id S234588AbhLMLMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 06:12:54 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:34852
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234158AbhLMLMr (ORCPT
+        by vger.kernel.org with ESMTP id S234579AbhLMLMy (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 06:12:47 -0500
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
+        Mon, 13 Dec 2021 06:12:54 -0500
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C0A813F20A
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 11:12:46 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 66BA43F209
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 11:12:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639393966;
-        bh=FMSEJMWB19MJ5un0naaJgLGMwQh7w2xxe+NRt2wvP6I=;
+        s=20210705; t=1639393973;
+        bh=dyuKF4BAHeuRIOQc7e3kDFRJ6K0OTMq0h/Tat1BAxlc=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version:Content-Type;
-        b=V5xvwzknfqO16mjVNGIblj8LxaFArR6SQFll08DHcUJtYbs6YY901oSZ3+bWoBIQi
-         qMHqX0+g5AOUuRHbeOH8HsOpT1MZwrwL9DrvmpVzbBGrEtWLR0YjC4P/Rql8+ZS3C9
-         JS75Xz7hmVIErAVhiZgXO+Uh6PMuJM9+doimYzOndqDiJs8n1trj8FNpxr97znBs+4
-         2Ql+A7gRA2PbTp7o71wWCrc+tkVBTregw/+iGgPRGlRovhmNU9kVuuarmKOVJCtNCV
-         iwMdi5NPxI2w64EJN7AemCjkjpvWYnOZE1QuDCRHXlXval2ta29qGiRW7v3hHyEE0/
-         CPd4q/1r8t1EA==
-Received: by mail-lf1-f71.google.com with SMTP id j9-20020a05651231c900b004037efe9fddso7365374lfe.18
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 03:12:46 -0800 (PST)
+        b=bMcMhcJx4Qmdx7M+4YSzxBFcG7oULWmH5m0uheenK5pB0u3Q77fjribG3A2ygBTbo
+         waJE178hQc/GfsdlddXXT/xxpXxaqekVL+PgxfJpirPDnxHq34SWzCZTR19iK2NsIm
+         MOs0VpF615RdenN5UCFozy7ThebRvVCNXnCntExZKTVRbvECzdr9uCjRd168IAXn+6
+         mjEvUrbtvokZkyEUYGvgq2tFTZCjLL9DEkwzrHb2GYY2Q+ENJzaETFYQC4TZJ42CQT
+         ZpyWRwENf04szZ9kl9WxpiQuc8Ze9MQXQyzkXmzMRJ+aiX46Zw10QmGNV8UW7rP2Or
+         E7RwYquC3ib6g==
+Received: by mail-lf1-f72.google.com with SMTP id k17-20020a05651239d100b0041c32e98751so7386680lfu.10
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 03:12:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=FMSEJMWB19MJ5un0naaJgLGMwQh7w2xxe+NRt2wvP6I=;
-        b=kppR1SoRsXlo03Vh5EcmQiNKQWT1cbVYHz+2BJ3LnFMwDixxRHYsdP63NoLyCCw/HF
-         TttgExQ7+z2vLqS3ZScvjtSHprQufZsSa6yRya6W/cMAPp4LlRdGodT8L2N/mr1P9awt
-         LEmko+gHvYIq3QDT4pWvFXX/gva/FlQZFz4It7KlM0fjah1ehsK9YStXip3TYl7cH5CJ
-         WG20hPNLj4tSUbLeRCjtXziCMDdWqsmiZubP9urNZbZfRCoLj7CcwwmTQftYeqvILTGg
-         aV03nsxb7wZGzhIEwElvBaQ978L/yYBdzzkm9ID/UwkPrdBb2tegMl+leMcX1yzLI79G
-         PNtg==
-X-Gm-Message-State: AOAM5312u70fFpWDfzl8QWPlvwhfc0J4YCP/UfG+BDr7oJdc6zWPM5Zj
-        ovTdDv+JM+1Ruk8jM+f0m1A3y0hsL5PMP9HVrZDm7+sO5bTq0yekvJWieMwyKJGuQyghFn18R1M
-        h6JqmLHYHWoRDUd5Cw7bbxZWi+W2oQAAdBaI+I20=
-X-Received: by 2002:a2e:9dcf:: with SMTP id x15mr29777722ljj.223.1639393965808;
-        Mon, 13 Dec 2021 03:12:45 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwEhn19N9dmWSefufj0sS+SE52ZpsFM6hnx/XdA1Kb8kvUIW90VKYiArQTWBmcr1sR0Y6R8xg==
-X-Received: by 2002:a2e:9dcf:: with SMTP id x15mr29777688ljj.223.1639393965543;
-        Mon, 13 Dec 2021 03:12:45 -0800 (PST)
+        bh=dyuKF4BAHeuRIOQc7e3kDFRJ6K0OTMq0h/Tat1BAxlc=;
+        b=2eyVmjTBATff9cxK0/lWwlbsKiSbtTN8x28wEgsrinL417InysmeBidg9qAvBmId2V
+         RB8xGnoKevgqWOobw7i1tJuSvV6fvGagS3rCNFARfQEwqa5CXDwZ2BMxh4rNrrz3TElg
+         y4yKWKtnU/CnxE5dFVzHcr8Cl/yu3ZJNoMWMNrQwUEF9xTJHzwCgqWrEyCpDL3Ly7WUg
+         AVbN8nRvtwrMQnvGPqf2yDj2lxP9TsqVaS9vbVboQjADOCEYwt8DwIdOxDMR5XCpbaZG
+         jr5thtbgmngHXCsjuhCkaqzdS5uQIzAgVI1Es0CV79XaeKqv2tBDxXMiQUKd21DH/gXZ
+         hXDw==
+X-Gm-Message-State: AOAM530bkZok3KG8stOR2ATjra+B+R02BkleEEDTcI5hyfpFZtRwPdBS
+        s/5ivyhWDa3aNVbKE+TTZ4QfHOZGj5hwisaTBOsKt+4d+2h6w1BJKKsfDl+cjQvjA6XEVDotWmO
+        GJYS2EdOh5Dh7q6Upwgic7fFi36h3oTFfErQLHkc=
+X-Received: by 2002:ac2:4e11:: with SMTP id e17mr28408234lfr.126.1639393971804;
+        Mon, 13 Dec 2021 03:12:51 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJx1IzXqmfov2eGoZQZq7xcYOB6+DRCqVGkPLZlbedDR/KWTooAqu//trmEodH0hP+3eA1oDOA==
+X-Received: by 2002:ac2:4e11:: with SMTP id e17mr28408116lfr.126.1639393970107;
+        Mon, 13 Dec 2021 03:12:50 -0800 (PST)
 Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id i11sm1387791lfu.141.2021.12.13.03.12.44
+        by smtp.gmail.com with ESMTPSA id i11sm1387791lfu.141.2021.12.13.03.12.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 03:12:45 -0800 (PST)
+        Mon, 13 Dec 2021 03:12:49 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Protsenko <semen.protsenko@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Jaewon Kim <jaewon02.kim@samsung.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
@@ -66,12 +66,12 @@ Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         David Virag <virag.david003@gmail.com>,
         Youngmin Nam <youngmin.nam@samsung.com>,
         devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v3 1/5] dt-bindings: soc: samsung: Add Exynos USI bindings
-Date:   Mon, 13 Dec 2021 12:12:41 +0100
-Message-Id: <163939390678.7492.14453883652552774452.b4-ty@canonical.com>
+Subject: Re: (subset) [PATCH v3 2/5] soc: samsung: Add USI driver
+Date:   Mon, 13 Dec 2021 12:12:42 +0100
+Message-Id: <163939390678.7492.6547802857453426522.b4-ty@canonical.com>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211204195757.8600-2-semen.protsenko@linaro.org>
-References: <20211204195757.8600-1-semen.protsenko@linaro.org> <20211204195757.8600-2-semen.protsenko@linaro.org>
+In-Reply-To: <20211204195757.8600-3-semen.protsenko@linaro.org>
+References: <20211204195757.8600-1-semen.protsenko@linaro.org> <20211204195757.8600-3-semen.protsenko@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -79,17 +79,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 4 Dec 2021 21:57:53 +0200, Sam Protsenko wrote:
-> Add constants for choosing USIv2 configuration mode in device tree.
-> Those are further used in USI driver to figure out which value to write
-> into SW_CONF register. Also document USIv2 IP-core bindings.
+On Sat, 4 Dec 2021 21:57:54 +0200, Sam Protsenko wrote:
+> USIv2 IP-core is found on modern ARM64 Exynos SoCs (like Exynos850) and
+> provides selectable serial protocol (one of: UART, SPI, I2C). USIv2
+> registers usually reside in the same register map as a particular
+> underlying protocol it implements, but have some particular offset. E.g.
+> on Exynos850 the USI_UART has 0x13820000 base address, where UART
+> registers have 0x00..0x40 offsets, and USI registers have 0xc0..0xdc
+> offsets. Desired protocol can be chosen via SW_CONF register from System
+> Register block of the same domain as USI.
 > 
-> 
+> [...]
 
 Applied, thanks!
 
-[1/5] dt-bindings: soc: samsung: Add Exynos USI bindings
-      commit: e522ae91b8ff7bf89d22d9322308aba1a6326996
+[2/5] soc: samsung: Add USI driver
+      commit: cc4fcd60ac51d99ef75fa80f14ac6202f46c3dfc
 
 Best regards,
 -- 
