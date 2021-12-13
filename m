@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F1A447226F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 09:24:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B96F472258
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 09:24:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232884AbhLMIX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 03:23:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37338 "EHLO
+        id S232920AbhLMIYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 03:24:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232869AbhLMIX5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 03:23:57 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920B0C061751
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 00:23:57 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id l25so49745458eda.11
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 00:23:57 -0800 (PST)
+        with ESMTP id S232888AbhLMIYA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 03:24:00 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9975C061748
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 00:23:59 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id x10so31963047edd.5
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 00:23:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=fairphone.com; s=fair;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=prdIKNnTakLOgVKu5DwjlMlxlY+xXSOXQoSYxRJLrP4=;
-        b=omQsxrb+Hxg41SF9UDWEMcgy6P46VVzeouGujn1lDMF8O+GeOW3PgJh2U+Kdrq+uTu
-         6agorY7fL8XCzr+MzyZKQclJ1So8D6Eo3ZIaK3drrcVw3chGMRVlO5WZGT8JsQ4RyD4G
-         pWVMby9jENNOskqdPb5LKRMH7Bf1QiwDG9aa11CGCK5+iwXbH9rjws5t7w7cTxRi6LPh
-         CoN/dFPng9qTB5kBMwNfO/KHbpDkf9s3bx7wlR3fruTQ38tOAqJOfuz9jISDkeryo/L6
-         Q3MPMqmV1jHZ+miaETOOSLJ00rJs/utX5DcSzpJZOIOf1+S7+YBILyBRdQIz/e65zwnd
-         VUDQ==
+        bh=5OtucOCvawfobrbHcXVhOtvyWLxWDxqsfH1lQJQrnfY=;
+        b=b2PnGSWuGINO6Kc06wSvWB/2KCgGI1Az2mtYpXIZCMN2+N0W8TtaNbUh6bTa+tgDXr
+         RhJXlZEtaUPFOshl3lbnvtuJQqxr0wz1lcZwIy0m/ev1DWIbOFsxJgKeOw76dOa3ag/5
+         m+69i4aAyXaPYW8FOG4plEEPf3cGnYMmbiCgapwRK4NhQobjmPTsTwSCvNrbIKFzVTNv
+         KcDVJkVQLxMY+VJbHP8JFRCZWHZoCDE51XFmPSoIdnyoyY4rBLUU2dcza2ameZPm949T
+         8htFzJ6SYgEp04PXNUCGatNJbxyfbijnyfX4i+ESzBZ5PJgsB9q6uUIkubmj9cZzSZ4C
+         MS5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=prdIKNnTakLOgVKu5DwjlMlxlY+xXSOXQoSYxRJLrP4=;
-        b=2def7v0LrrhkzMRfPFrA2FrzzCxn5kgtAH5Enf7OgcybzoBeHpAP0rDWY5MY/PNsPu
-         m2Nl281TdgfUKxGhKLY3vzL9vx733+Oi0SiT0tG4mn62OgTB4W/dQMLlL6GjG2OpHiY+
-         tWvR98Hg3JL7TPdZ89hIjl9DjVVJgf7VtNvFCwv7wdjvJuJFq8ZlloXJCL57ddHvWpO3
-         /QbKtU1+PKY2ioo8O65kud7YeZWLYIb8GPAzDWScmVdSZ9a8lEo4id6IIe1FO0syW1ps
-         8o4kLZllSgx+xodCBXrBMETTDaTQ8q16fx0tVexzM9LQn5e+fxIWdRkVR87zOQaoRynI
-         q0FQ==
-X-Gm-Message-State: AOAM531qw+y7zl6a9KXm/1C0MZIXfodHDresnl3PgC3BlU7vBC4S7yHJ
-        Wsy6A/c7O/SCu6RHqiqlDIwT4Q==
-X-Google-Smtp-Source: ABdhPJwiRLHKvdYVxS22gwZ8U7nNlkzXgH1/4EzTGwRcfsJd31TNLz8JwyPZS3Fi5kMN3gVhwklzJg==
-X-Received: by 2002:a05:6402:2547:: with SMTP id l7mr62557623edb.301.1639383836134;
-        Mon, 13 Dec 2021 00:23:56 -0800 (PST)
+        bh=5OtucOCvawfobrbHcXVhOtvyWLxWDxqsfH1lQJQrnfY=;
+        b=qL+AmbSk+xipn2d0vAj6NubDQQH4Aik1FxkU3mRXvtUAH3jHS8gmX4jLvGZ9lJnN3h
+         XfODo8ZIYuBE086FyLbvapP5M7zWsqTvBMl5J4Z9I7DZKf8PJcrT6CRUifn7RaPatYAV
+         JNsyGzPLFwmM7wxavel7MkVGWr82+CFyJRu/fJz7wqxOCggGUJuuj0qGShvUtZz4YwDD
+         GhjjxdYOJR1lm0STiLVOoFSWk5sk+Bv2KIxv13it01kRZepVztd5rBC94eiae7bUrqhe
+         7CpjmFJIW+yyUoys/sOt/6h+5qZ+YJPEgAi/YM/5IR7T5MgV0LOP1h7ZKBRvDdJ9pwwv
+         2TCQ==
+X-Gm-Message-State: AOAM5336Es+Ej+HFnb4u5anG4joYlpvao3Jwlfk/ao8N0exR/sOiFsJz
+        rbSUwKP+0sNtvU1A5T+v097yaQ==
+X-Google-Smtp-Source: ABdhPJwyA674Z/gyNKbInlldO/YhsQlOpSnq6T2TT3dlZZhrUq306LEmGAxdtjaueTbkS45BuyAgCA==
+X-Received: by 2002:a05:6402:1453:: with SMTP id d19mr59965489edx.388.1639383838538;
+        Mon, 13 Dec 2021 00:23:58 -0800 (PST)
 Received: from localhost.localdomain ([2a02:a210:20c5:8c80:7d0a:cd68:c339:f426])
-        by smtp.gmail.com with ESMTPSA id nb17sm5535561ejc.7.2021.12.13.00.23.55
+        by smtp.gmail.com with ESMTPSA id nb17sm5535561ejc.7.2021.12.13.00.23.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 00:23:55 -0800 (PST)
+        Mon, 13 Dec 2021 00:23:58 -0800 (PST)
 From:   Luca Weiss <luca.weiss@fairphone.com>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
@@ -54,15 +54,11 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 1/8] dt-bindings: remoteproc: qcom: pas: Add SM6350 adsp, cdsp & mpss
-Date:   Mon, 13 Dec 2021 09:22:01 +0100
-Message-Id: <20211213082208.21492-2-luca.weiss@fairphone.com>
+Subject: [PATCH 3/8] arm64: dts: qcom: sm6350: Add MPSS nodes
+Date:   Mon, 13 Dec 2021 09:22:03 +0100
+Message-Id: <20211213082208.21492-4-luca.weiss@fairphone.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20211213082208.21492-1-luca.weiss@fairphone.com>
 References: <20211213082208.21492-1-luca.weiss@fairphone.com>
@@ -72,95 +68,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatibles for the remoteprocs found in SM6350.
+Add the required nodes for booting the MPSS on sm6350.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-Acked-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- .../bindings/remoteproc/qcom,adsp.yaml        | 28 +++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 66 ++++++++++++++++++++++++++++
+ 1 file changed, 66 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-index 63e06d93bca3..c635c181d2c2 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-@@ -33,6 +33,9 @@ properties:
-       - qcom,sdm845-adsp-pas
-       - qcom,sdm845-cdsp-pas
-       - qcom,sdx55-mpss-pas
-+      - qcom,sm6350-adsp-pas
-+      - qcom,sm6350-cdsp-pas
-+      - qcom,sm6350-mpss-pas
-       - qcom,sm8150-adsp-pas
-       - qcom,sm8150-cdsp-pas
-       - qcom,sm8150-mpss-pas
-@@ -158,6 +161,9 @@ allOf:
-               - qcom,sc8180x-mpss-pas
-               - qcom,sdm845-adsp-pas
-               - qcom,sdm845-cdsp-pas
-+              - qcom,sm6350-adsp-pas
-+              - qcom,sm6350-cdsp-pas
-+              - qcom,sm6350-mpss-pas
-               - qcom,sm8150-adsp-pas
-               - qcom,sm8150-cdsp-pas
-               - qcom,sm8150-mpss-pas
-@@ -266,6 +272,8 @@ allOf:
-               - qcom,sc8180x-cdsp-pas
-               - qcom,sdm845-adsp-pas
-               - qcom,sdm845-cdsp-pas
-+              - qcom,sm6350-adsp-pas
-+              - qcom,sm6350-cdsp-pas
-               - qcom,sm8150-adsp-pas
-               - qcom,sm8150-cdsp-pas
-               - qcom,sm8150-slpi-pas
-@@ -301,6 +309,7 @@ allOf:
-               - qcom,sc7280-mpss-pas
-               - qcom,sc8180x-mpss-pas
-               - qcom,sdx55-mpss-pas
-+              - qcom,sm6350-mpss-pas
-               - qcom,sm8150-mpss-pas
-               - qcom,sm8350-mpss-pas
-     then:
-@@ -385,6 +394,23 @@ allOf:
-             - const: mx
-             - const: mss
+diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+index 973e18fe3b67..9f9d4d916470 100644
+--- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+@@ -361,6 +361,32 @@ smem {
+ 		hwlocks = <&tcsr_mutex 3>;
+ 	};
  
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sm6350-cdsp-pas
-+    then:
-+      properties:
-+        power-domains:
-+          items:
-+            - description: CX power domain
-+            - description: MX power domain
-+        power-domain-names:
-+          items:
-+            - const: cx
-+            - const: mx
++	smp2p-mpss {
++		compatible = "qcom,smp2p";
++		qcom,smem = <435>, <428>;
 +
-   - if:
-       properties:
-         compatible:
-@@ -405,6 +431,7 @@ allOf:
-             enum:
-               - qcom,sc7280-mpss-pas
-               - qcom,sdx55-mpss-pas
-+              - qcom,sm6350-mpss-pas
-               - qcom,sm8150-mpss-pas
-               - qcom,sm8350-mpss-pas
-     then:
-@@ -425,6 +452,7 @@ allOf:
-             enum:
-               - qcom,sc8180x-adsp-pas
-               - qcom,sc8180x-cdsp-pas
-+              - qcom,sm6350-adsp-pas
-               - qcom,sm8150-slpi-pas
-               - qcom,sm8250-adsp-pas
-               - qcom,sm8250-slpi-pas
++		interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
++					     IPCC_MPROC_SIGNAL_SMP2P
++					     IRQ_TYPE_EDGE_RISING>;
++		mboxes = <&ipcc IPCC_CLIENT_MPSS
++				IPCC_MPROC_SIGNAL_SMP2P>;
++
++		qcom,local-pid = <0>;
++		qcom,remote-pid = <1>;
++
++		modem_smp2p_out: master-kernel {
++			qcom,entry-name = "master-kernel";
++			#qcom,smem-state-cells = <1>;
++		};
++
++		modem_smp2p_in: slave-kernel {
++			qcom,entry-name = "slave-kernel";
++
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++	};
++
+ 	soc: soc@0 {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+@@ -473,6 +499,46 @@ tcsr_mutex: hwlock@1f40000 {
+ 			#hwlock-cells = <1>;
+ 		};
+ 
++		mpss: remoteproc@4080000 {
++			compatible = "qcom,sm6350-mpss-pas";
++			reg = <0x0 0x04080000 0x0 0x4040>;
++
++			interrupts-extended = <&intc GIC_SPI 136 IRQ_TYPE_EDGE_RISING>,
++					      <&modem_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
++					      <&modem_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
++					      <&modem_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
++					      <&modem_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
++					      <&modem_smp2p_in 7 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "wdog", "fatal", "ready", "handover",
++					  "stop-ack", "shutdown-ack";
++
++			clocks = <&rpmhcc RPMH_CXO_CLK>;
++			clock-names = "xo";
++
++			power-domains = <&rpmhpd SM6350_CX>,
++					<&rpmhpd SM6350_MSS>;
++			power-domain-names = "cx", "mss";
++
++			memory-region = <&pil_modem_mem>;
++
++			qcom,qmp = <&aoss_qmp>;
++
++			qcom,smem-states = <&modem_smp2p_out 0>;
++			qcom,smem-state-names = "stop";
++
++			status = "disabled";
++
++			glink-edge {
++				interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
++							     IPCC_MPROC_SIGNAL_GLINK_QMP
++							     IRQ_TYPE_EDGE_RISING>;
++				mboxes = <&ipcc IPCC_CLIENT_MPSS
++						IPCC_MPROC_SIGNAL_GLINK_QMP>;
++				label = "modem";
++				qcom,remote-pid = <1>;
++			};
++		};
++
+ 		sdhc_2: sdhci@8804000 {
+ 			compatible = "qcom,sm6350-sdhci", "qcom,sdhci-msm-v5";
+ 			reg = <0 0x08804000 0 0x1000>;
 -- 
 2.34.1
 
