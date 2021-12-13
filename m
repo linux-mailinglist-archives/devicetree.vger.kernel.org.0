@@ -2,88 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9358D472FC7
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 15:51:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABA65472FF0
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 16:00:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239742AbhLMOvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 09:51:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45860 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239739AbhLMOu5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 09:50:57 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F11B9C061574;
-        Mon, 13 Dec 2021 06:50:56 -0800 (PST)
+        id S239787AbhLMPAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 10:00:15 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:54040 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239777AbhLMPAN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 10:00:13 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B791DB81113;
-        Mon, 13 Dec 2021 14:50:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71299C34606;
-        Mon, 13 Dec 2021 14:50:54 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 10DF4B81138;
+        Mon, 13 Dec 2021 15:00:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C48A5C34603;
+        Mon, 13 Dec 2021 15:00:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639407054;
-        bh=rB04KlTnYTjNvX6bGvzpbKOreiTVBbB8v7GBGdsXRH4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pktXTE5Dw95b9A79kaUwiU6MqWyw8ifotpglfAa9bgn63TFdUcsS+rd+uMS3dLgjG
-         2iq43Q7SJpYQerWm5GFeHpscTZ0QobFancv22tl427cf+CVSU1BxvPQTWGPA+CAaMQ
-         vV0jw2C4/bSwi2CiE1dJlRaGWaMOwkPLNkGX/w5f4difTaoiBsiLMZ9QFJOxpP1p8w
-         vd5a1b1hoG0CtqweBvwim5LL4kAUCz0uO99nQOzFDEVRcrwHzb2+2VT9NPOVxhMekj
-         ZUjptU2Kx3WfAUrwQDpHKyRSY/yewsdn3pYmsSs3hXf0MlnlJEamb7Ca8yY4IR8zGM
-         Gx19otXO5oQXQ==
-Received: by mail-ed1-f49.google.com with SMTP id z5so53574321edd.3;
-        Mon, 13 Dec 2021 06:50:54 -0800 (PST)
-X-Gm-Message-State: AOAM532rMssiMQIzUxuaUiyQo4qnttrIm5xx78c+lX8t7yZAizVf4FRE
-        ssBYbSsYyOQgeBv8MX+KLDEGDrVnq7+44SuUNQ==
-X-Google-Smtp-Source: ABdhPJxuMWm3S7JoggtMzbpLVFQySOBI3xqLHwXO9iPRtHwEd/Xvusq53GXxW9i8hDwfKj8uU5iKsme2fJ01l2MfwJg=
-X-Received: by 2002:a17:907:75f0:: with SMTP id jz16mr45909802ejc.77.1639407048498;
- Mon, 13 Dec 2021 06:50:48 -0800 (PST)
+        s=k20201202; t=1639407610;
+        bh=eaxkQGC9ZBux4iZAcgboLwXqjRhTIRmt8X+ONlu9f70=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=tOLwnaoqduC5Lyn6afMoiGrm7E9aGXbJx1QnpSuOgjTPPQ4rRo8/Gfg1rBhxaXvRC
+         406VEUa+TaFYbtM97B0IQcCDYGcay6vZsIu1qKWHf4tLtNkcbbhzqG19BT5l20Celb
+         6NABDWyW0RSj4jW7+oIreVUgOSKqtCSyPnRd/8Mg+OyujsB1YnZvii9BA09rYT1QaM
+         PA/LHqDCw9ea6Wj9Dd6De2Hi7n3po/CxQtXieMSCmnGIhEg81MMPGM9AbCvTFZq9T3
+         9iB/qlOQi+G3rRxuhkoLxD+Kmaczqjx5H8xzpMnL6V4DuMp5bEh5KHtvKfQEuMLFwT
+         a2xrAnGUuskgQ==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id B0246609F5;
+        Mon, 13 Dec 2021 15:00:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20211212062407.138309-1-marcan@marcan.st> <20211212062407.138309-2-marcan@marcan.st>
- <CAL_Jsq+0=3V7noGbK2-h+yXeCPZ4QMXVroWvTTL5u7i22ibc6w@mail.gmail.com> <251204bb-18f6-36cb-377a-557135633318@suse.de>
-In-Reply-To: <251204bb-18f6-36cb-377a-557135633318@suse.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 13 Dec 2021 08:50:35 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLpRgtZyzw4zT=vvcepd=0piJeSJUob=dLWujpO4m7O4g@mail.gmail.com>
-Message-ID: <CAL_JsqLpRgtZyzw4zT=vvcepd=0piJeSJUob=dLWujpO4m7O4g@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] of: Move simple-framebuffer device handling from
- simplefb to of
-To:     Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     Hector Martin <marcan@marcan.st>, devicetree@vger.kernel.org,
-        David Airlie <airlied@linux.ie>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next] net: ocelot: use dma_unmap_addr to get tx buffer
+ dma_addr
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <163940761071.26947.514912105891386246.git-patchwork-notify@kernel.org>
+Date:   Mon, 13 Dec 2021 15:00:10 +0000
+References: <20211213082651.443577-1-clement.leger@bootlin.com>
+In-Reply-To: <20211213082651.443577-1-clement.leger@bootlin.com>
+To:     =?utf-8?b?Q2zDqW1lbnQgTMOpZ2VyIDxjbGVtZW50LmxlZ2VyQGJvb3RsaW4uY29tPg==?=@ci.codeaurora.org
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        vladimir.oltean@nxp.com, claudiu.manoil@nxp.com,
+        alexandre.belloni@bootlin.com, UNGLinuxDriver@microchip.com,
+        andrew@lunn.ch, f.fainelli@gmail.com, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        dkirjanov@suse.de, jwi@linux.ibm.com, lkp@intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 13, 2021 at 2:16 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
->
-> Hi
->
-> Am 12.12.21 um 22:29 schrieb Rob Herring:
-> > On Sun, Dec 12, 2021 at 12:24 AM Hector Martin <marcan@marcan.st> wrote:
-> >>
-> >> This code is required for both simplefb and simpledrm, so let's move it
-> >> into the OF core instead of having it as an ad-hoc initcall in the
-> >> drivers.
-> >>
-> >> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-> >> Signed-off-by: Hector Martin <marcan@marcan.st>
-> >> ---
-> >>   drivers/of/platform.c          |  4 ++++
-> >>   drivers/video/fbdev/simplefb.c | 21 +--------------------
-> >>   2 files changed, 5 insertions(+), 20 deletions(-)
-> >
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> >
->
-> Can I merge this patch through DRM trees?
+Hello:
 
-Yes.
+This patch was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
 
-Rob
+On Mon, 13 Dec 2021 09:26:51 +0100 you wrote:
+> dma_addr was declared using DEFINE_DMA_UNMAP_ADDR() which requires to
+> use dma_unmap_addr() to access it.
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Fixes: 753a026cfec1 ("net: ocelot: add FDMA support")
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next] net: ocelot: use dma_unmap_addr to get tx buffer dma_addr
+    https://git.kernel.org/netdev/net-next/c/3cfcda2aee94
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
