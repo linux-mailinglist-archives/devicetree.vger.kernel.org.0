@@ -2,379 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CEAB473293
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 17:58:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9A824732AF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 18:09:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237735AbhLMQ6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 11:58:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48056 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234200AbhLMQ6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 11:58:02 -0500
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CACAC06173F
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 08:58:02 -0800 (PST)
-Received: by mail-oi1-x22d.google.com with SMTP id bf8so23967919oib.6
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 08:58:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=J+nedtdcLR++WJxBvny7mXCrzpGMYhJDkeejVaXULEs=;
-        b=kSefkk75L4mRSQ+0lX86dDfDuAUoaptSeRStEhIEJhWcdn/HEw9bBJrlrPDni8ADmI
-         OhTR6+Mz98vUP2Gc74kQ2JpLBSjMJiIPY1ehwnly6eYNT5ikKIq6K5Pb7Ejh+bKB6rtg
-         N9dFa6aXsBPhhGVMoJiSzDFq379Urb1mYd5tXOiUmgRZ2T8CJ5Z+3ovadeIWF4VYO7JO
-         4VcfJCPpnfUFLUenavOV90spizqDoC9h61gJjSUEPASfbMoMOtTSnETjvHvNKMTk0Cve
-         PcX0E8dBlFSOJrE16SciOBh3EvBNrixSMHWBAi7g4QDQJabMqCcFB1mA8TRf2Q0+0mny
-         iObg==
+        id S235252AbhLMRJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 12:09:38 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:40830 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232507AbhLMRJi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 12:09:38 -0500
+Received: by mail-ot1-f46.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so18126849otj.7;
+        Mon, 13 Dec 2021 09:09:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=J+nedtdcLR++WJxBvny7mXCrzpGMYhJDkeejVaXULEs=;
-        b=GaCsbGiPLPlibYGzQlhGyPMT8jXU7Dj9lUzpkKhLK1alyODOOzBYvpC2LB5M8oX62E
-         vu8yqN9jZTBjBYQsZgmZcfBK8DVq5f0UF4niaNVbEEmCeQYQ9E4rKBkHCEVwitieP43u
-         M1KcxRbbMojR/7l4Oogbf3QMw9d3fnd0ptHGzCerggAsnpIqTmM7N57La8CCj0lLwWWi
-         STjF26xrsWkXXSBoB8QTEybAibxh3GoBmYKY+QyW1c4CC9gtce3rQBZMISzs2Nd1Rw4G
-         AqHRnstLZRfyVJXQLkjQ6B8hjgKFs/9jUtSpggsK2wKr2lrXPQ5BsMlqf+z0pMXgdj8A
-         A23w==
-X-Gm-Message-State: AOAM531a4RynMWaWef63uFg3bkx5keFXiH9WrVsGRsUgNbbQFdKQVdX5
-        gZvvRgwfvf4iIKHPPHp/gsCm7Q==
-X-Google-Smtp-Source: ABdhPJxkXq2zp/Uf5aLQMyip7F8P1T/T4CvcJySJDm6dnu7SMsac71xEHAiF+bnktV3vqW7DWFZqLw==
-X-Received: by 2002:a05:6808:682:: with SMTP id k2mr29770741oig.63.1639414681547;
-        Mon, 13 Dec 2021 08:58:01 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 186sm2678813oig.28.2021.12.13.08.58.00
+        bh=Khqyj9+xFHnDhGPLfNWmudZatAboa3V2EmaSyE9HE7Y=;
+        b=gPAmvxMt/rWRzDer8uRGdqhUi+tgqXw/9to8cttpxrHv0jPmq/H++6U5BLVCJYLUeL
+         dyvXXVePdRoH8Q38ihLD2Nt//7epE/HnSHtBGIp6vbYssscOQRr9elhRa4cjeR7VNwAi
+         NjQ0sA0NQ5mn4P0dq6EK+TnFvWc7BORoWM9vlafVCiqXvwzGh5J2v8hhKYm+/surIqeC
+         5m1zuTZqtrBY7gQSVXui0ewPLKy6AhHYXSiPg4Yb+xH3IEP7HD6WDaWwIPWlSsGhskXW
+         GHpwOjm3zJVwsIGZ0CkltITVXllSkh00Q5NZrrEMJA7WKCIagtU20b9vdLjasSg6VZEb
+         nn9A==
+X-Gm-Message-State: AOAM533IC4N7K2oKNWp6vjh/kjz1hfxHOM2gq98SMFUgvQVT4cMCtCh6
+        s3Kxo44dZ6w7xMaQ3aBLiQ==
+X-Google-Smtp-Source: ABdhPJwV9qEV6md/3Y95g+sLGR4YSSHkJTcciZhVQR9Bjhf8LtgjwsbYS4xQShKB76+lTOusFVzNHQ==
+X-Received: by 2002:a05:6830:4195:: with SMTP id r21mr25783740otu.33.1639415377888;
+        Mon, 13 Dec 2021 09:09:37 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id c3sm2895662oiw.8.2021.12.13.09.09.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Dec 2021 08:58:01 -0800 (PST)
-Date:   Mon, 13 Dec 2021 10:57:56 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Julian Ribbeck <julian.ribbeck@gmx.de>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH] arm64: dts: qcom: Add device tree for Samsung J5 2015
- (samsung-j5)
-Message-ID: <Ybd7lGatbtJMxwEw@builder.lan>
-References: <20211116200734.73920-1-julian.ribbeck@gmx.de>
- <YZcam/pnh0CBjMIx@builder.lan>
- <YZd0zzzuxgk2+x2b@gerhold.net>
+        Mon, 13 Dec 2021 09:09:37 -0800 (PST)
+Received: (nullmailer pid 1211602 invoked by uid 1000);
+        Mon, 13 Dec 2021 17:09:36 -0000
+Date:   Mon, 13 Dec 2021 11:09:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Charles Mirabile <cmirabil@redhat.com>
+Cc:     linux-kernel@vger.kernel.org, Joel Savitz <jsavitz@redhat.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mwesigwa Guma <mguma@redhat.com>,
+        Nicolas Saenz Julienne <nsaenzju@redhat.com>,
+        Serge Schneider <serge@raspberrypi.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org,
+        Mattias Brugger <mbrugger@suse.com>,
+        fedora-rpi@googlegroups.com,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH V5 4/6] dt-bindings: mfd: sensehat: Add Raspberry Pi
+ Sense HAT schema
+Message-ID: <Ybd+UKPH53hkeNcV@robh.at.kernel.org>
+References: <20211210221033.912430-1-cmirabil@redhat.com>
+ <20211210221033.912430-5-cmirabil@redhat.com>
+ <1639252771.082209.3986888.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YZd0zzzuxgk2+x2b@gerhold.net>
+In-Reply-To: <1639252771.082209.3986888.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 19 Nov 03:56 CST 2021, Stephan Gerhold wrote:
-
-> Hi Bjorn,
-> 
-> Thanks a lot for your review!
-> 
-> On Thu, Nov 18, 2021 at 09:31:39PM -0600, Bjorn Andersson wrote:
-> > On Tue 16 Nov 14:07 CST 2021, Julian Ribbeck wrote:
+On Sat, Dec 11, 2021 at 01:59:31PM -0600, Rob Herring wrote:
+> On Fri, 10 Dec 2021 17:10:31 -0500, Charles Mirabile wrote:
+> > This patch adds the device tree binding
+> > for the Sense HAT in yaml form.
 > > 
-> > > Samsung J5 2015 is a MSM8916 based Smartphone. It is similar to some of the
-> > > other MSM8916 devices, especially the Samsung ones.
-> > > 
-> > > With this patch initial support for the following is added:
-> > >   - eMMC/SD card
-> > >   - Buttons
-> > >   - USB (although no suiting MUIC driver currently)
-> > >   - UART (untested for lack of equipment)
-> > >   - WiFi/Bluetooth (WCNSS)
-> > > 
-> > > It is worth noting that Samsung J5 with MSM8916 exists in different
-> > > generations (e.g Samsung J5 2015 and Samsung J5 2016) which each have
-> > > different models (e.g. samsung-j5nlte, samsung-j5xnlte, etc). This patch
-> > > is only regarding the 2015 generation, but should work with all of it's
-> > > models, as far as we could test.
-> > > 
-> > > Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
-> > > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> > > Signed-off-by: Julian Ribbeck <julian.ribbeck@gmx.de>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
-> > >  .../boot/dts/qcom/msm8916-samsung-j5.dts      | 209 ++++++++++++++++++
-> > >  2 files changed, 210 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> > > index 6b816eb33309..08bfccb0daeb 100644
-> > > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > > @@ -15,6 +15,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-longcheer-l8910.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-mtp.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-a3u-eur.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-a5u-eur.dtb
-> > > +dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-j5.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-serranove.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
-> > >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-bullhead-rev-101.dtb
-> > > diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
-> > > new file mode 100644
-> > > index 000000000000..687bea438a57
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
-> > > @@ -0,0 +1,209 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > 
-> > If you authored this, could we please get it under BSD license?
+> > Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+> > Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
+> > Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
+> > Co-developed-by: Joel Savitz <jsavitz@redhat.com>
+> > Signed-off-by: Joel Savitz <jsavitz@redhat.com>
+> > ---
+> >  .../bindings/mfd/raspberrypi,sensehat.yaml    | 54 +++++++++++++++++++
+> >  1 file changed, 54 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
 > > 
 > 
-> I'm afraid the same problem applies to all MSM8916-related device trees:
-> https://lore.kernel.org/linux-arm-msm/YMIznk4scPv1qOzP@gerhold.net/
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> Given the similarities between the devices it's easiest to take portions
-> from existing device trees and just change some properties. But this
-> means that many people were involved and I'm not sure if it is
-> appropriate to apply a different license without asking all of them.
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml:2:1: [error] missing document start "---" (document-start)
 > 
-> It's an unfortunate situation that will likely also apply to more
-> MSM8916 device trees submitted in the future. I hope it's still
-> acceptable even with the GPL-2.0-only license. :)
-> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml: properties:interrupt-parent: False schema does not allow {'items': [{'description': 'gpio pin bank for interrupt pin'}]}
+> 	from schema $id: http://devicetree.org/meta-schemas/interrupts.yaml#
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml: ignoring, error in schema: properties: interrupt-parent
+> warning: no schema found in file: ./Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
+> Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.example.dt.yaml:0:0: /example-0/i2c/sensehat@46: failed to match any schema with compatible: ['raspberrypi,sensehat']
 
-Unfortunate indeed, but now I've asked at least...
-
-> > > +
-> > > +/dts-v1/;
-> > > +
-> > > +#include "msm8916-pm8916.dtsi"
-> > > +#include <dt-bindings/gpio/gpio.h>
-> > > +
-> > > +/ {
-> > > +	model = "Samsung Galaxy J5 (2015)";
-> > > +	compatible = "samsung,j5", "qcom,msm8916";
-> > > +	chassis-type = "handset";
-> > > +
-> > > +	aliases {
-> > > +		serial0 = &blsp1_uart2;
-> > > +	};
-> > > +
-> > > +	chosen {
-> > > +		stdout-path = "serial0";
-> > > +	};
-> > > +
-> > > +	reserved-memory {
-> > > +		/* Additional memory used by Samsung firmware modifications */
-> > > +		tz-apps@85500000 {
-> > > +			reg = <0x0 0x85500000 0x0 0xb00000>;
-> > > +			no-map;
-> > > +		};
-> > > +	};
-> > > +
-> > > +	gpio-keys {
-> > > +		compatible = "gpio-keys";
-> > > +
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&gpio_keys_default>;
-> > > +
-> > > +		label = "GPIO Buttons";
-> > > +
-> > > +		volume-up {
-> > > +			label = "Volume Up";
-> > > +			gpios = <&msmgpio 107 GPIO_ACTIVE_LOW>;
-> > > +			linux,code = <KEY_VOLUMEUP>;
-> > > +		};
-> > > +
-> > > +		home-key {
-> > > +			lable = "Home Key";
-> > > +			gpios = <&msmgpio 109 GPIO_ACTIVE_LOW>;
-> > > +			linux,code = <KEY_HOMEPAGE>;
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > > +&blsp1_uart2 {
-> > 
-> > Can you please sort these nodes alphabetically?
-> > 
-> 
-> It looks mostly alphabetically ordered to me, could you clarify which
-> nodes you are referring to exactly?
-> 
-> The exceptions are &smd_rpm_regulators and &msmgpio, which are explicitly
-> at the end of the file (consistent with all other MSM8916 device trees).
-> I think it's easier to focus on the main interesting part of the device
-> tree that way (the device definitions). If you prefer to have strict
-> alphebtical order I can prepare a bulk patch that changes the order in
-> all the existing MSM8916 device trees. The most important thing for me
-> is that they are consistent.
-> 
-
-You're right, I had forgotten that we put the &smd_rpm_regulators at the
-end on these related devices. Should probably make this consistent
-across all platforms, but let's merge this for now.
-
-Thanks,
-Bjorn
-
-> Thanks,
-> Stephan
-> 
-> > 
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&pm8916_resin {
-> > > +	status = "okay";
-> > > +	linux,code = <KEY_VOLUMEDOWN>;
-> > > +};
-> > > +
-> > > +/* FIXME: Replace with SM5703 MUIC when driver is available */
-> > > +&pm8916_usbin {
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&pronto {
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&sdhc_1 {
-> > > +	status = "okay";
-> > > +
-> > > +	pinctrl-names = "default", "sleep";
-> > > +	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
-> > > +	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
-> > > +};
-> > > +
-> > > +&sdhc_2 {
-> > > +	status = "okay";
-> > > +
-> > > +	pinctrl-names = "default", "sleep";
-> > > +	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
-> > > +	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
-> > > +
-> > > +	cd-gpios = <&msmgpio 38 GPIO_ACTIVE_LOW>;
-> > > +};
-> > > +
-> > > +&usb {
-> > > +	status = "okay";
-> > > +	dr_mode = "peripheral";
-> > > +	extcon = <&pm8916_usbin>;
-> > > +};
-> > > +
-> > > +&usb_hs_phy {
-> > > +	extcon = <&pm8916_usbin>;
-> > > +	qcom,init-seq = /bits/ 8 <0x1 0x19 0x2 0x0b>;
-> > > +};
-> > > +
-> > > +&smd_rpm_regulators {
-> > > +	vdd_l1_l2_l3-supply = <&pm8916_s3>;
-> > > +	vdd_l4_l5_l6-supply = <&pm8916_s4>;
-> > > +	vdd_l7-supply = <&pm8916_s4>;
-> > > +
-> > > +	s3 {
-> > > +		regulator-min-microvolt = <1200000>;
-> > > +		regulator-max-microvolt = <1300000>;
-> > > +	};
-> > > +
-> > > +	s4 {
-> > > +		regulator-min-microvolt = <1800000>;
-> > > +		regulator-max-microvolt = <2100000>;
-> > > +	};
-> > > +
-> > > +	l1 {
-> > > +		regulator-min-microvolt = <1225000>;
-> > > +		regulator-max-microvolt = <1225000>;
-> > > +	};
-> > > +
-> > > +	l2 {
-> > > +		regulator-min-microvolt = <1200000>;
-> > > +		regulator-max-microvolt = <1200000>;
-> > > +	};
-> > > +
-> > > +	l4 {
-> > > +		regulator-min-microvolt = <2050000>;
-> > > +		regulator-max-microvolt = <2050000>;
-> > > +	};
-> > > +
-> > > +	l5 {
-> > > +		regulator-min-microvolt = <1800000>;
-> > > +		regulator-max-microvolt = <1800000>;
-> > > +	};
-> > > +
-> > > +	l6 {
-> > > +		regulator-min-microvolt = <1800000>;
-> > > +		regulator-max-microvolt = <1800000>;
-> > > +	};
-> > > +
-> > > +	l7 {
-> > > +		regulator-min-microvolt = <1800000>;
-> > > +		regulator-max-microvolt = <1800000>;
-> > > +	};
-> > > +
-> > > +	l8 {
-> > > +		regulator-min-microvolt = <2850000>;
-> > > +		regulator-max-microvolt = <2900000>;
-> > > +	};
-> > > +
-> > > +	l9 {
-> > > +		regulator-min-microvolt = <3300000>;
-> > > +		regulator-max-microvolt = <3300000>;
-> > > +	};
-> > > +
-> > > +	l10 {
-> > > +		regulator-min-microvolt = <2700000>;
-> > > +		regulator-max-microvolt = <2800000>;
-> > > +	};
-> > > +
-> > > +	l11 {
-> > > +		regulator-min-microvolt = <1800000>;
-> > > +		regulator-max-microvolt = <2950000>;
-> > > +		regulator-allow-set-load;
-> > > +		regulator-system-load = <200000>;
-> > > +	};
-> > > +
-> > > +	l12 {
-> > > +		regulator-min-microvolt = <1800000>;
-> > > +		regulator-max-microvolt = <2950000>;
-> > > +	};
-> > > +
-> > > +	l13 {
-> > > +		regulator-min-microvolt = <3075000>;
-> > > +		regulator-max-microvolt = <3075000>;
-> > > +	};
-> > > +
-> > > +	l14 {
-> > > +		regulator-min-microvolt = <1800000>;
-> > > +		regulator-max-microvolt = <3300000>;
-> > > +	};
-> > > +
-> > > +	l15 {
-> > > +		regulator-min-microvolt = <1800000>;
-> > > +		regulator-max-microvolt = <3300000>;
-> > > +	};
-> > > +
-> > > +	l16 {
-> > > +		regulator-min-microvolt = <1800000>;
-> > > +		regulator-max-microvolt = <3300000>;
-> > > +	};
-> > > +
-> > > +	l17 {
-> > > +		regulator-min-microvolt = <3000000>;
-> > > +		regulator-max-microvolt = <3000000>;
-> > > +	};
-> > > +
-> > > +	l18 {
-> > > +		regulator-min-microvolt = <2700000>;
-> > > +		regulator-max-microvolt = <2700000>;
-> > > +	};
-> > > +};
-> > > +
-> > > +&msmgpio {
-> > > +	gpio_keys_default: gpio-keys-default {
-> > > +		pins = "gpio107", "gpio109";
-> > > +		function = "gpio";
-> > > +
-> > > +		drive-strength = <2>;
-> > > +		bias-pull-up;
-> > > +	};
-> > > +};
-> > > --
-> > > 2.33.1
-> > > 
+'interrupt-parent' is not needed as it is always valid or could be in a 
+parent node.
