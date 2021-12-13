@@ -2,303 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75B31472AE4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:09:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2642B472ADD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:08:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234191AbhLMLJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 06:09:08 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:61888 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229644AbhLMLJH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 06:09:07 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1BD7BT4i000776;
-        Mon, 13 Dec 2021 06:08:56 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3cwbyc3qw2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 13 Dec 2021 06:08:55 -0500
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 1BDB8sKY057237
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 13 Dec 2021 06:08:54 -0500
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Mon, 13 Dec 2021 06:08:54 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Mon, 13 Dec 2021 06:08:53 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Mon, 13 Dec 2021 06:08:53 -0500
-Received: from ubuntuservermchindri.ad.analog.com ([10.32.225.18])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 1BDB8XLZ017333;
-        Mon, 13 Dec 2021 06:08:51 -0500
-From:   Mihail Chindris <mihail.chindris@analog.com>
-To:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-        <jic23@kernel.org>, <nuno.sa@analog.com>,
-        <dragos.bogdan@analog.com>, <alexandru.ardelean@analog.com>,
-        Mihail Chindris <mihail.chindris@analog.com>
-Subject: [PATCH v7 1/2] dt-bindings: iio: dac: Add adi,ad3552r.yaml
-Date:   Mon, 13 Dec 2021 11:08:24 +0000
-Message-ID: <20211213110825.244347-2-mihail.chindris@analog.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20211213110825.244347-1-mihail.chindris@analog.com>
-References: <20211213110825.244347-1-mihail.chindris@analog.com>
+        id S233166AbhLMLIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 06:08:39 -0500
+Received: from www381.your-server.de ([78.46.137.84]:46432 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229644AbhLMLIi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 06:08:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=Y4dtkF/fMMRIvoWTochjJh1M/yoOLIPvlhPe/ZJAB28=; b=bjFQDgK5Yh1g30FOoZQwC+sp7l
+        rH6to49nqPPpFkBQFGSDt4CeWPAiDRmaVy8K+ISajzCu1zk85vM5aQXM4MkUJ8ik/DtzX6ezn2dUK
+        ILDKZOVuGM+Qpr4PpBLV8NT4vObqrXXX5f59iYqZIBV3E6C2uF3PZI/nCD1/fy8c+fLj6wwnP2Khi
+        1COXitSPV6zePf/yeQ/CFdfa1smv1id7Rkq3EQBfkHZxDqW5fCvOi/DyLON7yKrRHTzQYS/4D3MtY
+        JYAYHR+LcJt7tE1mkdH6cUs8j8ffhNY/YwlCfp7KHtusBScnRUc4znFPCtagCTMrxMmkJUfbdobjJ
+        mEbbC7RQ==;
+Received: from [78.46.152.42] (helo=sslproxy04.your-server.de)
+        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <lars@metafoo.de>)
+        id 1mwjC6-000FYH-K0; Mon, 13 Dec 2021 12:08:34 +0100
+Received: from [2001:a61:2aa6:c001:9e5c:8eff:fe01:8578]
+        by sslproxy04.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1mwjC6-000ObZ-97; Mon, 13 Dec 2021 12:08:34 +0100
+Subject: Re: [PATCH v2 6/6] drivers: remoteproc: Add Xilinx r5 remoteproc
+ driver
+To:     Tanmay Shah <tanmay.shah@xilinx.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Ben Levinsky <ben.levinsky@xilinx.com>,
+        Bill Mills <bill.mills@linaro.org>,
+        Sergei Korneichuk <sergei.korneichuk@xilinx.com>,
+        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20211123062050.1442712-1-tanmay.shah@xilinx.com>
+ <20211123062050.1442712-7-tanmay.shah@xilinx.com>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <ab9e009a-5e35-ae49-2c8e-65be6ba36d7f@metafoo.de>
+Date:   Mon, 13 Dec 2021 12:08:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: XvBZOke0IKen8CY9VAzLM4IbLr95IIYq
-X-Proofpoint-ORIG-GUID: XvBZOke0IKen8CY9VAzLM4IbLr95IIYq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2021-12-13_04,2021-12-13_01,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- clxscore=1015 mlxscore=0 phishscore=0 lowpriorityscore=0
- priorityscore=1501 bulkscore=0 suspectscore=0 malwarescore=0 spamscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2110150000 definitions=main-2112130072
+In-Reply-To: <20211123062050.1442712-7-tanmay.shah@xilinx.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.3/26385/Mon Dec 13 10:38:12 2021)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for ad3552r and ad3542r
+On 11/23/21 7:20 AM, Tanmay Shah wrote:
+> [...]
+> +/*
+> + * zynqmp_r5_rproc_mem_map
+> + * @rproc: single R5 core's corresponding rproc instance
+> + * @mem: mem entry to map
+> + *
+> + * Callback to map va for memory-region's carveout.
+> + *
+> + * return 0 on success, otherwise non-zero value on failure
+> + */
+> +static int zynqmp_r5_rproc_mem_map(struct rproc *rproc,
+> +				   struct rproc_mem_entry *mem)
+> +{
+> +	void __iomem *va;
+> +
+> +	va = ioremap_wc(mem->dma, mem->len);
 
-Signed-off-by: Mihail Chindris <mihail.chindris@analog.com>
----
- .../bindings/iio/dac/adi,ad3552r.yaml         | 217 ++++++++++++++++++
- 1 file changed, 217 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+Since you want normal memory and not IO memory a better choice might be 
+memremap() with MEMREMAP_WC. Internally memremap() will call 
+ioremap_wc(), but this will make the intention clear and you do not have 
+to deal with the __iomem type cast.
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-new file mode 100644
-index 000000000000..f11d473840e0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-@@ -0,0 +1,217 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2020 Analog Devices Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/dac/adi,ad3552r.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD2552R DAC device driver
-+
-+maintainers:
-+  - Mihail Chindris <mihail.chindris@analog.com>
-+
-+description: |
-+  Bindings for the Analog Devices AD3552R DAC device and similar.
-+  Datasheet can be found here:
-+    https://www.analog.com/media/en/technical-documentation/data-sheets/ad3542r.pdf
-+    https://www.analog.com/media/en/technical-documentation/data-sheets/ad3552r.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad3542r
-+      - adi,ad3552r
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 30000000
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  ldac-gpios:
-+    description: |
-+      LDAC pin to be used as a hardware trigger to update the DAC channels.
-+    maxItems: 1
-+
-+  vref-supply:
-+    description:
-+      The regulator to use as an external reference. If it does not exists the
-+      internal reference will be used. External reference must be 2.5V
-+
-+  adi,vref-out-en:
-+    description: Vref I/O driven by internal vref to 2.5V. If not set, Vref pin
-+      will be floating.
-+    type: boolean
-+
-+  adi,sdo-drive-strength:
-+    description: |
-+      Configure SDIO0 and SDIO1 strength levels:
-+        - 0: low SDO drive strength.
-+        - 1: medium low SDO drive strength.
-+        - 2: medium high SDO drive strength.
-+        - 3: high SDO drive strength
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2, 3]
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+patternProperties:
-+  "^channel@([0-1])$":
-+    type: object
-+    description: Configurations of the DAC Channels
-+
-+    additionalProperties: false
-+    
-+    properties:
-+      reg:
-+        description: Channel number
-+        enum: [0, 1]
-+
-+      adi,output-range-microvolt: true
-+
-+      custom-output-range-config:
-+        type: object
-+        description: Configuration of custom range when
-+          adi,output-range-microvolt is not present.
-+          The formulas for calculation the output voltages are
-+            Vout_fs = 2.5 + [(GainN + Offset/1024) * 2.5 * Rfbx * 1.03]
-+            Vout_zs = 2.5 - [(GainP + Offset/1024) * 2.5 * Rfbx * 1.03]
-+
-+        properties:
-+          adi,gain-offset:
-+            description: Gain offset used in the above formula
-+            $ref: /schemas/types.yaml#/definitions/int32
-+            maximum: 511
-+            minimum: -511
-+
-+          adi,gain-scaling-p-inv-log2:
-+            description: GainP = 1 / ( 2 ^ adi,gain-scaling-p-inv-log2)
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            enum: [0, 1, 2, 3]
-+
-+          adi,gain-scaling-n-inv-log2:
-+            description: GainN = 1 / ( 2 ^ adi,gain-scaling-n-inv-log2)
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            enum: [0, 1, 2, 3]
-+
-+          adi,rfb-ohms:
-+            description: Feedback Resistor
-+
-+        required:
-+          - adi,gain-offset
-+          - adi,gain-scaling-p-inv-log2
-+          - adi,gain-scaling-n-inv-log2
-+          - adi,rfb-ohms
-+
-+    required:
-+      - reg
-+
-+    oneOf:
-+      # If adi,output-range-microvolt is missing,
-+      # custom-output-range-config must be used
-+      - required:
-+          - adi,output-range-microvolt
-+
-+      - required:
-+          - custom-output-range-config
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: adi,ad3542r
-+    then:
-+      patternProperties:
-+        "^channel@([0-1])$":
-+          type: object
-+          properties:
-+            adi,output-range-microvolt:
-+              description: |
-+                Voltage output range of the channel as <minimum, maximum>
-+                Required connections:
-+                  Rfb1x for: 0 to 2.5 V; 0 to 3V; 0 to 5 V;
-+                  Rfb2x for: 0 to 10 V; 2.5 to 7.5V; -5 to 5 V;
-+              oneOf:
-+                - items:
-+                    - const: 0
-+                    - enum: [2500000, 3000000, 5000000, 10000000]
-+                - items:
-+                    - const: -2500000
-+                    - const: 7500000
-+                - items:
-+                    - const: -5000000
-+                    - const: 5000000
-+
-+          required:
-+            - adi,output-range-microvolt
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: adi,ad3552r
-+    then:
-+      patternProperties:
-+        "^channel@([0-1])$":
-+          type: object
-+          properties:
-+            adi,output-range-microvolt:
-+              description: |
-+                Voltage output range of the channel as <minimum, maximum>
-+                Required connections:
-+                  Rfb1x for: 0 to 2.5 V; 0 to 5 V;
-+                  Rfb2x for: 0 to 10 V; -5 to 5 V;
-+                  Rfb4x for: -10 to 10V
-+              oneOf:
-+                - items:
-+                    - const: 0
-+                    - enum: [2500000, 5000000, 10000000]
-+                - items:
-+                    - const: -5000000
-+                    - const: 5000000
-+                - items:
-+                    - const: -10000000
-+                    - const: 10000000
-+
-+required:
-+  - compatible
-+  - reg
-+  - spi-max-frequency
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      ad3552r@0 {
-+              compatible = "adi,ad3552r";
-+              reg = <0>;
-+              spi-max-frequency = <20000000>;
-+              #address-cells = <1>;
-+              #size-cells = <0>;
-+              channel@0 {
-+                      reg = <0>;
-+                      adi,output-range-microvolt = <0 10000000>;
-+              };
-+              channel@1 {
-+                      reg = <1>;
-+                      custom-output-range-config {
-+                              adi,gain-offset = <5>;
-+                              adi,gain-scaling-p-inv-log2 = <1>;
-+                              adi,gain-scaling-n-inv-log2 = <2>;
-+                              adi,rfb-ohms = <1>;
-+                      };
-+            };
-+        };
-+    };
-+...
--- 
-2.27.0
+> +	if (IS_ERR_OR_NULL(va))
+> +		return -ENOMEM;
+> +
+> +	mem->va = (void *)va;
+> +
+> +	return 0;
+> +}
+> [...]
+>
+> +static int add_tcm_banks(struct rproc *rproc)
+> +{
+> +	struct device *dev;
+> +	struct platform_device *parent_pdev;
+> +	struct zynqmp_r5_cluster *cluster;
+> +	struct zynqmp_r5_core *r5_core;
+> +
+> +	r5_core = (struct zynqmp_r5_core *)rproc->priv;
+> +	if (!r5_core)
+> +		return -EINVAL;
+> +
+> +	dev = r5_core->dev;
+> +	if (!dev) {
+> +		pr_err("r5 core device unavailable\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	parent_pdev = to_platform_device(dev->parent);
+> +	if (!parent_pdev) {
+> +		dev_err(dev, "parent platform dev unavailable\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	cluster = platform_get_drvdata(parent_pdev);
+
+You could just use dev_get_drvdata() without having to cast back to the 
+platform_device first.
+
+
+> +	if (!cluster) {
+> +		dev_err(&parent_pdev->dev, "Invalid driver data\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (cluster->mode == SPLIT_MODE)
+> +		return add_tcm_carveout_split_mode(rproc);
+> +	else if (cluster->mode == LOCKSTEP_MODE)
+> +		return add_tcm_carveout_lockstep_mode(rproc);
+> +
+> +	dev_err(cluster->dev, "invalid cluster mode\n");
+> +	return -EINVAL;
+> +}
+> +
+> [...]
+> +
+> +static struct rproc_ops zynqmp_r5_rproc_ops = {
+const
+> +	.start		= zynqmp_r5_rproc_start,
+> +	.stop		= zynqmp_r5_rproc_stop,
+> +	.load		= rproc_elf_load_segments,
+> +	.parse_fw	= zynqmp_r5_parse_fw,
+> +	.find_loaded_rsc_table = rproc_elf_find_loaded_rsc_table,
+> +	.sanity_check	= rproc_elf_sanity_check,
+> +	.get_boot_addr	= rproc_elf_get_boot_addr,
+> +};
+> [....]
+> +static int zynqmp_r5_get_mem_region_node(struct zynqmp_r5_core *r5_core)
+> +{
+> [...]
+> +
+> +	for (i = 0; i < res_mem_count; i++) {
+> +		rmem_np = of_parse_phandle(np, "memory-region", i);
+> +		if (!rmem_np)
+> +			return -EINVAL;
+> +
+> +		rmem = of_reserved_mem_lookup(rmem_np);
+> +		if (!rmem) {
+> +			of_node_put(rmem_np);
+> +			return -EINVAL;
+> +		}
+> +
+> +		memcpy(&r5_core->res_mem[i], rmem,
+> +		       sizeof(struct reserved_mem));
+
+r5_core->res_mem[i] = *mem;
+
+This will give you proper type checking and is also a bit shorter.
+
+> +		of_node_put(rmem_np);
+> +	}
+> +
+> +	r5_core->res_mem_count = res_mem_count;
+> +
+> +	return 0;
+> +}
+> [...]
+> +
+> +static int zynqmp_r5_cluster_init(struct zynqmp_r5_cluster *cluster)
+> +{
+> [...]
+> +
+>
+> +	i = 0;
+> +	for_each_available_child_of_node(dev_node, child) {
+> +		child_pdev = of_find_device_by_node(child);
+> +		if (!child_pdev)
+A return or a break in a for_each_available_child_of_node() will leak 
+the reference to the child node.
+> [...]
+> +	}
+> +
+> [...]
+> +
+> +	return 0;
+> +}
+> +
+> +static void zynqmp_r5_cluster_exit(void *data)
+> +{
+> +	struct platform_device *pdev = (struct platform_device *)data;
+> +
+> +	platform_set_drvdata(pdev, NULL);
+This is not needed. The device driver core will set drvdata to NULL when 
+the device is removed.
+> +
+> +	pr_info("Exit r5f subsystem driver\n");
+This is probably also not needed.
+> +}
+
 
