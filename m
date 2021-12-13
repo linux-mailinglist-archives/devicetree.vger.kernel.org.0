@@ -2,86 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1A0E472ADB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:08:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78F03472AE1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 12:08:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232909AbhLMLIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 06:08:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48778 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231629AbhLMLIb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 06:08:31 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7846C061574
-        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 03:08:30 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mwjBv-0002cG-6X; Mon, 13 Dec 2021 12:08:23 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mwjBr-0006po-V0; Mon, 13 Dec 2021 12:08:19 +0100
-Date:   Mon, 13 Dec 2021 12:08:19 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 07/18] dt-bindings: display: rockchip: dw-hdmi: Allow
- "ref" as clock name
-Message-ID: <20211213110819.GB6003@pengutronix.de>
-References: <20211208151230.3695378-1-s.hauer@pengutronix.de>
- <20211208151230.3695378-8-s.hauer@pengutronix.de>
- <3032544.f5MXlUzpl7@phil>
+        id S234013AbhLMLI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 06:08:57 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:49280 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229644AbhLMLI5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Dec 2021 06:08:57 -0500
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1BD3hWx0021575;
+        Mon, 13 Dec 2021 06:08:38 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3cwc4kkm3b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 13 Dec 2021 06:08:38 -0500
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 1BDB8bwY057234
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 13 Dec 2021 06:08:37 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 13 Dec
+ 2021 06:08:36 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 13 Dec 2021 06:08:36 -0500
+Received: from ubuntuservermchindri.ad.analog.com ([10.32.225.18])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 1BDB8XLY017333;
+        Mon, 13 Dec 2021 06:08:33 -0500
+From:   Mihail Chindris <mihail.chindris@analog.com>
+To:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <jic23@kernel.org>, <nuno.sa@analog.com>,
+        <dragos.bogdan@analog.com>, <alexandru.ardelean@analog.com>,
+        Mihail Chindris <mihail.chindris@analog.com>
+Subject: [PATCH v7 0/2] drivers:iio:dac: Add AD3552R driver support
+Date:   Mon, 13 Dec 2021 11:08:23 +0000
+Message-ID: <20211213110825.244347-1-mihail.chindris@analog.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3032544.f5MXlUzpl7@phil>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:07:30 up 2 days, 19:53, 56 users,  load average: 0.19, 0.24, 0.18
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: G-wjsQvBxjLPMMQM576g6m8p1hRJ91OJ
+X-Proofpoint-ORIG-GUID: G-wjsQvBxjLPMMQM576g6m8p1hRJ91OJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2021-12-13_04,2021-12-13_01,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
+ impostorscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
+ priorityscore=1501 mlxlogscore=590 malwarescore=0 mlxscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
+ definitions=main-2112130072
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 12, 2021 at 11:09:24PM +0100, Heiko Stuebner wrote:
-> Am Mittwoch, 8. Dezember 2021, 16:12:19 CET schrieb Sascha Hauer:
-> > "vpll" is a misnomer. A clock input to a device should be named after
-> > the usage in the device, not after the clock that drives it. On the
-> > rk3568 the same clock is driven by the HPLL.
-> > To fix that, this patch renames the vpll clock to ref clock.  The clock
-> > name "vpll" is left for compatibility to old device trees.
-> 
-> Can't we just say that the binding only takes the "ref" name, but
-> the code still allows "vpll".
-> 
-> I think I remember Rob suggesting something similar in the past.
-> 
-> I don't think that we need to keep the binding(-validation)
-> compatible with old devicetrees, but the kernel itself should stay
-> compatible.
+Changelog v6 -> v7:
+  - https://lore.kernel.org/all/20211129152254.1645-1-mihail.chindris@analog.com/
+  - Fix yaml errors
+  - Fix yaml styling (blank lines and indentation)
+  - set adi,output-range-microvolt: true
 
-Sounds reasonable. I'll also add a patch changing the in-tree users next
-round.
+Changelog v5 -> v6:
+  - https://lore.kernel.org/all/20211108082447.116663-1-mihail.chindris@analog.com/
+  - Add dt maintainers (forgotten on previous emails)
+  - (1 << 7) -> BIT(7)
+  - Remove buf_data from ad3552r_desc to use spi_write_then_read and update lock comment
+  - Remove useless comments
+  - Remove unused mask from ad3552r_configure_custom_gain
+  - In ad3552r_configure_device refactor regulator code, add regulator_enable
+     and add ad3552r_reg_disable
+  - Remove unused code like: 
+      AD3552R_CH_TRIGGER_SOFTWARE_LDAC and AD3552R_CH_HW_LDAC_MASK
 
-Sascha
+Changelog v4 -> v5:
+  - https://lore.kernel.org/all/20211022120427.99516-1-mihail.chindris@analog.com
+  - Add changelog for previous version
+  - Extend lock comment
+  - Remove unused variable is_custom
 
+Changelog v3 -> v4:
+  - https://lore.kernel.org/all/20211021070924.18626-1-mihail.chindris@analog.com
+  - Remove trigger.h
+  - Use dev_err_probe only where needed
+  - Add comment about buff size
+  - Fix mutex order
+  - Return from all switch cases
+  - Return int in ad3552r_read_reg_wrapper
+  - Add goto put_child where missing
+  - Restructure ad3552r_write_codes
+  - Move ad3552r_write_codes nex to ad3552r_trigger_handler
+  - Use memcpy and memcmp in ad3552r_write_codes
+  - Remove endieness functions in ad3552r_write_codes
+
+Changelog v2 -> v3:
+  - https://lore.kernel.org/all/20211008123909.1901-1-mihail.chindris@analog.com
+  - Order compatilbe in alphabetic order
+  - Fix comments in yaml
+  - Grup struct by types
+  - Drop usless "if (err)"
+  - Handle error in ad3552r_read_reg_wrapper
+  - ad3552r_find_range: u32 -> s32
+  - Add fwnode_handle_put(custom_gain_child); in good path too
+  - Vals[0] -> val
+  - Fix: fwnode_handle_put in ad3552r_configure_device
+  - Fix indio_dev->name
+  - Rename custom_gain_child -> gain_child
+  - Remove intermediary functions and write code inline where possible
+  - Add ad3552r_field_prep helper function
+  - Dev_err -> dev_warn for vref supply check
+  - Replace dev_err with dev_err_probe
+  - Remove channel for simultaneous update and do update mask register if both
+    channels values are the same.
+
+Changelog v0 -> v2:
+  - Split https://lore.kernel.org/all/20210820165927.4524-1-mihail.chindris@analog.com
+    and move ad3552r driver to this serie.
+  - Remove precision_mode abi
+  - Remove adi,synch_channels dt property
+  - Use vref-supply instead of adi,vref-select
+  - Remove unimplemented spi modes
+  - Change output-range format and use enums
+  - Update description for custom-output-range-config to be more clear
+  - Add datasheet tag
+  - Use GENMASK for defines
+  - Remove tomicro define
+  - Use get_unaligned_be16 and put_unaligned_be16
+  - Remove unnecessary checks
+  - Add comment for AD3552R_CH_DAC_PAGE channel
+  - Fix indent
+  - Remove irq trigger
+  - Remove irelevant checks
+  - Rename ad3552r_read_reg_pool to ad3552r_read_reg_wrapper.
+  - Add support for ad3542r
+
+V0:
+  * Add ad3552r example to https://lore.kernel.org/linux-iio/20210219124012.92897-1-alexandru.ardelean@analog.com
+
+Mihail Chindris (2):
+  dt-bindings: iio: dac: Add adi,ad3552r.yaml
+  drivers:iio:dac: Add AD3552R driver support
+
+ .../bindings/iio/dac/adi,ad3552r.yaml         |  217 ++++
+ drivers/iio/dac/Kconfig                       |   10 +
+ drivers/iio/dac/Makefile                      |    1 +
+ drivers/iio/dac/ad3552r.c                     | 1138 +++++++++++++++++
+ 4 files changed, 1366 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+ create mode 100644 drivers/iio/dac/ad3552r.c
+
+
+base-commit: 29adf99733e95621dfbebaf9ae548b4da8316aaf
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.27.0
+
