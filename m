@@ -2,84 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C134734F5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 20:29:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A95974734FB
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 20:30:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236458AbhLMT3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 14:29:55 -0500
-Received: from ixit.cz ([94.230.151.217]:46476 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236101AbhLMT3z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 14:29:55 -0500
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S236101AbhLMTaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 14:30:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55192 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230154AbhLMTaw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 14:30:52 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7FE4C061574;
+        Mon, 13 Dec 2021 11:30:51 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id A9F8824AF0;
-        Mon, 13 Dec 2021 20:29:52 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1639423793;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=4oxdGdB/G1y/dNIRRmI7quDKk8Sl01FVf6r8YcPs7/U=;
-        b=bKcqtWlgKVMCrRyk/CIXe60uYp8agwfF9eXuo270MlPHlSISCkSDfDX3qfQYuptbHV3t3f
-        Kh+Mg8O+cvJSbZYsHspS7ZuLRdKEebZEmcSw+m8cLmEh3pxinlApKwWm78J9+GnZ6UYM/K
-        DiytZttopIfJ8R0ANnQCjdkycd6hs00=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Satya Priya <skakit@codeaurora.org>
-Cc:     Caleb Connolly <caleb@connolly.tech>,
-        David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: rtc: qcom-pm8xxx-rtc: update register numbers
-Date:   Mon, 13 Dec 2021 20:29:45 +0100
-Message-Id: <20211213192946.111320-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6282E611E0;
+        Mon, 13 Dec 2021 19:30:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2A17C34600;
+        Mon, 13 Dec 2021 19:30:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639423850;
+        bh=YCIulPuC7rz/g+20RoE3fcDBtrYWE3Qufvo06cYhoUs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=NzSBW4b4YioKli+ClrzJcc6U6jeGIiTCn5lSYpzRYJY/UC4hLUxHzuZiz8P6mx6Sx
+         gNrLTOJ9/UjQH0PYjuCkcwdGCqw1lkYu3EaL0KayS+7fsmsODlpG82MgC56cmK2Mql
+         kM2SNWYBQaLhXnFzljumqfj9BYYhELC//tEgFz32JZLdh/slGPz/HHyjfPbgoA2HPc
+         HUV/ohrsPGPyXS1o4RXN6PFqlqLvaXBUyg0DQuATmEj1vLSOnhrvc0rWQQLkmdRER9
+         SMBeXrMqirdXDf2LPsEcHSC+qSoyLU9UfxoAndKYECV4Ox7gQfza/ZhCev7gHVHUWH
+         zJiITef16s25g==
+Received: by mail-ed1-f46.google.com with SMTP id w1so55484998edc.6;
+        Mon, 13 Dec 2021 11:30:50 -0800 (PST)
+X-Gm-Message-State: AOAM532ETaKAMfLREdyUnqXpXeXabpEN9xybcLI5q9Jd7iiOlCDFJm61
+        7jRQjn3SJeACsermt6dD4K3vdGtDx+sch5IUFw==
+X-Google-Smtp-Source: ABdhPJy++oHUM39e5Ms27cPmoi1TEiua3mJxb9d2Rx+2TgB+kXwcivxSMb5bFNJbaNDO7q7u0b1xHbIR//4B6RpjTC8=
+X-Received: by 2002:a17:906:3b18:: with SMTP id g24mr357822ejf.27.1639423849162;
+ Mon, 13 Dec 2021 11:30:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1638864419-17501-1-git-send-email-wellslutw@gmail.com>
+ <1638864419-17501-2-git-send-email-wellslutw@gmail.com> <YbPHxVf1vXZj9GOC@robh.at.kernel.org>
+ <CAFnkrsmXu9ceSQ7rzOAFy_kP6JMa7GvY7HCbT=_wfskH6wXuSw@mail.gmail.com>
+In-Reply-To: <CAFnkrsmXu9ceSQ7rzOAFy_kP6JMa7GvY7HCbT=_wfskH6wXuSw@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 13 Dec 2021 13:30:36 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+5nM2L=p13CSq8FRZX0sMykbXdyBatDR7McUXkv5NXzA@mail.gmail.com>
+Message-ID: <CAL_Jsq+5nM2L=p13CSq8FRZX0sMykbXdyBatDR7McUXkv5NXzA@mail.gmail.com>
+Subject: Re: [PATCH net-next v4 1/2] devicetree: bindings: net: Add bindings
+ doc for Sunplus SP7021.
+To:     =?UTF-8?B?5ZGC6Iqz6aiw?= <wellslutw@gmail.com>
+Cc:     David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wells Lu <wells.lu@sunplus.com>,
+        Vincent Shih <vincent.shih@sunplus.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend registers up to 2, also document their names.
+On Sat, Dec 11, 2021 at 1:35 PM =E5=91=82=E8=8A=B3=E9=A8=B0 <wellslutw@gmai=
+l.com> wrote:
+>
+> Hi Rob,
+>
+> Thank you very much for your review.
+> Please see my replies below:
+>
+> > Add bindings documentation for Sunplus SP7021.
+> >
+> [...]
+> > > +
+> > > +  interrupts:
+> > > +    description: |
+> > > +      Contains number and type of interrupt. Number should be 66.
+> >
+> > Drop. That's every 'interrupts' and the exact number is outside the
+> > scope of the binding.
+>
+> Yes, I'll drop the descriptions next patch.
+> interrupts property will be:
+>
+>   interrupts:
+>     maxItems: 1
+>
+>
+> [...]
+> > > +
+> > > +  mdio:
+> >
+> > Just need:
+> >
+> >        $ref: mdio.yaml#
+> >        unevaluatedProperties: false
+> >
+> > and drop the rest.
+>
+> Yes, I'll modify mdio node next patch.
+> mdio node will be:
+>
+>   mdio:
+>     $ref: mdio.yaml#
+>     unevaluatedProperties: false
+>
+>
+> > > +    type: object
+> > > +    description: external MDIO Bus
+> > > +
+> > > +    properties:
+> > > +      "#address-cells":
+> > > +        const: 1
+> > > +
+> > > +      "#size-cells":
+> > > +        const: 0
+> > > +
+> > > +    patternProperties:
+> > > +      "^ethernet-phy@[0-9a-f]+$":
+> > > +        type: object
+> > > +        description: external PHY node
+> > > +
+> > > +        properties:
+> > > +          reg:
+> > > +            minimum: 0
+> > > +            maximum: 30
+>
+> Can I limit value of 'reg' to no more than 30?
 
-Also fixes warnings generated by `make qcom/sdm845-oneplus-fajita.dtb`:
-arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: rtc@6000: reg: [[24576], [24832]] is too long
-        From schema: Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: rtc@6000: 'reg-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-        From schema: Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
+Isn't that the limit for any MDIO bus? I guess normally 31 is also
+valid? I'm not really sure it is worth adding just for that 1 possible
+value. Within the range of valid addresses, we can't ever validate
+that a DT has the correct address.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml         | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml b/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-index 4fba6dba16f3..6fa7d9fc2dc7 100644
---- a/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-+++ b/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-@@ -19,7 +19,14 @@ properties:
-       - qcom,pmk8350-rtc
- 
-   reg:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 2
-+
-+  reg-names:
-+    minItems: 1
-+    items:
-+      - const: rtc
-+      - const: alarm
- 
-   interrupts:
-     maxItems: 1
--- 
-2.33.0
-
+Rob
