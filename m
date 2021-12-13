@@ -2,154 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E6D64731B5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 17:26:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBDED4731BC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Dec 2021 17:27:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239053AbhLMQ0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 11:26:47 -0500
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:46351 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240708AbhLMQ0q (ORCPT
+        id S240783AbhLMQ1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 11:27:03 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:49162 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240773AbhLMQ1C (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 11:26:46 -0500
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 3A2335801BE;
-        Mon, 13 Dec 2021 11:26:46 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Mon, 13 Dec 2021 11:26:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=c7km/lvZ5a2iH
-        qu7qa5YLTQv7U1pBCi32tVq4pp5uwo=; b=OX4pRvqbucgkVQApIEi5wHXzyDlde
-        cf4IvAoI4QqNjyIBsRHf54fAPF4ydWX6zLwyfqHRl2SgoTPnFci7SnSJ2ttzHLkJ
-        lIwyfCnQLfSX5atJITJZrBKa333bQwf//sFe4achkXhM3NSuBh6V+yK5yMAPiqZ+
-        6BWaw7RpjgyRUJqm/JPbAJoS0zH4W8IeRjP0uOSyLV4JYRrwnX9omqNRXAJoJL1U
-        44aS2271zU7uAGhDxhkoCvWuV0U35x+33c1jj8pEAQWzGhN92tmX2Kh4bpbdbTt8
-        euRkM8KXpc/CqnVEeh45QPM9Ia+0qjvjwFHF4r8RzYdunGqtRHHxZBylA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=c7km/lvZ5a2iHqu7qa5YLTQv7U1pBCi32tVq4pp5uwo=; b=OdDaXrWg
-        hZrh9I3zmJc2ieYE4JGU2+2c9OdaZ7NoPfd2UebbAJt02XpqMgnIbh/t5tHbWWC1
-        xFc3BrgZ3zOKn0lLWylWVWVsVxEmpAR1VVKgFe4lbAAFGpHsFm2ybGCj1OiYP9ZS
-        0pZoDfHG7h9NVeRmbeL+VTatVfcGyqjEUg7iwPYuXFzFyYJgnxHZ3U6W0w2dJeTC
-        ZXfIGUHgkSmfaouavZ0E+Z6IBRhBJf4lbVkpXYmmDk1z9/x9T11hlr1iHQQYtbLP
-        lv3RSeKiFLMaPMeackfUBm2h8AVtNRU1ITobvPYHg+FdTYmm/I+D+K2p9mm6i7aV
-        h2lOTaOBarN6lw==
-X-ME-Sender: <xms:RnS3YeymmvPWV8Jk03fh-rlviJUtvMKuSV_SBIscQaPkoK8aqXqLDw>
-    <xme:RnS3YaQ2V3xdtOqWto4PQbX-krjGYbQy69dCULaYNuL2seDQBqy4zZYkI3Ur6dcIl
-    Zh350HF5R-LWR1yir0>
-X-ME-Received: <xmr:RnS3YQX0ydq4Dio6KUggunQw5riCtN5A6jYCtr4VUXPZW5COsa2-pOPNxcpEHgi04aB8NhVknHnDlV77BNEr2Wl9VcghpusKDWjRl0bV>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrkeekgdeklecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
-    vdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:RnS3YUjQuCgIAudJHq--85ljs1Q3rdvaZlHiYBpm7OoavLgFpmi7Bg>
-    <xmx:RnS3YQAjdRD3FB_whqTjXxdsXBKE2-Kox_wEh66uCRXIZxnO8HtO6w>
-    <xmx:RnS3YVKDOASdKwDPZcpYJ_a76amjbIoy5fU9WCsX3yYjPQtyVEudtw>
-    <xmx:RnS3YY6Cn_dQWKEPwF8tvyw7yGkkBZUQQ25AE_e8KQdpr-LI0jPOBA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 13 Dec 2021 11:26:45 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Ray Jui <rjui@broadcom.com>
-Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dom Cobley <dom@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH RESEND v4 v4 4/4] drm/vc4: Notify the firmware when DRM is in charge
-Date:   Mon, 13 Dec 2021 17:26:35 +0100
-Message-Id: <20211213162635.252582-5-maxime@cerno.tech>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211213162635.252582-1-maxime@cerno.tech>
-References: <20211213162635.252582-1-maxime@cerno.tech>
+        Mon, 13 Dec 2021 11:27:02 -0500
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1BDDUOdp007349;
+        Mon, 13 Dec 2021 17:26:40 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=AMqCiIRkWtkqrv1nskqNq6Hf7G/bZt9G2AkpY5HjNks=;
+ b=Wl66NFXfLdXhQCTHLMeLPXIqvpRZTvpvrF/7+ZOyTWqdAc1vjChDZPsyf3p46wp1jJtR
+ rse78LD+loSiakgKOkROH/mjztGisSuG2sizK0GYj2Z8fnikIrXScArGxh1y4NqYHZSK
+ Fl/16adJaGjldWs8zEAKNRndRgankgPHHMSbqmbOIqEBCIbOLMsuqV7V39Z2hpiuw2Mp
+ VTkwA99rMdwKEaYdcUTW7WhKdg5ZHOG3N8wxVDfN9DuCDuiJ6k1xmaNzFyopddElU2eb
+ JG+8PNar5q1UHGG3hxuIcszwX7GzpoTNHTWiwqo4eB1eyTJwtJU92EQ5/hViceS5JkgI hA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3cx2c72gy6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 13 Dec 2021 17:26:40 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AA8EF10002A;
+        Mon, 13 Dec 2021 17:26:38 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D3AA8209F5E;
+        Mon, 13 Dec 2021 17:26:38 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.45) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Mon, 13 Dec
+ 2021 17:26:37 +0100
+Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: stm32: i2s: add
+ audio-graph-card port
+To:     Rob Herring <robh@kernel.org>
+CC:     Olivier MOYSAN <olivier.moysan@foss.st.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Olivier Moysan <olivier.moysan@st.com>,
+        "Maxime Coquelin" <mcoquelin.stm32@gmail.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>,
+        "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Mark Brown <broonie@kernel.org>, <devicetree@vger.kernel.org>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <20211125144053.774-1-olivier.moysan@foss.st.com>
+ <20211125144053.774-2-olivier.moysan@foss.st.com>
+ <1637875562.357461.2858318.nullmailer@robh.at.kernel.org>
+ <237f56b3-0597-2526-a182-f1fbdd327338@foss.st.com>
+ <Yaf4jiZIp8+ndaXs@robh.at.kernel.org>
+ <627777a4-7458-88ed-e7c5-d11e3db847b5@foss.st.com>
+ <CAL_Jsq+ZVU=DR0vXq6YOsrK9-MoUp5DJ6RKHmtL-ZGSxQ7qyJQ@mail.gmail.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <47efb431-6e75-40ac-484c-d84cf4157a04@foss.st.com>
+Date:   Mon, 13 Dec 2021 17:26:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+ZVU=DR0vXq6YOsrK9-MoUp5DJ6RKHmtL-ZGSxQ7qyJQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2021-12-13_08,2021-12-13_01,2021-12-02_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Once the call to drm_fb_helper_remove_conflicting_framebuffers() has
-been made, simplefb has been unregistered and the KMS driver is entirely
-in charge of the display.
+Hi Rob,
 
-Thus, we can notify the firmware it can free whatever resource it was
-using to maintain simplefb functional.
+On 12/11/21 9:05 PM, Rob Herring wrote:
+> On Tue, Dec 7, 2021 at 7:52 AM Alexandre TORGUE
+> <alexandre.torgue@foss.st.com> wrote:
+>>
+>> Hi Rob
+>>
+>> On 12/1/21 11:34 PM, Rob Herring wrote:
+>>> On Fri, Nov 26, 2021 at 11:25:27AM +0100, Olivier MOYSAN wrote:
+>>>> Hi Rob,
+>>>>
+>>>> On 11/25/21 10:26 PM, Rob Herring wrote:
+>>>>> On Thu, 25 Nov 2021 15:40:50 +0100, Olivier Moysan wrote:
+>>>>>> The STM2 I2S DAI can be connected via the audio-graph-card.
+>>>>>> Add port entry into the bindings.
+>>>>>>
+>>>>>> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+>>>>>> ---
+>>>>>>     Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml | 5 +++++
+>>>>>>     1 file changed, 5 insertions(+)
+>>>>>>
+>>>>>
+>>>>> Running 'make dtbs_check' with the schema in this patch gives the
+>>>>> following warnings. Consider if they are expected or the schema is
+>>>>> incorrect. These may not be new warnings.
+>>>>>
+>>>>> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+>>>>> This will change in the future.
+>>>>>
+>>>>> Full log is available here: https://patchwork.ozlabs.org/patch/1559750
+>>>>>
+>>>>>
+>>>>> audio-controller@4000b000: 'port' does not match any of the regexes: '^port@[0-9]', 'pinctrl-[0-9]+'
+>>>>>      arch/arm/boot/dts/stm32mp157a-dk1.dt.yaml
+>>>>>      arch/arm/boot/dts/stm32mp157c-dk2.dt.yaml
+>>>>>
+>>>>
+>>>> This warning is not a new one.
+>>>>
+>>>> The i2s2 node in stm32mp15xx-dkx.dtsi would require the following binding:
+>>>> port:
+>>>>       $ref: audio-graph-port.yaml#
+>>>>       unevaluatedProperties: false
+>>>>
+>>>> However the spi binding requires to introduce a unit address:
+>>>> patternProperties:
+>>>>     '^port@[0-9]':
+>>>>       $ref: audio-graph-port.yaml#
+>>>>       unevaluatedProperties: false
+>>>>
+>>>> The warning can be removed by re-ordering the bindings patches in the serie,
+>>>> as "additionalProperties: true" makes the check more tolerant on extra
+>>>> properties.
+>>>
+>>> That's never right.
+>>>
+>>>> The patch "ASoC: dt-bindings: stm32: i2s: add audio-graph-card port" can
+>>>> even be merely dropped.
+>>>> So, I suggest to resend the serie without audio-graph-card patch.
+>>>
+>>> Only if you aren't using audio-graph-card.
+>>>
+>>>>
+>>>> Does it sound too permissive to you ?
+>>>
+>>> I think perhaps you need to combine the schemas into 1. Or you need to
+>>> restructure your dtsi files such that you only add spi specific
+>>> properties when spi mode is enabled and only add i2s specific properties
+>>> when i2s mode is enabled. Or use the /delete-property/ directive.
+>>
+>> Initially the aim of this series was to fix a "make W=1" warnings seen
+>> on spi and i2s nodes (duplicate unit-address). Moving both nodes in a
+>> common node + using a different compatible depending on SPI or I2S usage
+>> sounded good) but it is not enough. In this series the common node is
+>> named as following: "spi2s2: spi@4000b000". It is fine for a spi usage
+>> but if we want to use this "common node" with I2S compatible and
+>> specific bindings, the node name remains spi@... and then specific spi
+>> checks are done. For this with this series applied we got this issue
+>> reported by spi-controller.yaml:
+>>
+>> spi@4000b000: port@0: 'compatible' is a required property
+>>
+>> So, if we use two separates nodes we got W=1 warning and if we use a
+>> common node we got yaml check issue. One possibility would be to use a
+>> common node with a new node name (for example i2spi@...) but I think it
+>> is not acceptable.
+> 
+> It is acceptable, see this thread[1].
+> 
+> Rob
+> 
+> [1] https://lore.kernel.org/all/20211203183517.11390-1-semen.protsenko@linaro.org/
 
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
----
- drivers/gpu/drm/vc4/vc4_drv.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Perfect! So we can abandon this series. Do you know if a patch has been 
+sent to also update scripts/Makefile.lib ?
 
-diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
-index c0d7e510694f..e4bb37a191f6 100644
---- a/drivers/gpu/drm/vc4/vc4_drv.c
-+++ b/drivers/gpu/drm/vc4/vc4_drv.c
-@@ -37,6 +37,8 @@
- #include <drm/drm_fb_helper.h>
- #include <drm/drm_vblank.h>
- 
-+#include <soc/bcm2835/raspberrypi-firmware.h>
-+
- #include "uapi/drm/vc4_drm.h"
- 
- #include "vc4_drv.h"
-@@ -215,6 +217,7 @@ static void vc4_match_add_drivers(struct device *dev,
- static int vc4_drm_bind(struct device *dev)
- {
- 	struct platform_device *pdev = to_platform_device(dev);
-+	struct rpi_firmware *firmware = NULL;
- 	struct drm_device *drm;
- 	struct vc4_dev *vc4;
- 	struct device_node *node;
-@@ -251,10 +254,29 @@ static int vc4_drm_bind(struct device *dev)
- 	if (ret)
- 		return ret;
- 
-+	node = of_find_compatible_node(NULL, NULL, "raspberrypi,bcm2835-firmware");
-+	if (node) {
-+		firmware = rpi_firmware_get(node);
-+		of_node_put(node);
-+
-+		if (!firmware)
-+			return -EPROBE_DEFER;
-+	}
-+
- 	ret = drm_aperture_remove_framebuffers(false, &vc4_drm_driver);
- 	if (ret)
- 		return ret;
- 
-+	if (firmware) {
-+		ret = rpi_firmware_property(firmware,
-+					    RPI_FIRMWARE_NOTIFY_DISPLAY_DONE,
-+					    NULL, 0);
-+		if (ret)
-+			drm_warn(drm, "Couldn't stop firmware display driver: %d\n", ret);
-+
-+		rpi_firmware_put(firmware);
-+	}
-+
- 	ret = component_bind_all(dev, drm);
- 	if (ret)
- 		return ret;
--- 
-2.33.1
+Regards
+Alex
+
+
+> 
 
