@@ -2,110 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95B0A474736
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 17:11:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1572474727
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 17:09:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235522AbhLNQLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 11:11:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56702 "EHLO
+        id S231494AbhLNQJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 11:09:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233362AbhLNQLj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 11:11:39 -0500
-Received: from mail-vk1-xa35.google.com (mail-vk1-xa35.google.com [IPv6:2607:f8b0:4864:20::a35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77BD9C061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 08:11:39 -0800 (PST)
-Received: by mail-vk1-xa35.google.com with SMTP id f7so12796962vkf.10
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 08:11:39 -0800 (PST)
+        with ESMTP id S235522AbhLNQJg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 11:09:36 -0500
+Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5EBC061574
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 08:09:36 -0800 (PST)
+Received: by mail-ua1-x92e.google.com with SMTP id ay21so35620780uab.12
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 08:09:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=0x0f.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5tq/Pl9ONmAFdCXW/jiSrd1FQJiChNHfeL7wVihFrwg=;
-        b=fonIZ6frzwFMeYvOMCzQGYFT049lFCIGlzMaZ+okQO/Qk2RkUkwXgxMgbbG0E1AJ/U
-         yqhublnYTzdo9IGa8EXS3kHjwOPiAeWVXDTRtvn8dMycTrCcyNpfuSCr6XzXT2WXkd4N
-         beylrCdAxCSGm0j6WD6ISiicdnt2f/4p2Ri3u3+2x8J31JCnwuIivG132TxLXFcmNJmK
-         Lfz4qHHQMK+9AZs1gu8pxisfLhItoA3AjgernRLVFTpbIEAZt3Rs3u7y+tjOgp3CLsY/
-         24kLjI+fGAN2AX/dWs6jbvcmPw8s1f11iyu6b/ppnILGDIbcKF8XALzkJjco1QduFYLP
-         9ukQ==
+         :cc:content-transfer-encoding;
+        bh=X4/dmy9KlF2y5J8EBw2nTz9iMP7ZTiT3R0zWWUj0jJ0=;
+        b=fUR1nww9UxFYmuXB4VhCfDVMvZPHIfpDFY468NczY0yq+uzcuvaTZ51tPOE/c3zw5S
+         mXOFLAAomKRvcbMx2FIBifF9rjvpHwcY3kw9myiONfCdzDGdSBZWZTeHiuuU1Cv5nxr6
+         yNVK2+olJPP+ee0ftFjiYic+ttNzPDAXt2iZ0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5tq/Pl9ONmAFdCXW/jiSrd1FQJiChNHfeL7wVihFrwg=;
-        b=UkOJtDQ7jJ+dZ+ns5Ab4QkDIRyAnWrblt9DSCQ/dqaocttyxfXPSPG3ADoR0REKD5X
-         Yk+KxNBWmjnCx3Sj/Xk+AEjoN4YfjnHpSNg5kFLNLSB9UYb6EYKJ73H5n2ifFiX7r7KV
-         9RjvICAN8/XVd2gGAUJaZDLz0TDOlJ4Oi5JRUzOF+dlGast8UU8lsg84/DSZJLAIJiIl
-         EIkwY1dztCdhs0QgYhTrGbbC6JU0BU6FZVCnWLo+leJEimweeO0YdTHOwI+Hg4ekHNbv
-         kwRJCpjit/Swo6It5gZAD7K+ketKrdo28ds8nP2amkyvqGy1lnj7aVqOTJPSHixkmaWd
-         HCQA==
-X-Gm-Message-State: AOAM530vJAljQtXG8LqmeM8d54lx5qjwKzEEArN2+vPE5FDPS871qj81
-        tS5RT8J1xWTvfeoU2Mk+YIg2N+gYTQ6T+AhvNkvmUw==
-X-Google-Smtp-Source: ABdhPJwKdP12Jr1NoBj6l47hdacd390d2Motm3FzCykJUk4B/mbGJmIKS66lL5aFMtWBWkzbWhuk6pmeDm/l5OaTRuk=
-X-Received: by 2002:a05:6122:2158:: with SMTP id m24mr6951873vkd.1.1639498298544;
- Tue, 14 Dec 2021 08:11:38 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=X4/dmy9KlF2y5J8EBw2nTz9iMP7ZTiT3R0zWWUj0jJ0=;
+        b=qp94/ZlERzciS7aT3wPygJPXqOZRNIfoPjTaQkLvp0mL7F4eyKhnpUsLTUiFghZiBU
+         KkMMU0t57S2hZXmaAmAjGcDW96mwfk9itWgAupsZembqPs+IIDHptqT+zn4zOr1LWBdg
+         pzEd+9nycgUEkOcOO14/PwBr/Ror9k+onNkVkAbeg6QJUAaHpJf+tMT8RVOIu4vJIQtq
+         qEUeSvLwQvjzP8Dw3WroybILeHRzUt5LUShBLHR+ugMO+E47SWlFUb+oMWMsBTft3BQb
+         0YSrZPRKfYYrUtAzAltdZQf7IeXYxWRfbGs82CMMW4NSYdoPymtfLM12dnfJi/gqS12q
+         Yv3g==
+X-Gm-Message-State: AOAM531dOXnqlc9PhULUYOWBW3LVNYAsEcBoTeFy2lJKWG1sx8ftjsQU
+        195D4YC1J6EnbQbDqyL8XM+8r8Nr6KUodw4oVyKkVg==
+X-Google-Smtp-Source: ABdhPJx5J7/CFvA9cSKERMhPB9uz6KDyk3QRneBpXxMm88syPU1qmaFmnztQmTg3u9wMfwYY+Jub4VxAAlp+KKEM2bc=
+X-Received: by 2002:a05:6102:3a0c:: with SMTP id b12mr5705909vsu.48.1639498174752;
+ Tue, 14 Dec 2021 08:09:34 -0800 (PST)
 MIME-Version: 1.0
-References: <20211207140334.10461-1-semen.protsenko@linaro.org>
-In-Reply-To: <20211207140334.10461-1-semen.protsenko@linaro.org>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Tue, 14 Dec 2021 18:11:26 +0200
-Message-ID: <CAPLW+4n-BjSHK4gdP=cGvAE+pZDfvYTO4yy09yNRJgSXt2VArg@mail.gmail.com>
-Subject: Re: [PATCH] kbuild: Report enabled nodes with duplicated address
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Nick Desaulniers <ndesaulniers@google.com>,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Michal Marek <michal.lkml@markovi.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Masahiro Yamada <masahiroy@kernel.org>
+References: <20211213100112.1791192-1-daniel@0x0f.com> <20211213100112.1791192-3-daniel@0x0f.com>
+ <CABgxDo+8VK+HQVfts6gxLnm1xW5fBog5rEfvoLN+tjk6KYwMTw@mail.gmail.com>
+In-Reply-To: <CABgxDo+8VK+HQVfts6gxLnm1xW5fBog5rEfvoLN+tjk6KYwMTw@mail.gmail.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Wed, 15 Dec 2021 01:12:37 +0900
+Message-ID: <CAFr9PXmihQSeDagG7Yt7kfvpJxurjiLsnPPB68uvKbQh52m7eg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: arm: mstar: Add compatible for Miyoo Mini
+To:     Romain Perier <romain.perier@gmail.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 7 Dec 2021 at 16:03, Sam Protsenko <semen.protsenko@linaro.org> wrote:
->
-> Duplicated unit address is a normal case, as long as no more than one
-> node using that address is enabled. Having duplicated addresses is
-> already allowed by '-Wno-unique_unit_address' in DTC_FLAGS. But two
-> simultaneously enabled nodes sharing the same address is usually
-> incorrect. Add '-Wunique_unit_address_if_enabled' flag to report
-> warnings for such case when doing "make dtbs_check".
->
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> Reported-by: Rob Herring <robh@kernel.org>
-> Suggested-by: Rob Herring <robh@kernel.org>
-> ---
-> NOTE: After applying this patch, a lot of warnings appear on "make
-> dtbs_check". I'm not completely sure if it's ok, so feel free to Nack.
->
+Hi Romain,
 
-Hi Rob,
-
-Do you think this patch is feasible? You asked me to send it before,
-though I now see it leads to a lot of errors being revealed when doing
-"make dtbs" and "make dtbs_check". Please let me know if it's Ack or
-Nack -- I'm fine with any resolution, just want to know if I should
-continue to carry it in my local branch or drop it.
-
-Thanks!
-
->  scripts/Makefile.lib | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+On Wed, 15 Dec 2021 at 00:07, Romain Perier <romain.perier@gmail.com> wrote=
+:
+>> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+>> Link: http://linux-chenxing.org/infinity2/miyoomini/
 >
-> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-> index ce6142238835..2f00c996d2e3 100644
-> --- a/scripts/Makefile.lib
-> +++ b/scripts/Makefile.lib
-> @@ -315,7 +315,8 @@ DTC_FLAGS += -Wno-unit_address_vs_reg \
->         -Wno-alias_paths \
->         -Wno-graph_child_address \
->         -Wno-simple_bus_reg \
-> -       -Wno-unique_unit_address
-> +       -Wno-unique_unit_address \
-> +       -Wunique_unit_address_if_enabled
->  endif
 >
->  ifneq ($(findstring 2,$(KBUILD_EXTRA_WARN)),)
-> --
-> 2.30.2
->
+> 'Link:' should not be used for that purpose. Usually it is used for refer=
+encing discussions
+> or patches on lore.k.o . This is typically what I used in the last pull r=
+equest I sent to Arnd for 5.15.
+
+I sort of remember having this pointed out somewhere else and then
+looking at the text in submitting patches and thinking it background
+info seemed to be what Link was for with the note that if it's a link
+to an on list discussion to use a link to lore:
+
+`If related discussions or any other background information behind the
+change can be found on the web, add =E2=80=98Link:=E2=80=99 tags pointing t=
+o it.
+....
+When linking to mailing list archives, preferably use the
+lore.kernel.org message archiver service."
+
+mmm I need to send a v2 anyhow as I messed up the vendor prefix commit
+so I'll move the links out into the message.
+
+Cheers,
+
+Daniel
