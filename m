@@ -2,91 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06B814745BE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 15:59:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDD56474605
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 16:07:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235118AbhLNO7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 09:59:42 -0500
-Received: from foss.arm.com ([217.140.110.172]:58140 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232616AbhLNO7m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Dec 2021 09:59:42 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 26983D6E;
-        Tue, 14 Dec 2021 06:59:42 -0800 (PST)
-Received: from [10.57.34.58] (unknown [10.57.34.58])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 51A4F3F774;
-        Tue, 14 Dec 2021 06:59:40 -0800 (PST)
-Message-ID: <2f100de5-c3de-e70e-9869-ba1942f686c8@arm.com>
-Date:   Tue, 14 Dec 2021 14:59:36 +0000
+        id S231296AbhLNPHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 10:07:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41968 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231281AbhLNPHw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 10:07:52 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE8A0C061574;
+        Tue, 14 Dec 2021 07:07:51 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 83D31B81A26;
+        Tue, 14 Dec 2021 15:07:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39B77C34608;
+        Tue, 14 Dec 2021 15:07:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639494469;
+        bh=rPVk2jDfAiR4nn6IGpYxU9DbCVEZmbX3NRqFQoR/jQs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=n1a/Auo5GPfrYAN6BIrPFlMr16f70/duhx+xBXAmDtvldmoUfa1QwqdjTpNRonDpk
+         1NqP9cw8wUbGCyaH9EluR7qtxbvyP+pZE1MnP2C5tEBoMVMIdrc2V4ScPnf9cGqvwH
+         x0OLd8CUlhkfeQqj+oXHwDgRvcyR9OGyQwgBvlHUNv9Zd0oKYawKSxFmwLLyZn61Ge
+         4MXLmhNrzDuzec3RJd+/iccHwz2kpNBbxxRtjRYKEaPxZx0utFHiynKNZ0R1q4SzeH
+         lQgW6MUsLYDZzpzyecpyohd1DWFSrq+lruclmWBccK/wucP0SRKTBTRwnnm43hE7Rb
+         jUf5oXYiW5zeg==
+Received: by mail-ed1-f44.google.com with SMTP id r11so63319103edd.9;
+        Tue, 14 Dec 2021 07:07:49 -0800 (PST)
+X-Gm-Message-State: AOAM530goB/LFR0w9RAxU8tIZlGg/aTjCtj4hqjRzINAo0n9lnP2+8HU
+        EO0Kn7WOF31F5NeB72FO3l2CdsS27xvSv1MJKA==
+X-Google-Smtp-Source: ABdhPJxf5YHSaPknEFNU2A9Af9vjayodsoldMQfptOk8XsIiNGL8Y+79xGZquCFPYdXox6JhXgRtWzFzb7ICr0iQ9pE=
+X-Received: by 2002:a17:906:229b:: with SMTP id p27mr6246957eja.264.1639494466650;
+ Tue, 14 Dec 2021 07:07:46 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v2 5/5] dt-bindings: perf: Add compatible for Arm DSU-110
-Content-Language: en-GB
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>, will@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     catalin.marinas@arm.com, thierry.reding@gmail.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <cover.1639490264.git.robin.murphy@arm.com>
- <51a8060493e1220886dcd468fad9a2b603607297.1639490264.git.robin.murphy@arm.com>
- <abcc021f-e1f4-f097-e6a1-29240de3cd84@arm.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <abcc021f-e1f4-f097-e6a1-29240de3cd84@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20211214013800.2703568-1-vladimir.oltean@nxp.com> <20211214013800.2703568-2-vladimir.oltean@nxp.com>
+In-Reply-To: <20211214013800.2703568-2-vladimir.oltean@nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 14 Dec 2021 09:07:33 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK2Shj6smam7HgNAmy3UG+vVQPkU3Q0OjyEHOEJB45n0A@mail.gmail.com>
+Message-ID: <CAL_JsqK2Shj6smam7HgNAmy3UG+vVQPkU3Q0OjyEHOEJB45n0A@mail.gmail.com>
+Subject: Re: [RFC PATCH devicetree 01/10] irqchip/ls-extirq: rename
+ "interrupt-map" OF property to "fsl,extirq-map"
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>, Biwen Li <biwen.li@nxp.com>,
+        Zhiqiang Hou <Zhiqiang.Hou@nxp.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-12-14 14:42, Suzuki K Poulose wrote:
-> On 14/12/2021 14:16, Robin Murphy wrote:
->> DSU-110 is the newest and shiniest for Armv9. Its programmer's model is
->> largely identical to the previous generation of DSUs, so we can treat it
->> as compatible, but it does have a a handful of extra IMP-DEF PMU events
->> to call its own. Thanks to the new notion of core complexes, the maximum
->> number of supported CPUs goes up as well.
->>
->> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
->> ---
->>
->> v2: Also make it complete and valid
->>
->>   Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml | 8 ++++++--
->>   1 file changed, 6 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml 
->> b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
->> index 09ddeb6a3ccc..7f31bcecedb5 100644
->> --- a/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
->> +++ b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
->> @@ -21,7 +21,11 @@ description:
->>   properties:
->>     compatible:
->> -    const: arm,dsu-pmu
->> +    oneOf:
->> +      - const: arm,dsu-pmu
->> +      - items:
->> +          - const: arm,dsu-110-pmu
->> +          - const: arm,dsu-pmu
-> 
-> Couldn't this be :
-> 
->      compatible:
->        oneOf:
->          - const: arm,dsu-110-pmu
->          - const: arm,dsu-pmu
-> 
-> Otherwise, looks good to me.
+On Mon, Dec 13, 2021 at 7:38 PM Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+>
+> This OF property was supposed to be named "fsl,extirq-map" since the
+> first patch submissions, but at Rob Herring's suggestion it was named
+> "interrupt-map":
+> https://lore.kernel.org/lkml/20190927161118.GA19333@bogus/
 
-My intent here was for the new case to use both strings and thus still 
-permit a less-specific match to the original one (hence why there's no 
-change to the actual driver included here). It's a true "compatible" in 
-the sense that you can run the thing with the existing driver as if it's 
-a 1st-gen DSU and get the expected results - at least that's the 
-conclusion I drew from a side-by-side comparison of the TRMs, and the 
-folks testing FPGAs haven't complained since I told them to try it 
-months ago :)
+I'm still not okay with a custom property. The fact that multiple
+platforms need the same thing is an indication this should be common.
+Other cases are being fixed by using 'interrupts', but that's going to
+take some cleanups[1].
 
-Thanks,
-Robin.
+> At that time, the "interrupt-map" was ignored by the core for OF nodes
+> that also had an "interrupt-controller" property, but that changed with
+> commit 041284181226 ("of/irq: Allow matching of an interrupt-map local
+> to an interrupt controller"), which made the consumer drivers of the
+> ls-extirq break. To work around this breakage, the OF bindings for IRQs
+> have introduced a table of "OF IRQ interrupt-map abusers".
+> This can be seen in commit de4adddcbcc2 ("of/irq: Add a quirk for
+> controllers with their own definition of interrupt-map").
+>
+> To stop being abusers, let's go back to the original form of these
+> bindings, before Rob's review. Compatibility will be kept with the
+> current abusive bindings for a few more kernel cycles, to give people
+> some time to update. But to also give them an incentive, print a warning
+> that the support for "interrupt-map" will be removed. This will be seen
+> when running a new kernel with an old device tree.
+>
+> While the breakage was introduced relatively recently, the device tree
+> changes are intended to backport stable kernels for quicker conversion
+> to an acceptable set of bindings, and this driver will need to support
+> the updated stable bindings.
+
+Using 'interrupts' is not going to work backporting to stable, but I
+don't think trying to switch this is worth it.
+
+Rob
+
+[1] https://lore.kernel.org/all/CAL_Jsq+jyqbhA1jpgZ+yTwWGvCMRu9VmgoDq8MDM9SMqJ-XSBw@mail.gmail.com/
