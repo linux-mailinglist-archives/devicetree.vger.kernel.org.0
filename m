@@ -2,228 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD005474EB6
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 00:46:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D048A474EC7
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 00:53:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238261AbhLNXqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 18:46:53 -0500
-Received: from ixit.cz ([94.230.151.217]:55366 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231447AbhLNXqx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Dec 2021 18:46:53 -0500
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S238349AbhLNXxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 18:53:44 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:55790 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235218AbhLNXxo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 18:53:44 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id D0A952243C;
-        Wed, 15 Dec 2021 00:46:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1639525610;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=oHBpVI1zX0MdWA918+G1nEObZsRGP/0tTmp80DjrlbI=;
-        b=STWLsICsbmo6ZaAsoQCv9VQspc8ZlVlJPlkyADg3Ym0IKu4RM4mJ048ipk/kEI+2xS9thS
-        igrK6iFEHcUdYI3F+RSD8kPDUN9sarK9gaTY+CcSKGQgPNJxDLrUPrZS+e25IOLOE+S5K+
-        zlxKT9T+zPS04hAI4GJNHONHRSJr7FM=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Caleb Connolly <caleb@connolly.tech>,
-        David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: sdm845: rename memory@ nodes to more descriptive names
-Date:   Wed, 15 Dec 2021 00:46:47 +0100
-Message-Id: <20211214234648.23369-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        by sin.source.kernel.org (Postfix) with ESMTPS id 9919CCE19FE;
+        Tue, 14 Dec 2021 23:53:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 950F4C34606;
+        Tue, 14 Dec 2021 23:53:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639526020;
+        bh=PvZMo/gj0nYljGM06LBmSCA4QR02E7C/XoKsqA/9ARM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=c2d6BbNmvFdZiDHdABT92aAf6OEkYVx22Co/nuhvM7QnuFMm11OaGheonLr55TAvY
+         DzYV+PZ0/SBiXtO9kB7RfhWmXj+i1UjzT+ARSSW40sUhS4s+h2MEQA9Pk44QGxgNqD
+         WnQQAsOiFqNY9StJLhzGJCA/0g6fiiAQVimc32yxrxv531blbHQBHpNqBZsfmzyrIC
+         wmb5r1r4tDGcN7X0NWHMyZqeKIVDS/tX+/EazGr2i9TWviIW/SVIVSe09wvp2zoohQ
+         7uTffCu1yvqBiJV9WBOpa6wsifX3qNO8ktuNWXCpNZtZgO2hpfqM6NcciMwbbfU+SN
+         Oix1It5XrSa7A==
+Received: by mail-ed1-f44.google.com with SMTP id z5so69277917edd.3;
+        Tue, 14 Dec 2021 15:53:40 -0800 (PST)
+X-Gm-Message-State: AOAM5317tcXpMa6GsOsWMHewcw4XafqKnzt6sIlWIiY8641+FZyqRPMh
+        wy9e0iDqxobHZgO3MyPgT004NTpdYrF1JSxiPw==
+X-Google-Smtp-Source: ABdhPJwZTLqb7EhBpI3gfOOkg0o3mBknMM3223fDkEXOuW0bRcjsRNNG9nIMm+fbqnKdl+8DcTDsDM23zLUH6+1T0Vs=
+X-Received: by 2002:a05:6402:4251:: with SMTP id g17mr11723087edb.89.1639526018906;
+ Tue, 14 Dec 2021 15:53:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211214120213.15649-1-povik@protonmail.com> <20211214120213.15649-2-povik@protonmail.com>
+ <Ybi61fzpOV7CumtR@robh.at.kernel.org> <3F145763-2774-4569-B9B7-A03CFE002E94@protonmail.com>
+In-Reply-To: <3F145763-2774-4569-B9B7-A03CFE002E94@protonmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 14 Dec 2021 17:53:26 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+STG7=H_B3VwNp1V4OSCvKat2FUJhtzi_1t_UbMnOUfw@mail.gmail.com>
+Message-ID: <CAL_Jsq+STG7=H_B3VwNp1V4OSCvKat2FUJhtzi_1t_UbMnOUfw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add Apple NCO
+To:     =?UTF-8?Q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pure effort to avoid `make dtbs_check` warnings about memory@ nodes, which
-should have property device_type set to memory.
+On Tue, Dec 14, 2021 at 2:08 PM Martin Povi=C5=A1er <povik@protonmail.com> =
+wrote:
+>
+> Hi Rob,
+>
+> > On 14. 12. 2021, at 16:40, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Tue, Dec 14, 2021 at 12:02:48PM +0000, Martin Povi=C5=A1er wrote:
+> >> The NCO block found on Apple SoCs is a programmable clock generator
+> >> performing fractional division of a high frequency input clock.
+> >>
+> >> Signed-off-by: Martin Povi=C5=A1er <povik@protonmail.com>
+> >> ---
+> >> .../devicetree/bindings/clock/apple,nco.yaml  | 70 +++++++++++++++++++
+> >> 1 file changed, 70 insertions(+)
+> >> create mode 100644 Documentation/devicetree/bindings/clock/apple,nco.y=
+aml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/clock/apple,nco.yaml b/=
+Documentation/devicetree/bindings/clock/apple,nco.yaml
+> >> new file mode 100644
+> >> index 000000000000..5029824ab179
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/clock/apple,nco.yaml
+> >> @@ -0,0 +1,70 @@
+>
+> >> +
+> >> +  apple,nchannels:
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    description:
+> >> +      The number of output channels the NCO block has been
+> >> +      synthesized for.
+> >
+> > I'd assume there is some max number?
+>
+> There might be some limit to the underlying IP but we wouldn=E2=80=99t kn=
+ow.
+> What we know about the hardware comes from blackbox reversing, and that
+> doesn't suggest a particular limit to the number of channels we might
+> see on the SoC block in future.
 
-Fixes warnings as:
-arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: memory@f5b00000: 'device_type' is a required property
-        From schema: dtschema/schemas/memory.yaml
+All the more reason to not put the size in the DT, but imply from the
+compatible. Unless it varies by instance...
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../boot/dts/qcom/sdm845-oneplus-common.dtsi  |  8 ++--
- arch/arm64/boot/dts/qcom/sdm845.dtsi          | 38 +++++++++----------
- 2 files changed, 23 insertions(+), 23 deletions(-)
+Though I guess you would need DT updates anyways to use the new clock.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index 7f42e5315ecb..511ca72f465e 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -54,7 +54,7 @@ reserved-memory {
- 		 * it is otherwise possible for an allocation adjacent to the
- 		 * rmtfs_mem region to trigger an XPU violation, causing a crash.
- 		 */
--		rmtfs_lower_guard: memory@f5b00000 {
-+		rmtfs_lower_guard: rmtfs-lower-guard@f5b00000 {
- 			no-map;
- 			reg = <0 0xf5b00000 0 0x1000>;
- 		};
-@@ -63,7 +63,7 @@ rmtfs_lower_guard: memory@f5b00000 {
- 		 * but given the same address every time. Hard code it as this address is
- 		 * where the modem firmware expects it to be.
- 		 */
--		rmtfs_mem: memory@f5b01000 {
-+		rmtfs_mem: rmtfs-mem@f5b01000 {
- 			compatible = "qcom,rmtfs-mem";
- 			reg = <0 0xf5b01000 0 0x200000>;
- 			no-map;
-@@ -71,7 +71,7 @@ rmtfs_mem: memory@f5b01000 {
- 			qcom,client-id = <1>;
- 			qcom,vmid = <15>;
- 		};
--		rmtfs_upper_guard: memory@f5d01000 {
-+		rmtfs_upper_guard: rmtfs-upper-guard@f5d01000 {
- 			no-map;
- 			reg = <0 0xf5d01000 0 0x1000>;
- 		};
-@@ -80,7 +80,7 @@ rmtfs_upper_guard: memory@f5d01000 {
- 		 * It seems like reserving the old rmtfs_mem region is also needed to prevent
- 		 * random crashes which are most likely modem related, more testing needed.
- 		 */
--		removed_region: memory@88f00000 {
-+		removed_region: removed-region@88f00000 {
- 			no-map;
- 			reg = <0 0x88f00000 0 0x1c00000>;
- 		};
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 5fac82f026fd..28f7dc5c886a 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -79,22 +79,22 @@ reserved-memory {
- 		#size-cells = <2>;
- 		ranges;
- 
--		hyp_mem: memory@85700000 {
-+		hyp_mem: hyp-mem@85700000 {
- 			reg = <0 0x85700000 0 0x600000>;
- 			no-map;
- 		};
- 
--		xbl_mem: memory@85e00000 {
-+		xbl_mem: xbl-mem@85e00000 {
- 			reg = <0 0x85e00000 0 0x100000>;
- 			no-map;
- 		};
- 
--		aop_mem: memory@85fc0000 {
-+		aop_mem: aop-mem@85fc0000 {
- 			reg = <0 0x85fc0000 0 0x20000>;
- 			no-map;
- 		};
- 
--		aop_cmd_db_mem: memory@85fe0000 {
-+		aop_cmd_db_mem: aop-cmd-db-mem@85fe0000 {
- 			compatible = "qcom,cmd-db";
- 			reg = <0x0 0x85fe0000 0 0x20000>;
- 			no-map;
-@@ -107,12 +107,12 @@ smem@86000000 {
- 			hwlocks = <&tcsr_mutex 3>;
- 		};
- 
--		tz_mem: memory@86200000 {
-+		tz_mem: tz@86200000 {
- 			reg = <0 0x86200000 0 0x2d00000>;
- 			no-map;
- 		};
- 
--		rmtfs_mem: memory@88f00000 {
-+		rmtfs_mem: rmtfs@88f00000 {
- 			compatible = "qcom,rmtfs-mem";
- 			reg = <0 0x88f00000 0 0x200000>;
- 			no-map;
-@@ -121,67 +121,67 @@ rmtfs_mem: memory@88f00000 {
- 			qcom,vmid = <15>;
- 		};
- 
--		qseecom_mem: memory@8ab00000 {
-+		qseecom_mem: qseecom@8ab00000 {
- 			reg = <0 0x8ab00000 0 0x1400000>;
- 			no-map;
- 		};
- 
--		camera_mem: memory@8bf00000 {
-+		camera_mem: camera-mem@8bf00000 {
- 			reg = <0 0x8bf00000 0 0x500000>;
- 			no-map;
- 		};
- 
--		ipa_fw_mem: memory@8c400000 {
-+		ipa_fw_mem: ipa-fw@8c400000 {
- 			reg = <0 0x8c400000 0 0x10000>;
- 			no-map;
- 		};
- 
--		ipa_gsi_mem: memory@8c410000 {
-+		ipa_gsi_mem: ipa-gsi@8c410000 {
- 			reg = <0 0x8c410000 0 0x5000>;
- 			no-map;
- 		};
- 
--		gpu_mem: memory@8c415000 {
-+		gpu_mem: gpu@8c415000 {
- 			reg = <0 0x8c415000 0 0x2000>;
- 			no-map;
- 		};
- 
--		adsp_mem: memory@8c500000 {
-+		adsp_mem: adsp@8c500000 {
- 			reg = <0 0x8c500000 0 0x1a00000>;
- 			no-map;
- 		};
- 
--		wlan_msa_mem: memory@8df00000 {
-+		wlan_msa_mem: wlan-msa@8df00000 {
- 			reg = <0 0x8df00000 0 0x100000>;
- 			no-map;
- 		};
- 
--		mpss_region: memory@8e000000 {
-+		mpss_region: mpss@8e000000 {
- 			reg = <0 0x8e000000 0 0x7800000>;
- 			no-map;
- 		};
- 
--		venus_mem: memory@95800000 {
-+		venus_mem: venus@95800000 {
- 			reg = <0 0x95800000 0 0x500000>;
- 			no-map;
- 		};
- 
--		cdsp_mem: memory@95d00000 {
-+		cdsp_mem: cdsp@95d00000 {
- 			reg = <0 0x95d00000 0 0x800000>;
- 			no-map;
- 		};
- 
--		mba_region: memory@96500000 {
-+		mba_region: mba@96500000 {
- 			reg = <0 0x96500000 0 0x200000>;
- 			no-map;
- 		};
- 
--		slpi_mem: memory@96700000 {
-+		slpi_mem: slpi@96700000 {
- 			reg = <0 0x96700000 0 0x1400000>;
- 			no-map;
- 		};
- 
--		spss_mem: memory@97b00000 {
-+		spss_mem: spss@97b00000 {
- 			reg = <0 0x97b00000 0 0x100000>;
- 			no-map;
- 		};
--- 
-2.33.0
+> > Do you really need to know this? If this is just to validate the clock
+> > cell values are less than this, then just drop that and the property.
+> > It's not the kernel's job to validate the DT.
+>
+> Well strictly speaking the driver could do clock registration on-demand
+> at the cost of additional book-keeping, in which case we could drop
+> the property, but I would prefer we don=E2=80=99t do that. Rather than pr=
+oviding
+> validation the property simplifies drivers.
+>
+> Another option is calculating the no. of channels from size of the reg
+> range, but I assume that=E2=80=99s worse than having the nchannels proper=
+ty.
+>
+> >> +
+> >> +    nco: clock-generator@23b044000 {
+> >
+> > clock-controller@...
+>
+> Okay, will change.
+>
+> >
+> >> +      compatible =3D "apple,t8103-nco", "apple,nco";
+> >> +      reg =3D <0x3b044000 0x14000>;
+> >
+> > You really have 0x14000 worth of registers here because all of that
+> > will be mapped into virtual memory? Doesn't matter so much on 64-bit,
+> > but it did for 32-bit.
+>
+> There is about 5 registers per channel with 0x4000 stride between them,
+> blame Apple (or Samsung? I don=E2=80=99t know...).
 
+I would think you could walk the 0x4000 until you hit registers that
+behave differently.
+
+The register size / 0x4000 gives you the number of channels, too.
+
+Another question, how do you know this is 1 block with N channels vs.
+N blocks just happening to be next to each other in the memory map?
+
+Rob
