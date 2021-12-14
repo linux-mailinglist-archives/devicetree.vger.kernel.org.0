@@ -2,72 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B215474CBA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 21:41:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87117474D31
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 22:24:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234688AbhLNUlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 15:41:14 -0500
-Received: from mail-oo1-f49.google.com ([209.85.161.49]:43833 "EHLO
-        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230358AbhLNUlO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 15:41:14 -0500
-Received: by mail-oo1-f49.google.com with SMTP id w5-20020a4a2745000000b002c2649b8d5fso5245340oow.10
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 12:41:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SXVVYVyXk3jQO/Z4zUyE4AbN0Wt7xmI613y4WmWTvv8=;
-        b=RMJiCd5p43VgWoRCPRIG6eukhf8wxzlEdV8Ox5o6mEfKee51lkffz0RcSj/eh/2Cq/
-         0ad7CaAZYtk8HORrBDTYYBYtvIFGfeETRf11llic2eHXpqibsQ7x6Zz+oBU6ai+QxdPN
-         EBCTURtMdQqopqt091RfSRCsGKIOiJnqEtXnhBZrO5cX4ezdlcrBHspESU8A17JFQLoG
-         m3w87jklVM8ipZvoThVQ2cavwQpeU4e5c2ZI76Vho50TE+YDIlmxdvLAaCOptkl9nm0v
-         cd6UXXZJIHbJr4sslf/+/r1K/V2MvtIYm+GJ8YP/dvuuyOLEAJIAaJu1c8gfFGQz0xCZ
-         +yeg==
-X-Gm-Message-State: AOAM5323UvClb4Yme47uxwoCtEu0r4AI8yLwzkRRrpvLoWKQSV+Kz97P
-        J7be1tW4lOUjbU0JNO5Cn3LV7ofMxg==
-X-Google-Smtp-Source: ABdhPJzb+l9ufBYftWddcmRqXG0Rc70ptXTscOiNg4+d52emF6xt0n1yBSLP2lNNRMy58AagKGQkIg==
-X-Received: by 2002:a4a:430b:: with SMTP id k11mr795017ooj.69.1639514473603;
-        Tue, 14 Dec 2021 12:41:13 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id p6sm196984oof.0.2021.12.14.12.41.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 12:41:12 -0800 (PST)
-Received: (nullmailer pid 3916246 invoked by uid 1000);
-        Tue, 14 Dec 2021 20:41:11 -0000
-Date:   Tue, 14 Dec 2021 14:41:11 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, suzuki.poulose@arm.com,
-        will@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        catalin.marinas@arm.com, thierry.reding@gmail.com,
-        mark.rutland@arm.com
-Subject: Re: [PATCH v2 5/5] dt-bindings: perf: Add compatible for Arm DSU-110
-Message-ID: <YbkBZ7p2AnQo4BUc@robh.at.kernel.org>
-References: <cover.1639490264.git.robin.murphy@arm.com>
- <51a8060493e1220886dcd468fad9a2b603607297.1639490264.git.robin.murphy@arm.com>
+        id S231845AbhLNVY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 16:24:27 -0500
+Received: from mail.wizzup.org ([95.217.97.174]:44248 "EHLO wizzup.org"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230268AbhLNVY1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Dec 2021 16:24:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=wizzup.org;
+        s=mail; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
+        Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=YX4B08ESa94+Iaa9Jp1XsOVPlzoB8Xs3oRhGovuVVxQ=; b=UPxFsPeATxS6jqjypXTzp/K7ff
+        6OCm8ulBqtoCof4XLgxkYgEJAAo8cmyVmg5KiRzCOT8R6Kq3T0/31cYDoPuPwnv88jxuZavBSbIHF
+        HvEeeawC1r0SR1nlDb9FILF7LwZaV8iUZKh/39S7L12CnL7TTN+kbckRRW59Cw6JidQbgX39caDua
+        DVY86KLzwRt4rrd/EvJgSCnTiVcwUZYNemcMGz/p1PQS0Glk5JIvLAA6lzRrqRV1jgHGiKRhcmsoP
+        2DZlRJMaqAf7gvogC7MXE45eGpBG2MK/ZAQwkL04vmVVFZwtNn10f+Atr93UrUctTvCuwnAHjFcX+
+        OgxU7nXQ==;
+Received: from [45.83.235.159] (helo=[0.0.0.0])
+        by wizzup.org with esmtpsa  (TLS1.3) tls TLS_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <merlijn@wizzup.org>)
+        id 1mxFHY-0003El-KN; Tue, 14 Dec 2021 21:24:20 +0000
+Subject: Re: [RFC PATCH 2/2] Droid3: add initial DTS
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+        Dev Null <devnull@uvos.xyz>,
+        Sebastian Reichel <sre@kernel.org>, linux-omap@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211212230459.13579-1-merlijn@wizzup.org>
+ <20211212230459.13579-3-merlijn@wizzup.org> <Ybbhpahp20tlwEdH@atomide.com>
+From:   Merlijn Wajer <merlijn@wizzup.org>
+Message-ID: <42bb0134-1b5d-4bba-5f91-413007ba6eef@wizzup.org>
+Date:   Tue, 14 Dec 2021 22:30:06 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <51a8060493e1220886dcd468fad9a2b603607297.1639490264.git.robin.murphy@arm.com>
+In-Reply-To: <Ybbhpahp20tlwEdH@atomide.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Dec 2021 14:16:17 +0000, Robin Murphy wrote:
-> DSU-110 is the newest and shiniest for Armv9. Its programmer's model is
-> largely identical to the previous generation of DSUs, so we can treat it
-> as compatible, but it does have a a handful of extra IMP-DEF PMU events
-> to call its own. Thanks to the new notion of core complexes, the maximum
-> number of supported CPUs goes up as well.
-> 
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> ---
-> 
-> v2: Also make it complete and valid
-> 
->  Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
-> 
+Hi Tony,
 
-Applied, thanks!
+On 13/12/2021 07:01, Tony Lindgren wrote:
+> * Merlijn Wajer <merlijn@wizzup.org> [211212 23:00]:
+>> @@ -35,7 +35,7 @@ reserved-memory {
+>>  		 * first 512K of that and just overwrite the rest and configure
+>>  		 * only 384K instead of 2M.
+>>  		 */
+>> -		ramoops@a0080000 {
+>> +		ramoops0: ramoops@a0080000 {
+>>  			compatible = "ramoops";
+>>  			reg = <0xa0080000 0x60000>;
+>>  			record-size = <0x20000>;
+> 
+> The stock kernel ramoops range might be different here because of less
+> memory. If the stock kernel has it, it should be in the platform data
+> somewhere in the stock kernel sources. Probably best to just leave it
+> out for now.
+
+Understood -- I didn't see it in the stock kernel, so perhaps ramoops is
+not available on this device.
+
+>> +// Do don't know if pstore is supported, but the current config causes panics,
+>> +// so delete the node for now
+>> +/delete-node/ &ramoops0;
+> 
+> Just leave this out too, I don't think we have the ramoops configured in
+> the mainline kernel.
+
+Oops, yeah.
+
+> Otherwise looks good to me.
+
+Thanks for review!
+
+Regards,
+Merlijn
