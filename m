@@ -2,77 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AC74474BD4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 20:24:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F902474BD7
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 20:25:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237392AbhLNTY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 14:24:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46066 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234275AbhLNTY0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 14:24:26 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6CC2C06173E;
-        Tue, 14 Dec 2021 11:24:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id BD7ABCE1A82;
-        Tue, 14 Dec 2021 19:24:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F59C34604;
-        Tue, 14 Dec 2021 19:24:17 +0000 (UTC)
-Date:   Tue, 14 Dec 2021 19:24:14 +0000
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     Borislav Petkov <bp@alien8.de>
-Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
-        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
+        id S234365AbhLNTZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 14:25:07 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:35538 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234275AbhLNTZG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 14:25:06 -0500
+Received: by mail-ot1-f47.google.com with SMTP id x43-20020a056830246b00b00570d09d34ebso22076330otr.2;
+        Tue, 14 Dec 2021 11:25:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ehX+3DJbXBjGHccd4UxxHLFi5H4zFHeokElr31tDsV4=;
+        b=l+//42hn03lwwpD2eNeSaqPltZffOXu4zgtr1hLveVdRZ4Dk6f62fk/j6q7nPHIgpy
+         unl0ni3TifHSvQBv7bwon+bFwitwt5qwrKQyuH77KMGl7f+nZMRjxzAa79ALDDExNrRd
+         alxWTJLmFFC4N2Roz7cpbkp011yqRYIvZ3IpOIy6mjOJxNsJ74Ao7Wr2V0ZxO271K1V3
+         IGnEkERA3s+YnPY51X3jvo4n+RGsfZIUSbhDjUcCs6tuQ3IKZ6i51QCvBQWoF4/+Rk7G
+         px1Rl9dZ0xDW1YblW9l5TMSav5UG0EqjOEfDqm6/ZgXykVYIYP1YLASuaRH4Bq0EyjI2
+         InjA==
+X-Gm-Message-State: AOAM533WKi7/45DB873qQsxevjEbsi8L+eVsZuLUt3hLtQoJwZlNIs0r
+        rALIKoQOSgnxAEkT/Bt5hQ==
+X-Google-Smtp-Source: ABdhPJwu1jtseHaGInt4Zd2I+MrBQntRx58iFI0349+rwEjHZmbf1ZznDQ8wYliHroSvnVQAj6PUHQ==
+X-Received: by 2002:a9d:a16:: with SMTP id 22mr5901834otg.57.1639509906121;
+        Tue, 14 Dec 2021 11:25:06 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id y17sm141839ote.48.2021.12.14.11.25.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Dec 2021 11:25:05 -0800 (PST)
+Received: (nullmailer pid 3763381 invoked by uid 1000);
+        Tue, 14 Dec 2021 19:25:04 -0000
+Date:   Tue, 14 Dec 2021 13:25:04 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+        tomeu.vizoso@collabora.com,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-Subject: Re: [PATCH v17 02/10] x86: kdump: make the lower bound of crash
- kernel reservation consistent
-Message-ID: <YbjvXl51hc6GZa71@arm.com>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <20211210065533.2023-3-thunder.leizhen@huawei.com>
- <YbjrjpehprvoRXbV@zn.tnic>
+        Biju Das <biju.das@bp.renesas.com>,
+        Steven Price <steven.price@arm.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: gpu: mali-bifrost: Document RZ/G2L
+ support
+Message-ID: <YbjvkCChcK29D7WD@robh.at.kernel.org>
+References: <20211208104026.421-1-biju.das.jz@bp.renesas.com>
+ <20211208104026.421-2-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YbjrjpehprvoRXbV@zn.tnic>
+In-Reply-To: <20211208104026.421-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 14, 2021 at 08:07:58PM +0100, Borislav Petkov wrote:
-> On Fri, Dec 10, 2021 at 02:55:25PM +0800, Zhen Lei wrote:
-> > From: Chen Zhou <chenzhou10@huawei.com>
-> > 
-> > The lower bounds of crash kernel reservation and crash kernel low
-> > reservation are different, use the consistent value CRASH_ALIGN.
+On Wed, 08 Dec 2021 10:40:24 +0000, Biju Das wrote:
+> The Renesas RZ/G2{L, LC} SoC (a.k.a R9A07G044) has a Bifrost Mali-G31 GPU,
+> add a compatible string for it.
 > 
-> A big WHY is missing here to explain why the lower bound of the
-> allocation range needs to be 16M and why was 0 wrong?
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2->v3:
+>  * Moved optional clock-names and reset-names to SoC-specific conditional schemas.
+>  * minimum number of reset for the generic GPU is set to 1.
+>  * Documented number of clocks, resets, interrupts and interrupt-names in RZ/G2L
+>    SoC-specific conditional schemas.
+> v1->v2:
+>  * Updated minItems for resets as 2
+>  * Documented optional property reset-names
+>  * Documented reset-names as required property for RZ/G2L SoC.
+> ---
+>  .../bindings/gpu/arm,mali-bifrost.yaml        | 45 ++++++++++++++++++-
+>  1 file changed, 43 insertions(+), 2 deletions(-)
+> 
 
-I asked the same here:
-
-https://lore.kernel.org/r/20210224143547.GB28965@arm.com
-
-IIRC Baoquan said that there is a 1MB reserved for x86 anyway in the
-lower part, so that's equivalent in practice to starting from
-CRASH_ALIGN.
-
-Anyway, I agree the commit log should describe this.
-
--- 
-Catalin
+Applied, thanks!
