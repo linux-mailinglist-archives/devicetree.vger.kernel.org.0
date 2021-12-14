@@ -2,96 +2,289 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87117474D31
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 22:24:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBA88474D41
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 22:36:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231845AbhLNVY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 16:24:27 -0500
-Received: from mail.wizzup.org ([95.217.97.174]:44248 "EHLO wizzup.org"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230268AbhLNVY1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Dec 2021 16:24:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=wizzup.org;
-        s=mail; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
-        Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=YX4B08ESa94+Iaa9Jp1XsOVPlzoB8Xs3oRhGovuVVxQ=; b=UPxFsPeATxS6jqjypXTzp/K7ff
-        6OCm8ulBqtoCof4XLgxkYgEJAAo8cmyVmg5KiRzCOT8R6Kq3T0/31cYDoPuPwnv88jxuZavBSbIHF
-        HvEeeawC1r0SR1nlDb9FILF7LwZaV8iUZKh/39S7L12CnL7TTN+kbckRRW59Cw6JidQbgX39caDua
-        DVY86KLzwRt4rrd/EvJgSCnTiVcwUZYNemcMGz/p1PQS0Glk5JIvLAA6lzRrqRV1jgHGiKRhcmsoP
-        2DZlRJMaqAf7gvogC7MXE45eGpBG2MK/ZAQwkL04vmVVFZwtNn10f+Atr93UrUctTvCuwnAHjFcX+
-        OgxU7nXQ==;
-Received: from [45.83.235.159] (helo=[0.0.0.0])
-        by wizzup.org with esmtpsa  (TLS1.3) tls TLS_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <merlijn@wizzup.org>)
-        id 1mxFHY-0003El-KN; Tue, 14 Dec 2021 21:24:20 +0000
-Subject: Re: [RFC PATCH 2/2] Droid3: add initial DTS
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-        Dev Null <devnull@uvos.xyz>,
-        Sebastian Reichel <sre@kernel.org>, linux-omap@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211212230459.13579-1-merlijn@wizzup.org>
- <20211212230459.13579-3-merlijn@wizzup.org> <Ybbhpahp20tlwEdH@atomide.com>
-From:   Merlijn Wajer <merlijn@wizzup.org>
-Message-ID: <42bb0134-1b5d-4bba-5f91-413007ba6eef@wizzup.org>
-Date:   Tue, 14 Dec 2021 22:30:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <Ybbhpahp20tlwEdH@atomide.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+        id S232676AbhLNVgt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 16:36:49 -0500
+Received: from finn.gateworks.com ([108.161.129.64]:35578 "EHLO
+        finn.localdomain" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231331AbhLNVgq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 16:36:46 -0500
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1mxFTO-0090VG-ID; Tue, 14 Dec 2021 21:36:34 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8mm-venice-gw73xx-0x: add dt overlays for serial modes
+Date:   Tue, 14 Dec 2021 13:36:30 -0800
+Message-Id: <20211214213630.14819-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tony,
+The imx8mm-venice-gw73xx-0x som+baseboard combination has a multi-protocol
+RS-232/RS-485/RS-422 transceiver to an off-board connector which
+can be configured in a number of ways via UART and GPIO configuration.
 
-On 13/12/2021 07:01, Tony Lindgren wrote:
-> * Merlijn Wajer <merlijn@wizzup.org> [211212 23:00]:
->> @@ -35,7 +35,7 @@ reserved-memory {
->>  		 * first 512K of that and just overwrite the rest and configure
->>  		 * only 384K instead of 2M.
->>  		 */
->> -		ramoops@a0080000 {
->> +		ramoops0: ramoops@a0080000 {
->>  			compatible = "ramoops";
->>  			reg = <0xa0080000 0x60000>;
->>  			record-size = <0x20000>;
-> 
-> The stock kernel ramoops range might be different here because of less
-> memory. If the stock kernel has it, it should be in the platform data
-> somewhere in the stock kernel sources. Probably best to just leave it
-> out for now.
+The default configuration per the imx8mm-venice-gw73xx-0x dts is for
+UART2 TX/RX and UART4 TX/RX to be available as RS-232:
+ J15.1 UART2 TX out
+ J15.2 UART2 RX in
+ J15.3 UART4 TX out
+ J15.4 UART4 RX in
+ J15.5 GND
 
-Understood -- I didn't see it in the stock kernel, so perhaps ramoops is
-not available on this device.
+Add dt overlays to allow additional the modes of operation:
 
->> +// Do don't know if pstore is supported, but the current config causes panics,
->> +// so delete the node for now
->> +/delete-node/ &ramoops0;
-> 
-> Just leave this out too, I don't think we have the ramoops configured in
-> the mainline kernel.
+rs232-rts (UART2 RS-232 with RTS/CTS hardware flow control)
+ J15.1 TX out
+ J15.2 RX in
+ J15.3 RTS out
+ J15.4 CTS in
+ J15.5 GND
 
-Oops, yeah.
+rs485 (UART2 RS-485 half duplex)
+ J15.1 TXRX-
+ J15.2 N/C
+ J15.3 TXRX+
+ J15.4 N/C
+ J15.5 GND
 
-> Otherwise looks good to me.
+rs422 (UART2 RS-422 full duplex)
+ J15.1 TX-
+ J15.2 RX+
+ J15.3 TX+
+ J15.4 RX-
+ J15.5 GND
 
-Thanks for review!
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ arch/arm64/boot/dts/freescale/Makefile        |  3 +
+ .../imx8mm-venice-gw73xx-0x-rs232-rts.dts     | 53 ++++++++++++++++
+ .../imx8mm-venice-gw73xx-0x-rs422.dts         | 61 +++++++++++++++++++
+ .../imx8mm-venice-gw73xx-0x-rs485.dts         | 61 +++++++++++++++++++
+ 4 files changed, 178 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dts
 
-Regards,
-Merlijn
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index a14a6173b765..5ec8d59347b6 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -44,6 +44,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
++dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtbo
++dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dts
+new file mode 100644
+index 000000000000..c184cf4aea4e
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dts
+@@ -0,0 +1,53 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2021 Gateworks Corporation
++ *
++ * GW73xx RS232 with RTS/CTS hardware flow control:
++ *  - GPIO4_0 rs485_en needs to be driven low (in-active)
++ *  - UART4_TX becomes RTS
++ *  - UART4_RX becomes CTS
++ */
++
++#include <dt-bindings/gpio/gpio.h>
++
++#include "imx8mm-pinfunc.h"
++
++/dts-v1/;
++/plugin/;
++
++&{/} {
++	compatible = "gw,imx8mm-gw73xx-0x";
++};
++
++&gpio4 {
++	rs485_en {
++		gpio-hog;
++		gpios = <0 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "rs485_en";
++	};
++};
++
++&uart2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart2>;
++	rts-gpios = <&gpio5 29 GPIO_ACTIVE_LOW>;
++	cts-gpios = <&gpio5 28 GPIO_ACTIVE_LOW>;
++	uart-has-rtscts;
++	status = "okay";
++};
++
++&uart4 {
++	status = "disabled";
++};
++
++&iomuxc {
++	pinctrl_uart2: uart2grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX     0x140
++			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX     0x140
++			MX8MM_IOMUXC_UART4_TXD_GPIO5_IO29	0x140
++			MX8MM_IOMUXC_UART4_RXD_GPIO5_IO28	0x140
++		>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dts
+new file mode 100644
+index 000000000000..3e6404340d52
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dts
+@@ -0,0 +1,61 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2021 Gateworks Corporation
++ *
++ * GW73xx RS422 (RS485 full duplex):
++ *  - GPIO1_0 rs485_term selects on-chip termination
++ *  - GPIO4_0 rs485_en needs to be driven high (active)
++ *  - GPIO4_2 rs485_hd needs to be driven low (in-active)
++ *  - UART4_TX is DE for RS485 transmitter
++ *  - RS485_EN needs to be pulled high
++ *  - RS485_HALF needs to be low
++ */
++
++#include <dt-bindings/gpio/gpio.h>
++
++#include "imx8mm-pinfunc.h"
++
++/dts-v1/;
++/plugin/;
++
++&{/} {
++	compatible = "gw,imx8mm-gw73xx-0x";
++};
++
++&gpio4 {
++	rs485_en {
++		gpio-hog;
++		gpios = <0 GPIO_ACTIVE_HIGH>;
++		output-high;
++		line-name = "rs485_en";
++	};
++
++	rs485_hd {
++		gpio-hog;
++		gpios = <2 GPIO_ACTIVE_HIGH>;
++		output-low;
++		line-name = "rs485_hd";
++	};
++};
++
++&uart2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart2>;
++	rts-gpios = <&gpio5 29 GPIO_ACTIVE_HIGH>;
++	linux,rs485-enabled-at-boot-time;
++	status = "okay";
++};
++
++&uart4 {
++	status = "disabled";
++};
++
++&iomuxc {
++	pinctrl_uart2: uart2grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX     0x140
++			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX     0x140
++			MX8MM_IOMUXC_UART4_TXD_GPIO5_IO29	0x140
++		>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dts
+new file mode 100644
+index 000000000000..97f19c15c3d0
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dts
+@@ -0,0 +1,61 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2021 Gateworks Corporation
++ *
++ * GW73xx RS485 HD:
++ *  - GPIO1_0 rs485_term selects on-chip termination
++ *  - GPIO4_0 rs485_en needs to be driven high (active)
++ *  - GPIO4_2 rs485_hd needs to be driven high (active)
++ *  - UART4_TX is DE for RS485 transmitter
++ *  - RS485_EN needs to be pulled high
++ *  - RS485_HALF needs to be pulled high
++ */
++
++#include <dt-bindings/gpio/gpio.h>
++
++#include "imx8mm-pinfunc.h"
++
++/dts-v1/;
++/plugin/;
++
++&{/} {
++	compatible = "gw,imx8mm-gw73xx-0x";
++};
++
++&gpio4 {
++	rs485_en {
++		gpio-hog;
++		gpios = <0 GPIO_ACTIVE_HIGH>;
++		output-high;
++		line-name = "rs485_en";
++	};
++
++	rs485_hd {
++		gpio-hog;
++		gpios = <2 GPIO_ACTIVE_HIGH>;
++		output-high;
++		line-name = "rs485_hd";
++	};
++};
++
++&uart2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart2>;
++	rts-gpios = <&gpio5 29 GPIO_ACTIVE_HIGH>;
++	linux,rs485-enabled-at-boot-time;
++	status = "okay";
++};
++
++&uart4 {
++	status = "disabled";
++};
++
++&iomuxc {
++	pinctrl_uart2: uast2grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX     0x140
++			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX     0x140
++			MX8MM_IOMUXC_UART4_TXD_GPIO5_IO29	0x140
++		>;
++	};
++};
+-- 
+2.17.1
+
