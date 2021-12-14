@@ -2,112 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00A0E474DD0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 23:16:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B498C474E3F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 23:58:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233348AbhLNWQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 17:16:47 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:34589 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231132AbhLNWQr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 17:16:47 -0500
-Received: by mail-oi1-f169.google.com with SMTP id t19so29140811oij.1;
-        Tue, 14 Dec 2021 14:16:47 -0800 (PST)
+        id S233825AbhLNW6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 17:58:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37758 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231574AbhLNW6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 17:58:55 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92A3AC061574
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 14:58:54 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id c32so39751352lfv.4
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 14:58:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/ElhjSQRkBAVirJx6rQQ9wOPmR/xdLQ5Y4DtXvBrY/A=;
+        b=IP/SqCET/cIDz5W/tkTOoRj//JrcmN0RGsWN5l+Ru0RjNNGNm6ClYB9vI2+EGEZHzo
+         Yld3FVUuv6trAPU46mrts0q3WibtZansba+FfL44V2ESZjScqHEFz7M8rQN2txxULIOc
+         9u6JUrF6UZt7vrrJXn9Ndrfw4IY2PtfXwMyBQnivXoAN7/I5YjV8a4mZIaWXkEPCllrb
+         EquvQ/ZhfcBIdAdKjJ5BeYcwVoY+9CBxcjwMD5wGP4E5gdQ8PQYXDAX7tDi38kEX9xGs
+         nfRwb9N7gZcz0x785KK9DYFOPc+XEGfAtttIccE6n7IL/m0CUg91CtQPucJuvzonhkL+
+         +7Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/P7WdlopaK3BJckMeyOdCZ27ARBVlWa5L1sm5URTLic=;
-        b=77V5S+OyvnEEsSaVuIftdzxbF8nj0A5jnUX0ZJ/3QsHSSmd4RmQSsb5+LtL7mEEiJg
-         Sj4tqNH0zmBpEOGl+qMZQW9YMVR3UfM81MlzgLacKmmlMTz9vIcXrZcwaj8HxehxilL1
-         TxbPaGchQ01FVLJmxdz1ERkrCDOmVUp/i56v+pMZOt1gTZtW47PLZTJ5yg5pusoTCYyN
-         P+NXU4Qyf5/pDNuxyUssmvwJLil6ZM1uRB1/k8XY7qx9rc2Q9DauULLzEq4YCbYbIoLr
-         ySCiccqPKRUOUbzzTYphXjS5ZjBbLridHGjiRrfckKrjYL1mMnML9e3rpyWWzrBOkG4l
-         2g+w==
-X-Gm-Message-State: AOAM530nitvXX+YMYismfXWgedLwZIOj+VKRS1XZZyLyhxI9uuMprijb
-        tZSOCqplRYzZDcHJnRwSWA==
-X-Google-Smtp-Source: ABdhPJwW4S9aXKgQmc4ylqmSsIukwflmXezSDLsLGo9bKW6HtV2kspuhgVhb1ZvRlT55hVXDVSM3Kw==
-X-Received: by 2002:aca:1b15:: with SMTP id b21mr35225195oib.64.1639520206668;
-        Tue, 14 Dec 2021 14:16:46 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g7sm40352oon.27.2021.12.14.14.16.45
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/ElhjSQRkBAVirJx6rQQ9wOPmR/xdLQ5Y4DtXvBrY/A=;
+        b=AKmx9BGZOLvcMpL+ASqZlSIHrT0RX6h84t1V/FQZP+Pr/R/UF6PNkRHKGcQkAFyxfF
+         MMkr2NlIEWRn/xIGnKVxJa9vuq8p1h1kIe5J+y6AWh9PkEbwsMNC+/7aAEIlWbg/9nRl
+         ZIzqkfPOzIKFtO5lLSupfmRA5Gj7iyGJnxc+5JwhkGkKt4/xX+d0xICdFYcfYt4Yv/mN
+         CsLNEOCxLxacl91EJbdo7FwL2bpy16DDz3I/JtrBXZDXX3ubncHy3+xlc7Ae2ZC68gtk
+         pCzF9uDcoU0hc+/fX/AY0JeLCIY6Ci7diZ8KCH7BnzGz+Sb5GcNVRRRFLNI1QJcENS7X
+         0pgg==
+X-Gm-Message-State: AOAM5322wv9MkOK4GcZ34IY9zO5rzwSN1J47EiwxnsNu0BXteEhcp8Cl
+        caGs4P6xtycq3cq4HVVKlEIijg==
+X-Google-Smtp-Source: ABdhPJx0SgvSJtbcVOQeXt6YA544j26Avfy58G+7BFNLy9a2hL9JByO623Fq0Qfn+4yZMNVbtkM17Q==
+X-Received: by 2002:a05:6512:11e5:: with SMTP id p5mr7001672lfs.537.1639522732735;
+        Tue, 14 Dec 2021 14:58:52 -0800 (PST)
+Received: from eriador.lan ([2001:470:dd84:abc0::8a5])
+        by smtp.gmail.com with ESMTPSA id t10sm45115lja.105.2021.12.14.14.58.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 14:16:45 -0800 (PST)
-Received: (nullmailer pid 4053556 invoked by uid 1000);
-        Tue, 14 Dec 2021 22:16:44 -0000
-Date:   Tue, 14 Dec 2021 16:16:44 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jingoo Han <jingoohan1@gmail.com>, devicetree@vger.kernel.org,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Binghui Wang <wangbinghui@hisilicon.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        linux-riscv@lists.infradead.org,
-        Xiaowei Song <songxiaowei@hisilicon.com>
-Subject: Re: [PATCH] dt-bindings: PCI: designware: Fix
- 'unevaluatedProperties' warnings
-Message-ID: <YbkXzPqy8gNwKDWR@robh.at.kernel.org>
-References: <20211206194426.2470080-1-robh@kernel.org>
+        Tue, 14 Dec 2021 14:58:52 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: [PATCH v4 00/10] qcom: add support for PCIe0 on SM8450 platform
+Date:   Wed, 15 Dec 2021 01:58:36 +0300
+Message-Id: <20211214225846.2043361-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211206194426.2470080-1-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 06 Dec 2021 13:44:25 -0600, Rob Herring wrote:
-> With 'unevaluatedProperties' support implemented, there's a number of
-> warnings from the Designware PCIe based bindings:
-> 
-> Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.example.dt.yaml: pcie@1ffc000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'device_type', 'bus-range', 'ranges', '#interrupt-cells', 'interrupt-map-mask', 'interrupt-map' were unexpected)
-> Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.example.dt.yaml: pcie@1ffc000: Unevaluated properties are not allowed ('clock-names' was unexpected)
-> Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.example.dt.yaml: pcie@f4000000: Unevaluated properties are not allowed ('bus-range', '#address-cells', '#size-cells', 'device_type', 'ranges', 'num-lanes', '#interrupt-cells', 'interrupts', 'interrupt-names', 'interrupt-map-mask', 'interrupt-map', 'clocks', 'clock-names' were unexpected)
-> Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.example.dt.yaml: pcie@f4000000: Unevaluated properties are not allowed ('clock-names' was unexpected)
-> Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.example.dt.yaml: pcie@f5000000: Unevaluated properties are not allowed ('bus-range', '#address-cells', '#size-cells', 'device_type', 'phys', 'ranges', 'num-lanes', '#interrupt-cells', 'interrupts', 'interrupt-names', 'interrupt-map-mask', 'interrupt-map', 'reset-gpios', 'pcie@0,0' were unexpected)
-> Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.example.dt.yaml: pcie@f5000000: Unevaluated properties are not allowed ('phys', 'hisilicon,clken-gpios' were unexpected)
-> Documentation/devicetree/bindings/pci/intel-gw-pcie.example.dt.yaml: pcie@d0e00000: Unevaluated properties are not allowed ('device_type', '#address-cells', '#size-cells', 'linux,pci-domain', 'bus-range', '#interrupt-cells', 'interrupt-map-mask', 'interrupt-map' were unexpected)
-> Documentation/devicetree/bindings/pci/intel-gw-pcie.example.dt.yaml: pcie@d0e00000: Unevaluated properties are not allowed ('resets', 'phys', 'phy-names', 'reset-assert-ms' were unexpected)
-> Documentation/devicetree/bindings/pci/rockchip-dw-pcie.example.dt.yaml: pcie@fe280000: Unevaluated properties are not allowed ('clock-names', 'msi-map', 'phys', 'phy-names', 'power-domains', 'resets', 'reset-names' were unexpected)
-> Documentation/devicetree/bindings/pci/samsung,exynos-pcie.example.dt.yaml: pcie@15700000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', '#interrupt-cells', 'device_type', 'bus-range', 'ranges', 'interrupt-map-mask', 'interrupt-map' were unexpected)
-> Documentation/devicetree/bindings/pci/samsung,exynos-pcie.example.dt.yaml: pcie@15700000: Unevaluated properties are not allowed ('clock-names', 'phys', 'vdd10-supply', 'vdd18-supply' were unexpected)
-> Documentation/devicetree/bindings/pci/sifive,fu740-pcie.example.dt.yaml: pcie@e00000000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', '#interrupt-cells', 'device_type', 'dma-coherent', 'bus-range', 'ranges', 'interrupts', 'interrupt-parent', 'interrupt-map-mask', 'interrupt-map', 'clock-names', 'clocks' were unexpected)
-> Documentation/devicetree/bindings/pci/sifive,fu740-pcie.example.dt.yaml: pcie@e00000000: Unevaluated properties are not allowed ('dma-coherent', 'clock-names', 'resets', 'pwren-gpios' were unexpected)
-> Documentation/devicetree/bindings/pci/socionext,uniphier-pcie-ep.example.dt.yaml: pcie-ep@66000000: Unevaluated properties are not allowed ('clock-names', 'clocks', 'reset-names', 'resets', 'phy-names', 'phys' were unexpected)
-> Documentation/devicetree/bindings/pci/toshiba,visconti-pcie.example.dt.yaml: pcie@28400000: Unevaluated properties are not allowed ('clock-names' was unexpected)
-> Documentation/devicetree/bindings/pci/toshiba,visconti-pcie.example.dt.yaml: pcie@28400000: Unevaluated properties are not allowed ('device_type', 'bus-range', 'num-viewport', '#address-cells', '#size-cells', '#interrupt-cells', 'ranges', 'interrupt-names', 'interrupt-map-mask', 'interrupt-map', 'max-link-speed' were unexpected)
-> 
-> The main problem is that snps,dw-pcie.yaml and snps,dw-pcie-ep.yaml
-> shouldn't set 'unevaluatedProperties: false'. Otherwise, bindings that
-> reference them cannot add additional properties. With that addressed,
-> there's a handful of other undocumented properties to add.
-> 
-> Cc: Xiaowei Song <songxiaowei@hisilicon.com>
-> Cc: Binghui Wang <wangbinghui@hisilicon.com>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Paul Walmsley <paul.walmsley@sifive.com>
-> Cc: Greentime Hu <greentime.hu@sifive.com>
-> Cc: Palmer Dabbelt <palmer@dabbelt.com>
-> Cc: Jingoo Han <jingoohan1@gmail.com>
-> Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-> Cc: linux-pci@vger.kernel.org
-> Cc: linux-riscv@lists.infradead.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/pci/hisilicon,kirin-pcie.yaml          | 13 +++++++++++++
->  .../devicetree/bindings/pci/sifive,fu740-pcie.yaml  |  4 ++--
->  .../devicetree/bindings/pci/snps,dw-pcie-ep.yaml    |  2 +-
->  .../devicetree/bindings/pci/snps,dw-pcie.yaml       |  2 +-
->  .../bindings/pci/socionext,uniphier-pcie-ep.yaml    |  2 +-
->  5 files changed, 18 insertions(+), 5 deletions(-)
-> 
+There are two different PCIe controllers and PHYs on SM8450, one having
+one lane and another with two lanes. This set of patches adds support
+for the first PCIe phy and controller only, support for the second PCIe
+part will come later.
 
-Applied, thanks!
+Changes since v3:
+ - Fix pcie gpios to follow defined schema as noted by Rob
+ - Fix commit message according to Bjorn's suggestions
+
+Changes since v2:
+ - Remove unnecessary comment in struct qcom_pcie_cfg
+
+Changes since v1:
+ - Fix capitalization/wording of PCI patch subjects
+ - Add missing gen3x1 specification to PHY table names
+
+----------------------------------------------------------------
+Dmitry Baryshkov (10):
+      dt-bindings: pci: qcom: Document PCIe bindings for SM8450
+      dt-bindings: phy: qcom,qmp: Add SM8450 PCIe PHY bindings
+      phy: qcom-qmp: Add SM8450 PCIe0 PHY support
+      PCI: qcom: Remove redundancy between qcom_pcie and qcom_pcie_cfg
+      PCI: qcom: Add ddrss_sf_tbu flag
+      PCI: qcom: Add SM8450 PCIe support
+      arm64: dts: qcom: sm8450: add PCIe0 PHY node
+      arm64: dts: qcom: sm8450: add PCIe0 RC device
+      arm64: dts: qcom: sm8450-qrd: enable PCIe0 PHY device
+      arm64: dts: qcom: sm8450-qrd: enable PCIe0 host
+
+ .../devicetree/bindings/pci/qcom,pcie.txt          |  21 ++-
+ .../devicetree/bindings/phy/qcom,qmp-phy.yaml      |   2 +
+ arch/arm64/boot/dts/qcom/sm8450-qrd.dts            |  14 ++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 143 ++++++++++++++++++++-
+ drivers/pci/controller/dwc/pcie-qcom.c             |  88 ++++++++-----
+ drivers/phy/qualcomm/phy-qcom-qmp.c                | 125 ++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp.h                |  33 +++++
+ 7 files changed, 388 insertions(+), 38 deletions(-)
+
+
