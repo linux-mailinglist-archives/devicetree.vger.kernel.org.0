@@ -2,193 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7BE0473B9E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 04:40:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9865F473BA1
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 04:41:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231394AbhLNDkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 22:40:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54528 "EHLO
+        id S231349AbhLNDlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 22:41:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230147AbhLNDka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 22:40:30 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AD53C061574;
-        Mon, 13 Dec 2021 19:40:29 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id e3so59506649edu.4;
-        Mon, 13 Dec 2021 19:40:29 -0800 (PST)
+        with ESMTP id S230147AbhLNDlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 22:41:11 -0500
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10D5DC061574;
+        Mon, 13 Dec 2021 19:41:11 -0800 (PST)
+Received: by mail-pl1-x62a.google.com with SMTP id m24so12616291pls.10;
+        Mon, 13 Dec 2021 19:41:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YGvjFXTcjcxmedBMr5Eg6ESipNuMk/cS8aRWqu3L/gQ=;
-        b=cbp6PXlg5GBnn2jNS4KPj4XdJJe/9dm3sOPF0h8RSD4P9owquu0LrKQCtB3Grgn1zj
-         97D/hthrYA8Blx7z+SU2Wkr0hF6WhM0JILrEHECFeqXHyTrbw/QsR5qDt1rQKP86bJKe
-         y54+G2q6WfMxATPn1tJKdjts0/NkvPFotnL5hhu7924jA7KJ47kOtOaLUP+8PGfWcSZB
-         jD83y96JZTv+Bund/hMYJvyffaMfS6tRy203uFgXMiv4u5B/eKyVfFd8pzOBHI0cght+
-         Mse6EigpU+JIMNGYX5PfzHbTDfmI6iiuDKtbb1uawc1zRLksQIG13UAHlcC2eU4VaYMW
-         1u2w==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=98LjC0oWVBXU9u8pvXSFA1k0iwqQ0XVH3UAvDTfbXLU=;
+        b=FiFWi8TgB6N5uUqGoWvzXjnGJqphkU3VWDrlfppMg76J8AyLop/yv59LdTcGkpT/Tp
+         IoAwedEKp/N9svbr2NkTzBx2sBbCceuBVyokrS+fXgDRplgTDmi16Otlfss+bjlA+1nW
+         nHe3b85/YSG0bH8dPFIsTU5Iq05LqYeslv7p1iPI25qeBVqhbyqbuSITQmPCW+n8ndo3
+         uZj1PzoPWMInpe1duSMel0QUqp3GtqZzCoxWgqtW1jul5bKqh2pOol7GFDOE1guvMZmG
+         I8kcDLXIsJ/Si5Ki4YYS7YLlZnv3LI+rLjJinniu6iAkUKPxdwi4RbGMBuYJbYhRFij3
+         hIFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YGvjFXTcjcxmedBMr5Eg6ESipNuMk/cS8aRWqu3L/gQ=;
-        b=ilffro7FRYYjlf23VvOlohH9E64XX9CZhFu3z71AJiY4NB/+fdEgWyN3EKI5JTaHvm
-         P8SR/z0t74NyCc2OMEXlFfpo6l63TSHKZRILsIabB055vPbHJ38kMq3rEUI9sW2jchTx
-         UoE11GBva2KZ+sg3IUn2kQIyVuHldTJQr9BGk0K7EbY28p4qi28vvDRtZnUP5c+SNK+D
-         ew7QeSaoO85yQ63+W/fObbb3uhlRMyDxOQIXBsPF7T8HP958GE9FS9UJMyRaa0rYSEVc
-         SFWvfD+9NtSsRld1clSkBetVO8nyZLZXTjRCMu2B2hW8+aIWluOHd+F72wIChK7D2R4h
-         qSRw==
-X-Gm-Message-State: AOAM530sSjrpCHUroAaKfe611Ce3xw2CUKBY9jYTOZGR+i8THkruGEmK
-        /MJOMvLl9Kg98AYPZ0m5pWBfahL15LSSclHJ1Zs/Vbl6
-X-Google-Smtp-Source: ABdhPJzPgfxGI1sJNvqcW5T0ES7dng/oYeWXHRMKJ14v8u60jjA6kpNpkNBo1/Rzo53PsL1ToLFSTUr+sFd1NfOkoMs=
-X-Received: by 2002:a05:6402:491:: with SMTP id k17mr4085276edv.333.1639453227988;
- Mon, 13 Dec 2021 19:40:27 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=98LjC0oWVBXU9u8pvXSFA1k0iwqQ0XVH3UAvDTfbXLU=;
+        b=OcpCkd2IHVJU//6lPyPz4wNm8Mbo8sx+sePEaBhl2dj7keqeFynRn+4nal+6PmQFtn
+         br8waTOrAsK2QvPNrbXsFGUVM5nMAXOV2C1OKg5xEWeVjFDMO3DomqwjFbgiNr76YRhd
+         AZYDIO+c3Iqu+IsR6F5/O9AL4VBGH3aHJy0734QJ+SuA76RTqoOHklUZuCFDFKZdEfzN
+         S1MNlCu2ZMAGaBBoAbUhjn+KBGf/01ZK80JTRrmLlWzZnpRunz6AFMkqqZlDKSq7fZBm
+         QMzw0mSK1geoYsJlZ3SyVcByAQ6eV77bkgN92WhuBO3NLrLfwbiJHK86qHTwgebCY64P
+         Y+Wg==
+X-Gm-Message-State: AOAM532y6B6jtNSK6VhJdPMScz6g8dtYq2vqIKHv5oT5uJbymGMmtPQc
+        ajPxuiC7znp+M4u2sDadjjc=
+X-Google-Smtp-Source: ABdhPJwjlq+8gl4jriNwRBSaLi3p9G+bvsa4TfgM7aQ5aex5F2E4a7b27hRuWoK654+LhxFAvgGdCA==
+X-Received: by 2002:a17:902:e890:b0:142:f3:7bf7 with SMTP id w16-20020a170902e89000b0014200f37bf7mr2573158plg.87.1639453270581;
+        Mon, 13 Dec 2021 19:41:10 -0800 (PST)
+Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id f8sm14073410pfv.135.2021.12.13.19.41.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Dec 2021 19:41:10 -0800 (PST)
+Message-ID: <0973244c-1b17-e3af-3e7c-7b61bd8f6488@gmail.com>
+Date:   Mon, 13 Dec 2021 19:41:08 -0800
 MIME-Version: 1.0
-References: <20211128131853.15125-1-aford173@gmail.com> <20211128131853.15125-6-aford173@gmail.com>
-In-Reply-To: <20211128131853.15125-6-aford173@gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 13 Dec 2021 21:40:17 -0600
-Message-ID: <CAHCN7xJW14D8BVx1op+V9EAxcFFidSDkN1LN1rdHvG2TNHVtNg@mail.gmail.com>
-Subject: Re: [PATCH V4 5/9] soc: imx: imx8m-blk-ctrl: add i.MX8MN DISP blk-ctrl
-To:     arm-soc <linux-arm-kernel@lists.infradead.org>
-Cc:     Adam Ford-BE <aford@beaconembedded.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH V2 2/2] leds: bcm63xxx: add support for BCM63138
+ controller
+Content-Language: en-US
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20211124111952.22419-1-zajec5@gmail.com>
+ <20211124111952.22419-2-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20211124111952.22419-2-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 28, 2021 at 7:19 AM Adam Ford <aford173@gmail.com> wrote:
->
-> This adds the description for the i.MX8MN disp blk-ctrl.
->
-> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Lucas,
 
-Is there any chance you could give this series some feedback?  In
-order to get more functionality on the Nano, we need the blk-ctrl on
-Nano working.
+On 11/24/2021 3:19 AM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> It's a new controller first introduced in BCM63138 SoC. Later it was
+> also used in BCM4908, some BCM68xx and some BCM63xxx SoCs.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-thanks,
-
-adam
-
-> ---
->  drivers/soc/imx/imx8m-blk-ctrl.c | 77 +++++++++++++++++++++++++++++++-
->  1 file changed, 76 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
-> index c2f076b56e24..511e74f0db8a 100644
-> --- a/drivers/soc/imx/imx8m-blk-ctrl.c
-> +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
-> @@ -14,6 +14,7 @@
->  #include <linux/clk.h>
->
->  #include <dt-bindings/power/imx8mm-power.h>
-> +#include <dt-bindings/power/imx8mn-power.h>
->
->  #define BLK_SFT_RSTN   0x0
->  #define BLK_CLK_EN     0x4
-> @@ -517,6 +518,77 @@ static const struct imx8m_blk_ctrl_data imx8mm_disp_blk_ctl_dev_data = {
->         .num_domains = ARRAY_SIZE(imx8mm_disp_blk_ctl_domain_data),
->  };
->
-> +
-> +static int imx8mn_disp_power_notifier(struct notifier_block *nb,
-> +                                     unsigned long action, void *data)
-> +{
-> +       struct imx8m_blk_ctrl *bc = container_of(nb, struct imx8m_blk_ctrl,
-> +                                                power_nb);
-> +
-> +       if (action != GENPD_NOTIFY_ON && action != GENPD_NOTIFY_PRE_OFF)
-> +               return NOTIFY_OK;
-> +
-> +       /* Enable bus clock and deassert bus reset */
-> +       regmap_set_bits(bc->regmap, BLK_CLK_EN, BIT(8));
-> +       regmap_set_bits(bc->regmap, BLK_SFT_RSTN, BIT(8));
-> +
-> +       /*
-> +        * On power up we have no software backchannel to the GPC to
-> +        * wait for the ADB handshake to happen, so we just delay for a
-> +        * bit. On power down the GPC driver waits for the handshake.
-> +        */
-> +       if (action == GENPD_NOTIFY_ON)
-> +               udelay(5);
-> +
-> +
-> +       return NOTIFY_OK;
-> +}
-> +
-> +static const struct imx8m_blk_ctrl_domain_data imx8mn_disp_blk_ctl_domain_data[] = {
-> +       [IMX8MN_DISPBLK_PD_MIPI_DSI] = {
-> +               .name = "dispblk-mipi-dsi",
-> +               .clk_names = (const char *[]){ "dsi-pclk", "dsi-ref", },
-> +               .num_clks = 2,
-> +               .gpc_name = "mipi-dsi",
-> +               .rst_mask = BIT(0) | BIT(1),
-> +               .clk_mask = BIT(0) | BIT(1),
-> +               .mipi_phy_rst_mask = BIT(17),
-> +       },
-> +       [IMX8MN_DISPBLK_PD_MIPI_CSI] = {
-> +               .name = "dispblk-mipi-csi",
-> +               .clk_names = (const char *[]){ "csi-aclk", "csi-pclk" },
-> +               .num_clks = 2,
-> +               .gpc_name = "mipi-csi",
-> +               .rst_mask = BIT(2) | BIT(3),
-> +               .clk_mask = BIT(2) | BIT(3),
-> +               .mipi_phy_rst_mask = BIT(16),
-> +       },
-> +       [IMX8MN_DISPBLK_PD_LCDIF] = {
-> +               .name = "dispblk-lcdif",
-> +               .clk_names = (const char *[]){ "lcdif-axi", "lcdif-apb", "lcdif-pix", },
-> +               .num_clks = 3,
-> +               .gpc_name = "lcdif",
-> +               .rst_mask = BIT(4) | BIT(5),
-> +               .clk_mask = BIT(4) | BIT(5),
-> +       },
-> +       [IMX8MN_DISPBLK_PD_ISI] = {
-> +               .name = "dispblk-isi",
-> +               .clk_names = (const char *[]){ "disp_axi", "disp_apb", "disp_axi_root",
-> +                                               "disp_apb_root"},
-> +               .num_clks = 4,
-> +               .gpc_name = "isi",
-> +               .rst_mask = BIT(6) | BIT(7),
-> +               .clk_mask = BIT(6) | BIT(7),
-> +       },
-> +};
-> +
-> +static const struct imx8m_blk_ctrl_data imx8mn_disp_blk_ctl_dev_data = {
-> +       .max_reg = 0x84,
-> +       .power_notifier_fn = imx8mn_disp_power_notifier,
-> +       .domains = imx8mn_disp_blk_ctl_domain_data,
-> +       .num_domains = ARRAY_SIZE(imx8mn_disp_blk_ctl_domain_data),
-> +};
-> +
->  static const struct of_device_id imx8m_blk_ctrl_of_match[] = {
->         {
->                 .compatible = "fsl,imx8mm-vpu-blk-ctrl",
-> @@ -524,7 +596,10 @@ static const struct of_device_id imx8m_blk_ctrl_of_match[] = {
->         }, {
->                 .compatible = "fsl,imx8mm-disp-blk-ctrl",
->                 .data = &imx8mm_disp_blk_ctl_dev_data
-> -       } ,{
-> +       }, {
-> +               .compatible = "fsl,imx8mn-disp-blk-ctrl",
-> +               .data = &imx8mn_disp_blk_ctl_dev_data
-> +       }, {
->                 /* Sentinel */
->         }
->  };
-> --
-> 2.32.0
->
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
