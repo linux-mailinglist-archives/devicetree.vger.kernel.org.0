@@ -2,402 +2,343 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 462F44741F3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 13:03:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E410E47420C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 13:07:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233768AbhLNMDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 07:03:09 -0500
-Received: from mail-4322.protonmail.ch ([185.70.43.22]:41419 "EHLO
-        mail-4322.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbhLNMDI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 07:03:08 -0500
-Date:   Tue, 14 Dec 2021 12:02:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail2; t=1639483386;
-        bh=p+eA/464g+42bqcIYHs3jjn75snCqIlBs7kmgWNDdMU=;
-        h=Date:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:References:
-         From:To:Cc;
-        b=BzaEw4F1rELAATWLQdD8HDlTKJIzeRvnboNvE5ZTYuAf1zU1251Il+QLigya4YW7p
-         6Xyxqs3dcgb7c3ZHpybzGhExIZD7CtOKKA2g7CPG7RNg736cnNrx5jxs327SRdOhvN
-         1CYIOJtRQYyMV/i4YQNxATpBCcRQvCbBLWkwUfHf4jGQWXo2o73zZsMJwxtNPin7PZ
-         DBBDE7BLxz3Q9G/iKIBNPMZr675pP3iJzgOWD9FdNMWtbhhHOrbpGaUO8Y26lZFUBR
-         v/q9mZNUg5MycwyhAmFGojv6FN0No7K6D2iiF1WLrmgN0m6sHZweHd/vtfC+dE+g7D
-         a4n90H0bhbSKw==
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        kettenis@openbsd.org, marcan@marcan.st, sven@svenpeter.dev,
-        =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
-Reply-To: =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
-Subject: [PATCH 2/2] clk: clk-apple-nco: Add driver for Apple NCO
-Message-ID: <20211214120213.15649-3-povik@protonmail.com>
-In-Reply-To: <20211214120213.15649-1-povik@protonmail.com>
-References: <20211214120213.15649-1-povik@protonmail.com>
+        id S233807AbhLNMHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 07:07:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55798 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229494AbhLNMHl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 07:07:41 -0500
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83446C061574;
+        Tue, 14 Dec 2021 04:07:41 -0800 (PST)
+Received: by mail-yb1-xb36.google.com with SMTP id 131so45594304ybc.7;
+        Tue, 14 Dec 2021 04:07:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZU5wk5S012xqTD1gQyYvUFaZJkUyYz4X+YCYVNoID1o=;
+        b=jo1/5ZSYOVvhd6VUpVNQxwMaPxq7K5uauDLeQX7BbED78ES76n+kO2dxI5xm1GJKkZ
+         n24msv9sW3CQ3nPyaAD8eZV7RFErhyo22eGoOF2blArEugU4g6mvuY/Yj22NuE1lqMY6
+         CdobDSMJmaLTTl7KLkBZwOI7XYZ6Tnfs8fECK+3IMWBNwP3gZjARj+AC8FqGY+JKozCT
+         0PaSdkUpAru6yXpRp88sDf0Uhsad4YqRHv6lx4hmOyJZBMsIyTmAnVUBRFmfMcTyLYpe
+         NwZ4gQR6E4c9t+X6nGM6EAuXK1LRAZi+PymFuXV5DQIU3XOkgRxUkPWbMmgFMwhiw/CY
+         YbFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZU5wk5S012xqTD1gQyYvUFaZJkUyYz4X+YCYVNoID1o=;
+        b=gtMuQXVDjwjoQbL0qiqoxPEIo3EVU7B3g2ymldoZ/PWp72wKhjmHMc9UzekdGTou0Y
+         5Cc6B09O4zvm7NNbccfQOJ6yq0fPy1zhxbCCAnZeNYCGHAYsyP45wWkqkvgc/Hx4iSh0
+         krRgueEQbeB6tAGTz4EglGGZ0hS88F4zuk1YasPDtSuohIwKBZDnrU6MOiHmrl4wx19M
+         otkDZcd+cq4NUFPNVC9pF/XiColcCNC2n2oIrZTXEpiLfDLEJ2ZRaSxhetlK11BwTwML
+         3G804bwi84BS+lrr0NnaD3LqPEEB6qOb9aYZyXWbPwo4pS3wzI7bOwtzS+navx5xZlm6
+         WfMQ==
+X-Gm-Message-State: AOAM531E2OseStxgk5TzVHFY6Cgvnzkxxp+RLuEL76G5waaMgDT04R+s
+        3GmuKz2/hQB7U8EhAxbv+DByADaMkKbDPt1bbjE=
+X-Google-Smtp-Source: ABdhPJxnzRQp4Y/l60JMMtyn81CqMHnROFR7anoBuR9EOy7qK4JAjzH6sLDdkRcX764FEd7eg4Cb0sSKV9nS5RTdQbY=
+X-Received: by 2002:a25:dc4d:: with SMTP id y74mr5264483ybe.422.1639483660726;
+ Tue, 14 Dec 2021 04:07:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.0 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,MISSING_HEADERS
-        shortcircuit=no autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
-To:     unlisted-recipients:; (no To-header on input)
+References: <20211207012351.15754-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20211207012351.15754-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <YbfQIPS270So+jUh@robh.at.kernel.org>
+In-Reply-To: <YbfQIPS270So+jUh@robh.at.kernel.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 14 Dec 2021 12:07:14 +0000
+Message-ID: <CA+V-a8tHL-DwNz3USQwh5NieTRvPhUAjZV-GqFsK67fgU+kF_w@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/3] media: dt-bindings: media: Document RZ/G2L CRU block
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a common clock driver for NCO blocks found on Apple SoCs where they
-are typically the generators of audio clocks.
+Hi Rob,
 
-Signed-off-by: Martin Povi=C5=A1er <povik@protonmail.com>
----
- drivers/clk/Kconfig         |   9 ++
- drivers/clk/Makefile        |   1 +
- drivers/clk/clk-apple-nco.c | 299 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 309 insertions(+)
- create mode 100644 drivers/clk/clk-apple-nco.c
+Thank you for the review.
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index c5b3dc97396a..d2b3d40de29d 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -390,6 +390,15 @@ config COMMON_CLK_K210
- =09help
- =09  Support for the Canaan Kendryte K210 RISC-V SoC clocks.
+On Mon, Dec 13, 2021 at 10:58 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Dec 07, 2021 at 01:23:49AM +0000, Lad Prabhakar wrote:
+> > Document the CRU block found on Renesas RZ/G2L SoC's.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  .../bindings/media/renesas,rzg2l-cru.yaml     | 227 ++++++++++++++++++
+> >  1 file changed, 227 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> > new file mode 100644
+> > index 000000000000..7b2835810516
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> > @@ -0,0 +1,227 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright (C) 2021 Renesas Electronics Corp.
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/renesas,rzg2l-cru.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas RZ/G2L Camera Data Receiving Unit (CRU)
+> > +
+> > +maintainers:
+> > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > +
+> > +description:
+> > +  The RZ/G2L Camera Data Receiving Unit (CRU) device provides video input
+> > +  capabilities for the Renesas RZ/G2L family of devices.
+> > +
+> > +  Depending on the instance the Image Processing input is connected to
+> > +  external SoC pins or to a CSI-2 receiver.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+>
+> Don't need oneOf with only 1 entry.
+>
+I added this as there will be couple of more SoC's using this driver.
 
-+config COMMON_CLK_APPLE_NCO
-+=09bool "Clock driver for Apple SoC NCOs"
-+=09depends on ARCH_APPLE || COMPILE_TEST
-+=09default ARCH_APPLE
-+=09help
-+=09  This driver supports NCO (Numerically Controlled Oscillator) blocks
-+=09  found on Apple SoCs such as t8103 (M1). The blocks are typically
-+=09  generators of audio clocks.
-+
- source "drivers/clk/actions/Kconfig"
- source "drivers/clk/analogbits/Kconfig"
- source "drivers/clk/baikal-t1/Kconfig"
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 6afe36bd2c0a..0f39db8664cc 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -17,6 +17,7 @@ endif
+> > +          - enum:
+> > +              - renesas,r9a07g044-cru     # RZ/G2{L,LC}
+> > +          - const: renesas,rzg2l-cru
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 4
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: csi2_link_int
+> > +      - const: image_conv_int
+> > +      - const: image_conv_err_int
+> > +      - const: axi_mst_err_int
+>
+> _int is redundant.
+>
+Agreed will drop "_int".
 
- # hardware specific clock types
- # please keep this section sorted lexicographically by file path name
-+obj-$(CONFIG_COMMON_CLK_APPLE_NCO)  =09+=3D clk-apple-nco.o
- obj-$(CONFIG_MACH_ASM9260)=09=09+=3D clk-asm9260.o
- obj-$(CONFIG_COMMON_CLK_AXI_CLKGEN)=09+=3D clk-axi-clkgen.o
- obj-$(CONFIG_ARCH_AXXIA)=09=09+=3D clk-axm5516.o
-diff --git a/drivers/clk/clk-apple-nco.c b/drivers/clk/clk-apple-nco.c
-new file mode 100644
-index 000000000000..152901f6a40d
---- /dev/null
-+++ b/drivers/clk/clk-apple-nco.c
-@@ -0,0 +1,299 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Apple NCO (Numerically Controlled Oscillator) clock driver
-+ *
-+ * Driver for an SoC block found on t8103 (M1) and other Apple chips
-+ *
-+ * Copyright (C) The Asahi Linux Contributors
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/clk-provider.h>
-+#include <linux/math64.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_clk.h>
-+#include <linux/platform_device.h>
-+#include <linux/io.h>
-+
-+#define NCO_CHANNEL_STRIDE=090x4000
-+
-+#define REG_CTRL=090
-+#define CTRL_ENABLE=09BIT(31)
-+#define REG_DIV=09=094
-+#define DIV_FINE=09GENMASK(1, 0)
-+#define DIV_COARSE=09GENMASK(12, 2)
-+#define REG_INC1=098
-+#define REG_INC2=0912
-+#define REG_ACCINIT=0916
-+
-+struct nco_tables;
-+
-+struct nco_channel {
-+=09void __iomem *base;
-+=09struct nco_tables *tbl;
-+=09struct clk_hw hw;
-+};
-+
-+#define to_nco_channel(_hw) container_of(_hw, struct nco_channel, hw)
-+
-+#define LFSR_POLY=090xa01
-+#define LFSR_INIT=090x7ff
-+#define LFSR_LEN=0911
-+#define LFSR_PERIOD=09((1 << LFSR_LEN) - 1)
-+#define LFSR_TBLSIZE=09(1 << LFSR_LEN)
-+
-+/* The minimal attainable coarse divisor (first value in table) */
-+#define COARSE_DIV_OFFSET 2
-+
-+struct nco_tables {
-+=09u16 fwd[LFSR_TBLSIZE];
-+=09u16 inv[LFSR_TBLSIZE];
-+};
-+
-+static int nco_enable(struct clk_hw *hw);
-+static void nco_disable(struct clk_hw *hw);
-+static int nco_is_enabled(struct clk_hw *hw);
-+
-+static void nco_compute_tables(struct nco_tables *tbl)
-+{
-+=09int i;
-+=09u32 state =3D LFSR_INIT;
-+
-+=09/*
-+=09 * Go through the states of a galois LFSR and build
-+=09 * a coarse divisor translation table.
-+=09 */
-+=09for (i =3D LFSR_PERIOD; i > 0; i--) {
-+=09=09if (state & 1)
-+=09=09=09state =3D (state >> 1) ^ (LFSR_POLY >> 1);
-+=09=09else
-+=09=09=09state =3D (state >> 1);
-+=09=09tbl->fwd[i] =3D state;
-+=09=09tbl->inv[state] =3D i;
-+=09}
-+
-+=09/* Zero value is special-cased */
-+=09tbl->fwd[0] =3D 0;
-+=09tbl->inv[0] =3D 0;
-+}
-+
-+static bool nco_div_check(int div)
-+{
-+=09int coarse =3D div / 4;
-+=09return coarse >=3D COARSE_DIV_OFFSET &&
-+=09=09coarse < COARSE_DIV_OFFSET + LFSR_TBLSIZE;
-+}
-+
-+static u32 nco_div_translate(struct nco_tables *tbl, int div)
-+{
-+=09int coarse =3D div / 4;
-+
-+=09if (WARN_ON(!nco_div_check(div)))
-+=09=09return 0;
-+
-+=09return FIELD_PREP(DIV_COARSE, tbl->fwd[coarse - COARSE_DIV_OFFSET]) |
-+=09=09=09FIELD_PREP(DIV_FINE, div % 4);
-+}
-+
-+static int nco_div_translate_inv(struct nco_tables *tbl, int regval)
-+{
-+=09int coarse, fine;
-+
-+=09coarse =3D tbl->inv[FIELD_GET(DIV_COARSE, regval)] + COARSE_DIV_OFFSET;
-+=09fine =3D FIELD_GET(DIV_FINE, regval);
-+
-+=09return coarse * 4 + fine;
-+}
-+
-+static int nco_set_rate(struct clk_hw *hw, unsigned long rate,
-+=09=09=09=09unsigned long parent_rate)
-+{
-+=09struct nco_channel *chan =3D to_nco_channel(hw);
-+=09u32 div;
-+=09s32 inc1, inc2;
-+=09bool was_enabled;
-+
-+=09was_enabled =3D nco_is_enabled(hw);
-+=09nco_disable(hw);
-+
-+=09div =3D 2 * parent_rate / rate;
-+=09inc1 =3D 2 * parent_rate - div * rate;
-+=09inc2 =3D -((s32) (rate - inc1));
-+
-+=09if (!nco_div_check(div))
-+=09=09return -EINVAL;
-+
-+=09div =3D nco_div_translate(chan->tbl, div);
-+
-+=09writel_relaxed(div,  chan->base + REG_DIV);
-+=09writel_relaxed(inc1, chan->base + REG_INC1);
-+=09writel_relaxed(inc2, chan->base + REG_INC2);
-+=09writel_relaxed(1 << 31, chan->base + REG_ACCINIT);
-+
-+=09if (was_enabled)
-+=09=09nco_enable(hw);
-+
-+=09return 0;
-+}
-+
-+static unsigned long nco_recalc_rate(struct clk_hw *hw,
-+=09=09=09=09unsigned long parent_rate)
-+{
-+=09struct nco_channel *chan =3D to_nco_channel(hw);
-+=09u32 div;
-+=09s32 inc1, inc2, incbase;
-+
-+=09div =3D nco_div_translate_inv(chan->tbl,
-+=09=09=09readl_relaxed(chan->base + REG_DIV));
-+
-+=09inc1 =3D readl_relaxed(chan->base + REG_INC1);
-+=09inc2 =3D readl_relaxed(chan->base + REG_INC2);
-+
-+=09/*
-+=09 * We don't support wraparound of accumulator
-+=09 * nor the edge case of both increments being zero
-+=09 */
-+=09if (inc1 < 0 || inc2 > 0 || (inc1 =3D=3D 0 && inc2 =3D=3D 0))
-+=09=09return 0;
-+
-+=09/* Scale both sides of division by incbase to maintain precision */
-+=09incbase =3D inc1 - inc2;
-+
-+=09return div_u64(((u64) parent_rate) * 2 * incbase,
-+=09=09=09((u64) div) * incbase + inc1);
-+}
-+
-+static long nco_round_rate(struct clk_hw *hw, unsigned long rate,
-+=09=09=09=09unsigned long *parent_rate)
-+{
-+=09unsigned long lo =3D *parent_rate / (COARSE_DIV_OFFSET + LFSR_TBLSIZE) =
-+ 1;
-+=09unsigned long hi =3D *parent_rate / COARSE_DIV_OFFSET;
-+
-+=09return clamp(rate, lo, hi);
-+}
-+
-+static int nco_enable(struct clk_hw *hw)
-+{
-+=09struct nco_channel *chan =3D to_nco_channel(hw);
-+=09u32 val;
-+
-+=09val =3D readl_relaxed(chan->base + REG_CTRL);
-+=09writel_relaxed(val | CTRL_ENABLE, chan->base + REG_CTRL);
-+=09return 0;
-+}
-+
-+static void nco_disable(struct clk_hw *hw)
-+{
-+=09struct nco_channel *chan =3D to_nco_channel(hw);
-+=09u32 val;
-+
-+=09val =3D readl_relaxed(chan->base + REG_CTRL);
-+=09writel_relaxed(val & ~CTRL_ENABLE, chan->base + REG_CTRL);
-+}
-+
-+static int nco_is_enabled(struct clk_hw *hw)
-+{
-+=09struct nco_channel *chan =3D to_nco_channel(hw);
-+
-+=09return (readl_relaxed(chan->base + REG_CTRL) & CTRL_ENABLE) !=3D 0;
-+}
-+
-+static const struct clk_ops nco_ops =3D {
-+=09.set_rate =3D nco_set_rate,
-+=09.recalc_rate =3D nco_recalc_rate,
-+=09.round_rate =3D nco_round_rate,
-+=09.enable =3D nco_enable,
-+=09.disable =3D nco_disable,
-+=09.is_enabled =3D nco_is_enabled,
-+};
-+
-+static int apple_nco_probe(struct platform_device *pdev)
-+{
-+=09struct device_node *np =3D pdev->dev.of_node;
-+=09struct clk_init_data init;
-+=09struct clk_hw_onecell_data *onecell_data;
-+=09const char *parent_name;
-+=09void __iomem *regs;
-+=09struct nco_tables *tbl;
-+=09int nchannels;
-+=09int ret, i;
-+
-+=09ret =3D of_property_read_u32(np, "apple,nchannels", &nchannels);
-+=09if (ret) {
-+=09=09dev_err(&pdev->dev, "missing or invalid apple,nchannels property\n")=
-;
-+=09=09return -EINVAL;
-+=09}
-+
-+=09regs =3D devm_platform_ioremap_resource(pdev, 0);
-+=09if (IS_ERR(regs))
-+=09=09return PTR_ERR(regs);
-+
-+=09if (of_clk_get_parent_count(np) !=3D 1)
-+=09=09return -EINVAL;
-+=09parent_name =3D of_clk_get_parent_name(np, 0);
-+=09if (!parent_name)
-+=09=09return -EINVAL;
-+
-+=09onecell_data =3D devm_kzalloc(&pdev->dev, struct_size(onecell_data, hws=
-,
-+=09=09=09=09=09=09=09nchannels), GFP_KERNEL);
-+=09if (!onecell_data)
-+=09=09return -ENOMEM;
-+=09onecell_data->num =3D nchannels;
-+
-+=09tbl =3D devm_kzalloc(&pdev->dev, sizeof(*tbl), GFP_KERNEL);
-+=09if (!tbl)
-+=09=09return -ENOMEM;
-+=09nco_compute_tables(tbl);
-+
-+=09for (i =3D 0; i < nchannels; i++) {
-+=09=09struct nco_channel *chan;
-+
-+=09=09chan =3D devm_kzalloc(&pdev->dev, sizeof(*chan), GFP_KERNEL);
-+=09=09if (!chan)
-+=09=09=09return -ENOMEM;
-+=09=09chan->base =3D regs + NCO_CHANNEL_STRIDE*i;
-+=09=09chan->tbl =3D tbl;
-+
-+=09=09memset(&init, 0, sizeof(init));
-+=09=09init.name =3D devm_kasprintf(&pdev->dev, GFP_KERNEL,
-+=09=09=09=09=09=09"%s-%d", np->name, i);
-+=09=09init.ops =3D &nco_ops;
-+=09=09init.num_parents =3D 1;
-+=09=09init.parent_names =3D &parent_name;
-+=09=09init.flags =3D 0;
-+
-+=09=09chan->hw.init =3D &init;
-+=09=09ret =3D devm_clk_hw_register(&pdev->dev, &chan->hw);
-+=09=09if (ret)
-+=09=09=09return ret;
-+
-+=09=09onecell_data->hws[i] =3D &chan->hw;
-+=09}
-+
-+=09ret =3D devm_of_clk_add_hw_provider(&pdev->dev, of_clk_hw_onecell_get,
-+=09=09=09=09=09=09=09onecell_data);
-+=09if (ret)
-+=09=09return ret;
-+
-+=09return 0;
-+}
-+
-+static const struct of_device_id apple_nco_ids[] =3D {
-+=09{ .compatible =3D "apple,nco" },
-+=09{ },
-+};
-+MODULE_DEVICE_TABLE(of, apple_nco_ids)
-+
-+static struct platform_driver apple_nco_driver =3D {
-+=09.driver =3D {
-+=09=09.name =3D "apple-nco",
-+=09=09.of_match_table =3D apple_nco_ids,
-+=09},
-+=09.probe =3D apple_nco_probe,
-+};
-+module_platform_driver(apple_nco_driver);
-+
-+MODULE_AUTHOR("Martin Povi=C5=A1er <povik@protonmail.com>");
-+MODULE_DESCRIPTION("Clock driver for NCO blocks on Apple SoCs");
-+MODULE_LICENSE("GPL v2");
---
-2.33.0
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Internal clock for connecting CRU and MIPI
+> > +      - description: CRU Main clock
+> > +      - description: CPU Register access clock
+> > +      - description: CRU image transfer clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: sysclk
+> > +      - const: vclk
+> > +      - const: pclk
+> > +      - const: aclk
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    items:
+> > +      - description: CRU_CMN_RSTB reset terminal
+> > +      - description: CRU_PRESETN reset terminal
+> > +      - description: CRU_ARESETN reset terminal
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: cmn-rstb
+> > +      - const: presetn
+> > +      - const: aresetn
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        unevaluatedProperties: false
+> > +        description:
+> > +          Input port node, single endpoint describing a parallel input source.
+> > +
+> > +        properties:
+> > +          endpoint:
+> > +            $ref: video-interfaces.yaml#
+> > +            unevaluatedProperties: false
+> > +
+> > +            properties:
+> > +              hsync-active: true
+> > +
+> > +              vsync-active: true
+> > +
+> > +              bus-width: true
+> > +
+> > +              data-shift: true
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        unevaluatedProperties: false
+> > +        description:
+> > +          Input port node, single endpoint describing the CSI-2 transmitter.
+> > +
+> > +        properties:
+> > +          endpoint:
+> > +            $ref: video-interfaces.yaml#
+> > +            unevaluatedProperties: false
+> > +
+> > +            properties:
+> > +              clock-lanes:
+> > +                maxItems: 1
+> > +
+> > +              data-lanes:
+> > +                maxItems: 1
+> > +
+> > +            required:
+> > +              - clock-lanes
+> > +              - data-lanes
+> > +
+> > +      port@2:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description:
+> > +          Output port node, describing the RZ/G2L Image Processing module
+> > +          connected the CSI-2 receiver
+> > +
+> > +        properties:
+> > +          endpoint@0:
+>
+> Unless you have mutiple endpoints to define or endpoint properties to
+> add, you don't need to specify anything more than the port.
+>
+Agreed will drop it.
 
+Cheers,
+Prabhakar
 
+> > +            $ref: /schemas/graph.yaml#/properties/endpoint
+> > +            description: Endpoint connected to CSI2.
+> > +
+> > +        anyOf:
+> > +          - required:
+> > +              - endpoint@0
+> > +
+> > +      port@3:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description:
+> > +          Input port node, describing the RZ/G2L CSI-2 module connected the
+> > +          Image Processing block.
+> > +
+> > +        properties:
+> > +          endpoint@0:
+> > +            $ref: /schemas/graph.yaml#/properties/endpoint
+> > +            description: Endpoint connected to CSI2.
+> > +
+> > +        anyOf:
+> > +          - required:
+> > +              - endpoint@0
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - clocks
+> > +  - clock-names
+> > +  - resets
+> > +  - reset-names
+> > +  - power-domains
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  # Device node example with CSI-2
+> > +  - |
+> > +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    cru: video@10830000 {
+> > +            compatible = "renesas,r9a07g044-cru", "renesas,rzg2l-cru";
+> > +            reg = <0x10830000 0x10000>;
+> > +            interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>,
+> > +                         <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
+> > +                         <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
+> > +                         <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
+> > +            interrupt-names = "csi2_link_int", "image_conv_int",
+> > +                              "image_conv_err_int", "axi_mst_err_int";
+> > +            clocks = <&cpg CPG_MOD R9A07G044_CRU_SYSCLK>,
+> > +                     <&cpg CPG_MOD R9A07G044_CRU_VCLK>,
+> > +                     <&cpg CPG_MOD R9A07G044_CRU_PCLK>,
+> > +                     <&cpg CPG_MOD R9A07G044_CRU_ACLK>;
+> > +            clock-names = "sysclk", "vclk", "pclk", "aclk";
+> > +            power-domains = <&cpg>;
+> > +            resets = <&cpg R9A07G044_CRU_CMN_RSTB>,
+> > +                     <&cpg R9A07G044_CRU_PRESETN>,
+> > +                     <&cpg R9A07G044_CRU_ARESETN>;
+> > +            reset-names = "cmn-rstb", "presetn", "aresetn";
+> > +
+> > +            ports {
+> > +                    #address-cells = <1>;
+> > +                    #size-cells = <0>;
+> > +
+> > +                    port@1 {
+> > +                            #address-cells = <1>;
+> > +                            #size-cells = <0>;
+> > +
+> > +                            reg = <1>;
+> > +
+> > +                            csi2_in: endpoint@0 {
+> > +                                    reg = <0>;
+> > +                                    clock-lanes = <0>;
+> > +                                    data-lanes = <1 2>;
+> > +                                    remote-endpoint = <&ov5645_ep>;
+> > +                            };
+> > +                    };
+> > +
+> > +                    port@2 {
+> > +                            #address-cells = <1>;
+> > +                            #size-cells = <0>;
+> > +
+> > +                            reg = <2>;
+> > +
+> > +                            csi2cru: endpoint@0 {
+> > +                                    reg = <0>;
+> > +                                    remote-endpoint= <&crucsi2>;
+> > +                            };
+> > +                    };
+> > +
+> > +                    port@3 {
+> > +                            #address-cells = <1>;
+> > +                            #size-cells = <0>;
+> > +
+> > +                            reg = <3>;
+> > +
+> > +                            crucsi2: endpoint@0 {
+> > +                                    reg = <0>;
+> > +                                    remote-endpoint= <&csi2cru>;
+> > +                            };
+> > +                    };
+> > +            };
+> > +    };
+> > --
+> > 2.17.1
+> >
+> >
