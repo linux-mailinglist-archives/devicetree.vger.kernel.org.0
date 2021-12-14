@@ -2,67 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2912474C70
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 21:04:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09DCC474C6E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 21:04:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237570AbhLNUEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 15:04:55 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:37384 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229959AbhLNUEy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 15:04:54 -0500
-Received: by mail-ot1-f45.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so22149169otg.4;
-        Tue, 14 Dec 2021 12:04:54 -0800 (PST)
+        id S237562AbhLNUEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 15:04:52 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:34727 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230188AbhLNUEw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 15:04:52 -0500
+Received: by mail-oi1-f181.google.com with SMTP id t19so28720262oij.1;
+        Tue, 14 Dec 2021 12:04:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=ca/8UwhkKrIrm1GYEgOJKPRg9ilbjbbUc4xGIZnlUw0=;
-        b=OLlzFOuTYtQO63bi1btZdmCqs5Gxwnt7iwlgDfqWk0y8m0qvFnMlRbH4o/gcs1icHX
-         V/WmP+KIm5oa/bPHBSMO4fS1y2owMrIbld1tg3ZlJGHNe7+7IX2Nf1NXHdIyy+FWjXPD
-         ONmUb2Qo7UWB+3nGKhvg2OGcS2NVjP7FVkf1qvsqPVmYh75zzwBzsgSGMfduAQGIf74C
-         gO3de3f8DendgDa9BnNkerna3d+09ZkaXrPp7uODEVweHIdMLqURhuf0QWQWfoY9xaEj
-         z6uEUvSs2lz13tB790LpM68QdlCVyF1R/+cU5VisyVo/pdYLMwu2xZqQBz6TsIaJPPz4
-         jW/A==
-X-Gm-Message-State: AOAM53304+EdAx7LNd8RpAwircGtnBoZnSARuLPWbDr2MKHqAIdB3StR
-        PNskkdW45B94JR6pnmpTGc8nU7MYag==
-X-Google-Smtp-Source: ABdhPJxjjNMTn71D4902pz6s8UtNh8ftM5r6dHrAsXV2UWzK6nMfcRwddt9l/qf2loDIKyIicx2YlA==
-X-Received: by 2002:a05:6830:1688:: with SMTP id k8mr5951527otr.238.1639512293684;
-        Tue, 14 Dec 2021 12:04:53 -0800 (PST)
+        bh=RJqjtodrdvg+GjFlTR3WmiDMbCMbLHzHFKDDXT45/9Q=;
+        b=k+3fC2Ntwd3C0FvFBVgzKsyLANZeLh5chw1XUFCk4atO2wnl64KlbYh79kUANZ7BQ/
+         L0REUVqYwiLgxY+LMtULc+x8iTP2CzHWdhzY/z1YqxnZE2stvM5Pk5ca86wzD5ObmOA2
+         IcurzyEFMxj9uSazgS+AhZmpJZRmHfhohlFHEp2tPRIuBoCqa7I3ytb/htnMi8y/0FzY
+         zdqX0Vyd5JcRbvAQiRydpJFSXLASfdjoHmnNBTpUPV1HcjglpwMZha5Hy9wqwbUN3FkQ
+         aY5xrtNt50vV/PYWHLPrQON1HDdPkZTV1bOXEEId/6oo8MD5nSJ3LiIlmuKT1Xyi0Qab
+         /OdA==
+X-Gm-Message-State: AOAM532Fd1fzkDk3hj2WuunQyb+OZNJt6Vnrsy8NSCisNcTeyFC1f2tV
+        UGmZybSpx5QAyD9fVXmUyg==
+X-Google-Smtp-Source: ABdhPJxyuWusHlo7VZe3TYTWV8m+4S+pvP/3wRQxB6XqQu8wB10s/8LoKvS0LuyEz0e6B3WOTMaVxg==
+X-Received: by 2002:a05:6808:158d:: with SMTP id t13mr6133558oiw.31.1639512291886;
+        Tue, 14 Dec 2021 12:04:51 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r22sm171007oij.36.2021.12.14.12.04.52
+        by smtp.gmail.com with ESMTPSA id s1sm158309ooo.11.2021.12.14.12.04.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 12:04:52 -0800 (PST)
-Received: (nullmailer pid 3819897 invoked by uid 1000);
+        Tue, 14 Dec 2021 12:04:51 -0800 (PST)
+Received: (nullmailer pid 3819894 invoked by uid 1000);
         Tue, 14 Dec 2021 20:04:50 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     David Mosberger-Tang <davidm@egauge.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Kalle Valo <kvalo@codeaurora.org>, netdev@vger.kernel.org,
-        Adham Abozaeid <adham.abozaeid@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        linux-kernel@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Ajay Singh <ajay.kathat@microchip.com>,
-        linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>
-In-Reply-To: <20211214163315.3769677-3-davidm@egauge.net>
-References: <20211214163315.3769677-1-davidm@egauge.net> <20211214163315.3769677-3-davidm@egauge.net>
-Subject: Re: [PATCH v4 2/2] wilc1000: Document enable-gpios and reset-gpios properties
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Baruch Siach <baruch.siach@siklu.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        devicetree@vger.kernel.org,
+        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        linux-pwm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+In-Reply-To: <b5053b42f73e574f48cf860a8e225d6b1939d216.1639499239.git.baruch@tkos.co.il>
+References: <ab2a4c345844f66aa22a847e522b2f4ee0786d8b.1639499239.git.baruch@tkos.co.il> <b5053b42f73e574f48cf860a8e225d6b1939d216.1639499239.git.baruch@tkos.co.il>
+Subject: Re: [PATCH v10 2/3] dt-bindings: pwm: add IPQ6018 binding
 Date:   Tue, 14 Dec 2021 14:04:50 -0600
-Message-Id: <1639512290.330041.3819896.nullmailer@robh.at.kernel.org>
+Message-Id: <1639512290.319512.3819893.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Dec 2021 16:33:22 +0000, David Mosberger-Tang wrote:
-> Add documentation for the ENABLE and RESET GPIOs that may be needed by
-> wilc1000-spi.
+On Tue, 14 Dec 2021 18:27:18 +0200, Baruch Siach wrote:
+> From: Baruch Siach <baruch.siach@siklu.com>
 > 
-> Signed-off-by: David Mosberger-Tang <davidm@egauge.net>
+> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
+> 
+> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
 > ---
->  .../net/wireless/microchip,wilc1000.yaml        | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
+> This series does not convert the TCSR binding documentation to YAML. As
+> a result, this commit adds new a dt_binding_check warning:
+> 
+> /example-0/syscon@1937000: failed to match any schema with compatible: ['qcom,tcsr-ipq 6018', 'syscon', 'simple-mfd']
+> 
+> If that is a blocker to IPQ6018 PWM support, so be it. Patches will wait
+> for someone else to push them further.
+> 
+> v10:
+> 
+>   No change
+> 
+> v9:
+> 
+>   Add 'ranges' property to example (Rob)
+> 
+>   Drop label in example (Rob)
+> 
+> v8:
+> 
+>   Add size cell to 'reg' (Rob)
+> 
+> v7:
+> 
+>   Use 'reg' instead of 'offset' (Rob)
+> 
+>   Drop 'clock-names' and 'assigned-clock*' (Bjorn)
+> 
+>   Use single cell address/size in example node (Bjorn)
+> 
+>   Move '#pwm-cells' lower in example node (Bjorn)
+> 
+>   List 'reg' as required
+> 
+> v6:
+> 
+>   Device node is child of TCSR; remove phandle (Rob Herring)
+> 
+>   Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
+> 
+> v5: Use qcom,pwm-regs for phandle instead of direct regs (Bjorn
+>     Andersson, Kathiravan T)
+> 
+> v4: Update the binding example node as well (Rob Herring's bot)
+> 
+> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
+> 
+> v2: Make #pwm-cells const (Rob Herring)
+> ---
+>  .../devicetree/bindings/pwm/ipq-pwm.yaml      | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -71,15 +125,11 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.example.dts:30.37-38 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1413: dt_binding_check] Error 2
+Documentation/devicetree/bindings/pwm/ipq-pwm.example.dt.yaml:0:0: /example-0/syscon@1937000: failed to match any schema with compatible: ['qcom,tcsr-ipq6018', 'syscon', 'simple-mfd']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1567796
+See https://patchwork.ozlabs.org/patch/1567793
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
