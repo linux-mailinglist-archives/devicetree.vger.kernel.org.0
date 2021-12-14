@@ -2,138 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4A8E4743F9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 14:56:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0581847440D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 14:59:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232348AbhLNN4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 08:56:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52870 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230038AbhLNN4Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 08:56:16 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE3B1C061574;
-        Tue, 14 Dec 2021 05:56:15 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id u3so36998074lfl.2;
-        Tue, 14 Dec 2021 05:56:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Ov1iHx+DbaxD+iHI0Gl52GMo9SpDpJ2lnEERZMJTQc0=;
-        b=PCN+/1TXNrEnIWgXa9Ms5J/9ctNNSoMaK3CgAZuUEkyNZ5ljmYFglFOkxA7CRow2PB
-         +diaiwIvMw9UeUujxgonngIcbHvXYo0BVP0KWlk0gtfON9lMcEXPXUVMrYFXDi7v21xN
-         zer5d5ICKk58mX8MqKAwK4ff0FZCqFTrp/SdMMOYi8tBUzeqg7X72Y05OIf3gfqTswBo
-         wILCCniRxptpP9q+n2Oqg0VRg1xUyLOhSV+2Qj7HerA8u+uZO4ptYAjYLQb6vQseLUVd
-         iCCoI0sXF32rAhNJDFu7p9FqQxg/9GsXrJ1uuzm4E0NzFSaA887IVXBUoAWvfSRMyTvv
-         UQFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Ov1iHx+DbaxD+iHI0Gl52GMo9SpDpJ2lnEERZMJTQc0=;
-        b=Vg3Rj2losi+Lccq++NtIJwtscnlwlafiJEC4ZywyBX/k+kaedhqLiQvsgetPUAfWRf
-         AHSOaNBTvNtUKvaMp1UT8FEJrPjejW/LwoyLZPCVuINkwjtOzkaHocteTw0vQQ9h5PO2
-         dG8i9FsZquVRs3GI8K7HuvOCYyfPJmbddP+klSTO1plyx7ofodkW1+R9fLmMAwuLA0wy
-         Q9IfPbPrQ+rkRkpzyw5gSONWoM3bJmZIGUNqHNJrA0NCOZjiCvLImZMK05zkaYRO+gw0
-         kGtC1PO95gCfcs1s7+GI+wE0Vl3hmfhpyLiKo15LBwxfrcVhcDUHIiucDLCv4A4nXhj+
-         rtFQ==
-X-Gm-Message-State: AOAM531UwR3otFyYgnOa2ew5aC3J7AuyDIexj3sXKucXpk+s7Dh18Xuv
-        t7vk374TGIWpJgYb+sBcjNk=
-X-Google-Smtp-Source: ABdhPJzir6qiHtR9sVJHfjCLkS//nrIH5PQaLZq8UcVv5KSRk4JLkxpk1YKgGvYjCBPB6t11uHsAqA==
-X-Received: by 2002:ac2:5615:: with SMTP id v21mr5340562lfd.112.1639490174001;
-        Tue, 14 Dec 2021 05:56:14 -0800 (PST)
-Received: from [192.168.2.145] (94-29-63-156.dynamic.spd-mgts.ru. [94.29.63.156])
-        by smtp.googlemail.com with ESMTPSA id q24sm1838370lfp.103.2021.12.14.05.56.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Dec 2021 05:56:13 -0800 (PST)
-Subject: Re: [PATCH 1/3] ALSA: hda/tegra: Skip reset on BPMP devices
-To:     Sameer Pujar <spujar@nvidia.com>, tiwai@suse.com,
-        broonie@kernel.org, lgirdwood@gmail.com, thierry.reding@gmail.com,
-        perex@perex.cz
-Cc:     jonathanh@nvidia.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        Mohan Kumar <mkumard@nvidia.com>, robh+dt@kernel.org
-References: <1638858770-22594-1-git-send-email-spujar@nvidia.com>
- <1638858770-22594-2-git-send-email-spujar@nvidia.com>
- <7742adae-cdbe-a9ea-2cef-f63363298d73@gmail.com>
- <8fd704d9-43ce-e34a-a3c0-b48381ef0cd8@nvidia.com>
- <56bb43b6-8d72-b1de-4402-a2cb31707bd9@gmail.com>
- <4855e9c4-e4c2-528b-c9ad-2be7209dc62a@nvidia.com>
- <5d441571-c1c2-5433-729f-86d6396c2853@gmail.com>
- <f32cde65-63dc-67f8-ded8-b58ea5e89f4e@nvidia.com>
- <95cc7efa-251c-690b-9afa-53ee9e052c34@gmail.com>
- <148fba18-5d14-d342-0eb9-4ff224cc58ad@nvidia.com>
- <3b0de739-7866-3886-be9c-a853c746f8b7@gmail.com>
- <73d04377-9898-930b-09db-bb6c4b3eb90a@nvidia.com>
- <ad388f5e-6f60-cf78-8510-87aec8524e33@gmail.com>
- <50bf5a83-051e-8c12-6502-aabd8edd0a72@nvidia.com>
- <7230ad0b-2b04-4f1b-b616-b7d98789ded0@gmail.com>
- <48f891bc-d8f6-2634-6dd1-6ea4f14ae6a3@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <0761f6f2-27f8-4e1a-fabc-9d319f465a9e@gmail.com>
-Date:   Tue, 14 Dec 2021 16:56:12 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <48f891bc-d8f6-2634-6dd1-6ea4f14ae6a3@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+        id S234634AbhLNN7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 08:59:15 -0500
+Received: from mail-eopbgr140083.outbound.protection.outlook.com ([40.107.14.83]:32007
+        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232428AbhLNN7N (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Dec 2021 08:59:13 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oHO20G3MAXMkGnLkS/mxmGJmRY/p5Q726OEnfWf7CyCQHZOp6Z/bX/+rWe6P+PvZlYY6t4nAYjO51xdeb5PF9pt3ZuZQEwTpH47XtxPknyGOU0Cjao6fIdEUFkUDovxG4WZNhsxtDvFpwnfUekB+HxXQM//BeWFxX8j9rcofmPgOl9Myp9vP/P90xbHj+oXfMLf6zchl2hb2G+vPBC/sWRx0EGfrgV+YAH6kAH/HHHpPo8q5CVOf9wqVomzOnTTXHjLF+NTB8kNvn4U/P0aChImFnlsY1NhiYWwUSngz6EjbMuVhJT/UzBFZfDCBuuLB42H7F+X2KfXmSHmlordgHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wNCaoPeonuT+HGmzi/MvLGh6akmnfuDrhwGWAxdG95k=;
+ b=bOkHUZQPk6QxdgFMD0ooZNzZagCfk7ZSwMOEEuhMS/k0G/4bxoAGZHY7u9d7dr6t+ghiUow/8mJjPrPE9lggVO1pIlRbQfLGM/OOFk40dQbh+2KJBqLVPDfk/4m8DUDLq/i1edBTpKXUcrGBajCoTGjATM7gLhLGvJ0dD46lDd3quvFjV1SLlAj5az0WFqaaVXkQawPAUd5b57BNABrQAUAlaUIUcJfDCqcAsNeiuXy9/Y2qI8wm0V/IdmuyONd8tpBAi+2nq20VBgMULJBPNZ3tWWfgB2Wve61D7gdq/mNABFaG2DagA9dw0Zy3eLK5avDx2hI7ob67E0ZTipwnow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wNCaoPeonuT+HGmzi/MvLGh6akmnfuDrhwGWAxdG95k=;
+ b=BHOdBXQqKWfAXTnKwf2gMzW8F125LF/WhiSVAiWDih+0RIhfIk4raMR914+2TQrSP5kVBlDDIqf6eps6r5xIxoDy7i6vi+tRqCYorxUTXpTduI43bA5In2IQUue8SLQip/LSes4wYAe0foqo7EUal/bsiAx0ah7ZY7XsZghjlLw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.17; Tue, 14 Dec
+ 2021 13:59:11 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::c84:1f0b:cc79:9226]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::c84:1f0b:cc79:9226%3]) with mapi id 15.20.4755.028; Tue, 14 Dec 2021
+ 13:59:11 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Biwen Li <biwen.li@nxp.com>,
+        Zhiqiang Hou <Zhiqiang.Hou@nxp.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Subject: [PATCH v2 devicetree] Revert "arm64: dts: freescale: Fix 'interrupt-map' parent address cells"
+Date:   Tue, 14 Dec 2021 15:58:52 +0200
+Message-Id: <20211214135852.2934670-1-vladimir.oltean@nxp.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: FR3P281CA0023.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1c::7) To VI1PR04MB5136.eurprd04.prod.outlook.com
+ (2603:10a6:803:55::19)
+MIME-Version: 1.0
+Received: from localhost.localdomain (188.25.173.50) by FR3P281CA0023.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:1c::7) with Microsoft SMTP Server (version=TLS1_2, cipher=) via Frontend Transport; Tue, 14 Dec 2021 13:59:10 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0cb3b7ff-a3ad-4376-dd98-08d9bf09e76a
+X-MS-TrafficTypeDiagnostic: VE1PR04MB6638:EE_
+X-Microsoft-Antispam-PRVS: <VE1PR04MB663855BD77110F10282ECE81E0759@VE1PR04MB6638.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1107;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jFEdCL5jeuYeLPu3lwzXqISuBotyt7W+x1JiMdS4M6xpFnq0CUFP9sRhpTdMhjLwr9zcx4nfu4CeApWyCA80Y9vbMbMFk4jK170bTVqS6ZqpUJfyhmlCznCETXeseB1AeMrbs9gU29nHfoOZeZBoWsDnbsLl/ZU3nkqYS2Oiesg/H/ZmLD9kDeE05j0qwoFi1xTT718WkWXUmHZMzGxO06sMb56O5FOffkKrrfWDsuRrSd5YpbNWyFLLiGo6nWo2hDDgj3kaOPeH/er7SzFJKHMRpqKRy/jKIOMZ9CNNaro3EPKwCnQqqdDLErdokbm5NC4A8jjrVgR8Qklsu/2WLv7fTnkkUlmSP5pReaLOyF/L3DcROBerZxoxqLDToSnfVoekObgqd5EZz7nnkVxtze0lGsEYHi6Bcocq0IREmReExmB0GLqCqX2Doy9R0o7N4mbSDVJP5O6//TRL4QM51NU/6yGUSudgPRnfe9mPaOOMhwUNpTYsAGZVPHhKKN+IIaLdDdD6clPlO1Z/5ElDkj8v5csEyf5TeHAC28lMji0nsxgpO7hbLZFMcBcfaa7SD08hFrVwfbbwoiwGIWO6aaVVeFkqxex/DmrbKmk2g4QHVU6kMSVhBufKo3nYQb25lYS11zAf/z2jFHCXhL2RI+SvO4RIHqMs4sDHwKn+kdvHV3FEREArsIX0fgPPv2A/QKDfqiNp0X3hq4BNBp4hiXtD+fS2jbPZlg9ukJoRzuKiFNew4f79ndrjhk6BYSzaluo5q2/uyW3LOJ330fK2SibeGfUtWXGjZQqd2mRT7f3/Ra9+HL4r+H/pN5eRjnUxRqtpG5uUommBx9UC6EjKGw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(8676002)(6512007)(6486002)(44832011)(52116002)(956004)(86362001)(2616005)(316002)(5660300002)(2906002)(83380400001)(54906003)(508600001)(6666004)(966005)(26005)(4326008)(36756003)(6506007)(38350700002)(38100700002)(1076003)(66946007)(66476007)(66556008)(8936002)(186003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cWWsC9M3hOlcBKbHXDJsVpHESutLaVAO6e0zw/6f7J0wj2JeVTXkd+7g1KgV?=
+ =?us-ascii?Q?zm+fNeSjFS/QrrwYhtMKzeCXl/i8fnH/v8+usWH+XX14QPfWQ4kg2CKbszHa?=
+ =?us-ascii?Q?U16jxZdMT0Z97fzx1gTU3WXHQYKATpze3WNo8T6scgN3XhFXW03q69cN/nJH?=
+ =?us-ascii?Q?UZIqZPnzKafX4k6lJLQrSJdD7s3NvU92fg3lMUG6bkRIvw8i+WnAR7R5Lpwg?=
+ =?us-ascii?Q?pQBmZ+SQuhJalsl1nn9m5aYtCfDf0BgzghHCeoSYEkIK8gyN1zsBiI7i0RmA?=
+ =?us-ascii?Q?yxxp4dP386x+R9Xi7q3v4ZYxH7P9kt94MwVoaXfJKknSyV7CrPFnkPz9uqlh?=
+ =?us-ascii?Q?8J7xqK7sTcZUCZPSRIEF91h+oYJpxgMfRQcr7AMSYnj8HGZML4Q6exQc9ZiR?=
+ =?us-ascii?Q?e77cFDs3tMROxyjYwmj2MZOq6dL91x7fT2DdiyPfdccejyejj3ytrxIG8ZcF?=
+ =?us-ascii?Q?ZCF8mGd7gT+P3V7ISItbw/XQ4Czikdd1sFQnrrMFXCMptUKcoXPWt5wj+Tzr?=
+ =?us-ascii?Q?hlCDFME/qgZfWRvoA9UTbRKbby7PJZwpbRhyzQ+Ot3aJqq5GOKjpeF1YbBHO?=
+ =?us-ascii?Q?WfjdNkooMhghxwkS/seJE6epOu49VhwwJtjogoeBegHw7O4tzC+NixTPJyxW?=
+ =?us-ascii?Q?NXm73L9ywA0Wm0NH6APc9cI5wn3KMS8HgK//aG+j8K8eigeqAUvyUY8iRIlQ?=
+ =?us-ascii?Q?OJ3jOVvw2pLysHrQC2cuOGSS6b8RJhmWbzXBun7sqyTlWusM5dW7FAudEYci?=
+ =?us-ascii?Q?y0BkbXOSfY9lXstL1BY4Vm4gOecFZfZM1FoAKlqoV8VStdYiyvMSlPfnsbW+?=
+ =?us-ascii?Q?RBCA8NH1nA+uLgiWQHuOJ6CH26RzH5t17q9/2cXxPXcR80egMnv3eRkQ62CO?=
+ =?us-ascii?Q?a1v55US6XCiqgokNiZaawR2XfSXA2HGanvGnr5b7niQlHyVMhf1les4aZbSp?=
+ =?us-ascii?Q?0jKrxzpO2EEafU6NlLwjT6QlRAMlu3Mp/O9UQ0DnizOPWwVarWBz+kREOv6v?=
+ =?us-ascii?Q?ktmkUCAYLBw9bkdb9cVjuhEXoFo92ZjeLf+PvlPC6i73I2SS71KR1BcjTiho?=
+ =?us-ascii?Q?0L+efciL+pEdVzIht0pAe61Y91rzn6fwbt8L88zn7/4PFgrtEAG94U1xVO3z?=
+ =?us-ascii?Q?MT67qvv2JsPjTQsnnvEJf+qF9aB39OHAVJf7Q3Yb1TEGIFgHs6tONerAoYwx?=
+ =?us-ascii?Q?8QBiq0BKWLz/Ck7TLZ+k3buTs1FXrW6c/tJcQqf1neS1sczOOCowWAQ5rQ0f?=
+ =?us-ascii?Q?Ek6BeyBkwJTZ9lxzmYXmlnWOBx4WYmZeiThctogvTkohyAzi0c01C7T84InW?=
+ =?us-ascii?Q?rgURImi+MrvJq0RQWUknK/EQIpM0JGou5SCpeullUo52D1LGKBqJzTWtcyeh?=
+ =?us-ascii?Q?a4MUG9UnfgmoyfemY016WqKbqm0/m8uoTmG8rfaHCJvPxapgwrdwHxli6bu2?=
+ =?us-ascii?Q?JC9CPnufCScp6yF2OfJMDe7Zy/4mAw+nwVd31okO3B3447JDEVx0+it2GWau?=
+ =?us-ascii?Q?YzRfnwvXvNWpDeohMxdg1ryloDBshPrjjU6qWeQpnB1GTZlvK2jbBwLjrIpM?=
+ =?us-ascii?Q?F0HfCYLT1CETwhmTuIeg7i4yOS2oJC8NginG6QQdZ4oMdaQi03PhJcZ3UiSr?=
+ =?us-ascii?Q?hlRnD3h19i2cPtcbHP0Tteo=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0cb3b7ff-a3ad-4376-dd98-08d9bf09e76a
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2021 13:59:10.9349
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zVSGECI8eXriFcR13FFGbsZiuhT8JyZXfqGZJ4omvrSv5V0XcfwPr9XkR9/lI65LGGNNrOjEDfLXADqUdZ3MUQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6638
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-14.12.2021 10:22, Sameer Pujar пишет:
-...
->>> How the reset behavior is different? At this point when HDA driver is
->>> loaded the HW is already reset during display ungate. What matters,
->>> during HDA driver load, is whether the HW is in predictable state or not
->>> and the answer is yes. So I am not sure what problem you are referring
->>> to. Question is, if BPMP already ensures this, then why driver needs to
->>> take care of it.
->> 1. Enable display
->> 2. Play audio over HDMI
-> 
->> 3. HDA hardware now is in dirty state
-> 
-> Why this would be a dirty state? It is rather a functional state. Isn't
-> it? Power-domain is ON while all this happens.
+This reverts commit 869f0ec048dc8fd88c0b2003373bd985795179fb. That
+updated the expected device tree binding format for the ls-extirq
+driver, without also updating the parsing code (ls_extirq_parse_map)
+to the new format.
 
-In general state should be a functional, but we shouldn't assume that.
-There is always a possibility for a subtle bug in a driver that may put
-h/w into a bad state. Full hardware reset is encouraged by users.
+The context is that the ls-extirq driver uses the standard
+"interrupt-map" OF property in a non-standard way, as suggested by
+Rob Herring during review:
+https://lore.kernel.org/lkml/20190927161118.GA19333@bogus/
 
-> Another point is, with present logic the reset is not applied for every
-> runtime PM resume of HDA device, which is confusing. It depends on the
-> state of 'chip->running' flag and I don't see this getting cleared
-> anywhere. Would you say subsequent HDA playback happen under a dirty state?
+This has turned out to be problematic, as Marc Zyngier discovered
+through commit 041284181226 ("of/irq: Allow matching of an interrupt-map
+local to an interrupt controller"), later fixed through commit
+de4adddcbcc2 ("of/irq: Add a quirk for controllers with their own
+definition of interrupt-map"). Marc's position, expressed on multiple
+opportunities, is that:
 
-This is a good point. There should be another potential problem in the
-HDA driver for newer SoCs because apparently we don't re-initialize HDA
-controller properly after runtime PM resume.
+(a) [ making private use of the reserved "interrupt-map" name in a
+    driver ] "is wrong, by the very letter of what an interrupt-map
+    means. If the interrupt map points to an interrupt controller,
+    that's the target for the interrupt."
+https://lore.kernel.org/lkml/87k0g8jlmg.wl-maz@kernel.org/
 
-See hda_tegra_first_init() that is invoked only during driver probe, it
-configures FPCI_DBG_CFG_2 register on T194, which isn't done by
-hda_tegra_init(), and thus, this register may be  in reset state after
-resume from RPM suspend. It should be a bug in the HDA driver that needs
-to be fixed.
+(b) [ updating the driver's bindings to accept a non-reserved name for
+    this property, as an alternative, is ] "is totally pointless. These
+    machines have been in the wild for years, and existing DTs will be
+    there *forever*."
+https://lore.kernel.org/lkml/87ilvrk1r0.wl-maz@kernel.org/
 
-On older SoCs: HDA resides in the APB power domain which could be
-disabled only across system suspend/resume. HDA is only clock-gated
-during runtime PM suspend.
+Considering the above, the Linux kernel has quirks in place to deal with
+the ls-extirq's non-standard use of the "interrupt-map". These quirks
+may be needed in other operating systems that consume this device tree,
+yet this is seen as the only viable solution.
 
-On newer SoCs: HDA power state could be lost after RPM suspend/resume,
-depending on the state of display. I'm wondering whether HDMI playback
-works after DPMS on T194+, I assume this case was never tested properly.
+Therefore, the premise of the patch being reverted here is invalid.
+It doesn't matter whether the driver, in its non-standard use of the
+property, complies to the standard format or not, since this property
+isn't expected to be used for interrupt translation by the core.
 
-It looks like it should be safe to reset HDA on runtime PM resume
-regardless of the chip->running, and thus, we could remove that check
-and reset HDA unconditionally. Will great if you could check/test and
-improve this in the driver.
+This change restores LS1088A, LS2088A/LS2085A and LX2160A to their
+previous bindings, which allows these systems to continue to use
+external interrupt lines with the correct polarity.
 
-I'm also wondering whether snd_power_change_state() should be moved into
-RPM callbacks and whether this function does anything practically useful
-on Tegra at all.
+Fixes: 869f0ec048dc ("arm64: dts: freescale: Fix 'interrupt-map' parent address cells")
+Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+---
+v1->v2: remove the other 9 patches that rename "interrupt-map" to
+        "fsl,extirq-map", at Marc's suggestion.
+
+ .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 24 +++++++++----------
+ .../arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 24 +++++++++----------
+ .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 24 +++++++++----------
+ 3 files changed, 36 insertions(+), 36 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+index f891ef6a3754..605072317243 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+@@ -241,18 +241,18 @@ extirq: interrupt-controller@14 {
+ 				interrupt-controller;
+ 				reg = <0x14 4>;
+ 				interrupt-map =
+-					<0 0 &gic 0 0 GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+-					<1 0 &gic 0 0 GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+-					<2 0 &gic 0 0 GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+-					<3 0 &gic 0 0 GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+-					<4 0 &gic 0 0 GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+-					<5 0 &gic 0 0 GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+-					<6 0 &gic 0 0 GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+-					<7 0 &gic 0 0 GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+-					<8 0 &gic 0 0 GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+-					<9 0 &gic 0 0 GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+-					<10 0 &gic 0 0 GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+-					<11 0 &gic 0 0 GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
++					<0 0 &gic GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
++					<1 0 &gic GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
++					<2 0 &gic GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
++					<3 0 &gic GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
++					<4 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
++					<5 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
++					<6 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++					<7 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
++					<8 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++					<9 0 &gic GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
++					<10 0 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
++					<11 0 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-map-mask = <0xffffffff 0x0>;
+ 			};
+ 		};
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+index 3cb9c21d2775..1282b61da8a5 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+@@ -293,18 +293,18 @@ extirq: interrupt-controller@14 {
+ 				interrupt-controller;
+ 				reg = <0x14 4>;
+ 				interrupt-map =
+-					<0 0 &gic 0 0 GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+-					<1 0 &gic 0 0 GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+-					<2 0 &gic 0 0 GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+-					<3 0 &gic 0 0 GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+-					<4 0 &gic 0 0 GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+-					<5 0 &gic 0 0 GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+-					<6 0 &gic 0 0 GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+-					<7 0 &gic 0 0 GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+-					<8 0 &gic 0 0 GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+-					<9 0 &gic 0 0 GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+-					<10 0 &gic 0 0 GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+-					<11 0 &gic 0 0 GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
++					<0 0 &gic GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
++					<1 0 &gic GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
++					<2 0 &gic GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
++					<3 0 &gic GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
++					<4 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
++					<5 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
++					<6 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++					<7 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
++					<8 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++					<9 0 &gic GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
++					<10 0 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
++					<11 0 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-map-mask = <0xffffffff 0x0>;
+ 			};
+ 		};
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+index dc8661ebd1f6..c4b1a59ba424 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+@@ -680,18 +680,18 @@ extirq: interrupt-controller@14 {
+ 				interrupt-controller;
+ 				reg = <0x14 4>;
+ 				interrupt-map =
+-					<0 0 &gic 0 0 GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+-					<1 0 &gic 0 0 GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+-					<2 0 &gic 0 0 GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+-					<3 0 &gic 0 0 GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+-					<4 0 &gic 0 0 GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+-					<5 0 &gic 0 0 GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+-					<6 0 &gic 0 0 GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+-					<7 0 &gic 0 0 GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+-					<8 0 &gic 0 0 GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+-					<9 0 &gic 0 0 GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+-					<10 0 &gic 0 0 GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+-					<11 0 &gic 0 0 GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
++					<0 0 &gic GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
++					<1 0 &gic GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
++					<2 0 &gic GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
++					<3 0 &gic GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
++					<4 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
++					<5 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
++					<6 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++					<7 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
++					<8 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++					<9 0 &gic GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
++					<10 0 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
++					<11 0 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-map-mask = <0xffffffff 0x0>;
+ 			};
+ 		};
+-- 
+2.25.1
+
