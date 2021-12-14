@@ -2,83 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6804A47446C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 15:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39943474472
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 15:05:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230431AbhLNOEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 09:04:46 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:33332 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234660AbhLNOEq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 09:04:46 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 603DAB819BC
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 14:04:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0B52C34609;
-        Tue, 14 Dec 2021 14:04:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639490684;
-        bh=R2yYzdfAUMdXI+rHDFOCMcqQHOwzK5dqvhI3qK51N7g=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=I9kugNlFqqdj9kOOEbtHWUckO09tFTPQHhnNjKszX0GgBgf31pU2X2swpO2CbNej2
-         EQz7XTWDmGrs2MdvvmjnV6cjUVhHRolhK9t+Xr4xs9P06ex60uLDDxtliedWMAI+C2
-         jGSicEHIuDw5DMve8HZYsQt/16NDKHU5TfMeQN8gGjewqVZBgtM46YCHxninb3lt70
-         xH8+7M+qzD0FFwKHVB8Eqs2mndC+KpE4YzTpKCn0aAfgxLwrta5hMpQmfzni4G4qy3
-         jqNzZ3KzpZqJ9hlYHNSTlLcchT3memO/an5L7TpOs6UkRO5DVlqqVxUZ/eiA0fgdE9
-         icumL5pWvAeUQ==
-From:   Will Deacon <will@kernel.org>
-To:     robh+dt@kernel.org,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc:     catalin.marinas@arm.com, kernel-team@android.com,
-        Will Deacon <will@kernel.org>, uchida.jun@socionext.com,
-        leo.yan@linaro.org, joro@8bytes.org, devicetree@vger.kernel.org,
-        jkchen@linux.alibaba.com, iommu@lists.linux-foundation.org,
-        mark.rutland@arm.com, robin.murphy@arm.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/3] perf/smmuv3: Support devicetree
-Date:   Tue, 14 Dec 2021 14:04:33 +0000
-Message-Id: <163948379278.3583372.10472496054779146145.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20211117144844.241072-1-jean-philippe@linaro.org>
-References: <20211117144844.241072-1-jean-philippe@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        id S232517AbhLNOFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 09:05:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55222 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234660AbhLNOFl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 09:05:41 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5AD9C061574;
+        Tue, 14 Dec 2021 06:05:41 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id q16so17378857pgq.10;
+        Tue, 14 Dec 2021 06:05:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=sNVaZcoVHlxLXa/Jf7uPFM+noQGJmIlvrXPMscQc4Mw=;
+        b=UvJcLTnh6X/23E1j6OjJ0TVDMQi/Ytdm54khn+qSbDO7vVYwsjUjfb1NyKmtqrBL6q
+         17vSswwDmYdNPVa7mNl8Lh0TgPieRwa/moovzU2e7Q3iWwlExvCTb79QRmJOiCHOOu7A
+         8pBEib51xM0xu6ssoAKqrqbxLdj+wRnrskEIVaEOHzd/A2gOnZkaPD0vz+3wbHSVU2GA
+         edVzhHPs1laAilmjQoVwD2s8o0BgXPeqPNmtK3JJVeMxxDOVU4P1zofpVDabAqqiRVmy
+         9FE6PiRFKHUgQCOfifvWV+nqpXwQh4zUB1I00DHss3YSsZ5KfXbZ62RTr64Ht7YF7Sol
+         mgRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=sNVaZcoVHlxLXa/Jf7uPFM+noQGJmIlvrXPMscQc4Mw=;
+        b=VzyEZj1ksk+Pcfa60vpp3q/pvPRsKUg14aYowMRoKGmZAgK1h3+D2FbAhb2LLrN8gC
+         NWa63VoXNBgiseMIBhc6uLliAVMD5KHA1A8zI/WxTbsToZ34Fqhkg7kVbOGMJ7dj92AE
+         HAWmyo930TWvyNNI170UZeMA5A4OonfsG8TSibZAxNKzsQc1ZKkRMj86ce+yMF5YvcaZ
+         oLf9HOAezajFHXLVCoxkBld/ZMnVxpZ8++F2HR5wj2YTVwtjQMvrw/wVWEsg9SVVW1FF
+         LwcqdFBEQmDWPLdE8us7YMbhdd9hnlz5snBdELluwIFqYa+kd9BGIpYjqXw5omLiwxa9
+         eIQw==
+X-Gm-Message-State: AOAM53156+nhsQ+fZyzygJQ3wQnNAl1i6fSgyBSfPyTVvYJ2lQIKuVOR
+        rY7tRaZR5JDLo7EQJDG8TKsgNcwGoyo=
+X-Google-Smtp-Source: ABdhPJzsSgMntXAntxr6Wpf/UqqvNI6rFWGWNmISDoEra6ndblVbk+16RisTwqybRSV9pKjpk2Hu8w==
+X-Received: by 2002:a05:6a00:2181:b0:4a7:ed1f:c5ba with SMTP id h1-20020a056a00218100b004a7ed1fc5bamr4477554pfi.2.1639490741284;
+        Tue, 14 Dec 2021 06:05:41 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id j20sm2245986pjl.3.2021.12.14.06.05.39
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 14 Dec 2021 06:05:41 -0800 (PST)
+From:   Wells Lu <wellslutw@gmail.com>
+To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de
+Cc:     wells.lu@sunplus.com, vincent.shih@sunplus.com,
+        Wells Lu <wellslutw@gmail.com>
+Subject: [PATCH net-next v5 0/2] This is a patch series for Ethernet driver of Sunplus SP7021 SoC.
+Date:   Tue, 14 Dec 2021 22:05:41 +0800
+Message-Id: <1639490743-20697-1-git-send-email-wellslutw@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 17 Nov 2021 14:48:42 +0000, Jean-Philippe Brucker wrote:
-> Add devicetree binding for the SMMUv3 PMU, called Performance Monitoring
-> Counter Group (PMCG) in the spec. Each SMMUv3 implementation can have
-> multiple independent PMCGs, for example one for the Translation Control
-> Unit (TCU) and one per Translation Buffer Unit (TBU).
-> 
-> Since v1 [1]:
-> * Fixed warnings in the binding doc
-> * Removed hip08 support
-> * Merged Robin's version. I took the liberty of splitting the driver
->   patch into 2 and 3. One fix in patch 3, and whitespace changes (the
->   driver uses spaces instead of tabs to align #define values, which I
->   was going to fix but actually seems more common across the tree.)
-> 
-> [...]
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control
+applications.
 
-Applied to arm64 (for-next/perf-smmu), thanks!
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-[1/3] dt-bindings: Add Arm SMMUv3 PMCG binding
-      https://git.kernel.org/arm64/c/2704e7594383
-[2/3] perf/smmuv3: Add devicetree support
-      https://git.kernel.org/arm64/c/3f7be4356176
-[3/3] perf/smmuv3: Synthesize IIDR from CoreSight ID registers
-      https://git.kernel.org/arm64/c/df457ca973fe
+Wells Lu (2):
+  devicetree: bindings: net: Add bindings doc for Sunplus SP7021.
+  net: ethernet: Add driver for Sunplus SP7021
 
-Cheers,
+ .../bindings/net/sunplus,sp7021-emac.yaml          | 149 +++++
+ MAINTAINERS                                        |   8 +
+ drivers/net/ethernet/Kconfig                       |   1 +
+ drivers/net/ethernet/Makefile                      |   1 +
+ drivers/net/ethernet/sunplus/Kconfig               |  36 ++
+ drivers/net/ethernet/sunplus/Makefile              |   6 +
+ drivers/net/ethernet/sunplus/spl2sw_define.h       | 282 +++++++++
+ drivers/net/ethernet/sunplus/spl2sw_desc.c         | 226 ++++++++
+ drivers/net/ethernet/sunplus/spl2sw_desc.h         |  19 +
+ drivers/net/ethernet/sunplus/spl2sw_driver.c       | 630 +++++++++++++++++++++
+ drivers/net/ethernet/sunplus/spl2sw_driver.h       |  12 +
+ drivers/net/ethernet/sunplus/spl2sw_int.c          | 253 +++++++++
+ drivers/net/ethernet/sunplus/spl2sw_int.h          |  13 +
+ drivers/net/ethernet/sunplus/spl2sw_mac.c          | 353 ++++++++++++
+ drivers/net/ethernet/sunplus/spl2sw_mac.h          |  19 +
+ drivers/net/ethernet/sunplus/spl2sw_mdio.c         | 126 +++++
+ drivers/net/ethernet/sunplus/spl2sw_mdio.h         |  12 +
+ drivers/net/ethernet/sunplus/spl2sw_phy.c          |  92 +++
+ drivers/net/ethernet/sunplus/spl2sw_phy.h          |  12 +
+ drivers/net/ethernet/sunplus/spl2sw_register.h     |  94 +++
+ 20 files changed, 2344 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/sunplus,sp7021-emac.yaml
+ create mode 100644 drivers/net/ethernet/sunplus/Kconfig
+ create mode 100644 drivers/net/ethernet/sunplus/Makefile
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_define.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_desc.c
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_desc.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_driver.c
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_driver.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_int.c
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_int.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_mac.c
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_mac.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_mdio.c
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_mdio.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_phy.c
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_phy.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_register.h
+
 -- 
-Will
+2.7.4
 
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
