@@ -2,157 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 541FB474BFD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 20:34:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94070474C35
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 20:45:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231935AbhLNTeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 14:34:07 -0500
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:44643 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234414AbhLNTeG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 14:34:06 -0500
-Received: by mail-ot1-f51.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso22038439otj.11;
-        Tue, 14 Dec 2021 11:34:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vCREBi8MWAP3rMq+yvusV0B0Cmd5+72EQ4wkbwL8Qt8=;
-        b=4Ep4LfBR2keZ5XxtY87+Abjgzklws9semIG/xkXpBJqklSgCQqiL/Pt7yxQSlcz6cr
-         ncg+6ndTWYV0TnnLQh7xc0oKt45DdYfyM2cOlHGlP+Sw8TpmhLbnWZnHQZVDMqlYwKns
-         30y2HW7PNARBaZDqm26zAIrICNcRc2ymQfLY5gysHEd+koScSwFpyJ1+oFKA8x6OR5xk
-         OSxStHAsTGGLYJDNzfoVUXuOYGgf6FQMqriyXkHsvsMPePShlGAbAdaQOY+0YYHquFUI
-         XHLIScT8l3ccG/UpCPZnyby7jMq7J0H3rohll1wR5VHJVFJSrn4Dvb6C1F6cmM2osKsw
-         1Bjg==
-X-Gm-Message-State: AOAM530WF1gV97XY2FIOIt5vprLL0whMMCEoV1JDuBQP0+zwu0ryBEfi
-        ztLn5GeO40IicW12TcRm5g==
-X-Google-Smtp-Source: ABdhPJzS445ppJ7YtxrZCmXQ4Ysb550vEy7U7/Nb5U0PvJN3zmwdkPgOLiU9JbdTLOoAxoh2Zn1rnQ==
-X-Received: by 2002:a9d:12f2:: with SMTP id g105mr5873165otg.301.1639510446260;
-        Tue, 14 Dec 2021 11:34:06 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r23sm154596ooj.37.2021.12.14.11.34.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 11:34:05 -0800 (PST)
-Received: (nullmailer pid 3776590 invoked by uid 1000);
-        Tue, 14 Dec 2021 19:34:04 -0000
-Date:   Tue, 14 Dec 2021 13:34:04 -0600
-From:   Rob Herring <robh@kernel.org>
+        id S234455AbhLNTpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 14:45:03 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:35436 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232206AbhLNTpC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 14:45:02 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BEJiZOt066021;
+        Tue, 14 Dec 2021 13:44:35 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1639511075;
+        bh=QbwF9PvySlAZfWMCGJJbnCKtJrdFlG0AGV6tD/F+cHs=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=gpfPvF7NS0zI8sji9Wk7g2XGGb/wDoV6YEAgZTnDnYx/IbhdqcuG9gpPFZrVdZfBL
+         xf/7+MWFJfmqvrlUcWHtgKsTxTJoJgP5/AL8SLj3GbbB32L3jY8yMyfIaxZRI9O0sM
+         J2H8t65E8CThk6qO3LZ1di76C/FZcKFBxhHEHysU=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BEJiZr1102883
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 14 Dec 2021 13:44:35 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 14
+ Dec 2021 13:44:34 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 14 Dec 2021 13:44:34 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BEJiYQh083577;
+        Tue, 14 Dec 2021 13:44:34 -0600
+Date:   Wed, 15 Dec 2021 01:14:33 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
 To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Richard Weinberger <richard@nod.at>,
+CC:     Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
         Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
         Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v3 1/4] dt-bindings: mtd: rzn1: Describe Renesas RZ/N1
- NAND controller
-Message-ID: <YbjxrFyfIz8Qydpb@robh.at.kernel.org>
-References: <20211209143228.525234-1-miquel.raynal@bootlin.com>
- <20211209143228.525234-2-miquel.raynal@bootlin.com>
+        <linux-mtd@lists.infradead.org>, Michal Simek <monstr@monstr.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>, <linux-spi@vger.kernel.org>
+Subject: Re: [PATCH v4 2/3] spi: dt-bindings: Describe stacked/parallel
+ memories modes
+Message-ID: <20211214194431.4kpwfgvju6msh5d4@ti.com>
+References: <20211210201039.729961-1-miquel.raynal@bootlin.com>
+ <20211210201039.729961-3-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20211209143228.525234-2-miquel.raynal@bootlin.com>
+In-Reply-To: <20211210201039.729961-3-miquel.raynal@bootlin.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 09, 2021 at 03:32:25PM +0100, Miquel Raynal wrote:
-> Add a Yaml description for this Renesas NAND controller bindings.
-> 
-> Provide a family-specific "rzn1" compatible and a more specific
-> "r9a06g032" one.
+Hi Miquel,
+
+On 10/12/21 09:10PM, Miquel Raynal wrote:
+> Describe two new memories modes:
+> - A stacked mode when the bus is common but the address space extended
+>   with an additinals wires.
+> - A parallel mode with parallel busses accessing parallel flashes where
+>   the data is spread.
 > 
 > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../mtd/renesas,rzn1-nand-controller.yaml     | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/renesas,rzn1-nand-controller.yaml
+>  .../bindings/spi/spi-peripheral-props.yaml    | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/renesas,rzn1-nand-controller.yaml b/Documentation/devicetree/bindings/mtd/renesas,rzn1-nand-controller.yaml
-> new file mode 100644
-> index 000000000000..cc6a358e33d1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/renesas,rzn1-nand-controller.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/renesas,rzn1-nand-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/N1x NAND flash controller device tree bindings
-> +
-> +maintainers:
-> +  - Miquel Raynal <miquel.raynal@bootlin.com>
-> +
-> +allOf:
-> +  - $ref: "nand-controller.yaml"
-> +
-> +properties:
-> +  compatible:
+> diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> index 5dd209206e88..4194fee8f556 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> @@ -82,6 +82,35 @@ properties:
+>      description:
+>        Delay, in microseconds, after a write transfer.
+>  
+> +  stacked-memories:
+> +    $ref: /schemas/types.yaml#/definitions/uint64-matrix
+
+Why matrix? Can't you use array here? Sorry, I am not much familiar with 
+JSON schema.
+
+> +    description: Several SPI memories can be wired in stacked mode.
+> +      This basically means that either a device features several chip
+> +      selects, or that different devices must be seen as a single
+> +      bigger chip. This basically doubles (or more) the total address
+> +      space with only a single additional wire, while still needing
+> +      to repeat the commands when crossing a chip boundary. The size of
+> +      each chip should be provided as members of the array.
+> +    minItems: 2
+> +    maxItems: 2
 > +    items:
-> +      - enum:
-> +          - renesas,r9a06g032-nand-controller
-> +      - const: renesas,rzn1-nand-controller
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: APB host controller clock
-> +      - description: External NAND bus clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: nand_hclk
-> +      - const: nand_eclk
+> +      maxItems: 1
 
-'nand_' is redundant.
+Thanks. This looks better to me.
 
-> +
-> +  "#address-cells": true
-> +  "#size-cells": true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +
-> +additionalProperties: true
+But before we go ahead, I think there has been some confusion around 
+what exactly your patches intend to support. Let's clear them up first. 
+What type of setup do you want to support?
 
-unevaluatedProperties: false
+  1. One single flash but with multiple dies, with each die sitting on a 
+     different CS.
+  2. Two (or more) identical but independent flash memories to be 
+     treated as one.
+  3. Two (or more) different and independent flash memories to be 
+     treated as one.
 
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/r9a06g032-sysctrl.h>
-> +
-> +    nand-controller@40102000 {
-> +        compatible = "renesas,r9a06g032-nand-controller",
-> +                     "renesas,rzn1-nand-controller";
-> +        reg = <0x40102000 0x2000>;
-> +        interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&sysctrl R9A06G032_HCLK_NAND>, <&sysctrl R9A06G032_CLK_NAND>;
-> +        clock-names = "nand_hclk", "nand_eclk";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +    };
-> -- 
-> 2.27.0
-> 
-> 
+In our earlier exchanges you said you want to support 2. And when I 
+wanted you to account for 3 as well you said we should use mtdconcat for 
+that. So my question is, why can't we use mtdconcat for 2 as well, since 
+it is just a special case of 3? And if we are using mtdconcat, then why 
+do we need this at all? Shouldn't you then choose the chip at MTD layer 
+and use the respective SPI device to get the CS value, which would make 
+this property useless?
+
+I can see this making sense for case 1. For that case you said you don't 
+have an existing datasheet or device to propose. And if there is no real 
+device doing it I see little point in figuring out a binding for it.
+
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
