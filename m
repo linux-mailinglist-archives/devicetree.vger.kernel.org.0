@@ -2,79 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E415474641
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 16:18:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3853147464F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 16:21:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235340AbhLNPSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 10:18:42 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:45878 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235357AbhLNPSl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 10:18:41 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5138B6156E;
-        Tue, 14 Dec 2021 15:18:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E44FC34605;
-        Tue, 14 Dec 2021 15:18:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639495120;
-        bh=mEbPeXsB67W9U6l/CDNJAqk9FaFgvYpMLADkkYtKvlc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=av6TKgBpidFRVzmgEir7OzPlWXZj4u6Yfzx66u2R1J43vHPxHv5dfUlQ+pw+2p7NQ
-         1gb3dfZmMNGN4U/dcX92CABeMfhUuhQErd1TXmZSk2EgJvsXWWJS/RMx/MrBHXv9wC
-         loT9TsoRSPhOCL8ZYDOBA5d4Jp3HobnugKl6AMcu1rLsuVV/ZwhVZSlvSqupIQMkwf
-         1/R0rJ9W3x2sHrcAe1TY+n6VNaN5qE9et0Jim2s3B0loeeixng6r9S/JT8wT+Q14qA
-         Z7y0Wnowj03jlX7gv60R9WFc/sC8/nMnJ74CA/phF8suXP2NCYBVAzCQfjMwPF1Gz+
-         8xswokRRLyGLQ==
-From:   Will Deacon <will@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>, Robin Murphy <robin.murphy@arm.com>
-Cc:     catalin.marinas@arm.com, kernel-team@android.com,
-        Will Deacon <will@kernel.org>,
+        id S234493AbhLNPV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 10:21:28 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:36380 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232952AbhLNPV1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 10:21:27 -0500
+Received: by mail-oi1-f178.google.com with SMTP id t23so27583840oiw.3;
+        Tue, 14 Dec 2021 07:21:27 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=CeVTJxVLieMM1wNrzU3l7k4wN5m7Qg+xX9F3SbifJyk=;
+        b=1SCyT7KmKJWVQx3UZCi02dhDX0Xiv3K7Kzlji3rKCZpORleAFhOAzIl+JBBxBGY9Rm
+         NK17VfwEW3i/dC4JYT9eEs9OZdqsYr893L1m+Hz35TS9PoH8YuS7xYxSXIVQLoDPx6Pm
+         GGtXAPFvAO0H19ZIpV/JFxyrD3MHTGsIsqxnD0EjvbeU2zGuOcoghaqSKROkM9/nA/W3
+         x/5os4Bsdhdb/zeN5dgUWfSHHso68F0jw4EmSdxu1vnIKdqfS8r6lH/gN/r8pSfve8TP
+         mlU4Qd6/nNqiDZHX02LN9VQwll30a9bORWzM/78cYMP+GIhA7YT8BDYsgyGCDCgRkqAz
+         7d+Q==
+X-Gm-Message-State: AOAM531su6BpSVO/1b5j6Wdtj4Daur/s2s3Vq0RckCUPOdSkPpmrvxdM
+        7PBp3SjnS7DujX7Of7erEQ==
+X-Google-Smtp-Source: ABdhPJxJLKiNRfmfOx7gj4LnEZr9eaLimLXHtgbjhIGu9Ogs1oF3YghVqWH6ACnV/L59+f+nO5j8pA==
+X-Received: by 2002:a05:6808:10c9:: with SMTP id s9mr4679639ois.23.1639495286921;
+        Tue, 14 Dec 2021 07:21:26 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id l27sm15514ota.26.2021.12.14.07.21.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Dec 2021 07:21:25 -0800 (PST)
+Received: (nullmailer pid 3397588 invoked by uid 1000);
+        Tue, 14 Dec 2021 15:21:25 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     devicetree@vger.kernel.org,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Zhiqiang Hou <Zhiqiang.Hou@nxp.com>,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>, Biwen Li <biwen.li@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        iommu@lists.linux-foundation.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 0/2] Add support from SM8450 IOMMU
-Date:   Tue, 14 Dec 2021 15:18:16 +0000
-Message-Id: <163949303736.2865377.9243428032755790961.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20211201073943.3969549-1-vkoul@kernel.org>
-References: <20211201073943.3969549-1-vkoul@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Li Yang <leoyang.li@nxp.com>
+In-Reply-To: <20211214013800.2703568-11-vladimir.oltean@nxp.com>
+References: <20211214013800.2703568-1-vladimir.oltean@nxp.com> <20211214013800.2703568-11-vladimir.oltean@nxp.com>
+Subject: Re: [RFC PATCH devicetree 10/10] dt-bindings: ls-extirq: add a YAML schema for the validator
+Date:   Tue, 14 Dec 2021 09:21:25 -0600
+Message-Id: <1639495285.020377.3397587.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 1 Dec 2021 13:09:41 +0530, Vinod Koul wrote:
-> This adds the binding and support for IOMMU found in SM8450 SoC
+On Tue, 14 Dec 2021 03:38:00 +0200, Vladimir Oltean wrote:
+> This is a conversion of the free-form description of the device tree
+> bindings to a YAML schema. The description of fsl,extirq-map is best
+> effort: it looks like the devicetree schema doesn't really like vendor
+> properties getting too complicated, and puts a bunch of descriptions on
+> what they can and can't describe. An array of uint32s is the best I
+> could come up with. It doesn't help, either, that the
+> schemas/interrupt-controller.yaml definition for interrupt-map, which
+> I was planning to use as an inspiration, is "true # FIXME", all things
+> which aren't valid in vendor properties.
 > 
-> Vinod Koul (2):
->   dt-bindings: arm-smmu: Add compatible for SM8450 SoC
->   iommu: arm-smmu-impl: Add SM8450 qcom iommu implementation
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> ---
+>  .../interrupt-controller/fsl,ls-extirq.txt    |  56 ---------
+>  .../interrupt-controller/fsl,ls-extirq.yaml   | 110 ++++++++++++++++++
+>  2 files changed, 110 insertions(+), 56 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
 > 
-> Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
->  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c            | 1 +
->  2 files changed, 2 insertions(+)
-> 
-> [...]
 
-Applied to will (for-joerg/arm-smmu/updates), thanks!
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-[1/2] dt-bindings: arm-smmu: Add compatible for SM8450 SoC
-      https://git.kernel.org/will/c/810d8cabaab5
-[2/2] iommu: arm-smmu-impl: Add SM8450 qcom iommu implementation
-      https://git.kernel.org/will/c/cd76990c94bb
+yamllint warnings/errors:
 
-Cheers,
--- 
-Will
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.example.dts:34.31-32 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1413: dt_binding_check] Error 2
 
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1567537
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
