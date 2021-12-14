@@ -2,119 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3569547447C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 15:06:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74271474494
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 15:16:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234795AbhLNOGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 09:06:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55424 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234789AbhLNOGX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 09:06:23 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8F7C061748
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 06:06:23 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id m12so28478283ljj.6
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 06:06:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=5OHIqTeCctslyXClwppcychD+Bt9v8imN5KIL/FB1ac=;
-        b=7XNeTlprK0EC0EYQZk82af0lBAepB2dSN4LxTKPJtbKj+K981dVNmwNhQ3deOSZCu/
-         hX+W/TP/rpNK4MUWYBCE18wZbL24yJkLjpH5xM303ZliohXK4AMPKAjtZBW/jFNvCtUf
-         U5KPaD9rHkdRCvqTSfD71ZaMU04/yz0dqi8yqF7V+RZYght30ZNFcaAesjo0ezHHQJR9
-         e9wiK+147Su18xfMiYrMWRnCB5vJAaYnTJJf3/RHY9Zn4fnU/oZ1PNqA6/OmYwwTaWob
-         5CHs7k981KAWlqnsx+w/zP5mh1Aid6zjsY9pFm4hzvJtHDTYSF/FRFnRmTWukZXcXkWK
-         9x3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=5OHIqTeCctslyXClwppcychD+Bt9v8imN5KIL/FB1ac=;
-        b=Xa2zRb7GbvFGd7KXCRjTCkW8wHDKdKUdmJb+B3nxG6cUzOc76MAmN2PlE/rgAIhJqg
-         ZSLakNbGiJoZlP8Kn30IHyGAPCy2ZlqTlagDY1QhwURpNq5OFG9SBMsCUvRiONQpqZMQ
-         3O7T96XWvuqfC48l9hUcsFoOGmhy+pEb6qVifKMTDqyR0LLo6pWI1ccCXJLs8mYKTCae
-         mVjV/sOkvSc3mgy6g25ngyz+AzoN11+CaJ6ZHia9L7Xv/o82rkkWzNTNYRSAuZAa3IKm
-         yzX0xvaLi/ks2PytZfCHyy5ZHc8sluMx1Z4Px1nMlqNyqXp1D6kVHE8RWHuLJLOrpgO5
-         l0rA==
-X-Gm-Message-State: AOAM5319CSpL313LY4Qr6+QjQk3O89spauWtDfEy3ESXZdZ4BwyEqOv7
-        Fs6JNn5B5Czj3K/gFzh8Oy+6Xg==
-X-Google-Smtp-Source: ABdhPJwUkvgiweqBFysLh77zBjdGwWST7ymu1RsItxPuFZy/tsGkwB9hIm9cipKABO1vQXYDIc2LiA==
-X-Received: by 2002:a2e:b6d4:: with SMTP id m20mr5068850ljo.471.1639490781628;
-        Tue, 14 Dec 2021 06:06:21 -0800 (PST)
-Received: from cobook.home (nikaet.starlink.ru. [94.141.168.29])
-        by smtp.gmail.com with ESMTPSA id i4sm1839605lfe.26.2021.12.14.06.06.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 06:06:21 -0800 (PST)
-From:   Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-Subject: [PATCH v2] arm64: dts: renesas: r8a77961: Add lvds0 device node
-Date:   Tue, 14 Dec 2021 17:06:07 +0300
-Message-Id: <20211214140607.1147976-1-nikita.yoush@cogentembedded.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <d4a00def-7765-e0e4-c5c7-8d648eeb8cf2@omp.ru>
-References: <d4a00def-7765-e0e4-c5c7-8d648eeb8cf2@omp.ru>
+        id S232418AbhLNOQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 09:16:23 -0500
+Received: from foss.arm.com ([217.140.110.172]:57012 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232406AbhLNOQX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Dec 2021 09:16:23 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 86B4B6D;
+        Tue, 14 Dec 2021 06:16:22 -0800 (PST)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 60B243F793;
+        Tue, 14 Dec 2021 06:16:21 -0800 (PST)
+From:   Robin Murphy <robin.murphy@arm.com>
+To:     will@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     catalin.marinas@arm.com, suzuki.poulose@arm.com,
+        thierry.reding@gmail.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 0/5] arm64: PMU updates
+Date:   Tue, 14 Dec 2021 14:16:12 +0000
+Message-Id: <cover.1639490264.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.28.0.dirty
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the missing lvds0 node for the R-Car M3-W+ SoC.
+Hi all,
 
-Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
----
-Changes in v2:
-- fix typo in subject
+Here's v2, with the DSU binding actually finished (oh the shame...) and
+the NVIDIA PMU patch pulled in to benefit from the cleanup and keep
+things manageably together. The initial binding patch from v1 is no
+longer included since Rob has picked it up separately.
 
- arch/arm64/boot/dts/renesas/r8a77961.dtsi | 27 +++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+Refactoring arm_pmu's probing to be more modular turns out to be a
+substantial yak to shave, so in the end I decided it *is* worth
+implementing Mark's macro suggestion now - after all, it can simply be
+converted from a function template to a structure template as and when
+the time comes.
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-index 86d59e7e1a87..d324dfd0d1f7 100644
---- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-@@ -2718,6 +2718,33 @@ du_out_hdmi0: endpoint {
- 				port@2 {
- 					reg = <2>;
- 					du_out_lvds0: endpoint {
-+						remote-endpoint = <&lvds0_in>;
-+					};
-+				};
-+			};
-+		};
-+
-+		lvds0: lvds@feb90000 {
-+			compatible = "renesas,r8a7796-lvds";
-+			reg = <0 0xfeb90000 0 0x14>;
-+			clocks = <&cpg CPG_MOD 727>;
-+			power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
-+			resets = <&cpg 727>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					lvds0_in: endpoint {
-+						remote-endpoint = <&du_out_lvds0>;
-+					};
-+				};
-+				port@1 {
-+					reg = <1>;
-+					lvds0_out: endpoint {
- 					};
- 				};
- 			};
+Cheers,
+Robin.
+
+
+Robin Murphy (4):
+  arm64: perf: Simplify registration boilerplate
+  arm64: perf: Support new DT compatibles
+  dt-bindings: perf: Convert Arm DSU to schema
+  dt-bindings: perf: Add compatible for Arm DSU-110
+
+Thierry Reding (1):
+  arm64: perf: Support Denver and Carmel PMUs
+
+ .../devicetree/bindings/arm/arm-dsu-pmu.txt   |  27 -----
+ .../devicetree/bindings/perf/arm,dsu-pmu.yaml |  45 +++++++
+ arch/arm64/kernel/perf_event.c                | 111 +++++++-----------
+ 3 files changed, 88 insertions(+), 95 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
+ create mode 100644 Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
+
 -- 
-2.30.2
+2.28.0.dirty
 
