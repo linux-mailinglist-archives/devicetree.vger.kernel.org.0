@@ -2,143 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09DCC474C6E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 21:04:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D74D474C74
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 21:05:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237562AbhLNUEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 15:04:52 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:34727 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230188AbhLNUEw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 15:04:52 -0500
-Received: by mail-oi1-f181.google.com with SMTP id t19so28720262oij.1;
-        Tue, 14 Dec 2021 12:04:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=RJqjtodrdvg+GjFlTR3WmiDMbCMbLHzHFKDDXT45/9Q=;
-        b=k+3fC2Ntwd3C0FvFBVgzKsyLANZeLh5chw1XUFCk4atO2wnl64KlbYh79kUANZ7BQ/
-         L0REUVqYwiLgxY+LMtULc+x8iTP2CzHWdhzY/z1YqxnZE2stvM5Pk5ca86wzD5ObmOA2
-         IcurzyEFMxj9uSazgS+AhZmpJZRmHfhohlFHEp2tPRIuBoCqa7I3ytb/htnMi8y/0FzY
-         zdqX0Vyd5JcRbvAQiRydpJFSXLASfdjoHmnNBTpUPV1HcjglpwMZha5Hy9wqwbUN3FkQ
-         aY5xrtNt50vV/PYWHLPrQON1HDdPkZTV1bOXEEId/6oo8MD5nSJ3LiIlmuKT1Xyi0Qab
-         /OdA==
-X-Gm-Message-State: AOAM532Fd1fzkDk3hj2WuunQyb+OZNJt6Vnrsy8NSCisNcTeyFC1f2tV
-        UGmZybSpx5QAyD9fVXmUyg==
-X-Google-Smtp-Source: ABdhPJxyuWusHlo7VZe3TYTWV8m+4S+pvP/3wRQxB6XqQu8wB10s/8LoKvS0LuyEz0e6B3WOTMaVxg==
-X-Received: by 2002:a05:6808:158d:: with SMTP id t13mr6133558oiw.31.1639512291886;
-        Tue, 14 Dec 2021 12:04:51 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id s1sm158309ooo.11.2021.12.14.12.04.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 12:04:51 -0800 (PST)
-Received: (nullmailer pid 3819894 invoked by uid 1000);
-        Tue, 14 Dec 2021 20:04:50 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Baruch Siach <baruch.siach@siklu.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        devicetree@vger.kernel.org,
-        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        linux-pwm@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-In-Reply-To: <b5053b42f73e574f48cf860a8e225d6b1939d216.1639499239.git.baruch@tkos.co.il>
-References: <ab2a4c345844f66aa22a847e522b2f4ee0786d8b.1639499239.git.baruch@tkos.co.il> <b5053b42f73e574f48cf860a8e225d6b1939d216.1639499239.git.baruch@tkos.co.il>
-Subject: Re: [PATCH v10 2/3] dt-bindings: pwm: add IPQ6018 binding
-Date:   Tue, 14 Dec 2021 14:04:50 -0600
-Message-Id: <1639512290.319512.3819893.nullmailer@robh.at.kernel.org>
+        id S230215AbhLNUFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 15:05:33 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:40292 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229795AbhLNUFd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 15:05:33 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BEK5Tdj073325;
+        Tue, 14 Dec 2021 14:05:29 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1639512329;
+        bh=sTq1XXltDvGWlTPqpx+R/8j2njkr9h2axc9qT8+IKR0=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=hZDGbsFzexBZmTlmK5unibgjTdzQr71reTA2YXbBqyZH7XvaJ5TgcBbtADqFKLjsA
+         9LL1YTy20eHsHlOxWhAWT7y2xP5MjWW+5y7jRgaG7rGA6xyNxnxK0mBXuMXTEescVx
+         AgWhgoqK5ISYOXn3eQTTK1NDuVQF1K+oelv1QZL8=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BEK5TSb128341
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 14 Dec 2021 14:05:29 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 14
+ Dec 2021 14:05:29 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 14 Dec 2021 14:05:29 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BEK5S0t004398;
+        Tue, 14 Dec 2021 14:05:28 -0600
+Date:   Wed, 15 Dec 2021 01:35:27 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Dinh Nguyen <dinh.linux@gmail.com>
+CC:     Dinh Nguyen <dinguyen@kernel.org>, <devicetree@vger.kernel.org>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCHv2 1/3] dt-bindings: spi: cadence-quadspi: document
+ "cdns,qspi-nor-ver-00-10"
+Message-ID: <20211214200525.7tp2ovbh6vc6rks6@ti.com>
+References: <20211203181714.3138611-1-dinguyen@kernel.org>
+ <20211206102242.e2ql7kcgzivh75v4@ti.com>
+ <CADhT+wfrtqO6dDSUbq-eeyRodzigA7Gsce0xgK6mzLo0ujb5AQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CADhT+wfrtqO6dDSUbq-eeyRodzigA7Gsce0xgK6mzLo0ujb5AQ@mail.gmail.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Dec 2021 18:27:18 +0200, Baruch Siach wrote:
-> From: Baruch Siach <baruch.siach@siklu.com>
+On 08/12/21 05:45PM, Dinh Nguyen wrote:
+> On Mon, Dec 6, 2021 at 9:51 PM Pratyush Yadav <p.yadav@ti.com> wrote:
+> >
+> > On 03/12/21 12:17PM, Dinh Nguyen wrote:
+> > > The QSPI controller on Intel's SoCFPGA platform does not implement the
+> > > CQSPI_REG_WR_COMPLETION_CTRL register, thus a write to this register
+> > > results in a crash.
+> > >
+> > > The module/revision ID is written in the MODULE_ID register. For this
+> > > variance, bits 23-8 is 0x0010.
+> >
+> > When I looked at your original patches I was under the impression that
+> > this was a SoCFPGA specific thing and did not apply to other
+> > implementation of the IP in general.
+> >
+> > If this is indeed a generic thing and we can detect it via the MODULE_ID
+> > register [0], then why not just read that register at probe time and
+> > apply this quirk based on the ID? Why then do we need a separate
+> > compatible at all?
+> >
+> > [0] I would like to see it stated explicitly somewhere that version
+> > 0x0010 does not support the WR_COMPLETION_CTRL register.
+> >
 > 
-> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
-> 
-> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
-> ---
-> This series does not convert the TCSR binding documentation to YAML. As
-> a result, this commit adds new a dt_binding_check warning:
-> 
-> /example-0/syscon@1937000: failed to match any schema with compatible: ['qcom,tcsr-ipq 6018', 'syscon', 'simple-mfd']
-> 
-> If that is a blocker to IPQ6018 PWM support, so be it. Patches will wait
-> for someone else to push them further.
-> 
-> v10:
-> 
->   No change
-> 
-> v9:
-> 
->   Add 'ranges' property to example (Rob)
-> 
->   Drop label in example (Rob)
-> 
-> v8:
-> 
->   Add size cell to 'reg' (Rob)
-> 
-> v7:
-> 
->   Use 'reg' instead of 'offset' (Rob)
-> 
->   Drop 'clock-names' and 'assigned-clock*' (Bjorn)
-> 
->   Use single cell address/size in example node (Bjorn)
-> 
->   Move '#pwm-cells' lower in example node (Bjorn)
-> 
->   List 'reg' as required
-> 
-> v6:
-> 
->   Device node is child of TCSR; remove phandle (Rob Herring)
-> 
->   Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
-> 
-> v5: Use qcom,pwm-regs for phandle instead of direct regs (Bjorn
->     Andersson, Kathiravan T)
-> 
-> v4: Update the binding example node as well (Rob Herring's bot)
-> 
-> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
-> 
-> v2: Make #pwm-cells const (Rob Herring)
-> ---
->  .../devicetree/bindings/pwm/ipq-pwm.yaml      | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
-> 
+> I cannot for sure confirm that this condition applies to only 0x0010
+> version of the
+> IP. I can verify that the IP that is in all 3 generations of SoCFPGA
+> devices, all have
+> MODULE_ID value of 0x0010 and all do not have the WR_COMPLETION_CTRL
+> register implemented.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I agree with Rob here. If you are not sure that this is a generic IP 
+thing then you should not use a generic compatible.
 
-yamllint warnings/errors:
+> 
+> I'm almost certain this feature is not SoCFPGA specific, but
+> since I only had SoCFPGA hardware, that was my initial patch. I made the mistake
+> of not CC'ing the devicetree maintainers until I sent the DTS binding
+> patch change,
+> and he rightly suggested making the binding something more generic.
+> 
+> I do like your idea of making a determination in the driver without
+> being dependent
+> on a dts binding. I'd like to know the impetus behind your original
+> patch of removing the
+> dependency of "if (f_pdata->dtr)"  for the write to the WR_COMPLETION_CTRL
+> register? Perhaps there's some other common property that we can key
+> off for why the register
+> is not implemented?
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pwm/ipq-pwm.example.dt.yaml:0:0: /example-0/syscon@1937000: failed to match any schema with compatible: ['qcom,tcsr-ipq6018', 'syscon', 'simple-mfd']
+Please read the comment just above that line ;-)
 
-doc reference errors (make refcheckdocs):
+  /*
+   * SPI NAND flashes require the address of the status register to be
+   * passed in the Read SR command. Also, some SPI NOR flashes like the
+   * cypress Semper flash expect a 4-byte dummy address in the Read SR
+   * command in DTR mode.
+   *
+   * But this controller does not support address phase in the Read SR
+   * command when doing auto-HW polling. So, disable write completion
+   * polling on the controller's side. spinand and spi-nor will take
+   * care of polling the status register.
+   */
 
-See https://patchwork.ozlabs.org/patch/1567793
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
