@@ -2,127 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AC9E474788
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 17:21:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9A7B4747C4
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 17:24:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229542AbhLNQU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 11:20:59 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:58468
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231397AbhLNQU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Dec 2021 11:20:57 -0500
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        id S235939AbhLNQXW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 11:23:22 -0500
+Received: from ixit.cz ([94.230.151.217]:53922 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235873AbhLNQXF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Dec 2021 11:23:05 -0500
+Received: from [192.168.1.138] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7F4913F1C6
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 16:20:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639498856;
-        bh=g72ITHpP/7K4Fh+hY6HlPMtuc/bG4lnmI0aLyihu7SE=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=YXj5kSLyl8bOuIy4i6GRBdZ4iTRkw7zIvB8zOiOA42Dpwo7V1m5vo0SRYOlXqktki
-         K5P1HGPDF5RjuRseMq2pzmH43YrFe6J4/rmzo7lel6BFgVhY0mwwFLyosdh03lYN5s
-         8GRn0vSeLiKtR5fgE9KSganjGawDRZVdmWEBDoz4sXSTPSf/QZKS4p3v84zSC4FqsC
-         Kd3PgH4q694b2Xe8N1x4s4tmrZlmiq1Hc3LG5dPYi1KZY8IH1jjBgwCLlFA/3naGsu
-         BcevwvkqQXVC9GBIzB1yDR6ntH20fv9aG299Lu+bVdKk1sQbv053BHi7QTOVVPJhae
-         Ls2c7H2ohb2tw==
-Received: by mail-lf1-f69.google.com with SMTP id w11-20020a05651234cb00b0041f93ca5812so7006431lfr.21
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 08:20:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=g72ITHpP/7K4Fh+hY6HlPMtuc/bG4lnmI0aLyihu7SE=;
-        b=q7HsgAETDirYB6rZUY1t/tMVuSZRrVf2F2rlATMqC3aNe2VNroLHcBeRp5EVHUTKQL
-         PwE+HaCeicL6+b8xb66HUpVPteLhNq3gsQaUEbz4rHsRCJZJjOGkDTRPnTeAPsBg6KgC
-         LXuXLAzsIJ8JkwCJv5xbbcZrQCoZv8ftJLvDycCxMFgXHTKg6AmIf4RzXFCUdd/qYh9G
-         xBgBuEfp9Mcczrw/IFrxXHRhKXOCkgONZswyEc5peN4Y5F1gWB0187kI/jLAJ9+idhEk
-         6n2WfDV0U9HNWAUiYLafg9U5C/dsT06z+PV8dWbuunFqcYYhajaG1uDVJJQ1Mw+eLYrx
-         f/aw==
-X-Gm-Message-State: AOAM5307dtRxBwYRtnfWmN8r64QIsDCzOmpWPdjXcu0N8qwsbqccazmb
-        7Y+0hNICl7a9/9RJ+M1C+pDR/rlap18cUYY8BjJATS7pa1Cry0q1NIAR9MzywaEwDPmkFvz0byW
-        VCuMVv5gk/q5AImKXYbpfF5M1uAe77Nscn15zjcs=
-X-Received: by 2002:a05:6512:3503:: with SMTP id h3mr5805388lfs.235.1639498855825;
-        Tue, 14 Dec 2021 08:20:55 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzGdv+GMQwbnRoitBS7QBe4nCDhfEFoyFZe3SNqC32gORq8viuxl4Tm8fvxQYz8nQWL+HOjVw==
-X-Received: by 2002:a05:6512:3503:: with SMTP id h3mr5805362lfs.235.1639498855592;
-        Tue, 14 Dec 2021 08:20:55 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id bp41sm29251lfb.129.2021.12.14.08.20.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Dec 2021 08:20:55 -0800 (PST)
-Message-ID: <146b173e-f445-bebc-d44c-afd41123eb80@canonical.com>
-Date:   Tue, 14 Dec 2021 17:20:53 +0100
+        by ixit.cz (Postfix) with ESMTPSA id 5B1522243C;
+        Tue, 14 Dec 2021 17:23:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1639498982;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=ZktYTD9EM17d3mZGc7bB98tBUNT5vMvozHbm6QejS+U=;
+        b=jbjT/cxAuBYI2jZmaJLbC05eA+vLArOWkFQ2k8DA3OLQsXDyZb1+bv+6sor5Oub7PXTnYk
+        LGsB6MEGaIzAy08N0gc6Jcoy+Wmf5LikcDkPksFo4vvOI41zGC7RBJrmiyQ7bp3Y/oge4s
+        GIK1yKcjfvozF/oS+hLQtwx5HpCrSSs=
+Date:   Tue, 14 Dec 2021 17:22:55 +0100
+From:   David Heidelberg <david@ixit.cz>
+Subject: Re: [PATCH] dt-bindings: rtc: qcom-pm8xxx-rtc: update register
+ numbers
+To:     Rob Herring <robh@kernel.org>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Caleb Connolly <caleb@connolly.tech>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Satya Priya <skakit@codeaurora.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rtc@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Message-Id: <7I544R.923UO8WZHK48@ixit.cz>
+In-Reply-To: <1639437829.348405.1773613.nullmailer@robh.at.kernel.org>
+References: <20211213192946.111320-1-david@ixit.cz>
+        <1639437829.348405.1773613.nullmailer@robh.at.kernel.org>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 1/2] dt-bindings: clock: exynos850: Add bindings for
- Exynos850 sysreg clocks
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     linux-samsung-soc@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        David Virag <virag.david003@gmail.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh@kernel.org>
-References: <20211126203641.24005-1-semen.protsenko@linaro.org>
- <YagPWOj0CLxE/+ER@robh.at.kernel.org>
- <CAPLW+4=LTd8i2Tqr7Wa0NDRTJ5mRJXP=EvRCx84WxnwCDQ1eVg@mail.gmail.com>
- <CAPLW+4nk7Y8Psg9ZVacvzJeAV3VAGWfi+9hTPWgTeAWqh67AKQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAPLW+4nk7Y8Psg9ZVacvzJeAV3VAGWfi+9hTPWgTeAWqh67AKQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/12/2021 17:15, Sam Protsenko wrote:
-> On Tue, 7 Dec 2021 at 22:54, Sam Protsenko <semen.protsenko@linaro.org> wrote:
->>
->> On Thu, 2 Dec 2021 at 02:12, Rob Herring <robh@kernel.org> wrote:
->>>
->>> On Fri, 26 Nov 2021 22:36:40 +0200, Sam Protsenko wrote:
->>>> System Register is used to configure system behavior, like USI protocol,
->>>> etc. SYSREG clocks should be provided to corresponding syscon nodes, to
->>>> make it possible to modify SYSREG registers.
->>>>
->>>> While at it, add also missing PMU and GPIO clocks, which looks necessary
->>>> and might be needed for corresponding Exynos850 features soon.
->>>>
->>>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
->>>> ---
->>>>  include/dt-bindings/clock/exynos850.h | 12 +++++++++---
->>>>  1 file changed, 9 insertions(+), 3 deletions(-)
->>>>
->>>
->>> Acked-by: Rob Herring <robh@kernel.org>
->>
->> Hi Sylwester,
->>
->> Can you please review and apply this series, if it's ok?
->>
-> 
-> Hi Krzysztof,
-> 
-> Do you think it's possible to take this series in your tree? Once it's
-> applied, I can send the board support (dts) series -- this is the only
-> remaining blocker for that right now.
 
-I would need an Ack from Sylwester anyway. If you have dependencies (the
-DTS), you should send them together with it. Once Sylwester applies this
-patch, the DTS either waits till next release or it has to be modified
-to not depend on this patch.
 
-Best regards,
-Krzysztof
+
+On Mon, Dec 13 2021 at 17:23:49 -0600, Rob Herring <robh@kernel.org> 
+wrote:
+> On Mon, 13 Dec 2021 20:29:45 +0100, David Heidelberg wrote:
+>>  Extend registers up to 2, also document their names.
+>> 
+>>  Also fixes warnings generated by `make 
+>> qcom/sdm845-oneplus-fajita.dtb`:
+>>  arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: rtc@6000: 
+>> reg: [[24576], [24832]] is too long
+>>          From schema: 
+>> Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
+>>  arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: rtc@6000: 
+>> 'reg-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+>>          From schema: 
+>> Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
+>> 
+>>  Signed-off-by: David Heidelberg <david@ixit.cz>
+>>  ---
+>>   .../devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml         | 9 
+>> ++++++++-
+>>   1 file changed, 8 insertions(+), 1 deletion(-)
+>> 
+> 
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for 
+> dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/1567467
+> 
+> 
+> rtc@11d: compatible: Additional items are not allowed 
+> ('qcom,pm8921-rtc' was unexpected)
+> 	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
+> 
+> rtc@11d: compatible: ['qcom,pm8018-rtc', 'qcom,pm8921-rtc'] is too 
+> long
+> 	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
+
+
+Would you consider safe, if I sent patch to remove redundant 
+`qcom,pm8921-rtc` from arch/arm/boot/dts/qcom-mdm9615.dtsi?
+
+David
+
+
