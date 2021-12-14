@@ -2,25 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1E59473F11
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 10:15:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90DB3473F1C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 10:15:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230173AbhLNJPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 04:15:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44382 "EHLO
+        id S230163AbhLNJPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 04:15:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230171AbhLNJPN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 04:15:13 -0500
+        with ESMTP id S230266AbhLNJPd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 04:15:33 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A03C061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 01:15:13 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A941CC061574
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 01:15:32 -0800 (PST)
 Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1mx3to-0006OV-5K; Tue, 14 Dec 2021 10:15:04 +0100
-Message-ID: <875eebb672852680204f5d45986854bd06a49f42.camel@pengutronix.de>
-Subject: Re: [PATCH V4 4/9] dt-bindings: soc: add binding for i.MX8MN DISP
+        id 1mx3u8-0006W4-SK; Tue, 14 Dec 2021 10:15:24 +0100
+Message-ID: <26d00447bc3a94b8034b8fde095004717659f235.camel@pengutronix.de>
+Subject: Re: [PATCH V4 5/9] soc: imx: imx8m-blk-ctrl: add i.MX8MN DISP
  blk-ctrl
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Adam Ford <aford173@gmail.com>,
@@ -33,10 +33,10 @@ Cc:     aford@beaconembedded.com, tharvey@gateworks.com,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Tue, 14 Dec 2021 10:15:02 +0100
-In-Reply-To: <20211128131853.15125-5-aford173@gmail.com>
+Date:   Tue, 14 Dec 2021 10:15:23 +0100
+In-Reply-To: <20211128131853.15125-6-aford173@gmail.com>
 References: <20211128131853.15125-1-aford173@gmail.com>
-         <20211128131853.15125-5-aford173@gmail.com>
+         <20211128131853.15125-6-aford173@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
@@ -50,119 +50,118 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Am Sonntag, dem 28.11.2021 um 07:18 -0600 schrieb Adam Ford:
-> Add the DT binding for the i.MX8MN DISP blk-ctrl.
+> This adds the description for the i.MX8MN disp blk-ctrl.
 > 
 > Signed-off-by: Adam Ford <aford173@gmail.com>
 
 Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
 
 > ---
->  .../soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml     | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
+>  drivers/soc/imx/imx8m-blk-ctrl.c | 77 +++++++++++++++++++++++++++++++-
+>  1 file changed, 76 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
-> new file mode 100644
-> index 000000000000..fbeaac399c50
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
+> index c2f076b56e24..511e74f0db8a 100644
+> --- a/drivers/soc/imx/imx8m-blk-ctrl.c
+> +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/clk.h>
+> 
+>  #include <dt-bindings/power/imx8mm-power.h>
+> +#include <dt-bindings/power/imx8mn-power.h>
+> 
+>  #define BLK_SFT_RSTN	0x0
+>  #define BLK_CLK_EN	0x4
+> @@ -517,6 +518,77 @@ static const struct imx8m_blk_ctrl_data imx8mm_disp_blk_ctl_dev_data = {
+>  	.num_domains = ARRAY_SIZE(imx8mm_disp_blk_ctl_domain_data),
+>  };
+> 
 > +
-> +title: NXP i.MX8MN DISP blk-ctrl
+> +static int imx8mn_disp_power_notifier(struct notifier_block *nb,
+> +				      unsigned long action, void *data)
+> +{
+> +	struct imx8m_blk_ctrl *bc = container_of(nb, struct imx8m_blk_ctrl,
+> +						 power_nb);
 > +
-> +maintainers:
-> +  - Lucas Stach <l.stach@pengutronix.de>
+> +	if (action != GENPD_NOTIFY_ON && action != GENPD_NOTIFY_PRE_OFF)
+> +		return NOTIFY_OK;
 > +
-> +description:
-> +  The i.MX8MN DISP blk-ctrl is a top-level peripheral providing access to
-> +  the NoC and ensuring proper power sequencing of the display and MIPI CSI
-> +  peripherals located in the DISP domain of the SoC.
+> +	/* Enable bus clock and deassert bus reset */
+> +	regmap_set_bits(bc->regmap, BLK_CLK_EN, BIT(8));
+> +	regmap_set_bits(bc->regmap, BLK_SFT_RSTN, BIT(8));
 > +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: fsl,imx8mn-disp-blk-ctrl
-> +      - const: syscon
+> +	/*
+> +	 * On power up we have no software backchannel to the GPC to
+> +	 * wait for the ADB handshake to happen, so we just delay for a
+> +	 * bit. On power down the GPC driver waits for the handshake.
+> +	 */
+> +	if (action == GENPD_NOTIFY_ON)
+> +		udelay(5);
 > +
-> +  reg:
-> +    maxItems: 1
 > +
-> +  '#power-domain-cells':
-> +    const: 1
+> +	return NOTIFY_OK;
+> +}
 > +
-> +  power-domains:
-> +    minItems: 5
-> +    maxItems: 5
+> +static const struct imx8m_blk_ctrl_domain_data imx8mn_disp_blk_ctl_domain_data[] = {
+> +	[IMX8MN_DISPBLK_PD_MIPI_DSI] = {
+> +		.name = "dispblk-mipi-dsi",
+> +		.clk_names = (const char *[]){ "dsi-pclk", "dsi-ref", },
+> +		.num_clks = 2,
+> +		.gpc_name = "mipi-dsi",
+> +		.rst_mask = BIT(0) | BIT(1),
+> +		.clk_mask = BIT(0) | BIT(1),
+> +		.mipi_phy_rst_mask = BIT(17),
+> +	},
+> +	[IMX8MN_DISPBLK_PD_MIPI_CSI] = {
+> +		.name = "dispblk-mipi-csi",
+> +		.clk_names = (const char *[]){ "csi-aclk", "csi-pclk" },
+> +		.num_clks = 2,
+> +		.gpc_name = "mipi-csi",
+> +		.rst_mask = BIT(2) | BIT(3),
+> +		.clk_mask = BIT(2) | BIT(3),
+> +		.mipi_phy_rst_mask = BIT(16),
+> +	},
+> +	[IMX8MN_DISPBLK_PD_LCDIF] = {
+> +		.name = "dispblk-lcdif",
+> +		.clk_names = (const char *[]){ "lcdif-axi", "lcdif-apb", "lcdif-pix", },
+> +		.num_clks = 3,
+> +		.gpc_name = "lcdif",
+> +		.rst_mask = BIT(4) | BIT(5),
+> +		.clk_mask = BIT(4) | BIT(5),
+> +	},
+> +	[IMX8MN_DISPBLK_PD_ISI] = {
+> +		.name = "dispblk-isi",
+> +		.clk_names = (const char *[]){ "disp_axi", "disp_apb", "disp_axi_root",
+> +						"disp_apb_root"},
+> +		.num_clks = 4,
+> +		.gpc_name = "isi",
+> +		.rst_mask = BIT(6) | BIT(7),
+> +		.clk_mask = BIT(6) | BIT(7),
+> +	},
+> +};
 > +
-> +  power-domain-names:
-> +    items:
-> +      - const: bus
-> +      - const: isi
-> +      - const: lcdif
-> +      - const: mipi-dsi
-> +      - const: mipi-csi
+> +static const struct imx8m_blk_ctrl_data imx8mn_disp_blk_ctl_dev_data = {
+> +	.max_reg = 0x84,
+> +	.power_notifier_fn = imx8mn_disp_power_notifier,
+> +	.domains = imx8mn_disp_blk_ctl_domain_data,
+> +	.num_domains = ARRAY_SIZE(imx8mn_disp_blk_ctl_domain_data),
+> +};
 > +
-> +  clocks:
-> +    minItems: 11
-> +    maxItems: 11
-> +
-> +  clock-names:
-> +    items:
-> +      - const: disp_axi
-> +      - const: disp_apb
-> +      - const: disp_axi_root
-> +      - const: disp_apb_root
-> +      - const: lcdif-axi
-> +      - const: lcdif-apb
-> +      - const: lcdif-pix
-> +      - const: dsi-pclk
-> +      - const: dsi-ref
-> +      - const: csi-aclk
-> +      - const: csi-pclk
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - power-domains
-> +  - power-domain-names
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8mn-clock.h>
-> +    #include <dt-bindings/power/imx8mn-power.h>
-> +
-> +    disp_blk_ctl: blk_ctrl@32e28000 {
-> +      compatible = "fsl,imx8mn-disp-blk-ctrl", "syscon";
-> +      reg = <0x32e28000 0x100>;
-> +      power-domains = <&pgc_dispmix>, <&pgc_dispmix>,
-> +                      <&pgc_dispmix>, <&pgc_mipi>,
-> +                      <&pgc_mipi>;
-> +      power-domain-names = "bus", "isi", "lcdif", "mipi-dsi",
-> +                           "mipi-csi";
-> +      clocks = <&clk IMX8MN_CLK_DISP_AXI>,
-> +               <&clk IMX8MN_CLK_DISP_APB>,
-> +               <&clk IMX8MN_CLK_DISP_AXI_ROOT>,
-> +               <&clk IMX8MN_CLK_DISP_APB_ROOT>,
-> +               <&clk IMX8MN_CLK_DISP_AXI_ROOT>,
-> +               <&clk IMX8MN_CLK_DISP_APB_ROOT>,
-> +               <&clk IMX8MN_CLK_DISP_PIXEL_ROOT>,
-> +               <&clk IMX8MN_CLK_DSI_CORE>,
-> +               <&clk IMX8MN_CLK_DSI_PHY_REF>,
-> +               <&clk IMX8MN_CLK_CSI1_PHY_REF>,
-> +               <&clk IMX8MN_CLK_CAMERA_PIXEL_ROOT>;
-> +       clock-names = "disp_axi", "disp_apb", "disp_axi_root", "disp_apb_root",
-> +                     "lcdif-axi", "lcdif-apb", "lcdif-pix", "dsi-pclk",
-> +                     "dsi-ref", "csi-aclk", "csi-pclk";
-> +       #power-domain-cells = <1>;
-> +    };
+>  static const struct of_device_id imx8m_blk_ctrl_of_match[] = {
+>  	{
+>  		.compatible = "fsl,imx8mm-vpu-blk-ctrl",
+> @@ -524,7 +596,10 @@ static const struct of_device_id imx8m_blk_ctrl_of_match[] = {
+>  	}, {
+>  		.compatible = "fsl,imx8mm-disp-blk-ctrl",
+>  		.data = &imx8mm_disp_blk_ctl_dev_data
+> -	} ,{
+> +	}, {
+> +		.compatible = "fsl,imx8mn-disp-blk-ctrl",
+> +		.data = &imx8mn_disp_blk_ctl_dev_data
+> +	}, {
+>  		/* Sentinel */
+>  	}
+>  };
 > --
 > 2.32.0
 > 
