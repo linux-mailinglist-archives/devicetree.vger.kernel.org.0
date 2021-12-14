@@ -2,94 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC9854749B5
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 18:37:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8417F4749CA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 18:39:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236601AbhLNRhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 12:37:48 -0500
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:46604 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236626AbhLNRhq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 12:37:46 -0500
-Received: by mail-oi1-f170.google.com with SMTP id s139so28042663oie.13;
-        Tue, 14 Dec 2021 09:37:45 -0800 (PST)
+        id S236366AbhLNRjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 12:39:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49822 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229912AbhLNRjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 12:39:18 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43B6BC061574;
+        Tue, 14 Dec 2021 09:39:18 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id e3so66608189edu.4;
+        Tue, 14 Dec 2021 09:39:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LxAuJbLvvTcbumNHXWVkWEBJhfQUVBNZ5jnWFkaTSsc=;
+        b=e1SoDw3pmy2JdP7IPrREK0jG2cn8uEHq3kXD6m0PSAb9xnBxyMJyQpXBuTIRSFH5vr
+         zyVEsFVTqd8MSQXyp/MfyJksmCCFXUXB3qV/Bd+PLR+/NTMM/ADSF7xFeohIHOGpC9pC
+         1B6mV275t3/L/9afXznLmVGlBQImU+BRr3+n5eA21JyFwyPeXmog12j6S9Yzg2bWa6Aq
+         ObcgC3XZAAwTmxxPyK9EO4f2TaErwdSTGDwH9EGwFNkvfiUGH9oQBnMJZ3VHG96cKHrE
+         fp4YSAkbRfctF07IF/z2x+J7CaDV+15TqPXg62JDKZZtjF8pE3JfNgMFqDcoH+Gb3PkO
+         il4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WR9gGYu8QQ5K/woO2Lwtdpoe5T+WeJunkKn+dMZvc8w=;
-        b=7cHYhnq35Xx8BaiLTJ8kNiZ8j7CunkYv7BoigRowDzP9H6HTBAddFG0KnIce5pYAk5
-         KEJUdjb2bV4XHxn+UckyWBUsTkDGUxFwmfJoYhRTPcSXu3Z3qtovy1gqo0ke2OxK6ALB
-         WHNNFeqNHw3osunTfJYM5d7jDrgWPLMqqPM3SL9In7hBf2PFT3q38QB1O5zbY8dVw/kN
-         1xP3LzAHHIefNx37Gx05+0n1vRVAMnq9A+2qGszxbzXqryQ5RjT8HmQAlLMd7guogkGe
-         sVonJXtith7XfwT3mvnWvkM0Je3RoKp8LOi7p2L2768ji2H8UJ/UMznCyTDtbWqqIaRX
-         wcjg==
-X-Gm-Message-State: AOAM531zOQrAQOx2wMcsZFYvFEKKOLAuwAXPq/1e9+WUGKbqrASOyaCb
-        dzITNM7Bx67TAOBqXWy35w==
-X-Google-Smtp-Source: ABdhPJyeANG0XOSBeKhvl+rrKsdX6O51quAB/Q0zd1QnHPf6CDYKn4K8Pm5zHFarIk1R6asLr4/DpA==
-X-Received: by 2002:a05:6808:1509:: with SMTP id u9mr35869237oiw.13.1639503465518;
-        Tue, 14 Dec 2021 09:37:45 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id c9sm98122oog.43.2021.12.14.09.37.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 09:37:44 -0800 (PST)
-Received: (nullmailer pid 3604503 invoked by uid 1000);
-        Tue, 14 Dec 2021 17:37:44 -0000
-Date:   Tue, 14 Dec 2021 11:37:44 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, Michal Simek <monstr@monstr.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        linux-spi@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] spi: dt-bindings: Add an example with two stacked
- flashes
-Message-ID: <YbjWaE5ZwmuRd/EI@robh.at.kernel.org>
-References: <20211210201039.729961-1-miquel.raynal@bootlin.com>
- <20211210201039.729961-4-miquel.raynal@bootlin.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LxAuJbLvvTcbumNHXWVkWEBJhfQUVBNZ5jnWFkaTSsc=;
+        b=M0hUVhia5wQqWt64dsCOsWbIWiNx1bJLMMYohWmlmnE4qehoKINyU4PStQq4x6AVDE
+         e3Qg8RFMaDPTDr5mcWuRc+m5fdcGEFU9F3QRwXK8GO5ZU/nKbnE4q8FfzqCbF5oHP/Sc
+         O/iddlry7W3rdzStn+KrQ1Nq3hAZ1rHOQENx3tZQOySjyYDNPxqRUvy5uus4kGC3Ec8C
+         pip1/XtIfHVnBTz8s2drDzHO+VpLWI3kGlwClS1c1vCJjsjdS+t4NAcg+/LwcwEqUDem
+         a41BNyFcJZmb1dmD1HaA9rom60AUE0H+suwMiS3eXu8Cg0aCzIrcrQD0a2oS50MTwHBM
+         VcVQ==
+X-Gm-Message-State: AOAM5322bQUzs39506mnTtZrKxJWFEpuAOiu3VSShgCEGk17ESOHjnsb
+        7BvuWxEYSvuv/zL2SGqEkD+sXREFCj92ECXdK3g=
+X-Google-Smtp-Source: ABdhPJyfe+m1TWfKEDr/wqXpFTcnF2opPxqMTsYASJHjTvEd+Gg2pPTfJJac6JIWJDSG3LI8qCeW4TcStTKIuDs6H+E=
+X-Received: by 2002:a17:906:a3c6:: with SMTP id ca6mr2672214ejb.639.1639503556811;
+ Tue, 14 Dec 2021 09:39:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211210201039.729961-4-miquel.raynal@bootlin.com>
+References: <1638891339-21806-1-git-send-email-quic_srivasam@quicinc.com>
+ <1638891339-21806-4-git-send-email-quic_srivasam@quicinc.com>
+ <CAHp75Vd=47Tv9Sf+styPhxS2=O1H2KUDeKQXTULUYU5fDgGwwA@mail.gmail.com>
+ <0f6621e5-f014-27c9-be8b-6c32ab994304@quicinc.com> <CAHp75VdL3hmr23CcJLDpvbHaKv5HrDZjmVQpCnRNmPM7nEx6WQ@mail.gmail.com>
+ <4bcfadd0-8abb-e9e9-ad18-a5b1d3d46308@quicinc.com>
+In-Reply-To: <4bcfadd0-8abb-e9e9-ad18-a5b1d3d46308@quicinc.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 14 Dec 2021 19:37:47 +0200
+Message-ID: <CAHp75Vcnc96QYy5_mzYCbhrsJ=iEghKR0Z8XaX+DnVeNN3DthQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/5] pinctrl: qcom: Extract chip specific LPASS LPI code
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, plai@codeaurora.org,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>, judyhsiao@chromium.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 10, 2021 at 09:10:39PM +0100, Miquel Raynal wrote:
-> Provide an example of how to describe two flashes in eg. stacked mode.
-> 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/spi/spi-controller.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> index 36b72518f565..048d2bbc74a5 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> @@ -139,4 +139,11 @@ examples:
->              spi-max-frequency = <100000>;
->              reg = <1>;
->          };
-> +
-> +        flash@2 {
-> +          compatible = "jedec,spi-nor";
-> +          spi-max-frequency = <50000000>;
-> +          reg = <2>, <3>;
-> +          stacked-memories = /bits/ 64 <0x10000000>, /bits/ 64 <0x10000000>;
+On Tue, Dec 14, 2021 at 7:22 PM Srinivasa Rao Mandadapu
+<quic_srivasam@quicinc.com> wrote:
+> On 12/14/2021 10:46 PM, Andy Shevchenko wrote:
+> > On Tue, Dec 14, 2021 at 7:15 PM Srinivasa Rao Mandadapu
+> > <quic_srivasam@quicinc.com> wrote:
+> >> On 12/8/2021 11:58 AM, Andy Shevchenko wrote:
 
-stacked-memories = /bits/ 64 <0x10000000 0x10000000>;
+...
 
-While the source syntax allows for multiple (and mixed) /bits/ 
-annotations, that's not something we support really.
+> >>>> +struct lpi_pingroup {
+> >>>> +       const char *name;
+> >>>> +       const unsigned int *pins;
+> >>>> +       unsigned int npins;
+> >>>> +       unsigned int pin;
+> >>>> +       /* Bit offset in slew register for SoundWire pins only */
+> >>>> +       int slew_offset;
+> >>>> +       unsigned int *funcs;
+> >>>> +       unsigned int nfuncs;
+> >>>> +};
+> >>> Are you going to convert this to use struct group_desc?
+> > Any comments on this? It sounds like further improvements.
+> Actually this also needs as separate patch. these patches will do as
+> separate series.
 
-If you have problems with the schema tools on this, let me know. The 
-handling of this is not the greatest.
+Of course, that's why I put  the second sentence after the question in my reply.
 
-Rob
+-- 
+With Best Regards,
+Andy Shevchenko
