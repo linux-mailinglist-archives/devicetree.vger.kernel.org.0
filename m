@@ -2,75 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C44FB473E4C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 09:37:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52703473E7F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 09:42:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231748AbhLNIhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 03:37:52 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:45222 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231866AbhLNIhv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 03:37:51 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0D4B561361;
-        Tue, 14 Dec 2021 08:37:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC031C34604;
-        Tue, 14 Dec 2021 08:37:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639471070;
-        bh=TvV/V0V16sdLEQl+HlEmCOlDtRLk5EBJCALVpvBZbhc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ml5Vs22Z4OWRXO4JeVTbeL2BgsHRQ/ty/zN2Ze+DxlXFVRg+y9COW5RarxmS+5Kg7
-         wf0QBUnxKKB876gSFZoWXCVe68prPDZEzmSqUTvVYHI8PtDkmJjQMMFesM51+FMFA6
-         t1OhlGH9S78dbnw7coqg/CUrw07wERauvj8PMQjOB3OjAo41a4df0TGMfP+wo3fmqS
-         HjLMja3pqGYFfJfh4m7377kiG5RjyD4FS3c4LP9u0X5kiMpN1OkNTYkio0hVzGBs3T
-         OZ5oAq7vpP4UpOwKqUcj3QnMOeiRXbASSeOTkI10x4cpbgUbTb1rYR1dMKOiGi9eET
-         zVdKv1Sj9NFKQ==
-Date:   Tue, 14 Dec 2021 16:37:44 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
+        id S229829AbhLNImC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 03:42:02 -0500
+Received: from szxga03-in.huawei.com ([45.249.212.189]:29190 "EHLO
+        szxga03-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229708AbhLNImB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 03:42:01 -0500
+Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.53])
+        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4JCsJ33QHqz8vr0;
+        Tue, 14 Dec 2021 16:39:47 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 14 Dec 2021 16:41:59 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 14 Dec 2021 16:41:58 +0800
+Subject: Re: [PATCH v17 01/10] x86: kdump: replace the hard-coded alignment
+ with macro CRASH_ALIGN
+To:     Baoquan He <bhe@redhat.com>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: Remove unsupported properties for STMPE MFD
-Message-ID: <20211214083743.GH14056@dragon>
-References: <20211209173009.618162-1-thierry.reding@gmail.com>
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
+ <20211210065533.2023-2-thunder.leizhen@huawei.com>
+ <20211213131713.GA23510@MiWiFi-R3L-srv>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <6ad868b9-6c00-f515-074d-e6f980fea7fa@huawei.com>
+Date:   Tue, 14 Dec 2021 16:41:46 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211209173009.618162-1-thierry.reding@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20211213131713.GA23510@MiWiFi-R3L-srv>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 09, 2021 at 06:30:09PM +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Some users of the STMPE MFD bindings use unsupported properties such as
-> "id", "blocks" and "irq-trigger". These look like they may have been
-> under discussion at some point but never made it into the bindings that
-> were accepted upstream.
-> 
-> Remove these unknown properties from the device trees to avoid errors
-> during validation against the DT schema.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
-...
->  arch/arm/boot/dts/imx53-m53.dtsi           | 3 ---
->  arch/arm/boot/dts/imx6q-novena.dts         | 3 ---
->  arch/arm/boot/dts/imx6qdl-apalis.dtsi      | 3 ---
->  arch/arm/boot/dts/imx6qdl-colibri.dtsi     | 3 ---
 
-Acked-by: Shawn Guo <shawnguo@kernel.org>
+
+On 2021/12/13 21:17, Baoquan He wrote:
+> On 12/10/21 at 02:55pm, Zhen Lei wrote:
+>> From: Chen Zhou <chenzhou10@huawei.com>
+>>
+>> Move CRASH_ALIGN to header asm/kexec.h for later use.
+>>
+>> Suggested-by: Dave Young <dyoung@redhat.com>
+>> Suggested-by: Baoquan He <bhe@redhat.com>
+> 
+> I remember Dave and I discussed and suggested this when reviewing.
+> You can remove my Suggested-by.
+
+OK, I will do it.
+
+> 
+> For this one, I would like to add ack:
+> 
+> Acked-by: Baoquan He <bhe@redhat.com>
+> 
+>> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> Tested-by: John Donnelly <John.p.donnelly@oracle.com>
+>> Tested-by: Dave Kleikamp <dave.kleikamp@oracle.com>
+>> ---
+>>  arch/x86/include/asm/kexec.h | 3 +++
+>>  arch/x86/kernel/setup.c      | 3 ---
+>>  2 files changed, 3 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/arch/x86/include/asm/kexec.h b/arch/x86/include/asm/kexec.h
+>> index 11b7c06e2828c30..3a22e65262aa70b 100644
+>> --- a/arch/x86/include/asm/kexec.h
+>> +++ b/arch/x86/include/asm/kexec.h
+>> @@ -18,6 +18,9 @@
+>>  
+>>  # define KEXEC_CONTROL_CODE_MAX_SIZE	2048
+>>  
+>> +/* 16M alignment for crash kernel regions */
+>> +#define CRASH_ALIGN		SZ_16M
+>> +
+>>  #ifndef __ASSEMBLY__
+>>  
+>>  #include <linux/string.h>
+>> diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
+>> index 6a190c7f4d71b05..5cc60996eac56d6 100644
+>> --- a/arch/x86/kernel/setup.c
+>> +++ b/arch/x86/kernel/setup.c
+>> @@ -392,9 +392,6 @@ static void __init memblock_x86_reserve_range_setup_data(void)
+>>  
+>>  #ifdef CONFIG_KEXEC_CORE
+>>  
+>> -/* 16M alignment for crash kernel regions */
+>> -#define CRASH_ALIGN		SZ_16M
+>> -
+>>  /*
+>>   * Keep the crash kernel below this limit.
+>>   *
+>> -- 
+>> 2.25.1
+>>
+> 
+> .
+> 
