@@ -2,121 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91BE0474784
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 17:20:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03A0547471D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 17:07:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbhLNQUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 11:20:35 -0500
-Received: from guitar.tcltek.co.il ([84.110.109.230]:39105 "EHLO mx.tkos.co.il"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229542AbhLNQUf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Dec 2021 11:20:35 -0500
-X-Greylist: delayed 397 seconds by postgrey-1.27 at vger.kernel.org; Tue, 14 Dec 2021 11:20:34 EST
-Received: from tarshish (unknown [10.0.8.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id 886E8440F2F;
-        Tue, 14 Dec 2021 18:13:54 +0200 (IST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-        s=default; t=1639498435;
-        bh=1fwIRY6SB3en15B126frdgqHFepu3cN45gLKiln9Nso=;
-        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
-        b=cdw3xqZFuSgR1xxHE6O8fkXx9pMF+xk8tQ4fd2t34wC3GLOUi6slFaBkrhOZNwZof
-         0Da0Bn179QiOLwtMxT96UQn6kOmlZYnKd1ZvmN/j3x520pCiIdEpThimWCewQP2g2o
-         sC3eA5WO9r3E+iR/vzHSjhxfqj8i2hFAHHySxrLyC4Kfx4U/UNB0e7jDb0shTjLJFc
-         g8arPYBAoONPTa0twWhLU6KeISS2rTuWrEfo+ZedJlVSsT6zFvj8DMIp8Yjh6/OT9F
-         Ve/LaPoDVVXD05Q7I9ajmRr+3w+ZjTSMUbzNx/NYpRbkVgOzcEfvbVhX1olHPhEjRV
-         tAVJKnN9qK5Pg==
-References: <5c95bcf62a9d08208a7da19f0b1cec0689502b9a.1630323987.git.baruch@tkos.co.il>
- <bdc61569e4068490f53f347dcf29ee9539a8bc0b.1630323987.git.baruch@tkos.co.il>
- <20210914124959.spwjiifvysposhls@pengutronix.de>
-User-agent: mu4e 1.6.10; emacs 27.1
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
+        id S235490AbhLNQG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 11:06:58 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:41980 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231515AbhLNQG6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 11:06:58 -0500
+Received: by mail-ot1-f44.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so21341015otl.8;
+        Tue, 14 Dec 2021 08:06:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CWeglYX86Kh/jx6qsj0rbVo/zA4v+6dDtBcJ8ZfP9I8=;
+        b=ATx2CtZW8+uN1RxVBwQNl1zycF+FIBAExw/Rj52MkHnT1Rl5t+aLy+uFgVUVKHynAj
+         kJt/daxdNjPuFOgzXEJhPKnuEijsGtJI5Dd2wDxyUFv72wRqe7RuYh5piiwD+FPur5Aj
+         BU5q5ImYPzWP7/gIoHwQHwIDw9f3xXAf6oPRcbnxKN5v61Hx7HT7Pe3oi9Tcf8dxwNG+
+         SpwTeRJhhi72iWefDhF/Y4jirOiBjK5vTlXZiMUqLcV8vMTXogYYdTntwKtSAB3DDnxM
+         0igbq/WAIiBQjKpL3DdEy9VnqfmZXgNuEyGfXxrYs7oX7H6VPIwG6YAOBFKYA0MZF7Wm
+         yfgA==
+X-Gm-Message-State: AOAM530yVb1a7mUZaLj4DAWOrTLdgMLtiDvxIU2pDiX3h0K/2PAJ2CAl
+        5Or58YSzZ4Bb80E0rcZ5Ig==
+X-Google-Smtp-Source: ABdhPJzkIOmtEo5hn0+hMuoG7HvhDOIIqOzzWYSglSMtBtWvqRjpOAt28cIAYU9DiODBsaihaQ23kw==
+X-Received: by 2002:a9d:5190:: with SMTP id y16mr5121669otg.364.1639498017370;
+        Tue, 14 Dec 2021 08:06:57 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id j5sm48247oou.23.2021.12.14.08.06.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Dec 2021 08:06:56 -0800 (PST)
+Received: (nullmailer pid 3472932 invoked by uid 1000);
+        Tue, 14 Dec 2021 16:06:55 -0000
+Date:   Tue, 14 Dec 2021 10:06:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>
+Cc:     Fritz Koenig <frkoenig@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Tomasz Figa <tfiga@google.com>, devicetree@vger.kernel.org,
+        Steve Cho <stevecho@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        linux-media@vger.kernel.org,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        linux-kernel@vger.kernel.org,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
-Subject: Re: [PATCH v8 2/4] pwm: driver for qualcomm ipq6018 pwm block
-Date:   Tue, 14 Dec 2021 18:05:08 +0200
-In-reply-to: <20210914124959.spwjiifvysposhls@pengutronix.de>
-Message-ID: <87pmpzmaf1.fsf@tarshish>
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v13, 15/19] dt-bindings: media: mtk-vcodec: Adds decoder
+ dt-bindings for mt8192
+Message-ID: <YbjBHwMXFwi/Sds4@robh.at.kernel.org>
+References: <20211213084141.13363-1-yunfei.dong@mediatek.com>
+ <20211213084141.13363-16-yunfei.dong@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211213084141.13363-16-yunfei.dong@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uwe,
+On Mon, 13 Dec 2021 16:41:37 +0800, Yunfei Dong wrote:
+> Adds decoder dt-bindings for mt8192.
+> 
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> ---
+> Fix comments from rob.
+> ---
+>  .../media/mediatek,vcodec-subdev-decoder.yaml | 265 ++++++++++++++++++
+>  1 file changed, 265 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> 
 
-On Tue, Sep 14 2021, Uwe Kleine-K=C3=B6nig wrote:
-> On Mon, Aug 30, 2021 at 02:46:25PM +0300, Baruch Siach wrote:
->> +	for (; pre_div <=3D IPQ_PWM_MAX_DIV; pre_div++) {
->> +		pwm_div =3D DIV64_U64_ROUND_UP(period_ns * rate,
->> +				(u64)NSEC_PER_SEC * (pre_div + 1));
->> +		pwm_div--;
->
-> Can it happen that pwm_div is zero before it is decreased by one? Also
-> you need to round down here; with rounding up the resulting period is
-> bigger than the requested period (unless the division yields an exact
-> integer).
-
-I followed your round down advice on v9, but it turned out to be
-wrong. Round down means that the divider is smaller so the period is
-larger. This means that 'diff' below can not be positive. So only exact
-match (diff =3D=3D 0) works. When there is no exact match, best_* values are
-left in their initial setting.
-
-I'll fix that in v10 along with another bug I introduced in v9.
-
-baruch
-
->> +		if (pre_div > pwm_div)
->> +			break;
->
-> A comment here why we can end the search would be good.
->
->> +		/*
->> +		 * Make sure we can do 100% duty cycle where
->> +		 * hi_dur =3D=3D pwm_div + 1
->> +		 */
->> +		if (pwm_div > IPQ_PWM_MAX_DIV - 1)
->> +			continue;
->> +
->> +		diff =3D ((uint64_t)freq * (pre_div + 1) * (pwm_div + 1))
->> +			- (uint64_t)rate;
->> +
->> +		if (diff < 0) /* period larger than requested */
->> +			continue;
->> +		if (diff =3D=3D 0) { /* bingo */
->> +			best_pre_div =3D pre_div;
->> +			best_pwm_div =3D pwm_div;
->> +			break;
->> +		}
->> +		if (diff < min_diff) {
->> +			min_diff =3D diff;
->> +			best_pre_div =3D pre_div;
->> +			best_pwm_div =3D pwm_div;
->> +		}
->> +	}
->> +
->> +	/* config divider values for the closest possible frequency */
->> +	config_div_and_duty(pwm, best_pre_div, best_pwm_div,
->> +			    rate, duty_ns, state->enabled);
->> +
->> +	return 0;
->> +}
-
---=20
-                                                     ~. .~   Tk Open Systems
-=3D}------------------------------------------------ooO--U--Ooo------------=
-{=3D
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+Reviewed-by: Rob Herring <robh@kernel.org>
