@@ -2,143 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFE28473DB1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 08:32:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10B21473DBA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 08:38:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230063AbhLNHcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 02:32:54 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:52240 "EHLO
+        id S231389AbhLNHiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 02:38:46 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:53424 "EHLO
         ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbhLNHcx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 02:32:53 -0500
+        with ESMTP id S231233AbhLNHiq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 02:38:46 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D6E41B817E5;
-        Tue, 14 Dec 2021 07:32:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C24F2C34604;
-        Tue, 14 Dec 2021 07:32:49 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D9242B8172C;
+        Tue, 14 Dec 2021 07:38:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D416AC34601;
+        Tue, 14 Dec 2021 07:38:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639467170;
-        bh=pQyER7T0WE9UAG/q7rCKCBxfJ83RpRjTruPbnXb4S2E=;
+        s=k20201202; t=1639467523;
+        bh=LYVbEp6oDnQQyqbRxWbmjublt79R3Y2q0XjQOAruDPo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KvZWbf0Pd6n2qGVpw/t67mZ2xxyyuwwWXPaxYslEC+UGwI8HUbVgeDbt/Ahq14TQ6
-         dXgM+VIvuVJ6fMSgP54TPGx8x0CO/JTIRME4ps1G5/eWwO7THxQhs945KiUw+sa6fw
-         V3VZUMjdFHbuCPl5fuaeuv/JVNEGxW9EDibkYhJcw6IogtjY0484RPve1NH+lygGdC
-         dBm5RKiGOx92jlNpHyKeYkkKs8ZoKh9feos7RoKK9VDwkMqZTpPhGbXFqpAqETDYeC
-         v613iLUMBvAM4aqsBsxINIFKuBaGlw8I51wG0hjyVvAOgEXtJcHTLlNgqnhm5RuJiW
-         b1Cox3miF2A4w==
-Date:   Tue, 14 Dec 2021 13:02:46 +0530
+        b=GmMBhJUGo6F6Qe4ZRZt1z3TfBX33FlvvhhmwITzLoGqwtZIz/tDVjFZv2qB8CV2Ou
+         JXbCY22GdcGxDWBiAVY69uF3lwz9bbnJT/q583DFkwYzRw5TuMmCZjDvWXqOS3OBiQ
+         v4OqOKTEDUXqGR5Pr6fOax2Fu2ju4eHtojgiXlWXnCWMlnYV0o7Y+/AuSufy2cJ1hJ
+         sbaTjprawXUxoieIcBJ7+nRhJs6KGmGJfwuoa0rorIrs113da/IT4fh6EKuyNSvsZe
+         HJdFR4CeExfxWd5nNR0z9knZ4Atrq9Gr+KkW/Nth5rOWAXzgFG3+kSEssQq/HElZdh
+         5K1vaq0P+CvwQ==
+Date:   Tue, 14 Dec 2021 13:08:39 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
+To:     Luca Weiss <luca.weiss@fairphone.com>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-can@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
         linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] phy: phy-can-transceiver: Add support for setting mux
-Message-ID: <YbhInhyZH9d0HGGf@matsya>
-References: <20211202131002.12217-1-a-govindraju@ti.com>
- <20211202131002.12217-3-a-govindraju@ti.com>
+Subject: Re: [PATCH 04/10] dt-bindings: phy: qcom,qusb2: Add SM6350 compatible
+Message-ID: <YbhJ/zNI8EgD15TN@matsya>
+References: <20211213082614.22651-1-luca.weiss@fairphone.com>
+ <20211213082614.22651-5-luca.weiss@fairphone.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211202131002.12217-3-a-govindraju@ti.com>
+In-Reply-To: <20211213082614.22651-5-luca.weiss@fairphone.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02-12-21, 18:40, Aswath Govindraju wrote:
-> On some boards, for routing CAN signals from controller to transceiver,
-> muxes might need to be set. Therefore, add support for setting the mux by
-> reading the mux-states property from the device tree node.
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
->  drivers/phy/Kconfig               |  1 +
->  drivers/phy/phy-can-transceiver.c | 22 ++++++++++++++++++++++
->  2 files changed, 23 insertions(+)
-> 
-> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> index 82b63e60c5a2..300b0f2b5f84 100644
-> --- a/drivers/phy/Kconfig
-> +++ b/drivers/phy/Kconfig
-> @@ -64,6 +64,7 @@ config USB_LGM_PHY
->  config PHY_CAN_TRANSCEIVER
->  	tristate "CAN transceiver PHY"
->  	select GENERIC_PHY
-> +	select MULTIPLEXER
->  	help
->  	  This option enables support for CAN transceivers as a PHY. This
->  	  driver provides function for putting the transceivers in various
-> diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-transceiver.c
-> index 6f3fe37dee0e..cb91d0e94da7 100644
-> --- a/drivers/phy/phy-can-transceiver.c
-> +++ b/drivers/phy/phy-can-transceiver.c
-> @@ -10,6 +10,7 @@
->  #include<linux/module.h>
->  #include<linux/gpio.h>
->  #include<linux/gpio/consumer.h>
-> +#include <linux/mux/consumer.h>
->  
->  struct can_transceiver_data {
->  	u32 flags;
-> @@ -21,13 +22,22 @@ struct can_transceiver_phy {
->  	struct phy *generic_phy;
->  	struct gpio_desc *standby_gpio;
->  	struct gpio_desc *enable_gpio;
-> +	struct mux_state *mux_state;
->  };
->  
->  /* Power on function */
->  static int can_transceiver_phy_power_on(struct phy *phy)
->  {
-> +	int ret;
->  	struct can_transceiver_phy *can_transceiver_phy = phy_get_drvdata(phy);
+On 13-12-21, 09:26, Luca Weiss wrote:
+> Add devicetree compatible for the usb phy on SM6350 SoC.
 
-reverse christmas tree notation is typically use, so new addition at the
-end here please
-
->  
-> +	if (can_transceiver_phy->mux_state) {
-> +		ret = mux_state_select(can_transceiver_phy->mux_state);
-> +		if (ret) {
-> +			dev_err(&phy->dev, "Failed to select CAN mux: %d\n", ret);
-> +			return ret;
-> +		}
-> +	}
->  	if (can_transceiver_phy->standby_gpio)
->  		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 0);
->  	if (can_transceiver_phy->enable_gpio)
-> @@ -45,6 +55,8 @@ static int can_transceiver_phy_power_off(struct phy *phy)
->  		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 1);
->  	if (can_transceiver_phy->enable_gpio)
->  		gpiod_set_value_cansleep(can_transceiver_phy->enable_gpio, 0);
-> +	if (can_transceiver_phy->mux_state)
-> +		mux_state_deselect(can_transceiver_phy->mux_state);
->  
->  	return 0;
->  }
-> @@ -95,6 +107,16 @@ static int can_transceiver_phy_probe(struct platform_device *pdev)
->  	match = of_match_node(can_transceiver_phy_ids, pdev->dev.of_node);
->  	drvdata = match->data;
->  
-> +	if (of_property_read_bool(dev->of_node, "mux-states")) {
-> +		struct mux_state *mux_state;
-> +
-> +		mux_state = devm_mux_state_get(dev, NULL);
-> +		if (IS_ERR(mux_state))
-> +			return dev_err_probe(&pdev->dev, PTR_ERR(mux_state),
-> +					     "failed to get mux\n");
-> +		can_transceiver_phy->mux_state = mux_state;
-> +	}
-> +
->  	phy = devm_phy_create(dev, dev->of_node,
->  			      &can_transceiver_phy_ops);
->  	if (IS_ERR(phy)) {
-> -- 
-> 2.17.1
+Applied to phy-next, thanks
 
 -- 
 ~Vinod
