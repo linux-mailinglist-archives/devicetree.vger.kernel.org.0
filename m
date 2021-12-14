@@ -2,112 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ACD147453E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 15:36:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 007AA474541
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 15:37:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232683AbhLNOgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 09:36:39 -0500
-Received: from foss.arm.com ([217.140.110.172]:57540 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230525AbhLNOgi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Dec 2021 09:36:38 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 622BB6D;
-        Tue, 14 Dec 2021 06:36:38 -0800 (PST)
-Received: from [10.57.84.72] (unknown [10.57.84.72])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 257643F793;
-        Tue, 14 Dec 2021 06:36:37 -0800 (PST)
-Message-ID: <85dc7575-de86-b5d5-252d-fcfb6aa6f3e9@arm.com>
-Date:   Tue, 14 Dec 2021 14:36:35 +0000
+        id S233149AbhLNOhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 09:37:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34572 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233130AbhLNOhU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 09:37:20 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B585C06173E
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 06:37:20 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id i22so2928483wrb.13
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 06:37:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=EjMvrwPSu7ED0UdbjvCYsAuuHexCnu6Rd7+A7M539WY=;
+        b=dHivwfu99zBaoXggDAdU8tINy/YbNw7tEGDydSVrQNIcGtbQQEyVTa8D5xWXr4E1+2
+         m+jTGwh1IrsR6Zk4JE7Kj475L94o0gDZw8sZ2g2E5D1IiOBOg09sxTTfkuu9wGumOixy
+         PaVxEXHkdo+Q02XgfmTfGSw8TQvi5xWWAI/MND109iYbWDRpu+lOXNE3DD23ilsXoXUs
+         qcoXLfMqCqdqKL9B81ytoj6TXQ7eYn9jSfHUPlY0pGiSXpMpO1x07HUGJy//iMD+Lmey
+         diX1MYrKq6w2R0sUaOy5M6t875FRaEjG3/E6nTAsAHlqRei/N/2R29ym2354GO9RI0/o
+         WQdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=EjMvrwPSu7ED0UdbjvCYsAuuHexCnu6Rd7+A7M539WY=;
+        b=7RXZPCKU5jzbb90RqRm78GlkAfeyzAP3pd6tpoA3jXRNC7I+NKX2Xr7M/+98Bj03t1
+         dDhiOXAUnxAxioNTn+UMhMlhh7NHEd8M1C6PTBITjcv8/K2Cx3lMyYiWvHzSEQW3Ossw
+         o04wL9JyAFgE+7ZgqnXZroNOCIXs2s+m+LPWK9/fSk5v+2jos1yT///CZrnkInmIAHDp
+         u6uzNkGBbmUgVrXJwd5OZQwcRO1u6ZfxEtFOV82MDIjRRUorqnjHG5wESGJc3NXocm0e
+         nbgp4LH5VwtKkTQ/yUMLKU6YrKB37GV6JZ02VNwSZnt6F73dOHmXwcqFOjvOXc2/iJBJ
+         KTjw==
+X-Gm-Message-State: AOAM533nDcisGaJujoTCL8yD77s8vBlkUGs2v57OzpJiRGrIpBgdyoHT
+        zNuQGUhoJvhPtWgiIqQ3sfEHVA==
+X-Google-Smtp-Source: ABdhPJyG+zjY5MrIPxKf5Nee627TYG9pySxms6E8tVqeZ/vgk9UWaetnUCOk9H7D1qx8VZmOJ9L3VQ==
+X-Received: by 2002:a05:6000:18a3:: with SMTP id b3mr6267651wri.343.1639492638881;
+        Tue, 14 Dec 2021 06:37:18 -0800 (PST)
+Received: from google.com ([2a00:79e0:d:209:243:2f6a:9a1:5446])
+        by smtp.gmail.com with ESMTPSA id k187sm2669579wme.0.2021.12.14.06.37.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Dec 2021 06:37:18 -0800 (PST)
+Date:   Tue, 14 Dec 2021 14:37:12 +0000
+From:   David Brazdil <dbrazdil@google.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Will Deacon <will@kernel.org>,
+        Andrew Scull <ascull@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] misc: open-dice: Add driver to expose DICE data
+ to userspace
+Message-ID: <YbisGPqjLV8Chl8h@google.com>
+References: <20211213195833.772892-1-dbrazdil@google.com>
+ <20211213195833.772892-3-dbrazdil@google.com>
+ <YbhFTj561N4Ir2RG@kroah.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.4.0
-Subject: Re: [PATCH v2 4/5] dt-bindings: perf: Convert Arm DSU to schema
-To:     Robin Murphy <robin.murphy@arm.com>, will@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     catalin.marinas@arm.com, thierry.reding@gmail.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <cover.1639490264.git.robin.murphy@arm.com>
- <9fde2e11b0d11285c26d0e9d261034a1628c7901.1639490264.git.robin.murphy@arm.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <9fde2e11b0d11285c26d0e9d261034a1628c7901.1639490264.git.robin.murphy@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YbhFTj561N4Ir2RG@kroah.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/12/2021 14:16, Robin Murphy wrote:
-> Convert the DSU binding to schema, as one does.
+On Tue, Dec 14, 2021 at 08:18:38AM +0100, Greg Kroah-Hartman wrote:
+> On Mon, Dec 13, 2021 at 07:58:33PM +0000, David Brazdil wrote:
+> > Open Profile for DICE is an open protocol for measured boot compatible
+> > with the Trusted Computing Group's Device Identifier Composition
+> > Engine (DICE) specification. The generated Compound Device Identifier
+> > (CDI) certificates represent the hardware/software combination measured
+> > by DICE, and can be used for remote attestation and sealing.
+> > 
+> > Add a driver that exposes reserved memory regions populated by firmware
+> > with DICE CDIs and exposes them to userspace via a character device.
+> > 
+> > Userspace obtains the memory region's size from read() and calls mmap()
+> > to create a mapping of the memory region in its address space. The
+> > mapping is not allowed to be write+shared, giving userspace a guarantee
+> > that the data were not overwritten by another process.
+> > 
+> > Userspace can also call write(), which triggers a wipe of the DICE data
+> > by the driver. Because both the kernel and userspace mappings use
+> > write-combine semantics, all clients observe the memory as zeroed after
+> > the syscall has returned.
+> > 
+> > Cc: Andrew Scull <ascull@google.com>
+> > Cc: Will Deacon <will@kernel.org>
+> > Signed-off-by: David Brazdil <dbrazdil@google.com>
+> > ---
+> >  drivers/misc/Kconfig     |  12 +++
+> >  drivers/misc/Makefile    |   1 +
+> >  drivers/misc/open-dice.c | 197 +++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 210 insertions(+)
+> >  create mode 100644 drivers/misc/open-dice.c
+> > 
+> > diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> > index 0f5a49fc7c9e..4d996485f5a7 100644
+> > --- a/drivers/misc/Kconfig
+> > +++ b/drivers/misc/Kconfig
+> > @@ -470,6 +470,18 @@ config HISI_HIKEY_USB
+> >  	  switching between the dual-role USB-C port and the USB-A host ports
+> >  	  using only one USB controller.
+> >  
+> > +config OPEN_DICE
+> > +	tristate "Open Profile for DICE driver"
+> > +	depends on OF_RESERVED_MEM
+> > +	help
+> > +	  This driver exposes a DICE reserved memory region to userspace via
+> > +	  a character device. The memory region contains Compound Device
+> > +	  Identifiers (CDIs) generated by firmware as an output of DICE
+> > +	  measured boot flow. Userspace can uses CDIs for remote attestation
+> > +	  and sealing.
+> > +
+> > +	  If unsure, say N.
+> > +
+> >  source "drivers/misc/c2port/Kconfig"
+> >  source "drivers/misc/eeprom/Kconfig"
+> >  source "drivers/misc/cb710/Kconfig"
+> > diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+> > index a086197af544..70e800e9127f 100644
+> > --- a/drivers/misc/Makefile
+> > +++ b/drivers/misc/Makefile
+> > @@ -59,3 +59,4 @@ obj-$(CONFIG_UACCE)		+= uacce/
+> >  obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
+> >  obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
+> >  obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
+> > +obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
+> > diff --git a/drivers/misc/open-dice.c b/drivers/misc/open-dice.c
+> > new file mode 100644
+> > index 000000000000..ea7b1a8d49ac
+> > --- /dev/null
+> > +++ b/drivers/misc/open-dice.c
+> > @@ -0,0 +1,197 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (C) 2021 - Google LLC
+> > + * Author: David Brazdil <dbrazdil@google.com>
+> > + *
+> > + * Driver for Open Profile for DICE.
+> > + *
+> > + * This driver takes ownership of a reserved memory region containing secrets
+> > + * derived following the Open Profile for DICE. The contents of the memory
+> > + * region are not interpreted by the kernel but can be mapped into a userspace
+> > + * process via a misc device. The memory region can also be wiped, removing
+> > + * the secrets from memory.
+> > + *
+> > + * Userspace can access the data by (w/o error handling):
+> > + *
+> > + *     fd = open("/dev/open-dice0", O_RDWR);
+> > + *     size = read(fd, NULL, 0);
 > 
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> ---
-> 
-> v2: Actually finish converting the thing to valid schema...
-> 
->   .../devicetree/bindings/arm/arm-dsu-pmu.txt   | 27 ------------
->   .../devicetree/bindings/perf/arm,dsu-pmu.yaml | 41 +++++++++++++++++++
->   2 files changed, 41 insertions(+), 27 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
->   create mode 100644 Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt b/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
-> deleted file mode 100644
-> index 6efabba530f1..000000000000
-> --- a/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
-> +++ /dev/null
-> @@ -1,27 +0,0 @@
-> -* ARM DynamIQ Shared Unit (DSU) Performance Monitor Unit (PMU)
-> -
-> -ARM DyanmIQ Shared Unit (DSU) integrates one or more CPU cores
-> -with a shared L3 memory system, control logic and external interfaces to
-> -form a multicore cluster. The PMU enables to gather various statistics on
-> -the operations of the DSU. The PMU provides independent 32bit counters that
-> -can count any of the supported events, along with a 64bit cycle counter.
-> -The PMU is accessed via CPU system registers and has no MMIO component.
-> -
-> -** DSU PMU required properties:
-> -
-> -- compatible	: should be one of :
-> -
-> -		"arm,dsu-pmu"
-> -
-> -- interrupts	: Exactly 1 SPI must be listed.
-> -
-> -- cpus		: List of phandles for the CPUs connected to this DSU instance.
-> -
-> -
-> -** Example:
-> -
-> -dsu-pmu-0 {
-> -	compatible = "arm,dsu-pmu";
-> -	interrupts = <GIC_SPI 02 IRQ_TYPE_LEVEL_HIGH>;
-> -	cpus = <&cpu_0>, <&cpu_1>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
-> new file mode 100644
-> index 000000000000..09ddeb6a3ccc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
-> @@ -0,0 +1,41 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2021 Arm Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/perf/arm,dsu-pmu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM DynamIQ Shared Unit (DSU) Performance Monitor Unit (PMU)
-> +
-> +maintainers:
-> +  - Suzuki K Poulose <suzuki.poulose@arm.com>
-> +  - Robin Murphy <robin.murphy@arm.com>
-> +
-> +description:
-> +  ARM DyanmIQ Shared Unit (DSU) integrates one or more CPU cores with a shared
+> I was thinking you would return the value as a string in the buffer
+> provided to the read call, not as the return value itself.  That is odd
+> and probably breaks something.  What would happen if you ran 'cat' on
+> the device node?
 
-nit: DynamIQ. I understand I am the one to blame for ;-)
+Ah, I misunderstood. Yeah, running `cat` will endlessly print garbage.
+I'll do a quick respin and also change write() to appear to consume the
+buffer because 'echo 1 > /dev/open-dice0' currently blocks.
 
-Rest looks good to me.
-
-Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+David
