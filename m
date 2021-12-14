@@ -2,128 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 896C6474139
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 12:13:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B351C47413B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 12:13:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229464AbhLNLNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 06:13:19 -0500
-Received: from mail-ua1-f47.google.com ([209.85.222.47]:40512 "EHLO
-        mail-ua1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbhLNLNS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 06:13:18 -0500
-Received: by mail-ua1-f47.google.com with SMTP id y5so34193297ual.7;
-        Tue, 14 Dec 2021 03:13:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=g4mI9Nyw4nQYld93EJ8iwG1Gm12PyF7hqAGNjATrF2k=;
-        b=oQmhVwcjP8DHBj5X1hWdiTgRqpbnWCymFXnamalMgS4dFr9xvTF2e7h4dHrMCbLKN2
-         i2zyUg04lTShH6AovIvrl5nrkfrchc2LTgYMMXD/+ldHb2Ys5rv6354OfFK/zYVKE48a
-         8TYHpXbhr/BrY1hNSJS02IpQY2M0oMd8hot85ZUocpR7+sNPiYnIUGjUDA632+Jraqg5
-         0dLxuG662OCjvU1siuTpUi8uop8zfNzUIzRGRv4l5T4GJ6Eur8fs0EPPbJ7XqQc5e1OT
-         Zf3cHDPsdSHzRAjHSw/ZV/AoFEOvqXw82hbouy+JMrAQHTa/qmauMxtA5++IrV2Ktmcl
-         AfpA==
-X-Gm-Message-State: AOAM533KJfmu6/SMcaorwQ+W2xi1ytfD7RLjWX75844baQxiAA0MfSKe
-        0icXpLk14lOjqCsYkVLJVkHUEfkV07Gdqw==
-X-Google-Smtp-Source: ABdhPJzUYyyyz0Jk0CWeKwRnmgwO/EtYUqxJtpwDOwYiUDyHXFVihCj1LJsXZpVY7gu0MdoF7z3nuw==
-X-Received: by 2002:a67:bb11:: with SMTP id m17mr3932335vsn.5.1639480397863;
-        Tue, 14 Dec 2021 03:13:17 -0800 (PST)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
-        by smtp.gmail.com with ESMTPSA id r2sm4279127vsk.28.2021.12.14.03.13.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Dec 2021 03:13:17 -0800 (PST)
-Received: by mail-ua1-f47.google.com with SMTP id p2so34160156uad.11;
-        Tue, 14 Dec 2021 03:13:17 -0800 (PST)
-X-Received: by 2002:ab0:7354:: with SMTP id k20mr4235674uap.78.1639480396951;
- Tue, 14 Dec 2021 03:13:16 -0800 (PST)
+        id S229632AbhLNLNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 06:13:55 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:36354 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229542AbhLNLNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 06:13:55 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9BE4B8C4;
+        Tue, 14 Dec 2021 12:13:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1639480433;
+        bh=6nPRmmvGcER3yg7mqkdC2HaRGmHh4NE1mbViJtHHWH0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XYIoCQHiC6g9sOnexmfEaQl8ZvQ5OG1lyGhEV8VwaYxAgA/E9IeCDqPm8LMnGMUXV
+         N7+uNFKObkMF/LZpp2F3BPjZ6Gd87Kn8p7ay/GtxAb0G2McAsdkwDbTa1OGtAyqJHX
+         Ko54v4c2nQM3viU/R4Ck49NHfBnEmumuFsH+XooE=
+Date:   Tue, 14 Dec 2021 13:13:52 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Peter Rosin <peda@axentia.se>, Rob Herring <robh+dt@kernel.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: i2c Update PCA954x
+Message-ID: <Ybh8cCU/zbfXkXYO@pendragon.ideasonboard.com>
+References: <20211214095021.572799-1-patrick.rudolph@9elements.com>
 MIME-Version: 1.0
-References: <20211208142729.2456-1-biju.das.jz@bp.renesas.com> <20211208142729.2456-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20211208142729.2456-3-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 14 Dec 2021 12:13:06 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXQkXe4-5BjZ++-kYR9J2zjyQMWaR_V6PYeEy7p6H7zDg@mail.gmail.com>
-Message-ID: <CAMuHMdXQkXe4-5BjZ++-kYR9J2zjyQMWaR_V6PYeEy7p6H7zDg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: r9a07g044: Create thermal zone
- to support IPA
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211214095021.572799-1-patrick.rudolph@9elements.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 8, 2021 at 3:27 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Setup a thermal zone driven by SoC temperature sensor.
-> Create passive trip points and bind them to CPUFreq cooling
-> device that supports power extension.
->
-> Based on the work done by Dien Pham <dien.pham.ry@renesas.com>
-> and others for r8a77990 SoC.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Patrick,
 
-LGTM (I'm no thermal expert, so an additional pair of eyes wouldn't hurt), so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.17.
+Thank you for the patch.
 
-> --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> @@ -88,6 +88,7 @@
->                         compatible = "arm,cortex-a55";
->                         reg = <0>;
->                         device_type = "cpu";
-> +                       #cooling-cells = <2>;
->                         next-level-cache = <&L3_CA55>;
->                         enable-method = "psci";
->                         clocks = <&cpg CPG_CORE R9A07G044_CLK_I>;
-> @@ -917,6 +918,15 @@
->                         polling-delay-passive = <250>;
->                         polling-delay = <1000>;
->                         thermal-sensors = <&tsu 0>;
-> +                       sustainable-power = <717>;
+On Tue, Dec 14, 2021 at 10:50:18AM +0100, Patrick Rudolph wrote:
+> Add the Maxim MAX735x as supported chip to PCA954x and add an
+> example how to use it.
+> 
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> ---
+>  .../bindings/i2c/i2c-mux-pca954x.yaml         | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+> index 9f1726d0356b..bd794cb80c11 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+> @@ -11,6 +11,7 @@ maintainers:
+>  
+>  description:
+>    The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
+> +  Compatible with Maxim MAX7356 - MAX7358 I2C mux/switch devices.
+>  
+>  allOf:
+>    - $ref: /schemas/i2c/i2c-mux.yaml#
+> @@ -19,6 +20,9 @@ properties:
+>    compatible:
+>      oneOf:
+>        - enum:
+> +          - maxim,max7356
+> +          - maxim,max7357
+> +          - maxim,max7358
+>            - nxp,pca9540
+>            - nxp,pca9542
+>            - nxp,pca9543
+> @@ -40,6 +44,7 @@ properties:
+>  
+>    interrupts:
+>      maxItems: 1
+> +    description: Only supported on NXP devices. Unsupported on Maxim MAX735x.
+
+Could this be modelled by a YAML schema instead ? Something like
+
+allOf:
+  - if:
+      properties:
+        compatible:
+	  contains:
+	    enum:
+              - maxim,max7356
+              - maxim,max7357
+              - maxim,max7358
+    then:
+      properties:
+        interrupts: false
+
+(untested, it would be nice to use a pattern check for the compatible
+property if possible)
+
+>  
+>    "#interrupt-cells":
+>      const: 2
+> @@ -100,6 +105,41 @@ examples:
+>                  #size-cells = <0>;
+>                  reg = <4>;
+>  
+> +                rtc@51 {
+> +                    compatible = "nxp,pcf8563";
+> +                    reg = <0x51>;
+> +                };
+> +            };
+> +        };
+> +    };
 > +
-> +                       cooling-maps {
-> +                               map0 {
-> +                                       trip = <&target>;
-> +                                       cooling-device = <&cpu0 0 2>;
-> +                                       contribution = <1024>;
-> +                               };
-> +                       };
->
->                         trips {
->                                 sensor_crit: sensor-crit {
-> @@ -924,6 +934,12 @@
->                                         hysteresis = <1000>;
->                                         type = "critical";
->                                 };
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
 > +
-> +                               target: trip-point {
-> +                                       temperature = <100000>;
-> +                                       hysteresis = <1000>;
-> +                                       type = "passive";
-> +                               };
->                         };
->                 };
->         };
+> +        i2c-mux@74 {
+> +            compatible = "maxim,max7357";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            reg = <0x74>;
+> +
+> +            i2c@1 {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                reg = <1>;
+> +
+> +                eeprom@54 {
+> +                    compatible = "atmel,24c08";
+> +                    reg = <0x54>;
+> +                };
+> +            };
+> +
+> +            i2c@7 {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                reg = <7>;
+> +
+>                  rtc@51 {
+>                      compatible = "nxp,pcf8563";
+>                      reg = <0x51>;
 
-Gr{oetje,eeting}s,
+-- 
+Regards,
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Laurent Pinchart
