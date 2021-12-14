@@ -2,115 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DE6D473E43
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 09:30:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 871E6473E48
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 09:37:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231823AbhLNIay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 03:30:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34214 "EHLO
+        id S231769AbhLNIhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 03:37:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbhLNIay (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 03:30:54 -0500
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C58DCC061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 00:30:53 -0800 (PST)
-Received: by mail-qv1-xf36.google.com with SMTP id i13so16716326qvm.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 00:30:53 -0800 (PST)
+        with ESMTP id S231765AbhLNIhl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 03:37:41 -0500
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89E12C06173F
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 00:37:41 -0800 (PST)
+Received: by mail-qk1-x72a.google.com with SMTP id d2so16093002qki.12
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 00:37:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=dowhile0-org.20210112.gappssmtp.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=uajsDEex7bsoTTLmmIuCG5itA5xIQYPMZdhRY5ATmI8=;
-        b=mf2RHFNUq8ZUdrJ8Aul4LWaMuwvk/wMCayWDi6NRibzflMBB26TwsKDFeFrXzwaQbm
-         3RlncRrQIk5ieKZq7okNZYnjmUoR6Sh5VtE5wn2ISElO1YPi+xNMaLqSd0g5ZITse6++
-         oKkHpRkd47CnfQ27ld+1hcZnnIbM5agWdg48TZdaelKaaPFpctSRvaNzOgwuFBv2SzjW
-         NQvh3fj1HIKiqdSO1iAdFocAiiETkAddgBVJS5BBJ47ICzq7l//V3NdGbdA7ePl3Iupj
-         XkPciGV/NnJ5PgEWEFe2iNa+fq/eUtLzco2+CWiKtngMATkzaho0vbhTsVzGCjZh40kX
-         8nPg==
+        bh=V775Jo7foyl5u33KO9wxNFO5Xpg512uth3xPug6/f9Y=;
+        b=NmsmnUQjon4giEIPURXak6DNfz2uv3mxLeDEiVc8iUJV+WQGHo0oIywd2C3DSI4pVI
+         4GuYtTQuyOG7798S3lnZcHyrILmqUoL50dlmbyCyTixojp/IGFP2EkTyKQgP170Pl3hq
+         3ZZTfp+NvlUjYXYlRC9z5TqZF86aF2Zr51JO3mvpkOaTvBpEAUi9RCW9TtSQfOeQOXhx
+         iHPWUKKEP3loANy/6Y5EPGU4/Y/NvufewNugTqqrzYw8tHGKjsES4Pu9OaWA58l7LcZH
+         8iUJjaT1SIRs1kDZ/7XPmBNEpbbLyESohomuDZ8Ply7kroWO48ooXLGjptuR/AuMiHbM
+         Rk5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=uajsDEex7bsoTTLmmIuCG5itA5xIQYPMZdhRY5ATmI8=;
-        b=Q/x0PH2f5Nmo/8ER6uRdAwdQ9EVfMo1qWdDWNf4NFybXC6M6yf2XehNF/Y7odX1QHL
-         3gQXGVGYGwOyVg6kH5LrQr4SE+oayMpg+9fOYdMFB4HmUjYassN5JXjRbZooIsZ1G86D
-         zw3UtaJVoesHZPSRH4wBFrQkrh0gF+eGdnm+Ue3yin2EI4Z774vDi8HfAmh8vyFJMTlm
-         LIZQBcWvCKwiLKaJgbT5bRoBQ7d7aLiMQ4sx/L8ODdIecpECKudY1zwr6nhYK2vj9uL8
-         2hOLdcpqOGleO9GzQhkI0sHSE0W3YmJ26LdvPb/jqmhJ2nmcTgXt0nw8bMUwRMoOZQWS
-         TQlA==
-X-Gm-Message-State: AOAM5324vbuGQDKSTv8OQan0XK9A/PMIsyXmVkQ7KvjUm4//kdoB4Yvx
-        k3xoT46C+GAqI4oJrY9ZHNoXdJYYOIgbp8YzLMTi2A==
-X-Google-Smtp-Source: ABdhPJyv2ONMfdlytM9T3YUARkn73BeNNrUW2+f1SBfCkvo+sGCIXZFxwt0r7Bzz1StRpDHHIRWHv0A9Y5seMQu1H3s=
-X-Received: by 2002:a05:6214:410e:: with SMTP id kc14mr3893644qvb.73.1639470652830;
- Tue, 14 Dec 2021 00:30:52 -0800 (PST)
+        bh=V775Jo7foyl5u33KO9wxNFO5Xpg512uth3xPug6/f9Y=;
+        b=lByIpkPJ+ccOM6AdqXrO+sdDIbGVjpWDbVqdWuxqtEmaDmwt12hSFHG0RA2Sez2rwD
+         y1r17KMG3I712d+GJb6XKC83wpEjlIVIi0pDPvd5AhkJcBihU3bAzGITCvs19BL1+ktz
+         2x3urB8KNv/bxqgLpWGYR+LnAYWIEO24fHWoXPR1lYHFyQCSr7xWFxphF/XsFLUxCjqU
+         I/6zCpC3TryPWYrmDpIw10H1H/344X83NpklsVGYey6rKh8xAs5E+oPoTEaJONtMHbtc
+         4ZJv8Xi3aCQCEH6zm329eTJuVdnmlRvVid0RS9OrE5Tm7I+UW4BRG5l4IFU3E1xlkih+
+         wBgw==
+X-Gm-Message-State: AOAM531q59L8wHKfNB4zFO2ZV1bZv8u97Kyf1IafpSN2IWgLBkMJvkpo
+        sCfyFNBnVZLPdgNi3Kp2vXPEZcMbnPrdWTdrN14IrA==
+X-Google-Smtp-Source: ABdhPJwTLF1AMEeFod/l2CxZZeOst/LaOVrIJybQJ5YF/RyGQnZ4Krjx2+P/GvWwxeDL73OopPshCk3YG/laGaGdXjg=
+X-Received: by 2002:a05:620a:298a:: with SMTP id r10mr2844306qkp.447.1639471060440;
+ Tue, 14 Dec 2021 00:37:40 -0800 (PST)
 MIME-Version: 1.0
-References: <20211213162635.252582-1-maxime@cerno.tech> <20211213162635.252582-3-maxime@cerno.tech>
-In-Reply-To: <20211213162635.252582-3-maxime@cerno.tech>
+References: <20211212062407.138309-1-marcan@marcan.st> <20211212062407.138309-2-marcan@marcan.st>
+ <CABxcv=m4fu8h=FwY7R=thuvd13_ZbFqB9rNNN07QOAd__jdYSQ@mail.gmail.com>
+ <63334964-d63d-7625-e46f-a6e6ec19e908@marcan.st> <CABxcv=kbR5GX3yEfqchKJPkCqpWp_oKWjG=pu7LikBwoSX8W3A@mail.gmail.com>
+ <CAL_JsqLLTL-_H3XgsZRZaxE6qO6y8CDpoHfDkOgwekb1ysNQFw@mail.gmail.com>
+In-Reply-To: <CAL_JsqLLTL-_H3XgsZRZaxE6qO6y8CDpoHfDkOgwekb1ysNQFw@mail.gmail.com>
 From:   Javier Martinez Canillas <javier@dowhile0.org>
-Date:   Tue, 14 Dec 2021 09:30:42 +0100
-Message-ID: <CABxcv=ka4uc0Mt7Yv2RKnSYG74WRP--U1n4PhOjCentGEGkaMg@mail.gmail.com>
-Subject: Re: [PATCH RESEND v4 v4 2/4] drm/vc4: Support nomodeset
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+Date:   Tue, 14 Dec 2021 09:37:29 +0100
+Message-ID: <CABxcv=nFx9r+=qMXop6kp6E4KoXaX_8duLY7S9fo6uqs_539jw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] of: Move simple-framebuffer device handling from
+ simplefb to of
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Hector Martin <marcan@marcan.st>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
         Thomas Zimmermann <tzimmermann@suse.de>,
-        Daniel Vetter <daniel.vetter@intel.com>,
         David Airlie <airlied@linux.ie>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Ray Jui <rjui@broadcom.com>, devicetree@vger.kernel.org,
-        Dom Cobley <dom@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Pekka Paalanen <ppaalanen@gmail.com>,
+        devicetree@vger.kernel.org,
         dri-devel <dri-devel@lists.freedesktop.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-arm-kernel@lists.infradead.org
+        Linux Kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Maxime
-
-On Mon, Dec 13, 2021 at 5:26 PM Maxime Ripard <maxime@cerno.tech> wrote:
+On Mon, Dec 13, 2021 at 3:50 PM Rob Herring <robh+dt@kernel.org> wrote:
 >
-> If we have nomodeset on the kernel command line we should have the
-> firmware framebuffer driver kept as is and not try to load the
-> full-blown KMS driver.
+> On Mon, Dec 13, 2021 at 5:30 AM Javier Martinez Canillas
+> <javier@dowhile0.org> wrote:
+
+[snip]
+
+> >
+> > You are right that passing NULL is a safe code path for now due the
+> > of_device_is_available(node) check, but that seems fragile to me since
+> > just adding a similar debug output to of_platform_device_create()
+> > could trigger the NULL pointer dereference.
+>
+> All/most DT functions work with a NULL node ptr, so why should this
+> one be different?
 >
 
-Patch looks good to me. I just have a question, but I'm OK with either way.
+If you are OK with the patch as is, then I won't object :)
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-
-> In this case, let's just register the v3d driver.
->
-
-I wonder if the v3d driver should be registered if nomodeset is
-present. Most (if not all?) drivers that currently check for this
-parameter disable both KMS and DRM. So even when it seems to imply
-that's about kernel mode settings, it is also used to disable DRM.
-
-This semantic was never documented and I attempted to do that in
-commit b22a15a5aca3 ("Documentation/admin-guide: Document nomodeset
-kernel parameter"). After feedback from folks in the list, the text
-ended as follows:
-
-```
-Disable kernel modesetting. DRM drivers will not perform
-display-mode changes or accelerated rendering. Only the
-system framebuffer will be available for use if this was
-set-up by the firmware or boot loader.
-
-Useful as fallback, or for testing and debugging.
-```
-
-So maybe vc4_drm_register() should just return -EINVAL if
-(drm_firmware_drivers_only()) like the other drivers do?
+> Rob
 
 Best regards,
 Javier
