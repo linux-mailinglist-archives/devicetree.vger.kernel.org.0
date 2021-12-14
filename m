@@ -2,130 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3800A47414F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 12:17:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51F48474156
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 12:18:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233470AbhLNLRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 06:17:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44292 "EHLO
+        id S231502AbhLNLS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 06:18:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229836AbhLNLRF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 06:17:05 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 956C3C061574;
-        Tue, 14 Dec 2021 03:17:05 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id f18-20020a17090aa79200b001ad9cb23022so15770375pjq.4;
-        Tue, 14 Dec 2021 03:17:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=QdUzozq/ia4XNyw9Pm+HSSllN+T8ynAAyub4gDqEXTw=;
-        b=FF5tC5p1JHjCujakt/eVqkNtMr03J1AZ8FOQ+ekPma2ooNlljwmVltMYe9EKxww/hX
-         zCfBSt/w75HmySey0Rz8KzE1Tg+08qJnTrh+kYOc+SGtVXDDrRuMdeIzJQHh7Bf5zkCr
-         wm6KNdFwKAij7S2PHIzNOZmfTw80UCoRl6w/bl3dqNfRx+dVBW3VOOczVzhaEWXBtBE2
-         AuEQyYdkLlw6x/Nmm5SQerxI2cH8ONofrxR6oAXxvRyRpqHYvE1Ua2Fh1N0H+6ar0tl0
-         zA613tINPbuL6xvA7vx7F1aX3HLXLy5LAptD342AfSIM4cfj1VtcYe4eQJqTDnwVr1Ba
-         WGYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=QdUzozq/ia4XNyw9Pm+HSSllN+T8ynAAyub4gDqEXTw=;
-        b=t8qDlJbNlGKshjJZiVe9wcftBzTzJzYNbHAIrHHgY43B3+nM/VD1inK1pCW1SzfK8K
-         2VZVtn4mu/YTtyM/xDDqwT/6srNLP3TM7/uwgLvHQ2LQI1MwnyJsRuOuWdExz1yJ5PHK
-         uuwHFBhtQfGWQ+RfmfDYLtC7WxpR7lTCPo+ghhBrIFs/0HKpNbJp3AuwD13DrmKN3yGM
-         Q6KtCeV+fnWzV2tR2xK6LzVPzRFOQnqSyv1+R1Da4Wv5simPfMIqvVaLGIqGmVLS4C0l
-         ysHEJqLO8OBxfpawmnO194g9+wE0mUf96M+v3gDkDzFTztXWW0i2dSroALPdadIecrOl
-         5pbw==
-X-Gm-Message-State: AOAM533n/2/sNn/xEYG/omRQdCvlXqvArlcGh6BrWwPO+JQm+a0lmaF+
-        rEKF2u6pfU9+URuJW65bvy8=
-X-Google-Smtp-Source: ABdhPJxi7Vc0gMieaSDjbfQ5fHLxKKOvYsOCvjCR8XYyECgIAJVp2lwcgY5K8ae/LxW3MUlTnu+GFQ==
-X-Received: by 2002:a17:90b:17ca:: with SMTP id me10mr4777718pjb.134.1639480625025;
-        Tue, 14 Dec 2021 03:17:05 -0800 (PST)
-Received: from localhost.lan ([2400:4070:175b:7500::7a7])
-        by smtp.gmail.com with ESMTPSA id u3sm17410146pfk.32.2021.12.14.03.17.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 03:17:04 -0800 (PST)
-Received: from localhost (localhost [IPv6:::1])
-        by localhost.lan (Postfix) with ESMTPSA id ACE2C90090C;
-        Tue, 14 Dec 2021 11:17:02 +0000 (GMT)
-Date:   Tue, 14 Dec 2021 11:16:59 +0000
-From:   Vincent Pelletier <plr.vincent@gmail.com>
-To:     Aurelien Jarno <aurelien@aurel32.net>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH] riscv: dts: enable more DA9063 functions for the SiFive
- HiFive Unmatched
-Message-ID: <20211214111659.29bf5ea4@gmail.com>
-In-Reply-To: <YbhqNY/w36XT5zx0@aurel32.net>
-References: <20211108214629.1730870-1-aurelien@aurel32.net>
-        <mhng-7ab80707-35c0-4123-8340-cf1feca4cca2@palmer-ri-x1c9>
-        <YbhqNY/w36XT5zx0@aurel32.net>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S231516AbhLNLS2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 06:18:28 -0500
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [IPv6:2404:9400:2:0:216:3eff:fee2:21ea])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDF2EC061574;
+        Tue, 14 Dec 2021 03:18:27 -0800 (PST)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4JCwq11xYBz4xPw;
+        Tue, 14 Dec 2021 22:18:21 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+        s=201909; t=1639480702;
+        bh=JkHhmAZ1NigU2RvvhMuaItAKWghROfy9nEo/On2PQa8=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=ncUXHFoM4iG4FsToTcGgVSlxrlTPrcsbVkQQE6BgD/h1twByADVlLw69s0K4fc8er
+         w5koZXpw0PUgqdYeC8XJoCtX0Ywjya0/ax9ego1o+XCtQTbBJvdCa30cvSxXNrDmNT
+         r8ReFRa4z7jYoij18LldV3u1cIL3RzFNOhqq23k9SmajeCxjP3GNmZfmbn9q92A7hp
+         kODuYZ+k8Wo3Hvit1tQOLZ2krTqAC7xw7UrkdYxiXfjRF4u46IeI+E88aWI4M09+aD
+         oInHcrXZlCrP/5dLvfgD4/rCOr4ZGY0h4HfH5I1gF9xb2L/mCIn8QJ6YK6IlnV2oZA
+         ZqbMI5mYOrnqg==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Rob Herring <robh@kernel.org>
+Cc:     John Crispin <john@phrozen.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] of/fdt: Rework early_init_dt_scan_memory() to call
+ directly
+In-Reply-To: <CAL_JsqLpq7fx0pyQiJFa0P5C3JXijiVe_fr84x9RML1aDJ7vDQ@mail.gmail.com>
+References: <20211208155839.4084795-1-robh@kernel.org>
+ <87fsqwn03o.fsf@mpe.ellerman.id.au>
+ <CAL_JsqLpq7fx0pyQiJFa0P5C3JXijiVe_fr84x9RML1aDJ7vDQ@mail.gmail.com>
+Date:   Tue, 14 Dec 2021 22:18:19 +1100
+Message-ID: <877dc7mo3o.fsf@mpe.ellerman.id.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Dec 2021 10:56:05 +0100, Aurelien Jarno <aurelien@aurel32.net> wrote:
-> On 2021-12-13 18:13, Palmer Dabbelt wrote:
-> > On Mon, 08 Nov 2021 13:46:29 PST (-0800), aurelien@aurel32.net wrote:  
-> > > The DA9063 PMIC found on the SiFive HiFive Unmatched also provides an
-> > > RTC, a watchdog and the power button input.
-> > > 
-> > > Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-> > > ---
-> > >  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 12 ++++++++++++
-> > >  1 file changed, 12 insertions(+)
-> > > 
-> > > diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> > > index 2e4ea84f27e7..c357b48582f7 100644
-> > > --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> > > +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> > > @@ -70,6 +70,10 @@ pmic@58 {
-> > >  		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
-> > >  		interrupt-controller;
-> > > 
-> > > +		onkey {
-> > > +			compatible = "dlg,da9063-onkey";
-> > > +		};
-> > > +
-> > >  		regulators {
-> > >  			vdd_bcore1: bcore1 {
-> > >  				regulator-min-microvolt = <900000>;
-> > > @@ -205,6 +209,14 @@ vdd_ldo11: ldo11 {
-> > >  				regulator-always-on;
-> > >  			};
-> > >  		};
-> > > +
-> > > +		rtc {
-> > > +			compatible = "dlg,da9063-rtc";
-> > > +		};
-> > > +
-> > > +		wdt {
-> > > +			compatible = "dlg,da9063-watchdog";
-> > > +		};
-> > >  	};
-> > >  };  
-> 
-> Thanks. However, wouldn't be better to merged this patch and the whole
-> series instead:
-> 
-> http://lists.infradead.org/pipermail/linux-riscv/2021-November/010234.html
+Rob Herring <robh@kernel.org> writes:
+> On Mon, Dec 13, 2021 at 6:47 AM Michael Ellerman <mpe@ellerman.id.au> wrote:
+>> Rob Herring <robh@kernel.org> writes:
+>> > Use of the of_scan_flat_dt() function predates libfdt and is discouraged
+>> > as libfdt provides a nicer set of APIs. Rework
+>> > early_init_dt_scan_memory() to be called directly and use libfdt.
+>> ...
+>> > diff --git a/arch/powerpc/kernel/prom.c b/arch/powerpc/kernel/prom.c
+>> > index 6e1a106f02eb..63762a3b75e8 100644
+>> > --- a/arch/powerpc/kernel/prom.c
+>> > +++ b/arch/powerpc/kernel/prom.c
+>> > @@ -532,19 +532,19 @@ static int  __init early_init_drmem_lmb(struct drmem_lmb *lmb,
+>> >  }
+>> >  #endif /* CONFIG_PPC_PSERIES */
+>> >
+>> > -static int __init early_init_dt_scan_memory_ppc(unsigned long node,
+>> > -                                             const char *uname,
+>> > -                                             int depth, void *data)
+>> > +static int __init early_init_dt_scan_memory_ppc(void)
+>> >  {
+>> >  #ifdef CONFIG_PPC_PSERIES
+>> > -     if (depth == 1 &&
+>> > -         strcmp(uname, "ibm,dynamic-reconfiguration-memory") == 0) {
+>> > +     const void *fdt = initial_boot_params;
+>> > +     int node = fdt_path_offset(fdt, "/ibm,dynamic-reconfiguration-memory");
+>> > +
+>> > +     if (node > 0) {
+>> >               walk_drmem_lmbs_early(node, NULL, early_init_drmem_lmb);
+>> >               return 0;
+>> >       }
 
-My apologies about this, by the way: I had prepared that patch stack
-last summer and was witholding it until the IRQ-fires-only-once
-situation was resolved (it does affect at least the onkey subfunction,
-although in a non-obvious way when the event triggers a shutdown or a
-reboot). I did not think of checking recent submissions until it was
-too late.
--- 
-Vincent Pelletier
-GPG fingerprint 983A E8B7 3B91 1598 7A92 3845 CAC9 3691 4257 B0C1
+It's that return that is the problem.
+
+Now that early_init_dt_scan_memory_ppc() is only called once, that
+return causes us to skip scanning regular memory nodes if there is an
+"ibm,dynamic-reconfiguration-memory" property present.
+
+So the fix is just:
+
+diff --git a/arch/powerpc/kernel/prom.c b/arch/powerpc/kernel/prom.c
+index 1098de3b172f..125661e5fcf3 100644
+--- a/arch/powerpc/kernel/prom.c
++++ b/arch/powerpc/kernel/prom.c
+@@ -538,10 +538,8 @@ static int __init early_init_dt_scan_memory_ppc(void)
+ 	const void *fdt = initial_boot_params;
+ 	int node = fdt_path_offset(fdt, "/ibm,dynamic-reconfiguration-memory");
+ 
+-	if (node > 0) {
++	if (node > 0)
+ 		walk_drmem_lmbs_early(node, NULL, early_init_drmem_lmb);
+-		return 0;
+-	}
+ #endif
+ 	
+ 	return early_init_dt_scan_memory();
+
+
+> The only thing I see is now there is an assumption that 'memory' nodes
+> are off the root node only. Before they could be anywhere.
+
+I don't know of any machines where that would be a problem. But given
+all the wild and wonderful device trees out there, who really knows :)
+
+Maybe we should continue to allow memory nodes to be anywhere, and print
+a warning for any that aren't at the root. Then if no one reports any
+hits for the warning we could switch to only allowing them at the root?
+
+cheers
+
+
+> index a835c458f50a..97d7607625ec 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -1083,16 +1083,13 @@ int __init early_init_dt_scan_memory(void)
+>         int node;
+>         const void *fdt = initial_boot_params;
+>
+> -       fdt_for_each_subnode(node, fdt, 0) {
+> -               const char *type = of_get_flat_dt_prop(node, "device_type", NULL);
+> +       for (node = fdt_node_offset_by_prop_value(fdt, -1, "device_type", "memory", 6);
+> +            node != -FDT_ERR_NOTFOUND;
+> +            node = fdt_node_offset_by_prop_value(fdt, node, "device_type", "memory", 6)) {
+>                 const __be32 *reg, *endp;
+>                 int l;
+>                 bool hotpluggable;
+>
+> -               /* We are scanning "memory" nodes only */
+> -               if (type == NULL || strcmp(type, "memory") != 0)
+> -                       continue;
+> -
+>                 reg = of_get_flat_dt_prop(node, "linux,usable-memory", &l);
+>                 if (reg == NULL)
+>                         reg = of_get_flat_dt_prop(node, "reg", &l);
+>
+> Rob
