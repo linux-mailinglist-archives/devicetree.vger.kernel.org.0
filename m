@@ -2,59 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7581473E0E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 09:11:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 713E4473E3B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 09:27:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231750AbhLNILr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 03:11:47 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:36434 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbhLNILr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 03:11:47 -0500
+        id S231815AbhLNI1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 03:27:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33404 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229703AbhLNI1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 03:27:15 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E842C061574;
+        Tue, 14 Dec 2021 00:27:15 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6B1FDB8172C;
-        Tue, 14 Dec 2021 08:11:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 748D8C34601;
-        Tue, 14 Dec 2021 08:11:43 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0948D61353;
+        Tue, 14 Dec 2021 08:27:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40A87C34604;
+        Tue, 14 Dec 2021 08:27:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639469505;
-        bh=5X1v+ZC31dDevWkuoDLSrjyETrgJ6WGs+ZsJZlLVjXE=;
+        s=k20201202; t=1639470434;
+        bh=r8TdqGJCnb9kOuKR7NwN5SqESX/fhNyX99iaKeTy3dQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SguaaNt0ULlCypQ/OjPRRnBj1btpkBo8nJrSMPzd3X00e8VReiVEk6e0EPAH2Wijz
-         Ahhk4JUPXJvKzYQpZSOoDjowZGhxhX4s+dAMGeAbtxG858UZ4r4z3euWQs5cSyz8t9
-         h2spMMS6rLabL+EDKEiuwxPs3sts6eV6IKcN53EYOh/7IUejuuFK/cw/Z/m0QY0WvW
-         hlltE0bCnUPerH1VWi5SU7Cx+bJTcCkZwCyoZmSNlJHEaD6QeuA4SJipzvJx7ufyE1
-         Q63ecvKeEemVECYyDqG/LiXVdLvznSoXxQZJyBWVfbCAagmzOZUBNb/DNSisoZG07S
-         a9RrCyFMnspNw==
-Date:   Tue, 14 Dec 2021 16:11:39 +0800
+        b=ayjkAxTZaLTm21EMX2bKk1zx6oVcqbVHcRM7id+wtdaWn/xCNH05XhMu2YgWbulKj
+         44mncPTt+iTjVtYn94yBjGArySYKft0rfMs5XmoxmmHKVsZf/PnqNLO4i/uMxfqwfQ
+         Ma7fzc1Dde3MBxrEEpdyhQsW2ednLKEL5lILkmxVjoqarWWDaPv9gUM/vQRL7ZVsxv
+         maGczdydH5Li5Jpxn4XTefqJGn75BzJwFAIugqmkiKNhXmbBRAoy32DO4KeCkSkQoJ
+         bqfDkoo8VMtYjLa6mo6ZArZHSWmlDNuhsWndvKpPQqTdR97bivFMvUwaKWYOqvMerS
+         Xbp3emqjm2b2A==
+Date:   Tue, 14 Dec 2021 16:27:08 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: fsl: imx8mq-evk: link regulator to VPU domain
-Message-ID: <20211214081139.GB14056@dragon>
-References: <20211205210144.1072721-1-aford173@gmail.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, ping.bai@nxp.com,
+        aisheng.dong@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V2 0/3] add i.MX8ULP scmi power domain
+Message-ID: <20211214082707.GD14056@dragon>
+References: <20211208131755.1799041-1-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211205210144.1072721-1-aford173@gmail.com>
+In-Reply-To: <20211208131755.1799041-1-peng.fan@oss.nxp.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 05, 2021 at 03:01:43PM -0600, Adam Ford wrote:
-> The SW1C regulator powers the VPU and the state isn't guaranteed
-> to always be on.  Link the VPU power-domain to the regulator to
-> ensure it is turned on before using the power domain.
+On Wed, Dec 08, 2021 at 09:17:52PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> V2:
+>  There is no dependency now.
+>  Use Hyphen for node name in patch 2/3
+>  Add A-b in patch 1/3
+> 
+> This patchset is to add device tree support for i.MX8ULP SCMI firmware,
+> and enable it for USDHC node
+> 
+> Peng Fan (3):
+>   dt-bindings: power: imx8ulp: add power domain header file
+>   arm64: dts: imx8ulp: add scmi firmware node
+>   arm64: dts: imx8ulp: add power domain entry for usdhc
 
-Applied, thanks!
+Applied all, thanks!
