@@ -2,135 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FD9247453C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 15:36:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ACD147453E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 15:36:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232660AbhLNOgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 09:36:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34354 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230525AbhLNOgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 09:36:22 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2FE0C061574;
-        Tue, 14 Dec 2021 06:36:21 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9F952B819DF;
-        Tue, 14 Dec 2021 14:36:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E195C34606;
-        Tue, 14 Dec 2021 14:36:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639492579;
-        bh=JeitOmEqW9rtcD66C+yEXcyx8w8OjcLkFHkoZGInfJE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hZR52lmrLUsqALOOA+vgeqyfxnzYUGQi75J6qtfMklY75P2pI+oaDXuC+Fw8Ftko4
-         ZLRDjJDI/H7JJJ796xd3GoWDU1HQmpR2IPPRz7EeklcPYPgGDxgGzZ97BIZ6gqS+PA
-         Uob6Y9uujLDpQlrLxf2C5Bh/5yNO0k5JE+isAQLGy4e5N532EUCH9OyJnNCoXlfqT4
-         cs8cTkFSsJneIfMYggMPFd8jnz8Z16XXG2W0t2i7mAIDfn+QFiiLoXRr8HfuW+9nFD
-         Y2OJdPXxgqTWwOUO2Cih2cYzQ+F7uuLSkkzlMcRKo2V4q0BHWVwltCZDh8Yip2XeaU
-         cpyeQq1Y56EzA==
-Date:   Tue, 14 Dec 2021 14:36:14 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] arm64: perf: Support Denver and Carmel PMUs
-Message-ID: <20211214143614.GA14837@willie-the-truck>
-References: <20211207150746.444478-1-thierry.reding@gmail.com>
- <20211207150746.444478-2-thierry.reding@gmail.com>
- <Ya+FzVuvQ3W8LOyl@FVFF77S0Q05N>
- <YbDC0sHeq49cdt0Z@orome>
- <20211214123353.GD14247@willie-the-truck>
- <YbiqGCJ8U9TTS3nr@orome>
+        id S232683AbhLNOgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 09:36:39 -0500
+Received: from foss.arm.com ([217.140.110.172]:57540 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230525AbhLNOgi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Dec 2021 09:36:38 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 622BB6D;
+        Tue, 14 Dec 2021 06:36:38 -0800 (PST)
+Received: from [10.57.84.72] (unknown [10.57.84.72])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 257643F793;
+        Tue, 14 Dec 2021 06:36:37 -0800 (PST)
+Message-ID: <85dc7575-de86-b5d5-252d-fcfb6aa6f3e9@arm.com>
+Date:   Tue, 14 Dec 2021 14:36:35 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YbiqGCJ8U9TTS3nr@orome>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.4.0
+Subject: Re: [PATCH v2 4/5] dt-bindings: perf: Convert Arm DSU to schema
+To:     Robin Murphy <robin.murphy@arm.com>, will@kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     catalin.marinas@arm.com, thierry.reding@gmail.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <cover.1639490264.git.robin.murphy@arm.com>
+ <9fde2e11b0d11285c26d0e9d261034a1628c7901.1639490264.git.robin.murphy@arm.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <9fde2e11b0d11285c26d0e9d261034a1628c7901.1639490264.git.robin.murphy@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 14, 2021 at 03:28:40PM +0100, Thierry Reding wrote:
-> On Tue, Dec 14, 2021 at 12:33:53PM +0000, Will Deacon wrote:
-> > On Wed, Dec 08, 2021 at 03:36:02PM +0100, Thierry Reding wrote:
-> > > On Tue, Dec 07, 2021 at 04:03:25PM +0000, Mark Rutland wrote:
-> > > > On Tue, Dec 07, 2021 at 04:07:45PM +0100, Thierry Reding wrote:
-> > > > > From: Thierry Reding <treding@nvidia.com>
-> > > > > 
-> > > > > Add support for the NVIDIA Denver and Carmel PMUs using the generic
-> > > > > PMUv3 event map for now.
-> > > > > 
-> > > > > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > > > > ---
-> > > > >  arch/arm64/kernel/perf_event.c | 14 ++++++++++++++
-> > > > >  1 file changed, 14 insertions(+)
-> > > > > 
-> > > > > diff --git a/arch/arm64/kernel/perf_event.c b/arch/arm64/kernel/perf_event.c
-> > > > > index b4044469527e..8c8cf369c450 100644
-> > > > > --- a/arch/arm64/kernel/perf_event.c
-> > > > > +++ b/arch/arm64/kernel/perf_event.c
-> > > > > @@ -1247,6 +1247,18 @@ static int armv8_vulcan_pmu_init(struct arm_pmu *cpu_pmu)
-> > > > >  				       armv8_vulcan_map_event);
-> > > > >  }
-> > > > >  
-> > > > > +static int armv8_denver_pmu_init(struct arm_pmu *cpu_pmu)
-> > > > > +{
-> > > > > +	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_nvidia_denver",
-> > > > > +				       armv8_pmuv3_map_event);
-> > > > > +}
-> > > > > +
-> > > > > +static int armv8_carmel_pmu_init(struct arm_pmu *cpu_pmu)
-> > > > > +{
-> > > > > +	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_nvidia_carmel",
-> > > > > +				       armv8_pmuv3_map_event);
-> > > > > +}
-> > > > > +
-> > > > >  static const struct of_device_id armv8_pmu_of_device_ids[] = {
-> > > > >  	{.compatible = "arm,armv8-pmuv3",	.data = armv8_pmuv3_init},
-> > > > >  	{.compatible = "arm,cortex-a34-pmu",	.data = armv8_a34_pmu_init},
-> > > > > @@ -1265,6 +1277,8 @@ static const struct of_device_id armv8_pmu_of_device_ids[] = {
-> > > > >  	{.compatible = "arm,neoverse-n1-pmu",	.data = armv8_n1_pmu_init},
-> > > > >  	{.compatible = "cavium,thunder-pmu",	.data = armv8_thunder_pmu_init},
-> > > > >  	{.compatible = "brcm,vulcan-pmu",	.data = armv8_vulcan_pmu_init},
-> > > > > +	{.compatible = "nvidia,denver-pmu",	.data = armv8_denver_pmu_init},
-> > > > > +	{.compatible = "nvidia,carmel-pmu",	.data = armv8_carmel_pmu_init},
-> > > > 
-> > > > Super trivial nit, but could we please organise this alphabetically (i.e. with carmel first?)
-> > > > 
-> > > > With that:
-> > > > 
-> > > > Acked-by: Mark Rutland <mark.rutland@arm.com>
-> > > > 
-> > > > I see now that we messed up the order of "cavium,thunder-pmu" and
-> > > > "brcm,vulcan-pmu", but otherwise this is ordered, and it's be nice to keep it
-> > > > that way. I can fix the order of those two in a separate patch.
-> > > 
-> > > I ordered this chronologically (Denver for Tegra186 and Carmel for
-> > > Tegra194), which seemed a bit more natural, but I can reorder this
-> > > alphabetically if you prefer.
-> > > 
-> > > Would Will be the right person to pick this up or should I take it
-> > > through the Tegra tree and then ARM SoC?
-> > 
-> > Sorry, I missed this somehow. I've got some perf patches pending already, so
-> > it would be easiest for me to take this one directly (and then I can apply
-> > Robin's stuff on top). Is that ok?
+On 14/12/2021 14:16, Robin Murphy wrote:
+> Convert the DSU binding to schema, as one does.
 > 
-> Sure, works for me. Do you still want me to address Mark's comment
-> regarding the sorting order (chronological vs. alphabetical)? It wasn't
-> clear to me if Mark still wanted that after my explanation.
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+> 
+> v2: Actually finish converting the thing to valid schema...
+> 
+>   .../devicetree/bindings/arm/arm-dsu-pmu.txt   | 27 ------------
+>   .../devicetree/bindings/perf/arm,dsu-pmu.yaml | 41 +++++++++++++++++++
+>   2 files changed, 41 insertions(+), 27 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
+>   create mode 100644 Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt b/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
+> deleted file mode 100644
+> index 6efabba530f1..000000000000
+> --- a/Documentation/devicetree/bindings/arm/arm-dsu-pmu.txt
+> +++ /dev/null
+> @@ -1,27 +0,0 @@
+> -* ARM DynamIQ Shared Unit (DSU) Performance Monitor Unit (PMU)
+> -
+> -ARM DyanmIQ Shared Unit (DSU) integrates one or more CPU cores
+> -with a shared L3 memory system, control logic and external interfaces to
+> -form a multicore cluster. The PMU enables to gather various statistics on
+> -the operations of the DSU. The PMU provides independent 32bit counters that
+> -can count any of the supported events, along with a 64bit cycle counter.
+> -The PMU is accessed via CPU system registers and has no MMIO component.
+> -
+> -** DSU PMU required properties:
+> -
+> -- compatible	: should be one of :
+> -
+> -		"arm,dsu-pmu"
+> -
+> -- interrupts	: Exactly 1 SPI must be listed.
+> -
+> -- cpus		: List of phandles for the CPUs connected to this DSU instance.
+> -
+> -
+> -** Example:
+> -
+> -dsu-pmu-0 {
+> -	compatible = "arm,dsu-pmu";
+> -	interrupts = <GIC_SPI 02 IRQ_TYPE_LEVEL_HIGH>;
+> -	cpus = <&cpu_0>, <&cpu_1>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
+> new file mode 100644
+> index 000000000000..09ddeb6a3ccc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2021 Arm Ltd.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/perf/arm,dsu-pmu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ARM DynamIQ Shared Unit (DSU) Performance Monitor Unit (PMU)
+> +
+> +maintainers:
+> +  - Suzuki K Poulose <suzuki.poulose@arm.com>
+> +  - Robin Murphy <robin.murphy@arm.com>
+> +
+> +description:
+> +  ARM DyanmIQ Shared Unit (DSU) integrates one or more CPU cores with a shared
 
-No need -- Robin's picked this into his series:
+nit: DynamIQ. I understand I am the one to blame for ;-)
 
-https://lore.kernel.org/r/5f0f69d47acca78a9e479501aa4d8b429e23cf11.1639490264.git.robin.murphy@arm.com
+Rest looks good to me.
 
-so now I just need to pick that lot up.
-
-Thanks!
-
-Will
+Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
