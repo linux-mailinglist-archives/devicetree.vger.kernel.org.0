@@ -2,121 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6B62473BB0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 04:47:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51199473BBB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 04:57:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233156AbhLNDrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 22:47:22 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:33394 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233216AbhLNDrV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 22:47:21 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BE3l0SI059276;
-        Mon, 13 Dec 2021 21:47:00 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1639453620;
-        bh=sSUI+3XbCkWJC8iuEmPzjq99OubAAA0oFQ31cA0MhpA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=HgmGgtYtjS/+21+jDL3Qdo38QnwnKO48L46s2HPUFDMkJt1nopdh1qkJXZUBj7SV0
-         CazYg45gzVKd/ZMPUeQAx7y2T7358XmGqqpThV3rP0ttGUs7QDSIimb4KtD+I3wdgG
-         XHAlzJ4TX0MlpERNQdl4j5C/iidTWKNwqbvkQDHA=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BE3l0CH054348
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 13 Dec 2021 21:47:00 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 13
- Dec 2021 21:46:59 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 13 Dec 2021 21:46:59 -0600
-Received: from [10.250.232.185] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BE3kuDX023438;
-        Mon, 13 Dec 2021 21:46:57 -0600
-Subject: Re: [PATCH 1/2] dt-bindings: phy: ti,tcan104x-can: Document
- mux-states property
-To:     Rob Herring <robh@kernel.org>
-CC:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, <linux-can@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20211202131002.12217-1-a-govindraju@ti.com>
- <20211202131002.12217-2-a-govindraju@ti.com>
- <Ybeq5dNYjN4GOzdV@robh.at.kernel.org>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <05d52ca2-424b-94b5-4f0c-56dbbc5a0c22@ti.com>
-Date:   Tue, 14 Dec 2021 09:16:55 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S231806AbhLND5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 22:57:11 -0500
+Received: from mga05.intel.com ([192.55.52.43]:34169 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229752AbhLND5L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Dec 2021 22:57:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1639454231; x=1670990231;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=c80rvbuAJVfSyWz3CPd3UL10TlVQu2fDLQ3/tWNO5wM=;
+  b=Si7FxOgFWHgiokuEyDuQYOSislgB6WW2G3KZp+EdtkbKnuY1B4sp456u
+   t1WPuJZf2f1fO0mGR/7UwKWSseeVASY4i0aeKy03qox0B3WZp1l7ssPYl
+   m//Bwa0GMFdbiB/tgaaG83MHr0pt7LbSSyuC/G/UWb65oBqXHsrW4ThZ/
+   OHtnp3mVY1D/Ckei8hZzBFv2Yau9hY5KbVQdvt0J5AeF8HbarjjCAkUXV
+   cN+fXKhJeSgrS7ZX/WgRdyMA9zwXcNZhgJ1fjkipp/Qzaw0CrYDqzyXOx
+   McaETUc11PII4wEbd3Er2uqb6TqOK3hE6vfvFj1TR2QkbidpEyLrTysGZ
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10197"; a="325163932"
+X-IronPort-AV: E=Sophos;i="5.88,204,1635231600"; 
+   d="scan'208";a="325163932"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2021 19:57:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,204,1635231600"; 
+   d="scan'208";a="545019569"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by orsmga001.jf.intel.com with ESMTP; 13 Dec 2021 19:57:08 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mwyw7-0007PV-RG; Tue, 14 Dec 2021 03:57:07 +0000
+Date:   Tue, 14 Dec 2021 11:56:27 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     David Brazdil <dbrazdil@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     kbuild-all@lists.01.org, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        David Brazdil <dbrazdil@google.com>,
+        Will Deacon <will@kernel.org>,
+        Andrew Scull <ascull@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] misc: open-dice: Add driver to expose DICE data
+ to userspace
+Message-ID: <202112141150.Hh48OleF-lkp@intel.com>
+References: <20211213195833.772892-3-dbrazdil@google.com>
 MIME-Version: 1.0
-In-Reply-To: <Ybeq5dNYjN4GOzdV@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211213195833.772892-3-dbrazdil@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi David,
 
-On 14/12/21 1:49 am, Rob Herring wrote:
-> On Thu, Dec 02, 2021 at 06:40:01PM +0530, Aswath Govindraju wrote:
->> On some boards, for routing CAN signals from controller to transceivers,
->> muxes might need to be set. This can be implemented using mux-states
->> property. Therefore, document the same in the respective bindings.
->>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->> ---
->>  .../devicetree/bindings/phy/ti,tcan104x-can.yaml    | 13 +++++++++++++
->>  1 file changed, 13 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
->> index 6107880e5246..5b2b08016635 100644
->> --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
->> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
->> @@ -37,6 +37,18 @@ properties:
->>        max bit rate supported in bps
->>      minimum: 1
->>  
->> +  mux-states:
->> +    description:
->> +      mux controller node to route the signals from controller to
->> +      transceiver. Depending on the mux chip and the control lines
->> +      in it, the first and second parameters can be used for
->> +      representing control line and state. The number of arguments
->> +      is to be used based on '#mux-state-cells' property in the
->> +      mux-controller node. If '#mux-state-cells' is equal to
->> +      one then, then the argument to be used would be the state.
->> +      If it is set to two, then the first argument is the control
->> +      line and the second argument would be its corresponding state.
-> 
-> No need to redefine how a common property works here. What you do need 
-> to define is how many entries and what they are for if more than 1. 
-> 
+Thank you for the patch! Perhaps something to improve:
 
-Got it. So, I'll remove the common part that describes about the number
-of arguments and only include what the arguments would mean given the
-number of arguments
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on char-misc/char-misc-testing soc/for-next v5.16-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
+url:    https://github.com/0day-ci/linux/commits/David-Brazdil/Driver-for-Open-Profile-for-DICE/20211214-040051
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20211214/202112141150.Hh48OleF-lkp@intel.com/config)
+compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/0day-ci/linux/commit/6fb8e9472d98abcc2dfabd43e95fc4ec5819ecd0
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review David-Brazdil/Driver-for-Open-Profile-for-DICE/20211214-040051
+        git checkout 6fb8e9472d98abcc2dfabd43e95fc4ec5819ecd0
+        # save the config file to linux build tree
+        mkdir build_dir
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/misc/
 
-  mux-states:
-    description:
-      mux controller node to route the signals from controller to
-      transceiver. Two arguments can be present depending on the mux
-      chip. If mux-states has one argument then it represents the state.
-      If there are two arguments then the first argument is the control
-      line and the second argument is its corresponding state.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/misc/open-dice.c: In function 'open_dice_probe':
+>> drivers/misc/open-dice.c:30:21: warning: format '%d' expects argument of type 'int', but argument 4 has type 'size_t' {aka 'long unsigned int'} [-Wformat=]
+      30 | #define DRIVER_NAME "open-dice"
+         |                     ^~~~~~~~~~~
+   drivers/misc/open-dice.c:160:49: note: in expansion of macro 'DRIVER_NAME'
+     160 |  snprintf(drvdata->name, sizeof(drvdata->name), DRIVER_NAME"%d", dev_idx++);
+         |                                                 ^~~~~~~~~~~
+   drivers/misc/open-dice.c:160:62: note: format string is defined here
+     160 |  snprintf(drvdata->name, sizeof(drvdata->name), DRIVER_NAME"%d", dev_idx++);
+         |                                                             ~^
+         |                                                              |
+         |                                                              int
+         |                                                             %ld
 
 
-Thanks,
-Aswath
+vim +30 drivers/misc/open-dice.c
 
-> Rob
-> 
+    29	
+  > 30	#define DRIVER_NAME "open-dice"
+    31	
 
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
