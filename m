@@ -2,166 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 007AA474541
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 15:37:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60D8647455B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 15:40:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233149AbhLNOhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 09:37:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34572 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233130AbhLNOhU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 09:37:20 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B585C06173E
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 06:37:20 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id i22so2928483wrb.13
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 06:37:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=EjMvrwPSu7ED0UdbjvCYsAuuHexCnu6Rd7+A7M539WY=;
-        b=dHivwfu99zBaoXggDAdU8tINy/YbNw7tEGDydSVrQNIcGtbQQEyVTa8D5xWXr4E1+2
-         m+jTGwh1IrsR6Zk4JE7Kj475L94o0gDZw8sZ2g2E5D1IiOBOg09sxTTfkuu9wGumOixy
-         PaVxEXHkdo+Q02XgfmTfGSw8TQvi5xWWAI/MND109iYbWDRpu+lOXNE3DD23ilsXoXUs
-         qcoXLfMqCqdqKL9B81ytoj6TXQ7eYn9jSfHUPlY0pGiSXpMpO1x07HUGJy//iMD+Lmey
-         diX1MYrKq6w2R0sUaOy5M6t875FRaEjG3/E6nTAsAHlqRei/N/2R29ym2354GO9RI0/o
-         WQdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EjMvrwPSu7ED0UdbjvCYsAuuHexCnu6Rd7+A7M539WY=;
-        b=7RXZPCKU5jzbb90RqRm78GlkAfeyzAP3pd6tpoA3jXRNC7I+NKX2Xr7M/+98Bj03t1
-         dDhiOXAUnxAxioNTn+UMhMlhh7NHEd8M1C6PTBITjcv8/K2Cx3lMyYiWvHzSEQW3Ossw
-         o04wL9JyAFgE+7ZgqnXZroNOCIXs2s+m+LPWK9/fSk5v+2jos1yT///CZrnkInmIAHDp
-         u6uzNkGBbmUgVrXJwd5OZQwcRO1u6ZfxEtFOV82MDIjRRUorqnjHG5wESGJc3NXocm0e
-         nbgp4LH5VwtKkTQ/yUMLKU6YrKB37GV6JZ02VNwSZnt6F73dOHmXwcqFOjvOXc2/iJBJ
-         KTjw==
-X-Gm-Message-State: AOAM533nDcisGaJujoTCL8yD77s8vBlkUGs2v57OzpJiRGrIpBgdyoHT
-        zNuQGUhoJvhPtWgiIqQ3sfEHVA==
-X-Google-Smtp-Source: ABdhPJyG+zjY5MrIPxKf5Nee627TYG9pySxms6E8tVqeZ/vgk9UWaetnUCOk9H7D1qx8VZmOJ9L3VQ==
-X-Received: by 2002:a05:6000:18a3:: with SMTP id b3mr6267651wri.343.1639492638881;
-        Tue, 14 Dec 2021 06:37:18 -0800 (PST)
-Received: from google.com ([2a00:79e0:d:209:243:2f6a:9a1:5446])
-        by smtp.gmail.com with ESMTPSA id k187sm2669579wme.0.2021.12.14.06.37.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 06:37:18 -0800 (PST)
-Date:   Tue, 14 Dec 2021 14:37:12 +0000
-From:   David Brazdil <dbrazdil@google.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Will Deacon <will@kernel.org>,
-        Andrew Scull <ascull@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] misc: open-dice: Add driver to expose DICE data
- to userspace
-Message-ID: <YbisGPqjLV8Chl8h@google.com>
-References: <20211213195833.772892-1-dbrazdil@google.com>
- <20211213195833.772892-3-dbrazdil@google.com>
- <YbhFTj561N4Ir2RG@kroah.com>
+        id S232721AbhLNOkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 09:40:20 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:50974 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230514AbhLNOkT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 09:40:19 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3DDF6B819E7;
+        Tue, 14 Dec 2021 14:40:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB65DC34605;
+        Tue, 14 Dec 2021 14:40:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639492817;
+        bh=ZsV7vgxPngHOT7KypBEabGUnzoS988RDkMy+GfbQz5k=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=DEk9lHeW4hwiaZLjPTt7Uc1cptM17Ov0+NsM6bhU4LiI//GPvobyXJoBCiW9S4dF/
+         OReBLXH4E90RJYGzpp/+tJ9ERkzS7RFhDYW2ME6QjJuoUNis7M+4XpD7r0pg5z8Nmx
+         cKcnofKDQhYytgZBnUQ49vx4/PCZh+xekN9naH1FqLdx9G0sh26AFfh8LwEZzGltbl
+         ETFEJfnkFVhWU5+bdgUz3314Eahw+5wMST9UXEdQSPqMU0kcDMsUidpADbC4y1i9ht
+         2UA6ByU0F+OuHVYfpGQmKk63vajy5tyctQoCyq7ckY6+kySqHgV/1ZehWyRdaj/zS0
+         HWmEi/IJCNzaA==
+Received: by mail-ed1-f42.google.com with SMTP id v1so64156056edx.2;
+        Tue, 14 Dec 2021 06:40:16 -0800 (PST)
+X-Gm-Message-State: AOAM531vLnxzkKlZh2jcMkxKKIM2wcznwKgQmX059FMPoGDI+E8z2o8f
+        F90jL1azuvrScpUpIEyf0upyPqNAuL2C31p42w==
+X-Google-Smtp-Source: ABdhPJzb2kFsttfkp1wodLWs1+u9g7X0Osm0q69CwVTGT2N2fa1Xsg4NpUSIZpuN1tuA7JavfOna2VbIWMjOqcHj4o8=
+X-Received: by 2002:a17:907:9256:: with SMTP id kb22mr5778005ejb.423.1639492814393;
+ Tue, 14 Dec 2021 06:40:14 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YbhFTj561N4Ir2RG@kroah.com>
+References: <20211208155839.4084795-1-robh@kernel.org> <87fsqwn03o.fsf@mpe.ellerman.id.au>
+ <CAL_JsqLpq7fx0pyQiJFa0P5C3JXijiVe_fr84x9RML1aDJ7vDQ@mail.gmail.com> <877dc7mo3o.fsf@mpe.ellerman.id.au>
+In-Reply-To: <877dc7mo3o.fsf@mpe.ellerman.id.au>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 14 Dec 2021 08:40:02 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKbaRgivZMxEj6Mjdny2LNeSA1GQyDW-nQe7E2irPc-Fw@mail.gmail.com>
+Message-ID: <CAL_JsqKbaRgivZMxEj6Mjdny2LNeSA1GQyDW-nQe7E2irPc-Fw@mail.gmail.com>
+Subject: Re: [PATCH v2] of/fdt: Rework early_init_dt_scan_memory() to call directly
+To:     Michael Ellerman <mpe@ellerman.id.au>
+Cc:     John Crispin <john@phrozen.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 14, 2021 at 08:18:38AM +0100, Greg Kroah-Hartman wrote:
-> On Mon, Dec 13, 2021 at 07:58:33PM +0000, David Brazdil wrote:
-> > Open Profile for DICE is an open protocol for measured boot compatible
-> > with the Trusted Computing Group's Device Identifier Composition
-> > Engine (DICE) specification. The generated Compound Device Identifier
-> > (CDI) certificates represent the hardware/software combination measured
-> > by DICE, and can be used for remote attestation and sealing.
-> > 
-> > Add a driver that exposes reserved memory regions populated by firmware
-> > with DICE CDIs and exposes them to userspace via a character device.
-> > 
-> > Userspace obtains the memory region's size from read() and calls mmap()
-> > to create a mapping of the memory region in its address space. The
-> > mapping is not allowed to be write+shared, giving userspace a guarantee
-> > that the data were not overwritten by another process.
-> > 
-> > Userspace can also call write(), which triggers a wipe of the DICE data
-> > by the driver. Because both the kernel and userspace mappings use
-> > write-combine semantics, all clients observe the memory as zeroed after
-> > the syscall has returned.
-> > 
-> > Cc: Andrew Scull <ascull@google.com>
-> > Cc: Will Deacon <will@kernel.org>
-> > Signed-off-by: David Brazdil <dbrazdil@google.com>
-> > ---
-> >  drivers/misc/Kconfig     |  12 +++
-> >  drivers/misc/Makefile    |   1 +
-> >  drivers/misc/open-dice.c | 197 +++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 210 insertions(+)
-> >  create mode 100644 drivers/misc/open-dice.c
-> > 
-> > diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> > index 0f5a49fc7c9e..4d996485f5a7 100644
-> > --- a/drivers/misc/Kconfig
-> > +++ b/drivers/misc/Kconfig
-> > @@ -470,6 +470,18 @@ config HISI_HIKEY_USB
-> >  	  switching between the dual-role USB-C port and the USB-A host ports
-> >  	  using only one USB controller.
-> >  
-> > +config OPEN_DICE
-> > +	tristate "Open Profile for DICE driver"
-> > +	depends on OF_RESERVED_MEM
-> > +	help
-> > +	  This driver exposes a DICE reserved memory region to userspace via
-> > +	  a character device. The memory region contains Compound Device
-> > +	  Identifiers (CDIs) generated by firmware as an output of DICE
-> > +	  measured boot flow. Userspace can uses CDIs for remote attestation
-> > +	  and sealing.
-> > +
-> > +	  If unsure, say N.
-> > +
-> >  source "drivers/misc/c2port/Kconfig"
-> >  source "drivers/misc/eeprom/Kconfig"
-> >  source "drivers/misc/cb710/Kconfig"
-> > diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-> > index a086197af544..70e800e9127f 100644
-> > --- a/drivers/misc/Makefile
-> > +++ b/drivers/misc/Makefile
-> > @@ -59,3 +59,4 @@ obj-$(CONFIG_UACCE)		+= uacce/
-> >  obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
-> >  obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
-> >  obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
-> > +obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
-> > diff --git a/drivers/misc/open-dice.c b/drivers/misc/open-dice.c
-> > new file mode 100644
-> > index 000000000000..ea7b1a8d49ac
-> > --- /dev/null
-> > +++ b/drivers/misc/open-dice.c
-> > @@ -0,0 +1,197 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright (C) 2021 - Google LLC
-> > + * Author: David Brazdil <dbrazdil@google.com>
-> > + *
-> > + * Driver for Open Profile for DICE.
-> > + *
-> > + * This driver takes ownership of a reserved memory region containing secrets
-> > + * derived following the Open Profile for DICE. The contents of the memory
-> > + * region are not interpreted by the kernel but can be mapped into a userspace
-> > + * process via a misc device. The memory region can also be wiped, removing
-> > + * the secrets from memory.
-> > + *
-> > + * Userspace can access the data by (w/o error handling):
-> > + *
-> > + *     fd = open("/dev/open-dice0", O_RDWR);
-> > + *     size = read(fd, NULL, 0);
-> 
-> I was thinking you would return the value as a string in the buffer
-> provided to the read call, not as the return value itself.  That is odd
-> and probably breaks something.  What would happen if you ran 'cat' on
-> the device node?
+On Tue, Dec 14, 2021 at 5:18 AM Michael Ellerman <mpe@ellerman.id.au> wrote:
+>
+> Rob Herring <robh@kernel.org> writes:
+> > On Mon, Dec 13, 2021 at 6:47 AM Michael Ellerman <mpe@ellerman.id.au> wrote:
+> >> Rob Herring <robh@kernel.org> writes:
+> >> > Use of the of_scan_flat_dt() function predates libfdt and is discouraged
+> >> > as libfdt provides a nicer set of APIs. Rework
+> >> > early_init_dt_scan_memory() to be called directly and use libfdt.
+> >> ...
+> >> > diff --git a/arch/powerpc/kernel/prom.c b/arch/powerpc/kernel/prom.c
+> >> > index 6e1a106f02eb..63762a3b75e8 100644
+> >> > --- a/arch/powerpc/kernel/prom.c
+> >> > +++ b/arch/powerpc/kernel/prom.c
+> >> > @@ -532,19 +532,19 @@ static int  __init early_init_drmem_lmb(struct drmem_lmb *lmb,
+> >> >  }
+> >> >  #endif /* CONFIG_PPC_PSERIES */
+> >> >
+> >> > -static int __init early_init_dt_scan_memory_ppc(unsigned long node,
+> >> > -                                             const char *uname,
+> >> > -                                             int depth, void *data)
+> >> > +static int __init early_init_dt_scan_memory_ppc(void)
+> >> >  {
+> >> >  #ifdef CONFIG_PPC_PSERIES
+> >> > -     if (depth == 1 &&
+> >> > -         strcmp(uname, "ibm,dynamic-reconfiguration-memory") == 0) {
+> >> > +     const void *fdt = initial_boot_params;
+> >> > +     int node = fdt_path_offset(fdt, "/ibm,dynamic-reconfiguration-memory");
+> >> > +
+> >> > +     if (node > 0) {
+> >> >               walk_drmem_lmbs_early(node, NULL, early_init_drmem_lmb);
+> >> >               return 0;
+> >> >       }
+>
+> It's that return that is the problem.
+>
+> Now that early_init_dt_scan_memory_ppc() is only called once, that
+> return causes us to skip scanning regular memory nodes if there is an
+> "ibm,dynamic-reconfiguration-memory" property present.
+>
+> So the fix is just:
+>
+> diff --git a/arch/powerpc/kernel/prom.c b/arch/powerpc/kernel/prom.c
+> index 1098de3b172f..125661e5fcf3 100644
+> --- a/arch/powerpc/kernel/prom.c
+> +++ b/arch/powerpc/kernel/prom.c
+> @@ -538,10 +538,8 @@ static int __init early_init_dt_scan_memory_ppc(void)
+>         const void *fdt = initial_boot_params;
+>         int node = fdt_path_offset(fdt, "/ibm,dynamic-reconfiguration-memory");
+>
+> -       if (node > 0) {
+> +       if (node > 0)
+>                 walk_drmem_lmbs_early(node, NULL, early_init_drmem_lmb);
+> -               return 0;
+> -       }
+>  #endif
+>
+>         return early_init_dt_scan_memory();
 
-Ah, I misunderstood. Yeah, running `cat` will endlessly print garbage.
-I'll do a quick respin and also change write() to appear to consume the
-buffer because 'echo 1 > /dev/open-dice0' currently blocks.
+Thanks! I've rolled that in.
 
-David
+> > The only thing I see is now there is an assumption that 'memory' nodes
+> > are off the root node only. Before they could be anywhere.
+>
+> I don't know of any machines where that would be a problem. But given
+> all the wild and wonderful device trees out there, who really knows :)
+>
+> Maybe we should continue to allow memory nodes to be anywhere, and print
+> a warning for any that aren't at the root. Then if no one reports any
+> hits for the warning we could switch to only allowing them at the root?
+
+I really doubt there's any case. I just have the least visibility into
+what IBM DTs look like. I checked some old DT files I have and also
+u-boot only supports off the root node.
+
+
+Rob
