@@ -2,148 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B351C47413B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 12:13:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3800A47414F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 12:17:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229632AbhLNLNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 06:13:55 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:36354 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbhLNLNz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 06:13:55 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9BE4B8C4;
-        Tue, 14 Dec 2021 12:13:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1639480433;
-        bh=6nPRmmvGcER3yg7mqkdC2HaRGmHh4NE1mbViJtHHWH0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XYIoCQHiC6g9sOnexmfEaQl8ZvQ5OG1lyGhEV8VwaYxAgA/E9IeCDqPm8LMnGMUXV
-         N7+uNFKObkMF/LZpp2F3BPjZ6Gd87Kn8p7ay/GtxAb0G2McAsdkwDbTa1OGtAyqJHX
-         Ko54v4c2nQM3viU/R4Ck49NHfBnEmumuFsH+XooE=
-Date:   Tue, 14 Dec 2021 13:13:52 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Peter Rosin <peda@axentia.se>, Rob Herring <robh+dt@kernel.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: i2c Update PCA954x
-Message-ID: <Ybh8cCU/zbfXkXYO@pendragon.ideasonboard.com>
-References: <20211214095021.572799-1-patrick.rudolph@9elements.com>
+        id S233470AbhLNLRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 06:17:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44292 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229836AbhLNLRF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 06:17:05 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 956C3C061574;
+        Tue, 14 Dec 2021 03:17:05 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id f18-20020a17090aa79200b001ad9cb23022so15770375pjq.4;
+        Tue, 14 Dec 2021 03:17:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=QdUzozq/ia4XNyw9Pm+HSSllN+T8ynAAyub4gDqEXTw=;
+        b=FF5tC5p1JHjCujakt/eVqkNtMr03J1AZ8FOQ+ekPma2ooNlljwmVltMYe9EKxww/hX
+         zCfBSt/w75HmySey0Rz8KzE1Tg+08qJnTrh+kYOc+SGtVXDDrRuMdeIzJQHh7Bf5zkCr
+         wm6KNdFwKAij7S2PHIzNOZmfTw80UCoRl6w/bl3dqNfRx+dVBW3VOOczVzhaEWXBtBE2
+         AuEQyYdkLlw6x/Nmm5SQerxI2cH8ONofrxR6oAXxvRyRpqHYvE1Ua2Fh1N0H+6ar0tl0
+         zA613tINPbuL6xvA7vx7F1aX3HLXLy5LAptD342AfSIM4cfj1VtcYe4eQJqTDnwVr1Ba
+         WGYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=QdUzozq/ia4XNyw9Pm+HSSllN+T8ynAAyub4gDqEXTw=;
+        b=t8qDlJbNlGKshjJZiVe9wcftBzTzJzYNbHAIrHHgY43B3+nM/VD1inK1pCW1SzfK8K
+         2VZVtn4mu/YTtyM/xDDqwT/6srNLP3TM7/uwgLvHQ2LQI1MwnyJsRuOuWdExz1yJ5PHK
+         uuwHFBhtQfGWQ+RfmfDYLtC7WxpR7lTCPo+ghhBrIFs/0HKpNbJp3AuwD13DrmKN3yGM
+         Q6KtCeV+fnWzV2tR2xK6LzVPzRFOQnqSyv1+R1Da4Wv5simPfMIqvVaLGIqGmVLS4C0l
+         ysHEJqLO8OBxfpawmnO194g9+wE0mUf96M+v3gDkDzFTztXWW0i2dSroALPdadIecrOl
+         5pbw==
+X-Gm-Message-State: AOAM533n/2/sNn/xEYG/omRQdCvlXqvArlcGh6BrWwPO+JQm+a0lmaF+
+        rEKF2u6pfU9+URuJW65bvy8=
+X-Google-Smtp-Source: ABdhPJxi7Vc0gMieaSDjbfQ5fHLxKKOvYsOCvjCR8XYyECgIAJVp2lwcgY5K8ae/LxW3MUlTnu+GFQ==
+X-Received: by 2002:a17:90b:17ca:: with SMTP id me10mr4777718pjb.134.1639480625025;
+        Tue, 14 Dec 2021 03:17:05 -0800 (PST)
+Received: from localhost.lan ([2400:4070:175b:7500::7a7])
+        by smtp.gmail.com with ESMTPSA id u3sm17410146pfk.32.2021.12.14.03.17.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Dec 2021 03:17:04 -0800 (PST)
+Received: from localhost (localhost [IPv6:::1])
+        by localhost.lan (Postfix) with ESMTPSA id ACE2C90090C;
+        Tue, 14 Dec 2021 11:17:02 +0000 (GMT)
+Date:   Tue, 14 Dec 2021 11:16:59 +0000
+From:   Vincent Pelletier <plr.vincent@gmail.com>
+To:     Aurelien Jarno <aurelien@aurel32.net>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH] riscv: dts: enable more DA9063 functions for the SiFive
+ HiFive Unmatched
+Message-ID: <20211214111659.29bf5ea4@gmail.com>
+In-Reply-To: <YbhqNY/w36XT5zx0@aurel32.net>
+References: <20211108214629.1730870-1-aurelien@aurel32.net>
+        <mhng-7ab80707-35c0-4123-8340-cf1feca4cca2@palmer-ri-x1c9>
+        <YbhqNY/w36XT5zx0@aurel32.net>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211214095021.572799-1-patrick.rudolph@9elements.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Patrick,
-
-Thank you for the patch.
-
-On Tue, Dec 14, 2021 at 10:50:18AM +0100, Patrick Rudolph wrote:
-> Add the Maxim MAX735x as supported chip to PCA954x and add an
-> example how to use it.
+On Tue, 14 Dec 2021 10:56:05 +0100, Aurelien Jarno <aurelien@aurel32.net> wrote:
+> On 2021-12-13 18:13, Palmer Dabbelt wrote:
+> > On Mon, 08 Nov 2021 13:46:29 PST (-0800), aurelien@aurel32.net wrote:  
+> > > The DA9063 PMIC found on the SiFive HiFive Unmatched also provides an
+> > > RTC, a watchdog and the power button input.
+> > > 
+> > > Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+> > > ---
+> > >  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 12 ++++++++++++
+> > >  1 file changed, 12 insertions(+)
+> > > 
+> > > diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> > > index 2e4ea84f27e7..c357b48582f7 100644
+> > > --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> > > +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> > > @@ -70,6 +70,10 @@ pmic@58 {
+> > >  		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
+> > >  		interrupt-controller;
+> > > 
+> > > +		onkey {
+> > > +			compatible = "dlg,da9063-onkey";
+> > > +		};
+> > > +
+> > >  		regulators {
+> > >  			vdd_bcore1: bcore1 {
+> > >  				regulator-min-microvolt = <900000>;
+> > > @@ -205,6 +209,14 @@ vdd_ldo11: ldo11 {
+> > >  				regulator-always-on;
+> > >  			};
+> > >  		};
+> > > +
+> > > +		rtc {
+> > > +			compatible = "dlg,da9063-rtc";
+> > > +		};
+> > > +
+> > > +		wdt {
+> > > +			compatible = "dlg,da9063-watchdog";
+> > > +		};
+> > >  	};
+> > >  };  
 > 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> ---
->  .../bindings/i2c/i2c-mux-pca954x.yaml         | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
+> Thanks. However, wouldn't be better to merged this patch and the whole
+> series instead:
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> index 9f1726d0356b..bd794cb80c11 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> @@ -11,6 +11,7 @@ maintainers:
->  
->  description:
->    The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
-> +  Compatible with Maxim MAX7356 - MAX7358 I2C mux/switch devices.
->  
->  allOf:
->    - $ref: /schemas/i2c/i2c-mux.yaml#
-> @@ -19,6 +20,9 @@ properties:
->    compatible:
->      oneOf:
->        - enum:
-> +          - maxim,max7356
-> +          - maxim,max7357
-> +          - maxim,max7358
->            - nxp,pca9540
->            - nxp,pca9542
->            - nxp,pca9543
-> @@ -40,6 +44,7 @@ properties:
->  
->    interrupts:
->      maxItems: 1
-> +    description: Only supported on NXP devices. Unsupported on Maxim MAX735x.
+> http://lists.infradead.org/pipermail/linux-riscv/2021-November/010234.html
 
-Could this be modelled by a YAML schema instead ? Something like
-
-allOf:
-  - if:
-      properties:
-        compatible:
-	  contains:
-	    enum:
-              - maxim,max7356
-              - maxim,max7357
-              - maxim,max7358
-    then:
-      properties:
-        interrupts: false
-
-(untested, it would be nice to use a pattern check for the compatible
-property if possible)
-
->  
->    "#interrupt-cells":
->      const: 2
-> @@ -100,6 +105,41 @@ examples:
->                  #size-cells = <0>;
->                  reg = <4>;
->  
-> +                rtc@51 {
-> +                    compatible = "nxp,pcf8563";
-> +                    reg = <0x51>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        i2c-mux@74 {
-> +            compatible = "maxim,max7357";
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            reg = <0x74>;
-> +
-> +            i2c@1 {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                reg = <1>;
-> +
-> +                eeprom@54 {
-> +                    compatible = "atmel,24c08";
-> +                    reg = <0x54>;
-> +                };
-> +            };
-> +
-> +            i2c@7 {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                reg = <7>;
-> +
->                  rtc@51 {
->                      compatible = "nxp,pcf8563";
->                      reg = <0x51>;
-
+My apologies about this, by the way: I had prepared that patch stack
+last summer and was witholding it until the IRQ-fires-only-once
+situation was resolved (it does affect at least the onkey subfunction,
+although in a non-obvious way when the event triggers a shutdown or a
+reboot). I did not think of checking recent submissions until it was
+too late.
 -- 
-Regards,
-
-Laurent Pinchart
+Vincent Pelletier
+GPG fingerprint 983A E8B7 3B91 1598 7A92 3845 CAC9 3691 4257 B0C1
