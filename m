@@ -2,145 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D048A474EC7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 00:53:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34BF5474EC9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 00:54:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238349AbhLNXxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 18:53:44 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:55790 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235218AbhLNXxo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 18:53:44 -0500
+        id S230497AbhLNXyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 18:54:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50254 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230120AbhLNXyb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 18:54:31 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 424DCC061574;
+        Tue, 14 Dec 2021 15:54:30 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 9919CCE19FE;
-        Tue, 14 Dec 2021 23:53:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 950F4C34606;
-        Tue, 14 Dec 2021 23:53:40 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0EB32B81D7B;
+        Tue, 14 Dec 2021 23:54:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3A22C34600;
+        Tue, 14 Dec 2021 23:54:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639526020;
-        bh=PvZMo/gj0nYljGM06LBmSCA4QR02E7C/XoKsqA/9ARM=;
+        s=k20201202; t=1639526067;
+        bh=NbVNYrferHfK7Et1tLU+6jHiQp8Yu5js3Qgqf8gRZ6w=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=c2d6BbNmvFdZiDHdABT92aAf6OEkYVx22Co/nuhvM7QnuFMm11OaGheonLr55TAvY
-         DzYV+PZ0/SBiXtO9kB7RfhWmXj+i1UjzT+ARSSW40sUhS4s+h2MEQA9Pk44QGxgNqD
-         WnQQAsOiFqNY9StJLhzGJCA/0g6fiiAQVimc32yxrxv531blbHQBHpNqBZsfmzyrIC
-         wmb5r1r4tDGcN7X0NWHMyZqeKIVDS/tX+/EazGr2i9TWviIW/SVIVSe09wvp2zoohQ
-         7uTffCu1yvqBiJV9WBOpa6wsifX3qNO8ktuNWXCpNZtZgO2hpfqM6NcciMwbbfU+SN
-         Oix1It5XrSa7A==
-Received: by mail-ed1-f44.google.com with SMTP id z5so69277917edd.3;
-        Tue, 14 Dec 2021 15:53:40 -0800 (PST)
-X-Gm-Message-State: AOAM5317tcXpMa6GsOsWMHewcw4XafqKnzt6sIlWIiY8641+FZyqRPMh
-        wy9e0iDqxobHZgO3MyPgT004NTpdYrF1JSxiPw==
-X-Google-Smtp-Source: ABdhPJwZTLqb7EhBpI3gfOOkg0o3mBknMM3223fDkEXOuW0bRcjsRNNG9nIMm+fbqnKdl+8DcTDsDM23zLUH6+1T0Vs=
-X-Received: by 2002:a05:6402:4251:: with SMTP id g17mr11723087edb.89.1639526018906;
- Tue, 14 Dec 2021 15:53:38 -0800 (PST)
+        b=So5j1gY28yYedmfARaWH3xdXnuzVqawAwtFbovlmfZAbQPdwiJ8Kzrc0DUAqccodD
+         +vCvksQ4y8UdS9RqJcCjHRh4oBlKbr8AyblSWHKevSlUrdAxt5Fpv4kXiSlV47oAx6
+         l3jOvluU9M0flvnDnkaNuyS6F90UY8Av9KmTj6fqDMFv2WsnCdY5U95Ft7CSL2YLFp
+         NmD0oVW1YP+kHTwR//XR2HbNI90O9Y0+yEti+Jr9sAfLiqsHdlpTQH15mES76oL70l
+         4CyWlh10r1RkLjTeyxU/bFqqQ7/P97IVhirls5gDgVRnhDfR5wcFCBcXVHyAT3mEaK
+         SkwNzXKCTgmkg==
+Received: by mail-ed1-f45.google.com with SMTP id v1so69013257edx.2;
+        Tue, 14 Dec 2021 15:54:27 -0800 (PST)
+X-Gm-Message-State: AOAM5330r8jCF+OhuRfoDEnHk55JBSX6cIOlEwsPckn2W5oSZI/Aa/6k
+        fcTBTKYtId2AWEA/rDnoAvsrrcj5P7GD9+SRXQ==
+X-Google-Smtp-Source: ABdhPJzp/5VvUlwABGdKDrORoiAKsOFL9lfiyfvDlKLdyjmNKuH0Av0WZQ9j/LmjnxdTEMVKsH0dKrI/HjqdDOtI/UE=
+X-Received: by 2002:a17:907:7b98:: with SMTP id ne24mr8557534ejc.14.1639526066241;
+ Tue, 14 Dec 2021 15:54:26 -0800 (PST)
 MIME-Version: 1.0
-References: <20211214120213.15649-1-povik@protonmail.com> <20211214120213.15649-2-povik@protonmail.com>
- <Ybi61fzpOV7CumtR@robh.at.kernel.org> <3F145763-2774-4569-B9B7-A03CFE002E94@protonmail.com>
-In-Reply-To: <3F145763-2774-4569-B9B7-A03CFE002E94@protonmail.com>
+References: <20211214163315.3769677-1-davidm@egauge.net> <20211214163315.3769677-3-davidm@egauge.net>
+ <1639512290.330041.3819896.nullmailer@robh.at.kernel.org> <e88e908e720172d8571d48bd1ebdab3617534f73.camel@egauge.net>
+In-Reply-To: <e88e908e720172d8571d48bd1ebdab3617534f73.camel@egauge.net>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 14 Dec 2021 17:53:26 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+STG7=H_B3VwNp1V4OSCvKat2FUJhtzi_1t_UbMnOUfw@mail.gmail.com>
-Message-ID: <CAL_Jsq+STG7=H_B3VwNp1V4OSCvKat2FUJhtzi_1t_UbMnOUfw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Add Apple NCO
-To:     =?UTF-8?Q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>
+Date:   Tue, 14 Dec 2021 17:54:14 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLFyaAvTGQJc0GjYbXwyhpmfpRm3_rkGopD8cz6-ZX5zw@mail.gmail.com>
+Message-ID: <CAL_JsqLFyaAvTGQJc0GjYbXwyhpmfpRm3_rkGopD8cz6-ZX5zw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] wilc1000: Document enable-gpios and reset-gpios properties
+To:     David Mosberger-Tang <davidm@egauge.net>
+Cc:     Kalle Valo <kvalo@codeaurora.org>, netdev <netdev@vger.kernel.org>,
+        Adham Abozaeid <adham.abozaeid@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Ajay Singh <ajay.kathat@microchip.com>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 14, 2021 at 2:08 PM Martin Povi=C5=A1er <povik@protonmail.com> =
-wrote:
+On Tue, Dec 14, 2021 at 5:30 PM David Mosberger-Tang <davidm@egauge.net> wrote:
 >
-> Hi Rob,
->
-> > On 14. 12. 2021, at 16:40, Rob Herring <robh@kernel.org> wrote:
+> On Tue, 2021-12-14 at 14:04 -0600, Rob Herring wrote:
+> > On Tue, 14 Dec 2021 16:33:22 +0000, David Mosberger-Tang wrote:
+> > > Add documentation for the ENABLE and RESET GPIOs that may be needed by
+> > > wilc1000-spi.
+> > >
+> > > Signed-off-by: David Mosberger-Tang <davidm@egauge.net>
+> > > ---
+> > >  .../net/wireless/microchip,wilc1000.yaml        | 17 +++++++++++++++++
+> > >  1 file changed, 17 insertions(+)
+> > >
 > >
-> > On Tue, Dec 14, 2021 at 12:02:48PM +0000, Martin Povi=C5=A1er wrote:
-> >> The NCO block found on Apple SoCs is a programmable clock generator
-> >> performing fractional division of a high frequency input clock.
-> >>
-> >> Signed-off-by: Martin Povi=C5=A1er <povik@protonmail.com>
-> >> ---
-> >> .../devicetree/bindings/clock/apple,nco.yaml  | 70 +++++++++++++++++++
-> >> 1 file changed, 70 insertions(+)
-> >> create mode 100644 Documentation/devicetree/bindings/clock/apple,nco.y=
-aml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/clock/apple,nco.yaml b/=
-Documentation/devicetree/bindings/clock/apple,nco.yaml
-> >> new file mode 100644
-> >> index 000000000000..5029824ab179
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/clock/apple,nco.yaml
-> >> @@ -0,0 +1,70 @@
->
-> >> +
-> >> +  apple,nchannels:
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >> +    description:
-> >> +      The number of output channels the NCO block has been
-> >> +      synthesized for.
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > >
-> > I'd assume there is some max number?
->
-> There might be some limit to the underlying IP but we wouldn=E2=80=99t kn=
-ow.
-> What we know about the hardware comes from blackbox reversing, and that
-> doesn't suggest a particular limit to the number of channels we might
-> see on the SoC block in future.
-
-All the more reason to not put the size in the DT, but imply from the
-compatible. Unless it varies by instance...
-
-Though I guess you would need DT updates anyways to use the new clock.
-
-> > Do you really need to know this? If this is just to validate the clock
-> > cell values are less than this, then just drop that and the property.
-> > It's not the kernel's job to validate the DT.
->
-> Well strictly speaking the driver could do clock registration on-demand
-> at the cost of additional book-keeping, in which case we could drop
-> the property, but I would prefer we don=E2=80=99t do that. Rather than pr=
-oviding
-> validation the property simplifies drivers.
->
-> Another option is calculating the no. of channels from size of the reg
-> range, but I assume that=E2=80=99s worse than having the nchannels proper=
-ty.
->
-> >> +
-> >> +    nco: clock-generator@23b044000 {
+> > yamllint warnings/errors:
 > >
-> > clock-controller@...
+> > dtschema/dtc warnings/errors:
+> > Error: Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.example.dts:30.37-38 syntax error
+> > FATAL ERROR: Unable to parse input tree
+> > make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.example.dt.yaml] Error 1
+> > make[1]: *** Waiting for unfinished jobs....
+> > make: *** [Makefile:1413: dt_binding_check] Error 2
 >
-> Okay, will change.
+> So this error appears due to GPIO_ACTIVE_HIGH and GPIO_ACTIVE_LOW in these
+> lines:
 >
-> >
-> >> +      compatible =3D "apple,t8103-nco", "apple,nco";
-> >> +      reg =3D <0x3b044000 0x14000>;
-> >
-> > You really have 0x14000 worth of registers here because all of that
-> > will be mapped into virtual memory? Doesn't matter so much on 64-bit,
-> > but it did for 32-bit.
+>         enable-gpios = <&pioA 5 GPIO_ACTIVE_HIGH>;
+>         reset-gpios = <&pioA 6 GPIO_ACTIVE_LOW>;
 >
-> There is about 5 registers per channel with 0x4000 stride between them,
-> blame Apple (or Samsung? I don=E2=80=99t know...).
+> I can replace those with 0 and 1 respectively, but I doubt a lot of people would
+> recognize what those integers standard for.  Is there a better way to get this
+> to pass?
 
-I would think you could walk the 0x4000 until you hit registers that
-behave differently.
-
-The register size / 0x4000 gives you the number of channels, too.
-
-Another question, how do you know this is 1 block with N channels vs.
-N blocks just happening to be next to each other in the memory map?
+Include the header(s) you use in the example.
 
 Rob
