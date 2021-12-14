@@ -2,101 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDD56474605
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 16:07:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54CC4474635
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 16:18:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231296AbhLNPHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 10:07:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41968 "EHLO
+        id S234908AbhLNPS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 10:18:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231281AbhLNPHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 10:07:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE8A0C061574;
-        Tue, 14 Dec 2021 07:07:51 -0800 (PST)
+        with ESMTP id S234452AbhLNPS1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 10:18:27 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65F90C061574;
+        Tue, 14 Dec 2021 07:18:27 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 83D31B81A26;
-        Tue, 14 Dec 2021 15:07:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39B77C34608;
-        Tue, 14 Dec 2021 15:07:49 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 068C861570;
+        Tue, 14 Dec 2021 15:18:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CDC7C34608;
+        Tue, 14 Dec 2021 15:18:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639494469;
-        bh=rPVk2jDfAiR4nn6IGpYxU9DbCVEZmbX3NRqFQoR/jQs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=n1a/Auo5GPfrYAN6BIrPFlMr16f70/duhx+xBXAmDtvldmoUfa1QwqdjTpNRonDpk
-         1NqP9cw8wUbGCyaH9EluR7qtxbvyP+pZE1MnP2C5tEBoMVMIdrc2V4ScPnf9cGqvwH
-         x0OLd8CUlhkfeQqj+oXHwDgRvcyR9OGyQwgBvlHUNv9Zd0oKYawKSxFmwLLyZn61Ge
-         4MXLmhNrzDuzec3RJd+/iccHwz2kpNBbxxRtjRYKEaPxZx0utFHiynKNZ0R1q4SzeH
-         lQgW6MUsLYDZzpzyecpyohd1DWFSrq+lruclmWBccK/wucP0SRKTBTRwnnm43hE7Rb
-         jUf5oXYiW5zeg==
-Received: by mail-ed1-f44.google.com with SMTP id r11so63319103edd.9;
-        Tue, 14 Dec 2021 07:07:49 -0800 (PST)
-X-Gm-Message-State: AOAM530goB/LFR0w9RAxU8tIZlGg/aTjCtj4hqjRzINAo0n9lnP2+8HU
-        EO0Kn7WOF31F5NeB72FO3l2CdsS27xvSv1MJKA==
-X-Google-Smtp-Source: ABdhPJxf5YHSaPknEFNU2A9Af9vjayodsoldMQfptOk8XsIiNGL8Y+79xGZquCFPYdXox6JhXgRtWzFzb7ICr0iQ9pE=
-X-Received: by 2002:a17:906:229b:: with SMTP id p27mr6246957eja.264.1639494466650;
- Tue, 14 Dec 2021 07:07:46 -0800 (PST)
+        s=k20201202; t=1639495106;
+        bh=t/ioqHHdb/Ss2Yo/QWbW8oF8j/7s1fB4C/FeJDG9SlU=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=E8ZsejB9aBcTlt03eyImEu3Q1qg23EcB85+Y5+380PQHuHkcOySIUzqYn9zunAtVr
+         aBy08BL2lbqv5EFot4ykRIjNxlNvdDtOwf6RR55hHjgClCaTpYAxTWt6qRU5cctPiJ
+         pdJU6sYIbqWkpAsB/dVTcQ3vLA39q+ACKeOe47hf61n3e2xNXxK9ioj7A1bevFte2W
+         9CCKVePmBquGgZuOmTijgQqjvfPcg4D/2mtyPHk8TFS/N25hiBIDtnyHic4Yol/m6P
+         59d+FWX3lT/XqSwZLFRxi002dNBVb7h1aqlgmxDXQhRVtaZBDHumHuY927E9G+Nnc2
+         hEXtIe702jktQ==
+From:   Will Deacon <will@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        David Heidelberg <david@ixit.cz>,
+        Robin Murphy <robin.murphy@arm.com>
+Cc:     catalin.marinas@arm.com, kernel-team@android.com,
+        Will Deacon <will@kernel.org>,
+        iommu@lists.linux-foundation.org, ~okias/devicetree@lists.sr.ht,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: arm-smmu: Add compatible for the SDX55 SoC
+Date:   Tue, 14 Dec 2021 15:18:11 +0000
+Message-Id: <163949295158.2865133.9086863880936702882.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20211020231701.278846-1-david@ixit.cz>
+References: <20211020231701.278846-1-david@ixit.cz>
 MIME-Version: 1.0
-References: <20211214013800.2703568-1-vladimir.oltean@nxp.com> <20211214013800.2703568-2-vladimir.oltean@nxp.com>
-In-Reply-To: <20211214013800.2703568-2-vladimir.oltean@nxp.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 14 Dec 2021 09:07:33 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK2Shj6smam7HgNAmy3UG+vVQPkU3Q0OjyEHOEJB45n0A@mail.gmail.com>
-Message-ID: <CAL_JsqK2Shj6smam7HgNAmy3UG+vVQPkU3Q0OjyEHOEJB45n0A@mail.gmail.com>
-Subject: Re: [RFC PATCH devicetree 01/10] irqchip/ls-extirq: rename
- "interrupt-map" OF property to "fsl,extirq-map"
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Marc Zyngier <maz@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>, Biwen Li <biwen.li@nxp.com>,
-        Zhiqiang Hou <Zhiqiang.Hou@nxp.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 13, 2021 at 7:38 PM Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
->
-> This OF property was supposed to be named "fsl,extirq-map" since the
-> first patch submissions, but at Rob Herring's suggestion it was named
-> "interrupt-map":
-> https://lore.kernel.org/lkml/20190927161118.GA19333@bogus/
+On Thu, 21 Oct 2021 01:17:00 +0200, David Heidelberg wrote:
+> Add missing compatible for the SDX55 SoC.
+> 
+> 
 
-I'm still not okay with a custom property. The fact that multiple
-platforms need the same thing is an indication this should be common.
-Other cases are being fixed by using 'interrupts', but that's going to
-take some cleanups[1].
+Applied to will (for-joerg/arm-smmu/updates), thanks!
 
-> At that time, the "interrupt-map" was ignored by the core for OF nodes
-> that also had an "interrupt-controller" property, but that changed with
-> commit 041284181226 ("of/irq: Allow matching of an interrupt-map local
-> to an interrupt controller"), which made the consumer drivers of the
-> ls-extirq break. To work around this breakage, the OF bindings for IRQs
-> have introduced a table of "OF IRQ interrupt-map abusers".
-> This can be seen in commit de4adddcbcc2 ("of/irq: Add a quirk for
-> controllers with their own definition of interrupt-map").
->
-> To stop being abusers, let's go back to the original form of these
-> bindings, before Rob's review. Compatibility will be kept with the
-> current abusive bindings for a few more kernel cycles, to give people
-> some time to update. But to also give them an incentive, print a warning
-> that the support for "interrupt-map" will be removed. This will be seen
-> when running a new kernel with an old device tree.
->
-> While the breakage was introduced relatively recently, the device tree
-> changes are intended to backport stable kernels for quicker conversion
-> to an acceptable set of bindings, and this driver will need to support
-> the updated stable bindings.
+[1/1] dt-bindings: arm-smmu: Add compatible for the SDX55 SoC
+      https://git.kernel.org/will/c/ae377d342006
 
-Using 'interrupts' is not going to work backporting to stable, but I
-don't think trying to switch this is worth it.
+Cheers,
+-- 
+Will
 
-Rob
-
-[1] https://lore.kernel.org/all/CAL_Jsq+jyqbhA1jpgZ+yTwWGvCMRu9VmgoDq8MDM9SMqJ-XSBw@mail.gmail.com/
+https://fixes.arm64.dev
+https://next.arm64.dev
+https://will.arm64.dev
