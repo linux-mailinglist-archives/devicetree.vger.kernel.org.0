@@ -2,313 +2,276 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B48C473A54
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 02:39:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A230473A75
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 02:51:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244789AbhLNBjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 20:39:11 -0500
-Received: from mail-eopbgr60083.outbound.protection.outlook.com ([40.107.6.83]:44962
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S244766AbhLNBjC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Dec 2021 20:39:02 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FDo5Fu/gLg6Oh6rEfDbZ9CF5smaSzIJR+WkWYY+4q686+cneKP4NG5c6n4dNk7fQR2OVSnxrVjHfd89qTn/KBfSGoKxwj2ZvFaJKkwgEo8u3O7NinPtodYsFHLckNBLbOn57HiYRbCPfsYPEWC6fsHEEwGbQjycdty0PGLK48/sT50C1yhRni/0P4H4PCc1dmsAKn/T+rdvl8dWKqLSvkMsleTbke0rhPa4dZFsqQAZSibIRMyR8KjVQ6f+MohzPr0F6W36sCP8KgeLU1YP0KEZbpt7Rk8WH/mMBva83EhjbCLdJfnlQ8WZYuVK8PCq3y2I6T+hTAZzyzT8U6SNa3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bJ3TMtEnrozsNt0ckpBXoHf162gQ+5pQjFOq+Npggtg=;
- b=mL3A8lvigRUgqiG+hGiC+0LfoMI+P9TfT5boRZUM7PAqtJoEfls7I2mZJ5WoPKG5GNVv6bhKFcRC9w+hOCfIu/4m6vCqB5PBlAFY5cVfHf6WHDFlQeHbw9xOVZbxRG+ZrrIBPKUZ5/vYgvean9lKfiudtOFjNs6/hgu9NFAUNkWR0m5aaCfJ1Sa2+c38XKDS+HiqXr7ot77VUmtHtYmKjc1S7u9m1Ezm1ZAzliEotPn1WStgRYEEKDD4coIbDWogjpWsL2USQf43i3KouHOBJxwUl8SKW9uzGmFTcp6WY3lq62GX2p8/H6gW1IgfyseBK/kM3flmRl1pyCA2aYqj8Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bJ3TMtEnrozsNt0ckpBXoHf162gQ+5pQjFOq+Npggtg=;
- b=pY7mUjua2ZCWuuRaMNSzDXeZhRrcgWEHbsJfQO0DW0WPTGjBBs1+SpKmw2iBwHmryZiT0dhOjgagR15hA2/gHpXygf78X83sYBQjNlUJ+gKJ6w0uOao0TthbgWXSEBDU6gh732rxp0Vi0LJ30lhC2qqnl51rh6wtZBNMIhfExjU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR04MB6944.eurprd04.prod.outlook.com (2603:10a6:803:133::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.16; Tue, 14 Dec
- 2021 01:38:46 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::c84:1f0b:cc79:9226]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::c84:1f0b:cc79:9226%3]) with mapi id 15.20.4755.028; Tue, 14 Dec 2021
- 01:38:46 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Biwen Li <biwen.li@nxp.com>,
-        Zhiqiang Hou <Zhiqiang.Hou@nxp.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Subject: [RFC PATCH devicetree 10/10] dt-bindings: ls-extirq: add a YAML schema for the validator
-Date:   Tue, 14 Dec 2021 03:38:00 +0200
-Message-Id: <20211214013800.2703568-11-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211214013800.2703568-1-vladimir.oltean@nxp.com>
-References: <20211214013800.2703568-1-vladimir.oltean@nxp.com>
+        id S241468AbhLNBve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 20:51:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58262 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238705AbhLNBva (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 20:51:30 -0500
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26CC3C06173F
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 17:51:30 -0800 (PST)
+Received: by mail-pl1-x62e.google.com with SMTP id u11so12486365plf.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Dec 2021 17:51:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QRsUsWhIl1e55CUxKd40AydOnvMzQCO+BOtprqXwcPI=;
+        b=eShhEZFQRSmA+9Ju6Bqsbe+4VegiWGeReXZB4Ckrj8yONSsy6r+c5Nyqgn40OKFZqx
+         xpYN0N+zVhYp4NQdYNQgTL6cyKXvBxqwoqTTBqVDCtyqh8aFIzvDFdQE/VIETiOLldyV
+         B3pnCV0mNIUjKJ8D81Ct7AWA3Crk62c1CS3ORn3xOwCZwDJKM8jBsC/7hHVveB/AB3Bn
+         fprEdqaoDO2s2Ksgd2uzZQBEaz5XCtI3WSrdktIcc8aZd/4BomiTXc4AJ6p6I1s8tDAl
+         0fouO5pRW6Ik4GlNPGopzse/fjP8a14+ZfVYZcHnSztu726mCwjw1wL+1r7Ca9dBLHLv
+         Y9mQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=QRsUsWhIl1e55CUxKd40AydOnvMzQCO+BOtprqXwcPI=;
+        b=qfGKPUJGvPKuObTazvXVGDSzoXqG7brGkMM5qeiF2xTzRJBaOL3LgrbmcP+lhOZsnL
+         cOhYokoNnLz16larSzJNFWEZkDCeG5Z132ibGvmfDMTdv/+rWE8PbYqdjGbRC1pRM4jX
+         ffCkbpM3Ap3ddgsLj8YL3S2GZC4jrdU/U0TRMarGAEQOboGcoQUBuMPKWgIVBkBC52xx
+         EDcHgmkBlw/U7fUHzGHvhQ4bA8pxpj1f52n4KoRea2ACFsPzNt+DhMOiqM6S1GxwVQvJ
+         tT0wH/nq5LdHt/OW1Gjbiq3v4R3BYAzc4+3IhnzRs7E/BPuq+ltKzGBe2eSaH6RC2tFi
+         dGlw==
+X-Gm-Message-State: AOAM530xno0TwkDd2pyrcb15OARXkwmrnc6MjUEZXivUDSE3DhEtHIw+
+        n9OmsItqpey5nj9IgN4L8E/h0g==
+X-Google-Smtp-Source: ABdhPJzoV67eZbLvEL+VCvmqJHspW/fSnm3juGeqhibDcMmBaSO4OtIJq9WB84wgUY+vuI95t/KHpw==
+X-Received: by 2002:a17:902:744b:b0:142:46fe:7fbf with SMTP id e11-20020a170902744b00b0014246fe7fbfmr2033620plt.83.1639446689321;
+        Mon, 13 Dec 2021 17:51:29 -0800 (PST)
+Received: from localhost ([12.163.77.120])
+        by smtp.gmail.com with ESMTPSA id v10sm13629471pfg.162.2021.12.13.17.51.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Dec 2021 17:51:28 -0800 (PST)
+Date:   Mon, 13 Dec 2021 17:51:28 -0800 (PST)
+X-Google-Original-Date: Mon, 13 Dec 2021 17:51:19 PST (-0800)
+Subject:     Re: [v4 00/11] Improve RISC-V Perf support using SBI PMU and sscofpmf extension
+In-Reply-To: <20211025195350.242914-1-atish.patra@wdc.com>
+CC:     linux-kernel@vger.kernel.org, Atish Patra <atishp@rivosinc.com>,
+        anup.patel@wdc.com, david.abdurachmanov@sifive.com,
+        devicetree@vger.kernel.org, greentime.hu@sifive.com,
+        guoren@linux.alibaba.com, xypron.glpk@gmx.de, corbet@lwn.net,
+        linux-doc@vger.kernel.org, linux-perf-users@vger.kernel.org,
+        linux-riscv@lists.infradead.org, mick@ics.forth.gr,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org,
+        vincent.chen@sifive.com
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Atish Patra <atishp@rivosinc.com>, will@kernel.org,
+        mark.rutland@arm.com
+Message-ID: <mhng-b8ad045e-2022-4e7d-8e64-ab4cc09c15a7@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AS8PR04CA0168.eurprd04.prod.outlook.com
- (2603:10a6:20b:331::23) To VI1PR04MB5136.eurprd04.prod.outlook.com
- (2603:10a6:803:55::19)
-MIME-Version: 1.0
-Received: from localhost.localdomain (188.25.173.50) by AS8PR04CA0168.eurprd04.prod.outlook.com (2603:10a6:20b:331::23) with Microsoft SMTP Server (version=TLS1_2, cipher=) via Frontend Transport; Tue, 14 Dec 2021 01:38:45 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b88cf918-9034-4e7a-65c4-08d9bea2785b
-X-MS-TrafficTypeDiagnostic: VI1PR04MB6944:EE_
-X-Microsoft-Antispam-PRVS: <VI1PR04MB69445AA55397400460C22ABEE0759@VI1PR04MB6944.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Eh+5NeAQ4XZ2N8XdqZGJHMBS+4CwZu1ThKRVfO9yM3I8HQNH7VnK1TuFt5FNAy/3yuXJWNwwOUmkbw8udl0/h7+uzp3ug4pnw3Q7CNZh2gTzEIH47WuXmed7+9m/EvUFLb7o4SdX4J4iM/C7ItN8Vijt4FtceATrxYBE7MS1E3iG9+GvSOT5kHPKAF9vJnCySCE6KthaSV/aTZ0Kz7YPq3RxHLZ5EgTX2TkSJsPt7KuEyHDc+IiNWXgINXswajeOuSEaAhIZs7VngqStp2c5mlZEbCkAmeT8lCaLnnfBru1xqEFShVPp+TPydsroUZCXoTXBYynd7qYzM5X5s7+UGm6IHpsZgnQSP/GCWMapqj2U93jsi/UctGArHS5DjfbzV3VCSK3XeCFWqazHLhCYD+/5/3uavvPFB0OYYPEjmBkh+898yWkW/ZHQvZMNXmiUdxKybn3wO+Yx3627SJCdbl2UirhnjB3OMito+iPmrUbUax6Wr7TX99WUtPeS00vKY/n0dxsk+RFIjUAwQCZQqJZ0T3kE6vfeJI0zzTnue45Ns8dCGFlT7nxWr2k8TC04dSYmxUwqQf2a0Nh4QyoM2BR0QyMFSSFOtOLA5dqyErr+v6HS7crONi7fwULJe6xqRhQgeB8StpP5fbPh1lU0eemvyycjleauokY5rBVCE/u/HVce6i3Cpc6h/4hF97yjdSkYd3r/CtmujkKuufhYYTENyTFiYDBm5yy7L9yX8ulGA41R8/gGNCZ8kUYZVGi1s3za30GD3sBCdDdzZe5eb6mdw1aRC/cE9uhPty7PAuRKRhEte8Q9PdMoT0Wljr8TrTfVsx+GEGthYi13wTi8lg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(966005)(1076003)(66556008)(956004)(54906003)(36756003)(8936002)(6506007)(2616005)(86362001)(508600001)(83380400001)(66476007)(66946007)(52116002)(316002)(6486002)(186003)(2906002)(4326008)(44832011)(38350700002)(6512007)(6666004)(38100700002)(26005)(5660300002)(8676002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oVIMBPvKvX6h8CRQ8JdtXqUDP111xJSbHdUnBS69Q6z6p/WZ5bW098W3uV6t?=
- =?us-ascii?Q?f5SwCivkJdAwmfubONkXKCdVmjnKledBxZ5EgrU8TabrYzTQ1TnXNn8vVTV4?=
- =?us-ascii?Q?2EJZjIP4EBokpajhyGTdctLU/sGosNLQZRKcpt9HoSuSnCPIgvCdBFIsXiuN?=
- =?us-ascii?Q?gh6+lMyFEHIpnvksTS+qd+J1vWg/5nx0uffiIa6G7ogiMU9vEWF/b1TOA2/8?=
- =?us-ascii?Q?QTFBfO4MgkhzxUZD2+tFaQoW9tXokbvkOdSFvDuhFEdpSRo7UVNHaNYQDbgW?=
- =?us-ascii?Q?jD0C4NcrwBFUYpxBAcF2MYHlGMfTYRAKHZcSQHaM5D2/jGqeOmDegSpK6Xy4?=
- =?us-ascii?Q?j22Agurn3l0i/5Vt37fw5SYTLLGd9bnw1TF4IHk6RakzV0NU+Nr7zNlfgmXK?=
- =?us-ascii?Q?/LZf5R8IWbrhJIjLEqJTwAkFSihSQmrINLa91t3Z2BuWQVeovd356clZrBHG?=
- =?us-ascii?Q?EMpAIALfYA2qdDYOT2S2TsrEdMI/kLiTrVx+bB/cVezfOXJ28H0Q6maz9p43?=
- =?us-ascii?Q?sUsc3Zsu34lmogj+oGjsaDkr0fpmw+0SoGVmvC3H8QGnsBzbR/osRladytw4?=
- =?us-ascii?Q?gcVup86F1bO4zK8r+Wn+4hDqYpfQXrUZOGZM2LP/MzHHHhxPYkLr/a2nH/Pr?=
- =?us-ascii?Q?I4Z6AhICNwB5738dfh+D5a/eJoH+Gpo8wjmNE/9Rdo0Icg61fH8BmvEvTwOA?=
- =?us-ascii?Q?bSg3cky8RdPghJlOiwNcYMD3wJCoKvfthYjSd+myQu8I8lcO3w1WeXO1iEuR?=
- =?us-ascii?Q?pOG9KDN7NeZZVUif0hDJyMHaHidBf70U4BFlWpubcWWB0Jhw/IORKZWvr9bq?=
- =?us-ascii?Q?sbBXQVHPdsAHkk+fL/3uComW0Oow6FLJffm+YdSUw8pgcRxwJpZ4dgFa2hMx?=
- =?us-ascii?Q?M/B/Xu2yxH+FO1gCDCl1b+r93DvbBQG2iygOVVGco8EtYeF0M6/7bcMb1+hQ?=
- =?us-ascii?Q?90CyooZ3sHvko0RgjUvpbdDuMwyqNOmyd1qHXOaY3BW/astMI8Q0bk974Q2c?=
- =?us-ascii?Q?tijOZW4Yjhq/m8HZGWkfL3Ey34D5mpK/M1tUwdAXCdS5hCHgQ+kOQGrUoIyS?=
- =?us-ascii?Q?UN0lxEkoX8HNIqvH+Oe0cDKa7sn4KPLgdOJYNlNc6xVq8CkvDmOGikdZ6OEY?=
- =?us-ascii?Q?dP7473yEYduTh4yJOERc3Y7Kjg1neaaNUi0vvJzfWH/PwD4RQT0NST9uDfGM?=
- =?us-ascii?Q?IO2fh+fl7ehZUooHBGxKgTsf0uUOJmSqIzhYo7cTUy1Fo1hQCOSrqkd9ZLBo?=
- =?us-ascii?Q?YtvFbNUs0zp5LxpeutVyqMvZyzqjTdzDFC6NrNRj+E5SDAh8wEsQdUU9rL/C?=
- =?us-ascii?Q?LcJTA9VW1eWnw1r+q8ZhA5nJRKcOgNEcpl6G5rOXx8L0YDm0dNPQxDAbeLqX?=
- =?us-ascii?Q?Kgt4r4j9qex1Ro8dBDSLjEGTXmc42WGGajdICQjaYu0XATHi163DFzNVpNHd?=
- =?us-ascii?Q?3ARASKr7G2Gck4lmPD3HBYaROPxde3O1mtOyAZPL8lo/ESZRzKKfIMdklRFd?=
- =?us-ascii?Q?q/1EHckQLFQqPdRQyp0y76UNl4lf23Hi+9ktrQ3MsKN0A+OMpUFihR3VoGU4?=
- =?us-ascii?Q?pJSeYKQk5Zj71ikTo2pLqo1s7tnQwcmRAn/xVhG1+7RsS/8Uvddt7w1zT5I2?=
- =?us-ascii?Q?Je6xMzJp3W8SkJu67cpCTrk=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b88cf918-9034-4e7a-65c4-08d9bea2785b
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Dec 2021 01:38:46.4120
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TIorb6F7EONpXSnTVCD2jrDHUiFCvUlAmrOk3rRIlKoLuX/aXzwbIsy5038peMgUkjyShgGmLV1RjkC5DnlOgQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6944
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a conversion of the free-form description of the device tree
-bindings to a YAML schema. The description of fsl,extirq-map is best
-effort: it looks like the devicetree schema doesn't really like vendor
-properties getting too complicated, and puts a bunch of descriptions on
-what they can and can't describe. An array of uint32s is the best I
-could come up with. It doesn't help, either, that the
-schemas/interrupt-controller.yaml definition for interrupt-map, which
-I was planning to use as an inspiration, is "true # FIXME", all things
-which aren't valid in vendor properties.
+On Mon, 25 Oct 2021 12:53:39 PDT (-0700), Atish Patra wrote:
+> This series adds improved perf support for RISC-V based system using
+> SBI PMU extension[1] and Sscofpmf extension[2]. The SBI PMU extension allows
+> the kernel to program the counters for different events and start/stop counters
+> while the sscofpmf extension allows the counter overflow interrupt and privilege
+> mode filtering. An hardware platform can leverage SBI PMU extension without
+> the sscofpmf extension if it supports mcountinhibit and mcounteren. However,
+> the reverse is not true. With both of these extension enabled, a platform can
+> take advantage of all both event counting and sampling using perf tool.
+>
+> This series introduces a platform perf driver instead of a existing arch
+> specific implementation. The new perf implementation has adopted a modular
+> approach where most of the generic event handling is done in the core library
+> while individual PMUs need to only implement necessary features specific to
+> the PMU. This is easily extensible and any future RISC-V PMU implementation
+> can leverage this. Currently, SBI PMU driver & legacy PMU driver are implemented
+> as a part of this series.
+>
+> The legacy driver tries to reimplement the existing minimal perf under a new
+> config to maintain backward compatibility. This implementation only allows
+> monitoring of always running cycle/instruction counters. Moreover, they can
+> not be started or stopped. In general, this is very limited and not very useful.
+> That's why, I am not very keen to carry the support into the new driver.
+> However, I don't want to break perf for any existing hardware platforms.
+> If everybody agrees that we don't need legacy perf implementation for older
+> implementation, I will be happy to drop PATCH 4.
 
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
- .../interrupt-controller/fsl,ls-extirq.txt    |  56 ---------
- .../interrupt-controller/fsl,ls-extirq.yaml   | 110 ++++++++++++++++++
- 2 files changed, 110 insertions(+), 56 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+IMO we should keep it for a bit, so we have a transition period.  These 
+extensions are pretty new so we won't be able to count on everyone 
+having them yet, this way we'll avoid breaking users.
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
-deleted file mode 100644
-index cddf1aa032be..000000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
-+++ /dev/null
-@@ -1,56 +0,0 @@
--* Freescale Layerscape external IRQs
--
--Some Layerscape SOCs (LS1021A, LS1043A, LS1046A
--LS1088A, LS208xA, LX216xA) support inverting
--the polarity of certain external interrupt lines.
--
--The device node must be a child of the node representing the
--Supplemental Configuration Unit (SCFG).
--
--Required properties:
--- compatible: should be "fsl,<soc-name>-extirq", e.g. "fsl,ls1021a-extirq".
--  "fsl,ls1043a-extirq": for LS1043A, LS1046A.
--  "fsl,ls1088a-extirq": for LS1088A, LS208xA, LX216xA.
--- #interrupt-cells: Must be 2. The first element is the index of the
--  external interrupt line. The second element is the trigger type.
--- #address-cells: Must be 0.
--- interrupt-controller: Identifies the node as an interrupt controller
--- reg: Specifies the Interrupt Polarity Control Register (INTPCR) in
--  the SCFG or the External Interrupt Control Register (IRQCR) in
--  the ISC.
--- fsl,extirq-map: An array of elements through which the mapping between
--  external interrupts and GIC interrupts is specified. The first member of each
--  array element is the index of the extirq line. The second member must be
--  zero. The third member must be a phandle to the interrupt parent (the GIC).
--  The remaining number of members in an array element depends on the
--  #interrupt-cells property of the interrupt parent, and are used to specify
--  the parent interrupt.
--
--Example:
--	scfg: scfg@1570000 {
--		compatible = "fsl,ls1021a-scfg", "syscon";
--		reg = <0x0 0x1570000 0x0 0x10000>;
--		big-endian;
--		#address-cells = <1>;
--		#size-cells = <1>;
--		ranges = <0x0 0x0 0x1570000 0x10000>;
--
--		extirq: interrupt-controller@1ac {
--			compatible = "fsl,ls1021a-extirq";
--			#interrupt-cells = <2>;
--			#address-cells = <0>;
--			interrupt-controller;
--			reg = <0x1ac 4>;
--			fsl,extirq-map =
--				<0 0 &gic GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
--				<1 0 &gic GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
--				<2 0 &gic GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
--				<3 0 &gic GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
--				<4 0 &gic GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
--				<5 0 &gic GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
--		};
--	};
--
--
--	interrupts-extended = <&gic GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
--			      <&extirq 1 IRQ_TYPE_LEVEL_LOW>;
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
-new file mode 100644
-index 000000000000..ead5f58949b8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
-@@ -0,0 +1,110 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/fsl,ls-extirq.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Layerscape external interrupt driver
-+
-+maintainers:
-+  - Rasmus Villemoes <linux@rasmusvillemoes.dk>
-+
-+description: |
-+  Some Layerscape SOCs (LS1021A, LS1043A, LS1046A LS1088A, LS208xA, LX216xA)
-+  support inverting the polarity of certain external interrupt lines.
-+  The device node must be a child of the node representing the
-+  Supplemental Configuration Unit (SCFG).
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: fsl,ls1021a-extirq
-+      - const: fsl,ls1043a-extirq
-+      - const: fsl,ls1088a-extirq
-+      - items:
-+          - const: fsl,ls1046a-extirq
-+          - const: fsl,ls1043a-extirq
-+      - items:
-+          - const: fsl,lx2160a-extirq
-+          - const: fsl,ls1088a-extirq
-+      - items:
-+          - const: fsl,ls2080a-extirq
-+          - const: fsl,ls1088a-extirq
-+
-+  reg:
-+    description: |
-+      Specifies the offset to the Interrupt Polarity Control Register (INTPCR)
-+      in the SCFG or the External Interrupt Control Register (IRQCR) in the
-+      ISC.
-+    maxItems: 1
-+
-+  "#interrupt-cells":
-+    description: |
-+      Specifies the number of cells needed to encode an interrupt source. Must
-+      be equal to 2. The first element is the index of the external interrupt
-+      line. The second element is the trigger type.
-+    const: 2
-+
-+  "#address-cells":
-+    const: 0
-+
-+  interrupt-controller: true
-+
-+  fsl,extirq-map:
-+    description: |
-+      An array of elements through which the mapping between external
-+      interrupts and GIC interrupts is specified. This isn't really a phandle
-+      array, it just contains some phandles. It should really be an array where
-+      the items are extirq-map-spec elements, but it seems like the
-+      vendor-props.yaml don't allow us to reference such things.
-+    type: object
-+    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#interrupt-cells"
-+  - interrupt-controller
-+  - fsl,extirq-map
-+
-+additionalProperties: false
-+
-+$defs:
-+  extirq-map-spec:
-+    description: |
-+      The first member of each array element is the index of the extirq line.
-+      The second member must be zero. The third member must be a phandle to the
-+      interrupt parent. The remaining number of members in an array element
-+      depends on the "#interrupt-cells" property of the interrupt parent, and
-+      are used to specify the parent interrupt.
-+    type: array
-+    items:
-+      $ref: "/schemas/types.yaml#/definitions/cell"
-+    minItems: 4
-+    maxItems: 4095
-+
-+examples:
-+  - |
-+    scfg: scfg@1570000 {
-+        compatible = "fsl,ls1021a-scfg", "syscon";
-+        reg = <0x0 0x1570000 0x0 0x10000>;
-+        big-endian;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges = <0x0 0x0 0x1570000 0x10000>;
-+
-+        extirq: interrupt-controller@1ac {
-+            compatible = "fsl,ls1021a-extirq";
-+            #interrupt-cells = <2>;
-+            #address-cells = <0>;
-+            interrupt-controller;
-+            reg = <0x1ac 4>;
-+            fsl,extirq-map =
-+                <0 0 &gic GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
-+                <1 0 &gic GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
-+                <2 0 &gic GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
-+                <3 0 &gic GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
-+                <4 0 &gic GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
-+                <5 0 &gic GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+    };
--- 
-2.25.1
+This generally looks good, but I don't see any Acks from the perf 
+maintainers.  I'm happy to take this through the RISC-V tree, but I'd 
+generally like to have at least an ack as perf isn't really my 
+subsystem.  MAINTAINERS seems to indicate that's Will and Mark, they're 
+not To'd so maybe they just missed this?
 
+I fixed a few trivial checkpatch warnings, updated Atish's email 
+address, and put this on palmer/riscv-pmu.  Happy to hear any comments, 
+if nobody says anything then I'll just put that on riscv/for-next 
+whenever I get back to my own email.
+
+> This series has been tested in Qemu (RV64 & RV32) and HiFive Unmatched.
+> Qemu[5] & OpenSBI [3] patches are required to test it on Qemu and a dt patch
+> required in U-Boot[6] for HiFive Unmatched. Qemu changes are not
+> backward compatible. That means, you can not use perf anymore on older Qemu
+> versions with latest OpenSBI and/or Kernel. However, newer kernel will
+> just use legacy pmu driver if old OpenSBI is detected.
+>
+> The U-Boot patch is just an example that encodes few of the events defined
+> in fu740 documentation [7] in the DT. We can update the DT to include all the
+> events defined if required.
+>
+> Here is an output of perf stat/report while running perf benchmark with OpenSBI,
+> Linux kernel and U-Boot patches applied.
+>
+> HiFive Unmatched:
+> =================
+> perf stat -e cycles -e instructions -e L1-icache-load-misses -e branches -e branch-misses \
+> -e r0000000000000200 -e r0000000000000400 \
+> -e r0000000000000800 perf bench sched messaging -g 25 -l 15
+>
+> # Running 'sched/messaging' benchmark:
+> # 20 sender and receiver processes per group
+> # 25 groups == 1000 processes run
+>
+>      Total time: 0.826 [sec]
+>
+>  Performance counter stats for 'perf bench sched messaging -g 25 -l 15':
+>
+>         3426710073      cycles                (65.92%)
+>         1348772808      instructions          #0.39  insn per cycle  (75.44%)
+>                  0      L1-icache-load-misses (72.28%)
+>          201133996      branches              (67.88%)
+>           44663584      branch-misses         #22.21% of all branches (35.01%)
+>          248194747      r0000000000000200     (41.94%) --> Integer load instruction retired
+>          156879950      r0000000000000400     (43.58%) --> Integer store instruction retired
+>            6988678      r0000000000000800     (47.91%) --> Atomic memory operation retired
+>
+>        1.931335000 seconds time elapsed
+>
+>        1.100415000 seconds user
+>        3.755176000 seconds sys
+>
+>
+> QEMU:
+> =========
+> Perf stat:
+> =========
+>
+> [root@fedora-riscv riscv]# perf stat -e r8000000000000005 -e r8000000000000007 \
+> -e r8000000000000006 -e r0000000000020002 -e r0000000000020004 -e branch-misses \
+> -e cache-misses -e dTLB-load-misses -e dTLB-store-misses -e iTLB-load-misses \
+> -e cycles -e instructions perf bench sched messaging -g 15 -l 10 \
+> Running with 15*40 (== 600) tasks.
+> Time: 6.578
+>
+>  Performance counter stats for './hackbench -pipe 15 process':
+>
+>              1,794      r8000000000000005      (52.59%) --> SBI_PMU_FW_SET_TIMER
+>              2,859      r8000000000000007      (60.74%) --> SBI_PMU_FW_IPI_RECVD
+>              4,205      r8000000000000006      (68.71%) --> SBI_PMU_FW_IPI_SENT
+>                  0      r0000000000020002      (81.69%)
+>      <not counted>      r0000000000020004      (0.00%)
+>      <not counted>      branch-misses          (0.00%)
+>      <not counted>      cache-misses           (0.00%)
+>          7,878,328      dTLB-load-misses       (15.60%)
+>            680,270      dTLB-store-misses      (28.45%)
+>          8,287,931      iTLB-load-misses       (39.24%)
+>     20,008,506,675      cycles                 (48.60%)
+>     21,484,427,932      instructions   # 1.07  insn per cycle (56.60%)
+>
+>        1.681344735 seconds time elapsed
+>
+>        0.614460000 seconds user
+>        8.313254000 seconds sys
+>
+>
+> Perf record:
+> ============
+> [root@fedora-riscv riscv]# perf record -e cycles -e instructions \
+> -e dTLB-load-misses -e dTLB-store-misses -e iTLB-load-misses -c 10000 \
+> perf bench sched messaging -g 15 -l 10
+> # Running 'sched/messaging' benchmark:
+> # 20 sender and receiver processes per group
+> # 15 groups == 600 processes run
+>
+>      Total time: 1.261 [sec]
+> [ perf record: Woken up 1 times to write data ]
+> [ perf record: Captured and wrote 0.101 MB perf.data (845 samples) ]
+>
+> [root@fedora-riscv riscv]# perf report
+> Available samples
+> 407 cycles                                                                     _
+> 407 instructions                                                               _
+> 18 dTLB-load-misses                                                            _
+> 2 dTLB-store-misses                                                            _
+> 11 iTLB-load-misses                                                            _
+>
+> [1] https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/riscv-sbi.adoc
+> [2] https://drive.google.com/file/d/171j4jFjIkKdj5LWcExphq4xG_2sihbfd/edit
+> [3] https://github.com/atishp04/opensbi/tree/pmu_sscofpmf_v2
+> [4] https://github.com/atishp04/linux/tree/riscv_pmu_v4
+> [5] https://github.com/atishp04/qemu/tree/riscv_pmu_v3
+> [6] https://github.com/atishp04/u-boot/tree/hifive_unmatched_dt_pmu
+> [7] https://sifive.cdn.prismic.io/sifive/de1491e5-077c-461d-9605-e8a0ce57337d_fu740-c000-manual-v1p3.pdf
+>
+> Changes from v3->v4:
+> 1. Do not proceed overflow handler if event doesn't set for sampling.
+> 2. overflow status register is only read after counters are stopped.
+> 3. Added the PMU DT node for HiFive Unmatched.
+>
+> Changes from v2->v3:
+> 1. Added interrupt overflow support.
+> 2. Cleaned up legacy driver initialization.
+> 3. Supports perf record now.
+> 4. Added the DT binding and maintainers file.
+> 5. Changed cpu hotplug notifier to be multi-state.
+> 6. OpenSBI doesn't disable cycle/instret counter during boot. Update the
+>    perf code to disable all the counter during the boot.
+>
+> Changes from v1->v2
+> 1. Implemented the latest SBI PMU extension specification.
+> 2. The core platform driver was changed to operate as a library while only
+>    sbi based PMU is built as a driver. The legacy one is just a fallback if
+>    SBI PMU extension is not available.
+>
+> Atish Patra (11):
+> RISC-V: Remove the current perf implementation
+> RISC-V: Add CSR encodings for all HPMCOUNTERS
+> RISC-V: Add a perf core library for pmu drivers
+> RISC-V: Add a simple platform driver for RISC-V legacy perf
+> RISC-V: Add RISC-V SBI PMU extension definitions
+> dt-binding: pmu: Add RISC-V PMU DT bindings
+> RISC-V: Add perf platform driver based on SBI PMU extension
+> RISC-V: Add interrupt support for perf
+> Documentation: riscv: Remove the old documentation
+> riscv: dts: fu740: Add pmu node
+> MAINTAINERS: Add entry for RISC-V PMU drivers
+>
+> .../devicetree/bindings/perf/riscv,pmu.yaml   |  51 ++
+> Documentation/riscv/pmu.rst                   | 255 ------
+> MAINTAINERS                                   |  10 +
+> arch/riscv/Kconfig                            |  13 -
+> arch/riscv/boot/dts/sifive/fu740-c000.dtsi    |   3 +
+> arch/riscv/include/asm/csr.h                  |  66 +-
+> arch/riscv/include/asm/perf_event.h           |  72 --
+> arch/riscv/include/asm/sbi.h                  |  97 +++
+> arch/riscv/kernel/Makefile                    |   1 -
+> arch/riscv/kernel/perf_event.c                | 485 ------------
+> drivers/perf/Kconfig                          |  25 +
+> drivers/perf/Makefile                         |   5 +
+> drivers/perf/riscv_pmu.c                      | 331 ++++++++
+> drivers/perf/riscv_pmu_legacy.c               | 143 ++++
+> drivers/perf/riscv_pmu_sbi.c                  | 732 ++++++++++++++++++
+> include/linux/cpuhotplug.h                    |   1 +
+> include/linux/perf/riscv_pmu.h                |  69 ++
+> 17 files changed, 1532 insertions(+), 827 deletions(-)
+> create mode 100644 Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+> delete mode 100644 Documentation/riscv/pmu.rst
+> delete mode 100644 arch/riscv/kernel/perf_event.c
+> create mode 100644 drivers/perf/riscv_pmu.c
+> create mode 100644 drivers/perf/riscv_pmu_legacy.c
+> create mode 100644 drivers/perf/riscv_pmu_sbi.c
+> create mode 100644 include/linux/perf/riscv_pmu.h
