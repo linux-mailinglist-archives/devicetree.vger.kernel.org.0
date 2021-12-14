@@ -2,78 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD606474499
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 15:16:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A6E94744BA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 15:22:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234835AbhLNOQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 09:16:34 -0500
-Received: from foss.arm.com ([217.140.110.172]:57070 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234834AbhLNOQe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Dec 2021 09:16:34 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4D5A16D;
-        Tue, 14 Dec 2021 06:16:34 -0800 (PST)
-Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 2B4D73F793;
-        Tue, 14 Dec 2021 06:16:33 -0800 (PST)
-From:   Robin Murphy <robin.murphy@arm.com>
-To:     will@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     catalin.marinas@arm.com, suzuki.poulose@arm.com,
-        thierry.reding@gmail.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 5/5] dt-bindings: perf: Add compatible for Arm DSU-110
-Date:   Tue, 14 Dec 2021 14:16:17 +0000
-Message-Id: <51a8060493e1220886dcd468fad9a2b603607297.1639490264.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.28.0.dirty
-In-Reply-To: <cover.1639490264.git.robin.murphy@arm.com>
-References: <cover.1639490264.git.robin.murphy@arm.com>
+        id S234893AbhLNOWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 09:22:49 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.169]:30473 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232470AbhLNOWr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 09:22:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1639491754;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=av2Qq+J6PbfFPBH/diii4rDrGbpUSmagYYOyWFKE/74=;
+    b=YhzjZZ+gWbTGnypGjUd6vNQku9LSEHDjS5PPDI8T9/md/Z+xKOSdwiO3meQXQkNOsb
+    bgHJaHdM5MsJBdU9eNbV53m6bIlGfgsmCHi3gV9qX03sd8GzR43tXNS8qtdNl6Jy81ib
+    k9btp3sZ4CkPnh0fV2sTD4VCjjkxsWWyxrn31OgQd3j6/iqWsL6yf04Zc6p8Rfadvvgv
+    nxeEUsd/+lufYpbv55aLAR1V2hJa1hfEImoHZoQmoi+0/nvamY1KxBW3LuSFKCSzlStq
+    a1tofc/PJdZRrpxFvxv3/q31GuJyCjpWK16rQjtwei4sRMg1iIm96msuCfucx3UfRTke
+    IjYw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXQ7UOGqRde+a0fiL1O/hR"
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.35.3 AUTH)
+    with ESMTPSA id x08baexBEEMX8rV
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 14 Dec 2021 15:22:33 +0100 (CET)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Paul Cercueil <paul@crapouillou.net>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH 0/4] ASoC: qcom: Parse "pin-switches" and "widgets" from DT
+Date:   Tue, 14 Dec 2021 15:20:45 +0100
+Message-Id: <20211214142049.20422-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DSU-110 is the newest and shiniest for Armv9. Its programmer's model is
-largely identical to the previous generation of DSUs, so we can treat it
-as compatible, but it does have a a handful of extra IMP-DEF PMU events
-to call its own. Thanks to the new notion of core complexes, the maximum
-number of supported CPUs goes up as well.
+Some sound card setups might require extra pin switches to allow 
+turning off certain audio components. simple-card supports this
+already using the "pin-switches" and "widgets" device tree property. 
+This series makes it possible to use the same properties for the Qcom 
+sound cards.
 
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
+To implement that, the function that parses the "pin-switches" property 
+in simple-card-utils.c is first moved into the ASoC core. Then two 
+simple function calls are added to the common Qcom sound card DT parser.
+Finally there is a small patch for the msm8916-wcd-analog codec to make
+it possible to model sound card setups used in some MSM8916 smartphones.
+(See PATCH 2/4 for an explanation of some real example use cases.)
 
-v2: Also make it complete and valid
+Using pin switches rather than patching codec drivers with switches was
+originally suggested by Mark Brown on a patch for the tfa989x codec:
+https://lore.kernel.org/alsa-devel/YXaMVHo9drCIuD3u@sirena.org.uk/
 
- Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Stephan Gerhold (4):
+  ASoC: core: Add snd_soc_of_parse_pin_switches() from simple-card-utils
+  ASoC: dt-bindings: qcom: sm8250: Document "pin-switches" and "widgets"
+  ASoC: qcom: common: Parse "pin-switches" and "widgets" from DT
+  ASoC: msm8916-wcd-analog: Use separate outputs for HPH_L/HPH_R
 
-diff --git a/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
-index 09ddeb6a3ccc..7f31bcecedb5 100644
---- a/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
-+++ b/Documentation/devicetree/bindings/perf/arm,dsu-pmu.yaml
-@@ -21,7 +21,11 @@ description:
- 
- properties:
-   compatible:
--    const: arm,dsu-pmu
-+    oneOf:
-+      - const: arm,dsu-pmu
-+      - items:
-+          - const: arm,dsu-110-pmu
-+          - const: arm,dsu-pmu
- 
-   interrupts:
-     items:
-@@ -30,7 +34,7 @@ properties:
-   cpus:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     minItems: 1
--    maxItems: 8
-+    maxItems: 12
-     description: List of phandles for the CPUs connected to this DSU instance.
- 
- required:
+ .../bindings/sound/qcom,sm8250.yaml           | 16 ++++++
+ include/sound/soc.h                           |  1 +
+ sound/soc/codecs/msm8916-wcd-analog.c         |  7 +--
+ sound/soc/generic/simple-card-utils.c         | 45 +----------------
+ sound/soc/qcom/common.c                       | 10 ++++
+ sound/soc/soc-core.c                          | 50 +++++++++++++++++++
+ 6 files changed, 82 insertions(+), 47 deletions(-)
+
 -- 
-2.28.0.dirty
+2.34.1
 
