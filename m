@@ -2,81 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02E3A47491B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 18:18:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E58847492E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 18:22:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233698AbhLNRSC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 12:18:02 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:42834 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231598AbhLNRSC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 12:18:02 -0500
-Received: by mail-oi1-f179.google.com with SMTP id n66so28009626oia.9;
-        Tue, 14 Dec 2021 09:18:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Ayct9matewlj31hKw/1fwRKjPgxYNxdy2wsYaxbrBMo=;
-        b=Xgq+VzPJ2Qi4x2uAwAkAK+gHOcWiMFUm37+rgO8N+I65yjCAuMn302ScIWWYlpPBBn
-         SudZpv50y7ToYlFSDlMV26Rj3kkIPAYL0+VnEDAKNA7iOjJP7wcq/D+Y4b5wKZ8Rocza
-         mlqXoigTVXa4D3HudWt3LhQz093G9PXijB8E9EJrG0ZYUYFbESnD4IedEEb0RO2y8d46
-         jSHEFl2YHnwrnowQlS0oQ7fX5f+eVqZWa2HEyOFY8jpsciX4Ot8FyIPLJL/pmUZciV8S
-         56sWcPWboZMLDimLOiiL4litkBMm02FTsY7BfyQOPJq0UWrXmwNjHvVLuSy53/FZxC2E
-         Tw6g==
-X-Gm-Message-State: AOAM532IIxUxO9o/cDASS74mwlAEmMiH07CF2TTWXwe3aOmY2zlzC0Z/
-        F4DDwtEy6k8cxsrScdcL2g==
-X-Google-Smtp-Source: ABdhPJyELjMM8nn9CLH3h2yYaaTmWnizc9zstZaQdiOpX2udJqTEdqK/NosESkD+PWdS+3k7gqG9+Q==
-X-Received: by 2002:aca:eb53:: with SMTP id j80mr5179412oih.85.1639502280368;
-        Tue, 14 Dec 2021 09:18:00 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 111sm72937otu.55.2021.12.14.09.17.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 09:17:59 -0800 (PST)
-Received: (nullmailer pid 3574607 invoked by uid 1000);
-        Tue, 14 Dec 2021 17:17:58 -0000
-Date:   Tue, 14 Dec 2021 11:17:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Gabriel Somlo <gsomlo@gmail.com>
-Cc:     geert@linux-m68k.org, linux-mmc@vger.kernel.org, paulus@ozlabs.org,
-        shorne@gmail.com, florent@enjoy-digital.fr,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        rdunlap@infradead.org, kgugala@antmicro.com, krakoczy@antmicro.com,
-        mholenko@antmicro.com, david.abdurachmanov@sifive.com,
-        robh+dt@kernel.org, ulf.hansson@linaro.org,
-        mdudek@internships.antmicro.com, joel@jms.id.au
-Subject: Re: [PATCH v4 2/3] dt-bindings: mmc: Add bindings for LiteSDCard
-Message-ID: <YbjRxsBI+uH+qKvb@robh.at.kernel.org>
-References: <20211210145430.3707463-1-gsomlo@gmail.com>
- <20211210145430.3707463-3-gsomlo@gmail.com>
+        id S235981AbhLNRWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 12:22:22 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:12100 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235889AbhLNRWU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Dec 2021 12:22:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1639502540; x=1671038540;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=yq8N2AXZoLLyeKdy61gCr0CS4sQ/YtBJ910CTaGYMFY=;
+  b=N4CbasOmySUk4T09gWRuXAwOYEy9J4BGOT9+KLzRYR0H8pthY3TO8IZk
+   wLXaBXqQawZr0l1gmrpzHBruN0x+Jy5pf8DF0RAyvtQFiPWWoyknhQhaW
+   Anxos+QiW6PisAtantjtjgOg3FFrydndx8i3VGvvHOGeooT/FJJo7NE3f
+   4=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 14 Dec 2021 09:22:19 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Dec 2021 09:22:19 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 14 Dec 2021 09:22:18 -0800
+Received: from [10.216.27.180] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Tue, 14 Dec
+ 2021 09:22:11 -0800
+Subject: Re: [PATCH v5 3/5] pinctrl: qcom: Extract chip specific LPASS LPI
+ code
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <plai@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        "Jaroslav Kysela" <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        <rohitkr@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
+        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+References: <1638891339-21806-1-git-send-email-quic_srivasam@quicinc.com>
+ <1638891339-21806-4-git-send-email-quic_srivasam@quicinc.com>
+ <CAHp75Vd=47Tv9Sf+styPhxS2=O1H2KUDeKQXTULUYU5fDgGwwA@mail.gmail.com>
+ <0f6621e5-f014-27c9-be8b-6c32ab994304@quicinc.com>
+ <CAHp75VdL3hmr23CcJLDpvbHaKv5HrDZjmVQpCnRNmPM7nEx6WQ@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+Message-ID: <4bcfadd0-8abb-e9e9-ad18-a5b1d3d46308@quicinc.com>
+Date:   Tue, 14 Dec 2021 22:52:08 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211210145430.3707463-3-gsomlo@gmail.com>
+In-Reply-To: <CAHp75VdL3hmr23CcJLDpvbHaKv5HrDZjmVQpCnRNmPM7nEx6WQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Dec 2021 09:54:29 -0500, Gabriel Somlo wrote:
-> LiteSDCard is a small footprint, configurable SDCard core for FPGA
-> based system on chips.
-> 
-> Signed-off-by: Gabriel Somlo <gsomlo@gmail.com>
-> Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> ---
-> 
-> New in v4:
->   - fixed `dt_binding_check` errors uncovered by Rob's script
-> 
-> > New in v3:
-> >   - picked up r/b Geert Uytterhoeven <geert@linux-m68k.org> in DT
-> >     bindings document (please let me know if that was premature, and
-> >     happy to take further review if needed :)
-> >   - add dedicated DT property for source clock frequency
-> 
->  .../devicetree/bindings/mmc/litex,mmc.yaml    | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/litex,mmc.yaml
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 12/14/2021 10:46 PM, Andy Shevchenko wrote:
+> On Tue, Dec 14, 2021 at 7:15 PM Srinivasa Rao Mandadapu
+> <quic_srivasam@quicinc.com> wrote:
+>> On 12/8/2021 11:58 AM, Andy Shevchenko wrote:
+> ...
+>
+>>>> +#define NO_SLEW                                -1
+>>> Naming sucks for the header.
+>>>
+>>> LPI_NO_SLEW ?
+>> Actually it's already mainline code. Just these patches are
+>> rearrangement of old code.
+>>
+>> still do you suggest to change?
+> I would, but this means it should be in a separate change.
+>
+> ...
+Yes. Will do it separate patch later.
+>
+>>>> +struct lpi_pingroup {
+>>>> +       const char *name;
+>>>> +       const unsigned int *pins;
+>>>> +       unsigned int npins;
+>>>> +       unsigned int pin;
+>>>> +       /* Bit offset in slew register for SoundWire pins only */
+>>>> +       int slew_offset;
+>>>> +       unsigned int *funcs;
+>>>> +       unsigned int nfuncs;
+>>>> +};
+>>> Are you going to convert this to use struct group_desc?
+> Any comments on this? It sounds like further improvements.
+Actually this also needs as separate patch. these patches will do as 
+separate series.
+>
