@@ -2,66 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C031473AD3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 03:38:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4665473ADF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 03:47:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237109AbhLNCix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 21:38:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40514 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229616AbhLNCiw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 21:38:52 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 814E0C061574;
-        Mon, 13 Dec 2021 18:38:52 -0800 (PST)
+        id S235585AbhLNCr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 21:47:29 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:52314 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229616AbhLNCr3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 21:47:29 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1916A612DC;
-        Tue, 14 Dec 2021 02:38:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DE49C34603;
-        Tue, 14 Dec 2021 02:38:50 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 26764B817D4;
+        Tue, 14 Dec 2021 02:47:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7780C34603;
+        Tue, 14 Dec 2021 02:47:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639449531;
-        bh=/aQ0TtIZ+kzWB5Abht82P2wcjqy/Z3erSZiZRabXKn0=;
+        s=k20201202; t=1639450046;
+        bh=lGHEPwKNgI4T/glFuPmcU0U4AGuegZldQcnrkItl/4k=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gXj5BLlU44Oh1y8cOV9pdGDUlKZU80J4vDiteHqsyoFe7A5P3go3p6A7UC/NJf6ny
-         o5bmkRvl8omA7Ve0YFUp2oddc+3TNURelnSKAygIVXZNkMRzWF+V49ejfBCqXO7BwL
-         2cv1FYzxKpxDsfUc3hUGAXKvHDikPvi+AyEsqOydt8ieOEKUp7NZohP7ek39H8axkt
-         IQXYP9ilAF9lww45LRtjEktmeqwWOmLl7IGAqCnD+IDTcbdd1Sp1VEkI3n0DFHOAPK
-         lWORX+CqsJI83aGlrjdCf1rcRnuiYKTMeYkytfboA3/X8VpdwqrPfFCBnyL8jUw1JF
-         HeXT71yZDQL0Q==
-Date:   Tue, 14 Dec 2021 10:38:46 +0800
+        b=JE2vxbLR/VbqkAqODkIgJirZC6vK9t0XBSDemPWAXzzBz06xe9qa800axwMNBmay0
+         tdUZKCDpg5zrd2rQKgSXUvdRDY9pq3dnhZcoKH5XcZtem3Mw2Sly5MprQgL3sZpt/0
+         1xYYHgO+hOdk3hsmHoXWlG7hBje1mBcc5jc3wdHrNbWFr6bGjXekSi3NFfmAKGv8W4
+         qVTNNljfIiCFvfTA3gjsDyKbBfB5lmsahcq/MM9luIrlgAjMRxVPI91OiwRDMLwtR0
+         9i7O82VnWEXew/LWOHz7HpMDqsy3MOyBuQFerY1la0CzGxQQyPtjj0Wt7mJePCfHDf
+         GTUWZuIHN0eEw==
+Date:   Tue, 14 Dec 2021 10:47:20 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH 0/4] NXP LS1028A-RDB preparation for device tree sync
- with U-Boot
-Message-ID: <20211214023846.GN4216@dragon>
-References: <20211202141528.2450169-1-vladimir.oltean@nxp.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V6 2/2] arm: dts: imx25/31/50/51/53/6qdl: Change spba to
+ spba-bus
+Message-ID: <20211214024719.GO4216@dragon>
+References: <20211202143828.3335-1-aford173@gmail.com>
+ <20211202143828.3335-2-aford173@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211202141528.2450169-1-vladimir.oltean@nxp.com>
+In-Reply-To: <20211202143828.3335-2-aford173@gmail.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 02, 2021 at 04:15:24PM +0200, Vladimir Oltean wrote:
-> An effort was started for the NXP LS1028A to share device trees between
-> Linux and U-Boot, and so far the common SoC dtsi is shared, but
-> individual boards still aren't. This patch makes some minor changes to
-> the Linux device tree so the DT for the reference design board can be
-> successfully shared with U-Boot.
+On Thu, Dec 02, 2021 at 08:38:27AM -0600, Adam Ford wrote:
+> With the updated dt-bindings for the spba-bus, rename spba@xxxx
+> to spba-bus@xxxx.  There are no functional changes.
 > 
-> Vladimir Oltean (4):
->   arm64: dts: ls1028a-rdb: sort nodes alphabetically by label
->   arm64: dts: ls1028a-rdb: add an alias for the FlexSPI controller
->   arm64: dts: ls1028a-rdb: add aliases for the Ethernet ports
->   arm64: dts: ls1028a-rdb: update copyright
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Applied all, thanks!
+I updated the subject prefix like below.
+
+ ARM: dts: imx: ...
+
+Applied both, thanks!
+
+Shawn
