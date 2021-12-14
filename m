@@ -2,289 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBA88474D41
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 22:36:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CF8C474D5B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 22:50:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232676AbhLNVgt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 16:36:49 -0500
-Received: from finn.gateworks.com ([108.161.129.64]:35578 "EHLO
-        finn.localdomain" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231331AbhLNVgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 16:36:46 -0500
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1mxFTO-0090VG-ID; Tue, 14 Dec 2021 21:36:34 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH] arm64: dts: imx8mm-venice-gw73xx-0x: add dt overlays for serial modes
-Date:   Tue, 14 Dec 2021 13:36:30 -0800
-Message-Id: <20211214213630.14819-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.17.1
+        id S231671AbhLNVup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 16:50:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50502 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231130AbhLNVuo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 16:50:44 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E1C9C061574;
+        Tue, 14 Dec 2021 13:50:43 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id u3so39467210lfl.2;
+        Tue, 14 Dec 2021 13:50:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=FqgdsUPhQStXGJkWEhhtjxSOJh3VXCpFEPus3dniUic=;
+        b=VS+jPu4tt9JhiTjPUpYmUYydJI/PQZDzPIKIHGFjMgnIxjJHk/XDXP/yDAuJGmVLdm
+         Jgo1l3N8lseht0focMcCN9NQ9W18ZrGzQukVlJAE8dgYkTMV5TBBNoeZ2bOmW/65sIma
+         9tQZETj55CJ5625caXWAluS8hpM+cvWS2XUllyp0xGAIRoQLhWh0Uzqcl/Sb7Y7NTQF/
+         pNBaInngYFsA97zzmy4BDAk3aDtd3g4rEPUHN5I3gAHx9w6Ke+o8DFwDtWsGPCLXeXtb
+         qXVXzc67Vnn3tFnMUA5hOjKz6KoNvC9SZ3U3YKB0CJEXvRB7OhiEHJocXwWSBvS9lHue
+         EyLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=FqgdsUPhQStXGJkWEhhtjxSOJh3VXCpFEPus3dniUic=;
+        b=LIXfjYVbpmhZbG3hk5h4BG7xJo9epmxtotoaAEeEaXIeFVgD74HGQQMp8mE3IOgqBr
+         DGeIdeO64zy+Knv1VrzGJth9uwdr7aH5H9Cxsb2kZ7Tqatehnc7sJ8NGTza5Gx7uz3xu
+         w3b39tiAa2U2uXUfgTJ0YLQUsau/iVPhMJPLRoBW6+uxE7ZX3N4szs+ypoWNdS+ISbWz
+         1eJ3xbIaRwrmqmZsXNzasBZEV300scZuCFkBpX+cNWaSmhIeUKjSitQPGwZU8hhARu9J
+         az7rye2fVn3amKLZNeSjx5qwfOEEwozirkbM8GdHbZdDYhePyk21R8lTEJTrl5QpTZYP
+         bfcg==
+X-Gm-Message-State: AOAM532aXtT2AjN2uFbbyAkhhw7e0BLLIy8naPVixgVP+KMI84wjr7Y5
+        0x/trNB34gI+U5vRAe5VEzI=
+X-Google-Smtp-Source: ABdhPJypgbkd6H81g6vnx7OH4J5gTEvHNnisIdxh2h5pGVAUkK1A58KOXxzStHSG5RNevkt3pTDjJA==
+X-Received: by 2002:a19:c30e:: with SMTP id t14mr6949504lff.375.1639518641649;
+        Tue, 14 Dec 2021 13:50:41 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id m13sm155960lfl.131.2021.12.14.13.50.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Dec 2021 13:50:41 -0800 (PST)
+Message-ID: <e017f3b3-7ba9-6b5f-e18f-830ab717f026@gmail.com>
+Date:   Tue, 14 Dec 2021 22:50:35 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH V3 1/2] dt-bindings: pinctrl: support specifying pins,
+ groups & functions
+To:     Rob Herring <robh@kernel.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com
+References: <20211210114222.26581-1-zajec5@gmail.com>
+ <20211210114222.26581-2-zajec5@gmail.com>
+ <CACRpkdbsb63EN5hmGws1eLaARg2VRXXhz+5AM_x7OhaS_ceGow@mail.gmail.com>
+ <cadb38fd-a193-2706-b20e-2a1e5e64f9ca@milecki.pl>
+ <Ybj3k4BOcc3IKs0w@robh.at.kernel.org>
+ <756f55d2-f033-8066-7e51-005e1f0587ec@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <756f55d2-f033-8066-7e51-005e1f0587ec@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The imx8mm-venice-gw73xx-0x som+baseboard combination has a multi-protocol
-RS-232/RS-485/RS-422 transceiver to an off-board connector which
-can be configured in a number of ways via UART and GPIO configuration.
+On 14.12.2021 21:10, Rafał Miłecki wrote:
+> On 14.12.2021 20:59, Rob Herring wrote:
+>> On Sat, Dec 11, 2021 at 12:16:25PM +0100, Rafał Miłecki wrote:
+>>> Rob: please kindly comment on this idea of storing pins/groups/functions
+>>> in DT.
+>>
+>> I was never a fan of stuffing pin mux/ctrl into DT for what's mostly a
+>> one time stuffing of register values. And given how many things run
+>> before getting to the kernel, doing proper pin configuration in the
+>> kernel is much too late (or redundant because it was actually already
+>> done).
+> 
+> OK, thanks for sharing that. Given a pretty limited optimism on this
+> approach I'll simply drop it and do things the old good way.
 
-The default configuration per the imx8mm-venice-gw73xx-0x dts is for
-UART2 TX/RX and UART4 TX/RX to be available as RS-232:
- J15.1 UART2 TX out
- J15.2 UART2 RX in
- J15.3 UART4 TX out
- J15.4 UART4 RX in
- J15.5 GND
+I feel I need to post one more comment though.
 
-Add dt overlays to allow additional the modes of operation:
+***
 
-rs232-rts (UART2 RS-232 with RTS/CTS hardware flow control)
- J15.1 TX out
- J15.2 RX in
- J15.3 RTS out
- J15.4 CTS in
- J15.5 GND
+What I find a really clean DT code for defining some BCM4908 groups:
 
-rs485 (UART2 RS-485 half duplex)
- J15.1 TXRX-
- J15.2 N/C
- J15.3 TXRX+
- J15.4 N/C
- J15.5 GND
+groups {
+	led_0_grp {
+		pins = <&pin0 3>;
+	};
 
-rs422 (UART2 RS-422 full duplex)
- J15.1 TX-
- J15.2 RX+
- J15.3 TX+
- J15.4 RX-
- J15.5 GND
+	led_1_grp {
+		pins = <&pin1 3>;
+	};
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |  3 +
- .../imx8mm-venice-gw73xx-0x-rs232-rts.dts     | 53 ++++++++++++++++
- .../imx8mm-venice-gw73xx-0x-rs422.dts         | 61 +++++++++++++++++++
- .../imx8mm-venice-gw73xx-0x-rs485.dts         | 61 +++++++++++++++++++
- 4 files changed, 178 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dts
+	nand_grp {
+		pins = <&pin32 0>, <&pin33 0>, <&pin34 0>, <&pin43 0>, <&pin44 0>, <&pin45 0>, <&pin56 1>;
+	};
+};
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index a14a6173b765..5ec8d59347b6 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -44,6 +44,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dts
-new file mode 100644
-index 000000000000..c184cf4aea4e
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dts
-@@ -0,0 +1,53 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2021 Gateworks Corporation
-+ *
-+ * GW73xx RS232 with RTS/CTS hardware flow control:
-+ *  - GPIO4_0 rs485_en needs to be driven low (in-active)
-+ *  - UART4_TX becomes RTS
-+ *  - UART4_RX becomes CTS
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#include "imx8mm-pinfunc.h"
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+	compatible = "gw,imx8mm-gw73xx-0x";
-+};
-+
-+&gpio4 {
-+	rs485_en {
-+		gpio-hog;
-+		gpios = <0 GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "rs485_en";
-+	};
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	rts-gpios = <&gpio5 29 GPIO_ACTIVE_LOW>;
-+	cts-gpios = <&gpio5 28 GPIO_ACTIVE_LOW>;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	status = "disabled";
-+};
-+
-+&iomuxc {
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX     0x140
-+			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX     0x140
-+			MX8MM_IOMUXC_UART4_TXD_GPIO5_IO29	0x140
-+			MX8MM_IOMUXC_UART4_RXD_GPIO5_IO28	0x140
-+		>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dts
-new file mode 100644
-index 000000000000..3e6404340d52
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dts
-@@ -0,0 +1,61 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2021 Gateworks Corporation
-+ *
-+ * GW73xx RS422 (RS485 full duplex):
-+ *  - GPIO1_0 rs485_term selects on-chip termination
-+ *  - GPIO4_0 rs485_en needs to be driven high (active)
-+ *  - GPIO4_2 rs485_hd needs to be driven low (in-active)
-+ *  - UART4_TX is DE for RS485 transmitter
-+ *  - RS485_EN needs to be pulled high
-+ *  - RS485_HALF needs to be low
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#include "imx8mm-pinfunc.h"
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+	compatible = "gw,imx8mm-gw73xx-0x";
-+};
-+
-+&gpio4 {
-+	rs485_en {
-+		gpio-hog;
-+		gpios = <0 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "rs485_en";
-+	};
-+
-+	rs485_hd {
-+		gpio-hog;
-+		gpios = <2 GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "rs485_hd";
-+	};
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	rts-gpios = <&gpio5 29 GPIO_ACTIVE_HIGH>;
-+	linux,rs485-enabled-at-boot-time;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	status = "disabled";
-+};
-+
-+&iomuxc {
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX     0x140
-+			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX     0x140
-+			MX8MM_IOMUXC_UART4_TXD_GPIO5_IO29	0x140
-+		>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dts
-new file mode 100644
-index 000000000000..97f19c15c3d0
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dts
-@@ -0,0 +1,61 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2021 Gateworks Corporation
-+ *
-+ * GW73xx RS485 HD:
-+ *  - GPIO1_0 rs485_term selects on-chip termination
-+ *  - GPIO4_0 rs485_en needs to be driven high (active)
-+ *  - GPIO4_2 rs485_hd needs to be driven high (active)
-+ *  - UART4_TX is DE for RS485 transmitter
-+ *  - RS485_EN needs to be pulled high
-+ *  - RS485_HALF needs to be pulled high
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#include "imx8mm-pinfunc.h"
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+	compatible = "gw,imx8mm-gw73xx-0x";
-+};
-+
-+&gpio4 {
-+	rs485_en {
-+		gpio-hog;
-+		gpios = <0 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "rs485_en";
-+	};
-+
-+	rs485_hd {
-+		gpio-hog;
-+		gpios = <2 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "rs485_hd";
-+	};
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	rts-gpios = <&gpio5 29 GPIO_ACTIVE_HIGH>;
-+	linux,rs485-enabled-at-boot-time;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	status = "disabled";
-+};
-+
-+&iomuxc {
-+	pinctrl_uart2: uast2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX     0x140
-+			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX     0x140
-+			MX8MM_IOMUXC_UART4_TXD_GPIO5_IO29	0x140
-+		>;
-+	};
-+};
--- 
-2.17.1
+***
 
+Gets a bit cumbersome (for me) when using ANSI C structs. I remain
+unconvinced about ANSI C being a good place for storing such data.
+
+Maybe I'm just getting too old & grumpy ;)
+
+struct bcm4908_pinctrl_pin_setup {
+	unsigned number;
+	unsigned function;
+};
+
+static const struct bcm4908_pinctrl_pin_setup led_0_pins[] = {
+	{ 0, 3 },
+};
+
+static const struct bcm4908_pinctrl_pin_setup led_1_pins[] = {
+	{ 0, 3 },
+};
+
+static const struct bcm4908_pinctrl_pin_setup nand_pins[] = {
+	{ 32, 0 }, { 33, 0 }, { 34, 0 }, { 43, 0 }, { 44, 0 }, { 45, 0 }, { 56, 1 },
+};
+
+struct bcm4908_pinctrl_grp {
+	const char *name;
+	const struct bcm4908_pinctrl_pin_setup *pins;
+	const unsigned int num_pins;
+};
+
+static const struct bcm4908_pinctrl_grp bcm4908_pinctrl_grps[] = {
+	{ "led_0_grp", led_0_pins, ARRAY_SIZE(led_0_pins) },
+	{ "led_1_grp", led_1_pins, ARRAY_SIZE(led_1_pins) },
+	{ "nand_grp", nand_pins, ARRAY_SIZE(nand_pins) },
+};
