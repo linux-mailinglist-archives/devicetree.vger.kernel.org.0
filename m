@@ -2,105 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEC154748ED
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 18:09:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43F434748F9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 18:12:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231544AbhLNRJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 12:09:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42626 "EHLO
+        id S236353AbhLNRMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 12:12:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233493AbhLNRJ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 12:09:28 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67814C06173F
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 09:09:28 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id u17so33580560wrt.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 09:09:28 -0800 (PST)
+        with ESMTP id S233758AbhLNRMk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 12:12:40 -0500
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EF71C061574;
+        Tue, 14 Dec 2021 09:12:40 -0800 (PST)
+Received: by mail-pg1-x52f.google.com with SMTP id r5so17845039pgi.6;
+        Tue, 14 Dec 2021 09:12:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YkNwF15RBseK9khy85vK87nkOiqoYCbtsYE+4WPYdvA=;
-        b=LTEzOvDI5uiHwEiGffXqMAPXC/qxrYBIePgNS+zO4BuZZJoih2CLutVL6PSvWMj60L
-         vjLZ6cTrjy0hVB4Yz1bCdMUIJbHUaLERH0ur2mB+VPsWpCRTsvgIrnXlBCEkkjCL0tKH
-         XYhXNDo7hps8alzZ5XcGWpKBrzJcXn/h0YwhuxTWD3LHYAwGx5exBeC6jmkZE37QbOnG
-         mu/vF03AqiDVFu8viIGHzmHARKrNUE/q15p6XZuikX8osgK6T/M3a00AIQGXWG5Rln70
-         045iiCLfU9wrmae6FJYFa/efVPq9xk6JHaPPCaU8jREJMqENUbEOV4DMgRLe0VXY9TMO
-         nZFw==
+        d=gmail.com; s=20210112;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=c0ijK4rkqUObK3Qna2KfVjEpIRTSrS20P3RvVnUJL0E=;
+        b=pyO9bt0fxCsjxE90seFFJWwEKl5gFHNBb7k+SX1X2JsgMeR76LauZ1anfSYQPakUcP
+         DsvjzWTpWP6aS9gXJg616oRPQ0CZ22TCbIfTLUaIXeORpaINHqchpb2dn+c8DYZRVAAy
+         qbOpzohojNS4eYdZ++ewLJTrVBepeb2JEd1l4eRizZA6KMmAOpzNHLdJsxbr/RFQiV7A
+         4DGfDMELjvZYE7vNZ4aqGc2V1S6eu7lFbogSaHdGtxZByaCk9zgyUBBI3NH1R2GNMXn/
+         DMo0fjLtnW9Q9cAME45Uv0pUY6WQtRP+wpCeg8y9LoCY8a39mnSQWjv0wYq7PUbPj2xs
+         htYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=YkNwF15RBseK9khy85vK87nkOiqoYCbtsYE+4WPYdvA=;
-        b=U0o/77ngVyW8FoNuKp5rifGIrGPV8kLPpraOyxbZysZIL4J+JdwANfR8o1w0Oy3y+L
-         YEl1qPd2FcofC6Urepwn58GP2WTwoQd6TKTNrY+e7whUhctv+34fAEEdf2+Wg2qhZ5vh
-         za2acfrdjlPD1yN6WiHUVpBtEMUGJLPdjcKYcTslaw9pMMjZHIC9R4qjzdes9yvT8roY
-         qGzSMVZQnS0xySpoYySRYsuZN+jk2iaKZ/7CrQ9yBDnOJdib9LDqPPiy7rptBfOAc1Dn
-         bRByriDe/7Jh5iNiRgmNMf6i0TjcE3C7R+iymwymxrcikJhXFfkNqINt5W/4gyG0nuPC
-         evRg==
-X-Gm-Message-State: AOAM533phoHm+dOo/t+57FuA0avUCMbgzi4SV+le1kMgVp5XWEwGJuN1
-        q6F2xPHThuIWokSecTaSv3sqgw==
-X-Google-Smtp-Source: ABdhPJwbbeKRaevdBJwM/1/TG57QVdufp3g79ECOj1YGEP4RB0Zi9h9idiAqsU4q8JdHgtx24vAXCg==
-X-Received: by 2002:a5d:50cd:: with SMTP id f13mr252850wrt.672.1639501766313;
-        Tue, 14 Dec 2021 09:09:26 -0800 (PST)
-Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id y6sm2688224wma.37.2021.12.14.09.09.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 09:09:25 -0800 (PST)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: soc: samsung: Fix I2C clocks order in USI binding example
-Date:   Tue, 14 Dec 2021 19:09:24 +0200
-Message-Id: <20211214170924.27998-1-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.30.2
+        bh=c0ijK4rkqUObK3Qna2KfVjEpIRTSrS20P3RvVnUJL0E=;
+        b=aZp2X0CYuUrlvtLEcuxUnZVbkpZifF9sRokRFqFj2Tk7FOTx0sycLIYxGXujM2SK/l
+         gJA/WswGfXSrz6GVd68t5Qi2j+cx/RXZHkc3lGx9HFdwiBGGGIM2yMK7RDBMyE5ho4R5
+         Ri8gq0QEZ9fy8oE1GUuPXLCiZM0Jz0+uDFd2XE4mrZluROoFlf1jI37tcmNHAgWhMfIZ
+         C6fOJUsonYAhS7sKyEbNRPEsrL/kYxDRIppbTQw26HozSlgHVsHKTDZeIAl6clabvYNQ
+         EC7NQap5JI92bcwa5mJ8KO/wZpxsFCPicggtHAHhjc4bMVtBTPYHIWGQIU7XhuO8/SUP
+         IM3g==
+X-Gm-Message-State: AOAM53300TpPKwWwRrg5/afBc7IFKAOQYPWuTS2IF45OpALUzcIuhNII
+        mZh6R05rsFEtHPKb5WQjxPksnJulCcY=
+X-Google-Smtp-Source: ABdhPJxgpctV36XTAUnYGSOdSE2GY/FJVcvK49ixErtUs6MUUKbd78YODMtk/4y4FwMBvCwYpkn5rA==
+X-Received: by 2002:a63:6d4f:: with SMTP id i76mr4468714pgc.611.1639501959198;
+        Tue, 14 Dec 2021 09:12:39 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id t2sm425953pfd.36.2021.12.14.09.12.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Dec 2021 09:12:38 -0800 (PST)
+Subject: Re: [PATCH v2 2/2] ARM: dts: gpio-ranges property is now required
+To:     Phil Elwell <phil@raspberrypi.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thierry Reding <treding@nvidia.com>,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org
+References: <20211206092237.4105895-1-phil@raspberrypi.com>
+ <20211206092237.4105895-3-phil@raspberrypi.com>
+ <CGME20211214142139eucas1p1c100b7fd4b8c8ce85bc03e1ce6b783db@eucas1p1.samsung.com>
+ <8671ebd8-a853-7394-9864-0457514337e2@samsung.com>
+ <2ce5956f-ce8c-80f0-df9a-492a8da00a08@raspberrypi.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <dbba6665-9688-9a5e-091b-eaa8e92e6886@gmail.com>
+Date:   Tue, 14 Dec 2021 09:12:35 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <2ce5956f-ce8c-80f0-df9a-492a8da00a08@raspberrypi.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that HSI2C binding [1] is converted to dt-schema format, it reveals
-incorrect HSI2C clocks order in USI binding example:
+On 12/14/21 6:32 AM, Phil Elwell wrote:
+> Hi Marek,
+> 
+> On 14/12/2021 14:21, Marek Szyprowski wrote:
+>> Hi Phil,
+>>
+>> On 06.12.2021 10:22, Phil Elwell wrote:
+>>> Since [1], added in 5.7, the absence of a gpio-ranges property has
+>>> prevented GPIOs from being restored to inputs when released.
+>>> Add those properties for BCM283x and BCM2711 devices.
+>>>
+>>> [1] commit 2ab73c6d8323 ("gpio: Support GPIO controllers without
+>>>       pin-ranges")
+>>>
+>>> Fixes: 2ab73c6d8323 ("gpio: Support GPIO controllers without
+>>> pin-ranges")
+>>> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+>>
+>> This patch breaks today's linux-next (next-20211214) on RPi3 and RPi4.
+>> Either there is something missing or wrong here. Booting stops after
+>> following messages (on RPi4):
+>>
+>> [    3.186786] pinctrl-bcm2835 fe200000.gpio: could not add GPIO chip
+>> [    3.234513] pinctrl-bcm2835 fe200000.gpio: could not add GPIO chip
+>> [    3.276703] mmc0: SDHCI controller on fe340000.mmc [fe340000.mmc]
+>> using ADMA
+>> [    3.287191] pinctrl-bcm2835 fe200000.gpio
+> 
+> This patch is part of a two-patch set, the cover note for which says:
+> 
+>     2. Since [1], a "gpio-ranges" property is required in order for pins
+>     to be returned to inputs when freed. Note that without patch 1, the
+>     device never gets out of EPROBE_DEFER.
+> 
+> It looks as though patch 2 has been merged without/before patch 1
+> ("pinctrl: bcm2835: Change init order for gpio hogs").
 
-    .../exynos-usi.example.dt.yaml:
-    i2c@13820000: clock-names:0: 'hsi2c' was expected
-    From schema: .../i2c-exynos5.yaml
+Yes, the hope was that there would be no such breakage, I suppose we
+will have to work out a plan to address that and coordinate both changes
+landing in at the same time.
 
-    .../exynos-usi.example.dt.yaml:
-    i2c@13820000: clock-names:1: 'hsi2c_pclk' was expected
-    From schema: .../i2c-exynos5.yaml
-
-Change HSI2C clock order in USI binding example to satisfy HSI2C binding
-requirements and fix above warnings.
-
-[1] Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
-
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
----
-NOTE: If possible, it can be squashed into "dt-bindings: soc: samsung:
-      Add Exynos USI bindings" patch (already applied in Krzysztof tree)
-
- Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-index 0af4821fae5e..273f2d95a043 100644
---- a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-+++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-@@ -152,8 +152,8 @@ examples:
-             interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
-             #address-cells = <1>;
-             #size-cells = <0>;
--            clocks = <&cmu_peri 32>, <&cmu_peri 31>;
--            clock-names = "hsi2c_pclk", "hsi2c";
-+            clocks = <&cmu_peri 31>, <&cmu_peri 32>;
-+            clock-names = "hsi2c", "hsi2c_pclk";
-             status = "disabled";
-         };
-     };
+I will work with Arnd to back out the Device Tree changes, sorry about that.
 -- 
-2.30.2
-
+Florian
