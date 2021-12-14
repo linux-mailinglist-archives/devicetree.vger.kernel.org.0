@@ -2,89 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03A0547471D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 17:07:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A10DB474723
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 17:08:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235490AbhLNQG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 11:06:58 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:41980 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231515AbhLNQG6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 11:06:58 -0500
-Received: by mail-ot1-f44.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so21341015otl.8;
-        Tue, 14 Dec 2021 08:06:57 -0800 (PST)
+        id S235239AbhLNQIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 11:08:34 -0500
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:44856 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231494AbhLNQIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 11:08:32 -0500
+Received: by mail-oi1-f172.google.com with SMTP id be32so27699222oib.11;
+        Tue, 14 Dec 2021 08:08:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CWeglYX86Kh/jx6qsj0rbVo/zA4v+6dDtBcJ8ZfP9I8=;
-        b=ATx2CtZW8+uN1RxVBwQNl1zycF+FIBAExw/Rj52MkHnT1Rl5t+aLy+uFgVUVKHynAj
-         kJt/daxdNjPuFOgzXEJhPKnuEijsGtJI5Dd2wDxyUFv72wRqe7RuYh5piiwD+FPur5Aj
-         BU5q5ImYPzWP7/gIoHwQHwIDw9f3xXAf6oPRcbnxKN5v61Hx7HT7Pe3oi9Tcf8dxwNG+
-         SpwTeRJhhi72iWefDhF/Y4jirOiBjK5vTlXZiMUqLcV8vMTXogYYdTntwKtSAB3DDnxM
-         0igbq/WAIiBQjKpL3DdEy9VnqfmZXgNuEyGfXxrYs7oX7H6VPIwG6YAOBFKYA0MZF7Wm
-         yfgA==
-X-Gm-Message-State: AOAM530yVb1a7mUZaLj4DAWOrTLdgMLtiDvxIU2pDiX3h0K/2PAJ2CAl
-        5Or58YSzZ4Bb80E0rcZ5Ig==
-X-Google-Smtp-Source: ABdhPJzkIOmtEo5hn0+hMuoG7HvhDOIIqOzzWYSglSMtBtWvqRjpOAt28cIAYU9DiODBsaihaQ23kw==
-X-Received: by 2002:a9d:5190:: with SMTP id y16mr5121669otg.364.1639498017370;
-        Tue, 14 Dec 2021 08:06:57 -0800 (PST)
+        bh=ZNvON25TsmO8LX7NN22FohLWfskQmVGPfJRP/nd6Kwg=;
+        b=ixiz+Ayz9pb7x0ubr6j1Rl7EUdW2brEt0H0VnjKn70RPes1TkMcFjsiHeo69pr5L4P
+         Hk6AoSvY56gZgWJMj8VogivMBnrUTCc8bLtxeKgCtMWb8NSw0vb8nxCmU/Spcwkq9acC
+         lbIcRqbkdYhb6ZQWRN/fLUOdgX3ChRpCB/j/UDFh4EwyZk8EoRPd4HGpe0Ew0ZePQtnD
+         SVC6exP8bJ5AMM7oPQ/LQeAwsk7aAhUv5URhQS5viqM2KNfEsevz4MM8CB1sWw9VRvgi
+         iMJfK3km1negrnKkepVQI4oDuv+I0e5UCM5gEFT4oWW4oRsY8ywSYu88Zx+xBbm94Jbq
+         ikvQ==
+X-Gm-Message-State: AOAM532/34MwzK8SvQnX8I/BqVRWMsbw0egQGJb8zquzCf+0Z/6TRkP2
+        nTeqUvghjw250+vryPmTRQ==
+X-Google-Smtp-Source: ABdhPJxpBgOBAPTkUBf4uAxqEk/iZVOwp8n88IpX0XBmuncldMF5kftsNIZR2MMyerp9nLJNjAsIOA==
+X-Received: by 2002:a05:6808:dc5:: with SMTP id g5mr4986910oic.58.1639498112167;
+        Tue, 14 Dec 2021 08:08:32 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j5sm48247oou.23.2021.12.14.08.06.55
+        by smtp.gmail.com with ESMTPSA id i29sm36728ots.49.2021.12.14.08.08.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 08:06:56 -0800 (PST)
-Received: (nullmailer pid 3472932 invoked by uid 1000);
-        Tue, 14 Dec 2021 16:06:55 -0000
-Date:   Tue, 14 Dec 2021 10:06:55 -0600
+        Tue, 14 Dec 2021 08:08:31 -0800 (PST)
+Received: (nullmailer pid 3479533 invoked by uid 1000);
+        Tue, 14 Dec 2021 16:08:30 -0000
+Date:   Tue, 14 Dec 2021 10:08:30 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     Fritz Koenig <frkoenig@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Tomasz Figa <tfiga@google.com>, devicetree@vger.kernel.org,
-        Steve Cho <stevecho@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-media@vger.kernel.org,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        linux-kernel@vger.kernel.org,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v13, 15/19] dt-bindings: media: mtk-vcodec: Adds decoder
- dt-bindings for mt8192
-Message-ID: <YbjBHwMXFwi/Sds4@robh.at.kernel.org>
-References: <20211213084141.13363-1-yunfei.dong@mediatek.com>
- <20211213084141.13363-16-yunfei.dong@mediatek.com>
+To:     Gwendal Grignou <gwendal@chromium.org>
+Cc:     andy.shevchenko@gmail.com, jic23@kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        swboyd@chromium.org, robh+dt@kernel.org, lars@metafoo.de
+Subject: Re: [PATCH v7 4/5] dt-bindings: iio: Add sx9324 binding
+Message-ID: <YbjBfoAXPFKxFI5c@robh.at.kernel.org>
+References: <20211210192328.2844060-1-gwendal@chromium.org>
+ <20211210192328.2844060-5-gwendal@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211213084141.13363-16-yunfei.dong@mediatek.com>
+In-Reply-To: <20211210192328.2844060-5-gwendal@chromium.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Dec 2021 16:41:37 +0800, Yunfei Dong wrote:
-> Adds decoder dt-bindings for mt8192.
+On Fri, 10 Dec 2021 11:23:27 -0800, Gwendal Grignou wrote:
+> Similar to SX9310, add biddings to setup sx9324 hardware properties.
+> SX9324 is a little different, introduce 4 phases to be configured in 2
+> pairs over 3 antennas.
 > 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
 > ---
-> Fix comments from rob.
-> ---
->  .../media/mediatek,vcodec-subdev-decoder.yaml | 265 ++++++++++++++++++
->  1 file changed, 265 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+> Changes in v7:
+> - Fix 2 remaining syntax error in example.
+> 
+> Changes in v6:
+> - Fix syntax errors in device tree binding documentation.
+> - Run 'make dt_binding_check' to make fix errors.
+> 
+> Changes in v5:
+> - Use consistent field naming, prefixed with phX.
+> 
+> Changes in v4:
+> - Use const instead of single enum
+> - Specify ph0-pin better
+> - Recopy type information for phX-pin
+> - Fix cut and paste errors.
+> 
+> Changes in v3:
+> - Remove duplicate information.
+> - Use intervals instead of enum.
+> - Fix filter description.
+> 
+> Changes in v2:
+> - Fix interrupt documentation wording.
+> 
+>  .../iio/proximity/semtech,sx9324.yaml         | 161 ++++++++++++++++++
+>  1 file changed, 161 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
