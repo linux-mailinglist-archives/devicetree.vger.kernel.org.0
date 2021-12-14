@@ -2,81 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12105473E82
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 09:43:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0739E473E89
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 09:46:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbhLNInr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 03:43:47 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:47906 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbhLNInq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 03:43:46 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 70C1C611B0;
-        Tue, 14 Dec 2021 08:43:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C091C34604;
-        Tue, 14 Dec 2021 08:43:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639471425;
-        bh=GxNRyBzpiN5pyIT5z+o+BVMY35bN1XReLxLH5hlP8rI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CTOhnW9jC42YDu6bxo2d/DiD9HEdrMlBep9JLJhxAYmbKVQYKJsRyUpfSBEhWqE9t
-         8vk/kEExGy3w0ybu4csV23wmARjAkIraKOmi0ui0678ZzgKsQREEiCRigfCT4C+fZl
-         pbHqeTJwX1rZWcDxpo0ixukhKSs1FqeUDoCnsNQCSUMtVxP7kGoyLgDii9lvghCeSK
-         MzAbB9cyZReKsi7mw+3It9ECVE3wE95p5QLoT88EOF6mOzrYmtF4EGmVkA8kKyVYQH
-         LDGblJo60TFpeyQZDL+byFLfu0DLmTlgQF7Q58YqDWdJ207hV5ajyb0AdJt1hramPd
-         VKgeFL5CrEibg==
-Date:   Tue, 14 Dec 2021 16:43:37 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
-        festevam@gmail.com, ioana.ciornei@nxp.com,
-        jagan@amarulasolutions.com, kernel@pengutronix.de, krzk@kernel.org,
-        linux-imx@nxp.com, matt@traverse.com.au, matteo.lisi@engicam.com,
-        meenakshi.aggarwal@nxp.com, michael@amarulasolutions.com,
-        nathan@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
-        tharvey@gateworks.com, robh@kernel.org
-Subject: Re: [PATCH v4 0/5] Add support for BSH SMM M2 and S2 boards
-Message-ID: <20211214084337.GI14056@dragon>
-References: <20211210132319.61196-1-ariel.dalessandro@collabora.com>
+        id S229993AbhLNIqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 03:46:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37800 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229921AbhLNIqx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 03:46:53 -0500
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EB93C061574;
+        Tue, 14 Dec 2021 00:46:53 -0800 (PST)
+From:   Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1639471612;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=hXldcYkZudz3/aGAn1WeAYHENq/EY0ztgDX09+lZaTM=;
+        b=UfLjtJmRojggIIGvbcP0HUvpM3zrthzC7LC9HMjfive1iqapm07WaorkQNZR50Trq9bb3m
+        BhkusG1skzIBN0jS1X69qVZNBvp/SUzRSTOD7LLTQm4PAzgb988R1s2Q8h5LlTB7UZX/MA
+        tmJ/irVekCix6nmQ/8V2xFqSLkAbqCvalFVA4nUa5HCkx1ZF2WE6/RtI9YI8vUzzvyaN8z
+        kM/Y+VXnmrP2PqRmJbZvI/QHnGtkBg32zSO3ORMN0LzaMwIGRf8O+zAmnom7xK40kEHXEL
+        LFFN/6M1nCA4KXb1kDhy7TeSHAhLnTLW+/jelZS5fyWS30VC11CT2F3W25LGcA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1639471612;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=hXldcYkZudz3/aGAn1WeAYHENq/EY0ztgDX09+lZaTM=;
+        b=q7p0d2OZvdbUTTxV9Y5J/xihIn3+jZf6/67oUPotm2kOBuLXGXJrLZ9v9R4hs6pO18+0TO
+        ocu6FbD4QQgtxMCQ==
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Biwen Li <biwen.li@nxp.com>,
+        Zhiqiang Hou <Zhiqiang.Hou@nxp.com>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Subject: Re: [RFC PATCH devicetree 01/10] irqchip/ls-extirq: rename
+ "interrupt-map" OF property to "fsl,extirq-map"
+In-Reply-To: <20211214013800.2703568-2-vladimir.oltean@nxp.com>
+References: <20211214013800.2703568-1-vladimir.oltean@nxp.com>
+ <20211214013800.2703568-2-vladimir.oltean@nxp.com>
+Date:   Tue, 14 Dec 2021 09:46:50 +0100
+Message-ID: <87wnk7375x.fsf@kurt>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211210132319.61196-1-ariel.dalessandro@collabora.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha512; protocol="application/pgp-signature"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 10, 2021 at 10:23:14AM -0300, Ariel D'Alessandro wrote:
-> Introduce BSH SystemMaster (SMM) M2 and S2 board family.
-> 
-> Changes in v4:
-> * Fixed typo in patch 5/5 subject: s/imx8ulz/imx6ulz
-> * Added "fsl,imx6ulz" to SMM M2 compatible.
-> 
-> Changes in v3:
-> * Fixed node names to use hyphens.
-> * Reorder nodes in alphabetical order.
-> * Removed unneeded newlines.
-> * Removed vendor wifi properties.
-> * Renamed labels and nodes consistently.
-> 
-> Changes in v2:
-> * Added M2 board support.
-> * Added dt-bindings for vendor prefix and board compatible.
-> * Fixed pmic dt entry.
-> 
-> Ariel D'Alessandro (4):
->   dt-bindings: Add vendor prefix for BSH Hausgeraete GmbH
->   dt-bindings: arm: fsl: Add iMX8MN BSH SMM S2 boards
->   arm64: dts: imx8mn-bsh-smm-s2/pro: Add iMX8MN BSH SMM S2 boards
->   dt-bindings: arm: fsl: Add BSH SMM-M2 IMX6ULZ SystemMaster board
-> 
-> Michael Trimarchi (1):
->   arm: dts: imx6ulz-bsh-smm-m2: Add BSH SMM-M2 IMX6ULZ SystemMaster
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-Applied all, thanks!
+On Tue Dec 14 2021, Vladimir Oltean wrote:
+> This OF property was supposed to be named "fsl,extirq-map" since the
+> first patch submissions, but at Rob Herring's suggestion it was named
+> "interrupt-map":
+> https://lore.kernel.org/lkml/20190927161118.GA19333@bogus/
+
+nit: The preferred form is https://lore.kernel.org/r/<message-id>=20
+
+[snip]
+
+> diff --git a/drivers/irqchip/irq-ls-extirq.c b/drivers/irqchip/irq-ls-ext=
+irq.c
+> index 853b3972dbe7..b6ecc5e3472f 100644
+> --- a/drivers/irqchip/irq-ls-extirq.c
+> +++ b/drivers/irqchip/irq-ls-extirq.c
+> @@ -101,9 +101,15 @@ ls_extirq_parse_map(struct ls_extirq_data *priv, str=
+uct device_node *node)
+>  	u32 mapsize;
+>  	int ret;
+>=20=20
+> -	map =3D of_get_property(node, "interrupt-map", &mapsize);
+> -	if (!map)
+> -		return -ENOENT;
+> +	map =3D of_get_property(node, "fsl,extirq-map", &mapsize);
+> +	if (!map) {
+> +		map =3D of_get_property(node, "interrupt-map", &mapsize);
+> +		if (!map)
+> +			return -ENOENT;
+> +
+> +		pr_warn("\"interrupt-map\" is a reserved OF property, and support for =
+it will be removed. Please use \"fsl,extirq-map\" instead.\n");
+> +	}
+
+Looks reasonable. For instance, DSA does the same thing wrt "ports"
+vs. "ethernet-ports".
+
+Thanks,
+Kurt
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAmG4WfoTHGt1cnRAbGlu
+dXRyb25peC5kZQAKCRB5KluBy5jwps22D/0T4pp9MYMfIE77SpjYJG8P0arrC1FT
+Zewga7/kfRpopo0rJ6tVYXZQQ7osbiYRBaQWk6PW1uq0bAU5FvP0xAV/MD7TRDNq
+RuXMNgwiKmGPsQ7upC9vEFC9Wfq6PgYvhOJX4AakXMQSMMimDyo0OC3SY0dKgCPz
+ufb3JWYqVFlzNRY5mxoTJk2H8OXHpnEoDfliso6I1iVlNTRHdK8GBk7wk/bV0obm
+5o70udgi3dl+Cz7jmC8yC4CDd1ecpWkgoxBd3+mJm8ylOP01cbWgsEGOwhOQpDtp
+lwJr2nBUA9aAlfrDUFa11N1dUkQrS+g7jPBfWfjNQKk0fKxByheE5qvZ8v+H/3qP
+BtcJWPHTmemzy03Vp8pnfV7H4JshbENBvz4cB1qpjX0cFL9bv3OYv/T8u6L/3AQj
+fNETUePc+dtP2RfZbFn+mx72CYqZVXFaRzLMXgI0VmvTQqXsYBoBPe+HORIoAY1j
+WrIoDEE+3SwKM/yLRNNcuidrtkq9fAaKGZBusqHOvcULI4nm8HzMfT4EQKGmV0z0
+P2vWS1YHtObQKGWRwMyS1DtvcFUVxDE+/v7VpiFZKTvkUK9E6YqLRrLrmVvbpqwx
+Go0SqrcuBSefj0U36bUHWwbmIU1t3Ym+8CLrFJcdOia6g0oWBdNzhv5/QI4KZNYP
+rfj/qJvQjLfzhg==
+=uxJ9
+-----END PGP SIGNATURE-----
+--=-=-=--
