@@ -2,94 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3853147464F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 16:21:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81555474653
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 16:21:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234493AbhLNPV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 10:21:28 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:36380 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232952AbhLNPV1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 10:21:27 -0500
-Received: by mail-oi1-f178.google.com with SMTP id t23so27583840oiw.3;
-        Tue, 14 Dec 2021 07:21:27 -0800 (PST)
+        id S232952AbhLNPVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 10:21:32 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:39870 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235294AbhLNPV3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 10:21:29 -0500
+Received: by mail-oi1-f169.google.com with SMTP id bf8so27583585oib.6;
+        Tue, 14 Dec 2021 07:21:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=CeVTJxVLieMM1wNrzU3l7k4wN5m7Qg+xX9F3SbifJyk=;
-        b=1SCyT7KmKJWVQx3UZCi02dhDX0Xiv3K7Kzlji3rKCZpORleAFhOAzIl+JBBxBGY9Rm
-         NK17VfwEW3i/dC4JYT9eEs9OZdqsYr893L1m+Hz35TS9PoH8YuS7xYxSXIVQLoDPx6Pm
-         GGtXAPFvAO0H19ZIpV/JFxyrD3MHTGsIsqxnD0EjvbeU2zGuOcoghaqSKROkM9/nA/W3
-         x/5os4Bsdhdb/zeN5dgUWfSHHso68F0jw4EmSdxu1vnIKdqfS8r6lH/gN/r8pSfve8TP
-         mlU4Qd6/nNqiDZHX02LN9VQwll30a9bORWzM/78cYMP+GIhA7YT8BDYsgyGCDCgRkqAz
-         7d+Q==
-X-Gm-Message-State: AOAM531su6BpSVO/1b5j6Wdtj4Daur/s2s3Vq0RckCUPOdSkPpmrvxdM
-        7PBp3SjnS7DujX7Of7erEQ==
-X-Google-Smtp-Source: ABdhPJxJLKiNRfmfOx7gj4LnEZr9eaLimLXHtgbjhIGu9Ogs1oF3YghVqWH6ACnV/L59+f+nO5j8pA==
-X-Received: by 2002:a05:6808:10c9:: with SMTP id s9mr4679639ois.23.1639495286921;
-        Tue, 14 Dec 2021 07:21:26 -0800 (PST)
+        bh=ryrTBuCXi8cKMhnhItLTtO/zaJoNSMYFKhjpdA0JEds=;
+        b=1ZC8eqc+GQSR9aFbSw71KkGAdJ92+Y+kf7RPuv68FxktS0lIJp7xzQqWjd3PLvYtO3
+         How/YdLyzNBUv4jUPHphXTWnPBE3GWXo9E7oBTQjZ9LwhggeSjbOqKBxk9DGEqGwz5ax
+         GK3FB0knqMJ7uSnbYvwSzgkkL5dmDzFYfbmgPmDsHcUG7jz4TejA+dHb/7VpJWfIWJFf
+         /xrYRFh/tgIOT1wY2wPUTjJ4JBoCwXpmryH8TIXqqJEo/2nlw3eY5TQg3hv9wl2mlCAO
+         fzKy9KKoKz0apZNn8PDEhfiHuR3sCZUk6+d4G9Pns+ssrm1hQSxvTBqqq5lUni3lm5dp
+         LMVg==
+X-Gm-Message-State: AOAM531SAtiAkTrTXizfDmysN2ZdewHCl9Qi65tgeTsLAzcMkt7wllzy
+        HehnB0MZI1TyuJ4yWyE69A==
+X-Google-Smtp-Source: ABdhPJwVXcQrvGMiH9DXxTYdRdpO/IF92MDRkgp+E0Qks7ORoj8F9+7Bqie8Qq/wvA8O4fWjvvyrlw==
+X-Received: by 2002:a05:6808:1814:: with SMTP id bh20mr32879764oib.31.1639495288821;
+        Tue, 14 Dec 2021 07:21:28 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l27sm15514ota.26.2021.12.14.07.21.25
+        by smtp.gmail.com with ESMTPSA id g24sm17522oti.19.2021.12.14.07.21.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 07:21:25 -0800 (PST)
-Received: (nullmailer pid 3397588 invoked by uid 1000);
+        Tue, 14 Dec 2021 07:21:27 -0800 (PST)
+Received: (nullmailer pid 3397593 invoked by uid 1000);
         Tue, 14 Dec 2021 15:21:25 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     devicetree@vger.kernel.org,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Zhiqiang Hou <Zhiqiang.Hou@nxp.com>,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>, Biwen Li <biwen.li@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Li Yang <leoyang.li@nxp.com>
-In-Reply-To: <20211214013800.2703568-11-vladimir.oltean@nxp.com>
-References: <20211214013800.2703568-1-vladimir.oltean@nxp.com> <20211214013800.2703568-11-vladimir.oltean@nxp.com>
-Subject: Re: [RFC PATCH devicetree 10/10] dt-bindings: ls-extirq: add a YAML schema for the validator
+To:     =?utf-8?q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
+Cc:     marcan@marcan.st, kettenis@openbsd.org, mturquette@baylibre.com,
+        robh+dt@kernel.org, sboyd@kernel.org, sven@svenpeter.dev,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+In-Reply-To: <20211214120213.15649-2-povik@protonmail.com>
+References: <20211214120213.15649-1-povik@protonmail.com> <20211214120213.15649-2-povik@protonmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add Apple NCO
 Date:   Tue, 14 Dec 2021 09:21:25 -0600
-Message-Id: <1639495285.020377.3397587.nullmailer@robh.at.kernel.org>
+Message-Id: <1639495285.047147.3397592.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Dec 2021 03:38:00 +0200, Vladimir Oltean wrote:
-> This is a conversion of the free-form description of the device tree
-> bindings to a YAML schema. The description of fsl,extirq-map is best
-> effort: it looks like the devicetree schema doesn't really like vendor
-> properties getting too complicated, and puts a bunch of descriptions on
-> what they can and can't describe. An array of uint32s is the best I
-> could come up with. It doesn't help, either, that the
-> schemas/interrupt-controller.yaml definition for interrupt-map, which
-> I was planning to use as an inspiration, is "true # FIXME", all things
-> which aren't valid in vendor properties.
+On Tue, 14 Dec 2021 12:02:48 +0000, Martin Povišer wrote:
+> The NCO block found on Apple SoCs is a programmable clock generator
+> performing fractional division of a high frequency input clock.
 > 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Signed-off-by: Martin Povišer <povik@protonmail.com>
 > ---
->  .../interrupt-controller/fsl,ls-extirq.txt    |  56 ---------
->  .../interrupt-controller/fsl,ls-extirq.yaml   | 110 ++++++++++++++++++
->  2 files changed, 110 insertions(+), 56 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+>  .../devicetree/bindings/clock/apple,nco.yaml  | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/apple,nco.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/clock/apple,nco.yaml:24:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.example.dts:34.31-32 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1413: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1567537
+See https://patchwork.ozlabs.org/patch/1567695
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
