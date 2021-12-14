@@ -2,174 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A48A47427D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 13:27:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66B4447427C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 13:27:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231232AbhLNM13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 07:27:29 -0500
-Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:32514 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231744AbhLNM13 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Dec 2021 07:27:29 -0500
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-        by mx0a-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1BE8OCVW008750;
-        Tue, 14 Dec 2021 04:27:10 -0800
-Received: from nam02-sn1-obe.outbound.protection.outlook.com (mail-sn1anam02lp2047.outbound.protection.outlook.com [104.47.57.47])
-        by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3cxqqsgwcm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 14 Dec 2021 04:27:10 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gK2euyZc9LIQwaN3uQBRlD4E6OuzJoq7POgnBAMPhP99Frbl4BHk8khQO72FsEv6sHsn1Y2WQUXh/oLtDdNSSs+S3cuoo6krY9F/FdRCy3GOqL0ZVvI+P2SHyGnzUWOwpcDZbbmOE9hECIWUYwWjUYvqYcR9Hrbwnw1+2qTbx8L5aBaY0PbHjMwEMckUYxAUb1B8h4xjtqe2HIpjy7h6hBTrf1vCXTJ0eSOPZdvIN0k77LMqoRX0BFtu7WZXSOKdCjb5EJN+KNtoOudqi0SOM1D+u0qdHdu/bHhMJH4TXadhYTiOKhCmC0vPF2YHNu5rT/ObYvl9wR8fx43utW1gZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Rn/jL7S/brt64xZ3ag/7z5SvbTCLcTLQV6WIIEp9mps=;
- b=LrjkybVAoh879RZQE/MKyQwykLOCnzyIlC1Dn3nzX23UMjiM48z6/No+rskblabZ4oztO7/cXp/CLpWQCbi3/b0bJjqXQwqcvkGq25YW5DtgLQmMNErb4C5XE9LS+OMBmTGnUOb4mYv0ss7HCRHWKbyEPLfAI8agvI/TCQn5Ai6eU3NgqiEmpxF8GmLqHWtPSLHw1buSnpRb+IYIqOUjXAc1GKgVerEEOrGVW8SP7HKYi1al0UnkiTWGYVCXnjmTedRtz2cUtrdhDYJO+okh2eH/f9RXKjW6PWXKdQnPU/1KzJfVTnktNeZcBYBi1rl08bG0MrHuzl2vMTmFqPlcZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
- dkim=pass header.d=marvell.com; arc=none
+        id S231768AbhLNM1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 07:27:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60556 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231744AbhLNM1W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 07:27:22 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 668EAC061574;
+        Tue, 14 Dec 2021 04:27:22 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id y196so14100084wmc.3;
+        Tue, 14 Dec 2021 04:27:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=marvell.onmicrosoft.com; s=selector1-marvell-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Rn/jL7S/brt64xZ3ag/7z5SvbTCLcTLQV6WIIEp9mps=;
- b=ssnu1bR8wxblY0CxrzCa2k6vsHo5heHJGu2DAhDTNQUg6dXqTj7T8eDcAoXJHMYDX/93bidVxP049DSvsRx64D6JcQUVmNbZUStFW+KHcWEIjlZQ1OG0dQ/rlcGGhUPLfwr5RJsgyngYUNW8A1gzLKsrCHSe9Q2BUPwWuCY2lOk=
-Received: from CO6PR18MB4465.namprd18.prod.outlook.com (2603:10b6:303:13b::10)
- by CO1PR18MB4762.namprd18.prod.outlook.com (2603:10b6:303:e9::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.17; Tue, 14 Dec
- 2021 12:27:08 +0000
-Received: from CO6PR18MB4465.namprd18.prod.outlook.com
- ([fe80::c9db:92b7:a285:d0d2]) by CO6PR18MB4465.namprd18.prod.outlook.com
- ([fe80::c9db:92b7:a285:d0d2%6]) with mapi id 15.20.4778.018; Tue, 14 Dec 2021
- 12:27:08 +0000
-From:   Bharat Bhushan <bbhushan2@marvell.com>
-To:     Will Deacon <will@kernel.org>
-CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Bhaskara Budiredla <bbudiredla@marvell.com>,
-        Sunil Kovvuri Goutham <sgoutham@marvell.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [EXT] Re: [PATCH v6 4/4] perf/marvell: cn10k DDR perf event core
- ownership
-Thread-Topic: [EXT] Re: [PATCH v6 4/4] perf/marvell: cn10k DDR perf event core
- ownership
-Thread-Index: AQHXzLwcGXQkFkVJY0GLNfcVFE9U4awyMcoAgAAAYDA=
-Date:   Tue, 14 Dec 2021 12:27:08 +0000
-Message-ID: <CO6PR18MB4465F1A9FFB5C36E75A7749EE3759@CO6PR18MB4465.namprd18.prod.outlook.com>
-References: <20211029115643.32351-1-bbhushan2@marvell.com>
- <20211029115643.32351-5-bbhushan2@marvell.com>
- <20211214122507.GC14247@willie-the-truck>
-In-Reply-To: <20211214122507.GC14247@willie-the-truck>
-Accept-Language: en-IN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 64f44c5c-314b-414d-61b3-08d9befd0c08
-x-ms-traffictypediagnostic: CO1PR18MB4762:EE_
-x-microsoft-antispam-prvs: <CO1PR18MB476220B43F519FC06392ABB5E3759@CO1PR18MB4762.namprd18.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yKcv4GXrjLvsD1MvuOm5R9RO6fNZkohMVqJAEEgwBDK2+UCUqEjw4FtUO/gH+eUIBOrCffj2R3xaVf1PplRUPa4frMQIVZ1Py+lOS4vL2UXVpp5xQRdG0QbjAObNElK7LCY8w8J7hDpHs98IDtZ8hY5y5Pzbls03WFP+5Ppof2pmuXGhOsPpWq8+YETSEImxkhQmezcJ1HBIe9G+SBaYBG/6OtMlSe7nihfn2LOXb+qblA/emff48bN9qgWeFAFUslRgXxhMbgeu1hug54AUNUh4V6AFEZ9zn543zaYn86lJfFPHs4TmnSA+ORyMz3IbXLTqkwv280OsXhxyVchoojqyHnxh85GW1N9AyKcdsi04S4nZYfaEwgqx7n95vwStf3NoKHAK4j6EKfCc+Gz0Jgkl3JA3xtgZNa9HjLL0cuK3hPMeIgrJv8qXq4RvME2OJ0gmtviB3C0zkLrpZN+msaVhya07JjxUw6yKdOB0zuRaOi0pdbGrC4vzXSnAK5ooG13DNp23SEEg3orTYEfR5BUVdL4xImdxo9LPUh+9g+vChWthy8jg+o5Zo9VGjAUykMQvTdE0TwfoTaHypNqPFhLUR8baIq8kD2q71wwCXdJfBNnpQ+KiqfPJN2Ejd+yI0PjYGDiXXJn65/uyWjRQCFTXORNNK32pYCNziSvjoNUa+kNLF4PMuc0Y1cDVWYN+bP3+8vr26c4hosR/vaoEog==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR18MB4465.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(54906003)(86362001)(8676002)(38100700002)(83380400001)(122000001)(316002)(4326008)(2906002)(9686003)(508600001)(8936002)(6916009)(52536014)(55016003)(6506007)(186003)(26005)(66556008)(76116006)(64756008)(5660300002)(53546011)(66946007)(38070700005)(66476007)(71200400001)(66446008)(33656002)(7696005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?z3KB5PuYizjlvwlMR7uF8eFnrx6wmIeL351QIUeNRE8zHWOaaMY5gvlnLBAN?=
- =?us-ascii?Q?cMVhg5y/I5GLdXCbLUA40+ARuG601Ikhxg9y4ml6gpxe2b04z3Gg2au0xb2U?=
- =?us-ascii?Q?52u7ESEpdt5dpDuVw/kFUcxd2FFabZ4D5pQUwYLi4SO8jFXXx5ubEbtwbjRA?=
- =?us-ascii?Q?sWNNGskiKGxFlAiGvmRz9GaNTCuKC9lBKtOFmqVbgkv6qWuiJGpoLG6Semfn?=
- =?us-ascii?Q?XJqgoK2A2k/SHEqb84JDXXyCYb7CkO32VsLEtbS6PRyPNCAiC6HKJ6+23Rqp?=
- =?us-ascii?Q?wDKmP9VD35d4YGGJey6aNte0kt1qXAE2l4YRa+vhHVy3Jcx607oI/PMNMZ2k?=
- =?us-ascii?Q?lwOw3sJJASx29fZc1XxaYZYxaqy8Swqp8mh/v+5VdNYeMVeaYVWw7MHXe0Cr?=
- =?us-ascii?Q?PRE4v5oVtdxWYQGtYsCymBIwTnTM4419iRk+dAWMcj8fW9o+T+/kIk+a16vh?=
- =?us-ascii?Q?pGOI9w6bUMx7gGLbNeCQsMpWPkMbEL9qka9CWdKjw4+HW3jpj+06E+0OOC/w?=
- =?us-ascii?Q?fOgHSP5zwiroO1POx6mLIPfRyXHs0r/sKidHcY/CZ6IGccmKmeXAZamWbvtD?=
- =?us-ascii?Q?Ld61MxnBFEJ+ISiXbWQNl9tgYMa9bGINsEVaheUU7bWEpcD+Ers1KMM6U5qs?=
- =?us-ascii?Q?VdDjXlrkpVz/1yfTOg74/X06lnXA8Jkwf1AD3LI1ONFoaH8y4BOsO2tZJqx8?=
- =?us-ascii?Q?Vxc4J3EH7Cfx8cfbPxCd7ednI6ip8fgAslnf7AjkwtgOcCxoc9fkk/Vkk+d2?=
- =?us-ascii?Q?nzzZ61l1wWohhnJ8I4FzoVTG1N70lSpQz/f1lLCsO2GT+8xHvt6UMvWWgOhH?=
- =?us-ascii?Q?MKDfEI7Ne3TDAfJEKM4fgLy4i7dUbW/BaDVIA4YzvtMlZ/bFLGNKpuKzYBMb?=
- =?us-ascii?Q?iANlkeVS3uwUXNcvKJ2l8HOTj5siF9IkOwmfAhJDwHOYrijsPaOvY7ly7LSd?=
- =?us-ascii?Q?dX1zpxW2s/XZtCD+xn6G0Aim6qm+0/mc0QcwO19Qz/+OfiYGtQSAsYHkDnNa?=
- =?us-ascii?Q?GUelfLsUbM28MVpJStQ/XRNVgrL1LilniUtVj9m8k7YryePtIVBk2j3WSTZp?=
- =?us-ascii?Q?nmzui1F2icL1SetgrzrWFHmh3PdxtCxuXUpwKiTB/oqLnMpiupJQDbADTzNa?=
- =?us-ascii?Q?AI3ISYhV/m3rYj1Qt7Z+GjqDNYIzgkrVJVBDLsz6v/l2jRufvW/Fdt/JfOBY?=
- =?us-ascii?Q?tJ5vI4wJIgwQEpLGA/7aWDZDs54rghkobXOn+7XVZuttKYPqjXapzSC6BAOG?=
- =?us-ascii?Q?MwLI1gge4GuaaJ9J1SjgFkasqpy9C5b7NCGm+Zr0Cb0bKJZ/JnRdQMN3uTrz?=
- =?us-ascii?Q?GiNGH/vdhwcIPps9HGOfpPVJruMVcRKLzOV3gMtK2b2pOuUBUur0qNnpxRZ/?=
- =?us-ascii?Q?ep8wQLF18sqKn7AFQ7Zomqr/QYF6JMUJDgRigf6ggcwDneUKbvuQb9Z2RvLl?=
- =?us-ascii?Q?nogQf7SC3xkwZgjC3L6xtA38mehBKAxuT86j8ecJ18dtnia0DG/ep5UduPbK?=
- =?us-ascii?Q?H4i0N6zKAu9ZHUWoh1LRgUm1Ewi72WIG06glQMUDIkc3q28yvYAu+gKz5sKy?=
- =?us-ascii?Q?EvkQ2/8EhXANjfx7rvYgcrRLm6yTLht2aII4wrTrtlMEkL3OhhD/9IaiYFSM?=
- =?us-ascii?Q?eaLIsNPxd1IzmM7/XWvFH78=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=ZIy3eMyBqeXqHP83n6OPJhM8LixWxcXpGTnFY4ZJyD8=;
+        b=iMdqJz7LSK/upP5GtSbKnGHVAX+bLk97tk7EIuezdXjc+Cep4ebU0b6+UX6pFASmKG
+         nfKfmrBZJ2V3W839/ID5wgmJg8NEfFucs7pJg4cqK+ndbnCo1gb/IQrIYBwVFLnRHRMe
+         68x8OHSOuLUPEZzUOv1cKz+Fsx2/6AghG1pDw10/L6+7Nh2+yC9BxBbPvrQfq3dOGsfT
+         VHFZnLloBCG6+ZRQILO5C3pMnpQ7AhqD3AgLdHqQ4X35tHE4GGOijEQU/kErWCQ40veH
+         rORwJ51QDX1cadf0MLC7BWXP4yDC+8M4RLyF1MTYT/8diKArmZJVRbRwCeMnHfssQUDJ
+         oBbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ZIy3eMyBqeXqHP83n6OPJhM8LixWxcXpGTnFY4ZJyD8=;
+        b=xXV3hxR0YEFL5vU/CXb3ylgWD/ocyGFfz2uqIJaM0I582jVaR5mCyn9wR4NOJ7H5zW
+         z5BX2HVKcc6uGw2bwR5ckJPu2zcC2+TiGGHt/xU1FlUV+S2kx+Q/WAmAjJ3OKhcm9meB
+         8DK+q/0jf75phZJlRZJ5XktX9ZQZnHcaeghnHPJX4Jsh4Ce7Le+yvEpjepjH5FSmu/fr
+         npXIAjarXNRvuZTwHNxTiaKY+T1S7o8SKfG9a7DKRn95plyykhcLexZHodK9lBfYxj0Z
+         tUKdBvf8Z+0/Vgu/Yo1OqXw0LvqGdQ8XAKBYqgtREyZFI1IXQmZNz4G/PJsvIZdm/whN
+         ytxA==
+X-Gm-Message-State: AOAM533YEQPlLbgHzY8AyKCC/w1maZk2DQ+sF1jJPTUaEPnmAh3s+sD2
+        EZ+SZHsYTVcW4EfzloWOC3bOYGmTA5z48w==
+X-Google-Smtp-Source: ABdhPJzG44AWetJvuWAc1qo8jclLDLTAuga/ePse2KYQ9mF+KH4PjQ2cfBritEK0FrGXLu0huWfYEA==
+X-Received: by 2002:a7b:c85a:: with SMTP id c26mr46813580wml.23.1639484840866;
+        Tue, 14 Dec 2021 04:27:20 -0800 (PST)
+Received: from orome ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id 10sm17590938wrb.75.2021.12.14.04.27.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Dec 2021 04:27:19 -0800 (PST)
+Date:   Tue, 14 Dec 2021 13:27:16 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Rob Herring <robh@kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-tegra@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Will Deacon <will@kernel.org>
+Subject: Re: [PATCH 2/2] arm64: tegra: Describe Tegra234 CPU hierarchy
+Message-ID: <YbiNpJP53FV2rksq@orome>
+References: <20211112131904.3683428-1-thierry.reding@gmail.com>
+ <20211112131904.3683428-2-thierry.reding@gmail.com>
+ <YaVAxNiU2O7kWXoQ@robh.at.kernel.org>
+ <8ea071d7-a8ff-813a-6268-7445dbbf0c1a@arm.com>
 MIME-Version: 1.0
-X-OriginatorOrg: marvell.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR18MB4465.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 64f44c5c-314b-414d-61b3-08d9befd0c08
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Dec 2021 12:27:08.5334
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: SSxMEB+n9oSF9KKJyXndqEPKHrU0R2MxtLPy2COWno7NoHl/sGp54rg2xm69Q6dZnILTHLX9FiRz39SSAFsW8Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR18MB4762
-X-Proofpoint-GUID: To1R0IxsNKMkmfHX5ZbAkxiJ6s64aZDW
-X-Proofpoint-ORIG-GUID: To1R0IxsNKMkmfHX5ZbAkxiJ6s64aZDW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2021-12-14_06,2021-12-14_01,2021-12-02_01
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="AypUwBlYQnwhP8aV"
+Content-Disposition: inline
+In-Reply-To: <8ea071d7-a8ff-813a-6268-7445dbbf0c1a@arm.com>
+User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--AypUwBlYQnwhP8aV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: Will Deacon <will@kernel.org>
-> Sent: Tuesday, December 14, 2021 5:55 PM
-> To: Bharat Bhushan <bbhushan2@marvell.com>
-> Cc: mark.rutland@arm.com; robh+dt@kernel.org; Bhaskara Budiredla
-> <bbudiredla@marvell.com>; Sunil Kovvuri Goutham <sgoutham@marvell.com>;
-> linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org
-> Subject: [EXT] Re: [PATCH v6 4/4] perf/marvell: cn10k DDR perf event core
-> ownership
+On Mon, Nov 29, 2021 at 10:53:37PM +0000, Robin Murphy wrote:
+> On 2021-11-29 21:06, Rob Herring wrote:
+> > On Fri, Nov 12, 2021 at 02:19:04PM +0100, Thierry Reding wrote:
+> > > From: Thierry Reding <treding@nvidia.com>
+> > >=20
+> > > The NVIDIA Tegra234 SoC has 3 clusters of 4 Cortex-A78AE CPU cores ea=
+ch,
+> > > for a total of 12 CPUs. Each CPU has 64 KiB instruction and data cach=
+es
+> > > with each cluster having an additional 256 KiB unified L2 cache and a=
+ 2
+> > > MiB L3 cache.
+> > >=20
+> > > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > > ---
+> > >   arch/arm64/boot/dts/nvidia/tegra234.dtsi | 365 ++++++++++++++++++++=
+++-
+> > >   1 file changed, 363 insertions(+), 2 deletions(-)
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/bo=
+ot/dts/nvidia/tegra234.dtsi
+> > > index 104e5fdd5f8a..db24f48edc9f 100644
+> > > --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+> > > +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+> > > @@ -736,12 +736,373 @@ cpus {
+> > >   		#address-cells =3D <1>;
+> > >   		#size-cells =3D <0>;
+> > > -		cpu@0 {
+> > > +		cpu0_0: cpu@0 {
+> > > +			compatible =3D "arm,cortex-a78";
+> > >   			device_type =3D "cpu";
+> > > -			reg =3D <0x000>;
+> > > +			reg =3D <0x00000>;
+> > >   			enable-method =3D "psci";
+> > > +
+> >=20
+> > > +			i-cache-size =3D <65536>;
+> > > +			i-cache-line-size =3D <64>;
+> > > +			i-cache-sets =3D <256>;
+> > > +			d-cache-size =3D <65536>;
+> > > +			d-cache-line-size =3D <64>;
+> > > +			d-cache-sets =3D <256>;
+> >=20
+> > Isn't all this discoverable?
 >=20
-> External Email
+> No. The required parameters for cache maintenance by set/way are
+> discoverable from the CTR, and if you're particularly lucky they might ev=
+en
+> happen to reflect the underlying physical cache structures, but there's
+> absolutely no guarantee of that, and there definitely exist cases where t=
+hey
+> don't.
 >=20
-> ----------------------------------------------------------------------
-> On Fri, Oct 29, 2021 at 05:26:43PM +0530, Bharat Bhushan wrote:
-> > As DDR perf event counters are not per core, so they should be
-> > accessed only by one core at a time. Select new core when previously
-> > owning core is going offline.
-> >
-> > Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
-> > ---
-> > v1->v6
-> >  - No Change
-> >
-> >  drivers/perf/marvell_cn10k_ddr_pmu.c | 50 ++++++++++++++++++++++++++--
-> >  include/linux/cpuhotplug.h           |  1 +
-> >  2 files changed, 49 insertions(+), 2 deletions(-)
+> [...]
+> > > +	pmu {
+> > > +		compatible =3D "arm,armv8-pmuv3";
 >=20
-> I don't think the driver is much use without this patch, so please can yo=
-u move
-> the Kconfig stuff to a patch at the end so that the driver can't be enabl=
-ed in a
-> broken state half way through the series?
+> Oh, I'd missed this - per the current state of things, we should really h=
+ave
+> a proper compatible for the PMU as well.
 
-Okay, will change.
+Good catch! I've changed this to arm,cortex-a78-pmu since that's what
+Tegra234 has.
 
-Thanks
--Bharat
+Thanks,
+Thierry
 
->=20
-> Will
+--AypUwBlYQnwhP8aV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmG4jZsACgkQ3SOs138+
+s6HLJg//fPKVApYNnvABcRB8xyCdGn5UGt9LO273ZgF//H5j4I6iLJC1vvqoU7Pm
+zFbI8+DLUuQwBFQEaG3KNA1H5Xwpx9lwzKed3lGqTYpISgEGSMSV8JuutvlBNLZH
+U7nHwJ8Xft/QsyEKlKo/umUtUAdXjVt767wqVFN6u8e6cnU1RxYKvEFVvnxqpvK7
+Yncu7nbh88IFNQufgNVEk1ipqkzkVGffBAuQ4foDtNLQKDD/guLBaXywMuH/AxwW
+Fs1xj5hx/9vGodOZA2oTuXflO/1F+cCy34n55cF3g7I5AFCCSE5aJV52phwT5JIF
+puU15yfo2ICVCeJ/MZa2s+CqeZx/OZ1jDar8Pr6gpXAxNmObzfByGOxMzRX5ZkWc
+G2u8QPp/rizf6OqIam95HQYya6FX75vJ+wbq0zHAUBes/NJTA+uIoBklYHZpfsFw
+ESnQYbfW1fZTA4U5hm172QJnU7NtbCo6uaW0dBfGwtRWRriLoGzzvmYj34sTYoBt
+lERSPaIxXwoFu6RVxqAId2FS63pR5ECt++a3Y9ykCUVUFQAv9bbiuGy+/XK/674O
+c7fWISvrRQLMB+CBb2Wbr+Z/0ou5viCevzoBpIAsd0gXHlxiRy6eDY7vQ6E9FFI0
+B+ihmew9kJ6A+o2tiUYDXh0WCgYdnJ5HGBiabd3N6mh1N5Ni67s=
+=RU7n
+-----END PGP SIGNATURE-----
+
+--AypUwBlYQnwhP8aV--
