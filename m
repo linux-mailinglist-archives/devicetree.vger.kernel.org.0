@@ -2,240 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53E7F474899
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 17:57:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E39D0474892
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 17:56:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236147AbhLNQ4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 11:56:45 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:14508 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236159AbhLNQ4l (ORCPT
+        id S236163AbhLNQ4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 11:56:43 -0500
+Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:14536 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235926AbhLNQ4k (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Dec 2021 11:56:41 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1BEGNniR001764;
-        Tue, 14 Dec 2021 11:56:23 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3cxq9asmje-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 14 Dec 2021 11:56:23 -0500
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 1BEGuM89026587
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 14 Dec 2021 11:56:22 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 14 Dec
- 2021 11:56:20 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Tue, 14 Dec 2021 11:56:20 -0500
-Received: from NSA-L01.ad.analog.com ([10.32.224.5])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 1BEGuEos021154;
-        Tue, 14 Dec 2021 11:56:19 -0500
-From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-To:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>
-Subject: [PATCH 3/3] dt-bindings: iio: Add ltc2688 documentation
-Date:   Tue, 14 Dec 2021 17:56:08 +0100
-Message-ID: <20211214165608.7903-4-nuno.sa@analog.com>
+        Tue, 14 Dec 2021 11:56:40 -0500
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+        by mx0b-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1BEAJk6p021532;
+        Tue, 14 Dec 2021 08:56:23 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=pfpt0220;
+ bh=tp6mY6+PLk/58Il8Y6N+ozXLsAZN46Z8xK+scU60b7U=;
+ b=NTmwUUm+wujiHvZ8KhLyMi2j/fZUDqgOdS6f1cNuQr7FUOEXprEUAh+t7yeJalyIDdbX
+ m2ITUaEY6YNEmHKZGCuukSP1YwBh/fmqLQ5drJ6w6hfEEgX/YJMtVAy9H+O0E0GCt2jw
+ 9p3n+FPy9592EEIPZqfTY600p3uL0g4xjx9xKyMycjVf1LBAizbiXKR51pru+Wo4F3+O
+ PE1UhDwCNNJxDUWDmGEc/sLFDnkC86Ih850mWoNx+6D1NFnURqHwrEemXEWhs4c0XfQw
+ f1ALr/wkIDNRSEV7T6vc96YcLn2qf8XoClgfYSTBHiJUvlLLXh8iBEWBGm7a2/LbSExn lw== 
+Received: from dc5-exch01.marvell.com ([199.233.59.181])
+        by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3cxsds1mej-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Tue, 14 Dec 2021 08:56:23 -0800
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 14 Dec
+ 2021 08:56:21 -0800
+Received: from bbhushan2.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 14 Dec 2021 08:56:18 -0800
+From:   Bharat Bhushan <bbhushan2@marvell.com>
+To:     <will@kernel.org>, <mark.rutland@arm.com>, <robh+dt@kernel.org>,
+        <bbudiredla@marvell.com>, <sgoutham@marvell.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Bharat Bhushan <bbhushan2@marvell.com>
+Subject: [PATCH v7 0/4] cn10k DDR Performance monitor support
+Date:   Tue, 14 Dec 2021 22:26:09 +0530
+Message-ID: <20211214165613.26479-1-bbhushan2@marvell.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211214165608.7903-1-nuno.sa@analog.com>
-References: <20211214165608.7903-1-nuno.sa@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: sWUhdrVvgRYAopGp1wnODB4QSIfWIdOV
-X-Proofpoint-ORIG-GUID: sWUhdrVvgRYAopGp1wnODB4QSIfWIdOV
+Content-Type: text/plain
+X-Proofpoint-GUID: jkJJ9OeHDuJfM1hZ_XwdJRW9PwsxZ9uD
+X-Proofpoint-ORIG-GUID: jkJJ9OeHDuJfM1hZ_XwdJRW9PwsxZ9uD
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
  definitions=2021-12-14_07,2021-12-14_01,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 mlxlogscore=999 spamscore=0 phishscore=0
- impostorscore=0 mlxscore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0
- bulkscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2110150000 definitions=main-2112140092
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the LTC2688 devicetree properties.
+This patch series adds DDR performance monitor support
+on Marvell cn10k series of processor.
 
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
- .../bindings/iio/dac/adi,ltc2688.yaml         | 146 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 147 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2688.yaml
+First patch adds device tree binding changes.
+Second patch add basic support (without overflow and event
+ownership). Third and fourth patch adds overflow and event
+ownership respectively.
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ltc2688.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ltc2688.yaml
-new file mode 100644
-index 000000000000..7919cd8ec7c9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/dac/adi,ltc2688.yaml
-@@ -0,0 +1,146 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/dac/adi,ltc2688.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices LTC2688 DAC
-+
-+maintainers:
-+  - Nuno Sá <nuno.sa@analog.com>
-+
-+description: |
-+  Analog Devices LTC2688 16 channel, 16 bit, +-15V DAC
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/ltc2688.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ltc2688
-+
-+  reg:
-+    maxItems: 1
-+
-+  vcc-supply:
-+    description: Analog Supply Voltage Input.
-+
-+  iovcc-supply:
-+    description: Digital Input/Output Supply Voltage.
-+
-+  vref-supply:
-+    description:
-+      Reference Input/Output. The voltage at the REF pin sets the full-scale
-+      range of all channels. By default, the internal reference is routed to
-+      this pin.
-+
-+  reset-gpios:
-+    description:
-+      If specified, it will be asserted during driver probe. As the line is
-+      active low, it should be marked GPIO_ACTIVE_LOW.
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 3
-+    items:
-+      enum: [TGP1, TGP2, TGP3]
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+patternProperties:
-+  "^channel@([0-9]|1[0-5])$":
-+    type: object
-+
-+    properties:
-+      reg:
-+        description: The channel number representing the DAC output channel.
-+        maximum: 15
-+
-+      adi,toggle-mode:
-+        description:
-+          Set the channel as a toggle enabled channel. Toggle operation enables
-+          fast switching of a DAC output between two different DAC codes without
-+          any SPI transaction. It will result in a different ABI for the
-+          channel.
-+        type: boolean
-+
-+      adi,output-range-millivolt:
-+        description:
-+          Specify the channel output full scale range. Allowed values are
-+            <0 5000>
-+            <0 10000>
-+            <-5000 5000>
-+            <-10000 10000>
-+            <-15000 15000>
-+        $ref: /schemas/types.yaml#/definitions/int32-array
-+
-+      adi,overrange:
-+        description: Enable 5% overrange over the selected full scale range.
-+        type: boolean
-+
-+      adi,toggle-dither-input:
-+        description:
-+          Selects the TGPx pin to be associated with this channel. This setting
-+          only makes sense for toggle or dither enabled channels. If
-+          @adi,toggle-mode is not set and this property is given, the channel is
-+          assumed to be a dither capable channel. Note that multiple channels
-+          can be mapped to the same pin. If this setting is given, the
-+          respective @clock must also be provided. Mappings between this and
-+          clocks
-+            0 - TGP1
-+            1 - TGP2
-+            2 - TGP3
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [0, 1, 2]
-+
-+    required:
-+      - reg
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+
-+    spi {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+          ltc2688: ltc2688@0 {
-+                  compatible = "adi,ltc2688";
-+                  reg = <0>;
-+
-+                  vcc-supply = <&vcc>;
-+                  iovcc-supply = <&vcc>;
-+                  vref-supply = <&vref>;
-+
-+                  clocks = <&clock_tgp2>;
-+                  clock-names = "TGP2";
-+
-+                  #address-cells = <1>;
-+                  #size-cells = <0>;
-+                  channel@0 {
-+                          reg = <0>;
-+                          adi,toggle-mode;
-+                          adi,overrange;
-+                  };
-+
-+                  channel@1 {
-+                          reg = <1>;
-+                          adi,output-range-millivolt = <(-10000) 10000>;
-+                          adi,toggle-dither-input = <2>;
-+                  };
-+          };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 61b1eaad4611..4ee2a1b6bf62 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11168,6 +11168,7 @@ L:	linux-iio@vger.kernel.org
- S:	Supported
- W:	http://ez.analog.com/community/linux-device-drivers
- F:	Documentation/ABI/testing/sysfs-bus-iio-dac-ltc2688
-+F:	Documentation/devicetree/bindings/iio/dac/adi,ltc2688.yaml
- F:	drivers/iio/dac/ltc2688.c
- 
- LTC2947 HARDWARE MONITOR DRIVER
+Seems like 4th patch can be merged in second patch,
+For easy review it is currently separate
+
+v6->v7:
+ - Moved Kconfig to last patch
+ - added Reviewed-by
+
+v5->v6:
+ - Changed COMPILE_TEST to (COMPILE_TEST && 64BIT)
+
+v4->v5:
+ - Added missing COMPILE_TEST dependency
+
+v3->v4:
+ - Added Rob Herring reviewed-by for dt-binding patch
+
+v2->v3:
+ - dt-binding, ddrcpmu@1 -> pmu@87e1c0000000
+ - Add COMPILE_TEST as a dependency
+ - Switch to sysfs_emit()
+ - Error propagation when invalif event requested
+ - Switch to devm_platform_get_and_ioremap_resource()
+ - Other review comments on v2.
+
+v1->v2:
+ - DT binding changed to new DT Schema
+ - writeq/readq changed to respective relaxed
+ - Using PMU_EVENT_ATTR_ID
+
+Bharat Bhushan (4):
+  dt-bindings: perf: marvell: cn10k ddr performance monitor
+  perf/marvell: CN10k DDR performance monitor support
+  perf/marvell: cn10k DDR perfmon event overflow handling
+  perf/marvell: cn10k DDR perf event core ownership
+
+ .../bindings/perf/marvell-cn10k-ddr.yaml      |  37 +
+ drivers/perf/Kconfig                          |   7 +
+ drivers/perf/Makefile                         |   1 +
+ drivers/perf/marvell_cn10k_ddr_pmu.c          | 756 ++++++++++++++++++
+ include/linux/cpuhotplug.h                    |   1 +
+ 5 files changed, 802 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/marvell-cn10k-ddr.yaml
+ create mode 100644 drivers/perf/marvell_cn10k_ddr_pmu.c
+
 -- 
 2.17.1
 
