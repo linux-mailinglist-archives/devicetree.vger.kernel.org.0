@@ -2,106 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE1314740C6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 11:49:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F23D4740E1
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 11:53:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233176AbhLNKtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 05:49:31 -0500
-Received: from mail-ua1-f48.google.com ([209.85.222.48]:45827 "EHLO
-        mail-ua1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231392AbhLNKta (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 05:49:30 -0500
-Received: by mail-ua1-f48.google.com with SMTP id ay21so34045407uab.12;
-        Tue, 14 Dec 2021 02:49:29 -0800 (PST)
+        id S233296AbhLNKxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 05:53:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38960 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231486AbhLNKxp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 05:53:45 -0500
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CBBBC061574;
+        Tue, 14 Dec 2021 02:53:45 -0800 (PST)
+Received: by mail-pg1-x52d.google.com with SMTP id l18so12328295pgj.9;
+        Tue, 14 Dec 2021 02:53:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=s32Q5IxQslkiM+08lVnILc8RgiNSWpcCVbn4fLntZlo=;
+        b=VczYifIIXTXrO2Mj9p4p9xjhD7B4LTnR3XCyA2IlkXG/RIAcL6rE6kGg+tpt0KRtQp
+         MIeqPQFcM41Zaf1s5UvC6S9EuAH01Q0jJr2bUvvOmpT6/mGrPUdtqekpwZ0tlGEEzmB0
+         H7dBwbt44svRkgsx3zJnGQa6Ldeb4S/rzZs+BznWsWPuzxXywPKUwgOoj/l68N67R/qn
+         Rwb2uel63ldvI06zvpv+LHffBPCRvcqZLQJo6I6MEOQ5wZ6z/iOwJKrhXut45tVN3cP5
+         CzzH9jmfCtFWy+WKhTOhFVCY0WsNSiC6vqizts1A7K+m3sroGtJptA0D4kGMvlZuI5i2
+         s5fQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=g3XtNHu0m7Ih3Mq0LbQ5xM/zIwyARHBTJDqSktTzsjY=;
-        b=SbiiYaRnNPBc1KANSyHp0b8aDYQoYoK1AaeodgkUMG/TjtVZ/ewfGJJ3qwqiyrJPaf
-         iVkIAw8XwcAhhTFEpjduvys6czI50Cj6Lybn/iGRR/s0+Pm6p1TCKYUxS47H3s7YqW/z
-         CakxknzhPr1vHrtTdGa0LaEuS4HbE8nWWnAmEcrR+Lv025DFVsPr1Z9bzVoxrOtYo5zI
-         rpkb16+NFgb3aOC+a/+X0hCZhmhT95P+JoXT2D5E54WGYchhvNmXZAFUVv9UUyuERPEB
-         a560jZCMmnlGPOY5y2ax8Ia0YbiLV9Eljg7SntZYGACYGZrzbVBFXTFdKP7Chz0HAHN4
-         /x1g==
-X-Gm-Message-State: AOAM531pvs09SNs0+8TZ+qTtcWaUeS1U2S44YY9Ew9WeG9Y7rwDN7YU3
-        9PFCD6k2IKXsiEOnzVjQ8fSs3GAEOxzeDw==
-X-Google-Smtp-Source: ABdhPJyTlh3uugAxFSTp71tofHfOfP+GAjA+I+BJlDOJKBl9TWgZXYTrarr0wOg4yOBNMGK4DIEkng==
-X-Received: by 2002:a9f:2c4a:: with SMTP id s10mr4253448uaj.50.1639478967114;
-        Tue, 14 Dec 2021 02:49:27 -0800 (PST)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id f188sm4351581vsc.16.2021.12.14.02.49.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Dec 2021 02:49:26 -0800 (PST)
-Received: by mail-ua1-f53.google.com with SMTP id w23so34111997uao.5;
-        Tue, 14 Dec 2021 02:49:26 -0800 (PST)
-X-Received: by 2002:a05:6102:c89:: with SMTP id f9mr4134352vst.68.1639478966486;
- Tue, 14 Dec 2021 02:49:26 -0800 (PST)
-MIME-Version: 1.0
-References: <20211130164311.2909616-1-kieran.bingham+renesas@ideasonboard.com> <20211130164311.2909616-3-kieran.bingham+renesas@ideasonboard.com>
-In-Reply-To: <20211130164311.2909616-3-kieran.bingham+renesas@ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 14 Dec 2021 11:49:15 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW81VE=J+ChT5jVMhHmVnMi_eQix7aXjLQPJk+qKp-EdQ@mail.gmail.com>
-Message-ID: <CAMuHMdW81VE=J+ChT5jVMhHmVnMi_eQix7aXjLQPJk+qKp-EdQ@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] arm64: dts: renesas: r8a779a0: falcon-cpu: Add DSI
- display output
-To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=s32Q5IxQslkiM+08lVnILc8RgiNSWpcCVbn4fLntZlo=;
+        b=R18QpiZR0RJaueInz7u/KZjqeZeEPMdAf3wv70QNme2XPHgUL8Gx2ULR9jz9sX6RPM
+         QFWg371+v9yialFZ8lBTLPLlyRoIT8s+t4+gzTHV8vwzTryVlVXVgIpTLAJyXoL6YYl7
+         M4WawyQ9AppEdC2THNosrd6fyULY0gzmKWx3HlgDA2W5SQ7IiAaUg7/ueEO042jaTNz9
+         b9dpSNUKCuo7wrDn+AXYSzQBswLinOTYQucZbPWLJJaDPQxlMZyhYDB1qVZ/pDJBVy3D
+         LPdC002FELe3Bcv8tiaHs35OBAAWNj0/nCKZOQoCHRM0ztV41Q5/fM7Hwm4SSwYXldfm
+         0Ziw==
+X-Gm-Message-State: AOAM531S916N80zWHsVkbhbbvdwpbeaHLJmz0Mb+k2WhMxAiF/rVUDp9
+        B/2n5S0E4O6pxHXsaBmYqWQ=
+X-Google-Smtp-Source: ABdhPJyq9SkW6BEPLk09UF9FveUWuMs/rwg1ox02zqj1R7qTnQMBuNYlSIVAPfwYcGyGXWSedbVDZw==
+X-Received: by 2002:a63:f706:: with SMTP id x6mr3205694pgh.69.1639479225077;
+        Tue, 14 Dec 2021 02:53:45 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id mm22sm2109303pjb.28.2021.12.14.02.53.43
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 14 Dec 2021 02:53:44 -0800 (PST)
+From:   Wells Lu <wellslutw@gmail.com>
+To:     linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     wells.lu@sunplus.com, dvorkin@tibbo.com,
+        Wells Lu <wellslutw@gmail.com>
+Subject: [PATCH v4 0/2] This is a patch series for pinctrl driver of Sunplus SP7021 SoC.
+Date:   Tue, 14 Dec 2021 18:53:07 +0800
+Message-Id: <1639479189-6693-1-git-send-email-wellslutw@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kieran,
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control
+applications.
 
-On Tue, Nov 30, 2021 at 5:43 PM Kieran Bingham
-<kieran.bingham+renesas@ideasonboard.com> wrote:
-> Provide the display output using the sn65dsi86 MIPI DSI bridge
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-LGTM, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.17.
+Wells Lu (2):
+  dt-bindings: pinctrl: Add dt-bindings for Sunplus SP7021
+  pinctrl: Add driver for Sunplus SP7021
 
-> --- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+ .../bindings/pinctrl/sunplus,sp7021-pinctrl.yaml   |  375 ++++++
+ MAINTAINERS                                        |   10 +
+ drivers/pinctrl/Kconfig                            |    1 +
+ drivers/pinctrl/Makefile                           |    1 +
+ drivers/pinctrl/sunplus/Kconfig                    |   21 +
+ drivers/pinctrl/sunplus/Makefile                   |    5 +
+ drivers/pinctrl/sunplus/sppctl.c                   | 1192 ++++++++++++++++++++
+ drivers/pinctrl/sunplus/sppctl.h                   |  167 +++
+ drivers/pinctrl/sunplus/sppctl_sp7021.c            |  536 +++++++++
+ include/dt-bindings/pinctrl/sppctl-sp7021.h        |  173 +++
+ include/dt-bindings/pinctrl/sppctl.h               |   40 +
+ 11 files changed, 2521 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/sunplus,sp7021-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/sunplus/Kconfig
+ create mode 100644 drivers/pinctrl/sunplus/Makefile
+ create mode 100644 drivers/pinctrl/sunplus/sppctl.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl.h
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_sp7021.c
+ create mode 100644 include/dt-bindings/pinctrl/sppctl-sp7021.h
+ create mode 100644 include/dt-bindings/pinctrl/sppctl.h
 
-> @@ -146,6 +190,41 @@ &i2c1 {
->
->         status = "okay";
->         clock-frequency = <400000>;
-> +
-> +       sn65dsi86@2c {
-> +               compatible = "ti,sn65dsi86";
-> +               reg = <0x2c>;
-> +
-> +               clocks = <&sn65dsi86_refclk>;
-> +               clock-names = "refclk";
-> +
-> +               interrupt-parent = <&gpio1>;
-> +               interrupts = <24 IRQ_TYPE_LEVEL_HIGH>;
+-- 
+2.7.4
 
-Does the driver use this interrupt, and is it triggered?
-If yes, as GP1_24 == IRQ0, you can switch from a GPIO to an INTC_EX IRQ,
-(don't forget to configure pinctrl) and test the INTC_EX driver.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
