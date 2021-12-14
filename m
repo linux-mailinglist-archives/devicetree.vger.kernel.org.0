@@ -2,116 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D2A04742AA
+	by mail.lfdr.de (Postfix) with ESMTP id D17834742AC
 	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 13:34:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232029AbhLNMeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 07:34:05 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:52764 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231962AbhLNMeB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 07:34:01 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DD46EB817EF;
-        Tue, 14 Dec 2021 12:33:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48ECDC34605;
-        Tue, 14 Dec 2021 12:33:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639485238;
-        bh=4Cj68ob9pH+Z5mhyMlecsSJ6G0Zss5CgowXAX+wVjXg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IL2PtO6r3UOSQzalyAKXza3qe92S0JssI/YyURvVOSUnLWxOfOoPnze53HFCf7gtj
-         dkjnPkUehhr8aFS50F62DoOP0yJtUGnfJsLCoL+iulvYD1Yhk9R/8pAaYw6LByUPM8
-         R7LXzQjXVwtapKNx9uiIOZoTQV0oqYa4cjqQhCKXcQ3lCnANW8B37i2YWBQuwMXGb+
-         rfoLf2QnwyklA14B92+TFH1B/CmQf4PrpJXfg2+BEssxP3kT6dLyhRo0A6dcaMIBV8
-         BYopRjVEaqt6jRPQU9sn17N/T+oJQbzpvLjIwSV5cm7PuJ03GCugq47B1fG//MqTHZ
-         vk/QevurkrpVg==
-Date:   Tue, 14 Dec 2021 12:33:53 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] arm64: perf: Support Denver and Carmel PMUs
-Message-ID: <20211214123353.GD14247@willie-the-truck>
-References: <20211207150746.444478-1-thierry.reding@gmail.com>
- <20211207150746.444478-2-thierry.reding@gmail.com>
- <Ya+FzVuvQ3W8LOyl@FVFF77S0Q05N>
- <YbDC0sHeq49cdt0Z@orome>
+        id S231940AbhLNMeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 07:34:12 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:22324 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231737AbhLNMeL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Dec 2021 07:34:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1639485251;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=i9NmLeQ63zbolJJY9i+NPxINNjB3b7pDhuEfJE8U834=;
+        b=FAyNqfFWXXlCJt4ybePSwYmuVsID5869j0TYcfHUTJnYgQHHGruRAxnQjxhpNopGeeOjna
+        fM+wSmBGr5gB6sMwnAzQO5Vpyw7d3y82ckz07bvfw6d2oqCyw/igUec3K3keR1cxDsg58q
+        1MjTGtHfXbikaUPeiRnJIWcsq3/2FzU=
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com
+ [209.85.210.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-151-9A2mEvSzNbmr1zFl9i57og-1; Tue, 14 Dec 2021 07:34:10 -0500
+X-MC-Unique: 9A2mEvSzNbmr1zFl9i57og-1
+Received: by mail-pf1-f197.google.com with SMTP id b26-20020aa7951a000000b004a815eb3a3aso11721140pfp.16
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 04:34:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i9NmLeQ63zbolJJY9i+NPxINNjB3b7pDhuEfJE8U834=;
+        b=lhIRFMbf0H0iM6SJ5k6hdoNc3FucNa1ettSdjXcZM3c8/Y+EXpXf/nlPpIEp3ldvnm
+         tfqmMsudTK8dpc9X1tF7cldApb6Se/1a2xhNzYBKBNYzAsQglWFkLpl4ldvLHRssahxv
+         Bs6ArabL6isiNGPtSvgIMM5/usoGULmEGarmiiS9k/C//iyBp0DB4BAY2Jce9R3bOheC
+         HGsGnmBpH0EKWNOzvybQzLPruwPvaukUNyMMQJhJr3ZGEgVZ8oQEzeq9EndBQ3M2+beM
+         +ujXtYVAK/JrbHS45NxJjkaEguI2bOPBpmT9rFbdedIuJ5yY/9CGbDQ5rcoKtH6ahOKl
+         Gvzg==
+X-Gm-Message-State: AOAM533eQV0xcwNLXiiYELvXdZOr1UW9KEDH+kTJlNqMg159fYuHNbIp
+        xIMi7IZb24S+mi/r2lIcUltZAgMyMv8wO1qnsdpaDcgHfnbhJuHRwE8Z5GhVL2+5UF841HQjMaO
+        /ES1pL43PWU+g6jEWxFHg3h6mh/puGddqZXVmGg==
+X-Received: by 2002:a17:90b:1648:: with SMTP id il8mr5215116pjb.246.1639485249349;
+        Tue, 14 Dec 2021 04:34:09 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz5YR0Aa198Pk+lvjUVrHei/CKU1OPDDwxRs0X6Sr1wL0nXnz1E7Z1AY0z+ShuLhaM7+s66tK87q/VZkdu2SUI=
+X-Received: by 2002:a17:90b:1648:: with SMTP id il8mr5215082pjb.246.1639485249101;
+ Tue, 14 Dec 2021 04:34:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YbDC0sHeq49cdt0Z@orome>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20211208124045.61815-1-alistair@alistair23.me>
+In-Reply-To: <20211208124045.61815-1-alistair@alistair23.me>
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Date:   Tue, 14 Dec 2021 13:33:58 +0100
+Message-ID: <CAO-hwJKtetKFcFiD_gwgLmKoxhMrUsOKeuEacUoqeWx+bcKQ_g@mail.gmail.com>
+Subject: Re: [PATCH v16 0/3] Add Wacom I2C support to rM2
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Jiri Kosina <jikos@kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Alistair Francis <alistair23@gmail.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
+        Jason Gerecke <Jason.Gerecke@wacom.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Ping Cheng <Ping.Cheng@wacom.com>,
+        DTML <devicetree@vger.kernel.org>, martin.chen@wacom.com,
+        tatsunosuke.tobita@wacom.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 08, 2021 at 03:36:02PM +0100, Thierry Reding wrote:
-> On Tue, Dec 07, 2021 at 04:03:25PM +0000, Mark Rutland wrote:
-> > On Tue, Dec 07, 2021 at 04:07:45PM +0100, Thierry Reding wrote:
-> > > From: Thierry Reding <treding@nvidia.com>
-> > > 
-> > > Add support for the NVIDIA Denver and Carmel PMUs using the generic
-> > > PMUv3 event map for now.
-> > > 
-> > > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > > ---
-> > >  arch/arm64/kernel/perf_event.c | 14 ++++++++++++++
-> > >  1 file changed, 14 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/kernel/perf_event.c b/arch/arm64/kernel/perf_event.c
-> > > index b4044469527e..8c8cf369c450 100644
-> > > --- a/arch/arm64/kernel/perf_event.c
-> > > +++ b/arch/arm64/kernel/perf_event.c
-> > > @@ -1247,6 +1247,18 @@ static int armv8_vulcan_pmu_init(struct arm_pmu *cpu_pmu)
-> > >  				       armv8_vulcan_map_event);
-> > >  }
-> > >  
-> > > +static int armv8_denver_pmu_init(struct arm_pmu *cpu_pmu)
-> > > +{
-> > > +	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_nvidia_denver",
-> > > +				       armv8_pmuv3_map_event);
-> > > +}
-> > > +
-> > > +static int armv8_carmel_pmu_init(struct arm_pmu *cpu_pmu)
-> > > +{
-> > > +	return armv8_pmu_init_nogroups(cpu_pmu, "armv8_nvidia_carmel",
-> > > +				       armv8_pmuv3_map_event);
-> > > +}
-> > > +
-> > >  static const struct of_device_id armv8_pmu_of_device_ids[] = {
-> > >  	{.compatible = "arm,armv8-pmuv3",	.data = armv8_pmuv3_init},
-> > >  	{.compatible = "arm,cortex-a34-pmu",	.data = armv8_a34_pmu_init},
-> > > @@ -1265,6 +1277,8 @@ static const struct of_device_id armv8_pmu_of_device_ids[] = {
-> > >  	{.compatible = "arm,neoverse-n1-pmu",	.data = armv8_n1_pmu_init},
-> > >  	{.compatible = "cavium,thunder-pmu",	.data = armv8_thunder_pmu_init},
-> > >  	{.compatible = "brcm,vulcan-pmu",	.data = armv8_vulcan_pmu_init},
-> > > +	{.compatible = "nvidia,denver-pmu",	.data = armv8_denver_pmu_init},
-> > > +	{.compatible = "nvidia,carmel-pmu",	.data = armv8_carmel_pmu_init},
-> > 
-> > Super trivial nit, but could we please organise this alphabetically (i.e. with carmel first?)
-> > 
-> > With that:
-> > 
-> > Acked-by: Mark Rutland <mark.rutland@arm.com>
-> > 
-> > I see now that we messed up the order of "cavium,thunder-pmu" and
-> > "brcm,vulcan-pmu", but otherwise this is ordered, and it's be nice to keep it
-> > that way. I can fix the order of those two in a separate patch.
-> 
-> I ordered this chronologically (Denver for Tegra186 and Carmel for
-> Tegra194), which seemed a bit more natural, but I can reorder this
-> alphabetically if you prefer.
-> 
-> Would Will be the right person to pick this up or should I take it
-> through the Tegra tree and then ARM SoC?
+On Wed, Dec 8, 2021 at 1:40 PM Alistair Francis <alistair@alistair23.me> wrote:
+>
+> Add Wacom I2C support for the reMarkable 2 eInk tablet using the
+> generic I2C HID framework.
+>
+> v16:
+>  - Add commit message to DTS patch
+>
+> Alistair Francis (3):
+>   HID: quirks: Allow inverting the absolute X/Y values
+>   HID: i2c-hid-of: Expose the touchscreen-inverted properties
 
-Sorry, I missed this somehow. I've got some perf patches pending already, so
-it would be easiest for me to take this one directly (and then I can apply
-Robin's stuff on top). Is that ok?
+Given that those 2 patches and the third are independent, I took the
+first 2 ones through the hid tree, branch for-5.17/core.
 
-Will
+FWIW, I fixed the few checkpatch warnings before applying them.
+
+Thanks and sorry it took so long to get merged.
+
+I'll let Shawn merge the DT patch.
+
+Cheers,
+Benjamin
+
+
+>   ARM: dts: imx7d: remarkable2: add wacom digitizer device
+>
+>  .../bindings/input/hid-over-i2c.txt           |  2 +
+>  arch/arm/boot/dts/imx7d-remarkable2.dts       | 59 +++++++++++++++++++
+>  drivers/hid/hid-input.c                       |  6 ++
+>  drivers/hid/i2c-hid/i2c-hid-acpi.c            |  2 +-
+>  drivers/hid/i2c-hid/i2c-hid-core.c            |  4 +-
+>  drivers/hid/i2c-hid/i2c-hid-of-goodix.c       |  2 +-
+>  drivers/hid/i2c-hid/i2c-hid-of.c              | 11 +++-
+>  drivers/hid/i2c-hid/i2c-hid.h                 |  2 +-
+>  include/linux/hid.h                           |  2 +
+>  9 files changed, 85 insertions(+), 5 deletions(-)
+>
+> --
+> 2.31.1
+>
+>
+
