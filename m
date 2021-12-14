@@ -2,107 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B667473F51
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 10:24:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7992473F5D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 10:27:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232022AbhLNJYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 04:24:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46644 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230030AbhLNJYb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 04:24:31 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FEA3C061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 01:24:30 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mx42o-0007Z5-5r; Tue, 14 Dec 2021 10:24:22 +0100
-Message-ID: <0c64fff9eedee4e6d9cbd2244d7304236f5dcc8d.camel@pengutronix.de>
-Subject: Re: [PATCH V4 9/9] arm64: dts: imx8mn: Enable GPU
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Adam Ford <aford173@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, tharvey@gateworks.com,
+        id S232011AbhLNJ1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 04:27:32 -0500
+Received: from szxga08-in.huawei.com ([45.249.212.255]:29130 "EHLO
+        szxga08-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230013AbhLNJ1c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 04:27:32 -0500
+Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.57])
+        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4JCtHg4BHXz1DJjB;
+        Tue, 14 Dec 2021 17:24:31 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 14 Dec 2021 17:27:29 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 14 Dec 2021 17:27:28 +0800
+Subject: Re: [PATCH v17 01/10] x86: kdump: replace the hard-coded alignment
+ with macro CRASH_ALIGN
+To:     Borislav Petkov <bp@alien8.de>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, <x86@kernel.org>,
+        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
+        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Tue, 14 Dec 2021 10:24:20 +0100
-In-Reply-To: <20211128131853.15125-10-aford173@gmail.com>
-References: <20211128131853.15125-1-aford173@gmail.com>
-         <20211128131853.15125-10-aford173@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
+ <20211210065533.2023-2-thunder.leizhen@huawei.com> <Ybek4VRr8RaLM7kD@zn.tnic>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <e96d3f88-7f33-5c83-9fdc-5d4180287ea7@huawei.com>
+Date:   Tue, 14 Dec 2021 17:27:27 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
+In-Reply-To: <Ybek4VRr8RaLM7kD@zn.tnic>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Sonntag, dem 28.11.2021 um 07:18 -0600 schrieb Adam Ford:
-> The i.MX8M-Nano features a GC7000. The Etnaviv driver detects it as:
-> 
->     etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6203
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 25 +++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> index d8726d0ce326..5b8f8488e362 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> @@ -1117,6 +1117,31 @@ gpmi: nand-controller@33002000 {
->  			status = "disabled";
->  		};
-> 
-> +		gpu: gpu@38000000 {
-> +			compatible = "vivante,gc";
-> +			reg = <0x38000000 0x8000>;
-> +			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk IMX8MN_CLK_GPU_AHB>,
-> +				<&clk IMX8MN_CLK_GPU_BUS_ROOT>,
-> +				<&clk IMX8MN_CLK_GPU_CORE_ROOT>,
-> +				<&clk IMX8MN_CLK_GPU_SHADER>;
-> +			clock-names = "reg", "bus", "core", "shader";
-> +			assigned-clocks = <&clk IMX8MN_CLK_GPU_CORE>,
-> +					  <&clk IMX8MN_CLK_GPU_SHADER>,
-> +					  <&clk IMX8MN_CLK_GPU_AXI>,
-> +					  <&clk IMX8MN_CLK_GPU_AHB>,
-> +					  <&clk IMX8MN_GPU_PLL>,
-> +					  <&clk IMX8MN_CLK_GPU_CORE>,
-> +					  <&clk IMX8MN_CLK_GPU_SHADER>;
-
-This repeated CORE and SHADER clock looks odd. Wouldn't it be possible
-to avoid this by reordering the assigned-clocks?
-
-Regards,
-Lucas
-
-> +			assigned-clock-parents = <&clk IMX8MN_GPU_PLL_OUT>,
-> +						  <&clk IMX8MN_GPU_PLL_OUT>,
-> +						  <&clk IMX8MN_SYS_PLL1_800M>,
-> +						  <&clk IMX8MN_SYS_PLL1_800M>;
-> +			assigned-clock-rates = <0>, <0>, <800000000>, <400000000>, <1200000000>,
-> +				<400000000>, <400000000>;
-> +			power-domains = <&pgc_gpumix>;
-> +		};
-> +
->  		gic: interrupt-controller@38800000 {
->  			compatible = "arm,gic-v3";
->  			reg = <0x38800000 0x10000>,
-> --
-> 2.32.0
-> 
 
 
+On 2021/12/14 3:54, Borislav Petkov wrote:
+>> Subject: Re: [PATCH v17 01/10] x86: kdump: replace the hard-coded alignment with macro CRASH_ALIGN
+> 
+>>From Documentation/process/maintainer-tip.rst:
+> 
+> "Patch subject
+>  ^^^^^^^^^^^^^
+> 
+> The tip tree preferred format for patch subject prefixes is
+> 'subsys/component:', e.g. 'x86/apic:', 'x86/mm/fault:', 'sched/fair:',
+> 'genirq/core:'. Please do not use file names or complete file paths as
+> prefix. 'git log path/to/file' should give you a reasonable hint in most
+> cases.
+> 
+> The condensed patch description in the subject line should start with a
+> uppercase letter and should be written in imperative tone."
+> 
+> Please fix 1-5 for your next submission.
+
+OK. I will update them.
+
+> 
+> Thx.
+> 
