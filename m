@@ -2,93 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22C68473BA3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 04:41:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6B62473BB0
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 04:47:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbhLNDlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Dec 2021 22:41:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54836 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230147AbhLNDlu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 22:41:50 -0500
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D264C061574;
-        Mon, 13 Dec 2021 19:41:50 -0800 (PST)
-Received: by mail-pf1-x436.google.com with SMTP id z6so16711470pfe.7;
-        Mon, 13 Dec 2021 19:41:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wy7ceoEgta6CXIkkv89vXEH3t9l9DvMVjY7ckw43c6o=;
-        b=kxPHJv9oqfMPVqIjYMSGMy/x8UM+F30A6FP+T8/hNWFm0kZ+YXTqo0rkdP2sPwI+7v
-         dZitd/gHgfSHpOvM9R3NOrhkaPVJKyMKVkLQPz+lczBBUlqWT0XfLj4ejNpxksPu88x/
-         L69ORYDT8vbsBGrugEOrvfrlOb4nDVhsOb9UzZ3HKx+UvzDxoAcwEQ5TFA4y90iVbXYc
-         i0N/IwBrypquP25M78GsOUjhPv3AdsbP79tgJzaoqzdk3+PJ9eg9G22AzDt8ks4hO7Z0
-         kihq2o6+FaHNv0o9LwTMjC+sCoL/A87enrsGsgQu4zyS+BnZ7msgY6yxg43OTMwoOsYh
-         DTfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=wy7ceoEgta6CXIkkv89vXEH3t9l9DvMVjY7ckw43c6o=;
-        b=U9ir2RHEqFg5QRf9nc4KbFKezzMIZYnS1mdKSU7Mw7M/XN1OZ49jCX3JyyPhl9qioi
-         skO5ofpnJmA+7MHIoMWS+AKiNeZnu0bZcEfIEEozD7O+XLW9fqqTgG986D5IWxhvdNff
-         auQb8Ap/4uVPAmh6fySHO5eiQvM10Vvtr6cvgQbTre2bqcU4VUFop+MW1n23b5gvGWxg
-         Cg5bBIuXoCfWM5cal0lCdnEF79jxgZBMdtKmy+ZziHvaovu96HEpvv7LNx0jGWFv57h5
-         4LfSynTenLAdzEYo95E5kh8byoUu27JEWLJkG+4rKK57DfDwcqxE7a6c7p5pmREytAT7
-         DaXg==
-X-Gm-Message-State: AOAM5328h0Z3iIvzmcE6hLM33yafo1sunALhbhWUj2ksqcWLCQgtNvbK
-        BFoODPFwv/DeEEa5T6KsgQw=
-X-Google-Smtp-Source: ABdhPJx9UAI1M9DiulbemFSfeACtrKf5Z3F4T5T1bIVgZ5L/Ekw1rDjLBm1WsV+vW/aQZsfCyWXGEw==
-X-Received: by 2002:a65:4381:: with SMTP id m1mr1906885pgp.375.1639453310054;
-        Mon, 13 Dec 2021 19:41:50 -0800 (PST)
-Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id lb4sm560961pjb.18.2021.12.13.19.41.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Dec 2021 19:41:49 -0800 (PST)
-Message-ID: <88d8cdbd-736c-c171-c6ff-2f46f2d8a643@gmail.com>
-Date:   Mon, 13 Dec 2021 19:41:48 -0800
+        id S233156AbhLNDrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Dec 2021 22:47:22 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:33394 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233216AbhLNDrV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Dec 2021 22:47:21 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BE3l0SI059276;
+        Mon, 13 Dec 2021 21:47:00 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1639453620;
+        bh=sSUI+3XbCkWJC8iuEmPzjq99OubAAA0oFQ31cA0MhpA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=HgmGgtYtjS/+21+jDL3Qdo38QnwnKO48L46s2HPUFDMkJt1nopdh1qkJXZUBj7SV0
+         CazYg45gzVKd/ZMPUeQAx7y2T7358XmGqqpThV3rP0ttGUs7QDSIimb4KtD+I3wdgG
+         XHAlzJ4TX0MlpERNQdl4j5C/iidTWKNwqbvkQDHA=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BE3l0CH054348
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 13 Dec 2021 21:47:00 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 13
+ Dec 2021 21:46:59 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 13 Dec 2021 21:46:59 -0600
+Received: from [10.250.232.185] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BE3kuDX023438;
+        Mon, 13 Dec 2021 21:46:57 -0600
+Subject: Re: [PATCH 1/2] dt-bindings: phy: ti,tcan104x-can: Document
+ mux-states property
+To:     Rob Herring <robh@kernel.org>
+CC:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, <linux-can@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20211202131002.12217-1-a-govindraju@ti.com>
+ <20211202131002.12217-2-a-govindraju@ti.com>
+ <Ybeq5dNYjN4GOzdV@robh.at.kernel.org>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <05d52ca2-424b-94b5-4f0c-56dbbc5a0c22@ti.com>
+Date:   Tue, 14 Dec 2021 09:16:55 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH V2 1/2] dt-bindings: leds: add Broadcom's BCM63138
- controller
+In-Reply-To: <Ybeq5dNYjN4GOzdV@robh.at.kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20211124111952.22419-1-zajec5@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20211124111952.22419-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
+
+On 14/12/21 1:49 am, Rob Herring wrote:
+> On Thu, Dec 02, 2021 at 06:40:01PM +0530, Aswath Govindraju wrote:
+>> On some boards, for routing CAN signals from controller to transceivers,
+>> muxes might need to be set. This can be implemented using mux-states
+>> property. Therefore, document the same in the respective bindings.
+>>
+>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>> ---
+>>  .../devicetree/bindings/phy/ti,tcan104x-can.yaml    | 13 +++++++++++++
+>>  1 file changed, 13 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>> index 6107880e5246..5b2b08016635 100644
+>> --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>> @@ -37,6 +37,18 @@ properties:
+>>        max bit rate supported in bps
+>>      minimum: 1
+>>  
+>> +  mux-states:
+>> +    description:
+>> +      mux controller node to route the signals from controller to
+>> +      transceiver. Depending on the mux chip and the control lines
+>> +      in it, the first and second parameters can be used for
+>> +      representing control line and state. The number of arguments
+>> +      is to be used based on '#mux-state-cells' property in the
+>> +      mux-controller node. If '#mux-state-cells' is equal to
+>> +      one then, then the argument to be used would be the state.
+>> +      If it is set to two, then the first argument is the control
+>> +      line and the second argument would be its corresponding state.
+> 
+> No need to redefine how a common property works here. What you do need 
+> to define is how many entries and what they are for if more than 1. 
+> 
+
+Got it. So, I'll remove the common part that describes about the number
+of arguments and only include what the arguments would mean given the
+number of arguments
 
 
-On 11/24/2021 3:19 AM, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Broadcom used 2 LEDs hardware blocks for their BCM63xx SoCs:
-> 1. Older one (BCM6318, BCM6328, BCM6362, BCM63268, BCM6838)
-> 2. Newer one (BCM6848, BCM6858, BCM63138, BCM63148, BCM63381, BCM68360)
-> 
-> The newer one was also later also used on BCM4908 SoC.
-> 
-> Old block is already documented in the leds-bcm6328.yaml. This binding
-> documents the new one which uses different registers & programming. It's
-> first used in BCM63138 thus the binding name.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+  mux-states:
+    description:
+      mux controller node to route the signals from controller to
+      transceiver. Two arguments can be present depending on the mux
+      chip. If mux-states has one argument then it represents the state.
+      If there are two arguments then the first argument is the control
+      line and the second argument is its corresponding state.
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+
+Thanks,
+Aswath
+
+> Rob
+> 
+
