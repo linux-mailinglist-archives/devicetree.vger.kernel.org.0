@@ -2,121 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0739E473E89
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 09:46:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F5E2473EA1
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 09:48:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbhLNIqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 03:46:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37800 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229921AbhLNIqx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 03:46:53 -0500
-Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EB93C061574;
-        Tue, 14 Dec 2021 00:46:53 -0800 (PST)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1639471612;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=hXldcYkZudz3/aGAn1WeAYHENq/EY0ztgDX09+lZaTM=;
-        b=UfLjtJmRojggIIGvbcP0HUvpM3zrthzC7LC9HMjfive1iqapm07WaorkQNZR50Trq9bb3m
-        BhkusG1skzIBN0jS1X69qVZNBvp/SUzRSTOD7LLTQm4PAzgb988R1s2Q8h5LlTB7UZX/MA
-        tmJ/irVekCix6nmQ/8V2xFqSLkAbqCvalFVA4nUa5HCkx1ZF2WE6/RtI9YI8vUzzvyaN8z
-        kM/Y+VXnmrP2PqRmJbZvI/QHnGtkBg32zSO3ORMN0LzaMwIGRf8O+zAmnom7xK40kEHXEL
-        LFFN/6M1nCA4KXb1kDhy7TeSHAhLnTLW+/jelZS5fyWS30VC11CT2F3W25LGcA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1639471612;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=hXldcYkZudz3/aGAn1WeAYHENq/EY0ztgDX09+lZaTM=;
-        b=q7p0d2OZvdbUTTxV9Y5J/xihIn3+jZf6/67oUPotm2kOBuLXGXJrLZ9v9R4hs6pO18+0TO
-        ocu6FbD4QQgtxMCQ==
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Biwen Li <biwen.li@nxp.com>,
-        Zhiqiang Hou <Zhiqiang.Hou@nxp.com>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Subject: Re: [RFC PATCH devicetree 01/10] irqchip/ls-extirq: rename
- "interrupt-map" OF property to "fsl,extirq-map"
-In-Reply-To: <20211214013800.2703568-2-vladimir.oltean@nxp.com>
-References: <20211214013800.2703568-1-vladimir.oltean@nxp.com>
- <20211214013800.2703568-2-vladimir.oltean@nxp.com>
-Date:   Tue, 14 Dec 2021 09:46:50 +0100
-Message-ID: <87wnk7375x.fsf@kurt>
+        id S231666AbhLNIsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 03:48:19 -0500
+Received: from szxga01-in.huawei.com ([45.249.212.187]:32916 "EHLO
+        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229577AbhLNIsT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 03:48:19 -0500
+Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.57])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4JCsTX0mNdzcbs5;
+        Tue, 14 Dec 2021 16:48:00 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 14 Dec 2021 16:48:16 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 14 Dec 2021 16:48:15 +0800
+Subject: Re: [PATCH v17 02/10] x86: kdump: make the lower bound of crash
+ kernel reservation consistent
+To:     Baoquan He <bhe@redhat.com>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
+ <20211210065533.2023-3-thunder.leizhen@huawei.com>
+ <20211213133735.GB23510@MiWiFi-R3L-srv>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <a6143bcb-e380-2270-7ccc-02309866ccab@huawei.com>
+Date:   Tue, 14 Dec 2021 16:48:15 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+In-Reply-To: <20211213133735.GB23510@MiWiFi-R3L-srv>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
 
-On Tue Dec 14 2021, Vladimir Oltean wrote:
-> This OF property was supposed to be named "fsl,extirq-map" since the
-> first patch submissions, but at Rob Herring's suggestion it was named
-> "interrupt-map":
-> https://lore.kernel.org/lkml/20190927161118.GA19333@bogus/
 
-nit: The preferred form is https://lore.kernel.org/r/<message-id>=20
+On 2021/12/13 21:37, Baoquan He wrote:
+> On 12/10/21 at 02:55pm, Zhen Lei wrote:
+>> From: Chen Zhou <chenzhou10@huawei.com>
+>>
+>> The lower bounds of crash kernel reservation and crash kernel low
+>> reservation are different, use the consistent value CRASH_ALIGN.
+>>
+>> Suggested-by: Dave Young <dyoung@redhat.com>
+>> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> 
+> You may need add Co-developed-by to clarify who is author, and who is
+> co-author. Please check section "When to use Acked-by:, Cc:, and Co-developed-by:"
+> of Documentation/process/submitting-patches.rst. Otherwise, 
 
-[snip]
+Okay, thanks for the heads-up. I will modify it.
 
-> diff --git a/drivers/irqchip/irq-ls-extirq.c b/drivers/irqchip/irq-ls-ext=
-irq.c
-> index 853b3972dbe7..b6ecc5e3472f 100644
-> --- a/drivers/irqchip/irq-ls-extirq.c
-> +++ b/drivers/irqchip/irq-ls-extirq.c
-> @@ -101,9 +101,15 @@ ls_extirq_parse_map(struct ls_extirq_data *priv, str=
-uct device_node *node)
->  	u32 mapsize;
->  	int ret;
->=20=20
-> -	map =3D of_get_property(node, "interrupt-map", &mapsize);
-> -	if (!map)
-> -		return -ENOENT;
-> +	map =3D of_get_property(node, "fsl,extirq-map", &mapsize);
-> +	if (!map) {
-> +		map =3D of_get_property(node, "interrupt-map", &mapsize);
-> +		if (!map)
-> +			return -ENOENT;
-> +
-> +		pr_warn("\"interrupt-map\" is a reserved OF property, and support for =
-it will be removed. Please use \"fsl,extirq-map\" instead.\n");
-> +	}
-
-Looks reasonable. For instance, DSA does the same thing wrt "ports"
-vs. "ethernet-ports".
-
-Thanks,
-Kurt
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQJHBAEBCgAxFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAmG4WfoTHGt1cnRAbGlu
-dXRyb25peC5kZQAKCRB5KluBy5jwps22D/0T4pp9MYMfIE77SpjYJG8P0arrC1FT
-Zewga7/kfRpopo0rJ6tVYXZQQ7osbiYRBaQWk6PW1uq0bAU5FvP0xAV/MD7TRDNq
-RuXMNgwiKmGPsQ7upC9vEFC9Wfq6PgYvhOJX4AakXMQSMMimDyo0OC3SY0dKgCPz
-ufb3JWYqVFlzNRY5mxoTJk2H8OXHpnEoDfliso6I1iVlNTRHdK8GBk7wk/bV0obm
-5o70udgi3dl+Cz7jmC8yC4CDd1ecpWkgoxBd3+mJm8ylOP01cbWgsEGOwhOQpDtp
-lwJr2nBUA9aAlfrDUFa11N1dUkQrS+g7jPBfWfjNQKk0fKxByheE5qvZ8v+H/3qP
-BtcJWPHTmemzy03Vp8pnfV7H4JshbENBvz4cB1qpjX0cFL9bv3OYv/T8u6L/3AQj
-fNETUePc+dtP2RfZbFn+mx72CYqZVXFaRzLMXgI0VmvTQqXsYBoBPe+HORIoAY1j
-WrIoDEE+3SwKM/yLRNNcuidrtkq9fAaKGZBusqHOvcULI4nm8HzMfT4EQKGmV0z0
-P2vWS1YHtObQKGWRwMyS1DtvcFUVxDE+/v7VpiFZKTvkUK9E6YqLRrLrmVvbpqwx
-Go0SqrcuBSefj0U36bUHWwbmIU1t3Ym+8CLrFJcdOia6g0oWBdNzhv5/QI4KZNYP
-rfj/qJvQjLfzhg==
-=uxJ9
------END PGP SIGNATURE-----
---=-=-=--
+> 
+> Acked-by: Baoquan He <bhe@redhat.com>
+> 
+>> Tested-by: John Donnelly <John.p.donnelly@oracle.com>
+>> Tested-by: Dave Kleikamp <dave.kleikamp@oracle.com>
+>> ---
+>>  arch/x86/kernel/setup.c | 3 ++-
+>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
+>> index 5cc60996eac56d6..6424ee4f23da2cf 100644
+>> --- a/arch/x86/kernel/setup.c
+>> +++ b/arch/x86/kernel/setup.c
+>> @@ -441,7 +441,8 @@ static int __init reserve_crashkernel_low(void)
+>>  			return 0;
+>>  	}
+>>  
+>> -	low_base = memblock_phys_alloc_range(low_size, CRASH_ALIGN, 0, CRASH_ADDR_LOW_MAX);
+>> +	low_base = memblock_phys_alloc_range(low_size, CRASH_ALIGN, CRASH_ALIGN,
+>> +			CRASH_ADDR_LOW_MAX);
+>>  	if (!low_base) {
+>>  		pr_err("Cannot reserve %ldMB crashkernel low memory, please try smaller size.\n",
+>>  		       (unsigned long)(low_size >> 20));
+>> -- 
+>> 2.25.1
+>>
+> 
+> .
+> 
