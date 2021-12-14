@@ -2,96 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37F43474AA4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 19:19:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA888474ACE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 19:27:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236965AbhLNSS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 13:18:59 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:33479 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231978AbhLNSS6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 13:18:58 -0500
-Received: by mail-oi1-f169.google.com with SMTP id q25so28420671oiw.0;
-        Tue, 14 Dec 2021 10:18:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Mvdsg6llGN/7VFr3EJ9FR5h23YkPCcuvXHiPhrb5GWA=;
-        b=73I8W0ra+mZVDBkuYemOFSNInndzHiNBNTa67aBm8o0JJIfS9dwf98aYbbNFw/mCqN
-         RDFaKS+YRjl3MIPy8DUXP7czZUeE2RzkLouh4tplzrQbA9+le3RPgv1qHYCjh4k6ADSV
-         P0sahZpMq78NM5C9vKa97ABBxrnHEs8QiGmSAcH33ANvBLn0QLFh9ht+t7CpNzmo3C9L
-         CjHtCThXaqp9IoPneZtcmGwbW/Wj8ruiTjxx6EfPLdcrK6QLJbDIGNrc2TbQ5UserdnM
-         8QVr8NdUfmwpDG8kXeGkTpF+pLK49ZRD9wBp22a/xPyEcYTaGIe9r0sBtGyYerDVJ91V
-         xSGA==
-X-Gm-Message-State: AOAM533vaiKjRPCTjttmoqF0RPaOBBi+C/KX9Subc9GxVlhfpGl1B4OU
-        PLzL7pmA6U7zCKbPg77zHg==
-X-Google-Smtp-Source: ABdhPJx5WQOC8qPu9t/pvopPhIpOxwBorGnVfEAlvoMoPyBsBHXPZltR+v6aHvFYxJ40AoIloFOlZg==
-X-Received: by 2002:a05:6808:3d2:: with SMTP id o18mr34588823oie.14.1639505937359;
-        Tue, 14 Dec 2021 10:18:57 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id p6sm118558oof.0.2021.12.14.10.18.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Dec 2021 10:18:56 -0800 (PST)
-Received: (nullmailer pid 3669534 invoked by uid 1000);
-        Tue, 14 Dec 2021 18:18:55 -0000
-Date:   Tue, 14 Dec 2021 12:18:55 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Doug Berger <opendmb@gmail.com>,
-        linux-rtc@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, Zhang Rui <rui.zhang@intel.com>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        linux-arm-kernel@lists.infradead.org,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Scott Branden <sbranden@broadcom.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        id S236997AbhLNS1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 13:27:08 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:38036 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234152AbhLNS1D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 13:27:03 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D95C2B81C21;
+        Tue, 14 Dec 2021 18:27:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89EEEC34600;
+        Tue, 14 Dec 2021 18:27:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639506420;
+        bh=lWR5fG4CldO/Ezt4piZ1qkap5oqim5OBn0f7PejxEvs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=h0GxdvjV3q/hUnz0d1qPrYRSlgof+ueA4qt2kGrkPGPAjzlrqvnnQW53rvCaYR68B
+         OTa3j1wE8eURTD4QhIYVXeZQRxS5B85inB+pgMRTPX+x/+qfGM4o92jYZ/OxyvqpjC
+         CCUJ1xiEiOkUeCY8uMAXl6cu5vd9BJ9WzUVpbv367fhqe7fcfoVIQdsbWOn3L1j+me
+         Ua6BsBENRuoW/AnEBOEvjbHHlq1oeQUcCDUysKYCX/z/Lk1WfelEaLBHhGS0ZWsN6B
+         agFevwFnL6bw9u8zEFAVinp//cmK/2iCInlzPlyEzXGSyOclgS4iM3fUg8NLwRCNFr
+         qhLhtdpVFNazQ==
+Received: from cfbb000407.r.cam.camfibre.uk ([185.219.108.64] helo=why.lan)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mxCVu-00C7Tq-9O; Tue, 14 Dec 2021 18:26:58 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Mark Rutland <mark.rutland@arm.com>, Will Deacon <will@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        linux-gpio@vger.kernel.org, linux-usb@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-crypto@vger.kernel.org, Amit Kucheria <amitk@kernel.org>,
-        Markus Mayer <mmayer@broadcom.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Ray Jui <rjui@broadcom.com>, Marc Zyngier <maz@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-mmc@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-pm@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
-        Gregory Fong <gregory.0xf0@gmail.com>,
-        linux-kernel@vger.kernel.org, Al Cooper <alcooperx@gmail.com>,
-        linux-ide@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>,
-        Ulf Hansson <ulf.hansson@linaro.org>, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v3 11/15] dt-bindings: thermal: Convert Broadcom TMON to
- YAML
-Message-ID: <YbjgD+EJgy5Qmdmc@robh.at.kernel.org>
-References: <20211208003727.3596577-1-f.fainelli@gmail.com>
- <20211208003727.3596577-12-f.fainelli@gmail.com>
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dougall <dougallj@gmail.com>, kernel-team@android.com
+Subject: [PATCH v3 00/10] drivers/perf: CPU PMU driver for Apple M1
+Date:   Tue, 14 Dec 2021 18:26:24 +0000
+Message-Id: <20211214182634.727330-1-maz@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211208003727.3596577-12-f.fainelli@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mark.rutland@arm.com, will@kernel.org, marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io, robh+dt@kernel.org, tglx@linutronix.de, dougallj@gmail.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 07 Dec 2021 16:37:22 -0800, Florian Fainelli wrote:
-> Convert the Broadcom AVS TMON Device Tree binding to YAML to help with
-> validation.
-> 
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-> ---
->  .../bindings/thermal/brcm,avs-tmon.txt        | 23 --------
->  .../bindings/thermal/brcm,avs-tmon.yaml       | 57 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 58 insertions(+), 24 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/thermal/brcm,avs-tmon.txt
->  create mode 100644 Documentation/devicetree/bindings/thermal/brcm,avs-tmon.yaml
-> 
+The M1 SoC embeds a per-CPU PMU that has a very different programming
+interface compared to the architected PMUv3 that is normally present
+on standard implementations.
 
-Applied, thanks!
+This small series adds a driver for this HW by leveraging the arm_pmu
+infrastructure, resulting in a rather simple driver.
+
+Of course, we know next to nothing about the actual events this PMU
+counts, aside from CPU cycles and instructions. Everything else is
+undocumented (though as Dougall pointed out, someone could extract the
+relevant information from a macOS install if they wanted -- I don't).
+
+My hope is that this driver will help people to explore the event
+space and propose possible interpretations for these events using
+reproducible test cases.
+
+* From v2 [2]:
+  - Reworked the way the FIQ virtual affinity is exposed (now coming
+    from the DT instead of being internal to the irqchip driver)
+  - Dropped the locking from the PMU driver after Mark's review
+  - Required the exclude_guest flag to be set, as the PMU doesn't seem
+    to be able to count guest events, at least by default
+  - Dropped the counter-stop on interrupt and instead stop the whole
+    PMU on interrupt
+  - Dropped the kernel taint, as I couldn't find a good way to do that
+    on first use
+  - Collected RBs from Hector
+
+* From v1 [1]:
+  - Added a few comments clarifying the event mapping to counters
+  - Spelling fixes
+  - Collected Acks from Rob
+
+[1] https://lore.kernel.org/r/20211113115429.4027571-1-maz@kernel.org
+[2] https://lore.kernel.org/r/20211201134909.390490-1-maz@kernel.org
+
+Marc Zyngier (10):
+  dt-bindings: arm-pmu: Document Apple PMU compatible strings
+  dt-bindings: apple,aic: Add CPU PMU per-cpu pseudo-interrupts
+  dt-bindings: apple,aic: Add affinity description for per-cpu
+    pseudo-interrupts
+  irqchip/apple-aic: Parse FIQ affinities from device-tree
+  irqchip/apple-aic: Wire PMU interrupts
+  arm64: dts: apple: Add t8103 PMU interrupt affinities
+  arm64: dts: apple: Add t8301 PMU nodes
+  irqchip/apple-aic: Move PMU-specific registers to their own include
+    file
+  drivers/perf: arm_pmu: Handle 47 bit counters
+  drivers/perf: Add Apple icestorm/firestorm CPU PMU driver
+
+ .../devicetree/bindings/arm/pmu.yaml          |   2 +
+ .../interrupt-controller/apple,aic.yaml       |  28 +
+ arch/arm64/boot/dts/apple/t8103.dtsi          |  24 +
+ arch/arm64/include/asm/apple_m1_pmu.h         |  64 ++
+ drivers/irqchip/irq-apple-aic.c               |  95 ++-
+ drivers/perf/Kconfig                          |   7 +
+ drivers/perf/Makefile                         |   1 +
+ drivers/perf/apple_m1_cpu_pmu.c               | 584 ++++++++++++++++++
+ drivers/perf/arm_pmu.c                        |   2 +
+ .../interrupt-controller/apple-aic.h          |   2 +
+ include/linux/perf/arm_pmu.h                  |   2 +
+ 11 files changed, 789 insertions(+), 22 deletions(-)
+ create mode 100644 arch/arm64/include/asm/apple_m1_pmu.h
+ create mode 100644 drivers/perf/apple_m1_cpu_pmu.c
+
+-- 
+2.30.2
+
