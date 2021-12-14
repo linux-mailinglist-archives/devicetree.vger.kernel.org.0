@@ -2,160 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7EC3474C7F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 21:10:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34940474C9B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 21:26:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237588AbhLNUKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 15:10:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56470 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229795AbhLNUKb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 15:10:31 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B47D5C061574;
-        Tue, 14 Dec 2021 12:10:30 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id c32so39080912lfv.4;
-        Tue, 14 Dec 2021 12:10:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=wDOjfX89K4jV2QmbYL8mv7kdW3lt3D+ymF+NwV8p2I0=;
-        b=FjeTlU1gqXo1oiL249LpY+VC0cljWSePEX76d5hcv+1yDKUFDgso6stfsjW2ItspwN
-         FiOTo3GGEzbetydE3PKiYucu8+buxmWxii26SMiVq7z2j8KQ0i4A5JWoDQh6E9nRpMdf
-         kivxf84vYZrG/VuAiv9W2WrZu2/tDXLMsAGT6GUxZgl0JvQcZWfWDPq6NY9QbTXbTMzD
-         peNokkFssJNKfGUz+tTvS8ZkJrwjyK1hmtj6yLjWKb/TNRnbloPnFJm29nqJ5uaSY4B4
-         PjcAJAyl+SHDoiFTEN280ICvY6B+aDfKF+Xga1WvR6ECnh1EaBW1742LmGomqqVSHa7u
-         wiUg==
+        id S230122AbhLNU05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 15:26:57 -0500
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:43887 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237615AbhLNU0y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 15:26:54 -0500
+Received: by mail-oi1-f176.google.com with SMTP id o4so28767325oia.10;
+        Tue, 14 Dec 2021 12:26:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wDOjfX89K4jV2QmbYL8mv7kdW3lt3D+ymF+NwV8p2I0=;
-        b=ZrH3n0bSLqHCdXzozQjA31kCJM+lktvAAEXLS1VK6hGOfSJieP91wMxO/jOMpi5qKr
-         oo8v9VNDIm8M/UrAm05Fj1Iw1rHo2zsnChf8Cw5SmmltJrmiMqkD2voq99tcXwOPgsnF
-         nPSIKY+4P17mMOlgWz++WXc/ddD823AuA3IBeAOkfigm4KBpuFSOTWjZZG93DuSwruoa
-         IivMuKCCRX0sbfSulVryY2hTQztj27rzLNpVnyf5pUKgFBZ/xiUMr8GgwA5hI0XGjZNR
-         KvJew7usT2cOuFtl2TccLPJHurhl85znjKKIz0gW6kefBuzbYrbktFCOKww7kcW48g2F
-         Ecpg==
-X-Gm-Message-State: AOAM531IjFnWPa6wo+eqg/Yjg+VX8Ys6Gox7DrAy6gMSKTtVnp6IUHVD
-        xkFYKHrR6+DY8X17F33oed4=
-X-Google-Smtp-Source: ABdhPJxFU/5LC4AVHpjlhJR6g4yqpt5qfmH7HHYPP3Jq9LfptdoAyGt/4Akm+61mHnPo6+3ewVOp4A==
-X-Received: by 2002:a05:6512:104a:: with SMTP id c10mr6849829lfb.204.1639512629017;
-        Tue, 14 Dec 2021 12:10:29 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id o11sm130006ljc.100.2021.12.14.12.10.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Dec 2021 12:10:28 -0800 (PST)
-Message-ID: <756f55d2-f033-8066-7e51-005e1f0587ec@gmail.com>
-Date:   Tue, 14 Dec 2021 21:10:26 +0100
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zoA5Z8TrkhyO9VpXkw4vVgVTvX1m0JlpyPfyrdFngu4=;
+        b=4Gx4rfyRACGcVR1kIPOOpsvFqM31uJxVfhgtC8dN61FudGPSfKnXrAkOHwq3G2q3bk
+         wz8/6IX1hgzGpTXOdJSbJKmBBIr2cBVWPNxQNMtpxtpMP0gKkOAxW0Pi0cXGOoYkXMwI
+         OWr8pYZTw5+r+MgCFMognHbNaxQTwPx1TIUKl/KKyoAl4E8wsMsIeECEWirehFMbs3Jv
+         fPVrbwuqfYtUUSwMResTtc3gDyGkP7Pzfacp6xnXX9PfnuyCTl4MGCN4F2MwVCqqSRqm
+         4vEU0+rtAfQLj17kTtYSOFQpsnBWuMml/O1eUPJXpaQ71qg2M4QlrQo9c+ZKk/Nc4DB5
+         eA6Q==
+X-Gm-Message-State: AOAM531uORS/TVmYXQGq6GtuCYzowluBoJ/dgvMNyfxeLB2cXBO6amQo
+        It+mfjjR4NSdgbjjAv2s6g==
+X-Google-Smtp-Source: ABdhPJw0zliiKLsHvNnJ7zXg7WFegzRRUZqy33/B0czNpd/RWUhOX058+lN4XGpG8555QCmRZ2KvoA==
+X-Received: by 2002:a05:6808:14c2:: with SMTP id f2mr6173359oiw.154.1639513613845;
+        Tue, 14 Dec 2021 12:26:53 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id m12sm177454ots.59.2021.12.14.12.26.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Dec 2021 12:26:53 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     John Crispin <john@phrozen.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        Frank Rowand <frank.rowand@sony.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v3] of/fdt: Rework early_init_dt_scan_memory() to call directly
+Date:   Tue, 14 Dec 2021 14:26:51 -0600
+Message-Id: <20211214202652.3894707-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH V3 1/2] dt-bindings: pinctrl: support specifying pins,
- groups & functions
-To:     Rob Herring <robh@kernel.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com
-References: <20211210114222.26581-1-zajec5@gmail.com>
- <20211210114222.26581-2-zajec5@gmail.com>
- <CACRpkdbsb63EN5hmGws1eLaARg2VRXXhz+5AM_x7OhaS_ceGow@mail.gmail.com>
- <cadb38fd-a193-2706-b20e-2a1e5e64f9ca@milecki.pl>
- <Ybj3k4BOcc3IKs0w@robh.at.kernel.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <Ybj3k4BOcc3IKs0w@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14.12.2021 20:59, Rob Herring wrote:
-> On Sat, Dec 11, 2021 at 12:16:25PM +0100, Rafał Miłecki wrote:
->> Rob: please kindly comment on this idea of storing pins/groups/functions
->> in DT.
-> 
-> I was never a fan of stuffing pin mux/ctrl into DT for what's mostly a
-> one time stuffing of register values. And given how many things run
-> before getting to the kernel, doing proper pin configuration in the
-> kernel is much too late (or redundant because it was actually already
-> done).
+Use of the of_scan_flat_dt() function predates libfdt and is discouraged
+as libfdt provides a nicer set of APIs. Rework
+early_init_dt_scan_memory() to be called directly and use libfdt.
 
-OK, thanks for sharing that. Given a pretty limited optimism on this
-approach I'll simply drop it and do things the old good way.
+Cc: John Crispin <john@phrozen.org>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Michael Ellerman <mpe@ellerman.id.au>
+Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Cc: Paul Mackerras <paulus@samba.org>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: linux-mips@vger.kernel.org
+Cc: linuxppc-dev@lists.ozlabs.org
+Reviewed-by: Frank Rowand <frank.rowand@sony.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+v3:
+ - Fix powerpc when /ibm,dynamic-reconfiguration-memory is present
+v2:
+ - ralink: Use 'if' instead of 'else if'
+ - early_init_dt_scan_memory: continue instead of return on no reg
+ - Fix indentation
+---
+ arch/mips/ralink/of.c      | 19 +++--------
+ arch/powerpc/kernel/prom.c | 21 ++++++------
+ drivers/of/fdt.c           | 67 +++++++++++++++++++-------------------
+ include/linux/of_fdt.h     |  3 +-
+ 4 files changed, 49 insertions(+), 61 deletions(-)
 
-I thought it's a better desing but I probably was wrong. It was still
-worth a try :)
+diff --git a/arch/mips/ralink/of.c b/arch/mips/ralink/of.c
+index 0135376c5de5..35a87a2da10b 100644
+--- a/arch/mips/ralink/of.c
++++ b/arch/mips/ralink/of.c
+@@ -53,17 +53,6 @@ void __init device_tree_init(void)
+ 	unflatten_and_copy_device_tree();
+ }
+ 
+-static int memory_dtb;
+-
+-static int __init early_init_dt_find_memory(unsigned long node,
+-				const char *uname, int depth, void *data)
+-{
+-	if (depth == 1 && !strcmp(uname, "memory@0"))
+-		memory_dtb = 1;
+-
+-	return 0;
+-}
+-
+ void __init plat_mem_setup(void)
+ {
+ 	void *dtb;
+@@ -77,10 +66,10 @@ void __init plat_mem_setup(void)
+ 	dtb = get_fdt();
+ 	__dt_setup_arch(dtb);
+ 
+-	of_scan_flat_dt(early_init_dt_find_memory, NULL);
+-	if (memory_dtb)
+-		of_scan_flat_dt(early_init_dt_scan_memory, NULL);
+-	else if (soc_info.mem_detect)
++	if (!early_init_dt_scan_memory())
++		return;
++
++	if (soc_info.mem_detect)
+ 		soc_info.mem_detect();
+ 	else if (soc_info.mem_size)
+ 		memblock_add(soc_info.mem_base, soc_info.mem_size * SZ_1M);
+diff --git a/arch/powerpc/kernel/prom.c b/arch/powerpc/kernel/prom.c
+index 6e1a106f02eb..ad1230c4f3fe 100644
+--- a/arch/powerpc/kernel/prom.c
++++ b/arch/powerpc/kernel/prom.c
+@@ -532,19 +532,18 @@ static int  __init early_init_drmem_lmb(struct drmem_lmb *lmb,
+ }
+ #endif /* CONFIG_PPC_PSERIES */
+ 
+-static int __init early_init_dt_scan_memory_ppc(unsigned long node,
+-						const char *uname,
+-						int depth, void *data)
++static int __init early_init_dt_scan_memory_ppc(void)
+ {
+ #ifdef CONFIG_PPC_PSERIES
+-	if (depth == 1 &&
+-	    strcmp(uname, "ibm,dynamic-reconfiguration-memory") == 0) {
++	const void *fdt = initial_boot_params;
++	int node = fdt_path_offset(fdt, "/ibm,dynamic-reconfiguration-memory");
++
++	if (node > 0)
+ 		walk_drmem_lmbs_early(node, NULL, early_init_drmem_lmb);
+-		return 0;
+-	}
++
+ #endif
+-	
+-	return early_init_dt_scan_memory(node, uname, depth, data);
++
++	return early_init_dt_scan_memory();
+ }
+ 
+ /*
+@@ -749,7 +748,7 @@ void __init early_init_devtree(void *params)
+ 
+ 	/* Scan memory nodes and rebuild MEMBLOCKs */
+ 	early_init_dt_scan_root();
+-	of_scan_flat_dt(early_init_dt_scan_memory_ppc, NULL);
++	early_init_dt_scan_memory_ppc();
+ 
+ 	parse_early_param();
+ 
+@@ -858,7 +857,7 @@ void __init early_get_first_memblock_info(void *params, phys_addr_t *size)
+ 	 */
+ 	add_mem_to_memblock = 0;
+ 	early_init_dt_scan_root();
+-	of_scan_flat_dt(early_init_dt_scan_memory_ppc, NULL);
++	early_init_dt_scan_memory_ppc();
+ 	add_mem_to_memblock = 1;
+ 
+ 	if (size)
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 5e216555fe4f..97d7607625ec 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -1078,49 +1078,50 @@ u64 __init dt_mem_next_cell(int s, const __be32 **cellp)
+ /*
+  * early_init_dt_scan_memory - Look for and parse memory nodes
+  */
+-int __init early_init_dt_scan_memory(unsigned long node, const char *uname,
+-				     int depth, void *data)
++int __init early_init_dt_scan_memory(void)
+ {
+-	const char *type = of_get_flat_dt_prop(node, "device_type", NULL);
+-	const __be32 *reg, *endp;
+-	int l;
+-	bool hotpluggable;
+-
+-	/* We are scanning "memory" nodes only */
+-	if (type == NULL || strcmp(type, "memory") != 0)
+-		return 0;
++	int node;
++	const void *fdt = initial_boot_params;
+ 
+-	reg = of_get_flat_dt_prop(node, "linux,usable-memory", &l);
+-	if (reg == NULL)
+-		reg = of_get_flat_dt_prop(node, "reg", &l);
+-	if (reg == NULL)
+-		return 0;
++	for (node = fdt_node_offset_by_prop_value(fdt, -1, "device_type", "memory", 6);
++	     node != -FDT_ERR_NOTFOUND;
++	     node = fdt_node_offset_by_prop_value(fdt, node, "device_type", "memory", 6)) {
++		const __be32 *reg, *endp;
++		int l;
++		bool hotpluggable;
++
++		reg = of_get_flat_dt_prop(node, "linux,usable-memory", &l);
++		if (reg == NULL)
++			reg = of_get_flat_dt_prop(node, "reg", &l);
++		if (reg == NULL)
++			continue;
+ 
+-	endp = reg + (l / sizeof(__be32));
+-	hotpluggable = of_get_flat_dt_prop(node, "hotpluggable", NULL);
++		endp = reg + (l / sizeof(__be32));
++		hotpluggable = of_get_flat_dt_prop(node, "hotpluggable", NULL);
+ 
+-	pr_debug("memory scan node %s, reg size %d,\n", uname, l);
++		pr_debug("memory scan node %s, reg size %d,\n",
++			 fdt_get_name(fdt, node, NULL), l);
+ 
+-	while ((endp - reg) >= (dt_root_addr_cells + dt_root_size_cells)) {
+-		u64 base, size;
++		while ((endp - reg) >= (dt_root_addr_cells + dt_root_size_cells)) {
++			u64 base, size;
+ 
+-		base = dt_mem_next_cell(dt_root_addr_cells, &reg);
+-		size = dt_mem_next_cell(dt_root_size_cells, &reg);
++			base = dt_mem_next_cell(dt_root_addr_cells, &reg);
++			size = dt_mem_next_cell(dt_root_size_cells, &reg);
+ 
+-		if (size == 0)
+-			continue;
+-		pr_debug(" - %llx, %llx\n", base, size);
++			if (size == 0)
++				continue;
++			pr_debug(" - %llx, %llx\n", base, size);
+ 
+-		early_init_dt_add_memory_arch(base, size);
++			early_init_dt_add_memory_arch(base, size);
+ 
+-		if (!hotpluggable)
+-			continue;
++			if (!hotpluggable)
++				continue;
+ 
+-		if (memblock_mark_hotplug(base, size))
+-			pr_warn("failed to mark hotplug range 0x%llx - 0x%llx\n",
+-				base, base + size);
++			if (memblock_mark_hotplug(base, size))
++				pr_warn("failed to mark hotplug range 0x%llx - 0x%llx\n",
++					base, base + size);
++		}
+ 	}
+-
+ 	return 0;
+ }
+ 
+@@ -1271,7 +1272,7 @@ void __init early_init_dt_scan_nodes(void)
+ 		pr_warn("No chosen node found, continuing without\n");
+ 
+ 	/* Setup memory, calling early_init_dt_add_memory_arch */
+-	of_scan_flat_dt(early_init_dt_scan_memory, NULL);
++	early_init_dt_scan_memory();
+ 
+ 	/* Handle linux,usable-memory-range property */
+ 	memblock_cap_memory_range(cap_mem_addr, cap_mem_size);
+diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
+index df3d31926c3c..914739f3c192 100644
+--- a/include/linux/of_fdt.h
++++ b/include/linux/of_fdt.h
+@@ -59,8 +59,7 @@ extern unsigned long of_get_flat_dt_root(void);
+ extern uint32_t of_get_flat_dt_phandle(unsigned long node);
+ 
+ extern int early_init_dt_scan_chosen(char *cmdline);
+-extern int early_init_dt_scan_memory(unsigned long node, const char *uname,
+-				     int depth, void *data);
++extern int early_init_dt_scan_memory(void);
+ extern int early_init_dt_scan_chosen_stdout(void);
+ extern void early_init_fdt_scan_reserved_mem(void);
+ extern void early_init_fdt_reserve_self(void);
+-- 
+2.32.0
 
-Thanks to everyone involved in this discussion.
-
-
->> For a sample Linux implementation you can check (incomplete):
->> [PATCH V2 4/6] pinctrl: support reading pins, groups & functions from DT
->> https://patchwork.ozlabs.org/project/linux-gpio/patch/20211124230439.17531-5-zajec5@gmail.com/
->>
->> For a real life DT usage you can check:
->> [PATCH V2 6/6] ARM: dts: BCM5301X: add pinctrl pins, groups & functions
->> https://patchwork.ozlabs.org/project/linux-gpio/patch/20211124230439.17531-7-zajec5@gmail.com/
-> 
-> What about h/w with no concept of 'groups'?
-
-It could probably be handled with sth like
-
-functions {
-	bar {
-		pins = <&foo>;
-	}
-}
-
-but my binding didn't cover that indeed.
-
-
->> Also see below inline comments.
->>
->>
->> On 11.12.2021 00:26, Linus Walleij wrote:
->>> On Fri, Dec 10, 2021 at 12:42 PM Rafał Miłecki <zajec5@gmail.com> wrote:
->>>
->>>> This binding change is meant to introduce a generic way of describing
->>>> pinctrl blocks details. Every pinmux block is expected to have:
->>>> 1. Named pins
->>>> 2. Named groups containing one or more pins
->>>> 3. Named functions referencing one or more groups
->>>>
->>>> It doesn't describe how hw should be programmed. That remains binding
->>>> and driver specific.
->>>
->>> So what this does is to take a large chunk of data that we known to be
->>> associated with the compatible string (names of pins, groups and functions,
->>> etc) and put it into the device tree instead of the alternative, which is
->>> what most drivers do, and that is to compile in the data into the
->>> operating system and just look it up by using a compatible
->>> string.
->>
->> Correct. It changes the place of storing platform specific data.
->>
->>
->>> The DT maintainers have already indicated that this is not desirable
->>> and I don't see it getting merged before it has a Reviewed-by
->>> tag from one of the DT binding maintainers.
->>
->> Tony pointed out that it was back in 2011. It's worth reconsidering.
->> https://patchwork.ozlabs.org/comment/2786915/
->>
->> Rob said it depends on whether "data be static (complete) and correct"
->> https://patchwork.ozlabs.org/comment/2786688/
-> 
-> I haven't seen an answer for that question...
-> 
-> That and working for multiple platforms (from different vendors) are the
-> main things that matter to me.
-
-I thought my design description & BCM5301X DTS patch may be a proof of
-that but apparently it wasn't enough ;)
