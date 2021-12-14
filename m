@@ -2,136 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77BCB47469D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 16:39:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 349944746A3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 16:40:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234772AbhLNPjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 10:39:00 -0500
-Received: from foss.arm.com ([217.140.110.172]:59110 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234762AbhLNPi7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Dec 2021 10:38:59 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 40EBBD6E;
-        Tue, 14 Dec 2021 07:38:59 -0800 (PST)
-Received: from [10.57.34.58] (unknown [10.57.34.58])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 549423F774;
-        Tue, 14 Dec 2021 07:38:54 -0800 (PST)
-Message-ID: <a1c8c438-72e6-0938-1b05-09694983164d@arm.com>
-Date:   Tue, 14 Dec 2021 15:38:50 +0000
+        id S231345AbhLNPkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 10:40:08 -0500
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:43943 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231219AbhLNPkH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 10:40:07 -0500
+Received: by mail-oi1-f179.google.com with SMTP id o4so27636544oia.10;
+        Tue, 14 Dec 2021 07:40:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=ovb0DbxUGYeODSKF6bHxeVffVUw8DcYCEblgl5V5Cfg=;
+        b=qGCnVNW90QF+NipVwMdEAJgvLldUWCbvTCw++1PShX8Kr7xUgIGJHEGdfhbfZakj77
+         RJxXgubt7SDIkJEwIR+K8CklLk01PVkmELQXfAa2hk1mDrxvGHuNChWwMawrYkN4Y3y3
+         Sjd5jMUpowRnkGzWo7+nYNCw6oxrFD6hbgszwhFCswGCBwQzYDMwTjFsoYlXSuS2FqFh
+         Q55itUtGGTlPpMG8gmkAGOASWjlPqx1W/tkXw+jpMmzlMQzIT8mGjEnjAFuD41Jle0jT
+         g7ZJXOiW4IpBILfl+Jnx0u9w0aUheDgHwFz6UVpqxTAZzpk1scql7DVK0rM+I7L5DQr1
+         gYQA==
+X-Gm-Message-State: AOAM533+8vM+L9RnauPzn6B+72ZBuox9Z1XuiVLSELRl0VIuTTEp1Yti
+        oZ5cGX2OA6td9kl+wppPzA==
+X-Google-Smtp-Source: ABdhPJyFf+wJ1nqXqXJWkf1oygAcvPVNPaK9atkVruPCaMGtFdW41Us6ulpAHGg16rCaoAwmgr33RQ==
+X-Received: by 2002:aca:3643:: with SMTP id d64mr34457612oia.107.1639496406889;
+        Tue, 14 Dec 2021 07:40:06 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id t18sm29375ott.2.2021.12.14.07.40.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Dec 2021 07:40:06 -0800 (PST)
+Received: (nullmailer pid 3424980 invoked by uid 1000);
+        Tue, 14 Dec 2021 15:40:05 -0000
+Date:   Tue, 14 Dec 2021 09:40:05 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik@protonmail.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        kettenis@openbsd.org, marcan@marcan.st, sven@svenpeter.dev
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add Apple NCO
+Message-ID: <Ybi61fzpOV7CumtR@robh.at.kernel.org>
+References: <20211214120213.15649-1-povik@protonmail.com>
+ <20211214120213.15649-2-povik@protonmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v2 0/8] Host1x context isolation support
-Content-Language: en-GB
-To:     Mikko Perttunen <cyndis@kapsi.fi>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, joro@8bytes.org,
-        will@kernel.org, robh+dt@kernel.org
-Cc:     linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20210916143302.2024933-1-mperttunen@nvidia.com>
- <10de82cf-27a5-8890-93a5-0e58c74e5bcc@kapsi.fi>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <10de82cf-27a5-8890-93a5-0e58c74e5bcc@kapsi.fi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211214120213.15649-2-povik@protonmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-11-08 10:36, Mikko Perttunen wrote:
-> On 9/16/21 5:32 PM, Mikko Perttunen wrote:
->> Hi all,
->>
->> ***
->> New in v2:
->>
->> Added support for Tegra194
->> Use standard iommu-map property instead of custom mechanism
->> ***
->>
->> this series adds support for Host1x 'context isolation'. Since
->> when programming engines through Host1x, userspace can program in
->> any addresses it wants, we need some way to isolate the engines'
->> memory spaces. Traditionally this has either been done imperfectly
->> with a single shared IOMMU domain, or by copying and verifying the
->> programming command stream at submit time (Host1x firewall).
->>
->> Since Tegra186 there is a privileged (only usable by kernel)
->> Host1x opcode that allows setting the stream ID sent by the engine
->> to the SMMU. So, by allocating a number of context banks and stream
->> IDs for this purpose, and using this opcode at the beginning of
->> each job, we can implement isolation. Due to the limited number of
->> context banks only each process gets its own context, and not
->> each channel.
->>
->> This feature also allows sharing engines among multiple VMs when
->> used with Host1x's hardware virtualization support - up to 8 VMs
->> can be configured with a subset of allowed stream IDs, enforced
->> at hardware level.
->>
->> To implement this, this series adds a new host1x context bus, which
->> will contain the 'struct device's corresponding to each context
->> bank / stream ID, changes to device tree and SMMU code to allow
->> registering the devices and using the bus, as well as the Host1x
->> stream ID programming code and support in TegraDRM.
->>
->> Device tree bindings are not updated yet pending consensus that the
->> proposed changes make sense.
->>
->> Thanks,
->> Mikko
->>
->> Mikko Perttunen (8):
->>    gpu: host1x: Add context bus
->>    gpu: host1x: Add context device management code
->>    gpu: host1x: Program context stream ID on submission
->>    iommu/arm-smmu: Attach to host1x context device bus
->>    arm64: tegra: Add Host1x context stream IDs on Tegra186+
->>    drm/tegra: falcon: Set DMACTX field on DMA transactions
->>    drm/tegra: vic: Implement get_streamid_offset
->>    drm/tegra: Support context isolation
->>
->>   arch/arm64/boot/dts/nvidia/tegra186.dtsi  |  12 ++
->>   arch/arm64/boot/dts/nvidia/tegra194.dtsi  |  12 ++
->>   drivers/gpu/Makefile                      |   3 +-
->>   drivers/gpu/drm/tegra/drm.h               |   2 +
->>   drivers/gpu/drm/tegra/falcon.c            |   8 +
->>   drivers/gpu/drm/tegra/falcon.h            |   1 +
->>   drivers/gpu/drm/tegra/submit.c            |  13 ++
->>   drivers/gpu/drm/tegra/uapi.c              |  34 ++++-
->>   drivers/gpu/drm/tegra/vic.c               |  38 +++++
->>   drivers/gpu/host1x/Kconfig                |   5 +
->>   drivers/gpu/host1x/Makefile               |   2 +
->>   drivers/gpu/host1x/context.c              | 174 ++++++++++++++++++++++
->>   drivers/gpu/host1x/context.h              |  27 ++++
->>   drivers/gpu/host1x/context_bus.c          |  31 ++++
->>   drivers/gpu/host1x/dev.c                  |  12 +-
->>   drivers/gpu/host1x/dev.h                  |   2 +
->>   drivers/gpu/host1x/hw/channel_hw.c        |  52 ++++++-
->>   drivers/gpu/host1x/hw/host1x06_hardware.h |  10 ++
->>   drivers/gpu/host1x/hw/host1x07_hardware.h |  10 ++
->>   drivers/iommu/arm/arm-smmu/arm-smmu.c     |  13 ++
->>   include/linux/host1x.h                    |  21 +++
->>   include/linux/host1x_context_bus.h        |  15 ++
->>   22 files changed, 488 insertions(+), 9 deletions(-)
->>   create mode 100644 drivers/gpu/host1x/context.c
->>   create mode 100644 drivers/gpu/host1x/context.h
->>   create mode 100644 drivers/gpu/host1x/context_bus.c
->>   create mode 100644 include/linux/host1x_context_bus.h
->>
+On Tue, Dec 14, 2021 at 12:02:48PM +0000, Martin Povišer wrote:
+> The NCO block found on Apple SoCs is a programmable clock generator
+> performing fractional division of a high frequency input clock.
 > 
-> IOMMU/DT folks, any thoughts about this approach? The patches that are 
-> of interest outside of Host1x/TegraDRM specifics are patches 1, 2, 4, 
-> and 5.
+> Signed-off-by: Martin Povišer <povik@protonmail.com>
+> ---
+>  .../devicetree/bindings/clock/apple,nco.yaml  | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/apple,nco.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/apple,nco.yaml b/Documentation/devicetree/bindings/clock/apple,nco.yaml
+> new file mode 100644
+> index 000000000000..5029824ab179
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/apple,nco.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/apple,nco.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple SoCs' NCO block
+> +
+> +maintainers:
+> +  - Martin Povišer <povik@protonmail.com>
+> +
+> +description: |
+> +  The NCO (Numerically Controlled Oscillator) block found on Apple SoCs
+> +  such as the t8103 (M1) is a programmable clock generator performing
+> +  fractional division of a high frequency input clock.
+> +
+> +  It carries a number of independent channels and is typically used for
+> +  generation of audio bitclocks.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +        - apple,t6000-nco
+> +        - apple,t8103-nco
+> +      - const: apple,nco
+> +
+> +  apple,nchannels:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The number of output channels the NCO block has been
+> +      synthesized for.
 
-FWIW it looks fairly innocuous to me. I don't understand host1x - 
-neither hardware nor driver abstractions - well enough to meaningfully 
-review it all (e.g. maybe it's deliberate that the bus .dma_configure 
-method isn't used?), but the SMMU patch seems fine given the Kconfig 
-solution to avoid module linkage problems.
+I'd assume there is some max number?
 
-Cheers,
-Robin.
+Do you really need to know this? If this is just to validate the clock 
+cell values are less than this, then just drop that and the property. 
+It's not the kernel's job to validate the DT.
+
+> +
+> +  clocks:
+> +    description:
+> +      Specifies the reference clock from which the output clocks
+> +      are derived through fractional division.
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - apple,nchannels
+> +  - clocks
+> +  - '#clock-cells'
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    nco_clkref: clock-ref {
+> +      compatible = "fixed-clock";
+> +      #clock-cells = <0>;
+> +      clock-frequency = <900000000>;
+> +      clock-output-names = "nco-ref";
+> +    };
+> +
+> +    nco: clock-generator@23b044000 {
+
+clock-controller@...
+
+> +      compatible = "apple,t8103-nco", "apple,nco";
+> +      reg = <0x3b044000 0x14000>;
+
+You really have 0x14000 worth of registers here because all of that 
+will be mapped into virtual memory? Doesn't matter so much on 64-bit, 
+but it did for 32-bit.
+
+> +      #clock-cells = <1>;
+> +      clocks = <&nco_clkref>;
+> +      apple,nchannels = <5>;
+> +    };
+> --
+> 2.33.0
+> 
+> 
+> 
