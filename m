@@ -2,69 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03AFF474309
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 13:58:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 439A347433B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 14:15:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234203AbhLNM6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 07:58:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39490 "EHLO
+        id S234281AbhLNNPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 08:15:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231674AbhLNM6S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 07:58:18 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBBBBC061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 04:58:17 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id n33-20020a05600c502100b0032fb900951eso16165921wmr.4
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 04:58:17 -0800 (PST)
+        with ESMTP id S231987AbhLNNPA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 08:15:00 -0500
+Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF39C061574
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 05:14:59 -0800 (PST)
+Received: by mail-io1-xd2a.google.com with SMTP id k21so23927111ioh.4
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 05:14:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=wjLhM+axYn/vtzg0KhMiXODf8Dfp0SkV/grbjvJnums=;
-        b=B1T2MjDsW9d63T5MPpsJS4GHWbv9m9XX0ppl1DbhSoxG4l6/tM5L6VcBTfQP8/PtX2
-         QnX+/IBBNKZhFIJaFL2fUIkFZygiJnPMj1xxU30QBNgM09tRHba2qwuuFWCOCglboVo6
-         ZV7pj7s1gkV4uLASFxGzYU+FM3QzMGYqDHM8TyFny+AO4Oi6BIWqQ7mKKfUIou31cHGT
-         hveGcZXkp1L0ZF5qUVkn0YHQk3tINS0LzrudJpbzfIL8omPckrN5vCgCR3YEobBApgXU
-         3LHnJd9ZTUBTQEboOgnpczgUc00+CEVpTNDaD6h3ijS7g/jiKxM9jcqnssMKmnUxKxJ6
-         CBtQ==
+        bh=2HxIz6DuaZA4FS1avOrmpzcWgWf7jWJKcN0NsQ3ek1E=;
+        b=OJIvdOsy7d2FZZAOJSqsIqJVuZobj4DAu3ToXtPzFyO8fRzLMrHCO+fxPtWJP8ptHl
+         YHV2q9qHmvUpBecWr2jhUvV2TUEKtr1XyMq0hwJHq9xGiwPd7qzYfv+PB+ioqE9ovQW8
+         pXr2iNZltsOYqSV+yQrcMokwsZo/hxtfn4qpxUuY4mVPo3ZyG/a4Arl3IQSZ/HEtK8fW
+         sF41cbMSbg3Q61e0BlnNPGph7TYwnVTw5Bo1FL/ZsDgwfv/W+AQPZ4hsUycit/fLEdGm
+         5AaL6Y92t2wkxIbNbajtknLSgE3lW3UeMdBeno79Gev8iWl3WBbzMOg85Ah5nA9udwdy
+         EPSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:reply-to:from:date:message-id
          :subject:to;
-        bh=wjLhM+axYn/vtzg0KhMiXODf8Dfp0SkV/grbjvJnums=;
-        b=3KOqT3JL7wZa7vt17CVmeY5rP0IAtt09r6apa2YCW+ltZ/K2pF16DHSyJ6gtA8A/43
-         HvH0c97JVsHq+U9F/xFcgwGUa9XeiIAZNhkwr+NRFZlva0qMqQvQ3ppYcZsKKdhz6Q/n
-         W2ZSNzzAfAkco6QrLAyXTqb6YdaRE3pqy7c+EdnOhvyZ1iCi/bzhoMaA1b0i8LVWVCyw
-         McWShbOwD2g/RoL+32xJcaeMbtNrIO+ReOk4jB/+VToKCxZHdQ3cWQv4JorOfugtitYX
-         GwoL61lj6/Lm6SGih6qshZavoC8OHVz377Q9LBbmB7JW1A7d8MIv18zdeb68a8mMURyw
-         MNrQ==
-X-Gm-Message-State: AOAM5310tLq9RUqMWVEkxFo5erR0rrNuO0A0wbfPIzQHwm/1bAAfW0+N
-        3k8iueq6ow2tbkOL8lP/SGdZB1859O9ZciyWoKk=
-X-Google-Smtp-Source: ABdhPJzQc0z8fzL+74/I0MaaYuEoqBZTzvdSEt6IPxE+j8WFxFGvfpG5EMre02Bw6+gun0zOlB5G4Q78DIehb5Rbn1U=
-X-Received: by 2002:a05:600c:3486:: with SMTP id a6mr6814405wmq.32.1639486696207;
- Tue, 14 Dec 2021 04:58:16 -0800 (PST)
+        bh=2HxIz6DuaZA4FS1avOrmpzcWgWf7jWJKcN0NsQ3ek1E=;
+        b=WUc3cdWFcybf8Mac9E9ie773djbb9Ac3uTIgSMkCgy8C+5xK3KyPlBzKtcntVXykVO
+         HgJBAHfDgrSRF61pTvWmoWUzHfEI9CbJvG8KkeqQgzoR8suz+OWZIDlcK+g+vDgzO7qx
+         ikpoBsl3HNt6xFr8/nhf/GhJRi/R07UrsicJrr6E/yotQ4rWawvNbLKrKAMtQWEEsKzd
+         7kOMNOLfgEnH8gOOHTXzM2ge9fzCNX3gid9CK1dtVIqoS5n+B1OANldHJQlRZzzME6z9
+         9Hlx/oAB+4xB5Yy1Mb5tjSObi9sI2qbxGICEz6zym+SzxwBq72aXvU+3DkvIIkzMbCDd
+         LQ+w==
+X-Gm-Message-State: AOAM5328ZLsVk5rr4J2rVNgrEeH3Td09BVnkm6D1HaA6MQ4MsCR2AF4m
+        kUcRJul3Tc5XQUrvPjE7o26xmb9dROWvAz/3T3Y=
+X-Google-Smtp-Source: ABdhPJws+MBc+jkZCZLaQW+yyJH2aIS0DxlLIPrTgL7VHSeUXXg7MgEUiIDRQvLUf6u+9Zg6xxszD0BoLk9nEGxTpXM=
+X-Received: by 2002:a02:6a19:: with SMTP id l25mr2683467jac.568.1639487699156;
+ Tue, 14 Dec 2021 05:14:59 -0800 (PST)
 MIME-Version: 1.0
-Received: by 2002:a5d:6607:0:0:0:0:0 with HTTP; Tue, 14 Dec 2021 04:58:15
+Received: by 2002:a5d:9149:0:0:0:0:0 with HTTP; Tue, 14 Dec 2021 05:14:58
  -0800 (PST)
-Reply-To: dwilliamssdavid@gmail.com
-From:   "Mr. David Williams.com" <ezeebu909@gmail.com>
-Date:   Tue, 14 Dec 2021 13:58:15 +0100
-Message-ID: <CAKozvk5VuW52VX6xRHZi=gg1nsuW=kA7rQQp9s=_+GJ9Zfp9vA@mail.gmail.com>
-Subject: Did you authorize Mr. Liu Kong Nam
+Reply-To: mrsfatuzankara@gmail.com
+From:   MRS FATU ZANKARA <ahmedibram88@gmail.com>
+Date:   Tue, 14 Dec 2021 14:14:58 +0100
+Message-ID: <CAOTb7pHbtA=1AeB9VyRS7znj+um0uSSwkgNXdnMiSpa2YvecnA@mail.gmail.com>
+Subject: GREETINGS FROM MRS FATU ZANKARA
 To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Hello ,
+I am Mrs  Fatu Zankara a banker in United Bank for Africa Burkina Faso West
+Africa, Please i want to transfer an abandoned sum of 10.5millions
+USD to your account.50% will be for you and 50% for me.
 
-Did you authorize Mr. Liu Kong Nam of Kemuning Ray Street
-NO.8,Tomang.Jakarta, Indonesia to pay the pending wire transfer
-activation charges and claim your WORLD BANK/IMF compensation payment
-the sum of Seven million two hundred thousand US dollars?.
+No risk involved. Contact me for more details along with your personal
+information needed below.
 
-Get back to me with your details.
+1. Full name:.........
+2. Current Address:.........
+3. Phone.............
+4. Occupation:.............
+5. Age:............
+6. Country:........
+7. Sex........
+8. Your Passport or ID card or Driving License
 
-Regards
-Mr. David Williams
+Thanks.
+
+Mrs.Fatu Zankara
