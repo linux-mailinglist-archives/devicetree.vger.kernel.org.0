@@ -2,105 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E43473F39
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 10:19:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 124B3473F40
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 10:22:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232286AbhLNJTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 04:19:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45484 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230383AbhLNJTg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 04:19:36 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D5CAC061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 01:19:36 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mx3y4-000709-GS; Tue, 14 Dec 2021 10:19:28 +0100
-Message-ID: <be86f831da91ff44ff627f605d03b315260a2b7c.camel@pengutronix.de>
-Subject: Re: [PATCH V4 8/9] arm64: dts: imx8mn: add DISP blk-ctrl
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Adam Ford <aford173@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, tharvey@gateworks.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Tue, 14 Dec 2021 10:19:27 +0100
-In-Reply-To: <20211128131853.15125-9-aford173@gmail.com>
-References: <20211128131853.15125-1-aford173@gmail.com>
-         <20211128131853.15125-9-aford173@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        id S230371AbhLNJWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 04:22:31 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:60884 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230146AbhLNJWa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 04:22:30 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2AA87B81823;
+        Tue, 14 Dec 2021 09:22:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12E5EC34601;
+        Tue, 14 Dec 2021 09:22:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639473748;
+        bh=wwQR8mwE39ljJ7AGeFIyttvd6OPcslCZZCbHxDE3Chw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nCjmb27Cf7J+JFLssI/mlsY3n5/dRIKixPFJbDubHbg4b9RwybK3Lrwk6/98Uzs09
+         2SQSdsIw2YmYivGnNx+EUrFH4AFoOVKqeOuAXcDsAK6208Fvikuej71qax/qT58gjb
+         ROgdf4+e8d6+8cecWIboWN9fi8WUZmhdgfMiOKfWLw485g8KjZAqBrPocCqWpsrEUK
+         Vdz1EXU3y6xZHZa4FDcjE0SKnLI4KoSV/d5VIvybHM8C59QpUiDzQQcGHQqMBDwoMT
+         Ahkk351jw6WRvegh5ytEb7yD8vYjEJROVkPp6OX1eTGPrlGXmUUdpR+FQkVEBoN4DD
+         BzmhtRs3eauUg==
+Date:   Tue, 14 Dec 2021 14:52:23 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Swapnil Kashinath Jakhade <sjakhade@cadence.com>
+Cc:     "kishon@ti.com" <kishon@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Milind Parab <mparab@cadence.com>,
+        "a-govindraju@ti.com" <a-govindraju@ti.com>
+Subject: Re: [PATCH v3 13/15] phy: cadence: Sierra: Add PCIe + QSGMII PHY
+ multilink configuration
+Message-ID: <YbhiT7PTtqaofN5w@matsya>
+References: <20211022170236.18839-1-sjakhade@cadence.com>
+ <20211022170236.18839-14-sjakhade@cadence.com>
+ <YZxyja2xEkpWvStR@matsya>
+ <DM6PR07MB6154FB5EB84B7BE063965619C5619@DM6PR07MB6154.namprd07.prod.outlook.com>
+ <YZ8aygJQoxie+Ddn@matsya>
+ <DM6PR07MB61549C25EBF70ED2639FBCF6C5699@DM6PR07MB6154.namprd07.prod.outlook.com>
+ <YbHuV/LpcZqOTuLV@matsya>
+ <DM6PR07MB6154AF51437C535362EC4059C5719@DM6PR07MB6154.namprd07.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DM6PR07MB6154AF51437C535362EC4059C5719@DM6PR07MB6154.namprd07.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Sonntag, dem 28.11.2021 um 07:18 -0600 schrieb Adam Ford:
-> Add the DT node for the DISP blk-ctrl. With this in place the
-> display/mipi power domains should be functional.
+On 10-12-21, 09:46, Swapnil Kashinath Jakhade wrote:
+> Hi Vinod,
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-
-Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
-
-> ---
->  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 28 +++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
+> > -----Original Message-----
+> > From: Vinod Koul <vkoul@kernel.org>
+> > Sent: Thursday, December 9, 2021 5:24 PM
+> > To: Swapnil Kashinath Jakhade <sjakhade@cadence.com>
+> > Cc: kishon@ti.com; robh+dt@kernel.org; p.zabel@pengutronix.de; linux-
+> > phy@lists.infradead.org; linux-kernel@vger.kernel.org;
+> > devicetree@vger.kernel.org; Milind Parab <mparab@cadence.com>; a-
+> > govindraju@ti.com
+> > Subject: Re: [PATCH v3 13/15] phy: cadence: Sierra: Add PCIe + QSGMII PHY
+> > multilink configuration
+> > 
+> > EXTERNAL MAIL
+> > 
+> > 
+> > On 02-12-21, 14:12, Swapnil Kashinath Jakhade wrote:
+> > > Hi Vinod,
+> > >
+> > > > -----Original Message-----
+> > > > From: Vinod Koul <vkoul@kernel.org>
+> > > > Sent: Thursday, November 25, 2021 10:41 AM
+> > > > To: Swapnil Kashinath Jakhade <sjakhade@cadence.com>
+> > > > Cc: kishon@ti.com; robh+dt@kernel.org; p.zabel@pengutronix.de;
+> > > > linux- phy@lists.infradead.org; linux-kernel@vger.kernel.org;
+> > > > devicetree@vger.kernel.org; Milind Parab <mparab@cadence.com>; a-
+> > > > govindraju@ti.com
+> > > > Subject: Re: [PATCH v3 13/15] phy: cadence: Sierra: Add PCIe +
+> > > > QSGMII PHY multilink configuration
+> > > >
+> > > > EXTERNAL MAIL
+> > > >
+> > > >
+> > > > On 24-11-21, 07:33, Swapnil Kashinath Jakhade wrote:
+> > > >
+> > > > > > so this is pcie->qsgmii ->ssc/external/internal ... ok
+> > > > > >
+> > > > > > > +				[NO_SSC] =
+> > > > > > &pcie_100_no_ssc_plllc_cmn_vals,
+> > > > > > > +				[EXTERNAL_SSC] =
+> > > > > > &pcie_100_ext_ssc_plllc_cmn_vals,
+> > > > > > > +				[INTERNAL_SSC] =
+> > > > > > &pcie_100_int_ssc_plllc_cmn_vals,
+> > > > > > > +			},
+> > > > > > >  		},
+> > > > > > >  		[TYPE_USB] = {
+> > > > > > >  			[TYPE_NONE] = {
+> > > > > > >  				[EXTERNAL_SSC] =
+> > > > > > &usb_100_ext_ssc_cmn_vals,
+> > > > > > >  			},
+> > > > > > >  		},
+> > > > > > > +		[TYPE_QSGMII] = {
+> > > > > > > +			[TYPE_PCIE] = {
+> > > > > >
+> > > > > > now it is reverse! qsgmii -> pcie -> ... why?
+> > > > > >
+> > > > > > what is meant by pcie->qsgmii and qsgmii-> pcie?
+> > > > > >
+> > > > >
+> > > > > Multi-protocol configuration is done in 2 phases, each for one protocol.
+> > > > > e.g. for PCIe + QSGMII case,
+> > > > > [TYPE_PCIE][TYPE_QSGMII] will configure common and lane registers
+> > > > > for PCIe and [TYPE_QSGMII][TYPE_PCIE] will configure common and
+> > > > > lane
+> > > > registers for QSGMII.
+> > > >
+> > > > Then it should be always common + protocol or protocol + common, not
+> > > > both please! Pls make an order and stick to it everywhere... If that
+> > > > is not possible, I would like to understand why
+> > >
+> > > Could you please elaborate what do you mean by " common + protocol or
+> > > protocol + common, not both please!"?
+> > > The order is same everywhere which is common + lane configuration for
+> > > protocol 1 and then for protocol 2. For multiprotocol case, PHY
+> > > configuration is based on which protocols are operating simultaneously. So
+> > e.g.
+> > > [TYPE_QSGMII][TYPE_PCIE] -> QSGMII configuration when other protocol
+> > > is PCIe Which might be different than [TYPE_QSGMII][TYPE_*] -> QSGMII
+> > > configuration with other protocol.
+> > 
+> > As I said I would like to understand what is the difference b/w
+> > [TYPE_QSGMII][TYPE_PCIE] & [TYPE_PCIE][TYPE_QSGMII] and why?
+> > 
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> index 902d5725dc55..d8726d0ce326 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> @@ -1039,6 +1039,34 @@ aips4: bus@32c00000 {
->  			#size-cells = <1>;
->  			ranges;
+> This logic is for implementing multi-link PHY configuration.
+> Consider a case for a 4 lane PHY with PCIe using 2 lanes and QSGMII other 2 lanes.
+> Sierra PHY has 2 PLLs, viz. PLLLC and PLLLC1.
+> So in this case, PLLLC is used for PCIe and PLLLC1 is used for QSGMII and
+> PHY will be configured in two steps as described below.
+> 1. For first step, phy_t1 = TYPE_PCIE and phy_t2 = TYPE_QSGMII
+>      So we select registers as
+>      [TYPE_PCIE][TYPE_QSGMII][ssc]: 
+>               This will configure PHY registers associated for *PCIe* (i.e. first protocol)
+>               involving PLLLC registers and registers for first 2 lanes of PHY.
+> 2. In second step, the variables phy_t1 and phy_t2 are swapped. So now,
+>     phy_t1 = TYPE_QSGMII and phy_t2 = TYPE_PCIE. And we select registers as:
+>     [TYPE_QSGMII][TYPE_PCIE][ssc]:
+>              This will configure PHY registers associated for *QSGMII* (i.e. second protocol)
+>              involving PLLLC1 registers and registers for other 2 lanes of PHY.
 > 
-> +			disp_blk_ctrl: blk-ctrl@32e28000 {
-> +				compatible = "fsl,imx8mn-disp-blk-ctrl", "syscon";
-> +				reg = <0x32e28000 0x100>;
-> +				power-domains = <&pgc_dispmix>, <&pgc_dispmix>,
-> +						<&pgc_dispmix>, <&pgc_mipi>,
-> +						<&pgc_mipi>;
-> +				power-domain-names = "bus", "isi",
-> +						     "lcdif", "mipi-dsi",
-> +						     "mipi-csi";
-> +				clocks = <&clk IMX8MN_CLK_DISP_AXI>,
-> +					 <&clk IMX8MN_CLK_DISP_APB>,
-> +					 <&clk IMX8MN_CLK_DISP_AXI_ROOT>,
-> +					 <&clk IMX8MN_CLK_DISP_APB_ROOT>,
-> +					 <&clk IMX8MN_CLK_DISP_AXI_ROOT>,
-> +					 <&clk IMX8MN_CLK_DISP_APB_ROOT>,
-> +					 <&clk IMX8MN_CLK_DISP_PIXEL_ROOT>,
-> +					 <&clk IMX8MN_CLK_DSI_CORE>,
-> +					 <&clk IMX8MN_CLK_DSI_PHY_REF>,
-> +					 <&clk IMX8MN_CLK_CSI1_PHY_REF>,
-> +					 <&clk IMX8MN_CLK_CAMERA_PIXEL_ROOT>;
-> +				clock-names = "disp_axi", "disp_apb",
-> +					      "disp_axi_root", "disp_apb_root",
-> +					      "lcdif-axi", "lcdif-apb", "lcdif-pix",
-> +					      "dsi-pclk", "dsi-ref",
-> +					      "csi-aclk", "csi-pclk";
-> +				#power-domain-cells = <1>;
-> +			};
-> +
->  			usbotg1: usb@32e40000 {
->  				compatible = "fsl,imx8mn-usb", "fsl,imx7d-usb";
->  				reg = <0x32e40000 0x200>;
-> --
-> 2.32.0
+> This completes the PHY configuration for multilink operation.
+> Above approach enables dividing the large number of PHY register configurations
+> into protocol specific smaller groups.
 > 
+> Please let me know if it answers your question.
 
+Thanks this helps. Can you please add this useful info in the comments
+for this, that will help folks understanding why it was done like this
 
+-- 
+~Vinod
