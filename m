@@ -2,126 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D74D474C74
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 21:05:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8104474C79
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 21:08:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230215AbhLNUFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 15:05:33 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:40292 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229795AbhLNUFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 15:05:33 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BEK5Tdj073325;
-        Tue, 14 Dec 2021 14:05:29 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1639512329;
-        bh=sTq1XXltDvGWlTPqpx+R/8j2njkr9h2axc9qT8+IKR0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=hZDGbsFzexBZmTlmK5unibgjTdzQr71reTA2YXbBqyZH7XvaJ5TgcBbtADqFKLjsA
-         9LL1YTy20eHsHlOxWhAWT7y2xP5MjWW+5y7jRgaG7rGA6xyNxnxK0mBXuMXTEescVx
-         AgWhgoqK5ISYOXn3eQTTK1NDuVQF1K+oelv1QZL8=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BEK5TSb128341
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 14 Dec 2021 14:05:29 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 14
- Dec 2021 14:05:29 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 14 Dec 2021 14:05:29 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BEK5S0t004398;
-        Tue, 14 Dec 2021 14:05:28 -0600
-Date:   Wed, 15 Dec 2021 01:35:27 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Dinh Nguyen <dinh.linux@gmail.com>
-CC:     Dinh Nguyen <dinguyen@kernel.org>, <devicetree@vger.kernel.org>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCHv2 1/3] dt-bindings: spi: cadence-quadspi: document
- "cdns,qspi-nor-ver-00-10"
-Message-ID: <20211214200525.7tp2ovbh6vc6rks6@ti.com>
-References: <20211203181714.3138611-1-dinguyen@kernel.org>
- <20211206102242.e2ql7kcgzivh75v4@ti.com>
- <CADhT+wfrtqO6dDSUbq-eeyRodzigA7Gsce0xgK6mzLo0ujb5AQ@mail.gmail.com>
+        id S231630AbhLNUIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 15:08:05 -0500
+Received: from mail-4322.protonmail.ch ([185.70.43.22]:40649 "EHLO
+        mail-4322.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229795AbhLNUIE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 15:08:04 -0500
+Date:   Tue, 14 Dec 2021 20:07:50 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail2; t=1639512483;
+        bh=NjFaV2R1dhpIehk6OXr3CNJpYtdzyY4IVTG8J/PjtSQ=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
+         References:From:To:Cc;
+        b=U/o1GC9azt8HhsSelre0/4SlBPCx3PiLrC/o3B3DkuRED7mg2ondxxrZ7XrGj/hff
+         sSNn7I/COEtWWL7a+GibtNazluEDNiiO7hnGDy+oza6JP3F+3ebXWmOOy5hLfQBQVs
+         Lf3yHkE2B9P1s8pABvI622tL0Sqq05cSANTDJarp9U0uqpViCUX6ZYt1LVrGY0n22z
+         3me19X7OKlTkdbDpAI7PEjuH2WHa0+wza6zoSl69vBungxyXh9tLhz8GoS4aFkGzQq
+         wcXbh74FbW6JwSVSABOaXxXPVIFznMS1OMp34nS4BjMIR0goywfQBc0XK8QyLP80IX
+         VioWMimA8sZeg==
+To:     Rob Herring <robh@kernel.org>
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        kettenis@openbsd.org, marcan@marcan.st, sven@svenpeter.dev
+Reply-To: =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add Apple NCO
+Message-ID: <3F145763-2774-4569-B9B7-A03CFE002E94@protonmail.com>
+In-Reply-To: <Ybi61fzpOV7CumtR@robh.at.kernel.org>
+References: <20211214120213.15649-1-povik@protonmail.com> <20211214120213.15649-2-povik@protonmail.com> <Ybi61fzpOV7CumtR@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CADhT+wfrtqO6dDSUbq-eeyRodzigA7Gsce0xgK6mzLo0ujb5AQ@mail.gmail.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/12/21 05:45PM, Dinh Nguyen wrote:
-> On Mon, Dec 6, 2021 at 9:51 PM Pratyush Yadav <p.yadav@ti.com> wrote:
-> >
-> > On 03/12/21 12:17PM, Dinh Nguyen wrote:
-> > > The QSPI controller on Intel's SoCFPGA platform does not implement the
-> > > CQSPI_REG_WR_COMPLETION_CTRL register, thus a write to this register
-> > > results in a crash.
-> > >
-> > > The module/revision ID is written in the MODULE_ID register. For this
-> > > variance, bits 23-8 is 0x0010.
-> >
-> > When I looked at your original patches I was under the impression that
-> > this was a SoCFPGA specific thing and did not apply to other
-> > implementation of the IP in general.
-> >
-> > If this is indeed a generic thing and we can detect it via the MODULE_ID
-> > register [0], then why not just read that register at probe time and
-> > apply this quirk based on the ID? Why then do we need a separate
-> > compatible at all?
-> >
-> > [0] I would like to see it stated explicitly somewhere that version
-> > 0x0010 does not support the WR_COMPLETION_CTRL register.
-> >
-> 
-> I cannot for sure confirm that this condition applies to only 0x0010
-> version of the
-> IP. I can verify that the IP that is in all 3 generations of SoCFPGA
-> devices, all have
-> MODULE_ID value of 0x0010 and all do not have the WR_COMPLETION_CTRL
-> register implemented.
+Hi Rob,
 
-I agree with Rob here. If you are not sure that this is a generic IP 
-thing then you should not use a generic compatible.
+> On 14. 12. 2021, at 16:40, Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Dec 14, 2021 at 12:02:48PM +0000, Martin Povi=C5=A1er wrote:
+>> The NCO block found on Apple SoCs is a programmable clock generator
+>> performing fractional division of a high frequency input clock.
+>>
+>> Signed-off-by: Martin Povi=C5=A1er <povik@protonmail.com>
+>> ---
+>> .../devicetree/bindings/clock/apple,nco.yaml  | 70 +++++++++++++++++++
+>> 1 file changed, 70 insertions(+)
+>> create mode 100644 Documentation/devicetree/bindings/clock/apple,nco.yam=
+l
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/apple,nco.yaml b/Do=
+cumentation/devicetree/bindings/clock/apple,nco.yaml
+>> new file mode 100644
+>> index 000000000000..5029824ab179
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/apple,nco.yaml
+>> @@ -0,0 +1,70 @@
 
-> 
-> I'm almost certain this feature is not SoCFPGA specific, but
-> since I only had SoCFPGA hardware, that was my initial patch. I made the mistake
-> of not CC'ing the devicetree maintainers until I sent the DTS binding
-> patch change,
-> and he rightly suggested making the binding something more generic.
-> 
-> I do like your idea of making a determination in the driver without
-> being dependent
-> on a dts binding. I'd like to know the impetus behind your original
-> patch of removing the
-> dependency of "if (f_pdata->dtr)"  for the write to the WR_COMPLETION_CTRL
-> register? Perhaps there's some other common property that we can key
-> off for why the register
-> is not implemented?
+>> +
+>> +  apple,nchannels:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      The number of output channels the NCO block has been
+>> +      synthesized for.
+>
+> I'd assume there is some max number?
 
-Please read the comment just above that line ;-)
+There might be some limit to the underlying IP but we wouldn=E2=80=99t know=
+.
+What we know about the hardware comes from blackbox reversing, and that
+doesn't suggest a particular limit to the number of channels we might
+see on the SoC block in future.
 
-  /*
-   * SPI NAND flashes require the address of the status register to be
-   * passed in the Read SR command. Also, some SPI NOR flashes like the
-   * cypress Semper flash expect a 4-byte dummy address in the Read SR
-   * command in DTR mode.
-   *
-   * But this controller does not support address phase in the Read SR
-   * command when doing auto-HW polling. So, disable write completion
-   * polling on the controller's side. spinand and spi-nor will take
-   * care of polling the status register.
-   */
+> Do you really need to know this? If this is just to validate the clock
+> cell values are less than this, then just drop that and the property.
+> It's not the kernel's job to validate the DT.
 
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+Well strictly speaking the driver could do clock registration on-demand
+at the cost of additional book-keeping, in which case we could drop
+the property, but I would prefer we don=E2=80=99t do that. Rather than prov=
+iding
+validation the property simplifies drivers.
+
+Another option is calculating the no. of channels from size of the reg
+range, but I assume that=E2=80=99s worse than having the nchannels property=
+.
+
+>> +
+>> +    nco: clock-generator@23b044000 {
+>
+> clock-controller@...
+
+Okay, will change.
+
+>
+>> +      compatible =3D "apple,t8103-nco", "apple,nco";
+>> +      reg =3D <0x3b044000 0x14000>;
+>
+> You really have 0x14000 worth of registers here because all of that
+> will be mapped into virtual memory? Doesn't matter so much on 64-bit,
+> but it did for 32-bit.
+
+There is about 5 registers per channel with 0x4000 stride between them,
+blame Apple (or Samsung? I don=E2=80=99t know...).
+
+--
+Martin
+
+
