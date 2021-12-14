@@ -2,171 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 124B3473F40
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 10:22:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B667473F51
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 10:24:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230371AbhLNJWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 04:22:31 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:60884 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230146AbhLNJWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 04:22:30 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2AA87B81823;
-        Tue, 14 Dec 2021 09:22:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12E5EC34601;
-        Tue, 14 Dec 2021 09:22:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639473748;
-        bh=wwQR8mwE39ljJ7AGeFIyttvd6OPcslCZZCbHxDE3Chw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nCjmb27Cf7J+JFLssI/mlsY3n5/dRIKixPFJbDubHbg4b9RwybK3Lrwk6/98Uzs09
-         2SQSdsIw2YmYivGnNx+EUrFH4AFoOVKqeOuAXcDsAK6208Fvikuej71qax/qT58gjb
-         ROgdf4+e8d6+8cecWIboWN9fi8WUZmhdgfMiOKfWLw485g8KjZAqBrPocCqWpsrEUK
-         Vdz1EXU3y6xZHZa4FDcjE0SKnLI4KoSV/d5VIvybHM8C59QpUiDzQQcGHQqMBDwoMT
-         Ahkk351jw6WRvegh5ytEb7yD8vYjEJROVkPp6OX1eTGPrlGXmUUdpR+FQkVEBoN4DD
-         BzmhtRs3eauUg==
-Date:   Tue, 14 Dec 2021 14:52:23 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Swapnil Kashinath Jakhade <sjakhade@cadence.com>
-Cc:     "kishon@ti.com" <kishon@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Milind Parab <mparab@cadence.com>,
-        "a-govindraju@ti.com" <a-govindraju@ti.com>
-Subject: Re: [PATCH v3 13/15] phy: cadence: Sierra: Add PCIe + QSGMII PHY
- multilink configuration
-Message-ID: <YbhiT7PTtqaofN5w@matsya>
-References: <20211022170236.18839-1-sjakhade@cadence.com>
- <20211022170236.18839-14-sjakhade@cadence.com>
- <YZxyja2xEkpWvStR@matsya>
- <DM6PR07MB6154FB5EB84B7BE063965619C5619@DM6PR07MB6154.namprd07.prod.outlook.com>
- <YZ8aygJQoxie+Ddn@matsya>
- <DM6PR07MB61549C25EBF70ED2639FBCF6C5699@DM6PR07MB6154.namprd07.prod.outlook.com>
- <YbHuV/LpcZqOTuLV@matsya>
- <DM6PR07MB6154AF51437C535362EC4059C5719@DM6PR07MB6154.namprd07.prod.outlook.com>
+        id S232022AbhLNJYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 04:24:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46644 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230030AbhLNJYb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 04:24:31 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FEA3C061574
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 01:24:30 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1mx42o-0007Z5-5r; Tue, 14 Dec 2021 10:24:22 +0100
+Message-ID: <0c64fff9eedee4e6d9cbd2244d7304236f5dcc8d.camel@pengutronix.de>
+Subject: Re: [PATCH V4 9/9] arm64: dts: imx8mn: Enable GPU
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Adam Ford <aford173@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, tharvey@gateworks.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date:   Tue, 14 Dec 2021 10:24:20 +0100
+In-Reply-To: <20211128131853.15125-10-aford173@gmail.com>
+References: <20211128131853.15125-1-aford173@gmail.com>
+         <20211128131853.15125-10-aford173@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM6PR07MB6154AF51437C535362EC4059C5719@DM6PR07MB6154.namprd07.prod.outlook.com>
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10-12-21, 09:46, Swapnil Kashinath Jakhade wrote:
-> Hi Vinod,
+Am Sonntag, dem 28.11.2021 um 07:18 -0600 schrieb Adam Ford:
+> The i.MX8M-Nano features a GC7000. The Etnaviv driver detects it as:
 > 
-> > -----Original Message-----
-> > From: Vinod Koul <vkoul@kernel.org>
-> > Sent: Thursday, December 9, 2021 5:24 PM
-> > To: Swapnil Kashinath Jakhade <sjakhade@cadence.com>
-> > Cc: kishon@ti.com; robh+dt@kernel.org; p.zabel@pengutronix.de; linux-
-> > phy@lists.infradead.org; linux-kernel@vger.kernel.org;
-> > devicetree@vger.kernel.org; Milind Parab <mparab@cadence.com>; a-
-> > govindraju@ti.com
-> > Subject: Re: [PATCH v3 13/15] phy: cadence: Sierra: Add PCIe + QSGMII PHY
-> > multilink configuration
-> > 
-> > EXTERNAL MAIL
-> > 
-> > 
-> > On 02-12-21, 14:12, Swapnil Kashinath Jakhade wrote:
-> > > Hi Vinod,
-> > >
-> > > > -----Original Message-----
-> > > > From: Vinod Koul <vkoul@kernel.org>
-> > > > Sent: Thursday, November 25, 2021 10:41 AM
-> > > > To: Swapnil Kashinath Jakhade <sjakhade@cadence.com>
-> > > > Cc: kishon@ti.com; robh+dt@kernel.org; p.zabel@pengutronix.de;
-> > > > linux- phy@lists.infradead.org; linux-kernel@vger.kernel.org;
-> > > > devicetree@vger.kernel.org; Milind Parab <mparab@cadence.com>; a-
-> > > > govindraju@ti.com
-> > > > Subject: Re: [PATCH v3 13/15] phy: cadence: Sierra: Add PCIe +
-> > > > QSGMII PHY multilink configuration
-> > > >
-> > > > EXTERNAL MAIL
-> > > >
-> > > >
-> > > > On 24-11-21, 07:33, Swapnil Kashinath Jakhade wrote:
-> > > >
-> > > > > > so this is pcie->qsgmii ->ssc/external/internal ... ok
-> > > > > >
-> > > > > > > +				[NO_SSC] =
-> > > > > > &pcie_100_no_ssc_plllc_cmn_vals,
-> > > > > > > +				[EXTERNAL_SSC] =
-> > > > > > &pcie_100_ext_ssc_plllc_cmn_vals,
-> > > > > > > +				[INTERNAL_SSC] =
-> > > > > > &pcie_100_int_ssc_plllc_cmn_vals,
-> > > > > > > +			},
-> > > > > > >  		},
-> > > > > > >  		[TYPE_USB] = {
-> > > > > > >  			[TYPE_NONE] = {
-> > > > > > >  				[EXTERNAL_SSC] =
-> > > > > > &usb_100_ext_ssc_cmn_vals,
-> > > > > > >  			},
-> > > > > > >  		},
-> > > > > > > +		[TYPE_QSGMII] = {
-> > > > > > > +			[TYPE_PCIE] = {
-> > > > > >
-> > > > > > now it is reverse! qsgmii -> pcie -> ... why?
-> > > > > >
-> > > > > > what is meant by pcie->qsgmii and qsgmii-> pcie?
-> > > > > >
-> > > > >
-> > > > > Multi-protocol configuration is done in 2 phases, each for one protocol.
-> > > > > e.g. for PCIe + QSGMII case,
-> > > > > [TYPE_PCIE][TYPE_QSGMII] will configure common and lane registers
-> > > > > for PCIe and [TYPE_QSGMII][TYPE_PCIE] will configure common and
-> > > > > lane
-> > > > registers for QSGMII.
-> > > >
-> > > > Then it should be always common + protocol or protocol + common, not
-> > > > both please! Pls make an order and stick to it everywhere... If that
-> > > > is not possible, I would like to understand why
-> > >
-> > > Could you please elaborate what do you mean by " common + protocol or
-> > > protocol + common, not both please!"?
-> > > The order is same everywhere which is common + lane configuration for
-> > > protocol 1 and then for protocol 2. For multiprotocol case, PHY
-> > > configuration is based on which protocols are operating simultaneously. So
-> > e.g.
-> > > [TYPE_QSGMII][TYPE_PCIE] -> QSGMII configuration when other protocol
-> > > is PCIe Which might be different than [TYPE_QSGMII][TYPE_*] -> QSGMII
-> > > configuration with other protocol.
-> > 
-> > As I said I would like to understand what is the difference b/w
-> > [TYPE_QSGMII][TYPE_PCIE] & [TYPE_PCIE][TYPE_QSGMII] and why?
-> > 
+>     etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6203
 > 
-> This logic is for implementing multi-link PHY configuration.
-> Consider a case for a 4 lane PHY with PCIe using 2 lanes and QSGMII other 2 lanes.
-> Sierra PHY has 2 PLLs, viz. PLLLC and PLLLC1.
-> So in this case, PLLLC is used for PCIe and PLLLC1 is used for QSGMII and
-> PHY will be configured in two steps as described below.
-> 1. For first step, phy_t1 = TYPE_PCIE and phy_t2 = TYPE_QSGMII
->      So we select registers as
->      [TYPE_PCIE][TYPE_QSGMII][ssc]: 
->               This will configure PHY registers associated for *PCIe* (i.e. first protocol)
->               involving PLLLC registers and registers for first 2 lanes of PHY.
-> 2. In second step, the variables phy_t1 and phy_t2 are swapped. So now,
->     phy_t1 = TYPE_QSGMII and phy_t2 = TYPE_PCIE. And we select registers as:
->     [TYPE_QSGMII][TYPE_PCIE][ssc]:
->              This will configure PHY registers associated for *QSGMII* (i.e. second protocol)
->              involving PLLLC1 registers and registers for other 2 lanes of PHY.
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 25 +++++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
 > 
-> This completes the PHY configuration for multilink operation.
-> Above approach enables dividing the large number of PHY register configurations
-> into protocol specific smaller groups.
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> index d8726d0ce326..5b8f8488e362 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> @@ -1117,6 +1117,31 @@ gpmi: nand-controller@33002000 {
+>  			status = "disabled";
+>  		};
 > 
-> Please let me know if it answers your question.
+> +		gpu: gpu@38000000 {
+> +			compatible = "vivante,gc";
+> +			reg = <0x38000000 0x8000>;
+> +			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&clk IMX8MN_CLK_GPU_AHB>,
+> +				<&clk IMX8MN_CLK_GPU_BUS_ROOT>,
+> +				<&clk IMX8MN_CLK_GPU_CORE_ROOT>,
+> +				<&clk IMX8MN_CLK_GPU_SHADER>;
+> +			clock-names = "reg", "bus", "core", "shader";
+> +			assigned-clocks = <&clk IMX8MN_CLK_GPU_CORE>,
+> +					  <&clk IMX8MN_CLK_GPU_SHADER>,
+> +					  <&clk IMX8MN_CLK_GPU_AXI>,
+> +					  <&clk IMX8MN_CLK_GPU_AHB>,
+> +					  <&clk IMX8MN_GPU_PLL>,
+> +					  <&clk IMX8MN_CLK_GPU_CORE>,
+> +					  <&clk IMX8MN_CLK_GPU_SHADER>;
 
-Thanks this helps. Can you please add this useful info in the comments
-for this, that will help folks understanding why it was done like this
+This repeated CORE and SHADER clock looks odd. Wouldn't it be possible
+to avoid this by reordering the assigned-clocks?
 
--- 
-~Vinod
+Regards,
+Lucas
+
+> +			assigned-clock-parents = <&clk IMX8MN_GPU_PLL_OUT>,
+> +						  <&clk IMX8MN_GPU_PLL_OUT>,
+> +						  <&clk IMX8MN_SYS_PLL1_800M>,
+> +						  <&clk IMX8MN_SYS_PLL1_800M>;
+> +			assigned-clock-rates = <0>, <0>, <800000000>, <400000000>, <1200000000>,
+> +				<400000000>, <400000000>;
+> +			power-domains = <&pgc_gpumix>;
+> +		};
+> +
+>  		gic: interrupt-controller@38800000 {
+>  			compatible = "arm,gic-v3";
+>  			reg = <0x38800000 0x10000>,
+> --
+> 2.32.0
+> 
+
+
