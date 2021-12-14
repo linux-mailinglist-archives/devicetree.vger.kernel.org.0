@@ -2,117 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D17834742AC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 13:34:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 057434742BF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 13:38:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231940AbhLNMeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 07:34:12 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:22324 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231737AbhLNMeL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Dec 2021 07:34:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1639485251;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=i9NmLeQ63zbolJJY9i+NPxINNjB3b7pDhuEfJE8U834=;
-        b=FAyNqfFWXXlCJt4ybePSwYmuVsID5869j0TYcfHUTJnYgQHHGruRAxnQjxhpNopGeeOjna
-        fM+wSmBGr5gB6sMwnAzQO5Vpyw7d3y82ckz07bvfw6d2oqCyw/igUec3K3keR1cxDsg58q
-        1MjTGtHfXbikaUPeiRnJIWcsq3/2FzU=
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com
- [209.85.210.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-151-9A2mEvSzNbmr1zFl9i57og-1; Tue, 14 Dec 2021 07:34:10 -0500
-X-MC-Unique: 9A2mEvSzNbmr1zFl9i57og-1
-Received: by mail-pf1-f197.google.com with SMTP id b26-20020aa7951a000000b004a815eb3a3aso11721140pfp.16
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 04:34:10 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i9NmLeQ63zbolJJY9i+NPxINNjB3b7pDhuEfJE8U834=;
-        b=lhIRFMbf0H0iM6SJ5k6hdoNc3FucNa1ettSdjXcZM3c8/Y+EXpXf/nlPpIEp3ldvnm
-         tfqmMsudTK8dpc9X1tF7cldApb6Se/1a2xhNzYBKBNYzAsQglWFkLpl4ldvLHRssahxv
-         Bs6ArabL6isiNGPtSvgIMM5/usoGULmEGarmiiS9k/C//iyBp0DB4BAY2Jce9R3bOheC
-         HGsGnmBpH0EKWNOzvybQzLPruwPvaukUNyMMQJhJr3ZGEgVZ8oQEzeq9EndBQ3M2+beM
-         +ujXtYVAK/JrbHS45NxJjkaEguI2bOPBpmT9rFbdedIuJ5yY/9CGbDQ5rcoKtH6ahOKl
-         Gvzg==
-X-Gm-Message-State: AOAM533eQV0xcwNLXiiYELvXdZOr1UW9KEDH+kTJlNqMg159fYuHNbIp
-        xIMi7IZb24S+mi/r2lIcUltZAgMyMv8wO1qnsdpaDcgHfnbhJuHRwE8Z5GhVL2+5UF841HQjMaO
-        /ES1pL43PWU+g6jEWxFHg3h6mh/puGddqZXVmGg==
-X-Received: by 2002:a17:90b:1648:: with SMTP id il8mr5215116pjb.246.1639485249349;
-        Tue, 14 Dec 2021 04:34:09 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJz5YR0Aa198Pk+lvjUVrHei/CKU1OPDDwxRs0X6Sr1wL0nXnz1E7Z1AY0z+ShuLhaM7+s66tK87q/VZkdu2SUI=
-X-Received: by 2002:a17:90b:1648:: with SMTP id il8mr5215082pjb.246.1639485249101;
- Tue, 14 Dec 2021 04:34:09 -0800 (PST)
+        id S234021AbhLNMip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 07:38:45 -0500
+Received: from szxga01-in.huawei.com ([45.249.212.187]:32918 "EHLO
+        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234015AbhLNMip (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 07:38:45 -0500
+Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.57])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4JCybQ1qB2zcbwK;
+        Tue, 14 Dec 2021 20:38:26 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 14 Dec 2021 20:38:43 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 14 Dec 2021 20:38:42 +0800
+Subject: Re: [PATCH v17 05/10] x86: kdump: move reserve_crashkernel[_low]()
+ into crash_core.c
+To:     Baoquan He <bhe@redhat.com>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
+ <20211210065533.2023-6-thunder.leizhen@huawei.com>
+ <20211214104558.GA28607@MiWiFi-R3L-srv>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <097c6a8c-3b96-19b4-2bb9-bf2dcb4a6109@huawei.com>
+Date:   Tue, 14 Dec 2021 20:38:41 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20211208124045.61815-1-alistair@alistair23.me>
-In-Reply-To: <20211208124045.61815-1-alistair@alistair23.me>
-From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Date:   Tue, 14 Dec 2021 13:33:58 +0100
-Message-ID: <CAO-hwJKtetKFcFiD_gwgLmKoxhMrUsOKeuEacUoqeWx+bcKQ_g@mail.gmail.com>
-Subject: Re: [PATCH v16 0/3] Add Wacom I2C support to rM2
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jiri Kosina <jikos@kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Alistair Francis <alistair23@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
-        Jason Gerecke <Jason.Gerecke@wacom.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Ping Cheng <Ping.Cheng@wacom.com>,
-        DTML <devicetree@vger.kernel.org>, martin.chen@wacom.com,
-        tatsunosuke.tobita@wacom.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211214104558.GA28607@MiWiFi-R3L-srv>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 8, 2021 at 1:40 PM Alistair Francis <alistair@alistair23.me> wrote:
->
-> Add Wacom I2C support for the reMarkable 2 eInk tablet using the
-> generic I2C HID framework.
->
-> v16:
->  - Add commit message to DTS patch
->
-> Alistair Francis (3):
->   HID: quirks: Allow inverting the absolute X/Y values
->   HID: i2c-hid-of: Expose the touchscreen-inverted properties
-
-Given that those 2 patches and the third are independent, I took the
-first 2 ones through the hid tree, branch for-5.17/core.
-
-FWIW, I fixed the few checkpatch warnings before applying them.
-
-Thanks and sorry it took so long to get merged.
-
-I'll let Shawn merge the DT patch.
-
-Cheers,
-Benjamin
 
 
->   ARM: dts: imx7d: remarkable2: add wacom digitizer device
->
->  .../bindings/input/hid-over-i2c.txt           |  2 +
->  arch/arm/boot/dts/imx7d-remarkable2.dts       | 59 +++++++++++++++++++
->  drivers/hid/hid-input.c                       |  6 ++
->  drivers/hid/i2c-hid/i2c-hid-acpi.c            |  2 +-
->  drivers/hid/i2c-hid/i2c-hid-core.c            |  4 +-
->  drivers/hid/i2c-hid/i2c-hid-of-goodix.c       |  2 +-
->  drivers/hid/i2c-hid/i2c-hid-of.c              | 11 +++-
->  drivers/hid/i2c-hid/i2c-hid.h                 |  2 +-
->  include/linux/hid.h                           |  2 +
->  9 files changed, 85 insertions(+), 5 deletions(-)
->
-> --
-> 2.31.1
->
->
+On 2021/12/14 18:45, Baoquan He wrote:
+>> +		/* User specifies base address explicitly. */
+> If you plan to repost, please take above sentence off either. Then we
+> can say this patch is only doing code moving.
+> 
+>> +		unsigned long long start;
+>> +
+> OK, I can see that this patch is only moving code, and introducing
+> CONFIG_ARCH_WANT_RESERVE_CRASH_KERNEL to wrap them appropriately, no
+> extra functionality change added or removed, except of this place.
+> An alignment checking is added for the user specified base address.
+> I love this checking. While I have to say it will be more perfect if
+> it's put in another small patch, that will be look much better from
+> patch splitting and reviewing point of view.
 
+Good eye. I will put it in a new patch.
+
+> 
+> This whole patch looks great to me, thanks for the effort.
+> 
+> 
