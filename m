@@ -2,122 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35DCC474801
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 17:28:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D656474824
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 17:33:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231497AbhLNQ2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 11:28:03 -0500
-Received: from guitar.tcltek.co.il ([84.110.109.230]:39133 "EHLO mx.tkos.co.il"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230258AbhLNQ2C (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Dec 2021 11:28:02 -0500
-Received: from tarshish.tkos.co.il (unknown [10.0.8.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id 7FA4B440F50;
-        Tue, 14 Dec 2021 18:27:59 +0200 (IST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-        s=default; t=1639499279;
-        bh=rHkMOwgOi3SGGouzSwXqrVTyx8BtcP7/HjaYwhPfaF8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZIY5J2w8YHz+T5gS07Uj0U96Ze1mnAiEsLgwaIKwrTrAHY4lZIlMpVfyz6B7RfSlY
-         u1ulwkaJBlFm/fU85iZFT1tv0E7yWMQMuG5ffupWPute0RDAHbLAlx7Mlz2fylCWiG
-         hN6vgRf5GoAN1cg3+epQiCfczm4k5a47DR9RdFdwzniI439+UYAClUkFivNzB2Ux07
-         k72/fc1/4K2CrxlrUYsH0O17mAoCkQnswP4jr2B+7HoLQ55+OKFck90ye/WwHmJ52r
-         qY9bLHQnaZRiVlCGKoy4M/Hzmpc+k4MHYfjGIQ+5Jwj6QlWjlI295or2YclO1YPvOz
-         +5DVQRjb9Psfw==
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Baruch Siach <baruch.siach@siklu.com>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v10 3/3] arm64: dts: ipq6018: add pwm node
-Date:   Tue, 14 Dec 2021 18:27:19 +0200
-Message-Id: <6b48e8845c0df6060feb6eca8eba97a29b577b83.1639499239.git.baruch@tkos.co.il>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <ab2a4c345844f66aa22a847e522b2f4ee0786d8b.1639499239.git.baruch@tkos.co.il>
-References: <ab2a4c345844f66aa22a847e522b2f4ee0786d8b.1639499239.git.baruch@tkos.co.il>
+        id S235979AbhLNQdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 11:33:23 -0500
+Received: from o1.ptr2625.egauge.net ([167.89.112.53]:24014 "EHLO
+        o1.ptr2625.egauge.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235948AbhLNQdW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 11:33:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=egauge.net;
+        h=from:subject:mime-version:to:cc:content-transfer-encoding:
+        content-type;
+        s=sgd; bh=IJV8PusPqPkrxAZlSJxF+oVTe0HORUxFLp6tQeLt1s8=;
+        b=s3fyn9KBdTIQRjnoU6oHuN9EHJOZPk7jwxK3m/1iORFiNy1YlpqSrjkNOnvG0hfb/R/v
+        OPggmibOMhMCxcVpVj3mOB3oC1UXFQDCLUqpIfEZmtzZ6Mej/56+JTeSHcDVOKt83LVbM6
+        6CselkLxP4eutSaFa8+OZV6cG+lTnC2uXnFTc3mfWcLJ/CjuYLE9Bh+lMlQc9VsWu0P/7T
+        6nGC3GhI1m1Yoq8x/5mYO7Z0xZDOj9aS8FyxDKjJwxUVwApocYak53IzX++eo0y7zFPbOD
+        IHnAkcp0nTt9Txtvs/eaYO26D65NVDDMS3+ZqpxYC+bwNke3k55L3PTIJBouYfvA==
+Received: by filterdrecv-64fcb979b9-2mw87 with SMTP id filterdrecv-64fcb979b9-2mw87-1-61B8C750-7D
+        2021-12-14 16:33:20.485721837 +0000 UTC m=+7922123.955850576
+Received: from pearl.egauge.net (unknown)
+        by geopod-ismtpd-5-1 (SG)
+        with ESMTP
+        id fPpvnHkiQ_awP5-wiFek1g
+        Tue, 14 Dec 2021 16:33:20.203 +0000 (UTC)
+Received: by pearl.egauge.net (Postfix, from userid 1000)
+        id 6CF8E700269; Tue, 14 Dec 2021 09:33:19 -0700 (MST)
+From:   David Mosberger-Tang <davidm@egauge.net>
+Subject: [PATCH v4 0/2] Add reset/enable GPIO support to SPI driver
+Date:   Tue, 14 Dec 2021 16:33:20 +0000 (UTC)
+Message-Id: <20211214163315.3769677-1-davidm@egauge.net>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-SG-EID: =?us-ascii?Q?+kMxBqj35EdRUKoy8diX1j4AXmPtd302oan+iXZuF8m2Nw4HRW2irNspffT=2Fkh?=
+ =?us-ascii?Q?ET6RJF6+Prbl0h=2FEtF1rRLvBoQ+OES1vxgY33Go?=
+ =?us-ascii?Q?OnFY7WpVM1MtolvW065rR7eEZ+HpazFWrCv8kL2?=
+ =?us-ascii?Q?2H0L5MCjp=2FpTmAxLGBlfG=2F2YY0CGd1b=2Fq9RCr69?=
+ =?us-ascii?Q?U55qcILpZJ3HuqdcXxFTWa04xd9uLCIOwoA=2F=2FH=2F?=
+ =?us-ascii?Q?DU2aW+Xz8KJFhOEnJqPgL8EAwRzWWkgjkLNvNCa?=
+ =?us-ascii?Q?814V0in3Tw9Bl0M6wbgqA=3D=3D?=
+To:     Ajay Singh <ajay.kathat@microchip.com>
+Cc:     Adham Abozaeid <adham.abozaeid@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        David Mosberger-Tang <davidm@egauge.net>
+X-Entity-ID: Xg4JGAcGrJFIz2kDG9eoaQ==
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Baruch Siach <baruch.siach@siklu.com>
+I made a mistake last night when checking whether gpiod_set_value() is
+safe to call with a NULL gpiod descriptor (it is).  v4 of the patch
+just fixes that mistake.  It does simplify the code nicely.
 
-Describe the PWM block on IPQ6018.
+This version also fixes the error handling when the reset gpio is
+missing.
 
-The PWM is in the TCSR area. Make &tcsr "simple-mfd" compatible, and add
-&pwm as child of &tcsr.
+David Mosberger-Tang (2):
+  wilc1000: Add reset/enable GPIO support to SPI driver
+  wilc1000: Document enable-gpios and reset-gpios properties
 
-Add also ipq6018 specific compatible string.
+ .../net/wireless/microchip,wilc1000.yaml      | 17 ++++++
+ drivers/net/wireless/microchip/wilc1000/spi.c | 58 ++++++++++++++++++-
+ .../net/wireless/microchip/wilc1000/wlan.c    |  2 +-
+ 3 files changed, 73 insertions(+), 4 deletions(-)
 
-Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
----
-v9:
-
-  Add 'ranges' property (Rob)
-
-v8:
-
-  Add size cell to 'reg' (Rob)
-
-v7:
-
-  Use 'reg' instead of 'offset' (Rob)
-
-  Add qcom,tcsr-ipq6018 (Rob)
-
-  Drop clock-names (Bjorn)
-
-v6:
-
-  Make the PWM node child of TCSR (Rob Herring)
-
-  Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
-
-v5: Use qcom,pwm-regs for TCSR phandle instead of direct regs
-
-v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
----
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 933b56103a46..6a22bb5f42f4 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -258,8 +258,21 @@ tcsr_mutex_regs: syscon@1905000 {
- 		};
- 
- 		tcsr: syscon@1937000 {
--			compatible = "syscon";
-+			compatible = "qcom,tcsr-ipq6018", "syscon", "simple-mfd";
- 			reg = <0x0 0x01937000 0x0 0x21000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x0 0x01937000 0x21000>;
-+
-+			pwm: pwm@a010 {
-+				compatible = "qcom,ipq6018-pwm";
-+				reg = <0xa010 0x20>;
-+				clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+				assigned-clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+				assigned-clock-rates = <100000000>;
-+				#pwm-cells = <2>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		blsp_dma: dma-controller@7884000 {
 -- 
-2.33.0
+2.25.1
 
