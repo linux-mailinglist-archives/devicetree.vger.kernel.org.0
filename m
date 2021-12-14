@@ -2,76 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 439A347433B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 14:15:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A89C8474366
+	for <lists+devicetree@lfdr.de>; Tue, 14 Dec 2021 14:26:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234281AbhLNNPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 08:15:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43270 "EHLO
+        id S234360AbhLNNZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 08:25:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231987AbhLNNPA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 08:15:00 -0500
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF39C061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 05:14:59 -0800 (PST)
-Received: by mail-io1-xd2a.google.com with SMTP id k21so23927111ioh.4
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 05:14:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=2HxIz6DuaZA4FS1avOrmpzcWgWf7jWJKcN0NsQ3ek1E=;
-        b=OJIvdOsy7d2FZZAOJSqsIqJVuZobj4DAu3ToXtPzFyO8fRzLMrHCO+fxPtWJP8ptHl
-         YHV2q9qHmvUpBecWr2jhUvV2TUEKtr1XyMq0hwJHq9xGiwPd7qzYfv+PB+ioqE9ovQW8
-         pXr2iNZltsOYqSV+yQrcMokwsZo/hxtfn4qpxUuY4mVPo3ZyG/a4Arl3IQSZ/HEtK8fW
-         sF41cbMSbg3Q61e0BlnNPGph7TYwnVTw5Bo1FL/ZsDgwfv/W+AQPZ4hsUycit/fLEdGm
-         5AaL6Y92t2wkxIbNbajtknLSgE3lW3UeMdBeno79Gev8iWl3WBbzMOg85Ah5nA9udwdy
-         EPSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=2HxIz6DuaZA4FS1avOrmpzcWgWf7jWJKcN0NsQ3ek1E=;
-        b=WUc3cdWFcybf8Mac9E9ie773djbb9Ac3uTIgSMkCgy8C+5xK3KyPlBzKtcntVXykVO
-         HgJBAHfDgrSRF61pTvWmoWUzHfEI9CbJvG8KkeqQgzoR8suz+OWZIDlcK+g+vDgzO7qx
-         ikpoBsl3HNt6xFr8/nhf/GhJRi/R07UrsicJrr6E/yotQ4rWawvNbLKrKAMtQWEEsKzd
-         7kOMNOLfgEnH8gOOHTXzM2ge9fzCNX3gid9CK1dtVIqoS5n+B1OANldHJQlRZzzME6z9
-         9Hlx/oAB+4xB5Yy1Mb5tjSObi9sI2qbxGICEz6zym+SzxwBq72aXvU+3DkvIIkzMbCDd
-         LQ+w==
-X-Gm-Message-State: AOAM5328ZLsVk5rr4J2rVNgrEeH3Td09BVnkm6D1HaA6MQ4MsCR2AF4m
-        kUcRJul3Tc5XQUrvPjE7o26xmb9dROWvAz/3T3Y=
-X-Google-Smtp-Source: ABdhPJws+MBc+jkZCZLaQW+yyJH2aIS0DxlLIPrTgL7VHSeUXXg7MgEUiIDRQvLUf6u+9Zg6xxszD0BoLk9nEGxTpXM=
-X-Received: by 2002:a02:6a19:: with SMTP id l25mr2683467jac.568.1639487699156;
- Tue, 14 Dec 2021 05:14:59 -0800 (PST)
+        with ESMTP id S234388AbhLNNZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 08:25:35 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A1F1C061748;
+        Tue, 14 Dec 2021 05:25:34 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 54B08B819AC;
+        Tue, 14 Dec 2021 13:25:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35CA2C34605;
+        Tue, 14 Dec 2021 13:25:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639488332;
+        bh=+FyMOj1y47J0jKkiU7/fNkq+8RT+GijdYH8HXwKy9UM=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=K3hKjq/Upt25FBJ1BBPN71lKZHUzxMW0Bev6LE+t+EG5KTwVqghwvEGBNBAkFF6fu
+         aCMPYWhrpje5mTlIkIAmzVIrF9sf9it3U93yklsiUiPjY0bp4NWTcruukG1QluXtk5
+         oE4wJcA5wvcxnKADPHis9WBgJH9B8+tT0e2NqiR0H+o9ycsXDiEsRmfemwtKog49uZ
+         u/KQTIhumt8czyKtdsKzBKr/VFXXsS40vepyYSC6CffeziPmW628Sh6BWd5Q26OgYG
+         ETeqJATzGFnBJMlV+E2UvFWVEUKCVoQPmTVDMUbEKz/qfTfYK9JLRDX463/DUSVSrF
+         r1pAREIfnrQ8w==
+From:   Mark Brown <broonie@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        alsa-devel@alsa-project.org
+In-Reply-To: <20211202145505.58852-1-stephan@gerhold.net>
+References: <20211202145505.58852-1-stephan@gerhold.net>
+Subject: Re: [PATCH 0/5] ASoC: qcom: apq8016_sbc: Allow routing audio through QDSP6
+Message-Id: <163948832993.2865729.5795229789612585528.b4-ty@kernel.org>
+Date:   Tue, 14 Dec 2021 13:25:29 +0000
 MIME-Version: 1.0
-Received: by 2002:a5d:9149:0:0:0:0:0 with HTTP; Tue, 14 Dec 2021 05:14:58
- -0800 (PST)
-Reply-To: mrsfatuzankara@gmail.com
-From:   MRS FATU ZANKARA <ahmedibram88@gmail.com>
-Date:   Tue, 14 Dec 2021 14:14:58 +0100
-Message-ID: <CAOTb7pHbtA=1AeB9VyRS7znj+um0uSSwkgNXdnMiSpa2YvecnA@mail.gmail.com>
-Subject: GREETINGS FROM MRS FATU ZANKARA
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I am Mrs  Fatu Zankara a banker in United Bank for Africa Burkina Faso West
-Africa, Please i want to transfer an abandoned sum of 10.5millions
-USD to your account.50% will be for you and 50% for me.
+On Thu, 2 Dec 2021 15:55:00 +0100, Stephan Gerhold wrote:
+> This series makes it possible to route audio through the combined
+> audio/modem DSP on MSM8916/APQ8016 devices instead of bypassing it using
+> the LPASS drivers. This is necessary to support certain functionality such
+> as voice call audio. See PATCH 4/5 for details.
+> 
+> Also, qcom,apq8016-sbc.txt is converted to DT schema by adding it to the
+> existing qcom,sm8250.yaml. The bindings are similar enough that it is easier
+> to share a single schema instead of duplicating everything into multiple ones.
+> 
+> [...]
 
-No risk involved. Contact me for more details along with your personal
-information needed below.
+Applied to
 
-1. Full name:.........
-2. Current Address:.........
-3. Phone.............
-4. Occupation:.............
-5. Age:............
-6. Country:........
-7. Sex........
-8. Your Passport or ID card or Driving License
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Thanks.
+Thanks!
 
-Mrs.Fatu Zankara
+[1/5] ASoC: dt-bindings: qcom: sm8250: Drop redundant MultiMedia routes
+      commit: c55676ec292e0ff83261eb61efaf99a91079a3b8
+[2/5] ASoC: dt-bindings: qcom: sm8250: Document "aux-devs"
+      commit: 1875ae76f82c5c9acd7b7f44bd9226fbcbe858b7
+[3/5] ASoC: dt-bindings: qcom: apq8016-sbc: Move to qcom,sm8250 DT schema
+      commit: b7875d88bf70100d2fe0dc08072018f994ccd6c4
+[4/5] ASoC: dt-bindings: qcom: Document qcom,msm8916-qdsp6-sndcard compatible
+      commit: 38192dc36f1fe1615b7a12cc78b9354d6b4ba8b7
+[5/5] ASoC: qcom: apq8016_sbc: Allow routing audio through QDSP6
+      commit: 190357e1e09f271566e91fcd108c161f7e25a253
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
