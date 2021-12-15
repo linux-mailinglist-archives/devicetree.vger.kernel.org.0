@@ -2,119 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31971475E2B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 18:05:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DDD9475E32
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 18:08:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245140AbhLORFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 12:05:53 -0500
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:41917 "EHLO
-        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S245123AbhLORFx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Dec 2021 12:05:53 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id A35EC3200E18;
-        Wed, 15 Dec 2021 12:05:51 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Wed, 15 Dec 2021 12:05:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=OhgIRedfGWAx9cJ8qYxsz4LKwjC
-        8GH8ThcJrbFThvzY=; b=ELptAK2glnmrEX/tlDCjsMGjva3Wo5hvNBMpqSxyIyK
-        vIZ4Qe1hmZDhBiy/RJ2wrimEkMBC3F7C6cvc9nGrfWR7/yTYwIA5aV8h4rPmBTiU
-        e++82RpaNl1bmqthgZSUcUXY+ZAfFgGktbyHii0NGwg+kWt4V9E1Pcn6kf3sQcgT
-        5CyY0HHReDvVX+m9KA/+nQ85AT+h+2lUA6zd9S1oj/iwn8EZZOCm4Rk2203ZkEkI
-        7SdM1kb/l7zayIuEu5UW8RcxU7twtFXDCnl0+/084FC6sD4CpC3g7boAxSiSHEuL
-        Z2/bvA5Js0SowNRWrzAix82ycIyUwCdBZ5Bh5Kja3Wg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=OhgIRe
-        dfGWAx9cJ8qYxsz4LKwjC8GH8ThcJrbFThvzY=; b=aFV/ERaJbKJz0ym2JVR2XS
-        8VJS+ayBjo9LdZF5Jt6pAl8hMEEdQyrkUOwDJPyxzn24NKJ2MoT++MQtGCRe91Ys
-        /lcjm+YG+BokWHZ2h8eL7iSNjnVNGZcFntmcp1v9x7qkANMoIXKdIxruRoeRO6Tc
-        ZEPZPHMmYnhYB2XSbb+TcFtb38MFIRWkNiX2Y8ErRzBanNW0F3jXD4ajKMpQr1j+
-        BchR04euDyxvvvKJgaF8f74dIZX8K9SJ41/TXLonGbTSsDn+fyXga/fTxGw6Le+w
-        k2eRpdcFiEtjWX/HVUt+57SfC6xv8ChZGvLGJyReDtMne+EoDn7ksGmCbG1mFhHg
-        ==
-X-ME-Sender: <xms:bSC6Yesq8s7EioXwCp0KqwA0tPgFfD3P5crdNtG-Kvi6gHuop0KnFg>
-    <xme:bSC6YTeERVKpjw4vpFmo0bOiORtEln9gY1b_QDw9On2KBsr8p0a_Mhc_JHJCccN0n
-    J52Kq3K4MM8eiHAKxE>
-X-ME-Received: <xmr:bSC6YZwNdwjhPTn9hA5o9sT2JT2-SIsNw0gq09TFVc_lsRyplI3urRAwQyzFJXVVNkCzQuOuoBfT6P8OmBMkqbRomabrpWtn>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrledvgdeljecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenfg
-    hrlhcuvffnffculdefhedmnecujfgurhepfffhvffukfhfgggtuggjsehgtderredttddv
-    necuhfhrohhmpefrrghtrhhitghkucghihhllhhirghmshcuoehprghtrhhitghksehsth
-    iftgigrdighiiiqeenucggtffrrghtthgvrhhnpeegheehfeffgeekveehtdfhgfduhfeg
-    fefgtdehhfektdelffevkefgueffhedtieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehprghtrhhitghksehsthiftgigrdighiii
-X-ME-Proxy: <xmx:bSC6YZNfnqlPaLfE0WJfreOdy721wA_ZhJXA1VYCebz_rNO7K2K4Yw>
-    <xmx:bSC6Ye-HFFRdWLeqxtGKVARSXlKRnp_EArDzQx2vWgWbJ2QACm71Aw>
-    <xmx:bSC6YRU3GVJQI04enPJ1HBtw_PXDcza37gmmr-Cnet_8s8JhEuJ6sQ>
-    <xmx:byC6YVksty5ECBsl70hlQCRTxc5aYVMD_5AkFuU4eBTbJnpOdF4w9g>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 15 Dec 2021 12:05:49 -0500 (EST)
-Date:   Wed, 15 Dec 2021 11:05:47 -0600
-From:   Patrick Williams <patrick@stwcx.xyz>
-To:     Lei YU <yulei.sh@bytedance.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Joel Stanley <joel@jms.id.au>,
-        openbmc <openbmc@lists.ozlabs.org>, linux-aspeed@lists.ozlabs.org
-Subject: Re: [PATCH] ARM: dts: Add openbmc-flash-layout-64-alt.dtsi
-Message-ID: <Yboga8RUoYrXoPB1@heinlein>
-References: <20211210093443.2140557-1-yulei.sh@bytedance.com>
+        id S245155AbhLORHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 12:07:45 -0500
+Received: from smtp1.axis.com ([195.60.68.17]:54893 "EHLO smtp1.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235069AbhLORHp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 12:07:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1639588065;
+  x=1671124065;
+  h=date:from:to:cc:subject:message-id:mime-version;
+  bh=E5x5Fh3kAPl1d8ha//eW/GWflI0/Y717alolefM8qg0=;
+  b=WwBIWadweNKDy918oztpyOn3PK2lR2/beJGoV59e5bNwAn7zhhaVqM3O
+   fPE9P0hEWVUv5KDIUQ98WYTweTTSJSynmNTCdsn/CadxlVXulwLYkPAUX
+   LS3hlWN4A7T6FDtRkIHl38PtpUGL1pvu1YuGGwijZh9C4BHYZvmCKEk46
+   /rZwwGvIgDS1ZK9urIbzDRGe5jupW/uw3caRJYX5rQdH58R0gO9FE068j
+   ZSH1dsOB4BeohLhCx9nw8bQM4C+krU2c0bAGoTiDWw8L9jPHk8pn//faR
+   7lvoszyDKir7w8sg/B1AQwY6wJAcMzDgG8pl55G3kfcwYQyIy7pW3n0LD
+   w==;
+Date:   Wed, 15 Dec 2021 18:07:37 +0100
+From:   Ricard Wanderlof <ricardw@axis.com>
+X-X-Sender: ricardw@lap5cg0092dnk.se.axis.com
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        alsa-devel <alsa-devel@alsa-project.org>
+Subject: [RESEND, PATCH v7 1/2] dt-bindings: sound: tlv320adc3xxx: New codec
+ driver
+Message-ID: <alpine.DEB.2.21.2112151806100.27889@lap5cg0092dnk.se.axis.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="tdFx5lleV3FJ2Qwx"
-Content-Disposition: inline
-In-Reply-To: <20211210093443.2140557-1-yulei.sh@bytedance.com>
+Content-Type: text/plain; charset="US-ASCII"
+X-Originating-IP: [10.0.5.60]
+X-ClientProxiedBy: se-mail03w.axis.com (10.20.40.9) To se-mail07w.axis.com
+ (10.20.40.13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---tdFx5lleV3FJ2Qwx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+DT bindings for Texas Instruments TLV320ADC3001 and TLV320ADC3101
+audio ADCs.
 
-On Fri, Dec 10, 2021 at 05:34:43PM +0800, Lei YU wrote:
-> Add openbmc-flash-layout-64-alt.dtsi to describe the partitions of the
-> secondary flash for OpenBMC's 64M static layout.
-> The layout is the same as openbmc-flash-layout-64.dtsi and the labels
-> are prepended with "alt-" for the partitions.
->=20
-> Signed-off-by: Lei YU <yulei.sh@bytedance.com>
-> ---
->  .../boot/dts/openbmc-flash-layout-64-alt.dtsi | 35 +++++++++++++++++++
->  1 file changed, 35 insertions(+)
->  create mode 100644 arch/arm/boot/dts/openbmc-flash-layout-64-alt.dtsi
->=20
+Signed-off-by: Ricard Wanderlof <ricardw@axis.com>
+---
+ .../bindings/sound/ti,tlv320adc3xxx.yaml      | 137 ++++++++++++++++++
+ include/dt-bindings/sound/tlv320adc3xxx.h     |  28 ++++
+ 2 files changed, 165 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
+ create mode 100644 include/dt-bindings/sound/tlv320adc3xxx.h
 
-Reviewed-by: Patrick Williams <patrick@stwcx.xyz>
+diff --git a/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml b/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
+new file mode 100644
+index 000000000000..83936f594d1a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
+@@ -0,0 +1,137 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,tlv320adc3xxx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments TLV320ADC3001/TLV320ADC3101 Stereo ADC
++
++maintainers:
++  - Ricard Wanderlof <ricardw@axis.com>
++
++description: |
++  Texas Instruments TLV320ADC3001 and TLV320ADC3101 Stereo ADC
++  https://www.ti.com/product/TLV320ADC3001
++  https://www.ti.com/product/TLV320ADC3101
++
++properties:
++  compatible:
++    enum:
++      - ti,tlv320adc3001
++      - ti,tlv320adc3101
++
++  reg:
++    maxItems: 1
++    description: I2C address
++
++  '#sound-dai-cells':
++    const: 0
++
++  '#gpio-cells':
++    const: 2
++
++  gpio-controller: true
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO pin used for codec reset (RESET pin)
++
++  clocks:
++    maxItems: 1
++    description: Master clock (MCLK)
++
++  ti,dmdin-gpio1:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # ADC3XXX_GPIO_DISABLED       - I/O buffers powered down and not used
++      - 1 # ADC3XXX_GPIO_INPUT          - Various non-GPIO input functions
++      - 2 # ADC3XXX_GPIO_GPI            - General purpose input
++      - 3 # ADC3XXX_GPIO_GPO            - General purpose output
++      - 4 # ADC3XXX_GPIO_CLKOUT         - Clock source set in CLKOUT_MUX reg
++      - 5 # ADC3XXX_GPIO_INT1           - INT1 output
++      - 6 # ADC3XXX_GPIO_SECONDARY_BCLK - Codec interface secondary BCLK
++      - 7 # ADC3XXX_GPIO_SECONDARY_WCLK - Codec interface secondary WCLK
++    default: 0
++    description: |
++      Configuration for DMDIN/GPIO1 pin.
++
++      When ADC3XXX_GPIO_GPO is configured, this causes corresponding the
++      ALSA control "GPIOx Output" to appear, as a switch control.
++
++  ti,dmclk-gpio2:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # ADC3XXX_GPIO_DISABLED       - I/O buffers powered down and not used
++      - 1 # ADC3XXX_GPIO_INPUT          - Various non-GPIO input functions
++      - 2 # ADC3XXX_GPIO_GPI            - General purpose input
++      - 3 # ADC3XXX_GPIO_GPO            - General purpose output
++      - 4 # ADC3XXX_GPIO_CLKOUT         - Clock source set in CLKOUT_MUX reg
++      - 5 # ADC3XXX_GPIO_INT1           - INT1 output
++      - 6 # ADC3XXX_GPIO_SECONDARY_BCLK - Codec interface secondary BCLK
++      - 7 # ADC3XXX_GPIO_SECONDARY_WCLK - Codec interface secondary WCLK
++    default: 0
++    description: |
++      Configuration for DMCLK/GPIO2 pin.
++
++      When ADC3XXX_GPIO_GPO is configured, this causes corresponding the
++      ALSA control "GPIOx Output" to appear, as a switch control.
++
++      Note that there is currently no support for reading the GPIO pins as
++      inputs.
++
++  ti,micbias1-vg:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # ADC3XXX_MICBIAS_OFF		- Mic bias is powered down
++      - 1 # ADC3XXX_MICBIAS_2_0V	- Mic bias is set to 2.0V
++      - 2 # ADC3XXX_MICBIAS_2_5V	- Mic bias is set to 2.5V
++      - 3 # ADC3XXX_MICBIAS_AVDD	- Mic bias is same as AVDD supply
++    default: 0
++    description: |
++      Mic bias voltage output on MICBIAS1 pin
++
++  ti,micbias2-vg:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # ADC3XXX_MICBIAS_OFF		- Mic bias is powered down
++      - 1 # ADC3XXX_MICBIAS_2_0V	- Mic bias is set to 2.0V
++      - 2 # ADC3XXX_MICBIAS_2_5V	- Mic bias is set to 2.5V
++      - 3 # ADC3XXX_MICBIAS_AVDD	- Mic bias is same as AVDD supply
++    default: 0
++    description: |
++      Mic bias voltage output on MICBIAS2 pin
++
++required:
++  - compatible
++  - reg
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/sound/tlv320adc3xxx.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        tlv320adc3101: audio-codec@18 {
++            compatible = "ti,tlv320adc3101";
++            reg = <0x18>;
++            reset-gpios = <&gpio_pc 3 GPIO_ACTIVE_LOW>;
++            clocks = <&audio_mclk>;
++            gpio-controller;
++            #gpio-cells = <2>;
++            ti,dmdin-gpio1 = <ADC3XXX_GPIO_GPO>;
++            ti,micbias1-vg = <ADC3XXX_MICBIAS_AVDD>;
++        };
++    };
++
++    audio_mclk: clock {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <24576000>;
++    };
++...
+diff --git a/include/dt-bindings/sound/tlv320adc3xxx.h b/include/dt-bindings/sound/tlv320adc3xxx.h
+new file mode 100644
+index 000000000000..ec988439da20
+--- /dev/null
++++ b/include/dt-bindings/sound/tlv320adc3xxx.h
+@@ -0,0 +1,28 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Devicetree bindings definitions for tlv320adc3xxx driver.
++ *
++ * Copyright (C) 2021 Axis Communications AB
++ */
++#ifndef __DT_TLV320ADC3XXX_H
++#define __DT_TLV320ADC3XXX_H
++
++#define ADC3XXX_GPIO_DISABLED		0 /* I/O buffers powered down */
++#define ADC3XXX_GPIO_INPUT		1 /* Various non-GPIO inputs */
++#define ADC3XXX_GPIO_GPI		2 /* General purpose input */
++#define ADC3XXX_GPIO_GPO		3 /* General purpose output */
++#define ADC3XXX_GPIO_CLKOUT		4 /* Source set in reg. CLKOUT_MUX */
++#define ADC3XXX_GPIO_INT1		5 /* INT1 output */
++#define ADC3XXX_GPIO_INT2		6 /* INT2 output */
++/* value 7 is reserved */
++#define ADC3XXX_GPIO_SECONDARY_BCLK	8 /* Codec interface secondary BCLK */
++#define ADC3XXX_GPIO_SECONDARY_WCLK	9 /* Codec interface secondary WCLK */
++#define ADC3XXX_GPIO_ADC_MOD_CLK	10 /* Clock output for digital mics */
++/* values 11-15 reserved */
++
++#define ADC3XXX_MICBIAS_OFF		0 /* Micbias pin powered off */
++#define ADC3XXX_MICBIAS_2_0V		1 /* Micbias pin set to 2.0V */
++#define ADC3XXX_MICBIAS_2_5V		2 /* Micbias pin set to 2.5V */
++#define ADC3XXX_MICBIAS_AVDD		3 /* Use AVDD voltage for micbias pin */
++
++#endif /* __DT_TLV320ADC3XXX_H */
+-- 
+2.20.1
 
---=20
-Patrick Williams
 
---tdFx5lleV3FJ2Qwx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmG6IGoACgkQqwNHzC0A
-wRmv4w/8C2hlmVW4VqsCt3oOE0NH7hh6aIlVIu7ju7PJosc9kAwljgt2be3ojI+3
-+eUOGw8kkf2xv73lOf4RJWL6vQGE6R+AW6Ar1BLSxpdFkY65PVuUjq0ynnu+ezwk
-W4fWFkJeFcGWEYs7ATqUfpQCSMywJtBESx4QgAyhYuY3G6EA0n7xfE38Kvgn27Sr
-hi73qdg2bKnUi/yITm4c7PNmdYRKgZ1cgHIL8RgiCgDExn+OGaIPVJYxwDkKfMqL
-NkriP6duCP/5LTEo9Esct/5/6LJRwLaQUuA+D+wcf0MP9e2Arja/kLeaWmeEbMFY
-YqjxzQ5bnNb+5g4cTE+D4+RqRNGaeJoEbns9Bs4dUdK/Il1quovhxeRKNeDs8Lnc
-3RT5o6Os+5XZe+4x5GnyxzHw4p6Dbbt0feDI84dv4IQ1Vr9J83yONzxjXXkyH82X
-YKiPWxLHevLByHBzYo5FEEPKC5ePMrp/chgMEPlEOXh5zzaVm6FcG20MEeA9lCHs
-878M5+UROY/+8gfx37D4JzhsjZ6FDjLi3fURJbpBuxMxFFbIQgc+lS8C+SlFlW4L
-H/4puGQ7TvF84JYPnwvvBMHPJHZsrHMLO7+yrsQZuAS9gjFurtsTT21jkIVo/bZf
-jwBVxAPiNWaI2Af4J6xdMHhBsi+aV8871pR5OqlSQdd/6jvKFNY=
-=N7Xs
------END PGP SIGNATURE-----
-
---tdFx5lleV3FJ2Qwx--
+-- 
+Ricard Wolf Wanderlof                           ricardw(at)axis.com
+Axis Communications AB, Lund, Sweden            www.axis.com
+Phone +46 46 272 2016                           Fax +46 46 13 61 30
