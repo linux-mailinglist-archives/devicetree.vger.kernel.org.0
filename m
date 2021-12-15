@@ -2,49 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 035364756EA
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:51:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BC6F4756F7
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:55:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236745AbhLOKva (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 05:51:30 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:47174 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241790AbhLOKv3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:51:29 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8689F6187F;
-        Wed, 15 Dec 2021 10:51:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71583C34605;
-        Wed, 15 Dec 2021 10:51:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1639565489;
-        bh=QmWJDFoNTU+yMq2ahW3avilQ/lkEV4Lp+jaFKGdMnww=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ecQXa5MuQ0ug8XWyQhPk2zFLSynYNTb4U6teBzWSW/u9m3BhsXEdDDpWXJSppMDpH
-         79r6hcxahRzn+QQ6P47u0Gr7k0iTy+Ld2REpigAiEZtTT+jPifEfSdIKxLGFTLsqnf
-         E72tawt4feUIGCKaPLWAWdj1rFV4uInnhBg2had4=
-Date:   Wed, 15 Dec 2021 11:51:26 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Dejia Shang <dejia.shang@armchina.com>
-Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        toby.shang@armchina.com
-Subject: Re: [PATCH 4/4] MAINTAINERS: add maintainer info. for Zhouyi NPU
-Message-ID: <YbnIrvCi0uoJAfpB@kroah.com>
-References: <20211215103609.9268-1-dejia.shang@armchina.com>
- <20211215103609.9268-5-dejia.shang@armchina.com>
+        id S241808AbhLOKzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 05:55:04 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:56290 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236099AbhLOKzE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 05:55:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=gv9eywbYzCFEDkiPM7dgAEuRO3TyH6NHy6r2zf5+uvY=; b=gw
+        JFVADgfeEtv9qzzva6hX8Tp6vLQnzpMCO8MU5UM+MEXZmcdGn8Vogpu/A5Kt5vBeGA+Wz1GAapeQZ
+        tvqRFwNzJKh5XVX8X0Koj2y4OyA8T/yHKBxVEeiZUWuMLo5rIz3ZOKKtLjWNZNkCHezKodpyOwez0
+        sfepRoSO8dCSeoc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mxRw4-00GdUB-Qh; Wed, 15 Dec 2021 11:55:00 +0100
+Date:   Wed, 15 Dec 2021 11:55:00 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Holger Brunck <holger.brunck@hitachienergy.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Subject: Re: [PATCH devicetree 2/2] dt-bindings: phy: Add
+ `tx-amplitude-microvolt` property binding
+Message-ID: <YbnJhI2Z3lwC3vF9@lunn.ch>
+References: <20211214233432.22580-1-kabel@kernel.org>
+ <20211214233432.22580-3-kabel@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211215103609.9268-5-dejia.shang@armchina.com>
+In-Reply-To: <20211214233432.22580-3-kabel@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 15, 2021 at 06:36:09PM +0800, Dejia Shang wrote:
-> IMPORTANT NOTICE: The contents of this email and any attachments may be privileged and confidential. If you are not the intended recipient, please delete the email immediately. It is strictly prohibited to disclose the contents to any other person, use it for any purpose, or store or copy the information in any medium. Thank you. ©Arm Technology (China) Co., Ltd copyright and reserve all rights. 重要提示：本邮件（包括任何附件）可能含有专供明确的个人或目的使用的机密信息，并受法律保护。如果您并非该收件人，请立即删除此邮件。严禁通过任何渠道，以任何目的，向任何人披露、储存或复制邮件信息或者据此采取任何行动。感谢您的配合。 ©安谋科技（中国）有限公司 版权所有并保留一切权利。
+On Wed, Dec 15, 2021 at 12:34:32AM +0100, Marek Beh�n wrote:
+> Common PHYs often have the possibility to specify peak-to-peak voltage
+> on the differential pair - the default voltage sometimes needs to be
+> changed for a particular board.
 
-Now deleted.
+Hi Marek
+
+Common PHYs are not the only user of this. Ethernet PHYs can also use
+it, as well as SERDESes embedded within Ethernet switches.
+
+That is why i suggested these properties go into something like
+serdes.yaml. That can then be included into Common PHY, Ethernet PHYs,
+switch drivers etc.
+
+Please could you make such a split?
+
+       Andrew
