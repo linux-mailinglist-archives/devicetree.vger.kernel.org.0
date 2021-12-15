@@ -2,78 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4357747606B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 19:14:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D709476098
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 19:21:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238578AbhLOSNf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 13:13:35 -0500
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:35504 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233548AbhLOSNe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 13:13:34 -0500
-Received: by mail-oi1-f171.google.com with SMTP id m6so32839580oim.2;
-        Wed, 15 Dec 2021 10:13:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QYXeLlUge5kWadStv+xy1z0qxrMUQckim4UiyaF3H9w=;
-        b=DE821Qpl6RzDKZJUUCrlaPCtzZDWKzhw4HC+iXHpmJCY+qWZjsMitGY8aL34JjBML3
-         oDiCHgoy3iqD6sxhFOYFwr8FgqGxwZY+KGeLSrb3t/HxgSKkasEvwAHRty5cEly69DSK
-         sVQsDb+OXZZGvRb5ZKkDcLJAPS45cI2DSNKgWBGmzdrCe2YEugJcCMh0TPpDZyaouA6/
-         QWGIgqF1O4R+WdW88dbyR0YwO+JrRcfYaX61590E67sNBMlS228YXYygkXAJyhhkLgZ3
-         mIEFsK6lr6GuUKvDM0hR4rH8H9SKjHVj0a1WSgKsPzhYY99tfPFhF6xp4s71Ij9VVdCO
-         rkQg==
-X-Gm-Message-State: AOAM530pxGRbooIacaI3AzCyM4jrGvEXb2fofmEV/f8dvPdfZESkx9uR
-        dN8BMDhUQjSELsQy5xvrZA==
-X-Google-Smtp-Source: ABdhPJyeDmJ5GtJnT2SfDSuZynvTltn3u2d6Q/4j730jaIKXdVo7Sz79RRb3aIJ57xkxqu7f+GZEsA==
-X-Received: by 2002:aca:2b09:: with SMTP id i9mr1011793oik.14.1639592013919;
-        Wed, 15 Dec 2021 10:13:33 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bq5sm487462oib.55.2021.12.15.10.13.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 10:13:33 -0800 (PST)
-Received: (nullmailer pid 1580321 invoked by uid 1000);
-        Wed, 15 Dec 2021 18:13:32 -0000
-Date:   Wed, 15 Dec 2021 12:13:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Loic Poulain <loic.poulain@linaro.org>
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, shawn.guo@linaro.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: clock: Add qualcomm QCM2290 DISPCC
- bindings
-Message-ID: <YbowTM/LyLSX7d7c@robh.at.kernel.org>
-References: <1639058951-12660-1-git-send-email-loic.poulain@linaro.org>
- <1639058951-12660-2-git-send-email-loic.poulain@linaro.org>
+        id S1343674AbhLOSUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 13:20:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343731AbhLOSU1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 13:20:27 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E133C06173F
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 10:20:27 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mxYt6-0003bp-Qa; Wed, 15 Dec 2021 19:20:24 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mxYt5-004iJ4-Ot; Wed, 15 Dec 2021 19:20:23 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mxYt4-0002Lk-0F; Wed, 15 Dec 2021 19:20:22 +0100
+Date:   Wed, 15 Dec 2021 19:20:18 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org,
+        Olivier MOYSAN <olivier.moysan@foss.st.com>,
+        linux-stm32@st-md-mailman.stormreply.com, kernel@pengutronix.de
+Subject: Re: [PATCH] ARM: dts: stm32: Add timer interrupts
+Message-ID: <20211215182018.2ro7vt2qbgpbjzk5@pengutronix.de>
+References: <20211215152535.41200-1-u.kleine-koenig@pengutronix.de>
+ <4ecadf77-0fa7-80eb-7f1f-0404a236ce58@foss.st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="opvr7lggvvkkqvsp"
 Content-Disposition: inline
-In-Reply-To: <1639058951-12660-2-git-send-email-loic.poulain@linaro.org>
+In-Reply-To: <4ecadf77-0fa7-80eb-7f1f-0404a236ce58@foss.st.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 09, 2021 at 03:09:11PM +0100, Loic Poulain wrote:
-> Add device tree bindings for display clock controller on QCM2290 SoCs.
-> 
-> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-> ---
->  v2: no change
-> 
->  .../bindings/clock/qcom,qcm2290-dispcc.yaml        | 87 ++++++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.yaml
-> new file mode 100644
-> index 00000000..44d5ce7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,qcm2290-dispcc.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
 
-This and the header should be dual licensed. Not necessarily the same 
-ones. The header should match Qcom dts files.
+--opvr7lggvvkkqvsp
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+Hello Fabrice,
+
+On Wed, Dec 15, 2021 at 06:43:06PM +0100, Fabrice Gasnier wrote:
+> On 12/15/21 4:25 PM, Uwe Kleine-K=F6nig wrote:
+> >  .../bindings/mfd/st,stm32-timers.yaml         | 13 +++++++
+> >  arch/arm/boot/dts/stm32mp151.dtsi             | 34 +++++++++++++++++++
+> >  2 files changed, 47 insertions(+)
+
+> Could you split dt-bindings into a separate patch ?
+
+sure. I considered that before sending, but wasn't sure it's worth these
+two little changes.
+
+> I'm a bit curious... I don't see driver update here, to use the timer
+> interrupts from the MFD, or child drivers.
+> Do you have particular use case in mind ?
+
+My usecase is the compare-capture functionality. The eventual goal is to
+measure the frequency of rising edges on an input.
+
+The current situation is that there is already a custom driver for the
+i.MX25 SoC, the short-term goal is to replicate it's functionality on
+stm32mp1. The long-term goal is to create a counter driver for both.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--opvr7lggvvkkqvsp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmG6Md8ACgkQwfwUeK3K
+7AnN2gf/eCc8QIpUSnk3BE8640RpZPn+wN6Pyj8xi8INwOIOb5Owm1qyUfvoCfjG
+20cu1ie53TJ3z0766QtkUAW6jIKyPcSDaskI+/tfaLIFcvmHXK7rrLQqxJw5i8My
+OhpYvevX/fbUqVDAM1Z9VpJ6OEOrAA7aa8SguZ/Q7ModVaWewQDcC9fRZ5s/KzUm
+G8oun/OJzHGyvbQIMQ1h1ff4KV28w32kFuju3lTf87VzKhTjG3IOj6K0ftlR5iWd
+LgvVMnrqQYn6Ln/9V4omM8o+U6NUlxiDFTOmAAuqpldxLpku2OgD3t4C7+i06uU+
+CCNyBTWvMUkdDPZGQBURpD4l+3+jIw==
+=xGlQ
+-----END PGP SIGNATURE-----
+
+--opvr7lggvvkkqvsp--
