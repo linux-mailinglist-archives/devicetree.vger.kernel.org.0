@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7705347505A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 02:15:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FA4C47505D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 02:15:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233756AbhLOBN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 20:13:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40284 "EHLO
+        id S234407AbhLOBO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 20:14:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231258AbhLOBN0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 20:13:26 -0500
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73AFEC06173E
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 17:13:26 -0800 (PST)
-Received: by mail-ot1-x332.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so22935140otg.4
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 17:13:26 -0800 (PST)
+        with ESMTP id S233867AbhLOBO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 20:14:57 -0500
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB018C061574
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 17:14:56 -0800 (PST)
+Received: by mail-ot1-x336.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso22923804otf.12
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 17:14:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=lbRR0F/43b8/gyB2hjn6VY9EQ0CQtAXhBmCsvvSUlJo=;
-        b=MlUABH6Dnqea2ga1h5EQESO6FYLC9eKZRITXXzuvO5lC/TjdVzmHSRxTetWmrq/kfq
-         F0iRqJj+wS390viJa/nAMVaQU6O9zOhdJ44os+7P7iiSKGSndRXMgTURDuWFeHHZuhsk
-         985E8fOmg34oJRU0I0CUtbk5N731pSUrlQ7Oc=
+        bh=rvS5Q7EKe3K7SH+q/7TxnRZ4mk0oTjNYj4sraDpnvVQ=;
+        b=CZT3IbRiD2MvCjx0qHT4sTFKxwsdrGCCCpkAXj0IeJItopkMNKPboAQvR1EQQcqZ5j
+         q31acvqoKbiz8GrnFtbfxuvYrVuM9+ICcoBMwTEeXwF/pydYvqxDIggpRuKyRd1m+WML
+         x0F1YEeVVnwQdWO0wWm9zBFc+Re6m0nRqrsas=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=lbRR0F/43b8/gyB2hjn6VY9EQ0CQtAXhBmCsvvSUlJo=;
-        b=SZuJtryJbFobHfUiJ0xLu13FJtsfDZiq1HIgKL4vNLSOJCWvb9kJydFDRvyAYRiWjq
-         SBqz0KRULnx6JX3R9IpXpDbFPr8kK/SOf4a1m0QtQdESW/HBsMKQy6HDHurTPJNCcSl4
-         H/xmWNdnqVDi8gvd8hflffCW9gCNmTJMkAK5apv/HRSKRbQg43G3RkZ7AG+/7MioHmsS
-         e9g7O7qcSLVbBHAuOq+swiq+cXww6kxagU9dNIsCm5Oe2LMd4Sr+UEWT+CMqrMyAS4p9
-         a8RYtomqQjqW1scBkkGAh94qA7SB3NZQPbpcj2SMcgtuRp5rzl3dg/RiTWl9ZHYdx7Tq
-         bThg==
-X-Gm-Message-State: AOAM5309T5AvHFqhp7RkndzK1vj4mZGoA1ieFOZZEr4Lntrya4WbCaEq
-        nU1L1LpMrCgiRPl3dtNnIBIy2tYce2IZORzFgcwWpZpF0Go=
-X-Google-Smtp-Source: ABdhPJz3V5bn/6ygn+RCFzKoAu5fyFXF1a/nE8aUoJZMq4skSgN0D1EzER+QrC+Y5kVlg2ZApeBpbNr8cXlMToJO1G8=
-X-Received: by 2002:a9d:2243:: with SMTP id o61mr6934950ota.126.1639530805844;
- Tue, 14 Dec 2021 17:13:25 -0800 (PST)
+        bh=rvS5Q7EKe3K7SH+q/7TxnRZ4mk0oTjNYj4sraDpnvVQ=;
+        b=d3cv5NPGlgqttnywxd4HOW86vv/80TxgaQITa8gIYup9/Irip0t4oNHiOH8FUGmneO
+         yRCiE8NB1WIKCVO5w6xjq+NnO4ULFo+ziszHbKm0VSAUpy4g1PpR694X61f9DQHWYUAP
+         z6//qI+HjP8zQ+rulRC4xqeI7NRjEZ+FYCwjKRoXAmOwwAFxsGT0EpU3rpiHuSd1bO9n
+         HPYA8OvyEJNj21Iky+sU68TfrdPP1QiJeWEO8dEy046pAZ5ngYZsqz3Kyma3QUkJwsR0
+         F1qhTqfcosT5JX1lL6Ce4o+p1ozwDfeF+p4IGbY49seIbm3buWMZLC+/W6ElSQ3Sd7u5
+         lefw==
+X-Gm-Message-State: AOAM533j/NPe4jxchPhFmPURFFeY4vGk9AhAg21NdehZFRAWRrm7ubyq
+        NuBkvhpv+rIQTMW3hwp25DbILdpKH9TXWPu4WS9+vw==
+X-Google-Smtp-Source: ABdhPJx7028jYOaNEpoZd0AS4FVdT4oIZk9aqcqUNRaJv/zvWQG/ilJjZkmBI+4nrhRf7mZashH1c5tb3sRIANYvwDQ=
+X-Received: by 2002:a05:6830:30b7:: with SMTP id g23mr6767021ots.159.1639530896121;
+ Tue, 14 Dec 2021 17:14:56 -0800 (PST)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 15 Dec 2021 02:13:25 +0100
+ HTTPREST; Wed, 15 Dec 2021 02:14:55 +0100
 MIME-Version: 1.0
-In-Reply-To: <20211210192328.2844060-6-gwendal@chromium.org>
-References: <20211210192328.2844060-1-gwendal@chromium.org> <20211210192328.2844060-6-gwendal@chromium.org>
+In-Reply-To: <20211213024057.3824985-3-gwendal@chromium.org>
+References: <20211213024057.3824985-1-gwendal@chromium.org> <20211213024057.3824985-3-gwendal@chromium.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Wed, 15 Dec 2021 02:13:25 +0100
-Message-ID: <CAE-0n51VSmRNiNeU09ygGmWfyg2F8DN4ujf9gUv4c3QRsmdLHA@mail.gmail.com>
-Subject: Re: [PATCH v7 5/5] iio: sx9324: Add dt_binding support
+Date:   Wed, 15 Dec 2021 02:14:55 +0100
+Message-ID: <CAE-0n52s8wH7NmfBSBkN_90cAH_=VyUmMg5jN6XGKEbUj_167Q@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] iio: proximity: Add sx9360 support
 To:     Gwendal Grignou <gwendal@chromium.org>, jic23@kernel.org,
         lars@metafoo.de, robh+dt@kernel.org
 Cc:     andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
@@ -59,62 +59,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Gwendal Grignou (2021-12-10 11:23:28)
-> Based on bindings/iio/proximity/semtech,sx9324.yaml, implement
-> retrieving sensor hardware property and alter default values.
+Quoting Gwendal Grignou (2021-12-12 18:40:55)
+> A simplified version of SX9324, it only have one pin and
+> 2 phases (aka channels).
+> Only one event is presented.
 >
 > Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
+> ---
 
 Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-
-> diff --git a/drivers/iio/proximity/sx9324.c b/drivers/iio/proximity/sx9324.c
-> index ed7ac30e1915d5..78a173aeccf5ac 100644
-> --- a/drivers/iio/proximity/sx9324.c
-> +++ b/drivers/iio/proximity/sx9324.c
-> @@ -77,6 +77,7 @@
->  #define SX9324_REG_PROX_CTRL0          0x30
->  #define SX9324_REG_PROX_CTRL0_GAIN_MASK        GENMASK(5, 3)
->  #define SX9324_REG_PROX_CTRL0_GAIN_1           0x80
-> +#define SX9324_REG_PROX_CTRL0_RAWFILT_MASK     GENMASK(2, 0)
->  #define SX9324_REG_PROX_CTRL0_RAWFILT_1P50     0x01
->  #define SX9324_REG_PROX_CTRL1          0x31
->  #define SX9324_REG_PROX_CTRL2          0x32
-> @@ -753,6 +754,74 @@ static int sx9324_write_raw(struct iio_dev *indio_dev,
->         return -EINVAL;
->  }
->
-> +static const struct sx_common_reg_default sx9324_default_regs[] = {
-> +       { SX9324_REG_IRQ_MSK, 0x00 },
-> +       { SX9324_REG_IRQ_CFG0, 0x00 },
-> +       { SX9324_REG_IRQ_CFG1, SX9324_REG_IRQ_CFG1_FAILCOND },
-> +       { SX9324_REG_IRQ_CFG2, 0x00 },
-> +       { SX9324_REG_GNRL_CTRL0, SX9324_REG_GNRL_CTRL0_SCANPERIOD_100MS },
-> +       /*
-> +        * The lower 4 bits should not be set as it enable sensors measurements.
-> +        * Turning the detection on before the configuration values are set to
-> +        * good values can cause the device to return erroneous readings.
-> +        */
-> +       { SX9324_REG_GNRL_CTRL1, SX9324_REG_GNRL_CTRL1_PAUSECTRL },
-> +
-> +       { SX9324_REG_AFE_CTRL0, 0x00 },
-> +       { SX9324_REG_AFE_CTRL3, 0x00 },
-> +       { SX9324_REG_AFE_CTRL4, SX9324_REG_AFE_CTRL4_FREQ_83_33HZ |
-> +               SX9324_REG_AFE_CTRL4_RES_100 },
-> +       { SX9324_REG_AFE_CTRL6, 0x00 },
-> +       { SX9324_REG_AFE_CTRL7, SX9324_REG_AFE_CTRL4_FREQ_83_33HZ |
-> +               SX9324_REG_AFE_CTRL4_RES_100 },
-> +
-> +       /* TODO(gwendal): PHx use chip default or all grounded? */
-> +       { SX9324_REG_AFE_PH0, 0x29 },
-[...]
-> +       { SX9324_REG_ADV_CTRL11, 0x00 },
-> +       { SX9324_REG_ADV_CTRL12, 0x00 },
-> +       /* TODO(gwendal): SAR currenly disabled */
-
-s/currenly/currently/
-
-Is there a plan to resolve these todos? Or should they simply be
-removed and then we can deal with the defaults?
-
-> +       { SX9324_REG_ADV_CTRL13, 0x00 },
-> +       { SX9324_REG_ADV_CTRL14, 0x00 },
