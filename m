@@ -2,116 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53D47475101
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 03:38:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8681475116
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 03:53:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232884AbhLOCiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 21:38:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58956 "EHLO
+        id S239389AbhLOCxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 21:53:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbhLOCiE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 21:38:04 -0500
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7898FC061574;
-        Tue, 14 Dec 2021 18:38:04 -0800 (PST)
-Received: by mail-qv1-xf29.google.com with SMTP id kj6so3773292qvb.2;
-        Tue, 14 Dec 2021 18:38:04 -0800 (PST)
+        with ESMTP id S239380AbhLOCxw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 21:53:52 -0500
+Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 416C2C061401
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 18:53:52 -0800 (PST)
+Received: by mail-il1-x135.google.com with SMTP id x15so7290762ilc.5
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 18:53:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aRX4KSRpkz951cRNgWC/Zh6A7MKhtf470MiyyCfCPkI=;
-        b=Aw5+XL1niZL3nXdAL/I7GcxjTpxFQNxAMs/SaM//1TxjPaLqyEmzI86of++OTCC2di
-         //uGkroUBdUnD8N28TNsF0aMjaT6vf5DUKbx+O9yjoPlwlXOsPGZvmPPoYw1Z110ZKe4
-         NJ8PffooJa+YJf6r7EFQo5T6jDyAZPsjOobNI=
+        d=egauge.net; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :organization:user-agent:mime-version:content-transfer-encoding;
+        bh=JNO9HQcOsTQ+/F9tSokn+P//npmreQ8s7nXWJHfyG24=;
+        b=CuQG5eSOTY/tUfMP0an7paoYzjHJVEIbnHZwcTjDFrJZ0TJ12mOP9DxIfYEGjAY+UB
+         F7B0mYZ8jabh435YjXvzj6LZna23yjj3ktCG7S4RsDFQ//EuInPcwzBtky6+4NdAkZ/U
+         vEC5IpxdrLlr0B+eqvAZx/IHJOh3MA7tFin51XwWARWieWTDjKflAhAHyPtYh0mIATQ0
+         3WnOpopnrwqHcEjY75YWIM4XnwU0EDDp8+4D2Io0ZmZLOHLQYZhdkdGOF5Er05ZV3HQa
+         8ZPQG75yQx0PhGWbLwY7XBi2BPJU2/PiAXDepQauzIwtvJxKJrydN5LqYVy2dz0f72Aj
+         3MDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aRX4KSRpkz951cRNgWC/Zh6A7MKhtf470MiyyCfCPkI=;
-        b=5uKhFIsvh8ycHKVpC8wmyUQAz20A8l+qm+TPOv02APB+tG/aZA90Q6NzwOwECsDkpH
-         YWW5wKx8Dhk83+Sp5j+EJv+6OE38ooJVTyR0h/WFLqT3On204PwI3Y5ql/ZTrRbAEsEe
-         OKSvK19+YP16vKOSg0XAWlDkoifp2IREjpzP48bpufA8mb9TTaHnxDjcK3c11l9N6/UB
-         ZmsKe2ZIVV7H6Aq04YbZRegWF36gg1gwbN7u3805SUn4tyCCIEl23fwl88Ns9+4+IUmR
-         lJkS5VZug4t41RkSv78XiiSkAh0nPzuSZRq3GErwGxRNacLk+3gX5kDnJlaBRxX3VcH2
-         AxcA==
-X-Gm-Message-State: AOAM533sGVjCKWFuiKl0plCqTc62M3dz3dZjt4noz25W4MmHgxsGE3yZ
-        nSyeCTeGcbexCjdhrrpJT0lif1TDBjPnzuAleto=
-X-Google-Smtp-Source: ABdhPJyP/ptvKFOl4YsddVGK/L0Uh4+0SODOSdyOLoVHED3p2Oq0B1XjTAVlANjOepUgQhwo5JDycFvXJNddiBttYAU=
-X-Received: by 2002:a05:6214:2b0b:: with SMTP id jx11mr6103354qvb.130.1639535883329;
- Tue, 14 Dec 2021 18:38:03 -0800 (PST)
-MIME-Version: 1.0
-References: <20211210145430.3707463-4-gsomlo@gmail.com> <YbYhaAmHsSnLFlZ2@errol.ini.cmu.edu>
-In-Reply-To: <YbYhaAmHsSnLFlZ2@errol.ini.cmu.edu>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 15 Dec 2021 02:37:51 +0000
-Message-ID: <CACPK8XdP2Zcv4=psoFZGK+pQC514m2wri15vGZS=hWreOWoqTQ@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] mmc: Add driver for LiteX's LiteSDCard interface
-To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        Kamil Rakoczy <krakoczy@antmicro.com>,
-        mdudek@internships.antmicro.com,
-        Paul Mackerras <paulus@ozlabs.org>,
-        Stafford Horne <shorne@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        david.abdurachmanov@sifive.com,
-        Florent Kermarrec <florent@enjoy-digital.fr>,
-        Randy Dunlap <rdunlap@infradead.org>
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:organization:user-agent:mime-version
+         :content-transfer-encoding;
+        bh=JNO9HQcOsTQ+/F9tSokn+P//npmreQ8s7nXWJHfyG24=;
+        b=1gNXt87sE/GyLXTvPMCGnjiy5AcIp++rH0Zux/9C0X+or48htnJaCJsaChkAsWITR0
+         yrTC3OTwlOsbP6lyLyDgtwj8L4zvsUfW7rjepipNhC+EUXBFN3YvaWZVcYbiXWzYBXfz
+         a5rJgVtgTj0elympxX9qA0TG47CUF3k5PBFyxmWsYg2Fu4pcFfEOb0l4WF0kV2GDqxGn
+         DnhcMXDVyKKOSOA1WRWbaufIjAf/9Fv+wDgEtN2r95UKAvj1x2aJbVWbU5g+OPrHEsOL
+         zWD3VMFJKTCDNg8B4Y5r6Wbj4dZwQwzE3ceOx0bM93A0x1rt5GzM8aK0InyJf0etd153
+         RhFw==
+X-Gm-Message-State: AOAM531X6jokarSVjK/zPfdqOLv4DXs7mA59v7HWKzHhVe1jIToUgeYn
+        Ktkaiz58upwTG8s5jRo4gDVJ
+X-Google-Smtp-Source: ABdhPJxLGSeS/jppKnX2n6TOk9j0USm9m1EGq0mFiKyRnVAqy2C4LTg9ZxO23/COdOBgXqD0ktwj+A==
+X-Received: by 2002:a92:b708:: with SMTP id k8mr5613023ili.181.1639536831145;
+        Tue, 14 Dec 2021 18:53:51 -0800 (PST)
+Received: from ?IPv6:2601:281:8300:4e0:2ba9:697d:eeec:13b? ([2601:281:8300:4e0:2ba9:697d:eeec:13b])
+        by smtp.gmail.com with ESMTPSA id g20sm456762iov.35.2021.12.14.18.53.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Dec 2021 18:53:50 -0800 (PST)
+Message-ID: <4a571870f8d95432e53fcce7bcb34e2b41632aef.camel@egauge.net>
+Subject: Re: [PATCH v4 2/2] wilc1000: Document enable-gpios and reset-gpios
+ properties
+From:   David Mosberger-Tang <davidm@egauge.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Kalle Valo <kvalo@codeaurora.org>, netdev <netdev@vger.kernel.org>,
+        Adham Abozaeid <adham.abozaeid@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Ajay Singh <ajay.kathat@microchip.com>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>
+Date:   Tue, 14 Dec 2021 19:53:42 -0700
+In-Reply-To: <CAL_JsqLFyaAvTGQJc0GjYbXwyhpmfpRm3_rkGopD8cz6-ZX5zw@mail.gmail.com>
+References: <20211214163315.3769677-1-davidm@egauge.net>
+         <20211214163315.3769677-3-davidm@egauge.net>
+         <1639512290.330041.3819896.nullmailer@robh.at.kernel.org>
+         <e88e908e720172d8571d48bd1ebdab3617534f73.camel@egauge.net>
+         <CAL_JsqLFyaAvTGQJc0GjYbXwyhpmfpRm3_rkGopD8cz6-ZX5zw@mail.gmail.com>
+Organization: eGauge Systems LLC
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5-0ubuntu1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 12 Dec 2021 at 16:21, Gabriel L. Somlo <gsomlo@gmail.com> wrote:
->
-> Hi Joel,
->
-> On Fri, Dec 10, 2021 at 09:54:30AM -0500, Gabriel Somlo wrote:
-> > LiteX (https://github.com/enjoy-digital/litex) is a SoC framework
-> > that targets FPGAs. LiteSDCard is a small footprint, configurable
-> > SDCard core commonly used in LiteX designs.
-> >
-> > The driver was first written in May 2020 and has been maintained
-> > cooperatively by the LiteX community. Thanks to all contributors!
-> >
-> > Co-developed-by: Kamil Rakoczy <krakoczy@antmicro.com>
-> > Signed-off-by: Kamil Rakoczy <krakoczy@antmicro.com>
-> > Co-developed-by: Maciej Dudek <mdudek@internships.antmicro.com>
-> > Signed-off-by: Maciej Dudek <mdudek@internships.antmicro.com>
-> > Co-developed-by: Paul Mackerras <paulus@ozlabs.org>
-> > Signed-off-by: Paul Mackerras <paulus@ozlabs.org>
-> > Signed-off-by: Gabriel Somlo <gsomlo@gmail.com>
+On Tue, 2021-12-14 at 17:54 -0600, Rob Herring wrote:
+> On Tue, Dec 14, 2021 at 5:30 PM David Mosberger-Tang <davidm@egauge.net> wrote:
+> > On Tue, 2021-12-14 at 14:04 -0600, Rob Herring wrote:
+> > > 
+> > > dtschema/dtc warnings/errors:
+> > > Error: Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.example.dts:30.37-38 syntax error
+> > > FATAL ERROR: Unable to parse input tree
+> > > make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.example.dt.yaml] Error 1
+> > > make[1]: *** Waiting for unfinished jobs....
+> > > make: *** [Makefile:1413: dt_binding_check] Error 2
+> > 
+> > So this error appears due to GPIO_ACTIVE_HIGH and GPIO_ACTIVE_LOW in these
+> > lines:
+> > 
+> >         enable-gpios = <&pioA 5 GPIO_ACTIVE_HIGH>;
+> >         reset-gpios = <&pioA 6 GPIO_ACTIVE_LOW>;
+> > 
+> > I can replace those with 0 and 1 respectively, but I doubt a lot of people would
+> > recognize what those integers standard for.  Is there a better way to get this
+> > to pass?
+> 
+> Include the header(s) you use in the example.
 
+Huh, that works, thanks!
 
-> > diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-> > index 5af8494c31b5..c1b66d06d1c9 100644
-> > --- a/drivers/mmc/host/Kconfig
-> > +++ b/drivers/mmc/host/Kconfig
-> > @@ -1093,3 +1093,12 @@ config MMC_OWL
-> >
-> >  config MMC_SDHCI_EXTERNAL_DMA
-> >       bool
-> > +
-> > +config MMC_LITEX
-> > +     tristate "LiteX MMC Host Controller support"
->
-> I remembered I still owe you an answer on whether this was ever
-> successfully tested as a module: The answer is *yes* -- if configured
-> as a loadable module, it loads OK with modprobe, works fine, and can
-> be unloaded (with `modprobe -r`) and re-loaded indefinitely.
+  --david
 
-Very good.
-
-Thanks for following up on the suggestions I made.
-
-Reviewed-by: Joel Stanley <joel@jms.id.au>
-
-Cheers,
-
-Joel
