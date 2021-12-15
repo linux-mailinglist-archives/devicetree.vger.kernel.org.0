@@ -2,155 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25B634750E3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 03:17:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53D47475101
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 03:38:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239204AbhLOCRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 21:17:11 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:56252 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S239210AbhLOCRH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 21:17:07 -0500
-X-UUID: 9ffd97b65ba94c309ba3bb81a80fe5d6-20211215
-X-UUID: 9ffd97b65ba94c309ba3bb81a80fe5d6-20211215
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <biao.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2102345648; Wed, 15 Dec 2021 10:17:01 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 15 Dec 2021 10:17:00 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkcas10.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Wed, 15 Dec 2021 10:16:58 +0800
-From:   Biao Huang <biao.huang@mediatek.com>
-To:     <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>,
-        <angelogioacchino.delregno@collabora.com>, <dkirjanov@suse.de>
-Subject: [PATCH net-next v9 6/6] net: dt-bindings: dwmac: add support for mt8195
-Date:   Wed, 15 Dec 2021 10:16:52 +0800
-Message-ID: <20211215021652.7270-7-biao.huang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211215021652.7270-1-biao.huang@mediatek.com>
-References: <20211215021652.7270-1-biao.huang@mediatek.com>
+        id S232884AbhLOCiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 21:38:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58956 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229492AbhLOCiE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 21:38:04 -0500
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7898FC061574;
+        Tue, 14 Dec 2021 18:38:04 -0800 (PST)
+Received: by mail-qv1-xf29.google.com with SMTP id kj6so3773292qvb.2;
+        Tue, 14 Dec 2021 18:38:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=aRX4KSRpkz951cRNgWC/Zh6A7MKhtf470MiyyCfCPkI=;
+        b=Aw5+XL1niZL3nXdAL/I7GcxjTpxFQNxAMs/SaM//1TxjPaLqyEmzI86of++OTCC2di
+         //uGkroUBdUnD8N28TNsF0aMjaT6vf5DUKbx+O9yjoPlwlXOsPGZvmPPoYw1Z110ZKe4
+         NJ8PffooJa+YJf6r7EFQo5T6jDyAZPsjOobNI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aRX4KSRpkz951cRNgWC/Zh6A7MKhtf470MiyyCfCPkI=;
+        b=5uKhFIsvh8ycHKVpC8wmyUQAz20A8l+qm+TPOv02APB+tG/aZA90Q6NzwOwECsDkpH
+         YWW5wKx8Dhk83+Sp5j+EJv+6OE38ooJVTyR0h/WFLqT3On204PwI3Y5ql/ZTrRbAEsEe
+         OKSvK19+YP16vKOSg0XAWlDkoifp2IREjpzP48bpufA8mb9TTaHnxDjcK3c11l9N6/UB
+         ZmsKe2ZIVV7H6Aq04YbZRegWF36gg1gwbN7u3805SUn4tyCCIEl23fwl88Ns9+4+IUmR
+         lJkS5VZug4t41RkSv78XiiSkAh0nPzuSZRq3GErwGxRNacLk+3gX5kDnJlaBRxX3VcH2
+         AxcA==
+X-Gm-Message-State: AOAM533sGVjCKWFuiKl0plCqTc62M3dz3dZjt4noz25W4MmHgxsGE3yZ
+        nSyeCTeGcbexCjdhrrpJT0lif1TDBjPnzuAleto=
+X-Google-Smtp-Source: ABdhPJyP/ptvKFOl4YsddVGK/L0Uh4+0SODOSdyOLoVHED3p2Oq0B1XjTAVlANjOepUgQhwo5JDycFvXJNddiBttYAU=
+X-Received: by 2002:a05:6214:2b0b:: with SMTP id jx11mr6103354qvb.130.1639535883329;
+ Tue, 14 Dec 2021 18:38:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+References: <20211210145430.3707463-4-gsomlo@gmail.com> <YbYhaAmHsSnLFlZ2@errol.ini.cmu.edu>
+In-Reply-To: <YbYhaAmHsSnLFlZ2@errol.ini.cmu.edu>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 15 Dec 2021 02:37:51 +0000
+Message-ID: <CACPK8XdP2Zcv4=psoFZGK+pQC514m2wri15vGZS=hWreOWoqTQ@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Kamil Rakoczy <krakoczy@antmicro.com>,
+        mdudek@internships.antmicro.com,
+        Paul Mackerras <paulus@ozlabs.org>,
+        Stafford Horne <shorne@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        david.abdurachmanov@sifive.com,
+        Florent Kermarrec <florent@enjoy-digital.fr>,
+        Randy Dunlap <rdunlap@infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding document for the ethernet on mt8195.
+On Sun, 12 Dec 2021 at 16:21, Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+>
+> Hi Joel,
+>
+> On Fri, Dec 10, 2021 at 09:54:30AM -0500, Gabriel Somlo wrote:
+> > LiteX (https://github.com/enjoy-digital/litex) is a SoC framework
+> > that targets FPGAs. LiteSDCard is a small footprint, configurable
+> > SDCard core commonly used in LiteX designs.
+> >
+> > The driver was first written in May 2020 and has been maintained
+> > cooperatively by the LiteX community. Thanks to all contributors!
+> >
+> > Co-developed-by: Kamil Rakoczy <krakoczy@antmicro.com>
+> > Signed-off-by: Kamil Rakoczy <krakoczy@antmicro.com>
+> > Co-developed-by: Maciej Dudek <mdudek@internships.antmicro.com>
+> > Signed-off-by: Maciej Dudek <mdudek@internships.antmicro.com>
+> > Co-developed-by: Paul Mackerras <paulus@ozlabs.org>
+> > Signed-off-by: Paul Mackerras <paulus@ozlabs.org>
+> > Signed-off-by: Gabriel Somlo <gsomlo@gmail.com>
 
-Signed-off-by: Biao Huang <biao.huang@mediatek.com>
----
- .../bindings/net/mediatek-dwmac.yaml          | 42 ++++++++++++++-----
- 1 file changed, 32 insertions(+), 10 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-index 8ad6e19661b8..44d55146def4 100644
---- a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-@@ -19,6 +19,7 @@ select:
-       contains:
-         enum:
-           - mediatek,mt2712-gmac
-+          - mediatek,mt8195-gmac
-   required:
-     - compatible
- 
-@@ -27,26 +28,37 @@ allOf:
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - mediatek,mt2712-gmac
--      - const: snps,dwmac-4.20a
-+    oneOf:
-+      - items:
-+          - enum:
-+              - mediatek,mt2712-gmac
-+          - const: snps,dwmac-4.20a
-+      - items:
-+          - enum:
-+              - mediatek,mt8195-gmac
-+          - const: snps,dwmac-5.10a
- 
-   clocks:
-+    minItems: 5
-     items:
-       - description: AXI clock
-       - description: APB clock
-       - description: MAC Main clock
-       - description: PTP clock
-       - description: RMII reference clock provided by MAC
-+      - description: MAC clock gate
- 
-   clock-names:
--    items:
--      - const: axi
--      - const: apb
--      - const: mac_main
--      - const: ptp_ref
--      - const: rmii_internal
-+    minItems: 5
-+    maxItems: 6
-+    contains:
-+      enum:
-+        - axi
-+        - apb
-+        - mac_main
-+        - ptp_ref
-+        - rmii_internal
-+        - mac_cg
- 
-   mediatek,pericfg:
-     $ref: /schemas/types.yaml#/definitions/phandle
-@@ -61,6 +73,8 @@ properties:
-       or will round down. Range 0~31*170.
-       For MT2712 RMII/MII interface, Allowed value need to be a multiple of 550,
-       or will round down. Range 0~31*550.
-+      For MT8195 RGMII/RMII/MII interface, Allowed value need to be a multiple of 290,
-+      or will round down. Range 0~31*290.
- 
-   mediatek,rx-delay-ps:
-     description:
-@@ -69,6 +83,8 @@ properties:
-       or will round down. Range 0~31*170.
-       For MT2712 RMII/MII interface, Allowed value need to be a multiple of 550,
-       or will round down. Range 0~31*550.
-+      For MT8195 RGMII/RMII/MII interface, Allowed value need to be a multiple
-+      of 290, or will round down. Range 0~31*290.
- 
-   mediatek,rmii-rxc:
-     type: boolean
-@@ -102,6 +118,12 @@ properties:
-       3. the inside clock, which be sent to MAC, will be inversed in RMII case when
-          the reference clock is from MAC.
- 
-+  mediatek,mac-wol:
-+    type: boolean
-+    description:
-+      If present, indicates that MAC supports WOL(Wake-On-LAN), and MAC WOL will be enabled.
-+      Otherwise, PHY WOL is perferred.
-+
- required:
-   - compatible
-   - reg
--- 
-2.25.1
+> > diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> > index 5af8494c31b5..c1b66d06d1c9 100644
+> > --- a/drivers/mmc/host/Kconfig
+> > +++ b/drivers/mmc/host/Kconfig
+> > @@ -1093,3 +1093,12 @@ config MMC_OWL
+> >
+> >  config MMC_SDHCI_EXTERNAL_DMA
+> >       bool
+> > +
+> > +config MMC_LITEX
+> > +     tristate "LiteX MMC Host Controller support"
+>
+> I remembered I still owe you an answer on whether this was ever
+> successfully tested as a module: The answer is *yes* -- if configured
+> as a loadable module, it loads OK with modprobe, works fine, and can
+> be unloaded (with `modprobe -r`) and re-loaded indefinitely.
 
+Very good.
+
+Thanks for following up on the suggestions I made.
+
+Reviewed-by: Joel Stanley <joel@jms.id.au>
+
+Cheers,
+
+Joel
