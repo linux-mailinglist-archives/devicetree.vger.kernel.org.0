@@ -2,67 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B48C44762A4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:08:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 623024762AB
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:09:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234462AbhLOUIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 15:08:32 -0500
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:36566 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234378AbhLOUIb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:08:31 -0500
-Received: by mail-ot1-f49.google.com with SMTP id w6-20020a9d77c6000000b0055e804fa524so26309508otl.3;
-        Wed, 15 Dec 2021 12:08:31 -0800 (PST)
+        id S234483AbhLOUJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 15:09:06 -0500
+Received: from mail-oo1-f41.google.com ([209.85.161.41]:38407 "EHLO
+        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234378AbhLOUJF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:09:05 -0500
+Received: by mail-oo1-f41.google.com with SMTP id w15-20020a4a9d0f000000b002c5cfa80e84so6246072ooj.5;
+        Wed, 15 Dec 2021 12:09:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8fYA1Lh38/WtqP2VbO7QAawqRgbA2M/ZaUNoa7bm4S8=;
-        b=JSOgeWTbZNwxf35H6yC+ukb9zs/tmEsETdacLdgXz9w23f4H8OWSBcxIcyDIQozlsH
-         GIwuA3KgxlpPQl+HSMtEhwvMPwNdDArtSv9Q1sOVo52ZpIpkqV56a4Dt9/ozS/k1Uqv4
-         T61FekXKaYiAhp+L+LhWIYu6dH71cZ4CxGNmmQ9OR/jw/rXCLrSE8ft8wd3s3ZmReYpa
-         yjY2jcZBkaD+FNb9dYXG+eilQJbLeNVHpFgeJKO1WS+m9A2EimEXl8gCNrPiTSLcKS/D
-         450rlqqTLrGCNwTG227K1tLaVZF/a8uKKlk+iZ+Gqr/hUyipJalbRYYsNA/bcXlPUQJJ
-         yyow==
-X-Gm-Message-State: AOAM531eBf5F/40UnFpQbTEi9lptPsGOl+G8lVH84iCU6kezAI81/sGT
-        faMF+yZGOnakLZLaDiwEEw==
-X-Google-Smtp-Source: ABdhPJxu2+JZYL10Nng91GC/KkeqIeZYh6QkukuE9k+tvIFOEQ0EQb15j4uGRfHz78Zbk1XpAG0+JQ==
-X-Received: by 2002:a05:6830:2681:: with SMTP id l1mr10022636otu.378.1639598911231;
-        Wed, 15 Dec 2021 12:08:31 -0800 (PST)
+        bh=yJpJ0ljbGWntpa5UwL50FK9KD8X/vANdlV/FONVM9ds=;
+        b=s5znhuRaos7E2Clv7t0WPydLevkiZro6grGakWWksagVszVSq4gWAU3tMORTq7sp7X
+         jTjnYaFEWx2cYjKP7EVKyxavocTs1mVyCeWBJY91CKLgfHgftppCYjUKCNLU0jeJjpm4
+         YW3Rx4efDj16hdYSBaKb8xkjlXlI/jg87VkVLTFYCJq4f9aUNjFJjonkrOsfbjfb9wpa
+         jfB2oT1Z592s3Fuh6LNMC/kRdZbSmvtGQzwuUoJix/oB/dyEE1CGGekFDyfm8BADEc3N
+         6GiFj5cQ/6FwuKic9OPUrCnb2umOCUT9f7ZuGZpBu7NMyG3Eg3zH3odb35pvZskLZ3xT
+         cJnQ==
+X-Gm-Message-State: AOAM5306zY8IlJbkMs3e1Q28zT7gWeo4twAYACDzrD7PkJbKim/kT4aQ
+        D9hBYsZmrde9wB6QMWknXQ==
+X-Google-Smtp-Source: ABdhPJypLiLChB+k3nUOy2G12jHepV/leXslIqzeyY6CoofbDkLv89dy6aKtACQZUBQ88KagLqRONQ==
+X-Received: by 2002:a4a:a641:: with SMTP id j1mr8696199oom.63.1639598945005;
+        Wed, 15 Dec 2021 12:09:05 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x13sm618790oof.19.2021.12.15.12.08.30
+        by smtp.gmail.com with ESMTPSA id w71sm525463oiw.6.2021.12.15.12.09.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 12:08:30 -0800 (PST)
-Received: (nullmailer pid 1751820 invoked by uid 1000);
-        Wed, 15 Dec 2021 20:08:29 -0000
-Date:   Wed, 15 Dec 2021 14:08:29 -0600
+        Wed, 15 Dec 2021 12:09:04 -0800 (PST)
+Received: (nullmailer pid 1752705 invoked by uid 1000);
+        Wed, 15 Dec 2021 20:09:03 -0000
+Date:   Wed, 15 Dec 2021 14:09:03 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     frowand.list@gmail.com
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] of: unittest: 64 bit dma address test requires arch
- support
-Message-ID: <YbpLPfn0VuL3fiRL@robh.at.kernel.org>
-References: <20211212221852.233295-1-frowand.list@gmail.com>
+To:     Gwendal Grignou <gwendal@chromium.org>
+Cc:     robh+dt@kernel.org, lars@metafoo.de, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, andy.shevchenko@gmail.com,
+        swboyd@chromium.org, jic23@kernel.org
+Subject: Re: [PATCH v3 3/4] dt-bindings: iio: Add sx9360 binding
+Message-ID: <YbpLX0VVrakPBOUs@robh.at.kernel.org>
+References: <20211213024057.3824985-1-gwendal@chromium.org>
+ <20211213024057.3824985-4-gwendal@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211212221852.233295-1-frowand.list@gmail.com>
+In-Reply-To: <20211213024057.3824985-4-gwendal@chromium.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 12 Dec 2021 16:18:52 -0600, frowand.list@gmail.com wrote:
-> From: Frank Rowand <frank.rowand@sony.com>
+On Sun, 12 Dec 2021 18:40:56 -0800, Gwendal Grignou wrote:
+> Add binding to configure Semtech sx9360 sensor.
+> It is a simpler version of sx9324.
 > 
-> If an architecture does not support 64 bit dma addresses then testing
-> for an expected dma address >= 0x100000000 will fail.
-> 
-> Fixes: e0d072782c73 ("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset")
-> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
 > ---
->  drivers/of/unittest.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+> Changes since v2:
+> - Use const instead of single enum.
+> - Use proper syntax for maximum/minimum
+> - Fix spelling errors.
+> 
+> Changes since v1:
+> - Fix cut and paste error.
+> - Add . at end of sentence.
+> 
+>  .../iio/proximity/semtech,sx9360.yaml         | 89 +++++++++++++++++++
+>  1 file changed, 89 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/proximity/semtech,sx9360.yaml
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
