@@ -2,385 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9485D47561F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:20:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A964A47562D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:23:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241615AbhLOKUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 05:20:10 -0500
-Received: from mx1.cqplus1.com ([113.204.237.245]:51230 "EHLO test.cqplus1.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S241617AbhLOKUI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Dec 2021 05:20:08 -0500
-X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
-        LIVER,40,3)
-Received: from 172.28.114.216
-        by cqmailgates with MailGates ESMTP Server V5.0(17176:0:AUTH_RELAY)
-        (envelope-from <xt.hu@cqplus1.com>); Wed, 15 Dec 2021 18:18:41 +0800 (CST)
-From:   Xiantao Hu <xt.hu@cqplus1.com>
-To:     wim@linux-watchdog.org, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux@roeck-us.net, robh+dt@kernel.org, devicetree@vger.kernel.org
-Cc:     wells.lu@sunplus.com, qinjian@cqplus1.com,
-        Xiantao Hu <xt.hu@cqplus1.com>
-Subject: [PATCH v3 2/2] watchdog: Add driver for Sunplus SP7021
-Date:   Wed, 15 Dec 2021 18:18:31 +0800
-Message-Id: <20211215101831.256667-3-xt.hu@cqplus1.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211215101831.256667-1-xt.hu@cqplus1.com>
-References: <20211215101831.256667-1-xt.hu@cqplus1.com>
+        id S236506AbhLOKX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 05:23:57 -0500
+Received: from www381.your-server.de ([78.46.137.84]:44272 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233789AbhLOKX5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:23:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=EHkoHCM4/akmiX+GQlxsqrqfd96puN1iG/rN61e+Rz0=; b=Y+tGjTuyZsdqnD8H0Gh66ZCDOW
+        0XjqD8MF8QGMDsspr/JnrOsDT6mLypgS0FUn4Ci8x6y3DvLJQ/8PXZlh3EtEDIMWkewk8wUdo7xH9
+        bO+MvFWbcS0uLUBI+NTb/yyOikBnOKoWmmdXH8LKe9hJyE3TsrU3GMi5UztFH3E0yGeaKe9G416TU
+        3atWgLPUL5vq0QVrGukTey9caX3LtL2yfztEZVUjkR3xzf4q/bJAacNFEWHeS20ojrZKW/6A5ESrB
+        Lmw4RcZ5Zi7SrjKD8MmcyG49zsYIcTPgnlypwWZiW895h6BpKJCkiHPvkVrKH598hqn009WZHhyfb
+        uSWQoFJQ==;
+Received: from [78.46.152.42] (helo=sslproxy04.your-server.de)
+        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <lars@metafoo.de>)
+        id 1mxRRz-00056B-31; Wed, 15 Dec 2021 11:23:55 +0100
+Received: from [2001:a61:2bc8:8501:9e5c:8eff:fe01:8578]
+        by sslproxy04.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1mxRRy-000OCI-Ti; Wed, 15 Dec 2021 11:23:54 +0100
+Subject: Re: [PATCH 1/3] iio: dac: add support for ltc2688
+To:     =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>
+References: <20211214165608.7903-1-nuno.sa@analog.com>
+ <20211214165608.7903-2-nuno.sa@analog.com>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <001b1c03-3d46-291f-e732-21514a9fd721@metafoo.de>
+Date:   Wed, 15 Dec 2021 11:23:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <20211214165608.7903-2-nuno.sa@analog.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.3/26388/Wed Dec 15 08:24:21 2021)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver for Sunplus SP7021 SoC.
+On 12/14/21 5:56 PM, Nuno Sá wrote:
+> The LTC2688 is a 16 channel, 16 bit, +-15V DAC with an integrated
+> precision reference. It is guaranteed monotonic and has built in
+> rail-to-rail output buffers that can source or sink up to 20 mA.
 
-Signed-off-by: Xiantao Hu <xt.hu@cqplus1.com>
----
-Changes in v3:
- - Addressed all comments from Guenter Roeck.
- - Drop the operations related to address 0x9c000274.
-   Put it in bootloader before entry kernel boot.
+Looks very good!
 
- MAINTAINERS                    |   1 +
- drivers/watchdog/Kconfig       |  11 ++
- drivers/watchdog/Makefile      |   1 +
- drivers/watchdog/sunplus_wdt.c | 279 +++++++++++++++++++++++++++++++++
- 4 files changed, 292 insertions(+)
- create mode 100644 drivers/watchdog/sunplus_wdt.c
+Although I'm not sure what to make of the `raw1` API. Maybe it makes 
+sense to submit an initial version of this driver without the toggle 
+API. And then have a follow up discussion how to define the API for 
+this. This will not be the only DAC that has this feature so it would be 
+a good idea to come up with a common API.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c2ba65155..d51f0cb1a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17938,6 +17938,7 @@ M:	Xiantao Hu <xt.hu@cqplus1.com>
- L:	linux-watchdog@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/watchdog/sunplus,sp7021-wdt.yaml
-+F:	drivers/watchdog/sunplus_wdt.c
- 
- SUPERH
- M:	Yoshinori Sato <ysato@users.sourceforge.jp>
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index bf59faeb3..1a95df8ed 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -990,6 +990,17 @@ config MSC313E_WATCHDOG
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called msc313e_wdt.
- 
-+config SUNPLUS_WATCHDOG
-+	tristate "Sunplus watchdog support"
-+	depends on ARCH_SUNPLUS || COMPILE_TEST
-+	select WATCHDOG_CORE
-+	help
-+	  Say Y here to include support for the watchdog timer
-+	  in Sunplus SoCs.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called sunplus_wdt.
-+
- # X86 (i386 + ia64 + x86_64) Architecture
- 
- config ACQUIRE_WDT
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index 1bd2d6f37..d6a9e4d0e 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -94,6 +94,7 @@ obj-$(CONFIG_PM8916_WATCHDOG) += pm8916_wdt.o
- obj-$(CONFIG_ARM_SMC_WATCHDOG) += arm_smc_wdt.o
- obj-$(CONFIG_VISCONTI_WATCHDOG) += visconti_wdt.o
- obj-$(CONFIG_MSC313E_WATCHDOG) += msc313e_wdt.o
-+obj-$(CONFIG_SUNPLUS_WATCHDOG) += sunplus_wdt.o
- 
- # X86 (i386 + ia64 + x86_64) Architecture
- obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
-diff --git a/drivers/watchdog/sunplus_wdt.c b/drivers/watchdog/sunplus_wdt.c
-new file mode 100644
-index 000000000..7dadd0758
---- /dev/null
-+++ b/drivers/watchdog/sunplus_wdt.c
-@@ -0,0 +1,279 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * sunplus Watchdog Driver
-+ *
-+ * Copyright (C) 2021 Sunplus Technology Co., Ltd.
-+ *
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset.h>
-+#include <linux/watchdog.h>
-+
-+#define WDT_CTRL                0x00
-+#define WDT_CNT                 0x04
-+
-+#define WDT_STOP				0x3877
-+#define WDT_RESUME				0x4A4B
-+#define WDT_CLRIRQ				0x7482
-+#define WDT_UNLOCK				0xAB00
-+#define WDT_LOCK				0xAB01
-+#define WDT_CONMAX				0xDEAF
-+
-+#define SP_WDT_MAX_TIMEOUT		11U
-+#define SP_WDT_DEFAULT_TIMEOUT	10
-+
-+#define STC_CLK				90000
-+
-+#define DEVICE_NAME		"sunplus-wdt"
-+
-+static unsigned int timeout;
-+module_param(timeout, int, 0);
-+MODULE_PARM_DESC(timeout, "Watchdog timeout in seconds");
-+
-+static bool nowayout = WATCHDOG_NOWAYOUT;
-+module_param(nowayout, bool, 0);
-+MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
-+			__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
-+
-+struct sp_wdt_priv {
-+	struct watchdog_device wdev;
-+	void __iomem *base;
-+	struct clk *clk;
-+	struct reset_control *rstc;
-+};
-+
-+static int sp_wdt_restart(struct watchdog_device *wdev,
-+			  unsigned long action, void *data)
-+{
-+	struct sp_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+	void __iomem *base = priv->base;
-+
-+	writel(WDT_STOP, base + WDT_CTRL);
-+	writel(WDT_UNLOCK, base + WDT_CTRL);
-+	writel(0x0001, base + WDT_CNT);
-+	writel(WDT_LOCK, base + WDT_CTRL);
-+	writel(WDT_RESUME, base + WDT_CTRL);
-+
-+	return 0;
-+}
-+
-+/* TIMEOUT_MAX = ffff0/90kHz =11.65,so longer than 11 seconds will time out */
-+static int sp_wdt_ping(struct watchdog_device *wdev)
-+{
-+	struct sp_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+	void __iomem *base = priv->base;
-+	u32 count;
-+	u32 actual;
-+
-+	actual = min(wdev->timeout, SP_WDT_MAX_TIMEOUT);
-+
-+	if (actual > SP_WDT_MAX_TIMEOUT) {
-+		writel(WDT_CONMAX, base + WDT_CTRL);
-+	} else {
-+		writel(WDT_UNLOCK, base + WDT_CTRL);
-+		/* tiemrw_cnt[3:0]can't be write,only [19:4] can be write. */
-+		count = (actual * STC_CLK) >> 4;
-+		writel(count, base + WDT_CNT);
-+		writel(WDT_LOCK, base + WDT_CTRL);
-+	}
-+
-+	return 0;
-+}
-+
-+static int sp_wdt_set_timeout(struct watchdog_device *wdev,
-+			      unsigned int timeout)
-+{
-+	wdev->timeout = timeout;
-+	sp_wdt_ping(wdev);
-+
-+	return 0;
-+}
-+
-+static int sp_wdt_stop(struct watchdog_device *wdev)
-+{
-+	struct sp_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+	void __iomem *base = priv->base;
-+
-+	writel(WDT_STOP, base + WDT_CTRL);
-+
-+	return 0;
-+}
-+
-+static int sp_wdt_start(struct watchdog_device *wdev)
-+{
-+	struct sp_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+	void __iomem *base = priv->base;
-+
-+	writel(WDT_RESUME, base + WDT_CTRL);
-+
-+	return 0;
-+}
-+
-+static unsigned int sp_wdt_get_timeleft(struct watchdog_device *wdev)
-+{
-+	struct sp_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+	void __iomem *base = priv->base;
-+	u32 val;
-+
-+	val = readl(base + WDT_CNT);
-+	val &= 0xffff;
-+	val = val << 4;
-+
-+	return val;
-+}
-+
-+static const struct watchdog_info sp_wdt_info = {
-+	.identity	= DEVICE_NAME,
-+	.options	= WDIOF_SETTIMEOUT |
-+			  WDIOF_MAGICCLOSE |
-+			  WDIOF_KEEPALIVEPING,
-+};
-+
-+static const struct watchdog_ops sp_wdt_ops = {
-+	.owner		= THIS_MODULE,
-+	.start		= sp_wdt_start,
-+	.stop		= sp_wdt_stop,
-+	.ping		= sp_wdt_ping,
-+	.set_timeout	= sp_wdt_set_timeout,
-+	.get_timeleft	= sp_wdt_get_timeleft,
-+	.restart	= sp_wdt_restart,
-+};
-+
-+static void sp_clk_disable_unprepare(void *data)
-+{
-+	clk_disable_unprepare(data);
-+}
-+
-+static void sp_reset_control_assert(void *data)
-+{
-+	reset_control_assert(data);
-+}
-+
-+static int sp_wdt_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct sp_wdt_priv *priv;
-+	struct resource *wdt_res;
-+	int err;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(priv->clk)) {
-+		dev_err(dev, "Can't find clock source\n");
-+		return PTR_ERR(priv->clk);
-+	}
-+
-+	err = clk_prepare_enable(priv->clk);
-+	if (err) {
-+		dev_err(dev, "Clock can't be enabled correctly\n");
-+		return err;
-+	}
-+
-+	/* The timer and watchdog shared the STC reset */
-+	priv->rstc = devm_reset_control_get_shared(dev, NULL);
-+	if (!IS_ERR(priv->rstc))
-+		reset_control_deassert(priv->rstc);
-+
-+	err = devm_add_action_or_reset(dev, sp_reset_control_assert,
-+				       priv->rstc);
-+	if (err)
-+		return err;
-+
-+	err = devm_add_action_or_reset(dev, sp_clk_disable_unprepare,
-+				       priv->clk);
-+	if (err)
-+		return err;
-+
-+	priv->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(priv->base))
-+		return PTR_ERR(priv->base);
-+
-+	priv->wdev.info = &sp_wdt_info;
-+	priv->wdev.ops = &sp_wdt_ops;
-+	priv->wdev.timeout = SP_WDT_DEFAULT_TIMEOUT;
-+	priv->wdev.max_hw_heartbeat_ms = SP_WDT_MAX_TIMEOUT * 1000;
-+	priv->wdev.min_timeout = 1;
-+	priv->wdev.parent = dev;
-+
-+	watchdog_init_timeout(&priv->wdev, timeout, dev);
-+	watchdog_set_nowayout(&priv->wdev, nowayout);
-+	watchdog_set_restart_priority(&priv->wdev, 128);
-+
-+	watchdog_set_drvdata(&priv->wdev, priv);
-+
-+	watchdog_stop_on_reboot(&priv->wdev);
-+	err = devm_watchdog_register_device(dev, &priv->wdev);
-+	if (err)
-+		return err;
-+
-+	platform_set_drvdata(pdev, priv);
-+
-+	dev_info(dev, "Watchdog enabled (timeout=%d sec%s.)\n",
-+		 priv->wdev.timeout, nowayout ? ", nowayout" : "");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id sp_wdt_of_match[] = {
-+	{.compatible = "sunplus,sp7021-wdt", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, sp_wdt_of_match);
-+
-+static int __maybe_unused sp_wdt_suspend(struct device *dev)
-+{
-+	struct sp_wdt_priv *priv = dev_get_drvdata(dev);
-+
-+	if (watchdog_active(&priv->wdev))
-+		sp_wdt_stop(&priv->wdev);
-+
-+	reset_control_assert(priv->rstc);
-+	clk_disable_unprepare(priv->clk);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused sp_wdt_resume(struct device *dev)
-+{
-+	int err;
-+
-+	struct sp_wdt_priv *priv = dev_get_drvdata(dev);
-+
-+	err = clk_prepare_enable(priv->clk);
-+	if (err) {
-+		dev_err(dev, "Clock can't be enabled correctly\n");
-+		return err;
-+	}
-+
-+	reset_control_deassert(priv->rstc);
-+
-+	if (watchdog_active(&priv->wdev))
-+		sp_wdt_start(&priv->wdev);
-+
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(sp_wdt_pm_ops, sp_wdt_suspend, sp_wdt_resume);
-+
-+static struct platform_driver sp_wdt_driver = {
-+	.probe = sp_wdt_probe,
-+	.driver = {
-+		   .name = DEVICE_NAME,
-+		   .of_match_table = sp_wdt_of_match,
-+		   .pm = &sp_wdt_pm_ops,
-+	},
-+};
-+
-+module_platform_driver(sp_wdt_driver);
-+
-+MODULE_AUTHOR("Xiantao Hu <xt.hu@cqplus1.com>");
-+MODULE_DESCRIPTION("Sunplus Watchdog Timer Driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.33.1
+
+>
+> [...]
+> +
+> +static int ltc2688_spi_read(void *context, const void *reg, size_t reg_size,
+> +			    void *val, size_t val_size)
+> +{
+> +	struct ltc2688_state *st = context;
+> +	struct spi_transfer xfers[] = {
+> +		{
+> +			.tx_buf = reg,
+> +			.bits_per_word = 8,
+> +			/*
+> +			 * This means that @val will also be part of the
+> +			 * transfer as there's no pad bits. That's fine as these
+> +			 * bits are don't care for the device and we fill
+> +			 * @val with the proper value afterwards. Using regmap
+> +			 * pad bits to get reg_size right would just make the
+> +			 * write part more cumbersome than this...
+> +			 */
+This is making assumptions about the memory layout in the regmap core. 
+This could change in the future and then this driver breaks. It is 
+better to not assume that reg is part of a larger buffer.
+> +			.len = reg_size + 2,
+> +			.cs_change = 1,
+> +		}, {
+> +			.tx_buf = st->tx_data,
+> +			.rx_buf = st->rx_data,
+> +			.bits_per_word = 8,
+> +			.len = 3,
+> +		},
+> +	};
+> +	int ret;
+> +
+> +	ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
+> +	if (ret)
+> +		return ret;
+> +
+> +	memcpy(val, &st->rx_data[1], val_size);
+> +
+> +	return 0;
+> +}
+> [...]
+> +
+> +static int ltc2688_write_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan, int val,
+> +			     int val2, long mask)
+Using mask for the variable name is a relic from the days when it used 
+to be a mask. For new drivers it is better to use `info`. Same for the 
+other functions.
+> [...]
+> +
+> +static const char * const ltc2688_dither_phase[] = {
+> +	"0", "90", "180", "270",
+> +};
+Usually we use radians for phase values. Although that would make for a 
+bit of an awkward API in this case.
+> +
+> [...]
+> +/*
+> + * For toggle mode we only expose the symbol attr (sw_toggle) in case a TGPx is
+> + * not provided in dts.
+> + */
+> +#define LTC2688_CHAN_TOGGLE(t, name) ({							\
+> +	static const struct iio_chan_spec_ext_info t ## _ext_info[] = {			\
+> +		LTC2688_CHAN_EXT_INFO("raw1", LTC2688_INPUT_B, IIO_SEPARATE),		\
+> +		LTC2688_CHAN_EXT_INFO("toggle_en", LTC2688_DITHER_TOGGLE_ENABLE,	\
+> +				      IIO_SEPARATE),					\
+> +		LTC2688_CHAN_EXT_INFO("powerdown", LTC2688_POWERDOWN, IIO_SEPARATE),	\
+> +		LTC2688_CHAN_EXT_INFO(name, LTC2688_SW_TOGGLE, IIO_SEPARATE),		\
+> +		{}									\
+> +	};										\
+> +	t ## _ext_info;									\
+> +})
+
+This macro is a bit strange since it declares a static, but is called in 
+a function. It might be better to declare the two types of ext_infos 
+statically and then reference them by name from within the function.
+
+> [...]
+> +
+> +static int ltc2688_tgp_setup(struct ltc2688_state *st, long clk_mask,
+> +			     const struct ltc2688_dither_helper *tgp)
+> +{
+> +	int ret, bit;
+> +
+> +	for_each_set_bit(bit, &clk_mask, LTC2688_CHAN_TD_MAX) {
+clk_mask should be unsigned long
+> [...]
+> +
+> +static int ltc2688_span_lookup(const struct ltc2688_state *st, int min, int max)
+> +{
+> +	u32 span;
+Nit: Why u32 and not unsigned int? The size doesn't seem to be important 
+for the loop variable.
+> +
+> +	for (span = 0; span < ARRAY_SIZE(ltc2688_span_helper); span++) {
+> +		if (min == ltc2688_span_helper[span][0] &&
+> +		    max == ltc2688_span_helper[span][1])
+> +			return span;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int ltc2688_channel_config(struct ltc2688_state *st)
+> +{
+> +	struct fwnode_handle *fwnode = dev_fwnode(&st->spi->dev), *child;
+> +	struct ltc2688_dither_helper tgp[LTC2688_CHAN_TD_MAX] = {0};
+> +	u32 reg, clk_input, val, mask, tmp[2];
+> +	unsigned long clk_msk = 0;
+> +	int ret, span;
+> +
+> +	fwnode_for_each_available_child_node(fwnode, child) {
+> [...]
+> +		chan = &st->channels[reg];
+> +		if (fwnode_property_read_bool(child, "adi,toggle-mode")) {
+> +			chan->toggle_chan = true;
+> +			/* assume sw toggle ABI */
+> +			ltc2688_channels[reg].ext_info = LTC2688_CHAN_TOGGLE(__s, "symbol");
+Updating ltc2688_channels at runtime will break if you have multiple 
+instances of the device with a different configuration. You need to 
+kmemdup() the channel array.
+> +		}
+> +[...]
+> +	return ltc2688_tgp_setup(st, clk_msk, tgp);
+> +}
+> +
+> +static int ltc2688_setup(struct ltc2688_state *st, struct regulator *vref)
+> +{
+> +	struct gpio_desc *gpio;
+> +	int ret;
+> +
+> +	/*
+> +	 * If we have a reset pin, use that to reset the board, If not, use
+> +	 * the reset bit.
+> +	 */
+Looking at the datasheet I do not see a reset pin on the chip.
+> +	gpio = devm_gpiod_get_optional(&st->spi->dev, "reset", GPIOD_OUT_HIGH);
+Usually when we have a reset which is active low we define it in the DT 
+as active low rather than doing the inversion in the driver.
+> +	if (IS_ERR(gpio))
+> +		return dev_err_probe(&st->spi->dev, PTR_ERR(gpio),
+> +				     "Failed to get reset gpio");
+> +	if (gpio) {
+> +		usleep_range(1000, 1200);
+> +		/* bring device out of reset */
+> +		gpiod_set_value_cansleep(gpio, 0);
+> +	} else {
+> +		ret = regmap_update_bits(st->regmap, LTC2688_CMD_CONFIG,
+> +					 LTC2688_CONFIG_RST,
+> +					 LTC2688_CONFIG_RST);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	usleep_range(10000, 12000);
+> +
+> +	ret = ltc2688_channel_config(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!vref)
+> +		return 0;
+> +
+> +	return regmap_update_bits(st->regmap, LTC2688_CMD_CONFIG,
+> +				  LTC2688_CONFIG_EXT_REF, BIT(1));
+
+This is a bit confusing since you are using LTC2688_CONFIG_EXT_REF for 
+the mask and BIT(1) for the value, even though both are the same.
+
+There is a new API regmap_set_bits()/regmap_clear_bits() that allows you 
+to write this in a more compact way. There are a few other places in the 
+driver where they can be used as well.
+
+> +}
+> [...]
+> +
 
