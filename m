@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63F75475DB0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 17:42:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AC76475DB9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 17:43:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244914AbhLOQlH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 11:41:07 -0500
-Received: from foss.arm.com ([217.140.110.172]:57404 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S244903AbhLOQlG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Dec 2021 11:41:06 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 28FDA6D;
-        Wed, 15 Dec 2021 08:41:06 -0800 (PST)
-Received: from FVFF77S0Q05N (unknown [10.57.67.176])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C4D5E3F5A1;
-        Wed, 15 Dec 2021 08:41:04 -0800 (PST)
-Date:   Wed, 15 Dec 2021 16:41:02 +0000
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Caleb Connolly <caleb@connolly.tech>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: timer: add #size-cells 2 for ARM
-Message-ID: <Yboanu5YK38/A514@FVFF77S0Q05N>
-References: <20211215144500.64284-1-david@ixit.cz>
+        id S244952AbhLOQn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 11:43:29 -0500
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:40663 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231801AbhLOQn2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 11:43:28 -0500
+Received: by mail-ot1-f53.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so25625552otj.7;
+        Wed, 15 Dec 2021 08:43:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CNXsHLu+Gq71Y75lX9jVBGOmw/DgDu1JjCJ+Q0vaHsk=;
+        b=6ecVCnZIt3NqwOV/EqWf02w6doiK+Rq1gp5Zi6RruuDYWyi8lvhCqiBodczVVpFl+1
+         avCoD+5UhgAhZEkLKk+ixG+ge1Le4Hjm9uHNCFhbrMhKb2p/BV0YZYecJyHjZaTHEVAh
+         mxVFLYOMewWM6IpAB+gc/h5/Mc4zhSYRQeCWD0m1sI9M12aTRbsBpq0ULfYBtr/Ier1Y
+         hI3SsQ2rBBwSyCM55ZdUEM/kww+X9NoIGyOf1oTUpwKc4+/virxm03nTKKVvyIIkPZ2B
+         j0kx3Ocdxo2y+sfVCUgwbhtU1OpvUX4HJZ0EmbY/yiQe2Q7cNW1w5+QyfGArfaX2pP7i
+         hySQ==
+X-Gm-Message-State: AOAM532o0E6q2nOkB8R6vcEMjJ90uNw7tmXRwQP5fu477oXvC5jZqp99
+        c/1sSyrJfhzE/m1Y9z4eyQ==
+X-Google-Smtp-Source: ABdhPJyiEZp5Q71GMOSK1C2jg9dTbx2jpXrRU/9if9iPhjgRzrw/iye3NbG+IFlWU4Q7zshMxC4QjQ==
+X-Received: by 2002:a05:6830:1ad2:: with SMTP id r18mr9148485otc.308.1639586607714;
+        Wed, 15 Dec 2021 08:43:27 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id g17sm439185oiy.14.2021.12.15.08.43.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Dec 2021 08:43:27 -0800 (PST)
+Received: (nullmailer pid 1448377 invoked by uid 1000);
+        Wed, 15 Dec 2021 16:43:26 -0000
+Date:   Wed, 15 Dec 2021 10:43:26 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jens Renner <renner@efe-gmbh.de>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        s.hauer@pengutronix.de, mturquette@baylibre.com,
+        linux-clk@vger.kernel.org, sboyd@kernel.org,
+        sebastian.hesselbarth@gmail.com
+Subject: Re: [PATCH v2 1/2] clk: si5351: Add DT property for phase offset
+Message-ID: <YbobLnc9Uc39dPJO@robh.at.kernel.org>
+References: <20211208154440.72087-1-renner@efe-gmbh.de>
+ <20211208154535.72286-1-renner@efe-gmbh.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211215144500.64284-1-david@ixit.cz>
+In-Reply-To: <20211208154535.72286-1-renner@efe-gmbh.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 15, 2021 at 03:45:00PM +0100, David Heidelberg wrote:
-> It's already widely used by dt-schemas, so I blindly assume it's correct.
+On Wed, 08 Dec 2021 16:45:35 +0100, Jens Renner wrote:
+> Add optional output clock DT property "silabs,clock-phase" to configure
+> the phase offset in degrees with respect to other clock outputs.
+> Add missing description for related optional output clock DT property
+> "clock-frequency".
 > 
-> Fixes warnings as:
-> arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: timer@17c90000: #size-cells:0:0: 1 was expected
->         From schema: Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-
-FWIW, that makes sense to me, so:
-
-Acked-by: Mark Rutland <mark.rutland@arm.com>
-
-I assume Rob will pick this (or otherwise correct me).
-
-Thanks,
-Mark.
-
+> Signed-off-by: Jens Renner <renner@efe-gmbh.de>
 > ---
->  .../devicetree/bindings/timer/arm,arch_timer_mmio.yaml          | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Changes in v2:
+>   - Use vendor-specific DT property silabs,clock-phase
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml b/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-> index cd2176cad53a..c061bb90b8e7 100644
-> --- a/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-> +++ b/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-> @@ -30,7 +30,7 @@ properties:
->      enum: [1, 2]
->  
->    '#size-cells':
-> -    const: 1
-> +    enum: [1, 2]
->  
->    ranges: true
->  
-> -- 
-> 2.34.1
+>  .../devicetree/bindings/clock/silabs,si5351.txt        | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
 > 
+
+Acked-by: Rob Herring <robh@kernel.org>
