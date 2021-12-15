@@ -2,62 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B356475582
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 10:52:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F8884755B8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:04:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241295AbhLOJwa convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 15 Dec 2021 04:52:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42628 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233733AbhLOJwa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 04:52:30 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE3FC061574
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 01:52:30 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mxQxR-00040y-JA; Wed, 15 Dec 2021 10:52:21 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mxQxL-000AO2-3Q; Wed, 15 Dec 2021 10:52:15 +0100
-Message-ID: <e013e672b500f88872b008cba7c2ddd5b4483d27.camel@pengutronix.de>
-Subject: Re: [PATCH v2] dt-bindings: reset: document deprecated HiSilicon
- property
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     David Heidelberg <david@ixit.cz>, Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>
-Cc:     ~okias/devicetree@lists.sr.ht, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Wed, 15 Dec 2021 10:52:15 +0100
-In-Reply-To: <20211208184149.99537-1-david@ixit.cz>
-References: <20211208184149.99537-1-david@ixit.cz>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
-MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S241451AbhLOKEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 05:04:08 -0500
+Received: from lucky1.263xmail.com ([211.157.147.134]:48252 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241458AbhLOKEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:04:06 -0500
+Received: from localhost (unknown [192.168.167.223])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 8C3F8D344D;
+        Wed, 15 Dec 2021 17:57:09 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P18835T140477477144320S1639562220094025_;
+        Wed, 15 Dec 2021 17:57:09 +0800 (CST)
+X-IP-DOMAINF: 1
+X-RL-SENDER: yifeng.zhao@rock-chips.com
+X-SENDER: zyf@rock-chips.com
+X-LOGIN-NAME: yifeng.zhao@rock-chips.com
+X-FST-TO: heiko@sntech.de
+X-RCPT-COUNT: 15
+X-LOCAL-RCPT-COUNT: 3
+X-MUTI-DOMAIN-COUNT: 0
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-UNIQUE-TAG: <8f22617a9e971578c62125b5cd9b6426>
+X-System-Flag: 0
+From:   Yifeng Zhao <yifeng.zhao@rock-chips.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, jbx6244@gmail.com, devicetree@vger.kernel.org,
+        vkoul@kernel.org, michael.riesch@wolfvision.net,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, kishon@ti.com,
+        p.zabel@pengutronix.de, cl@rock-chips.com,
+        kever.yang@rock-chips.com, Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Subject: [PATCH v5 0/4] Add Naneng combo PHY support for RK3568
+Date:   Wed, 15 Dec 2021 17:56:53 +0800
+Message-Id: <20211215095657.13183-1-yifeng.zhao@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi David,
 
-On Wed, 2021-12-08 at 19:41 +0100, David Heidelberg wrote:
-> Documenting deprecated property prevents dt-schema validation errors.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-> v2:
->  - document deprecated property instead of changing hi36[67]0.dtsi
+This phy can be used as pcie-phy, usb3-phy, sata-phy or sgmii-phy.
 
-Sorry if I'm missing context, I haven't seen the v1 for this. Is this
-really what we want? I would have expected the deprecated usage in the
-.dtsi files to be replaced.
+Changes in v5:
+- modify description for ssc and ext-refclk
+- remove apb reset
+- add rockchip_combphy_updatel()
+- restyle
 
-regards
-Philipp
+Changes in v4:
+- restyle
+- remove some minItems
+- add more properties
+- remove reset-names
+- move #phy-cells
+- add rockchip,rk3568-pipe-grf
+- add rockchip,rk3568-pipe-phy-grf
+- add devm_reset_control_array_get()
+- remove clk structure
+- change refclk DT parse
+- change dev_err message
+- add dot to phrase
+- add ext_refclk variable
+- add enable_ssc variable
+- rename rockchip_combphy_param_write
+- remove param_read
+- replace rockchip-naneng-combphy driver name
+- rename node name
+
+Changes in v3:
+- Using api devm_reset_control_get_optional_exclusive and dev_err_probe.
+- Remove apb_rst.
+- Redefine registers address.
+- Move pipe_phy_grf0 to rk3568.dtsi
+
+Changes in v2:
+- Fix dtschema/dtc warnings/errors
+- Using api devm_platform_get_and_ioremap_resource.
+- Modify rockchip_combphy_set_Mode.
+- Add some PHY registers definition.
+- Move phy0 to rk3568.dtsi
+
+Johan Jonker (1):
+  dt-bindings: mfd: syscon: add naneng combo phy register compatible
+
+Yifeng Zhao (3):
+  dt-bindings: phy: rockchip: Add Naneng combo PHY bindings
+  phy: rockchip: add naneng combo phy for RK3568
+  arm64: dts: rockchip: add naneng combo phy nodes for rk3568
+
+ .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+ .../phy/phy-rockchip-naneng-combphy.yaml      | 126 ++++
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  21 +
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  47 ++
+ drivers/phy/rockchip/Kconfig                  |   8 +
+ drivers/phy/rockchip/Makefile                 |   1 +
+ .../rockchip/phy-rockchip-naneng-combphy.c    | 618 ++++++++++++++++++
+ 7 files changed, 823 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml
+ create mode 100644 drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+
+-- 
+2.17.1
+
+
+
