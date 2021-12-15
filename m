@@ -2,110 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAF9047538A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 08:14:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31C4B475395
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 08:20:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240437AbhLOHOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 02:14:05 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:35232 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240324AbhLOHOF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 02:14:05 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BF7Dwop006734;
-        Wed, 15 Dec 2021 01:13:58 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1639552438;
-        bh=hWXrVHqnSfNLhVFhHdX81yptBTVHLTOcBW+DyPMOc1w=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=H785nSbHKR8HenpbxxEwW5cP+7FbYsrA3/JzqwQMrmQUol/TjsiPukWHx7mw7DCpB
-         CzLXrGAtAq9SKWnIatyynop3VEC9G3sexeLPpxp8CbOberac7dXaC+4eMMqYGOgyFP
-         Yaok1Z0tSWOBaDdvVA+EQh9H50F0YTRGSDBKKysE=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BF7DvfQ026685
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 15 Dec 2021 01:13:57 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 15
- Dec 2021 01:13:57 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 15 Dec 2021 01:13:57 -0600
-Received: from uda0132425.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BF7Dsq1011923;
-        Wed, 15 Dec 2021 01:13:54 -0600
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        <linux-kernel@vger.kernel.org>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 0/6] CAN: Add support for CAN in AM65,J721e and AM64
-Date:   Wed, 15 Dec 2021 12:43:52 +0530
-Message-ID: <163955230562.15251.12488906107335306384.b4-ty@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211122134159.29936-1-a-govindraju@ti.com>
-References: <20211122134159.29936-1-a-govindraju@ti.com>
+        id S240476AbhLOHUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 02:20:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36688 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240496AbhLOHUP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 02:20:15 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63367C061574
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 23:20:15 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id o4so19881386pfp.13
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 23:20:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nOkgZnYw6kGe9a36s49H+b7Q/uyCAsopsbeYrhXtAvI=;
+        b=Glb79vzuvbbH5nTBEPKrc47DssIU1jb3cDm1iK+jGOu7M/7l+E5meR0RI+SIYW5SmH
+         ezs58ymRq8FfXKrTh90YTUkIX0PUjtM6QJLRcPYjcaCIVTNAA/XyYkHV8sALsv5GhvPg
+         B6JtjfHGzZo2dJx+sXgSDwGHCrP4zRSrnqZsw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nOkgZnYw6kGe9a36s49H+b7Q/uyCAsopsbeYrhXtAvI=;
+        b=gwUVN6iZy9HGyRK9kglNy6S4s2/nvWQF01iGQhh70WaVOuLCnfiCHrsIesy4KTolbj
+         CqjhGSrDal42Vks/X7FogZFSvya1/PRWBFsxFRRLs1ouzNohTC3Rgjl+5V6H9yQyChoh
+         GGmviZEfO11mMdjRkdc9UiCzL3mSF2quGOgVhMJ86AxfSYDIiuF3txueWe7BEOrYRssW
+         V0CYoatyRPE/u50z+cPM2QcgoLs9/Y1sYMDb/qAYzLTdNITa9PVeFGh0qMZ4P13yMOwP
+         zFc9nx9Unqy81bOEd2wsVwZFzb4+b4R2TKaZHMMGOJEPHZI/FM14LmKPiVOw9IaPt1Wx
+         HXrA==
+X-Gm-Message-State: AOAM533pBr+4f9yu0h7svdvMuaWHkpIuyhYsj/jMZyNZtY45jrUQBnnV
+        Rhzxj3kE029TCsEXQ9FmPfbaKQ==
+X-Google-Smtp-Source: ABdhPJxybBG2WjOl3dKpIIJmd34vozfkMrI3qpBePO3HvTg1G1kvYqOD6D04UsrXyzbSJvjR7+JTww==
+X-Received: by 2002:a05:6a00:22ce:b0:4b1:39d2:bc7c with SMTP id f14-20020a056a0022ce00b004b139d2bc7cmr7895685pfj.27.1639552813727;
+        Tue, 14 Dec 2021 23:20:13 -0800 (PST)
+Received: from smtp.gmail.com ([2620:15c:202:201:46aa:90e5:f847:f509])
+        by smtp.gmail.com with ESMTPSA id b9sm533214pfm.122.2021.12.14.23.20.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Dec 2021 23:20:12 -0800 (PST)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Mike Rapoport <rppt@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Quentin Perret <qperret@google.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>
+Subject: [PATCH v2] of/fdt: Don't worry about non-memory region overlap for no-map
+Date:   Tue, 14 Dec 2021 23:20:11 -0800
+Message-Id: <20211215072011.496998-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.34.1.173.g76aa8bc2d0-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Aswath Govindraju,
+In commit 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove
+already reserved regions") we returned -EBUSY when trying to mark
+regions as no-map when they're in the reserved memory node. This if
+condition will still trigger though if the DT has a /memreserve/ that
+completely subsumes the no-map memory carveouts in the reserved memory
+node. Let's only consider this to be a problem if we're trying to mark a
+region as no-map and it is actually memory. If it isn't memory,
+presumably it was removed from the memory map via /memreserve/ and thus
+can't be mapped anyway.
+
+This silences a warning seen at boot on sc7180-trogdor.dtsi boards that
+have /memreserve/ populated by the bootloader where those reserved
+regions overlap with the reserved-memory carveouts that we have in DT
+for other purposes like communicating with remote processors.
+
+For example
+
+ OF: fdt: Reserved memory: failed to reserve memory for node 'memory@80900000': base 0x0000000080900000, size 2 MiB
+
+Cc: Mike Rapoport <rppt@kernel.org>
+Cc: Douglas Anderson <dianders@chromium.org>
+Cc: Nicolas Boichat <drinkcat@chromium.org>
+Cc: Quentin Perret <qperret@google.com>
+Cc: Jan Kiszka <jan.kiszka@siemens.com>
+Fixes: 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove already reserved regions")
+Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+---
+
+Changes from v1 (https://lore.kernel.org/r/20210520012731.3731314-1-swboyd@chromium.org):
+ * Use memblock_overlaps_region instead of memblock_is_region_memory()
+ * Add more details to commit text 
+
+ drivers/of/fdt.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index bdca35284ceb..c736e5bcc2f6 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -482,9 +482,11 @@ static int __init early_init_dt_reserve_memory_arch(phys_addr_t base,
+ 	if (nomap) {
+ 		/*
+ 		 * If the memory is already reserved (by another region), we
+-		 * should not allow it to be marked nomap.
++		 * should not allow it to be marked nomap, but don't worry
++		 * if the region isn't memory as it won't be mapped.
+ 		 */
+-		if (memblock_is_region_reserved(base, size))
++		if (memblock_overlaps_region(&memblock.memory, base, size) &&
++		    memblock_is_region_reserved(base, size))
+ 			return -EBUSY;
  
-On Mon, 22 Nov 2021 19:11:52 +0530, Aswath Govindraju wrote:
-> The following series of patches add support for CAN in SoC's AM65, J721e
-> and AM64.
-> 
-> changes since v4 -
-> - Rebased the series on top of ti-k3-dts-next branch
-> 
-> changes since v3 -
-> - Rebased the series on top of ti-k3-dts-next branch
-> 
-> [...]
- 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
- 
-[1/6] arm64: dts: ti: k3-am65-mcu: Add Support for MCAN
-      commit: c3e4ea557ddb0a7fa431564bb1bb023ffbf823f4
-[2/6] arm64: dts: ti: am654-base-board/am65-iot2050-common: Disable mcan nodes
-      commit: f533bb82def8b923668df97c36c1f8fe6a3a8f1f
-[3/6] arm64: dts: ti: k3-j721e: Add support for MCAN nodes
-      commit: 4688a4fcb7a20d347a52c1f2dc9bc6fad9df1174
-[4/6] arm64: dts: ti: k3-j721e-common-proc-board: Add support for mcu and main mcan nodes
-      commit: 87d60c4663b6eb964cca6a03adfcf8976f374559
-[5/6] arm64: dts: ti: k3-am64-main: Add support for MCAN
-      commit: 9c4441ad3da1fad75aabfd68e90558c20a2818d2
-[6/6] arm64: dts: ti: k3-am642-evm/sk: Add support for main domain mcan nodes in EVM and disable them on SK
-      commit: 2f474da98caf9a75d7777c5465d281240c706bc6
- 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
- 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
- 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
- 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
- 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
+ 		return memblock_mark_nomap(base, size);
+
+base-commit: 136057256686de39cc3a07c2e39ef6bc43003ff6
+-- 
+https://chromeos.dev
 
