@@ -2,99 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1ED34753C6
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 08:36:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FD1C4753CA
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 08:36:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240552AbhLOHg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 02:36:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40340 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232083AbhLOHg2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 02:36:28 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A34A7C061574;
-        Tue, 14 Dec 2021 23:36:28 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S240643AbhLOHgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 02:36:43 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54716
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236088AbhLOHgl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 02:36:41 -0500
+Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 340F76182A;
-        Wed, 15 Dec 2021 07:36:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 800E9C34600;
-        Wed, 15 Dec 2021 07:36:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639553787;
-        bh=DJ2GHnN3+A6IaBsHIRn0E837VrFieLJ7mGwRff2GO5U=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=K42zGEXQtbBUT2bBp6+lbHjYkNzFd6JkJbMuJ91E+Nz7cRsIzzkvNgi6kSRaeoVXA
-         kb6lglDpOdMVGikSLoyotjYyH3ieyB3VUCeABR/exa+uMUJ1+8q43SLUwrQkByNEab
-         +HJziIRWI19gF3NTBajou068WHrZujke73cH96PHZlyRksrZvXmC3gT4HCHNTenVFe
-         q68NCbL0sWxBa5+fxMnYVjam9VBfI8oRv+HA7k3vgpYsHilxdEL4breAyJIypCHtfJ
-         7ZNf1jeAKp84iCIAnCtHx/o9+L3E55fuQ77GWx1vVgeYaJJ2YJInBKfb+O3L6wSOtY
-         lFz9CBLy42htg==
-Content-Type: text/plain; charset="utf-8"
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 220F43F177
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 07:36:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1639553800;
+        bh=F6A76TBrmUtFWX3VCIsN07CYhL6FGO84vIVFcKsHMuk=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=HBhtqH1ftR+JE8s30I5DsAG0EuWjU+L6cYe5RU3DMx6TTR2l1POXl4JAJfUEU21W6
+         j3BSoVnYkjcx9YjGGZccgnSmS5RQFEW1Fr/DdC61vvWnQjehz75pOIghLlyARcWSMB
+         33HTuXB4CsxWmFzT+YvsOsVPkQAO8WOdBkU987uEpVShT8eRsXSY05ibMYgKsC6sA5
+         lNcKKMBJaHRxD+iQZ8PafGHPCd333khRvEV3x3iGjUDidWJ5013WUPl9fkyuIVL5pI
+         jb/yS+DraClm4KTIzSp0DzQal5w27BTJoMtVZOCb+Uu5FUUBq2Iwpekqv8Y64Ko/+N
+         oh3GQkpRyU39g==
+Received: by mail-lj1-f200.google.com with SMTP id w16-20020a05651c103000b00218c9d46faeso6650833ljm.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 23:36:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=F6A76TBrmUtFWX3VCIsN07CYhL6FGO84vIVFcKsHMuk=;
+        b=HeUVZTVENOdQqezwb5D0w4/sghG37YLcGCb/7z8Bj7LMCxhIXUKK3ztVZr4H4zh0J7
+         xVA8pkQPABmL3sqoQ3ot9B8PXfmrcuOXx6mqTXbuy7e1wV/sWeXrHbMu9aGSePhz1l/d
+         bTilsjD4KBeWcd9UiTXpzT9deqv++N8gk5AgP34lvj8QJzG1exO4sMTmy7Ao25tS25xh
+         6DVHRoM42UfFi97KUQqc/GlOelDTymBhkKyZf66Fi9E5xfsGpXo0blhat2M9QTfvDhvV
+         Lea45jHs5dvIYCYSqebHlPvYxug5phDsa8LGKcVmWnG127e7BNePfPhE7qVNkQxh4os6
+         CSkQ==
+X-Gm-Message-State: AOAM530KHW6D8vPIZRkHiWBWRQtOLUnrd1nndUp/nBevc37hKP2Y9gPp
+        baVIN6BlSfIy8TF3sy2WqFv3h8lpjBNC+QbGdEb82Rv8sY8mZegTS7mrmVrYRoGd+xSBhZEMbxz
+        Q5CZPrp/D+yK1njAaAXEG2G7+SDWSo08RWHmXKqc=
+X-Received: by 2002:a05:6512:4022:: with SMTP id br34mr8848172lfb.530.1639553799647;
+        Tue, 14 Dec 2021 23:36:39 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyzPtDMOJasNzOvdacYEtvNk/bKv5BWr0rmdGjWr2pcPixNzBSY/JytR3tWeRLhzvX45bRflw==
+X-Received: by 2002:a05:6512:4022:: with SMTP id br34mr8848159lfb.530.1639553799518;
+        Tue, 14 Dec 2021 23:36:39 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id bp15sm188546lfb.176.2021.12.14.23.36.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Dec 2021 23:36:39 -0800 (PST)
+Message-ID: <27e76745-090c-36c5-78b8-aeda58c91034@canonical.com>
+Date:   Wed, 15 Dec 2021 08:36:38 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <YbTqPfs7026l6LFE@builder.lan>
-References: <20211207114003.100693-1-vkoul@kernel.org> <20211207114003.100693-3-vkoul@kernel.org> <20211209082537.1AF6CC341C8@smtp.kernel.org> <YbTqPfs7026l6LFE@builder.lan>
-Subject: Re: [PATCH v2 2/2] clk: qcom: Add clock driver for SM8450
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Vamsi Krishna Lanka <quic_vamslank@quicinc.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Date:   Tue, 14 Dec 2021 23:36:26 -0800
-User-Agent: alot/0.9.1
-Message-Id: <20211215073627.800E9C34600@smtp.kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH] dt-bindings: soc: samsung: Fix I2C clocks order in USI
+ binding example
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211214170924.27998-1-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211214170924.27998-1-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bjorn Andersson (2021-12-11 10:13:17)
-> On Thu 09 Dec 02:25 CST 2021, Stephen Boyd wrote:
->=20
-> > Maybe you want to drop these strings and use the dt index directly? That
-> > may actually be faster because we don't do as many string comparisons
-> > and the code may be smaller if we don't have to store bi_tcxo. I suppose
-> > to make it more readable we could have #defines for each DT index like
-> >=20
-> >  #define DT_BI_TCXO   0
-> >  #define DT_SLEEP_CLK 1
-> >=20
-> > Blaze a new trail!
-> >=20
->=20
-> I like the idea, and iiuc it's just a matter of replacing .fw_name with
-> .index?
+On 14/12/2021 18:09, Sam Protsenko wrote:
+> Now that HSI2C binding [1] is converted to dt-schema format, it reveals
+> incorrect HSI2C clocks order in USI binding example:
+> 
+>     .../exynos-usi.example.dt.yaml:
+>     i2c@13820000: clock-names:0: 'hsi2c' was expected
+>     From schema: .../i2c-exynos5.yaml
+> 
+>     .../exynos-usi.example.dt.yaml:
+>     i2c@13820000: clock-names:1: 'hsi2c_pclk' was expected
+>     From schema: .../i2c-exynos5.yaml
+> 
+> Change HSI2C clock order in USI binding example to satisfy HSI2C binding
+> requirements and fix above warnings.
+> 
+> [1] Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+> NOTE: If possible, it can be squashed into "dt-bindings: soc: samsung:
+>       Add Exynos USI bindings" patch (already applied in Krzysztof tree)
+> 
 
-Yes.
+I already merged it between branches, so no squashing.
 
->=20
-> I am however worried that people will get the order wrong as they are
-> hacking on their dts/drivers, because (at least in my view) the order of
-> clocks & clock-names has been seen as "a dt binding requirement" up
-> until such change. But if we replace the names with indices such enum
-> would have to be kept in sync with the DT binding and there's no way to
-> validate it.
-
-That's lame, but I see your point. The order is definitely part of the
-binding but I'm not sure what we can do about folks deciding to reorder
-the clocks property. The checker has a blind spot here.
-
->=20
-> If we do this we should force the driver and dts-writers to rely on the
-> binding document by omitting clock-names from the binding (and hence
-> dts). Otherwise people will (I will) assume that the clock-names are
-> still what matters...
->=20
-
-I guess so. It still leaves everything exposed to the clocks property
-getting jumbled and then everything falling apart. Sigh.
-
-I'm not sure how much worse this is than today where the clock-names
-property could be wrong and doesn't match the order of the clocks
-property. We don't catch that either with the checker, so it's about the
-same risk from my perspective. Why not take the risk and save on image
-size?
+Best regards,
+Krzysztof
