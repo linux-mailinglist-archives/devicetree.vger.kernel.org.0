@@ -2,74 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DA6D4765BD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 23:28:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE0114765C1
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 23:28:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231443AbhLOW2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 17:28:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50210 "EHLO
+        id S231694AbhLOW2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 17:28:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231464AbhLOW16 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 17:27:58 -0500
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED9DBC06179C
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 14:27:57 -0800 (PST)
-Received: by mail-oi1-x231.google.com with SMTP id u74so33674614oie.8
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 14:27:57 -0800 (PST)
+        with ESMTP id S231500AbhLOW2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 17:28:01 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEB70C06175F
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 14:28:00 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id u74so33674773oie.8
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 14:28:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=dIWHsocWhNzHpMIBX1OQ+sZEosNoFwmP0CG+wQ9sIW8=;
-        b=a7tXULw/Y0Ks7AVUJX+VepzbeZG9pbW0ucTLKjAiRKJ9pOtGgwRyIZrYaOwaWBqKel
-         CIJz0I7bzFdUGrnDUNoui/KTByhB+UAhw60QmXQ9ACs4CZ3JSpuOTSo4W77I6wO34AuM
-         Id8mQ2dfn5vcWvQPKzSMANzXyUdbe8/uRyVFrGlIEfX0PjEFjr2Li5BXzdtkja77oC39
-         E8i77I65sBcU68d984IL+PH8YwepLipxaKPYBDcExjbFURuOdaGCJ2nHRHg1yiNgrWrC
-         9Gw6vN2bWNFZIj7YDS7CwNin3uXRnhd7OY7WRbixzjGVc4r7UPqdHrZciM4toBSzzhBu
-         laLg==
+        bh=vIVXiGfUpcNHajlVwayi7ZXVOYdjzHmlLf5e1SFw0vM=;
+        b=ghDFVvgDJuVmeCVQaVAh45H1K8RdDeKJKREPK4B/ysZAGmKJdmRWq8tZaXfkNwdbYe
+         ALWb9ezC6unB+Z9uMU3wlo8HWSNvepUvsCNh50tl2gImnBeR8msA4ondq2aiYcYu3e2L
+         4OL1NPdBui+Qdd68zGLr2HYHkfuvBSipPwEyd1rEQxojTrlOGilPjSGD66eBkhb7RUvf
+         doO5gN9uQGpaGyBihnAMW7EjOtyCO35WyZZm05WnVNdCV0rJpjFSuPa7Tn4ZXpT0LP7t
+         iB94QX9SJ+aeA03lFThCZGB9UY9u1kDCb/vPHDF1RLwxF2WV4nk4rNFfm+Vs4jkP++j3
+         YpUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=dIWHsocWhNzHpMIBX1OQ+sZEosNoFwmP0CG+wQ9sIW8=;
-        b=OIS2ooXwGrMuRf8VEfTHWie/Mh6K5hcpES/jv9xjAmOc/ZDvtRZwKkhNETv/1dfKOu
-         o5zXYzi5KQwY+R0h2/sWEpF4pCAsdmboDVpREaAgioLh6X6eR7TUWqPu4ylQME1PxUPr
-         dRzLhmBXNJVZgnFgqJ/v5uy1aUwX/jty3OZ8EbzWPDvEqOklKwVTymyAKeb/yrzut5N/
-         3TxAVPRbKvZeKk/IrNHwSVO1B2/vJtzOZIKGVav2LKE2UIZTywGrd/0A+g5VnyrRXWFl
-         kST4hvlXXOvK5LbBJYvGma8a84MExtLRv1rQOW5zSTrthxeP71W2D+/P+dDdMCCBfkFJ
-         N6rQ==
-X-Gm-Message-State: AOAM532Nh8CIKyEBQguH1JW9qlMzZ00DrA0p0KdGd1gX1uiEHHK2HXDa
-        ygjwgZJcMztUqUc3mhljA2fsEg==
-X-Google-Smtp-Source: ABdhPJzaotb8BvwvYTRxvwt71utR6gzPfqmBXdd1mswAxbskGys7pe68pNKcSsoIAjm/Mjql+sJoDQ==
-X-Received: by 2002:aca:1b15:: with SMTP id b21mr1833979oib.64.1639607277330;
-        Wed, 15 Dec 2021 14:27:57 -0800 (PST)
+        bh=vIVXiGfUpcNHajlVwayi7ZXVOYdjzHmlLf5e1SFw0vM=;
+        b=tDxvAfkGo2e9HxTqDlr1dVrVKKkQGJ8yuvMz7sAPJ1mJg0wc/2qJnwEyNHmDXuI9q/
+         S3YLBWBFEwzTL46cZfXBjhVhc44338b+SwC+agua/pPW6KnxERKn1dA/CDqcSy4Zebgv
+         RcIqMhl7WbEMOQqOqbCauLjMvR3jXpx9dMRGb3Y3MQ8UilmJge9NoW6n102+NZutkox8
+         ZKMWyhuL0+djm1fDrgHlGgij9G06ApDZ2PfnjpmXjL70b4+dR2aLCrKtOIBjRo8MjyVC
+         ne+3eDaTdJYoGvk38S2keBBQqfZFx8Fkp73EDwySGhQMtdbzlnIbTKaQX1o/9iMSCMzU
+         /4Uw==
+X-Gm-Message-State: AOAM532JQRRyBFyaDS3xdmy320YAOaR7yj7xkXazeXMDgOYubXqt9hkB
+        2RpTLt24YO5N8jxNCWtfrJ5SMg==
+X-Google-Smtp-Source: ABdhPJwyLbS2ZG5HTaex00cPe5QptBuaGUGdhn0FouyMrvpYmlKxeV39hiWGUNz4eB+RvIvOBk26kg==
+X-Received: by 2002:a05:6808:1283:: with SMTP id a3mr1839688oiw.110.1639607280198;
+        Wed, 15 Dec 2021 14:28:00 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id t14sm700500oth.81.2021.12.15.14.27.56
+        by smtp.gmail.com with ESMTPSA id t14sm700500oth.81.2021.12.15.14.27.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 14:27:56 -0800 (PST)
+        Wed, 15 Dec 2021 14:27:59 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     phone-devel@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Pavel Dubrova <pashadubrova@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Martin Botka <martin.botka@somainline.org>,
-        Andy Gross <agross@kernel.org>
-Subject: Re: [PATCH v6 0/2] Global Clock Controller driver for MSM8976/56
-Date:   Wed, 15 Dec 2021 16:27:29 -0600
-Message-Id: <163960723735.3062250.6885330646115264163.b4-ty@linaro.org>
+To:     quic_vamslank@quicinc.com, agross@kernel.org, soc@kernel.org,
+        olof@lixom.net, robh+dt@kernel.org, linus.walleij@linaro.org,
+        sboyd@codeaurora.org
+Cc:     manivannan.sadhasivam@linaro.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] Add devicetree support for SDX65 Modem and MTP
+Date:   Wed, 15 Dec 2021 16:27:32 -0600
+Message-Id: <163960723735.3062250.7838330411965052999.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211208091036.132334-1-marijn.suijten@somainline.org>
-References: <20211208091036.132334-1-marijn.suijten@somainline.org>
+In-Reply-To: <1635552125-16407-1-git-send-email-quic_vamslank@quicinc.com>
+References: <1635552125-16407-1-git-send-email-quic_vamslank@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -77,22 +67,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 8 Dec 2021 10:10:34 +0100, Marijn Suijten wrote:
-> This is the Global Clock Controller (GCC) driver for MSM8956, MSM8976
-> and APQ variants and it has been tested on two Sony phones featuring the
-> Qualcomm MSM8956 SoC.
+On Fri, 29 Oct 2021 17:02:02 -0700, quic_vamslank@quicinc.com wrote:
+> From: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
 > 
-> In addition to GCC this driver is also responsible for providing MDSS
-> and GFX3D clocks which reside in the same register space.
+> Hello,
+> 
+> Changes from v2:
+>  - Added cmd-db node to the sdx65 dtsi file
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: clk: qcom: Document MSM8976 Global Clock Controller
-      commit: 13feb2093984625dbece6f1657867c84d45b76de
-[2/2] clk: qcom: Add MSM8976/56 Global Clock Controller (GCC) driver
-      commit: b577c7e6a63f4dd3b55ccc5c828175995beae66b
+[1/3] dt-bindings: arm: qcom: Document SDX65 platform and boards
+      commit: 3b338c9a6a2afd6db46d5d8e39ae4f5eef420bf8
+[2/3] ARM: dts: qcom: Add SDX65 platform and MTP board support
+      commit: bae2f5979c6e537334c9099013b5407019e88c44
+[3/3] ARM: dts: qcom: sdx65: Add pincontrol node
+      commit: ff8b573a6ccf4deba10285abef072c577099e038
 
 Best regards,
 -- 
