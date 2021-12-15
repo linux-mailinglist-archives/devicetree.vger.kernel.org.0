@@ -2,226 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40B3A47542B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 09:20:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D3D047543B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 09:25:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240776AbhLOIUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 03:20:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50094 "EHLO
+        id S236159AbhLOIZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 03:25:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235661AbhLOIUg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 03:20:36 -0500
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9178C061574
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 00:20:35 -0800 (PST)
-Received: by mail-pg1-x52c.google.com with SMTP id 133so19555603pgc.12
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 00:20:35 -0800 (PST)
+        with ESMTP id S233798AbhLOIZE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 03:25:04 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B204CC061574;
+        Wed, 15 Dec 2021 00:25:04 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id b13so15818178plg.2;
+        Wed, 15 Dec 2021 00:25:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=dVW69TmCJnTv5pUkbvRYzOl3hIL8o0Ev8E5MCNMu3v4=;
-        b=G/3L4rDd1Goqt0d0b2dj/cMhsDvkaMD7Z1+8qFaNab+J/SE+VpMr8z5qIjIgg31BP3
-         6Rgv6T1J2UpaqpYj4Ko/HrsvNIinACGkY9Lq5IoHJmoAfHdOCZaVIS8KCXKSYD+RXgZa
-         /tkVzDLzR++mtz40WJdnBEWAHCVJHeYyEp/qf6PSLI0VfhlzOWEmckna48+po0it3yNf
-         LAXJXzd9ucGOc72u1drmRWGY/oxGZGNbXHlqHYO3Q1Mbr9iGZI5uUeGNv079dUH+i/uQ
-         cRClz28G6WpGzT/Iu1lkboFSdf/KTwa+NTw7eq9XCNDI29f50wCdZFXoICXU1S0PMGXY
-         mLOg==
+        bh=IC/cDfD9CXu0SzSqyYbs6ZJ2NVWoqyte1XtD4fYOMsA=;
+        b=M/OHD96WOcVDJ69rvF9NrRAZbIIYNzZSx/utjLnI7odd0+pJALglEnLEluTNI+M+oR
+         SmK3Bv8FVFYR7PdY4Kx/i7e0/XNTNrpt3EiPQ/Ka8votfWe9a4/GHnyP15Lz3jhD7fP9
+         AGLBo4gxBH5uhqFBvveygdTgnIkaj4UMXggrl/CB/jQkTioBCj+kQFQLRpQPLfGV1Ydf
+         B/uGZStwDQ6cEh7REARVBRr2xyfpmz6WEAeuSkEDZSbRJGgf16KR1dBGEw7k/0EaVh0B
+         MBloseuUzQTaWDHGzP/vnE5HonUDhhzbARpyRgPl+OozzWNl2J0f5Off7FWb7J75IH8y
+         b/zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=dVW69TmCJnTv5pUkbvRYzOl3hIL8o0Ev8E5MCNMu3v4=;
-        b=naVXBb2RPCToGKIBmXSOvH6YmpHKdORzTyjqnJrACC/Er0J2LGFlkKcJWwwUCfXTkL
-         STXexVlKIDuovpg0EtNzANgU5q28NOTNhrEVIxJHrgHC6xEOZmzPA6gOoNzUe0x3TitF
-         xv+vlx0syupbQyNIU2J7SZPUcZpvo970tAXEHUzBNwaF1QA9Y6Wzpx4uLggGtEFh6ArI
-         EIeBJEQCH1aUccH4wFUpNXQq6SM8CHcILKFEgmh6RP5bpV0QbKidvaDN8O59QUxz+jZP
-         VRiQfIjHPcIgNfNoaij0vRRM+3MwloBOBqxNi7ZLX4cC341s20VEfgpbt9IL3zMGNuW7
-         p15Q==
-X-Gm-Message-State: AOAM532faH2BUmaiorxyXPtcvjnjmvmFqWLndLYhoDxCeN3DPObQBi31
-        MBRYxBSiRXCeq4B2UzdlY4ysqw==
-X-Google-Smtp-Source: ABdhPJzqmCCROdTAh4mINIHDWtKReeWzZihdPEwTeamzuw2CuCOAX2lKwuAQZGGVSBG5s+y4UQgjig==
-X-Received: by 2002:a63:5350:: with SMTP id t16mr6987808pgl.321.1639556435096;
-        Wed, 15 Dec 2021 00:20:35 -0800 (PST)
-Received: from google.com ([2401:fa00:1:10:754d:1c44:62a9:6d30])
-        by smtp.gmail.com with ESMTPSA id j127sm1679143pfg.14.2021.12.15.00.20.33
+        bh=IC/cDfD9CXu0SzSqyYbs6ZJ2NVWoqyte1XtD4fYOMsA=;
+        b=uTyMCbuwOrz4/xBgkR2InV+zTCUuBwjmYXKwpRTEN2hDTQy+GYxkzG6YbkkDyZ6Eqe
+         qql2hxc82co+pwnNx/Z6111YXtB770AfENfLUKMZn/g5DG/zbS+rbdm155xj7U9B0jE/
+         7Vixh2nzbs71OYbqCD25hNCJRHVgxCojLLzNc7EfyihFSmXIjc3oKgOm2XRuquSFN5Kf
+         viWWu/nPplw86R5eAgqRJ2tkhMha/5/4QnI6XoCF8qQJOTmY35DA/9haHLIh0fZyVH5r
+         2SgxKVtVZAOAuwceIoeZg8mq8mEoTNgGGdfd+h+jqVxYj1/z11l74SLqsT/wXCKDNdDX
+         qmug==
+X-Gm-Message-State: AOAM531rxwU6Hu3R2hR1cOfHZRtNxaODwGRQmxPSkFIiqtpTtVYbuKUP
+        iG0R15hrSP28kthub83R4Q==
+X-Google-Smtp-Source: ABdhPJz5lIKOlhTTLMYkLfDgJzocNwLsUqlKiT0Xy2pbDqo2uKsB+YyX+wY1bGwYHI/D3rmtTsd2gA==
+X-Received: by 2002:a17:90a:6e0c:: with SMTP id b12mr10334165pjk.41.1639556704006;
+        Wed, 15 Dec 2021 00:25:04 -0800 (PST)
+Received: from piliu.users.ipa.redhat.com ([209.132.188.80])
+        by smtp.gmail.com with ESMTPSA id t66sm1512458pfd.150.2021.12.15.00.24.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 00:20:34 -0800 (PST)
-Date:   Wed, 15 Dec 2021 16:20:31 +0800
-From:   Tzung-Bi Shih <tzungbi@google.com>
-To:     Trevor Wu <trevor.wu@mediatek.com>
-Cc:     broonie@kernel.org, tiwai@suse.com, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, alsa-devel@alsa-project.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, jiaxin.yu@mediatek.com,
-        shumingf@realtek.com
-Subject: Re: [PATCH 1/2] ASoC: mediatek: mt8195: update control for RT5682
- series
-Message-ID: <YbmlT+OSwpGuylsx@google.com>
-References: <20211215065835.3074-1-trevor.wu@mediatek.com>
+        Wed, 15 Dec 2021 00:25:03 -0800 (PST)
+Date:   Wed, 15 Dec 2021 16:24:56 +0800
+From:   Pingfan Liu <kernelfans@gmail.com>
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     devicetree@vger.kernel.org, linux-efi@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Nick Terrell <terrelln@fb.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCHv3] efi: apply memblock cap after memblock_add()
+Message-ID: <YbmmWEY2N9Ee60Lf@piliu.users.ipa.redhat.com>
+References: <20211214040157.27443-3-kernelfans@gmail.com>
+ <20211215021348.8766-1-kernelfans@gmail.com>
+ <7fa6bfd1-357d-10ad-0375-a6efdc7b89e4@huawei.com>
+ <Ybl9RYCIo14qyxqL@piliu.users.ipa.redhat.com>
+ <ef184207-57db-f80e-7ee3-264110c1ba10@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211215065835.3074-1-trevor.wu@mediatek.com>
+In-Reply-To: <ef184207-57db-f80e-7ee3-264110c1ba10@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 15, 2021 at 02:58:34PM +0800, Trevor Wu wrote:
-> --- a/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1011-rt5682.c
-> +++ b/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1011-rt5682.c
-[...]
-> +static int mt8195_set_bias_level_post(struct snd_soc_card *card,
-> +	struct snd_soc_dapm_context *dapm, enum snd_soc_bias_level level)
-> +{
-> +	struct snd_soc_component *component = dapm->component;
-> +	struct mt8195_mt6359_rt1011_rt5682_priv *priv =
-> +		snd_soc_card_get_drvdata(card);
-> +	int ret = 0;
+On Wed, Dec 15, 2021 at 02:53:38PM +0800, Leizhen (ThunderTown) wrote:
+> 
+> 
+> On 2021/12/15 13:29, Pingfan Liu wrote:
+> > On Wed, Dec 15, 2021 at 11:58:03AM +0800, Leizhen (ThunderTown) wrote:
+> >>
+> >>
+> >> On 2021/12/15 10:13, Pingfan Liu wrote:
+> >>> On arm64, during kdump kernel saves vmcore, it runs into the following bug:
+> >>> ...
+> >>> [   15.148919] usercopy: Kernel memory exposure attempt detected from SLUB object 'kmem_cache_node' (offset 0, size 4096)!
+> >>> [   15.159707] ------------[ cut here ]------------
+> >>> [   15.164311] kernel BUG at mm/usercopy.c:99!
+> >>> [   15.168482] Internal error: Oops - BUG: 0 [#1] SMP
+> >>> [   15.173261] Modules linked in: xfs libcrc32c crct10dif_ce ghash_ce sha2_ce sha256_arm64 sha1_ce sbsa_gwdt ast i2c_algo_bit drm_vram_helper drm_kms_helper syscopyarea sysfillrect sysimgblt fb_sys_fops cec drm_ttm_helper ttm drm nvme nvme_core xgene_hwmon i2c_designware_platform i2c_designware_core dm_mirror dm_region_hash dm_log dm_mod overlay squashfs zstd_decompress loop
+> >>> [   15.206186] CPU: 0 PID: 542 Comm: cp Not tainted 5.16.0-rc4 #1
+> >>> [   15.212006] Hardware name: GIGABYTE R272-P30-JG/MP32-AR0-JG, BIOS F12 (SCP: 1.5.20210426) 05/13/2021
+> >>> [   15.221125] pstate: 60400009 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> >>> [   15.228073] pc : usercopy_abort+0x9c/0xa0
+> >>> [   15.232074] lr : usercopy_abort+0x9c/0xa0
+> >>> [   15.236070] sp : ffff8000121abba0
+> >>> [   15.239371] x29: ffff8000121abbb0 x28: 0000000000003000 x27: 0000000000000000
+> >>> [   15.246494] x26: 0000000080000400 x25: 0000ffff885c7000 x24: 0000000000000000
+> >>> [   15.253617] x23: 000007ff80400000 x22: ffff07ff80401000 x21: 0000000000000001
+> >>> [   15.260739] x20: 0000000000001000 x19: ffff07ff80400000 x18: ffffffffffffffff
+> >>> [   15.267861] x17: 656a626f2042554c x16: 53206d6f72662064 x15: 6574636574656420
+> >>> [   15.274983] x14: 74706d6574746120 x13: 2129363930342065 x12: 7a6973202c302074
+> >>> [   15.282105] x11: ffffc8b041d1b148 x10: 00000000ffff8000 x9 : ffffc8b04012812c
+> >>> [   15.289228] x8 : 00000000ffff7fff x7 : ffffc8b041d1b148 x6 : 0000000000000000
+> >>> [   15.296349] x5 : 0000000000000000 x4 : 0000000000007fff x3 : 0000000000000000
+> >>> [   15.303471] x2 : 0000000000000000 x1 : ffff07ff8c064800 x0 : 000000000000006b
+> >>> [   15.310593] Call trace:
+> >>> [   15.313027]  usercopy_abort+0x9c/0xa0
+> >>> [   15.316677]  __check_heap_object+0xd4/0xf0
+> >>> [   15.320762]  __check_object_size.part.0+0x160/0x1e0
+> >>> [   15.325628]  __check_object_size+0x2c/0x40
+> >>> [   15.329711]  copy_oldmem_page+0x7c/0x140
+> >>> [   15.333623]  read_from_oldmem.part.0+0xfc/0x1c0
+> >>> [   15.338142]  __read_vmcore.constprop.0+0x23c/0x350
+> >>> [   15.342920]  read_vmcore+0x28/0x34
+> >>> [   15.346309]  proc_reg_read+0xb4/0xf0
+> >>> [   15.349871]  vfs_read+0xb8/0x1f0
+> >>> [   15.353088]  ksys_read+0x74/0x100
+> >>> [   15.356390]  __arm64_sys_read+0x28/0x34
+> >>> ...
+> >>>
+> >>> This bug introduced by commit b261dba2fdb2 ("arm64: kdump: Remove custom
+> >>> linux,usable-memory-range handling"), which moves
+> >>> memblock_cap_memory_range() to fdt, but it breaches the rules that
+> >>> memblock_cap_memory_range() should come after memblock_add() etc as said
+> >>> in commit e888fa7bb882 ("memblock: Check memory add/cap ordering").
+> >>
+> >> void __init early_init_dt_scan_nodes(void)
+> >> {
+> >> 	//(1) -->early_init_dt_check_for_usable_mem_range, fill cap_mem_addr
+> >>         rc = of_scan_flat_dt(early_init_dt_scan_chosen, boot_command_line);
+> >>
+> >> 	//(2) --> early_init_dt_add_memory_arch --> memblock_add()
+> >>         of_scan_flat_dt(early_init_dt_scan_memory, NULL);
+> >>
+> >> 	//(3)
+> >>         memblock_cap_memory_range(cap_mem_addr, cap_mem_size);
+> >> }
+> >>
+> >> I didn't get it. The above step (1),(2),(3) comply with
+> >> commit e888fa7bb882 ("memblock: Check memory add/cap ordering")
+> >>
+> > Well, at this scope, it does. But from a larger scope, let's say on
+> > arm64,
+> > setup_arch
+> >   ...
+> >   setup_machine_fdt(); //which holds your case
+> >   ...
+> >   efi_init(); //which call memblock_add, and breach the ordering.
+> > 
+> >> Did you see the warning?
+> >> pr_warn("%s: No memory registered yet\n", __func__);
+> >>
+> > Yes, I did see this message, which brings me to commit e888fa7bb882
+> > ("memblock: Check memory add/cap ordering")
+> > 
+> > I am also curious why this bug does not be discovered. Is CONFIG_EFI
+> > on at your case? 
+> 
+> Yes, Both X86 and ARM64, CONFIG_EFI=y. I used the defconfig.
+> 
+Maybe due to different md?
 
-ret doesn't need to be initialized.
+Because
+efi_init()->reserve_regions()->early_init_dt_add_memory_arch()->memblock_add()
+on arm64, if is_memory(md). This is the path breaching the rule during
+my test.
 
-> +	/*
-> +	 * It's required to control mclk directly in the set_bias_level_post
-> +	 * function for rt5682 and rt5682s codec, or the unexpected pop happens
-> +	 * at the end of playback.
-> +	 */
-> +	if (!component ||
-> +	    (strcmp(component->name, RT5682_DEV0_NAME) &&
-> +	    strcmp(component->name, RT5682S_DEV0_NAME)))
-> +		return 0;
-> +
-> +	if (IS_ERR(priv->i2so1_mclk))
-> +		return 0;
+Thanks
 
-I doubt if it needs to check priv->i2so1_mclk.  In other words, if IS_ERR(priv->i2so1_mclk) is true in _probe, does mt8195_set_bias_level_post() get called?
-
-> +	switch (level) {
-> +	case SND_SOC_BIAS_OFF:
-> +		if (!__clk_is_enabled(priv->i2so1_mclk))
-> +			return 0;
-> +
-> +		dev_dbg(card->dev, "Disable i2so1");
-> +		clk_disable_unprepare(priv->i2so1_mclk);
-
-I would suggest move dev_dbg() later than clk_disable_unprepare() which means "Disable i2so1" is done.
-
-> +		break;
-> +	case SND_SOC_BIAS_ON:
-> +		dev_dbg(card->dev, "Enable i2so1");
-> +		ret = clk_prepare_enable(priv->i2so1_mclk);
-> +		if (ret) {
-> +			dev_err(card->dev, "Can't enable mclk, err: %d\n", ret);
-
-The error message can be more specific.  "Cannot enable i2so1" for example.
-
-> +			return ret;
-> +		}
-
-Also, I would suggest move dev_dbg() later than clk_prepare_enable().  Otherwise, it could fail to prepare or enable but still can see "Enable i2so1" message.
-
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return ret;
-
-The function doesn't use any gotos.  To be concise, "return 0;".
-
-> @@ -1072,6 +1119,19 @@ static int mt8195_mt6359_rt1011_rt5682_dev_probe(struct platform_device *pdev)
->  		return -EINVAL;
->  	}
->  
-> +	priv->i2so1_mclk = devm_clk_get(&pdev->dev, "i2so1_mclk");
-> +	if (IS_ERR(priv->i2so1_mclk)) {
-> +		ret = PTR_ERR(priv->i2so1_mclk);
-> +		if (ret == -ENOENT) {
-> +			dev_dbg(&pdev->dev,
-> +				"Failed to get i2so1_mclk, defer probe\n");
-> +			return -EPROBE_DEFER;
-> +		}
-
-Does devm_clk_get_optional() could make the block more concise?
-
-> +
-> +		dev_err(&pdev->dev, "Failed to get i2so1_mclk, err:%d\n", ret);
-
-If devm_clk_get() is possible to return -EPROBE_DEFER too, use dev_err_probe().
-
-> --- a/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-rt5682.c
-> +++ b/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-rt5682.c
-[...]
-> +static int mt8195_set_bias_level_post(struct snd_soc_card *card,
-> +	struct snd_soc_dapm_context *dapm, enum snd_soc_bias_level level)
-> +{
-> +	struct snd_soc_component *component = dapm->component;
-> +	struct mt8195_mt6359_rt1019_rt5682_priv *priv =
-> +		snd_soc_card_get_drvdata(card);
-> +	int ret = 0;
-
-Ditto, see comments above.
-
-> +
-> +	/*
-> +	 * It's required to control mclk directly in the set_bias_level_post
-> +	 * function for rt5682 and rt5682s codec, or the unexpected pop happens
-> +	 * at the end of playback.
-> +	 */
-> +	if (!component ||
-> +	    (strcmp(component->name, RT5682_DEV0_NAME) &&
-> +	    strcmp(component->name, RT5682S_DEV0_NAME)))
-> +		return 0;
-> +
-> +	if (IS_ERR(priv->i2so1_mclk))
-> +		return 0;
-
-Ditto, see comments above.
-
-> +
-> +	switch (level) {
-> +	case SND_SOC_BIAS_OFF:
-> +		if (!__clk_is_enabled(priv->i2so1_mclk))
-> +			return 0;
-> +
-> +		dev_dbg(card->dev, "Disable i2so1");
-> +		clk_disable_unprepare(priv->i2so1_mclk);
-> +		break;
-> +	case SND_SOC_BIAS_ON:
-> +		dev_dbg(card->dev, "Enable i2so1");
-> +		ret = clk_prepare_enable(priv->i2so1_mclk);
-> +		if (ret) {
-> +			dev_err(card->dev, "Can't enable mclk, err: %d\n", ret);
-> +			return ret;
-> +		}
-> +		break;
-> +	default:
-> +		break;
-> +	}
-
-Ditto, see comments above for the block.
-
-> +
-> +	return ret;
-
-Ditto, see comments above.
-
-> @@ -1285,6 +1326,19 @@ static int mt8195_mt6359_rt1019_rt5682_dev_probe(struct platform_device *pdev)
->  		return -EINVAL;
->  	}
->  
-> +	priv->i2so1_mclk = devm_clk_get(&pdev->dev, "i2so1_mclk");
-> +	if (IS_ERR(priv->i2so1_mclk)) {
-> +		ret = PTR_ERR(priv->i2so1_mclk);
-> +		if (ret == -ENOENT) {
-> +			dev_dbg(&pdev->dev,
-> +				"Failed to get i2so1_mclk, defer probe\n");
-> +			return -EPROBE_DEFER;
-> +		}
-> +
-> +		dev_err(&pdev->dev, "Failed to get i2so1_mclk, err:%d\n", ret);
-> +		return ret;
-> +	}
-
-Ditto, see comments above for the block.
+	Pingfan
+> > 
+> > Thanks,
+> > 
+> > 	Pingfan
+> >>>
+> >>> As a consequence, the virtual address set up by copy_oldmem_page() does
+> >>> not bail out from the test of virt_addr_valid() in check_heap_object(),
+> >>> and finally hits the BUG_ON().
+> >>>
+> >>> Since memblock allocator has no idea about when the memblock is fully
+> >>> populated, while efi_init() is aware, so tackling this issue by calling the
+> >>> interface early_init_dt_check_for_usable_mem_range() exposed by of/fdt.
+> >>>
+> >>> Fixes: b261dba2fdb2 ("arm64: kdump: Remove custom linux,usable-memory-range handling")
+> >>> Signed-off-by: Pingfan Liu <kernelfans@gmail.com>
+> >>> Cc: Rob Herring <robh+dt@kernel.org>
+> >>> Cc: Zhen Lei <thunder.leizhen@huawei.com>
+> >>> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> >>> Cc: Will Deacon <will@kernel.org>
+> >>> Cc: Andrew Morton <akpm@linux-foundation.org>
+> >>> Cc: Mike Rapoport <rppt@kernel.org>
+> >>> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> >>> Cc: Frank Rowand <frowand.list@gmail.com>
+> >>> Cc: Ard Biesheuvel <ardb@kernel.org>
+> >>> Cc: Nick Terrell <terrelln@fb.com>
+> >>> Cc: linux-arm-kernel@lists.infradead.org
+> >>> To: devicetree@vger.kernel.org
+> >>> To: linux-efi@vger.kernel.org
+> >>> ---
+> >>> v2 -> v3:
+> >>>  use static inline stub to avoid #ifdef according to Rob's suggestion 
+> >>>
+> >>>  drivers/firmware/efi/efi-init.c | 5 +++++
+> >>>  drivers/of/fdt.c                | 2 +-
+> >>>  include/linux/of_fdt.h          | 2 ++
+> >>>  3 files changed, 8 insertions(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/drivers/firmware/efi/efi-init.c b/drivers/firmware/efi/efi-init.c
+> >>> index b19ce1a83f91..b2c829e95bd1 100644
+> >>> --- a/drivers/firmware/efi/efi-init.c
+> >>> +++ b/drivers/firmware/efi/efi-init.c
+> >>> @@ -235,6 +235,11 @@ void __init efi_init(void)
+> >>>  	}
+> >>>  
+> >>>  	reserve_regions();
+> >>> +	/*
+> >>> +	 * For memblock manipulation, the cap should come after the memblock_add().
+> >>> +	 * And now, memblock is fully populated, it is time to do capping.
+> >>> +	 */
+> >>> +	early_init_dt_check_for_usable_mem_range();
+> >>>  	efi_esrt_init();
+> >>>  	efi_mokvar_table_init();
+> >>>  
+> >>> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> >>> index 18a2df431bfd..aa07ef5cab5f 100644
+> >>> --- a/drivers/of/fdt.c
+> >>> +++ b/drivers/of/fdt.c
+> >>> @@ -972,7 +972,7 @@ static unsigned long chosen_node_offset = -FDT_ERR_NOTFOUND;
+> >>>   * location from flat tree
+> >>>   * @node: reference to node containing usable memory range location ('chosen')
+> >>>   */
+> >>> -static void __init early_init_dt_check_for_usable_mem_range(void)
+> >>> +void __init early_init_dt_check_for_usable_mem_range(void)
+> >>>  {
+> >>>  	const __be32 *prop;
+> >>>  	int len;
+> >>> diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
+> >>> index cf48983d3c86..ad09beb6d13c 100644
+> >>> --- a/include/linux/of_fdt.h
+> >>> +++ b/include/linux/of_fdt.h
+> >>> @@ -62,6 +62,7 @@ extern int early_init_dt_scan_chosen(unsigned long node, const char *uname,
+> >>>  				     int depth, void *data);
+> >>>  extern int early_init_dt_scan_memory(unsigned long node, const char *uname,
+> >>>  				     int depth, void *data);
+> >>> +extern void early_init_dt_check_for_usable_mem_range(void);
+> >>>  extern int early_init_dt_scan_chosen_stdout(void);
+> >>>  extern void early_init_fdt_scan_reserved_mem(void);
+> >>>  extern void early_init_fdt_reserve_self(void);
+> >>> @@ -86,6 +87,7 @@ extern void unflatten_and_copy_device_tree(void);
+> >>>  extern void early_init_devtree(void *);
+> >>>  extern void early_get_first_memblock_info(void *, phys_addr_t *);
+> >>>  #else /* CONFIG_OF_EARLY_FLATTREE */
+> >>> +static inline void early_init_dt_check_for_usable_mem_range(void) {}
+> >>>  static inline int early_init_dt_scan_chosen_stdout(void) { return -ENODEV; }
+> >>>  static inline void early_init_fdt_scan_reserved_mem(void) {}
+> >>>  static inline void early_init_fdt_reserve_self(void) {}
+> >>>
+> >>
+> >> _______________________________________________
+> >> linux-arm-kernel mailing list
+> >> linux-arm-kernel@lists.infradead.org
+> >> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> > .
+> > 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
