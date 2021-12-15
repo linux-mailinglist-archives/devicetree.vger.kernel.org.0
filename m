@@ -2,119 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E0EA475D22
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 17:14:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16BB9475D4A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 17:23:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244669AbhLOQOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 11:14:47 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:54402
+        id S244732AbhLOQWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 11:22:08 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:55196
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S244641AbhLOQOq (ORCPT
+        by vger.kernel.org with ESMTP id S244707AbhLOQVz (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Dec 2021 11:14:46 -0500
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
+        Wed, 15 Dec 2021 11:21:55 -0500
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 59BB43F1FD
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 16:14:45 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 30C943F1D7
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 16:21:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639584885;
-        bh=BgY63FchJkPJ4eMrqqHCh/pTnUvExCwHzjMOF853cBI=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=kQvjuLgjuSuJon90wlPPUsHIXOlGkKAB8BR83+nT059COoph95huY859tFyNFcYwK
-         RYltee/2FhbwdesHMgfqR5VucaaXqoVmrBaHUg3gNPK9pNGbTZ9rZoLxExWgt7EZo3
-         1uPeump0c+bxHrd6GwxABC7A9kBDQFIcCF99I/rPV8SRakh2gLtj1MlrVOKIwi6Xab
-         GdyBwHHCPQjSq3YyZMcACVP/Aui4KR5FT1FVNLaINuWcHoKQzA9rbvqZhBi9Nr/5Jz
-         YKuZ8yEiZQglmNlp2BTU2H6KevqnhwZrRa9eSi73WOBmiNKxhopDR4A238yxzvvaX5
-         jFobhcc65AB8w==
-Received: by mail-lj1-f199.google.com with SMTP id z18-20020a2e8e92000000b00218e583aff1so7197484ljk.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 08:14:45 -0800 (PST)
+        s=20210705; t=1639585314;
+        bh=UQpra13r/imnuYK+P2IbZ5XGTwYfQ/5zZ4iMI2bSBTk=;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version:Content-Type;
+        b=GzvKAZkxxlYT7X3R+dnU2AfMFq4aLyoUrAhWiZuPlL8LbER8dJ1ovWIpXAspMWd8o
+         UZJGf3ZiHuC5FIf5gDhPzkHhlHZBjSjWxyQBMzPYSVvwzkgbLiOg8Ap5PlfM3PWyXB
+         k2xgcFSajHtDtD3WVaEX2md89HCTUnYj5jLq1da7jXkLlyYek1VYouq5IOdFPGv2K6
+         Fof3EE9rZ3g2rjAb96R1dyniMoMPmHiphZGoIow8Q2jeXOdPEKxvbNG10yzmy9jLK1
+         jgpkUgtU3xEpTxjhH0QhM0OAZzasyQryEwnWVCDXJorvLQCNTOE/0AL85E5if6AByC
+         Eibke0aUZnPrQ==
+Received: by mail-lf1-f72.google.com with SMTP id u20-20020ac24c34000000b0041fcb2ca86eso7561065lfq.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 08:21:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=BgY63FchJkPJ4eMrqqHCh/pTnUvExCwHzjMOF853cBI=;
-        b=gkUOjf/AURXNtcoVYTxbFOQbFhkjWQW/V0XJBfvJS1fMybaYGDMVYHdYscTbKeoc8K
-         eZtwT8SOA1diuMBujgQkr30JWjv9vMWEUIwgm8GQQHqt3RRrEp1LS02GFSItvZLcXHsU
-         6dX44TH5O5qckdC7BvLLJHL+jXpEF3mXXkmHbELAQVvLhqgc+FrvL8ciXXp7BGA9bOJe
-         ANouTXCktcEGCMCxHoAU2Ds1PZRVV7aUnL3HYVuJtKtyGYVJV/pG+2dQWjG5sFh7dKig
-         16MhoKFPg4C+7JmGhncyHAAPsn+G8y/FreLzcdgOqU/FA+N4rX9jIZLfW21GQrQ8WI4Y
-         t+9g==
-X-Gm-Message-State: AOAM532mxYgyMUmf7zvkO67BelQXix3R8UervgzfULFXBn9j5JS+Hp9M
-        pzUDoSwroqoPddIzcYOCkwx28BTpLlqgUYQ+3Y6AZxo7LjUHJLzzraEUWPpRepALF8d2DanmD6w
-        uMxggmvpDjI+i67kOMrf7l8PT/SPQpykCZMtIweI=
-X-Received: by 2002:a2e:9a8c:: with SMTP id p12mr10675498lji.526.1639584884732;
-        Wed, 15 Dec 2021 08:14:44 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyoFe2zOV0XCkDN3GJvTojPbSxqWGhI9oo5Cf2acMBIzbtAkJY5xqgX9FvmY/8rG8I8ROe7SQ==
-X-Received: by 2002:a2e:9a8c:: with SMTP id p12mr10675478lji.526.1639584884570;
-        Wed, 15 Dec 2021 08:14:44 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id l18sm385334lfc.97.2021.12.15.08.14.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Dec 2021 08:14:44 -0800 (PST)
-Message-ID: <55294fa1-9988-5c10-1fc1-c33f3ec9b231@canonical.com>
-Date:   Wed, 15 Dec 2021 17:14:43 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 4/7] dt-bindings: arm: samsung: Document E850-96 board
- binding
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Hao Fang <fanghao11@huawei.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20211215160906.17451-1-semen.protsenko@linaro.org>
- <20211215160906.17451-5-semen.protsenko@linaro.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=UQpra13r/imnuYK+P2IbZ5XGTwYfQ/5zZ4iMI2bSBTk=;
+        b=iy3xPDutd4rJ2f4jNfUUzmhX13oNviYkxlJlFkt7qZHqoMjaoszJ2Qq8KEL9XSkJ3J
+         Ac8pF9+QlZ5H45rc/H7aZ57DGR1gmskzIDCg7GdYt4D63EJPFWvxohc5cL9iFHr21PD9
+         S0wyMh6h+cckJ5w0MuC1LVhUNI+EbonM31wBLS4bwEgiodAKAdQZGaVwfC9tNjxyp4iz
+         CmcXMR/oOf4IthWLGGjdEwg/1DjI8p6U7gVRAaITk2T9vfUGLTTbWLtHpQax4nZ1W+xQ
+         43o1WGiJptPYhRHa/QUvw564X4gH+BuuCL37klUfa6ZICyn7BmAZJkgIXz+w3fk984yc
+         dmow==
+X-Gm-Message-State: AOAM532BEyHYbE/tG+j2Pzn1Zfy8IJz3ucxMnZB52hFt3Q9SjNdHOKlk
+        K1tcKDEGDb098P+EOBz++ip/k/00ETT2x9JHGLA3vJTRzhiPmbQ0WpJLhyFiKIVy1GXO3qI4hOB
+        7zpLbn+17ah32BRY8F8JgeylYr1FRAK16VjAmivg=
+X-Received: by 2002:a19:d61a:: with SMTP id n26mr10578620lfg.313.1639585313506;
+        Wed, 15 Dec 2021 08:21:53 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxxRxyxjrUFbKudwdQ61hGbDEEI0JDnv9cU9sfFXGEl6TAeZSdjkJkyUrkdyqRBNhl+99x1pw==
+X-Received: by 2002:a19:d61a:: with SMTP id n26mr10578610lfg.313.1639585313346;
+        Wed, 15 Dec 2021 08:21:53 -0800 (PST)
+Received: from localhost.localdomain (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id l4sm507392ljg.60.2021.12.15.08.21.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Dec 2021 08:21:52 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211215160906.17451-5-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     David Virag <virag.david003@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        linux-clk@vger.kernel.org,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        linux-samsung-soc@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v4 3/7] dt-bindings: arm: samsung: document jackpotlte board binding
+Date:   Wed, 15 Dec 2021 17:21:16 +0100
+Message-Id: <163958527260.183299.17749602272220762675.b4-ty@canonical.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20211206153124.427102-4-virag.david003@gmail.com>
+References: <20211206153124.427102-1-virag.david003@gmail.com> <20211206153124.427102-4-virag.david003@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/12/2021 17:09, Sam Protsenko wrote:
-> Add binding for the WinLink E850-96 board, which is based on Samsung
-> Exynos850 SoC.
+On Mon, 6 Dec 2021 16:31:17 +0100, David Virag wrote:
+> Add binding for the jackpotlte board (Samsung Galaxy A8 (2018)).
 > 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->  .../devicetree/bindings/arm/samsung/samsung-boards.yaml     | 6 ++++++
->  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-> index ef6dc14be4b5..00f122197476 100644
-> --- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-> +++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-> @@ -205,6 +205,12 @@ properties:
->                - samsung,exynosautov9-sadk   # Samsung Exynos Auto v9 SADK
->            - const: samsung,exynosautov9
->  
-> +      - description: Exynos850 based boards
-> +        items:
-> +          - enum:
-> +              - winlink,e850-96                 # WinLink E850-96
-> +          - const: samsung,exynos850
-> +
 
-Add it before Exynos Auto v9 entry, please.
+Applied, thanks!
+
+[3/7] dt-bindings: arm: samsung: document jackpotlte board binding
+      commit: c96ebc5fde274edcc02543dcfb6a1ee097f98070
 
 Best regards,
-Krzysztof
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
