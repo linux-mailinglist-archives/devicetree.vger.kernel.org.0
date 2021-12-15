@@ -2,730 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55868475E00
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 17:57:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 788A7475E14
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 18:02:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245073AbhLOQ5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 11:57:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57438 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245068AbhLOQ5i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 11:57:38 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87CEDC06173F
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 08:57:37 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id a83-20020a1c9856000000b00344731e044bso3507529wme.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 08:57:37 -0800 (PST)
+        id S235318AbhLORBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 12:01:33 -0500
+Received: from smtp2.axis.com ([195.60.68.18]:1205 "EHLO smtp2.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234950AbhLORBc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 12:01:32 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=sCnVCWyu0SbUOqRDqsyN2xpEEwXtABazO2+r65+zJ7I=;
-        b=uptfE3Bp2hHL9B6xtrO+0YWc4C2J+AB86dpuBAkxMlATbXV0qX1ElJHxNyL6stsyyX
-         y96GBUVwfzz5t5XYqLNKhjnKd5WIP1S+ATuPqSnUFSCdpUIUXr4j9VBPcpvUm00ZGDBP
-         iUpt8thzlXKc+XmJrJi+gyNkemnoTazVWsw0w7GWSKiwfH0lnIntn5/DNoz0BuL+5rbg
-         XgLAdrL16EXO+wxuoL6HdlrNtFhKpbX380wr221IJbqLCZXlLMFFfzCTpqCDSozJCT9l
-         qYoDNLCaPkU5kgbabpO74BxCTMIfcs46Rcbj2WzeAdHjj1jeWJU7y2SPz23003hEC9WZ
-         ofUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=sCnVCWyu0SbUOqRDqsyN2xpEEwXtABazO2+r65+zJ7I=;
-        b=bKou2wTA4GCJV9Qnfwam+DRg+RzbOlxfr4+pTpu1kCAW0o//xE3H4vZ62BwJsug1mt
-         YLyl2q3qoqpC+Uh7OLNDyYdLoNjx9nBbzoX8472q3WB+WpoZ5Ss6cQip8fis1D99z97g
-         27RBaUV5uc8dB6vi4xzpGHdkaXfGVrjJJEdqSoPPZ+1wQyZ8DNX8qDsoMGTb6v8yNs43
-         ynik8lEW2WrRzoRSu1fD+hRImu6XASIsoIEBYJ8fqtULCShgz1q4cR1RaM5+kZjCnLsG
-         /3fOKkve0nRPRkcGDVqOB21uuRqto4kJaF43fJNwrlthH1iZ66kDc8qX/hRL3Sigf6Ev
-         awnQ==
-X-Gm-Message-State: AOAM530/93dlfh7O5iT+1A0GT3QfqZkwzhJ6IGGL/t9Ugxfo/HKqpSk5
-        AMOJQW+keIUAGVNZAz5pYISwfQ==
-X-Google-Smtp-Source: ABdhPJzIuoasY4ZrMYPG2oZzJLmiUX8Bu9PXaK7oLgnfRNzrBKWBouvxNmRCTaRSbIMcL/8U4YZMlw==
-X-Received: by 2002:a05:600c:3506:: with SMTP id h6mr788040wmq.122.1639587455978;
-        Wed, 15 Dec 2021 08:57:35 -0800 (PST)
-Received: from localhost.localdomain ([88.160.176.23])
-        by smtp.gmail.com with ESMTPSA id k7sm2507969wri.110.2021.12.15.08.57.35
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 15 Dec 2021 08:57:35 -0800 (PST)
-From:   Loic Poulain <loic.poulain@linaro.org>
-To:     bjorn.andersson@linaro.org, agross@kernel.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, shawn.guo@linaro.org,
-        Loic Poulain <loic.poulain@linaro.org>
-Subject: [PATCH v3 2/2] clk: qcom: Add display clock controller driver for QCM2290
-Date:   Wed, 15 Dec 2021 18:09:40 +0100
-Message-Id: <1639588180-32454-2-git-send-email-loic.poulain@linaro.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1639588180-32454-1-git-send-email-loic.poulain@linaro.org>
-References: <1639588180-32454-1-git-send-email-loic.poulain@linaro.org>
+  d=axis.com; q=dns/txt; s=axis-central1; t=1639587692;
+  x=1671123692;
+  h=date:from:to:cc:subject:message-id:mime-version;
+  bh=ZiSGZGPyj4FODLsUKeGsaxVzLcSsq+zsCg/R7x2c0KE=;
+  b=oyDc6TRx3di+1DDc9AjoioPF8MJbXTi+FcS8cHhOLnGbmTBtU/sbEDvC
+   rLwEGGico2oTMYV0u6j7/ax+pIhgxdZAeFYncYroSdpUWHwEpIbh1FR/T
+   Md6CQKLxp2yxvxtP+x/8lZelsyytibOW+zaTfncHRrjXsKqoGZvDwvmw8
+   KRnc7YPiTS/QvcqOxWvIUBjt+c1YtN6jEItsG9VZ8fmTTgcF16IlLlqNt
+   lnJ8rMRB+X5vkauMEGBHxzWj78/w/hL7n8TKgb+TfHmHWPtkkQCgjNegg
+   5vogUICM2a2AiXdAuTaGTD3olG3nuVjbHd+hCfZoveG4eOH2p90SuaDEe
+   Q==;
+Date:   Wed, 15 Dec 2021 18:01:24 +0100
+From:   Ricard Wanderlof <ricardw@axis.com>
+X-X-Sender: ricardw@lap5cg0092dnk.se.axis.com
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     alsa-devel <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: [PATCH v7 1/2] dt-bindings: sound: tlv320adc3xxx: New codec driver
+Message-ID: <alpine.DEB.2.21.2112151759170.27889@lap5cg0092dnk.se.axis.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+X-Originating-IP: [10.0.5.60]
+X-ClientProxiedBy: se-mail03w.axis.com (10.20.40.9) To se-mail07w.axis.com
+ (10.20.40.13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the display clock controller found in QCM2290
-based devices. This clock controller feeds the Multimedia Display
-SubSystem (MDSS).
 
-It's a porting of dispcc-scuba GPL-2.0 driver from CAF msm-4.19 kernel:
-https://source.codeaurora.org/quic/la/kernel/msm-4.19/tree/drivers/clk/qcom/dispcc-scuba.c?h=LE.UM.4.4.1.r3
+DT bindings for Texas Instruments TLV320ADC3001 and TLV320ADC3101
+audio ADCs.
 
-Global clock name references (parent_names) have been replaced by
-parent_data and parent_hws.
-
-Clocks marked enable_safe_config have their clk_rcg2_ops moved to
-clk_rcg2_shared_ops.
-
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+Change-Id: I94e948892f47df7acb5cffc007d4678b37a96bc8
+Signed-off-by: Ricard Wanderlof <ricardw@axis.com>
 ---
- v2: Added missing dispcc-qcm2290.h header file
- v3: - Moved dt-bindings header into dt bindings commit
-     - clk_rcg2_ops to clk_rcg2_shared_ops for enable_safe_config
-       marked clocks.
+ .../bindings/sound/ti,tlv320adc3xxx.yaml      | 137 ++++++++++++++++++
+ include/dt-bindings/sound/tlv320adc3xxx.h     |  28 ++++
+ 2 files changed, 165 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
+ create mode 100644 include/dt-bindings/sound/tlv320adc3xxx.h
 
- drivers/clk/qcom/Kconfig          |   8 +
- drivers/clk/qcom/Makefile         |   1 +
- drivers/clk/qcom/dispcc-qcm2290.c | 602 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 611 insertions(+)
- create mode 100644 drivers/clk/qcom/dispcc-qcm2290.c
-
-diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-index 74efc82..b136cd2 100644
---- a/drivers/clk/qcom/Kconfig
-+++ b/drivers/clk/qcom/Kconfig
-@@ -332,6 +332,14 @@ config QCM_GCC_2290
- 	  Say Y if you want to use multimedia devices or peripheral
- 	  devices such as UART, SPI, I2C, USB, SD/eMMC etc.
- 
-+config QCM_DISPCC_2290
-+	tristate "QCM2290 Display Clock Controller"
-+	help
-+	  Support for the display clock controller on Qualcomm Technologies, Inc
-+	  QCM2290 devices.
-+	  Say Y if you want to support display devices and functionality such as
-+	  splash screen.
-+
- config QCS_GCC_404
- 	tristate "QCS404 Global Clock Controller"
- 	help
-diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-index 1718c34..348d012 100644
---- a/drivers/clk/qcom/Makefile
-+++ b/drivers/clk/qcom/Makefile
-@@ -55,6 +55,7 @@ obj-$(CONFIG_QCOM_CLK_RPM) += clk-rpm.o
- obj-$(CONFIG_QCOM_CLK_RPMH) += clk-rpmh.o
- obj-$(CONFIG_QCOM_CLK_SMD_RPM) += clk-smd-rpm.o
- obj-$(CONFIG_QCM_GCC_2290) += gcc-qcm2290.o
-+obj-$(CONFIG_QCM_DISPCC_2290) += dispcc-qcm2290.o
- obj-$(CONFIG_QCS_GCC_404) += gcc-qcs404.o
- obj-$(CONFIG_QCS_Q6SSTOP_404) += q6sstop-qcs404.o
- obj-$(CONFIG_QCS_TURING_404) += turingcc-qcs404.o
-diff --git a/drivers/clk/qcom/dispcc-qcm2290.c b/drivers/clk/qcom/dispcc-qcm2290.c
+diff --git a/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml b/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
 new file mode 100644
-index 00000000..6854371
+index 000000000000..83936f594d1a
 --- /dev/null
-+++ b/drivers/clk/qcom/dispcc-qcm2290.c
-@@ -0,0 +1,602 @@
-+// SPDX-License-Identifier: GPL-2.0-only
++++ b/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
+@@ -0,0 +1,137 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,tlv320adc3xxx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments TLV320ADC3001/TLV320ADC3101 Stereo ADC
++
++maintainers:
++  - Ricard Wanderlof <ricardw@axis.com>
++
++description: |
++  Texas Instruments TLV320ADC3001 and TLV320ADC3101 Stereo ADC
++  https://www.ti.com/product/TLV320ADC3001
++  https://www.ti.com/product/TLV320ADC3101
++
++properties:
++  compatible:
++    enum:
++      - ti,tlv320adc3001
++      - ti,tlv320adc3101
++
++  reg:
++    maxItems: 1
++    description: I2C address
++
++  '#sound-dai-cells':
++    const: 0
++
++  '#gpio-cells':
++    const: 2
++
++  gpio-controller: true
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO pin used for codec reset (RESET pin)
++
++  clocks:
++    maxItems: 1
++    description: Master clock (MCLK)
++
++  ti,dmdin-gpio1:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # ADC3XXX_GPIO_DISABLED       - I/O buffers powered down and not used
++      - 1 # ADC3XXX_GPIO_INPUT          - Various non-GPIO input functions
++      - 2 # ADC3XXX_GPIO_GPI            - General purpose input
++      - 3 # ADC3XXX_GPIO_GPO            - General purpose output
++      - 4 # ADC3XXX_GPIO_CLKOUT         - Clock source set in CLKOUT_MUX reg
++      - 5 # ADC3XXX_GPIO_INT1           - INT1 output
++      - 6 # ADC3XXX_GPIO_SECONDARY_BCLK - Codec interface secondary BCLK
++      - 7 # ADC3XXX_GPIO_SECONDARY_WCLK - Codec interface secondary WCLK
++    default: 0
++    description: |
++      Configuration for DMDIN/GPIO1 pin.
++
++      When ADC3XXX_GPIO_GPO is configured, this causes corresponding the
++      ALSA control "GPIOx Output" to appear, as a switch control.
++
++  ti,dmclk-gpio2:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # ADC3XXX_GPIO_DISABLED       - I/O buffers powered down and not used
++      - 1 # ADC3XXX_GPIO_INPUT          - Various non-GPIO input functions
++      - 2 # ADC3XXX_GPIO_GPI            - General purpose input
++      - 3 # ADC3XXX_GPIO_GPO            - General purpose output
++      - 4 # ADC3XXX_GPIO_CLKOUT         - Clock source set in CLKOUT_MUX reg
++      - 5 # ADC3XXX_GPIO_INT1           - INT1 output
++      - 6 # ADC3XXX_GPIO_SECONDARY_BCLK - Codec interface secondary BCLK
++      - 7 # ADC3XXX_GPIO_SECONDARY_WCLK - Codec interface secondary WCLK
++    default: 0
++    description: |
++      Configuration for DMCLK/GPIO2 pin.
++
++      When ADC3XXX_GPIO_GPO is configured, this causes corresponding the
++      ALSA control "GPIOx Output" to appear, as a switch control.
++
++      Note that there is currently no support for reading the GPIO pins as
++      inputs.
++
++  ti,micbias1-vg:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # ADC3XXX_MICBIAS_OFF		- Mic bias is powered down
++      - 1 # ADC3XXX_MICBIAS_2_0V	- Mic bias is set to 2.0V
++      - 2 # ADC3XXX_MICBIAS_2_5V	- Mic bias is set to 2.5V
++      - 3 # ADC3XXX_MICBIAS_AVDD	- Mic bias is same as AVDD supply
++    default: 0
++    description: |
++      Mic bias voltage output on MICBIAS1 pin
++
++  ti,micbias2-vg:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # ADC3XXX_MICBIAS_OFF		- Mic bias is powered down
++      - 1 # ADC3XXX_MICBIAS_2_0V	- Mic bias is set to 2.0V
++      - 2 # ADC3XXX_MICBIAS_2_5V	- Mic bias is set to 2.5V
++      - 3 # ADC3XXX_MICBIAS_AVDD	- Mic bias is same as AVDD supply
++    default: 0
++    description: |
++      Mic bias voltage output on MICBIAS2 pin
++
++required:
++  - compatible
++  - reg
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/sound/tlv320adc3xxx.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        tlv320adc3101: audio-codec@18 {
++            compatible = "ti,tlv320adc3101";
++            reg = <0x18>;
++            reset-gpios = <&gpio_pc 3 GPIO_ACTIVE_LOW>;
++            clocks = <&audio_mclk>;
++            gpio-controller;
++            #gpio-cells = <2>;
++            ti,dmdin-gpio1 = <ADC3XXX_GPIO_GPO>;
++            ti,micbias1-vg = <ADC3XXX_MICBIAS_AVDD>;
++        };
++    };
++
++    audio_mclk: clock {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <24576000>;
++    };
++...
+diff --git a/include/dt-bindings/sound/tlv320adc3xxx.h b/include/dt-bindings/sound/tlv320adc3xxx.h
+new file mode 100644
+index 000000000000..ec988439da20
+--- /dev/null
++++ b/include/dt-bindings/sound/tlv320adc3xxx.h
+@@ -0,0 +1,28 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
 +/*
-+ * Copyright (c) 2020, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2021, Linaro Ltd.
++ * Devicetree bindings definitions for tlv320adc3xxx driver.
++ *
++ * Copyright (C) 2021 Axis Communications AB
 + */
++#ifndef __DT_TLV320ADC3XXX_H
++#define __DT_TLV320ADC3XXX_H
 +
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/err.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/of.h>
-+#include <linux/regmap.h>
++#define ADC3XXX_GPIO_DISABLED		0 /* I/O buffers powered down */
++#define ADC3XXX_GPIO_INPUT		1 /* Various non-GPIO inputs */
++#define ADC3XXX_GPIO_GPI		2 /* General purpose input */
++#define ADC3XXX_GPIO_GPO		3 /* General purpose output */
++#define ADC3XXX_GPIO_CLKOUT		4 /* Source set in reg. CLKOUT_MUX */
++#define ADC3XXX_GPIO_INT1		5 /* INT1 output */
++#define ADC3XXX_GPIO_INT2		6 /* INT2 output */
++/* value 7 is reserved */
++#define ADC3XXX_GPIO_SECONDARY_BCLK	8 /* Codec interface secondary BCLK */
++#define ADC3XXX_GPIO_SECONDARY_WCLK	9 /* Codec interface secondary WCLK */
++#define ADC3XXX_GPIO_ADC_MOD_CLK	10 /* Clock output for digital mics */
++/* values 11-15 reserved */
 +
-+#include <dt-bindings/clock/qcom,dispcc-qcm2290.h>
++#define ADC3XXX_MICBIAS_OFF		0 /* Micbias pin powered off */
++#define ADC3XXX_MICBIAS_2_0V		1 /* Micbias pin set to 2.0V */
++#define ADC3XXX_MICBIAS_2_5V		2 /* Micbias pin set to 2.5V */
++#define ADC3XXX_MICBIAS_AVDD		3 /* Use AVDD voltage for micbias pin */
 +
-+#include "clk-alpha-pll.h"
-+#include "clk-branch.h"
-+#include "clk-rcg.h"
-+#include "clk-regmap.h"
-+#include "clk-regmap-divider.h"
-+#include "common.h"
-+#include "reset.h"
-+#include "gdsc.h"
-+
-+enum {
-+	P_BI_TCXO,
-+	P_CORE_BI_PLL_TEST_SE,
-+	P_DISP_CC_PLL0_OUT_MAIN,
-+	P_DSI0_PHY_PLL_OUT_BYTECLK,
-+	P_DSI0_PHY_PLL_OUT_DSICLK,
-+	P_DSI1_PHY_PLL_OUT_DSICLK,
-+	P_GPLL0_OUT_MAIN,
-+	P_SLEEP_CLK,
-+};
-+
-+static struct pll_vco spark_vco[] = {
-+	{ 500000000, 1000000000, 2 },
-+};
-+
-+/* 768MHz configuration */
-+static const struct alpha_pll_config disp_cc_pll0_config = {
-+	.l = 0x28,
-+	.alpha = 0x0,
-+	.alpha_en_mask = BIT(24),
-+	.vco_val = 0x2 << 20,
-+	.vco_mask = GENMASK(21, 20),
-+	.main_output_mask = BIT(0),
-+	.config_ctl_val = 0x4001055B,
-+};
-+
-+static struct clk_alpha_pll disp_cc_pll0 = {
-+	.offset = 0x0,
-+	.vco_table = spark_vco,
-+	.num_vco = ARRAY_SIZE(spark_vco),
-+	.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_DEFAULT],
-+	.clkr = {
-+		.hw.init = &(struct clk_init_data){
-+			.name = "disp_cc_pll0",
-+			.parent_data = &(const struct clk_parent_data){
-+				.fw_name = "bi_tcxo",
-+			},
-+			.num_parents = 1,
-+			.ops = &clk_alpha_pll_ops,
-+		},
-+	},
-+};
-+
-+static const struct parent_map disp_cc_parent_map_0[] = {
-+	{ P_BI_TCXO, 0 },
-+	{ P_DSI0_PHY_PLL_OUT_BYTECLK, 1 },
-+	{ P_CORE_BI_PLL_TEST_SE, 7 },
-+};
-+
-+static const struct clk_parent_data disp_cc_parent_data_0[] = {
-+	{ .fw_name = "bi_tcxo" },
-+	{ .fw_name = "dsi0_phy_pll_out_byteclk" },
-+	{ .fw_name = "core_bi_pll_test_se" },
-+};
-+
-+static const struct parent_map disp_cc_parent_map_1[] = {
-+	{ P_BI_TCXO, 0 },
-+	{ P_CORE_BI_PLL_TEST_SE, 7 },
-+};
-+
-+static const struct clk_parent_data disp_cc_parent_data_1[] = {
-+	{ .fw_name = "bi_tcxo" },
-+	{ .fw_name = "core_bi_pll_test_se" },
-+};
-+
-+static const struct clk_parent_data disp_cc_parent_data_1_ao[] = {
-+	{ .fw_name = "bi_tcxo_ao" },
-+	{ .fw_name = "core_bi_pll_test_se" },
-+};
-+
-+static const struct parent_map disp_cc_parent_map_2[] = {
-+	{ P_BI_TCXO, 0 },
-+	{ P_GPLL0_OUT_MAIN, 4 },
-+	{ P_CORE_BI_PLL_TEST_SE, 7 },
-+};
-+
-+static const struct clk_parent_data disp_cc_parent_data_2[] = {
-+	{ .fw_name = "bi_tcxo_ao" },
-+	{ .fw_name = "gcc_disp_gpll0_div_clk_src" },
-+	{ .fw_name = "core_bi_pll_test_se" },
-+};
-+
-+static const struct parent_map disp_cc_parent_map_3[] = {
-+	{ P_BI_TCXO, 0 },
-+	{ P_DISP_CC_PLL0_OUT_MAIN, 1 },
-+	{ P_GPLL0_OUT_MAIN, 4 },
-+	{ P_CORE_BI_PLL_TEST_SE, 7 },
-+};
-+
-+static const struct clk_parent_data disp_cc_parent_data_3[] = {
-+	{ .fw_name = "bi_tcxo" },
-+	{ .hw = &disp_cc_pll0.clkr.hw },
-+	{ .fw_name = "gcc_disp_gpll0_clk_src" },
-+	{ .fw_name = "core_bi_pll_test_se" },
-+};
-+
-+static const struct parent_map disp_cc_parent_map_4[] = {
-+	{ P_BI_TCXO, 0 },
-+	{ P_DSI0_PHY_PLL_OUT_DSICLK, 1 },
-+	{ P_DSI1_PHY_PLL_OUT_DSICLK, 2 },
-+	{ P_CORE_BI_PLL_TEST_SE, 7 },
-+};
-+
-+static const struct clk_parent_data disp_cc_parent_data_4[] = {
-+	{ .fw_name = "bi_tcxo" },
-+	{ .fw_name = "dsi0_phy_pll_out_dsiclk" },
-+	{ .fw_name = "dsi1_phy_pll_out_dsiclk" },
-+	{ .fw_name = "core_bi_pll_test_se" },
-+};
-+
-+static const struct parent_map disp_cc_parent_map_5[] = {
-+	{ P_SLEEP_CLK, 0 },
-+	{ P_CORE_BI_PLL_TEST_SE, 7 },
-+};
-+
-+static const struct clk_parent_data disp_cc_parent_data_5[] = {
-+	{ .fw_name = "sleep_clk", .name = "sleep_clk" },
-+	{ .fw_name = "core_bi_pll_test_se" },
-+};
-+
-+static struct clk_rcg2 disp_cc_mdss_byte0_clk_src = {
-+	.cmd_rcgr = 0x20a4,
-+	.mnd_width = 0,
-+	.hid_width = 5,
-+	.parent_map = disp_cc_parent_map_0,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "disp_cc_mdss_byte0_clk_src",
-+		.parent_data = disp_cc_parent_data_0,
-+		.num_parents = ARRAY_SIZE(disp_cc_parent_data_0),
-+		.flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE | CLK_OPS_PARENT_ENABLE,
-+		.ops = &clk_byte2_ops,
-+	},
-+};
-+
-+static struct clk_regmap_div disp_cc_mdss_byte0_div_clk_src = {
-+	.reg = 0x20bc,
-+	.shift = 0,
-+	.width = 2,
-+	.clkr.hw.init = &(struct clk_init_data) {
-+		.name = "disp_cc_mdss_byte0_div_clk_src",
-+		.parent_hws = (const struct clk_hw*[]){
-+			&disp_cc_mdss_byte0_clk_src.clkr.hw,
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_GET_RATE_NOCACHE,
-+		.ops = &clk_regmap_div_ops,
-+	},
-+};
-+
-+static const struct freq_tbl ftbl_disp_cc_mdss_ahb_clk_src[] = {
-+	F(19200000, P_BI_TCXO, 1, 0, 0),
-+	F(37500000, P_GPLL0_OUT_MAIN, 8, 0, 0),
-+	F(75000000, P_GPLL0_OUT_MAIN, 4, 0, 0),
-+	{ }
-+};
-+
-+static struct clk_rcg2 disp_cc_mdss_ahb_clk_src = {
-+	.cmd_rcgr = 0x2154,
-+	.mnd_width = 0,
-+	.hid_width = 5,
-+	.parent_map = disp_cc_parent_map_2,
-+	.freq_tbl = ftbl_disp_cc_mdss_ahb_clk_src,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "disp_cc_mdss_ahb_clk_src",
-+		.parent_data = disp_cc_parent_data_2,
-+		.num_parents = ARRAY_SIZE(disp_cc_parent_data_2),
-+		.ops = &clk_rcg2_shared_ops,
-+	},
-+};
-+
-+static const struct freq_tbl ftbl_disp_cc_mdss_esc0_clk_src[] = {
-+	F(19200000, P_BI_TCXO, 1, 0, 0),
-+	{ }
-+};
-+
-+static struct clk_rcg2 disp_cc_mdss_esc0_clk_src = {
-+	.cmd_rcgr = 0x20c0,
-+	.mnd_width = 0,
-+	.hid_width = 5,
-+	.parent_map = disp_cc_parent_map_0,
-+	.freq_tbl = ftbl_disp_cc_mdss_esc0_clk_src,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "disp_cc_mdss_esc0_clk_src",
-+		.parent_data = disp_cc_parent_data_0,
-+		.num_parents = ARRAY_SIZE(disp_cc_parent_data_0),
-+		.ops = &clk_rcg2_ops,
-+	},
-+};
-+
-+static const struct freq_tbl ftbl_disp_cc_mdss_mdp_clk_src[] = {
-+	F(19200000, P_BI_TCXO, 1, 0, 0),
-+	F(192000000, P_DISP_CC_PLL0_OUT_MAIN, 4, 0, 0),
-+	F(256000000, P_DISP_CC_PLL0_OUT_MAIN, 3, 0, 0),
-+	F(307200000, P_DISP_CC_PLL0_OUT_MAIN, 2.5, 0, 0),
-+	F(384000000, P_DISP_CC_PLL0_OUT_MAIN, 2, 0, 0),
-+	{ }
-+};
-+
-+static struct clk_rcg2 disp_cc_mdss_mdp_clk_src = {
-+	.cmd_rcgr = 0x2074,
-+	.mnd_width = 0,
-+	.hid_width = 5,
-+	.parent_map = disp_cc_parent_map_3,
-+	.freq_tbl = ftbl_disp_cc_mdss_mdp_clk_src,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "disp_cc_mdss_mdp_clk_src",
-+		.parent_data = disp_cc_parent_data_3,
-+		.num_parents = ARRAY_SIZE(disp_cc_parent_data_3),
-+		.flags = CLK_SET_RATE_PARENT,
-+		.ops = &clk_rcg2_shared_ops,
-+	},
-+};
-+
-+static struct clk_rcg2 disp_cc_mdss_pclk0_clk_src = {
-+	.cmd_rcgr = 0x205c,
-+	.mnd_width = 8,
-+	.hid_width = 5,
-+	.parent_map = disp_cc_parent_map_4,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "disp_cc_mdss_pclk0_clk_src",
-+		.parent_data = disp_cc_parent_data_4,
-+		.num_parents = ARRAY_SIZE(disp_cc_parent_data_4),
-+		.flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE | CLK_OPS_PARENT_ENABLE,
-+		.ops = &clk_pixel_ops,
-+	},
-+};
-+
-+static struct clk_rcg2 disp_cc_mdss_vsync_clk_src = {
-+	.cmd_rcgr = 0x208c,
-+	.mnd_width = 0,
-+	.hid_width = 5,
-+	.parent_map = disp_cc_parent_map_1,
-+	.freq_tbl = ftbl_disp_cc_mdss_esc0_clk_src,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "disp_cc_mdss_vsync_clk_src",
-+		.parent_data = disp_cc_parent_data_1,
-+		.num_parents = ARRAY_SIZE(disp_cc_parent_data_1),
-+		.flags = CLK_SET_RATE_PARENT,
-+		.ops = &clk_rcg2_shared_ops,
-+	},
-+};
-+
-+static const struct freq_tbl ftbl_disp_cc_sleep_clk_src[] = {
-+	F(32764, P_SLEEP_CLK, 1, 0, 0),
-+	{ }
-+};
-+
-+static struct clk_rcg2 disp_cc_sleep_clk_src = {
-+	.cmd_rcgr = 0x6050,
-+	.mnd_width = 0,
-+	.hid_width = 5,
-+	.parent_map = disp_cc_parent_map_5,
-+	.freq_tbl = ftbl_disp_cc_sleep_clk_src,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "disp_cc_sleep_clk_src",
-+		.parent_data = disp_cc_parent_data_5,
-+		.num_parents = ARRAY_SIZE(disp_cc_parent_data_5),
-+		.ops = &clk_rcg2_ops,
-+	},
-+};
-+
-+static struct clk_rcg2 disp_cc_xo_clk_src = {
-+	.cmd_rcgr = 0x6034,
-+	.mnd_width = 0,
-+	.hid_width = 5,
-+	.parent_map = disp_cc_parent_map_1,
-+	.freq_tbl = ftbl_disp_cc_mdss_esc0_clk_src,
-+	.clkr.hw.init = &(struct clk_init_data){
-+		.name = "disp_cc_xo_clk_src",
-+		.parent_data = disp_cc_parent_data_1_ao,
-+		.num_parents = ARRAY_SIZE(disp_cc_parent_data_1_ao),
-+		.ops = &clk_rcg2_ops,
-+	},
-+};
-+
-+static struct clk_branch disp_cc_mdss_ahb_clk = {
-+	.halt_reg = 0x2044,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x2044,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "disp_cc_mdss_ahb_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&disp_cc_mdss_ahb_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch disp_cc_mdss_byte0_clk = {
-+	.halt_reg = 0x201c,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x201c,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "disp_cc_mdss_byte0_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&disp_cc_mdss_byte0_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch disp_cc_mdss_byte0_intf_clk = {
-+	.halt_reg = 0x2020,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x2020,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "disp_cc_mdss_byte0_intf_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&disp_cc_mdss_byte0_div_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch disp_cc_mdss_esc0_clk = {
-+	.halt_reg = 0x2024,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x2024,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "disp_cc_mdss_esc0_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&disp_cc_mdss_esc0_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch disp_cc_mdss_mdp_clk = {
-+	.halt_reg = 0x2008,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x2008,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "disp_cc_mdss_mdp_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&disp_cc_mdss_mdp_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch disp_cc_mdss_mdp_lut_clk = {
-+	.halt_reg = 0x2010,
-+	.halt_check = BRANCH_HALT_VOTED,
-+	.clkr = {
-+		.enable_reg = 0x2010,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "disp_cc_mdss_mdp_lut_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&disp_cc_mdss_mdp_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch disp_cc_mdss_non_gdsc_ahb_clk = {
-+	.halt_reg = 0x4004,
-+	.halt_check = BRANCH_HALT_VOTED,
-+	.clkr = {
-+		.enable_reg = 0x4004,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "disp_cc_mdss_non_gdsc_ahb_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&disp_cc_mdss_ahb_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch disp_cc_mdss_pclk0_clk = {
-+	.halt_reg = 0x2004,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x2004,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "disp_cc_mdss_pclk0_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&disp_cc_mdss_pclk0_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch disp_cc_mdss_vsync_clk = {
-+	.halt_reg = 0x2018,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x2018,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "disp_cc_mdss_vsync_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&disp_cc_mdss_vsync_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch disp_cc_sleep_clk = {
-+	.halt_reg = 0x6068,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x6068,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "disp_cc_sleep_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&disp_cc_sleep_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct clk_branch disp_cc_xo_clk = {
-+	.halt_reg = 0x604c,
-+	.halt_check = BRANCH_HALT,
-+	.clkr = {
-+		.enable_reg = 0x604c,
-+		.enable_mask = BIT(0),
-+		.hw.init = &(struct clk_init_data){
-+			.name = "disp_cc_xo_clk",
-+			.parent_hws = (const struct clk_hw*[]){
-+				&disp_cc_xo_clk_src.clkr.hw,
-+			},
-+			.num_parents = 1,
-+			.flags = CLK_IS_CRITICAL | CLK_SET_RATE_PARENT,
-+			.ops = &clk_branch2_ops,
-+		},
-+	},
-+};
-+
-+static struct gdsc mdss_gdsc = {
-+	.gdscr = 0x3000,
-+	.pd = {
-+		.name = "mdss_gdsc",
-+	},
-+	.pwrsts = PWRSTS_OFF_ON,
-+	.flags = HW_CTRL,
-+};
-+
-+static struct gdsc *disp_cc_qcm2290_gdscs[] = {
-+	[MDSS_GDSC] = &mdss_gdsc,
-+};
-+
-+static struct clk_regmap *disp_cc_qcm2290_clocks[] = {
-+	[DISP_CC_MDSS_AHB_CLK] = &disp_cc_mdss_ahb_clk.clkr,
-+	[DISP_CC_MDSS_AHB_CLK_SRC] = &disp_cc_mdss_ahb_clk_src.clkr,
-+	[DISP_CC_MDSS_BYTE0_CLK] = &disp_cc_mdss_byte0_clk.clkr,
-+	[DISP_CC_MDSS_BYTE0_CLK_SRC] = &disp_cc_mdss_byte0_clk_src.clkr,
-+	[DISP_CC_MDSS_BYTE0_DIV_CLK_SRC] = &disp_cc_mdss_byte0_div_clk_src.clkr,
-+	[DISP_CC_MDSS_BYTE0_INTF_CLK] = &disp_cc_mdss_byte0_intf_clk.clkr,
-+	[DISP_CC_MDSS_ESC0_CLK] = &disp_cc_mdss_esc0_clk.clkr,
-+	[DISP_CC_MDSS_ESC0_CLK_SRC] = &disp_cc_mdss_esc0_clk_src.clkr,
-+	[DISP_CC_MDSS_MDP_CLK] = &disp_cc_mdss_mdp_clk.clkr,
-+	[DISP_CC_MDSS_MDP_CLK_SRC] = &disp_cc_mdss_mdp_clk_src.clkr,
-+	[DISP_CC_MDSS_MDP_LUT_CLK] = &disp_cc_mdss_mdp_lut_clk.clkr,
-+	[DISP_CC_MDSS_NON_GDSC_AHB_CLK] = &disp_cc_mdss_non_gdsc_ahb_clk.clkr,
-+	[DISP_CC_MDSS_PCLK0_CLK] = &disp_cc_mdss_pclk0_clk.clkr,
-+	[DISP_CC_MDSS_PCLK0_CLK_SRC] = &disp_cc_mdss_pclk0_clk_src.clkr,
-+	[DISP_CC_MDSS_VSYNC_CLK] = &disp_cc_mdss_vsync_clk.clkr,
-+	[DISP_CC_MDSS_VSYNC_CLK_SRC] = &disp_cc_mdss_vsync_clk_src.clkr,
-+	[DISP_CC_PLL0] = &disp_cc_pll0.clkr,
-+	[DISP_CC_SLEEP_CLK] = &disp_cc_sleep_clk.clkr,
-+	[DISP_CC_SLEEP_CLK_SRC] = &disp_cc_sleep_clk_src.clkr,
-+	[DISP_CC_XO_CLK] = &disp_cc_xo_clk.clkr,
-+	[DISP_CC_XO_CLK_SRC] = &disp_cc_xo_clk_src.clkr,
-+};
-+
-+static const struct regmap_config disp_cc_qcm2290_regmap_config = {
-+	.reg_bits = 32,
-+	.reg_stride = 4,
-+	.val_bits = 32,
-+	.max_register = 0x10000,
-+	.fast_io = true,
-+};
-+
-+static const struct qcom_cc_desc disp_cc_qcm2290_desc = {
-+	.config = &disp_cc_qcm2290_regmap_config,
-+	.clks = disp_cc_qcm2290_clocks,
-+	.num_clks = ARRAY_SIZE(disp_cc_qcm2290_clocks),
-+	.gdscs = disp_cc_qcm2290_gdscs,
-+	.num_gdscs = ARRAY_SIZE(disp_cc_qcm2290_gdscs),
-+};
-+
-+static const struct of_device_id disp_cc_qcm2290_match_table[] = {
-+	{ .compatible = "qcom,qcm2290-dispcc" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, disp_cc_qcm2290_match_table);
-+
-+static int disp_cc_qcm2290_probe(struct platform_device *pdev)
-+{
-+	struct regmap *regmap;
-+	int ret;
-+
-+	regmap = qcom_cc_map(pdev, &disp_cc_qcm2290_desc);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	clk_alpha_pll_configure(&disp_cc_pll0, regmap, &disp_cc_pll0_config);
-+
-+	ret = qcom_cc_really_probe(pdev, &disp_cc_qcm2290_desc, regmap);
-+	if (ret) {
-+		dev_err(&pdev->dev, "Failed to register DISP CC clocks\n");
-+		return ret;
-+	}
-+
-+	dev_info(&pdev->dev, "Registered DISP CC clocks\n");
-+
-+	return ret;
-+}
-+
-+static struct platform_driver disp_cc_qcm2290_driver = {
-+	.probe = disp_cc_qcm2290_probe,
-+	.driver = {
-+		.name = "dispcc-qcm2290",
-+		.of_match_table = disp_cc_qcm2290_match_table,
-+	},
-+};
-+
-+static int __init disp_cc_qcm2290_init(void)
-+{
-+	return platform_driver_register(&disp_cc_qcm2290_driver);
-+}
-+subsys_initcall(disp_cc_qcm2290_init);
-+
-+static void __exit disp_cc_qcm2290_exit(void)
-+{
-+	platform_driver_unregister(&disp_cc_qcm2290_driver);
-+}
-+module_exit(disp_cc_qcm2290_exit);
-+
-+MODULE_DESCRIPTION("QTI DISP_CC qcm2290 Driver");
-+MODULE_LICENSE("GPL v2");
++#endif /* __DT_TLV320ADC3XXX_H */
 -- 
-2.7.4
+2.20.1
 
+-- 
+Ricard Wolf Wanderlof                           ricardw(at)axis.com
+Axis Communications AB, Lund, Sweden            www.axis.com
+Phone +46 46 272 2016                           Fax +46 46 13 61 30
