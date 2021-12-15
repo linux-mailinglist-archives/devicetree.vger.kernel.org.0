@@ -2,127 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90292475CEE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 17:11:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 627B2475CF1
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 17:11:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235225AbhLOQLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 11:11:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46152 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244019AbhLOQLQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 11:11:16 -0500
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9B87C061574
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 08:11:15 -0800 (PST)
-Received: by mail-qt1-x82c.google.com with SMTP id f20so22302722qtb.4
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 08:11:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ChghRZeXw2XQDKTuOXpLdJirJRSBN9ZcUWb46dxMv/o=;
-        b=nWJQfRUBulJaeP5nDJjYoqqrTn7gdDlwBqTf7Mf1Rp1yDxipmQOfFBv5mmsZ7a0NYZ
-         0IQAscBfkiWY1lhXjSAz90GPC+7e/vxU4bDfnhNSyVdBgDfSQC0n20bQfJXJKuUfkrlh
-         n7auoupLq1tDpbEOqdVT59EukXOje+EWOqO/8=
+        id S238089AbhLOQLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 11:11:51 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:49728
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238254AbhLOQLu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 11:11:50 -0500
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A9A083F1C6
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 16:11:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1639584709;
+        bh=HEryT/59cwIP/SgJfqP9kYNmdFO5OiSXHgK40bkLxdM=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=O0X4MFdfW9C0nCwVLfHaZBjMBz+yS0FwF5ARgxIANy1Jxaqto9ooU2VAMZmS6Ibaa
+         02DSTgQ5ixGykP5PbiCokQpgczADv4u+qL//oR0dVTAOG1kMyPuxGqg2CsjfmchS1f
+         QU49CwIgmshFW+hFQ8SUeX4AFT4Q49yYoazYJBUHU6pmR7fjR5RbUoi7bWGJ0CTh4F
+         lIredh6VIAhol1EmXWkPwNp9qLpr5bJKuwIfpKq+mJuxTXYwgpYu5Bnpc7V0LaVh69
+         waMNM+Hb4MU7iIJmmDxfzyS+GHOmKRToYPB8IhFrYeU2nLEJPX/8nOvH6CMZjVfAiy
+         4X32xDBNuyDlw==
+Received: by mail-lj1-f198.google.com with SMTP id q19-20020a05651c055300b0021a259ae8bbso7213708ljp.4
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 08:11:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ChghRZeXw2XQDKTuOXpLdJirJRSBN9ZcUWb46dxMv/o=;
-        b=0Qe8Ro+gkgBx0x9vbJjICJjxb5+ZN5XFsNiZdVf2TJ5SiT8ALsoC/lWCIhzFLGVIOB
-         88RmiWa9TlaWTcEE6MohuTpKzYjQPSQyLQx7unalEY1OTZtubqMy9d5nafgDk88qTyaW
-         DnXNs173voaIW/nkzuNfyrtMPFa7PR5U8kqGYT+HuICyta2gLoQyrROgPdCHeINEaZwf
-         0V9+xqniNjwei0tN18vhnh7BdfG44J+7WS/EI7TJcAe4A8uezh3r2zvQaAaDv6xtHMWd
-         hqQZM3D1R5ZviTd/N1IM6nOJhPBgkupRHdmDyYRMP/ASgLABnwsmC7/S6SqUYCK5XLu+
-         Kovw==
-X-Gm-Message-State: AOAM5301Xmr9t5ZKAtX9sfZuPcnPP/ooZG+s0tp2ionjGld1hYLZXzf6
-        E5pHBY0/lG6yCvjsaZz5bw2g9w==
-X-Google-Smtp-Source: ABdhPJzycy5DEJ5dlv2V4Evj+LZ3iN6pJ5jURasdPBTXz8k7JilQ1IMIuO4+o/CQLowlkN69zjzJzQ==
-X-Received: by 2002:a05:622a:1310:: with SMTP id v16mr12580863qtk.431.1639584674963;
-        Wed, 15 Dec 2021 08:11:14 -0800 (PST)
-Received: from bill-the-cat (2603-6081-7b01-cbda-b008-f6f1-3496-c51e.res6.spectrum.com. [2603:6081:7b01:cbda:b008:f6f1:3496:c51e])
-        by smtp.gmail.com with ESMTPSA id f21sm1726219qte.52.2021.12.15.08.11.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 08:11:14 -0800 (PST)
-Date:   Wed, 15 Dec 2021 11:11:12 -0500
-From:   Tom Rini <trini@konsulko.com>
-To:     Sean Anderson <seanga2@gmail.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Cc:     U Boot <u-boot@lists.denx.de>, Simon Glass <sjg@chromium.org>,
-        =?iso-8859-1?Q?Fran=E7ois?= Ozog <francois.ozog@linaro.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Oleksandr Andrushchenko <Oleksandr_Andrushchenko@epam.com>,
-        Weijie Gao <weijie.gao@mediatek.com>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>
-Subject: Re: Are dt-bindings headers part of the device tree spec?
-Message-ID: <20211215161112.GC2773246@bill-the-cat>
-References: <c670a4cc-b234-03d4-adfb-e6a8560c2d86@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=HEryT/59cwIP/SgJfqP9kYNmdFO5OiSXHgK40bkLxdM=;
+        b=M1AbTYTdE8+OV/A9U7IqArHAfd5GY2JXTK7AEWZu0PtAJuV778i7IijI5WI317Co1H
+         Q9p3Fe8fHUaAjYaAjNcmjQABcXdmHFWPL5elODJ4UWUMdg0cDOOMVVE6CKTKqCC5VnUR
+         Jxe6L0B2a2wj4rj908jfglk/X3Nlbg51rXfoVNp6mcxcw1WfQnf92sUtSOupziaDvR7x
+         Qzv54emQcXOcd0DUh+qK7vO9E/laEqkMTCbUSwwXOFQ3JOb2COLcL3SMl5zy+Ni52WXa
+         aes4mG6tzColiNmbamosB+g3Ihehpmhv1jvXbt152LeMZq7oOBzhiRjwUeEFR2jPgAcw
+         nTFw==
+X-Gm-Message-State: AOAM532tps6utioV2uKoZWhqHzR043y+N81HAgWOZ2QYFDIXLZnBeZSA
+        ZvOZQ+szxyqAk15nUoTHFLz/SRYP4/CY5lefonbqd20bWtoWxq8yDQG8ddK3xt1xzC9ZjMqsCXr
+        D9HsLJwYaIp2sVXnCc616/OXDxL3+bxn5uqc96zY=
+X-Received: by 2002:a05:6512:3fa:: with SMTP id n26mr10779805lfq.369.1639584709155;
+        Wed, 15 Dec 2021 08:11:49 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJw1QHtNZSWhWsx7d0Gr+L7f/sF8couHjZyoyUMKUsr2/tG2om/weSyMTpr4+BviHq0uyXtW0w==
+X-Received: by 2002:a05:6512:3fa:: with SMTP id n26mr10779784lfq.369.1639584708997;
+        Wed, 15 Dec 2021 08:11:48 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id m3sm522157lji.112.2021.12.15.08.11.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Dec 2021 08:11:48 -0800 (PST)
+Message-ID: <6b5fd3fd-18cf-3b6d-934b-11a82cf404dd@canonical.com>
+Date:   Wed, 15 Dec 2021 17:11:47 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="YPJ8CVbwFUtL7OFW"
-Content-Disposition: inline
-In-Reply-To: <c670a4cc-b234-03d4-adfb-e6a8560c2d86@gmail.com>
-X-Clacks-Overhead: GNU Terry Pratchett
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH 1/7] dt-bindings: clock: exynos850: Add bindings for
+ Exynos850 sysreg clocks
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Hao Fang <fanghao11@huawei.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20211215160906.17451-1-semen.protsenko@linaro.org>
+ <20211215160906.17451-2-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211215160906.17451-2-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 15/12/2021 17:09, Sam Protsenko wrote:
+> System Register is used to configure system behavior, like USI protocol,
+> etc. SYSREG clocks should be provided to corresponding syscon nodes, to
+> make it possible to modify SYSREG registers.
+> 
+> While at it, add also missing PMU and GPIO clocks, which looks necessary
+> and might be needed for corresponding Exynos850 features soon.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+>  include/dt-bindings/clock/exynos850.h | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
+> 
 
---YPJ8CVbwFUtL7OFW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 15, 2021 at 10:53:26AM -0500, Sean Anderson wrote:
->=20
-> Hi all,
->=20
-> I'm reviewing a clock driver [1], and the submitter has deviated from
-> the defines used by Linux. For example, where Linux might have
->=20
-> 	#define CLOCK_FOOBAR 5
->=20
-> his driver might have
->=20
-> 	#define CLK_FUBAR 6
->=20
-> Which means that both the device tree source and the resulting device
-> tree binary will be different.
->=20
-> As I understand it, we try to be compatible with Linux on these things.
-> However, it is unclear to me if include/dt-bindings is also part of
-> this, or just the things in Documentation/devicetree/bindings. And if it
-> is, do we need to have compatible sources, compatible binaries, or both?
-> In general, I think we should try to have the same headers as well, but
-> is it permitted to allow deviations with reasonable justification?
->=20
-> --Sean
->=20
-> [1] https://lore.kernel.org/u-boot/de6e75a083647dfeec3058dd4dcc0419b08e15=
-5c.1637285375.git.weijie.gao@mediatek.com/
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-Adding a few more people to the thread.
 
---=20
-Tom
-
---YPJ8CVbwFUtL7OFW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQGzBAABCgAdFiEEGjx/cOCPqxcHgJu/FHw5/5Y0tywFAmG6E5wACgkQFHw5/5Y0
-tyxwtQv8CTPBod6wA0z7Xszwhn22IjxEWmOkoSL6PIICtGPKAtHIve1KRRTdS6RA
-iYv0ypPgIAsfvhneVcuOQs13c//W+SB5rIiBI1kLJRaHjmPhO3jkmGC6lvDLepxP
-RLDGXF4QkJ6q44+zTdEjI7dmTjirDuIZVT/lvRc5Og6WqJP3hVf1WN2/byOpCSS+
-tRvoIbiYpDqC4FiqMAT6uN/g4JpDev/B2rn+cAlsLdftTRmtZv36SBl+nflQ1s98
-+Yofi5ABMXirQuwNBK+TW63ZVxTHmRyMNyW4SN/yv0+IxlGvYOS7gNdXV21hLk4P
-krEawsaCuzyFnaTImsSUOAn/cNs2m/ZoCXMiD9nAtcXW64Dc1xmKHz4J9Y+YnuCP
-RpsgY1END34KODxCo1qSGSCI4eJ48PpT2kaXw2NQcVZ1rwufbbSX/ukyvlk/+o/z
-EPNOe6SxpJxfbfvBFB0dg2r6cq+kD2nv+b/pFCpjX0yYLo8s7/npE+IffZl5b1cs
-hyZSKCzf
-=kNW5
------END PGP SIGNATURE-----
-
---YPJ8CVbwFUtL7OFW--
+Best regards,
+Krzysztof
