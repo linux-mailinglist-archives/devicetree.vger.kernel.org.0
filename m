@@ -2,109 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5021B475A67
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 15:16:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC6F0475A8F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 15:19:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243239AbhLOOQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 09:16:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47344 "EHLO
+        id S237700AbhLOOTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 09:19:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243238AbhLOOQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 09:16:45 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA2B1C061574;
-        Wed, 15 Dec 2021 06:16:44 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A4F1AB81F2B;
-        Wed, 15 Dec 2021 14:16:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 508B2C34604;
-        Wed, 15 Dec 2021 14:16:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639577802;
-        bh=+nz7RZhA7PNYQ3kHJ5aSxlmtw3+mRphPVl6qCtqz4g8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rF3t5+EPP3FurVZG4kPwI4Cjsm1uNzFsg4t54faS6x5eg+/+IHAu9VduWBJjHz3yB
-         Ju1YMFtJ8gLSTIzV33N0dJ2JBl2u7DrqHRgSnKX6EuKzpClp2id+1q2/KtNERtAxes
-         cZjphA/0QNdZdAP4yFzlkOtSFAw0X2fbhUPcdWIl9+Sk0k8W40TPzDXKn2AB4/tuOC
-         xHgOGW3NG3JS0cKLddPwIzoBQLN1b6rcAgmYW8LgZ9D5bGcJa1Mt3nE8mAKLm/PBIj
-         DjxTPDGrAj6mbqoO0F8Ak6bOG1+f3PhDTIxJE9578t+FjD1RARU+mJvLf/BmPErL15
-         FFLHadL4IUmow==
-Received: by mail-ed1-f53.google.com with SMTP id b7so16085913edd.6;
-        Wed, 15 Dec 2021 06:16:42 -0800 (PST)
-X-Gm-Message-State: AOAM5332tJUNYkMXLTqL1dxOBlwN5TeT6fOLJyh6apvoMjOCitbwEcPw
-        wDypHOB5p2Fh0eQPiyoUILjG2rwvEqUlpQX2QQ==
-X-Google-Smtp-Source: ABdhPJy5cKCi6PavSzQ3HfyWq+w3HuOgZ4cI+2hIjfFBbkxg5Vxy0bdMbVrRZj4aBX6HGwMRz8xJYLa8EKkug7BCiHM=
-X-Received: by 2002:a17:907:94c2:: with SMTP id dn2mr10770171ejc.325.1639577800600;
- Wed, 15 Dec 2021 06:16:40 -0800 (PST)
+        with ESMTP id S243292AbhLOOTO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 09:19:14 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19317C06173E;
+        Wed, 15 Dec 2021 06:19:14 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id k37so43533219lfv.3;
+        Wed, 15 Dec 2021 06:19:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=wgEoOe80ydYoYhOrnQFTmgFp/fiiDyl6aBseAyf2+vA=;
+        b=lG/cn4qdGgxDXdA6SBGobZm7+BTvpVBZmhUM94+PsJ/S0qWUNi7wGzUOTVZvf/GcsC
+         GhvYEPV+89gkNkF7dWorWTchvKOKwr2B6KS9DwxWAnekaaG2Q3wM3OH6Jut4Gewz0i5I
+         KL4byysJzIoH42kOEazdZBZr4svNeMsWWUkwYFdOj3HQHbw+ESwfcveKs339cHlHNlB4
+         IZCDRod5PvJswr83iiXGaXuN2HNqnu0rKYdw0eRWg4wu6pwQ036z4bW1imn1To02DEy3
+         lGIg5dJ8jf6SvKCJV+8kUwhS7xKffkqEgwHAg/N+AEH9OizB3n0vNf99OYgRml7zGzHm
+         vOTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=wgEoOe80ydYoYhOrnQFTmgFp/fiiDyl6aBseAyf2+vA=;
+        b=1hy6ETpwQb//t1t8V7SsbSk7CM2RJK+vPxvKSVkm4AvCOmE7UTeQUk0fS22J3EAG6p
+         xFsZ2KYd71na3Ka+Vj/hUjubYoE2dkOP3amtkPXd3SGpg3jgQW5/2ErFowQLBXF+W/LP
+         YIY6fxt4CLSPpUli8aqc6BvsSJL32iKC6DgkzbLE9XAzw5jD75P95MNYA4sLz1htmZTi
+         jnnDSGA185o//Pt2ZFLwDN5z1NI2S9AccQAPxixWNWSKfNpHE+MsNHBdToHNVIi14xm6
+         HBQGXysabH5CmpfneR0B2/szIJx3+5uYS1uY/SpwVkMYqac8az5hljVtr2Uxjr9U5hYV
+         v8ZQ==
+X-Gm-Message-State: AOAM531JL+49ATRIjeV5JcREjiWJv7XF5OEzp7zvSbrue4xJiox2DvcR
+        0CL/CdcEm0BrWHPiDnF6VjmR039BkBE=
+X-Google-Smtp-Source: ABdhPJzWqv4rzu/nRAZ3WfSzaLPuAvty+2g7LYK/Ea0zstxzmdgT3qe6/jbOatdKz+jIqN5XdJ1LNQ==
+X-Received: by 2002:a05:6512:1289:: with SMTP id u9mr9892434lfs.273.1639577952153;
+        Wed, 15 Dec 2021 06:19:12 -0800 (PST)
+Received: from [192.168.2.145] (94-29-63-156.dynamic.spd-mgts.ru. [94.29.63.156])
+        by smtp.googlemail.com with ESMTPSA id o26sm340685lfb.242.2021.12.15.06.19.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Dec 2021 06:19:11 -0800 (PST)
+Subject: Re: [PATCH v6 08/28] ARM: tegra: Add device-tree for ASUS Transformer
+ Prime TF201
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        David Heidelberg <david@ixit.cz>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Anton Bambura <jenneron@protonmail.com>,
+        Antoni Aloy Torrens <aaloytorrens@gmail.com>,
+        Nikola Milosavljevic <mnidza@outlook.com>,
+        Ion Agorria <ion@agorria.com>,
+        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        Ihor Didenko <tailormoon@rambler.ru>,
+        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
+        Jasper Korten <jja2000@gmail.com>,
+        Thomas Graichen <thomas.graichen@gmail.com>,
+        Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211211211412.10791-1-digetx@gmail.com>
+ <20211211211412.10791-9-digetx@gmail.com> <Ybntiedyo353hMxm@orome>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <373613c6-2c3b-522c-ac63-371304b79bb9@gmail.com>
+Date:   Wed, 15 Dec 2021 17:19:09 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20211214202652.3894707-1-robh@kernel.org> <871r2emazp.fsf@mpe.ellerman.id.au>
-In-Reply-To: <871r2emazp.fsf@mpe.ellerman.id.au>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 15 Dec 2021 08:16:28 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+gFrL1EjjTEYAtk=XHXPBWn070n7CjycULx2tG987oGw@mail.gmail.com>
-Message-ID: <CAL_Jsq+gFrL1EjjTEYAtk=XHXPBWn070n7CjycULx2tG987oGw@mail.gmail.com>
-Subject: Re: [PATCH v3] of/fdt: Rework early_init_dt_scan_memory() to call directly
-To:     Michael Ellerman <mpe@ellerman.id.au>
-Cc:     John Crispin <john@phrozen.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        Frank Rowand <frank.rowand@sony.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <Ybntiedyo353hMxm@orome>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 15, 2021 at 4:13 AM Michael Ellerman <mpe@ellerman.id.au> wrote:
->
-> Rob Herring <robh@kernel.org> writes:
-> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > index 5e216555fe4f..97d7607625ec 100644
-> > --- a/drivers/of/fdt.c
-> > +++ b/drivers/of/fdt.c
-> > @@ -1078,49 +1078,50 @@ u64 __init dt_mem_next_cell(int s, const __be32 **cellp)
-> >  /*
-> >   * early_init_dt_scan_memory - Look for and parse memory nodes
-> >   */
-> > -int __init early_init_dt_scan_memory(unsigned long node, const char *uname,
-> > -                                  int depth, void *data)
-> > +int __init early_init_dt_scan_memory(void)
-> >  {
-> > -     const char *type = of_get_flat_dt_prop(node, "device_type", NULL);
-> > -     const __be32 *reg, *endp;
-> > -     int l;
-> > -     bool hotpluggable;
-> > -
-> > -     /* We are scanning "memory" nodes only */
-> > -     if (type == NULL || strcmp(type, "memory") != 0)
-> > -             return 0;
-> > +     int node;
-> > +     const void *fdt = initial_boot_params;
-> >
-> > -     reg = of_get_flat_dt_prop(node, "linux,usable-memory", &l);
-> > -     if (reg == NULL)
-> > -             reg = of_get_flat_dt_prop(node, "reg", &l);
-> > -     if (reg == NULL)
-> > -             return 0;
-> > +     for (node = fdt_node_offset_by_prop_value(fdt, -1, "device_type", "memory", 6);
-> > +          node != -FDT_ERR_NOTFOUND;
-> > +          node = fdt_node_offset_by_prop_value(fdt, node, "device_type", "memory", 6)) {
->
-> The 6 there doesn't work on my machines.
+15.12.2021 16:28, Thierry Reding пишет:
+> On Sun, Dec 12, 2021 at 12:13:52AM +0300, Dmitry Osipenko wrote:
+> [...]
+>> +	display-panel {
+>> +		compatible = "hannstar,hsd101pww2";
+> 
+> There doesn't seem to be a DT binding for this and I can't find any
+> patches where this would be added. Is there a patch somewhere to do
+> this?
 
-Crap! I meant to keep the original version and just fix the return.
+Are you trolling me? :/ Please search the "Tegra kernel patches for
+5.17" email in your inbox, it must be there. Please read and answer to it.
 
->
-> It needs to match the trailing NULL, so 7 or sizeof("memory") works.
+All patches are in the Tegra patchwork. Who marked them "Not Applicable"?
 
-That's what I get for trying to look thru libfdt to see what it wants.
-Seems to be strlen() on property names and strlen()+1 on values.
+https://patchwork.ozlabs.org/project/linux-tegra/patch/20211211213653.17700-3-digetx@gmail.com/
 
-Rob
+https://patchwork.ozlabs.org/project/linux-tegra/list/?series=276358
