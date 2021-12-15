@@ -2,249 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A964A47562D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:23:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 378CC475641
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:25:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236506AbhLOKX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 05:23:57 -0500
-Received: from www381.your-server.de ([78.46.137.84]:44272 "EHLO
-        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233789AbhLOKX5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:23:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
-         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=EHkoHCM4/akmiX+GQlxsqrqfd96puN1iG/rN61e+Rz0=; b=Y+tGjTuyZsdqnD8H0Gh66ZCDOW
-        0XjqD8MF8QGMDsspr/JnrOsDT6mLypgS0FUn4Ci8x6y3DvLJQ/8PXZlh3EtEDIMWkewk8wUdo7xH9
-        bO+MvFWbcS0uLUBI+NTb/yyOikBnOKoWmmdXH8LKe9hJyE3TsrU3GMi5UztFH3E0yGeaKe9G416TU
-        3atWgLPUL5vq0QVrGukTey9caX3LtL2yfztEZVUjkR3xzf4q/bJAacNFEWHeS20ojrZKW/6A5ESrB
-        Lmw4RcZ5Zi7SrjKD8MmcyG49zsYIcTPgnlypwWZiW895h6BpKJCkiHPvkVrKH598hqn009WZHhyfb
-        uSWQoFJQ==;
-Received: from [78.46.152.42] (helo=sslproxy04.your-server.de)
-        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <lars@metafoo.de>)
-        id 1mxRRz-00056B-31; Wed, 15 Dec 2021 11:23:55 +0100
-Received: from [2001:a61:2bc8:8501:9e5c:8eff:fe01:8578]
-        by sslproxy04.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <lars@metafoo.de>)
-        id 1mxRRy-000OCI-Ti; Wed, 15 Dec 2021 11:23:54 +0100
-Subject: Re: [PATCH 1/3] iio: dac: add support for ltc2688
-To:     =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Hennerich <Michael.Hennerich@analog.com>
-References: <20211214165608.7903-1-nuno.sa@analog.com>
- <20211214165608.7903-2-nuno.sa@analog.com>
-From:   Lars-Peter Clausen <lars@metafoo.de>
-Message-ID: <001b1c03-3d46-291f-e732-21514a9fd721@metafoo.de>
-Date:   Wed, 15 Dec 2021 11:23:54 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S241633AbhLOKZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 05:25:30 -0500
+Received: from gandalf.ozlabs.org ([150.107.74.76]:55473 "EHLO
+        gandalf.ozlabs.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241629AbhLOKZ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:25:29 -0500
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4JDWbX2KXKz4xd4;
+        Wed, 15 Dec 2021 21:25:28 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+        s=201909; t=1639563928;
+        bh=3R0VgynKtNl3FLsyWItoiGw25E6Vy04chDcTc/NGlg8=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=SPtvvB0BjYtARgDX1GdEqbbXC2ovev5L20lmyq1pTMPVdvAWwdtO/FD105XhIfPNj
+         4es7LLBLVQZpmAj0QuzGrbhHMkkwyIMi+eulT/fDTgmA1n32zj1TKlnTLNLsSH76XX
+         JFyrNVESVX7+Pdh09WdJ0jQfxqgwoc/uOlWj1N30VuczpSHfYlcDd3GMtKbtwwGIGD
+         yPG6lb+e5gh4uHPspHvU2eWgNv7kwMCp4VBmA1nrzACJw+JSsG6eq8k8DBsyN9rZM0
+         wYynB2nHbNTI3vAdVoqOzOJPBiAucmDIBdxHhOYQnsoBHSJSFXSt13tlzZHSHgamE9
+         wSbOYR2T2ldiQ==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Rob Herring <robh@kernel.org>
+Cc:     John Crispin <john@phrozen.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] of/fdt: Rework early_init_dt_scan_memory() to call
+ directly
+In-Reply-To: <CAL_JsqKbaRgivZMxEj6Mjdny2LNeSA1GQyDW-nQe7E2irPc-Fw@mail.gmail.com>
+References: <20211208155839.4084795-1-robh@kernel.org>
+ <87fsqwn03o.fsf@mpe.ellerman.id.au>
+ <CAL_JsqLpq7fx0pyQiJFa0P5C3JXijiVe_fr84x9RML1aDJ7vDQ@mail.gmail.com>
+ <877dc7mo3o.fsf@mpe.ellerman.id.au>
+ <CAL_JsqKbaRgivZMxEj6Mjdny2LNeSA1GQyDW-nQe7E2irPc-Fw@mail.gmail.com>
+Date:   Wed, 15 Dec 2021 21:25:27 +1100
+Message-ID: <87zgp2kvvs.fsf@mpe.ellerman.id.au>
 MIME-Version: 1.0
-In-Reply-To: <20211214165608.7903-2-nuno.sa@analog.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Authenticated-Sender: lars@metafoo.de
-X-Virus-Scanned: Clear (ClamAV 0.103.3/26388/Wed Dec 15 08:24:21 2021)
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/14/21 5:56 PM, Nuno Sá wrote:
-> The LTC2688 is a 16 channel, 16 bit, +-15V DAC with an integrated
-> precision reference. It is guaranteed monotonic and has built in
-> rail-to-rail output buffers that can source or sink up to 20 mA.
-
-Looks very good!
-
-Although I'm not sure what to make of the `raw1` API. Maybe it makes 
-sense to submit an initial version of this driver without the toggle 
-API. And then have a follow up discussion how to define the API for 
-this. This will not be the only DAC that has this feature so it would be 
-a good idea to come up with a common API.
-
-
+Rob Herring <robh@kernel.org> writes:
+> On Tue, Dec 14, 2021 at 5:18 AM Michael Ellerman <mpe@ellerman.id.au> wrote:
+>>
+>> Rob Herring <robh@kernel.org> writes:
+>> > On Mon, Dec 13, 2021 at 6:47 AM Michael Ellerman <mpe@ellerman.id.au> wrote:
+>> >> Rob Herring <robh@kernel.org> writes:
+>> >> > Use of the of_scan_flat_dt() function predates libfdt and is discouraged
+>> >> > as libfdt provides a nicer set of APIs. Rework
+>> >> > early_init_dt_scan_memory() to be called directly and use libfdt.
+>> >> ...
+>> >> > diff --git a/arch/powerpc/kernel/prom.c b/arch/powerpc/kernel/prom.c
+>> >> > index 6e1a106f02eb..63762a3b75e8 100644
+>> >> > --- a/arch/powerpc/kernel/prom.c
+>> >> > +++ b/arch/powerpc/kernel/prom.c
+>> >> > @@ -532,19 +532,19 @@ static int  __init early_init_drmem_lmb(struct drmem_lmb *lmb,
+>> >> >  }
+>> >> >  #endif /* CONFIG_PPC_PSERIES */
+>> >> >
+>> >> > -static int __init early_init_dt_scan_memory_ppc(unsigned long node,
+>> >> > -                                             const char *uname,
+>> >> > -                                             int depth, void *data)
+>> >> > +static int __init early_init_dt_scan_memory_ppc(void)
+>> >> >  {
+>> >> >  #ifdef CONFIG_PPC_PSERIES
+>> >> > -     if (depth == 1 &&
+>> >> > -         strcmp(uname, "ibm,dynamic-reconfiguration-memory") == 0) {
+>> >> > +     const void *fdt = initial_boot_params;
+>> >> > +     int node = fdt_path_offset(fdt, "/ibm,dynamic-reconfiguration-memory");
+>> >> > +
+>> >> > +     if (node > 0) {
+>> >> >               walk_drmem_lmbs_early(node, NULL, early_init_drmem_lmb);
+>> >> >               return 0;
+>> >> >       }
+>>
+>> It's that return that is the problem.
+>>
+>> Now that early_init_dt_scan_memory_ppc() is only called once, that
+>> return causes us to skip scanning regular memory nodes if there is an
+>> "ibm,dynamic-reconfiguration-memory" property present.
+>>
+>> So the fix is just:
+>>
+>> diff --git a/arch/powerpc/kernel/prom.c b/arch/powerpc/kernel/prom.c
+>> index 1098de3b172f..125661e5fcf3 100644
+>> --- a/arch/powerpc/kernel/prom.c
+>> +++ b/arch/powerpc/kernel/prom.c
+>> @@ -538,10 +538,8 @@ static int __init early_init_dt_scan_memory_ppc(void)
+>>         const void *fdt = initial_boot_params;
+>>         int node = fdt_path_offset(fdt, "/ibm,dynamic-reconfiguration-memory");
+>>
+>> -       if (node > 0) {
+>> +       if (node > 0)
+>>                 walk_drmem_lmbs_early(node, NULL, early_init_drmem_lmb);
+>> -               return 0;
+>> -       }
+>>  #endif
+>>
+>>         return early_init_dt_scan_memory();
 >
-> [...]
-> +
-> +static int ltc2688_spi_read(void *context, const void *reg, size_t reg_size,
-> +			    void *val, size_t val_size)
-> +{
-> +	struct ltc2688_state *st = context;
-> +	struct spi_transfer xfers[] = {
-> +		{
-> +			.tx_buf = reg,
-> +			.bits_per_word = 8,
-> +			/*
-> +			 * This means that @val will also be part of the
-> +			 * transfer as there's no pad bits. That's fine as these
-> +			 * bits are don't care for the device and we fill
-> +			 * @val with the proper value afterwards. Using regmap
-> +			 * pad bits to get reg_size right would just make the
-> +			 * write part more cumbersome than this...
-> +			 */
-This is making assumptions about the memory layout in the regmap core. 
-This could change in the future and then this driver breaks. It is 
-better to not assume that reg is part of a larger buffer.
-> +			.len = reg_size + 2,
-> +			.cs_change = 1,
-> +		}, {
-> +			.tx_buf = st->tx_data,
-> +			.rx_buf = st->rx_data,
-> +			.bits_per_word = 8,
-> +			.len = 3,
-> +		},
-> +	};
-> +	int ret;
-> +
-> +	ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
-> +	if (ret)
-> +		return ret;
-> +
-> +	memcpy(val, &st->rx_data[1], val_size);
-> +
-> +	return 0;
-> +}
-> [...]
-> +
-> +static int ltc2688_write_raw(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan, int val,
-> +			     int val2, long mask)
-Using mask for the variable name is a relic from the days when it used 
-to be a mask. For new drivers it is better to use `info`. Same for the 
-other functions.
-> [...]
-> +
-> +static const char * const ltc2688_dither_phase[] = {
-> +	"0", "90", "180", "270",
-> +};
-Usually we use radians for phase values. Although that would make for a 
-bit of an awkward API in this case.
-> +
-> [...]
-> +/*
-> + * For toggle mode we only expose the symbol attr (sw_toggle) in case a TGPx is
-> + * not provided in dts.
-> + */
-> +#define LTC2688_CHAN_TOGGLE(t, name) ({							\
-> +	static const struct iio_chan_spec_ext_info t ## _ext_info[] = {			\
-> +		LTC2688_CHAN_EXT_INFO("raw1", LTC2688_INPUT_B, IIO_SEPARATE),		\
-> +		LTC2688_CHAN_EXT_INFO("toggle_en", LTC2688_DITHER_TOGGLE_ENABLE,	\
-> +				      IIO_SEPARATE),					\
-> +		LTC2688_CHAN_EXT_INFO("powerdown", LTC2688_POWERDOWN, IIO_SEPARATE),	\
-> +		LTC2688_CHAN_EXT_INFO(name, LTC2688_SW_TOGGLE, IIO_SEPARATE),		\
-> +		{}									\
-> +	};										\
-> +	t ## _ext_info;									\
-> +})
+> Thanks! I've rolled that in.
+>
+>> > The only thing I see is now there is an assumption that 'memory' nodes
+>> > are off the root node only. Before they could be anywhere.
+>>
+>> I don't know of any machines where that would be a problem. But given
+>> all the wild and wonderful device trees out there, who really knows :)
+>>
+>> Maybe we should continue to allow memory nodes to be anywhere, and print
+>> a warning for any that aren't at the root. Then if no one reports any
+>> hits for the warning we could switch to only allowing them at the root?
+>
+> I really doubt there's any case. I just have the least visibility into
+> what IBM DTs look like. I checked some old DT files I have and also
+> u-boot only supports off the root node.
 
-This macro is a bit strange since it declares a static, but is called in 
-a function. It might be better to declare the two types of ext_infos 
-statically and then reference them by name from within the function.
+The IBM ones are pretty standard, it's other embedded things I'd be more
+worried about.
 
-> [...]
-> +
-> +static int ltc2688_tgp_setup(struct ltc2688_state *st, long clk_mask,
-> +			     const struct ltc2688_dither_helper *tgp)
-> +{
-> +	int ret, bit;
-> +
-> +	for_each_set_bit(bit, &clk_mask, LTC2688_CHAN_TD_MAX) {
-clk_mask should be unsigned long
-> [...]
-> +
-> +static int ltc2688_span_lookup(const struct ltc2688_state *st, int min, int max)
-> +{
-> +	u32 span;
-Nit: Why u32 and not unsigned int? The size doesn't seem to be important 
-for the loop variable.
-> +
-> +	for (span = 0; span < ARRAY_SIZE(ltc2688_span_helper); span++) {
-> +		if (min == ltc2688_span_helper[span][0] &&
-> +		    max == ltc2688_span_helper[span][1])
-> +			return span;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static int ltc2688_channel_config(struct ltc2688_state *st)
-> +{
-> +	struct fwnode_handle *fwnode = dev_fwnode(&st->spi->dev), *child;
-> +	struct ltc2688_dither_helper tgp[LTC2688_CHAN_TD_MAX] = {0};
-> +	u32 reg, clk_input, val, mask, tmp[2];
-> +	unsigned long clk_msk = 0;
-> +	int ret, span;
-> +
-> +	fwnode_for_each_available_child_node(fwnode, child) {
-> [...]
-> +		chan = &st->channels[reg];
-> +		if (fwnode_property_read_bool(child, "adi,toggle-mode")) {
-> +			chan->toggle_chan = true;
-> +			/* assume sw toggle ABI */
-> +			ltc2688_channels[reg].ext_info = LTC2688_CHAN_TOGGLE(__s, "symbol");
-Updating ltc2688_channels at runtime will break if you have multiple 
-instances of the device with a different configuration. You need to 
-kmemdup() the channel array.
-> +		}
-> +[...]
-> +	return ltc2688_tgp_setup(st, clk_msk, tgp);
-> +}
-> +
-> +static int ltc2688_setup(struct ltc2688_state *st, struct regulator *vref)
-> +{
-> +	struct gpio_desc *gpio;
-> +	int ret;
-> +
-> +	/*
-> +	 * If we have a reset pin, use that to reset the board, If not, use
-> +	 * the reset bit.
-> +	 */
-Looking at the datasheet I do not see a reset pin on the chip.
-> +	gpio = devm_gpiod_get_optional(&st->spi->dev, "reset", GPIOD_OUT_HIGH);
-Usually when we have a reset which is active low we define it in the DT 
-as active low rather than doing the inversion in the driver.
-> +	if (IS_ERR(gpio))
-> +		return dev_err_probe(&st->spi->dev, PTR_ERR(gpio),
-> +				     "Failed to get reset gpio");
-> +	if (gpio) {
-> +		usleep_range(1000, 1200);
-> +		/* bring device out of reset */
-> +		gpiod_set_value_cansleep(gpio, 0);
-> +	} else {
-> +		ret = regmap_update_bits(st->regmap, LTC2688_CMD_CONFIG,
-> +					 LTC2688_CONFIG_RST,
-> +					 LTC2688_CONFIG_RST);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	usleep_range(10000, 12000);
-> +
-> +	ret = ltc2688_channel_config(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!vref)
-> +		return 0;
-> +
-> +	return regmap_update_bits(st->regmap, LTC2688_CMD_CONFIG,
-> +				  LTC2688_CONFIG_EXT_REF, BIT(1));
+I have a collection of device trees, but they were given to me by
+various random people over the years and I'm not comfortable putting
+them up in public. I looked through those and didn't see anything odd.
 
-This is a bit confusing since you are using LTC2688_CONFIG_EXT_REF for 
-the mask and BIT(1) for the value, even though both are the same.
+I'll try and get a collection of device trees from machines of mine and
+put them somewhere public.
 
-There is a new API regmap_set_bits()/regmap_clear_bits() that allows you 
-to write this in a more compact way. There are a few other places in the 
-driver where they can be used as well.
-
-> +}
-> [...]
-> +
-
+cheers
