@@ -2,125 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49791476280
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:01:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB0C4476292
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:03:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233074AbhLOUBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 15:01:05 -0500
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:41689 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231995AbhLOUBF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:01:05 -0500
-Received: by mail-oi1-f171.google.com with SMTP id u74so33164189oie.8;
-        Wed, 15 Dec 2021 12:01:04 -0800 (PST)
+        id S230394AbhLOUDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 15:03:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44690 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234328AbhLOUDA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:03:00 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2E28C06173E;
+        Wed, 15 Dec 2021 12:02:59 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id e5so6719353wrc.5;
+        Wed, 15 Dec 2021 12:02:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=15UlF7+uGjlTkwwX8mzVxbyazaBqLGc99zLGZEkto+M=;
+        b=FP5GAk7B3qaNAoTR7zqIg100qjBKtzlqO3dniSqTNKaZfITZd+7c8DpWl/nGUEstuT
+         SwJNkaBZydGstSCMXWyt+dAr8msoDsN7Fn7PFlQBZl6SfAR6NOOwiamNQVI9ndeMpHQs
+         gP3T4MRQ4dHCodOVia4WNHbbLhn0WY13zBVY0agt51Ln4WCZmDuwnw1qTXPgHJ0nevPj
+         Wzc4Aoxj2z01arRxqLpbFjrnz4TOxpzcBDPiAggSpQoDTINT4CYwpTJdeK7sEvoUQgYV
+         153+zJ8p9XO2xUpgZai+6Ta5rZUlXYVwevN7yKfzbbx6xxmlclmc0aLfqM7NHA7Yivcn
+         tapQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=l+xFFfLKiEhkrb+S6WEQGs0sRTxxdeIwUbUb4lHfegA=;
-        b=IjtChSY3QrUXmsGoBEoBhSJf9Hlf2jhSRr8VO+S8T4hrjtakky2+1IvDO8SHYL4/8O
-         zCqHECv3aRryJkKuttXi3OnpgYE1GjNxWlJkhWczWEJZFDC77mlmpXlK18BIgjvvrQzV
-         9FRCheNbX/fMmxZTQ2XCQrORf/MmKthWBzxudd5o2/1yq4H8OvhouoiaEc7yqGEzQHQV
-         xdTFqyFLentoaDJXs63+hT5+dhyqphltCwF8NoWjRYrXD/S+d3KgM5A8enDEGf8Nl1Fy
-         yUcv/j39SFB7Pyq5jETKF+qOUSGjOwylPJWW+sfA1hzN3Nt2D3rBfhsUQyzf8+fv099S
-         GiYA==
-X-Gm-Message-State: AOAM532PJPZVWglpNbTBQrhjw5iXTDw8yYPVwwGCm0QrL8rglSvU3PQg
-        Ix5ihxIbyuLKOB2izwTGqA==
-X-Google-Smtp-Source: ABdhPJxU2SELg23Wszu5aa+Iw/ImO+xlHwegqhlZfMXLPwQKMl+VsUMi/yrDwMV249upMHcpSYQ0hA==
-X-Received: by 2002:aca:2b02:: with SMTP id i2mr1350825oik.140.1639598464509;
-        Wed, 15 Dec 2021 12:01:04 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e4sm531117oiy.12.2021.12.15.12.01.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 12:01:03 -0800 (PST)
-Received: (nullmailer pid 1740176 invoked by uid 1000);
-        Wed, 15 Dec 2021 20:01:02 -0000
-Date:   Wed, 15 Dec 2021 14:01:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        ~okias/devicetree@lists.sr.ht, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        linux-tegra@vger.kernel.org,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: sound: nvidia,tegra-audio: Convert
- multiple txt bindings to yaml
-Message-ID: <YbpJflKptK3f0EqZ@robh.at.kernel.org>
-References: <20211211224946.79875-1-david@ixit.cz>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=15UlF7+uGjlTkwwX8mzVxbyazaBqLGc99zLGZEkto+M=;
+        b=0FfJ9ipJUNssE5zwJHTR4vVhs0fMPnuOSJT+Ja3jVSct2dP7lzkoYA1oEGngHOwyvc
+         8VASKIpB/buHBHRivCfvH6ZGlpG2gaU27hZeJu5DLtj3eBN8Rs/PLkT5wjUasMAnNw4B
+         BUJsbmXZEpLPXFEuKBQUX4w9NlEMUanBUtvLR7xytR2vjB7NmJVh33l+2t47EcGpf7ds
+         +ks0g++/oMZBsqgtO6rLTUacg2lJxghSqv5jjfhGmUZTnr0qlFSIc7MfNDTsTutiDwV+
+         uErW6GMvsszMfS0Gugcqz4yUllJ/gid7044Ba5SdrQ+xoExhACrSsj5Xld/eu3sXvemy
+         omxA==
+X-Gm-Message-State: AOAM533vQTmPdMrU8Cme0aWlmf4JrS6i3l/6yLphMp+9OvsKM8N/7Cwe
+        oJ/jH8s7timi0DvNOJgd3f8=
+X-Google-Smtp-Source: ABdhPJz0rKBo+MEebuAgAGMFyRMLsT9h33P48BbZMO47N1W8KxnvFvS5O7uqrk3ujwiK88+V8BDUjg==
+X-Received: by 2002:a5d:6ac2:: with SMTP id u2mr5912265wrw.486.1639598578493;
+        Wed, 15 Dec 2021 12:02:58 -0800 (PST)
+Received: from [192.168.0.18] (81.172.62.207.dyn.user.ono.com. [81.172.62.207])
+        by smtp.gmail.com with ESMTPSA id b10sm3362890wri.78.2021.12.15.12.02.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Dec 2021 12:02:58 -0800 (PST)
+Message-ID: <c62f562f-c446-4986-2915-00c01a2aff1a@gmail.com>
+Date:   Wed, 15 Dec 2021 21:02:57 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211211224946.79875-1-david@ixit.cz>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH v2] arm64: dts: mt8183: kukui: Add Type C node
+Content-Language: en-US
+To:     Prashant Malani <pmalani@chromium.org>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Cc:     Alexandru M Stan <amstan@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20211209195112.366176-1-pmalani@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20211209195112.366176-1-pmalani@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 11 Dec 2021 23:49:44 +0100, David Heidelberg wrote:
-> Convert Tegra audio complex with the
->   * ALC5632
->   * MAX98090
->   * RT5640
->   * RT5677
->   * SGTL5000
->   * TrimSlice
->   * WM8753
->   * WM8903
->   * WM9712
-> codec to the YAML format.
-> 
-> Additional changes:
->  - added missing HPOUTL to the WM9712 codec.
->  - extended rt5677 codec with multiple pins
-> 
-> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-> v2:
->  - converted from one big schema into the common properties and then references to it
->  - few additional changes mentioned in commit message
->  .../sound/nvidia,tegra-audio-alc5632.txt      |  48 --------
->  .../sound/nvidia,tegra-audio-alc5632.yaml     |  74 +++++++++++++
->  .../sound/nvidia,tegra-audio-common.yaml      |  83 ++++++++++++++
->  .../sound/nvidia,tegra-audio-max98090.txt     |  53 ---------
->  .../sound/nvidia,tegra-audio-max98090.yaml    |  97 +++++++++++++++++
->  .../sound/nvidia,tegra-audio-rt5640.txt       |  52 ---------
->  .../sound/nvidia,tegra-audio-rt5640.yaml      |  85 +++++++++++++++
->  .../sound/nvidia,tegra-audio-rt5677.txt       |  67 ------------
->  .../sound/nvidia,tegra-audio-rt5677.yaml      | 103 ++++++++++++++++++
->  .../sound/nvidia,tegra-audio-sgtl5000.txt     |  42 -------
->  .../sound/nvidia,tegra-audio-sgtl5000.yaml    |  67 ++++++++++++
->  .../sound/nvidia,tegra-audio-trimslice.txt    |  21 ----
->  .../sound/nvidia,tegra-audio-trimslice.yaml   |  33 ++++++
->  .../sound/nvidia,tegra-audio-wm8753.txt       |  40 -------
->  .../sound/nvidia,tegra-audio-wm8753.yaml      |  79 ++++++++++++++
->  .../sound/nvidia,tegra-audio-wm8903.txt       |  62 -----------
->  .../sound/nvidia,tegra-audio-wm8903.yaml      |  93 ++++++++++++++++
->  .../sound/nvidia,tegra-audio-wm9712.txt       |  60 ----------
->  .../sound/nvidia,tegra-audio-wm9712.yaml      |  76 +++++++++++++
->  19 files changed, 790 insertions(+), 445 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-alc5632.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-alc5632.yaml
->  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-common.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max98090.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max98090.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5640.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5640.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5677.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5677.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-sgtl5000.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-sgtl5000.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-trimslice.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-trimslice.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-wm8753.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-wm8753.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-wm8903.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-wm8903.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-wm9712.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-wm9712.yaml
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+On 09/12/2021 20:51, Prashant Malani wrote:
+> Add a node describing the USB Type C connector, in order to utilize the
+> Chromium OS USB Type-C driver that enumerates Type-C ports and connected
+> cables/peripherals and makes them visible to userspace.
+> 
+> Cc: Alexandru M Stan <amstan@chromium.org>
+> Cc: Benson Leung <bleung@chromium.org>
+> Signed-off-by: Prashant Malani <pmalani@chromium.org>
+
+Applied to v5.16-next/dts64
+
+Thanks
+
+> ---
+> 
+> Changes in v2:
+> - Alexandru mentioned that HW specs suggest preferred power role for
+>    devices like kukui to be sink, so changed try-power-role to "sink".
+> 
+>   arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 14 ++++++++++++++
+>   1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> index 94c13c459194..0f9480f91261 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> @@ -886,6 +886,20 @@ usbc_extcon: extcon0 {
+>   		cbas {
+>   			compatible = "google,cros-cbas";
+>   		};
+> +
+> +		typec {
+> +			compatible = "google,cros-ec-typec";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			usb_c0: connector@0 {
+> +				compatible = "usb-c-connector";
+> +				reg = <0>;
+> +				power-role = "dual";
+> +				data-role = "host";
+> +				try-power-role = "sink";
+> +			};
+> +		};
+>   	};
+>   };
+>   
+> 
