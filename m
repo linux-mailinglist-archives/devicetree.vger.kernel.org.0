@@ -2,76 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D9B8475244
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 06:48:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A1F6475266
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 07:01:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233561AbhLOFsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 00:48:32 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:58795 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233488AbhLOFsb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 00:48:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1639547312; x=1671083312;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=KDoIk0DbDB7uOCFnMskiFXS0WSSem0vlI14LSf5zEeo=;
-  b=O3OyrUzP3CjKxSJqPhZB1Qh4lnQIk9/jRNsaJU4LN5RJ5QhR2w2oxQTg
-   sYea92Fx0qhAkpdLhYgG0/nuYGGCvlDhgyyAO12gfwga8ufKvTeYqsqCD
-   KLjhk40eIZLrQ6faefBgMMNEE0GoJWfVlcl4c+QKv3ZpFstNk2T7ABnn7
-   I=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 14 Dec 2021 21:48:31 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Dec 2021 21:48:31 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 14 Dec 2021 21:48:30 -0800
-Received: from [10.216.21.9] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Tue, 14 Dec
- 2021 21:48:26 -0800
-Subject: Re: [PATCH v2] arm64: qcom: sc7280: Move USB2 controller nodes from
- common dtsi to SKU1
-To:     Stephen Boyd <swboyd@chromium.org>, Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>
-References: <1638422248-24221-1-git-send-email-quic_c_sanm@quicinc.com>
- <CAE-0n51S7gPnkgL40Lqj-8dgZ-jjfCmNGtnUDgqJ_Kw5dzc_sg@mail.gmail.com>
-From:   Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Message-ID: <e605c057-a7a4-657a-06ee-f872e13e116e@quicinc.com>
-Date:   Wed, 15 Dec 2021 11:18:23 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S240030AbhLOGBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 01:01:38 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:53089 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240029AbhLOGBg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 01:01:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1639548095;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=73iEIcHZfp/hxpsZzjQwyhoXlM1HDhnt+pSbJnf/ub4=;
+        b=GcDkb1o5Mjy16eR0C3ZfgV9fdmrmvi0WpJdzUNIlkzV7Grcxs7UcC4Op9TWfePyBuL3Ear
+        kDte8+gd8VucVjGgUi1eM6J8BrsBJU9x9BAkUKmkZY7jZTue5OY6BavcDayddnHQ0H7Xq8
+        oY//yUB/PQpzDJ6aenHIGZJ8CefyxsQ=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-597-33x40GypOAqw-DlPPo-uug-1; Wed, 15 Dec 2021 01:01:31 -0500
+X-MC-Unique: 33x40GypOAqw-DlPPo-uug-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com [10.5.11.13])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 6E6C1801B2A;
+        Wed, 15 Dec 2021 06:01:28 +0000 (UTC)
+Received: from localhost (ovpn-12-120.pek2.redhat.com [10.72.12.120])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id C9E3E56339;
+        Wed, 15 Dec 2021 06:01:26 +0000 (UTC)
+Date:   Wed, 15 Dec 2021 14:01:23 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     Borislav Petkov <bp@alien8.de>
+Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
+        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
+        Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+Subject: Re: [PATCH v17 03/10] x86: kdump: use macro CRASH_ADDR_LOW_MAX in
+ functions reserve_crashkernel()
+Message-ID: <20211215060123.GC10336@MiWiFi-R3L-srv>
+References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
+ <20211210065533.2023-4-thunder.leizhen@huawei.com>
+ <20211214085440.GA3023@MiWiFi-R3L-srv>
+ <YbhmF3+AzvRtGimD@zn.tnic>
+ <20211214095657.GB3023@MiWiFi-R3L-srv>
+ <YbipBGn5saLscIMn@zn.tnic>
 MIME-Version: 1.0
-In-Reply-To: <CAE-0n51S7gPnkgL40Lqj-8dgZ-jjfCmNGtnUDgqJ_Kw5dzc_sg@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YbipBGn5saLscIMn@zn.tnic>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+On 12/14/21 at 03:24pm, Borislav Petkov wrote:
+> On Tue, Dec 14, 2021 at 05:56:57PM +0800, Baoquan He wrote:
+> > Ah, OK, I see the new paragraph from you added in below commit.
+> 
+> That is supposed to make it absolutely clear and explicit. There are
+> other hints as to what a subsequent SOB means in that document already.
+> 
+> Just the next section says:
+> 
+> "The Signed-off-by: tag indicates that the signer was involved in the
+> development of the patch, or that he/she was in the patch's delivery
+> path."
+> 
+> It wouldn't hurt if people would look at that doc from time to time - we
+> end up referring to it on a daily basis.
 
-On 12/3/2021 4:22 AM, Stephen Boyd wrote:
-> Quoting Sandeep Maheswaram (2021-12-01 21:17:28)
->> Move USB2 controller and phy nodes from common dtsi file as it is
->> required only for SKU1 board and change the mode to host mode as
->> it will be used in host mode for SKU1.
->>
->> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
->> ---
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-Can you merge this change in qcom tree?
+
+Thanks, I need read this completely, and often check if anything new
+is added.
+
