@@ -2,75 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 791084755AD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:02:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C97944755B3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:03:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233809AbhLOKCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 05:02:10 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:53722 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241453AbhLOKCH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:02:07 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S236587AbhLOKD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 05:03:29 -0500
+Received: from ixit.cz ([94.230.151.217]:57026 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241372AbhLOKD2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 05:03:28 -0500
+Received: from [192.168.1.138] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2795361871;
-        Wed, 15 Dec 2021 10:02:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38D8AC34605;
-        Wed, 15 Dec 2021 10:02:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639562526;
-        bh=wPPt3YTgM3V3tQ8DUiilyDYIEOG7frejMbA+g84XeoY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pSW/EOewQq8NtDeouDd7kv07T9fgxYMFWUhdfv6fm7dngWYi/rr8jbyxly9RxgKsj
-         itWM0dTjMymYT4SF+rHspon+RSB7pmFHCuMdk42DiCJXttz6IFUDMoHw51MTg5Xsin
-         uwZ0w7lpW1rGQsDpYNsvobb2b4J9YYeRddwooHuKJ6bfsz2dCzNteq3aYARA38au1v
-         7Q3BOAlE/xHo/DPr1g3ks7ODi3MRf06Ki8R2XvqaP0NDNseFMxsSRzKYUo4/atANgX
-         Ya0WIeuDUkD52RkwZKRbd9im67e+HeutG5aT6qDuV4nn5Xeldtw2YiIbtacgWJb3a0
-         s/255UjdrVHJw==
-Date:   Wed, 15 Dec 2021 12:01:59 +0200
-From:   Mike Rapoport <rppt@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Quentin Perret <qperret@google.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>
-Subject: Re: [PATCH v2] of/fdt: Don't worry about non-memory region overlap
- for no-map
-Message-ID: <Ybm9F5AdCSGz6IwN@kernel.org>
-References: <20211215072011.496998-1-swboyd@chromium.org>
- <Ybm6KQiS7B28QOSW@kernel.org>
+        by ixit.cz (Postfix) with ESMTPSA id 264072243C;
+        Wed, 15 Dec 2021 11:03:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1639562605;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=yK6VD0ue2rafgoh9oAL+37D2PjeWCPZ5IRm8FP261NM=;
+        b=MO0wjzFL27tjSrbZ8XQldlvd4H9NccPUeUFdC6C7HTyZC4uxoFN06CYPA6zoKbkJTKMaCS
+        kG21/4tgzFb9WsKGtKIbRtX/qNfRCtdmuSW369TipuMGi7ycuA4wsK4XAb87JPW2sBazXD
+        76JwmUlwXZRl+AoHsWw9qlm8HiYsYRo=
+Date:   Wed, 15 Dec 2021 11:03:19 +0100
+From:   David Heidelberg <david@ixit.cz>
+Subject: Re: [PATCH v2] dt-bindings: reset: document deprecated HiSilicon
+ property
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, Wei Xu <xuwei5@hisilicon.com>,
+        ~okias/devicetree@lists.sr.ht, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Message-Id: <JLI54R.VHYJ34M8SSAB3@ixit.cz>
+In-Reply-To: <e013e672b500f88872b008cba7c2ddd5b4483d27.camel@pengutronix.de>
+References: <20211208184149.99537-1-david@ixit.cz>
+        <e013e672b500f88872b008cba7c2ddd5b4483d27.camel@pengutronix.de>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Ybm6KQiS7B28QOSW@kernel.org>
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 15, 2021 at 11:49:37AM +0200, Mike Rapoport wrote:
+Hi Philipp,
+
+In "[PATCH] arm64: dts: hisilicon: update deprecated property name" 
+(v1) I was reffered to 
+https://www.spinics.net/lists/arm-kernel/msg887577.html
+David
+
+On Wed, Dec 15 2021 at 10:52:15 +0100, Philipp Zabel 
+<p.zabel@pengutronix.de> wrote:
+> Hi David,
 > 
-> On Tue, Dec 14, 2021 at 11:20:11PM -0800, Stephen Boyd wrote:
-> > @@ -482,9 +482,11 @@ static int __init early_init_dt_reserve_memory_arch(phys_addr_t base,
-> >  	if (nomap) {
-> >  		/*
-> >  		 * If the memory is already reserved (by another region), we
-> > -		 * should not allow it to be marked nomap.
-> > +		 * should not allow it to be marked nomap, but don't worry
-> > +		 * if the region isn't memory as it won't be mapped.
-> >  		 */
-> > -		if (memblock_is_region_reserved(base, size))
-> > +		if (memblock_overlaps_region(&memblock.memory, base, size) &&
-> > +		    memblock_is_region_reserved(base, size))
+> On Wed, 2021-12-08 at 19:41 +0100, David Heidelberg wrote:
+>>  Documenting deprecated property prevents dt-schema validation 
+>> errors.
+>> 
+>>  Signed-off-by: David Heidelberg <david@ixit.cz>
+>>  ---
+>>  v2:
+>>   - document deprecated property instead of changing hi36[67]0.dtsi
+> 
+> Sorry if I'm missing context, I haven't seen the v1 for this. Is this
+> really what we want? I would have expected the deprecated usage in the
+> .dtsi files to be replaced.
+> 
+> regards
+> Philipp
 
-One more small thing. Maybe add pr_warn() here?
 
-> >  			return -EBUSY;
-> >  
-> >  		return memblock_mark_nomap(base, size);
-
--- 
-Sincerely yours,
-Mike.
