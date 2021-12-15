@@ -2,87 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C1BA4755F7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:13:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F3524755FE
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:15:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241532AbhLOKNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 05:13:53 -0500
-Received: from gandalf.ozlabs.org ([150.107.74.76]:36497 "EHLO
-        gandalf.ozlabs.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231890AbhLOKNw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:13:52 -0500
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4JDWL53dllz4xhp;
-        Wed, 15 Dec 2021 21:13:49 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
-        s=201909; t=1639563231;
-        bh=3WntohgGBSsd5zLTEq/JbPVU3YTQL8XrTLe5DXnpfYU=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=a8eNNWo605MEiL8ylUOt7YdhmBZnPIijg5uWdKFJI3EqXiu+9jJpFpl0qRgxjzNJr
-         55GgeghdhXOIhoWSsLRVt5H5NVVbMTJzW2/EjE5nILpENBmH45hJ0/QPUHs7Pj2XRc
-         /o9AAUkwztZJ310T95OfI0JVUjoY7WFCJ+z7ykWMAka6NRYrnV1Q9t1M2A3byErDiI
-         cjyrvJtn5OSAe6ONWSFVW8pDPsEZs9qTceN3/135nZOJfw1fK94BI4LRatIT6WHA08
-         KkCkMzLAlITDIIbrhWV0KkJLHITxpaRN4bnqsKy8EHEWN95bNBXOqGub2C2EtCC5Xs
-         lnLM4fX6QarMA==
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Rob Herring <robh@kernel.org>, John Crispin <john@phrozen.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        Frank Rowand <frank.rowand@sony.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] of/fdt: Rework early_init_dt_scan_memory() to call
- directly
-In-Reply-To: <20211214202652.3894707-1-robh@kernel.org>
-References: <20211214202652.3894707-1-robh@kernel.org>
-Date:   Wed, 15 Dec 2021 21:13:46 +1100
-Message-ID: <871r2emazp.fsf@mpe.ellerman.id.au>
+        id S236724AbhLOKPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 05:15:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48092 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236717AbhLOKPI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:15:08 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A6FC061574;
+        Wed, 15 Dec 2021 02:15:08 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 5F4481F45580
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1639563305; bh=3gcQGNr2454bcL5Y6Emf4IAgqrpvitQtv6gVZdbNOPE=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=mp3IwHoye7upYbMjvc4/Qd7V0ucnZ7JsEyUyjLdKSdib6JHtWeMhnHroStMZEd7EC
+         J2ImrfB79FYWHm65KwJpyfdt1JVO96L3cfBja4bUQfvCgN4lybE2/7Q7YTDeF1lmJW
+         u3Usyt5m23uX8d8eJvNc3GRO1BNyfIjskDKB1r7v3KXDoihmW45q+CszlFS+8P3Vtq
+         bvOO/ua+e0dadPSIcgJdaV7aVdVlrm0SpABiwrM+RJlKLxb1bEwtK6SeYIpD5AFqgv
+         97PY9P3Dh8eOaIjL0Tkp8WLUDlspbKz9/c4khMXtvBXeK5x6DSaYV2dwVGFK+kWCKJ
+         rK7xsqaAKzjNA==
+Subject: Re: [PATCH v10 2/3] dts: arm64: mt8183: add Mediatek MDP3 nodes
+To:     Moudy Ho <moudy.ho@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
+        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        menghui.lin@mediatek.com, sj.huang@mediatek.com,
+        allen-kh.cheng@mediatek.com, randy.wu@mediatek.com,
+        jason-jh.lin@mediatek.com, roy-cw.yeh@mediatek.com,
+        river.cheng@mediatek.com, srv_heupstream@mediatek.com
+References: <20211202062733.20338-1-moudy.ho@mediatek.com>
+ <20211202062733.20338-3-moudy.ho@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <0b893a2b-cec6-a88a-7218-52d1629d9469@collabora.com>
+Date:   Wed, 15 Dec 2021 11:15:01 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20211202062733.20338-3-moudy.ho@mediatek.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob Herring <robh@kernel.org> writes:
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index 5e216555fe4f..97d7607625ec 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -1078,49 +1078,50 @@ u64 __init dt_mem_next_cell(int s, const __be32 **cellp)
->  /*
->   * early_init_dt_scan_memory - Look for and parse memory nodes
->   */
-> -int __init early_init_dt_scan_memory(unsigned long node, const char *uname,
-> -				     int depth, void *data)
-> +int __init early_init_dt_scan_memory(void)
->  {
-> -	const char *type = of_get_flat_dt_prop(node, "device_type", NULL);
-> -	const __be32 *reg, *endp;
-> -	int l;
-> -	bool hotpluggable;
-> -
-> -	/* We are scanning "memory" nodes only */
-> -	if (type == NULL || strcmp(type, "memory") != 0)
-> -		return 0;
-> +	int node;
-> +	const void *fdt = initial_boot_params;
->  
-> -	reg = of_get_flat_dt_prop(node, "linux,usable-memory", &l);
-> -	if (reg == NULL)
-> -		reg = of_get_flat_dt_prop(node, "reg", &l);
-> -	if (reg == NULL)
-> -		return 0;
-> +	for (node = fdt_node_offset_by_prop_value(fdt, -1, "device_type", "memory", 6);
-> +	     node != -FDT_ERR_NOTFOUND;
-> +	     node = fdt_node_offset_by_prop_value(fdt, node, "device_type", "memory", 6)) {
+Il 02/12/21 07:27, Moudy Ho ha scritto:
+> Add device nodes for Media Data Path 3 (MDP3) modules.
+> 
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 115 ++++++++++++++++++++++-
+>   1 file changed, 114 insertions(+), 1 deletion(-)
+> 
 
-The 6 there doesn't work on my machines.
+Hello Moudy,
+we have just detected an issue with this commit.
 
-It needs to match the trailing NULL, so 7 or sizeof("memory") works.
 
-cheers
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index ba4584faca5a..e4dc76b04438 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -1325,6 +1325,85 @@
+>   			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
+>   		};
+>   
+> +		mdp3_rdma0: mdp3_rdma0@14001000 {
+> +			compatible = "mediatek,mt8183-mdp3",
+> +				     "mediatek,mt8183-mdp3-rdma";
+> +			mediatek,scp = <&scp>;
+> +			mediatek,mdp3-id = <0>;
+> +			mediatek,mdp3-comps = "mediatek,mt8183-mdp3-dl1",
+> +					      "mediatek,mt8183-mdp3-dl2",
+> +					      "mediatek,mt8183-mdp3-path1",
+> +					      "mediatek,mt8183-mdp3-path2",
+> +					      "mediatek,mt8183-mdp3-imgi",
+> +					      "mediatek,mt8183-mdp3-exto";
+> +			mediatek,mdp3-comp-ids = <0 1 0 1 0 1>;
+> +			reg = <0 0x14001000 0 0x1000>,
+> +			      <0 0x14000000 0 0x1000>,
+> +			      <0 0x14005000 0 0x1000>,
+> +			      <0 0x14006000 0 0x1000>,
+> +			      <0 0x15020000 0 0x1000>;
+> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x1000 0x1000>,
+> +						  <&gce SUBSYS_1400XXXX 0 0x1000>,
+> +						  <&gce SUBSYS_1400XXXX 0x5000 0x1000>,
+> +						  <&gce SUBSYS_1400XXXX 0x6000 0x1000>,
+> +						  <&gce SUBSYS_1502XXXX 0 0x1000>;
+> +			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+> +			clocks = <&mmsys CLK_MM_MDP_RDMA0>,
+> +				 <&mmsys CLK_MM_MDP_RSZ1>,
+> +				 <&mmsys CLK_MM_MDP_DL_TXCK>,
+> +				 <&mmsys CLK_MM_MDP_DL_RX>,
+> +				 <&mmsys CLK_MM_IPU_DL_TXCK>,
+> +				 <&mmsys CLK_MM_IPU_DL_RX>;
+> +			iommus = <&iommu M4U_PORT_MDP_RDMA0>;
+> +			mediatek,mmsys = <&mmsys>;
+> +			mediatek,mm-mutex = <&mutex>;
+> +			mediatek,mailbox-gce = <&gce>;
+> +			mboxes = <&gce 20 CMDQ_THR_PRIO_LOWEST 0>,
+> +				 <&gce 21 CMDQ_THR_PRIO_LOWEST 0>,
+> +				 <&gce 22 CMDQ_THR_PRIO_LOWEST 0>,
+> +				 <&gce 23 CMDQ_THR_PRIO_LOWEST 0>;
+
+The gce mailbox node declares #mbox-cells = <2> and you're trying to use three
+cells instead. Like that, the driver won't even probe.
+
+Please fix this by removing the last cell here (remove the 0).
+
+Thanks,
+- Angelo
