@@ -2,103 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD1D44762F7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:16:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC915476306
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:18:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235394AbhLOUQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 15:16:21 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:33774 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235337AbhLOUQV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:16:21 -0500
-Received: by mail-oi1-f176.google.com with SMTP id q25so33376674oiw.0;
-        Wed, 15 Dec 2021 12:16:20 -0800 (PST)
+        id S235485AbhLOUSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 15:18:45 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:38540 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235425AbhLOUSp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:18:45 -0500
+Received: by mail-ot1-f45.google.com with SMTP id n104-20020a9d2071000000b005799790cf0bso26339727ota.5;
+        Wed, 15 Dec 2021 12:18:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=3jPKLGacEy7jKGMNJeI39f+qAjplz95Y70F3K1TSbv8=;
-        b=tmg4W9OqWWrhJpnzULm+IP14yseKGUi25UQ7peXahsbcEsHrXyhtdPU76wCROwpMCw
-         3ox64twDFh2wBpWHjhgYGZIdlg8t0kJ+I1sAI7WPNkrMdf+TltDFhrfG2pifdycRKe8j
-         eT0bkwSUDn+8tiKzcblrhhWCQgwpRy65fLEkOM7fXRkjYB0XgJtqt9VRo97b62+JvK7V
-         0MS26t9OV0whZARc1WISKk6RLDOAXgxK78zPr/kHFumElDS04ckNDbaU0Um/b7hEtWJr
-         6iLmlx4ZFQgqhaWTRvFm3g+uRBG2ZwDfFlaNrxZYDDpv24z84k5EyjasmCo7+D5KWC42
-         uJAw==
-X-Gm-Message-State: AOAM53363OuG9HHAqEnxLC0acZNn9v46Vx+wElDUlIfSu2aWx906cbk/
-        8v/hiRyDbVAKvCKT6Pj86PFwG2Zp9g==
-X-Google-Smtp-Source: ABdhPJw4B42RMakPPZU34eCLe4JldR2y6R4gqOoaGD90DmZFUhLEm1jp7Je7BL0Z0JInmTqbMEMIEQ==
-X-Received: by 2002:a05:6808:20e:: with SMTP id l14mr1363853oie.119.1639599380344;
-        Wed, 15 Dec 2021 12:16:20 -0800 (PST)
+        bh=rmvZqLUVHLXDrmfC/rTTmEAkPCcfRh9JygOGa9kAahU=;
+        b=jf+y9jdtUvKA0GPGwbtWK1VikXlnlj134aE2E5rQ5QmHtX8JJVmPn7dspfh1zn5lEd
+         Gmz2S4B0ddHMC514lmTZiGzOH+/K457zLr31n14PXsE3C6GDM4GtGusyNQl4GChTnB1u
+         04HzudhCSvmxyloivOB6UTZeVFcKyuuaCMXyaxbGxX5GwG0izkSemiD6YZTeN956Kyi6
+         G/McwINqd87NR6SuocXC88e3nIr30Ro3m78YlERhi/UcVyAD2SEFQ6Lc83yCesBVI2/6
+         6bMoAxXUB0wDr0f1eJ7dMg82z8q97lbQ/92nqPOb8nKfLAzqBo0KiHxWA3+UA5PQ970A
+         Inug==
+X-Gm-Message-State: AOAM532roW44sXiyGsKiuSpB6XxSaZbUpSl8T5nxAinGwOXUQGkQuebJ
+        fGpLR6nTZiX7Ve8CNChvnA==
+X-Google-Smtp-Source: ABdhPJy3yjpCIWDuO7GEGb3u30ltVztV0xgt3VxMQxiuuJu+/UeL7NZt6t8VMxeqM/w/MOGP8XaF1g==
+X-Received: by 2002:a9d:4f0b:: with SMTP id d11mr10009344otl.227.1639599524790;
+        Wed, 15 Dec 2021 12:18:44 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id n26sm608565ooq.36.2021.12.15.12.16.19
+        by smtp.gmail.com with ESMTPSA id u13sm633719oop.28.2021.12.15.12.18.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 12:16:19 -0800 (PST)
-Received: (nullmailer pid 1764259 invoked by uid 1000);
-        Wed, 15 Dec 2021 20:16:18 -0000
-Date:   Wed, 15 Dec 2021 14:16:18 -0600
+        Wed, 15 Dec 2021 12:18:44 -0800 (PST)
+Received: (nullmailer pid 1767956 invoked by uid 1000);
+        Wed, 15 Dec 2021 20:18:43 -0000
+Date:   Wed, 15 Dec 2021 14:18:43 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Eugen Hristev <eugen.hristev@microchip.com>
-Cc:     jacopo@jmondi.org, laurent.pinchart@ideasonboard.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sakari.ailus@iki.fi, devicetree@vger.kernel.org,
-        nicolas.ferre@microchip.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 02/23] dt-bindings: media: atmel: csi2dc: add bindings
- for microchip csi2dc
-Message-ID: <YbpNEqbOFgwq96SI@robh.at.kernel.org>
-References: <20211213134940.324266-1-eugen.hristev@microchip.com>
- <20211213134940.324266-3-eugen.hristev@microchip.com>
+To:     Luca Weiss <luca.weiss@fairphone.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        phone-devel@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH] dt-bindings: qcom,pdc: convert to YAML
+Message-ID: <YbpNozbNhSCWtbx0@robh.at.kernel.org>
+References: <20211213152208.290923-1-luca.weiss@fairphone.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211213134940.324266-3-eugen.hristev@microchip.com>
+In-Reply-To: <20211213152208.290923-1-luca.weiss@fairphone.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Dec 2021 15:49:19 +0200, Eugen Hristev wrote:
-> Add bindings documentation for Microchip CSI2 Demultiplexer controller.
+On Mon, 13 Dec 2021 16:22:08 +0100, Luca Weiss wrote:
+> Convert the PDC interrupt controller bindings to YAML.
 > 
-> CSI2DC is a demultiplexer from Synopsys IDI interface specification to
-> parallel interface connection or direct memory access.
-> CSI2DC can also act as a parallel bypass from a parallel sensor to the
-> image sensor controller/interface.
-> 
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
-> Changes in v3:
-> - Changed to port base as suggested by Rob
-> - Added properties from video-interfaces which are being used by the csi2dc
-> - added mention to the parallel port type as input
-> - did some rephrasing and rewording
+> This patch depends on the following patch, which fixed sm8250 & sm8350
+> compatibles and adds sm6350.
+> https://lore.kernel.org/linux-arm-msm/20211213082614.22651-4-luca.weiss@fairphone.com/
 > 
-> Changes in v2:
-> - changed the endpoint/port references as suggested by Rob
+> Also, if somebody has a better suggestion for the register names,
+> the second one is pulled from downstream commit message which calls it
+> both "SPI config registers" and "interface registers":
+> https://source.codeaurora.org/quic/la/kernel/msm-4.19/commit/?id=cdefb63745e051a5bcf69663ac9d084d7da1eeec
 > 
-> Changes in this version :
-> - fixed 'sink' name to be actually source.
-> - added dma properties and example with dma
-> 
-> Previous change log:
-> Changes in v5:
-> - modified bindings as per Rob Herring review
-> 
-> Changes in v4:
-> - Removed property for inter-line-delay and for clock continuous/non-continuous
-> - Removed virtual channel by reg for second endpoint
-> 
-> Changes in v3:
-> - Removed some text from description, as it was explained in the schema
-> - fixed other things as per Rob's review
-> - moved some text inside the schema, like the clock description
-> 
-> Changes in v2:
-> - fixed warnings reported by dt_binding_check
-> 
-> 
->  .../bindings/media/microchip,csi2dc.yaml      | 197 ++++++++++++++++++
->  1 file changed, 197 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
+>  .../interrupt-controller/qcom,pdc.txt         | 77 -----------------
+>  .../interrupt-controller/qcom,pdc.yaml        | 86 +++++++++++++++++++
+>  2 files changed, 86 insertions(+), 77 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
