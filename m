@@ -2,65 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84B30475D5C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 17:28:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C49AB475D82
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 17:34:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239779AbhLOQ1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 11:27:40 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:47136 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235247AbhLOQ1k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 11:27:40 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 46EF761993;
-        Wed, 15 Dec 2021 16:27:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69D68C36AE0;
-        Wed, 15 Dec 2021 16:27:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639585659;
-        bh=sZucjtaSMSPMq/qhSebZcilNEy4m3JBM4SmRBFW6p84=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=jQjP3jIitxhGLVviieQ6h9pKATAjyJkxA1oo+zjRPi+Gb28MUwEXtYBtjQymi5ZFc
-         uFIaJwYwtjDt3Vp5EvjmL1jX6TZBI8VuSuaY0euXGqwowv7JBEwRBjU0KruFoPud3y
-         pZ1xr9oy8K7vPXNHDPGdatBWkP6x1Gel0hBnsAeE8frXGeSSAM/aVt8iyg+FnhlIom
-         H1Dr1pv6FBlULJqXnzXvFhKsCraQ/Q8WZ9SvGBuNKVj6km9bYWyooJw+pwIzts75w2
-         e3UUXvsUMQaF0D2+lpmMkbBVwx+LjQqYRIcRQqbcmRFcIMtuu4BObJAFoiMQShhyYc
-         4MR1ckMUeWrrg==
-Date:   Wed, 15 Dec 2021 08:27:38 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     JosephCHANG <josright123@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>, joseph_chang@davicom.com.tw,
-        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>
-Subject: Re: [PATCH v5, 1/2] yaml: Add dm9051 SPI network yaml file
-Message-ID: <20211215082738.26b41966@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <YboO9DVkX3wMb9Z2@robh.at.kernel.org>
-References: <20211215073507.16776-1-josright123@gmail.com>
-        <20211215073507.16776-2-josright123@gmail.com>
-        <YboO9DVkX3wMb9Z2@robh.at.kernel.org>
+        id S232919AbhLOQeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 11:34:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51844 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244869AbhLOQeD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 11:34:03 -0500
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82AF2C06173E
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 08:34:03 -0800 (PST)
+Received: by mail-qv1-xf2f.google.com with SMTP id m17so20758727qvx.8
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 08:34:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uSBn+Ips2mtFKmkest40VuG2t1Y4Y842E21N7HcVLJw=;
+        b=AuJDAJ/Dm/I4pWZrejRCiQb38wy5EUv97cL2VOe6ddPEGnzKBga495AftanAv9BWrL
+         R0Di5GIEb9ed9XrlOpMe2/f11NnYMD5Ww3d8vzsHCgsKPNTQaPCR/kXYcl29QEnVJK9e
+         R6GSDiXu7WvsxhMtGQKTsgT1rACFubi8eBQRWDOUpO9t+3w7+pnZUWl2Hj10PD0o+buR
+         50kuY+Hb7g6uZumilOXcx81Zq3bzev+78uitlQ1jMgPGgLowJjPMQmxGKDPw9buHthq3
+         DrmztaKRhYmzlFSAx5eUioHeAvXg1oV+SXE6wzILxCmPVfpDm6N3nFdSAJ0yEEsERBz/
+         CePA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uSBn+Ips2mtFKmkest40VuG2t1Y4Y842E21N7HcVLJw=;
+        b=OrxBc2uBuAFi1UU1hKTJrdls6LNVUH1mLzYaG+Z2SGLXDF6yvA51lLu4rZ4f5uUSP0
+         v3/H0geG6tPGQmB906hckqkj/4sW1Kz/BW4rR1pA3igGFI6Sr4r0h5v3TXO2Nv6A0+PJ
+         VXC7N/Fq50uqmCYaezAq5a1EMFwXdn/CD1+q0+0I68LiZqjfhQlb94dIDd+Ns3PG2H1O
+         LRcZ5fifzhnlNf7KpclNAwClXmsChYKA9ApJDv1YiN1nSA8IKyh8GrInhtUt3z9mE/l2
+         jSDkRm/9xMrVnnwekBKtddW6l43vGfQ0eiWjjzivHb+uJD5bpv1xvwfrtI+iM8+LWih/
+         uELQ==
+X-Gm-Message-State: AOAM531DHFo+nfQiumsBr9qFpg+65BNd03dFR5btbjIznlaO13gIP4S8
+        HO164AjVJPxeG1+NH0QgEiUpD0M8R43yEw==
+X-Google-Smtp-Source: ABdhPJyiKLF7wZnf7umAu+GGDwDicxwcCM2dHGFo9/dKB6KrjsFBQxX5uzudiiLY94/5f5Ls1u2oGQ==
+X-Received: by 2002:a05:6214:c83:: with SMTP id r3mr11747166qvr.110.1639586042259;
+        Wed, 15 Dec 2021 08:34:02 -0800 (PST)
+Received: from pop-os.fios-router.home (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
+        by smtp.googlemail.com with ESMTPSA id w10sm1824832qtj.37.2021.12.15.08.34.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Dec 2021 08:34:01 -0800 (PST)
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        daniel.lezcano@linaro.org, rafael@kernel.org, rui.zhang@intel.com,
+        robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [Patch v2 0/3] Extend LMh driver to suppot Qualcomm sm8150 SoC.
+Date:   Wed, 15 Dec 2021 11:33:57 -0500
+Message-Id: <20211215163400.33349-1-thara.gopinath@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Dec 2021 09:51:16 -0600 Rob Herring wrote:
-> On Wed, 15 Dec 2021 15:35:06 +0800, JosephCHANG wrote:
-> > This is a new yaml base data file for configure davicom dm9051 with
-> > device tree
-> > 
-> > Signed-off-by: JosephCHANG <josright123@gmail.com>
-> 
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
-> 
-> If a tag was not added on purpose, please state why and what changed.
+Add support for sm8150 in the Qualcomm Limits Management Hardware(LMh)
+driver. Also add required device tree entries and dt-binding.
 
-And general changelog would be useful, what changed between v4 and v5?
-Again, no need to create v6 just for that, you can reply with the
-change log and include it with next versions if there are any.
+Thara Gopinath (3):
+  thermal: qcom: lmh: Add support for sm8150
+  arm64: dts: qcom: sm8150: Add support for LMh node
+  dt-bindings: thermal: Add sm8150 compatible string for LMh
+
+ .../devicetree/bindings/thermal/qcom-lmh.yaml |  1 +
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          | 24 +++++++
+ drivers/thermal/qcom/lmh.c                    | 62 +++++++++++--------
+ 3 files changed, 60 insertions(+), 27 deletions(-)
+
+-- 
+2.25.1
+
