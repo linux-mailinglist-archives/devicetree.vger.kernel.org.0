@@ -2,222 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AC7A475A93
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 15:20:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED299475AA9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 15:31:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243292AbhLOOTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 09:19:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48140 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243335AbhLOOTt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 09:19:49 -0500
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C02C061574
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 06:19:49 -0800 (PST)
-Received: by mail-pf1-x433.google.com with SMTP id g19so20836423pfb.8
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 06:19:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bYO72Xiz+IzX17yEGA37Zawk+fJB2f9J+6VJQ3xUS98=;
-        b=BWp1cHOc9CE/pRtoQNg2hI2YavfSzPgvejTKmFzRYOumv7tR/K643vWh4TmtqjSZw/
-         xUqOGFcQpMfXKK6sLtJ32mRhM9Tt//hq2rH7HuZlYqMtb0bpba4Olrsd6syTzybzpPFk
-         LCAvrJpj/GwSrJ5XWLKBrpaHCY0y4lqKnLBaGFP/UOCfhACOhlDN3XHpYMpQjVbLrAw7
-         VIMuQtFhUh0pp4qP39i/mvhdtAaRMmUkGYavkvSfwKTIPBt55sdDdQkLqhuN+KQlxaP7
-         5JwjH8VQMue6Yoh4gXN1fdC0b4plh0t+SVYgqU+H7Yn3qVUVh542klijzos2yUcWE4P2
-         kgCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bYO72Xiz+IzX17yEGA37Zawk+fJB2f9J+6VJQ3xUS98=;
-        b=aEQhLIpMkohsT7W+gNuJeQzjAXpYxwxBUgMEknywJxyZyi5ybhykcgXSSEwLanT8Cc
-         +fpEL9AP7RwIBmc6SJzlxv55SUNMx6zgoanzQC1XjpBmIQsL3jSxcnYtL+/YUrt0wLKo
-         HZbmI21v9Ee2yVeO3XcwatRmjwfTZSbZ+I08U+HE+CNWbCrl1uzCMiohMFq1BwvNimIe
-         HTiEDKnSrB1WfdFaDaX91Gugvjim+2VTNhjzfCNJYCVzWOOlALm4ectmr8h3ioFWtrQT
-         SVvNseS/8aPa53b9+BkFbX2W6fzVCsskaBQ1jiFDjqoUpbSSkpOvPGUoH4xbTZX2/fxO
-         skXw==
-X-Gm-Message-State: AOAM531FX1+HEMiUi1YnTZD1H7FYLZPOEfYquI47Y4qN+shKJ5KXtVuT
-        24hcR6mXy7RH1k+LOECCH6+mSNA+EB9bhtJdhluaew==
-X-Google-Smtp-Source: ABdhPJx8GVAYnl9B182MKt8R6HBm86O0PhVJCK98BFGGAB/cxX0g6LKlCE9LCr8tlExy5HRq8PA94KkSeIoQ5nnOomQ=
-X-Received: by 2002:a05:6a00:1389:b0:4ad:528b:bf86 with SMTP id
- t9-20020a056a00138900b004ad528bbf86mr9300370pfg.80.1639577988433; Wed, 15 Dec
- 2021 06:19:48 -0800 (PST)
+        id S243372AbhLOObK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 09:31:10 -0500
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:37026 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234528AbhLOObK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 09:31:10 -0500
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20211215143108euoutp026b51ca3c4b31ba569999369ea0861153~A9Byk5-Nj1200812008euoutp02B
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 14:31:08 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20211215143108euoutp026b51ca3c4b31ba569999369ea0861153~A9Byk5-Nj1200812008euoutp02B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1639578668;
+        bh=ekfNz+r8yun8sgqLvZGd0fPZJMYkDB1GotoAXBU8qh4=;
+        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+        b=DcbmQFlfc5CotFDCy87QSwCwM1Fce9neQ1M7jypIX3AeAC9F0qdEB2n3/XOskfZxA
+         t6HYf+5yYMUfNq3Ls+I/Pbk8xmxOHXynBmmVBjH7zY3DXhRQNjI5aZGy97NbGDTNGj
+         /ljCV95zFrWSIivhZztKx2IjinMkfy3wA5hO0uVM=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20211215143107eucas1p25eefe2d210dd53f247739c75921d40ed~A9ByQHZN30685906859eucas1p2O;
+        Wed, 15 Dec 2021 14:31:07 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id E7.AA.09887.B2CF9B16; Wed, 15
+        Dec 2021 14:31:07 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20211215143107eucas1p16e94541a8fa992d8f460d2ba10d66eb0~A9Bx4-LTx0884608846eucas1p1K;
+        Wed, 15 Dec 2021 14:31:07 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20211215143107eusmtrp15f2c8a588bd3bc992c804fcb9445c87a~A9Bx4Knw83069630696eusmtrp1n;
+        Wed, 15 Dec 2021 14:31:07 +0000 (GMT)
+X-AuditID: cbfec7f4-471ff7000000269f-eb-61b9fc2b2b7c
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 29.27.09404.B2CF9B16; Wed, 15
+        Dec 2021 14:31:07 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20211215143106eusmtip23c33027f85f948935e56f91c6412c13a~A9BxWaqei0111701117eusmtip2c;
+        Wed, 15 Dec 2021 14:31:06 +0000 (GMT)
+Message-ID: <8235e9cc-2564-b9eb-402e-c98096185ac3@samsung.com>
+Date:   Wed, 15 Dec 2021 15:31:06 +0100
 MIME-Version: 1.0
-References: <20211214095021.572799-1-patrick.rudolph@9elements.com>
- <Ybh8cCU/zbfXkXYO@pendragon.ideasonboard.com> <a78b52ec-81bf-9ee1-9e12-135079d19b7a@axentia.se>
-In-Reply-To: <a78b52ec-81bf-9ee1-9e12-135079d19b7a@axentia.se>
-From:   Patrick Rudolph <patrick.rudolph@9elements.com>
-Date:   Wed, 15 Dec 2021 15:19:37 +0100
-Message-ID: <CALNFmy3vwkvU2ctBE6otCBnhMb2GAOXvRW6NGpOwwAD2qVt7ag@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: i2c Update PCA954x
-To:     Peter Rosin <peda@axentia.se>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
+        Gecko/20100101 Thunderbird/91.4.0
+Subject: Re: [PATCH v2] drm: bridge: tc358764: Use drm panel_bridge API
+Content-Language: en-US
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <CAMty3ZCX7ziywip9ToU4XP_GqK2uVX=iH0wgeyzgazWSf=9Cgg@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrMKsWRmVeSWpSXmKPExsWy7djP87raf3YmGkz8pWBxf/FnFov5R86x
+        WnzZNIHNonPiEnaL5RP2sVkc6ou2+DTrIbMDu8faj/dZPd7faGX3mN0xk9Vj8Z6XTB53ru1h
+        8/i8SS6ALYrLJiU1J7MstUjfLoEr4/7EpywF34QrHjROYG1gvCvQxcjBISFgIrFlaWgXIxeH
+        kMAKRonj59+wQzhfGCW2v/7FBuF8ZpSY+GUnUxcjJ1jH/4WPoBLLGSV+/7oJ1fKRUaLt8EN2
+        kCpeATuJG2+ns4DYLAKqEo+WHWeDiAtKnJz5BCwuKpAk0drxB2yqsIC7xPbeyawgNrOAuMSt
+        J/PB4iIC2hLfZr4G28Ys8JNR4uqOX2AJNgFDia63XWBDOQUCJX4fOMME0Swvsf3tHGaQBgmB
+        OxwSKy61skLc7SJx8fN1ZghbWOLV8S3sELaMxOnJPSwQDc2MEg/PrWWHcHoYJS43zWCEqLKW
+        uHMOFBwcQCs0Jdbv0ocIO0rM/TydFRKUfEAvC0IcwScxadt0Zogwr0RHmxBEtZrErOPr4NYe
+        vHCJeQKj0iykcJmF5P9ZSN6ZhbB3ASPLKkbx1NLi3PTUYqO81HK94sTc4tK8dL3k/NxNjMB0
+        dPrf8S87GJe/+qh3iJGJg/EQowQHs5II71KDnYlCvCmJlVWpRfnxRaU5qcWHGKU5WJTEeZMz
+        NyQKCaQnlqRmp6YWpBbBZJk4OKUamLatOMA6I2Sn8MoJ0Tv25qr89LuwYfly400B/RH510yn
+        zI1ecCgneEZ55uPFT5e849Ji9ssLzzvDUGbOsnTTxjrLZfoeEZ+UFZ41Hmpm3vy+/NTMyJmV
+        Kac45JrkVz684bSaI93nXVPibuvNvn0Gd+8HnPR4u+Pmq8dObu+2uhdnMBvEKv+KiWXX9XuX
+        bxu3dsqvubxpBTs2OXz3mNljfnFF10N+1+6Q+TEL9l399XjbjXaeLEYfxfPOYUr1utIROjsa
+        P5t+nJ152zhizS/Np2qy6hsCeL/8++//ecnxuxPt6l1sHv+Q8FM6PUlhhjyL7FyFOev8Nzzu
+        n5fAcHb6kf1KSru5zzenbJqdIl0u2qPEUpyRaKjFXFScCACwpK1ItgMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrKIsWRmVeSWpSXmKPExsVy+t/xe7raf3YmGkz8zWJxf/FnFov5R86x
+        WnzZNIHNonPiEnaL5RP2sVkc6ou2+DTrIbMDu8faj/dZPd7faGX3mN0xk9Vj8Z6XTB53ru1h
+        8/i8SS6ALUrPpii/tCRVISO/uMRWKdrQwkjP0NJCz8jEUs/Q2DzWyshUSd/OJiU1J7MstUjf
+        LkEv4/7EpywF34QrHjROYG1gvCvQxcjJISFgIvF/4SO2LkYuDiGBpYwSF9q3MUMkZCROTmtg
+        hbCFJf5c64Iqes8oceoLiMPJwStgJ3Hj7XQWEJtFQFXi0bLjUHFBiZMzn4DFRQWSJHav2woW
+        FxZwl9jeOxlsKLOAuMStJ/OZQGwRAW2JbzNfs0HEfzJK/O4qgVjWzyRx6i9EA5uAoUTXW4jF
+        nAKBEr8PnGGCaDCT6NraxQhhy0tsfzuHeQKj0Cwkd8xCsm8WkpZZSFoWMLKsYhRJLS3OTc8t
+        NtIrTswtLs1L10vOz93ECIy/bcd+btnBuPLVR71DjEwcjIcYJTiYlUR4lxrsTBTiTUmsrEot
+        yo8vKs1JLT7EaAoMjInMUqLJ+cAEkFcSb2hmYGpoYmZpYGppZqwkzutZ0JEoJJCeWJKanZpa
+        kFoE08fEwSnVwGT3deki8a0zH5W6+09kirL/FvXz/+qIhOjmkkUK26NqfG8WLhWd3eRxrLVx
+        9vWlDefaCuJWHDzK8MhzaUmgwYSH6p+eCd8vP/YvwOWpW8QJvusPqyT/3NATmuWR/9OoKunT
+        u4oHl/KXRm4OWLGube+kBIUJjlnffUR+F5/b897OQ1fe2oNHXUaW9fnsaw9DFl5xY9q69srM
+        6Xyftdbcmxu40WHxrt2Sc/7OjdwrzP8091vr7yTnxeu4mTZpLtBZf7LPQHN7Kq//sW6GjWya
+        bl8yMrrDbzyREOMPilS5f5LXM7hntuuL3FUMWpMVT5oL9wso2ncV13LfLrKd0nHh+uVP16dM
+        NanQtD46Y8PyQlUlluKMREMt5qLiRAAgFrAESAMAAA==
+X-CMS-MailID: 20211215143107eucas1p16e94541a8fa992d8f460d2ba10d66eb0
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20211215100518eucas1p1c3020dd07a9e27e1280d507fa709f09f
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20211215100518eucas1p1c3020dd07a9e27e1280d507fa709f09f
+References: <CGME20211215100518eucas1p1c3020dd07a9e27e1280d507fa709f09f@eucas1p1.samsung.com>
+        <20211215100459.44196-1-jagan@amarulasolutions.com>
+        <17cca00a-85a0-465f-201b-ac4c61b5ae0a@samsung.com>
+        <CAMty3ZCX7ziywip9ToU4XP_GqK2uVX=iH0wgeyzgazWSf=9Cgg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
-thanks for your feedback.
-You are right, the added Maxim chips should not have set the
-interrupt-controller; flag.
+Hi Jagan,
 
-The reason I decided to not handle that interrupt is that I don't know
-where to pass that bus error to.
-It looks like only the I2C master can signal bus errors by returning
--EIO, however there's no API for I2C clients
-to pass such errors to the master. However any attempt to access the
-stuck and isolated bus will fail and
-the address will be NACKed, so I don't think that this a big issue as
-in the end the bus stall will be detected.
+On 15.12.2021 13:59, Jagan Teki wrote:
+> On Wed, Dec 15, 2021 at 5:30 PM Marek Szyprowski
+> <m.szyprowski@samsung.com> wrote:
+>> On 15.12.2021 11:04, Jagan Teki wrote:
+>>> Replace the manual panel handling code by a drm panel_bridge via
+>>> devm_drm_of_get_bridge().
+>>>
+>>> Adding panel_bridge handling,
+>>>
+>>> - Drops drm_connector and related operations as drm_bridge_attach
+>>>     creates connector during attachment.
+>>>
+>>> - Drops panel pointer and panel healpers.
+>>>
+>>> This simplifies the driver and allows all components in the display
+>>> pipeline to be treated as bridges.
+>>>
+>>> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+>> I just tested it on top of linux-next with "drm: of: Lookup if child
+>> node has panel or bridge" patch. Sadly it still doesn't work on
+>> Exynos5250-based Arndale board:
+>>
+>> OF: graph: no port node found in /soc/hdmi@14530000
+>> [drm] Exynos DRM: using 14400000.fimd device for DMA mapping operations
+>> exynos-drm exynos-drm: bound 14400000.fimd (ops fimd_component_ops)
+>> exynos-drm exynos-drm: bound 14450000.mixer (ops mixer_component_ops)
+>> OF: graph: no port node found in /soc/dsi@14500000
+>> exynos-drm exynos-drm: bound 14500000.dsi (ops exynos_dsi_component_ops)
+>> exynos-drm exynos-drm: bound 14530000.hdmi (ops hdmi_component_ops)
+>> exynos-drm exynos-drm: [drm] Cannot find any crtc or sizes
+>> exynos-drm exynos-drm: [drm] Cannot find any crtc or sizes
+>> [drm] Initialized exynos 1.1.0 20180330 for exynos-drm on minor 0
+>> panfrost 11800000.gpu: clock rate = 533000000
+>> panfrost 11800000.gpu: mali-t600 id 0x600 major 0x0 minor 0x0 status 0x1
+>> panfrost 11800000.gpu: features: 00000000,10206000, issues:
+>> 00000000,31b4dfff
+>> panfrost 11800000.gpu: Features: L2:0x07110206 Shader:0x00000000
+>> Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xf JS:0x7
+>> panfrost 11800000.gpu: shader_present=0xf l2_present=0x1
+>> [drm] Initialized panfrost 1.2.0 20180908 for 11800000.gpu on minor 1
+>> ------------[ cut here ]------------
+>> WARNING: CPU: 1 PID: 7 at drivers/gpu/drm/drm_atomic_state_helper.c:494
+>> drm_atomic_helper_connector_duplicate_state+0x60/0x68
+> Known problem, it require 1/6 from Bridge conversation series. We can
+> move this patch into conversion series next time or while merging.
 
-Is there a mapping between devicetree bindings and driver file names?
-If not I'll use
-maxim,max7356 as devicetree binding to make it easier to read and
-mention that interrupts
-are not supported for those maxim devices.
+Indeed, with the 1/6 patch it works fine on Exynos5250 based Arndale board.
 
-Regards,
-Patrick
+Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
 
-On Wed, Dec 15, 2021 at 1:42 PM Peter Rosin <peda@axentia.se> wrote:
->
-> Hi!
->
-> On 2021-12-14 12:13, Laurent Pinchart wrote:
-> > Hi Patrick,
-> >
-> > Thank you for the patch.
-> >
-> > On Tue, Dec 14, 2021 at 10:50:18AM +0100, Patrick Rudolph wrote:
-> >> Add the Maxim MAX735x as supported chip to PCA954x and add an
-> >> example how to use it.
-> >>
-> >> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> >> ---
-> >>  .../bindings/i2c/i2c-mux-pca954x.yaml         | 40 +++++++++++++++++++
-> >>  1 file changed, 40 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> >> index 9f1726d0356b..bd794cb80c11 100644
-> >> --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> >> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> >> @@ -11,6 +11,7 @@ maintainers:
-> >>
-> >>  description:
-> >>    The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
-> >> +  Compatible with Maxim MAX7356 - MAX7358 I2C mux/switch devices.
-> >>
-> >>  allOf:
-> >>    - $ref: /schemas/i2c/i2c-mux.yaml#
-> >> @@ -19,6 +20,9 @@ properties:
-> >>    compatible:
-> >>      oneOf:
-> >>        - enum:
-> >> +          - maxim,max7356
-> >> +          - maxim,max7357
-> >> +          - maxim,max7358
-> >>            - nxp,pca9540
-> >>            - nxp,pca9542
-> >>            - nxp,pca9543
-> >> @@ -40,6 +44,7 @@ properties:
-> >>
-> >>    interrupts:
-> >>      maxItems: 1
-> >> +    description: Only supported on NXP devices. Unsupported on Maxim MAX735x.
-> >
-> > Could this be modelled by a YAML schema instead ? Something like
-> >
-> > allOf:
-> >   - if:
-> >       properties:
-> >         compatible:
-> >         contains:
-> >           enum:
-> >               - maxim,max7356
-> >               - maxim,max7357
-> >               - maxim,max7358
-> >     then:
-> >       properties:
-> >         interrupts: false
-> >
-> > (untested, it would be nice to use a pattern check for the compatible
-> > property if possible)
->
-> Some of the existing NXP chips do not support interrupts; we should
-> probably treat these new chips the same as the older ones. Either by
-> disallowing interrupts on both kinds or by continuing to ignore the
-> situation.
->
-> That said, I'm slightly in favor of the latter, since these new chips
-> do have interrupts, just not the same flavor as the NXP chips. What
-> the Maxim chips do not have is support for being an
->         interrupt-controller;
-> At least that's how I read it...
->
-> I don't know how this situation is supposed to be described? Maybe this
-> new kind of interrupt should be indicated with a bus-error-interrupts
-> property (or bikeshed along those lines)? Maybe there should be two
-> entries in the existing interrupts property? Maybe these new chips
-> should be described in a new binding specific to maxim,max7356-7358
-> (could still be handled by the pca954x driver of course) to keep the
-> yaml simpler to read?
->
-> However, there is also maxim,max7367-7369 to consider. They seem to
-> have interrupts of the style described by the NXP binding (haven't
-> checked if the registers work the same, but since they reuse the
-> 0x70 address-range the are in all likelihood also compatible).
->
-> Cheers,
-> Peter
->
-> >>
-> >>    "#interrupt-cells":
-> >>      const: 2
-> >> @@ -100,6 +105,41 @@ examples:
-> >>                  #size-cells = <0>;
-> >>                  reg = <4>;
-> >>
-> >> +                rtc@51 {
-> >> +                    compatible = "nxp,pcf8563";
-> >> +                    reg = <0x51>;
-> >> +                };
-> >> +            };
-> >> +        };
-> >> +    };
-> >> +
-> >> +  - |
-> >> +    i2c {
-> >> +        #address-cells = <1>;
-> >> +        #size-cells = <0>;
-> >> +
-> >> +        i2c-mux@74 {
-> >> +            compatible = "maxim,max7357";
-> >> +            #address-cells = <1>;
-> >> +            #size-cells = <0>;
-> >> +            reg = <0x74>;
-> >> +
-> >> +            i2c@1 {
-> >> +                #address-cells = <1>;
-> >> +                #size-cells = <0>;
-> >> +                reg = <1>;
-> >> +
-> >> +                eeprom@54 {
-> >> +                    compatible = "atmel,24c08";
-> >> +                    reg = <0x54>;
-> >> +                };
-> >> +            };
-> >> +
-> >> +            i2c@7 {
-> >> +                #address-cells = <1>;
-> >> +                #size-cells = <0>;
-> >> +                reg = <7>;
-> >> +
-> >>                  rtc@51 {
-> >>                      compatible = "nxp,pcf8563";
-> >>                      reg = <0x51>;
-> >
+Best regards
+
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
