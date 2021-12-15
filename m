@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85D9747623B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 20:54:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6917D476253
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 20:57:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233318AbhLOTyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 14:54:17 -0500
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:37780 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230475AbhLOTyR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 14:54:17 -0500
-Received: by mail-oi1-f171.google.com with SMTP id bj13so33202007oib.4;
-        Wed, 15 Dec 2021 11:54:17 -0800 (PST)
+        id S231962AbhLOT4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 14:56:39 -0500
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:39873 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229791AbhLOT4j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 14:56:39 -0500
+Received: by mail-ot1-f49.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso26220695ots.6;
+        Wed, 15 Dec 2021 11:56:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=2plnJOcym4cTuu7gThRmo+f5RSKQS/4GGXbtRresTN4=;
-        b=1NwX/n+gaTRZ31AAMfjDZxkVacfgVIUyljv9FsvNx6rfRvIQfvqfWfR0moZGkh+5D2
-         hcqR0AVmWeSXehlLAhP+FHd0McY41oRCKNHQ2YtljPkGNg8OeWMKihjUiVAHEXvXZcPQ
-         V4gx1yGtZr18mk3bw+V25RBoPSo3139h8Wz7QpK1uFbt1zYRSGr9Ev3lUGuSIHAMbk2g
-         Rkh/1ZhO26uzYbykmxov5MfqUa6Vj0BfcP7xvmpMWZOl3n+vph5L5dYVhQS+n+ERWOfZ
-         6mvo5+nDAMON8+IgGXZLA9yjAK4b7KG+zErP5NlRujOUXS0LkjvEytmWhhCG3kM9TQmh
-         QTLA==
-X-Gm-Message-State: AOAM532GTDbadNevSRvmL09xdSO0e9cT4fPE0CSPG9CSFr6jFDXmMTId
-        zEU/KI4PWeikqZQUnx2DyQ==
-X-Google-Smtp-Source: ABdhPJy7/+wyMjgiqWGLDBzXdCJizWBjaEArT/aUu4SEpHUWmxCBuBgP6l+xZaAbui68VjoxM54Gew==
-X-Received: by 2002:a05:6808:2016:: with SMTP id q22mr1298112oiw.81.1639598056783;
-        Wed, 15 Dec 2021 11:54:16 -0800 (PST)
+        bh=rc75QnNGJmNS7Cbebb+pY8RDy1d28+BSSxCtW4SecuI=;
+        b=gEizBTR33a1S3bh2Zt7v2sHpuCPXzc86v5+CZm0YUxHqRyW8z5GPIbvHpz0Ki3zNXM
+         2Uw/3pTaM5+XccsawKq33kNfF4vZKI+gzDbwV9qOmPZKt89Hq6PwS8oq4k+6gzKsVhNP
+         sXMmTGAtw8/FLOBFHj104YxCTGVxbRqhH6AnBaOShjuJk6RESE9JCCMnat9uqKCiJENi
+         dNo/FuZrpF6TjWSxAYvBFbnhebdoeg6JnNQYft25K9T/u5+BmeszcF+KySZw5e3bbWuB
+         UziQJTu0iGpJmScRJ6vPWXiaYsFJWEh0jsCV9AUhhu4vBw4j7JMDEokbxcvjMrWlfUgi
+         iceQ==
+X-Gm-Message-State: AOAM530feeJ6KAuqy+H+XGb7FPsIzI+m3Gl2DR8IYpS4kUueQTbUU0cB
+        YNXmSmfsS2jCdWiKboexwrAq2jCcWA==
+X-Google-Smtp-Source: ABdhPJzrQNwX1PWtVKEQVvXrLOMZ8C9c+duQoIn7Gf9bM82Fcc1FZELEJd5svYbn2v5KVWFulAvMXQ==
+X-Received: by 2002:a05:6830:2431:: with SMTP id k17mr10212639ots.220.1639598198475;
+        Wed, 15 Dec 2021 11:56:38 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t18sm627067ott.2.2021.12.15.11.54.15
+        by smtp.gmail.com with ESMTPSA id o2sm602213oik.11.2021.12.15.11.56.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 11:54:16 -0800 (PST)
-Received: (nullmailer pid 1729945 invoked by uid 1000);
-        Wed, 15 Dec 2021 19:54:15 -0000
-Date:   Wed, 15 Dec 2021 13:54:15 -0600
+        Wed, 15 Dec 2021 11:56:37 -0800 (PST)
+Received: (nullmailer pid 1733483 invoked by uid 1000);
+        Wed, 15 Dec 2021 19:56:36 -0000
+Date:   Wed, 15 Dec 2021 13:56:36 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jim Quinlan <jim2101024@gmail.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Christoph Hellwig <hch@lst.de>,
-        Rob Herring <robh+dt@kernel.org>, james.quinlan@broadcom.com,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] of: unittest: fix warning on PowerPC frame size
- warning
-Message-ID: <YbpH51gHmLVeqkez@robh.at.kernel.org>
-References: <20211210184636.7273-1-jim2101024@gmail.com>
- <20211210184636.7273-2-jim2101024@gmail.com>
+To:     Caleb Connolly <caleb.connolly@linaro.org>
+Cc:     linux-iio@vger.kernel.org, amit.pundir@linaro.org,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, john.stultz@linaro.org,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>, sumit.semwal@linaro.org
+Subject: Re: [PATCH 2/7] dt-bindings: iio: adc: document qcom-spmi-rradc
+Message-ID: <YbpIdF/z3w6DAKH3@robh.at.kernel.org>
+References: <20211211022224.3488860-1-caleb@connolly.tech>
+ <20211211022224.3488860-3-caleb@connolly.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211210184636.7273-2-jim2101024@gmail.com>
+In-Reply-To: <20211211022224.3488860-3-caleb@connolly.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Dec 2021 13:46:35 -0500, Jim Quinlan wrote:
-> The struct device variable "dev_bogus" was triggering this warning
-> on a PowerPC build:
+On Sat, 11 Dec 2021 02:22:19 +0000, Caleb Connolly wrote:
+> From: Caleb Connolly <caleb.connolly@linaro.org>
 > 
->     drivers/of/unittest.c: In function 'of_unittest_dma_ranges_one.constprop':
->     [...] >> The frame size of 1424 bytes is larger than 1024 bytes
->              [-Wframe-larger-than=]
+> Add dt-binding docs for the Qualcomm SPMI RRADC found in PMICs like
+> PMI8998 and PMI8994
 > 
-> This variable is now dynamically allocated.
-> 
-> Fixes: e0d072782c734 ("dma-mapping: introduce DMA range map, supplanting dma_pfn_offset")
-> Reported-by: kernel test robot <lkp@intel.com>
-> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
+> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 > ---
->  drivers/of/unittest.c | 16 ++++++++++++----
->  1 file changed, 12 insertions(+), 4 deletions(-)
+>  .../bindings/iio/adc/qcom,spmi-rradc.yaml     | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
