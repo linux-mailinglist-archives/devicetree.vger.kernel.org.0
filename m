@@ -2,60 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE8E447589F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 13:14:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F1604758A9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 13:16:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229902AbhLOMOb convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 15 Dec 2021 07:14:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47416 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbhLOMOb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 07:14:31 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73BAFC061574
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 04:14:31 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mxTAt-0002xm-IW; Wed, 15 Dec 2021 13:14:23 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mxTAn-000J7U-O1; Wed, 15 Dec 2021 13:14:17 +0100
-Message-ID: <3f019d0e27bd6d84935bc97efa84ee948fdbd066.camel@pengutronix.de>
-Subject: Re: [PATCH v2] dt-bindings: reset: document deprecated HiSilicon
- property
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Rob Herring <robh+dt@kernel.org>, Wei Xu <xuwei5@hisilicon.com>,
-        ~okias/devicetree@lists.sr.ht, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Wed, 15 Dec 2021 13:14:17 +0100
-In-Reply-To: <JLI54R.VHYJ34M8SSAB3@ixit.cz>
-References: <20211208184149.99537-1-david@ixit.cz>
-         <e013e672b500f88872b008cba7c2ddd5b4483d27.camel@pengutronix.de>
-         <JLI54R.VHYJ34M8SSAB3@ixit.cz>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        id S232288AbhLOMQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 07:16:04 -0500
+Received: from mail-4322.protonmail.ch ([185.70.43.22]:47885 "EHLO
+        mail-4322.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229441AbhLOMQE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 07:16:04 -0500
+Date:   Wed, 15 Dec 2021 12:15:53 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail2; t=1639570562;
+        bh=C2Esh76nKJPiqYXPTDJuFHL8WTuB99uBX0WaROHo7AY=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
+         References:From:To:Cc;
+        b=sAZxmMQ1Wqw5kp+rEShZ05LyAVDheN/fSbl9tMq9zvd0HWROfTslOSdusekCypE4y
+         F27RGrvzK4SKZVQVuxI3GkW65WKC/9ybOlZsXtQFyGQJqzqK0nIrL0RynjHmimvhRY
+         mDCCye0rfBpsDx3hFx9tCyvT1N7BRDX0iJ3SFx//EJlNX4LR1OKABS7CXbCbYibPi6
+         FJaGzL76jXHb1Wg/3I8iw1Jsu0Do15+/yvkyuMLbgkTBgHxCnBNibbQsGa7/Gps4Mn
+         Eg/GC480CWuBwqZH0uy9HociajjVbSVqWpzVMuXzfNTlC1reDlfLU2QVrqsyZPPBTF
+         IyzEkaFL9AYLA==
+To:     Sven Peter <sven@svenpeter.dev>
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>
+Reply-To: =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add Apple NCO
+Message-ID: <97B86688-DE6C-4AC2-BFBE-0BB2488C9ED5@protonmail.com>
+In-Reply-To: <0be8517e-a488-4203-9941-b43eac3d8f24@www.fastmail.com>
+References: <20211214120213.15649-1-povik@protonmail.com> <20211214120213.15649-2-povik@protonmail.com> <Ybi61fzpOV7CumtR@robh.at.kernel.org> <3F145763-2774-4569-B9B7-A03CFE002E94@protonmail.com> <CAL_Jsq+STG7=H_B3VwNp1V4OSCvKat2FUJhtzi_1t_UbMnOUfw@mail.gmail.com> <F62225F0-C9C6-4E39-9163-B125A7253733@protonmail.com> <0be8517e-a488-4203-9941-b43eac3d8f24@www.fastmail.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2021-12-15 at 11:03 +0100, David Heidelberg wrote:
-> Hi Philipp,
-> 
-> In "[PATCH] arm64: dts: hisilicon: update deprecated property name" 
-> (v1) I was reffered to 
-> https://www.spinics.net/lists/arm-kernel/msg887577.html
-> David
 
-Thank you, I'll pick this up into reset/next.
+> On 15. 12. 2021, at 9:43, Sven Peter <sven@svenpeter.dev> wrote:
+>
 
-regards
-Philipp
+> Are there any dependencies between these individual channels?
+> Is there some common initialization required for all of them?
+>
+> From a quick glance and my uninformed opinion it looks like these are
+> separate to me. They only all need this LSFR table which could still be
+> shared.
+
+That=E2=80=99s right.
+
+>
+> Sven
+
+Martin
+
+
