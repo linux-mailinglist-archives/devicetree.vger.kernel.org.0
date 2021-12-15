@@ -2,165 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08473475C2C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 16:48:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BE38475C34
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 16:50:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244110AbhLOPsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 10:48:16 -0500
-Received: from mail-oo1-f48.google.com ([209.85.161.48]:33749 "EHLO
-        mail-oo1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244136AbhLOPsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 10:48:15 -0500
-Received: by mail-oo1-f48.google.com with SMTP id r18-20020a4a7252000000b002c5f52d1834so6055350ooe.0;
-        Wed, 15 Dec 2021 07:48:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YWe46+RAeAhv8NF0hCOXC2BzwnA8Qf4Za9W9pdCQ3i4=;
-        b=dfXOrGp0DhVFyAkstQIYvxwH2uK0DXAR75Y+MX12KVnN4Fok9/WEPYnu3iY1Lg64Jq
-         qhD65M6h1395krNMLgoijh8SVK8azNlgdLvMoozTOw5FO7kjfemoCv++vmdR47d/tZ9x
-         dtX6tPVjVOVbiaT9VTyNJrnIy3hFc2zTCSme7/O99cgiL4PoGPVWAN2uS/MhreneiT8/
-         pMNTe5UpIAoQPu0RijoGNTGalBvDX8GMPdCQ2fjB+NiecmafiTVpTwvVHkMzZjuUDvSW
-         /J8EwJ9GQd5zZQV2Vyyoe3R0l3rFlY9x9aIwZcoyPogej/KTKkHhBO2XuB4LjCyYx5vS
-         wOUQ==
-X-Gm-Message-State: AOAM5308qF8u3wK8LIX9NXVTyLbqDIOPgCON2yblDzwG8fbMo4Cwv8id
-        aSkU/29H6Gd7qr/24SZjKg==
-X-Google-Smtp-Source: ABdhPJzdctEjOEJ409DYQ3J/LdTeJQRWm7fGan8BXsK3rIpkYQPsb9T0JqpOHXUWRS4QqK/Wk46VBw==
-X-Received: by 2002:a4a:d8c7:: with SMTP id c7mr7789817oov.58.1639583295075;
-        Wed, 15 Dec 2021 07:48:15 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o19sm426468oiw.22.2021.12.15.07.48.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 07:48:14 -0800 (PST)
-Received: (nullmailer pid 1371708 invoked by uid 1000);
-        Wed, 15 Dec 2021 15:48:13 -0000
-Date:   Wed, 15 Dec 2021 09:48:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Nicolas Saenz Julienne <nsaenz@kernel.org>
-Cc:     stefan.wahren@i2se.com, f.fainelli@gmail.com,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: soc: bcm: Convert brcm,bcm2835-vchiq to
- json-schema
-Message-ID: <YboOPd/xYWkL2JrJ@robh.at.kernel.org>
-References: <20211215094448.280796-1-nsaenz@kernel.org>
+        id S242738AbhLOPuz convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 15 Dec 2021 10:50:55 -0500
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:46749 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239535AbhLOPuy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 10:50:54 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id CD618E0003;
+        Wed, 15 Dec 2021 15:50:48 +0000 (UTC)
+Date:   Wed, 15 Dec 2021 16:50:47 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, Mark Brown <broonie@kernel.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Xiangsheng Hou <Xiangsheng.Hou@mediatek.com>,
+        Julien Su <juliensu@mxic.com.tw>,
+        Jaime Liao <jaimeliao@mxic.com.tw>,
+        Boris Brezillon <boris.brezillon@collabora.com>
+Subject: Re: [PATCH v3 03/22] dt-bindings: mtd: nand-controller: Harmonize
+ the property types
+Message-ID: <20211215165047.2d089269@xps13>
+In-Reply-To: <YbjYNVOVL/sLda9H@robh.at.kernel.org>
+References: <20211207093422.166934-1-miquel.raynal@bootlin.com>
+        <20211207093422.166934-4-miquel.raynal@bootlin.com>
+        <YbjYNVOVL/sLda9H@robh.at.kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211215094448.280796-1-nsaenz@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 15, 2021 at 10:44:49AM +0100, Nicolas Saenz Julienne wrote:
-> From: Stefan Wahren <stefan.wahren@i2se.com>
-> 
-> This converts the VCHIQ bindings to YAML format.
+Hi Rob,
 
-Am I supposed to review this? Some version of it is already in 
-linux-next...
+robh@kernel.org wrote on Tue, 14 Dec 2021 11:45:25 -0600:
+
+> On Tue, Dec 07, 2021 at 10:34:03AM +0100, Miquel Raynal wrote:
+> > Harmonize the different properties in this file by:
+> > * dropping the non-necessary allOf's
+> > * always defining the keywords in the following order:
+> >     - first: "type"/"$ref",
+> >     - second: "description" (when relevant),  
+> 
+> If we're going to muck with this, really I prefer description first or 
+> last and everything else together.
+
+Ok, no problem.
+
+This is just a patch cleaning things up before moving the properties
+around anyway.
+
+Can I add your Reviewed-by when sending the updated version? I would
+like to merge the first halve of this series soon enough.
 
 > 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> Co-developed-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
-> Signed-off-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
-> 
-> ---
-> Changes since v2:
->  - Reinstate fallback compatible
-> 
->  .../bindings/soc/bcm/brcm,bcm2835-vchiq.txt   | 17 ------
->  .../bindings/soc/bcm/brcm,bcm2835-vchiq.yaml  | 53 +++++++++++++++++++
->  2 files changed, 53 insertions(+), 17 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt
->  create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt
-> deleted file mode 100644
-> index f331316183f6..000000000000
-> --- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt
-> +++ /dev/null
-> @@ -1,17 +0,0 @@
-> -Broadcom VCHIQ firmware services
-> -
-> -Required properties:
-> -
-> -- compatible:	Should be "brcm,bcm2835-vchiq" on BCM2835, otherwise
-> -		"brcm,bcm2836-vchiq".
-> -- reg:		Physical base address and length of the doorbell register pair
-> -- interrupts:	The interrupt number
-> -		  See bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.txt
-> -
-> -Example:
-> -
-> -mailbox@7e00b840 {
-> -	compatible = "brcm,bcm2835-vchiq";
-> -	reg = <0x7e00b840 0xf>;
-> -	interrupts = <0 2>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
-> new file mode 100644
-> index 000000000000..e04439b3355b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/bcm/brcm,bcm2835-vchiq.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom VCHIQ firmware services
-> +
-> +maintainers:
-> +  - Nicolas Saenz Julienne <nsaenz@kernel.org>
-> +
-> +description:
-> +  The VCHIQ communication channel can be provided by BCM283x and Capri SoCs,
-> +  to communicate with the VPU-side OS services.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - description: BCM2835 based boards
-> +        items:
-> +          - enum:
-> +              - brcm,bcm2835-vchiq
-> +
-> +      - description: BCM2836/BCM2837 based boards
-> +        items:
-> +          - enum:
-> +              - brcm,bcm2836-vchiq
-> +          - const: brcm,bcm2835-vchiq
-> +
-> +  reg:
-> +    description: Physical base address and length of the doorbell register pair
-> +    minItems: 1
-> +
-> +  interrupts:
-> +    description: Interrupt number of the doorbell interrupt
-> +    minItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    mailbox@7e00b840 {
-> +      compatible = "brcm,bcm2835-vchiq";
-> +      reg = <0x7e00b840 0xf>;
-> +      interrupts = <0 2>;
-> +    };
-> +
-> +...
-> -- 
-> 2.33.1
-> 
-> 
+> >     - then the other generic keywords ("enum", "default", etc).
+> > 
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+
+Thanks,
+Miquèl
