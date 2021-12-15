@@ -2,111 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 427B1478360
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 03:51:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67A094783BA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 04:43:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231752AbhLQCvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 21:51:09 -0500
-Received: from szxga02-in.huawei.com ([45.249.212.188]:28326 "EHLO
-        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbhLQCvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 21:51:09 -0500
-Received: from dggpemm500022.china.huawei.com (unknown [172.30.72.55])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4JFYPz346szbjLQ;
-        Fri, 17 Dec 2021 10:50:47 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500022.china.huawei.com (7.185.36.162) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 17 Dec 2021 10:51:06 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 17 Dec 2021 10:51:05 +0800
-Subject: Re: [PATCH v17 03/10] x86: kdump: use macro CRASH_ADDR_LOW_MAX in
- functions reserve_crashkernel()
-To:     Borislav Petkov <bp@alien8.de>
-CC:     Baoquan He <bhe@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
-        "Ingo Molnar" <mingo@redhat.com>, <x86@kernel.org>,
-        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
-        Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <20211210065533.2023-4-thunder.leizhen@huawei.com> <YbntdtQo2jfbO4cO@zn.tnic>
- <20211216011040.GG3023@MiWiFi-R3L-srv>
- <9513d74c-d4c7-babd-f823-8999e195d96d@huawei.com> <YbseAX6X1VHUF12f@zn.tnic>
- <35810a61-604e-9b90-2a7f-cfca6ae042ac@huawei.com> <YbtRs3Tq1UpCOpg8@zn.tnic>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <d2b199b7-584e-8ad4-9626-09bb86cf92c5@huawei.com>
-Date:   Fri, 17 Dec 2021 10:51:04 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S232532AbhLQDnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 22:43:21 -0500
+Received: from ixit.cz ([94.230.151.217]:38938 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231143AbhLQDnV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Dec 2021 22:43:21 -0500
+Received: from [192.168.1.138] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id D07DB24CC2;
+        Wed, 15 Dec 2021 16:28:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1639582118;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=7Edv46GPYMJdJozDwMUanWLkqZtLTb27/B2Rn3iDwNQ=;
+        b=GXAPaLdrpkYx14JHvm2zisZ8qSpyq6BTeXd+5OCNNVgTl7mfP7w0pnkjJ6j+ERP6EMLjsp
+        p1WonHQHoHUOFb+ugI5ZjjFPxXdfcjUpgLiSuPnUTl5k8k3AE43bq7HYSEYQexRSBGbAj2
+        mBODbbk2VLtGW/X1asJafXM+CLhPqqg=
+Date:   Wed, 15 Dec 2021 16:28:30 +0100
+From:   David Heidelberg <david@ixit.cz>
+Subject: Re: [PATCH v6 11/28] ARM: tegra: Add device-tree for ASUS Transformer
+ Infinity TF700T
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Dmitry Osipenko <digetx@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Anton Bambura <jenneron@protonmail.com>,
+        Antoni Aloy Torrens <aaloytorrens@gmail.com>,
+        Nikola Milosavljevic <mnidza@outlook.com>,
+        Ion Agorria <ion@agorria.com>,
+        =?iso-8859-2?q?Micha=B3_Miros=B3aw?= <mirq-linux@rere.qmqm.pl>,
+        Ihor Didenko <tailormoon@rambler.ru>,
+        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
+        Jasper Korten <jja2000@gmail.com>,
+        Thomas Graichen <thomas.graichen@gmail.com>,
+        Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-Id: <INX54R.ECW0Q9B43ONC3@ixit.cz>
+In-Reply-To: <YboHd6tIUrl+LJQb@orome>
+References: <20211211211412.10791-1-digetx@gmail.com>
+        <20211211211412.10791-12-digetx@gmail.com> <Ybn1Ne2aGfsablwQ@orome>
+        <02d7e9a9-6999-cccd-aea2-d069c759cd56@gmail.com> <YboHd6tIUrl+LJQb@orome>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-In-Reply-To: <YbtRs3Tq1UpCOpg8@zn.tnic>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=iso-8859-5; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Dmitry and Thierry!
+
+Sent as "[PATCH] dt-bindings: display: bridge: document Toshiba=20
+TC358768 cells and panel node",
+
+I'll try to not keep these patches for myself for so long.
+David
+
+On Wed, Dec 15 2021 at 16:19:19 +0100, Thierry Reding=20
+<thierry.reding@gmail.com> wrote:
+> On Wed, Dec 15, 2021 at 05:52:24PM +0300, Dmitry Osipenko wrote:
+>>  15.12.2021 17:01, Thierry Reding =DF=D8=E8=D5=E2:
+>>  > On Sun, Dec 12, 2021 at 12:13:55AM +0300, Dmitry Osipenko wrote:
+>>  > [...]
+>>  >> +		i2c@1 {
+>>  >> +			reg =3D <1>;
+>>  >> +			#address-cells =3D <1>;
+>>  >> +			#size-cells =3D <0>;
+>>  >> +
+>>  >> +			dsi-bridge@7 {
+>>  >> +				compatible =3D "toshiba,tc358768";
+>>  >> +				reg =3D <0x7>;
+>>  >> +
+>>  >> +				#address-cells =3D <1>;
+>>  >> +				#size-cells =3D <0>;
+>>  >> +
+>>  >> +				clocks =3D <&tc358768_osc>;
+>>  >> +				clock-names =3D "refclk";
+>>  >> +
+>>  >> +				reset-gpios =3D <&gpio TEGRA_GPIO(N, 6) GPIO_ACTIVE_LOW>;
+>>  >> +
+>>  >> +				vddc-supply =3D <&vdd_1v2_mipi>;
+>>  >> +				vddio-supply =3D <&vdd_1v8_vio>;
+>>  >> +				vddmipi-supply =3D <&vdd_1v2_mipi>;
+>>  >> +
+>>  >> +				ports {
+>>  >> +					#address-cells =3D <1>;
+>>  >> +					#size-cells =3D <0>;
+>>  >> +
+>>  >> +					port@0 {
+>>  >> +						reg =3D <0>;
+>>  >> +
+>>  >> +						bridge_input: endpoint {
+>>  >> +							remote-endpoint =3D <&dpi_output>;
+>>  >> +							data-lines =3D <24>;
+>>  >> +						};
+>>  >> +					};
+>>  >> +
+>>  >> +					port@1 {
+>>  >> +						reg =3D <1>;
+>>  >> +
+>>  >> +						bridge_output: endpoint {
+>>  >> +							remote-endpoint =3D <&panel_input>;
+>>  >> +						};
+>>  >> +					};
+>>  >> +				};
+>>  >> +
+>>  >> +				/*
+>>  >> +				 * Panasonic VVX10F004B00 or HYDIS HV101WU1-1E1
+>>  >> +				 * LCD SuperIPS+ Full HD panel.
+>>  >> +				 */
+>>  >> +				panel@1 {
+>>  >> +					compatible =3D "panasonic,vvx10f004b00";
+>>  >> +					reg =3D <1>;
+>>  >> +
+>>  >> +					power-supply =3D <&vdd_pnl>;
+>>  >> +					backlight =3D <&backlight>;
+>>  >> +
+>>  >> +					port {
+>>  >> +						panel_input: endpoint {
+>>  >> +							remote-endpoint =3D <&bridge_output>;
+>>  >> +						};
+>>  >> +					};
+>>  >> +				};
+>>  >
+>>  > make dtbs_check complains about this and says that panel@1 (as=20
+>> well as
+>>  > #address-cells and #size-cells) are not allowed here. And indeed=20
+>> the
+>>  > binding for the Toshiba bridge doesn't mention them here.
+>>  >
+>>  > Do we need this here or should this be moved to the top level to=20
+>> fix
+>>  > those warnings? I guess what you're doing above is describe a DSI=20
+>> bus
+>>  > created by the DSI bridge, which also makes sense, so another
+>>  > alternative would be to fix up the binding and let it accept those
+>>  > properties.
+>>=20
+>>  Toshiba bridge binding is incomplete. David has patch for that [1],=20
+>> I
+>>  don't think that it was sent out yet.
+>>=20
+>>  [1]
+>> =20
+>> https://github.com/okias/linux/commit/0875230062294b6db17f395ced0a8384a4=
+c1cfc7
+>=20
+> Okay, please make sure this finds its way upstream eventually. That
+> patch looks quite similar to what I tried to do to fix this up=20
+> locally.
+>=20
+> Thierry
 
 
-On 2021/12/16 22:48, Borislav Petkov wrote:
-> On Thu, Dec 16, 2021 at 08:08:30PM +0800, Leizhen (ThunderTown) wrote:
->> If the memory of 'crash_base' is successfully allocated at (1), because the last
->> parameter CRASH_ADDR_LOW_MAX is the upper bound, so we can sure that
->> "crash_base < CRASH_ADDR_LOW_MAX". So that, reserve_crashkernel_low() will not be
->> invoked at (3). That's why I said (1ULL << 32) is inaccurate and enlarge the CRASH_ADDR_LOW
->> upper limit.
-> 
-> No, this is actually wrong - that check *must* be 4G. See:
-> 
->   eb6db83d1059 ("x86/setup: Do not reserve crashkernel high memory if low reservation failed")
-> 
-> It is even documented:
-> 
->         crashkernel=size[KMG],low
->                         [KNL, X86-64] range under 4G. When crashkernel=X,high
-
-[KNL, X86-64], This doc is for X86-64, not for X86-32
-
->                         is passed, kernel could allocate physical memory region
->                         above 4G, that cause second kernel crash on system
->                         that require some amount of low memory, e.g. swiotlb
->                         requires at least 64M+32K low memory, also enough extra
->                         low memory is needed to make sure DMA buffers for 32-bit
->                         devices won't run out.
-
-vi arch/x86/kernel/setup.c +398
-
-/*
- * Keep the crash kernel below this limit.
- *
- * Earlier 32-bits kernels would limit the kernel to the low 512 MB range
- * due to mapping restrictions.
-
-If there is no such restriction, we can make CRASH_ADDR_LOW_MAX equal to (1ULL << 32) minus 1 on X86_32.
-
-> 
-> so you need to do a low allocation for DMA *when* the reserved memory is
-> above 4G. *NOT* above 512M. But that works due to the obscure situation,
-> as Baoquan stated, that reserve_crashkernel_low() returns 0 on 32-bit.
-> 
-> So all this is telling us is that that function needs serious cleanup.
-> 
