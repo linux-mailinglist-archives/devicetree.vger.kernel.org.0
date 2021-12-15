@@ -2,79 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE64047616B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 20:16:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB51347617C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 20:19:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344143AbhLOTQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 14:16:26 -0500
-Received: from mail-oo1-f54.google.com ([209.85.161.54]:40643 "EHLO
-        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344116AbhLOTQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 14:16:26 -0500
-Received: by mail-oo1-f54.google.com with SMTP id w15-20020a4a354f000000b002d85ef0533dso1535497oog.7;
-        Wed, 15 Dec 2021 11:16:25 -0800 (PST)
+        id S239425AbhLOTR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 14:17:56 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:46933 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238982AbhLOTR4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 14:17:56 -0500
+Received: by mail-oi1-f180.google.com with SMTP id s139so32962517oie.13;
+        Wed, 15 Dec 2021 11:17:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xgMdRGgCuIolfRdeKGEr50tqMCz4JPztfeQpCRP8ws0=;
-        b=ZOAE0v1Ze8ej4ulWmOxBEii0MvYDazfE3U5UVulg4R776izikEqLRIbe9ga4Tk0Q+3
-         wCw/zLJgBORjCNS7FxKXu/729SRfPCMDKHpLVgOnHNOtD0nA7gUcJiANidLFZhHPdF8d
-         Lfop5TuugrvuZjqHpeqAnOvA6YCiHfmjqJXnroV8oMUmBOzCVdLjBdJh/sQ5BJ7WVK6w
-         E4wEXA4h0Ij52TNMOfFWWnRInQ/rbgSc4dIUmQNojIt/aGwW4S0osW213evb9M7gbhCy
-         UF1DwDsDFvF3yF7NkhzuevTb4D9ZbVrUUS7K2hNzgVA337MLnor7siDoupFGKyMlAtRF
-         pqGA==
-X-Gm-Message-State: AOAM530wmy6Rke+9+2HqPZ8vJ/KVg4wA++QBuYK3SmSKgz/Ey/7kMnRc
-        PCcSfArJR+n219i7mCoJWA==
-X-Google-Smtp-Source: ABdhPJxsusBoa6hPOOtDxjKOQmlBNdaIhp1woTGfzH5zoLjDqu1oEoUdLzD4RkrrplFyG70u7FcjNQ==
-X-Received: by 2002:a4a:c987:: with SMTP id u7mr8518064ooq.65.1639595785406;
-        Wed, 15 Dec 2021 11:16:25 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=uBHq/0zl+a7Dq09M9cM13oZAbttHfH1OlcttpqMjJvw=;
+        b=eDRLTyZmGuZnAKQ/p7xdfsn21UTpCLGoedjee7E5kgaofXy+A5R9okJjk+BTFi+HWS
+         D03hsAVLDvSadzNtFZhg0wwu+VVp8naNbdTesGif6LcjJfRR4VLR2AvP4TMiCcFozqOx
+         bvsmCbwst8LYLoCBUxzu/98QpYMHbq8zOPZeAzGdSTnZjNJri6qkGb8XuZhVI6vCFxip
+         l12dAri6ahkyMcbGnk+hQueVX3ba1C7iFlEDIuy8gVAIix6BlB6l4ja4sNCSdREIlDmR
+         P9oDwT5pBmVtLpbotHyUMvKAroZqc4hprQFfZPq6GM+YzVLW/Cp17YT+8CFrjNTpTne/
+         O7Zg==
+X-Gm-Message-State: AOAM530GGwsFTOba9owUcpH3pUjI6YyWcLvfKocDNUeDXe0V0OtJY7i4
+        kmBvHDQoBSxdpwGrySgO5g==
+X-Google-Smtp-Source: ABdhPJxVqQc4gHQs3V0KRcAfBJ6UgCVyfX1bVdv+jBG/NvRIrgHJRE/jZ23/FU/ZDThRckGwUM3s1g==
+X-Received: by 2002:a05:6808:118b:: with SMTP id j11mr1194276oil.73.1639595875844;
+        Wed, 15 Dec 2021 11:17:55 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x17sm588157oot.30.2021.12.15.11.16.24
+        by smtp.gmail.com with ESMTPSA id y28sm506876oix.57.2021.12.15.11.17.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 11:16:24 -0800 (PST)
-Received: (nullmailer pid 1673469 invoked by uid 1000);
-        Wed, 15 Dec 2021 19:16:23 -0000
-Date:   Wed, 15 Dec 2021 13:16:23 -0600
+        Wed, 15 Dec 2021 11:17:55 -0800 (PST)
+Received: (nullmailer pid 1675653 invoked by uid 1000);
+        Wed, 15 Dec 2021 19:17:54 -0000
+Date:   Wed, 15 Dec 2021 13:17:54 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        iommu@lists.linux-foundation.org,
-        linux-arm-kernel@lists.infradead.org,
-        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, Will Deacon <will@kernel.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: arm-smmu: Document
- nvidia,memory-controller property
-Message-ID: <Ybo/B1cjP4pumACW@robh.at.kernel.org>
-References: <20211209163600.609613-1-thierry.reding@gmail.com>
+To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
+        <zhouyanjie@wanyeetech.com>
+Cc:     daniel.lezcano@linaro.org, tglx@linutronix.de,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: timer: Add bindings for new Ingenic
+ SoCs.
+Message-ID: <Ybo/Ygixmmn9FPkx@robh.at.kernel.org>
+References: <1639068516-5577-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1639068516-5577-2-git-send-email-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211209163600.609613-1-thierry.reding@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1639068516-5577-2-git-send-email-zhouyanjie@wanyeetech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 09 Dec 2021 17:35:57 +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Fri, Dec 10, 2021 at 12:48:34AM +0800, 周琰杰 (Zhou Yanjie) wrote:
+> Add the OST bindings for the X1600 SoC, the X1830 SoC,
+> the X2000 SoC and the X2500 SoC from Ingenic.
 > 
-> On NVIDIA SoC's the ARM SMMU needs to interact with the memory
-> controller in order to map memory clients to the corresponding stream
-> IDs. Document how the nvidia,memory-controller property can be used to
-> achieve this.
-> 
-> Note that this is a backwards-incompatible change that is, however,
-> necessary to ensure correctness. Without the new property, most of the
-> devices would still work but it is not guaranteed that all will.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
 > ---
-> Changes in v2:
-> - clarify why the new nvidia,memory-controller property is required
+>  Documentation/devicetree/bindings/timer/ingenic,sysost.yaml | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 > 
->  .../devicetree/bindings/iommu/arm,smmu.yaml     | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
+> diff --git a/Documentation/devicetree/bindings/timer/ingenic,sysost.yaml b/Documentation/devicetree/bindings/timer/ingenic,sysost.yaml
+> index 98648bf..a3b1429 100644
+> --- a/Documentation/devicetree/bindings/timer/ingenic,sysost.yaml
+> +++ b/Documentation/devicetree/bindings/timer/ingenic,sysost.yaml
+> @@ -20,7 +20,12 @@ properties:
+>    compatible:
+>      enum:
+>        - ingenic,x1000-ost
+> -      - ingenic,x2000-ost
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Removing this is not a compatible change.
+
+> +      - ingenic,x1600-ost
+> +      - ingenic,x1830-ost
+> +      - ingenic,x2000-ost64
+> +      - ingenic,x2000-ost32
+> +      - ingenic,x2500-ost64
+> +      - ingenic,x2500-ost32
+>  
+>    reg:
+>      maxItems: 1
+> -- 
+> 2.7.4
+> 
+> 
