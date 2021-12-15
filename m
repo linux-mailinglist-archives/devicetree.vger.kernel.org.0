@@ -2,116 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6131C475799
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 12:17:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87AE14757D6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 12:35:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234363AbhLOLRE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 06:17:04 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:37985 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237072AbhLOLQ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Dec 2021 06:16:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1639567017;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=C/kACBPtJZeIuY+3f2e1l9jss5UUWc08/NUCKSY8UVM=;
-        b=XXtE6Tu29c72F5ENm94JdML8PdMpKUm/AcIRAGP48SWsF0V/fiUCfAgHaWlNd0MaRqvChE
-        oOhVvYZDhIjz4rNPatv3zs1fj/meGQ7RQvNvaKVUt4u34WBlr1rjV9pTR1bA6HFy0i5I0l
-        flX87X8w57ZVuXFDOXCPTxzjA3h5TTc=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-446-8SYL8iBXPgiNrlxaWUUICg-1; Wed, 15 Dec 2021 06:16:53 -0500
-X-MC-Unique: 8SYL8iBXPgiNrlxaWUUICg-1
-Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com [10.5.11.11])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 2AD0381CCB5;
-        Wed, 15 Dec 2021 11:16:49 +0000 (UTC)
-Received: from localhost (ovpn-12-120.pek2.redhat.com [10.72.12.120])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id ED0D17E668;
-        Wed, 15 Dec 2021 11:16:46 +0000 (UTC)
-Date:   Wed, 15 Dec 2021 19:16:43 +0800
-From:   Baoquan He <bhe@redhat.com>
-To:     Catalin Marinas <catalin.marinas@arm.com>
-Cc:     Borislav Petkov <bp@alien8.de>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
-        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
-        Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org, Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-Subject: Re: [PATCH v17 02/10] x86: kdump: make the lower bound of crash
- kernel reservation consistent
-Message-ID: <20211215111643.GF3023@MiWiFi-R3L-srv>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <20211210065533.2023-3-thunder.leizhen@huawei.com>
- <YbjrjpehprvoRXbV@zn.tnic>
- <YbjvXl51hc6GZa71@arm.com>
- <20211215034219.GB10336@MiWiFi-R3L-srv>
- <YbnK79c0YokJ1ahu@arm.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YbnK79c0YokJ1ahu@arm.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
+        id S236760AbhLOLfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 06:35:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38524 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232085AbhLOLfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 06:35:45 -0500
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25B92C061574;
+        Wed, 15 Dec 2021 03:35:45 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id 36-20020a17090a09a700b001b103e48cfaso1406959pjo.0;
+        Wed, 15 Dec 2021 03:35:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=TaGHD7z1uPWVoqBO0eW99qVXK7I8JIm4IUxWWiL69jk=;
+        b=ZRB7buEAdPUMdg4qRNJl0QZFOg/ttuxXUZ72SnQGIA9EmDkcx/sPi5n8EiHe8Zfkuz
+         deDwSXmBHJe2GHyb69LW0TjsY4iD19cdAETzSf20F2LBprIZYKmtG4HQEf3378up69XI
+         R99TmkRgV7wJwT6mrD3ob5GQICyoVKGBtsMxarUuqR6F5m5z0lqhzYOmt5DBR1ZmSZ6/
+         quvghAnPZ9CacNWKe+DeFz/AILM2DbrKNk64e1BnQrD3+p3l7ywQX7rDpP0Nb7I9L+v4
+         ou+g15089fnr2ETbF0I0unm+B6NonpZ8gO8MdBBSkd7xTEb+p0itDRa+B6YusD30nX52
+         b0qA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=TaGHD7z1uPWVoqBO0eW99qVXK7I8JIm4IUxWWiL69jk=;
+        b=7F+Pf3K0dTo99tfT/o1KSm+Ny1M5B/pvv2HvqPervrXUV9gCBIDjs32uhr1rOnPx3H
+         ii1QS4thL5RAxetgSO326JWGkJjKxCMq0AaH9esMR3iP2UwOOYTnmUhochV+2snEbIIM
+         cbqbAL4POvjQYDzudB7USnSjCSM3GPNEsQEd5HWMocMZQTGtCUPLA6g5z1CV/dBXHBNp
+         krd9MjYPa0KPLbzCTaMv6KEKX4eM6ha0enQUQzG2zD2DTHmK92b9gqZS/xq/a5W8Nzio
+         KUxK3CR9pS9Ui63adNLmSZ7asBl1f9RRH2szPnlRAaNMxwSsv4HsZPLtZeG6RzqCd8/x
+         N7Kg==
+X-Gm-Message-State: AOAM531tuEJNfEPDMRiWa6pxDO9//ggyp86BTxd5yAMLv7Af22DbKMzz
+        0bLSizMv7nFeOLoe7zy/6tY=
+X-Google-Smtp-Source: ABdhPJwrVSLtJSqE4KeEdAyFEhmMWKLl28Zif20FZtpcrRW2UjVLBkZsOw0OCPvtHm8ztqGsBfG2CQ==
+X-Received: by 2002:a17:90a:af94:: with SMTP id w20mr10976474pjq.223.1639568144654;
+        Wed, 15 Dec 2021 03:35:44 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id s19sm2558727pfu.104.2021.12.15.03.35.42
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 15 Dec 2021 03:35:44 -0800 (PST)
+From:   Vincent Shih <vincent.sunplus@gmail.com>
+To:     srinivas.kandagatla@linaro.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        wells.lu@sunplus.com, vincent.shih@sunplus.com
+Cc:     Vincent Shih <vincent.sunplus@gmail.com>
+Subject: [PATCH v3 0/2] Add driver for OCOTP in Sunplus SP7021
+Date:   Wed, 15 Dec 2021 19:35:46 +0800
+Message-Id: <1639568148-22872-1-git-send-email-vincent.sunplus@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/15/21 at 11:01am, Catalin Marinas wrote:
-> On Wed, Dec 15, 2021 at 11:42:19AM +0800, Baoquan He wrote:
-> > On 12/14/21 at 07:24pm, Catalin Marinas wrote:
-> > > On Tue, Dec 14, 2021 at 08:07:58PM +0100, Borislav Petkov wrote:
-> > > > On Fri, Dec 10, 2021 at 02:55:25PM +0800, Zhen Lei wrote:
-> > > > > From: Chen Zhou <chenzhou10@huawei.com>
-> > > > > 
-> > > > > The lower bounds of crash kernel reservation and crash kernel low
-> > > > > reservation are different, use the consistent value CRASH_ALIGN.
-> > > > 
-> > > > A big WHY is missing here to explain why the lower bound of the
-> > > > allocation range needs to be 16M and why was 0 wrong?
-> > > 
-> > > I asked the same here:
-> > > 
-> > > https://lore.kernel.org/r/20210224143547.GB28965@arm.com
-> > > 
-> > > IIRC Baoquan said that there is a 1MB reserved for x86 anyway in the
-> > > lower part, so that's equivalent in practice to starting from
-> > > CRASH_ALIGN.
-> > 
-> > Yeah, even for i386, there's area reserved by BIOS inside low 1M.
-> > Considering the existing alignment CRASH_ALIGN which is 16M, we
-> > definitely have no chance to get memory starting from 0. So starting
-> > from 16M can skip the useless memblock searching, and make the
-> > crashkernel low reservation consisten with crashkernel reservation on
-> > allocation code.
-> 
-> That's the x86 assumption. Is it valid for other architectures once the
-> code has been made generic in patch 6? It should be ok for arm64, RAM
-> tends to start from higher up but other architectures may start using
-> this common code.
+This is a patch series for OCOTP driver for Sunplus SP7021 SoC.
 
-Good point. I didn't think of this from generic code side, then let's
-keep it as 0.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD Card and
+etc.) into a single chip. It is designed for industrial control.
 
-> 
-> If you want to keep the same semantics as before, just leave it as 0.
-> It's not that the additional lower bound makes the search slower.
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-Agree.
+Vincent Shih (2):
+  nvmem: Add driver for OCOTP in Sunplus SP7021
+  dt-bindings: nvmem: Add bindings doc for Sunplus OCOTP driver
+
+ .../bindings/nvmem/sunplus,sp7021-ocotp.yaml       |  86 ++++++++
+ MAINTAINERS                                        |   6 +
+ drivers/nvmem/Kconfig                              |  12 +
+ drivers/nvmem/Makefile                             |   2 +
+ drivers/nvmem/sunplus-ocotp.c                      | 244 +++++++++++++++++++++
+ 5 files changed, 350 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
+ create mode 100644 drivers/nvmem/sunplus-ocotp.c
+
+-- 
+2.7.4
 
