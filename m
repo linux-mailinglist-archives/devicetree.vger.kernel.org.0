@@ -2,126 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88210475571
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 10:49:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DB15475574
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 10:51:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241278AbhLOJtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 04:49:39 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:54498 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241286AbhLOJtj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 04:49:39 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7284EB817DB;
-        Wed, 15 Dec 2021 09:49:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36947C34605;
-        Wed, 15 Dec 2021 09:49:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639561777;
-        bh=iyz1IavZbdA7EvQGlAK3NVUq4sQ3YeO8OiWehA9NRu4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=We9EgW3nbhl3PPysO5L97scwaaPLW/+ADafzE2Z6K5KbxIB6PP1MPXa38x2lT7y30
-         lLIyHWB85i7T71dQzMg91DSaq+cS6b0qHDP4fO+6oC+reCower+G2Hj3VJovjeeOlM
-         gCBfeKZiQLr31pjHUbo4WZXE5EmbfnuMbTA/vPCdcsXYFwLqPiHb517yYN5G6vRDu4
-         8cvHxvlfsSuEZXnAr348MNHCsaK7BD81GkDkNk/7+kFHAHIB4nIYqG2nbZYIzAHcoG
-         msK9w5bOeiRwKjozf3/JAetAt1BAhcnQcE9oMFWY5cfOXmDpHgEs2S6d0tbganF1dJ
-         P/sD+yVm+rlEA==
-Date:   Wed, 15 Dec 2021 11:49:29 +0200
-From:   Mike Rapoport <rppt@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Quentin Perret <qperret@google.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>
-Subject: Re: [PATCH v2] of/fdt: Don't worry about non-memory region overlap
- for no-map
-Message-ID: <Ybm6KQiS7B28QOSW@kernel.org>
-References: <20211215072011.496998-1-swboyd@chromium.org>
+        id S236378AbhLOJvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 04:51:21 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:42045 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236291AbhLOJvU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 04:51:20 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id C64435801D3;
+        Wed, 15 Dec 2021 04:51:19 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Wed, 15 Dec 2021 04:51:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:content-type:mime-version
+        :content-transfer-encoding; s=fm1; bh=LoABpmPSCAnztFtCTgeHnKeUKn
+        dp7F1ja6+WusHM+uI=; b=GRct1MA7qksaPNnl8yeAofhKQIT49KaQfTB440let0
+        f5sBuXZiS6rCOTFwlURtjwfxcVpXGw3dUFWB0uUQK/qvWuZ8htZR7jnHHWTSBmar
+        uOlGk+ChmPxAYO65i8w2hbtIcR7ldFvyvEq1puVtPhS+heSc1I9abhethLLmtAbr
+        A21zDgctBgzdgMmyyOP7ENOND3nZmfQI3bBlIKh/Tt0zU+lv9GwT85knDlTLPu8d
+        +5pFjyEQ4ZWx8orJpk6DtkjrWbIOWFovv4VovYh1D2+Qe9qSi1qpJ3jqWcmNrUag
+        sJojmaaJY/kxLkJ6IfEqTCO8b0nNf6oLAaK4FBEtXRmA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:message-id:mime-version:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=LoABpm
+        PSCAnztFtCTgeHnKeUKndp7F1ja6+WusHM+uI=; b=D9T/mdgD5R/+e7RBwM9Wv8
+        ZIo/oxqps8gW2DtXpTUCYycxXlvJfaxj9rOlfEt2pGh2GXQ+1ONSJvsVq2Nc77G9
+        BIkEWnE5bM6mKa49/Ez2Jvw5hUZWVOpSp0qGM5kcIN5iiGjJSMFmLNPNx8i5s9a2
+        vUBjQ7qLbeD8JDhdl2tzuA8hwJgXholq28qv1ld8uzF73+FIux/pR1KI+pmyK50n
+        /8DuKmTBP7vCV42DAQP7OVHDDk0qxS41vhgozPHFl2zNKLfiNGiXHzac+Jp+zyJJ
+        /+4E5KsEYJoyBpn0pd9+1z+a5kZulemxSUj1gpsPpa/QCtyWSfj8c4hk0pvNUDCQ
+        ==
+X-ME-Sender: <xms:l7q5YXk-RJL2ErwWEEGXqZLyCQK38vV5VyPLCWHpyFohLqRrxYVzfA>
+    <xme:l7q5Ya1rsWRsgEVM6NonTm7lHlZtgV8LSe7hQryMyGSjh741vWeM87kvomMXzrGuC
+    5Tk2QqXAVEzWRSCNlA>
+X-ME-Received: <xmr:l7q5YdqeJIdiC1YNrjZ5WEvP8TpOKVm39uN_FwqvVM9AeedqNlZd-Sz7HNFvlrHSjMjLYyRjikt9kEkluwnLoPbsVvOrDwDqgwZqKlM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrledvgddtlecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgtggfgsehtqhertdertdejnecuhfhrohhmpeforgigihhmvgcu
+    tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
+    hrnhepteeikefgffekgeekledtheduteetjefgkeeuvefhhfetgedugfektdeugeffgfef
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgi
+    himhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:l7q5YfnqKjO6XBJgVlklFNZxOqUCMwfd4g7-QhCf16IBqxwGkOQz-g>
+    <xmx:l7q5YV2GMSDNK3yIMQ-htewAIkCjVGPTG6qzHBOLJ7oYQCUWRhQUig>
+    <xmx:l7q5YetfcDiB8exgyZRrof5un1FXVMqTCyjeOGyM2fzShK33G4a_xw>
+    <xmx:l7q5YcuN_CN6nvtAitHuOQUtEwhaL_SpjhWsvywrQ3YnQpw6t31XPw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 15 Dec 2021 04:51:18 -0500 (EST)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Scott Branden <sbranden@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Dom Cobley <dom@raspberrypi.com>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH RESEND v4 v5 0/4] drm/vc4: Use the firmware to stop the display pipeline
+Date:   Wed, 15 Dec 2021 10:51:13 +0100
+Message-Id: <20211215095117.176435-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.33.1
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211215072011.496998-1-swboyd@chromium.org>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Tue, Dec 14, 2021 at 11:20:11PM -0800, Stephen Boyd wrote:
-> In commit 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove
-> already reserved regions") we returned -EBUSY when trying to mark
-> regions as no-map when they're in the reserved memory node. This if
-> condition will still trigger though if the DT has a /memreserve/ that
-> completely subsumes the no-map memory carveouts in the reserved memory
-> node. Let's only consider this to be a problem if we're trying to mark a
-> region as no-map and it is actually memory. If it isn't memory,
-> presumably it was removed from the memory map via /memreserve/ and thus
-> can't be mapped anyway.
-
-I have no objections for this patch, but I afraid that this is a never
-ending story of reservation vs nomap ordering and this won't be the last
-fix in the area.
-
-I was toying with the idea to use flags in memblock.reserved to have
-clearer view of how the reserved memory was used and then we won't need
-to guess firmware intentions.
-Thoughts?
- 
-> This silences a warning seen at boot on sc7180-trogdor.dtsi boards that
-> have /memreserve/ populated by the bootloader where those reserved
-> regions overlap with the reserved-memory carveouts that we have in DT
-> for other purposes like communicating with remote processors.
-
-Do you mind adding the relevant pats of the device tree to the changelog?
-
-> For example
-> 
->  OF: fdt: Reserved memory: failed to reserve memory for node 'memory@80900000': base 0x0000000080900000, size 2 MiB
-> 
-> Cc: Mike Rapoport <rppt@kernel.org>
-> Cc: Douglas Anderson <dianders@chromium.org>
-> Cc: Nicolas Boichat <drinkcat@chromium.org>
-> Cc: Quentin Perret <qperret@google.com>
-> Cc: Jan Kiszka <jan.kiszka@siemens.com>
-> Fixes: 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove already reserved regions")
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> ---
-> 
-> Changes from v1 (https://lore.kernel.org/r/20210520012731.3731314-1-swboyd@chromium.org):
->  * Use memblock_overlaps_region instead of memblock_is_region_memory()
->  * Add more details to commit text 
-> 
->  drivers/of/fdt.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index bdca35284ceb..c736e5bcc2f6 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -482,9 +482,11 @@ static int __init early_init_dt_reserve_memory_arch(phys_addr_t base,
->  	if (nomap) {
->  		/*
->  		 * If the memory is already reserved (by another region), we
-> -		 * should not allow it to be marked nomap.
-> +		 * should not allow it to be marked nomap, but don't worry
-> +		 * if the region isn't memory as it won't be mapped.
->  		 */
-> -		if (memblock_is_region_reserved(base, size))
-> +		if (memblock_overlaps_region(&memblock.memory, base, size) &&
-> +		    memblock_is_region_reserved(base, size))
->  			return -EBUSY;
->  
->  		return memblock_mark_nomap(base, size);
-> 
-> base-commit: 136057256686de39cc3a07c2e39ef6bc43003ff6
-> -- 
-> https://chromeos.dev
-> 
-
--- 
-Sincerely yours,
-Mike.
+Hi,=0D
+=0D
+The VC4 driver has had limited support to disable the HDMI controllers and=
+=0D
+pixelvalves at boot if the firmware has enabled them.=0D
+=0D
+However, this proved to be limited, and a bit unreliable so a new firmware=
+=0D
+command has been introduced some time ago to make it free all its resources=
+ and=0D
+disable any display output it might have enabled.=0D
+=0D
+This series takes advantage of that command to call it once the transition =
+from=0D
+simplefb to the KMS driver has been done.=0D
+=0D
+Let me know what you think,=0D
+Maxime=0D
+=0D
+---=0D
+=0D
+Changes from v4:=0D
+  - Don't register v3d with nomodeset=0D
+=0D
+Changes from v3:=0D
+  - Support nomodeset=0D
+=0D
+Changes from v2:=0D
+  - Switch back to rpi_firmware_get / rpi_firmware_put=0D
+  - Moved the rpi_firmware pointer to a local variable=0D
+=0D
+Changes from v1:=0D
+  - Use of_find_compatible_node instead of a phandle=0D
+  - Use devm_rpi_firmware_get=0D
+=0D
+Maxime Ripard (4):=0D
+  firmware: raspberrypi: Add RPI_FIRMWARE_NOTIFY_DISPLAY_DONE=0D
+  drm/vc4: Support nomodeset=0D
+  drm/vc4: Remove conflicting framebuffers before callind bind_all=0D
+  drm/vc4: Notify the firmware when DRM is in charge=0D
+=0D
+ drivers/gpu/drm/vc4/vc4_drv.c              | 33 +++++++++++++++++++---=0D
+ include/soc/bcm2835/raspberrypi-firmware.h |  1 +=0D
+ 2 files changed, 30 insertions(+), 4 deletions(-)=0D
+=0D
+-- =0D
+2.33.1=0D
+=0D
