@@ -2,278 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B499B474EFF
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 01:18:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1434A474F42
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 01:31:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235521AbhLOASZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 19:18:25 -0500
-Received: from finn.gateworks.com ([108.161.129.64]:35628 "EHLO
-        finn.localdomain" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S235245AbhLOASZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 19:18:25 -0500
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1mxHzr-0090fo-4m; Wed, 15 Dec 2021 00:18:15 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH] arm64: dts: imx8m{m,n}_venice*: add gpio-line-names
-Date:   Tue, 14 Dec 2021 16:18:12 -0800
-Message-Id: <20211215001812.9006-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.17.1
+        id S232806AbhLOAb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 19:31:28 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:55272 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230072AbhLOAb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 19:31:28 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: adalessandro)
+        with ESMTPSA id BEEC91F45355
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1639528287; bh=07m2Mj//13426umxuBSYqRK706zZCh+HwkJkV+wVXFw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ValfuxtcupHL48snp7Z1Y0x4sSlgIbOMBe0D3PDHgV3kZw5Nu7mPTw5Z1q7oUR3On
+         Ym/Ho7sDLRY+dhekeewTgcrJLxH92m3eyNbiMi1hegn7sbFTSLd94Mk5AnHb8cf6UH
+         9usu2sFoxi1LueG90szM1t6XGsHuRFpMxNRv4vK0AYF9Sl3iAGzCKkqdnCh/IFe0nG
+         sJEqfUKGS5Lo4/0q9ha/X7pTiaObFSBqEh3cd4X/mLsSEbhhCqdhUkoQ6lgewAiku2
+         HHFF4iGsFNnbc8I/+KnJPzHLSoCXczuSETBSnzMNBzn1PnqjQBHEUcvvO877E82vvH
+         omZcvQAwhlgyA==
+From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     aisheng.dong@nxp.com, ariel.dalessandro@collabora.com,
+        festevam@gmail.com, ioana.ciornei@nxp.com,
+        jagan@amarulasolutions.com, kernel@pengutronix.de, krzk@kernel.org,
+        linux-imx@nxp.com, matt@traverse.com.au, matteo.lisi@engicam.com,
+        meenakshi.aggarwal@nxp.com, michael@amarulasolutions.com,
+        nathan@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
+        shawnguo@kernel.org, tharvey@gateworks.com, robh@kernel.org
+Subject: [PATCH v5 0/5] Add support for BSH SMM M2 and S2 boards
+Date:   Tue, 14 Dec 2021 21:30:45 -0300
+Message-Id: <20211215003050.174125-1-ariel.dalessandro@collabora.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add gpio-line-names for the various GPIO's used on Gateworks Venice
-boards. Note that these GPIO's are typically 'configured' in Boot
-Firmware via gpio-hog therefore we only configure line names to keep the
-boot firmware configuration from changing on kernel init.
+Introduce BSH SystemMaster (SMM) M2 and S2 board family.
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
- .../dts/freescale/imx8mm-venice-gw71xx.dtsi   | 14 +++++++
- .../dts/freescale/imx8mm-venice-gw72xx.dtsi   | 16 ++++++++
- .../dts/freescale/imx8mm-venice-gw73xx.dtsi   | 16 ++++++++
- .../dts/freescale/imx8mm-venice-gw7901.dts    | 23 +++++++++++
- .../dts/freescale/imx8mm-venice-gw7902.dts    | 39 ++++++++++++++++++-
- .../dts/freescale/imx8mn-venice-gw7902.dts    | 39 ++++++++++++++++++-
- 6 files changed, 145 insertions(+), 2 deletions(-)
+Changes in v5:
+* Fixed typo in Makefile: s/dts/dtb
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-index 506335efc391..73addc0b8e57 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-@@ -68,6 +68,20 @@
- 	status = "okay";
- };
- 
-+&gpio1 {
-+	gpio-line-names = "", "", "", "", "", "", "pci_usb_sel", "dio0",
-+		"", "dio1", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "", "", "", "dio2", "dio3", "", "", "pci_wdis#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &i2c2 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-index 72a3a3aa8fcd..1e7badb2a82e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-@@ -88,6 +88,22 @@
- 	status = "okay";
- };
- 
-+&gpio1 {
-+	gpio-line-names = "rs485_term", "mipi_gpio4", "", "",
-+		"", "", "pci_usb_sel", "dio0",
-+		"", "dio1", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "rs485_en", "mipi_gpio3", "rs485_hd", "mipi_gpio2",
-+		"mipi_gpio1", "", "", "pci_wdis#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &i2c2 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-index 7b00b6b5bb38..426483ec1f88 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-@@ -108,6 +108,22 @@
- 	status = "okay";
- };
- 
-+&gpio1 {
-+	gpio-line-names = "rs485_term", "mipi_gpio4", "", "",
-+		"", "", "pci_usb_sel", "dio0",
-+		"", "dio1", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "rs485_en", "mipi_gpio3", "rs485_hd", "mipi_gpio2",
-+		"mipi_gpio1", "", "", "pci_wdis#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &i2c2 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-index 4bf2b97b3ef5..8710586a1d8f 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-@@ -293,6 +293,29 @@
- 	};
- };
- 
-+&gpio1 {
-+	gpio-line-names = "uart1_rs422#", "", "", "uart1_rs485#",
-+		"", "uart1_rs232#", "dig1_in", "dig1_out",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "", "", "", "",
-+		"", "", "uart3_rs232#", "uart3_rs422#",
-+		"uart3_rs485#", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "uart4_rs485#", "", "sim1det#", "sim2det#", "";
-+};
-+
-+&gpio5 {
-+	gpio-line-names = "", "", "", "dig2_out", "dig2_in", "sim2sel", "", "",
-+		"", "", "uart4_rs232#", "", "", "uart4_rs422#", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &gpu_2d {
- 	status = "disabled";
- };
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-index 1b2aaf299b24..edf0c7aaaef0 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-@@ -260,6 +260,43 @@
- 	};
- };
- 
-+&gpio1 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "m2_reset", "", "m2_wdis#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio2 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"uart2_en#", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio3 {
-+	gpio-line-names = "", "m2_gdis#", "", "", "", "", "", "m2_off#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"", "", "", "amp_gpio3", "amp_gpio2", "", "amp_gpio1", "",
-+		"", "", "", "", "amp_gpio4", "app_gpio1", "", "uart1_rs485",
-+		"", "uart1_term", "uart1_half", "app_gpio2",
-+		"mipi_gpio1", "", "", "";
-+};
-+
-+&gpio5 {
-+	gpio-line-names = "", "", "", "mipi_gpio4",
-+		"mipi_gpio3", "mipi_gpio2", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &i2c1 {
- 	clock-frequency = <100000>;
- 	pinctrl-names = "default";
-@@ -691,7 +728,7 @@
- 	pinctrl_hog: hoggrp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x40000159 /* M2_GDIS# */
--			MX8MM_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RST# */
-+			MX8MM_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RESET */
- 			MX8MM_IOMUXC_NAND_DATA01_GPIO3_IO7	0x40000119 /* M2_OFF# */
- 			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x40000159 /* M2_WDIS# */
- 			MX8MM_IOMUXC_SAI1_TXD2_GPIO4_IO14	0x40000041 /* AMP GPIO1 */
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-index 2d58005d20e4..3c0e63d2e82d 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-@@ -255,6 +255,43 @@
- 	};
- };
- 
-+&gpio1 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "m2_reset", "", "m2_wdis#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio2 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"uart2_en#", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio3 {
-+	gpio-line-names = "", "m2_gdis#", "", "", "", "", "", "m2_off#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "app_gpio1", "", "uart1_rs485",
-+		"", "uart1_term", "uart1_half", "app_gpio2",
-+		"mipi_gpio1", "", "", "";
-+};
-+
-+&gpio5 {
-+	gpio-line-names = "", "", "", "mipi_gpio4",
-+		"mipi_gpio3", "mipi_gpio2", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &gpu {
- 	status = "disabled";
- };
-@@ -645,7 +682,7 @@
- 	pinctrl_hog: hoggrp {
- 		fsl,pins = <
- 			MX8MN_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x40000159 /* M2_GDIS# */
--			MX8MN_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RST# */
-+			MX8MN_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RESET */
- 			MX8MN_IOMUXC_NAND_DATA01_GPIO3_IO7	0x40000119 /* M2_OFF# */
- 			MX8MN_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x40000159 /* M2_WDIS# */
- 			MX8MN_IOMUXC_SAI2_RXFS_GPIO4_IO21	0x40000041 /* APP GPIO1 */
+Changes in v4:
+* Fixed typo in patch 5/5 subject: s/imx8ulz/imx6ulz
+* Added "fsl,imx6ulz" to SMM M2 compatible.
+
+Changes in v3:
+* Fixed node names to use hyphens.
+* Reorder nodes in alphabetical order.
+* Removed unneeded newlines.
+* Removed vendor wifi properties.
+* Renamed labels and nodes consistently.
+
+Changes in v2:
+* Added M2 board support.
+* Added dt-bindings for vendor prefix and board compatible.
+* Fixed pmic dt entry.
+
+Ariel D'Alessandro (4):
+  dt-bindings: Add vendor prefix for BSH Hausgeraete GmbH
+  dt-bindings: arm: fsl: Add iMX8MN BSH SMM S2 boards
+  arm64: dts: imx8mn-bsh-smm-s2/pro: Add iMX8MN BSH SMM S2 boards
+  dt-bindings: arm: fsl: Add BSH SMM-M2 IMX6ULZ SystemMaster board
+
+Michael Trimarchi (1):
+  arm: dts: imx6ulz-bsh-smm-m2: Add BSH SMM-M2 IMX6ULZ SystemMaster
+
+ .../devicetree/bindings/arm/fsl.yaml          |   3 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/Makefile                    |   3 +-
+ arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts      | 146 ++++++
+ arch/arm64/boot/dts/freescale/Makefile        |   2 +
+ .../freescale/imx8mn-bsh-smm-s2-common.dtsi   | 426 ++++++++++++++++++
+ .../boot/dts/freescale/imx8mn-bsh-smm-s2.dts  |  48 ++
+ .../dts/freescale/imx8mn-bsh-smm-s2pro.dts    |  80 ++++
+ 8 files changed, 709 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts
+
 -- 
-2.17.1
+2.30.2
 
