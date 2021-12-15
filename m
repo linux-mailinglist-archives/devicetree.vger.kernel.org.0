@@ -2,111 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DB574754CE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 10:03:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9376847550F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 10:22:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241016AbhLOJDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 04:03:03 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:37170 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241012AbhLOJDB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 04:03:01 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S241124AbhLOJWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 04:22:54 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:34262 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241121AbhLOJWx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 04:22:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1639560173;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=oUh0bcGmELD1OnjdrFkEycYt4atPMShERUPuuPbvtk8=;
+        b=DWBaz4awggwr+4ul5XI90u/Fr6J8Tdxh/DW43ByxXBUCekT7RLWSVUX/UMWYYZosl7tuyc
+        o4wueNxcGcpbGo3twBrA0F/rAHJbvGDZ9cWHCBF3Vi68eSKJ1tlq2qNj/zGox9AodcwUXB
+        Lz2yciPMx+Sbn9mfrH8O/s0AIPP8UXg=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-247-j4UYqMpBM5a1H3pa9AG24w-1; Wed, 15 Dec 2021 04:22:49 -0500
+X-MC-Unique: j4UYqMpBM5a1H3pa9AG24w-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com [10.5.11.16])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9E57AB81EAE;
-        Wed, 15 Dec 2021 09:03:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29670C34605;
-        Wed, 15 Dec 2021 09:02:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639558979;
-        bh=xcXsC2S7h/WU8rIJGNHqJ+c1UF+IcCTQyW+26OUfnxA=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=AqVYy2lINOI4oxR3X1TPkguu7btsSUb5BCP0aiOc7p1QrTXOMn51eRuPdRu0QeRhd
-         ot/TvYzSqJbbD7kUV2Q+y3ead1gSe/L1+OxqJQ1jMkboKqsXeV+lke9LWn9k45ggfi
-         ayuFhDaSfGh4lp9b8B70ZAiOCzOyovxxz4pbHGCKwBYPO0gUEwWF/iVAoD3pRUxzt8
-         Ylm8W5AqhyFlqZ3LLbR6QkNYuLC+GDb8a1o7nu5S6F7u+3ADhiFs5qIbNQ6IkY+T4I
-         4A5ftwTwXq2caQgUaQhFtC8KxzTne5UhL1D+bePXqIFa7+3r93PYg4v0zIDyUtsPGb
-         5/QmO3LwX7RFA==
-Message-ID: <83bda801c9be665086f94acce46d44da5d24ba9c.camel@kernel.org>
-Subject: Re: [PATCH v2 2/2] ARM: dts: gpio-ranges property is now required
-From:   nicolas saenz julienne <nsaenz@kernel.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        "linus.walleij" <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Thierry Reding <treding@nvidia.com>,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org
-Date:   Wed, 15 Dec 2021 10:02:54 +0100
-In-Reply-To: <dbba6665-9688-9a5e-091b-eaa8e92e6886@gmail.com>
-References: <20211206092237.4105895-1-phil@raspberrypi.com>
-         <20211206092237.4105895-3-phil@raspberrypi.com>
-         <CGME20211214142139eucas1p1c100b7fd4b8c8ce85bc03e1ce6b783db@eucas1p1.samsung.com>
-         <8671ebd8-a853-7394-9864-0457514337e2@samsung.com>
-         <2ce5956f-ce8c-80f0-df9a-492a8da00a08@raspberrypi.com>
-         <dbba6665-9688-9a5e-091b-eaa8e92e6886@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id ABC2F190B2A3;
+        Wed, 15 Dec 2021 09:22:46 +0000 (UTC)
+Received: from localhost (ovpn-12-120.pek2.redhat.com [10.72.12.120])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 19135838E1;
+        Wed, 15 Dec 2021 09:22:32 +0000 (UTC)
+Date:   Wed, 15 Dec 2021 17:22:30 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+Subject: Re: [PATCH v17 04/10] x86: kdump: move xen_pv_domain() check and
+ insert_resource() to setup_arch()
+Message-ID: <20211215092230.GE3023@MiWiFi-R3L-srv>
+References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
+ <20211210065533.2023-5-thunder.leizhen@huawei.com>
+ <d328aede-1282-b4d5-f17a-aa9c3e9f6563@huawei.com>
+ <03bd43f3-14a1-dbd1-9fff-118c0885653c@huawei.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <03bd43f3-14a1-dbd1-9fff-118c0885653c@huawei.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Florian,
-
-On Tue, 2021-12-14 at 09:12 -0800, Florian Fainelli wrote:
-> On 12/14/21 6:32 AM, Phil Elwell wrote:
-> > Hi Marek,
-> > 
-> > On 14/12/2021 14:21, Marek Szyprowski wrote:
-> > > Hi Phil,
-> > > 
-> > > On 06.12.2021 10:22, Phil Elwell wrote:
-> > > > Since [1], added in 5.7, the absence of a gpio-ranges property has
-> > > > prevented GPIOs from being restored to inputs when released.
-> > > > Add those properties for BCM283x and BCM2711 devices.
-> > > > 
-> > > > [1] commit 2ab73c6d8323 ("gpio: Support GPIO controllers without
-> > > >       pin-ranges")
-> > > > 
-> > > > Fixes: 2ab73c6d8323 ("gpio: Support GPIO controllers without
-> > > > pin-ranges")
-> > > > Signed-off-by: Phil Elwell <phil@raspberrypi.com>
-> > > 
-> > > This patch breaks today's linux-next (next-20211214) on RPi3 and RPi4.
-> > > Either there is something missing or wrong here. Booting stops after
-> > > following messages (on RPi4):
-> > > 
-> > > [    3.186786] pinctrl-bcm2835 fe200000.gpio: could not add GPIO chip
-> > > [    3.234513] pinctrl-bcm2835 fe200000.gpio: could not add GPIO chip
-> > > [    3.276703] mmc0: SDHCI controller on fe340000.mmc [fe340000.mmc]
-> > > using ADMA
-> > > [    3.287191] pinctrl-bcm2835 fe200000.gpio
-> > 
-> > This patch is part of a two-patch set, the cover note for which says:
-> > 
-> >     2. Since [1], a "gpio-ranges" property is required in order for pins
-> >     to be returned to inputs when freed. Note that without patch 1, the
-> >     device never gets out of EPROBE_DEFER.
-> > 
-> > It looks as though patch 2 has been merged without/before patch 1
-> > ("pinctrl: bcm2835: Change init order for gpio hogs").
+On 12/15/21 at 04:56pm, Leizhen (ThunderTown) wrote:
 > 
-> Yes, the hope was that there would be no such breakage, I suppose we
-> will have to work out a plan to address that and coordinate both changes
-> landing in at the same time.
 > 
-> I will work with Arnd to back out the Device Tree changes, sorry about that.
+> On 2021/12/14 19:40, Leizhen (ThunderTown) wrote:
+> > 
+> > 
+> > On 2021/12/10 14:55, Zhen Lei wrote:
+> >> From: Chen Zhou <chenzhou10@huawei.com>
+> >>
+> >> We will make the functions reserve_crashkernel() as generic, the
+> >> xen_pv_domain() check in reserve_crashkernel() is relevant only to
+> >> x86, the same as insert_resource() in reserve_crashkernel[_low]().
+> >> So move xen_pv_domain() check and insert_resource() to setup_arch()
+> >> to keep them in x86.
+> >>
+> >> Suggested-by: Mike Rapoport <rppt@kernel.org>
+> >> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
+> >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> >> Tested-by: John Donnelly <John.p.donnelly@oracle.com>
+> >> Tested-by: Dave Kleikamp <dave.kleikamp@oracle.com>
+> >> Acked-by: Baoquan He <bhe@redhat.com>
+> >> ---
+> >>  arch/x86/kernel/setup.c | 19 +++++++++++--------
+> >>  1 file changed, 11 insertions(+), 8 deletions(-)
+> >>
+> >> diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
+> >> index bb2a0973b98059e..7ae00716a208f82 100644
+> >> --- a/arch/x86/kernel/setup.c
+> >> +++ b/arch/x86/kernel/setup.c
+> >> @@ -456,7 +456,6 @@ static int __init reserve_crashkernel_low(void)
+> >>  
+> >>  	crashk_low_res.start = low_base;
+> >>  	crashk_low_res.end   = low_base + low_size - 1;
+> >> -	insert_resource(&iomem_resource, &crashk_low_res);
+> >>  #endif
+> >>  	return 0;
+> >>  }
+> >> @@ -480,11 +479,6 @@ static void __init reserve_crashkernel(void)
+> >>  		high = true;
+> >>  	}
+> >>  
+> >> -	if (xen_pv_domain()) {
+> >> -		pr_info("Ignoring crashkernel for a Xen PV domain\n");
+> >> -		return;
+> >> -	}
+> >> -
+> >>  	/* 0 means: find the address automatically */
+> >>  	if (!crash_base) {
+> >>  		/*
+> >> @@ -531,7 +525,6 @@ static void __init reserve_crashkernel(void)
+> >>  
+> >>  	crashk_res.start = crash_base;
+> >>  	crashk_res.end   = crash_base + crash_size - 1;
+> >> -	insert_resource(&iomem_resource, &crashk_res);
+> >>  }
+> >>  #else
+> >>  static void __init reserve_crashkernel(void)
+> >> @@ -1143,7 +1136,17 @@ void __init setup_arch(char **cmdline_p)
+> >>  	 * Reserve memory for crash kernel after SRAT is parsed so that it
+> >>  	 * won't consume hotpluggable memory.
+> >>  	 */
+> >> -	reserve_crashkernel();
+> > 
+> > Hi Baoquan:
+> >   How about move "#ifdef CONFIG_KEXEC_CORE" here, so that we can remove the
+> > empty reserve_crashkernel(). In fact, xen_pv_domain() is invoked only
+> > when CONFIG_KEXEC_CORE is enabled before.
+> 
+> Hi Baoquan:
+>   Did you miss this email? If no reply, I will keep it no change.
 
-This is linux-next, so I can back out the DT change myself. Sorry for the
-breakage.
+I checked this patch, and it's no update since I acked it. 
 
-As for channeling the path, would it make sense for linusw to take it alonside
-GPIO fix?
+Moving reserve_crashkernel() into the CONFIG_KEXEC_CORE ifdeffery is
+also fine to me.
 
-Regards,
-Nicolas
