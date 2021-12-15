@@ -2,90 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0616C475E5A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 18:16:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1EA8475E59
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 18:16:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245203AbhLORPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 12:15:40 -0500
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:56543 "EHLO
-        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S245165AbhLORPk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Dec 2021 12:15:40 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id B6DE63200B25;
-        Wed, 15 Dec 2021 12:15:38 -0500 (EST)
-Received: from imap47 ([10.202.2.97])
-  by compute3.internal (MEProxy); Wed, 15 Dec 2021 12:15:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type; s=fm3; bh=kfnX5edf5f3mfD00V7kFxnR+Owd2
-        RE5fLSxgGCntQtE=; b=NWNNynu7p4l5Ju+cMb+ZIs5z1SPXgUHA6XPrqLe7yEZE
-        N45y+XaXezCECS127ATmA3cinm8RDwVuurtF8LzepJnp7doMfZLSTSPUUPC+R+KI
-        jRx9tqNl6VynGjUXwmBg6URYCSMSsLD6GjirZxUUoDnZU8PGjXPV6Y9rjY28aESK
-        fJDeYYk4Ti2uWVzW685Rg0GjpdLzK7qv/LW/6pPS2eUyn8sWRW/AeK748xzD2Fw7
-        P49+8Dfn0RWZw9NOK68KgWynTChwMCs92rTPm1xZyU5vByHhvujvpPiW9HA2LO4w
-        DGRx7OOSnPwp8pgr0n3sAZr7bfSEhsaM9lXUu+aN2A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=kfnX5e
-        df5f3mfD00V7kFxnR+Owd2RE5fLSxgGCntQtE=; b=iAlLDKqFlqWvKUT9b+vRvM
-        jyfjfW+l1O2ljgrdy5Siqme3ono7mQFH3uQmVIM5fRdbTTEmkqRxwxoJeA08Cw+B
-        9sjH43LxKGMBCyp3EXZ1qABSGXYFrX/Uz7U1U0Nol8DJsqPn+PTCqAitc3YT5seB
-        Uuo+FKbjTSZjtwaOvvExkVttr0/5zKPR9oP/6F1yT0xXHOKOe3kLOc/IzQ6Dztjh
-        EoV76IRsW9fA0cVCioGD6AIsW/rXr+Av2OgxCuXS6UZZnp0MsZL909XPaLZ1AH1W
-        fNzaoOqV7clsWHRXuDbGvr3KWmeEEdpeeyYscPO02wg+U6G5zT5HVjPvd60tSMUA
-        ==
-X-ME-Sender: <xms:uiK6YVCKXG3sQuPFJJdcSGXBnkWNZb_HX2MvqV_F4lnEmMQJPFXdxQ>
-    <xme:uiK6YTjgYN45Q3N-FH-ucuWFjhfOoeCTg_4XzjLHuwLoNroCh2XJaXLUAJano1nGL
-    O6xle2zELVZyDG8vPU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrledvgddutddtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
-    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
-    htthgvrhhnpefgieegieffuefhtedtjefgteejteefleefgfefgfdvvddtgffhffduhedv
-    feekffenucevlhhushhtvghrufhiiigvpedvnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:uiK6YQkgsvM4z320LIDNg2xi6_gooebo1qrHrFDSZwTLARfvoxgT5w>
-    <xmx:uiK6Yfwlz2Zrk4hh-mxZ1Qtl25Lqui_JFEQQNNeyZVx9dtkoHQmNSA>
-    <xmx:uiK6YaRY56pjrkih0cGP_cPmaiFo8J7yRSHEJ2iJawFdHPlMfELQlg>
-    <xmx:uiK6YXJ2OmVM38tblrf2XfijPuOu3XHBIv3EyFSl1EdlxD7tVxqYGA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id EB3BE2740372; Wed, 15 Dec 2021 12:15:37 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-4524-g5e5d2efdba-fm-20211214.001-g5e5d2efd
-Mime-Version: 1.0
-Message-Id: <adfe92e4-8df8-4bc2-a4ea-0c65a4bd6210@www.fastmail.com>
-In-Reply-To: <20211215155527.36775-2-marcan@marcan.st>
-References: <20211215155527.36775-1-marcan@marcan.st>
- <20211215155527.36775-2-marcan@marcan.st>
-Date:   Wed, 15 Dec 2021 18:15:17 +0100
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Hector Martin" <marcan@marcan.st>,
-        "Jassi Brar" <jassisinghbrar@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>
-Cc:     "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Mark Kettenis" <kettenis@openbsd.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: mailbox: apple,mailbox: Add generic and t6000
- compatibles
-Content-Type: text/plain
+        id S245194AbhLORPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 12:15:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33386 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245165AbhLORPX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 12:15:23 -0500
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AE65C061574;
+        Wed, 15 Dec 2021 09:15:22 -0800 (PST)
+Received: by mail-pg1-x535.google.com with SMTP id r138so20630852pgr.13;
+        Wed, 15 Dec 2021 09:15:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=DWpR7VzSMkOj52xwZxGBVFjzZXxmht/byeg9x6iZJWg=;
+        b=Y5kHU601D76nf7medqA5Htl4SAVqLNULf0Oxrxxdo+Sd8q0SYNVnyR/UxHiRK8BnCq
+         jGX2imsrMNAX4jSDj8C18WStVdDxe9NJPRMJDpOArbb7+GB13oO8NPS/IDq3n/7DDWsV
+         l9S7/dYxTocMlGVdOZCC7ue09KBO72UqdBgi8rC2j1Ct7Z9KuyFLU62dBKmzPjWHpDVD
+         TqL+fXjK7ylo2ncHBUSA7+tw2vMZsMWe5HXqnmFjHBxE+pSma3J/I11ckbtXFXpvPfWn
+         z5ieHgdUQctilPDCrkX+ccxKXY/+Q4GWW+1R8vb/qWcmKv0onma6IzFFumahvk9Qggkz
+         oPNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=DWpR7VzSMkOj52xwZxGBVFjzZXxmht/byeg9x6iZJWg=;
+        b=cUesrLjq70FEnAPS55aWulf92Nu3wdTaL7QAtTUZNdtEbNJ1y4MRhF2p1jdwG+kCZ5
+         WQqZecgyX0jD+63rfAoyXXaq9B563ENg0WdiMNqq3mzdK5hpN2SZL+ZPBOrMEly7+84c
+         1qiwd8leieFm3TvpJEsIYQ4oMnrlgc0SW/6gTfjUfDVZI3DcfTBpBo6FOoDJgRJlucOM
+         Nq/FvJZBFfKzkIlyLoNohj8oGl+FpFdvjNKA7TBNfrAe+HAMcYVmJoWU+xe2Vv2dFNYM
+         BmmQlNeeOnZCs0dNrehcklSy220AIHY7BXm8efSbuH79Bvw4nXa6Ro+LqikVybikUTGG
+         SPbQ==
+X-Gm-Message-State: AOAM533KFN2WQ1Jeq1NzNL4zqBPzoKW8bL23BEaHbSfG294/HvAlpezz
+        ELdSRAIkmMRa1KghkxnnHFwnSB/Wc5k=
+X-Google-Smtp-Source: ABdhPJyWjK+A5OUrjO3MHADziA4tkZj4VYxm0xOJ/UFQoizQ54G5GSHpBMPzHtwtFORPyGR+fqPtdQ==
+X-Received: by 2002:a63:e34c:: with SMTP id o12mr8676987pgj.509.1639588521546;
+        Wed, 15 Dec 2021 09:15:21 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id n6sm3168837pfa.28.2021.12.15.09.15.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Dec 2021 09:15:21 -0800 (PST)
+Subject: Re: [PATCH v2 2/2] ARM: dts: gpio-ranges property is now required
+To:     Phil Elwell <phil@raspberrypi.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thierry Reding <treding@nvidia.com>,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org
+References: <20211206092237.4105895-1-phil@raspberrypi.com>
+ <20211206092237.4105895-3-phil@raspberrypi.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <92f68c88-45b0-b060-f974-65f81d4a04d1@gmail.com>
+Date:   Wed, 15 Dec 2021 09:15:19 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <20211206092237.4105895-3-phil@raspberrypi.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 15, 2021, at 16:55, Hector Martin wrote:
-> Much as we've done with other blocks, let's introduce generic
-> compatibles so drivers can bind to those and still work with future
-> SoCs, as long as the hardware remains the same. Also go ahead and add
-> compatibles for the new t600x SoCs (we group those as t6000).
->
-> Note that no DTs instantiate devices with this binding yet.
->
-> Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
-Reviewed-by: Sven Peter <sven@svenpeter.dev>
+On 12/6/21 1:22 AM, Phil Elwell wrote:
+> Since [1], added in 5.7, the absence of a gpio-ranges property has
+> prevented GPIOs from being restored to inputs when released.
+> Add those properties for BCM283x and BCM2711 devices.
+> 
+> [1] commit 2ab73c6d8323 ("gpio: Support GPIO controllers without
+>     pin-ranges")
+> 
+> Fixes: 2ab73c6d8323 ("gpio: Support GPIO controllers without pin-ranges")
+> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
