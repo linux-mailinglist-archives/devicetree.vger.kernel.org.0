@@ -2,208 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB8F247541C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 09:09:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40B3A47542B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 09:20:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240724AbhLOIJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 03:09:43 -0500
-Received: from forward501o.mail.yandex.net ([37.140.190.203]:56330 "EHLO
-        forward501o.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235661AbhLOIJn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Dec 2021 03:09:43 -0500
-X-Greylist: delayed 438 seconds by postgrey-1.27 at vger.kernel.org; Wed, 15 Dec 2021 03:09:42 EST
-Received: from sas1-369099ba34c4.qloud-c.yandex.net (sas1-369099ba34c4.qloud-c.yandex.net [IPv6:2a02:6b8:c14:3d96:0:640:3690:99ba])
-        by forward501o.mail.yandex.net (Yandex) with ESMTP id 646B845C3FB6;
-        Wed, 15 Dec 2021 11:02:18 +0300 (MSK)
-Received: from sas1-7a2c1d25dbfc.qloud-c.yandex.net (sas1-7a2c1d25dbfc.qloud-c.yandex.net [2a02:6b8:c08:c9f:0:640:7a2c:1d25])
-        by sas1-369099ba34c4.qloud-c.yandex.net (mxback/Yandex) with ESMTP id PtHqElSo2Z-2HfuGowU;
-        Wed, 15 Dec 2021 11:02:18 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1639555338;
-        bh=bcZSGKL367ori0UFRkqTy8+oGoWm2KH6xaqkLIRJDZg=;
-        h=In-Reply-To:Subject:To:From:References:Date:Message-ID:Cc;
-        b=hcqh8T87JyccZqYMJrd+7jEZo5+qpM4qpRnVZFUGrDCHq/ZA/Agr0vq3N0c2NwR5L
-         /pj5GAS53e5sapd9LSMTFVt2wA0HYAGJx+tNESH7z7KIgWb0yrZH0U3802B4Fk+R08
-         mz7sjIDtFfSiE3CXDmVCFioR6N9Bo46XUuVefhwo=
-Authentication-Results: sas1-369099ba34c4.qloud-c.yandex.net; dkim=pass header.i=@maquefel.me
-Received: by sas1-7a2c1d25dbfc.qloud-c.yandex.net (smtp/Yandex) with ESMTPSA id 3cfgOP4KNN-2FPqUg6l;
-        Wed, 15 Dec 2021 11:02:15 +0300
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (Client certificate not present)
-X-Yandex-Fwd: 2
-Date:   Wed, 15 Dec 2021 11:02:14 +0300
-From:   Nikita Shubin <nikita.shubin@maquefel.me>
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     linux-kernel@vger.kernel.org, Anup Patel <anup.patel@wdc.com>,
-        David Abdurachmanov <david.abdurachmanov@sifive.com>,
-        devicetree@vger.kernel.org, Greentime Hu <greentime.hu@sifive.com>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
-        linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vincent Chen <vincent.chen@sifive.com>
-Subject: Re: [v4 05/11] RISC-V: Add RISC-V SBI PMU extension definitions
-Message-ID: <20211215110214.62ca2474@redslave.neermore.group>
-In-Reply-To: <20211025195350.242914-6-atish.patra@wdc.com>
-References: <20211025195350.242914-1-atish.patra@wdc.com>
-        <20211025195350.242914-6-atish.patra@wdc.com>
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S240776AbhLOIUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 03:20:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50094 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235661AbhLOIUg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 03:20:36 -0500
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9178C061574
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 00:20:35 -0800 (PST)
+Received: by mail-pg1-x52c.google.com with SMTP id 133so19555603pgc.12
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 00:20:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=dVW69TmCJnTv5pUkbvRYzOl3hIL8o0Ev8E5MCNMu3v4=;
+        b=G/3L4rDd1Goqt0d0b2dj/cMhsDvkaMD7Z1+8qFaNab+J/SE+VpMr8z5qIjIgg31BP3
+         6Rgv6T1J2UpaqpYj4Ko/HrsvNIinACGkY9Lq5IoHJmoAfHdOCZaVIS8KCXKSYD+RXgZa
+         /tkVzDLzR++mtz40WJdnBEWAHCVJHeYyEp/qf6PSLI0VfhlzOWEmckna48+po0it3yNf
+         LAXJXzd9ucGOc72u1drmRWGY/oxGZGNbXHlqHYO3Q1Mbr9iGZI5uUeGNv079dUH+i/uQ
+         cRClz28G6WpGzT/Iu1lkboFSdf/KTwa+NTw7eq9XCNDI29f50wCdZFXoICXU1S0PMGXY
+         mLOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dVW69TmCJnTv5pUkbvRYzOl3hIL8o0Ev8E5MCNMu3v4=;
+        b=naVXBb2RPCToGKIBmXSOvH6YmpHKdORzTyjqnJrACC/Er0J2LGFlkKcJWwwUCfXTkL
+         STXexVlKIDuovpg0EtNzANgU5q28NOTNhrEVIxJHrgHC6xEOZmzPA6gOoNzUe0x3TitF
+         xv+vlx0syupbQyNIU2J7SZPUcZpvo970tAXEHUzBNwaF1QA9Y6Wzpx4uLggGtEFh6ArI
+         EIeBJEQCH1aUccH4wFUpNXQq6SM8CHcILKFEgmh6RP5bpV0QbKidvaDN8O59QUxz+jZP
+         VRiQfIjHPcIgNfNoaij0vRRM+3MwloBOBqxNi7ZLX4cC341s20VEfgpbt9IL3zMGNuW7
+         p15Q==
+X-Gm-Message-State: AOAM532faH2BUmaiorxyXPtcvjnjmvmFqWLndLYhoDxCeN3DPObQBi31
+        MBRYxBSiRXCeq4B2UzdlY4ysqw==
+X-Google-Smtp-Source: ABdhPJzqmCCROdTAh4mINIHDWtKReeWzZihdPEwTeamzuw2CuCOAX2lKwuAQZGGVSBG5s+y4UQgjig==
+X-Received: by 2002:a63:5350:: with SMTP id t16mr6987808pgl.321.1639556435096;
+        Wed, 15 Dec 2021 00:20:35 -0800 (PST)
+Received: from google.com ([2401:fa00:1:10:754d:1c44:62a9:6d30])
+        by smtp.gmail.com with ESMTPSA id j127sm1679143pfg.14.2021.12.15.00.20.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Dec 2021 00:20:34 -0800 (PST)
+Date:   Wed, 15 Dec 2021 16:20:31 +0800
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     Trevor Wu <trevor.wu@mediatek.com>
+Cc:     broonie@kernel.org, tiwai@suse.com, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, alsa-devel@alsa-project.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, jiaxin.yu@mediatek.com,
+        shumingf@realtek.com
+Subject: Re: [PATCH 1/2] ASoC: mediatek: mt8195: update control for RT5682
+ series
+Message-ID: <YbmlT+OSwpGuylsx@google.com>
+References: <20211215065835.3074-1-trevor.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211215065835.3074-1-trevor.wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Atish!
+On Wed, Dec 15, 2021 at 02:58:34PM +0800, Trevor Wu wrote:
+> --- a/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1011-rt5682.c
+> +++ b/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1011-rt5682.c
+[...]
+> +static int mt8195_set_bias_level_post(struct snd_soc_card *card,
+> +	struct snd_soc_dapm_context *dapm, enum snd_soc_bias_level level)
+> +{
+> +	struct snd_soc_component *component = dapm->component;
+> +	struct mt8195_mt6359_rt1011_rt5682_priv *priv =
+> +		snd_soc_card_get_drvdata(card);
+> +	int ret = 0;
 
-On Mon, 25 Oct 2021 12:53:44 -0700
-Atish Patra <atish.patra@wdc.com> wrote:
+ret doesn't need to be initialized.
 
-> This patch adds all the definitions defined by the SBI PMU extension.
-> 
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> ---
->  arch/riscv/include/asm/sbi.h | 97
-> ++++++++++++++++++++++++++++++++++++ 1 file changed, 97 insertions(+)
-> 
-> diff --git a/arch/riscv/include/asm/sbi.h
-> b/arch/riscv/include/asm/sbi.h index 0d42693cb65e..7a14ca06ba8f 100644
-> --- a/arch/riscv/include/asm/sbi.h
-> +++ b/arch/riscv/include/asm/sbi.h
-> @@ -27,6 +27,7 @@ enum sbi_ext_id {
->  	SBI_EXT_IPI = 0x735049,
->  	SBI_EXT_RFENCE = 0x52464E43,
->  	SBI_EXT_HSM = 0x48534D,
-> +	SBI_EXT_PMU = 0x504D55,
->  };
+> +	/*
+> +	 * It's required to control mclk directly in the set_bias_level_post
+> +	 * function for rt5682 and rt5682s codec, or the unexpected pop happens
+> +	 * at the end of playback.
+> +	 */
+> +	if (!component ||
+> +	    (strcmp(component->name, RT5682_DEV0_NAME) &&
+> +	    strcmp(component->name, RT5682S_DEV0_NAME)))
+> +		return 0;
+> +
+> +	if (IS_ERR(priv->i2so1_mclk))
+> +		return 0;
+
+I doubt if it needs to check priv->i2so1_mclk.  In other words, if IS_ERR(priv->i2so1_mclk) is true in _probe, does mt8195_set_bias_level_post() get called?
+
+> +	switch (level) {
+> +	case SND_SOC_BIAS_OFF:
+> +		if (!__clk_is_enabled(priv->i2so1_mclk))
+> +			return 0;
+> +
+> +		dev_dbg(card->dev, "Disable i2so1");
+> +		clk_disable_unprepare(priv->i2so1_mclk);
+
+I would suggest move dev_dbg() later than clk_disable_unprepare() which means "Disable i2so1" is done.
+
+> +		break;
+> +	case SND_SOC_BIAS_ON:
+> +		dev_dbg(card->dev, "Enable i2so1");
+> +		ret = clk_prepare_enable(priv->i2so1_mclk);
+> +		if (ret) {
+> +			dev_err(card->dev, "Can't enable mclk, err: %d\n", ret);
+
+The error message can be more specific.  "Cannot enable i2so1" for example.
+
+> +			return ret;
+> +		}
+
+Also, I would suggest move dev_dbg() later than clk_prepare_enable().  Otherwise, it could fail to prepare or enable but still can see "Enable i2so1" message.
+
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return ret;
+
+The function doesn't use any gotos.  To be concise, "return 0;".
+
+> @@ -1072,6 +1119,19 @@ static int mt8195_mt6359_rt1011_rt5682_dev_probe(struct platform_device *pdev)
+>  		return -EINVAL;
+>  	}
 >  
->  enum sbi_ext_base_fid {
-> @@ -70,6 +71,99 @@ enum sbi_hsm_hart_status {
->  	SBI_HSM_HART_STATUS_STOP_PENDING,
->  };
+> +	priv->i2so1_mclk = devm_clk_get(&pdev->dev, "i2so1_mclk");
+> +	if (IS_ERR(priv->i2so1_mclk)) {
+> +		ret = PTR_ERR(priv->i2so1_mclk);
+> +		if (ret == -ENOENT) {
+> +			dev_dbg(&pdev->dev,
+> +				"Failed to get i2so1_mclk, defer probe\n");
+> +			return -EPROBE_DEFER;
+> +		}
+
+Does devm_clk_get_optional() could make the block more concise?
+
+> +
+> +		dev_err(&pdev->dev, "Failed to get i2so1_mclk, err:%d\n", ret);
+
+If devm_clk_get() is possible to return -EPROBE_DEFER too, use dev_err_probe().
+
+> --- a/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-rt5682.c
+> +++ b/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-rt5682.c
+[...]
+> +static int mt8195_set_bias_level_post(struct snd_soc_card *card,
+> +	struct snd_soc_dapm_context *dapm, enum snd_soc_bias_level level)
+> +{
+> +	struct snd_soc_component *component = dapm->component;
+> +	struct mt8195_mt6359_rt1019_rt5682_priv *priv =
+> +		snd_soc_card_get_drvdata(card);
+> +	int ret = 0;
+
+Ditto, see comments above.
+
+> +
+> +	/*
+> +	 * It's required to control mclk directly in the set_bias_level_post
+> +	 * function for rt5682 and rt5682s codec, or the unexpected pop happens
+> +	 * at the end of playback.
+> +	 */
+> +	if (!component ||
+> +	    (strcmp(component->name, RT5682_DEV0_NAME) &&
+> +	    strcmp(component->name, RT5682S_DEV0_NAME)))
+> +		return 0;
+> +
+> +	if (IS_ERR(priv->i2so1_mclk))
+> +		return 0;
+
+Ditto, see comments above.
+
+> +
+> +	switch (level) {
+> +	case SND_SOC_BIAS_OFF:
+> +		if (!__clk_is_enabled(priv->i2so1_mclk))
+> +			return 0;
+> +
+> +		dev_dbg(card->dev, "Disable i2so1");
+> +		clk_disable_unprepare(priv->i2so1_mclk);
+> +		break;
+> +	case SND_SOC_BIAS_ON:
+> +		dev_dbg(card->dev, "Enable i2so1");
+> +		ret = clk_prepare_enable(priv->i2so1_mclk);
+> +		if (ret) {
+> +			dev_err(card->dev, "Can't enable mclk, err: %d\n", ret);
+> +			return ret;
+> +		}
+> +		break;
+> +	default:
+> +		break;
+> +	}
+
+Ditto, see comments above for the block.
+
+> +
+> +	return ret;
+
+Ditto, see comments above.
+
+> @@ -1285,6 +1326,19 @@ static int mt8195_mt6359_rt1019_rt5682_dev_probe(struct platform_device *pdev)
+>  		return -EINVAL;
+>  	}
 >  
+> +	priv->i2so1_mclk = devm_clk_get(&pdev->dev, "i2so1_mclk");
+> +	if (IS_ERR(priv->i2so1_mclk)) {
+> +		ret = PTR_ERR(priv->i2so1_mclk);
+> +		if (ret == -ENOENT) {
+> +			dev_dbg(&pdev->dev,
+> +				"Failed to get i2so1_mclk, defer probe\n");
+> +			return -EPROBE_DEFER;
+> +		}
 > +
-> +enum sbi_ext_pmu_fid {
-> +	SBI_EXT_PMU_NUM_COUNTERS = 0,
-> +	SBI_EXT_PMU_COUNTER_GET_INFO,
-> +	SBI_EXT_PMU_COUNTER_CFG_MATCH,
-> +	SBI_EXT_PMU_COUNTER_START,
-> +	SBI_EXT_PMU_COUNTER_STOP,
-> +	SBI_EXT_PMU_COUNTER_FW_READ,
-> +};
-> +
-> +#define RISCV_PMU_RAW_EVENT_MASK GENMASK_ULL(55, 0)
-> +#define RISCV_PMU_RAW_EVENT_IDX 0x20000
-> +
-> +/** General pmu event codes specified in SBI PMU extension */
-> +enum sbi_pmu_hw_generic_events_t {
-> +	SBI_PMU_HW_NO_EVENT			= 0,
-> +	SBI_PMU_HW_CPU_CYCLES			= 1,
-> +	SBI_PMU_HW_INSTRUCTIONS			= 2,
-> +	SBI_PMU_HW_CACHE_REFERENCES		= 3,
-> +	SBI_PMU_HW_CACHE_MISSES			= 4,
-> +	SBI_PMU_HW_BRANCH_INSTRUCTIONS		= 5,
-> +	SBI_PMU_HW_BRANCH_MISSES		= 6,
-> +	SBI_PMU_HW_BUS_CYCLES			= 7,
-> +	SBI_PMU_HW_STALLED_CYCLES_FRONTEND	= 8,
-> +	SBI_PMU_HW_STALLED_CYCLES_BACKEND	= 9,
-> +	SBI_PMU_HW_REF_CPU_CYCLES		= 10,
-> +
-> +	SBI_PMU_HW_GENERAL_MAX,
-> +};
-> +
-> +/**
-> + * Special "firmware" events provided by the firmware, even if the
-> hardware
-> + * does not support performance events. These events are encoded as
-> a raw
-> + * event type in Linux kernel perf framework.
-> + */
-> +enum sbi_pmu_fw_generic_events_t {
-> +	SBI_PMU_FW_MISALIGNED_LOAD	= 0,
-> +	SBI_PMU_FW_MISALIGNED_STORE	= 1,
-> +	SBI_PMU_FW_ACCESS_LOAD		= 2,
-> +	SBI_PMU_FW_ACCESS_STORE		= 3,
-> +	SBI_PMU_FW_ILLEGAL_INSN		= 4,
-> +	SBI_PMU_FW_SET_TIMER		= 5,
-> +	SBI_PMU_FW_IPI_SENT		= 6,
-> +	SBI_PMU_FW_IPI_RECVD		= 7,
-> +	SBI_PMU_FW_FENCE_I_SENT		= 8,
-> +	SBI_PMU_FW_FENCE_I_RECVD	= 9,
-> +	SBI_PMU_FW_SFENCE_VMA_SENT	= 10,
-> +	SBI_PMU_FW_SFENCE_VMA_RCVD	= 11,
-> +	SBI_PMU_FW_SFENCE_VMA_ASID_SENT	= 12,
-> +	SBI_PMU_FW_SFENCE_VMA_ASID_RCVD	= 13,
-> +
-> +	SBI_PMU_FW_HFENCE_GVMA_SENT	= 14,
-> +	SBI_PMU_FW_HFENCE_GVMA_RCVD	= 15,
-> +	SBI_PMU_FW_HFENCE_GVMA_VMID_SENT = 16,
-> +	SBI_PMU_FW_HFENCE_GVMA_VMID_RCVD = 17,
-> +
-> +	SBI_PMU_FW_HFENCE_VVMA_SENT	= 18,
-> +	SBI_PMU_FW_HFENCE_VVMA_RCVD	= 19,
-> +	SBI_PMU_FW_HFENCE_VVMA_ASID_SENT = 20,
-> +	SBI_PMU_FW_HFENCE_VVMA_ASID_RCVD = 21,
-> +	SBI_PMU_FW_MAX,
-> +};
-> +
-> +/* SBI PMU event types */
-> +enum sbi_pmu_event_type {
-> +	SBI_PMU_EVENT_TYPE_HW = 0x0,
-> +	SBI_PMU_EVENT_TYPE_CACHE = 0x1,
-> +	SBI_PMU_EVENT_TYPE_RAW = 0x2,
-> +	SBI_PMU_EVENT_TYPE_FW = 0xf,
-> +};
-> +
-> +/* SBI PMU event types */
-> +enum sbi_pmu_ctr_type {
-> +	SBI_PMU_CTR_TYPE_HW = 0x0,
-> +	SBI_PMU_CTR_TYPE_FW,
-> +};
-> +
-> +/* Flags defined for config matching function */
-> +#define SBI_PMU_CFG_FLAG_SKIP_MATCH	(1 << 0)
-> +#define SBI_PMU_CFG_FLAG_CLEAR_VALUE	(1 << 1)
-> +#define SBI_PMU_CFG_FLAG_AUTO_START	(1 << 2)
-> +#define SBI_PMU_CFG_FLAG_SET_MINH	(1 << 3)
-> +#define SBI_PMU_CFG_FLAG_SET_SINH	(1 << 4)
-> +#define SBI_PMU_CFG_FLAG_SET_UINH	(1 << 5)
-> +#define SBI_PMU_CFG_FLAG_SET_VSINH	(1 << 6)
-> +#define SBI_PMU_CFG_FLAG_SET_VUINH	(1 << 7)
+> +		dev_err(&pdev->dev, "Failed to get i2so1_mclk, err:%d\n", ret);
+> +		return ret;
+> +	}
 
-It looks like you have a typo here, the defines in OpenSBI are
-different:
-
-#define SBI_PMU_CFG_FLAG_SET_VUINH	(1 << 3)
-#define SBI_PMU_CFG_FLAG_SET_VSINH	(1 << 4)
-#define SBI_PMU_CFG_FLAG_SET_UINH	(1 << 5)
-#define SBI_PMU_CFG_FLAG_SET_SINH	(1 << 6)
-#define SBI_PMU_CFG_FLAG_SET_MINH	(1 << 7)
-
-
-> +
-> +/* Flags defined for counter start function */
-> +#define SBI_PMU_START_FLAG_SET_INIT_VALUE (1 << 0)
-> +
-> +/* Flags defined for counter stop function */
-> +#define SBI_PMU_STOP_FLAG_RESET (1 << 0)
-> +
->  #define SBI_SPEC_VERSION_DEFAULT	0x1
->  #define SBI_SPEC_VERSION_MAJOR_SHIFT	24
->  #define SBI_SPEC_VERSION_MAJOR_MASK	0x7f
-> @@ -82,6 +176,9 @@ enum sbi_hsm_hart_status {
->  #define SBI_ERR_INVALID_PARAM	-3
->  #define SBI_ERR_DENIED		-4
->  #define SBI_ERR_INVALID_ADDRESS	-5
-> +#define SBI_ERR_ALREADY_AVAILABLE -6
-> +#define SBI_ERR_ALREADY_STARTED -7
-> +#define SBI_ERR_ALREADY_STOPPED -8
->  
->  extern unsigned long sbi_spec_version;
->  struct sbiret {
-
+Ditto, see comments above for the block.
