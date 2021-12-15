@@ -2,77 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DF99475080
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 02:29:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1D894750AC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 03:03:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238867AbhLOB24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 20:28:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43786 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235593AbhLOB2z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 20:28:55 -0500
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E42FC061574
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 17:28:55 -0800 (PST)
-Received: by mail-ot1-x32a.google.com with SMTP id i5-20020a05683033e500b0057a369ac614so22988462otu.10
-        for <devicetree@vger.kernel.org>; Tue, 14 Dec 2021 17:28:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to;
-        bh=vsh1MhG90sktMnN9grpR54l4uKx6Z6N5tsDDxbZW6o0=;
-        b=JGU0cApMNO/QObrJvFbIIED25d0QAjNji23cp4HxXLFGTpEnaeb2d947VuokTPrJh4
-         GxqIDaSVHw/ZVrgLLUJ36p6hc4fc2Ao3NBWHZY9233yxuiRmSq0+VA+k2c7w+AK1ethh
-         pIXA/919loix9H/jY9SRtqVmU7bJ5WRstSyhE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to;
-        bh=vsh1MhG90sktMnN9grpR54l4uKx6Z6N5tsDDxbZW6o0=;
-        b=cTAebQEqaWkL8y50chzE/Rm9tyZsSv5Sec+lzAFa6ddO44RjgutnciczOxnlxfnKJy
-         pjxM+PgtQD5Ev6LM53h+Efu4JkTvGEt5ZDcTEhGsR7gdqmfr+r65Z0KMaPBayDqplY84
-         pvxmnkUyvq5taHEdh9FEifWr1Sq35Dkd/W1jhzyVKukhkuZ7oeFIMBelPTbJSqnRgVqu
-         5RNOo40JWHhC+Di0pnTXX9ZACrhblhsvHU/sJGsvJoNi0QNJfyi8C/BYdr4I4DUQwAab
-         SgQGOX9SWDnOOptDfeR/j1v4A/MJHBdAFeJ/Y0uYgDR0tIZt1jpZTQZ0FedhDah5OnAD
-         wShg==
-X-Gm-Message-State: AOAM533d3BZgQLM99mruNZtEvJpD1q2ov4LTRYytQqceTExzU3xRRf3L
-        lgUybHxeV83iHdNwm9jQII6sryE9y91aN2JdwIChdA==
-X-Google-Smtp-Source: ABdhPJwVvIEVSzGWkZ6r6tum5sN5c25e8CxEhW4XCE5QW3Fp24XzJo9z3AmfNkACncaxRnmD6mxorka5IqffVKX3Lug=
-X-Received: by 2002:a9d:70ce:: with SMTP id w14mr6875613otj.77.1639531734897;
- Tue, 14 Dec 2021 17:28:54 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 15 Dec 2021 02:28:54 +0100
-MIME-Version: 1.0
-In-Reply-To: <1638891339-21806-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1638891339-21806-1-git-send-email-quic_srivasam@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Wed, 15 Dec 2021 02:28:54 +0100
-Message-ID: <CAE-0n527T71LPe5R+S+YzEqiid2-QrFdvS2T7MWrakTccyG45w@mail.gmail.com>
-Subject: Re: [PATCH v5 0/5] Add pin control support for lpass sc7280
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, lgirdwood@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
-        robh+dt@kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, tiwai@suse.com
+        id S239036AbhLOCDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 21:03:37 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:33186 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S238932AbhLOCDg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 21:03:36 -0500
+X-UUID: 7321fadf45f9404c9cae01c8e99ef3d5-20211215
+X-UUID: 7321fadf45f9404c9cae01c8e99ef3d5-20211215
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1772619576; Wed, 15 Dec 2021 10:03:32 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Wed, 15 Dec 2021 10:03:31 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 15 Dec 2021 10:03:31 +0800
+Message-ID: <768b202c7bf78e26102c91ae558d4d0887e11124.camel@mediatek.com>
+Subject: Re: [PATCH v6 2/4] dt-bindings: spi: add new clock name 'axi' for
+ spi nor
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <matthias.bgg@gmail.com>, <bgolaszewski@baylibre.com>,
+        <sean.wang@mediatek.com>, <bayi.cheng@mediatek.com>,
+        <gch981213@gmail.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-spi@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Wed, 15 Dec 2021 10:03:31 +0800
+In-Reply-To: <YbdvIPq1hKPmKXXs@sirena.org.uk>
+References: <20211211204014.8014-1-tinghan.shen@mediatek.com>
+         <20211211204014.8014-3-tinghan.shen@mediatek.com>
+         <YbdvIPq1hKPmKXXs@sirena.org.uk>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2021-12-07 07:35:34)
-> This patch series is to split lpass variant common pin control
-> functions and SoC specific functions and to add lpass sc7280 pincontrol support.
-> It also Adds dt-bindings for lpass sc7280 lpass lpi pincontrol.
+Hi Mark,
 
-What ensures that the LPI pins are being muxed out on the pads of the
-SoC? There's the eGPIO support in the tlmm driver, which seems to let us
-override the LPI pins and mux them away from this pinctrl device to the
-tlmm pinctrl device. Should this driver be requesting gpios from tlmm
-and making sure they're not muxed away to tlmm so we don't have
-conflicts?
+Thanks for the reviews and advice.
+
+
+On Mon, 2021-12-13 at 16:04 +0000, Mark Brown wrote:
+> On Sun, Dec 12, 2021 at 04:40:12AM +0800, Tinghan Shen wrote:
+> 
+> > Some mtk spi nor has dedicated dma(s) inside. Add a new clock name,
+> > axi,
+> > for spi nor dma bus clock.
+> >    clock-names:
+> > +    minItems: 2
+> >      items:
+> >        - const: spi
+> >        - const: sf
+> > +      - const: axi
+> 
+> This will cause any existing DTs that don't have both spi and sf
+> clocks
+> defined to fail to validate which doesn't seem great.  Given that
+> your
+> commit message says this is only required for some SoCs shouldn't the
+> minimum clocks requirement depend on which particular SoC/IP version
+> is
+> being used?  Not exactly sure how one specifies that in the YAML
+> format.
+> 
+> Please submit patches using subject lines reflecting the style for
+> the
+> subsystem, this makes it easier for people to identify relevant
+> patches.
+> Look at what existing commits in the area you're changing are doing
+> and
+> make sure your subject lines visually resemble what they're doing.
+> There's no need to resubmit to fix this alone.
+
+I'll update the subject at next version.
+It'll be "dt-bindings: spi: mtk-spi-nor: ...".
+
+
+regards,
+TingHan
+
