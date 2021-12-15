@@ -2,100 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8284C475AFD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 15:48:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44776475B14
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 15:52:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237939AbhLOOsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 09:48:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54588 "EHLO
+        id S237842AbhLOOwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 09:52:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237795AbhLOOsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 09:48:37 -0500
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2108EC06173E
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 06:48:37 -0800 (PST)
-Received: by mail-io1-xd2e.google.com with SMTP id x6so30291082iol.13
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 06:48:37 -0800 (PST)
+        with ESMTP id S243504AbhLOOw2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 09:52:28 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBA69C061574;
+        Wed, 15 Dec 2021 06:52:27 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id e24so17898574lfc.0;
+        Wed, 15 Dec 2021 06:52:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=egauge.net; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :organization:user-agent:mime-version:content-transfer-encoding;
-        bh=+zgw5ZjOiRsYG6plb7tjILNdpDgZuwxUtcBg9nx0kBw=;
-        b=G0N2QMGAJIwsFDkwmDEBEjKwf1R6XUKF1dUDwwi84tqkOa9m9Ohji7eTuQ0FgAcPTM
-         6VKh/Dqs/5t258JrxOF71MwUXyNrWciolgBI54inZh3e+xdNXan5JQN83qUCfKEU8C5k
-         osfonV56+lDAkJGI759/fO/YVvbooOOakkEVlc8tsh10FR0hUpynpsgNu+kobAadJBqu
-         U55Dl7oAvFHS5OA6h6DFTC1VuoYYyjdX53gR2GLrU5vot7cHv06TLWcs6vYoeuEFkEzV
-         B/2DxpMSdy+olU5rye9gM7/P04zh/zfYj8E9Y6tHNxKsO92KFZUtWu3CEw2wpee98MF/
-         w2cQ==
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=LO1x8iedEbzMXD8iaeIwOohPXHwNbM9LQL7gCPHHVok=;
+        b=QjCUIXRCRUhvXqnKy2b8cNhuz/nNrXo5BUbNtoRem0OJ9o0sDFziIeI0nM9+uK+hcK
+         Lk6cnre1LKuPsyuTqfLgm2xJqWBma9a50yGZ3La2W7UCq+8QKlX1WYbQ9h/DF7410ywZ
+         Z2mOBO4RKMt0UOXbAAa+bNvv6+qh73eVixLAMrSjQ7x9+bt96Sa6MgrWCTREama5SCXt
+         XIGiYjsarVgwWQNRNOp4LuXJ9p3NscZ8NjLxn5q8HwpNz1BiP2vn4XSsJl+UtU/6MNjl
+         //4DzHEBpiJbbJk6IRbYZ5se4wsOhnG4cAFLaDjGlyuymRWgciF1Yg93Tzdk1eEjnfoa
+         fftg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:organization:user-agent:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=+zgw5ZjOiRsYG6plb7tjILNdpDgZuwxUtcBg9nx0kBw=;
-        b=gbVTulqLmucIKVMZbayc5LXHLHdyfuzDVm2SDYw+V2e4qeKAopZ/6ogEwQSfFgytdb
-         O3rCGexao46sIL2l2Yjn4Ra6OkPdmcEllg+3eNoWWuRos0LfSrYFgsLZIfbjyUYr4XXJ
-         GumLNicCmMD8llRzKIrBBlcHSy6tjIsV8y5ubyL0TBTBAIj76q5uJXUI+wwIcxJKayRf
-         a5GvVZTxQbhMG3XbGZykQmRZUscJKPUA8vJ/AQ1+CY43t6riTXutmdVEp7MD+7RXmo2Y
-         3xj20C7RDFPD4LwqlUvkiC9LFvRGn5ihal9ErOxxvntNqjWae7kdUvrgEs4qmdQA6ufW
-         S53g==
-X-Gm-Message-State: AOAM532RJbXajocq9ilDkVfmWVVul3k1LfGZLVpt/2MQ+fE679CMWAZA
-        niAhVNh04ugRghoWhXYFkODY
-X-Google-Smtp-Source: ABdhPJxSO1DISO3NqNKiKwUdNOAyJkKw7vT69WVU287cXCawI69TkejkGLA87llHTzGGTkdEoWzSeQ==
-X-Received: by 2002:a05:6638:12d3:: with SMTP id v19mr5937331jas.318.1639579716471;
-        Wed, 15 Dec 2021 06:48:36 -0800 (PST)
-Received: from ?IPv6:2601:281:8300:4e0:2ba9:697d:eeec:13b? ([2601:281:8300:4e0:2ba9:697d:eeec:13b])
-        by smtp.gmail.com with ESMTPSA id y6sm1023380ilu.71.2021.12.15.06.48.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 06:48:35 -0800 (PST)
-Message-ID: <0a60ada80d4eb658d5ac249c9487ba759a94194a.camel@egauge.net>
-Subject: Re: [PATCH v5 0/2] wilc1000: Add reset/enable GPIO support to SPI
- driver
-From:   David Mosberger-Tang <davidm@egauge.net>
-To:     Claudiu.Beznea@microchip.com, Ajay.Kathat@microchip.com
-Cc:     adham.abozaeid@microchip.com, davem@davemloft.net,
-        devicetree@vger.kernel.org, kuba@kernel.org, kvalo@codeaurora.org,
-        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, robh+dt@kernel.org
-Date:   Wed, 15 Dec 2021 07:48:26 -0700
-In-Reply-To: <6f7ed239-a521-81f5-caaa-a24b537abcc0@microchip.com>
-References: <20211215030501.3779911-1-davidm@egauge.net>
-         <6f7ed239-a521-81f5-caaa-a24b537abcc0@microchip.com>
-Organization: eGauge Systems LLC
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5-0ubuntu1 
+        bh=LO1x8iedEbzMXD8iaeIwOohPXHwNbM9LQL7gCPHHVok=;
+        b=KxRUSHnaxQV6KVyEMegSs3uA7K1nIM/QLxB9BK1+KKOyyPDW2x5YJ47TbONEy6XBz8
+         CwI5WpjZDz7nPbBGzH4TAdADW2Sda6KqCUMNlV1WNU/puYZmv2wCbHOgZnSbwQ/XdQE7
+         xaM0uROhgJUT4QtD7evD9Hbs5tN0W6m+kdxlqWSMj3w1wsFLGRrbWXkcbbZvrMIbFqZn
+         u0XzVMySuiNQfGvrxIyZ1/WyeFJhEn/RLgBOOpDrGnOS5fGg9VTC5O9gmSePn2k+UD75
+         7bqTLvCl78kRV3uDjoPM0SRh0omNnrBBjYqA/mk4+dWq+FNN/uxN5gGD+AGAs7gOBMpS
+         Dk5g==
+X-Gm-Message-State: AOAM533Bghsz9IVirp70iZq+WaagIYxtmDVRKTRnLBh6PqbBY0f8uJcL
+        PPVV9k+y1E/6XLNGbnoiB8GCxzagdcI=
+X-Google-Smtp-Source: ABdhPJz7DCXQh8+Cu8E5eqzQJ7mTCbxRpntVNjHf/gwJg9yeA17TYw04B0ceWbFDaA2+uDWbbc7l4Q==
+X-Received: by 2002:a19:761a:: with SMTP id c26mr10205200lff.584.1639579945929;
+        Wed, 15 Dec 2021 06:52:25 -0800 (PST)
+Received: from [192.168.2.145] (94-29-63-156.dynamic.spd-mgts.ru. [94.29.63.156])
+        by smtp.googlemail.com with ESMTPSA id b7sm353091lfb.224.2021.12.15.06.52.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Dec 2021 06:52:25 -0800 (PST)
+Subject: Re: [PATCH v6 11/28] ARM: tegra: Add device-tree for ASUS Transformer
+ Infinity TF700T
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        David Heidelberg <david@ixit.cz>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Anton Bambura <jenneron@protonmail.com>,
+        Antoni Aloy Torrens <aaloytorrens@gmail.com>,
+        Nikola Milosavljevic <mnidza@outlook.com>,
+        Ion Agorria <ion@agorria.com>,
+        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        Ihor Didenko <tailormoon@rambler.ru>,
+        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
+        Jasper Korten <jja2000@gmail.com>,
+        Thomas Graichen <thomas.graichen@gmail.com>,
+        Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211211211412.10791-1-digetx@gmail.com>
+ <20211211211412.10791-12-digetx@gmail.com> <Ybn1Ne2aGfsablwQ@orome>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <02d7e9a9-6999-cccd-aea2-d069c759cd56@gmail.com>
+Date:   Wed, 15 Dec 2021 17:52:24 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <Ybn1Ne2aGfsablwQ@orome>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2021-12-15 at 05:37 +0000, Claudiu.Beznea@microchip.com wrote:
-> On 15.12.2021 05:05, David Mosberger-Tang wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > 
-> > The only change in this version is to fix a dt_binding_check error by
-> > including <dt-bindings/gpio/gpio.h> in microchip,wilc1000.yaml.
+15.12.2021 17:01, Thierry Reding пишет:
+> On Sun, Dec 12, 2021 at 12:13:55AM +0300, Dmitry Osipenko wrote:
+> [...]
+>> +		i2c@1 {
+>> +			reg = <1>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +
+>> +			dsi-bridge@7 {
+>> +				compatible = "toshiba,tc358768";
+>> +				reg = <0x7>;
+>> +
+>> +				#address-cells = <1>;
+>> +				#size-cells = <0>;
+>> +
+>> +				clocks = <&tc358768_osc>;
+>> +				clock-names = "refclk";
+>> +
+>> +				reset-gpios = <&gpio TEGRA_GPIO(N, 6) GPIO_ACTIVE_LOW>;
+>> +
+>> +				vddc-supply = <&vdd_1v2_mipi>;
+>> +				vddio-supply = <&vdd_1v8_vio>;
+>> +				vddmipi-supply = <&vdd_1v2_mipi>;
+>> +
+>> +				ports {
+>> +					#address-cells = <1>;
+>> +					#size-cells = <0>;
+>> +
+>> +					port@0 {
+>> +						reg = <0>;
+>> +
+>> +						bridge_input: endpoint {
+>> +							remote-endpoint = <&dpi_output>;
+>> +							data-lines = <24>;
+>> +						};
+>> +					};
+>> +
+>> +					port@1 {
+>> +						reg = <1>;
+>> +
+>> +						bridge_output: endpoint {
+>> +							remote-endpoint = <&panel_input>;
+>> +						};
+>> +					};
+>> +				};
+>> +
+>> +				/*
+>> +				 * Panasonic VVX10F004B00 or HYDIS HV101WU1-1E1
+>> +				 * LCD SuperIPS+ Full HD panel.
+>> +				 */
+>> +				panel@1 {
+>> +					compatible = "panasonic,vvx10f004b00";
+>> +					reg = <1>;
+>> +
+>> +					power-supply = <&vdd_pnl>;
+>> +					backlight = <&backlight>;
+>> +
+>> +					port {
+>> +						panel_input: endpoint {
+>> +							remote-endpoint = <&bridge_output>;
+>> +						};
+>> +					};
+>> +				};
 > 
-> For future patches, here you should have the full changelog b/w version,
-> something like:
+> make dtbs_check complains about this and says that panel@1 (as well as
+> #address-cells and #size-cells) are not allowed here. And indeed the
+> binding for the Toshiba bridge doesn't mention them here.
 > 
-> Changes in v5:
-> - this
-> - that
-> - etc
-> 
-> Changes in v4:
-> - this, that
-> 
-> ...
-> 
-> Changes in v2:
-> - this, that
+> Do we need this here or should this be moved to the top level to fix
+> those warnings? I guess what you're doing above is describe a DSI bus
+> created by the DSI bridge, which also makes sense, so another
+> alternative would be to fix up the binding and let it accept those
+> properties.
 
-Sure, I can do that going forward.
+Toshiba bridge binding is incomplete. David has patch for that [1], I
+don't think that it was sent out yet.
 
-Thanks,
-
-  --david
+[1]
+https://github.com/okias/linux/commit/0875230062294b6db17f395ced0a8384a4c1cfc7
 
