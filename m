@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9400F475C37
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 16:51:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C982B475C3D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 16:53:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242878AbhLOPvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 10:51:18 -0500
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:42962 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239535AbhLOPvS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 10:51:18 -0500
-Received: by mail-ot1-f48.google.com with SMTP id 47-20020a9d0332000000b005798ac20d72so25396273otv.9;
-        Wed, 15 Dec 2021 07:51:18 -0800 (PST)
+        id S244154AbhLOPvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 10:51:33 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:38679 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239535AbhLOPvd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 10:51:33 -0500
+Received: by mail-oi1-f180.google.com with SMTP id r26so32210373oiw.5;
+        Wed, 15 Dec 2021 07:51:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=pdK0gyQoqEsphmqeufkGK5o7YXz8EBDgW679ZIC6HGU=;
-        b=aT/Y5JXCjv1/4xqmfbIbX0gCVSKjPs20OGxZd/UCdu2g/v2/WBTpGue8rz+WqAC3/6
-         vLI9mcxpu5nvjsrVpNknSlWVQficvTWJWA/rVjJYW0I9hwa/mXG1l8TjAS4nbdtngqY4
-         X37hwSv7Rcx/nCFy/+z5neBNSXIDx+qD9qJJEaAxIRlm26b2Jou733C275hZprIkvQqS
-         Vc5zcsJBI9IwgBfNaX+hWsAtNAKonwT3sbo2Tdl3MTyl5sPhI2dNQC0P2VPDPcRTmuq2
-         qbIEzOYe3myR1jXd4vrC7KHKq45FqHCcwgL4WxWzQd5NXxCmav3LQzeKsmpdmdQW6V1m
-         YrTg==
-X-Gm-Message-State: AOAM532cLCSuwQtCBnGlPnqBlInDAib9X0Q6kg/prlI00RIlPFYlITWG
-        CTIygEb0998uzSLOwTX3BPcYteTkYg==
-X-Google-Smtp-Source: ABdhPJyoys+jy/xYPVQSh/DOieI2fwabC8h5KCqbKub5pe//PrJNbrqllAY2V/m6aUD9m7ivkHCvFw==
-X-Received: by 2002:a05:6830:410a:: with SMTP id w10mr9149630ott.55.1639583477695;
-        Wed, 15 Dec 2021 07:51:17 -0800 (PST)
+        bh=l0rtz85Jyq9MgaFtmlaxUe2NnGfFjYdGSaO09tkfYYE=;
+        b=0FGnEZ8c7D8mS9MLTX6hNQBJjvVvM4aKrdcVhRk+c3QaPXcF6ezCc6F6EfRo0zm3dM
+         63WRjDwFAXn/RGM4RDWKfgC4D9l6twaUPYg/DsJcwTD9PGsp0MlRKSB0KObLvfJ8V8u2
+         Lgf84OtmxmSZvz3g9T3ESGNOm1GMd6HKa+E9/9l3CFXoZGRGYdbK7ntLSwcKrcM4lAvz
+         XwFJrXOeQ+gzGvk1LoAl31gkP2K2thr3G/8wh5GNdg8K3xWHd0S3ozyuXNFaTyetnukJ
+         3n6MvSELQ+R92GjckkTxgML7CgnL5v7z7VEnhRg+5yC0B0b8Xy1xkir77ZOQqjhPqtuo
+         iJ8A==
+X-Gm-Message-State: AOAM533+mQXAr+AEMO16uhKmaHoqt43FQ2jinvDmkq57W0NA6GvMVcYX
+        NL/udv1KZx9DDnjgg25aNA==
+X-Google-Smtp-Source: ABdhPJyT8MM4VWo5djPVVC7PJS/aRHbaodZBQ6f2mpjfmDUs5c8N9fTVxzDIG7Yrxh0oUjHkLtcT+Q==
+X-Received: by 2002:a05:6808:1c5:: with SMTP id x5mr358735oic.144.1639583492378;
+        Wed, 15 Dec 2021 07:51:32 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x16sm498449ott.8.2021.12.15.07.51.16
+        by smtp.gmail.com with ESMTPSA id y17sm507820ote.48.2021.12.15.07.51.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 07:51:17 -0800 (PST)
-Received: (nullmailer pid 1378398 invoked by uid 1000);
-        Wed, 15 Dec 2021 15:51:16 -0000
-Date:   Wed, 15 Dec 2021 09:51:16 -0600
+        Wed, 15 Dec 2021 07:51:31 -0800 (PST)
+Received: (nullmailer pid 1378981 invoked by uid 1000);
+        Wed, 15 Dec 2021 15:51:30 -0000
+Date:   Wed, 15 Dec 2021 09:51:30 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     JosephCHANG <josright123@gmail.com>
-Cc:     joseph_chang@davicom.com.tw, netdev@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>
-Subject: Re: [PATCH v5, 1/2] yaml: Add dm9051 SPI network yaml file
-Message-ID: <YboO9DVkX3wMb9Z2@robh.at.kernel.org>
-References: <20211215073507.16776-1-josright123@gmail.com>
- <20211215073507.16776-2-josright123@gmail.com>
+To:     conor.dooley@microchip.com
+Cc:     sboyd@kernel.org, linux-clk@vger.kernel.org, palmer@dabbelt.com,
+        mturquette@baylibre.com, geert@linux-m68k.org,
+        cyril.jean@microchip.com, david.abdurachmanov@gmail.com,
+        krzysztof.kozlowski@canonical.com, devicetree@vger.kernel.org,
+        daire.mcnamara@microchip.com, robh+dt@kernel.org
+Subject: Re: [PATCH v7 1/2] dt-bindings: clk: microchip: Add Microchip
+ PolarFire host binding
+Message-ID: <YboPAmeRMNKCUpCf@robh.at.kernel.org>
+References: <20211215083002.1353-1-conor.dooley@microchip.com>
+ <20211215083002.1353-2-conor.dooley@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211215073507.16776-2-josright123@gmail.com>
+In-Reply-To: <20211215083002.1353-2-conor.dooley@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Dec 2021 15:35:06 +0800, JosephCHANG wrote:
-> This is a new yaml base data file for configure davicom dm9051 with
-> device tree
+On Wed, 15 Dec 2021 08:30:01 +0000, conor.dooley@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
 > 
-> Signed-off-by: JosephCHANG <josright123@gmail.com>
+> Add device tree bindings for the Microchip PolarFire system
+> clock controller
+> 
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  .../bindings/net/davicom,dm9051.yaml          | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+>  .../bindings/clock/microchip,mpfs.yaml        | 61 +++++++++++++++++++
+>  .../dt-bindings/clock/microchip,mpfs-clock.h  | 45 ++++++++++++++
+>  2 files changed, 106 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/microchip,mpfs.yaml
+>  create mode 100644 include/dt-bindings/clock/microchip,mpfs-clock.h
 > 
 
-
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
-
+Reviewed-by: Rob Herring <robh@kernel.org>
