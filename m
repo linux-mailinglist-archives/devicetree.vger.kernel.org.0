@@ -2,237 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58257475331
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 07:53:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75EFA475337
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 07:58:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240139AbhLOGxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 01:53:53 -0500
-Received: from szxga03-in.huawei.com ([45.249.212.189]:29195 "EHLO
-        szxga03-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240111AbhLOGxw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 01:53:52 -0500
-Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.56])
-        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4JDQrn5NhVz8vgT;
-        Wed, 15 Dec 2021 14:51:37 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Wed, 15 Dec 2021 14:53:50 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Wed, 15 Dec 2021 14:53:49 +0800
-Subject: Re: [PATCHv3] efi: apply memblock cap after memblock_add()
-To:     Pingfan Liu <kernelfans@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <linux-efi@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Nick Terrell <terrelln@fb.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20211214040157.27443-3-kernelfans@gmail.com>
- <20211215021348.8766-1-kernelfans@gmail.com>
- <7fa6bfd1-357d-10ad-0375-a6efdc7b89e4@huawei.com>
- <Ybl9RYCIo14qyxqL@piliu.users.ipa.redhat.com>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <ef184207-57db-f80e-7ee3-264110c1ba10@huawei.com>
-Date:   Wed, 15 Dec 2021 14:53:38 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S240265AbhLOG6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 01:58:42 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:60634 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S234767AbhLOG6l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 01:58:41 -0500
+X-UUID: 1131d0494e1b4828953bc7b5456bc9b4-20211215
+X-UUID: 1131d0494e1b4828953bc7b5456bc9b4-20211215
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <trevor.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1695488071; Wed, 15 Dec 2021 14:58:38 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Wed, 15 Dec 2021 14:58:37 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 15 Dec 2021 14:58:37 +0800
+From:   Trevor Wu <trevor.wu@mediatek.com>
+To:     <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>
+CC:     <trevor.wu@mediatek.com>, <alsa-devel@alsa-project.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <jiaxin.yu@mediatek.com>, <shumingf@realtek.com>
+Subject: [PATCH 1/2] ASoC: mediatek: mt8195: update control for RT5682 series
+Date:   Wed, 15 Dec 2021 14:58:34 +0800
+Message-ID: <20211215065835.3074-1-trevor.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <Ybl9RYCIo14qyxqL@piliu.users.ipa.redhat.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Playback pop is observed and the root cause is the reference clock
+provided by MT8195 is diabled before RT5682 finishes the control flow.
 
+To ensure the reference clock supplied to RT5682 is disabled after RT5682
+finishes all register controls. We replace BCLK with MCLK for RT5682
+reference clock, and makes use of set_bias_level_post to handle MCLK
+which guarantees MCLK is off after all RT5682 register access.
 
-On 2021/12/15 13:29, Pingfan Liu wrote:
-> On Wed, Dec 15, 2021 at 11:58:03AM +0800, Leizhen (ThunderTown) wrote:
->>
->>
->> On 2021/12/15 10:13, Pingfan Liu wrote:
->>> On arm64, during kdump kernel saves vmcore, it runs into the following bug:
->>> ...
->>> [   15.148919] usercopy: Kernel memory exposure attempt detected from SLUB object 'kmem_cache_node' (offset 0, size 4096)!
->>> [   15.159707] ------------[ cut here ]------------
->>> [   15.164311] kernel BUG at mm/usercopy.c:99!
->>> [   15.168482] Internal error: Oops - BUG: 0 [#1] SMP
->>> [   15.173261] Modules linked in: xfs libcrc32c crct10dif_ce ghash_ce sha2_ce sha256_arm64 sha1_ce sbsa_gwdt ast i2c_algo_bit drm_vram_helper drm_kms_helper syscopyarea sysfillrect sysimgblt fb_sys_fops cec drm_ttm_helper ttm drm nvme nvme_core xgene_hwmon i2c_designware_platform i2c_designware_core dm_mirror dm_region_hash dm_log dm_mod overlay squashfs zstd_decompress loop
->>> [   15.206186] CPU: 0 PID: 542 Comm: cp Not tainted 5.16.0-rc4 #1
->>> [   15.212006] Hardware name: GIGABYTE R272-P30-JG/MP32-AR0-JG, BIOS F12 (SCP: 1.5.20210426) 05/13/2021
->>> [   15.221125] pstate: 60400009 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
->>> [   15.228073] pc : usercopy_abort+0x9c/0xa0
->>> [   15.232074] lr : usercopy_abort+0x9c/0xa0
->>> [   15.236070] sp : ffff8000121abba0
->>> [   15.239371] x29: ffff8000121abbb0 x28: 0000000000003000 x27: 0000000000000000
->>> [   15.246494] x26: 0000000080000400 x25: 0000ffff885c7000 x24: 0000000000000000
->>> [   15.253617] x23: 000007ff80400000 x22: ffff07ff80401000 x21: 0000000000000001
->>> [   15.260739] x20: 0000000000001000 x19: ffff07ff80400000 x18: ffffffffffffffff
->>> [   15.267861] x17: 656a626f2042554c x16: 53206d6f72662064 x15: 6574636574656420
->>> [   15.274983] x14: 74706d6574746120 x13: 2129363930342065 x12: 7a6973202c302074
->>> [   15.282105] x11: ffffc8b041d1b148 x10: 00000000ffff8000 x9 : ffffc8b04012812c
->>> [   15.289228] x8 : 00000000ffff7fff x7 : ffffc8b041d1b148 x6 : 0000000000000000
->>> [   15.296349] x5 : 0000000000000000 x4 : 0000000000007fff x3 : 0000000000000000
->>> [   15.303471] x2 : 0000000000000000 x1 : ffff07ff8c064800 x0 : 000000000000006b
->>> [   15.310593] Call trace:
->>> [   15.313027]  usercopy_abort+0x9c/0xa0
->>> [   15.316677]  __check_heap_object+0xd4/0xf0
->>> [   15.320762]  __check_object_size.part.0+0x160/0x1e0
->>> [   15.325628]  __check_object_size+0x2c/0x40
->>> [   15.329711]  copy_oldmem_page+0x7c/0x140
->>> [   15.333623]  read_from_oldmem.part.0+0xfc/0x1c0
->>> [   15.338142]  __read_vmcore.constprop.0+0x23c/0x350
->>> [   15.342920]  read_vmcore+0x28/0x34
->>> [   15.346309]  proc_reg_read+0xb4/0xf0
->>> [   15.349871]  vfs_read+0xb8/0x1f0
->>> [   15.353088]  ksys_read+0x74/0x100
->>> [   15.356390]  __arm64_sys_read+0x28/0x34
->>> ...
->>>
->>> This bug introduced by commit b261dba2fdb2 ("arm64: kdump: Remove custom
->>> linux,usable-memory-range handling"), which moves
->>> memblock_cap_memory_range() to fdt, but it breaches the rules that
->>> memblock_cap_memory_range() should come after memblock_add() etc as said
->>> in commit e888fa7bb882 ("memblock: Check memory add/cap ordering").
->>
->> void __init early_init_dt_scan_nodes(void)
->> {
->> 	//(1) -->early_init_dt_check_for_usable_mem_range, fill cap_mem_addr
->>         rc = of_scan_flat_dt(early_init_dt_scan_chosen, boot_command_line);
->>
->> 	//(2) --> early_init_dt_add_memory_arch --> memblock_add()
->>         of_scan_flat_dt(early_init_dt_scan_memory, NULL);
->>
->> 	//(3)
->>         memblock_cap_memory_range(cap_mem_addr, cap_mem_size);
->> }
->>
->> I didn't get it. The above step (1),(2),(3) comply with
->> commit e888fa7bb882 ("memblock: Check memory add/cap ordering")
->>
-> Well, at this scope, it does. But from a larger scope, let's say on
-> arm64,
-> setup_arch
->   ...
->   setup_machine_fdt(); //which holds your case
->   ...
->   efi_init(); //which call memblock_add, and breach the ordering.
-> 
->> Did you see the warning?
->> pr_warn("%s: No memory registered yet\n", __func__);
->>
-> Yes, I did see this message, which brings me to commit e888fa7bb882
-> ("memblock: Check memory add/cap ordering")
-> 
-> I am also curious why this bug does not be discovered. Is CONFIG_EFI
-> on at your case? 
+Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
+---
+ .../mt8195/mt8195-mt6359-rt1011-rt5682.c      | 66 +++++++++++++++-
+ .../mt8195/mt8195-mt6359-rt1019-rt5682.c      | 76 ++++++++++++++++---
+ 2 files changed, 128 insertions(+), 14 deletions(-)
 
-Yes, Both X86 and ARM64, CONFIG_EFI=y. I used the defconfig.
+diff --git a/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1011-rt5682.c b/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1011-rt5682.c
+index 5cdbfaafd479..05359365f200 100644
+--- a/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1011-rt5682.c
++++ b/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1011-rt5682.c
+@@ -37,6 +37,7 @@ struct mt8195_mt6359_rt1011_rt5682_priv {
+ 	struct snd_soc_jack headset_jack;
+ 	struct snd_soc_jack dp_jack;
+ 	struct snd_soc_jack hdmi_jack;
++	struct clk *i2so1_mclk;
+ };
+ 
+ static const struct snd_soc_dapm_widget
+@@ -87,8 +88,8 @@ static int mt8195_rt5682_etdm_hw_params(struct snd_pcm_substream *substream,
+ 		return ret;
+ 	}
+ 
+-	ret = snd_soc_dai_set_pll(codec_dai, RT5682_PLL1, RT5682_PLL1_S_BCLK1,
+-				  rate * 64, rate * 512);
++	ret = snd_soc_dai_set_pll(codec_dai, RT5682_PLL1, RT5682_PLL1_S_MCLK,
++				  rate * 256, rate * 512);
+ 	if (ret) {
+ 		dev_err(card->dev, "failed to set pll\n");
+ 		return ret;
+@@ -101,7 +102,7 @@ static int mt8195_rt5682_etdm_hw_params(struct snd_pcm_substream *substream,
+ 		return ret;
+ 	}
+ 
+-	return snd_soc_dai_set_sysclk(cpu_dai, 0, rate * 128,
++	return snd_soc_dai_set_sysclk(cpu_dai, 0, rate * 256,
+ 				      SND_SOC_CLOCK_OUT);
+ }
+ 
+@@ -565,6 +566,51 @@ static const struct snd_soc_ops mt8195_capture_ops = {
+ 	.startup = mt8195_capture_startup,
+ };
+ 
++static int mt8195_set_bias_level_post(struct snd_soc_card *card,
++	struct snd_soc_dapm_context *dapm, enum snd_soc_bias_level level)
++{
++	struct snd_soc_component *component = dapm->component;
++	struct mt8195_mt6359_rt1011_rt5682_priv *priv =
++		snd_soc_card_get_drvdata(card);
++	int ret = 0;
++
++	/*
++	 * It's required to control mclk directly in the set_bias_level_post
++	 * function for rt5682 and rt5682s codec, or the unexpected pop happens
++	 * at the end of playback.
++	 */
++	if (!component ||
++	    (strcmp(component->name, RT5682_DEV0_NAME) &&
++	    strcmp(component->name, RT5682S_DEV0_NAME)))
++		return 0;
++
++	if (IS_ERR(priv->i2so1_mclk))
++		return 0;
++
++	switch (level) {
++	case SND_SOC_BIAS_OFF:
++		if (!__clk_is_enabled(priv->i2so1_mclk))
++			return 0;
++
++		dev_dbg(card->dev, "Disable i2so1");
++		clk_disable_unprepare(priv->i2so1_mclk);
++		break;
++	case SND_SOC_BIAS_ON:
++		dev_dbg(card->dev, "Enable i2so1");
++		ret = clk_prepare_enable(priv->i2so1_mclk);
++		if (ret) {
++			dev_err(card->dev, "Can't enable mclk, err: %d\n", ret);
++			return ret;
++		}
++		break;
++	default:
++		break;
++	}
++
++	return ret;
++}
++
++
+ enum {
+ 	DAI_LINK_DL2_FE,
+ 	DAI_LINK_DL3_FE,
+@@ -1040,6 +1086,7 @@ static struct snd_soc_card mt8195_mt6359_rt1011_rt5682_soc_card = {
+ 	.num_dapm_routes = ARRAY_SIZE(mt8195_mt6359_rt1011_rt5682_routes),
+ 	.codec_conf = rt1011_amp_conf,
+ 	.num_configs = ARRAY_SIZE(rt1011_amp_conf),
++	.set_bias_level_post = mt8195_set_bias_level_post,
+ };
+ 
+ static int mt8195_mt6359_rt1011_rt5682_dev_probe(struct platform_device *pdev)
+@@ -1072,6 +1119,19 @@ static int mt8195_mt6359_rt1011_rt5682_dev_probe(struct platform_device *pdev)
+ 		return -EINVAL;
+ 	}
+ 
++	priv->i2so1_mclk = devm_clk_get(&pdev->dev, "i2so1_mclk");
++	if (IS_ERR(priv->i2so1_mclk)) {
++		ret = PTR_ERR(priv->i2so1_mclk);
++		if (ret == -ENOENT) {
++			dev_dbg(&pdev->dev,
++				"Failed to get i2so1_mclk, defer probe\n");
++			return -EPROBE_DEFER;
++		}
++
++		dev_err(&pdev->dev, "Failed to get i2so1_mclk, err:%d\n", ret);
++		return ret;
++	}
++
+ 	for_each_card_prelinks(card, i, dai_link) {
+ 		if (!dai_link->platforms->name)
+ 			dai_link->platforms->of_node = priv->platform_node;
+diff --git a/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-rt5682.c b/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-rt5682.c
+index fa50a31e9718..b2c3b57da9c4 100644
+--- a/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-rt5682.c
++++ b/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-rt5682.c
+@@ -50,6 +50,7 @@ struct mt8195_mt6359_rt1019_rt5682_priv {
+ 	struct snd_soc_jack headset_jack;
+ 	struct snd_soc_jack dp_jack;
+ 	struct snd_soc_jack hdmi_jack;
++	struct clk *i2so1_mclk;
+ };
+ 
+ static const struct snd_soc_dapm_widget
+@@ -96,8 +97,6 @@ static int mt8195_rt5682_etdm_hw_params(struct snd_pcm_substream *substream,
+ 	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
+ 	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
+ 	unsigned int rate = params_rate(params);
+-	unsigned int mclk_fs_ratio = 128;
+-	unsigned int mclk_fs = rate * mclk_fs_ratio;
+ 	int bitwidth;
+ 	int ret;
+ 
+@@ -113,25 +112,22 @@ static int mt8195_rt5682_etdm_hw_params(struct snd_pcm_substream *substream,
+ 		return ret;
+ 	}
+ 
+-	ret = snd_soc_dai_set_pll(codec_dai, RT5682_PLL1,
+-				  RT5682_PLL1_S_BCLK1,
+-				  params_rate(params) * 64,
+-				  params_rate(params) * 512);
++	ret = snd_soc_dai_set_pll(codec_dai, RT5682_PLL1, RT5682_PLL1_S_MCLK,
++				  rate * 256, rate * 512);
+ 	if (ret) {
+ 		dev_err(card->dev, "failed to set pll\n");
+ 		return ret;
+ 	}
+ 
+-	ret = snd_soc_dai_set_sysclk(codec_dai,
+-				     RT5682_SCLK_S_PLL1,
+-				     params_rate(params) * 512,
+-				     SND_SOC_CLOCK_IN);
++	ret = snd_soc_dai_set_sysclk(codec_dai, RT5682_SCLK_S_PLL1,
++				     rate * 512, SND_SOC_CLOCK_IN);
+ 	if (ret) {
+ 		dev_err(card->dev, "failed to set sysclk\n");
+ 		return ret;
+ 	}
+ 
+-	return snd_soc_dai_set_sysclk(cpu_dai, 0, mclk_fs, SND_SOC_CLOCK_OUT);
++	return snd_soc_dai_set_sysclk(cpu_dai, 0, rate * 256,
++				      SND_SOC_CLOCK_OUT);
+ }
+ 
+ static const struct snd_soc_ops mt8195_rt5682_etdm_ops = {
+@@ -564,6 +560,50 @@ static const struct snd_soc_ops mt8195_capture_ops = {
+ 	.startup = mt8195_capture_startup,
+ };
+ 
++static int mt8195_set_bias_level_post(struct snd_soc_card *card,
++	struct snd_soc_dapm_context *dapm, enum snd_soc_bias_level level)
++{
++	struct snd_soc_component *component = dapm->component;
++	struct mt8195_mt6359_rt1019_rt5682_priv *priv =
++		snd_soc_card_get_drvdata(card);
++	int ret = 0;
++
++	/*
++	 * It's required to control mclk directly in the set_bias_level_post
++	 * function for rt5682 and rt5682s codec, or the unexpected pop happens
++	 * at the end of playback.
++	 */
++	if (!component ||
++	    (strcmp(component->name, RT5682_DEV0_NAME) &&
++	    strcmp(component->name, RT5682S_DEV0_NAME)))
++		return 0;
++
++	if (IS_ERR(priv->i2so1_mclk))
++		return 0;
++
++	switch (level) {
++	case SND_SOC_BIAS_OFF:
++		if (!__clk_is_enabled(priv->i2so1_mclk))
++			return 0;
++
++		dev_dbg(card->dev, "Disable i2so1");
++		clk_disable_unprepare(priv->i2so1_mclk);
++		break;
++	case SND_SOC_BIAS_ON:
++		dev_dbg(card->dev, "Enable i2so1");
++		ret = clk_prepare_enable(priv->i2so1_mclk);
++		if (ret) {
++			dev_err(card->dev, "Can't enable mclk, err: %d\n", ret);
++			return ret;
++		}
++		break;
++	default:
++		break;
++	}
++
++	return ret;
++}
++
+ enum {
+ 	DAI_LINK_DL2_FE,
+ 	DAI_LINK_DL3_FE,
+@@ -1203,6 +1243,7 @@ static struct snd_soc_card mt8195_mt6359_rt1019_rt5682_soc_card = {
+ 	.num_dapm_widgets = ARRAY_SIZE(mt8195_mt6359_rt1019_rt5682_widgets),
+ 	.dapm_routes = mt8195_mt6359_rt1019_rt5682_routes,
+ 	.num_dapm_routes = ARRAY_SIZE(mt8195_mt6359_rt1019_rt5682_routes),
++	.set_bias_level_post = mt8195_set_bias_level_post,
+ };
+ 
+ static int mt8195_dailink_parse_of(struct snd_soc_card *card, struct device_node *np,
+@@ -1285,6 +1326,19 @@ static int mt8195_mt6359_rt1019_rt5682_dev_probe(struct platform_device *pdev)
+ 		return -EINVAL;
+ 	}
+ 
++	priv->i2so1_mclk = devm_clk_get(&pdev->dev, "i2so1_mclk");
++	if (IS_ERR(priv->i2so1_mclk)) {
++		ret = PTR_ERR(priv->i2so1_mclk);
++		if (ret == -ENOENT) {
++			dev_dbg(&pdev->dev,
++				"Failed to get i2so1_mclk, defer probe\n");
++			return -EPROBE_DEFER;
++		}
++
++		dev_err(&pdev->dev, "Failed to get i2so1_mclk, err:%d\n", ret);
++		return ret;
++	}
++
+ 	/* dai link */
+ 	priv->adsp_node = of_parse_phandle(pdev->dev.of_node,
+ 					   "mediatek,adsp", 0);
+-- 
+2.18.0
 
-> 
-> Thanks,
-> 
-> 	Pingfan
->>>
->>> As a consequence, the virtual address set up by copy_oldmem_page() does
->>> not bail out from the test of virt_addr_valid() in check_heap_object(),
->>> and finally hits the BUG_ON().
->>>
->>> Since memblock allocator has no idea about when the memblock is fully
->>> populated, while efi_init() is aware, so tackling this issue by calling the
->>> interface early_init_dt_check_for_usable_mem_range() exposed by of/fdt.
->>>
->>> Fixes: b261dba2fdb2 ("arm64: kdump: Remove custom linux,usable-memory-range handling")
->>> Signed-off-by: Pingfan Liu <kernelfans@gmail.com>
->>> Cc: Rob Herring <robh+dt@kernel.org>
->>> Cc: Zhen Lei <thunder.leizhen@huawei.com>
->>> Cc: Catalin Marinas <catalin.marinas@arm.com>
->>> Cc: Will Deacon <will@kernel.org>
->>> Cc: Andrew Morton <akpm@linux-foundation.org>
->>> Cc: Mike Rapoport <rppt@kernel.org>
->>> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
->>> Cc: Frank Rowand <frowand.list@gmail.com>
->>> Cc: Ard Biesheuvel <ardb@kernel.org>
->>> Cc: Nick Terrell <terrelln@fb.com>
->>> Cc: linux-arm-kernel@lists.infradead.org
->>> To: devicetree@vger.kernel.org
->>> To: linux-efi@vger.kernel.org
->>> ---
->>> v2 -> v3:
->>>  use static inline stub to avoid #ifdef according to Rob's suggestion 
->>>
->>>  drivers/firmware/efi/efi-init.c | 5 +++++
->>>  drivers/of/fdt.c                | 2 +-
->>>  include/linux/of_fdt.h          | 2 ++
->>>  3 files changed, 8 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/firmware/efi/efi-init.c b/drivers/firmware/efi/efi-init.c
->>> index b19ce1a83f91..b2c829e95bd1 100644
->>> --- a/drivers/firmware/efi/efi-init.c
->>> +++ b/drivers/firmware/efi/efi-init.c
->>> @@ -235,6 +235,11 @@ void __init efi_init(void)
->>>  	}
->>>  
->>>  	reserve_regions();
->>> +	/*
->>> +	 * For memblock manipulation, the cap should come after the memblock_add().
->>> +	 * And now, memblock is fully populated, it is time to do capping.
->>> +	 */
->>> +	early_init_dt_check_for_usable_mem_range();
->>>  	efi_esrt_init();
->>>  	efi_mokvar_table_init();
->>>  
->>> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
->>> index 18a2df431bfd..aa07ef5cab5f 100644
->>> --- a/drivers/of/fdt.c
->>> +++ b/drivers/of/fdt.c
->>> @@ -972,7 +972,7 @@ static unsigned long chosen_node_offset = -FDT_ERR_NOTFOUND;
->>>   * location from flat tree
->>>   * @node: reference to node containing usable memory range location ('chosen')
->>>   */
->>> -static void __init early_init_dt_check_for_usable_mem_range(void)
->>> +void __init early_init_dt_check_for_usable_mem_range(void)
->>>  {
->>>  	const __be32 *prop;
->>>  	int len;
->>> diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
->>> index cf48983d3c86..ad09beb6d13c 100644
->>> --- a/include/linux/of_fdt.h
->>> +++ b/include/linux/of_fdt.h
->>> @@ -62,6 +62,7 @@ extern int early_init_dt_scan_chosen(unsigned long node, const char *uname,
->>>  				     int depth, void *data);
->>>  extern int early_init_dt_scan_memory(unsigned long node, const char *uname,
->>>  				     int depth, void *data);
->>> +extern void early_init_dt_check_for_usable_mem_range(void);
->>>  extern int early_init_dt_scan_chosen_stdout(void);
->>>  extern void early_init_fdt_scan_reserved_mem(void);
->>>  extern void early_init_fdt_reserve_self(void);
->>> @@ -86,6 +87,7 @@ extern void unflatten_and_copy_device_tree(void);
->>>  extern void early_init_devtree(void *);
->>>  extern void early_get_first_memblock_info(void *, phys_addr_t *);
->>>  #else /* CONFIG_OF_EARLY_FLATTREE */
->>> +static inline void early_init_dt_check_for_usable_mem_range(void) {}
->>>  static inline int early_init_dt_scan_chosen_stdout(void) { return -ENODEV; }
->>>  static inline void early_init_fdt_scan_reserved_mem(void) {}
->>>  static inline void early_init_fdt_reserve_self(void) {}
->>>
->>
->> _______________________________________________
->> linux-arm-kernel mailing list
->> linux-arm-kernel@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> .
-> 
