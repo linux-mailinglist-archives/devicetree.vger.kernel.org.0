@@ -2,121 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 072A24755CB
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:06:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4165D4755D7
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:08:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241497AbhLOKGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 05:06:21 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:42366 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236515AbhLOKGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Dec 2021 05:06:21 -0500
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1BF95RNJ015581;
-        Wed, 15 Dec 2021 11:06:06 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : from : to
- : cc : references : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=gIjXSmze8zGdJ/iWENvemHIdtGMxjbPRELTGudH1KNA=;
- b=YG5CIlfgJQEtTPMvA/CPRRJW02ntN5FmDFK1868vXMoWcni2i2UJbBBSNm6TGDDLPTnk
- 8f2tDU+iEZYD+IPPWDyQ/BtvPNBUw36IFE9VSmd9LHyEVxqex32q9A2NNa/7jihQTX35
- ZnrzfRlWF+fK3+PT3yBJ2wlAARbYNasR5Z8NmO/QtJ99Q6suKP2B6R4kGY/eCsZ3p9ec
- uIHbs97FIryoMHSOIkZSnDSRNPUOyJdz7DLKFuDlgD+NBrWkqsosi2DaSwJIZGMvt5u2
- Dhkowma/HM7iOERbLBOy4OZtkcc43XaPuipPkDokI6YR25gCL/LUQVxnGr3fNnwxR9AY XA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3cxrthxpx0-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 15 Dec 2021 11:06:05 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 015EB10002A;
-        Wed, 15 Dec 2021 11:06:05 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EA55722ECC4;
-        Wed, 15 Dec 2021 11:06:04 +0100 (CET)
-Received: from lmecxl0573.lme.st.com (10.75.127.48) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 15 Dec
- 2021 11:06:04 +0100
-Subject: Re: [PATCH 1/2] clk: st: clkgen-fsyn: search reg within node or
- parent
-From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
-To:     Alain Volmat <avolmat@me.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Lee Jones <lee.jones@linaro.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20211202072850.194314-1-avolmat@me.com>
- <20211202072850.194314-2-avolmat@me.com>
- <0759650c-7e56-4af5-6957-ac0055341d93@foss.st.com>
-Message-ID: <18d1ceab-d2c7-9501-40a3-2bcb36ca1249@foss.st.com>
-Date:   Wed, 15 Dec 2021 11:06:04 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S231666AbhLOKIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 05:08:10 -0500
+Received: from smtp-out1.suse.de ([195.135.220.28]:44234 "EHLO
+        smtp-out1.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233951AbhLOKIK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:08:10 -0500
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out1.suse.de (Postfix) with ESMTPS id 17BB821106;
+        Wed, 15 Dec 2021 10:08:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1639562889; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=SZ3gWdPiA4l1PU3+PUxMuDd3U82lUuG/usU3L4subGs=;
+        b=bUkTXtUjGT+lIWvQ8HZqGVdqN+4ttTz+CyOON/eNnj4F8OMxJ23jZ5KqAu0BaNJqOd+UPn
+        cFhdDKEYDfaEyHUXsXftZYf2K4hw977FiyA6ujtu6CXFadMCpPyBa1fyZy3WvyD2Xo3ITc
+        YNhEuGWPUOiZPwdyRCYjp3c1AqbKhhw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1639562889;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=SZ3gWdPiA4l1PU3+PUxMuDd3U82lUuG/usU3L4subGs=;
+        b=3nXOiMTooelnt5SZ2CW1zinNYaMQUVBJzWfuoZQpboqiwDGNb70g+/42M1mxd/EjTL8pwe
+        66SJgxGy4Xt544Bw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id AE9F213B09;
+        Wed, 15 Dec 2021 10:08:08 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id jlyWKYi+uWGAZgAAMHmgww
+        (envelope-from <tzimmermann@suse.de>); Wed, 15 Dec 2021 10:08:08 +0000
+Message-ID: <36e94863-1e5c-a935-2f07-4b7041cec709@suse.de>
+Date:   Wed, 15 Dec 2021 11:08:08 +0100
 MIME-Version: 1.0
-In-Reply-To: <0759650c-7e56-4af5-6957-ac0055341d93@foss.st.com>
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH RESEND v4 v5 2/4] drm/vc4: Support nomodeset
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2021-12-15_07,2021-12-14_01,2021-12-02_01
+To:     Maxime Ripard <maxime@cerno.tech>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Dom Cobley <dom@raspberrypi.com>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20211215095117.176435-1-maxime@cerno.tech>
+ <20211215095117.176435-3-maxime@cerno.tech>
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+In-Reply-To: <20211215095117.176435-3-maxime@cerno.tech>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------iixYZJ0MIZsEQoF1kbbMrvV0"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ah one remark, reviewing the patch 2, i saw you added a pr_err() in case of error, 
-perhaps you can add one here also.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------iixYZJ0MIZsEQoF1kbbMrvV0
+Content-Type: multipart/mixed; boundary="------------x7oLJZSLiYHzTN7HJApC2QE6";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Maxime Ripard <maxime@cerno.tech>, Florian Fainelli
+ <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Scott Branden <sbranden@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>
+Cc: bcm-kernel-feedback-list@broadcom.com,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Phil Elwell <phil@raspberrypi.com>, Tim Gover <tim.gover@raspberrypi.com>,
+ Dom Cobley <dom@raspberrypi.com>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+Message-ID: <36e94863-1e5c-a935-2f07-4b7041cec709@suse.de>
+Subject: Re: [PATCH RESEND v4 v5 2/4] drm/vc4: Support nomodeset
+References: <20211215095117.176435-1-maxime@cerno.tech>
+ <20211215095117.176435-3-maxime@cerno.tech>
+In-Reply-To: <20211215095117.176435-3-maxime@cerno.tech>
 
-Patrice
+--------------x7oLJZSLiYHzTN7HJApC2QE6
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-On 12/15/21 11:03 AM, Patrice CHOTARD wrote:
-> Hi Alain
-> 
-> On 12/2/21 8:28 AM, Alain Volmat wrote:
->> In order to avoid having duplicated addresses within the DT,
->> only have one unit-address per clockgen and each driver within
->> the clockgen should look at the parent node (overall clockgen)
->> to figure out the reg property.  Such behavior is already in
->> place in other STi platform clock drivers such as clk-flexgen
->> and clkgen-pll.  Keep backward compatibility by first looking
->> at reg within the node before looking into the parent node.
->>
->> Signed-off-by: Alain Volmat <avolmat@me.com>
->> ---
->>  drivers/clk/st/clkgen-fsyn.c | 11 +++++++++--
->>  1 file changed, 9 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/clk/st/clkgen-fsyn.c b/drivers/clk/st/clkgen-fsyn.c
->> index 164285d6be97..0d41164f2c7f 100644
->> --- a/drivers/clk/st/clkgen-fsyn.c
->> +++ b/drivers/clk/st/clkgen-fsyn.c
->> @@ -988,9 +988,16 @@ static void __init st_of_quadfs_setup(struct device_node *np,
->>  	void __iomem *reg;
->>  	spinlock_t *lock;
->>  
->> +	/*
->> +	 * First check for reg property within the node to keep backward
->> +	 * compatibility, then if reg doesn't exist look at the parent node
->> +	 */
->>  	reg = of_iomap(np, 0);
->> -	if (!reg)
->> -		return;
->> +	if (!reg) {
->> +		reg = of_iomap(of_get_parent(np), 0);
->> +		if (!reg)
->> +			return;
->> +	}
->>  
->>  	clk_parent_name = of_clk_get_parent_name(np, 0);
->>  	if (!clk_parent_name)
->>
-> Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
-> 
-> Thanks
-> Patrice
-> 
+SGkNCg0KQW0gMTUuMTIuMjEgdW0gMTA6NTEgc2NocmllYiBNYXhpbWUgUmlwYXJkOg0KPiBJ
+ZiB3ZSBoYXZlIG5vbW9kZXNldCBvbiB0aGUga2VybmVsIGNvbW1hbmQgbGluZSB3ZSBzaG91
+bGQgaGF2ZSB0aGUNCj4gZmlybXdhcmUgZnJhbWVidWZmZXIgZHJpdmVyIGtlcHQgYXMgaXMg
+YW5kIG5vdCB0cnkgdG8gbG9hZCB0aGUNCj4gZnVsbC1ibG93biBLTVMgZHJpdmVyLg0KPiAN
+Cj4gSW4gdGhpcyBjYXNlLCBsZXQncyBqdXN0IHJlZ2lzdGVyIHRoZSB2M2QgZHJpdmVyLg0K
+PiANCj4gU2lnbmVkLW9mZi1ieTogTWF4aW1lIFJpcGFyZCA8bWF4aW1lQGNlcm5vLnRlY2g+
+DQo+IC0tLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS92YzQvdmM0X2Rydi5jIHwgMyArKysNCj4g
+ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL3ZjNC92YzRfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vdmM0L3Zj
+NF9kcnYuYw0KPiBpbmRleCAxNmFiYzNhM2Q2MDEuLmQzY2FlODRhNGM0ZSAxMDA2NDQNCj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL3ZjNC92YzRfZHJ2LmMNCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL3ZjNC92YzRfZHJ2LmMNCj4gQEAgLTM1Nyw2ICszNTcsOSBAQCBzdGF0aWMgaW50
+IF9faW5pdCB2YzRfZHJtX3JlZ2lzdGVyKHZvaWQpDQo+ICAgew0KPiAgIAlpbnQgcmV0Ow0K
+PiAgIA0KPiArCWlmIChkcm1fZmlybXdhcmVfZHJpdmVyc19vbmx5KCkpDQo+ICsJCXJldHVy
+biAtRU5PREVWOw0KPiArDQoNCkp1c3Qgbm93IHRoYXQgeW91J3ZlIHVwZGF0ZWQgaXQsIEx1
+Y2FzIFN0YWNoIGhhZCBhIHNpbWlsYXIgY29uY2VybiBhYm91dCANCmV0bmF2aXYsIHdoaWNo
+IGRvZXNuJ3QgZG8gbW9kZXNldHRpbmcgZWl0aGVyLiBTbyB3ZSBwcm9iYWJseSB3YW50IHRv
+IA0KZGlzY3VzcyB3aGF0IHRvIGRvIGFib3V0IGRyaXZlcnMgdGhhdCBoYXZlIG5vIG1vZGVz
+ZXR0aW5nIHNlcGFyYXRlbHkuDQoNCklmIHlvdSB3YW50IHRvIGxhbmQgdGhlIHBhdGNoLCBm
+b3IgZWl0aGVyIHZlcnNpb24gb2YgdGhlIGNvZGUsIHdpdGggb3IgDQp3aXRob3V0IHZjMzoN
+Cg0KUmV2aWV3ZWQtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRl
+Pg0KDQpCZXN0IHJlZ2FyZA0KVGhvbWFzDQoNCj4gICAJcmV0ID0gcGxhdGZvcm1fcmVnaXN0
+ZXJfZHJpdmVycyhjb21wb25lbnRfZHJpdmVycywNCj4gICAJCQkJCUFSUkFZX1NJWkUoY29t
+cG9uZW50X2RyaXZlcnMpKTsNCj4gICAJaWYgKHJldCkNCj4gDQoNCi0tIA0KVGhvbWFzIFpp
+bW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29s
+dXRpb25zIEdlcm1hbnkgR21iSA0KTWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBH
+ZXJtYW55DQooSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJlcjog
+SXZvIFRvdGV2DQo=
+
+--------------x7oLJZSLiYHzTN7HJApC2QE6--
+
+--------------iixYZJ0MIZsEQoF1kbbMrvV0
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmG5vogFAwAAAAAACgkQlh/E3EQov+Aa
+HA/+JE4Tj4bab3LlorohZhymI+gmBsA5+bLO+BkW6aGqSUz9mtXxjPxRXIJC50uR4CmFnOxgieLt
+gKDFfoKybfXAZG36duc38C57KKqYVZ11pBRL/9BDB5CpMOq21cBWex4YUY4990MuZN+X3TFC/7fM
+g8ubmPmo/xw7FZZJl29a964+6ayvmZ5k7FlY35lwCiLgytVkMsEtzCFLf6T8oFo6XV/qWGFnFtnO
+RhBk7+m3uTKyGEGE41Y+kj5gdzXkHWa+YdBfArEs75wCKfPOKI8FeXwX1ITgjTsWPQwGypo7i4Hh
+EcywVb263z/JlnL2aNzAsxX49VBElIQPEneLdj37C3lV+qZgGbxy1ggEOW7RuMTPVyTUGdN0cBar
+ngehzdpcKpWPx7IdAJF6h+KFnh9Wk/OzYb04asTmsBaripd2/BoKij5d15cdoPVAtVFUK4tq0AZ9
+71y3S+rYWviAobUdP8OEwIG/M54KszHp6bZRt0DDFft6AVRYUcVGAeolTEW8sQFtxUbKx0YgutXY
+4pv3s1s+kMS4xz5gMOCbTVLiuBoNru+w6uu422vpZVtcn7kcFVajejiTvGk5s5VwVCy+YaXos8vG
+6oImHxZm7CJO75iyQss2xw3rNQdysSoxw9PEgP39TifVevKOtpXJ4aHdpF60dkMKer0vETvkUfVr
+F3w=
+=H+8V
+-----END PGP SIGNATURE-----
+
+--------------iixYZJ0MIZsEQoF1kbbMrvV0--
