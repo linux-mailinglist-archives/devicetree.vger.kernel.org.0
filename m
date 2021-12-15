@@ -2,161 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4165D4755D7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:08:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C1BA4755F7
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:13:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231666AbhLOKIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 05:08:10 -0500
-Received: from smtp-out1.suse.de ([195.135.220.28]:44234 "EHLO
-        smtp-out1.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233951AbhLOKIK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:08:10 -0500
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        id S241532AbhLOKNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 05:13:53 -0500
+Received: from gandalf.ozlabs.org ([150.107.74.76]:36497 "EHLO
+        gandalf.ozlabs.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231890AbhLOKNw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:13:52 -0500
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-out1.suse.de (Postfix) with ESMTPS id 17BB821106;
-        Wed, 15 Dec 2021 10:08:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1639562889; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=SZ3gWdPiA4l1PU3+PUxMuDd3U82lUuG/usU3L4subGs=;
-        b=bUkTXtUjGT+lIWvQ8HZqGVdqN+4ttTz+CyOON/eNnj4F8OMxJ23jZ5KqAu0BaNJqOd+UPn
-        cFhdDKEYDfaEyHUXsXftZYf2K4hw977FiyA6ujtu6CXFadMCpPyBa1fyZy3WvyD2Xo3ITc
-        YNhEuGWPUOiZPwdyRCYjp3c1AqbKhhw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1639562889;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=SZ3gWdPiA4l1PU3+PUxMuDd3U82lUuG/usU3L4subGs=;
-        b=3nXOiMTooelnt5SZ2CW1zinNYaMQUVBJzWfuoZQpboqiwDGNb70g+/42M1mxd/EjTL8pwe
-        66SJgxGy4Xt544Bw==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id AE9F213B09;
-        Wed, 15 Dec 2021 10:08:08 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id jlyWKYi+uWGAZgAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Wed, 15 Dec 2021 10:08:08 +0000
-Message-ID: <36e94863-1e5c-a935-2f07-4b7041cec709@suse.de>
-Date:   Wed, 15 Dec 2021 11:08:08 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH RESEND v4 v5 2/4] drm/vc4: Support nomodeset
-Content-Language: en-US
-To:     Maxime Ripard <maxime@cerno.tech>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4JDWL53dllz4xhp;
+        Wed, 15 Dec 2021 21:13:49 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+        s=201909; t=1639563231;
+        bh=3WntohgGBSsd5zLTEq/JbPVU3YTQL8XrTLe5DXnpfYU=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=a8eNNWo605MEiL8ylUOt7YdhmBZnPIijg5uWdKFJI3EqXiu+9jJpFpl0qRgxjzNJr
+         55GgeghdhXOIhoWSsLRVt5H5NVVbMTJzW2/EjE5nILpENBmH45hJ0/QPUHs7Pj2XRc
+         /o9AAUkwztZJ310T95OfI0JVUjoY7WFCJ+z7ykWMAka6NRYrnV1Q9t1M2A3byErDiI
+         cjyrvJtn5OSAe6ONWSFVW8pDPsEZs9qTceN3/135nZOJfw1fK94BI4LRatIT6WHA08
+         KkCkMzLAlITDIIbrhWV0KkJLHITxpaRN4bnqsKy8EHEWN95bNBXOqGub2C2EtCC5Xs
+         lnLM4fX6QarMA==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Rob Herring <robh@kernel.org>, John Crispin <john@phrozen.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
         Frank Rowand <frowand.list@gmail.com>
-Cc:     bcm-kernel-feedback-list@broadcom.com,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dom Cobley <dom@raspberrypi.com>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20211215095117.176435-1-maxime@cerno.tech>
- <20211215095117.176435-3-maxime@cerno.tech>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20211215095117.176435-3-maxime@cerno.tech>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------iixYZJ0MIZsEQoF1kbbMrvV0"
+Cc:     linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        Frank Rowand <frank.rowand@sony.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] of/fdt: Rework early_init_dt_scan_memory() to call
+ directly
+In-Reply-To: <20211214202652.3894707-1-robh@kernel.org>
+References: <20211214202652.3894707-1-robh@kernel.org>
+Date:   Wed, 15 Dec 2021 21:13:46 +1100
+Message-ID: <871r2emazp.fsf@mpe.ellerman.id.au>
+MIME-Version: 1.0
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------iixYZJ0MIZsEQoF1kbbMrvV0
-Content-Type: multipart/mixed; boundary="------------x7oLJZSLiYHzTN7HJApC2QE6";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Maxime Ripard <maxime@cerno.tech>, Florian Fainelli
- <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Scott Branden <sbranden@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>
-Cc: bcm-kernel-feedback-list@broadcom.com,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Phil Elwell <phil@raspberrypi.com>, Tim Gover <tim.gover@raspberrypi.com>,
- Dom Cobley <dom@raspberrypi.com>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-Message-ID: <36e94863-1e5c-a935-2f07-4b7041cec709@suse.de>
-Subject: Re: [PATCH RESEND v4 v5 2/4] drm/vc4: Support nomodeset
-References: <20211215095117.176435-1-maxime@cerno.tech>
- <20211215095117.176435-3-maxime@cerno.tech>
-In-Reply-To: <20211215095117.176435-3-maxime@cerno.tech>
+Rob Herring <robh@kernel.org> writes:
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 5e216555fe4f..97d7607625ec 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -1078,49 +1078,50 @@ u64 __init dt_mem_next_cell(int s, const __be32 **cellp)
+>  /*
+>   * early_init_dt_scan_memory - Look for and parse memory nodes
+>   */
+> -int __init early_init_dt_scan_memory(unsigned long node, const char *uname,
+> -				     int depth, void *data)
+> +int __init early_init_dt_scan_memory(void)
+>  {
+> -	const char *type = of_get_flat_dt_prop(node, "device_type", NULL);
+> -	const __be32 *reg, *endp;
+> -	int l;
+> -	bool hotpluggable;
+> -
+> -	/* We are scanning "memory" nodes only */
+> -	if (type == NULL || strcmp(type, "memory") != 0)
+> -		return 0;
+> +	int node;
+> +	const void *fdt = initial_boot_params;
+>  
+> -	reg = of_get_flat_dt_prop(node, "linux,usable-memory", &l);
+> -	if (reg == NULL)
+> -		reg = of_get_flat_dt_prop(node, "reg", &l);
+> -	if (reg == NULL)
+> -		return 0;
+> +	for (node = fdt_node_offset_by_prop_value(fdt, -1, "device_type", "memory", 6);
+> +	     node != -FDT_ERR_NOTFOUND;
+> +	     node = fdt_node_offset_by_prop_value(fdt, node, "device_type", "memory", 6)) {
 
---------------x7oLJZSLiYHzTN7HJApC2QE6
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+The 6 there doesn't work on my machines.
 
-SGkNCg0KQW0gMTUuMTIuMjEgdW0gMTA6NTEgc2NocmllYiBNYXhpbWUgUmlwYXJkOg0KPiBJ
-ZiB3ZSBoYXZlIG5vbW9kZXNldCBvbiB0aGUga2VybmVsIGNvbW1hbmQgbGluZSB3ZSBzaG91
-bGQgaGF2ZSB0aGUNCj4gZmlybXdhcmUgZnJhbWVidWZmZXIgZHJpdmVyIGtlcHQgYXMgaXMg
-YW5kIG5vdCB0cnkgdG8gbG9hZCB0aGUNCj4gZnVsbC1ibG93biBLTVMgZHJpdmVyLg0KPiAN
-Cj4gSW4gdGhpcyBjYXNlLCBsZXQncyBqdXN0IHJlZ2lzdGVyIHRoZSB2M2QgZHJpdmVyLg0K
-PiANCj4gU2lnbmVkLW9mZi1ieTogTWF4aW1lIFJpcGFyZCA8bWF4aW1lQGNlcm5vLnRlY2g+
-DQo+IC0tLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS92YzQvdmM0X2Rydi5jIHwgMyArKysNCj4g
-ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL3ZjNC92YzRfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vdmM0L3Zj
-NF9kcnYuYw0KPiBpbmRleCAxNmFiYzNhM2Q2MDEuLmQzY2FlODRhNGM0ZSAxMDA2NDQNCj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL3ZjNC92YzRfZHJ2LmMNCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL3ZjNC92YzRfZHJ2LmMNCj4gQEAgLTM1Nyw2ICszNTcsOSBAQCBzdGF0aWMgaW50
-IF9faW5pdCB2YzRfZHJtX3JlZ2lzdGVyKHZvaWQpDQo+ICAgew0KPiAgIAlpbnQgcmV0Ow0K
-PiAgIA0KPiArCWlmIChkcm1fZmlybXdhcmVfZHJpdmVyc19vbmx5KCkpDQo+ICsJCXJldHVy
-biAtRU5PREVWOw0KPiArDQoNCkp1c3Qgbm93IHRoYXQgeW91J3ZlIHVwZGF0ZWQgaXQsIEx1
-Y2FzIFN0YWNoIGhhZCBhIHNpbWlsYXIgY29uY2VybiBhYm91dCANCmV0bmF2aXYsIHdoaWNo
-IGRvZXNuJ3QgZG8gbW9kZXNldHRpbmcgZWl0aGVyLiBTbyB3ZSBwcm9iYWJseSB3YW50IHRv
-IA0KZGlzY3VzcyB3aGF0IHRvIGRvIGFib3V0IGRyaXZlcnMgdGhhdCBoYXZlIG5vIG1vZGVz
-ZXR0aW5nIHNlcGFyYXRlbHkuDQoNCklmIHlvdSB3YW50IHRvIGxhbmQgdGhlIHBhdGNoLCBm
-b3IgZWl0aGVyIHZlcnNpb24gb2YgdGhlIGNvZGUsIHdpdGggb3IgDQp3aXRob3V0IHZjMzoN
-Cg0KUmV2aWV3ZWQtYnk6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRl
-Pg0KDQpCZXN0IHJlZ2FyZA0KVGhvbWFzDQoNCj4gICAJcmV0ID0gcGxhdGZvcm1fcmVnaXN0
-ZXJfZHJpdmVycyhjb21wb25lbnRfZHJpdmVycywNCj4gICAJCQkJCUFSUkFZX1NJWkUoY29t
-cG9uZW50X2RyaXZlcnMpKTsNCj4gICAJaWYgKHJldCkNCj4gDQoNCi0tIA0KVGhvbWFzIFpp
-bW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXINClNVU0UgU29mdHdhcmUgU29s
-dXRpb25zIEdlcm1hbnkgR21iSA0KTWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBH
-ZXJtYW55DQooSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpDQpHZXNjaMOkZnRzZsO8aHJlcjog
-SXZvIFRvdGV2DQo=
+It needs to match the trailing NULL, so 7 or sizeof("memory") works.
 
---------------x7oLJZSLiYHzTN7HJApC2QE6--
-
---------------iixYZJ0MIZsEQoF1kbbMrvV0
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmG5vogFAwAAAAAACgkQlh/E3EQov+Aa
-HA/+JE4Tj4bab3LlorohZhymI+gmBsA5+bLO+BkW6aGqSUz9mtXxjPxRXIJC50uR4CmFnOxgieLt
-gKDFfoKybfXAZG36duc38C57KKqYVZ11pBRL/9BDB5CpMOq21cBWex4YUY4990MuZN+X3TFC/7fM
-g8ubmPmo/xw7FZZJl29a964+6ayvmZ5k7FlY35lwCiLgytVkMsEtzCFLf6T8oFo6XV/qWGFnFtnO
-RhBk7+m3uTKyGEGE41Y+kj5gdzXkHWa+YdBfArEs75wCKfPOKI8FeXwX1ITgjTsWPQwGypo7i4Hh
-EcywVb263z/JlnL2aNzAsxX49VBElIQPEneLdj37C3lV+qZgGbxy1ggEOW7RuMTPVyTUGdN0cBar
-ngehzdpcKpWPx7IdAJF6h+KFnh9Wk/OzYb04asTmsBaripd2/BoKij5d15cdoPVAtVFUK4tq0AZ9
-71y3S+rYWviAobUdP8OEwIG/M54KszHp6bZRt0DDFft6AVRYUcVGAeolTEW8sQFtxUbKx0YgutXY
-4pv3s1s+kMS4xz5gMOCbTVLiuBoNru+w6uu422vpZVtcn7kcFVajejiTvGk5s5VwVCy+YaXos8vG
-6oImHxZm7CJO75iyQss2xw3rNQdysSoxw9PEgP39TifVevKOtpXJ4aHdpF60dkMKer0vETvkUfVr
-F3w=
-=H+8V
------END PGP SIGNATURE-----
-
---------------iixYZJ0MIZsEQoF1kbbMrvV0--
+cheers
