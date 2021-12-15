@@ -2,76 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85C04476326
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:24:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AEB347632F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:25:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235756AbhLOUYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 15:24:10 -0500
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:43867 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235748AbhLOUYJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:24:09 -0500
-Received: by mail-ot1-f51.google.com with SMTP id i5-20020a05683033e500b0057a369ac614so26326414otu.10;
-        Wed, 15 Dec 2021 12:24:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=cHfNSs54Slrx4wtANzUpexy4Yem5PpNyZASXoL+St08=;
-        b=dSvjpJOVsaCnxxzF2adnGPwhib318grV0S53VCRdy/qSF9R/s4zpkwbO+4OxMQ2lFb
-         nLU1eJrMlaO2s20D7ztNRlGT+G1M7uNeoER70rR/Cat5pmbQmESKDmubvPysXyjaPIYA
-         2qBCK2NVrSprtqkz53RPnRHn8cHWz4VDcScUt6Nla724HWQFKOVWnSEuevdQBn/ocM/h
-         wrrQfuwHbCXnEZLKyechFJ3QWC4GfUOnlqAIEssXS7KfGyv+fOwZ+GYll00B/8tIXdSh
-         sWo2T2lOXN11cwdEAIyyZWszjW3Cb44/ndnXSk/iCkT/0PF2Ad2OxxJOxjkQ3sAIP3jg
-         GoKA==
-X-Gm-Message-State: AOAM530er+FRNmcMTt8t0s72VfVhVddtEz4z4yixyPuwingkeyvCol1x
-        n9WS6yCoFNwc0O/t7TGKhw==
-X-Google-Smtp-Source: ABdhPJzR65AsskXOxu12cvr8FeJjC048WZ1Ev6UZcGjufrn57yxDWUHLYrTWxWd3GOD7x5OcOdfq3w==
-X-Received: by 2002:a9d:61d4:: with SMTP id h20mr10154106otk.202.1639599848971;
-        Wed, 15 Dec 2021 12:24:08 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e16sm645882ook.38.2021.12.15.12.24.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 12:24:08 -0800 (PST)
-Received: (nullmailer pid 1776423 invoked by uid 1000);
-        Wed, 15 Dec 2021 20:24:07 -0000
-Date:   Wed, 15 Dec 2021 14:24:07 -0600
-From:   Rob Herring <robh@kernel.org>
+        id S235696AbhLOUZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 15:25:29 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:44836 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231725AbhLOUZ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:25:29 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D01F361AA2;
+        Wed, 15 Dec 2021 20:25:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D83D9C36AE3;
+        Wed, 15 Dec 2021 20:25:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639599928;
+        bh=BVkzCzFwrOwCwYtYhefPQ6DcWed6QHqjelnD/Kl5z40=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RCtu/RoqhecceDeymibV29/lFoWKyAgE74YOq7yR1BiJae8NrnLmXWA9FFLkFPlRf
+         +Q/ouiPMkOUxU6ftt1lVERwV0rCU3/4IibMZBsMLhcGyLgEMcuNF+Onyg65ajMei4Z
+         tecUOC5ZtXmrGgxM8JeRu08TTwok5kpLJNBcl4MRza+tMUI5hYDlZUt0T9szhtAJsp
+         3R3guhftWuUcMpTwpZOKRSVLY18nWCmQQ5+bidm+tvRFYCCew9i7QX8IMlIaRYnFj2
+         Q0R/Aei1HuaveFEPDLLEsVZiFdlT2ePSVr9VYbPdU+abMf94OZ7XQlJZZ8+SQZH3an
+         bKDPtTVUWne2A==
+Date:   Wed, 15 Dec 2021 20:25:22 +0000
+From:   Mark Brown <broonie@kernel.org>
 To:     David Heidelberg <david@ixit.cz>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-rtc@vger.kernel.org, Alessandro Zummo <a.zummo@towertech.it>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Caleb Connolly <caleb@connolly.tech>,
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Satya Priya <skakit@codeaurora.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rtc: qcom-pm8xxx-rtc: update register
- numbers
-Message-ID: <YbpO53ySu7yr01NR@robh.at.kernel.org>
-References: <20211213192946.111320-1-david@ixit.cz>
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        ~okias/devicetree@lists.sr.ht, Dmitry Osipenko <digetx@gmail.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: sound: nvidia,tegra-audio: Convert
+ multiple txt bindings to yaml
+Message-ID: <YbpPModNbC1aLWvy@sirena.org.uk>
+References: <20211211224946.79875-1-david@ixit.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="lvwbvfwXnj48lQFC"
 Content-Disposition: inline
-In-Reply-To: <20211213192946.111320-1-david@ixit.cz>
+In-Reply-To: <20211211224946.79875-1-david@ixit.cz>
+X-Cookie: Void where prohibited by law.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Dec 2021 20:29:45 +0100, David Heidelberg wrote:
-> Extend registers up to 2, also document their names.
-> 
-> Also fixes warnings generated by `make qcom/sdm845-oneplus-fajita.dtb`:
-> arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: rtc@6000: reg: [[24576], [24832]] is too long
->         From schema: Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-> arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: rtc@6000: 'reg-names' does not match any of the regexes: 'pinctrl-[0-9]+'
->         From schema: Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  .../devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml         | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+--lvwbvfwXnj48lQFC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Sat, Dec 11, 2021 at 11:49:44PM +0100, David Heidelberg wrote:
+> Convert Tegra audio complex with the
+>   * ALC5632
+>   * MAX98090
+>   * RT5640
+>   * RT5677
+
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
+
+--lvwbvfwXnj48lQFC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmG6TzEACgkQJNaLcl1U
+h9AePAgAg6ul9yfOmKkMFgIJAAizLWOO5NqKi49ulaQFjkUkT6t369xEd3ypgnbX
++fdj6ae4ZqM7LHJFuyht8V+oJ74bdZ02bezUXvh4FrILkiibqFfR6OkIGNpIHemK
+o1BpcH4wXGSy2qIbrUa6kVPwhzK40//o1pfskfzG9EN7FAmcCCnbwuOPZPKbrTt4
+xOyNCP3kd6h4S0yt85jGY4T/czPvvAqM/0FpvqMtWbQNFxk5ULsvbZUESVhCICzl
+8YTgGUpYnrbwJL/bXKTc4Kg3I0WYCoS5AcFNQJFI7tiruY5fDQxIDiafZ7EDk7RB
+EnVAWBDelCmTSLxhwJamgK2+tTMzNg==
+=/kfI
+-----END PGP SIGNATURE-----
+
+--lvwbvfwXnj48lQFC--
