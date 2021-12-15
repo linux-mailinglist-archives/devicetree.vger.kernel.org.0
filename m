@@ -2,71 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AC76475DB9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 17:43:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92A30475DC3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 17:46:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244952AbhLOQn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 11:43:29 -0500
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:40663 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231801AbhLOQn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 11:43:28 -0500
-Received: by mail-ot1-f53.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so25625552otj.7;
-        Wed, 15 Dec 2021 08:43:28 -0800 (PST)
+        id S244965AbhLOQpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 11:45:40 -0500
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:41543 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231883AbhLOQpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 11:45:40 -0500
+Received: by mail-oi1-f182.google.com with SMTP id u74so32428037oie.8;
+        Wed, 15 Dec 2021 08:45:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CNXsHLu+Gq71Y75lX9jVBGOmw/DgDu1JjCJ+Q0vaHsk=;
-        b=6ecVCnZIt3NqwOV/EqWf02w6doiK+Rq1gp5Zi6RruuDYWyi8lvhCqiBodczVVpFl+1
-         avCoD+5UhgAhZEkLKk+ixG+ge1Le4Hjm9uHNCFhbrMhKb2p/BV0YZYecJyHjZaTHEVAh
-         mxVFLYOMewWM6IpAB+gc/h5/Mc4zhSYRQeCWD0m1sI9M12aTRbsBpq0ULfYBtr/Ier1Y
-         hI3SsQ2rBBwSyCM55ZdUEM/kww+X9NoIGyOf1oTUpwKc4+/virxm03nTKKVvyIIkPZ2B
-         j0kx3Ocdxo2y+sfVCUgwbhtU1OpvUX4HJZ0EmbY/yiQe2Q7cNW1w5+QyfGArfaX2pP7i
-         hySQ==
-X-Gm-Message-State: AOAM532o0E6q2nOkB8R6vcEMjJ90uNw7tmXRwQP5fu477oXvC5jZqp99
-        c/1sSyrJfhzE/m1Y9z4eyQ==
-X-Google-Smtp-Source: ABdhPJyiEZp5Q71GMOSK1C2jg9dTbx2jpXrRU/9if9iPhjgRzrw/iye3NbG+IFlWU4Q7zshMxC4QjQ==
-X-Received: by 2002:a05:6830:1ad2:: with SMTP id r18mr9148485otc.308.1639586607714;
-        Wed, 15 Dec 2021 08:43:27 -0800 (PST)
+        bh=pgBtQMB9xPX/3DFkmhXnuRYiO6OuFLrYCya8nP4iGPc=;
+        b=E9SUrLhPVtwsAkzHkFV/5uMDJzeuZsl3SZCvf8GCjtnp/tO6o/aZs5Bm5TxbQcWRLn
+         flM+PiAB5S+Kk8OU14Fay07vEOLOHimZd1OJNiiyft9CW1NlSk/9BuH5BGAXa9V3pVQD
+         3UA7d0ii1F85dLyeTn5Mlm0BMBJpXGYxNa98UCUlg2him7Fx/sNTKbpR0cAIHwunmiyw
+         7S5q0rzROMQ1DOBui+Gp4qa3ZEpkN9Owm8DE80gaTw32Tapdx3YZ5Qb61n5A8bpSWYCM
+         8Uuzu3mL2DUAajWrKbntffEiVzmLqWw4hOsWaqA/FVYerWIwUBHC+CUNEqzUxut17cAS
+         OZYA==
+X-Gm-Message-State: AOAM5318bMUj6Ygz4YUF0n8Novltn5qpmc7UmokzozXw170V1Sjjsdog
+        HL/trc7NtOLU6jISPvDbciP7sISU/Q==
+X-Google-Smtp-Source: ABdhPJwDrT0+iGuFb+5zdEsjfFg7LoUukjUZcv1xZfloqcMr3qst5Uut9MTWqyYdbkQKs79CVYb3fA==
+X-Received: by 2002:a05:6808:3012:: with SMTP id ay18mr618774oib.88.1639586739505;
+        Wed, 15 Dec 2021 08:45:39 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g17sm439185oiy.14.2021.12.15.08.43.26
+        by smtp.gmail.com with ESMTPSA id q22sm523415ots.62.2021.12.15.08.45.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 08:43:27 -0800 (PST)
-Received: (nullmailer pid 1448377 invoked by uid 1000);
-        Wed, 15 Dec 2021 16:43:26 -0000
-Date:   Wed, 15 Dec 2021 10:43:26 -0600
+        Wed, 15 Dec 2021 08:45:38 -0800 (PST)
+Received: (nullmailer pid 1451270 invoked by uid 1000);
+        Wed, 15 Dec 2021 16:45:38 -0000
+Date:   Wed, 15 Dec 2021 10:45:38 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jens Renner <renner@efe-gmbh.de>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        s.hauer@pengutronix.de, mturquette@baylibre.com,
-        linux-clk@vger.kernel.org, sboyd@kernel.org,
-        sebastian.hesselbarth@gmail.com
-Subject: Re: [PATCH v2 1/2] clk: si5351: Add DT property for phase offset
-Message-ID: <YbobLnc9Uc39dPJO@robh.at.kernel.org>
-References: <20211208154440.72087-1-renner@efe-gmbh.de>
- <20211208154535.72286-1-renner@efe-gmbh.de>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ~okias/devicetree@lists.sr.ht, Sebastian Reichel <sre@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: input: pwm-vibrator: Convert txt
+ bindings to yaml
+Message-ID: <YbobsmrryqmsRvyB@robh.at.kernel.org>
+References: <20211208183434.98087-1-david@ixit.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211208154535.72286-1-renner@efe-gmbh.de>
+In-Reply-To: <20211208183434.98087-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Dec 2021 16:45:35 +0100, Jens Renner wrote:
-> Add optional output clock DT property "silabs,clock-phase" to configure
-> the phase offset in degrees with respect to other clock outputs.
-> Add missing description for related optional output clock DT property
-> "clock-frequency".
+On Wed, 08 Dec 2021 19:34:34 +0100, David Heidelberg wrote:
+> Converts txt binding to new YAML format and simplify example.
 > 
-> Signed-off-by: Jens Renner <renner@efe-gmbh.de>
+> Reviewed-by: Sebastian Reichel <sre@kernel.org>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
-> Changes in v2:
->   - Use vendor-specific DT property silabs,clock-phase
+> v2:
+>  - added Sebastian review
+>  - replace anyOf with minItems
 > 
->  .../devicetree/bindings/clock/silabs,si5351.txt        | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
+>  .../bindings/input/pwm-vibrator.txt           | 66 -------------------
+>  .../bindings/input/pwm-vibrator.yaml          | 57 ++++++++++++++++
+>  2 files changed, 57 insertions(+), 66 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/pwm-vibrator.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/pwm-vibrator.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
