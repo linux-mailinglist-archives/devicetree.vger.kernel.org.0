@@ -2,105 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DF7347638C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:41:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 314864763AB
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:46:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236361AbhLOUkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 15:40:45 -0500
-Received: from mail-oo1-f42.google.com ([209.85.161.42]:39682 "EHLO
-        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236341AbhLOUkp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:40:45 -0500
-Received: by mail-oo1-f42.google.com with SMTP id d1-20020a4a3c01000000b002c2612c8e1eso6271395ooa.6;
-        Wed, 15 Dec 2021 12:40:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tCm31AopJqJh3IGAGVf/dCMDar4WQOTuKl/qvZkribo=;
-        b=nQUmzxps9q0yOZEvAWHhZ1XAPFmYbT5E+EuqW8XkaH8mUaVzsabPKzfsZRV2iS9jGW
-         VUQOdUP92kNIuY0ntzZygMXKEzWEgxx4WUi9kv7GXOqC/79IOMLbnR6CuISgEXbWCS+H
-         65gTSxwV543QCfEtgxtfSaPCaEgSKH9Gaad9FNSOJREOHr4u3P7dlLv/QEIn946osvzC
-         r1WrgrRYASGjk+CC/J5FwL5udXRRK0wBSJXa7n9Ya7fi7LMGUiTlHYsEPUbZtqyTB+BQ
-         ewEy7+TddGfsgRRwH6b69LkApr4L4+FtA4a3B8bkOBjXIlg2o7T3rKrcfN5zwqSmCfvG
-         QFwQ==
-X-Gm-Message-State: AOAM532d8eSNMh9W3t0Lc1o7ZuQHo7UZtMDKdKwik610WN6Ke4ZvQef4
-        SAjWriYWowpob7xSh6i0HQ==
-X-Google-Smtp-Source: ABdhPJwkO6XUr282lpbyRQWgyGURMsV/N5cuswo4uKTuUZTRW3m+/Apo0eeSYdMnHWOq88WSqW/wmw==
-X-Received: by 2002:a4a:3110:: with SMTP id k16mr8722917ooa.64.1639600844654;
-        Wed, 15 Dec 2021 12:40:44 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b22sm527081oib.41.2021.12.15.12.40.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 12:40:44 -0800 (PST)
-Received: (nullmailer pid 1801237 invoked by uid 1000);
-        Wed, 15 Dec 2021 20:40:43 -0000
-Date:   Wed, 15 Dec 2021 14:40:43 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, linux-can@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: ti,tcan104x-can: Document
- mux-states property
-Message-ID: <YbpSy0+x/SnTYUzb@robh.at.kernel.org>
-References: <20211214142908.27940-1-a-govindraju@ti.com>
- <20211214142908.27940-2-a-govindraju@ti.com>
+        id S232536AbhLOUqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 15:46:14 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:47788 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231790AbhLOUqO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:46:14 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 1458D1C0B9C; Wed, 15 Dec 2021 21:46:13 +0100 (CET)
+Date:   Wed, 15 Dec 2021 21:46:06 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Florian Eckert <fe@dev.tdt.de>
+Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] leds: ktd20xx: Add the KTD20xx family of the RGB
+ LEDs driver from Kinetic
+Message-ID: <20211215204606.GH28336@duo.ucw.cz>
+References: <20211123101826.9069-1-fe@dev.tdt.de>
+ <20211123101826.9069-2-fe@dev.tdt.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="AzNpbZlgThVzWita"
 Content-Disposition: inline
-In-Reply-To: <20211214142908.27940-2-a-govindraju@ti.com>
+In-Reply-To: <20211123101826.9069-2-fe@dev.tdt.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 14, 2021 at 07:59:07PM +0530, Aswath Govindraju wrote:
-> On some boards, for routing CAN signals from controller to transceivers,
-> muxes might need to be set. This can be implemented using mux-states
-> property. Therefore, document the same in the respective bindings.
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
->  .../devicetree/bindings/phy/ti,tcan104x-can.yaml       | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> index 6107880e5246..7b9216e43b58 100644
-> --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> @@ -37,6 +37,15 @@ properties:
->        max bit rate supported in bps
->      minimum: 1
->  
-> +  mux-states:
-> +    description:
-> +      mux controller node to route the signals from controller to
-> +      transceiver. Two arguments can be present depending on the
-> +      mux chip. If one argument is used then it represents the state
-> +      to be set on the mux-chip. If there are two arguments then the
-> +      first argument is the control line and the second argument is
-> +      its corresponding state to be set, on the mux-chip.
-> +
 
-You are still describing how the mux-states works. What the cells 
-contain and how many are opaque to this binding. Here you need to 
-describe how many muxes you have and what they are controlling as that 
-is what is specific to this binding. If there is only one, this boils 
-down to 'maxItems: 1'. It's just like reg, interrupts, clocks, etc.
+--AzNpbZlgThVzWita
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->  required:
->    - compatible
->    - '#phy-cells'
-> @@ -53,4 +62,5 @@ examples:
->        max-bitrate = <5000000>;
->        standby-gpios = <&wakeup_gpio1 16 GPIO_ACTIVE_LOW>;
->        enable-gpios = <&main_gpio1 67 GPIO_ACTIVE_HIGH>;
-> +      mux-states = <&mux0 1>;
->      };
-> -- 
-> 2.17.1
-> 
-> 
+Hi!
+
+> Introduce the KTD2061/58/59/60 RGB LEDs driver. The difference in these
+> parts are the address number on the I2C bus the device is listen on.
+>=20
+> All KT20xx device could control up to 12 LEDs. The chip can be operated
+> in two variants.
+>=20
+> Variant 1:
+> The device has the ability to group LED outputs into two banks so that
+> the two LED banks can be controlled with the same color. This could not
+> be done via the LEDs 'sysfs' entry because of the limitation on the color
+> register count. The color of the two banks can be configured via device
+> 'sysfs' entry for all LEDs at once [current_color0|current_color1].
+> Which color the LED is to be used can be set via the 'sysfs' of the
+> individual LEDs via the 'multi_intensity' file. Valid values for the
+> colors (RGB) are 0 | 1. The value 0 selects the color register 0 and the
+> value 1 selects the color register 1.
+>=20
+> Variant 2:
+> The device can also set the LED color independently. Since the chip only
+> has two color registers, but we want to control the 12 LEDs
+> independently via the 'led-class-multicolour' sysfs entry,
+> the full RGB color depth cannot be used. Due to this limitation, only 7
+> colors and the color black (off) can be set. To use this mode the color
+> registers must be preset via the device tree or the device 'sysfs'. The
+> color registers 0 must be preset with 0x00 (Red=3D0x00 Green=3D0x00 Blue=
+=3D0x00).
+> The color register1 should be preset all with the same value. This value
+> depends on which light intensity is to be used in the setup.
+
+Summary: some crazy hardware.
+
+> +static ssize_t current_color0_store(struct device *dev,
+> +		struct device_attribute *a,
+> +		const char *buf, size_t size)
+> +{
+
+And now we have custom interface. Undocumented.
+
+That is not acceptable, sorry.
+
+Find a way to squeeze it into current RGB framework, perhaps with
+reduced feature set.
+
+AFAICT you could either pretend it is 2-LED driver with full 8bit RGB
+on each, or you could pretend it is 12-LED driver with 1bit
+RGB. Select one and implement that.
+
+Best regards,
+									Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--AzNpbZlgThVzWita
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYbpUDgAKCRAw5/Bqldv6
+8jAIAJwLayuGsDv/gbU954WbGOG7AW6VYACeMjuav6P+tpCZAO1qh4oKNblyJck=
+=DU/B
+-----END PGP SIGNATURE-----
+
+--AzNpbZlgThVzWita--
