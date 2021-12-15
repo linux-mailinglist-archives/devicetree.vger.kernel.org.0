@@ -2,106 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45AE647660F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 23:43:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 700EA476618
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 23:44:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229990AbhLOWnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 17:43:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53912 "EHLO
+        id S230288AbhLOWov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 17:44:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229942AbhLOWni (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 17:43:38 -0500
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A56BC06173F
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 14:43:38 -0800 (PST)
-Received: by mail-ot1-x336.google.com with SMTP id x3-20020a05683000c300b0057a5318c517so26636767oto.13
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 14:43:38 -0800 (PST)
+        with ESMTP id S229919AbhLOWov (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 17:44:51 -0500
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09E4CC061574;
+        Wed, 15 Dec 2021 14:44:51 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id u17so17793726plg.9;
+        Wed, 15 Dec 2021 14:44:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=dbeqSg8b0J6PlMNi+JGgxriBEmTuIA/mbzEPAcAogDM=;
-        b=bbSjHiO+Y6J+b/TV/KJxmkqH6llthHQegASBeHHcO8ZIbmbzsKq+/xfB917pAMuBQY
-         T6h6wmZSM3BvpTTjahsdDtrj1/oPZm7+5eHuuGqmTTr+b7cmXR+nljorPxKa1mtKPt7A
-         P9FKWBxmGbLZ7TSClExk+EUfgT9lKVFo+i7WozByaaZHUdpyXrblBC4fbdLKkPigHiQT
-         7LBvapT6VKDzhdSKkHlzxEX3BTpS7lcP/4zzKOp2SrSwkK/8IYO+YPLzb10d+F4Uuohf
-         2Xyjr7D9TlsTJ2YhbKyLUeo7xDt4BUaQFeBLTJc12tq+5Kwa4IUB1WI9vMM7itb18OYb
-         vTnw==
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=q4UzIW8jjvFD9MXINw3scaTFcXx6xR/65YR9cdnFtJo=;
+        b=GRvMIyxPRNtzcsDe+NtBBO75NgVay7h53HFPf4w2DZlAi3j7BLj0C70kazfWyuEnvc
+         EoaCcARXjgg5shU0sINC0XHVzUYI0vb1o2Y2NLPhftGaVJ5CZ5wgMRBejV/weSMiWoSE
+         t9wede+K3DTlqIk8wWGoxqRZx2Iuc10WuVivY8wUcHKnjQc5QDzlIu+Qb/Gr2T9ZRoV7
+         jjaYxvovtV5ZRZueO2jqKLsPWxTfGc08s9241YCRRI+0VonkuzovIJV1dlwL8xJlxdSK
+         OAlrbJeowkCY7Nn6N3TPkoicsxGnFTt3+khhBFSX0YVw3qfLIrX9oM4njvPI/wGMRZYq
+         EDBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=dbeqSg8b0J6PlMNi+JGgxriBEmTuIA/mbzEPAcAogDM=;
-        b=HlKvL5WQOn8D5Euou10P5y6/pRvx9O1cvgiFVhl8XUdmFDBzUIyNQGan3RxooW+iS2
-         4RH961jmfKtkN9CuqfYzg3pe2Nf3OKL6x7DvWpKLhZ23bC9ZfZeQka4CTwM4cqMSKMkf
-         3iNIICAx7+fw4B1pElDVlVnhkvIQ8BX28YGYJKRCC9v8fgs1Mkzrx1IB6S1K54NDEcto
-         DJP9K1+tTK0/CFmOUs20Dt7S0gjc0I9s/QBed1RcLax6kOCwlgY0C8LEFsb21hJA9yJW
-         fj4RM9+Hir3023LCkEwyjsHsYqaiRAGVDiq3j9cvlJNkgMsjcOjy13LTHkx/cMg0bK36
-         +tnA==
-X-Gm-Message-State: AOAM530jc3YZ8WexLgQyzCAhqFkzYBTTyy2+1M2n/cUi5jmP2/SbUpxA
-        +AuqtNxjjH3xDG37QDiI6vccgg==
-X-Google-Smtp-Source: ABdhPJxjdWi6Bm6ZJQYnM/svKcMIvskVW7fyteLVAMJAQMgWaMfkvQwLSYaIBJYDwxbkF9iRmChdZg==
-X-Received: by 2002:a05:6830:33ce:: with SMTP id q14mr10791065ott.346.1639608217773;
-        Wed, 15 Dec 2021 14:43:37 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id r3sm664716oti.51.2021.12.15.14.43.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 14:43:37 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 00/11] arm64: dts: qcom: Add support for SM8450 SoC and
-Date:   Wed, 15 Dec 2021 16:43:35 -0600
-Message-Id: <163960817927.3071270.14750347798337748671.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211215043440.605624-1-vkoul@kernel.org>
-References: <20211215043440.605624-1-vkoul@kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=q4UzIW8jjvFD9MXINw3scaTFcXx6xR/65YR9cdnFtJo=;
+        b=RilOngv2RKE/yeMiHLK44WqYT/oe7kp8mSEjxBH0xmfVH8vtLzinMnsCxxXtsMNkeU
+         c5HR+z/4G5RnK2r6a+rUezzxCjTxm9wDkKTwskJwss3hZEoOZVXQm8r5CLD2+icv8TLg
+         qz0dtPkFfJuMoKHMdDI017FX4S0F068sKQ8HUfgAh49pAGMyP+HVDPv9PVqnFS05iXnv
+         QafhsBFQruD0gCKvT0UCvay9mC59aNMjj0AX7E/FlBXF0JMaQAcCLYfjxAb28Xv69vLI
+         yLi1i5OafMZzJpUTd+zavfpE3R9RrxTG5sXappl1ylzxLp2Q1jRC1bnG8qeMlfXnDnOo
+         zl7A==
+X-Gm-Message-State: AOAM531uXNdkXEYmYJg8O0yS2gJJsZ5bsdE/34lUXCQYaQdhpGgjT0QS
+        IssMXFneJuh4vKn56/62fO0=
+X-Google-Smtp-Source: ABdhPJyRVECjLwh6/a45lJzjdGytwuXKsisg0bwzAmdfjZcJlw9+DYfpVIVT8BpO3Rci6hyEqq1aSA==
+X-Received: by 2002:a17:902:6b8c:b0:148:8a86:a01c with SMTP id p12-20020a1709026b8c00b001488a86a01cmr13270930plk.50.1639608290506;
+        Wed, 15 Dec 2021 14:44:50 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id l2sm3797362pfc.42.2021.12.15.14.44.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Dec 2021 14:44:49 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: qcom: ipq6018: Fix gpio-ranges property
+To:     Baruch Siach <baruch@tkos.co.il>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Sricharan R <sricharan@codeaurora.org>
+References: <8a744cfd96aff5754bfdcf7298d208ddca5b319a.1638862030.git.baruch@tkos.co.il>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <281f0532-2f3b-362a-5df6-d9cbe302606a@gmail.com>
+Date:   Wed, 15 Dec 2021 14:44:48 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <8a744cfd96aff5754bfdcf7298d208ddca5b319a.1638862030.git.baruch@tkos.co.il>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Dec 2021 10:04:29 +0530, Vinod Koul wrote:
-> Snapdragon 8 Gen 1 Mobile Platform [1] (SM8450) is the latest Qualcomm SoC
-> announced today.
+On 12/6/21 11:27 PM, Baruch Siach wrote:
+> There must be three parameters in gpio-ranges property. Fixes this not
+> very helpful error message:
 > 
-> This series adds the DTS support including clocks, tlmm, smmu, regulators,
-> ufs, interconnects, pmics and cpufreq found in the SM8450 QRD board.
+>   OF: /soc/pinctrl@1000000: (null) = 3 found 3
 > 
-> [1]: https://www.qualcomm.com/products/snapdragon-8-gen-1-mobile-platform
+> Fixes: 1e8277854b49 ("arm64: dts: Add ipq6018 SoC and CP01 board support")
+> Cc: Sricharan R <sricharan@codeaurora.org>
+> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+> ---
 > 
-> [...]
+> The error message was improved in commit af3be70a321 ("of: Improve
+> of_phandle_iterator_next() error message"), but there is evidently some
+> more room for improvement. As I don't really understand the code, I
+> added the commit author and the DT list to Cc.
 
-Applied, thanks!
+In the commit message you find what the error message was and then
+became which tells you which property was used to determine the cell
+size, and what count was obtained instead.
 
-[01/11] arm64: dts: qcom: Add base SM8450 DTSI
-        commit: 5188049c9b36d718124e2cce91803a26a34a0ad6
-[02/11] arm64: dts: qcom: sm8450: Add tlmm nodes
-        commit: ec950d55728459248e78f5c70ab3e3c2f7c22e38
-[03/11] arm64: dts: qcom: sm8450: Add reserved memory nodes
-        commit: 285f97bc4b017b013d273a69ba3ee12252990812
-[04/11] arm64: dts: qcom: sm8450: add smmu nodes
-        commit: 892d5395396d5515c42e502810884225776b3b10
-[05/11] arm64: dts: qcom: Add base SM8450 QRD DTS
-        commit: 24de05c38e6bfe80fccc3b632c142accfaa7232d
-[06/11] arm64: dts: qcom: sm8450-qrd: Add rpmh regulator nodes
-        commit: 128914ad230354ab4af9c3b86fdce2147f467553
-[07/11] arm64: dts: qcom: sm8450: add ufs nodes
-        commit: 07fa917a335e139a108e94085c6beac3098e3874
-[08/11] arm64: dts: qcom: sm8450-qrd: enable ufs nodes
-        commit: 8f8f98c881686d21fc937f469d3a198f2f9bb9ba
-[09/11] arm64: dts: qcom: sm8450: Add rpmhpd node
-        commit: 61eba74e473ed4cd64ec17440092f4a98913cda3
-[10/11] arm64: dts: qcom: sm8450: add cpufreq support
-        commit: 015a89f0d317dce4d2174059155c2fc39db7cbc8
-[11/11] arm64: dts: qcom: sm8450: add i2c13 and i2c14 device nodes
-        commit: bf0a257a9418ebcbe6ab2a73728f76969942e52a
+In your particular case here however, since the proper was with the
+'gpio-ranges' property and there is no property that indicates the cell
+size AFAICT, it might been more helpful to revert back to the old
+message maybe? So maybe something like which is hopefully the best of
+both worlds:
 
-Best regards,
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index 372a177f3b80..63bff37bf035 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -1378,9 +1378,13 @@ int of_phandle_iterator_next(struct
+of_phandle_iterator *it)
+                 * property data length
+                 */
+                if (it->cur + count > it->list_end) {
+-                       pr_err("%pOF: %s = %d found %d\n",
+-                              it->parent, it->cells_name,
+-                              count, it->cell_count);
++                       if (it->cells_name)
++                               pr_err("%pOF: %s = %d found %d\n",
++                                       it->parent, it->cells_name,
++                                       count, it->cell_count);
++                       else
++                               pr_err("%pOF: arguments longer than
+property\n",
++                                      it->parent);
+                        goto err;
+                }
+        }
+
+
+> ---
+>  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> index 6a22bb5f42f4..a717fc17523d 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> @@ -220,7 +220,7 @@ tlmm: pinctrl@1000000 {
+>  			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+>  			gpio-controller;
+>  			#gpio-cells = <2>;
+> -			gpio-ranges = <&tlmm 0 80>;
+> +			gpio-ranges = <&tlmm 0 0 80>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+>  
+> 
+
+
 -- 
-Bjorn Andersson <bjorn.andersson@linaro.org>
+Florian
