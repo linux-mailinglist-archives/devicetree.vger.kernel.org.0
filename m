@@ -2,100 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34BF5474EC9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 00:54:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B499B474EFF
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 01:18:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230497AbhLNXyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 18:54:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50254 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230120AbhLNXyb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 18:54:31 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 424DCC061574;
-        Tue, 14 Dec 2021 15:54:30 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0EB32B81D7B;
-        Tue, 14 Dec 2021 23:54:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3A22C34600;
-        Tue, 14 Dec 2021 23:54:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639526067;
-        bh=NbVNYrferHfK7Et1tLU+6jHiQp8Yu5js3Qgqf8gRZ6w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=So5j1gY28yYedmfARaWH3xdXnuzVqawAwtFbovlmfZAbQPdwiJ8Kzrc0DUAqccodD
-         +vCvksQ4y8UdS9RqJcCjHRh4oBlKbr8AyblSWHKevSlUrdAxt5Fpv4kXiSlV47oAx6
-         l3jOvluU9M0flvnDnkaNuyS6F90UY8Av9KmTj6fqDMFv2WsnCdY5U95Ft7CSL2YLFp
-         NmD0oVW1YP+kHTwR//XR2HbNI90O9Y0+yEti+Jr9sAfLiqsHdlpTQH15mES76oL70l
-         4CyWlh10r1RkLjTeyxU/bFqqQ7/P97IVhirls5gDgVRnhDfR5wcFCBcXVHyAT3mEaK
-         SkwNzXKCTgmkg==
-Received: by mail-ed1-f45.google.com with SMTP id v1so69013257edx.2;
-        Tue, 14 Dec 2021 15:54:27 -0800 (PST)
-X-Gm-Message-State: AOAM5330r8jCF+OhuRfoDEnHk55JBSX6cIOlEwsPckn2W5oSZI/Aa/6k
-        fcTBTKYtId2AWEA/rDnoAvsrrcj5P7GD9+SRXQ==
-X-Google-Smtp-Source: ABdhPJzp/5VvUlwABGdKDrORoiAKsOFL9lfiyfvDlKLdyjmNKuH0Av0WZQ9j/LmjnxdTEMVKsH0dKrI/HjqdDOtI/UE=
-X-Received: by 2002:a17:907:7b98:: with SMTP id ne24mr8557534ejc.14.1639526066241;
- Tue, 14 Dec 2021 15:54:26 -0800 (PST)
-MIME-Version: 1.0
-References: <20211214163315.3769677-1-davidm@egauge.net> <20211214163315.3769677-3-davidm@egauge.net>
- <1639512290.330041.3819896.nullmailer@robh.at.kernel.org> <e88e908e720172d8571d48bd1ebdab3617534f73.camel@egauge.net>
-In-Reply-To: <e88e908e720172d8571d48bd1ebdab3617534f73.camel@egauge.net>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 14 Dec 2021 17:54:14 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLFyaAvTGQJc0GjYbXwyhpmfpRm3_rkGopD8cz6-ZX5zw@mail.gmail.com>
-Message-ID: <CAL_JsqLFyaAvTGQJc0GjYbXwyhpmfpRm3_rkGopD8cz6-ZX5zw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] wilc1000: Document enable-gpios and reset-gpios properties
-To:     David Mosberger-Tang <davidm@egauge.net>
-Cc:     Kalle Valo <kvalo@codeaurora.org>, netdev <netdev@vger.kernel.org>,
-        Adham Abozaeid <adham.abozaeid@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Ajay Singh <ajay.kathat@microchip.com>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S235521AbhLOASZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 19:18:25 -0500
+Received: from finn.gateworks.com ([108.161.129.64]:35628 "EHLO
+        finn.localdomain" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235245AbhLOASZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 19:18:25 -0500
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1mxHzr-0090fo-4m; Wed, 15 Dec 2021 00:18:15 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8m{m,n}_venice*: add gpio-line-names
+Date:   Tue, 14 Dec 2021 16:18:12 -0800
+Message-Id: <20211215001812.9006-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 14, 2021 at 5:30 PM David Mosberger-Tang <davidm@egauge.net> wrote:
->
-> On Tue, 2021-12-14 at 14:04 -0600, Rob Herring wrote:
-> > On Tue, 14 Dec 2021 16:33:22 +0000, David Mosberger-Tang wrote:
-> > > Add documentation for the ENABLE and RESET GPIOs that may be needed by
-> > > wilc1000-spi.
-> > >
-> > > Signed-off-by: David Mosberger-Tang <davidm@egauge.net>
-> > > ---
-> > >  .../net/wireless/microchip,wilc1000.yaml        | 17 +++++++++++++++++
-> > >  1 file changed, 17 insertions(+)
-> > >
-> >
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > Error: Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.example.dts:30.37-38 syntax error
-> > FATAL ERROR: Unable to parse input tree
-> > make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.example.dt.yaml] Error 1
-> > make[1]: *** Waiting for unfinished jobs....
-> > make: *** [Makefile:1413: dt_binding_check] Error 2
->
-> So this error appears due to GPIO_ACTIVE_HIGH and GPIO_ACTIVE_LOW in these
-> lines:
->
->         enable-gpios = <&pioA 5 GPIO_ACTIVE_HIGH>;
->         reset-gpios = <&pioA 6 GPIO_ACTIVE_LOW>;
->
-> I can replace those with 0 and 1 respectively, but I doubt a lot of people would
-> recognize what those integers standard for.  Is there a better way to get this
-> to pass?
+Add gpio-line-names for the various GPIO's used on Gateworks Venice
+boards. Note that these GPIO's are typically 'configured' in Boot
+Firmware via gpio-hog therefore we only configure line names to keep the
+boot firmware configuration from changing on kernel init.
 
-Include the header(s) you use in the example.
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ .../dts/freescale/imx8mm-venice-gw71xx.dtsi   | 14 +++++++
+ .../dts/freescale/imx8mm-venice-gw72xx.dtsi   | 16 ++++++++
+ .../dts/freescale/imx8mm-venice-gw73xx.dtsi   | 16 ++++++++
+ .../dts/freescale/imx8mm-venice-gw7901.dts    | 23 +++++++++++
+ .../dts/freescale/imx8mm-venice-gw7902.dts    | 39 ++++++++++++++++++-
+ .../dts/freescale/imx8mn-venice-gw7902.dts    | 39 ++++++++++++++++++-
+ 6 files changed, 145 insertions(+), 2 deletions(-)
 
-Rob
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
+index 506335efc391..73addc0b8e57 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
+@@ -68,6 +68,20 @@
+ 	status = "okay";
+ };
+ 
++&gpio1 {
++	gpio-line-names = "", "", "", "", "", "", "pci_usb_sel", "dio0",
++		"", "dio1", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names = "", "", "", "dio2", "dio3", "", "", "pci_wdis#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
+ &i2c2 {
+ 	clock-frequency = <400000>;
+ 	pinctrl-names = "default";
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+index 72a3a3aa8fcd..1e7badb2a82e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+@@ -88,6 +88,22 @@
+ 	status = "okay";
+ };
+ 
++&gpio1 {
++	gpio-line-names = "rs485_term", "mipi_gpio4", "", "",
++		"", "", "pci_usb_sel", "dio0",
++		"", "dio1", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names = "rs485_en", "mipi_gpio3", "rs485_hd", "mipi_gpio2",
++		"mipi_gpio1", "", "", "pci_wdis#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
+ &i2c2 {
+ 	clock-frequency = <400000>;
+ 	pinctrl-names = "default";
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+index 7b00b6b5bb38..426483ec1f88 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+@@ -108,6 +108,22 @@
+ 	status = "okay";
+ };
+ 
++&gpio1 {
++	gpio-line-names = "rs485_term", "mipi_gpio4", "", "",
++		"", "", "pci_usb_sel", "dio0",
++		"", "dio1", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names = "rs485_en", "mipi_gpio3", "rs485_hd", "mipi_gpio2",
++		"mipi_gpio1", "", "", "pci_wdis#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
+ &i2c2 {
+ 	clock-frequency = <400000>;
+ 	pinctrl-names = "default";
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+index 4bf2b97b3ef5..8710586a1d8f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+@@ -293,6 +293,29 @@
+ 	};
+ };
+ 
++&gpio1 {
++	gpio-line-names = "uart1_rs422#", "", "", "uart1_rs485#",
++		"", "uart1_rs232#", "dig1_in", "dig1_out",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names = "", "", "", "",
++		"", "", "uart3_rs232#", "uart3_rs422#",
++		"uart3_rs485#", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "uart4_rs485#", "", "sim1det#", "sim2det#", "";
++};
++
++&gpio5 {
++	gpio-line-names = "", "", "", "dig2_out", "dig2_in", "sim2sel", "", "",
++		"", "", "uart4_rs232#", "", "", "uart4_rs422#", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
+ &gpu_2d {
+ 	status = "disabled";
+ };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+index 1b2aaf299b24..edf0c7aaaef0 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+@@ -260,6 +260,43 @@
+ 	};
+ };
+ 
++&gpio1 {
++	gpio-line-names = "", "", "", "", "", "", "", "",
++		"", "", "", "", "", "m2_reset", "", "m2_wdis#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio2 {
++	gpio-line-names = "", "", "", "", "", "", "", "",
++		"uart2_en#", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio3 {
++	gpio-line-names = "", "m2_gdis#", "", "", "", "", "", "m2_off#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names = "", "", "", "", "", "", "", "",
++		"", "", "", "amp_gpio3", "amp_gpio2", "", "amp_gpio1", "",
++		"", "", "", "", "amp_gpio4", "app_gpio1", "", "uart1_rs485",
++		"", "uart1_term", "uart1_half", "app_gpio2",
++		"mipi_gpio1", "", "", "";
++};
++
++&gpio5 {
++	gpio-line-names = "", "", "", "mipi_gpio4",
++		"mipi_gpio3", "mipi_gpio2", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
+ &i2c1 {
+ 	clock-frequency = <100000>;
+ 	pinctrl-names = "default";
+@@ -691,7 +728,7 @@
+ 	pinctrl_hog: hoggrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x40000159 /* M2_GDIS# */
+-			MX8MM_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RST# */
++			MX8MM_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RESET */
+ 			MX8MM_IOMUXC_NAND_DATA01_GPIO3_IO7	0x40000119 /* M2_OFF# */
+ 			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x40000159 /* M2_WDIS# */
+ 			MX8MM_IOMUXC_SAI1_TXD2_GPIO4_IO14	0x40000041 /* AMP GPIO1 */
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+index 2d58005d20e4..3c0e63d2e82d 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+@@ -255,6 +255,43 @@
+ 	};
+ };
+ 
++&gpio1 {
++	gpio-line-names = "", "", "", "", "", "", "", "",
++		"", "", "", "", "", "m2_reset", "", "m2_wdis#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio2 {
++	gpio-line-names = "", "", "", "", "", "", "", "",
++		"uart2_en#", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio3 {
++	gpio-line-names = "", "m2_gdis#", "", "", "", "", "", "m2_off#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names = "", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "app_gpio1", "", "uart1_rs485",
++		"", "uart1_term", "uart1_half", "app_gpio2",
++		"mipi_gpio1", "", "", "";
++};
++
++&gpio5 {
++	gpio-line-names = "", "", "", "mipi_gpio4",
++		"mipi_gpio3", "mipi_gpio2", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
+ &gpu {
+ 	status = "disabled";
+ };
+@@ -645,7 +682,7 @@
+ 	pinctrl_hog: hoggrp {
+ 		fsl,pins = <
+ 			MX8MN_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x40000159 /* M2_GDIS# */
+-			MX8MN_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RST# */
++			MX8MN_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RESET */
+ 			MX8MN_IOMUXC_NAND_DATA01_GPIO3_IO7	0x40000119 /* M2_OFF# */
+ 			MX8MN_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x40000159 /* M2_WDIS# */
+ 			MX8MN_IOMUXC_SAI2_RXFS_GPIO4_IO21	0x40000041 /* APP GPIO1 */
+-- 
+2.17.1
+
