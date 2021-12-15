@@ -2,115 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80FDB47662F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 23:48:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A4AA4766A4
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 00:41:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231469AbhLOWsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 17:48:25 -0500
-Received: from mga07.intel.com ([134.134.136.100]:9615 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230214AbhLOWsY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Dec 2021 17:48:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1639608504; x=1671144504;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JWFyo0Ydmtk47WVj8Zg8P0VPEZG3TTPE4W1aW0wI3zs=;
-  b=UEJ8agBqa1GypRimAqkhH5F8jWqII66jkJW9x1vjieEbuYq4JQcLf4nI
-   713n8j0wHDNIZRf1D2M+7FDSUPh3VfIy6xdDeWtQa6OSewFbLrEuPr7xx
-   Rasxk0c2T/x64RUJNID/wVAf3DOC3GY2xJnJ3rl5nklrbWH4k/vq5HvmQ
-   zvGRg/YsbYrcbVr4+gCahcdVvZ58m+ytClTwm+WYhpF28GipJACtqBTWb
-   1ZEd9HRM30KzoyeZx5q9U4u8952s1zRXCwdQN++nUuCldgxrSM7jre4Kz
-   GSs46JdhcGSYGaYst/U8KZU4QIOd8vFZfexboG++KrpyrWpcbVzqV/ygb
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10199"; a="302726834"
-X-IronPort-AV: E=Sophos;i="5.88,209,1635231600"; 
-   d="scan'208";a="302726834"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2021 14:48:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,209,1635231600"; 
-   d="scan'208";a="545750614"
-Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
-  by orsmga001.jf.intel.com with ESMTP; 15 Dec 2021 14:48:21 -0800
-Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mxd4O-0002Qm-Me; Wed, 15 Dec 2021 22:48:20 +0000
-Date:   Thu, 16 Dec 2021 06:47:30 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>, heiko@sntech.de
-Cc:     kbuild-all@lists.01.org, robh+dt@kernel.org, jbx6244@gmail.com,
-        devicetree@vger.kernel.org, vkoul@kernel.org,
-        michael.riesch@wolfvision.net, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH v5 3/4] phy: rockchip: add naneng combo phy for RK3568
-Message-ID: <202112160605.2BqI0hlK-lkp@intel.com>
-References: <20211215095657.13183-4-yifeng.zhao@rock-chips.com>
+        id S232094AbhLOXla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 18:41:30 -0500
+Received: from mail-os0jpn01on2115.outbound.protection.outlook.com ([40.107.113.115]:51686
+        "EHLO JPN01-OS0-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232080AbhLOXla (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 18:41:30 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DnIwbRuSHGTEYcDc3GZTol69gQpizehACY0CqYlrTRUEg+P/uJDi9vihYlypoRlqLj6o/zO6UD9EpjeAjUbVaWU7ET6E/2SaWx/kkB6VSpwle8xb8yb9ocZoL0sEfSBsvwnuj+53jVSTElI/6pE66DWr2MsFY+bgGq+fNgmvxg4PEZjEEhf1Ba4G0BdSmneZFH8DA7l27WOoqyzgUkkoFtk6SitYHswWOZnG2VdpMvDfsBoC82U7w4MOcJnw9ob5vqwA2AuAqzxjro3GjcoIscvfnEOBL1qGmPvuWgTvNrKQBmrDBARgjPEwlHfIrAJ9X6ofDUjznyf7fFpYbJBvQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ni4PTFsA/JXdyB00dbrXWD7CI/xbCrG7emYMWuAyiBE=;
+ b=XlMEf1a6h93pjYyHyQm0mTZytYgR8VoE/l9nnz2cZ+MeYRBzc6mRSLrP/mRTcpTUetcSUUvXjJ2gi/+UR/3B8WRVlNQ+6EMMG+nx9o9Lo2QO3cA329RsYTarpTExYwz6iQNcQDNatePqsdrJna7fEjrPOoOBmihwLoWahuj9qljwxQS5MzMLj/4K/1GPs4M+tJ7Pfd3Y9tVKxqm60O/BgT0j1DtMLTJRFB6Ibcqk4JHugrz6LOHswKGHjbzJyLhesvB8MXaSM7Frs+SgFzLm4mvpNxmWphN+NgVoSkXQm6WEWZl2MYY4S3VRcBgtenGwhEYknesHFfqyLsmI1Zhwhw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ni4PTFsA/JXdyB00dbrXWD7CI/xbCrG7emYMWuAyiBE=;
+ b=NN4mJsldYUe9WaZgcbBmAJ5kC+ibkbmaa0CQONMgU8ThhhNySFTn3MpbTzkAyVYlg3FH+QstDQ8W7M0NuSUKcYprzM+T4Dgx+4jsTwKoNsI51I/ppCVAT66cqwThCfOFFUWdbES0GPRgjCSjOuXs97+iKeBem6pO6f5Q1tLA3jA=
+Received: from TYCPR01MB5581.jpnprd01.prod.outlook.com (2603:1096:400:a::10)
+ by TY2PR01MB3449.jpnprd01.prod.outlook.com (2603:1096:404:dc::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.14; Wed, 15 Dec
+ 2021 23:41:27 +0000
+Received: from TYCPR01MB5581.jpnprd01.prod.outlook.com
+ ([fe80::3d74:9c2e:e85a:df82]) by TYCPR01MB5581.jpnprd01.prod.outlook.com
+ ([fe80::3d74:9c2e:e85a:df82%7]) with mapi id 15.20.4778.018; Wed, 15 Dec 2021
+ 23:41:27 +0000
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Mark Brown <broonie@kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH v2] ASoC: dt-bindings: audio-graph-port: enable both
+ flag/phandle for bitclock/frame-master
+Thread-Topic: [PATCH v2] ASoC: dt-bindings: audio-graph-port: enable both
+ flag/phandle for bitclock/frame-master
+Thread-Index: AQHX6/+3BIPM6H2ev06sQIsrctMgd6wzwVOAgACA+6A=
+Date:   Wed, 15 Dec 2021 23:41:27 +0000
+Message-ID: <TYCPR01MB55818E96D32DD2B5A9358610D4769@TYCPR01MB5581.jpnprd01.prod.outlook.com>
+References: <20211208064852.507977-1-kuninori.morimoto.gx@renesas.com>
+ <YboQv+lsHZBhrpfN@robh.at.kernel.org>
+In-Reply-To: <YboQv+lsHZBhrpfN@robh.at.kernel.org>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f7f7d23f-9663-43e4-bc77-08d9c02469f0
+x-ms-traffictypediagnostic: TY2PR01MB3449:EE_
+x-microsoft-antispam-prvs: <TY2PR01MB34498806C2008C094741531FD4769@TY2PR01MB3449.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: MBa4gONTwWMQq//VYl3ArMpueBLJ10TWf3j6upeLLQIq8iFBYsz64QW6ixl40fH3tkTvIVcZxnVW2m52R9ulf8otKEXCyAkMPWBXZYtmjfgJQ3WL47GS7qg4yb9mc3ZU/fDtO1ZRZOxMlJpyHWMVcHliNSk9RUWo6JkOkcoONqB8y8g7Mh+cqUp9octUNDoIUbkdssvfcNei7fLFCgFRvVZUEtOPfATgXSM1QgWvIPas09jD+x1SxvFExlALQXMQprnz240tRZa/BRjEocgF8SdDI8utLNauLACFDhom4az1RrX4sOyi7KANK5IKg0RLa6+zFY7zcu43QoldZz6GB7TcL9PAum0msUSeL1rEcjzcd3i0jWbJjG7CRzxAqgvW5pQfvGEEzd5Cheyta6XYSlAaqEQ0IEK7g+OONFbT2RvuuviFWtLNrahCSgHg3uRme1F66RfVlybEvrP2VJ8D3GG0U9ixkggaNM7woX5u4BxGfn1qzzZ8ygHoCRcK3rsc1D3eIR0QO/OLM8FSihU2WhEIoMRNRcWqIzPctBgcU7LsuEbv+CS5PQQfoX8n7mLfI3Xv1k9FDgvla941Jsx2QBwiSdmAgXIDWTaJ2iFZ1aKX8FFntD+w89u+/HFZuKqZa7tLnl9JvAU50QfDFqsy26SJO72yY+ffceUagnaCbe8l5sPyyPzMykPy9MAM993/BzqjiuBlBBSWBXMnt+1zIA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB5581.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(33656002)(66946007)(9686003)(186003)(4326008)(122000001)(6506007)(38070700005)(54906003)(38100700002)(86362001)(71200400001)(2906002)(7696005)(66556008)(26005)(66476007)(66446008)(8936002)(64756008)(508600001)(6916009)(52536014)(5660300002)(316002)(4744005)(8676002)(76116006)(55016003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?QIzons59/dfuyauZpKweHmLkx3kDzD+mCP33ZPf/bJ29kF8Cpspo1kfEqBtf?=
+ =?us-ascii?Q?nG65seckce2agMbX7SGDT3XR6cO6M8Xf8Cg9FU4Fjmxg07+azjMFCc4TNjYJ?=
+ =?us-ascii?Q?tLzKWGyssmRWk58lFNEaKn6bFGcslUypCTj+eWZPv5RDGtEyVh9Gcdi2eeQ7?=
+ =?us-ascii?Q?ZFm7BR0lIz/0iWRXnhXdxx+7ubT54hepHMEXwfBTRhu2Hixj2yAzKumJWa+E?=
+ =?us-ascii?Q?WJUsqJoUpGcmHxrTiQhNdyp/Rt33EF37VtG0wtEefEEE7ZMMhyIGXTJqP5Dz?=
+ =?us-ascii?Q?R26nvAtoxRQy+veV7nWJQDXArM5azeUjJfJ0Taw7R8qkz/xGS6Yeeh4BsSP/?=
+ =?us-ascii?Q?UB3tW2z9P3vGcv4EoRbwit5UBAW98i8j56WLMABPljW2uucNTTxnnyAp5Dtt?=
+ =?us-ascii?Q?TjSoHHwCfnFD8Etq6/YGM2m7J0nxyEk7MTnobIoMjrJ4TKHRhPXLHZAQwwPQ?=
+ =?us-ascii?Q?RoR2JeYWY+Mrw7v16a+XwSB4iKNreoZRAZCpgwaEKwTuu+zVTnsBMhd0w+yM?=
+ =?us-ascii?Q?WFnfpzINnsnGR+TJMVg2FL64n2OdlRDgDtVx8z0R3WyE5jh0ZhYgovJmb0I3?=
+ =?us-ascii?Q?RMxzpFCrCVdHf2EnDqBX55aWYUtntRko+WFsyotOS3ab1ywKfHFPOnZcNLou?=
+ =?us-ascii?Q?+KrQBp3S02ZBXbjVFOig0jkGeXDmD/3qWJhvyJEHzqTOaTcZ5AOkPQGpDtp5?=
+ =?us-ascii?Q?7e99WKUs5S7FBA1OSDc5noK5xUjijNDJQpdUsBCjoBhZg43Ed3OswgGVeGvD?=
+ =?us-ascii?Q?L1HhaUwF+CM93zvKB3DFBtS+rcUU+TEBF7ePf87Y1ah+KGDoPgceJFzypApt?=
+ =?us-ascii?Q?H434mCquazvjJqDT03Y7Dk7A+Yb+dMhFThV6TKMbgBqTE+3xyqF9yQ10lBhC?=
+ =?us-ascii?Q?i2e1r3I+9/fGz4jTh2b19WN3WF40xgXXHKCbMZhqtko+Lw6lg3aqsdoQy3AH?=
+ =?us-ascii?Q?m0cMXv7nQMfsS0G7PY0vTrs+KmooLbC3iwplB9FYcxawQ5DuNbaFQ8CVIyMZ?=
+ =?us-ascii?Q?EpWP2Nou/9oho8D8uaXTm8PBJu9hb8xl1DbTPHq64LapoIC88TkvXsMi1yHi?=
+ =?us-ascii?Q?4p+TVh8f3W9MZl2qzMK425/FNTwrIRgKAX/Uidcw5lFiubxKYIO/rL3TJ1JT?=
+ =?us-ascii?Q?J2Kwa43U2BVM5dijcgzECDRgx8J0YePcjVMo36uQEZUgoKHWXNg10RYizqgc?=
+ =?us-ascii?Q?i8qyrwFXxwWxLGwMK3QAQX7+uQKhP1Lp3ryCKFPLxBDOwsmYJxNrYP1k9Ynj?=
+ =?us-ascii?Q?qcO39mUrUdb9iFWXKPJ2M7tYAWXBnj9aIIA7q91PFPjhbeI0SNmunwQ0iJr9?=
+ =?us-ascii?Q?wEsVxxQcS9SMMPoKDJ/aUJhL9ME5z4gVJee0c6rcUIbEKZlr0rWMv69X5jxs?=
+ =?us-ascii?Q?wWFHgQ0X1vlvALyY+cfQJQI3zUCZQ82gUbW/Cu2OdivhY72n0s7n5+niQR3W?=
+ =?us-ascii?Q?6IhAkUyaNfHdoLzbiFm1OwPLyGGwQU3F1fmdJX2/vvwHxyurXk1UeIScVw7a?=
+ =?us-ascii?Q?2YtbZRFI0oMOTvYu3MmYrdUOl+PIEuuEQ5hSRzWVCCN85gUeUX/u5cjjUJYW?=
+ =?us-ascii?Q?nREev8i1tJNozW4uo8AGQQmwRCcuEmIPYpvJTZR34S8NkHTBP9x7tCaXokl2?=
+ =?us-ascii?Q?W4mGqf9jLCAujUWuehOxmiEUfy2vSoRysAZujNf1GrZmwAGjafhDPSg1QstX?=
+ =?us-ascii?Q?SBnLxUroXjiMAhCtBKhmM4HTRRYsJ8cSrbOHyYAUbLz5mDmWoceAIi5Cmdl6?=
+ =?us-ascii?Q?cALkOecCWg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211215095657.13183-4-yifeng.zhao@rock-chips.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB5581.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f7f7d23f-9663-43e4-bc77-08d9c02469f0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Dec 2021 23:41:27.7907
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1B/g7efm0Mghfa0rVr2z3E16qL95wr5Dc1aDtz3qBa6b++qxK5plS4EqFXWdfZBNwFdEq5pcZ7F3/1oER+Ki2N9mEEsRXfHmySzsJFL7mnIaS7NHyAs8aT1LH5qf2C5W
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB3449
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yifeng,
 
-Thank you for the patch! Yet something to improve:
+Hi Rob
 
-[auto build test ERROR on rockchip/for-next]
-[also build test ERROR on robh/for-next lee-mfd/for-mfd-next v5.16-rc5 next-20211214]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Thank you for your review
 
-url:    https://github.com/0day-ci/linux/commits/Yifeng-Zhao/Add-Naneng-combo-PHY-support-for-RK3568/20211215-180610
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20211216/202112160605.2BqI0hlK-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/5e4ddb08d86d5232174d88483f29e96272a4b6c0
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Yifeng-Zhao/Add-Naneng-combo-PHY-support-for-RK3568/20211215-180610
-        git checkout 5e4ddb08d86d5232174d88483f29e96272a4b6c0
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash
+>>        frame-master:
+>>          description: Indicates dai-link frame master.
+>> -        $ref: /schemas/types.yaml#/definitions/phandle
+>> +        anyOf:
+>
+> Does oneOf work? It can't be both at the same time, but the schemas=20
+> could possibly need some further constraints.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+Yes, indeed.
+Will post v2 soon
 
-All errors (new ones prefixed by >>):
-
-   drivers/phy/rockchip/phy-rockchip-naneng-combphy.c: In function 'rk3568_combphy_cfg':
->> drivers/phy/rockchip/phy-rockchip-naneng-combphy.c:22:47: error: 'HZ_PER_MHZ' undeclared (first use in this function)
-      22 | #define REF_CLOCK_24MHz                 (24 * HZ_PER_MHZ)
-         |                                               ^~~~~~~~~~
-   drivers/phy/rockchip/phy-rockchip-naneng-combphy.c:490:14: note: in expansion of macro 'REF_CLOCK_24MHz'
-     490 |         case REF_CLOCK_24MHz:
-         |              ^~~~~~~~~~~~~~~
-   drivers/phy/rockchip/phy-rockchip-naneng-combphy.c:22:47: note: each undeclared identifier is reported only once for each function it appears in
-      22 | #define REF_CLOCK_24MHz                 (24 * HZ_PER_MHZ)
-         |                                               ^~~~~~~~~~
-   drivers/phy/rockchip/phy-rockchip-naneng-combphy.c:490:14: note: in expansion of macro 'REF_CLOCK_24MHz'
-     490 |         case REF_CLOCK_24MHz:
-         |              ^~~~~~~~~~~~~~~
-
-
-vim +/HZ_PER_MHZ +22 drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-
-    20	
-    21	#define BIT_WRITEABLE_SHIFT		16
-  > 22	#define REF_CLOCK_24MHz			(24 * HZ_PER_MHZ)
-    23	#define REF_CLOCK_25MHz			(25 * HZ_PER_MHZ)
-    24	#define REF_CLOCK_100MHz		(100 * HZ_PER_MHZ)
-    25	
-
+Best regards
 ---
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Kuninori Morimoto=20
