@@ -2,152 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 339004759A4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 14:29:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C4AD4759BC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 14:34:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232089AbhLON3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 08:29:15 -0500
-Received: from smtp-out2.suse.de ([195.135.220.29]:57598 "EHLO
-        smtp-out2.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242840AbhLON3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 08:29:12 -0500
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id 780D51F387;
-        Wed, 15 Dec 2021 13:29:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1639574951; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=gJ2jyR7VN20r+seaSe1QDbMXvh1OvYB4PCD+TDYUlvA=;
-        b=QpLHpTaJVVFSh6aewDo5f/rH0GBqqfLMbQJxfUptpMzyy3+LKlVUOmPd2Z/whIl6DNW6rx
-        f7I1LJ62ZJzLID1rRHbO0ENivgATp3hc0bZVNY7FRK3UTIkjYA9ofzNgxg7e7sZxbQBtS3
-        oTRZAVRZTrpycFPwHe5Kaio2Bfm8yes=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1639574951;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=gJ2jyR7VN20r+seaSe1QDbMXvh1OvYB4PCD+TDYUlvA=;
-        b=eWa/RbMxgh+BjSWJYP2QdUvpkhTHBQbMGPzqHelj/Ag60L1PGcoDbYtFx+E0PlpgZvv640
-        SH8WKfeZD9vaXkAQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 2EDEC1330B;
-        Wed, 15 Dec 2021 13:29:11 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id 3sZSCqftuWGhTAAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Wed, 15 Dec 2021 13:29:11 +0000
-Message-ID: <4d16ff4b-4060-49df-805f-66d293ffa186@suse.de>
-Date:   Wed, 15 Dec 2021 14:29:10 +0100
+        id S242906AbhLONeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 08:34:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37502 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242909AbhLONeT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 08:34:19 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F651C061574;
+        Wed, 15 Dec 2021 05:34:19 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id y22so3830456edq.2;
+        Wed, 15 Dec 2021 05:34:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=j83riijwkCGvjUh7Adz6XzCw5n1IEjGb/VrFZUAe4F8=;
+        b=ZeSpMXbrIhP/htoOtQwRrekNkWMdpf3EEk1eT/8CDPHo0zVuSPCe/zjHnMdWUnZUWr
+         stZdaBTu/q7znkoDE/+GMZ+I0fV/Q3zwGyV4ItCHSPNL934Lgfnigq/SPtZlYTBzFRLA
+         KoRmkE+pjK/4+8x50BEq+LHgDSzS4DjCx5c95HdaBS6cqPpDNYHkatxIcgGjD7AmCYDT
+         wgExYl9/AW5KpGegWdyQwpf6l8os4SSOD0JP8SxGkKWblzJwSt9AvmEI6BIsQZ9MwddH
+         j1U3Mw5lTZUwsSkAzgmP2tcfAHpTheqJWu2OjuzEQUNniz7SFIRLtHXBpxoARCOh5w+z
+         ETCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=j83riijwkCGvjUh7Adz6XzCw5n1IEjGb/VrFZUAe4F8=;
+        b=7g4YA9Y9HRTZYfDm12EE0mjKTM4zkNzDAunICRwYPa4pOLQQlre2toRLbkdgyShxxL
+         LwXcqk3YeOLlSRpny801e1/AMf87yjU43wBzoLZMY+j4P0WP6x0Qz6YUWWOhs//8WE3R
+         QfZkW53F9yyB09D+Yx1D3a6zjbhxcQTXN4K2c10exFIV9CzLZ3UZVFPYocFrATDKJRqh
+         Vv6A4W1B13E9tpmmt4nwx3C8r7CupRct7FgBiGpzgo1e0+Yx1B5KKqJv18EyL6Ew2gR0
+         DX1s2dESPPFzyvWrmfhMzkC9sTJWuQq/9rmwxe0yWsjcN2Y6mtZ+UVL1hJymuQ1+2hlS
+         EXkQ==
+X-Gm-Message-State: AOAM530G3AqYIBS3bkyaAFe2AIQgCAPl3IaHJnTpkz12Rzq1/YVdyknR
+        vKOuTRGxP+2ILnG0EK8mbbSTMKEJCUu2VQixJ6s=
+X-Google-Smtp-Source: ABdhPJx+lyo2eDU/yymI7uUr7Q0TQbS4aqYdE/gnmRWCO7rej1mxW1Okk54UFTfheTG/NmgfINc9s9Sx486rmDzuL8g=
+X-Received: by 2002:a17:906:6dce:: with SMTP id j14mr2997439ejt.305.1639575257245;
+ Wed, 15 Dec 2021 05:34:17 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v3 0/3] drm/simpledrm: Apple M1 / DT platform support
- fixes
-Content-Language: en-US
-To:     Hector Martin <marcan@marcan.st>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Pekka Paalanen <ppaalanen@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org
-References: <20211212062407.138309-1-marcan@marcan.st>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <20211212062407.138309-1-marcan@marcan.st>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------YKMJGICHJYklTHrMiV9Y0wVh"
+References: <20210704090230.26489-1-jagan@amarulasolutions.com>
+ <YP2ZvoVQyvwTXP++@ravnborg.org> <CAMty3ZANJz=HSKFzZ8gn896uw98iVwMEpGhmanXNbj77Ren4hw@mail.gmail.com>
+ <CAJ+vNU1Hy_94TYgs0isNc2pmiH2sOReZJLhphzQFTN2Z50JPrA@mail.gmail.com>
+ <CAOf5uwm6+tFS8temhPmSx6nFVTSyk0Ckd9eDEToQNmNaiO2c=A@mail.gmail.com>
+ <CAJ+vNU2pQCHqnyNJnz_rhczGRwcU=9XDFG1ix_V=Sc-1oWvhjA@mail.gmail.com>
+ <CAOf5uw=Cts+V+amSrTzVyRyFZA=eKSVtRPtXae40-4M0bu6pwg@mail.gmail.com>
+ <ad3feb990ea73d258075e9bf3d3034189266bad2.camel@lynxeye.de> <CAOf5uwnSd0fBLHRgM2qvTH+4EorYamoED+XKL7dX=gA-eFKjkQ@mail.gmail.com>
+In-Reply-To: <CAOf5uwnSd0fBLHRgM2qvTH+4EorYamoED+XKL7dX=gA-eFKjkQ@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 15 Dec 2021 07:34:05 -0600
+Message-ID: <CAHCN7x+aQ3g3pb_w_DJ1oDcE6gRgpYDayemQrj-6Pn2bhKrDvA@mail.gmail.com>
+Subject: Re: [RFC PATCH 00/17] drm: bridge: Samsung MIPI DSIM bridge
+To:     Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Cc:     Lucas Stach <dev@lynxeye.de>, Marek Vasut <marex@denx.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        NXP Linux Team <Linux-imx@nxp.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------YKMJGICHJYklTHrMiV9Y0wVh
-Content-Type: multipart/mixed; boundary="------------aaASzzqf6IN1TtNz411BVreu";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Hector Martin <marcan@marcan.st>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>,
- Hans de Goede <hdegoede@redhat.com>
-Cc: Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Javier Martinez Canillas <javier@dowhile0.org>,
- Pekka Paalanen <ppaalanen@gmail.com>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Message-ID: <4d16ff4b-4060-49df-805f-66d293ffa186@suse.de>
-Subject: Re: [PATCH v3 0/3] drm/simpledrm: Apple M1 / DT platform support
- fixes
-References: <20211212062407.138309-1-marcan@marcan.st>
-In-Reply-To: <20211212062407.138309-1-marcan@marcan.st>
+On Thu, Dec 9, 2021 at 3:24 PM Michael Nazzareno Trimarchi
+<michael@amarulasolutions.com> wrote:
+>
+> Hi
+>
+> On Thu, Dec 9, 2021 at 9:24 PM Lucas Stach <dev@lynxeye.de> wrote:
+> >
+> > Am Donnerstag, dem 09.12.2021 um 18:09 +0100 schrieb Michael Nazzareno
+> > Trimarchi:
+> > > Hi Tim
+> > >
+> > > On Thu, Dec 9, 2021 at 5:40 PM Tim Harvey <tharvey@gateworks.com> wrote:
+> > > >
+> > > > On Thu, Dec 9, 2021 at 12:36 AM Michael Nazzareno Trimarchi
+> > > > <michael@amarulasolutions.com> wrote:
+> > > > >
+> > > > > Hi Tim
+> > > > >
+> > > > > On Tue, Oct 5, 2021 at 11:43 PM Tim Harvey <tharvey@gateworks.com> wrote:
+> > > > > >
+> > > > > > On Sun, Jul 25, 2021 at 10:14 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> > > > > > >
+> > > > > > > Hi Sam,
+> > > > > > >
+> > > > > > > On Sun, Jul 25, 2021 at 10:35 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+> > > > > > > >
+> > > > > > > > Hi Jagan,
+> > > > > > > >
+> > > > > > > > On Sun, Jul 04, 2021 at 02:32:13PM +0530, Jagan Teki wrote:
+> > > > > > > > > This series supports common bridge support for Samsung MIPI DSIM
+> > > > > > > > > which is used in Exynos and i.MX8MM SoC's.
+> > > > > > > > >
+> > > > > > > > > The final bridge supports both the Exynos and i.MX8MM DSI devices.
+> > > > > > > > >
+> > > > > > > > > Right now bridge offers two sets of implementations.
+> > > > > > > > >
+> > > > > > > > > A. With component_ops and exynos specific code exclusively for
+> > > > > > > > >    exynos dsi drivers and it's legacy bindings.
+> > > > > > > > >
+> > > > > > > > > B. Without componenet_ops for newly implemented bridges and its
+> > > > > > > > >    users like i.MX8MM.
+> > > > > > > > >
+> > > > > > > > > The future plan is to fix the implementation A) by dropping
+> > > > > > > > > component_ops and fixing exynos specific code in order to make
+> > > > > > > > > the bridge more mature to use and the same is mentioned in
+> > > > > > > > > drivers TODO.
+> > > > > > > > >
+> > > > > > > > > Patch 0001 - 0006: Bridge conversion
+> > > > > > > > > Patch 0007 - 0017: Samsung MIPI DSIM bridge fixes, additions
+> > > > > > > > >
+> > > > > > > > > Tested in Engicam i.Core MX8M Mini SoM.
+> > > > > > > > >
+> > > > > > > > > Anyone interest, please have a look on this repo
+> > > > > > > > > https://github.com/openedev/linux/tree/070421-imx8mm-dsim
+> > > > > > > > >
+> > > > > > > > > Would appreciate anyone from the exynos team to test it on
+> > > > > > > > > the exynos platform?
+> > > > > > > > >
+> > > > > > > > > Any inputs?
+> > > > > > > >
+> > > > > > > > I really like where you are headign with this!
+> > > > > > > > No testing - sorry. But I will try to provide a bit of feedback on the
+> > > > > > > > individual patches.
+> > > > > > > >
+> > > > > > > > I hope you find a way to move forward with this.
+> > > > > > >
+> > > > > > > Thanks for the response.
+> > > > > > >
+> > > > > > > We have found some issues with Bridge conversion on existing exynos
+> > > > > > > drivers. The component based DSI drivers(like exynos) are difficult to
+> > > > > > > attach if it involves kms hotplug. kms hotplug would require drm
+> > > > > > > pointer and that pointer would only available after the bind call
+> > > > > > > finishes. But the bridge attach in bind call will defer till it find
+> > > > > > > the attached bridge.
+> > > > > > >
+> > > > > > > Right now I'm trying to find the proper way to attach the bridges for
+> > > > > > > component based DSI drivers which involves kms hot-plug.
+> > > > > > >
+> > > > > > > If you have any ideas on this, please let me know.
+> > > > > > >
+> > > > > >
+> > > > > > Jagan,
+> > > > > >
+> > > > > > How is your progress on this series? Looking at your repo it looks
+> > > > > > like you've rebased on top of 5.13-rc3 in your 070121-imx8mm-dsim
+> > > > > > branch but you've got a lot of things there that are likely not
+> > > > > > related to this series?
+> > > > >
+> > > > > I have a bit of work on those patches and tested on imx8mn. Basically:
+> > > > >
+> > > > > - add the dsi timing calculation
+> > > > > - change few difference with samsung bridge
+> > > > > - fix crashes of my dsi panels
+> > > > > - compare with NXP driver the final results
+> > > > >
+> > > > > I found that I have one problem that gives me some instability. In the
+> > > > > NXP original driver the panel needs to be
+> > > > > enabled in bridge_enable before out the standby. If I understand
+> > > > > correctly, our standby should be done after.
+> > > > > I would like to have some feedback and help and testing on other
+> > > > > boards/devices and some suggestions on how to handle
+> > > > > some of the differences. Another big problem is etnavi that is not stable
+> > > > >
+> > > >
+> > > > Michael,
+> > > >
+> > > > Where can I find your patches?
+> > > >
+> > >
+> > > I will push on some tree and share
+> > >
+> > > > What do you mean by etnaviv not being stable?
+> > > >
+> > > > I did some limited testing with etnaviv on imx8mm with 5.15 + dsi
+> > >
+> > >
+> > >
+> > > > patches on an Ubuntu focal root filesystem by:
+> > > > apt update
+> > > > apt install gnome-session gnome-terminal
+> > > > ^^^ 2D hardware acceleration appears to be working (dragging opaque
+> > > > windows around)
+> > > > apt install mesa-utils glmark2
+> > > > glxgears
+> > > > ^^^ ~160fps on IMX8MM
+> > > > glmark2
+> > > > ^^^ score of 39 on IMX8MM
+> > > >
+> > > > I haven't seen any updates from Jagan since Nov 24
+> > > > (https://www.spinics.net/lists/dri-devel/msg324059.html) and am not
+> > > > sure if he's been able to work through drm/exynos issues that have
+> > > > been blocking his progress.
+> > >
+> > > I plan to push on github
+> > >
+> > > [17:07:42.315] Sending ready to systemd
+> > > [  214.052085] etnaviv-gpu 38000000.gpu: recover hung GPU!
+> > > [  214.595998] etnaviv-gpu 38000000.gpu: recover hung GPU!
 
---------------aaASzzqf6IN1TtNz411BVreu
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Which Nano variant do you have?  Not all Nano's have a GPU.  I know
+Tim Harvey was having a similar issue, but it turns out his variant of
+the Nano did not include a GPU.
 
-SGkNCg0KQW0gMTIuMTIuMjEgdW0gMDc6MjQgc2NocmllYiBIZWN0b3IgTWFydGluOg0KPiBI
-aSBEUk0gZm9sa3MsDQo+IA0KPiBUaGlzIHNob3J0IHNlcmllcyBtYWtlcyBzaW1wbGVkcm0g
-d29yayBvbiBBcHBsZSBNMSAoaW5jbHVkaW5nIFByby9NYXgpDQo+IHBsYXRmb3JtcyB0aGUg
-d2F5IHNpbXBsZWZiIGFscmVhZHkgZG9lcywgYnkgYWRkaW5nIFhSR0IyMTAxMDEwIHN1cHBv
-cnQNCj4gYW5kIG1ha2luZyBpdCBiaW5kIHRvIGZyYW1lYnVmZmVycyBpbiAvY2hvc2VuIHRo
-ZSBzYW1lIHdheSBzaW1wbGVmYg0KPiBkb2VzLg0KPiANCj4gVGhpcyBhdm9pZHMgYnJlYWtp
-bmcgdGhlIGJvb3Rsb2FkZXItcHJvdmlkZWQgZnJhbWVidWZmZXIgY29uc29sZSB3aGVuDQo+
-IHNpbXBsZWRybSBpcyBzZWxlY3RlZCB0byByZXBsYWNlIHNpbXBsZWZiLCBhcyB0aGVzZSBG
-QnMgYWx3YXlzIHNlZW0gdG8NCj4gYmUgMTAtYml0IChhdCBsZWFzdCB3aGVuIGEgcmVhbCBz
-Y3JlZW4gaXMgYXR0YWNoZWQpLg0KDQpJZiB0aGVyZSBhcmUgbm8gZnVydGhlciBjb21tZW50
-cywgSSdtIGdvaW5nIHRvIGFwcGx5IHRoZSBzZXJpZXMgdG8gDQpkcm0tbWlzYy1uZXh0Lg0K
-DQpCZXN0IHJlZ2FyZHMNClRob21hcw0KDQo+IA0KPiBDaGFuZ2VzIHNpbmNlIHYyOg0KPiAt
-IE1hZGUgMTAtYml0IGNvbnZlcnNpb24gY29kZSBmaWxsIHRoZSBMU0JzDQo+IC0gQWRkZWQg
-QVJHQjIxMDEwMTAgdG8gc3VwcG9ydGVkIGZvcm1hdHMgbGlzdA0KPiAtIFNpbXBsaWZpZWQg
-T0YgY29yZSBjb2RlIHBlciByZXZpZXcgZmVlZGJhY2sNCj4gSGVjdG9yIE1hcnRpbiAoMyk6
-DQo+ICAgIG9mOiBNb3ZlIHNpbXBsZS1mcmFtZWJ1ZmZlciBkZXZpY2UgaGFuZGxpbmcgZnJv
-bSBzaW1wbGVmYiB0byBvZg0KPiAgICBkcm0vZm9ybWF0LWhlbHBlcjogQWRkIGRybV9mYl94
-cmdiODg4OF90b194cmdiMjEwMTAxMF90b2lvKCkNCj4gICAgZHJtL3NpbXBsZWRybTogQWRk
-IFtBWF1SR0IyMTAxMDEwIGZvcm1hdHMNCj4gDQo+ICAgZHJpdmVycy9ncHUvZHJtL2RybV9m
-b3JtYXRfaGVscGVyLmMgfCA2NCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKw0KPiAg
-IGRyaXZlcnMvZ3B1L2RybS90aW55L3NpbXBsZWRybS5jICAgIHwgIDQgKy0NCj4gICBkcml2
-ZXJzL29mL3BsYXRmb3JtLmMgICAgICAgICAgICAgICB8ICA0ICsrDQo+ICAgZHJpdmVycy92
-aWRlby9mYmRldi9zaW1wbGVmYi5jICAgICAgfCAyMSArLS0tLS0tLS0tDQo+ICAgaW5jbHVk
-ZS9kcm0vZHJtX2Zvcm1hdF9oZWxwZXIuaCAgICAgfCAgMyArKw0KPiAgIDUgZmlsZXMgY2hh
-bmdlZCwgNzQgaW5zZXJ0aW9ucygrKSwgMjIgZGVsZXRpb25zKC0pDQo+IA0KDQotLSANClRo
-b21hcyBaaW1tZXJtYW5uDQpHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyDQpTVVNFIFNvZnR3
-YXJlIFNvbHV0aW9ucyBHZXJtYW55IEdtYkgNCk1heGZlbGRzdHIuIDUsIDkwNDA5IE7DvHJu
-YmVyZywgR2VybWFueQ0KKEhSQiAzNjgwOSwgQUcgTsO8cm5iZXJnKQ0KR2VzY2jDpGZ0c2bD
-vGhyZXI6IEl2byBUb3Rldg0K
-
---------------aaASzzqf6IN1TtNz411BVreu--
-
---------------YKMJGICHJYklTHrMiV9Y0wVh
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmG57aYFAwAAAAAACgkQlh/E3EQov+Dk
-AxAAs8xKAuo10t0j9jgIcJcbdfBgzKEDF1wtooz9GVCjTAsoqTiz0Eq83SG2bGjv1riybTKshNYq
-CriNW3gLP7LTg14Q8EXtnykoDaA4CfxuyEpAapBrM+BgAH8inkd908+cXJx776c59A7hr4YWdKTo
-1qtwfToXjYNnBbURPz6Ke89GO9ca288CifBn49JgGv9WOh35W2vakTV5UAtdVbKwiBh0q6qk+66P
-YvEhAl/h+p22PiRXzLN5BJMWQEWqlb19VdfBNXxGpzQ0UymLhDHeGjk0/2DKqDBG9zXRkDj8OpbD
-c+dxhhjKTNDngcUjpVsO7LMG/9tYuvuXGMMBWukPGLh4u+77WKLXYm5irT+ml57gUEaUqbJ7pmNN
-1AnH7rean0hmkjHteAYNO8tJW3w/LBPKNgMzrm1BLNkxX2TyocvxH6qTcS7YxHeQqX7i+VMTPu6B
-9hw6ZXML0P52JzzLHvX2SLvGt2O5z0iG+SNGPBIetF+dmtlhBgKbFe/dThvHZuQSVFOX5fIy3cJL
-uMLTQnWz3Gm3FscZGThDNnUGucHw7WurHZFKFsDazSjD3b24Jlw8ifD5NX05/SqpK8pv91nXtxSe
-zJox/IYEwNOuO45/moc7+AZIUsmGtXY+oEQJ/l+ZKBLV9LZKEeTLOEGVHSEUuCN+FSVaRnuHOLHx
-WSI=
-=7Djj
------END PGP SIGNATURE-----
-
---------------YKMJGICHJYklTHrMiV9Y0wVh--
+> > >
+> > > ** (maynard:386): WARNING **: 17:07:43.874: failed to setup mixer: Success
+> > > [17:07:44.175] Added surface 0xaaab02630440, app_id (null) to pending list
+> > > [17:07:44.176] Added surface 0xaaab026172b0, app_id (null) to pending list
+> > > ** Message: 17:07:44.289: New advertisement app id maynard
+> > > ** Message: 17:07:44.290: New advertisement app id maynard
+> > > [17:07:45.171] (background) position view 0xaaab0261f860, x 0, y 0, on
+> > > output DSI-1
+> > > [17:07:45.171] (panel) geom.width 100, geom.height 480, geom.x 0, geom.y 0
+> > > [17:07:45.171] (panel) edge 2 position view 0xaaab02634510, x 0, y 0
+> > > [17:07:45.172] panel type 2 inited on output DSI-1
+> > > [17:07:45.172] Usable area: 380x480+100,0
+> > > [  216.932080] etnaviv-gpu 38000000.gpu: recover hung GPU!
+> > > [  217.476015] etnaviv-gpu 38000000.gpu: recover hung GPU!
+> > > [  218.020157] etnaviv-gpu 38000000.gpu: recover hung GPU!
+> > >
+> > > This is my problem on imx8mn
+> >
+> > Note that the GPU on the 8MN is from the GC7000 generation, which
+> > genreally has bogus feature registers, as VeriSilicon stopped using
+> > them in favor of a hardware database. To get the GPu working you need
+> > to transcribe the entry for this specific GPU from the downstream GPU
+> > driver into the etanviv HWDB format, to make the kernel and userspace
+> > driver aware of how to drive this GPU.
+>
+> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_hwdb.c
+> b/drivers/gpu/drm/etnaviv/etnaviv_hwdb.c
+> index f2fc645c7956..724f78fd37e5 100644
+> --- a/drivers/gpu/drm/etnaviv/etnaviv_hwdb.c
+> +++ b/drivers/gpu/drm/etnaviv/etnaviv_hwdb.c
+> @@ -68,6 +68,37 @@ static const struct etnaviv_chip_identity
+> etnaviv_chip_identities[] = {
+>                 .minor_features10 = 0x00004040,
+>                 .minor_features11 = 0x00000024,
+>         },
+> +       {
+> +               .model = 0x7000,
+> +               .revision = 0x6203,
+> +               .product_id = ~0U,
+> +               .customer_id = ~0U,
+> +               .eco_id = 0,
+> +               .stream_count = 16,
+> +               .register_max = 64,
+> +               .thread_count = 512,
+> +               .shader_core_count = 2,
+> +               .vertex_cache_size = 16,
+> +               .vertex_output_buffer_size = 1024,
+> +               .pixel_pipes = 1,
+> +               .instruction_count = 512,
+> +               .num_constants = 320,
+> +               .buffer_size = 0,
+> +               .varyings_count = 16,
+> +               .features = 0xe0287c8c,
+> +               .minor_features0 = 0xc1589eff,
+> +               .minor_features1 = 0xfefbfad9,
+> +               .minor_features2 = 0xeb9d4fbf,
+> +               .minor_features3 = 0xedfffced,
+> +               .minor_features4 = 0xdb0dafc7,
+> +               .minor_features5 = 0x3b5ac333,
+> +               .minor_features6 = 0xfcce6000,
+> +               .minor_features7 = 0xfffbfa6f,
+> +               .minor_features8 = 0x00e10ef3,
+> +               .minor_features9 = 0x00c8003c,
+> +               .minor_features10 = 0x00004040,
+> +               .minor_features11 = 0x00000024,
+> +       },
+>         {
+>                 .model = 0x7000,
+>                 .revision = 0x6204,
+>
+> Ok, should something like this. Only does not know about this
+> gcFEATURE_BIT_DE_2D_FAST_CLEAR. I put in features but can even a
+> minor. Do you know the right mapping?
+>
+> Michael
+>
+> Michael
+>
+> >
+> > Regards,
+> > Lucas
+> >
+>
+>
+> --
+> Michael Nazzareno Trimarchi
+> Co-Founder & Chief Executive Officer
+> M. +39 347 913 2170
+> michael@amarulasolutions.com
+> __________________________________
+>
+> Amarula Solutions BV
+> Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
+> T. +31 (0)85 111 9172
+> info@amarulasolutions.com
+> www.amarulasolutions.com
