@@ -2,65 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9977D4765ED
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 23:29:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A3684765E8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 23:29:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231527AbhLOW3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 17:29:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50206 "EHLO
+        id S231466AbhLOW27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 17:28:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231391AbhLOW1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 17:27:54 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C78A0C061748
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 14:27:53 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id bj13so33735779oib.4
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 14:27:53 -0800 (PST)
+        with ESMTP id S231403AbhLOW1z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 17:27:55 -0500
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0A87C061574
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 14:27:54 -0800 (PST)
+Received: by mail-oi1-x232.google.com with SMTP id s139so33621651oie.13
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 14:27:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=FXiTt28DF0TNeYeqxbk1y47hagOmrR7tSgx4NkJT8Ms=;
-        b=Lx8w5unfIa5EsmBOH0EWh+C8C/YoOkhaYvlKT7LF3A2fPH5W8+PQGrLrnaw5/oCtGc
-         Pa3U3cvZIvxyveJSN3qhxsSW5LMZr6Gu9z6n+jgAHsLt/aVDGXWhaEBnrNhmT3mz8GXK
-         yqXtIKGs1xP0dGHzBHt9fQyjQEhu3bHeR5WxoNXiPLFf+kLUYKjRDSge3NdQhNEkzl83
-         4SuQ9jlSfmdmahEljDmXW29/8v1de4fCOplsg2wJwjbucmc9VVd7mCGP5lSALvgEHxEf
-         PPehyLfZzrgOhQuF8hMPk2XRz7p0/dIi/zb+Oke/A51g2EVkppmQtpmvXoc/ddcdK0+2
-         Keqw==
+        bh=0k/4WghU8oFurHJHEHSouu6Us6eVLuVOzOhdp+JcH0k=;
+        b=NeDhHnDzQKmHQdukLfPb57fcY9sRvEeshRGWjl6VbHYN/VNd2WIdiGucN3VyQHfHyi
+         ODX0tPBTzdHUhS/K/UFskuk3zbVPplOGuu1x/3hM6Od2OgzHrir6KktuGRDLF4LOX+Vz
+         smHiXw5l4g/gYIGX3S+KGZWonIZx7TDqmoQI+DekZRsEy3SrNmlSXlyCCG5uZAu0Yfzf
+         LJrhT5CgejLIjStw/okC2VQgzpIsD4mkhq6Jnn8j/tcQRpqfLEkVXuhlhZMr5QdglWyz
+         S7wASV77km5m+lI0oQ4m2DMor4fr4TyP/uoOVeJECDFrpy5pBzEl3XpiE4O2sXMtjjSt
+         YvUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=FXiTt28DF0TNeYeqxbk1y47hagOmrR7tSgx4NkJT8Ms=;
-        b=X32rv796olDtq2Z8O5LEUwaXq523js2DKa9yvlgj+ar9gTWcixTFcU/fkTCGzbFO4h
-         EQO4K4GgcQuH+LQ4Dz6KtbFwgb+LYqonCn2VaA/1yvW9ZUpRoy8UQQWgrbDt3jq9XJBh
-         ndNSBGgGFtTdZk3xpo13h0wU54CvzdcDxz1IOLCEWTIIlazy+R1aHrLBthwbf7WtXH8l
-         KVjs4cFpp1Rct8UkXAeqLjJsuKSleqn1iGy+JAL6NPCCGERH86HN2ks6eYf+fdTscb4J
-         kl3XOL6c2ACjk5+lmpffxnSCTSUAVVqPn4iGC5YAVVC8noZEyRF2y+njlXJwPKTL4o/h
-         Gg4Q==
-X-Gm-Message-State: AOAM531/GLUPevophdng7KenHEtpuSsqxo/QUXW8xZ8Cy7uMG2kd6F+e
-        Gct1KzZN9G3A++0R79qttrbfuz3Yqjtghg==
-X-Google-Smtp-Source: ABdhPJzvnr3AZ3ajPkvkjPQb60D5x9FrVNF5YO18grQl1pkgjr7uNDubj3nnjD7Re7MjWtfSY1jhpQ==
-X-Received: by 2002:aca:a897:: with SMTP id r145mr1841533oie.136.1639607273192;
-        Wed, 15 Dec 2021 14:27:53 -0800 (PST)
+        bh=0k/4WghU8oFurHJHEHSouu6Us6eVLuVOzOhdp+JcH0k=;
+        b=8E5UJlN5EAlSc2NUoalS2VudAnZT10J55y5epB2IG7mX4UdgBIZl7LB6BkE+tW98Aw
+         RFvkf2fbXrvOSDBYPoM44kk2vEccZ0SfY4hjYti9HW7ejdMRnqhbErxQ0nE6wXTMoykM
+         sdM5d+MvfukLSmdyA3pmKM0WHlICXPm2JvVZeS4DlFHLsfHAa3B9FP2FIhdm3hndpJCG
+         2eeaFIsyI5s1KSdqahjM8G6m5fwGFUVB3JWEe7CgtDs5FwYP6PIsN9EMjDApk2GyhsmZ
+         P1LecKi7WvqaMVT7cmpkdIxLpKGKYJU5XhgBKRs0xOKZRtxG3B+C6I76nBnchFQ7wujF
+         rWqg==
+X-Gm-Message-State: AOAM5322Lc7dxOQ5r3jn5qIuxoktCNEuegDpZieufvrgtJRm9KypmQZB
+        xaxZaGzFIhPUllx+9Bc8EMKXIg==
+X-Google-Smtp-Source: ABdhPJyiZGSg7nl3iPZNacNkzzIriIsA8K+pbTW1R7BSm60R5ayfzMXsdIZwV+OW92zh2rfswPUntA==
+X-Received: by 2002:aca:1202:: with SMTP id 2mr1806801ois.63.1639607274378;
+        Wed, 15 Dec 2021 14:27:54 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id t14sm700500oth.81.2021.12.15.14.27.52
+        by smtp.gmail.com with ESMTPSA id t14sm700500oth.81.2021.12.15.14.27.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 14:27:52 -0800 (PST)
+        Wed, 15 Dec 2021 14:27:53 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        martin.botka@somainline.org, marijn.suijten@somainline.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        angelogioacchino.delregno@somainline.org,
-        Andy Gross <agross@kernel.org>, jamipkettunen@somainline.org
-Subject: Re: (subset) [PATCH] Revert "arm64: dts: qcom: sm8350: Specify clock-frequency for arch timer"
-Date:   Wed, 15 Dec 2021 16:27:25 -0600
-Message-Id: <163960723735.3062250.2110128471587461383.b4-ty@linaro.org>
+To:     linux-arm-msm@vger.kernel.org,
+        Luca Weiss <luca.weiss@fairphone.com>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        de Goede <hdegoede@redhat.com>, linux-phy@lists.infradead.org,
+        linux-fbdev@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Rishabh Bhatnagar <rishabhb@codeaurora.org>,
+        Rob Herring <robh@kernel.org>,
+        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Amit Kucheria <amitk@kernel.org>, phone-devel@vger.kernel.org,
+        linux-usb@vger.kernel.org, Zhang Rui <rui.zhang@intel.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        Manu Gautam <mgautam@codeaurora.org>
+Subject: Re: (subset) [PATCH 00/10] dt-binding patches for sm6350
+Date:   Wed, 15 Dec 2021 16:27:26 -0600
+Message-Id: <163960723734.3062250.16152122166909189415.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211202004328.459899-1-konrad.dybcio@somainline.org>
-References: <20211202004328.459899-1-konrad.dybcio@somainline.org>
+In-Reply-To: <20211213082614.22651-1-luca.weiss@fairphone.com>
+References: <20211213082614.22651-1-luca.weiss@fairphone.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -68,20 +80,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2 Dec 2021 01:43:28 +0100, Konrad Dybcio wrote:
-> This reverts commit ed9500c1df59437856d43e657f185fb1eb5d817d.
+On Mon, 13 Dec 2021 09:26:01 +0100, Luca Weiss wrote:
+> This series adds compatibles to the dt-bindings documentation where it
+> was missed before.
 > 
-> The clock-frequency property was meant to aid platforms with broken firmwares
-> that don't set up the timer properly on their own. Don't include it where it is
-> not the case.
+> Finally, the last patch solves some further dtbs_check errors by
+> modifying the sm6350.dtsi to match the binding docs more closely.
 > 
+> Please note, that the first patch from Konrad is a resend that wasn't
+> picked up when sent to the lists in August 2021.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] Revert "arm64: dts: qcom: sm8350: Specify clock-frequency for arch timer"
-      commit: 202f69cd4e1dad6c86a35d8b29fc693877c6c91d
+[10/10] arm64: dts: qcom: sm6350: Fix validation errors
+        commit: f56498fc6a9364a35dd74af791bd1251467e9cc1
 
 Best regards,
 -- 
