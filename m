@@ -2,98 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1C5447659D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 23:27:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DA6D4765BD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 23:28:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230088AbhLOW1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 17:27:31 -0500
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:38746 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbhLOW1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 17:27:30 -0500
-Received: by mail-oi1-f182.google.com with SMTP id r26so33678926oiw.5;
-        Wed, 15 Dec 2021 14:27:30 -0800 (PST)
+        id S231443AbhLOW2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 17:28:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50210 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231464AbhLOW16 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 17:27:58 -0500
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED9DBC06179C
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 14:27:57 -0800 (PST)
+Received: by mail-oi1-x231.google.com with SMTP id u74so33674614oie.8
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 14:27:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=dIWHsocWhNzHpMIBX1OQ+sZEosNoFwmP0CG+wQ9sIW8=;
+        b=a7tXULw/Y0Ks7AVUJX+VepzbeZG9pbW0ucTLKjAiRKJ9pOtGgwRyIZrYaOwaWBqKel
+         CIJz0I7bzFdUGrnDUNoui/KTByhB+UAhw60QmXQ9ACs4CZ3JSpuOTSo4W77I6wO34AuM
+         Id8mQ2dfn5vcWvQPKzSMANzXyUdbe8/uRyVFrGlIEfX0PjEFjr2Li5BXzdtkja77oC39
+         E8i77I65sBcU68d984IL+PH8YwepLipxaKPYBDcExjbFURuOdaGCJ2nHRHg1yiNgrWrC
+         9Gw6vN2bWNFZIj7YDS7CwNin3uXRnhd7OY7WRbixzjGVc4r7UPqdHrZciM4toBSzzhBu
+         laLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=HfqN6FJMlfs7L3+Cs2CO8gMcSI1LPysdwY7vFCHYvzg=;
-        b=Ot+jWr6a6MieyBiAIdbsodDA+mJpUyMgLHKQ3B2xgxPdXqX3YWxGN1f8OW84Ll2QKn
-         fuC1LN0oVpA65CS8UZDlCuNMyPrNvBp9baUIKyRsmdIuAwje6bhvrkg875qPvHTXQrae
-         JYGKMHOD/+yJbqbfZeDL+R2LRiMtFC8AvNYVbPLkWSkQqOsv1edZmD7E88lSeDZvwnht
-         w51hpUJSv3og4Kdlqw/6eA0CEPG5JT7TuSePtd9x+/THqIi3MI2gc1TyVyL0Qrle7GRg
-         bBJ5YprpnA+O3MKSiXzzQXyhYCRSrO5PBCAUPsyS3c5sHttjc3gKKoq0gaOmmB2/+Zb6
-         yKEg==
-X-Gm-Message-State: AOAM532ZhBJda+2JCmXcwwZ9HQ141IyGpDIZ48xy21XdXhxQwpslNzjV
-        6PFWcRQLA4PNtJKgw0AOebjXx2t5CA==
-X-Google-Smtp-Source: ABdhPJwUUpSaTZQw9i1ks1KxUw1drlRY9guiYYYGHetb3L8jIHN/4b8OlPJoJ4EGBe/cpXqnBV3mZA==
-X-Received: by 2002:aca:1204:: with SMTP id 4mr1830445ois.136.1639607250051;
-        Wed, 15 Dec 2021 14:27:30 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m2sm742734oop.12.2021.12.15.14.27.28
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=dIWHsocWhNzHpMIBX1OQ+sZEosNoFwmP0CG+wQ9sIW8=;
+        b=OIS2ooXwGrMuRf8VEfTHWie/Mh6K5hcpES/jv9xjAmOc/ZDvtRZwKkhNETv/1dfKOu
+         o5zXYzi5KQwY+R0h2/sWEpF4pCAsdmboDVpREaAgioLh6X6eR7TUWqPu4ylQME1PxUPr
+         dRzLhmBXNJVZgnFgqJ/v5uy1aUwX/jty3OZ8EbzWPDvEqOklKwVTymyAKeb/yrzut5N/
+         3TxAVPRbKvZeKk/IrNHwSVO1B2/vJtzOZIKGVav2LKE2UIZTywGrd/0A+g5VnyrRXWFl
+         kST4hvlXXOvK5LbBJYvGma8a84MExtLRv1rQOW5zSTrthxeP71W2D+/P+dDdMCCBfkFJ
+         N6rQ==
+X-Gm-Message-State: AOAM532Nh8CIKyEBQguH1JW9qlMzZ00DrA0p0KdGd1gX1uiEHHK2HXDa
+        ygjwgZJcMztUqUc3mhljA2fsEg==
+X-Google-Smtp-Source: ABdhPJzaotb8BvwvYTRxvwt71utR6gzPfqmBXdd1mswAxbskGys7pe68pNKcSsoIAjm/Mjql+sJoDQ==
+X-Received: by 2002:aca:1b15:: with SMTP id b21mr1833979oib.64.1639607277330;
+        Wed, 15 Dec 2021 14:27:57 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id t14sm700500oth.81.2021.12.15.14.27.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 14:27:29 -0800 (PST)
-Received: (nullmailer pid 1954725 invoked by uid 1000);
-        Wed, 15 Dec 2021 22:27:28 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        =?utf-8?q?=C3=81lvaro_Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20211215204753.5956-1-zajec5@gmail.com>
-References: <20211215204753.5956-1-zajec5@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: Add binding for BCM4908 pinctrl
-Date:   Wed, 15 Dec 2021 16:27:28 -0600
-Message-Id: <1639607248.075072.1954724.nullmailer@robh.at.kernel.org>
+        Wed, 15 Dec 2021 14:27:56 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     phone-devel@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Pavel Dubrova <pashadubrova@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Martin Botka <martin.botka@somainline.org>,
+        Andy Gross <agross@kernel.org>
+Subject: Re: [PATCH v6 0/2] Global Clock Controller driver for MSM8976/56
+Date:   Wed, 15 Dec 2021 16:27:29 -0600
+Message-Id: <163960723735.3062250.6885330646115264163.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20211208091036.132334-1-marijn.suijten@somainline.org>
+References: <20211208091036.132334-1-marijn.suijten@somainline.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Dec 2021 21:47:52 +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, 8 Dec 2021 10:10:34 +0100, Marijn Suijten wrote:
+> This is the Global Clock Controller (GCC) driver for MSM8956, MSM8976
+> and APQ variants and it has been tested on two Sony phones featuring the
+> Qualcomm MSM8956 SoC.
 > 
-> It's hardware block that is part of every SoC from BCM4908 family.
+> In addition to GCC this driver is also responsible for providing MDSS
+> and GFX3D clocks which reside in the same register space.
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  .../pinctrl/brcm,bcm4908-pinctrl.yaml         | 72 +++++++++++++++++++
->  MAINTAINERS                                   |  7 ++
->  2 files changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm4908-pinctrl.yaml
-> 
+> [...]
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied, thanks!
 
-yamllint warnings/errors:
+[1/2] dt-bindings: clk: qcom: Document MSM8976 Global Clock Controller
+      commit: 13feb2093984625dbece6f1657867c84d45b76de
+[2/2] clk: qcom: Add MSM8976/56 Global Clock Controller (GCC) driver
+      commit: b577c7e6a63f4dd3b55ccc5c828175995beae66b
 
-dtschema/dtc warnings/errors:
-Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/pinctrl/pinctrl.yaml'
-xargs: dt-doc-validate: exited with status 255; aborting
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/pinctrl/brcm,bcm4908-pinctrl.example.dt.yaml'
-Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/pinctrl/pinctrl.yaml'
-make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/pinctrl/brcm,bcm4908-pinctrl.example.dt.yaml] Error 255
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1413: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1568760
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Best regards,
+-- 
+Bjorn Andersson <bjorn.andersson@linaro.org>
