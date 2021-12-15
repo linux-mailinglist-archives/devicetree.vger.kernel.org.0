@@ -2,194 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CD0D4755BD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:04:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE8F647559E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 10:57:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241470AbhLOKEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 05:04:11 -0500
-Received: from lucky1.263xmail.com ([211.157.147.132]:39266 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241456AbhLOKEG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:04:06 -0500
-Received: from localhost (unknown [192.168.167.223])
-        by lucky1.263xmail.com (Postfix) with ESMTP id E73EAFDE9F;
-        Wed, 15 Dec 2021 17:57:13 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P18835T140477477144320S1639562220094025_;
-        Wed, 15 Dec 2021 17:57:13 +0800 (CST)
-X-IP-DOMAINF: 1
-X-RL-SENDER: yifeng.zhao@rock-chips.com
-X-SENDER: zyf@rock-chips.com
-X-LOGIN-NAME: yifeng.zhao@rock-chips.com
-X-FST-TO: heiko@sntech.de
-X-RCPT-COUNT: 15
-X-LOCAL-RCPT-COUNT: 3
-X-MUTI-DOMAIN-COUNT: 0
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-UNIQUE-TAG: <982e40503fd5a75f1c5138733054e260>
-X-System-Flag: 0
-From:   Yifeng Zhao <yifeng.zhao@rock-chips.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, jbx6244@gmail.com, devicetree@vger.kernel.org,
-        vkoul@kernel.org, michael.riesch@wolfvision.net,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, kishon@ti.com,
-        p.zabel@pengutronix.de, cl@rock-chips.com,
-        kever.yang@rock-chips.com, Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Subject: [PATCH v5 4/4] arm64: dts: rockchip: add naneng combo phy nodes for rk3568
-Date:   Wed, 15 Dec 2021 17:56:57 +0800
-Message-Id: <20211215095657.13183-5-yifeng.zhao@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211215095657.13183-1-yifeng.zhao@rock-chips.com>
-References: <20211215095657.13183-1-yifeng.zhao@rock-chips.com>
+        id S241408AbhLOJ5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 04:57:15 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:43011 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241360AbhLOJ5O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 04:57:14 -0500
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 24B0F5803D1;
+        Wed, 15 Dec 2021 04:57:14 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Wed, 15 Dec 2021 04:57:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=GAS8IkqPCbXeURmEm1mcqqzqrs3
+        wpFYEKRdMNveUqVQ=; b=Pe/QOWNBfq8NmSRi0PLwRoj0xVdqrJ/ClZT37EYdBx5
+        lKvzUlLBztn6IdmJdMdHHXMbEbW1rPjZ3I0Wq5w/X1bFCELY5u30wmCB1HbeCDDY
+        Q7yPE3Wgm01H8BTwF2FpDCmC1WaJsZ645JTbVyUy8LJT9GDN3YfHvFtfHjEvOmtK
+        zbokUDRldxbZ2U+dQm0hwjCGYRary/JfJvNJRXCmRWoYHshRHRaDQKBak23jLTq/
+        sKpPNvtiHsv7g8hGGdabdp5ejGRmW69JGOCiW53rUDEQj2QXEkUkkHXR/YxW+Mxh
+        ToSL087o5E78tXgFy/X8Xz/g5JlMBX6wy8Qd8TVG2SA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=GAS8Ik
+        qPCbXeURmEm1mcqqzqrs3wpFYEKRdMNveUqVQ=; b=Vsfq2MyGqTvxrPgN2/lyN1
+        HQBKy/UW8aLZ89MO0rpz8I70b4FjvjfGQ0bELgIO9h5htoE4rP8ypdJGUEAnZQZK
+        groS//1VIIAAFS8Z+aoA1X6E9bDIhFcVDv886lduxj0jph5gnQS0AqTSfFfmtbJ6
+        zTi6V5JQJuNSp90GtifY7RJ5K1E/zcpBqYC0vgphursEzYCYMLjT0iLiYJr4Ao53
+        eDXhdsDGsDaOcOEp18eIpXoc/SgIqWyxx2vhGp6KhVS3xvUFthaUGyHgtcK4Ozxn
+        3Mnz3whFnwTBrSsE7tHk5L/ceP6A3Mq06av2yifTkTkA+7GDQrkiy7kVajGp528g
+        ==
+X-ME-Sender: <xms:-bu5YQVyPlbzBJI3c6lLaeavZiUCvtHO9cWOfNvS8fKFMccLqNM_oQ>
+    <xme:-bu5YUkmmY3sr9BY8E6h1BAvV6uWzlGzzbS1sPVTP9nmFyfIh6t9M5GntagCGnLXB
+    9qeKnpfdaQQEaDLlhc>
+X-ME-Received: <xmr:-bu5YUY7R3M8q2qYT7DdE_iObra7MILBl_iExHzTFslI_fxbY0VKaFO-KW8uhXc76F7ciPRLLcBQMJHZNXYITw3fA0YXbPVsUgVw2XA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrledvgddutdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:-bu5YfWMALI5Y5nGThcS6URnXyD_vKwUNiIlpzIhDMbqBTzTzOR_DA>
+    <xmx:-bu5Yanm_-ysvRV3z9bqGdSFTfq-X0qno9JZs9D5mIuHlUJJnxAjvA>
+    <xmx:-bu5YUeo44TP9kDsWuciLYwX0zEg6dpmRBSwCips6Jlo-6Lbmwbobw>
+    <xmx:-ru5YZrXYdQqcJ0_hGqfKbsogasoMbliJBgUQImGHg2EQOuWdCWekw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 15 Dec 2021 04:57:13 -0500 (EST)
+Date:   Wed, 15 Dec 2021 10:57:12 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Scott Branden <sbranden@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Dom Cobley <dom@raspberrypi.com>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH RESEND v4 v5 0/4] drm/vc4: Use the firmware to stop the
+ display pipeline
+Message-ID: <20211215095712.sspesda4vcrzwlbd@houat>
+References: <20211215095117.176435-1-maxime@cerno.tech>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="pnnrjba3fn62na4v"
+Content-Disposition: inline
+In-Reply-To: <20211215095117.176435-1-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the core dt-node for the rk3568's naneng combo phys.
 
-Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
+--pnnrjba3fn62na4v
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Changes in v5:
-- remove apb reset
+On Wed, Dec 15, 2021 at 10:51:13AM +0100, Maxime Ripard wrote:
+> Hi,
+>=20
+> The VC4 driver has had limited support to disable the HDMI controllers and
+> pixelvalves at boot if the firmware has enabled them.
+>=20
+> However, this proved to be limited, and a bit unreliable so a new firmware
+> command has been introduced some time ago to make it free all its resourc=
+es and
+> disable any display output it might have enabled.
+>=20
+> This series takes advantage of that command to call it once the transitio=
+n from
+> simplefb to the KMS driver has been done.
+>=20
+> Let me know what you think,
+> Maxime
 
-Changes in v4:
-- rename node name
-- remove reset-names
-- move #phy-cells
-- add rockchip,rk3568-pipe-grf
-- add rockchip,rk3568-pipe-phy-grf
+And I forgot to drop the RESEND v4 prefix.. This should obviously read PATC=
+H v5
 
-Changes in v3:
-- Move pipe_phy_grf0 to rk3568.dtsi
+Maxime
 
-Changes in v2:
-- Move phy0 to rk3568.dtsi
+--pnnrjba3fn62na4v
+Content-Type: application/pgp-signature; name="signature.asc"
 
- arch/arm64/boot/dts/rockchip/rk3568.dtsi | 21 +++++++++++
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 47 ++++++++++++++++++++++++
- 2 files changed, 68 insertions(+)
+-----BEGIN PGP SIGNATURE-----
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-index 2fd313a295f8..91a0b798b857 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-@@ -8,6 +8,11 @@
- / {
- 	compatible = "rockchip,rk3568";
- 
-+	pipe_phy_grf0: syscon@fdc70000 {
-+		compatible = "rockchip,rk3568-pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc70000 0x0 0x1000>;
-+	};
-+
- 	qos_pcie3x1: qos@fe190080 {
- 		compatible = "rockchip,rk3568-qos", "syscon";
- 		reg = <0x0 0xfe190080 0x0 0x20>;
-@@ -71,6 +76,22 @@
- 			queue0 {};
- 		};
- 	};
-+
-+	combphy0: phy@fe820000 {
-+		compatible = "rockchip,rk3568-naneng-combphy";
-+		reg = <0x0 0xfe820000 0x0 0x100>;
-+		clocks = <&pmucru CLK_PCIEPHY0_REF>,
-+			 <&cru PCLK_PIPEPHY0>,
-+			 <&cru PCLK_PIPE>;
-+		clock-names = "ref", "apb", "pipe";
-+		assigned-clocks = <&pmucru CLK_PCIEPHY0_REF>;
-+		assigned-clock-rates = <100000000>;
-+		resets = <&cru SRST_PIPEPHY0>;
-+		rockchip,pipe-grf = <&pipegrf>;
-+		rockchip,pipe-phy-grf = <&pipe_phy_grf0>;
-+		#phy-cells = <1>;
-+		status = "disabled";
-+	};
- };
- 
- &cpu0_opp_table {
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index a68033a23975..93f230f799f1 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -218,11 +218,26 @@
- 		};
- 	};
- 
-+	pipegrf: syscon@fdc50000 {
-+		compatible = "rockchip,rk3568-pipe-grf", "syscon";
-+		reg = <0x0 0xfdc50000 0x0 0x1000>;
-+	};
-+
- 	grf: syscon@fdc60000 {
- 		compatible = "rockchip,rk3568-grf", "syscon", "simple-mfd";
- 		reg = <0x0 0xfdc60000 0x0 0x10000>;
- 	};
- 
-+	pipe_phy_grf1: syscon@fdc80000 {
-+		compatible = "rockchip,rk3568-pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc80000 0x0 0x1000>;
-+	};
-+
-+	pipe_phy_grf2: syscon@fdc90000 {
-+		compatible = "rockchip,rk3568-pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc90000 0x0 0x1000>;
-+	};
-+
- 	pmucru: clock-controller@fdd00000 {
- 		compatible = "rockchip,rk3568-pmucru";
- 		reg = <0x0 0xfdd00000 0x0 0x1000>;
-@@ -1141,6 +1156,38 @@
- 		status = "disabled";
- 	};
- 
-+	combphy1: phy@fe830000 {
-+		compatible = "rockchip,rk3568-naneng-combphy";
-+		reg = <0x0 0xfe830000 0x0 0x100>;
-+		clocks = <&pmucru CLK_PCIEPHY1_REF>,
-+			 <&cru PCLK_PIPEPHY1>,
-+			 <&cru PCLK_PIPE>;
-+		clock-names = "ref", "apb", "pipe";
-+		assigned-clocks = <&pmucru CLK_PCIEPHY1_REF>;
-+		assigned-clock-rates = <100000000>;
-+		resets = <&cru SRST_PIPEPHY1>;
-+		rockchip,pipe-grf = <&pipegrf>;
-+		rockchip,pipe-phy-grf = <&pipe_phy_grf1>;
-+		#phy-cells = <1>;
-+		status = "disabled";
-+	};
-+
-+	combphy2: phy@fe840000 {
-+		compatible = "rockchip,rk3568-naneng-combphy";
-+		reg = <0x0 0xfe840000 0x0 0x100>;
-+		clocks = <&pmucru CLK_PCIEPHY2_REF>,
-+			 <&cru PCLK_PIPEPHY2>,
-+			 <&cru PCLK_PIPE>;
-+		clock-names = "ref", "apb", "pipe";
-+		assigned-clocks = <&pmucru CLK_PCIEPHY2_REF>;
-+		assigned-clock-rates = <100000000>;
-+		resets = <&cru SRST_PIPEPHY2>;
-+		rockchip,pipe-grf = <&pipegrf>;
-+		rockchip,pipe-phy-grf = <&pipe_phy_grf2>;
-+		#phy-cells = <1>;
-+		status = "disabled";
-+	};
-+
- 	pinctrl: pinctrl {
- 		compatible = "rockchip,rk3568-pinctrl";
- 		rockchip,grf = <&grf>;
--- 
-2.17.1
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYbm7+AAKCRDj7w1vZxhR
+xR1PAP9Kr/xE7dp6CwmZN47vhbFH2ZKE7+7TmWiu/iQ7Qq6MvwD/SB/aI4VTSFtU
+K/+lQb6sCOYWa+uGHbsvs78DHWR2sQ0=
+=XnxS
+-----END PGP SIGNATURE-----
 
-
-
+--pnnrjba3fn62na4v--
