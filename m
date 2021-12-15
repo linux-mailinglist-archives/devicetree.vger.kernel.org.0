@@ -2,148 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9376847550F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 10:22:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B840475526
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 10:27:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241124AbhLOJWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 04:22:54 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:34262 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241121AbhLOJWx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Dec 2021 04:22:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1639560173;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=oUh0bcGmELD1OnjdrFkEycYt4atPMShERUPuuPbvtk8=;
-        b=DWBaz4awggwr+4ul5XI90u/Fr6J8Tdxh/DW43ByxXBUCekT7RLWSVUX/UMWYYZosl7tuyc
-        o4wueNxcGcpbGo3twBrA0F/rAHJbvGDZ9cWHCBF3Vi68eSKJ1tlq2qNj/zGox9AodcwUXB
-        Lz2yciPMx+Sbn9mfrH8O/s0AIPP8UXg=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-247-j4UYqMpBM5a1H3pa9AG24w-1; Wed, 15 Dec 2021 04:22:49 -0500
-X-MC-Unique: j4UYqMpBM5a1H3pa9AG24w-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com [10.5.11.16])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id ABC2F190B2A3;
-        Wed, 15 Dec 2021 09:22:46 +0000 (UTC)
-Received: from localhost (ovpn-12-120.pek2.redhat.com [10.72.12.120])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 19135838E1;
-        Wed, 15 Dec 2021 09:22:32 +0000 (UTC)
-Date:   Wed, 15 Dec 2021 17:22:30 +0800
-From:   Baoquan He <bhe@redhat.com>
-To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
-        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-Subject: Re: [PATCH v17 04/10] x86: kdump: move xen_pv_domain() check and
- insert_resource() to setup_arch()
-Message-ID: <20211215092230.GE3023@MiWiFi-R3L-srv>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <20211210065533.2023-5-thunder.leizhen@huawei.com>
- <d328aede-1282-b4d5-f17a-aa9c3e9f6563@huawei.com>
- <03bd43f3-14a1-dbd1-9fff-118c0885653c@huawei.com>
+        id S232688AbhLOJ1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 04:27:35 -0500
+Received: from mail-eopbgr50049.outbound.protection.outlook.com ([40.107.5.49]:13538
+        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230475AbhLOJ1e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 04:27:34 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ypw6uxoJU9qq9VyONJSPaREREHA35e1uiFe8ERty2lnsMuwIPZMepBposauTAQFecQU6t4JTugWaH6Fh4YJ/BTxxU647iHILA6c5N/Q7g4agrmoJAHrR9N6DqZti96X/tNnkFA+hZ2KI3tAWC+6hzPTTsO628PkX3vLAlkqi8e9PgqTIz1J1iriuRXa4FcYQaUQd9YNSvVOeo/0MeOZoeyNl0lUDZUplT5ZdRULpjZpxv/SI0gWKmI9o0qBZysWdLK8CzL8LnC1ONBlIBCeozRO16o/8/kZB51ETY+bbYJ9coQZmJ2T3zOdj0wrvsr+NvS96OoiBTXM2Gg5qj3AC7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RxYJkTvnmzFIV3WLWJYUxZHVDAGxhz4bL19MxeU/nlI=;
+ b=DdNTMMz/K9TaV3nIZqxbHjNJZQVSW9pBZTD29mkiCDxhob6Pjuj0pqEyYmnauliKH6u195UdW5YX4BMmNbXd30mw58OZJnyu1c1WuWbNQnKYl7SjbYWyF9Lxrcnltf+x/uRf8ojbuMk8ZOk3mZBJRj38uQXascpAK60ty1dVVrRhSaZ0sMnil1HRi5W6/DodO7nwof2eX2d6quKNEsKRfaoRH4nMPfX4fcQW7gEwnxB+bRug6U2SAVHwf3UdKP/WaXDeyQHbMn4ByXx6E9kjO2qZ7q+BBBz3QXpmmJGkAbyPAaX67nvpZgAHsmZrhENf39UEXU7wurJHeS4VqP7RLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RxYJkTvnmzFIV3WLWJYUxZHVDAGxhz4bL19MxeU/nlI=;
+ b=cjwN0HZIagiUKKjoZh9A+qrz5dGZtsmAtSfsmr+XD1M2hqcsxkFuKWY6HBu7BJZchuFwBuzhqqYagaYiGcW0/AhJjUlm8+rk47i5iFgdPuJOIMQorvBEyWd4xy09at7qQJLAkcr1DSA0GnqHOa+v7RYz0wN3bjwh9Q6SjPwgRC4=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by VI1PR0402MB2862.eurprd04.prod.outlook.com (2603:10a6:800:b6::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.18; Wed, 15 Dec
+ 2021 09:27:31 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::c84:1f0b:cc79:9226]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::c84:1f0b:cc79:9226%3]) with mapi id 15.20.4755.028; Wed, 15 Dec 2021
+ 09:27:31 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "vivien.didelot@gmail.com" <vivien.didelot@gmail.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>
+Subject: Re: [PATCH net-next v3 6/6] net: lan966x: Add switchdev support
+Thread-Topic: [PATCH net-next v3 6/6] net: lan966x: Add switchdev support
+Thread-Index: AQHX7OGqma9W7JTLPke3A5iwt0gyh6wqKbcAgAA0OYCABd/MgIAAN0eAgAAMLwCAAACdgIAAEJAAgAAP1QCAAFPBAIAAK9+AgADy+YCAAT1mAA==
+Date:   Wed, 15 Dec 2021 09:27:31 +0000
+Message-ID: <20211215092730.w4ptdsymqgdhtcte@skbuf>
+References: <20211209164311.agnofh275znn5t5c@soft-dev3-1.localhost>
+ <20211213102529.tzdvekwwngo4zgex@soft-dev3-1.localhost>
+ <20211213134319.dp6b3or24pl3p4en@skbuf>
+ <20211213142656.tfonhcmmtkelszvf@soft-dev3-1.localhost>
+ <20211213142907.7s74smjudcecpgik@skbuf>
+ <20211213152824.22odaltycnotozkw@soft-dev3-1.localhost>
+ <20211213162504.gc62jvm6csmymtos@skbuf>
+ <20211213212450.ldu5budcx7ybe3nb@soft-dev3-1.localhost>
+ <20211214000151.xiyserx62zq2wpzh@skbuf>
+ <20211214143129.his7l6juatvv3nry@soft-dev3-1.localhost>
+In-Reply-To: <20211214143129.his7l6juatvv3nry@soft-dev3-1.localhost>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6a585352-f05f-40dc-f428-08d9bfad1ed5
+x-ms-traffictypediagnostic: VI1PR0402MB2862:EE_
+x-microsoft-antispam-prvs: <VI1PR0402MB28626EE1366B7EA4BD4E51E6E0769@VI1PR0402MB2862.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: MbaErPzrEnBlRPJcaNiYispYCWJXfiTPKNJEXvD/oxL+RZjJ1kH38GhvFPfWIsb5HgygN1IXfFw9y8R5g4BnY+ON0+IvYkH7w+UJf1daHGpgTjloe7suK/JhU1FgYsRRHSw97dcIu4MC3L0ZhikmaStimLIUMrIDSrDk5pVgHd2bQDsf5tx4QGMElnQOgXozeodP8/8AQL1m9J45kussrgVJZkgBGfIhuQMtLAnAYWwyxmIxuUzJdcmubEAQi2sZ/uqJKRkERzRL0eCjESeK4tJz1CtQGSjiVAi+9R7DITeNatBV/plTYsH8iLgY/5Eal+pptv92sbx4rjWoRkskMOc8h4/cxa+3FONZxAp7PLhNZb9cyNk+5J43/FDt85ki5iQ4a3aMB7FzkqpLfYe6JhKpAJAq/I0HTQzkgmhsyyuMQVrMxUNVVQgQqor4jSibfGjghR+eWE3Unp2w2TSV36NwXVhIT5Vcu4JDmo6N0GfKJ07qtSDQYpbVgiZUo5Kv7uQizIIL2tEDYl3FOqE8nMqnMWO2SG/VFVDt6Lqu7NipC/P5Ju0l+Rc8Coo5NoOSXCRaE1od4yrEuJt0aoeRPmGQXNJ2tG9WaFOBGmSll419MwvusE3ZNfqK/AcbZ8ugh6rVuBNTEl5IoCkcDef6M5i+WgbwanfaNd/KsBb9i/lqJxRU2jc/BOz50yZvKgOU3BApucitXhwys568pk4gLA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(366004)(38100700002)(316002)(4326008)(186003)(8676002)(66476007)(6512007)(91956017)(71200400001)(1076003)(83380400001)(26005)(122000001)(44832011)(9686003)(33716001)(4744005)(6486002)(76116006)(66446008)(508600001)(54906003)(38070700005)(6506007)(64756008)(5660300002)(7416002)(6916009)(66946007)(86362001)(66556008)(2906002)(8936002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?LaHFCXGv+9/C91XKmgp6XDVex4bPE3tGaH8IajuCKjWT6UgZyaBZP8qCbPGh?=
+ =?us-ascii?Q?GTMmXnMzKLqCaDQMGLYdC2lZjp+oOgles/R0cEw+H7KBTe+Rnt+YLPpZEp8Y?=
+ =?us-ascii?Q?YGV49rt3hrJFoXuu84mPnGSo/nM5QvfQOqAofLxqfJSYfKpKmqvtKTJQ39Sn?=
+ =?us-ascii?Q?L8sQx8zZr5eckw58IhICJQjEcrnyqB07pcKF65ayvHU38qrJCUBFtIfoDWHP?=
+ =?us-ascii?Q?0zKVPs+q38iS7RYCIVegMMor267EZLku9HVbGefL6M/WGoR9JFgWJ7bvMcC3?=
+ =?us-ascii?Q?4S1MtOPArXNI9NyY2VJEXLuHrdxjvbNmB1g0lzVIj19/OO+VaZNI6vYV3RSp?=
+ =?us-ascii?Q?2pX68mVDVWxhlJUodw67QG/p4btOLueej8xAl24OXA/3Ez0aWknd9ZKMHE5I?=
+ =?us-ascii?Q?fINb9oSKcRSXrmGY9Kb/Db+w3KtvEW/a5AJKokouV16Tt7gbCi7oMrwEwSCe?=
+ =?us-ascii?Q?COuEJlhaFsHitCh8Qr0aFUUCpbg++R2mpaLJg4gXqYfDurzI+Ftp1zSNa7zZ?=
+ =?us-ascii?Q?NAp3/gtcRupudRUSi3agxOYZEUnzgTk4MIlBvPO57aQQv6oPOgj3P4BVC6lf?=
+ =?us-ascii?Q?+NP3A6e0Gj0w7QLszVBBYeOEapKCQOlH/tMfK62IGi6STyBYpxPPOGtDHRcc?=
+ =?us-ascii?Q?LIZkOObxvjKoP6/oVsVWGMFRR87Eosd6TxK/Oa9u3n5DBSJpMMa+mlVYDKxW?=
+ =?us-ascii?Q?2/+wMNTfFOFcu/pS3JE/jc/dz47tzqcdISUhumd5hT7IdiDQvmnbG+uEF33z?=
+ =?us-ascii?Q?HHYbuDNjkjGDbwUhdifHQNA+9H/quLMmmTpX5C2wz+ji/DIuJ9484JcCRS4a?=
+ =?us-ascii?Q?5D/02DPkgjWFuM0arbL4uduo5tgEFxuIE8UunVhmpswOTeswBLv1KMaVTjJP?=
+ =?us-ascii?Q?69Sbym6ZsFhfZoa73SD/vjrOgPm8ot9h5/88daDeFDbjcdk2sSPka0eQRwhs?=
+ =?us-ascii?Q?g7D0Xmo0Ufkitrzb1ZVJSAws+lMQuxtK2v7BEyOEwoSe6RYSoUrQjrRWdVyp?=
+ =?us-ascii?Q?2lpzaPWtpoLMwx5hycW04SrIusqrj3wdNIKShZeMNcCPa7iLoBoPcF80VUOC?=
+ =?us-ascii?Q?P+WlUyz0edwychJ/6T0gb+4/xPi2XNXg4Jtcw/VLlPMe6pxQr8wFoQd1Y2L5?=
+ =?us-ascii?Q?tDabT1XdJTh0bYxaRQe1Fex2PTt2P6VWZLIrConEDGba6wxj1reHhm6+sb3u?=
+ =?us-ascii?Q?OFT4e84JVmLS9S6VvOknW5iCZ8toRzvzagQP1PIZvmYepmnU1Uf89kq+gl6L?=
+ =?us-ascii?Q?bOYUuQYGhIQ3mueqAte7BfZ1g/31AfZLHzbaqq72X+RMB4CIGd0/5tccK3oD?=
+ =?us-ascii?Q?KW5ImOxClcACuBu2RsQmlDx7XQT2w6BbL80wXGSuYpap1ExgnuCGnbV3+QZS?=
+ =?us-ascii?Q?bokMUjpqYQla26bMxjW7jjMWaxz1VGXG7N6ZFOYn3H5w05wNatVvw+ABlopk?=
+ =?us-ascii?Q?SSjkH+7CQP1kK2Q52/E8FPIRV1Adtg64uKZrKYlgm6bT8+sq+JMLk2gAuMh/?=
+ =?us-ascii?Q?yoWaQ09k9K4rMW525sY7c0jtO1OFpOBuJPRLSBRCW9IznzEZ8hpxmpvIHNf3?=
+ =?us-ascii?Q?7bE8bYFUbjpPyX20vGslCVpBENTToewAVZUpZ0n8+U8uIAgrUht6HT6uJCWl?=
+ =?us-ascii?Q?lGcFmTUFhABQXMLvHDtLPdU=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <4F8DC25BC9077B4A973F01B1F35A2674@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <03bd43f3-14a1-dbd1-9fff-118c0885653c@huawei.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a585352-f05f-40dc-f428-08d9bfad1ed5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Dec 2021 09:27:31.5815
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: kGyefxuqx2oHo9t5AoobHCWJ9iXYf42bvDY2/JKjT1DVZpn+6fvji7OlJSsN4dKHgV+4iANT3aesWfOb/kKapA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2862
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/15/21 at 04:56pm, Leizhen (ThunderTown) wrote:
-> 
-> 
-> On 2021/12/14 19:40, Leizhen (ThunderTown) wrote:
-> > 
-> > 
-> > On 2021/12/10 14:55, Zhen Lei wrote:
-> >> From: Chen Zhou <chenzhou10@huawei.com>
-> >>
-> >> We will make the functions reserve_crashkernel() as generic, the
-> >> xen_pv_domain() check in reserve_crashkernel() is relevant only to
-> >> x86, the same as insert_resource() in reserve_crashkernel[_low]().
-> >> So move xen_pv_domain() check and insert_resource() to setup_arch()
-> >> to keep them in x86.
-> >>
-> >> Suggested-by: Mike Rapoport <rppt@kernel.org>
-> >> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
-> >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> >> Tested-by: John Donnelly <John.p.donnelly@oracle.com>
-> >> Tested-by: Dave Kleikamp <dave.kleikamp@oracle.com>
-> >> Acked-by: Baoquan He <bhe@redhat.com>
-> >> ---
-> >>  arch/x86/kernel/setup.c | 19 +++++++++++--------
-> >>  1 file changed, 11 insertions(+), 8 deletions(-)
-> >>
-> >> diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
-> >> index bb2a0973b98059e..7ae00716a208f82 100644
-> >> --- a/arch/x86/kernel/setup.c
-> >> +++ b/arch/x86/kernel/setup.c
-> >> @@ -456,7 +456,6 @@ static int __init reserve_crashkernel_low(void)
-> >>  
-> >>  	crashk_low_res.start = low_base;
-> >>  	crashk_low_res.end   = low_base + low_size - 1;
-> >> -	insert_resource(&iomem_resource, &crashk_low_res);
-> >>  #endif
-> >>  	return 0;
-> >>  }
-> >> @@ -480,11 +479,6 @@ static void __init reserve_crashkernel(void)
-> >>  		high = true;
-> >>  	}
-> >>  
-> >> -	if (xen_pv_domain()) {
-> >> -		pr_info("Ignoring crashkernel for a Xen PV domain\n");
-> >> -		return;
-> >> -	}
-> >> -
-> >>  	/* 0 means: find the address automatically */
-> >>  	if (!crash_base) {
-> >>  		/*
-> >> @@ -531,7 +525,6 @@ static void __init reserve_crashkernel(void)
-> >>  
-> >>  	crashk_res.start = crash_base;
-> >>  	crashk_res.end   = crash_base + crash_size - 1;
-> >> -	insert_resource(&iomem_resource, &crashk_res);
-> >>  }
-> >>  #else
-> >>  static void __init reserve_crashkernel(void)
-> >> @@ -1143,7 +1136,17 @@ void __init setup_arch(char **cmdline_p)
-> >>  	 * Reserve memory for crash kernel after SRAT is parsed so that it
-> >>  	 * won't consume hotpluggable memory.
-> >>  	 */
-> >> -	reserve_crashkernel();
-> > 
-> > Hi Baoquan:
-> >   How about move "#ifdef CONFIG_KEXEC_CORE" here, so that we can remove the
-> > empty reserve_crashkernel(). In fact, xen_pv_domain() is invoked only
-> > when CONFIG_KEXEC_CORE is enabled before.
-> 
-> Hi Baoquan:
->   Did you miss this email? If no reply, I will keep it no change.
+On Tue, Dec 14, 2021 at 03:31:29PM +0100, Horatiu Vultur wrote:
+> So long story short, I agree with your comments, I can make the
+> notifier_block as singleton objects and start to use
+> switchdev_handle_port_obj_add and the other variants.
+> In this way it should also work "parallel instances of the driver".
 
-I checked this patch, and it's no update since I acked it. 
-
-Moving reserve_crashkernel() into the CONFIG_KEXEC_CORE ifdeffery is
-also fine to me.
-
+To be clear, what I'd like to see for v5 is a set of patterns that is
+simple, clean and functional enough that it could be copied by other
+drivers - I'd be interested in limiting the VLANs on the CPU ports in
+DSA too.=
