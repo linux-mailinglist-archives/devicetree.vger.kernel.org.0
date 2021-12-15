@@ -2,256 +2,443 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4742A4758FE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 13:42:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75F6D475901
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 13:43:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237305AbhLOMmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 07:42:20 -0500
-Received: from mail-vi1eur05on2138.outbound.protection.outlook.com ([40.107.21.138]:33408
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234378AbhLOMmU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Dec 2021 07:42:20 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lQ28IuJNCdmsdc7tAt3co7aAlDVbKYPZLZk6OFdROCQnzAXHoXPMxUdXUhpq5Z1xF2rp56noYvk6QJVEGZGZBqhiYcYKL43164lc86ZOYj/MbKEWUHJ2xjubWaLp/UHfUQaXGie3YDsfrtJlt1+9r3bA0Yt+Re/4G0OJtYsJr4XxAMjCZ/pPSNBouEScX3MzzkPdfMq5BRWpRIHtusxY0S5grrYh+Jw4v2pFh6sysobdUM7k9JZsAhOhGDLSrl9SqdgFW0qD2WWp2ldSpr1wgd3T3oKioeaEThHZzEh25n5PgYHxs1acFhifpakI7Q3WLqlxLiqfneCKvH2QFKUI2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qBeNucITdkOIdY1Q4iWTWzcDI+exXvjxKu8q1pHnkIc=;
- b=ZKCrYAvRwFoatDHXJcovpOchSgzU+udqR9wYBqY4O4PRTkxEgHaFeBwF9Tx8O23a9fVBlB+BwNp7Kl/RxyzWoJltGyw2BhWZCJpF7rEXQaFBEy5WRYWePoEhogOhBaP+l5mMsthENLc2KA5R4Gb79bt+xnKNw+jA0fmmm545HbheT1gQAGEhpYLZr7KUvkyogMz0i29z71qwFwp2LAAtxYcKUGd3rV5fLxXXz1XEcjD/BKWPpSNP+rEXaSBu2EJsywkYhu+MhkCSZEpG6UZwS4o8epRrDJYdSlvx6E01N1lPaV2HSJL+RxL7vYV2SpYwzXbpCSWcHxcBzr+YfobxJQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qBeNucITdkOIdY1Q4iWTWzcDI+exXvjxKu8q1pHnkIc=;
- b=CUMPEdIj+pMGtgVt3sTUu/94gOlcmVLom7xS4ISHVcwhHCu7+iNfDbXUPpANcb7OuNkGLP0RnwBqQ0Opoi82X2jZiJ9wehnkS3P0YZ7SR/rW+/v9h7GlxSMKeEImwRZ8Of5T5mU+MECOpqxA6CZTpgyIi2BYD81YNqYLYBRixsY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axentia.se;
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
- by DB7PR02MB4220.eurprd02.prod.outlook.com (2603:10a6:10:4d::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.18; Wed, 15 Dec
- 2021 12:42:17 +0000
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::7519:c72c:98b1:a39]) by DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::7519:c72c:98b1:a39%4]) with mapi id 15.20.4778.018; Wed, 15 Dec 2021
- 12:42:17 +0000
-Message-ID: <a78b52ec-81bf-9ee1-9e12-135079d19b7a@axentia.se>
-Date:   Wed, 15 Dec 2021 13:42:14 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH 1/4] dt-bindings: i2c Update PCA954x
-Content-Language: en-US
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211214095021.572799-1-patrick.rudolph@9elements.com>
- <Ybh8cCU/zbfXkXYO@pendragon.ideasonboard.com>
-From:   Peter Rosin <peda@axentia.se>
-Organization: Axentia Technologies AB
-In-Reply-To: <Ybh8cCU/zbfXkXYO@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: GV3P280CA0011.SWEP280.PROD.OUTLOOK.COM (2603:10a6:150:b::7)
- To DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
+        id S237297AbhLOMnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 07:43:21 -0500
+Received: from mail-40134.protonmail.ch ([185.70.40.134]:57128 "EHLO
+        mail-40134.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229445AbhLOMnU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 07:43:20 -0500
+Date:   Wed, 15 Dec 2021 12:43:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail2; t=1639572194;
+        bh=AyfvNj20Y72kvGVY1wqzJSp9pDl602bkjKZpMA3MYRg=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
+         References:From:To:Cc;
+        b=dzYfLzY08Re/DhmhL+ngXGKDfa4Y0bMDrY7+BxyVuPhBS85M++mwq2hzTKeAQuQ0T
+         RWKKFkzuFpuhOyeHPn4z8Uxnhc3lddXHXmAzvxVFiVd+KZeXROA6bwE+T0dnCnsFXk
+         6f/3nVvj5kIDWpwdZt3mR0qgej13sXD9RrvZaB1tQyVLtwLtgfdP2aS/lkmlKz3FmM
+         J3utGfuvwY+pA2oznvfE8YNkuMpeLAUP3tV4txuF1G3cjRzGC276cz9OGmLs42ZNzi
+         Qk61CnM5CqnnOKwXsBZAx3/H6XbTwK9ugN1ba4T/Qa2tpl0Ji9EP8Qk1HFjnixxbOe
+         hzh2PA//Dy5ZQ==
+To:     Sven Peter <sven@svenpeter.dev>
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>
+Reply-To: =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
+Subject: Re: [PATCH 2/2] clk: clk-apple-nco: Add driver for Apple NCO
+Message-ID: <D758D8B5-717E-4A6F-B6F2-DF022414BA53@protonmail.com>
+In-Reply-To: <636844df-968b-4145-b7a9-261504384a98@www.fastmail.com>
+References: <20211214120213.15649-1-povik@protonmail.com> <20211214120213.15649-3-povik@protonmail.com> <636844df-968b-4145-b7a9-261504384a98@www.fastmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 79eddb59-80ec-4605-1073-08d9bfc853c1
-X-MS-TrafficTypeDiagnostic: DB7PR02MB4220:EE_
-X-Microsoft-Antispam-PRVS: <DB7PR02MB4220EEBCEB46FEDD5584E0A1BC769@DB7PR02MB4220.eurprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qyWzTABJbab2telkg3ykrvtiqsnZP/FEMMtDdVbk6ZfnvPjlPpkye5o8F+yx2YYNrmkZafPwEFAGuCPZvpKUtfcSpGpYWmS8SwFIG0/0XNOB9uRJtDOcPCQbl/xEPQu/rW4ruRgTqd9svnQ4tCXSxAsSAay/LepxT5TnL5T1g0wo+0E4+Mqm3/8C1LZlq2SpDCLQnXTWljLRrt7BSeTMNA5Bvg/4Ptv43GHEIYcuR78KKpOIBtrXIFegGqYXP8dFjuBV+cBGSx60qwUcphtuKQiF8tabV7WdToh4fzt2EaKBrWZQcOner5uOHZaJQtTvpsu9Ww6shtHark+XyOfpYu1cb9RbcpqTzjUEExKPfBdY9oL84aMvUyCV0Y49pnc+18TixxVohg3yT5TAWjH8/Lc8vTW1zpzhnhp3aukstfEDuczNl2fCMR7m90tq8yGNWqDWsgWnSPQeKISf5tP1J1jPZt+gDRqA3wCATg2IUQ1LoXlgknYPOjJ+RSvh6LpWTpk3k6MoVwCHokjhmllM/qSRooIpBkfkpnd+botL3peQUUcGdOOGtjmHYeUeA6JIUgXqcQVe+BVtOES+hb2ZR9mp7yj1C0hz9hFuKKevrmflTBpNi+W4cYsbNL+oNwXvIklRldeIykqsT19qFNHgVQB5VIt6/G4ztmUyTY4SU//nGktGhXJYLaKvBbqAKmO8ZgtPxNnIa9LnCRBIsIXVagFe1SpJ/hOOyPS0fWrpwSk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(39830400003)(366004)(136003)(396003)(376002)(346002)(5660300002)(2616005)(36916002)(6512007)(86362001)(2906002)(6486002)(31696002)(4326008)(26005)(36756003)(66476007)(186003)(53546011)(4001150100001)(6666004)(66556008)(38100700002)(8676002)(66946007)(110136005)(316002)(508600001)(6506007)(31686004)(8936002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZnBNN1pzMnRMN0xaUTlhWjRTV1dweGFhZytoMTkzTWNseGQ1ampPMFZkeVBj?=
- =?utf-8?B?SjBaMmMrOFhDNmVHRjdicnVLVzcvUU9tS3pNYTB0NTJtK1llaGVlbXhsT3Bq?=
- =?utf-8?B?WXFGT0VCSVBIZFFYT0tETHoyb3hURFpTNm9NL3dFV29FaExwa0I0R2VjcE9k?=
- =?utf-8?B?Y0lILzVXRFRjdS9oSTgyQlNvRFdJWWZpVEV1TU1QMHZVV041dSt5Mi9QK3dw?=
- =?utf-8?B?blBMaTY2V2t3MTlGaGM3TStnRGx6Z08zWllGblkzRUZXMk9ZYWxCTVp4MDJh?=
- =?utf-8?B?WVlUblU2UTNNV0UzQklOelNRNU9rU1dtenhDcTFmZDM5NlFtYkFVQU52T3p2?=
- =?utf-8?B?UEd0MHhqYTRrVkZNZVRkRWVDMng2WnE2TXBSc2tYR25adG5JOXVKVVFYU2Vh?=
- =?utf-8?B?VlJYWEJIeWhqSU9xVHdEdXNqMlRpa3lqTWl1V3BTK2x6U2hBNmhtQTZaUFYx?=
- =?utf-8?B?bHpYNElCMTUzOG80UUVQZDJlMTJGR01hMTczRHhHTmRsQlVwNGdzeWRZM29H?=
- =?utf-8?B?empocUFvWThzZ0FacWgxaFhIdEtxYW16YUZEdWErSHJHZ1V0eVFFY3h4TVBW?=
- =?utf-8?B?Rk4wVU5GQlU5RmJWWjZMTWpFK2UybVVmVVZVa0dZRVJ6ZzJWTGM3SGhicnlW?=
- =?utf-8?B?U2pUWHg4Z09UYzFIWlRUUHhYWGIvZFdOVldDVGdqREdabWlNdndRVW5udWo3?=
- =?utf-8?B?UHZjNDBNQzU5S3F3R2NtMTJFV29CNGpPdXFLVS85Szl1c3JPYXVORmxEV2li?=
- =?utf-8?B?WGdTU2FMOXRhSVdPaGFwWEZ1b0djRUNpV0tTVExMYWJiN2FmVDRlTTR5alc5?=
- =?utf-8?B?TjlxNlkxcUFtbktkNlJIQnlPb0lGT21NRmV2OXRXcldZNW9sbzdsV1B6OExE?=
- =?utf-8?B?WmdHS2xRMVpINTNFd3VSa2FvOTNKNzdZMXBpNFIxeWZ0cCtrZXcxM096OGR1?=
- =?utf-8?B?Y2dxYk5GTzZhV3VjREtZUUpWM0d4SnBCNnRndHNHU2lyN0xDS2l2cFAzZ0VI?=
- =?utf-8?B?QVErQWUybUR1ZFdwKzZHVXllcG9GZzh6ZXhCTUk4TDhoT09CQjZIVlljcmpx?=
- =?utf-8?B?a3gwazNLRDlVaW5wVFZya0xvWDJWZjNaT2dVWXh6Nm9zMG9tWDgwUk9kQ2dw?=
- =?utf-8?B?NFJ4MkJvWXhNL1pYaCs5enYySVk5Q0NDODhiTnMyS3JHY1FjZkkrMFo0ZG9C?=
- =?utf-8?B?NEtTV0VyZ1NuS1VyQnAyeHZneG5RSkJOZDhmWWRFSjhWSHpadUcyVzk2dDBi?=
- =?utf-8?B?bHdtRFpxVkF1bTVMelJUUTdreXBHVzFNMXNYMzVPdnA4NUZLUGRpaFBDbVUr?=
- =?utf-8?B?czZ2aGZBellqUXRqbFdWdGRRa3hsU3ZDSU9IZjlpTExmZytVT1dmZjdSanVL?=
- =?utf-8?B?UHB1UXV3UFBCUlUvUnNlYjJST0ZxMkNOMVJtcytJa3hqSW16OE8ySmtyV2xG?=
- =?utf-8?B?MC9aSDZvUlo0UmRIS0IyOFFoRzU2OXpCUjFPZEFjMWFnbDVLazBCcytNY2N1?=
- =?utf-8?B?VFlvZFlrYkxaaU9lUytXZU4zMElzWTVaaTNNdXVLQVJqTlAzLzhjTTZ2eDVy?=
- =?utf-8?B?ZHNma1UvT2Z6by9RWkxSQWRySlg2amtILzhTWlRNUk5kbDYvVjRBalFOcjky?=
- =?utf-8?B?Mk90S3Zkem5ZbEV1aUxzdkk4Zm9uWkFmRS9uQXdvN0ovRnpOU2xEZ1lkKzkz?=
- =?utf-8?B?cjBGTkxGZVE0c3N3TUFZMGZwcFphZzd5YitjcW5BT2UyWDMyenpraGlMd0NN?=
- =?utf-8?B?U3B2K0IzSjBpUnhuTU8rR0pGeW5JS09uQjVWaVNDcTlJQTJMMWluY3FKcGtT?=
- =?utf-8?B?cFVRenZCZ2UyZ3JIT0hZd0lGcHdiR24yNEhFKzZRRFBpK25ncDlIcEgxbVhs?=
- =?utf-8?B?V2NWRko3TnlYWk4wSGo2QXRab3BmcTlhdFBEM3NJblA0SklCYUNzWVE3eThC?=
- =?utf-8?B?bERpbzNEN0pLd24ybmhSejYyU3RUWEd3RzhOWVFCV0EvU3ZMSkJsR1YvNUZP?=
- =?utf-8?B?bmlGOHFST2Z5YTNaNXdySzlnTFo3c3VaaW16T1c2a3VZY2NCRkFHRGpJQWd5?=
- =?utf-8?B?UkRybkJQVWcyQlN5Qll6a0RPaXR5K3EwQWR5WWl1MEVvVmxYSHo3QWZpS05I?=
- =?utf-8?Q?Baeo=3D?=
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79eddb59-80ec-4605-1073-08d9bfc853c1
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2021 12:42:17.0780
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gyBWqjpWHve2nEreAPnih7FsW++pDibt6T6En/OtBgqK8Fd9auWpedZqjI1raXKE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR02MB4220
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
 
-On 2021-12-14 12:13, Laurent Pinchart wrote:
-> Hi Patrick,
-> 
-> Thank you for the patch.
-> 
-> On Tue, Dec 14, 2021 at 10:50:18AM +0100, Patrick Rudolph wrote:
->> Add the Maxim MAX735x as supported chip to PCA954x and add an
->> example how to use it.
+> On 15. 12. 2021, at 10:01, Sven Peter <sven@svenpeter.dev> wrote:
+>
+> Hi,
+
+Hi Sven!
+
+> Thanks for working on the entire audio stack! I don't know much
+> about the clock framework and just have a few nits below.
+>
+> On Tue, Dec 14, 2021, at 13:02, Martin Povi=C5=A1er wrote:
+>> Add a common clock driver for NCO blocks found on Apple SoCs where they
+>> are typically the generators of audio clocks.
 >>
->> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+>> Signed-off-by: Martin Povi=C5=A1er <povik@protonmail.com>
 >> ---
->>  .../bindings/i2c/i2c-mux-pca954x.yaml         | 40 +++++++++++++++++++
->>  1 file changed, 40 insertions(+)
+>> drivers/clk/Kconfig         |   9 ++
+>> drivers/clk/Makefile        |   1 +
+>> drivers/clk/clk-apple-nco.c | 299 ++++++++++++++++++++++++++++++++++++
+>> 3 files changed, 309 insertions(+)
+>> create mode 100644 drivers/clk/clk-apple-nco.c
 >>
->> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
->> index 9f1726d0356b..bd794cb80c11 100644
->> --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
->> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
->> @@ -11,6 +11,7 @@ maintainers:
->>  
->>  description:
->>    The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
->> +  Compatible with Maxim MAX7356 - MAX7358 I2C mux/switch devices.
->>  
->>  allOf:
->>    - $ref: /schemas/i2c/i2c-mux.yaml#
->> @@ -19,6 +20,9 @@ properties:
->>    compatible:
->>      oneOf:
->>        - enum:
->> +          - maxim,max7356
->> +          - maxim,max7357
->> +          - maxim,max7358
->>            - nxp,pca9540
->>            - nxp,pca9542
->>            - nxp,pca9543
->> @@ -40,6 +44,7 @@ properties:
->>  
->>    interrupts:
->>      maxItems: 1
->> +    description: Only supported on NXP devices. Unsupported on Maxim MAX735x.
-> 
-> Could this be modelled by a YAML schema instead ? Something like
-> 
-> allOf:
->   - if:
->       properties:
->         compatible:
-> 	  contains:
-> 	    enum:
->               - maxim,max7356
->               - maxim,max7357
->               - maxim,max7358
->     then:
->       properties:
->         interrupts: false
-> 
-> (untested, it would be nice to use a pattern check for the compatible
-> property if possible)
 
-Some of the existing NXP chips do not support interrupts; we should
-probably treat these new chips the same as the older ones. Either by
-disallowing interrupts on both kinds or by continuing to ignore the
-situation.
+>> diff --git a/drivers/clk/clk-apple-nco.c b/drivers/clk/clk-apple-nco.c
+>> new file mode 100644
+>> index 000000000000..152901f6a40d
+>> --- /dev/null
+>> +++ b/drivers/clk/clk-apple-nco.c
+>> @@ -0,0 +1,299 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>> +/*
+>> + * Apple NCO (Numerically Controlled Oscillator) clock driver
+>> + *
+>> + * Driver for an SoC block found on t8103 (M1) and other Apple chips
+>> + *
+>> + * Copyright (C) The Asahi Linux Contributors
+>> + */
+>> +
+>> +#include <linux/bits.h>
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/math64.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_clk.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/io.h>
+>> +
+>> +#define NCO_CHANNEL_STRIDE=090x4000
+>> +
+>> +#define REG_CTRL=090
+>> +#define CTRL_ENABLE=09BIT(31)
+>> +#define REG_DIV=09=094
+>> +#define DIV_FINE=09GENMASK(1, 0)
+>> +#define DIV_COARSE=09GENMASK(12, 2)
+>> +#define REG_INC1=098
+>> +#define REG_INC2=0912
+>> +#define REG_ACCINIT=0916
+>> +
+>> +struct nco_tables;
+>> +
+>> +struct nco_channel {
+>> +=09void __iomem *base;
+>> +=09struct nco_tables *tbl;
+>> +=09struct clk_hw hw;
+>> +};
+>> +
+>> +#define to_nco_channel(_hw) container_of(_hw, struct nco_channel, hw)
+>> +
+>> +#define LFSR_POLY=090xa01
+>> +#define LFSR_INIT=090x7ff
+>> +#define LFSR_LEN=0911
+>> +#define LFSR_PERIOD=09((1 << LFSR_LEN) - 1)
+>> +#define LFSR_TBLSIZE=09(1 << LFSR_LEN)
+>> +
+>> +/* The minimal attainable coarse divisor (first value in table) */
+>> +#define COARSE_DIV_OFFSET 2
+>> +
+>> +struct nco_tables {
+>> +=09u16 fwd[LFSR_TBLSIZE];
+>> +=09u16 inv[LFSR_TBLSIZE];
+>> +};
+>> +
+>> +static int nco_enable(struct clk_hw *hw);
+>> +static void nco_disable(struct clk_hw *hw);
+>> +static int nco_is_enabled(struct clk_hw *hw);
+>
+> I think you can drop these forward-declarations if you move these
+> functions a bit to the top.
 
-That said, I'm slightly in favor of the latter, since these new chips
-do have interrupts, just not the same flavor as the NXP chips. What
-the Maxim chips do not have is support for being an
-	interrupt-controller;
-At least that's how I read it...
+I can but then the LFSR pieces (definitions, table preparation,
+table usage) would be further apart from each other.
 
-I don't know how this situation is supposed to be described? Maybe this
-new kind of interrupt should be indicated with a bus-error-interrupts
-property (or bikeshed along those lines)? Maybe there should be two
-entries in the existing interrupts property? Maybe these new chips
-should be described in a new binding specific to maxim,max7356-7358
-(could still be handled by the pca954x driver of course) to keep the
-yaml simpler to read?
+Comparatively there=E2=80=99s not much to see in the disable/enable functio=
+ns.
 
-However, there is also maxim,max7367-7369 to consider. They seem to
-have interrupts of the style described by the NXP binding (haven't
-checked if the registers work the same, but since they reuse the
-0x70 address-range the are in all likelihood also compatible).
+>> +
+>> +static void nco_compute_tables(struct nco_tables *tbl)
+>> +{
+>> +=09int i;
+>> +=09u32 state =3D LFSR_INIT;
+>> +
+>> +=09/*
+>> +=09 * Go through the states of a galois LFSR and build
+>> +=09 * a coarse divisor translation table.
+>> +=09 */
+>> +=09for (i =3D LFSR_PERIOD; i > 0; i--) {
+>> +=09=09if (state & 1)
+>> +=09=09=09state =3D (state >> 1) ^ (LFSR_POLY >> 1);
+>> +=09=09else
+>> +=09=09=09state =3D (state >> 1);
+>> +=09=09tbl->fwd[i] =3D state;
+>> +=09=09tbl->inv[state] =3D i;
+>> +=09}
+>> +
+>> +=09/* Zero value is special-cased */
+>> +=09tbl->fwd[0] =3D 0;
+>> +=09tbl->inv[0] =3D 0;
+>> +}
+>> +
+>> +static bool nco_div_check(int div)
+>> +{
+>> +=09int coarse =3D div / 4;
+>> +=09return coarse >=3D COARSE_DIV_OFFSET &&
+>> +=09=09coarse < COARSE_DIV_OFFSET + LFSR_TBLSIZE;
+>> +}
+>> +
+>> +static u32 nco_div_translate(struct nco_tables *tbl, int div)
+>> +{
+>> +=09int coarse =3D div / 4;
+>> +
+>> +=09if (WARN_ON(!nco_div_check(div)))
+>> +=09=09return 0;
+>> +
+>> +=09return FIELD_PREP(DIV_COARSE, tbl->fwd[coarse - COARSE_DIV_OFFSET]) =
+|
+>> +=09=09=09FIELD_PREP(DIV_FINE, div % 4);
+>> +}
+>> +
+>> +static int nco_div_translate_inv(struct nco_tables *tbl, int regval)
+>> +{
+>> +=09int coarse, fine;
+>> +
+>> +=09coarse =3D tbl->inv[FIELD_GET(DIV_COARSE, regval)] + COARSE_DIV_OFFS=
+ET;
+>> +=09fine =3D FIELD_GET(DIV_FINE, regval);
+>> +
+>> +=09return coarse * 4 + fine;
+>> +}
+>> +
+>> +static int nco_set_rate(struct clk_hw *hw, unsigned long rate,
+>> +=09=09=09=09unsigned long parent_rate)
+>> +{
+>> +=09struct nco_channel *chan =3D to_nco_channel(hw);
+>> +=09u32 div;
+>> +=09s32 inc1, inc2;
+>> +=09bool was_enabled;
+>> +
+>> +=09was_enabled =3D nco_is_enabled(hw);
+>> +=09nco_disable(hw);
+>> +
+>> +=09div =3D 2 * parent_rate / rate;
+>> +=09inc1 =3D 2 * parent_rate - div * rate;
+>> +=09inc2 =3D -((s32) (rate - inc1));
+>> +
+>> +=09if (!nco_div_check(div))
+>> +=09=09return -EINVAL;
+>> +
+>> +=09div =3D nco_div_translate(chan->tbl, div);
+>
+> You end up doing nco_div_check twice here and this is also the only
+> place you use nco_div_translate.
+> Maybe just drop the check above, remove the WARN_ON in nco_div_translate
+> and use if (!div) return -EINVAL; here.
 
-Cheers,
-Peter
+That would work if zero wasn't a valid value for div after lookup.
 
->>  
->>    "#interrupt-cells":
->>      const: 2
->> @@ -100,6 +105,41 @@ examples:
->>                  #size-cells = <0>;
->>                  reg = <4>;
->>  
->> +                rtc@51 {
->> +                    compatible = "nxp,pcf8563";
->> +                    reg = <0x51>;
->> +                };
->> +            };
->> +        };
->> +    };
+>
 >> +
->> +  - |
->> +    i2c {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
+>> +=09writel_relaxed(div,  chan->base + REG_DIV);
+>> +=09writel_relaxed(inc1, chan->base + REG_INC1);
+>> +=09writel_relaxed(inc2, chan->base + REG_INC2);
+>> +=09writel_relaxed(1 << 31, chan->base + REG_ACCINIT);
+>
+> What does that magic number 1 << 31 represent?
+
+Presumably that=E2=80=99s a neutral initial value for the fractional divide=
+r=E2=80=99s
+32-bit accumulator.
+
+>
 >> +
->> +        i2c-mux@74 {
->> +            compatible = "maxim,max7357";
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +            reg = <0x74>;
+>> +=09if (was_enabled)
+>> +=09=09nco_enable(hw);
 >> +
->> +            i2c@1 {
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +                reg = <1>;
+>> +=09return 0;
+>> +}
 >> +
->> +                eeprom@54 {
->> +                    compatible = "atmel,24c08";
->> +                    reg = <0x54>;
->> +                };
->> +            };
+>> +static unsigned long nco_recalc_rate(struct clk_hw *hw,
+>> +=09=09=09=09unsigned long parent_rate)
+>> +{
+>> +=09struct nco_channel *chan =3D to_nco_channel(hw);
+>> +=09u32 div;
+>> +=09s32 inc1, inc2, incbase;
 >> +
->> +            i2c@7 {
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +                reg = <7>;
+>> +=09div =3D nco_div_translate_inv(chan->tbl,
+>> +=09=09=09readl_relaxed(chan->base + REG_DIV));
 >> +
->>                  rtc@51 {
->>                      compatible = "nxp,pcf8563";
->>                      reg = <0x51>;
-> 
+>> +=09inc1 =3D readl_relaxed(chan->base + REG_INC1);
+>> +=09inc2 =3D readl_relaxed(chan->base + REG_INC2);
+>> +
+>> +=09/*
+>> +=09 * We don't support wraparound of accumulator
+>> +=09 * nor the edge case of both increments being zero
+>> +=09 */
+>> +=09if (inc1 < 0 || inc2 > 0 || (inc1 =3D=3D 0 && inc2 =3D=3D 0))
+>> +=09=09return 0;
+>> +
+>> +=09/* Scale both sides of division by incbase to maintain precision */
+>> +=09incbase =3D inc1 - inc2;
+>> +
+>> +=09return div_u64(((u64) parent_rate) * 2 * incbase,
+>> +=09=09=09((u64) div) * incbase + inc1);
+>> +}
+>> +
+>> +static long nco_round_rate(struct clk_hw *hw, unsigned long rate,
+>> +=09=09=09=09unsigned long *parent_rate)
+>> +{
+>> +=09unsigned long lo =3D *parent_rate / (COARSE_DIV_OFFSET + LFSR_TBLSIZ=
+E) + 1;
+>> +=09unsigned long hi =3D *parent_rate / COARSE_DIV_OFFSET;
+>> +
+>> +=09return clamp(rate, lo, hi);
+>> +}
+>> +
+>> +static int nco_enable(struct clk_hw *hw)
+>> +{
+>> +=09struct nco_channel *chan =3D to_nco_channel(hw);
+>> +=09u32 val;
+>> +
+>> +=09val =3D readl_relaxed(chan->base + REG_CTRL);
+>> +=09writel_relaxed(val | CTRL_ENABLE, chan->base + REG_CTRL);
+>> +=09return 0;
+>> +}
+>> +
+>> +static void nco_disable(struct clk_hw *hw)
+>> +{
+>> +=09struct nco_channel *chan =3D to_nco_channel(hw);
+>> +=09u32 val;
+>> +
+>> +=09val =3D readl_relaxed(chan->base + REG_CTRL);
+>> +=09writel_relaxed(val & ~CTRL_ENABLE, chan->base + REG_CTRL);
+>> +}
+>> +
+>> +static int nco_is_enabled(struct clk_hw *hw)
+>> +{
+>> +=09struct nco_channel *chan =3D to_nco_channel(hw);
+>> +
+>> +=09return (readl_relaxed(chan->base + REG_CTRL) & CTRL_ENABLE) !=3D 0;
+>> +}
+>> +
+>> +static const struct clk_ops nco_ops =3D {
+>> +=09.set_rate =3D nco_set_rate,
+>> +=09.recalc_rate =3D nco_recalc_rate,
+>> +=09.round_rate =3D nco_round_rate,
+>> +=09.enable =3D nco_enable,
+>> +=09.disable =3D nco_disable,
+>> +=09.is_enabled =3D nco_is_enabled,
+>> +};
+>> +
+>> +static int apple_nco_probe(struct platform_device *pdev)
+>> +{
+>> +=09struct device_node *np =3D pdev->dev.of_node;
+>> +=09struct clk_init_data init;
+>> +=09struct clk_hw_onecell_data *onecell_data;
+>> +=09const char *parent_name;
+>> +=09void __iomem *regs;
+>> +=09struct nco_tables *tbl;
+>> +=09int nchannels;
+>> +=09int ret, i;
+>> +
+>> +=09ret =3D of_property_read_u32(np, "apple,nchannels", &nchannels);
+>> +=09if (ret) {
+>> +=09=09dev_err(&pdev->dev, "missing or invalid apple,nchannels property\=
+n");
+>> +=09=09return -EINVAL;
+>> +=09}
+>> +
+>> +=09regs =3D devm_platform_ioremap_resource(pdev, 0);
+>> +=09if (IS_ERR(regs))
+>> +=09=09return PTR_ERR(regs);
+>> +
+>> +=09if (of_clk_get_parent_count(np) !=3D 1)
+>> +=09=09return -EINVAL;
+>> +=09parent_name =3D of_clk_get_parent_name(np, 0);
+>> +=09if (!parent_name)
+>> +=09=09return -EINVAL;
+>> +
+>> +=09onecell_data =3D devm_kzalloc(&pdev->dev, struct_size(onecell_data, =
+hws,
+>> +=09=09=09=09=09=09=09nchannels), GFP_KERNEL);
+>> +=09if (!onecell_data)
+>> +=09=09return -ENOMEM;
+>> +=09onecell_data->num =3D nchannels;
+>> +
+>> +=09tbl =3D devm_kzalloc(&pdev->dev, sizeof(*tbl), GFP_KERNEL);
+>> +=09if (!tbl)
+>> +=09=09return -ENOMEM;
+>> +=09nco_compute_tables(tbl);
+>
+> Technically probe could be called multiple times (possibly even in parall=
+el
+> I think). Might make sense to make sure these tables are only calculated =
+once
+> for the entire driver.
+
+Well not in parallel for the same device I hope! :-p
+
+Sure, the table could be computed once for the entire driver, but computing=
+ it
+per-device is simpler and doesn=E2=80=99t matter if all SoCs have at most o=
+ne NCO device
+anyway. (But if the binding changes and we start having devices per what we=
+ now
+call channel then of course it starts to matter.)
+
+>
+>> +
+>> +=09for (i =3D 0; i < nchannels; i++) {
+>> +=09=09struct nco_channel *chan;
+>> +
+>> +=09=09chan =3D devm_kzalloc(&pdev->dev, sizeof(*chan), GFP_KERNEL);
+>> +=09=09if (!chan)
+>> +=09=09=09return -ENOMEM;
+>> +=09=09chan->base =3D regs + NCO_CHANNEL_STRIDE*i;
+>> +=09=09chan->tbl =3D tbl;
+>> +
+>> +=09=09memset(&init, 0, sizeof(init));
+>> +=09=09init.name =3D devm_kasprintf(&pdev->dev, GFP_KERNEL,
+>> +=09=09=09=09=09=09"%s-%d", np->name, i);
+>> +=09=09init.ops =3D &nco_ops;
+>> +=09=09init.num_parents =3D 1;
+>> +=09=09init.parent_names =3D &parent_name;
+>> +=09=09init.flags =3D 0;
+>> +
+>> +=09=09chan->hw.init =3D &init;
+>> +=09=09ret =3D devm_clk_hw_register(&pdev->dev, &chan->hw);
+>> +=09=09if (ret)
+>> +=09=09=09return ret;
+>> +
+>> +=09=09onecell_data->hws[i] =3D &chan->hw;
+>> +=09}
+>> +
+>> +=09ret =3D devm_of_clk_add_hw_provider(&pdev->dev, of_clk_hw_onecell_ge=
+t,
+>> +=09=09=09=09=09=09=09onecell_data);
+>> +=09if (ret)
+>> +=09=09return ret;
+>> +
+>> +=09return 0;
+>
+> just returning devm_of_clk_add_hw_provider(...); does the same thing here=
+ and is
+> a bit more concise :-)
+>
+>> +}
+>> +
+>> +static const struct of_device_id apple_nco_ids[] =3D {
+>> +=09{ .compatible =3D "apple,nco" },
+>> +=09{ },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, apple_nco_ids)
+>> +
+>> +static struct platform_driver apple_nco_driver =3D {
+>> +=09.driver =3D {
+>> +=09=09.name =3D "apple-nco",
+>> +=09=09.of_match_table =3D apple_nco_ids,
+>> +=09},
+>> +=09.probe =3D apple_nco_probe,
+>> +};
+>> +module_platform_driver(apple_nco_driver);
+>> +
+>> +MODULE_AUTHOR("Martin Povi=C5=A1er <povik@protonmail.com>");
+>> +MODULE_DESCRIPTION("Clock driver for NCO blocks on Apple SoCs");
+>> +MODULE_LICENSE("GPL v2");
+>> --
+>> 2.33.0
+>
+>
+> Thanks,
+>
+>
+> Sven
+
+Martin
