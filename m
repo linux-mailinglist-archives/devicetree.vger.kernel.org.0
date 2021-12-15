@@ -2,267 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CE164755C4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:05:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 072A24755CB
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:06:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236564AbhLOKFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 05:05:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45688 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236488AbhLOKFS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:05:18 -0500
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 752D5C061574
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 02:05:15 -0800 (PST)
-Received: by mail-pf1-x436.google.com with SMTP id x131so20229930pfc.12
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 02:05:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=s6I6PVDiB5pjSFYBufZhX7FLrObvdsszj8DUlsHONsA=;
-        b=frgDETcBuG4mUuuCcXsbGuRB0prsYpLTZ3mQqhVFnj/9xQu2rXS/ZvJ/y76KwdtyQt
-         PoVO3mhyxyhbzum7Wr9NVyXIojquTrbTUYTxDBB4xR57TDXZoHP3QbSwmWy4zHokP464
-         W8dPAycmjUme5JSnKyOazC4GRZ33GlqUZCZrg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=s6I6PVDiB5pjSFYBufZhX7FLrObvdsszj8DUlsHONsA=;
-        b=fE6EFF5zZgiTv09PfJtugY2TiZ2JWpnMSgKmUaKQ85IsdoyyU4ORCTe/gny1dGb6g5
-         5M7EnxJn2hXP2AmUeoV3TIK//LeFSOsPqFBlmkVHeQUuCn1ZkgPoF7MNvK2v+sT5ghNs
-         1nzaOu0jCCMa5poshKIofQcGLL3g2lqxQpjXI3fdJg4jcEFxi1bVZ6UQOV9lSYJdnd6b
-         qawnv7KBb2yQAVny2dhNEHOLKmWkvbQ0bbTH/FAGsL4j3eH1rW8f/uwDtHWQkVpouF43
-         NCDmX+t8EDaLi8r67PYhcnV5dQ8mlwsyVb27qTyQGPWacrfpuK9BratsNp3rMvjw/WoV
-         aiXQ==
-X-Gm-Message-State: AOAM5322odFHmJuIy0bLOwCgnAbNeDtSGqQx3ss9OdFcJ5Y+Do+JTgjw
-        3byJv8x4a/R//3s42/bGksSg6A==
-X-Google-Smtp-Source: ABdhPJxlj7+9XFvTEKpjWZtqqMeiRvecAiTEYT04jkyqgpRuG3goVeKkrE67uRaUdMaQv4v5hIUjlg==
-X-Received: by 2002:a63:fe4a:: with SMTP id x10mr7181417pgj.531.1639562714968;
-        Wed, 15 Dec 2021 02:05:14 -0800 (PST)
-Received: from localhost.localdomain ([2405:201:c00a:a0a9:a7:8328:d9c4:5bc9])
-        by smtp.gmail.com with ESMTPSA id e7sm2050014pfv.156.2021.12.15.02.05.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 02:05:14 -0800 (PST)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v2] drm: bridge: tc358764: Use drm panel_bridge API
-Date:   Wed, 15 Dec 2021 15:34:59 +0530
-Message-Id: <20211215100459.44196-1-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
+        id S241497AbhLOKGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 05:06:21 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:42366 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236515AbhLOKGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 05:06:21 -0500
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1BF95RNJ015581;
+        Wed, 15 Dec 2021 11:06:06 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : from : to
+ : cc : references : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=gIjXSmze8zGdJ/iWENvemHIdtGMxjbPRELTGudH1KNA=;
+ b=YG5CIlfgJQEtTPMvA/CPRRJW02ntN5FmDFK1868vXMoWcni2i2UJbBBSNm6TGDDLPTnk
+ 8f2tDU+iEZYD+IPPWDyQ/BtvPNBUw36IFE9VSmd9LHyEVxqex32q9A2NNa/7jihQTX35
+ ZnrzfRlWF+fK3+PT3yBJ2wlAARbYNasR5Z8NmO/QtJ99Q6suKP2B6R4kGY/eCsZ3p9ec
+ uIHbs97FIryoMHSOIkZSnDSRNPUOyJdz7DLKFuDlgD+NBrWkqsosi2DaSwJIZGMvt5u2
+ Dhkowma/HM7iOERbLBOy4OZtkcc43XaPuipPkDokI6YR25gCL/LUQVxnGr3fNnwxR9AY XA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3cxrthxpx0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 15 Dec 2021 11:06:05 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 015EB10002A;
+        Wed, 15 Dec 2021 11:06:05 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EA55722ECC4;
+        Wed, 15 Dec 2021 11:06:04 +0100 (CET)
+Received: from lmecxl0573.lme.st.com (10.75.127.48) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 15 Dec
+ 2021 11:06:04 +0100
+Subject: Re: [PATCH 1/2] clk: st: clkgen-fsyn: search reg within node or
+ parent
+From:   Patrice CHOTARD <patrice.chotard@foss.st.com>
+To:     Alain Volmat <avolmat@me.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Lee Jones <lee.jones@linaro.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20211202072850.194314-1-avolmat@me.com>
+ <20211202072850.194314-2-avolmat@me.com>
+ <0759650c-7e56-4af5-6957-ac0055341d93@foss.st.com>
+Message-ID: <18d1ceab-d2c7-9501-40a3-2bcb36ca1249@foss.st.com>
+Date:   Wed, 15 Dec 2021 11:06:04 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <0759650c-7e56-4af5-6957-ac0055341d93@foss.st.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2021-12-15_07,2021-12-14_01,2021-12-02_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Replace the manual panel handling code by a drm panel_bridge via
-devm_drm_of_get_bridge().
+Ah one remark, reviewing the patch 2, i saw you added a pr_err() in case of error, 
+perhaps you can add one here also.
 
-Adding panel_bridge handling,
+Patrice
 
-- Drops drm_connector and related operations as drm_bridge_attach
-  creates connector during attachment.
-
-- Drops panel pointer and panel healpers.
-
-This simplifies the driver and allows all components in the display
-pipeline to be treated as bridges.
-
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
-Changes for v2:
-- s/panel_bridge/next_bridge
-- drop unneeded headers
-
- drivers/gpu/drm/bridge/tc358764.c | 104 ++----------------------------
- 1 file changed, 6 insertions(+), 98 deletions(-)
-
-diff --git a/drivers/gpu/drm/bridge/tc358764.c b/drivers/gpu/drm/bridge/tc358764.c
-index c1e35bdf9232..dca41ed32f8a 100644
---- a/drivers/gpu/drm/bridge/tc358764.c
-+++ b/drivers/gpu/drm/bridge/tc358764.c
-@@ -16,14 +16,9 @@
- #include <video/mipi_display.h>
- 
- #include <drm/drm_atomic_helper.h>
--#include <drm/drm_bridge.h>
--#include <drm/drm_crtc.h>
--#include <drm/drm_fb_helper.h>
- #include <drm/drm_mipi_dsi.h>
- #include <drm/drm_of.h>
--#include <drm/drm_panel.h>
- #include <drm/drm_print.h>
--#include <drm/drm_probe_helper.h>
- 
- #define FLD_MASK(start, end)    (((1 << ((start) - (end) + 1)) - 1) << (end))
- #define FLD_VAL(val, start, end) (((val) << (end)) & FLD_MASK(start, end))
-@@ -153,10 +148,9 @@ static const char * const tc358764_supplies[] = {
- struct tc358764 {
- 	struct device *dev;
- 	struct drm_bridge bridge;
--	struct drm_connector connector;
-+	struct drm_bridge *next_bridge;
- 	struct regulator_bulk_data supplies[ARRAY_SIZE(tc358764_supplies)];
- 	struct gpio_desc *gpio_reset;
--	struct drm_panel *panel;
- 	int error;
- };
- 
-@@ -210,12 +204,6 @@ static inline struct tc358764 *bridge_to_tc358764(struct drm_bridge *bridge)
- 	return container_of(bridge, struct tc358764, bridge);
- }
- 
--static inline
--struct tc358764 *connector_to_tc358764(struct drm_connector *connector)
--{
--	return container_of(connector, struct tc358764, connector);
--}
--
- static int tc358764_init(struct tc358764 *ctx)
- {
- 	u32 v = 0;
-@@ -278,43 +266,11 @@ static void tc358764_reset(struct tc358764 *ctx)
- 	usleep_range(1000, 2000);
- }
- 
--static int tc358764_get_modes(struct drm_connector *connector)
--{
--	struct tc358764 *ctx = connector_to_tc358764(connector);
--
--	return drm_panel_get_modes(ctx->panel, connector);
--}
--
--static const
--struct drm_connector_helper_funcs tc358764_connector_helper_funcs = {
--	.get_modes = tc358764_get_modes,
--};
--
--static const struct drm_connector_funcs tc358764_connector_funcs = {
--	.fill_modes = drm_helper_probe_single_connector_modes,
--	.destroy = drm_connector_cleanup,
--	.reset = drm_atomic_helper_connector_reset,
--	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
--	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
--};
--
--static void tc358764_disable(struct drm_bridge *bridge)
--{
--	struct tc358764 *ctx = bridge_to_tc358764(bridge);
--	int ret = drm_panel_disable(bridge_to_tc358764(bridge)->panel);
--
--	if (ret < 0)
--		dev_err(ctx->dev, "error disabling panel (%d)\n", ret);
--}
--
- static void tc358764_post_disable(struct drm_bridge *bridge)
- {
- 	struct tc358764 *ctx = bridge_to_tc358764(bridge);
- 	int ret;
- 
--	ret = drm_panel_unprepare(ctx->panel);
--	if (ret < 0)
--		dev_err(ctx->dev, "error unpreparing panel (%d)\n", ret);
- 	tc358764_reset(ctx);
- 	usleep_range(10000, 15000);
- 	ret = regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-@@ -335,72 +291,25 @@ static void tc358764_pre_enable(struct drm_bridge *bridge)
- 	ret = tc358764_init(ctx);
- 	if (ret < 0)
- 		dev_err(ctx->dev, "error initializing bridge (%d)\n", ret);
--	ret = drm_panel_prepare(ctx->panel);
--	if (ret < 0)
--		dev_err(ctx->dev, "error preparing panel (%d)\n", ret);
--}
--
--static void tc358764_enable(struct drm_bridge *bridge)
--{
--	struct tc358764 *ctx = bridge_to_tc358764(bridge);
--	int ret = drm_panel_enable(ctx->panel);
--
--	if (ret < 0)
--		dev_err(ctx->dev, "error enabling panel (%d)\n", ret);
- }
- 
- static int tc358764_attach(struct drm_bridge *bridge,
- 			   enum drm_bridge_attach_flags flags)
--{
--	struct tc358764 *ctx = bridge_to_tc358764(bridge);
--	struct drm_device *drm = bridge->dev;
--	int ret;
--
--	if (flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR) {
--		DRM_ERROR("Fix bridge driver to make connector optional!");
--		return -EINVAL;
--	}
--
--	ctx->connector.polled = DRM_CONNECTOR_POLL_HPD;
--	ret = drm_connector_init(drm, &ctx->connector,
--				 &tc358764_connector_funcs,
--				 DRM_MODE_CONNECTOR_LVDS);
--	if (ret) {
--		DRM_ERROR("Failed to initialize connector\n");
--		return ret;
--	}
--
--	drm_connector_helper_add(&ctx->connector,
--				 &tc358764_connector_helper_funcs);
--	drm_connector_attach_encoder(&ctx->connector, bridge->encoder);
--	ctx->connector.funcs->reset(&ctx->connector);
--	drm_connector_register(&ctx->connector);
--
--	return 0;
--}
--
--static void tc358764_detach(struct drm_bridge *bridge)
- {
- 	struct tc358764 *ctx = bridge_to_tc358764(bridge);
- 
--	drm_connector_unregister(&ctx->connector);
--	ctx->panel = NULL;
--	drm_connector_put(&ctx->connector);
-+	return drm_bridge_attach(bridge->encoder, ctx->next_bridge, bridge, flags);
- }
- 
- static const struct drm_bridge_funcs tc358764_bridge_funcs = {
--	.disable = tc358764_disable,
- 	.post_disable = tc358764_post_disable,
--	.enable = tc358764_enable,
- 	.pre_enable = tc358764_pre_enable,
- 	.attach = tc358764_attach,
--	.detach = tc358764_detach,
- };
- 
- static int tc358764_parse_dt(struct tc358764 *ctx)
- {
- 	struct device *dev = ctx->dev;
--	int ret;
- 
- 	ctx->gpio_reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
- 	if (IS_ERR(ctx->gpio_reset)) {
-@@ -408,12 +317,11 @@ static int tc358764_parse_dt(struct tc358764 *ctx)
- 		return PTR_ERR(ctx->gpio_reset);
- 	}
- 
--	ret = drm_of_find_panel_or_bridge(ctx->dev->of_node, 1, 0, &ctx->panel,
--					  NULL);
--	if (ret && ret != -EPROBE_DEFER)
--		dev_err(dev, "cannot find panel (%d)\n", ret);
-+	ctx->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-+	if (IS_ERR(ctx->next_bridge))
-+		return PTR_ERR(ctx->next_bridge);
- 
--	return ret;
-+	return 0;
- }
- 
- static int tc358764_configure_regulators(struct tc358764 *ctx)
--- 
-2.25.1
-
+On 12/15/21 11:03 AM, Patrice CHOTARD wrote:
+> Hi Alain
+> 
+> On 12/2/21 8:28 AM, Alain Volmat wrote:
+>> In order to avoid having duplicated addresses within the DT,
+>> only have one unit-address per clockgen and each driver within
+>> the clockgen should look at the parent node (overall clockgen)
+>> to figure out the reg property.  Such behavior is already in
+>> place in other STi platform clock drivers such as clk-flexgen
+>> and clkgen-pll.  Keep backward compatibility by first looking
+>> at reg within the node before looking into the parent node.
+>>
+>> Signed-off-by: Alain Volmat <avolmat@me.com>
+>> ---
+>>  drivers/clk/st/clkgen-fsyn.c | 11 +++++++++--
+>>  1 file changed, 9 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/clk/st/clkgen-fsyn.c b/drivers/clk/st/clkgen-fsyn.c
+>> index 164285d6be97..0d41164f2c7f 100644
+>> --- a/drivers/clk/st/clkgen-fsyn.c
+>> +++ b/drivers/clk/st/clkgen-fsyn.c
+>> @@ -988,9 +988,16 @@ static void __init st_of_quadfs_setup(struct device_node *np,
+>>  	void __iomem *reg;
+>>  	spinlock_t *lock;
+>>  
+>> +	/*
+>> +	 * First check for reg property within the node to keep backward
+>> +	 * compatibility, then if reg doesn't exist look at the parent node
+>> +	 */
+>>  	reg = of_iomap(np, 0);
+>> -	if (!reg)
+>> -		return;
+>> +	if (!reg) {
+>> +		reg = of_iomap(of_get_parent(np), 0);
+>> +		if (!reg)
+>> +			return;
+>> +	}
+>>  
+>>  	clk_parent_name = of_clk_get_parent_name(np, 0);
+>>  	if (!clk_parent_name)
+>>
+> Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> 
+> Thanks
+> Patrice
+> 
