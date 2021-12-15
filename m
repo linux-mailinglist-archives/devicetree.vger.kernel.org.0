@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48F9C475CA1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 17:03:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E381B475CB5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 17:06:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244142AbhLOQDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 11:03:47 -0500
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:46743 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232066AbhLOQDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 11:03:47 -0500
-Received: by mail-oi1-f171.google.com with SMTP id s139so32198149oie.13;
-        Wed, 15 Dec 2021 08:03:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mTcNTFB+NbkHTcAd9qD1dVkWYrQ03s2LijZVy1oBOuU=;
-        b=joWO7PS6lWR0YEQjbF82GhunRWrsd9NAw/NtpCm1wUhcmx9rXCT8x+faROwvAa9Uor
-         XH2zlGMsSCvhJ3ftDCzbw+UF/AYGGJFx0CHUbc4yetTRXcLDZoTF84fyKENV7Rhn3Jjs
-         HFkgc0m4Y7D3gkzpgrr3m3wfcquVLlEZ3+dL8UQmSY5HEzbjZz9jQNqpG4cLOzsmXThG
-         ergNCKzDxTxVocG8x18pxp187JmhUk8sTEgV6v93a5ry1FW5pq0Qw7sUZ6jwEPRvfDAe
-         pG7B7InWF9Z75uJdhtwaCG5/7a1I5SAIRzr2uLbcXt8AlHML0SsreDmcAu5dkKXvak0z
-         kkdw==
-X-Gm-Message-State: AOAM5307IpXW1tXg5Rf+opEipydPWGA55ikYpGfmUs57ZVZBIIRS5LII
-        N72qI67bxDc4BO9zptTzzw==
-X-Google-Smtp-Source: ABdhPJxcEC8GaG5MiQpyLT/0ZeKJG5yMFntxwwj5HQx++f6s884/vXuecGcVNLCcGHcV0hCCY5AVXg==
-X-Received: by 2002:a05:6808:1919:: with SMTP id bf25mr411273oib.33.1639584226858;
-        Wed, 15 Dec 2021 08:03:46 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d6sm499525otb.4.2021.12.15.08.03.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 08:03:45 -0800 (PST)
-Received: (nullmailer pid 1397034 invoked by uid 1000);
-        Wed, 15 Dec 2021 16:03:45 -0000
-Date:   Wed, 15 Dec 2021 10:03:45 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Roger Quadros <rogerq@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, kishon@ti.com, nm@ti.com,
-        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        tony@atomide.com, krzysztof.kozlowski@canonical.com,
-        vigneshr@ti.com
-Subject: Re: [PATCH v2 1/4] dt-bindings: memory-controllers: ti,gpmc: Add
- compatible for AM64
-Message-ID: <YboR4WAKRu8ui9HZ@robh.at.kernel.org>
-References: <20211208124611.16843-1-rogerq@kernel.org>
+        id S232144AbhLOQGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 11:06:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44866 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231574AbhLOQGP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 11:06:15 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A64E0C061574;
+        Wed, 15 Dec 2021 08:06:15 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 47AF261896;
+        Wed, 15 Dec 2021 16:06:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCED1C36AE0;
+        Wed, 15 Dec 2021 16:06:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639584374;
+        bh=AjuTnNgNxVdmHoft5M30nv8knZSADAbtJTguw/b7p4Q=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=OELkQLmgmPrkq7vA21O3IjhRnMHnLFa9HBWVwxj8XzHgqnYFCmbu45yEtKn/rVAU3
+         JtAKap3dgPqytjJtPIahsbsBr178jxsxk8Fh/gXpR3f58oYgWQYde2oGlsYeVafNb7
+         nMAOuQrlatdG3EzQ/HEo3bawDM0O9q9H8n2V3Lxl/nPBZCvY9TVhZErNwnp4O75s/1
+         GirO8kb/PnYSX2scEkgR14NVAohF0kvWKtPf74VKI1xgRMhC7GfcoxMgieeGdwcZTI
+         LPk+B1L/qp0w0e7QWzcC5wg7DTgJ2ZRYzYwh4slFnMwg6P91CcDxPXHxntKEzJk6ky
+         4f/MsZMAUDc2Q==
+Message-ID: <afb20c0909008ae4794a8c2608a7a6c643d11263.camel@kernel.org>
+Subject: Re: [PATCH v3] dt-bindings: soc: bcm: Convert brcm,bcm2835-vchiq to
+ json-schema
+From:   nicolas saenz julienne <nsaenz@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     stefan.wahren@i2se.com, f.fainelli@gmail.com,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Date:   Wed, 15 Dec 2021 17:06:09 +0100
+In-Reply-To: <YboOPd/xYWkL2JrJ@robh.at.kernel.org>
+References: <20211215094448.280796-1-nsaenz@kernel.org>
+         <YboOPd/xYWkL2JrJ@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211208124611.16843-1-rogerq@kernel.org>
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Dec 2021 14:46:08 +0200, Roger Quadros wrote:
-> AM64 SoC contains the GPMC module. Add compatible for it.
-> 
-> Newer SoCs don't necessarily map GPMC data region at the same place
-> as legacy SoCs. Add reg-names "data", to provide this information to
-> the device driver.
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> ---
->  .../bindings/memory-controllers/ti,gpmc.yaml  | 23 ++++++++++++++++++-
->  1 file changed, 22 insertions(+), 1 deletion(-)
-> 
+Hi Rob,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Wed, 2021-12-15 at 09:48 -0600, Rob Herring wrote:
+> On Wed, Dec 15, 2021 at 10:44:49AM +0100, Nicolas Saenz Julienne wrote:
+> > From: Stefan Wahren <stefan.wahren@i2se.com>
+> > 
+> > This converts the VCHIQ bindings to YAML format.
+> 
+> Am I supposed to review this? Some version of it is already in 
+> linux-next...
+
+It's been removed from linux-next for the time being. There was some issues
+with the previous binding, namely the fact that it removed the fallback to
+'bcrm,bcm2835-vchiq' on BCM2836/BCM2837. All in all, having it is harmless and
+might avoid regressions on some OSs.
+
+Regards,
+Nicolas
