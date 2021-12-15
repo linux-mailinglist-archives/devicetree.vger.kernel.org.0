@@ -2,117 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5423475134
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 04:05:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B21B747514A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 04:20:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239512AbhLODFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Dec 2021 22:05:15 -0500
-Received: from o1.ptr2625.egauge.net ([167.89.112.53]:27930 "EHLO
-        o1.ptr2625.egauge.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231379AbhLODFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 22:05:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=egauge.net;
-        h=from:subject:in-reply-to:references:mime-version:to:cc:
-        content-transfer-encoding:content-type;
-        s=sgd; bh=n5E/dGiaWc093mMx2isrqIl9xS2diTFoldK85pjdP9U=;
-        b=EnnqmqN3JxQA/cuMBO7tEt/6PLEiAcHUzEIqxbueNbdf8uVAGJFD4tpOtBTZgw6oMHvo
-        9kOJL4Ont7VUb9rcPeflwFOSlMTtAPDPZrvwBDMs8rMjxzHGogJZIWOFhUWd332ujx1luU
-        kEBOy4gOS5mqJOMAdXpOzoBCUeOum71HVvXvKvuOa3I6AUd4hGOpJGy0Rr7+c/crc/P1ci
-        5cuZYa/pJRHUT7uxylL/BPAJJCPZNHo8SX9Thut5Ed2xBL2h1PZQ2P5uznoL9C55UvbNdb
-        DZMcJWB2fTnomHOq+iPNzgXHEeST5YNqb5wmufg4q/PBa7IiVZHX2YOj25WRsNDw==
-Received: by filterdrecv-656998cfdd-bkftm with SMTP id filterdrecv-656998cfdd-bkftm-1-61B95B67-94
-        2021-12-15 03:05:12.007490305 +0000 UTC m=+7270674.434639005
-Received: from pearl.egauge.net (unknown)
-        by geopod-ismtpd-6-0 (SG)
-        with ESMTP
-        id uY3a5_yrR9G7jgcsBnOj4g
-        Wed, 15 Dec 2021 03:05:11.797 +0000 (UTC)
-Received: by pearl.egauge.net (Postfix, from userid 1000)
-        id 79A74700269; Tue, 14 Dec 2021 20:05:11 -0700 (MST)
-From:   David Mosberger-Tang <davidm@egauge.net>
-Subject: [PATCH v5 2/2] wilc1000: Document enable-gpios and reset-gpios
- properties
-Date:   Wed, 15 Dec 2021 03:05:12 +0000 (UTC)
-Message-Id: <20211215030501.3779911-3-davidm@egauge.net>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211215030501.3779911-1-davidm@egauge.net>
-References: <20211215030501.3779911-1-davidm@egauge.net>
+        id S239543AbhLODUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Dec 2021 22:20:11 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:56440 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235453AbhLODUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Dec 2021 22:20:10 -0500
+X-UUID: 6bf2cf4628284c88992b4cd6e01176af-20211215
+X-UUID: 6bf2cf4628284c88992b4cd6e01176af-20211215
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <yc.hung@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 82201096; Wed, 15 Dec 2021 11:20:06 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 15 Dec 2021 11:20:05 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 15 Dec 2021 11:20:05 +0800
+From:   YC Hung <yc.hung@mediatek.com>
+To:     <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>
+CC:     <yc.hung@mediatek.com>, <alsa-devel@alsa-project.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <daniel.baluta@nxp.com>, <trevor.wu@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>
+Subject: [PATCH] dt-bindings: dsp: mediatek: add mt8195 dsp document
+Date:   Wed, 15 Dec 2021 11:19:55 +0800
+Message-ID: <20211215031955.28244-1-yc.hung@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-X-SG-EID: =?us-ascii?Q?+kMxBqj35EdRUKoy8diX1j4AXmPtd302oan+iXZuF8m2Nw4HRW2irNspffT=2Fkh?=
- =?us-ascii?Q?ET6RJF6+Prbl0h=2FEtF1rRLvAJX2hjXqlZEyi4OX?=
- =?us-ascii?Q?rLApbyobOaAcwna02jHMyQlXVEb6oBIx1uTmA4c?=
- =?us-ascii?Q?4pTGtpKVJWiWyGwTcEunqp1kxe2wSQvSa6WCucR?=
- =?us-ascii?Q?8mAQYmOLdwcgivVH7j8=2FU2GA2RGaFbZL6lsJIOn?=
- =?us-ascii?Q?64b3rqLPzTmsFHzkC4Py+c=2FuekXpAxvMKy7sPpq?=
- =?us-ascii?Q?o9dZlCqapSIY0ytea+lmg=3D=3D?=
-To:     Ajay Singh <ajay.kathat@microchip.com>
-Cc:     Adham Abozaeid <adham.abozaeid@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        David Mosberger-Tang <davidm@egauge.net>
-X-Entity-ID: Xg4JGAcGrJFIz2kDG9eoaQ==
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the ENABLE and RESET GPIOs that may be needed by
-wilc1000-spi.
+From: "yc.hung" <yc.hung@mediatek.com>
 
-Signed-off-by: David Mosberger-Tang <davidm@egauge.net>
+This patch adds mt8195 dsp document.
+
+Signed-off-by: yc.hung <yc.hung@mediatek.com>
 ---
- .../net/wireless/microchip,wilc1000.yaml      | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ .../bindings/dsp/mtk,mt8195-dsp.yaml          | 116 ++++++++++++++++++
+ 1 file changed, 116 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dsp/mtk,mt8195-dsp.yaml
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
-index 6c35682377e6..60de78f1bc7b 100644
---- a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
-@@ -32,6 +32,21 @@ properties:
-   clock-names:
-     const: rtc
- 
-+  enable-gpios:
+diff --git a/Documentation/devicetree/bindings/dsp/mtk,mt8195-dsp.yaml b/Documentation/devicetree/bindings/dsp/mtk,mt8195-dsp.yaml
+new file mode 100644
+index 000000000000..33db11ee2336
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dsp/mtk,mt8195-dsp.yaml
+@@ -0,0 +1,116 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dsp/mtk,mt8195-dsp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Mediatek mt8195 DSP core
++
++maintainers:
++  - YC Hung <yc.hung@mediatek.com>
++
++description: |
++  Some boards from mt8195 contain a DSP core used for
++  advanced pre- and post- audio processing.
++properties:
++  compatible:
++    const: mediatek,mt8195-dsp
++
++  reg:
++    items:
++      - description: Address and size of the DSP Cfg registers
++      - description: Address and size of the DSP SRAM
++
++  reg-names:
++    items:
++      - const: cfg
++      - const: sram
++
++  interrupts:
++    items:
++      - description: watchdog interrupt
++
++  interrupt-names:
++    items:
++      - const: wdt
++
++  clocks:
++    items:
++      - description: mux for audio dsp clock
++      - description: 26M clock
++      - description: mux for audio dsp local bus
++      - description: default audio dsp local bus clock source
++      - description: clock gate for audio dsp clock
++      - description: mux for audio dsp access external bus
++
++  clock-names:
++    items:
++      - const: adsp_sel
++      - const: clk26m_ck
++      - const: audio_local_bus
++      - const: mainpll_d7_d2
++      - const: scp_adsp_audiodsp
++      - const: audio_h
++
++  power-domains:
 +    maxItems: 1
-+    description: Used by wilc1000-spi to determine the GPIO line
-+      connected to the ENABLE line.  If specified, reset-gpios
-+      must be specified as well as otherwise the driver cannot
-+      ensure the timing required between asserting ENABLE
-+      and deasserting RESET.  This should be declared as an
-+      active-high signal.
 +
-+  reset-gpios:
-+    maxItems: 1
-+    description: Used by wilc1000-spi to determine the GPIO line
-+      connected to the RESET line.  This should be declared as an
-+      active-low signal.
++  mboxes:
++    items:
++      - description: a mailbox is ised for ipc reply between host and audio DSP.
++      - description: a mailbox is ised for ipc reuqest between host and audio DSP.
 +
- required:
-   - compatible
-   - interrupts
-@@ -40,6 +55,8 @@ additionalProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/gpio/gpio.h>
++  mbox-names:
++    items:
++      - const: mbox0
++      - const: mbox1
 +
-     spi {
-       #address-cells = <1>;
-       #size-cells = <0>;
-@@ -51,6 +68,8 @@ examples:
-         interrupts = <27 0>;
-         clocks = <&pck1>;
-         clock-names = "rtc";
-+        enable-gpios = <&pioA 5 GPIO_ACTIVE_HIGH>;
-+        reset-gpios = <&pioA 6 GPIO_ACTIVE_LOW>;
-       };
-     };
- 
++  memory-region:      
++    items:
++      - description: A phandle to a reserved memory region is used for dma buffer between host and DSP.   
++      - description: A phandle to a reserved memory region is used for DSP system memory.
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - interrupt-names
++  - clocks
++  - clock-names
++  - memory-region
++  - power-domains
++  - mbox-names
++  - mboxes
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    adsp: dsp@10803000 {
++       compatible =  "mediatek,mt8195-dsp";
++       reg = <0x10803000  0x1000>,
++             <0x10840000  0x40000>;
++       reg-names = "cfg", "sram";
++       interrupts = <GIC_SPI 694 IRQ_TYPE_LEVEL_HIGH 0>;
++       interrupt-names = "wdt";
++       clocks = <&topckgen 10>, //CLK_TOP_ADSP
++                <&clk26m>,
++                <&topckgen 107>, //CLK_TOP_AUDIO_LOCAL_BUS
++                <&topckgen 136>, //CLK_TOP_MAINPLL_D7_D2
++                <&scp_adsp 0>, //CLK_SCP_ADSP_AUDIODSP
++                <&topckgen 34>; //CLK_TOP_AUDIO_H
++       clock-names = "adsp_sel",
++                     "clk26m_ck",
++                     "audio_local_bus",
++                     "mainpll_d7_d2",
++                     "scp_adsp_audiodsp",
++                     "audio_h";
++       memory-region = <&adsp_dma_mem_reserved>,
++                       <&adsp_mem_reserved>;
++       power-domains = <&spm 6>; //MT8195_POWER_DOMAIN_ADSP
++       mbox-names = "mbox0", "mbox1";
++       mboxes = <&adsp_mailbox0>, <&adsp_mailbox1>;
++       };
 -- 
-2.25.1
+2.18.0
 
