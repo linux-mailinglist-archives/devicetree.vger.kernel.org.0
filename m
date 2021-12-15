@@ -2,155 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D941D47635C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:33:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C830B476364
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:36:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236106AbhLOUdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 15:33:40 -0500
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:44793 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234794AbhLOUdk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:33:40 -0500
-Received: by mail-ot1-f43.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso26325446otj.11;
-        Wed, 15 Dec 2021 12:33:39 -0800 (PST)
+        id S236156AbhLOUgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 15:36:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52790 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234794AbhLOUgO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:36:14 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E8A1C061574;
+        Wed, 15 Dec 2021 12:36:13 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id b22so857559lfb.9;
+        Wed, 15 Dec 2021 12:36:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=mxQTpq9+SSfMCBuNLOEU7pPVfHQ9OviSls2iaBkKkiY=;
+        b=nMJoLWrKBbib/S6bg5IG0ZK8VRyyOVM8QRpLYYrNHDGpeBvVb1x9AjihLfXwSaITzc
+         NoAdCGjGfZevACEpw8hjzQx68xpqwLUGOaAyXKu7mdnTfvCyr5q1u2xWoqLXurNiXnp+
+         j1TSFmlrTvj0xUpXs8rO7M/2x9RlKqR+u99ydYC0TWG6aTPOGXxeFTDNLKEeQVBE17H+
+         vyX4KnWEc81y4ZIrNiXPuz8DtmYcwymvPPacCHTXelFLLbceZuobJWyi+wcw9WKP0eQI
+         yQJzZzEjSmbXaPeTJg6+UU3K3xK+9d72nee4rvCVLa9QQk67sTU5N28sbGzbQCga1tKy
+         4nMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PNasZti3EJAcUjmghAAyjrnvtl+di8xU5grpOnCBmyg=;
-        b=r/Os1Kd4WaahbBlEUwTmFvMz0jGMaEf5GyRAEsQcwXDHvAEx8OY3O+2FmcKTk5s8F9
-         DUG/r3/ozWdtYWboXX0729eGeT5AbDBr/TzjUitOsNKZVfKT9RfzAef9v+p6zKCuMLR7
-         71uF2hb9HrY8tyaSurfycruRmbn22eWBzarDSG53P9CMaKOnAnApA0GX9NimBoHWfr0j
-         yLvQNpya2WGAe5epcHRkxpc/mqisF8rr8uOCSa3yZllujU6j9sehV7VLwvBOXveWgUMj
-         zJO74zz5ILlgCOzxXs+Kwl/70JpFWjFIeWoAZH2e5NOSLJxC5hnqyevRugxC9JgcbhRl
-         RyOg==
-X-Gm-Message-State: AOAM531a51wj4QoqprZHGHNfczzKVFqVZW6xuoWWrXwGZsf04NOznj9F
-        KvZSs08XXpx+hSkZqhZVeyQsfEm8dg==
-X-Google-Smtp-Source: ABdhPJzYfl8+giEp7MlljEoKVlDCMkHWhKVi6Os4fWSTlT/WQhPPg1r7k7uJ2jVEdD343rJGGqFJOw==
-X-Received: by 2002:a05:6830:3499:: with SMTP id c25mr10508450otu.206.1639600419551;
-        Wed, 15 Dec 2021 12:33:39 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bh12sm534362oib.25.2021.12.15.12.33.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 12:33:39 -0800 (PST)
-Received: (nullmailer pid 1790368 invoked by uid 1000);
-        Wed, 15 Dec 2021 20:33:38 -0000
-Date:   Wed, 15 Dec 2021 14:33:38 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Peter Rosin <peda@axentia.se>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: i2c Update PCA954x
-Message-ID: <YbpRIjHgfPvHq/zR@robh.at.kernel.org>
-References: <20211214095021.572799-1-patrick.rudolph@9elements.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=mxQTpq9+SSfMCBuNLOEU7pPVfHQ9OviSls2iaBkKkiY=;
+        b=zOolVdXDBySuFC12YSwad9Tn7wIR135nufX2ZAnY0ya0ySaYcTZoPumZS9E+4gxhWD
+         yS4GPRfXPL7AnM9enxyV1AKpqC/01QKT8N8yD/1HKvLRMqqDVHwv8FFmKdT0yKB8B8fI
+         7xRAl0oJxNVJUJGri17JOIdagYqqJURNqNzurk5GrR38eO09cqLpLExvWlnrYVdf02ty
+         ssqdhgF9kAfQCeKox8bb1A7nmv7qjxpy8+ydmI1csommQrKCI6+icz7QFxCzh1Laukas
+         /ERnkFZtSet6NbnBKgkIxJZRXMIX1xVbdwOpZTisygccYKac+5X+bd3TGQoVAWE86RVK
+         u2Ag==
+X-Gm-Message-State: AOAM532OCxOBLfF62DT6eLfIq8RxKUCVFC5bVf+AUPhuwE3cowoAsGm4
+        KP7utLE9ah/27cWnSBmHciE=
+X-Google-Smtp-Source: ABdhPJy2dh59pjZ/ubrHcMTH+WMaPRTZFF7qQkrKcsDYpm8+aJj5sr+bHrVhQB98P/naBwKpMiCyuQ==
+X-Received: by 2002:a05:6512:118e:: with SMTP id g14mr11752902lfr.561.1639600571853;
+        Wed, 15 Dec 2021 12:36:11 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id z8sm483242lfu.128.2021.12.15.12.36.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Dec 2021 12:36:11 -0800 (PST)
+Message-ID: <213808f6-af00-6738-b634-b99aca9c4903@gmail.com>
+Date:   Wed, 15 Dec 2021 21:36:06 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211214095021.572799-1-patrick.rudolph@9elements.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH V2 2/2] leds: bcm63xxx: add support for BCM63138
+ controller
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20211124111952.22419-1-zajec5@gmail.com>
+ <20211124111952.22419-2-zajec5@gmail.com> <20211215202616.GB28336@duo.ucw.cz>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20211215202616.GB28336@duo.ucw.cz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 14, 2021 at 10:50:18AM +0100, Patrick Rudolph wrote:
-> Add the Maxim MAX735x as supported chip to PCA954x and add an
-> example how to use it.
-
-The subject needs some work. Every change is an 'update' and you should 
-say something about Maxim. 'Add Maxim MAX735x variants' or something.
-
+On 15.12.2021 21:26, Pavel Machek wrote:
+>> It's a new controller first introduced in BCM63138 SoC. Later it was
+>> also used in BCM4908, some BCM68xx and some BCM63xxx SoCs.
+>>
 > 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> ---
->  .../bindings/i2c/i2c-mux-pca954x.yaml         | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
+>> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+>> index ed800f5da7d8..3bde795f0951 100644
+>> --- a/drivers/leds/Kconfig
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> index 9f1726d0356b..bd794cb80c11 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> @@ -11,6 +11,7 @@ maintainers:
->  
->  description:
->    The binding supports NXP PCA954x and PCA984x I2C mux/switch devices.
-> +  Compatible with Maxim MAX7356 - MAX7358 I2C mux/switch devices.
->  
->  allOf:
->    - $ref: /schemas/i2c/i2c-mux.yaml#
-> @@ -19,6 +20,9 @@ properties:
->    compatible:
->      oneOf:
->        - enum:
-> +          - maxim,max7356
-> +          - maxim,max7357
-> +          - maxim,max7358
->            - nxp,pca9540
->            - nxp,pca9542
->            - nxp,pca9543
-> @@ -40,6 +44,7 @@ properties:
->  
->    interrupts:
->      maxItems: 1
-> +    description: Only supported on NXP devices. Unsupported on Maxim MAX735x.
-
-You can express that as an if/then schema.
-
-Just 'interrupts: false' for maxim compatibles. There's lots of 
-examples in the tree.
-
->  
->    "#interrupt-cells":
->      const: 2
-> @@ -100,6 +105,41 @@ examples:
->                  #size-cells = <0>;
->                  reg = <4>;
->  
-> +                rtc@51 {
-> +                    compatible = "nxp,pcf8563";
-> +                    reg = <0x51>;
-> +                };
-
-Unrelated change.
-
-> +            };
-> +        };
-> +    };
-> +
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-
-Really need another example?
-
-> +
-> +        i2c-mux@74 {
-> +            compatible = "maxim,max7357";
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            reg = <0x74>;
-> +
-> +            i2c@1 {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                reg = <1>;
-> +
-> +                eeprom@54 {
-> +                    compatible = "atmel,24c08";
-> +                    reg = <0x54>;
-> +                };
-> +            };
-> +
-> +            i2c@7 {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                reg = <7>;
-> +
->                  rtc@51 {
->                      compatible = "nxp,pcf8563";
->                      reg = <0x51>;
-> -- 
-> 2.33.1
+> Lets put it into drivers/leds/blink/, please.
 > 
+>> --- /dev/null
+>> +++ b/drivers/leds/leds-bcm63138.c
+>> @@ -0,0 +1,314 @@
 > 
+>> +#define BCM63138_LED_BITS				4				/* how many bits control a single LED */
+>> +#define BCM63138_LED_MASK				((1 << BCM63138_LED_BITS) - 1)	/* 0xf */
+>> +#define BCM63138_LEDS_PER_REG				(32 / BCM63138_LED_BITS)	/* 8 */
+> 
+> I'm not sure these kinds of defines are useful.
+
+What do you suggest? I think defines are prefered in Linux kernel
+compared to magic values in code.
+
+
+>> +static void bcm63138_leds_create_led(struct bcm63138_leds *leds,
+>> +				     struct device_node *np)
+>> +{
+>> +	struct led_init_data init_data = {
+>> +		.fwnode = of_fwnode_handle(np),
+>> +	};
+>> +	struct device *dev = leds->dev;
+>> +	struct bcm63138_led *led;
+>> +	struct pinctrl *pinctrl;
+>> +	const char *state;
+>> +	u32 bit;
+>> +	int err;
+>> +
+>> +	led = devm_kzalloc(dev, sizeof(*led), GFP_KERNEL);
+>> +	if (!led)
+>> +		return;
+> 
+> At least warn. User wants to know why his leds don't work.
+
+That would be against Linux's rule. I'm not sure if/where it's explained
+in Documentation/ but scripts/checkpatch.pl will complain about that for
+sure. OOM errors are loud enough not to require an extra error at driver
+level.
+
+
+>> +	if (!of_property_read_string(np, "default-state", &state)) {
+>> +		if (!strcmp(state, "on"))
+>> +			led->cdev.brightness = LED_FULL;
+>> +		else
+>> +			led->cdev.brightness = LED_OFF;
+>> +	} else {
+>> +		led->cdev.brightness = LED_OFF;
+>> +	}
+> 
+> Do you actually need default-state support? Just remove it if not.
+> 
+> You support 4 bit brightness. You should set max_brightness to
+> 15. LED_FULL is mistake (or very old API) in your case.
