@@ -2,103 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D13347543D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 09:26:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4869A475441
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 09:28:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233798AbhLOI0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 03:26:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51322 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231658AbhLOI0E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 03:26:04 -0500
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C940C061574
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 00:26:04 -0800 (PST)
-Received: by mail-oi1-x242.google.com with SMTP id 7so30656753oip.12
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 00:26:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=wE15AX+YKAr6gux7pFWbybWd7n2h2scMswRoQsyqs3c=;
-        b=ZZedqn8sfWXpU/1tYIqvvwubC7g54bG1eEmHVDZ98ADMdAIz5xAtGSHL+f+E8C+Dep
-         qPytTPzHgk3HEXDGMHz07Ns5L/4rB2jDZtLbsZ/1JakfjSSikc3cc9XxHU4Fz2iFsS/W
-         GG6ibnCNTwIAO9iqnCuE3PQh1Wo8Cxh2eUWaNgEfRwh18RIU5AYeEIeg25suGne4PfZ0
-         ZzMWf+HBi6nTzihCvkNj5DKHRQJjpjdSHJu40ii7T2e9DYEtatGxmZUEfU8NGDt/34RI
-         K89eoV+Qh+qAwGR21nN6tvSzCHFDCADVw0nl7JWLKrT7rLxdxiHpMzdNHN/r9tyF/6gB
-         1bpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=wE15AX+YKAr6gux7pFWbybWd7n2h2scMswRoQsyqs3c=;
-        b=KRouQSxMt/4eVJlBOt45eB/0KmqmJXxvmaSkafDdEP4CrssuxGpQfcWvngudSEtR5o
-         ayqow7YchK4Dwe0RbBz7WEHWzTTVHs9jBIg7U4NvQUSWUoMMWa1XdPHkfUAKIQjPncGZ
-         zBU6eaxfPMAJgO25vfbZQHAykuGdfMx3SWCsOO3M1PHHDLs01/ZOGbUGRYhMFUVf3Ig+
-         qvkXDcfzHy5CVcd+UyTTY+AAecWB8XtYq1CIbKKWONUjPzUCfFzEiSHmD69wJaF+Lsbr
-         IAZ0ImDiSGWkcHp8m2U+iO2VWxJbcAJGP1AZWZf5hZDH0xZosEbTXI9BnOcJh7vk8d24
-         7EzQ==
-X-Gm-Message-State: AOAM532DlkYu2MKenaNnRPuF31ZG3Ue26IPG9H8ypceHnAW5a/80BgGF
-        3wN5a5RTnpwPHzhej5Ob6Gq7sodjdKYfYrdUzkE=
-X-Google-Smtp-Source: ABdhPJz1F7fOW6WhbsJtS0YCco5pWAP1/nmZDkoMHDlLnn/BXtlaWLpNZvZcJU0+/I5Wg4vpNlt6hpJ43/wqtYF3sZc=
-X-Received: by 2002:a05:6808:1589:: with SMTP id t9mr37212992oiw.108.1639556763806;
- Wed, 15 Dec 2021 00:26:03 -0800 (PST)
+        id S240808AbhLOI2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 03:28:55 -0500
+Received: from mail-40134.protonmail.ch ([185.70.40.134]:31298 "EHLO
+        mail-40134.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231658AbhLOI2y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 03:28:54 -0500
+Date:   Wed, 15 Dec 2021 08:28:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail2; t=1639556928;
+        bh=5N280dBocJg74e5F/vSISE7EffqnCBdn+052s+S8NFo=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
+         References:From:To:Cc;
+        b=VEQIE20/F9fTnC8R/++pVnhcDtgwv6VWLHjoeyu0TchlkBwJNFulPKRjkul7yxCj/
+         OTUbHC3cJvB+SvWWPzknkOocNIgh0ZxNxxNyiJJNNvzK65JJm7kWWluCwxou0f1Ffc
+         wa2SgiQItoi9E40pVlzyP4dpfqZL8/rqTD3KDBFl5BQhlVI8CzPK3OlovAHPmKQTGP
+         WLDysfaZMkosAdvROuZTvitmkEG4wem8xaCiSxaUpLYTfisV8G5PlDkYya6lkvX0tf
+         ptBFcKQWupLOJEZY4Czv+Md7DEP9ENCOBEDSEAmYXmxE1iRwdfi6vdi2VPhGFvChn3
+         FQry6UgYBvCiw==
+To:     Rob Herring <robh@kernel.org>
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>
+Reply-To: =?utf-8?Q?Martin_Povi=C5=A1er?= <povik@protonmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add Apple NCO
+Message-ID: <F62225F0-C9C6-4E39-9163-B125A7253733@protonmail.com>
+In-Reply-To: <CAL_Jsq+STG7=H_B3VwNp1V4OSCvKat2FUJhtzi_1t_UbMnOUfw@mail.gmail.com>
+References: <20211214120213.15649-1-povik@protonmail.com> <20211214120213.15649-2-povik@protonmail.com> <Ybi61fzpOV7CumtR@robh.at.kernel.org> <3F145763-2774-4569-B9B7-A03CFE002E94@protonmail.com> <CAL_Jsq+STG7=H_B3VwNp1V4OSCvKat2FUJhtzi_1t_UbMnOUfw@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 2002:a4a:98ea:0:0:0:0:0 with HTTP; Wed, 15 Dec 2021 00:26:03
- -0800 (PST)
-Reply-To: LishaHaman225@gmail.com
-From:   Miss Lisha Haman <alikanto679@gmail.com>
-Date:   Wed, 15 Dec 2021 00:26:03 -0800
-Message-ID: <CAL29UNB4mrhHOS-_uy1GjJB2SN=OY8rLX+CmFXKNJ4_q0MdSWw@mail.gmail.com>
-Subject: PLEASE TRY AND HELP ME
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-My dear I am Miss Lisha Haman 23 years of age , I am the only daughter
-to Dr Abdul Haman from France-Paris who work with (SEMAFO) the biggest
-Canadian gold producer here in West Africa Burkina Faso,
 
-Unfortunately my father was a victim on the deadliest attack by the
-jihadist On the 6 November 2019 when gunmen ambushed a convoy
-transporting workers of the Canadian mining firm Semafo, it is my sad
-moment each time I think about this, but the reason why I contacted
-you is that I have my late father receipt of deposit he made with a
-bank in abroad with my name as next of kin, The total amount deposited
-was 3.7 million United Stated dollars,
+> On 15. 12. 2021, at 0:53, Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Dec 14, 2021 at 2:08 PM Martin Povi=C5=A1er <povik@protonmail.com=
+> wrote:
+>>
+>> Hi Rob,
+>>
+>>> On 14. 12. 2021, at 16:40, Rob Herring <robh@kernel.org> wrote:
+>>>
+>>> On Tue, Dec 14, 2021 at 12:02:48PM +0000, Martin Povi=C5=A1er wrote:
+>>>> The NCO block found on Apple SoCs is a programmable clock generator
+>>>> performing fractional division of a high frequency input clock.
+>>>>
+>>>> Signed-off-by: Martin Povi=C5=A1er <povik@protonmail.com>
+>>>> ---
+>>>> .../devicetree/bindings/clock/apple,nco.yaml  | 70 +++++++++++++++++++
+>>>> 1 file changed, 70 insertions(+)
+>>>> create mode 100644 Documentation/devicetree/bindings/clock/apple,nco.y=
+aml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/clock/apple,nco.yaml b/=
+Documentation/devicetree/bindings/clock/apple,nco.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..5029824ab179
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/clock/apple,nco.yaml
+>>>> @@ -0,0 +1,70 @@
+>>
+>>>> +
+>>>> +  apple,nchannels:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    description:
+>>>> +      The number of output channels the NCO block has been
+>>>> +      synthesized for.
+>>>
+>>> I'd assume there is some max number?
+>>
+>> There might be some limit to the underlying IP but we wouldn=E2=80=99t k=
+now.
+>> What we know about the hardware comes from blackbox reversing, and that
+>> doesn't suggest a particular limit to the number of channels we might
+>> see on the SoC block in future.
+>
+> All the more reason to not put the size in the DT, but imply from the
+> compatible. Unless it varies by instance...
+>
+> Though I guess you would need DT updates anyways to use the new clock.
+>
+>>> Do you really need to know this? If this is just to validate the clock
+>>> cell values are less than this, then just drop that and the property.
+>>> It's not the kernel's job to validate the DT.
+>>
+>> Well strictly speaking the driver could do clock registration on-demand
+>> at the cost of additional book-keeping, in which case we could drop
+>> the property, but I would prefer we don=E2=80=99t do that. Rather than p=
+roviding
+>> validation the property simplifies drivers.
+>>
+>> Another option is calculating the no. of channels from size of the reg
+>> range, but I assume that=E2=80=99s worse than having the nchannels prope=
+rty.
+>>
+>>>> +
+>>>> +    nco: clock-generator@23b044000 {
+>>>
+>>> clock-controller@...
+>>
+>> Okay, will change.
+>>
+>>>
+>>>> +      compatible =3D "apple,t8103-nco", "apple,nco";
+>>>> +      reg =3D <0x3b044000 0x14000>;
+>>>
+>>> You really have 0x14000 worth of registers here because all of that
+>>> will be mapped into virtual memory? Doesn't matter so much on 64-bit,
+>>> but it did for 32-bit.
+>>
+>> There is about 5 registers per channel with 0x4000 stride between them,
+>> blame Apple (or Samsung? I don=E2=80=99t know...).
+>
+> I would think you could walk the 0x4000 until you hit registers that
+> behave differently.
+>
+> The register size / 0x4000 gives you the number of channels, too.
 
-Now I decided to travel for the money but embassy here deny me visa
-due to the Corona virus outbreak,
+Right now that=E2=80=99s what I am inclined to use in v2.
 
-I talk to the bank regarding my visa problem and they advise me to
-look for my relative trusted bank account so that they will transfer
-the total fund in there, But I am the only daughter of my father and
-have no relative to present, that is why I want to present you to the
-bank as my relative who will receive the total fund on my behalf and
-also take care of me as well,
+> Another question, how do you know this is 1 block with N channels vs.
+> N blocks just happening to be next to each other in the memory map?
 
-please send me your complete
+We don=E2=80=99t. We only see Apple describe it as such in their devicetree=
+, and
+so far for all practical purposes it could be one block.
 
-full details such as, Your Full Name:
+I guess if we derive the number of channels from register size, there=
+=E2=80=99s
+the fallback of breaking up the nodes per channel in future.
 
-Home and Office Addresses:
+Martin
 
-Telephone Number:
 
-Occupation:
-
-Country of Residence:
-
-Your Bank account number where the bank will remit the fund
-
-Once I received your details, I will give you the bank contact so that
-you can contact them directly to discuss how they can transfer the
-total fund in your bank account so that you can relocate me to join
-you over there in your country,
-
-Sincerely
-
-LishaHaman225@gmail.com
-
-Miss Lisha Haman
