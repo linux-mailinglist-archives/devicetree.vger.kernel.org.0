@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B18694762DE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:13:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 509BA4762E2
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 21:14:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235055AbhLOUNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 15:13:51 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:34761 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231538AbhLOUNu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:13:50 -0500
-Received: by mail-oi1-f169.google.com with SMTP id t19so33287917oij.1;
-        Wed, 15 Dec 2021 12:13:50 -0800 (PST)
+        id S235047AbhLOUOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 15:14:20 -0500
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:36623 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235148AbhLOUOR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 15:14:17 -0500
+Received: by mail-oi1-f171.google.com with SMTP id t23so33268440oiw.3;
+        Wed, 15 Dec 2021 12:14:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=zfzCek+ThaUW2uLQZROAUPM08wNkZ0c6WaVCXgKjYT0=;
-        b=I8sYa9cIIqlErhk9uqqN7KiZ0YFTwF/sQvPzfVDDsg+lkmCSj4UAhTntCgnwR1xhV3
-         YIiElT3qsHGUHw51fsKgTWVTgM+y3HRowES/rPdhGFKgTqNcKEtR5BsVqQYEc25gYK/t
-         Sg7mrjnpQXdq34lLq1b4pPbpL18KAKhvRNgYrz+Bb8O7BxVgp2+ID0moktlXUDKdlMsi
-         YcOJKOVAbdQ3fgStjmYWNedo7oDtSCBV1TW3Szxs/qNAaA3AZjERPhbgBGxLy5IxHRvx
-         5EaQPZSjBR/ilLLwHDmaTgKrPADokN5hgNxZp2F8zND7c5wRqVNvaD4UErvlTr8UNI1T
-         hK0g==
-X-Gm-Message-State: AOAM5316E6s1GynFiQGLzbclGyj9cAszeYnPmODbyzYSdFXxPWBdrtsU
-        FAPUoQoqiNbT0qfxxJYQ+w==
-X-Google-Smtp-Source: ABdhPJzH8sjIBRBD/RV+Nn1jaJ95hQaD+3JUT+OhxcwHxcR2WIARiwZiHckydCgjgoiRR6MhcpVSog==
-X-Received: by 2002:aca:280d:: with SMTP id 13mr1426751oix.61.1639599230059;
-        Wed, 15 Dec 2021 12:13:50 -0800 (PST)
+        bh=3jbRyQ00vmlVZlK083e5a7rVdMlibG/c9uMkSqY/nJs=;
+        b=wxYzGTN8r5mhTIra7qsyBswP/XHEDjdWEr0VPD/WY2it0bNN/JwNR16BC+p+fBugAg
+         hYZTacqNwlEwzN0xmA6sob1l2XvsBR4rYa2ihZ2OI9GIXqe2DVe/dULH5ZEd+tU/Gkyq
+         uPjCF3m5bot8mlCeOiEWXfHSFfoxgJsNh4mLoCuB5FMD7JmNvSNAhjZXQ5lMOxIFhcpw
+         +Lr0p0DTy6eQ+DmhMaeXsNRi+efi3qEPezHyyLp8ECYM5TkO9hZGtrZkGz3V3hD1gcik
+         610A6dsGMughIBCtOSLqwsztlVz2a2FxcmFMHcrOIomBqeyneMpjVaJ6Aa/acOeTzUKR
+         7pRA==
+X-Gm-Message-State: AOAM533F7X5gWDvlmH8lHJi/ZHPt6RAmYA5WlTCClCU2gHRHrpYXbicX
+        9uwa14JBjWBkN+1EMosTHw1EzHcxvg==
+X-Google-Smtp-Source: ABdhPJzZ3sV0daGskMrWrrkBH9178o6fHz18n0/Ms8Na9+By+BB3BPKrZTaAclFNTOlMthRdIjHxFQ==
+X-Received: by 2002:a05:6808:50:: with SMTP id v16mr1423628oic.34.1639599256389;
+        Wed, 15 Dec 2021 12:14:16 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id s6sm576796ois.3.2021.12.15.12.13.48
+        by smtp.gmail.com with ESMTPSA id x4sm511047oiv.35.2021.12.15.12.14.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Dec 2021 12:13:49 -0800 (PST)
-Received: (nullmailer pid 1760271 invoked by uid 1000);
-        Wed, 15 Dec 2021 20:13:48 -0000
-Date:   Wed, 15 Dec 2021 14:13:48 -0600
+        Wed, 15 Dec 2021 12:14:15 -0800 (PST)
+Received: (nullmailer pid 1761008 invoked by uid 1000);
+        Wed, 15 Dec 2021 20:14:14 -0000
+Date:   Wed, 15 Dec 2021 14:14:14 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH 2/3] dt-bindings: phy: qcom,qmp: Add SM8450 USB3 PHY
-Message-ID: <YbpMfKh4uAjRj5Ua@robh.at.kernel.org>
-References: <20211213131450.535775-1-vkoul@kernel.org>
- <20211213131450.535775-2-vkoul@kernel.org>
+To:     reinhold.mueller@emtrion.com
+Cc:     s.hauer@pengutronix.de, festevam@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com, robh+dt@kernel.org, kernel@pengutronix.de,
+        shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: Add emtrion hardware emCON-MX8M
+ Mini
+Message-ID: <YbpMluTMlxrrGz57@robh.at.kernel.org>
+References: <20211213132909.41258-1-reinhold.mueller@emtrion.com>
+ <20211213132909.41258-2-reinhold.mueller@emtrion.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211213131450.535775-2-vkoul@kernel.org>
+In-Reply-To: <20211213132909.41258-2-reinhold.mueller@emtrion.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Dec 2021 18:44:49 +0530, Vinod Koul wrote:
-> Add compatible string for USB QMP phy in Qualcomm SM8450 SoC
+On Mon, 13 Dec 2021 14:29:08 +0100, reinhold.mueller@emtrion.com wrote:
+> From: Reinhold Mueller <reinhold.mueller@emtrion.com>
 > 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> This patch presents the yaml patch for the emtrion GmbH
+> emCON-MX8M Mini.
+> 
+> Signed-off-by: Reinhold Mueller <reinhold.mueller@emtrion.com>
 > ---
->  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 1 +
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
