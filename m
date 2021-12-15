@@ -2,143 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 700EA476618
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 23:44:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80FDB47662F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 23:48:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230288AbhLOWov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 17:44:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229919AbhLOWov (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 17:44:51 -0500
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09E4CC061574;
-        Wed, 15 Dec 2021 14:44:51 -0800 (PST)
-Received: by mail-pl1-x634.google.com with SMTP id u17so17793726plg.9;
-        Wed, 15 Dec 2021 14:44:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=q4UzIW8jjvFD9MXINw3scaTFcXx6xR/65YR9cdnFtJo=;
-        b=GRvMIyxPRNtzcsDe+NtBBO75NgVay7h53HFPf4w2DZlAi3j7BLj0C70kazfWyuEnvc
-         EoaCcARXjgg5shU0sINC0XHVzUYI0vb1o2Y2NLPhftGaVJ5CZ5wgMRBejV/weSMiWoSE
-         t9wede+K3DTlqIk8wWGoxqRZx2Iuc10WuVivY8wUcHKnjQc5QDzlIu+Qb/Gr2T9ZRoV7
-         jjaYxvovtV5ZRZueO2jqKLsPWxTfGc08s9241YCRRI+0VonkuzovIJV1dlwL8xJlxdSK
-         OAlrbJeowkCY7Nn6N3TPkoicsxGnFTt3+khhBFSX0YVw3qfLIrX9oM4njvPI/wGMRZYq
-         EDBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=q4UzIW8jjvFD9MXINw3scaTFcXx6xR/65YR9cdnFtJo=;
-        b=RilOngv2RKE/yeMiHLK44WqYT/oe7kp8mSEjxBH0xmfVH8vtLzinMnsCxxXtsMNkeU
-         c5HR+z/4G5RnK2r6a+rUezzxCjTxm9wDkKTwskJwss3hZEoOZVXQm8r5CLD2+icv8TLg
-         qz0dtPkFfJuMoKHMdDI017FX4S0F068sKQ8HUfgAh49pAGMyP+HVDPv9PVqnFS05iXnv
-         QafhsBFQruD0gCKvT0UCvay9mC59aNMjj0AX7E/FlBXF0JMaQAcCLYfjxAb28Xv69vLI
-         yLi1i5OafMZzJpUTd+zavfpE3R9RrxTG5sXappl1ylzxLp2Q1jRC1bnG8qeMlfXnDnOo
-         zl7A==
-X-Gm-Message-State: AOAM531uXNdkXEYmYJg8O0yS2gJJsZ5bsdE/34lUXCQYaQdhpGgjT0QS
-        IssMXFneJuh4vKn56/62fO0=
-X-Google-Smtp-Source: ABdhPJyRVECjLwh6/a45lJzjdGytwuXKsisg0bwzAmdfjZcJlw9+DYfpVIVT8BpO3Rci6hyEqq1aSA==
-X-Received: by 2002:a17:902:6b8c:b0:148:8a86:a01c with SMTP id p12-20020a1709026b8c00b001488a86a01cmr13270930plk.50.1639608290506;
-        Wed, 15 Dec 2021 14:44:50 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id l2sm3797362pfc.42.2021.12.15.14.44.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Dec 2021 14:44:49 -0800 (PST)
-Subject: Re: [PATCH] arm64: dts: qcom: ipq6018: Fix gpio-ranges property
-To:     Baruch Siach <baruch@tkos.co.il>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Sricharan R <sricharan@codeaurora.org>
-References: <8a744cfd96aff5754bfdcf7298d208ddca5b319a.1638862030.git.baruch@tkos.co.il>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <281f0532-2f3b-362a-5df6-d9cbe302606a@gmail.com>
-Date:   Wed, 15 Dec 2021 14:44:48 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S231469AbhLOWsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 17:48:25 -0500
+Received: from mga07.intel.com ([134.134.136.100]:9615 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230214AbhLOWsY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Dec 2021 17:48:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1639608504; x=1671144504;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JWFyo0Ydmtk47WVj8Zg8P0VPEZG3TTPE4W1aW0wI3zs=;
+  b=UEJ8agBqa1GypRimAqkhH5F8jWqII66jkJW9x1vjieEbuYq4JQcLf4nI
+   713n8j0wHDNIZRf1D2M+7FDSUPh3VfIy6xdDeWtQa6OSewFbLrEuPr7xx
+   Rasxk0c2T/x64RUJNID/wVAf3DOC3GY2xJnJ3rl5nklrbWH4k/vq5HvmQ
+   zvGRg/YsbYrcbVr4+gCahcdVvZ58m+ytClTwm+WYhpF28GipJACtqBTWb
+   1ZEd9HRM30KzoyeZx5q9U4u8952s1zRXCwdQN++nUuCldgxrSM7jre4Kz
+   GSs46JdhcGSYGaYst/U8KZU4QIOd8vFZfexboG++KrpyrWpcbVzqV/ygb
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10199"; a="302726834"
+X-IronPort-AV: E=Sophos;i="5.88,209,1635231600"; 
+   d="scan'208";a="302726834"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2021 14:48:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,209,1635231600"; 
+   d="scan'208";a="545750614"
+Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
+  by orsmga001.jf.intel.com with ESMTP; 15 Dec 2021 14:48:21 -0800
+Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mxd4O-0002Qm-Me; Wed, 15 Dec 2021 22:48:20 +0000
+Date:   Thu, 16 Dec 2021 06:47:30 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>, heiko@sntech.de
+Cc:     kbuild-all@lists.01.org, robh+dt@kernel.org, jbx6244@gmail.com,
+        devicetree@vger.kernel.org, vkoul@kernel.org,
+        michael.riesch@wolfvision.net, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH v5 3/4] phy: rockchip: add naneng combo phy for RK3568
+Message-ID: <202112160605.2BqI0hlK-lkp@intel.com>
+References: <20211215095657.13183-4-yifeng.zhao@rock-chips.com>
 MIME-Version: 1.0
-In-Reply-To: <8a744cfd96aff5754bfdcf7298d208ddca5b319a.1638862030.git.baruch@tkos.co.il>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211215095657.13183-4-yifeng.zhao@rock-chips.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/6/21 11:27 PM, Baruch Siach wrote:
-> There must be three parameters in gpio-ranges property. Fixes this not
-> very helpful error message:
-> 
->   OF: /soc/pinctrl@1000000: (null) = 3 found 3
-> 
-> Fixes: 1e8277854b49 ("arm64: dts: Add ipq6018 SoC and CP01 board support")
-> Cc: Sricharan R <sricharan@codeaurora.org>
-> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
-> ---
-> 
-> The error message was improved in commit af3be70a321 ("of: Improve
-> of_phandle_iterator_next() error message"), but there is evidently some
-> more room for improvement. As I don't really understand the code, I
-> added the commit author and the DT list to Cc.
+Hi Yifeng,
 
-In the commit message you find what the error message was and then
-became which tells you which property was used to determine the cell
-size, and what count was obtained instead.
+Thank you for the patch! Yet something to improve:
 
-In your particular case here however, since the proper was with the
-'gpio-ranges' property and there is no property that indicates the cell
-size AFAICT, it might been more helpful to revert back to the old
-message maybe? So maybe something like which is hopefully the best of
-both worlds:
+[auto build test ERROR on rockchip/for-next]
+[also build test ERROR on robh/for-next lee-mfd/for-mfd-next v5.16-rc5 next-20211214]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 372a177f3b80..63bff37bf035 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -1378,9 +1378,13 @@ int of_phandle_iterator_next(struct
-of_phandle_iterator *it)
-                 * property data length
-                 */
-                if (it->cur + count > it->list_end) {
--                       pr_err("%pOF: %s = %d found %d\n",
--                              it->parent, it->cells_name,
--                              count, it->cell_count);
-+                       if (it->cells_name)
-+                               pr_err("%pOF: %s = %d found %d\n",
-+                                       it->parent, it->cells_name,
-+                                       count, it->cell_count);
-+                       else
-+                               pr_err("%pOF: arguments longer than
-property\n",
-+                                      it->parent);
-                        goto err;
-                }
-        }
+url:    https://github.com/0day-ci/linux/commits/Yifeng-Zhao/Add-Naneng-combo-PHY-support-for-RK3568/20211215-180610
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20211216/202112160605.2BqI0hlK-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/5e4ddb08d86d5232174d88483f29e96272a4b6c0
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Yifeng-Zhao/Add-Naneng-combo-PHY-support-for-RK3568/20211215-180610
+        git checkout 5e4ddb08d86d5232174d88483f29e96272a4b6c0
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   drivers/phy/rockchip/phy-rockchip-naneng-combphy.c: In function 'rk3568_combphy_cfg':
+>> drivers/phy/rockchip/phy-rockchip-naneng-combphy.c:22:47: error: 'HZ_PER_MHZ' undeclared (first use in this function)
+      22 | #define REF_CLOCK_24MHz                 (24 * HZ_PER_MHZ)
+         |                                               ^~~~~~~~~~
+   drivers/phy/rockchip/phy-rockchip-naneng-combphy.c:490:14: note: in expansion of macro 'REF_CLOCK_24MHz'
+     490 |         case REF_CLOCK_24MHz:
+         |              ^~~~~~~~~~~~~~~
+   drivers/phy/rockchip/phy-rockchip-naneng-combphy.c:22:47: note: each undeclared identifier is reported only once for each function it appears in
+      22 | #define REF_CLOCK_24MHz                 (24 * HZ_PER_MHZ)
+         |                                               ^~~~~~~~~~
+   drivers/phy/rockchip/phy-rockchip-naneng-combphy.c:490:14: note: in expansion of macro 'REF_CLOCK_24MHz'
+     490 |         case REF_CLOCK_24MHz:
+         |              ^~~~~~~~~~~~~~~
 
 
-> ---
->  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> index 6a22bb5f42f4..a717fc17523d 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> @@ -220,7 +220,7 @@ tlmm: pinctrl@1000000 {
->  			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
->  			gpio-controller;
->  			#gpio-cells = <2>;
-> -			gpio-ranges = <&tlmm 0 80>;
-> +			gpio-ranges = <&tlmm 0 0 80>;
->  			interrupt-controller;
->  			#interrupt-cells = <2>;
->  
-> 
+vim +/HZ_PER_MHZ +22 drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
 
+    20	
+    21	#define BIT_WRITEABLE_SHIFT		16
+  > 22	#define REF_CLOCK_24MHz			(24 * HZ_PER_MHZ)
+    23	#define REF_CLOCK_25MHz			(25 * HZ_PER_MHZ)
+    24	#define REF_CLOCK_100MHz		(100 * HZ_PER_MHZ)
+    25	
 
--- 
-Florian
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
