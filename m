@@ -2,88 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F1DC4756D8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:48:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E86604756E0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 11:50:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236665AbhLOKsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 05:48:14 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:59146 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233970AbhLOKsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:48:12 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 5A59D1F44248
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1639565290; bh=/q/kjkgul5wMQm4dm++HudFeeAybi+3zwNwCfM/2sUk=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=DGxqFQLkCebVwP6VefxMPW/TwdGu4BQEpkbtwgF+zshNg0irDAfOjnZQN/JLh3q9L
-         VjVcV9MyufugN+ij72CJjSqtTdCUpT4jAtCv3lxw+xFKo6fEo++rvlQVh2AUIiGRJd
-         1Xy9mO7VyXt5ZGNhkNojt3XxGfwN+PvX7MoJj2ocKD4PukKwQe06Aplx+uj+/XxaQJ
-         jTmOUQsnFS+H0iLJ2OPzItFsVN6zoDrNOoTqx6MgC11Geb4yFHV9KJgGNWW8NgBDly
-         ahMB+ZAlBLclW+ycbePjIkFcF2XoRjv+xOy2jwi2Zx/0See08bnHw9AL8NtGk2QfsX
-         xw6II2cXbKSPQ==
-Subject: Re: [PATCH v14, 00/19] Support multi hardware decode using
- of_platform_populate
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20211215061552.8523-1-yunfei.dong@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <de90218e-95b1-63f0-ab92-07a0386a1058@collabora.com>
-Date:   Wed, 15 Dec 2021 11:48:07 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S230297AbhLOKuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 05:50:12 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:46566 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230007AbhLOKuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 05:50:12 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 09B776184B;
+        Wed, 15 Dec 2021 10:50:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDD93C34605;
+        Wed, 15 Dec 2021 10:50:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1639565411;
+        bh=OpYGlq2k1qa5KdIniUqGHjl76jJyGZuxyeQhskLs7EI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=yQOszT+SvCpU09/YnXqjJdHDX1NAwTw4/spVNFAVjp6efS4MUbaq0jggK3IQeiZwQ
+         KgZuiuNhcdQ+DyBseIC9iFOMxD85NryUgptycZ/WUWygTgeEqd7OqBOyh6rFtGWA66
+         Bmi/mO+mwJFX3C2CjycrtvfjCJ9HBQ1KRrCL+liY=
+Date:   Wed, 15 Dec 2021 11:50:08 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Dejia Shang <dejia.shang@armchina.com>
+Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        toby.shang@armchina.com
+Subject: Re: [PATCH 1/4] misc: add ArmChina Zhouyi NPU driver
+Message-ID: <YbnIYJuf6Ia297He@kroah.com>
+References: <20211215103609.9268-1-dejia.shang@armchina.com>
+ <20211215103609.9268-2-dejia.shang@armchina.com>
 MIME-Version: 1.0
-In-Reply-To: <20211215061552.8523-1-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211215103609.9268-2-dejia.shang@armchina.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/12/21 07:15, Yunfei Dong ha scritto:
-> This series adds support for multi hardware decode into mtk-vcodec, by first adding use
-> of_platform_populate to manage each hardware information: interrupt, clock, register
-> bases and power. Secondly add core work queue to deal with core hardware message,
-> at the same time, add msg queue for different hardware share messages. Lastly, the
-> architecture of different specs are not the same, using specs type to separate them.
-> 
-> This series has been tested with both MT8183 and MT8173. Decoding was working for both chips.
-> 
-> Patches 1~3 rewrite get register bases and power on/off interface.
-> Patches 4 export decoder pm interfaces.
-> Patches 5 add to support 8192.
-> Patch 6 support multi hardware.
-> Patch 7 separate video encoder and decoder document
-> Patch 8-17 add interfaces to support core hardware.
-> Patch 18-19 remove mtk_vcodec_release_dec/enc_pm interfaces.
+On Wed, Dec 15, 2021 at 06:36:06PM +0800, Dejia Shang wrote:
+> IMPORTANT NOTICE: The contents of this email and any attachments may be privileged and confidential. If you are not the intended recipient, please delete the email immediately. It is strictly prohibited to disclose the contents to any other person, use it for any purpose, or store or copy the information in any medium. Thank you. ©Arm Technology (China) Co., Ltd copyright and reserve all rights. 重要提示：本邮件（包括任何附件）可能含有专供明确的个人或目的使用的机密信息，并受法律保护。如果您并非该收件人，请立即删除此邮件。严禁通过任何渠道，以任何目的，向任何人披露、储存或复制邮件信息或者据此采取任何行动。感谢您的配合。 ©安谋科技（中国）有限公司 版权所有并保留一切权利。
 
-Hello Yunfei,
-this series does not apply cleanly on the current linux-next tree.
-
-Can you please rebase?
-
-Thanks,
-- Angelo
+Now deleted.
