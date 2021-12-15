@@ -2,129 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FC5C475750
-	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 12:04:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CB2E47576A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Dec 2021 12:10:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234049AbhLOLEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 06:04:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59498 "EHLO
+        id S236896AbhLOLKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 06:10:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232240AbhLOLEq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 06:04:46 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A24EC06173F
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 03:04:46 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id b1so42325546lfs.13
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 03:04:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=antmicro.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1Mxq4v2aa07cn7vmDque1vmJSPRI9q1+xfotPBgOEKw=;
-        b=YYVSOtge5Ubs9/QdtAuGxXrCKYFLrjlM3KjC61oHbi35tATBP533nULGmmFdbr/Gvy
-         4tK5sdKWdmzTQZoFtgo2YBjm2MjEONJK0mYJt6hi3UgQ0iMg88k53RtPGndnLhtVi/2N
-         Oge5CcFSb1F6WZhg3zr87NahWwQR586UpuYU4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1Mxq4v2aa07cn7vmDque1vmJSPRI9q1+xfotPBgOEKw=;
-        b=BajCahAJXvcYNX1W5B0dN9ORe45eg9u7Kp9zm2pqfowD6yuynBiAg+InObGJeoeiJ2
-         IkCA8R8Ic7pDgw695LftFoFw4ThWiOkB4plD2PHhdgspOpVtsnZuFSFurkImX7jnRfZ6
-         7bT7B+wqhY8wSdoWdZS5wL83MwLcUXVa5dScyvhSFJDQ+Spi8E9qPmpgHR6CY6A5Snwu
-         WOs/HciYMX60nBOY7eEwpskDQCfRshXdriwgvm647tNZY/tLHA7yjQPPH0BXowJENGus
-         TSMhgwQ4DFGKoPK4VTUx2Kh8vGbD4UzF2OPL5oJMT06M0R+uXNRI2oTAjoGF5aTbk0Xd
-         0N+g==
-X-Gm-Message-State: AOAM533k+Vh9Fc/q8ViGmxv1V650AqIWnc06l6r6YJ/oIeB8FW59biTi
-        YOlpaROpDlWNiNYu723dptjn5gl3YyEA3enUS/FGew==
-X-Google-Smtp-Source: ABdhPJxWhA1IhaY2P5SVuTF/Dv2jmTo+wwNa0EsIvD5ISkU2YTob2I9LJQKrHWvVMA8n4dFomFv8yOt53VdRikP8LXc=
-X-Received: by 2002:a05:6512:3f2:: with SMTP id n18mr9409898lfq.646.1639566284404;
- Wed, 15 Dec 2021 03:04:44 -0800 (PST)
+        with ESMTP id S236845AbhLOLKO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 06:10:14 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20CF5C06173F;
+        Wed, 15 Dec 2021 03:10:14 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B4CDE618AC;
+        Wed, 15 Dec 2021 11:10:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 1B659C34613;
+        Wed, 15 Dec 2021 11:10:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639566613;
+        bh=mN0rAbqQtQffJqBOdadPeRiHcW8redQts479nECbUfk=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=kAq0hfItsd4pyzxqfHEpR89RAyqWbjF6oy+yjJBtXR/4qCalhM+rzuKa2Y6JnTNKy
+         +RipMbIPZ3vLHNZq8/NSQrzKxDlEvB7NTpeD94+XxOXdkoFxcBJw0J7LsapGTqigxr
+         Xj+MRsonAaSk8ErBwS80R5mKXkMPfFiOrPMP7gkvUBHnAbmM3Q/PGjXQ5NZLPgxuSI
+         /M+CO+5EnDuQUuHLVx6gm1palBAOv3no0NRnuRKKY+UczzZvXjJg99/nULV+bR6myv
+         UTyD9EXB6HYNwOqIhfRiJpUvacA1o3j1Iqi0sceKZim4pwuA+r3JDjfR457Gwlg/qs
+         K4BbGt2HtDt7w==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id EDB09609F5;
+        Wed, 15 Dec 2021 11:10:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20211210145430.3707463-1-gsomlo@gmail.com> <20211210145430.3707463-2-gsomlo@gmail.com>
-In-Reply-To: <20211210145430.3707463-2-gsomlo@gmail.com>
-From:   Mateusz Holenko <mholenko@antmicro.com>
-Date:   Wed, 15 Dec 2021 12:04:07 +0100
-Message-ID: <CAPk366RvYSdn8Y2Vy-qDh3wVsBqZgvJk+fZArze8u0s9oob5_A@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] MAINTAINERS: co-maintain LiteX platform
-To:     Gabriel Somlo <gsomlo@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>, ulf.hansson@linaro.org,
-        linux-mmc@vger.kernel.org, Karol Gugala <kgugala@antmicro.com>,
-        Kamil Rakoczy <krakoczy@antmicro.com>,
-        mdudek@internships.antmicro.com, paulus@ozlabs.org,
-        Joel Stanley <joel@jms.id.au>,
-        Stafford Horne <shorne@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        david.abdurachmanov@sifive.com,
-        Florent Kermarrec <florent@enjoy-digital.fr>,
-        Randy Dunlap <rdunlap@infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next] net: ocelot: add support to get port mac from
+ device-tree
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <163956661296.16045.16297780447562530182.git-patchwork-notify@kernel.org>
+Date:   Wed, 15 Dec 2021 11:10:12 +0000
+References: <20211214095534.563822-1-clement.leger@bootlin.com>
+In-Reply-To: <20211214095534.563822-1-clement.leger@bootlin.com>
+To:     =?utf-8?b?Q2zDqW1lbnQgTMOpZ2VyIDxjbGVtZW50LmxlZ2VyQGJvb3RsaW4uY29tPg==?=@ci.codeaurora.org
+Cc:     davem@davemloft.net, kuba@kernel.org, vladimir.oltean@nxp.com,
+        claudiu.manoil@nxp.com, alexandre.belloni@bootlin.com,
+        UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        thomas.petazzoni@bootlin.com, jwi@linux.ibm.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 10, 2021 at 3:54 PM Gabriel Somlo <gsomlo@gmail.com> wrote:
->
-> Add the litex_mmc (LiteSDCard) and LiteETH drivers to the list of files
-> maintained under LiteX.
->
-> Add Gabriel Somlo and Joel Stanley as maintainers; Joel authored
-> the LiteETH driver, and Gabriel is currently curating the LiteX
-> out-of-tree device drivers as they are tested and prepared for
-> upstream submission, having also co-authored a number of them.
->
-> Cc: Karol Gugala <kgugala@antmicro.com>
-> Cc: Mateusz Holenko <mholenko@antmicro.com>
-> Signed-off-by: Gabriel Somlo <gsomlo@gmail.com>
-> Acked-by: Joel Stanley <joel@jms.id.au>
+Hello:
 
-Acked-by: Mateusz Holenko <mholenko@antmicro.com>
+This patch was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
 
+On Tue, 14 Dec 2021 10:55:34 +0100 you wrote:
+> Add support to get mac from device-tree using of_get_ethdev_address.
+> 
+> Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
 > ---
->
-> New in v4:
->   - n/a
->
-> > New in v3:
-> >   - picked up acked-by Joel
-> >   - added listing for liteeth driver
-> >   - added Joel as additional co-maintainer (thanks!)
->
->  MAINTAINERS | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8691c531e297..7f59779bb5eb 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11011,12 +11011,17 @@ F:    lib/list-test.c
->  LITEX PLATFORM
->  M:     Karol Gugala <kgugala@antmicro.com>
->  M:     Mateusz Holenko <mholenko@antmicro.com>
-> +M:     Gabriel Somlo <gsomlo@gmail.com>
-> +M:     Joel Stanley <joel@jms.id.au>
->  S:     Maintained
->  F:     Documentation/devicetree/bindings/*/litex,*.yaml
->  F:     arch/openrisc/boot/dts/or1klitex.dts
-> -F:     drivers/soc/litex/litex_soc_ctrl.c
-> -F:     drivers/tty/serial/liteuart.c
->  F:     include/linux/litex.h
-> +F:     drivers/tty/serial/liteuart.c
-> +F:     drivers/soc/litex/*
-> +F:     drivers/net/ethernet/litex/*
-> +F:     drivers/mmc/host/litex_mmc.c
-> +N:     litex
->
->  LIVE PATCHING
->  M:     Josh Poimboeuf <jpoimboe@redhat.com>
-> --
-> 2.31.1
->
+>  drivers/net/ethernet/mscc/ocelot_net.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 
+Here is the summary with links:
+  - [net-next] net: ocelot: add support to get port mac from device-tree
+    https://git.kernel.org/netdev/net-next/c/843869951258
 
+You are awesome, thank you!
 -- 
-Mateusz Holenko
-Antmicro Ltd | www.antmicro.com
-Roosevelta 22, 60-829 Poznan, Poland
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
