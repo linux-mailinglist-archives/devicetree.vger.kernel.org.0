@@ -2,97 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D083A4774F0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 15:48:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D98024774F7
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 15:50:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237456AbhLPOsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 09:48:22 -0500
-Received: from mail.skyhub.de ([5.9.137.197]:45362 "EHLO mail.skyhub.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237402AbhLPOsV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Dec 2021 09:48:21 -0500
-Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 2FB6E1EC04DE;
-        Thu, 16 Dec 2021 15:48:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1639666096;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=yghcZ9SCdjsqe3xvr3DH9VJQok+aWYGqWKGyGqjZksU=;
-        b=oHYx6aYS6tIj6LoZN+GBAYyUBxsWaPwpMGtiSVdRVoeTON1rZA0a52qHjEXKVX7g//ADsi
-        rO3av99YMS8aovAS4KRPWc+BkGVdfnBUhgOZcLNrnAGFnJ+w7jeFi2iDU7u8+Br+ggksuT
-        3S1KzL6GtR5B9qfhTL5iNTHFXoS142Y=
-Date:   Thu, 16 Dec 2021 15:48:19 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Cc:     Baoquan He <bhe@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
-        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
-        Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-Subject: Re: [PATCH v17 03/10] x86: kdump: use macro CRASH_ADDR_LOW_MAX in
- functions reserve_crashkernel()
-Message-ID: <YbtRs3Tq1UpCOpg8@zn.tnic>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <20211210065533.2023-4-thunder.leizhen@huawei.com>
- <YbntdtQo2jfbO4cO@zn.tnic>
- <20211216011040.GG3023@MiWiFi-R3L-srv>
- <9513d74c-d4c7-babd-f823-8999e195d96d@huawei.com>
- <YbseAX6X1VHUF12f@zn.tnic>
- <35810a61-604e-9b90-2a7f-cfca6ae042ac@huawei.com>
+        id S237763AbhLPOu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 09:50:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48554 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230071AbhLPOu4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 09:50:56 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F6BAC061574;
+        Thu, 16 Dec 2021 06:50:56 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id b40so50099233lfv.10;
+        Thu, 16 Dec 2021 06:50:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=YF1YEVRPu5rfTUvbjqvshziJmK/i7RZrcuqF9EviPFE=;
+        b=c6aWx4pFU21YvYKT7WKhT3TP+Zle5ry7TK+CVS4HweA+FXs1pxYaow9ljDJYv2k8cA
+         La/+h0Bb+/nCVzZkC7buFdT2opj3wh4Ut4GDoc2nzsUUkgsSQAGfRLNS3RyRNbglP+Bv
+         yUN5EycVq8k8PXWbH9NrX1Lmy0eAS7Y/cliJPKPpQ60rWPZEHew0qS6ugT+Em2Y3+HMV
+         S9L/5EMiF6XXuG0XABWvPruoFD7TeTBCLflzBzxjU5zYaLRtuJr3vfl+OcnG6zACWv6W
+         6N2Jbvf+D2ZSAJtZwEqRWrednWhcOqr0BcM8D1uNPWa2CZ8cZ2min8Dgm/LD1FIV7KXT
+         cVYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=YF1YEVRPu5rfTUvbjqvshziJmK/i7RZrcuqF9EviPFE=;
+        b=vMlLrXK9BvXxvPXwobhwdyVQXZOJ/V6MnshGn/AoNqfdlTfsuhcoJtueoZ6trAmgUz
+         QNqFJtQ8O/3Osbv3jPVmiw3ErbaHpIQUsrsSGvuE80Nv+M2yS44q87ePFxcwTAeFD9et
+         nMevpSBWSbSooqgeX/aUun82CE3oqnJmdOjbHDEGMwp3FUrmWsW50D67QHuLh/BxIr3a
+         Fx4tYDJhKZsyueUm1oQJDGYPWbij8McGP+KEECsfJ4RlIXKaBFcIGXqRqp7L/W7Zyabl
+         PijOvlsolBCqPKaRCbj4oObSoLU2sZDUI+MhxjA77SbaOdskWE89suMKXJCUtQ7V0+Bs
+         bTag==
+X-Gm-Message-State: AOAM533Au4xLv89A43dqct5AsNwdZeTThlObL8sn+e/YGj/sCWWO4758
+        UPBo0SmEOLDWdm9jYurqrgoNTlfUi14=
+X-Google-Smtp-Source: ABdhPJw4JeMKBF6U7PfzAg+7LQ04cGggHkVQWdtCDVMNaGu4piAmC5F2+ePgJI2Eu6bSBGC+Nd4cDA==
+X-Received: by 2002:a05:6512:ac4:: with SMTP id n4mr14415460lfu.352.1639666254527;
+        Thu, 16 Dec 2021 06:50:54 -0800 (PST)
+Received: from [192.168.2.145] (94-29-63-156.dynamic.spd-mgts.ru. [94.29.63.156])
+        by smtp.googlemail.com with ESMTPSA id f35sm906222lfv.98.2021.12.16.06.50.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Dec 2021 06:50:54 -0800 (PST)
+Subject: Re: [PATCH v3] dt-bindings: display: tegra: Convert to json-schema
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-tegra@vger.kernel.org
+References: <20211216142012.1479213-1-thierry.reding@gmail.com>
+ <c935b4d2-984b-e08f-6125-0ce390519b45@gmail.com>
+Message-ID: <4e87231d-5df2-d0cf-eb49-e37d2172784d@gmail.com>
+Date:   Thu, 16 Dec 2021 17:50:53 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <c935b4d2-984b-e08f-6125-0ce390519b45@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <35810a61-604e-9b90-2a7f-cfca6ae042ac@huawei.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 08:08:30PM +0800, Leizhen (ThunderTown) wrote:
-> If the memory of 'crash_base' is successfully allocated at (1), because the last
-> parameter CRASH_ADDR_LOW_MAX is the upper bound, so we can sure that
-> "crash_base < CRASH_ADDR_LOW_MAX". So that, reserve_crashkernel_low() will not be
-> invoked at (3). That's why I said (1ULL << 32) is inaccurate and enlarge the CRASH_ADDR_LOW
-> upper limit.
+16.12.2021 17:48, Dmitry Osipenko пишет:
+> 16.12.2021 17:20, Thierry Reding пишет:
+>> +  resets:
+>> +    description: Must contain an entry for each entry in reset-names. See
+>> +      ../reset/reset.txt for details.
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: host1x
+> 
+> Could you please add the optional memory controller reset to all
+> bindings or are you going to do it later on?
+> 
+> https://patchwork.ozlabs.org/project/linux-tegra/patch/20211130232347.950-8-digetx@gmail.com/
+> 
+> Ideally, you should add the MC reset to each binding, so we won't ever
+> have to add them once again later on.
+> 
 
-No, this is actually wrong - that check *must* be 4G. See:
+Although, the MC resets addition should be a separate patch.
 
-  eb6db83d1059 ("x86/setup: Do not reserve crashkernel high memory if low reservation failed")
-
-It is even documented:
-
-        crashkernel=size[KMG],low
-                        [KNL, X86-64] range under 4G. When crashkernel=X,high
-                        is passed, kernel could allocate physical memory region
-                        above 4G, that cause second kernel crash on system
-                        that require some amount of low memory, e.g. swiotlb
-                        requires at least 64M+32K low memory, also enough extra
-                        low memory is needed to make sure DMA buffers for 32-bit
-                        devices won't run out.
-
-so you need to do a low allocation for DMA *when* the reserved memory is
-above 4G. *NOT* above 512M. But that works due to the obscure situation,
-as Baoquan stated, that reserve_crashkernel_low() returns 0 on 32-bit.
-
-So all this is telling us is that that function needs serious cleanup.
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+I also assume that you'll resolve the merge conflict of the host1x
+binding by yourself in the tegra tree.
