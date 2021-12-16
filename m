@@ -2,96 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83DA24772EF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 14:15:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AF9547732E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 14:31:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237400AbhLPNPe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 08:15:34 -0500
-Received: from szxga02-in.huawei.com ([45.249.212.188]:28324 "EHLO
-        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237406AbhLPNPd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 08:15:33 -0500
-Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.53])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4JFCJw19VTzbjMD;
-        Thu, 16 Dec 2021 21:15:12 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 16 Dec 2021 21:15:31 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 16 Dec 2021 21:15:30 +0800
-Subject: Re: [PATCH v17 05/10] x86: kdump: move reserve_crashkernel[_low]()
- into crash_core.c
-To:     Borislav Petkov <bp@alien8.de>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, <x86@kernel.org>,
-        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <20211210065533.2023-6-thunder.leizhen@huawei.com> <YbsgNpPMmp38X+it@zn.tnic>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <217fb106-980c-0bd9-8398-d52ef255d51f@huawei.com>
-Date:   Thu, 16 Dec 2021 21:15:18 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S237572AbhLPNbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 08:31:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57952 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232256AbhLPNbq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 08:31:46 -0500
+Received: from mail-yb1-xb44.google.com (mail-yb1-xb44.google.com [IPv6:2607:f8b0:4864:20::b44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF84C061401
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 05:31:46 -0800 (PST)
+Received: by mail-yb1-xb44.google.com with SMTP id g17so64543967ybe.13
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 05:31:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=t+k1vMicazZQGgJua3VBr5ex8kbXiYjORBm2hnGSMD4=;
+        b=AUwAObsrJvoB4lcr1thwJFnfOVN2iABshY6QoUiy3ecQ6AtLNMpcFThnfSU+EfTR04
+         cXUtK5ZNCgWrl7zW9OD+TIC1AizmcL4nDAX5MlPOFoviIdaaN+sqyTX8YBY5lck4Wu7x
+         WGDAPppIktjkbMGX4pPvkjWokOoKTHGW95YZeFyykeN84zCMS8x05JgO/b+o96tmoknY
+         L3I8tTZ5sKamHSrRt7gzlovJkphgN4gbY7fDxWFS0ChuWmULc5c/pfe2Uhi4HTZVVZxS
+         YZ7z0eP38W7Zkt1phS4tJbdz6z1GgYheXFKbti1vdHnulkzCDeXSG/7oUMHgNHQqaL5a
+         w9Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=t+k1vMicazZQGgJua3VBr5ex8kbXiYjORBm2hnGSMD4=;
+        b=Ury9GLWa3NOzRsaBj8olykWnkXa7mse8NZo1+vh3OO9IgiJa4dmUtvCP+AnUan1EN2
+         WXKgK6KP5M4II32/wGyXyWDhpOc+2d1eqd0pGS4lzTMAUHsbvxi3NatQnKJpBPUVKEX7
+         woQ4jVJMhXg8+Hs/fDljBzFKdOW6TrzIGRa2gfQIsnCap+YIKrIlPE6DbmQKHZfefzGs
+         Q8rYvPRBVavK6q7C9XjGYzn9pV4JQO7ai2pMbgKUmhUesP0djZMTUVVvnD7vamnpRlKW
+         zjsBnxjGgwwC+JTWQXwnHeJ3OGXcFzcRvSmLVKmeZJ4cqFR5tJzXmVswKDemX6zMdauS
+         zmTA==
+X-Gm-Message-State: AOAM5329u+yk2L6fVcJNOS7RSTrAomuo/AkoQJTo7y+emb3sCERYZHb3
+        TW0lkGO2qIZ/oYsXEV/cM0Cu5rnvu4pdwKsVWBk=
+X-Google-Smtp-Source: ABdhPJzoDJYJuuFLTWn4jda4nsSwe5iVtMczS2H1kBappCR3Gfnrdue0scGkVmpgNPgcMYv09PmpPNOcqeeUYFUfk08=
+X-Received: by 2002:a05:6902:1025:: with SMTP id x5mr13982958ybt.156.1639661505029;
+ Thu, 16 Dec 2021 05:31:45 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <YbsgNpPMmp38X+it@zn.tnic>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
+Received: by 2002:a05:7110:6789:b0:11b:c4e9:10a with HTTP; Thu, 16 Dec 2021
+ 05:31:44 -0800 (PST)
+Reply-To: lindajonathan993@gmail.com
+From:   Miss Linda <lindajonathan720@gmail.com>
+Date:   Thu, 16 Dec 2021 13:31:44 +0000
+Message-ID: <CAPy9JB_K0w4X0M7M3428SxiaCnb2QsgFemjou5GXRNuWQE3TPg@mail.gmail.com>
+Subject: Hi my love
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hey dear
 
+Nice to meet you, Am Miss Linda I found your email here in google
+search and I picked
+interest to contact you. I've something very important which I would like
+to discuss with you and I would appreciate if you respond back to me
+through my email address as to tell you more
 
-On 2021/12/16 19:17, Borislav Petkov wrote:
-> On Fri, Dec 10, 2021 at 02:55:28PM +0800, Zhen Lei wrote:
->> + * reserve_crashkernel() - reserves memory for crash kernel
->> + *
->> + * This function reserves memory area given in "crashkernel=" kernel command
->> + * line parameter. The memory reserved is used by dump capture kernel when
->> + * primary kernel is crashing.
->> + */
->> +void __init reserve_crashkernel(void)
-> 
-> As I've already alluded to in another mail, ontop of this there should
-> be a patch or multiple patches which clean this up more and perhaps even
-> split it into separate functions doing stuff in this order:
-> 
-> 1. Parse all crashkernel= cmdline options
-> 
-> 2. Do all crash_base, crash_size etc checks
-> 
-> 3. Do the memory reservations
-> 
-> And all that supplied with comments explaining why stuff is being done.
+about me with my
+photos, my private email as fellows??   lindajonathan993@gmail.com
 
-I agree with you. This makes the code look clear. I will do it, try to
-post v18 next Monday.
-
-> 
-> This set of functions is a mess and there's no better time for cleaning
-> it up and documenting it properly than when you move it to generic code.
-> 
-> Thx.
-> 
+From, Linda
