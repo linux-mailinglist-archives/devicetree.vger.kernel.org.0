@@ -2,73 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C6C7477DA4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:32:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C356477DAC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:33:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241444AbhLPUcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 15:32:06 -0500
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:40781 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236123AbhLPUcE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:32:04 -0500
-Received: by mail-oi1-f171.google.com with SMTP id bk14so576295oib.7
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 12:32:04 -0800 (PST)
+        id S238115AbhLPUdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 15:33:20 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:45868 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236123AbhLPUdU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:33:20 -0500
+Received: by mail-ot1-f47.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso292970otf.12;
+        Thu, 16 Dec 2021 12:33:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=umUy1uYNyZY1VykdghF7eMiCi+OMbNsH6C13bj0a6Fc=;
-        b=TsPDGxNIvk158niHP2ZsO7fPwRiYz/o33GK0+4yDOB7VpTRssGbrmiCB9RaLghW0qk
-         Rdzuq4Enk9DCyRwcsyCfiKv+JSzOftJkcfXEf8+M2WZBfS8T3DJ4y4n3miMr7/kkPfHf
-         dRvCqnKrPAwZWmLkZD+KLeAx04NMte1Dh66kc0DX6f6TfxlLrlpHGbmIJNSlBZ+te4fL
-         kA5Lt31cPyk9QcP/FxFxygmJEyYDFNuKfX4bstSTSB0E0CEyzYwHb7ALG3UXKKvAVoM4
-         poXor8XjcKNNWMjeFQuMKIcPO1l2+BOmYnkRVF4a2wL7xzyq3o6L3PlDi848nN2Qq0sh
-         q5hg==
-X-Gm-Message-State: AOAM5326oGVeSZUR27mCUNeZt9XpN5ErTtCk1/hZ6boj4WiY/OsdzjFW
-        1rBg+uynCVZB+bGkOs02cQ==
-X-Google-Smtp-Source: ABdhPJxIuAAHF4Tu1T2g8nQ4SAIbKIMuI9BFSu3AAU+8GI3F/9OLT+gd1yGk5ZdTgRQLItyFR0C7sQ==
-X-Received: by 2002:aca:58c4:: with SMTP id m187mr5311388oib.113.1639686724022;
-        Thu, 16 Dec 2021 12:32:04 -0800 (PST)
+        bh=S5itqos3S2gfjHvMiUVSPUyY8C6DmM9vGehMTR77TH0=;
+        b=dEibA3HgmDYeNEyua09jTlHXB1NJ0Ju281tJklH2896kKTlGL6lYCL95US5uYOf2OX
+         i//oBCzMAVXeUne08ED3AmeLHHn5n8Dn9QbupUXLWCtU+GaCIFoFutu8u/tyk1WAlz5Q
+         csWbqF85Gz5sAzV2uzdaZZVm4cGmyaO7iZugCkrb4TdExKZlbaF7NQ+Fk0HFXpF/PlFX
+         6LWlVCcjxipRPTZeWBxDFcVHmUAejCADtz4Vcnpu9kKcjAbKde/mRBkhLmZb6x+5cM8I
+         zvqlNtRPpxYF+dU7d29cc4+5eMRlSL7AThRb4A9/XE4CqSNPlHB7Ldt740XM7dkYYqnj
+         mB5w==
+X-Gm-Message-State: AOAM533V98qdAmG1F+x/644pSRq6iPBEPa6TQDpvCGiDKGApMaq8kBJT
+        RGzH2ur24iETx56l1kSCQA==
+X-Google-Smtp-Source: ABdhPJzv/FeybRcBuyyXpZYN71332lFFtLkBWCq5kBZ1LQTJ7sYXnZN9Spv0o2W5bgMJ/2Zbl5cqkw==
+X-Received: by 2002:a05:6830:4d1:: with SMTP id s17mr14096885otd.246.1639686799636;
+        Thu, 16 Dec 2021 12:33:19 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bi20sm1322787oib.29.2021.12.16.12.32.03
+        by smtp.gmail.com with ESMTPSA id q65sm622039oih.45.2021.12.16.12.33.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 12:32:03 -0800 (PST)
-Received: (nullmailer pid 706190 invoked by uid 1000);
-        Thu, 16 Dec 2021 20:32:02 -0000
-Date:   Thu, 16 Dec 2021 14:32:02 -0600
+        Thu, 16 Dec 2021 12:33:18 -0800 (PST)
+Received: (nullmailer pid 708223 invoked by uid 1000);
+        Thu, 16 Dec 2021 20:33:18 -0000
+Date:   Thu, 16 Dec 2021 14:33:18 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: audio-graph-port: enable both
- flag/phandle for bitclock/frame-master
-Message-ID: <YbuiQpu/pbEjWDfc@robh.at.kernel.org>
-References: <20211216000018.2641925-1-kuninori.morimoto.gx@renesas.com>
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Cc:     linuxkernel@vger.kernel.org, arnd@arndb.de,
+        devicetree@vger.kernel.org, dragan.cvetic@xilinx.com,
+        gregkh@linuxfoundation.org, wells.lu@sunplus.com,
+        robh+dt@kernel.org, tonyhuang@sunplus.com, derek.kiernan@xilinx.com
+Subject: Re: [PATCH v4 1/2] dt-binding: misc: Add iop yaml file for Sunplus
+ SP7021
+Message-ID: <YbuijvpJvfWLQzFi@robh.at.kernel.org>
+References: <cover.1639557112.git.tonyhuang.sunplus@gmail.com>
+ <27a26f5ac62dfabc47b27cde2488f79bf7bd68c1.1639557112.git.tonyhuang.sunplus@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211216000018.2641925-1-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <27a26f5ac62dfabc47b27cde2488f79bf7bd68c1.1639557112.git.tonyhuang.sunplus@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Dec 2021 09:00:18 +0900, Kuninori Morimoto wrote:
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+On Thu, 16 Dec 2021 09:38:15 +0800, Tony Huang wrote:
+> Add iop yaml file for Sunplus SP7021
 > 
-> snd_soc_daifmt_parse_clock_provider_raw() is handling both
-> bitclock/frame-master, and is supporting both flag/phandle.
-> Current DT is assuming it is flag style.
-> This patch allows both case.
-> 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
 > ---
-> v1 -> v2
+> Changes in v4:
+>  - Addressed comments from Rob Herring.
 > 
-> 	- anyOf -> oneOf
-> 
->  .../devicetree/bindings/sound/audio-graph-port.yaml      | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/misc/sunplus-iop.yaml      | 65 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 ++
+>  2 files changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/sunplus-iop.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
