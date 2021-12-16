@@ -2,123 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE536477DFA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:58:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 287E2477E13
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 22:04:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234135AbhLPU6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 15:58:39 -0500
-Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163]:47070 "EHLO
-        luna.linkmauve.fr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231656AbhLPU6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:58:39 -0500
-Received: by luna.linkmauve.fr (Postfix, from userid 1000)
-        id D134AF40EA4; Thu, 16 Dec 2021 21:58:36 +0100 (CET)
-Date:   Thu, 16 Dec 2021 21:58:36 +0100
-From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        linux-rtc@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        linuxppc-dev@lists.ozlabs.org, Ash Logan <ash@heyquark.com>,
-        rw-r-r-0644 <r.r.qwertyuiop.r.r@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Paul Mackerras <paulus@samba.org>
-Subject: Re: [PATCH v3 0/5] rtc: nintendo: Add a RTC driver for the GameCube,
- Wii and Wii U
-Message-ID: <20211216205836.yporkr4omon4mdd2@luna>
-Jabber-ID: linkmauve@linkmauve.fr
-References: <20211027223516.2031-1-linkmauve@linkmauve.fr>
- <20211215175501.6761-1-linkmauve@linkmauve.fr>
- <163964813197.6786.14005810276404182021.b4-ty@bootlin.com>
- <20211216202220.y6rctd2k72yuya5w@luna>
- <Ybun5qp6DH7qkAGy@piout.net>
+        id S233399AbhLPVEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 16:04:45 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:40593 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231656AbhLPVEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 16:04:44 -0500
+Received: by mail-ot1-f46.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so406441otj.7;
+        Thu, 16 Dec 2021 13:04:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8/HB4TUr3nuRo2TCTqrXve1tRaQ/uHPqILDzAsNvksk=;
+        b=PQgewFaULSgRq4Yziq06cxjkrQUGecqbjUUO1MBREYmQX1L0u7HEQv4NVK5qbXKJ5F
+         viYSfcNiZFs1yRlyvtrTWuAS/MKJqbQSeWQ8pam9zM3fxFvHC8+6dKqMKFPekgiWYzXV
+         XgMjWo0EJJJg4Owo2h1NPejx7zCPvcYg/CaU9M96YjJQfZ2ngebyCRgNV2A5NYCzj+pl
+         4Z3sqtMEOOE2VuxogbZ01SIxR23WQcPYguUd7quQRZgT94b8/2pufmH7V8PF9s33MUGW
+         0M9Eeaqx+Fyn65IXqTxIUiwsukgQEbNN87+5ihZ53Njgl/aRnwbu7v5gH0GjWp99haRX
+         QOPw==
+X-Gm-Message-State: AOAM531FrXUXgQ8pIZdYgrnW2HO3rFrHMqGzUPnFRyVyL9lVUKSaPkWM
+        bBc9P6broX7mTHwvDuUhTA==
+X-Google-Smtp-Source: ABdhPJwaw+XBfHtnkt8e4rQRnSXbJ/pQ1FTRtrA5QLx0viKeJhfPqUxOb6a1KcwopQu6edmYrwZCMw==
+X-Received: by 2002:a05:6830:25d4:: with SMTP id d20mr14093835otu.143.1639688684195;
+        Thu, 16 Dec 2021 13:04:44 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id l39sm1312887otv.63.2021.12.16.13.04.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 13:04:43 -0800 (PST)
+Received: (nullmailer pid 753209 invoked by uid 1000);
+        Thu, 16 Dec 2021 21:04:42 -0000
+Date:   Thu, 16 Dec 2021 15:04:42 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        abel.vesa@nxp.com, linux-media@vger.kernel.org,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        benjamin.gaignard@collabora.com, linux-kernel@vger.kernel.org,
+        aford@beaconembedded.com, Philipp Zabel <p.zabel@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-rockchip@lists.infradead.org, linux-staging@lists.linux.dev,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        hverkuil-cisco@xs4all.nl, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH V2 01/10] dt-bindings: power: imx8mq: add defines for VPU
+ blk-ctrl domains
+Message-ID: <Ybup6sUyFCCNH9hp@robh.at.kernel.org>
+References: <20211216111256.2362683-1-aford173@gmail.com>
+ <20211216111256.2362683-2-aford173@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="g7bzb2vspv7jrctf"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Ybun5qp6DH7qkAGy@piout.net>
+In-Reply-To: <20211216111256.2362683-2-aford173@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 16 Dec 2021 05:12:46 -0600, Adam Ford wrote:
+> From: Lucas Stach <l.stach@pengutronix.de>
+> 
+> This adds the defines for the power domains provided by the VPU
+> blk-ctrl on the i.MX8MQ.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> 
 
---g7bzb2vspv7jrctf
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Dec 16, 2021 at 09:56:06PM +0100, Alexandre Belloni wrote:
-> On 16/12/2021 21:22:20+0100, Emmanuel Gil Peyrot wrote:
-> > On Thu, Dec 16, 2021 at 10:49:44AM +0100, Alexandre Belloni wrote:
-> > > On Wed, 15 Dec 2021 18:54:56 +0100, Emmanuel Gil Peyrot wrote:
-> > > > These three consoles share a device, the MX23L4005, which contains a
-> > > > clock and 64=C2=A0bytes of SRAM storage, and is exposed on the EXI =
-bus
-> > > > (similar to SPI) on channel 0, device 1.  This driver allows it to =
-be
-> > > > used as a Linux RTC device, where time can be read and set.
-> > > >=20
-> > > > The hardware also exposes two timers, one which shuts down the cons=
-ole
-> > > > and one which powers it on, but these aren=E2=80=99t supported curr=
-ently.
-> > > >=20
-> > > > [...]
-> > >=20
-> > > Applied, thanks!
-> > >=20
-> > > [1/5] rtc: gamecube: Add a RTC driver for the GameCube, Wii and Wii U
-> > >       commit: 86559400b3ef9de93ba50523cffe767c35cd531a
-> > > [2/5] rtc: gamecube: Report low battery as invalid data
-> > >       commit: 322539a014bcd24cbb9281832c09b24e07912237
-> > > [3/5] powerpc: wii.dts: Expose HW_SRNPROT on this platform
-> > >       commit: 5479618e1e2641dd57352a73b7b7b2f6908fbeee
-> > > [4/5] powerpc: gamecube_defconfig: Enable the RTC driver
-> > >       commit: 57bd7d356506b713d0df8d8e42da7810a18864df
-> > > [5/5] powerpc: wii_defconfig: Enable the RTC driver
-> > >       commit: 69e8ba80ddda4db31e59facbf2db19773ad3785b
-> > >=20
-> > > This one didn't apply ceanly but I believe I did the right thing. Can=
- you check?
-> >=20
-> > I believe you didn=E2=80=99t, at least that commit[1] seems to have one=
- =E2=80=9C+=E2=80=9D too
-> > many in the modified line, whereas the previous one[2] doesn=E2=80=99t.
-> >=20
->=20
-> I knew I needed you to check, this is fixed now.
->=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git/commit=
-/?id=3Dc636783d594f6cfc95db51c796761719317ce5eb
-
-Perfect, thanks a lot!
-
->=20
->=20
-> --=20
-> Alexandre Belloni, co-owner and COO, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
-
---=20
-Emmanuel Gil Peyrot
-
---g7bzb2vspv7jrctf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEEjrVT1SzTln43kCLJOWgfYkb2LpAFAmG7qHkACgkQOWgfYkb2
-LpB+lggAqK4bBYvcQJuO7l3AfG48bohYpR73j6lYIN6SfBi5N2F17LKCDz0Km5ry
-8UYKuEIz1qt3LKKXc8SmEEmd5U8sP1rwy0fZKDAjy2OZu+2n+g7tpAmEj6wu7qdQ
-I29nqeALUbY179Ykk3VyHvT9NHgqe4c7LMHqbuEM9mSFQlipOpeW4j0uNCFJHezE
-ROx6Fuz5Gp6STzArDHpgtGrTS3yvt8KeuoeX8Xt2v1VRLTgYPlCnJLym7eaamH1M
-TcId8j44UNck0AGfwTPgLUCM/IKDQxh+sEqmaexBJOa3EM6naG63QxUY9eegVYZv
-M3/zwHnr+VPRatCx5NzZf+a+rjFDuw==
-=VwOp
------END PGP SIGNATURE-----
-
---g7bzb2vspv7jrctf--
+Acked-by: Rob Herring <robh@kernel.org>
