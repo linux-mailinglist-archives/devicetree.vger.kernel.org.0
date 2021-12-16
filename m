@@ -2,84 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CDF44773DB
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 15:00:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DB144773C3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 14:58:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237487AbhLPOAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 09:00:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36766 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237466AbhLPOAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 09:00:21 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74A01C06173E
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 06:00:21 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id d10so64942714ybe.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 06:00:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fooishbar-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=u6OncGT5DH6LGjtg6Vfmos78FGM9/13B2AHVO5qFxzo=;
-        b=yGu/21vZc2BZXDQ+5xlnnP2EyPY7ZJJn400mL6Vy5KUzv5UXUFyqxHAlE0rfczGIIa
-         fCwLnxS1Z2EvrffUk1Qs1Dwn93SwpPREtMHfCnEuUDSbe00fcfz/V7K2DHorMmIT447l
-         KkpprabH7UA1JK/SOqDiVhKRmDBKRNomtNwQB9UNcLHvygbRq6HqnEWd2K3dczUimB2e
-         DdtafW3miFc65tmyvj6ForM4T80sbJnpMZyoDv7oBm5F4MKfXfHMk/q5I2ZemrHwg6um
-         l3sd/Bl33z6+XqWapaWduxkg+PndrQehs4+hSADbA/1x1hoktDsnXKcRMHvxjpgEfYvM
-         aAGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=u6OncGT5DH6LGjtg6Vfmos78FGM9/13B2AHVO5qFxzo=;
-        b=heQxb0S984wbneJm/0J2FopWQ/l1MT7oAJe0OIQPgbgUxeQPa9SdW9i8agariyMyld
-         kn3M0MT7xPVBxZE+tmpY0kIfeJm5ASP5lxJUYrA5voif1wXlRVSPlkNh1uRY4V1AB+GL
-         GJDLR/OidWb8QikOSOwXkODSimSTqNiE43B26NRtyfSRSv1FK+LCCzkIiBNqxYt+ieUD
-         zxpQS7Aqqs3b5LaN/d1zEc+aZ8woxFn4FIC8xXu1OKWAHanO2jz1LfwxkzZzGgbZgmB1
-         MIS9EIvxM6y1wGzlu1+XiP3lhUF7m3sf8yKuC32UT86T3iw4KERh5kbhn4afs41LKDDS
-         g2Lw==
-X-Gm-Message-State: AOAM530+EsBXH/33vFB7vHRX6OYuzO6rPjxThBSYMdebdQwDu6kyrsIY
-        uQQfWgZKrnHDUZY6U68Qb8/pDqIpXbxu4hEGFv8/A2SSg6M=
-X-Google-Smtp-Source: ABdhPJwXwKfOppuBxULwQYeRr4eAgVGntM2699eq0a0bjDi9ASHuoyFoltd12L8a9F6DoGRmCB2RyMqqsJvritZooBI=
-X-Received: by 2002:a25:4c8:: with SMTP id 191mr13679935ybe.357.1639663220586;
- Thu, 16 Dec 2021 06:00:20 -0800 (PST)
+        id S234801AbhLPN6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 08:58:40 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:19505 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229676AbhLPN6j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 08:58:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1639663120; x=1671199120;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=AkvKwgNcGxstZQfRVv9nbKHD/jbUctRsv6QZaybpyt4=;
+  b=awRSIRYwvzd6hYLG0dMCZ/n052KYBvR2KxU2zpvZBjof80o7rQx0H4g0
+   JZkbnSNCTVkyJAdt3Z0PWAstcNv8WkydPF9+SLxgztAi7PCrDJlfMn8/3
+   vaqkOAikBpKlakOhlxMGDHqS9nZJ2ckTii2UT7NYOx9N0gxYGQ8UYp+mR
+   DEXbSpSw68ssl25lIjQ1b5AFC9Tv0C7fsQ1zLGqeZS4XRD4JMoIQBg0GH
+   yyayzI/kFTJ0eEViVV04DpmXdNE6uk7pLpjsPmzRM35JI1qRgyd7OEhDi
+   YjtP1eE4IRrb2x1f+sJUa4vGp+sC/pm9C6LvhPaLFb8cSSb8YZdSQMedt
+   w==;
+IronPort-SDR: VeIXg2KDIpwSbIKCFAnVp/pyNpm0icuEo+isN4PQgLpEesYU5HA8xG8CpKwUr//FvAQ8eQ9mdE
+ fYUWJ4xrgKSGYsgqHTTwkD4w8i24DwoEl5g4xVYyw2RTgS4OhZ5zTKOMo5vSMSVShxL6G5qXoi
+ qgoHC/5w6nFHKi90wYuuQy/lJqAZHfyWBrUuux2VInEM1K/LRbv1nwaXlIzzR8FpWoyxwHeTCU
+ Cuu7H4+ksIaCFv0NxoZ1bLoJPjLm+aa56b+gkVltVT4E2nMRXzA//9wGB2GifWqtNuZB9G38X4
+ Vm8yHm4LNRj3ZFFgq7dhJniX
+X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; 
+   d="scan'208";a="146891404"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Dec 2021 06:58:39 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Thu, 16 Dec 2021 06:58:38 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Thu, 16 Dec 2021 06:58:36 -0700
+From:   <conor.dooley@microchip.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <linux-clk@vger.kernel.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <krzysztof.kozlowski@canonical.com>, <geert@linux-m68k.org>,
+        <david.abdurachmanov@gmail.com>, <palmer@dabbelt.com>,
+        <daire.mcnamara@microchip.com>, <cyril.jean@microchip.com>,
+        <conor.dooley@microchip.com>
+Subject: [PATCH v9 0/2] Add clkcfg driver for Microchip PolarFire SoC
+Date:   Thu, 16 Dec 2021 14:00:20 +0000
+Message-ID: <20211216140022.16146-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-References: <20211208104026.421-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20211208104026.421-1-biju.das.jz@bp.renesas.com>
-From:   Daniel Stone <daniel@fooishbar.org>
-Date:   Thu, 16 Dec 2021 14:00:09 +0000
-Message-ID: <CAPj87rMUrB34jVMSdcMqVaf+aRJLq0okHtDjc-bHQ8BcQoqOkQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] Add Mali-G31 GPU support for RZ/G2L SoC
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        tomeu.vizoso@collabora.com,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        dri-devel@lists.freedesktop.org,
-        Steven Price <steven.price@arm.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Robin Murphy <robin.murphy@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On Wed, 8 Dec 2021 at 10:40, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> RZ/G2L SoC embeds Mali-G31 bifrost GPU.
-> This patch series aims to add support for the same
->
-> It is tested with latest drm-misc-next + mesa 21.3.0 +
-> out of tree patch for (du + DSI) +
-> platform specific mesa configuration for RZ/G2L.
+This patchset adds support for the Microchip PolarFire clkcfg
+hardware block.
 
-Could you please post the 'platform-specific Mesa configuration'
-patches as a merge request to Mesa? Thanks.
+Changes since v8:
+* Use devm_clk_hw_unregister directly
+* Get parent clk in probe rather than register function
 
-Cheers,
-Daniel
+Changes since v7:
+* Dropped clock-output-names again (oops)
+
+Changes since v6:
+* Dropped clock-output-names *as a required property*
+* Dropped if(lock) check on spinlocks, added spinlocks to all
+  read-modify-write register access
+* Removed kfree()s on non-dynamically allocated variables
+* Use devm_clk_get to get the reference clock
+* Account for reserved clock when calculating the size of num_clks
+
+Changes since v5:
+* Dropped clock-output-names property
+
+Major changes since v4:
+* Adjusted license for microchip,mpfs-clock.h to match microchip,mpfs.yaml
+* Corrected the number of clocks to 33 from 32
+
+Major changes since v3:
+* Patch reformatted so microchip,mpfs-clock.h is part of device-tree patch
+
+Major changes since v2:
+* In mpfs_cfg_clk_set_rate, return immediately if divider_get_val
+    returns <0 
+* rebased to v5.12-rc1
+
+Major changes since v1:
+ * Dependency on SOC_MICROCHIP_POLARFIRE
+ * All references to PFSOC/pfsoc changed to MPFS/mpfs
+ * Cleaned error handling in _probe
+ * Re-ordered code to place structs et al at top
+
+Daire McNamara (2):
+  dt-bindings: clk: microchip: Add Microchip PolarFire host binding
+  clk: microchip: Add driver for Microchip PolarFire SoC
+
+ .../bindings/clock/microchip,mpfs.yaml        |  58 +++
+ drivers/clk/Kconfig                           |   1 +
+ drivers/clk/Makefile                          |   2 +-
+ drivers/clk/microchip/Kconfig                 |   7 +
+ drivers/clk/microchip/Makefile                |   6 +-
+ drivers/clk/microchip/clk-mpfs.c              | 439 ++++++++++++++++++
+ .../dt-bindings/clock/microchip,mpfs-clock.h  |  45 ++
+ 7 files changed, 555 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/microchip,mpfs.yaml
+ create mode 100644 drivers/clk/microchip/Kconfig
+ create mode 100644 drivers/clk/microchip/clk-mpfs.c
+ create mode 100644 include/dt-bindings/clock/microchip,mpfs-clock.h
+
+-- 
+2.33.1
+
