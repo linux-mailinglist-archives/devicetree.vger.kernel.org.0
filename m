@@ -2,86 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C614647799A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:49:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B98CF4779B3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:51:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235166AbhLPQtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 11:49:10 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:45534 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232590AbhLPQtJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 11:49:09 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 70D9C61EBB;
-        Thu, 16 Dec 2021 16:49:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 084F6C36AE4;
-        Thu, 16 Dec 2021 16:49:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639673347;
-        bh=1Cn/YaBA1mXDfkWjv49bj322yFYnapcjg344B018UkQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GKBo/uDHNX4zOxMt+onveypXwa9GFl5ANDl+OHlA43ytPl4lDYMFAv3+/HAcR4zz4
-         yePSYt+psIebVP7KeGQvupZL4sVL3/hTRa0zgkmYkhzegu1ICEO3SVVl/z+pjyi0uG
-         BZhT0uLNHUG3OezGLCGGFw6Kh0PtcuvsAYNWkCf93RGKPXhnjiD/c3hOSjd8PKbjbG
-         K4bpXnY4XhBeuDF2CmCM7DB1TnxtD364e/HlKXFSFHH6VhLDtWVWPQY/BSTFydHJDM
-         ETKvk59O5w11yJAKYGQstCpdOWTIxZjWjbszhZx5PitFxpG/wUpVFaOj6MhYSnWlGW
-         FdT6rFbUotVEg==
-Date:   Thu, 16 Dec 2021 16:49:00 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Alexandre Ghiti <alexandre.ghiti@canonical.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: Migrate DA9063 text bindings to YAML
-Message-ID: <Ybtt/DEpZfuLmbK4@sirena.org.uk>
-References: <20211216164037.2888316-1-alexandre.ghiti@canonical.com>
- <20211216164037.2888316-2-alexandre.ghiti@canonical.com>
+        id S239768AbhLPQvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 11:51:55 -0500
+Received: from mail-wr1-f47.google.com ([209.85.221.47]:45933 "EHLO
+        mail-wr1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235311AbhLPQvv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 11:51:51 -0500
+Received: by mail-wr1-f47.google.com with SMTP id o13so45236897wrs.12;
+        Thu, 16 Dec 2021 08:51:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4Ba3x56xjocitS2MZSEfS0BywGmujU1rIxnCuO82Q5A=;
+        b=BgiZyDfNAKNGTyBRpUapJs0oDbQhg+JP0iWm4FwXW2TfBg4VZBfkWWCi84lbhwNF1J
+         SQ+2sH0nTKnM0+ZoMU78D4TK6K1CMuyZc5crectlfMBsznJ4X1HYtABh+lR1OzoLZ3uI
+         vVgGC28ThDt0R5OF6HfOdrTCTlBF8CrgKrQx0J/dH0PMzbpkUr1lX6HYJuGBkTCbv/1A
+         JYPqw73Kfd0O7SKX59ZU6mk3/M86m5eosEyQQYibDwNWn9E5Eu7cY2DAPqxvEVM6NDzf
+         eJmhOrdNAwHtuboUc2rR6dS7UsbkVQo+yJLAJdQXuBRod5hAe6JdUvqHSx83ReNv8b8M
+         MJ+g==
+X-Gm-Message-State: AOAM531ldrGcyxydKRFtpIFj5hCx58Zbf8MwuBpi7ZnivSahdEK/Bm+G
+        brtlmVXoW2Esmg3w8yaZM2M=
+X-Google-Smtp-Source: ABdhPJzv8g3rSkXzJ5+wU0BtvmOWy+ft4bUfk3k7rdWIj2p3tp/0xgZynAgZR2kYv7SYsOxhwFve4Q==
+X-Received: by 2002:adf:f9cf:: with SMTP id w15mr9525086wrr.456.1639673509542;
+        Thu, 16 Dec 2021 08:51:49 -0800 (PST)
+Received: from rocinante ([95.155.85.46])
+        by smtp.gmail.com with ESMTPSA id b13sm5384793wrh.32.2021.12.16.08.51.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 08:51:48 -0800 (PST)
+Date:   Thu, 16 Dec 2021 17:51:47 +0100
+From:   Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     l.stach@pengutronix.de, bhelgaas@google.com,
+        lorenzo.pieralisi@arm.com, marcel.ziswiler@toradex.com,
+        tharvey@gateworks.com, kishon@ti.com, vkoul@kernel.org,
+        robh@kernel.org, galak@kernel.crashing.org, shawnguo@kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Subject: Re: [PATCH v7 8/8] PCI: imx: Add the imx8mm pcie support
+Message-ID: <Ybtuo0CzfUhoJwsT@rocinante>
+References: <1638432158-4119-1-git-send-email-hongxing.zhu@nxp.com>
+ <1638432158-4119-9-git-send-email-hongxing.zhu@nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7UPpL9eSKpRqGuyR"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211216164037.2888316-2-alexandre.ghiti@canonical.com>
-X-Cookie: No solicitors.
+In-Reply-To: <1638432158-4119-9-git-send-email-hongxing.zhu@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Richard,
 
---7UPpL9eSKpRqGuyR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Apologies for a very late review!  Especially since Lorenzo already took
+patches as per:
 
-On Thu, Dec 16, 2021 at 05:40:37PM +0100, Alexandre Ghiti wrote:
-> DA9063 devices bindings used text format, so migrate those bindings to YAML
-> format before adding any new bindings.
+  https://lore.kernel.org/linux-pci/163965080404.20006.5241609551643501749.b4-ty@arm.com/
 
-Acked-by: Mark Brown <broonie@kernel.org>
+However, perhaps it's not too late.
 
---7UPpL9eSKpRqGuyR
-Content-Type: application/pgp-signature; name="signature.asc"
+[...]
+> @@ -446,6 +452,13 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
+>  		break;
+>  	case IMX7D:
+>  		break;
+> +	case IMX8MM:
+> +		ret = clk_prepare_enable(imx6_pcie->pcie_aux);
+> +		if (ret) {
+> +			dev_err(dev, "unable to enable pcie_aux clock\n");
+> +			break;
+> +		}
+> +		break;
 
------BEGIN PGP SIGNATURE-----
+You can drop the inner break, it wouldn't do much here, unless this was
+intended to be a return?
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmG7bfsACgkQJNaLcl1U
-h9AU4wf+NQMl2BzpsI732uzQnsyi7tWtsifci5XFZQKXDbrG+O49GavA7WWKttTs
-hfQAcN7IH/OkUlomNNzudjYA4fNXA7ssYYibtMMYl2XHp65Z5oaWUs7pn8HFbek1
-iP6Ycb2NL8zGP9AHv0hvnjAOGB0LCPHl1AmjE8KjWtu6sAuHX4rkY5b60SOxfHQw
-AKRQ0o10LcHHouIYYbZMfkuZNsKbn1DQCs2bS3ZrrZjoaZ11XirIzZmukL1upU8x
-Kiuz4sReSR4XVd9I0RdkJ//XH73bgLKB2/ftU8JQjsGRIViccgNYtOb8Xe2lOGyj
-jIlD/BGjBvv/SBwpTRVK9ByivuDYCA==
-=ZZh+
------END PGP SIGNATURE-----
+> @@ -538,6 +559,10 @@ static void imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
+>  	case IMX8MQ:
+>  		reset_control_deassert(imx6_pcie->pciephy_reset);
+>  		break;
+> +	case IMX8MM:
+> +		if (phy_init(imx6_pcie->phy) != 0)
+> +			dev_err(dev, "Waiting for PHY ready timeout!\n");
+> +		break;
 
---7UPpL9eSKpRqGuyR--
+If the above, you can keep the same style as used throughout the file
+already, so it would just simply be:
+
+  if (phy_init(imx6_pcie->phy))
+
+Also, a nitpick: to be consistent with other such messages here, the error
+message would be all lower-case letters.
+
+[...]
+> @@ -614,6 +639,8 @@ static void imx6_pcie_configure_type(struct imx6_pcie *imx6_pcie)
+>  static void imx6_pcie_init_phy(struct imx6_pcie *imx6_pcie)
+>  {
+>  	switch (imx6_pcie->drvdata->variant) {
+> +	case IMX8MM:
+> +		break;
+>  	case IMX8MQ:
+
+Would it warrant a comment that adds a note there to this single bare
+break?  Perhaps this version is not support, lack this particular
+functionality, etc.
+
+[...]
+> @@ -1089,10 +1122,39 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+>  			dev_err(dev, "Failed to get PCIE APPS reset control\n");
+>  			return PTR_ERR(imx6_pcie->apps_reset);
+>  		}
+> +		break;
+> +	case IMX8MM:
+> +		imx6_pcie->pcie_aux = devm_clk_get(dev, "pcie_aux");
+> +		if (IS_ERR(imx6_pcie->pcie_aux))
+> +			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
+> +					     "pcie_aux clock source missing or invalid\n");
+> +		imx6_pcie->apps_reset = devm_reset_control_get_exclusive(dev,
+> +									 "apps");
+> +		if (IS_ERR(imx6_pcie->apps_reset)) {
+> +			dev_err(dev, "Failed to get PCIE APPS reset control\n");
+> +			return PTR_ERR(imx6_pcie->apps_reset);
+> +		}
+> +
+> +		imx6_pcie->phy = devm_phy_get(dev, "pcie-phy");
+> +		if (IS_ERR(imx6_pcie->phy)) {
+> +			if (PTR_ERR(imx6_pcie->phy) == -EPROBE_DEFER)
+> +				return -EPROBE_DEFER;
+> +			dev_err(dev, "Failed to get PCIE PHY\n");
+> +			return PTR_ERR(imx6_pcie->phy);
+> +		}
+
+A question about handling of the -EPROBE_DEFER above: why not to use the
+dev_err_probe() helper similarly to the code above and below?  Would there
+be something different preventing the use of dev_err_probe() here too?
+
+>  		break;
+>  	default:
+>  		break;
+>  	}
+> +	/* Don't fetch the pcie_phy clock, if it has abstract PHY driver */
+> +	if (imx6_pcie->phy == NULL) {
+> +		imx6_pcie->pcie_phy = devm_clk_get(dev, "pcie_phy");
+> +		if (IS_ERR(imx6_pcie->pcie_phy))
+> +			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_phy),
+> +					     "pcie_phy clock source missing or invalid\n");
+> +	}
+
+Thank you for another amazing patch!
+
+	Krzysztof
