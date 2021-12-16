@@ -2,166 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F6FF477EA6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 22:21:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE343477EBF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 22:27:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236646AbhLPVVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 16:21:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbhLPVVb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 16:21:31 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B4D7C061574;
-        Thu, 16 Dec 2021 13:21:31 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id z29so352605edl.7;
-        Thu, 16 Dec 2021 13:21:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Y4P5wy6iix7HfpBAPgE+l0TDwUWAk0zjGM03BbiTQsw=;
-        b=P8Z7C13ZdPu+qAQpnBOAeCbP5gMwD7ydNMb9fH1tHtsh2kJc7ibH4bhB9n6SSttNEt
-         vEEmkYmz1t6Wm9/57Wpyql1gY0lukX/tq7xgtngawV31lXiyIPiGdLlXzIBBpOnQ/pNU
-         l8TY+90t1LjC9Ts43pf+0L3t6Cq68GW0mMKuPmHBlsyYPUEBjqZHsJ8O0Uy21wTlkTut
-         DkYw3nq5oS+YsuqCdF7sZUGi6ZaY6WUqsUowfAES53fFq8ONWXmRQXBRmsakgmTB4xiK
-         lcxLsvwMVZyq/6SKHFurTYHOEqmmqbVonYppG/FJLvW5oRfRzsPSbaJYXXnR9qD6yz3J
-         794g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Y4P5wy6iix7HfpBAPgE+l0TDwUWAk0zjGM03BbiTQsw=;
-        b=eUhqwu1rTl4PJyJzE4EtPzn0XjC9MEvxJDbPGsxklM0fPTCaZdHBtUOHFGbHrHvV/F
-         R0B74hI71eoWXQgYNWWoBRjaBHEidb2uxw40y7HCCynpx6AZh5p7Vav5JAviemta9poM
-         3ToIuk1oYK0qf3MoauXlAkn5lMgAWjs6pNAnl3lsZg33BfNFKFvJK4g+cmN3mysw6+aM
-         ycwU+Sa1CrciOs4hTpCJWORuPrju2b9VSiUwX2yj0D1G9yUGL1G7O5J5AdTs1YbY7JM7
-         qyvN8D+Q0H40qGF3Iym2b2C8kIwc7NUuD+d+zKXwvKShBOpwm5Oksd1qSQaU47YMi0YG
-         4B8w==
-X-Gm-Message-State: AOAM530ZzSWUxP2ixQrv6fOaZkx9lOkIC0LykjR8Qla1RnVNv1MypA2T
-        dOuhoWiwC+DyKMo8bvXULFfT/IvPxKqh8DSmZB8=
-X-Google-Smtp-Source: ABdhPJwsfak5UbIcc8yFH8Rwdwqg3PnBpr0/RxL71FTeqrqpj/OhkfEuzEX2FvqtqvCKNpPM2N8yXgEq/ke4MwvehrM=
-X-Received: by 2002:a17:906:6dce:: with SMTP id j14mr9377078ejt.305.1639689689489;
- Thu, 16 Dec 2021 13:21:29 -0800 (PST)
-MIME-Version: 1.0
-References: <20211216111256.2362683-1-aford173@gmail.com> <20211216111256.2362683-9-aford173@gmail.com>
- <YbuqpayfYVPp1dTe@robh.at.kernel.org>
-In-Reply-To: <YbuqpayfYVPp1dTe@robh.at.kernel.org>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Thu, 16 Dec 2021 15:21:18 -0600
-Message-ID: <CAHCN7xLGeu4=CwqCv8BBowuQQ5t9iFDQV0adPNmy9dufW8soAg@mail.gmail.com>
-Subject: Re: [PATCH V2 08/10] dt-bindings: media: nxp,imx8mq-vpu: Add support
- for G1 and G2 on imx8mm
+        id S234224AbhLPV1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 16:27:38 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:34322 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236943AbhLPV1i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 16:27:38 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D4B80B82647;
+        Thu, 16 Dec 2021 21:27:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC3ADC36AE2;
+        Thu, 16 Dec 2021 21:27:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639690055;
+        bh=pKM53rkOhJMnvKB9zo6bgmg+3fPyM92dkJeoZNFz93w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=f/e8s/I1vShbyoIoWFX7pBbXOkYiUUaI5Zm8x665JhFRxft06nKQvjJWtLElBwnKs
+         fIO1bH1W2If+CtadgWeZmwcJTa7hRplGTC9X5gc+oWJmOlJ3Ky+5y3C4SjRdYJo/aW
+         1YcPtLHI8S77lQEWocICVY07uZUqqrO06djZNNyd2OKiftS097jQr+puTlvljspzUe
+         GqrYhNGpXKgMHhQb1beA54ij921KXe0+KAHb2j2yw+lYzerfqA/6Yvhx6nMeTvovmq
+         fSP/P2DQb8UeIvWtwCbFsvnL5+F8j2xLTGEngK/qGSs51FdgHQMykerY8gtUJ4iFRh
+         w8Gq4qqOHe00w==
+Date:   Thu, 16 Dec 2021 22:27:32 +0100
+From:   Wolfram Sang <wsa@kernel.org>
 To:     Rob Herring <robh@kernel.org>
-Cc:     linux-media <linux-media@vger.kernel.org>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Content-Type: text/plain; charset="UTF-8"
+Cc:     Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Rayn Chen <rayn_chen@aspeedtech.com>,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c: aspeed: Drop stray '#interrupt-cells'
+Message-ID: <YbuvRPcjRY5Y06vi@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+        Rayn Chen <rayn_chen@aspeedtech.com>, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+References: <20211206174237.2298580-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="l5K4g4+9dpQAuWMg"
+Content-Disposition: inline
+In-Reply-To: <20211206174237.2298580-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 3:07 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Dec 16, 2021 at 05:12:53AM -0600, Adam Ford wrote:
-> > The i.MX8M mini appears to have a similar G1 and G2 decoder but the
-> > post-procesing isn't present, so different compatible flags are requred.
->
-> post-processing
->
-> > Since all the other parameters are the same with imx8mq, just add
-> > the new compatible flags to nxp,imx8mq-vpu.yaml.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> > index c1e157251de7..b1f24c48c73b 100644
-> > --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> > +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> > @@ -5,7 +5,7 @@
-> >  $id: "http://devicetree.org/schemas/media/nxp,imx8mq-vpu.yaml#"
-> >  $schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> >
-> > -title: Hantro G1/G2 VPU codecs implemented on i.MX8MQ SoCs
-> > +title: Hantro G1/G2 VPU codecs implemented on i.MX8MQ/i.MX8MM SoCs
->
-> Just 'i.MX8' so we don't have to change this everytime?
 
-Are you OK with i.MX8M?  8MQ, 8MM, and 8MP all appear to have G1 and
-G2 decoders.  The i.MX8 is different.
->
-> >
-> >  maintainers:
-> >    - Philipp Zabel <p.zabel@pengutronix.de>
-> > @@ -20,6 +20,8 @@ properties:
-> >          deprecated: true
-> >        - const: nxp,imx8mq-vpu-g1
-> >        - const: nxp,imx8mq-vpu-g2
-> > +      - const: nxp,imx8mm-vpu-g1
-> > +      - const: nxp,imx8mm-vpu-g2
->
-> Not compatible with the imx8mq variants?
+--l5K4g4+9dpQAuWMg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-No, the structures associated with these compatible flags telling the
-driver what features are available have options for the post-processor
-in the 8MQ which are not present in the 8MM.
+On Mon, Dec 06, 2021 at 11:42:37AM -0600, Rob Herring wrote:
+> '#interrupt-cells' is not documented which causes a warning when
+> 'unevaluatedProperties' is implemented. Unless the I2C controller is
+> also an interrupt controller, '#interrupt-cells' is not valid. This
+> doesn't appear to be the case from the driver, so just remove it from
+> the example.
+>=20
+> Cc: Brendan Higgins <brendanhiggins@google.com>
+> Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+> Cc: Joel Stanley <joel@jms.id.au>
+> Cc: Andrew Jeffery <andrew@aj.id.au>
+> Cc: Rayn Chen <rayn_chen@aspeedtech.com>
+> Cc: linux-i2c@vger.kernel.org
+> Cc: openbmc@lists.ozlabs.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-aspeed@lists.ozlabs.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
->
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -66,3 +68,27 @@ examples:
-> >                  clocks = <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
-> >                  power-domains = <&vpu_blk_ctrl IMX8MQ_VPUBLK_PD_G2>;
-> >          };
-> > +  - |
-> > +        #include <dt-bindings/clock/imx8mm-clock.h>
-> > +        #include <dt-bindings/power/imx8mm-power.h>
-> > +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +        vpu_g1: video-codec@38300000 {
-> > +                compatible = "nxp,imx8mm-vpu-g1";
-> > +                reg = <0x38300000 0x10000>;
-> > +                interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> > +                clocks = <&clk IMX8MM_CLK_VPU_G1_ROOT>;
-> > +                power-domains = <&vpu_blk_ctrl IMX8MM_VPUBLK_PD_G1>;
-> > +        };
-> > +  - |
-> > +        #include <dt-bindings/clock/imx8mm-clock.h>
-> > +        #include <dt-bindings/power/imx8mm-power.h>
-> > +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +        vpu_g2: video-codec@38300000 {
-> > +                compatible = "nxp,imx8mm-vpu-g2";
-> > +                reg = <0x38310000 0x10000>;
-> > +                interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> > +                clocks = <&clk IMX8MM_CLK_VPU_G2_ROOT>;
-> > +                power-domains = <&vpu_blk_ctrl IMX8MM_VPUBLK_PD_G2>;
-> > +        };
->
-> No point in more examples just for a different compatible.
+Applied to for-next, thanks!
 
-No problem.
->
-> > --
-> > 2.32.0
-> >
-> >
+
+--l5K4g4+9dpQAuWMg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmG7r0QACgkQFA3kzBSg
+KbbyQA/7B2deteOtnwmeqCT1aEFkmDE8vuQqAIyP9S/wcEb4Zz5QNq31qsl7O1Sf
+PfP8bcD4w3ivIP6nAw/TQN6R2ofiiPKYZxWjZSzhy0E3ZP5/Mvhy1SaBmgEkSgsP
+Tnw1FNZzQVtzGaVvaMtgm3EYeyBm1FYXOhgoszGFaHzd8nFYOHvorddDModiCF5N
+0phMhilsdI3d6RyI+FHUQITeHmTLFniBc3Kj66d0y4MVBHBc23pMWVUQCnDJfPmj
+L5AmHRNCioTs+reOKYdUjTdtv9OsjG+FcLit8hrFnruw35WpUy2zA2ltvsIVhkPx
+nTB+2cNUk+YwIx1hGQ6t6fJ299GR6k+Z+89dp7YZrT5g6XQ0TjJX45BMi3Gt7T2d
+2noiO3Yhz/zvGs1bu/+4rj9Xzz/JzSqKNpA5K6JC9iKTu9hj/UsZY32OmbLgb11x
+MnD2VKqJztDYH8qMFKq6RKKYC/8K/lKO600ir5HFeeWN0tnwTrtFeiNlM/VbVfEk
+YA4VBOlxZ4fXiyeBUpP1Fev3RtJaRuAG4ruDxXh9cQCyGpADE6GTtgOfU3q3gl/l
+0F9XFkXNqBDr+6iKTJIcW4D64eGIB1QStmknWsd+ZrrznJp179NoylB4NN2oiCoL
+zDP3oWkXUNmlMa9e4NORmA4DCqvbAEb+Y9T5UTm0QEax1T//jHM=
+=2kfu
+-----END PGP SIGNATURE-----
+
+--l5K4g4+9dpQAuWMg--
