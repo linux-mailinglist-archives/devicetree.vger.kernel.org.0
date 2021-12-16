@@ -2,763 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E1F7476FBB
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 12:15:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7341E476FD8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 12:17:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236722AbhLPLOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 06:14:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53150 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236677AbhLPLNu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 06:13:50 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2EFCC061763;
-        Thu, 16 Dec 2021 03:13:48 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 33D5861D56;
-        Thu, 16 Dec 2021 11:13:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA9D5C36AE4;
-        Thu, 16 Dec 2021 11:13:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639653227;
-        bh=gMXmFhtLeMbk5UzSPS/4Gdgc3GP5hLxghjc/b2jNE9s=;
-        h=From:To:Cc:Subject:Date:From;
-        b=K+QjIugxSdwiZATq3e89aDOhzWpGezmWEn8qA2haQR1IMBHZyG/pUVZwzUF6+vtYI
-         VpSP6k8JftD/8jl++rl+hz6wQmCMm0OZbHXMXBhC7j7NckDPzfCYLg5Sju9cuIRtGD
-         E/lIVEyUnl7SZFSBWrMpZkM1YaNxPvVM+ERksoCLQovjOdkPQY5XvLfUSu641Y2iWL
-         SOPQUq+KPp7E/yRWuWY821alxTINjohn+OWB+GABGpNJDRbjQhFmV3sPY5bqo2gsqA
-         9udeDixOFo8n6whUiUD5iyOdJSXLXM4ovzRhmcSQdbGgVvUMedYaoX/D0/kjnbxBVK
-         qYd4pvIZFrnDw==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Felipe Balbi <felipe.balbi@microsoft.com>
-Subject: [PATCH] arm64: boot: dts: qcom: sm8150: add SPI nodes
-Date:   Thu, 16 Dec 2021 13:13:41 +0200
-Message-Id: <20211216111341.304151-1-balbi@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        id S233927AbhLPLRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 06:17:07 -0500
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:38103 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231509AbhLPLQ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 06:16:58 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id ADFC5E0014;
+        Thu, 16 Dec 2021 11:16:54 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Mark Brown <broonie@kernel.org>, <linux-spi@vger.kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+Cc:     Julien Su <juliensu@mxic.com.tw>,
+        Jaime Liao <jaimeliao@mxic.com.tw>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v6 00/28] External ECC engines & Macronix support
+Date:   Thu, 16 Dec 2021 12:16:26 +0100
+Message-Id: <20211216111654.238086-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Felipe Balbi <felipe.balbi@microsoft.com>
+Hello all,
 
-Add missing SPI nodes for SM8150.
+Here is a new iteration for this big series, this time I am reincluding
+the initial binding changes because they changed very slightly and at
+least it gives reviewers a better understanding of the entire work
+again.
 
-Signed-off-by: Felipe Balbi <felipe.balbi@microsoft.com>
----
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 419 +++++++++++++++++++++++++++
- 1 file changed, 419 insertions(+)
+Once I'll get Rob's ack on the final DT change I will apply (in a topic
+branch) all the patches until "mtd: nand: ecc: Provide a helper to
+retrieve a pipelined engine device", which brings everything that is
+needed to support external engines, as well as the Macronix example.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index eef9d79157e9..71b286c2a38b 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -626,6 +626,20 @@ i2c0: i2c@880000 {
- 				status = "disabled";
- 			};
- 
-+			spi0: spi@880000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0x880000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi0_default>;
-+				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c1: i2c@884000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x00884000 0 0x4000>;
-@@ -639,6 +653,20 @@ i2c1: i2c@884000 {
- 				status = "disabled";
- 			};
- 
-+			spi1: spi@884000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0x884000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi1_default>;
-+				interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c2: i2c@888000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x00888000 0 0x4000>;
-@@ -652,6 +680,20 @@ i2c2: i2c@888000 {
- 				status = "disabled";
- 			};
- 
-+			spi2: spi@888000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0x888000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi2_default>;
-+				interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c3: i2c@88c000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x0088c000 0 0x4000>;
-@@ -665,6 +707,20 @@ i2c3: i2c@88c000 {
- 				status = "disabled";
- 			};
- 
-+			spi3: spi@88c000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0x88c000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi3_default>;
-+				interrupts = <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c4: i2c@890000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x00890000 0 0x4000>;
-@@ -678,6 +734,20 @@ i2c4: i2c@890000 {
- 				status = "disabled";
- 			};
- 
-+			spi4: spi@890000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0x890000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi4_default>;
-+				interrupts = <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c5: i2c@894000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x00894000 0 0x4000>;
-@@ -691,6 +761,20 @@ i2c5: i2c@894000 {
- 				status = "disabled";
- 			};
- 
-+			spi5: spi@894000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0x894000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi5_default>;
-+				interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c6: i2c@898000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x00898000 0 0x4000>;
-@@ -704,6 +788,20 @@ i2c6: i2c@898000 {
- 				status = "disabled";
- 			};
- 
-+			spi6: spi@898000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0x898000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S6_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi6_default>;
-+				interrupts = <GIC_SPI 607 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c7: i2c@89c000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x0089c000 0 0x4000>;
-@@ -717,6 +815,19 @@ i2c7: i2c@89c000 {
- 				status = "disabled";
- 			};
- 
-+			spi7: spi@89c000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0x89c000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP0_S7_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi7_default>;
-+				interrupts = <GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		gpi_dma1: dma-controller@a00000 {
-@@ -767,6 +878,20 @@ i2c8: i2c@a80000 {
- 				status = "disabled";
- 			};
- 
-+			spi8: spi@a80000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0xa80000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi8_default>;
-+				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c9: i2c@a84000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x00a84000 0 0x4000>;
-@@ -780,6 +905,20 @@ i2c9: i2c@a84000 {
- 				status = "disabled";
- 			};
- 
-+			spi9: spi@a84000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0xa84000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi9_default>;
-+				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c10: i2c@a88000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x00a88000 0 0x4000>;
-@@ -793,6 +932,20 @@ i2c10: i2c@a88000 {
- 				status = "disabled";
- 			};
- 
-+			spi10: spi@a88000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0xa88000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S2_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi10_default>;
-+				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c11: i2c@a8c000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x00a8c000 0 0x4000>;
-@@ -806,6 +959,20 @@ i2c11: i2c@a8c000 {
- 				status = "disabled";
- 			};
- 
-+			spi11: spi@a8c000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0xa8c000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S3_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi11_default>;
-+				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			uart2: serial@a90000 {
- 				compatible = "qcom,geni-debug-uart";
- 				reg = <0x0 0x00a90000 0x0 0x4000>;
-@@ -828,6 +995,20 @@ i2c12: i2c@a90000 {
- 				status = "disabled";
- 			};
- 
-+			spi12: spi@a90000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0xa90000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi12_default>;
-+				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c16: i2c@94000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x0094000 0 0x4000>;
-@@ -840,6 +1021,20 @@ i2c16: i2c@94000 {
- 				#size-cells = <0>;
- 				status = "disabled";
- 			};
-+
-+			spi16: spi@a94000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0xa94000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi16_default>;
-+				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		gpi_dma2: dma-controller@c00000 {
-@@ -891,6 +1086,20 @@ i2c17: i2c@c80000 {
- 				status = "disabled";
- 			};
- 
-+			spi17: spi@c80000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0xc80000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP2_S0_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi17_default>;
-+				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c18: i2c@c84000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x00c84000 0 0x4000>;
-@@ -904,6 +1113,20 @@ i2c18: i2c@c84000 {
- 				status = "disabled";
- 			};
- 
-+			spi18: spi@c84000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0xc84000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP2_S1_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi18_default>;
-+				interrupts = <GIC_SPI 583 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c19: i2c@c88000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x00c88000 0 0x4000>;
-@@ -917,6 +1140,20 @@ i2c19: i2c@c88000 {
- 				status = "disabled";
- 			};
- 
-+			spi19: spi@c88000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0xc88000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP2_S2_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi19_default>;
-+				interrupts = <GIC_SPI 584 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c13: i2c@c8c000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x00c8c000 0 0x4000>;
-@@ -930,6 +1167,20 @@ i2c13: i2c@c8c000 {
- 				status = "disabled";
- 			};
- 
-+			spi13: spi@c8c000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0xc8c000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP2_S3_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi13_default>;
-+				interrupts = <GIC_SPI 585 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c14: i2c@c90000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x00c90000 0 0x4000>;
-@@ -943,6 +1194,20 @@ i2c14: i2c@c90000 {
- 				status = "disabled";
- 			};
- 
-+			spi14: spi@c90000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0xc90000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP2_S4_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi14_default>;
-+				interrupts = <GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
- 			i2c15: i2c@c94000 {
- 				compatible = "qcom,geni-i2c";
- 				reg = <0 0x00c94000 0 0x4000>;
-@@ -955,6 +1220,20 @@ i2c15: i2c@c94000 {
- 				#size-cells = <0>;
- 				status = "disabled";
- 			};
-+
-+			spi15: spi@c94000 {
-+				compatible = "qcom,geni-spi";
-+				reg = <0 0xc94000 0 0x4000>;
-+				clock-names = "se";
-+				clocks = <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&qup_spi15_default>;
-+				interrupts = <GIC_SPI 587 IRQ_TYPE_LEVEL_HIGH>;
-+				spi-max-frequency = <50000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
- 		};
- 
- 		config_noc: interconnect@1500000 {
-@@ -1296,6 +1575,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi0_default: qup-spi0-default {
-+				pins = "gpio0", "gpio1", "gpio2", "gpio3";
-+				function = "qup0";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c1_default: qup-i2c1-default {
- 				mux {
- 					pins = "gpio114", "gpio115";
-@@ -1309,6 +1595,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi1_default: qup-spi1-default {
-+				pins = "gpio114", "gpio115", "gpio116", "gpio117";
-+				function = "qup1";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c2_default: qup-i2c2-default {
- 				mux {
- 					pins = "gpio126", "gpio127";
-@@ -1322,6 +1615,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi2_default: qup-spi2-default {
-+				pins = "gpio126", "gpio127", "gpio128", "gpio129";
-+				function = "qup2";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c3_default: qup-i2c3-default {
- 				mux {
- 					pins = "gpio144", "gpio145";
-@@ -1335,6 +1635,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi3_default: qup-spi3-default {
-+				pins = "gpio144", "gpio145", "gpio146", "gpio147";
-+				function = "qup3";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c4_default: qup-i2c4-default {
- 				mux {
- 					pins = "gpio51", "gpio52";
-@@ -1348,6 +1655,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi4_default: qup-spi4-default {
-+				pins = "gpio51", "gpio52", "gpio53", "gpio54";
-+				function = "qup4";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c5_default: qup-i2c5-default {
- 				mux {
- 					pins = "gpio121", "gpio122";
-@@ -1361,6 +1675,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi5_default: qup-spi5-default {
-+				pins = "gpio119", "gpio120", "gpio121", "gpio122";
-+				function = "qup5";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c6_default: qup-i2c6-default {
- 				mux {
- 					pins = "gpio6", "gpio7";
-@@ -1374,6 +1695,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi6_default: qup-spi6_default {
-+				pins = "gpio4", "gpio5", "gpio6", "gpio7";
-+				function = "qup6";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c7_default: qup-i2c7-default {
- 				mux {
- 					pins = "gpio98", "gpio99";
-@@ -1387,6 +1715,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi7_default: qup-spi7_default {
-+				pins = "gpio98", "gpio99", "gpio100", "gpio101";
-+				function = "qup7";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c8_default: qup-i2c8-default {
- 				mux {
- 					pins = "gpio88", "gpio89";
-@@ -1400,6 +1735,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi8_default: qup-spi8-default {
-+				pins = "gpio88", "gpio89", "gpio90", "gpio91";
-+				function = "qup8";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c9_default: qup-i2c9-default {
- 				mux {
- 					pins = "gpio39", "gpio40";
-@@ -1413,6 +1755,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi9_default: qup-spi9-default {
-+				pins = "gpio39", "gpio40", "gpio41", "gpio42";
-+				function = "qup9";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c10_default: qup-i2c10-default {
- 				mux {
- 					pins = "gpio9", "gpio10";
-@@ -1426,6 +1775,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi10_default: qup-spi10-default {
-+				pins = "gpio9", "gpio10", "gpio11", "gpio12";
-+				function = "qup10";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c11_default: qup-i2c11-default {
- 				mux {
- 					pins = "gpio94", "gpio95";
-@@ -1439,6 +1795,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi11_default: qup-spi11-default {
-+				pins = "gpio92", "gpio93", "gpio94", "gpio95";
-+				function = "qup11";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c12_default: qup-i2c12-default {
- 				mux {
- 					pins = "gpio83", "gpio84";
-@@ -1452,6 +1815,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi12_default: qup-spi12-default {
-+				pins = "gpio83", "gpio84", "gpio85", "gpio86";
-+				function = "qup12";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c13_default: qup-i2c13-default {
- 				mux {
- 					pins = "gpio43", "gpio44";
-@@ -1465,6 +1835,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi13_default: qup-spi13-default {
-+				pins = "gpio43", "gpio44", "gpio45", "gpio46";
-+				function = "qup13";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c14_default: qup-i2c14-default {
- 				mux {
- 					pins = "gpio47", "gpio48";
-@@ -1478,6 +1855,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi14_default: qup-spi14-default {
-+				pins = "gpio47", "gpio48", "gpio49", "gpio50";
-+				function = "qup14";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c15_default: qup-i2c15-default {
- 				mux {
- 					pins = "gpio27", "gpio28";
-@@ -1491,6 +1875,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi15_default: qup-spi15-default {
-+				pins = "gpio27", "gpio28", "gpio29", "gpio30";
-+				function = "qup15";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c16_default: qup-i2c16-default {
- 				mux {
- 					pins = "gpio86", "gpio85";
-@@ -1504,6 +1895,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi16_default: qup-spi16-default {
-+				pins = "gpio83", "gpio84", "gpio85", "gpio86";
-+				function = "qup16";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c17_default: qup-i2c17-default {
- 				mux {
- 					pins = "gpio55", "gpio56";
-@@ -1517,6 +1915,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi17_default: qup-spi17-default {
-+				pins = "gpio55", "gpio56", "gpio57", "gpio58";
-+				function = "qup17";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c18_default: qup-i2c18-default {
- 				mux {
- 					pins = "gpio23", "gpio24";
-@@ -1530,6 +1935,13 @@ config {
- 				};
- 			};
- 
-+			qup_spi18_default: qup-spi18-default {
-+				pins = "gpio23", "gpio24", "gpio25", "gpio26";
-+				function = "qup18";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
- 			qup_i2c19_default: qup-i2c19-default {
- 				mux {
- 					pins = "gpio57", "gpio58";
-@@ -1542,6 +1954,13 @@ config {
- 					bias-disable;
- 				};
- 			};
-+
-+			qup_spi19_default: qup-spi19-default {
-+				pins = "gpio55", "gpio56", "gpio57", "gpio58";
-+				function = "qup19";
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
- 		};
- 
- 		remoteproc_mpss: remoteproc@4080000 {
+I will need further acknowledgments for the second half which brings
+support for pipelined engines (even though I hope we are close to an
+agreement now).
+
+Cheers,
+Miquèl
+
+Changes in v6:
+* Re-include the first patches because a few things have changed in the
+  bindings. These are only style changes as Rob asked to group every
+  property above or below the description field, which I applied to all
+  the binding commits, but without any further update.
+* Created a spi-mem capabilities structure. Put that one in the spi-mem
+  ops strucure and ensured that all the controllers provided one.
+* Created a default "no-caps" empty instance that controller drivers can
+  point to by default.
+* Dropped the spi_mem_generic_defaults_op() intermediate helper entirely
+  (not needed anymore).
+
+Changes in v5:
+* Moved a helper in the core as it seems that it will be useful for
+  other ECC engines as well (Xiangsheng Hou for Mediatek will need it).
+* Changed the parameters of the spi_mem_generic_supports_op() function
+  in order to take a structure as input instead of a list of arguments,
+  which will be much easier to complement in the future if ever needed.
+
+Changes in v4:
+* The first half of the series has been left aside (all the binding
+  changes + the external mode in the Macronix driver), now let's focus
+  on the pipelined mode.
+* Added the ecc_en spi_mem_op structure parameter in a dedicated commit.
+* Introduced a new helper for supporting generically the supported ops.
+* Used this new helper in the macronix driver.
+* By default all the other drivers would refuse a spi_mem_op with ecc_en
+  enabled.
+
+Changes in v3:
+* Added Mark's R-by.
+* Added a commit changing the initialization order between the dirmaps
+  and the ECC engine so that the core might now if we are using a
+  pipelined engine or not.
+* Stopped creating additional dirmaps with ECC if the engine is not a
+  pipelined engine.
+* Solved the kernel test robot reports. In particular, I added a
+  dependency on MTD_NAND_ECC to Macronix SPI controller driver.
+* Added a patch to clean the NAND controller yaml file before moving
+  some bits to nand-chip.yaml. This addresses the comments made by Rob
+  about the useless allOf's.
+* Used platform_get_irq_byname_optional() in order to avoid useless
+  warnings when there is no IRQ.
+
+Changes in v2:
+* Fixed the bindings and added Rob's acks when relevant.
+* Added locking in the ECC engine driver.
+* Brought more changes in the core in order to bring the ECC information
+  into the spi_mem_op structure with the idea of avoiding any races
+  between parallel calls on the same engine.
+* Reorganized the ECC driver entirely in order to have a per-engine mxic
+  structure plus a per-NAND context. This lead to a number of changes
+  internally which cannot all be listed.
+
+Changes since the RFC:
+* Rebased on top of v5.15-rc1.
+* Fixed the dirmap configuration.
+* Added the various tags received.
+* Fixed the bindings as reported by the robots.
+* Fixed the return value of the helper counting bitflips.
+* Included a fix from Jaime Liao in the external pattern logic.
+* Added the yaml conversion of Macronix SPI controller description.
+* Added the yaml conversion of the SPI-NAND description.
+* Created a nand-chip.yaml file to share properties between SPI-NAND and
+  raw NAND.
+
+Mason Yang (1):
+  mtd: spinand: macronix: Use random program load
+
+Miquel Raynal (27):
+  dt-bindings: mtd: nand-controller: Fix the reg property description
+  dt-bindings: mtd: nand-controller: Fix a comment in the examples
+  dt-bindings: mtd: nand-controller: Harmonize the property types
+  dt-bindings: mtd: nand-chip: Create a NAND chip description
+  dt-bindings: mtd: spi-nand: Convert spi-nand description file to yaml
+  dt-bindings: vendor-prefixes: Clarify Macronix prefix
+  dt-bindings: spi: mxic: The interrupt property is not mandatory
+  dt-bindings: spi: mxic: Convert to yaml
+  dt-bindings: spi: mxic: Document the nand-ecc-engine property
+  dt-bindings: mtd: Describe Macronix NAND ECC engine
+  mtd: nand: ecc: Add infrastructure to support hardware engines
+  mtd: nand: Add a new helper to retrieve the ECC context
+  mtd: nand: mxic-ecc: Add Macronix external ECC engine support
+  mtd: nand: ecc: Provide a helper to retrieve a pilelined engine device
+  mtd: nand: mxic-ecc: Support SPI pipelined mode
+  mtd: spinand: Delay a little bit the dirmap creation
+  spi: spi-mem: Fix a DTR related check in spi_mem_dtr_supports_op()
+  spi: spi-mem: Introduce a capability structure
+  spi: spi-mem: Fill the spi-mem controller capabilities of all the
+    drivers
+  spi: spi-mem: Kill the spi_mem_dtr_supports_op() helper
+  spi: spi-mem: Add an ecc_en parameter to the spi_mem_op structure
+  mtd: spinand: Create direct mapping descriptors for ECC operations
+  spi: mxic: Fix the transmit path
+  spi: mxic: Create a helper to configure the controller before an
+    operation
+  spi: mxic: Create a helper to ease the start of an operation
+  spi: mxic: Add support for direct mapping
+  spi: mxic: Add support for pipelined ECC operations
+
+ .../bindings/mtd/mxicy,nand-ecc-engine.yaml   |  77 ++
+ .../devicetree/bindings/mtd/nand-chip.yaml    |  70 ++
+ .../bindings/mtd/nand-controller.yaml         |  72 +-
+ .../devicetree/bindings/mtd/spi-nand.txt      |   5 -
+ .../devicetree/bindings/mtd/spi-nand.yaml     |  27 +
+ .../bindings/spi/mxicy,mx25f0a-spi.yaml       |  65 ++
+ .../devicetree/bindings/spi/spi-mxic.txt      |  34 -
+ .../devicetree/bindings/vendor-prefixes.yaml  |   3 +
+ drivers/mtd/nand/Kconfig                      |   6 +
+ drivers/mtd/nand/Makefile                     |   1 +
+ drivers/mtd/nand/core.c                       |  10 +-
+ drivers/mtd/nand/ecc-mxic.c                   | 871 ++++++++++++++++++
+ drivers/mtd/nand/ecc.c                        | 119 +++
+ drivers/mtd/nand/spi/core.c                   |  51 +-
+ drivers/mtd/nand/spi/macronix.c               |   2 +-
+ drivers/spi/Kconfig                           |   2 +-
+ drivers/spi/atmel-quadspi.c                   |   3 +-
+ drivers/spi/spi-bcm-qspi.c                    |   1 +
+ drivers/spi/spi-cadence-quadspi.c             |  10 +-
+ drivers/spi/spi-dw-core.c                     |   1 +
+ drivers/spi/spi-fsl-qspi.c                    |   1 +
+ drivers/spi/spi-hisi-sfc-v3xx.c               |   1 +
+ drivers/spi/spi-mem.c                         |  33 +-
+ drivers/spi/spi-mtk-nor.c                     |   3 +-
+ drivers/spi/spi-mxic.c                        | 340 +++++--
+ drivers/spi/spi-npcm-fiu.c                    |   1 +
+ drivers/spi/spi-nxp-fspi.c                    |   1 +
+ drivers/spi/spi-rockchip-sfc.c                |   1 +
+ drivers/spi/spi-rpc-if.c                      |   1 +
+ drivers/spi/spi-stm32-qspi.c                  |   1 +
+ drivers/spi/spi-ti-qspi.c                     |   1 +
+ drivers/spi/spi-zynq-qspi.c                   |   1 +
+ drivers/spi/spi-zynqmp-gqspi.c                |   1 +
+ drivers/spi/spi.c                             |   3 +
+ include/linux/mtd/nand-ecc-mxic.h             |  49 +
+ include/linux/mtd/nand.h                      |  34 +
+ include/linux/mtd/spinand.h                   |   2 +
+ include/linux/spi/spi-mem.h                   |  27 +-
+ 38 files changed, 1727 insertions(+), 204 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/mxicy,nand-ecc-engine.yaml
+ create mode 100644 Documentation/devicetree/bindings/mtd/nand-chip.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/mxicy,mx25f0a-spi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-mxic.txt
+ create mode 100644 drivers/mtd/nand/ecc-mxic.c
+ create mode 100644 include/linux/mtd/nand-ecc-mxic.h
+
 -- 
-2.34.1
+2.27.0
 
