@@ -2,196 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8B6F47781B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:18:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6E834778E8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:25:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239443AbhLPQSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 11:18:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41870 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239477AbhLPQSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 11:18:15 -0500
-Received: from balrog.mythic-beasts.com (balrog.mythic-beasts.com [IPv6:2a00:1098:0:82:1000:0:2:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55E2DC06175D;
-        Thu, 16 Dec 2021 08:18:14 -0800 (PST)
-Received: from [81.101.6.87] (port=48034 helo=jic23-huawei)
-        by balrog.mythic-beasts.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <jic23@jic23.retrosnub.co.uk>)
-        id 1mxtSG-0007hN-HJ; Thu, 16 Dec 2021 16:18:08 +0000
-Date:   Thu, 16 Dec 2021 16:23:27 +0000
-From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-To:     Gwendal Grignou <gwendal@chromium.org>
-Cc:     robh+dt@kernel.org, lars@metafoo.de, swboyd@chromium.org,
-        andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] iio: sx9360: Add dt-binding support
-Message-ID: <20211216162318.65247294@jic23-huawei>
-In-Reply-To: <20211213024057.3824985-5-gwendal@chromium.org>
-References: <20211213024057.3824985-1-gwendal@chromium.org>
-        <20211213024057.3824985-5-gwendal@chromium.org>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S239744AbhLPQZx convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Dec 2021 11:25:53 -0500
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:52641 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239747AbhLPQZu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 11:25:50 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id DC8921C0003;
+        Thu, 16 Dec 2021 16:25:45 +0000 (UTC)
+Date:   Thu, 16 Dec 2021 17:25:44 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Michael Walle <michael@walle.cc>,
+        <linux-mtd@lists.infradead.org>, Michal Simek <monstr@monstr.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>, <linux-spi@vger.kernel.org>
+Subject: Re: [PATCH v4 2/3] spi: dt-bindings: Describe stacked/parallel
+ memories modes
+Message-ID: <20211216172544.2005d96e@xps13>
+In-Reply-To: <20211214194431.4kpwfgvju6msh5d4@ti.com>
+References: <20211210201039.729961-1-miquel.raynal@bootlin.com>
+        <20211210201039.729961-3-miquel.raynal@bootlin.com>
+        <20211214194431.4kpwfgvju6msh5d4@ti.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-BlackCat-Spam-Score: 4
-X-Spam-Status: No, score=0.4
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 12 Dec 2021 18:40:57 -0800
-Gwendal Grignou <gwendal@chromium.org> wrote:
+Hello Pratyush,
 
-> Add support to configure sx9360 from dt-binding, to match device
-> hardware setup.
+p.yadav@ti.com wrote on Wed, 15 Dec 2021 01:14:33 +0530:
+
+> Hi Miquel,
 > 
-> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
-This and patch 3 look fine to me, so mostly just a question of
-modifier vs label for the reference channel.
-
-Thanks,
-
-Jonathan
-
-
-> ---
-> Changes since v2:
-> - Add include when needed.
-> - Move default register constant to main patch.
+> On 10/12/21 09:10PM, Miquel Raynal wrote:
+> > Describe two new memories modes:
+> > - A stacked mode when the bus is common but the address space extended
+> >   with an additinals wires.
+> > - A parallel mode with parallel busses accessing parallel flashes where
+> >   the data is spread.
+> > 
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  .../bindings/spi/spi-peripheral-props.yaml    | 29 +++++++++++++++++++
+> >  1 file changed, 29 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> > index 5dd209206e88..4194fee8f556 100644
+> > --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> > +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> > @@ -82,6 +82,35 @@ properties:
+> >      description:
+> >        Delay, in microseconds, after a write transfer.
+> >  
+> > +  stacked-memories:
+> > +    $ref: /schemas/types.yaml#/definitions/uint64-matrix  
 > 
-> No changes in v2.
-> 
->  drivers/iio/proximity/sx9360.c | 85 +++++++++++++++++++++++++++++++++-
->  1 file changed, 84 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/iio/proximity/sx9360.c b/drivers/iio/proximity/sx9360.c
-> index aebfbe541e0e04..30cc6549d301e6 100644
-> --- a/drivers/iio/proximity/sx9360.c
-> +++ b/drivers/iio/proximity/sx9360.c
-> @@ -18,6 +18,7 @@
->  #include <linux/mod_devicetable.h>
->  #include <linux/module.h>
->  #include <linux/pm.h>
-> +#include <linux/property.h>
->  #include <linux/regmap.h>
->  
->  #include <linux/iio/iio.h>
-> @@ -64,6 +65,7 @@
->  #define SX9360_REG_PROX_CTRL0_PHM	0x41
->  #define SX9360_REG_PROX_CTRL0_GAIN_MASK	GENMASK(5, 3)
->  #define SX9360_REG_PROX_CTRL0_GAIN_1		0x80
-> +#define SX9360_REG_PROX_CTRL0_RAWFILT_MASK	GENMASK(2, 0)
->  #define SX9360_REG_PROX_CTRL0_RAWFILT_1P50	0x01
->  #define SX9360_REG_PROX_CTRL1		0x42
->  #define SX9360_REG_PROX_CTRL1_AVGNEG_THRESH_MASK	GENMASK(5, 3)
-> @@ -647,6 +649,41 @@ static int sx9360_write_raw(struct iio_dev *indio_dev,
->  	return -EINVAL;
->  }
->  
-> +static const struct sx_common_reg_default sx9360_default_regs[] = {
-> +	{ SX9360_REG_IRQ_MSK, 0x00 },
-> +	{ SX9360_REG_IRQ_CFG, 0x00 },
-> +	/*
-> +	 * The lower 2 bits should not be set as it enable sensors measurements.
-> +	 * Turning the detection on before the configuration values are set to
-> +	 * good values can cause the device to return erroneous readings.
-> +	 */
-> +	{ SX9360_REG_GNRL_CTRL0, 0x00 },
-> +	{ SX9360_REG_GNRL_CTRL1, 0x00 },
-> +	{ SX9360_REG_GNRL_CTRL2, SX9360_REG_GNRL_CTRL2_PERIOD_102MS },
-> +
-> +	{ SX9360_REG_AFE_CTRL1, 0x00 },
-> +	{ SX9360_REG_AFE_PARAM0_PHR, SX9360_REG_AFE_PARAM0_RSVD |
-> +		SX9360_REG_AFE_PARAM0_RESOLUTION_128 },
-> +	{ SX9360_REG_AFE_PARAM1_PHR, SX9360_REG_AFE_PARAM1_AGAIN_PHM_6PF |
-> +		SX9360_REG_AFE_PARAM1_FREQ_83_33HZ },
-> +	{ SX9360_REG_AFE_PARAM0_PHM, SX9360_REG_AFE_PARAM0_RSVD |
-> +		SX9360_REG_AFE_PARAM0_RESOLUTION_128 },
-> +	{ SX9360_REG_AFE_PARAM1_PHM, SX9360_REG_AFE_PARAM1_AGAIN_PHM_6PF |
-> +		SX9360_REG_AFE_PARAM1_FREQ_83_33HZ },
-> +
-> +	{ SX9360_REG_PROX_CTRL0_PHR, SX9360_REG_PROX_CTRL0_GAIN_1 |
-> +		SX9360_REG_PROX_CTRL0_RAWFILT_1P50 },
-> +	{ SX9360_REG_PROX_CTRL0_PHM, SX9360_REG_PROX_CTRL0_GAIN_1 |
-> +		SX9360_REG_PROX_CTRL0_RAWFILT_1P50 },
-> +	{ SX9360_REG_PROX_CTRL1, SX9360_REG_PROX_CTRL1_AVGNEG_THRESH_16K },
-> +	{ SX9360_REG_PROX_CTRL2, SX9360_REG_PROX_CTRL2_AVGDEB_2SAMPLES |
-> +		SX9360_REG_PROX_CTRL2_AVGPOS_THRESH_16K },
-> +	{ SX9360_REG_PROX_CTRL3, SX9360_REG_PROX_CTRL3_AVGNEG_FILT_2 |
-> +		SX9360_REG_PROX_CTRL3_AVGPOS_FILT_256 },
-> +	{ SX9360_REG_PROX_CTRL4, 0x00 },
-> +	{ SX9360_REG_PROX_CTRL5, SX9360_REG_PROX_CTRL5_PROXTHRESH_32 },
-> +};
-> +
->  /* Activate all channels and perform an initial compensation. */
->  static int sx9360_init_compensation(struct iio_dev *indio_dev)
->  {
-> @@ -671,6 +708,51 @@ static int sx9360_init_compensation(struct iio_dev *indio_dev)
->  	return ret;
->  }
->  
-> +static const struct sx_common_reg_default *
-> +sx9360_get_default_reg(struct device *dev, int idx,
-> +		       struct sx_common_reg_default *reg_def)
-> +{
-> +	u32 raw = 0, pos = 0;
-> +	int ret;
-> +
-> +	memcpy(reg_def, &sx9360_default_regs[idx], sizeof(*reg_def));
-> +	switch (reg_def->reg) {
-> +	case SX9360_REG_AFE_PARAM0_PHR:
-> +	case SX9360_REG_AFE_PARAM0_PHM:
-> +		ret = device_property_read_u32(dev, "semtech,resolution", &raw);
-> +		if (ret)
-> +			break;
-> +
-> +		raw = ilog2(raw) - 3;
-> +
-> +		reg_def->def &= ~SX9360_REG_AFE_PARAM0_RESOLUTION_MASK;
-> +		reg_def->def |= FIELD_PREP(SX9360_REG_AFE_PARAM0_RESOLUTION_MASK, raw);
-> +		break;
-> +	case SX9360_REG_PROX_CTRL0_PHR:
-> +	case SX9360_REG_PROX_CTRL0_PHM:
-> +		ret = device_property_read_u32(dev, "semtech,proxraw-strength", &raw);
-> +		if (ret)
-> +			break;
-> +
-> +		reg_def->def &= ~SX9360_REG_PROX_CTRL0_RAWFILT_MASK;
-> +		reg_def->def |= FIELD_PREP(SX9360_REG_PROX_CTRL0_RAWFILT_MASK, raw);
-> +		break;
-> +	case SX9360_REG_PROX_CTRL3:
-> +		ret = device_property_read_u32(dev, "semtech,avg-pos-strength",
-> +					       &pos);
-> +		if (ret)
-> +			break;
-> +
-> +		/* Powers of 2, except for a gap between 16 and 64 */
-> +		raw = clamp(ilog2(pos), 3, 11) - (pos >= 32 ? 4 : 3);
-> +		reg_def->def &= ~SX9360_REG_PROX_CTRL3_AVGPOS_FILT_MASK;
-> +		reg_def->def |= FIELD_PREP(SX9360_REG_PROX_CTRL3_AVGPOS_FILT_MASK, raw);
-> +		break;
-> +	}
-> +
-> +	return reg_def;
-> +}
-> +
->  static int sx9360_check_whoami(struct device *dev,
->  			       struct iio_dev *indio_dev)
->  {
-> @@ -691,12 +773,14 @@ static const struct sx_common_chip_info sx9360_chip_info = {
->  	.mask_enable_chan = SX9360_REG_GNRL_CTRL0_PHEN_MASK,
->  	.stat_offset = 3,
->  	.num_channels = SX9360_NUM_CHANNELS,
-> +	.num_default_regs = ARRAY_SIZE(sx9360_default_regs),
->  
->  	.ops = {
->  		.read_prox_data = sx9360_read_prox_data,
->  		.check_whoami = sx9360_check_whoami,
->  		.init_compensation = sx9360_init_compensation,
->  		.wait_for_sample = sx9360_wait_for_sample,
-> +		.get_default_reg = sx9360_get_default_reg,
->  	},
->  
->  	.iio_channels = sx9360_channels,
+> Why matrix? Can't you use array here? Sorry, I am not much familiar with 
+> JSON schema.
 
+Yes, Rob also opened the discussion, I've answered there on this point,
+but I agree, this should be define as an array, but the current tooling
+refused to accept what I wanted from a dt-writing point of view. More
+on that on the dedicated thread.
+
+> > +    description: Several SPI memories can be wired in stacked mode.
+> > +      This basically means that either a device features several chip
+> > +      selects, or that different devices must be seen as a single
+> > +      bigger chip. This basically doubles (or more) the total address
+> > +      space with only a single additional wire, while still needing
+> > +      to repeat the commands when crossing a chip boundary. The size of
+> > +      each chip should be provided as members of the array.
+> > +    minItems: 2
+> > +    maxItems: 2
+> > +    items:
+> > +      maxItems: 1  
+> 
+> Thanks. This looks better to me.
+> 
+> But before we go ahead, I think there has been some confusion around 
+> what exactly your patches intend to support. Let's clear them up first. 
+> What type of setup do you want to support?
+
+Before I try to clarify your questions below, the setup that I have is:
+
+Xilinx ZynqMP QSPI controller + 2 flashes.
+
+What I want to describe is the specific handling of what the Xilinx
+QSPI controller is able to do. This controller has two modes when wired
+to more than one flash:
+- stacked
+- parallel
+
+I have not entered the documentation nor the code in details yet, but I
+believe that handling two flashes in the stacked configuration, besides
+a couple of possible optimizations that are possible by the hardware,
+is close to what any controller would do. Maybe there is one difference
+though, when in the "stacked" mode, this controller treats the two
+flashes as a single one, so that is why, if we want to support this
+"advanced" mode, we *need* a way to know that this mode should be used
+because the controller expects a wider range of addresses.
+
+About the parallel configuration, there is absolutely no doubt that we
+have no other choice than describing how the data is spread across two
+devices. We don't really care about the manner, but the controller
+needs to know how to assert the two CS internally so this definitely
+something that needs to be described.
+
+Now the question you might ask is, why do we define these properties as
+flash properties then? And this is a real good question, I think both
+actually work as long as we consider that we can only have either a
+spi-memory or any other type of device on a single bus, but not both at
+the same time. In v1 I proposed a controller property. Mark proposed to
+switch for a device property which I did in v2 onward.
+
+>   1. One single flash but with multiple dies, with each die sitting on a 
+>      different CS.
+
+Yes.
+
+>   2. Two (or more) identical but independent flash memories to be 
+>      treated as one.
+
+Yes.
+
+>   3. Two (or more) different and independent flash memories to be 
+>      treated as one.
+
+I don't know. My first proposal excluded these, but I believe we can
+handle them with the change your proposed (the device size as part of
+the property).
+
+> In our earlier exchanges you said you want to support 2. And when I 
+> wanted you to account for 3 as well you said we should use mtdconcat for 
+> that.
+
+Not that we should, but that we could because from a core perspective
+it's way more challenging than supporting identical devices. But the
+conversation drifted about the software backend that we should use
+rather than on the actual description, because mtdconcat is not a
+feature which benefits from any kind of description yet, so even if we
+use mtdconcat as backed, we will need some kind of description here as
+well. So, as I told previously, I am fine considering these setups
+in my proposal, that's why I updated my proposal to include the
+devices size, even though that is way out of scope compared to my
+initial target.
+
+But here we are talking about driver code, which has nothing to do with
+the bindings. If we focus on the bindings, I believe the solution with
+the sizes covers all cases.
+
+> So my question is, why can't we use mtdconcat for 2 as well, since 
+> it is just a special case of 3? And if we are using mtdconcat, then why 
+> do we need this at all? Shouldn't you then choose the chip at MTD layer 
+> and use the respective SPI device to get the CS value, which would make 
+> this property useless?
+
+Reason 1:
+As depicted above, while the stacked mode might more or less
+fit the mtdconcat idea, it is absolutely not the case for the parallel
+mode.
+
+Reason 2:
+mtdconcat is a software backend. Here we are discussing bindings.
+No matter what backed we finally pick, there will be the need for a
+proper description and so far there has been no binding for mtdconcat
+(even though I tried to push in favor of it a while ago without
+success). So no matter what software solution we we adopt, we
+*will* need an upstream binding description at some point. But
+mtdconcat really means "there are two devices we want to consider as a
+single". While here the point is: we have two devices that get
+abstracted by the controller, and we still must describe that.
+
+> I can see this making sense for case 1. For that case you said you don't 
+> have an existing datasheet or device to propose. And if there is no real 
+> device doing it I see little point in figuring out a binding for it.
+
+Yes, because somewhat we focused the debate over the devices, while I
+was initially talking about a controller abstraction. There is (at
+least) one controller doing such abstractions, the Xilinx ZynqMP
+generic QSPI controller, the spec is public (chapter 24):
+https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf
+
+I hope all this clarifies the situation!
+
+Cheers,
+Miquèl
