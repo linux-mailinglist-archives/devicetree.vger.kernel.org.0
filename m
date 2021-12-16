@@ -2,167 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AFAE4775E7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:29:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA9C04775F1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:30:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237931AbhLPP3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 10:29:33 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:42715 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229868AbhLPP3c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:29:32 -0500
-Received: by mail-ot1-f42.google.com with SMTP id 47-20020a9d0332000000b005798ac20d72so29339037otv.9;
-        Thu, 16 Dec 2021 07:29:32 -0800 (PST)
+        id S238545AbhLPPah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 10:30:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58110 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238552AbhLPPag (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:30:36 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E8A8C06173F;
+        Thu, 16 Dec 2021 07:30:35 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id u17so44914865wrt.3;
+        Thu, 16 Dec 2021 07:30:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=8ljz1sia0YjUcnh8cX/bSKFrHoMO2tH/2wPxmNzX1O4=;
+        b=hfDSQRBrhQVm2NOzdpqwxylBGQgeOUmm8l8Ro2WD06r79RRhoMX8Jwm6RhUmtUCLDn
+         CN1ivuFuclTpTB2h5j7URTwgL5x4u5r8I4DEg9qimVY3Zuhf9gqgcoTSKQSXjQcd2qAZ
+         Mw3fznXHYx/UYtdjAjx/kVSIWlOSXooFnYvm+eGcZg9H9DCOE0yKCt+QXygZ9elAPIQA
+         cklYHS4uSDCY5yC7WtEiT9qq8MXoLcl0st+4lWR3gTEl33sJrBGyuY9WpG2l84VvrIPq
+         6nLGOopCQ4ewFXcVvMcwsEjdAu/cV/oudhLr7y14aI+SiWrGNnAQA+xaEDV3BdzI649f
+         o6aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=nd0xNoxLdpMIETPTqt7EOTZuURPFhkkV6DEMEZNnfsY=;
-        b=dxcHcIHz5LNrvLJ0cYk6A19BLsA9FLDW2QFrKojP3bGuc2mXHSwxeo/WbUZdKHuwS1
-         52qXsQh53ECh7irK6EDhdLz6h7sCg8UhALOD62jPjl1D9HneT6eSjl3eTkKDyqEuxi+N
-         Yru4J0aHWTcu+eTqCjWPprrR1JxDBYDjTcYhNjgWsLLAjDtd4R4WFD1wlHgZUfu2C9vc
-         lB0rAU0tx99L3w7wTzPshvoOncdL94vd3iJVd57mhqBt+s9JK3ufcnZZfhifNfJ1zt4q
-         ML8aiARsKeSxKLg+SACLHKhnrMBlRXl11y363c3NXXiRbc9A0wBjA2qF7klaQMWTe5/6
-         OuYA==
-X-Gm-Message-State: AOAM530dOKKYsNJpnbLhRObAcJ76alONMYJhNDvQoFaFvXfDFFmaaC5M
-        TSNmXamBm4bjuGkCAfUsmw==
-X-Google-Smtp-Source: ABdhPJxkmQtefEO2GB4IesaVw1R5Cx1RYgQ2YBifPAlnsoTenbd4aeBi77x3cWkw+Dtx8+aTJgXrNw==
-X-Received: by 2002:a9d:6a56:: with SMTP id h22mr12884867otn.135.1639668571810;
-        Thu, 16 Dec 2021 07:29:31 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q9sm1078070oti.32.2021.12.16.07.29.30
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=8ljz1sia0YjUcnh8cX/bSKFrHoMO2tH/2wPxmNzX1O4=;
+        b=WH+14+bWlXPM0GE0zIqsOybNWk8C0TWwQ9/c/eUN5SumA2s0xX3BftMZvvxvRwM5js
+         /6y0aUV+xtuJjHC0eLAAdT0WPibm4uNjFRcGyW3LQg3qqZtBkScf14DXT1ewaW7QHLoQ
+         gyARKYtwZzW9Pdqwkp41WZJJ7fq18GA3CS1ijoBB7kC9GhMlvW2uf72sLs75YNWvpSNA
+         8x/Wh7FtbxLNHSvCrFe1rKFubMXxekqTbw3e3VNkS/ApkwFYDFJuWUhOs49tq7zulzo+
+         0EADSSt60aYnqtNWR/KCHH1/A4wQYj2VnpFqnpIEyvmk60ewv10Cmz2P5QQkK601bcRf
+         B/tw==
+X-Gm-Message-State: AOAM531y3EySqD2e5aH14gOpL0I/0/k7K2k4DNEYVRKHOIRnQOXsEt8f
+        kxRzCi70A280fKvuKbtz3Wo=
+X-Google-Smtp-Source: ABdhPJyGqb1sK9/KehghXxEJLcEssMut1QZQEgMFWqLe0DyI32xXK6U2NEiO83P+2tWeOyGZch1AlQ==
+X-Received: by 2002:adf:aa9a:: with SMTP id h26mr9312334wrc.437.1639668634242;
+        Thu, 16 Dec 2021 07:30:34 -0800 (PST)
+Received: from orome ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id l22sm4869371wmq.2.2021.12.16.07.30.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 07:29:31 -0800 (PST)
-Received: (nullmailer pid 251708 invoked by uid 1000);
-        Thu, 16 Dec 2021 15:29:30 -0000
-Date:   Thu, 16 Dec 2021 09:29:30 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dejia Shang <dejia.shang@armchina.com>
-Cc:     gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        toby.shang@armchina.com
-Subject: Re: [PATCH 3/4] dt-bindings: add vendor-prefix and documentation for
- Zhouyi NPU
-Message-ID: <YbtbWh2dhMhMHMfX@robh.at.kernel.org>
-References: <20211215103609.9268-1-dejia.shang@armchina.com>
- <20211215103609.9268-4-dejia.shang@armchina.com>
+        Thu, 16 Dec 2021 07:30:33 -0800 (PST)
+Date:   Thu, 16 Dec 2021 16:30:29 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Agneli <poczt@protonmail.ch>, linux-tegra@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v4 12/22] ASoC: tegra20: spdif: Filter out unsupported
+ rates
+Message-ID: <YbtbleAye0kQ3Ghq@orome>
+References: <20211204143725.31646-1-digetx@gmail.com>
+ <20211204143725.31646-13-digetx@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="hlDusqvBIjGc6g1d"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211215103609.9268-4-dejia.shang@armchina.com>
+In-Reply-To: <20211204143725.31646-13-digetx@gmail.com>
+User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 15, 2021 at 06:36:08PM +0800, Dejia Shang wrote:
-> To enable this NPU IP in Arm-Linux system, SoC vendors should
-> write devicetree files as documented.
-> 
-> Signed-off-by: Dejia Shang <dejia.shang@armchina.com>
+
+--hlDusqvBIjGc6g1d
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sat, Dec 04, 2021 at 05:37:15PM +0300, Dmitry Osipenko wrote:
+> SPDIF and other SoC components share audio PLL on Tegra, thus only one
+> component may set the desired base clock rate. This creates problem for
+> HDMI audio because it uses SPDIF and audio may not work if SPDIF's clock
+> doesn't exactly match standard audio rate since some receivers may reject
+> audio in that case. Filter out audio rates which SPDIF output can't
+> support, assuming that other components won't change rate at runtime.
+>=20
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 > ---
->  .../bindings/misc/armchina,zhouyi-npu.yaml    | 57 +++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
->  2 files changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/armchina,zhouyi-npu.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/misc/armchina,zhouyi-npu.yaml b/Documentation/devicetree/bindings/misc/armchina,zhouyi-npu.yaml
-> new file mode 100644
-> index 000000000000..d3fdea101114
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/armchina,zhouyi-npu.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/misc/armchina,zhouyi-npu.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: ArmChina Zhouyi NPU bindings
-> +
-> +maintainers:
-> +  - Dejia Shang <dejia.shang@armchina.com>
-> +
-> +description: |
-> +  Armchina AI accelerator IP - Zhouyi NPU
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: armchina,zhouyi-v1
-> +      - const: armchina,zhouyi-v2
-> +      - const: armchina,zhouyi
+>  sound/soc/tegra/tegra20_spdif.c | 61 +++++++++++++++++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>=20
+> diff --git a/sound/soc/tegra/tegra20_spdif.c b/sound/soc/tegra/tegra20_sp=
+dif.c
+> index a4aa5614aef4..d09cd7ee6879 100644
+> --- a/sound/soc/tegra/tegra20_spdif.c
+> +++ b/sound/soc/tegra/tegra20_spdif.c
+> @@ -79,6 +79,7 @@ static int tegra20_spdif_hw_params(struct snd_pcm_subst=
+ream *substream,
+>  	struct tegra20_spdif *spdif =3D dev_get_drvdata(dai->dev);
+>  	unsigned int mask =3D 0, val =3D 0;
+>  	int ret, spdifclock;
+> +	long rate;
 
-This says compatible must be a list of all 3 of these.
+Perhaps we should change spdifclock to be "long" as well, even though
+they're the same on Tegra20. SND_SOC_TEGRA depends on || COMPILE_TEST,
+so technically somebody could build this on 64-bit and then these are
+no longer the same types.
 
-Where do v1 and v2 come from? We don't do version numbers in DT usually 
-unless they correspond to h/w revision registers or h/w documentation. I 
-would assume the h/w follows the Arm rXpY form?
+Still shouldn't be problematic given the numbers that are passed in,
+but it'd still be nice to keep consistent types for these.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  memory-region:
-> +    maxItems: 2
+> =20
+>  	mask |=3D TEGRA20_SPDIF_CTRL_PACK |
+>  		TEGRA20_SPDIF_CTRL_BIT_MODE_MASK;
+> @@ -133,6 +134,12 @@ static int tegra20_spdif_hw_params(struct snd_pcm_su=
+bstream *substream,
+>  		return ret;
+>  	}
+> =20
+> +	rate =3D clk_get_rate(spdif->clk_spdif_out);
+> +	if (rate !=3D spdifclock)
+> +		dev_warn_once(dai->dev,
+> +			      "SPDIF clock rate %d doesn't match requested rate %lu\n",
 
-What is each region?
+That should be %ld since it's not unsigned.
 
-This requires 2 entries, but the example only has 1.
+Otherwise, looks good. Probably not worth respinning for just these
+minor comments, so:
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    reserved-memory {
-> +                #address-cells = <2>;
-> +                #size-cells = <2>;
-> +                ranges;
-> +
-> +                aipu_ddr_reserved: aipu-shmem@0xA0000000 {
+Acked-by: Thierry Reding <treding@nvidia.com>
 
-aipu-shmem@a0000000
+--hlDusqvBIjGc6g1d
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +                        compatible = "shared-dma-pool";
-> +                        no-map;
-> +                        reg = <0x0 0xA0000000 0x0 0x4000000>;
-> +                };
-> +    };
-> +
-> +    aipu0@0x64000000 {
+-----BEGIN PGP SIGNATURE-----
 
-Drop '0x'
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmG7W5UACgkQ3SOs138+
+s6EoZA//RbQ55S5Uiwy8g6JPCcgotaa5lun+zkW1rlcFkNxQdjV2L34+7vI2qe0p
+cq0JRwSP9gcN70Ev3gZvdfsX8gF3PpUa8CI/n4LekRF/w7UpBODl2DnjBMx5ooMT
+oCttnlJ9n6Oguj4HumyNE4IHEaEvPh4ZM2zwTYjWZKRFZprajsSOLnLld9Hb5DIz
+ouN5/TX14FNRl1SlW69oBs370/y+ai9VKIgYnHjgkDCyG0iIHVUDG6qlowt8XbfR
+RTUeB6yxy9Pb2ip2zRFC/q2bK4SjsrVk3nM1UgQ1MRtJXUhXI7KmIsHMsZgOKYqL
+P+HSo1xynxA9KlqowzmB7z8rmkAb8C0ItGNDeC56B+D62mJNaRGMlPd8eP9g4S+P
+UKev7F4U6L9kER3L+0LbpTvfNRngqgaGwiCvluPdP/u2DR000QGH9/9GOeQvGHqQ
+0BcqIunA/H+DTdWqcvlyoqUIZxH1EWWsa7W6jJ+YRsW0W7jTrHjm1oV+EWg+mNt3
+uWHb7dvl106okJNL9NPnxYN3mrAUAxgCUaCwRNrLp2Ls8qK524kXIbkGvm6AkwPn
+7W5fLG0y0+nocEBXD51rz6uFzl1t5xCqw1Y77p5QDamNyErjxZx9DyXe4/fdWrTt
+ouaaeKp7Og++Bpn0D0XcwBIFDu40tBkQLzD0xF0Ieu2tv3gWMlE=
+=gmxg
+-----END PGP SIGNATURE-----
 
-> +                compatible = "armchina,zhouyi";
-> +                reg = <0x0 0x64000000 0x0 0x1000>;
-> +                memory-region=<&aipu_ddr_reserved>;
-> +                interrupts = <0 168 1>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 66d6432fd781..4b1865d92455 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -123,6 +123,8 @@ patternProperties:
->      description: ARM Ltd.
->    "^armadeus,.*":
->      description: ARMadeus Systems SARL
-> +  "^armchina,.*":
-> +    description: Arm Technology (China) Co., Ltd.
->    "^arrow,.*":
->      description: Arrow Electronics
->    "^artesyn,.*":
-> --
-> 2.17.1
-> 
-> IMPORTANT NOTICE: The contents of this email and any attachments may be privileged and confidential. If you are not the intended recipient, please delete the email immediately. It is strictly prohibited to disclose the contents to any other person, use it for any purpose, or store or copy the information in any medium. Thank you. ©Arm Technology (China) Co., Ltd copyright and reserve all rights. 重要提示：本邮件（包括任何附件）可能含有专供明确的个人或目的使用的机密信息，并受法律保护。如果您并非该收件人，请立即删除此邮件。严禁通过任何渠道，以任何目的，向任何人披露、储存或复制邮件信息或者据此采取任何行动。感谢您的配合。 ©安谋科技（中国）有限公司 版权所有并保留一切权利。
-> 
+--hlDusqvBIjGc6g1d--
