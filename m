@@ -2,76 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9D6E4774FA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 15:51:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEC6447751B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 15:58:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237791AbhLPOvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 09:51:08 -0500
-Received: from mail.skyhub.de ([5.9.137.197]:45844 "EHLO mail.skyhub.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230071AbhLPOvI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Dec 2021 09:51:08 -0500
-Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S234751AbhLPO6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 09:58:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50370 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233629AbhLPO6p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 09:58:45 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 132DFC061574;
+        Thu, 16 Dec 2021 06:58:45 -0800 (PST)
+Received: from [IPv6:2a01:e0a:120:3210:647b:8ae3:3908:58d6] (unknown [IPv6:2a01:e0a:120:3210:647b:8ae3:3908:58d6])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 0A7DA1EC0419;
-        Thu, 16 Dec 2021 15:51:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1639666263;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=gwd7VxmKKtoTXJLXRGn4CLQ+T8sMLPOOyjX/C/oIjyI=;
-        b=fJWC1UXbUfQg1O0yU1XHJldag2bjEGwzo3HSUIKm0o5vq7whq5jYUvVAgt/ffLPtRT7eO8
-        et04soA+Pv1jP8tHwhtFoMMVvaz6pc1in60j3zM/3L1Zn71Dt0vc0C7BFHIKjyjbZoR7nL
-        bUTVkVnwOuXg9VGhUcgpc7jiG15IVGM=
-Date:   Thu, 16 Dec 2021 15:51:10 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
-        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
+        (Authenticated sender: benjamin.gaignard)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id DD3061F463F9;
+        Thu, 16 Dec 2021 14:58:42 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1639666723; bh=BTdDikXpF4XSx021w9PRTEKVLDa7Vof8nDF6T89RUCg=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=PbS5VrVK3UMCLMI7wxt0g+wotYuMxgcYrjS7sJj2+Y6QdsAoGvx9o383Sz85bwlQA
+         x5vLKVKL3t3bBPOgBztuJnop3EWS6MgZ4E0tBMDD2gwDRTy8ktMOQlf2EXnroX83dY
+         rATCENy9mcDZTSuI1DmqRjCIKwHRiOvD4MYoP2kKl+W7f7r61S1JY5mM5tVC59FpTD
+         7ePBuhvMzOsDopFmYhdcQXdFyJohMPBjtyuu/pFHpP3KA5LUBALqftc7zJhIRm5ZlK
+         9bWyz/4Ncmx35NqEtMjkuLz81NP05g25WtdsL+CMsBnyX90iTP2T6jymNMV8W/T/M3
+         i3k3OJ6nAqGjw==
+Subject: Re: [PATCH V2 00/10] media: hantro: imx8mq/imx8mm: Let VPU decoders
+ get controlled by vpu-blk-ctrl
+To:     Adam Ford <aford173@gmail.com>, linux-media@vger.kernel.org
+Cc:     abel.vesa@nxp.com, aford@beaconembedded.com,
+        hverkuil-cisco@xs4all.nl,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-Subject: Re: [PATCH v17 05/10] x86: kdump: move reserve_crashkernel[_low]()
- into crash_core.c
-Message-ID: <YbtSXrVGe+1dpanP@zn.tnic>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <20211210065533.2023-6-thunder.leizhen@huawei.com>
- <YbsgNpPMmp38X+it@zn.tnic>
- <217fb106-980c-0bd9-8398-d52ef255d51f@huawei.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev
+References: <20211216111256.2362683-1-aford173@gmail.com>
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Message-ID: <32791d1e-c81e-ea11-c7a6-e8cbebe49a5e@collabora.com>
+Date:   Thu, 16 Dec 2021 15:58:40 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <217fb106-980c-0bd9-8398-d52ef255d51f@huawei.com>
+In-Reply-To: <20211216111256.2362683-1-aford173@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 09:15:18PM +0800, Leizhen (ThunderTown) wrote:
-> I agree with you. This makes the code look clear. I will do it, try to
-> post v18 next Monday.
 
-Don't rush it: take your time, do it nice and clean, make sure each
-patch does one logical thing only so that there are no bugs introduced
-and the pile can is reviewable.
+Le 16/12/2021 à 12:12, Adam Ford a écrit :
+> Both the i.MX8MQ and i.MX8MM have G1 and G2 decoders.
+> The two decoders are similar, but the imx8mm lacks the
+> post-processor, so they will have distinct compatible flags.
+>
+>  From what I can tell, the G2 decoder wasn't working, so splitting
+> the i.MX8MQ VPU into G1 and G2 makes it easier to control them
+> independently since the TRM of both the i.MX8MQ and
+> i.MX8MM list them as distinct IP blocks. This also allowed G2 to
+> become available.
+>
+> With them being split, the power-domain can shift to the
+> vpu-blk-ctrl which is available on both i.MX8MQ and i.MX8MM,
+> but some of bits are different, so they'll have separate bindings.
+>
+> Lastly, with the G1 and G2 operational, enable the i.MX8MM.
+> On the i.MX8MM, the clock speed of 600MHz was chosen to match
+> the default of the kernel repo from NXP and can be overwritten
+> by board files for anyone who under/over volts the power rail.
+>
+> There seems to be some disagreement between the TRM and the Datasheet
+> for the imx8mq as to whether the speed should be 300MHz (TRM) or
+> 600MHz (datasheet), so feedback from NXP would be very much
+> appreciated.
+>
+> The repo used as the starting point was:
+> git://linuxtv.org/hverkuil/media_tree.git for-v5.17e
+>
+> Fluster was run on both i.MX8MM and i.MX8MQ
+>
+> At 600 MHz, the i.MX8MM had the following:
+>
+> ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
+> Ran 55/61 tests successfully               in 8.299 secs
+>
+> ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
+> Ran 90/135 tests successfully               in 71.200 secs
+>
+> ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
+> Ran 139/303 tests successfully               in 218.079 secs
+>
+> The i.MX8MQ had the following:
+>
+> ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
+> Ran 55/61 tests successfully               in 7.732 secs
+>
+> ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
+> Ran 90/135 tests successfully               in 58.558 secs
+>
+> ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
+> Ran 144/303 tests successfully               in 271.373 secs
 
-Thx.
+I have tested this series on top of media_stage/master branch
+with IMX6MQ:
 
--- 
-Regards/Gruss,
-    Boris.
+./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
+Ran 57/61 tests successfully               in 32.725 secs
 
-https://people.kernel.org/tglx/notes-about-netiquette
+./fluster.py run -d GStreamer-H.264-V4L2SL-Gst1.0
+Ran 89/135 tests successfully               in 131.632 secs
+
+./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
+Ran 146/303 tests successfully               in 304.345 secs
+
+./fluster.py run -d GStreamer-H.265-V4L2SL-Gst1.0 -j 1
+Ran 77/147 tests successfully               in 1047.211 secs
+
+For this series:
+
+Tested-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+
+Thanks to fix this problem.
+Benjamin
+
+>
+> V2:  Remove references to legacy dt-binding from YAML, but keep
+>       it in the driver so older device trees can still be used.
+>       Fix typos in YAML
+>       Remove reg-names, interrupt-names, and clock-names from YAML,
+>       since each node will only have one of each, they're not necessary
+>       Add Fluster scores to cover letter for i.MX8MQ
+>
+> Adam Ford (7):
+>    dt-bindings: media: nxp,imx8mq-vpu: Split G1 and G2 nodes
+>    media: hantro: Allow i.MX8MQ G1 and G2 to run independently
+>    arm64: dts: imx8mq: Enable both G1 and G2 VPU's with vpu-blk-ctrl
+>    arm64: dts: imx8mm: Fix VPU Hanging
+>    dt-bindings: media: nxp,imx8mq-vpu: Add support for G1 and G2 on
+>      imx8mm
+>    media: hantro: Add support for i.MX8MM
+>    arm64: dts: imx8mm: Enable Hantro G1 and G2 video decoders
+>
+> Lucas Stach (3):
+>    dt-bindings: power: imx8mq: add defines for VPU blk-ctrl domains
+>    dt-bindings: soc: add binding for i.MX8MQ VPU blk-ctrl
+>    soc: imx: imx8m-blk-ctrl: add i.MX8MQ VPU blk-ctrl
+>
+>   .../bindings/media/nxp,imx8mq-vpu.yaml        | 93 +++++++++++--------
+>   .../soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml      | 71 ++++++++++++++
+>   arch/arm64/boot/dts/freescale/imx8mm.dtsi     | 23 ++++-
+>   arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 63 ++++++++-----
+>   drivers/soc/imx/imx8m-blk-ctrl.c              | 68 +++++++++++++-
+>   drivers/staging/media/hantro/hantro_drv.c     |  3 +
+>   drivers/staging/media/hantro/hantro_hw.h      |  3 +
+>   drivers/staging/media/hantro/imx8m_vpu_hw.c   | 75 ++++++++++++---
+>   include/dt-bindings/power/imx8mq-power.h      |  3 +
+>   9 files changed, 324 insertions(+), 78 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml
+>
+>
+> base-commit: d1888b0bfd2ddef2e8a81505ffa200b92cc32e0c
