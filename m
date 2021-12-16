@@ -2,132 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CB77477467
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 15:24:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FDC2477475
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 15:27:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237921AbhLPOYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 09:24:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42444 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbhLPOYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 09:24:54 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5D97C061574;
-        Thu, 16 Dec 2021 06:24:53 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id u22so38732254lju.7;
-        Thu, 16 Dec 2021 06:24:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=3te9pe7rOJHos3EuPgW4pF2bDr58GHICUC52sb6TTQw=;
-        b=igVil4d7hecRf/ZlSHkjGruHgf+4OOe4/KwyAc3HNyI/F2/EASnbWlmBW1xTb9kyIf
-         LCsjrURmGl04f3eT9XO2PC7S7qc7QHJF7vXVdsW221Oir2aAxMMhWcEDjv3yX9WDczqV
-         ZDS/IvjvPnck+FzEw10c7WJJf3Hs1whJzcS4oMZEwL83kIugA95UTue+8vljF7orSw/F
-         W1pN26OniH5nNBEyrLvvldgEsL7ZcXLfrgZgfW/+EJCzdM179Fnek2baPlSqDFWaJuu5
-         R2hxrJEuFfzP88gWkIzimlDjZBs6i7mip18yIbHvCl3zFmfzJdLvHKsnANZ9IEim+FqC
-         +aZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=3te9pe7rOJHos3EuPgW4pF2bDr58GHICUC52sb6TTQw=;
-        b=3u6oU+SIT2NvO14nNK86ndpl5Uz+kufgoj8KnNh33RabfG5b8AJl6/9RE6oUYPcB6f
-         NCTXf28/9dRU1BJ9baxj17uhhX4mN4Mn+ElrniqeUj4xAJvbjcpGCfxpx6voQzFFefJN
-         8g/k2ehbO7fZgx8UUyF9bB6dm6VyZKRJFhSWEnp9qrOiKEtoCmUVdxG7kbnWRepObcB1
-         ndphNIeDlgeHgCvk6Ur4r0gJ/ZmB/DLOpVcjXH9/l+9DMEVJRlVSLLgtsVP3T9LvsEsH
-         GSUP8sIND1YVxeNKlehH2W8dwEahvQG+kfblCYKjqGT+OEWAxWUYxWuGjQ6CEocrgXm+
-         R6rQ==
-X-Gm-Message-State: AOAM532b9toFQPV126tPw7RK6d7IMgS1jUBjA97rWsgH5PFSHj7kqN+O
-        8yN1+aAzKCuD0X0SdpneZfk=
-X-Google-Smtp-Source: ABdhPJyZgc6J3PJapwYvBcgEEKZ/Jerd++aLCQoky0Jcr64DLrgfwsKC+jhHtu9KLPZdgvdP4/NUvA==
-X-Received: by 2002:a2e:948:: with SMTP id 69mr15645160ljj.82.1639664692137;
-        Thu, 16 Dec 2021 06:24:52 -0800 (PST)
-Received: from [192.168.2.145] (94-29-63-156.dynamic.spd-mgts.ru. [94.29.63.156])
-        by smtp.googlemail.com with ESMTPSA id a12sm896315lfk.227.2021.12.16.06.24.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Dec 2021 06:24:51 -0800 (PST)
-Subject: Re: [PATCH v4 20/22] ARM: tegra: Add HDMI audio graph to Tegra20
- device-tree
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Agneli <poczt@protonmail.ch>, linux-tegra@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-References: <20211204143725.31646-1-digetx@gmail.com>
- <20211204143725.31646-21-digetx@gmail.com> <YbtDNbdJqCGTaMNs@orome>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <7cc2693f-df2d-b3ca-5336-4815d98a67cb@gmail.com>
-Date:   Thu, 16 Dec 2021 17:24:50 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S237966AbhLPO1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 09:27:11 -0500
+Received: from mga14.intel.com ([192.55.52.115]:14042 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232544AbhLPO1K (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Dec 2021 09:27:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1639664830; x=1671200830;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=vHBn3hJcNDa3c/jQRAUPEfwjeSlg6EkckBzQxR0cd5o=;
+  b=TjvaGGYpSbHOFQuqMseKKv7R1uZYk38iEwhg3EgQEqDpihYGddiIfov8
+   XkBsR/vBobe2COR69ZtQLU0Yx/+LC91zaebq/syfs5BSO82THZQCOKDM9
+   zbG3ivZ8WLuMf3Z7taPO7GHvAXOTaQLFA0XOrSdwzTeje5c3esL413aGK
+   Ijzzf6satpKDps5m6AnI4M18vkmhZ0xuBMHEZGfxxGPff+pVMXyGkrSa/
+   lMAkaASd9m6yByXqDrQIByZ5hf22sACPI1wO7+zYU4x+Zbez8cYkDahfo
+   z8XaATOGnI3TdIjfK/WH0zfpCK5dcZHkD6ZD37J6SFlLtwvJCAhm4ch76
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10199"; a="239724762"
+X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; 
+   d="scan'208";a="239724762"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2021 06:27:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; 
+   d="scan'208";a="755925183"
+Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
+  by fmsmga005.fm.intel.com with ESMTP; 16 Dec 2021 06:27:07 -0800
+Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mxrit-0003KQ-4S; Thu, 16 Dec 2021 14:27:07 +0000
+Date:   Thu, 16 Dec 2021 22:26:11 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     kbuild-all@lists.01.org,
+        =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 2/2] pinctrl: bcm: add driver for BCM4908 pinmux
+Message-ID: <202112162229.R65wpBRJ-lkp@intel.com>
+References: <20211215204753.5956-2-zajec5@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <YbtDNbdJqCGTaMNs@orome>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211215204753.5956-2-zajec5@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-16.12.2021 16:46, Thierry Reding пишет:
-> On Sat, Dec 04, 2021 at 05:37:23PM +0300, Dmitry Osipenko wrote:
->> Add HDMI audio graph to Tegra20 device-tree to enable HDMI audio on
->> Tegra20 devices.
->>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->> ---
->>  arch/arm/boot/dts/tegra20.dtsi | 22 +++++++++++++++++++++-
->>  1 file changed, 21 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm/boot/dts/tegra20.dtsi b/arch/arm/boot/dts/tegra20.dtsi
->> index 72cbe32d0c1d..dde228bcbbff 100644
->> --- a/arch/arm/boot/dts/tegra20.dtsi
->> +++ b/arch/arm/boot/dts/tegra20.dtsi
->> @@ -186,7 +186,7 @@ rgb {
->>  			};
->>  		};
->>  
->> -		hdmi@54280000 {
->> +		tegra_hdmi: hdmi@54280000 {
->>  			compatible = "nvidia,tegra20-hdmi";
->>  			reg = <0x54280000 0x00040000>;
->>  			interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
->> @@ -1063,4 +1063,24 @@ pmu {
->>  		interrupt-affinity = <&{/cpus/cpu@0}>,
->>  				     <&{/cpus/cpu@1}>;
->>  	};
->> +
->> +	sound-hdmi {
->> +		compatible = "simple-audio-card";
->> +		simple-audio-card,name = "NVIDIA Tegra20 HDMI";
->> +
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		simple-audio-card,dai-link@0 {
->> +			reg = <0>;
->> +
->> +			cpu {
->> +				sound-dai = <&tegra_spdif>;
->> +			};
->> +
->> +			codec {
->> +				sound-dai = <&tegra_hdmi>;
->> +			};
->> +		};
->> +	};
-> 
-> Should this be status = "disabled" and then only enabled for platforms
-> that actually enable HDMI?
+Hi "Rafał,
 
-Assuming that HDMI node is disabled, we assume that the card won't be
-initialized. It won't be a problem to restructure this card in DT later
-on if we will have any other use-cases than we currently have, but this
-is unlikely to happen in practice.
+I love your patch! Perhaps something to improve:
+
+[auto build test WARNING on linusw-pinctrl/devel]
+[also build test WARNING on robh/for-next linus/master v5.16-rc5 next-20211215]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Rafa-Mi-ecki/dt-bindings-pinctrl-Add-binding-for-BCM4908-pinctrl/20211216-044855
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
+config: alpha-randconfig-s031-20211216 (https://download.01.org/0day-ci/archive/20211216/202112162229.R65wpBRJ-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 11.2.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # apt-get install sparse
+        # sparse version: v0.6.4-dirty
+        # https://github.com/0day-ci/linux/commit/52ad0e1851a5d242cde2829eca853a7369807c42
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Rafa-Mi-ecki/dt-bindings-pinctrl-Add-binding-for-BCM4908-pinctrl/20211216-044855
+        git checkout 52ad0e1851a5d242cde2829eca853a7369807c42
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=alpha SHELL=/bin/bash drivers/perf/ drivers/pinctrl/bcm/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/pinctrl/bcm/pinctrl-bcm4908.c:542:53: sparse: sparse: incorrect type in argument 3 (different modifiers) @@     expected char const **groups @@     got char const *const *const groups @@
+   drivers/pinctrl/bcm/pinctrl-bcm4908.c:542:53: sparse:     expected char const **groups
+   drivers/pinctrl/bcm/pinctrl-bcm4908.c:542:53: sparse:     got char const *const *const groups
+
+vim +542 drivers/pinctrl/bcm/pinctrl-bcm4908.c
+
+   468	
+   469	static int bcm4908_pinctrl_probe(struct platform_device *pdev)
+   470	{
+   471		struct device *dev = &pdev->dev;
+   472		struct bcm4908_pinctrl *bcm4908_pinctrl;
+   473		struct pinctrl_desc *pctldesc;
+   474		struct pinctrl_pin_desc *pins;
+   475		int i;
+   476	
+   477		bcm4908_pinctrl = devm_kzalloc(dev, sizeof(*bcm4908_pinctrl), GFP_KERNEL);
+   478		if (!bcm4908_pinctrl)
+   479			return -ENOMEM;
+   480		pctldesc = &bcm4908_pinctrl->pctldesc;
+   481		platform_set_drvdata(pdev, bcm4908_pinctrl);
+   482	
+   483		/* Set basic properties */
+   484	
+   485		bcm4908_pinctrl->dev = dev;
+   486	
+   487		bcm4908_pinctrl->base = devm_platform_ioremap_resource(pdev, 0);
+   488		if (IS_ERR(bcm4908_pinctrl->base)) {
+   489			dev_err(dev, "Failed to map pinctrl regs\n");
+   490			return PTR_ERR(bcm4908_pinctrl->base);
+   491		}
+   492	
+   493		memcpy(pctldesc, &bcm4908_pinctrl_desc, sizeof(*pctldesc));
+   494	
+   495		/* Set pinctrl properties */
+   496	
+   497		pins = devm_kcalloc(dev, BCM4908_NUM_PINS,
+   498				    sizeof(struct pinctrl_pin_desc), GFP_KERNEL);
+   499		if (!pins)
+   500			return -ENOMEM;
+   501		for (i = 0; i < BCM4908_NUM_PINS; i++) {
+   502			pins[i].number = i;
+   503			pins[i].name = devm_kasprintf(dev, GFP_KERNEL, "pin%d", i);
+   504			if (!pins[i].name)
+   505				return -ENOMEM;
+   506		}
+   507		pctldesc->pins = pins;
+   508		pctldesc->npins = BCM4908_NUM_PINS;
+   509	
+   510		/* Register */
+   511	
+   512		bcm4908_pinctrl->pctldev = devm_pinctrl_register(dev, pctldesc, bcm4908_pinctrl);
+   513		if (IS_ERR(bcm4908_pinctrl->pctldev)) {
+   514			dev_err(dev, "Failed to register pinctrl\n");
+   515			return PTR_ERR(bcm4908_pinctrl->pctldev);
+   516		}
+   517	
+   518		/* Groups */
+   519	
+   520		for (i = 0; i < ARRAY_SIZE(bcm4908_pinctrl_grps); i++) {
+   521			const struct bcm4908_pinctrl_grp *group = &bcm4908_pinctrl_grps[i];
+   522			int *pins;
+   523			int j;
+   524	
+   525			pins = devm_kcalloc(dev, group->num_pins, sizeof(*pins), GFP_KERNEL);
+   526			if (!pins)
+   527				return -ENOMEM;
+   528			for (j = 0; j < group->num_pins; j++)
+   529				pins[j] = group->pins[j].number;
+   530	
+   531			pinctrl_generic_add_group(bcm4908_pinctrl->pctldev, group->name,
+   532						  pins, group->num_pins, (void *)group);
+   533		}
+   534	
+   535		/* Functions */
+   536	
+   537		for (i = 0; i < ARRAY_SIZE(bcm4908_pinctrl_functions); i++) {
+   538			const struct bcm4908_pinctrl_function *function = &bcm4908_pinctrl_functions[i];
+   539	
+   540			pinmux_generic_add_function(bcm4908_pinctrl->pctldev,
+   541						    function->name,
+ > 542						    function->groups,
+   543						    function->num_groups, NULL);
+   544		}
+   545	
+   546		return 0;
+   547	}
+   548	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
