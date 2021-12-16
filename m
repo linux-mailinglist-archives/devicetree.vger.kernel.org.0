@@ -2,197 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3F3F477CF1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:01:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90CAB477D03
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:06:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241177AbhLPUBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 15:01:25 -0500
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:40671 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230448AbhLPUBZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:01:25 -0500
-Received: by mail-ot1-f48.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so224508otj.7;
-        Thu, 16 Dec 2021 12:01:24 -0800 (PST)
+        id S241204AbhLPUGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 15:06:01 -0500
+Received: from mail-oo1-f47.google.com ([209.85.161.47]:37617 "EHLO
+        mail-oo1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229835AbhLPUGA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:06:00 -0500
+Received: by mail-oo1-f47.google.com with SMTP id v19-20020a4a2453000000b002bb88bfb594so69428oov.4;
+        Thu, 16 Dec 2021 12:06:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=uWiF0vS8f1YIqWGI53MjOZdUpjgpFD1+hRSG13zNG9w=;
-        b=l8MkuWYgb2Ye/PEbCVKsmIFfTc7jFNWPiUIR8JB9hPGnvM0PLV6xe+qqzYfrpLMm3Q
-         qu2txQwX//HLYEKMH5nsCQslFdp0jZtmaIRa79HKrAORUHF9sNJyMsloQay92aP7o3fR
-         7G5GJEcw/acMNwDNbkHazVC3D2C8Ecubm7uaTSh5n0wEA6hVbJ6VAGhjrSNC2BQZoUiF
-         SbdaJRAWxz27ywfpNFkSm1hN9LfgrCO5rbMLXfpIZsrOEIwYt7RoV2O5i7d8t2ikFllT
-         RPrJhWVrMK8SeQf0Q+snx1M3DXsj8w+K62fTi+kaMADGeo+y9qssi8VyIzSspDsKSHoE
-         q34g==
-X-Gm-Message-State: AOAM533ebKCY5aq36wpPCiH+G0RO4UHlhTWOQeTu1xbdZB0cworTkEBb
-        DCW6B82vjXZ4nGsHz9WpUA==
-X-Google-Smtp-Source: ABdhPJw3W7e6ijwTQJcZ5jgmDk6bw9kAduO2ahNHJudiWrTDAOky6seyViROOUy7DZE4QVPndfzzXQ==
-X-Received: by 2002:a05:6830:3185:: with SMTP id p5mr14195343ots.222.1639684884150;
-        Thu, 16 Dec 2021 12:01:24 -0800 (PST)
+        bh=E/i1QfoNP41D0v1l+fFljT7XuXIUpeAfbgQOkVLC7ZQ=;
+        b=SH46dkEJX943KITLe1oKYtYE6odMEHYivPm6x1HX460jP2ReHNas9ndtv4+l5pp1GR
+         63I4/z70tbKx0Xzdyugd7clR9jfnJPV0sprsMEYj3Uk3qgLgahSnV3sYSCd2J3BMNJvK
+         hiqy3wfm7A2qOKGRFM29+Tf0AXq54Sl+cgKpjRW1SNFjFbo8SrO74jpjpvucyyiEnfja
+         LCyjlfKuEW/aj3jPt0qRTzqWfxi4vMRlBFfEZQ91T1Yta9NLz65qiIfQDbSUSDZ2/Qyc
+         vV1/EXvz77xGbyppYrp1vTGJmCP24WrSb9VetIbke93VgIwcWKlSE9pSHVreencE5cy1
+         GujQ==
+X-Gm-Message-State: AOAM532zb3uXn5EKgsUxrp34khaKSlt0m0y2MG98hDilU7f0x8Fabq3s
+        Qc5IKhzbGEp/pbogOApXf62+K/sjyw==
+X-Google-Smtp-Source: ABdhPJyIw1usEhvXLNgoSg9c6ablaAifSOIE8K5INypzYK8aFSlXK/cLXjMz17LxL9hv8hPFxX110Q==
+X-Received: by 2002:a4a:db77:: with SMTP id o23mr12240152ood.15.1639685158510;
+        Thu, 16 Dec 2021 12:05:58 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id n22sm1182801oop.29.2021.12.16.12.01.23
+        by smtp.gmail.com with ESMTPSA id f20sm1257735oiw.48.2021.12.16.12.05.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 12:01:23 -0800 (PST)
-Received: (nullmailer pid 654892 invoked by uid 1000);
-        Thu, 16 Dec 2021 20:01:22 -0000
-Date:   Thu, 16 Dec 2021 14:01:22 -0600
+        Thu, 16 Dec 2021 12:05:57 -0800 (PST)
+Received: (nullmailer pid 662296 invoked by uid 1000);
+        Thu, 16 Dec 2021 20:05:56 -0000
+Date:   Thu, 16 Dec 2021 14:05:56 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Wei Xu <xuwei5@hisilicon.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH RESEND 3/7] dt-bindings: usb: hisilicon,hi3670-dwc3: add
- binding for Kirin970
-Message-ID: <YbubEo7Nw4+VRquk@robh.at.kernel.org>
-References: <cover.1639558366.git.mchehab+huawei@kernel.org>
- <0ccdbe3e1e2ed03c58b4d8b17295dbb11f4598eb.1639558366.git.mchehab+huawei@kernel.org>
+To:     Xiantao Hu <xt.hu@cqplus1.com>
+Cc:     wim@linux-watchdog.org, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux@roeck-us.net, devicetree@vger.kernel.org,
+        wells.lu@sunplus.com, qinjian@cqplus1.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: watchdog: Add bindings doc for
+ Sunplus SP7021
+Message-ID: <YbucJFI0um3zjKVl@robh.at.kernel.org>
+References: <20211215101831.256667-1-xt.hu@cqplus1.com>
+ <20211215101831.256667-2-xt.hu@cqplus1.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0ccdbe3e1e2ed03c58b4d8b17295dbb11f4598eb.1639558366.git.mchehab+huawei@kernel.org>
+In-Reply-To: <20211215101831.256667-2-xt.hu@cqplus1.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 15, 2021 at 09:54:29AM +0100, Mauro Carvalho Chehab wrote:
-> Add documentation for the DWC3 USB3 controller found on Kirin970
-> CPUs.
+On Wed, Dec 15, 2021 at 06:18:30PM +0800, Xiantao Hu wrote:
+> Add bindings documentation for Sunplus SP7021 SoC.
 > 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> Signed-off-by: Xiantao Hu <xt.hu@cqplus1.com>
 > ---
+> Changes in v3:
+>  - removed second reg source. The registers are not used in the driver.
+
+Use by a driver doesn't matter. If they are part of the h/w, put them in 
+the binding.
+
 > 
-> To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
-> See [PATCH RESEND 0/7] at: https://lore.kernel.org/all/cover.1639558366.git.mchehab+huawei@kernel.org/
+>  .../bindings/watchdog/sunplus,sp7021-wdt.yaml | 45 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/sunplus,sp7021-wdt.yaml
 > 
->  .../bindings/usb/hisilicon,hi3670-dwc3.yaml   | 105 ++++++++++++++++++
->  1 file changed, 105 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/hisilicon,hi3670-dwc3.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/hisilicon,hi3670-dwc3.yaml b/Documentation/devicetree/bindings/usb/hisilicon,hi3670-dwc3.yaml
+> diff --git a/Documentation/devicetree/bindings/watchdog/sunplus,sp7021-wdt.yaml b/Documentation/devicetree/bindings/watchdog/sunplus,sp7021-wdt.yaml
 > new file mode 100644
-> index 000000000000..309a876ea615
+> index 000000000..033e2f599
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/hisilicon,hi3670-dwc3.yaml
-> @@ -0,0 +1,105 @@
-> +# SPDX-License-Identifier: GPL-2.0
-
-dual license
-
+> +++ b/Documentation/devicetree/bindings/watchdog/sunplus,sp7021-wdt.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) Sunplus Co., Ltd. 2021
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/usb/hisilicon,hi3670-dwc3.yaml#
+> +$id: http://devicetree.org/schemas/watchdog/sunplus,sp7021-wdt.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: HiSilicon Kirin970 USB3 Controller
+> +title: Sunplus SoCs Watchdog Device Tree Bindings
 > +
 > +maintainers:
-> +  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> +  - XianTao Hu <xt.hu@cqplus1.com>
 > +
-> +description:
-> +  Bindings for the USB3 DWC3 controller present on Kirin970.
+> +allOf:
+> +  - $ref: watchdog.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    const: hisilicon,hi3670-dwc3
+> +    const: sunplus,sp7021-wdt
 > +
-> +  clocks:
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    items:
-> +      - const: clk_gate_abb_usb
-> +      - const: hclk_gate_usb3otg
-> +      - const: clk_gate_usb3otg_ref
-> +      - const: aclk_gate_usb3dvfs
-
-Seems like abb, hclk, ref, and aclk would be sufficient. The names are 
-local to the device.
-
-> +
-> +  ranges: true
-> +
-> +  assigned-clocks:
+> +  reg:
 > +    maxItems: 1
 > +
-> +  assigned-clock-rates:
+> +  clocks:
 > +    maxItems: 1
 > +
 > +  resets:
-> +    maxItems: 4
-
-Need to define what they are.
-
-> +
-> +  '#address-cells':
-> +    const: 2
-> +
-> +  '#size-cells':
-> +    const: 2
-> +
-> +# Required child node:
-> +
-> +patternProperties:
-> +  "^usb@[0-9a-f]+$":
-> +    $ref: snps,dwc3.yaml#
+> +    maxItems: 1
 > +
 > +required:
 > +  - compatible
-> +  - ranges
+> +  - reg
 > +  - clocks
-> +  - clock-names
-> +  - assigned-clocks
-> +  - assigned-clock-rates
 > +  - resets
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/clock/hi3670-clock.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    bus {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      usb3: hisi_dwc3 {
-
-dwc3 {
-
-> +        compatible = "hisilicon,hi3670-dwc3";
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +        ranges;
-> +
-> +        clocks = <&crg_ctrl HI3670_CLK_GATE_ABB_USB>,
-> +                 <&crg_ctrl HI3670_HCLK_GATE_USB3OTG>,
-> +                 <&crg_ctrl HI3670_CLK_GATE_USB3OTG_REF>,
-> +                 <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
-> +        clock-names = "clk_gate_abb_usb",
-> +                      "hclk_gate_usb3otg",
-> +                      "clk_gate_usb3otg_ref",
-> +                      "aclk_gate_usb3dvfs";
-> +
-> +        assigned-clocks = <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
-> +        assigned-clock-rates = <238000000>;
-> +        resets = <&crg_rst 0x90 6>,
-> +                 <&crg_rst 0x90 7>,
-> +                 <&usb31_misc_rst 0xA0 8>,
-> +                 <&usb31_misc_rst 0xA0 9>;
-> +
-> +        dwc3: usb@ff100000 {
-> +          compatible = "snps,dwc3";
-> +          reg = <0x0 0xff100000 0x0 0x100000>;
-> +
-> +          interrupts = <0 159 IRQ_TYPE_LEVEL_HIGH>,
-> +                       <0 161 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +          phys = <&usb_phy>;
-> +          phy-names = "usb3-phy";
-> +        };
-> +      };
+> +    watchdog: watchdog@9c000630 {
+> +        compatible = "sunplus,sp7021-wdt";
+> +        reg = <0x9c000630 0x08>;
+> +        clocks = <&clkc 0x24>;
+> +        resets = <&rstc 0x14>;
 > +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e0bca0de0..c2ba65155 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -17933,6 +17933,12 @@ L:	netdev@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/net/ethernet/dlink/sundance.c
+>  
+> +SUNPLUS WATCHDOG DRIVER
+> +M:	Xiantao Hu <xt.hu@cqplus1.com>
+> +L:	linux-watchdog@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/watchdog/sunplus,sp7021-wdt.yaml
+> +
+>  SUPERH
+>  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
+>  M:	Rich Felker <dalias@libc.org>
 > -- 
 > 2.33.1
 > 
