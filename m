@@ -2,153 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D586476D15
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 10:13:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D22B0476D77
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 10:33:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233090AbhLPJNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 04:13:20 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:55188 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233034AbhLPJNT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Dec 2021 04:13:19 -0500
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5E9BC201947;
-        Thu, 16 Dec 2021 10:13:18 +0100 (CET)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 24573201111;
-        Thu, 16 Dec 2021 10:13:18 +0100 (CET)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 82A9B183AC72;
-        Thu, 16 Dec 2021 17:13:16 +0800 (+08)
-From:   Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com
-Cc:     linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, qiangqing.zhang@nxp.com,
-        xiaoliang.yang_1@nxp.com
-Subject: [PATCH v3] arm64: dts: imx8mp-evk: configure multiple queues on eqos
-Date:   Thu, 16 Dec 2021 17:24:48 +0800
-Message-Id: <20211216092448.35927-1-xiaoliang.yang_1@nxp.com>
-X-Mailer: git-send-email 2.17.1
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S233094AbhLPJdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 04:33:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58108 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230199AbhLPJdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 04:33:09 -0500
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9124FC061574;
+        Thu, 16 Dec 2021 01:33:09 -0800 (PST)
+Received: by mail-pg1-x52b.google.com with SMTP id d11so13919050pgl.1;
+        Thu, 16 Dec 2021 01:33:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Zzf+LfImVidU5lTY4sFCzZF8SK63x8wA2LLDGZX7C/E=;
+        b=aIjvfWxLgGFEf3ii7PO5NC2ZnOXYnklepEMWQ0Veq+gaxMFI/vVcC1LQtsUtV3g8Ci
+         NjmXlSe+v1kQigTGj1h1gcqgsWLTRngGEZFIOMXLoopXwLONjpjaSSKqp2hCTGFuyIUB
+         dR5F14gvlVxLJeVlJqCNDbWqk1ZIkQWAND4lq0nMjvIu3kJ4/LPcvyKMgaRXAomNLauw
+         yOPHWqNpf/QkCzKF+shhrB0DvzRbtDa4bE/A/c7V5zrlo0rMzRqtNNU3Bs7qllVXt5jD
+         5xgtSvqCitRK4o6+BB2rEkRr+klPkspNQXJT503cW77gt4aqV/M6lSRrCfl5xwEJS7z5
+         E4Ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Zzf+LfImVidU5lTY4sFCzZF8SK63x8wA2LLDGZX7C/E=;
+        b=z7yPhSE8d0etUxasrDK+FieH01NGbf/SB6VR+GpkA//8R4A6SEcNvbyyWngXKaM7jT
+         T4E0GeUMRaOIW7XrAMno27I5htUham9XU5eyhI2g5Qoxp2a1wV9KM4xfmBL31LQkfH/P
+         lcmEWnHLOEF4TqeY3GydOeXPYU4mCKBKWZKUjNyNGMLjrVkiCGeJSzBO3yHO+0WZ5pew
+         pE+rlaynMIhgraQ2tAVxAUUhMfaR+zVovMxJ+fa8SJuBw/eQc+3FeSN38Mn+CvLGqyRD
+         AhqsnrTZt8y9u54WjSBtB0lXzcndOXJKx9SLzYxx+QVJYmNKF1e6Hk0X3qKpnpdf6k3w
+         luMQ==
+X-Gm-Message-State: AOAM530dJqhn2pbxr9nZQkYLVR2rBaIduzWH7xrzeiYtflQc4m0YvegU
+        CYfaQ5HARLBniuyb0OoFgiU=
+X-Google-Smtp-Source: ABdhPJxj4ce5VZekWBXbcmtExKg1Q6y2JNq+fMqK1yabopOjvbUQD4AyPtK3tPj7EbQvYXfbZV1pIg==
+X-Received: by 2002:a63:1b02:: with SMTP id b2mr11296997pgb.263.1639647188950;
+        Thu, 16 Dec 2021 01:33:08 -0800 (PST)
+Received: from localhost.localdomain (61-231-67-10.dynamic-ip.hinet.net. [61.231.67.10])
+        by smtp.gmail.com with ESMTPSA id d9sm7033181pjs.2.2021.12.16.01.33.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 01:33:08 -0800 (PST)
+From:   Joseph CHAMG <josright123@gmail.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joseph CHANG <josright123@gmail.com>,
+        joseph_chang@davicom.com.tw
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v6, 0/2] ADD DM9051 ETHERNET DRIVER
+Date:   Thu, 16 Dec 2021 17:32:44 +0800
+Message-Id: <20211216093246.23738-1-josright123@gmail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Eqos ethernet support five queues on hardware, enable these queues and
-configure the priority of each queue. Uses Strict Priority as scheduling
-algorithms to ensure that the TSN function works.
+remove the redundant code that phylib has support,
+adjust to be the reasonable sequence for init operations in
+dm9051_probe and phy_start
 
-The priority of each queue is a bitmask value that maps VLAN tag
-priority to the queue. Since the hardware only supports five queues,
-this patch maps priority 0-4 to queues one by one, and priority 5-7 to
-queue 4.
+DM9051 is a spi interface chip,
+need only cs/mosi/miso/clock with an interrupt gpio pin
 
-The total fifo size of 5 queues is 8192 bytes, if enable 5 queues with
-store-and-forward mode, it's not enough for large packets, which would
-trigger fifo overflow frequently. This patch set DMA to thresh mode to
-enable all 5 queues.
+Joseph CHAMG (1):
+  net: Add dm9051 driver
 
-Signed-off-by: Xiaoliang Yang <xiaoliang.yang_1@nxp.com>
-Reviewed-by: Joakim Zhang <qiangqing.zhang@nxp.com>
----
-v1->v2:
- - Use bitmask to set priority attributes.
- - Add default properties for each queue.
- - Add CC to the maintainers.
-v2->v3:
- - Add newline between properties and child node.
+JosephCHANG (1):
+  yaml: Add dm9051 SPI network yaml file
 
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 68 ++++++++++++++++++++
- 1 file changed, 68 insertions(+)
+ .../bindings/net/davicom,dm9051.yaml          |  62 ++
+ drivers/net/ethernet/davicom/Kconfig          |  30 +
+ drivers/net/ethernet/davicom/Makefile         |   1 +
+ drivers/net/ethernet/davicom/dm9051.c         | 898 ++++++++++++++++++
+ drivers/net/ethernet/davicom/dm9051.h         | 188 ++++
+ 5 files changed, 1179 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+ create mode 100644 drivers/net/ethernet/davicom/dm9051.c
+ create mode 100644 drivers/net/ethernet/davicom/dm9051.h
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index 7b99fad6e4d6..6fd1376258db 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -86,6 +86,9 @@
- 	pinctrl-0 = <&pinctrl_eqos>;
- 	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy0>;
-+	snps,force_thresh_dma_mode;
-+	snps,mtl-tx-config = <&mtl_tx_setup>;
-+	snps,mtl-rx-config = <&mtl_rx_setup>;
- 	status = "okay";
- 
- 	mdio {
-@@ -99,6 +102,71 @@
- 			eee-broken-1000t;
- 		};
- 	};
-+
-+	mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <5>;
-+		snps,tx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x2>;
-+		};
-+
-+		queue2 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x4>;
-+		};
-+
-+		queue3 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x8>;
-+		};
-+
-+		queue4 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0xf0>;
-+		};
-+	};
-+
-+	mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <5>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x1>;
-+			snps,map-to-dma-channel = <0>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x2>;
-+			snps,map-to-dma-channel = <1>;
-+		};
-+
-+		queue2 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x4>;
-+			snps,map-to-dma-channel = <2>;
-+		};
-+
-+		queue3 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0x8>;
-+			snps,map-to-dma-channel = <3>;
-+		};
-+
-+		queue4 {
-+			snps,dcb-algorithm;
-+			snps,priority = <0xf0>;
-+			snps,map-to-dma-channel = <4>;
-+		};
-+	};
- };
- 
- &fec {
+
+base-commit: 9d922f5df53844228b9f7c62f2593f4f06c0b69b
 -- 
-2.17.1
+2.20.1
 
