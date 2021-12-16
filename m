@@ -2,144 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C29A477C2C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 20:06:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEBDC477C3D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 20:10:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233542AbhLPTGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 14:06:42 -0500
-Received: from mail-oo1-f45.google.com ([209.85.161.45]:41668 "EHLO
-        mail-oo1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231410AbhLPTGm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 14:06:42 -0500
-Received: by mail-oo1-f45.google.com with SMTP id a11-20020a4ad1cb000000b002c2657270a0so17917oos.8;
-        Thu, 16 Dec 2021 11:06:42 -0800 (PST)
+        id S236539AbhLPTKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 14:10:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54870 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236510AbhLPTKT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 14:10:19 -0500
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BE19C06173E
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 11:10:19 -0800 (PST)
+Received: by mail-pg1-x52e.google.com with SMTP id k4so23837578pgb.8
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 11:10:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uO+11cw4ZctCPdxXSQXpwk66+o5puMHpd0KxCNexH+w=;
+        b=NF9PS9/wDcok+Imq8A7bRq8QqRMXgyzebYarw2YRjSJ3EvGS7EyZ21k7tpCc8lGKf2
+         kRgWiL8GJwpQS4WThrAuJFQxN8BLqdZn5ER0SB7JHytvyQ2A6BwJY0tqP/m3ziekpQGi
+         h2K6MTy/3lHKPs4fPPABfi8HgMRG1MKdVuGg5Y2dim3CGmZivbLpvv5xai7+IQ1nDI1D
+         etzgsJYAwcYrk4kJoHweryjUMj1kyzR96xMlvCspT7MaWK0xkZL2sohSLEE/l05f0DN6
+         0KC8xFdyiCr76BKod17Zj3jMMMBndK9NDBcqBttvsSFZReBaG6HiVOHx3HhJ+VSMjR1O
+         S71Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CG56Jwgd9cUomWDpy5o7T6p7P8N4Uke3kC1sOxkLV7I=;
-        b=NJo63fqujfUGbla2oC2+uaT+XYslPVZgqm+dlq8AVDjlHyiCgPcIqLSrMqzEfMl5TS
-         GyivaNG0cUDqoCUe78wrPWvTAbcgCmObxStyawURXjPe+9nLjsm99Z2NvWY9afmguiw2
-         3kWXgHsDMD7MvDRR3W50xykoIggn8kKntw6+Ucye1NC/lcahS4HicWFUqh0ogKc5dfB6
-         DvKNw9eTFVQMoh3B85rn2eQiPywLnJJQXllNmdVqXMLhmB5+C1zzOOZayJ+xa+MLzRWW
-         4vRwAtctJ3EeWjkLMm5Hc9/HdIuNtAEFtBrebDQfuA+PGV1UIiSUgqQWa4gAnftVoScS
-         7Mfw==
-X-Gm-Message-State: AOAM530hgTBZ48/BrMuHYhpiKh9SXRX3iexE3GJKPIQ5G49ilbyRGwAF
-        hfEMKM5rQHnT5r93PmD0NQ==
-X-Google-Smtp-Source: ABdhPJw/lKVAgvYYodsYmDHJIPLbu+J7eSYgLLi1L5y8TZtPzYt8+RFx+b/nx3iF88MBdKkrVbZ9WA==
-X-Received: by 2002:a4a:e50e:: with SMTP id r14mr12353606oot.27.1639681601738;
-        Thu, 16 Dec 2021 11:06:41 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 184sm1132342oih.58.2021.12.16.11.06.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 11:06:41 -0800 (PST)
-Received: (nullmailer pid 579625 invoked by uid 1000);
-        Thu, 16 Dec 2021 19:06:40 -0000
-Date:   Thu, 16 Dec 2021 13:06:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Trevor Wu <trevor.wu@mediatek.com>
-Cc:     broonie@kernel.org, tiwai@suse.com, matthias.bgg@gmail.com,
-        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, jiaxin.yu@mediatek.com,
-        shumingf@realtek.com
-Subject: Re: [PATCH 2/2] dt-bindings: mediatek: mt8195: add clock property to
- sound node
-Message-ID: <YbuOQOH3esG1pFQU@robh.at.kernel.org>
-References: <20211215065835.3074-1-trevor.wu@mediatek.com>
- <20211215065835.3074-2-trevor.wu@mediatek.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uO+11cw4ZctCPdxXSQXpwk66+o5puMHpd0KxCNexH+w=;
+        b=3WhoG68iu0xy7iAiKNnT1DBzTRsG8BNo4U4NKAOWSutOGFeHycAq7J+HQ8qD0BOJ3T
+         XwngOXi2tlsKBe5OawtJ1H7BkTr3fjRNT/UkFQQ6SdSCiFCm6rvZfw+FujMhR8zf1jqN
+         uuljNcDU4jBrflFJOB1mtIPB9/y43qrydAOBMcl2ccwqpOqty2NkyYcpjhLLg1g0masu
+         T9KrrcwAZdPHzy0TJ+NXs1kU8eBcOLCZ9FjfH70ps/wxkZ0EG4KE01BE/05i49fHZo/9
+         5X3h8u/fiyR3Hoe6GPreZJFQpFZnkU6BRcZFIH3R0gQDdKvM2m/+So5g8bT8zCfbBwtz
+         Y2tw==
+X-Gm-Message-State: AOAM5326bMvtcHDHEoUYwHm8pLRvGwyIu6qo2dqs46c/AP7cK2p35luf
+        po/VLURP0PLPz/G91lN1pHfH/MVE+hQAnXzVR+Wp4g==
+X-Google-Smtp-Source: ABdhPJyHi/CcjLmMA8BDlLiVchhBwavFf2BU9wNZLuuiQbCKMhBSQXzAf1pHuOo2jglS4cInexL79hKeY5kIoYFmt9o=
+X-Received: by 2002:a63:2212:: with SMTP id i18mr13216955pgi.586.1639681818623;
+ Thu, 16 Dec 2021 11:10:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211215065835.3074-2-trevor.wu@mediatek.com>
+References: <1639058951-12660-1-git-send-email-loic.poulain@linaro.org> <20211216034909.3EFCBC36AE0@smtp.kernel.org>
+In-Reply-To: <20211216034909.3EFCBC36AE0@smtp.kernel.org>
+From:   Loic Poulain <loic.poulain@linaro.org>
+Date:   Thu, 16 Dec 2021 20:21:51 +0100
+Message-ID: <CAMZdPi9eAFaExcTTgOt6TFE37EA-bb9xSy3nq9=nKYd5kqwmfQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] clk: qcom: Add display clock controller driver for QCM2290
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, shawn.guo@linaro.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 15, 2021 at 02:58:35PM +0800, Trevor Wu wrote:
-> clocks and clock-names are added to provide MCLK phandle for sound card.
-> 
-> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
-> ---
->  .../bindings/sound/mt8195-mt6359-rt1011-rt5682.yaml  | 12 ++++++++++++
->  .../bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml  | 12 ++++++++++++
->  2 files changed, 24 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1011-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1011-rt5682.yaml
-> index cf6ad7933e23..b57c856d0cf3 100644
-> --- a/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1011-rt5682.yaml
-> +++ b/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1011-rt5682.yaml
-> @@ -32,11 +32,21 @@ properties:
->      $ref: "/schemas/types.yaml#/definitions/phandle"
->      description: The phandle of MT8195 HDMI codec node.
->  
-> +  clocks:
-> +    items:
-> +      - description: phandle and clock specifier for codec MCLK.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: i2so1_mclk
-> +
->  additionalProperties: false
->  
->  required:
->    - compatible
->    - mediatek,platform
-> +  - clocks
-> +  - clock-names
->  
->  examples:
->    - |
-> @@ -44,6 +54,8 @@ examples:
->      sound: mt8195-sound {
->          compatible = "mediatek,mt8195_mt6359_rt1011_rt5682";
->          mediatek,platform = <&afe>;
-> +        clocks = <&topckgen 235>; //CLK_TOP_APLL12_DIV2
-> +        clock-names = "i2so1_mclk";
->          pinctrl-names = "default";
->          pinctrl-0 = <&aud_pins_default>;
->      };
-> diff --git a/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml
-> index 8f177e02ad35..e4720f76f66b 100644
-> --- a/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml
-> +++ b/Documentation/devicetree/bindings/sound/mt8195-mt6359-rt1019-rt5682.yaml
-> @@ -42,11 +42,21 @@ properties:
->        A list of the desired dai-links in the sound card. Each entry is a
->        name defined in the machine driver.
->  
-> +  clocks:
-> +    items:
-> +      - description: phandle and clock specifier for codec MCLK.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: i2so1_mclk
-> +
->  additionalProperties: false
->  
->  required:
->    - compatible
->    - mediatek,platform
-> +  - clocks
-> +  - clock-names
->  
->  examples:
->    - |
-> @@ -54,6 +64,8 @@ examples:
->      sound: mt8195-sound {
->          compatible = "mediatek,mt8195_mt6359_rt1019_rt5682";
->          mediatek,platform = <&afe>;
-> +        clocks = <&topckgen 235>; //CLK_TOP_APLL12_DIV2
-> +        clock-names = "i2so1_mclk";
+Hi Stephen,
 
-Being a virtual node, how does it have clocks? This belongs in the h/w 
-device that consumes the clock.
 
->          pinctrl-names = "default";
->          pinctrl-0 = <&aud_pins_default>;
->      };
-> -- 
-> 2.18.0
-> 
-> 
+On Thu, 16 Dec 2021 at 04:49, Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Loic Poulain (2021-12-09 06:09:10)
+> > diff --git a/drivers/clk/qcom/dispcc-qcm2290.c b/drivers/clk/qcom/dispcc-qcm2290.c
+> > new file mode 100644
+> > index 00000000..8aa5d31
+> > --- /dev/null
+> > +++ b/drivers/clk/qcom/dispcc-qcm2290.c
+> > @@ -0,0 +1,602 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (c) 2020, The Linux Foundation. All rights reserved.
+> > + * Copyright (c) 2021, Linaro Ltd.
+> > + */
+> > +
+[...]
+> > +static struct clk_rcg2 disp_cc_mdss_pclk0_clk_src = {
+> > +       .cmd_rcgr = 0x205c,
+> > +       .mnd_width = 8,
+> > +       .hid_width = 5,
+> > +       .parent_map = disp_cc_parent_map_4,
+> > +       .clkr.hw.init = &(struct clk_init_data){
+> > +               .name = "disp_cc_mdss_pclk0_clk_src",
+> > +               .parent_data = disp_cc_parent_data_4,
+> > +               .num_parents = ARRAY_SIZE(disp_cc_parent_data_4),
+> > +               .flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE | CLK_OPS_PARENT_ENABLE,
+>
+> These last two flags are needed for what?
+
+NOCACHE is probably useless with mainline.
+
+I've added OPS_PARENT_ENABLE because AFAIU changing clock rate can
+lead to parent switch, and parent switch can only be done if parent
+clocks are enabled for rcg2 clocks. Otherwise the update fails and we
+get the following:
+    disp_cc_mdss_pclk0_clk_src: rcg didn't update its configuration.
+    WARNING: CPU: 2 PID: 77 at drivers/clk/qcom/clk-rcg2.c:122
+update_config+0xe0/0xf0
+
+I'm a bit surprised other similar dispcc drivers don't use the same
+flags though.
+
+
+>
+> > +               .ops = &clk_pixel_ops,
+> > +       },
+> > +};
+> > +
+> > +static struct clk_rcg2 disp_cc_mdss_vsync_clk_src = {
+> > +       .cmd_rcgr = 0x208c,
+> > +       .mnd_width = 0,
+> > +       .hid_width = 5,
+> > +       .parent_map = disp_cc_parent_map_1,
+> > +       .freq_tbl = ftbl_disp_cc_mdss_esc0_clk_src,
+> > +       .clkr.hw.init = &(struct clk_init_data){
+> > +               .name = "disp_cc_mdss_vsync_clk_src",
+> > +               .parent_data = disp_cc_parent_data_1,
+> > +               .num_parents = ARRAY_SIZE(disp_cc_parent_data_1),
+> > +               .flags = CLK_SET_RATE_PARENT,
+> > +               .ops = &clk_rcg2_ops,
+> > +       },
+> > +};
+> > +
+[...]
+> > +
+> > +static struct clk_branch disp_cc_xo_clk = {
+> > +       .halt_reg = 0x604c,
+> > +       .halt_check = BRANCH_HALT,
+> > +       .clkr = {
+> > +               .enable_reg = 0x604c,
+> > +               .enable_mask = BIT(0),
+> > +               .hw.init = &(struct clk_init_data){
+> > +                       .name = "disp_cc_xo_clk",
+> > +                       .parent_hws = (const struct clk_hw*[]){
+> > +                               &disp_cc_xo_clk_src.clkr.hw,
+> > +                       },
+> > +                       .num_parents = 1,
+> > +                       .flags = CLK_IS_CRITICAL | CLK_SET_RATE_PARENT,
+>
+> We need a comment why it's critical. Also I'm not sure why we would ever
+> turn this clk off or change the rate. Can't we just hit some registers
+> during probe to make sure it's on and drop this clk?
+
+Yes, good point, no objection, we will lose the hierarchical clk view
+for this clk (up to bi_tcxo_ao), but it does not really matter.
+
+Regards,
+Loic
