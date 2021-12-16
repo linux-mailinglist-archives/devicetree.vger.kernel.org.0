@@ -2,97 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E95EA4766C7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 00:57:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D61B4766CC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 01:00:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232253AbhLOX5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 18:57:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42258 "EHLO
+        id S232186AbhLPAA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 19:00:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232224AbhLOX5A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 18:57:00 -0500
-Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99654C061574
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 15:57:00 -0800 (PST)
-Received: by mail-ua1-x932.google.com with SMTP id 107so3634026uaj.10
-        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 15:57:00 -0800 (PST)
+        with ESMTP id S231740AbhLPAA2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 19:00:28 -0500
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAE64C061574
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 16:00:27 -0800 (PST)
+Received: by mail-pl1-x634.google.com with SMTP id e17so90838plh.8
+        for <devicetree@vger.kernel.org>; Wed, 15 Dec 2021 16:00:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to
+        h=sender:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=elHHN9WyrToO/1t4VSgYPXfubJvrD7AoiVoCez2WnjU=;
-        b=qfD6N9aDcZcbWDo+1lfqd12mz7s8J3eY5vRyR9B6VRQ4Vl/VyxSksqVR8XUc57uHD8
-         VV8z/LvFPpG93rzwcE3FT5uf2zHySvy3vlDlCp2ximNEuMhbkY1rflpZtxBA95qPi0Ks
-         8kJPwOyAO3zJMkMltpNvcmid9JpUL2oI9Dxayzg5SawVI17JjqEazW3lZnS9hO9WoNjb
-         35HVqM1h/Tl6cxnLxQ+InSmfo3v4XCBpnFGqKTYukINSrZDVioSxvXy24Zd+Y0P8VXvz
-         Rp9S5CQP+MAe72CobtMdeQeulmhreG35REb99pNt43Ske1SQTsL7e0w6zn6/cDY8Bn7t
-         7dmQ==
+        bh=ssAv+iRlv4UpHtVbVbUHxNlU+DyIsEYcdL28Jk/tCBo=;
+        b=Gx6LKnSWviOFjpb2HIsXHJEJQlrVg/+1Zj/CZZOMO2OERikDcAFFMQlQLjioo9Qgio
+         IZOhHgnpvZzoYbiQVsncctWk+buuWoZebQSXcvkq5fuoc1sfobQe6F08oFqWoSZzItpL
+         skA3EUjJ1JSmOSlKArU0XHYV92Fml5R5b2cvgQBGdEPhTYGP3R9wluJwbz6VxB8ystNH
+         uueZtCOR+m0y0nmWHADW/glw4RCp/MoVEW1HbeG2PNMlTxCtR6MiIOvHgZHNOHTSIDGm
+         4JyHvnvZrMRQc8N5CPkDyQmHBt53+jcwUbA+RtMGY4V345MOh9txUmQLgkyU2mOn82HV
+         wlYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to:content-transfer-encoding;
-        bh=elHHN9WyrToO/1t4VSgYPXfubJvrD7AoiVoCez2WnjU=;
-        b=NTh13PUZaqYDxPBRAORU172Shd+9KUuTJ0307rvyyTc5huIZLKS1wbUi0BSvRusQ78
-         fEPqTm1Jn0/omxNPo8Ls0E0lacu0ffc2wkEU/3WVUoV9dxg+kOSrpfBTANjK5JXWEesF
-         zlw7QI8xVQIoPtzvNcugvtoJcyu8KGVZ7NSsFlFdCpUGpZT/QIGYM2HuB1ed0gc3/AiO
-         znh5lCErI4ebmbIVXOXjjjP9x/VvDga+05X0MDrhrcnezc76cj++QEJz059HzvCvtTmE
-         UKA6UwMSEyJI6KGBLkko0JHt8G0Xk73vyUK51jDY6f5A2Q7gWXU43NqB4ORsmaSRslDb
-         12Rg==
-X-Gm-Message-State: AOAM5306KKxQoSMzYBCsqs9GR+i1Gf6vCfOa5YWTQgkfPyE6yrlDjnJL
-        MzV+6FxdqnVf22J134aId06nx8CJ/MeuKtd/VJU=
-X-Google-Smtp-Source: ABdhPJwuNQwMkBxjAiQhCLKQc/MwjZzLY0rxpPLJ3S/RGTJgYrxq5JWc+C6ONq0nYTy5TEKd5xXtwI1ae2jX/7K02i0=
-X-Received: by 2002:a05:6102:f12:: with SMTP id v18mr4850864vss.0.1639612618399;
- Wed, 15 Dec 2021 15:56:58 -0800 (PST)
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=ssAv+iRlv4UpHtVbVbUHxNlU+DyIsEYcdL28Jk/tCBo=;
+        b=GgddQQ7CFZKl16t095Rsc0u9DeTY37++gZKQzNcXqfPkIDiNFMWwCXSDNH0S7Ekq3q
+         j/ugrPuSn7zB/yKoVk49wYY1o63nlyZHc2A2wcoq/VubQr+uVCI/UmwmJjKQx8Ls+OZl
+         LhlbQSHzeaf6PYb9nwZqr7EbL0Rp8xAqBJgE1fUxdjnuY/DXeM0MXja4M0jz41j2ZKdl
+         nxtGGVpNJFVMwvQ/R6vnY64lV9A64m59QHh6uJS8REczzJtBiBu0b3PWnvsAIKfwo/ku
+         UKKMRGSas+1/UmrUZUOGJfBL/17AQwNciD+23wECzkowPqt0wpuQ0YZ8sEsi90qO5hHE
+         Qt9Q==
+X-Gm-Message-State: AOAM533MAkVQ4Dfff4iNtwyvk3uHA2kTuIWBLEhTAtGwjfVldUUjnvz2
+        KcG0hLj94v8GC0ZZE4BD/eQ=
+X-Google-Smtp-Source: ABdhPJyjJ+CadUjOKltKk7og9xd9+jFRGhm+zLfjHVf32hf8e9juIwdCiZOuawoi56AYHzbZj7Kk1g==
+X-Received: by 2002:a17:902:ecc9:b0:142:f90:f4a1 with SMTP id a9-20020a170902ecc900b001420f90f4a1mr13677671plh.73.1639612827332;
+        Wed, 15 Dec 2021 16:00:27 -0800 (PST)
+Received: from localhost.localdomain ([150.249.232.163])
+        by smtp.gmail.com with ESMTPSA id o9sm3231402pgs.65.2021.12.15.16.00.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Dec 2021 16:00:27 -0800 (PST)
+Sender: Kuninori Morimoto <kuninori.morimoto.gx@gmail.com>
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH v2] ASoC: dt-bindings: audio-graph-port: enable both flag/phandle for bitclock/frame-master
+Date:   Thu, 16 Dec 2021 09:00:18 +0900
+Message-Id: <20211216000018.2641925-1-kuninori.morimoto.gx@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Sender: engineerruebenwi21@gmail.com
-Received: by 2002:ab0:3391:0:0:0:0:0 with HTTP; Wed, 15 Dec 2021 15:56:57
- -0800 (PST)
-From:   Sophia Erick <sdltdkggl3455@gmail.com>
-Date:   Thu, 16 Dec 2021 00:56:57 +0100
-X-Google-Sender-Auth: RizBzg26o2JKYK4oUc-XTwybbqk
-Message-ID: <CAAweWXssR_3c7QoncH7X9pPWaQxQiXnym6JC9vx+XJk78xgZEg@mail.gmail.com>
-Subject: HELLO
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Dear,
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-   This letter might be a surprise to you, But I believe that you will
-be honest to fulfill my final wish. I bring peace and love to you. It
-is by the grace of god, I had no choice than to do what is lawful and
-right in the sight of God for eternal life and in the sight of man for
-witness of god=E2=80=99s mercy and glory upon my life. My dear, I sent this
-mail praying it will find you in a good condition, since I myself am
-in a very critical health condition in which I sleep every night
-without knowing if I may be alive to see the next day. I am Mrs.Sophia
-Erick, a widow suffering from a long time illness. I have some funds I
-inherited from my late husband, the sum of ( $11,000,000.00 ) my
-Doctor told me recently that I have serious sickness which is a cancer
-problem. What disturbs me most is my stroke sickness. Having known my
-condition, I decided to donate this fund to a good person that will
-utilize it the way I am going to instruct herein. I need a very honest
-and God fearing person who can claim this money and use it for Charity
-works, for orphanages and gives justice and help to the poor, needy
-and widows says The Lord." Jeremiah 22:15-16.=E2=80=9C and also build schoo=
-ls
-for less privilege that will be named after my late husband if
-possible and to promote the word of god and the effort that the house
-of god is maintained.
+snd_soc_daifmt_parse_clock_provider_raw() is handling both
+bitclock/frame-master, and is supporting both flag/phandle.
+Current DT is assuming it is flag style.
+This patch allows both case.
 
- I do not want a situation where this money will be used in an ungodly
-manner. That's why I'm taking this decision. I'm not afraid of death,
-so I know where I'm going. I accept this decision because I do not
-have any child who will inherit this money after I die. Please I want
-your sincere and urgent answer to know if you will be able to execute
-this project, and I will give you more information on how the fund
-will be transferred to your bank account. May the grace, peace, love
-and the truth in the Word of god be with you and all those that you
-love and  care for.
+Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+---
+v1 -> v2
 
-I am waiting for your reply.
-May God Bless you,
-Mrs. Sophia Erick.
+	- anyOf -> oneOf
+
+ .../devicetree/bindings/sound/audio-graph-port.yaml      | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+index 43e7f86e3b23..476dcb49ece6 100644
+--- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
++++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+@@ -42,10 +42,15 @@ patternProperties:
+         $ref: /schemas/types.yaml#/definitions/flag
+       frame-master:
+         description: Indicates dai-link frame master.
+-        $ref: /schemas/types.yaml#/definitions/phandle
++        oneOf:
++          - $ref: /schemas/types.yaml#/definitions/flag
++          - $ref: /schemas/types.yaml#/definitions/phandle
+       bitclock-master:
+         description: Indicates dai-link bit clock master
+-        $ref: /schemas/types.yaml#/definitions/phandle
++        oneOf:
++          - $ref: /schemas/types.yaml#/definitions/flag
++          - $ref: /schemas/types.yaml#/definitions/phandle
++
+       dai-format:
+         description: audio format.
+         items:
+-- 
+2.25.1
+
