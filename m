@@ -2,513 +2,470 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F9CE477976
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:41:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3446477979
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:41:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233804AbhLPQlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 11:41:45 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:43822
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232241AbhLPQlp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Dec 2021 11:41:45 -0500
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7A2283F209
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 16:41:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639672904;
-        bh=JfLJ4CziLh4wHDu8UqBCS+3mFRyC0Pfk57YtxR/Sqww=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=Q3Y0zxePCuXbDvP4CmBazRXBAc1zTgCfHENjbspZGlx+3CAi9YU6pdX6Y2VEpmhMd
-         SpUVwBEBSNHnRZPtRObpgioluiS8a2S1ncyhQX4A5xyAXYOJqcFG0UjZ/F9AFtQ37P
-         245L3ZCMUezSblEQmL3BVb5znOI4kVyr9w3VpPMhGydPo+S2euhu6z121FR9pexjx+
-         oQOKXs6EJK42IubN2OZEeZv1yasOAQSUZ3FuI503HTnLWYeH2tkwpFVmReRvLAUvIE
-         3b9qIJw7qjP8h5+/b7hK4uI8JqWCyiHJmXFX64yn1x+tK4/vzH/tEEz4C2WlF+xc38
-         b6tB7RhKeyLYw==
-Received: by mail-wr1-f70.google.com with SMTP id o4-20020adfca04000000b0018f07ad171aso7119535wrh.20
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 08:41:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=JfLJ4CziLh4wHDu8UqBCS+3mFRyC0Pfk57YtxR/Sqww=;
-        b=SX31Nc+yTbLIGGBj//drzo0FkDesQiib/yIhSpykIxYInJrMeLiTs3PNUbVhpQceBM
-         K+rLuYL+hL0pu4zWhWlAcC/0aX6qn9h8UDRt9tHoZcngjvk2L5q7jqwU4q6aIx1Zl+F8
-         216SZ5wFrBAZS18Wq/3UGz/N/H/i+e/L1yXuj77+LTc2g0yW6c3s7wQ7saV5bwawLP6D
-         MRyuWE3weI7QyrY1rZlyNJIVzuOOqv4rYVHOZrsnckYXJatV4qbwphEvtXjeNnQcnDXg
-         gHFtqmsOPDTC16tQ4gF9By56Du094NNdAAhFYO4c2KFukOh17oTWz9keySmbcWGI3td9
-         kYkg==
-X-Gm-Message-State: AOAM533Ly5BF4sxdxk6DCiU/aSQrYqHAIQkZU3rUdvaRcoMA68nXJdLf
-        mHq1Pq95JRyTe90JVgt04oakY4B111utbW18tz2F6QZHJ/zjGlCVMH3ank80a+9ELT4tXd/j5mZ
-        f3fE7AbQHZy5wDfYUly0vLwHYfLDs3j2K0q3chUk=
-X-Received: by 2002:a05:600c:4ed2:: with SMTP id g18mr5766091wmq.18.1639672903691;
-        Thu, 16 Dec 2021 08:41:43 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJybNZu1IHHUp1mPGGOaQaPtFp+rlseoN/NNYDl1gNaarMkwRFjQl6C0YHI4YeWDd2Z1dR678Q==
-X-Received: by 2002:a05:600c:4ed2:: with SMTP id g18mr5766066wmq.18.1639672903395;
-        Thu, 16 Dec 2021 08:41:43 -0800 (PST)
-Received: from alex.home (lfbn-gre-1-195-1.w90-112.abo.wanadoo.fr. [90.112.158.1])
-        by smtp.gmail.com with ESMTPSA id e7sm6453994wrg.31.2021.12.16.08.41.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 08:41:43 -0800 (PST)
-From:   Alexandre Ghiti <alexandre.ghiti@canonical.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-watchdog@vger.kernel.org
-Cc:     Alexandre Ghiti <alexandre.ghiti@canonical.com>
-Subject: [PATCH v2 2/2] dt-bindings: Migrate DA9063 text bindings to YAML
-Date:   Thu, 16 Dec 2021 17:40:37 +0100
-Message-Id: <20211216164037.2888316-2-alexandre.ghiti@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211216164037.2888316-1-alexandre.ghiti@canonical.com>
-References: <20211216164037.2888316-1-alexandre.ghiti@canonical.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S233998AbhLPQl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 11:41:59 -0500
+Received: from finn.gateworks.com ([108.161.129.64]:36038 "EHLO
+        finn.localdomain" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232873AbhLPQl6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 11:41:58 -0500
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1mxtpI-0093Ej-1C; Thu, 16 Dec 2021 16:41:52 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8mm-venice*: add PCIe support
+Date:   Thu, 16 Dec 2021 08:41:49 -0800
+Message-Id: <20211216164149.13333-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DA9063 devices bindings used text format, so migrate those bindings to YAML
-format before adding any new bindings.
+Add PCIe support to GW71xx/GW72xx/GW73xx/GW7901/GW7902
 
-Signed-off-by: Alexandre Ghiti <alexandre.ghiti@canonical.com>
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 ---
+This goes on top of the series recently applied to pci/dwc [1]:
+[PATCH v7 0/8] Add the imx8m pcie phy driver and imx8mm pcie support
+[1] -
+https://patchwork.kernel.org/project/linux-pci/list/?series=589031&state=*
 
-Changes in v2:
-- Fix all errors detected with make dt_binding_checks
+ .../dts/freescale/imx8mm-venice-gw71xx.dtsi   | 35 +++++++++++
+ .../dts/freescale/imx8mm-venice-gw72xx.dtsi   | 62 +++++++++++++++++++
+ .../dts/freescale/imx8mm-venice-gw73xx.dtsi   | 62 +++++++++++++++++++
+ .../dts/freescale/imx8mm-venice-gw7901.dts    | 36 +++++++++++
+ .../dts/freescale/imx8mm-venice-gw7902.dts    | 50 +++++++++++++++
+ 5 files changed, 245 insertions(+)
 
- .../bindings/input/da9063-onkey.yaml          |  39 ++++++
- .../devicetree/bindings/mfd/da9063.txt        | 111 ------------------
- .../devicetree/bindings/mfd/da9063.yaml       | 105 +++++++++++++++++
- .../bindings/regulator/da9063-regulator.yaml  |  51 ++++++++
- .../devicetree/bindings/rtc/da9063-rtc.yaml   |  31 +++++
- .../bindings/watchdog/da9063-watchdog.yaml    |  31 +++++
- 6 files changed, 257 insertions(+), 111 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/input/da9063-onkey.yaml
- delete mode 100644 Documentation/devicetree/bindings/mfd/da9063.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/da9063.yaml
- create mode 100644 Documentation/devicetree/bindings/regulator/da9063-regulator.yaml
- create mode 100644 Documentation/devicetree/bindings/rtc/da9063-rtc.yaml
- create mode 100644 Documentation/devicetree/bindings/watchdog/da9063-watchdog.yaml
-
-diff --git a/Documentation/devicetree/bindings/input/da9063-onkey.yaml b/Documentation/devicetree/bindings/input/da9063-onkey.yaml
-new file mode 100644
-index 000000000000..e49f69f7aaac
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/da9063-onkey.yaml
-@@ -0,0 +1,39 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/da9063-onkey.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
+index 28012279f6f6..506335efc391 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
+@@ -5,6 +5,7 @@
+ 
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/leds/common.h>
++#include <dt-bindings/phy/phy-imx8-pcie.h>
+ 
+ / {
+ 	aliases {
+@@ -33,6 +34,12 @@
+ 		};
+ 	};
+ 
++	pcie0_refclk: pcie0-refclk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <100000000>;
++	};
 +
-+title: OnKey driver for Dialog DA9063/DA9063L Power Management Integrated Circuit (PMIC)
+ 	pps {
+ 		compatible = "pps-gpio";
+ 		pinctrl-names = "default";
+@@ -87,6 +94,28 @@
+ 	status = "okay";
+ };
+ 
++&pcie_phy {
++	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
++	fsl,clkreq-unsupported;
++	clocks = <&pcie0_refclk>;
++	status = "okay";
++};
 +
-+maintainers:
-+  - Support Opensource <support.opensource@diasemi.com>
++&pcie0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pcie0>;
++	reset-gpio = <&gpio4 6 GPIO_ACTIVE_LOW>;
++	clocks = <&clk IMX8MM_CLK_PCIE1_ROOT>, <&clk IMX8MM_CLK_PCIE1_AUX>,
++		 <&pcie0_refclk>;
++	clock-names = "pcie", "pcie_aux", "pcie_bus";
++	assigned-clocks = <&clk IMX8MM_CLK_PCIE1_AUX>,
++			  <&clk IMX8MM_CLK_PCIE1_CTRL>;
++	assigned-clock-rates = <10000000>, <250000000>;
++	assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_50M>,
++				 <&clk IMX8MM_SYS_PLL2_250M>;
++	status = "okay";
++};
 +
-+description: |
-+  This module is part of the DA9063 MFD device. For more details, see
-+  Documentation/devicetree/bindings/mfd/da9063.yaml.
+ /* GPS */
+ &uart1 {
+ 	pinctrl-names = "default";
+@@ -148,6 +177,12 @@
+ 		>;
+ 	};
+ 
++	pinctrl_pcie0: pcie0grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SAI1_RXD4_GPIO4_IO6	0x41
++		>;
++	};
 +
-+  The OnKey controller is represented as a sub-node of the PMIC node
-+  on the device tree.
+ 	pinctrl_pps: ppsgrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x41
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+index 27afa46a253a..72a3a3aa8fcd 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+@@ -5,9 +5,11 @@
+ 
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/leds/common.h>
++#include <dt-bindings/phy/phy-imx8-pcie.h>
+ 
+ / {
+ 	aliases {
++		ethernet1 = &eth1;
+ 		usb0 = &usbotg1;
+ 		usb1 = &usbotg2;
+ 	};
+@@ -33,6 +35,12 @@
+ 		};
+ 	};
+ 
++	pcie0_refclk: pcie0-refclk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <100000000>;
++	};
 +
-+  This node defines the OnKey settings for controlling the key
-+  functionality of the device. The node should contain the compatible property
-+  with the value "dlg,da9063-onkey".
+ 	pps {
+ 		compatible = "pps-gpio";
+ 		pinctrl-names = "default";
+@@ -106,6 +114,54 @@
+ 	status = "okay";
+ };
+ 
++&pcie_phy {
++	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
++	fsl,clkreq-unsupported;
++	clocks = <&pcie0_refclk>;
++	status = "okay";
++};
 +
-+properties:
-+  compatible:
-+    const: dlg,da9063-onkey
++&pcie0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pcie0>;
++	reset-gpio = <&gpio4 6 GPIO_ACTIVE_LOW>;
++	clocks = <&clk IMX8MM_CLK_PCIE1_ROOT>, <&clk IMX8MM_CLK_PCIE1_AUX>,
++		 <&pcie0_refclk>;
++	clock-names = "pcie", "pcie_aux", "pcie_bus";
++	assigned-clocks = <&clk IMX8MM_CLK_PCIE1_AUX>,
++			  <&clk IMX8MM_CLK_PCIE1_CTRL>;
++	assigned-clock-rates = <10000000>, <250000000>;
++	assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_50M>,
++				 <&clk IMX8MM_SYS_PLL2_250M>;
++	status = "okay";
 +
-+  dlg,disable-key-power:
-+    description: |
-+      Disable power-down using a long key-press. If this
-+      entry exists the OnKey driver will remove support for the KEY_POWER key
-+      press. If this entry does not exist then by default the key-press
-+      triggered power down is enabled and the OnKey will support both KEY_POWER
-+      and KEY_SLEEP.
-+    type: boolean
++	pcie@0,0 {
++		reg = <0x0000 0 0 0 0>;
++		#address-cells = <1>;
++		#size-cells = <0>;
 +
-+required:
-+  - compatible
++		pcie@1,0 {
++			reg = <0x0000 0 0 0 0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/mfd/da9063.txt b/Documentation/devicetree/bindings/mfd/da9063.txt
-deleted file mode 100644
-index 91b79a21d403..000000000000
---- a/Documentation/devicetree/bindings/mfd/da9063.txt
-+++ /dev/null
-@@ -1,111 +0,0 @@
--* Dialog DA9063/DA9063L Power Management Integrated Circuit (PMIC)
--
--DA9063 consists of a large and varied group of sub-devices (I2C Only):
--
--Device                   Supply Names    Description
--------                   ------------    -----------
--da9063-regulator        :               : LDOs & BUCKs
--da9063-onkey            :               : On Key
--da9063-rtc              :               : Real-Time Clock (DA9063 only)
--da9063-watchdog         :               : Watchdog
--
--======
--
--Required properties:
--
--- compatible : Should be "dlg,da9063" or "dlg,da9063l"
--- reg : Specifies the I2C slave address (this defaults to 0x58 but it can be
--  modified to match the chip's OTP settings).
--- interrupts : IRQ line information.
--- interrupt-controller
--
--Sub-nodes:
--
--- regulators : This node defines the settings for the LDOs and BUCKs.
--  The DA9063(L) regulators are bound using their names listed below:
--
--    bcore1    : BUCK CORE1
--    bcore2    : BUCK CORE2
--    bpro      : BUCK PRO
--    bmem      : BUCK MEM
--    bio       : BUCK IO
--    bperi     : BUCK PERI
--    ldo1      : LDO_1	(DA9063 only)
--    ldo2      : LDO_2	(DA9063 only)
--    ldo3      : LDO_3
--    ldo4      : LDO_4	(DA9063 only)
--    ldo5      : LDO_5	(DA9063 only)
--    ldo6      : LDO_6	(DA9063 only)
--    ldo7      : LDO_7
--    ldo8      : LDO_8
--    ldo9      : LDO_9
--    ldo10     : LDO_10	(DA9063 only)
--    ldo11     : LDO_11
--
--  The component follows the standard regulator framework and the bindings
--  details of individual regulator device can be found in:
--  Documentation/devicetree/bindings/regulator/regulator.txt
--
--- rtc : This node defines settings for the Real-Time Clock associated with
--  the DA9063 only. The RTC is not present in DA9063L. There are currently
--  no entries in this binding, however compatible = "dlg,da9063-rtc" should
--  be added if a node is created.
--
--- onkey : This node defines the OnKey settings for controlling the key
--  functionality of the device. The node should contain the compatible property
--  with the value "dlg,da9063-onkey".
--
--  Optional onkey properties:
--
--  - dlg,disable-key-power : Disable power-down using a long key-press. If this
--    entry exists the OnKey driver will remove support for the KEY_POWER key
--    press. If this entry does not exist then by default the key-press
--    triggered power down is enabled and the OnKey will support both KEY_POWER
--    and KEY_SLEEP.
--
--- watchdog : This node defines settings for the Watchdog timer associated
--  with the DA9063 and DA9063L. There are currently no entries in this
--  binding, however compatible = "dlg,da9063-watchdog" should be added
--  if a node is created.
--
--
--Example:
--
--	pmic0: da9063@58 {
--		compatible = "dlg,da9063"
--		reg = <0x58>;
--		interrupt-parent = <&gpio6>;
--		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
--		interrupt-controller;
--
--		rtc {
--			compatible = "dlg,da9063-rtc";
--		};
--
--		wdt {
--			compatible = "dlg,da9063-watchdog";
--		};
--
--		onkey {
--			compatible = "dlg,da9063-onkey";
--			dlg,disable-key-power;
--		};
--
--		regulators {
--			DA9063_BCORE1: bcore1 {
--				regulator-name = "BCORE1";
--				regulator-min-microvolt = <300000>;
--				regulator-max-microvolt = <1570000>;
--				regulator-min-microamp = <500000>;
--				regulator-max-microamp = <2000000>;
--				regulator-boot-on;
--			};
--			DA9063_LDO11: ldo11 {
--				regulator-name = "LDO_11";
--				regulator-min-microvolt = <900000>;
--				regulator-max-microvolt = <3600000>;
--				regulator-boot-on;
--			};
--		};
--	};
--
-diff --git a/Documentation/devicetree/bindings/mfd/da9063.yaml b/Documentation/devicetree/bindings/mfd/da9063.yaml
-new file mode 100644
-index 000000000000..62a8df68bf3f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/da9063.yaml
-@@ -0,0 +1,105 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/da9063.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++			pcie@2,3 {
++				reg = <0x1800 0 0 0 0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
 +
-+title: Dialog DA9063/DA9063L Power Management Integrated Circuit (PMIC)
++				eth1: pcie@5,0 {
++					reg = <0x0000 0 0 0 0>;
++					#address-cells = <1>;
++					#size-cells = <0>;
 +
-+maintainers:
-+  - Support Opensource <support.opensource@diasemi.com>
++					local-mac-address = [00 00 00 00 00 00];
++				};
++			};
++		};
++	};
++};
 +
-+description: |
-+  DA9063 consists of a large and varied group of sub-devices (I2C Only):
+ /* off-board header */
+ &sai3 {
+ 	pinctrl-names = "default";
+@@ -198,6 +254,12 @@
+ 		>;
+ 	};
+ 
++	pinctrl_pcie0: pcie0grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SAI1_RXD4_GPIO4_IO6	0x41
++		>;
++	};
 +
-+  Device                   Supply Names    Description
-+  ------                   ------------    -----------
-+  da9063-regulator        :               : LDOs & BUCKs
-+  da9063-onkey            :               : On Key
-+  da9063-rtc              :               : Real-Time Clock (DA9063 only)
-+  da9063-watchdog         :               : Watchdog
+ 	pinctrl_pps: ppsgrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x41
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+index a59e849c7be2..7b00b6b5bb38 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+@@ -5,9 +5,11 @@
+ 
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/leds/common.h>
++#include <dt-bindings/phy/phy-imx8-pcie.h>
+ 
+ / {
+ 	aliases {
++		ethernet1 = &eth1;
+ 		usb0 = &usbotg1;
+ 		usb1 = &usbotg2;
+ 	};
+@@ -33,6 +35,12 @@
+ 		};
+ 	};
+ 
++	pcie0_refclk: pcie0-refclk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <100000000>;
++	};
 +
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - dlg,da9063
-+              - dlg,da9063l
+ 	pps {
+ 		compatible = "pps-gpio";
+ 		pinctrl-names = "default";
+@@ -126,6 +134,54 @@
+ 	status = "okay";
+ };
+ 
++&pcie_phy {
++	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
++	fsl,clkreq-unsupported;
++	clocks = <&pcie0_refclk>;
++	status = "okay";
++};
 +
-+  reg:
-+    description:
-+      I2C device address.
-+    maxItems: 1
++&pcie0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pcie0>;
++	reset-gpio = <&gpio4 6 GPIO_ACTIVE_LOW>;
++	clocks = <&clk IMX8MM_CLK_PCIE1_ROOT>, <&clk IMX8MM_CLK_PCIE1_AUX>,
++		 <&pcie0_refclk>;
++	clock-names = "pcie", "pcie_aux", "pcie_bus";
++	assigned-clocks = <&clk IMX8MM_CLK_PCIE1_AUX>,
++			  <&clk IMX8MM_CLK_PCIE1_CTRL>;
++	assigned-clock-rates = <10000000>, <250000000>;
++	assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_50M>,
++				 <&clk IMX8MM_SYS_PLL2_250M>;
++	status = "okay";
 +
-+  interrupts:
-+    maxItems: 1
++	pcie@0,0 {
++		reg = <0x0000 0 0 0 0>;
++		#address-cells = <1>;
++		#size-cells = <0>;
 +
-+  interrupt-controller: true
++		pcie@1,0 {
++			reg = <0x0000 0 0 0 0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+  regulators:
-+    $ref: ../regulator/da9063-regulator.yaml
++			pcie@2,4 {
++				reg = <0x2000 0 0 0 0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
 +
-+  onkey:
-+    $ref: ../input/da9063-onkey.yaml
++				eth1: pcie@6,0 {
++					reg = <0x0000 0 0 0 0>;
++					#address-cells = <1>;
++					#size-cells = <0>;
 +
-+  rtc:
-+    $ref: ../rtc/da9063-rtc.yaml
++					local-mac-address = [00 00 00 00 00 00];
++				};
++			};
++		};
++	};
++};
 +
-+  watchdog:
-+    $ref: ../watchdog/da9063-watchdog.yaml
+ /* off-board header */
+ &sai3 {
+ 	pinctrl-names = "default";
+@@ -241,6 +297,12 @@
+ 		>;
+ 	};
+ 
++	pinctrl_pcie0: pcie0grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SAI1_RXD4_GPIO4_IO6	0x41
++		>;
++	};
 +
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-controller
+ 	pinctrl_pps: ppsgrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x41
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+index 65ee72fc1487..4bf2b97b3ef5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+@@ -8,6 +8,7 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/linux-event-codes.h>
+ #include <dt-bindings/leds/common.h>
++#include <dt-bindings/phy/phy-imx8-pcie.h>
+ 
+ #include "imx8mm.dtsi"
+ 
+@@ -179,6 +180,12 @@
+ 		};
+ 	};
+ 
++	pcie0_refclk: pcie0-refclk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <100000000>;
++	};
 +
-+additionalProperties: false
+ 	reg_3p3v: regulator-3p3v {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "3P3V";
+@@ -644,6 +651,28 @@
+ 	status = "okay";
+ };
+ 
++&pcie_phy {
++	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
++	fsl,clkreq-unsupported;
++	clocks = <&pcie0_refclk>;
++	status = "okay";
++};
 +
-+examples:
-+  - |
-+        #include <dt-bindings/interrupt-controller/irq.h>
++&pcie0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pcie0>;
++	reset-gpio = <&gpio5 2 GPIO_ACTIVE_LOW>;
++	clocks = <&clk IMX8MM_CLK_PCIE1_ROOT>, <&clk IMX8MM_CLK_PCIE1_AUX>,
++		 <&pcie0_refclk>;
++	clock-names = "pcie", "pcie_aux", "pcie_bus";
++	assigned-clocks = <&clk IMX8MM_CLK_PCIE1_AUX>,
++			  <&clk IMX8MM_CLK_PCIE1_CTRL>;
++	assigned-clock-rates = <10000000>, <250000000>;
++	assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_50M>,
++				 <&clk IMX8MM_SYS_PLL2_250M>;
++	status = "okay";
++};
 +
-+        i2c1 {
-+                #size-cells = <0>;
-+                #address-cells = <1>;
+ &pgc_gpu {
+ 	status = "disabled";
+ };
+@@ -820,6 +849,13 @@
+ 		>;
+ 	};
+ 
++	pinctrl_pcie0: pciegrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SAI3_TXFS_GPIO4_IO31	0x40000041 /* WDIS# */
++			MX8MM_IOMUXC_SAI3_MCLK_GPIO5_IO2	0x41
++		>;
++	};
 +
-+                pmic0: da9063@58 {
-+                        compatible = "dlg,da9063";
-+                        reg = <0x58>;
-+                        interrupt-parent = <&gpio6>;
-+                        interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+                        interrupt-controller;
+ 	pinctrl_pmic: pmicgrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_SAI5_RXC_GPIO3_IO20	0x41
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+index d52686f4c059..1b2aaf299b24 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+@@ -9,6 +9,7 @@
+ #include <dt-bindings/input/linux-event-codes.h>
+ #include <dt-bindings/leds/common.h>
+ #include <dt-bindings/net/ti-dp83867.h>
++#include <dt-bindings/phy/phy-imx8-pcie.h>
+ 
+ #include "imx8mm.dtsi"
+ 
+@@ -17,6 +18,7 @@
+ 	compatible = "gw,imx8mm-gw7902", "fsl,imx8mm";
+ 
+ 	aliases {
++		ethernet1 = &eth1;
+ 		usb0 = &usbotg1;
+ 		usb1 = &usbotg2;
+ 	};
+@@ -128,6 +130,12 @@
+ 		};
+ 	};
+ 
++	pcie0_refclk: pcie0-refclk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <100000000>;
++	};
 +
-+                        rtc {
-+                                compatible = "dlg,da9063-rtc";
-+                        };
+ 	pps {
+ 		compatible = "pps-gpio";
+ 		pinctrl-names = "default";
+@@ -547,6 +555,42 @@
+ 	status = "okay";
+ };
+ 
++&pcie_phy {
++	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
++	fsl,clkreq-unsupported;
++	clocks = <&clk IMX8MM_CLK_DUMMY>;
++	status = "okay";
++};
 +
-+                        wdt {
-+                                compatible = "dlg,da9063-watchdog";
-+                        };
++&pcie0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pcie0>;
++	reset-gpio = <&gpio4 5 GPIO_ACTIVE_LOW>;
++	clocks = <&clk IMX8MM_CLK_PCIE1_ROOT>, <&clk IMX8MM_CLK_PCIE1_AUX>,
++		 <&clk IMX8MM_CLK_DUMMY>, <&pcie0_refclk>;
++	clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
++	assigned-clocks = <&clk IMX8MM_CLK_PCIE1_AUX>,
++			  <&clk IMX8MM_CLK_PCIE1_CTRL>;
++	assigned-clock-rates = <10000000>, <250000000>;
++	assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_50M>,
++				 <&clk IMX8MM_SYS_PLL2_250M>;
++	status = "okay";
 +
-+                        onkey {
-+                                compatible = "dlg,da9063-onkey";
-+                                dlg,disable-key-power;
-+                        };
++	pcie@0,0 {
++		reg = <0x0000 0 0 0 0>;
++		#address-cells = <1>;
++		#size-cells = <0>;
 +
-+                        regulators {
-+                                DA9063_BCORE1: bcore1 {
-+                                        regulator-name = "BCORE1";
-+                                        regulator-min-microvolt = <300000>;
-+                                        regulator-max-microvolt = <1570000>;
-+                                        regulator-min-microamp = <500000>;
-+                                        regulator-max-microamp = <2000000>;
-+                                        regulator-boot-on;
-+                                };
-+                                DA9063_LDO11: ldo11 {
-+                                        regulator-name = "LDO_11";
-+                                        regulator-min-microvolt = <900000>;
-+                                        regulator-max-microvolt = <3600000>;
-+                                        regulator-boot-on;
-+                                };
-+                        };
-+                };
-+        };
-diff --git a/Documentation/devicetree/bindings/regulator/da9063-regulator.yaml b/Documentation/devicetree/bindings/regulator/da9063-regulator.yaml
-new file mode 100644
-index 000000000000..0180b3684c0d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/da9063-regulator.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/da9063-regulator.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++		eth1: pcie@1,0 {
++			reg = <0x0000 0 0 0 0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
 +
-+title: Regulator driver for Dialog DA9063/DA9063L Power Management Integrated Circuit (PMIC)
++			local-mac-address = [00 00 00 00 00 00];
++		};
++	};
++};
 +
-+maintainers:
-+  - Support Opensource <support.opensource@diasemi.com>
+ /* off-board header */
+ &sai3 {
+ 	pinctrl-names = "default";
+@@ -737,6 +781,12 @@
+ 		>;
+ 	};
+ 
++	pinctrl_pcie0: pciegrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SAI1_RXD3_GPIO4_IO5	0x41
++		>;
++	};
 +
-+description: |
-+  This module is part of the DA9063 MFD device. For more details, see
-+  Documentation/devicetree/bindings/mfd/da9063.yaml.
-+
-+  The regulator controller is represented as a sub-node of the PMIC node
-+  on the device tree.
-+
-+  This node defines the settings for the LDOs and BUCKs.
-+  The DA9063(L) regulators are bound using their names listed below:
-+
-+  bcore1    : BUCK CORE1
-+  bcore2    : BUCK CORE2
-+  bpro      : BUCK PRO
-+  bmem      : BUCK MEM
-+  bio       : BUCK IO
-+  bperi     : BUCK PERI
-+  ldo1      : LDO_1	(DA9063 only)
-+  ldo2      : LDO_2	(DA9063 only)
-+  ldo3      : LDO_3
-+  ldo4      : LDO_4	(DA9063 only)
-+  ldo5      : LDO_5	(DA9063 only)
-+  ldo6      : LDO_6	(DA9063 only)
-+  ldo7      : LDO_7
-+  ldo8      : LDO_8
-+  ldo9      : LDO_9
-+  ldo10     : LDO_10	(DA9063 only)
-+  ldo11     : LDO_11
-+
-+  The component follows the standard regulator framework and the bindings
-+  details of individual regulator device can be found in:
-+  Documentation/devicetree/bindings/regulator/regulator.txt
-+
-+properties:
-+  compatible:
-+    const: dlg,da9063-regulator
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/rtc/da9063-rtc.yaml b/Documentation/devicetree/bindings/rtc/da9063-rtc.yaml
-new file mode 100644
-index 000000000000..3db1a9e5b572
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/da9063-rtc.yaml
-@@ -0,0 +1,31 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/da9063-rtc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: RTC driver for Dialog DA9063/DA9063L Power Management Integrated Circuit (PMIC)
-+
-+maintainers:
-+  - Support Opensource <support.opensource@diasemi.com>
-+
-+description:
-+  This module is part of the DA9063 MFD device. For more details, see
-+  Documentation/devicetree/bindings/mfd/da9063.yaml.
-+
-+  The RTC controller is represented as a sub-node of the PMIC node
-+  on the device tree.
-+
-+  This node defines settings for the Real-Time Clock associated with
-+  the DA9063 only. The RTC is not present in DA9063L. There are currently
-+  no entries in this binding, however compatible = "dlg,da9063-rtc" should
-+  be added if a node is created.
-+
-+properties:
-+  compatible:
-+    const: dlg,da9063-rtc
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-diff --git a/Documentation/devicetree/bindings/watchdog/da9063-watchdog.yaml b/Documentation/devicetree/bindings/watchdog/da9063-watchdog.yaml
-new file mode 100644
-index 000000000000..d3286f4c04d2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/da9063-watchdog.yaml
-@@ -0,0 +1,31 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/da9063-watchdog.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Watchdog driver for Dialog DA9063/DA9063L Power Management Integrated Circuit (PMIC)
-+
-+maintainers:
-+  - Support Opensource <support.opensource@diasemi.com>
-+
-+description: |
-+  This module is part of the DA9063 MFD device. For more details, see
-+  Documentation/devicetree/bindings/mfd/da9063.yaml.
-+
-+  The watchdog controller is represented as a sub-node of the PMIC node
-+  on the device tree.
-+
-+  This node defines settings for the Watchdog timer associated
-+  with the DA9063 and DA9063L. There are currently no entries in this
-+  binding, however compatible = "dlg,da9063-watchdog" should be added
-+  if a node is created.
-+
-+properties:
-+  compatible:
-+    const: dlg,da9063-watchdog
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
+ 	pinctrl_pmic: pmicgrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_NAND_DATA02_GPIO3_IO8	0x41
 -- 
-2.32.0
+2.17.1
 
