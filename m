@@ -2,90 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 429B9476B2D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 08:48:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08131476B51
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 09:02:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234535AbhLPHss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 02:48:48 -0500
-Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:59251 "EHLO
-        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234540AbhLPHsq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Dec 2021 02:48:46 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.west.internal (Postfix) with ESMTP id A3B492B00211;
-        Thu, 16 Dec 2021 02:48:42 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Thu, 16 Dec 2021 02:48:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
-        brGpKAbHSatyt+6U6fdOq8xciGlXAc1QxVcd3uIFK0U=; b=ngRC06rmjNE67xVf
-        W/gX1CEXkhFQNpzlFChPu1OnpwjXx1YhZVnDqwusfRn++/KNuJVTpMTxcODV6fIc
-        UErmQpDa6wjnTeqnc9GSMj8V8Cj9n4AhXhwz8Qgx76PZqUda5W/9ppZj7SamOmms
-        UxwdWjtG1yLljMc5ChnYiR+o86FqkI5sb9Mfu3kkzmONyQJzE/8S/2yruP1rHKFT
-        s+UFpbFbHs6YkwaYf130VfG95ircvi9QaUtW3e3HPY7S3QpxaVkP4vGlAnEqDngC
-        qhRlOPqrec0dLhN/1CXnaAH10pQzpBidUDZ7N/+XouhQsOnQnD7tMAqHedIPUHrb
-        oCvD5Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=brGpKAbHSatyt+6U6fdOq8xciGlXAc1QxVcd3uIFK
-        0U=; b=hoF6LyZMg4KxrolnBGyy34gytPD1g4asZq0IuEncfmjLUw1OoMXlzwH3r
-        F3hz6VOIuWVKtYqiveUvVXl1kEKaT6WgPrCOLOIk+HXADq51V/xE5ihhHbqPECHd
-        yr5Y5mkdEYac8sSz7prh0tJ12YxcITFJVlcdEbnkxdhi7hnxxTZqmX4bylwttx4A
-        WD3/BMOodJUPa4CZsG3AlT91cyQOGD6aErQhx+fsmfSIoL36ETXzKOrZdgQvOF8n
-        P+sfi3Jdg7cBvqI25NMOHyFxG1TH78Vj/ZgBI4aWcv7OdX6B2NIGKVGh0SAHjdRd
-        k1xziFU6vE6JqphyNht/HnIN6Qt+g==
-X-ME-Sender: <xms:WO-6YVBejOPnLuF7QQreVcLtIHf8Oc3zBZ2W1YP7pe3I7fq0MaoVmg>
-    <xme:WO-6YTgkNpmFSKzkymJgma7F8LNVGdyLvahEmfrIBVAQQ2sLDYNa6o6hU4LK_U9Mm
-    Bo97_FAuDWbV-f-AU4>
-X-ME-Received: <xmr:WO-6YQkUmMsqExnbW1qxmjy_mdyYcwTcer6covo1qOHd8rFthSaTFLJPhDgIdP8Af4uRdlY_1Fqs0aMt8lEOpxiVe2IjDt0DG_t51mI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrleefgddutdelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfgggtgfesthekredtredtjeenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeejuefggeekfffgueevtddvudffhfejffejjedvvdduudethefhfefhfeeg
-    ieekkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:WO-6YfwJ8NzFD30EzKqtWEQUR-gP6zydJTydOePqYNmabKb9dPzkMg>
-    <xmx:WO-6YaRswLMDMkWb3W-aY3MwFDPTMIoP_FILoi-el_VKOZLhaUU3NQ>
-    <xmx:WO-6YSY2oEqyyHthmrmgtmxLUcmWx1Yhx74Mof-K4NLp4TtU0mjmTA>
-    <xmx:Wu-6YfjSNPS1AQZm15noobMAiBbP4g6ej828fmP0MYmvmf9jIIp1pvqih1Y>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 16 Dec 2021 02:48:40 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-media@vger.kernel.org
-Cc:     Maxime Ripard <maxime@cerno.tech>, linux-sunxi@lists.linux.dev,
-        p.zabel@pengutronix.de, linux-staging@lists.linux.dev,
-        gregkh@linuxfoundation.org, linux-arm-kernel@lists.infradead.org,
-        mripard@kernel.org, devicetree@vger.kernel.org,
-        ezequiel@vanguardiasur.com.ar, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, wens@csie.org, mchehab@kernel.org,
-        nicolas.dufresne@collabora.com, andrzej.p@collabora.com
-Subject: Re: (subset) [PATCH v2 9/9] arm64: dts: allwinner: h6: Add Hantro G2 node
-Date:   Thu, 16 Dec 2021 08:48:37 +0100
-Message-Id: <163964090958.427634.7595301324701306993.b4-ty@cerno.tech>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211129182633.480021-10-jernej.skrabec@gmail.com>
-References: <20211129182633.480021-1-jernej.skrabec@gmail.com> <20211129182633.480021-10-jernej.skrabec@gmail.com>
+        id S234638AbhLPIBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 03:01:41 -0500
+Received: from mout.kundenserver.de ([212.227.17.13]:32869 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234633AbhLPIBj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 03:01:39 -0500
+Received: from mail-wr1-f53.google.com ([209.85.221.53]) by
+ mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MnagF-1mGypT1R5B-00jXqV; Thu, 16 Dec 2021 09:01:38 +0100
+Received: by mail-wr1-f53.google.com with SMTP id t26so6241745wrb.4;
+        Thu, 16 Dec 2021 00:01:38 -0800 (PST)
+X-Gm-Message-State: AOAM5305oD7JcoDth7e+2C6pL1eDqJQg7RsjDHsNcVDKigU+MjE9Zp7P
+        d24z8SvMPWQ60Ww9g8UR6eodwgLgqDMx7mNfcug=
+X-Google-Smtp-Source: ABdhPJxxX+dGAaPMoXoQ3A9/fG8/Pb6TtbRP1+rWFwiYLtbXt6ul5HijWpSqPJ/+2/xbFjvHy9h6zkMnEVYTkst+qMg=
+X-Received: by 2002:a05:6000:52:: with SMTP id k18mr8001444wrx.192.1639641697946;
+ Thu, 16 Dec 2021 00:01:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <cover.1639557112.git.tonyhuang.sunplus@gmail.com> <c3a3b64c38807b2f344c3df500eb4c60b885eadf.1639557112.git.tonyhuang.sunplus@gmail.com>
+In-Reply-To: <c3a3b64c38807b2f344c3df500eb4c60b885eadf.1639557112.git.tonyhuang.sunplus@gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 16 Dec 2021 09:01:22 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0CnCK-Dfodp-jTzZApM_1NpdY7DV2fRqnO=gaju5xGwg@mail.gmail.com>
+Message-ID: <CAK8P3a0CnCK-Dfodp-jTzZApM_1NpdY7DV2fRqnO=gaju5xGwg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] misc: Add iop driver for Sunplus SP7021
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>, linuxkernel@vger.kernel.org,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        gregkh <gregkh@linuxfoundation.org>,
+        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        tonyhuang@sunplus.com
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:pHGjDiNNkSK9zDr6VrEniZ6yAAJoemtLaVa41XZEk9g+nkPFN3I
+ AAKgQ8HjaGX7ICC/mKA1AaPoT6gZduyqKhzD09ngWZKgC9u1CwzuCEQjomDcIgOH2xcI841
+ sOi66Z2++ib9vnjXgio178bmifdxmPOwJI7QgsGQ2KTlZ589GsbhdbLXzvF/Z0bayNt79bm
+ 1Xh/3Vu8fy2Dtcwm77tZQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:cjIaHFaZ4uQ=:suozSv3hVOnNKxjhrMlbon
+ ZEpectIdU+Lmk4XaoY4ltzfwFtYuxfnIrEy9a8oqmntlI9ACHdFfK5v4+VFKiB+xSfxbD3ckK
+ ByFdxfmQ+4WJkyp8tu9lcLxaGW4pDQe1Q5CPU7LF1yCaSkKGMKuUmMa0xAk63WYQzLBr/iNk0
+ c+kKM80rrard94IMXXwYg+ol8PZ/pz3f6LMKn8/BgsyaqZEJQLwhNRT0iO0kWWHIEYAJ+dACi
+ YXtQBNieSJykRiQ0BSljocjZpbn04BqmkdXhl9VU2OiQ12K6+Ib0N6H+qhyHJ5AGvC8eHZzxf
+ HFYGSp8h+/l651P5WS/uFkFGD004GoZBNPbtx2j88T6IaIPLEINlA4m/q5OJ9SPOUu5uKLluK
+ LC4Qkd+kS/wTepevUXZ+Aybxjp/zeOErETNb5dFKn46nTeElss7Sg+PegmlrkyW/PNQ+hhM+T
+ 6de0MpSLHrlTdb5mXdG+hN4ygHOYcyLGFZ4O35o12ZpV/6fujta7+e6tdWrV5NDG6bIwjiGjS
+ reBUweucsu3JCWFr+OnhDOVwBm0oxVi72ijisD+JeXveQR9CHwKwa7QJPVuZseDZ+3Vhrfza+
+ +lbjHoY4+q7S2JHt7SRLyLNJRX3fgd78C9p/O+BqnhtbdPBxeWsoNhg/ti7U0trFmLt8wq5/p
+ 8jB1biYS6w8JuzD7hO37lb2zMY4jlKa6BQKhVy5hkxlo0pa+pnX2x3+oHCsLpPu+M8+s=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Nov 2021 19:26:33 +0100, Jernej Skrabec wrote:
-> H6 SoC has a second VPU, dedicated to VP9 decoding. It's a slightly
-> older design, though.
-> 
-> 
+On Thu, Dec 16, 2021 at 2:38 AM Tony Huang <tonyhuang.sunplus@gmail.com> wrote:
+>
+> IOP (IO Processor) embedded inside SP7021 which is used as
+> Processor for I/O control, RTC wake-up and cooperation with
+> CPU & PMC in power management purpose.
+> The IOP core is DQ8051, so also named IOP8051,
+> it supports dedicated JTAG debug pins which share with SP7021.
+> In standby mode operation, the power spec reach 400uA.
+>
+> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
+> ---
+> Changes in v4:
+>  - Addressed comments from Arnd Bergmann.
 
-Applied to sunxi/linux.git (sunxi/dt-for-5.17).
+I don't think you did: I asked you specifically to add code to interact with
+the existing in-kernel interfaces to use the functionality provided by the
+device. Pick any (at least two) subsystems and add support, but leave
+out any custom user space interfaces (miscdevice, debugfs, sysfs, ...)
+for the moment.
 
-Thanks!
-Maxime
+    Arnd
