@@ -2,99 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 098F2477664
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:54:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3C86477674
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:59:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232874AbhLPPyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 10:54:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35402 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230358AbhLPPyE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:54:04 -0500
-Received: from balrog.mythic-beasts.com (balrog.mythic-beasts.com [IPv6:2a00:1098:0:82:1000:0:2:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D30C1C061574;
-        Thu, 16 Dec 2021 07:54:03 -0800 (PST)
-Received: from [81.101.6.87] (port=48030 helo=jic23-huawei)
-        by balrog.mythic-beasts.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <jic23@jic23.retrosnub.co.uk>)
-        id 1mxt4r-0003CW-P1; Thu, 16 Dec 2021 15:53:58 +0000
-Date:   Thu, 16 Dec 2021 15:59:18 +0000
-From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-To:     Gwendal Grignou <gwendal@chromium.org>
-Cc:     robh+dt@kernel.org, lars@metafoo.de, swboyd@chromium.org,
-        andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] iio: add IIO_MOD_REFERENCE modifier
-Message-ID: <20211216155905.1fac607c@jic23-huawei>
-In-Reply-To: <20211213024057.3824985-2-gwendal@chromium.org>
-References: <20211213024057.3824985-1-gwendal@chromium.org>
-        <20211213024057.3824985-2-gwendal@chromium.org>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S229978AbhLPP7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 10:59:38 -0500
+Received: from mxout03.lancloud.ru ([45.84.86.113]:56382 "EHLO
+        mxout03.lancloud.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232754AbhLPP7g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:59:36 -0500
+Received: from LanCloud
+DKIM-Filter: OpenDKIM Filter v2.11.0 mxout03.lancloud.ru 6001020F0316
+Received: from LanCloud
+Received: from LanCloud
+Received: from LanCloud
+Subject: Re: [PATCH 2/2] dt-bindings: usb: document snps,dis_split_quirk
+ property in dwc3
+From:   Sergey Shtylyov <s.shtylyov@omp.ru>
+To:     Yaqin Pan <akingchen@vivo.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <kernel@vivo.com>
+References: <20211215130325.19017-1-akingchen@vivo.com>
+ <20211215130325.19017-3-akingchen@vivo.com>
+ <abede066-43a2-b61b-d152-c95ef3785934@omp.ru>
+Organization: Open Mobile Platform
+Message-ID: <5eb92897-1ef9-3c1c-c068-7fef759ec9ad@omp.ru>
+Date:   Thu, 16 Dec 2021 18:59:27 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-BlackCat-Spam-Score: 4
-X-Spam-Status: No, score=0.4
+In-Reply-To: <abede066-43a2-b61b-d152-c95ef3785934@omp.ru>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [192.168.11.198]
+X-ClientProxiedBy: LFEXT01.lancloud.ru (fd00:f066::141) To
+ LFEX1907.lancloud.ru (fd00:f066::207)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 12 Dec 2021 18:40:54 -0800
-Gwendal Grignou <gwendal@chromium.org> wrote:
+On 12/16/21 11:26 AM, Sergey Shtylyov wrote:
 
-> Add modifier IIO_MOD_REFERENCE for reporting sx9360 reference
-> proximity measurement.
-> All modifier must be defined for libiio to recognize
-> |in_proximity_reference| as a channel.
+>> Add snps,dis_split_quirk property for dwc3 controller
+>>
+>> Signed-off-by: Yaqin Pan <akingchen@vivo.com>
+>> ---
+>>   Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> index 41416fbd92aa..e9615ca8f447 100644
+>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> @@ -226,6 +226,12 @@ properties:
+>>         avoid -EPROTO errors with usbhid on some devices (Hikey 970).
+>>       type: boolean
+>>   +  snps,dis_split_quirk:
+>> +    description:
+>> +      When set, change the way host controller schedules transations for a Control transfer.
 > 
-> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
-Hmm. So the question is whether this is a valid modifier.
-
-I'm not totally convinced, because I can see we might well
-get stacking cases say
-
-iio_concentration_o2_reference
-
-However we do have precedence with 'ambient' which applies
-to temperature sensors.
-
-The alternative here would be to have it as a normal indexed
-channel but with a label saying it is the reference.
-
-Would that work for this case?  If I were doing the ambient
-case again I'd use label for that as well, but label is a more
-recent addition to the ABI.
-
-> ---
-> New in v3.
+>    Transactions.
 > 
->  drivers/iio/industrialio-core.c | 1 +
->  include/uapi/linux/iio/types.h  | 1 +
->  2 files changed, 2 insertions(+)
+>> +      Needed to avoid emurate some devices fail.
 > 
-> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
-> index 20d5178ca0739a..2b272f54de8ae9 100644
-> --- a/drivers/iio/industrialio-core.c
-> +++ b/drivers/iio/industrialio-core.c
-> @@ -134,6 +134,7 @@ static const char * const iio_modifier_names[] = {
->  	[IIO_MOD_ETHANOL] = "ethanol",
->  	[IIO_MOD_H2] = "h2",
->  	[IIO_MOD_O2] = "o2",
-> +	[IIO_MOD_REFERENCE] = "reference",
->  };
->  
->  /* relies on pairs of these shared then separate */
-> diff --git a/include/uapi/linux/iio/types.h b/include/uapi/linux/iio/types.h
-> index 48c13147c0a870..aa83a9b578502a 100644
-> --- a/include/uapi/linux/iio/types.h
-> +++ b/include/uapi/linux/iio/types.h
-> @@ -95,6 +95,7 @@ enum iio_modifier {
->  	IIO_MOD_ETHANOL,
->  	IIO_MOD_H2,
->  	IIO_MOD_O2,
-> +	IIO_MOD_REFERENCE,
->  };
->  
->  enum iio_event_type {
+>    Avoid failing to enumerating some devices?
 
+   Sorry. enumarate. :-)
+
+[...]
+
+MBR, Sergey
