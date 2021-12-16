@@ -2,290 +2,306 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DD514780B1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 00:34:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A4694780C1
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 00:39:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbhLPXeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 18:34:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58388 "EHLO
+        id S229800AbhLPXjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 18:39:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbhLPXeJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 18:34:09 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D67F6C06173E
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 15:34:08 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id p4so1131006oia.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 15:34:08 -0800 (PST)
+        with ESMTP id S229676AbhLPXjQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 18:39:16 -0500
+Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81B62C06173F
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 15:39:16 -0800 (PST)
+Received: by mail-vk1-xa31.google.com with SMTP id f7so430258vkf.10
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 15:39:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=wVN9Cdst75YteBeeIFGNl0na8PJu1PxWjHvdKRsuLNo=;
-        b=HjENK0B9HW76vw8xIIFcJA0IC3D9n2s3W+qR5y0bHYRZNJwAQgqyMg67KQ5oX7Cjpk
-         1tBi7NGzC/4YJI3ThIywLGGClCUcnzfkZSq+I0Rs9bz5/xCcm6jl5jr2lPIgSCLbaH2u
-         vEl+/iaypGo/qxv816XdLF0aZrgkDlf1X/ADKXOTzwPBCF3n81iMJk0ICHzh1CHFIFir
-         W34nfJiJYW+G2E8AA3TI7ZIJNttLnhX7gI2xABw9PaJbkjv/GkYmXEVE77DyRlnyw6dA
-         iY2iwcSoDGPe6FyQBPMym3RozkZZbmucrUF21orOEGPqNfx1EdygBBdHg0iFDR+y+yvY
-         VAYQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=43o4wlr1IkiAU6zQKaIE6WugMg6KsgM5BbH78Jvij0o=;
+        b=HB+qq10OML7ZwC1o7HMfLZN4yFllE4yDSe5F+YbzSPwkzJUex9pTjIxPjVSlJAXR+R
+         TGqgohg+ALvNQ5TX22/tFkra8T1/GBsvqrb60u/rDp9rmJElzb6mtmSsg6txYChGvGST
+         2ZYWCdrEKaMsT+2oXmvQVUEZ9HxlWogkJ2TQ/BpWE/mO6e3mBF9ryAV007njMT0kQdN0
+         XIw05SsDe/5f6d9UboYjwepxBFgw+VpX3dpBZeWubuceQFVVLITQ0PxEdg8PMQcY6SHp
+         jBg2qSTT6ckdin2YAr6YphjH5MnBR5AVolzlGOb5KYjOlMXu99GdQw2GDMB92WPasGUT
+         sspw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wVN9Cdst75YteBeeIFGNl0na8PJu1PxWjHvdKRsuLNo=;
-        b=z7s2AxfuXlp58QdUTwgY0ukeNS7amwQpLtoV+J3BZ8U2jUkbls+W+U+g6RQ7jdNHRA
-         33DEQJ1dK+9tWN0jul/SK3weMRJNMSrksRxnl8UjSZpEBkksxsrnn4mm8HJkHiR7vobl
-         CDxc+N4NuKtW+wQySOKebOMkCqa+hgeqaK66eAX4zYJQPL67bBPV3f5jQvLMADE1wygy
-         MyUXS0Wxc5yPVCjxccOWtZFmEzZbQva1gUHo3fWsQ408J4Ry5ge5ItPKQfT/VQhvLgLM
-         KpGsHmbN/tF1e44nTtZ4mlceaTQqZMOAd3oRjm3ImCJvBH5yDu4ED0XC0hi7X+GFsTxK
-         GBvQ==
-X-Gm-Message-State: AOAM530Ks5qXdG9qFndvwKSWp8wyvwPPandcjeBZOUJIjSIvTFl7dZqx
-        VdCngn4mJpoinkOtfMYZmHfIFw==
-X-Google-Smtp-Source: ABdhPJzVmPPYwv1YIcyUN6xIib5xQXy6q7OQQrigQ9KAdWSJxAYxjsL16fUSS1c0ugQMQ/lxpItSOQ==
-X-Received: by 2002:a05:6808:1597:: with SMTP id t23mr173283oiw.24.1639697648165;
-        Thu, 16 Dec 2021 15:34:08 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id bi20sm1431910oib.29.2021.12.16.15.34.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 15:34:07 -0800 (PST)
-Date:   Thu, 16 Dec 2021 15:35:23 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     quic_vamslank@quicinc.com
-Cc:     agross@kernel.org, linus.walleij@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        manivannan.sadhasivam@linaro.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: pinctrl: qcom: Add SDX65 pinctrl
- bindings
-Message-ID: <YbvNO8uS/x5qFqx8@ripper>
-References: <cover.1639696427.git.quic_vamslank@quicinc.com>
- <ff9abf953c274a1e34f59114642f67ecf02acb6f.1639696427.git.quic_vamslank@quicinc.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=43o4wlr1IkiAU6zQKaIE6WugMg6KsgM5BbH78Jvij0o=;
+        b=l4Z4LRgQJ5Z4FANYm5eg3QMX8CZA/tbOsg61wqpGwR4XRaAWgNp1dRfNYle4pSbrBO
+         2GihGDQTG6fvJPxbMckly0zpAjYlXNoq9cy4imLqVCOAlg4nwnAvFwUTT86OjSWuR1yz
+         5degfzbPwdi/MAEIpkkg20ca4oCzNgKz+ea0PmWI6DzPCt0NRBqRo00u5VUo8CfNJzps
+         zTIJ4rMtjqLgj+Cw1VVw6DLNypNEoPaU1zRxh/nSHGbAeCVYYrvATsq7Sw7rbgz0msCx
+         qnqMhF08z1xZ8guj+8LD2RJtnVolzEivKaGGPe+HsDPaLl3cpuIvu/HDxJ7j7C3RmUgG
+         uZFw==
+X-Gm-Message-State: AOAM531zTYYQU5FiiGFL1cY5jkaIpghV/yaSaq7Qz/LeR7vHcqhKMe0i
+        uOVXOfBMfYWhrYRKgrDegzIcHCNYgjjDhkvLmuCdOA==
+X-Google-Smtp-Source: ABdhPJzp16pmobRMKBbx935rBJUh4NWI//WbgPPhjLN9j6aWH5GwJmzTWm6uqTBPwfplsvBVNP362rJ+P+2ebgD0jtQ=
+X-Received: by 2002:a05:6122:2158:: with SMTP id m24mr173726vkd.1.1639697955495;
+ Thu, 16 Dec 2021 15:39:15 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ff9abf953c274a1e34f59114642f67ecf02acb6f.1639696427.git.quic_vamslank@quicinc.com>
+References: <20211215160906.17451-1-semen.protsenko@linaro.org>
+ <20211215160906.17451-8-semen.protsenko@linaro.org> <239e30fa-7994-fcb2-5b83-27ae00ca8cbc@canonical.com>
+In-Reply-To: <239e30fa-7994-fcb2-5b83-27ae00ca8cbc@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Fri, 17 Dec 2021 01:39:03 +0200
+Message-ID: <CAPLW+4m1PsbpOUpAEtdNkGX76aO7oN4TRjnQ89ocd3u2DZDL5Q@mail.gmail.com>
+Subject: Re: [PATCH 7/7] arm64: dts: exynos: Add initial E850-96 board support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Hao Fang <fanghao11@huawei.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 16 Dec 15:18 PST 2021, quic_vamslank@quicinc.com wrote:
+On Wed, 15 Dec 2021 at 19:01, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 15/12/2021 17:09, Sam Protsenko wrote:
+> > E850-96 is a 96boards development board manufactured by WinLink. It
+> > incorporates Samsung Exynos850 SoC, and is compatible with 96boards
+> > mezzanine boards [1], as it follows 96boards standards.
+> >
+> > This patch adds minimal support for E850-96 board. Next features are
+> > enabled in board dts file and verified with minimal BusyBox rootfs:
+> >
+> >  * User buttons
+> >  * LEDs
+> >  * Serial console
+> >  * Watchdog timers
+> >  * RTC
+> >  * eMMC
+> >
+> > [1] https://www.96boards.org/products/mezzanine/
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/exynos/Makefile           |   3 +-
+> >  .../boot/dts/exynos/exynos850-e850-96.dts     | 157 ++++++++++++++++++
+> >  2 files changed, 159 insertions(+), 1 deletion(-)
+> >  create mode 100644 arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
+> > index b41e86df0a84..803548ccc537 100644
+> > --- a/arch/arm64/boot/dts/exynos/Makefile
+> > +++ b/arch/arm64/boot/dts/exynos/Makefile
+> > @@ -3,4 +3,5 @@ dtb-$(CONFIG_ARCH_EXYNOS) += \
+> >       exynos5433-tm2.dtb      \
+> >       exynos5433-tm2e.dtb     \
+> >       exynos7-espresso.dtb    \
+> > -     exynosautov9-sadk.dtb
+> > +     exynosautov9-sadk.dtb   \
+> > +     exynos850-e850-96.dtb
+>
+> Alphabetical order please, so before autov9.
+>
+> > diff --git a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
+> > new file mode 100644
+> > index 000000000000..fd611906d81c
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
+> > @@ -0,0 +1,157 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * WinLink E850-96 board device tree source
+> > + *
+> > + * Copyright (C) 2018 Samsung Electronics Co., Ltd.
+> > + * Copyright (C) 2021 Linaro Ltd.
+> > + *
+> > + * Device tree source file for WinLink's E850-96 board which is based on
+> > + * Samsung Exynos850 SoC.
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "exynos850.dtsi"
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/input/input.h>
+> > +
+> > +#define BOARD_ID     0x0
+> > +#define BOARD_REV    0x2
+>
+> No need for define for single-used constant.
+>
+> > +
+> > +/ {
+> > +     model = "WinLink E850-96 board";
+> > +     compatible = "winlink,e850-96", "samsung,exynos850";
+> > +     board_id = <BOARD_ID>;
+> > +     board_rev = <BOARD_REV>;
+>
+> Unknown properties. They need dtschema.
+>
 
-> From: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-> 
-> Add device tree binding Documentation details for Qualcomm SDX65
-> pinctrl driver.
-> 
-> Signed-off-by: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->  .../bindings/pinctrl/qcom,sdx65-pinctrl.yaml  | 191 ++++++++++++++++++
->  1 file changed, 191 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdx65-pinctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdx65-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdx65-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..cdfcf29dffee
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdx65-pinctrl.yaml
-> @@ -0,0 +1,191 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,sdx65-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. SDX65 TLMM block
-> +
-> +maintainers:
-> +  - Vamsi krishna Lanka <quic_vamslank@quicinc.com>
-> +
-> +description:
-> +  This binding describes the Top Level Mode Multiplexer block found in the
-> +  SDX65 platform.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sdx65-tlmm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    description: Specifies the PIN numbers and Flags, as defined in
-> +      include/dt-bindings/interrupt-controller/irq.h
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    description: Specifying the pin number and flags, as defined in
-> +      include/dt-bindings/gpio/gpio.h
-> +    const: 2
-> +
-> +  gpio-ranges:
-> +    maxItems: 1
-> +
-> +  gpio-reserved-ranges:
-> +    maxItems: 1
-> +
-> +#PIN CONFIGURATION NODES
-> +patternProperties:
-> +  '-state$':
-> +    oneOf:
-> +      - $ref: "#/$defs/qcom-sdx65-tlmm-state"
-> +      - patternProperties:
-> +          ".*":
-> +            $ref: "#/$defs/qcom-sdx65-tlmm-state"
-> +'$defs':
-> +  qcom-sdx65-tlmm-state:
+Those are not really needed in case of upstream linux (only one board
+revision is added and no dtbo to merge in bootloader). Will remove
+those in v2.
 
-Thanks.
+> > +
+> > +     chosen {
+> > +             stdout-path = &serial_0;
+> > +     };
+> > +
+> > +     gpio-keys {
+> > +             compatible = "gpio-keys";
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&key_voldown_pins &key_volup_pins>;
+> > +
+> > +             volume-down-key {
+> > +                     label = "Volume Down";
+> > +                     linux,code = <KEY_VOLUMEDOWN>;
+> > +                     gpios = <&gpa1 0 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +
+> > +             volume-up-key {
+> > +                     label = "Volume Up";
+> > +                     linux,code = <KEY_VOLUMEUP>;
+> > +                     gpios = <&gpa0 7 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +     };
+> > +
+> > +     leds {
+> > +             compatible = "gpio-leds";
+> > +
+> > +             /* HEART_BEAT_LED */
+> > +             user_led1: led-1 {
+> > +                     label = "yellow:user1";
+>
+> Add where applicable:
+> 1. function, e.g. LED_FUNCTION_HEARTBEAT, LED_FUNCTION_WLAN, etc,
+> 2. color constants.
+>
 
-This looks good now.
+I actually had those defined initially :) But then specifically
+decided to remove those, as those are not very helpful when "label"
+and "linux,default-trigger" are already defined (and not many other
+boards seem to provide it). But ok, I'll pull those back in v2.
 
-Regards,
-Bjorn
+> > +                     gpios = <&gpg2 2 GPIO_ACTIVE_HIGH>;
+> > +                     linux,default-trigger = "heartbeat";
+> > +             };
+> > +
+> > +             /* eMMC_LED */
+> > +             user_led2: led-2 {
+> > +                     label = "yellow:user2";
+> > +                     gpios = <&gpg2 3 GPIO_ACTIVE_HIGH>;
+> > +                     linux,default-trigger = "mmc0";
+> > +             };
+> > +
+> > +             /* SD_LED */
+> > +             user_led3: led-3 {
+> > +                     label = "white:user3";
+> > +                     gpios = <&gpg2 4 GPIO_ACTIVE_HIGH>;
+> > +                     linux,default-trigger = "mmc2";
+> > +             };
+> > +
+> > +             /* WIFI_LED */
+> > +             wlan_active_led: led-4 {
+> > +                     label = "yellow:wlan";
+> > +                     gpios = <&gpg2 6 GPIO_ACTIVE_HIGH>;
+> > +                     linux,default-trigger = "phy0tx";
+> > +                     default-state = "off";
+> > +             };
+> > +
+> > +             /* BLUETOOTH_LED */
+> > +             bt_active_led: led-5 {
+> > +                     label = "blue:bt";
+> > +                     gpios = <&gpg2 7 GPIO_ACTIVE_HIGH>;
+> > +                     linux,default-trigger = "hci0rx";
+> > +                     default-state = "off";
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&oscclk {> + clock-frequency = <26000000>;
+> > +};
+> > +
+> > +&rtcclk {
+> > +     clock-frequency = <32768>;
+> > +};
+> > +
+> > +&usi_uart {
+> > +     samsung,clkreq-on; /* needed for UART mode */
+> > +     status = "okay";
+> > +};
+> > +
+> > +&serial_0 {
+>
+> Order all phandle overrides by phandle name, so:
+> &oscclk
+> &rtcclk
+> &serial_0
+> &usi_uart
+> ...
+>
+> > +     status = "okay";
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&uart1_pins>;
+> > +};
+> > +
+> > +&watchdog_cl0 {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&watchdog_cl1 {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&rtc {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&mmc_0 {
+> > +     status = "okay";
+> > +     mmc-hs200-1_8v;
+> > +     mmc-hs400-1_8v;
+> > +     cap-mmc-highspeed;
+> > +     non-removable;
+> > +     broken-cd;
+>
+> Is it correct to have non-removable (typical for eMMC) and broken CD?
+>
 
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this subnode.
-> +        items:
-> +          oneOf:
-> +            - pattern: "^gpio([0-9]|[1-9][0-9]|10[0-7])$"
-> +            - enum: [ ufs_reset, sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data, sdc1_rclk ]
-> +        minItems: 1
-> +        maxItems: 150
-> +
-> +      function:
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins. Functions are only valid for gpio pins.
-> +        enum: [ blsp_uart1, blsp_spi1, blsp_i2c1, blsp_uim1, atest_tsens,
-> +                bimc_dte1, dac_calib0, blsp_spi8, blsp_uart8, blsp_uim8,
-> +                qdss_cti_trig_out_b, bimc_dte0, dac_calib1, qdss_cti_trig_in_b,
-> +                dac_calib2, atest_tsens2, atest_usb1, blsp_spi10, blsp_uart10,
-> +                blsp_uim10, atest_bbrx1, atest_usb13, atest_bbrx0, atest_usb12,
-> +                mdp_vsync, edp_lcd, blsp_i2c10, atest_gpsadc1, atest_usb11,
-> +                atest_gpsadc0, edp_hot, atest_usb10, m_voc, dac_gpio, atest_char,
-> +                cam_mclk, pll_bypassnl, qdss_stm7, blsp_i2c8, qdss_tracedata_b,
-> +                pll_reset, qdss_stm6, qdss_stm5, qdss_stm4, atest_usb2, cci_i2c,
-> +                qdss_stm3, dac_calib3, atest_usb23, atest_char3, dac_calib4,
-> +                qdss_stm2, atest_usb22, atest_char2, qdss_stm1, dac_calib5,
-> +                atest_usb21, atest_char1, dbg_out, qdss_stm0, dac_calib6,
-> +                atest_usb20, atest_char0, dac_calib10, qdss_stm10,
-> +                qdss_cti_trig_in_a, cci_timer4, blsp_spi6, blsp_uart6, blsp_uim6,
-> +                blsp2_spi, qdss_stm9, qdss_cti_trig_out_a, dac_calib11,
-> +                qdss_stm8, cci_timer0, qdss_stm13, dac_calib7, cci_timer1,
-> +                qdss_stm12, dac_calib8, cci_timer2, blsp1_spi, qdss_stm11,
-> +                dac_calib9, cci_timer3, cci_async, dac_calib12, blsp_i2c6,
-> +                qdss_tracectl_a, dac_calib13, qdss_traceclk_a, dac_calib14,
-> +                dac_calib15, hdmi_rcv, dac_calib16, hdmi_cec, pwr_modem,
-> +                dac_calib17, hdmi_ddc, pwr_nav, dac_calib18, pwr_crypto,
-> +                dac_calib19, hdmi_hot, dac_calib20, dac_calib21, pci_e0,
-> +                dac_calib22, dac_calib23, dac_calib24, tsif1_sync, dac_calib25,
-> +                sd_write, tsif1_error, blsp_spi2, blsp_uart2, blsp_uim2,
-> +                qdss_cti, blsp_i2c2, blsp_spi3, blsp_uart3, blsp_uim3, blsp_i2c3,
-> +                uim3, blsp_spi9, blsp_uart9, blsp_uim9, blsp10_spi, blsp_i2c9,
-> +                blsp_spi7, blsp_uart7, blsp_uim7, qdss_tracedata_a, blsp_i2c7,
-> +                qua_mi2s, gcc_gp1_clk_a, ssc_irq, uim4, blsp_spi11, blsp_uart11,
-> +                blsp_uim11, gcc_gp2_clk_a, gcc_gp3_clk_a, blsp_i2c11, cri_trng0,
-> +                cri_trng1, cri_trng, qdss_stm18, pri_mi2s, qdss_stm17, blsp_spi4,
-> +                blsp_uart4, blsp_uim4, qdss_stm16, qdss_stm15, blsp_i2c4,
-> +                qdss_stm14, dac_calib26, spkr_i2s, audio_ref, lpass_slimbus,
-> +                isense_dbg, tsense_pwm1, tsense_pwm2, btfm_slimbus, ter_mi2s,
-> +                qdss_stm22, qdss_stm21, qdss_stm20, qdss_stm19, gcc_gp1_clk_b,
-> +                sec_mi2s, blsp_spi5, blsp_uart5, blsp_uim5, gcc_gp2_clk_b,
-> +                gcc_gp3_clk_b, blsp_i2c5, blsp_spi12, blsp_uart12, blsp_uim12,
-> +                qdss_stm25, qdss_stm31, blsp_i2c12, qdss_stm30, qdss_stm29,
-> +                tsif1_clk, qdss_stm28, tsif1_en, tsif1_data, sdc4_cmd, qdss_stm27,
-> +                qdss_traceclk_b, tsif2_error, sdc43, vfr_1, qdss_stm26, tsif2_clk,
-> +                sdc4_clk, qdss_stm24, tsif2_en, sdc42, qdss_stm23, qdss_tracectl_b,
-> +                sd_card, tsif2_data, sdc41, tsif2_sync, sdc40, mdp_vsync_p_b,
-> +                ldo_en, mdp_vsync_s_b, ldo_update, blsp11_uart_tx_b, blsp11_uart_rx_b,
-> +                blsp11_i2c_sda_b, prng_rosc, blsp11_i2c_scl_b, uim2, uim1, uim_batt,
-> +                pci_e2, pa_indicator, adsp_ext, ddr_bist, qdss_tracedata_11,
-> +                qdss_tracedata_12, modem_tsync, nav_dr, nav_pps, pci_e1, gsm_tx,
-> +                qspi_cs, ssbi2, ssbi1, mss_lte, qspi_clk, qspi0, qspi1, qspi2, qspi3,
-> +                gpio ]
-> +
-> +      drive-strength:
-> +        enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> +        default: 2
-> +        description:
-> +          Selects the drive strength for the specified pins, in mA.
-> +
-> +      bias-pull-down: true
-> +
-> +      bias-pull-up: true
-> +
-> +      bias-disable: true
-> +
-> +      output-high: true
-> +
-> +      output-low: true
-> +
-> +    required:
-> +      - pins
-> +      - function
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +  - gpio-ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    tlmm: pinctrl@f100000 {
-> +        compatible = "qcom,sdx65-tlmm";
-> +        reg = <0x03000000 0xdc2000>;
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +        gpio-ranges = <&tlmm 0 0 109>;
-> +        interrupt-controller;
-> +        #interrupt-cells = <2>;
-> +        interrupts = <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +        gpio-wo-subnode-state {
-> +            pins = "gpio1";
-> +            function = "gpio";
-> +        };
-> +
-> +        uart-w-subnodes-state {
-> +            rx {
-> +                pins = "gpio4";
-> +                function = "blsp_uart1";
-> +                bias-pull-up;
-> +            };
-> +
-> +            tx {
-> +                pins = "gpio5";
-> +                function = "blsp_uart1";
-> +                bias-disable;
-> +            };
-> +        };
-> +    };
-> +...
-> -- 
-> 2.33.1
-> 
+Nice catch, not sure how I missed that. It's just ignored in dw_mmc
+driver in case of "non-removable", but that property just doesn't make
+any sense here.
+
+This and all above comments will be addressed in v2.
+
+> > +     mmc-hs400-enhanced-strobe;
+> > +     card-detect-delay = <200>;
+> > +     clock-frequency = <800000000>;
+> > +     bus-width = <8>;
+> > +     samsung,dw-mshc-ciu-div = <3>;
+> > +     samsung,dw-mshc-sdr-timing = <0 4>;
+> > +     samsung,dw-mshc-ddr-timing = <2 4>;
+> > +     samsung,dw-mshc-hs400-timing = <0 2>;
+> > +
+> > +     pinctrl-names = "default";
+> > +     pinctrl-0 = <&sd0_clk_pins &sd0_cmd_pins &sd0_rdqs_pins &sd0_nreset_pins
+> > +                  &sd0_bus1_pins &sd0_bus4_pins &sd0_bus8_pins>;
+> > +};
+> > +
+>
+>
+> Best regards,
+> Krzysztof
