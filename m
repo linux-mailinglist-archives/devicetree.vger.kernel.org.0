@@ -2,135 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A719B477B39
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 19:02:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62F2C477B3B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 19:02:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240360AbhLPSCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 13:02:31 -0500
-Received: from mga18.intel.com ([134.134.136.126]:32853 "EHLO mga18.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230293AbhLPSCa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Dec 2021 13:02:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1639677750; x=1671213750;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=X4+NkeufLzZHDZfb2hlozCR15SgBlRSKuslkW4zon5E=;
-  b=U+DOfBjQCM+20jQWJv3Gw1cDrvpuELf5+UloD834H8cLgB8cJzwAWpXh
-   lqOwmpqhRuJoEC714OEbtvR5ISBJQlKS99f1QeqG3UE/WOi1MkIS3gTOj
-   a6qyDHEEPWzlXsibwigdMlLb3Vm1Bha43DmWfZmSKhmLXNNuTI6+a4rDe
-   qSJRVH/CINgFVM2BHAIwvXtZsGH5oWRh/XROGElXj9eYi2Q8qUQA8Tla9
-   RYkPRQ1BsWJ3G820UV6lSNhA1mbGmEB4oRgGQwVNmOWhxtmwwvl1/isrs
-   QPL48E0EuEVSpg/tvaM268Rl3bZhiq37J8+/hFhdJiUYHXGDbIzdquXM+
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="226418617"
-X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; 
-   d="scan'208";a="226418617"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2021 10:01:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; 
-   d="scan'208";a="662534378"
-Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 16 Dec 2021 10:01:20 -0800
-Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mxv46-0003Zz-G3; Thu, 16 Dec 2021 18:01:14 +0000
-Date:   Fri, 17 Dec 2021 02:00:45 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org
-Subject: Re: [PATCH v6 20/28] spi: spi-mem: Fill the spi-mem controller
- capabilities of all the drivers
-Message-ID: <202112170120.4tAlxDnn-lkp@intel.com>
-References: <20211216111654.238086-21-miquel.raynal@bootlin.com>
+        id S237874AbhLPSC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 13:02:56 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:34717 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230293AbhLPSC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 13:02:56 -0500
+Received: by mail-ot1-f47.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso29928004otj.1;
+        Thu, 16 Dec 2021 10:02:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QQ381WmSY1ABB0mZ35OvJqIYgZKiMipXpNULkZCKiDs=;
+        b=xxHrOeBEKVTCy315SGf93kJwfGj7cK29hrMMK+QyzKL56VU8nQOf6SNPZEicVEiZrj
+         JDD8/fV9TVkmf79vNsjEXEvqbV0EgWxtAbY8RohQ5vkwMYdt0sej1sgYYE7DKGV3OQkx
+         kfd0X50g/bn1E+UyQYNqWnptrKMSaOkibAKfTDzFNbIn8fRQSHaRRrXQTVjxl4o3Ym7L
+         3MTBtbaJxR9UzMiINQ0dk0H1lWDtdIKOowQCrT38h0D3pDgaQCNUxxGQbmOtcnNhDrx6
+         eKSLOWUe2tEbE5R8rsZEvPOmTCtMuPwgz1+cI3oT+r1pRnAMJh1KX47XS5l4RVHpBIfM
+         yguQ==
+X-Gm-Message-State: AOAM531ESCmlCcFOWF3xJlSn/R4p6+PRmh9/jkwoYuDXTLHuN2h5Kr7x
+        KeTD1dLXiRrtgYsj3UeCDA==
+X-Google-Smtp-Source: ABdhPJzn4BW0cemeZqsl+FNsr2G5s9GTvWt8pmx801Wgc8bSgOFAmgz/5Jg2e2++4y9spe8ck1jRZQ==
+X-Received: by 2002:a9d:3af:: with SMTP id f44mr13345289otf.271.1639677775334;
+        Thu, 16 Dec 2021 10:02:55 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id h1sm1146543otq.45.2021.12.16.10.02.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 10:02:54 -0800 (PST)
+Received: (nullmailer pid 485016 invoked by uid 1000);
+        Thu, 16 Dec 2021 18:02:53 -0000
+Date:   Thu, 16 Dec 2021 12:02:53 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Paul Cercueil <paul@crapouillou.net>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Vincent Knecht <vincent.knecht@mailoo.org>
+Subject: Re: [PATCH 2/4] ASoC: dt-bindings: qcom: sm8250: Document
+ "pin-switches" and "widgets"
+Message-ID: <Ybt/TagtH9iDv4mu@robh.at.kernel.org>
+References: <20211214142049.20422-1-stephan@gerhold.net>
+ <20211214142049.20422-3-stephan@gerhold.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211216111654.238086-21-miquel.raynal@bootlin.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20211214142049.20422-3-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+On Tue, Dec 14, 2021 at 03:20:47PM +0100, Stephan Gerhold wrote:
+> Some sound card setups might require extra pin switches to allow
+> turning off certain audio components. There are two real examples for
+> this in smartphones/tablets based on MSM8916:
+> 
+>   1. Analog speaker amplifiers connected to headphone outputs.
+> 
+>      The MSM8916 analog codec does not have a separate "Line Out" port
+>      so some devices have an analog speaker amplifier connected to one
+>      of the headphone outputs. A pin switch is necessary to allow
+>      playback on headphones without also activating the speaker.
+> 
+>   2. External speaker codec also used as earpiece.
+> 
+>      Some smartphones have two front-facing (stereo) speakers that can
+>      be also configured to act as an earpiece during voice calls. A pin
+>      switch is needed to allow disabling the second speaker during
+>      voice calls.
 
-I love your patch! Yet something to improve:
+This all makes sense, but how that translates to the DT properties I 
+don't have a clue.
 
-[auto build test ERROR on broonie-spi/for-next]
-[also build test ERROR on mtd/nand/next mtd/mtd/next mtd/mtd/fixes v5.16-rc5 next-20211215]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+> There are existing bindings that allow setting up such pin switches in
+> simple-card.yaml. Document the same for Qcom sound cards.
 
-url:    https://github.com/0day-ci/linux/commits/Miquel-Raynal/External-ECC-engines-Macronix-support/20211216-191821
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-config: arm-buildonly-randconfig-r006-20211216 (https://download.01.org/0day-ci/archive/20211217/202112170120.4tAlxDnn-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/bf16b56f7a0cc5aa237129a6b8bd216dc2632c8b
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Miquel-Raynal/External-ECC-engines-Macronix-support/20211216-191821
-        git checkout bf16b56f7a0cc5aa237129a6b8bd216dc2632c8b
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm SHELL=/bin/bash
+And that description is equally as bad.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+> One variant of example 1 above is added to the examples in the DT
+> schema: There is an analog speaker amplifier connected to the HPH_R
+> (right headphone channel) output. Adding a "Speaker" pin switch and
+> widget allows turning off the speaker when audio should be only played
+> via the connected headphones.
+> 
+> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+>  .../devicetree/bindings/sound/qcom,sm8250.yaml   | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 
-All errors (new ones prefixed by >>):
+But nothing new here really, so
 
-   arm-linux-gnueabi-ld: drivers/mtd/nand/spi/gigadevice.o: in function `.LANCHOR0':
->> gigadevice.c:(.rodata+0x464): multiple definition of `spi_mem_no_caps'; drivers/mtd/nand/spi/core.o:core.c:(.rodata+0x2e8): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/nand/spi/macronix.o: in function `.LANCHOR0':
-   macronix.c:(.rodata+0x8d4): multiple definition of `spi_mem_no_caps'; drivers/mtd/nand/spi/core.o:core.c:(.rodata+0x2e8): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/nand/spi/micron.o: in function `.LANCHOR0':
-   micron.c:(.rodata+0x4cc): multiple definition of `spi_mem_no_caps'; drivers/mtd/nand/spi/core.o:core.c:(.rodata+0x2e8): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/nand/spi/paragon.o: in function `.LANCHOR0':
-   paragon.c:(.rodata+0x144): multiple definition of `spi_mem_no_caps'; drivers/mtd/nand/spi/core.o:core.c:(.rodata+0x2e8): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/nand/spi/toshiba.o: in function `.LANCHOR0':
-   toshiba.c:(.rodata+0x664): multiple definition of `spi_mem_no_caps'; drivers/mtd/nand/spi/core.o:core.c:(.rodata+0x2e8): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/nand/spi/winbond.o:(.rodata+0x114): multiple definition of `spi_mem_no_caps'; drivers/mtd/nand/spi/core.o:core.c:(.rodata+0x2e8): first defined here
---
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/sfdp.o: in function `.LANCHOR0':
->> sfdp.c:(.rodata+0x278): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/swp.o: in function `.LANCHOR0':
-   swp.c:(.rodata+0x24): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/otp.o: in function `.LANCHOR0':
-   otp.c:(.rodata+0xc): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/sysfs.o:(.rodata+0x14): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/atmel.o: in function `.LANCHOR0':
-   atmel.c:(.rodata+0x3d0): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/catalyst.o:(.rodata+0x178): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/eon.o:(.rodata+0x370): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/esmt.o:(.rodata+0xe8): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/everspin.o:(.rodata+0x130): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/fujitsu.o:(.rodata+0x58): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/gigadevice.o:(.rodata+0x250): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/intel.o:(.rodata+0xe8): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/issi.o:(.rodata+0x458): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/macronix.o:(.rodata+0x800): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/micron-st.o:(.rodata+0xe88): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/spansion.o:(.rodata+0x9b0): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/sst.o: in function `.LANCHOR0':
-   sst.c:(.rodata+0x48c): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/winbond.o: in function `.LANCHOR0':
-   winbond.c:(.rodata+0x978): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/xilinx.o:(.rodata+0x188): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-   arm-linux-gnueabi-ld: drivers/mtd/spi-nor/xmc.o:(.rodata+0xa0): multiple definition of `spi_mem_no_caps'; drivers/mtd/spi-nor/core.o:core.c:(.rodata+0xfbc): first defined here
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Acked-by: Rob Herring <robh@kernel.org>
