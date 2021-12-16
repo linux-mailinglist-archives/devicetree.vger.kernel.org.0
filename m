@@ -2,95 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FBF24777B7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:15:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 250274777E2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:16:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235883AbhLPQPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 11:15:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40996 "EHLO
+        id S239305AbhLPQQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 11:16:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239221AbhLPQPO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 11:15:14 -0500
-Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com [IPv6:2607:f8b0:4864:20::930])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0446CC061574
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 08:15:14 -0800 (PST)
-Received: by mail-ua1-x930.google.com with SMTP id p2so47981129uad.11
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 08:15:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=3ywxY5tdrdps9fttgpayP687vhVuBUauIZe1xmCWLRU=;
-        b=tSpNkwVAUK+mf59orsKdbzn/4affyJHuYn8LmGSLh54mNq2jfSoWELqf7qOeGGaoz5
-         gFDtMf8RhnbMB20y/XbioaY5TL3NOVGtDROt5SQP2EnyFHGw/8GQz/ETqF8sPU0q53UY
-         bwwvtTOX/qwd8GHbCQPTsJpgNb4xAVDK3dlVs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=3ywxY5tdrdps9fttgpayP687vhVuBUauIZe1xmCWLRU=;
-        b=Pc67s/y6g7d8XXZVKOlRjAlNfb4E1DJGSk5fg3/uyZScZ3+/aWLVovJyyidgbJ7koq
-         XWkVWJShClGu4/xZgB42DdOrLU8ZT86sWGYZakKY6klVXSnDJznH7PFURRqeiPdaRyOW
-         bOcNsyw8TreVAAO/QppeamfZzfdbTHifn53VRE5R/8XNzc5Ck4tlTv0ACHCI1ZBA9zc8
-         c4eBUO2RdUrqHWUY7fUAGP4fKtIkT7ZXOWc3jp3uuTS9kK8flUHFq6IjwqY59zTpA/t/
-         ZSSt4WWMt8tHRXgNKGrvN0H7R6yv4cXPK7TY87jzSFptfTlGu4iK/iXYDeGlrbvx3geP
-         fxZQ==
-X-Gm-Message-State: AOAM533dioIw5/UV2T+2dNNGs+Tjf8slJM1norA85xJO7nAyrCz1neNS
-        XWjGKcBwzU5iEQQRAOJNXuWHqKG68oHLCvVw1lqGEg==
-X-Google-Smtp-Source: ABdhPJxduTFNOMMXRodhEvw01iqWoZkcDRli6ZrQmghTHAkiqkZtC2PFQC4DFVKQDk9OOX8iYZXGR7WIP5K87LJ8Yfw=
-X-Received: by 2002:a05:6102:3a0c:: with SMTP id b12mr5830681vsu.48.1639671313049;
- Thu, 16 Dec 2021 08:15:13 -0800 (PST)
+        with ESMTP id S239338AbhLPQQa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 11:16:30 -0500
+Received: from haggis.mythic-beasts.com (haggis.mythic-beasts.com [IPv6:2a00:1098:0:86:1000:0:2:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59587C061756;
+        Thu, 16 Dec 2021 08:16:29 -0800 (PST)
+Received: from [81.101.6.87] (port=52580 helo=jic23-huawei)
+        by haggis.mythic-beasts.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <jic23@jic23.retrosnub.co.uk>)
+        id 1mxtQb-0002Qk-Sm; Thu, 16 Dec 2021 16:16:22 +0000
+Date:   Thu, 16 Dec 2021 16:21:46 +0000
+From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
+To:     Gwendal Grignou <gwendal@chromium.org>
+Cc:     robh+dt@kernel.org, lars@metafoo.de, swboyd@chromium.org,
+        andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] iio: proximity: Add sx9360 support
+Message-ID: <20211216162139.6008820e@jic23-huawei>
+In-Reply-To: <20211213024057.3824985-3-gwendal@chromium.org>
+References: <20211213024057.3824985-1-gwendal@chromium.org>
+        <20211213024057.3824985-3-gwendal@chromium.org>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20211216105246.3548133-1-daniel@0x0f.com> <CABgxDoKJRc_qORcpFx=eNPS=bGV68hPrbeH0VtcQ2Jjx2ruqmg@mail.gmail.com>
-In-Reply-To: <CABgxDoKJRc_qORcpFx=eNPS=bGV68hPrbeH0VtcQ2Jjx2ruqmg@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Fri, 17 Dec 2021 01:18:17 +0900
-Message-ID: <CAFr9PX=AAssT1imCfpU_piGBOemD23RGBZzngznyia-4TXrK=g@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] ARM: mstar: Initial Miyoo Mini support
-To:     Romain Perier <romain.perier@gmail.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-BlackCat-Spam-Score: 4
+X-Spam-Status: No, score=0.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Romain,
+On Sun, 12 Dec 2021 18:40:55 -0800
+Gwendal Grignou <gwendal@chromium.org> wrote:
 
-On Fri, 17 Dec 2021 at 00:53, Romain Perier <romain.perier@gmail.com> wrote=
-:
->
-> Hi Daniel,
->
-> Le jeu. 16 d=C3=A9c. 2021 =C3=A0 11:52, Daniel Palmer <daniel@0x0f.com> a=
- =C3=A9crit :
->>
->>   - I've left the link tags as-is as using them for linking
->>     to background info seems acceptable.
->
->
-> https://www.kernel.org/doc/html/latest/maintainer/configure-git.html#crea=
-ting-commit-links-to-lore-kernel-org
+> A simplified version of SX9324, it only have one pin and
+> 2 phases (aka channels).
+> Only one event is presented.
+> 
+> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
 
-The explanation of Link seem to have been updated recently in
-1f57bd42b77cdc4b8e05ba9f4417872a6691b66d
-(https://www.kernel.org/doc/html/latest/process/submitting-patches.html#des=
-cribe-your-changes
-a few paragraphs down).
+You don't use the modifier defined in the previous
+patch...
 
-My reading of the paragraph since that commit is: Explain what the
-commit does in the commit message. If there is a bug that prompted the
-change then link it. If there is some background for the commit then
-link it.
+> ---
+> Changes since v2:
+> - Fix issues reported during sx9324 driver review:
+>   - fix include with iwyu
+>   - Remove call to ACPI_PTR to prevent unused variable warning.
+> - Fix panic when setting frequency to 0.
+> - Add offset to decipher interrupt register
+> - Fix default register value.
+> 
+> Changes since v1:
+> - Remove SX9360_DRIVER_NAME
+> - Simplify whoami function
+> - Define WHOAMI register value internally.
+> - Handle negative values when setting sysfs parameters.
+> 
+>  drivers/iio/proximity/Kconfig  |  14 +
+>  drivers/iio/proximity/Makefile |   1 +
+>  drivers/iio/proximity/sx9360.c | 807 +++++++++++++++++++++++++++++++++
+>  3 files changed, 822 insertions(+)
+>  create mode 100644 drivers/iio/proximity/sx9360.c
+> 
+....
 
-If it needs to be changed around I'll do that but I personally think
-it looks nicer. It seems like the right way to provide links to
-datasheets etc without putting a bunch of long messy urls into the
-commit message.
 
-Cheers,
+> +static const struct iio_chan_spec sx9360_channels[] = {
+> +	{
+> +		.type = IIO_PROXIMITY,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +				      BIT(IIO_CHAN_INFO_HARDWAREGAIN),
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> +		.info_mask_separate_available =
+> +			BIT(IIO_CHAN_INFO_HARDWAREGAIN),
+> +		.info_mask_shared_by_all_available =
+> +			BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> +		.extend_name = "reference",
 
-Daniel
+You defined the modifier for this and then didn't use it?  
+I've suggested in review of patch 1 you might want to use label though
+via the read_label() callback.
+
+
+> +		.address = SX9360_REG_USEFUL_PHR_MSB,
+> +		.channel = 0,
+> +		.scan_index = 0,
+> +		.scan_type = {
+> +			.sign = 's',
+> +			.realbits = 12,
+> +			.storagebits = 16,
+> +			.endianness = IIO_BE,
+> +		},
+> +	},
+> +	{
+> +		.type = IIO_PROXIMITY,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +				      BIT(IIO_CHAN_INFO_HARDWAREGAIN),
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> +		.info_mask_separate_available =
+> +			BIT(IIO_CHAN_INFO_HARDWAREGAIN),
+> +		.info_mask_shared_by_all_available =
+> +			BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> +		.address = SX9360_REG_USEFUL_PHM_MSB,
+> +		.event_spec = sx_common_events,
+> +		.num_event_specs = ARRAY_SIZE(sx_common_events),
+> +		.channel = 1,
+> +		.scan_index = 1,
+> +		.scan_type = {
+> +			.sign = 's',
+> +			.realbits = 12,
+> +			.storagebits = 16,
+> +			.endianness = IIO_BE,
+> +		},
+> +	},
+> +	IIO_CHAN_SOFT_TIMESTAMP(2),
+> +};
+> +
+
+...
+
+> +
+> +static int sx9360_read_samp_freq(struct sx_common_data *data,
+> +				 int *val, int *val2)
+> +{
+> +	int ret, divisor;
+> +	__be16 buf;
+> +
+> +	ret = regmap_bulk_read(data->regmap, SX9360_REG_GNRL_CTRL1,
+> +			       &buf, sizeof(buf));
+> +	if (ret < 0)
+> +		return ret;
+> +	divisor = be16_to_cpu(buf);
+> +	if (divisor == 0) {
+> +		*val = 0;
+> +		return IIO_VAL_INT;
+> +	}
+> +
+> +	*val = SX9360_FOSC_HZ;
+> +	*val2 = be16_to_cpu(buf) * 8192;
+
+*val2 = divisor * 8192;?
+
+> +
+> +	return IIO_VAL_FRACTIONAL;
+> +}
+> +
+
+...
+
+> +static int sx9360_write_raw(struct iio_dev *indio_dev,
+> +			    const struct iio_chan_spec *chan, int val, int val2,
+> +			    long mask)
+> +{
+> +	struct sx_common_data *data = iio_priv(indio_dev);
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		return sx9360_set_samp_freq(data, val, val2);
+> +	case IIO_CHAN_INFO_HARDWAREGAIN:
+> +		return sx9360_write_gain(data, chan, val);
+> +	}
+> +
+
+Slight preference for this as a default in the switch.
+
+> +	return -EINVAL;
+> +}
+
+...
+
+
+> +static int sx9360_check_whoami(struct device *dev,
+> + 				struct iio_dev *indio_dev)
+
+Will fit on one line under 80 chars I think..
+
+> +{
+> +	/*
+> +	 * Only one sensor for this driver. Assuming the device tree
+> +	 * is correct, just set the sensor name.
+> +	 */
+> +	indio_dev->name = "sx9360";
+> +	return 0;
+> +}
+> +
+
+> +
+> +static int __maybe_unused sx9360_suspend(struct device *dev)
+> +{
+> +	struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
+
+I don't feel particularly strongly about this, as there are arguments
+either way but this is the same as
+
+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+
+> +	struct sx_common_data *data = iio_priv(indio_dev);
+> +	unsigned int regval;
+> +	int ret;
+> +
+> +	disable_irq_nosync(data->client->irq);
+> +
+> +	mutex_lock(&data->mutex);
+> +	ret = regmap_read(data->regmap, SX9360_REG_GNRL_CTRL0, &regval);
+> +
+> +	data->suspend_ctrl =
+> +		FIELD_GET(SX9360_REG_GNRL_CTRL0_PHEN_MASK, regval);
+> +
+> +	if (ret < 0)
+> +		goto out;
+> +
+> +	/* Disable all phases, send the device to sleep. */
+> +	ret = regmap_write(data->regmap, SX9360_REG_GNRL_CTRL0, 0);
+> +
+> +out:
+> +	mutex_unlock(&data->mutex);
+> +	return ret;
+> +}
+> +
+
