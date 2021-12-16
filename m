@@ -2,588 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59734476D90
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 10:41:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5AC1476DB7
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 10:46:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235492AbhLPJlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 04:41:51 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:44352 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235482AbhLPJlv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 04:41:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1639647711; x=1671183711;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=XMhpays0gpaeGVu0iauXje0kEJ0fuQoq7sHf8y+SHgI=;
-  b=a/0CM1QG+t/EbryQPhPZU5vFRBPS8w92PmVNTn6UP7C0CLJNVUcOVYz0
-   hgqXaduvTPWMGdj75zORIoeHFH/xz+RKDfV9yYAqfDELsEV1//6FChami
-   DgaW7vsepqeQO6uFekRyDjfKc7tuSsBSxLI3hlNYUdzCnqUD8itOmP8Te
-   CtkQz3vV+WPNeuh5RMRHKx1k5cj+PB1VoEjS/2+7KkIKW20svZliiGXw8
-   lTkipZOKdou2LssfeY4JX+XUBU8ZdSjlD7WbB4ezfapxFZoI7G2kEjdwx
-   4aPDEbkc6aOU431m4i4cI8azBfFu6WtsnU2ISrr2vbzJhLADG3gPhKSsa
-   A==;
-IronPort-SDR: 23SMrepcB32J8BwW+nW0ywCgt3NV29PPBYZvwHniEqOc3Xb8N5Vk79c3ervApe4IXUyox8feXJ
- tvROiDu1MWydLt7M4CJl3jyT+gKlNUMZl3TM4Rw2gmj49jFsSqjqpKmIN/RZOHfjGcuTn7ZlQc
- mSlNYwNDUE1tNo3Ajz9Q+EWvDMLYFrl0pyVzoxw8Dj5yv7o7/Fmn3XJuIMEvlOa5x7frXrvtK0
- qBGCG15HekRTdkrFzX9sAsyJ//jxNeSC2lvobQXKVTX2H5YBfqdiUqxZUPCq0ObGfRBIU7GOOK
- 21mvks1QuLKyyVGE2Pk+CYAt
-X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; 
-   d="scan'208";a="147438344"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Dec 2021 02:41:50 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 16 Dec 2021 02:41:50 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Thu, 16 Dec 2021 02:41:48 -0700
-From:   <conor.dooley@microchip.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <linux-clk@vger.kernel.org>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <krzysztof.kozlowski@canonical.com>, <geert@linux-m68k.org>,
-        <david.abdurachmanov@gmail.com>, <palmer@dabbelt.com>,
-        <daire.mcnamara@microchip.com>, <cyril.jean@microchip.com>,
-        <conor.dooley@microchip.com>,
-        Padmarao Bengari <padmarao.begari@microchip.com>
-Subject: [PATCH v8 2/2] clk: microchip: Add driver for Microchip PolarFire SoC
-Date:   Thu, 16 Dec 2021 09:43:04 +0000
-Message-ID: <20211216094304.24461-3-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211216094304.24461-1-conor.dooley@microchip.com>
-References: <20211216094304.24461-1-conor.dooley@microchip.com>
+        id S230411AbhLPJp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 04:45:59 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:38752 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235565AbhLPJp6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 04:45:58 -0500
+X-UUID: 3d694b9fb34d485a80cdfb6298cddd53-20211216
+X-UUID: 3d694b9fb34d485a80cdfb6298cddd53-20211216
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 2077883319; Thu, 16 Dec 2021 17:45:54 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 16 Dec 2021 17:45:53 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkcas10.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Thu, 16 Dec 2021 17:45:51 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v16, 00/19] Support multi hardware decode using of_platform_populate
+Date:   Thu, 16 Dec 2021 17:45:33 +0800
+Message-ID: <20211216094552.19104-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Daire McNamara <daire.mcnamara@microchip.com>
+This series adds support for multi hardware decode into mtk-vcodec, by first adding use
+of_platform_populate to manage each hardware information: interrupt, clock, register
+bases and power. Secondly add core work queue to deal with core hardware message,
+at the same time, add msg queue for different hardware share messages. Lastly, the
+architecture of different specs are not the same, using specs type to separate them.
 
-Add support for clock configuration on Microchip PolarFire SoC
+This series has been tested with both MT8183 and MT8173. Decoding was working for both chips.
 
-Co-developed-by: Padmarao Bengari <padmarao.begari@microchip.com>
-Signed-off-by: Padmarao Bengari <padmarao.begari@microchip.com>
-Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-Co-developed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+Patches 1~3 rewrite get register bases and power on/off interface.
+Patches 4 export decoder pm interfaces.
+Patches 5 add to support 8192.
+Patch 6 support multi hardware.
+Patch 7 separate video encoder and decoder document
+Patch 8-17 add interfaces to support core hardware.
+Patch 18-19 remove mtk_vcodec_release_dec/enc_pm interfaces.
 ---
- drivers/clk/Kconfig              |   1 +
- drivers/clk/Makefile             |   2 +-
- drivers/clk/microchip/Kconfig    |   7 +
- drivers/clk/microchip/Makefile   |   6 +-
- drivers/clk/microchip/clk-mpfs.c | 447 +++++++++++++++++++++++++++++++
- 5 files changed, 460 insertions(+), 3 deletions(-)
- create mode 100644 drivers/clk/microchip/Kconfig
- create mode 100644 drivers/clk/microchip/clk-mpfs.c
+changes compared with v15:
+- add Reviewed-by for patch 10.
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 1b992a554ff8..fe6c757e44fb 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -409,6 +409,7 @@ source "drivers/clk/keystone/Kconfig"
- source "drivers/clk/mediatek/Kconfig"
- source "drivers/clk/meson/Kconfig"
- source "drivers/clk/mstar/Kconfig"
-+source "drivers/clk/microchip/Kconfig"
- source "drivers/clk/mvebu/Kconfig"
- source "drivers/clk/pistachio/Kconfig"
- source "drivers/clk/qcom/Kconfig"
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index d8565ef01b34..d4e43d0431a3 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -90,7 +90,7 @@ obj-$(CONFIG_ARCH_KEYSTONE)		+= keystone/
- obj-$(CONFIG_MACH_LOONGSON32)		+= loongson1/
- obj-y					+= mediatek/
- obj-$(CONFIG_ARCH_MESON)		+= meson/
--obj-$(CONFIG_MACH_PIC32)		+= microchip/
-+obj-y					+= microchip/
- ifeq ($(CONFIG_COMMON_CLK), y)
- obj-$(CONFIG_ARCH_MMP)			+= mmp/
- endif
-diff --git a/drivers/clk/microchip/Kconfig b/drivers/clk/microchip/Kconfig
-new file mode 100644
-index 000000000000..f5edc7b3c07c
---- /dev/null
-+++ b/drivers/clk/microchip/Kconfig
-@@ -0,0 +1,7 @@
-+# SPDX-License-Identifier: GPL-2.0
-+
-+config MCHP_CLK_MPFS
-+	bool "Clk driver for PolarFire SoC"
-+	depends on (RISCV && SOC_MICROCHIP_POLARFIRE) || COMPILE_TEST
-+	help
-+	  Supports Clock Configuration for PolarFire SoC
-diff --git a/drivers/clk/microchip/Makefile b/drivers/clk/microchip/Makefile
-index f34b247e870f..0dce0b12eac4 100644
---- a/drivers/clk/microchip/Makefile
-+++ b/drivers/clk/microchip/Makefile
-@@ -1,3 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0-only
--obj-$(CONFIG_COMMON_CLK_PIC32) += clk-core.o
--obj-$(CONFIG_PIC32MZDA) += clk-pic32mzda.o
-+
-+obj-$(CONFIG_COMMON_CLK_PIC32)	+= clk-core.o
-+obj-$(CONFIG_PIC32MZDA)		+= clk-pic32mzda.o
-+obj-$(CONFIG_MCHP_CLK_MPFS)	+= clk-mpfs.o
-diff --git a/drivers/clk/microchip/clk-mpfs.c b/drivers/clk/microchip/clk-mpfs.c
-new file mode 100644
-index 000000000000..37277beb6a7b
---- /dev/null
-+++ b/drivers/clk/microchip/clk-mpfs.c
-@@ -0,0 +1,447 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Daire McNamara,<daire.mcnamara@microchip.com>
-+ * Copyright (C) 2020 Microchip Technology Inc.  All rights reserved.
-+ */
-+#include <linux/clk-provider.h>
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+#include <dt-bindings/clock/microchip,mpfs-clock.h>
-+
-+/* address offset of control registers */
-+#define REG_CLOCK_CONFIG_CR	0x08u
-+#define REG_SUBBLK_CLOCK_CR	0x84u
-+#define REG_SUBBLK_RESET_CR	0x88u
-+
-+struct mpfs_clock_data {
-+	void __iomem *base;
-+	struct clk_hw_onecell_data hw_data;
-+};
-+
-+struct mpfs_cfg_clock {
-+	const char *name;
-+	const struct clk_div_table *table;
-+	struct clk_hw *parent;
-+	unsigned long flags;
-+	unsigned int id;
-+	u8 shift;
-+	u8 width;
-+};
-+
-+struct mpfs_cfg_hw_clock {
-+	struct mpfs_cfg_clock cfg;
-+	void __iomem *sys_base;
-+	/* lock is used to prevent multiple writes */
-+	spinlock_t *lock;
-+	struct clk_hw hw;
-+	struct clk_init_data init;
-+};
-+
-+#define to_mpfs_cfg_clk(_hw) container_of(_hw, struct mpfs_cfg_hw_clock, hw)
-+
-+struct mpfs_periph_clock {
-+	const char *name;
-+	struct clk_hw *parent;
-+	unsigned long flags;
-+	unsigned int id;
-+	u8 shift;
-+};
-+
-+struct mpfs_periph_hw_clock {
-+	struct mpfs_periph_clock periph;
-+	void __iomem *sys_base;
-+	/* lock is used to prevent multiple writes */
-+	spinlock_t *lock;
-+	struct clk_hw hw;
-+};
-+
-+#define to_mpfs_periph_clk(_hw) container_of(_hw, struct mpfs_periph_hw_clock, hw)
-+
-+/*
-+ * mpfs_clk_lock prevents anything else from writing to the
-+ * mpfs clk block while a software locked register is being written.
-+ */
-+static DEFINE_SPINLOCK(mpfs_clk_lock);
-+
-+static const struct clk_div_table mpfs_div_cpu_axi_table[] = {
-+	{ 0, 1 }, { 1, 2 }, { 2, 4 }, { 3, 8 },
-+	{ 0, 0 }
-+};
-+
-+static const struct clk_div_table mpfs_div_ahb_table[] = {
-+	{ 1, 2 }, { 2, 4}, { 3, 8 },
-+	{ 0, 0 }
-+};
-+
-+static unsigned long mpfs_cfg_clk_recalc_rate(struct clk_hw *hw, unsigned long prate)
-+{
-+	struct mpfs_cfg_hw_clock *cfg_hw = to_mpfs_cfg_clk(hw);
-+	struct mpfs_cfg_clock *cfg = &cfg_hw->cfg;
-+	void __iomem *base_addr = cfg_hw->sys_base;
-+	u32 val;
-+
-+	val = readl_relaxed(base_addr + REG_CLOCK_CONFIG_CR) >> cfg->shift;
-+	val &= clk_div_mask(cfg->width);
-+
-+	return prate / (1u << val);
-+}
-+
-+static long mpfs_cfg_clk_round_rate(struct clk_hw *hw, unsigned long rate, unsigned long *prate)
-+{
-+	struct mpfs_cfg_hw_clock *cfg_hw = to_mpfs_cfg_clk(hw);
-+	struct mpfs_cfg_clock *cfg = &cfg_hw->cfg;
-+
-+	return divider_round_rate(hw, rate, prate, cfg->table, cfg->width, cfg->flags);
-+}
-+
-+static int mpfs_cfg_clk_set_rate(struct clk_hw *hw, unsigned long rate, unsigned long prate)
-+{
-+	struct mpfs_cfg_hw_clock *cfg_hw = to_mpfs_cfg_clk(hw);
-+	struct mpfs_cfg_clock *cfg = &cfg_hw->cfg;
-+	void __iomem *base_addr = cfg_hw->sys_base;
-+	unsigned long flags = 0;
-+	u32 val;
-+	int divider_setting;
-+
-+	divider_setting = divider_get_val(rate, prate, cfg->table, cfg->width, cfg_hw->cfg.flags);
-+
-+	if (divider_setting < 0)
-+		return divider_setting;
-+
-+	spin_lock_irqsave(cfg_hw->lock, flags);
-+
-+	val = readl_relaxed(base_addr + REG_CLOCK_CONFIG_CR);
-+	val &= ~(clk_div_mask(cfg->width) << cfg_hw->cfg.shift);
-+	val |= divider_setting << cfg->shift;
-+	writel_relaxed(val, base_addr + REG_CLOCK_CONFIG_CR);
-+
-+	spin_unlock_irqrestore(cfg_hw->lock, flags);
-+
-+	return 0;
-+}
-+
-+static const struct clk_ops mpfs_clk_cfg_ops = {
-+	.recalc_rate = mpfs_cfg_clk_recalc_rate,
-+	.round_rate = mpfs_cfg_clk_round_rate,
-+	.set_rate = mpfs_cfg_clk_set_rate,
-+};
-+
-+#define CLK_CFG(_id, _name, _shift, _width, _table, _flags) {				\
-+		.cfg.id = _id,								\
-+		.cfg.name = _name,							\
-+		.cfg.shift = _shift,							\
-+		.cfg.width = _width,							\
-+		.cfg.table = _table,							\
-+	}
-+
-+static struct mpfs_cfg_hw_clock mpfs_cfg_clks[] = {
-+	CLK_CFG(CLK_CPU, "clk_cpu", 0, 2, mpfs_div_cpu_axi_table, 0),
-+	CLK_CFG(CLK_AXI, "clk_axi", 2, 2, mpfs_div_cpu_axi_table, 0),
-+	CLK_CFG(CLK_AHB, "clk_ahb", 4, 2, mpfs_div_ahb_table, 0),
-+};
-+
-+static void mpfs_clk_unregister_cfg(struct device *dev, struct clk_hw *hw)
-+{
-+	devm_clk_hw_unregister(dev, hw);
-+}
-+
-+static struct clk_hw *mpfs_clk_register_cfg(struct device *dev,
-+					    struct mpfs_cfg_hw_clock *cfg_hw,
-+					    void __iomem *sys_base)
-+{
-+	struct clk_hw *hw;
-+	int err;
-+
-+	cfg_hw->sys_base = sys_base;
-+	cfg_hw->lock = &mpfs_clk_lock;
-+
-+	hw = &cfg_hw->hw;
-+	err = devm_clk_hw_register(dev, hw);
-+	if (err)
-+		return ERR_PTR(err);
-+
-+	return hw;
-+}
-+
-+static int mpfs_clk_register_cfgs(struct device *dev, struct mpfs_cfg_hw_clock *cfg_hws,
-+				  unsigned int num_clks, struct mpfs_clock_data *data)
-+{
-+	struct clk_hw *hw;
-+	struct clk *clk_parent;
-+	void __iomem *sys_base = data->base;
-+	unsigned int i, id;
-+
-+	for (i = 0; i < num_clks; i++) {
-+		struct mpfs_cfg_hw_clock *cfg_hw = &cfg_hws[i];
-+
-+		clk_parent = devm_clk_get(dev, NULL);
-+		if (IS_ERR(clk_parent))
-+			return -EPROBE_DEFER;
-+
-+		cfg_hw->cfg.parent = __clk_get_hw(clk_parent);
-+		cfg_hw->hw.init = CLK_HW_INIT_HW(cfg_hw->cfg.name, cfg_hw->cfg.parent,
-+						 &mpfs_clk_cfg_ops, cfg_hw->cfg.flags);
-+		hw = mpfs_clk_register_cfg(dev, cfg_hw, sys_base);
-+		if (IS_ERR(hw)) {
-+			dev_err(dev, "failed to register clock %s\n", cfg_hw->cfg.name);
-+			goto err_clk;
-+		}
-+
-+		id = cfg_hws[i].cfg.id;
-+		data->hw_data.hws[id] = hw;
-+	}
-+
-+	return 0;
-+
-+err_clk:
-+	while (i--)
-+		mpfs_clk_unregister_cfg(dev, data->hw_data.hws[cfg_hws[i].cfg.id]);
-+
-+	return PTR_ERR(hw);
-+}
-+
-+static int mpfs_periph_clk_enable(struct clk_hw *hw)
-+{
-+	struct mpfs_periph_hw_clock *periph_hw = to_mpfs_periph_clk(hw);
-+	struct mpfs_periph_clock *periph = &periph_hw->periph;
-+	void __iomem *base_addr = periph_hw->sys_base;
-+	u32 reg, val;
-+	unsigned long flags = 0;
-+
-+	spin_lock_irqsave(periph_hw->lock, flags);
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_RESET_CR);
-+	val = reg & ~(1u << periph->shift);
-+	writel_relaxed(val, base_addr + REG_SUBBLK_RESET_CR);
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_CLOCK_CR);
-+	val = reg | (1u << periph->shift);
-+	writel_relaxed(val, base_addr + REG_SUBBLK_CLOCK_CR);
-+
-+	spin_unlock_irqrestore(periph_hw->lock, flags);
-+
-+	return 0;
-+}
-+
-+static void mpfs_periph_clk_disable(struct clk_hw *hw)
-+{
-+	struct mpfs_periph_hw_clock *periph_hw = to_mpfs_periph_clk(hw);
-+	struct mpfs_periph_clock *periph = &periph_hw->periph;
-+	void __iomem *base_addr = periph_hw->sys_base;
-+	u32 reg, val;
-+	unsigned long flags = 0;
-+
-+	spin_lock_irqsave(periph_hw->lock, flags);
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_RESET_CR);
-+	val = reg | (1u << periph->shift);
-+	writel_relaxed(val, base_addr + REG_SUBBLK_RESET_CR);
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_CLOCK_CR);
-+	val = reg & ~(1u << periph->shift);
-+	writel_relaxed(val, base_addr + REG_SUBBLK_CLOCK_CR);
-+
-+	spin_unlock_irqrestore(periph_hw->lock, flags);
-+}
-+
-+static int mpfs_periph_clk_is_enabled(struct clk_hw *hw)
-+{
-+	struct mpfs_periph_hw_clock *periph_hw = to_mpfs_periph_clk(hw);
-+	struct mpfs_periph_clock *periph = &periph_hw->periph;
-+	void __iomem *base_addr = periph_hw->sys_base;
-+	u32 reg;
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_RESET_CR);
-+	if ((reg & (1u << periph->shift)) == 0u) {
-+		reg = readl_relaxed(base_addr + REG_SUBBLK_CLOCK_CR);
-+		if (reg & (1u << periph->shift))
-+			return 1;
-+	}
-+
-+	return 0;
-+}
-+
-+static unsigned long mpfs_periph_clk_recalc_rate(struct clk_hw *hw, unsigned long prate)
-+{
-+	return prate;
-+}
-+
-+static const struct clk_ops mpfs_periph_clk_ops = {
-+	.enable = mpfs_periph_clk_enable,
-+	.disable = mpfs_periph_clk_disable,
-+	.is_enabled = mpfs_periph_clk_is_enabled,
-+	.recalc_rate = mpfs_periph_clk_recalc_rate,
-+};
-+
-+#define CLK_PERIPH(_id, _name, _parent, _shift, _flags) {				\
-+		.periph.id = _id,							\
-+		.periph.name = _name,							\
-+		.periph.shift = _shift,							\
-+		.periph.flags = _flags,							\
-+		.periph.parent = _parent,						\
-+}
-+
-+#define PARENT_CLK(PARENT) (&mpfs_cfg_clks[CLK_##PARENT].hw)
-+
-+static struct mpfs_periph_hw_clock mpfs_periph_clks[] = {
-+	CLK_PERIPH(CLK_ENVM, "clk_periph_envm", PARENT_CLK(AHB), 0, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_MAC0, "clk_periph_mac0", PARENT_CLK(AHB), 1, 0),
-+	CLK_PERIPH(CLK_MAC1, "clk_periph_mac1", PARENT_CLK(AHB), 2, 0),
-+	CLK_PERIPH(CLK_MMC, "clk_periph_mmc", PARENT_CLK(AHB), 3, 0),
-+	CLK_PERIPH(CLK_TIMER, "clk_periph_timer", PARENT_CLK(AHB), 4, 0),
-+	CLK_PERIPH(CLK_MMUART0, "clk_periph_mmuart0", PARENT_CLK(AHB), 5, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_MMUART1, "clk_periph_mmuart1", PARENT_CLK(AHB), 6, 0),
-+	CLK_PERIPH(CLK_MMUART2, "clk_periph_mmuart2", PARENT_CLK(AHB), 7, 0),
-+	CLK_PERIPH(CLK_MMUART3, "clk_periph_mmuart3", PARENT_CLK(AHB), 8, 0),
-+	CLK_PERIPH(CLK_MMUART4, "clk_periph_mmuart4", PARENT_CLK(AHB), 9, 0),
-+	CLK_PERIPH(CLK_SPI0, "clk_periph_spi0", PARENT_CLK(AHB), 10, 0),
-+	CLK_PERIPH(CLK_SPI1, "clk_periph_spi1", PARENT_CLK(AHB), 11, 0),
-+	CLK_PERIPH(CLK_I2C0, "clk_periph_i2c0", PARENT_CLK(AHB), 12, 0),
-+	CLK_PERIPH(CLK_I2C1, "clk_periph_i2c1", PARENT_CLK(AHB), 13, 0),
-+	CLK_PERIPH(CLK_CAN0, "clk_periph_can0", PARENT_CLK(AHB), 14, 0),
-+	CLK_PERIPH(CLK_CAN1, "clk_periph_can1", PARENT_CLK(AHB), 15, 0),
-+	CLK_PERIPH(CLK_USB, "clk_periph_usb", PARENT_CLK(AHB), 16, 0),
-+	CLK_PERIPH(CLK_RTC, "clk_periph_rtc", PARENT_CLK(AHB), 18, 0),
-+	CLK_PERIPH(CLK_QSPI, "clk_periph_qspi", PARENT_CLK(AHB), 19, 0),
-+	CLK_PERIPH(CLK_GPIO0, "clk_periph_gpio0", PARENT_CLK(AHB), 20, 0),
-+	CLK_PERIPH(CLK_GPIO1, "clk_periph_gpio1", PARENT_CLK(AHB), 21, 0),
-+	CLK_PERIPH(CLK_GPIO2, "clk_periph_gpio2", PARENT_CLK(AHB), 22, 0),
-+	CLK_PERIPH(CLK_DDRC, "clk_periph_ddrc", PARENT_CLK(AHB), 23, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_FIC0, "clk_periph_fic0", PARENT_CLK(AHB), 24, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_FIC1, "clk_periph_fic1", PARENT_CLK(AHB), 25, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_FIC2, "clk_periph_fic2", PARENT_CLK(AHB), 26, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_FIC3, "clk_periph_fic3", PARENT_CLK(AHB), 27, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_ATHENA, "clk_periph_athena", PARENT_CLK(AHB), 28, 0),
-+	CLK_PERIPH(CLK_CFM, "clk_periph_cfm", PARENT_CLK(AHB), 29, 0),
-+};
-+
-+static void mpfs_clk_unregister_periph(struct device *dev, struct clk_hw *hw)
-+{
-+	devm_clk_hw_unregister(dev, hw);
-+}
-+
-+static struct clk_hw *mpfs_clk_register_periph(struct device *dev,
-+					       struct mpfs_periph_hw_clock *periph_hw,
-+					       void __iomem *sys_base)
-+{
-+	struct clk_hw *hw;
-+	int err;
-+
-+	periph_hw->sys_base = sys_base;
-+	periph_hw->lock = &mpfs_clk_lock;
-+	hw = &periph_hw->hw;
-+	err = devm_clk_hw_register(dev, hw);
-+	if (err)
-+		return ERR_PTR(err);
-+
-+	return hw;
-+}
-+
-+static int mpfs_clk_register_periphs(struct device *dev, struct mpfs_periph_hw_clock *periph_hws,
-+				     int num_clks, struct mpfs_clock_data *data)
-+{
-+	struct clk_hw *hw;
-+	void __iomem *sys_base = data->base;
-+	unsigned int i, id;
-+
-+	for (i = 0; i < num_clks; i++) {
-+		struct mpfs_periph_hw_clock *periph_hw = &periph_hws[i];
-+
-+		periph_hw->hw.init = CLK_HW_INIT_HW(periph_hw->periph.name,
-+						    periph_hw->periph.parent,
-+						    &mpfs_periph_clk_ops,
-+						    periph_hw->periph.flags);
-+		hw = mpfs_clk_register_periph(dev, periph_hw, sys_base);
-+		if (IS_ERR(hw)) {
-+			dev_err(dev, "failed to register clock %s\n", periph_hw->periph.name);
-+			goto err_clk;
-+		}
-+
-+		id = periph_hws[i].periph.id;
-+		data->hw_data.hws[id] = hw;
-+	}
-+
-+	return 0;
-+
-+err_clk:
-+	while (i--)
-+		mpfs_clk_unregister_periph(dev, data->hw_data.hws[periph_hws[i].periph.id]);
-+
-+	return PTR_ERR(hw);
-+}
-+
-+static int mpfs_clk_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mpfs_clock_data *clk_data;
-+	struct resource *res;
-+	unsigned int num_clks;
-+	int ret;
-+
-+	//CLK_RESERVED is not part of cfg_clks nor periph_clks, so add 1
-+	num_clks = ARRAY_SIZE(mpfs_cfg_clks) + ARRAY_SIZE(mpfs_periph_clks) + 1;
-+
-+	clk_data = devm_kzalloc(dev, struct_size(clk_data, hw_data.hws, num_clks), GFP_KERNEL);
-+	if (!clk_data)
-+		return -ENOMEM;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	clk_data->base = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(clk_data->base))
-+		return PTR_ERR(clk_data->base);
-+
-+	clk_data->hw_data.num = num_clks;
-+
-+	ret = mpfs_clk_register_cfgs(dev, mpfs_cfg_clks, ARRAY_SIZE(mpfs_cfg_clks), clk_data);
-+	if (ret)
-+		goto err_clk;
-+
-+	ret = mpfs_clk_register_periphs(dev, mpfs_periph_clks, ARRAY_SIZE(mpfs_periph_clks),
-+					clk_data);
-+	if (ret)
-+		goto err_clk;
-+
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, &clk_data->hw_data);
-+	if (ret)
-+		goto err_clk;
-+
-+	dev_info(dev, "registered MPFS core clocks\n");
-+	return ret;
-+
-+err_clk:
-+	dev_err(dev, "failed to register MPFS core clocks\n");
-+	return ret;
-+}
-+
-+static const struct of_device_id mpfs_clk_of_match_table[] = {
-+	{ .compatible = "microchip,mpfs-clkcfg", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mpfs_clk_match_table);
-+
-+static struct platform_driver mpfs_clk_driver = {
-+	.probe = mpfs_clk_probe,
-+	.driver	= {
-+		.name = "microchip-mpfs-clkcfg",
-+		.of_match_table = mpfs_clk_of_match_table,
-+	},
-+};
-+
-+static int __init clk_mpfs_init(void)
-+{
-+	return platform_driver_register(&mpfs_clk_driver);
-+}
-+core_initcall(clk_mpfs_init);
-+
-+static void __exit clk_mpfs_exit(void)
-+{
-+	platform_driver_unregister(&mpfs_clk_driver);
-+}
-+module_exit(clk_mpfs_exit);
-+
-+MODULE_DESCRIPTION("Microchip PolarFire SoC Clock Driver");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("platform:clk-mpfs");
+changes compared with v14:
+- rebase to latest media stage.
+
+changes compared with v13:
+- change some function position in case of ko dependency for patch 15.
+- add reviewed-by for patch 06/13/15.
+
+changes compared with v12:
+- fix comments from rob for patch 15.
+- fix comments from steve for 06 and 13.
+
+changes compared with v11:
+- fix comments from AngeloGioacchino for patch 09~11/19.
+- fix comments from steve for patch 03/19.
+
+changes compared with v10:
+- fix comments from tzung-bi for patch 06/19.
+- add more detail information for hardware block diagram 15/19
+
+changes compared with v9:
+- need not to build ko, just export pm interfaces for patch 04/19.
+- fix comments for patch 06/19
+
+changes compared with v8:
+- add new patch 18~19 to remove mtk_vcodec_release_de/enc_pm interfaces.
+- fix spelling mistakes for patch 17/19
+- fix yaml comments for patch 15/19
+
+Changes compared with v7:
+- add new patch 4 to build decoder pm file as module
+- add new patch 5 to support 8192
+- fix comments for patch 6/17
+- change some logic for using work queue instead of create thread for core hardware decode for patch 10/17
+- using work queue for hardware decode instead of create thread for patch 13/17
+- add returen value for patch 14/17
+- fix yaml check fail 15/17
+
+Changes compared with v6:
+- Use of_platform_populate to manage multi hardware, not component framework for patch 4/15
+- Re-write dtsi document for hardware architecture changed for patch 13/15 -The dtsi will write like below in patch 13/15:
+    vcodec_dec: vcodec_dec@16000000 {
+        compatible = "mediatek,mt8192-vcodec-dec";
+        #address-cells = <2>;
+        #size-cells = <2>;
+        ranges;
+        reg = <0 0x16000000 0 0x1000>;		/* VDEC_SYS */
+        mediatek,scp = <&scp>;
+        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
+        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+        vcodec_lat {
+            compatible = "mediatek,mtk-vcodec-lat";
+            reg = <0 0x16010000 0 0x800>;		/* VDEC_MISC */
+            reg-name = "reg-misc";
+            interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
+            iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
+            clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+                 <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
+                 <&vdecsys_soc CLK_VDEC_SOC_LAT>,
+                 <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
+                 <&topckgen CLK_TOP_MAINPLL_D4>;
+            clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+                  "vdec-vdec", "vdec-top";
+            assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+            assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+            power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
+        };
+
+        vcodec_core {
+            compatible = "mediatek,mtk-vcodec-core";
+            reg = <0 0x16025000 0 0x1000>;		/* VDEC_CORE_MISC */
+            reg-names = "reg-misc";
+            interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
+            iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_UFO_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_PP_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_PRED_RD_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_PRED_WR_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_PPWRAP_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_TILE_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_VLD_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_VLD2_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_AVC_MV_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
+            clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+                 <&vdecsys CLK_VDEC_VDEC>,
+                 <&vdecsys CLK_VDEC_LAT>,
+                 <&vdecsys CLK_VDEC_LARB1>,
+                 <&topckgen CLK_TOP_MAINPLL_D4>;
+            clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+                  "vdec-vdec", "vdec-top";
+            assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+            assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+            power-domains = <&spm MT8192_POWER_DOMAIN_VDEC2>;
+        };
+    };
+
+Changes compared with v5:
+- Add decoder hardware block diagram for patch 13/15
+
+Changes compared with v4:
+- Fix comments for patch 4/15
+  >> +     if (dev->is_comp_supported) {
+  >> +             ret = mtk_vcodec_init_master(dev);
+  >> +             if (ret < 0)
+  >> +                     goto err_component_match;
+  >> +     } else {
+  >> +             platform_set_drvdata(pdev, dev);
+  >> +     }
+  Fix platform_set_drvdata.
+- Fix build error for patch 9/15
+- Add depend patch in case of error header file for patch 13/15
+
+Changes compared with v3:
+- Fix return value for patch 1/15
+- Fix comments for patch 4/15
+  > Looking up "mediatek,mtk-vcodec-core" to determine if it uses component framwork sounds like...
+  Add prameter in pdata, for all platform will use compoent after mt8183
+
+  >> +     if (dev->is_comp_supported) {
+  >> +             ret = mtk_vcodec_init_master(dev);
+  >> +             if (ret < 0)
+  >> +                     goto err_component_match;
+  >> +     } else {
+  >> +             platform_set_drvdata(pdev, dev);
+  >> +     }
+  > + Has asked the same question in [1].  Why it removes the
+  > +platform_set_drvdata() above?  mtk_vcodec_init_master() also calls platform_set_drvdata().
+  Must call component_master_add_with_match after platform_set_drvdata for component architecture.
+- Fix yaml files check fail for patch 5/15
+- Fix yaml file check fail for patch 14/15
+
+Changes compared with v1:
+- Fix many comments for patch 3/14
+- Remove unnecessary code for patch 4/14
+- Using enum mtk_vdec_hw_count instead of magic numbers for patch 6/14
+- Reconstructed get/put lat buffer for lat and core hardware for patch 7/14
+- Using yaml format to instead of txt file for patch 12/14
+
+Yunfei Dong (19):
+  media: mtk-vcodec: Get numbers of register bases from DT
+  media: mtk-vcodec: Align vcodec wake up interrupt interface
+  media: mtk-vcodec: Refactor vcodec pm interface
+  media: mtk-vcodec: export decoder pm functions
+  media: mtk-vcodec: Support MT8192
+  media: mtk-vcodec: Add to support multi hardware decode
+  dt-bindings: media: mtk-vcodec: Separate video encoder and decoder
+    dt-bindings
+  media: mtk-vcodec: Use pure single core for MT8183
+  media: mtk-vcodec: Add irq interface for multi hardware
+  media: mtk-vcodec: Add msg queue feature for lat and core architecture
+  media: mtk-vcodec: Generalize power and clock on/off interfaces
+  media: mtk-vcodec: Add new interface to lock different hardware
+  media: mtk-vcodec: Add work queue for core hardware decode
+  media: mtk-vcodec: Support 34bits dma address for vdec
+  dt-bindings: media: mtk-vcodec: Adds decoder dt-bindings for mt8192
+  media: mtk-vcodec: Add core dec and dec end ipi msg
+  media: mtk-vcodec: Use codec type to separate different hardware
+  media: mtk-vcodec: Remove mtk_vcodec_release_dec_pm
+  media: mtk-vcodec: Remove mtk_vcodec_release_enc_pm
+
+ .../media/mediatek,vcodec-decoder.yaml        | 176 +++++++++++
+ .../media/mediatek,vcodec-encoder.yaml        | 187 ++++++++++++
+ .../media/mediatek,vcodec-subdev-decoder.yaml | 265 ++++++++++++++++
+ .../bindings/media/mediatek-vcodec.txt        | 131 --------
+ drivers/media/platform/mtk-vcodec/Makefile    |   6 +-
+ .../platform/mtk-vcodec/mtk_vcodec_dec.c      |   4 +-
+ .../platform/mtk-vcodec/mtk_vcodec_dec.h      |   1 +
+ .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  | 177 ++++++++---
+ .../platform/mtk-vcodec/mtk_vcodec_dec_hw.c   | 201 ++++++++++++
+ .../platform/mtk-vcodec/mtk_vcodec_dec_hw.h   |  53 ++++
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   | 104 +++++--
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.h   |  12 +-
+ .../mtk-vcodec/mtk_vcodec_dec_stateful.c      |   2 +
+ .../mtk-vcodec/mtk_vcodec_dec_stateless.c     |  21 ++
+ .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  73 ++++-
+ .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  |  21 +-
+ .../platform/mtk-vcodec/mtk_vcodec_enc_pm.c   |  10 +-
+ .../platform/mtk-vcodec/mtk_vcodec_enc_pm.h   |   3 +-
+ .../platform/mtk-vcodec/mtk_vcodec_intr.c     |  27 +-
+ .../platform/mtk-vcodec/mtk_vcodec_intr.h     |   4 +-
+ .../platform/mtk-vcodec/mtk_vcodec_util.c     |  59 +++-
+ .../platform/mtk-vcodec/mtk_vcodec_util.h     |   8 +-
+ .../platform/mtk-vcodec/vdec/vdec_h264_if.c   |   2 +-
+ .../mtk-vcodec/vdec/vdec_h264_req_if.c        |   2 +-
+ .../platform/mtk-vcodec/vdec/vdec_vp8_if.c    |   2 +-
+ .../platform/mtk-vcodec/vdec/vdec_vp9_if.c    |   2 +-
+ .../media/platform/mtk-vcodec/vdec_drv_if.c   |  21 +-
+ .../media/platform/mtk-vcodec/vdec_ipi_msg.h  |  16 +-
+ .../platform/mtk-vcodec/vdec_msg_queue.c      | 289 ++++++++++++++++++
+ .../platform/mtk-vcodec/vdec_msg_queue.h      | 143 +++++++++
+ .../media/platform/mtk-vcodec/vdec_vpu_if.c   |  46 ++-
+ .../media/platform/mtk-vcodec/vdec_vpu_if.h   |  22 ++
+ .../platform/mtk-vcodec/venc/venc_h264_if.c   |   2 +-
+ .../platform/mtk-vcodec/venc/venc_vp8_if.c    |   2 +-
+ 34 files changed, 1800 insertions(+), 294 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/mediatek-vcodec.txt
+ create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_hw.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_hw.h
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec_msg_queue.h
+
 -- 
-2.33.1
+2.25.1
 
