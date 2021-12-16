@@ -2,757 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60DD24774B2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 15:32:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8CC34774E1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 15:42:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238035AbhLPOc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 09:32:29 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:34942 "EHLO
+        id S238128AbhLPOmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 09:42:42 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:12764 "EHLO
         esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237880AbhLPOc2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 09:32:28 -0500
+        with ESMTP id S237690AbhLPOml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 09:42:41 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1639665148; x=1671201148;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2X1L0+TOW2vOdRgWGk/1EQ+BdVOTmAyvicaHRLA0lMg=;
-  b=P6GvnLHtt+bFpfAyiAB8KUdD7AJASWGbCr3WQ52dZkyQ9r26iet8hpPV
-   Xd2yWx5UD53UtfadjfT62Wc8jkWRqcxQG4XXE97qf2J+YPJvUBRgd3dE5
-   mK8CpyhXckt3DgI69HNNwmeRKaeM8LOIKLjC009BSYtmlwZjcurLOlk2Q
-   cZQCo25zKuqrsVD+9fvOd1QFYXschSRWGgcM01XuZWsDAt5r7JwjLc8Uj
-   v06X8E/c0uOYYaCzucp2rCdXYJqRJJzDnY4aN4XeWZO4dZq/MEMlN3JGc
-   ZYMZNkcpUOa9PMCoBhvv5/zmCT5KTum12BA+EaNiaUjfU6hmBS/HuNlX5
-   w==;
-IronPort-SDR: PbxAp8J31z5CQGPr+Ds2IDPNXISogOO3MgWBVWNwsuRpLGfNtOnMJKXGQY7pDIWTdGMlUNrnHQ
- ly1dKAOLQs4DUqDH03y4+OdlmOtSP8JgJ9P07jdaP5DD90qjYm/5fewmDlYCLJEKwv2Qt6k1YL
- oJVfFtbQuiz69cWcoXuN5JdugyOA9CVtyBW5ka5uDvJ7w5m4U7nlty0w9MlZZy+MobhiYNwqRI
- BRbYlkKYHNP9GDUfzCbjlgYNupkP6t3FHIQFgsykNRrpkfsIxNwzATG9lcLEnva8sgcstAdmaU
- lIdQ6zMLYo7f81D8gYUnokr4
+  t=1639665763; x=1671201763;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=9uYF3W5ZcM9cdkgJbwNre6f3OTO7R8Irsrrx+e2g/nU=;
+  b=zzz5jF5ZE+/CBZlC7WdRxvOPgH8k6loD1REhC+f1U5alKhnqShiryIS7
+   R+d2ICRrOR/JSYv4Iq3AjTwXSyozE/sh7V228/tJX3DnCt8tSKpxNHutR
+   khIVhhUWS0LyEFI8nnYfsFZxwE7rjctX8ZsYuuree55hUIjloChowbxHW
+   G6BA7xf5oH+8o7aAxPM2R/I2hGpXZKTopyW/GW/DZbbu1/go6AF5G82uU
+   uOgoBgdWE2lCH45NDKE280k4XufkSuMSEN1qiP4N/uWEW7TxTx0DYIuGT
+   gQqqSVEduvzVrcwluuUqrKUFBvV4qO9cuKmFaC1eLkTVQ/6nNdJKVG/g3
+   A==;
+IronPort-SDR: yfg337+qmwvuiJYu/g100hGVlPDaVgdHuOjHO1zscQV0xLqkRON+bnoFz2JlBfHqJ73AWQG3H7
+ CyxDjxzmZ9wIZ1XuFyLgwKfq4bYV9R3YygsQ/FqzkBT+XZgLLpr+D2lCB2LRUvvp7B3Lwoi7Vx
+ uszwtm7C789fnc+JRr0uowAYZF2wUzi5d6SeMHMYdmZCywMnccSthI7k6KLsi1lwCO7Di/FdEl
+ mwLrP9y2/hFG0lB5AP6fOauC6hWaYPv+rLdK872ec2S6E6pjPh0YC/jrGqRvufhHYh1+R2IE6R
+ QRGrJH1UtEhQUNDiCDHUXvon
 X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; 
-   d="scan'208";a="142640584"
+   d="scan'208";a="146897763"
 Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Dec 2021 07:32:27 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Dec 2021 07:39:57 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 16 Dec 2021 07:32:27 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Thu, 16 Dec 2021 07:32:26 -0700
-Date:   Thu, 16 Dec 2021 15:34:30 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "vivien.didelot@gmail.com" <vivien.didelot@gmail.com>,
-        "andrew@lunn.ch" <andrew@lunn.ch>
-Subject: Re: [PATCH net-next v5 6/9] net: lan966x: Add support to offload the
- forwarding.
-Message-ID: <20211216143430.os2p4avu6634rqzm@soft-dev3-1.localhost>
-References: <20211215121309.3669119-1-horatiu.vultur@microchip.com>
- <20211215121309.3669119-7-horatiu.vultur@microchip.com>
- <20211215235040.2hfkk5nireum6cr5@skbuf>
-MIME-Version: 1.0
+ 15.1.2375.17; Thu, 16 Dec 2021 07:39:54 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17 via Frontend Transport; Thu, 16 Dec 2021 07:39:54 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hKE3jxb4gNuaNG2HnKKBhirDwVEU8iWbPdMNOrQj1LgkUttG00U0TREjwmZZ3hyRkqYmxLnvW/9YjOVsXHEHIiGUrB27X4RK6bvWEqiT/t7w0XW1+ebR1AhX4nAUg/ZBccl5TeOk6Rd+Zv8ilZbBupGOHLS/3VRyZ95Umx6csdvX8nqvBCPhsiiNxc9jJwWsT7dp4Dux1bg0JsLu/6o43VO8EU6NYzK+Kob5zhPM0kDbKPZUL7Phrw2pl97eN3EPDdjWCSpyTeMeDByi6d08TTHj0XGmwIo0Jyg6EM1vKT1BKAYW9/m0epGdoSKUBInaZgpme2OZ0tEUjif2wnudXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9uYF3W5ZcM9cdkgJbwNre6f3OTO7R8Irsrrx+e2g/nU=;
+ b=BxyPaWBhaDy10SSGhZzx8jO38ysJ5DqZ3aiH5GP//y3QosiN1jIiz+MxXWldc5p15AgyfqLUtw8ys0KSFIVKSN5JQG8qAEw5uz09WC+4W4jEhdCVWb7xBOPJ3GWLjLhc5wkxHDN0gLtgBYf/8c3w8k90HuVsG4HZvANip43ZMsSUFJcI5r7e9ie0HfdH8fljBf4pq6u+flATU3OeLm7DNidzgQ7iYwqqx0JjAZs9FBEgLm6iBOWpi7uuvHYANx4g/cR1lJnQaYNHuUZf2ei8Rn3s4NjvzwZ0nExw/Mrzdmeuhs4L5luM0sQX5P1QJ04wouo39NhNf/Y9gFUNqFgmiw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9uYF3W5ZcM9cdkgJbwNre6f3OTO7R8Irsrrx+e2g/nU=;
+ b=XwPHfdhpJEwB4mocHRCdp7nTnYvhzuB7VpBwdrmWFJliiaLgnXdcJ21Vx0RzKUzDMYWPk0A5F7bZmaePrQ6Nugxm8wkDaf5CoAa5vrlDGuR++CPeh4BtEhfoB2E5ucPb9/cBBAfG4Yfh7HX69U5ZXRPZwhEkqv16JnlWeYVhy74=
+Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:95::7)
+ by MW3PR11MB4635.namprd11.prod.outlook.com (2603:10b6:303:2c::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.14; Thu, 16 Dec
+ 2021 14:39:49 +0000
+Received: from CO1PR11MB5154.namprd11.prod.outlook.com
+ ([fe80::a192:c9ae:1f83:797b]) by CO1PR11MB5154.namprd11.prod.outlook.com
+ ([fe80::a192:c9ae:1f83:797b%6]) with mapi id 15.20.4778.019; Thu, 16 Dec 2021
+ 14:39:49 +0000
+From:   <Conor.Dooley@microchip.com>
+To:     <geert@linux-m68k.org>, <paul.walmsley@sifive.com>,
+        <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>
+CC:     <robh+dt@kernel.org>, <damien.lemoal@wdc.com>,
+        <Lewis.Hanly@microchip.com>, <krzysztof.kozlowski@canonical.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 05/11] riscv: dts: microchip: mpfs: Fix reference clock
+ node
+Thread-Topic: [PATCH v2 05/11] riscv: dts: microchip: mpfs: Fix reference
+ clock node
+Thread-Index: AQHX8oIgnWYztQSikUKTyjHnHdaFqKw1MRAA
+Date:   Thu, 16 Dec 2021 14:39:48 +0000
+Message-ID: <d378f94b-ac49-5f91-9fc1-19bf3debff89@microchip.com>
+References: <cover.1639660956.git.geert@linux-m68k.org>
+ <1fdb9ffe223057e0140324ae020c9cc1dc90ae5c.1639660956.git.geert@linux-m68k.org>
+In-Reply-To: <1fdb9ffe223057e0140324ae020c9cc1dc90ae5c.1639660956.git.geert@linux-m68k.org>
+Accept-Language: en-IE, en-US
+Content-Language: en-IE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1b9a6b68-8a3a-4ccc-7f61-08d9c0a1e990
+x-ms-traffictypediagnostic: MW3PR11MB4635:EE_
+x-microsoft-antispam-prvs: <MW3PR11MB4635066DD055D6699E9AE5E098779@MW3PR11MB4635.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3513;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: t+63DjvUhrwf2Mb43O8vVxdyhonxp3KkMJRE6bgdriLIx/GnWohpBUhKl1chABLDJbHsaLZALq672ZrychTXV0DTwkzss+nYjaapWiJTzCgbVPRKl/yfFR+2h94RCYUxnakf8CfCvz2xi4tlW+xCMKtqsm68Gi2tHihDEIzlKzYeue6hxw/98JYbJJdLfyALG1hURKd7WMzkzs7DRlxnGH3CjgcgiAL8N1bo1kStT1mnAK9OQZs2v4lvzy7aE+W+pLc4kw387cj7y1d3g+tyAuhnm48Q19IxU8x2PeL4IJ3RknNWjWvrVA5Ap9gzKy03pAh/GqKorwkRw9oy7ssPU1BxG3xPHvUE0NLPpmmy3fzp/xXxukEWg08SLdMUZgznrVCnMkTHxzI1xqYGlNZHNfS9Jc7tiCP/Bgt0fLKD4iFNPmn3CMOYOGvJiBA4R8wwQOJ+xhyHWVr98cy8kr4JVnRHo9flxTlhLkV+2z+E8nNZBWnm0mduQ/Hh6Rs2yBrBWY8STV8NqbFio/CrC4co5vOqjV0iM+RT0c7TylGMVt+bkSUtywaPZ51LtU8mdvQBblfgbXjjkwn7l8mFrxH2keAX0lIha5335qWzPMTmw9jcsQsXhtnnsKE8wuWTMgdRYvSq7UjnRPi75ZhqmJFw9uRKmQOyNxPvvAK4CaeMyE3uBIceUwCo2TfGQJhawBpAg1UmP5ut7RoVlyyPTi86DGl0WHPOqbodIUMzE8vLGSOFNm/5D8sATQFzNMhXW+KnV1QeysRyTMWUc2la4hJ7Og==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(8936002)(2906002)(76116006)(8676002)(83380400001)(31686004)(4326008)(110136005)(54906003)(316002)(86362001)(64756008)(66476007)(66556008)(66446008)(91956017)(66946007)(6506007)(26005)(31696002)(6512007)(186003)(508600001)(36756003)(53546011)(2616005)(71200400001)(122000001)(6486002)(38100700002)(38070700005)(5660300002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?T0I4UUk0dHlMbUVraXhTRlRWbDNJNUhFb2UzRVFydDg2aXc3eEZTVkNqTjdW?=
+ =?utf-8?B?Vkg3eFRsMWp1bGFOUGx1amRQdjZlbEZGTmFESmpIeXhjTUF4S0RJUkZERmQx?=
+ =?utf-8?B?cFJvOW1Wd3JhbEprZ1Z0QVdsVlU5c0E5cENCQU0vNlNkL1pUeEhtWlE4RTY4?=
+ =?utf-8?B?VVhBRGtERVdBTEpTTXFXVUN0QWJENVA2OWR0ZVRHYzgwOFRyR1kzTE9SL21q?=
+ =?utf-8?B?TkUyQlhKZlpsUUhGbHFiZjlvdTMzUXVPbDk1bHVnYWNCZStEcktKZHVQVDVL?=
+ =?utf-8?B?YSsrMXJSS0lIM0xySlhCaHhFQ1JJcVlzWkRHYVhaUTFNY3h1TVBrNENjTEdZ?=
+ =?utf-8?B?YjhZZm1UUE41SVhsSFVwTGJjYlhYN2ZmeG1Qc2RTYlhpK3dQbDRtai9Zbk5Z?=
+ =?utf-8?B?aGl1SVlJVzlLbmxDNU1jOERYc2dLblVkUFNUNFE1SXhpdmRnMmpMYTFqcDlW?=
+ =?utf-8?B?Vm9Wc29lcUJvV3ZWQTlBZXQ5QUZjcitGcnlYNktVRTRYOUZYZElDS1h3VDJJ?=
+ =?utf-8?B?REJ3L0FTK2dNc09lUWIrWkNHbFZ0ZVQ4TnAvZVZZMkk2ckUrOU9jQXM5QTVO?=
+ =?utf-8?B?WFNRRFZHeEZGQjdtekZVRENpRG9ta3VtZGt2T2xDRkRSTytvMnRlek9JYmkx?=
+ =?utf-8?B?bGJBRElpcmI0K1BPVkh4TGVjWTBUWlRrVjUyZFBDd1lMVkJjeVJLRVlrb08z?=
+ =?utf-8?B?SGtJcVJMSFRXalFmRDQ4Q0plbWdqdy8xYTBWUjU5bnUycG1vOFZlZFo0UExL?=
+ =?utf-8?B?dXJYbmVDUnVWZmR1ZU92cXlEQlpCMktRUTZIRjdTL0g5RXZ6dnA5cVdjUWZQ?=
+ =?utf-8?B?OWtOWFJXUHprRERoWlBraXpreVdtSnhDL0lNVVlUdDgwakZqUGpncTh6Mmoy?=
+ =?utf-8?B?UncwL09mOU9RQmp3aWR0SE5lS0lqb2FyTGE3eC90dGRFSmc2cVhKYmJnWm50?=
+ =?utf-8?B?a3FkRzQzSmdqa3NaaWU2TnVQcSs4d3ZMQzZjWFZhRng4M09zMUozenhTbVAv?=
+ =?utf-8?B?SG1CYSszSS9ZZjdqUTFBYWQxZHREZkVNUHZyZEVZNXJMeGFJOVhBZ0t1Qk5S?=
+ =?utf-8?B?RXluQjBYb3UzWFRYalVRL0V5cDNSWHM5NEt1VS9uaGpMTWh5SHZ6QWgwdVVV?=
+ =?utf-8?B?R1FYVkdzQVpGNThna28weHh6dmNwcURySDZGZHBKN3IxeXJCZzJwUlFPR2dV?=
+ =?utf-8?B?RVZzdDcvS09Rd1FYYnp5Rnl6VWdsTzhtUDlwdmtPMXpUWGY5R0EvRENQcTJw?=
+ =?utf-8?B?Z2Znc25nM3NFYmtzc1lneUNxMW5oaC9UdHdhZ3A2cnZLR1JYZ3VsKzJnRlg3?=
+ =?utf-8?B?MTc3bStNYkU2TDBUTllqenY1K0VNaHBIMWt6TGgyZ1dkdkJWdkwvSXRlSW90?=
+ =?utf-8?B?VGh1OUYrNzdqV2dneUV2ZnJCdE1JN3Y5OEtvUnZ3S1dnWEtFU2M2ZE45NmRP?=
+ =?utf-8?B?WnpGdEY0dkw4c1ZBTWs0R3Iyd0h4NDBXOHc5bk1rZTdHTFB6YTdlSHhwK1h2?=
+ =?utf-8?B?bWQ4d3Y4UEtVdk9BdXgvc3E4OUdHZTBiM3VFZ1FPYzV0MDBEeDB0b1F6RXZj?=
+ =?utf-8?B?dk9LdkJ5K3BSYXR5Z0h5SFlGZmF5WDFJdUY3T1VvOXVvWnNqQ2NSd01LSGRT?=
+ =?utf-8?B?aEZZeC8xVjZ3UVptcGlMRERHcEE5a1BUU0JOODV0YlhIY0dUeWhSRE5PZ2VX?=
+ =?utf-8?B?YVlrNFAzSy9seFVKemFzVjFpU0VxWi81UWJkWkJoSVRTaWVIVk5QdTFuYW9E?=
+ =?utf-8?B?SStMK0c5Z1ppenRmU1pnMmhrRmtGcVRCUFF3WUFWTzZYNmtVNEVBT2FvNVd0?=
+ =?utf-8?B?NVVFVTZEUm9aaER5MGM2WkdaQWJMQUYrVDFscExFeHN6b1JjcEJXRlR4YzZ4?=
+ =?utf-8?B?NVpQeXhCWFdtL3BNbkdDZjNRN3gyVm1jaUxsQ29QRmVTQk5DR2FSc3Z4TTg5?=
+ =?utf-8?B?SmRGRW9KeURTTUpRWHNBUHBSZDYyTzlRL2M0cnFpWWVrdFFGdERvSjhOajFx?=
+ =?utf-8?B?REhuZkFjYkE1UllGZnNXSXQrWnBSTEkwWitxUnkrVzhqY3Y3WDBlR0Z1b01j?=
+ =?utf-8?B?eDNodXNONDVQYWhidDMrWFJXc0dVZ2FMbStDaDhyRkJZU3NLS25GNWJTZDdK?=
+ =?utf-8?B?M243MHFFTTQxaGFOTTR5OWpKaGt1WDJCUnNreERiZnVUSW1aek9ReHl3bmhx?=
+ =?utf-8?B?TnNoVlgyUVUzVFBBakt3TzI4WXMxMTNIUkFMZHpCNnNrazFlSjY2Y1NJZHlP?=
+ =?utf-8?B?aEtwbXFmUW5JSlQvWFRFZlBKZit3PT0=?=
 Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20211215235040.2hfkk5nireum6cr5@skbuf>
+Content-ID: <26DEBE62878F3E408AD94DEDCAF5F2CA@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1b9a6b68-8a3a-4ccc-7f61-08d9c0a1e990
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Dec 2021 14:39:48.9214
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XikuBBjv+S0ChBUGfqk5DlrOBbWOPtrfw9jOYSk1OabhMolx4l77ynfIYswvieUmFrs6XcERhB4iMPC9sHSjd2xaAHb4fys9CNlcbo4MFuI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4635
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 12/15/2021 23:50, Vladimir Oltean wrote:
-> 
-> On Wed, Dec 15, 2021 at 01:13:06PM +0100, Horatiu Vultur wrote:
-> > This patch adds basic support to offload in the HW the forwarding of the
-> > frames. The driver registers to the switchdev callbacks and implements
-> > the callbacks for attributes SWITCHDEV_ATTR_ID_PORT_STP_STATE and
-> > SWITCHDEV_ATTR_ID_BRIDGE_AGEING_TIME.
-> > It is not allowed to add a lan966x port to a bridge that contains a
-> > different interface than lan966x.
-> >
-> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> > ---
-> >  .../net/ethernet/microchip/lan966x/Kconfig    |   1 +
-> >  .../net/ethernet/microchip/lan966x/Makefile   |   2 +-
-> >  .../ethernet/microchip/lan966x/lan966x_main.c |  16 +-
-> >  .../ethernet/microchip/lan966x/lan966x_main.h |  11 +
-> >  .../microchip/lan966x/lan966x_switchdev.c     | 393 ++++++++++++++++++
-> >  5 files changed, 419 insertions(+), 4 deletions(-)
-> >  create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c
-> >
-> > diff --git a/drivers/net/ethernet/microchip/lan966x/Kconfig b/drivers/net/ethernet/microchip/lan966x/Kconfig
-> > index 2860a8c9923d..ac273f84b69e 100644
-> > --- a/drivers/net/ethernet/microchip/lan966x/Kconfig
-> > +++ b/drivers/net/ethernet/microchip/lan966x/Kconfig
-> > @@ -2,6 +2,7 @@ config LAN966X_SWITCH
-> >       tristate "Lan966x switch driver"
-> >       depends on HAS_IOMEM
-> >       depends on OF
-> > +     depends on NET_SWITCHDEV
-> >       select PHYLINK
-> >       select PACKING
-> >       help
-> > diff --git a/drivers/net/ethernet/microchip/lan966x/Makefile b/drivers/net/ethernet/microchip/lan966x/Makefile
-> > index 2989ba528236..974229c51f55 100644
-> > --- a/drivers/net/ethernet/microchip/lan966x/Makefile
-> > +++ b/drivers/net/ethernet/microchip/lan966x/Makefile
-> > @@ -6,4 +6,4 @@
-> >  obj-$(CONFIG_LAN966X_SWITCH) += lan966x-switch.o
-> >
-> >  lan966x-switch-objs  := lan966x_main.o lan966x_phylink.o lan966x_port.o \
-> > -                     lan966x_mac.o lan966x_ethtool.o
-> > +                     lan966x_mac.o lan966x_ethtool.o lan966x_switchdev.o
-> > diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_main.c b/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-> > index dc40ac2eb246..ee453967da71 100644
-> > --- a/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-> > +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-> > @@ -355,6 +355,11 @@ static const struct net_device_ops lan966x_port_netdev_ops = {
-> >       .ndo_get_port_parent_id         = lan966x_port_get_parent_id,
-> >  };
-> >
-> > +bool lan966x_netdevice_check(const struct net_device *dev)
-> > +{
-> > +     return dev->netdev_ops == &lan966x_port_netdev_ops;
-> > +}
-> > +
-> >  static int lan966x_port_xtr_status(struct lan966x *lan966x, u8 grp)
-> >  {
-> >       return lan_rd(lan966x, QS_XTR_RD(grp));
-> > @@ -491,6 +496,9 @@ static irqreturn_t lan966x_xtr_irq_handler(int irq, void *args)
-> >
-> >               skb->protocol = eth_type_trans(skb, dev);
-> >
-> > +             if (lan966x->bridge_mask & BIT(src_port))
-> > +                     skb->offload_fwd_mark = 1;
-> > +
-> >               netif_rx_ni(skb);
-> >               dev->stats.rx_bytes += len;
-> >               dev->stats.rx_packets++;
-> > @@ -578,9 +586,6 @@ static int lan966x_probe_port(struct lan966x *lan966x, u32 p,
-> >
-> >       eth_hw_addr_gen(dev, lan966x->base_mac, p + 1);
-> >
-> > -     lan966x_mac_learn(lan966x, PGID_CPU, dev->dev_addr, port->pvid,
-> > -                       ENTRYTYPE_LOCKED);
-> > -
-> >       port->phylink_config.dev = &port->dev->dev;
-> >       port->phylink_config.type = PHYLINK_NETDEV;
-> >       port->phylink_pcs.poll = true;
-> > @@ -897,6 +902,8 @@ static int lan966x_probe(struct platform_device *pdev)
-> >               lan966x_port_init(lan966x->ports[p]);
-> >       }
-> >
-> > +     lan966x_register_notifier_blocks(lan966x);
-> 
-> To be clear, "singleton" would mean that irrespective of the number of
-> driver instances, this function would be called once. So calling it from
-> lan966x_probe() isn't exactly a good choice, since every instance of the
-> driver "probes".
-
-Ah.. yes. I will update it in the next version.
-
-> 
-> int dsa_slave_register_notifier(void)
-> {
->         struct notifier_block *nb;
->         int err;
-> 
->         err = register_netdevice_notifier(&dsa_slave_nb);
->         if (err)
->                 return err;
-> 
->         err = register_switchdev_notifier(&dsa_slave_switchdev_notifier);
->         if (err)
->                 goto err_switchdev_nb;
-> 
->         nb = &dsa_slave_switchdev_blocking_notifier;
->         err = register_switchdev_blocking_notifier(nb);
->         if (err)
->                 goto err_switchdev_blocking_nb;
-> }
-> 
-> static int __init dsa_init_module(void)
-> {
->         rc = dsa_slave_register_notifier();
-> }
-> module_init(dsa_init_module);
-> 
-> > +
-> >       return 0;
-> >
-> >  cleanup_ports:
-> > @@ -915,6 +922,8 @@ static int lan966x_remove(struct platform_device *pdev)
-> >  {
-> >       struct lan966x *lan966x = platform_get_drvdata(pdev);
-> >
-> > +     lan966x_unregister_notifier_blocks(lan966x);
-> > +
-> >       lan966x_cleanup_ports(lan966x);
-> >
-> >       cancel_delayed_work_sync(&lan966x->stats_work);
-> > @@ -922,6 +931,7 @@ static int lan966x_remove(struct platform_device *pdev)
-> >       mutex_destroy(&lan966x->stats_lock);
-> >
-> >       lan966x_mac_purge_entries(lan966x);
-> > +     lan966x_ext_purge_entries();
-> 
-> Broken with multiple lan966x driver instances - you'd erase all other
-> drivers' tabs keps on bridges in the system as soon as one single switch
-> is unbound from its driver.
-
-This will not be needed anymore in next version.
-
-> 
-> >
-> >       return 0;
-> >  }
-> > diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_main.h b/drivers/net/ethernet/microchip/lan966x/lan966x_main.h
-> > index fcd5d09a070c..3d228c9c0521 100644
-> > --- a/drivers/net/ethernet/microchip/lan966x/lan966x_main.h
-> > +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_main.h
-> > @@ -75,6 +75,10 @@ struct lan966x {
-> >
-> >       u8 base_mac[ETH_ALEN];
-> >
-> > +     struct net_device *bridge;
-> > +     u16 bridge_mask;
-> > +     u16 bridge_fwd_mask;
-> > +
-> >       struct list_head mac_entries;
-> >       spinlock_t mac_lock; /* lock for mac_entries list */
-> >
-> > @@ -122,6 +126,11 @@ extern const struct phylink_mac_ops lan966x_phylink_mac_ops;
-> >  extern const struct phylink_pcs_ops lan966x_phylink_pcs_ops;
-> >  extern const struct ethtool_ops lan966x_ethtool_ops;
-> >
-> > +bool lan966x_netdevice_check(const struct net_device *dev);
-> > +
-> > +void lan966x_register_notifier_blocks(struct lan966x *lan966x);
-> > +void lan966x_unregister_notifier_blocks(struct lan966x *lan966x);
-> > +
-> >  void lan966x_stats_get(struct net_device *dev,
-> >                      struct rtnl_link_stats64 *stats);
-> >  int lan966x_stats_init(struct lan966x *lan966x);
-> > @@ -157,6 +166,8 @@ int lan966x_mac_add_entry(struct lan966x *lan966x,
-> >  void lan966x_mac_purge_entries(struct lan966x *lan966x);
-> >  irqreturn_t lan966x_mac_irq_handler(struct lan966x *lan966x);
-> >
-> > +void lan966x_ext_purge_entries(void);
-> > +
-> >  static inline void __iomem *lan_addr(void __iomem *base[],
-> >                                    int id, int tinst, int tcnt,
-> >                                    int gbase, int ginst,
-> > diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c b/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c
-> > new file mode 100644
-> > index 000000000000..722ce7cb61b3
-> > --- /dev/null
-> > +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c
-> > @@ -0,0 +1,393 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +
-> > +#include <linux/if_bridge.h>
-> > +#include <net/switchdev.h>
-> > +
-> > +#include "lan966x_main.h"
-> > +
-> > +static struct notifier_block lan966x_netdevice_nb __read_mostly;
-> > +static struct notifier_block lan966x_switchdev_nb __read_mostly;
-> > +static struct notifier_block lan966x_switchdev_blocking_nb __read_mostly;
-> > +
-> > +static LIST_HEAD(ext_entries);
-> > +
-> > +struct lan966x_ext_entry {
-> > +     struct list_head list;
-> > +     struct net_device *dev;
-> > +     u32 ports;
-> > +     struct lan966x *lan966x;
-> > +};
-> > +
-> > +static void lan966x_update_fwd_mask(struct lan966x *lan966x)
-> > +{
-> > +     int i;
-> > +
-> > +     for (i = 0; i < lan966x->num_phys_ports; i++) {
-> > +             struct lan966x_port *port = lan966x->ports[i];
-> > +             unsigned long mask = 0;
-> > +
-> > +             if (port && lan966x->bridge_fwd_mask & BIT(i))
-> > +                     mask = lan966x->bridge_fwd_mask & ~BIT(i);
-> > +
-> > +             mask |= BIT(CPU_PORT);
-> > +
-> > +             lan_wr(ANA_PGID_PGID_SET(mask),
-> > +                    lan966x, ANA_PGID(PGID_SRC + i));
-> > +     }
-> 
-> I vaguely remember this was implemented better in previous versions of
-> the patch set, and the restriction to not allow multiple bridges
-> spanning the same switch wasn't there. Why do you keep disallowing
-> multiple bridges for all the Microchip hardware? There are very real use
-> cases that need them.
-
-I think there are some cases where this is required. I am not 100% but just
-to be in sync with the other Microchip devices, I have implemented the
-same.
-
-> 
-> > +}
-> > +
-> > +static void lan966x_port_stp_state_set(struct lan966x_port *port, u8 state)
-> > +{
-> > +     struct lan966x *lan966x = port->lan966x;
-> > +     bool learn_ena = false;
-> > +
-> > +     if (state == BR_STATE_FORWARDING || state == BR_STATE_LEARNING)
-> > +             learn_ena = true;
-> > +
-> > +     if (state == BR_STATE_FORWARDING)
-> > +             lan966x->bridge_fwd_mask |= BIT(port->chip_port);
-> > +     else
-> > +             lan966x->bridge_fwd_mask &= ~BIT(port->chip_port);
-> > +
-> > +     lan_rmw(ANA_PORT_CFG_LEARN_ENA_SET(learn_ena),
-> > +             ANA_PORT_CFG_LEARN_ENA,
-> > +             lan966x, ANA_PORT_CFG(port->chip_port));
-> > +
-> > +     lan966x_update_fwd_mask(lan966x);
-> > +}
-> > +
-> > +static void lan966x_port_ageing_set(struct lan966x_port *port,
-> > +                                 unsigned long ageing_clock_t)
-> > +{
-> > +     unsigned long ageing_jiffies = clock_t_to_jiffies(ageing_clock_t);
-> > +     u32 ageing_time = jiffies_to_msecs(ageing_jiffies) / 1000;
-> > +
-> > +     lan966x_mac_set_ageing(port->lan966x, ageing_time);
-> > +}
-> > +
-> > +static int lan966x_port_attr_set(struct net_device *dev, const void *ctx,
-> > +                              const struct switchdev_attr *attr,
-> > +                              struct netlink_ext_ack *extack)
-> > +{
-> > +     struct lan966x_port *port = netdev_priv(dev);
-> > +     int err = 0;
-> > +
-> > +     if (ctx && ctx != port)
-> > +             return 0;
-> > +
-> > +     switch (attr->id) {
-> > +     case SWITCHDEV_ATTR_ID_PORT_STP_STATE:
-> > +             lan966x_port_stp_state_set(port, attr->u.stp_state);
-> > +             break;
-> > +     case SWITCHDEV_ATTR_ID_BRIDGE_AGEING_TIME:
-> > +             lan966x_port_ageing_set(port, attr->u.ageing_time);
-> > +             break;
-> > +     default:
-> > +             err = -EOPNOTSUPP;
-> > +             break;
-> > +     }
-> > +
-> > +     return err;
-> > +}
-> > +
-> > +static int lan966x_port_bridge_join(struct lan966x_port *port,
-> > +                                 struct net_device *bridge,
-> > +                                 struct netlink_ext_ack *extack)
-> > +{
-> > +     struct lan966x *lan966x = port->lan966x;
-> > +     struct net_device *dev = port->dev;
-> > +     int err;
-> > +
-> > +     if (!lan966x->bridge_mask) {
-> > +             lan966x->bridge = bridge;
-> > +     } else {
-> > +             if (lan966x->bridge != bridge)
-> 
-> NL_SET_ERR_MSG_MOD(extack, "<excuse>");
-> 
-> > +                     return -ENODEV;
-> > +     }
-> > +
-> > +     err = switchdev_bridge_port_offload(dev, dev, port,
-> > +                                         &lan966x_switchdev_nb,
-> > +                                         &lan966x_switchdev_blocking_nb,
-> > +                                         false, extack);
-> > +     if (err)
-> > +             return err;
-> > +
-> > +     lan966x->bridge_mask |= BIT(port->chip_port);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void lan966x_port_bridge_leave(struct lan966x_port *port,
-> > +                                   struct net_device *bridge)
-> > +{
-> > +     struct lan966x *lan966x = port->lan966x;
-> > +
-> > +     lan966x->bridge_mask &= ~BIT(port->chip_port);
-> > +
-> > +     if (!lan966x->bridge_mask)
-> > +             lan966x->bridge = NULL;
-> > +
-> > +     lan966x_mac_cpu_learn(lan966x, port->dev->dev_addr, PORT_PVID);
-> > +}
-> > +
-> > +static int lan966x_port_changeupper(struct net_device *dev,
-> > +                                 struct netdev_notifier_changeupper_info *info)
-> > +{
-> > +     struct lan966x_port *port = netdev_priv(dev);
-> > +     struct netlink_ext_ack *extack;
-> > +     int err = 0;
-> > +
-> > +     extack = netdev_notifier_info_to_extack(&info->info);
-> > +
-> > +     if (netif_is_bridge_master(info->upper_dev)) {
-> > +             if (info->linking)
-> > +                     err = lan966x_port_bridge_join(port, info->upper_dev,
-> > +                                                    extack);
-> > +             else
-> > +                     lan966x_port_bridge_leave(port, info->upper_dev);
-> > +     }
-> > +
-> > +     return err;
-> > +}
-> > +
-> > +static int lan966x_port_prechangeupper(struct net_device *dev,
-> > +                                    struct netdev_notifier_changeupper_info *info)
-> > +{
-> > +     struct lan966x_port *port = netdev_priv(dev);
-> > +
-> > +     if (netif_is_bridge_master(info->upper_dev) && !info->linking)
-> > +             switchdev_bridge_port_unoffload(port->dev, port,
-> > +                                             &lan966x_switchdev_nb,
-> > +                                             &lan966x_switchdev_blocking_nb);
-> > +
-> > +     return NOTIFY_DONE;
-> > +}
-> > +
-> > +static int lan966x_port_add_addr(struct net_device *dev, bool up)
-> > +{
-> > +     struct lan966x_port *port = netdev_priv(dev);
-> > +     struct lan966x *lan966x = port->lan966x;
-> > +     u16 vid;
-> > +
-> > +     vid = port->pvid;
-> > +
-> > +     if (up)
-> > +             lan966x_mac_cpu_learn(lan966x, dev->dev_addr, vid);
-> > +     else
-> > +             lan966x_mac_cpu_forget(lan966x, dev->dev_addr, vid);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static struct lan966x_ext_entry *lan966x_ext_find_entry(struct net_device *dev)
-> > +{
-> > +     struct lan966x_ext_entry *ext_entry;
-> > +
-> > +     list_for_each_entry(ext_entry, &ext_entries, list) {
-> > +             if (ext_entry->dev == dev)
-> > +                     return ext_entry;
-> > +     }
-> > +
-> > +     return NULL;
-> > +}
-> > +
-> > +static bool lan966x_ext_add_entry(struct net_device *dev, void *lan966x)
-> > +{
-> > +     struct lan966x_ext_entry *ext_entry;
-> > +
-> > +     ext_entry = lan966x_ext_find_entry(dev);
-> > +     if (ext_entry) {
-> > +             if (ext_entry->lan966x)
-> > +                     return false;
-> > +
-> > +             ext_entry->ports++;
-> > +             return true;
-> > +     }
-> > +
-> > +     ext_entry = kzalloc(sizeof(*ext_entry), GFP_KERNEL);
-> > +     if (!ext_entry)
-> > +             return false;
-> > +
-> > +     ext_entry->dev = dev;
-> > +     ext_entry->ports = 1;
-> > +     ext_entry->lan966x = lan966x;
-> > +     list_add_tail(&ext_entry->list, &ext_entries);
-> > +     return true;
-> > +}
-> > +
-> > +static void lan966x_ext_remove_entry(struct net_device *dev)
-> > +{
-> > +     struct lan966x_ext_entry *ext_entry;
-> > +
-> > +     ext_entry = lan966x_ext_find_entry(dev);
-> > +     if (!ext_entry)
-> > +             return;
-> > +
-> > +     ext_entry->ports--;
-> > +     if (!ext_entry->ports) {
-> > +             list_del(&ext_entry->list);
-> > +             kfree(ext_entry);
-> > +     }
-> > +}
-> > +
-> > +void lan966x_ext_purge_entries(void)
-> > +{
-> > +     struct lan966x_ext_entry *ext_entry, *tmp;
-> > +
-> > +     list_for_each_entry_safe(ext_entry, tmp, &ext_entries, list) {
-> > +             list_del(&ext_entry->list);
-> > +             kfree(ext_entry);
-> > +     }
-> > +}
-> > +
-> > +static int lan966x_ext_check_entry(struct net_device *dev,
-> > +                                unsigned long event,
-> > +                                void *ptr)
-> > +{
-> > +     struct netdev_notifier_changeupper_info *info;
-> > +
-> > +     if (event != NETDEV_PRECHANGEUPPER)
-> > +             return 0;
-> > +
-> > +     info = ptr;
-> > +     if (!netif_is_bridge_master(info->upper_dev))
-> > +             return 0;
-> > +
-> > +     if (info->linking) {
-> > +             if (!lan966x_ext_add_entry(info->upper_dev, NULL))
-> > +                     return -EOPNOTSUPP;
-> > +     } else {
-> > +             lan966x_ext_remove_entry(info->upper_dev);
-> > +     }
-> > +
-> > +     return NOTIFY_DONE;
-> > +}
-> > +
-> > +static bool lan966x_port_ext_check_entry(struct net_device *dev,
-> > +                                      struct netdev_notifier_changeupper_info *info)
-> > +{
-> > +     struct lan966x_port *port = netdev_priv(dev);
-> > +     struct lan966x *lan966x = port->lan966x;
-> > +     struct lan966x_ext_entry *entry;
-> > +
-> > +     if (!netif_is_bridge_master(info->upper_dev))
-> > +             return true;
-> > +
-> > +     entry = lan966x_ext_find_entry(info->upper_dev);
-> 
-> "entry" is unused in the "else" block below, so logically speaking it
-> could be moved inside the "if" block.
-> 
-> Anyway, this piece of code is objectively speaking very obscure: convoluted
-> (lan966x_port_ext_check_entry calls lan966x_ext_find_entry _twice_, once
-> here and once in lan966x_ext_add_entry ?!), no comments and poorly named
-> (a lan966x_ext_entry represents a _bridge_ ?! what does "ext_entry"
-> stand for?). Plus, with your design where the "ext_entries" list is
-> global, and there are two instances of the driver, each driver would do
-> this work twice and allocate memory twice. Although, I didn't really
-> understand why you need to allocate memory to keep a tab on every bridge
-> in the system in the first place.
-> 
-> If you move your check from NETDEV_PRECHANGEUPPER to NETDEV_CHANGEUPPER,
-> you allow the upper/lower adjacency list relationship to have formed
-> (allowing the use of netdev_for_each_lower_dev, and the newly joining
-> interface will be a lower of the bridge). But you can still reject the
-> bridge join.
-> 
-> So you can do something like this, and it should produce an equivalent
-> effect (not compiled, not tested, written straight in the email body):
-> 
-> static int lan966x_foreign_bridging_check(struct net_device *bridge,
->                                           struct netlink_ext_ack *extack)
-> {
->         struct lan966x *lan966x = NULL;
->         bool has_foreign = false;
->         struct net_device *dev;
->         struct list_head *iter;
-> 
->         netdev_for_each_lower_dev(bridge, dev, iter) {
->                 if (lan966x_netdevice_check(dev)) {
->                         struct lan966x_port *port = netdev_priv(dev);
-> 
->                         if (lan996x) {
->                                 /* Bridge already has at least one port
->                                  * of a lan966x switch inside it, check
->                                  * that it's the same instance of the
->                                  * driver.
->                                  */
->                                 if (port->lan966x != lan996x) {
->                                         NL_SET_ERR_MSG_MOD(extack, "Bridging between multiple lan966x switches disallowed");
->                                         return -EINVAL;
->                                 }
->                         } else {
->                                 /* This is the first lan966x port inside
->                                  * this bridge
->                                  */
->                                 lan966x = port->lan966x;
->                         }
->                 } else {
->                         has_foreign = true;
->                 }
-> 
->                 if (lan966x && has_foreign) {
->                         NL_SET_ERR_MSG_MOD(extack, "Bridging lan966x ports with foreign interfaces disallowed");
->                         return -EINVAL;
->                 }
->         }
-> 
->         return 0;
-> }
-> 
-> and call this from two distinct call paths: from the NETDEV_CHANGEUPPER
-> of foreign interfaces, and from the NETDEV_CHANGEUPPER of lan966x interfaces.
-> 
-> Is it just me, or does this look more obvious and straightforward?
-
-Thanks for the code, it looks much more better and it is not to required
-to keep the list of other bridges.
-
-> 
-> > +     if (info->linking) {
-> > +             if (!entry)
-> > +                     return lan966x_ext_add_entry(info->upper_dev, lan966x);
-> > +
-> > +             if (entry->lan966x == lan966x) {
-> > +                     entry->ports++;
-> > +                     return true;
-> > +             }
-> > +     } else {
-> > +             lan966x_ext_remove_entry(info->upper_dev);
-> > +             return true;
-> > +     }
-> > +
-> > +     return false;
-> > +}
-> > +
-> > +static int lan966x_netdevice_port_event(struct net_device *dev,
-> > +                                     struct notifier_block *nb,
-> > +                                     unsigned long event, void *ptr)
-> > +{
-> > +     int err = 0;
-> > +
-> > +     if (!lan966x_netdevice_check(dev))
-> > +             return lan966x_ext_check_entry(dev, event, ptr);
-> > +
-> > +     switch (event) {
-> > +     case NETDEV_PRECHANGEUPPER:
-> > +             if (!lan966x_port_ext_check_entry(dev, ptr))
-> > +                     return -EOPNOTSUPP;
-> > +
-> > +             err = lan966x_port_prechangeupper(dev, ptr);
-> > +             break;
-> > +     case NETDEV_CHANGEUPPER:
-> > +             err = lan966x_port_changeupper(dev, ptr);
-> > +             break;
-> > +     case NETDEV_PRE_UP:
-> > +             err = lan966x_port_add_addr(dev, true);
-> > +             break;
-> > +     case NETDEV_DOWN:
-> > +             err = lan966x_port_add_addr(dev, false);
-> 
-> Any reason why you track your own NETDEV_PRE_UP/NETDEV_DOWN and don't do
-> this directly in ->ndo_open/->ndo_close? Also, I don't think that the
-> "lan966x_port_add_addr" brings much value over "lan966x_mac_cpu_learn"
-> and "lan966x_mac_cpu_forget" called directly (especially if moved to
-> lan966x_port_open and lan966x_port_stop). And I don't see the relevance
-> of this change with respect to the commit title "add support to offload
-> the forwarding". CPU learned entries are for termination.
-
-OK, I will drop this for now. I will add this or in a different patch of
-this series or will be another patch by itself.
-
-> 
-> > +             break;
-> > +     }
-> > +
-> > +     return err;
-> > +}
-> > +
-> > +static int lan966x_netdevice_event(struct notifier_block *nb,
-> > +                                unsigned long event, void *ptr)
-> > +{
-> > +     struct net_device *dev = netdev_notifier_info_to_dev(ptr);
-> > +     int ret;
-> > +
-> > +     ret = lan966x_netdevice_port_event(dev, nb, event, ptr);
-> > +
-> > +     return notifier_from_errno(ret);
-> > +}
-> > +
-> > +static int lan966x_switchdev_event(struct notifier_block *nb,
-> > +                                unsigned long event, void *ptr)
-> > +{
-> > +     struct net_device *dev = switchdev_notifier_info_to_dev(ptr);
-> > +     int err;
-> > +
-> > +     switch (event) {
-> > +     case SWITCHDEV_PORT_ATTR_SET:
-> > +             err = switchdev_handle_port_attr_set(dev, ptr,
-> > +                                                  lan966x_netdevice_check,
-> > +                                                  lan966x_port_attr_set);
-> > +             return notifier_from_errno(err);
-> > +     }
-> > +
-> > +     return NOTIFY_DONE;
-> > +}
-> > +
-> > +static int lan966x_switchdev_blocking_event(struct notifier_block *nb,
-> > +                                         unsigned long event,
-> > +                                         void *ptr)
-> > +{
-> > +     struct net_device *dev = switchdev_notifier_info_to_dev(ptr);
-> > +     int err;
-> > +
-> > +     switch (event) {
-> > +     case SWITCHDEV_PORT_ATTR_SET:
-> > +             err = switchdev_handle_port_attr_set(dev, ptr,
-> > +                                                  lan966x_netdevice_check,
-> > +                                                  lan966x_port_attr_set);
-> > +             return notifier_from_errno(err);
-> > +     }
-> > +
-> > +     return NOTIFY_DONE;
-> > +}
-> > +
-> > +static struct notifier_block lan966x_netdevice_nb __read_mostly = {
-> > +     .notifier_call = lan966x_netdevice_event,
-> > +};
-> > +
-> > +static struct notifier_block lan966x_switchdev_nb __read_mostly = {
-> > +     .notifier_call = lan966x_switchdev_event,
-> > +};
-> > +
-> > +static struct notifier_block lan966x_switchdev_blocking_nb __read_mostly = {
-> > +     .notifier_call = lan966x_switchdev_blocking_event,
-> > +};
-> > +
-> > +void lan966x_register_notifier_blocks(struct lan966x *lan966x)
-> > +{
-> > +     register_netdevice_notifier(&lan966x_netdevice_nb);
-> > +     register_switchdev_notifier(&lan966x_switchdev_nb);
-> > +     register_switchdev_blocking_notifier(&lan966x_switchdev_blocking_nb);
-> > +}
-> > +
-> > +void lan966x_unregister_notifier_blocks(struct lan966x *lan966x)
-> > +{
-> > +     unregister_switchdev_blocking_notifier(&lan966x_switchdev_blocking_nb);
-> > +     unregister_switchdev_notifier(&lan966x_switchdev_nb);
-> > +     unregister_netdevice_notifier(&lan966x_netdevice_nb);
-> > +}
-> > --
-> > 2.33.0
-> >
-
--- 
-/Horatiu
+T24gMTYvMTIvMjAyMSAxMzozNywgR2VlcnQgVXl0dGVyaG9ldmVuIHdyb3RlOg0KPiBFWFRFUk5B
+TCBFTUFJTDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlv
+dSBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUNCj4gDQo+ICJtYWtlIGR0YnNfY2hlY2siIHJlcG9y
+dHM6DQo+IA0KPiAgICAgIGFyY2gvcmlzY3YvYm9vdC9kdHMvbWljcm9jaGlwL21pY3JvY2hpcC1t
+cGZzLWljaWNsZS1raXQuZHQueWFtbDogc29jOiByZWZjbGs6IHsnY29tcGF0aWJsZSc6IFsnZml4
+ZWQtY2xvY2snXSwgJyNjbG9jay1jZWxscyc6IFtbMF1dLCAnY2xvY2stZnJlcXVlbmN5JzogW1s2
+MDAwMDAwMDBdXSwgJ2Nsb2NrLW91dHB1dC1uYW1lcyc6IFsnbXNzcGxsY2xrJ10sICdwaGFuZGxl
+JzogW1s3XV19IHNob3VsZCBub3QgYmUgdmFsaWQgdW5kZXIgeyd0eXBlJzogJ29iamVjdCd9DQo+
+ICAgICAgICAgIEZyb20gc2NoZW1hOiBkdHNjaGVtYS9zY2hlbWFzL3NpbXBsZS1idXMueWFtbA0K
+PiANCj4gRml4IHRoaXMgYnkgbW92aW5nIHRoZSBub2RlIG91dCBvZiB0aGUgInNvYyIgc3Vibm9k
+ZS4NCj4gV2hpbGUgYXQgaXQsIHJlbmFtZSBpdCB0byAibXNzcGxsY2xrIiwgYW5kIGRyb3AgdGhl
+IG5vdyBzdXBlcmZsdW91cw0KPiAiY2xvY2stb3V0cHV0LW5hbWVzIiBwcm9wZXJ0eS4NCj4gTW92
+ZSB0aGUgYWN0dWFsIGNsb2NrLWZyZXF1ZW5jeSB2YWx1ZSB0byB0aGUgYm9hcmQgRFRTLCBzaW5j
+ZSBpdCBpcyBub3QNCj4gc2V0IHVudGlsIGJpdHN0cmVhbSBwcm9ncmFtbWluZyB0aW1lLg0KPiAN
+Cj4gU2lnbmVkLW9mZi1ieTogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydEBsaW51eC1tNjhrLm9y
+Zz4NCj4gQWNrZWQtYnk6IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2lA
+Y2Fub25pY2FsLmNvbT4NCkxvb2tzIGdvb2QgdG8gbWUuDQpSZXZpZXdlZC1ieTogQ29ub3IgRG9v
+bGV5IDxjb25vci5kb29sZXlAbWljcm9jaGlwLmNvbT4NCg0KPiAtLS0NCj4gdjI6DQo+ICAgIC0g
+QWRkIEFja2VkLWJ5LA0KPiAgICAtIE1vdmUgY2xvY2stZnJlcXVlbmN5IHRvIGJvYXJkIERUUy4N
+Cj4gLS0tDQo+ICAgLi4uL2Jvb3QvZHRzL21pY3JvY2hpcC9taWNyb2NoaXAtbXBmcy1pY2ljbGUt
+a2l0LmR0cyB8ICA0ICsrKysNCj4gICBhcmNoL3Jpc2N2L2Jvb3QvZHRzL21pY3JvY2hpcC9taWNy
+b2NoaXAtbXBmcy5kdHNpICAgIHwgMTIgKysrKystLS0tLS0tDQo+ICAgMiBmaWxlcyBjaGFuZ2Vk
+LCA5IGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvYXJj
+aC9yaXNjdi9ib290L2R0cy9taWNyb2NoaXAvbWljcm9jaGlwLW1wZnMtaWNpY2xlLWtpdC5kdHMg
+Yi9hcmNoL3Jpc2N2L2Jvb3QvZHRzL21pY3JvY2hpcC9taWNyb2NoaXAtbXBmcy1pY2ljbGUta2l0
+LmR0cw0KPiBpbmRleCBmYzFlNTg2OWRmMWI5ZmM1Li4wYzc0OGFlMWIwMDY4ZGY3IDEwMDY0NA0K
+PiAtLS0gYS9hcmNoL3Jpc2N2L2Jvb3QvZHRzL21pY3JvY2hpcC9taWNyb2NoaXAtbXBmcy1pY2lj
+bGUta2l0LmR0cw0KPiArKysgYi9hcmNoL3Jpc2N2L2Jvb3QvZHRzL21pY3JvY2hpcC9taWNyb2No
+aXAtbXBmcy1pY2ljbGUta2l0LmR0cw0KPiBAQCAtMzUsNiArMzUsMTAgQEAgbWVtb3J5QDgwMDAw
+MDAwIHsNCj4gICAgICAgICAgfTsNCj4gICB9Ow0KPiANCj4gKyZyZWZjbGsgew0KPiArICAgICAg
+IGNsb2NrLWZyZXF1ZW5jeSA9IDw2MDAwMDAwMDA+Ow0KPiArfTsNCj4gKw0KPiAgICZzZXJpYWww
+IHsNCj4gICAgICAgICAgc3RhdHVzID0gIm9rYXkiOw0KPiAgIH07DQo+IGRpZmYgLS1naXQgYS9h
+cmNoL3Jpc2N2L2Jvb3QvZHRzL21pY3JvY2hpcC9taWNyb2NoaXAtbXBmcy5kdHNpIGIvYXJjaC9y
+aXNjdi9ib290L2R0cy9taWNyb2NoaXAvbWljcm9jaGlwLW1wZnMuZHRzaQ0KPiBpbmRleCBlZTU5
+NzUxNTQ0YTBkM2JjLi5iMzcyYmM2NDU5YmYxNjNhIDEwMDY0NA0KPiAtLS0gYS9hcmNoL3Jpc2N2
+L2Jvb3QvZHRzL21pY3JvY2hpcC9taWNyb2NoaXAtbXBmcy5kdHNpDQo+ICsrKyBiL2FyY2gvcmlz
+Y3YvYm9vdC9kdHMvbWljcm9jaGlwL21pY3JvY2hpcC1tcGZzLmR0c2kNCj4gQEAgLTEzOSw2ICsx
+MzksMTEgQEAgY3B1NF9pbnRjOiBpbnRlcnJ1cHQtY29udHJvbGxlciB7DQo+ICAgICAgICAgICAg
+ICAgICAgfTsNCj4gICAgICAgICAgfTsNCj4gDQo+ICsgICAgICAgcmVmY2xrOiBtc3NwbGxjbGsg
+ew0KPiArICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJmaXhlZC1jbG9jayI7DQo+ICsgICAg
+ICAgICAgICAgICAjY2xvY2stY2VsbHMgPSA8MD47DQo+ICsgICAgICAgfTsNCj4gKw0KPiAgICAg
+ICAgICBzb2Mgew0KPiAgICAgICAgICAgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDI+Ow0KPiAg
+ICAgICAgICAgICAgICAgICNzaXplLWNlbGxzID0gPDI+Ow0KPiBAQCAtMTg5LDEzICsxOTQsNiBA
+QCBkbWFAMzAwMDAwMCB7DQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAjZG1hLWNlbGxzID0g
+PDE+Ow0KPiAgICAgICAgICAgICAgICAgIH07DQo+IA0KPiAtICAgICAgICAgICAgICAgcmVmY2xr
+OiByZWZjbGsgew0KPiAtICAgICAgICAgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gImZpeGVk
+LWNsb2NrIjsNCj4gLSAgICAgICAgICAgICAgICAgICAgICAgI2Nsb2NrLWNlbGxzID0gPDA+Ow0K
+PiAtICAgICAgICAgICAgICAgICAgICAgICBjbG9jay1mcmVxdWVuY3kgPSA8NjAwMDAwMDAwPjsN
+Cj4gLSAgICAgICAgICAgICAgICAgICAgICAgY2xvY2stb3V0cHV0LW5hbWVzID0gIm1zc3BsbGNs
+ayI7DQo+IC0gICAgICAgICAgICAgICB9Ow0KPiAtDQo+ICAgICAgICAgICAgICAgICAgY2xrY2Zn
+OiBjbGtjZmdAMjAwMDIwMDAgew0KPiAgICAgICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJs
+ZSA9ICJtaWNyb2NoaXAsbXBmcy1jbGtjZmciOw0KPiAgICAgICAgICAgICAgICAgICAgICAgICAg
+cmVnID0gPDB4MCAweDIwMDAyMDAwIDB4MCAweDEwMDA+Ow0KPiAtLQ0KPiAyLjI1LjENCj4gDQoN
+Cg==
