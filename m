@@ -2,583 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4466C4773C7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 14:58:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE3D94773E2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 15:02:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234870AbhLPN6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 08:58:54 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:19542 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237271AbhLPN6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 08:58:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1639663134; x=1671199134;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=KczrqLPs0tpcKF5a7tsfpvMXF51taX8rJxsRhMCye/Q=;
-  b=fpdfble7I2IBp3bzbBuwm9jxYwy4KMua2EBsXeXJwnY9w87/VjRO8Ati
-   ORf6sTEwdbYWS/w0yZX6MmijWSnraNwFl5eakNqVXOxlSGXfOGRpQTO1r
-   +OvBqwUiRkxmRpwiM/b+iGMPgQatbU4dYPlLjgmu2hgjvV1Vw0d5uc8Sr
-   n9AxtdMmYzFp8JtLXznxWZDH1KGGObUHPx/8SXS/u/qfcAZMiyiFb7OzJ
-   k4Nlwtq6h/vOwq00lj43k9EehwkVv7Masd7ZVtUOMTztx/FCYLTmLHD/y
-   lQJTVsNuzfEQ0h6N4GJMnuiinONoNzcNgW4UWHLQQh80avOyyOZSfWI3Y
-   Q==;
-IronPort-SDR: tCVTyXWBGGNwVwy6dWFChFGFsIHA7eUX23GfTz5nBL6q0eIhQEDKIc4DPsEcx90HaD+XIQQGnt
- Z0zfLSYgR5sxstSCaYN8hp0p71G1RUFsNGxbboqu5DHKz+2watxx5ITai6zrwOU22TGQbSjm2Y
- xJnq2mNa9JGuCA3BY2nCtHLN9etTRCFR8qj+3Hdl0wdGvIMKXkj4Xa89G4pzG+t6/cHl0Uob3/
- HCUHJ7FLiRb1IkrKlz1Z6P3pI7k/MuU6KcJZ8KK3G0wpvKUsreHV8XatfWVtNpwR+eXYKxpusd
- AL2rEhr83tdACQBM82qfD5tT
-X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; 
-   d="scan'208";a="146891460"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Dec 2021 06:58:53 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 16 Dec 2021 06:58:52 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Thu, 16 Dec 2021 06:58:50 -0700
-From:   <conor.dooley@microchip.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <linux-clk@vger.kernel.org>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <krzysztof.kozlowski@canonical.com>, <geert@linux-m68k.org>,
-        <david.abdurachmanov@gmail.com>, <palmer@dabbelt.com>,
-        <daire.mcnamara@microchip.com>, <cyril.jean@microchip.com>,
-        <conor.dooley@microchip.com>,
-        Padmarao Bengari <padmarao.begari@microchip.com>
-Subject: [PATCH v9 2/2] clk: microchip: Add driver for Microchip PolarFire SoC
-Date:   Thu, 16 Dec 2021 14:00:22 +0000
-Message-ID: <20211216140022.16146-3-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211216140022.16146-1-conor.dooley@microchip.com>
-References: <20211216140022.16146-1-conor.dooley@microchip.com>
+        id S234616AbhLPOCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 09:02:17 -0500
+Received: from mail-os0jpn01on2093.outbound.protection.outlook.com ([40.107.113.93]:16407
+        "EHLO JPN01-OS0-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230227AbhLPOCQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Dec 2021 09:02:16 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hS2ZBZQ38GorJDWTCvyI5itHsH7ahLWRMTYkTwwWqQ3Wnt5oMVzT4tkm3q7XdAt2kqHXgr/wq75g/BQ54kpDJ8BJa7TfOJavWbiTaoJjPj6A9kgssIC2YZaxzMZM9aZL/oZQDXgwNwNzAhVZ/CABIMwYn9I267jXuAE6IswZnqy9ICKQKa23omPad6u8EOVNM+nJJQ7AM0HFtMx7QJNURPXMl/zNyHbB6r+AVRb4Kxxy/i0UBHb2T8SfVm3Zs3hWLmY9cAyJn5EwwRHlhMxS9MiEvTToCgMODMmQfMg00FEoYWplJ6SXD0cvRhYSPDAefZPb7Zjt7j0U6xjL541soA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UHx8YpvpIjtcFnU+JMPy9lS13eKWScfCLoCxNa8oQwo=;
+ b=IdaVOLVZJVE0jKEJ14sYfZd1qNRKhvs/NfT0e8kD5NjXf1Kh4SFmoRoDc/twLeVCflbFAUU4iRiiJn765n0aKH1ydcQdq2/H2qAX9fAjoGFXJWtzkFl1X2j21BzuTmoqRfDAUrQ/9IxP/zHg9Ar0286PGA8uBBPNb2M2U16EuP0T9HDS9MBAacl7TI916X8BHqDnXDbBu32dz2wLkYa1euTZoMBH5elkU0iLR79Iq9umDWGUe3O2BxNsAT9D1u1c2WbgS1S/lq2hH2ATmjnH9IdYypA9707gBoNil68dkonlsyr5Iv07EzSeHAmHeZKaeCOgq+q3BP47A4iN2+Lt1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UHx8YpvpIjtcFnU+JMPy9lS13eKWScfCLoCxNa8oQwo=;
+ b=hXrAeiGZFUXdlg6HrRFViqdzyw3L62kdrOIRW559EpxA+8ujED3XLCt5Vtvrp79MIFbcAmC5NzkaVWjo9m3ntF1P1n7jHuGzHDm43t1jJAei0eWCQOl72IiWRK3OrPjDiLn5PkGJ1yaMgAIYOgmUCBy6IB6Vk5VTzu3ZYZU+HV0=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by OSBPR01MB1942.jpnprd01.prod.outlook.com (2603:1096:603:21::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.18; Thu, 16 Dec
+ 2021 14:02:14 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::4:9f00:3f5b:3893]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::4:9f00:3f5b:3893%4]) with mapi id 15.20.4801.015; Thu, 16 Dec 2021
+ 14:02:14 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Daniel Stone <daniel@fooishbar.org>
+CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "tomeu.vizoso@collabora.com" <tomeu.vizoso@collabora.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        Steven Price <steven.price@arm.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Robin Murphy <robin.murphy@arm.com>
+Subject: RE: [PATCH v3 0/3] Add Mali-G31 GPU support for RZ/G2L SoC
+Thread-Topic: [PATCH v3 0/3] Add Mali-G31 GPU support for RZ/G2L SoC
+Thread-Index: AQHX7CAH/1JfygFoU0qIZXIpyjdPl6w1MjiAgAAAQFA=
+Date:   Thu, 16 Dec 2021 14:02:14 +0000
+Message-ID: <OS0PR01MB59227318B2821A249647BFB386779@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20211208104026.421-1-biju.das.jz@bp.renesas.com>
+ <CAPj87rMUrB34jVMSdcMqVaf+aRJLq0okHtDjc-bHQ8BcQoqOkQ@mail.gmail.com>
+In-Reply-To: <CAPj87rMUrB34jVMSdcMqVaf+aRJLq0okHtDjc-bHQ8BcQoqOkQ@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2203fd5e-ed24-4e6b-9183-08d9c09ca9f5
+x-ms-traffictypediagnostic: OSBPR01MB1942:EE_
+x-microsoft-antispam-prvs: <OSBPR01MB1942E6E28C835FC2171E8F3A86779@OSBPR01MB1942.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: WIW6RwKAWLUQZduXL0v37RBw2SVC4mTp/e3hnPIZXH62BABaZhNkL5JZzE3BmzJ8cfo39PK/zo036W0U23R82Nsq4MDVwMEV6WR4gOzjEWMMCNeQqsM5oNToBIS5oe1b7NEMFM2aBMTj6mTNtr7gp8QB78jCbMJvzauDb//JDLwY1d32aNhBwKX1hP9wyFoCWiLOuzoOnwPUyqb2vTMStxXNKM/0XziOJ01556d7uRhXDNHTUQpaGgBPb+3u0o6F6CFFkHy/ionaOba9ittYyymIbZBpQGH87/uWu6DDD/YaxO3puZXWKti5E4w/IggqEhkevdldXKh1Gy1U4B1PkSKzysjmVD39en/6XqtGAI3fIZmhdMoR7MdWruFE8K0ghFQdeMlZcdVzfYA/Xbks0wowOrIz+Dh2BTZGsZE88FRf1x3qjmVv/Hzl7eQhbhacXR03+4KXUVvZDggT6S7Y6vldUOYijon3ISWhNiWoYgNUdx/BGhIOL3ZATcsyCOa41Ta52E4lxiSjNeuwYyK24SBNbHAxA1JJdc8me8uFGetu7aYeMSgM5qswRBZlwwN1+5ub1IgOEPTKXUP5COGk81eHAsiojdtAaWWOVOd1CwK/28goeblQyaPu/ee9S+xEYr/ks24sA1YwK/pyFL8CrvdqH8UegOEkZ1zzNr5RP6BsQ9L/jV9J4fPi1SXVAVOUad+rY+WPWCPf9DcIoILp7Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(122000001)(2906002)(55016003)(498600001)(26005)(9686003)(33656002)(6916009)(8936002)(64756008)(86362001)(54906003)(66476007)(66446008)(66946007)(66556008)(76116006)(186003)(8676002)(71200400001)(4326008)(4744005)(7416002)(38070700005)(83380400001)(6506007)(52536014)(5660300002)(7696005)(38100700002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Yll2eGxYTFZSVUhiYVcwUFFpa2ozaStSRVdEZWR1b09vU0MzZUN6WHZNSzdJ?=
+ =?utf-8?B?Y0NiNDBVdENrMzN2QVg4NDVGQmZuc3FtNHl4YStlUmhkdk1OQVNIaXRhOGZp?=
+ =?utf-8?B?YlkrNlVYYkxCSzRYZTZJVERFYkR2a3RLWk1EWWRHNVR3a1hmd1pWK2VCY2dM?=
+ =?utf-8?B?WkMrakJNVlV5RGFwYTF0M1JLbUVESmF3TzRRRE8vMHkxbklhUlI4cWRvVm1X?=
+ =?utf-8?B?VG5PeG5Bd2w4Q0c4OEtnU2ZickFqcXVjbTdXclZ2R2FFaDhnazlXYmRhV3k2?=
+ =?utf-8?B?Q1BBR29XeHRscG5YK0plWVJlaFd4aEdaeVJLQ2xuVnNPNGJxMEM0SFRxYmhp?=
+ =?utf-8?B?MHN1SGpvMFR4QlRheUF2T2hWZEtaQUg4YnFtZWtYTGJtNXlTMVVoUDRIUmNi?=
+ =?utf-8?B?TS9sVmMzVzJXTmZ2N1ZjMTJTY2J3WDExc3NGTXZqeS9jakNLeGFKV0pJZGJa?=
+ =?utf-8?B?U3JLcURsWE5raWtvM0h1SUZLMi9rL25vZGpuZFNsVTg0YXFiWWwzWXZCS2F5?=
+ =?utf-8?B?Y2hpK1pkQlVQQmhrVHFYc2ZtaE9GbFpFY2V1eVVxNUdmbW1zc2E0eVdzTnU4?=
+ =?utf-8?B?L092ZTd1MGxCT1pWSklhbGFBR2xzcjh6OUlJOWJpaVU3ejlyU3Y2STZCZEE2?=
+ =?utf-8?B?QjFwWVFkNkVFeDV5QWh1bzB2cG0vOCthYmhtYnozM1hSc0p6NmpFclhjL0p2?=
+ =?utf-8?B?dzhBWmdlOGJJQWlHNStwdGFjK0VBVkhqSmNpOVJBQkNBdnVUN3RkVTRkcDNX?=
+ =?utf-8?B?RE4zQk01SlRuSlVGR1pjWis3aTYxcGhsNGhESGg0SnoxdzVCUVFnY1F1UStK?=
+ =?utf-8?B?bDdJR0k2UndHaUk5TklyT3RkU3FVaHprN3JBRzVRTGsxN3RKQmRCbnVwZDds?=
+ =?utf-8?B?dHB0TGdJNGY2TENvSUJuUmJoTUZXc2NodHJNcGU3L3VLN3Y5UTZwTVNkRERl?=
+ =?utf-8?B?NlhvTkphVi83cC8rQ1hHanpnTnpLV2tFTVpCb3NDbG05N0ZrNXAycmcyM2tI?=
+ =?utf-8?B?ajY5QU83T0F6MTIvR0RUaWo0YmFxOHZkMGl5Y29Cd0Y5Z0ZrUXhiRWYyT3NM?=
+ =?utf-8?B?UW1jQmlSakVzRUdZcnQrWm9ETXc1eVdScVRUbEtwRFBCTEU2TTI2dmwxSlcr?=
+ =?utf-8?B?cDdwZzN6eU1ncXFub2RUWWM3UEFkRlFkU0VkL293VmZmVWxCTlY3Y0NyYUtp?=
+ =?utf-8?B?aURIVTJ3T0xOT2gzNERUQzJOcnhZazd1L0swVUkxV1NWWCt1ZWs3ekVDMEhi?=
+ =?utf-8?B?WlprNmFLZzRKcytNeWp1UEtxWTdlM1JNMVZjUjNlOWJjbGIwTFMxSGZBTS9C?=
+ =?utf-8?B?WUpDL2VRMGRFM0dFalNzRGY0dkxLS2pOM09FTHUrUC83SjRnWk1XczAzTEMr?=
+ =?utf-8?B?cytXWFZVUWhZUXQxUUNrN041b1RxWHpSRVFDdmRhSnBIVEZ4Q1FjMU9URXU4?=
+ =?utf-8?B?NHUxbGdEa2ZUQmRqb1BLMjcyeVowR0M5cEhWbFZodWtscHRNLzJrOUJjc01Q?=
+ =?utf-8?B?NzJnNlBiRytORmxqZ1diaFNFVUFuMzBhcFJxakF5Nkwvakc2NjFEQVNoUis0?=
+ =?utf-8?B?cUZhbFVqdk0zY01uVzBoQlVpNEJNQUhJek1jWXZoZG5oTHZHQjBHREt6Q05x?=
+ =?utf-8?B?a2QxREVtMUt1U3M1b3R1aVg1a1ZWS0F0NGxlZWRBU21MVGE5TUprTzk5RExE?=
+ =?utf-8?B?bWZHbzFrWFF2QUlRM1UrRGRIeUVYNU5ibUxZMllPOTExWXV6NzVGSWd0dTB3?=
+ =?utf-8?B?MjdBU2gwWG1DRXBCNnVLaHJsa2pSZTBXWmhURUVUOXhEOHRVVGsvKzhNRkF0?=
+ =?utf-8?B?TmpGdmdRODJkL1Y4TUllYThycTR0R2c5TG5PS2hMS0Q0bnc5VUZ1eE0wb0lR?=
+ =?utf-8?B?UmZHelpiSDd2RHNMVk5BZXFOSWdtYU00T2RjV1dNbnlaNVNsaU5VRzZhcUVw?=
+ =?utf-8?B?bkp3MWRVdVZUS1hUNlZtTUJuQ0JvQ3Jsb2hxa2NRT3NoN1dkQkptaTEya0pP?=
+ =?utf-8?B?a2w4UEFZd3UzL3grcGgwRTZxU0pPZ281eGVrSFBlMGFnVHFYZ1lKSytMNHpj?=
+ =?utf-8?B?eTJxbnd3U3UzNksxYkpaQTRDblNqNVB3Tm5YNHpOdm1vZXIzUHZDMktDcGZz?=
+ =?utf-8?B?b3BrZE1SN0RIM05CYnpKRlRhMTJaT1ZTWDRpOWROUlhScmc4L2I4WXJQalpJ?=
+ =?utf-8?B?L091TUc0aXdrbXR1dDlDaFlTbC8xWjdNcy8vY2VEbCtCWSs3TFdvcjZmSFlF?=
+ =?utf-8?B?WGhjTG1ad0NHOU92bWdra25nTVBRPT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2203fd5e-ed24-4e6b-9183-08d9c09ca9f5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Dec 2021 14:02:14.7728
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 5zui23bsXnJg8ftgw4mo2GwYzputHujB9rdsW2a1uztsuY+g5oMyVUy8V7+R0q7dXTWALA1W55ii6CtYAB+dEPRLw3217beK6qcYByQtjXE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB1942
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Daire McNamara <daire.mcnamara@microchip.com>
-
-Add support for clock configuration on Microchip PolarFire SoC
-
-Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Tested-by: Geert Uytterhoeven <geert@linux-m68k.org>
-
-Co-developed-by: Padmarao Bengari <padmarao.begari@microchip.com>
-Signed-off-by: Padmarao Bengari <padmarao.begari@microchip.com>
-Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-Co-developed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- drivers/clk/Kconfig              |   1 +
- drivers/clk/Makefile             |   2 +-
- drivers/clk/microchip/Kconfig    |   7 +
- drivers/clk/microchip/Makefile   |   6 +-
- drivers/clk/microchip/clk-mpfs.c | 439 +++++++++++++++++++++++++++++++
- 5 files changed, 452 insertions(+), 3 deletions(-)
- create mode 100644 drivers/clk/microchip/Kconfig
- create mode 100644 drivers/clk/microchip/clk-mpfs.c
-
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 1b992a554ff8..fe6c757e44fb 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -409,6 +409,7 @@ source "drivers/clk/keystone/Kconfig"
- source "drivers/clk/mediatek/Kconfig"
- source "drivers/clk/meson/Kconfig"
- source "drivers/clk/mstar/Kconfig"
-+source "drivers/clk/microchip/Kconfig"
- source "drivers/clk/mvebu/Kconfig"
- source "drivers/clk/pistachio/Kconfig"
- source "drivers/clk/qcom/Kconfig"
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index d8565ef01b34..d4e43d0431a3 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -90,7 +90,7 @@ obj-$(CONFIG_ARCH_KEYSTONE)		+= keystone/
- obj-$(CONFIG_MACH_LOONGSON32)		+= loongson1/
- obj-y					+= mediatek/
- obj-$(CONFIG_ARCH_MESON)		+= meson/
--obj-$(CONFIG_MACH_PIC32)		+= microchip/
-+obj-y					+= microchip/
- ifeq ($(CONFIG_COMMON_CLK), y)
- obj-$(CONFIG_ARCH_MMP)			+= mmp/
- endif
-diff --git a/drivers/clk/microchip/Kconfig b/drivers/clk/microchip/Kconfig
-new file mode 100644
-index 000000000000..f5edc7b3c07c
---- /dev/null
-+++ b/drivers/clk/microchip/Kconfig
-@@ -0,0 +1,7 @@
-+# SPDX-License-Identifier: GPL-2.0
-+
-+config MCHP_CLK_MPFS
-+	bool "Clk driver for PolarFire SoC"
-+	depends on (RISCV && SOC_MICROCHIP_POLARFIRE) || COMPILE_TEST
-+	help
-+	  Supports Clock Configuration for PolarFire SoC
-diff --git a/drivers/clk/microchip/Makefile b/drivers/clk/microchip/Makefile
-index f34b247e870f..0dce0b12eac4 100644
---- a/drivers/clk/microchip/Makefile
-+++ b/drivers/clk/microchip/Makefile
-@@ -1,3 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0-only
--obj-$(CONFIG_COMMON_CLK_PIC32) += clk-core.o
--obj-$(CONFIG_PIC32MZDA) += clk-pic32mzda.o
-+
-+obj-$(CONFIG_COMMON_CLK_PIC32)	+= clk-core.o
-+obj-$(CONFIG_PIC32MZDA)		+= clk-pic32mzda.o
-+obj-$(CONFIG_MCHP_CLK_MPFS)	+= clk-mpfs.o
-diff --git a/drivers/clk/microchip/clk-mpfs.c b/drivers/clk/microchip/clk-mpfs.c
-new file mode 100644
-index 000000000000..f9bcfa864b67
---- /dev/null
-+++ b/drivers/clk/microchip/clk-mpfs.c
-@@ -0,0 +1,439 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Daire McNamara,<daire.mcnamara@microchip.com>
-+ * Copyright (C) 2020 Microchip Technology Inc.  All rights reserved.
-+ */
-+#include <linux/clk-provider.h>
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+#include <dt-bindings/clock/microchip,mpfs-clock.h>
-+
-+/* address offset of control registers */
-+#define REG_CLOCK_CONFIG_CR	0x08u
-+#define REG_SUBBLK_CLOCK_CR	0x84u
-+#define REG_SUBBLK_RESET_CR	0x88u
-+
-+struct mpfs_clock_data {
-+	void __iomem *base;
-+	struct clk_hw_onecell_data hw_data;
-+};
-+
-+struct mpfs_cfg_clock {
-+	const char *name;
-+	const struct clk_div_table *table;
-+	struct clk_hw *parent;
-+	unsigned long flags;
-+	unsigned int id;
-+	u8 shift;
-+	u8 width;
-+};
-+
-+struct mpfs_cfg_hw_clock {
-+	struct mpfs_cfg_clock cfg;
-+	void __iomem *sys_base;
-+	/* lock is used to prevent multiple writes */
-+	spinlock_t *lock;
-+	struct clk_hw hw;
-+	struct clk_init_data init;
-+};
-+
-+#define to_mpfs_cfg_clk(_hw) container_of(_hw, struct mpfs_cfg_hw_clock, hw)
-+
-+struct mpfs_periph_clock {
-+	const char *name;
-+	struct clk_hw *parent;
-+	unsigned long flags;
-+	unsigned int id;
-+	u8 shift;
-+};
-+
-+struct mpfs_periph_hw_clock {
-+	struct mpfs_periph_clock periph;
-+	void __iomem *sys_base;
-+	/* lock is used to prevent multiple writes */
-+	spinlock_t *lock;
-+	struct clk_hw hw;
-+};
-+
-+#define to_mpfs_periph_clk(_hw) container_of(_hw, struct mpfs_periph_hw_clock, hw)
-+
-+/*
-+ * mpfs_clk_lock prevents anything else from writing to the
-+ * mpfs clk block while a software locked register is being written.
-+ */
-+static DEFINE_SPINLOCK(mpfs_clk_lock);
-+
-+static const struct clk_div_table mpfs_div_cpu_axi_table[] = {
-+	{ 0, 1 }, { 1, 2 }, { 2, 4 }, { 3, 8 },
-+	{ 0, 0 }
-+};
-+
-+static const struct clk_div_table mpfs_div_ahb_table[] = {
-+	{ 1, 2 }, { 2, 4}, { 3, 8 },
-+	{ 0, 0 }
-+};
-+
-+static unsigned long mpfs_cfg_clk_recalc_rate(struct clk_hw *hw, unsigned long prate)
-+{
-+	struct mpfs_cfg_hw_clock *cfg_hw = to_mpfs_cfg_clk(hw);
-+	struct mpfs_cfg_clock *cfg = &cfg_hw->cfg;
-+	void __iomem *base_addr = cfg_hw->sys_base;
-+	u32 val;
-+
-+	val = readl_relaxed(base_addr + REG_CLOCK_CONFIG_CR) >> cfg->shift;
-+	val &= clk_div_mask(cfg->width);
-+
-+	return prate / (1u << val);
-+}
-+
-+static long mpfs_cfg_clk_round_rate(struct clk_hw *hw, unsigned long rate, unsigned long *prate)
-+{
-+	struct mpfs_cfg_hw_clock *cfg_hw = to_mpfs_cfg_clk(hw);
-+	struct mpfs_cfg_clock *cfg = &cfg_hw->cfg;
-+
-+	return divider_round_rate(hw, rate, prate, cfg->table, cfg->width, cfg->flags);
-+}
-+
-+static int mpfs_cfg_clk_set_rate(struct clk_hw *hw, unsigned long rate, unsigned long prate)
-+{
-+	struct mpfs_cfg_hw_clock *cfg_hw = to_mpfs_cfg_clk(hw);
-+	struct mpfs_cfg_clock *cfg = &cfg_hw->cfg;
-+	void __iomem *base_addr = cfg_hw->sys_base;
-+	unsigned long flags = 0;
-+	u32 val;
-+	int divider_setting;
-+
-+	divider_setting = divider_get_val(rate, prate, cfg->table, cfg->width, cfg_hw->cfg.flags);
-+
-+	if (divider_setting < 0)
-+		return divider_setting;
-+
-+	spin_lock_irqsave(cfg_hw->lock, flags);
-+
-+	val = readl_relaxed(base_addr + REG_CLOCK_CONFIG_CR);
-+	val &= ~(clk_div_mask(cfg->width) << cfg_hw->cfg.shift);
-+	val |= divider_setting << cfg->shift;
-+	writel_relaxed(val, base_addr + REG_CLOCK_CONFIG_CR);
-+
-+	spin_unlock_irqrestore(cfg_hw->lock, flags);
-+
-+	return 0;
-+}
-+
-+static const struct clk_ops mpfs_clk_cfg_ops = {
-+	.recalc_rate = mpfs_cfg_clk_recalc_rate,
-+	.round_rate = mpfs_cfg_clk_round_rate,
-+	.set_rate = mpfs_cfg_clk_set_rate,
-+};
-+
-+#define CLK_CFG(_id, _name, _shift, _width, _table, _flags) {				\
-+		.cfg.id = _id,								\
-+		.cfg.name = _name,							\
-+		.cfg.shift = _shift,							\
-+		.cfg.width = _width,							\
-+		.cfg.table = _table,							\
-+	}
-+
-+static struct mpfs_cfg_hw_clock mpfs_cfg_clks[] = {
-+	CLK_CFG(CLK_CPU, "clk_cpu", 0, 2, mpfs_div_cpu_axi_table, 0),
-+	CLK_CFG(CLK_AXI, "clk_axi", 2, 2, mpfs_div_cpu_axi_table, 0),
-+	CLK_CFG(CLK_AHB, "clk_ahb", 4, 2, mpfs_div_ahb_table, 0),
-+};
-+
-+static struct clk_hw *mpfs_clk_register_cfg(struct device *dev,
-+					    struct mpfs_cfg_hw_clock *cfg_hw,
-+					    void __iomem *sys_base)
-+{
-+	struct clk_hw *hw;
-+	int err;
-+
-+	cfg_hw->sys_base = sys_base;
-+	cfg_hw->lock = &mpfs_clk_lock;
-+
-+	hw = &cfg_hw->hw;
-+	err = devm_clk_hw_register(dev, hw);
-+	if (err)
-+		return ERR_PTR(err);
-+
-+	return hw;
-+}
-+
-+static int mpfs_clk_register_cfgs(struct device *dev, struct mpfs_cfg_hw_clock *cfg_hws,
-+				  unsigned int num_clks, struct mpfs_clock_data *data,
-+				  struct clk *clk_parent)
-+{
-+	struct clk_hw *hw;
-+	void __iomem *sys_base = data->base;
-+	unsigned int i, id;
-+
-+	for (i = 0; i < num_clks; i++) {
-+		struct mpfs_cfg_hw_clock *cfg_hw = &cfg_hws[i];
-+
-+		cfg_hw->cfg.parent = __clk_get_hw(clk_parent);
-+		cfg_hw->hw.init = CLK_HW_INIT_HW(cfg_hw->cfg.name, cfg_hw->cfg.parent,
-+						 &mpfs_clk_cfg_ops, cfg_hw->cfg.flags);
-+		hw = mpfs_clk_register_cfg(dev, cfg_hw, sys_base);
-+		if (IS_ERR(hw)) {
-+			dev_err(dev, "failed to register clock %s\n", cfg_hw->cfg.name);
-+			goto err_clk;
-+		}
-+
-+		id = cfg_hws[i].cfg.id;
-+		data->hw_data.hws[id] = hw;
-+	}
-+
-+	return 0;
-+
-+err_clk:
-+	while (i--)
-+		devm_clk_hw_unregister(dev, data->hw_data.hws[cfg_hws[i].cfg.id]);
-+
-+	return PTR_ERR(hw);
-+}
-+
-+static int mpfs_periph_clk_enable(struct clk_hw *hw)
-+{
-+	struct mpfs_periph_hw_clock *periph_hw = to_mpfs_periph_clk(hw);
-+	struct mpfs_periph_clock *periph = &periph_hw->periph;
-+	void __iomem *base_addr = periph_hw->sys_base;
-+	u32 reg, val;
-+	unsigned long flags = 0;
-+
-+	spin_lock_irqsave(periph_hw->lock, flags);
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_RESET_CR);
-+	val = reg & ~(1u << periph->shift);
-+	writel_relaxed(val, base_addr + REG_SUBBLK_RESET_CR);
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_CLOCK_CR);
-+	val = reg | (1u << periph->shift);
-+	writel_relaxed(val, base_addr + REG_SUBBLK_CLOCK_CR);
-+
-+	spin_unlock_irqrestore(periph_hw->lock, flags);
-+
-+	return 0;
-+}
-+
-+static void mpfs_periph_clk_disable(struct clk_hw *hw)
-+{
-+	struct mpfs_periph_hw_clock *periph_hw = to_mpfs_periph_clk(hw);
-+	struct mpfs_periph_clock *periph = &periph_hw->periph;
-+	void __iomem *base_addr = periph_hw->sys_base;
-+	u32 reg, val;
-+	unsigned long flags = 0;
-+
-+	spin_lock_irqsave(periph_hw->lock, flags);
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_RESET_CR);
-+	val = reg | (1u << periph->shift);
-+	writel_relaxed(val, base_addr + REG_SUBBLK_RESET_CR);
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_CLOCK_CR);
-+	val = reg & ~(1u << periph->shift);
-+	writel_relaxed(val, base_addr + REG_SUBBLK_CLOCK_CR);
-+
-+	spin_unlock_irqrestore(periph_hw->lock, flags);
-+}
-+
-+static int mpfs_periph_clk_is_enabled(struct clk_hw *hw)
-+{
-+	struct mpfs_periph_hw_clock *periph_hw = to_mpfs_periph_clk(hw);
-+	struct mpfs_periph_clock *periph = &periph_hw->periph;
-+	void __iomem *base_addr = periph_hw->sys_base;
-+	u32 reg;
-+
-+	reg = readl_relaxed(base_addr + REG_SUBBLK_RESET_CR);
-+	if ((reg & (1u << periph->shift)) == 0u) {
-+		reg = readl_relaxed(base_addr + REG_SUBBLK_CLOCK_CR);
-+		if (reg & (1u << periph->shift))
-+			return 1;
-+	}
-+
-+	return 0;
-+}
-+
-+static unsigned long mpfs_periph_clk_recalc_rate(struct clk_hw *hw, unsigned long prate)
-+{
-+	return prate;
-+}
-+
-+static const struct clk_ops mpfs_periph_clk_ops = {
-+	.enable = mpfs_periph_clk_enable,
-+	.disable = mpfs_periph_clk_disable,
-+	.is_enabled = mpfs_periph_clk_is_enabled,
-+	.recalc_rate = mpfs_periph_clk_recalc_rate,
-+};
-+
-+#define CLK_PERIPH(_id, _name, _parent, _shift, _flags) {				\
-+		.periph.id = _id,							\
-+		.periph.name = _name,							\
-+		.periph.shift = _shift,							\
-+		.periph.flags = _flags,							\
-+		.periph.parent = _parent,						\
-+}
-+
-+#define PARENT_CLK(PARENT) (&mpfs_cfg_clks[CLK_##PARENT].hw)
-+
-+static struct mpfs_periph_hw_clock mpfs_periph_clks[] = {
-+	CLK_PERIPH(CLK_ENVM, "clk_periph_envm", PARENT_CLK(AHB), 0, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_MAC0, "clk_periph_mac0", PARENT_CLK(AHB), 1, 0),
-+	CLK_PERIPH(CLK_MAC1, "clk_periph_mac1", PARENT_CLK(AHB), 2, 0),
-+	CLK_PERIPH(CLK_MMC, "clk_periph_mmc", PARENT_CLK(AHB), 3, 0),
-+	CLK_PERIPH(CLK_TIMER, "clk_periph_timer", PARENT_CLK(AHB), 4, 0),
-+	CLK_PERIPH(CLK_MMUART0, "clk_periph_mmuart0", PARENT_CLK(AHB), 5, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_MMUART1, "clk_periph_mmuart1", PARENT_CLK(AHB), 6, 0),
-+	CLK_PERIPH(CLK_MMUART2, "clk_periph_mmuart2", PARENT_CLK(AHB), 7, 0),
-+	CLK_PERIPH(CLK_MMUART3, "clk_periph_mmuart3", PARENT_CLK(AHB), 8, 0),
-+	CLK_PERIPH(CLK_MMUART4, "clk_periph_mmuart4", PARENT_CLK(AHB), 9, 0),
-+	CLK_PERIPH(CLK_SPI0, "clk_periph_spi0", PARENT_CLK(AHB), 10, 0),
-+	CLK_PERIPH(CLK_SPI1, "clk_periph_spi1", PARENT_CLK(AHB), 11, 0),
-+	CLK_PERIPH(CLK_I2C0, "clk_periph_i2c0", PARENT_CLK(AHB), 12, 0),
-+	CLK_PERIPH(CLK_I2C1, "clk_periph_i2c1", PARENT_CLK(AHB), 13, 0),
-+	CLK_PERIPH(CLK_CAN0, "clk_periph_can0", PARENT_CLK(AHB), 14, 0),
-+	CLK_PERIPH(CLK_CAN1, "clk_periph_can1", PARENT_CLK(AHB), 15, 0),
-+	CLK_PERIPH(CLK_USB, "clk_periph_usb", PARENT_CLK(AHB), 16, 0),
-+	CLK_PERIPH(CLK_RTC, "clk_periph_rtc", PARENT_CLK(AHB), 18, 0),
-+	CLK_PERIPH(CLK_QSPI, "clk_periph_qspi", PARENT_CLK(AHB), 19, 0),
-+	CLK_PERIPH(CLK_GPIO0, "clk_periph_gpio0", PARENT_CLK(AHB), 20, 0),
-+	CLK_PERIPH(CLK_GPIO1, "clk_periph_gpio1", PARENT_CLK(AHB), 21, 0),
-+	CLK_PERIPH(CLK_GPIO2, "clk_periph_gpio2", PARENT_CLK(AHB), 22, 0),
-+	CLK_PERIPH(CLK_DDRC, "clk_periph_ddrc", PARENT_CLK(AHB), 23, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_FIC0, "clk_periph_fic0", PARENT_CLK(AHB), 24, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_FIC1, "clk_periph_fic1", PARENT_CLK(AHB), 25, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_FIC2, "clk_periph_fic2", PARENT_CLK(AHB), 26, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_FIC3, "clk_periph_fic3", PARENT_CLK(AHB), 27, CLK_IS_CRITICAL),
-+	CLK_PERIPH(CLK_ATHENA, "clk_periph_athena", PARENT_CLK(AHB), 28, 0),
-+	CLK_PERIPH(CLK_CFM, "clk_periph_cfm", PARENT_CLK(AHB), 29, 0),
-+};
-+
-+static struct clk_hw *mpfs_clk_register_periph(struct device *dev,
-+					       struct mpfs_periph_hw_clock *periph_hw,
-+					       void __iomem *sys_base)
-+{
-+	struct clk_hw *hw;
-+	int err;
-+
-+	periph_hw->sys_base = sys_base;
-+	periph_hw->lock = &mpfs_clk_lock;
-+	hw = &periph_hw->hw;
-+	err = devm_clk_hw_register(dev, hw);
-+	if (err)
-+		return ERR_PTR(err);
-+
-+	return hw;
-+}
-+
-+static int mpfs_clk_register_periphs(struct device *dev, struct mpfs_periph_hw_clock *periph_hws,
-+				     int num_clks, struct mpfs_clock_data *data)
-+{
-+	struct clk_hw *hw;
-+	void __iomem *sys_base = data->base;
-+	unsigned int i, id;
-+
-+	for (i = 0; i < num_clks; i++) {
-+		struct mpfs_periph_hw_clock *periph_hw = &periph_hws[i];
-+
-+		periph_hw->hw.init = CLK_HW_INIT_HW(periph_hw->periph.name,
-+						    periph_hw->periph.parent,
-+						    &mpfs_periph_clk_ops,
-+						    periph_hw->periph.flags);
-+		hw = mpfs_clk_register_periph(dev, periph_hw, sys_base);
-+		if (IS_ERR(hw)) {
-+			dev_err(dev, "failed to register clock %s\n", periph_hw->periph.name);
-+			goto err_clk;
-+		}
-+
-+		id = periph_hws[i].periph.id;
-+		data->hw_data.hws[id] = hw;
-+	}
-+
-+	return 0;
-+
-+err_clk:
-+	while (i--)
-+		devm_clk_hw_unregister(dev, data->hw_data.hws[periph_hws[i].periph.id]);
-+
-+	return PTR_ERR(hw);
-+}
-+
-+static int mpfs_clk_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mpfs_clock_data *clk_data;
-+	struct clk *clk_parent;
-+	struct resource *res;
-+	unsigned int num_clks;
-+	int ret;
-+
-+	//CLK_RESERVED is not part of cfg_clks nor periph_clks, so add 1
-+	num_clks = ARRAY_SIZE(mpfs_cfg_clks) + ARRAY_SIZE(mpfs_periph_clks) + 1;
-+
-+	clk_data = devm_kzalloc(dev, struct_size(clk_data, hw_data.hws, num_clks), GFP_KERNEL);
-+	if (!clk_data)
-+		return -ENOMEM;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	clk_data->base = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(clk_data->base))
-+		return PTR_ERR(clk_data->base);
-+
-+	clk_data->hw_data.num = num_clks;
-+
-+	clk_parent = devm_clk_get(dev, NULL);
-+	if (IS_ERR(clk_parent))
-+		return PTR_ERR(clk_parent);
-+
-+	ret = mpfs_clk_register_cfgs(dev, mpfs_cfg_clks, ARRAY_SIZE(mpfs_cfg_clks), clk_data,
-+				     clk_parent);
-+	if (ret)
-+		goto err_clk;
-+
-+	ret = mpfs_clk_register_periphs(dev, mpfs_periph_clks, ARRAY_SIZE(mpfs_periph_clks),
-+					clk_data);
-+	if (ret)
-+		goto err_clk;
-+
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, &clk_data->hw_data);
-+	if (ret)
-+		goto err_clk;
-+
-+	dev_info(dev, "registered MPFS core clocks\n");
-+	return ret;
-+
-+err_clk:
-+	dev_err(dev, "failed to register MPFS core clocks\n");
-+	return ret;
-+}
-+
-+static const struct of_device_id mpfs_clk_of_match_table[] = {
-+	{ .compatible = "microchip,mpfs-clkcfg", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mpfs_clk_match_table);
-+
-+static struct platform_driver mpfs_clk_driver = {
-+	.probe = mpfs_clk_probe,
-+	.driver	= {
-+		.name = "microchip-mpfs-clkcfg",
-+		.of_match_table = mpfs_clk_of_match_table,
-+	},
-+};
-+
-+static int __init clk_mpfs_init(void)
-+{
-+	return platform_driver_register(&mpfs_clk_driver);
-+}
-+core_initcall(clk_mpfs_init);
-+
-+static void __exit clk_mpfs_exit(void)
-+{
-+	platform_driver_unregister(&mpfs_clk_driver);
-+}
-+module_exit(clk_mpfs_exit);
-+
-+MODULE_DESCRIPTION("Microchip PolarFire SoC Clock Driver");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("platform:clk-mpfs");
--- 
-2.33.1
-
+SGkgRGFuaWVsIFN0b25lLA0KDQpUaGFua3MgZm9yIHRoZSBmZWVkYmFjay4NCg0KPiBTdWJqZWN0
+OiBSZTogW1BBVENIIHYzIDAvM10gQWRkIE1hbGktRzMxIEdQVSBzdXBwb3J0IGZvciBSWi9HMkwg
+U29DDQo+IA0KPiBIaSBCaWp1LA0KPiANCj4gT24gV2VkLCA4IERlYyAyMDIxIGF0IDEwOjQwLCBC
+aWp1IERhcyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+IHdyb3RlOg0KPiA+IFJaL0cyTCBT
+b0MgZW1iZWRzIE1hbGktRzMxIGJpZnJvc3QgR1BVLg0KPiA+IFRoaXMgcGF0Y2ggc2VyaWVzIGFp
+bXMgdG8gYWRkIHN1cHBvcnQgZm9yIHRoZSBzYW1lDQo+ID4NCj4gPiBJdCBpcyB0ZXN0ZWQgd2l0
+aCBsYXRlc3QgZHJtLW1pc2MtbmV4dCArIG1lc2EgMjEuMy4wICsgb3V0IG9mIHRyZWUNCj4gPiBw
+YXRjaCBmb3IgKGR1ICsgRFNJKSArIHBsYXRmb3JtIHNwZWNpZmljIG1lc2EgY29uZmlndXJhdGlv
+biBmb3INCj4gPiBSWi9HMkwuDQo+IA0KPiBDb3VsZCB5b3UgcGxlYXNlIHBvc3QgdGhlICdwbGF0
+Zm9ybS1zcGVjaWZpYyBNZXNhIGNvbmZpZ3VyYXRpb24nDQo+IHBhdGNoZXMgYXMgYSBtZXJnZSBy
+ZXF1ZXN0IHRvIE1lc2E/DQoNClN1cmUgd2lsbCBzZW5kIGEgbWVyZ2UgcmVxdWVzdCB0byBNZXNh
+Lg0KDQpSZWdhcmRzLA0KQmlqdQ0K
