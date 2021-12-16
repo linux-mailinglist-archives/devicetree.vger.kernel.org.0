@@ -2,117 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF879477F96
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 22:52:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E80F6477FA2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 22:56:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234161AbhLPVwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 16:52:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35792 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240629AbhLPVv7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 16:51:59 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B864BC06173F;
-        Thu, 16 Dec 2021 13:51:58 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 007FBB8258A;
-        Thu, 16 Dec 2021 21:51:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F3DDC36AE7;
-        Thu, 16 Dec 2021 21:51:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639691515;
-        bh=bk75P97h4nWD6jek//UN5pHtK2Op57RnCQgGYyF+oTw=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=npjXcb/pbjuFvIu3l0WqxOakxucYPCJx8fZD3vZyqVptasTKuJOfXgxq+1j7IoFB7
-         2ZD+vCp+8zu4L5lVLr7rqdwABN5MvVIL+Ax39qtMnM14Re3pV7aStFrjraTREd/0CC
-         rDcGqkT0zHdADDowlNaRYYll2wRZFH3ksm+VUDVYTeLk8ww+IMXZMN8dAntbwM03hG
-         FpUn3LpeqS82d5wlbSYpHHp3OcHIez3jT2jUHgJzKrZUVx4nxTRA/fvhaP7QQjwRCD
-         AooNNwJ9OKRTVFLZXO+WGTLZOk90ARoVw3RTkjwkyKOGkPknMNyEHQnQ++di1s1sre
-         PwIAEUL5b7u+Q==
-Date:   Thu, 16 Dec 2021 13:51:55 -0800 (PST)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To:     Oleksandr Tyshchenko <olekstysh@gmail.com>
-cc:     xen-devel@lists.xenproject.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Julien Grall <julien@xen.org>
-Subject: Re: [PATCH V4 6/6] dt-bindings: xen: Clarify "reg" purpose
-In-Reply-To: <1639136201-27530-1-git-send-email-olekstysh@gmail.com>
-Message-ID: <alpine.DEB.2.22.394.2112161351470.3376@ubuntu-linux-20-04-desktop>
-References: <35ee3534-9e24-5a11-0bf1-a5dd0b640186@gmail.com> <1639136201-27530-1-git-send-email-olekstysh@gmail.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        id S234629AbhLPV42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 16:56:28 -0500
+Received: from mga07.intel.com ([134.134.136.100]:26120 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234459AbhLPV41 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Dec 2021 16:56:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1639691787; x=1671227787;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pT6BIsAktqNKeiVC5xbtz996ndRtE9Mnwd/SP0WIfF0=;
+  b=A7rwxa1zzSp+KR9Hd64lWk8biv0N3ybd4V5ZPeutCP54dT9f1uxpvcqM
+   RP5c7IdPAukW4ilCENmSEz/BRH9QF+byGlrSlmezf5xxDH+7Z9aX491Ll
+   HjR99y24mvNTbunqQ/m875/aktmltv/l7gCIIMGDxrmPEJw5JQloLs9Ai
+   ZmLVkEaqSCBus63O877frgqgqRLAd2nEIGhETO2p6BCtHpXagE2DPfWbz
+   fFKxaOatlIu80KOxseeNkiNRFfNIosrw2Md53cFQu6MfLpFjz+l/lyvoo
+   xpH0C/HVy6aqJjz4vcHjBncKyDf9effB42WnXJTLRuN6hh8XCA26i2jRf
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="302987732"
+X-IronPort-AV: E=Sophos;i="5.88,212,1635231600"; 
+   d="scan'208";a="302987732"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2021 13:56:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,212,1635231600"; 
+   d="scan'208";a="482984142"
+Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
+  by orsmga002.jf.intel.com with ESMTP; 16 Dec 2021 13:56:24 -0800
+Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mxyjg-0003rc-9G; Thu, 16 Dec 2021 21:56:24 +0000
+Date:   Fri, 17 Dec 2021 05:56:17 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Lisa Hill <f11o1iomh3dmt141n@icloud.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>
+Cc:     kbuild-all@lists.01.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Add USB GPIO and missing LEDs on
+ Netgear R6300v2
+Message-ID: <202112170555.7wGP6HDV-lkp@intel.com>
+References: <C3B4248E-2870-4572-9A11-45AAA7019E9A@icloud.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <C3B4248E-2870-4572-9A11-45AAA7019E9A@icloud.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 10 Dec 2021, Oleksandr Tyshchenko wrote:
-> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
-> 
-> Xen on Arm has gained new support recently to calculate and report
-> extended regions (unused address space) safe to use for external
-> mappings. These regions are reported via "reg" property under
-> "hypervisor" node in the guest device-tree. As region 0 is reserved
-> for grant table space (always present), the indexes for extended
-> regions are 1...N.
-> 
-> No device-tree bindings update is needed (except clarifying the text)
-> as guest infers the presence of extended regions from the number
-> of regions in "reg" property.
-> 
-> Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+Hi Lisa,
 
-Acked-by: Stefano Stabellini <sstabellini@kernel.org>
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on v5.16-rc5 next-20211215]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Lisa-Hill/ARM-dts-BCM5301X-Add-USB-GPIO-and-missing-LEDs-on-Netgear-R6300v2/20211211-165513
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+compiler: arm-linux-gnueabi-gcc (GCC) 11.2.0
+reproduce: make ARCH=arm dtbs_check
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
 
-> ---
-> Changes V2 -> V3:
->    - new patch
-> 
-> Changes V3 -> V4:
->    - add Stefano's R-b and Rob's A-b
->    - remove sentence about ACPI for "reg" and "interrupts"
->      properties
-> 
-> Changes V4 -> V4.1
->    - bring the mentioning of ACPI back which, as was pointed out by Julien,
->      fits in the context:
->      https://lore.kernel.org/xen-devel/9602b019-6c20-cdc7-23f3-9e4f8fd720f6@xen.org/T/#t
->      so technically restore V3 state
->    - remove Stefano's R-b and Rob's A-b as I am not 100% sure they are
->      happy with that
-> ---
->  Documentation/devicetree/bindings/arm/xen.txt | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/xen.txt b/Documentation/devicetree/bindings/arm/xen.txt
-> index db5c56d..156fe10b 100644
-> --- a/Documentation/devicetree/bindings/arm/xen.txt
-> +++ b/Documentation/devicetree/bindings/arm/xen.txt
-> @@ -7,10 +7,14 @@ the following properties:
->  	compatible = "xen,xen-<version>", "xen,xen";
->    where <version> is the version of the Xen ABI of the platform.
->  
-> -- reg: specifies the base physical address and size of a region in
-> -  memory where the grant table should be mapped to, using an
-> -  HYPERVISOR_memory_op hypercall. The memory region is large enough to map
-> -  the whole grant table (it is larger or equal to gnttab_max_grant_frames()).
-> +- reg: specifies the base physical address and size of the regions in memory
-> +  where the special resources should be mapped to, using an HYPERVISOR_memory_op
-> +  hypercall.
-> +  Region 0 is reserved for mapping grant table, it must be always present.
-> +  The memory region is large enough to map the whole grant table (it is larger
-> +  or equal to gnttab_max_grant_frames()).
-> +  Regions 1...N are extended regions (unused address space) for mapping foreign
-> +  GFNs and grants, they might be absent if there is nothing to expose.
->    This property is unnecessary when booting Dom0 using ACPI.
->  
->  - interrupts: the interrupt used by Xen to inject event notifications.
-> -- 
-> 2.7.4
-> 
+dtcheck warnings: (new ones prefixed by >>)
+   arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dt.yaml: usb@22000: '#address-cells', '#size-cells', '#usb-cells', 'port@1', 'port@2' do not match any of the regexes: 'pinctrl-[0-9]+'
+   	From schema: Documentation/devicetree/bindings/usb/generic-ohci.yaml
+   arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dt.yaml: usb@23000: port@1: 'compatible' is a required property
+   	From schema: Documentation/devicetree/bindings/usb/generic-xhci.yaml
+   arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dt.yaml: usb@23000: Unevaluated properties are not allowed ('#usb-cells', 'phys', 'phy-names', '#address-cells', '#size-cells', 'port@1' were unexpected)
+   	From schema: Documentation/devicetree/bindings/usb/generic-xhci.yaml
+   arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dt.yaml: cru@100: $nodename:0: 'cru@100' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+   	From schema: /usr/local/lib/python3.9/dist-packages/dtschema/schemas/simple-bus.yaml
+   arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dt.yaml:0:0: /nand-controller@18028000/nand@0/partitions: failed to match any schema with compatible: ['brcm,bcm947xx-cfe-partitions']
+   arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dt.yaml:0:0: /spi@18029200/flash@0/partitions: failed to match any schema with compatible: ['brcm,bcm947xx-cfe-partitions']
+>> arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dt.yaml: leds: 'logo', 'power-amber', 'power-green', 'usb', 'wan-amber', 'wan-green', 'wireless' do not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+   	From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
