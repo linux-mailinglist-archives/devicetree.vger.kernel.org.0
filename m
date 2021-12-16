@@ -2,142 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C764477E6B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 22:08:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABD24477E73
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 22:09:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241802AbhLPVI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 16:08:29 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:43587 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241787AbhLPVHv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 16:07:51 -0500
-Received: by mail-ot1-f42.google.com with SMTP id i5-20020a05683033e500b0057a369ac614so402567otu.10;
-        Thu, 16 Dec 2021 13:07:50 -0800 (PST)
+        id S236817AbhLPVJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 16:09:36 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:35408 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242149AbhLPVJF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 16:09:05 -0500
+Received: by mail-oi1-f181.google.com with SMTP id m6so739861oim.2;
+        Thu, 16 Dec 2021 13:09:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=cx2O43LmNvC8GyZN+btCibCu9iyCGJB6KtMGjIeaSF8=;
-        b=tAhxa82boYVfuFCdJl6a8kCpj1kuyWQMCpmqvq8uq4eh/4yOzCtNVEJYgWpjVwOSnN
-         Bxpo37StKyciDfwwRecWCENb4L5lZ7J57Cdobhxbw/WXJ2pE9DBwhrw0+gRvRGWWyNq5
-         fbQQ7vsnuOHzVeQG378Ew2V3EYfoeX4ziS06/zeZM3sDRNo8uGFYvSI+0z2K3WTbq8lt
-         rWEnNPnOqpDLpKPpBRHV4D75H/OVpLMWSU+rcL9043kFH7HDGHDnNN6UpM2HH31F/kHl
-         r1/ugTRQ6gI1VU534fhOMEbhl53itJs/jCtGwn1lJixTO+PlPQvW98Ysb3K3C/0QfALM
-         HolA==
-X-Gm-Message-State: AOAM531pKrVpEowE4AaMPICTOaI0xAcSMmpNIda1A2EcblLfsnobbEXX
-        +MBpxNMW4xajHcuGIKMRPw==
-X-Google-Smtp-Source: ABdhPJwpr9IO7zj4qWR3cuBfdUVvEAAstbCB8u01288B7/rYhH2qI+Lua/zGG9hBO0hoFbVeIQE+3w==
-X-Received: by 2002:a9d:1ca9:: with SMTP id l41mr14278100ota.341.1639688870339;
-        Thu, 16 Dec 2021 13:07:50 -0800 (PST)
+        bh=06/jjv/bJmHWFH5eUbQUmPo7yQuVde6Xip0Sorxfb7M=;
+        b=e12yNnPqvSFOvU86nKoYLw/7f6Vv+iBeBYaHqmE3bD3dpl/Da2iAz8ZKmYXgsMYYEE
+         A4Cj57gxhDGMeaDREiCHu8WHtFAHvKJW/iX3BfzwtVap5x6Wfbx6x3SmKyw0BCeU9q0f
+         QsGE7hz8PiThQELVuMa5wA3fdOPVXT8Y57jZXqdlpZlq3NsmZn8wP2ZwGDW2oLm/QV1D
+         7Q1fPEH60vZop4lpjtCWxYkHheaDFMuGk7+ud3klln/UJ1pYqb8X/gG9Gxv3CAwUs6zy
+         6s8YqgrdhHmUo4/rY15wr2onJS0iTvsgiIzbla7j/ooMc2tst9Ak/+6ueTCDogZSlpPu
+         2RHQ==
+X-Gm-Message-State: AOAM530AQSOJbaIX58IMW6nzJdUBNH72YlPlMcekqLa+FXcHDezNXsoO
+        hhFSqE+/yaLQgKFpRrw+SU1rIMQ4+A==
+X-Google-Smtp-Source: ABdhPJyYWmGUU8dkqr2GR0ddHvgpdwaNTc1g8sUB/ahEy63zu3VTYyvBjyCm533wqZrALABZQx1a5g==
+X-Received: by 2002:aca:130e:: with SMTP id e14mr5746806oii.51.1639688945201;
+        Thu, 16 Dec 2021 13:09:05 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 184sm1194863oih.58.2021.12.16.13.07.49
+        by smtp.gmail.com with ESMTPSA id e4sm1210472oiy.12.2021.12.16.13.09.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 13:07:50 -0800 (PST)
-Received: (nullmailer pid 764267 invoked by uid 1000);
-        Thu, 16 Dec 2021 21:07:49 -0000
-Date:   Thu, 16 Dec 2021 15:07:49 -0600
+        Thu, 16 Dec 2021 13:09:04 -0800 (PST)
+Received: (nullmailer pid 766284 invoked by uid 1000);
+        Thu, 16 Dec 2021 21:09:04 -0000
+Date:   Thu, 16 Dec 2021 15:09:04 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-media@vger.kernel.org, abel.vesa@nxp.com,
-        aford@beaconembedded.com, benjamin.gaignard@collabora.com,
-        hverkuil-cisco@xs4all.nl,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-Subject: Re: [PATCH V2 08/10] dt-bindings: media: nxp,imx8mq-vpu: Add support
- for G1 and G2 on imx8mm
-Message-ID: <YbuqpayfYVPp1dTe@robh.at.kernel.org>
-References: <20211216111256.2362683-1-aford173@gmail.com>
- <20211216111256.2362683-9-aford173@gmail.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org, Julien Su <juliensu@mxic.com.tw>,
+        Mark Brown <broonie@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        Jaime Liao <jaimeliao@mxic.com.tw>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Walle <michael@walle.cc>
+Subject: Re: [PATCH v6 03/28] dt-bindings: mtd: nand-controller: Harmonize
+ the property types
+Message-ID: <Ybuq8AFCd7wC2RLe@robh.at.kernel.org>
+References: <20211216111654.238086-1-miquel.raynal@bootlin.com>
+ <20211216111654.238086-4-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211216111256.2362683-9-aford173@gmail.com>
+In-Reply-To: <20211216111654.238086-4-miquel.raynal@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 05:12:53AM -0600, Adam Ford wrote:
-> The i.MX8M mini appears to have a similar G1 and G2 decoder but the
-> post-procesing isn't present, so different compatible flags are requred.
-
-post-processing
-
-> Since all the other parameters are the same with imx8mq, just add
-> the new compatible flags to nxp,imx8mq-vpu.yaml.
+On Thu, 16 Dec 2021 12:16:29 +0100, Miquel Raynal wrote:
+> Harmonize the different properties in this file by:
+> * dropping the non-necessary allOf's
+> * always defining the keywords in the following order:
+>     - first the "description" (when relevant),
+>     - then the "type"/"$ref" and the other generic keywords ("enum",
+>       "default", etc).
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  .../bindings/mtd/nand-controller.yaml         | 26 +++++++++----------
+>  1 file changed, 12 insertions(+), 14 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> index c1e157251de7..b1f24c48c73b 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> @@ -5,7 +5,7 @@
->  $id: "http://devicetree.org/schemas/media/nxp,imx8mq-vpu.yaml#"
->  $schema: "http://devicetree.org/meta-schemas/core.yaml#"
->  
-> -title: Hantro G1/G2 VPU codecs implemented on i.MX8MQ SoCs
-> +title: Hantro G1/G2 VPU codecs implemented on i.MX8MQ/i.MX8MM SoCs
 
-Just 'i.MX8' so we don't have to change this everytime?
-
->  
->  maintainers:
->    - Philipp Zabel <p.zabel@pengutronix.de>
-> @@ -20,6 +20,8 @@ properties:
->          deprecated: true
->        - const: nxp,imx8mq-vpu-g1
->        - const: nxp,imx8mq-vpu-g2
-> +      - const: nxp,imx8mm-vpu-g1
-> +      - const: nxp,imx8mm-vpu-g2
-
-Not compatible with the imx8mq variants?
-
->  
->    reg:
->      maxItems: 1
-> @@ -66,3 +68,27 @@ examples:
->                  clocks = <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
->                  power-domains = <&vpu_blk_ctrl IMX8MQ_VPUBLK_PD_G2>;
->          };
-> +  - |
-> +        #include <dt-bindings/clock/imx8mm-clock.h>
-> +        #include <dt-bindings/power/imx8mm-power.h>
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +        vpu_g1: video-codec@38300000 {
-> +                compatible = "nxp,imx8mm-vpu-g1";
-> +                reg = <0x38300000 0x10000>;
-> +                interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&clk IMX8MM_CLK_VPU_G1_ROOT>;
-> +                power-domains = <&vpu_blk_ctrl IMX8MM_VPUBLK_PD_G1>;
-> +        };
-> +  - |
-> +        #include <dt-bindings/clock/imx8mm-clock.h>
-> +        #include <dt-bindings/power/imx8mm-power.h>
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +        vpu_g2: video-codec@38300000 {
-> +                compatible = "nxp,imx8mm-vpu-g2";
-> +                reg = <0x38310000 0x10000>;
-> +                interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&clk IMX8MM_CLK_VPU_G2_ROOT>;
-> +                power-domains = <&vpu_blk_ctrl IMX8MM_VPUBLK_PD_G2>;
-> +        };
-
-No point in more examples just for a different compatible.
-
-> -- 
-> 2.32.0
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
