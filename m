@@ -2,114 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E5D7477667
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:56:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A57F47768C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:02:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232937AbhLPP4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 10:56:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36008 "EHLO
+        id S238755AbhLPQCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 11:02:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230358AbhLPP4q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:56:46 -0500
-Received: from haggis.mythic-beasts.com (haggis.mythic-beasts.com [IPv6:2a00:1098:0:86:1000:0:2:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ACACC061574;
-        Thu, 16 Dec 2021 07:56:46 -0800 (PST)
-Received: from [81.101.6.87] (port=52578 helo=jic23-huawei)
-        by haggis.mythic-beasts.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <jic23@jic23.retrosnub.co.uk>)
-        id 1mxt7Y-0006WU-2V; Thu, 16 Dec 2021 15:56:40 +0000
-Date:   Thu, 16 Dec 2021 16:02:04 +0000
-From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-To:     Gwendal Grignou <gwendal@chromium.org>
-Cc:     robh+dt@kernel.org, lars@metafoo.de, swboyd@chromium.org,
-        andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 0/5] Expand Semtech SAR Sensors support
-Message-ID: <20211216160153.2a523f46@jic23-huawei>
-In-Reply-To: <20211216155015.7013eff9@jic23-huawei>
-References: <20211210192328.2844060-1-gwendal@chromium.org>
-        <20211216155015.7013eff9@jic23-huawei>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        with ESMTP id S238752AbhLPQCv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 11:02:51 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D15EC061574;
+        Thu, 16 Dec 2021 08:02:51 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id m12so39234135ljj.6;
+        Thu, 16 Dec 2021 08:02:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WNnl/SMgi+a1vZUFpRGO6B+ARNo01gzwBzD98+b1L5g=;
+        b=qLgN00iHfIwpINS8s9PGlwsb6lZJctGBLXRl/BOjMq9Wm5/20axqduCVyBxE4T4ADt
+         C6kbdM5jxuicE/l5/L7sAEmjjZ4wKmHmrHyhsdU5bO9/5bU4ag/wG+bt0CSZZg3KFwHW
+         tp8J+AnPzHv+HLE0gP20Ho2oXRqcmsLo4GbmmEc/y5OsfpFddMspi4gCmNzR9aeuX++g
+         z3fGPrJ1JkkpSOy0RFvLGHiDe6yD5sJ8Ch2RuT74ab3oyas2zfimLhho0+cg/3Rb6L1d
+         8sr2ZTKW1RLqAWimU+r81cm3enjrteFAgsRzBawTIORWu+IEyG0sng5e05q5XXGCzbsd
+         t+Lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WNnl/SMgi+a1vZUFpRGO6B+ARNo01gzwBzD98+b1L5g=;
+        b=ogINQz+ylv/HlqGW6VkQm9Klljvf5oPrDzwgWXH57akbbbnpAGrEvhX/A67otU3sg3
+         4FBS74+KNNOuqTNI/zd2eqreytG1crpr05G+yJxvyi61aFBe06zrfHmQiSyH372pdA+4
+         0CVFTt6gFhfgIPVh6KgBTBhP3fCkEuwV/Q4FwXYVmqB/cLviEs4aF/mswvJ0XeeeJXu/
+         mXN9unr0gxpyFJUffKy0yMaW7pqBB6ugMJ/bSkz+z1bC37gWBacSEb0Xo7y/9E9z5ewF
+         LjqE7lgLE7TS8UoGzlwrNsFbHLMbg+R68DQac4EvSAYdYDnr2KXyxjN4SlhJ2x5rDuN6
+         OI4g==
+X-Gm-Message-State: AOAM532MvwMKIA+VjuhUaS23aZn7oqMovlUBw6tDD9Y8aGVfPkI+tELJ
+        6Lh8VhshWywZuq5s976EAqE=
+X-Google-Smtp-Source: ABdhPJzgsEtNfuQPOiRiHdq8hgtrYwB6++vokZQp+eTOApx4GFQIVMVdOHDa4IlEFHEmnBmFPUjbSw==
+X-Received: by 2002:a2e:91ca:: with SMTP id u10mr16504562ljg.414.1639670568728;
+        Thu, 16 Dec 2021 08:02:48 -0800 (PST)
+Received: from localhost.localdomain (94-29-63-156.dynamic.spd-mgts.ru. [94.29.63.156])
+        by smtp.gmail.com with ESMTPSA id o15sm934802lfd.164.2021.12.16.08.02.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 08:02:48 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        David Heidelberg <david@ixit.cz>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1] dt-bindings: sound: tegra-audio-rt5677: Correct example
+Date:   Thu, 16 Dec 2021 19:02:29 +0300
+Message-Id: <20211216160229.17049-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-BlackCat-Spam-Score: 4
-X-Spam-Status: No, score=0.4
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Dec 2021 15:50:29 +0000
-Jonathan Cameron <jic23@jic23.retrosnub.co.uk> wrote:
+Remove non-existent properties from the example of the binding. These
+properties were borrower from the old txt binding, but they were never
+used in practice and aren't documented in the new binding. They aren't
+reported by the binding checker because dtschema needs extra patch that
+hasn't been upstreamed yet to make unevaluatedProperties work properly.
 
-> On Fri, 10 Dec 2021 11:23:23 -0800
-> Gwendal Grignou <gwendal@chromium.org> wrote:
-> 
-> > Add a new Semtech SAR sensor SX9324.
-> > Instead of recopying 1/3 of the sx9310 driver, move common code in a new
-> > file. It will be used again for the next sensor, SX9360.  
-> 
-> Series applied to the togreg branch of iio.git and pushed out as testing
-> to let 0-day have a poke at it and see what it can find that we missed.
-> 
-And pulled out again.  Just noticed an issue with docs not matching
-the actual ABI.
+Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+---
+ .../devicetree/bindings/sound/nvidia,tegra-audio-rt5677.yaml   | 3 ---
+ 1 file changed, 3 deletions(-)
 
-> Thanks,
-> 
-> Jonathan
-> 
-> > 
-> > Major changes in v7:
-> >   Fix one remaining syntax error in device tree binding documentation.
-> > 
-> > Major changes in v6:
-> >   Fix syntax errors in device tree binding documentation.
-> >   Drop of_match_ptr and ACPI_PTR protections.
-> >   Fix unused variable warning.
-> > 
-> > Major changes in v5:
-> >   Use iwyu to cleanup include files.
-> >   Use dev_err_probe() in probe routine
-> >   Add attribute to shift irq status register, not common among all
-> >     sensors.
-> >   Fix long line.
-> > 
-> > Major changes in v4:
-> >   Use chip_info instead of info in common data.
-> >   Returns an error when setting negative sysfs entries
-> >   Fix cut and paste errors, credit.
-> > 
-> > Major changes in v3:
-> >   Fix some error in binding descriptions and setting
-> >   Fix invalid register constant name.
-> > 
-> > Major changes in v2:
-> >   Better interface between common code and drivers
-> >   Document SX9324 phase configuration
-> > 
-> > Gwendal Grignou (5):
-> >   iio: sx9310: Add frequency in read_avail
-> >   iio: sx9310: Extract common Semtech sensor logic
-> >   iio: proximity: Add SX9324 support
-> >   dt-bindings: iio: Add sx9324 binding
-> >   iio: sx9324: Add dt_binding support
-> > 
-> >  .../ABI/testing/sysfs-bus-iio-sx9324          |   28 +
-> >  .../iio/proximity/semtech,sx9324.yaml         |  161 +++
-> >  drivers/iio/proximity/Kconfig                 |   18 +
-> >  drivers/iio/proximity/Makefile                |    2 +
-> >  drivers/iio/proximity/sx9310.c                |  714 ++---------
-> >  drivers/iio/proximity/sx9324.c                | 1076 +++++++++++++++++
-> >  drivers/iio/proximity/sx_common.c             |  576 +++++++++
-> >  drivers/iio/proximity/sx_common.h             |  163 +++
-> >  8 files changed, 2127 insertions(+), 611 deletions(-)
-> >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-sx9324
-> >  create mode 100644 Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-> >  create mode 100644 drivers/iio/proximity/sx9324.c
-> >  create mode 100644 drivers/iio/proximity/sx_common.c
-> >  create mode 100644 drivers/iio/proximity/sx_common.h
-> >   
-> 
+diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5677.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5677.yaml
+index 03ff691c26c8..a49997d6028b 100644
+--- a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5677.yaml
++++ b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5677.yaml
+@@ -92,9 +92,6 @@ examples:
+         nvidia,audio-codec = <&rt5677>;
+ 
+         nvidia,hp-det-gpios = <&gpio 143 0>;
+-        nvidia,mic-present-gpios = <&gpio 132 1>;
+-        nvidia,hp-en-gpios = <&rt5677 1 0>;
+-        nvidia,dmic-clk-en-gpios = <&rt5677 2 1>;
+ 
+         clocks = <&clk 216>,
+                  <&clk 217>,
+-- 
+2.33.1
 
