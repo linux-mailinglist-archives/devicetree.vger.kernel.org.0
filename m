@@ -2,84 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2BA8477D36
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:16:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54DC6477D32
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:15:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241271AbhLPUPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 15:15:25 -0500
-Received: from mga02.intel.com ([134.134.136.20]:51859 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233950AbhLPUPZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Dec 2021 15:15:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1639685725; x=1671221725;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3t7tVPDq17Bs5oBsrsC18t2E5pFFYQnWPZs/51fi/T4=;
-  b=YCraedoUsoO+N0Sykzl2lcewZcexX/E3nV3UsQde0FVlgoz/CcBv+nsa
-   vCqV5TL/3JNs+KkZUkbXHNunywZMjByVfNRlkiliO4JE8rnGLZuFC42Y0
-   d5pL6x/vW2NbJ/E1WTGZF9NnGx4SCCGzoVx9pDpXE/yWcRYzFAqU1tT5c
-   5PAtTkv3CDY7BkIkCzps1FR/T/N2f5b6oFJMmw5rjIswnncrUsznljljM
-   nKtMoznQzfGrXCMKSyUaCHOthX685RKJjplrwmM80ZTjteTqLtZ26/CqE
-   InN/wJ/rN6Y3V0vDDGqzuTGwYN/HOq8c1ZkHxUyCIaKr5HcwMGwe4RLmQ
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="226873111"
-X-IronPort-AV: E=Sophos;i="5.88,212,1635231600"; 
-   d="scan'208";a="226873111"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2021 12:15:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,212,1635231600"; 
-   d="scan'208";a="756228471"
-Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
-  by fmsmga005.fm.intel.com with ESMTP; 16 Dec 2021 12:15:21 -0800
-Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mxx9s-0003lH-V2; Thu, 16 Dec 2021 20:15:20 +0000
-Date:   Fri, 17 Dec 2021 04:14:26 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        id S241257AbhLPUPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 15:15:17 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:37848 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233950AbhLPUPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:15:16 -0500
+Received: by mail-ot1-f45.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so288231otg.4;
+        Thu, 16 Dec 2021 12:15:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NYmeLfLobnbzpDW1UJt55IT1E6sxaX+gTnLSdXFJ+9k=;
+        b=M7uF+IKV+QvD0P2DRgR+ajQ74C1GjuYozNUsW64+akxeg3SBIk1W7T3JlmEIEFFu46
+         eJgDVlvA1K/EzP3oizkAxlmPV9/GfGWYZsmKER0T48qatYeTPXYSQBELgvvuDBxmzvfa
+         /HUuAVqGujyr+zYv/tKi8Sm+klyKwOlDiGHWQVRPJ7ypTaEcHk2MQrIURjD3HH0btHxl
+         ZmVs0e9qXMpiE+i9Yo1ioY6q8CnVZ13Ee5WEn6lu9AZz8k/FiE4kJMVooC0Nqfd5Yvnu
+         Gx6QarqGb+jahdkARg6fXHOrYTLsHmCt0pnCC3+cAlWGCeg1L/7qJ7nMjeyA3eoDJwJ2
+         OBEw==
+X-Gm-Message-State: AOAM532Mb7L2PfueM1FLUMYTsNf2+K4mHBTBfYP7A+98EOxgvJCxe2hU
+        UHtqRsleKVCE9AtVUpjf5g==
+X-Google-Smtp-Source: ABdhPJyvLCwGruPUfdr2lc9ZUCfmx7PigNZabGaqqj/UuuptIxAPkDUDcmqq8jNjbMJqpha7OmVvgQ==
+X-Received: by 2002:a05:6830:44a1:: with SMTP id r33mr14012682otv.162.1639685715882;
+        Thu, 16 Dec 2021 12:15:15 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id e21sm1212688ote.72.2021.12.16.12.15.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 12:15:15 -0800 (PST)
+Received: (nullmailer pid 681236 invoked by uid 1000);
+        Thu, 16 Dec 2021 20:15:14 -0000
+Date:   Thu, 16 Dec 2021 14:15:14 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
         devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org
-Subject: [RFC PATCH] spi: spi-mem: cqspi_mem_caps can be static
-Message-ID: <20211216201426.GA41877@ee91f2b6365d>
-References: <20211216111654.238086-21-miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: interrupt-controller: Update STM32
+ EXTI interrupt controller
+Message-ID: <YbueUmqyzwS9rOu5@robh.at.kernel.org>
+References: <20211215105847.2328-1-alexandre.torgue@foss.st.com>
+ <20211215105847.2328-2-alexandre.torgue@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211216111654.238086-21-miquel.raynal@bootlin.com>
-X-Patchwork-Hint: ignore
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20211215105847.2328-2-alexandre.torgue@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-drivers/spi/spi-cadence-quadspi.c:1592:38: warning: symbol 'cqspi_mem_caps' was not declared. Should it be static?
+On Wed, Dec 15, 2021 at 11:58:43AM +0100, Alexandre Torgue wrote:
+> Document new entry "st,exti-mapping" which links EXTI lines with GIC
+> interrupt lines and add an include file to define EXTI interrupt type.
+> 
+> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/st,stm32-exti.yaml b/Documentation/devicetree/bindings/interrupt-controller/st,stm32-exti.yaml
+> index d19c881b4abc..e08bb51e97a8 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/st,stm32-exti.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/st,stm32-exti.yaml
+> @@ -41,6 +41,17 @@ properties:
+>      description:
+>        Interrupts references to primary interrupt controller
+>  
+> +  st,exti-mapping:
+> +    $ref: "/schemas/types.yaml#/definitions/uint32-matrix"
+> +    description: |
+> +            Define mapping between EXTI lines and GIC irq lines. Should be:
+> +            st,exti-mapping = <EXTI_LINE GIC_IRQ EXTI_TYPE>, ...;
+> +            With:
+> +            - EXTI_LINE: EXTI line number.
+> +            - GIC_IRQ: GIC IRQ associated to the EXTI line.
+> +            - EXTI_TYPE: STM32_EXTI_TYPE_CONFIGURABLE or STM32_EXTI_TYPE_DIRECT.
+> +              Defined in include/dt-bindings/interrupt-controller/stm32-exti.h
 
-Reported-by: kernel test robot <lkp@intel.com>
-Signed-off-by: kernel test robot <lkp@intel.com>
----
- spi-cadence-quadspi.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+No custom properties for this. See[1][2][3].
 
-diff --git a/drivers/spi/spi-cadence-quadspi.c b/drivers/spi/spi-cadence-quadspi.c
-index bc7ae56fe565fb..ca05ab4d0c5923 100644
---- a/drivers/spi/spi-cadence-quadspi.c
-+++ b/drivers/spi/spi-cadence-quadspi.c
-@@ -1589,7 +1589,7 @@ static const char *cqspi_get_name(struct spi_mem *mem)
- 	return devm_kasprintf(dev, GFP_KERNEL, "%s.%d", dev_name(dev), mem->spi->chip_select);
- }
- 
--const struct spi_controller_mem_caps cqspi_mem_caps = {
-+static const struct spi_controller_mem_caps cqspi_mem_caps = {
- 	.dtr = true,
- };
- 
+Rob
+
+
+[1] https://lore.kernel.org/all/20211122103032.517923-1-maz@kernel.org/
+[2] https://lore.kernel.org/all/87k0g8jlmg.wl-maz@kernel.org/
+[3] https://lore.kernel.org/all/CAL_JsqK2Shj6smam7HgNAmy3UG+vVQPkU3Q0OjyEHOEJB45n0A@mail.gmail.com/
