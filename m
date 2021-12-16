@@ -2,120 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B512477AAE
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 18:34:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39B79477A9B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 18:31:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235961AbhLPRef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 12:34:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60972 "EHLO
+        id S235847AbhLPRbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 12:31:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235931AbhLPRef (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 12:34:35 -0500
-Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 922C6C061574;
-        Thu, 16 Dec 2021 09:34:34 -0800 (PST)
-Received: by mail-ua1-x935.google.com with SMTP id 30so48449815uag.13;
-        Thu, 16 Dec 2021 09:34:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=1WwsvBOKb5aX+7eqWhUm/uoX6lfXr8RZdkxy0n4Fz4s=;
-        b=RDBvdE0bUi5JdAcMg1593mCZMzNOzbQ9WHJ8AcibwrfxBmy/azeOP9tq0sDkERkMnx
-         QPGqVKHBrwFMZsekIZSGb67J9U3WMjPaFf1m2SxArhunwy+LKTB+qkR/WFX0hz4uMNJA
-         Fz/7FZBXXCieMOxzVRYbYLuKJEgESwOSsRMH4/fB7Gspz/9Ay2SaxeSZkgZh9Xfogyvc
-         MQm6xF3dn1PcXKZV5hvyx0jN4SfrEfSeh2YLX8D6LOwDhpu5AInRzHr631xc1zpLXV2K
-         ltR5fAsLjR/uY9tspXhsdSpRISfRrh0XPtsqa9HS9Kg2jJIec++di4Z9yn/exj7S2pJ3
-         h01w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=1WwsvBOKb5aX+7eqWhUm/uoX6lfXr8RZdkxy0n4Fz4s=;
-        b=0u9GdjpiT41daTvmGu9JQJIFaU/o3CPis8lx8oB26/3IKIZXNNvRJVZFwND+9b/veg
-         vaZAgcAf+Y13eEjl+fv+KR4XL7EtjyQ+WMWrHsYSZycdDlHdbZZYEM4KkSpGBulR4nBl
-         Gvp2+/51O5MbM3iCIsjdH9O3CcMJOz0FOADSc39fg8LviGLexAe2f7uQcHovkZFpr/2Y
-         HlbB6++B/z4f6PLhku97CmJjWJy14jZMNv1nK7O2J10Evckj00TI+5hiArCGv4ISOgN2
-         u9iLNaT2cMYx4x1F66bgULeecS8S+NayiHRMgxXAI1IRstIkpwQOYMNwhPWtvNVGXiae
-         TaNA==
-X-Gm-Message-State: AOAM531lpGUm4StIh52bE6tg9Zd4ktzf4mgcUG9cNrbAdh0uGX8F9gw2
-        09RchiXXffawRThPZuT6MmXKikTqJFguBtzL1sKci/omp3Q=
-X-Google-Smtp-Source: ABdhPJxGuxrBofPK+/tqhZ2EQUieRPUWmqtTJTpLaLexgWTODqhNlP5cHqIDWb8G61IzN89uQmQd9bwu8KOZUIjpMKw=
-X-Received: by 2002:a67:eb54:: with SMTP id x20mr6413005vso.18.1639676073726;
- Thu, 16 Dec 2021 09:34:33 -0800 (PST)
+        with ESMTP id S234903AbhLPRbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 12:31:00 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D533C061574;
+        Thu, 16 Dec 2021 09:31:00 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3B596B82363;
+        Thu, 16 Dec 2021 17:30:59 +0000 (UTC)
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtp.kernel.org (Postfix) with ESMTPSA id D28F8C36AE0;
+        Thu, 16 Dec 2021 17:30:55 +0000 (UTC)
+Date:   Thu, 16 Dec 2021 17:36:19 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Antoniu Miclaus <antoniu.miclaus@analog.com>, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/4] dt-bindings:iio:filter: add admv8818 doc
+Message-ID: <20211216173619.6b71a72d@jic23-huawei>
+In-Reply-To: <YbOCfcMS+tlSqgT5@robh.at.kernel.org>
+References: <20211207155445.247444-1-antoniu.miclaus@analog.com>
+        <20211207155445.247444-3-antoniu.miclaus@analog.com>
+        <YbOCfcMS+tlSqgT5@robh.at.kernel.org>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20211216105246.3548133-1-daniel@0x0f.com> <CABgxDoKJRc_qORcpFx=eNPS=bGV68hPrbeH0VtcQ2Jjx2ruqmg@mail.gmail.com>
- <CAFr9PX=AAssT1imCfpU_piGBOemD23RGBZzngznyia-4TXrK=g@mail.gmail.com>
-In-Reply-To: <CAFr9PX=AAssT1imCfpU_piGBOemD23RGBZzngznyia-4TXrK=g@mail.gmail.com>
-From:   Romain Perier <romain.perier@gmail.com>
-Date:   Thu, 16 Dec 2021 18:34:21 +0100
-Message-ID: <CABgxDoLuOoE5qzzymE-htYz68Nrh8TzZ4d=LgbuNhJs9geevZg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] ARM: mstar: Initial Miyoo Mini support
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+On Fri, 10 Dec 2021 10:38:21 -0600
+Rob Herring <robh@kernel.org> wrote:
 
+> On Tue, 07 Dec 2021 17:54:44 +0200, Antoniu Miclaus wrote:
+> > Add device tree bindings for the ADMV8818 Filter.
+> > 
+> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > ---
+> > changes in v3:
+> >  - remove clock from `required` since it is optional.
+> >  .../bindings/iio/filter/adi,admv8818.yaml     | 67 +++++++++++++++++++
+> >  1 file changed, 67 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+> >   
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Le jeu. 16 d=C3=A9c. 2021 =C3=A0 17:15, Daniel Palmer <daniel@0x0f.com> a =
-=C3=A9crit :
->
-> Hi Romain,
->
-> On Fri, 17 Dec 2021 at 00:53, Romain Perier <romain.perier@gmail.com> wro=
-te:
-> >
-> > Hi Daniel,
-> >
-> > Le jeu. 16 d=C3=A9c. 2021 =C3=A0 11:52, Daniel Palmer <daniel@0x0f.com>=
- a =C3=A9crit :
-> >>
-> >>   - I've left the link tags as-is as using them for linking
-> >>     to background info seems acceptable.
-> >
-> >
-> > https://www.kernel.org/doc/html/latest/maintainer/configure-git.html#cr=
-eating-commit-links-to-lore-kernel-org
->
-> The explanation of Link seem to have been updated recently in
-> 1f57bd42b77cdc4b8e05ba9f4417872a6691b66d
-> (https://www.kernel.org/doc/html/latest/process/submitting-patches.html#d=
-escribe-your-changes
-> a few paragraphs down).
->
-> My reading of the paragraph since that commit is: Explain what the
-> commit does in the commit message. If there is a bug that prompted the
-> change then link it. If there is some background for the commit then
-> link it.
->
-> If it needs to be changed around I'll do that but I personally think
-> it looks nicer. It seems like the right way to provide links to
-> datasheets etc without putting a bunch of long messy urls into the
-> commit message.
+There was a bonus blank line at the end of the file I tidied up whilst applying.
 
-Well, I agree it is confusing. So I have discussed privately about
-this with Arnd (on IRC):
-
-<rperier> What is the real usage of the "Link:" tag ? it is mainly
-used as background informations for referencing archives or patches on
-lore.k.o  , but it can also be used for referencing something else or
-not ?
-(like information for a board)
-[...]
-<arnd> right, it's pretty much never wrong to add a Link: tag for the
-patch submission that was picked up, but you can also add it for any
-other reference, e.g.issue trackers or datasheets that may be relevant
-
-----
-
-Which replies to the question, so it is okay for me ;)
-
-Romain
+J
