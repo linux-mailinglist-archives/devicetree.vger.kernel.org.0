@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6AF5477031
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 12:27:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B7BA477034
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 12:28:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231423AbhLPL1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 06:27:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56696 "EHLO
+        id S231384AbhLPL2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 06:28:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236727AbhLPL1u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 06:27:50 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ABAEC061574
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 03:27:49 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id t18so43523650wrg.11
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 03:27:49 -0800 (PST)
+        with ESMTP id S233814AbhLPL2F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 06:28:05 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6341AC061574
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 03:28:05 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id d198-20020a1c1dcf000000b0034569cdd2a2so2997369wmd.5
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 03:28:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=9fWCRnVdOOzFGcrBXpfhDFH9QuGHzW7m91vqKatt5Iw=;
-        b=YIEoFioLtC+SI0StojlZcJvyL1PmlKMDlhsop5A/+JXq2B5MGddC5wLf2dOjH5mnui
-         4s/izDJgJBn1nMVNvbtpJkVGYOGmkLQhkqcdPb31W+jWF/Gd00V+iwUoy7IBowhmXLtB
-         amkBrniO0wftVBiPtf1Ovq5SUHhvBWyRuzaUmRMDgDQd90hTk3bsTlMfWrrV0FmTE/OG
-         41SRgC6kNzdvIQGjysWBLPbb7d/PG0pdpuTYpv/C9r/OQ6H0f0ZzBhFWV8UvrJ5oOdCf
-         WGWMdM1rEDPk/bI8NBy5W0VuEOusFIUCOX02/DGbDkbLBje0w04XsX2qAdJDOAs1N5wy
-         RxLQ==
+        bh=9MegHUhcBTG+eztOBRftaSA/MzudLaj89/TKCSS1B9c=;
+        b=LDSgdtuv079BYr4m97st85S2CDdTKAPh0Q7W/Pe0Vzy2fmqi61iicZ+SrgvFDLUN+W
+         kFFRGr4hwY+oJTPYiNQIgl30tpgW/iMN2A15zcr808UqiZlSr3kh2rwJzSuaeRIONIuy
+         5PZ6tPC+jf2xRPKw0u5dFpnH0tsnf5QjVPJ1qJqwymB+69y9fjAoMvFpwjIlqguMEeCb
+         fKtUKF1p3NES5ApgxJjnaWSyavDkI6VrphdGp3SdujaFJ4EdjhAy8KYnxVuN1hARPCQH
+         x7vq8zPEnmnUJadrjYc9dKQENgEYud7yUUZGnlBYROT/Usij69laWJGY69KDqIuI8VTi
+         3+dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=9fWCRnVdOOzFGcrBXpfhDFH9QuGHzW7m91vqKatt5Iw=;
-        b=4RUhRFRU/aM586+YU+FhvHwG/Ix8M3l5TlwlKAL8JkvJegZUgSJpesCzyzL9qCPSlf
-         7Pek8VqpnVFuEp3nyENXUFAYbQtDwSafm5u7PyCmNiBNZyeJSB8oKluC0WcgTzBtw2V5
-         Zp3UTcKV14QAePG0qhNm3CBxrwczhODMBXHBSVPIePmO8/kp3FmY6Ms5Nrxe9Erlb7Q9
-         572G4B5fFDi8FGcQIe84b6fwHbMIEiuRksYiYwi1hV83gtrpRNZYcDFVIEDhXDavFGq4
-         GqjSatt8iY7Q+t0vrOMy3G5jIWq9TcwaUrpBF3bxECgiP0xPvjULIORu9L9zlFFzOX3p
-         UFYg==
-X-Gm-Message-State: AOAM533um6htKE4P8dkK6hoeCTAIXQ/HR3xMJYue9uYQnvEfiNykkmX2
-        aItQnrL0bUyjm+6Dy1iJeB8UGg==
-X-Google-Smtp-Source: ABdhPJxXTVKkdm9aLStthz8vf0frLQ9O2+kupvdzyWPxYXoRjLLnWixOIlal+sdFIAgvo07KsKgxBA==
-X-Received: by 2002:a5d:6b0e:: with SMTP id v14mr8146112wrw.146.1639654068241;
-        Thu, 16 Dec 2021 03:27:48 -0800 (PST)
+        bh=9MegHUhcBTG+eztOBRftaSA/MzudLaj89/TKCSS1B9c=;
+        b=JbsT7X71mAfhP4wHOTm5GOiyq8lWEvUerSDgDPJ/8Uh/aIWwNtrxF318mb6Ps1+DhT
+         zAKwo13M1jXA7tIeJ2nUW8sEqj5eTqRPq/XNV3A4HbAulMmmHTZIX2kz1w1MKVhoMLBG
+         /P+9TSHt3b5FJoqV1fpvTQ8nMSKn4Hu7oVv9W7T6j+G6nHaWdAqiG67rNK8QGNwo5loe
+         2pXiiqE5lWONpBxSGmVSG7arJqR5uiWqswmJxySHqaRnay09fsz1gHu9MsEQfYT5CaJq
+         VEwlndG5D2SDEALomHGtOcnqb3rGufizR3ojaSW0WTQr35kfTUwV7ZOekEN70aDyASY5
+         Kq9g==
+X-Gm-Message-State: AOAM531HhAwGARck17XRTh9h0ESNHS3N6XsAS55woEiwG9Wa1eJHvjRs
+        vGzi1rjabZGbmg0tgiJ/HhUM1A==
+X-Google-Smtp-Source: ABdhPJzyjKu6xTjCISNf3yiv/4hIw9yUvfqWCFpHJjKOIH4G4E8gKGga2X37QpL6sB/04NMPNzlXBQ==
+X-Received: by 2002:a05:600c:4f8a:: with SMTP id n10mr4449553wmq.54.1639654083937;
+        Thu, 16 Dec 2021 03:28:03 -0800 (PST)
 Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id v1sm865876wru.45.2021.12.16.03.27.47
+        by smtp.googlemail.com with ESMTPSA id 8sm5131009wrb.49.2021.12.16.03.28.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Dec 2021 03:27:47 -0800 (PST)
+        Thu, 16 Dec 2021 03:28:03 -0800 (PST)
 Subject: Re: [PATCH v2 5/8] dt-bindings: misc: add property to support
  non-secure DSP
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
 Cc:     robh+dt@kernel.org, gregkh@linuxfoundation.org,
         devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
         jeyr@codeaurora.org, bkumar@qti.qualcomm.com,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org
 References: <20211209120626.26373-1-srinivas.kandagatla@linaro.org>
  <20211209120626.26373-6-srinivas.kandagatla@linaro.org>
- <Ybdq4qAeqK8C8Yvc@ripper>
+ <YbcnEp5+4y5qXC60@gerhold.net>
+ <ac2e9f8f-ea52-5676-baaa-9439e8b35d8f@linaro.org>
+ <YbdIas4QE1z7alAc@gerhold.net>
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <4fd726d7-608f-0ddd-7338-6f8cac3ef775@linaro.org>
-Date:   Thu, 16 Dec 2021 11:27:46 +0000
+Message-ID: <ad1a4750-b404-c2a1-e400-e39d5ebdd95a@linaro.org>
+Date:   Thu, 16 Dec 2021 11:28:02 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <Ybdq4qAeqK8C8Yvc@ripper>
+In-Reply-To: <YbdIas4QE1z7alAc@gerhold.net>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -74,66 +77,77 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 13/12/2021 15:46, Bjorn Andersson wrote:
-> On Thu 09 Dec 04:06 PST 2021, Srinivas Kandagatla wrote:
+On 13/12/2021 13:19, Stephan Gerhold wrote:
+> On Mon, Dec 13, 2021 at 12:35:40PM +0000, Srinivas Kandagatla wrote:
+>> On 13/12/2021 10:57, Stephan Gerhold wrote:
+>>> On Thu, Dec 09, 2021 at 12:06:23PM +0000, Srinivas Kandagatla wrote:
+>>>> From: Jeya R <jeyr@codeaurora.org>
+>>>>
+>>>> Add property to set DSP domain as non-secure.
+>>>>
+>>>> ADSP/MDSP/SDSP are by default secured, where as CDSP can be either be
+>>>> secured/unsecured.
+>>>
+>>> Wouldn't it be easier to avoid the negation and add a "qcom,secure-domain"
+>>> property instead? Given PATCH 8/8 ("arm64: dts: qcom: add non-secure
+>>> domain property to fastrpc nodes") it looks like you are intentionally
+>>> breaking DT compatibility here, but this patch does not justify why this
+>>> is necessary.
+>>
+>> By default all ADSP/MDSP/SDSP are secured, so this property is only required
+>> for something that is not default. Only case that is configurable is the
+>> CDSP case where in by adding this flag we should be able to load an unsigned
+>> process to dsp using unsecured node.
+>>
+>> Having said that, TBH When we first added the fastrpc patchset we did not
+>> take care of this security feature properly :-)
+>>
+>>  From security point of view, its better to keep the default as secured
+>> rather than unsecured in DT too.
+>>
+>> With this DTS patch older dts should continue to work.
+>>
 > 
->> From: Jeya R <jeyr@codeaurora.org>
->>
->> Add property to set DSP domain as non-secure.
->>
->> ADSP/MDSP/SDSP are by default secured, where as CDSP can be either be
->> secured/unsecured.
->> non-secured Compute DSP would allow users to load unsigned process
->> and run hexagon instructions, but limiting access to secured hardware
->> within the DSP.
->>
->> Based on this flag device nodes for secured and unsecured are created.
->>
->> Signed-off-by: Jeya R <jeyr@codeaurora.org>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> ---
->>
->> This patch has dependency this yaml conversion patch:
->> https://lore.kernel.org/lkml/20211208101508.24582-1-david@ixit.cz/T/
->>
->>   Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
->> index f42ab208a7fc..f0df0a3bf69f 100644
->> --- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
->> +++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
->> @@ -29,6 +29,11 @@ properties:
->>           - sdsp
->>           - cdsp
->>   
->> +  qcom,non-secure-domain:
->> +    type: boolean
->> +    description: >
->> +      Property to specify that dsp domain is non-secure.
+> Is this a "default" on newer platforms only? Why do the existing
+> platforms not use the "secure" setup then? Or is this perhaps firmware
+> version/configuration specific?
+
+So I did bit of digging at old msm kernels spoke to Qualcomm on this. 
+This feature was added in Dec 2018 and after. So ADSP/MDSP/SDSP are by 
+secured by default for SoCs SDM845 and after.
+
+However when we upstreamed the first fastrpc driver (end of 2018 early 
+2019) we did not take this new feature into consideration and we now 
+ended up with most recent SoCs accessing the only available non secured 
+device node.
+
+
+This new property serves three purposes
+
+1. supporting the older SoCs (msm8916 msm8996) that did not have this 
+secure node,
+
+2. Allow CDSP configuration of secured/unsecured.
+
+3. keep the new SoCs working (sdm845, sm8150, sm8250, sm8350) with 
+existing upstream driver. (This is purely for not breaking existing 
+applications).
+
+We could do the right thing here by making only msm8916 non-secured and 
+let all the new SoCs like sdm845 and later be by default secured on 
+ADSP/MDSP/SDSP and only configure CDSP.
 
 > 
-> "non-secure" feels vague, how about expressing it as "Specifies that the
-> domains of this DSP instance may run unsigned programs."
+> Basically I'm confused because you say that the "default" is the secured
+> setup, but DT patch (8/8) suggests that non-secure is the default on
+> pretty much all currently supported platforms (msm8916, sdm845, sm8150,
+> sm8250, sm8350). :)
 
-TBH I dont mind either of this, but looking at some existing bindings I 
-see similar pattern of properties like.. "st,non-secure-otp"
-
-> 
-> Perhaps even go so far to name the property
-> qcom,allow-unsigned-programs? (Or some other word for "program"?)
-
-Do you think adding more details in the description would help?
+I agree there is a bit of confusion, I hope my reply clears this.
 
 --srini
+
 > 
-> Regards,
-> Bjorn
+> Thanks,
+> Stephan
 > 
->> +
->>     '#address-cells':
->>       const: 1
->>   
->> -- 
->> 2.21.0
->>
