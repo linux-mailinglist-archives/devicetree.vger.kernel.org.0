@@ -2,74 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8B2447759D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:17:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AEF74775AC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:18:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232772AbhLPPRr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 10:17:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55008 "EHLO
+        id S235343AbhLPPSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 10:18:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232605AbhLPPRr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:17:47 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0397FC061574;
-        Thu, 16 Dec 2021 07:17:47 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 63712B8247E;
-        Thu, 16 Dec 2021 15:17:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE855C36AE4;
-        Thu, 16 Dec 2021 15:17:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639667864;
-        bh=e7mP1/gjH/BhHvugM3VkQWdiobAWdMElBh+OAKOqYu0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=cDNKmduyx1KMcGkxYJPkOWVnN1XG7b1aAlcG2ap/KJ7uVnFhoXNFgYeVaekrxPV/E
-         3lfTHExlipPBic/l3Ce5Y8Kax/eYevsLdtMnWwsm7IsP7aFL7Hz+Hx9xsK/NmKQg/C
-         2Uq0paX8TgGGIDpf7dmLug7EXVBYNceRVHt+R/NfCoKZGa57psM0WWg4n3m8VQFxO2
-         Xv2XSfwDiRnL+duOJFUhGttIG5pBC0DVEVuVo/QsW28CjY9/mKJKYru3dLHEIBa1VF
-         GpMdoVrp0k4N5qLxJXvun25P1xm0wrj7as/Rgj1ac5qRC71aYfPauhhYkQBQdp82kt
-         RswdaHuDlhlmA==
-Date:   Thu, 16 Dec 2021 07:17:43 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Joseph CHAMG <josright123@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, joseph_chang@davicom.com.tw,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6, 2/2] net: Add dm9051 driver
-Message-ID: <20211216071743.1de51554@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20211216093246.23738-3-josright123@gmail.com>
-References: <20211216093246.23738-1-josright123@gmail.com>
-        <20211216093246.23738-3-josright123@gmail.com>
+        with ESMTP id S232620AbhLPPSw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:18:52 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0500C061574;
+        Thu, 16 Dec 2021 07:18:51 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id o13so44737995wrs.12;
+        Thu, 16 Dec 2021 07:18:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=0NW4fFRtdMsPlhmkKhcfTmNZmyEs9QhErqbczxjv6B0=;
+        b=kRAuUi3pHfp0vlymF4VGBZuEwSgT02dIRWqOT35hkagh6ntcNm8yIFOd8aC3cbEjeV
+         oLvppbAZRB8W2b4GctTPRBCxTvug8AbYTh4eU9SKY464yhzZoIZbkU7NStoyhZo028uP
+         30G79hCtFKOTQZ41pob7oCKdpmnUyzF/WOr8HOUrKPj7pgtBjorDAt1r+B0SffNGb2nx
+         PWYlXg3FMnVSoyx70RZYYypH0u6HTgYkYxQ9HgAu5RfJiVfJbT+9OBeFuOIHwD+kdpCQ
+         wyyVlh6+vxWWobNr7aCMpPy2K3Psu4wUGD2t3a6B0oxiAEEZJtpoBjFYAB3fPwOhvgRJ
+         rXHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=0NW4fFRtdMsPlhmkKhcfTmNZmyEs9QhErqbczxjv6B0=;
+        b=QsGi2mLQwHzN2XQAtq7zPlAzfM22zTwamuo0ink2i8duKK0goel3HEgFWpR2C5AwLs
+         vreXmuUGKmMKqTHCkXM/ND1tgV7r+qR6nntTSC5ZSTypj+VLzPMhaIzNCsKvyC93IrPl
+         bkOWKrPZju/Vg1GbKMRzxSYe1W51hBTv5o3OKff4QIxhZVsmsXgZMlNxq+xj1zDtcyYw
+         JoyfGiUbW9e3iPERQaMo91xoDidUEt+iBSA1v+Ia0uEqDyFSJ68s48qpZJzpKHs4bnbb
+         q4At++ShZiy9TK6hYGPOFEDvHFDD5Is+HTTd6DlVJ2csVn2/yiCi6pOpNduXBWT0oHZ3
+         uIYg==
+X-Gm-Message-State: AOAM532aSwHBWf8BELlV7AlwKX3JOGH5UOl+ocU5mL0Uwn9swrrZuaR9
+        9oI0lqM3z2/efn3u1eo4gElJQpblyWMOyg==
+X-Google-Smtp-Source: ABdhPJyy3q6RwT0+pTgk+dWoIRgzvgCOOBY61BwzAcTietGzu7v354AVmOOir3fo/hsmJoWX4Pt/IQ==
+X-Received: by 2002:adf:ea50:: with SMTP id j16mr8909726wrn.719.1639667930246;
+        Thu, 16 Dec 2021 07:18:50 -0800 (PST)
+Received: from orome ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id q13sm1597560wrr.64.2021.12.16.07.18.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 07:18:48 -0800 (PST)
+Date:   Thu, 16 Dec 2021 16:18:45 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Agneli <poczt@protonmail.ch>, linux-tegra@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v4 08/22] ASoC: tegra20: spdif: Improve driver's code
+Message-ID: <YbtY1TfX3rdVbkzG@orome>
+References: <20211204143725.31646-1-digetx@gmail.com>
+ <20211204143725.31646-9-digetx@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="TtAaL1I0tfYEZFLw"
+Content-Disposition: inline
+In-Reply-To: <20211204143725.31646-9-digetx@gmail.com>
+User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Dec 2021 17:32:46 +0800 Joseph CHAMG wrote:
-> Add davicom dm9051 spi ethernet driver, The driver work with the
-> device platform's spi master
-> 
-> remove the redundant code that phylib has support,
-> adjust to be the reasonable sequence,
-> fine tune comments, add comments for pause function support
-> 
-> Tested with raspberry pi 4. Test for netwroking function, CAT5
-> cable unplug/plug and also ethtool detect for link state, and
-> all are ok.
 
-Please install sparse and make sure the driver builds cleanly with W=1
-C=1 flags.
+--TtAaL1I0tfYEZFLw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-drivers/net/ethernet/davicom/dm9051.c:349:26: warning: symbol 'dm9051_ethtool_ops' was not declared. Should it be static?
-drivers/net/ethernet/davicom/dm9051.c:381:31: warning: incorrect type in initializer (different base types)
-drivers/net/ethernet/davicom/dm9051.c:381:31:    expected int rxlen
-drivers/net/ethernet/davicom/dm9051.c:381:31:    got restricted __le16 [usertype] rxlen
-drivers/net/ethernet/davicom/dm9051.c:421:31: warning: restricted __le16 degrades to integer
-drivers/net/ethernet/davicom/dm9051.c:426:23: warning: incorrect type in assignment (different base types)
-drivers/net/ethernet/davicom/dm9051.c:426:23:    expected int rxlen
-drivers/net/ethernet/davicom/dm9051.c:426:23:    got restricted __le16 [usertype] rxlen
+On Sat, Dec 04, 2021 at 05:37:11PM +0300, Dmitry Osipenko wrote:
+> - Clean up whitespaces, defines and variables.
+>=20
+> - Remove obsolete code.
+>=20
+> - Adhere to upstream coding style.
+>=20
+> - Don't override returned error code.
+>=20
+> - Replace pr_err with dev_err.
+>=20
+> No functional changes are made by this patch. This is a minor code's
+> refactoring that will ease further maintenance of the driver.
+>=20
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  sound/soc/tegra/tegra20_spdif.c | 49 ++++++++++++---------------------
+>  1 file changed, 18 insertions(+), 31 deletions(-)
+
+Acked-by: Thierry Reding <treding@nvidia.com>
+
+--TtAaL1I0tfYEZFLw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmG7WNUACgkQ3SOs138+
+s6GwvxAAvJ61geFKAbm8cP5N+pEbKgtEihkMw5PcFuU3W2atATXHSqSBZfJLV4ze
+A8EQ0s+6vh51dP9aXYxgKU3eiuilqw97kCSNPEwmq9kOiDe/ls7Z/hoEW/Djsir5
+wHOa7uBq4+10I4UNMlJQNs5XX9+bp1ajTmH5ia/KiTcburoqT1P/UllLwjboBgRm
+k9P3LKjBckI8u9wRx9meYGxA712IxAyOmbdlfHa7SlGKwXZw7aO3K2wuls7QAdZw
+NTSkpLHUbgQW9VIAyRIIA2iczZHlwm60Y43Bo6RRTlx8vH1pPlTikqFB+VMZHH4E
+awm7aD0p+VpvM+gBN2+cjmwlWsUXvVp34rQYZ4dR+bY078R4EOTA+nyMS4Z+693G
+kNwjF+02na0InBnxDg3VFKCCd+O72A+r5ydXcWDw88FhNy5D4kUIZl+EFBKBmMb4
+AWl/HxMmM13IVSfu4NpgpCpjqNaOAQokybxCH4YHs9JIUcHAP9XZR2IKTVxZaerC
+NxQqpp9BfrOiIevdNifxpp7XL7DA6yjpck7iYMFzrcZDkc2gmIb9jiS2Cn8Szwjq
+emDETf5gob2Pn4atJkeP5koMR57wmi70y7ulhTqtJtNjGCUlW2ahYykNoTjaueiw
+b/nN6nrnayfCg8YIh81xMas2Q81sANyy8a3JLwTj+0HqHBovOWI=
+=wYWM
+-----END PGP SIGNATURE-----
+
+--TtAaL1I0tfYEZFLw--
