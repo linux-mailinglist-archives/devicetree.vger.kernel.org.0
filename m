@@ -2,59 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60A38476E26
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 10:49:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88513476E29
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 10:49:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231251AbhLPJtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 04:49:20 -0500
-Received: from mx1.cqplus1.com ([113.204.237.245]:33650 "EHLO test.cqplus1.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230345AbhLPJtT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Dec 2021 04:49:19 -0500
-X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
-        R,40,3)
-Received: from 172.27.96.203
-        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(4805:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Thu, 16 Dec 2021 17:48:40 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 16 Dec 2021 17:48:36 +0800
-Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
- ([::1]) with mapi id 15.01.2375.017; Thu, 16 Dec 2021 17:48:36 +0800
-From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-To:     "sboyd@kernel.org" <sboyd@kernel.org>
-CC:     "arnd@arndb.de" <arnd@arndb.de>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Subject: Re: [PATCH v5 06/10] clk: Add Sunplus SP7021 clock driver
-Thread-Topic: Re: [PATCH v5 06/10] clk: Add Sunplus SP7021 clock driver
-Thread-Index: AdfyYenlakiI4birTNO578exV3yOag==
-Date:   Thu, 16 Dec 2021 09:48:36 +0000
-Message-ID: <cb4d3624cd7f4b7794e770819c559d6d@cqplus1.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.18]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S231254AbhLPJts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 04:49:48 -0500
+Received: from relay12.mail.gandi.net ([217.70.178.232]:41089 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230345AbhLPJts (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 04:49:48 -0500
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 2E19A200009;
+        Thu, 16 Dec 2021 09:49:45 +0000 (UTC)
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.ne@posteo.net>,
+        linux-rtc@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        linuxppc-dev@lists.ozlabs.org, Ash Logan <ash@heyquark.com>,
+        rw-r-r-0644 <r.r.qwertyuiop.r.r@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Paul Mackerras <paulus@samba.org>
+Subject: Re: [PATCH v3 0/5] rtc: nintendo: Add a RTC driver for the GameCube, Wii and Wii U
+Date:   Thu, 16 Dec 2021 10:49:44 +0100
+Message-Id: <163964813197.6786.14005810276404182021.b4-ty@bootlin.com>
+X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20211215175501.6761-1-linkmauve@linkmauve.fr>
+References: <20211027223516.2031-1-linkmauve@linkmauve.fr> <20211215175501.6761-1-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-U29ycnksIE15IG1haWwgY2xpZW50IGZhaWxlZCB0byByZWNlaXZlIHlvdXIgcmV2aWV3IG1haWwu
-DQpBZnRlciBzZW50IHY2IHBhdGNoLCBJIGp1c3QgZm91bmQgdGhpcyByZXZpZXcgb24gbGttbC4N
-CkknbGwgZml4IHRoZXNlIGNvbW1lbnRzIG9uIHY3Lg0KDQo=
+On Wed, 15 Dec 2021 18:54:56 +0100, Emmanuel Gil Peyrot wrote:
+> These three consoles share a device, the MX23L4005, which contains a
+> clock and 64 bytes of SRAM storage, and is exposed on the EXI bus
+> (similar to SPI) on channel 0, device 1.  This driver allows it to be
+> used as a Linux RTC device, where time can be read and set.
+> 
+> The hardware also exposes two timers, one which shuts down the console
+> and one which powers it on, but these aren’t supported currently.
+> 
+> [...]
+
+Applied, thanks!
+
+[1/5] rtc: gamecube: Add a RTC driver for the GameCube, Wii and Wii U
+      commit: 86559400b3ef9de93ba50523cffe767c35cd531a
+[2/5] rtc: gamecube: Report low battery as invalid data
+      commit: 322539a014bcd24cbb9281832c09b24e07912237
+[3/5] powerpc: wii.dts: Expose HW_SRNPROT on this platform
+      commit: 5479618e1e2641dd57352a73b7b7b2f6908fbeee
+[4/5] powerpc: gamecube_defconfig: Enable the RTC driver
+      commit: 57bd7d356506b713d0df8d8e42da7810a18864df
+[5/5] powerpc: wii_defconfig: Enable the RTC driver
+      commit: 69e8ba80ddda4db31e59facbf2db19773ad3785b
+
+This one didn't apply ceanly but I believe I did the right thing. Can you check?
+
+
+Best regards,
+-- 
+Alexandre Belloni <alexandre.belloni@bootlin.com>
