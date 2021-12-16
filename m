@@ -2,100 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 069B647765F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:52:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB05647766A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:58:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232596AbhLPPwb convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Dec 2021 10:52:31 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:59893 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230358AbhLPPwa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:52:30 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id C46A920000C;
-        Thu, 16 Dec 2021 15:52:25 +0000 (UTC)
-Date:   Thu, 16 Dec 2021 16:52:24 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Mark Brown <broonie@kernel.org>, <linux-spi@vger.kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-Cc:     Julien Su <juliensu@mxic.com.tw>,
-        Jaime Liao <jaimeliao@mxic.com.tw>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Boris Brezillon <boris.brezillon@collabora.com>
-Subject: Re: [PATCH v6 20/28] spi: spi-mem: Fill the spi-mem controller
- capabilities of all the drivers
-Message-ID: <20211216165224.7d80a33c@xps13>
-In-Reply-To: <20211216111654.238086-21-miquel.raynal@bootlin.com>
-References: <20211216111654.238086-1-miquel.raynal@bootlin.com>
-        <20211216111654.238086-21-miquel.raynal@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S232951AbhLPP6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 10:58:08 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:38501 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230358AbhLPP6I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:58:08 -0500
+Received: by mail-oi1-f169.google.com with SMTP id r26so37017582oiw.5;
+        Thu, 16 Dec 2021 07:58:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+fzbfD0CHCHcZI8DY35QBo25aGSKtXHSKqSLSMk0x8w=;
+        b=uc7xpUmocjS3gvRMwY9H5w7HnnYfokVjLuAIUPyVuFBT1u+XCd8oqzYaC2JLQdioEs
+         lhDy9KEIAeCeGOTxetg/NL/iWTsHNDjokcJVD1fy4QNwGwgdj+m1lobQW0XNJS5ZcycM
+         qKYIXnFvv/VycfmwIUo8XhLQQ1m+BTT1Jrr2uUvrieoZOZzCgOLArW/tjVgjA0uPIwmo
+         Kirx83pn6WNiyAWXWUp3UEI/1qPH93tH9FAFkbIdWVKaC1n2RI2Qb2vf/5PPFsjaWbri
+         SzpT4nQvCOQe4wrSuA4ESyDIJXav27ZSCCFN+rLN6qTReNqEMClUy82sQr0qhJno93UT
+         XEYQ==
+X-Gm-Message-State: AOAM5337I1duHd2B3VX9BzK8Io89EPaev/KSlen1eVpVH/4C3sbOfaSo
+        eBGkZLCzElNZkk3mCWw31Q==
+X-Google-Smtp-Source: ABdhPJwR/W9c0idlUUFwTUnVK1aHR+vR6mP87PEAo+XWvtX5jqFfuKZ69KQePrNkBHEO052l92GdjA==
+X-Received: by 2002:a05:6808:15a:: with SMTP id h26mr4515968oie.123.1639670287583;
+        Thu, 16 Dec 2021 07:58:07 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id e14sm1027527oie.7.2021.12.16.07.58.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 07:58:06 -0800 (PST)
+Received: (nullmailer pid 293314 invoked by uid 1000);
+        Thu, 16 Dec 2021 15:58:05 -0000
+Date:   Thu, 16 Dec 2021 09:58:05 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     linux-imx@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
+        stefan@agner.ch, linus.walleij@linaro.org,
+        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
+        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
+        adrian.hunter@intel.com, jirislaby@kernel.org,
+        giulio.benetti@benettiengineering.com,
+        nobuhiro1.iwamatsu@toshiba.co.jp, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v5 4/9] dt-bindings: clock: imx: Add documentation for
+ i.MXRT1050 clock
+Message-ID: <YbtiDa3CpVmiCkto@robh.at.kernel.org>
+References: <20211215220538.4180616-1-Mr.Bossman075@gmail.com>
+ <20211215220538.4180616-5-Mr.Bossman075@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211215220538.4180616-5-Mr.Bossman075@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello all,
-
-> diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
-> index c4da0c9b05e9..bfd5c6b2db0a 100644
-> --- a/drivers/spi/spi-mem.c
-> +++ b/drivers/spi/spi-mem.c
-> @@ -160,6 +160,9 @@ static bool spi_mem_check_buswidth(struct spi_mem *mem,
->  	return true;
->  }
->  
-> +const struct spi_controller_mem_caps spi_mem_no_caps = {};
-> +EXPORT_SYMBOL_GPL(spi_mem_no_caps);
-
-As suggested by Boris on IRC, we might just find a way to avoid
-defining this empty structure and requesting all drivers to provide one.
-
-As it turns out, there is no per-controller spi-mem initialization
-where we could provide a default set of capabilities, but I believe we
-could hide the little extra complexity with something like:
-
-#define spi_mem_controller_is_capable(mem, cap) \
-	((mem)->ctlr->caps && (mem)->ctrl->caps->##cap)
-
-And using the above helper in spi_mem_default_supports_op(), which
-would transparently handle the !caps situation.
-
-> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-> index 57e2499ec1ed..58c5cb985431 100644
-> --- a/drivers/spi/spi.c
-> +++ b/drivers/spi/spi.c
-> @@ -2747,6 +2747,9 @@ static int spi_controller_check_ops(struct spi_controller *ctlr)
->  	if (ctlr->mem_ops) {
->  		if (!ctlr->mem_ops->exec_op)
->  			return -EINVAL;
+On Wed, Dec 15, 2021 at 05:05:33PM -0500, Jesse Taube wrote:
+> From: Jesse Taube <mr.bossman075@gmail.com>
+> 
+> Add DT binding documentation for i.MXRT1050 clock driver.
+> 
+> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> ---
+> V1->V2:
+> * Replace macros with values
+> V2->V3:
+> * Remove anatop
+> * Use lpuart not gpt
+> * include imxrt1050-clock.h
+> * 2 space tabs to 4
+> * Remove oneOf enum
+> * Change maxItems to 2
+> V3->V4:
+> * Nothing done
+> V4->V5:
+> * Remove extra newline
+> * Rename ccm to clock-controller
+> * Change minItems to const
+> * Change minItems to description
+> * Rename file to add 1050
+> * Change commit description to just 1050
+> ---
+>  .../bindings/clock/imxrt1050-clock.yaml       | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/imxrt1050-clock.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/imxrt1050-clock.yaml b/Documentation/devicetree/bindings/clock/imxrt1050-clock.yaml
+> new file mode 100644
+> index 000000000000..8caf0572733b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/imxrt1050-clock.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/imxrt1050-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +		if (!ctlr->mem_ops->caps)
-> +			return -EINVAL;
->  	} else if (!ctlr->transfer && !ctlr->transfer_one &&
->  		   !ctlr->transfer_one_message) {
->  		return -EINVAL;
-> diff --git a/include/linux/spi/spi-mem.h b/include/linux/spi/spi-mem.h
-> index 42f3850610b5..5f728f3113bd 100644
-> --- a/include/linux/spi/spi-mem.h
-> +++ b/include/linux/spi/spi-mem.h
-> @@ -366,6 +366,7 @@ bool spi_mem_dtr_supports_op(struct spi_mem *mem,
->  
->  int spi_mem_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op);
->  
-> +const struct spi_controller_mem_caps spi_mem_no_caps;
->  bool spi_mem_supports_op(struct spi_mem *mem,
->  			 const struct spi_mem_op *op);
->  
+> +title: Clock bindings for Freescale i.MXRT
+> +
+> +maintainers:
+> +  - Giulio Benetti <giulio.benetti@benettiengineering.com>
+> +  - Jesse Taube <Mr.Bossman075@gmail.com>
+> +
+> +description: |
+> +  The clock consumer should specify the desired clock by having the clock
+> +  ID in its "clocks" phandle cell. See include/dt-bindings/clock/imxrt*-clock.h
+> +  for the full list of i.MXRT clock IDs.
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,imxrt1050-ccm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 2
+> +
+> +  clocks:
+> +    description: 24m osc
 
+maxItems: 1
 
-Thanks,
-Miquèl
+With that,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +
+> +  clock-names:
+> +    const: osc
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imxrt1050-clock.h>
+> +
+> +    clks: clock-controller@400fc000 {
+> +        compatible = "fsl,imxrt1050-ccm";
+> +        reg = <0x400fc000 0x4000>;
+> +        interrupts = <95>, <96>;
+> +        clocks = <&osc>;
+> +        clock-names = "osc";
+> +        #clock-cells = <1>;
+> +    };
+> +
+> +    lpuart1: serial@40184000 {
+> +        compatible = "fsl,imxrt1050-lpuart";
+> +        reg = <0x40184000 0x4000>;
+> +        interrupts = <20>;
+> +        clocks = <&clks IMXRT1050_CLK_LPUART1>;
+> +        clock-names = "ipg";
+> +    };
+> -- 
+> 2.34.1
+> 
+> 
