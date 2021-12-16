@@ -2,89 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 008B4477DA0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:31:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C6C7477DA4
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:32:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241375AbhLPUbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 15:31:47 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:46826 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236123AbhLPUbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:31:47 -0500
-Received: by mail-ot1-f44.google.com with SMTP id x3-20020a05683000c300b0057a5318c517so282985oto.13;
-        Thu, 16 Dec 2021 12:31:46 -0800 (PST)
+        id S241444AbhLPUcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 15:32:06 -0500
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:40781 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236123AbhLPUcE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:32:04 -0500
+Received: by mail-oi1-f171.google.com with SMTP id bk14so576295oib.7
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 12:32:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/WZk6rTknr9ohPbMfgyEB9lTmn2kskX3wnXdJpxoO54=;
-        b=xxDciDiEjcMe8H0Qqc3ZRcX3iRQvIYBqjSdJMgEJXfQKSK9Bh15tLHWEDSgl/HCnsO
-         I1YfQYTtKZxxq/Inq3LEr8QSY9tZI4GqlxbeEDXF+VNm0j2cVWHYh2kA/Jgnshe+jqho
-         zEe2J6zp2QV546JTofpV9vsXkcnqYVX5z4CGMG+f8H/S7er8v0wstXxBoHLMhEYJzKLf
-         f83mxEOny7CDjhjndETGnMpX9T/ftj/tyqIuI+ipbOZBykUytfAEYu6eLlc2KuMq2Yfh
-         TgXdZY8BSpENfFYD3eznYnMejvEPiW9EXQmFagXkNBmklyB1HHB3sOC4eh25+ooME83O
-         M9ew==
-X-Gm-Message-State: AOAM5334PaleF3liw6iTMRm4n0N8NlXHYz7Q/T7d40BwmTQhZr1l4Non
-        Etmnh99UQyBfGXM7RnlYwg==
-X-Google-Smtp-Source: ABdhPJxolUuSHrXvVWwD1DwilZGwq7k1Tjchu9lac4l0lol5CTbTY9vjTqv4KL+RF7m1rNgxNg36Gg==
-X-Received: by 2002:a05:6830:1617:: with SMTP id g23mr13541257otr.117.1639686706300;
-        Thu, 16 Dec 2021 12:31:46 -0800 (PST)
+        bh=umUy1uYNyZY1VykdghF7eMiCi+OMbNsH6C13bj0a6Fc=;
+        b=TsPDGxNIvk158niHP2ZsO7fPwRiYz/o33GK0+4yDOB7VpTRssGbrmiCB9RaLghW0qk
+         Rdzuq4Enk9DCyRwcsyCfiKv+JSzOftJkcfXEf8+M2WZBfS8T3DJ4y4n3miMr7/kkPfHf
+         dRvCqnKrPAwZWmLkZD+KLeAx04NMte1Dh66kc0DX6f6TfxlLrlpHGbmIJNSlBZ+te4fL
+         kA5Lt31cPyk9QcP/FxFxygmJEyYDFNuKfX4bstSTSB0E0CEyzYwHb7ALG3UXKKvAVoM4
+         poXor8XjcKNNWMjeFQuMKIcPO1l2+BOmYnkRVF4a2wL7xzyq3o6L3PlDi848nN2Qq0sh
+         q5hg==
+X-Gm-Message-State: AOAM5326oGVeSZUR27mCUNeZt9XpN5ErTtCk1/hZ6boj4WiY/OsdzjFW
+        1rBg+uynCVZB+bGkOs02cQ==
+X-Google-Smtp-Source: ABdhPJxIuAAHF4Tu1T2g8nQ4SAIbKIMuI9BFSu3AAU+8GI3F/9OLT+gd1yGk5ZdTgRQLItyFR0C7sQ==
+X-Received: by 2002:aca:58c4:: with SMTP id m187mr5311388oib.113.1639686724022;
+        Thu, 16 Dec 2021 12:32:04 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d12sm1196566otq.67.2021.12.16.12.31.44
+        by smtp.gmail.com with ESMTPSA id bi20sm1322787oib.29.2021.12.16.12.32.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 12:31:45 -0800 (PST)
-Received: (nullmailer pid 705688 invoked by uid 1000);
-        Thu, 16 Dec 2021 20:31:44 -0000
-Date:   Thu, 16 Dec 2021 14:31:44 -0600
+        Thu, 16 Dec 2021 12:32:03 -0800 (PST)
+Received: (nullmailer pid 706190 invoked by uid 1000);
+        Thu, 16 Dec 2021 20:32:02 -0000
+Date:   Thu, 16 Dec 2021 14:32:02 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     nobuhiro1.iwamatsu@toshiba.co.jp, abel.vesa@nxp.com,
-        ulf.hansson@linaro.org, stefan@agner.ch, sboyd@kernel.org,
-        soc@kernel.org, linux-serial@vger.kernel.org,
-        adrian.hunter@intel.com, aisheng.dong@nxp.com,
-        linux@armlinux.org.uk, shawnguo@kernel.org,
-        giulio.benetti@benettiengineering.com,
-        linux-kernel@vger.kernel.org, s.hauer@pengutronix.de,
-        gregkh@linuxfoundation.org, kernel@pengutronix.de,
-        robh+dt@kernel.org, mturquette@baylibre.com,
-        linux-mmc@vger.kernel.org, Mr.Bossman075@gmail.com, olof@lixom.net,
-        linus.walleij@linaro.org, jirislaby@kernel.org,
-        devicetree@vger.kernel.org, festevam@gmail.com,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org,
-        arnd@arndb.de
-Subject: Re: [PATCH v5 6/9] dt-bindings: serial: fsl-lpuart: add i.MXRT1050
- compatible
-Message-ID: <YbuiMIfmBGIc/vao@robh.at.kernel.org>
-References: <20211215220538.4180616-1-Mr.Bossman075@gmail.com>
- <20211215220538.4180616-7-Mr.Bossman075@gmail.com>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: audio-graph-port: enable both
+ flag/phandle for bitclock/frame-master
+Message-ID: <YbuiQpu/pbEjWDfc@robh.at.kernel.org>
+References: <20211216000018.2641925-1-kuninori.morimoto.gx@renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211215220538.4180616-7-Mr.Bossman075@gmail.com>
+In-Reply-To: <20211216000018.2641925-1-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Dec 2021 17:05:35 -0500, Jesse Taube wrote:
-> From: Jesse Taube <mr.bossman075@gmail.com>
+On Thu, 16 Dec 2021 09:00:18 +0900, Kuninori Morimoto wrote:
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > 
-> Add i.MXRT1050 documentation for compatible string.
+> snd_soc_daifmt_parse_clock_provider_raw() is handling both
+> bitclock/frame-master, and is supporting both flag/phandle.
+> Current DT is assuming it is flag style.
+> This patch allows both case.
 > 
-> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > ---
-> V1->V2:
-> * Nothing done
-> V2->V3:
-> * Rename imxrt to imxrt1050
-> V3->V4:
-> * Nothing done
-> V4->V5:
-> * Change commit description to just 1050
-> ---
->  Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> v1 -> v2
+> 
+> 	- anyOf -> oneOf
+> 
+>  .../devicetree/bindings/sound/audio-graph-port.yaml      | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
