@@ -2,108 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07A184772B1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 14:07:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A05F74772BB
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 14:10:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237294AbhLPNH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 08:07:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51930 "EHLO
+        id S232141AbhLPNKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 08:10:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234696AbhLPNH3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 08:07:29 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25D42C061574
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 05:07:29 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1mxqTn-000443-EX; Thu, 16 Dec 2021 14:07:27 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1mxqTm-004r7E-CV; Thu, 16 Dec 2021 14:07:25 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1mxqTk-0004pe-Nu; Thu, 16 Dec 2021 14:07:24 +0100
-Date:   Thu, 16 Dec 2021 14:07:24 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "moderated list:ARM/STM32 ARCHITECTURE" 
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: Re: [PATCH] ARM: dts: stm32: Add timer interrupts
-Message-ID: <20211216130724.qhragmcgtgvgwghq@pengutronix.de>
-References: <20211215152535.41200-1-u.kleine-koenig@pengutronix.de>
- <CAL_JsqKW3XJ6n5CLg_BNEaASkUnXLM=J_XZW8M6i7sGPuZ8_9A@mail.gmail.com>
+        with ESMTP id S234696AbhLPNKH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 08:10:07 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F215C061574;
+        Thu, 16 Dec 2021 05:10:07 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id t5so86591040edd.0;
+        Thu, 16 Dec 2021 05:10:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=psqq8AxoCtsUWk+9+3wi7F1REcnczjIneOZP6k7X4Bw=;
+        b=l4/fnlsaIWrU7XKiQ7Y1Xotl89tt0lQGwCgppt2kzLRde0Zmvr3uL/Twu8Q7HJmzBR
+         h4+y76Vejnslwze2Z+R8qRc4gxovJ/kYrOq7ftE7Y9OdEMUi4w8BXAZots4MkDbo6uNt
+         5BZfMIA14nVRhnyWayWC4kykR9tqSlO4q9yYaNPdWpqtfzwWnkCKsaxiPU0ydjvc4WtN
+         iD/9tLaLxnFTHnLTxvOiOsLKVvImmerZK+VlpUahAATlZQZ8TkrZKYFQewtGRxQ4AgiM
+         zGCJX9iDSYqMQcqCaFNJz6Nth6NbTQ2TahaYIJVvz3oOXl8EEmGVcYJA9YilTEaNnPYR
+         UpBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=psqq8AxoCtsUWk+9+3wi7F1REcnczjIneOZP6k7X4Bw=;
+        b=o1DA6htD9O2Pszo9DNUCfHD/owiimET5I314FtPN3X4/bIsBXQjieLlE1gfVBfgAsT
+         HGEgUK6HRkzh59mKhBBSzjzDO1qBm/U0cWa2QvjicCV81C/Yx1Wz8rxnph8U+zh/9MWK
+         ZdEiw8VCwFQNVZN4C5NU84GlQRmDcZkv4hKg7GTBZorXPHNpboRiEI3c4SEv8Pi2mRPV
+         mdgO9OIdH8ljO7xDw1GnVVRTbIBbwm/7LDwU7LgC6Ir/hbAHkvV9hwMnnCSmXj2VjBrD
+         fxyRmA2nDn5/4c/YN8WPzeMKAUKoGIiwvYYCbGhGbGwYl+/h+1BuH/IE+UdIqvk0SzYk
+         CiRg==
+X-Gm-Message-State: AOAM530KCeQTWmoqiOSRHnICUQihb2ecXr8is8O4flFfY8DdlKG2qiRY
+        e9VeAX+8wvqLo1uTjrz5X3EFdqHjeY97NKCzF2k=
+X-Google-Smtp-Source: ABdhPJyJ7BpFsLTq0XQBuilAPWj5q7Udd6T7s6oVqbuEeN+5S7fO/uyVzU/41WmJNvE51tkKZn15ArvhQa/v+6Od+xc=
+X-Received: by 2002:a17:907:2d12:: with SMTP id gs18mr3229632ejc.198.1639660205253;
+ Thu, 16 Dec 2021 05:10:05 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jhcaijwvjxwchgmv"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKW3XJ6n5CLg_BNEaASkUnXLM=J_XZW8M6i7sGPuZ8_9A@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20211216111256.2362683-1-aford173@gmail.com> <Ybsyd9/nRrszJ5f8@eze-laptop>
+In-Reply-To: <Ybsyd9/nRrszJ5f8@eze-laptop>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Thu, 16 Dec 2021 07:09:53 -0600
+Message-ID: <CAHCN7xJGpjCw5TLOXJ1r-KtcRNcUVqwa2qhmwCrLuTf4aJqBkQ@mail.gmail.com>
+Subject: Re: [PATCH V2 00/10] media: hantro: imx8mq/imx8mm: Let VPU decoders
+ get controlled by vpu-blk-ctrl
+To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Cc:     linux-media <linux-media@vger.kernel.org>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---jhcaijwvjxwchgmv
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Rob,
-
-On Wed, Dec 15, 2021 at 06:49:33PM -0600, Rob Herring wrote:
-> > diff --git a/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml=
- b/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
-> > index 10b330d42901..5e4214d1613b 100644
-> > --- a/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
-> > @@ -46,6 +46,19 @@ properties:
-> >      minItems: 1
-> >      maxItems: 7
+On Thu, Dec 16, 2021 at 6:35 AM Ezequiel Garcia
+<ezequiel@vanguardiasur.com.ar> wrote:
+>
+> Hi Adam,
+>
+> The series looks really great.
+>
+> On Thu, Dec 16, 2021 at 05:12:45AM -0600, Adam Ford wrote:
+> > Both the i.MX8MQ and i.MX8MM have G1 and G2 decoders.
+> > The two decoders are similar, but the imx8mm lacks the
+> > post-processor, so they will have distinct compatible flags.
 > >
-> > +  interrupts:
-> > +    maxItems: 4
->=20
-> Please test this against your dts change. It will fail.
+> > From what I can tell, the G2 decoder wasn't working, so splitting
+> > the i.MX8MQ VPU into G1 and G2 makes it easier to control them
+> > independently since the TRM of both the i.MX8MQ and
+> > i.MX8MM list them as distinct IP blocks. This also allowed G2 to
+> > become available.
+> >
+> > With them being split, the power-domain can shift to the
+> > vpu-blk-ctrl which is available on both i.MX8MQ and i.MX8MM,
+> > but some of bits are different, so they'll have separate bindings.
+> >
+> > Lastly, with the G1 and G2 operational, enable the i.MX8MM.
+> > On the i.MX8MM, the clock speed of 600MHz was chosen to match
+> > the default of the kernel repo from NXP and can be overwritten
+> > by board files for anyone who under/over volts the power rail.
+> >
+> > There seems to be some disagreement between the TRM and the Datasheet
+> > for the imx8mq as to whether the speed should be 300MHz (TRM) or
+> > 600MHz (datasheet), so feedback from NXP would be very much
+> > appreciated.
+> >
+> > The repo used as the starting point was:
+> > git://linuxtv.org/hverkuil/media_tree.git for-v5.17e
+> >
+>
+> I believe you should be able to rebase on top of
+> media_tree master. As far as I can see, it contains the VP9
+> support you need.
+>
+> Also, please cherry-pick the following fix from Benjamin
+>
+> https://patchwork.linuxtv.org/project/linux-media/patch/20211208164418.848790-1-benjamin.gaignard@collabora.com/
+>
+> This is queued and should land on the master branch very soon.
+>
+> > Fluster was run on both i.MX8MM and i.MX8MQ
+> >
+> > At 600 MHz, the i.MX8MM had the following:
+> >
+> > ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
+> > Ran 55/61 tests successfully               in 8.299 secs
+> >
+> > ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
+> > Ran 90/135 tests successfully               in 71.200 secs
+> >
+> > ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
+> > Ran 139/303 tests successfully               in 218.079 secs
+>
+> I imagine the reason H264 and VP9 tests take so long
+> is some pixelformat conversion somewhere. It would be great
+> if Fluster could have test vectors ready in the pixelformat
+> the hardware produces :-)
+>
+> >
+> > The i.MX8MQ had the following:
+> >
+> > ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
+> > Ran 55/61 tests successfully               in 7.732 secs
+> >
+> > ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
+> > Ran 90/135 tests successfully               in 58.558 secs
+> >
+> > ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
+> > Ran 144/303 tests successfully               in 271.373 secs
+> >
+>
+> ... in any case, the fact that fluster is passing is already
+> telling us the driver is in good shape. How many jobs is the above
+> running in parallel?
+>
+> If you want to do some other tests, you can build a gstreamer
+> pipeline, with sync=false, and decode a few 1080p video, e.g.
+> https://jell.yfish.us/.
+>
+> Something like gst-launch-1.0 filesrc ! decodebin ! fakevideosink, or
+> so.
+>
+> Then, you can run the pipeline in parallel as many times as you want:
+>
+> gst-launch-1.0 filesrc ! decodebin ! fakevideosink filesrc ! decodebin ! fakevideosink filesrc ! decodebin ! fakevideosink ...
+>
+> (GStreamer lets you concatenate src ! sink src ! sink, in the same
+> gst-launch-1.0 invocation).
+>
+> > V2:  Remove references to legacy dt-binding from YAML, but keep
+> >      it in the driver so older device trees can still be used.
+> >      Fix typos in YAML
+> >      Remove reg-names, interrupt-names, and clock-names from YAML,
+> >      since each node will only have one of each, they're not necessary
+> >      Add Fluster scores to cover letter for i.MX8MQ
+> >
+>
+> Looks great.
 
-I thought I did. Probably I missed the error message in the noise ...
+Any change you could give your acked-by or reviewed-by to the patches?
+ Even if they need some work, I can carry those along to the next
+revision when I do the work you request.
 
-> You need a 'minItems: 1' otherwise 4 interrupts are always required.
+adam
 
-Will address your feedback in a v3. (I sent a v2 already that still
-suffers from the issues you pointed out.)
 
-Best regards
-Uwe
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---jhcaijwvjxwchgmv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEyBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmG7OgkACgkQwfwUeK3K
-7AnibgfzB3/gD2BwmKgOmJcvAR4QPHR88UgN0Z6Ru8KvgvK7xa2GJG2vz/YTHeNM
-L6JKso+pJYelRYjEZlD9f3cExmphoDUCHtRun/wTyPtDebOh+Jj5moFmBNGlK7h+
-zRpztk7ZERGLbJA4udGQ8JTtE6ualFH8i6/P9ZQQs6HzlnV0ylLPrO0jpJ2ma0+R
-BlkVOYBI5XKEON7bmoTzhJdwKeFR+WvbiB3wNYea7vF+dpov5w2ZSxHPqPoxHF1z
-kM2XY2wxBcq+A42ITWrlgc6phIsTIUN9WLlikd/+vk4NWhlfFoqDI11XL1lpsss+
-ZbnUwITPw6N0sJ1A1bSOEP/MtpKM
-=AtDJ
------END PGP SIGNATURE-----
-
---jhcaijwvjxwchgmv--
+>
+> Thanks,
+> Ezequiel
+>
+> > Adam Ford (7):
+> >   dt-bindings: media: nxp,imx8mq-vpu: Split G1 and G2 nodes
+> >   media: hantro: Allow i.MX8MQ G1 and G2 to run independently
+> >   arm64: dts: imx8mq: Enable both G1 and G2 VPU's with vpu-blk-ctrl
+> >   arm64: dts: imx8mm: Fix VPU Hanging
+> >   dt-bindings: media: nxp,imx8mq-vpu: Add support for G1 and G2 on
+> >     imx8mm
+> >   media: hantro: Add support for i.MX8MM
+> >   arm64: dts: imx8mm: Enable Hantro G1 and G2 video decoders
+> >
+> > Lucas Stach (3):
+> >   dt-bindings: power: imx8mq: add defines for VPU blk-ctrl domains
+> >   dt-bindings: soc: add binding for i.MX8MQ VPU blk-ctrl
+> >   soc: imx: imx8m-blk-ctrl: add i.MX8MQ VPU blk-ctrl
+> >
+> >  .../bindings/media/nxp,imx8mq-vpu.yaml        | 93 +++++++++++--------
+> >  .../soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml      | 71 ++++++++++++++
+> >  arch/arm64/boot/dts/freescale/imx8mm.dtsi     | 23 ++++-
+> >  arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 63 ++++++++-----
+> >  drivers/soc/imx/imx8m-blk-ctrl.c              | 68 +++++++++++++-
+> >  drivers/staging/media/hantro/hantro_drv.c     |  3 +
+> >  drivers/staging/media/hantro/hantro_hw.h      |  3 +
+> >  drivers/staging/media/hantro/imx8m_vpu_hw.c   | 75 ++++++++++++---
+> >  include/dt-bindings/power/imx8mq-power.h      |  3 +
+> >  9 files changed, 324 insertions(+), 78 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mq-vpu-blk-ctrl.yaml
+> >
+> >
+> > base-commit: d1888b0bfd2ddef2e8a81505ffa200b92cc32e0c
+> > --
+> > 2.32.0
+> >
