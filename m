@@ -2,99 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 682574775DD
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:26:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AFAE4775E7
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:29:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235384AbhLPP01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 10:26:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57116 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230171AbhLPP01 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:26:27 -0500
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C06F4C061401
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 07:26:26 -0800 (PST)
-Received: by mail-io1-xd2d.google.com with SMTP id z18so35632949iof.5
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 07:26:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=egauge.net; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :organization:user-agent:mime-version:content-transfer-encoding;
-        bh=67Vem47B3H5J53wS2N0qozARJFT1k4nkQO4G+jjqa7I=;
-        b=GObEAzKftb43qpUL73PButovyPOh9C5lB41PdNrBN/OTPkAwQ6lk/xd+y2ZzJNK0tI
-         iTj8rJlzlSOCC3VAZoIRa4dSS5DQOFhyIjwPeC8s5D2q1HIaIfUjdNTXuKnV4aft4+JR
-         GjiRSCau5rxjLrGdzjJTgvqpvNpV4IWnWzfoGhzp3Ycs5W8AY6zyxpNFnCS/h8bc9lw+
-         Ystm9naMQLwsCaIfQ0/WLgmXlaukLswdc5aP7a+S0QBo+T13YT+dIeFnPrE8FhEKUghI
-         6Hlt0nKKwvLiA9/H3wGhFlWgQW2VdsB/p8oRd9/egzsggwzVLFd+TwkYxg81hbnvZ/rp
-         ZUNQ==
+        id S237931AbhLPP3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 10:29:33 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:42715 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229868AbhLPP3c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:29:32 -0500
+Received: by mail-ot1-f42.google.com with SMTP id 47-20020a9d0332000000b005798ac20d72so29339037otv.9;
+        Thu, 16 Dec 2021 07:29:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:organization:user-agent:mime-version
-         :content-transfer-encoding;
-        bh=67Vem47B3H5J53wS2N0qozARJFT1k4nkQO4G+jjqa7I=;
-        b=jyHrlHnJz/yQg9ywUH8lkJ9o/0m3Y+oQcRzta+frhZGh56HDwFvzVxl/wznVKtzxpH
-         TGVT5PQT6i+xe48jfW5xpSm/HXvD0Q7jy7zldiL8lgaYrETLLFKJ1nAyqDN7GnWw7iBU
-         Gqb34u0lKwwjQ4BOZOxRh763matCANHpcm+dT+oVUv1lpHgLQXQGDifXbY3e3LXeIGJ6
-         ESWMUxzkOx/TkuX6Z1Da2Pj6Sjmx3Sf+1T41Fa5bj2vK7p2wiyScmEdPTTlGt0bXIDKU
-         uvmUl8ZEHTivYHEeyC2XW5h1bJvgQEskxU1Xjob6juxbdxsuQOt7ngbdient2U/sc36+
-         U5tQ==
-X-Gm-Message-State: AOAM532vYV2Ss0gRH6Hzod4CXBuXANxnIOIhLbg89pZ3Rh1ag3q39NqS
-        n57MWyHRZgob1gNPT5kVTIFQgLlWKP5gcp8=
-X-Google-Smtp-Source: ABdhPJx2k0X5637koIrqrnqkX80APdsdYn245W/07/3XnqocWSxif/WrCZxIL+OW6N1iLXxJ2kSZxA==
-X-Received: by 2002:a05:6638:2183:: with SMTP id s3mr9640953jaj.297.1639668384768;
-        Thu, 16 Dec 2021 07:26:24 -0800 (PST)
-Received: from bixby.lan (c-73-181-115-211.hsd1.co.comcast.net. [73.181.115.211])
-        by smtp.gmail.com with ESMTPSA id d137sm2720024iof.16.2021.12.16.07.26.23
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=nd0xNoxLdpMIETPTqt7EOTZuURPFhkkV6DEMEZNnfsY=;
+        b=dxcHcIHz5LNrvLJ0cYk6A19BLsA9FLDW2QFrKojP3bGuc2mXHSwxeo/WbUZdKHuwS1
+         52qXsQh53ECh7irK6EDhdLz6h7sCg8UhALOD62jPjl1D9HneT6eSjl3eTkKDyqEuxi+N
+         Yru4J0aHWTcu+eTqCjWPprrR1JxDBYDjTcYhNjgWsLLAjDtd4R4WFD1wlHgZUfu2C9vc
+         lB0rAU0tx99L3w7wTzPshvoOncdL94vd3iJVd57mhqBt+s9JK3ufcnZZfhifNfJ1zt4q
+         ML8aiARsKeSxKLg+SACLHKhnrMBlRXl11y363c3NXXiRbc9A0wBjA2qF7klaQMWTe5/6
+         OuYA==
+X-Gm-Message-State: AOAM530dOKKYsNJpnbLhRObAcJ76alONMYJhNDvQoFaFvXfDFFmaaC5M
+        TSNmXamBm4bjuGkCAfUsmw==
+X-Google-Smtp-Source: ABdhPJxkmQtefEO2GB4IesaVw1R5Cx1RYgQ2YBifPAlnsoTenbd4aeBi77x3cWkw+Dtx8+aTJgXrNw==
+X-Received: by 2002:a9d:6a56:: with SMTP id h22mr12884867otn.135.1639668571810;
+        Thu, 16 Dec 2021 07:29:31 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id q9sm1078070oti.32.2021.12.16.07.29.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 07:26:23 -0800 (PST)
-Message-ID: <938a54814087ca8c4b4011c2f418e773baf2b228.camel@egauge.net>
-Subject: Re: [PATCH v5 1/2] wilc1000: Add reset/enable GPIO support to SPI
- driver
-From:   David Mosberger-Tang <davidm@egauge.net>
-To:     Kalle Valo <kvalo@kernel.org>
-Cc:     Claudiu.Beznea@microchip.com, Ajay.Kathat@microchip.com,
-        adham.abozaeid@microchip.com, davem@davemloft.net,
-        devicetree@vger.kernel.org, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, robh+dt@kernel.org
-Date:   Thu, 16 Dec 2021 08:26:22 -0700
-In-Reply-To: <87zgp1c6lz.fsf@codeaurora.org>
-References: <20211215030501.3779911-1-davidm@egauge.net>
-         <20211215030501.3779911-2-davidm@egauge.net>
-         <d55a2558-b05d-5995-b0f0-f234cb3b50aa@microchip.com>
-         <9cfbcc99f8a70ba2c03a9ad99f273f12e237e09f.camel@egauge.net>
-         <87zgp1c6lz.fsf@codeaurora.org>
-Organization: eGauge Systems LLC
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5-0ubuntu1 
+        Thu, 16 Dec 2021 07:29:31 -0800 (PST)
+Received: (nullmailer pid 251708 invoked by uid 1000);
+        Thu, 16 Dec 2021 15:29:30 -0000
+Date:   Thu, 16 Dec 2021 09:29:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dejia Shang <dejia.shang@armchina.com>
+Cc:     gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        toby.shang@armchina.com
+Subject: Re: [PATCH 3/4] dt-bindings: add vendor-prefix and documentation for
+ Zhouyi NPU
+Message-ID: <YbtbWh2dhMhMHMfX@robh.at.kernel.org>
+References: <20211215103609.9268-1-dejia.shang@armchina.com>
+ <20211215103609.9268-4-dejia.shang@armchina.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211215103609.9268-4-dejia.shang@armchina.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-12-16 at 10:10 +0200, Kalle Valo wrote:
-> David Mosberger-Tang <davidm@egauge.net> writes:
+On Wed, Dec 15, 2021 at 06:36:08PM +0800, Dejia Shang wrote:
+> To enable this NPU IP in Arm-Linux system, SoC vendors should
+> write devicetree files as documented.
 > 
-> > > > +       } else {
-> > > > +               gpiod_set_value(gpios->reset, 1);       /* assert RESET */
-> > > > +               gpiod_set_value(gpios->enable, 0);      /* deassert ENABLE */
-> > > 
-> > > I don't usually see comments near the code line in kernel. Maybe move them
-> > > before the actual code line or remove them at all as the code is impler enough?
-> > 
-> > You're kidding, right?
+> Signed-off-by: Dejia Shang <dejia.shang@armchina.com>
+> ---
+>  .../bindings/misc/armchina,zhouyi-npu.yaml    | 57 +++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  2 files changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/armchina,zhouyi-npu.yaml
 > 
-> I agree with Claudiu, the comments are not really providing more
-> information from what can be seen from the code. And the style of having
-> the comment in the same line is not commonly used in upstream.
+> diff --git a/Documentation/devicetree/bindings/misc/armchina,zhouyi-npu.yaml b/Documentation/devicetree/bindings/misc/armchina,zhouyi-npu.yaml
+> new file mode 100644
+> index 000000000000..d3fdea101114
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/armchina,zhouyi-npu.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/misc/armchina,zhouyi-npu.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: ArmChina Zhouyi NPU bindings
+> +
+> +maintainers:
+> +  - Dejia Shang <dejia.shang@armchina.com>
+> +
+> +description: |
+> +  Armchina AI accelerator IP - Zhouyi NPU
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: armchina,zhouyi-v1
+> +      - const: armchina,zhouyi-v2
+> +      - const: armchina,zhouyi
 
-The code is obvious if you think of 1 as "assert" and 0 as "deassert".  It looks
-utterly wrong if you think of 1 as outputting 3.3V and 0 as outputting 0V.
+This says compatible must be a list of all 3 of these.
 
-But if you insist, I'll remove the comments.
+Where do v1 and v2 come from? We don't do version numbers in DT usually 
+unless they correspond to h/w revision registers or h/w documentation. I 
+would assume the h/w follows the Arm rXpY form?
 
-  --david
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  memory-region:
+> +    maxItems: 2
 
+What is each region?
 
+This requires 2 entries, but the example only has 1.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    reserved-memory {
+> +                #address-cells = <2>;
+> +                #size-cells = <2>;
+> +                ranges;
+> +
+> +                aipu_ddr_reserved: aipu-shmem@0xA0000000 {
+
+aipu-shmem@a0000000
+
+> +                        compatible = "shared-dma-pool";
+> +                        no-map;
+> +                        reg = <0x0 0xA0000000 0x0 0x4000000>;
+> +                };
+> +    };
+> +
+> +    aipu0@0x64000000 {
+
+Drop '0x'
+
+> +                compatible = "armchina,zhouyi";
+> +                reg = <0x0 0x64000000 0x0 0x1000>;
+> +                memory-region=<&aipu_ddr_reserved>;
+> +                interrupts = <0 168 1>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 66d6432fd781..4b1865d92455 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -123,6 +123,8 @@ patternProperties:
+>      description: ARM Ltd.
+>    "^armadeus,.*":
+>      description: ARMadeus Systems SARL
+> +  "^armchina,.*":
+> +    description: Arm Technology (China) Co., Ltd.
+>    "^arrow,.*":
+>      description: Arrow Electronics
+>    "^artesyn,.*":
+> --
+> 2.17.1
+> 
+> IMPORTANT NOTICE: The contents of this email and any attachments may be privileged and confidential. If you are not the intended recipient, please delete the email immediately. It is strictly prohibited to disclose the contents to any other person, use it for any purpose, or store or copy the information in any medium. Thank you. ©Arm Technology (China) Co., Ltd copyright and reserve all rights. 重要提示：本邮件（包括任何附件）可能含有专供明确的个人或目的使用的机密信息，并受法律保护。如果您并非该收件人，请立即删除此邮件。严禁通过任何渠道，以任何目的，向任何人披露、储存或复制邮件信息或者据此采取任何行动。感谢您的配合。 ©安谋科技（中国）有限公司 版权所有并保留一切权利。
+> 
