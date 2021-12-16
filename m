@@ -2,97 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD715477D3F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:19:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51170477D69
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:22:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233748AbhLPUTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 15:19:04 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:44568 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233571AbhLPUTE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:19:04 -0500
-Received: by mail-ot1-f45.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso256065otj.11;
-        Thu, 16 Dec 2021 12:19:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=EP8i59lgz1RbahhTqKaKddO50DWDUxCElpVM84quxuw=;
-        b=5B3o+bNsntoMQsC4P0fF8nDE4UA1x9FFfAxZcH3pdB5/++TIJLVBm3u5w0T5YO1IGE
-         DCfOykSL3vBrGB/HPcx8R5xlE3BeA24I+x6WrLFcLdRHRnIBdgivXS69kDpctdswK+H7
-         QDWPqPlIPvCIgtB+PT0WBnqb1t/9Q4CVwFuMtkASoJ3rn3yYSMfKh/BVUvchYwXQhksf
-         GTbnc4xJKaNAWc3fUEqBZE9BSbMYACAQtP9B3h4zyKYVz1ug7Lutt7aYhg0YriYgreXA
-         Z4AdgJfX9yu92j4rEeiJtV86SP/45/RAAz2JrsSo3YpbDxPKGctLsO2InyugojOXUPen
-         jilQ==
-X-Gm-Message-State: AOAM533MjlNdK5x5+c4x9P3DzJnJYY1dc766uLfj1fnJ4woD5p/Z85Or
-        zWxgKiHnCJcUlW8YyoI4EQ==
-X-Google-Smtp-Source: ABdhPJxGzTaxROIp6OiBxmHuoDVdzp0kHtMPkrp4yRm4C+zENNV9wjGntcWJ3rP4Wr/eQRjmPg8Xaw==
-X-Received: by 2002:a05:6830:449e:: with SMTP id r30mr14320962otv.120.1639685943759;
-        Thu, 16 Dec 2021 12:19:03 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id k17sm1200037oom.6.2021.12.16.12.19.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 12:19:03 -0800 (PST)
-Received: (nullmailer pid 687171 invoked by uid 1000);
-        Thu, 16 Dec 2021 20:19:02 -0000
-Date:   Thu, 16 Dec 2021 14:19:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sergey Shtylyov <s.shtylyov@omp.ru>, Yaqin Pan <akingchen@vivo.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+        id S233861AbhLPUWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 15:22:25 -0500
+Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163]:46668 "EHLO
+        luna.linkmauve.fr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234079AbhLPUWY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:22:24 -0500
+Received: by luna.linkmauve.fr (Postfix, from userid 1000)
+        id B941FF40EA4; Thu, 16 Dec 2021 21:22:20 +0100 (CET)
+Date:   Thu, 16 Dec 2021 21:22:20 +0100
+From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>,
+        linux-rtc@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        linuxppc-dev@lists.ozlabs.org, Ash Logan <ash@heyquark.com>,
+        rw-r-r-0644 <r.r.qwertyuiop.r.r@gmail.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@vivo.com
-Subject: Re: [PATCH 2/2] dt-bindings: usb: document snps,dis_split_quirk
- property in dwc3
-Message-ID: <YbufNsBtiIzbm+9k@robh.at.kernel.org>
-References: <20211215130325.19017-1-akingchen@vivo.com>
- <20211215130325.19017-3-akingchen@vivo.com>
- <abede066-43a2-b61b-d152-c95ef3785934@omp.ru>
- <5eb92897-1ef9-3c1c-c068-7fef759ec9ad@omp.ru>
+        Paul Mackerras <paulus@samba.org>
+Subject: Re: [PATCH v3 0/5] rtc: nintendo: Add a RTC driver for the GameCube,
+ Wii and Wii U
+Message-ID: <20211216202220.y6rctd2k72yuya5w@luna>
+Jabber-ID: linkmauve@linkmauve.fr
+References: <20211027223516.2031-1-linkmauve@linkmauve.fr>
+ <20211215175501.6761-1-linkmauve@linkmauve.fr>
+ <163964813197.6786.14005810276404182021.b4-ty@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="xjgfe6sy2p6qs4uc"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5eb92897-1ef9-3c1c-c068-7fef759ec9ad@omp.ru>
+In-Reply-To: <163964813197.6786.14005810276404182021.b4-ty@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 06:59:27PM +0300, Sergey Shtylyov wrote:
-> On 12/16/21 11:26 AM, Sergey Shtylyov wrote:
-> 
-> >> Add snps,dis_split_quirk property for dwc3 controller
-> >>
-> >> Signed-off-by: Yaqin Pan <akingchen@vivo.com>
-> >> ---
-> >>   Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 6 ++++++
-> >>   1 file changed, 6 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> >> index 41416fbd92aa..e9615ca8f447 100644
-> >> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> >> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> >> @@ -226,6 +226,12 @@ properties:
-> >>         avoid -EPROTO errors with usbhid on some devices (Hikey 970).
-> >>       type: boolean
-> >>   +  snps,dis_split_quirk:
 
-I'm tired of the never ending DWC3 quirks. Imply this from the 
-compatible unless it varies by board.
+--xjgfe6sy2p6qs4uc
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Also, don't use '_' in DT names.
+On Thu, Dec 16, 2021 at 10:49:44AM +0100, Alexandre Belloni wrote:
+> On Wed, 15 Dec 2021 18:54:56 +0100, Emmanuel Gil Peyrot wrote:
+> > These three consoles share a device, the MX23L4005, which contains a
+> > clock and 64=C2=A0bytes of SRAM storage, and is exposed on the EXI bus
+> > (similar to SPI) on channel 0, device 1.  This driver allows it to be
+> > used as a Linux RTC device, where time can be read and set.
+> >=20
+> > The hardware also exposes two timers, one which shuts down the console
+> > and one which powers it on, but these aren=E2=80=99t supported currentl=
+y.
+> >=20
+> > [...]
+>=20
+> Applied, thanks!
+>=20
+> [1/5] rtc: gamecube: Add a RTC driver for the GameCube, Wii and Wii U
+>       commit: 86559400b3ef9de93ba50523cffe767c35cd531a
+> [2/5] rtc: gamecube: Report low battery as invalid data
+>       commit: 322539a014bcd24cbb9281832c09b24e07912237
+> [3/5] powerpc: wii.dts: Expose HW_SRNPROT on this platform
+>       commit: 5479618e1e2641dd57352a73b7b7b2f6908fbeee
+> [4/5] powerpc: gamecube_defconfig: Enable the RTC driver
+>       commit: 57bd7d356506b713d0df8d8e42da7810a18864df
+> [5/5] powerpc: wii_defconfig: Enable the RTC driver
+>       commit: 69e8ba80ddda4db31e59facbf2db19773ad3785b
+>=20
+> This one didn't apply ceanly but I believe I did the right thing. Can you=
+ check?
 
-> >> +    description:
-> >> +      When set, change the way host controller schedules transations for a Control transfer.
-> > 
-> >    Transactions.
-> > 
-> >> +      Needed to avoid emurate some devices fail.
-> > 
-> >    Avoid failing to enumerating some devices?
-> 
->    Sorry. enumarate. :-)
+I believe you didn=E2=80=99t, at least that commit[1] seems to have one =E2=
+=80=9C+=E2=80=9D too
+many in the modified line, whereas the previous one[2] doesn=E2=80=99t.
 
-Or enumerate
+But thanks for applying them!
 
+>=20
+>=20
+> Best regards,
+> --=20
+> Alexandre Belloni <alexandre.belloni@bootlin.com>
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git/comm=
+it/?id=3D69e8ba80dd
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git/comm=
+it/?id=3D57bd7d3565
+
+--=20
+Emmanuel Gil Peyrot
+
+--xjgfe6sy2p6qs4uc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEjrVT1SzTln43kCLJOWgfYkb2LpAFAmG7n/kACgkQOWgfYkb2
+LpC5TggAi5VOpJA1g7QxHH22JVQUoOoi2gh+8iLJUAXipFMNAcQ3ehzzpA47P7pF
+QvCjk8aywr3VNj2+mzVz4CsgFHI2EyxqvHVzuEETddZe/bbd4PjS3Q39jMFP2bzG
+oHtt8C0/z2XTBgPHC0VtT8cI9cliiadPzsDCYQRdZHWYCnckWZmo51BzH4cmZzC1
+ECD/VgEunDre1ATXcefh7gRAEsQH+1FjkhukL/jNKUONeTpyr9r8D81R5lFyrLGK
+e5NXNykw2kdkpzv29CnQnIpc9y/AqX6U9WpY6P39xzlpaudSI8VEOKGFunJjXxI8
+O8Bp+trQO2iCKZX1EyABFUKkuF+QXA==
+=lj83
+-----END PGP SIGNATURE-----
+
+--xjgfe6sy2p6qs4uc--
