@@ -2,954 +2,601 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF7F5476B0E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 08:28:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDDB6476B16
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 08:36:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232077AbhLPH2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 02:28:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57582 "EHLO
+        id S232209AbhLPHg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 02:36:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbhLPH2i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 02:28:38 -0500
+        with ESMTP id S229664AbhLPHg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 02:36:26 -0500
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF15EC061574;
-        Wed, 15 Dec 2021 23:28:37 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEDCFC061574;
+        Wed, 15 Dec 2021 23:36:25 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7E3D5B822E2;
-        Thu, 16 Dec 2021 07:28:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12C3EC36AE4;
-        Thu, 16 Dec 2021 07:28:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639639715;
-        bh=NgiDOWach0UCgZPsA9vncNkk6HB9GizUruPJikSWWtk=;
+        by ams.source.kernel.org (Postfix) with ESMTPS id A4E97B822E2;
+        Thu, 16 Dec 2021 07:36:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 583D1C36AE4;
+        Thu, 16 Dec 2021 07:36:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1639640182;
+        bh=TM+T6EuiqaJJum/Ho30ovNE8Im4W9+iJf6EfC1nQThc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZdzvzysfprmADYcMfOD37ncer4IVmSqSltdx26VrFTZSoMo5XpWpgTrEsqfDe3ml1
-         UedSZXLu7Y8jr8HrIFMaSQ0sbGRFkddmvJFGmxpSxqVHRbUgn8OVbOwicGysHu+0ZE
-         ZU6dZQtgFLlVZPAe4SN5ILbR+qvKpnoyotBKi4tykPa6zK9iF1wb6nAZYixqU7C1B4
-         F0aHSCwNXX4T3VLdLn2/P50xaiakzzUtj3FGf874n2QuP76oSZwRVpV4QnLA8yriaR
-         NzK/aiatJtBtZ8WjQsNknUayhTd1fn1rKky8EsmgJEddOwFrIwwiRvprdeT/rZz8Aj
-         4y5FAb5PIDxoA==
-Date:   Thu, 16 Dec 2021 15:28:28 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     reinhold.mueller@emtrion.com
-Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: imx8mm: Add support for emtrion
- emCON-MX8M Mini
-Message-ID: <20211216072827.GA12098@dragon>
-References: <20211213132909.41258-1-reinhold.mueller@emtrion.com>
- <20211213132909.41258-3-reinhold.mueller@emtrion.com>
+        b=gjQEjTkbXDAR0YKsqBE2OJMy+N/7ViWTbVf9HxJIAk14clQf3abRW1QbbUF57NkAM
+         rs3Xn5ToEx9lZEKQ4u6soLNSHqXoyhNkjMa7ReDvJdZbA5kMG6B3+oy4t6lKShqbcT
+         ElVjUXtHqPJJA9qHpseK/A1kqeqZ30hgk04md7so=
+Date:   Thu, 16 Dec 2021 08:36:14 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linuxkernel@vger.kernel.org, derek.kiernan@xilinx.com,
+        dragan.cvetic@xilinx.com, arnd@arndb.de, wells.lu@sunplus.com,
+        tonyhuang@sunplus.com
+Subject: Re: [PATCH v4 2/2] misc: Add iop driver for Sunplus SP7021
+Message-ID: <YbrsbtBgUDnjZJ/o@kroah.com>
+References: <cover.1639557112.git.tonyhuang.sunplus@gmail.com>
+ <c3a3b64c38807b2f344c3df500eb4c60b885eadf.1639557112.git.tonyhuang.sunplus@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211213132909.41258-3-reinhold.mueller@emtrion.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <c3a3b64c38807b2f344c3df500eb4c60b885eadf.1639557112.git.tonyhuang.sunplus@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 13, 2021 at 02:29:09PM +0100, reinhold.mueller@emtrion.com wrote:
-> From: Reinhold Mueller <reinhold.mueller@emtrion.com>
+On Thu, Dec 16, 2021 at 09:38:16AM +0800, Tony Huang wrote:
+> IOP (IO Processor) embedded inside SP7021 which is used as
+> Processor for I/O control, RTC wake-up and cooperation with
+> CPU & PMC in power management purpose.
+> The IOP core is DQ8051, so also named IOP8051,
+> it supports dedicated JTAG debug pins which share with SP7021.
+> In standby mode operation, the power spec reach 400uA.
 > 
-> This patch adds support for the emtrion GmbH emCON-MX8M Mini modules.
-> They are available with NXP i.MX 8M Mini equipped with 2 or 4 GB Memory.
-> 
-> The devicetree imx8mm-emcon.dtsi is the common part providing all
-> module components and the basic support for the SoC. The support for the
-> avari baseboard in the developer-kit configuration is provided by the
-> emcon-avari dts files.
-> 
-> Signed-off-by: Reinhold Mueller <reinhold.mueller@emtrion.com>
+> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
 > ---
->  arch/arm64/boot/dts/freescale/Makefile        |   3 +-
->  .../boot/dts/freescale/imx8mm-emcon-avari.dts |  23 +
->  .../dts/freescale/imx8mm-emcon-avari.dtsi     | 141 ++++
->  .../boot/dts/freescale/imx8mm-emcon.dtsi      | 645 ++++++++++++++++++
->  4 files changed, 811 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi
+> Changes in v4:
+>  - Addressed comments from Arnd Bergmann.
+>  - Addressed comments from Greg KH.
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index a14a6173b765..a09b5e4d5a45 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -34,8 +34,9 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-rdb.dtb
->  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-qds.dtb
+>  Documentation/ABI/testing/sysfs-platform-soc@B |  22 ++
+>  MAINTAINERS                                    |   2 +
+>  drivers/misc/Kconfig                           |  12 +
+>  drivers/misc/Makefile                          |   1 +
+>  drivers/misc/sunplus_iop.c                     | 496 +++++++++++++++++++++++++
+>  5 files changed, 533 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-platform-soc@B
+>  create mode 100644 drivers/misc/sunplus_iop.c
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-platform-soc@B b/Documentation/ABI/testing/sysfs-platform-soc@B
+> new file mode 100644
+> index 0000000..17d838e
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-platform-soc@B
+> @@ -0,0 +1,22 @@
+> +What:		/sys/devices/platform/soc@B/9c000400.iop/sp_iop_state1
+> +Date:		December 2021
+> +KernelVersion:	5.15
+> +Contact:	Tony Huang <tonyhuang.sunplus@gmail.com>
+> +Description:
+> +		SP7021 has three power states:S0, S1 and S3.
+> +		S0:Default domain is on. IOP domain is on. AO domain is on.
+> +		S1:Default domain is off. IOP domain is on. AO domain is on.
+> +		S3:Default domain is off. IOP domain is off. AO domain is on.
+> +		Read sysfs sp_iop_s1mode, system enter S1 mode.
+> +
+> +What:		/sys/devices/platform/soc@B/9c000400.iop/sp_iop_mode
+> +Date:		December 2021
+> +KernelVersion:	5.15
+> +Contact:	Tony Huang <tonyhuang.sunplus@gmail.com>
+> +Description:
+> +		Operation mode of IOP is switched to standby mode by writing
+> +		"1" to sysfs.
+> +		Operation mode of IOP is switched to normal mode by writing
+> +		"0" to sysfs.
+> +
+> +
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 071b5e6..614b7ff 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -17948,7 +17948,9 @@ F:	drivers/net/ethernet/dlink/sundance.c
+>  SUNPLUS IOP DRIVER
+>  M:	Tony Huang <tonyhuang.sunplus@gmail.com>
+>  S:	Maintained
+> +F:	Documentation/ABI/testing/sysfs-platform-soc@B
+>  F:	Documentation/devicetree/bindings/misc/sunplu-iop.yaml
+> +F:	drivers/misc/sunplus_iop.c
 >  
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
-> -dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-emcon-avari.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-ctouch2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-icore-mx8mm-edimm2.2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-n801x-s.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dts b/arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dts
+>  SUPERH
+>  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
+> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> index 0f5a49f..f19533b 100644
+> --- a/drivers/misc/Kconfig
+> +++ b/drivers/misc/Kconfig
+> @@ -470,6 +470,18 @@ config HISI_HIKEY_USB
+>  	  switching between the dual-role USB-C port and the USB-A host ports
+>  	  using only one USB controller.
+>  
+> +config SUNPLUS_IOP
+> +	tristate "Sunplus IOP support"
+> +	default ARCH_SUNPLUS
+> +	help
+> +	  Sunplus I/O processor (8051) driver.
+> +	  Processor for I/O control, RTC wake-up proceduce management,
+> +	  and cooperation with CPU&PMC in power management.
+> +	  Need Install DQ8051, The DQ8051 bin file generated by keil C.
+> +
+> +	  This driver can also be built as a module.  If so, the module
+> +	  will be called ad525x_dpot.
+> +
+>  source "drivers/misc/c2port/Kconfig"
+>  source "drivers/misc/eeprom/Kconfig"
+>  source "drivers/misc/cb710/Kconfig"
+> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+> index a086197..eafeab6 100644
+> --- a/drivers/misc/Makefile
+> +++ b/drivers/misc/Makefile
+> @@ -52,6 +52,7 @@ obj-$(CONFIG_DW_XDATA_PCIE)	+= dw-xdata-pcie.o
+>  obj-$(CONFIG_PCI_ENDPOINT_TEST)	+= pci_endpoint_test.o
+>  obj-$(CONFIG_OCXL)		+= ocxl/
+>  obj-$(CONFIG_BCM_VK)		+= bcm-vk/
+> +obj-$(CONFIG_SUNPLUS_IOP)	+= sunplus_iop.o
+>  obj-y				+= cardreader/
+>  obj-$(CONFIG_PVPANIC)   	+= pvpanic/
+>  obj-$(CONFIG_HABANA_AI)		+= habanalabs/
+> diff --git a/drivers/misc/sunplus_iop.c b/drivers/misc/sunplus_iop.c
 > new file mode 100644
-> index 000000000000..b2e8967e9687
+> index 0000000..8c4c870
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dts
-> @@ -0,0 +1,23 @@
-> +// SPDX-License-Identifier: (GPL-2.0 or MIT)
-> +//
-> +// Copyright (c) 2021 emtrion GmbH
-> +// Author: Frank Erdrich <frank.erdrich@emtrion.com>
-> +//
+> +++ b/drivers/misc/sunplus_iop.c
+> @@ -0,0 +1,496 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * The IOP driver for Sunplus SP7021
+> + *
+> + * Copyright (C) 2021 Sunplus Technology Inc.
+> + *
+> + * All Rights Reserved.
+> + */
 > +
-> +/dts-v1/;
+> +#include <linux/module.h>
+> +#include <linux/miscdevice.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/firmware.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/of_address.h>
+> +#include <linux/delay.h>
+> +#include <linux/iopoll.h>
 > +
-> +#include "imx8mm-emcon.dtsi"
-> +#include "imx8mm-emcon-avari.dtsi"
-> +
-> +/ {
-> +	model = "emtrion SoM emCON-MX8M mini on Avari";
-> +	compatible = "emtrion,emcon-mx8mm-avari", "fsl,imx8mm";
+> +enum IOP_Status_e {
+> +	IOP_SUCCESS,                /* successful */
+> +	IOP_ERR_IOP_BUSY,           /* IOP is busy */
 > +};
 > +
-> +&lvds_backlight {
-> +	status = "okay";
+> +struct regs_moon0 {
+> +	u32 stamp;         /* 00 */
+> +	u32 clken[10];     /* 01~10 */
+> +	u32 gclken[10];    /* 11~20 */
+> +	u32 reset[10];     /* 21~30 */
+> +	u32 sfg_cfg_mode;  /* 31 */
 > +};
 > +
-> +&pwm1 {
-> +	status = "okay";
+> +struct regs_iop {
+> +	u32 iop_control;/* 00 */
+> +	u32 iop_reg1;/* 01 */
+> +	u32 iop_bp;/* 02 */
+> +	u32 iop_regsel;/* 03 */
+> +	u32 iop_regout;/* 04 */
+> +	u32 iop_reg5;/* 05 */
+> +	u32 iop_resume_pcl;/* 06 */
+> +	u32 iop_resume_pch;/* 07 */
+> +	u32 iop_data0;/* 08 */
+> +	u32 iop_data1;/* 09 */
+> +	u32 iop_data2;/* 10 */
+> +	u32 iop_data3;/* 11 */
+> +	u32 iop_data4;/* 12 */
+> +	u32 iop_data5;/* 13 */
+> +	u32 iop_data6;/* 14 */
+> +	u32 iop_data7;/* 15 */
+> +	u32 iop_data8;/* 16 */
+> +	u32 iop_data9;/* 17 */
+> +	u32 iop_data10;/* 18 */
+> +	u32 iop_data11;/* 19 */
+> +	u32 iop_base_adr_l;/* 20 */
+> +	u32 iop_base_adr_h;/* 21 */
+> +	u32 memory_bridge_control;/* 22 */
+> +	u32 iop_regmap_adr_l;/* 23 */
+> +	u32 iop_regmap_adr_h;/* 24 */
+> +	u32 iop_direct_adr;/* 25*/
+> +	u32 reserved[6];/* 26~31 */
 > +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtsi
-> new file mode 100644
-> index 000000000000..89fbf4b46f1b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtsi
-> @@ -0,0 +1,141 @@
-> +// SPDX-License-Identifier: (GPL-2.0 or MIT)
-> +//
-> +// Copyright (C) 2021 emtrion GmbH
-> +// Author: Frank Erdrich <frank.erdrich@emtrion.com>
-> +//
 > +
-> +/ {
-> +	aliases {
-> +		boardid = &boardID;
-> +		mmc0 = &usdhc1;
-> +		mmc1 = &usdhc2;
-> +	};
+> +struct regs_iop_pmc {
+> +	u32 PMC_TIMER;/* 00 */
+> +	u32 PMC_CTRL;/* 01 */
+> +	u32 XTAL27M_PASSWORD_I;/* 02 */
+> +	u32 XTAL27M_PASSWORD_II;/* 03 */
+> +	u32 XTAL32K_PASSWORD_I;/* 04 */
+> +	u32 XTAL32K_PASSWORD_II;/* 05 */
+> +	u32 CLK27M_PASSWORD_I;/* 06 */
+> +	u32 CLK27M_PASSWORD_II;/* 07 */
+> +	u32 PMC_TIMER2;/* 08 */
+> +	u32 reserved[23];/* 9~31 */
+> +};
 > +
-> +	chosen {
-> +		stdout-path = &uart1;
-> +	};
+> +#define NORMAL_CODE_MAX_SIZE 0X1000
+> +#define STANDBY_CODE_MAX_SIZE 0x4000
+> +struct sp_iop {
+> +	struct miscdevice dev;			// iop device
+> +	struct mutex write_lock;
+> +	void __iomem *iop_regs;
+> +	void __iomem *pmc_regs;
+> +	void __iomem *moon0_regs;
+> +	int irq;
+> +	unsigned char iop_normal_code[NORMAL_CODE_MAX_SIZE];
+> +	unsigned char iop_standby_code[STANDBY_CODE_MAX_SIZE];
+> +	resource_size_t iop_mem_start;
+> +	resource_size_t iop_mem_size;
+> +	bool mode;
+> +};
 > +
-> +	reg_wall_5p0: reg-wall5p0 {
+> +static void sp_iop_normal_mode(struct sp_iop *iop)
+> +{
+> +	struct regs_iop *p_iop_reg = (struct regs_iop *)iop->iop_regs;
+> +	struct regs_moon0 *p_moon0_reg = (struct regs_moon0 *)iop->moon0_regs;
+> +	void __iomem *iop_kernel_base;
+> +	unsigned int reg;
+> +
+> +	iop_kernel_base = ioremap(iop->iop_mem_start, NORMAL_CODE_MAX_SIZE);
+> +	memset(iop_kernel_base, 0, NORMAL_CODE_MAX_SIZE);
+> +	memcpy(iop_kernel_base, iop->iop_normal_code, NORMAL_CODE_MAX_SIZE);
+> +
+> +	writel(0x00100010, &p_moon0_reg->clken[0]);
+> +
+> +	reg = readl(&p_iop_reg->iop_control);
+> +	reg |= 0x01;
+> +	writel(reg, &p_iop_reg->iop_control);
+> +
+> +	reg = readl(&p_iop_reg->iop_control);
+> +	reg &= ~(0x8000);
+> +	writel(reg, &p_iop_reg->iop_control);
+> +
+> +	reg = readl(&p_iop_reg->iop_control);
+> +	reg |= 0x0200;//disable watchdog event reset IOP
+> +	writel(reg, &p_iop_reg->iop_control);
+> +
+> +	reg = (iop->iop_mem_start & 0xFFFF);
+> +	writel(reg, &p_iop_reg->iop_base_adr_l);
+> +	reg	= (iop->iop_mem_start >> 16);
+> +	writel(reg, &p_iop_reg->iop_base_adr_h);
+> +
+> +	reg = readl(&p_iop_reg->iop_control);
+> +	reg &= ~(0x01);
+> +	writel(reg, &p_iop_reg->iop_control);
+> +	iop->mode = 0;
+> +}
+> +
+> +static void sp_iop_standby_mode(struct sp_iop *iop)
+> +{
+> +	struct regs_iop *p_iop_reg = (struct regs_iop *)iop->iop_regs;
+> +	struct regs_moon0 *p_moon0_reg = (struct regs_moon0 *)iop->moon0_regs;
+> +	void __iomem *iop_kernel_base;
+> +	unsigned long reg;
+> +
+> +	iop_kernel_base = ioremap(iop->iop_mem_start, STANDBY_CODE_MAX_SIZE);
+> +	memset(iop_kernel_base, 0, STANDBY_CODE_MAX_SIZE);
+> +	memcpy(iop_kernel_base, iop->iop_standby_code, STANDBY_CODE_MAX_SIZE);
+> +
+> +	writel(0x00100010, &p_moon0_reg->clken[0]);
+> +
+> +	reg = readl(&p_iop_reg->iop_control);
+> +	reg |= 0x01;
+> +	writel(reg, &p_iop_reg->iop_control);
+> +
+> +	reg = readl(&p_iop_reg->iop_control);
+> +	reg &= ~(0x8000);
+> +	writel(reg, &p_iop_reg->iop_control);
+> +
+> +	reg = readl(&p_iop_reg->iop_control);
+> +	reg |= 0x0200;//disable watchdog event reset IOP
+> +	writel(reg, &p_iop_reg->iop_control);
+> +
+> +	reg = (iop->iop_mem_start & 0xFFFF);
+> +	writel(reg, &p_iop_reg->iop_base_adr_l);
+> +	reg = (iop->iop_mem_start >> 16);
+> +	writel(reg, &p_iop_reg->iop_base_adr_h);
+> +
+> +	reg = readl(&p_iop_reg->iop_control);
+> +	reg &= ~(0x01);
+> +	writel(reg, &p_iop_reg->iop_control);
+> +	iop->mode = 1;
+> +}
+> +
+> +#define IOP_READY	0x4
+> +#define RISC_READY	0x8
+> +static int sp_iop_shutdown(struct device *dev, struct sp_iop *iop)
+> +{
+> +	struct regs_iop *p_iop_reg = (struct regs_iop *)iop->iop_regs;
+> +	struct regs_moon0 *p_moon0_reg = (struct regs_moon0 *)iop->moon0_regs;
+> +	struct regs_iop_pmc *p_iop_pmc_reg = (struct regs_iop_pmc *)iop->pmc_regs;
+> +	unsigned int reg;
+> +	int ret, value;
+> +
+> +	writel(0x00100010, &p_moon0_reg->clken[0]);
+> +
+> +	reg = readl(&p_iop_reg->iop_control);
+> +	reg &= ~(0x8000);
+> +	writel(reg, &p_iop_reg->iop_control);
+> +
+> +	reg = readl(&p_iop_reg->iop_control);
+> +	reg |= 0x1;
+> +	writel(reg, &p_iop_reg->iop_control);
+> +
+> +	//PMC set
+> +	writel(0x00010001, &p_iop_pmc_reg->PMC_TIMER);
+> +	reg = readl(&p_iop_pmc_reg->PMC_CTRL);
+> +	reg |= 0x23;// disable system reset PMC, enalbe power down 27M, enable gating 27M
+> +	writel(reg, &p_iop_pmc_reg->PMC_CTRL);
+> +
+> +	writel(0x55aa00ff, &p_iop_pmc_reg->XTAL27M_PASSWORD_I);
+> +	writel(0x00ff55aa, &p_iop_pmc_reg->XTAL27M_PASSWORD_II);
+> +	writel(0xaa00ff55, &p_iop_pmc_reg->XTAL32K_PASSWORD_I);
+> +	writel(0xff55aa00, &p_iop_pmc_reg->XTAL32K_PASSWORD_II);
+> +	writel(0xaaff0055, &p_iop_pmc_reg->CLK27M_PASSWORD_I);
+> +	writel(0x5500aaff, &p_iop_pmc_reg->CLK27M_PASSWORD_II);
+> +	writel(0x01000100, &p_iop_pmc_reg->PMC_TIMER2);
+> +
+> +	//IOP Hardware IP reset
+> +	reg = readl(&p_moon0_reg->reset[0]);
+> +	reg |= 0x10;
+> +	writel(reg, (&p_moon0_reg->reset[0]));
+> +	reg &= ~(0x10);
+> +	writel(reg, (&p_moon0_reg->reset[0]));
+> +
+> +	writel(0x00ff0085, (iop->moon0_regs + 32 * 4 * 1 + 4 * 1));
+> +
+> +	reg = readl(iop->moon0_regs + 32 * 4 * 1 + 4 * 2);
+> +	reg |= 0x08000800;
+> +	writel(reg, (iop->moon0_regs + 32 * 4 * 1 + 4 * 2));
+> +
+> +	reg = readl(&p_iop_reg->iop_control);
+> +	reg |= 0x0200;//disable watchdog event reset IOP
+> +	writel(reg, &p_iop_reg->iop_control);
+> +
+> +	reg = (iop->iop_mem_start & 0xFFFF);
+> +	writel(reg, &p_iop_reg->iop_base_adr_l);
+> +	reg = (iop->iop_mem_start >> 16);
+> +	writel(reg, &p_iop_reg->iop_base_adr_h);
+> +
+> +	reg = readl(&p_iop_reg->iop_control);
+> +	reg &= ~(0x01);
+> +	writel(reg, &p_iop_reg->iop_control);
+> +
+> +	ret = readl_poll_timeout(&p_iop_reg->iop_data2, value,
+> +				 (value & IOP_READY) == IOP_READY, 1000, 10000);
+> +	if (ret) {
+> +		dev_err(dev, "timed out\n");
+> +		return ret;
+> +	}
+> +
+> +	writel(RISC_READY, &p_iop_reg->iop_data2);
+> +	writel(0x00, &p_iop_reg->iop_data5);
+> +	writel(0x60, &p_iop_reg->iop_data6);
+> +
+> +	ret = readl_poll_timeout(&p_iop_reg->iop_data7, value,
+> +				 value == 0xaaaa, 1000, 10000);
+> +	if (ret) {
+> +		dev_err(dev, "timed out\n");
+> +		return ret;
+> +	}
+> +
+> +	writel(0xdd, &p_iop_reg->iop_data1);//8051 bin file call Ultra low function.
+> +	mdelay(10);
+> +	return 0;
+> +}
+> +
+> +static int sp_iop_s1mode(struct device *dev, struct sp_iop *iop)
+> +{
+> +	struct regs_iop *p_iop_reg = (struct regs_iop *)iop->iop_regs;
+> +	int ret, value;
+> +
+> +	ret = readl_poll_timeout(&p_iop_reg->iop_data2, value,
+> +				 (value & IOP_READY) == IOP_READY, 1000, 10000);
+> +	if (ret) {
+> +		dev_err(dev, "timed out\n");
+> +		return ret;
+> +	}
+> +
+> +	writel(RISC_READY, &p_iop_reg->iop_data2);
+> +	writel(0x00, &p_iop_reg->iop_data5);
+> +	writel(0x60, &p_iop_reg->iop_data6);
+> +
+> +	ret = readl_poll_timeout(&p_iop_reg->iop_data7, value,
+> +				 value == 0xaaaa, 1000, 10000);
+> +	if (ret) {
+> +		dev_err(dev, "timed out\n");
+> +		return ret;
+> +	}
+> +
+> +	writel(0xee, &p_iop_reg->iop_data1);//8051 bin file call S1_mode function.
+> +	mdelay(10);
+> +	return 0;
+> +}
+> +
+> +static ssize_t sp_iop_state1_show(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	struct sp_iop *iop = dev_get_drvdata(dev);
+> +	ssize_t len = 0;
+> +
+> +	sp_iop_standby_mode(iop);
+> +	mdelay(10);
+> +	sp_iop_s1mode(dev, iop);
+> +	return len;
+> +}
 
-Please spell out 'regulator-' in node name.
+This function is not showing anything.
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "Main-Supply";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
 > +
-> +	reg_base3p3: reg-base3p3 {
-> +		compatible = "regulator-fixed";
-> +		vin-supply = <&reg_wall_5p0>;
-> +		regulator-name = "3V3-avari";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
+> +static ssize_t sp_iop_state1_store(struct device *dev, struct device_attribute *attr,
+> +				   const char *buf, size_t count)
+> +{
+> +	ssize_t len = 0;
 > +
-> +	reg_base1p5: reg-base1p5 {
-> +		compatible = "regulator-fixed";
-> +		vin-supply = <&reg_base3p3>;
-> +		regulator-name = "1V5-avari";
-> +		regulator-min-microvolt = <1500000>;
-> +		regulator-max-microvolt = <1500000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	reg_usb_otg: reg-otgvbus {
-> +		compatible = "regulator-fixed";
-> +		vin-supply = <&reg_wall_5p0>;
-> +		regulator-name = "OTG_VBUS";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		gpio = <&gpio1 8 GPIO_ACTIVE_LOW>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	clk_codec: clock-codec {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <12000000>;
-> +	};
-> +
-> +	sound {
-> +		compatible = "simple-audio-card";
-> +		simple-audio-card,name = "SGTL5000-Card";
-> +		simple-audio-card,format = "i2s";
-> +		simple-audio-card,bitclock-master = <&codec_dai>;
-> +		simple-audio-card,frame-master = <&codec_dai>;
-> +		simple-audio-card,widgets = "Headphone", "Headphone Jack";
-> +		simple-audio-card,routing = "Headphone Jack", "HP_OUT";
-> +
-> +		cpu_dai: simple-audio-card,cpu {
-> +			sound-dai = <&sai2>;
-> +		};
-> +
-> +		codec_dai: simple-audio-card,codec {
-> +			sound-dai = <&sgtl5000>;
-> +		};
-> +	};
-> +};
-> +
-> +&ecspi1 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c2 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <100000>;
-> +	status = "okay";
-> +
-> +	sgtl5000: audio-codec@a {
-> +		compatible = "fsl,sgtl5000";
-> +		reg = <0x0a>;
-> +		#sound-dai-cells = <0>;
-> +		clocks = <&clk_codec>;
-> +		VDDA-supply = <&reg_base3p3>;
-> +		VDDIO-supply = <&reg_base3p3>;
-> +	};
-> +
-> +	boardID: gpio@3a {
-> +		compatible = "nxp,pca8574";
-> +		reg = <0x3a>;
-> +		gpio-controller;
-> +		#gpio-cells = <1>;
-> +	};
-> +};
-> +
-> +&sai2 {
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
+> +	return len;
+> +}
 
-Please end property list with 'status'.
+Why do you have an empty store function?
 
-> +	uart-has-rtscts;
-> +};
 > +
-> +&uart3 {
-> +	status = "okay";
-> +};
+> +static ssize_t sp_iop_mode_show(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	struct sp_iop *iop = dev_get_drvdata(dev);
+> +	ssize_t len = 0;
 > +
-> +&uart4 {
-> +	status = "okay";
-> +};
-> +
-> +&usbotg1 {
-> +	status = "okay";
-> +};
-> +
-> +&usbotg2 {
-> +	dr_mode = "host";
-> +	status = "disabled";
-> +};
-> +
-> +&usdhc2 {
-> +	status = "okay";
-> +};
-> +
-> +
+> +	if (iop->mode == 0)
+> +		dev_info(dev, "iop_normal_mode\n");
+> +	else if (iop->mode == 1)
+> +		dev_info(dev, "iop_standby_mode\n");
+> +	return len;
+> +}
 
-Drop EOF newlines.
+Again, this is not returning anything in sysfs.
 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi
-> new file mode 100644
-> index 000000000000..54e1d3d8fa55
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi
-> @@ -0,0 +1,645 @@
-> +// SPDX-License-Identifier: (GPL-2.0 or MIT)
-> +//
-> +// Copyright 2018 NXP
-> +// Copyright (C) 2021 emtrion GmbH
-> +//
-> +
-> +/dts-v1/;
-> +
-> +#include "imx8mm.dtsi"
-> +
-> +/ {
-> +	chosen {
-> +		stdout-path = &uart1;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		rpmsg_reserved: rpmsg@b8000000 {
-> +			no-map;
-> +			reg = <0 0xb8000000 0 0x400000>;
-> +		};
-> +
-> +		loader_reserved: loader@bb700000 {
-> +			no-map;
-> +			reg = <0 0xbb700000 0x0 0x00100000>;
-> +		};
-> +
-> +		pci_reserved: pci@bb800000 {
-> +			no-map;
-> +			reg = <0 0xbb800000 0x0 0x00200000>;
-> +		};
-> +
-> +		ivshmem2_reserved: ivshmem2@bba00000 {
-> +			no-map;
-> +			reg = <0 0xbba00000 0x0 0x00100000>;
-> +		};
-> +
-> +		ivshmem_reserved: ivshmem@bbb00000 {
-> +			no-map;
-> +			reg = <0 0xbbb00000 0x0 0x00100000>;
-> +		};
-> +	};
-> +
-> +	som_leds: leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_gpio_led>;
-> +
-> +		green {
-> +			label = "som:green";
-> +			gpios = <&gpio3 4 GPIO_ACTIVE_HIGH>;
-> +			default-state = "on";
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +
-> +		red {
-> +			label = "som:red";
-> +			gpios = <&gpio5 10 GPIO_ACTIVE_HIGH>;
-> +			default-state = "off";
-> +		};
-> +	};
-> +
-> +	lvds_backlight: lvds-backlight {
-> +		compatible = "pwm-backlight";
-> +		enable-gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
-> +		pwms = <&pwm1 0 50000 0>;
-> +		brightness-levels = <
-> +			0 4 8 16 32 64 80 96 112
-> +			128 144 160 176 250
-> +		>;
-> +		default-brightness-level = <9>;
-> +		status = "disabled";
-> +	};
-> +
-> +	reg_usdhc1_vmmc: regulator-emmc {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "eMMC";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +
-> +	reg_usdhc2_vmmc: regulator-usdhc2 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "sdcard_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +};
-> +
-> +&A53_0 {
-> +	cpu-supply = <&buck2_reg>;
-> +};
-> +
-> +&ecspi1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_ecspi1 &pinctrl_ecspi1_cs>;
-> +	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-> +
-> +&flexspi {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexspi0>;
-> +	pinctrl-1 = <&pinctrl_flexspi1>;
-> +	status = "okay";
-> +
-> +	flash0: spi-flash@0 {
-> +		reg = <0>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		compatible = "jedec,spi-nor";
-> +		spi-max-frequency = <40000000>;
-> +	};
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl-names = "default";
-> +
-> +	pinctrl_csi_pwn: csi_pwn_grp {
+How was this tested???
 
-Hyphen is more recommended for node name.
+> +static ssize_t sp_iop_mode_store(struct device *dev, struct device_attribute *attr,
+> +				 const char *buf, size_t count)
+> +{
+> +	struct sp_iop *iop = dev_get_drvdata(dev);
+> +	unsigned char ret = count;
+> +
+> +	if (buf[0] == '0') {
+> +		sp_iop_normal_mode(iop);
+> +		dev_info(dev, "Switch to normal mode.\n");
+> +	} else if (buf[0] == '1') {
+> +		sp_iop_standby_mode(iop);
+> +		dev_info(dev, "Switch to standby mode.\n");
+> +	} else {
+> +		dev_info(dev, "echo 0 or 1 mode\n");
+> +		dev_info(dev, "0:normal mode\n");
+> +		dev_info(dev, "1:standby mode\n");
+> +	}
+> +	return ret;
+> +}
 
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO07_GPIO1_IO7		0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_ecspi1: ecspi1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK		0x82
-> +			MX8MM_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI		0x82
-> +			MX8MM_IOMUXC_ECSPI1_MISO_ECSPI1_MISO		0x82
-> +		>;
-> +	};
-> +
-> +	pinctrl_ecspi1_cs: ecspi1cs {
+dev_info() is NOT for stuff like this at all.  You do not display a
+"help" file or anything else like that in this way.
 
-Name the pinctrl node more consistently.
+Please use sysfs correctly.
 
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_ECSPI1_SS0_GPIO5_IO9		0x40000
-> +			MX8MM_IOMUXC_ECSPI2_SS0_GPIO5_IO13		0x40000
-> +		>;
-> +	};
-> +
-> +	pinctrl_fec1: fec1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_ENET_MDC_ENET1_MDC			0x3
-> +			MX8MM_IOMUXC_ENET_MDIO_ENET1_MDIO		0x3
-> +			MX8MM_IOMUXC_ENET_TD3_ENET1_RGMII_TD3		0x1f
-> +			MX8MM_IOMUXC_ENET_TD2_ENET1_RGMII_TD2		0x1f
-> +			MX8MM_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x1f
-> +			MX8MM_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x1f
-> +			MX8MM_IOMUXC_ENET_RD3_ENET1_RGMII_RD3		0x91
-> +			MX8MM_IOMUXC_ENET_RD2_ENET1_RGMII_RD2		0x91
-> +			MX8MM_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x91
-> +			MX8MM_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x91
-> +			MX8MM_IOMUXC_ENET_TXC_ENET1_RGMII_TXC		0x1f
-> +			MX8MM_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x91
-> +			MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
-> +			MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
-> +			MX8MM_IOMUXC_GPIO1_IO09_GPIO1_IO9		0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexspi0: flexspi0grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_ALE_QSPI_A_SCLK		0x1c2
-> +			MX8MM_IOMUXC_NAND_CE0_B_QSPI_A_SS0_B		0x82
-> +			MX8MM_IOMUXC_NAND_DATA00_QSPI_A_DATA0		0x82
-> +			MX8MM_IOMUXC_NAND_DATA01_QSPI_A_DATA1		0x82
-> +			MX8MM_IOMUXC_NAND_DATA02_QSPI_A_DATA2		0x82
-> +			MX8MM_IOMUXC_NAND_DATA03_QSPI_A_DATA3		0x82
-> +			MX8MM_IOMUXC_NAND_DQS_QSPI_A_DQS		0x82
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexspi1: flexspi1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_CLE_QSPI_B_SCLK		0x1c2
-> +			MX8MM_IOMUXC_NAND_CE2_B_QSPI_B_SS0_B		0x82
-> +			MX8MM_IOMUXC_NAND_DATA04_QSPI_B_DATA0		0x82
-> +			MX8MM_IOMUXC_NAND_DATA05_QSPI_B_DATA1		0x82
-> +			MX8MM_IOMUXC_NAND_DATA06_QSPI_B_DATA2		0x82
-> +			MX8MM_IOMUXC_NAND_DATA07_QSPI_B_DATA3		0x82
-> +		>;
-> +	};
-> +
-> +	pinctrl_gpio_led: gpioledgrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_ECSPI2_SCLK_GPIO5_IO10		0x19
-> +			MX8MM_IOMUXC_NAND_CE3_B_GPIO3_IO4		0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL			0x400001c3
-> +			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA			0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2: i2c2grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL			0x400001c3
-> +			MX8MM_IOMUXC_I2C2_SDA_I2C2_SDA			0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3: i2c3grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL			0x400001c3
-> +			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA			0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_lvds: lvdsgrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SAI5_MCLK_GPIO3_IO25		0x06
-> +		>;
-> +	};
-> +
-> +	pinctrl_pcie0: pcie0grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SAI5_RXC_GPIO3_IO20		0x41
-> +			MX8MM_IOMUXC_SAI5_RXFS_GPIO3_IO19		0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_pmic: pmicirq {
+Also, there is a function to read 1/0 from sysfs, please use that.
 
-Ditto
+> +
+> +static DEVICE_ATTR_RW(sp_iop_state1);
+> +static DEVICE_ATTR_RW(sp_iop_mode);
 
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_CE1_B_GPIO3_IO2		0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_pwm1: pwm1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO01_PWM1_OUT		0x06
-> +		>;
-> +	};
-> +
-> +	pinctrl_sai2: sai2grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SAI2_MCLK_SAI2_MCLK		0xd6
-> +			MX8MM_IOMUXC_SAI2_RXC_SAI2_RX_BCLK		0xd6
-> +			MX8MM_IOMUXC_SAI2_RXD0_SAI2_RX_DATA0		0xd6
-> +			MX8MM_IOMUXC_SAI2_RXFS_SAI2_RX_SYNC		0xd6
-> +			MX8MM_IOMUXC_SAI2_TXC_SAI2_TX_BCLK		0xd6
-> +			MX8MM_IOMUXC_SAI2_TXD0_SAI2_TX_DATA0		0xd6
-> +			MX8MM_IOMUXC_SAI2_TXFS_SAI2_TX_SYNC		0xd6
-> +		>;
-> +	};
-> +
-> +	pinctrl_spdif1: spdif1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SPDIF_TX_SPDIF1_OUT		0xd6
-> +			MX8MM_IOMUXC_SPDIF_RX_SPDIF1_IN			0xd6
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart1: uart1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_UART1_RXD_UART1_DCE_RX		0x140
-> +			MX8MM_IOMUXC_UART1_TXD_UART1_DCE_TX		0x140
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX		0x140
-> +			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX		0x140
-> +
-> +			/* rts and cts */
-> +			MX8MM_IOMUXC_SAI3_RXC_UART2_DCE_CTS_B		0x140
-> +			MX8MM_IOMUXC_SAI3_RXD_UART2_DCE_RTS_B		0x140
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart3: uart3grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_UART3_RXD_UART3_DCE_RX		0x140
-> +			MX8MM_IOMUXC_UART3_TXD_UART3_DCE_TX		0x140
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart4: uart4grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_UART4_RXD_UART4_DCE_RX		0x140
-> +			MX8MM_IOMUXC_UART4_TXD_UART4_DCE_TX		0x140
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_gpio: usdhc1grpgpio {
+These are not really read/write files, please make them the correct
+mode.
 
-End with 'grp' maybe.
+> +static int  sp_iop_get_normal_code(struct device *dev, struct sp_iop *iop)
+> +{
+> +	const struct firmware *fw;
+> +	static const char file[] = "normal.bin";
+> +	unsigned int err, i;
+> +
+> +	err = request_firmware(&fw, file, dev);
+> +	if (err) {
+> +		dev_err(dev, "get bin file error\n");
+> +		return err;
+> +	}
+> +
+> +	for (i = 0; i < NORMAL_CODE_MAX_SIZE; i++) {
+> +		char temp;
+> +
+> +		temp = fw->data[i];
+> +		iop->iop_normal_code[i] = temp;
+> +	}
+> +	release_firmware(fw);
+> +	return err;
+> +}
+> +
+> +static int  sp_iop_get_standby_code(struct device *dev, struct sp_iop *iop)
+> +{
+> +	const struct firmware *fw;
+> +	static const char file[] = "standby.bin";
+> +	unsigned int err, i;
+> +
+> +	err = request_firmware(&fw, file, dev);
+> +	if (err) {
+> +		dev_err(dev, "get bin file error\n");
+> +		return err;
+> +	}
+> +
+> +	for (i = 0; i < STANDBY_CODE_MAX_SIZE; i++) {
+> +		char temp;
+> +
+> +		temp = fw->data[i];
+> +		iop->iop_standby_code[i] = temp;
+> +	}
+> +	release_firmware(fw);
+> +	return err;
+> +}
+> +
+> +static int sp_iop_get_resources(struct platform_device *pdev, struct sp_iop *p_sp_iop_info)
+> +{
+> +	struct resource *r;
+> +
+> +	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, "iop");
+> +	p_sp_iop_info->iop_regs = devm_ioremap_resource(&pdev->dev, r);
+> +	if (IS_ERR(p_sp_iop_info->iop_regs)) {
+> +		dev_err(&pdev->dev, "ioremap fail\n");
+> +		return PTR_ERR(p_sp_iop_info->iop_regs);
+> +	}
+> +
+> +	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, "iop_pmc");
+> +	p_sp_iop_info->pmc_regs = devm_ioremap_resource(&pdev->dev, r);
+> +	if (IS_ERR(p_sp_iop_info->pmc_regs)) {
+> +		dev_err(&pdev->dev, "ioremap fail\n");
+> +		return PTR_ERR(p_sp_iop_info->pmc_regs);
+> +	}
+> +
+> +	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, "moon0");
+> +	p_sp_iop_info->moon0_regs = devm_ioremap_resource(&pdev->dev, r);
+> +	if (IS_ERR(p_sp_iop_info->moon0_regs)) {
+> +		dev_err(&pdev->dev, "ioremap fail\n");
+> +		return PTR_ERR(p_sp_iop_info->moon0_regs);
+> +	}
+> +	return IOP_SUCCESS;
+> +}
+> +
+> +static int sp_iop_platform_driver_probe(struct platform_device *pdev)
+> +{
+> +	int ret = -ENXIO;
+> +	int rc;
+> +	struct sp_iop *iop;
+> +	struct device_node *memnp;
+> +	struct resource mem_res;
+> +
+> +	iop = devm_kzalloc(&pdev->dev, sizeof(struct sp_iop), GFP_KERNEL);
+> +	if (!iop) {
+> +		ret	= -ENOMEM;
+> +		goto fail_kmalloc;
+> +	}
+> +	/* init */
+> +	mutex_init(&iop->write_lock);
+> +	/* register device */
+> +	iop->dev.name  = "sp_iop";
+> +	iop->dev.minor = MISC_DYNAMIC_MINOR;
+> +	ret = misc_register(&iop->dev);
 
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD1_RESET_B_USDHC1_RESET_B		0x41
-> +			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x1c4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1: usdhc1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK			0x190
-> +			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD			0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4		0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5		0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6		0x1d0
-> +			MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7		0x1d0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK			0x194
-> +			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD			0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4		0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5		0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6		0x1d4
-> +			MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7		0x1d4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK			0x196
-> +			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD			0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA4_USDHC1_DATA4		0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA5_USDHC1_DATA5		0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA6_USDHC1_DATA6		0x1d6
-> +			MX8MM_IOMUXC_SD1_DATA7_USDHC1_DATA7		0x1d6
-> +		>;
-> +	};
-> +
-> +	/* no reset for sdhc2 interface */
-> +	pinctrl_usdhc2_gpio: usdhc2grpgpio {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x1c4
-> +			MX8MM_IOMUXC_SD2_WP_USDHC2_WP			0x1c4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK			0x190
-> +			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD			0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d0
-> +			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK			0x194
-> +			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD			0x1d4
-> +			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d4
-> +			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d4
-> +			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d4
-> +			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4
-> +			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK			0x196
-> +			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD			0x1d6
-> +			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d6
-> +			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d6
-> +			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d6
-> +			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d6
-> +			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
-> +		>;
-> +	};
-> +
-> +	pinctrl_wdog: wdoggrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0xc6
-> +		>;
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c2 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c2>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c3 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c3>;
-> +	status = "okay";
-> +
-> +	bd71847:pmic@4b {
+Why do you need a misc device at all?  What are you using it for?  You
+do not have any file handling at all.
 
-Missing space before node name.
+This driver seems very very odd, are you SURE you are actually using it?
 
-> +		compatible = "rohm,bd71847";
-> +		reg = <0x4b>;
-> +		pinctrl-0 = <&pinctrl_pmic>;
-> +		interrupt-parent = <&gpio3>;
-> +		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +		rohm,reset-snvs-powered;
-> +
-> +		regulators {
-> +			buck1_reg: BUCK1 {
-> +				regulator-name = "BUCK1";
-> +				regulator-min-microvolt = <700000>;
-> +				regulator-max-microvolt = <1300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <1250>;
-> +			};
-> +
-> +			buck2_reg: BUCK2 {
-> +				regulator-name = "BUCK2";
-> +				regulator-min-microvolt = <700000>;
-> +				regulator-max-microvolt = <1300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +				regulator-ramp-delay = <1250>;
-> +				rohm,dvs-run-voltage = <1000000>;
-> +				rohm,dvs-idle-voltage = <900000>;
-> +			};
-> +
-> +			buck3_reg: BUCK3 {
-> +				// BUCK5 in datasheet
-> +				regulator-name = "BUCK3";
-> +				regulator-min-microvolt = <700000>;
-> +				regulator-max-microvolt = <1350000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck4_reg: BUCK4 {
-> +				// BUCK6 in datasheet
-> +				regulator-name = "BUCK4";
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck5_reg: BUCK5 {
-> +				// BUCK7 in datasheet
-> +				regulator-name = "BUCK5";
-> +				regulator-min-microvolt = <1605000>;
-> +				regulator-max-microvolt = <1995000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			buck6_reg: BUCK6 {
-> +				// BUCK8 in datasheet
-> +				regulator-name = "BUCK6";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1400000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo1_reg: LDO1 {
-> +				regulator-name = "LDO1";
-> +				regulator-min-microvolt = <1600000>;
-> +				regulator-max-microvolt = <1900000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo2_reg: LDO2 {
-> +				regulator-name = "LDO2";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <900000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo3_reg: LDO3 {
-> +				regulator-name = "LDO3";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo4_reg: LDO4 {
-> +				regulator-name = "LDO4";
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo6_reg: LDO6 {
-> +				regulator-name = "LDO6";
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +		};
-> +	};
-> +
-> +	rv1805:rtc@69 {
+thanks,
 
-Ditto
-
-> +		reg = <0x69>;
-> +		compatible = "abracon,ab1805";
-
-Flip the order to start properties with compatible.
-
-> +	};
-> +};
-> +
-> +&mu {
-> +	status = "okay";
-> +};
-> +
-> +&pwm1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_pwm1>;
-> +};
-> +
-> +&sai2 {
-> +	#sound-dai-cells = <0>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_sai2>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_SAI2>;
-> +	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
-> +	assigned-clock-rates = <12000000>;
-> +	status = "disabled";
-> +};
-> +
-> +&spdif1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_spdif1>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_SPDIF1>;
-> +	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
-> +	assigned-clock-rates = <24576000>;
-> +	clocks = <&clk IMX8MM_CLK_AUDIO_AHB>, <&clk IMX8MM_CLK_24M>,
-> +		<&clk IMX8MM_CLK_SPDIF1>, <&clk IMX8MM_CLK_DUMMY>,
-> +		<&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_CLK_DUMMY>,
-> +		<&clk IMX8MM_CLK_AUDIO_AHB>, <&clk IMX8MM_CLK_DUMMY>,
-> +		<&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_CLK_DUMMY>,
-> +		<&clk IMX8MM_AUDIO_PLL1_OUT>, <&clk IMX8MM_AUDIO_PLL2_OUT>;
-> +	clock-names = "core", "rxtx0", "rxtx1", "rxtx2", "rxtx3",
-> +		"rxtx4", "rxtx5", "rxtx6", "rxtx7", "spba", "pll8k", "pll11k";
-> +	status = "disabled";
-> +};
-> +
-> +&fec1 {
-
-Sort label node alphabetically.
-
-Shawn
-
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_fec1>;
-> +	phy-mode = "rgmii-id";
-> +	phy-reset-gpios = <&gpio1 9 0>;
-> +	fsl,magic-packet;
-> +	status = "okay";
-> +};
-> +
-> +&uart1 { /* console */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_UART1>;
-> +	assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_80M>;
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart2>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_UART2>;
-> +	assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_80M>;
-> +	status = "okay";
-> +};
-> +
-> +&uart3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart3>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_UART3>;
-> +	assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_80M>;
-> +	status = "okay";
-> +};
-> +
-> +&uart4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart4>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_UART4>;
-> +	assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_80M>;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg1 {
-> +	dr_mode = "otg";
-> +	over-current-active-low;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg2 {
-> +	dr_mode = "host";
-> +	disable-over-current;
-> +	status = "disabled";
-> +};
-> +
-> +&usdhc1 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc1>, <&pinctrl_usdhc1_gpio>;
-> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>, <&pinctrl_usdhc1_gpio>;
-> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>, <&pinctrl_usdhc1_gpio>;
-> +	bus-width = <8>;
-> +	vmmc-supply = <&reg_usdhc1_vmmc>;
-> +	keep-power-in-suspend;
-> +	non-removable;
-> +	status = "okay";
-> +};
-> +
-> +&usdhc2 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-> +	wp-gpios = <&gpio2 20 GPIO_ACTIVE_HIGH>;
-> +	bus-width = <4>;
-> +	vmmc-supply = <&reg_usdhc2_vmmc>;
-> +	no-1-8-v;
-> +	status = "okay";
-> +};
-> +
-> +&wdog1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_wdog>;
-> +	fsl,ext-reset-output;
-> +	status = "okay";
-> +};
-> -- 
-> 2.20.1
-> 
+greg k-h
