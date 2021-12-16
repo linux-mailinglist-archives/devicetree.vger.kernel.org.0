@@ -2,98 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39D45476C25
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 09:45:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6559476C38
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 09:51:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235008AbhLPIpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 03:45:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46928 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229646AbhLPIpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 03:45:54 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1281C061574
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 00:45:54 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id q17so18885969plr.11
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 00:45:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=MjC/A+rsvWGUoFt9t6urvdMncFBk7aRr9YPhr/7FhlA=;
-        b=Np5LEPHXgq1+wju3UXnCKrLm8eOREkc3owadnwmR0z8LYEXmWKnbWtEwN21yYis4az
-         7DitXpEfkI8a11NFxakMv0pqE7IN7Kvk2+nPgPdOORLXnZ9fsFjeTjH59klul+VbGE/d
-         kbCFGEsOtZpbQdm9YLOyubnGQXRn5Li3xg7FjAWC182cnBZ0hLB6G/xWA5L+YViIObWA
-         J0IwR5WzrJDBMwQeyoz703OqT6krEsjBlByLKpJBuhoBZyQYzGUeMa0FlClAqUA+jj8n
-         7wTPXTiS9zAHQKSTA8xGirAzv3NKd35gLjEK0vaPPqHuSp5HKnxxqyZS+0nl0TOzZoM9
-         PnbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=MjC/A+rsvWGUoFt9t6urvdMncFBk7aRr9YPhr/7FhlA=;
-        b=Mx5+X7Gp3wU3TZRrYtRa0e3NRhjzvb1tE+OlVHGfHw0/CRepoPOSZSDtDnpV2UGVX0
-         cTiv0/OyB4tlazioGa8u7gesh7yRktOLWyMg9AdOkYdvKkdqihfjYGsEDJ29IPY+lcdc
-         88UHV7fIqY7qh78+o6+mFSqGmev8ux+slfQJhnOnIzvc/A8ckNUuO+jHmlq8Z0xHti2l
-         j3Q9fqEfiOif7oK2FrjGJNhLQzVw0H7bmireXAdshAtCDXcaPc7GlIVLHIK5Tr99pwia
-         VKMQaJyKxoRvN9ahkFVtfo0Ucj8CzEcnWitCYOAodORwQ8gsn9IlPp+tk4/ZS1ZVcrOv
-         lDbg==
-X-Gm-Message-State: AOAM53251ZBQUsj4eIUSRuwD7wjuizlJQFruEEtNe81lvAV2jHFZBUqd
-        vc/P73V57Zr1q+TfQL39G9+3rEQ+813NUvtlgMk=
-X-Google-Smtp-Source: ABdhPJze8RKV9DV7/R+M09AXT7NLYW+yLpW+gWrXURRigtYuFnZ0edky4nxUKW4+yNAtLiMCxQNm0OE2x19mGibz9Bs=
-X-Received: by 2002:a17:902:7b97:b0:148:a2f7:9d75 with SMTP id
- w23-20020a1709027b9700b00148a2f79d75mr8483171pll.148.1639644354248; Thu, 16
- Dec 2021 00:45:54 -0800 (PST)
-MIME-Version: 1.0
-Received: by 2002:a05:6a10:6714:0:0:0:0 with HTTP; Thu, 16 Dec 2021 00:45:53
- -0800 (PST)
-Reply-To: mrsaishag45@gmail.com
-From:   Mrs Aisha Al-Qaddafi <mrsaishagaddafi35@gmail.com>
-Date:   Thu, 16 Dec 2021 00:45:53 -0800
-Message-ID: <CABTz6dMmkvH0zHV1PLzopuKcYueE8mzgxp6ZQk7JZcK_d2WKcw@mail.gmail.com>
-Subject: Dear Friend,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        id S235012AbhLPIvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 03:51:55 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:56616 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229533AbhLPIvz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 03:51:55 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AEBB3B82273;
+        Thu, 16 Dec 2021 08:51:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D6A2C36AE2;
+        Thu, 16 Dec 2021 08:51:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639644712;
+        bh=JPhSWycjfzHEYZAeL8Z+Ay7PDuPFKwvup/dAJX0d5FQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=K0o94V/VyH+RZZ1Rh05/eX/2jfvpNpS6Pdsjk84V+ijmq2yaDcfOfK8gGw8gyjVVM
+         8A7MjMpdmGdkQUu9F4C5GfQVm5XwQvq661kcUIyV3ZsMv1cXNRx4zeQAY/+vcfdEc8
+         dSkNABV64mzpXiMX6+Q11jiDB1NX6c8wTvZM8vhnxFcTi/F3c1pJ370YWLOdJlEvnX
+         rSRDKPjayBPsp6uRUZWkoA06UK+2/yNzJa/huhSOC7mVp++9l4fQc3CkNYTYK4KJpg
+         bmvbTSA0eNdRGWqkRIcEv2JZNKZp3nzhfwkDfXajZXndE1SQtuL5gCDspqackP3fBR
+         hffer19QF4hGg==
+Received: from cfbb000407.r.cam.camfibre.uk ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mxmUQ-00CTDn-HD; Thu, 16 Dec 2021 08:51:50 +0000
+Date:   Thu, 16 Dec 2021 08:51:40 +0000
+Message-ID: <87tuf9vso3.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Qin Jian <qinjian@cqplus1.com>
+Cc:     robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        tglx@linutronix.de, p.zabel@pengutronix.de, linux@armlinux.org.uk,
+        broonie@kernel.org, arnd@arndb.de, stefan.wahren@i2se.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        wells.lu@sunplus.com
+Subject: Re: [PATCH v6 08/10] irqchip: Add Sunplus SP7021 interrupt controller driver
+In-Reply-To: <677ce3dd9b4650521968d6cb50999608b5136ddd.1639560427.git.qinjian@cqplus1.com>
+References: <cover.1639560427.git.qinjian@cqplus1.com>
+        <677ce3dd9b4650521968d6cb50999608b5136ddd.1639560427.git.qinjian@cqplus1.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: qinjian@cqplus1.com, robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, tglx@linutronix.de, p.zabel@pengutronix.de, linux@armlinux.org.uk, broonie@kernel.org, arnd@arndb.de, stefan.wahren@i2se.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, wells.lu@sunplus.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello My Beloved One, i need your assistance,
+On Thu, 16 Dec 2021 07:08:10 +0000,
+Qin Jian <qinjian@cqplus1.com> wrote:
+> 
+> Add interrupt controller driver for Sunplus SP7021 SoC.
+> 
+> This is the interrupt controller in P-chip which collects all interrupt
+> sources in P-chip and routes them to parent interrupt controller in C-chip.
+> 
+> Signed-off-by: Qin Jian <qinjian@cqplus1.com>
+> ---
+> Fix the comments from Marc.
 
-Please bear with me. I am writing this letter to you with tears and sorrow
-from my heart.
+No, you didn't.
 
-I am Aisha Muammar Gaddafi, the only daughter of the embattled president of
-Libya, Hon. Muammar Gaddafi. I know my mail might come to you as a surprise
-because you don=E2=80=99t know me, but due to the unsolicited nature of my
-situation here in Refugee camp Ouagadougou Burkina Faso i decided to
-contact you for help. I have passed through pains and sorrowful moments
-since the death of my father. At the same time, my family is the target of
-Western nations led by Nato who want to destroy my father at all costs. Our
-investments and bank accounts in several countries are their targets to
-freeze.
+> +void sp_intc_set_ext(u32 hwirq, int ext_num)
+> +{
+> +	sp_intc_assign_bit(hwirq, REG_INTR_PRIORITY, !ext_num);
+> +}
+> +EXPORT_SYMBOL_GPL(sp_intc_set_ext);
 
-My Father of blessed memory deposited the sum of $27.5M (Twenty Seven
-Million Five Hundred Thousand Dollars) in a Bank at Burkina Faso which he
-used my name as the next of kin. I have been commissioned by the (BOA) bank
-to present an interested foreign investor/partner who can stand as my
-trustee and receive the fund in his account for a possible investment in
-his country due to my refugee status here in Burkina Faso.
+I already commented on this. In case it wasn't clear, this is a strong
+NAK to random low-level hacks like this.
 
-I am in search of an honest and reliable person who will help me and stand
-as my trustee so that I will present him to the Bank for the transfer of
-the fund to his bank account overseas. I have chosen to contact you after
-my prayers and I believe that you will not betray my trust but rather take
-me as your own sister or daughter. If this transaction interests you, you
-don't have to disclose it to anybody because of what is going on with my
-entire family, if the United nation happens to know this account, they will
-freeze it as they freeze others, so please keep this transaction only to
-yourself until we finalize it.
+	M.
 
-Sorry for my pictures. I will enclose it in my next mail and more about me
-when I hear from you okay.
-
-Yours Sincerely
-Best Regard,
-Aisha Gaddafi
+-- 
+Without deviation from the norm, progress is not possible.
