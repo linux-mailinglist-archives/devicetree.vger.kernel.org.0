@@ -2,83 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0FA047751F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 15:58:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A819B47753E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:01:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233629AbhLPO6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 09:58:55 -0500
-Received: from mail.skyhub.de ([5.9.137.197]:47026 "EHLO mail.skyhub.de"
+        id S235138AbhLPPBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 10:01:41 -0500
+Received: from mga02.intel.com ([134.134.136.20]:18774 "EHLO mga02.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238162AbhLPO6y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Dec 2021 09:58:54 -0500
-Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 36B691EC04F0;
-        Thu, 16 Dec 2021 15:58:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1639666729;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=bPnAfUL2qkg60kOkbc+GvUrWe3FV49Ti78cms0TCCaw=;
-        b=MsnqJn8uFOT1pz6SXU7T5EbdN02f263mcrgw0HXXo8/ioME2lLYT/8tKVhpgrtQn064RF3
-        kq0sPjdT1z068sHqWT4pHNiGE8QLCu71aLh7dCkVAIDzqdXcOf5UkmOINkKqu6qCmy2V86
-        Rt9veDHrpc3QwC1xLsn6Zfaf82ZrDI4=
-Date:   Thu, 16 Dec 2021 15:58:56 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     Baoquan He <bhe@redhat.com>
-Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
-        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
-        Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-Subject: Re: [PATCH v17 03/10] x86: kdump: use macro CRASH_ADDR_LOW_MAX in
- functions reserve_crashkernel()
-Message-ID: <YbtUME6fjjHjy3Kr@zn.tnic>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <20211210065533.2023-4-thunder.leizhen@huawei.com>
- <YbntdtQo2jfbO4cO@zn.tnic>
- <20211216011040.GG3023@MiWiFi-R3L-srv>
- <YbsbO1XnrzLAIBEu@zn.tnic>
- <20211216141115.GA18773@MiWiFi-R3L-srv>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211216141115.GA18773@MiWiFi-R3L-srv>
+        id S232565AbhLPPBk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Dec 2021 10:01:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1639666900; x=1671202900;
+  h=from:to:cc:subject:date:message-id;
+  bh=mjCvYYPweWor1hTfJAHZ7Ke1fpQNjdFPojo+gum/cvc=;
+  b=VGoGFQZDlhZ4woRAt14FRYTlvw+xRiRLL8cOYXRtPCtTaF/rXdYg4LBq
+   2S5xsl1/hGBtzghljN+I7YmHnNKMFKkkQm0klUcl/9P0/RUrXzp3YDrJg
+   o8rLym819ST+n96tKWzgebmpuMDg/pW35v6SyRcgQqrSjTYJ3BqYXImi5
+   MgtlN//eOkwF89MusBsFvGhd5RJeroXvpIPKyIS5ATueacHsbpj1VFX1J
+   oL23mTLDCsid/YcyfPhay+d69TvIn/raUS0535khwGuFkcS1EmGFy0AgU
+   ptpW+RNKsm7O5QkyQM0di8c4CpZP3u24/XLDyng0dr8CMtC7bkaLc9jHB
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10199"; a="226796781"
+X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; 
+   d="scan'208";a="226796781"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2021 07:01:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; 
+   d="scan'208";a="519282679"
+Received: from inlubt0316.iind.intel.com ([10.191.20.213])
+  by orsmga008.jf.intel.com with ESMTP; 16 Dec 2021 07:01:01 -0800
+From:   lakshmi.sowjanya.d@intel.com
+To:     linus.walleij@linaro.org
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        bgolaszewski@baylibre.com, linux-kernel@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com, tamal.saha@intel.com,
+        pandith.n@intel.com, kenchappa.demakkanavar@intel.com,
+        lakshmi.sowjanya.d@intel.com
+Subject: [PATCH v3 0/2] Add pinctrl support for Intel Thunder Bay SoC
+Date:   Thu, 16 Dec 2021 20:30:58 +0530
+Message-Id: <20211216150100.21171-1-lakshmi.sowjanya.d@intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 10:11:15PM +0800, Baoquan He wrote:
->  As for the code refactoring, it can be done in another patchset.
+From: Lakshmi Sowjanya D <lakshmi.sowjanya.d@intel.com>
 
-Well, I said "future work" before having seen where this patchset is
-going. So no, in that case, the usual kernel development process is:
-cleanups/fixes first - new features later.
+Hi,
 
-You can see for yourself that piling more crap on what is an already
-unreadable mess is only going to make it worse. So, in order to avoid
-the maintenance nightmare, we clean up, streamline, document and then
-add the new feature and all is shiny.
+This patch set enables the support for the integrated pin controller in
+the Intel Thunder Bay SoC.
 
-Thx.
+Patch 1 holds the relevant Device Tree bindings documentation and an
+entry in MAINTAINERS file.
+Patch 2 holds the implementation of pinctrl driver.
+
+Keem Bay and Thunder Bay platforms doesn't provide identical feature set
+and register interfaces. There is no successor platform after Keem Bay
+and Thunder Bay. So, having a uniform framework for different IP will
+not give much advantage in this case and we prefer to have this
+implementation for Thunder Bay platform as a separate driver.
+
+Added reference to pincfg-node.yaml in the patternProperties.
+
+Please help to review this patch set.
+
+Thanks,
+Sowjanya
+
+Changes from v1:
+ - Removed hw specific configurations.
+ - Add set_config.
+ - Removed gpiochip_add_pin_range and added the same in device tree.
+ - Add gpio-ranges property in yaml file.
+
+Changes from v2:
+ - Add ref to pincfg-node.yaml in thunderbay.yaml file.
+
+Lakshmi Sowjanya D (2):
+  dt-bindings: pinctrl: Add bindings for Intel Thunderbay pinctrl driver
+  pinctrl: Add Intel Thunder Bay pinctrl driver
+
+ .../pinctrl/intel,pinctrl-thunderbay.yaml     |  122 ++
+ MAINTAINERS                                   |    5 +
+ drivers/pinctrl/Kconfig                       |   19 +
+ drivers/pinctrl/Makefile                      |    1 +
+ drivers/pinctrl/pinctrl-thunderbay.c          | 1322 +++++++++++++++++
+ 5 files changed, 1469 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/intel,pinctrl-thunderbay.yaml
+ create mode 100644 drivers/pinctrl/pinctrl-thunderbay.c
 
 -- 
-Regards/Gruss,
-    Boris.
+2.17.1
 
-https://people.kernel.org/tglx/notes-about-netiquette
