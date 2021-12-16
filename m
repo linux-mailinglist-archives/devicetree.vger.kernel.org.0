@@ -2,201 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6E834778E8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:25:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E22A6477927
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:33:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239744AbhLPQZx convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Dec 2021 11:25:53 -0500
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:52641 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239747AbhLPQZu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 11:25:50 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id DC8921C0003;
-        Thu, 16 Dec 2021 16:25:45 +0000 (UTC)
-Date:   Thu, 16 Dec 2021 17:25:44 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Michael Walle <michael@walle.cc>,
-        <linux-mtd@lists.infradead.org>, Michal Simek <monstr@monstr.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>, <linux-spi@vger.kernel.org>
-Subject: Re: [PATCH v4 2/3] spi: dt-bindings: Describe stacked/parallel
- memories modes
-Message-ID: <20211216172544.2005d96e@xps13>
-In-Reply-To: <20211214194431.4kpwfgvju6msh5d4@ti.com>
-References: <20211210201039.729961-1-miquel.raynal@bootlin.com>
-        <20211210201039.729961-3-miquel.raynal@bootlin.com>
-        <20211214194431.4kpwfgvju6msh5d4@ti.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S233858AbhLPQd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 11:33:58 -0500
+Received: from relay11.mail.gandi.net ([217.70.178.231]:59523 "EHLO
+        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232915AbhLPQd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 11:33:58 -0500
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 6328E10000B;
+        Thu, 16 Dec 2021 16:33:51 +0000 (UTC)
+From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        linux-renesas-soc@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v8 0/7] arm64: dts: renesas: Enable MAX9286 on Eagle and Condor
+Date:   Thu, 16 Dec 2021 17:34:32 +0100
+Message-Id: <20211216163439.139579-1-jacopo+renesas@jmondi.org>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Pratyush,
+Hello,
+  v8 is rebased on lates renesas-drivers.
 
-p.yadav@ti.com wrote on Wed, 15 Dec 2021 01:14:33 +0530:
+Minor changes compared to v7: address Geert's comments on the 'gpio-poc'
+property parsing and power enable/disable routine.
 
-> Hi Miquel,
-> 
-> On 10/12/21 09:10PM, Miquel Raynal wrote:
-> > Describe two new memories modes:
-> > - A stacked mode when the bus is common but the address space extended
-> >   with an additinals wires.
-> > - A parallel mode with parallel busses accessing parallel flashes where
-> >   the data is spread.
-> > 
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  .../bindings/spi/spi-peripheral-props.yaml    | 29 +++++++++++++++++++
-> >  1 file changed, 29 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > index 5dd209206e88..4194fee8f556 100644
-> > --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > @@ -82,6 +82,35 @@ properties:
-> >      description:
-> >        Delay, in microseconds, after a write transfer.
-> >  
-> > +  stacked-memories:
-> > +    $ref: /schemas/types.yaml#/definitions/uint64-matrix  
-> 
-> Why matrix? Can't you use array here? Sorry, I am not much familiar with 
-> JSON schema.
+The new property parsing logic reads like
 
-Yes, Rob also opened the discussion, I've answered there on this point,
-but I agree, this should be define as an array, but the current tooling
-refused to accept what I wanted from a dt-writing point of view. More
-on that on the dedicated thread.
+	ret = of_property_read_u32_array();
+	if (ret == -EVINAL) {
+		/* Use regulator */
 
-> > +    description: Several SPI memories can be wired in stacked mode.
-> > +      This basically means that either a device features several chip
-> > +      selects, or that different devices must be seen as a single
-> > +      bigger chip. This basically doubles (or more) the total address
-> > +      space with only a single additional wire, while still needing
-> > +      to repeat the commands when crossing a chip boundary. The size of
-> > +      each chip should be provided as members of the array.
-> > +    minItems: 2
-> > +    maxItems: 2
-> > +    items:
-> > +      maxItems: 1  
-> 
-> Thanks. This looks better to me.
-> 
-> But before we go ahead, I think there has been some confusion around 
-> what exactly your patches intend to support. Let's clear them up first. 
-> What type of setup do you want to support?
+		return 0;
+	}
 
-Before I try to clarify your questions below, the setup that I have is:
+	/* Make sure the property is well formed. */
+	if (ret || gpio_poc[0] > 1 && (gpio_poc[1] != HIGH/LOW)
+		return -EINVAL;
 
-Xilinx ZynqMP QSPI controller + 2 flashes.
+	return 0;
 
-What I want to describe is the specific handling of what the Xilinx
-QSPI controller is able to do. This controller has two modes when wired
-to more than one flash:
-- stacked
-- parallel
+Same as in v7:
 
-I have not entered the documentation nor the code in details yet, but I
-believe that handling two flashes in the stacked configuration, besides
-a couple of possible optimizations that are possible by the hardware,
-is close to what any controller would do. Maybe there is one difference
-though, when in the "stacked" mode, this controller treats the two
-flashes as a single one, so that is why, if we want to support this
-"advanced" mode, we *need* a way to know that this mode should be used
-because the controller expects a wider range of addresses.
+I have removed depencies on the post_register() v4l2 subdev operation to have
+this integrated separately.
 
-About the parallel configuration, there is absolutely no doubt that we
-have no other choice than describing how the data is spread across two
-devices. We don't really care about the manner, but the controller
-needs to know how to assert the two CS internally so this definitely
-something that needs to be described.
+This change upports BSP 5.1 commit
+https://github.com/renesas-rcar/linux-bsp/commit/28fdde07b28d5ae17ad6fb472ff4b52a4835cbee
 
-Now the question you might ask is, why do we define these properties as
-flash properties then? And this is a real good question, I think both
-actually work as long as we consider that we can only have either a
-spi-memory or any other type of device on a single bus, but not both at
-the same time. In v1 I proposed a controller property. Mark proposed to
-switch for a device property which I did in v2 onward.
+The usual note about condor:
 
->   1. One single flash but with multiple dies, with each die sitting on a 
->      different CS.
+Condor has 2 GMSL channels, something the current version of the MAX9286 driver
+does not support. However the DTS integration can be upstreamed but a single
+channel can be used at a time.
 
-Yes.
+Integration of the new "maxim,gpio-poc" property required for Eagle/Condor is
+fully reviewed and can be eventually fast-tracked.
 
->   2. Two (or more) identical but independent flash memories to be 
->      treated as one.
+The series has been tested on Eagle V3H board, while only compile tested for
+Condor.
 
-Yes.
+Jacopo Mondi (4):
+  dt-bindings: media: max9286: Re-indent example
+  dt-bindings: media: max9286: Define 'maxim,gpio-poc'
+  media: i2c: max9286: Use "maxim,gpio-poc" property
+  arm64: dts: renesas: condor: Enable MAX9286
 
->   3. Two (or more) different and independent flash memories to be 
->      treated as one.
+Kieran Bingham (3):
+  arm64: dts: renesas: eagle: Enable MAX9286
+  arm64: dts: renesas: Add GMSL cameras .dtsi
+  DNI: arm64: dts: renesas: eagle: Include eagle-gmsl
 
-I don't know. My first proposal excluded these, but I believe we can
-handle them with the change your proposed (the device size as part of
-the property).
+ .../bindings/media/i2c/maxim,max9286.yaml     | 275 +++++++++------
+ arch/arm64/boot/dts/renesas/gmsl-cameras.dtsi | 332 ++++++++++++++++++
+ .../arm64/boot/dts/renesas/r8a77970-eagle.dts | 112 ++++++
+ .../boot/dts/renesas/r8a77980-condor.dts      | 193 ++++++++++
+ drivers/media/i2c/max9286.c                   | 124 +++++--
+ 5 files changed, 899 insertions(+), 137 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/gmsl-cameras.dtsi
 
-> In our earlier exchanges you said you want to support 2. And when I 
-> wanted you to account for 3 as well you said we should use mtdconcat for 
-> that.
+--
+2.33.1
 
-Not that we should, but that we could because from a core perspective
-it's way more challenging than supporting identical devices. But the
-conversation drifted about the software backend that we should use
-rather than on the actual description, because mtdconcat is not a
-feature which benefits from any kind of description yet, so even if we
-use mtdconcat as backed, we will need some kind of description here as
-well. So, as I told previously, I am fine considering these setups
-in my proposal, that's why I updated my proposal to include the
-devices size, even though that is way out of scope compared to my
-initial target.
-
-But here we are talking about driver code, which has nothing to do with
-the bindings. If we focus on the bindings, I believe the solution with
-the sizes covers all cases.
-
-> So my question is, why can't we use mtdconcat for 2 as well, since 
-> it is just a special case of 3? And if we are using mtdconcat, then why 
-> do we need this at all? Shouldn't you then choose the chip at MTD layer 
-> and use the respective SPI device to get the CS value, which would make 
-> this property useless?
-
-Reason 1:
-As depicted above, while the stacked mode might more or less
-fit the mtdconcat idea, it is absolutely not the case for the parallel
-mode.
-
-Reason 2:
-mtdconcat is a software backend. Here we are discussing bindings.
-No matter what backed we finally pick, there will be the need for a
-proper description and so far there has been no binding for mtdconcat
-(even though I tried to push in favor of it a while ago without
-success). So no matter what software solution we we adopt, we
-*will* need an upstream binding description at some point. But
-mtdconcat really means "there are two devices we want to consider as a
-single". While here the point is: we have two devices that get
-abstracted by the controller, and we still must describe that.
-
-> I can see this making sense for case 1. For that case you said you don't 
-> have an existing datasheet or device to propose. And if there is no real 
-> device doing it I see little point in figuring out a binding for it.
-
-Yes, because somewhat we focused the debate over the devices, while I
-was initially talking about a controller abstraction. There is (at
-least) one controller doing such abstractions, the Xilinx ZynqMP
-generic QSPI controller, the spec is public (chapter 24):
-https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf
-
-I hope all this clarifies the situation!
-
-Cheers,
-Miquèl
