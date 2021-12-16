@@ -2,113 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F023477C0B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 19:58:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE11C477C14
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 20:00:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235823AbhLPS6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 13:58:22 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:32830 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbhLPS6W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 13:58:22 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BGIwIGh128870;
-        Thu, 16 Dec 2021 12:58:18 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1639681098;
-        bh=/eVUFmSqj+WeNM1aigDvD/bF0+5Xepmby3bX+b+Bofw=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=wpVoHPVulm0nWZu7Zd4kXMcaW0Vrf0KFR8PfHwDDAxA3s8gSt2gFZvk1KRea6H9+6
-         ROJFAgLLgIKRaBXAfpRFFK3Pcvt5xLxWfS2oMz0AmxphfeS3JWKqLyEJ+1nudw8cFD
-         NvWj9cxsMV8YT2pH1ogbH5sYwIrHuB36WXW4qfNY=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BGIwIZk109325
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 16 Dec 2021 12:58:18 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 16
- Dec 2021 12:58:18 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 16 Dec 2021 12:58:18 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BGIwHHv018875;
-        Thu, 16 Dec 2021 12:58:17 -0600
-Date:   Fri, 17 Dec 2021 00:28:16 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Dinh Nguyen <dinguyen@kernel.org>
-CC:     Dinh Nguyen <dinh.linux@gmail.com>, <devicetree@vger.kernel.org>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCHv2 1/3] dt-bindings: spi: cadence-quadspi: document
- "cdns,qspi-nor-ver-00-10"
-Message-ID: <20211216185814.xmljmryvghdtojnj@ti.com>
-References: <20211203181714.3138611-1-dinguyen@kernel.org>
- <20211206102242.e2ql7kcgzivh75v4@ti.com>
- <CADhT+wfrtqO6dDSUbq-eeyRodzigA7Gsce0xgK6mzLo0ujb5AQ@mail.gmail.com>
- <20211214200525.7tp2ovbh6vc6rks6@ti.com>
- <ad4bbd06-ef56-895c-f30c-4897420843c7@kernel.org>
+        id S240744AbhLPTAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 14:00:36 -0500
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:40673 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236361AbhLPTAg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 14:00:36 -0500
+Received: by mail-oi1-f179.google.com with SMTP id bk14so242777oib.7;
+        Thu, 16 Dec 2021 11:00:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hdOx86AunRNbUWN2dOi5//alRPIt6Fvuf4wwX65N5Oc=;
+        b=Bojs2oqFmwF5ksx3clHC5oSUTm+X7iSEZs1yQ6dmV+s3HqusLeZRrQ7gIHKh1KAHet
+         uaYs/m5xE8h7W15YpkrCocDrUiA9ndUdvgO4S3UzZtC8QX/d+p9CnD76zvHCIdlSjmBA
+         A347sw2b4tUEInCEoEJaXTVvOGDIWCbA4TEGuSkfXD53R2qTx3p0+0Yea/vHZFyz9QQS
+         Wcn+GK0ezOqyInkP5YBiDuD7k6UsR/aWYjTrxcPl482AYaQvqGKbElxFd3/MTA1AfKh6
+         /z46UHP/4VRGcxDSjllYdiRyTpZZIapoQtyjgxcNarUhAKOZGi+J/9AvAv9SOKKYOe7p
+         MQ9A==
+X-Gm-Message-State: AOAM532iS+KZqTbHTKnG0Qp+WKEiR3fUXPJ+96Kyplfhzf/4g02Skvy2
+        cdvY7f7VcMm2gE/5nfaKdCy0oEK2Zg==
+X-Google-Smtp-Source: ABdhPJxAA4FqZcDNMQTzkF/3ZR6S8qz6JUkvnHqI7g0Ovfj1rOvdACXNg5MWTpSmXQn689kW3sAbnA==
+X-Received: by 2002:a54:4792:: with SMTP id o18mr5188122oic.27.1639681235367;
+        Thu, 16 Dec 2021 11:00:35 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id s17sm1183485otp.20.2021.12.16.11.00.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 11:00:34 -0800 (PST)
+Received: (nullmailer pid 570381 invoked by uid 1000);
+        Thu, 16 Dec 2021 19:00:33 -0000
+Date:   Thu, 16 Dec 2021 13:00:33 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     David Mosberger-Tang <davidm@egauge.net>
+Cc:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Adham Abozaeid <adham.abozaeid@microchip.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        linux-wireless@vger.kernel.org,
+        Ajay Singh <ajay.kathat@microchip.com>,
+        linux-kernel@vger.kernel.org, Kalle Valo <kvalo@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] wilc1000: Document enable-gpios and reset-gpios
+ properties
+Message-ID: <YbuM0fLCo28OPPhg@robh.at.kernel.org>
+References: <20211215030501.3779911-1-davidm@egauge.net>
+ <20211215030501.3779911-3-davidm@egauge.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ad4bbd06-ef56-895c-f30c-4897420843c7@kernel.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20211215030501.3779911-3-davidm@egauge.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/12/21 09:36AM, Dinh Nguyen wrote:
+On Wed, 15 Dec 2021 03:05:12 +0000, David Mosberger-Tang wrote:
+> Add documentation for the ENABLE and RESET GPIOs that may be needed by
+> wilc1000-spi.
 > 
+> Signed-off-by: David Mosberger-Tang <davidm@egauge.net>
+> ---
+>  .../net/wireless/microchip,wilc1000.yaml      | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 > 
-> On 12/14/21 2:05 PM, Pratyush Yadav wrote:
-> > On 08/12/21 05:45PM, Dinh Nguyen wrote:
-> > > On Mon, Dec 6, 2021 at 9:51 PM Pratyush Yadav <p.yadav@ti.com> wrote:
-> > > > 
-> > > > On 03/12/21 12:17PM, Dinh Nguyen wrote:
-> > > > > The QSPI controller on Intel's SoCFPGA platform does not implement the
-> > > > > CQSPI_REG_WR_COMPLETION_CTRL register, thus a write to this register
-> > > > > results in a crash.
-> > > > > 
-> > > > > The module/revision ID is written in the MODULE_ID register. For this
-> > > > > variance, bits 23-8 is 0x0010.
-> > > > 
-> > > > When I looked at your original patches I was under the impression that
-> > > > this was a SoCFPGA specific thing and did not apply to other
-> > > > implementation of the IP in general.
-> > > > 
-> > > > If this is indeed a generic thing and we can detect it via the MODULE_ID
-> > > > register [0], then why not just read that register at probe time and
-> > > > apply this quirk based on the ID? Why then do we need a separate
-> > > > compatible at all?
-> > > > 
-> > > > [0] I would like to see it stated explicitly somewhere that version
-> > > > 0x0010 does not support the WR_COMPLETION_CTRL register.
-> > > > 
-> > > 
-> > > I cannot for sure confirm that this condition applies to only 0x0010
-> > > version of the
-> > > IP. I can verify that the IP that is in all 3 generations of SoCFPGA
-> > > devices, all have
-> > > MODULE_ID value of 0x0010 and all do not have the WR_COMPLETION_CTRL
-> > > register implemented.
-> > 
-> > I agree with Rob here. If you are not sure that this is a generic IP
-> > thing then you should not use a generic compatible.
-> > 
-> 
-> 
-> I think using the binding of "intel,socfpga-qspi" should be fine? If we go
-> by the MODULE_ID value as a indicator of versions, then the version hasn't
-> changed for all revisions of the SoCFPGA, dating back to the original
-> Cyclone5, which was introduced in 2012.
 
-Yes, I think you should keep using the SoC specific binding unless you 
-can find some documentation from Cadence that says all parts with this 
-MODULE_ID value don't have the WR_COMPLETION_CTRL register.
-
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+Reviewed-by: Rob Herring <robh@kernel.org>
