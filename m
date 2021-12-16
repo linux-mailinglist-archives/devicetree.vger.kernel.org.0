@@ -2,185 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 554AB477A8B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 18:29:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C824477AA6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 18:33:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239919AbhLPR3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 12:29:15 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:43945 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235619AbhLPR3O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 12:29:14 -0500
-Received: by mail-oi1-f176.google.com with SMTP id w64so3479508oif.10;
-        Thu, 16 Dec 2021 09:29:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BGDKRwosuspfYWxZApqXKSNZ+F/8DLGm7NO/ffPXmr0=;
-        b=LDERC2TzyuqcTGa6DhOCgTQYW5upMvrizhHTexUW3dJsQ2FgKBELIdmvdAUJ8yqZjn
-         pUxsHoh0KJTCYomQ9qlpTb71DrqcHyURLUPxfBP0703koIPqM7qcs3O2YIIk81inAXlr
-         1efDFNQKpIwmeJ42cA6Ujy1Jn1A/t+FLSq7dmw/WQ/OYCQ6Yz9C4qAvKwPBtZFgPgzG6
-         UY1VG+ZsePnK9Rm+cJYvDBCIBD5AskiAocoLAbg7z/Dfw0FvNLmWEptzR1xb5pcxj12j
-         EBoOza79JHyKb4cyefYR6SPpg69YbZeCjSP7I+XJCtSnWXDJ7xR/Io2GQHoqIRDNtLEB
-         ORWg==
-X-Gm-Message-State: AOAM530rmPSvXS6eI7MGHfFndt5say2lLGknvH32llGsYa0EOODjxxI1
-        0S8Jm2zm9HZRa8O1JF56ew==
-X-Google-Smtp-Source: ABdhPJzpIdbfDFxlf+VQ8oNO/3zvGLjwEQsh7u9aVYPQ0hfaH6c6G98GZZ3yZtc9iElIOJF/los3iw==
-X-Received: by 2002:a05:6808:1a02:: with SMTP id bk2mr4936718oib.52.1639675754325;
-        Thu, 16 Dec 2021 09:29:14 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e26sm1102831oog.46.2021.12.16.09.29.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 09:29:13 -0800 (PST)
-Received: (nullmailer pid 430626 invoked by uid 1000);
-        Thu, 16 Dec 2021 17:29:12 -0000
-Date:   Thu, 16 Dec 2021 11:29:12 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-media@vger.kernel.org, abel.vesa@nxp.com,
-        aford@beaconembedded.com, benjamin.gaignard@collabora.com,
-        hverkuil-cisco@xs4all.nl,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S240256AbhLPRdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 12:33:38 -0500
+Received: from smtpweb146.aruba.it ([62.149.158.146]:50071 "EHLO
+        smtpweb146.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240166AbhLPRdh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 12:33:37 -0500
+Received: from [192.168.50.18] ([146.241.138.59])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id xudJmDZ2Fcwd9xudKmYmm2; Thu, 16 Dec 2021 18:33:35 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1639676015; bh=A8eMZCtxOA9Ba5uPd7vUcY0GtY/sLZiclhzdTw82N8Q=;
+        h=Subject:To:From:Date:MIME-Version:Content-Type;
+        b=S/vw1/ZNYB91iYK4VSL1R4rTuOK3zASjeHdT6Q+hTKNqx65Y4v0QxkyefjnZtl4JN
+         Q1juvDREmGhO7JHYaYUOPYE628c42o6Tl1KzmnUgwDuyBq1kQlIbghCIFM3ubPvvGT
+         UmbKUzQTUk7DC2/ORtrwQBQD+x0msqTDCR8oLuBfgXQC6H2amlg8WZEXWYodXrLIgU
+         XD6ENrq5f4DXFS/+E3KfaxDIT7Pmm3impjViha/r9CRqH1qgK/gF5qOpasyEYqKCFI
+         0zdEkWfzqODSdHYJQX5lQQktUrZzkVd0sVgA82g2KvGej9Aq/np8eY8PY997G7Rc53
+         p2WGB+cRBQQyA==
+Subject: [RESEND in plain-test] Re: [PATCH v5 0/9] Add initial support for the
+ i.MXRTxxxx SoC family starting from i.IMXRT1050 SoC.
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Jesse Taube <mr.bossman075@gmail.com>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-Subject: Re: [PATCH V2 04/10] dt-bindings: media: nxp,imx8mq-vpu: Split G1
- and G2 nodes
-Message-ID: <Ybt3aHfscuKMM0ie@robh.at.kernel.org>
-References: <20211216111256.2362683-1-aford173@gmail.com>
- <20211216111256.2362683-5-aford173@gmail.com>
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        gregkh <gregkh@linuxfoundation.org>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+References: <20211215220538.4180616-1-Mr.Bossman075@gmail.com>
+ <CAK8P3a29tzgd_4WncippZBEJra9n0bQTysBkPBp_WA0sb28gTg@mail.gmail.com>
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+Message-ID: <1360c4fe-4a09-a8a1-3224-7f1d4af59f6f@benettiengineering.com>
+Date:   Thu, 16 Dec 2021 18:33:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211216111256.2362683-5-aford173@gmail.com>
+In-Reply-To: <CAK8P3a29tzgd_4WncippZBEJra9n0bQTysBkPBp_WA0sb28gTg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4wfAKLbP6Es9h/dlQpArqdvaYAmRkL+39EPSYjSfBt4bKPMLTLfg/QQqj4PLOESjv/btMzHCOslpjxEiyQIp9bnudTd5MLSzGt5nna0qdrnDKPfDA1Wu5D
+ TG5iaTdC2iIplr+Or/i7Qz2cpFSyIA5My6HqtBQ8mGcCIm9bzdzTkhy0k2c2hJLBz/KpuDdDmHoYzZXTobfjRV2ZVTG4xtUKfIzgYm/fzaFuusNZFR0356Gv
+ dFr0lCxPG6XFU/2Yi72xA9SOwFzrs6pIsvd6Ru+93WD5DCOfLaJ3XWRmptmbNe+FLFEwo/tL/Bge41BlGenDru2BWjrCYj4gaYpSIcK/hgxGt7UmOivsMVCd
+ nmFHYK5sVz8XSZBwbqf8/JwHOA4v26vCAEOLGdNsxrKjmG3OD+7YMofPLkKgl++eNkEq381tXi4Z2g94yvmmwJCXNU4r2P11fSYyZYfoCprAOCW2z1InGLN2
+ 3cHbNYuvz4QfvPqhttat3bK/lFhYD9bwsYMzVUnyiSvpNx0XG+7PaVrPqgkn8T294miP9eQjAWd9Psm5C37obMSC06cwPWViFFG9ZPv2oqsd6HqtguYUNoIQ
+ MC9a5BFtUNpptAwy6o430bIFdVANiaIlqlpsgLsfZwedfDKqCQK6qVrNS/C2ng+oEqNUB3+vtWypssp48tRPqqsxuL/ypuPV9rdjnO+VLwil3YeNVghkfGqc
+ h4he/yBBxlkWH2YuXkvwuLfxJ4AXNeIutJU6wQsOYG1Gxd86RvTp7wsAu2eBYujeWEsPwXSapIId/aj7aGdZ1gqUgiMXGXnHNb59Hb1n/DvCWHi57XWcZ6Z2
+ nF2dxo4eQ9UTY4LGojYmpHVy2C4vn/DcgwGvNxE3TumDVzEnyLK8M2Hpg9Psdq6gpaZdkAhDy/1D8M30lJ1UZJzAvRpkTSYu45GMrdauscaz2HKzjjj6rE1+
+ cF2kRMmb4Zc2FEYQ+Y3LX1KvMpVscIe7UI180M2omrBwKSw1DCGpCBRSB8pp2kkbKuvRjBZCGukk7pyxWPoFnH21C+REKFN1XW27+iuKhNthGfPXH/j/fRmz
+ XGfvqgAAfY6uMJdQtzA8wnODk26IcmRMoxvAfcmAlbMgRWhz9RFie2/+VfFNa53GPnEnpW+8S7eY4iWuL3asQLMqR0h+PeZomys=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 05:12:49AM -0600, Adam Ford wrote:
-> The G1 and G2 are separate decoder blocks that are enabled by the
-> vpu-blk-ctrl power-domain controller, which now has a proper driver.
-> Update the bindings to support separate nodes for the G1 and G2
-> decoders with vpu-blk-ctrl power-domain support.
+Hi Arnd, Jesse, All,
 
-You could expand this a bit more with Lucas' explanation and being 
-explicit on the compatibility implications.
+sorry for previous HTML e-mail(I was on mobile phone),
 
-Otherwise, with that and indentation fixed:
+On 16/12/21 09:26, Arnd Bergmann wrote:
+> On Wed, Dec 15, 2021 at 11:05 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
+>>
+>> This patchset contains:
+>> - i.MXRT10xx family infrastructure
+>> - i.MXRT1050 pinctrl driver adaption
+>> - i.MXRT1050 clock driver adaption
+>> - i.MXRT1050 sd-card driver adaption
+>> - i.MXRT1050 uart driver adaption
+>> - i.MXRT1050-evk basic support
+>>
+>> The i.MXRTxxxx family that could have support by Linux actually spreads
+>> from i.MXRT1020 to i.MXRT1170 with the first one supporting 1 USB OTG &
+>> 100M ethernet with a cortex-M7@500Mhz up to the latter with i.MXRT1170
+>> with cortex-M7@1Ghz and cortex-M4@400Mhz, 2MB of internal SRAM, 2D GPU,
+>> 2x 1Gb and 1x 100Mb ENET. The i.MXRT family is NXP's answer to
+>> STM32F7XX, as it uses only simple SDRAM, it gives the chance of a 4 or
+>> less layer PCBs. Seeing that these chips are comparable to the
+>> STM32F7XXs which have linux ported to them it seems reasonable to add
+>> support for them.
+>>
+>> Giving Linux support to this family should ease the development process,
+>> instead of using a RTOS they could use Embedded Linux allowing for more
+>> portability, ease of design and will broaden the scope of people using
+>> embedded linux.
+>>
+>> The EVK has very little SDRAM, generally 32MB starting from
+>> i.MXRT1020(the lowest P/N), although the i.MXRT1160/70 provide instead
+>> 64MB of SDRAM for more functionality.
+>>
+>> At the moment we do not support XIP for either u-boot or Linux but it
+>> should be done in the future. XIP will also save SDRAM.
+>>
+>> Another interesting fact is the amount of internal SRAM, as the P/N
+>> increases the SRAM will reach up to 2MB(some could be for cache and
+>> some would be for video).
+>>
+>> Also, some parts have embed flash of 4MB that can be used for
+>> u-boot/Linux, if both correctly sized it will leave the SDRAM free.
+>>
+>> External flash can be Quad SPI and HyperFlash, so throughput would be
+>> decent.
+>>
+>> The i.MXRT11xx series supports MIPI interface too.
+>>
+>> The family in general provide CAN bus, audio I/O, 1 or more
+>> USB(otg/host), 1 or more 100Mb/1Gb ethernet, camera interface, sd-card.
+>>
+>> All this can be used for simple GUIs, web-servers, point-of-sale
+>> stations, etc.
+> 
+> This looks all good to me now, but the drivers need to be reviewed by the
+> respective subsystem maintainers before we can merge it into the soc
+> tree. As with other new SoCs, I'm happy to merge the support as a combined
+> pull request that includes the drivers provided that the driver subsystem
+> maintainers have reviewed them.
+> 
+> Ideally the i.MX maintainers would pick up your series into a separate
+> branch and send that to soc@kernel.org the same way as the other topic
+> branches that are usually split out between DT, drivers, soc code etc.
+> 
+> With the Christmas break coming up, the timing may not be sufficient
+> before I'm off next week, so it may end up too late for 5.17 but should
+> be fine for 5.18.
+> 
+> As a more general comment, it's always nice to see newly added SoC
+> platforms, especially when they are this well implemented and done
+> by hobbyists. However, I do think you are being overly optimistic
+> as to how useful this is going to be to other people: interest in NOMMU
+> ARM platforms has dropped a lot over the past 5 years, and as far as I
+> can tell, it is only being kept alive for existing stm32 customers
+> as the economics do not favor Linux on Cortex-M for new products
+> compare to Linux on Cortex-A or some RTOS on Cortex-M.
+> 
+> The existing users will inevitably stop updating their kernels at some
+> point, and then it's most likely just you and Vladimir Murzin that care.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
 
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> index 762be3f96ce9..c1e157251de7 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-vpu.yaml
-> @@ -15,33 +15,20 @@ description:
->  
->  properties:
->    compatible:
-> -    const: nxp,imx8mq-vpu
-> +     oneOf:
-> +      - const: nxp,imx8mq-vpu
-> +        deprecated: true
-> +      - const: nxp,imx8mq-vpu-g1
-> +      - const: nxp,imx8mq-vpu-g2
->  
->    reg:
-> -    maxItems: 3
-> -
-> -  reg-names:
-> -    items:
-> -      - const: g1
-> -      - const: g2
-> -      - const: ctrl
-> +    maxItems: 1
->  
->    interrupts:
-> -    maxItems: 2
-> -
-> -  interrupt-names:
-> -    items:
-> -      - const: g1
-> -      - const: g2
-> +    maxItems: 1
->  
->    clocks:
-> -    maxItems: 3
-> -
-> -  clock-names:
-> -    items:
-> -      - const: g1
-> -      - const: g2
-> -      - const: bus
-> +    maxItems: 1
->  
->    power-domains:
->      maxItems: 1
-> @@ -49,31 +36,33 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - reg-names
->    - interrupts
-> -  - interrupt-names
->    - clocks
-> -  - clock-names
->  
->  additionalProperties: false
->  
->  examples:
->    - |
->          #include <dt-bindings/clock/imx8mq-clock.h>
-> +        #include <dt-bindings/power/imx8mq-power.h>
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +        vpu_g1: video-codec@38300000 {
-> +                compatible = "nxp,imx8mq-vpu-g1";
-> +                reg = <0x38300000 0x10000>;
-> +                interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>;
-> +                power-domains = <&vpu_blk_ctrl IMX8MQ_VPUBLK_PD_G1>;
-> +        };
-> +  - |
-> +        #include <dt-bindings/clock/imx8mq-clock.h>
-> +        #include <dt-bindings/power/imx8mq-power.h>
->          #include <dt-bindings/interrupt-controller/arm-gic.h>
->  
-> -        vpu: video-codec@38300000 {
-> -                compatible = "nxp,imx8mq-vpu";
-> -                reg = <0x38300000 0x10000>,
-> -                      <0x38310000 0x10000>,
-> -                      <0x38320000 0x10000>;
-> -                reg-names = "g1", "g2", "ctrl";
-> -                interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> -                             <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> -                interrupt-names = "g1", "g2";
-> -                clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
-> -                         <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
-> -                         <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
-> -                clock-names = "g1", "g2", "bus";
-> -                power-domains = <&pgc_vpu>;
-> +        vpu_g2: video-codec@38300000 {
-> +                compatible = "nxp,imx8mq-vpu-g2";
-> +                reg = <0x38310000 0x10000>;
-> +                interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&clk IMX8MQ_CLK_VPU_G2_ROOT>;
-> +                power-domains = <&vpu_blk_ctrl IMX8MQ_VPUBLK_PD_G2>;
->          };
-> -- 
-> 2.32.0
-> 
-> 
+About this will you accept support for the other SoCs in the family?
+We would like to add in the near future:
+- i.MXRT1020(uboot support is already upstreamed)
+- i.MXRT1024(almost equal to 1020)
+- i.MXRT1060(almost equal to 1050)
+- i.MXRT1064(almost equal to 1060)
+And
+- i.MXRT1160/70 new family with faster core clock(1Ghz) and a cortex M4
+
+We need to add missing lcd(uboot upstreamed), usb(uboot upstreamed), 
+ethernet(wip) supports for i.MXRT10xx family.
+
+This is to organize with Jesse also about buying evaluation boards and 
+timing.
+
+We’ve meant this porting also as an exercise to deal with Linux deeper 
+for us and for the other newbies.
+
+We’ve been also asked about a possible support for s32s(quad cortex-R52) 
+on initial emails but it has no mmu too.
+While I’m seeing that some cortex-R is landing inside Linux.
+Would it be interesting anyway?
+
+Best regards
+—-
+Giulio Benetti
+Benetti Engineering sas
