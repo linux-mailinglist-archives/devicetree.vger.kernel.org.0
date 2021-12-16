@@ -2,118 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67FAE47761E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:39:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 777CC47762E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:42:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237197AbhLPPjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 10:39:33 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.169]:17557 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232607AbhLPPjc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:39:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1639669158;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=MHu1HtjYmw4nq41J5OgWRHpWBkTI68HMrnU4IC1AtA0=;
-    b=onlP5l5ytXGnJJ63PvK9x46J7sm6dURpQbUvN4SRBm6d2GS8X6JFsySWjJB4WO/9iE
-    9oj/e3gstuZp91ymTat8rucIGnW+X6yv+mnE1gQXEaPXGHBvppi4dmF6He0QL29e+/oU
-    oBEGwGW4frb7pQK5CokP0bXmG2U0nQy0NhkZ3gUPDToLWwTeEisKnIYehdlAnwVtpgW8
-    vbW6ppmu+VLEda7cQEKZ6HJ/wiCNZ3UBXj3jLolrFLmexeRfU5ecWvT/TVB3016KeGE7
-    KaRFcVPW27/8IGReJE8n66tlff0Bq5ZW2Forifwbpm2qgDqa3z6QMiyaz2GG5hDywOUP
-    4UPg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3iMMUrw=="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.35.3 DYNA|AUTH)
-    with ESMTPSA id 404833xBGFdHF8Z
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Thu, 16 Dec 2021 16:39:17 +0100 (CET)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v11 0/8] MIPS: JZ4780 and CI20 HDMI
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <H5S74R.5BG9EDZORI63@crapouillou.net>
-Date:   Thu, 16 Dec 2021 16:39:16 +0100
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        id S235208AbhLPPm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 10:42:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60902 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232616AbhLPPm4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:42:56 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CA1AC061574;
+        Thu, 16 Dec 2021 07:42:56 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id b40so50415576lfv.10;
+        Thu, 16 Dec 2021 07:42:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=xT/SiTniM/eQ/R5+rML11O3ecWALbJayKGmVc/zKnAs=;
+        b=eDUAjQFU4pujVpoke1B2Ce2DlcWwNzL17RKV9V6JUts6HbLEXAMq2STRc4kzJ8boUz
+         B7R9RJQgQtdt7cf6pcTPa16ZtGntHnvNS/J6bkb4xkNIuPZNWGESjob6LMV/pMuHyICu
+         nYzW3fRQ53vO+WuuHmtrmiiniG4zHgvBLTejeiJoYfInfvBfY2GGSwa6AlrJab6TdBbC
+         7Ma5VKLSWQKxuaEiwraTPfbJu7DGXNjBlvp/0ApwrqiRRK42WF5XjYMh5X0odMOZEQqy
+         KgbIV7sRQsbC0b5IsQmdPRAE3kB3j11KRct2kNJRRrY7oSoKUemT9npq2rI/I/jytwJo
+         op4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=xT/SiTniM/eQ/R5+rML11O3ecWALbJayKGmVc/zKnAs=;
+        b=72r10DjQxS6P3avX+vHvXgvErI8VZS/XDPKELALZA0IuGv3iOxMkPSBzydqptYgr/c
+         tL/KbFigAc0/7XI3NzXF+1MVxqNk/YspuNxhXr4aMVTGcnCE/44w3h64i8qQhLVbOgai
+         YgwaLa+9LT232dRkjr2rg3Phhqpr3kxtBp3qe4Llwpy3EJ0cnicMhIISggyqsvxgyW33
+         qyo3J2XbWG5jDA9763uNnM09Voy7My69l7HTOF6paFOXw8hPewz7ixS9IWITx4mz6z8/
+         T/UpcsobT/ZHLrH+8kygbK7x4NfTLcsIdHNJ/CG6RNjQzBaRlFjhNaLiu5vsnWNaSmfm
+         7xnA==
+X-Gm-Message-State: AOAM531oNnxipyxIm6cUXYzxWe/Gi7g8scjRxT8gOjYVhtV+QzaXexhM
+        /gWLFsaXLO+lcNQsbLweo5tgJBt/vBU=
+X-Google-Smtp-Source: ABdhPJzrTLDA1Jn72VfYP7tscsKDTD/B1+9QqstauFMJLrAGBEUP0kWlPKjLAbc2kgKzJNPD0OB4zg==
+X-Received: by 2002:a05:6512:682:: with SMTP id t2mr14590038lfe.503.1639669374608;
+        Thu, 16 Dec 2021 07:42:54 -0800 (PST)
+Received: from [192.168.2.145] (94-29-63-156.dynamic.spd-mgts.ru. [94.29.63.156])
+        by smtp.googlemail.com with ESMTPSA id o19sm1184608ljp.124.2021.12.16.07.42.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Dec 2021 07:42:54 -0800 (PST)
+Subject: Re: [PATCH v2] dt-bindings: sound: nvidia,tegra-audio: Convert
+ multiple txt bindings to yaml
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     David Heidelberg <david@ixit.cz>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>, Jonas Karlman <jonas@kwiboo.se>,
-        DRI Development <dri-devel@lists.freedesktop.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <638E4C90-BF5A-4DE8-A8E3-BE81B454CF63@goldelico.com>
-References: <cover.1638470392.git.hns@goldelico.com>
- <H5S74R.5BG9EDZORI63@crapouillou.net>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-X-Mailer: Apple Mail (2.3445.104.21)
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        ~okias/devicetree@lists.sr.ht, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211211224946.79875-1-david@ixit.cz>
+ <a84213cb-272a-f1b2-338f-ed8ed0bf133d@gmail.com> <YbtC2I49D0pdcyLY@orome>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <75214d23-3b5f-48d7-be80-8ea17637f3ac@gmail.com>
+Date:   Thu, 16 Dec 2021 18:42:53 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <YbtC2I49D0pdcyLY@orome>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul and Thomas,
-thanks for already applying some of the patches of this series!
+16.12.2021 16:44, Thierry Reding пишет:
+> On Thu, Dec 16, 2021 at 05:52:12AM +0300, Dmitry Osipenko wrote:
+>> 12.12.2021 01:49, David Heidelberg пишет:
+>>> +unevaluatedProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    sound {
+>>> +        compatible = "nvidia,tegra-audio-rt5677-ryu",
+>>> +                     "nvidia,tegra-audio-rt5677";
+>>> +        nvidia,model = "NVIDIA Tegra Ryu";
+>>> +
+>>> +        nvidia,audio-routing =
+>>> +                "Headphone", "LOUT2",
+>>> +                "Headphone", "LOUT1",
+>>> +                "Headset Mic", "MICBIAS1",
+>>> +                "IN1P", "Headset Mic",
+>>> +                "IN1N", "Headset Mic",
+>>> +                "DMIC L1", "Internal Mic 1",
+>>> +                "DMIC R1", "Internal Mic 1",
+>>> +                "DMIC L2", "Internal Mic 2",
+>>> +                "DMIC R2", "Internal Mic 2",
+>>> +                "Speaker", "PDM1L",
+>>> +                "Speaker", "PDM1R";
+>>> +
+>>> +        nvidia,i2s-controller = <&tegra_i2s1>;
+>>> +        nvidia,audio-codec = <&rt5677>;
+>>> +
+>>> +        nvidia,hp-det-gpios = <&gpio 143 0>;
+>>> +        nvidia,mic-present-gpios = <&gpio 132 1>;
+>>> +        nvidia,hp-en-gpios = <&rt5677 1 0>;
+>>> +        nvidia,dmic-clk-en-gpios = <&rt5677 2 1>;
+>>
+>> I spotted that nvidia,dmic-clk-en-gpios is undocumented, but DTs and
+>> binding are passing the validation. We will make another patch to fix it.
+>>
+>> Rob, could you please tell whether this is because unevaluatedProperties
+>> doesn't work yet or we're missing something?
+> 
+> If you update dt-schema.git to the latest "main" branch you should have
+> most of what's needed to make unevaluatedProperties work. However, there
+> seems to be an issue with some $referenced schemas setting
+> additionalProperties to true and then that gets propogated to the schema
+> that included it.
+> 
+> Rob came up with the patch below to fix that:
+> 
+> --- >8 ---
+> diff --git a/dtschema/lib.py b/dtschema/lib.py
+> index 3cc5e428b0eb..a0f22aab935a 100644
+> --- a/dtschema/lib.py
+> +++ b/dtschema/lib.py
+> @@ -367,6 +367,9 @@ def fixup_sub_schema(schema, is_prop):
+>      if not isinstance(schema, dict):
+>          return
+> 
+> +    if 'additionalProperties' in schema and schema['additionalProperties'] == True:
+> +        schema.pop('additionalProperties', None)
+> +
+>      schema.pop('description', None)
+>      fixup_interrupts(schema)
+>      if is_prop:
+> --- >8 ---
+> 
+> I'm currently running the tools based on that and it's indeed been
+> flagging some properties as unevaluated that weren't there before.
 
-> Am 16.12.2021 um 16:24 schrieb Paul Cercueil <paul@crapouillou.net>:
->=20
-> Hi,
->=20
-> Patches 1 and 2 added to drm-misc-next.
->=20
-> I'll pick the rest when the regulator situation is sorted out.
->=20
-
-I had started working on the regulator and while testing and trying to =
-read the EDID
-something has damaged my monitor so that it does no longer report proper =
-EDID information
-(for the second time, so that I can't pledge for another warrany =
-repair). Maybe controlling
-+5V for this specific monitor must be done very carefully and in a =
-specific sequence...
-
-So I will need some more days for building a more robust test setup and =
-doing verification
-of the driver. Well I have other monitors, but this was the cheapest one =
-and available
-for such experiments :)
-
-Generally the idea is to replace the regulator with a ddc-en-gpios =
-property of the connector.
-
-Unfortunately it does not work to control it by atomic enable/disable in =
-the connector driver
-(it is not called at all). So I have been working on an approach =
-following the concept how
-drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c does it.
-
-Sorry for the delay, but a V12 will come.
-
-BR and thanks,
-Nikolaus
-
+Thank you! The unevaluatedProperties indeed works properly using this patch.
