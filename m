@@ -2,106 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C50477B5D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 19:18:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31621477B6F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 19:22:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240228AbhLPSSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 13:18:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42874 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233310AbhLPSSm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 13:18:42 -0500
-Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C9EFC061574;
-        Thu, 16 Dec 2021 10:18:42 -0800 (PST)
-Received: by mail-ua1-x92d.google.com with SMTP id p2so48637532uad.11;
-        Thu, 16 Dec 2021 10:18:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=bdYvwcz9LvAjDMBtqnZboEvuhMjoDSvlLf/1manSdx8=;
-        b=llM8yvcxXW77gunNkKWazDVf5XEI75jU3XJwqLPMbQrTxG1rgvOwzPiGSbb9a0Ifjd
-         Svot4whifbs3mwpzWXKSCTTZR2OcbJ6kBSt1trxzApO3FtshmD3XwPLMCTL1RBPsnO1v
-         27irpfBVVH5/cZHAESc4N/L9wv/xjtQnvEOUHL+fnbAPEF7BasYRi3LH2zsMjfpp+Y2w
-         esWbn1jhXMmMDAx4u1EiUDLOE6dhNieLcpkKuyYihF+8+EkAj2S2nJEz9mTaDFogHVUu
-         VSHktt8W9W/vVBL8anclxAh5DeVYUMgiEmT5KCidG/NHWnG2dY0ODYAsnlorz3bBu4R5
-         8ycw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=bdYvwcz9LvAjDMBtqnZboEvuhMjoDSvlLf/1manSdx8=;
-        b=kOB1L1QMduI4xttJf90AR9pb4LOzYRRyi9oa7dKEppCeFcECCmi67YqyzcC6szp7XW
-         VFOOUhoQ54vDn9XvOaRpzBge0isjB7RclzER5bBbcjma8Whef8cAX0wFCf4KPNpDIOf1
-         SwYk1JfUwqsnh2PSHhGNnqdLDFivIwCOvKwiZ8c0jfLCohXp4yi4x4I+LAFAhwd0KcTw
-         n8Sh9Z/iGwlIe2sEnRQw8Pb3kwHxHIr25szXPjpNsYwiPjEYEWRxMC3nR7SYANTqVna6
-         H/vJ+Z+P6C7a2O/IsZ/+IYsGe5C6/z8UT+e6aCL4EkNLXb6exNEA6lqyjQhNTCrms7fe
-         vY6g==
-X-Gm-Message-State: AOAM531w63UKORCwDBVDeU816YbeS1M5ty9wVZ4LNl3c9Nk8bGBA2xeF
-        hhtKulKtM7ZZSnUDUyPCjHWZkPL4zpKK6X4SNrw7quMCbbA=
-X-Google-Smtp-Source: ABdhPJwNgXKg59CbjVBmA4HGLaFqz55vuFfbF9EV32e9/nPk5g2Dok6L9KMiSm4k0Cajin6S6IP2TrBgP1H8RyN72ds=
-X-Received: by 2002:a67:f594:: with SMTP id i20mr1483330vso.54.1639678720741;
- Thu, 16 Dec 2021 10:18:40 -0800 (PST)
+        id S231292AbhLPSWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 13:22:22 -0500
+Received: from mga06.intel.com ([134.134.136.31]:59639 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240639AbhLPSWV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Dec 2021 13:22:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1639678941; x=1671214941;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bWpZ4y9aJXzVUaCFf9SWhCRFb9c6jHouDwtiP8EaPgY=;
+  b=djzRcWusaQh7KFw+UETrmenTRkru3z3oHx7T8qKEK0TT72s6TmGRXPbj
+   +nrTYeOu5zi8nFVVkvmmSS+R/qyj4gYbWaV3NBVlEnbM1aZQJ2W+hrAK2
+   ZuyLlGMJIlqmrhXgyvmBufJxSLKDcGPZOHiQ2tOS3i2zufdyphc7i/Hxy
+   Bz+QJsvVCbfUwTeVTo7f+L6DUfGrpb//GrgaPo+6yO7dqtg+9yvCeY3SB
+   MV1NwWheECM2pYxINjHiSWCv2OwXSh4qYUw441k61CH63fCygqQtqAXIq
+   KC6ipw1ldAG+BzY44W6XwQ77uWOBVCYIzVypo0H4pomTT29pRLZQPDn9h
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="300340507"
+X-IronPort-AV: E=Sophos;i="5.88,212,1635231600"; 
+   d="scan'208";a="300340507"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2021 10:22:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,212,1635231600"; 
+   d="scan'208";a="754225259"
+Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
+  by fmsmga006.fm.intel.com with ESMTP; 16 Dec 2021 10:22:17 -0800
+Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mxvOT-0003e5-5x; Thu, 16 Dec 2021 18:22:17 +0000
+Date:   Fri, 17 Dec 2021 02:21:32 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org
+Subject: Re: [PATCH v6 20/28] spi: spi-mem: Fill the spi-mem controller
+ capabilities of all the drivers
+Message-ID: <202112170259.JPoGT6na-lkp@intel.com>
+References: <20211216111654.238086-21-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-References: <20211212181906.94062-1-romain.perier@gmail.com>
- <20211212181906.94062-3-romain.perier@gmail.com> <CAFr9PXki8LVdjQC_4eDSuB1dmEmv2K00bWOy92cOXENEoEyeqw@mail.gmail.com>
-In-Reply-To: <CAFr9PXki8LVdjQC_4eDSuB1dmEmv2K00bWOy92cOXENEoEyeqw@mail.gmail.com>
-From:   Romain Perier <romain.perier@gmail.com>
-Date:   Thu, 16 Dec 2021 19:18:28 +0100
-Message-ID: <CABgxDoLtD6fAj-c_+gcjJBoe9HLQYxrhSZZdjEC0YJqDssP6SA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/6] clocksource: msc313e: Add support for
- ssd20xd-based platforms
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211216111654.238086-21-miquel.raynal@bootlin.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+Hi Miquel,
 
-What do you think about the following description ?  :  "
-    clocksource: msc313e: Add support for ssd20xd-based platforms
+I love your patch! Yet something to improve:
 
-    On SSD20X family SoCs bootrom sets the divider for timer0 to run at
-    12Mhz, while timer1 and timer2 are kept unchanged and defaut to ~432Mhz=
-.
-    There are no ways to reduce or divide these clocks in the clktree.
-    However, These SoCs provide an internal "timer_divide" register that ca=
-n
-    act on this input clock. This commit adds support for this register,
-    as timer1 and timer2 are used as clockevents these will run at 48Mhz.
+[auto build test ERROR on broonie-spi/for-next]
+[also build test ERROR on mtd/nand/next mtd/mtd/next mtd/mtd/fixes v5.16-rc5 next-20211215]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-    Signed-off-by: Romain Perier <romain.perier@gmail.com>
-"
+url:    https://github.com/0day-ci/linux/commits/Miquel-Raynal/External-ECC-engines-Macronix-support/20211216-191821
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+config: hexagon-randconfig-r045-20211216 (https://download.01.org/0day-ci/archive/20211217/202112170259.JPoGT6na-lkp@intel.com/config)
+compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project dd245bab9fbb364faa1581e4f92ba3119a872fba)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/bf16b56f7a0cc5aa237129a6b8bd216dc2632c8b
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Miquel-Raynal/External-ECC-engines-Macronix-support/20211216-191821
+        git checkout bf16b56f7a0cc5aa237129a6b8bd216dc2632c8b
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash
 
-Romain
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Le mer. 15 d=C3=A9c. 2021 =C3=A0 13:00, Daniel Palmer <daniel@0x0f.com> a =
-=C3=A9crit :
->
-> Hi Romain,
->
-> On Mon, 13 Dec 2021 at 03:19, Romain Perier <romain.perier@gmail.com> wro=
-te:
-> >
-> > SSD20X family SoCs have an oscillator running at ~432Mhz for timer1 and
-> > timer2, while timer0 is running at 12Mhz.
->
-> I don't think this is technically true. I think the boot rom sets the
-> divider for timer0 so that it runs at ~12MHz.
-> I think the current change to only configure timer1 and timer2 is ok
-> but maybe the commit message should say that timer0 is configured to
-> be backwards compatible at boot.
->
-> Cheers,
->
-> Daniel
+All errors (new ones prefixed by >>):
+
+>> ld.lld: error: duplicate symbol: spi_mem_no_caps
+   >>> defined at core.c
+   >>> mtd/nand/spi/core.o:(spi_mem_no_caps) in archive drivers/built-in.a
+   >>> defined at gigadevice.c
+   >>> mtd/nand/spi/gigadevice.o:(.rodata+0x35C) in archive drivers/built-in.a
+--
+>> ld.lld: error: duplicate symbol: spi_mem_no_caps
+   >>> defined at core.c
+   >>> mtd/nand/spi/core.o:(spi_mem_no_caps) in archive drivers/built-in.a
+   >>> defined at macronix.c
+   >>> mtd/nand/spi/macronix.o:(.rodata+0x83C) in archive drivers/built-in.a
+--
+>> ld.lld: error: duplicate symbol: spi_mem_no_caps
+   >>> defined at core.c
+   >>> mtd/nand/spi/core.o:(spi_mem_no_caps) in archive drivers/built-in.a
+   >>> defined at sysfs.c
+   >>> mtd/spi-nor/sysfs.o:(.rodata+0x14) in archive drivers/built-in.a
+--
+>> ld.lld: error: duplicate symbol: spi_mem_no_caps
+   >>> defined at core.c
+   >>> mtd/nand/spi/core.o:(spi_mem_no_caps) in archive drivers/built-in.a
+   >>> defined at atmel.c
+   >>> mtd/spi-nor/atmel.o:(.rodata+0x370) in archive drivers/built-in.a
+--
+>> ld.lld: error: duplicate symbol: spi_mem_no_caps
+   >>> defined at core.c
+   >>> mtd/nand/spi/core.o:(spi_mem_no_caps) in archive drivers/built-in.a
+   >>> defined at catalyst.c
+   >>> mtd/spi-nor/catalyst.o:(.rodata+0x178) in archive drivers/built-in.a
+--
+>> ld.lld: error: duplicate symbol: spi_mem_no_caps
+   >>> defined at core.c
+   >>> mtd/nand/spi/core.o:(spi_mem_no_caps) in archive drivers/built-in.a
+   >>> defined at eon.c
+   >>> mtd/spi-nor/eon.o:(.rodata+0x370) in archive drivers/built-in.a
+--
+>> ld.lld: error: duplicate symbol: spi_mem_no_caps
+   >>> defined at core.c
+   >>> mtd/nand/spi/core.o:(spi_mem_no_caps) in archive drivers/built-in.a
+   >>> defined at esmt.c
+   >>> mtd/spi-nor/esmt.o:(.rodata+0xE8) in archive drivers/built-in.a
+--
+>> ld.lld: error: duplicate symbol: spi_mem_no_caps
+   >>> defined at core.c
+   >>> mtd/nand/spi/core.o:(spi_mem_no_caps) in archive drivers/built-in.a
+   >>> defined at everspin.c
+   >>> mtd/spi-nor/everspin.o:(.rodata+0x130) in archive drivers/built-in.a
+--
+>> ld.lld: error: duplicate symbol: spi_mem_no_caps
+   >>> defined at core.c
+   >>> mtd/nand/spi/core.o:(spi_mem_no_caps) in archive drivers/built-in.a
+   >>> defined at fujitsu.c
+   >>> mtd/spi-nor/fujitsu.o:(.rodata+0x58) in archive drivers/built-in.a
+--
+>> ld.lld: error: duplicate symbol: spi_mem_no_caps
+   >>> defined at core.c
+   >>> mtd/nand/spi/core.o:(spi_mem_no_caps) in archive drivers/built-in.a
+   >>> defined at gigadevice.c
+   >>> mtd/spi-nor/gigadevice.o:(.rodata+0x250) in archive drivers/built-in.a
+--
+>> ld.lld: error: duplicate symbol: spi_mem_no_caps
+   >>> defined at core.c
+   >>> mtd/nand/spi/core.o:(spi_mem_no_caps) in archive drivers/built-in.a
+   >>> defined at intel.c
+   >>> mtd/spi-nor/intel.o:(.rodata+0xE8) in archive drivers/built-in.a
+..
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
