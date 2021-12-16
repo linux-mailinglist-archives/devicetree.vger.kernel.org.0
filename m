@@ -2,73 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BD7D476CD4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 10:06:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7DBF476D1E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 10:13:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230471AbhLPJGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 04:06:07 -0500
-Received: from mail.webdeluxgroup.com ([51.195.117.175]:40684 "EHLO
-        mail.webdeluxgroup.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230228AbhLPJGH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 04:06:07 -0500
-Received: by mail.webdeluxgroup.com (Postfix, from userid 1002)
-        id EAD8BA230F; Thu, 16 Dec 2021 09:06:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=webdeluxgroup.com;
-        s=mail; t=1639645565;
-        bh=Ikssx+VmDQhoHuLzKgesrzZ3VGIyKr0VUFS/Kpp5X4A=;
-        h=Date:From:To:Subject:From;
-        b=RU0ygIHV41+ez1Nb0ZUfkWw9mCbBqstm1QVCQtxyUKxN3ek8hmtghdlyczi7BdRj/
-         hgX79BTQ2Rh+/MuFqkmtiLOG/2mhnmI1JKSd2eDVQCBY4/UDSWdWjSmOpfyaj2GDg8
-         9QfLGk+AJqdL6PmIeKcSNqxdpZOtQ20pE4//gMdSCbmKAU1RpLy6Lh9LTPhm/hRKde
-         MTwpt8lE7c3DPSIz4iTW+4++OG+gU/7UaD3iOgjB99Vp+X33IFKQpIEsu7m8xF2W0k
-         UoJ/jIqHUQiYKEwlQXoBJe1aa5nhMW16sI48wfc2Umo0NMPvXp703S7QYvgRS/zlat
-         hnv/wHC0CvebQ==
-Received: by mail.webdeluxgroup.com for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 09:05:55 GMT
-Message-ID: <20211216074500-0.1.3t.ayp1.0.22i4kxwhfi@webdeluxgroup.com>
-Date:   Thu, 16 Dec 2021 09:05:55 GMT
-From:   =?UTF-8?Q? "Ji=C5=99=C3=AD_Novotn=C3=BD" ?= 
-        <jiri.novotny@webdeluxgroup.com>
-To:     <devicetree@vger.kernel.org>
-Subject: =?UTF-8?Q?=C3=9Asp=C4=9Bch_kampan=C4=9B?=
-X-Mailer: mail.webdeluxgroup.com
+        id S233117AbhLPJNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 04:13:40 -0500
+Received: from mail-ua1-f53.google.com ([209.85.222.53]:44710 "EHLO
+        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233147AbhLPJNj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 04:13:39 -0500
+Received: by mail-ua1-f53.google.com with SMTP id p2so45947948uad.11;
+        Thu, 16 Dec 2021 01:13:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jHKD8Jau3VMC0v0mHq/8AnvUbUd2JPek/udI8yP5e94=;
+        b=wWRn+FX0K3cVeoz07HmnHn7JirofujHktV0NTyxGf8lvR7fN7VuLqPeDfLHZiGBqOa
+         +jPfch1qZKWJbUu4PanPc29+iiAludjDQRN2E2B+ionM8t+e1/jafNYlgliUwYYKcHo8
+         yKR2a+DDwRNP3hqivr5yVsMtd2zqLu4rzPNf59QXyqTIEtKs4ZZFZkMlgyQtr5ooE9gq
+         6N/5wurZNhhiLCpQu7pHpkuojsn1y8zvn35xjwhZvVobW1uSHINjpCBIlk+VabnyguXH
+         08tuTJDM2JHZhwVFiT+/2KDP8+3panKcqnkzH4BkaLKNA7zflbMLkiEIcR6l5tlTDigx
+         6GKg==
+X-Gm-Message-State: AOAM530t+SPMLf993LQZN/OH9j1EyQND7dta8cWufY2+Sujz5W8u6fun
+        8N/N+DuFLhbXPK62z5FdV3cVI5lcwf48RQ==
+X-Google-Smtp-Source: ABdhPJzEMwd3HH5SaGtQWRehpDwK9oTSLSVXNzedsikirOQr8FlCqwo834bE9yvctKv0PaC9DblwsA==
+X-Received: by 2002:a05:6102:3a0c:: with SMTP id b12mr5059426vsu.31.1639646018579;
+        Thu, 16 Dec 2021 01:13:38 -0800 (PST)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id e13sm987273vkd.21.2021.12.16.01.13.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Dec 2021 01:13:38 -0800 (PST)
+Received: by mail-ua1-f44.google.com with SMTP id y23so4266937uay.7;
+        Thu, 16 Dec 2021 01:13:37 -0800 (PST)
+X-Received: by 2002:a67:c106:: with SMTP id d6mr4863423vsj.77.1639646017480;
+ Thu, 16 Dec 2021 01:13:37 -0800 (PST)
 MIME-Version: 1.0
+References: <20211215154619.166360-1-miquel.raynal@bootlin.com> <20211215154619.166360-5-miquel.raynal@bootlin.com>
+In-Reply-To: <20211215154619.166360-5-miquel.raynal@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 16 Dec 2021 10:13:26 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX+a7ASjzvmFzOrAGZPcMF=muzC_b=fjddef_oMKGGrpA@mail.gmail.com>
+Message-ID: <CAMuHMdX+a7ASjzvmFzOrAGZPcMF=muzC_b=fjddef_oMKGGrpA@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] ARM: dts: r9a06g032: Describe NAND controller
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dobr=C3=BD den,
+On Wed, Dec 15, 2021 at 4:46 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> Describe the NAND controller contained in r9a06g032 SoCs.
+>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-Prod=C3=A1v=C3=A1te sv=C3=A9 v=C3=BDrobky p=C5=99=C3=ADmo spot=C5=99ebite=
-l=C5=AFm prost=C5=99ednictv=C3=ADm kan=C3=A1lu E-Commerce?=20
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel once the bindings have been
+accepted in linux-next.
 
-Pokud ano, r=C3=A1d bych v=C3=A1m p=C5=99edstavil mo=C5=BEnosti a p=C5=99=
-=C3=ADklady, jak zv=C3=BD=C5=A1it v=C3=BDnosy z tohoto kan=C3=A1lu.=20
+Gr{oetje,eeting}s,
 
-P=C5=99ed =C4=8Dasem se n=C3=A1m ozvala spole=C4=8Dnost, kter=C3=A1 cht=C4=
-=9Bla v=C3=BDrazn=C4=9B zlep=C5=A1it v=C3=BDsledky ve v=C5=A1ech kan=C3=A1=
-lech, jejich=C5=BE prost=C5=99ednictv=C3=ADm oslovuje z=C3=A1kazn=C3=ADky=
-=2E
+                        Geert
 
-C=C3=ADlem bylo dos=C3=A1hnout stabiln=C3=ADch, m=C4=9B=C5=99iteln=C3=BDc=
-h v=C3=BDnos=C5=AF a tak=C3=A9 roz=C5=A1=C3=AD=C5=99it p=C5=AFsobnost na =
-mezin=C3=A1rodn=C3=AD trhy.=20
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Zjednodu=C5=A1ili jsme strukturu kampan=C3=AD, zlep=C5=A1ili rozmanitost =
-reklam a komunikace a tak=C3=A9 jsme vytvo=C5=99ili nestandardn=C3=AD kat=
-alog v=C3=BDrobk=C5=AF. Implementovali jsme =C5=99e=C5=A1en=C3=AD, kter=C3=
-=A1 vedla k lep=C5=A1=C3=ADmu v=C3=BDsledku CPC, zv=C3=BD=C5=A1en=C3=AD C=
-TR a zlep=C5=A1en=C3=AD konverze potenci=C3=A1ln=C3=ADch z=C3=A1kazn=C3=AD=
-k=C5=AF na nakupuj=C3=ADc=C3=AD z=C3=A1kazn=C3=ADky.=20
-
-D=C3=ADky na=C5=A1im komplexn=C3=ADm aktivit=C3=A1m se v=C3=BDrazn=C4=9B =
-zv=C3=BD=C5=A1il ROI index a v=C3=BDnosy a=C5=BE o 95 %. Stoj=C3=AD za to=
- probrat, jak to ve Va=C5=A1=C3=AD spole=C4=8Dnosti vypad=C3=A1 a co v=C3=
-=A1m m=C5=AF=C5=BEeme nab=C3=ADdnout. Pokud m=C3=A1te z=C3=A1jem o kr=C3=A1=
-tk=C3=BD rozhovor, dejte mi v=C4=9Bd=C4=9Bt. N=C3=A1=C5=A1 anglicky mluv=C3=
-=ADc=C3=AD z=C3=A1stupce V=C3=A1s bude okam=C5=BEit=C4=9B kontaktovat.
-
-
-S p=C5=99=C3=A1telsk=C3=BDm pozdravem
-Ji=C5=99=C3=AD Novotn=C3=BD
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
