@@ -2,119 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63C154776A7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:05:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9A614776E0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:07:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238796AbhLPQFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 11:05:53 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:5073 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238792AbhLPQFw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Dec 2021 11:05:52 -0500
+        id S238875AbhLPQHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 11:07:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38668 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232999AbhLPQHW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 11:07:22 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F213C061574;
+        Thu, 16 Dec 2021 08:07:22 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id k23so39295172lje.1;
+        Thu, 16 Dec 2021 08:07:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1639670752; x=1671206752;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=cONz2nOUtRuhs7JANm+jEmUdj18wu7MXLwm+z6MjMLs=;
-  b=F0XHltG4sSxBkq89M5ZzOdi8WH073kiAsoLfj44OfrMuxV9IbHVSTjeA
-   /3fAx3clEFyEF6PpWHTH21DqRF3Ojq+mSS8MfucaKn0Xbl+QRxR5U90x6
-   qfOmqQvNRrFomBXrFYfWStuwjvXDU7dwiIariF08eTFaZD+yBFAcU8C23
-   0NO4hwDh9JuNP4Cbg6cBqJrs6pGw3Z+ELzagfvGVst0zif1SB3rz4+7Sq
-   EpzDxHm/Dpzs3o6/wEr8BvFBZZkxiALMuwVPZ1yPX68+3zjDP6rP1S5Te
-   PluUynPuowiRobm6dn8l9pPkCAqB2c5tFfCNlzcBHyHZuN4G5IXkNJJ/a
-   g==;
-X-IronPort-AV: E=Sophos;i="5.88,211,1635199200"; 
-   d="scan'208";a="21103123"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 16 Dec 2021 17:05:50 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 16 Dec 2021 17:05:50 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 16 Dec 2021 17:05:50 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1639670750; x=1671206750;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=cONz2nOUtRuhs7JANm+jEmUdj18wu7MXLwm+z6MjMLs=;
-  b=kEkoPAaiwWtLDz7ayQKA6MTMY4Pjy2JaQu6WAj1GMCvTwZamvQqEFn8q
-   zO7DmdYVdzWsbb7kAOfeGnUECmDDfDuaGEpxWxia+qEyGtYLoD1d5NVnb
-   n0blui9/RnXB/C6ZgoXN/4Qim8J5bj4WCpl3iluvBEgGOfRZajfzdvOck
-   53Yb85qqe4uyG1XgyoWpustYxjQZ9qEreDo4IuD1nvopddSCJ26lx7t54
-   PW5mfFax3IyyR3eXzswersF+WO7kehwXuGrELG2okFbVrdUe8F8SCSXDm
-   HHqTVk6PE3RtauordAQdMjIcqV9zaB62jEBmU4m/1Vn/oQIF+uAjX9v0F
-   w==;
-X-IronPort-AV: E=Sophos;i="5.88,211,1635199200"; 
-   d="scan'208";a="21103122"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 16 Dec 2021 17:05:50 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 3F909280075;
-        Thu, 16 Dec 2021 17:05:50 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 3/3] arm64: dts: imx8mp: Add memory for USB3 glue layer to usb3_phy nodes
-Date:   Thu, 16 Dec 2021 17:05:41 +0100
-Message-Id: <20211216160541.544974-4-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211216160541.544974-1-alexander.stein@ew.tq-group.com>
-References: <20211216160541.544974-1-alexander.stein@ew.tq-group.com>
+        d=gmail.com; s=20210112;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=cOgP4Q0MS5pImnSQTIGont9oTNeBxvtKf955mAYz/RY=;
+        b=mO/bNRXG0+RTO/ybItEyiIbpQWytEzVeRh2Q/4MI2VNIf+DrwqW48H/aDySegPjs3x
+         huP3hgeW2fpFiA2AaY9q2shAY9gvbXD/u1CcL3XtxsOPeiLXBPk+TWXooQOFpDXZHciS
+         edoV4uDO9Uxj1n8UJAQm+5r6HEJQEOzjVCy0VQMicthuIfae7pClMTRtWk671AJmbL6a
+         JXmA+8Eev6+yLJKccJLQ49XBq8N+MgAxeu8+pp569+tseQwtJrB0vE6IiWx/NPwYowmV
+         B5q7JTzoxDIHaAMF09bGdRvPHiegBScXqe5HnWvGPiZnc/Cq6G62k0Td/bxJT4fEdVQa
+         p9KA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=cOgP4Q0MS5pImnSQTIGont9oTNeBxvtKf955mAYz/RY=;
+        b=vGlCd9Rhk0vvdDoNlAjH45gyNL5Jqy+MavRv9RcAw1Xrb0fMPG/5u2oFsyJHVvjYyU
+         yM1Yk43yfprRldoum1M012+RJnPxh5o0njSDrKXbeT/HgpmNrHB6u57VmK26St93ArSN
+         0crn4HLKHkMlzfQgaiIuvTl8FjzPjbhryz6NtFeDZRc/aEUrAof0RR+cJB10l5/IaNJ5
+         RBY/1g7dyk4HY7BxLeRmvVVupWkc4jz12LZrwL4nZEpWcqtOMxYbVUazT+LYQhTI0fPG
+         24wF4T+soqPBZ4dywlrzw951XafoQLj8OMcoPUv36DdWKHAs1xO6jnpYKN6ycW3g2bmV
+         9K6g==
+X-Gm-Message-State: AOAM531H/eu+xdJqLjhpISbIs7RqTebWwS6cWPDEXmsXuYzWnxKhBtWc
+        Ny4pNr/koncpCy9e3giBFqbLdi/L8So=
+X-Google-Smtp-Source: ABdhPJyKZHnVDuXQoo4x5waxnM20Tpj5I+Lw2AfKI8XqZCi/GZbnt/+slbF1J3HFIj/PcvtGiqfuXQ==
+X-Received: by 2002:a2e:a409:: with SMTP id p9mr15940699ljn.412.1639670840394;
+        Thu, 16 Dec 2021 08:07:20 -0800 (PST)
+Received: from [192.168.2.145] (94-29-63-156.dynamic.spd-mgts.ru. [94.29.63.156])
+        by smtp.googlemail.com with ESMTPSA id f19sm934794lfm.119.2021.12.16.08.07.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Dec 2021 08:07:20 -0800 (PST)
+Subject: Re: [PATCH v1] dt-bindings: sound: tegra-audio-rt5677: Correct
+ example
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        David Heidelberg <david@ixit.cz>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
+References: <20211216160229.17049-1-digetx@gmail.com>
+Message-ID: <df97dc4f-175f-738b-1670-303113dd58c7@gmail.com>
+Date:   Thu, 16 Dec 2021 19:07:19 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <20211216160229.17049-1-digetx@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The USB3 glue layer has 2 areas in the register set, see RM Rev.1
-section 11.2.5.2.1 GLUE_usb3 memory map:
-* USB3 control/status
-* PHY control/status
+16.12.2021 19:02, Dmitry Osipenko пишет:
+> Remove non-existent properties from the example of the binding. These
+> properties were borrower from the old txt binding, but they were never
+> used in practice and aren't documented in the new binding. They aren't
+> reported by the binding checker because dtschema needs extra patch that
+> hasn't been upstreamed yet to make unevaluatedProperties work properly.
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  .../devicetree/bindings/sound/nvidia,tegra-audio-rt5677.yaml   | 3 ---
+>  1 file changed, 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5677.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5677.yaml
+> index 03ff691c26c8..a49997d6028b 100644
+> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5677.yaml
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-rt5677.yaml
+> @@ -92,9 +92,6 @@ examples:
+>          nvidia,audio-codec = <&rt5677>;
+>  
+>          nvidia,hp-det-gpios = <&gpio 143 0>;
+> -        nvidia,mic-present-gpios = <&gpio 132 1>;
+> -        nvidia,hp-en-gpios = <&rt5677 1 0>;
+> -        nvidia,dmic-clk-en-gpios = <&rt5677 2 1>;
+>  
+>          clocks = <&clk 216>,
+>                   <&clk 217>,
+> 
 
-Provide the memory area to the usb3_phy nodes for accessing the features
-in the USB3 control area.
-
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 6b840c05dd77..4958142da1e4 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -910,7 +910,8 @@ ddr-pmu@3d800000 {
- 
- 		usb3_phy0: usb-phy@381f0040 {
- 			compatible = "fsl,imx8mp-usb-phy";
--			reg = <0x381f0040 0x40>;
-+			reg = <0x381f0040 0x40>,
-+			      <0x381f0000 0x20>;
- 			clocks = <&clk IMX8MP_CLK_USB_PHY_ROOT>;
- 			clock-names = "phy";
- 			assigned-clocks = <&clk IMX8MP_CLK_USB_PHY_REF>;
-@@ -952,7 +953,8 @@ usb_dwc3_0: usb@38100000 {
- 
- 		usb3_phy1: usb-phy@382f0040 {
- 			compatible = "fsl,imx8mp-usb-phy";
--			reg = <0x382f0040 0x40>;
-+			reg = <0x382f0040 0x40>,
-+			      <0x382f0000 0x20>;
- 			clocks = <&clk IMX8MP_CLK_USB_PHY_ROOT>;
- 			clock-names = "phy";
- 			assigned-clocks = <&clk IMX8MP_CLK_USB_PHY_REF>;
--- 
-2.25.1
-
+Interestingly, I can't find any Tegra device-tree that uses this rt5677
+binding. Maybe we should remove it?
