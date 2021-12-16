@@ -2,147 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAEE7477190
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 13:23:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9343B4771A0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 13:25:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234219AbhLPMXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 07:23:46 -0500
-Received: from szxga01-in.huawei.com ([45.249.212.187]:33858 "EHLO
-        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbhLPMXq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 07:23:46 -0500
-Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.54])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4JFB992pRrzcbvh;
-        Thu, 16 Dec 2021 20:23:25 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 16 Dec 2021 20:23:43 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 16 Dec 2021 20:23:42 +0800
-Subject: Re: [PATCH v17 03/10] x86: kdump: use macro CRASH_ADDR_LOW_MAX in
- functions reserve_crashkernel()
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-To:     Borislav Petkov <bp@alien8.de>
-CC:     Baoquan He <bhe@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
-        "Ingo Molnar" <mingo@redhat.com>, <x86@kernel.org>,
-        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
-        Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
- <20211210065533.2023-4-thunder.leizhen@huawei.com> <YbntdtQo2jfbO4cO@zn.tnic>
- <20211216011040.GG3023@MiWiFi-R3L-srv>
- <9513d74c-d4c7-babd-f823-8999e195d96d@huawei.com> <YbseAX6X1VHUF12f@zn.tnic>
- <35810a61-604e-9b90-2a7f-cfca6ae042ac@huawei.com>
-Message-ID: <20d765ff-59bb-7bb3-df06-9f02eada3cb0@huawei.com>
-Date:   Thu, 16 Dec 2021 20:23:31 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <35810a61-604e-9b90-2a7f-cfca6ae042ac@huawei.com>
+        id S234275AbhLPMZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 07:25:37 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:47563 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234240AbhLPMZh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Dec 2021 07:25:37 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 078255804DC;
+        Thu, 16 Dec 2021 07:25:36 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Thu, 16 Dec 2021 07:25:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=from:to:cc:subject:date:message-id:content-type:mime-version
+        :content-transfer-encoding; s=fm2; bh=TSgqps1iDUhbFhbJp7MGOAGo8m
+        qIrmX1W/B+0CydO9Y=; b=0RyepsFVU2bY6Baev95I7Tvrq9ixoPqI/XERGWtUYq
+        TfZII+f+2JoFTvR4pIwYM9ilB3cGjdWGv2Bv9Eg20R78+hi3aVG36BU1Q3MvQJEj
+        9ayYdDbz/kniS6QjCFcPXSGp+ompTOf3KKaUpmQ8C4QPXoFn+uTLILmObS4tjA+T
+        XFnRNCLxlZRhGc1Dp58hZMCDxhyQ4HYzTHdXxKy48cI6u/LOdbLQDl2IOCNBV88f
+        3tCY971ic908P4ZZpMrV8g5X6U4gZQnctDu5QWU4JmB2Hhq33QSODNIAIU99Nzw8
+        UxqeohKk6eCmTMwCNFJMBicKA4tLpeFe7ODG3PNd44Zg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:message-id:mime-version:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=TSgqps
+        1iDUhbFhbJp7MGOAGo8mqIrmX1W/B+0CydO9Y=; b=T3WhLBxTOlHr1HPbwCy8dc
+        SoYs5DWUoZtX5CcC4eZQkfIcVuRW0zMdDkbavVTI2WZFRMDwj1ivGIjOnrgQ6709
+        6DeNTxPbwYNOky8QSH47OS2CaMmiYAn+CBnBX8jyBTVC7HzETljapGee40uiui9y
+        Kic6b7OarK3wlHMFKi7ZExgryc+pF5gWpRCqbzF4/g4Jo81SW7VWjkZh2b4es8lq
+        uDD5zVC6hjrz8bFfzxojGJ0bPpgDGc42bujvdnVeu2cHD4lPAGq94TcVzpqzp0K7
+        f1p20DIBGf8kv6lyVcHEHZTnzeEztdw4gLxBVAdazq4L83SrhR1J28nsiXfjqDqA
+        ==
+X-ME-Sender: <xms:PzC7YcdGBg8qO-508admVP7vai__h-1IwJW7GqQcsfjSWTphvSDYVg>
+    <xme:PzC7YeMIrSJTkd3c7IfpNMvchhEfjH6ya-Yz_CQn9Bv2GawVX-sv2mMSmTw4TK2PX
+    -ifKm3qz1ErfwkG-To>
+X-ME-Received: <xmr:PzC7YdgSTTzaCeomh0BhZ4zjC1zDpeJGtIDOJLzz1b07aJZBJ7BKWiMzm-74ihKbMi82-CFBwPyrmg9-vw09hx4GYgu67eZHaXYAZbPeTEGj>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrleeggdegtdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffotggggfesthhqredtre
+    dtjeenucfhrhhomheptehlihhsthgrihhrucfhrhgrnhgtihhsuceorghlihhsthgrihhr
+    segrlhhishhtrghirhdvfedrmhgvqeenucggtffrrghtthgvrhhnpeehteefgfejueejtd
+    egvdfggefhiefgheffvdffudevveetjeduhfdukeduteevjeenucevlhhushhtvghrufhi
+    iigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlhhishhtrghirhesrghlihhsth
+    grihhrvdefrdhmvg
+X-ME-Proxy: <xmx:PzC7YR-Cwt_ZpA2kSuvQHCRhBPYDqkqx0x_TD558lbdyA3JzPU72OQ>
+    <xmx:PzC7YYsFkRl5QQ-iIWGoa-PFgnkopaMTmTWmQwEnvnWZISxrlarh0A>
+    <xmx:PzC7YYHaxFSGt__pn4YOzA2JU19Om7Nl6EuICb2UzSBlktUU5KekOw>
+    <xmx:PzC7YZ-XE996ln-ZB-ZZStuN6qAX0zJHNpHrZ12bepmVV1aSKaFo2w>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 16 Dec 2021 07:25:29 -0500 (EST)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     kernel@pengutronix.de, lgirdwood@gmail.com, robh+dt@kernel.org,
+        lee.jones@linaro.org, broonie@kernel.org
+Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
+        s.hauer@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+        andreas@kemnade.info, linux-hwmon@vger.kernel.org,
+        alistair23@gmail.com, amitk@kernel.org, shawnguo@kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rui.zhang@intel.com, Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v17 0/8] Add support for the silergy,sy7636a
+Date:   Thu, 16 Dec 2021 22:25:17 +1000
+Message-Id: <20211216122525.136139-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.31.1
 Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2021/12/16 20:08, Leizhen (ThunderTown) wrote:
-> 
-> 
-> On 2021/12/16 19:07, Borislav Petkov wrote:
->> On Thu, Dec 16, 2021 at 10:46:12AM +0800, Leizhen (ThunderTown) wrote:
->>> The original value (1ULL << 32) is inaccurate
->>
->> I keep asking *why*?
->>
->>> and it enlarged the CRASH_ADDR_LOW upper limit.
->>
->> $ git grep -E "CRASH_ADDR_LOW\W"
->> $
->>
->> I have no clue what you mean here.
-> 
-> #ifdef CONFIG_X86_32
-> # define CRASH_ADDR_LOW_MAX     SZ_512M
-> # define CRASH_ADDR_HIGH_MAX    SZ_512M
-> #endif
-> 
-> 		if (!high)
-> (1)                     crash_base = memblock_phys_alloc_range(crash_size,
->                                                 CRASH_ALIGN, CRASH_ALIGN,
->                                                 CRASH_ADDR_LOW_MAX);
->                 if (!crash_base)
-> (2)                     crash_base = memblock_phys_alloc_range(crash_size,
->                                                 CRASH_ALIGN, CRASH_ALIGN,
->                                                 CRASH_ADDR_HIGH_MAX);
-> 
-> -	if (crash_base >= (1ULL << 32) && reserve_crashkernel_low())
-> +(3)	if (crash_base >= CRASH_ADDR_LOW_MAX && reserve_crashkernel_low())
-> 
-> If the memory of 'crash_base' is successfully allocated at (1), because the last
-> parameter CRASH_ADDR_LOW_MAX is the upper bound, so we can sure that
-> "crash_base < CRASH_ADDR_LOW_MAX". So that, reserve_crashkernel_low() will not be
-> invoked at (3). That's why I said (1ULL << 32) is inaccurate and enlarge the CRASH_ADDR_LOW
-> upper limit.
-> 
-> If the memory of 'crash_base' is successfully allocated at (2), you see,
-> CRASH_ADDR_HIGH_MAX = CRASH_ADDR_LOW_MAX = SZ_512M, the same as (1). In fact,
-> "crashkernel=high," may not be recommended on X86_32.
-> 
-> Is it possible that (CRASH_ADDR_HIGH_MAX >= 4G) and (CRASH_ADDR_LOW_MAX < 4G)?
-> In this case, the memory allocated at (2) maybe over 4G. But why shouldn't
-> CRASH_ADDR_LOW_MAX be equal to 4G at this point?
-
-We divide two memory areas: low memory area and high memory area. The doc told us:
-at least 256MB memory should be reserved at low memory area. So that if
-"crash_base >= CRASH_ADDR_LOW_MAX" is true at (3), that means we have not reserved
-any memory at low memory area, so we should call reserve_crashkernel_low().
-The low memory area is not equivalent to <=4G, I think. So replace (1ULL << 32) with
-CRASH_ADDR_LOW_MAX is logically correct.
-
-> 
-> 
->>
->>> This is because when the memory is allocated from the low end, the
->>> address cannot exceed CRASH_ADDR_LOW_MAX, see "if (!high)" branch.
->>
->>> If
->>> the memory is allocated from the high end, 'crash_base' is greater than or
->>> equal to (1ULL << 32), and naturally, it is greater than CRASH_ADDR_LOW_MAX.
->>>
->>> I think I should update the description, thanks.
->>
->> I think you should explain why is (1ULL << 32) wrong.
->>
->> It came from:
->>
->>   eb6db83d1059 ("x86/setup: Do not reserve crashkernel high memory if low reservation failed")
->>
->> which simply frees the high memory portion when the low reservation
->> fails. And the test for that is, is crash base > 4G. So that makes
->> perfect sense to me.
->>
->> So your change is a NOP on 64-bit and it is a NOP on 32-bit by virtue of
->> the _low() variant always returning 0 on 32-bit.
->>
+v17:=0D
+ - Rebase and fix build issues=0D
+v16:=0D
+ - Improve vdd regulator comments=0D
+v15:=0D
+ - Address comments on the patches=0D
+v14:=0D
+ - Merge the thermal driver and hwmon=0D
+v13:=0D
+ - Address comments on thermal driver=0D
+ - Rebase on master (without other patches)=0D
+v12:=0D
+ - Rebase=0D
+v11:=0D
+ - Address comments on hwmon=0D
+ - Improve "mfd: simple-mfd-i2c: Add a Kconfig name" commit message=0D
+v10:=0D
+ - Use dev_get_regmap() instead of dev_get_drvdata()=0D
+v9:=0D
+ - Convert to use the simple-mfd-i2c instead=0D
+=0D
+Alistair Francis (8):=0D
+  dt-bindings: mfd: Initial commit of silergy,sy7636a.yaml=0D
+  mfd: simple-mfd-i2c: Add a Kconfig name=0D
+  mfd: simple-mfd-i2c: Enable support for the silergy,sy7636a=0D
+  regulator: sy7636a: Remove requirement on sy7636a mfd=0D
+  hwmon: sy7636a: Add temperature driver for sy7636a=0D
+  ARM: imx_v6_v7_defconfig: Enable silergy,sy7636a=0D
+  ARM: dts: imx7d-remarkable2: Enable silergy,sy7636a=0D
+  ARM: dts: imx7d-remarkable2: Enable lcdif=0D
+=0D
+ .../bindings/mfd/silergy,sy7636a.yaml         |  82 +++++++++++=0D
+ Documentation/hwmon/index.rst                 |   1 +=0D
+ Documentation/hwmon/sy7636a-hwmon.rst         |  26 ++++=0D
+ arch/arm/boot/dts/imx7d-remarkable2.dts       | 136 ++++++++++++++++++=0D
+ arch/arm/configs/imx_v6_v7_defconfig          |   3 +=0D
+ drivers/hwmon/Kconfig                         |   9 ++=0D
+ drivers/hwmon/Makefile                        |   1 +=0D
+ drivers/hwmon/sy7636a-hwmon.c                 | 106 ++++++++++++++=0D
+ drivers/mfd/Kconfig                           |   2 +-=0D
+ drivers/mfd/simple-mfd-i2c.c                  |  11 ++=0D
+ drivers/regulator/Kconfig                     |   1 -=0D
+ drivers/regulator/sy7636a-regulator.c         |   7 +-=0D
+ include/linux/mfd/sy7636a.h                   |  34 +++++=0D
+ 13 files changed, 415 insertions(+), 4 deletions(-)=0D
+ create mode 100644 Documentation/devicetree/bindings/mfd/silergy,sy7636a.y=
+aml=0D
+ create mode 100644 Documentation/hwmon/sy7636a-hwmon.rst=0D
+ create mode 100644 drivers/hwmon/sy7636a-hwmon.c=0D
+ create mode 100644 include/linux/mfd/sy7636a.h=0D
+=0D
+-- =0D
+2.31.1=0D
+=0D
