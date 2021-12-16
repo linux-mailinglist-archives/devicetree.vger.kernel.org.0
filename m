@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71494477D98
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:29:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61857477D9A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:31:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236306AbhLPU3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 15:29:25 -0500
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:34776 "EHLO
-        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236123AbhLPU3Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:29:24 -0500
-Received: by mail-ot1-f52.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso348891otj.1;
-        Thu, 16 Dec 2021 12:29:23 -0800 (PST)
+        id S241423AbhLPUb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 15:31:28 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:37477 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236123AbhLPUb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:31:28 -0500
+Received: by mail-ot1-f45.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so335975otg.4;
+        Thu, 16 Dec 2021 12:31:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=bDBqevOB85xRGIw/RBLVUuTMCIA2+fremlM1z3vOPh0=;
-        b=QHzhkGYNERcqyHZE7XYrZQgTEi5C6HLUeCZ8v6W680AQuTJTkzb+dirxQ+9xcYsAsh
-         9T4P/VDVHk0uPqJP3fDuNEmhc9HFI0zkTqmtdXA36w5sVsrjq3GLoMzViFq0/Tsp9oDF
-         MdTC6dJrPw6A97UqWpvZ8FIx8eUWKMObfYkQp3lhExnpSucZOUo5WyBTKBS7HABuyyuG
-         uw1fQQpPbRhxNqcGFKOqFmDGv4t7TIR+qqt0s0KJeDFNfU+Ohcnq7opU9XX9AR+1gJKS
-         YhkJvtm3R72hTgbMvFzduKqc0n+1P7rLwVSLs4sMagoiCXNDMaH6g6Snj7eww9v+djVI
-         KLUQ==
-X-Gm-Message-State: AOAM533ZQ/cmZJw++Uv3vkZU2q5fZTNZI0Y1komDutv8uMjucypsBs5z
-        NNfgfoinohcxgPXDJ9kdxw==
-X-Google-Smtp-Source: ABdhPJy+B6a3x2FqVeUfnuWoMpK9XmwbhVz6YLYvC8ukefOb6l2pVnRu7UxvCf3lR1kjgugdCYMoAA==
-X-Received: by 2002:a05:6830:1e97:: with SMTP id n23mr13515194otr.4.1639686563407;
-        Thu, 16 Dec 2021 12:29:23 -0800 (PST)
+        bh=9OyruAna4eQK8uRw8f/nq559G0rjy0iQItWA5/0EZSI=;
+        b=8Pzr83a7pdlEW4qzJiTV8ySeLF4Z3okWwyPB+JL1XoqWp0WvTVMkpr5MqsY+VXnwZG
+         Z7pttXlEn5FVaepDvUMvAfEK3qMy8HQHxIOc8klnbhkd+vCg8eFCiaitF96XDHyegx+s
+         j/3y6fEWr1mNb6FGfu046DJQwoI6R3nhd/ZkKX1INZziau5nWUTfWGf0OeWBYmeT6CDG
+         QZgkRVwdlDHpx47RK1GkOTZ+Wy63WWbBvcmxgZfdknT7OD9wqy1OrQgjs3YQg9TYdaxq
+         2hX4bVOi+JuaKfaw0xPgCOXngDl2kE8Ohdp4XyifuMoDEPLGx510QhmgvvSMJgQThaRm
+         8R5Q==
+X-Gm-Message-State: AOAM531/3IXLKAZzsKUhHTKqkHMk0182O67usLm9kG1Km13YT6iVPCT5
+        nlqIyweJ1vdkOpO+ucX2OA==
+X-Google-Smtp-Source: ABdhPJyOYXNB53yOciN7Z88z8EuVw1heccZg9ATVKolCRbHwQ8myX1kELq8j+Ks33oKO0ALx+/QjHg==
+X-Received: by 2002:a9d:7cce:: with SMTP id r14mr13783658otn.114.1639686687735;
+        Thu, 16 Dec 2021 12:31:27 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id h3sm1185255ooe.13.2021.12.16.12.29.22
+        by smtp.gmail.com with ESMTPSA id w5sm1221565otk.70.2021.12.16.12.31.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 12:29:22 -0800 (PST)
-Received: (nullmailer pid 702224 invoked by uid 1000);
-        Thu, 16 Dec 2021 20:29:21 -0000
-Date:   Thu, 16 Dec 2021 14:29:21 -0600
+        Thu, 16 Dec 2021 12:31:26 -0800 (PST)
+Received: (nullmailer pid 705168 invoked by uid 1000);
+        Thu, 16 Dec 2021 20:31:25 -0000
+Date:   Thu, 16 Dec 2021 14:31:25 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        linux-hwmon@vger.kernel.org, Chris Lesiak <chris.lesiak@licor.com>,
-        Peter Rosin <peda@axentia.se>,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH] hwmon: (ntc_thermistor): Add Samsung 1404-001221 NTC
-Message-ID: <YbuhoaaO6d/KjKuy@robh.at.kernel.org>
-References: <20211215174241.1496169-1-linus.walleij@linaro.org>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, Heiko Stuebner <heiko@sntech.de>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3 2/8] dt-bindings: phy: phy-rockchip-inno-usb2: add
+ rk3568 documentation
+Message-ID: <YbuiHfUPezvB01CH@robh.at.kernel.org>
+References: <20211215210252.120923-1-pgwipeout@gmail.com>
+ <20211215210252.120923-3-pgwipeout@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211215174241.1496169-1-linus.walleij@linaro.org>
+In-Reply-To: <20211215210252.120923-3-pgwipeout@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Dec 2021 18:42:41 +0100, Linus Walleij wrote:
-> This adds the Samsung 1404-001221 NTC thermistor to the
-> NTC thermistor driver. As far as I can tell it is electrically
-> compatible with the Murata 47K NTC thermistor.
+On Wed, 15 Dec 2021 16:02:46 -0500, Peter Geis wrote:
+> The rk3568 usb2phy node is a standalone node with a single muxed
+> interrupt.
+> Add documentation for it to phy-rockchip-inno-usb2.
 > 
-> This thermistor is mounted in a variety of Samsung products.
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> ---
 > 
-> Cc: Peter Rosin <peda@axentia.se>
-> Cc: Chris Lesiak <chris.lesiak@licor.com>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> The DT binding oneline is included, I see no point in splitting
-> that into a separate patch.
-> ---
->  Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml | 1 +
->  drivers/hwmon/ntc_thermistor.c                              | 4 ++++
->  2 files changed, 5 insertions(+)
+> This was the best solution I've come up with for this.
+> I avoided creating another binding since this is such a simple change to
+> the actual driver and would likely require renaming the existing
+> binding.
+> I've tested that this correctly flags if the interrupts are missing or
+> incorrectly assigned on both rk356x and rk3399.
+> 
+> Thank you Johan and Rob for your constructive feedback.
+> 
+>  .../bindings/phy/phy-rockchip-inno-usb2.yaml  | 44 +++++++++++++++++--
+>  1 file changed, 40 insertions(+), 4 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
