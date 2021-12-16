@@ -2,114 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51170477D69
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:22:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E75BF477D72
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 21:23:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233861AbhLPUWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 15:22:25 -0500
-Received: from 82-65-109-163.subs.proxad.net ([82.65.109.163]:46668 "EHLO
-        luna.linkmauve.fr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234079AbhLPUWY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:22:24 -0500
-Received: by luna.linkmauve.fr (Postfix, from userid 1000)
-        id B941FF40EA4; Thu, 16 Dec 2021 21:22:20 +0100 (CET)
-Date:   Thu, 16 Dec 2021 21:22:20 +0100
-From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
-        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        linux-rtc@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        linuxppc-dev@lists.ozlabs.org, Ash Logan <ash@heyquark.com>,
-        rw-r-r-0644 <r.r.qwertyuiop.r.r@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Paul Mackerras <paulus@samba.org>
-Subject: Re: [PATCH v3 0/5] rtc: nintendo: Add a RTC driver for the GameCube,
- Wii and Wii U
-Message-ID: <20211216202220.y6rctd2k72yuya5w@luna>
-Jabber-ID: linkmauve@linkmauve.fr
-References: <20211027223516.2031-1-linkmauve@linkmauve.fr>
- <20211215175501.6761-1-linkmauve@linkmauve.fr>
- <163964813197.6786.14005810276404182021.b4-ty@bootlin.com>
+        id S234156AbhLPUXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 15:23:07 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:45830 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233985AbhLPUXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 15:23:06 -0500
+Received: by mail-ot1-f47.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso262907otf.12;
+        Thu, 16 Dec 2021 12:23:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=O8UFdnai6s7snpmbwkSl36M4XrxKlc+aoRmeuFCVzpU=;
+        b=bJU1uDt7wZScVoy+c2bBj0kmanZepJonRt5Tr9tUVKsOr8+bFhPYBIHNwkp113822H
+         YxTjcPTp+6h0Viretl5KJKfVXEZzfAY5b5oOSDLJUNtaOEH9mKiWHQi5ojnDUzywTajg
+         nm2K7jHPpgWJAQbDkG8RsveoZS2pa3QPoHWM+0iJ8ryXpcLHv+bmZHrXTbsOg4wlOTxs
+         qYdtzAFLUhnMoKrrJSkhKQibEL7mGUxel+2lZuRLGONWth4cfyxv4euLL1hWOBrLA/Pq
+         HmwbL8AIYT2SZ8XImpfugCXwgVL6uWauMeUpZrJ9ELCMd9GcJ/JRn2OOoT5ilbRQojqR
+         4T7w==
+X-Gm-Message-State: AOAM532e1uS3ugAzn9TH8btzERxDurO6GKWzg4Np7t2Ug+NKU3LC1gZ7
+        CPUTDcV5pzcjqhlnGIdlRg==
+X-Google-Smtp-Source: ABdhPJyndhm5K0m9V6/DCjWTrWsPJVH01HL98W25VKieC8BJwh1QrMqZCdZpi152ne28QCC7piMKew==
+X-Received: by 2002:a05:6830:2693:: with SMTP id l19mr14584490otu.338.1639686185961;
+        Thu, 16 Dec 2021 12:23:05 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id j5sm1223576oou.23.2021.12.16.12.23.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 12:23:05 -0800 (PST)
+Received: (nullmailer pid 693232 invoked by uid 1000);
+        Thu, 16 Dec 2021 20:23:04 -0000
+Date:   Thu, 16 Dec 2021 14:23:04 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v4 1/4] dt-bindings: mtd: rzn1: Describe Renesas RZ/N1
+ NAND controller
+Message-ID: <YbugKD5KH/x+NavY@robh.at.kernel.org>
+References: <20211215154619.166360-1-miquel.raynal@bootlin.com>
+ <20211215154619.166360-2-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xjgfe6sy2p6qs4uc"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <163964813197.6786.14005810276404182021.b4-ty@bootlin.com>
+In-Reply-To: <20211215154619.166360-2-miquel.raynal@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Dec 15, 2021 at 04:46:16PM +0100, Miquel Raynal wrote:
+> Add a Yaml description for this Renesas NAND controller bindings.
+> 
+> Provide a family-specific "rzn1" compatible and a more specific
+> "r9a06g032" one.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  .../mtd/renesas,rzn1-nand-controller.yaml     | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/renesas,rzn1-nand-controller.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/renesas,rzn1-nand-controller.yaml b/Documentation/devicetree/bindings/mtd/renesas,rzn1-nand-controller.yaml
+> new file mode 100644
+> index 000000000000..03a4e99b4d89
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/renesas,rzn1-nand-controller.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/renesas,rzn1-nand-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/N1x NAND flash controller device tree bindings
+> +
+> +maintainers:
+> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> +
+> +allOf:
+> +  - $ref: "nand-controller.yaml"
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,r9a06g032-nand-controller
+> +      - const: renesas,rzn1-nand-controller
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: APB host controller clock
+> +      - description: External NAND bus clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: hclk
+> +      - const: eclk
+> +
+> +  "#address-cells": true
+> +  "#size-cells": true
 
---xjgfe6sy2p6qs4uc
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You can drop these 2 as nand-controller.yaml should cover them.
 
-On Thu, Dec 16, 2021 at 10:49:44AM +0100, Alexandre Belloni wrote:
-> On Wed, 15 Dec 2021 18:54:56 +0100, Emmanuel Gil Peyrot wrote:
-> > These three consoles share a device, the MX23L4005, which contains a
-> > clock and 64=C2=A0bytes of SRAM storage, and is exposed on the EXI bus
-> > (similar to SPI) on channel 0, device 1.  This driver allows it to be
-> > used as a Linux RTC device, where time can be read and set.
-> >=20
-> > The hardware also exposes two timers, one which shuts down the console
-> > and one which powers it on, but these aren=E2=80=99t supported currentl=
-y.
-> >=20
-> > [...]
->=20
-> Applied, thanks!
->=20
-> [1/5] rtc: gamecube: Add a RTC driver for the GameCube, Wii and Wii U
->       commit: 86559400b3ef9de93ba50523cffe767c35cd531a
-> [2/5] rtc: gamecube: Report low battery as invalid data
->       commit: 322539a014bcd24cbb9281832c09b24e07912237
-> [3/5] powerpc: wii.dts: Expose HW_SRNPROT on this platform
->       commit: 5479618e1e2641dd57352a73b7b7b2f6908fbeee
-> [4/5] powerpc: gamecube_defconfig: Enable the RTC driver
->       commit: 57bd7d356506b713d0df8d8e42da7810a18864df
-> [5/5] powerpc: wii_defconfig: Enable the RTC driver
->       commit: 69e8ba80ddda4db31e59facbf2db19773ad3785b
->=20
-> This one didn't apply ceanly but I believe I did the right thing. Can you=
- check?
-
-I believe you didn=E2=80=99t, at least that commit[1] seems to have one =E2=
-=80=9C+=E2=80=9D too
-many in the modified line, whereas the previous one[2] doesn=E2=80=99t.
-
-But thanks for applying them!
-
->=20
->=20
-> Best regards,
-> --=20
-> Alexandre Belloni <alexandre.belloni@bootlin.com>
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git/comm=
-it/?id=3D69e8ba80dd
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git/comm=
-it/?id=3D57bd7d3565
-
---=20
-Emmanuel Gil Peyrot
-
---xjgfe6sy2p6qs4uc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEEjrVT1SzTln43kCLJOWgfYkb2LpAFAmG7n/kACgkQOWgfYkb2
-LpC5TggAi5VOpJA1g7QxHH22JVQUoOoi2gh+8iLJUAXipFMNAcQ3ehzzpA47P7pF
-QvCjk8aywr3VNj2+mzVz4CsgFHI2EyxqvHVzuEETddZe/bbd4PjS3Q39jMFP2bzG
-oHtt8C0/z2XTBgPHC0VtT8cI9cliiadPzsDCYQRdZHWYCnckWZmo51BzH4cmZzC1
-ECD/VgEunDre1ATXcefh7gRAEsQH+1FjkhukL/jNKUONeTpyr9r8D81R5lFyrLGK
-e5NXNykw2kdkpzv29CnQnIpc9y/AqX6U9WpY6P39xzlpaudSI8VEOKGFunJjXxI8
-O8Bp+trQO2iCKZX1EyABFUKkuF+QXA==
-=lj83
------END PGP SIGNATURE-----
-
---xjgfe6sy2p6qs4uc--
+Reviewed-by: Rob Herring <robh@kernel.org>
