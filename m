@@ -2,111 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2463A476852
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 03:52:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A59E476877
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 04:08:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233084AbhLPCwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Dec 2021 21:52:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53024 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233082AbhLPCwP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 21:52:15 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62E4CC061574;
-        Wed, 15 Dec 2021 18:52:15 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id p8so36269384ljo.5;
-        Wed, 15 Dec 2021 18:52:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=xdliTs2c7a14RuIv4fQ6Gv/2gRZUaewMh1986gMRzTU=;
-        b=JdzpyixQ2xNOQp1kobBa6dmn34VWHrmMYTVwUXGQSaVyVj5QVJDy4JjSTrjFE296mQ
-         CqhG/ZJHjvykbtD8aRhdXgHW+5EnEpakNZxH9tupm40iWsE97QvdLlsriAmDxbK3YSCn
-         EvcJw/ioGVLXy9UBVUwa/Hq8EGUxqaU08tz9K0liPFw8/3XP5+M2PwAypuru9/AtxXKN
-         cOdyxo4xygp8Lgkp8e4AJBW0beG0Q9Cy8S6ZEYIEq+LcT5QmoNNxNZAash2TxA8QMJlE
-         UvChP3emDP0SncFNgecakH5na4BlgfREMcuwDHzdWMp8tifU1OIZeYZ+jgSRIDl0pTPR
-         /NVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=xdliTs2c7a14RuIv4fQ6Gv/2gRZUaewMh1986gMRzTU=;
-        b=YnPpdHKjBXnwuxsUw7ZS91zF2cChoxwWHbg9Z87Ia1mLTzNWa+skT08WubEr7Xthu3
-         o24QNPs+UA0HvnUGjKU4q2eEGknWT6s/oFU+GFE3mbG/lVXYT62E81j0YWTXicoNhknj
-         Z3DFqNCCEgmdO0OSYYwQ9ZSHLZvwjuEqwEPIVJ6X9KfsEmccATN0fCsntp+HR8Vlsov0
-         6lXbW95jxd7XGmb2jUVslasq3s27mHzAt3HGBHpbnOEGQW4u8dDzpKSyBDdowwWZ0l+2
-         KEPhmAKKR3SDv4qRlXPNKDA/k/frgJ3gwjzHSV2T5RWMrt6m4XC9aqjQVTGz82pCCUDy
-         fObg==
-X-Gm-Message-State: AOAM532e4/P/lmFkOu1NZ7QFPdDmLH04sYwnn+K7nIxTxCtqiSzpujHK
-        1OHul6CeRSZq6ThjJ3S/HaSR25IJQ2E=
-X-Google-Smtp-Source: ABdhPJxJTPdnQvFSNjW8VJ5MEa46UwKjQZuqfN3F0CKc5MARIiUKTXKvc2vfpEjqqHJMYASZmKS6Gw==
-X-Received: by 2002:a2e:8e88:: with SMTP id z8mr12924139ljk.197.1639623133561;
-        Wed, 15 Dec 2021 18:52:13 -0800 (PST)
-Received: from [192.168.2.145] (94-29-63-156.dynamic.spd-mgts.ru. [94.29.63.156])
-        by smtp.googlemail.com with ESMTPSA id k8sm613103lfv.179.2021.12.15.18.52.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Dec 2021 18:52:13 -0800 (PST)
-Subject: Re: [PATCH v2] dt-bindings: sound: nvidia,tegra-audio: Convert
- multiple txt bindings to yaml
-To:     David Heidelberg <david@ixit.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>
-Cc:     ~okias/devicetree@lists.sr.ht, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211211224946.79875-1-david@ixit.cz>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <a84213cb-272a-f1b2-338f-ed8ed0bf133d@gmail.com>
-Date:   Thu, 16 Dec 2021 05:52:12 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S233202AbhLPDIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Dec 2021 22:08:41 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:46600 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230176AbhLPDIl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Dec 2021 22:08:41 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AE1E661BEA;
+        Thu, 16 Dec 2021 03:08:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91A4CC36AE0;
+        Thu, 16 Dec 2021 03:08:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639624120;
+        bh=TXBIFGc25Qw13VvCSpXb5l6XQy5Lk9QgDInhZ1JSPxs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=U0btZ2F/JmvVDA6I1p+rmUiHpmddV+nwOeVu7UTej/X1evMDLHwurBwFoRA7JgURf
+         VFSIUFPc9hONPzQUfTZQOaa+yd52wn4byeB7eXz4Ms/9xKSD2h4C7THnUj/BJRjTnU
+         I/CB/K+nL32H11kDV8v8dMD78F+Axv491BBs1t6t8vfOww8MDFjsd0Ornlgegdeb8G
+         0DjMEZ2Pg8JIMq4MjZtPZBf+zmukKWjufRvw+oqTSefmFbxQEHd51PYwQBL/SYV695
+         Oi26xJv4Up+VTzp5f+p7FK4tI1NyNp5jKU82hAI4RaST9vKWIbpdq2bJUKxYazChMu
+         q/ziOVEihrjHg==
+Date:   Thu, 16 Dec 2021 11:08:33 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     s.hauer@pengutronix.de, dmitry.torokhov@gmail.com,
+        benjamin.tissoires@redhat.com, jikos@kernel.org,
+        linux-kernel@vger.kernel.org, alistair23@gmail.com,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        Jason.Gerecke@wacom.com, linux-imx@nxp.com, Ping.Cheng@wacom.com,
+        devicetree@vger.kernel.org, martin.chen@wacom.com,
+        tatsunosuke.tobita@wacom.com
+Subject: Re: [PATCH v16 3/3] ARM: dts: imx7d: remarkable2: add wacom
+ digitizer device
+Message-ID: <20211216030833.GQ4216@dragon>
+References: <20211208124045.61815-1-alistair@alistair23.me>
+ <20211208124045.61815-4-alistair@alistair23.me>
 MIME-Version: 1.0
-In-Reply-To: <20211211224946.79875-1-david@ixit.cz>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211208124045.61815-4-alistair@alistair23.me>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-12.12.2021 01:49, David Heidelberg пишет:
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    sound {
-> +        compatible = "nvidia,tegra-audio-rt5677-ryu",
-> +                     "nvidia,tegra-audio-rt5677";
-> +        nvidia,model = "NVIDIA Tegra Ryu";
-> +
-> +        nvidia,audio-routing =
-> +                "Headphone", "LOUT2",
-> +                "Headphone", "LOUT1",
-> +                "Headset Mic", "MICBIAS1",
-> +                "IN1P", "Headset Mic",
-> +                "IN1N", "Headset Mic",
-> +                "DMIC L1", "Internal Mic 1",
-> +                "DMIC R1", "Internal Mic 1",
-> +                "DMIC L2", "Internal Mic 2",
-> +                "DMIC R2", "Internal Mic 2",
-> +                "Speaker", "PDM1L",
-> +                "Speaker", "PDM1R";
-> +
-> +        nvidia,i2s-controller = <&tegra_i2s1>;
-> +        nvidia,audio-codec = <&rt5677>;
-> +
-> +        nvidia,hp-det-gpios = <&gpio 143 0>;
-> +        nvidia,mic-present-gpios = <&gpio 132 1>;
-> +        nvidia,hp-en-gpios = <&rt5677 1 0>;
-> +        nvidia,dmic-clk-en-gpios = <&rt5677 2 1>;
+On Wed, Dec 08, 2021 at 10:40:45PM +1000, Alistair Francis wrote:
+> Add Wacom I2C support for the reMarkable 2 eInk tablet using the
+> generic I2C HID framework.
+> 
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
 
-I spotted that nvidia,dmic-clk-en-gpios is undocumented, but DTs and
-binding are passing the validation. We will make another patch to fix it.
+I updated the subject prefix like below.
 
-Rob, could you please tell whether this is because unevaluatedProperties
-doesn't work yet or we're missing something?
+ ARM: dts: imx7d-remarkable2:
+
+Applied, thanks!
