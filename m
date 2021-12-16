@@ -2,95 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE060477AD6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 18:45:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20D37477B13
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 18:52:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239435AbhLPRpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 12:45:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35268 "EHLO
+        id S236052AbhLPRwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 12:52:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239951AbhLPRpb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 12:45:31 -0500
-Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4E72C061574
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 09:45:30 -0800 (PST)
-Received: by mail-ua1-x934.google.com with SMTP id n7so4523678uaq.12
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 09:45:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LDeVCQVHmAVidYDO/s0mhbIRYWBFtG/sro/1UJrEiAk=;
-        b=r3DchQ3BYcmS7+9HivblR0/OCV2aiEuq0vRQyfBo9nYoN5ljTajRsY2bvPMBtakq7G
-         +te8MME+r/8GsnYuRcUQ/MoloFY/xJiYWVw5XAH6rKePdC5hhzuyskuTxhZmIWzWpwr9
-         l4dK/XSmj/eDKPPWinf0IkrSo0g2jVgQWomLY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LDeVCQVHmAVidYDO/s0mhbIRYWBFtG/sro/1UJrEiAk=;
-        b=5xAcUxtTaLpaP0f2bW/9RGRucvMGUyXSQbiIptJrY6gqKAi/GzXe/+GsSCJzDRoLVj
-         FW7j60dUKB3++tzMVV/+qnvrXf5ibCurrzirgSY77Q8ABUAvc2HxIZWgqANFw6twuWVn
-         iccSsc4kuX2L+VWRKnGgdLh0iAPVwftQN4UFLwCwuWUrc7c8sUmtR0jcz3zfyP2CaQ3P
-         mVHx2qk9PgQ1BERNlyvQcB9cSIMXA3leiBDS22NUP+zLMdgQ5VLAFyvFrRjAZ0LN4tbi
-         50kbpDMwyHGAWKG7jHGeZu5WoP3a+MM2MqRtJWNEvkMVLW8IhJh69XGcecJqMCFCdDx4
-         Vuaw==
-X-Gm-Message-State: AOAM530RejPRCnvuyPxIxZ2FoSKyz3qWrlWv7Vz8UTPvW99G70pamf5A
-        Em19zBQTPJtDvOYLez0ToNP8M7bFPfQ4tDy25ddv6w==
-X-Google-Smtp-Source: ABdhPJzzuHdSOS9xdR7Q4na1iHF9/jKZ5rqheojoaoWwBNRSHrpeBFKT9JDn/twOrqzQVNpVN+r50de3IubMLxLUy7g=
-X-Received: by 2002:a05:6102:c89:: with SMTP id f9mr717811vst.43.1639676730006;
- Thu, 16 Dec 2021 09:45:30 -0800 (PST)
+        with ESMTP id S233248AbhLPRwk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 12:52:40 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CECDBC061574;
+        Thu, 16 Dec 2021 09:52:39 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id A914ECE2267;
+        Thu, 16 Dec 2021 17:52:37 +0000 (UTC)
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtp.kernel.org (Postfix) with ESMTPSA id 2D882C36AE5;
+        Thu, 16 Dec 2021 17:52:32 +0000 (UTC)
+Date:   Thu, 16 Dec 2021 17:57:57 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Mihail Chindris <mihail.chindris@analog.com>
+Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <lars@metafoo.de>,
+        <Michael.Hennerich@analog.com>, <nuno.sa@analog.com>,
+        <dragos.bogdan@analog.com>, <alexandru.ardelean@analog.com>
+Subject: Re: [PATCH v7 1/2] dt-bindings: iio: dac: Add adi,ad3552r.yaml
+Message-ID: <20211216175757.1c1e94f2@jic23-huawei>
+In-Reply-To: <20211213110825.244347-2-mihail.chindris@analog.com>
+References: <20211213110825.244347-1-mihail.chindris@analog.com>
+        <20211213110825.244347-2-mihail.chindris@analog.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20211216105246.3548133-1-daniel@0x0f.com> <CABgxDoKJRc_qORcpFx=eNPS=bGV68hPrbeH0VtcQ2Jjx2ruqmg@mail.gmail.com>
- <CAFr9PX=AAssT1imCfpU_piGBOemD23RGBZzngznyia-4TXrK=g@mail.gmail.com> <CABgxDoLuOoE5qzzymE-htYz68Nrh8TzZ4d=LgbuNhJs9geevZg@mail.gmail.com>
-In-Reply-To: <CABgxDoLuOoE5qzzymE-htYz68Nrh8TzZ4d=LgbuNhJs9geevZg@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Fri, 17 Dec 2021 02:48:34 +0900
-Message-ID: <CAFr9PXnqXkjxja_NLbAeJELtScNCemkKNy9obJqvWkk_RY7m+g@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] ARM: mstar: Initial Miyoo Mini support
-To:     Romain Perier <romain.perier@gmail.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Romain,
+On Mon, 13 Dec 2021 11:08:24 +0000
+Mihail Chindris <mihail.chindris@analog.com> wrote:
 
-On Fri, 17 Dec 2021 at 02:34, Romain Perier <romain.perier@gmail.com> wrote:
-> Well, I agree it is confusing. So I have discussed privately about
-> this with Arnd (on IRC):
+> Add documentation for ad3552r and ad3542r
+> 
+> Signed-off-by: Mihail Chindris <mihail.chindris@analog.com>
 
-Yeah. I think in the same document for submitting patches it also says
-no html (obvious), no links.. ;)
+> +patternProperties:
+> +  "^channel@([0-1])$":
+> +    type: object
+> +    description: Configurations of the DAC Channels
+> +
+> +    additionalProperties: false
+> +    
 
-> <rperier> What is the real usage of the "Link:" tag ? it is mainly
-> used as background informations for referencing archives or patches on
-> lore.k.o  , but it can also be used for referencing something else or
-> not ?
-> (like information for a board)
-> [...]
-> <arnd> right, it's pretty much never wrong to add a Link: tag for the
-> patch submission that was picked up, but you can also add it for any
-> other reference, e.g.issue trackers or datasheets that may be relevant
->
-> ----
->
-> Which replies to the question, so it is okay for me ;)
+spaces on line above. Fixed whilst applying.
 
-Thank you for going the extra mile and confirming with Arnd.
-I want to start adding a link to our wiki for every board we add as
-the documentation is all over the place for these things, suddenly
-disappears etc.
-
-There's a 3 commit series coming for another SSD202D board in a few
-days that will look just like this one.
-Maybe now you have the sbc2d70 board you could add the DTS for that
-too and we can pull all of these new boards in one DT pull request?
-
-Cheers,
-
-Daniel
+> +    properties:
+> +      reg:
+> +        description: Channel number
+> +        enum: [0, 1]
+> +
+	
