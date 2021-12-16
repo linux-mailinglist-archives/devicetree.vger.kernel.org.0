@@ -2,119 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9416E477AAB
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 18:33:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD202477AC8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 18:42:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234840AbhLPRdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 12:33:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60742 "EHLO
+        id S233536AbhLPRmb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 12:42:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240166AbhLPRdn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 12:33:43 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E3A3C061574;
-        Thu, 16 Dec 2021 09:33:43 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 56464B82461;
-        Thu, 16 Dec 2021 17:33:42 +0000 (UTC)
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtp.kernel.org (Postfix) with ESMTPSA id 2E825C36AEB;
-        Thu, 16 Dec 2021 17:33:38 +0000 (UTC)
-Date:   Thu, 16 Dec 2021 17:39:03 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc:     <robh+dt@kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/4] iio: add filter subfolder
-Message-ID: <20211216173903.3e35bcf0@jic23-huawei>
-In-Reply-To: <20211207155445.247444-1-antoniu.miclaus@analog.com>
-References: <20211207155445.247444-1-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        with ESMTP id S230338AbhLPRmb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 12:42:31 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D883CC061574;
+        Thu, 16 Dec 2021 09:42:30 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id m6so39320918lfu.1;
+        Thu, 16 Dec 2021 09:42:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=7FYfhrvLo3GwXmePy+p2yzbv60phNdldW5PFmWfPiXs=;
+        b=OBJnVNMSYP1adOeWa8AFJJttrXnKOZ5+oNGEc7fxOVyfUhGwE2eSmsmDBRM30+2mPa
+         W6UrrIxQpQldr/2PWt5ViY+Y5BC8bl6hqL+10epmYRyJwHIItwb7C59vc0OfjO1eaxTH
+         jWWJSKFwZayFn9lvRON51g0t3THbTvJnO+vSYFKglpURt9oYefVHOdClgKA636UCwlwN
+         ANQyvGQiTLtz0czKOq6n3YVvY0lXkjpAVhiP3OVNkcX6EKuvkgH1UeX5KsUHOof2Udo9
+         nN+D2uoXmGx9hFm4ZuoHTwOX4YtOT/wFsP5xIrb+7YVkg9mSFwYyitromSiLKg241wyS
+         PG3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=7FYfhrvLo3GwXmePy+p2yzbv60phNdldW5PFmWfPiXs=;
+        b=mqDDzWOpRf1IdF6ZfD8tkzVmcBQODcnM/OBgJV+TepnSmWWPWUvJcgGryPR7ilCkCH
+         TO1x3GsLo+Irj0j47jRtrZ/UKN/2z2u09mIoBWLXHs3zWo/PAaI3GSQNu1mQ2sYlOwIu
+         eTR0qIWNm/Zovoqw2sSTz/v6zaSvEzIOn01JrErdYmLZWi7oD2dVouJwyCUuBJyN2r51
+         uIM+xaG3fKavfYoZ4iVc0p1o96CpxR4aettmvg5D7r7XKFhNSR6pSIOXstkMKNahKUws
+         KKAO26+r8HZOjdvaDDDBYExaXCEuX8jeqqF72oP0/jSguY1RFXHbFMK1AS9woA9fOSQR
+         tf1w==
+X-Gm-Message-State: AOAM531pAR69FFnL+NQ8LnqJTSEfXcv70AwPXmqVMZ6QTeJ8006CQp/i
+        EjU9e02bvA1ZfAdM9+2xClU=
+X-Google-Smtp-Source: ABdhPJxAQ0zmacqcYgTECIF74iTzW5n9uJt+DffNRDOYvj8/CQFPVFgscJUsXmswmHpoSH2OV23h1Q==
+X-Received: by 2002:ac2:5966:: with SMTP id h6mr15703116lfp.358.1639676549126;
+        Thu, 16 Dec 2021 09:42:29 -0800 (PST)
+Received: from [192.168.2.145] (94-29-63-156.dynamic.spd-mgts.ru. [94.29.63.156])
+        by smtp.googlemail.com with ESMTPSA id w15sm1244847ljo.97.2021.12.16.09.42.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Dec 2021 09:42:28 -0800 (PST)
+Subject: Re: [PATCH v15 2/4] dmaengine: tegra: Add tegra gpcdma driver
+To:     Akhil R <akhilrajeev@nvidia.com>, dan.j.williams@intel.com,
+        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        jonathanh@nvidia.com, kyarlagadda@nvidia.com, ldewangan@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        p.zabel@pengutronix.de, rgumasta@nvidia.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, vkoul@kernel.org
+Cc:     Pavan Kunapuli <pkunapuli@nvidia.com>
+References: <1639674720-18930-1-git-send-email-akhilrajeev@nvidia.com>
+ <1639674720-18930-3-git-send-email-akhilrajeev@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <45ba3abe-5e7e-4917-2b23-0616a758c4eb@gmail.com>
+Date:   Thu, 16 Dec 2021 20:42:28 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <1639674720-18930-3-git-send-email-akhilrajeev@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 7 Dec 2021 17:54:42 +0200
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
-
-> Add filter subfolder for IIO devices that handle filter functionality.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-
-Series applied, but note there is a request for a follow up patch
-on the ABI documentation to add the relevant entry to the
-filter documentation in Documentation/ABI/testing/sysfs-bus-iio
-
-Applied to the togreg branch of iio.git and pushed out as testing.
-
-Thanks,
-
-Jonathan
-
-> ---
->  drivers/iio/Kconfig         | 1 +
->  drivers/iio/Makefile        | 1 +
->  drivers/iio/filter/Kconfig  | 8 ++++++++
->  drivers/iio/filter/Makefile | 6 ++++++
->  4 files changed, 16 insertions(+)
->  create mode 100644 drivers/iio/filter/Kconfig
->  create mode 100644 drivers/iio/filter/Makefile
-> 
-> diff --git a/drivers/iio/Kconfig b/drivers/iio/Kconfig
-> index 2334ad249b46..3a496a28bad4 100644
-> --- a/drivers/iio/Kconfig
-> +++ b/drivers/iio/Kconfig
-> @@ -77,6 +77,7 @@ source "drivers/iio/chemical/Kconfig"
->  source "drivers/iio/common/Kconfig"
->  source "drivers/iio/dac/Kconfig"
->  source "drivers/iio/dummy/Kconfig"
-> +source "drivers/iio/filter/Kconfig"
->  source "drivers/iio/frequency/Kconfig"
->  source "drivers/iio/gyro/Kconfig"
->  source "drivers/iio/health/Kconfig"
-> diff --git a/drivers/iio/Makefile b/drivers/iio/Makefile
-> index 65e39bd4f934..97d2fbcf0950 100644
-> --- a/drivers/iio/Makefile
-> +++ b/drivers/iio/Makefile
-> @@ -24,6 +24,7 @@ obj-y += common/
->  obj-y += dac/
->  obj-y += dummy/
->  obj-y += gyro/
-> +obj-y += filter/
->  obj-y += frequency/
->  obj-y += health/
->  obj-y += humidity/
-> diff --git a/drivers/iio/filter/Kconfig b/drivers/iio/filter/Kconfig
-> new file mode 100644
-> index 000000000000..e268bba43852
-> --- /dev/null
-> +++ b/drivers/iio/filter/Kconfig
-> @@ -0,0 +1,8 @@
-> +#
-> +# Filter drivers
-> +#
-> +# When adding new entries keep the list in alphabetical order
+16.12.2021 20:11, Akhil R пишет:
+> +static int tegra_dma_terminate_all(struct dma_chan *dc)
+> +{
+> +	struct tegra_dma_channel *tdc = to_tegra_dma_chan(dc);
+> +	unsigned long wcount = 0;
+> +	unsigned long status;
+> +	unsigned long flags;
+> +	int err;
 > +
-> +menu "Filters"
+> +	raw_spin_lock_irqsave(&tdc->lock, flags);
 > +
-> +endmenu
-> diff --git a/drivers/iio/filter/Makefile b/drivers/iio/filter/Makefile
-> new file mode 100644
-> index 000000000000..cc0892c01142
-> --- /dev/null
-> +++ b/drivers/iio/filter/Makefile
-> @@ -0,0 +1,6 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +#
-> +# Makefile for industrial I/O Filter drivers
-> +#
+> +	if (!tdc->dma_desc) {
+> +		raw_spin_unlock_irqrestore(&tdc->lock, flags);
+> +		return 0;
+> +	}
 > +
-> +# When adding new entries keep the list in alphabetical order
+> +	if (!tdc->busy)
+> +		goto skip_dma_stop;
+> +
+> +	if (tdc->tdma->chip_data->hw_support_pause)
+> +		err = tegra_dma_pause(tdc);
+> +	else
+> +		err = tegra_dma_stop_client(tdc);
+> +
+> +	if (err) {
+> +		raw_spin_unlock_irqrestore(&tdc->lock, flags);
+> +		return err;
+> +	}
+> +
+> +	status = tdc_read(tdc, TEGRA_GPCDMA_CHAN_STATUS);
+> +	if (status & TEGRA_GPCDMA_STATUS_ISE_EOC) {
+> +		dev_dbg(tdc2dev(tdc), "%s():handling isr\n", __func__);
+> +		tegra_dma_xfer_complete(tdc);
+> +		status = tdc_read(tdc, TEGRA_GPCDMA_CHAN_STATUS);
+> +	}
+> +
+> +	wcount = tdc_read(tdc, TEGRA_GPCDMA_CHAN_XFER_COUNT);
+> +	tegra_dma_stop(tdc);
+> +
+> +	tdc->dma_desc->bytes_transferred +=
+> +			tdc->dma_desc->bytes_requested - (wcount * 4);
+> +
+> +skip_dma_stop:
+> +	tegra_dma_sid_free(tdc);
+> +	vchan_free_chan_resources(&tdc->vc);
+> +	kfree(&tdc->vc);
 
+You really going to kfree the head of tegra_dma_channel here? Once
+again, this code was 100% untested :/
+
+You're not allowed to free channel from the dma_terminate_all()
+callback. This callback terminates submitted descs, that's it.
+
+https://elixir.bootlin.com/linux/v5.16-rc5/source/include/linux/dmaengine.h#L1105
+
+https://elixir.bootlin.com/linux/v5.16-rc5/source/drivers/i2c/busses/i2c-tegra.c#L962
