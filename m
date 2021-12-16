@@ -2,105 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62F2C477B3B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 19:02:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73C50477B5D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 19:18:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237874AbhLPSC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 13:02:56 -0500
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:34717 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230293AbhLPSC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 13:02:56 -0500
-Received: by mail-ot1-f47.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso29928004otj.1;
-        Thu, 16 Dec 2021 10:02:55 -0800 (PST)
+        id S240228AbhLPSSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 13:18:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42874 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233310AbhLPSSm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 13:18:42 -0500
+Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C9EFC061574;
+        Thu, 16 Dec 2021 10:18:42 -0800 (PST)
+Received: by mail-ua1-x92d.google.com with SMTP id p2so48637532uad.11;
+        Thu, 16 Dec 2021 10:18:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=bdYvwcz9LvAjDMBtqnZboEvuhMjoDSvlLf/1manSdx8=;
+        b=llM8yvcxXW77gunNkKWazDVf5XEI75jU3XJwqLPMbQrTxG1rgvOwzPiGSbb9a0Ifjd
+         Svot4whifbs3mwpzWXKSCTTZR2OcbJ6kBSt1trxzApO3FtshmD3XwPLMCTL1RBPsnO1v
+         27irpfBVVH5/cZHAESc4N/L9wv/xjtQnvEOUHL+fnbAPEF7BasYRi3LH2zsMjfpp+Y2w
+         esWbn1jhXMmMDAx4u1EiUDLOE6dhNieLcpkKuyYihF+8+EkAj2S2nJEz9mTaDFogHVUu
+         VSHktt8W9W/vVBL8anclxAh5DeVYUMgiEmT5KCidG/NHWnG2dY0ODYAsnlorz3bBu4R5
+         8ycw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QQ381WmSY1ABB0mZ35OvJqIYgZKiMipXpNULkZCKiDs=;
-        b=xxHrOeBEKVTCy315SGf93kJwfGj7cK29hrMMK+QyzKL56VU8nQOf6SNPZEicVEiZrj
-         JDD8/fV9TVkmf79vNsjEXEvqbV0EgWxtAbY8RohQ5vkwMYdt0sej1sgYYE7DKGV3OQkx
-         kfd0X50g/bn1E+UyQYNqWnptrKMSaOkibAKfTDzFNbIn8fRQSHaRRrXQTVjxl4o3Ym7L
-         3MTBtbaJxR9UzMiINQ0dk0H1lWDtdIKOowQCrT38h0D3pDgaQCNUxxGQbmOtcnNhDrx6
-         eKSLOWUe2tEbE5R8rsZEvPOmTCtMuPwgz1+cI3oT+r1pRnAMJh1KX47XS5l4RVHpBIfM
-         yguQ==
-X-Gm-Message-State: AOAM531ESCmlCcFOWF3xJlSn/R4p6+PRmh9/jkwoYuDXTLHuN2h5Kr7x
-        KeTD1dLXiRrtgYsj3UeCDA==
-X-Google-Smtp-Source: ABdhPJzn4BW0cemeZqsl+FNsr2G5s9GTvWt8pmx801Wgc8bSgOFAmgz/5Jg2e2++4y9spe8ck1jRZQ==
-X-Received: by 2002:a9d:3af:: with SMTP id f44mr13345289otf.271.1639677775334;
-        Thu, 16 Dec 2021 10:02:55 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id h1sm1146543otq.45.2021.12.16.10.02.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 10:02:54 -0800 (PST)
-Received: (nullmailer pid 485016 invoked by uid 1000);
-        Thu, 16 Dec 2021 18:02:53 -0000
-Date:   Thu, 16 Dec 2021 12:02:53 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Paul Cercueil <paul@crapouillou.net>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Vincent Knecht <vincent.knecht@mailoo.org>
-Subject: Re: [PATCH 2/4] ASoC: dt-bindings: qcom: sm8250: Document
- "pin-switches" and "widgets"
-Message-ID: <Ybt/TagtH9iDv4mu@robh.at.kernel.org>
-References: <20211214142049.20422-1-stephan@gerhold.net>
- <20211214142049.20422-3-stephan@gerhold.net>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=bdYvwcz9LvAjDMBtqnZboEvuhMjoDSvlLf/1manSdx8=;
+        b=kOB1L1QMduI4xttJf90AR9pb4LOzYRRyi9oa7dKEppCeFcECCmi67YqyzcC6szp7XW
+         VFOOUhoQ54vDn9XvOaRpzBge0isjB7RclzER5bBbcjma8Whef8cAX0wFCf4KPNpDIOf1
+         SwYk1JfUwqsnh2PSHhGNnqdLDFivIwCOvKwiZ8c0jfLCohXp4yi4x4I+LAFAhwd0KcTw
+         n8Sh9Z/iGwlIe2sEnRQw8Pb3kwHxHIr25szXPjpNsYwiPjEYEWRxMC3nR7SYANTqVna6
+         H/vJ+Z+P6C7a2O/IsZ/+IYsGe5C6/z8UT+e6aCL4EkNLXb6exNEA6lqyjQhNTCrms7fe
+         vY6g==
+X-Gm-Message-State: AOAM531w63UKORCwDBVDeU816YbeS1M5ty9wVZ4LNl3c9Nk8bGBA2xeF
+        hhtKulKtM7ZZSnUDUyPCjHWZkPL4zpKK6X4SNrw7quMCbbA=
+X-Google-Smtp-Source: ABdhPJwNgXKg59CbjVBmA4HGLaFqz55vuFfbF9EV32e9/nPk5g2Dok6L9KMiSm4k0Cajin6S6IP2TrBgP1H8RyN72ds=
+X-Received: by 2002:a67:f594:: with SMTP id i20mr1483330vso.54.1639678720741;
+ Thu, 16 Dec 2021 10:18:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211214142049.20422-3-stephan@gerhold.net>
+References: <20211212181906.94062-1-romain.perier@gmail.com>
+ <20211212181906.94062-3-romain.perier@gmail.com> <CAFr9PXki8LVdjQC_4eDSuB1dmEmv2K00bWOy92cOXENEoEyeqw@mail.gmail.com>
+In-Reply-To: <CAFr9PXki8LVdjQC_4eDSuB1dmEmv2K00bWOy92cOXENEoEyeqw@mail.gmail.com>
+From:   Romain Perier <romain.perier@gmail.com>
+Date:   Thu, 16 Dec 2021 19:18:28 +0100
+Message-ID: <CABgxDoLtD6fAj-c_+gcjJBoe9HLQYxrhSZZdjEC0YJqDssP6SA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] clocksource: msc313e: Add support for
+ ssd20xd-based platforms
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 14, 2021 at 03:20:47PM +0100, Stephan Gerhold wrote:
-> Some sound card setups might require extra pin switches to allow
-> turning off certain audio components. There are two real examples for
-> this in smartphones/tablets based on MSM8916:
-> 
->   1. Analog speaker amplifiers connected to headphone outputs.
-> 
->      The MSM8916 analog codec does not have a separate "Line Out" port
->      so some devices have an analog speaker amplifier connected to one
->      of the headphone outputs. A pin switch is necessary to allow
->      playback on headphones without also activating the speaker.
-> 
->   2. External speaker codec also used as earpiece.
-> 
->      Some smartphones have two front-facing (stereo) speakers that can
->      be also configured to act as an earpiece during voice calls. A pin
->      switch is needed to allow disabling the second speaker during
->      voice calls.
+Hi Daniel,
 
-This all makes sense, but how that translates to the DT properties I 
-don't have a clue.
+What do you think about the following description ?  :  "
+    clocksource: msc313e: Add support for ssd20xd-based platforms
 
-> There are existing bindings that allow setting up such pin switches in
-> simple-card.yaml. Document the same for Qcom sound cards.
+    On SSD20X family SoCs bootrom sets the divider for timer0 to run at
+    12Mhz, while timer1 and timer2 are kept unchanged and defaut to ~432Mhz=
+.
+    There are no ways to reduce or divide these clocks in the clktree.
+    However, These SoCs provide an internal "timer_divide" register that ca=
+n
+    act on this input clock. This commit adds support for this register,
+    as timer1 and timer2 are used as clockevents these will run at 48Mhz.
 
-And that description is equally as bad.
+    Signed-off-by: Romain Perier <romain.perier@gmail.com>
+"
 
-> One variant of example 1 above is added to the examples in the DT
-> schema: There is an analog speaker amplifier connected to the HPH_R
-> (right headphone channel) output. Adding a "Speaker" pin switch and
-> widget allows turning off the speaker when audio should be only played
-> via the connected headphones.
-> 
-> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
->  .../devicetree/bindings/sound/qcom,sm8250.yaml   | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+Romain
 
-But nothing new here really, so
-
-Acked-by: Rob Herring <robh@kernel.org>
+Le mer. 15 d=C3=A9c. 2021 =C3=A0 13:00, Daniel Palmer <daniel@0x0f.com> a =
+=C3=A9crit :
+>
+> Hi Romain,
+>
+> On Mon, 13 Dec 2021 at 03:19, Romain Perier <romain.perier@gmail.com> wro=
+te:
+> >
+> > SSD20X family SoCs have an oscillator running at ~432Mhz for timer1 and
+> > timer2, while timer0 is running at 12Mhz.
+>
+> I don't think this is technically true. I think the boot rom sets the
+> divider for timer0 so that it runs at ~12MHz.
+> I think the current change to only configure timer1 and timer2 is ok
+> but maybe the commit message should say that timer0 is configured to
+> be backwards compatible at boot.
+>
+> Cheers,
+>
+> Daniel
