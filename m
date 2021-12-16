@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E129477606
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:34:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BCB4477609
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:35:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238570AbhLPPeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 10:34:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235182AbhLPPeH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:34:07 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79D80C061574;
-        Thu, 16 Dec 2021 07:34:07 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1A9C361E3C;
-        Thu, 16 Dec 2021 15:34:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 216B0C36AE4;
-        Thu, 16 Dec 2021 15:34:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639668846;
-        bh=c9OVquxnCbPd7oE5qBrhnnxW3NX2Nl9yQXk5jMs/9Z4=;
-        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-        b=IvvBTsBqRVXkFpkBp8KpqvGhL1Tfb07SBOZgGe7x37FwVM5+hrvLc2Rn4Uv4Moecy
-         iWQA00vSWX0o/FdX0kglT+OXsWXtgKLW4GIbzB6hscfw2N7EwuCm8t35eKOuuelVsy
-         TpQdy281lEiXNMb6nSuJ5TpdOPw5QhhkBgZapmfDqdZ3K9iEr8DxT/NQXEV5bMZ8mt
-         w4YA7U8cQXWAGRnMOu03+DcQdfi0QBFsgYltFTtQqrHXhJ728yVuhG8SheU7DjEk0s
-         ndj/jYXsjLclOpyahtFtfHM8Z8kzzt12jwfL80gdNFKPOZPnuQ1ISP/0bSyvLR1QXX
-         8MZJtF3BpGpQA==
-Content-Type: text/plain; charset="utf-8"
+        id S238373AbhLPPfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 10:35:04 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:43521 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235074AbhLPPfD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:35:03 -0500
+Received: by mail-oi1-f181.google.com with SMTP id w64so3007388oif.10;
+        Thu, 16 Dec 2021 07:35:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Tzhyv7NNF7027JUFF/IG6LCltND4kDLQ7SHvh0WotTc=;
+        b=0I1Q7nD4se471xmd0HzLwwJbezTljxzK39mLTf+f+ovq592fGNtHfpIhp3ZP8mpuaI
+         HmXh/yQr3QsjIPHerOWDL/Av6BVRaTLQG+qTr/uj6so4OE3I1CKrMskfHVqDHKBndlkn
+         3oaAwOUcc6hjO0siQPEPRJUZJRC9aA2lhcHvI1KIKo3FCdlupKxrrDUBT9BXU/zkoqFt
+         5dk2fJbRsikn+KLYvx02kYEwMdIfOdGbiQ2K1wkaWMoQjepR4Jqrdrn5sZXpd2kudfUn
+         52unOQxW8ptMJXUO225A9rPuImq3h7ZA128x1KTmnmM3oAaxkPiaKOurjpy/VUwr2oUh
+         uccw==
+X-Gm-Message-State: AOAM533v+GGaMI2EFsn4cVryB45RtV2ldKGCi3P/jP4Cg3JxTio+I624
+        Q5vgeMrtW1XUspWyu7zOjw==
+X-Google-Smtp-Source: ABdhPJxrqO+9RtItEezdVson2d2d60GMBm2W2a5PxEHKDpLl3bbr6SRznUOSvL1zUtJJz1oxNqLDZg==
+X-Received: by 2002:a54:4104:: with SMTP id l4mr4432313oic.17.1639668902580;
+        Thu, 16 Dec 2021 07:35:02 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id m6sm1082852ooe.24.2021.12.16.07.35.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 07:35:01 -0800 (PST)
+Received: (nullmailer pid 259578 invoked by uid 1000);
+        Thu, 16 Dec 2021 15:35:01 -0000
+Date:   Thu, 16 Dec 2021 09:35:01 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
+        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Jonas Gorski <jonas.gorski@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: Add binding for BCM4908 pinctrl
+Message-ID: <YbtcpbLIlUV89qEK@robh.at.kernel.org>
+References: <20211215204753.5956-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v7 1/2] dt: bindings: add new DT entry for ath11k PCI
- device
- support
-From:   Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <1638789319-2950-1-git-send-email-akolli@codeaurora.org>
-References: <1638789319-2950-1-git-send-email-akolli@codeaurora.org>
-To:     Anilkumar Kolli <akolli@codeaurora.org>
-Cc:     ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org,
-        Anilkumar Kolli <akolli@codeaurora.org>
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <163966884345.4646.11460460661865754904.kvalo@kernel.org>
-Date:   Thu, 16 Dec 2021 15:34:04 +0000 (UTC)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211215204753.5956-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Anilkumar Kolli <akolli@codeaurora.org> wrote:
-
-> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
-> Ath11k firmware uses host DDR memory, DT entry is used to
-> reserve host DDR memory regions, send these memory base
-> addresses using DT entries.
+On Wed, 15 Dec 2021 21:47:52 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> It's hardware block that is part of every SoC from BCM4908 family.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  .../pinctrl/brcm,bcm4908-pinctrl.yaml         | 72 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 ++
+>  2 files changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm4908-pinctrl.yaml
+> 
 
-2 patches applied to ath-next branch of ath.git, thanks.
-
-77a0a30bb507 dt: bindings: add new DT entry for ath11k PCI device support
-6ac04bdc5edb ath11k: Use reserved host DDR addresses from DT for PCI devices
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/1638789319-2950-1-git-send-email-akolli@codeaurora.org/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Reviewed-by: Rob Herring <robh@kernel.org>
