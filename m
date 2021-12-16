@@ -2,118 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4F5B477983
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:43:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B174D47798E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 17:47:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232052AbhLPQnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 11:43:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48644 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233222AbhLPQnR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 11:43:17 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 598B1C061574;
-        Thu, 16 Dec 2021 08:43:17 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S233043AbhLPQre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 11:47:34 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:44030
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232770AbhLPQre (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Dec 2021 11:47:34 -0500
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 20687B8251E;
-        Thu, 16 Dec 2021 16:43:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AAC8C36AE4;
-        Thu, 16 Dec 2021 16:43:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639672994;
-        bh=LgQTlyAW4xfYuZMMNxVyYRwWbOjdmK4p7vB7JpGRETU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CACEOvM4mp01nosNquGoSIS6E9hbSx4DeaZK+wYpaWo/Dw5GRLaStNNVmzrgm3oJs
-         qlNaVem1UpBMg5AwG2jMRzEYZile36ja1GQZjOolUj+yOCIGzIUKNVdrlqpfHQ1osM
-         /kXSVPDa9BHUML3kRRJLt3x7jAUXBR5CBhpxwZnZtZCu5q4oEFYsDBA/bvvcTINb5d
-         F9vcErBHYfRoh4hMvDTEV5GX4lwWhH0ExTRq4KNVi1OCQxEiY3wuVbgdRwdwVupAAi
-         Mr/x9Ch4/m8qa/S8lpTSsKQfHZdgTT5u8U+KWcDhWQhI+bparTIAI32pK0C0GySaic
-         h6GKU37tS2ENw==
-Date:   Thu, 16 Dec 2021 18:43:07 +0200
-From:   Mike Rapoport <rppt@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Quentin Perret <qperret@google.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>
-Subject: Re: [PATCH v2] of/fdt: Don't worry about non-memory region overlap
- for no-map
-Message-ID: <Ybtsm084H0g+cIOd@kernel.org>
-References: <20211215072011.496998-1-swboyd@chromium.org>
- <Ybm6KQiS7B28QOSW@kernel.org>
- <CAE-0n53sMjF7-STAyn=snT5NSAMYSXhkBXJ4ay_fPiB_DbV_gg@mail.gmail.com>
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 6C6A73F0EB
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 16:47:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1639673253;
+        bh=UJoL1Inyw8vu/KLNbBVbc+OxgIDQlc0M+xAVjgBLGQY=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=awLkskXEYJwxNobBKbVfCvLmy3SUvIJybvaCyYBqqHOsWv2nZQhrygy95qPrJlzUj
+         u7gmjpPdvOqBGtTJDUgI9OjUgmZovHf15QVZLfTra+8h8IJshnJciMvX5idWX/M1wk
+         o4RDVee1gh5RJa2Qmkk3hTK6defRdIbtIzHoWoyoODbxSnq3VrD/nRC0ruI6eCudCq
+         xzQEIUlCwzvtG4GhX15FmeiWvBtXXzI5Oo56Kk9onSQC8sEVhxkue9QeJFJq27RUw4
+         tBKcMihcTP0om/56LaXAqpBvCQLhs+wg0BX77Tm7frb9w0QW8sOAthDSLvaHfvqDuA
+         hLTF1fd0W/kPw==
+Received: by mail-wm1-f71.google.com with SMTP id n16-20020a05600c3b9000b003331973fdbbso10481301wms.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 08:47:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UJoL1Inyw8vu/KLNbBVbc+OxgIDQlc0M+xAVjgBLGQY=;
+        b=pa1lPhisMx0l5SIz1wJqkDx2pCgas4bO+CrIUy4BEimGoMbs3TpAQ/jSOgi4rWfnrf
+         hoSoXMXhqZOCZh0sky08udyrsBXyrFOqjBRssuu8RiHNiIlr3O6HZMLPzChKOent6Yzs
+         Nduto+yPql5GNn1MAMdLNBk4cp47/zwxIT9ZwpigcAWRt1WUGMSBDQxnN0LXJ5kHbp6Y
+         BSEPTBAkKkHG+ZRNpRKCDj44a6V2lUebMSgv1RUxH73Pq14W9kA1yNV4KCuMwqP1vLVo
+         jzl2iFnopRmkRvmoK9Yf78Slu3mNP7kwhWgRjSAZuJjhlgTxJ/ebi7bIEsegyQJz9TIU
+         Dyyw==
+X-Gm-Message-State: AOAM531baNv7e3vrcxila8T9BJuZqZMA9oPgFIq8kcCt8c4LflRUi6jZ
+        D5kMUiRiji3IBG/prKY/i+aXEDbkquuAYGCWe828lDxxhYIkvIW+dff5CrgZLa/19CzVhEDu40C
+        UxV46tQZaBSJG59TIqDf7yqtnqagqLLWtlnSoB9M=
+X-Received: by 2002:a05:600c:1d97:: with SMTP id p23mr5888864wms.186.1639673253057;
+        Thu, 16 Dec 2021 08:47:33 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwSS7rjab89jQAa03AtLuhGWfMnnTjqjL82jdXNrlyrN8nt24cOgkR/2XukFsqAxO08PB4brA==
+X-Received: by 2002:a05:600c:1d97:: with SMTP id p23mr5888850wms.186.1639673252902;
+        Thu, 16 Dec 2021 08:47:32 -0800 (PST)
+Received: from alex.home (lfbn-gre-1-195-1.w90-112.abo.wanadoo.fr. [90.112.158.1])
+        by smtp.gmail.com with ESMTPSA id t8sm5323151wrv.30.2021.12.16.08.47.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 08:47:32 -0800 (PST)
+From:   Alexandre Ghiti <alexandre.ghiti@canonical.com>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Alexandre Ghiti <alexandre.ghiti@canonical.com>
+Subject: [PATCH] Documentation: bindings: Warn about yamllint and dt-schema before submitting patches
+Date:   Thu, 16 Dec 2021 17:47:27 +0100
+Message-Id: <20211216164727.2888916-1-alexandre.ghiti@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE-0n53sMjF7-STAyn=snT5NSAMYSXhkBXJ4ay_fPiB_DbV_gg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 15, 2021 at 11:28:14AM -0800, Stephen Boyd wrote:
-> Quoting Mike Rapoport (2021-12-15 01:49:29)
-> > Hi,
-> >
-> > On Tue, Dec 14, 2021 at 11:20:11PM -0800, Stephen Boyd wrote:
-> > > In commit 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove
-> > > already reserved regions") we returned -EBUSY when trying to mark
-> > > regions as no-map when they're in the reserved memory node. This if
-> > > condition will still trigger though if the DT has a /memreserve/ that
-> > > completely subsumes the no-map memory carveouts in the reserved memory
-> > > node. Let's only consider this to be a problem if we're trying to mark a
-> > > region as no-map and it is actually memory. If it isn't memory,
-> > > presumably it was removed from the memory map via /memreserve/ and thus
-> > > can't be mapped anyway.
-> >
-> > I have no objections for this patch, but I afraid that this is a never
-> > ending story of reservation vs nomap ordering and this won't be the last
-> > fix in the area.
-> 
-> Ugh ok
-> 
-> >
-> > I was toying with the idea to use flags in memblock.reserved to have
-> > clearer view of how the reserved memory was used and then we won't need
-> > to guess firmware intentions.
-> > Thoughts?
-> 
-> My understanding of the commit being fixed was that it tried to detect
-> bad DT where two reserved regions overlapped and different reserved
-> memory regions stomped on each other. It certainly seems like that could
-> be improved by recording what reserved memory region it belongs to, but
-> within memblock I don't know if it cares. I thought memblock just cared
-> to find out what is memory and what is supposed to be mapped into the
-> page tables.
+Make sure people know that yamllint must be installed and dt-schema up
+to date before they submit device tree bindings patches.
 
-Except the creation of page tables, data in memblock is used to populate
-the memory map and the free lists, so it's important to know where there is
-memory, where there are holes and what memory is in use.
+Signed-off-by: Alexandre Ghiti <alexandre.ghiti@canonical.com>
+---
+ Documentation/devicetree/bindings/submitting-patches.rst | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-For now, any used memory will be listed in memblock.reserved, no matter if
-it's used by firwmare, marked reserved in DT, occupied by the kernel code
-or allocated early during boot before "real" mm is setup.
-
-If we track the types of the memory reservations in memblock.reserved we'll
-know which regions are /memreserve/, which are nomap and which are used by
-kernel itself and so we'll have more deterministic view on what can be
-allowed and what not. E.g it's ok to set nomap for a region that is already
-reserved by firmware, but we cannot set nomap on memory used by the kernel.
-
-For now this is a theory, I haven't even got to experiment with this.
-
-> > > This silences a warning seen at boot on sc7180-trogdor.dtsi boards that
-> > > have /memreserve/ populated by the bootloader where those reserved
-> > > regions overlap with the reserved-memory carveouts that we have in DT
-> > > for other purposes like communicating with remote processors.
-> >
-> > Do you mind adding the relevant pats of the device tree to the changelog?
-> 
-> Sure. Let me add the reserved memory snippet.
-
+diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
+index 36a17b250ccc..3553e90bef5a 100644
+--- a/Documentation/devicetree/bindings/submitting-patches.rst
++++ b/Documentation/devicetree/bindings/submitting-patches.rst
+@@ -25,6 +25,10 @@ I. For patch submitters
+ 
+        make dt_binding_check
+ 
++     Make sure yamllint is installed and dt-schema is up to date::
++
++       pip3 install dtschema --upgrade
++
+      See Documentation/devicetree/bindings/writing-schema.rst for more details
+      about schema and tools setup.
+ 
 -- 
-Sincerely yours,
-Mike.
+2.32.0
+
