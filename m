@@ -2,122 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AEF74775AC
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:18:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CDCB4775BB
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 16:21:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235343AbhLPPSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 10:18:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55286 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232620AbhLPPSw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:18:52 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0500C061574;
-        Thu, 16 Dec 2021 07:18:51 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id o13so44737995wrs.12;
-        Thu, 16 Dec 2021 07:18:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=0NW4fFRtdMsPlhmkKhcfTmNZmyEs9QhErqbczxjv6B0=;
-        b=kRAuUi3pHfp0vlymF4VGBZuEwSgT02dIRWqOT35hkagh6ntcNm8yIFOd8aC3cbEjeV
-         oLvppbAZRB8W2b4GctTPRBCxTvug8AbYTh4eU9SKY464yhzZoIZbkU7NStoyhZo028uP
-         30G79hCtFKOTQZ41pob7oCKdpmnUyzF/WOr8HOUrKPj7pgtBjorDAt1r+B0SffNGb2nx
-         PWYlXg3FMnVSoyx70RZYYypH0u6HTgYkYxQ9HgAu5RfJiVfJbT+9OBeFuOIHwD+kdpCQ
-         wyyVlh6+vxWWobNr7aCMpPy2K3Psu4wUGD2t3a6B0oxiAEEZJtpoBjFYAB3fPwOhvgRJ
-         rXHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=0NW4fFRtdMsPlhmkKhcfTmNZmyEs9QhErqbczxjv6B0=;
-        b=QsGi2mLQwHzN2XQAtq7zPlAzfM22zTwamuo0ink2i8duKK0goel3HEgFWpR2C5AwLs
-         vreXmuUGKmMKqTHCkXM/ND1tgV7r+qR6nntTSC5ZSTypj+VLzPMhaIzNCsKvyC93IrPl
-         bkOWKrPZju/Vg1GbKMRzxSYe1W51hBTv5o3OKff4QIxhZVsmsXgZMlNxq+xj1zDtcyYw
-         JoyfGiUbW9e3iPERQaMo91xoDidUEt+iBSA1v+Ia0uEqDyFSJ68s48qpZJzpKHs4bnbb
-         q4At++ShZiy9TK6hYGPOFEDvHFDD5Is+HTTd6DlVJ2csVn2/yiCi6pOpNduXBWT0oHZ3
-         uIYg==
-X-Gm-Message-State: AOAM532aSwHBWf8BELlV7AlwKX3JOGH5UOl+ocU5mL0Uwn9swrrZuaR9
-        9oI0lqM3z2/efn3u1eo4gElJQpblyWMOyg==
-X-Google-Smtp-Source: ABdhPJyy3q6RwT0+pTgk+dWoIRgzvgCOOBY61BwzAcTietGzu7v354AVmOOir3fo/hsmJoWX4Pt/IQ==
-X-Received: by 2002:adf:ea50:: with SMTP id j16mr8909726wrn.719.1639667930246;
-        Thu, 16 Dec 2021 07:18:50 -0800 (PST)
-Received: from orome ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id q13sm1597560wrr.64.2021.12.16.07.18.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 07:18:48 -0800 (PST)
-Date:   Thu, 16 Dec 2021 16:18:45 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Agneli <poczt@protonmail.ch>, linux-tegra@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v4 08/22] ASoC: tegra20: spdif: Improve driver's code
-Message-ID: <YbtY1TfX3rdVbkzG@orome>
-References: <20211204143725.31646-1-digetx@gmail.com>
- <20211204143725.31646-9-digetx@gmail.com>
+        id S235085AbhLPPVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 10:21:19 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:51418 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233101AbhLPPVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 10:21:19 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 065A4B82484;
+        Thu, 16 Dec 2021 15:21:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBB20C36AE4;
+        Thu, 16 Dec 2021 15:21:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639668076;
+        bh=YLJMEoEPmFbk5sG6PffTZ+cN1H+IWVtIDJtqiCsWvqM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=p7C241q3mGLxuufNbyH6ItOWn3QxuYcF2UHX0xaKoAVAV7fH4IZnLzvVq41zQn2VD
+         h8m/GUYf4dheTNp/J3Mk888qVUTWoeKZaHV1o/oBL8kAiftVQOicf6pbx6AK2g9XHR
+         Ms7bnoK6EDSq4g84qCyA8jP6JV6nNgOMDI7N8zzWkHT4KKu9oe8g6/x1SvbYWrL+NZ
+         ztEwSEKySM12HzlNQqleqLiJ05VIPS+01gFOmQ65kwqZ8dgGw85Va+W9owLhQDo+Oq
+         NFlbM/Nydzvmw6iAdmIWKVmhXbvQQSwkEr0WyApvUCASCRjS7DR/PbcJXBIn2HMk+6
+         /3eu8lmhv6fzw==
+Received: by mail-ed1-f44.google.com with SMTP id z29so8111312edl.7;
+        Thu, 16 Dec 2021 07:21:16 -0800 (PST)
+X-Gm-Message-State: AOAM53390QHia4IZtCL7h8f1s5DNi+FwcVy9X3PyczFYOdQdwODcVRRZ
+        zYueleD0Gbcp54P/OldD/1hKomAyOCJ41SbHGw==
+X-Google-Smtp-Source: ABdhPJy2dq3V5p7RpyMzWd50K1Gf1zdipmZxv6Rq2BYsOPSruamBi8El0fX0tWu/FVmcw9e6J+ebt8mZq17bf68+ZAw=
+X-Received: by 2002:a05:6402:5c9:: with SMTP id n9mr20627713edx.306.1639668072477;
+ Thu, 16 Dec 2021 07:21:12 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="TtAaL1I0tfYEZFLw"
-Content-Disposition: inline
-In-Reply-To: <20211204143725.31646-9-digetx@gmail.com>
-User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
+References: <20211213195833.772892-1-dbrazdil@google.com> <20211213195833.772892-2-dbrazdil@google.com>
+ <YbpPYG4rzPmJmwA6@robh.at.kernel.org> <YbpZTSpmnieCNZ9a@google.com>
+In-Reply-To: <YbpZTSpmnieCNZ9a@google.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 16 Dec 2021 09:21:00 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJRpNr7McM9OJcPs095ZfAqGJfN7FhGhy7i6pN+tx1MGg@mail.gmail.com>
+Message-ID: <CAL_JsqJRpNr7McM9OJcPs095ZfAqGJfN7FhGhy7i6pN+tx1MGg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: firmware: Add Open Profile for DICE
+To:     David Brazdil <dbrazdil@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, Will Deacon <will@kernel.org>,
+        Andrew Scull <ascull@google.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Dec 15, 2021 at 3:08 PM David Brazdil <dbrazdil@google.com> wrote:
+>
+> Hi Rob,
+>
+> > > +        dice_reserved: dice@12340000 {
+> > > +            reg = <0x00 0x12340000 0x2000>;
+> > > +            no-map;
+> > > +        };
+> > > +    };
+> > > +
+> > > +    dice {
+> > > +        compatible = "google,open-dice";
+> > > +        memory-region = <&dice_reserved>;
+> >
+> > There's no need for this indirection. Just add the compatible to the
+> > dice@12340000 node. You can bind drivers to /reserved-memory nodes.
+>
+> I have not found a way to make that work for kernel modules. Built-in
+> drivers can bind with RESERVEDMEM_OF_DECLARE, which puts an entry in
+> __reservedmem_of_table and __reserved_mem_init_node() iterates find it
+> there. A good case study might be CONFIG_TEGRA210_EMC, where the driver
+> itself can be a module but the rmem parsing is always built-in under
+> CONFIG_TEGRA210_EMC_TABLE. I don't think that's worth the trouble with
+> this driver.
 
---TtAaL1I0tfYEZFLw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I forgot you have to add the compatible to reserved_mem_matches in
+drivers/of/platform.c.
 
-On Sat, Dec 04, 2021 at 05:37:11PM +0300, Dmitry Osipenko wrote:
-> - Clean up whitespaces, defines and variables.
->=20
-> - Remove obsolete code.
->=20
-> - Adhere to upstream coding style.
->=20
-> - Don't override returned error code.
->=20
-> - Replace pr_err with dev_err.
->=20
-> No functional changes are made by this patch. This is a minor code's
-> refactoring that will ease further maintenance of the driver.
->=20
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  sound/soc/tegra/tegra20_spdif.c | 49 ++++++++++++---------------------
->  1 file changed, 18 insertions(+), 31 deletions(-)
-
-Acked-by: Thierry Reding <treding@nvidia.com>
-
---TtAaL1I0tfYEZFLw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmG7WNUACgkQ3SOs138+
-s6GwvxAAvJ61geFKAbm8cP5N+pEbKgtEihkMw5PcFuU3W2atATXHSqSBZfJLV4ze
-A8EQ0s+6vh51dP9aXYxgKU3eiuilqw97kCSNPEwmq9kOiDe/ls7Z/hoEW/Djsir5
-wHOa7uBq4+10I4UNMlJQNs5XX9+bp1ajTmH5ia/KiTcburoqT1P/UllLwjboBgRm
-k9P3LKjBckI8u9wRx9meYGxA712IxAyOmbdlfHa7SlGKwXZw7aO3K2wuls7QAdZw
-NTSkpLHUbgQW9VIAyRIIA2iczZHlwm60Y43Bo6RRTlx8vH1pPlTikqFB+VMZHH4E
-awm7aD0p+VpvM+gBN2+cjmwlWsUXvVp34rQYZ4dR+bY078R4EOTA+nyMS4Z+693G
-kNwjF+02na0InBnxDg3VFKCCd+O72A+r5ydXcWDw88FhNy5D4kUIZl+EFBKBmMb4
-AWl/HxMmM13IVSfu4NpgpCpjqNaOAQokybxCH4YHs9JIUcHAP9XZR2IKTVxZaerC
-NxQqpp9BfrOiIevdNifxpp7XL7DA6yjpck7iYMFzrcZDkc2gmIb9jiS2Cn8Szwjq
-emDETf5gob2Pn4atJkeP5koMR57wmi70y7ulhTqtJtNjGCUlW2ahYykNoTjaueiw
-b/nN6nrnayfCg8YIh81xMas2Q81sANyy8a3JLwTj+0HqHBovOWI=
-=wYWM
------END PGP SIGNATURE-----
-
---TtAaL1I0tfYEZFLw--
+Rob
