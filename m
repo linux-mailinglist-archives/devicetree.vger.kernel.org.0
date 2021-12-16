@@ -2,151 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEBDC477C3D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 20:10:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60935477C88
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 20:29:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236539AbhLPTKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 14:10:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54870 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236510AbhLPTKT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 14:10:19 -0500
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BE19C06173E
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 11:10:19 -0800 (PST)
-Received: by mail-pg1-x52e.google.com with SMTP id k4so23837578pgb.8
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 11:10:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uO+11cw4ZctCPdxXSQXpwk66+o5puMHpd0KxCNexH+w=;
-        b=NF9PS9/wDcok+Imq8A7bRq8QqRMXgyzebYarw2YRjSJ3EvGS7EyZ21k7tpCc8lGKf2
-         kRgWiL8GJwpQS4WThrAuJFQxN8BLqdZn5ER0SB7JHytvyQ2A6BwJY0tqP/m3ziekpQGi
-         h2K6MTy/3lHKPs4fPPABfi8HgMRG1MKdVuGg5Y2dim3CGmZivbLpvv5xai7+IQ1nDI1D
-         etzgsJYAwcYrk4kJoHweryjUMj1kyzR96xMlvCspT7MaWK0xkZL2sohSLEE/l05f0DN6
-         0KC8xFdyiCr76BKod17Zj3jMMMBndK9NDBcqBttvsSFZReBaG6HiVOHx3HhJ+VSMjR1O
-         S71Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uO+11cw4ZctCPdxXSQXpwk66+o5puMHpd0KxCNexH+w=;
-        b=3WhoG68iu0xy7iAiKNnT1DBzTRsG8BNo4U4NKAOWSutOGFeHycAq7J+HQ8qD0BOJ3T
-         XwngOXi2tlsKBe5OawtJ1H7BkTr3fjRNT/UkFQQ6SdSCiFCm6rvZfw+FujMhR8zf1jqN
-         uuljNcDU4jBrflFJOB1mtIPB9/y43qrydAOBMcl2ccwqpOqty2NkyYcpjhLLg1g0masu
-         T9KrrcwAZdPHzy0TJ+NXs1kU8eBcOLCZ9FjfH70ps/wxkZ0EG4KE01BE/05i49fHZo/9
-         5X3h8u/fiyR3Hoe6GPreZJFQpFZnkU6BRcZFIH3R0gQDdKvM2m/+So5g8bT8zCfbBwtz
-         Y2tw==
-X-Gm-Message-State: AOAM5326bMvtcHDHEoUYwHm8pLRvGwyIu6qo2dqs46c/AP7cK2p35luf
-        po/VLURP0PLPz/G91lN1pHfH/MVE+hQAnXzVR+Wp4g==
-X-Google-Smtp-Source: ABdhPJyHi/CcjLmMA8BDlLiVchhBwavFf2BU9wNZLuuiQbCKMhBSQXzAf1pHuOo2jglS4cInexL79hKeY5kIoYFmt9o=
-X-Received: by 2002:a63:2212:: with SMTP id i18mr13216955pgi.586.1639681818623;
- Thu, 16 Dec 2021 11:10:18 -0800 (PST)
-MIME-Version: 1.0
-References: <1639058951-12660-1-git-send-email-loic.poulain@linaro.org> <20211216034909.3EFCBC36AE0@smtp.kernel.org>
-In-Reply-To: <20211216034909.3EFCBC36AE0@smtp.kernel.org>
-From:   Loic Poulain <loic.poulain@linaro.org>
-Date:   Thu, 16 Dec 2021 20:21:51 +0100
-Message-ID: <CAMZdPi9eAFaExcTTgOt6TFE37EA-bb9xSy3nq9=nKYd5kqwmfQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] clk: qcom: Add display clock controller driver for QCM2290
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, shawn.guo@linaro.org
-Content-Type: text/plain; charset="UTF-8"
+        id S234911AbhLPT3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 14:29:03 -0500
+Received: from finn.gateworks.com ([108.161.129.64]:36086 "EHLO
+        finn.localdomain" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232560AbhLPT3D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 14:29:03 -0500
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1mxwQy-0093O5-0a; Thu, 16 Dec 2021 19:28:56 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Adam Ford <aford173@gmail.com>,
+        Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8mm-venice-gw73xx-0x: add dt overlay for imx219 rpi v2 camera
+Date:   Thu, 16 Dec 2021 11:28:54 -0800
+Message-Id: <20211216192854.26427-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+Add support for the RaspberryPi Camera v2 which is an IMX219 8MP module:
+ - https://datasheets.raspberrypi.com/camera/camera-v2-schematics.pdf
+ - has its own on-board 24MHz osc so no clock required from baseboard
+ - pin 11 enables 1.8V and 2.8V LDO which is connected to
+   GW73xx MIPI_GPIO4 (IMX8MM GPIO1_IO1) so we use this as a gpio
+   controlled regulator enable.
 
+Support is added via a device-tree overlay.
 
-On Thu, 16 Dec 2021 at 04:49, Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Loic Poulain (2021-12-09 06:09:10)
-> > diff --git a/drivers/clk/qcom/dispcc-qcm2290.c b/drivers/clk/qcom/dispcc-qcm2290.c
-> > new file mode 100644
-> > index 00000000..8aa5d31
-> > --- /dev/null
-> > +++ b/drivers/clk/qcom/dispcc-qcm2290.c
-> > @@ -0,0 +1,602 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright (c) 2020, The Linux Foundation. All rights reserved.
-> > + * Copyright (c) 2021, Linaro Ltd.
-> > + */
-> > +
-[...]
-> > +static struct clk_rcg2 disp_cc_mdss_pclk0_clk_src = {
-> > +       .cmd_rcgr = 0x205c,
-> > +       .mnd_width = 8,
-> > +       .hid_width = 5,
-> > +       .parent_map = disp_cc_parent_map_4,
-> > +       .clkr.hw.init = &(struct clk_init_data){
-> > +               .name = "disp_cc_mdss_pclk0_clk_src",
-> > +               .parent_data = disp_cc_parent_data_4,
-> > +               .num_parents = ARRAY_SIZE(disp_cc_parent_data_4),
-> > +               .flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE | CLK_OPS_PARENT_ENABLE,
->
-> These last two flags are needed for what?
+The IMX219 supports RAW8/RAW10 image formats.
 
-NOCACHE is probably useless with mainline.
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ arch/arm64/boot/dts/freescale/Makefile        |  1 +
+ .../imx8mm-venice-gw73xx-0x-imx219.dts        | 84 +++++++++++++++++++
+ 2 files changed, 85 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-imx219.dts
 
-I've added OPS_PARENT_ENABLE because AFAIU changing clock rate can
-lead to parent switch, and parent switch can only be done if parent
-clocks are enabled for rcg2 clocks. Otherwise the update fails and we
-get the following:
-    disp_cc_mdss_pclk0_clk_src: rcg didn't update its configuration.
-    WARNING: CPU: 2 PID: 77 at drivers/clk/qcom/clk-rcg2.c:122
-update_config+0xe0/0xf0
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index 5ec8d59347b6..eb9fe81ce61e 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -44,6 +44,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-imx219.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtbo
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-imx219.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-imx219.dts
+new file mode 100644
+index 000000000000..2b76c3201ad6
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-imx219.dts
+@@ -0,0 +1,84 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2021 Gateworks Corporation
++ */
++
++#include <dt-bindings/gpio/gpio.h>
++
++#include "imx8mm-pinfunc.h"
++
++/dts-v1/;
++/plugin/;
++
++&{/} {
++	compatible = "gw,imx8mm-gw73xx-0x", "fsl,imx8mm";
++
++	reg_cam: regulator-cam {
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_reg_cam>;
++		compatible = "regulator-fixed";
++		regulator-name = "reg_cam";
++		gpio = <&gpio1 1 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
++
++	cam24m: cam24m {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <24000000>;
++		clock-output-names = "cam24m";
++	};
++};
++
++&csi {
++	status = "okay";
++};
++
++&i2c3 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	imx219: sensor@10 {
++		compatible = "sony,imx219";
++		reg = <0x10>;
++		clocks = <&cam24m>;
++		VDIG-supply = <&reg_cam>;
++
++		port {
++			/* MIPI CSI-2 bus endpoint */
++			imx219_to_mipi_csi2: endpoint {
++				remote-endpoint = <&imx8mm_mipi_csi_in>;
++				clock-lanes = <0>;
++				data-lanes = <1 2>;
++				link-frequencies = /bits/ 64 <456000000>;
++			};
++		};
++	};
++};
++
++&mipi_csi {
++	status = "okay";
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			imx8mm_mipi_csi_in: endpoint {
++				remote-endpoint = <&imx219_to_mipi_csi2>;
++				data-lanes = <1 2>;
++			};
++		};
++	};
++};
++
++&iomuxc {
++	pinctrl_reg_cam: regcamgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_GPIO1_IO01_GPIO1_IO1	0x41
++		>;
++	};
++};
+-- 
+2.17.1
 
-I'm a bit surprised other similar dispcc drivers don't use the same
-flags though.
-
-
->
-> > +               .ops = &clk_pixel_ops,
-> > +       },
-> > +};
-> > +
-> > +static struct clk_rcg2 disp_cc_mdss_vsync_clk_src = {
-> > +       .cmd_rcgr = 0x208c,
-> > +       .mnd_width = 0,
-> > +       .hid_width = 5,
-> > +       .parent_map = disp_cc_parent_map_1,
-> > +       .freq_tbl = ftbl_disp_cc_mdss_esc0_clk_src,
-> > +       .clkr.hw.init = &(struct clk_init_data){
-> > +               .name = "disp_cc_mdss_vsync_clk_src",
-> > +               .parent_data = disp_cc_parent_data_1,
-> > +               .num_parents = ARRAY_SIZE(disp_cc_parent_data_1),
-> > +               .flags = CLK_SET_RATE_PARENT,
-> > +               .ops = &clk_rcg2_ops,
-> > +       },
-> > +};
-> > +
-[...]
-> > +
-> > +static struct clk_branch disp_cc_xo_clk = {
-> > +       .halt_reg = 0x604c,
-> > +       .halt_check = BRANCH_HALT,
-> > +       .clkr = {
-> > +               .enable_reg = 0x604c,
-> > +               .enable_mask = BIT(0),
-> > +               .hw.init = &(struct clk_init_data){
-> > +                       .name = "disp_cc_xo_clk",
-> > +                       .parent_hws = (const struct clk_hw*[]){
-> > +                               &disp_cc_xo_clk_src.clkr.hw,
-> > +                       },
-> > +                       .num_parents = 1,
-> > +                       .flags = CLK_IS_CRITICAL | CLK_SET_RATE_PARENT,
->
-> We need a comment why it's critical. Also I'm not sure why we would ever
-> turn this clk off or change the rate. Can't we just hit some registers
-> during probe to make sure it's on and drop this clk?
-
-Yes, good point, no objection, we will lose the hierarchical clk view
-for this clk (up to bi_tcxo_ao), but it does not really matter.
-
-Regards,
-Loic
