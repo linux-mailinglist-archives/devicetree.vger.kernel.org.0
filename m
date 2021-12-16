@@ -2,213 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8CC34774E1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 15:42:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18E5A4774D6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 15:41:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238128AbhLPOmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 09:42:42 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:12764 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237690AbhLPOml (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 09:42:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1639665763; x=1671201763;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=9uYF3W5ZcM9cdkgJbwNre6f3OTO7R8Irsrrx+e2g/nU=;
-  b=zzz5jF5ZE+/CBZlC7WdRxvOPgH8k6loD1REhC+f1U5alKhnqShiryIS7
-   R+d2ICRrOR/JSYv4Iq3AjTwXSyozE/sh7V228/tJX3DnCt8tSKpxNHutR
-   khIVhhUWS0LyEFI8nnYfsFZxwE7rjctX8ZsYuuree55hUIjloChowbxHW
-   G6BA7xf5oH+8o7aAxPM2R/I2hGpXZKTopyW/GW/DZbbu1/go6AF5G82uU
-   uOgoBgdWE2lCH45NDKE280k4XufkSuMSEN1qiP4N/uWEW7TxTx0DYIuGT
-   gQqqSVEduvzVrcwluuUqrKUFBvV4qO9cuKmFaC1eLkTVQ/6nNdJKVG/g3
-   A==;
-IronPort-SDR: yfg337+qmwvuiJYu/g100hGVlPDaVgdHuOjHO1zscQV0xLqkRON+bnoFz2JlBfHqJ73AWQG3H7
- CyxDjxzmZ9wIZ1XuFyLgwKfq4bYV9R3YygsQ/FqzkBT+XZgLLpr+D2lCB2LRUvvp7B3Lwoi7Vx
- uszwtm7C789fnc+JRr0uowAYZF2wUzi5d6SeMHMYdmZCywMnccSthI7k6KLsi1lwCO7Di/FdEl
- mwLrP9y2/hFG0lB5AP6fOauC6hWaYPv+rLdK872ec2S6E6pjPh0YC/jrGqRvufhHYh1+R2IE6R
- QRGrJH1UtEhQUNDiCDHUXvon
-X-IronPort-AV: E=Sophos;i="5.88,211,1635231600"; 
-   d="scan'208";a="146897763"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Dec 2021 07:39:57 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 16 Dec 2021 07:39:54 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17 via Frontend Transport; Thu, 16 Dec 2021 07:39:54 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hKE3jxb4gNuaNG2HnKKBhirDwVEU8iWbPdMNOrQj1LgkUttG00U0TREjwmZZ3hyRkqYmxLnvW/9YjOVsXHEHIiGUrB27X4RK6bvWEqiT/t7w0XW1+ebR1AhX4nAUg/ZBccl5TeOk6Rd+Zv8ilZbBupGOHLS/3VRyZ95Umx6csdvX8nqvBCPhsiiNxc9jJwWsT7dp4Dux1bg0JsLu/6o43VO8EU6NYzK+Kob5zhPM0kDbKPZUL7Phrw2pl97eN3EPDdjWCSpyTeMeDByi6d08TTHj0XGmwIo0Jyg6EM1vKT1BKAYW9/m0epGdoSKUBInaZgpme2OZ0tEUjif2wnudXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9uYF3W5ZcM9cdkgJbwNre6f3OTO7R8Irsrrx+e2g/nU=;
- b=BxyPaWBhaDy10SSGhZzx8jO38ysJ5DqZ3aiH5GP//y3QosiN1jIiz+MxXWldc5p15AgyfqLUtw8ys0KSFIVKSN5JQG8qAEw5uz09WC+4W4jEhdCVWb7xBOPJ3GWLjLhc5wkxHDN0gLtgBYf/8c3w8k90HuVsG4HZvANip43ZMsSUFJcI5r7e9ie0HfdH8fljBf4pq6u+flATU3OeLm7DNidzgQ7iYwqqx0JjAZs9FBEgLm6iBOWpi7uuvHYANx4g/cR1lJnQaYNHuUZf2ei8Rn3s4NjvzwZ0nExw/Mrzdmeuhs4L5luM0sQX5P1QJ04wouo39NhNf/Y9gFUNqFgmiw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        id S238109AbhLPOla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 09:41:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46342 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232369AbhLPOla (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 09:41:30 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6CEBC061574;
+        Thu, 16 Dec 2021 06:41:29 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id bf8so36786882oib.6;
+        Thu, 16 Dec 2021 06:41:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9uYF3W5ZcM9cdkgJbwNre6f3OTO7R8Irsrrx+e2g/nU=;
- b=XwPHfdhpJEwB4mocHRCdp7nTnYvhzuB7VpBwdrmWFJliiaLgnXdcJ21Vx0RzKUzDMYWPk0A5F7bZmaePrQ6Nugxm8wkDaf5CoAa5vrlDGuR++CPeh4BtEhfoB2E5ucPb9/cBBAfG4Yfh7HX69U5ZXRPZwhEkqv16JnlWeYVhy74=
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:95::7)
- by MW3PR11MB4635.namprd11.prod.outlook.com (2603:10b6:303:2c::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.14; Thu, 16 Dec
- 2021 14:39:49 +0000
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::a192:c9ae:1f83:797b]) by CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::a192:c9ae:1f83:797b%6]) with mapi id 15.20.4778.019; Thu, 16 Dec 2021
- 14:39:49 +0000
-From:   <Conor.Dooley@microchip.com>
-To:     <geert@linux-m68k.org>, <paul.walmsley@sifive.com>,
-        <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>
-CC:     <robh+dt@kernel.org>, <damien.lemoal@wdc.com>,
-        <Lewis.Hanly@microchip.com>, <krzysztof.kozlowski@canonical.com>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 05/11] riscv: dts: microchip: mpfs: Fix reference clock
- node
-Thread-Topic: [PATCH v2 05/11] riscv: dts: microchip: mpfs: Fix reference
- clock node
-Thread-Index: AQHX8oIgnWYztQSikUKTyjHnHdaFqKw1MRAA
-Date:   Thu, 16 Dec 2021 14:39:48 +0000
-Message-ID: <d378f94b-ac49-5f91-9fc1-19bf3debff89@microchip.com>
-References: <cover.1639660956.git.geert@linux-m68k.org>
- <1fdb9ffe223057e0140324ae020c9cc1dc90ae5c.1639660956.git.geert@linux-m68k.org>
-In-Reply-To: <1fdb9ffe223057e0140324ae020c9cc1dc90ae5c.1639660956.git.geert@linux-m68k.org>
-Accept-Language: en-IE, en-US
-Content-Language: en-IE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+        d=gmail.com; s=20210112;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=qZ+N/PwXt3wNI6OG5bLn4pZBj4OUYNFUcB0Z3kSHDig=;
+        b=Lw38O7FzPExocVFNbaQ3IzBDW3/VhI31teq717b4dKOjOBkzmXCvGGn7Z/nSnoxtiy
+         xCz2G8tbPjzy+YxAGZaJB2HUbyfHBkBlM+yIOPUADUfGkbULMFZK6eeNeCMAN1ge2d7J
+         4tCh63uPutyMLnsatFib40QkSNd5qPMJJzxoOn0w4nukWItLx+QtE5OAmq9a5zid3ghr
+         /vqdPznNP9cE0tUVCpvdwndH8MjwWf7wOclZFDB0Kk7Bf2qk6bqMVAhTisZfXFBJO5Ji
+         5pgSWtv0h9z9Lkl6M8komHonnNgyND/xtiTaEzsCareDMI5LfUrSKkYJ2a0Rl4nKljoK
+         JlvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=qZ+N/PwXt3wNI6OG5bLn4pZBj4OUYNFUcB0Z3kSHDig=;
+        b=hMIW7q8WfS9cueSacYOqaBjXGms2kG+zFWvtcyvk3VwqwFkA9AEyxCaiEWxoogeks2
+         m3vWwoUiJVWMRTb/5fjqfc78wNfG44OLj/ieZfGi9PfTfyXuVdqaVdEKOclxp/MWRkes
+         ru9TEUbUx5ehyQsFe8xwboCVj0eSi1M1NNfkUCpxmtC4Ctodo0LbpmkRFh55NNR899fH
+         TgtO1JRGX7rmZKaAyLYe8vt6yjWdEBJ3gbAHFW+5F5c4cWk/YDG97hYDeIEeKsUXMLHF
+         3dPIq6G8So1SHdmNryITnaKcCVsS2+7yHj7HsQ9mqIx3LLQeOVhOU64H8Jo5x6sA4KAv
+         Joyg==
+X-Gm-Message-State: AOAM533emXUwkW60mdjZx80CPcbkoOISjrWIL9TqsQ5KTen4s8sUQJoS
+        8FMxlSr2C+S9m6zOIYXxQmc=
+X-Google-Smtp-Source: ABdhPJwrIVVWQ2Yp/Wa9pbFM2t5F6WIhXHivHvp3JzvDoica3ex2pMRl3k1bOyoajPA13da0xP3mOQ==
+X-Received: by 2002:a54:4614:: with SMTP id p20mr4403488oip.39.1639665689263;
+        Thu, 16 Dec 2021 06:41:29 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id s9sm1107029otg.42.2021.12.16.06.41.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Dec 2021 06:41:28 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v17 5/8] hwmon: sy7636a: Add temperature driver for
+ sy7636a
+To:     Alistair Francis <alistair@alistair23.me>, kernel@pengutronix.de,
+        lgirdwood@gmail.com, robh+dt@kernel.org, lee.jones@linaro.org,
+        broonie@kernel.org
+Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
+        s.hauer@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+        andreas@kemnade.info, linux-hwmon@vger.kernel.org,
+        alistair23@gmail.com, amitk@kernel.org, shawnguo@kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rui.zhang@intel.com
+References: <20211216122525.136139-1-alistair@alistair23.me>
+ <20211216122525.136139-6-alistair@alistair23.me>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <d946812e-fb7c-6cf8-df8c-171f0bcd0868@roeck-us.net>
+Date:   Thu, 16 Dec 2021 06:41:26 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1b9a6b68-8a3a-4ccc-7f61-08d9c0a1e990
-x-ms-traffictypediagnostic: MW3PR11MB4635:EE_
-x-microsoft-antispam-prvs: <MW3PR11MB4635066DD055D6699E9AE5E098779@MW3PR11MB4635.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3513;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: t+63DjvUhrwf2Mb43O8vVxdyhonxp3KkMJRE6bgdriLIx/GnWohpBUhKl1chABLDJbHsaLZALq672ZrychTXV0DTwkzss+nYjaapWiJTzCgbVPRKl/yfFR+2h94RCYUxnakf8CfCvz2xi4tlW+xCMKtqsm68Gi2tHihDEIzlKzYeue6hxw/98JYbJJdLfyALG1hURKd7WMzkzs7DRlxnGH3CjgcgiAL8N1bo1kStT1mnAK9OQZs2v4lvzy7aE+W+pLc4kw387cj7y1d3g+tyAuhnm48Q19IxU8x2PeL4IJ3RknNWjWvrVA5Ap9gzKy03pAh/GqKorwkRw9oy7ssPU1BxG3xPHvUE0NLPpmmy3fzp/xXxukEWg08SLdMUZgznrVCnMkTHxzI1xqYGlNZHNfS9Jc7tiCP/Bgt0fLKD4iFNPmn3CMOYOGvJiBA4R8wwQOJ+xhyHWVr98cy8kr4JVnRHo9flxTlhLkV+2z+E8nNZBWnm0mduQ/Hh6Rs2yBrBWY8STV8NqbFio/CrC4co5vOqjV0iM+RT0c7TylGMVt+bkSUtywaPZ51LtU8mdvQBblfgbXjjkwn7l8mFrxH2keAX0lIha5335qWzPMTmw9jcsQsXhtnnsKE8wuWTMgdRYvSq7UjnRPi75ZhqmJFw9uRKmQOyNxPvvAK4CaeMyE3uBIceUwCo2TfGQJhawBpAg1UmP5ut7RoVlyyPTi86DGl0WHPOqbodIUMzE8vLGSOFNm/5D8sATQFzNMhXW+KnV1QeysRyTMWUc2la4hJ7Og==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(8936002)(2906002)(76116006)(8676002)(83380400001)(31686004)(4326008)(110136005)(54906003)(316002)(86362001)(64756008)(66476007)(66556008)(66446008)(91956017)(66946007)(6506007)(26005)(31696002)(6512007)(186003)(508600001)(36756003)(53546011)(2616005)(71200400001)(122000001)(6486002)(38100700002)(38070700005)(5660300002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?T0I4UUk0dHlMbUVraXhTRlRWbDNJNUhFb2UzRVFydDg2aXc3eEZTVkNqTjdW?=
- =?utf-8?B?Vkg3eFRsMWp1bGFOUGx1amRQdjZlbEZGTmFESmpIeXhjTUF4S0RJUkZERmQx?=
- =?utf-8?B?cFJvOW1Wd3JhbEprZ1Z0QVdsVlU5c0E5cENCQU0vNlNkL1pUeEhtWlE4RTY4?=
- =?utf-8?B?VVhBRGtERVdBTEpTTXFXVUN0QWJENVA2OWR0ZVRHYzgwOFRyR1kzTE9SL21q?=
- =?utf-8?B?TkUyQlhKZlpsUUhGbHFiZjlvdTMzUXVPbDk1bHVnYWNCZStEcktKZHVQVDVL?=
- =?utf-8?B?YSsrMXJSS0lIM0xySlhCaHhFQ1JJcVlzWkRHYVhaUTFNY3h1TVBrNENjTEdZ?=
- =?utf-8?B?YjhZZm1UUE41SVhsSFVwTGJjYlhYN2ZmeG1Qc2RTYlhpK3dQbDRtai9Zbk5Z?=
- =?utf-8?B?aGl1SVlJVzlLbmxDNU1jOERYc2dLblVkUFNUNFE1SXhpdmRnMmpMYTFqcDlW?=
- =?utf-8?B?Vm9Wc29lcUJvV3ZWQTlBZXQ5QUZjcitGcnlYNktVRTRYOUZYZElDS1h3VDJJ?=
- =?utf-8?B?REJ3L0FTK2dNc09lUWIrWkNHbFZ0ZVQ4TnAvZVZZMkk2ckUrOU9jQXM5QTVO?=
- =?utf-8?B?WFNRRFZHeEZGQjdtekZVRENpRG9ta3VtZGt2T2xDRkRSTytvMnRlek9JYmkx?=
- =?utf-8?B?bGJBRElpcmI0K1BPVkh4TGVjWTBUWlRrVjUyZFBDd1lMVkJjeVJLRVlrb08z?=
- =?utf-8?B?SGtJcVJMSFRXalFmRDQ4Q0plbWdqdy8xYTBWUjU5bnUycG1vOFZlZFo0UExL?=
- =?utf-8?B?dXJYbmVDUnVWZmR1ZU92cXlEQlpCMktRUTZIRjdTL0g5RXZ6dnA5cVdjUWZQ?=
- =?utf-8?B?OWtOWFJXUHprRERoWlBraXpreVdtSnhDL0lNVVlUdDgwakZqUGpncTh6Mmoy?=
- =?utf-8?B?UncwL09mOU9RQmp3aWR0SE5lS0lqb2FyTGE3eC90dGRFSmc2cVhKYmJnWm50?=
- =?utf-8?B?a3FkRzQzSmdqa3NaaWU2TnVQcSs4d3ZMQzZjWFZhRng4M09zMUozenhTbVAv?=
- =?utf-8?B?SG1CYSszSS9ZZjdqUTFBYWQxZHREZkVNUHZyZEVZNXJMeGFJOVhBZ0t1Qk5S?=
- =?utf-8?B?RXluQjBYb3UzWFRYalVRL0V5cDNSWHM5NEt1VS9uaGpMTWh5SHZ6QWgwdVVV?=
- =?utf-8?B?R1FYVkdzQVpGNThna28weHh6dmNwcURySDZGZHBKN3IxeXJCZzJwUlFPR2dV?=
- =?utf-8?B?RVZzdDcvS09Rd1FYYnp5Rnl6VWdsTzhtUDlwdmtPMXpUWGY5R0EvRENQcTJw?=
- =?utf-8?B?Z2Znc25nM3NFYmtzc1lneUNxMW5oaC9UdHdhZ3A2cnZLR1JYZ3VsKzJnRlg3?=
- =?utf-8?B?MTc3bStNYkU2TDBUTllqenY1K0VNaHBIMWt6TGgyZ1dkdkJWdkwvSXRlSW90?=
- =?utf-8?B?VGh1OUYrNzdqV2dneUV2ZnJCdE1JN3Y5OEtvUnZ3S1dnWEtFU2M2ZE45NmRP?=
- =?utf-8?B?WnpGdEY0dkw4c1ZBTWs0R3Iyd0h4NDBXOHc5bk1rZTdHTFB6YTdlSHhwK1h2?=
- =?utf-8?B?bWQ4d3Y4UEtVdk9BdXgvc3E4OUdHZTBiM3VFZ1FPYzV0MDBEeDB0b1F6RXZj?=
- =?utf-8?B?dk9LdkJ5K3BSYXR5Z0h5SFlGZmF5WDFJdUY3T1VvOXVvWnNqQ2NSd01LSGRT?=
- =?utf-8?B?aEZZeC8xVjZ3UVptcGlMRERHcEE5a1BUU0JOODV0YlhIY0dUeWhSRE5PZ2VX?=
- =?utf-8?B?YVlrNFAzSy9seFVKemFzVjFpU0VxWi81UWJkWkJoSVRTaWVIVk5QdTFuYW9E?=
- =?utf-8?B?SStMK0c5Z1ppenRmU1pnMmhrRmtGcVRCUFF3WUFWTzZYNmtVNEVBT2FvNVd0?=
- =?utf-8?B?NVVFVTZEUm9aaER5MGM2WkdaQWJMQUYrVDFscExFeHN6b1JjcEJXRlR4YzZ4?=
- =?utf-8?B?NVpQeXhCWFdtL3BNbkdDZjNRN3gyVm1jaUxsQ29QRmVTQk5DR2FSc3Z4TTg5?=
- =?utf-8?B?SmRGRW9KeURTTUpRWHNBUHBSZDYyTzlRL2M0cnFpWWVrdFFGdERvSjhOajFx?=
- =?utf-8?B?REhuZkFjYkE1UllGZnNXSXQrWnBSTEkwWitxUnkrVzhqY3Y3WDBlR0Z1b01j?=
- =?utf-8?B?eDNodXNONDVQYWhidDMrWFJXc0dVZ2FMbStDaDhyRkJZU3NLS25GNWJTZDdK?=
- =?utf-8?B?M243MHFFTTQxaGFOTTR5OWpKaGt1WDJCUnNreERiZnVUSW1aek9ReHl3bmhx?=
- =?utf-8?B?TnNoVlgyUVUzVFBBakt3TzI4WXMxMTNIUkFMZHpCNnNrazFlSjY2Y1NJZHlP?=
- =?utf-8?B?aEtwbXFmUW5JSlQvWFRFZlBKZit3PT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <26DEBE62878F3E408AD94DEDCAF5F2CA@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b9a6b68-8a3a-4ccc-7f61-08d9c0a1e990
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Dec 2021 14:39:48.9214
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XikuBBjv+S0ChBUGfqk5DlrOBbWOPtrfw9jOYSk1OabhMolx4l77ynfIYswvieUmFrs6XcERhB4iMPC9sHSjd2xaAHb4fys9CNlcbo4MFuI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4635
+In-Reply-To: <20211216122525.136139-6-alistair@alistair23.me>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMTYvMTIvMjAyMSAxMzozNywgR2VlcnQgVXl0dGVyaG9ldmVuIHdyb3RlOg0KPiBFWFRFUk5B
-TCBFTUFJTDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlv
-dSBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUNCj4gDQo+ICJtYWtlIGR0YnNfY2hlY2siIHJlcG9y
-dHM6DQo+IA0KPiAgICAgIGFyY2gvcmlzY3YvYm9vdC9kdHMvbWljcm9jaGlwL21pY3JvY2hpcC1t
-cGZzLWljaWNsZS1raXQuZHQueWFtbDogc29jOiByZWZjbGs6IHsnY29tcGF0aWJsZSc6IFsnZml4
-ZWQtY2xvY2snXSwgJyNjbG9jay1jZWxscyc6IFtbMF1dLCAnY2xvY2stZnJlcXVlbmN5JzogW1s2
-MDAwMDAwMDBdXSwgJ2Nsb2NrLW91dHB1dC1uYW1lcyc6IFsnbXNzcGxsY2xrJ10sICdwaGFuZGxl
-JzogW1s3XV19IHNob3VsZCBub3QgYmUgdmFsaWQgdW5kZXIgeyd0eXBlJzogJ29iamVjdCd9DQo+
-ICAgICAgICAgIEZyb20gc2NoZW1hOiBkdHNjaGVtYS9zY2hlbWFzL3NpbXBsZS1idXMueWFtbA0K
-PiANCj4gRml4IHRoaXMgYnkgbW92aW5nIHRoZSBub2RlIG91dCBvZiB0aGUgInNvYyIgc3Vibm9k
-ZS4NCj4gV2hpbGUgYXQgaXQsIHJlbmFtZSBpdCB0byAibXNzcGxsY2xrIiwgYW5kIGRyb3AgdGhl
-IG5vdyBzdXBlcmZsdW91cw0KPiAiY2xvY2stb3V0cHV0LW5hbWVzIiBwcm9wZXJ0eS4NCj4gTW92
-ZSB0aGUgYWN0dWFsIGNsb2NrLWZyZXF1ZW5jeSB2YWx1ZSB0byB0aGUgYm9hcmQgRFRTLCBzaW5j
-ZSBpdCBpcyBub3QNCj4gc2V0IHVudGlsIGJpdHN0cmVhbSBwcm9ncmFtbWluZyB0aW1lLg0KPiAN
-Cj4gU2lnbmVkLW9mZi1ieTogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydEBsaW51eC1tNjhrLm9y
-Zz4NCj4gQWNrZWQtYnk6IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2lA
-Y2Fub25pY2FsLmNvbT4NCkxvb2tzIGdvb2QgdG8gbWUuDQpSZXZpZXdlZC1ieTogQ29ub3IgRG9v
-bGV5IDxjb25vci5kb29sZXlAbWljcm9jaGlwLmNvbT4NCg0KPiAtLS0NCj4gdjI6DQo+ICAgIC0g
-QWRkIEFja2VkLWJ5LA0KPiAgICAtIE1vdmUgY2xvY2stZnJlcXVlbmN5IHRvIGJvYXJkIERUUy4N
-Cj4gLS0tDQo+ICAgLi4uL2Jvb3QvZHRzL21pY3JvY2hpcC9taWNyb2NoaXAtbXBmcy1pY2ljbGUt
-a2l0LmR0cyB8ICA0ICsrKysNCj4gICBhcmNoL3Jpc2N2L2Jvb3QvZHRzL21pY3JvY2hpcC9taWNy
-b2NoaXAtbXBmcy5kdHNpICAgIHwgMTIgKysrKystLS0tLS0tDQo+ICAgMiBmaWxlcyBjaGFuZ2Vk
-LCA5IGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvYXJj
-aC9yaXNjdi9ib290L2R0cy9taWNyb2NoaXAvbWljcm9jaGlwLW1wZnMtaWNpY2xlLWtpdC5kdHMg
-Yi9hcmNoL3Jpc2N2L2Jvb3QvZHRzL21pY3JvY2hpcC9taWNyb2NoaXAtbXBmcy1pY2ljbGUta2l0
-LmR0cw0KPiBpbmRleCBmYzFlNTg2OWRmMWI5ZmM1Li4wYzc0OGFlMWIwMDY4ZGY3IDEwMDY0NA0K
-PiAtLS0gYS9hcmNoL3Jpc2N2L2Jvb3QvZHRzL21pY3JvY2hpcC9taWNyb2NoaXAtbXBmcy1pY2lj
-bGUta2l0LmR0cw0KPiArKysgYi9hcmNoL3Jpc2N2L2Jvb3QvZHRzL21pY3JvY2hpcC9taWNyb2No
-aXAtbXBmcy1pY2ljbGUta2l0LmR0cw0KPiBAQCAtMzUsNiArMzUsMTAgQEAgbWVtb3J5QDgwMDAw
-MDAwIHsNCj4gICAgICAgICAgfTsNCj4gICB9Ow0KPiANCj4gKyZyZWZjbGsgew0KPiArICAgICAg
-IGNsb2NrLWZyZXF1ZW5jeSA9IDw2MDAwMDAwMDA+Ow0KPiArfTsNCj4gKw0KPiAgICZzZXJpYWww
-IHsNCj4gICAgICAgICAgc3RhdHVzID0gIm9rYXkiOw0KPiAgIH07DQo+IGRpZmYgLS1naXQgYS9h
-cmNoL3Jpc2N2L2Jvb3QvZHRzL21pY3JvY2hpcC9taWNyb2NoaXAtbXBmcy5kdHNpIGIvYXJjaC9y
-aXNjdi9ib290L2R0cy9taWNyb2NoaXAvbWljcm9jaGlwLW1wZnMuZHRzaQ0KPiBpbmRleCBlZTU5
-NzUxNTQ0YTBkM2JjLi5iMzcyYmM2NDU5YmYxNjNhIDEwMDY0NA0KPiAtLS0gYS9hcmNoL3Jpc2N2
-L2Jvb3QvZHRzL21pY3JvY2hpcC9taWNyb2NoaXAtbXBmcy5kdHNpDQo+ICsrKyBiL2FyY2gvcmlz
-Y3YvYm9vdC9kdHMvbWljcm9jaGlwL21pY3JvY2hpcC1tcGZzLmR0c2kNCj4gQEAgLTEzOSw2ICsx
-MzksMTEgQEAgY3B1NF9pbnRjOiBpbnRlcnJ1cHQtY29udHJvbGxlciB7DQo+ICAgICAgICAgICAg
-ICAgICAgfTsNCj4gICAgICAgICAgfTsNCj4gDQo+ICsgICAgICAgcmVmY2xrOiBtc3NwbGxjbGsg
-ew0KPiArICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJmaXhlZC1jbG9jayI7DQo+ICsgICAg
-ICAgICAgICAgICAjY2xvY2stY2VsbHMgPSA8MD47DQo+ICsgICAgICAgfTsNCj4gKw0KPiAgICAg
-ICAgICBzb2Mgew0KPiAgICAgICAgICAgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDI+Ow0KPiAg
-ICAgICAgICAgICAgICAgICNzaXplLWNlbGxzID0gPDI+Ow0KPiBAQCAtMTg5LDEzICsxOTQsNiBA
-QCBkbWFAMzAwMDAwMCB7DQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAjZG1hLWNlbGxzID0g
-PDE+Ow0KPiAgICAgICAgICAgICAgICAgIH07DQo+IA0KPiAtICAgICAgICAgICAgICAgcmVmY2xr
-OiByZWZjbGsgew0KPiAtICAgICAgICAgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gImZpeGVk
-LWNsb2NrIjsNCj4gLSAgICAgICAgICAgICAgICAgICAgICAgI2Nsb2NrLWNlbGxzID0gPDA+Ow0K
-PiAtICAgICAgICAgICAgICAgICAgICAgICBjbG9jay1mcmVxdWVuY3kgPSA8NjAwMDAwMDAwPjsN
-Cj4gLSAgICAgICAgICAgICAgICAgICAgICAgY2xvY2stb3V0cHV0LW5hbWVzID0gIm1zc3BsbGNs
-ayI7DQo+IC0gICAgICAgICAgICAgICB9Ow0KPiAtDQo+ICAgICAgICAgICAgICAgICAgY2xrY2Zn
-OiBjbGtjZmdAMjAwMDIwMDAgew0KPiAgICAgICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJs
-ZSA9ICJtaWNyb2NoaXAsbXBmcy1jbGtjZmciOw0KPiAgICAgICAgICAgICAgICAgICAgICAgICAg
-cmVnID0gPDB4MCAweDIwMDAyMDAwIDB4MCAweDEwMDA+Ow0KPiAtLQ0KPiAyLjI1LjENCj4gDQoN
-Cg==
+On 12/16/21 4:25 AM, Alistair Francis wrote:
+> This is a multi-function device to interface with the sy7636a
+> EPD PMIC chip from Silergy.
+> 
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+
+Acked-by: Guenter Roeck <linux@roeck-us.net>
+
+> ---
+>   Documentation/hwmon/index.rst         |   1 +
+>   Documentation/hwmon/sy7636a-hwmon.rst |  26 +++++++
+>   drivers/hwmon/Kconfig                 |   9 +++
+>   drivers/hwmon/Makefile                |   1 +
+>   drivers/hwmon/sy7636a-hwmon.c         | 106 ++++++++++++++++++++++++++
+>   5 files changed, 143 insertions(+)
+>   create mode 100644 Documentation/hwmon/sy7636a-hwmon.rst
+>   create mode 100644 drivers/hwmon/sy7636a-hwmon.c
+> 
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index 7046bf1870d9..a887308850cd 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -180,6 +180,7 @@ Hardware Monitoring Kernel Drivers
+>      smsc47m1
+>      sparx5-temp
+>      stpddc60
+> +   sy7636a-hwmon
+>      tc654
+>      tc74
+>      thmc50
+> diff --git a/Documentation/hwmon/sy7636a-hwmon.rst b/Documentation/hwmon/sy7636a-hwmon.rst
+> new file mode 100644
+> index 000000000000..5612079397d5
+> --- /dev/null
+> +++ b/Documentation/hwmon/sy7636a-hwmon.rst
+> @@ -0,0 +1,26 @@
+> +.. SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +Kernel driver sy7636a-hwmon
+> +=========================
+> +
+> +Supported chips:
+> +
+> + * Silergy SY7636A PMIC
+> +
+> +
+> +Description
+> +-----------
+> +
+> +This driver adds hardware temperature reading support for
+> +the Silergy SY7636A PMIC.
+> +
+> +The following sensors are supported
+> +
+> +  * Temperature
+> +      - SoC on-die temperature in milli-degree C
+> +
+> +sysfs-Interface
+> +---------------
+> +
+> +temp0_input
+> +	- SoC on-die temperature (milli-degree C)
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 64bd3dfba2c4..3139a286c35a 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -1662,6 +1662,15 @@ config SENSORS_SIS5595
+>   	  This driver can also be built as a module. If so, the module
+>   	  will be called sis5595.
+>   
+> +config SENSORS_SY7636A
+> +	tristate "Silergy SY7636A"
+> +	help
+> +	  If you say yes here you get support for the thermistor readout of
+> +	  the Silergy SY7636A PMIC.
+> +
+> +	  This driver can also be built as a module.  If so, the module
+> +	  will be called sy7636a-hwmon.
+> +
+>   config SENSORS_DME1737
+>   	tristate "SMSC DME1737, SCH311x and compatibles"
+>   	depends on I2C && !PPC
+> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> index baee6a8d4dd1..8f8da52098d1 100644
+> --- a/drivers/hwmon/Makefile
+> +++ b/drivers/hwmon/Makefile
+> @@ -182,6 +182,7 @@ obj-$(CONFIG_SENSORS_SMSC47M1)	+= smsc47m1.o
+>   obj-$(CONFIG_SENSORS_SMSC47M192)+= smsc47m192.o
+>   obj-$(CONFIG_SENSORS_SPARX5)	+= sparx5-temp.o
+>   obj-$(CONFIG_SENSORS_STTS751)	+= stts751.o
+> +obj-$(CONFIG_SENSORS_SY7636A)	+= sy7636a-hwmon.o
+>   obj-$(CONFIG_SENSORS_AMC6821)	+= amc6821.o
+>   obj-$(CONFIG_SENSORS_TC74)	+= tc74.o
+>   obj-$(CONFIG_SENSORS_THMC50)	+= thmc50.o
+> diff --git a/drivers/hwmon/sy7636a-hwmon.c b/drivers/hwmon/sy7636a-hwmon.c
+> new file mode 100644
+> index 000000000000..6dd9c2a0f0e0
+> --- /dev/null
+> +++ b/drivers/hwmon/sy7636a-hwmon.c
+> @@ -0,0 +1,106 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Functions to access SY3686A power management chip temperature
+> + *
+> + * Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
+> + *
+> + * Authors: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
+> + *          Alistair Francis <alistair@alistair23.me>
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/hwmon.h>
+> +#include <linux/init.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/machine.h>
+> +
+> +#include <linux/mfd/sy7636a.h>
+> +
+> +static int sy7636a_read(struct device *dev, enum hwmon_sensor_types type,
+> +			u32 attr, int channel, long *temp)
+> +{
+> +	struct regmap *regmap = dev_get_drvdata(dev);
+> +	int ret, reg_val;
+> +
+> +	ret = regmap_read(regmap,
+> +			  SY7636A_REG_TERMISTOR_READOUT, &reg_val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*temp = reg_val * 1000;
+> +
+> +	return 0;
+> +}
+> +
+> +static umode_t sy7636a_is_visible(const void *data,
+> +				  enum hwmon_sensor_types type,
+> +				  u32 attr, int channel)
+> +{
+> +	if (type != hwmon_temp)
+> +		return 0;
+> +
+> +	if (attr != hwmon_temp_input)
+> +		return 0;
+> +
+> +	return 0444;
+> +}
+> +
+> +static const struct hwmon_ops sy7636a_hwmon_ops = {
+> +	.is_visible = sy7636a_is_visible,
+> +	.read = sy7636a_read,
+> +};
+> +
+> +static const struct hwmon_channel_info *sy7636a_info[] = {
+> +	HWMON_CHANNEL_INFO(chip, HWMON_C_REGISTER_TZ),
+> +	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT),
+> +	NULL
+> +};
+> +
+> +static const struct hwmon_chip_info sy7636a_chip_info = {
+> +	.ops = &sy7636a_hwmon_ops,
+> +	.info = sy7636a_info,
+> +};
+> +
+> +static int sy7636a_sensor_probe(struct platform_device *pdev)
+> +{
+> +	struct regmap *regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> +	struct regulator *regulator;
+> +	struct device *hwmon_dev;
+> +	int err;
+> +
+> +	if (!regmap)
+> +		return -EPROBE_DEFER;
+> +
+> +	regulator = devm_regulator_get(&pdev->dev, "vcom");
+> +	if (IS_ERR(regulator))
+> +		return PTR_ERR(regulator);
+> +
+> +	err = regulator_enable(regulator);
+> +	if (err)
+> +		return err;
+> +
+> +	hwmon_dev = devm_hwmon_device_register_with_info(&pdev->dev,
+> +							 "sy7636a_temperature", regmap,
+> +							 &sy7636a_chip_info, NULL);
+> +
+> +	if (IS_ERR(hwmon_dev)) {
+> +		err = PTR_ERR(hwmon_dev);
+> +		dev_err(&pdev->dev, "Unable to register hwmon device, returned %d\n", err);
+> +		return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static struct platform_driver sy7636a_sensor_driver = {
+> +	.probe = sy7636a_sensor_probe,
+> +	.driver = {
+> +		.name = "sy7636a-temperature",
+> +	},
+> +};
+> +module_platform_driver(sy7636a_sensor_driver);
+> +
+> +MODULE_DESCRIPTION("SY7636A sensor driver");
+> +MODULE_LICENSE("GPL");
+> 
+
