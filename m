@@ -2,96 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BD814773B2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 14:54:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E95314773A1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Dec 2021 14:53:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234745AbhLPNyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 08:54:46 -0500
-Received: from mail-qt1-f170.google.com ([209.85.160.170]:45645 "EHLO
-        mail-qt1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229947AbhLPNyp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 08:54:45 -0500
-Received: by mail-qt1-f170.google.com with SMTP id p19so25409828qtw.12;
-        Thu, 16 Dec 2021 05:54:45 -0800 (PST)
+        id S231167AbhLPNxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 08:53:06 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:35571 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229453AbhLPNxF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 08:53:05 -0500
+Received: by mail-ot1-f44.google.com with SMTP id x43-20020a056830246b00b00570d09d34ebso29057388otr.2;
+        Thu, 16 Dec 2021 05:53:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=r7QJ5cBXo5bJMtT1p7qM3PpjXsDY7rDmJRqDoolDi0U=;
-        b=2VMxLStHSVZYdS47OWgNslnuumpW3odB99V7quDr3014FupJ2xnUqBtKP1uqvlHWfU
-         45HnLuaeXq2hM7WQN5yr/OjOcwhEHRSNrQX0rCpkouHDb4OZVXpQ570sAZw8E83l3LJo
-         GQpAAFOzjAdMNmJllbbswnr/UsrafqlgqOOZ7m/aqSLm45JnjcMrtwPodcwq5uuSqWvj
-         4st1DwmsJbYUgLOiJ0v9YpXqZQiumQWf+CThspRlDKs7ozmIAKesZLqmK9jaTo1Y8Q2S
-         nXV6JoNfEkyhhsIwCYzdT243ixFUs8v0/oCBA6Nuycxk9N83810QpVl/iCkr2qmjZhgB
-         WpeQ==
-X-Gm-Message-State: AOAM533uG0VRrvMjqvobDo0Depv1zSqupOlL7gkcnIR7Vf9tMQRDWl56
-        vRunaAGjcG9XVLTtp3B+co4IgtPG6758rw==
-X-Google-Smtp-Source: ABdhPJzFi1gUgt5i49QeCUL1jC2S3FXc0uZJARrSUSpQ7W0HjHpzhRkSXqSQfWNtmthWx7GJ6yzkTg==
-X-Received: by 2002:a05:622a:413:: with SMTP id n19mr16757097qtx.69.1639662884927;
-        Thu, 16 Dec 2021 05:54:44 -0800 (PST)
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com. [209.85.219.42])
-        by smtp.gmail.com with ESMTPSA id n22sm4192703qtk.38.2021.12.16.05.54.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Dec 2021 05:54:44 -0800 (PST)
-Received: by mail-qv1-f42.google.com with SMTP id kj6so8123000qvb.2;
-        Thu, 16 Dec 2021 05:54:44 -0800 (PST)
-X-Received: by 2002:a05:6102:c89:: with SMTP id f9mr5601778vst.68.1639662529143;
- Thu, 16 Dec 2021 05:48:49 -0800 (PST)
-MIME-Version: 1.0
-References: <cover.1639662093.git.geert@linux-m68k.org> <20211215154619.166360-1-miquel.raynal@bootlin.com>
-In-Reply-To: <20211215154619.166360-1-miquel.raynal@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 16 Dec 2021 14:48:38 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUx0=b+GFP7Qvr9=L4tnf3K-UHatgKX=92EwRu3_7Bs_w@mail.gmail.com>
-Message-ID: <CAMuHMdUx0=b+GFP7Qvr9=L4tnf3K-UHatgKX=92EwRu3_7Bs_w@mail.gmail.com>
-Subject: Re: [PATCH v4 0/4] Renesas RZ/N1 NAND controller support
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        MTD Maling List <linux-mtd@lists.infradead.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=K3q3sT5gz9V74YhNPyceV1V6wk4tRvJfYiaAGVR5wDk=;
+        b=IMA8mkxAucS94FUq4f/axGDQZ3HcUffRXG4DdymJUGQc6dKKPCuBUhTIEkdXWdjEkP
+         4k3G3yqLPyJmbBObIXL5OdH4e5gfU+Z1rceqYgzRJFnJlgwCzzFhvA79mEE51PSlMz6Q
+         ucoY4SUNLtq42LPXqmduJAZ74l/Ty3J7YeDtTxOjgH4HUdmX4h1YC7+Me1hAhV/92rLu
+         iMJvVWQTeFx4A1Mkc7dWHDfL2vdCba+Lk8muQcZaePzPZ3lV0V6x4PGbhAOYdWAvoJ/C
+         OmBi6dzaGDXz81BcFBqWGuGT/wBfS+3tL2pCYibh36MLL1WS0bm9qsrial0E7Buq0lzA
+         4E/g==
+X-Gm-Message-State: AOAM531UDfHb4QRmc1kxntU8DpPYSac7Sr9O9pukGjCfH3rkRolDNEzY
+        EVfKFGWsxbnD7TWBPuD42GRn8KbOzA==
+X-Google-Smtp-Source: ABdhPJwzi2LUj+RCSn0XStSyJDnnJAJ+K5H1xEp0vB1nUSgaPfqCMGLhpagEgc0ZOqdMMiDluU4UEg==
+X-Received: by 2002:a9d:461:: with SMTP id 88mr13058565otc.300.1639662785099;
+        Thu, 16 Dec 2021 05:53:05 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 52sm381367oth.52.2021.12.16.05.53.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Dec 2021 05:53:04 -0800 (PST)
+Received: (nullmailer pid 4004876 invoked by uid 1000);
+        Thu, 16 Dec 2021 13:53:02 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Biao Huang <biao.huang@mediatek.com>
+Cc:     srv_heupstream@mediatek.com, linux-arm-kernel@lists.infradead.org,
+        davem@davemloft.net, linux-stm32@st-md-mailman.stormreply.com,
+        angelogioacchino.delregno@collabora.com,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        dkirjanov@suse.de, linux-kernel@vger.kernel.org,
+        macpaul.lin@mediatek.com,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20211216055328.15953-7-biao.huang@mediatek.com>
+References: <20211216055328.15953-1-biao.huang@mediatek.com> <20211216055328.15953-7-biao.huang@mediatek.com>
+Subject: Re: [PATCH net-next v10 6/6] net: dt-bindings: dwmac: add support for mt8195
+Date:   Thu, 16 Dec 2021 07:53:02 -0600
+Message-Id: <1639662782.987227.4004875.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 2:44 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> From: Miquel Raynal <miquel.raynal@bootlin.com>
->
-> Hello,
->
-> Here is a short series bringing support for Renesas RZ/N1 NAND
-> controller.
+On Thu, 16 Dec 2021 13:53:28 +0800, Biao Huang wrote:
+> Add binding document for the ethernet on mt8195.
+> 
+> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
+> ---
+>  .../bindings/net/mediatek-dwmac.yaml          | 29 ++++++++++++++++---
+>  1 file changed, 25 insertions(+), 4 deletions(-)
+> 
 
-Oops, please ignore this email. Sorry for the noise.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Gr{oetje,eeting}s,
+yamllint warnings/errors:
 
-                        Geert
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml: properties:clock-names: {'minItems': 5, 'maxItems': 6, 'items': [{'const': 'axi'}, {'const': 'apb'}, {'const': 'mac_main'}, {'const': 'ptp_ref'}, {'const': 'rmii_internal'}, {'const': 'mac_cg'}]} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml: ignoring, error in schema: properties: clock-names
+warning: no schema found in file: ./Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+Documentation/devicetree/bindings/net/mediatek-dwmac.example.dt.yaml:0:0: /example-0/ethernet@1101c000: failed to match any schema with compatible: ['mediatek,mt2712-gmac', 'snps,dwmac-4.20a']
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+doc reference errors (make refcheckdocs):
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+See https://patchwork.ozlabs.org/patch/1568902
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
