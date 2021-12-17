@@ -2,142 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E530B479563
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 21:22:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A56C7479567
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 21:24:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231360AbhLQUWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 15:22:54 -0500
-Received: from foss.arm.com ([217.140.110.172]:34292 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231205AbhLQUWx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Dec 2021 15:22:53 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A332912FC;
-        Fri, 17 Dec 2021 12:22:52 -0800 (PST)
-Received: from [192.168.122.166] (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 338BC3F5A1;
-        Fri, 17 Dec 2021 12:22:52 -0800 (PST)
-Message-ID: <54582d01-6da1-cc2f-f318-e42b9c473daf@arm.com>
-Date:   Fri, 17 Dec 2021 14:22:51 -0600
+        id S237349AbhLQUYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 15:24:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41612 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237072AbhLQUYW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 15:24:22 -0500
+Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BD5CC06173E
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 12:24:22 -0800 (PST)
+Received: by mail-il1-x136.google.com with SMTP id s11so2575811ilv.3
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 12:24:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0RPlLAADCWMblEKj6QzqpFSkD5gFMewlPA251bUBwtQ=;
+        b=LuwKVSsbkKvsf8d8/SqKhtlPxz78bmCSgZhGhZOi0HR50/t6V6wMgjIyl907bZxAlj
+         y0q1ve/4tOJTVI7GVfXy3zPy+GxVVi8XBZTaRu+nFh4rLMTCtbhcWuORWORQjofdOmdS
+         5Mn1ngTpFMh1bsNcJKVGK4sJDDd6vEIjwNARY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0RPlLAADCWMblEKj6QzqpFSkD5gFMewlPA251bUBwtQ=;
+        b=mi8Rsgb2xIe1TdaXT9+lKeI9/RFWaGdry5ktwdD1H7+ruXMEAejrXxhBdONodzf2Ib
+         01Lc5H2wXJvmI7qBFP1ZYfuJNBVTz7uHc6R5PiRIFo8zTUfQMcaVK0rPxW7LLnIfaorp
+         odvfanNJtBumE5aJxca6SkCft0WuXUByoQM1pq/aTgtX7/HnM6O/stekeu8S5EVrMGwy
+         dAi9rty/rT9Kt6JJYReE53yo3YK/sMyf1yYLbnHZXWKKzbCayVsUub/tTLnuxrYr6Elp
+         zPohxvNBWl341cxF3VkLrthhB8SY8hayb5zOM8L81USXkOEAE4gX1TbeScTfftLIyCGH
+         NM1g==
+X-Gm-Message-State: AOAM530IXzoIxe9wkCcMGQdGW9WxLe69qK8+9t3oAkC8koCUI0n4KkRT
+        AJIwToj5yxQDxFcl1T7uWND1G9C8Sw0ZBpg8r2c9uA==
+X-Google-Smtp-Source: ABdhPJwXqMZFvAkBkyNmxNyOSySXNqoBZqPD6QRi7zTVWpSIlpuRrpjsXt9IjGGcpa5Yy1YXfSFwd/fKoBiSidJVnHE=
+X-Received: by 2002:a92:c089:: with SMTP id h9mr2410498ile.289.1639772661621;
+ Fri, 17 Dec 2021 12:24:21 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [PATCH 2/6] cacheinfo: Set cache 'id' based on DT data
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Robin Murphy <robin.murphy@arm.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        James Morse <james.morse@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org,
-        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>
-References: <20211216233125.1130793-1-robh@kernel.org>
- <20211216233125.1130793-3-robh@kernel.org>
- <881f056d-d1ed-c6de-c09d-6e84d8b14530@arm.com>
- <CAL_JsqKKx5-ep5=FVA5OHM+t=T-9GTuf6Sf9P6ZDUs7RD9=c8g@mail.gmail.com>
- <836fd983-463c-040d-beb3-fee3faf215d6@arm.com>
- <CAL_JsqJM=dDxqEnnwbRLiemLS0XUqEe6RBZViLem8qoiDbPPjw@mail.gmail.com>
-From:   Jeremy Linton <jeremy.linton@arm.com>
-In-Reply-To: <CAL_JsqJM=dDxqEnnwbRLiemLS0XUqEe6RBZViLem8qoiDbPPjw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20211213024057.3824985-1-gwendal@chromium.org>
+ <20211213024057.3824985-2-gwendal@chromium.org> <20211216155905.1fac607c@jic23-huawei>
+In-Reply-To: <20211216155905.1fac607c@jic23-huawei>
+From:   Gwendal Grignou <gwendal@chromium.org>
+Date:   Fri, 17 Dec 2021 12:24:10 -0800
+Message-ID: <CAPUE2utoztf+LUsO4zKrRgVz862Bj1UyDsqSVT-1T5ANMkp8ag@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] iio: add IIO_MOD_REFERENCE modifier
+To:     Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
+Cc:     robh+dt@kernel.org, lars@metafoo.de, swboyd@chromium.org,
+        andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, Dec 16, 2021 at 7:54 AM Jonathan Cameron
+<jic23@jic23.retrosnub.co.uk> wrote:
+>
+> On Sun, 12 Dec 2021 18:40:54 -0800
+> Gwendal Grignou <gwendal@chromium.org> wrote:
+>
+> > Add modifier IIO_MOD_REFERENCE for reporting sx9360 reference
+> > proximity measurement.
+> > All modifier must be defined for libiio to recognize
+> > |in_proximity_reference| as a channel.
+> >
+> > Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
+> Hmm. So the question is whether this is a valid modifier.
+>
+> I'm not totally convinced, because I can see we might well
+> get stacking cases say
+>
+> iio_concentration_o2_reference
+>
+> However we do have precedence with 'ambient' which applies
+> to temperature sensors.
+>
+> The alternative here would be to have it as a normal indexed
+> channel but with a label saying it is the reference.
+>
+> Would that work for this case?  If I were doing the ambient
+> case again I'd use label for that as well, but label is a more
+> recent addition to the ABI.
+That would work, I am submitting a v4 without IIO_MOD_REFERENCE.
 
-On 12/17/21 13:35, Rob Herring wrote:
-> On Fri, Dec 17, 2021 at 1:08 PM Robin Murphy <robin.murphy@arm.com> wrote:
->>
->> On 2021-12-17 18:14, Rob Herring wrote:
->>> On Fri, Dec 17, 2021 at 10:57 AM Robin Murphy <robin.murphy@arm.com> wrote:
->>>>
->>>> Hi Rob,
->>>>
->>>> On 2021-12-16 23:31, Rob Herring wrote:
->>>>> Use the minimum CPU h/w id of the CPUs associated with the cache for the
->>>>> cache 'id'. This will provide a stable id value for a given system. As
->>>>> we need to check all possible CPUs, we can't use the shared_cpu_map
->>>>> which is just online CPUs. There's not a cache to CPUs mapping in DT, so
->>>>> we have to walk all CPU nodes and then walk cache levels.
->>>>
->>>> I believe another expected use of the cache ID exposed in sysfs is to
->>>> program steering tags for cache stashing (typically in VFIO-based
->>>> userspace drivers like DPDK so we can't realistically mediate it any
->>>> other way). There were plans afoot last year to ensure that ACPI PPTT
->>>> could provide the necessary ID values for arm64 systems which will
->>>> typically be fairly arbitrary (but unique) due to reflecting underlying
->>>> interconnect routing IDs. Assuming that there will eventually be some
->>>> interest in cache stashing on DT-based systems too, we probably want to
->>>> allow for an explicit ID property on DT cache nodes in a similar manner.
->>>
->>> If you have a suggestion for ID values that correspond to the h/w,
->>> then we can add them. I'd like a bit more than just trusting that ID
->>> is something real.
->>>
->>> While the ACPI folks may be willing to take an arbitrary index, it's
->>> something we (mostly) avoid for DT.
->>
->> Not really. On the CHI side there are two fields - StashNID, which could
->> be any node ID value depending on the interconnect layout, plus
->> (optionally) StashLPID to address a specific cache within that node if
->> it's something like a CPU cluster. However, how a PCIe TLP steering tag
->> translates to those fields in the resulting CHI flit is largely up to
->> the root complex.
-> 
-> Knowing next to nothing about CHI, this means pretty much nothing to me. :(
-> 
-> I would guess there is a bit more to supporting CHI in DT systems than
-> just a cache ID.
-> 
->> I think it's going to be more like a "reg" property than a nice
->> validatable index.
->>
->>>> That said, I think it does make sense to have some kind of
->>>> auto-generated fallback scheme *as well*, since I'm sure there will be
->>>> plenty systems which care about MPAM but don't support stashing, and
->>>> therefore wouldn't have a meaningful set of IDs to populate their DT
->>>> with. Conversely I think that might also matter for ACPI too - one point
->>>> I remember from previous discussions is that PPTT may use a compact
->>>> representation where a single entry represents all equivalent caches at
->>>> that level, so I'm not sure we can necessarily rely on IDs out of that
->>>> path being unique either.
->>>
->>> AIUI, cache ids break the compact representation.
->>
->> Right, firmware authors can't use it if they do want to specify IDs, but
->> that also means that if we find we *are* consuming a compact PPTT, then
->> chances are we're not getting meaningful IDs out of it for MPAM to rely on.
-> 
-> Sounds like broken firmware is in our future. ;) Or ACPI can default
-> to the same id scheme.
-> 
-
-Yah, that is a problem. The ID's provided by the ACPI cache ID field are 
-as officially meaningless as the ones we can generate from the existing 
-fw_token mechanism. Given that, they don't really add anything beyond 
-what we can achieve simply by encoding the level somewhere in the 
-fw_token currently in use if we want something that is globally unique 
-rather than just unique for a given cache level+I/D. Their one advantage 
-though is that they can be more human readable at the cost of 2-3X the 
-size of the table, with the additional problem of having to worry about 
-them being populated in all the cache structures in the table. Its 
-almost easier to revisit some of the earlier discussion and generate a 
-uniq id, and then renumber them at the end.
-
-
-If you want to encode some kind of routing ID in them, then that will 
-have to be standardized, and I would guess it might be easier to add the 
-routing ID's to the structure than retroactively add meaning to the ID 
-field if anyone is actually using it. Or just create yet another lookup 
-table to translate the id to something meaningful.
-
-
-
-
-
-
-
+Gwendal.
+>
+> > ---
+> > New in v3.
+> >
+> >  drivers/iio/industrialio-core.c | 1 +
+> >  include/uapi/linux/iio/types.h  | 1 +
+> >  2 files changed, 2 insertions(+)
+> >
+> > diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
+> > index 20d5178ca0739a..2b272f54de8ae9 100644
+> > --- a/drivers/iio/industrialio-core.c
+> > +++ b/drivers/iio/industrialio-core.c
+> > @@ -134,6 +134,7 @@ static const char * const iio_modifier_names[] = {
+> >       [IIO_MOD_ETHANOL] = "ethanol",
+> >       [IIO_MOD_H2] = "h2",
+> >       [IIO_MOD_O2] = "o2",
+> > +     [IIO_MOD_REFERENCE] = "reference",
+> >  };
+> >
+> >  /* relies on pairs of these shared then separate */
+> > diff --git a/include/uapi/linux/iio/types.h b/include/uapi/linux/iio/types.h
+> > index 48c13147c0a870..aa83a9b578502a 100644
+> > --- a/include/uapi/linux/iio/types.h
+> > +++ b/include/uapi/linux/iio/types.h
+> > @@ -95,6 +95,7 @@ enum iio_modifier {
+> >       IIO_MOD_ETHANOL,
+> >       IIO_MOD_H2,
+> >       IIO_MOD_O2,
+> > +     IIO_MOD_REFERENCE,
+> >  };
+> >
+> >  enum iio_event_type {
+>
