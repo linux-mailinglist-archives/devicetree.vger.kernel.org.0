@@ -2,169 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F28F04782CE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 02:56:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5BC54782E6
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 02:59:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232334AbhLQB4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 20:56:13 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:34814 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232420AbhLQB4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 20:56:04 -0500
-X-UUID: 8fabaf7e7f0e4a9797ceec78015b7b97-20211217
-X-UUID: 8fabaf7e7f0e4a9797ceec78015b7b97-20211217
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1409953433; Fri, 17 Dec 2021 09:56:02 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Fri, 17 Dec 2021 09:56:02 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 17 Dec
- 2021 09:56:01 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkcas11.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Fri, 17 Dec 2021 09:56:00 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "Tzung-Bi Shih" <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v17, 19/19] media: mtk-vcodec: Remove mtk_vcodec_release_enc_pm
-Date:   Fri, 17 Dec 2021 09:55:30 +0800
-Message-ID: <20211217015530.23720-20-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211217015530.23720-1-yunfei.dong@mediatek.com>
-References: <20211217015530.23720-1-yunfei.dong@mediatek.com>
+        id S231511AbhLQB7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 20:59:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35384 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230322AbhLQB7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 20:59:08 -0500
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D15EC061574
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 17:59:08 -0800 (PST)
+Received: by mail-qk1-x735.google.com with SMTP id g28so754884qkk.9
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 17:59:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TQ25XqHkVHVxnm4IFzuK36OkNgtpTvvhGDr2LW7KSZ8=;
+        b=zO+OyUuQr5ZJI+J++rfcEwNwLAoq/MtY3zQrf3jzBECZQX3hVWrpzQ+BREgcJqazOt
+         tdbyV2J8TGXIVRYSFiEmYlFLkox2ASeqfOWrVCs2AZEP/rwDyUGNd1FQ3hNKUhOmSEwI
+         oaJBbKCw4qCRGKN+tR2v3IQ6OkMh208lL9JNXipE/Li3inWJX17F5lWhCwloIEoFtF8i
+         uy3SxS4yJGEnbka3RnhPlDul5pJ1IBODiHeQetLfU0ReTNf2cYOQ2MH5nwi3qg7aPsaK
+         rPjn1Yksb2RAtSK4G1DY/Jqxo2TiDiSJHpzB1pqqMWOEjMf5LIh5OISJ59f4L/qI/kLF
+         4NXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TQ25XqHkVHVxnm4IFzuK36OkNgtpTvvhGDr2LW7KSZ8=;
+        b=IsZcngfrNsPrfeLu1pq6ZUoeAbPAHIrJVsb+1uPZwyPGg/yrrN1nrywQVBKz/k5OKM
+         xtW2mRk7hibxm/StUR4z5ep/lXUayNQSxLLcA1vZpLASUmvMPDh1hWV7c4xOAssUQJ26
+         r1oIDDvS58oGCBLGDuAghhdsWRqPqs6Vgak45fAidWl5HI0z6uYVyM1ZemkLgTxH5yu7
+         gFoqqZr1U/dXuvSJ0sTh906vHcr21PKSnPKXUNghmiCocFN+PnCoWTGmheeTFz1VzD0x
+         EcvZx6Q/aez7ee2vv13sAtyAQ5u4N8w/d6g+cBbRsqhxmp6oO39sFFQvCPq7sFkWwp/V
+         u3mw==
+X-Gm-Message-State: AOAM532O/SXCqVg2msqmns6PvKDUpkji88qL9i1gBHXP1slj9rljli93
+        GjM0WvQVB0v7xQ895QHcxdqn19ySvTM6+pvBQXHqRg==
+X-Google-Smtp-Source: ABdhPJwnVR4B9Za7Fc3uQDylj0rJV/xIt9n5N/enR0nsVSrtdu8af5nF/x4sy8ScybZik+6cDg02n/f1IQbxeMuoMvQ=
+X-Received: by 2002:a05:620a:4101:: with SMTP id j1mr510379qko.593.1639706346910;
+ Thu, 16 Dec 2021 17:59:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+References: <1639058951-12660-1-git-send-email-loic.poulain@linaro.org>
+ <20211216034909.3EFCBC36AE0@smtp.kernel.org> <CAMZdPi9eAFaExcTTgOt6TFE37EA-bb9xSy3nq9=nKYd5kqwmfQ@mail.gmail.com>
+ <20211217013703.63A46C36AE0@smtp.kernel.org>
+In-Reply-To: <20211217013703.63A46C36AE0@smtp.kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 17 Dec 2021 04:58:56 +0300
+Message-ID: <CAA8EJpqN=MVbhSB=4V2RE6ywbPYAJ1tC1qNwnZh00_yQ0+RLNQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] clk: qcom: Add display clock controller driver for QCM2290
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Loic Poulain <loic.poulain@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, shawn.guo@linaro.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are only two lines in mtk_vcodec_release_enc_pm, using
-pm_runtime_disable and put_device instead directly.
+On Fri, 17 Dec 2021 at 04:37, Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Loic Poulain (2021-12-16 11:21:51)
+> > Hi Stephen,
+> >
+> >
+> > On Thu, 16 Dec 2021 at 04:49, Stephen Boyd <sboyd@kernel.org> wrote:
+> > >
+> > > Quoting Loic Poulain (2021-12-09 06:09:10)
+> > > > diff --git a/drivers/clk/qcom/dispcc-qcm2290.c b/drivers/clk/qcom/dispcc-qcm2290.c
+> > > > new file mode 100644
+> > > > index 00000000..8aa5d31
+> > > > --- /dev/null
+> > > > +++ b/drivers/clk/qcom/dispcc-qcm2290.c
+> > > > @@ -0,0 +1,602 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > > +/*
+> > > > + * Copyright (c) 2020, The Linux Foundation. All rights reserved.
+> > > > + * Copyright (c) 2021, Linaro Ltd.
+> > > > + */
+> > > > +
+> > [...]
+> > > > +static struct clk_rcg2 disp_cc_mdss_pclk0_clk_src = {
+> > > > +       .cmd_rcgr = 0x205c,
+> > > > +       .mnd_width = 8,
+> > > > +       .hid_width = 5,
+> > > > +       .parent_map = disp_cc_parent_map_4,
+> > > > +       .clkr.hw.init = &(struct clk_init_data){
+> > > > +               .name = "disp_cc_mdss_pclk0_clk_src",
+> > > > +               .parent_data = disp_cc_parent_data_4,
+> > > > +               .num_parents = ARRAY_SIZE(disp_cc_parent_data_4),
+> > > > +               .flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE | CLK_OPS_PARENT_ENABLE,
+> > >
+> > > These last two flags are needed for what?
+> >
+> > NOCACHE is probably useless with mainline.
+>
+> Ok then please remove it.
+>
+> >
+> > I've added OPS_PARENT_ENABLE because AFAIU changing clock rate can
+> > lead to parent switch, and parent switch can only be done if parent
+> > clocks are enabled for rcg2 clocks. Otherwise the update fails and we
+> > get the following:
+> >     disp_cc_mdss_pclk0_clk_src: rcg didn't update its configuration.
+> >     WARNING: CPU: 2 PID: 77 at drivers/clk/qcom/clk-rcg2.c:122
+> > update_config+0xe0/0xf0
+> >
+> > I'm a bit surprised other similar dispcc drivers don't use the same
+> > flags though.
+>
+> That's quite odd. We migrate the prepare and enable count to the new
+> parent in the core framework so is the rcg on, but doesn't look like it
+> is on to the core and set_rate is being called?
 
-Move pm_runtime_enable outside mtk_vcodec_release_enc_pm to symmetry with
-pm_runtime_disable, after that, rename mtk_vcodec_init_enc_pm to *_clk since
-it only has clock operations now.
+It's a part of a typical problem for some clocks (that we were
+discussing in a thread regarding Bjorn's ASSUME_ENABLED and my 'park
+clocks' proposal). For set_rate and set_parent to succeed, both old
+and new parrents must be running at the time of the operation/
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Co-developed-by: Yong Wu <yong.wu@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c | 9 ++++++---
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c  | 9 +--------
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h  | 3 +--
- 3 files changed, 8 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-index 347f0d87e2ff..507ad1ea2104 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-@@ -11,6 +11,7 @@
- #include <linux/module.h>
- #include <linux/of_device.h>
- #include <linux/of.h>
-+#include <linux/pm_runtime.h>
- #include <media/v4l2-event.h>
- #include <media/v4l2-mem2mem.h>
- #include <media/videobuf2-dma-contig.h>
-@@ -257,7 +258,7 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
- 		return PTR_ERR(dev->fw_handler);
- 
- 	dev->venc_pdata = of_device_get_match_data(&pdev->dev);
--	ret = mtk_vcodec_init_enc_pm(dev);
-+	ret = mtk_vcodec_init_enc_clk(dev);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "Failed to get mtk vcodec clock source!");
- 		goto err_enc_pm;
-@@ -369,7 +370,8 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
- err_enc_alloc:
- 	v4l2_device_unregister(&dev->v4l2_dev);
- err_res:
--	mtk_vcodec_release_enc_pm(dev);
-+	pm_runtime_disable(dev->pm.dev);
-+	put_device(dev->pm.larbvenc);
- err_enc_pm:
- 	mtk_vcodec_fw_release(dev->fw_handler);
- 	return ret;
-@@ -458,7 +460,8 @@ static int mtk_vcodec_enc_remove(struct platform_device *pdev)
- 		video_unregister_device(dev->vfd_enc);
- 
- 	v4l2_device_unregister(&dev->v4l2_dev);
--	mtk_vcodec_release_enc_pm(dev);
-+	pm_runtime_disable(dev->pm.dev);
-+	put_device(dev->pm.larbvenc);
- 	mtk_vcodec_fw_release(dev->fw_handler);
- 	return 0;
- }
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c
-index 0c8c8f86788c..0825c6ec4eb7 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c
-@@ -13,7 +13,7 @@
- #include "mtk_vcodec_enc_pm.h"
- #include "mtk_vcodec_util.h"
- 
--int mtk_vcodec_init_enc_pm(struct mtk_vcodec_dev *mtkdev)
-+int mtk_vcodec_init_enc_clk(struct mtk_vcodec_dev *mtkdev)
- {
- 	struct device_node *node;
- 	struct platform_device *pdev;
-@@ -86,13 +86,6 @@ int mtk_vcodec_init_enc_pm(struct mtk_vcodec_dev *mtkdev)
- 	return ret;
- }
- 
--void mtk_vcodec_release_enc_pm(struct mtk_vcodec_dev *mtkdev)
--{
--	pm_runtime_disable(mtkdev->pm.dev);
--	put_device(mtkdev->pm.larbvenc);
--}
--
--
- void mtk_vcodec_enc_clock_on(struct mtk_vcodec_pm *pm)
- {
- 	struct mtk_vcodec_clk *enc_clk = &pm->venc_clk;
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h
-index b7ecdfd74823..bc455cefc0cd 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h
-@@ -9,8 +9,7 @@
- 
- #include "mtk_vcodec_drv.h"
- 
--int mtk_vcodec_init_enc_pm(struct mtk_vcodec_dev *dev);
--void mtk_vcodec_release_enc_pm(struct mtk_vcodec_dev *dev);
-+int mtk_vcodec_init_enc_clk(struct mtk_vcodec_dev *dev);
- 
- void mtk_vcodec_enc_clock_on(struct mtk_vcodec_pm *pm);
- void mtk_vcodec_enc_clock_off(struct mtk_vcodec_pm *pm);
+
 -- 
-2.25.1
-
+With best wishes
+Dmitry
