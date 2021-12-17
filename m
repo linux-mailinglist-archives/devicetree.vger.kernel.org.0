@@ -2,169 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67A094783BA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 04:43:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54B30478388
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 04:13:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232532AbhLQDnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 22:43:21 -0500
-Received: from ixit.cz ([94.230.151.217]:38938 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231143AbhLQDnV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Dec 2021 22:43:21 -0500
-Received: from [192.168.1.138] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S229997AbhLQDNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 22:13:15 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:40524 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229502AbhLQDNO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 22:13:14 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id D07DB24CC2;
-        Wed, 15 Dec 2021 16:28:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1639582118;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=7Edv46GPYMJdJozDwMUanWLkqZtLTb27/B2Rn3iDwNQ=;
-        b=GXAPaLdrpkYx14JHvm2zisZ8qSpyq6BTeXd+5OCNNVgTl7mfP7w0pnkjJ6j+ERP6EMLjsp
-        p1WonHQHoHUOFb+ugI5ZjjFPxXdfcjUpgLiSuPnUTl5k8k3AE43bq7HYSEYQexRSBGbAj2
-        mBODbbk2VLtGW/X1asJafXM+CLhPqqg=
-Date:   Wed, 15 Dec 2021 16:28:30 +0100
-From:   David Heidelberg <david@ixit.cz>
-Subject: Re: [PATCH v6 11/28] ARM: tegra: Add device-tree for ASUS Transformer
- Infinity TF700T
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Dmitry Osipenko <digetx@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Anton Bambura <jenneron@protonmail.com>,
-        Antoni Aloy Torrens <aaloytorrens@gmail.com>,
-        Nikola Milosavljevic <mnidza@outlook.com>,
-        Ion Agorria <ion@agorria.com>,
-        =?iso-8859-2?q?Micha=B3_Miros=B3aw?= <mirq-linux@rere.qmqm.pl>,
-        Ihor Didenko <tailormoon@rambler.ru>,
-        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
-        Jasper Korten <jja2000@gmail.com>,
-        Thomas Graichen <thomas.graichen@gmail.com>,
-        Stefan Eichenberger <stefan.eichenberger@toradex.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Message-Id: <INX54R.ECW0Q9B43ONC3@ixit.cz>
-In-Reply-To: <YboHd6tIUrl+LJQb@orome>
-References: <20211211211412.10791-1-digetx@gmail.com>
-        <20211211211412.10791-12-digetx@gmail.com> <Ybn1Ne2aGfsablwQ@orome>
-        <02d7e9a9-6999-cccd-aea2-d069c759cd56@gmail.com> <YboHd6tIUrl+LJQb@orome>
-X-Mailer: geary/40.0
+        by ams.source.kernel.org (Postfix) with ESMTPS id A3086B826B4;
+        Fri, 17 Dec 2021 03:13:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EECCAC36AE2;
+        Fri, 17 Dec 2021 03:13:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639710792;
+        bh=N9CLs8I9WOC2vbdpo/1uW3XV3nxIXFCS40NEUMpas94=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ed/kRkuWSZyGKDZ1wt07+nPb5oMe3TU0sG0qt6hbN80pTd9kexyRzJssEVuPH9omW
+         w+psmxpuva6OIA3jBAx25Vuef8XJPA2mkTsppGex5akUw+EcFHVlHsFcMCJFzBT9jk
+         +iWLYz90kdTBjc1NrAyvsQMInfMQ76Xv09wOYW2n0rgHqwnbuNkulQ5I1ZQIb8iDjS
+         xFaFx1srs1lIZEvRR+C9/ej/j5nJ+cc9O4WHVqdQVfAg8xYl8XIPHybMQhiyj2BjaM
+         oSpBK6hYrkiGl7bUqesyhhUsdYxgW8uXozE30creTbJSs/x2aXUkb50JDwfzBN9ruk
+         tSJ/yWV207SVw==
+Date:   Fri, 17 Dec 2021 11:13:06 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, tharvey@gateworks.com,
+        aford@beaconembedded.com, michael@amarulasolutions.com,
+        jagan@amarulasolutions.com, Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V5 0/9] arm64: imx8mn: Enable more imx8m Nano functions
+Message-ID: <20211217031305.GP4216@dragon>
+References: <20211215004626.2241839-1-aford173@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-5; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211215004626.2241839-1-aford173@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Dmitry and Thierry!
+On Tue, Dec 14, 2021 at 06:46:17PM -0600, Adam Ford wrote:
+> The i.MX8M Nano is similar to the i.MX8M Mini in some ways, but very
+> different in others.  With the blk-ctrl driver for Mini in place,
+> this series expands the blk-ctrl driver to support the Nano which
+> opens the door for additional functions in the future.  As part of
+> this series, it also addresses some issues in the GPCv2 driver and
+> finally adds support for enabling USB and GPU.
+> 
+> V5:  Clean up the GPU clock assignments.
+> V4:  Rebase on top of [1] which fixes hangs caused from CSI and DSI reset
+>      and add the same fixes for CSI and DSI to the Nano
+> V3:  Fixes an the yaml example
+> V2:  Fixes the clock count in the blk-ctrl
+> 
+> [1] - https://www.spinics.net/lists/arm-kernel/msg936266.html
+> 
+> Adam Ford (9):
+>   soc: imx: gpcv2: keep i.MX8MN gpumix bus clock enabled
+>   soc: imx: gpcv2: Add dispmix and mipi domains to imx8mn
+>   dt-bindings: power: imx8mn: add defines for DISP blk-ctrl domains
+>   dt-bindings: soc: add binding for i.MX8MN DISP blk-ctrl
+>   soc: imx: imx8m-blk-ctrl: add i.MX8MN DISP blk-ctrl
+>   arm64: dts: imx8mn: add GPC node
+>   arm64: dts: imx8mn: put USB controller into power-domains
+>   arm64: dts: imx8mn: add DISP blk-ctrl
+>   arm64: dts: imx8mn: Enable GPU
 
-Sent as "[PATCH] dt-bindings: display: bridge: document Toshiba=20
-TC358768 cells and panel node",
+The series introduces hard dependency between different branches.  To
+ease the merge process, let's postpone the DTS patches to the next
+cycle.
 
-I'll try to not keep these patches for myself for so long.
-David
-
-On Wed, Dec 15 2021 at 16:19:19 +0100, Thierry Reding=20
-<thierry.reding@gmail.com> wrote:
-> On Wed, Dec 15, 2021 at 05:52:24PM +0300, Dmitry Osipenko wrote:
->>  15.12.2021 17:01, Thierry Reding =DF=D8=E8=D5=E2:
->>  > On Sun, Dec 12, 2021 at 12:13:55AM +0300, Dmitry Osipenko wrote:
->>  > [...]
->>  >> +		i2c@1 {
->>  >> +			reg =3D <1>;
->>  >> +			#address-cells =3D <1>;
->>  >> +			#size-cells =3D <0>;
->>  >> +
->>  >> +			dsi-bridge@7 {
->>  >> +				compatible =3D "toshiba,tc358768";
->>  >> +				reg =3D <0x7>;
->>  >> +
->>  >> +				#address-cells =3D <1>;
->>  >> +				#size-cells =3D <0>;
->>  >> +
->>  >> +				clocks =3D <&tc358768_osc>;
->>  >> +				clock-names =3D "refclk";
->>  >> +
->>  >> +				reset-gpios =3D <&gpio TEGRA_GPIO(N, 6) GPIO_ACTIVE_LOW>;
->>  >> +
->>  >> +				vddc-supply =3D <&vdd_1v2_mipi>;
->>  >> +				vddio-supply =3D <&vdd_1v8_vio>;
->>  >> +				vddmipi-supply =3D <&vdd_1v2_mipi>;
->>  >> +
->>  >> +				ports {
->>  >> +					#address-cells =3D <1>;
->>  >> +					#size-cells =3D <0>;
->>  >> +
->>  >> +					port@0 {
->>  >> +						reg =3D <0>;
->>  >> +
->>  >> +						bridge_input: endpoint {
->>  >> +							remote-endpoint =3D <&dpi_output>;
->>  >> +							data-lines =3D <24>;
->>  >> +						};
->>  >> +					};
->>  >> +
->>  >> +					port@1 {
->>  >> +						reg =3D <1>;
->>  >> +
->>  >> +						bridge_output: endpoint {
->>  >> +							remote-endpoint =3D <&panel_input>;
->>  >> +						};
->>  >> +					};
->>  >> +				};
->>  >> +
->>  >> +				/*
->>  >> +				 * Panasonic VVX10F004B00 or HYDIS HV101WU1-1E1
->>  >> +				 * LCD SuperIPS+ Full HD panel.
->>  >> +				 */
->>  >> +				panel@1 {
->>  >> +					compatible =3D "panasonic,vvx10f004b00";
->>  >> +					reg =3D <1>;
->>  >> +
->>  >> +					power-supply =3D <&vdd_pnl>;
->>  >> +					backlight =3D <&backlight>;
->>  >> +
->>  >> +					port {
->>  >> +						panel_input: endpoint {
->>  >> +							remote-endpoint =3D <&bridge_output>;
->>  >> +						};
->>  >> +					};
->>  >> +				};
->>  >
->>  > make dtbs_check complains about this and says that panel@1 (as=20
->> well as
->>  > #address-cells and #size-cells) are not allowed here. And indeed=20
->> the
->>  > binding for the Toshiba bridge doesn't mention them here.
->>  >
->>  > Do we need this here or should this be moved to the top level to=20
->> fix
->>  > those warnings? I guess what you're doing above is describe a DSI=20
->> bus
->>  > created by the DSI bridge, which also makes sense, so another
->>  > alternative would be to fix up the binding and let it accept those
->>  > properties.
->>=20
->>  Toshiba bridge binding is incomplete. David has patch for that [1],=20
->> I
->>  don't think that it was sent out yet.
->>=20
->>  [1]
->> =20
->> https://github.com/okias/linux/commit/0875230062294b6db17f395ced0a8384a4=
-c1cfc7
->=20
-> Okay, please make sure this finds its way upstream eventually. That
-> patch looks quite similar to what I tried to do to fix this up=20
-> locally.
->=20
-> Thierry
-
-
+Shawn
