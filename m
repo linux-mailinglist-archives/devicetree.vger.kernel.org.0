@@ -2,187 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34923479030
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:45:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9173D479041
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:46:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235244AbhLQPpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 10:45:14 -0500
-Received: from mail-ua1-f52.google.com ([209.85.222.52]:43554 "EHLO
-        mail-ua1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234993AbhLQPpO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 10:45:14 -0500
-Received: by mail-ua1-f52.google.com with SMTP id 107so5059810uaj.10;
-        Fri, 17 Dec 2021 07:45:13 -0800 (PST)
+        id S235626AbhLQPqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 10:46:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33128 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235533AbhLQPqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 10:46:17 -0500
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4513C061574;
+        Fri, 17 Dec 2021 07:46:17 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso3313168otf.12;
+        Fri, 17 Dec 2021 07:46:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=p0QftDbLVEjaifUdOY6G8MAYqVEgDGe4owAz0ggdUhI=;
+        b=QLaCR2AU8uG3Q7LBIu/+mrOR8fortXlZZV6BOvctjPqfvl4FcWB5AxNw47AnJN+Cyj
+         7K1R4i8d0HrWZGm+J2bRdE4xRyepTbGgjU7kJ4WoTrrxSTctHatkK3CwilMpKsBQ2jN1
+         gnhIEY28lt157qYWFnJ0DDXlKtdjbfSB3hz0MHxEv6u16MRPT1182jpodmdYhebFtRWN
+         kxcWtRxeyYhf8H99Sg5rALrm+7os6PElmsepSXLnaFyqpRwIDxruKwwR7wXnU+lBA6n7
+         Y6B579Jy2j9YQqnm1g9dzT69WycSanZHw0HBWPqgft0Qz7em8PlB5OjFDH8BMcqH1NmG
+         smzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nMMzdvtpdWB9OZVCj46gQtFtuOfodcP8PtHfwWBR+Qw=;
-        b=Ve4O4phvNwBReAIM4iakdJko/oI0Nzi9VWmcuhdAorwgl0vA5E5vPMNGdoS9ZT2cF0
-         yT89gDGpXn7/HmvDmqGFKRJTS1ET3S8sIn6BDToN/v9UhLZcjtdRUy6J/uj/ENhYC3QW
-         +uDE32GJxHydNd2JzfyW4MrT3aTNZ0LSR0rS/eac8HKt8j3l8GyM+IsElMK1GEzLY0YJ
-         sxQ2eU5fXtyqgzaoKNIF5KZVoTgjm6A3kLlFMOCdMfwSELod5fSnPkzmwb6SH/vYDci4
-         b3oQY4FL1vdIm/1pIXn0o0vyEI4AN/MAZV48dO3NGIKNXi/my3N9hafcj1WK6YJyhScT
-         cbQg==
-X-Gm-Message-State: AOAM530YeT8300HiDLJFh2loiwulmM2qRUYTT/GJW8w1nrXZfeM6bfLG
-        60sW9fejsKuDCPFQ1vNIwIZZNgW35G8hAA==
-X-Google-Smtp-Source: ABdhPJx2y7YQ/v9CA8TMT6VCPAcp1uB6Iw/On+0LyBQ+4etW4jG0/7XEbrzvpIb2cC4p2shzoKzsXw==
-X-Received: by 2002:a05:6102:55a5:: with SMTP id dc37mr1441128vsb.62.1639755912959;
-        Fri, 17 Dec 2021 07:45:12 -0800 (PST)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id v4sm1107264vkf.15.2021.12.17.07.45.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Dec 2021 07:45:12 -0800 (PST)
-Received: by mail-ua1-f50.google.com with SMTP id r15so5135067uao.3;
-        Fri, 17 Dec 2021 07:45:12 -0800 (PST)
-X-Received: by 2002:a05:6102:21dc:: with SMTP id r28mr1251114vsg.57.1639755911970;
- Fri, 17 Dec 2021 07:45:11 -0800 (PST)
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=p0QftDbLVEjaifUdOY6G8MAYqVEgDGe4owAz0ggdUhI=;
+        b=2dO9vRrZcBf3KvyCMxehJczARYDlRjm0rQYjwS4un7hSKs5Oy8D+K8ox/OcmMB2rbV
+         8hZjsh+Hx6PhshIhQ1t2ozb7alJBAn6DeVRYhTkeMblGaQ5dnZ0vp/t3cGBzFnyPoNbJ
+         z8Ifh0Cfu8aHs8EDVy0lGV28iNUm/EqawNLy6caZTDZ2kcFDV4R52isiD3vPRNgzY4+V
+         Ch+HeUxhum8FJMHha3YlrQMlqz1XZoWVqxqfJ0xggegESL8rA6dyjhA4SGGov0dBm8JO
+         Q5zQ1QY7PMtkbiPS6g/zcZ61/023I8q+8zZW4qlY93uuz0C3ZApcVQU3eG5JuVARa+WC
+         l8Wg==
+X-Gm-Message-State: AOAM530dHADcc6VgYUkxqgKibQMTSFzKmj7/dJ0JdnsD3ERCS8BUTi7b
+        W5J1m3QXQbl4xYmXhJ3x5yFHUwE1pTc=
+X-Google-Smtp-Source: ABdhPJyCVA5rp0RWFZSVd0Lq5iy+S8fFH+olrP6BEllaSupNzkBVLpZM6MFiSywNeH57KWFFHb0jRQ==
+X-Received: by 2002:a05:6830:1e13:: with SMTP id s19mr2569561otr.358.1639755977016;
+        Fri, 17 Dec 2021 07:46:17 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id l9sm1591270oom.4.2021.12.17.07.46.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Dec 2021 07:46:16 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Fri, 17 Dec 2021 07:46:15 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 1/2] hwmon: (pmbus) Add Delta AHE-50DC fan control
+ module driver
+Message-ID: <20211217154615.GA2913871@roeck-us.net>
+References: <20211208213703.2577-1-zev@bewilderbeest.net>
+ <20211208213703.2577-2-zev@bewilderbeest.net>
 MIME-Version: 1.0
-References: <20211217142033.353599-1-miquel.raynal@bootlin.com> <20211217142033.353599-2-miquel.raynal@bootlin.com>
-In-Reply-To: <20211217142033.353599-2-miquel.raynal@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 17 Dec 2021 16:44:59 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWnyLjzDf0oC1ttTarY4kaJD+xcrnkvug-i+8GHgRWmyg@mail.gmail.com>
-Message-ID: <CAMuHMdWnyLjzDf0oC1ttTarY4kaJD+xcrnkvug-i+8GHgRWmyg@mail.gmail.com>
-Subject: Re: [PATCH v6 1/4] dt-bindings: mtd: renesas: Describe Renesas R-Car
- Gen3 & RZ/N1 NAND controller
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Chris Brandt <Chris.Brandt@renesas.com>,
-        Ralph Siemsen <ralph.siemsen@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211208213703.2577-2-zev@bewilderbeest.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+On Wed, Dec 08, 2021 at 01:37:02PM -0800, Zev Weiss wrote:
+> This device is an integrated module of the Delta AHE-50DC Open19 power
+> shelf.  I haven't been able to procure any proper documentation for
+> it, but it seems to be a (somewhat minimally) PMBus-compliant device.
+> It provides four fan speeds, four temperatures (three standard and one
+> manufacturer-specific via a virtual second page), and a vin reading.
+> 
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
 
-On Fri, Dec 17, 2021 at 3:20 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
-> Add a Yaml description for this Renesas NAND controller.
->
-> As this controller is embedded on different SoC families, provide:
-> * a family-specific "r-car-gen3" compatible and a more specific
->   "r8a77951" one
-> * a family-specific "rzn1" compatible and a more specific "r9a06g032"
->   one
->
-> More compatibles can be added later if new SoCs with this controller
-> must be supported.
->
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Applied.
 
-Thanks for the update!
+Thanks,
+Guenter
 
+> ---
+>  MAINTAINERS                             |   6 ++
+>  drivers/hwmon/pmbus/Kconfig             |  10 +++
+>  drivers/hwmon/pmbus/Makefile            |   1 +
+>  drivers/hwmon/pmbus/delta-ahe50dc-fan.c | 114 ++++++++++++++++++++++++
+>  4 files changed, 131 insertions(+)
+>  create mode 100644 drivers/hwmon/pmbus/delta-ahe50dc-fan.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0ac052200ecb..8bb7ba52d2f5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -5425,6 +5425,12 @@ W:	https://linuxtv.org
+>  T:	git git://linuxtv.org/media_tree.git
+>  F:	drivers/media/platform/sti/delta
+>  
+> +DELTA AHE-50DC FAN CONTROL MODULE DRIVER
+> +M:	Zev Weiss <zev@bewilderbeest.net>
+> +L:	linux-hwmon@vger.kernel.org
+> +S:	Maintained
+> +F:	drivers/hwmon/pmbus/delta-ahe50dc-fan.c
+> +
+>  DELTA DPS920AB PSU DRIVER
+>  M:	Robert Marko <robert.marko@sartura.hr>
+>  L:	linux-hwmon@vger.kernel.org
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index ffb609cee3a4..0b1157b883aa 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -66,6 +66,16 @@ config SENSORS_BPA_RS600
+>  	  This driver can also be built as a module. If so, the module will
+>  	  be called bpa-rs600.
+>  
+> +config SENSORS_DELTA_AHE50DC_FAN
+> +	tristate "Delta AHE-50DC fan control module"
+> +	help
+> +	  If you say yes here you get hardware monitoring support for
+> +	  the integrated fan control module of the Delta AHE-50DC
+> +	  Open19 power shelf.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called delta-ahe50dc-fan.
+> +
+>  config SENSORS_FSP_3Y
+>  	tristate "FSP/3Y-Power power supplies"
+>  	help
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index 0ed4d596a948..a56b2897288d 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -9,6 +9,7 @@ obj-$(CONFIG_SENSORS_ADM1266)	+= adm1266.o
+>  obj-$(CONFIG_SENSORS_ADM1275)	+= adm1275.o
+>  obj-$(CONFIG_SENSORS_BEL_PFE)	+= bel-pfe.o
+>  obj-$(CONFIG_SENSORS_BPA_RS600)	+= bpa-rs600.o
+> +obj-$(CONFIG_SENSORS_DELTA_AHE50DC_FAN) += delta-ahe50dc-fan.o
+>  obj-$(CONFIG_SENSORS_FSP_3Y)	+= fsp-3y.o
+>  obj-$(CONFIG_SENSORS_IBM_CFFPS)	+= ibm-cffps.o
+>  obj-$(CONFIG_SENSORS_DPS920AB)	+= dps920ab.o
+> diff --git a/drivers/hwmon/pmbus/delta-ahe50dc-fan.c b/drivers/hwmon/pmbus/delta-ahe50dc-fan.c
+> new file mode 100644
+> index 000000000000..40dffd9c4cbf
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/renesas-nandc.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/renesas-nandc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/drivers/hwmon/pmbus/delta-ahe50dc-fan.c
+> @@ -0,0 +1,114 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Delta AHE-50DC power shelf fan control module driver
+> + *
+> + * Copyright 2021 Zev Weiss <zev@bewilderbeest.net>
+> + */
 > +
-> +title: Renesas R-Car Gen3 & RZ/N1x NAND flash controller device tree bindings
+> +#include <linux/i2c.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/pmbus.h>
 > +
-> +maintainers:
-> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> +#include "pmbus.h"
 > +
-> +allOf:
-> +  - $ref: "nand-controller.yaml"
+> +#define AHE50DC_PMBUS_READ_TEMP4 0xd0
 > +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - renesas,r8a77951-nandc
-> +          - const: renesas,rcar-gen3-nandc
-
-Might be a bit premature to add these before they have been tested,
-and because there are small differences in integration, cfr. below.
-
+> +static int ahe50dc_fan_read_word_data(struct i2c_client *client, int page, int phase, int reg)
+> +{
+> +	/* temp1 in (virtual) page 1 is remapped to mfr-specific temp4 */
+> +	if (page == 1) {
+> +		if (reg == PMBUS_READ_TEMPERATURE_1)
+> +			return i2c_smbus_read_word_data(client, AHE50DC_PMBUS_READ_TEMP4);
+> +		return -EOPNOTSUPP;
+> +	}
 > +
-> +      - items:
-> +          - enum:
-> +              - renesas,r9a06g032-nandc
-> +          - const: renesas,rzn1-nandc
+> +	/*
+> +	 * There's a fairly limited set of commands this device actually
+> +	 * supports, so here we block attempts to read anything else (which
+> +	 * return 0xffff and would cause confusion elsewhere).
+> +	 */
+> +	switch (reg) {
+> +	case PMBUS_STATUS_WORD:
+> +	case PMBUS_FAN_COMMAND_1:
+> +	case PMBUS_FAN_COMMAND_2:
+> +	case PMBUS_FAN_COMMAND_3:
+> +	case PMBUS_FAN_COMMAND_4:
+> +	case PMBUS_STATUS_FAN_12:
+> +	case PMBUS_STATUS_FAN_34:
+> +	case PMBUS_READ_VIN:
+> +	case PMBUS_READ_TEMPERATURE_1:
+> +	case PMBUS_READ_TEMPERATURE_2:
+> +	case PMBUS_READ_TEMPERATURE_3:
+> +	case PMBUS_READ_FAN_SPEED_1:
+> +	case PMBUS_READ_FAN_SPEED_2:
+> +	case PMBUS_READ_FAN_SPEED_3:
+> +	case PMBUS_READ_FAN_SPEED_4:
+> +		return -ENODATA;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +}
 > +
-> +  reg:
-> +    maxItems: 1
+> +static struct pmbus_driver_info ahe50dc_fan_info = {
+> +	.pages = 2,
+> +	.format[PSC_FAN] = direct,
+> +	.format[PSC_TEMPERATURE] = direct,
+> +	.format[PSC_VOLTAGE_IN] = direct,
+> +	.m[PSC_FAN] = 1,
+> +	.b[PSC_FAN] = 0,
+> +	.R[PSC_FAN] = 0,
+> +	.m[PSC_TEMPERATURE] = 1,
+> +	.b[PSC_TEMPERATURE] = 0,
+> +	.R[PSC_TEMPERATURE] = 1,
+> +	.m[PSC_VOLTAGE_IN] = 1,
+> +	.b[PSC_VOLTAGE_IN] = 0,
+> +	.R[PSC_VOLTAGE_IN] = 3,
+> +	.func[0] = PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 |
+> +		PMBUS_HAVE_VIN | PMBUS_HAVE_FAN12 | PMBUS_HAVE_FAN34 |
+> +		PMBUS_HAVE_STATUS_FAN12 | PMBUS_HAVE_STATUS_FAN34 | PMBUS_PAGE_VIRTUAL,
+> +	.func[1] = PMBUS_HAVE_TEMP | PMBUS_PAGE_VIRTUAL,
+> +	.read_word_data = ahe50dc_fan_read_word_data,
+> +};
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +/*
+> + * CAPABILITY returns 0xff, which appears to be this device's way indicating
+> + * it doesn't support something (and if we enable I2C_CLIENT_PEC on seeing bit
+> + * 7 being set it generates bad PECs, so let's not go there).
+> + */
+> +static struct pmbus_platform_data ahe50dc_fan_data = {
+> +	.flags = PMBUS_NO_CAPABILITY,
+> +};
 > +
-> +  clocks:
-> +    items:
-> +      - description: APB host controller clock
-> +      - description: External NAND bus clock
+> +static int ahe50dc_fan_probe(struct i2c_client *client)
+> +{
+> +	client->dev.platform_data = &ahe50dc_fan_data;
+> +	return pmbus_do_probe(client, &ahe50dc_fan_info);
+> +}
 > +
-> +  clock-names:
-> +    items:
-> +      - const: hclk
-> +      - const: eclk
-
-On R-Car Gen3, there's a single module clock.
-Plus a power-domain to manage that.
-
-Actually the RZ/N1 clock driver also registers a PM Domain, so letting
-Runtime PM manage the clocks may work on RZ/N1, too...
-
-On R-Car Gen3, there's also a module reset.
-
+> +static const struct i2c_device_id ahe50dc_fan_id[] = {
+> +	{ "ahe50dc_fan" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, ahe50dc_fan_id);
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
+> +static const struct of_device_id __maybe_unused ahe50dc_fan_of_match[] = {
+> +	{ .compatible = "delta,ahe50dc-fan" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ahe50dc_fan_of_match);
 > +
-> +unevaluatedProperties: false
+> +static struct i2c_driver ahe50dc_fan_driver = {
+> +	.driver = {
+> +		   .name = "ahe50dc_fan",
+> +		   .of_match_table = of_match_ptr(ahe50dc_fan_of_match),
+> +	},
+> +	.probe_new = ahe50dc_fan_probe,
+> +	.id_table = ahe50dc_fan_id,
+> +};
+> +module_i2c_driver(ahe50dc_fan_driver);
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/r9a06g032-sysctrl.h>
-> +
-> +    nand-controller@40102000 {
-> +        compatible = "renesas,r9a06g032-nandc", "renesas,rzn1-nandc";
-> +        reg = <0x40102000 0x2000>;
-> +        interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&sysctrl R9A06G032_HCLK_NAND>, <&sysctrl R9A06G032_CLK_NAND>;
-> +        clock-names = "hclk", "eclk";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +    };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +MODULE_AUTHOR("Zev Weiss <zev@bewilderbeest.net>");
+> +MODULE_DESCRIPTION("Driver for Delta AHE-50DC power shelf fan control module");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS(PMBUS);
