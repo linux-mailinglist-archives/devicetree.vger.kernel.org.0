@@ -2,123 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33DF0478F1B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:09:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9E9C478F39
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:10:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237933AbhLQPJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 10:09:19 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:57536
+        id S233787AbhLQPKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 10:10:49 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:57686
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237932AbhLQPJS (ORCPT
+        by vger.kernel.org with ESMTP id S237409AbhLQPKt (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Dec 2021 10:09:18 -0500
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
+        Fri, 17 Dec 2021 10:10:49 -0500
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C225E3F1C0
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 15:09:17 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7E7933FFD2
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 15:10:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639753757;
-        bh=Ekcv8bNIXIYPhjro0Nb278CmOGUMMLIkTcaAs3AM2AE=;
+        s=20210705; t=1639753848;
+        bh=LuufmSFwO+Uko0vN+wcG6SqqtDV+Z68NapfaG/AboZQ=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=nAz0qZe2GYdB43GZi+KMhhvSomsNdNgOecJ1CmLJodtUF5/A22allmvGVCgKV3ZyS
-         gJ+waIIRFoQ3Z2Edg2XAJ/tVgHrZJxmmQgbcg7brQgPwOHUNql128O4LaXTResOOE/
-         ZsdsMCulbmJwTmkaqMoYlotJCSOYw7wRrhkoXnw20CNBh8i3lxaPKst1F17ZdN5ugb
-         7EYrYtHAIMJ13gn5I/ubGDO4TyT2OdSvMbJ7+ijXfhrQS9NHM1FlPiDm/G/lILXkZc
-         pn6HXVJjRP9eZmgxvV1Ntmq7zQoSSyHoSoE0ncyEDZlccWsUzXoMXuztIUDTE0v7yI
-         ADbAII7ZV7m3A==
-Received: by mail-lf1-f71.google.com with SMTP id h40-20020a0565123ca800b00402514d959fso1036324lfv.7
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 07:09:17 -0800 (PST)
+        b=aZ3o/p5UrZxHBJem2hX7kS5Z5f4zvrKb4Xa561WPwj8XKOUm2xZ0nS7eh6fncnKQc
+         L9fHo8mUmWUnJOWgKcwmwjY2YqRfXkzB4p6L4wnQIctadWs7pmaBBD46T58lyMRzDK
+         Ax1B2Ku6Wygf0os/yNf4STW5xIrzTzbCVUlTCE80Q3PlQMvDsFVw7FHBQ5sw6gUtcW
+         8i4jkLrfPT3/HGe/tphkkBOZq8A3HevktvNA0Z7yB7mbs5qgeOi3o63fAyd5omdSA5
+         9WQL3MOtwrfRmcouXtNIqlLBUEapzm5ORgs4o8l2ahct5fVvikMOIg8Hw3clRcaT3Q
+         FqYwnUPeTTp1Q==
+Received: by mail-lf1-f70.google.com with SMTP id m1-20020ac24281000000b004162863a2fcso1016195lfh.14
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 07:10:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Ekcv8bNIXIYPhjro0Nb278CmOGUMMLIkTcaAs3AM2AE=;
-        b=K+HqP+/iNPdIYzJqskDdMHRqz7/2rblCuKJV+Z7KlD3eOcUKxoJDKKTc+dw9yv9MZj
-         8rllQQHCd0Uri5GKHknUW9EaEytw+rqE0mVugcAH6+lMvJcZ93cfb3gd6I2G34DWAu1M
-         OkpK0TAR2Abn0dFo644oQ8Jco0UPrSwlBmh1zYu+TCf0G2wDvLid09I1CME5umfLyYZ/
-         PKDwjZWZGQuX32keuRjk/ksts4+edGUdiqTER6GCq181myYfD7rG22KDzQ83n52ihObW
-         Bn8tuTLQOEp942SjxO0YmX42pBykUgI3JOEeraLu69yKfY2QD8z4k/eF0vIVthuMJ5th
-         VZVQ==
-X-Gm-Message-State: AOAM532qLWmjkVvivkINMQDbWsVvTkwE9gwSNBt6olgVuqK2h6FDcaVe
-        PLw7ILuk0AS4dbdrkDzNP7zefIS+WSsYJUoJO4qAMy2o+ASyk/E1qzYwB8Onp2Ef2BzoIF3Pzwb
-        1koyJW9TMaXkImSoXl1/MaQqq6EM8VeJ0ICeuJmE=
-X-Received: by 2002:a05:651c:324:: with SMTP id b4mr3004613ljp.188.1639753756754;
-        Fri, 17 Dec 2021 07:09:16 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyHJzYnX2gs6VoqK9iRkmiSREooJ2FXXIbMDOX3XDHzAr4mBWfowLrbkwZGknR7FEjLbWDk2Q==
-X-Received: by 2002:a05:651c:324:: with SMTP id b4mr3004581ljp.188.1639753756369;
-        Fri, 17 Dec 2021 07:09:16 -0800 (PST)
+        bh=LuufmSFwO+Uko0vN+wcG6SqqtDV+Z68NapfaG/AboZQ=;
+        b=l69uGdot982KOt6kSRhInRakxYsCzqjSETExHWuzm6+czmOt1leT/Qqx0OnYzYxoY0
+         dcQhtnXAWrXCtRKXURmcnDylfYS8dGI6SalZLRXsLWCLWlRZ3+kzmNUJ3/AIMtCrdB32
+         M+03QdwQozktcvMvWYzjoZeraek8DFvq0LcvpV9P300YLSKVl6b3QOYPTQvdutljVqvA
+         c6hesXa2J0YzZP3xGBTa7AN0VGGsthAxi5NE4UlrPrBYc3dGpNKuoj2w9fDs1pdEXxHx
+         z2RSusYq3+Wkqqn/OamZyUD7Z/rxRk+CgY1gySV0kgGgH+ijPzWa3x674oHWslBuSS9F
+         BAlA==
+X-Gm-Message-State: AOAM530fLK+E3RwpWcgToVoRqsda7d4D9WhI8XQOLtF34iHH9X0aiY+1
+        wxtuMT9R/KhsL9Mc+Em5VCQZeTBVSPwyXKL/BJnnLe8gHh0MSIlKc+xULqIR0dZcQT6wreczjEW
+        0b6JlFb4hYyz/BzSVAOZpyc5U6NUhCVnZR5LqQQM=
+X-Received: by 2002:a2e:b177:: with SMTP id a23mr3073318ljm.168.1639753846497;
+        Fri, 17 Dec 2021 07:10:46 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJygjTECmvBQT9ksaNKKPpzj9j1t+XuT+kSUjjKHB4hi17gD4qo0YEtddUAvOESRhbhyAif77A==
+X-Received: by 2002:a2e:b177:: with SMTP id a23mr3073227ljm.168.1639753844837;
+        Fri, 17 Dec 2021 07:10:44 -0800 (PST)
 Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id d4sm1429654lfg.82.2021.12.17.07.09.14
+        by smtp.gmail.com with ESMTPSA id h8sm617167lfu.250.2021.12.17.07.10.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Dec 2021 07:09:15 -0800 (PST)
-Message-ID: <61ae4cfd-a544-96d3-d521-877b8b38b5fc@canonical.com>
-Date:   Fri, 17 Dec 2021 16:09:13 +0100
+        Fri, 17 Dec 2021 07:10:44 -0800 (PST)
+Message-ID: <b026869a-7f93-7683-a8a2-5abd0e0d71db@canonical.com>
+Date:   Fri, 17 Dec 2021 16:10:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.1
-Subject: Re: [PATCH v2 17/17] MAINTAINERS: update riscv/microchip entry
+Subject: Re: [PATCH v3 03/11] riscv: dts: microchip: mpfs: Drop empty chosen
+ node
 Content-Language: en-US
-To:     conor.dooley@microchip.com, linus.walleij@linaro.org,
-        bgolaszewski@baylibre.com, robh+dt@kernel.org,
-        jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, broonie@kernel.org,
-        gregkh@linuxfoundation.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
-Cc:     geert@linux-m68k.org, bin.meng@windriver.com, heiko@sntech.de,
-        lewis.hanly@microchip.com, daire.mcnamara@microchip.com,
-        ivan.griffin@microchip.com, atish.patra@wdc.com
-References: <20211217093325.30612-1-conor.dooley@microchip.com>
- <20211217093325.30612-18-conor.dooley@microchip.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        Lewis Hanly <lewis.hanly@microchip.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+References: <cover.1639744905.git.geert@linux-m68k.org>
+ <53c36082ffa612ebe7ec53ebcc0dc29f11a083a6.1639744905.git.geert@linux-m68k.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211217093325.30612-18-conor.dooley@microchip.com>
+In-Reply-To: <53c36082ffa612ebe7ec53ebcc0dc29f11a083a6.1639744905.git.geert@linux-m68k.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/12/2021 10:33, conor.dooley@microchip.com wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On 17/12/2021 13:49, Geert Uytterhoeven wrote:
+> It does not make sense to have an (empty) chosen node in an SoC-specific
+> .dtsi, as chosen is meant for system-specific configuration.
+> It is already provided in microchip-mpfs-icicle-kit.dts anyway.
 > 
-> Update the RISC-V/Microchip entry by adding the microchip dts
-> directory and myself as maintainer
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Fixes: 0fa6107eca4186ad ("RISC-V: Initial DTS for Microchip ICICLE board")
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Tested-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  MAINTAINERS | 2 ++
->  1 file changed, 2 insertions(+)
+> v3:
+>   - Add Tested-by,
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7a2345ce8521..3b1d6be7bd56 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -16348,8 +16348,10 @@ K:	riscv
->  
->  RISC-V/MICROCHIP POLARFIRE SOC SUPPORT
->  M:	Lewis Hanly <lewis.hanly@microchip.com>
-> +M:	Conor Dooley <conor.dooley@microchip.com>
->  L:	linux-riscv@lists.infradead.org
->  S:	Supported
-> +F:	arch/riscv/boot/dts/microchip/
->  F:	drivers/mailbox/mailbox-mpfs.c
->  F:	drivers/soc/microchip/
->  F:	include/soc/microchip/mpfs.h
+> v2:
+>   - Add Reviewed-by.
+> ---
+>  arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 3 ---
+>  1 file changed, 3 deletions(-)
 > 
 
-Good to have the DTS covered, so FWIW:
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-You still should get Lewis' ack (unless he merges it)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
 
 Best regards,
 Krzysztof
