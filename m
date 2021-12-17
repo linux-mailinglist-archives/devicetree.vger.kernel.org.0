@@ -2,128 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B50F478CC0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 14:51:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19B3A478CA8
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 14:48:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236834AbhLQNvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 08:51:45 -0500
-Received: from mail-ua1-f43.google.com ([209.85.222.43]:43886 "EHLO
-        mail-ua1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233082AbhLQNvo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 08:51:44 -0500
-Received: by mail-ua1-f43.google.com with SMTP id 107so4400892uaj.10;
-        Fri, 17 Dec 2021 05:51:43 -0800 (PST)
+        id S231718AbhLQNsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 08:48:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32860 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231431AbhLQNsU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 08:48:20 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22AA3C061574;
+        Fri, 17 Dec 2021 05:48:20 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id t5so8244023edd.0;
+        Fri, 17 Dec 2021 05:48:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:cc
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=/rICO5mcbr2uBdaq/pPN0Bzn1efilMAT4ffUPiNCdb4=;
+        b=niK6deEqJGX3pg286cNmQ9HHOyxiyV+34zA5fBnxdTrZxG80dSDl25Yt/kerta3of9
+         Plhif4lOuCWSd0kUTiIIc1N2mNfH7/inEDUIWiGiuGdofLDbfYIeb6hzy3LMA0/40muC
+         DcZLWMllWo+71GIhfH7dwvV6Nd6mOBy+UfB+rlcRKEcd0JZHdV3EX1C3N7OviZ1t3DyM
+         ykFt8SG8k1/NN/4CxCrf4YsszyI/aIroqGsDbFO07jXlK9Xg2lY7nPYTovXW3eSPvJrv
+         jNjibCQCkphKZs0DQNEpKFYD1cvFm7QaUVIq43R/vSevE4/3F+Q0g3adnHoasalM9NVA
+         Ht7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IzymPMQBtSGyl0KMkX7mRJW21YY8HhWUvGCPuNIAzLc=;
-        b=2kmyB2CVofVserc+bm2snp8gFJudz+9Hm0Ie9OK3Ob6ICL/0ZVvkFIF5D5LEna8bJE
-         qwxgbnh1ncfXnWocglQ75JtnRtLjp8vTCaoytyUTpUqANMK9P88DMsJ0S9imCGf3lFvv
-         pnI7AQYJONE9svhSkwvRLsf/94xuMPP0lMSdwNhz50oVqmpGaSom3lhqVB81QHAuaDTL
-         9XoScuDy43ZsH/uBadV6Y+jm46tv+GLJi8Vr65RfjWWqQNNasd/le0sHuW1XWFylM6dn
-         NYKu32pC+5Byz4HoZvcFw7MyBKnw/VEWn4kjMTappASDkLlNyg5fuY9jm63C3Ik2QP9N
-         Rr5A==
-X-Gm-Message-State: AOAM530VPHD6YiubK+QRkTlu98hCP8EE7I7BSCvKXLexqKXBQzKaVrCL
-        W2sHg63xPV430QP+yaLya12UhcizDFhlRA==
-X-Google-Smtp-Source: ABdhPJygqHbD/X/j8BRU0bhjpRRjRAWfUxD7m6R8LZ06FOC/Bi4xRjb7x1NpLLTc+CgbjrViTdloRw==
-X-Received: by 2002:ab0:6f49:: with SMTP id r9mr899509uat.111.1639749103352;
-        Fri, 17 Dec 2021 05:51:43 -0800 (PST)
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com. [209.85.221.174])
-        by smtp.gmail.com with ESMTPSA id c14sm1769301vkm.10.2021.12.17.05.51.43
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=/rICO5mcbr2uBdaq/pPN0Bzn1efilMAT4ffUPiNCdb4=;
+        b=KYDZ3kUcJ/bHLiJ4qHEJAodq7xpOe/deoT/lsi9s1MamxbRDHVFn5x0azbzDmrbbs+
+         C9iRd5OCl0RM+BdLmJP7YR7jR1pEZEI09jpz7gohiQb1/sE5Fr0uhpASZGM23j+jYtBK
+         f2LgW8xqgSxiUlSQoQYFYqJN9IE+77Za+7ckhUNvQaxj5aTWrpNOtmIwF5HTXUxPzyf5
+         n/wDlGymD0pmfsy3imNwQDFXfp32/oRe6ibtm4N882yEHEezSeSBZapcpL43eszs5KGZ
+         +cKe7PSMaqLhTYGMGJmqPaEuiyCeDZ4weHu62uFUfENexvJPscKlF0/k0h6IRHx8ohuD
+         tYPA==
+X-Gm-Message-State: AOAM530kyVcu42yUCkhD3ttK7p6t3II+RxKdEnVp5XqSa2PHlLshNE8t
+        GuEVlDJsCdMw2C+p+8nGS+Y=
+X-Google-Smtp-Source: ABdhPJz8kpeSeEqV+gbTHHylwxMzMKKnOuwGN+saTNc06iXRlh4VOWQuvIO2ZcaqE77jsn876PtusA==
+X-Received: by 2002:a17:907:9605:: with SMTP id gb5mr2676709ejc.685.1639748898753;
+        Fri, 17 Dec 2021 05:48:18 -0800 (PST)
+Received: from [192.168.0.182] ([188.24.42.157])
+        by smtp.gmail.com with ESMTPSA id c3sm1254624edr.33.2021.12.17.05.48.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Dec 2021 05:51:43 -0800 (PST)
-Received: by mail-vk1-f174.google.com with SMTP id m200so1568227vka.6;
-        Fri, 17 Dec 2021 05:51:43 -0800 (PST)
-X-Received: by 2002:a1f:4641:: with SMTP id t62mr1041561vka.0.1639748601739;
- Fri, 17 Dec 2021 05:43:21 -0800 (PST)
+        Fri, 17 Dec 2021 05:48:18 -0800 (PST)
+Message-ID: <365d71d5-6ba5-2012-e8ab-f790bc7173eb@gmail.com>
+Date:   Fri, 17 Dec 2021 15:48:18 +0200
 MIME-Version: 1.0
-References: <20211217093325.30612-1-conor.dooley@microchip.com> <20211217093325.30612-15-conor.dooley@microchip.com>
-In-Reply-To: <20211217093325.30612-15-conor.dooley@microchip.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 17 Dec 2021 14:43:10 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV0N-15kNZ1fnzaj_psNVCRUQP506Noc-tHawmgxqCVeA@mail.gmail.com>
-Message-ID: <CAMuHMdV0N-15kNZ1fnzaj_psNVCRUQP506Noc-tHawmgxqCVeA@mail.gmail.com>
-Subject: Re: [PATCH v2 14/17] riscv: dts: microchip: add fpga fabric section
- to icicle kit
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
-        linux-rtc@vger.kernel.org, linux-spi <linux-spi@vger.kernel.org>,
-        USB list <linux-usb@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bin Meng <bin.meng@windriver.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lewis Hanly <lewis.hanly@microchip.com>,
-        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
-        Atish Patra <atish.patra@wdc.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v3 0/2] Add ADXL367 driver
+Content-Language: en-US
+Cc:     cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211217114548.1659721-1-cosmin.tanislav@analog.com>
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+In-Reply-To: <20211217114548.1659721-1-cosmin.tanislav@analog.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
 
-On Fri, Dec 17, 2021 at 10:33 AM <conor.dooley@microchip.com> wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> Split the device tree for the Microchip MPFS into two sections by adding
-> microchip-mpfs-fabric.dtsi, which contains peripherals contained in the
-> FPGA fabric.
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+V2 -> V3
+  * limit number of fifo entries read to multiple of set size to avoid
+    data unalignment
 
-Thanks for your patch!
-
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-fabric.dtsi
-> @@ -0,0 +1,13 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/* Copyright (c) 2020-2021 Microchip Technology Inc */
-> +
-> +/ {
-> +       corePWM0: pwm@41000000 {
-> +               compatible = "microchip,corepwm";
-> +               reg = <0x0 0x41000000 0x0 0xF0>;
-> +               microchip,sync-update = /bits/ 8 <0>;
-> +               #pwm-cells = <2>;
-> +               clocks = <&clkcfg CLK_FIC3>;
-> +               status = "disabled";
-> +       };
-
-I'm wondering if these should be grouped under a "fabric" subnode,
-like we have an "soc" subnode for on-SoC devices? Rob?
-
-BTW, do you already have a naming plan for different revisions of
-FPGA fabric cores?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+On 12/17/21 13:45, Cosmin Tanislav wrote:
+> The ADXL367 is an ultralow power, 3-axis MEMS accelerometer.
+> 
+> The ADXL367 does not alias input signals to achieve ultralow power
+> consumption, it samples the full bandwidth of the sensor at all
+> data rates. Measurement ranges of +-2g, +-4g, and +-8g are available,
+> with a resolution of 0.25mg/LSB on the +-2 g range.
+> 
+> In addition to its ultralow power consumption, the ADXL367
+> has many features to enable true system level power reduction.
+> It includes a deep multimode output FIFO, a built-in micropower
+> temperature sensor, and an internal ADC for synchronous conversion
+> of an additional analog input.
+> 
+> V1 -> V2
+>   * add support for vdd and vddio supplies
+>   * lock fifo_watermark retrieval
+>   * fix indentation of sysfs_emit for fifo_mode
+>   * dt-bindings: add spi-max-frequency: true
+>   * dt-bindings: remove cs-gpios property
+>   * dt-bindings: remove status property
+>   * dt-bindings: add support for vdd
+> 
+> V2 -> V3
+>   * MAINTAINERS: use wildcard for adxl367
+>   * dt-bindings: adxl367@addr -> accelerometer@addr
+>   * put asm include after linux includes
+>   * drop registers accessed implicitly
+>   * fifo_full -> fifo_watermark
+>   * print expected device id
+>   * remove INDIO_BUFFER_HARDWARE
+>   * inline ADXL367_EVENT macro
+>   * inline ADXL367_14BIT_SCAN_INFO
+>   * inline regulator enum
+>   * remove of.h in spi driver
+>   * cast const void * to const u8 * in spi read
+>   * switch to trigger-less buffer
+>   * increase reset time as advised by hardware team
+>   * let iio framework validate available channel masks
+>   * enable adc or temp channel automatically on single read
+>   * wait for 100ms after enabling adc or temp for output
+>     to settle on single read (waiting on hardware team input)
+>   * enable adc or temp channel automatically on buffered read
+>   * claim direct mode when setting range
+>   * claim direct mode when setting odr
+>   * claim direct mode when setting event config
+>   * sort status masks in descending bit order
+>   * hardcode indio_dev name
+>   * add some comments regarding spi message layout
+>   * use bulk_write for activity and inactivity threshold
+>   * use bulk_write for inactivity time
+>   * use bool as return type of fifo format finding function
+>   * remove shift from channels scan type
+> 
+> Cosmin Tanislav (2):
+>    dt-bindings: iio: accel: add ADXL367
+>    iio: accel: add ADXL367 driver
+> 
+>   .../bindings/iio/accel/adi,adxl367.yaml       |   79 +
+>   MAINTAINERS                                   |    8 +
+>   drivers/iio/accel/Kconfig                     |   27 +
+>   drivers/iio/accel/Makefile                    |    3 +
+>   drivers/iio/accel/adxl367.c                   | 1617 +++++++++++++++++
+>   drivers/iio/accel/adxl367.h                   |   23 +
+>   drivers/iio/accel/adxl367_i2c.c               |   89 +
+>   drivers/iio/accel/adxl367_spi.c               |  163 ++
+>   8 files changed, 2009 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl367.yaml
+>   create mode 100644 drivers/iio/accel/adxl367.c
+>   create mode 100644 drivers/iio/accel/adxl367.h
+>   create mode 100644 drivers/iio/accel/adxl367_i2c.c
+>   create mode 100644 drivers/iio/accel/adxl367_spi.c
+> 
