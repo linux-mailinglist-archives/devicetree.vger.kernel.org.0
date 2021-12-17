@@ -2,70 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78F75479722
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 23:28:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C5B8479725
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 23:29:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230223AbhLQW2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 17:28:25 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:44748 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbhLQW2Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 17:28:25 -0500
-Received: by mail-ot1-f42.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso4573462otj.11;
-        Fri, 17 Dec 2021 14:28:25 -0800 (PST)
+        id S229683AbhLQW31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 17:29:27 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:35564 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229521AbhLQW30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 17:29:26 -0500
+Received: by mail-oi1-f177.google.com with SMTP id m6so5729923oim.2;
+        Fri, 17 Dec 2021 14:29:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=w0FVigHbSupuS2iOeVxLq4I6AIyzIF2DwIK5997zYiE=;
-        b=HoVUWXz0JBLLMHJ0HsLBDGHdXDDu91qsmVxhVWUK5/ycMXWJj7PK8dbwXLf1apTGZ1
-         m+s+UeZ/JW9vBXdp2fEGqrE/XNTwO4AJ5OYBhW2enf6BkOpIFvWyBfImFZNCVWBy+Ihe
-         gvH7z+Am6o7jTUbEleQO3c5Zw3I/tdln6Hs03fg0ObeZKXcVNoiraTns9wRHc2QVRs6J
-         e1b4RETpPqmXrE+ZoRvQ82iKBO5ds7iLNCf16ipvc2GQxhESVDUFplP2pV0aKaxwbVqM
-         ik1N2q9UNUZv0hwe8ZvTBdA5IkctHahO6P+CrmKj+YLPG0ArzL3ark+ahzFcG/RXpOxi
-         TqKQ==
-X-Gm-Message-State: AOAM530xOs3Ox+6opZO8e75xbOBfWPJk2K3WwsBQEHk1nx26LDdsNh1v
-        xOrN0WPOrwS4OGzRmYQerw==
-X-Google-Smtp-Source: ABdhPJxyzl5fqXhMNvKMBwTNd8zobu66Hnp+wp3/Q9ena3gos2v+Om4OWEKqNrCT65AJBE+xBXIC7w==
-X-Received: by 2002:a05:6830:200d:: with SMTP id e13mr3878879otp.109.1639780104674;
-        Fri, 17 Dec 2021 14:28:24 -0800 (PST)
+        bh=ceA6uFPrxoxuPoqQlCvVhkmHGQ1jymNTT0ALfCVWMx0=;
+        b=kmvDxkFWyvd3fKMj1/SOgGFswQkmFl18O/E9PQrJEMcULJpYKy9fnmz7dS2obCu+Og
+         sLdIoxBtYMAcmAY1VDzPBJ0nQxEEq6sGIhpKL/iMdTIcl0icQdH1mthi4c02Lx3bc3kq
+         677Welo+SoCO23FePLdcsv6l9kfRtAluhgs+n60/u6kivFNtq4ixh8dDRrtzJJbgdPN+
+         bN5yIk2/HmyzDVEA9VENf/0t/689q5Wp12m1ybN2MXV16r/194H+5gWpabT9WhRYVhw4
+         BPJkTBE/zJqjSJqrMun5QwzBT4EvU2nwHb+dVUncpnUVRaZkQP5ehWyAP+VlFlBWuDa9
+         9xAA==
+X-Gm-Message-State: AOAM5334F1PjAU/mpahcVeYzjxNR2yji74tt5DcGYrve1RbLduz4mvYO
+        SgJNsbxDmab0YBqkUOQf6w==
+X-Google-Smtp-Source: ABdhPJyMY+V79ohByfMUfq1Nt1y6axnKEY0TTdPBUJ5AEZ3X2yrpLHCKyrBkQ9z2wmUCusqOeDwpog==
+X-Received: by 2002:a05:6808:1285:: with SMTP id a5mr3751571oiw.104.1639780166081;
+        Fri, 17 Dec 2021 14:29:26 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id n11sm1745387oor.9.2021.12.17.14.28.23
+        by smtp.gmail.com with ESMTPSA id h14sm1859512ots.22.2021.12.17.14.29.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Dec 2021 14:28:24 -0800 (PST)
-Received: (nullmailer pid 3693509 invoked by uid 1000);
-        Fri, 17 Dec 2021 22:28:23 -0000
-Date:   Fri, 17 Dec 2021 16:28:23 -0600
+        Fri, 17 Dec 2021 14:29:25 -0800 (PST)
+Received: (nullmailer pid 3695500 invoked by uid 1000);
+        Fri, 17 Dec 2021 22:29:24 -0000
+Date:   Fri, 17 Dec 2021 16:29:24 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Marc Zyngier <maz@kernel.org>
-Subject: Re: [PATCH v5 2/2] dt-bindings: interrupt-controller: Merge BCM3380
- with BCM7120
-Message-ID: <Yb0PB2dOGnzC2kSZ@robh.at.kernel.org>
-References: <20211217160546.497012-1-f.fainelli@gmail.com>
- <20211217160546.497012-3-f.fainelli@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Peter Rosin <peda@axentia.se>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, Andrew Jeffery <andrew@aj.id.au>,
+        Wolfram Sang <wsa@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: i2c: tegra: Convert to json-schema
+Message-ID: <Yb0PRLJXM6tKTFMB@robh.at.kernel.org>
+References: <20211217165658.2650677-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211217160546.497012-3-f.fainelli@gmail.com>
+In-Reply-To: <20211217165658.2650677-1-thierry.reding@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Dec 2021 08:05:46 -0800, Florian Fainelli wrote:
-> The two bindings are very similar and should be covered by the same
-> document, do that so we can get rid of an additional binding file.
+On Fri, 17 Dec 2021 17:56:55 +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> Convert the Tegra I2C controller bindings from plain text to json-schema
+> format.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  .../brcm,bcm3380-l2-intc.txt                  | 39 -------------------
->  .../brcm,bcm7120-l2-intc.yaml                 | 31 +++++++++++++--
->  2 files changed, 28 insertions(+), 42 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm3380-l2-intc.txt
+> Changes in v2:
+> - include i2c-controller.yaml and use unevaluatedProperties: false
+> 
+>  .../bindings/i2c/nvidia,tegra20-i2c.txt       |  87 --------
+>  .../bindings/i2c/nvidia,tegra20-i2c.yaml      | 192 ++++++++++++++++++
+>  2 files changed, 192 insertions(+), 87 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.txt
+>  create mode 100644 Documentation/devicetree/bindings/i2c/nvidia,tegra20-i2c.yaml
 > 
 
 Applied, thanks!
