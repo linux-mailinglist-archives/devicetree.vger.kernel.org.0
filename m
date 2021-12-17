@@ -2,66 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C32E6478B38
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 13:17:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AE04478B42
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 13:19:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236070AbhLQMRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 07:17:24 -0500
-Received: from muru.com ([72.249.23.125]:39494 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236062AbhLQMRX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Dec 2021 07:17:23 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 8DBEB80FB;
-        Fri, 17 Dec 2021 12:18:05 +0000 (UTC)
-Date:   Fri, 17 Dec 2021 14:17:21 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Jarkko Nikula <jarkko.nikula@bitmer.com>
-Cc:     linux-omap@vger.kernel.org,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] ARM: dts: Fix timer regression for beagleboard revision c
-Message-ID: <Ybx/0fIXWDD09c42@atomide.com>
-References: <20211125144834.52457-1-tony@atomide.com>
- <ef843afa-c99d-328d-853a-00ef293a47f2@bitmer.com>
- <20211212190455.qbggbhmr5nquw7bw@bitmer.com>
- <Ybbdnr96H58TkytD@atomide.com>
+        id S235761AbhLQMT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 07:19:26 -0500
+Received: from relay10.mail.gandi.net ([217.70.178.230]:56685 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235869AbhLQMTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 07:19:25 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id A30C9240002;
+        Fri, 17 Dec 2021 12:19:23 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Roger Quadros <rogerq@kernel.org>, miquel.raynal@bootlin.com,
+        richard@nod.at
+Cc:     vigneshr@ti.com, kishon@ti.com, nm@ti.com, tony@atomide.com,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 6/6] mtd: rawnand: omap2: drop unused variable
+Date:   Fri, 17 Dec 2021 13:19:23 +0100
+Message-Id: <20211217121923.327619-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20211209090458.24830-7-rogerq@kernel.org>
+References: 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Ybbdnr96H58TkytD@atomide.com>
+X-linux-mtd-patch-notification: thanks
+X-linux-mtd-patch-commit: b'44d73223fefd8f93be7d94a6eaf897a3c88e3ffb'
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Tony Lindgren <tony@atomide.com> [211213 05:44]:
-> * Jarkko Nikula <jarkko.nikula@bitmer.com> [211212 19:05]:
-> > On Sat, Dec 11, 2021 at 05:30:57PM +0200, Jarkko Nikula wrote:
-> > This I used years before your patch and by some reason I confused to use
-> > new omap3-beagle-ab4.dtb when testing your patch yesterday:
-> > 
-> > > cat arch/arm/boot/dts/omap3-beagle-ab4.dtb >>arch/arm/boot/zImage
-> > 
-> > without realizing my Beagle Board version is not between A to B4 but C2.
-> > So when using the omap3-beagle.dtb your patch fixes the regression I
-> > found.
-> > 
-> > Tested-by: Jarkko Nikula <jarkko.nikula@bitmer.com>
+On Thu, 2021-12-09 at 09:04:58 UTC, Roger Quadros wrote:
+> devsize is not used anywhere in code. Drop it.
 > 
-> OK good to hear omap3-beagle.dtb now works for beagles that don't have
-> the A to B4 hardware timer issue :) And thanks for testing.
-> 
-> It seems the beagle revisions A to B4 are broken for any kind of power
-> management as the clockevent timer for those boards is not always on.
-> Probably not worth spending much effort on those. Maybe the PMIC could
-> be reconfigured on the buggy revisions in addition to the timer quirks
-> if somebody still cares for those board revisions.
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
 
-Anyways, applying this fix into omap-for-v5.17/fixes-not-urgent.
+Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
 
-Regards,
-
-Tony
+Miquel
