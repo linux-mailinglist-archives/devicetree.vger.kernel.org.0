@@ -2,102 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9023479274
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:07:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFB1D479275
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:08:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239668AbhLQRHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 12:07:37 -0500
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:53777 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235922AbhLQRHh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:07:37 -0500
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 8871BFF80E;
-        Fri, 17 Dec 2021 17:07:35 +0000 (UTC)
-Date:   Fri, 17 Dec 2021 18:07:35 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: rtc: Add EM Microelectronic EM3027
- bindings
-Message-ID: <YbzD199oQobS6ZaD@piout.net>
-References: <20211217170311.2796798-1-thierry.reding@gmail.com>
- <20211217170311.2796798-2-thierry.reding@gmail.com>
+        id S239632AbhLQRIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 12:08:22 -0500
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:37394 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239156AbhLQRIW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:08:22 -0500
+Received: by mail-ot1-f54.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so3675206otg.4;
+        Fri, 17 Dec 2021 09:08:21 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8zplcAKJ5wrZOx8xUb88onbH++jPgJbSoL/b/D08i/I=;
+        b=QKIj4fytIkupz2rjtTx9O/pPkymr444nfF7hfvZMyBON8bOV/uD2EZO1w/Umbu5IPz
+         3CeAyFwaIJyOLVmQTR4kCaKxC8dJh4UX+3bCrlqZWShDi0snrJWLw8VTisVj3QHRSCKr
+         q4omZJDjRqpSgWa7WxJs0+CbYGHhGmz7zbgnhAOlyL6wjTtfuNkgJ3cNPaF4mGaCmdvC
+         vs876XuJTREMuXkbc3amcDDevBU4XGeoCf1x/yHClIuThlQHhl2ccvxpwKGw5q0VYR6D
+         o/lDYEjA1AlXH41Iim29Z0dyz7IRTAkDNb0C6eah76bTMwq8kVDWFhfRm3EbqfPAPnJg
+         6mJA==
+X-Gm-Message-State: AOAM532o9GMw8BMa7bxeW0ZwbHyHhXUwIMA66PAnoa2PshqbRIUvh89V
+        T0AnsQcAD+w5r7whyIaglA==
+X-Google-Smtp-Source: ABdhPJyLemJ0/AHJnJ3qunkWa4KphC3zw59AMVzw53YU994eayPkNy6e8b8Vrqi9AOoTgch+1OKToQ==
+X-Received: by 2002:a9d:60f:: with SMTP id 15mr2717678otn.266.1639760901503;
+        Fri, 17 Dec 2021 09:08:21 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id n26sm1614683ooq.36.2021.12.17.09.08.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Dec 2021 09:08:21 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Maxime Ripard <maxime@cerno.tech>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: arm,cci-400: Drop the PL330 from example
+Date:   Fri, 17 Dec 2021 11:08:03 -0600
+Message-Id: <20211217170803.3147777-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211217170311.2796798-2-thierry.reding@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+The PL330 was commented out because its binding wasn't converted to a
+schema. With the binding converted, the example now needs several updates.
+However, while it's possible that the PL330 has a 'cci-control-port', there
+aren't any platforms upstream which do. So rather than allowing
+'cci-control-port' in the PL330 binding, let's just drop the example.
 
-On 17/12/2021 18:03:11+0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Document the bindings for the EM Microelectronic EM3027 RTC.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  .../bindings/rtc/emmicro,em3027.yaml          | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/emmicro,em3027.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/emmicro,em3027.yaml b/Documentation/devicetree/bindings/rtc/emmicro,em3027.yaml
-> new file mode 100644
-> index 000000000000..abed14c4fcd5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/emmicro,em3027.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/emmicro,em3027.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: EM Microelectronic EM3027 RTC Device Tree Bindings
-> +
-> +maintainers:
-> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: emmicro,em3027
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +allOf:
-> +  - $ref: "rtc.yaml#"
-> +
-> +additionalProperties: false
-> +
+Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/arm/arm,cci-400.yaml | 10 ----------
+ 1 file changed, 10 deletions(-)
 
-If there are no further properties, maybe trivial-rtc.yaml?
-
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      rtc@56 {
-> +        compatible = "emmicro,em3027";
-> +        reg = <0x56>;
-> +      };
-> +    };
-> -- 
-> 2.34.1
-> 
-
+diff --git a/Documentation/devicetree/bindings/arm/arm,cci-400.yaml b/Documentation/devicetree/bindings/arm/arm,cci-400.yaml
+index 4682f991a5c8..f8530a50863a 100644
+--- a/Documentation/devicetree/bindings/arm/arm,cci-400.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,cci-400.yaml
+@@ -166,16 +166,6 @@ examples:
+               };
+           };
+ 
+-          dma0: dma@3000000 {
+-              /* compatible = "arm,pl330", "arm,primecell"; */
+-              cci-control-port = <&cci_control0>;
+-              reg = <0x0 0x3000000 0x0 0x1000>;
+-              interrupts = <10>;
+-              #dma-cells = <1>;
+-              #dma-channels = <8>;
+-              #dma-requests = <32>;
+-          };
+-
+           cci@2c090000 {
+               compatible = "arm,cci-400";
+               #address-cells = <1>;
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.32.0
+
