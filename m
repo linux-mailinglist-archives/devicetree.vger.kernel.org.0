@@ -2,112 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7CC14792E7
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:32:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5727D4792EE
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:38:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbhLQRcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 12:32:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58960 "EHLO
+        id S236137AbhLQRiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 12:38:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231380AbhLQRcb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:32:31 -0500
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5B34C06173F
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 09:32:30 -0800 (PST)
-Received: from [192.168.1.101] (83.6.165.42.neoplus.adsl.tpnet.pl [83.6.165.42])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        with ESMTP id S229736AbhLQRiL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:38:11 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C1B3C061574;
+        Fri, 17 Dec 2021 09:38:11 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 177C33ED3F;
-        Fri, 17 Dec 2021 18:32:28 +0100 (CET)
-Message-ID: <e2ed8317-a656-f6ac-9fc5-810588f33105@somainline.org>
-Date:   Fri, 17 Dec 2021 18:32:22 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [RFC/patch 2/2] arm64: boot: dts: qcom: surface duo: add minimal
- framebuffer
-Content-Language: en-US
-To:     Felipe Balbi <balbi@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 04CFB6235A;
+        Fri, 17 Dec 2021 17:38:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E0F8C36AE1;
+        Fri, 17 Dec 2021 17:38:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639762690;
+        bh=KSC69LXmJ2qmcuLX64LjAPcS+rqMlLkKGLTIFI495DA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gRd88ETNhn+5XiLKxtzhzU3EotCdanKOz6id7uZxj80YPbXipqGO9SI3FhBPYSyQB
+         wDtx5EWbixwbjP1V89uodfeoFEgQMpeeNZNWx+5hjU+pe8osuPHnUlFqKKi/0mEGvu
+         Q7aO/2t1t1JBXNSKo9wrkrg2UGgNuuEfOHq8uF21s+26kfypfb9vGIWTKJuU5sEnPb
+         gcIY6wRjIZS6Pxj6gxtOs33vqaMXGQ3DFoVKDftHjE7FR8+k1NFTLSkRzX2ufmwtdU
+         UjxjKeeWaHYsxrLoJqVwnkFnTDOuQ/TJCrgwP9z7FR6vk2bQXEPb5ajVBA0yvWiOWe
+         W7B85I9akMQWA==
+Date:   Fri, 17 Dec 2021 17:38:05 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Li-hao Kuo <lhjeff911@gmail.com>
+Cc:     p.zabel@pengutronix.de, andyshevchenko@gmail.com,
+        robh+dt@kernel.org, linux-spi@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Felipe Balbi <felipe.balbi@microsoft.com>
-References: <20211217125757.1193256-1-balbi@kernel.org>
- <20211217125757.1193256-3-balbi@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20211217125757.1193256-3-balbi@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        wells.lu@sunplus.com, lh.kuo@sunplus.com
+Subject: Re: [PATCH v4 1/2] SPI: Add SPI driver for Sunplus SP7021
+Message-ID: <YbzK/Xm8hONUc5w6@sirena.org.uk>
+References: <cover.1639123362.git.lhjeff911@gmail.com>
+ <65fb77debacc95ed3f54adac978ba24f2470f92e.1639123362.git.lhjeff911@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="HmoM7nfQl5bJDP3e"
+Content-Disposition: inline
+In-Reply-To: <65fb77debacc95ed3f54adac978ba24f2470f92e.1639123362.git.lhjeff911@gmail.com>
+X-Cookie: Pause for storage relocation.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 17.12.2021 13:57, Felipe Balbi wrote:
-> From: Felipe Balbi <felipe.balbi@microsoft.com>
->
-> Add a minimal framebuffer device so we can use the display on the
-> Surface Duo device.
->
-> Signed-off-by: Felipe Balbi <felipe.balbi@microsoft.com>
-> ---
->  .../dts/qcom/sm8150-microsoft-surface-duo.dts | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-> index a73317e1a824..c629ec115fec 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-> @@ -25,6 +25,17 @@ chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
->  
-> +	framebuffer0: framebuffer@9c000000 {
-> +		compatible = "simple-framebuffer";
-> +		reg = <0 0x9c000000 0 0x02400000>;
+--HmoM7nfQl5bJDP3e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-You can remove the leading 0 in the size cell.
+On Fri, Dec 10, 2021 at 05:02:47PM +0800, Li-hao Kuo wrote:
 
-
-
-> +		status = "okay";
-
-This line is unnecessary, as it's enabled by default
-
-
-
+> +static irqreturn_t sp7021_spi_sla_irq(int irq, void *dev)
+> +{
+> +	struct sp7021_spi_ctlr *pspim = dev;
+> +	unsigned int data_status;
 > +
-> +		height = <1800>;
-> +		width = <1350>;
-> +		stride = <(1350 * 4)>;
-> +		format = "a8r8g8b8";
-> +	};
-> +
->  	vph_pwr: vph-pwr-regulator {
->  		compatible = "regulator-fixed";
->  		regulator-name = "vph_pwr";
-> @@ -472,6 +483,14 @@ &pon_resin {
->  	linux,code = <KEY_VOLUMEDOWN>;
->  };
->  
-> +&reserved_memory {
-> +	splash_region: splash_region@9c000000 {
-> +		/* We expect the bootloader to fill in the size */
+> +	data_status = readl(pspim->sla_base + SP7021_DATA_RDY_REG);
+> +	writel(data_status | SP7021_SLA_CLR_INT, pspim->sla_base + SP7021_DATA_RDY_REG);
+> +	complete(&pspim->sla_isr);
+> +	return IRQ_NONE;
+> +}
 
-Would it be different than the framebuffer size?
+This will always return IRQ_NONE even if the interrupt actually fired -
+that should eventually cause genirq to complain that there's a problem
+with the interrupt never being handled I think (though perhaps if the
+interrupt stops asserting it'll pick up on that).  It should return
+IRQ_HANDLED if there was something asserted in SP7021_DATA_RDY_REG.
 
+Apart from that one thing this all looks good as far as I can see.
 
+--HmoM7nfQl5bJDP3e
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +		reg = <0x0 0x9c000000 0x0 0x0>;
-> +		no-map;
-> +	};
-> +};
-> +
->  &tlmm {
->  	gpio-reserved-ranges = <126 4>;
->  
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmG8yvwACgkQJNaLcl1U
+h9ALmgf7Bm9dw9gaf7ABbuXZjiSxKbhiiGExGh0sWRWYIMo8Bj5n3jO1Pi1FlX42
+LxUseRCZKZ2Un3jHTKyIMWF1BlDgQ+k6l51grVAyee4tiFlXPbwNMHy/NAznXbTw
+zdeDkyRjkCistTaoFx0PNk9x1Tu5SS0c6ngBhGuvh2aiJO1p4a4rdTDukGK4vYWH
+z6oecHYKRWA07wokpJc+jJMQZguqz0vFpztuv8X3E9vh95JC2uYKDWn7bN2eym56
+Svfj3bzUA8EZxF/jrQexFpWG6k8CzSBQMPXPh9HcFTgzByxAZjx62nn4Yw7qbX3n
+wK5iGFS+OfyhpsF9M0J7dFeKe4g4Dg==
+=qqgm
+-----END PGP SIGNATURE-----
 
-Konrad
-
+--HmoM7nfQl5bJDP3e--
