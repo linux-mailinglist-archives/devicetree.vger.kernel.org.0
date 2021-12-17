@@ -2,127 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E91144794E3
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 20:35:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD528479528
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 20:58:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236797AbhLQTfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 14:35:41 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:56556 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237469AbhLQTfl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 14:35:41 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0E6F7623B6;
-        Fri, 17 Dec 2021 19:35:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DFFAC36AE2;
-        Fri, 17 Dec 2021 19:35:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639769740;
-        bh=49JVjD6zwdUgd/08zvEQfOxsegSwa4DYbJGk2AbsrWU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YpKqjcLYZDuWu+9S56TOctkK7alGKYNB/jYJb6m+SmKUiKH8Fj4EmTPdCvLj6ta/A
-         WgTqUOJuE+5brJF/bs0kPPIAoW/M5uAmLFWNKA2yAkRWQ7JWUodvZZVWnFbCeMT9kF
-         EOyGOfoQNWYBMaIHdFcz7draYeBUowsjOunvHbUs4lYpu1eGtgE19AO0z8kx2w5udI
-         hKtlGJK6vriNoed5SV6ZfndFOo6fl9sC1POlR9e7vJEmmFGKT5jpm7v6GSjqkXCX5w
-         wJQbFxPuFth7mdNNP/+C6A3Cl3intfH+a9r1eQWTr251dL1qE/t9vqyJVSy3ijzhnW
-         0l5uX+S0HSXjw==
-Received: by mail-ed1-f54.google.com with SMTP id j21so7426016edt.9;
-        Fri, 17 Dec 2021 11:35:40 -0800 (PST)
-X-Gm-Message-State: AOAM530CJjtRSijIE02GO+E+muoyn0vw1YrKVN8yXni1VNtjtNa9hQyJ
-        Pcw3/l0SHcKjgTTyK8lnxbcYOValqNo9+HrQLQ==
-X-Google-Smtp-Source: ABdhPJzXJe97CgPyJwacb0b1CZCUoVrWsMBRUm6xjQXNcxxyQ+G6wArbn+I6DMnl0SCOvnOejFFRFTGezWEWpYl/k9c=
-X-Received: by 2002:a05:6402:4251:: with SMTP id g17mr4252024edb.89.1639769738751;
- Fri, 17 Dec 2021 11:35:38 -0800 (PST)
+        id S234112AbhLQT5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 14:57:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35628 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230108AbhLQT5l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 14:57:41 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B981DC061574;
+        Fri, 17 Dec 2021 11:57:40 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id j9so6173960wrc.0;
+        Fri, 17 Dec 2021 11:57:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ATS5gBruwanNdU272rerZnhy1vSLEquHj7LuSnNN+Lo=;
+        b=qnB4+19/7gSX+9lGawDmaj6g+X36F2uBnDI91uzpLOh2P5eaBu3njsOrPyTBQu1BVw
+         Lsqmp2ShVjdbfMSAFVSOmtOw1I7cXU5qHQ1LolYhlffhqjBAFROpketFsHA+im4LbVoR
+         YbAlExZyVaA4lQiehGvrxHc5g+dsqCuIt3wPSyQRZhRoZRZSwC5J6sGVFvNxYNm79sdC
+         V9/nxK6mx4UnM7IeD6XDv9/9lVsm3ixfe4EY3in9ZgGhYHNR93y1/PxMiwZoh+IZNUj5
+         FQRtfQOXDLQioAtpP2yawUPVTpJD7L5xotQb3TUurBcnVXQFoDYwJZqeUxr+z6+jhI8k
+         2MdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ATS5gBruwanNdU272rerZnhy1vSLEquHj7LuSnNN+Lo=;
+        b=gOH87lkj6+s4v8428Vu/I19ggWB99ldqyj/yjk4C8g+NQbK+RszYWRS5ef/4E5o85N
+         5vqolXjf46VT2ON3sT9Ti2G08xYOKb7yubwKbYgf8j2xTJf2wQxIL8rMBitqfOqgF+Gy
+         s/uoiRO1+suQx4ZydEJciQBe51LknUWpvNkrHKBdOb/yKSAOrQ/EJUwQGZkYk2ipPYGk
+         B9T+/kQtQeWPRLPuuVZnStiJS4Yz3a8qumEzxXeAWK0qOxjlu+hggexq1hJJ+Q+8cNs1
+         wgyIi/nIgEaV/RgnWuCk3i8H5yUpXdQepwoBdgcD455h0t/OFUnrRYAPaWG7kN5V4tT6
+         p3tQ==
+X-Gm-Message-State: AOAM532wKejCOGmj7S+Jje5Toon5JKv3wIJTIWYXXEOD+ouWDAATVDeQ
+        modh2pQLMW9B4/OJtQBK47swwrw/JBA=
+X-Google-Smtp-Source: ABdhPJw6p2zR49SGz4yqKVOw4RR/ZHLX0t/soOMRKCFm2BAD2Fbzcx5etmS+xbynExSLWQ7RWQD1IA==
+X-Received: by 2002:adf:ec85:: with SMTP id z5mr3735913wrn.568.1639771059023;
+        Fri, 17 Dec 2021 11:57:39 -0800 (PST)
+Received: from debby ([2a01:e0a:a6d:a8d0:7ff4:8f61:5574:9f95])
+        by smtp.gmail.com with ESMTPSA id g18sm13306843wmq.4.2021.12.17.11.57.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Dec 2021 11:57:38 -0800 (PST)
+From:   Romain Perier <romain.perier@gmail.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Romain Perier <romain.perier@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/6] Add timers for Mstar SoCs
+Date:   Fri, 17 Dec 2021 20:57:21 +0100
+Message-Id: <20211217195727.8955-1-romain.perier@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20211216233125.1130793-1-robh@kernel.org> <20211216233125.1130793-3-robh@kernel.org>
- <881f056d-d1ed-c6de-c09d-6e84d8b14530@arm.com> <CAL_JsqKKx5-ep5=FVA5OHM+t=T-9GTuf6Sf9P6ZDUs7RD9=c8g@mail.gmail.com>
- <836fd983-463c-040d-beb3-fee3faf215d6@arm.com>
-In-Reply-To: <836fd983-463c-040d-beb3-fee3faf215d6@arm.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 17 Dec 2021 13:35:27 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJM=dDxqEnnwbRLiemLS0XUqEe6RBZViLem8qoiDbPPjw@mail.gmail.com>
-Message-ID: <CAL_JsqJM=dDxqEnnwbRLiemLS0XUqEe6RBZViLem8qoiDbPPjw@mail.gmail.com>
-Subject: Re: [PATCH 2/6] cacheinfo: Set cache 'id' based on DT data
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        James Morse <james.morse@arm.com>,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org,
-        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 17, 2021 at 1:08 PM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2021-12-17 18:14, Rob Herring wrote:
-> > On Fri, Dec 17, 2021 at 10:57 AM Robin Murphy <robin.murphy@arm.com> wrote:
-> >>
-> >> Hi Rob,
-> >>
-> >> On 2021-12-16 23:31, Rob Herring wrote:
-> >>> Use the minimum CPU h/w id of the CPUs associated with the cache for the
-> >>> cache 'id'. This will provide a stable id value for a given system. As
-> >>> we need to check all possible CPUs, we can't use the shared_cpu_map
-> >>> which is just online CPUs. There's not a cache to CPUs mapping in DT, so
-> >>> we have to walk all CPU nodes and then walk cache levels.
-> >>
-> >> I believe another expected use of the cache ID exposed in sysfs is to
-> >> program steering tags for cache stashing (typically in VFIO-based
-> >> userspace drivers like DPDK so we can't realistically mediate it any
-> >> other way). There were plans afoot last year to ensure that ACPI PPTT
-> >> could provide the necessary ID values for arm64 systems which will
-> >> typically be fairly arbitrary (but unique) due to reflecting underlying
-> >> interconnect routing IDs. Assuming that there will eventually be some
-> >> interest in cache stashing on DT-based systems too, we probably want to
-> >> allow for an explicit ID property on DT cache nodes in a similar manner.
-> >
-> > If you have a suggestion for ID values that correspond to the h/w,
-> > then we can add them. I'd like a bit more than just trusting that ID
-> > is something real.
-> >
-> > While the ACPI folks may be willing to take an arbitrary index, it's
-> > something we (mostly) avoid for DT.
->
-> Not really. On the CHI side there are two fields - StashNID, which could
-> be any node ID value depending on the interconnect layout, plus
-> (optionally) StashLPID to address a specific cache within that node if
-> it's something like a CPU cluster. However, how a PCIe TLP steering tag
-> translates to those fields in the resulting CHI flit is largely up to
-> the root complex.
+This patches series adds a new driver for the timers found in the Mstar
+MSC313e SoCs and newer. It adds a basic clocksource driver, the
+corresponding devicetree bindings and its documentation.
 
-Knowing next to nothing about CHI, this means pretty much nothing to me. :(
+Changes since v2:
+- Reworded commit 2/6
+- Added Rob's 'Reviewed-by:' tag
 
-I would guess there is a bit more to supporting CHI in DT systems than
-just a cache ID.
+Changes since v1:
+- Make delay conditionnal for ARM, so it builds on all platforms
+- Improved commit message for the timer driver
+- MSC313E_TIMER is now silent and enabled by platform
+- Updated msc313e_timer_setup() to make it safe
+- Updated msc313e_timer_current_value() to make it safe
+- Renamed the driver variant for ssd20xd to "sstar,ssd20xd-timer"
+- Moved timer settings for the ssd202d from
+  mstar-infinity2m-ssd20xd.dtsi to mstar-infinity2m.dtsi.
+- Select MSC313E_TIMER on mstar platforms
+- Fixed wrong dt-bindings doc that included an rtc property (whoops!)
 
-> I think it's going to be more like a "reg" property than a nice
-> validatable index.
->
-> >> That said, I think it does make sense to have some kind of
-> >> auto-generated fallback scheme *as well*, since I'm sure there will be
-> >> plenty systems which care about MPAM but don't support stashing, and
-> >> therefore wouldn't have a meaningful set of IDs to populate their DT
-> >> with. Conversely I think that might also matter for ACPI too - one point
-> >> I remember from previous discussions is that PPTT may use a compact
-> >> representation where a single entry represents all equivalent caches at
-> >> that level, so I'm not sure we can necessarily rely on IDs out of that
-> >> path being unique either.
-> >
-> > AIUI, cache ids break the compact representation.
->
-> Right, firmware authors can't use it if they do want to specify IDs, but
-> that also means that if we find we *are* consuming a compact PPTT, then
-> chances are we're not getting meaningful IDs out of it for MPAM to rely on.
+Romain Perier (6):
+  clocksource: Add MStar MSC313e timer support
+  clocksource: msc313e: Add support for ssd20xd-based platforms
+  ARM: mstar: Select MSC313E_TIMER
+  dt-bindings: timer: Add Mstar MSC313e timer devicetree bindings
+    documentation
+  ARM: dts: mstar: Add timers device nodes
+  ARM: dts: mstar: Switch to compatible "sstar,ssd20xd-timer" on
+    infinity2m
 
-Sounds like broken firmware is in our future. ;) Or ACPI can default
-to the same id scheme.
+ .../bindings/timer/mstar,msc313e-timer.yaml   |  46 ++++
+ MAINTAINERS                                   |   1 +
+ arch/arm/boot/dts/mstar-infinity2m.dtsi       |  18 ++
+ arch/arm/boot/dts/mstar-v7.dtsi               |  20 ++
+ arch/arm/mach-mstar/Kconfig                   |   1 +
+ drivers/clocksource/Kconfig                   |   9 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-msc313e.c           | 253 ++++++++++++++++++
+ 8 files changed, 349 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/mstar,msc313e-timer.yaml
+ create mode 100644 drivers/clocksource/timer-msc313e.c
 
-Rob
+-- 
+2.34.1
+
