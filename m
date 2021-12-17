@@ -2,81 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88A0F478B83
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 13:37:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 046CC478B88
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 13:38:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230085AbhLQMht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 07:37:49 -0500
-Received: from out28-125.mail.aliyun.com ([115.124.28.125]:43878 "EHLO
-        out28-125.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230114AbhLQMht (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 07:37:49 -0500
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.324405|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0232552-0.00197139-0.974773;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047213;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=5;RT=5;SR=0;TI=SMTPD_---.MHTlNGI_1639744666;
-Received: from 192.168.10.152(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.MHTlNGI_1639744666)
-          by smtp.aliyun-inc.com(10.147.42.253);
-          Fri, 17 Dec 2021 20:37:46 +0800
-Subject: Re: [PATCH 1/2] dt-bindings: timer: Add bindings for new Ingenic
- SoCs.
-To:     Rob Herring <robh@kernel.org>
-Cc:     daniel.lezcano@linaro.org, tglx@linutronix.de,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <1639068516-5577-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1639068516-5577-2-git-send-email-zhouyanjie@wanyeetech.com>
- <Ybo/Ygixmmn9FPkx@robh.at.kernel.org>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <c74478fd-cbdb-e592-f166-61550152e28e@wanyeetech.com>
-Date:   Fri, 17 Dec 2021 20:35:36 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S236110AbhLQMiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 07:38:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45084 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236088AbhLQMiN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 07:38:13 -0500
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF322C061574
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 04:38:12 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:d13f:527c:5504:a743])
+        by baptiste.telenet-ops.be with bizsmtp
+        id XQe82600Q250X3001Qe8YF; Fri, 17 Dec 2021 13:38:11 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1myCUy-005Yqi-AC; Fri, 17 Dec 2021 13:38:08 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1myCUx-00ASTI-U6; Fri, 17 Dec 2021 13:38:07 +0100
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Anup Patel <anup.patel@wdc.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH v3 0/2] dt-bindings: timer: sifive,clint: Miscellaneous improvements
+Date:   Fri, 17 Dec 2021 13:38:02 +0100
+Message-Id: <cover.1639744468.git.geert@linux-m68k.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <Ybo/Ygixmmn9FPkx@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+	Hi all,
 
-On 2021/12/16 上午3:17, Rob Herring wrote:
-> On Fri, Dec 10, 2021 at 12:48:34AM +0800, 周琰杰 (Zhou Yanjie) wrote:
->> Add the OST bindings for the X1600 SoC, the X1830 SoC,
->> the X2000 SoC and the X2500 SoC from Ingenic.
->>
->> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
->> ---
->>   Documentation/devicetree/bindings/timer/ingenic,sysost.yaml | 7 ++++++-
->>   1 file changed, 6 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/timer/ingenic,sysost.yaml b/Documentation/devicetree/bindings/timer/ingenic,sysost.yaml
->> index 98648bf..a3b1429 100644
->> --- a/Documentation/devicetree/bindings/timer/ingenic,sysost.yaml
->> +++ b/Documentation/devicetree/bindings/timer/ingenic,sysost.yaml
->> @@ -20,7 +20,12 @@ properties:
->>     compatible:
->>       enum:
->>         - ingenic,x1000-ost
->> -      - ingenic,x2000-ost
-> Removing this is not a compatible change.
+This patch series contains two improvements for the SiFive CLINT DT
+bindings.
+
+Changes compared to v2[1]:
+  - Add Acked-by, Reviewed-by.
+
+Changes compared to v1[2]:
+  - Split in two patches,
+  - Improve patch description and document limit rationale.
+
+Thanks!
+
+[1] https://lore.kernel.org/r/cover.1639662093.git.geert@linux-m68k.org
+[2] https://lore.kernel.org/r/20211125152317.162958-1-geert@linux-m68k.org
 
 
-Sure, I will split it into new patch.
+Geert Uytterhoeven (2):
+  dt-bindings: timer: sifive,clint: Fix number of interrupts
+  dt-bindings: timer: sifive,clint: Group interrupt tuples
 
+ .../devicetree/bindings/timer/sifive,clint.yaml          | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-Thanks and best regards!
+-- 
+2.25.1
 
-
->
->> +      - ingenic,x1600-ost
->> +      - ingenic,x1830-ost
->> +      - ingenic,x2000-ost64
->> +      - ingenic,x2000-ost32
->> +      - ingenic,x2500-ost64
->> +      - ingenic,x2500-ost32
->>   
->>     reg:
->>       maxItems: 1
->> -- 
->> 2.7.4
->>
->>
