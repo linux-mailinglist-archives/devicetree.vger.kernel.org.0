@@ -2,119 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A0CC4792AE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:19:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B6824792BE
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:23:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239799AbhLQRTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 12:19:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239798AbhLQRTB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:19:01 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14679C061574;
-        Fri, 17 Dec 2021 09:19:01 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id v15so4526425ljc.0;
-        Fri, 17 Dec 2021 09:19:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=aD+hC6FqlLZlRa2bYYfAt8xGKCazGEctgmQARu+DDU8=;
-        b=N+UO0OVMGnFIK0uWKGSzU0og53fRsylVVAjm+0aq9GOMGpnSHN/MN8kNXkzeAsUDVi
-         /r3VLwK2ENO7yz83w5dxYdI5t3Xrv9LkpIuK59aiYvbL0fnapPr85PwHaEBDabE/5kRK
-         GWeJrY7WmFCNzRw5gUmLBURUHiKJ9PBeOU2tm2n2GrnLu++HyRIPa3Ye1MwUdAwGGWbE
-         WkKXwxi1SujNH17xZAIHeVmtVq7GLDTEgKFP3rosA/WbXc4Kzf5WbVSgbgtx9AG3zGr4
-         qMiB+ODoVkA4ZSUPGZPuN5onKzOXsyqQP9UHjAAgMzmkNkZ4L+hZxC1xdF8qDU+/jHL/
-         Aong==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=aD+hC6FqlLZlRa2bYYfAt8xGKCazGEctgmQARu+DDU8=;
-        b=Jci30ZNiXK8xVx1uLbQ2OM9DL/VRec4gc9/+OuDL50XjhtkZTN9iAtX3ZKUTXph8BC
-         UiluoTPfSXPOszqfmuOF+Q8lKAJun7vfpax77Sae4CNWnrmSXoUDjH+xmFam9S1eAHb9
-         XX4tlxGrubldv4XOGTZIX2ag0sd4ZsP6Uoj2Ua8YKtrcLzJOGtUZwxep8lt5dAEuI2rD
-         fa22s5h8iOetFiEoJChK/wfM+d3Gu2JSvFleq9efPA+bp/Im0tqDHnVnyq5zROPsDWdP
-         wTakUp8/4PCkATwtL7+VyMwhxvQ/cXiUR6F9FzhP9M7aVvwns0SWsUDVIHnroCb1zoSe
-         JTBA==
-X-Gm-Message-State: AOAM530LMUiF2gKXYZBSlE8v3gpc7j1E5VXGV1li3rxRZGPeFE0Drrt2
-        1sEVxrDiPD3CBHUHKLrYr5M=
-X-Google-Smtp-Source: ABdhPJzBjfXZEGXsleWCP8vjNzkIbrIDY0hTHQDynU+0L28mioCf9nBMTGevXSjGLXhOGHJT4nr+6w==
-X-Received: by 2002:a05:651c:504:: with SMTP id o4mr3649716ljp.242.1639761539376;
-        Fri, 17 Dec 2021 09:18:59 -0800 (PST)
-Received: from [192.168.2.145] (94-29-63-156.dynamic.spd-mgts.ru. [94.29.63.156])
-        by smtp.googlemail.com with ESMTPSA id p20sm1470067lfu.151.2021.12.17.09.18.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Dec 2021 09:18:58 -0800 (PST)
-Subject: Re: [PATCH v4 04/22] dt-bindings: host1x: Document optional HDMI
- sound-dai-cells
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Agneli <poczt@protonmail.ch>, linux-tegra@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-References: <20211204143725.31646-1-digetx@gmail.com>
- <20211204143725.31646-5-digetx@gmail.com> <YbtLJeIxXlVyQhd3@orome>
- <Ybxwovlw2GARzqUO@sirena.org.uk>
- <4edfbff2-ffd9-1c33-de0c-013a29dc286c@gmail.com> <Ybx8XdLGGiQsNMTq@orome>
- <36972e00-0eb9-acb7-d537-3b9a4b53386d@gmail.com>
-Message-ID: <e0536860-3fea-e57b-8602-4936bfdcd4a6@gmail.com>
-Date:   Fri, 17 Dec 2021 20:18:58 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S239850AbhLQRXD convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 17 Dec 2021 12:23:03 -0500
+Received: from relay12.mail.gandi.net ([217.70.178.232]:57571 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239847AbhLQRXD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:23:03 -0500
+Received: (Authenticated sender: gregory.clement@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id DAD12200008;
+        Fri, 17 Dec 2021 17:23:00 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Vladimir Vid <vladimir.vid@sartura.hr>,
+        Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 0/6] serial: mvebu-uart: Support for higher baudrates
+In-Reply-To: <20211103214209.azo2z3z4gy7aj5hu@pali>
+References: <20210930095838.28145-1-pali@kernel.org>
+ <20211103214209.azo2z3z4gy7aj5hu@pali>
+Date:   Fri, 17 Dec 2021 18:23:00 +0100
+Message-ID: <87ee6bm9hn.fsf@BL-laptop>
 MIME-Version: 1.0
-In-Reply-To: <36972e00-0eb9-acb7-d537-3b9a4b53386d@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-17.12.2021 15:06, Dmitry Osipenko пишет:
-> 17.12.2021 15:02, Thierry Reding пишет:
->> On Fri, Dec 17, 2021 at 02:55:48PM +0300, Dmitry Osipenko wrote:
->>> 17.12.2021 14:12, Mark Brown пишет:
->>>> On Thu, Dec 16, 2021 at 03:20:21PM +0100, Thierry Reding wrote:
->>>>> On Sat, Dec 04, 2021 at 05:37:07PM +0300, Dmitry Osipenko wrote:
->>>>>> Document new optional sound-dai-cells property of HDMI node. This node will
->>>>>> be used as endpoint of HDMI sound DAI graph.
->>>>
->>>>> It's probably best for this to go through ASoC along with the other
->>>>> audio-related bindings.
->>>>
->>>>> Alternatively, I've just sent out a patch that converts the host1x
->>>>> bindings to json-schema, so I could work this into that as well.
->>>>
->>>> It doesn't apply to the ASoC tree for whatever reason so probably best
->>>> to roll it in with those JSON updates.
->>>>
->>>
->>> This hos1tx binding patch indeed will conflict with the Thierry's patch.
->>>
->>> Thierry, will you be able to take the binding patches into the Tegra
->>> tree and resolve all those hos1tx binding conflicts there?
->>
->> Yes, I'll resolve all of those conflicts in the Tegra tree.
-> 
-> Thank you!
-> 
-> Mark, then you may apply patches 5-13 to ASoC on top of the Vinod's
-> branch, skipping patch #6. Thanks in advance!
-> 
+Hello Pali,
 
-I see that Thierry applied only the host1x patch, but not the other
-bindings.
+> On Thursday 30 September 2021 11:58:32 Pali Rohár wrote:
+>> This patch series add support for baudrates higher than 230400 on
+>> Marvell Armada 37xx boards.
+>
+> Stephen, Gregory, are there any issues with this patch series?
 
-Mark, perhaps will be easier if I'll just make the v5 which you could
-apply easily without a need to apply only selective patches. I'll try to
-post it ASAP.
+I am not found of these changes but let's apply it as I didn't take time
+to do a better review.
+
+However I can't apply the dt part if the driver is not merged.
+
+Gregory
+
+> If not, could you take them?
+>
+>> Changes in v7:
+>> * fixed lint errors in yaml binding file
+>> 
+>> Changes in v6:
+>> * fixed yaml binding file and dts files
+>> 
+>> Changes in v5:
+>> * fixed yaml binding file
+>> 
+>> Changes in v4:
+>> * converted armada3700-uart-clock documentation to YAML
+>> * split documentation changes into two commits:
+>>   - first which adds clock documentation
+>>   - second which updates UART documentation
+>> 
+>> Changes in v3:
+>> v3 is rebased on top of Linus master branch and all already applied patches
+>> were dropped. There are no changes in patches itself since v2.
+>> 
+>> Pali Rohár (6):
+>>   math64: New DIV_U64_ROUND_CLOSEST helper
+>>   serial: mvebu-uart: implement UART clock driver for configuring UART
+>>     base clock
+>>   dt-bindings: mvebu-uart: document DT bindings for
+>>     marvell,armada-3700-uart-clock
+>>   dt-bindings: mvebu-uart: update information about UART clock
+>>   arm64: dts: marvell: armada-37xx: add device node for UART clock and
+>>     use it
+>>   serial: mvebu-uart: implement support for baudrates higher than 230400
+>> 
+>>  .../clock/marvell,armada-3700-uart-clock.yaml |  59 ++
+>>  .../devicetree/bindings/serial/mvebu-uart.txt |   9 +-
+>>  arch/arm64/boot/dts/marvell/armada-37xx.dtsi  |  14 +-
+>>  drivers/tty/serial/Kconfig                    |   1 +
+>>  drivers/tty/serial/mvebu-uart.c               | 592 +++++++++++++++++-
+>>  include/linux/math64.h                        |  13 +
+>>  6 files changed, 667 insertions(+), 21 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/clock/marvell,armada-3700-uart-clock.yaml
+>> 
+>> -- 
+>> 2.20.1
+>> 
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
