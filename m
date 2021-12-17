@@ -2,198 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AA9C4792CE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:27:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7CC14792E7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:32:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239875AbhLQR1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 12:27:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57708 "EHLO
+        id S230272AbhLQRcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 12:32:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239910AbhLQR1K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:27:10 -0500
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2032C06173E
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 09:27:09 -0800 (PST)
-Received: by mail-pj1-x1034.google.com with SMTP id f18-20020a17090aa79200b001ad9cb23022so3452838pjq.4
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 09:27:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=94lytwgo2pGPKoCz7cXjNIBQaFpmuX64JbTjaHifeEo=;
-        b=R/D+giI9xp6G3jBIYNNDmBdzy8vtLbErm1zXG1RUpUrVR7TplNui48kHW1HA7L4AXr
-         8xYSnKLB/KktrXYjS5rcAfBqUAG3k7JMmlN3Z4cmdNnjLxA9G6f7hSVmW97x+QlbZyju
-         7CvKfsGCnO0A37sh//tlbNDCgdjk8Xg81hQQ6WPJ0QwNNKGFHiLM/MCpZz0HfgyuwjnR
-         r+8tQosxe7KhEgBHoCAes46E4VMj/3CvCDjxGTyyKl3Y2yVCxn2IHJQo/ssx/0fJQPzn
-         mt2f/cAHhVIXZMu9HYc9cR14FshrILqP0+1mmNqnZKov6JMTkdYmxRaLTBcmxCMsHEfe
-         6WxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=94lytwgo2pGPKoCz7cXjNIBQaFpmuX64JbTjaHifeEo=;
-        b=h8fZ7nm1eknXCzmichpk/yj8nM2xfPj6VSapbnsB8uG3OF2xI/Y5SSHz/vI53A6H5G
-         LmqiZ3YhH2FCo9Om/UH45gFxgRJYdPaH+zj39ADNrfm4USFkZoy7iuIvGXzKSH8PDMkb
-         1Q0bOWbL5k3WuX+aZEpI3VifWMQDZ5bqoeUJuBb4djFhasGO+jWcJzHB2fFHsHfyAQN+
-         XolN78DD8vKuCwS+E5E8qwGcHWhEem6J6LiT0uOK3ttnrVEXA8DLBw/m+5z3P/FBUPHG
-         qSmezc2BysHKk3EieOdIsbrAopfkSN4SgTRA97Rq7z9JOdgxU76v6m/cPwEyKwb9Wecm
-         53xw==
-X-Gm-Message-State: AOAM530HNMtcofL7NvUpBHYY+QyEZcSs7dM45ZQerPkjZBX5ILNd42Ca
-        GlxMJIBIiok7MGzPSfJrV2zITiWiGDANKPyGCdkIZQ==
-X-Google-Smtp-Source: ABdhPJxh6drjRqJyeeghVLdXC+QG2CUejhvUilM6pihIKCowBomy2bFqr6Blk7qvQTT9UHKElHVBCV9i+77UTKQoPfE=
-X-Received: by 2002:a17:902:c214:b0:148:a798:7aa with SMTP id
- 20-20020a170902c21400b00148a79807aamr4115431pll.90.1639762029356; Fri, 17 Dec
- 2021 09:27:09 -0800 (PST)
+        with ESMTP id S231380AbhLQRcb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:32:31 -0500
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5B34C06173F
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 09:32:30 -0800 (PST)
+Received: from [192.168.1.101] (83.6.165.42.neoplus.adsl.tpnet.pl [83.6.165.42])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 177C33ED3F;
+        Fri, 17 Dec 2021 18:32:28 +0100 (CET)
+Message-ID: <e2ed8317-a656-f6ac-9fc5-810588f33105@somainline.org>
+Date:   Fri, 17 Dec 2021 18:32:22 +0100
 MIME-Version: 1.0
-References: <20211106183802.893285-1-aford173@gmail.com> <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
- <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com>
- <8db00a4b6faa99c940d9bc86e17161eb0db5efe3.camel@ndufresne.ca>
- <CAJ+vNU28UJffFv9jQ2KryJMudqYxvCaoVOVcU5dPqRA209iN6A@mail.gmail.com>
- <d91532c2c0772f9aa708ead36b2a97203727a7ea.camel@ndufresne.ca>
- <CAJ+vNU3H-V+bPoZ3qKead45h=W7AhQK6Lhjrx5ssdF4c_qfe=A@mail.gmail.com>
- <CAHCN7x+0LwwU_rEST+TZxGquswGKL19gnTy9WLofsXtGAtWqdw@mail.gmail.com>
- <7f94eaacfddb8c5434c17f1e069ea87a17657ce9.camel@ndufresne.ca>
- <CAHCN7xKRzxMBmPbDobWTuvNNSpTXk5XENvfBnfkhRY3eZKhn6w@mail.gmail.com>
- <CAHCN7xJFLNi_g+HX8PCy1Rkgf0jnWpO5QGYVz8nH19xrJkwHrA@mail.gmail.com>
- <CAJ+vNU3zFd=6k_Emc5aafxKkGwCPp4crgOFezQ-E_MbWsn1_EA@mail.gmail.com>
- <fed6c2fd7cf4971062c417ce41ed1e3812b900e0.camel@ndufresne.ca>
- <CAHCN7xK+wROHaqDcsY-3WYFQ82qX17L-LHNL3siSWnWvwFShzQ@mail.gmail.com>
- <CAAEAJfC1xXvemaFP+vTFVJ3S-SpYtrxyZgDamSOgLC1F3ua5xw@mail.gmail.com>
- <CAHCN7x+UMMP6RXsNm0=OC=UTQzh=RKqQo6B7FD5e4eoJAEfmpg@mail.gmail.com>
- <CAJ+vNU1epi9SwPMHkuDmKcb68RLemYF=bsp7AVnzz06zKc2efw@mail.gmail.com>
- <CAAEAJfCpjk5nWWkJYjjDT-YEpJi4pTZqZbzp_if9OGC0HKspzw@mail.gmail.com>
- <CAJ+vNU2we5mGXgYsR6CfimvFXZsc0zktR3fDa-h6RRa02jTT0g@mail.gmail.com>
- <CAHCN7xJrM9uZUnmx65uTxWEo6HAkjozd3kD3UoEv-pYd5DV4QA@mail.gmail.com>
- <CAAEAJfBXU-AiKKhkhXzgUSR4p1yefysNuHFycBz3F-GzNewS6w@mail.gmail.com>
- <CAHCN7xL4y67V6AW5MV=8iudvvGVBWs2LoUhu_2CUJf6bSycgFA@mail.gmail.com> <8438070708d16c34c0f79aba19e67fa343adb169.camel@ndufresne.ca>
-In-Reply-To: <8438070708d16c34c0f79aba19e67fa343adb169.camel@ndufresne.ca>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Fri, 17 Dec 2021 09:26:58 -0800
-Message-ID: <CAJ+vNU1ZxAAasKT8j1sfcFz1pk8fyYjwOW6wqxYq_ur8+2MX_Q@mail.gmail.com>
-Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
-To:     Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc:     Adam Ford <aford173@gmail.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        linux-media <linux-media@vger.kernel.org>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        cstevens@beaconembedded.com,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [RFC/patch 2/2] arm64: boot: dts: qcom: surface duo: add minimal
+ framebuffer
+Content-Language: en-US
+To:     Felipe Balbi <balbi@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Felipe Balbi <felipe.balbi@microsoft.com>
+References: <20211217125757.1193256-1-balbi@kernel.org>
+ <20211217125757.1193256-3-balbi@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20211217125757.1193256-3-balbi@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 17, 2021 at 9:13 AM Nicolas Dufresne <nicolas@ndufresne.ca> wro=
-te:
+
+On 17.12.2021 13:57, Felipe Balbi wrote:
+> From: Felipe Balbi <felipe.balbi@microsoft.com>
 >
-> Le vendredi 17 d=C3=A9cembre 2021 =C3=A0 07:15 -0600, Adam Ford a =C3=A9c=
-rit :
-> > On Thu, Dec 16, 2021 at 10:49 PM Ezequiel Garcia
-> > <ezequiel@vanguardiasur.com.ar> wrote:
-> > >
-> > > Hi Adam,
-> > >
-> > > >
-> > > > I will post a V2 last today with the Mini's post-processing removed=
-.
-> > > > Someone, I apologize that I forget who, mentioned it was fused out =
-of
-> > > > the Mini, so the testing I've been doing was with that removed and =
-I
-> > > > removed the H1 encoder since the Mini doesn't support JPEG encoding=
-.
-> > > >
-> > > [...]
-> > >
-> > > Resurrecting this thread here. IMX8MMRM Rev. 0, 02/2019 mentions
-> > > post-processor features for G1 and G2.
-> > >
-> > > Have you checked the fuse and synth registers to see if they throw
-> > > any useful information about the hardware? For instance,
-> > > comparing PP fuse register (SWREG99) and
-> > > Synthesis configuration register post-processor (SWREG100)
-> > > in both 8MQ and 8MM could be useful.
-> > >
-> > > As I mentioned on my previous mail, even if G1 PP is disabled
-> > > on the Mini, I would imagine the G2 can do linear NV12 (aka raster-sc=
-an)
-> > > which in our hantro driver jargon is a  "post-processed" format :-)
-> >
-> > You're likely right.  I was going on memory from an e-mail from
-> > Nicloas Defresne who wrote:
-> >
-> > "I will check the patchset, but you need in the mini-variant to disable=
- the G1
-> > post processor, because this block was fused out. We didn't make it opt=
-ional
-> > from the start as according to the V1 of the TRM it was there, but that=
- error
-> > was corrected in V3."
-> >
-> > In my head I assumed the G2 was affected as well, but when I double
-> > checked his email, and based on the above statement, the G2
-> > post-processing is probably there, so I'll run some tests with the G2
-> > post-processing enabled.  I'll also double check those registers on
-> > both to confirm what they read. I am not sure when I'll have time
-> > because I leave for London next week, and I won't return until early
-> > January, but I'll do what I can.
+> Add a minimal framebuffer device so we can use the display on the
+> Surface Duo device.
 >
-> Sorry if this was a bit ambiguous, indeed I meant the G1 only. I've learn=
-ed
-> later that the design of the Mini is that there is a good pre-processor i=
-n the
-> H1 block (encoder), so for the targeted use-cases this shall be sufficien=
-t for
-> most users (the output of the G1 is suitable for GPU and Display already,=
- so the
-> post processor is not strictly needed).
+> Signed-off-by: Felipe Balbi <felipe.balbi@microsoft.com>
+> ---
+>  .../dts/qcom/sm8150-microsoft-surface-duo.dts | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 >
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
+> index a73317e1a824..c629ec115fec 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
+> @@ -25,6 +25,17 @@ chosen {
+>  		stdout-path = "serial0:115200n8";
+>  	};
+>  
+> +	framebuffer0: framebuffer@9c000000 {
+> +		compatible = "simple-framebuffer";
+> +		reg = <0 0x9c000000 0 0x02400000>;
 
-Nicolas,
+You can remove the leading 0 in the size cell.
 
-Does this mean that if the IMX8MM G2 may be able to output a wider
-array of pixel formats and that the H1 encoder may be able to accept a
-wider array of pixel formats? Is this code already in place in the
-hantro driver and it just needs to be enabled if the IMX8MM can handle
-it or is there code to be written?
 
-I'm not clear if anyone is working on IMX8MM VPU H1 support. You had
-mentioned that some support [1] and [2] can be derived from the RK3288
-using the Google ChromeOS method (a v4l2 plugin that simulates in
-userspace a stateful encoder). I'm not sure if this is worth pursuing
-if others are working on stateless encode support in kernel and
-gstreamer.
 
-Best Regards,
+> +		status = "okay";
 
-Tim
-[1] libv4l plugins /
-https://chromium.googlesource.com/chromiumos/third_party/libv4lplugins/+/re=
-fs/heads/master
-[2] Kernel Driver /
-https://chromium.googlesource.com/chromiumos/third_party/kernel/+/chromeos-=
-4.4/drivers/media/platform/rockchip-vpu/
+This line is unnecessary, as it's enabled by default
+
+
+
+> +
+> +		height = <1800>;
+> +		width = <1350>;
+> +		stride = <(1350 * 4)>;
+> +		format = "a8r8g8b8";
+> +	};
+> +
+>  	vph_pwr: vph-pwr-regulator {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "vph_pwr";
+> @@ -472,6 +483,14 @@ &pon_resin {
+>  	linux,code = <KEY_VOLUMEDOWN>;
+>  };
+>  
+> +&reserved_memory {
+> +	splash_region: splash_region@9c000000 {
+> +		/* We expect the bootloader to fill in the size */
+
+Would it be different than the framebuffer size?
+
+
+
+> +		reg = <0x0 0x9c000000 0x0 0x0>;
+> +		no-map;
+> +	};
+> +};
+> +
+>  &tlmm {
+>  	gpio-reserved-ranges = <126 4>;
+>  
+
+
+Konrad
+
