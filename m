@@ -2,123 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55764478606
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 09:13:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 447EA478618
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 09:21:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233581AbhLQINP convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 17 Dec 2021 03:13:15 -0500
-Received: from mout.kundenserver.de ([212.227.126.135]:48427 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233366AbhLQINO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 03:13:14 -0500
-Received: from mail-wm1-f48.google.com ([209.85.128.48]) by
- mrelayeu.kundenserver.de (mreue009 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MKKdD-1nDC0U1SG7-00LoN8; Fri, 17 Dec 2021 09:13:13 +0100
-Received: by mail-wm1-f48.google.com with SMTP id a83-20020a1c9856000000b00344731e044bso1068442wme.1;
-        Fri, 17 Dec 2021 00:13:13 -0800 (PST)
-X-Gm-Message-State: AOAM530yv2wc7/t0oA2JE4+dReJCpeCYIRQY1dDQd5OMAJBcL4jXnIN3
-        ubejnx0Uhf2i4vMw+vp1/cpw4EVlaRkR0NK4d9U=
-X-Google-Smtp-Source: ABdhPJyggF+SZFik5LBFQ4ssWD/gg+584v/f/uX0O18oUqIIJZenFT8dqWLwYMQ6qsjUbkDrg/Yvbjz9eIEFVqN8Qh4=
-X-Received: by 2002:a7b:c448:: with SMTP id l8mr8354989wmi.173.1639728792948;
- Fri, 17 Dec 2021 00:13:12 -0800 (PST)
+        id S233783AbhLQIVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 03:21:54 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:38278
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233776AbhLQIVx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Dec 2021 03:21:53 -0500
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 11B883F1F6
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 08:21:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1639729312;
+        bh=xfmZvtdVL4Nqs/cnkKhKrTzxRXy+hfPyDSZiWdGZz7I=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=O+2Fh4pgg1abeEQgpbwX+1/oXVJOXGZPzxQd5YZgvhXca3SKQ1TKZG4i2Um17Smga
+         ZC9w9FrQpL975u3/wCHtHfd0+cyUvsKDYPfpCj8YqFIhSESlRzZ07Wr3sBtQ4M43PS
+         1fioe8V7sFeHcSFp25mIyO5MeELG9KtbRFvCPbCYSSL3sqFk6z30sOW/cPfkI7j2ys
+         8a9UfRiDl8L1h2rgH59yAhnqmajhG4LYiRPYWrYMAsWXhDFjJ48Ae8kx/BEFtFIFb9
+         gBeRkPW7xPWabYvMUXa2lCwGNqRvCesf6+SXvOM6+FXXljXOUAaBnz5/8LcJe8+5x9
+         lxQj4+0JBBpHA==
+Received: by mail-lf1-f70.google.com with SMTP id k17-20020a05651239d100b0041c32e98751so731642lfu.10
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 00:21:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=xfmZvtdVL4Nqs/cnkKhKrTzxRXy+hfPyDSZiWdGZz7I=;
+        b=QN8JF2b4HLAgLFUdZktEejyguKhi0XPeknERW5Xyom1GuzGEzhMdX/d3KgJHtQJP7k
+         AhyR/sT9zGuCwR/C4WfmXAWyX5YB9oaKaQNogzb4nudGPIuVKSKmtGB6W1MG3GWuobYS
+         6MFIvwwzfMSWHsx8G5WBhYnqwvzxVgOQ8fKSlbIryTtfPkiHMxxsxzIy6l5fByQD7Fyg
+         O63xcpaTsA7o8EIUVcSCFFKj4KmzT/HCOQZ5+PVNFCd0KBkh6TJ+nXpxZrASt7vfd+aE
+         U878J/qV6bll59YdjMlILZnQU/QmqSVqna7cOHiM0WkFoiKsgVgHv0JOnCfe6IlgdvCC
+         kUnQ==
+X-Gm-Message-State: AOAM532m7f3hmNF4T7NQRaWTB6XbKCSsgNgnENIM/daEMxRadZ2wW6dp
+        aJkaQ345pjqUA043XwXS6NDsqefSlnEqFelxpFfEJo/88M/WVbyL1bomOdZtKDRoTc2J+OqrZr9
+        eJcGnpLrlMXzkD1OQnJ2SuE4IAMWruV0ueov5wvo=
+X-Received: by 2002:a05:6512:3c9e:: with SMTP id h30mr1919895lfv.212.1639729311009;
+        Fri, 17 Dec 2021 00:21:51 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwfMYzlQckD0Wb0EtQqx2AZ0wkcSDj7w3Z/nn8EeyMb/BCnVstW2Dbq/zvfD5jISNkS6mUEQA==
+X-Received: by 2002:a05:6512:3c9e:: with SMTP id h30mr1919870lfv.212.1639729310766;
+        Fri, 17 Dec 2021 00:21:50 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id a24sm119818lff.207.2021.12.17.00.21.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Dec 2021 00:21:49 -0800 (PST)
+Message-ID: <73c5a527-2d5d-8524-b067-f9128055ff10@canonical.com>
+Date:   Fri, 17 Dec 2021 09:21:48 +0100
 MIME-Version: 1.0
-References: <cover.1639557112.git.tonyhuang.sunplus@gmail.com>
- <c3a3b64c38807b2f344c3df500eb4c60b885eadf.1639557112.git.tonyhuang.sunplus@gmail.com>
- <CAK8P3a0CnCK-Dfodp-jTzZApM_1NpdY7DV2fRqnO=gaju5xGwg@mail.gmail.com>
- <CAHpW4oQmtd-gG1HYZT-Dk=QAvXKsKebzcOaVtrEeoujwoL9zSg@mail.gmail.com> <316c16afbff74160b07bd74444f3b8e1@sphcmbx02.sunplus.com.tw>
-In-Reply-To: <316c16afbff74160b07bd74444f3b8e1@sphcmbx02.sunplus.com.tw>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Fri, 17 Dec 2021 09:12:57 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a0cA7iL=ug6hiqWAV1-qFSoCN-R7jrXv0cqByUDJV4x0Q@mail.gmail.com>
-Message-ID: <CAK8P3a0cA7iL=ug6hiqWAV1-qFSoCN-R7jrXv0cqByUDJV4x0Q@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] misc: Add iop driver for Sunplus SP7021
-To:     =?UTF-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        gregkh <gregkh@linuxfoundation.org>,
-        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
-        =?UTF-8?B?6buD5oe35Y6a?= <tonyhuang.sunplus@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Provags-ID: V03:K1:cFpsGEMbS/vHLxVLxPO0RZmqW2Nfms366JcgZRRtWYHTS9SQj2m
- 2Y+M7pVvyAG+1uJWLvy5BM2JomGGOp0NEFfHNTw4Lwp28XXu9ZQizACo3q0gnSST/NwzvNe
- oSPcttuKLA6U+CL5ZMdCUBj9fTdNQw3vKDOq3BN0GuEryeAc7cnYwh2Z0PBLr2Rp0nJ/QE8
- t9E5pz9gXnwVf8q2+vEjg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:1u/EtCvCa+g=:Gm2xc15psrh99D1fLoPuql
- aOBla+HlcVXeJ1+/eFf02gMYRCfwFO1pqGUYtvS2GjEw1b9lC31gIxXDS26Zh71YSH9ueSqo2
- 1QwQ3WqRRMCHzPIghqFbJ89VwxlfufaBCenTeGYQZdu1quxJrztriF7qw6b1Yh/n5DMbxuYra
- jBNe0V1R29ZldZFhnRMLO8ugJ7Byr4CaSd7cGtQcI5n+PU1SsOG/4RhfzI3+ixwge3eD88wkU
- IxwTNsVv5uOROItL3jHwwv03jY6X9QV2e9zRWLcBZOxOw3rwDjUjfnPj+p4X7l2qHELV/nWkT
- IDvfBvUovTXtSLnKMnQJb557q7lKGKWiUuoUi208isxDm554aMAOFqfHdF8vVohQyi7rgR91+
- K8Gy6x7udBb40aO/YdNWrW+oSRPX2ieDqbh/M9vpePS0VkeAE/tLhKr3J+Kf6zzBPvDJq/bY5
- ad27d4xr9F74yGty1cu8RkXC2T3433Yn69Zoq4OSEA2kYGiM4yB0QXZnicyIDwn/0dVYHWplM
- nscJaMSYuf31eGkJ+3sF4103M/VHHaudLWRRDvCFPRCQldQURnN2MMP4f7ORGEvILpPeo4ZH0
- wtPSRElnzN0inPmR6u/izHEEmmkxjCtzQMmwby+2AF+5RLC7igPq6ThG/fVcrlx/3K3ar6Tjm
- ZcD2Ftjdok+JsyaDiP6ao0Ab5M417uENr/B6gDIMmmIxKtGkX+yZSocaLFK2B3EZ3Hu1B+yFk
- H/kq5oZMgBMrYfZ37KpP1wCqLoWhghMCt0JUUxlLFfixued3/Z3eT7LneuJYAmIrWl8DdpAPB
- bOhXiA8xtBSwRKWbn5Pd7yewA/mIafKyuYQ89fseAo4cX6OSCw=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH 6/7] arm64: dts: exynos: Add initial Exynos850 SoC support
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Hao Fang <fanghao11@huawei.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20211215160906.17451-1-semen.protsenko@linaro.org>
+ <20211215160906.17451-7-semen.protsenko@linaro.org>
+ <8c1dbcda-ce01-81c9-b34a-f64b6f61c868@canonical.com>
+ <CAPLW+4ndeokx3WiYaK_3ooe0J+BQe8Dx7QCecA7Deowk0AdxnA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <CAPLW+4ndeokx3WiYaK_3ooe0J+BQe8Dx7QCecA7Deowk0AdxnA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 17, 2021 at 3:44 AM Tony Huang 黃懷厚 <tony.huang@sunplus.com> wrote:
->
-> Dear Arnd:
->
->
->
-> On Thu, Dec 16, 2021 at 2:38 AM Tony Huang <tonyhuang.sunplus@gmail.com> wrote:
-> >>
-> >> IOP (IO Processor) embedded inside SP7021 which is used as
-> >> Processor for I/O control, RTC wake-up and cooperation with
-> >> CPU & PMC in power management purpose.
-> >> The IOP core is DQ8051, so also named IOP8051,
-> >> it supports dedicated JTAG debug pins which share with SP7021.
-> >> In standby mode operation, the power spec reach 400uA.
-> >>
-> >> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
-> >> ---
-> >> Changes in v4:
-> >>  - Addressed comments from Arnd Bergmann.
->
-> >I don't think you did: I asked you specifically to add code to interact with
-> >the existing in-kernel interfaces to use the functionality provided by the
-> >device. Pick any (at least two) subsystems and add support, but leave
-> >out any custom user space interfaces (miscdevice, debugfs, sysfs, ...)
-> >for the moment.
->
->
->
-> 1. IOP can run sp_iop_platform_driver_shudown() through the poweroff command
-> and the kernel. Perform system power-off actions.
+On 16/12/2021 20:40, Sam Protsenko wrote:
+> On Wed, 15 Dec 2021 at 18:47, Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
+>>
 
-Do you mean that this method a) cleanly shuts down the iop before the
-system is powered down, or b) the driver_shutdown() callback is used to
-initiate the powerdown of the system itself?
+(...)
 
-In case of a) I would not count that as exposing functionality, what you do here
-is just part of any driver. If instead you are trying to use b), this
-is the wrong
-way of doing it, see drivers/power/reset/ for examples of how to do it right.
+>>> +             serial0 = &serial_0;
+>>> +             serial1 = &serial_1;
+>>> +             serial2 = &serial_2;
+>>> +             i2c0 = &i2c_0;
+>>> +             i2c1 = &i2c_1;
+>>> +             i2c2 = &i2c_2;
+>>> +             i2c3 = &i2c_3;
+>>> +             i2c4 = &i2c_4;
+>>> +             i2c5 = &i2c_5;
+>>> +             i2c6 = &i2c_6;
+>>> +             i2c7 = &hsi2c_0;
+>>> +             i2c8 = &hsi2c_1;
+>>> +             i2c9 = &hsi2c_2;
+>>> +             i2c10 = &hsi2c_3;
+>>> +             i2c11 = &hsi2c_4;
+>>> +     };
+>>> +
+>>> +     arm-pmu {
+>>> +             compatible = "arm,cortex-a55-pmu";
+>>> +             interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                          <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
+>>> +             interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>,
+>>> +                                  <&cpu4>, <&cpu5>, <&cpu6>, <&cpu7>;
+>>> +     };
+>>> +
+>>> +     /* Main system clock (XTCXO); external, must be 26 MHz */
+>>> +     oscclk: clock-oscclk {
+>>> +             compatible = "fixed-clock";
+>>> +             clock-output-names = "oscclk";
+>>> +             #clock-cells = <0>;
+>>> +     };
+>>> +
+>>> +     /* RTC clock (XrtcXTI); external, must be 32.768 kHz */
+>>
+>> This clock is usually provided by PMIC, so instead I expect updating
+>> s2mps11-clk driver. It's not correct to mock it with fixed-clock, but in
+>> some cases might be needed. Then I would need an explanation and maybe a
+>> TODO note.
+>>
+>> I wonder if we already discussed this...
+>>
+> 
+> Don't really remember discussing that. That's actually something new
+> for me :) I was planning to add PMIC support as a part of separate
+> activity later, it might not be so easy: S2MPU12 uses I3C connection.
+> And RTC clock is not handled even in downstream kernel. So I'll have
+> to implement that by PMIC datasheet. I'll keep some TODO comment for
+> now, hope it's ok with you?
 
-> 2. Wake up the system by relying on the 8051 internal RTC wake-up mechanism
-> and external GPIO input signals to wake up.
+Assuming it is really coming from the PMIC (should be visible in the
+board schematics), it should be using s2mps11-clk. I am fine with
+keeping fixed-clock now + TODO note, but please move it to the board
+DTS. It's not the property of the SoC.
 
-I think those should be exposed with drivers/rtc for the RTC and drivers/gpio/
-for the GPIO driver, and then you can use the device tree to configure which
-GPIO to use as a wakeup and how it's connected to the RTC.
+> 
+>>> +     rtcclk: clock-rtcclk {> +               compatible = "fixed-clock";
+>>> +             clock-output-names = "rtcclk";
+>>> +             #clock-cells = <0>;
+>>> +     };
+>>> +
 
-> 3.So you ask me to control IOP(8051) through file_operations, not through DEVICE_ATTR
 
-No, neither of them. Use the appropriate drivers/*/ subsystems for any
-functionality that has an existing subsystem. If there is something that the iop
-does that does not yet have a subsystem, that requires a more thorough design
-discussion for creating a new user interface, ideally in a hardware-independent
-way. You should not start with that until all the normal features (rtc, wakeup,
-suspend, gpio, ...) are supported.
-
-       Arnd
+Best regards,
+Krzysztof
