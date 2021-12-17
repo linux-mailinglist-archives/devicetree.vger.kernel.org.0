@@ -2,120 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 273D24787D0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 10:35:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2A0E47880F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 10:49:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233247AbhLQJfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 04:35:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58784 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233143AbhLQJfj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 04:35:39 -0500
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4238C061747
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 01:35:37 -0800 (PST)
-Received: by mail-pj1-x1033.google.com with SMTP id j6-20020a17090a588600b001a78a5ce46aso5233887pji.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 01:35:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=eDj63zz8IDuVCval6V50T15QneJ7Z0eTU927cFR0EJg=;
-        b=taMlFKFLEPHCx1uvY5SI09kecrIinIYgfXiJd1NlYSUo9ZChyv4DcfAzWCCf5mxtTR
-         qebwNBY/WHG2csWIrYxNW30f07QzZRdunMDlEbL8f3Th/m1OLMmZTXnCFzeGFEQ5YpEB
-         IuJOFpQhmXYJgifslhNa6I9RmN4bXATxB+9fc=
+        id S234306AbhLQJtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 04:49:02 -0500
+Received: from mail-vk1-f177.google.com ([209.85.221.177]:42998 "EHLO
+        mail-vk1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233096AbhLQJtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 04:49:02 -0500
+Received: by mail-vk1-f177.google.com with SMTP id s1so1136054vks.9;
+        Fri, 17 Dec 2021 01:49:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=eDj63zz8IDuVCval6V50T15QneJ7Z0eTU927cFR0EJg=;
-        b=tR5tTbTwf7JpwkyJ908AwkyaIE/rs1uG52bDLaJEzylRRgijUCTy5j67ZjI4HQU0Sb
-         kOc6FAxO2dsg/gI3DRu/cBk+yTnFmKn1wpbXazcypCUyeOoHkextXc0/cqAQ8Uftg416
-         IEKhmIJMf0VG/NOJvjwPqMOkDl7+36Qx4C928tCTb++JwP1oRyrYPaY3KwYVNHSQFcBf
-         529S3gEb/PFp4feewAikcC/dfJ1RJlDlXleL9KG2DjuTA7qMKCjjIYxJ5eNluAPYfjq0
-         1KRvSlF1tn1Ad1oUYsF9pN3VlnJj6INAzR0ikS/uXLPdOmKRtSzYg6+Wt7xFVRqn3eoC
-         /eaA==
-X-Gm-Message-State: AOAM533shfGoqbB+N+Aw/5/IskuXzdeNSR8+5VU7jISjFD2FjyRjWMkA
-        kV+WUzPMYVPRfrtmXakT+6WrG4dkYpq0PQ==
-X-Google-Smtp-Source: ABdhPJzJGlRyC4WXon+WfhdfogAWt5rXi7cAjoQZFCNoOMOaYAGKQYaA8QlmFkEsbddQt/pbm1v3bw==
-X-Received: by 2002:a17:902:f783:b0:148:a2f7:9d6a with SMTP id q3-20020a170902f78300b00148a2f79d6amr2473864pln.137.1639733737275;
-        Fri, 17 Dec 2021 01:35:37 -0800 (PST)
-Received: from shiro.work (p864106-ipngn200510sizuokaden.shizuoka.ocn.ne.jp. [180.9.58.106])
-        by smtp.googlemail.com with ESMTPSA id o9sm7650143pgs.65.2021.12.17.01.35.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Dec 2021 01:35:37 -0800 (PST)
-From:   Daniel Palmer <daniel@0x0f.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org, romain.perier@gmail.com, livelwh@outlook.com
-Cc:     linux-kernel@vger.kernel.org, Daniel Palmer <daniel@0x0f.com>
-Subject: [PATCH 3/3] ARM: dts: mstar: Add board for 100ask DongShanPiOne
-Date:   Fri, 17 Dec 2021 18:35:10 +0900
-Message-Id: <20211217093510.3674590-4-daniel@0x0f.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211217093510.3674590-1-daniel@0x0f.com>
-References: <20211217093510.3674590-1-daniel@0x0f.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pV3wufp8Dvr2hDhjItQtnYu6eMKRgXVIFNhbTAtUVzU=;
+        b=yvw5bl0T3tZKXmmpbo/vH01xbr9fzBmv3P+W8H9MtsOKaHt097Nw+0XrQD2L+wMmvr
+         z42lzBUSdFLgxNCKEfMrizK1dIgAR36ZSS6XknytaEWq4mCVg6lsRzb+E1VV6U2BZWbA
+         0mDznrCCYwfZMU3VPpLgdJdCGP2DhqorfKRiuUYFpyabSrujE/j2ofb0DZqwuDOYv1ca
+         qVs97xUcVgHu8B4juOldyJ8X4eTq2aQszGvEcWRea/Ij2wDse4yb7HW/Qht5Sw9cP7oQ
+         2TIUtTHA8iiYmAVgma7H7PrU9qGz1cQb7gG0iGdvHUFWfm4kibiUQErz83Y7dsE5mH3g
+         7kWg==
+X-Gm-Message-State: AOAM531njpYNAKJMNAqxkfZBOusG9qAeRZ8tO0G/b+dUbhBV+QKsnRT/
+        gzDMo1flr+ij0c2Qpxc0ZdqgZ5Je5BWdSw==
+X-Google-Smtp-Source: ABdhPJzlqo2h8WQv5SAzvK4/3sicPepHkLvrIy/RzWGDskdL9bfhn0NyB/ZFWmKRXYRwhZRJgvObZA==
+X-Received: by 2002:a1f:a556:: with SMTP id o83mr811562vke.9.1639734540702;
+        Fri, 17 Dec 2021 01:49:00 -0800 (PST)
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
+        by smtp.gmail.com with ESMTPSA id v8sm1679419vkc.52.2021.12.17.01.48.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Dec 2021 01:48:59 -0800 (PST)
+Received: by mail-ua1-f49.google.com with SMTP id u40so3318675uad.1;
+        Fri, 17 Dec 2021 01:48:59 -0800 (PST)
+X-Received: by 2002:a67:c106:: with SMTP id d6mr650580vsj.77.1639734538930;
+ Fri, 17 Dec 2021 01:48:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211217093325.30612-1-conor.dooley@microchip.com>
+In-Reply-To: <20211217093325.30612-1-conor.dooley@microchip.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 17 Dec 2021 10:48:47 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWTjrAiHosU0cGyJYkK=9JzNgHb=tjHXPdYxTWmkVzeYQ@mail.gmail.com>
+Message-ID: <CAMuHMdWTjrAiHosU0cGyJYkK=9JzNgHb=tjHXPdYxTWmkVzeYQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/17] Update the Icicle Kit device tree
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+        linux-rtc@vger.kernel.org, linux-spi <linux-spi@vger.kernel.org>,
+        USB list <linux-usb@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bin Meng <bin.meng@windriver.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lewis Hanly <lewis.hanly@microchip.com>,
+        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
+        Atish Patra <atish.patra@wdc.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DongShanPiOne is little SigmaStar SSD202D based module
-from 100ask.
+Hi Conor,
 
-Add an initial dts for this board.
+On Fri, Dec 17, 2021 at 10:31 AM <conor.dooley@microchip.com> wrote:
+> Also depends on Geert's format changes to interrupt grouping etc [2].
+>
+> Additionally, the interrupt-extended warnings on the plic/clint are
+> cleared by [3] & [4], which lore appears to have been very confused about.
 
-Link: http://linux-chenxing.org/infinity2/dongshanpione/
-Signed-off-by: Daniel Palmer <daniel@0x0f.com>
----
- arch/arm/boot/dts/Makefile                    |  1 +
- ...nfinity2m-ssd202d-100ask-dongshanpione.dts | 25 +++++++++++++++++++
- 2 files changed, 26 insertions(+)
- create mode 100644 arch/arm/boot/dts/mstar-infinity2m-ssd202d-100ask-dongshanpione.dts
+Right, it ended up being even more messier than I thought, and confuses
+"b4 am" too.
+I will resend these 3 series later today.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 0de64f237cd8..f31672c0c06c 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1468,6 +1468,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += \
- dtb-$(CONFIG_ARCH_MILBEAUT) += milbeaut-m10v-evb.dtb
- dtb-$(CONFIG_ARCH_MSTARV7) += \
- 	mstar-infinity-msc313-breadbee_crust.dtb \
-+	mstar-infinity2m-ssd202d-100ask-dongshanpione.dtb \
- 	mstar-infinity2m-ssd202d-ssd201htv2.dtb \
- 	mstar-infinity2m-ssd202d-unitv2.dtb \
- 	mstar-infinity3-msc313e-breadbee.dtb \
-diff --git a/arch/arm/boot/dts/mstar-infinity2m-ssd202d-100ask-dongshanpione.dts b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-100ask-dongshanpione.dts
-new file mode 100644
-index 000000000000..f25a04c98ccb
---- /dev/null
-+++ b/arch/arm/boot/dts/mstar-infinity2m-ssd202d-100ask-dongshanpione.dts
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (c) 2021 thingy.jp.
-+ * Author: Daniel Palmer <daniel@thingy.jp>
-+ */
-+
-+/dts-v1/;
-+#include "mstar-infinity2m-ssd202d.dtsi"
-+
-+/ {
-+	model = "DongShanPi One";
-+	compatible = "100ask,dongshanpione", "mstar,infinity2m";
-+
-+	aliases {
-+		serial0 = &pm_uart;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&pm_uart {
-+	status = "okay";
-+};
--- 
-2.34.1
+> [1] https://lore.kernel.org/linux-clk/20211216140022.16146-1-conor.dooley@microchip.com/T/
+> [2] https://lore.kernel.org/linux-riscv/cover.1639660956.git.geert@linux-m68k.org/T/
+> [3] https://patchwork.kernel.org/project/linux-riscv/cover/cover.1639662093.git.geert@linux-m68k.org/
+> [4] https://patchwork.kernel.org/project/linux-riscv/cover/cover.1639661878.git.geert@linux-m68k.org/
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
