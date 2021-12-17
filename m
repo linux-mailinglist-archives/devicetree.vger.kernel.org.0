@@ -2,185 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BE93478F20
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:09:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33DF0478F1B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:09:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237953AbhLQPJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 10:09:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51994 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237947AbhLQPJW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 10:09:22 -0500
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 801CDC061574
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 07:09:22 -0800 (PST)
-Received: by mail-wr1-x441.google.com with SMTP id t26so4655617wrb.4
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 07:09:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cA5Bx+I+AGs2RfGY4hpgrqrPI8r6zTFIuO5ZwQf2Zak=;
-        b=toL2v1mg/OkMSznV2NPL+e6xhb1dTHXYjRr/KURTTyUhKGpWlGy4psR4aVyUZ6TR4/
-         HNXEur/I9Xev153quDM4MQq8RtmSmF8YDw7pGBPz/OjEsiyoOI+BHoZBgx/YCZBB25xE
-         01BSlpSB4+3ndaRsjlYMZz7FYUY9lfZDftPLJSK11BLauq6ZsMs3VBh8xFRYz5zc+s8K
-         nrAQkfRWSVfJYGqpZTV11mU7RsfB0+AzYlCdVWZyT9JTQtHv1cl5D/OO2PCVa36winm6
-         lFsxMXVmhYA4+x8xuZKijkbmNX/LZA14U5SkWYVkYyT/HiC5vPaJX/bXZt/v6w0qRbEJ
-         MRbA==
+        id S237933AbhLQPJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 10:09:19 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:57536
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237932AbhLQPJS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Dec 2021 10:09:18 -0500
+Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C225E3F1C0
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 15:09:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1639753757;
+        bh=Ekcv8bNIXIYPhjro0Nb278CmOGUMMLIkTcaAs3AM2AE=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=nAz0qZe2GYdB43GZi+KMhhvSomsNdNgOecJ1CmLJodtUF5/A22allmvGVCgKV3ZyS
+         gJ+waIIRFoQ3Z2Edg2XAJ/tVgHrZJxmmQgbcg7brQgPwOHUNql128O4LaXTResOOE/
+         ZsdsMCulbmJwTmkaqMoYlotJCSOYw7wRrhkoXnw20CNBh8i3lxaPKst1F17ZdN5ugb
+         7EYrYtHAIMJ13gn5I/ubGDO4TyT2OdSvMbJ7+ijXfhrQS9NHM1FlPiDm/G/lILXkZc
+         pn6HXVJjRP9eZmgxvV1Ntmq7zQoSSyHoSoE0ncyEDZlccWsUzXoMXuztIUDTE0v7yI
+         ADbAII7ZV7m3A==
+Received: by mail-lf1-f71.google.com with SMTP id h40-20020a0565123ca800b00402514d959fso1036324lfv.7
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 07:09:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cA5Bx+I+AGs2RfGY4hpgrqrPI8r6zTFIuO5ZwQf2Zak=;
-        b=mJmSWP1tWL51DCa9TNFZ7JVU3H5K88oJDSgIB59qNvxvVQkwGAZukTe9yVE1uqNDAI
-         Yt06My0GQj3H0mMO4i6HZtT+zRs0sC4KQd1ZJ3UI8ghWn+TyD74LH+zs5gldTIOfXO77
-         DfpGhDKpy7sQZE7d21G5QmIhByAZs29N0v4L+owfcl8PDhZbWRhihy6AZZD5elEWMbJM
-         5LSMFfxhtDkUkuiTHTwryu2TW3IXrsSpVVMSr0kLuLSm3A0PxfFs604+vN5RkgfDNDh3
-         xQjO9aabyUCWnSF1rYat6aAN8X1lD0O0k1/pyH1r4zEAwM+3hldPxBJcW0qguKO5Dqto
-         TtUw==
-X-Gm-Message-State: AOAM533pyjBmmNAj7pOTrLOlThme53DsN/OubouqQJYop6Zi5Ezy2L+Z
-        9qzCCWKN02KZhXBHNuchJ8JxMA==
-X-Google-Smtp-Source: ABdhPJw2QIwL+JN1BE/ytNuThS3hvqjbyhJk1gG3get4Uk4bFSMW9drCtD5/xxhsEnmjYhGJnW27og==
-X-Received: by 2002:a05:6000:1d1:: with SMTP id t17mr2832923wrx.569.1639753761014;
-        Fri, 17 Dec 2021 07:09:21 -0800 (PST)
-Received: from localhost.localdomain (2a02-8440-6441-43a4-3074-96af-9642-0003.rev.sfr.net. [2a02:8440:6441:43a4:3074:96af:9642:3])
-        by smtp.gmail.com with ESMTPSA id g18sm12655132wmq.4.2021.12.17.07.09.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Dec 2021 07:09:20 -0800 (PST)
-From:   Guillaume Ranquet <granquet@baylibre.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>
-Cc:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        Rob Herring <robh@kernel.org>, dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v7 2/8] dt-bindings: mediatek,dp: Add Display Port binding
-Date:   Fri, 17 Dec 2021 16:08:48 +0100
-Message-Id: <20211217150854.2081-3-granquet@baylibre.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211217150854.2081-1-granquet@baylibre.com>
-References: <20211217150854.2081-1-granquet@baylibre.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Ekcv8bNIXIYPhjro0Nb278CmOGUMMLIkTcaAs3AM2AE=;
+        b=K+HqP+/iNPdIYzJqskDdMHRqz7/2rblCuKJV+Z7KlD3eOcUKxoJDKKTc+dw9yv9MZj
+         8rllQQHCd0Uri5GKHknUW9EaEytw+rqE0mVugcAH6+lMvJcZ93cfb3gd6I2G34DWAu1M
+         OkpK0TAR2Abn0dFo644oQ8Jco0UPrSwlBmh1zYu+TCf0G2wDvLid09I1CME5umfLyYZ/
+         PKDwjZWZGQuX32keuRjk/ksts4+edGUdiqTER6GCq181myYfD7rG22KDzQ83n52ihObW
+         Bn8tuTLQOEp942SjxO0YmX42pBykUgI3JOEeraLu69yKfY2QD8z4k/eF0vIVthuMJ5th
+         VZVQ==
+X-Gm-Message-State: AOAM532qLWmjkVvivkINMQDbWsVvTkwE9gwSNBt6olgVuqK2h6FDcaVe
+        PLw7ILuk0AS4dbdrkDzNP7zefIS+WSsYJUoJO4qAMy2o+ASyk/E1qzYwB8Onp2Ef2BzoIF3Pzwb
+        1koyJW9TMaXkImSoXl1/MaQqq6EM8VeJ0ICeuJmE=
+X-Received: by 2002:a05:651c:324:: with SMTP id b4mr3004613ljp.188.1639753756754;
+        Fri, 17 Dec 2021 07:09:16 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyHJzYnX2gs6VoqK9iRkmiSREooJ2FXXIbMDOX3XDHzAr4mBWfowLrbkwZGknR7FEjLbWDk2Q==
+X-Received: by 2002:a05:651c:324:: with SMTP id b4mr3004581ljp.188.1639753756369;
+        Fri, 17 Dec 2021 07:09:16 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id d4sm1429654lfg.82.2021.12.17.07.09.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Dec 2021 07:09:15 -0800 (PST)
+Message-ID: <61ae4cfd-a544-96d3-d521-877b8b38b5fc@canonical.com>
+Date:   Fri, 17 Dec 2021 16:09:13 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v2 17/17] MAINTAINERS: update riscv/microchip entry
+Content-Language: en-US
+To:     conor.dooley@microchip.com, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, broonie@kernel.org,
+        gregkh@linuxfoundation.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
+Cc:     geert@linux-m68k.org, bin.meng@windriver.com, heiko@sntech.de,
+        lewis.hanly@microchip.com, daire.mcnamara@microchip.com,
+        ivan.griffin@microchip.com, atish.patra@wdc.com
+References: <20211217093325.30612-1-conor.dooley@microchip.com>
+ <20211217093325.30612-18-conor.dooley@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211217093325.30612-18-conor.dooley@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Markus Schneider-Pargmann <msp@baylibre.com>
+On 17/12/2021 10:33, conor.dooley@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Update the RISC-V/Microchip entry by adding the microchip dts
+> directory and myself as maintainer
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  MAINTAINERS | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7a2345ce8521..3b1d6be7bd56 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -16348,8 +16348,10 @@ K:	riscv
+>  
+>  RISC-V/MICROCHIP POLARFIRE SOC SUPPORT
+>  M:	Lewis Hanly <lewis.hanly@microchip.com>
+> +M:	Conor Dooley <conor.dooley@microchip.com>
+>  L:	linux-riscv@lists.infradead.org
+>  S:	Supported
+> +F:	arch/riscv/boot/dts/microchip/
+>  F:	drivers/mailbox/mailbox-mpfs.c
+>  F:	drivers/soc/microchip/
+>  F:	include/soc/microchip/mpfs.h
+> 
 
-This controller is present on several mediatek hardware. Currently
-mt8195 and mt8395 have this controller without a functional difference,
-so only one compatible field is added.
+Good to have the DTS covered, so FWIW:
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-The controller can have two forms, as a normal display port and as an
-embedded display port.
+You still should get Lewis' ack (unless he merges it)
 
-Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../display/mediatek/mediatek,dp.yaml         | 87 +++++++++++++++++++
- 1 file changed, 87 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-new file mode 100644
-index 0000000000000..068b11d766e21
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-@@ -0,0 +1,87 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/mediatek/mediatek,dp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek Display Port Controller
-+
-+maintainers:
-+  - CK Hu <ck.hu@mediatek.com>
-+  - Jitao shi <jitao.shi@mediatek.com>
-+
-+description: |
-+  Device tree bindings for the Mediatek (embedded) Display Port controller
-+  present on some Mediatek SoCs.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8195-dp-tx
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: faxi clock
-+
-+  clock-names:
-+    items:
-+      - const: faxi
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Input endpoint of the controller, usually dp_intf
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Output endpoint of the controller
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/mt8195-power.h>
-+    edp_tx: edp_tx@1c500000 {
-+        compatible = "mediatek,mt8195-dp-tx";
-+        reg = <0 0x1c500000 0 0x8000>;
-+        interrupts = <GIC_SPI 676 IRQ_TYPE_LEVEL_HIGH 0>;
-+        power-domains = <&spm MT8195_POWER_DOMAIN_EPD_TX>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&edp_pin>;
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+                edp_in: endpoint {
-+                    remote-endpoint = <&dp_intf0_out>;
-+                };
-+            };
-+            port@1 {
-+                reg = <1>;
-+                edp_out: endpoint {
-+                	remote-endpoint = <&panel_in>;
-+                };
-+            };
-+        };
-+    };
--- 
-2.32.0
-
+Best regards,
+Krzysztof
