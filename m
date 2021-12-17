@@ -2,210 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25F26478745
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 10:32:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99A8A478717
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 10:31:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232742AbhLQJcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 04:32:42 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:49086 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232736AbhLQJcl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 04:32:41 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B66B4B8276B;
-        Fri, 17 Dec 2021 09:32:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 113E9C36AE5;
-        Fri, 17 Dec 2021 09:32:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639733558;
-        bh=jaizY8b2aI6cFwsMEHHuEbYQz3Xdxmml90aZnkxsffk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=F6lH9tFlrePPlhLePh13hRLYoXHUFsgoxq7Q2cLzPVX+fUmzGvg2tUmWUK+TbrmXX
-         KR5I3EkahCCT3r9aABcY49frBbstudTkr6rxbVewvebBmt/+LKivmnS9JR0vUPvg2B
-         v9jcEzLdnlNtYzweaLwthWCM7tC4LOdP9mnV9Ds/rIWJWX+XJyT0YtYpXFZ7sER0vv
-         3uneuBlT27Nb3Tc89eNHHLb8pnwkQXCQj2exTKBp6FTqBdYk8KYK82dBD9oDcnWE66
-         MXLq52zR4PvGiG6LWV23i0mMcMBwDWHq4mc/PU1cK2Bv3nrHuBcKAIzfbUBnPTkTTI
-         I3b+jkh6Vc+Wg==
-Date:   Fri, 17 Dec 2021 10:32:33 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Wei Xu <xuwei5@hisilicon.com>, Yu Chen <chenyu56@huawei.com>,
-        John Stultz <john.stultz@linaro.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH RESEND 1/7] dt-bindings: misc: add schema for USB hub on
- Kirin devices
-Message-ID: <20211217103233.14e6e701@coco.lan>
-In-Reply-To: <CAL_Jsq+Nvruuajk1m_za3WVroLhv=i_0YFtfdDbjhjM58dmJ8g@mail.gmail.com>
-References: <cover.1639558366.git.mchehab+huawei@kernel.org>
-        <9c3a3ff59408fcb60f7a5817a6f5d5f3053367fc.1639558366.git.mchehab+huawei@kernel.org>
-        <CAL_Jsq+Nvruuajk1m_za3WVroLhv=i_0YFtfdDbjhjM58dmJ8g@mail.gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-redhat-linux-gnu)
+        id S232678AbhLQJbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 04:31:47 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:64456 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232622AbhLQJbq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 04:31:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1639733506; x=1671269506;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=AiH35vfVR97qjjvR+EuTMqv5QNgWOX0ByCYMdoaTevk=;
+  b=WfVph1qHrXSkv/zn0Lhy3l7YfA/pZ5c5voih1jWzRqicQENGRrFt/0l/
+   qUmWu4RCJ/zfoIFCSehR0OFpp/82NGinp56PQpVVqulJ+1/+bOhYuoAWo
+   lmGNUTT2A+gzg0+r2qsXbsJqPH6OleD2qdrWwqTSV4blK39xBOOYhOGMx
+   WXdlPqmtR+zzJoDIxbjUu+tCmVbSWNjQOTnMuaC6B/KVrbPcfTerI/aTh
+   E8P4kw+LEoYYdvd0XGFY3VIMySukUPMWhr37Em8RYxKyJuqwTALbyUvMQ
+   M5vCgA3saVYZXxHHcOtcLbXy3vtgaLp04CFSsmRaEUFKdBd2lvAmfZQTr
+   w==;
+IronPort-SDR: tqBhz6WjJ9sd7LE5+/I2awnGMCnbhAx3CKjmBsi3iQo9I5sLdEwA3aY+5jrs8XJE83ngcLlnwO
+ QXmpTqdyeKGX4hHiBWbMf6GEtBmtoPu3Ck5VNFXzduDzJT0wRHPn83+qV+3K/yZ02SEpKHgHsc
+ 8eUpPSkMn/winNoKoaG/+kZOu/mlEWWaNgJ51yhZlFvba+TW4TK3T3nHNPxOu6JkM6XtDlLQ07
+ OTBvNGtqSO84zcIoRetla6lbjebJEzxzfZhOhJRw9jjfUE9UdUw7QykCf45asktnjnOL/Ty5QD
+ UGHy7sOdQkJMbQ1CK/jn5Ci5
+X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; 
+   d="scan'208";a="79895886"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Dec 2021 02:31:44 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 17 Dec 2021 02:31:44 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Fri, 17 Dec 2021 02:31:38 -0700
+From:   <conor.dooley@microchip.com>
+To:     <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
+        <robh+dt@kernel.org>, <jassisinghbrar@gmail.com>,
+        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
+        <aou@eecs.berkeley.edu>, <a.zummo@towertech.it>,
+        <alexandre.belloni@bootlin.com>, <broonie@kernel.org>,
+        <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
+        <u.kleine-koenig@pengutronix.de>, <lee.jones@linaro.org>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-crypto@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-usb@vger.kernel.org>
+CC:     <krzysztof.kozlowski@canonical.com>, <geert@linux-m68k.org>,
+        <bin.meng@windriver.com>, <heiko@sntech.de>,
+        <lewis.hanly@microchip.com>, <conor.dooley@microchip.com>,
+        <daire.mcnamara@microchip.com>, <ivan.griffin@microchip.com>,
+        <atish.patra@wdc.com>
+Subject: [PATCH v2 00/17] Update the Icicle Kit device tree
+Date:   Fri, 17 Dec 2021 09:33:08 +0000
+Message-ID: <20211217093325.30612-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Thu, 16 Dec 2021 13:52:01 -0600
-Rob Herring <robh+dt@kernel.org> escreveu:
+From: Conor Dooley <conor.dooley@microchip.com>
 
-> On Wed, Dec 15, 2021 at 2:54 AM Mauro Carvalho Chehab
-> <mchehab+huawei@kernel.org> wrote:
-> >
-> > From: Yu Chen <chenyu56@huawei.com>
-> >
-> > This patch adds binding documentation to support USB HUB and
-> > USB data role switch of HiSilicon HiKey960 and HiKey970 boards.  
-> 
-> I don't see the point in reviewing this given a driver was already
-> merged anyways,
+This series updates the Microchip Icicle Kit device tree by adding a
+host of peripherals, and some updates to the memory map. In addition,
+the device tree has been split into a third part, which contains "soft"
+peripherals that are in the fpga fabric.
 
-Makes sense. On the other hand, it also makes sense to apply
-the DTS patches from this series, as those are the only things
-pending for PCI/USB to work on those devices.
+Several of the entries are for peripherals that have not get had their
+drivers upstreamed, so in those cases the dt bindings are included where
+appropriate in order to avoid as many "DT compatible string <x> appears
+un-documented" errors as possible.
 
-> I can't imagine that plugging in one USB port causing
-> others to disconnect is a USB compliant design, and there are few
-> boards and fewer users that care.
+Depends on mpfs clock driver series [1] to provide:
+dt-bindings/clock/microchip,mpfs-clock.h
+and on the other changes to the icicle/mpfs device tree (mmc) that are
+already in linux/riscv/for-next.
 
-Afaikt, Kirin SoCs are designed for cell phones, with has just one
-USB port. That's maybe the reason for such design.
+Also depends on Geert's format changes to interrupt grouping etc [2].
 
-Btw, this DT binding is used by both HiKey 960 and HiKey 970.
-The HiKey960 board comes with just one port, which can either be 
-host or gadget. So, it seems to be an USB-compliant design on
-such hardware.
+Additionally, the interrupt-extended warnings on the plic/clint are 
+cleared by [3] & [4], which lore appears to have been very confused about.
 
-> > [mchehab: updated OF schema and added HiKey970 example]
-> > Signed-off-by: Yu Chen <chenyu56@huawei.com>
-> > Signed-off-by: John Stultz <john.stultz@linaro.org>
-> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > ---
-> >
-> > To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
-> > See [PATCH RESEND 0/7] at: https://lore.kernel.org/all/cover.1639558366.git.mchehab+huawei@kernel.org/
-> >
-> >  .../bindings/misc/hisilicon,hikey-usb.yaml    | 87 +++++++++++++++++++
-> >  1 file changed, 87 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml b/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
-> > new file mode 100644
-> > index 000000000000..761ab686121a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
-> > @@ -0,0 +1,87 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +# Copyright 2019 Linaro Ltd.
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/misc/hisilicon,hikey-usb.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: HiKey960/970 onboard USB GPIO Hub
-> > +
-> > +maintainers:
-> > +  - John Stultz <john.stultz@linaro.org>
-> > +
-> > +description: |
-> > +  Supports the onboard USB GPIO hubs found on HiKey960/970.
-> > +  Such hubs require a power supply for the USB I/O. Depending on the
-> > +  exact hub model, after USB I/O is powered up, a reset should be needed.
-> > +
-> > +  It also acts as a role-switch intermediary to detect the state of
-> > +  the USB-C port, to switch the hub into dual-role USB-C or host mode,
-> > +  which enables and powers up the onboard USB-A host ports.
-> > +
-> > +  Schematics about such hubs can be found here:
-> > +    https://github.com/96boards/documentation/raw/master/consumer/hikey/hikey960/hardware-docs/HiKey960_Schematics.pdf
-> > +    https://www.96boards.org/documentation/consumer/hikey/hikey970/hardware-docs/files/hikey970-schematics.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - hisilicon,usbhub
-> > +
-> > +  typec-vbus-gpios:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: phandle to the typec-vbus gpio
-> > +
-> > +  otg-switch-gpios:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: phandle to the otg-switch gpio
-> > +
-> > +  hub-reset-en-gpios:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: phandle to the hub reset gpio
-> > +
-> > +  usb-role-switch:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description: Support role switch.
-> > +
-> > +  hub-vdd-supply:
-> > +    description: regulator for hub power
-> > +
-> > +  port:
-> > +    description: |
-> > +      describe hadware connections between USB endpoints.  
-> 
-> USB endpoints? That's a s/w construct.
-> 
-> > +      Two ports are supported: the first being the endpoint that will  
-> 
-> 'port' means exactly 1 port.
-> 
-> > +      be notified by this driver, and the second being the endpoint
-> > +      that notifies this driver of a role switch.  
-> 
-> IMO, this node should represent the HS switch. I would expect an input
-> port connected to the USB host and an output port with 2 endpoints
-> connected to USB-C connector and the hub.
-> 
-> host(HS port) -> (port@0)Switch(port@1)+--endpoint@0 -> USB-C connector
->                                        |--endpoint@1 -> 2.0 hub
+[1] https://lore.kernel.org/linux-clk/20211216140022.16146-1-conor.dooley@microchip.com/T/
+[2] https://lore.kernel.org/linux-riscv/cover.1639660956.git.geert@linux-m68k.org/T/
+[3] https://patchwork.kernel.org/project/linux-riscv/cover/cover.1639662093.git.geert@linux-m68k.org/
+[4] https://patchwork.kernel.org/project/linux-riscv/cover/cover.1639661878.git.geert@linux-m68k.org/
 
-Yeah, that's what I meant to say. One port with two endpoints.
-I'll fix the description. 
+Conor Dooley (16):
+  dt-bindings: soc/microchip: update syscontroller compatibles
+  dt-bindings: soc/microchip: make systemcontroller a mfd
+  mailbox: change mailbox-mpfs compatible string
+  dt-bindings: i2c: add bindings for microchip mpfs i2c
+  dt-bindings: rng: add bindings for microchip mpfs rng
+  dt-bindings: rtc: add bindings for microchip mpfs rtc
+  dt-bindings: soc/microchip: add bindings for mpfs system services
+  dt-bindings: gpio: add bindings for microchip mpfs gpio
+  dt-bindings: spi: add bindings for microchip mpfs spi
+  dt-bindings: usb: add bindings for microchip mpfs musb
+  dt-bindings: pwm: add microchip corePWM binding
+  riscv: dts: microchip: use hart and clk defines for icicle kit
+  riscv: dts: microchip: add fpga fabric section to icicle kit
+  riscv: dts: microchip: refactor icicle kit device tree
+  riscv: dts: microchip: update peripherals in icicle kit device tree
+  MAINTAINERS: update riscv/microchip entry
 
-See, this is the properties used by the USB hub to work for HiKey 960:
+Ivan Griffin (1):
+  dt-bindings: interrupt-controller: create a header for RISC-V
+    interrupts
 
-	usb-hub {
-			compatible = "hisilicon,usbhub";
-			typec-vbus-gpios = <&gpio25 2 GPIO_ACTIVE_HIGH>;
-			otg-switch-gpios = <&gpio25 6 GPIO_ACTIVE_HIGH>;
-			hub-vdd-supply = <&usb_hub_vdd>;
-			usb-role-switch;
-	
-		port {
-			#address-cells = <1>;
-			#size-cells = <0>;
+ .../bindings/gpio/microchip,mpfs-gpio.yaml    |  80 +++++
+ .../bindings/i2c/microchip,mpfs-i2c.yaml      |  54 ++++
+ ...ilbox.yaml => microchip,mpfs-mailbox.yaml} |   6 +-
+ .../bindings/pwm/microchip,corepwm.yaml       |  61 ++++
+ .../bindings/rng/microchip,mpfs-rng.yaml      |  29 ++
+ .../bindings/rtc/microchip,mfps-rtc.yaml      |  63 ++++
+ .../microchip,mpfs-generic-service.yaml       |  33 ++
+ .../microchip,mpfs-sys-controller.yaml        |  62 ++++
+ ...icrochip,polarfire-soc-sys-controller.yaml |  35 ---
+ .../bindings/spi/microchip,mpfs-spi.yaml      |  61 ++++
+ .../bindings/usb/microchip,mpfs-musb.yaml     |  61 ++++
+ MAINTAINERS                                   |   2 +
+ .../dts/microchip/microchip-mpfs-fabric.dtsi  |  13 +
+ .../microchip/microchip-mpfs-icicle-kit.dts   | 111 +++++--
+ .../boot/dts/microchip/microchip-mpfs.dtsi    | 295 ++++++++++++++----
+ drivers/mailbox/mailbox-mpfs.c                |   2 +-
+ .../interrupt-controller/riscv-hart.h         |  19 ++
+ 17 files changed, 872 insertions(+), 115 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+ create mode 100644 Documentation/devicetree/bindings/i2c/microchip,mpfs-i2c.yaml
+ rename Documentation/devicetree/bindings/mailbox/{microchip,polarfire-soc-mailbox.yaml => microchip,mpfs-mailbox.yaml} (82%)
+ create mode 100644 Documentation/devicetree/bindings/pwm/microchip,corepwm.yaml
+ create mode 100644 Documentation/devicetree/bindings/rng/microchip,mpfs-rng.yaml
+ create mode 100644 Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-generic-service.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/microchip,mpfs-spi.yaml
+ create mode 100644 Documentation/devicetree/bindings/usb/microchip,mpfs-musb.yaml
+ create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs-fabric.dtsi
+ create mode 100644 include/dt-bindings/interrupt-controller/riscv-hart.h
 
-			hikey_usb_ep0: endpoint@0 {
-				reg = <0>;
-				remote-endpoint = <&dwc3_role_switch>;
-			};
-			hikey_usb_ep1: endpoint@1 {
-				reg = <1>;
-				remote-endpoint = <&rt1711h_ep>;
-			};
-		};
-	};
+-- 
+2.33.1
 
-> Then there's what does the hub look like which has been discussed
-> separately and is still not upstream I think.
-
-No, the hub driver was already merged.
-
-> But again, given this is devboard with limited use, I would just make
-> using USB-C vs. USB host connectors a fixed boot time configuration
-> with some one time setup and move on...
-
-Provided that everything was merged already, including the hub driver,
-IMO the best would be to address the points you took on this patch
-and apply them with your ack, via Wei's tree.
-
-Mauro
