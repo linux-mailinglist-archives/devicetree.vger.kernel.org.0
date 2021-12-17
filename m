@@ -2,92 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE617478BBC
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 13:49:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 350E1478BE1
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 13:58:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236456AbhLQMtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 07:49:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47724 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236458AbhLQMtt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 07:49:49 -0500
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34355C061574
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 04:49:49 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:d13f:527c:5504:a743])
-        by laurent.telenet-ops.be with bizsmtp
-        id XQpm2600B250X3001QpmGJ; Fri, 17 Dec 2021 13:49:47 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1myCgD-005YxV-Hl; Fri, 17 Dec 2021 13:49:45 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1myCgC-00ASrr-P1; Fri, 17 Dec 2021 13:49:44 +0100
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-To:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        Lewis Hanly <lewis.hanly@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH v3 11/11] riscv: dts: sifive: fu540-c000: Fix PLIC node
-Date:   Fri, 17 Dec 2021 13:49:32 +0100
-Message-Id: <41497b8f509254e9ad21f5f7a34b7159ece5ba82.1639744905.git.geert@linux-m68k.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1639744905.git.geert@linux-m68k.org>
-References: <cover.1639744905.git.geert@linux-m68k.org>
+        id S235915AbhLQM6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 07:58:05 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:51194 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231835AbhLQM6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 07:58:04 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 51547B827E8;
+        Fri, 17 Dec 2021 12:58:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CDC4C36AE2;
+        Fri, 17 Dec 2021 12:58:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639745882;
+        bh=Nl95m/EeW5ofxMEobM/4Y8KhAbs4dXGHygHTzo3tlH8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Hkf99pin5NXyGXe5j4BuO4gnmHi4A5l3Gm/wLjKeGw8IgxNj4lNQH9VqbXtWlIyq8
+         Dzl7Q9uiW1cj23JZUC08R0sOPAgVIngrGdMLka2H38c19tYWD23NJu4UrEpWfHdhbq
+         dAyzfyMSc1sfUCGALYrVRdRvUXLI8t6M3Ce1vGNLbm9ijvXHBMMYJCyKCMZx2kmUJa
+         IYF7Ixv8GehV8ElPuzB4nWm505d5j4/hHGXSDxDsco1on1WmgyOkzmVrnCRUok2W1H
+         6vNvve1kTRiB6h0Qsr3d9KBsudUTF1YI6zN5Q8gcZX6/BJE5ymOkpQNHUgsBLhnexc
+         Itf2wwRMj8INA==
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Felipe Balbi <felipe.balbi@microsoft.com>
+Subject: [RFC/patch 0/2] arm64: boot: dts: qcom: sm8150: enable framebuffer for Surface Duo
+Date:   Fri, 17 Dec 2021 14:57:55 +0200
+Message-Id: <20211217125757.1193256-1-balbi@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the device node for the Platform-Level Interrupt Controller (PLIC):
-  - Add missing "#address-cells" property,
-  - Sort properties according to DT bindings.
+From: Felipe Balbi <felipe.balbi@microsoft.com>
 
-Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
----
-v3:
-  - No changes,
+Hi folks,
 
-v2:
-  - New.
----
- arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+I'm trying to enable the framebuffer on Microsoft Surface Duo. Looking
+through some internal docs, it came to my attention that the bootloader
+will fill up the framebuffer address and size to a memory node names
+splash_region. Adding the node, I can see the address of the
+framebuffer. Creating the relevant framebuffer device using
+simple-framebuffer, I can't see it working. Tried dd if=/dev/urandom
+of=/dev/fb0 and fb-test. None of which manage to get rid of what's
+already on the screen, put there by the bootloader (platform Logo).
 
-diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-index b1250c16816f5c9d..3eef52b1a59b5cb4 100644
---- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-@@ -140,10 +140,10 @@ soc {
- 		compatible = "simple-bus";
- 		ranges;
- 		plic0: interrupt-controller@c000000 {
--			#interrupt-cells = <1>;
- 			compatible = "sifive,fu540-c000-plic", "sifive,plic-1.0.0";
- 			reg = <0x0 0xc000000 0x0 0x4000000>;
--			riscv,ndev = <53>;
-+			#address-cells = <0>;
-+			#interrupt-cells = <1>;
- 			interrupt-controller;
- 			interrupts-extended =
- 				<&cpu0_intc 0xffffffff>,
-@@ -151,6 +151,7 @@ plic0: interrupt-controller@c000000 {
- 				<&cpu2_intc 0xffffffff>, <&cpu2_intc 9>,
- 				<&cpu3_intc 0xffffffff>, <&cpu3_intc 9>,
- 				<&cpu4_intc 0xffffffff>, <&cpu4_intc 9>;
-+			riscv,ndev = <53>;
- 		};
- 		prci: clock-controller@10000000 {
- 			compatible = "sifive,fu540-c000-prci";
+Wondering if any of you have seen a behavior such as this and how did
+you manage to get framebuffer working on SM8150 (I see at least Sony
+Xperia has the node).
+
+Felipe Balbi (2):
+  arm64: boot: dts: qcom: sm8150: add a label for reserved-memory
+  arm64: boot: dts: qcom: surface duo: add minimal framebuffer
+
+ .../dts/qcom/sm8150-microsoft-surface-duo.dts | 19 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |  2 +-
+ 2 files changed, 20 insertions(+), 1 deletion(-)
+
 -- 
-2.25.1
-
+2.34.1
