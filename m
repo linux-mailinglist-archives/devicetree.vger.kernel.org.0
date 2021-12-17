@@ -2,29 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08D0A478BBD
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 13:49:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F140C478BC3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 13:49:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236461AbhLQMtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 07:49:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47718 "EHLO
+        id S236462AbhLQMtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 07:49:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236445AbhLQMtt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 07:49:49 -0500
+        with ESMTP id S236464AbhLQMtu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 07:49:50 -0500
 Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A9BC06173E
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 04:49:48 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2E00C061574
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 04:49:49 -0800 (PST)
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:d13f:527c:5504:a743])
         by michel.telenet-ops.be with bizsmtp
-        id XQpl2600b250X3006QplH5; Fri, 17 Dec 2021 13:49:47 +0100
+        id XQpl2600n250X3006QpmH9; Fri, 17 Dec 2021 13:49:49 +0100
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1myCgD-005YxN-21; Fri, 17 Dec 2021 13:49:45 +0100
+        id 1myCgD-005YxO-CA; Fri, 17 Dec 2021 13:49:45 +0100
 Received: from geert by rox.of.borg with local (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1myCgC-00ASqx-HF; Fri, 17 Dec 2021 13:49:44 +0100
+        id 1myCgC-00ASr4-Hs; Fri, 17 Dec 2021 13:49:44 +0100
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
 To:     Paul Walmsley <paul.walmsley@sifive.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
@@ -36,9 +36,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor.dooley@microchip.com>,
         linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH v3 03/11] riscv: dts: microchip: mpfs: Drop empty chosen node
-Date:   Fri, 17 Dec 2021 13:49:24 +0100
-Message-Id: <53c36082ffa612ebe7ec53ebcc0dc29f11a083a6.1639744905.git.geert@linux-m68k.org>
+Subject: [PATCH v3 04/11] riscv: dts: microchip: mpfs: Fix PLIC node
+Date:   Fri, 17 Dec 2021 13:49:25 +0100
+Message-Id: <8b3221b08be13af537aafc3a7f6aac9211991724.1639744905.git.geert@linux-m68k.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <cover.1639744905.git.geert@linux-m68k.org>
 References: <cover.1639744905.git.geert@linux-m68k.org>
@@ -48,12 +48,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It does not make sense to have an (empty) chosen node in an SoC-specific
-.dtsi, as chosen is meant for system-specific configuration.
-It is already provided in microchip-mpfs-icicle-kit.dts anyway.
+Fix the device node for the Platform-Level Interrupt Controller (PLIC):
+  - Add missing "#address-cells" property,
+  - Sort properties according to DT bindings.
 
-Fixes: 0fa6107eca4186ad ("RISC-V: Initial DTS for Microchip ICICLE board")
 Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 Tested-by: Conor Dooley <conor.dooley@microchip.com>
 ---
@@ -63,23 +63,33 @@ v3:
 v2:
   - Add Reviewed-by.
 ---
- arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 3 ---
- 1 file changed, 3 deletions(-)
+ arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-index c9f6d205d2ba1a5e..794da883acb19256 100644
+index 794da883acb19256..ee59751544a0d3bc 100644
 --- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
 +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-@@ -9,9 +9,6 @@ / {
- 	model = "Microchip PolarFire SoC";
- 	compatible = "microchip,mpfs";
+@@ -168,16 +168,17 @@ &cpu3_intc 3 &cpu3_intc 7
+ 		};
  
--	chosen {
--	};
--
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
+ 		plic: interrupt-controller@c000000 {
+-			#interrupt-cells = <1>;
+ 			compatible = "sifive,fu540-c000-plic", "sifive,plic-1.0.0";
+ 			reg = <0x0 0xc000000 0x0 0x4000000>;
+-			riscv,ndev = <186>;
++			#address-cells = <0>;
++			#interrupt-cells = <1>;
+ 			interrupt-controller;
+ 			interrupts-extended = <&cpu0_intc 11
+ 					&cpu1_intc 11 &cpu1_intc 9
+ 					&cpu2_intc 11 &cpu2_intc 9
+ 					&cpu3_intc 11 &cpu3_intc 9
+ 					&cpu4_intc 11 &cpu4_intc 9>;
++			riscv,ndev = <186>;
+ 		};
+ 
+ 		dma@3000000 {
 -- 
 2.25.1
 
