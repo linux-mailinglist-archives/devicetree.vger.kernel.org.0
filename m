@@ -2,97 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 473C6479057
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:50:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F9EC47905A
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:51:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238151AbhLQPuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 10:50:25 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:40234
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232296AbhLQPuY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Dec 2021 10:50:24 -0500
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id ADD143FFD7
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 15:50:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639756222;
-        bh=Vz0WaZn+QjmviDVVOxxI0VKa9jS9jnpYSLlaJ+1iHt4=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=o1gg2t2PWWZYaGrKTITfajwqnoGYNcR9VWFFkNaBAgleNCT3GPxq6h4i5acAaKFwq
-         uGeicY7o4K0wTFilno8/chcSqkXh+oJxP+9IYGsxE74KUfe3L/561VJEv+HUvE4LJ6
-         k+XKR+r9P5J815uWLAfEXiv74M7BthzoD4t/1fKzgN4CqyqEUS5/vD/e4qI0IP9UCv
-         /3BtBKeWtV0tQVpCwyZyGOfArdF7jxA4YpxUYX7YGeGWzu2Awu6iqWtrZERO5w7Wlh
-         NDbTTjxAr4WnupT5/Uh/aMraLVGG9NRAuOoW8clsqkOCj+GNu76DVjsR6M9CUVmIkf
-         u94MtSQLbQtkQ==
-Received: by mail-lf1-f71.google.com with SMTP id bi30-20020a0565120e9e00b00415d0e471e0so1038189lfb.19
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 07:50:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Vz0WaZn+QjmviDVVOxxI0VKa9jS9jnpYSLlaJ+1iHt4=;
-        b=maOrl/opS9yBZls8frVrEZE75ZmpZjQmHt5Tct2jqypWJ+hcor5X9o9EhHNbWGz32S
-         I12wqpUIcXbwAfm5Ifxm3F1bWQctLhG8hCGQKTAAYKJ8u1sPeIDuvfrV0741MnFjJFrn
-         xGznHSkjogrNd71oUNJLNkHPVQBkg3L6EFAAgwxVAPFPn8YavJgjLC1UbD2nwDeyIjb5
-         FjuKk8f6rbp22CsVkZLnmOvHvO4pXnlrAZvcomZvnevoSr9uBkJL7M7qOWwlBc+8VY3U
-         PQ8nHPvo/yWv8Jp4vvT9T4VF+cmuP87Ds6ZuVZ8cS7nuIBVZFfSct2tgLU6/rJOFUcER
-         TEPQ==
-X-Gm-Message-State: AOAM532BYbv1jcKFS6YDm7RJOURxAxPmwVvFMhi92XkzUTcs27aQFq5b
-        0zNNreQKWqDR3HbrftHXR7kiJ2zSkj1WLC3lgQp92nn6j+Qz/F5q5vGhZ57cAAECFrrbMWrn3qi
-        Ov3r8bDJMGYKsRI3gAxoneoX8v8U+XQ08M9R+9Fg=
-X-Received: by 2002:a05:6512:3b13:: with SMTP id f19mr3294909lfv.321.1639756221690;
-        Fri, 17 Dec 2021 07:50:21 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxWVVHP8AIicFtgzT6t5zbqk3uLn5LaifrLCAR18ukQnW+gJGIDSWfttbU1Fp4zH33SsPnLLA==
-X-Received: by 2002:a05:6512:3b13:: with SMTP id f19mr3294897lfv.321.1639756221533;
-        Fri, 17 Dec 2021 07:50:21 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id p20sm1443796lfu.151.2021.12.17.07.50.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Dec 2021 07:50:21 -0800 (PST)
-Message-ID: <f5588a26-1a48-2513-a36a-13bec58e5003@canonical.com>
-Date:   Fri, 17 Dec 2021 16:50:20 +0100
+        id S235851AbhLQPvK convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 17 Dec 2021 10:51:10 -0500
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:53349 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232296AbhLQPvJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 10:51:09 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 7D67460007;
+        Fri, 17 Dec 2021 15:51:04 +0000 (UTC)
+Date:   Fri, 17 Dec 2021 16:51:02 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Chris Brandt <Chris.Brandt@renesas.com>,
+        Ralph Siemsen <ralph.siemsen@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 1/4] dt-bindings: mtd: renesas: Describe Renesas
+ R-Car Gen3 & RZ/N1 NAND controller
+Message-ID: <20211217165102.6950cf40@xps13>
+In-Reply-To: <CAMuHMdWnyLjzDf0oC1ttTarY4kaJD+xcrnkvug-i+8GHgRWmyg@mail.gmail.com>
+References: <20211217142033.353599-1-miquel.raynal@bootlin.com>
+        <20211217142033.353599-2-miquel.raynal@bootlin.com>
+        <CAMuHMdWnyLjzDf0oC1ttTarY4kaJD+xcrnkvug-i+8GHgRWmyg@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v3 4/4] arm64: arch_k3: Select GPMC device driver
-Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>, tony@atomide.com
-Cc:     robh@kernel.org, kishon@ti.com, nm@ti.com, vigneshr@ti.com,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20211217102945.17432-1-rogerq@kernel.org>
- <20211217102945.17432-5-rogerq@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211217102945.17432-5-rogerq@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/12/2021 11:29, Roger Quadros wrote:
-> The GPMC controller is present on some K3 SoCs.
-> It provides access to NOR/NAND flashes and asynchronous
-> SRAM-like memories and ASICs.
+Hi Geert,
+
+geert@linux-m68k.org wrote on Fri, 17 Dec 2021 16:44:59 +0100:
+
+> Hi Miquel,
 > 
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> ---
->  arch/arm64/Kconfig.platforms | 1 +
->  1 file changed, 1 insertion(+)
+> On Fri, Dec 17, 2021 at 3:20 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> > Add a Yaml description for this Renesas NAND controller.
+> >
+> > As this controller is embedded on different SoC families, provide:
+> > * a family-specific "r-car-gen3" compatible and a more specific
+> >   "r8a77951" one
+> > * a family-specific "rzn1" compatible and a more specific "r9a06g032"
+> >   one
+> >
+> > More compatibles can be added later if new SoCs with this controller
+> > must be supported.
+> >
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > Reviewed-by: Rob Herring <robh@kernel.org>  
 > 
+> Thanks for the update!
+> 
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mtd/renesas-nandc.yaml
+> > @@ -0,0 +1,66 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mtd/renesas-nandc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas R-Car Gen3 & RZ/N1x NAND flash controller device tree bindings
+> > +
+> > +maintainers:
+> > +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> > +
+> > +allOf:
+> > +  - $ref: "nand-controller.yaml"
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+> > +          - enum:
+> > +              - renesas,r8a77951-nandc
+> > +          - const: renesas,rcar-gen3-nandc  
+> 
+> Might be a bit premature to add these before they have been tested,
+> and because there are small differences in integration, cfr. below.
+> 
+> > +
+> > +      - items:
+> > +          - enum:
+> > +              - renesas,r9a06g032-nandc
+> > +          - const: renesas,rzn1-nandc
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: APB host controller clock
+> > +      - description: External NAND bus clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: hclk
+> > +      - const: eclk  
+> 
+> On R-Car Gen3, there's a single module clock.
+> Plus a power-domain to manage that.
+> 
+> Actually the RZ/N1 clock driver also registers a PM Domain, so letting
+> Runtime PM manage the clocks may work on RZ/N1, too...
+> 
+> On R-Car Gen3, there's also a module reset.
 
-FWIW:
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Ok, I didn't know. I propose to drop the r-car-gen3 compatible entirely
+from the driver and the binding when I'll apply the series. Is it fine
+for you?
 
-Other option would be to make it "default ARCH_K3" in OMAP_GPMC, but
-this is fine for me.
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - interrupts
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/clock/r9a06g032-sysctrl.h>
+> > +
+> > +    nand-controller@40102000 {
+> > +        compatible = "renesas,r9a06g032-nandc", "renesas,rzn1-nandc";
+> > +        reg = <0x40102000 0x2000>;
+> > +        interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
+> > +        clocks = <&sysctrl R9A06G032_HCLK_NAND>, <&sysctrl R9A06G032_CLK_NAND>;
+> > +        clock-names = "hclk", "eclk";
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +    };  
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 
 
-Best regards,
-Krzysztof
+Thanks,
+Miquèl
