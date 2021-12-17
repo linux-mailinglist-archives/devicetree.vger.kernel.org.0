@@ -2,231 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 262E6478201
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 02:23:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA23D478205
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 02:26:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231754AbhLQBXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 20:23:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55166 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229994AbhLQBXB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 20:23:01 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42160C061574
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 17:23:01 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id i63so894405lji.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 17:23:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=eq5THGoxW1E2ekdal8bvyw/2iHB8jcSz3DYbq2lof6A=;
-        b=p5Vr0D4dLktOXTZ8X4dqOty4NncI/24lGvhnbr8U2nrI7gkjdWO17O/joB+z3cYD12
-         eZpIYX7ZecRA8vcw4hVTSBfZ+T63XA6XYPao0TBO5cBDywTY5sYx+rdnYBWa/TkhZWte
-         ZciplwoRvfV9hW9Y5mKIEF9boZSLUdNuD3Z8rEcfGgq/MOpmEjVoPjDlZ6MKg2aWRB0Y
-         v4JPPoNz+ZgRS5qbl7nTtfs2SYiqTrIwK7+hNRrACWhAbMKJrriIneixCjAVl2vo2Rr9
-         5FCfAJ+MO8zUtvv/sJ/cSxt876kKZ4g7vc3TPvEO2cigz/BR9FkHPdrsEQbs0zE7FAhw
-         mVIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=eq5THGoxW1E2ekdal8bvyw/2iHB8jcSz3DYbq2lof6A=;
-        b=SCgNt260C3GOT28qzN3QFxpiEBMuLUMwit1obMPMmP9FwOsUS6M7CwMWfogvZ0FRtu
-         gnSDzau37wdYv0F+jsGyVZtmasJw5Gn9o7DXGP5kVLzWAheh2yzjyAkiNOIuMNfatMcl
-         o8s5XsAKNnf5ER1RI9av0t/AGHfn8NEg0xRqErIhBA/lmsM+MRvm5AApqeemITq04s+A
-         VNuGNiRDQrjscx3N1sgvjcOEk+2p6yEtsg/vdMP7tcGh9WjUDZ2YkwC1E7aYAvsCArtO
-         u0XLldBNLZLhs3wOdGwvcqtiIhrze6YWZcrYk2nTycq00KKfoDULRFW2BpKETT2PBuEp
-         KX3w==
-X-Gm-Message-State: AOAM532XSQM9DF224i4EmIRjb/wmiTdE6Y2zEbO0vMsp6etqrFTyoYAg
-        rA1rxA/eKVnIL7DI/MbH+8nvqw==
-X-Google-Smtp-Source: ABdhPJyEdan/sWBV1ZUcimC8twTlGYFfHGeneKKQMT74hcf8YF+ehdKGByC0u4G299U0tdCKY2wqBg==
-X-Received: by 2002:a2e:9e94:: with SMTP id f20mr640997ljk.401.1639704179442;
-        Thu, 16 Dec 2021 17:22:59 -0800 (PST)
-Received: from ?IPV6:2001:470:dd84:abc0::8a5? ([2001:470:dd84:abc0::8a5])
-        by smtp.gmail.com with ESMTPSA id g27sm1129594lfe.55.2021.12.16.17.22.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Dec 2021 17:22:58 -0800 (PST)
-Message-ID: <fb22d573-5d29-f800-f5c7-8c061bf757b5@linaro.org>
-Date:   Fri, 17 Dec 2021 04:22:57 +0300
+        id S231716AbhLQB0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 20:26:12 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:45624 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230033AbhLQB0M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 20:26:12 -0500
+X-UUID: 58ee2375bc88455bbc7c539db82efa5e-20211217
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=cMKFGO50Nijrd/zf0SyWIymRa4cZ18pTctDEuNU+t50=;
+        b=BQbQE8dhegxrx5xWHmhb4uiWxRp+otcMVObhgnwrTi15c7IaB9LU/SCee18HMcslmoyw79Hj9FiVmW1L4hrnnr599qX4gKjyliKeRWASQOFh7mXfP7GRNKYp7BYyTYoqzCF1zl5j6dnZ+MhpM+U+5XRXAyR7nUQqalJMKjwHCsw=;
+X-UUID: 58ee2375bc88455bbc7c539db82efa5e-20211217
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 804381100; Fri, 17 Dec 2021 09:26:07 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 17 Dec 2021 09:26:06 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 17 Dec 2021 09:26:05 +0800
+Message-ID: <c231ad91abe639a200b9a18835280c9ca28c771a.camel@mediatek.com>
+Subject: Re: [PATCH net-next v10 4/6] net: dt-bindings: dwmac: Convert
+ mediatek-dwmac to DT schema
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>,
+        <angelogioacchino.delregno@collabora.com>, <dkirjanov@suse.de>
+Date:   Fri, 17 Dec 2021 09:26:07 +0800
+In-Reply-To: <Ybti2mNfEVNWQWgM@robh.at.kernel.org>
+References: <20211216055328.15953-1-biao.huang@mediatek.com>
+         <20211216055328.15953-5-biao.huang@mediatek.com>
+         <Ybti2mNfEVNWQWgM@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v3 08/10] arm64: dts: qcom: sm8450: add PCIe0 RC device
-Content-Language: en-GB
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Wilczy??ski <kw@linux.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-References: <20211211021758.1712299-1-dmitry.baryshkov@linaro.org>
- <20211211021758.1712299-9-dmitry.baryshkov@linaro.org>
- <YbptmeteGVt75NuO@builder.lan>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <YbptmeteGVt75NuO@builder.lan>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/12/2021 01:35, Bjorn Andersson wrote:
-> On Fri 10 Dec 20:17 CST 2021, Dmitry Baryshkov wrote:
-> 
->> Add device tree node for the first PCIe host found on the Qualcomm
->> SM8450 platform.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 101 +++++++++++++++++++++++++++
->>   1 file changed, 101 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->> index a047d8a22897..09087a34a007 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->> @@ -627,6 +627,84 @@ i2c14: i2c@a98000 {
->>   				#size-cells = <0>;
->>   				status = "disabled";
->>   			};
->> +		];
->> +
->> +		pcie0: pci@1c00000 {
->> +			compatible = "qcom,pcie-sm8450";
->> +			reg = <0 0x01c00000 0 0x3000>,
->> +			      <0 0x60000000 0 0xf1d>,
->> +			      <0 0x60000f20 0 0xa8>,
->> +			      <0 0x60001000 0 0x1000>,
->> +			      <0 0x60100000 0 0x100000>;
->> +			reg-names = "parf", "dbi", "elbi", "atu", "config";
->> +			device_type = "pci";
->> +			linux,pci-domain = <0>;
->> +			bus-range = <0x00 0xff>;
->> +			num-lanes = <1>;
->> +
->> +			#address-cells = <3>;
->> +			#size-cells = <2>;
->> +
->> +			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
->> +				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
->> +
->> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names = "msi";
->> +			#interrupt-cells = <1>;
->> +			interrupt-map-mask = <0 0 0 0x7>;
->> +			interrupt-map = <0 0 0 1 &intc 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
->> +					<0 0 0 2 &intc 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
->> +					<0 0 0 3 &intc 0 151 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
->> +					<0 0 0 4 &intc 0 152 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
-> 
-> You need to pad these with a couple more zeros, see 0ac10b291bee
-> ("arm64: dts: qcom: Fix 'interrupt-map' parent address cells")
+RGVhciBSb2IsDQoJVGhhbmtzIGZvciB5b3VyIGNvbW1lbnRzLg0KT24gVGh1LCAyMDIxLTEyLTE2
+IGF0IDEwOjAxIC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4gT24gVGh1LCBEZWMgMTYsIDIw
+MjEgYXQgMDE6NTM6MjZQTSArMDgwMCwgQmlhbyBIdWFuZyB3cm90ZToNCj4gPiBDb252ZXJ0IG1l
+ZGlhdGVrLWR3bWFjIHRvIERUIHNjaGVtYSwgYW5kIGRlbGV0ZSBvbGQgbWVkaWF0ZWstDQo+ID4g
+ZHdtYWMudHh0Lg0KPiA+IEFuZCB0aGVyZSBhcmUgc29tZSBjaGFuZ2VzIGluIC55YW1sIHRoYW4g
+LnR4dCwgb3RoZXJzIGFsbW9zdCBrZWVwDQo+ID4gdGhlIHNhbWU6DQo+ID4gICAxLiBjb21wYXRp
+YmxlICJjb25zdDogc25wcyxkd21hYy00LjIwIi4NCj4gPiAgIDIuIGRlbGV0ZSAic25wcyxyZXNl
+dC1hY3RpdmUtbG93OyIgaW4gZXhhbXBsZSwgc2luY2UgZHJpdmVyDQo+ID4gcmVtb3ZlIHRoaXMN
+Cj4gPiAgICAgIHByb3BlcnR5IGxvbmcgYWdvLg0KPiA+ICAgMy4gYWRkICJzbnBzLHJlc2V0LWRl
+bGF5LXVzID0gPDAgMTAwMDAgMTAwMDA+IiBpbiBleGFtcGxlLg0KPiA+ICAgNC4gdGhlIGV4YW1w
+bGUgaXMgZm9yIHJnbWlpIGludGVyZmFjZSwga2VlcCByZWxhdGVkIHByb3BlcnRpZXMNCj4gPiBv
+bmx5Lg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IEJpYW8gSHVhbmcgPGJpYW8uaHVhbmdAbWVk
+aWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICAuLi4vYmluZGluZ3MvbmV0L21lZGlhdGVrLWR3bWFj
+LnR4dCAgICAgICAgICAgfCAgOTEgLS0tLS0tLS0tLQ0KPiA+ICAuLi4vYmluZGluZ3MvbmV0L21l
+ZGlhdGVrLWR3bWFjLnlhbWwgICAgICAgICAgfCAxNTUNCj4gPiArKysrKysrKysrKysrKysrKysN
+Cj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCAxNTUgaW5zZXJ0aW9ucygrKSwgOTEgZGVsZXRpb25zKC0p
+DQo+ID4gIGRlbGV0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3MvbmV0L21lZGlhdGVrLQ0KPiA+IGR3bWFjLnR4dA0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQg
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9tZWRpYXRlay0NCj4gPiBkd21h
+Yy55YW1sDQo+IA0KPiBSZXZpZXdlZC1ieTogUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4N
+CkknbGwgYWRkIHJldmlld2VkLWJ5IGluIG5leHQgc2VuZC4NClJlZ2FyZHMhDQo=
 
-Not quite. sm8450 does not define its (yet), so GICv3 node does not 
-define address/size cells.
-
-> 
->> +
->> +			clocks = <&gcc GCC_PCIE_0_PIPE_CLK>,
->> +				 <&gcc GCC_PCIE_0_PIPE_CLK_SRC>,
->> +				 <&pcie0_lane>,
->> +				 <&rpmhcc RPMH_CXO_CLK>,
->> +				 <&gcc GCC_PCIE_0_AUX_CLK>,
->> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
->> +				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
->> +				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
->> +				 <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>,
->> +				 <&gcc GCC_DDRSS_PCIE_SF_TBU_CLK>,
->> +				 <&gcc GCC_AGGRE_NOC_PCIE_0_AXI_CLK>,
->> +				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>;
->> +			clock-names = "pipe",
->> +				      "pipe_mux",
->> +				      "phy_pipe",
->> +				      "ref",
->> +				      "aux",
->> +				      "cfg",
->> +				      "bus_master",
->> +				      "bus_slave",
->> +				      "slave_q2a",
->> +				      "ddrss_sf_tbu",
->> +				      "aggre0",
->> +				      "aggre1";
->> +
->> +			iommus = <&apps_smmu 0x1c00 0x7f>;
->> +			iommu-map = <0x0   &apps_smmu 0x1c00 0x1>,
->> +				    <0x100 &apps_smmu 0x1c01 0x1>;
->> +
->> +			resets = <&gcc GCC_PCIE_0_BCR>;
->> +			reset-names = "pci";
->> +
->> +			power-domains = <&gcc PCIE_0_GDSC>;
->> +			power-domain-names = "gdsc";
->> +
->> +			phys = <&pcie0_lane>;
->> +			phy-names = "pciephy";
->> +
->> +			perst-gpio = <&tlmm 94 GPIO_ACTIVE_LOW>;
->> +			enable-gpio = <&tlmm 96 GPIO_ACTIVE_HIGH>;
->> +
->> +			pinctrl-names = "default";
->> +			pinctrl-0 = <&pcie0_default_state>;
->> +
->> +			interconnects = <&pcie_noc MASTER_PCIE_0 &mc_virt SLAVE_EBI1>;
->> +			interconnect-names = "pci";
->> +
->> +			status = "disabled";
->>   		};
->>   
->>   		pcie0_phy: phy@1c06000 {
->> @@ -763,6 +841,29 @@ tlmm: pinctrl@f100000 {
->>   			gpio-ranges = <&tlmm 0 0 211>;
->>   			wakeup-parent = <&pdc>;
->>   
->> +			pcie0_default_state: pcie0-default {
-> 
-> Binding states that the node name needs to have the suffix "-state".
-> 
-> Regards,
-> Bjorn
-> 
->> +				perst {
->> +					pins = "gpio94";
->> +					function = "gpio";
->> +					drive-strength = <2>;
->> +					bias-pull-down;
->> +				};
->> +
->> +				clkreq {
->> +					pins = "gpio95";
->> +					function = "pcie0_clkreqn";
->> +					drive-strength = <2>;
->> +					bias-pull-up;
->> +				};
->> +
->> +				wake {
->> +					pins = "gpio96";
->> +					function = "gpio";
->> +					drive-strength = <2>;
->> +					bias-pull-up;
->> +				};
->> +			};
->> +
->>   			qup_i2c13_default_state: qup-i2c13-default-state {
->>   				mux {
->>   					pins = "gpio48", "gpio49";
->> -- 
->> 2.33.0
->>
-
-
--- 
-With best wishes
-Dmitry
