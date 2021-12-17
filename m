@@ -2,116 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FA01478963
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 12:02:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74666478964
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 12:03:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232193AbhLQLC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 06:02:28 -0500
-Received: from mail-pf1-f178.google.com ([209.85.210.178]:33564 "EHLO
-        mail-pf1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232148AbhLQLC1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 06:02:27 -0500
-Received: by mail-pf1-f178.google.com with SMTP id x5so2004501pfr.0;
-        Fri, 17 Dec 2021 03:02:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CzRODjcJJkmc7LYh+2mnvUIKs4AKBEWasXQMzh6C4sI=;
-        b=WoCwcNccYAZOS1duN0R4QjMvx1jQb5RHN/AAd9VcRYpHRKg9/jhjArRT7Y0/jz0uqn
-         0yXvyGwaSPPxyfA9ZNVqMsVyqD3aRKwdHgWxSTNSC0sZ//ZKijIe/jWGnxkgnzcU+mnc
-         9f8m7X/NehO/1+DwU1M6NKMGW8CSmRkIVAE9mhFLCG4GalQCU/i3y0GgTPqWVxfxy174
-         GWTyVWuaCk+WZTyKG4+B1DPrtJmmn8XfiupVTwWV3VN0DwSY/X7I4dxqui6a6M0+5q6b
-         OdRw+goEX1BlFS1xGlA0SC+ihZ64mOVjtSrH5CNpI9oJB9zKWoQoeWOhTmOrhPKMsDYF
-         thqg==
-X-Gm-Message-State: AOAM533vi/QMyl4xXSQrSqQfAa0E0OUKR9UOgsT5UVTemeEJSHFI33/N
-        qO1h38qZ8d1V5jy7UEEkykKTS6EWGIoApw==
-X-Google-Smtp-Source: ABdhPJwcOLNM0+g+I9t3WR7WUrpmlaJLqhGHYN2kArxq8xNgS/npCKD7YGlUVx+I+R443rngP4mbaw==
-X-Received: by 2002:a63:a4c:: with SMTP id z12mr1165590pgk.446.1639738947085;
-        Fri, 17 Dec 2021 03:02:27 -0800 (PST)
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com. [209.85.216.52])
-        by smtp.gmail.com with ESMTPSA id h4sm9613097pfi.79.2021.12.17.03.02.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Dec 2021 03:02:26 -0800 (PST)
-Received: by mail-pj1-f52.google.com with SMTP id b1-20020a17090a990100b001b14bd47532so1887888pjp.0;
-        Fri, 17 Dec 2021 03:02:26 -0800 (PST)
-X-Received: by 2002:a05:6122:104f:: with SMTP id z15mr855694vkn.39.1639738529014;
- Fri, 17 Dec 2021 02:55:29 -0800 (PST)
-MIME-Version: 1.0
-References: <20211217090248.259122-1-miquel.raynal@bootlin.com>
- <20211217090248.259122-3-miquel.raynal@bootlin.com> <YbxjXgIIj6yma+Ch@shikoro>
-In-Reply-To: <YbxjXgIIj6yma+Ch@shikoro>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 17 Dec 2021 11:55:17 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXUdRb1VuTgw5-dMkMa_1=YBnODpv1Ja2KRpkNsPWaDeQ@mail.gmail.com>
-Message-ID: <CAMuHMdXUdRb1VuTgw5-dMkMa_1=YBnODpv1Ja2KRpkNsPWaDeQ@mail.gmail.com>
-Subject: Re: [PATCH v5 2/4] mtd: rawnand: rzn1: Add new NAND controller driver
-To:     Wolfram Sang <wsa@kernel.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
+        id S233221AbhLQLD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 06:03:28 -0500
+Received: from 113.196.136.146.ll.static.sparqnet.net ([113.196.136.146]:47292
+        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232148AbhLQLD2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 06:03:28 -0500
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.202
+        by mg02.sunplus.com with MailGates ESMTP Server V5.0(9398:0:AUTH_RELAY)
+        (envelope-from <tony.huang@sunplus.com>); Fri, 17 Dec 2021 19:03:37 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.26; Fri, 17 Dec 2021 19:03:36 +0800
+Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
+ sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
+ 15.00.1497.026; Fri, 17 Dec 2021 19:03:36 +0800
+From:   =?utf-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>
+To:     Arnd Bergmann <arnd@arndb.de>
+CC:     DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Ralph Siemsen <ralph.siemsen@linaro.org>,
-        Chris Brandt <Chris.Brandt@renesas.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+        gregkh <gregkh@linuxfoundation.org>,
+        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        =?utf-8?B?6buD5oe35Y6a?= <tonyhuang.sunplus@gmail.com>
+Subject: RE: [PATCH v4 2/2] misc: Add iop driver for Sunplus SP7021
+Thread-Topic: [PATCH v4 2/2] misc: Add iop driver for Sunplus SP7021
+Thread-Index: AQHX8mCd69RkrTnSM0GRURxouCuBCKw1+gLA///W7ICAALVacA==
+Date:   Fri, 17 Dec 2021 11:03:36 +0000
+Message-ID: <d7db8a508e9b4eb8933f4862087919b2@sphcmbx02.sunplus.com.tw>
+References: <cover.1639557112.git.tonyhuang.sunplus@gmail.com>
+ <c3a3b64c38807b2f344c3df500eb4c60b885eadf.1639557112.git.tonyhuang.sunplus@gmail.com>
+ <CAK8P3a0CnCK-Dfodp-jTzZApM_1NpdY7DV2fRqnO=gaju5xGwg@mail.gmail.com>
+ <CAHpW4oQmtd-gG1HYZT-Dk=QAvXKsKebzcOaVtrEeoujwoL9zSg@mail.gmail.com>
+ <316c16afbff74160b07bd74444f3b8e1@sphcmbx02.sunplus.com.tw>
+ <CAK8P3a0cA7iL=ug6hiqWAV1-qFSoCN-R7jrXv0cqByUDJV4x0Q@mail.gmail.com>
+In-Reply-To: <CAK8P3a0cA7iL=ug6hiqWAV1-qFSoCN-R7jrXv0cqByUDJV4x0Q@mail.gmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.54]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
-
-CC Chris Brandt
-
-On Fri, Dec 17, 2021 at 11:16 AM Wolfram Sang <wsa@kernel.org> wrote:
-> On Fri, Dec 17, 2021 at 10:02:46AM +0100, Miquel Raynal wrote:
-> > Introduce Renesas RZ/N1x NAND controller driver which supports:
-> > - All ONFI timing modes
-> > - Different configurations of its internal ECC controller
-> > - On-die (not tested) and software ECC support
-> > - Several chips (not tested)
-> > - Subpage accesses
-> > - DMA and PIO
-> >
-> > This controller was originally provided by Evatronix before being bought
-> > by Cadence.
-> >
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > Tested-by: Ralph Siemsen <ralph.siemsen@linaro.org>
->
-> This IP core is also available on some Renesas R-Car Gen3 SoCs. I don't
-> have a board with NAND equipped, so I sadly cannot test your patch and
-> can only say that the code looks like it is in a really good shape and
-> can only suggest some renaming.
-
-Also on RZ/A2M.
-RZ/A1 seems to use a different one.
-
-Note that RZ/N1 NANDC claims to support up to ONFI2.2, while
-R-Car Gen3 and RZ/A2M do ONFI1.x only?
-
-Chris: usually you are good at IP history ;-) Do you have anything to add?
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+RGVhciBBcm5kOg0KPiANCj4gPiAzLlNvIHlvdSBhc2sgbWUgdG8gY29udHJvbCBJT1AoODA1MSkg
+dGhyb3VnaCBmaWxlX29wZXJhdGlvbnMsIG5vdA0KPiA+IHRocm91Z2ggREVWSUNFX0FUVFINCj4g
+DQo+IE5vLCBuZWl0aGVyIG9mIHRoZW0uIFVzZSB0aGUgYXBwcm9wcmlhdGUgZHJpdmVycy8qLyBz
+dWJzeXN0ZW1zIGZvciBhbnkNCj4gZnVuY3Rpb25hbGl0eSB0aGF0IGhhcyBhbiBleGlzdGluZyBz
+dWJzeXN0ZW0uIElmIHRoZXJlIGlzIHNvbWV0aGluZyB0aGF0IHRoZSBpb3ANCj4gZG9lcyB0aGF0
+IGRvZXMgbm90IHlldCBoYXZlIGEgc3Vic3lzdGVtLCB0aGF0IHJlcXVpcmVzIGEgbW9yZSB0aG9y
+b3VnaCBkZXNpZ24NCj4gZGlzY3Vzc2lvbiBmb3IgY3JlYXRpbmcgYSBuZXcgdXNlciBpbnRlcmZh
+Y2UsIGlkZWFsbHkgaW4gYSBoYXJkd2FyZS1pbmRlcGVuZGVudA0KPiB3YXkuIFlvdSBzaG91bGQg
+bm90IHN0YXJ0IHdpdGggdGhhdCB1bnRpbCBhbGwgdGhlIG5vcm1hbCBmZWF0dXJlcyAocnRjLCB3
+YWtldXAsDQo+IHN1c3BlbmQsIGdwaW8sIC4uLikgYXJlIHN1cHBvcnRlZC4NCj4gDQoNCklPUCg4
+MDUxKSBoYXMgMTIgYnl0ZXMgTWFpbGJveCByZWdpc3RlcnMsIHdoaWNoIGNhbiBiZSByZWFkIGFu
+ZCB3cml0dGVuIGJ5IElPUCg4MDUxKSBhbmQgU3lzdGVtLCB1c2VkIHRvIGV4Y2hhbmdlIGluZm9y
+bWF0aW9uIHdpdGggdGhlIHN5c3RlbSwgZmFzdGVyIHRoYW4gc2hhcmVkIG1lbW9yeS4NCg0KVGhh
+bmtzCQkJDQo=
