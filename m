@@ -2,154 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE330479381
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 19:05:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F1EC47939B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 19:12:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235859AbhLQSFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 13:05:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38336 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232748AbhLQSFR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 13:05:17 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 513F2C061574;
-        Fri, 17 Dec 2021 10:05:17 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id 13so4560313ljj.11;
-        Fri, 17 Dec 2021 10:05:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=TfMBvuPX2wgd5B4i9WzScZ4xJDbFLe7nDXiaKwSnRqo=;
-        b=lLuPe83qA2TPyZ90TpYoRINS+4fMhqGeIv3mHp8yHHW2I7lThzCxthnx0N6YPEHNqr
-         IcmZIW6fFcdD5IneEq0bADRMX+XoM1rhkuM8+/YrEurXU62UheYOQxJD9ZSzQTOWNrxP
-         1esazbMTAq761cFb22R7GFXqiksjN0Iq3LVC9Qx9FtcNLmIQan5LSSx+BYEI9KQokc/r
-         rXtQDs0GXgzd5YfM4zeW1o2ABGq4Us/iAFhSipTWMSyBZEhnBwcbexICvhS222jhfZrt
-         3rfsRzxpXwFHdRERwKEZJDDFhxrpULvk4Jqj0ofPhN4Aqdk1Kq46LZ6qzPFrkDAWg/5z
-         NoWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=TfMBvuPX2wgd5B4i9WzScZ4xJDbFLe7nDXiaKwSnRqo=;
-        b=z9oHTQ2LTH6ayP8PAMrV1Dto4UMNq/Ak5aW1eqakt/k+up6GrJ8xeq2iRQ23lOjBA4
-         8IjTTDgHLag1gybJog8noCnj7h5RDMkMO1PFBvwAmLFxwoOHNV1UG2mJRP2KbeEYFzgH
-         emHMOYw4sDYrACBRK6QMtG3IiS4BkTexBvRiS4fR4LcjtZkwPxRKAyGoVaxvvQV6gm0m
-         cNCigpQuoINUkKOWGGOen4mW/vWBRLWj3/wvOFhf+E8kSo0SDnN+8M3kNrYO3XOljvYt
-         qayoDu6Nvrz4cNRbzrt6ZvlesqaTiysitEx2fSkhHBDbVX3Qi96Ews46HkbFYF9kt3tS
-         tyrA==
-X-Gm-Message-State: AOAM531VwOEU4H80ztpqJUyu8yk3LjnREM0t0b4Li6ICZ0zIsjkYsT1F
-        qITLKyqLOk6nCqskQoekC5ztvIq4Xls=
-X-Google-Smtp-Source: ABdhPJz1FVHSMGSmE2Wy7Rd1zrsuOxe4lGKW7e0DD9WOJgs+K7rhRmtZ7AWxOjbcwTSyRKOHPx0oHw==
-X-Received: by 2002:a05:651c:b0e:: with SMTP id b14mr3769307ljr.38.1639764315476;
-        Fri, 17 Dec 2021 10:05:15 -0800 (PST)
-Received: from [192.168.2.145] (94-29-63-156.dynamic.spd-mgts.ru. [94.29.63.156])
-        by smtp.googlemail.com with ESMTPSA id k13sm1475964lfo.300.2021.12.17.10.05.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Dec 2021 10:05:15 -0800 (PST)
-Subject: Re: [PATCH v5 00/11] Support HDMI audio on NVIDIA Tegra20
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Agneli <poczt@protonmail.ch>
-Cc:     linux-tegra@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20211217175606.22645-1-digetx@gmail.com>
-Message-ID: <019854ed-e181-eb81-8d91-2b598911b174@gmail.com>
-Date:   Fri, 17 Dec 2021 21:05:14 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <20211217175606.22645-1-digetx@gmail.com>
-Content-Type: text/plain; charset=utf-8
+        id S230432AbhLQSMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 13:12:39 -0500
+Received: from mail-am6eur05on2053.outbound.protection.outlook.com ([40.107.22.53]:32961
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S239962AbhLQSMj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Dec 2021 13:12:39 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DCpsuuXj3XyuzQjXAyP5gWHVcDLRsXKiReQJFtrVu61tu80Z/xaKzc+b4eFbRoF2+H1VXPGaaMmamY7w1c9ZmvT2m00m15tepJa+6aWlmPm6n464xeCA91vPESqcEKcaVvZT6vLgZYa3OT6eUrkS6PS/mafrNnBw+ojKJoyTdbeLgMyELDOoU7BuiBn9Vxyc+6oS4hkJFMCvzFSVq619mU3JSNZUBYg/In/y6F43Fs3tf+7s5DzGFWhyxYkRHt9PfHfEjprYXcfsIFGbeSxkP/aqQ3PNwuB9dbKMH7EPlET2SvaOWs7SIUVTcGDt3ME/LzhnZqoj0YMKJtqhwMumKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mOo49HqJGFY9wt78628vVJXcY391XWjv+3ggnDT+OmE=;
+ b=QilrsojQFQ9ZX+u+o9GHkDLLd3WYlvoVNKsVcrcoxGWIvHAYAGtidn1k+GSf8hbItX4pmHzPJPVIfYav5yDTtmbX/pUkoiRXhjU3yvCMh85MSU8FPQLhvcwsAT+ynNsWqRZle7vH5oeTlpWTFpJ03Eoo3biahnjiOVms6oOkYttSNA81xH3dzH7/PkLzM2wkoj5UDHMOBSZyFPIKf/rjLu47b4nxWPbefhthnbtUxmdf+zGmRq0uqp5O7Cd7y9zQHiiz/gRuoziyPnj4AybDECDfpLjq4R3OFoSLNyBlbCVfKV0uK1pEnOyA3skyo6YhullZ9jh2vdcEqsd/TReXiA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mOo49HqJGFY9wt78628vVJXcY391XWjv+3ggnDT+OmE=;
+ b=JvWx9zCvQWxcJj2Ld1y9ALrPt1/tqPiSYnL/UwC362GTuq4H/2Gmr1YWkbMB5WEDhnTWcomXfdCy+iDvPBHnjHkITRF0vv5Bmlu/xiPC+ZOzuV3M2jE92eKaZoi6XdMNFD4RLvtKpVXQVA4KfNkcsVm8qqecBHeRd9BCQk/cTgg=
+Received: from AM0PR04MB5121.eurprd04.prod.outlook.com (2603:10a6:208:c1::16)
+ by AM0PR04MB6465.eurprd04.prod.outlook.com (2603:10a6:208:16e::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.14; Fri, 17 Dec
+ 2021 18:12:36 +0000
+Received: from AM0PR04MB5121.eurprd04.prod.outlook.com
+ ([fe80::8d61:83aa:b70c:3208]) by AM0PR04MB5121.eurprd04.prod.outlook.com
+ ([fe80::8d61:83aa:b70c:3208%6]) with mapi id 15.20.4778.018; Fri, 17 Dec 2021
+ 18:12:36 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "vivien.didelot@gmail.com" <vivien.didelot@gmail.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>
+Subject: Re: [PATCH net-next v7 9/9] net: lan966x: Extend switchdev with fdb
+ support
+Thread-Topic: [PATCH net-next v7 9/9] net: lan966x: Extend switchdev with fdb
+ support
+Thread-Index: AQHX81485q7W8Qj6DU+J0X6deflh6qw2/JiA
+Date:   Fri, 17 Dec 2021 18:12:35 +0000
+Message-ID: <20211217181235.wquhfoq6qyqsfkxp@skbuf>
+References: <20211217155353.460594-1-horatiu.vultur@microchip.com>
+ <20211217155353.460594-10-horatiu.vultur@microchip.com>
+In-Reply-To: <20211217155353.460594-10-horatiu.vultur@microchip.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a5406aa4-c63e-4351-be51-08d9c188cdc2
+x-ms-traffictypediagnostic: AM0PR04MB6465:EE_
+x-microsoft-antispam-prvs: <AM0PR04MB6465A1E23F99B7A0F0470FEBE0789@AM0PR04MB6465.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: zzwOtA88UbDHZU0ZRno9zOGsSvM5ctqG+rQRvrb85fanUA+AJyy+FnCR3pp08Yh4cRtsWY4+13hzI/wYb+BSjoIyDs2lpnkGsOjrXOHCDyaUdy+yVlDIak6OWD3MRqCVXC6E+NXNdgkzTQ6YDmhgnov/s7SbMAGlC+40+FFxk1i5d87orrqFvfnR1GBts6o8iz9jsOSIwqjF8KgTvtyANkWmLRjj9cQgnu1tFRZOkYlPyIpP/Adm6EaYpPmEPxrN+pGl/iMOtX+R+mq6nwfszymLjLecguTQwF+U39cdh9QnkdPzN9X0iWzMxnqgWLPCC3V9aW7ZB8c1hBaM8MIPbkPawngSqOJ6zBFv926kutwts1rV97Pu+dIuVZivk0aP7wSqJBpyiEjMv/W5txWNLhgjxbUuQu7yXIZPHm32aahQliJDYkgTiT+/564zngQ2QnchlwVENESsAEL64EU2us7+qLYsROTK10ibBQxHzTZk8/cjqK0awO+U7CRoqf9Y/fN/NpsCSh9o4clyHiAg25fXBxEXYBe1IRAqlszG5gd7t4OkXkDlyBZszoV9gE0y0t33AM0emT4ag6VFEzDfIMkGrb3Gjgk754Y0OK03z+VYgdQmH2Nud5zxbXBgZN+Wgmn/0uvnVpAM74ZmZS+OS+ArBn29MyrUiJOnv/S0aTESXOfIqNg+eRLBGPWo7xSUYXkyKixlJZ4ImNArsOwjFw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB5121.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(366004)(2906002)(38100700002)(6486002)(54906003)(122000001)(8936002)(6506007)(33716001)(6512007)(9686003)(83380400001)(6916009)(316002)(7416002)(38070700005)(44832011)(86362001)(76116006)(66476007)(4326008)(91956017)(66556008)(186003)(5660300002)(508600001)(71200400001)(66446008)(64756008)(66946007)(8676002)(26005)(1076003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?LPt/sASIw9cyM9/Ik9pAEI4gOBrsuBgL+nMg0s3EEnd0/mkigBxEMxkCCvnV?=
+ =?us-ascii?Q?2T+7sK8TYyiAUOX2UquGongZSfCwnXc3t7Ct3vwJivU/kkbAXOFSrDcuLPpU?=
+ =?us-ascii?Q?pXnrpc9uwzqhtTn3BC1kGs/MNsUy6czptIH7KfxSGFNLDsvOEXZM6Czju3lU?=
+ =?us-ascii?Q?1NzQ+dYdyuCa6vuV2ao74Gg11fFNU9j/viTCGciX9AHinfpoxIFbp52keWyb?=
+ =?us-ascii?Q?bW/buXUaerWc5WUFkcUPGQnUY57lVU9jvTZwe/y/hPvSOFPGWVpVQ+4AL3ic?=
+ =?us-ascii?Q?FTO4zWFCGlQX/HvnXf5N8BQDG5513NMhfFnUtXd8tCD55fjI+cybliYnCzjP?=
+ =?us-ascii?Q?Zil1mK7QFqr+UNkqye61Vo5kWejKHfpuj16yBDiL6DqbJO+L+OMb1u08p9Hw?=
+ =?us-ascii?Q?ZE2F4j5nEKZxG9AtQbxL5Sa1uzmT2AnaLUO5y0hlZQSXzR2prAuQDpynMh5L?=
+ =?us-ascii?Q?kfhEYIvC1rDIykUaIxZPw/JF7dyMNBs//4DfFc3paF4LBnmaFWYmAjTiBUR5?=
+ =?us-ascii?Q?JIakH18bUaM9eBHlvnpvrDzvVUbcRi4hivyFnIYoDsIlAUldRropsZHpUFkj?=
+ =?us-ascii?Q?u8+A6XaTMk5OAeqk7wCCfhBb69pMzn15AtWKhiOqY1P7xwcG0SQgY15nnCBl?=
+ =?us-ascii?Q?fhOY8769AUr1Ra3HStRLw8c2RsYIksu9P751FX7yhKarCXkFDT4j1cLDr9fc?=
+ =?us-ascii?Q?fI/23ADfk8++1dhHlvEFxTLt+bbZYofbO1EZnadmoMB/oPrErxMq9VhwYM17?=
+ =?us-ascii?Q?CR9YghnZtQYiyveeUIRCknRJcB9V7C9V7vo9hNXxgePTdIrw+Erwrr91+goX?=
+ =?us-ascii?Q?RDa+IljjlWO7jOLgnDrxhCIg9ZJdYEKysWsTIHAL0ZfJ8NyvbG/8lz6ZyXJm?=
+ =?us-ascii?Q?AIJXbKtwTRLI2fjxjfnE7n/msuzccSi+M/2pYByqkl0aNfV+iVivXCJnVnbu?=
+ =?us-ascii?Q?Lz03fdapWd02TYc33/n399n31i+H7VUTLjvEj/bTb5ZhDRD0fUh7wBVslle7?=
+ =?us-ascii?Q?P7K5Alxi+rVQ3/DTofHx6DwEjJLDJ4sBWeHbE3uG5TCFn9UTOrKHgUKZNBcH?=
+ =?us-ascii?Q?D2hLGZuykzQp1Cy6Bj62bzfM2ZFpAoZySy/MiFVIN5BsDUCiuhoGKtkFgWwt?=
+ =?us-ascii?Q?mjOJx2TEaFokA1s3pnOCoYjhq0eQM9JU3WLMPHSk3GBQNpo3cIUkdhVxzrWX?=
+ =?us-ascii?Q?UGcm8E3Ndq+O4Y9NerdaxejKCDQxIPBLsxxpq8mDj2r5WrgNs2op8Exv7i5A?=
+ =?us-ascii?Q?yybyr8EqtMqmfYKLwoNPHhuTVmK6y5bmGEKTaNVOFj130zUZXHybNJ8pSzma?=
+ =?us-ascii?Q?WPFUJXblPUbkXtIBvKqDNhYpcIahlva5pGzWIP/QGB0+J8IBprB2WilTDx1N?=
+ =?us-ascii?Q?xiZyDrkpBZbtd8G7MNORsHr4QhlSlsRyrnjTn1FE8HA0Bmx7JZ0SRJ2hoiYU?=
+ =?us-ascii?Q?xGZR+5K+YSFLBNU3gdAfve8kdtt45l0EMUowwqobcDl663Us1WRZ4Nd4ne/q?=
+ =?us-ascii?Q?J8y2C1NTvlQqiecmVF7MqebUfFzjDUCaQzB60F+BrQvbKgAHFBOzvm8mJXxv?=
+ =?us-ascii?Q?0pOmfvfjqXBtwBlReWf+CL99lEamx+zPdK45JkxdF2YNWVBnL6M3VFVIbcbN?=
+ =?us-ascii?Q?UjO8KQ0+ghgrBd24E92x1zQ=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <8FAA79077FFBDD46A8A5618EE807DF89@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB5121.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a5406aa4-c63e-4351-be51-08d9c188cdc2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2021 18:12:35.9771
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: UvZ0XTsyetXqMc+LRAroEK+yDvd1qR8FlTk6/QIVC/RQFHh5DtWo/6TBpJfjMHCe81jnUpjtKnVjKX5bJmNMSg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6465
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-17.12.2021 20:55, Dmitry Osipenko пишет:
-> This series revives Tegra20 S/PDIF driver which was upstreamed long time
-> ago, but never was used. It also turns Tegra DRM HDMI driver into HDMI
-> audio CODEC provider. Finally, HDMI audio is enabled in device-trees.
-> For now the audio is enable only for Acer A500 tablet and Toshiba AC100
-> netbook because they're already supported by upstream, later on ASUS TF101
-> tablet will join them.
-> 
-> (!) These patches are made on top of stable dmaengine branch from Vinod Koul.
-> 
-> The following changes since commit fa55b7dcdc43c1aa1ba12bca9d2dd4318c2a0dbf:
-> 
->   Linux 5.16-rc1 (2021-11-14 13:56:52 -0800)
-> 
-> are available in the Git repository at:
-> 
->   git://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git tags/dmaengine_topic_slave_id_removal_5.17
-> 
-> for you to fetch changes up to 3c219644075795a99271d345efdfa8b256e55161:
-> 
->   dmaengine: remove slave_id config field (2021-12-17 11:23:56 +0530)
-> 
-> Changelog:
-> 
-> v5: - Dropped all patches that were already applied by Thierry Reding.
-> 
->     - Made minor changes that were suggested by Thierry Reding.
-> 
->     - Added acks from Thierry Reding.
-> 
->     - Rebased patches on top of stable dmaengine branch from Vinod Koul.
-> 
-> v4: - Added patches that update multi_v7_defconfig with the enabled S/PDIF
->       and APB DMA drivers.
-> 
-> v3: - Renamed S/PDIF device-tree clocks as was suggested by Rob Herring.
-> 
->     - Added r-bs and acks that were given by Rob Herring to v2.
-> 
-> v2: - Corrected I2S yaml problem that was reported by the DT bot for v1
->       by removing the non-existent required clock-names property.
-> 
->     - Removed assigned-clocks property from S/PDIF yaml since this property
->       is now inherited from the clocks property.
-> 
->     - Reordered the "tegra20: spdif: Set FIFO trigger level" patch, making
->       it the first sound/soc patch in the series, like it was suggested by
->       Mark Brown in the comment to v1. Also reworded commit message of this
->       patch to *not* make it looks like it should be backported to stable
->       kernels.
-> 
-> Dmitry Osipenko (11):
->   ASoC: dt-bindings: Add binding for Tegra20 S/PDIF
->   ASoC: dt-bindings: tegra20-i2s: Convert to schema
->   ASoC: dt-bindings: tegra20-i2s: Document new nvidia,fixed-parent-rate
->     property
->   ASoC: tegra20: spdif: Set FIFO trigger level
->   ASoC: tegra20: spdif: Support device-tree
->   ASoC: tegra20: spdif: Improve driver's code
->   ASoC: tegra20: spdif: Use more resource-managed helpers
->   ASoC: tegra20: spdif: Reset hardware
->   ASoC: tegra20: spdif: Support system suspend
->   ASoC: tegra20: spdif: Filter out unsupported rates
->   ASoC: tegra20: i2s: Filter out unsupported rates
-> 
->  .../bindings/sound/nvidia,tegra20-i2s.txt     |  30 ---
->  .../bindings/sound/nvidia,tegra20-i2s.yaml    |  77 +++++++
->  .../bindings/sound/nvidia,tegra20-spdif.yaml  |  85 ++++++++
->  sound/soc/tegra/tegra20_i2s.c                 |  49 +++++
->  sound/soc/tegra/tegra20_spdif.c               | 198 +++++++++++++-----
->  sound/soc/tegra/tegra20_spdif.h               |   1 +
->  sound/soc/tegra/tegra_pcm.c                   |   6 +
->  sound/soc/tegra/tegra_pcm.h                   |   1 +
->  8 files changed, 359 insertions(+), 88 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.yaml
->  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-spdif.yaml
-> 
+On Fri, Dec 17, 2021 at 04:53:53PM +0100, Horatiu Vultur wrote:
+> Extend lan966x driver with fdb support by implementing the switchdev
+> calls SWITCHDEV_FDB_ADD_TO_DEVICE and SWITCHDEV_FDB_DEL_TO_DEVICE.
+>=20
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> ---
 
-Mark, I see that you already applied previous v4 to broonie/misc. Please
-skip this v5 then, thanks!
+Looks pretty good. Just one question, since I can't figure this out by
+looking at the code. Is the CPU port in the unknown unicast flood mask
+currently?
+
+>  .../net/ethernet/microchip/lan966x/Makefile   |   2 +-
+>  .../ethernet/microchip/lan966x/lan966x_fdb.c  | 244 ++++++++++++++++++
+>  .../ethernet/microchip/lan966x/lan966x_main.c |   5 +
+>  .../ethernet/microchip/lan966x/lan966x_main.h |  14 +
+>  .../microchip/lan966x/lan966x_switchdev.c     |  21 ++
+>  .../ethernet/microchip/lan966x/lan966x_vlan.c |  15 +-
+>  6 files changed, 298 insertions(+), 3 deletions(-)
+>  create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_fdb.c
+(...)
+> +static void lan966x_fdb_add_entry(struct lan966x *lan966x,
+> +				  struct switchdev_notifier_fdb_info *fdb_info)
+> +{
+> +	struct lan966x_fdb_entry *fdb_entry;
+> +
+> +	fdb_entry =3D lan966x_fdb_find_entry(lan966x, fdb_info);
+> +	if (fdb_entry) {
+> +		fdb_entry->references++;
+> +		return;
+> +	}
+> +
+> +	fdb_entry =3D kzalloc(sizeof(*fdb_entry), GFP_KERNEL);
+> +	if (!fdb_entry)
+> +		return;
+> +
+> +	memcpy(fdb_entry->mac, fdb_info->addr, ETH_ALEN);
+
+ether_addr_copy
+
+> +	fdb_entry->vid =3D fdb_info->vid;
+> +	fdb_entry->references =3D 1;
+> +	list_add_tail(&fdb_entry->list, &lan966x->fdb_entries);
+> +}=
