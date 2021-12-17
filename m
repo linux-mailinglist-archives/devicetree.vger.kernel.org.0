@@ -2,80 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D3FB479235
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 17:59:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B89B479243
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:00:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239531AbhLQQ7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 11:59:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51024 "EHLO
+        id S235936AbhLQRAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 12:00:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239499AbhLQQ7b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 11:59:31 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4598CC061401;
-        Fri, 17 Dec 2021 08:59:31 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 100C0B828D4;
-        Fri, 17 Dec 2021 16:59:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5371CC36AE7;
-        Fri, 17 Dec 2021 16:59:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1639760368;
-        bh=cePM4fZOqSweG5iqCi/Kt1W2jaOm1RFO9qvsPI2XcWA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VdZLuFsU9lyrlY2yPcKsrCzQOkO3cluzqCdatXRPcVQvtZGafITBtMUxliJiU8Gqo
-         Lf5VrpbIkhBHvetwzqccD+La9h6uoEj06/aYzXqUDTlcLCTxRMu/3Sg73FpaFikqFt
-         LRgdgZUIXp6faqaTVM67qeGT8+M2E9cjZZY8QG+E=
-Date:   Fri, 17 Dec 2021 17:59:26 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Rob Herring <robh@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [RESEND v4 10/10] dt-bindings: serial: fsl-lpuart: Add i.MX8DXL
- compatible
-Message-ID: <YbzB7mspRBonT9jJ@kroah.com>
-References: <1639680494-23183-1-git-send-email-abel.vesa@nxp.com>
- <1639680494-23183-11-git-send-email-abel.vesa@nxp.com>
+        with ESMTP id S231881AbhLQRAr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:00:47 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF11C061574;
+        Fri, 17 Dec 2021 09:00:46 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id i22so5202000wrb.13;
+        Fri, 17 Dec 2021 09:00:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Uc3L6UZb2PlxIKElhEsWA3ODR+UpWpdweZ/Uoj8yWwQ=;
+        b=fwDOzYC/sWl5QtrxXoQth1fa95jl6X9D1qcVZCrvvEIB2KjIHBjBhHf/eYKmwRb4XT
+         QRWiLhsEbFgDAhkxZerrUWA+rN4VK/nKEopQTACpSJ1yKJ5sKI3TMLG5eooUHKXPGEIR
+         byeWn6S1JB0RIdJxDvhbBFRgkhIp4/sy2985q+dg538Gv2GHEVN20ak85SP/g2JVdsZ4
+         dTov/vyURhM/5UweAb1nXKdwAc27qFR3cglne7aGCAyOlG9QeaKKAHAOKHJVraUL2unu
+         /7wLAodQvztDIYKdrgFBEbuc2U6PwR6I259WknAlzClRMpo0pxmk7gtZDfgylNdjWbEv
+         yZQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Uc3L6UZb2PlxIKElhEsWA3ODR+UpWpdweZ/Uoj8yWwQ=;
+        b=vCca8nkEzUBI2l/PzAa32R6EGVgmLdTB6UjBZKbgPT+xoNMkEG5OoCACuJe8byRHRI
+         ePC9PFLZMEJbKlLCxFLVRdy0nvAmcjprRz4GGAbL1cEbLcBokMTjbBRndIO+1msI0YYX
+         TlKR7o9ljY+iicPym481gkfq1yljNI83SeusFDz2+NyqVoHYi6BW2TCXUdrtTg1m2VBE
+         iMa69iH7gi8POBPofkktbx4qOOO3COrqrQPpm4IsInXub06p2WDC07BcTSGhIfl5ZNXj
+         tXe4xt5+3nFgRv7QlBLrcjKlufrmBpSEy6uO0dsXDHTIQiQSgnUtMpvzLQwVcdaeivEY
+         7xig==
+X-Gm-Message-State: AOAM5317B4gCJJ/BcauRL/dFRvTDWXx3NZoHLhwITlc/Y596z5EEVui3
+        qXZ3cbF+CLO+y9+uXQ09qQLHsTfSRMYOfA==
+X-Google-Smtp-Source: ABdhPJwS5A17zqJaQoBIDjwEgR1u8org3CVR58fuDxDO4Q94QseLAVHuAhrgxtAQmB41x4uc/xPA5Q==
+X-Received: by 2002:a5d:4dc2:: with SMTP id f2mr3183862wru.156.1639760445254;
+        Fri, 17 Dec 2021 09:00:45 -0800 (PST)
+Received: from localhost ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id j3sm2644232wro.22.2021.12.17.09.00.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Dec 2021 09:00:44 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: power: reset: gpio-restart: Convert to json-schema
+Date:   Fri, 17 Dec 2021 18:00:42 +0100
+Message-Id: <20211217170042.2740058-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1639680494-23183-11-git-send-email-abel.vesa@nxp.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 08:48:14PM +0200, Abel Vesa wrote:
-> Add i.MX8DXL lpuart compatible to the bindings documentation.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> ---
->  Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-> index fa23c60a01d0..ee37aa125c86 100644
-> --- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-> @@ -29,6 +29,10 @@ properties:
->        - items:
->            - const: fsl,imx8qm-lpuart
->            - const: fsl,imx8qxp-lpuart
-> +      - items:
-> +          - const: fsl,imx8dxl-lpuart
-> +          - const: fsl,imx8qxp-lpuart
-> +          - const: fsl,imx7ulp-lpuart
+From: Thierry Reding <treding@nvidia.com>
 
-Why is "- items:" listed twice here?
+Convert the GPIO restart bindings from the free-form text format to
+json-schema.
 
-thanks,
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ .../bindings/power/reset/gpio-restart.txt     | 54 ------------
+ .../bindings/power/reset/gpio-restart.yaml    | 86 +++++++++++++++++++
+ 2 files changed, 86 insertions(+), 54 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/power/reset/gpio-restart.txt
+ create mode 100644 Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
 
-greg k-h
+diff --git a/Documentation/devicetree/bindings/power/reset/gpio-restart.txt b/Documentation/devicetree/bindings/power/reset/gpio-restart.txt
+deleted file mode 100644
+index af3701bc15c4..000000000000
+--- a/Documentation/devicetree/bindings/power/reset/gpio-restart.txt
++++ /dev/null
+@@ -1,54 +0,0 @@
+-Drive a GPIO line that can be used to restart the system from a restart
+-handler.
+-
+-This binding supports level and edge triggered reset.  At driver load
+-time, the driver will request the given gpio line and install a restart
+-handler. If the optional properties 'open-source' is not found, the GPIO line
+-will be driven in the inactive state.  Otherwise its not driven until
+-the restart is initiated.
+-
+-When the system is restarted, the restart handler will be invoked in
+-priority order.  The gpio is configured as an output, and driven active,
+-triggering a level triggered reset condition. This will also cause an
+-inactive->active edge condition, triggering positive edge triggered
+-reset. After a delay specified by active-delay, the GPIO is set to
+-inactive, thus causing an active->inactive edge, triggering negative edge
+-triggered reset. After a delay specified by inactive-delay, the GPIO
+-is driven active again.  After a delay specified by wait-delay, the
+-restart handler completes allowing other restart handlers to be attempted.
+-
+-Required properties:
+-- compatible : should be "gpio-restart".
+-- gpios : The GPIO to set high/low, see "gpios property" in
+-  Documentation/devicetree/bindings/gpio/gpio.txt. If the pin should be
+-  low to reset the board set it to "Active Low", otherwise set
+-  gpio to "Active High".
+-
+-Optional properties:
+-- open-source : Treat the GPIO as being open source and defer driving
+-  it to when the restart is initiated.  If this optional property is not
+-  specified, the GPIO is initialized as an output in its inactive state.
+-- priority : A priority ranging from 0 to 255 (default 128) according to
+-  the following guidelines:
+-	0:	Restart handler of last resort, with limited restart
+-		capabilities
+-	128:	Default restart handler; use if no other restart handler is
+-		expected to be available, and/or if restart functionality is
+-		sufficient to restart the entire system
+-	255:	Highest priority restart handler, will preempt all other
+-		restart handlers
+-- active-delay: Delay (default 100) to wait after driving gpio active [ms]
+-- inactive-delay: Delay (default 100) to wait after driving gpio inactive [ms]
+-- wait-delay: Delay (default 3000) to wait after completing restart
+-  sequence [ms]
+-
+-Examples:
+-
+-gpio-restart {
+-	compatible = "gpio-restart";
+-	gpios = <&gpio 4 0>;
+-	priority = <128>;
+-	active-delay = <100>;
+-	inactive-delay = <100>;
+-	wait-delay = <3000>;
+-};
+diff --git a/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
+new file mode 100644
+index 000000000000..3dd22220cb5f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
+@@ -0,0 +1,86 @@
++# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/reset/gpio-restart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: GPIO controlled reset
++
++maintainers:
++  - Sebastian Reichel <sre@kernel.org>
++
++description: >
++  Drive a GPIO line that can be used to restart the system from a restart handler.
++
++  This binding supports level and edge triggered reset.  At driver load time, the driver will
++  request the given gpio line and install a restart handler. If the optional properties
++  'open-source' is not found, the GPIO line will be driven in the inactive state.  Otherwise its
++  not driven until the restart is initiated.
++
++  When the system is restarted, the restart handler will be invoked in priority order.  The GPIO
++  is configured as an output, and driven active, triggering a level triggered reset condition.
++  This will also cause an inactive->active edge condition, triggering positive edge triggered
++  reset. After a delay specified by active-delay, the GPIO is set to inactive, thus causing an
++  active->inactive edge, triggering negative edge triggered reset. After a delay specified by
++  inactive-delay, the GPIO is driven active again.  After a delay specified by wait-delay, the
++  restart handler completes allowing other restart handlers to be attempted.
++
++properties:
++  compatible:
++    const: gpio-restart
++
++  gpios:
++    description: The GPIO to set high/low, see "gpios property" in
++      Documentation/devicetree/bindings/gpio/gpio.txt. If the pin should be low to reset the board
++      set it to "Active Low", otherwise set GPIO to "Active High".
++
++  open-source:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: Treat the GPIO as being open source and defer driving it to when the restart is
++      initiated.  If this optional property is not specified, the GPIO is initialized as an output
++      in its inactive state.
++
++  priority:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      A priority ranging from 0 to 255 (default 128) according to the following guidelines:
++
++        0:   Restart handler of last resort, with limited restart capabilities.
++        128: Default restart handler; use if no other restart handler is expected to be available,
++             and/or if restart functionality is sufficient to restart the entire system.
++        255: Highest priority restart handler, will preempt all other restart handlers.
++    minimum: 0
++    maximum: 255
++    default: 128
++
++  active-delay:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Delay (default 100) to wait after driving gpio active [ms]
++    default: 100
++
++  inactive-delay:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Delay (default 100) to wait after driving gpio inactive [ms]
++    default: 100
++
++  wait-delay:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Delay (default 3000) to wait after completing restart sequence [ms]
++    default: 100
++
++additionalProperties: false
++
++required:
++  - compatible
++  - gpios
++
++examples:
++  - |
++    gpio-restart {
++      compatible = "gpio-restart";
++      gpios = <&gpio 4 0>;
++      priority = <128>;
++      active-delay = <100>;
++      inactive-delay = <100>;
++      wait-delay = <3000>;
++    };
+-- 
+2.34.1
+
