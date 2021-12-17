@@ -2,189 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB0E94790F1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 17:05:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CED114790FC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 17:09:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238729AbhLQQF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 11:05:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38080 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238819AbhLQQFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 11:05:54 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B231DC06173E;
-        Fri, 17 Dec 2021 08:05:53 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id l18so2521085pgj.9;
-        Fri, 17 Dec 2021 08:05:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fSgwCz/Z9D+vF+HDpWYjXKr9mr988NX6jKdB0/NhBGg=;
-        b=AUAAJjDIfVLtQ1k3d2TuFHkU0XMv1g+pzIono4q6BEgSCxyknskUwOaQab9bDEqmJX
-         mlAdgT64smgAG148TlTYKfw+GefdALmokNZ+Y3O+AXXhGGaB3AxCjn+jI9wzPKXYRigS
-         eJXUQLfd57LKx+ehXXu3WyuW0TFa2CsQi+gK60Lwmnqs0xUgQaN+F6q10K+u+oUfgb8H
-         BK022woOK3U6QyPBH3D+OgWa5ekcvcJEd/ZGaD48PemTiXdY+v0UA8p625PuqqVCEcSm
-         E/GCW9LkBcEamtOikLmOUiZ9oQG8XM+hVQh9aUaBOxXRrFmW7hJKGM2ELHesQOZmazXz
-         JqJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fSgwCz/Z9D+vF+HDpWYjXKr9mr988NX6jKdB0/NhBGg=;
-        b=ro27eGJDG31Cb1pPETpts324u5zU0PX3gxUdB/S52RlfMyX5b0OLHS1dPJtcDNMVhB
-         fcm3UOVqLC9COn9l72fkBGH1MedD1TMHjVFQ6akJGTsiuZREcmt3PGPTVH5s3Y+xIf9f
-         jPBkumpMnbK4AZkn2Wqrqd+jI/mLZoZvbk5dnfZNDYD32oB9G4wFgFVhIalvJgDpj8s6
-         qfby9zzDYJ2nu6ZGq4Qdfhs1ELHCXwBmGtsnIlrZno/OtG5vIrerMmb10T6eKuJ/CMon
-         7lq6U5FM0hgQdc/W3si2ZDkNzjCuJWIoPpTod7sA/VfmkDTEPNhJpgklOiHnil8dEqIr
-         DgdQ==
-X-Gm-Message-State: AOAM532J81hIS4SI6cs6P3CBFCT4e+cE0huRs6f8dYdywl+KfiFyrbu0
-        DKWMsBKl2rEtcSGtPldXEc35PNceFTw=
-X-Google-Smtp-Source: ABdhPJwDGWrhzhR9vfHEEcvboxttzuXhb+r3KBvDyRPJlmmxtTk3OZDj3uCquSFCb44H2bGIM07q0w==
-X-Received: by 2002:a05:6a00:1995:b0:4b1:38b5:cc92 with SMTP id d21-20020a056a00199500b004b138b5cc92mr3732949pfl.7.1639757152112;
-        Fri, 17 Dec 2021 08:05:52 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id z23sm4020760pfr.189.2021.12.17.08.05.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Dec 2021 08:05:51 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM BCM7XXX ARM
-        ARCHITECTURE),
-        linux-kernel@vger.kernel.org (open list:IRQCHIP DRIVERS),
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
-        ARM ARCHITECTURE)
-Subject: [PATCH v5 2/2] dt-bindings: interrupt-controller: Merge BCM3380 with BCM7120
-Date:   Fri, 17 Dec 2021 08:05:46 -0800
-Message-Id: <20211217160546.497012-3-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211217160546.497012-1-f.fainelli@gmail.com>
-References: <20211217160546.497012-1-f.fainelli@gmail.com>
+        id S238208AbhLQQJb convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 17 Dec 2021 11:09:31 -0500
+Received: from mout.kundenserver.de ([212.227.17.10]:52859 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235181AbhLQQJb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 11:09:31 -0500
+Received: from mail-wr1-f54.google.com ([209.85.221.54]) by
+ mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MDgxt-1mp8iE2zTz-00AmWf; Fri, 17 Dec 2021 17:09:29 +0100
+Received: by mail-wr1-f54.google.com with SMTP id t18so4943070wrg.11;
+        Fri, 17 Dec 2021 08:09:29 -0800 (PST)
+X-Gm-Message-State: AOAM530lm6T2EaDOTNBINP+1cUPyrKaDTMT++0ks8ENYGaFYF33i0NsO
+        kCRZd0MWN7fQ3vsBepgT3SoN+iXDCtMHci2V8+M=
+X-Google-Smtp-Source: ABdhPJw+hpDyyXl4RGdNrjBoGpphEIFP8WbbxKnsDBwk4fby22emKOtFTtHb87NvnAn3PiNTf/SBfIb0QDVvSxKoTzc=
+X-Received: by 2002:a5d:484f:: with SMTP id n15mr3108967wrs.219.1639757369230;
+ Fri, 17 Dec 2021 08:09:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1639039163.git.tonyhuang.sunplus@gmail.com>
+ <bc15d5e8d7a5ec96582799fe513de4ace6fd4b8b.1639039163.git.tonyhuang.sunplus@gmail.com>
+ <CAK8P3a2UGr6ZbHk6G=wh5XG_EGdJxGf6SfyN1sTb4aaUgiK8Lw@mail.gmail.com> <5c01390c485a44b6913dcb42e3677ed1@sphcmbx02.sunplus.com.tw>
+In-Reply-To: <5c01390c485a44b6913dcb42e3677ed1@sphcmbx02.sunplus.com.tw>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Fri, 17 Dec 2021 17:09:13 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1zjsZsf4_V8CxUzeh8=LPntsdsM7Yvhs8k3mTw3fZwNw@mail.gmail.com>
+Message-ID: <CAK8P3a1zjsZsf4_V8CxUzeh8=LPntsdsM7Yvhs8k3mTw3fZwNw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] misc: Add iop driver for Sunplus SP7021
+To:     =?UTF-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Tony Huang <tonyhuang.sunplus@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        gregkh <gregkh@linuxfoundation.org>,
+        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:jbEz9HVOOp/DT6eplBNQJz5ZKl6Ae0AM9PDzlP6rdOL3ufhUQYD
+ Ux8C5N35l+kXQLdpCM5cVaKUs9T701cSBTz/kJubF1OtkQOiaZYHTVDIu6qKNVlRg6j07ZJ
+ QUsahJ+Z4V3Ta7wGpCjXzrN7G3cBgZoy5I+0zGDxtt8vi1XzmSnNyOU2CPB5pQN6Itw9pDN
+ N1HBverwvCU3VD1tqcQAQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:C11EqKUf7dE=:0qwfP/P/alOcqtQjRCkPs+
+ MVn8wzteqeuNb0lBwXDj0LzoM/KtoescOj1E6JZB8emsEDCC9JcVtCxCWx0Y6cGOF63ipes/N
+ CGhuFFo3OquNMM4x6aVBpZhpTZWyEmzn6xzQ1VvC8COtV//LmHb7ffNJRjAg/+2bn4nlSRiTj
+ TAKQc7bGK/vd1ioMSTXwylIM5q+V2Q3xgM126Cpr034IVJttSO8Pxw4evExRTYfXSmu5P3bPY
+ n7KuCcorepcRYvZRh8G+EBu8zG0RlGOkrB+7nrIgk49XWLtULWgG7S393uPI/hojTZk25MecQ
+ tLrEknL0TIRR8hM3lFRtvbvgZJwG865gdOndnOfi1TKap49RqXkRvXq5TLtCJOFM9MtTdeQRU
+ ahz9QBJlrDWaxXk5D5hc/+8FGWPV6I03YUg9Tttjyi9z7plcXiWbtTfl5XkOyDc/hw/lNWOUi
+ uwNxMDqJsjR1bDyNQE7+DuKoxlRLgOeXaY/7IAgupmfFrZmF1Kx1ZiZ6Tgo0kTEYOoSlpKAC8
+ knQNXzk80oa9a0SkNvo3RB16SQ4igOaQ87hE7tFwapu7eJq6iwohwJV2GEig01HycmlEuiGsG
+ qDRu3W0b/oG2JtLs0Liuwwo0n/fUqa2elCXFteBgx4y6U9zRyrw9zxZ+NSRiODyjUE+sjZU/G
+ h96uBExo7BF1eBV6jk7IvUlCHbwJQVNyITlr1OagHdNOTy6dD+ZujUHrPyRW6kow3YCA=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The two bindings are very similar and should be covered by the same
-document, do that so we can get rid of an additional binding file.
+On Fri, Dec 17, 2021 at 4:16 PM Tony Huang 黃懷厚 <tony.huang@sunplus.com> wrote:
+> > On Thu, Dec 9, 2021 at 9:58 AM Tony Huang <tonyhuang.sunplus@gmail.com>
+> > wrote:
+> > >
+> > > IOP (IO Processor) embedded inside SP7021 which is used as Processor
+> > > for I/O control, RTC wake-up and cooperation with CPU & PMC in power
+> > > management purpose.
+> > > The IOP core is DQ8051, so also named IOP8051, it supports dedicated
+> > > JTAG debug pins which share with SP7021.
+> > > In standby mode operation, the power spec reach 400uA.
+> > >
+> > > Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
+> >
+> > Thanks for the improvements, this again looks better than the previous version.
+> > I still have some minor comments, and there are a couple of details I have
+> > commented on before that would need to be addressed, but let's focus on the
+> > one main issue for now:
+> >
+> > The driver still doesn't actually /do/ anything: you load the firmware when the
+> > driver is loaded, and you shut it down when the driver is removed, but
+> > otherwise there is no way to interact with the iop. You had the miscdevice
+> > earlier, and you still register that, but there are no file_operations associated
+> > with it, so it still doesn't have any effect.
+> >
+> > In the original version you had a couple of user-side interfaces, for which Greg
+> > and I commented that they were not using the correct abstractions, and you
+> > still list them in the changelog text as "I/O control, RTC wake-up and
+> > cooperation with CPU & PMC in power management".
+> >
+> > If you want to make any progress with adding the driver, I'd say you should
+> > implement at least two of those high-level interfaces that interact with the
+> > respective kernel subsystems in order to show that the abstraction works.
+> >
+>
+> Q:"with respective kernel subsystems in order to show that the abstraction works."
+> May I ask you about repective kernel subsystem.
+> If I use the file_operation method
+> Provide user can read and write IOP(8051)'s register.
+> Is this a repective kernel subsystem?
+> if not
+> There are other driver code can give me reference
 
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
- .../brcm,bcm3380-l2-intc.txt                  | 39 -------------------
- .../brcm,bcm7120-l2-intc.yaml                 | 31 +++++++++++++--
- 2 files changed, 28 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm3380-l2-intc.txt
+- For gpio, there are lots of drivers in drivers/gpio/
+- For RTC, there are drivers in drivers/rtc/
+- For suspending the CPU core, there are drivers in drivers/cpuidle/
+- For turning off the system, you can find drivers in drivers/power/reset/
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm3380-l2-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm3380-l2-intc.txt
-deleted file mode 100644
-index 37aea40d5430..000000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm3380-l2-intc.txt
-+++ /dev/null
-@@ -1,39 +0,0 @@
--Broadcom BCM3380-style Level 1 / Level 2 interrupt controller
--
--This interrupt controller shows up in various forms on many BCM338x/BCM63xx
--chipsets.  It has the following properties:
--
--- outputs a single interrupt signal to its interrupt controller parent
--
--- contains one or more enable/status word pairs, which often appear at
--  different offsets in different blocks
--
--- no atomic set/clear operations
--
--Required properties:
--
--- compatible: should be "brcm,bcm3380-l2-intc"
--- reg: specifies one or more enable/status pairs, in the following format:
--  <enable_reg 0x4 status_reg 0x4>...
--- interrupt-controller: identifies the node as an interrupt controller
--- #interrupt-cells: specifies the number of cells needed to encode an interrupt
--  source, should be 1.
--- interrupts: specifies the interrupt line in the interrupt-parent controller
--  node, valid values depend on the type of parent interrupt controller
--
--Optional properties:
--
--- brcm,irq-can-wake: if present, this means the L2 controller can be used as a
--  wakeup source for system suspend/resume.
--
--Example:
--
--irq0_intc: interrupt-controller@10000020 {
--	compatible = "brcm,bcm3380-l2-intc";
--	reg = <0x10000024 0x4 0x1000002c 0x4>,
--	      <0x10000020 0x4 0x10000028 0x4>;
--	interrupt-controller;
--	#interrupt-cells = <1>;
--	interrupt-parent = <&cpu_intc>;
--	interrupts = <2>;
--};
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7120-l2-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7120-l2-intc.yaml
-index 5d7731ea4182..46b2eb3c43ee 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7120-l2-intc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7120-l2-intc.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/interrupt-controller/brcm,bcm7120-l2-intc.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Broadcom BCM7120-style Level 2 interrupt controller
-+title: Broadcom BCM7120-style Level 2 and Broadcom BCM3380 Level 1 / Level 2
- 
- maintainers:
-   - Florian Fainelli <f.fainelli@gmail.com>
-@@ -59,15 +59,29 @@ description: >
-   ..
-   31 ........................ X
- 
-+  The BCM3380 Level 1 / Level 2 interrrupt controller shows up in various forms
-+  on many BCM338x/BCM63xx chipsets. It has the following properties:
-+
-+  - outputs a single interrupt signal to its interrupt controller parent
-+
-+  - contains one or more enable/status word pairs, which often appear at
-+    different offsets in different blocks
-+
-+  - no atomic set/clear operations
-+
- allOf:
-   - $ref: /schemas/interrupt-controller.yaml#
- 
- properties:
-   compatible:
--    const: brcm,bcm7120-l2-intc
-+    items:
-+      - enum:
-+          - brcm,bcm7120-l2-intc
-+          - brcm,bcm3380-l2-intc
- 
-   reg:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 4
-     description: >
-       Specifies the base physical address and size of the registers
- 
-@@ -124,3 +138,14 @@ examples:
-       brcm,int-map-mask = <0xeb8>, <0x140>;
-       brcm,int-fwd-mask = <0x7>;
-     };
-+
-+  - |
-+    irq1_intc: interrupt-controller@10000020 {
-+       compatible = "brcm,bcm3380-l2-intc";
-+       reg = <0x10000024 0x4>, <0x1000002c 0x4>,
-+             <0x10000020 0x4>, <0x10000028 0x4>;
-+       interrupt-controller;
-+       #interrupt-cells = <1>;
-+       interrupt-parent = <&cpu_intc>;
-+       interrupts = <2>;
-+    };
--- 
-2.25.1
+Any of these drivers can interface with your kernel driver in various ways
+that avoid adding a custom miscdevice.
 
+         Arnd
