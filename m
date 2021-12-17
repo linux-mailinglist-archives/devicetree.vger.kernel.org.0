@@ -2,134 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD5EA4790D1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:59:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC3584790D4
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 17:01:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238706AbhLQP7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 10:59:36 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:56590 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233490AbhLQP7g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 10:59:36 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C477893;
-        Fri, 17 Dec 2021 16:59:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1639756775;
-        bh=c3XHej1xlAjvDy8WjGONI7nF9JWDCekmb7lx1DYxTvA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=e+NSjLczTCF0+fRINIgaMFMZxyHBoHM/LzGyF7mgU2YyDqP4m4fKL3JvWpEt8M56G
-         wMPIcp/KY9StfS7ng1qHGWEYNktCxw2poyIBdRk1HVWhBbWvxLdfbhgZEJOBfhGA+g
-         Shabo7NnIl/R6Mfeki8oaZJ/5CXt+IQJmjzuhulM=
-Date:   Fri, 17 Dec 2021 17:59:32 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Thomas Nizan <tnizan@witekio.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: media: i2c: max9286: Add support for
- per-port supplies
-Message-ID: <Ybyz5ATkHSDrxvqe@pendragon.ideasonboard.com>
-References: <20211216220946.20771-1-laurent.pinchart+renesas@ideasonboard.com>
- <20211216220946.20771-2-laurent.pinchart+renesas@ideasonboard.com>
- <YbycHk2r+63PT+kP@robh.at.kernel.org>
+        id S238728AbhLQQBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 11:01:12 -0500
+Received: from mail-ua1-f51.google.com ([209.85.222.51]:43721 "EHLO
+        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235191AbhLQQBM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 11:01:12 -0500
+Received: by mail-ua1-f51.google.com with SMTP id 107so5152588uaj.10;
+        Fri, 17 Dec 2021 08:01:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=26SVdMAvextSC77CuMirCaLKRwkRmDU6eDmV5JlcvTE=;
+        b=wdKfN40HnD0hT+qP+NY/jOENtou4k/ks/33gBT2qbgVfvQv4TdspK1Dx9lHozPEFRX
+         +fQp1YklhadmLXT8AqeQlT2mXAD1J7KrFg22/F6gqX4ttpRausngwgJa+KO7avqpls6a
+         lQM727awJcP1cyAjoW6DwgGKoElk0fNuZxGa8I8xeviSrUq0ZpxFbKx/tuBDz0EyoEss
+         cK04x2s5Elfe65bNK89oChB7ixyCtxDPuRTpikvRC1ouKQkNbfemMKXdGzBbpNdsFCxK
+         aHLij/80xPtzSlcO2ZnpihwaIfawj9cGE213ieAkDLawhnrdYVtQ+P7mVyXo4lGruxvf
+         48QA==
+X-Gm-Message-State: AOAM530OO2LtUm2PNYq/N1t1F0aW8+MTcI/Y2a2t0wF8Z5rsmnufEo6G
+        vQ76rHF6ACUn4X/hIEncA8okQhNfxVJV0Q==
+X-Google-Smtp-Source: ABdhPJy23LMR5SNJpFHss4xovtLz25ABoH0p7MPdH+DItroYIxfeLMGvKEz5RhoxNtKNH9O0cYWzwQ==
+X-Received: by 2002:a67:c11c:: with SMTP id d28mr1347257vsj.54.1639756870935;
+        Fri, 17 Dec 2021 08:01:10 -0800 (PST)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
+        by smtp.gmail.com with ESMTPSA id d16sm1871297vko.29.2021.12.17.08.01.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Dec 2021 08:01:10 -0800 (PST)
+Received: by mail-ua1-f47.google.com with SMTP id y22so5248663uap.2;
+        Fri, 17 Dec 2021 08:01:09 -0800 (PST)
+X-Received: by 2002:a9f:248b:: with SMTP id 11mr1321684uar.14.1639756869466;
+ Fri, 17 Dec 2021 08:01:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YbycHk2r+63PT+kP@robh.at.kernel.org>
+References: <20211217093325.30612-1-conor.dooley@microchip.com>
+ <20211217093325.30612-15-conor.dooley@microchip.com> <CAMuHMdV0N-15kNZ1fnzaj_psNVCRUQP506Noc-tHawmgxqCVeA@mail.gmail.com>
+ <11333b59-733c-186f-3708-7357f72d7bef@microchip.com>
+In-Reply-To: <11333b59-733c-186f-3708-7357f72d7bef@microchip.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 17 Dec 2021 17:00:58 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUiSnxmXFroHi1drcmkqkhshC+X=6mtw0_wFnS+P=O9Cw@mail.gmail.com>
+Message-ID: <CAMuHMdUiSnxmXFroHi1drcmkqkhshC+X=6mtw0_wFnS+P=O9Cw@mail.gmail.com>
+Subject: Re: [PATCH v2 14/17] riscv: dts: microchip: add fpga fabric section
+ to icicle kit
+To:     Conor Dooley <Conor.Dooley@microchip.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+        linux-rtc@vger.kernel.org, linux-spi <linux-spi@vger.kernel.org>,
+        USB list <linux-usb@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bin Meng <bin.meng@windriver.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lewis Hanly <Lewis.Hanly@microchip.com>,
+        Daire.McNamara@microchip.com, Ivan.Griffin@microchip.com,
+        Atish Patra <atishp@atishpatra.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Conor,
 
-On Fri, Dec 17, 2021 at 08:18:06AM -0600, Rob Herring wrote:
-> On Fri, Dec 17, 2021 at 12:09:44AM +0200, Laurent Pinchart wrote:
-> > From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > 
-> > Power supplies for the ports can be controlled per port depending on the
-> > hardware design. Support per-port supplies in the DT bindings, mutually
-> > exclusive with the global supply.
-> > 
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >  .../bindings/media/i2c/maxim,max9286.yaml     | 25 ++++++++++++++++++-
-> >  1 file changed, 24 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> > index 02f656e78700..33aa307e8ee5 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> > @@ -39,7 +39,7 @@ properties:
-> >      maxItems: 1
-> >  
-> >    poc-supply:
-> > -    description: Regulator providing Power over Coax to the cameras
-> > +    description: Regulator providing Power over Coax to all the ports
-> >  
-> >    enable-gpios:
-> >      description: GPIO connected to the \#PWDN pin with inverted polarity
-> > @@ -160,6 +160,10 @@ properties:
-> >  
-> >              additionalProperties: false
-> >  
-> > +patternProperties:
-> > +  "^port[0-3]-poc-supply$":
-> > +    description: Regulator providing Power over Coax for a particular port
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -167,6 +171,25 @@ required:
-> >    - i2c-mux
-> >    - gpio-controller
-> >  
-> > +allOf:
-> > +  - if:
-> > +      required:
-> > +        - poc-supply
-> > +    then:
-> > +      allOf:
-> > +        - not:
-> > +            required:
-> > +              - port0-poc-supply
-> > +        - not:
-> > +            required:
-> > +              - port1-poc-supply
-> > +        - not:
-> > +            required:
-> > +              - port2-poc-supply
-> > +        - not:
-> > +            required:
-> > +              - port3-poc-supply
-> 
-> I think you can invert the if and move patternProperties to the 'then' 
-> and...
-> 
-> > +
-> >  additionalProperties: false
-> 
-> then use unevaluatedProperties here.
+On Fri, Dec 17, 2021 at 4:32 PM <Conor.Dooley@microchip.com> wrote:
+> On 17/12/2021 13:43, Geert Uytterhoeven wrote:
+> > On Fri, Dec 17, 2021 at 10:33 AM <conor.dooley@microchip.com> wrote:
+> >> From: Conor Dooley <conor.dooley@microchip.com>
+> >>
+> >> Split the device tree for the Microchip MPFS into two sections by adding
+> >> microchip-mpfs-fabric.dtsi, which contains peripherals contained in the
+> >> FPGA fabric.
+> >>
+> >> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> >
+> > Thanks for your patch!
+> >
+> >> --- /dev/null
+> >> +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-fabric.dtsi
+> >> @@ -0,0 +1,13 @@
+> >> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> >> +/* Copyright (c) 2020-2021 Microchip Technology Inc */
+> >> +
+> >> +/ {
+> >> +       corePWM0: pwm@41000000 {
+> >> +               compatible = "microchip,corepwm";
+> >> +               reg = <0x0 0x41000000 0x0 0xF0>;
+> >> +               microchip,sync-update = /bits/ 8 <0>;
+> >> +               #pwm-cells = <2>;
+> >> +               clocks = <&clkcfg CLK_FIC3>;
+> >> +               status = "disabled";
+> >> +       };
+> >
+> > I'm wondering if these should be grouped under a "fabric" subnode,
+> > like we have an "soc" subnode for on-SoC devices? Rob?
+> >
+> > BTW, do you already have a naming plan for different revisions of
+> > FPGA fabric cores?
+> Not yet (assuming you mean specifically how we will handle it in the
+> device tree) - although i was talking to someone about it yesterday.
+> It's possible that we might handle that via a register, but if you have
+> a suggestion or some precedence that you're aware of that would be useful.
+>
+> The actual naming convention of the IP cores themselves, yeah. I will
+> dig it up for you on Monday.
 
-I ended up doing the following, which I would have sworn I had tried
-before:
+I meant what if corepwm is enhanced, and how to detect that?
 
-allOf:
-  - if:
-      required:
-        - poc-supply
-    then:
-      patternProperties:
-        '^port[0-3]-poc-supply$': false
+SiFive uses an integer version number, even for hard cores[1].
+OpenCores uses an "-rtlsvnN" suffix (isn't svn dead? ;-)
+No idea what e.g. LiteX and Microwatt are planning.
 
-additionalProperties: false
+[1] Documentation/devicetree/bindings/sifive/sifive-blocks-ip-versioning.txt
 
-It seems to work, so I'll use it in v2.
 
--- 
-Regards,
+Gr{oetje,eeting}s,
 
-Laurent Pinchart
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
