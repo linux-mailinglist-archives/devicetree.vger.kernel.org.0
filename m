@@ -2,150 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F6F1478C0F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 14:15:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AE7C478C32
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 14:24:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236573AbhLQNPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 08:15:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53450 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233996AbhLQNPN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 08:15:13 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74854C061574;
-        Fri, 17 Dec 2021 05:15:13 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id o20so7612124eds.10;
-        Fri, 17 Dec 2021 05:15:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Na3iE0j4HNoWRi+U++Qkwp+ou8+ZuFrwaRIy0WfQ2hA=;
-        b=N1jr9myxISWFLN1mOI/vHIm7ZWB08fTKGVaFpYwQ27LZJHOjLxTnHX+mLbvy56Ha3e
-         +BVHSX0+Yx6xtn1m2T1ICDsnOmPq3bbHQOdrd/l/fQ9ymJcU9DHC1Q3Wd4eQwRs1irAb
-         w4QUWGBiNrBEq0UHs2n+58YHaxjSOU9CzA8xUunvBR7P+eMZVAiLVlhDonXwWiiSkod9
-         FWKCaEFXjoQPgOD4IowjyWGxZ90LuM17iceNFjjXlBPjORhF7Q4doIEUi66Yz/QyKxeW
-         R1Bl5iIjHMIx/qhhCLl9eowquoy8Mfj5HAakVqzMNmKZnjwr5ws+V7SWS0vIvxV6jZKb
-         YiRg==
+        id S236699AbhLQNYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 08:24:23 -0500
+Received: from mail-ua1-f46.google.com ([209.85.222.46]:42996 "EHLO
+        mail-ua1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236677AbhLQNYU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 08:24:20 -0500
+Received: by mail-ua1-f46.google.com with SMTP id t13so4242479uad.9;
+        Fri, 17 Dec 2021 05:24:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Na3iE0j4HNoWRi+U++Qkwp+ou8+ZuFrwaRIy0WfQ2hA=;
-        b=BAXPUBKS/PojNyN+fjFM1IrtQPsjarsQCmn6fqZ7rkY/9v4ddDlYVMOVlqYwtVPL09
-         p8+HCG6GOJy1NV4hPcCWnbqHWREilpBNIV/IlmYb/jZh9L/Mgty6NpFIGcJqOGVWfoJY
-         cvTegmoUDwSRLfF/TujgSx7PH5bTPr0TPPkwyM4+iQldbG+JD1Q5d4JF1J/Sdh3wdmCs
-         kzXD7Nxd+BX/i1tsop3FnltIohq0zhgeuTSx8ygvOJ4qA8/HH/INKWb4wySNwt5Zcw7A
-         DsUevkx6ioaGkkPkdbVquRCWxcQLa5nt0WoNN8HVy04BtB6bQA6p8tQJx5Rxze662vFe
-         qXyA==
-X-Gm-Message-State: AOAM533V4Btl207gAffRtNum3I4vy0np6VsrUHzMnGAXjGVydUYGFG5z
-        qtyax/G5FBXHXwPbkWNkItFapaHOdalErHPgI0U=
-X-Google-Smtp-Source: ABdhPJx2oXs11DBrV0D1boS6MZsPcSRGc/jvpGyJdpjBOAPI0LrBX/9/U5OOGPw9HCXw3XqnpD70MU3f84YkxWLJuzg=
-X-Received: by 2002:a17:907:2d12:: with SMTP id gs18mr2529014ejc.198.1639746911717;
- Fri, 17 Dec 2021 05:15:11 -0800 (PST)
+        bh=UfQoARdnbkZAiC3vtgUpOeQLmZLNRjjpwLc9s5ZyHps=;
+        b=xYfAY7J7J9QffAykFLTch2fOSSEGskXuntYtMKlCX8maAZfgRC7qaeYbEYXEhHxAm9
+         hCprSbG7+WrIa9+7lPKf2Gnwb9ioX+R+RgibIbKM6PTk7hk7TRdYnQxFfz3Uvh2fnE43
+         5ilri1hg6O+NGD3LZ8i57+iYD9+vuULAmaDkvG/pbtchDhnnqYk1RCbUErtJ4g02beJy
+         sp8C7y21ZrvyE8OZIEfB7so4is2cjz7xSFk+9nrrb4lz0DmcaKUxl2uHmi4PuAI7Pxr/
+         NBCURrxkQyH90X6VZOJjiVOG8PMzyIp3PlqIt1SOL30ZCNF2eS0j3xxbqki04ANOps2S
+         773Q==
+X-Gm-Message-State: AOAM53375W3GmNivNzBMFfaktc7PL/pTXxza/phvxW5ZI9KeTC9Zl384
+        tUf4+AIs3aie7begwtfvMGNlEkC2jYYyOg==
+X-Google-Smtp-Source: ABdhPJwf9tK4F5rXipclTN8u7WMGEQYWyCzr93mNHr/EESAQDeztbJetl2fXnXAfihpEYTm5+KvDBw==
+X-Received: by 2002:ab0:449:: with SMTP id 67mr998976uav.46.1639747459373;
+        Fri, 17 Dec 2021 05:24:19 -0800 (PST)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
+        by smtp.gmail.com with ESMTPSA id q9sm1804818vkn.44.2021.12.17.05.24.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Dec 2021 05:24:19 -0800 (PST)
+Received: by mail-ua1-f53.google.com with SMTP id p37so4282078uae.8;
+        Fri, 17 Dec 2021 05:24:18 -0800 (PST)
+X-Received: by 2002:a67:c106:: with SMTP id d6mr960485vsj.77.1639747458226;
+ Fri, 17 Dec 2021 05:24:18 -0800 (PST)
 MIME-Version: 1.0
-References: <20211106183802.893285-1-aford173@gmail.com> <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
- <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com>
- <8db00a4b6faa99c940d9bc86e17161eb0db5efe3.camel@ndufresne.ca>
- <CAJ+vNU28UJffFv9jQ2KryJMudqYxvCaoVOVcU5dPqRA209iN6A@mail.gmail.com>
- <d91532c2c0772f9aa708ead36b2a97203727a7ea.camel@ndufresne.ca>
- <CAJ+vNU3H-V+bPoZ3qKead45h=W7AhQK6Lhjrx5ssdF4c_qfe=A@mail.gmail.com>
- <CAHCN7x+0LwwU_rEST+TZxGquswGKL19gnTy9WLofsXtGAtWqdw@mail.gmail.com>
- <7f94eaacfddb8c5434c17f1e069ea87a17657ce9.camel@ndufresne.ca>
- <CAHCN7xKRzxMBmPbDobWTuvNNSpTXk5XENvfBnfkhRY3eZKhn6w@mail.gmail.com>
- <CAHCN7xJFLNi_g+HX8PCy1Rkgf0jnWpO5QGYVz8nH19xrJkwHrA@mail.gmail.com>
- <CAJ+vNU3zFd=6k_Emc5aafxKkGwCPp4crgOFezQ-E_MbWsn1_EA@mail.gmail.com>
- <fed6c2fd7cf4971062c417ce41ed1e3812b900e0.camel@ndufresne.ca>
- <CAHCN7xK+wROHaqDcsY-3WYFQ82qX17L-LHNL3siSWnWvwFShzQ@mail.gmail.com>
- <CAAEAJfC1xXvemaFP+vTFVJ3S-SpYtrxyZgDamSOgLC1F3ua5xw@mail.gmail.com>
- <CAHCN7x+UMMP6RXsNm0=OC=UTQzh=RKqQo6B7FD5e4eoJAEfmpg@mail.gmail.com>
- <CAJ+vNU1epi9SwPMHkuDmKcb68RLemYF=bsp7AVnzz06zKc2efw@mail.gmail.com>
- <CAAEAJfCpjk5nWWkJYjjDT-YEpJi4pTZqZbzp_if9OGC0HKspzw@mail.gmail.com>
- <CAJ+vNU2we5mGXgYsR6CfimvFXZsc0zktR3fDa-h6RRa02jTT0g@mail.gmail.com>
- <CAHCN7xJrM9uZUnmx65uTxWEo6HAkjozd3kD3UoEv-pYd5DV4QA@mail.gmail.com> <CAAEAJfBXU-AiKKhkhXzgUSR4p1yefysNuHFycBz3F-GzNewS6w@mail.gmail.com>
-In-Reply-To: <CAAEAJfBXU-AiKKhkhXzgUSR4p1yefysNuHFycBz3F-GzNewS6w@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Fri, 17 Dec 2021 07:15:00 -0600
-Message-ID: <CAHCN7xL4y67V6AW5MV=8iudvvGVBWs2LoUhu_2CUJf6bSycgFA@mail.gmail.com>
-Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
-To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     Tim Harvey <tharvey@gateworks.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        linux-media <linux-media@vger.kernel.org>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        cstevens@beaconembedded.com,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+References: <20211217093325.30612-1-conor.dooley@microchip.com> <20211217093325.30612-3-conor.dooley@microchip.com>
+In-Reply-To: <20211217093325.30612-3-conor.dooley@microchip.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 17 Dec 2021 14:24:07 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXBm6PMnBTQDZY=3XkGBXsr4wXy8m+WbgHjA8SpctbVCA@mail.gmail.com>
+Message-ID: <CAMuHMdXBm6PMnBTQDZY=3XkGBXsr4wXy8m+WbgHjA8SpctbVCA@mail.gmail.com>
+Subject: Re: [PATCH v2 02/17] dt-bindings: soc/microchip: update syscontroller compatibles
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+        linux-rtc@vger.kernel.org, linux-spi <linux-spi@vger.kernel.org>,
+        USB list <linux-usb@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bin Meng <bin.meng@windriver.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lewis Hanly <lewis.hanly@microchip.com>,
+        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
+        Atish Patra <atish.patra@wdc.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 10:49 PM Ezequiel Garcia
-<ezequiel@vanguardiasur.com.ar> wrote:
+On Fri, Dec 17, 2021 at 10:32 AM <conor.dooley@microchip.com> wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 >
-> Hi Adam,
+> The Polarfire SoC is currently using two different compatible string
+> prefixes. Fix this by changing "polarfire-soc-*" strings to "mpfs-*" in
+> its system controller in order to match the compatible string used in
+> the soc binding and device tree.
 >
-> >
-> > I will post a V2 last today with the Mini's post-processing removed.
-> > Someone, I apologize that I forget who, mentioned it was fused out of
-> > the Mini, so the testing I've been doing was with that removed and I
-> > removed the H1 encoder since the Mini doesn't support JPEG encoding.
-> >
-> [...]
->
-> Resurrecting this thread here. IMX8MMRM Rev. 0, 02/2019 mentions
-> post-processor features for G1 and G2.
->
-> Have you checked the fuse and synth registers to see if they throw
-> any useful information about the hardware? For instance,
-> comparing PP fuse register (SWREG99) and
-> Synthesis configuration register post-processor (SWREG100)
-> in both 8MQ and 8MM could be useful.
->
-> As I mentioned on my previous mail, even if G1 PP is disabled
-> on the Mini, I would imagine the G2 can do linear NV12 (aka raster-scan)
-> which in our hantro driver jargon is a  "post-processed" format :-)
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 
-You're likely right.  I was going on memory from an e-mail from
-Nicloas Defresne who wrote:
+Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
-"I will check the patchset, but you need in the mini-variant to disable the G1
-post processor, because this block was fused out. We didn't make it optional
-from the start as according to the V1 of the TRM it was there, but that error
-was corrected in V3."
+Gr{oetje,eeting}s,
 
-In my head I assumed the G2 was affected as well, but when I double
-checked his email, and based on the above statement, the G2
-post-processing is probably there, so I'll run some tests with the G2
-post-processing enabled.  I'll also double check those registers on
-both to confirm what they read. I am not sure when I'll have time
-because I leave for London next week, and I won't return until early
-January, but I'll do what I can.
+                        Geert
 
-adam
->
-> Thanks,
-> Ezequiel
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
