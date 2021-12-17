@@ -2,99 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5E62478B9F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 13:45:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDDCF478BA7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 13:47:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230114AbhLQMpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 07:45:53 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:44766 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbhLQMpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 07:45:53 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B91E762160;
-        Fri, 17 Dec 2021 12:45:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F23DC36AE1;
-        Fri, 17 Dec 2021 12:45:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639745152;
-        bh=l+SCwxc+wY2dm/Ieek4EKeWRjkBv6W7lUhT0BytkOFY=;
-        h=From:To:Cc:Subject:Date:From;
-        b=IZclTaJhFvX6WWdIGYNjuhJK/EFDAYpToJk0lEYEVtbzL2EP3vJ5brG7BnM4dFdUG
-         t4o99TmUzZiGw0RZ9kWD2a8IBcWyAdXdw1K9I7ZjD8gs/cAqsBgCKTuJphFrj2575g
-         MDpVsT0TR2WTpODVxh+RpWiWjBXfgAcSB/7S++6Oou6fLYTZmprGWFYrnq3D2hq9fP
-         293/BdCkH4LS9PMIlpBbQH02p65fOtcC4JLjhX4imQZdqwAN6Cf05j++SfUWPjdEBw
-         hyFFbtuQnMTfPDmUko2BF7UmcbO2i6puJ4qQgXqfx0LN2oTpuHsU1q0Z/ekPOMBqHz
-         LBWL83wI1U+fg==
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Felipe Balbi <felipe.balbi@microsoft.com>
-Subject: [PATCH] arm64: boot: dts: sm8150: simplify references to pwrkey and resin
-Date:   Fri, 17 Dec 2021 14:45:46 +0200
-Message-Id: <20211217124546.1192281-1-balbi@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        id S236407AbhLQMrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 07:47:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47196 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236381AbhLQMrf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 07:47:35 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B0ADC06173E
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 04:47:35 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id v11so3786735wrw.10
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 04:47:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7LZ1nA4lOfecYVsrLmuy8ux7dkjFcWb7gPP3Ts+l07A=;
+        b=PuF6u5NZOxCYr++SNE2eIMZuuw+/7PM+J1oBlyRcJJb/NXnB6qUPH16jOlEG28jDo+
+         +0Cp3yo6dL3124MDrSS0JktdEwGIFYryfTgZhwnD5NLvouYUddqVGCIiN5eHnTr36bpx
+         h95GTmrA9VaU9Vj3KcWXFk9RiyVVvKa10XAlkzn7SFxluPnmH8YsfO1QcyY75ipgp+3r
+         ECNUmESCyaD1HkzuW7X7gK3s+ZAESrVqKFBMfsiIM6K0x8Q8xroOGwsO+N0xD0Aqq7GP
+         s44LbOWpPAGoHuirahK6lsMmwhN5THiPMN13DNUzHgqkCk2RZIHoEGjAQetPJGS4GsYG
+         U8Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7LZ1nA4lOfecYVsrLmuy8ux7dkjFcWb7gPP3Ts+l07A=;
+        b=mvFjm8kdil/+z0QnCMiRuGmAzCn/MsdcN4KhuvCl6x8eL0vzLTYaNdMMdqkYPyVJDe
+         6vSoTroavD65UGVzClRUpzhU0lbBzuizJBWdukxCdrZONRroYJZF/6tz+TCw88ExREZp
+         ErJkUuo1E5KRyl7s/eCXIuTDUchN/fMzr3SpAvNHLu++S4f+Hw9Uc8o3x5wVvvq/4AFs
+         0W1ssKKHS7o7+a42As0zmgBlAt1YrPxL7Jz9xKmjqy/d1hbYOSgAadx30/LnLXR43kNa
+         BTt6BibPC+Snkodggz4XU1c8wkKJcQi83uLmNVjvisJTZ0lkFVsxDbVgDX4QDt5NNg6h
+         ughw==
+X-Gm-Message-State: AOAM530kIpnF8aFJ+3bXcJGx1JlIiAI+wD1mWXIYo9U5AQtlWuw55ipk
+        h4eOIPauhJlLMv+gByX3oB4iK6+4gpEUTaB27LwZ9g==
+X-Google-Smtp-Source: ABdhPJzjYjt70Q7N1FbMgpg3l8n8x5MHMcym81T3FbJlsD8EVPhmffm2PND5L2lTJE72NXW2s1+mO7ue8lgFNEkcaSk=
+X-Received: by 2002:adf:eb0f:: with SMTP id s15mr2448344wrn.690.1639745253808;
+ Fri, 17 Dec 2021 04:47:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1639744106.git.geert@linux-m68k.org> <3af15b09a5f05d49e2d99386f189cdb13245d40a.1639744106.git.geert@linux-m68k.org>
+In-Reply-To: <3af15b09a5f05d49e2d99386f189cdb13245d40a.1639744106.git.geert@linux-m68k.org>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Fri, 17 Dec 2021 18:17:22 +0530
+Message-ID: <CAAhSdy2xTW0FkwvS2dExOb7q1dVruFfTP_Vh_jWju+yi7thCeA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: interrupt-controller: sifive,plic:
+ Fix number of interrupts
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Felipe Balbi <felipe.balbi@microsoft.com>
+On Fri, Dec 17, 2021 at 6:04 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> The number of interrupts lacks an upper bound, thus assuming one,
+> causing properly grouped "interrupts-extended" properties to be flagged
+> as an error by "make dtbs_check".
+>
+> Fix this by adding the missing "maxItems".  As the architectural maximum
+> is 15872 interrupts, using that as the limit would be unpractical.
+> Hence limit it to 9 interrupts (one interrupt for a system management
+> core, and two interrupts per core for other cores).  This should be
+> sufficient for now, and the limit can always be increased when the need
+> arises.
 
-Since commit d0a6ce59ea4e ("arm64: dts: qcom: sm8150: Add support for
-SONY Xperia 1 / 5 (Kumano platform)"), we can directly refer to pwrkey
-and resin by their new labels, respectively pon_pwrkey and pon_resin.
+I disagree with having "maxItems" as 9.
 
-Simplify microsof surface duo DTS by utilizing the new labels.
+We are in the process of increasing max CPUs supported by
+QEMU virt machine to 512. There are already high CPU count
+systems already announced (example SiFive P650 which will
+have 16 cores). The "maxItems = 9" set by this patch will soon
+be out-of-date.
 
-Signed-off-by: Felipe Balbi <felipe.balbi@microsoft.com>
----
- .../dts/qcom/sm8150-microsoft-surface-duo.dts | 20 ++++++++-----------
- 1 file changed, 8 insertions(+), 12 deletions(-)
+The "maxItems" should represent PLIC spec constraints so
+please don't add any synthetic value here.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-index 5901c28e6696..a73317e1a824 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-@@ -430,18 +430,8 @@ &i2c19 {
- 	/* MAX34417 @ 0x1e */
- };
- 
--&pon {
--	pwrkey {
--		status = "okay";
--	};
--
--	resin {
--		compatible = "qcom,pm8941-resin";
--		interrupts = <0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
--		debounce = <15625>;
--		bias-pull-up;
--		linux,code = <KEY_VOLUMEDOWN>;
--	};
-+&pon_pwrkey {
-+	status = "okay";
- };
- 
- &qupv3_id_0 {
-@@ -476,6 +466,12 @@ &remoteproc_slpi {
- 	firmware-name = "qcom/sm8150/microsoft/slpi.mdt";
- };
- 
-+&pon_resin {
-+	status = "okay";
-+
-+	linux,code = <KEY_VOLUMEDOWN>;
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <126 4>;
- 
--- 
-2.34.1
+Regards,
+Anup
 
+>
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+> v3:
+>   - Add Acked-by,
+>
+> v2:
+>   - Split in two patches,
+>   - Improve patch description and document limit rationale.
+> ---
+>  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> index 28b6b17fe4b26778..0c6687511457413e 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> @@ -62,6 +62,7 @@ properties:
+>
+>    interrupts-extended:
+>      minItems: 1
+> +    maxItems: 9
+>      description:
+>        Specifies which contexts are connected to the PLIC, with "-1" specifying
+>        that a context is not present. Each node pointed to should be a
+> --
+> 2.25.1
+>
