@@ -2,109 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9E9C478F39
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:10:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25FC3478F53
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:17:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233787AbhLQPKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 10:10:49 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:57686
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237409AbhLQPKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Dec 2021 10:10:49 -0500
-Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7E7933FFD2
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 15:10:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639753848;
-        bh=LuufmSFwO+Uko0vN+wcG6SqqtDV+Z68NapfaG/AboZQ=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=aZ3o/p5UrZxHBJem2hX7kS5Z5f4zvrKb4Xa561WPwj8XKOUm2xZ0nS7eh6fncnKQc
-         L9fHo8mUmWUnJOWgKcwmwjY2YqRfXkzB4p6L4wnQIctadWs7pmaBBD46T58lyMRzDK
-         Ax1B2Ku6Wygf0os/yNf4STW5xIrzTzbCVUlTCE80Q3PlQMvDsFVw7FHBQ5sw6gUtcW
-         8i4jkLrfPT3/HGe/tphkkBOZq8A3HevktvNA0Z7yB7mbs5qgeOi3o63fAyd5omdSA5
-         9WQL3MOtwrfRmcouXtNIqlLBUEapzm5ORgs4o8l2ahct5fVvikMOIg8Hw3clRcaT3Q
-         FqYwnUPeTTp1Q==
-Received: by mail-lf1-f70.google.com with SMTP id m1-20020ac24281000000b004162863a2fcso1016195lfh.14
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 07:10:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=LuufmSFwO+Uko0vN+wcG6SqqtDV+Z68NapfaG/AboZQ=;
-        b=l69uGdot982KOt6kSRhInRakxYsCzqjSETExHWuzm6+czmOt1leT/Qqx0OnYzYxoY0
-         dcQhtnXAWrXCtRKXURmcnDylfYS8dGI6SalZLRXsLWCLWlRZ3+kzmNUJ3/AIMtCrdB32
-         M+03QdwQozktcvMvWYzjoZeraek8DFvq0LcvpV9P300YLSKVl6b3QOYPTQvdutljVqvA
-         c6hesXa2J0YzZP3xGBTa7AN0VGGsthAxi5NE4UlrPrBYc3dGpNKuoj2w9fDs1pdEXxHx
-         z2RSusYq3+Wkqqn/OamZyUD7Z/rxRk+CgY1gySV0kgGgH+ijPzWa3x674oHWslBuSS9F
-         BAlA==
-X-Gm-Message-State: AOAM530fLK+E3RwpWcgToVoRqsda7d4D9WhI8XQOLtF34iHH9X0aiY+1
-        wxtuMT9R/KhsL9Mc+Em5VCQZeTBVSPwyXKL/BJnnLe8gHh0MSIlKc+xULqIR0dZcQT6wreczjEW
-        0b6JlFb4hYyz/BzSVAOZpyc5U6NUhCVnZR5LqQQM=
-X-Received: by 2002:a2e:b177:: with SMTP id a23mr3073318ljm.168.1639753846497;
-        Fri, 17 Dec 2021 07:10:46 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJygjTECmvBQT9ksaNKKPpzj9j1t+XuT+kSUjjKHB4hi17gD4qo0YEtddUAvOESRhbhyAif77A==
-X-Received: by 2002:a2e:b177:: with SMTP id a23mr3073227ljm.168.1639753844837;
-        Fri, 17 Dec 2021 07:10:44 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id h8sm617167lfu.250.2021.12.17.07.10.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Dec 2021 07:10:44 -0800 (PST)
-Message-ID: <b026869a-7f93-7683-a8a2-5abd0e0d71db@canonical.com>
-Date:   Fri, 17 Dec 2021 16:10:43 +0100
+        id S238133AbhLQPRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 10:17:09 -0500
+Received: from 113.196.136.146.ll.static.sparqnet.net ([113.196.136.146]:51504
+        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235100AbhLQPQz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 10:16:55 -0500
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.112
+        by mg02.sunplus.com with MailGates ESMTP Server V5.0(9396:0:AUTH_RELAY)
+        (envelope-from <tony.huang@sunplus.com>); Fri, 17 Dec 2021 23:16:59 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.26; Fri, 17 Dec 2021 23:16:53 +0800
+Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
+ sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
+ 15.00.1497.026; Fri, 17 Dec 2021 23:16:53 +0800
+From:   =?utf-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Tony Huang <tonyhuang.sunplus@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        gregkh <gregkh@linuxfoundation.org>,
+        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Subject: RE: [PATCH v3 2/2] misc: Add iop driver for Sunplus SP7021
+Thread-Topic: [PATCH v3 2/2] misc: Add iop driver for Sunplus SP7021
+Thread-Index: AQHX7Nr0VlQujKq+xkKIOnlLCZbqnqwpZLYAgA1h0BA=
+Date:   Fri, 17 Dec 2021 15:16:53 +0000
+Message-ID: <5c01390c485a44b6913dcb42e3677ed1@sphcmbx02.sunplus.com.tw>
+References: <cover.1639039163.git.tonyhuang.sunplus@gmail.com>
+ <bc15d5e8d7a5ec96582799fe513de4ace6fd4b8b.1639039163.git.tonyhuang.sunplus@gmail.com>
+ <CAK8P3a2UGr6ZbHk6G=wh5XG_EGdJxGf6SfyN1sTb4aaUgiK8Lw@mail.gmail.com>
+In-Reply-To: <CAK8P3a2UGr6ZbHk6G=wh5XG_EGdJxGf6SfyN1sTb4aaUgiK8Lw@mail.gmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.54]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v3 03/11] riscv: dts: microchip: mpfs: Drop empty chosen
- node
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        Lewis Hanly <lewis.hanly@microchip.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-References: <cover.1639744905.git.geert@linux-m68k.org>
- <53c36082ffa612ebe7ec53ebcc0dc29f11a083a6.1639744905.git.geert@linux-m68k.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <53c36082ffa612ebe7ec53ebcc0dc29f11a083a6.1639744905.git.geert@linux-m68k.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/12/2021 13:49, Geert Uytterhoeven wrote:
-> It does not make sense to have an (empty) chosen node in an SoC-specific
-> .dtsi, as chosen is meant for system-specific configuration.
-> It is already provided in microchip-mpfs-icicle-kit.dts anyway.
-> 
-> Fixes: 0fa6107eca4186ad ("RISC-V: Initial DTS for Microchip ICICLE board")
-> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Tested-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> v3:
->   - Add Tested-by,
-> 
-> v2:
->   - Add Reviewed-by.
-> ---
->  arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 3 ---
->  1 file changed, 3 deletions(-)
-> 
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-
-
-Best regards,
-Krzysztof
+RGVhciBBcm5kOg0KDQo+IE9uIFRodSwgRGVjIDksIDIwMjEgYXQgOTo1OCBBTSBUb255IEh1YW5n
+IDx0b255aHVhbmcuc3VucGx1c0BnbWFpbC5jb20+DQo+IHdyb3RlOg0KPiA+DQo+ID4gSU9QIChJ
+TyBQcm9jZXNzb3IpIGVtYmVkZGVkIGluc2lkZSBTUDcwMjEgd2hpY2ggaXMgdXNlZCBhcyBQcm9j
+ZXNzb3INCj4gPiBmb3IgSS9PIGNvbnRyb2wsIFJUQyB3YWtlLXVwIGFuZCBjb29wZXJhdGlvbiB3
+aXRoIENQVSAmIFBNQyBpbiBwb3dlcg0KPiA+IG1hbmFnZW1lbnQgcHVycG9zZS4NCj4gPiBUaGUg
+SU9QIGNvcmUgaXMgRFE4MDUxLCBzbyBhbHNvIG5hbWVkIElPUDgwNTEsIGl0IHN1cHBvcnRzIGRl
+ZGljYXRlZA0KPiA+IEpUQUcgZGVidWcgcGlucyB3aGljaCBzaGFyZSB3aXRoIFNQNzAyMS4NCj4g
+PiBJbiBzdGFuZGJ5IG1vZGUgb3BlcmF0aW9uLCB0aGUgcG93ZXIgc3BlYyByZWFjaCA0MDB1QS4N
+Cj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFRvbnkgSHVhbmcgPHRvbnlodWFuZy5zdW5wbHVzQGdt
+YWlsLmNvbT4NCj4gDQo+IFRoYW5rcyBmb3IgdGhlIGltcHJvdmVtZW50cywgdGhpcyBhZ2FpbiBs
+b29rcyBiZXR0ZXIgdGhhbiB0aGUgcHJldmlvdXMgdmVyc2lvbi4NCj4gSSBzdGlsbCBoYXZlIHNv
+bWUgbWlub3IgY29tbWVudHMsIGFuZCB0aGVyZSBhcmUgYSBjb3VwbGUgb2YgZGV0YWlscyBJIGhh
+dmUNCj4gY29tbWVudGVkIG9uIGJlZm9yZSB0aGF0IHdvdWxkIG5lZWQgdG8gYmUgYWRkcmVzc2Vk
+LCBidXQgbGV0J3MgZm9jdXMgb24gdGhlDQo+IG9uZSBtYWluIGlzc3VlIGZvciBub3c6DQo+IA0K
+PiBUaGUgZHJpdmVyIHN0aWxsIGRvZXNuJ3QgYWN0dWFsbHkgL2RvLyBhbnl0aGluZzogeW91IGxv
+YWQgdGhlIGZpcm13YXJlIHdoZW4gdGhlDQo+IGRyaXZlciBpcyBsb2FkZWQsIGFuZCB5b3Ugc2h1
+dCBpdCBkb3duIHdoZW4gdGhlIGRyaXZlciBpcyByZW1vdmVkLCBidXQNCj4gb3RoZXJ3aXNlIHRo
+ZXJlIGlzIG5vIHdheSB0byBpbnRlcmFjdCB3aXRoIHRoZSBpb3AuIFlvdSBoYWQgdGhlIG1pc2Nk
+ZXZpY2UNCj4gZWFybGllciwgYW5kIHlvdSBzdGlsbCByZWdpc3RlciB0aGF0LCBidXQgdGhlcmUg
+YXJlIG5vIGZpbGVfb3BlcmF0aW9ucyBhc3NvY2lhdGVkDQo+IHdpdGggaXQsIHNvIGl0IHN0aWxs
+IGRvZXNuJ3QgaGF2ZSBhbnkgZWZmZWN0Lg0KPiANCj4gSW4gdGhlIG9yaWdpbmFsIHZlcnNpb24g
+eW91IGhhZCBhIGNvdXBsZSBvZiB1c2VyLXNpZGUgaW50ZXJmYWNlcywgZm9yIHdoaWNoIEdyZWcN
+Cj4gYW5kIEkgY29tbWVudGVkIHRoYXQgdGhleSB3ZXJlIG5vdCB1c2luZyB0aGUgY29ycmVjdCBh
+YnN0cmFjdGlvbnMsIGFuZCB5b3UNCj4gc3RpbGwgbGlzdCB0aGVtIGluIHRoZSBjaGFuZ2Vsb2cg
+dGV4dCBhcyAiSS9PIGNvbnRyb2wsIFJUQyB3YWtlLXVwIGFuZA0KPiBjb29wZXJhdGlvbiB3aXRo
+IENQVSAmIFBNQyBpbiBwb3dlciBtYW5hZ2VtZW50Ii4NCj4gDQo+IElmIHlvdSB3YW50IHRvIG1h
+a2UgYW55IHByb2dyZXNzIHdpdGggYWRkaW5nIHRoZSBkcml2ZXIsIEknZCBzYXkgeW91IHNob3Vs
+ZA0KPiBpbXBsZW1lbnQgYXQgbGVhc3QgdHdvIG9mIHRob3NlIGhpZ2gtbGV2ZWwgaW50ZXJmYWNl
+cyB0aGF0IGludGVyYWN0IHdpdGggdGhlDQo+IHJlc3BlY3RpdmUga2VybmVsIHN1YnN5c3RlbXMg
+aW4gb3JkZXIgdG8gc2hvdyB0aGF0IHRoZSBhYnN0cmFjdGlvbiB3b3Jrcy4NCj4gDQoNClE6Indp
+dGggcmVzcGVjdGl2ZSBrZXJuZWwgc3Vic3lzdGVtcyBpbiBvcmRlciB0byBzaG93IHRoYXQgdGhl
+IGFic3RyYWN0aW9uIHdvcmtzLiINCk1heSBJIGFzayB5b3UgYWJvdXQgcmVwZWN0aXZlIGtlcm5l
+bCBzdWJzeXN0ZW0uDQpJZiBJIHVzZSB0aGUgZmlsZV9vcGVyYXRpb24gbWV0aG9kDQpQcm92aWRl
+IHVzZXIgY2FuIHJlYWQgYW5kIHdyaXRlIElPUCg4MDUxKSdzIHJlZ2lzdGVyLg0KSXMgdGhpcyBh
+IHJlcGVjdGl2ZSBrZXJuZWwgc3Vic3lzdGVtPw0KaWYgbm90DQpUaGVyZSBhcmUgb3RoZXIgZHJp
+dmVyIGNvZGUgY2FuIGdpdmUgbWUgcmVmZXJlbmNlDQoNCg==
