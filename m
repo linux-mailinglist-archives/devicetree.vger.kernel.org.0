@@ -2,148 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19B3A478CA8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 14:48:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05635478D42
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 15:18:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231718AbhLQNsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 08:48:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32860 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231431AbhLQNsU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 08:48:20 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22AA3C061574;
-        Fri, 17 Dec 2021 05:48:20 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id t5so8244023edd.0;
-        Fri, 17 Dec 2021 05:48:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:cc
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=/rICO5mcbr2uBdaq/pPN0Bzn1efilMAT4ffUPiNCdb4=;
-        b=niK6deEqJGX3pg286cNmQ9HHOyxiyV+34zA5fBnxdTrZxG80dSDl25Yt/kerta3of9
-         Plhif4lOuCWSd0kUTiIIc1N2mNfH7/inEDUIWiGiuGdofLDbfYIeb6hzy3LMA0/40muC
-         DcZLWMllWo+71GIhfH7dwvV6Nd6mOBy+UfB+rlcRKEcd0JZHdV3EX1C3N7OviZ1t3DyM
-         ykFt8SG8k1/NN/4CxCrf4YsszyI/aIroqGsDbFO07jXlK9Xg2lY7nPYTovXW3eSPvJrv
-         jNjibCQCkphKZs0DQNEpKFYD1cvFm7QaUVIq43R/vSevE4/3F+Q0g3adnHoasalM9NVA
-         Ht7w==
+        id S237075AbhLQOSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 09:18:08 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:46896 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237072AbhLQOSI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 09:18:08 -0500
+Received: by mail-ot1-f42.google.com with SMTP id x3-20020a05683000c300b0057a5318c517so2978217oto.13;
+        Fri, 17 Dec 2021 06:18:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/rICO5mcbr2uBdaq/pPN0Bzn1efilMAT4ffUPiNCdb4=;
-        b=KYDZ3kUcJ/bHLiJ4qHEJAodq7xpOe/deoT/lsi9s1MamxbRDHVFn5x0azbzDmrbbs+
-         C9iRd5OCl0RM+BdLmJP7YR7jR1pEZEI09jpz7gohiQb1/sE5Fr0uhpASZGM23j+jYtBK
-         f2LgW8xqgSxiUlSQoQYFYqJN9IE+77Za+7ckhUNvQaxj5aTWrpNOtmIwF5HTXUxPzyf5
-         n/wDlGymD0pmfsy3imNwQDFXfp32/oRe6ibtm4N882yEHEezSeSBZapcpL43eszs5KGZ
-         +cKe7PSMaqLhTYGMGJmqPaEuiyCeDZ4weHu62uFUfENexvJPscKlF0/k0h6IRHx8ohuD
-         tYPA==
-X-Gm-Message-State: AOAM530kyVcu42yUCkhD3ttK7p6t3II+RxKdEnVp5XqSa2PHlLshNE8t
-        GuEVlDJsCdMw2C+p+8nGS+Y=
-X-Google-Smtp-Source: ABdhPJz8kpeSeEqV+gbTHHylwxMzMKKnOuwGN+saTNc06iXRlh4VOWQuvIO2ZcaqE77jsn876PtusA==
-X-Received: by 2002:a17:907:9605:: with SMTP id gb5mr2676709ejc.685.1639748898753;
-        Fri, 17 Dec 2021 05:48:18 -0800 (PST)
-Received: from [192.168.0.182] ([188.24.42.157])
-        by smtp.gmail.com with ESMTPSA id c3sm1254624edr.33.2021.12.17.05.48.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Dec 2021 05:48:18 -0800 (PST)
-Message-ID: <365d71d5-6ba5-2012-e8ab-f790bc7173eb@gmail.com>
-Date:   Fri, 17 Dec 2021 15:48:18 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=xddMlbg1g/0LpYJfFuVuu5Xj6Q9p1GcnY1zOaY607O8=;
+        b=qFhQw58sN2jsdGeXm/9BGges74mggxpmKaWrZo2NsrFeZh3EWhS8lTbOPizPyz/P4N
+         4y1WisU6FjrjbMQ6JP458cR8JkBW9BFIh5h/KiKhqliTkZqb2M3RTprROLHkQkHH6G5V
+         WcwQsFFVFVpnYlleL39D8lmom8xNM8teyvqGmlORGDNsWA3hsMdg1KMQqZB/I1hy0Oxh
+         Ra1BdD5+1J6cndKbm6lAFI/XyGJU8en8ll4AioMLNgYbxtw3XvdivnreCm7xcdnvqBKV
+         wabBHNeCmD11p5ANq9gzG5bFfaILBBsLlcTZAMG9OgOh1JXJf7zAAgxP0kSW/J5NQ4tT
+         Uhvw==
+X-Gm-Message-State: AOAM532E1AzjRWcw/cR6vAoT5QXBvNm9QtXCU/GVbPn4W5OnqHcqz+gt
+        DUkimjPLL7RO2aT1ke1WjD/2UwYTwQ==
+X-Google-Smtp-Source: ABdhPJy2QHsjZm275n7ZX1psNGuJEUVKk/vqlEdt1Wxb7hy6fmTk+f/3jNqy4KS2yQ1re73Be8Zo+Q==
+X-Received: by 2002:a9d:137:: with SMTP id 52mr2261764otu.260.1639750687565;
+        Fri, 17 Dec 2021 06:18:07 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id x12sm1600451oom.44.2021.12.17.06.18.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Dec 2021 06:18:07 -0800 (PST)
+Received: (nullmailer pid 2808666 invoked by uid 1000);
+        Fri, 17 Dec 2021 14:18:06 -0000
+Date:   Fri, 17 Dec 2021 08:18:06 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Thomas Nizan <tnizan@witekio.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: media: i2c: max9286: Add support for
+ per-port supplies
+Message-ID: <YbycHk2r+63PT+kP@robh.at.kernel.org>
+References: <20211216220946.20771-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20211216220946.20771-2-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [PATCH v3 0/2] Add ADXL367 driver
-Content-Language: en-US
-Cc:     cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211217114548.1659721-1-cosmin.tanislav@analog.com>
-From:   Cosmin Tanislav <demonsingur@gmail.com>
-In-Reply-To: <20211217114548.1659721-1-cosmin.tanislav@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211216220946.20771-2-laurent.pinchart+renesas@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Dec 17, 2021 at 12:09:44AM +0200, Laurent Pinchart wrote:
+> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+> Power supplies for the ports can be controlled per port depending on the
+> hardware design. Support per-port supplies in the DT bindings, mutually
+> exclusive with the global supply.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  .../bindings/media/i2c/maxim,max9286.yaml     | 25 ++++++++++++++++++-
+>  1 file changed, 24 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> index 02f656e78700..33aa307e8ee5 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> @@ -39,7 +39,7 @@ properties:
+>      maxItems: 1
+>  
+>    poc-supply:
+> -    description: Regulator providing Power over Coax to the cameras
+> +    description: Regulator providing Power over Coax to all the ports
+>  
+>    enable-gpios:
+>      description: GPIO connected to the \#PWDN pin with inverted polarity
+> @@ -160,6 +160,10 @@ properties:
+>  
+>              additionalProperties: false
+>  
+> +patternProperties:
+> +  "^port[0-3]-poc-supply$":
+> +    description: Regulator providing Power over Coax for a particular port
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -167,6 +171,25 @@ required:
+>    - i2c-mux
+>    - gpio-controller
+>  
+> +allOf:
+> +  - if:
+> +      required:
+> +        - poc-supply
+> +    then:
+> +      allOf:
+> +        - not:
+> +            required:
+> +              - port0-poc-supply
+> +        - not:
+> +            required:
+> +              - port1-poc-supply
+> +        - not:
+> +            required:
+> +              - port2-poc-supply
+> +        - not:
+> +            required:
+> +              - port3-poc-supply
 
-V2 -> V3
-  * limit number of fifo entries read to multiple of set size to avoid
-    data unalignment
+I think you can invert the if and move patternProperties to the 'then' 
+and...
 
-On 12/17/21 13:45, Cosmin Tanislav wrote:
-> The ADXL367 is an ultralow power, 3-axis MEMS accelerometer.
-> 
-> The ADXL367 does not alias input signals to achieve ultralow power
-> consumption, it samples the full bandwidth of the sensor at all
-> data rates. Measurement ranges of +-2g, +-4g, and +-8g are available,
-> with a resolution of 0.25mg/LSB on the +-2 g range.
-> 
-> In addition to its ultralow power consumption, the ADXL367
-> has many features to enable true system level power reduction.
-> It includes a deep multimode output FIFO, a built-in micropower
-> temperature sensor, and an internal ADC for synchronous conversion
-> of an additional analog input.
-> 
-> V1 -> V2
->   * add support for vdd and vddio supplies
->   * lock fifo_watermark retrieval
->   * fix indentation of sysfs_emit for fifo_mode
->   * dt-bindings: add spi-max-frequency: true
->   * dt-bindings: remove cs-gpios property
->   * dt-bindings: remove status property
->   * dt-bindings: add support for vdd
-> 
-> V2 -> V3
->   * MAINTAINERS: use wildcard for adxl367
->   * dt-bindings: adxl367@addr -> accelerometer@addr
->   * put asm include after linux includes
->   * drop registers accessed implicitly
->   * fifo_full -> fifo_watermark
->   * print expected device id
->   * remove INDIO_BUFFER_HARDWARE
->   * inline ADXL367_EVENT macro
->   * inline ADXL367_14BIT_SCAN_INFO
->   * inline regulator enum
->   * remove of.h in spi driver
->   * cast const void * to const u8 * in spi read
->   * switch to trigger-less buffer
->   * increase reset time as advised by hardware team
->   * let iio framework validate available channel masks
->   * enable adc or temp channel automatically on single read
->   * wait for 100ms after enabling adc or temp for output
->     to settle on single read (waiting on hardware team input)
->   * enable adc or temp channel automatically on buffered read
->   * claim direct mode when setting range
->   * claim direct mode when setting odr
->   * claim direct mode when setting event config
->   * sort status masks in descending bit order
->   * hardcode indio_dev name
->   * add some comments regarding spi message layout
->   * use bulk_write for activity and inactivity threshold
->   * use bulk_write for inactivity time
->   * use bool as return type of fifo format finding function
->   * remove shift from channels scan type
-> 
-> Cosmin Tanislav (2):
->    dt-bindings: iio: accel: add ADXL367
->    iio: accel: add ADXL367 driver
-> 
->   .../bindings/iio/accel/adi,adxl367.yaml       |   79 +
->   MAINTAINERS                                   |    8 +
->   drivers/iio/accel/Kconfig                     |   27 +
->   drivers/iio/accel/Makefile                    |    3 +
->   drivers/iio/accel/adxl367.c                   | 1617 +++++++++++++++++
->   drivers/iio/accel/adxl367.h                   |   23 +
->   drivers/iio/accel/adxl367_i2c.c               |   89 +
->   drivers/iio/accel/adxl367_spi.c               |  163 ++
->   8 files changed, 2009 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adxl367.yaml
->   create mode 100644 drivers/iio/accel/adxl367.c
->   create mode 100644 drivers/iio/accel/adxl367.h
->   create mode 100644 drivers/iio/accel/adxl367_i2c.c
->   create mode 100644 drivers/iio/accel/adxl367_spi.c
-> 
+> +
+>  additionalProperties: false
+
+then use unevaluatedProperties here.
+
+Rob
