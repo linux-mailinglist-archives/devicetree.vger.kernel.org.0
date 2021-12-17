@@ -2,127 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24A3C479574
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 21:28:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56814479606
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 22:11:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240362AbhLQU2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 15:28:52 -0500
-Received: from foss.arm.com ([217.140.110.172]:34352 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235287AbhLQU2w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Dec 2021 15:28:52 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6B61A12FC;
-        Fri, 17 Dec 2021 12:28:51 -0800 (PST)
-Received: from [192.168.122.166] (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 07A963F5A1;
-        Fri, 17 Dec 2021 12:28:51 -0800 (PST)
-Message-ID: <a6067bf9-5d68-8112-cf42-4928548d8f94@arm.com>
-Date:   Fri, 17 Dec 2021 14:28:50 -0600
+        id S241012AbhLQVL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 16:11:56 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:44780 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236869AbhLQVLu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 16:11:50 -0500
+Received: by mail-ot1-f42.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso4383560otj.11;
+        Fri, 17 Dec 2021 13:11:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=I+t20QleD2PGL+WYrCPECqqzvnxEHkAMmI4IR3Gys78=;
+        b=n4F0q/fN/BnxE76FXz1u+83VzkWhaHhqqidqYQ8qfgTx3DOAPaXIKm3ugBx+ibJ07R
+         idZfLlwqC+f/kNLvfJapoNl4mjOS6TeSoBdfVOrTran7QiRkmBr8QTICRFR7pF/PxGcL
+         c94/kYdmigbSYk7kaZynD49NpxH+bTofrZ+rMNo0GKrNIUnv1apim3mtlNT+/2ngTgiQ
+         uzRWu6iO7CT2rLBZaJQfYm78WHuQ4ENMJ85plnNhi8YKbsTZMYkrOQWOWSqq8pvbCBF8
+         3b5IGGvqDD5QdXJzFsN6Km23DbYYkKuYRcSfG1AKBLatn3V5wopVeMpqOXWEtFmAinzZ
+         t2TA==
+X-Gm-Message-State: AOAM533GXxAYh3CveIu4JZP/ux8HchHwGTMle4SUCHAJLuUujbcVF2XQ
+        mt0S8bk+3Dqusj1NwKs6NQ==
+X-Google-Smtp-Source: ABdhPJy6x8vqiMtHo7/RF6BWxEthz80anojjDi5ZQsstpRC2m737c9/XC6s/Aovl9GVB8RW/FY5V8w==
+X-Received: by 2002:a9d:4c10:: with SMTP id l16mr3482087otf.198.1639775510015;
+        Fri, 17 Dec 2021 13:11:50 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id c3sm2004022oiw.8.2021.12.17.13.11.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Dec 2021 13:11:49 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: Fix msm8998 cache nodes
+Date:   Fri, 17 Dec 2021 15:11:36 -0600
+Message-Id: <20211217211136.3536443-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [PATCH 2/6] cacheinfo: Set cache 'id' based on DT data
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        James Morse <james.morse@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org,
-        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>
-References: <20211216233125.1130793-1-robh@kernel.org>
- <20211216233125.1130793-3-robh@kernel.org>
- <881f056d-d1ed-c6de-c09d-6e84d8b14530@arm.com>
- <CAL_JsqKKx5-ep5=FVA5OHM+t=T-9GTuf6Sf9P6ZDUs7RD9=c8g@mail.gmail.com>
- <20211217190345.kskfhnelqg3yx4j7@bogus>
- <CAL_JsqJSz7D_KO_ueQum51erBHotMkAt+qJfTTctkxSvySWq1w@mail.gmail.com>
-From:   Jeremy Linton <jeremy.linton@arm.com>
-In-Reply-To: <CAL_JsqJSz7D_KO_ueQum51erBHotMkAt+qJfTTctkxSvySWq1w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The msm8998 cache nodes have some issues. First, L1 caches are described
+within cpu nodes, not as separate nodes. The 'next-level-cache' property
+is of course in the correct location, otherwise the cache hierarchy
+walking would not work. Remove all the L1 cache nodes.
 
-On 12/17/21 13:26, Rob Herring wrote:
-> On Fri, Dec 17, 2021 at 1:03 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
->>
->> On Fri, Dec 17, 2021 at 12:14:22PM -0600, Rob Herring wrote:
->>> On Fri, Dec 17, 2021 at 10:57 AM Robin Murphy <robin.murphy@arm.com> wrote:
->>>>
->>>> Hi Rob,
->>>>
->>>> On 2021-12-16 23:31, Rob Herring wrote:
->>>>> Use the minimum CPU h/w id of the CPUs associated with the cache for the
->>>>> cache 'id'. This will provide a stable id value for a given system. As
->>
->> I am trying to follow the code. IIUC, the level one(I$ and D$) are skipped
->> in this logic and the private unified cache if any will get the cpu hwid as
->> the cache id which is all fine. But what happens if there are 2 levels of
->> unified private cache ? I am assuming we only care about shared caches for
->> MPAM and ignore private caches which sounds OK but I just wanted to confirm.
-> 
-> The cacheinfo 'id' is only unique to the level and type. It's the
-> type, level, and ID that gives a unique identifier:
-> 
->   * struct cacheinfo - represent a cache leaf node
->   * @id: This cache's id. It is unique among caches with the same (type, level).
-> 
-> Maybe ACPI's ID expects/allows globally unique cache IDs?
+Second, 'arm,arch-cache' is not a documented compatible string. "cache"
+is a sufficient compatible string for the Arm architected caches.
 
-Yes, but the spec is IMHO written in a way that they may only be unique 
-for a subset of the caches! The rest might not have an ID at all, 
-particularly for !arm machines.
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 52 ++-------------------------
+ 1 file changed, 2 insertions(+), 50 deletions(-)
 
-
-> 
->>>>> we need to check all possible CPUs, we can't use the shared_cpu_map
->>>>> which is just online CPUs. There's not a cache to CPUs mapping in DT, so
->>>>> we have to walk all CPU nodes and then walk cache levels.
->>
->> I would have preferred to add the cache IDs in DT similar to ACPI but I see
->> you have certain concerns with that which are valid as well.
->>
->>>>
->>>> I believe another expected use of the cache ID exposed in sysfs is to
->>>> program steering tags for cache stashing (typically in VFIO-based
->>>> userspace drivers like DPDK so we can't realistically mediate it any
->>>> other way). There were plans afoot last year to ensure that ACPI PPTT
->>>> could provide the necessary ID values for arm64 systems which will
->>>> typically be fairly arbitrary (but unique) due to reflecting underlying
->>>> interconnect routing IDs. Assuming that there will eventually be some
->>>> interest in cache stashing on DT-based systems too, we probably want to
->>>> allow for an explicit ID property on DT cache nodes in a similar manner.
->>>
->>> If you have a suggestion for ID values that correspond to the h/w,
->>> then we can add them. I'd like a bit more than just trusting that ID
->>> is something real.
->>>
->>
->> I agree, probably architecture must do better job at defining these. But
->> generated IDs IMO might cause issues especial if we have to change the
->> logic without breaking the backward compatibility.
->>
->>> While the ACPI folks may be willing to take an arbitrary index, it's
->>> something we (mostly) avoid for DT.
->>>
->>
->> Not sure if we can call that *arbitrary* 😄, in that case we can imagine
->> the same at several places in the firmware.
-> 
-> By arbitrary, I mean made up by the binding/dts author or
-> documentation convention (UART0, UART1, etc.). Certainly things like
-> clock IDs are often made up number spaces, but I don't see how we
-> avoid that. DT had 'cell-index' which I still see attempted. But that
-> property traces back to h/w having a single power ctrl register and
-> cell-index was the bit index for the register. If only h/w was still
-> that simple.
-> 
-> Rob
-> 
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index 408f265e277b..00adee461b52 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -138,15 +138,9 @@ CPU0: cpu@0 {
+ 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
+ 			next-level-cache = <&L2_0>;
+ 			L2_0: l2-cache {
+-				compatible = "arm,arch-cache";
++				compatible = "cache";
+ 				cache-level = <2>;
+ 			};
+-			L1_I_0: l1-icache {
+-				compatible = "arm,arch-cache";
+-			};
+-			L1_D_0: l1-dcache {
+-				compatible = "arm,arch-cache";
+-			};
+ 		};
+ 
+ 		CPU1: cpu@1 {
+@@ -157,12 +151,6 @@ CPU1: cpu@1 {
+ 			capacity-dmips-mhz = <1024>;
+ 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
+ 			next-level-cache = <&L2_0>;
+-			L1_I_1: l1-icache {
+-				compatible = "arm,arch-cache";
+-			};
+-			L1_D_1: l1-dcache {
+-				compatible = "arm,arch-cache";
+-			};
+ 		};
+ 
+ 		CPU2: cpu@2 {
+@@ -173,12 +161,6 @@ CPU2: cpu@2 {
+ 			capacity-dmips-mhz = <1024>;
+ 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
+ 			next-level-cache = <&L2_0>;
+-			L1_I_2: l1-icache {
+-				compatible = "arm,arch-cache";
+-			};
+-			L1_D_2: l1-dcache {
+-				compatible = "arm,arch-cache";
+-			};
+ 		};
+ 
+ 		CPU3: cpu@3 {
+@@ -189,12 +171,6 @@ CPU3: cpu@3 {
+ 			capacity-dmips-mhz = <1024>;
+ 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
+ 			next-level-cache = <&L2_0>;
+-			L1_I_3: l1-icache {
+-				compatible = "arm,arch-cache";
+-			};
+-			L1_D_3: l1-dcache {
+-				compatible = "arm,arch-cache";
+-			};
+ 		};
+ 
+ 		CPU4: cpu@100 {
+@@ -206,15 +182,9 @@ CPU4: cpu@100 {
+ 			cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
+ 			next-level-cache = <&L2_1>;
+ 			L2_1: l2-cache {
+-				compatible = "arm,arch-cache";
++				compatible = "cache";
+ 				cache-level = <2>;
+ 			};
+-			L1_I_100: l1-icache {
+-				compatible = "arm,arch-cache";
+-			};
+-			L1_D_100: l1-dcache {
+-				compatible = "arm,arch-cache";
+-			};
+ 		};
+ 
+ 		CPU5: cpu@101 {
+@@ -225,12 +195,6 @@ CPU5: cpu@101 {
+ 			capacity-dmips-mhz = <1536>;
+ 			cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
+ 			next-level-cache = <&L2_1>;
+-			L1_I_101: l1-icache {
+-				compatible = "arm,arch-cache";
+-			};
+-			L1_D_101: l1-dcache {
+-				compatible = "arm,arch-cache";
+-			};
+ 		};
+ 
+ 		CPU6: cpu@102 {
+@@ -241,12 +205,6 @@ CPU6: cpu@102 {
+ 			capacity-dmips-mhz = <1536>;
+ 			cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
+ 			next-level-cache = <&L2_1>;
+-			L1_I_102: l1-icache {
+-				compatible = "arm,arch-cache";
+-			};
+-			L1_D_102: l1-dcache {
+-				compatible = "arm,arch-cache";
+-			};
+ 		};
+ 
+ 		CPU7: cpu@103 {
+@@ -257,12 +215,6 @@ CPU7: cpu@103 {
+ 			capacity-dmips-mhz = <1536>;
+ 			cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
+ 			next-level-cache = <&L2_1>;
+-			L1_I_103: l1-icache {
+-				compatible = "arm,arch-cache";
+-			};
+-			L1_D_103: l1-dcache {
+-				compatible = "arm,arch-cache";
+-			};
+ 		};
+ 
+ 		cpu-map {
+-- 
+2.32.0
 
