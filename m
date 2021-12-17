@@ -2,298 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 625774789B9
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 12:22:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 640284789C0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 12:24:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235179AbhLQLWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 06:22:40 -0500
-Received: from mga04.intel.com ([192.55.52.120]:1882 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233443AbhLQLWj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Dec 2021 06:22:39 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10200"; a="238478675"
-X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; 
-   d="scan'208";a="238478675"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Dec 2021 03:22:39 -0800
-X-IronPort-AV: E=Sophos;i="5.88,213,1635231600"; 
-   d="scan'208";a="466472708"
-Received: from smile.fi.intel.com ([10.237.72.184])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Dec 2021 03:22:36 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1myBIz-007O9b-Ub;
-        Fri, 17 Dec 2021 13:21:41 +0200
-Date:   Fri, 17 Dec 2021 13:21:41 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     lakshmi.sowjanya.d@intel.com
-Cc:     linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, bgolaszewski@baylibre.com,
-        linux-kernel@vger.kernel.org, tamal.saha@intel.com,
-        pandith.n@intel.com, kenchappa.demakkanavar@intel.com
-Subject: Re: [PATCH v3 2/2] pinctrl: Add Intel Thunder Bay pinctrl driver
-Message-ID: <YbxyxdiHCYgBKZlQ@smile.fi.intel.com>
-References: <20211216150100.21171-1-lakshmi.sowjanya.d@intel.com>
- <20211216150100.21171-3-lakshmi.sowjanya.d@intel.com>
+        id S235335AbhLQLYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 06:24:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55504 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235330AbhLQLYE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 06:24:04 -0500
+Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5747BC06173E;
+        Fri, 17 Dec 2021 03:24:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
+         s=20160729; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=DcbP8XXWf5wA/EHUK5gDuBqB3xYKUZKXikbNc0uUTaY=; b=jz9RsG4tI+Itg3tyohwc490c/H
+        zES3QxR72ipebjtPmqnpkkG9hCIiylCS3uqpdbcJkPurZ4WOn7MkrPbNKS7WjiOHIW9WccfRI5ecy
+        SWJytalhgbOAKDOJNvQ3xqsu1IfJ9flCGmZSiDAjCghEYcvfdi6PjW8Tg2Dj6i7KUKJc=;
+Received: from p54ae911a.dip0.t-ipconnect.de ([84.174.145.26] helo=localhost.localdomain)
+        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <nbd@nbd.name>)
+        id 1myBL9-000742-ND; Fri, 17 Dec 2021 12:23:55 +0100
+From:   Felix Fietkau <nbd@nbd.name>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     john@phrozen.org, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7 01/14] dt-bindings: Add vendor prefix for Airoha
+Date:   Fri, 17 Dec 2021 12:23:31 +0100
+Message-Id: <20211217112345.14029-2-nbd@nbd.name>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20211217112345.14029-1-nbd@nbd.name>
+References: <20211217112345.14029-1-nbd@nbd.name>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211216150100.21171-3-lakshmi.sowjanya.d@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 08:31:00PM +0530, lakshmi.sowjanya.d@intel.com wrote:
-> From: Lakshmi Sowjanya D <lakshmi.sowjanya.d@intel.com>
-> 
-> About Intel Thunder Bay:
-> -----------------------
-> Intel Thunder Bay is a computer vision AI accelerator SoC based on ARM CPU.
-> 
-> Pinctrl IP:
-> ----------
-> The SoC has a customised pinmux controller IP which controls pin
-> multiplexing and configuration.
-> 
-> Thunder Bay pinctrl IP is not based on and have nothing in common with the
-> existing pinctrl drivers. The registers used are incompatible with the
-> existing drivers, so it requires a new driver.
-> 
-> Add pinctrl driver to enable pin control support in the Intel Thunder Bay
-> SoC.
-
-...
-
-+ bits.h.
-
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/init.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/irq.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_irq.h>
-
-> +#include <linux/pinctrl/pinconf.h>
-> +#include <linux/pinctrl/pinconf-generic.h>
-> +#include <linux/pinctrl/pinctrl.h>
-> +#include <linux/pinctrl/pinmux.h>
-
-Can you move this...
-
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +#include <linux/spinlock.h>
-
-...here?
-
-> +#include "core.h"
-> +#include "pinconf.h"
-> +#include "pinctrl-utils.h"
-> +#include "pinmux.h"
-
-...
-
-> +#define THB_GPIO_REG_OFFSET(pin_num)			((pin_num) * (0x4))
-
-'(0x4)' --> '4'
-
-...
-
-> +static int thb_write_gpio_data(struct gpio_chip *chip, unsigned int offset, unsigned int value)
-> +{
-> +	int data_offset;
-> +	u32 data_reg;
-> +
-> +	data_offset = 0x2000u + (offset / 32);
-> +
-> +	data_reg = thb_gpio_read_reg(chip, data_offset);
-> +
-> +	if (value > 0)
-
-if (value)
-
-> +		data_reg |= BIT(offset % 32);
-> +	else
-> +		data_reg &= ~BIT(offset % 32);
-> +
-> +	return thb_gpio_write_reg(chip, data_offset, data_reg);
-> +}
-
-...
-
-> +static int thunderbay_gpio_set_direction_input(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +	u32 reg = thb_gpio_read_reg(chip, offset);
-> +
-> +	/* set pin as input only if it is GPIO else error */
-> +	if (reg & THB_GPIO_PORT_SELECT_MASK) {
-
-Can it be
-
-	reg = thb_gpio_read_reg(chip, offset);
-	if (!(reg & THB_GPIO_PORT_SELECT_MASK))
-		return -EINVAL;
-
-?
-
-> +		reg &= (~THB_GPIO_PAD_DIRECTION_MASK);
-
-Too many parentheses.
-
-> +		thb_gpio_write_reg(chip, offset, reg);
-> +		return 0;
-> +	}
-> +	return -EINVAL;
-> +}
-
-...
-
-> +static int thunderbay_gpio_set_direction_output(struct gpio_chip *chip,
-> +						unsigned int offset, int value)
-> +{
-> +	u32 reg = thb_gpio_read_reg(chip, offset);
-> +
-> +	/* set pin as output only if it is GPIO else error */
-> +	if (reg & THB_GPIO_PORT_SELECT_MASK) {
-
-As per above.
-
-> +		reg |= THB_GPIO_PAD_DIRECTION_MASK;
-> +		thb_gpio_write_reg(chip, offset, reg);
-> +		thunderbay_gpio_set_value(chip, offset, value);
-> +		return 0;
-> +	}
-> +	return -EINVAL;
-> +}
-
-...
-
-> +static int thunderbay_gpio_get_value(struct gpio_chip *chip, unsigned int offset)
-> +{
-> +	u32 reg = thb_gpio_read_reg(chip, offset);
-
-> +	int gpio_dir = 0;
-
-Useless assignment.
-
-> +	/* Read pin value only if it is GPIO else error */
-> +	if (reg & THB_GPIO_PORT_SELECT_MASK) {
-> +		/* 0=in, 1=out */
-> +		gpio_dir = (reg & THB_GPIO_PAD_DIRECTION_MASK) > 0;
-
-!!(reg & ...)
-
-> +		/* Returns negative value when pin is configured as PORT */
-> +		return thb_read_gpio_data(chip, offset, gpio_dir);
-> +	}
-> +	return -EINVAL;
-
-And as per above.
-
-> +}
-
-...
-
-> +	/* identifies the first GPIO number handled by this chip; or,
-> +	 * if negative during registration, requests dynamic ID allocation.
-> +	 * Please pass -1 as base to let gpiolib select the chip base in all possible cases.
-> +	 * We want to get rid of the static GPIO number space in the long run.
-> +	 */
-
-/*
- * Please, fix the style of the
- * multi-line comments. Pay attention
- * to the grammar, etc. Everywhere.
- */
-
-...
-
-> +	/* Number of GPIOs handled by this controller; the last GPIO handled is (base + ngpio - 1)*/
-
-Too long comment with missed white space.
-
-...
-
-> +	/* Register/add Thunder Bay GPIO chip with Linux framework */
-> +	ret = gpiochip_add_data(chip, tpc);
-
-Why not devm_*()?
-
-> +	if (ret)
-> +		dev_err(tpc->dev, "Failed to add gpiochip\n");
-
-> +	return ret;
-
-return 0;
-
-But overall, use dev_err_probe().
-
-I stopped here, since there are too many same comments over all functions in
-this driver.
-
-...
-
-> +	{
-> +		.compatible = "intel,thunderbay-pinctrl",
-> +		.data = &thunderbay_data
-
-+ Comma.
-
-> +	},
-
-...
-
-> +	of_id = of_match_node(thunderbay_pinctrl_match, pdev->dev.of_node);
-
-You already have dev, use it everywhere in the ->probe().
-
-> +	if (!of_id)
-> +		return -ENODEV;
-
-Use of_device_get_match_data() (or how is it called?).
-
-...
-
-> +	iomem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-
-> +	if (!iomem)
-> +		return -ENXIO;
-
-Redundant, but see below.
-
-> +
-> +	tpc->base0 =  devm_ioremap_resource(dev, iomem);
-> +	if (IS_ERR(tpc->base0))
-> +		return PTR_ERR(tpc->base0);
-
-I dunno if you read any of previous comments regarding to other drivers.
-The above is just one API call. Find it and use.
-
-...
-
-> +static int thunderbay_pinctrl_remove(struct platform_device *pdev)
-> +{
-> +	/* thunderbay_pinctrl_remove function to clear the assigned memory */
-> +	return 0;
-> +}
-
-Why do you need this stub? What for?
-
-...
-
-> +
-
-Redundant blank line.
-
-> +builtin_platform_driver(thunderbay_pinctrl_driver);
-
+From: John Crispin <john@phrozen.org>
+
+Add vendor prefix "airoha" for Airoha, a subsidiary of MediaTek
+
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Bert Vermeulen <bert@biot.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 66d6432fd781..025df36aee5f 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -59,6 +59,8 @@ patternProperties:
+     description: Aeroflex Gaisler AB
+   "^aesop,.*":
+     description: AESOP Embedded Forum
++  "^airoha,.*":
++    description: Airoha
+   "^al,.*":
+     description: Annapurna Labs
+   "^alcatel,.*":
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
