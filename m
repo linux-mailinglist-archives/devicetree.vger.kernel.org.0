@@ -2,89 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D43347859B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 08:35:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B7804785B7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 08:50:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233720AbhLQHf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 02:35:29 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:35874 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233722AbhLQHf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 02:35:28 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 47EECB82751;
-        Fri, 17 Dec 2021 07:35:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABC14C36AE1;
-        Fri, 17 Dec 2021 07:35:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639726525;
-        bh=2sBl03XWxpTILlbw8A9cL2Lsv4CZVmG6QVoqler8sdo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=fdaDhFRxqfInz6qe7YyGlE0a42TjE6MYqn9F7Nb7q0m11+zFK5Dy4sdfkCpgzN6AG
-         6wAD5ZfhTSS3ERVw25D1S8RhXCBoPpZtYqQNUYQ52ofoXe25Qfwbvc3ILHZZdzT7kN
-         aPTKA43brMVV0SMCp/vZRMFhRkKtmPk4KSTqS27NiCtMulDlYSGpMxkb42zza0GWtu
-         3ynsgeECatOLuKLYaM++6izoZbQ4KlkOWPRNdX/0LC2t7dLpnYx821hPZiFiQgy7nK
-         2I6gFZXBCIes3XZBWvkRqYlTPKyV63OqHRAagCa2s0WtEBJ2O/SxLNPLPu6l8qgkR6
-         hsm+WmcHiZaZw==
-Subject: Re: [PATCH v2 3/4] memory: omap-gpmc: check for nand node name
- instead of just compatibility
-To:     Rob Herring <robh@kernel.org>
-Cc:     krzysztof.kozlowski@canonical.com, tony@atomide.com, kishon@ti.com,
-        nm@ti.com, vigneshr@ti.com, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20211208124611.16843-1-rogerq@kernel.org>
- <20211208124611.16843-3-rogerq@kernel.org>
- <YboRyR+SqBV03cY0@robh.at.kernel.org>
-From:   Roger Quadros <rogerq@kernel.org>
-Message-ID: <e54729b3-0a72-a217-b320-b81c1f90d3f9@kernel.org>
-Date:   Fri, 17 Dec 2021 09:35:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S231514AbhLQHuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 02:50:37 -0500
+Received: from mail-sh.amlogic.com ([58.32.228.43]:6525 "EHLO
+        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229449AbhLQHuh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 02:50:37 -0500
+X-Greylist: delayed 903 seconds by postgrey-1.27 at vger.kernel.org; Fri, 17 Dec 2021 02:50:36 EST
+Received: from droid10-sz.amlogic.com (10.28.8.20) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Fri, 17 Dec 2021
+ 15:35:30 +0800
+From:   Zelong Dong <zelong.dong@amlogic.com>
+To:     <p.zabel@pengutronix.de>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <khilman@baylibre.com>,
+        <narmstrong@baylibre.com>, <jbrunet@baylibre.com>,
+        <martin.blumenstingl@googlemail.com>,
+        Zelong Dong <zelong.dong@amlogic.com>
+Subject: [PATCH] dt-bindings: reset: add bindings for the Meson-S4 SoC Reset Controller
+Date:   Fri, 17 Dec 2021 15:35:21 +0800
+Message-ID: <20211217073521.35820-1-zelong.dong@amlogic.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-In-Reply-To: <YboRyR+SqBV03cY0@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.28.8.20]
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Add DT bindings for the Meson-S4 SoC Reset Controller include file.
 
-On 15/12/2021 18:03, Rob Herring wrote:
-> On Wed, Dec 08, 2021 at 02:46:10PM +0200, Roger Quadros wrote:
->> We have added new compatibles for controller so just checking for
->> "ti,omap2-nand" compatible is not enough. Check for "nand" node name
->> as well.
->>
->> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->> ---
->>  drivers/memory/omap-gpmc.c | 3 ++-
->>  1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
->> index 624153048182..9f0062a262db 100644
->> --- a/drivers/memory/omap-gpmc.c
->> +++ b/drivers/memory/omap-gpmc.c
->> @@ -2183,7 +2183,8 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
->>  		}
->>  	}
->>  
->> -	if (of_device_is_compatible(child, "ti,omap2-nand")) {
->> +	if (of_device_is_compatible(child, "ti,omap2-nand") ||
->> +	    of_node_name_eq(child, "nand")) {
-> 
-> It would be better to stick with compatible strings. You can match 
-> against a match table. This should be 'nand-controller' really if this 
-> binding had a proper split between the controller and nand chips.
+Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+---
+ .../reset/amlogic,meson-s4-reset.h            | 125 ++++++++++++++++++
+ 1 file changed, 125 insertions(+)
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-s4-reset.h
 
-OK. I will change this to use compatible strings using a match table.
+diff --git a/include/dt-bindings/reset/amlogic,meson-s4-reset.h b/include/dt-bindings/reset/amlogic,meson-s4-reset.h
+new file mode 100644
+index 000000000000..eab428eb8ad6
+--- /dev/null
++++ b/include/dt-bindings/reset/amlogic,meson-s4-reset.h
+@@ -0,0 +1,125 @@
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
++/*
++ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
++ * Author: Zelong Dong <zelong.dong@amlogic.com>
++ *
++ */
++
++#ifndef _DT_BINDINGS_AMLOGIC_MESON_S4_RESET_H
++#define _DT_BINDINGS_AMLOGIC_MESON_S4_RESET_H
++
++/*	RESET0					*/
++#define RESET_USB_DDR0			0
++#define RESET_USB_DDR1			1
++#define RESET_USB_DDR2			2
++#define RESET_USB_DDR3			3
++#define RESET_USBCTRL			4
++/*					5-7	*/
++#define RESET_USBPHY20			8
++#define RESET_USBPHY21			9
++/*					10-15	*/
++#define RESET_HDMITX_APB		16
++#define RESET_BRG_VCBUS_DEC		17
++#define RESET_VCBUS			18
++#define RESET_VID_PLL_DIV		19
++#define RESET_VDI6			20
++#define RESET_GE2D			21
++#define RESET_HDMITXPHY			22
++#define RESET_VID_LOCK			23
++#define RESET_VENCL			24
++#define RESET_VDAC			25
++#define RESET_VENCP			26
++#define RESET_VENCI			27
++#define RESET_RDMA			28
++#define RESET_HDMI_TX			29
++#define RESET_VIU			30
++#define RESET_VENC			31
++
++/*	RESET1					*/
++#define RESET_AUDIO			32
++#define RESET_MALI_APB			33
++#define RESET_MALI			34
++#define RESET_DDR_APB			35
++#define RESET_DDR			36
++#define RESET_DOS_APB			37
++#define RESET_DOS			38
++/*					39-47	*/
++#define RESET_ETH			48
++/*					49-51	*/
++#define RESET_DEMOD			52
++/*					53-63	*/
++
++/*	RESET2					*/
++#define RESET_ABUS_ARB			64
++#define RESET_IR_CTRL			65
++#define RESET_TEMPSENSOR_DDR		66
++#define RESET_TEMPSENSOR_PLL		67
++/*					68-71	*/
++#define RESET_SMART_CARD		72
++#define RESET_SPICC0			73
++/*					74	*/
++#define RESET_RSA			75
++/*					76-79	*/
++#define RESET_MSR_CLK			80
++#define RESET_SPIFC			81
++#define RESET_SARADC			82
++/*					83-87	*/
++#define RESET_ACODEC			88
++#define RESET_CEC			89
++#define RESET_AFIFO			90
++#define RESET_WATCHDOG			91
++/*					92-95	*/
++
++/*	RESET3					*/
++/*					96-127	*/
++
++/*	RESET4					*/
++/*					128-131	*/
++#define RESET_PWM_AB			132
++#define RESET_PWM_CD			133
++#define RESET_PWM_EF			134
++#define RESET_PWM_GH			135
++#define RESET_PWM_IJ			136
++/*					137	*/
++#define RESET_UART_A			138
++#define RESET_UART_B			139
++#define RESET_UART_C			140
++#define RESET_UART_D			141
++#define RESET_UART_E			142
++/*					143	*/
++#define RESET_I2C_S_A			144
++#define RESET_I2C_M_A			145
++#define RESET_I2C_M_B			146
++#define RESET_I2C_M_C			147
++#define RESET_I2C_M_D			148
++#define RESET_I2C_M_E			149
++/*					150-151	*/
++#define RESET_SD_EMMC_A			152
++#define RESET_SD_EMMC_B			153
++#define RESET_NAND_EMMC			154
++/*					155-159	*/
++
++/* RESET5 */
++#define RESET_BRG_VDEC_PIPL0		160
++#define RESET_BRG_HEVCF_PIPL0		161
++/*					162	*/
++#define RESET_BRG_HCODEC_PIPL0		163
++#define RESET_BRG_GE2D_PIPL0		164
++#define RESET_BRG_VPU_PIPL0		165
++#define RESET_BRG_CPU_PIPL0		166
++#define RESET_BRG_MALI_PIPL0		167
++/*					168	*/
++#define RESET_BRG_MALI_PIPL1		169
++/*					170-171	*/
++#define RESET_BRG_HEVCF_PIPL1		172
++#define RESET_BRG_HEVCB_PIPL1		173
++/*					174-183	*/
++#define RESET_RAMA			184
++/*					185-186	*/
++#define RESET_BRG_NIC_VAPB		187
++#define RESET_BRG_NIC_DSU		188
++#define RESET_BRG_NIC_SYSCLK		189
++#define RESET_BRG_NIC_MAIN		190
++#define RESET_BRG_NIC_ALL		191
++
++#endif
+-- 
+2.28.0
 
-The 'nand-controller' + 'nand' chip change will be done in a separate series
-sometime later.
-
-cheers,
--roger
