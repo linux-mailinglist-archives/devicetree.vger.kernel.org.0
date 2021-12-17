@@ -2,71 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FEEE4788E5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 11:30:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C1B547892A
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 11:46:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235038AbhLQKaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 05:30:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43332 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235046AbhLQKaG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 05:30:06 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E2CDC061747;
-        Fri, 17 Dec 2021 02:30:06 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D10B0620F8;
-        Fri, 17 Dec 2021 10:30:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1615C36AE1;
-        Fri, 17 Dec 2021 10:30:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639737005;
-        bh=uf6JxDdnzyqJElQbsppbLQiVy+i5ap0eM73vSTE5d94=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=j2m6fWD84gm/uWtxAAcW2R9O16n/+7XbldeZQqOoeKM8Sv99e+FwhvYigQkKj6KCI
-         1JE7p2aDk1nKqGb3+IRTahvh7SDoIH7tvTBwjRPGEHP69MJ9YFnyn2Xp6dWNqbxvSd
-         +YFG8GR3/Rs5BGR1Dy1GTqPAAnCTvTJCkhRz/WSukc8KYLTGIXaikIEywRoG6K8Bg5
-         EYz20zdW2vgX0Euq4hFe81ewYnLKr/eZM8oAdpZeI99hnYfAKHBHLFw0ZbiZjy4dBl
-         jNrX9BgEYweYB8aumuIGerkLuHphr4G9fId9zS4D+O5aPab7DEJeFxT1KEJiIkf5Oa
-         N27AtkY13ckMQ==
-From:   Roger Quadros <rogerq@kernel.org>
-To:     krzysztof.kozlowski@canonical.com, tony@atomide.com
-Cc:     robh@kernel.org, kishon@ti.com, nm@ti.com, vigneshr@ti.com,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Roger Quadros <rogerq@kernel.org>
-Subject: [PATCH v3 4/4] arm64: arch_k3: Select GPMC device driver
-Date:   Fri, 17 Dec 2021 12:29:45 +0200
-Message-Id: <20211217102945.17432-5-rogerq@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211217102945.17432-1-rogerq@kernel.org>
-References: <20211217102945.17432-1-rogerq@kernel.org>
+        id S233105AbhLQKqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 05:46:22 -0500
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:33779 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231860AbhLQKqV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 05:46:21 -0500
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id A66B620011;
+        Fri, 17 Dec 2021 10:46:17 +0000 (UTC)
+Date:   Fri, 17 Dec 2021 11:47:10 +0100
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Niklas =?utf-8?Q?S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Thomas Nizan <tnizan@witekio.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: media: i2c: max9286: Add support for
+ per-port supplies
+Message-ID: <20211217104710.76ofsnwmrsfdm5fe@uno.localdomain>
+References: <20211216220946.20771-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20211216220946.20771-2-laurent.pinchart+renesas@ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211216220946.20771-2-laurent.pinchart+renesas@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GPMC controller is present on some K3 SoCs.
-It provides access to NOR/NAND flashes and asynchronous
-SRAM-like memories and ASICs.
+Hi LAurent
 
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
----
- arch/arm64/Kconfig.platforms | 1 +
- 1 file changed, 1 insertion(+)
+On Fri, Dec 17, 2021 at 12:09:44AM +0200, Laurent Pinchart wrote:
+> From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>
+> Power supplies for the ports can be controlled per port depending on the
+> hardware design. Support per-port supplies in the DT bindings, mutually
+> exclusive with the global supply.
+>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  .../bindings/media/i2c/maxim,max9286.yaml     | 25 ++++++++++++++++++-
+>  1 file changed, 24 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> index 02f656e78700..33aa307e8ee5 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> @@ -39,7 +39,7 @@ properties:
+>      maxItems: 1
+>
+>    poc-supply:
+> -    description: Regulator providing Power over Coax to the cameras
+> +    description: Regulator providing Power over Coax to all the ports
+>
 
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index 1aa8b7073218..f447b120f863 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -122,6 +122,7 @@ config ARCH_K3
- 	select TI_SCI_INTR_IRQCHIP
- 	select TI_SCI_INTA_IRQCHIP
- 	select TI_K3_SOCINFO
-+	select OMAP_GPMC
- 	help
- 	  This enables support for Texas Instruments' K3 multicore SoC
- 	  architecture.
--- 
-2.17.1
+Can anything but a camera be connected to a port ?
 
+>    enable-gpios:
+>      description: GPIO connected to the \#PWDN pin with inverted polarity
+> @@ -160,6 +160,10 @@ properties:
+>
+>              additionalProperties: false
+>
+> +patternProperties:
+> +  "^port[0-3]-poc-supply$":
+> +    description: Regulator providing Power over Coax for a particular port
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -167,6 +171,25 @@ required:
+>    - i2c-mux
+>    - gpio-controller
+>
+> +allOf:
+> +  - if:
+> +      required:
+> +        - poc-supply
+> +    then:
+> +      allOf:
+> +        - not:
+> +            required:
+> +              - port0-poc-supply
+> +        - not:
+> +            required:
+> +              - port1-poc-supply
+> +        - not:
+> +            required:
+> +              - port2-poc-supply
+> +        - not:
+> +            required:
+> +              - port3-poc-supply
+
+Isn't this simply expressed as
+
+if:
+  required:
+    - poc-supply
+then:
+  properties:
+    port0-poc-supply: false
+    port1-poc-supply: false
+    port2-poc-supply: false
+    port3-poc-supply: false
+
+I tried tweaking the DTS file example with the above applied as
+
+        poc-supply = <&camera_poc_12v>;
+        port0-poc-supply = <&camera0_poc>;
+
+And validation fails as expected
+.../maxim,max9286.example.dt.yaml: gmsl-deserializer@2c: port0-poc-supply: False schema does not allow [[4294967295]]
+
+Also, could you make sure this does not conflict with the introduction
+of gpio-poc in "dt-bindings: media: max9286: Define 'maxim,gpio-poc'".
+
+Thanks
+   j
+
+
+> +
+>  additionalProperties: false
+>
+>  examples:
+> --
+> Regards,
+>
+> Laurent Pinchart
+>
