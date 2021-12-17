@@ -2,164 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D2BA479044
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:47:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0F8C47904D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:48:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230512AbhLQPrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 10:47:41 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:60676
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233739AbhLQPrl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Dec 2021 10:47:41 -0500
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3C9143F044
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 15:47:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639756060;
-        bh=hhDHhyLf8ciLV/pb2fq9VsORYOGJ7hjmmAlIVCJH7WY=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=aQq7/hCGPbFg/bKpuDhxmMdGsPCz2nESFfYYOtxbUGf73njWF2ysqdelDGWVTPYjN
-         0qPGbVq69gfCb+TJiTc4RBMJAwqw/XmYWIC7IDNwShAYaQEsDGg/If/avYIbe9j3aC
-         m306ygumpQ8/zdLkEk/qCZVciqFtXmn+HaaPlBnd4vm6SaV3gB6culYsSxyb0SliYx
-         24hxS+QbqY/cKNblCEeRAaX+cqkJBCOcG9iZ7XolZbcdZhYQtlzjDDyW5Z8PuiT0+x
-         JVYiDJIDuaDk3A7gxyWo3ss4JVIAYA3zuBmyunmU860NYPJwTe+lNYo2rOlZH4EokP
-         qsbhx7QFxTwLg==
-Received: by mail-lf1-f72.google.com with SMTP id m1-20020ac24281000000b004162863a2fcso1046709lfh.14
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 07:47:40 -0800 (PST)
+        id S230463AbhLQPsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 10:48:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33770 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229725AbhLQPsx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 10:48:53 -0500
+Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5899C061574;
+        Fri, 17 Dec 2021 07:48:52 -0800 (PST)
+Received: by mail-oo1-xc35.google.com with SMTP id p2-20020a4adfc2000000b002c2676904fdso813545ood.13;
+        Fri, 17 Dec 2021 07:48:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=6dm4pOYGFOUOnd9TBndDBcAp1Msui/lpdLLescsGmQA=;
+        b=MsyAIMi0rI6dnluKwifLKBjgw8MSA/nu+AxFriSzfgy8u63mTZjxqKW/csPHbRk/LU
+         z5IKRn04aNy9X7PEIV2twi23dM3LV86s7LDdAYc0uRKQlpjafphFv/EjqXr/oZUUpOA5
+         Hj8sSooRsCVcCixaPCG1tv1mosUkULpk1DV9CNCdPWdkAmT4I/s4rMIn0jdAg7jSn3Bk
+         NDyxO9ubTSyLLE/Sj5ecyT3FEnPMdTV+E19VHDqWPZ0NXDnp027/RjdX1Ioqu9ZXGzex
+         gm5h8qjf/CQJv9WcxZlqM6AsBEkx+OfM/hs+mJYd39XmZuV/1uFrUaCc4Qv4T9dQ5nUH
+         YRsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=hhDHhyLf8ciLV/pb2fq9VsORYOGJ7hjmmAlIVCJH7WY=;
-        b=e3oR9mSLVit793Ys39+joDdl6GmfdHd0u9LHBEXQogBFaUCIWirbNPn+pJcRB6m7Rd
-         48heCRMSwkDJtmjvFdnRmMR8o4di+2POqCW1USPICsrCCzol6mBhE2ftTTjHS8y2JbqV
-         2MtnT+b5QkBWYSdGFgg86nagNE2BaeKKh5TGG8gJpI1IYfO0H9gP9BlbpLypzSB9uv+O
-         LQEJoiOZNM6BSHI0emNehemske1wemT2HR2TdAfDxemTyyeuqRF1rv5eRhVXxkj4sHu9
-         7ARa/Rl7x1Y85Kg7qvbEOn39by5/hlS2VJk/C1Xg8u+DddJoMQ6GiN9zHqvQiokT/xOp
-         R39Q==
-X-Gm-Message-State: AOAM531tFL9cZwIgbp3onr9MCUUT/7xoCP9iuQkMKjqP3NCTp79zN2/K
-        p5k8rk8TY9JIdKQ+c4/MR4O+kbgCrydOHfEG95NSsK16UDNtGnIObx9srY7s5eMoX8S/P1UZ+Ow
-        0wKsqYTNVU3ZM+Uz3zhQ1vwzYgn4PvaaH5bT6Ry8=
-X-Received: by 2002:a05:6512:2150:: with SMTP id s16mr3408752lfr.519.1639756059692;
-        Fri, 17 Dec 2021 07:47:39 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwt9tJHIq/B3JqqY9RpHltS5AsBubgidwCcIwxibp52U1LQxYs+vVjkCeSXk+SDsWN3QzhEUw==
-X-Received: by 2002:a05:6512:2150:: with SMTP id s16mr3408731lfr.519.1639756059505;
-        Fri, 17 Dec 2021 07:47:39 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id w25sm356919lfl.33.2021.12.17.07.47.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Dec 2021 07:47:39 -0800 (PST)
-Message-ID: <2e7588e5-9dc5-571f-d7e9-0ee5c89ab39e@canonical.com>
-Date:   Fri, 17 Dec 2021 16:47:36 +0100
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=6dm4pOYGFOUOnd9TBndDBcAp1Msui/lpdLLescsGmQA=;
+        b=m0y9wrJVgvN2ouu9iZI8r4rJ2SeaybpkZZUCRUDHACwNhde/yLBZKHx5Azx/CrKqT/
+         Jjxe0QXgurhl2b9zsc4pLWzQkIMz2kzdlDjQQ3g5mPI/W4/FO16y9dHBkAmuqJ/8zzGv
+         2HNRfr3xIlOIs05BG9cOhPHq94R0/bBolmVPQhuRfuloInQVK/Ry+yaI8gn9ILhesFeu
+         ZSsX216xakuOgzwaIdG/9vDKV0wlbzzbI7liVUK8l0EiJX34OoWg29h0C8F/OZE67Vxu
+         ayjALBz6o0GB7wT4LJ71N8tTLCrEBqzAcoti12Rw6rnBP1IglfRuCapvxOlx9cIiV9uB
+         kaFQ==
+X-Gm-Message-State: AOAM531Y93yNsjHOutYUfb3HM+JhNnOgE96b8HOKzUJYM5Z3BWFNvxbA
+        GHUc1Y9oV50QOY2S+/lZok4=
+X-Google-Smtp-Source: ABdhPJy4vDAoMqy1suYtcDZ5UF0RmpzzS+JQbYdAFRDtXk7bkPcIiomXqooHg3rF3Mi9zza1gK/0lQ==
+X-Received: by 2002:a4a:d284:: with SMTP id h4mr2323424oos.31.1639756132252;
+        Fri, 17 Dec 2021 07:48:52 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id c41sm1746402otu.7.2021.12.17.07.48.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Dec 2021 07:48:51 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Fri, 17 Dec 2021 07:48:50 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 2/2] dt-bindings: add Delta AHE-50DC fan control module
+Message-ID: <20211217154850.GA2969063@roeck-us.net>
+References: <20211208213703.2577-1-zev@bewilderbeest.net>
+ <20211208213703.2577-3-zev@bewilderbeest.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v2 06/17] dt-bindings: rng: add bindings for microchip
- mpfs rng
-Content-Language: en-US
-To:     Conor.Dooley@microchip.com, linus.walleij@linaro.org,
-        bgolaszewski@baylibre.com, robh+dt@kernel.org,
-        jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, broonie@kernel.org,
-        gregkh@linuxfoundation.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
-Cc:     geert@linux-m68k.org, bin.meng@windriver.com, heiko@sntech.de,
-        Lewis.Hanly@microchip.com, Daire.McNamara@microchip.com,
-        Ivan.Griffin@microchip.com, atish.patra@wdc.com
-References: <20211217093325.30612-1-conor.dooley@microchip.com>
- <20211217093325.30612-7-conor.dooley@microchip.com>
- <e59a60d5-4397-1f7f-66ab-3dd522e166a0@canonical.com>
- <19cbe2ba-7df5-7c7c-289f-6dc419d9f477@canonical.com>
- <422126ac-ce26-2940-5b4d-fe79a1fa89c5@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <422126ac-ce26-2940-5b4d-fe79a1fa89c5@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211208213703.2577-3-zev@bewilderbeest.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/12/2021 16:22, Conor.Dooley@microchip.com wrote:
-> On 17/12/2021 15:07, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On 17/12/2021 15:53, Krzysztof Kozlowski wrote:
->>> On 17/12/2021 10:33, conor.dooley@microchip.com wrote:
->>>> From: Conor Dooley <conor.dooley@microchip.com>
->>>>
->>>> Add device tree bindings for the hardware rng device accessed via
->>>> the system services on the Microchip PolarFire SoC.
->>>>
->>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->>>> ---
->>>>   .../bindings/rng/microchip,mpfs-rng.yaml      | 29 +++++++++++++++++++
->>>>   1 file changed, 29 insertions(+)
->>>>   create mode 100644 Documentation/devicetree/bindings/rng/microchip,mpfs-rng.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/rng/microchip,mpfs-rng.yaml b/Documentation/devicetree/bindings/rng/microchip,mpfs-rng.yaml
->>>> new file mode 100644
->>>> index 000000000000..32cbc37c9292
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/rng/microchip,mpfs-rng.yaml
->>>> @@ -0,0 +1,29 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: "http://devicetree.org/schemas/rng/microchip,mpfs-rng.yaml#"
->>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>>> +
->>>> +title: Microchip MPFS random number generator
->>>> +
->>>> +maintainers:
->>>> +  - Conor Dooley <conor.dooley@microchip.com>
->>>> +
->>>> +description: |
->>>> +  The hardware random number generator on the Polarfire SoC is
->>>> +  accessed via the mailbox interface provided by the system controller
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: microchip,mpfs-rng
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    hwrandom: hwrandom {
->>>
->>> Three topics:
->>> 1. Node name (as most of others are using): rng
->>> 2. skip the label, not helping in example.
->>> 3. This looks very simple, so I wonder if the bindings are complete. No
->>> IO space/address... How is it going to be instantiated?
->>>
->>
->> OK, now I saw the usage in DTS. I have doubts this makes sense as
->> separate bindings. It looks like integrated part of syscontroller, so
->> maybe make it part of that binding? Or at least add ref to syscontroller
->> bindings that such child is expected.
-> Acking the rest of this, re: adding the ref: is what is being done in 
-> patch 03/17 insufficient?
+On Wed, Dec 08, 2021 at 01:37:03PM -0800, Zev Weiss wrote:
+> This is the integrated fan control module of the Delta AHE-50DC Open19
+> power shelf.
+> 
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Ops, I missed the 03/17. Yeah, it looks it is sufficient and in such
-case I think you do not need this patch. The compatible is documented in
-03/17. The same for sysserv.
+Applied.
 
+Thanks,
+Guenter
 
-Best regards,
-Krzysztof
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 791079021f1b..1c43cc91f804 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -73,6 +73,8 @@ properties:
+>            - dallas,ds4510
+>              # Digital Thermometer and Thermostat
+>            - dallas,ds75
+> +            # Delta AHE-50DC Open19 power shelf fan control module
+> +          - delta,ahe50dc-fan
+>              # Delta Electronics DPS-650-AB power supply
+>            - delta,dps650ab
+>            # Delta Electronics DPS920AB 920W 54V Power Supply
