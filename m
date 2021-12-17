@@ -2,83 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D27F479156
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 17:21:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D81E479170
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 17:26:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238989AbhLQQVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 11:21:42 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:54892 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235272AbhLQQVl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 11:21:41 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9E164B82965;
-        Fri, 17 Dec 2021 16:21:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E9D0C36AE1;
-        Fri, 17 Dec 2021 16:21:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639758099;
-        bh=huC7uz1dGwNTuzWeqgiNaG3sk3EcmBrJ63xBA1P61zw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=mxARPdYm02vkR1wXFYlvgPaemHFGDbK6rk8Q8VKGK2inUv6cF06cWgLjrlNCcE57P
-         k7NnlyE+Ps3w+SWlHxqIrKLJ6XKiQCWVG5XcLm/rHuNfTyMonUPDp8z1FClHNR2zK4
-         3js6fQKPxr2k1IwbKvO/i/1skiFSDdm388/qqWM80bXKWTJd8oHyGjJcLP4b5xTIiX
-         mUjkl5MXsfB+7cUKnej+WTSwJVFtBVZOY06cecM/ilXUM9YUdUidyUZcYFdDo6YE4y
-         Ohkr6d3W22cfQoYSrx3w/f2X/pL9xyeQC3zRKocib623SbWB4yqaT6yel7pSGgimjI
-         KeJ7pC5WHXPvw==
-Date:   Fri, 17 Dec 2021 10:21:37 -0600
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Felix Fietkau <nbd@nbd.name>
-Cc:     Ryder Lee <ryder.lee@mediatek.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>, john@phrozen.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 09/14] dt-bindings: PCI: Add support for Airoha EN7532
-Message-ID: <20211217162137.GA894954@bhelgaas>
+        id S239099AbhLQQ03 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 17 Dec 2021 11:26:29 -0500
+Received: from mail-4018.proton.ch ([185.70.40.18]:15777 "EHLO
+        mail-4018.proton.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238005AbhLQQ02 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 11:26:28 -0500
+Date:   Fri, 17 Dec 2021 16:26:24 +0000
+Authentication-Results: mail-4018.proton.ch; dkim=none
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+From:   conor dooley <mail@conchuod.ie>
+Cc:     Conor.Dooley@microchip.com, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, broonie@kernel.org,
+        gregkh@linuxfoundation.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
+        geert@linux-m68k.org, bin.meng@windriver.com, heiko@sntech.de,
+        Lewis.Hanly@microchip.com, Daire.McNamara@microchip.com,
+        Ivan.Griffin@microchip.com, atish.patra@wdc.com
+Reply-To: conor dooley <mail@conchuod.ie>
+Subject: Re: [PATCH v2 06/17] dt-bindings: rng: add bindings for microchip mpfs rng
+Message-ID: <r3tVOER8Xt_7UX5NRWualG_an6bcx-_uljhXh9_GUny45ZcO_G-dpv98jWXwKpuvSp-uTvNFSdqsLHFbYGl0Qdv_q7ZqegBHWWcgnAZUA5A=@conchuod.ie>
+In-Reply-To: <2e7588e5-9dc5-571f-d7e9-0ee5c89ab39e@canonical.com>
+References: <20211217093325.30612-1-conor.dooley@microchip.com> <20211217093325.30612-7-conor.dooley@microchip.com> <e59a60d5-4397-1f7f-66ab-3dd522e166a0@canonical.com> <19cbe2ba-7df5-7c7c-289f-6dc419d9f477@canonical.com> <422126ac-ce26-2940-5b4d-fe79a1fa89c5@microchip.com> <2e7588e5-9dc5-571f-d7e9-0ee5c89ab39e@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211217112345.14029-10-nbd@nbd.name>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.0 required=10.0 tests=ALL_TRUSTED shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 17, 2021 at 12:23:39PM +0100, Felix Fietkau wrote:
-> From: John Crispin <john@phrozen.org>
-> 
-> EN7532 is an ARM based platform SoC integrating the same PCIe IP as
-> MT7622, add a binding for it.
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: John Crispin <john@phrozen.org>
+‐‐‐‐‐‐‐ Original Message ‐‐‐‐‐‐‐
 
-Needs a sign-off from you, Felix:
+On Friday, December 17th, 2021 at 15:47, Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?id=v5.14#n418
-
-> ---
->  Documentation/devicetree/bindings/pci/mediatek-pcie.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie.txt b/Documentation/devicetree/bindings/pci/mediatek-pcie.txt
-> index 57ae73462272..684227522267 100644
-> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie.txt
-> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie.txt
-> @@ -7,6 +7,7 @@ Required properties:
->  	"mediatek,mt7622-pcie"
->  	"mediatek,mt7623-pcie"
->  	"mediatek,mt7629-pcie"
-> +	"airoha,en7523-pcie"
->  - device_type: Must be "pci"
->  - reg: Base addresses and lengths of the root ports.
->  - reg-names: Names of the above areas to use during resource lookup.
-> -- 
-> 2.34.1
-> 
+> On 17/12/2021 16:22, Conor.Dooley@microchip.com wrote:
+>
+> > On 17/12/2021 15:07, Krzysztof Kozlowski wrote:
+> >
+> > > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > >
+> > > On 17/12/2021 15:53, Krzysztof Kozlowski wrote:
+> > >
+> > > > On 17/12/2021 10:33, conor.dooley@microchip.com wrote:
+> > > >
+> > > > > From: Conor Dooley conor.dooley@microchip.com
+> > > > >
+> > > > > Add device tree bindings for the hardware rng device accessed via
+> > > > >
+> > > > > the system services on the Microchip PolarFire SoC.
+> > > > >
+> > > > > Signed-off-by: Conor Dooley conor.dooley@microchip.com
+> > > > > ------------------------------------------------------
+> > > >
+> > > > Three topics:
+> > > >
+> > > > 1.  Node name (as most of others are using): rng
+> > > > 2.  skip the label, not helping in example.
+> > > > 3.  This looks very simple, so I wonder if the bindings are complete. No
+> > > >
+> > > >     IO space/address... How is it going to be instantiated?
+> > > OK, now I saw the usage in DTS. I have doubts this makes sense as
+> > > separate bindings. It looks like integrated part of syscontroller, so
+> > > maybe make it part of that binding? Or at least add ref to syscontroller
+> > > bindings that such child is expected.
+> > Acking the rest of this, re: adding the ref: is what is being done in
+> > patch 03/17 insufficient?
+> Ops, I missed the 03/17. Yeah, it looks it is sufficient and in such
+> case I think you do not need this patch. The compatible is documented in
+> 03/17. The same for sysserv.
+Grand, that makes things easier.
+Conor.
+>
+> Best regards,
+>
+> Krzysztof
+>
+> linux-riscv mailing list
+>
+> linux-riscv@lists.infradead.org
+>
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
