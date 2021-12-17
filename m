@@ -2,175 +2,401 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9690478F97
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:25:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 297F5478FA0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:28:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237712AbhLQPZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 10:25:51 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:34446 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232151AbhLQPZv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 10:25:51 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 145C162272;
-        Fri, 17 Dec 2021 15:25:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DFF0C36AE9;
-        Fri, 17 Dec 2021 15:25:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639754750;
-        bh=YYidNFDHSr+OTVLKPb2QHNyzTBbDxrbfbiBT1vM51bI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YFbJNKiO4ffuqqvUXBSZMdtVP8BYMQxMaLvAJfYEFsFKlDzNCVjBZ9Qfo09IhwMKb
-         Fb2wQv8O1HIXLv9TmMmO54IKQCmf/is0XIKGFBcPKwXFeS3V31x2DY78awdOMBm4Qi
-         Oc/LGWCTK/e25V6IbQhQVrIBQ5iwW1nsZUNqM/paa+brNcHNzcFXPFA6E7BtbwKYwu
-         GQ6K0f7qSRaI/ayEbpcWE/K99qWx3GNoHbXV9EsKJADQ+S2iz8usvSPkv7G7XFo1aX
-         avEBaJA+GLjMnaPKCsszPUTptfXwQrY1++GwvNZ4QDIs3O878Rd/PAhk4t0KMHMUem
-         TDTOthHFuj+/w==
-Received: by mail-wr1-f51.google.com with SMTP id o13so4683113wrs.12;
-        Fri, 17 Dec 2021 07:25:50 -0800 (PST)
-X-Gm-Message-State: AOAM531TLt1h8xpzIh0enJgpqBG6Od3fiTxq8Uw35gP8g86Nd8KPQZyn
-        IikKA4CxJ/VnnK5XfUzRt+EnvYFosUBfvSD4p6U=
-X-Google-Smtp-Source: ABdhPJzL1e0y8TGNoMGmZhg9eysi6brKircb031trr94O7/QbqhUlpwEs1lt5KP3IOWvkeigLlJT+EQ3drk7FPvdufM=
-X-Received: by 2002:adf:dc44:: with SMTP id m4mr3016729wrj.550.1639754748731;
- Fri, 17 Dec 2021 07:25:48 -0800 (PST)
+        id S238168AbhLQP2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 10:28:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56512 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229689AbhLQP2t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 10:28:49 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F89FC061574
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 07:28:49 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1myFA2-0006rT-Ba; Fri, 17 Dec 2021 16:28:42 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1myFA1-0053F3-3P; Fri, 17 Dec 2021 16:28:40 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1myFA0-0006X4-1W; Fri, 17 Dec 2021 16:28:40 +0100
+Date:   Fri, 17 Dec 2021 16:28:39 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Hammer Hsieh <hammerh0314@gmail.com>
+Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, robh+dt@kernel.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, wells.lu@sunplus.com,
+        Hammer Hsieh <hammer.hsieh@sunplus.com>
+Subject: Re: [PATCH v1 2/2] pwm:sunplus-pwm:Add Sunplus SoC PWM Driver
+Message-ID: <20211217152839.vjzgvpha2shcitdj@pengutronix.de>
+References: <1639741568-5846-1-git-send-email-hammer.hsieh@sunplus.com>
+ <1639741568-5846-3-git-send-email-hammer.hsieh@sunplus.com>
 MIME-Version: 1.0
-References: <20211214040157.27443-3-kernelfans@gmail.com> <20211215021348.8766-1-kernelfans@gmail.com>
- <CAL_JsqJQ4hiQ1eEYrnWax9oEDpwdh93pYo+sSV581R+F6F0ymA@mail.gmail.com>
-In-Reply-To: <CAL_JsqJQ4hiQ1eEYrnWax9oEDpwdh93pYo+sSV581R+F6F0ymA@mail.gmail.com>
-From:   Ard Biesheuvel <ardb@kernel.org>
-Date:   Fri, 17 Dec 2021 16:25:36 +0100
-X-Gmail-Original-Message-ID: <CAMj1kXH07Q50Zf_=dJ8G1q7ngjKSO01usmQ25wouygmaV_+wnA@mail.gmail.com>
-Message-ID: <CAMj1kXH07Q50Zf_=dJ8G1q7ngjKSO01usmQ25wouygmaV_+wnA@mail.gmail.com>
-Subject: Re: [PATCHv3] efi: apply memblock cap after memblock_add()
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Pingfan Liu <kernelfans@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Nick Terrell <terrelln@fb.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="w5p6wprgtelmsga2"
+Content-Disposition: inline
+In-Reply-To: <1639741568-5846-3-git-send-email-hammer.hsieh@sunplus.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Dec 2021 at 16:08, Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Tue, Dec 14, 2021 at 8:14 PM Pingfan Liu <kernelfans@gmail.com> wrote:
-> >
-> > On arm64, during kdump kernel saves vmcore, it runs into the following =
-bug:
-> > ...
-> > [   15.148919] usercopy: Kernel memory exposure attempt detected from S=
-LUB object 'kmem_cache_node' (offset 0, size 4096)!
-> > [   15.159707] ------------[ cut here ]------------
-> > [   15.164311] kernel BUG at mm/usercopy.c:99!
-> > [   15.168482] Internal error: Oops - BUG: 0 [#1] SMP
-> > [   15.173261] Modules linked in: xfs libcrc32c crct10dif_ce ghash_ce s=
-ha2_ce sha256_arm64 sha1_ce sbsa_gwdt ast i2c_algo_bit drm_vram_helper drm_=
-kms_helper syscopyarea sysfillrect sysimgblt fb_sys_fops cec drm_ttm_helper=
- ttm drm nvme nvme_core xgene_hwmon i2c_designware_platform i2c_designware_=
-core dm_mirror dm_region_hash dm_log dm_mod overlay squashfs zstd_decompres=
-s loop
-> > [   15.206186] CPU: 0 PID: 542 Comm: cp Not tainted 5.16.0-rc4 #1
-> > [   15.212006] Hardware name: GIGABYTE R272-P30-JG/MP32-AR0-JG, BIOS F1=
-2 (SCP: 1.5.20210426) 05/13/2021
-> > [   15.221125] pstate: 60400009 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BT=
-YPE=3D--)
-> > [   15.228073] pc : usercopy_abort+0x9c/0xa0
-> > [   15.232074] lr : usercopy_abort+0x9c/0xa0
-> > [   15.236070] sp : ffff8000121abba0
-> > [   15.239371] x29: ffff8000121abbb0 x28: 0000000000003000 x27: 0000000=
-000000000
-> > [   15.246494] x26: 0000000080000400 x25: 0000ffff885c7000 x24: 0000000=
-000000000
-> > [   15.253617] x23: 000007ff80400000 x22: ffff07ff80401000 x21: 0000000=
-000000001
-> > [   15.260739] x20: 0000000000001000 x19: ffff07ff80400000 x18: fffffff=
-fffffffff
-> > [   15.267861] x17: 656a626f2042554c x16: 53206d6f72662064 x15: 6574636=
-574656420
-> > [   15.274983] x14: 74706d6574746120 x13: 2129363930342065 x12: 7a69732=
-02c302074
-> > [   15.282105] x11: ffffc8b041d1b148 x10: 00000000ffff8000 x9 : ffffc8b=
-04012812c
-> > [   15.289228] x8 : 00000000ffff7fff x7 : ffffc8b041d1b148 x6 : 0000000=
-000000000
-> > [   15.296349] x5 : 0000000000000000 x4 : 0000000000007fff x3 : 0000000=
-000000000
-> > [   15.303471] x2 : 0000000000000000 x1 : ffff07ff8c064800 x0 : 0000000=
-00000006b
-> > [   15.310593] Call trace:
-> > [   15.313027]  usercopy_abort+0x9c/0xa0
-> > [   15.316677]  __check_heap_object+0xd4/0xf0
-> > [   15.320762]  __check_object_size.part.0+0x160/0x1e0
-> > [   15.325628]  __check_object_size+0x2c/0x40
-> > [   15.329711]  copy_oldmem_page+0x7c/0x140
-> > [   15.333623]  read_from_oldmem.part.0+0xfc/0x1c0
-> > [   15.338142]  __read_vmcore.constprop.0+0x23c/0x350
-> > [   15.342920]  read_vmcore+0x28/0x34
-> > [   15.346309]  proc_reg_read+0xb4/0xf0
-> > [   15.349871]  vfs_read+0xb8/0x1f0
-> > [   15.353088]  ksys_read+0x74/0x100
-> > [   15.356390]  __arm64_sys_read+0x28/0x34
-> > ...
-> >
-> > This bug introduced by commit b261dba2fdb2 ("arm64: kdump: Remove custo=
-m
-> > linux,usable-memory-range handling"), which moves
-> > memblock_cap_memory_range() to fdt, but it breaches the rules that
-> > memblock_cap_memory_range() should come after memblock_add() etc as sai=
-d
-> > in commit e888fa7bb882 ("memblock: Check memory add/cap ordering").
-> >
-> > As a consequence, the virtual address set up by copy_oldmem_page() does
-> > not bail out from the test of virt_addr_valid() in check_heap_object(),
-> > and finally hits the BUG_ON().
-> >
-> > Since memblock allocator has no idea about when the memblock is fully
-> > populated, while efi_init() is aware, so tackling this issue by calling=
- the
-> > interface early_init_dt_check_for_usable_mem_range() exposed by of/fdt.
-> >
-> > Fixes: b261dba2fdb2 ("arm64: kdump: Remove custom linux,usable-memory-r=
-ange handling")
-> > Signed-off-by: Pingfan Liu <kernelfans@gmail.com>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Zhen Lei <thunder.leizhen@huawei.com>
-> > Cc: Catalin Marinas <catalin.marinas@arm.com>
-> > Cc: Will Deacon <will@kernel.org>
-> > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > Cc: Mike Rapoport <rppt@kernel.org>
-> > Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> > Cc: Frank Rowand <frowand.list@gmail.com>
-> > Cc: Ard Biesheuvel <ardb@kernel.org>
-> > Cc: Nick Terrell <terrelln@fb.com>
-> > Cc: linux-arm-kernel@lists.infradead.org
-> > To: devicetree@vger.kernel.org
-> > To: linux-efi@vger.kernel.org
-> > ---
-> > v2 -> v3:
-> >  use static inline stub to avoid #ifdef according to Rob's suggestion
-> >
-> >  drivers/firmware/efi/efi-init.c | 5 +++++
-> >  drivers/of/fdt.c                | 2 +-
-> >  include/linux/of_fdt.h          | 2 ++
-> >  3 files changed, 8 insertions(+), 1 deletion(-)
->
-> Looks good to me. I'll apply and send to Linus once the EFI folks ack thi=
-s.
->
 
-Where needed in the series,
+--w5p6wprgtelmsga2
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Ard Biesheuvel <ardb@kernel.org>
+Hello,
+
+On Fri, Dec 17, 2021 at 07:46:08PM +0800, Hammer Hsieh wrote:
+> Add Sunplus SoC PWM Driver
+>=20
+> Signed-off-by: Hammer Hsieh <hammer.hsieh@sunplus.com>
+> ---
+>  MAINTAINERS               |   1 +
+>  drivers/pwm/Kconfig       |  11 +++
+>  drivers/pwm/Makefile      |   1 +
+>  drivers/pwm/pwm-sunplus.c | 192 ++++++++++++++++++++++++++++++++++++++++=
+++++++
+>  4 files changed, 205 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-sunplus.c
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 721ed79..1c9e3c5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18246,6 +18246,7 @@ SUNPLUS PWM DRIVER
+>  M:	Hammer Hsieh <hammer.hsieh@sunplus.com>
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+> +F:	drivers/pwm/pwm-sunplus.c
+> =20
+>  SUPERH
+>  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 21e3b05..9df5d5f 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -526,6 +526,17 @@ config PWM_SPRD
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-sprd.
+> =20
+> +config PWM_SUNPLUS
+> +	tristate "Sunplus PWM support"
+> +	depends on ARCH_SUNPLUS || COMPILE_TEST
+> +	depends on HAS_IOMEM && OF
+> +	help
+> +	  Generic PWM framework driver for the PWM controller on
+> +	  Sunplus SoCs.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-sunplus.
+> +
+>  config PWM_STI
+>  	tristate "STiH4xx PWM support"
+>  	depends on ARCH_STI || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 708840b..be58616 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -53,6 +53,7 @@ obj-$(CONFIG_PWM_STM32)		+=3D pwm-stm32.o
+>  obj-$(CONFIG_PWM_STM32_LP)	+=3D pwm-stm32-lp.o
+>  obj-$(CONFIG_PWM_STMPE)		+=3D pwm-stmpe.o
+>  obj-$(CONFIG_PWM_SUN4I)		+=3D pwm-sun4i.o
+> +obj-$(CONFIG_PWM_SUNPLUS)	+=3D pwm-sunplus.o
+>  obj-$(CONFIG_PWM_TEGRA)		+=3D pwm-tegra.o
+>  obj-$(CONFIG_PWM_TIECAP)	+=3D pwm-tiecap.o
+>  obj-$(CONFIG_PWM_TIEHRPWM)	+=3D pwm-tiehrpwm.o
+> diff --git a/drivers/pwm/pwm-sunplus.c b/drivers/pwm/pwm-sunplus.c
+> new file mode 100644
+> index 0000000..0ae59fc
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-sunplus.c
+> @@ -0,0 +1,192 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * PWM device driver for SUNPLUS SoCs
+> + *
+> + * Author: Hammer Hsieh <hammer.hsieh@sunplus.com>
+> + */
+
+Please add a section here about your hardware limitations. Please stick
+to the format used in e.g. pwm-sifive.c. That is a block starting with
+
+ * Limitations:
+
+and then a list of issues. One such item is: Only supports normal
+polarity.
+
+> +#include <linux/clk.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +
+> +#define PWM_SUP_CONTROL0	0x000
+> +#define PWM_SUP_CONTROL1	0x004
+> +#define PWM_SUP_FREQ_BASE	0x008
+> +#define PWM_SUP_DUTY_BASE	0x018
+> +#define PWM_SUP_FREQ(ch)	(PWM_SUP_FREQ_BASE + 4 * (ch))
+> +#define PWM_SUP_DUTY(ch)	(PWM_SUP_DUTY_BASE + 4 * (ch))
+> +#define PWM_SUP_FREQ_MAX	GENMASK(15, 0)
+> +#define PWM_SUP_DUTY_MAX	GENMASK(7, 0)
+> +
+> +#define PWM_SUP_NUM		4
+> +#define PWM_BYPASS_BIT_SHIFT	8
+> +#define PWM_DD_SEL_BIT_SHIFT	8
+> +#define PWM_SUP_FREQ_SCALER	256
+> +
+> +struct sunplus_pwm {
+> +	struct pwm_chip chip;
+> +	void __iomem *base;
+> +	struct clk *clk;
+> +};
+> +
+> +static inline struct sunplus_pwm *to_sunplus_pwm(struct pwm_chip *chip)
+> +{
+> +	return container_of(chip, struct sunplus_pwm, chip);
+> +}
+> +
+> +static void sunplus_reg_init(void __iomem *base)
+> +{
+> +	u32 i, value;
+> +
+> +	/* turn off all pwm channel output */
+> +	value =3D readl(base + PWM_SUP_CONTROL0);
+> +	value &=3D ~GENMASK((PWM_SUP_NUM - 1), 0);
+> +	writel(value, base + PWM_SUP_CONTROL0);
+> +
+> +	/* init all pwm channel clock source */
+> +	value =3D readl(base + PWM_SUP_CONTROL1);
+> +	value |=3D GENMASK((PWM_SUP_NUM - 1), 0);
+> +	writel(value, base + PWM_SUP_CONTROL1);
+> +
+> +	/* init all freq and duty setting */
+> +	for (i =3D 0; i < PWM_SUP_NUM; i++) {
+> +		writel(0, base + PWM_SUP_FREQ(i));
+> +		writel(0, base + PWM_SUP_DUTY(i));
+> +	}
+
+Please keep the PWM in their boot-up state. That is, if the bootloader
+enabled a display with a bootsplash, don't disable the backlight when
+the PWM driver loads.
+
+> +}
+> +
+> +static int sunplus_pwm_apply(struct pwm_chip *chip, struct pwm_device *p=
+wm,
+> +			     const struct pwm_state *state)
+> +{
+> +	struct sunplus_pwm *priv =3D to_sunplus_pwm(chip);
+> +	u32 period_ns, duty_ns, value;
+> +	u32 dd_freq, duty;
+> +	u64 tmp;
+> +
+
+	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+		return -EINVAL;
+
+> +	if (!state->enabled) {
+> +		value =3D readl(priv->base + PWM_SUP_CONTROL0);
+> +		value &=3D ~BIT(pwm->hwpwm);
+> +		writel(value, priv->base + PWM_SUP_CONTROL0);
+> +		return 0;
+> +	}
+> +
+> +	period_ns =3D state->period;
+
+state->period is an u64, so you might loose precision here.
+
+> +	duty_ns =3D state->duty_cycle;
+
+ditto
+
+> +
+> +	/* cal pwm freq and check value under range */
+> +	tmp =3D clk_get_rate(priv->clk) * (u64)period_ns;
+
+This might overflow?
+
+> +	tmp =3D DIV_ROUND_CLOSEST_ULL(tmp, NSEC_PER_SEC);
+> +	tmp =3D DIV_ROUND_CLOSEST_ULL(tmp, PWM_SUP_FREQ_SCALER);
+
+In general you should pick the highest period that isn't bigger than the
+requested period. I didn't check in detail, but using round-closest is a
+strong hint that you get that wrong.
+
+> +	dd_freq =3D (u32)tmp;
+> +
+> +	if (dd_freq =3D=3D 0)
+> +		return -EINVAL;
+> +
+> +	if (dd_freq > PWM_SUP_FREQ_MAX)
+> +		dd_freq =3D PWM_SUP_FREQ_MAX;
+> +
+> +	writel(dd_freq, priv->base + PWM_SUP_FREQ(pwm->hwpwm));
+> +
+> +	/* cal and set pwm duty */
+> +	value =3D readl(priv->base + PWM_SUP_CONTROL0);
+> +	value |=3D BIT(pwm->hwpwm);
+> +	if (duty_ns =3D=3D period_ns) {
+> +		value |=3D BIT(pwm->hwpwm + PWM_BYPASS_BIT_SHIFT);
+> +		duty =3D PWM_SUP_DUTY_MAX;
+> +	} else {
+> +		value &=3D ~BIT(pwm->hwpwm + PWM_BYPASS_BIT_SHIFT);
+> +		tmp =3D (u64)duty_ns * PWM_SUP_FREQ_SCALER + (period_ns >> 1);
+> +		tmp =3D DIV_ROUND_CLOSEST_ULL(tmp, (u64)period_ns);
+> +		duty =3D (u32)tmp;
+> +		duty |=3D (pwm->hwpwm << PWM_DD_SEL_BIT_SHIFT);
+
+This is also more inexact than necessary. In general don't use period_ns
+in the calculation of duty register settings. As with period you're
+supposed to pick the biggest possible dutycycle not bigger than the
+requested value.
+
+Consider a PWM that with register P =3D P and register D =3D D implements a
+PWM output with period =3D 1000 * P ns and duty_cycle =3D 1000 * D ns
+
+For a request of period =3D 39900 and duty_cycle =3D 12100, you have to pick
+P =3D 39 and D =3D 12. However P * duty_ns / period_ns =3D 11.82 ...
+
+> +	}
+> +	writel(value, priv->base + PWM_SUP_CONTROL0);
+> +	writel(duty, priv->base + PWM_SUP_DUTY(pwm->hwpwm));
+> +
+> +	return 0;
+> +}
+> +
+> +static void sunplus_pwm_get_state(struct pwm_chip *chip, struct pwm_devi=
+ce *pwm,
+> +				  struct pwm_state *state)
+> +{
+> +	struct sunplus_pwm *priv =3D to_sunplus_pwm(chip);
+> +	u32 value;
+> +
+> +	value =3D readl(priv->base + PWM_SUP_CONTROL0);
+> +
+> +	if (value & BIT(pwm->hwpwm))
+> +		state->enabled =3D true;
+> +	else
+> +		state->enabled =3D false;
+
+This looks incomplete. Please enable PWM_DEBUG during your tests and
+address all output generated by that.
+
+As the general idea is that passing the result from .get_state() to
+=2Eapply shouldn't modify the output, you have (in general) round up
+divisions in .get_state().
+
+> +}
+> +
+> +static const struct pwm_ops sunplus_pwm_ops =3D {
+> +	.apply =3D sunplus_pwm_apply,
+> +	.get_state =3D sunplus_pwm_get_state,
+> +	.owner =3D THIS_MODULE,
+> +};
+> +
+> +static int sunplus_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct sunplus_pwm *priv;
+> +	int ret;
+> +
+> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base))
+> +		return PTR_ERR(priv->base);
+> +
+> +	priv->clk =3D devm_clk_get_optional(dev, NULL);
+> +	if (IS_ERR(priv->clk))
+> +		return dev_err_probe(dev, PTR_ERR(priv->clk),
+> +				     "get pwm clock failed\n");
+> +
+> +	ret =3D clk_prepare_enable(priv->clk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D devm_add_action_or_reset(dev,
+> +				       (void(*)(void *))clk_disable_unprepare,
+> +				       priv->clk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	priv->chip.dev =3D dev;
+> +	priv->chip.ops =3D &sunplus_pwm_ops;
+> +	priv->chip.npwm =3D PWM_SUP_NUM;
+> +
+> +	sunplus_reg_init(priv->base);
+> +
+> +	platform_set_drvdata(pdev, priv);
+
+This is unused, so please drop this.
+
+> +
+> +	ret =3D devm_pwmchip_add(dev, &priv->chip);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Cannot register sunplus PWM\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id sunplus_pwm_of_match[] =3D {
+> +	{ .compatible =3D "sunplus,sp7021-pwm", },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, sunplus_pwm_of_match);
+> +
+> +static struct platform_driver sunplus_pwm_driver =3D {
+> +	.probe		=3D sunplus_pwm_probe,
+> +	.driver		=3D {
+> +		.name	=3D "sunplus-pwm",
+> +		.of_match_table =3D sunplus_pwm_of_match,
+> +	},
+> +};
+> +module_platform_driver(sunplus_pwm_driver);
+> +
+> +MODULE_DESCRIPTION("Sunplus SoC PWM Driver");
+> +MODULE_AUTHOR("Hammer Hsieh <hammer.hsieh@sunplus.com>");
+> +MODULE_LICENSE("GPL v2");
+
+"GPL" has the same semantic and is the more usual, so I suggest to use
+that one.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--w5p6wprgtelmsga2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmG8rJ8ACgkQwfwUeK3K
+7AkYrAgAnyexKVg4DDqCmeOpnMI8WshsOcwzm89l+NUKYPVKC/0ugxOcmNkkYwts
+EOOIXC/cCBK2PnqkVZpKgTTdMQ8201pIJTer190PeTkms6iHyyPbXK0L3kUf9BmF
+I1Dla60HeNpt646ssAXfPDKdDc2aQMhtAnjIbgK8CNsdlzu8+PIj/QHbn1GX8uyg
+3KHe8fJ6JH9lmc1RJnbb94BTXjVNgXeEs7ci0PnK/M3WQ3QWrBjH2CVeE6Z4kqs2
+oBSLh8w30YUeBOjEiK+PBsu4Mmg4yj36mL2YqQmVqFuTUnLNwMHFC8fjSZbX8Wo/
+rHwll+Br4tv6M/FvbFOSUEFrUg7uIw==
+=9KAW
+-----END PGP SIGNATURE-----
+
+--w5p6wprgtelmsga2--
