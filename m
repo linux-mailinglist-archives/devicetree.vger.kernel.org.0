@@ -2,142 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A36CF478885
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 11:13:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4759A478899
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 11:16:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234789AbhLQKNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 05:13:06 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:34804 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234763AbhLQKM7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 05:12:59 -0500
-X-UUID: ff84da27beff43c0bca72e430d15bf05-20211217
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=HUN21q7AmJHL7HLN5+p2io8f1jf3Mzl1xVuyGCioDeM=;
-        b=kvta8LCn3yt0tXBCHqRk3MxlYDtP7ij0shIOM+pIhBTcDkuAf2cHXeC9avM41sS0gwWKLEZ3MQzjmo+SYRoY8SFppZ3yrpqGZCPVrUUjV/T/7I8KSZCWBH5DJfaU1oO62FIjixUDhdpTO/cSW5s21xlSkZk3f3l/bNmNPeJPf8U=;
-X-UUID: ff84da27beff43c0bca72e430d15bf05-20211217
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 316147769; Fri, 17 Dec 2021 18:12:55 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 17 Dec 2021 18:12:54 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 17 Dec 2021 18:12:53 +0800
-Message-ID: <675c774ec23b1d541ea58a7307a6766bda314734.camel@mediatek.com>
-Subject: Re: [next PATCH] dt-bindings: nvmem: convert mtk-efuse.txt to YAML
- schema
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Fri, 17 Dec 2021 18:12:55 +0800
-In-Reply-To: <YboeNrekGcGOZES8@robh.at.kernel.org>
-References: <20211209024213.16612-1-chunfeng.yun@mediatek.com>
-         <YboeNrekGcGOZES8@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S234664AbhLQKQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 05:16:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40030 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229608AbhLQKQF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 05:16:05 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DC5BC061574;
+        Fri, 17 Dec 2021 02:16:05 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 23485B82784;
+        Fri, 17 Dec 2021 10:16:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42923C36AE5;
+        Fri, 17 Dec 2021 10:16:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639736161;
+        bh=snv7D0bg9ZIaZv6KA4SVmu+ko2D49RQlrJ1DNDxan/8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nKTv7WDyL0ctU78mqzrYXbzfKT1xMCCYbhm9mlFfJohpw5r8aM+EM10JCPaJSNemf
+         Baxsp5GxbZ+Y33sMVdtpMNcXu321ddyw5x9+2T+XhSSngGQw9AyrmeiRvcECA2nDmG
+         KtSd7QUvNJAMtIgb20Qq42gsVBkKJJxw4HktbLMzvXGaiEXU/4xqd+pmKtKMCM2rVy
+         0tu1QZ/L39KhdDGmAM2fta8hGjSDVCmBYSJhlm23NWQW5QRi+J482SohgvgqhmODng
+         0Kp1iPcCeHK4l1ywWUE5m5lWa1JaVD4CdTboOxIO5hBXURztc1IVC+Lk+w0p1kPfCk
+         vtu1HQcbT+jbg==
+Date:   Fri, 17 Dec 2021 11:15:58 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Ralph Siemsen <ralph.siemsen@linaro.org>
+Subject: Re: [PATCH v5 2/4] mtd: rawnand: rzn1: Add new NAND controller driver
+Message-ID: <YbxjXgIIj6yma+Ch@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>, Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Ralph Siemsen <ralph.siemsen@linaro.org>
+References: <20211217090248.259122-1-miquel.raynal@bootlin.com>
+ <20211217090248.259122-3-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="JEHMTQpb7VDnBZsA"
+Content-Disposition: inline
+In-Reply-To: <20211217090248.259122-3-miquel.raynal@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIxLTEyLTE1IGF0IDEwOjU2IC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gVGh1LCBEZWMgMDksIDIwMjEgYXQgMTA6NDI6MTNBTSArMDgwMCwgQ2h1bmZlbmcgWXVuIHdy
-b3RlOg0KPiA+IENvbnZlcnQgbXRrLWVmdXNlLnR4dCB0byBZQU1MIHNjaGVtYSBtZWRpYXRlayxl
-ZnVzZS55YW1sDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogQ2h1bmZlbmcgWXVuIDxjaHVuZmVu
-Zy55dW5AbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICAuLi4vYmluZGluZ3MvbnZtZW0vbWVk
-aWF0ZWssZWZ1c2UueWFtbCAgICAgICAgfCA4OQ0KPiA+ICsrKysrKysrKysrKysrKysrKysNCj4g
-PiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvbnZtZW0vbXRrLWVmdXNlLnR4dCAgIHwgNDMgLS0t
-LS0tLS0tDQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgODkgaW5zZXJ0aW9ucygrKSwgNDMgZGVsZXRp
-b25zKC0pDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiA+IERvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9udm1lbS9tZWRpYXRlayxlZnVzZS55YW1sDQo+ID4gIGRlbGV0ZSBtb2Rl
-IDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbnZtZW0vbXRrLQ0KPiA+
-IGVmdXNlLnR4dA0KPiA+IA0KPiA+IGRpZmYgLS1naXQNCj4gPiBhL0RvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy9udm1lbS9tZWRpYXRlayxlZnVzZS55YW1sDQo+ID4gYi9Eb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbnZtZW0vbWVkaWF0ZWssZWZ1c2UueWFtbA0KPiA+
-IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi43MzMyMTk1ZTdm
-MDANCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL252bWVtL21lZGlhdGVrLGVmdXNlLnlhbWwNCj4gPiBAQCAtMCwwICsxLDg5IEBA
-DQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTIt
-Q2xhdXNlKQ0KPiA+ICslWUFNTCAxLjINCj4gPiArLS0tDQo+ID4gKyRpZDogaHR0cDovL2Rldmlj
-ZXRyZWUub3JnL3NjaGVtYXMvbnZtZW0vbWVkaWF0ZWssZWZ1c2UueWFtbCMNCj4gPiArJHNjaGVt
-YTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQo+ID4gKw0K
-PiA+ICt0aXRsZTogTWVkaWFUZWsgZWZ1c2UgZGV2aWNlIHRyZWUgYmluZGluZ3MNCj4gPiArDQo+
-ID4gK2Rlc2NyaXB0aW9uOiB8DQo+ID4gKyAgTWVkaWFUZWsncyBlZnVzZSBpcyB1c2VkIGZvciBz
-dG9yaW5nIGNhbGlicmF0aW9uIGRhdGEsIGl0IGNhbiBiZQ0KPiA+IGFjY2Vzc2VkDQo+ID4gKyAg
-b24gQVJNIGRldmljZXMgdXNpb25nIEkvTyBtYXBwZWQgbWVtb3J5Lg0KPiA+ICsNCj4gPiArbWFp
-bnRhaW5lcnM6DQo+ID4gKyAgLSBBbmRyZXctQ1QgQ2hlbiA8YW5kcmV3LWN0LmNoZW5AbWVkaWF0
-ZWsuY29tPg0KPiA+ICsNCj4gPiArYWxsT2Y6DQo+ID4gKyAgLSAkcmVmOiAibnZtZW0ueWFtbCMi
-DQo+ID4gKw0KPiA+ICtwcm9wZXJ0aWVzOg0KPiA+ICsgICRub2RlbmFtZToNCj4gPiArICAgIHBh
-dHRlcm46ICJeZWZ1c2VAWzAtOWEtZl0rJCINCj4gPiArDQo+ID4gKyAgY29tcGF0aWJsZToNCj4g
-PiArICAgIG9uZU9mOg0KPiA+ICsgICAgICAtIGl0ZW1zOg0KPiA+ICsgICAgICAgICAgLSBlbnVt
-Og0KPiA+ICsgICAgICAgICAgICAgIC0gbWVkaWF0ZWssbXQ3NjIyLWVmdXNlDQo+ID4gKyAgICAg
-ICAgICAgICAgLSBtZWRpYXRlayxtdDc2MjMtZWZ1c2UNCj4gPiArICAgICAgICAgICAgICAtIG1l
-ZGlhdGVrLG10ODE3My1lZnVzZQ0KPiA+ICsgICAgICAgICAgICAgIC0gbWVkaWF0ZWssbXQ4MTky
-LWVmdXNlDQo+ID4gKyAgICAgICAgICAgICAgLSBtZWRpYXRlayxtdDgxOTUtZWZ1c2UNCj4gPiAr
-ICAgICAgICAgICAgICAtIG1lZGlhdGVrLG10ODUxNi1lZnVzZQ0KPiA+ICsgICAgICAgICAgLSBj
-b25zdDogbWVkaWF0ZWssZWZ1c2UNCj4gPiArICAgICAgLSBjb25zdDogbWVkaWF0ZWssbXQ4MTcz
-LWVmdXNlDQo+ID4gKyAgICAgICAgZGVwcmVjYXRlZDogdHJ1ZQ0KPiA+ICsNCj4gPiArICByZWc6
-DQo+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ICsNCj4gDQo+IEFsbCBvZjogDQo+IA0KPiA+ICsg
-ICIjYWRkcmVzcy1jZWxscyI6DQo+ID4gKyAgICBjb25zdDogMQ0KPiA+ICsNCj4gPiArICAiI3Np
-emUtY2VsbHMiOg0KPiA+ICsgICAgY29uc3Q6IDENCj4gPiArDQo+ID4gK3BhdHRlcm5Qcm9wZXJ0
-aWVzOg0KPiA+ICsgICJeLipAWzAtOWEtZl0rJCI6DQo+ID4gKyAgICB0eXBlOiBvYmplY3QNCj4g
-PiArDQo+ID4gKyAgICBwcm9wZXJ0aWVzOg0KPiA+ICsgICAgICByZWc6DQo+ID4gKyAgICAgICAg
-bWF4SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgICAgIGJpdHM6DQo+ID4gKyAgICAgICAgbWF4SXRl
-bXM6IDENCj4gPiArDQo+ID4gKyAgICByZXF1aXJlZDoNCj4gPiArICAgICAgLSByZWcNCj4gPiAr
-DQo+ID4gKyAgICBhZGRpdGlvbmFsUHJvcGVydGllczogZmFsc2UNCj4gDQo+IC4uLnRoaXMgaXMg
-Y292ZXJlZCBieSBudm1lbS55YW1sIGFuZCBjYW4gYmUgZHJvcHBlZC4NCk9rLCB0aGFua3MNCg0K
-PiANCj4gPiArDQo+ID4gK3JlcXVpcmVkOg0KPiA+ICsgIC0gY29tcGF0aWJsZQ0KPiA+ICsgIC0g
-cmVnDQo+ID4gKw0KPiA+ICt1bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+
-ICtleGFtcGxlczoNCj4gPiArICAtIHwNCj4gPiArICAgIGVmdXNlQDEwMjA2MDAwIHsNCj4gPiAr
-ICAgICAgICBjb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE3My1lZnVzZSI7DQo+ID4gKyAgICAg
-ICAgcmVnID0gPDB4MTAyMDYwMDAgMHgxMDAwPjsNCj4gPiArICAgICAgICAjYWRkcmVzcy1jZWxs
-cyA9IDwxPjsNCj4gPiArICAgICAgICAjc2l6ZS1jZWxscyA9IDwxPjsNCj4gPiArDQo+ID4gKyAg
-ICAgICAgdTJfaW50cl9wMDogdXNiMi1pbnRyLXAwQDE4OCB7DQo+ID4gKyAgICAgICAgICAgIHJl
-ZyA9IDwweDE4OCAweDE+Ow0KPiA+ICsgICAgICAgICAgICBiaXRzID0gPDAgNT47DQo+ID4gKyAg
-ICAgICAgfTsNCj4gPiArDQo+ID4gKyAgICAgICAgdTJfaW50cl9wMTogdXNiMi1pbnRyLXAxQDE4
-OCB7DQo+ID4gKyAgICAgICAgICAgIHJlZyA9IDwweDE4OCAweDI+Ow0KPiA+ICsgICAgICAgICAg
-ICBiaXRzID0gPDUgNT47DQo+ID4gKyAgICAgICAgfTsNCj4gPiArDQo+ID4gKyAgICAgICAgdGhl
-cm1hbF9jYWxpYnJhdGlvbjogY2FsaWJANTI4IHsNCj4gPiArICAgICAgICAgICAgcmVnID0gPDB4
-NTI4IDB4Yz47DQo+ID4gKyAgICAgICAgfTsNCj4gPiArICAgIH07DQo+ID4gZGlmZiAtLWdpdCBh
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS9tdGstZWZ1c2UudHh0DQo+
-ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbnZtZW0vbXRrLWVmdXNlLnR4
-dA0KPiA+IGRlbGV0ZWQgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDM5ZDUyOTU5OTQ0NC4u
-MDAwMDAwMDAwMDAwDQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L252bWVtL210ay1lZnVzZS50eHQNCj4gPiArKysgL2Rldi9udWxsDQo+ID4gQEAgLTEsNDMgKzAs
-MCBAQA0KPiA+IC09IE1lZGlhdGVrIE1USy1FRlVTRSBkZXZpY2UgdHJlZSBiaW5kaW5ncyA9DQo+
-ID4gLQ0KPiA+IC1UaGlzIGJpbmRpbmcgaXMgaW50ZW5kZWQgdG8gcmVwcmVzZW50IE1USy1FRlVT
-RSB3aGljaCBpcyBmb3VuZCBpbg0KPiA+IG1vc3QgTWVkaWF0ZWsgU09Dcy4NCj4gPiAtDQo+ID4g
-LVJlcXVpcmVkIHByb3BlcnRpZXM6DQo+ID4gLS0gY29tcGF0aWJsZTogc2hvdWxkIGJlDQo+ID4g
-LQkgICAgICAibWVkaWF0ZWssbXQ3NjIyLWVmdXNlIiwgIm1lZGlhdGVrLGVmdXNlIjogZm9yIE1U
-NzYyMg0KPiA+IC0JICAgICAgIm1lZGlhdGVrLG10NzYyMy1lZnVzZSIsICJtZWRpYXRlayxlZnVz
-ZSI6IGZvciBNVDc2MjMNCj4gPiAtCSAgICAgICJtZWRpYXRlayxtdDgxNzMtZWZ1c2UiIG9yICJt
-ZWRpYXRlayxlZnVzZSI6IGZvciBNVDgxNzMNCj4gPiAtCSAgICAgICJtZWRpYXRlayxtdDgxOTIt
-ZWZ1c2UiLCAibWVkaWF0ZWssZWZ1c2UiOiBmb3IgTVQ4MTkyDQo+ID4gLQkgICAgICAibWVkaWF0
-ZWssbXQ4MTk1LWVmdXNlIiwgIm1lZGlhdGVrLGVmdXNlIjogZm9yIE1UODE5NQ0KPiA+IC0JICAg
-ICAgIm1lZGlhdGVrLG10ODUxNi1lZnVzZSIsICJtZWRpYXRlayxlZnVzZSI6IGZvciBNVDg1MTYN
-Cj4gPiAtLSByZWc6IFNob3VsZCBjb250YWluIHJlZ2lzdGVycyBsb2NhdGlvbiBhbmQgbGVuZ3Ro
-DQo+ID4gLS0gYml0czogY29udGFpbiB0aGUgYml0cyByYW5nZSBieSBvZmZzZXQgYW5kIHNpemUN
-Cj4gPiAtDQo+ID4gLT0gRGF0YSBjZWxscyA9DQo+ID4gLUFyZSBjaGlsZCBub2RlcyBvZiBNVEst
-RUZVU0UsIGJpbmRpbmdzIG9mIHdoaWNoIGFzIGRlc2NyaWJlZCBpbg0KPiA+IC1iaW5kaW5ncy9u
-dm1lbS9udm1lbS50eHQNCj4gPiAtDQo+ID4gLUV4YW1wbGU6DQo+ID4gLQ0KPiA+IC0JZWZ1c2U6
-IGVmdXNlQDEwMjA2MDAwIHsNCj4gPiAtCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE3My1l
-ZnVzZSI7DQo+ID4gLQkJcmVnCSAgID0gPDAgMHgxMDIwNjAwMCAwIDB4MTAwMD47DQo+ID4gLQkJ
-I2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+ID4gLQkJI3NpemUtY2VsbHMgPSA8MT47DQo+ID4gLQ0K
-PiA+IC0JCS8qIERhdGEgY2VsbHMgKi8NCj4gPiAtCQl0aGVybWFsX2NhbGlicmF0aW9uOiBjYWxp
-YkA1Mjggew0KPiA+IC0JCQlyZWcgPSA8MHg1MjggMHhjPjsNCj4gPiAtCQl9Ow0KPiA+IC0JfTsN
-Cj4gPiAtDQo+ID4gLT0gRGF0YSBjb25zdW1lcnMgPQ0KPiA+IC1BcmUgZGV2aWNlIG5vZGVzIHdo
-aWNoIGNvbnN1bWUgbnZtZW0gZGF0YSBjZWxscy4NCj4gPiAtDQo+ID4gLUZvciBleGFtcGxlOg0K
-PiA+IC0NCj4gPiAtCXRoZXJtYWwgew0KPiA+IC0JCS4uLg0KPiA+IC0JCW52bWVtLWNlbGxzID0g
-PCZ0aGVybWFsX2NhbGlicmF0aW9uPjsNCj4gPiAtCQludm1lbS1jZWxsLW5hbWVzID0gImNhbGli
-cmF0aW9uIjsNCj4gPiAtCX07DQo+ID4gLS0gDQo+ID4gMi4xOC4wDQo+ID4gDQo+ID4gDQo=
 
+--JEHMTQpb7VDnBZsA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Miquel,
+
+thanks for this driver. I just discovered it, better late than never!
+
+On Fri, Dec 17, 2021 at 10:02:46AM +0100, Miquel Raynal wrote:
+> Introduce Renesas RZ/N1x NAND controller driver which supports:
+> - All ONFI timing modes
+> - Different configurations of its internal ECC controller
+> - On-die (not tested) and software ECC support
+> - Several chips (not tested)
+> - Subpage accesses
+> - DMA and PIO
+>=20
+> This controller was originally provided by Evatronix before being bought
+> by Cadence.
+>=20
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Tested-by: Ralph Siemsen <ralph.siemsen@linaro.org>
+
+This IP core is also available on some Renesas R-Car Gen3 SoCs. I don't
+have a board with NAND equipped, so I sadly cannot test your patch and
+can only say that the code looks like it is in a really good shape and
+can only suggest some renaming.
+
+> ---
+>  drivers/mtd/nand/raw/Kconfig                |    6 +
+>  drivers/mtd/nand/raw/Makefile               |    1 +
+>  drivers/mtd/nand/raw/rzn1-nand-controller.c | 1422 +++++++++++++++++++
+
+Because the IP core is present elsewhere as well, how about
+drivers/mtd/nand/raw/r-nandc.c ? This is the name mentioned in the R-Car
+Gen3 docs.
+
+> +config MTD_NAND_RZN1
+
+MTD_NAND_RNANDC?
+
+> +	tristate "Renesas RZ/N1D, RZ/N1S, RZ/N1L NAND controller"
+
+"Renesas R-NANDC controller"?
+
+> +	help
+> +	  Enables support for Renesas RZ/N1x SoC family NAND controller.
+
+"support for the Renesas R-NANDC found on ... SoCs."?
+
+>  obj-$(CONFIG_MTD_NAND_PL35X)		+=3D pl35x-nand-controller.o
+> +obj-$(CONFIG_MTD_NAND_RZN1)		+=3D rzn1-nand-controller.o
+
+Might need updated sorting then maybe.
+
+> + * Evatronix/Renesas RZ/N1D, RZ/N1S, RZ/N1L NAND flash controller driver
+
+R-NANDC?
+
+> +struct rzn1_nand_chip_sel {
+> +	unsigned int cs;
+> +};
+
+Replace all 'rzn1_nand_' with 'rnandc_' in the file? I know this can be
+an annoying change.
+
+=2E..
+
+> +		ret =3D devm_request_irq(&pdev->dev, irq, rzn1_nandc_irq_handler, 0,
+> +				       "rzn1-nand-controller", nandc);
+
+"rnandc"?
+
+> +static const struct of_device_id rzn1_nandc_id_table[] =3D {
+> +	{ .compatible =3D "renesas,rzn1-nand-controller" },
+
+"rnandc"?
+
+> +MODULE_LICENSE("GPL");
+
+"GPL v2" according to the SPDX header.
+
+All the best,
+
+   Wolfram
+
+
+--JEHMTQpb7VDnBZsA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmG8Y1sACgkQFA3kzBSg
+KbaZMQ//T1w3ffnlVtf8txLcPIb5VcN8yeaQO8F9ZA7aFz0WL0XNiuOwTRfduqe4
+frqbeNLvsXBi9fxAJIUjyDfdo3zrnUG3ENyRZq7aE/IAwd+dHeVj4EHA5J2xasU6
+qyVZHqrv76C6CbWQvDeW5gmQjrpvl4N3A4yoRni7ONuWIEOxF67b3HCAlzvUxdoJ
+qslRugqWId+I7AK+swt/OH0sjYrvUvT68dttkE6WdvvJUm2F2ea0C5EFJcuF2Ixe
+R5NXN2M49NFZRUr4FJHaToCV7VrgJkAWpF7iwvp3+BjnOLALzywAN0ofLs3C0RM+
+F1PA7JyDBTQ9MWsNlUJVCAB/miTKKc1rYQc4AwvrpRjCQ/qJkeSUa1uC883SrrpA
+hAHTxKReXEgyzaMCmqvPPfTEC1BDpCQZfJyMAarUS2as43ijqyNyCfB/03DaKh40
+bKaUOZ3tBBNjc2x9MMeHs7/JnNy4z+2cwZM5+W1mVrJNZIO98P77ubpCG36Vg1Cp
+zcEXyhPB0jXw7JAOac3C0rDOm9LyNUQUxfk7Vb7yRlAVETqlbhw/0gmIpE9IEgiF
+qp+LLzFdfPEzGCfvI+G2qNk0qFw6LJsz7J2BOyIh62c+PIMfw9Rj2Y9Yr0g2DJDU
+cDYzE80kpm90PaceG0TPj5v0emVMJbyeCOIDHKtjHTG+uB8KxxY=
+=A8Ks
+-----END PGP SIGNATURE-----
+
+--JEHMTQpb7VDnBZsA--
