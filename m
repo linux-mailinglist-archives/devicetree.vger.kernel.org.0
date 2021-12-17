@@ -2,105 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B6824792BE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:23:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AA9C4792CE
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:27:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239850AbhLQRXD convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 17 Dec 2021 12:23:03 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:57571 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239847AbhLQRXD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:23:03 -0500
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id DAD12200008;
-        Fri, 17 Dec 2021 17:23:00 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Vladimir Vid <vladimir.vid@sartura.hr>,
-        Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 0/6] serial: mvebu-uart: Support for higher baudrates
-In-Reply-To: <20211103214209.azo2z3z4gy7aj5hu@pali>
-References: <20210930095838.28145-1-pali@kernel.org>
- <20211103214209.azo2z3z4gy7aj5hu@pali>
-Date:   Fri, 17 Dec 2021 18:23:00 +0100
-Message-ID: <87ee6bm9hn.fsf@BL-laptop>
+        id S239875AbhLQR1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 12:27:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57708 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239910AbhLQR1K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:27:10 -0500
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2032C06173E
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 09:27:09 -0800 (PST)
+Received: by mail-pj1-x1034.google.com with SMTP id f18-20020a17090aa79200b001ad9cb23022so3452838pjq.4
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 09:27:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=94lytwgo2pGPKoCz7cXjNIBQaFpmuX64JbTjaHifeEo=;
+        b=R/D+giI9xp6G3jBIYNNDmBdzy8vtLbErm1zXG1RUpUrVR7TplNui48kHW1HA7L4AXr
+         8xYSnKLB/KktrXYjS5rcAfBqUAG3k7JMmlN3Z4cmdNnjLxA9G6f7hSVmW97x+QlbZyju
+         7CvKfsGCnO0A37sh//tlbNDCgdjk8Xg81hQQ6WPJ0QwNNKGFHiLM/MCpZz0HfgyuwjnR
+         r+8tQosxe7KhEgBHoCAes46E4VMj/3CvCDjxGTyyKl3Y2yVCxn2IHJQo/ssx/0fJQPzn
+         mt2f/cAHhVIXZMu9HYc9cR14FshrILqP0+1mmNqnZKov6JMTkdYmxRaLTBcmxCMsHEfe
+         6WxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=94lytwgo2pGPKoCz7cXjNIBQaFpmuX64JbTjaHifeEo=;
+        b=h8fZ7nm1eknXCzmichpk/yj8nM2xfPj6VSapbnsB8uG3OF2xI/Y5SSHz/vI53A6H5G
+         LmqiZ3YhH2FCo9Om/UH45gFxgRJYdPaH+zj39ADNrfm4USFkZoy7iuIvGXzKSH8PDMkb
+         1Q0bOWbL5k3WuX+aZEpI3VifWMQDZ5bqoeUJuBb4djFhasGO+jWcJzHB2fFHsHfyAQN+
+         XolN78DD8vKuCwS+E5E8qwGcHWhEem6J6LiT0uOK3ttnrVEXA8DLBw/m+5z3P/FBUPHG
+         qSmezc2BysHKk3EieOdIsbrAopfkSN4SgTRA97Rq7z9JOdgxU76v6m/cPwEyKwb9Wecm
+         53xw==
+X-Gm-Message-State: AOAM530HNMtcofL7NvUpBHYY+QyEZcSs7dM45ZQerPkjZBX5ILNd42Ca
+        GlxMJIBIiok7MGzPSfJrV2zITiWiGDANKPyGCdkIZQ==
+X-Google-Smtp-Source: ABdhPJxh6drjRqJyeeghVLdXC+QG2CUejhvUilM6pihIKCowBomy2bFqr6Blk7qvQTT9UHKElHVBCV9i+77UTKQoPfE=
+X-Received: by 2002:a17:902:c214:b0:148:a798:7aa with SMTP id
+ 20-20020a170902c21400b00148a79807aamr4115431pll.90.1639762029356; Fri, 17 Dec
+ 2021 09:27:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+References: <20211106183802.893285-1-aford173@gmail.com> <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
+ <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com>
+ <8db00a4b6faa99c940d9bc86e17161eb0db5efe3.camel@ndufresne.ca>
+ <CAJ+vNU28UJffFv9jQ2KryJMudqYxvCaoVOVcU5dPqRA209iN6A@mail.gmail.com>
+ <d91532c2c0772f9aa708ead36b2a97203727a7ea.camel@ndufresne.ca>
+ <CAJ+vNU3H-V+bPoZ3qKead45h=W7AhQK6Lhjrx5ssdF4c_qfe=A@mail.gmail.com>
+ <CAHCN7x+0LwwU_rEST+TZxGquswGKL19gnTy9WLofsXtGAtWqdw@mail.gmail.com>
+ <7f94eaacfddb8c5434c17f1e069ea87a17657ce9.camel@ndufresne.ca>
+ <CAHCN7xKRzxMBmPbDobWTuvNNSpTXk5XENvfBnfkhRY3eZKhn6w@mail.gmail.com>
+ <CAHCN7xJFLNi_g+HX8PCy1Rkgf0jnWpO5QGYVz8nH19xrJkwHrA@mail.gmail.com>
+ <CAJ+vNU3zFd=6k_Emc5aafxKkGwCPp4crgOFezQ-E_MbWsn1_EA@mail.gmail.com>
+ <fed6c2fd7cf4971062c417ce41ed1e3812b900e0.camel@ndufresne.ca>
+ <CAHCN7xK+wROHaqDcsY-3WYFQ82qX17L-LHNL3siSWnWvwFShzQ@mail.gmail.com>
+ <CAAEAJfC1xXvemaFP+vTFVJ3S-SpYtrxyZgDamSOgLC1F3ua5xw@mail.gmail.com>
+ <CAHCN7x+UMMP6RXsNm0=OC=UTQzh=RKqQo6B7FD5e4eoJAEfmpg@mail.gmail.com>
+ <CAJ+vNU1epi9SwPMHkuDmKcb68RLemYF=bsp7AVnzz06zKc2efw@mail.gmail.com>
+ <CAAEAJfCpjk5nWWkJYjjDT-YEpJi4pTZqZbzp_if9OGC0HKspzw@mail.gmail.com>
+ <CAJ+vNU2we5mGXgYsR6CfimvFXZsc0zktR3fDa-h6RRa02jTT0g@mail.gmail.com>
+ <CAHCN7xJrM9uZUnmx65uTxWEo6HAkjozd3kD3UoEv-pYd5DV4QA@mail.gmail.com>
+ <CAAEAJfBXU-AiKKhkhXzgUSR4p1yefysNuHFycBz3F-GzNewS6w@mail.gmail.com>
+ <CAHCN7xL4y67V6AW5MV=8iudvvGVBWs2LoUhu_2CUJf6bSycgFA@mail.gmail.com> <8438070708d16c34c0f79aba19e67fa343adb169.camel@ndufresne.ca>
+In-Reply-To: <8438070708d16c34c0f79aba19e67fa343adb169.camel@ndufresne.ca>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 17 Dec 2021 09:26:58 -0800
+Message-ID: <CAJ+vNU1ZxAAasKT8j1sfcFz1pk8fyYjwOW6wqxYq_ur8+2MX_Q@mail.gmail.com>
+Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
+To:     Nicolas Dufresne <nicolas@ndufresne.ca>
+Cc:     Adam Ford <aford173@gmail.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-media <linux-media@vger.kernel.org>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        cstevens@beaconembedded.com,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Pali,
-
-> On Thursday 30 September 2021 11:58:32 Pali Rohár wrote:
->> This patch series add support for baudrates higher than 230400 on
->> Marvell Armada 37xx boards.
+On Fri, Dec 17, 2021 at 9:13 AM Nicolas Dufresne <nicolas@ndufresne.ca> wro=
+te:
 >
-> Stephen, Gregory, are there any issues with this patch series?
-
-I am not found of these changes but let's apply it as I didn't take time
-to do a better review.
-
-However I can't apply the dt part if the driver is not merged.
-
-Gregory
-
-> If not, could you take them?
+> Le vendredi 17 d=C3=A9cembre 2021 =C3=A0 07:15 -0600, Adam Ford a =C3=A9c=
+rit :
+> > On Thu, Dec 16, 2021 at 10:49 PM Ezequiel Garcia
+> > <ezequiel@vanguardiasur.com.ar> wrote:
+> > >
+> > > Hi Adam,
+> > >
+> > > >
+> > > > I will post a V2 last today with the Mini's post-processing removed=
+.
+> > > > Someone, I apologize that I forget who, mentioned it was fused out =
+of
+> > > > the Mini, so the testing I've been doing was with that removed and =
+I
+> > > > removed the H1 encoder since the Mini doesn't support JPEG encoding=
+.
+> > > >
+> > > [...]
+> > >
+> > > Resurrecting this thread here. IMX8MMRM Rev. 0, 02/2019 mentions
+> > > post-processor features for G1 and G2.
+> > >
+> > > Have you checked the fuse and synth registers to see if they throw
+> > > any useful information about the hardware? For instance,
+> > > comparing PP fuse register (SWREG99) and
+> > > Synthesis configuration register post-processor (SWREG100)
+> > > in both 8MQ and 8MM could be useful.
+> > >
+> > > As I mentioned on my previous mail, even if G1 PP is disabled
+> > > on the Mini, I would imagine the G2 can do linear NV12 (aka raster-sc=
+an)
+> > > which in our hantro driver jargon is a  "post-processed" format :-)
+> >
+> > You're likely right.  I was going on memory from an e-mail from
+> > Nicloas Defresne who wrote:
+> >
+> > "I will check the patchset, but you need in the mini-variant to disable=
+ the G1
+> > post processor, because this block was fused out. We didn't make it opt=
+ional
+> > from the start as according to the V1 of the TRM it was there, but that=
+ error
+> > was corrected in V3."
+> >
+> > In my head I assumed the G2 was affected as well, but when I double
+> > checked his email, and based on the above statement, the G2
+> > post-processing is probably there, so I'll run some tests with the G2
+> > post-processing enabled.  I'll also double check those registers on
+> > both to confirm what they read. I am not sure when I'll have time
+> > because I leave for London next week, and I won't return until early
+> > January, but I'll do what I can.
 >
->> Changes in v7:
->> * fixed lint errors in yaml binding file
->> 
->> Changes in v6:
->> * fixed yaml binding file and dts files
->> 
->> Changes in v5:
->> * fixed yaml binding file
->> 
->> Changes in v4:
->> * converted armada3700-uart-clock documentation to YAML
->> * split documentation changes into two commits:
->>   - first which adds clock documentation
->>   - second which updates UART documentation
->> 
->> Changes in v3:
->> v3 is rebased on top of Linus master branch and all already applied patches
->> were dropped. There are no changes in patches itself since v2.
->> 
->> Pali Rohár (6):
->>   math64: New DIV_U64_ROUND_CLOSEST helper
->>   serial: mvebu-uart: implement UART clock driver for configuring UART
->>     base clock
->>   dt-bindings: mvebu-uart: document DT bindings for
->>     marvell,armada-3700-uart-clock
->>   dt-bindings: mvebu-uart: update information about UART clock
->>   arm64: dts: marvell: armada-37xx: add device node for UART clock and
->>     use it
->>   serial: mvebu-uart: implement support for baudrates higher than 230400
->> 
->>  .../clock/marvell,armada-3700-uart-clock.yaml |  59 ++
->>  .../devicetree/bindings/serial/mvebu-uart.txt |   9 +-
->>  arch/arm64/boot/dts/marvell/armada-37xx.dtsi  |  14 +-
->>  drivers/tty/serial/Kconfig                    |   1 +
->>  drivers/tty/serial/mvebu-uart.c               | 592 +++++++++++++++++-
->>  include/linux/math64.h                        |  13 +
->>  6 files changed, 667 insertions(+), 21 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/clock/marvell,armada-3700-uart-clock.yaml
->> 
->> -- 
->> 2.20.1
->> 
+> Sorry if this was a bit ambiguous, indeed I meant the G1 only. I've learn=
+ed
+> later that the design of the Mini is that there is a good pre-processor i=
+n the
+> H1 block (encoder), so for the targeted use-cases this shall be sufficien=
+t for
+> most users (the output of the G1 is suitable for GPU and Display already,=
+ so the
+> post processor is not strictly needed).
+>
 
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+Nicolas,
+
+Does this mean that if the IMX8MM G2 may be able to output a wider
+array of pixel formats and that the H1 encoder may be able to accept a
+wider array of pixel formats? Is this code already in place in the
+hantro driver and it just needs to be enabled if the IMX8MM can handle
+it or is there code to be written?
+
+I'm not clear if anyone is working on IMX8MM VPU H1 support. You had
+mentioned that some support [1] and [2] can be derived from the RK3288
+using the Google ChromeOS method (a v4l2 plugin that simulates in
+userspace a stateful encoder). I'm not sure if this is worth pursuing
+if others are working on stateless encode support in kernel and
+gstreamer.
+
+Best Regards,
+
+Tim
+[1] libv4l plugins /
+https://chromium.googlesource.com/chromiumos/third_party/libv4lplugins/+/re=
+fs/heads/master
+[2] Kernel Driver /
+https://chromium.googlesource.com/chromiumos/third_party/kernel/+/chromeos-=
+4.4/drivers/media/platform/rockchip-vpu/
