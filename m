@@ -2,207 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FC9A47931E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:52:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 767FB47933C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:58:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239940AbhLQRwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 12:52:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35346 "EHLO
+        id S239998AbhLQR6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 12:58:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233190AbhLQRwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:52:55 -0500
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDD1CC06173E
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 09:52:54 -0800 (PST)
-Received: by mail-qt1-x836.google.com with SMTP id v22so3402903qtx.8
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 09:52:54 -0800 (PST)
+        with ESMTP id S239954AbhLQR6G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:58:06 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA764C061574;
+        Fri, 17 Dec 2021 09:58:05 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id 13so4530185ljj.11;
+        Fri, 17 Dec 2021 09:58:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=EdfDMc3dGy+rtz/PQ2kf0voPWh+Gy8fg3uDbtzFcCyk=;
-        b=s1yP2xfwlw4arGnpUI7y1LjifZqDnsQb1y/tviXNIW6r5+cfjaBQctF8AGDlp4uLNB
-         W+518UCjBVCrf2JL8fHE2MvU2mQVOH//19q5aMXsUTw604ZLTHK6jdaBHoalX/DnMxY2
-         N35BUyeBK3f++52UL7N848oA3qKgR+DYoWXvfGf5NeQEl7Nw9r3zp5I5wzl3HTaqMzu4
-         vkkieGMUrCPWq4Xx+cBvX8MGdQygOsQ+vQ/QMUwzPv372ygeMe3PAyLsywMGtsIZ18AW
-         EoDoqyI/DdKVHEP2ZpOy6pMCWvFaVKWNjx0B3Z/Zvphq8DpbL7P9aPFiTalah3iOG50j
-         d1/g==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=JO0eGwLLz0htK5AL/Osj6kMOG2fBVADJOFwbMhccx2c=;
+        b=d5Le4BhUw5QzNbC7DQKgQqpXdfvh6u9SezZgTCbqnUlmOtwuN0GnLY6AG306dbTfE1
+         YumWoEYHgEWiKe2maOm4gQuhb6PYqbI51Qul5Jaoy6lsnyz8PrkyME3Oes6RyYDd0DrA
+         en73kuwm9PnbtvQS3Bz4pVVYRbTdBEd6LSuNV+unLpb/sxu3SmZfObXyFQ8v/8UdjSJA
+         gYvcO58LSEEVN5qbu+JMwfpjvddKNGFUynHDkyiuuJMyfaBiMYFt5gqrNN/iTo6aWL2X
+         k/wzPaBsbm6Hp4vvpVi9Io24YqlqRBB/EJbcw7f4IyOx2TeEvSaurcZathgZL/aDy6Nk
+         OG4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=EdfDMc3dGy+rtz/PQ2kf0voPWh+Gy8fg3uDbtzFcCyk=;
-        b=Uc/Zvid0XXMT4H78kUcrBqxb02A3M+5ZzB3Ib/GFEg/1uJCttHLtg+Yk3l7iSvyxkX
-         85t+uJPJmH0YCcQIUb45MPi0PiDz8WSdujCQzveSuNY0yM6qjbBVuIUCArIp/m8lZgjP
-         S+4EKKlEf35+SAhQXGsjf1jHAxVcuI5eiHsvDSyeDU8DYTgRsH6hOqUQM7RJC2jknQF6
-         E/5NrDjpBbQtjM3ajrx2rxtAljK7xPFqYnGzx23qvVOXaXlySAZR4vOhz09zUdpdE13t
-         WzhWmVfQjR71FpfaAsv9mhxSYdT3f3RjKeIGXoTrGXU0OjKLVqxoyX7rXGJXpC2fxh4b
-         bjEQ==
-X-Gm-Message-State: AOAM532y+YsUnYDrzV0onepW0FMb7GblfvZtXhiu0wA+KuQOD/4uw8yZ
-        Shl9tL176CwJs4uzC/fKCEM7ZQ==
-X-Google-Smtp-Source: ABdhPJzydc3+rBb7SLARVOLCMtRjYOmkbg8KG3gbO/t8lzwiGUAnAnHeWbz325P00g8oSWik3/9jeQ==
-X-Received: by 2002:ac8:7f06:: with SMTP id f6mr3508448qtk.258.1639763574019;
-        Fri, 17 Dec 2021 09:52:54 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (mtl.collabora.ca. [66.171.169.34])
-        by smtp.gmail.com with ESMTPSA id x13sm5683430qkp.102.2021.12.17.09.52.52
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=JO0eGwLLz0htK5AL/Osj6kMOG2fBVADJOFwbMhccx2c=;
+        b=Jqd80balRk4XkXUBgId2TLuUcZ181trLA9i2W/E7lAHUFYbAyw9dkXOtfSZYk0ArXq
+         ymaolkwL/I9oVQvvuZvfbaUFb/UnoX2Mgbq63fdrr38Uj9knIpYSkZgBMSA/qnGQZ3rB
+         48cj7+mMinin81ECVYjUrvOm9r6Qv/jf8wjmGPP1MTT7eiWCjQKwe/4ZZcelIju5A5J8
+         IMYmtzsmVtUMFeUTHab2dhDuL1LT7b4v38V7JEqsRHX+8Q7jjS/XBoi75MWhhVUQfh41
+         RlpXa79DjO2b5dsoK9xes1MmJge7SdR4HCAHyy7oPqjJPAeRt72H2OwcupF1eGnzIBhV
+         kSVA==
+X-Gm-Message-State: AOAM533MVgpvIkRx2aP5Yd0eLuyVKlDWuIXmJQSP7EhKnFplAX8+hRTX
+        YGo0DuWoljLNj6BbeWKBmwg=
+X-Google-Smtp-Source: ABdhPJzWhLeDED2hHghcC5fAa2gjRzuaP7qnOlGcCDZ2vQfhpumBT/J4D1ToEkRHaNTc007UnY0kQw==
+X-Received: by 2002:a2e:a175:: with SMTP id u21mr3807462ljl.284.1639763884028;
+        Fri, 17 Dec 2021 09:58:04 -0800 (PST)
+Received: from localhost.localdomain (94-29-63-156.dynamic.spd-mgts.ru. [94.29.63.156])
+        by smtp.gmail.com with ESMTPSA id w23sm1479244lfa.191.2021.12.17.09.58.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Dec 2021 09:52:53 -0800 (PST)
-Message-ID: <41f0e00cf5e57668b643b096e6bb69c67635c540.camel@ndufresne.ca>
-Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     Adam Ford <aford173@gmail.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        linux-media <linux-media@vger.kernel.org>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        cstevens@beaconembedded.com,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Date:   Fri, 17 Dec 2021 12:52:51 -0500
-In-Reply-To: <CAJ+vNU1ZxAAasKT8j1sfcFz1pk8fyYjwOW6wqxYq_ur8+2MX_Q@mail.gmail.com>
-References: <20211106183802.893285-1-aford173@gmail.com>
-         <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
-         <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com>
-         <8db00a4b6faa99c940d9bc86e17161eb0db5efe3.camel@ndufresne.ca>
-         <CAJ+vNU28UJffFv9jQ2KryJMudqYxvCaoVOVcU5dPqRA209iN6A@mail.gmail.com>
-         <d91532c2c0772f9aa708ead36b2a97203727a7ea.camel@ndufresne.ca>
-         <CAJ+vNU3H-V+bPoZ3qKead45h=W7AhQK6Lhjrx5ssdF4c_qfe=A@mail.gmail.com>
-         <CAHCN7x+0LwwU_rEST+TZxGquswGKL19gnTy9WLofsXtGAtWqdw@mail.gmail.com>
-         <7f94eaacfddb8c5434c17f1e069ea87a17657ce9.camel@ndufresne.ca>
-         <CAHCN7xKRzxMBmPbDobWTuvNNSpTXk5XENvfBnfkhRY3eZKhn6w@mail.gmail.com>
-         <CAHCN7xJFLNi_g+HX8PCy1Rkgf0jnWpO5QGYVz8nH19xrJkwHrA@mail.gmail.com>
-         <CAJ+vNU3zFd=6k_Emc5aafxKkGwCPp4crgOFezQ-E_MbWsn1_EA@mail.gmail.com>
-         <fed6c2fd7cf4971062c417ce41ed1e3812b900e0.camel@ndufresne.ca>
-         <CAHCN7xK+wROHaqDcsY-3WYFQ82qX17L-LHNL3siSWnWvwFShzQ@mail.gmail.com>
-         <CAAEAJfC1xXvemaFP+vTFVJ3S-SpYtrxyZgDamSOgLC1F3ua5xw@mail.gmail.com>
-         <CAHCN7x+UMMP6RXsNm0=OC=UTQzh=RKqQo6B7FD5e4eoJAEfmpg@mail.gmail.com>
-         <CAJ+vNU1epi9SwPMHkuDmKcb68RLemYF=bsp7AVnzz06zKc2efw@mail.gmail.com>
-         <CAAEAJfCpjk5nWWkJYjjDT-YEpJi4pTZqZbzp_if9OGC0HKspzw@mail.gmail.com>
-         <CAJ+vNU2we5mGXgYsR6CfimvFXZsc0zktR3fDa-h6RRa02jTT0g@mail.gmail.com>
-         <CAHCN7xJrM9uZUnmx65uTxWEo6HAkjozd3kD3UoEv-pYd5DV4QA@mail.gmail.com>
-         <CAAEAJfBXU-AiKKhkhXzgUSR4p1yefysNuHFycBz3F-GzNewS6w@mail.gmail.com>
-         <CAHCN7xL4y67V6AW5MV=8iudvvGVBWs2LoUhu_2CUJf6bSycgFA@mail.gmail.com>
-         <8438070708d16c34c0f79aba19e67fa343adb169.camel@ndufresne.ca>
-         <CAJ+vNU1ZxAAasKT8j1sfcFz1pk8fyYjwOW6wqxYq_ur8+2MX_Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
+        Fri, 17 Dec 2021 09:58:03 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Agneli <poczt@protonmail.ch>
+Cc:     linux-tegra@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v5 00/11] Support HDMI audio on NVIDIA Tegra20
+Date:   Fri, 17 Dec 2021 20:55:55 +0300
+Message-Id: <20211217175606.22645-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le vendredi 17 décembre 2021 à 09:26 -0800, Tim Harvey a écrit :
-> On Fri, Dec 17, 2021 at 9:13 AM Nicolas Dufresne <nicolas@ndufresne.ca> wrote:
-> > 
-> > Le vendredi 17 décembre 2021 à 07:15 -0600, Adam Ford a écrit :
-> > > On Thu, Dec 16, 2021 at 10:49 PM Ezequiel Garcia
-> > > <ezequiel@vanguardiasur.com.ar> wrote:
-> > > > 
-> > > > Hi Adam,
-> > > > 
-> > > > > 
-> > > > > I will post a V2 last today with the Mini's post-processing removed.
-> > > > > Someone, I apologize that I forget who, mentioned it was fused out of
-> > > > > the Mini, so the testing I've been doing was with that removed and I
-> > > > > removed the H1 encoder since the Mini doesn't support JPEG encoding.
-> > > > > 
-> > > > [...]
-> > > > 
-> > > > Resurrecting this thread here. IMX8MMRM Rev. 0, 02/2019 mentions
-> > > > post-processor features for G1 and G2.
-> > > > 
-> > > > Have you checked the fuse and synth registers to see if they throw
-> > > > any useful information about the hardware? For instance,
-> > > > comparing PP fuse register (SWREG99) and
-> > > > Synthesis configuration register post-processor (SWREG100)
-> > > > in both 8MQ and 8MM could be useful.
-> > > > 
-> > > > As I mentioned on my previous mail, even if G1 PP is disabled
-> > > > on the Mini, I would imagine the G2 can do linear NV12 (aka raster-scan)
-> > > > which in our hantro driver jargon is a  "post-processed" format :-)
-> > > 
-> > > You're likely right.  I was going on memory from an e-mail from
-> > > Nicloas Defresne who wrote:
-> > > 
-> > > "I will check the patchset, but you need in the mini-variant to disable the G1
-> > > post processor, because this block was fused out. We didn't make it optional
-> > > from the start as according to the V1 of the TRM it was there, but that error
-> > > was corrected in V3."
-> > > 
-> > > In my head I assumed the G2 was affected as well, but when I double
-> > > checked his email, and based on the above statement, the G2
-> > > post-processing is probably there, so I'll run some tests with the G2
-> > > post-processing enabled.  I'll also double check those registers on
-> > > both to confirm what they read. I am not sure when I'll have time
-> > > because I leave for London next week, and I won't return until early
-> > > January, but I'll do what I can.
-> > 
-> > Sorry if this was a bit ambiguous, indeed I meant the G1 only. I've learned
-> > later that the design of the Mini is that there is a good pre-processor in the
-> > H1 block (encoder), so for the targeted use-cases this shall be sufficient for
-> > most users (the output of the G1 is suitable for GPU and Display already, so the
-> > post processor is not strictly needed).
-> > 
-> 
-> Nicolas,
-> 
-> Does this mean that if the IMX8MM G2 may be able to output a wider
-> array of pixel formats and that the H1 encoder may be able to accept a
-> wider array of pixel formats? Is this code already in place in the
+This series revives Tegra20 S/PDIF driver which was upstreamed long time
+ago, but never was used. It also turns Tegra DRM HDMI driver into HDMI
+audio CODEC provider. Finally, HDMI audio is enabled in device-trees.
+For now the audio is enable only for Acer A500 tablet and Toshiba AC100
+netbook because they're already supported by upstream, later on ASUS TF101
+tablet will join them.
 
-No since the G2 post processor does not have a color converter (it is very
-limited). In term of format, this is pretty much identical, produces linear or
-tiled. The difference is that G1 supports the two layout natively, not the G2.
+(!) These patches are made on top of stable dmaengine branch from Vinod Koul.
 
-> hantro driver and it just needs to be enabled if the IMX8MM can handle
-> it or is there code to be written?
-> 
-> I'm not clear if anyone is working on IMX8MM VPU H1 support. You had
-> mentioned that some support [1] and [2] can be derived from the RK3288
-> using the Google ChromeOS method (a v4l2 plugin that simulates in
-> userspace a stateful encoder). I'm not sure if this is worth pursuing
-> if others are working on stateless encode support in kernel and
-> gstreamer.
+The following changes since commit fa55b7dcdc43c1aa1ba12bca9d2dd4318c2a0dbf:
 
-My colleagues started last week the project of crafting mainline stateless
-encoder uAPI. This is too early. In older project, we have had good success with
-the emulated stateful encoder. It is of course quite limited, but works in
-gstreamer, ffmpeg and chromium. It is also likely safer compared to the vendor
-provided driver.
+  Linux 5.16-rc1 (2021-11-14 13:56:52 -0800)
 
-p.s. From my knowledge, there is virtually no difference between the H1 on
-RK3288 and IMX8MM/P, but we've learn from G1 that there could effectively have
-more of less features.
+are available in the Git repository at:
 
-> 
-> Best Regards,
-> 
-> Tim
-> [1] libv4l plugins /
-> https://chromium.googlesource.com/chromiumos/third_party/libv4lplugins/+/refs/heads/master
-> [2] Kernel Driver /
-> https://chromium.googlesource.com/chromiumos/third_party/kernel/+/chromeos-4.4/drivers/media/platform/rockchip-vpu/
+  git://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git tags/dmaengine_topic_slave_id_removal_5.17
+
+for you to fetch changes up to 3c219644075795a99271d345efdfa8b256e55161:
+
+  dmaengine: remove slave_id config field (2021-12-17 11:23:56 +0530)
+
+Changelog:
+
+v5: - Dropped all patches that were already applied by Thierry Reding.
+
+    - Made minor changes that were suggested by Thierry Reding.
+
+    - Added acks from Thierry Reding.
+
+    - Rebased patches on top of stable dmaengine branch from Vinod Koul.
+
+v4: - Added patches that update multi_v7_defconfig with the enabled S/PDIF
+      and APB DMA drivers.
+
+v3: - Renamed S/PDIF device-tree clocks as was suggested by Rob Herring.
+
+    - Added r-bs and acks that were given by Rob Herring to v2.
+
+v2: - Corrected I2S yaml problem that was reported by the DT bot for v1
+      by removing the non-existent required clock-names property.
+
+    - Removed assigned-clocks property from S/PDIF yaml since this property
+      is now inherited from the clocks property.
+
+    - Reordered the "tegra20: spdif: Set FIFO trigger level" patch, making
+      it the first sound/soc patch in the series, like it was suggested by
+      Mark Brown in the comment to v1. Also reworded commit message of this
+      patch to *not* make it looks like it should be backported to stable
+      kernels.
+
+Dmitry Osipenko (11):
+  ASoC: dt-bindings: Add binding for Tegra20 S/PDIF
+  ASoC: dt-bindings: tegra20-i2s: Convert to schema
+  ASoC: dt-bindings: tegra20-i2s: Document new nvidia,fixed-parent-rate
+    property
+  ASoC: tegra20: spdif: Set FIFO trigger level
+  ASoC: tegra20: spdif: Support device-tree
+  ASoC: tegra20: spdif: Improve driver's code
+  ASoC: tegra20: spdif: Use more resource-managed helpers
+  ASoC: tegra20: spdif: Reset hardware
+  ASoC: tegra20: spdif: Support system suspend
+  ASoC: tegra20: spdif: Filter out unsupported rates
+  ASoC: tegra20: i2s: Filter out unsupported rates
+
+ .../bindings/sound/nvidia,tegra20-i2s.txt     |  30 ---
+ .../bindings/sound/nvidia,tegra20-i2s.yaml    |  77 +++++++
+ .../bindings/sound/nvidia,tegra20-spdif.yaml  |  85 ++++++++
+ sound/soc/tegra/tegra20_i2s.c                 |  49 +++++
+ sound/soc/tegra/tegra20_spdif.c               | 198 +++++++++++++-----
+ sound/soc/tegra/tegra20_spdif.h               |   1 +
+ sound/soc/tegra/tegra_pcm.c                   |   6 +
+ sound/soc/tegra/tegra_pcm.h                   |   1 +
+ 8 files changed, 359 insertions(+), 88 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-spdif.yaml
+
+-- 
+2.33.1
 
