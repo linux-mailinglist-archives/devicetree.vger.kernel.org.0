@@ -2,55 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EEE04790A7
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:55:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDFEE4790BB
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 16:56:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237109AbhLQPyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 10:54:53 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:52923 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233459AbhLQPyw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 10:54:52 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id D055F200003;
-        Fri, 17 Dec 2021 15:54:48 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Cc:     Julien Su <juliensu@mxic.com.tw>,
-        Jaime Liao <jaimeliao@mxic.com.tw>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v6 01/28] dt-bindings: mtd: nand-controller: Fix the reg property description
-Date:   Fri, 17 Dec 2021 16:54:46 +0100
-Message-Id: <20211217155446.367021-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20211216111654.238086-2-miquel.raynal@bootlin.com>
-References: 
+        id S238618AbhLQP4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 10:56:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35826 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238595AbhLQP4h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 10:56:37 -0500
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECB58C061401
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 07:56:36 -0800 (PST)
+Received: by mail-ua1-x929.google.com with SMTP id o1so5197415uap.4
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 07:56:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ElflHpQkLuzl8P2eAKJJkdqkTvJ6AItQbXCMpCRS8yg=;
+        b=eIonsckjRxmhvgvt6jfEqbEqWnigVC/86CAxpO3iaqgtNloYFFgMbJo+PkICrcB/92
+         XeSY5tlCEGsfQXjAI1PEJNm54M7adwN222B9Q8c/B1bPYcMaPP/dy1c8Bebyc0gsAG98
+         YYkhcAz7hiza9paN+MluRgPMZse3uRvR2D8Ic2CT1/fKGE7GNzb7emkDp+xozCKEGwcY
+         7RCq4zQTk2YaQ6uWAU7ucDw9PS2uQU1MK9Mx45uss4TPIefm2+Ay7ixorICNNC2cwx7c
+         M3NtS4JZfssTg2rFjYrLGKnqoQNUXwUcUIwGmkIaGiK4MzdHj1NI9+V5EQkFBFerPPth
+         8Bsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ElflHpQkLuzl8P2eAKJJkdqkTvJ6AItQbXCMpCRS8yg=;
+        b=QYfMMARqhUWJL4bsevT+kjGzSHm1Wt3aWL0JIhB+8cjMf0eJLTvrDhsp+6f2r5/XcC
+         9IemQjqNjBmqgSPxFCR4W2+mKtS8+uAglqEyK04e/nkNMue5psAiO/kwiXVpBq2xuIXF
+         zQFP0mpZ5ADFCnfUw+zh5Pw5BPFHwkqQKP/QyY8lO1VEqNkMPShIMegsSN9HAP5aIwNJ
+         B+CBcEtLm9i2iJ4TBiLjsWseayTqvxj8nhrboRqccX36u1s7xxlW8nanfShDcccHMQbx
+         /CnP7eHWbx94Z4oSHJfVgwuR+vtIjhFBn8Z1EH0sygzet72NRmpQY+ZX6R3SAasVSks0
+         gv1g==
+X-Gm-Message-State: AOAM530KPUB+vsdlAggHd2EHr26AjiXOz6ATwOs7mzDv7y7d7AFLddMl
+        t/0uJifGc937oJPZjoEEgMeNWPTcUWzFjWcqjkZL8Q==
+X-Google-Smtp-Source: ABdhPJxreb5JlA/rQW3pI2rH7hhfpaWxc1ic4KV6Svi8Wq8H7Y90V8E8MrdFIqB90JJDjHgtHAOwoEmxNeheS6A3Lrs=
+X-Received: by 2002:a05:6102:512:: with SMTP id l18mr1034560vsa.57.1639756595998;
+ Fri, 17 Dec 2021 07:56:35 -0800 (PST)
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'63a9697ddebc2096ac63876a7ac61a41319d7747'
-Content-Transfer-Encoding: 8bit
+References: <20211215160906.17451-1-semen.protsenko@linaro.org>
+ <20211215160906.17451-7-semen.protsenko@linaro.org> <8c1dbcda-ce01-81c9-b34a-f64b6f61c868@canonical.com>
+ <CAPLW+4ndeokx3WiYaK_3ooe0J+BQe8Dx7QCecA7Deowk0AdxnA@mail.gmail.com> <73c5a527-2d5d-8524-b067-f9128055ff10@canonical.com>
+In-Reply-To: <73c5a527-2d5d-8524-b067-f9128055ff10@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Fri, 17 Dec 2021 17:56:24 +0200
+Message-ID: <CAPLW+4n+iVwhVB06vwBKxesaeuRo0kgXEZvqPQo6RbOiZO3Vbw@mail.gmail.com>
+Subject: Re: [PATCH 6/7] arm64: dts: exynos: Add initial Exynos850 SoC support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Hao Fang <fanghao11@huawei.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-12-16 at 11:16:27 UTC, Miquel Raynal wrote:
-> The reg property of a NAND device always references the chip-select(s).
-> The ready/busy lines are described in the nand-rb property. I believe
-> this was a harmless copy/paste error during the conversion to yaml.
-> 
-> Fixes: 212e49693592 ("dt-bindings: mtd: Add YAML schemas for the generic NAND options")
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+On Fri, 17 Dec 2021 at 10:21, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 16/12/2021 20:40, Sam Protsenko wrote:
+> > On Wed, 15 Dec 2021 at 18:47, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@canonical.com> wrote:
+> >>
+>
+> (...)
+>
+> >>> +             serial0 = &serial_0;
+> >>> +             serial1 = &serial_1;
+> >>> +             serial2 = &serial_2;
+> >>> +             i2c0 = &i2c_0;
+> >>> +             i2c1 = &i2c_1;
+> >>> +             i2c2 = &i2c_2;
+> >>> +             i2c3 = &i2c_3;
+> >>> +             i2c4 = &i2c_4;
+> >>> +             i2c5 = &i2c_5;
+> >>> +             i2c6 = &i2c_6;
+> >>> +             i2c7 = &hsi2c_0;
+> >>> +             i2c8 = &hsi2c_1;
+> >>> +             i2c9 = &hsi2c_2;
+> >>> +             i2c10 = &hsi2c_3;
+> >>> +             i2c11 = &hsi2c_4;
+> >>> +     };
+> >>> +
+> >>> +     arm-pmu {
+> >>> +             compatible = "arm,cortex-a55-pmu";
+> >>> +             interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
+> >>> +                          <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
+> >>> +                          <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>,
+> >>> +                          <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
+> >>> +                          <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
+> >>> +                          <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
+> >>> +                          <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
+> >>> +                          <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
+> >>> +             interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>,
+> >>> +                                  <&cpu4>, <&cpu5>, <&cpu6>, <&cpu7>;
+> >>> +     };
+> >>> +
+> >>> +     /* Main system clock (XTCXO); external, must be 26 MHz */
+> >>> +     oscclk: clock-oscclk {
+> >>> +             compatible = "fixed-clock";
+> >>> +             clock-output-names = "oscclk";
+> >>> +             #clock-cells = <0>;
+> >>> +     };
+> >>> +
+> >>> +     /* RTC clock (XrtcXTI); external, must be 32.768 kHz */
+> >>
+> >> This clock is usually provided by PMIC, so instead I expect updating
+> >> s2mps11-clk driver. It's not correct to mock it with fixed-clock, but in
+> >> some cases might be needed. Then I would need an explanation and maybe a
+> >> TODO note.
+> >>
+> >> I wonder if we already discussed this...
+> >>
+> >
+> > Don't really remember discussing that. That's actually something new
+> > for me :) I was planning to add PMIC support as a part of separate
+> > activity later, it might not be so easy: S2MPU12 uses I3C connection.
+> > And RTC clock is not handled even in downstream kernel. So I'll have
+> > to implement that by PMIC datasheet. I'll keep some TODO comment for
+> > now, hope it's ok with you?
+>
+> Assuming it is really coming from the PMIC (should be visible in the
+> board schematics), it should be using s2mps11-clk. I am fine with
+> keeping fixed-clock now + TODO note, but please move it to the board
+> DTS. It's not the property of the SoC.
+>
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git spi-mem-ecc.
+Yes, I checked, RTC clock is coming from PMIC. Moved "rtcclk" clock to
+board file, and corresponding clock properties for "rtc" and "cmu_hsi"
+nodes as well. Will send v4 soon.
 
-Miquel
+> >
+> >>> +     rtcclk: clock-rtcclk {> +               compatible = "fixed-clock";
+> >>> +             clock-output-names = "rtcclk";
+> >>> +             #clock-cells = <0>;
+> >>> +     };
+> >>> +
+>
+>
+> Best regards,
+> Krzysztof
