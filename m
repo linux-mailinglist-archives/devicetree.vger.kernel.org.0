@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2573478219
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 02:30:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF25C47821C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 02:30:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231842AbhLQBaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231868AbhLQBaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 16 Dec 2021 20:30:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56764 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231836AbhLQBaP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 20:30:15 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E6CCC061759
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 17:30:14 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id b22so1401027lfb.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 17:30:14 -0800 (PST)
+        with ESMTP id S231853AbhLQBaQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 20:30:16 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE938C061746
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 17:30:15 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id 13so849553ljj.11
+        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 17:30:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=QM6f47ayHPQt/5IdQ/xMhOSTbh2OemqUyIwCi0r5BpE=;
-        b=RgsTKdDzcBwtCxrfX4AqOv4ybgC5se3ZM3CHliwW1pHlvEb0unBiII0kD9nverEGEt
-         ykPgkVB+/pv4Iqo4VnrSRcDgwzQxTAGEuJ0F72dyeOdDOO93m6gv7rtw5Fq3nlh6t6EY
-         Io1ctoYvxa6g0Qpc503Nba7FwkZqYjzLz4feCNRbDaNgUjiIPWcu2tUySFXf3VTqELWu
-         waw8aEu85sjfGpPzL5vfyo2E3j5fGdeD9UGvSwv9wxWSaY/oLsdX0whOAARl2MZOI/ja
-         VgyKBPnm1X7S+3ykhovCSA4qrarozdv1WH6iWws62xLkIUNV0S5eqHQGP4FIp14myWDA
-         RsUg==
+        bh=1gMoyGZFMOrtFD2i+WoXh7qozc6etdJzwaY+U9hXibg=;
+        b=Q1bgyZKSBo51wkneapHn9To5VF7IeoH9ZAKXK3FtqsSvQVWoK4r1rvLYiFyvQJFcav
+         T2A5OaU/TwayBCjcldondyZnYw8YV0eeuP11nSoMdhrnDwVUVCD+LAOEfx/mGy9CKGYq
+         iubzfSBm+RbEB1LsNaCnuFuwypWXNJqlNfmZL4ysBbJw97MeyJlo6uogxv9KII4bpGD/
+         nwID//auOXpKtVCPuJSFSfAECIju2pikpUEsN8N24VekhriuMYiVROx1JSqAFv/2/VLx
+         /mF7JsGaZSswYsmyVuGdssqrkI9XRAEgG5OdMvXNft672EGJMa4Nwq+7FExnity92/e4
+         kAQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=QM6f47ayHPQt/5IdQ/xMhOSTbh2OemqUyIwCi0r5BpE=;
-        b=ZEEjjomqX/kSe1qeNLrrjrs5P6xg8CIZQ6/PmTCT1eNDRj+CbMC0HpgGUQJqM+3W/U
-         w+V7wFtlUoNmMsn7LGE7xP4WmCR0c0rlaCu3/bj74nWGoiv6ETsSnEySiJKgBB64FXt8
-         Lh9Jv4rBIcYqgKwbbw8f12bDPlhk4uY/Y+TEl5LkvDSsIx7pYtoaGy05co3pYikedYzW
-         geg5wWlzxQiGwhq8XmNx52Suuwzofq3yaFyvftuC97GnvlV/nF7aH1MEKXdjDcnHF8ZR
-         Q11ApCNKbxHt8Mz/N94UysrMdn+Rr4HA3JXzpuvH+hjjrATPeHRLPE2WzKG6GzUmF7Sw
-         S13Q==
-X-Gm-Message-State: AOAM533+TvVDMmkq7UsK5LVESb5yAGfhcDd8mBiVyTXMXG7pfRtG05Oi
-        WF7SGwWVaNps4RnyYSqh/BP4EA==
-X-Google-Smtp-Source: ABdhPJzjUfwEoYesZqEjPi0VMxKoi6uMmfpS1eDv461HjtDZO3NaH9w7JiiomyHszxF5NgDgY6xQuQ==
-X-Received: by 2002:ac2:5930:: with SMTP id v16mr748999lfi.327.1639704612792;
-        Thu, 16 Dec 2021 17:30:12 -0800 (PST)
+        bh=1gMoyGZFMOrtFD2i+WoXh7qozc6etdJzwaY+U9hXibg=;
+        b=lRRM/6mwqBIGlJrlKysdZwelG+PLmrwetrBJmLREGei7iVj5XsquoZhI6BbKuoQP09
+         UVU6I4cpo5FCgReeBl2bV+XAp6TTZP1U6IYb3Xnl/A8jenAxMQ7mTVbIlVuKUD32orf+
+         LSQoGkrIqSxDHD9+kGoKPRuKR44w8jpH7gnS0I+YXFium9CnszggacfOX7Zba+mcTVq7
+         i92WOG9P55zmBbgZOnaFd9iUUmygmfmiTPUb0tZ8zh4ibI+W7jPjZ/8RHJohqtaIo/hu
+         BkRI5UV0v0vaEIzXWvUnIKtqOvZ+sCyHC8oW2aPNjJ8+eItjfSg++O2emks16384Kxgt
+         ZlsQ==
+X-Gm-Message-State: AOAM530Mi3Lck2qcKhS5VhTQ3f8JY0PrBxR9WrJyK56xA5YmQHlFUi44
+        Dq9F06rAqyuC0FUStMoWD68fDQ==
+X-Google-Smtp-Source: ABdhPJwYGpaI3GK2jyICva2hvw6KK49b/X0iRkfEL7ZJ1jOxB5cBp5dJq4iwrfStYWcZEw39OYgwyQ==
+X-Received: by 2002:a2e:b6d4:: with SMTP id m20mr669927ljo.471.1639704614273;
+        Thu, 16 Dec 2021 17:30:14 -0800 (PST)
 Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id z8sm1132468lfu.128.2021.12.16.17.30.12
+        by smtp.gmail.com with ESMTPSA id t7sm1129670lfl.260.2021.12.16.17.30.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 17:30:12 -0800 (PST)
+        Thu, 16 Dec 2021 17:30:13 -0800 (PST)
 From:   Sam Protsenko <semen.protsenko@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -65,9 +65,9 @@ Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: [PATCH v2 4/7] dt-bindings: arm: samsung: Document E850-96 board binding
-Date:   Fri, 17 Dec 2021 03:30:02 +0200
-Message-Id: <20211217013005.16646-5-semen.protsenko@linaro.org>
+Subject: [PATCH v2 5/7] dt-bindings: pinctrl: samsung: Add pin drive definitions for Exynos850
+Date:   Fri, 17 Dec 2021 03:30:03 +0200
+Message-Id: <20211217013005.16646-6-semen.protsenko@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20211217013005.16646-1-semen.protsenko@linaro.org>
 References: <20211217013005.16646-1-semen.protsenko@linaro.org>
@@ -77,36 +77,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding for the WinLink E850-96 board, which is based on Samsung
-Exynos850 SoC.
+All Exynos850 GPIO blocks can use EXYNOS5420_PIN_DRV* definitions,
+except GPIO_HSI block. Add pin drive strength definitions for GPIO_HSI
+block correspondingly.
 
+Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 ---
 Changes in v2:
-  - Moved Exynos850/E850-96 binding before Exynos Auto V9 entry
-  - Rebased on krzk/linux.git (for-next), to account for Exynos7885
-    changes
+  - Added Ack tag by Rob Herring
 
- .../devicetree/bindings/arm/samsung/samsung-boards.yaml     | 6 ++++++
- 1 file changed, 6 insertions(+)
+ include/dt-bindings/pinctrl/samsung.h | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-index d88571202713..052cd94113d4 100644
---- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-+++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
-@@ -205,6 +205,12 @@ properties:
-               - samsung,jackpotlte              # Samsung Galaxy A8 (2018)
-           - const: samsung,exynos7885
+diff --git a/include/dt-bindings/pinctrl/samsung.h b/include/dt-bindings/pinctrl/samsung.h
+index b1832506b923..950970634dfe 100644
+--- a/include/dt-bindings/pinctrl/samsung.h
++++ b/include/dt-bindings/pinctrl/samsung.h
+@@ -36,7 +36,10 @@
+ #define EXYNOS5260_PIN_DRV_LV4		2
+ #define EXYNOS5260_PIN_DRV_LV6		3
  
-+      - description: Exynos850 based boards
-+        items:
-+          - enum:
-+              - winlink,e850-96                 # WinLink E850-96
-+          - const: samsung,exynos850
+-/* Drive strengths for Exynos5410, Exynos542x and Exynos5800 */
++/*
++ * Drive strengths for Exynos5410, Exynos542x, Exynos5800 and Exynos850 (except
++ * GPIO_HSI block)
++ */
+ #define EXYNOS5420_PIN_DRV_LV1		0
+ #define EXYNOS5420_PIN_DRV_LV2		1
+ #define EXYNOS5420_PIN_DRV_LV3		2
+@@ -56,6 +59,14 @@
+ #define EXYNOS5433_PIN_DRV_SLOW_SR5	0xc
+ #define EXYNOS5433_PIN_DRV_SLOW_SR6	0xf
+ 
++/* Drive strengths for Exynos850 GPIO_HSI block */
++#define EXYNOS850_HSI_PIN_DRV_LV1	0	/* 1x   */
++#define EXYNOS850_HSI_PIN_DRV_LV1_5	1	/* 1.5x */
++#define EXYNOS850_HSI_PIN_DRV_LV2	2	/* 2x   */
++#define EXYNOS850_HSI_PIN_DRV_LV2_5	3	/* 2.5x */
++#define EXYNOS850_HSI_PIN_DRV_LV3	4	/* 3x   */
++#define EXYNOS850_HSI_PIN_DRV_LV4	5	/* 4x   */
 +
-       - description: Exynos Auto v9 based boards
-         items:
-           - enum:
+ #define EXYNOS_PIN_FUNC_INPUT		0
+ #define EXYNOS_PIN_FUNC_OUTPUT		1
+ #define EXYNOS_PIN_FUNC_2		2
 -- 
 2.30.2
 
