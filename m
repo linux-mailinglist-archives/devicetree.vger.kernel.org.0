@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F0E64792F4
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:40:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCF0A479304
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:44:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237470AbhLQRkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 12:40:15 -0500
-Received: from mail-eopbgr140057.outbound.protection.outlook.com ([40.107.14.57]:15233
-        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
+        id S237406AbhLQRoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 12:44:18 -0500
+Received: from mail-eopbgr70080.outbound.protection.outlook.com ([40.107.7.80]:42795
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230326AbhLQRkP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Dec 2021 12:40:15 -0500
+        id S235821AbhLQRoS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Dec 2021 12:44:18 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ki1y4bwksxf/uTAQUKXN6E+Fkw01S7XGZslDFsWFDR+wo6Q16UfqsWU1b9o8omRLqkcxdCXZbMwa9zck2u0Ca3765NeqSfOTBSEvfo2E3jn84Vw0YVh5T5WKicu0/ndVfm4r5B2cidnmAI/PB6UKLLipinTLxR0PpzfzW3hlKe4LxlRQENihbJy0jvtczNw+GZ5NG7OgpheP7BW7XzI5aPJlq3PTStm1MRTdXjgIiThK++xHGmM0RFxDkrZnUcFVMQQuyfnB1+1jueLpJ+fAvcSKIkffTCD25/aVTwgRR5NVyK0iTDbUQ9iEeJmK8w9EnwCinmq/CLU5MDLcoIHrTA==
+ b=UO+TzODQck5iPhrkmKWoMBR3yFUhYLYZh3fYcfnl9yPCH6Q5LB3qXpxPbnF4x9DoKdqhfKWN3+QaMqqNVnE8o3zn4bhN2qO+KARS4mlBq/mfayh/M0pHOusmPkoxpeH17bhug1viKk2k9oEwKxZWfB4PAmIotzwtiXLyUkjrvXLjW0kUho5NMHoiHmXVAt/3P9qrQsCsLCy3jPqOwYMGGsGFjKX0lodieGnAzAYL6RCrrnBuC4P+2tQSr9cfxaO1Ym+ejYqxGmEkLJ6zPEpZP9U5c4IG76Bf3ErYJxS1XjFN5qscF7UNIjHX8SoGvXf+GAmBIbpyznowRmid05i69A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AKFq1bgWeBJHiWpPBHZGGucTEqZHY+N3iIo8YxWO/+M=;
- b=joShVOsWuyfjpCcD0K7kYtVJpXdVTW0HvrnIAVfOIDUS3oRmrABB+rbLPfpsymMJBeeGGt63eT9fgJAcXBcl9ep1UxM41LBO/hdAyQ7iiqTJA8SNPb4CJKhkXq7ZH25hKQgwcO81GC7dEXco63e3qX1g+cbUeALT746KLaUorBKcKX77kQLEg0dqbDWWr5DDTMXe4+HYngbIPfgAF0tOMrNM71t55KPGRbdF9Xk7vQ8cUNO3UGErZSYkNK2wz3yluML/IWCnfCKhKWabrH2E1HxJKUZpTkpst1ojSemWjc/opSDZTjOkWv3TEI6qfbp0VOUXk386p1teeUKYF0RDjA==
+ bh=IoIV44/K7vvHQTRJp7B2dc+hlLLdc+kveByovJm6p8w=;
+ b=jew3DU3YSKqW4DysqGW60WflDlJ9gdEcibMKZ53QyG5bh49Hi+HFplc5nrbQWThWwyPhL4VpJgWcmdKNnBhq4s/dZy8W36dkyvo5XOabzgNEjVTAKn2CuiJ+0+jqUW9n/U4VD5mm+PcGLyueUSE2BGlPix5DfEeta/bTDTu+Dtr9gv/V3mewTRFbfsAPkXicZuKJ8CblC50a2pKlm4V86GirOAe/IcwDQBYEbCsoRtC1kgl/in2FdDI/AfAyZck6OvSqs1RROjw0wK2JppAGnsI48989pJOjw4B4sDfrl9Hb7M6tiymRzvF/I/70AWux5BTHnGgMvU+OuonFFeneGg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AKFq1bgWeBJHiWpPBHZGGucTEqZHY+N3iIo8YxWO/+M=;
- b=OuS4YtOS8NQvwYWAYQU9MjqTqhytqJRl+FM+cWaAOCRkGNq0ETLBL7aQaSfJcLrt/tFnvLh35ixu0cpqyNLjjmjvkHvICqETNlpcUeueDGfFd+A0Q3a1uSlbA2tOWT4tmOJd/4lyz7Gqi3XwehKCA1vlfTJo+Hd5JSPlZi4kwZE=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR04MB5294.eurprd04.prod.outlook.com (2603:10a6:803:5a::22) with
+ bh=IoIV44/K7vvHQTRJp7B2dc+hlLLdc+kveByovJm6p8w=;
+ b=XCCllSgOq6Rw0o+9GnIF0y+eYgkhUMwSi8/o4uh4BZAu/2hKxHFNIvOBEX5Q598CdXzRs1RuXTVQWXtCtrMWiQEmYuDPDDdf4co7JC5FqvkSqC+YHe+HZqBlakzpV9PrOWPc/QlhCjWw54MpKieKdixC4JfZQG3bOvqZVtapguQ=
+Received: from AM0PR04MB5121.eurprd04.prod.outlook.com (2603:10a6:208:c1::16)
+ by AM4PR0401MB2242.eurprd04.prod.outlook.com (2603:10a6:200:4f::23) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.14; Fri, 17 Dec
- 2021 17:40:00 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::c84:1f0b:cc79:9226]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::c84:1f0b:cc79:9226%3]) with mapi id 15.20.4801.015; Fri, 17 Dec 2021
- 17:40:00 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.18; Fri, 17 Dec
+ 2021 17:44:14 +0000
+Received: from AM0PR04MB5121.eurprd04.prod.outlook.com
+ ([fe80::8d61:83aa:b70c:3208]) by AM0PR04MB5121.eurprd04.prod.outlook.com
+ ([fe80::8d61:83aa:b70c:3208%6]) with mapi id 15.20.4778.018; Fri, 17 Dec 2021
+ 17:44:14 +0000
 From:   Vladimir Oltean <vladimir.oltean@nxp.com>
 To:     Horatiu Vultur <horatiu.vultur@microchip.com>
 CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
@@ -48,16 +48,16 @@ CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
         "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
         "vivien.didelot@gmail.com" <vivien.didelot@gmail.com>,
         "andrew@lunn.ch" <andrew@lunn.ch>
-Subject: Re: [PATCH net-next v7 8/9] net: lan966x: Extend switchdev bridge
- flags
-Thread-Topic: [PATCH net-next v7 8/9] net: lan966x: Extend switchdev bridge
- flags
-Thread-Index: AQHX8143qV6KlHecU0+fH+ACGy7jyKw2834A
-Date:   Fri, 17 Dec 2021 17:40:00 +0000
-Message-ID: <20211217174000.febeewxdio6dbmb6@skbuf>
+Subject: Re: [PATCH net-next v7 6/9] net: lan966x: Add support to offload the
+ forwarding.
+Thread-Topic: [PATCH net-next v7 6/9] net: lan966x: Add support to offload the
+ forwarding.
+Thread-Index: AQHX8140QpvO59EjdUWacx2qGVwygKw29KoA
+Date:   Fri, 17 Dec 2021 17:44:13 +0000
+Message-ID: <20211217174412.w4jwe2uuwx56ipfg@skbuf>
 References: <20211217155353.460594-1-horatiu.vultur@microchip.com>
- <20211217155353.460594-9-horatiu.vultur@microchip.com>
-In-Reply-To: <20211217155353.460594-9-horatiu.vultur@microchip.com>
+ <20211217155353.460594-7-horatiu.vultur@microchip.com>
+In-Reply-To: <20211217155353.460594-7-horatiu.vultur@microchip.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -65,134 +65,533 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a64b751d-ca8e-44dd-dda3-08d9c184402c
-x-ms-traffictypediagnostic: VI1PR04MB5294:EE_
-x-microsoft-antispam-prvs: <VI1PR04MB5294AEAFB6D635D96707DD11E0789@VI1PR04MB5294.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2043;
+x-ms-office365-filtering-correlation-id: bb46c6bb-9955-4f01-b428-08d9c184d761
+x-ms-traffictypediagnostic: AM4PR0401MB2242:EE_
+x-microsoft-antispam-prvs: <AM4PR0401MB2242C11271F68221F71B61F8E0789@AM4PR0401MB2242.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:962;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: SXTuO+ILBXy631HAGzHAX2PcmVrR3QA+IYpoR5AcdIMcw65ocb7jEd+hhhCFgMNuiFehUr6yV06zvlbjvpeVyKgO/58qWDPVXdrl7/0CFeYHql8zpnJ1Aq/uKuiKmM9BF/mjIxPJXaqWVrePf1rHp+1T5vfoS9+1yJ+pBen/BShfPdSNJXtjCeNktdFRDYUSuwUL9T5yp+9EADZ5sGWZCbjoHJ4nuOlQ4TjKnMjdVNKBhXmxlYsaRCHy8Pta3itN2RYaBTMLi6D3eSAZMJlRNsy/io4MBMq7Zyr6NOC6QK8FwlTYQb/g4zNUA+f+tRa7AAlLgpoz0yxvYDmkatnGWMpVvedlOJ8Ggd24wpynQcz8U2cCJO2mcVzWY9m6vdc8APXKsPT3k6keUkt7Nzjn6y5D5mKfEDrxjUkqZCdRXksaLiQZyUQ4tpQxm1xW6Q6zOLWq5ErxMSeuv7xnL9kewF+YfM4aW18+JDYniSh+JFVhzsvre3wk0NwJsN4mb54CaXV/4mc1e2+ZYU/DZpNktoB2srlMh4rJVt2fdzHFTmmeZvo8DiplNrXGbPsku5Fk3/4tEEt6f0XfOLybSNwUErjU7oV0x1lGjP3BxSjiRQK/Is+GD31+9x5pE3tyLCHPJ7qCtCe6LWID8axNxO7+WZxQl+BaP/uALeTQW+4v1ybj0y5To2wZ4ERCpMz8UeK1ASbuYn/afqMxNL+EnX0vqA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(366004)(8676002)(6506007)(6486002)(71200400001)(38070700005)(26005)(186003)(9686003)(6512007)(54906003)(6916009)(86362001)(8936002)(508600001)(5660300002)(316002)(122000001)(38100700002)(7416002)(66446008)(64756008)(66476007)(44832011)(83380400001)(66556008)(66946007)(76116006)(4326008)(1076003)(33716001)(2906002);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: LLo5m54Mi/phw0QGmD98Tz4r8Fm7DKg6UJ5vQFhX320QumiP3HGSt1Qqe3UDhKUc6NntFELMjt5StnskLE6oNYx4v9fS5PgQBJi1ffDdK8qJvMHy91PvceFCyamRlM72hSPMduud6qNgxkPjgiIoWdau5ODyWOsd+UaKj+PjqYy034DPWrD9G+5enupDtxIPy1VYzCMt68IgA4G1awo9hmsv9AAff1CMkiQvtlsSDcSryc4MhUaAlf6LpqZhBHfvqWfSPyitwO9avAaH9qlkVoSX6EN8JoZRIX3xdBYpZkA1vhPq9B2Ehwt8ZKwzwtoD4eXgd1HzR7xEqcWRNi1bnPbMlNlOkfDfLvHtO0tBlpJs+LYAdk22Gc3NCvaI/5x0q0kViZNVdp6eedRqbWqqakbO8Qcf+XHLn6ZpsTw5wttZcYwaskU0gaLJDTs/TZ+utsE0YhxUBa1+vV2NiuH9bMiEmu4vPMR3Fr8GNOA77ZY/UEI/Sx1TRX3MLPn3mBrTfGpZ75aBRZizG68XVKiIexU8mmdrPK5jssAaPuFC/AobMHZTL1rql4JMQ9Eg2pkXmILigZhvff9hq0KMJlhx+HJ2jD0+oZ1UIVdAUw1/0caKdUT0UKjN5fItox8EjXgeJeoKYdfhie00eY8vBWPMJANiC0eAJtEXUP73UyacyGNk0JGk9OVOeopQkBWd73TJRrI4Na3P/IV2Vpb3DkVh7A==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB5121.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(366004)(76116006)(5660300002)(91956017)(508600001)(2906002)(66446008)(71200400001)(6486002)(6916009)(66556008)(66476007)(4326008)(64756008)(83380400001)(66946007)(38070700005)(6512007)(1076003)(8676002)(30864003)(7416002)(38100700002)(86362001)(26005)(122000001)(316002)(9686003)(6506007)(33716001)(54906003)(186003)(44832011)(8936002);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?pKLGi2HHr63A1ukJwp4mNbDaOswb3S57D1aRc6EK6/xPjROhO1bYpLzQ/UzF?=
- =?us-ascii?Q?l2e3TKRRYWvjHSiNXZtootXIKrNjrVazT5uOL8qL1hxf4QUOvFPnTrQ7Bga3?=
- =?us-ascii?Q?nOkJWNtq4O+AOU32BAuCmuKam3F11HkkDU2osNfz7960f9IW/QxtUIPJEJG8?=
- =?us-ascii?Q?CEP3fvFet0LnM4i+YaL75IQ12xzvfq/stFapXHLPH9+Pk57M8f4x6iwfBVqv?=
- =?us-ascii?Q?uetoAB3mwywiYl16AaFgCcQ58qTE5i1MjosEV9MaccQSj7JabzvNg2F0/doW?=
- =?us-ascii?Q?58UbVO7vTxs5zrxJYnijRTT7LV5f0QcWaYz09tZ+OcsDACUvLaTlaEbXPGpN?=
- =?us-ascii?Q?fiDHwSIv5hW1KGA5AkiJ9RTPvMhu5YgfKHzgSHLeRvu3TN7DWy/R2/nx5tI2?=
- =?us-ascii?Q?RkQWs1nFaaGZKu+m+d8b1WSaAqP9HLicwfMTwy4hv8u1a6xZaTW6B3pF7N1d?=
- =?us-ascii?Q?Ev7h3iYOMWluwr9uLRQifdWQzAdoHwzGVO27euvTjX0jHicYQZA6iVEmdMAM?=
- =?us-ascii?Q?saILQr6XSE7in5btZ8TDQpJuxcXScmlulbvNP8w8B1d0wS3PR2toFDFby5KE?=
- =?us-ascii?Q?Ld/TWvpJrwj1QbrL9fjlmHgY6jYESlHdLDA9YLADnutUsf/IwiGxb/3yM9Ln?=
- =?us-ascii?Q?B//KA25rT9lyzc6UergbLjgEYngXiTASHTuNGdzpchWziE+REyUG715GrLYU?=
- =?us-ascii?Q?TAQ+CT+d8ZyQ26qZueYcZDW21vZNsB2dYoExhDXjrqglBuDBX3vfLvWzgenp?=
- =?us-ascii?Q?3KrVZFbIRrVvs6zsGC0cQvngQwTnKXIX3luUNSC1xGn56K5/W2CJukmsuvQB?=
- =?us-ascii?Q?xQ9m7j2IvB97tfuTppC7ZOIsyTPg6zonh9xxIccnnk2p73gx8HmDUaeA7RWg?=
- =?us-ascii?Q?KHowgxqr3RksfekdT89AP/zFVUisDQxKZqntHS5WwgxqjG6XbNBQy6ssG/30?=
- =?us-ascii?Q?pDBklIaBiM+tRmtgoG2mgVtU8mQIANoMu4EO/b5G34HCELq4PQixJOHkD6gt?=
- =?us-ascii?Q?fmj+vbiz3rwALdZqw5qSxCzRjeUY9csZkLYKQSE1vo5nzbUJgLTGvt6UD9GX?=
- =?us-ascii?Q?HBbdg0Ly+c0QY4TYNNrhLKQltGnOynH/p2LhGuhJGY4x5T9HtvySif1+dBy/?=
- =?us-ascii?Q?DuyFw+tmslNCLHqgHnaqrDl/+nby6JnTc9UpsmYY9SP5g6xlgIx45DSPEdAk?=
- =?us-ascii?Q?XfvCckaz0ciD/lvDetevCj5YxC4TNMfJlUA9y787DsNTZ8+viIF/1kcd4F01?=
- =?us-ascii?Q?zqBef1FuTqcGoaNWSk69aviQjPSQ9VAo/9jiQZhEvAQijn7B/ghIBRObMivA?=
- =?us-ascii?Q?3XbyqDW6lAR6KN6vYWZrvRyi/lID/8nOrFjv6S5pRlj6uWozs2VDIA2fpaTd?=
- =?us-ascii?Q?Uw69z0uvcvUemXztCUQE3qysZIwFOgodhEZezK/suD7E3lxoQStaZAgFSMlD?=
- =?us-ascii?Q?s4RC9XIhB+baX6oTVzmAKnCKKfpW1wDh+oFl7QBeI/F/TaGr1ePyLC/KY0sy?=
- =?us-ascii?Q?lJ/yV/NhVa1e1uWhio1v8QBdIEeksru5SJCUeQPNjm7vCFadZKpo2Dok+JMS?=
- =?us-ascii?Q?BNk6mwV7oUyjb8WeAtvi8MQ7P4jPOOGN8ScIpvu6RymuDWTbExDh00aQBRmt?=
- =?us-ascii?Q?16Yyw3aJDFupLgXWKZFD9c4=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?N9palWSfQh/2OAGcGAukS12cmlTj4YBwM6bl7qfqvLBG5AiHTZsVYmHT9q29?=
+ =?us-ascii?Q?T90W+9t+kt0TFyFvdu+ivqtcrjNuMCiPT2qmEBrVnam0cAN+DmyiGGWQBrJr?=
+ =?us-ascii?Q?NJPGJRVbRFajc8kr69NkORCuDILP6MmlQ1LWOi7tJf2l6SIeTg1WDCPW+YWC?=
+ =?us-ascii?Q?mVzXpouYTz1VtzsP6Nh6tBplgIpLvmPGeWbRAEy2j7PVJscL0KPrKGGdEFvI?=
+ =?us-ascii?Q?XOoct+XNSZjFNoxhYGeL9cioZQKMnpmhtZXJpy4FDsUq8+5q4IzHtOF/vfiq?=
+ =?us-ascii?Q?WhrNEeoxPp8tRWd92hCWhhK2agzph3aBq/yPXDU1MJxsmGK6NQViWaVJdIfL?=
+ =?us-ascii?Q?zEBn7IkcgzLi8d2gs+m7Ijtef5uCEruNp5KS+7/u/FznbQ+A5mnv6+xItHA1?=
+ =?us-ascii?Q?Vl7a2Fq4nuy29fvKUv02KJi9npn/kjDFMLSbtyz2PlrS8QwlDYTX/HDlHURz?=
+ =?us-ascii?Q?nNrA1H+4bzjJ49i8m+cYrgWALPQpeeiU3pULfRg0CcUTZ3xl00+gr8nSvGlP?=
+ =?us-ascii?Q?hpZ1+k4eQyMZijs6mdC3cTDwEEpRvmcOht2LlKRyM7cwSH2IMX6rL+QGNv3u?=
+ =?us-ascii?Q?VcmxxLUJGveF7E8l9TRDXXrTZmS9WFqOS5CUvLEbTqV917KsSVKolmdOgoBo?=
+ =?us-ascii?Q?mSeNP9EXIS0Bfc0lKHQRb2b5m0cWHfl0LYA7+mjPevbbUA2VrApZoJspPEjO?=
+ =?us-ascii?Q?jzB04RnFg2AHqdW+1zSxKxGYpnQcM8pGoS5D0urYxPEQl/tzbNGLgrAlgWh1?=
+ =?us-ascii?Q?yePNVImV7FrTsoRrWQt/6N22iqz7Uh73u3w4sgDNzq4TZvJ/l7IlABWTF/L8?=
+ =?us-ascii?Q?AnyjsZ70uj7Go+r5kwuSjSuu4bZ79hTqdnpnQOTnXBw6EhWZrzmFlUQr2Wio?=
+ =?us-ascii?Q?IRhY7wPUz26XTSh7WePbws4OjrGKCb+qiAv2ckh72jU3WV4W7TFmgVZWcotq?=
+ =?us-ascii?Q?cS8PmPOj57UAjZr4AiahrHakGuEhGIFKP5WR9HL6acYm0lqmdH6xmF3J/Lvw?=
+ =?us-ascii?Q?0pILwNyrZ4HN2iVGMWnbdNuysyOTWeXlzajOi3WrDAIbSdU1bqfJLv4TdYjx?=
+ =?us-ascii?Q?c/lphtoydZZU82ER877Wialn0KUkdehdPAkaCxxy4vT2AZ+OiXdn7QeCgg/O?=
+ =?us-ascii?Q?H/b0yeJ4lXCgVRePVFQKEpzJ1QBr/dyxqV5pSj2aKJEIRcfn0/R/RqUnhd6m?=
+ =?us-ascii?Q?anVPhAQx/rnWMWVsU/2WRSABo1H2WCu0XrF/dnTZWax0smDqoR4AODUESj/h?=
+ =?us-ascii?Q?TFRU42e4HmO49y0wEv2VSO0VJO5qjHqfdGCzaNvisvcqHHXwR1yEASE5hpTy?=
+ =?us-ascii?Q?qsahLtiZxm9ls0rATsYauTYSRZfJsa7OqveiJZFx+uwGG8cT7riBbB01Ol+7?=
+ =?us-ascii?Q?g4UujPa4nnNvcDEmA0wOAdDsKKMXJFn/i1x3NIf3YPSbfStxQ7wf1Lo1U3ax?=
+ =?us-ascii?Q?1tVVBt0CWC7FMlpglClKwEs2MR6pD7kVBSccAFr0FKBv0d+sFfLNMfRaiX+L?=
+ =?us-ascii?Q?Ap0kHHUMEIB6yPiUayOmTFy1Juf8muVVlTN2YZvkgTOILH5H3NZG5TFvk+4y?=
+ =?us-ascii?Q?rsrHoFkP5QlsslxynQ31C6/kIfs0wR4W4BHKRurdVBTFAIppriggX8RPWQvQ?=
+ =?us-ascii?Q?kuq94o2Zh+eYZCmbQU6sykU=3D?=
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <981EE02D15E2C04CBD1AA5E638590CA1@eurprd04.prod.outlook.com>
+Content-ID: <CB69BC15CB33F64097BD2556C0DC45F7@eurprd04.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a64b751d-ca8e-44dd-dda3-08d9c184402c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2021 17:40:00.5536
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB5121.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb46c6bb-9955-4f01-b428-08d9c184d761
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2021 17:44:14.0515
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rrLZlWFUVDRdTUB36RW8Svp4Ul5CMOz8cikh56UEbQ+mBIc2ImjcO0Nu3q5ZGRGhTiYfFfDYKZmG4BR13NYApg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5294
+X-MS-Exchange-CrossTenant-userprincipalname: suCCZ++0zrBxwiAlPlbd80VBPRohldJM6Ig16lTFVDmcRUhgX+dNbSIPnMXDx79AL7M5OCm/vlw8cNNsvZln8Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM4PR0401MB2242
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 17, 2021 at 04:53:52PM +0100, Horatiu Vultur wrote:
-> Currently allow a port to be part or not of the multicast flooding mask.
-> By implementing the switchdev calls SWITCHDEV_ATTR_ID_PORT_BRIDGE_FLAGS
-> and SWITCHDEV_ATTR_ID_PORT_PRE_BRIDGE_FLAGS.
+On Fri, Dec 17, 2021 at 04:53:50PM +0100, Horatiu Vultur wrote:
+> This patch adds basic support to offload in the HW the forwarding of the
+> frames. The driver registers to the switchdev callbacks and implements
+> the callbacks for attributes SWITCHDEV_ATTR_ID_PORT_STP_STATE and
+> SWITCHDEV_ATTR_ID_BRIDGE_AGEING_TIME.
+> It is not allowed to add a lan966x port to a bridge that contains a
+> different interface than lan966x.
 >=20
 > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 > ---
->  .../microchip/lan966x/lan966x_switchdev.c     | 34 +++++++++++++++++++
->  1 file changed, 34 insertions(+)
+>  .../net/ethernet/microchip/lan966x/Kconfig    |   1 +
+>  .../net/ethernet/microchip/lan966x/Makefile   |   2 +-
+>  .../ethernet/microchip/lan966x/lan966x_main.c |  32 +-
+>  .../ethernet/microchip/lan966x/lan966x_main.h |   9 +
+>  .../microchip/lan966x/lan966x_switchdev.c     | 309 ++++++++++++++++++
+>  5 files changed, 351 insertions(+), 2 deletions(-)
+>  create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_switch=
+dev.c
 >=20
-> diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c b=
-/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c
-> index cef9e690fb82..af227b33cb3f 100644
-> --- a/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c
-> +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c
-> @@ -9,6 +9,34 @@ static struct notifier_block lan966x_netdevice_nb __read=
-_mostly;
->  static struct notifier_block lan966x_switchdev_nb __read_mostly;
->  static struct notifier_block lan966x_switchdev_blocking_nb __read_mostly=
-;
+> diff --git a/drivers/net/ethernet/microchip/lan966x/Kconfig b/drivers/net=
+/ethernet/microchip/lan966x/Kconfig
+> index 2860a8c9923d..ac273f84b69e 100644
+> --- a/drivers/net/ethernet/microchip/lan966x/Kconfig
+> +++ b/drivers/net/ethernet/microchip/lan966x/Kconfig
+> @@ -2,6 +2,7 @@ config LAN966X_SWITCH
+>  	tristate "Lan966x switch driver"
+>  	depends on HAS_IOMEM
+>  	depends on OF
+> +	depends on NET_SWITCHDEV
+>  	select PHYLINK
+>  	select PACKING
+>  	help
+> diff --git a/drivers/net/ethernet/microchip/lan966x/Makefile b/drivers/ne=
+t/ethernet/microchip/lan966x/Makefile
+> index 2989ba528236..974229c51f55 100644
+> --- a/drivers/net/ethernet/microchip/lan966x/Makefile
+> +++ b/drivers/net/ethernet/microchip/lan966x/Makefile
+> @@ -6,4 +6,4 @@
+>  obj-$(CONFIG_LAN966X_SWITCH) +=3D lan966x-switch.o
 > =20
-> +static void lan966x_port_bridge_flags(struct lan966x_port *port,
-> +				      struct switchdev_brport_flags flags)
+>  lan966x-switch-objs  :=3D lan966x_main.o lan966x_phylink.o lan966x_port.=
+o \
+> -			lan966x_mac.o lan966x_ethtool.o
+> +			lan966x_mac.o lan966x_ethtool.o lan966x_switchdev.o
+> diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_main.c b/driv=
+ers/net/ethernet/microchip/lan966x/lan966x_main.c
+> index dc40ac2eb246..5af60234d81d 100644
+> --- a/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
+> +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
+> @@ -355,6 +355,11 @@ static const struct net_device_ops lan966x_port_netd=
+ev_ops =3D {
+>  	.ndo_get_port_parent_id		=3D lan966x_port_get_parent_id,
+>  };
+> =20
+> +bool lan966x_netdevice_check(const struct net_device *dev)
 > +{
-> +	u32 val =3D lan_rd(port->lan966x, ANA_PGID(PGID_MC));
-> +
-> +	val =3D ANA_PGID_PGID_GET(val);
-
-Ideally you'd want to read PGID_MC only if you know that BR_MCAST_FLOOD
-is the flag getting changed. Otherwise you'd have to refactor this when
-you add support for more brport flags.
-
-> +
-> +	if (flags.mask & BR_MCAST_FLOOD) {
-> +		if (flags.val & BR_MCAST_FLOOD)
-> +			val |=3D BIT(port->chip_port);
-> +		else
-> +			val &=3D ~BIT(port->chip_port);
-> +	}
-> +
-> +	lan_rmw(ANA_PGID_PGID_SET(val),
-> +		ANA_PGID_PGID,
-> +		port->lan966x, ANA_PGID(PGID_MC));
+> +	return dev->netdev_ops =3D=3D &lan966x_port_netdev_ops;
 > +}
 > +
-> +static int lan966x_port_pre_bridge_flags(struct lan966x_port *port,
-> +					 struct switchdev_brport_flags flags)
+>  static int lan966x_port_xtr_status(struct lan966x *lan966x, u8 grp)
+>  {
+>  	return lan_rd(lan966x, QS_XTR_RD(grp));
+> @@ -491,6 +496,9 @@ static irqreturn_t lan966x_xtr_irq_handler(int irq, v=
+oid *args)
+> =20
+>  		skb->protocol =3D eth_type_trans(skb, dev);
+> =20
+> +		if (lan966x->bridge_mask & BIT(src_port))
+> +			skb->offload_fwd_mark =3D 1;
+> +
+>  		netif_rx_ni(skb);
+>  		dev->stats.rx_bytes +=3D len;
+>  		dev->stats.rx_packets++;
+> @@ -915,6 +923,7 @@ static int lan966x_remove(struct platform_device *pde=
+v)
+>  {
+>  	struct lan966x *lan966x =3D platform_get_drvdata(pdev);
+> =20
+> +	lan966x_unregister_notifier_blocks();
+
+You forgot to delete this from lan966x_remove.
+
+>  	lan966x_cleanup_ports(lan966x);
+> =20
+>  	cancel_delayed_work_sync(&lan966x->stats_work);
+> @@ -934,7 +943,28 @@ static struct platform_driver lan966x_driver =3D {
+>  		.of_match_table =3D lan966x_match,
+>  	},
+>  };
+> -module_platform_driver(lan966x_driver);
+> +
+> +static int __init lan966x_switch_driver_init(void)
 > +{
-> +	if (flags.mask & ~BR_MCAST_FLOOD)
-> +		return -EINVAL;
+> +	int ret;
+> +
+> +	ret =3D platform_driver_register(&lan966x_driver);
+> +	if (ret)
+> +		return ret;
+> +
+> +	lan966x_register_notifier_blocks();
+
+I think you might miss some events if you register the notifier blocks
+after you've registered your net devices, so could you move this to be
+first (and reverse the order for the driver exit, too)?
+
 > +
 > +	return 0;
 > +}
 > +
->  static void lan966x_update_fwd_mask(struct lan966x *lan966x)
->  {
->  	int i;
-> @@ -67,6 +95,12 @@ static int lan966x_port_attr_set(struct net_device *de=
-v, const void *ctx,
->  		return 0;
+> +static void __exit lan966x_switch_driver_exit(void)
+> +{
+> +	lan966x_unregister_notifier_blocks();
+> +	platform_driver_unregister(&lan966x_driver);
+> +}
+> +
+> +module_init(lan966x_switch_driver_init);
+> +module_exit(lan966x_switch_driver_exit);
 > =20
->  	switch (attr->id) {
-> +	case SWITCHDEV_ATTR_ID_PORT_BRIDGE_FLAGS:
-> +		lan966x_port_bridge_flags(port, attr->u.brport_flags);
+>  MODULE_DESCRIPTION("Microchip LAN966X switch driver");
+>  MODULE_AUTHOR("Horatiu Vultur <horatiu.vultur@microchip.com>");
+> diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_main.h b/driv=
+ers/net/ethernet/microchip/lan966x/lan966x_main.h
+> index fcd5d09a070c..4723a904c13e 100644
+> --- a/drivers/net/ethernet/microchip/lan966x/lan966x_main.h
+> +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_main.h
+> @@ -75,6 +75,10 @@ struct lan966x {
+> =20
+>  	u8 base_mac[ETH_ALEN];
+> =20
+> +	struct net_device *bridge;
+> +	u16 bridge_mask;
+> +	u16 bridge_fwd_mask;
+> +
+>  	struct list_head mac_entries;
+>  	spinlock_t mac_lock; /* lock for mac_entries list */
+> =20
+> @@ -122,6 +126,11 @@ extern const struct phylink_mac_ops lan966x_phylink_=
+mac_ops;
+>  extern const struct phylink_pcs_ops lan966x_phylink_pcs_ops;
+>  extern const struct ethtool_ops lan966x_ethtool_ops;
+> =20
+> +bool lan966x_netdevice_check(const struct net_device *dev);
+> +
+> +void lan966x_register_notifier_blocks(void);
+> +void lan966x_unregister_notifier_blocks(void);
+> +
+>  void lan966x_stats_get(struct net_device *dev,
+>  		       struct rtnl_link_stats64 *stats);
+>  int lan966x_stats_init(struct lan966x *lan966x);
+> diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c b=
+/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c
+> new file mode 100644
+> index 000000000000..9db17b677357
+> --- /dev/null
+> +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c
+> @@ -0,0 +1,309 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +
+> +#include <linux/if_bridge.h>
+> +#include <net/switchdev.h>
+> +
+> +#include "lan966x_main.h"
+> +
+> +static struct notifier_block lan966x_netdevice_nb __read_mostly;
+> +static struct notifier_block lan966x_switchdev_nb __read_mostly;
+> +static struct notifier_block lan966x_switchdev_blocking_nb __read_mostly=
+;
+> +
+> +static void lan966x_update_fwd_mask(struct lan966x *lan966x)
+> +{
+> +	int i;
+> +
+> +	for (i =3D 0; i < lan966x->num_phys_ports; i++) {
+> +		struct lan966x_port *port =3D lan966x->ports[i];
+> +		unsigned long mask =3D 0;
+> +
+> +		if (port && lan966x->bridge_fwd_mask & BIT(i))
+> +			mask =3D lan966x->bridge_fwd_mask & ~BIT(i);
+> +
+> +		mask |=3D BIT(CPU_PORT);
+> +
+> +		lan_wr(ANA_PGID_PGID_SET(mask),
+> +		       lan966x, ANA_PGID(PGID_SRC + i));
+> +	}
+> +}
+> +
+> +static void lan966x_port_stp_state_set(struct lan966x_port *port, u8 sta=
+te)
+> +{
+> +	struct lan966x *lan966x =3D port->lan966x;
+> +	bool learn_ena =3D false;
+> +
+> +	if (state =3D=3D BR_STATE_FORWARDING || state =3D=3D BR_STATE_LEARNING)
+> +		learn_ena =3D true;
+> +
+> +	if (state =3D=3D BR_STATE_FORWARDING)
+> +		lan966x->bridge_fwd_mask |=3D BIT(port->chip_port);
+> +	else
+> +		lan966x->bridge_fwd_mask &=3D ~BIT(port->chip_port);
+> +
+> +	lan_rmw(ANA_PORT_CFG_LEARN_ENA_SET(learn_ena),
+> +		ANA_PORT_CFG_LEARN_ENA,
+> +		lan966x, ANA_PORT_CFG(port->chip_port));
+> +
+> +	lan966x_update_fwd_mask(lan966x);
+> +}
+> +
+> +static void lan966x_port_ageing_set(struct lan966x_port *port,
+> +				    unsigned long ageing_clock_t)
+> +{
+> +	unsigned long ageing_jiffies =3D clock_t_to_jiffies(ageing_clock_t);
+> +	u32 ageing_time =3D jiffies_to_msecs(ageing_jiffies) / 1000;
+> +
+> +	lan966x_mac_set_ageing(port->lan966x, ageing_time);
+> +}
+> +
+> +static int lan966x_port_attr_set(struct net_device *dev, const void *ctx=
+,
+> +				 const struct switchdev_attr *attr,
+> +				 struct netlink_ext_ack *extack)
+> +{
+> +	struct lan966x_port *port =3D netdev_priv(dev);
+> +	int err =3D 0;
+> +
+> +	if (ctx && ctx !=3D port)
+> +		return 0;
+> +
+> +	switch (attr->id) {
+> +	case SWITCHDEV_ATTR_ID_PORT_STP_STATE:
+> +		lan966x_port_stp_state_set(port, attr->u.stp_state);
 > +		break;
-> +	case SWITCHDEV_ATTR_ID_PORT_PRE_BRIDGE_FLAGS:
-> +		err =3D lan966x_port_pre_bridge_flags(port, attr->u.brport_flags);
+> +	case SWITCHDEV_ATTR_ID_BRIDGE_AGEING_TIME:
+> +		lan966x_port_ageing_set(port, attr->u.ageing_time);
 > +		break;
->  	case SWITCHDEV_ATTR_ID_PORT_STP_STATE:
->  		lan966x_port_stp_state_set(port, attr->u.stp_state);
->  		break;
+> +	default:
+> +		err =3D -EOPNOTSUPP;
+> +		break;
+> +	}
+> +
+> +	return err;
+> +}
+> +
+> +static int lan966x_port_bridge_join(struct lan966x_port *port,
+> +				    struct net_device *bridge,
+> +				    struct netlink_ext_ack *extack)
+> +{
+> +	struct lan966x *lan966x =3D port->lan966x;
+> +	struct net_device *dev =3D port->dev;
+> +	int err;
+> +
+> +	if (!lan966x->bridge_mask) {
+> +		lan966x->bridge =3D bridge;
+> +	} else {
+> +		if (lan966x->bridge !=3D bridge) {
+> +			NL_SET_ERR_MSG_MOD(extack, "Not allow to add port to different bridge=
+");
+> +			return -ENODEV;
+> +		}
+> +	}
+> +
+> +	err =3D switchdev_bridge_port_offload(dev, dev, port,
+> +					    &lan966x_switchdev_nb,
+> +					    &lan966x_switchdev_blocking_nb,
+> +					    false, extack);
+> +	if (err)
+> +		return err;
+> +
+> +	lan966x->bridge_mask |=3D BIT(port->chip_port);
+> +
+> +	return 0;
+> +}
+> +
+> +static void lan966x_port_bridge_leave(struct lan966x_port *port,
+> +				      struct net_device *bridge)
+> +{
+> +	struct lan966x *lan966x =3D port->lan966x;
+> +
+> +	lan966x->bridge_mask &=3D ~BIT(port->chip_port);
+> +
+> +	if (!lan966x->bridge_mask)
+> +		lan966x->bridge =3D NULL;
+> +
+> +	lan966x_mac_cpu_learn(lan966x, port->dev->dev_addr, PORT_PVID);
+> +}
+> +
+> +static int lan966x_port_changeupper(struct net_device *dev,
+> +				    struct netdev_notifier_changeupper_info *info)
+> +{
+> +	struct lan966x_port *port =3D netdev_priv(dev);
+> +	struct netlink_ext_ack *extack;
+> +	int err =3D 0;
+> +
+> +	extack =3D netdev_notifier_info_to_extack(&info->info);
+> +
+> +	if (netif_is_bridge_master(info->upper_dev)) {
+> +		if (info->linking)
+> +			err =3D lan966x_port_bridge_join(port, info->upper_dev,
+> +						       extack);
+> +		else
+> +			lan966x_port_bridge_leave(port, info->upper_dev);
+> +	}
+> +
+> +	return err;
+> +}
+> +
+> +static int lan966x_port_prechangeupper(struct net_device *dev,
+> +				       struct netdev_notifier_changeupper_info *info)
+> +{
+> +	struct lan966x_port *port =3D netdev_priv(dev);
+> +
+> +	if (netif_is_bridge_master(info->upper_dev) && !info->linking)
+> +		switchdev_bridge_port_unoffload(port->dev, port,
+> +						&lan966x_switchdev_nb,
+> +						&lan966x_switchdev_blocking_nb);
+> +
+> +	return NOTIFY_DONE;
+> +}
+> +
+> +static int lan966x_foreign_bridging_check(struct net_device *bridge,
+> +					  struct netlink_ext_ack *extack)
+> +{
+> +	struct lan966x *lan966x =3D NULL;
+> +	bool has_foreign =3D false;
+> +	struct net_device *dev;
+> +	struct list_head *iter;
+> +
+> +	if (!netif_is_bridge_master(bridge))
+> +		return 0;
+> +
+> +	netdev_for_each_lower_dev(bridge, dev, iter) {
+> +		if (lan966x_netdevice_check(dev)) {
+> +			struct lan966x_port *port =3D netdev_priv(dev);
+> +
+> +			if (lan966x) {
+> +				/* Bridge already has at least one port of a
+> +				 * lan966x switch inside it, check that it's
+> +				 * the same instance of the driver.
+> +				 */
+> +				if (port->lan966x !=3D lan966x) {
+> +					NL_SET_ERR_MSG_MOD(extack,
+> +							   "Bridging between multiple lan966x switches disallowed");
+> +					return -EINVAL;
+> +				}
+> +			} else {
+> +				/* This is the first lan966x port inside this
+> +				 * bridge
+> +				 */
+> +				lan966x =3D port->lan966x;
+> +			}
+> +		} else {
+> +			has_foreign =3D true;
+> +		}
+> +
+> +		if (lan966x && has_foreign) {
+> +			NL_SET_ERR_MSG_MOD(extack,
+> +					   "Bridging lan966x ports with foreign interfaces disallowed");
+> +			return -EINVAL;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int lan966x_bridge_check(struct net_device *dev,
+> +				struct netdev_notifier_changeupper_info *info)
+> +{
+> +	return lan966x_foreign_bridging_check(info->upper_dev,
+> +					      info->info.extack);
+> +}
+> +
+> +static int lan966x_netdevice_port_event(struct net_device *dev,
+> +					struct notifier_block *nb,
+> +					unsigned long event, void *ptr)
+> +{
+> +	int err =3D 0;
+> +
+> +	if (!lan966x_netdevice_check(dev)) {
+> +		if (event =3D=3D NETDEV_CHANGEUPPER)
+> +			return lan966x_bridge_check(dev, ptr);
+> +		return 0;
+> +	}
+> +
+> +	switch (event) {
+> +	case NETDEV_PRECHANGEUPPER:
+> +		err =3D lan966x_port_prechangeupper(dev, ptr);
+> +		break;
+> +	case NETDEV_CHANGEUPPER:
+> +		err =3D lan966x_bridge_check(dev, ptr);
+> +		if (err)
+> +			return err;
+> +
+> +		err =3D lan966x_port_changeupper(dev, ptr);
+> +		break;
+> +	}
+> +
+> +	return err;
+> +}
+> +
+> +static int lan966x_netdevice_event(struct notifier_block *nb,
+> +				   unsigned long event, void *ptr)
+> +{
+> +	struct net_device *dev =3D netdev_notifier_info_to_dev(ptr);
+> +	int ret;
+> +
+> +	ret =3D lan966x_netdevice_port_event(dev, nb, event, ptr);
+> +
+> +	return notifier_from_errno(ret);
+> +}
+> +
+> +static int lan966x_switchdev_event(struct notifier_block *nb,
+> +				   unsigned long event, void *ptr)
+> +{
+> +	struct net_device *dev =3D switchdev_notifier_info_to_dev(ptr);
+> +	int err;
+> +
+> +	switch (event) {
+> +	case SWITCHDEV_PORT_ATTR_SET:
+> +		err =3D switchdev_handle_port_attr_set(dev, ptr,
+> +						     lan966x_netdevice_check,
+> +						     lan966x_port_attr_set);
+> +		return notifier_from_errno(err);
+> +	}
+> +
+> +	return NOTIFY_DONE;
+> +}
+> +
+> +static int lan966x_switchdev_blocking_event(struct notifier_block *nb,
+> +					    unsigned long event,
+> +					    void *ptr)
+> +{
+> +	struct net_device *dev =3D switchdev_notifier_info_to_dev(ptr);
+> +	int err;
+> +
+> +	switch (event) {
+> +	case SWITCHDEV_PORT_ATTR_SET:
+> +		err =3D switchdev_handle_port_attr_set(dev, ptr,
+> +						     lan966x_netdevice_check,
+> +						     lan966x_port_attr_set);
+> +		return notifier_from_errno(err);
+> +	}
+> +
+> +	return NOTIFY_DONE;
+> +}
+> +
+> +static struct notifier_block lan966x_netdevice_nb __read_mostly =3D {
+> +	.notifier_call =3D lan966x_netdevice_event,
+> +};
+> +
+> +static struct notifier_block lan966x_switchdev_nb __read_mostly =3D {
+> +	.notifier_call =3D lan966x_switchdev_event,
+> +};
+> +
+> +static struct notifier_block lan966x_switchdev_blocking_nb __read_mostly=
+ =3D {
+> +	.notifier_call =3D lan966x_switchdev_blocking_event,
+> +};
+> +
+> +void lan966x_register_notifier_blocks(void)
+> +{
+> +	register_netdevice_notifier(&lan966x_netdevice_nb);
+> +	register_switchdev_notifier(&lan966x_switchdev_nb);
+> +	register_switchdev_blocking_notifier(&lan966x_switchdev_blocking_nb);
+> +}
+> +
+> +void lan966x_unregister_notifier_blocks(void)
+> +{
+> +	unregister_switchdev_blocking_notifier(&lan966x_switchdev_blocking_nb);
+> +	unregister_switchdev_notifier(&lan966x_switchdev_nb);
+> +	unregister_netdevice_notifier(&lan966x_netdevice_nb);
+> +}
 > --=20
 > 2.33.0
 >=
