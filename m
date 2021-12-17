@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B89B479243
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:00:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDAD3479252
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 18:03:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235936AbhLQRAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 12:00:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51394 "EHLO
+        id S235975AbhLQRDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 12:03:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231881AbhLQRAr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:00:47 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF11C061574;
-        Fri, 17 Dec 2021 09:00:46 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id i22so5202000wrb.13;
-        Fri, 17 Dec 2021 09:00:46 -0800 (PST)
+        with ESMTP id S232554AbhLQRDP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 12:03:15 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7178AC061574;
+        Fri, 17 Dec 2021 09:03:15 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id b73so2090017wmd.0;
+        Fri, 17 Dec 2021 09:03:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Uc3L6UZb2PlxIKElhEsWA3ODR+UpWpdweZ/Uoj8yWwQ=;
-        b=fwDOzYC/sWl5QtrxXoQth1fa95jl6X9D1qcVZCrvvEIB2KjIHBjBhHf/eYKmwRb4XT
-         QRWiLhsEbFgDAhkxZerrUWA+rN4VK/nKEopQTACpSJ1yKJ5sKI3TMLG5eooUHKXPGEIR
-         byeWn6S1JB0RIdJxDvhbBFRgkhIp4/sy2985q+dg538Gv2GHEVN20ak85SP/g2JVdsZ4
-         dTov/vyURhM/5UweAb1nXKdwAc27qFR3cglne7aGCAyOlG9QeaKKAHAOKHJVraUL2unu
-         /7wLAodQvztDIYKdrgFBEbuc2U6PwR6I259WknAlzClRMpo0pxmk7gtZDfgylNdjWbEv
-         yZQw==
+        bh=+7QvCKPI/L+6WqBb049H46/2pOwo+Y564j35w+PmcZg=;
+        b=NY3iMTxdfTn0FpwaE7yVFrADI/DOugvlkof8vc8L08VU28Yg6TdkrroPiw2OiTxYvA
+         8cwGfw7wXa6ybwtBs3kRQNiDyxmLaFv7JH0nsLHSgS0R+Uuj7DUxZDj2ksOYpcr9cQGV
+         DIi5D2O19VU1JwkV3uZ4J5oYTzBdSO+ZoqqAIRHPRZoqaOvosE3AxkYr9/eRpJ8utBFV
+         Samkb/mBVaUed/dRBXcOhomkHLJrkRV39HGsTTRY2WjPjgMq28k80ptCi8GlDZJz2dOE
+         CNUQsR9R0hwFFSOGNETkjAglNHGMrHP7wvZh3tbNHCJMRR3QQeWin17S0EsfVjXVOlmp
+         FU1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Uc3L6UZb2PlxIKElhEsWA3ODR+UpWpdweZ/Uoj8yWwQ=;
-        b=vCca8nkEzUBI2l/PzAa32R6EGVgmLdTB6UjBZKbgPT+xoNMkEG5OoCACuJe8byRHRI
-         ePC9PFLZMEJbKlLCxFLVRdy0nvAmcjprRz4GGAbL1cEbLcBokMTjbBRndIO+1msI0YYX
-         TlKR7o9ljY+iicPym481gkfq1yljNI83SeusFDz2+NyqVoHYi6BW2TCXUdrtTg1m2VBE
-         iMa69iH7gi8POBPofkktbx4qOOO3COrqrQPpm4IsInXub06p2WDC07BcTSGhIfl5ZNXj
-         tXe4xt5+3nFgRv7QlBLrcjKlufrmBpSEy6uO0dsXDHTIQiQSgnUtMpvzLQwVcdaeivEY
-         7xig==
-X-Gm-Message-State: AOAM5317B4gCJJ/BcauRL/dFRvTDWXx3NZoHLhwITlc/Y596z5EEVui3
-        qXZ3cbF+CLO+y9+uXQ09qQLHsTfSRMYOfA==
-X-Google-Smtp-Source: ABdhPJwS5A17zqJaQoBIDjwEgR1u8org3CVR58fuDxDO4Q94QseLAVHuAhrgxtAQmB41x4uc/xPA5Q==
-X-Received: by 2002:a5d:4dc2:: with SMTP id f2mr3183862wru.156.1639760445254;
-        Fri, 17 Dec 2021 09:00:45 -0800 (PST)
+        bh=+7QvCKPI/L+6WqBb049H46/2pOwo+Y564j35w+PmcZg=;
+        b=aT4AgvancNnLyZQ/AIhvk2R7HrPlY6cLsfKPUUvNQu0K9WBTjTQ1Y8ha3gHfLAvqqV
+         f9tremesLTCXny4V4xYjDu2vcBHSy3TRR64Xm6ci96RtcXCCFptlHb33V8fuigo0MPAN
+         /qLFOHfs4yvK5ARWjuNSbfGjuL+g89SYg39Ude09mn/igS39b/7ZNSbj72veut51mgol
+         tZCYznTG9ZH6t5Kwlk7E5LwdVRVN/eTeQYdazji5Us5nQb/ke24aWlhMDk80itLNrmtY
+         +rVB+yXyj+1AoFeVcTmT33WSVVGI76vYPQTHguFILNIdUdyNbrhViuhQFzu/KPJXvfFn
+         jbQA==
+X-Gm-Message-State: AOAM530551ZLBq6rEFp5SBayKNfr4Dr533Qenfdim1MS0ZSAJ9KthI45
+        luYsRSs3Ot49ZxKylrzLuZu+ckyDXxChvw==
+X-Google-Smtp-Source: ABdhPJxTY4N54XmHjnnfm9if6y0t1o0nE9jqSZigwO8nq5Y0uHlitqbH2fl7aAYnwc1Mu6WQx9HTnA==
+X-Received: by 2002:a05:600c:19cb:: with SMTP id u11mr6934771wmq.142.1639760594014;
+        Fri, 17 Dec 2021 09:03:14 -0800 (PST)
 Received: from localhost ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id j3sm2644232wro.22.2021.12.17.09.00.44
+        by smtp.gmail.com with ESMTPSA id b10sm8943721wri.78.2021.12.17.09.03.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Dec 2021 09:00:44 -0800 (PST)
+        Fri, 17 Dec 2021 09:03:13 -0800 (PST)
 From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: power: reset: gpio-restart: Convert to json-schema
-Date:   Fri, 17 Dec 2021 18:00:42 +0100
-Message-Id: <20211217170042.2740058-1-thierry.reding@gmail.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: rtc: ds1307: Convert to json-schema
+Date:   Fri, 17 Dec 2021 18:03:10 +0100
+Message-Id: <20211217170311.2796798-1-thierry.reding@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -63,168 +64,184 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Thierry Reding <treding@nvidia.com>
 
-Convert the GPIO restart bindings from the free-form text format to
-json-schema.
+Convert the DS1307 (and compatible) RTC bindings from the free-form text
+format to json-schema.
 
 Signed-off-by: Thierry Reding <treding@nvidia.com>
 ---
- .../bindings/power/reset/gpio-restart.txt     | 54 ------------
- .../bindings/power/reset/gpio-restart.yaml    | 86 +++++++++++++++++++
- 2 files changed, 86 insertions(+), 54 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/power/reset/gpio-restart.txt
- create mode 100644 Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
+ .../devicetree/bindings/rtc/rtc-ds1307.txt    |  52 ---------
+ .../devicetree/bindings/rtc/rtc-ds1307.yaml   | 104 ++++++++++++++++++
+ 2 files changed, 104 insertions(+), 52 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
 
-diff --git a/Documentation/devicetree/bindings/power/reset/gpio-restart.txt b/Documentation/devicetree/bindings/power/reset/gpio-restart.txt
+diff --git a/Documentation/devicetree/bindings/rtc/rtc-ds1307.txt b/Documentation/devicetree/bindings/rtc/rtc-ds1307.txt
 deleted file mode 100644
-index af3701bc15c4..000000000000
---- a/Documentation/devicetree/bindings/power/reset/gpio-restart.txt
+index 36f610bb051e..000000000000
+--- a/Documentation/devicetree/bindings/rtc/rtc-ds1307.txt
 +++ /dev/null
-@@ -1,54 +0,0 @@
--Drive a GPIO line that can be used to restart the system from a restart
--handler.
--
--This binding supports level and edge triggered reset.  At driver load
--time, the driver will request the given gpio line and install a restart
--handler. If the optional properties 'open-source' is not found, the GPIO line
--will be driven in the inactive state.  Otherwise its not driven until
--the restart is initiated.
--
--When the system is restarted, the restart handler will be invoked in
--priority order.  The gpio is configured as an output, and driven active,
--triggering a level triggered reset condition. This will also cause an
--inactive->active edge condition, triggering positive edge triggered
--reset. After a delay specified by active-delay, the GPIO is set to
--inactive, thus causing an active->inactive edge, triggering negative edge
--triggered reset. After a delay specified by inactive-delay, the GPIO
--is driven active again.  After a delay specified by wait-delay, the
--restart handler completes allowing other restart handlers to be attempted.
+@@ -1,52 +0,0 @@
+-Dallas DS1307 and compatible RTC
 -
 -Required properties:
--- compatible : should be "gpio-restart".
--- gpios : The GPIO to set high/low, see "gpios property" in
--  Documentation/devicetree/bindings/gpio/gpio.txt. If the pin should be
--  low to reset the board set it to "Active Low", otherwise set
--  gpio to "Active High".
+-- compatible: should be one of:
+-	"dallas,ds1307",
+-	"dallas,ds1308",
+-	"dallas,ds1337",
+-	"dallas,ds1338",
+-	"dallas,ds1339",
+-	"dallas,ds1388",
+-	"dallas,ds1340",
+-	"dallas,ds1341",
+-	"maxim,ds3231",
+-	"st,m41t0",
+-	"st,m41t00",
+-	"st,m41t11",
+-	"microchip,mcp7940x",
+-	"microchip,mcp7941x",
+-	"pericom,pt7c4338",
+-	"epson,rx8025",
+-	"isil,isl12057"
+-	"epson,rx8130"
+-- reg: I2C bus address of the device
 -
 -Optional properties:
--- open-source : Treat the GPIO as being open source and defer driving
--  it to when the restart is initiated.  If this optional property is not
--  specified, the GPIO is initialized as an output in its inactive state.
--- priority : A priority ranging from 0 to 255 (default 128) according to
--  the following guidelines:
--	0:	Restart handler of last resort, with limited restart
--		capabilities
--	128:	Default restart handler; use if no other restart handler is
--		expected to be available, and/or if restart functionality is
--		sufficient to restart the entire system
--	255:	Highest priority restart handler, will preempt all other
--		restart handlers
--- active-delay: Delay (default 100) to wait after driving gpio active [ms]
--- inactive-delay: Delay (default 100) to wait after driving gpio inactive [ms]
--- wait-delay: Delay (default 3000) to wait after completing restart
--  sequence [ms]
+-- interrupts: rtc alarm interrupt.
+-- clock-output-names: From common clock binding to override the default output
+-                      clock name
+-- wakeup-source: Enables wake up of host system on alarm
+-- trickle-resistor-ohms : ds1339, ds1340 and ds 1388 only
+-	Selected resistor for trickle charger
+-	Possible values are 250, 2000, 4000
+-	Should be given if trickle charger should be enabled
+-- aux-voltage-chargeable: ds1339, ds1340, ds1388 and rx8130 only
+-	Tells whether the battery/supercap of the RTC (if any) is
+-	chargeable or not.
+-	Possible values are 0 (not chargeable), 1 (chargeable)
 -
--Examples:
+-Deprecated properties:
+-- trickle-diode-disable : ds1339, ds1340 and ds1388 only
+-	Do not use internal trickle charger diode
+-	Should be given if internal trickle charger diode should be disabled
+-	(superseded by aux-voltage-chargeable)
 -
--gpio-restart {
--	compatible = "gpio-restart";
--	gpios = <&gpio 4 0>;
--	priority = <128>;
--	active-delay = <100>;
--	inactive-delay = <100>;
--	wait-delay = <3000>;
--};
-diff --git a/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
+-Example:
+-	ds1339: rtc@68 {
+-		compatible = "dallas,ds1339";
+-		reg = <0x68>;
+-		interrupt-parent = <&gpio4>;
+-		interrupts = <20 0>;
+-		trickle-resistor-ohms = <250>;
+-	};
+diff --git a/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml b/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
 new file mode 100644
-index 000000000000..3dd22220cb5f
+index 000000000000..df0b55938bda
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
+@@ -0,0 +1,104 @@
++# SPDX-License-Identifier: GPL-2.0
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/power/reset/gpio-restart.yaml#
++$id: http://devicetree.org/schemas/rtc/rtc-ds1307.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: GPIO controlled reset
++title: Dallas DS1307 and compatible RTC
 +
 +maintainers:
-+  - Sebastian Reichel <sre@kernel.org>
-+
-+description: >
-+  Drive a GPIO line that can be used to restart the system from a restart handler.
-+
-+  This binding supports level and edge triggered reset.  At driver load time, the driver will
-+  request the given gpio line and install a restart handler. If the optional properties
-+  'open-source' is not found, the GPIO line will be driven in the inactive state.  Otherwise its
-+  not driven until the restart is initiated.
-+
-+  When the system is restarted, the restart handler will be invoked in priority order.  The GPIO
-+  is configured as an output, and driven active, triggering a level triggered reset condition.
-+  This will also cause an inactive->active edge condition, triggering positive edge triggered
-+  reset. After a delay specified by active-delay, the GPIO is set to inactive, thus causing an
-+  active->inactive edge, triggering negative edge triggered reset. After a delay specified by
-+  inactive-delay, the GPIO is driven active again.  After a delay specified by wait-delay, the
-+  restart handler completes allowing other restart handlers to be attempted.
++  - Alexandre Belloni <alexandre.belloni@bootlin.com>
 +
 +properties:
 +  compatible:
-+    const: gpio-restart
++    enum:
++      - dallas,ds1307
++      - dallas,ds1308
++      - dallas,ds1337
++      - dallas,ds1338
++      - dallas,ds1339
++      - dallas,ds1388
++      - dallas,ds1340
++      - dallas,ds1341
++      - maxim,ds3231
++      - st,m41t0
++      - st,m41t00
++      - st,m41t11
++      - microchip,mcp7940x
++      - microchip,mcp7941x
++      - pericom,pt7c4338
++      - epson,rx8025
++      - isil,isl12057
++      - epson,rx8130
 +
-+  gpios:
-+    description: The GPIO to set high/low, see "gpios property" in
-+      Documentation/devicetree/bindings/gpio/gpio.txt. If the pin should be low to reset the board
-+      set it to "Active Low", otherwise set GPIO to "Active High".
++  reg:
++    maxItems: 1
 +
-+  open-source:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: Treat the GPIO as being open source and defer driving it to when the restart is
-+      initiated.  If this optional property is not specified, the GPIO is initialized as an output
-+      in its inactive state.
++  interrupts:
++    maxItems: 1
 +
-+  priority:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      A priority ranging from 0 to 255 (default 128) according to the following guidelines:
++  "#clock-cells":
++    const: 1
 +
-+        0:   Restart handler of last resort, with limited restart capabilities.
-+        128: Default restart handler; use if no other restart handler is expected to be available,
-+             and/or if restart functionality is sufficient to restart the entire system.
-+        255: Highest priority restart handler, will preempt all other restart handlers.
-+    minimum: 0
-+    maximum: 255
-+    default: 128
++  clock-output-names:
++    description: From common clock binding to override the default output clock name.
 +
-+  active-delay:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Delay (default 100) to wait after driving gpio active [ms]
-+    default: 100
++  wakeup-source:
++    description: Enables wake up of host system on alarm.
 +
-+  inactive-delay:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Delay (default 100) to wait after driving gpio inactive [ms]
-+    default: 100
++allOf:
++  - $ref: rtc.yaml
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - dallas,ds1339
++              - dallas,ds1340
++              - dallas,ds1388
++    then:
++      properties:
++        trickle-resistor-ohms:
++          description: Selected resistor for trickle charger. Should be specified if trickle
++            charger should be enabled.
++          enum: [ 250, 2000, 4000 ]
 +
-+  wait-delay:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Delay (default 3000) to wait after completing restart sequence [ms]
-+    default: 100
++        trickle-diode-disable:
++          description: Do not use internal trickle charger diode. Should be given if internal
++            trickle charger diode should be disabled (superseded by aux-voltage-chargeable)
++          deprecated: true
 +
-+additionalProperties: false
++#  - if:
++#      properties:
++#        compatible:
++#          not:
++#            contains:
++#              enum:
++#                - dallas,ds1339
++#                - dallas,ds1340
++#                - dallas,ds1388
++#                - epson,rx8130
++#    then:
++#      properties:
++#        aux-voltage-chargeable: false
++
++unevaluatedProperties: false
 +
 +required:
 +  - compatible
-+  - gpios
++  - reg
 +
 +examples:
 +  - |
-+    gpio-restart {
-+      compatible = "gpio-restart";
-+      gpios = <&gpio 4 0>;
-+      priority = <128>;
-+      active-delay = <100>;
-+      inactive-delay = <100>;
-+      wait-delay = <3000>;
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      rtc@68 {
++        compatible = "dallas,ds1337";
++        reg = <0x68>;
++        interrupt-parent = <&gpio4>;
++        interrupts = <20 0>;
++        trickle-resistor-ohms = <250>;
++      };
 +    };
 -- 
 2.34.1
