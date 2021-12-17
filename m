@@ -2,88 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF62C4783C4
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 04:47:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDE0E4783EF
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 05:20:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232566AbhLQDri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Dec 2021 22:47:38 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:42682 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231143AbhLQDrh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 22:47:37 -0500
-Received: by mail-oi1-f172.google.com with SMTP id p4so1782157oia.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Dec 2021 19:47:37 -0800 (PST)
+        id S232658AbhLQEUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Dec 2021 23:20:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44692 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232655AbhLQEUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Dec 2021 23:20:10 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B91E6C061574;
+        Thu, 16 Dec 2021 20:20:10 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id l18so949978pgj.9;
+        Thu, 16 Dec 2021 20:20:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WXlXaQzQ+nfyK3zsVRGeFn4YVh8Bg3qKyVZtZQPRG+Q=;
+        b=jpr4no+MdZr+tiCxsYI0JTilC48QiI4Rln1XP1lhrhq/aGjQhbhUdM7b2Tvdg/S5xF
+         kfU3wS0R1slmczGsRZi8opS2qxTsLOFbzpI9w7CyAu/mFiSDAZA6fhw70rRuImTf3mxM
+         UWBsCYa2QN3F3mAQ7FZgoeLLYJJAtRAkLBCxvyFmdQcYl4A1akBw+oF1LzbYplkG3N9w
+         ctRuzJiLOJ+lprgD5KTm6wDYVLncFB6nQVlOYeL7l41PO70XfHg6b+EllgDia8IA3Cx7
+         Nd71632sicRjx2CPxoDhzG16Nnl4zTXfVuAJUC5/BB7l5F9GUIkrLVbvfsw/T0G6+saf
+         xtzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=mW9YzrPYla+gDOhONRNpteONdJsGeQmsxco3FWyFKvY=;
-        b=LnamZsknMsQod3cKOfFPSdbnmP0W3QrGoZHM1YqZN06eZDmohxTfqJgadjhWSKvt+H
-         53Se5Uq9QipRlIgaWK+VaL2Uwx8HSbGYIDrwbHR6hn2g/axoXHSL1hv63F796A6FwC8o
-         rZReCEy9FiVEPQn/PoXwlmo0xTD819zKQESdSZa4eivYaydr3Y72PPXgz2uXDGZ6ciqQ
-         lOsZyVh2RZ1bUO9yRFak0ILo/TAp2uK10F+T+ySHobZiaJCxkQPh+Otf0r9+owQrDyaR
-         Wz7H+4S9H+OXvxnx5Uv1egEXWsCANTdFuPJcQUgh7eNfZynI11v39knIUC2SXZidZ/HQ
-         k7SA==
-X-Gm-Message-State: AOAM530ZxdbAMgBAPx8iFosUgXBcpiJ72p+2DYrcIr6JfYy4SGZjTI0r
-        K+FTjibN/D84YMiNKL7zrq7WIbW+bg==
-X-Google-Smtp-Source: ABdhPJzOeSChaObWEwR8bSJmrftQEnLVemeeU8yLMAM9CSVVFkhzf+vY0ViS0YqXT67hPsAAC7TqjA==
-X-Received: by 2002:a54:4789:: with SMTP id o9mr6591663oic.74.1639712856803;
-        Thu, 16 Dec 2021 19:47:36 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id a16sm1395264otj.79.2021.12.16.19.47.35
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WXlXaQzQ+nfyK3zsVRGeFn4YVh8Bg3qKyVZtZQPRG+Q=;
+        b=YH7JnGFtNCReZ6xvAGBETrdgN8SXstfhtInsDcPaa5vUfvaGiiU/7NDhA8XBk33pZd
+         9uGudoesioDEdoh4baStxpLqRkDFpXgtxzYamsxOrttMSFoF5gJ//pSRuS7F/1N5VGzM
+         N4Wxlr/RNyPct0c6llE9nokvlo6O8Kz2gVZGeSvkLvH59PE/C4TukMg+miZvmG75KfmD
+         TsKr0rzpU8uqe5N8OEZ9QwwoyBpy2u4fDo7pQFjpWaHmTLmwu/7eRESYJKxOFCtaL4Kx
+         jJqWokOzNIGAtbBHBndrGaJ8mL9RShlp53Y3GkzzAio3/mynSQOEdHFK6e5sMJ4WE4l3
+         fNSA==
+X-Gm-Message-State: AOAM5315fqE/s4MT++zsFWFhg6XIudMhUu0ncn+3KXBxvqNdmLcs7tWO
+        l3XhO2kLTU/AoTPn9c1YWUVizMyJy+0=
+X-Google-Smtp-Source: ABdhPJwOMKCRXTbQlcDoh+2QnIwrqTxR94/znbwNVzvHpdBleP/ncp2gnAca4nMx6/kpLJ5IKuwQLw==
+X-Received: by 2002:aa7:86c6:0:b0:4a4:ac66:99fc with SMTP id h6-20020aa786c6000000b004a4ac6699fcmr1120244pfo.83.1639714809820;
+        Thu, 16 Dec 2021 20:20:09 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id mq10sm7553496pjb.3.2021.12.16.20.20.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Dec 2021 19:47:36 -0800 (PST)
-Received: (nullmailer pid 1677949 invoked by uid 1000);
-        Fri, 17 Dec 2021 03:47:33 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     robh+dt@kernel.org, p.yadav@ti.com, devicetree@vger.kernel.org
-In-Reply-To: <20211216224902.374403-2-dinguyen@kernel.org>
-References: <20211216224902.374403-1-dinguyen@kernel.org> <20211216224902.374403-2-dinguyen@kernel.org>
-Subject: Re: [PATCHv3 1/2] dt-bindings: spi: cadence-quadspi: document "intel,socfpga-qspi"
-Date:   Thu, 16 Dec 2021 21:47:33 -0600
-Message-Id: <1639712853.398217.1677948.nullmailer@robh.at.kernel.org>
+        Thu, 16 Dec 2021 20:20:09 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM BCM7XXX ARM
+        ARCHITECTURE), Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Al Cooper <alcooperx@gmail.com>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        linux-ide@vger.kernel.org (open list:LIBATA SUBSYSTEM (Serial and
+        Parallel ATA drivers)), linux-kernel@vger.kernel.org (open list),
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
+        ARM ARCHITECTURE),
+        linux-usb@vger.kernel.org (open list:USB SUBSYSTEM)
+Subject: [PATCH v4 0/6] Broadcom DT bindings updates to YAML
+Date:   Thu, 16 Dec 2021 20:19:55 -0800
+Message-Id: <20211217042001.479577-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Dec 2021 16:49:01 -0600, Dinh Nguyen wrote:
-> The QSPI controller on Intel's SoCFPGA platform does not implement the
-> CQSPI_REG_WR_COMPLETION_CTRL register, thus a write to this register
-> results in a crash.
-> 
-> Introduce the dts compatible "intel,socfpga-qspi" to differentiate the
-> hardware.
-> 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> ---
-> v3: revert to "intel,socfpga-qspi"
-> v2: change binding to "cdns,qspi-nor-0010" to be more generic for other
->     platforms
-> ---
->  Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Hi Rob,
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+This patch series contains a number of device tree bindings being
+converted to YAML to help with validation.
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+There will be second, and possibly third rounds later on after those
+land in.
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1569624
+Thanks!
 
+Changes in v4:
+- removed the patches that have already been merged
+- fixed errors in brcm,bcm7120-l2 binding
+- added interrupt descriptions and comments to compatibles of
+  brcm,gisb-arb
+- added description of the 'phys' for BDC and dropped 'ref'
+- combined all enums into a single one for brcm,sata-brcm,yaml
 
-spi@ff705000: resets: [[6, 37]] is too short
-	arch/arm/boot/dts/socfpga_arria5_socdk.dt.yaml
-	arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dt.yaml
-	arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dt.yaml
-	arch/arm/boot/dts/socfpga_cyclone5_mcvevk.dt.yaml
-	arch/arm/boot/dts/socfpga_cyclone5_socdk.dt.yaml
-	arch/arm/boot/dts/socfpga_cyclone5_sockit.dt.yaml
-	arch/arm/boot/dts/socfpga_cyclone5_socrates.dt.yaml
-	arch/arm/boot/dts/socfpga_cyclone5_sodia.dt.yaml
-	arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dt.yaml
-	arch/arm/boot/dts/socfpga_vt.dt.yaml
+Changes in v3;
+
+- added Gregorys' Acked-by to the GPIO binding patch
+- added Uwe's Acked-by to the PWM binding patch
+- fixed STB L2 binding to include the missing 2711 compatible string
+  and interrupt-names property for 7445
+- fixed the NSP SATA3 controller node unit name and added a missing
+  check for the 63138 variant to check for the reset/reset-names
+  property
+
+Changes in v2:
+
+- rebased against dt/next
+- addressed Gregory's feedback on the GPIO binding change
+- added Damien's Acked-by to the ATA binding patch
+
+Florian Fainelli (6):
+  dt-bindings: interrupt-controller: Convert BCM7120 L2 to YAML
+  dt-bindings: interrupt-controller: Merge BCM3380 with BCM7120
+  ARM: dts: NSP: Rename SATA unit name
+  dt-bindings: ata: Convert Broadcom SATA to YAML
+  dt-bindings: bus: Convert GISB arbiter to YAML
+  dt-bindings: usb: Convert BDC to YAML
+
+ .../bindings/ata/brcm,sata-brcm.txt           |  45 ------
+ .../bindings/ata/brcm,sata-brcm.yaml          |  90 +++++++++++
+ .../devicetree/bindings/bus/brcm,gisb-arb.txt |  34 ----
+ .../bindings/bus/brcm,gisb-arb.yaml           |  66 ++++++++
+ .../brcm,bcm3380-l2-intc.txt                  |  39 -----
+ .../brcm,bcm7120-l2-intc.txt                  |  88 -----------
+ .../brcm,bcm7120-l2-intc.yaml                 | 149 ++++++++++++++++++
+ .../devicetree/bindings/usb/brcm,bdc.txt      |  29 ----
+ .../devicetree/bindings/usb/brcm,bdc.yaml     |  49 ++++++
+ MAINTAINERS                                   |   2 +-
+ arch/arm/boot/dts/bcm-nsp.dtsi                |   2 +-
+ 11 files changed, 356 insertions(+), 237 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/ata/brcm,sata-brcm.txt
+ create mode 100644 Documentation/devicetree/bindings/ata/brcm,sata-brcm.yaml
+ delete mode 100644 Documentation/devicetree/bindings/bus/brcm,gisb-arb.txt
+ create mode 100644 Documentation/devicetree/bindings/bus/brcm,gisb-arb.yaml
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm3380-l2-intc.txt
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7120-l2-intc.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm7120-l2-intc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/usb/brcm,bdc.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/brcm,bdc.yaml
+
+-- 
+2.25.1
 
