@@ -2,114 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22EF847913C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 17:17:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D27F479156
+	for <lists+devicetree@lfdr.de>; Fri, 17 Dec 2021 17:21:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238962AbhLQQQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 11:16:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40868 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235619AbhLQQQ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 11:16:59 -0500
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3572C061401
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 08:16:58 -0800 (PST)
-Received: by mail-oi1-x234.google.com with SMTP id m6so4327163oim.2
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 08:16:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7Wq4MgxHkO+MaOw126YWWMoQhIngGsKaWJCKmLC5qco=;
-        b=OeZ4L8IaoKd27I02/ySpc8uOVaMNGfmBx3WzRrCeZsBdhhJX+mna/MicXwFZXRTtEx
-         lOVmgq0s4GCej8uME0PkntFRM045oWiT/EWdvzjvwPGc00ppuAB+aBv2v9E874G3c2wh
-         t5BPoQmpjKRcsXcpyIxhUGoxnrHcn2sq1jNMPcEECd6Bkn1+3B00OgEoHyDFGn3ZJGHa
-         Kjx5LzaiJNTrmTHshq51RrJGppXF/B+Z2GesC+tNzXnkIheup5kWSCSb+/T3XzHEo1kg
-         fJ8dYT+VmEhST+oXR3KsIwvQruihW9ghwXm1QJw9cvH982SreoMjLC9EA7YVTvjoWGSZ
-         /GFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=7Wq4MgxHkO+MaOw126YWWMoQhIngGsKaWJCKmLC5qco=;
-        b=qSAN0GDDAP9G+LGhdKkR/FY15nolG5tRrRMxm8PqgVMjxH54UZU6xskn8DGaYKsxUe
-         dNOBWGR/qPHhLqzP/5IugNWGBilbkveGPfZL0+IwtYsWRc6a3ioZVWPIwCL4jERhaevU
-         meMtp9PmFEPNdEFXk4fRL4jzawJ6KJOOqMk4Kkhurf4HpLP3mM9/BzdbMFncM4MEOnIi
-         78reDE8+vUwLsPnOQlVqCY6BuzKTNZlsgQdsCSoZc/cMBnJE3ltZfFtCNY3SDxD0b4n+
-         IMYYMaSknxYsFFiYTeE5UGPLDRgZ2C1NL7rFO2aPW/8PL5cZq04KGlP5DRJZyimV7YGH
-         TpHQ==
-X-Gm-Message-State: AOAM532xc3HWZ/Pm3ReSjMlVuBBaUSYj0e52Q7beTAjKloXNRu7IPVao
-        kwFch2tNkcAPTwOvzH1LZnf2Yg==
-X-Google-Smtp-Source: ABdhPJyQ3wcKOplQsq/kToioZLkAQUcZsk3CXTKtqip9/DVAJHUV/jwFuMRvm9C6NGIFuJj7fcXQqQ==
-X-Received: by 2002:a54:4791:: with SMTP id o17mr2724827oic.114.1639757818136;
-        Fri, 17 Dec 2021 08:16:58 -0800 (PST)
-Received: from [192.168.11.48] (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
-        by smtp.gmail.com with ESMTPSA id k24sm1716178otl.31.2021.12.17.08.16.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Dec 2021 08:16:57 -0800 (PST)
-Message-ID: <7e2502ac-10c6-32e5-369c-260d19d7c225@kali.org>
-Date:   Fri, 17 Dec 2021 10:16:56 -0600
+        id S238989AbhLQQVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 11:21:42 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:54892 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235272AbhLQQVl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 11:21:41 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9E164B82965;
+        Fri, 17 Dec 2021 16:21:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E9D0C36AE1;
+        Fri, 17 Dec 2021 16:21:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639758099;
+        bh=huC7uz1dGwNTuzWeqgiNaG3sk3EcmBrJ63xBA1P61zw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=mxARPdYm02vkR1wXFYlvgPaemHFGDbK6rk8Q8VKGK2inUv6cF06cWgLjrlNCcE57P
+         k7NnlyE+Ps3w+SWlHxqIrKLJ6XKiQCWVG5XcLm/rHuNfTyMonUPDp8z1FClHNR2zK4
+         3js6fQKPxr2k1IwbKvO/i/1skiFSDdm388/qqWM80bXKWTJd8oHyGjJcLP4b5xTIiX
+         mUjkl5MXsfB+7cUKnej+WTSwJVFtBVZOY06cecM/ilXUM9YUdUidyUZcYFdDo6YE4y
+         Ohkr6d3W22cfQoYSrx3w/f2X/pL9xyeQC3zRKocib623SbWB4yqaT6yel7pSGgimjI
+         KeJ7pC5WHXPvw==
+Date:   Fri, 17 Dec 2021 10:21:37 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Felix Fietkau <nbd@nbd.name>
+Cc:     Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>, john@phrozen.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 09/14] dt-bindings: PCI: Add support for Airoha EN7532
+Message-ID: <20211217162137.GA894954@bhelgaas>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.4.0
-Subject: Re: [PATCH v2 1/2] clk: qcom: Add display clock controller driver for
- QCM2290
-Content-Language: en-US
-To:     Loic Poulain <loic.poulain@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, shawn.guo@linaro.org
-References: <1639058951-12660-1-git-send-email-loic.poulain@linaro.org>
- <20211216034909.3EFCBC36AE0@smtp.kernel.org>
- <CAMZdPi9eAFaExcTTgOt6TFE37EA-bb9xSy3nq9=nKYd5kqwmfQ@mail.gmail.com>
-From:   Steev Klimaszewski <steev@kali.org>
-In-Reply-To: <CAMZdPi9eAFaExcTTgOt6TFE37EA-bb9xSy3nq9=nKYd5kqwmfQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211217112345.14029-10-nbd@nbd.name>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Loic,
+On Fri, Dec 17, 2021 at 12:23:39PM +0100, Felix Fietkau wrote:
+> From: John Crispin <john@phrozen.org>
+> 
+> EN7532 is an ARM based platform SoC integrating the same PCIe IP as
+> MT7622, add a binding for it.
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: John Crispin <john@phrozen.org>
 
+Needs a sign-off from you, Felix:
 
->>> +       .cmd_rcgr = 0x205c,
->>> +       .mnd_width = 8,
->>> +       .hid_width = 5,
->>> +       .parent_map = disp_cc_parent_map_4,
->>> +       .clkr.hw.init = &(struct clk_init_data){
->>> +               .name = "disp_cc_mdss_pclk0_clk_src",
->>> +               .parent_data = disp_cc_parent_data_4,
->>> +               .num_parents = ARRAY_SIZE(disp_cc_parent_data_4),
->>> +               .flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE | CLK_OPS_PARENT_ENABLE,
->> These last two flags are needed for what?
-> NOCACHE is probably useless with mainline.
->
-> I've added OPS_PARENT_ENABLE because AFAIU changing clock rate can
-> lead to parent switch, and parent switch can only be done if parent
-> clocks are enabled for rcg2 clocks. Otherwise the update fails and we
-> get the following:
->      disp_cc_mdss_pclk0_clk_src: rcg didn't update its configuration.
->      WARNING: CPU: 2 PID: 77 at drivers/clk/qcom/clk-rcg2.c:122
-> update_config+0xe0/0xf0
->
-> I'm a bit surprised other similar dispcc drivers don't use the same
-> flags though.
->
-So, we do actually see this on other devices - in particular, on the 
-Lenovo Yoga C630, and people have been trying to track down the initial 
-cause for a while.  I tried here adding CLK_OPS_PARENT_ENABLE to both 
-disp_cc_mdss_mdp_clk and disp_cc_mdss_pclk0_clk in dispcc-sdm845.c as 
-well as for video_cc_venus_clk_src in videocc-sdm845.c and while it does 
-seem to cause the messages to go away for disp_cc_mdss_mdp_clk and 
-disp_cc_mdss_pclk0_clk, the one for venus seems to continue to show up here.
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?id=v5.14#n418
 
-video_cc_venus_clk_src: rcg didn't update its configuration. WARNING: 
-CPU: 1 PID: 404 at drivers/clk/qcom/clk-rcg2.c:122 update_config+0xd0/0xe0
-
-I'm not sure if this is due to venus being a module and not built-in.
-
--- steev
-
+> ---
+>  Documentation/devicetree/bindings/pci/mediatek-pcie.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie.txt b/Documentation/devicetree/bindings/pci/mediatek-pcie.txt
+> index 57ae73462272..684227522267 100644
+> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie.txt
+> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie.txt
+> @@ -7,6 +7,7 @@ Required properties:
+>  	"mediatek,mt7622-pcie"
+>  	"mediatek,mt7623-pcie"
+>  	"mediatek,mt7629-pcie"
+> +	"airoha,en7523-pcie"
+>  - device_type: Must be "pci"
+>  - reg: Base addresses and lengths of the root ports.
+>  - reg-names: Names of the above areas to use during resource lookup.
+> -- 
+> 2.34.1
+> 
