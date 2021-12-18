@@ -2,75 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 096BE4799A4
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 09:15:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47D6F4799B0
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 09:28:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232246AbhLRIP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 03:15:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55862 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229569AbhLRIP5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 03:15:57 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 829ABC061574;
-        Sat, 18 Dec 2021 00:15:57 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 37606B80176;
-        Sat, 18 Dec 2021 08:15:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DECE3C36AE1;
-        Sat, 18 Dec 2021 08:15:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639815355;
-        bh=HYrFoZHYUYlXc44YFnFqBufY+oh5rcfMio9k12chSNs=;
-        h=From:To:Cc:Subject:Date:From;
-        b=hL1oDTStOuDAPwSDvcF+ZbWPQ8xRrjRWonifZ5GZXS+AQafEAEwc3LHXj21hmWt14
-         JNEScmKR0C336CcCPxqnKZ9xdYToKhLFntRm1MI67Z8utYfDGnNwX+0idRKmFiPqBr
-         hOTwGqZ+JgVPmyZxM5j730jJp/Ad53GtXgxUdwxadTFyrXzyc3dUhQXW2zG5kG7gVb
-         U2COcORHFXw/NtqwSzhX0YUBykYy+oJF/+Umk0XiBPCjQV0hlCftWGSmpNlz/itKaj
-         p+MHSxSATmxQKIrCmS66o2HySVacfjlNaH0xTCrosBMzmS+rN8aQb7KHoFrWejKv9B
-         c3MjD9nbZHCag==
-From:   matthias.bgg@kernel.org
-To:     lee.jones@linaro.org, robh+dt@kernel.org, bleung@chromium.org,
-        groeck@chromium.org
-Cc:     matthias.bgg@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Matthias Brugger <mbrugger@suse.com>
-Subject: [PATCH] mfd: google,cros-ec: fix property name for MediaTek rpmsg
-Date:   Sat, 18 Dec 2021 09:15:43 +0100
-Message-Id: <20211218081543.3851-1-matthias.bgg@kernel.org>
-X-Mailer: git-send-email 2.33.1
+        id S230308AbhLRI2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 03:28:06 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:37488 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229684AbhLRI2F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 03:28:05 -0500
+X-UUID: 74f7ee4b39ef4a6abacc9c4a35554bfc-20211218
+X-UUID: 74f7ee4b39ef4a6abacc9c4a35554bfc-20211218
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1163863723; Sat, 18 Dec 2021 16:28:04 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Sat, 18 Dec 2021 16:28:02 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sat, 18 Dec
+ 2021 16:28:02 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkcas11.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Sat, 18 Dec 2021 16:28:01 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/5] dt-bindings: phy: mediatek: tphy: support software efuse load
+Date:   Sat, 18 Dec 2021 16:27:58 +0800
+Message-ID: <20211218082802.5256-1-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matthias Brugger <mbrugger@suse.com>
+Add optional property nvmem-cells and nvmem-cell-names to support
+software efuse load, this helps to fix the efuse bit shift issue
+on mt8195 etc.
 
-The MediaTek rpmsg-name is defined as mediatek,rpmsg-name in
-mtk,scp.yaml. Fix the binding documentation to match the new property
-
-Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 ---
- Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+v2: add acked-by Rob
+---
+ .../devicetree/bindings/phy/mediatek,tphy.yaml | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-index d793dd0316b7..0faa4da6c7c8 100644
---- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-+++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-@@ -59,7 +59,7 @@ properties:
-       whether this nvram is present or not.
-     type: boolean
+diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+index 9e6c0f43f1c6..05ee274b4b71 100644
+--- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
++++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+@@ -160,6 +160,24 @@ patternProperties:
+                 - PHY_TYPE_PCIE
+                 - PHY_TYPE_SATA
  
--  mtk,rpmsg-name:
-+  mediatek,rpmsg-name:
-     description:
-       Must be defined if the cros-ec is a rpmsg device for a Mediatek
-       ARM Cortex M4 Co-processor. Contains the name pf the rpmsg
++      nvmem-cells:
++        items:
++          - description: internal R efuse for U2 PHY or U3/PCIe PHY
++          - description: rx_imp_sel efuse for U3/PCIe PHY
++          - description: tx_imp_sel efuse for U3/PCIe PHY
++        description: |
++          Phandles to nvmem cell that contains the efuse data;
++          Available only for U2 PHY or U3/PCIe PHY of version 2/3, these
++          three items should be provided at the same time for U3/PCIe PHY,
++          when use software to load efuse;
++          If unspecified, will use hardware auto-load efuse.
++
++      nvmem-cell-names:
++        items:
++          - const: intr
++          - const: rx_imp
++          - const: tx_imp
++
+       # The following optional vendor properties are only for debug or HQA test
+       mediatek,eye-src:
+         description:
 -- 
-2.33.1
+2.18.0
 
