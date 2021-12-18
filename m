@@ -2,67 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8229479BFB
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 19:08:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D363F479BF3
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 19:08:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233855AbhLRSIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 13:08:38 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:34385 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233800AbhLRSIg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 13:08:36 -0500
-Received: by mail-ot1-f46.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso7121563otj.1;
-        Sat, 18 Dec 2021 10:08:36 -0800 (PST)
+        id S233782AbhLRSId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 13:08:33 -0500
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:33758 "EHLO
+        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233764AbhLRSIb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 13:08:31 -0500
+Received: by mail-oi1-f174.google.com with SMTP id q25so8951781oiw.0;
+        Sat, 18 Dec 2021 10:08:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=OSZxOLWJVHCW/yEQPrdtTr4d2oittVVIwMhT0wN0Meo=;
-        b=HfohVhCWwjnQUhe17wcJpvNk8Qby+qLifhoQGgnloadHojBqkXdDWRTP7/mHeZa0fZ
-         Q5eHeU1YP3e7ZWQZeAebFHDcpt9D/MdwFSdYAGrcEnuziCrcFsaxs1k4NfotXa7JEJrc
-         8kNM0MU6jrp53wwNhFSKeAqV5Ozaz/lWod2Y1DNISKFLHGgiaEWWNZK0J+mk4aXlqjDT
-         bxUG8U7dQxwSuVtRjbMN4wz+eG6mNAbXIs2Tm0dy9iQ6svtjQaBU0heRk0FYEoeqjVTY
-         X3E1g5LoymdoxadRWiJFjU0q7FsrRZ058U4L7fcGwUkcIsCAUjgDYkjxeVhrv5ddSz2M
-         zFyA==
-X-Gm-Message-State: AOAM5336d+faH9TWdpgzrALsN8i3yDF7keusvNlb0iQ0Wf6jrAWL5Lcl
-        zoxzcfaGB2Dz8NAe56PEpQ==
-X-Google-Smtp-Source: ABdhPJzv2+fjWlI2ksOt6vnHGd7v5gwfiDjv2p7MydCH//K3UK1WfpSZmcjuT+Tmvo9S0uoEb1MOtw==
-X-Received: by 2002:a9d:17cc:: with SMTP id j70mr5941189otj.313.1639850915616;
-        Sat, 18 Dec 2021 10:08:35 -0800 (PST)
+        bh=3fGBHfhnSGOfV7vCG+wQzp3UlSs7DZ5URt+w0FqKPMA=;
+        b=pvtQZ/JvNYLMnkO8u+gSk7qQXVGTatAuk+4H59Mz8GwHw5YYSYtXVYWSCNSj8fMaKY
+         JTg/ZVdsmbBzzBfuphYu7eMDXJTIXJFq16gWVdqlZInn5L8s+Cf3ITkDzxO8gdn3V2kZ
+         6Sq/IIQqHFoL/iWXmD0VPuIxIYBbV+1l+TgJ5TtnTteu+MPWt3m/s4FNI23pRce7r8Kw
+         3jfa+sB4IzKHi0njqCj3SLDv1L9O9mgBNI/SzLdgCtbOBq/vH9KBrfp3c+gvhXtQaKjK
+         w1d7B7FxHmETkR41ZN0IxxvlqCWTm21ZyLqbNukyjwr7IMRYOvLgoJv1AuL1na4Gfulp
+         l4gw==
+X-Gm-Message-State: AOAM531eMX59UUT9s2NxI9YzwKCShJZYQxfXwKSMhEcjpt4pHY8TkYRN
+        /woXB1nQGQYrdMKXiFf0qnqqnpdBWA==
+X-Google-Smtp-Source: ABdhPJw1r3eqLckdvydF31crFqVOj0b7o9J+rR5xj5IUzEG6W1sr1YDf4wS3ykG4M/U7seiwiYQaSg==
+X-Received: by 2002:a05:6808:118c:: with SMTP id j12mr6363999oil.65.1639850911252;
+        Sat, 18 Dec 2021 10:08:31 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e3sm2289702otk.71.2021.12.18.10.08.34
+        by smtp.gmail.com with ESMTPSA id g17sm2359815oiy.14.2021.12.18.10.08.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Dec 2021 10:08:34 -0800 (PST)
-Received: (nullmailer pid 72444 invoked by uid 1000);
+        Sat, 18 Dec 2021 10:08:30 -0800 (PST)
+Received: (nullmailer pid 72440 invoked by uid 1000);
         Sat, 18 Dec 2021 18:08:26 -0000
 From:   Rob Herring <robh@kernel.org>
 To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-rtc@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-In-Reply-To: <20211217170311.2796798-1-thierry.reding@gmail.com>
-References: <20211217170311.2796798-1-thierry.reding@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: rtc: ds1307: Convert to json-schema
+Cc:     linux-tegra@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org
+In-Reply-To: <20211217165919.2700920-3-thierry.reding@gmail.com>
+References: <20211217165919.2700920-1-thierry.reding@gmail.com> <20211217165919.2700920-3-thierry.reding@gmail.com>
+Subject: Re: [PATCH 3/5] dt-bindings: memory: Add Tegra114 memory controller bindings
 Date:   Sat, 18 Dec 2021 12:08:26 -0600
-Message-Id: <1639850906.485205.72443.nullmailer@robh.at.kernel.org>
+Message-Id: <1639850906.470783.72439.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Dec 2021 18:03:10 +0100, Thierry Reding wrote:
+On Fri, 17 Dec 2021 17:59:17 +0100, Thierry Reding wrote:
 > From: Thierry Reding <treding@nvidia.com>
 > 
-> Convert the DS1307 (and compatible) RTC bindings from the free-form text
-> format to json-schema.
+> Document the bindings for the memory controller found on Tegra114 SoCs.
 > 
 > Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  .../devicetree/bindings/rtc/rtc-ds1307.txt    |  52 ---------
->  .../devicetree/bindings/rtc/rtc-ds1307.yaml   | 104 ++++++++++++++++++
->  2 files changed, 104 insertions(+), 52 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.txt
->  create mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
+>  .../nvidia,tegra114-mc.yaml                   | 85 +++++++++++++++++++
+>  1 file changed, 85 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra114-mc.yaml
 > 
 
 Running 'make dtbs_check' with the schema in this patch gives the
@@ -72,47 +69,11 @@ incorrect. These may not be new warnings.
 Note that it is not yet a requirement to have 0 warnings for dtbs_check.
 This will change in the future.
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1570210
+Full log is available here: https://patchwork.ozlabs.org/patch/1570202
 
 
-ds1307@68: $nodename:0: 'ds1307@68' does not match '^rtc(@.*|-[0-9a-f])*$'
-	arch/arm/boot/dts/imx6q-tbs2910.dt.yaml
-
-ds1339@68: $nodename:0: 'ds1339@68' does not match '^rtc(@.*|-[0-9a-f])*$'
-	arch/arm/boot/dts/imx53-tx53-x03x.dt.yaml
-	arch/arm/boot/dts/imx53-tx53-x13x.dt.yaml
-
-m41t00@68: $nodename:0: 'm41t00@68' does not match '^rtc(@.*|-[0-9a-f])*$'
-	arch/arm/boot/dts/imx51-ts4800.dt.yaml
-
-m41t0m6@68: $nodename:0: 'm41t0m6@68' does not match '^rtc(@.*|-[0-9a-f])*$'
-	arch/arm/boot/dts/imx7d-colibri-aster.dt.yaml
-	arch/arm/boot/dts/imx7d-colibri-emmc-aster.dt.yaml
-	arch/arm/boot/dts/imx7d-colibri-emmc-eval-v3.dt.yaml
-	arch/arm/boot/dts/imx7d-colibri-eval-v3.dt.yaml
-	arch/arm/boot/dts/imx7s-colibri-aster.dt.yaml
-	arch/arm/boot/dts/imx7s-colibri-eval-v3.dt.yaml
-	arch/arm/boot/dts/vf500-colibri-eval-v3.dt.yaml
-	arch/arm/boot/dts/vf610-colibri-eval-v3.dt.yaml
-
-mcp79400@6f: $nodename:0: 'mcp79400@6f' does not match '^rtc(@.*|-[0-9a-f])*$'
-	arch/arm/boot/dts/am335x-pdu001.dt.yaml
-
-mcp7940x@6f: $nodename:0: 'mcp7940x@6f' does not match '^rtc(@.*|-[0-9a-f])*$'
-	arch/arm/boot/dts/imx6dl-tx6s-8034-mb7.dt.yaml
-	arch/arm/boot/dts/imx6dl-tx6s-8035-mb7.dt.yaml
-	arch/arm/boot/dts/imx6dl-tx6u-8033-mb7.dt.yaml
-	arch/arm/boot/dts/imx6dl-tx6u-80xx-mb7.dt.yaml
-	arch/arm/boot/dts/imx6dl-tx6u-81xx-mb7.dt.yaml
-	arch/arm/boot/dts/imx6qp-tx6qp-8037-mb7.dt.yaml
-	arch/arm/boot/dts/imx6qp-tx6qp-8137-mb7.dt.yaml
-	arch/arm/boot/dts/imx6q-tx6q-1036-mb7.dt.yaml
-	arch/arm/boot/dts/imx6q-tx6q-10x0-mb7.dt.yaml
-	arch/arm/boot/dts/imx6q-tx6q-11x0-mb7.dt.yaml
-	arch/arm/boot/dts/imx6ul-tx6ul-mainboard.dt.yaml
-
-rtc@6f: interrupts-extended: [[1, 0, 2, 1], [154, 1060]] is too long
-	arch/arm/boot/dts/am57xx-beagle-x15.dt.yaml
-	arch/arm/boot/dts/am57xx-beagle-x15-revb1.dt.yaml
-	arch/arm/boot/dts/am57xx-beagle-x15-revc.dt.yaml
+memory-controller@70019000: '#reset-cells' is a required property
+	arch/arm/boot/dts/tegra114-dalmore.dt.yaml
+	arch/arm/boot/dts/tegra114-roth.dt.yaml
+	arch/arm/boot/dts/tegra114-tn7.dt.yaml
 
