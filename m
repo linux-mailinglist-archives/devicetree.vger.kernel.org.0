@@ -2,105 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18FBB479955
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 08:20:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D29D047999D
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 09:15:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232199AbhLRHUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 02:20:23 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:57508 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231240AbhLRHUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 02:20:22 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4EBB260AF7;
-        Sat, 18 Dec 2021 07:20:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A0B6C36AE0;
-        Sat, 18 Dec 2021 07:20:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1639812021;
-        bh=9i1TUA+CDSWdDEUdjwQ9lj0DV16oXIazcbfoNTlRc4w=;
-        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
-        b=QS4UBPx9DDuwV+dyeqw0LHv0rrsHiiLwKQDqWeBVbVw254Nw95lmtCh31fuz4ChR/
-         5QLMExa7WXf1jKb5VVL5Gk75Q65uyovkQiGj8MKcjB/11EzTrn9PMBJzeDdptQJHSJ
-         dyqyD2FBIQrYVs05YiSPmiXz/Ti60XOwPdj3pO2vGMrPoBo3axny5BLPRApGxzGMGH
-         Q/ORuAfHAhcp+AHC9LNvhOAVe091fBYTJQxmjhi17Cq+9/kic3mMS8K7DN8O4lH2BC
-         ZIZitjBzJqNTQI+MLqPQGD31qNqMq2gar8f+jhN6ULTqNMsjG2zhblakpkal+AJV4F
-         S0xiUDsyaRhSQ==
-References: <20211217125757.1193256-1-balbi@kernel.org>
- <20211217125757.1193256-3-balbi@kernel.org>
- <e2ed8317-a656-f6ac-9fc5-810588f33105@somainline.org>
-User-agent: mu4e 1.6.10; emacs 28.0.90
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC/patch 2/2] arm64: boot: dts: qcom: surface duo: add
- minimal framebuffer
-Date:   Sat, 18 Dec 2021 09:19:07 +0200
-In-reply-to: <e2ed8317-a656-f6ac-9fc5-810588f33105@somainline.org>
-Message-ID: <878rwi4bwt.fsf@kernel.org>
+        id S232350AbhLRIPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 03:15:24 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:54134 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232344AbhLRIPW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 03:15:22 -0500
+X-UUID: 6a87e71251f1422f9eed529400b1979b-20211218
+X-UUID: 6a87e71251f1422f9eed529400b1979b-20211218
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 573248602; Sat, 18 Dec 2021 16:15:16 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sat, 18 Dec 2021 16:15:15 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkcas11.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Sat, 18 Dec 2021 16:15:15 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>
+Subject: [PATCH next v2] dt-bindings: nvmem: convert mtk-efuse.txt to YAML schema
+Date:   Sat, 18 Dec 2021 16:15:15 +0800
+Message-ID: <20211218081515.4971-1-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert mtk-efuse.txt to YAML schema mediatek,efuse.yaml
 
-Hi,
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+v2:
+  1. remove description of subnodes which is covered by nvmem.yaml suggested by Rob
+  2. change the example which is commoner than mt8173's
 
-Konrad Dybcio <konrad.dybcio@somainline.org> writes:
+---
+ .../bindings/nvmem/mediatek,efuse.yaml        | 86 +++++++++++++++++++
+ .../devicetree/bindings/nvmem/mtk-efuse.txt   | 43 ----------
+ 2 files changed, 86 insertions(+), 43 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+ delete mode 100644 Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
 
-> On 17.12.2021 13:57, Felipe Balbi wrote:
->> From: Felipe Balbi <felipe.balbi@microsoft.com>
->>
->> Add a minimal framebuffer device so we can use the display on the
->> Surface Duo device.
->>
->> Signed-off-by: Felipe Balbi <felipe.balbi@microsoft.com>
->> ---
->>  .../dts/qcom/sm8150-microsoft-surface-duo.dts | 19 +++++++++++++++++++
->>  1 file changed, 19 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
->> index a73317e1a824..c629ec115fec 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
->> @@ -25,6 +25,17 @@ chosen {
->>  		stdout-path = "serial0:115200n8";
->>  	};
->>  
->> +	framebuffer0: framebuffer@9c000000 {
->> +		compatible = "simple-framebuffer";
->> +		reg = <0 0x9c000000 0 0x02400000>;
->
-> You can remove the leading 0 in the size cell.
-
-okay
-
->> +		status = "okay";
->
-> This line is unnecessary, as it's enabled by default
-
-understood
-
->> @@ -472,6 +483,14 @@ &pon_resin {
->>  	linux,code = <KEY_VOLUMEDOWN>;
->>  };
->>  
->> +&reserved_memory {
->> +	splash_region: splash_region@9c000000 {
->> +		/* We expect the bootloader to fill in the size */
->
-> Would it be different than the framebuffer size?
-
-honestly, I used this mainly to get the correct base address and size. I
-had 0 everywhere and bootloader filled the entire thing for me. I can
-just hardcode with the expected values anyway.
-
+diff --git a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+new file mode 100644
+index 000000000000..0f592c36431c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+@@ -0,0 +1,86 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek efuse device tree bindings
++
++description: |
++  MediaTek's efuse is used for storing calibration data, it can be accessed
++  on ARM devices usiong I/O mapped memory.
++
++maintainers:
++  - Andrew-CT Chen <andrew-ct.chen@mediatek.com>
++
++allOf:
++  - $ref: "nvmem.yaml#"
++
++properties:
++  $nodename:
++    pattern: "^efuse@[0-9a-f]+$"
++
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - mediatek,mt7622-efuse
++              - mediatek,mt7623-efuse
++              - mediatek,mt8173-efuse
++              - mediatek,mt8192-efuse
++              - mediatek,mt8195-efuse
++              - mediatek,mt8516-efuse
++          - const: mediatek,efuse
++      - const: mediatek,mt8173-efuse
++        deprecated: true
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    efuse@11c10000 {
++        compatible = "mediatek,mt8195-efuse", "mediatek,efuse";
++        reg = <0x11c10000 0x1000>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        u3_tx_imp_p0: usb3-tx-imp@184 {
++            reg = <0x184 0x1>;
++            bits = <0 5>;
++        };
++        u3_rx_imp_p0: usb3-rx-imp@184 {
++            reg = <0x184 0x2>;
++            bits = <5 5>;
++        };
++        u3_intr_p0: usb3-intr@185 {
++            reg = <0x185 0x1>;
++            bits = <2 6>;
++        };
++        comb_tx_imp_p1: usb3-tx-imp@186 {
++            reg = <0x186 0x1>;
++            bits = <0 5>;
++        };
++        comb_rx_imp_p1: usb3-rx-imp@186 {
++            reg = <0x186 0x2>;
++            bits = <5 5>;
++        };
++        comb_intr_p1: usb3-intr@187 {
++            reg = <0x187 0x1>;
++            bits = <2 6>;
++        };
++        u2_intr_p0: usb2-intr-p0@188 {
++            reg = <0x188 0x1>;
++            bits = <0 5>;
++        };
++        u2_intr_p1: usb2-intr-p1@188 {
++            reg = <0x188 0x2>;
++            bits = <5 5>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
+deleted file mode 100644
+index 39d529599444..000000000000
+--- a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-= Mediatek MTK-EFUSE device tree bindings =
+-
+-This binding is intended to represent MTK-EFUSE which is found in most Mediatek SOCs.
+-
+-Required properties:
+-- compatible: should be
+-	      "mediatek,mt7622-efuse", "mediatek,efuse": for MT7622
+-	      "mediatek,mt7623-efuse", "mediatek,efuse": for MT7623
+-	      "mediatek,mt8173-efuse" or "mediatek,efuse": for MT8173
+-	      "mediatek,mt8192-efuse", "mediatek,efuse": for MT8192
+-	      "mediatek,mt8195-efuse", "mediatek,efuse": for MT8195
+-	      "mediatek,mt8516-efuse", "mediatek,efuse": for MT8516
+-- reg: Should contain registers location and length
+-- bits: contain the bits range by offset and size
+-
+-= Data cells =
+-Are child nodes of MTK-EFUSE, bindings of which as described in
+-bindings/nvmem/nvmem.txt
+-
+-Example:
+-
+-	efuse: efuse@10206000 {
+-		compatible = "mediatek,mt8173-efuse";
+-		reg	   = <0 0x10206000 0 0x1000>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-
+-		/* Data cells */
+-		thermal_calibration: calib@528 {
+-			reg = <0x528 0xc>;
+-		};
+-	};
+-
+-= Data consumers =
+-Are device nodes which consume nvmem data cells.
+-
+-For example:
+-
+-	thermal {
+-		...
+-		nvmem-cells = <&thermal_calibration>;
+-		nvmem-cell-names = "calibration";
+-	};
 -- 
-balbi
+2.18.0
+
