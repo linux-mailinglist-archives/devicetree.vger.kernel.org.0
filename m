@@ -2,257 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 251384797D2
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 01:27:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C94374797FE
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 02:14:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230510AbhLRA1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 19:27:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39970 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230464AbhLRA1g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 19:27:36 -0500
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1A0AC06173E
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 16:27:35 -0800 (PST)
-Received: by mail-il1-x131.google.com with SMTP id x15so2933205ilc.5
-        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 16:27:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XRnM3iYXRrA5hI+uLod0cFBd1M8IeHaDnlgl6Fbf3kY=;
-        b=X6c4fBz5IQy3aWDCLMRdA7iELjhTe/snLmGR8Bwmq0OvCSUJt7rYdKM+OkNsbmG9ia
-         ADEDnehzpKzqFXK2px2EiXPXGpZyn3KKhMWcyx1VY4puRgGtvXQshzplFv6ySyyocly3
-         XSWlupf+ba3exf/OBrbYcdgxNcSortl4L2l0I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XRnM3iYXRrA5hI+uLod0cFBd1M8IeHaDnlgl6Fbf3kY=;
-        b=F3kTFrg1qd638SEDNVT02tEOHYPI1FcVfGjxVHre27Llxy5yBSgygGvUthKaE/iVJ9
-         jVjuduaowVadj1OLoXrKyijzHx9FHoKpUAy20n1ZzUnzX6GqIvZaOJUz+F9W7mIFJWG7
-         Rg8G6opXspZo0gHWtob4KW+xwvEQknr6bOTFiCEarjoGw/yFBOEN8C6rXGekaHkq+Ng7
-         YA8KkO29eIbfiHwgWOk6qzf/5jaagm7HhDLjLOMWHp4auishi1rIjdKCeA0qLYxC7TBU
-         yeot5CCnK1ManXtnkwX9QijkB5PAwmN5Ok2TmaLemOY+YAlpeDAOI12qGAc4cCnN8YTG
-         WIQg==
-X-Gm-Message-State: AOAM530iIYOfojyOM+EQbiufYMSol+j5i/x3P/Kxh/La5ms9i2+t1p1I
-        1j/uWl6+VfR12A6ce8hC7hH0NcZwohQ3L2w2ZkanbA==
-X-Google-Smtp-Source: ABdhPJwXjaZuiH5rnZ38SiA6xLzsSzNgHLP2WWliN/7z9OjQi3Le20f4DWV+srZH3hZx3taV/xH/8an1gMCUPxXbtkw=
-X-Received: by 2002:a92:c244:: with SMTP id k4mr2815118ilo.299.1639787255211;
- Fri, 17 Dec 2021 16:27:35 -0800 (PST)
+        id S229500AbhLRBOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 20:14:53 -0500
+Received: from condef-02.nifty.com ([202.248.20.67]:60212 "EHLO
+        condef-02.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229480AbhLRBOx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 20:14:53 -0500
+X-Greylist: delayed 386 seconds by postgrey-1.27 at vger.kernel.org; Fri, 17 Dec 2021 20:14:52 EST
+Received: from conssluserg-02.nifty.com ([10.126.8.81])by condef-02.nifty.com with ESMTP id 1BI13CuM013741;
+        Sat, 18 Dec 2021 10:03:12 +0900
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173]) (authenticated)
+        by conssluserg-02.nifty.com with ESMTP id 1BI12mhi002928;
+        Sat, 18 Dec 2021 10:02:48 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-02.nifty.com 1BI12mhi002928
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1639789369;
+        bh=g8kubEqzXtZebCqaSj9BAbqYgVkf91ju4F7inIn8m3A=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=HQhqD+YdFOz/Ik3CiDJJHisluY+hIeooMONVi2AArR7U/FX/HzVd8IQPGdAODydCU
+         FNjE9bOyfEOSwSifeecA3gLKsW1OeiMGuTRF4p7WiSmz9gLip48gyo3Dy3GDQrKS4D
+         LOZWV0SE6kKGk+CyfUOud5w7gK9r4yLdvr811KXpFX7oy6mbjVFL3kgDnJv4ek0O1B
+         kQAUP+umUawzx50N10vOdSECmnsLS3QGSgkM/6vjyLN77LAuEYxZDE7IpH2xlhb0bB
+         9yAFWDIo5vxC6MS8Bu/iDnJNyUao+sOksgnxRbTJAtVpytt3LcNZDWHSl3inv/OaeH
+         wQVzPFOAI2/lg==
+X-Nifty-SrcIP: [209.85.210.173]
+Received: by mail-pf1-f173.google.com with SMTP id k64so3555716pfd.11;
+        Fri, 17 Dec 2021 17:02:48 -0800 (PST)
+X-Gm-Message-State: AOAM533XZVhXvQpb233pLg2ZOVwCaA41kqestkwg1nF0Ea10zRhz11H3
+        j+vhuor31e9rGKj8HLWNVL9ibSCrD2Zv4ppeujw=
+X-Google-Smtp-Source: ABdhPJzGjAbGv+I/bTwhfwziv7WOMTBsph6E+WB3YL1WNppfKcKxQIdMdXPcqqda5/GSDFyziRC3MBP9P76MWkCI0SA=
+X-Received: by 2002:a05:6a00:2d1:b0:4af:437c:5f50 with SMTP id
+ b17-20020a056a0002d100b004af437c5f50mr5577166pft.32.1639789367863; Fri, 17
+ Dec 2021 17:02:47 -0800 (PST)
 MIME-Version: 1.0
-References: <20211213024057.3824985-1-gwendal@chromium.org>
- <20211213024057.3824985-3-gwendal@chromium.org> <20211216162139.6008820e@jic23-huawei>
-In-Reply-To: <20211216162139.6008820e@jic23-huawei>
-From:   Gwendal Grignou <gwendal@chromium.org>
-Date:   Fri, 17 Dec 2021 16:27:23 -0800
-Message-ID: <CAPUE2usrH8z_QuePonFv4kQrZbYHtovsJ7+DfSChW9xpA9GrTA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] iio: proximity: Add sx9360 support
-To:     Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-Cc:     robh+dt@kernel.org, lars@metafoo.de, swboyd@chromium.org,
-        andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
+References: <20211207140334.10461-1-semen.protsenko@linaro.org> <CAPLW+4n-BjSHK4gdP=cGvAE+pZDfvYTO4yy09yNRJgSXt2VArg@mail.gmail.com>
+In-Reply-To: <CAPLW+4n-BjSHK4gdP=cGvAE+pZDfvYTO4yy09yNRJgSXt2VArg@mail.gmail.com>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Sat, 18 Dec 2021 10:02:09 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQdPMjZozjuwp5Z=_pXi-7JMXXcG0CMW+dWWX4GxJX-qg@mail.gmail.com>
+Message-ID: <CAK7LNAQdPMjZozjuwp5Z=_pXi-7JMXXcG0CMW+dWWX4GxJX-qg@mail.gmail.com>
+Subject: Re: [PATCH] kbuild: Report enabled nodes with duplicated address
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-samsung-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 8:16 AM Jonathan Cameron
-<jic23@jic23.retrosnub.co.uk> wrote:
+On Wed, Dec 15, 2021 at 1:11 AM Sam Protsenko
+<semen.protsenko@linaro.org> wrote:
 >
-> On Sun, 12 Dec 2021 18:40:55 -0800
-> Gwendal Grignou <gwendal@chromium.org> wrote:
->
-> > A simplified version of SX9324, it only have one pin and
-> > 2 phases (aka channels).
-> > Only one event is presented.
+> On Tue, 7 Dec 2021 at 16:03, Sam Protsenko <semen.protsenko@linaro.org> wrote:
 > >
-> > Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
->
-> You don't use the modifier defined in the previous
-> patch...
->
+> > Duplicated unit address is a normal case, as long as no more than one
+> > node using that address is enabled. Having duplicated addresses is
+> > already allowed by '-Wno-unique_unit_address' in DTC_FLAGS. But two
+> > simultaneously enabled nodes sharing the same address is usually
+> > incorrect. Add '-Wunique_unit_address_if_enabled' flag to report
+> > warnings for such case when doing "make dtbs_check".
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > Reported-by: Rob Herring <robh@kernel.org>
+> > Suggested-by: Rob Herring <robh@kernel.org>
 > > ---
-> > Changes since v2:
-> > - Fix issues reported during sx9324 driver review:
-> >   - fix include with iwyu
-> >   - Remove call to ACPI_PTR to prevent unused variable warning.
-> > - Fix panic when setting frequency to 0.
-> > - Add offset to decipher interrupt register
-> > - Fix default register value.
+> > NOTE: After applying this patch, a lot of warnings appear on "make
+> > dtbs_check". I'm not completely sure if it's ok, so feel free to Nack.
 > >
-> > Changes since v1:
-> > - Remove SX9360_DRIVER_NAME
-> > - Simplify whoami function
-> > - Define WHOAMI register value internally.
-> > - Handle negative values when setting sysfs parameters.
-> >
-> >  drivers/iio/proximity/Kconfig  |  14 +
-> >  drivers/iio/proximity/Makefile |   1 +
-> >  drivers/iio/proximity/sx9360.c | 807 +++++++++++++++++++++++++++++++++
-> >  3 files changed, 822 insertions(+)
-> >  create mode 100644 drivers/iio/proximity/sx9360.c
-> >
-> ....
 >
+> Hi Rob,
 >
-> > +static const struct iio_chan_spec sx9360_channels[] = {
-> > +     {
-> > +             .type = IIO_PROXIMITY,
-> > +             .info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> > +                                   BIT(IIO_CHAN_INFO_HARDWAREGAIN),
-> > +             .info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> > +             .info_mask_separate_available =
-> > +                     BIT(IIO_CHAN_INFO_HARDWAREGAIN),
-> > +             .info_mask_shared_by_all_available =
-> > +                     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> > +             .extend_name = "reference",
+> Do you think this patch is feasible? You asked me to send it before,
+> though I now see it leads to a lot of errors being revealed when doing
+> "make dtbs" and "make dtbs_check". Please let me know if it's Ack or
+> Nack -- I'm fine with any resolution, just want to know if I should
+> continue to carry it in my local branch or drop it.
 >
-> You defined the modifier for this and then didn't use it?
-> I've suggested in review of patch 1 you might want to use label though
-> via the read_label() callback.
-I see, I should have used .cannel2 instead of extend_name. Using label now.
->
->
-> > +             .address = SX9360_REG_USEFUL_PHR_MSB,
-> > +             .channel = 0,
-> > +             .scan_index = 0,
-> > +             .scan_type = {
-> > +                     .sign = 's',
-> > +                     .realbits = 12,
-> > +                     .storagebits = 16,
-> > +                     .endianness = IIO_BE,
-> > +             },
-> > +     },
-> > +     {
-> > +             .type = IIO_PROXIMITY,
-> > +             .info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> > +                                   BIT(IIO_CHAN_INFO_HARDWAREGAIN),
-> > +             .info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> > +             .info_mask_separate_available =
-> > +                     BIT(IIO_CHAN_INFO_HARDWAREGAIN),
-> > +             .info_mask_shared_by_all_available =
-> > +                     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> > +             .address = SX9360_REG_USEFUL_PHM_MSB,
-> > +             .event_spec = sx_common_events,
-> > +             .num_event_specs = ARRAY_SIZE(sx_common_events),
-> > +             .channel = 1,
-> > +             .scan_index = 1,
-> > +             .scan_type = {
-> > +                     .sign = 's',
-> > +                     .realbits = 12,
-> > +                     .storagebits = 16,
-> > +                     .endianness = IIO_BE,
-> > +             },
-> > +     },
-> > +     IIO_CHAN_SOFT_TIMESTAMP(2),
-> > +};
-> > +
->
-> ...
->
-> > +
-> > +static int sx9360_read_samp_freq(struct sx_common_data *data,
-> > +                              int *val, int *val2)
-> > +{
-> > +     int ret, divisor;
-> > +     __be16 buf;
-> > +
-> > +     ret = regmap_bulk_read(data->regmap, SX9360_REG_GNRL_CTRL1,
-> > +                            &buf, sizeof(buf));
-> > +     if (ret < 0)
-> > +             return ret;
-> > +     divisor = be16_to_cpu(buf);
-> > +     if (divisor == 0) {
-> > +             *val = 0;
-> > +             return IIO_VAL_INT;
-> > +     }
-> > +
-> > +     *val = SX9360_FOSC_HZ;
-> > +     *val2 = be16_to_cpu(buf) * 8192;
->
-> *val2 = divisor * 8192;?
-Done
->
-> > +
-> > +     return IIO_VAL_FRACTIONAL;
-> > +}
-> > +
->
-> ...
->
-> > +static int sx9360_write_raw(struct iio_dev *indio_dev,
-> > +                         const struct iio_chan_spec *chan, int val, int val2,
-> > +                         long mask)
-> > +{
-> > +     struct sx_common_data *data = iio_priv(indio_dev);
-> > +
-> > +     switch (mask) {
-> > +     case IIO_CHAN_INFO_SAMP_FREQ:
-> > +             return sx9360_set_samp_freq(data, val, val2);
-> > +     case IIO_CHAN_INFO_HARDWAREGAIN:
-> > +             return sx9360_write_gain(data, chan, val);
-> > +     }
-> > +
->
-> Slight preference for this as a default in the switch.
-Done, changed sx9360_read_avail() as well.
->
-> > +     return -EINVAL;
-> > +}
->
-> ...
->
->
-> > +static int sx9360_check_whoami(struct device *dev,
-> > +                             struct iio_dev *indio_dev)
->
-> Will fit on one line under 80 chars I think..
-Done.
->
-> > +{
-> > +     /*
-> > +      * Only one sensor for this driver. Assuming the device tree
-> > +      * is correct, just set the sensor name.
-> > +      */
-> > +     indio_dev->name = "sx9360";
-> > +     return 0;
-> > +}
-> > +
->
-> > +
-> > +static int __maybe_unused sx9360_suspend(struct device *dev)
-> > +{
-> > +     struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
->
-> I don't feel particularly strongly about this, as there are arguments
-> either way but this is the same as
->
->         struct iio_dev *indio_dev = dev_get_drvdata(dev);
->
-Done in both suspend and resume.
+> Thanks!
 
-> > +     struct sx_common_data *data = iio_priv(indio_dev);
-> > +     unsigned int regval;
-> > +     int ret;
-> > +
-> > +     disable_irq_nosync(data->client->irq);
-> > +
-> > +     mutex_lock(&data->mutex);
-> > +     ret = regmap_read(data->regmap, SX9360_REG_GNRL_CTRL0, &regval);
-> > +
-> > +     data->suspend_ctrl =
-> > +             FIELD_GET(SX9360_REG_GNRL_CTRL0_PHEN_MASK, regval);
-> > +
-> > +     if (ret < 0)
-> > +             goto out;
-> > +
-> > +     /* Disable all phases, send the device to sleep. */
-> > +     ret = regmap_write(data->regmap, SX9360_REG_GNRL_CTRL0, 0);
-> > +
-> > +out:
-> > +     mutex_unlock(&data->mutex);
-> > +     return ret;
-> > +}
-> > +
+
+This is up to Rob.
+I do not mind either way.
+
 >
+> >  scripts/Makefile.lib | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+> > index ce6142238835..2f00c996d2e3 100644
+> > --- a/scripts/Makefile.lib
+> > +++ b/scripts/Makefile.lib
+> > @@ -315,7 +315,8 @@ DTC_FLAGS += -Wno-unit_address_vs_reg \
+> >         -Wno-alias_paths \
+> >         -Wno-graph_child_address \
+> >         -Wno-simple_bus_reg \
+> > -       -Wno-unique_unit_address
+> > +       -Wno-unique_unit_address \
+> > +       -Wunique_unit_address_if_enabled
+> >  endif
+> >
+> >  ifneq ($(findstring 2,$(KBUILD_EXTRA_WARN)),)
+> > --
+> > 2.30.2
+> >
+
+
+
+-- 
+Best Regards
+Masahiro Yamada
