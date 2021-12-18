@@ -2,270 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8CC3479D69
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 22:36:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEEC7479D81
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 22:48:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229704AbhLRVgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 16:36:03 -0500
-Received: from ixit.cz ([94.230.151.217]:42164 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229480AbhLRVgC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 18 Dec 2021 16:36:02 -0500
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 309AE2243C;
-        Sat, 18 Dec 2021 22:36:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1639863360;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=YHRge3bUDoDMh2nznf7wZYZYCRWtrOGMZUeO3tamWnc=;
-        b=OkzNcL46UQYp/TqxiQbBlwxTX9ni9NsM9/KAUM+3AVGBppuF9pkJ3fxg8ydHlKb7xVhv3h
-        E91weWNFUnnDBLDACsm22wpAJgAmYMHnUju1x+Q2PRfBdhK3BIeTjhp80HYa2fOmbF5Znw
-        sjLQ/f+t2irCs5/zvTl+eCwoJijRutg=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] RFC: dt-bindings: soc: qcom: convert GLINK binding to yaml
-Date:   Sat, 18 Dec 2021 22:35:56 +0100
-Message-Id: <20211218213556.42061-1-david@ixit.cz>
-X-Mailer: git-send-email 2.34.1
+        id S232081AbhLRVsK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 16:48:10 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:52717 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229480AbhLRVsJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 16:48:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1639864090; x=1671400090;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Rs8loI9ghq4ptiU5VoEcOjqoY64u3XoCopT7hODJVKI=;
+  b=gBGzFYTzxdCh5tCyUUuLdYhj9yvlilQQGAc4g7B2X0GFySYXpiTMmuHR
+   6MbxxtNDpLSoCBa/00XSowvqZYZE+9p2wZzGuZjyMp5JnhsW4pFzUr2vm
+   u2O6exd0klvGQ3yJuVIjzONxTeqLKNrJTm5JQ7mJkNNiNEep9a5vzewzo
+   ktoIvruRv7QRZiBrFCC7Uln+eR6ciEbp8W2ydWgp+ME6Op9JJq8/KJyDg
+   E1pdohT0eFrUq3miTtW22BkVEi/IB0uRDcmT+GQr/dWZs74khiXrFpaZk
+   y/V+1lfnZiGDoxkX3BZ9ATrTjnw6nde0tTsYgHuF/YsWazyOUi/3zMOgG
+   w==;
+IronPort-SDR: +ypvsZPgOyTZk0+D9/yy7i7N5xQNImZHXyHzR8VK+uX83zgMsv4H9piqj410Mg27M3JGX8jfJe
+ vqxpkrG+eSiMv1bzjGmKrksoIJUrGFL++7Q/XGFIN8HGuqoFA27uiYyXsSiwJGGFuKRwBWz0XP
+ HHNzssU+zgoG2SqyqPkPibeg447qJnQuHeAelyTiBlEdev0YqvxxqVLdR8pb+WbWlbBY2uG2RQ
+ YlfIieN16VM8XCFNdp4J+LQh7XGJs6jCgvijqYoIb+ulP46LKEAfJb7h4mwsKzdlHBINhQgZCp
+ tZ13qMasLvWNHH2yNwK+g4B5
+X-IronPort-AV: E=Sophos;i="5.88,217,1635231600"; 
+   d="scan'208";a="147699410"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Dec 2021 14:48:09 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Sat, 18 Dec 2021 14:48:08 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Sat, 18 Dec 2021 14:48:06 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
+        <UNGLinuxDriver@microchip.com>, <linux@armlinux.org.uk>,
+        <f.fainelli@gmail.com>, <vivien.didelot@gmail.com>,
+        <vladimir.oltean@nxp.com>, <andrew@lunn.ch>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH net-next v8 0/9] net: lan966x: Add switchdev and vlan support
+Date:   Sat, 18 Dec 2021 22:49:37 +0100
+Message-ID: <20211218214946.531940-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam: Yes
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Qualcomm GLINK binding to the yaml syntax.
+This patch series extends lan966x with switchdev and vlan support.
+The first patches just adds new registers and extend the MAC table to
+handle the interrupts when a new address is learn/forget.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../bindings/soc/qcom/qcom,glink.txt          |  94 ----------------
- .../bindings/soc/qcom/qcom,glink.yaml         | 106 ++++++++++++++++++
- 2 files changed, 106 insertions(+), 94 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,glink.txt
- create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,glink.yaml
+v7->v8:
+- remove extra mac learn when the port leaves the bridge
+- replace memcpy with ether_addr_copy
+- change the order of operations in lan966x_switch_driver_init/exit
+- refactor lan966x_port_bridge_flags
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,glink.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,glink.txt
-deleted file mode 100644
-index 1214192847ac..000000000000
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,glink.txt
-+++ /dev/null
-@@ -1,94 +0,0 @@
--Qualcomm GLINK edge binding
--
--This binding describes a Qualcomm GLINK edge, a fifo based mechanism for
--communication between subsystem-pairs on various Qualcomm platforms. Two types
--of edges can be described by the binding; the GLINK RPM edge and a SMEM based
--edge.
--
--- compatible:
--	Usage: required for glink-rpm
--	Value type: <stringlist>
--	Definition: must be "qcom,glink-rpm"
--
--- label:
--	Usage: optional
--	Value type: <string>
--	Definition: should specify the subsystem name this edge corresponds to.
--
--- interrupts:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: should specify the IRQ used by the remote processor to
--		    signal this processor about communication related events
--
--- qcom,remote-pid:
--	Usage: required for glink-smem
--	Value type: <u32>
--	Definition: specifies the identifier of the remote endpoint of this edge
--
--- qcom,rpm-msg-ram:
--	Usage: required for glink-rpm
--	Value type: <prop-encoded-array>
--	Definition: handle to RPM message memory resource
--
--- mboxes:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: reference to the "rpm_hlos" mailbox in APCS, as described
--		    in mailbox/mailbox.txt
--
--= GLINK DEVICES
--Each subnode of the GLINK node represent function tied to a virtual
--communication channel. The name of the nodes are not important. The properties
--of these nodes are defined by the individual bindings for the specific function
--- but must contain the following property:
--
--- qcom,glink-channels:
--	Usage: required
--	Value type: <stringlist>
--	Definition: a list of channels tied to this function, used for matching
--		    the function to a set of virtual channels
--
--- qcom,intents:
--	Usage: optional
--	Value type: <prop-encoded-array>
--	Definition: a list of size,amount pairs describing what intents should
--		    be preallocated for this virtual channel. This can be used
--		    to tweak the default intents available for the channel to
--		    meet expectations of the remote.
--
--= EXAMPLE
--The following example represents the GLINK RPM node on a MSM8996 device, with
--the function for the "rpm_request" channel defined, which is used for
--regulators and root clocks.
--
--	apcs_glb: mailbox@9820000 {
--		compatible = "qcom,msm8996-apcs-hmss-global";
--		reg = <0x9820000 0x1000>;
--
--		#mbox-cells = <1>;
--	};
--
--	rpm_msg_ram: memory@68000 {
--		compatible = "qcom,rpm-msg-ram";
--		reg = <0x68000 0x6000>;
--	};
--
--	rpm-glink {
--		compatible = "qcom,glink-rpm";
--
--		interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
--
--		qcom,rpm-msg-ram = <&rpm_msg_ram>;
--
--		mboxes = <&apcs_glb 0>;
--
--		rpm-requests {
--			compatible = "qcom,rpm-msm8996";
--			qcom,glink-channels = "rpm_requests";
--
--			qcom,intents = <0x400 5
--					0x800 1>;
--			...
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,glink.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,glink.yaml
-new file mode 100644
-index 000000000000..11a7c845ea0a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,glink.yaml
-@@ -0,0 +1,106 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/soc/qcom/qcom,glink.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Qualcomm GLINK edge
-+
-+description: |
-+  Qualcomm GLINK edge, a fifo based mechanism for communication between
-+  subsystem-pairs on various Qualcomm platforms. Two types of edges can be
-+  described by the binding; the GLINK RPM edge and a SMEM based.
-+
-+maintainers:
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+
-+properties:
-+  $nodename:
-+    pattern: "^(rpm-)?glink(-edge)?$"
-+
-+  compatible:
-+    const: qcom,glink-rpm
-+
-+  label:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: should specify the subsystem name this edge corresponds to
-+
-+  interrupts:
-+    description: >
-+      should specify the IRQ used by the remote processor to
-+      signal this processor about communication related events
-+    maxItems: 1
-+
-+  mboxes:
-+    description: >
-+      reference to the "rpm_hlos" mailbox in APCS, as described
-+      in mailbox/mailbox.txt
-+
-+  qcom,remote-pid:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: specifies the identifier of the remote endpoint of this edge
-+
-+  qcom,rpm-msg-ram:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: RPM message memory resource
-+
-+patternProperties:
-+  ".*":
-+    type: object
-+    properties:
-+      qcom,glink-channels:
-+        $ref: /schemas/types.yaml#/definitions/string
-+        description: >
-+          a list of channels tied to this function, used for matching
-+          the function to a set of virtual channels
-+
-+      'qcom,intents':
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        description: >
-+          a list of size, amount pairs describing what intents should
-+          be preallocated for this virtual channel. This can be used
-+          to tweak the default intents available for the channel to
-+          meet expectations of the remote
-+
-+    required:
-+      - qcom,glink-channels
-+
-+    additionalProperties: true
-+
-+required:
-+  - interrupts
-+  - mboxes
-+  - qcom,smem
-+  - qcom,local-pid
-+  - qcom,remote-pid
-+
-+anyOf:
-+  - required:
-+      - qcom,remote-pid
-+  - required:
-+      - qcom,rpm-msg-ram
-+
-+additionalProperties: false
-+
-+examples:
-+  # The following example represents the GLINK RPM node on a MSM8996 device,
-+  # with the function for the "rpm_request" channel defined, which
-+  # is used for regulators and root clocks.
-+  - |
-+    rpm-glink {
-+        compatible = "qcom,glink-rpm";
-+
-+        interrupts = <0 168 1>;
-+
-+        qcom,rpm-msg-ram = <&rpm_msg_ram>;
-+
-+        mboxes = <&apcs_glb 0>;
-+
-+        rpm-requests {
-+            compatible = "qcom,rpm-msm8996";
-+            qcom,glink-channels = "rpm_requests";
-+
-+            qcom,intents = <0x400 5
-+                            0x800 1>;
-+        };
-+    };
+v6->v7:
+- fix build issues when compiling as a module
+
+v5->v6:
+- fix issues with the singletones, they were not really singletons
+- simplify the case where lan966x ports are added to bridges with foreign
+  ports
+- drop the cases NETDEV_PRE_UP and NETDEV_DOWN
+- fix the change of MAC address
+- drop the callbacks .ndo_set_features, .ndo_vlan_rx_add_vid,
+  .ndo_vlan_rx_kill_vid
+- remove duplicate code when port was added in a vlan, the MAC entries
+  will be added by the fdb
+
+v4->v5:
+- make the notifier_block from lan966x to be singletones
+- use switchdev_handle_port_obj_add and switchdev_handle_fdb_event_to_device
+  when getting callbacks in the lan966x
+- merge the two vlan patches in a single one
+
+v3->v4:
+- split the last patch in multiple patches
+- replace spin_lock_irqsave/restore with spin_lock/spin_unlock
+- remove lan966x_port_change_rx_flags because it was copying all the frames to
+  the CPU instead of removing all RX filters.
+- implement SWITCHDEV_ATTR_ID_PORT_PRE_BRIDGE_FLAGS
+- remove calls to __dev_mc_unsync/sync as they are not needed
+- replace 0/1 with false/true
+- make sure that the lan966x ports are not added to bridges that have other
+  interfaces except lan966x
+- and allow the lan966x ports to be part of only the same bridge.
+
+v2->v3:
+- separate the PVID used when the port is in host mode or vlan unaware
+- fix issue when the port was leaving the bridge
+
+v1->v2:
+- when allocating entries for the mac table use kzalloc instead of
+  devm_kzalloc
+- also use GFP_KERNEL instead of GFP_ATOMIC, because is never called
+  in atomic context
+- when deleting an mac table entry, the order of operations was wrong
+- if ana irq is enabled make sure it gets disabled when the driver is
+  removed
+
+Horatiu Vultur (9):
+  net: lan966x: Add registers that are used for switch and vlan
+    functionality
+  dt-bindings: net: lan966x: Extend with the analyzer interrupt
+  net: lan966x: add support for interrupts from analyzer
+  net: lan966x: More MAC table functionality
+  net: lan966x: Remove .ndo_change_rx_flags
+  net: lan966x: Add support to offload the forwarding.
+  net: lan966x: Add vlan support.
+  net: lan966x: Extend switchdev bridge flags
+  net: lan966x: Extend switchdev with fdb support
+
+ .../net/microchip,lan966x-switch.yaml         |   2 +
+ .../net/ethernet/microchip/lan966x/Kconfig    |   1 +
+ .../net/ethernet/microchip/lan966x/Makefile   |   3 +-
+ .../ethernet/microchip/lan966x/lan966x_fdb.c  | 244 +++++++++
+ .../ethernet/microchip/lan966x/lan966x_mac.c  | 342 +++++++++++++
+ .../ethernet/microchip/lan966x/lan966x_main.c | 106 +++-
+ .../ethernet/microchip/lan966x/lan966x_main.h |  64 ++-
+ .../ethernet/microchip/lan966x/lan966x_regs.h | 129 +++++
+ .../microchip/lan966x/lan966x_switchdev.c     | 471 ++++++++++++++++++
+ .../ethernet/microchip/lan966x/lan966x_vlan.c | 312 ++++++++++++
+ 10 files changed, 1645 insertions(+), 29 deletions(-)
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_fdb.c
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_vlan.c
+
 -- 
-2.34.1
+2.33.0
 
