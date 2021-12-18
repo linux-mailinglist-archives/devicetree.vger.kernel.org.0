@@ -2,118 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D2DD4799E8
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 10:14:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0970D479A03
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 10:44:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232481AbhLRJOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 04:14:03 -0500
-Received: from relay03.th.seeweb.it ([5.144.164.164]:53481 "EHLO
-        relay03.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232468AbhLRJOC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 04:14:02 -0500
-Received: from [192.168.1.101] (83.6.165.42.neoplus.adsl.tpnet.pl [83.6.165.42])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id C67B71F8F4;
-        Sat, 18 Dec 2021 10:13:59 +0100 (CET)
-Message-ID: <57058c58-03d8-4b9a-7416-c32b61c423cc@somainline.org>
-Date:   Sat, 18 Dec 2021 10:13:59 +0100
+        id S232538AbhLRJop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 04:44:45 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:55512 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231405AbhLRJoo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 04:44:44 -0500
+X-UUID: 5bdb8e4c8b2a4ca1a2b7de8acd8cc534-20211218
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:To:From:Subject:Message-ID; bh=BX/xr60YeEGkR5WPd8bZnIzzW27Ue8psX+ZM7ID81Ws=;
+        b=IuS8ogSNs/5R2cHUpRZt1ZUhNsHJtgyOUdXWB3KKcb2gy1lbK2G0vswC97Kjt1A7JczB/nzKwnvK77PRIhX/eImjQV2qPwkXbMKbydit1WHb/wT2jLCmTIx1jEXcUj28dt5pVkl6kXEHotIU53/zxidkIkP8WLWqx/8QiWXbQQY=;
+X-UUID: 5bdb8e4c8b2a4ca1a2b7de8acd8cc534-20211218
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <kewei.xu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 297468601; Sat, 18 Dec 2021 17:44:39 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Sat, 18 Dec 2021 17:44:38 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 18 Dec 2021 17:44:31 +0800
+Message-ID: <dfd50de5149a38ad1bc5faf9bb26a8a04be7d314.camel@mediatek.com>
+Subject: Re: [PATCH v7 6/7] i2c: mediatek: Isolate speed setting via dts for
+ special devices
+From:   Kewei Xu <kewei.xu@mediatek.com>
+To:     Wolfram Sang <wsa@the-dreams.de>, <matthias.bgg@gmail.com>,
+        <robh+dt@kernel.org>, <linux-i2c@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
+        <caiyu.chen@mediatek.com>, <ot_daolong.zhu@mediatek.com>,
+        <yuhan.wei@mediatek.com>
+Date:   Sat, 18 Dec 2021 17:44:32 +0800
+In-Reply-To: <YaTMQQhENmJAIUk4@kunai>
+References: <20210917101416.20760-1-kewei.xu@mediatek.com>
+         <20210917101416.20760-7-kewei.xu@mediatek.com> <YVf+83LdUEPjoLdI@kunai>
+         <1891acec7f5c417f62081a8b10249b265df7ea62.camel@mediatek.com>
+         <YWQYbaTIhud2QHNP@kunai> <YaTMQQhENmJAIUk4@kunai>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [RFC/patch 0/2] arm64: boot: dts: qcom: sm8150: enable
- framebuffer for Surface Duo
-Content-Language: en-US
-To:     Felipe Balbi <balbi@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Gustave Monce <gustave.monce@outlook.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-References: <20211217125757.1193256-1-balbi@kernel.org>
- <da9a88a5-46bf-3eab-7318-6db4dfeef994@somainline.org>
- <87czlu4bz7.fsf@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <87czlu4bz7.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 18.12.2021 08:17, Felipe Balbi wrote:
-> Hi Konrad,
->
-> Konrad Dybcio <konrad.dybcio@somainline.org> writes:
->
->> On 17.12.2021 13:57, Felipe Balbi wrote:
->>> From: Felipe Balbi <felipe.balbi@microsoft.com>
->>>
->>> Hi folks,
->>>
->>> I'm trying to enable the framebuffer on Microsoft Surface Duo. Looking
->>> through some internal docs, it came to my attention that the bootloader
->>> will fill up the framebuffer address and size to a memory node names
->>> splash_region. Adding the node, I can see the address of the
->>> framebuffer. Creating the relevant framebuffer device using
->>> simple-framebuffer, I can't see it working. Tried dd if=/dev/urandom
->>> of=/dev/fb0 and fb-test. None of which manage to get rid of what's
->>> already on the screen, put there by the bootloader (platform Logo).
->>>
->>> Wondering if any of you have seen a behavior such as this and how did
->>> you manage to get framebuffer working on SM8150 (I see at least Sony
->>> Xperia has the node).
->>>
->>> Felipe Balbi (2):
->>>   arm64: boot: dts: qcom: sm8150: add a label for reserved-memory
->>>   arm64: boot: dts: qcom: surface duo: add minimal framebuffer
->>>
->>>  .../dts/qcom/sm8150-microsoft-surface-duo.dts | 19 +++++++++++++++++++
->>>  arch/arm64/boot/dts/qcom/sm8150.dtsi          |  2 +-
->>>  2 files changed, 20 insertions(+), 1 deletion(-)
->> Hi,
->>
->>
->> this issue is totally unique to the Duo and your bootloader configuration.
->>
->>
->> Gus (CCd, co-author of Lumia 950/XL patches) and I were dissecting
->> this precise issue (albeit for a different usecase) and in our testing
->> it turned out that XBL likely kills the display stack upon exiting
->> Boot Services and jumping to LinuxLoader. This may be a bug that comes
->> from the legacy of this device, as exiting Boot Services would be
->> rather undesirable in that scenario..
-> This is very nice background information which I didn't have. Thanks :-)
->
->> One fix would be to ask the bootloader team to look into it and fix it
->> from there, otherwise you'd have to bring up the display using the
->> DPU1 driver, or perhaps in a third-stage-bootloader (pls don't do it
-> I'll give DPU1 a shot, thanks for the pointer
-
-Won't work yet. Your display (well, displays.. hehe) are CMD mode and
-
-have DSC. Both of which are unsupported on SM8150. DSC patches by Vinod
-
-seem to only work on 845 (or at least don't work on 8250 for me) and Marijn
-
-from SoMainline (added to CC) is working on cleaning up CMD mode
-
-support, as Qualcomm moved the pingpong functionality (basically
-
-the way of SoC telling the panel HEY IT'S TIME TO DRAW A FRAME)
-
-to a different hardware block and that needs some care in code).
-
-
->> for the sanity of us all :D)
-> no 3rd stages :-)
->
-Good :P
-
-
-Konrad
+T24gTW9uLCAyMDIxLTExLTI5IGF0IDEzOjQ5ICswMTAwLCBXb2xmcmFtIFNhbmcgd3JvdGU6DQo+
+ID4gPiBzdHJldGNoaW5nLiBCdXQgaWYgdGhlIHNsYXZlIGRldmljZSBzdHJldGNoIHRoZSBTQ0wg
+bGluZSBmb3IgdG9vDQo+ID4gPiBsb25nDQo+ID4gPiB0aW1lLCBvdXIgZGVzaWduIHN0aWxsIGNh
+bm5vdCBtYWtlIHRTVSxTVEEvdEhELFNUQS90U1UsU1RPIG1lZXQNCj4gPiA+IHNwZWMuDQo+ID4g
+DQo+ID4gSXNuJ3QgdGhlIG5ldyBhbGdvcml0aG0gYnJva2VuIGlmIGl0IGNhbm5vdCBzdXBwb3J0
+IGNsb2NrDQo+ID4gc3RyZXRjaGluZz8NCj4gPiBXaGF0IHdhcyB0aGUgcHJvYmxlbSBvZiB0aGUg
+b2xkIGFsZ29yaXRobSBub3QgbWVldGluZyB0aGUgc3BlYz8NCj4gPiANCj4gPiA+IEhvd2V2ZXIg
+aW4gdGhlIG9sZCAoZGVmYXVsdCkgdGltaW5nIGFsZ29yaXRobSBiZWZvcmUgdGhlIGNvbW1pdA0K
+PiA+ID4gYmU1Y2UwZTk3Y2M3ICgiaTJjOiBtZWRpYXRlazogQWRkIGkyYyBhYy10aW1pbmcgYWRq
+dXN0IHN1cHBvcnQiKSwNCj4gPiA+IHRTVSxTVEEvdEhELFNUQS90U1UsU1RPIGNhbiBtZWV0IHNw
+ZWMuIFNvIHdlIHdhbnQgdG8gZGVmaW5lIGEgbmV3DQo+ID4gPiBzZXR0aW5nICJkZWZhdWx0LWFk
+anVzdC10aW1pbmciIGZvciB1c2luZyB0aGUgb2xkIChkZWZhdWx0KQ0KPiA+ID4gdGltaW5nDQo+
+ID4gPiBhbGdvcml0aG0uIg0KPiA+IA0KPiA+IFdoYXQgSSBzdGlsbCBkbyBub3QgZ2V0OiB0aGUg
+b2xkIGFsZ29yaXRobSB3YXMgYWJsZSB0byBoYW5kbGUgY2xvY2sNCj4gPiBzdHJldGNoaW5nLiBX
+aHkgY2FuJ3QgeW91IHVwZGF0ZSB0aGUgbmV3IG9uZSB0byBoYW5kbGUgY2xvY2sNCj4gPiBzdHJl
+dGNoaW5nDQo+ID4gYXMgd2VsbC4gSSBtaWdodCBiZSBtaXNzaW5nIHNvbWV0aGluZywgYnV0IHdo
+YXQgaXMgaXQ/DQo+IA0KPiBJIGFtIHN0aWxsIGludGVyZXN0ZWQuIEVzcGVjaWFsbHkgaW4gdGhl
+IGxhc3QgcXVlc3Rpb24uIElzIHRoZSBsYXN0DQo+IHF1ZXN0aW9uIGNsZWFyIHRvIHlvdT8gSSBj
+YW4gZXhwbGFpbiBzb21lIG1vcmUgb3RoZXJ3aXNlLg0KPiANCkhpLFdvbGZyYW0sDQoNCkknbSB2
+ZXJ5IHNvcnJ5IHRoYXQgSSBkaWRuJ3QgcmVwbHkgdG8geW91ciBpbmZvcm1hdGlvbiBpbiB0aW1l
+IGR1ZQ0KdG8gbXkgbWFueSBwZXJzb25hbCBhZmZhaXJzLg0KDQpUaGUgT2xkIGFsZ29yaXRobSB3
+YXMgZGVzaWduZWQgdG8gZm9jdXMgb25seSBvbiBub3JtYWwgZnVuY3Rpb25zLCBhbmQNCm5lZWQg
+dG8gYWRkIGFkZGl0aW9uYWwgY3VzdG9tIGNvZGUgdG8gYWRqdXN0IGFjLXRpbWluZyB3aGVuIHRo
+ZQ0KY29tbXVuaWNhdGlvbiB0aW1pbmcgZGlkIG5vdCBtZWV0IHRoZSBzcGVjaWZpY2F0aW9ucy4g
+c28gd2hlbiB0aGVyZSBpcw0Kbm8gY2xvY2sgc3RyZXRjaCwgYWMtdGltaW5nIGRvZXMgbm90IG1l
+ZXQgdGhlIHNwZWMsIGJ1dCB0aGUgZnVuY3Rpb24gaXMNCmFsd2F5cyBub3JtYWwuDQoNClRoZSBu
+ZXcgYWxnb3JpdGhtKFRoZSBjb21taXQgcGF0Y2g6IGJlNWNlMGU5N2NjNyAoImkyYzogbWVkaWF0
+ZWs6IEFkZA0KaTJjIGFjLXRpbWluZyBhZGp1c3Qgc3VwcG9ydCIpIGlzIGJhc2VkIG9uIHRoZSBy
+ZXF1aXJlbWVudHMgb2YgaTJjIHNwZWMNCnRvIGNhbGN1bGF0ZSB0aGUgaGFyZHdhcmUtcmVsYXRl
+ZCBzZXR0aW5ncyBzbyB0aGF0IHRoZSBmdW5jdGlvbiBhbmQgYWMtDQp0aW1pbmcgYXJlIG5vcm1h
+bCBXaGVuIHRoZXJlIGlzIG5vIGNsb2NrIHN0cmV0Y2ggb3IgdGhlIGNsb2NrIHN0cmV0Y2gNCnRp
+bWUgaXMgc2hvcnQuIFdoZW4gdGhlIHN0cmV0Y2hpbmcgdGltZSBpcyB2ZXJ5IGxvbmcgKD42MHVz
+KSwgaTJjIGFjLQ0KdGltaW5nIGRvZXMgbm90IG1lZXQgdGhlIHNwZWNpZmljYXRpb25zIGFuZCBj
+YXVzZXMgZnVuY3Rpb24gYWJub3JtYWwuDQoNCkluIG9yZGVyIHRvIG1ha2UgdGhlIGkyYyBmdW5j
+dGlvbiBub3JtYWwsIHRoaXMgcGF0Y2ggd2FzIHN1Ym1pdHRlZCwNCnRoYXQgaXMsIHdoZW4gdGhl
+IHN0cmV0Y2ggaXMgbG9uZywgdGhlIG9sZCBhbGdvcml0aG0gaXMgdXNlZCB0byBlbnN1cmUNCnRo
+ZSBmdW5jdGlvbiBpcyBub3JtYWwsIGFuZCB3aGVuIHRoZSBzdHJldGNoIGlzIHNob3J0LCB0aGUg
+bmV3DQphbGdvcml0aG0gaXMgdXNlZCB0byBlbnN1cmUgdGhhdCB0aGUgYWMtdGltaW5nIGFuZCBm
+dW5jdGlvbiBhcmUgbm9ybWFsLg0KDQpXZSBmb3VuZCB0aGF0IHdoZW4gdGhlIGFjLXRpbWluZyBj
+YWxjdWxhdGlvbiBmb3JtdWxhIGlzIHVwZGF0ZWQsIHRoZQ0KbmV3IGFsZ29yaXRobSBjYW4gbWFr
+ZSBpMmMgYWMtdGltaW5nIG1lZXQgdGhlIHNwZWMgYW5kIGZ1bmN0aW9uDQpub3JtYWxseS4gU28g
+d2UgcGxhbiB0byByZXBsYWNlIHRoaXMgcGF0Y2ggd2l0aCBhIHBhdGNoIHRoYXQgdXBkYXRlcw0K
+dGhlIGNhbGN1bGF0aW9uIGZvcm11bGEuDQoNClRoYW5rc34NCktld2VpDQo=
 
