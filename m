@@ -2,170 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BF0B479A79
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 12:02:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13B81479AD0
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 13:53:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232851AbhLRLCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 06:02:13 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:41444
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232844AbhLRLCL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 18 Dec 2021 06:02:11 -0500
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C6AAA3F1A9
-        for <devicetree@vger.kernel.org>; Sat, 18 Dec 2021 11:02:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639825330;
-        bh=GUzaeCFYuvmlfIXasOI8CPD5nT7udP18GRuhsPnN/O4=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=GTJNQnuh3fMVd0O5mQhkLLCgHKdyTafK9DLyNEf/rri9SM/lUnH3I5OsPjuj++wci
-         6Sb2ilo5IEWw4dPszN5yr+E0gzQCMTa4rbytg2XGl36nwIleW6oSwDbvpPNRtc+ASt
-         z5XBn2k/kKU6Afi3H0CdfYMSRKxh3u9DSdR66Kq/SN8ciXSw0NeXLVpCsZRR8+u6jq
-         HKkaUs9Ix21AaY0LnAKCjeaxBMA4Hq39hxaLp7OucKAeb3kJc2Y2DNg2nWbFhlRKJ4
-         rYL3NXAImrFP1LlxLpBKHsXrjlf+dI4IrrIE6Le0dMaJd2zHYpl61IlJX647mn82Fj
-         EsUTkB1iFoC9w==
-Received: by mail-lf1-f69.google.com with SMTP id d2-20020a0565123d0200b0040370d0d2fbso2137978lfv.23
-        for <devicetree@vger.kernel.org>; Sat, 18 Dec 2021 03:02:10 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=GUzaeCFYuvmlfIXasOI8CPD5nT7udP18GRuhsPnN/O4=;
-        b=6b63xgzKBCHUNx7Euh/11RD2ni58Gj5xnS5tiBpcfLECXi1ceDONfLggWLjAg53bgN
-         t5Z3Gm0DlVuAqvifzyixWBafEi9dJG3UtdaOZXXhznkr2TpPfuvDAF6tuaSp2hQkaFzd
-         u74uZ5Fn/vT8QzXBUz5fPuYWnKcDxqOWzcJuAifWgnlCZnL/VV4kiy1G2BbkwGKk5BTf
-         edGiaNLEgX7fmAGZ6Vbj/+WLLy8C+bqgjAWln1o4rWVATXZI0FIBQMLkibE3BjzMohAN
-         e0FZkYky7OTL5qTZcUORCaODw31BVmXNpqLvbBhvEkcWoX+XTL0Wma/5SF1RU55GYNQq
-         ylpQ==
-X-Gm-Message-State: AOAM530+cnxKziwqDZ5kVfpK2ipR8GQ25fDDaO2etPj1X53+APzwXvqb
-        RPbgnUa2bwnuaALsiOYePtkUpqRH97IieW9pvtQ4tbL5U/OPMSlsNdLaWfCy2zocLFLcvZ9+dQB
-        Sk+yW18f/8WlPHflQEJr4JH4cKWXf/moEudgydi0=
-X-Received: by 2002:a05:6512:1506:: with SMTP id bq6mr6899798lfb.118.1639825330171;
-        Sat, 18 Dec 2021 03:02:10 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJz76BRek5xxaxXK0gykfSceKpej+lAJ/MUNQimyMdvDsGknqATVKSV4qiXP216Y6DblSZl2Kw==
-X-Received: by 2002:a05:6512:1506:: with SMTP id bq6mr6899780lfb.118.1639825329889;
-        Sat, 18 Dec 2021 03:02:09 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id bu11sm917201lfb.15.2021.12.18.03.02.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 18 Dec 2021 03:02:09 -0800 (PST)
-Message-ID: <0778edf1-25c3-e375-9806-46c35c18e233@canonical.com>
-Date:   Sat, 18 Dec 2021 12:02:08 +0100
+        id S233098AbhLRMxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 07:53:16 -0500
+Received: from 113.196.136.146.ll.static.sparqnet.net ([113.196.136.146]:51350
+        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231748AbhLRMxQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 07:53:16 -0500
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.202
+        by mg02.sunplus.com with MailGates ESMTP Server V5.0(9379:0:AUTH_RELAY)
+        (envelope-from <tony.huang@sunplus.com>); Sat, 18 Dec 2021 20:53:10 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.26; Sat, 18 Dec 2021 20:53:09 +0800
+Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
+ sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
+ 15.00.1497.026; Sat, 18 Dec 2021 20:53:09 +0800
+From:   =?utf-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>
+To:     gregkh <gregkh@linuxfoundation.org>
+CC:     Arnd Bergmann <arnd@arndb.de>,
+        Tony Huang <tonyhuang.sunplus@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Subject: RE: [PATCH v3 2/2] misc: Add iop driver for Sunplus SP7021
+Thread-Topic: [PATCH v3 2/2] misc: Add iop driver for Sunplus SP7021
+Thread-Index: AQHX7Nr0VlQujKq+xkKIOnlLCZbqnqwpZLYAgA1h0BD//4/vAIABgUbA
+Date:   Sat, 18 Dec 2021 12:53:08 +0000
+Message-ID: <6257a7c929064569aa46826d1bba9a2f@sphcmbx02.sunplus.com.tw>
+References: <cover.1639039163.git.tonyhuang.sunplus@gmail.com>
+ <bc15d5e8d7a5ec96582799fe513de4ace6fd4b8b.1639039163.git.tonyhuang.sunplus@gmail.com>
+ <CAK8P3a2UGr6ZbHk6G=wh5XG_EGdJxGf6SfyN1sTb4aaUgiK8Lw@mail.gmail.com>
+ <5c01390c485a44b6913dcb42e3677ed1@sphcmbx02.sunplus.com.tw>
+ <YbytSBN+4M2JKAuJ@kroah.com>
+In-Reply-To: <YbytSBN+4M2JKAuJ@kroah.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.54]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 3/5] dt-bindings: memory: Add Tegra114 memory controller
- bindings
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211217165919.2700920-1-thierry.reding@gmail.com>
- <20211217165919.2700920-3-thierry.reding@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211217165919.2700920-3-thierry.reding@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/12/2021 17:59, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Document the bindings for the memory controller found on Tegra114 SoCs.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  .../nvidia,tegra114-mc.yaml                   | 85 +++++++++++++++++++
->  1 file changed, 85 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra114-mc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra114-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra114-mc.yaml
-> new file mode 100644
-> index 000000000000..2fa50eb3aadb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra114-mc.yaml
-> @@ -0,0 +1,85 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra114-mc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra114 SoC Memory Controller
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +
-> +description: |
-> +  The Tegra114 Memory Controller architecturally consists of the following parts:
-> +
-> +    Arbitration Domains, which can handle a single request or response per
-> +    clock from a group of clients. Typically, a system has a single Arbitration
-> +    Domain, but an implementation may divide the client space into multiple
-> +    Arbitration Domains to increase the effective system bandwidth.
-> +
-> +    Protocol Arbiter, which manage a related pool of memory devices. A system
-> +    may have a single Protocol Arbiter or multiple Protocol Arbiters.
-> +
-> +    Memory Crossbar, which routes request and responses between Arbitration
-> +    Domains and Protocol Arbiters. In the simplest version of the system, the
-> +    Memory Crossbar is just a pass through between a single Arbitration Domain
-> +    and a single Protocol Arbiter.
-> +
-> +    Global Resources, which include things like configuration registers which
-> +    are shared across the Memory Subsystem.
-> +
-> +  The Tegra114 Memory Controller handles memory requests from internal clients
-> +  and arbitrates among them to allocate memory bandwidth for DDR3L and LPDDR2
-> +  SDRAMs.
-> +
-> +properties:
-> +  compatible:
-> +    const: nvidia,tegra114-mc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: mc
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#reset-cells":
-> +    const: 1
-> +
-> +  "#iommu-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - "#reset-cells"
-> +  - "#iommu-cells"
-> +
-> +additionalProperties: false
-
-The binding looks the same as Tegra210, Tegra 20 MC. What is the point
-of having three separate binding documents which are exactly the same?
-
-
-Best regards,
-Krzysztof
+RGVhciBncmVna2gsIGFybmQ6DQoNCj4gPiA+IHdyb3RlOg0KPiA+ID4gPg0KPiA+ID4gPiBJT1Ag
+KElPIFByb2Nlc3NvcikgZW1iZWRkZWQgaW5zaWRlIFNQNzAyMSB3aGljaCBpcyB1c2VkIGFzDQo+
+ID4gPiA+IFByb2Nlc3NvciBmb3IgSS9PIGNvbnRyb2wsIFJUQyB3YWtlLXVwIGFuZCBjb29wZXJh
+dGlvbiB3aXRoIENQVSAmDQo+ID4gPiA+IFBNQyBpbiBwb3dlciBtYW5hZ2VtZW50IHB1cnBvc2Uu
+DQo+ID4gPiA+IFRoZSBJT1AgY29yZSBpcyBEUTgwNTEsIHNvIGFsc28gbmFtZWQgSU9QODA1MSwg
+aXQgc3VwcG9ydHMNCj4gPiA+ID4gZGVkaWNhdGVkIEpUQUcgZGVidWcgcGlucyB3aGljaCBzaGFy
+ZSB3aXRoIFNQNzAyMS4NCj4gPiA+ID4gSW4gc3RhbmRieSBtb2RlIG9wZXJhdGlvbiwgdGhlIHBv
+d2VyIHNwZWMgcmVhY2ggNDAwdUEuDQo+ID4gPiA+DQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IFRv
+bnkgSHVhbmcgPHRvbnlodWFuZy5zdW5wbHVzQGdtYWlsLmNvbT4NCj4gPiA+DQo+ID4gPiBUaGFu
+a3MgZm9yIHRoZSBpbXByb3ZlbWVudHMsIHRoaXMgYWdhaW4gbG9va3MgYmV0dGVyIHRoYW4gdGhl
+IHByZXZpb3VzDQo+IHZlcnNpb24uDQo+ID4gPiBJIHN0aWxsIGhhdmUgc29tZSBtaW5vciBjb21t
+ZW50cywgYW5kIHRoZXJlIGFyZSBhIGNvdXBsZSBvZiBkZXRhaWxzDQo+ID4gPiBJIGhhdmUgY29t
+bWVudGVkIG9uIGJlZm9yZSB0aGF0IHdvdWxkIG5lZWQgdG8gYmUgYWRkcmVzc2VkLCBidXQNCj4g
+PiA+IGxldCdzIGZvY3VzIG9uIHRoZSBvbmUgbWFpbiBpc3N1ZSBmb3Igbm93Og0KPiA+ID4NCj4g
+PiA+IFRoZSBkcml2ZXIgc3RpbGwgZG9lc24ndCBhY3R1YWxseSAvZG8vIGFueXRoaW5nOiB5b3Ug
+bG9hZCB0aGUNCj4gPiA+IGZpcm13YXJlIHdoZW4gdGhlIGRyaXZlciBpcyBsb2FkZWQsIGFuZCB5
+b3Ugc2h1dCBpdCBkb3duIHdoZW4gdGhlDQo+ID4gPiBkcml2ZXIgaXMgcmVtb3ZlZCwgYnV0IG90
+aGVyd2lzZSB0aGVyZSBpcyBubyB3YXkgdG8gaW50ZXJhY3Qgd2l0aA0KPiA+ID4gdGhlIGlvcC4g
+WW91IGhhZCB0aGUgbWlzY2RldmljZSBlYXJsaWVyLCBhbmQgeW91IHN0aWxsIHJlZ2lzdGVyDQo+
+ID4gPiB0aGF0LCBidXQgdGhlcmUgYXJlIG5vIGZpbGVfb3BlcmF0aW9ucyBhc3NvY2lhdGVkIHdp
+dGggaXQsIHNvIGl0IHN0aWxsIGRvZXNuJ3QNCj4gaGF2ZSBhbnkgZWZmZWN0Lg0KPiA+ID4NCj4g
+PiA+IEluIHRoZSBvcmlnaW5hbCB2ZXJzaW9uIHlvdSBoYWQgYSBjb3VwbGUgb2YgdXNlci1zaWRl
+IGludGVyZmFjZXMsDQo+ID4gPiBmb3Igd2hpY2ggR3JlZyBhbmQgSSBjb21tZW50ZWQgdGhhdCB0
+aGV5IHdlcmUgbm90IHVzaW5nIHRoZSBjb3JyZWN0DQo+ID4gPiBhYnN0cmFjdGlvbnMsIGFuZCB5
+b3Ugc3RpbGwgbGlzdCB0aGVtIGluIHRoZSBjaGFuZ2Vsb2cgdGV4dCBhcyAiSS9PDQo+ID4gPiBj
+b250cm9sLCBSVEMgd2FrZS11cCBhbmQgY29vcGVyYXRpb24gd2l0aCBDUFUgJiBQTUMgaW4gcG93
+ZXINCj4gbWFuYWdlbWVudCIuDQo+ID4gPg0KPiA+ID4gSWYgeW91IHdhbnQgdG8gbWFrZSBhbnkg
+cHJvZ3Jlc3Mgd2l0aCBhZGRpbmcgdGhlIGRyaXZlciwgSSdkIHNheSB5b3UNCj4gPiA+IHNob3Vs
+ZCBpbXBsZW1lbnQgYXQgbGVhc3QgdHdvIG9mIHRob3NlIGhpZ2gtbGV2ZWwgaW50ZXJmYWNlcyB0
+aGF0DQo+ID4gPiBpbnRlcmFjdCB3aXRoIHRoZSByZXNwZWN0aXZlIGtlcm5lbCBzdWJzeXN0ZW1z
+IGluIG9yZGVyIHRvIHNob3cgdGhhdCB0aGUNCj4gYWJzdHJhY3Rpb24gd29ya3MuDQo+ID4gPg0K
+PiA+DQo+ID4gUToid2l0aCByZXNwZWN0aXZlIGtlcm5lbCBzdWJzeXN0ZW1zIGluIG9yZGVyIHRv
+IHNob3cgdGhhdCB0aGUgYWJzdHJhY3Rpb24NCj4gd29ya3MuIg0KPiA+IE1heSBJIGFzayB5b3Ug
+YWJvdXQgcmVwZWN0aXZlIGtlcm5lbCBzdWJzeXN0ZW0uDQo+ID4gSWYgSSB1c2UgdGhlIGZpbGVf
+b3BlcmF0aW9uIG1ldGhvZA0KPiA+IFByb3ZpZGUgdXNlciBjYW4gcmVhZCBhbmQgd3JpdGUgSU9Q
+KDgwNTEpJ3MgcmVnaXN0ZXIuDQo+ID4gSXMgdGhpcyBhIHJlcGVjdGl2ZSBrZXJuZWwgc3Vic3lz
+dGVtPw0KPiA+IGlmIG5vdA0KPiA+IFRoZXJlIGFyZSBvdGhlciBkcml2ZXIgY29kZSBjYW4gZ2l2
+ZSBtZSByZWZlcmVuY2UNCj4gPg0KPiANCj4gSSBzdGlsbCBkbyBub3QgdW5kZXJzdGFuZCB3aGF0
+IHRoZSBnb2FsIG9mIHRoaXMgZHJpdmVyIGlzLg0KPiANCg0KV2hlbiB0aGUgcG93ZXJvZmYgY29t
+bWFuZCBpcyBleGVjdXRlZC4NCjEuVGhlIDgwNTEgaGFzIGEgcmVnaXN0ZXIgdG8gY29udHJvbCB0
+aGUgcG93ZXItb24gYW5kIHBvd2VyLW9mZiBvZiB0aGUgc3lzdGVtKExpbnV4IGtlcm5lbCkuDQog
+SWYgeW91IHR1cm4gb2ZmIHRoZSBwb3dlciB0aHJvdWdoIHRoZSA4MDUxIHJlZ2lzdGVyKERFRl9Q
+V1JfRU5fMD0wKSwNCiBUaGUgY3VycmVudCBtZWFzdXJlZCBieSB0aGUgY2lyY3VpdCBib2FyZCBp
+cyAwLjRtQSBvbmx5LiBJbiBvcmRlciB0byBzYXZlIHBvd2VyLg0KMi5UaGUgcG93ZXIgaXMgbm90
+IHR1cm5lZCBvZmYgdGhyb3VnaCB0aGUgODA1MSByZWdpc3Rlci4NCiBUaGUgY3VycmVudCBtZWFz
+dXJlZCBvbiB0aGUgY2lyY3VpdCBib2FyZCBpcyAzM21BDQozLldoZW4gdGhlIHN5c3RlbSBsaW51
+eCBrZXJlbmwgaXMgcG93ZXJlZCBvZmYuIC9kcml2ZXIvcnRjLCAvZHJpdmVyL2dwaW8gY2Fubm90
+IG9wZXJhdGUuDQogIDgwNTEgaXMgc3RpbGwgYWxpdmUgYW5kIG9wZXJhdGlvbmFsDQogIDgwNTEg
+aGFzIFJUQyByZWdpc3Rlci4gV2hlbiB0aGUgdGltZSBpcyB1cCwgODA1MSBwb3dlcnMgb24gdGhl
+IHN5c3RlbQ0KICBUaGUgODA1MSBjYW4gZGV0ZWN0IEdQSU8wfjcgcGlucywgYW5kIEdQSU8gcGlu
+IGhpZ2gvbG93IGNhbiBiZSB1c2VkIGFzIGEgcG93ZXItb24ganVkZ21lbnQgbWVjaGFuaXNtIGZv
+ciB0aGUgc3lzdGVtLg0KDQo+IFdoYXQgaXMgdGhlIHByb2JsZW0gdGhhdCB5b3UgYXJlIG5lZWRp
+bmcgdG8gc29sdmU/ICBXaGF0IG5lZWRzIHRvIGFjY2Vzcw0KPiB0aGlzIGhhcmR3YXJlLCBhbmQg
+d2hhdCBleGFjdGx5IHdhcyB0aGlzIGhhcmR3YXJlIGRlc2lnbmVkIHRvIGRvPw0KPiANCg0KZm9y
+IGV4YW1wbGU6CQ0KU1A3MDIxIDgwNTEgaGFzIHRocmVlIHBvd2VyIHN0YXRlczpTMCwgUzEgYW5k
+IFMzLgkNClMwOkRlZmF1bHQgZG9tYWluKGxpbnV4IGtlcm5lbCkgaXMgb24uIElPUCBkb21haW4g
+b2YgODA1MSBpcyBvbi4gQU8gZG9tYWluIG9mIDgwNTEgaXMgb24uCQ0KUzE6RGVmYXVsdCBkb21h
+aW4obGludXgga2VybmVsKSBpcyBvZmYuIElPUCBkb21haW4gb2YgODA1MSBpcyBvbi4gQU8gZG9t
+YWluIG9mIDgwNTEgaXMgb24uCQ0KUzM6RGVmYXVsdCBkb21haW4obGludXgga2VybmVsKSBpcyBv
+ZmYuIElPUCBkb21haW4gb2YgODA1MSBpcyBvZmYuIEFPIGRvbWFpbiBvZiA4MDUxIGlzIG9uLgkN
+ClRoZSB1c2VyIGNhbiB1c2UgdGhlIDEyYnl0ZXMgbWFpbGJveCByZWdpc3RlciB0byBub3RpZnkg
+ODA1MS44MDUxIG5lZWRzIHRvIHR1cm4gb2ZmIHdoaWNoIGRvbWFpbi4JDQpJIG5lZWQgY3VzdG9t
+IG1pc2NkZXZpY2UuDQpVc2VyPC0tLT5taXNjL3N1bnBsdXNfaW9wPC0tLT5IYXJkd2FyZSg4MDUx
+KQ0K
