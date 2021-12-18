@@ -2,489 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBA6D479D9D
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 22:48:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40334479DDF
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 22:58:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234541AbhLRVsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 16:48:45 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:6589 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234570AbhLRVsk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 16:48:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1639864120; x=1671400120;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Dgx+uS3Tybb2On6wd0IhNQyjyQmYwXJP8vRLhUTGYKs=;
-  b=OFjDepq+Rjm7EmMeVYwA63r8zrKTZPue+D46Q0i1QzEXaO1akbkgxqw7
-   peTVH+xAoj79fx1FOdSFdl7ST7N7SE9m4C3A4SFFs/PDBNODDpO66Tr1j
-   t559gtFhMEJmmGtahuYozywz72zXlkNameInDvVDXuhAWXRpgO12qAOy8
-   VGv/l512mv9AYCxDxfIr9GwqDx2nlAfzXHFeZJLnpkqBTtu1d1MlGVvFg
-   lFroSEDDnki+c5f0NHfOqYdO+iw7bqQsRhcQuzlaQdnvg/XTiQBiVIEPr
-   wMd5xrCdZYnq/dUHhgf0taiza5oIyN83gd2YPeSCaiZLvSvTjUzktR79p
-   w==;
-IronPort-SDR: mZydpP56BIFe3yFirKHByVvo1QqUljxu0zGvAwmtk4xJ98DbGVDL3g9X5+m9JafZxR0pzOn2FR
- zmGa4wlG9CSngBCgm8W8QypHcryk9RwCb8+GxUp2nJ1rcBt/MwuZlXZzr2rWExDDaQf7MhU33V
- 92wl6Z61datAt/iNUvHstTRa87IEgZ1eSzBrk1E84Zlb4d8ewukqRQ9430W+WIFTXJCpRaLURG
- pLx6Opom50svMWA9+odvy6ryt4dI1iCgtO3/VeRKGCVuWqF3PW638Foqzm6BKOGE3eI6MfcoIg
- BL0NQyBS7Zst8NuEid6816ke
-X-IronPort-AV: E=Sophos;i="5.88,217,1635231600"; 
-   d="scan'208";a="155989509"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Dec 2021 14:48:38 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Sat, 18 Dec 2021 14:48:35 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Sat, 18 Dec 2021 14:48:32 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <linux@armlinux.org.uk>,
-        <f.fainelli@gmail.com>, <vivien.didelot@gmail.com>,
-        <vladimir.oltean@nxp.com>, <andrew@lunn.ch>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH net-next v8 9/9] net: lan966x: Extend switchdev with fdb support
-Date:   Sat, 18 Dec 2021 22:49:46 +0100
-Message-ID: <20211218214946.531940-10-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211218214946.531940-1-horatiu.vultur@microchip.com>
-References: <20211218214946.531940-1-horatiu.vultur@microchip.com>
+        id S232638AbhLRV6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 16:58:52 -0500
+Received: from mail-db8eur05on2077.outbound.protection.outlook.com ([40.107.20.77]:58913
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232339AbhLRV6w (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 18 Dec 2021 16:58:52 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mmec69ARiT0EtjDMSPrTF9/BSjy+cvNPqs9MCMDhR568Da1x4mIRatDj1jceL9cChguWux/l4I6nPgrKnSRfn6/czNig9D4VTyOFz6s2rVXIo1vjT/pI/okuSQ5bidJzY65xe8rTGsUyga1DGYY0Sh9uGY/vqf1fyJX/duyq3YYgteEvQP4fQQZtEU53QXSSpO1008U17HqiLNFhae1HTdQzdPl4pcNmxuWohyI4DtWoexeGPKOdNE2pQ9NbCyxq4SLJyb1Ypn9FAWmIWBYPYHxGsgANeQJk2+2SHrMO7KyJFe4ZZk9nC+mlIZeluPVLYWAGVeGNOxKEcnKDOy4ojQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VOm8pMpa5Bka66uDqL5sD0MCOA2EPyM+VaIroFW6VNc=;
+ b=HLpCrmnNMbuekr60/0/0mVd92r412/8pTmIoO9V1KlAmS4QDezftT9iLMwgqfsGsmggPzzxYHVwFl3CTfZ4yvA+y8jJRAtZWY9SYybcOfii8Bp1lhQl4p9yOvrFoCw0DdS6ttpmqq72aDYryjEsYWYdgwZ3L4YKrSQVk2a+IheRRoEZrDTpXdM3CHEGv2j9ryY39bOx+YYtu8vWQdRPrZH3qZcs0C9Gq4puwQSRFxQffL11ATg8ln2I8JMPzX1EVhR9es3C/ZVglVNu83rpTWR1zJGcxV0R2Ey9TtuyQSRyKFYcwsufdx8QsGzZCYn894RQmPMo26N9JTZ1Gb5Tg0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VOm8pMpa5Bka66uDqL5sD0MCOA2EPyM+VaIroFW6VNc=;
+ b=Gh+TI8JeJ0TF+Xq/IFr+6IUdsaNtCC1fNE6rDr9Rc3stkQ7/ag8B/cw+489RxWVpxmkEMLakHU0Qaf6+z0jIXwkDn4RqEqLreaB1GWVzwSNME0OXVgDe5lZOat0nomIe2uUtMgOa/XxzvzTtS4iLVw4IvnUkk+4tSW10a97YnX4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com (2603:10a6:803:6a::30)
+ by VI1PR04MB3198.eurprd04.prod.outlook.com (2603:10a6:802:9::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.14; Sat, 18 Dec
+ 2021 21:58:48 +0000
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::4c4c:f2b2:addb:841]) by VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::4c4c:f2b2:addb:841%6]) with mapi id 15.20.4778.019; Sat, 18 Dec 2021
+ 21:58:48 +0000
+Date:   Sat, 18 Dec 2021 23:58:46 +0200
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [RESEND v4 10/10] dt-bindings: serial: fsl-lpuart: Add i.MX8DXL
+ compatible
+Message-ID: <Yb5ZlnEm3EYCD9h8@ryzen>
+References: <1639680494-23183-1-git-send-email-abel.vesa@nxp.com>
+ <1639680494-23183-11-git-send-email-abel.vesa@nxp.com>
+ <YbzB7mspRBonT9jJ@kroah.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YbzB7mspRBonT9jJ@kroah.com>
+X-ClientProxiedBy: VI1PR08CA0176.eurprd08.prod.outlook.com
+ (2603:10a6:800:d1::30) To VI1PR04MB4688.eurprd04.prod.outlook.com
+ (2603:10a6:803:6a::30)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f41ab1c2-e128-4fb4-7271-08d9c27191f3
+X-MS-TrafficTypeDiagnostic: VI1PR04MB3198:EE_
+X-Microsoft-Antispam-PRVS: <VI1PR04MB31981D622FC57DB3483F7FE8F6799@VI1PR04MB3198.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: P3oG00hJU5FwDIg5oCQrfmf9rFvf0yipE1fxPQNxedmdZFFy1U/A+eG7t6RifGv/1mxluxZjY2ojKqVW+gTmEbcAa0Fa4XuYOmaaxop6vVcWAhw80UyhFk7gDM2b+Qmie/uK8IbEIkBKFi0mk/mAhx1kCbGREaTKpTeEllvme6iIU6u0ARReXEp5x4YE9hqMO+blGENZUpZoy7W2YKNBJKL3JadSMDdG7OzNjNjSoP57YGb46cuz/6Sv/KzReHW0QRBtsQBgD6u5rjtk6j7Sl7v2DZeNOWugPAFGFhcVfrtOIUKTrNcPK2XeBCjVNFQL9cEp+OR3HtvB87x2nSIjuHzZZimyl5r8ZcgI7QebKzahggH1e+QJheYlgK/dKcPQa/7nbh+cRQG5BEGKXEOHQVcDslbqbGzK/wRuo/kiDV6pw9vBuMUcF8o34u+xfzX6GuRMWNTRRoiUqXTbeQ4Gog64qf41Fq1M7TVQfYsdYvh8Sy3+5teEiyNTewVnWWDYO0OyyPVA3nlbBK2IMXzJNxO/otnlAC4H3Yn2NmtbHpi49YWmZM1hFIUtNNDwcqSGQshehXUAP9UPc953MOntJAwrvMYG1tdzDHta5KQEvknXYtw4IjiGZ9tz5bPUz5r9nCsUfO3212gp0qLEKQ+I+EDGx6OycN9BtKT3tKJMyna1wLxAHFPfW/9RcAiXaeytXH1pz66jwe0PLZhxjIefEg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(366004)(38100700002)(4326008)(38350700002)(8676002)(2906002)(5660300002)(186003)(7416002)(44832011)(8936002)(52116002)(316002)(53546011)(54906003)(6506007)(86362001)(9686003)(6512007)(6916009)(26005)(66476007)(33716001)(66556008)(508600001)(83380400001)(66946007)(6486002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?s/HlxPNNLdkKvE5853DMGv/tlhDmv1iBHdl2ppI63CsfO5/UBrlThvGhlNBc?=
+ =?us-ascii?Q?ECnadbWkHo66Ip11pBualYzcEJwwnOKkUmwVWRnA9gq78wBGH/rPDqBaY6nn?=
+ =?us-ascii?Q?H7xS+P5f8eExtWznJfk0hIbf5waG+3rarDeyGJJGysqzIQe5G0A3fvTj0qwY?=
+ =?us-ascii?Q?MK4IREzVe45IHoKpyNrd/9QooP1uKUxNC75xEg7VGpTv3krBQBAH2MKrU6G7?=
+ =?us-ascii?Q?JinSp/1BjGcjBKutsQNCR5De5vewrcM5CEqQOMNzgWtqwekSDW088S3rb/uj?=
+ =?us-ascii?Q?3R3jYrVr0K7UmSKwM9MJW/XnM/NFe0vad19mpSW0vJ/QaF6SU7wZIliXBL5e?=
+ =?us-ascii?Q?8MeYb2syXPmOAalO6OJNbsPMDP4e/LDCHmV93WmggxuNrYkWdf0TO1moPRkM?=
+ =?us-ascii?Q?qyTE2VkFb4JUeBYK3DfoAAFq3bdPEEWR7+Ijy7LuwZ6qei6dSaKHZDQsD3mI?=
+ =?us-ascii?Q?9+oKSKKzVJxmilNUkY+2An3lecry+EC3YQWckbZrl4r8BjphZctGvcaqSttB?=
+ =?us-ascii?Q?u97fEpuzn2NnMQ98oRj7PuSldENAH5HyWGnMbOyTapX++MWvdkIjmFqhW6em?=
+ =?us-ascii?Q?QrsP3/i6dpwiOS/9jAo4EvKI883Bxf/Q6Z9DudCRZsT7FzmyDL1XFwRfTS03?=
+ =?us-ascii?Q?gjQdAL/S1LvyBPoZ2YfOx3GNF8FfB8Yyw1yLFFPVbWUdkSAzUEPK6EVewJuK?=
+ =?us-ascii?Q?r6r5EWmmcqD2c1fmIC/HlGSyzNDbmS5IsglkRNDLcvNpPhAKEspaBj3AlYKN?=
+ =?us-ascii?Q?X3lJEMWSpS1ZNhOzMnJr8WxIiFoEeioHVAbl4tFddnr0CsE6QkHZB30PhvZ2?=
+ =?us-ascii?Q?xEfuYqNv3nq/C3lVsvls1L54lg6zBekAP2IHKBXFStRq/VVXJauVPCdMwDDn?=
+ =?us-ascii?Q?UmghefkdTznDVVwqwQeVJWHZh/aTUYyTZxpR8ul3+ybTrfyvFruWxWNBAKFy?=
+ =?us-ascii?Q?Akdm7xKzh8gJzmX7PJVRtUDP16t+ACiRM9/APp1UOvBg1Kb4LnOve7YnpjJR?=
+ =?us-ascii?Q?bvP8L5zi2+A82pgmg0e7IUJUGOVBjwU3bHRk+G0s3fJwQufICgvt+3/doOXX?=
+ =?us-ascii?Q?2118NLlcVUtUgCs5kEzEPNOdbYu4tc7sG479t1m8Fz1qyfWQrrWCZ9qZ32kg?=
+ =?us-ascii?Q?0ZcAn8LTGqDNb6S69p9IrcL8OLWxy/3ICfNzVyXU5jySdtCRCcQ0kR/a3QAL?=
+ =?us-ascii?Q?yRpJfRnwbwub3/ps0dpMHbziC1rv3lEpMmUfdgpneRiKa5Fc1GZIr0yKs73j?=
+ =?us-ascii?Q?74IRNfMuGR7HC0iSekZHTjWwPv5uD5GqcaabQjMvouGnkgXvE/OS8KVqQczc?=
+ =?us-ascii?Q?wtUVx1xa7+iIKNtdVHfACYYaUb3WCjhhPgUnUuHJVRiNqT6J3o0UHGDIg0ZN?=
+ =?us-ascii?Q?+pU/8i/hWyim64LJEA9Mps1Hapk1jabaVp+0ORl/7RcKtXqoNa4vu5DxPh7e?=
+ =?us-ascii?Q?r8w5muHKAPFtpPe0HLMekfoUMxPe0PZBBwQdnuqYttANk8RpNV3ssiI0pwYp?=
+ =?us-ascii?Q?/c8qYXQ1ZvVbymsPkTJlfwiUU3kpsWFoVedcbJdyaeoEdz5swpCXnxLbkI4i?=
+ =?us-ascii?Q?0zApHL9TRt9v2qp3+EoEenRWauRLh/xaB/RMyUqHjeSK6ezgbce8AscGl09x?=
+ =?us-ascii?Q?PvZTJtyLb4xpdvhO+iJ7DWU=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f41ab1c2-e128-4fb4-7271-08d9c27191f3
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4688.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2021 21:58:48.6848
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +PvJ5K5euzLHiXNFhB1Ewq4cJ8FHyprbjfyIKbXToTh2x9NI7uqCKUMKSTH4MrKMUJG/z8fI0SyjhxNPaj7KTw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3198
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend lan966x driver with fdb support by implementing the switchdev
-calls SWITCHDEV_FDB_ADD_TO_DEVICE and SWITCHDEV_FDB_DEL_TO_DEVICE.
+On 21-12-17 17:59:26, Greg Kroah-Hartman wrote:
+> On Thu, Dec 16, 2021 at 08:48:14PM +0200, Abel Vesa wrote:
+> > Add i.MX8DXL lpuart compatible to the bindings documentation.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> > ---
+> >  Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+> > index fa23c60a01d0..ee37aa125c86 100644
+> > --- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+> > @@ -29,6 +29,10 @@ properties:
+> >        - items:
+> >            - const: fsl,imx8qm-lpuart
+> >            - const: fsl,imx8qxp-lpuart
+> > +      - items:
+> > +          - const: fsl,imx8dxl-lpuart
+> > +          - const: fsl,imx8qxp-lpuart
+> > +          - const: fsl,imx7ulp-lpuart
+> 
+> Why is "- items:" listed twice here?
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- .../net/ethernet/microchip/lan966x/Makefile   |   2 +-
- .../ethernet/microchip/lan966x/lan966x_fdb.c  | 244 ++++++++++++++++++
- .../ethernet/microchip/lan966x/lan966x_main.c |   5 +
- .../ethernet/microchip/lan966x/lan966x_main.h |  14 +
- .../microchip/lan966x/lan966x_switchdev.c     |  21 ++
- .../ethernet/microchip/lan966x/lan966x_vlan.c |  15 +-
- 6 files changed, 298 insertions(+), 3 deletions(-)
- create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_fdb.c
+There are actually 3 "- items:" and there is a "oneOf:" 
+that encloses all of these.
 
-diff --git a/drivers/net/ethernet/microchip/lan966x/Makefile b/drivers/net/ethernet/microchip/lan966x/Makefile
-index d82e896c2e53..ec1a1fa8b0d5 100644
---- a/drivers/net/ethernet/microchip/lan966x/Makefile
-+++ b/drivers/net/ethernet/microchip/lan966x/Makefile
-@@ -7,4 +7,4 @@ obj-$(CONFIG_LAN966X_SWITCH) += lan966x-switch.o
- 
- lan966x-switch-objs  := lan966x_main.o lan966x_phylink.o lan966x_port.o \
- 			lan966x_mac.o lan966x_ethtool.o lan966x_switchdev.o \
--			lan966x_vlan.o
-+			lan966x_vlan.o lan966x_fdb.o
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_fdb.c b/drivers/net/ethernet/microchip/lan966x/lan966x_fdb.c
-new file mode 100644
-index 000000000000..da5ca7188679
---- /dev/null
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_fdb.c
-@@ -0,0 +1,244 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+
-+#include <net/switchdev.h>
-+
-+#include "lan966x_main.h"
-+
-+struct lan966x_fdb_event_work {
-+	struct work_struct work;
-+	struct switchdev_notifier_fdb_info fdb_info;
-+	struct net_device *dev;
-+	struct lan966x *lan966x;
-+	unsigned long event;
-+};
-+
-+struct lan966x_fdb_entry {
-+	struct list_head list;
-+	unsigned char mac[ETH_ALEN] __aligned(2);
-+	u16 vid;
-+	u32 references;
-+};
-+
-+static struct lan966x_fdb_entry *
-+lan966x_fdb_find_entry(struct lan966x *lan966x,
-+		       struct switchdev_notifier_fdb_info *fdb_info)
-+{
-+	struct lan966x_fdb_entry *fdb_entry;
-+
-+	list_for_each_entry(fdb_entry, &lan966x->fdb_entries, list) {
-+		if (fdb_entry->vid == fdb_info->vid &&
-+		    ether_addr_equal(fdb_entry->mac, fdb_info->addr))
-+			return fdb_entry;
-+	}
-+
-+	return NULL;
-+}
-+
-+static void lan966x_fdb_add_entry(struct lan966x *lan966x,
-+				  struct switchdev_notifier_fdb_info *fdb_info)
-+{
-+	struct lan966x_fdb_entry *fdb_entry;
-+
-+	fdb_entry = lan966x_fdb_find_entry(lan966x, fdb_info);
-+	if (fdb_entry) {
-+		fdb_entry->references++;
-+		return;
-+	}
-+
-+	fdb_entry = kzalloc(sizeof(*fdb_entry), GFP_KERNEL);
-+	if (!fdb_entry)
-+		return;
-+
-+	ether_addr_copy(fdb_entry->mac, fdb_info->addr);
-+	fdb_entry->vid = fdb_info->vid;
-+	fdb_entry->references = 1;
-+	list_add_tail(&fdb_entry->list, &lan966x->fdb_entries);
-+}
-+
-+static bool lan966x_fdb_del_entry(struct lan966x *lan966x,
-+				  struct switchdev_notifier_fdb_info *fdb_info)
-+{
-+	struct lan966x_fdb_entry *fdb_entry, *tmp;
-+
-+	list_for_each_entry_safe(fdb_entry, tmp, &lan966x->fdb_entries,
-+				 list) {
-+		if (fdb_entry->vid == fdb_info->vid &&
-+		    ether_addr_equal(fdb_entry->mac, fdb_info->addr)) {
-+			fdb_entry->references--;
-+			if (!fdb_entry->references) {
-+				list_del(&fdb_entry->list);
-+				kfree(fdb_entry);
-+				return true;
-+			}
-+			break;
-+		}
-+	}
-+
-+	return false;
-+}
-+
-+void lan966x_fdb_write_entries(struct lan966x *lan966x, u16 vid)
-+{
-+	struct lan966x_fdb_entry *fdb_entry;
-+
-+	list_for_each_entry(fdb_entry, &lan966x->fdb_entries, list) {
-+		if (fdb_entry->vid != vid)
-+			continue;
-+
-+		lan966x_mac_cpu_learn(lan966x, fdb_entry->mac, fdb_entry->vid);
-+	}
-+}
-+
-+void lan966x_fdb_erase_entries(struct lan966x *lan966x, u16 vid)
-+{
-+	struct lan966x_fdb_entry *fdb_entry;
-+
-+	list_for_each_entry(fdb_entry, &lan966x->fdb_entries, list) {
-+		if (fdb_entry->vid != vid)
-+			continue;
-+
-+		lan966x_mac_cpu_forget(lan966x, fdb_entry->mac, fdb_entry->vid);
-+	}
-+}
-+
-+static void lan966x_fdb_purge_entries(struct lan966x *lan966x)
-+{
-+	struct lan966x_fdb_entry *fdb_entry, *tmp;
-+
-+	list_for_each_entry_safe(fdb_entry, tmp, &lan966x->fdb_entries, list) {
-+		list_del(&fdb_entry->list);
-+		kfree(fdb_entry);
-+	}
-+}
-+
-+int lan966x_fdb_init(struct lan966x *lan966x)
-+{
-+	INIT_LIST_HEAD(&lan966x->fdb_entries);
-+	lan966x->fdb_work = alloc_ordered_workqueue("lan966x_order", 0);
-+	if (!lan966x->fdb_work)
-+		return -ENOMEM;
-+
-+	return 0;
-+}
-+
-+void lan966x_fdb_deinit(struct lan966x *lan966x)
-+{
-+	destroy_workqueue(lan966x->fdb_work);
-+	lan966x_fdb_purge_entries(lan966x);
-+}
-+
-+static void lan966x_fdb_event_work(struct work_struct *work)
-+{
-+	struct lan966x_fdb_event_work *fdb_work =
-+		container_of(work, struct lan966x_fdb_event_work, work);
-+	struct switchdev_notifier_fdb_info *fdb_info;
-+	struct net_device *dev = fdb_work->dev;
-+	struct lan966x_port *port;
-+	struct lan966x *lan966x;
-+	int ret;
-+
-+	fdb_info = &fdb_work->fdb_info;
-+	lan966x = fdb_work->lan966x;
-+
-+	if (lan966x_netdevice_check(dev)) {
-+		port = netdev_priv(dev);
-+
-+		switch (fdb_work->event) {
-+		case SWITCHDEV_FDB_ADD_TO_DEVICE:
-+			if (!fdb_info->added_by_user)
-+				break;
-+			lan966x_mac_add_entry(lan966x, port, fdb_info->addr,
-+					      fdb_info->vid);
-+			break;
-+		case SWITCHDEV_FDB_DEL_TO_DEVICE:
-+			if (!fdb_info->added_by_user)
-+				break;
-+			lan966x_mac_del_entry(lan966x, fdb_info->addr,
-+					      fdb_info->vid);
-+			break;
-+		}
-+	} else {
-+		if (!netif_is_bridge_master(dev))
-+			goto out;
-+
-+		/* In case the bridge is called */
-+		switch (fdb_work->event) {
-+		case SWITCHDEV_FDB_ADD_TO_DEVICE:
-+			/* If there is no front port in this vlan, there is no
-+			 * point to copy the frame to CPU because it would be
-+			 * just dropped at later point. So add it only if
-+			 * there is a port but it is required to store the fdb
-+			 * entry for later point when a port actually gets in
-+			 * the vlan.
-+			 */
-+			lan966x_fdb_add_entry(lan966x, fdb_info);
-+			if (!lan966x_vlan_cpu_member_cpu_vlan_mask(lan966x,
-+								   fdb_info->vid))
-+				break;
-+
-+			lan966x_mac_cpu_learn(lan966x, fdb_info->addr,
-+					      fdb_info->vid);
-+			break;
-+		case SWITCHDEV_FDB_DEL_TO_DEVICE:
-+			ret = lan966x_fdb_del_entry(lan966x, fdb_info);
-+			if (!lan966x_vlan_cpu_member_cpu_vlan_mask(lan966x,
-+								   fdb_info->vid))
-+				break;
-+
-+			if (ret)
-+				lan966x_mac_cpu_forget(lan966x, fdb_info->addr,
-+						       fdb_info->vid);
-+			break;
-+		}
-+	}
-+
-+out:
-+	kfree(fdb_work->fdb_info.addr);
-+	kfree(fdb_work);
-+	dev_put(dev);
-+}
-+
-+int lan966x_handle_fdb(struct net_device *dev,
-+		       struct net_device *orig_dev,
-+		       unsigned long event, const void *ctx,
-+		       const struct switchdev_notifier_fdb_info *fdb_info)
-+{
-+	struct lan966x_port *port = netdev_priv(dev);
-+	struct lan966x *lan966x = port->lan966x;
-+	struct lan966x_fdb_event_work *fdb_work;
-+
-+	if (ctx && ctx != port)
-+		return 0;
-+
-+	switch (event) {
-+	case SWITCHDEV_FDB_ADD_TO_DEVICE:
-+	case SWITCHDEV_FDB_DEL_TO_DEVICE:
-+		if (lan966x_netdevice_check(orig_dev) &&
-+		    !fdb_info->added_by_user)
-+			break;
-+
-+		fdb_work = kzalloc(sizeof(*fdb_work), GFP_ATOMIC);
-+		if (!fdb_work)
-+			return -ENOMEM;
-+
-+		fdb_work->dev = orig_dev;
-+		fdb_work->lan966x = lan966x;
-+		fdb_work->event = event;
-+		INIT_WORK(&fdb_work->work, lan966x_fdb_event_work);
-+		memcpy(&fdb_work->fdb_info, fdb_info, sizeof(fdb_work->fdb_info));
-+		fdb_work->fdb_info.addr = kzalloc(ETH_ALEN, GFP_ATOMIC);
-+		if (!fdb_work->fdb_info.addr)
-+			goto err_addr_alloc;
-+
-+		ether_addr_copy((u8 *)fdb_work->fdb_info.addr, fdb_info->addr);
-+		dev_hold(orig_dev);
-+
-+		queue_work(lan966x->fdb_work, &fdb_work->work);
-+		break;
-+	}
-+
-+	return 0;
-+err_addr_alloc:
-+	kfree(fdb_work);
-+	return -ENOMEM;
-+}
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_main.c b/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-index 1162f5540a65..5b9f004ad902 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-@@ -919,6 +919,10 @@ static int lan966x_probe(struct platform_device *pdev)
- 		lan966x_port_init(lan966x->ports[p]);
- 	}
- 
-+	err = lan966x_fdb_init(lan966x);
-+	if (err)
-+		goto cleanup_ports;
-+
- 	return 0;
- 
- cleanup_ports:
-@@ -944,6 +948,7 @@ static int lan966x_remove(struct platform_device *pdev)
- 	mutex_destroy(&lan966x->stats_lock);
- 
- 	lan966x_mac_purge_entries(lan966x);
-+	lan966x_fdb_deinit(lan966x);
- 
- 	return 0;
- }
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_main.h b/drivers/net/ethernet/microchip/lan966x/lan966x_main.h
-index 19635cea6634..051182890237 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_main.h
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_main.h
-@@ -8,6 +8,7 @@
- #include <linux/jiffies.h>
- #include <linux/phy.h>
- #include <linux/phylink.h>
-+#include <net/switchdev.h>
- 
- #include "lan966x_regs.h"
- #include "lan966x_ifh.h"
-@@ -100,6 +101,10 @@ struct lan966x {
- 	/* interrupts */
- 	int xtr_irq;
- 	int ana_irq;
-+
-+	/* worqueue for fdb */
-+	struct workqueue_struct *fdb_work;
-+	struct list_head fdb_entries;
- };
- 
- struct lan966x_port_config {
-@@ -190,6 +195,15 @@ void lan966x_vlan_port_del_vlan(struct lan966x_port *port, u16 vid);
- void lan966x_vlan_cpu_add_vlan(struct lan966x *lan966x, u16 vid);
- void lan966x_vlan_cpu_del_vlan(struct lan966x *lan966x, u16 vid);
- 
-+void lan966x_fdb_write_entries(struct lan966x *lan966x, u16 vid);
-+void lan966x_fdb_erase_entries(struct lan966x *lan966x, u16 vid);
-+int lan966x_fdb_init(struct lan966x *lan966x);
-+void lan966x_fdb_deinit(struct lan966x *lan966x);
-+int lan966x_handle_fdb(struct net_device *dev,
-+		       struct net_device *orig_dev,
-+		       unsigned long event, const void *ctx,
-+		       const struct switchdev_notifier_fdb_info *fdb_info);
-+
- static inline void __iomem *lan_addr(void __iomem *base[],
- 				     int id, int tinst, int tcnt,
- 				     int gbase, int ginst,
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c b/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c
-index af058700a95b..42c3170030d0 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c
-@@ -293,6 +293,19 @@ static int lan966x_netdevice_event(struct notifier_block *nb,
- 	return notifier_from_errno(ret);
- }
- 
-+static bool lan966x_foreign_dev_check(const struct net_device *dev,
-+				      const struct net_device *foreign_dev)
-+{
-+	struct lan966x_port *port = netdev_priv(dev);
-+	struct lan966x *lan966x = port->lan966x;
-+
-+	if (netif_is_bridge_master(foreign_dev))
-+		if (lan966x->bridge != foreign_dev)
-+			return true;
-+
-+	return false;
-+}
-+
- static int lan966x_switchdev_event(struct notifier_block *nb,
- 				   unsigned long event, void *ptr)
- {
-@@ -305,6 +318,14 @@ static int lan966x_switchdev_event(struct notifier_block *nb,
- 						     lan966x_netdevice_check,
- 						     lan966x_port_attr_set);
- 		return notifier_from_errno(err);
-+	case SWITCHDEV_FDB_ADD_TO_DEVICE:
-+	case SWITCHDEV_FDB_DEL_TO_DEVICE:
-+		err = switchdev_handle_fdb_event_to_device(dev, event, ptr,
-+							   lan966x_netdevice_check,
-+							   lan966x_foreign_dev_check,
-+							   lan966x_handle_fdb,
-+							   NULL);
-+		return notifier_from_errno(err);
- 	}
- 
- 	return NOTIFY_DONE;
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_vlan.c b/drivers/net/ethernet/microchip/lan966x/lan966x_vlan.c
-index 64eb80626deb..057f48ddf22c 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_vlan.c
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_vlan.c
-@@ -211,8 +211,15 @@ void lan966x_vlan_port_add_vlan(struct lan966x_port *port,
- {
- 	struct lan966x *lan966x = port->lan966x;
- 
--	if (lan966x_vlan_cpu_member_cpu_vlan_mask(lan966x, vid))
-+	/* If the CPU(br) is already part of the vlan then add the fdb
-+	 * entries in MAC table to copy the frames to the CPU(br).
-+	 * If the CPU(br) is not part of the vlan then it would
-+	 * just drop the frames.
-+	 */
-+	if (lan966x_vlan_cpu_member_cpu_vlan_mask(lan966x, vid)) {
- 		lan966x_vlan_cpu_add_vlan_mask(lan966x, vid);
-+		lan966x_fdb_write_entries(lan966x, vid);
-+	}
- 
- 	lan966x_vlan_port_set_vid(port, vid, pvid, untagged);
- 	lan966x_vlan_port_add_vlan_mask(port, vid);
-@@ -231,8 +238,10 @@ void lan966x_vlan_port_del_vlan(struct lan966x_port *port, u16 vid)
- 	 * that vlan but still keep it in the mask because it may be needed
- 	 * again then another port gets added in that vlan
- 	 */
--	if (!lan966x_vlan_port_any_vlan_mask(lan966x, vid))
-+	if (!lan966x_vlan_port_any_vlan_mask(lan966x, vid)) {
- 		lan966x_vlan_cpu_del_vlan_mask(lan966x, vid);
-+		lan966x_fdb_erase_entries(lan966x, vid);
-+	}
- }
- 
- void lan966x_vlan_cpu_add_vlan(struct lan966x *lan966x, u16 vid)
-@@ -249,6 +258,7 @@ void lan966x_vlan_cpu_add_vlan(struct lan966x *lan966x, u16 vid)
- 		lan966x_vlan_cpu_add_vlan_mask(lan966x, vid);
- 
- 	lan966x_vlan_cpu_add_cpu_vlan_mask(lan966x, vid);
-+	lan966x_fdb_write_entries(lan966x, vid);
- }
- 
- void lan966x_vlan_cpu_del_vlan(struct lan966x *lan966x, u16 vid)
-@@ -256,6 +266,7 @@ void lan966x_vlan_cpu_del_vlan(struct lan966x *lan966x, u16 vid)
- 	/* Remove the CPU part of the vlan */
- 	lan966x_vlan_cpu_del_cpu_vlan_mask(lan966x, vid);
- 	lan966x_vlan_cpu_del_vlan_mask(lan966x, vid);
-+	lan966x_fdb_erase_entries(lan966x, vid);
- }
- 
- void lan966x_vlan_init(struct lan966x *lan966x)
--- 
-2.33.0
+Unfortunately, there are special cases within the driver
+that forces the devicetree nodes to have a different list of
+compatibles for almost each SoC.
 
+> 
+> thanks,
+> 
+> greg k-h
