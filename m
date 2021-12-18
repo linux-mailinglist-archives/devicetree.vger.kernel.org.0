@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2624479B33
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 15:10:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1925479B36
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 15:10:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233353AbhLROKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 09:10:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48224 "EHLO
+        id S233361AbhLROKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 09:10:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233335AbhLROKg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 09:10:36 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCFF2C06173E
-        for <devicetree@vger.kernel.org>; Sat, 18 Dec 2021 06:10:35 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id k2so7920399lji.4
-        for <devicetree@vger.kernel.org>; Sat, 18 Dec 2021 06:10:35 -0800 (PST)
+        with ESMTP id S233335AbhLROKi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 09:10:38 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C82D6C06173F
+        for <devicetree@vger.kernel.org>; Sat, 18 Dec 2021 06:10:37 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id bq20so9707869lfb.4
+        for <devicetree@vger.kernel.org>; Sat, 18 Dec 2021 06:10:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=W9jdk7r3IOG4RIA9s1m47ShpIrTm4qBfDERhWxxlQOw=;
-        b=NbDUiOJD95EDE6kdhY/TRXoJyaa120ukkikvm/2bD1iIZ/c9QOTFu8OUEXEf3hyLBW
-         e2I2ABGPC12P/Fp3kpUWr3I07ClTUJ9QCkIpyTSo+D0qfOdhj0rZmeLto/8X+CZKEUbP
-         1Ar0/PgJNWro/uE/QYInvF2COC7ZeZ0tqKunTYDry6NEsvlOkD6ATlmcXOaLaSAuzT4+
-         qo7erjl166IA5/5kwpyv0wV29Gw9QtwPgNzl4UwPmknmO2DkgRK3mWKIv+7wOyiLXhnB
-         VGtZpE33UV0WbqaIF5UwSWvU3o8SooBDeNkKdxJ7SA0MRkNV8ZQYNsYXst1t6EIo3V/8
-         mECA==
+        bh=MJD3i4LNvk3j5OqCXxhWKJZIrOos2jbPnsDYbhu5cbY=;
+        b=U/R7IWDRxahH18MdtRwF1v9VXaR3mzszn8X43svfJb1nwJX4gSSZS66Buu+X2CJNem
+         nJC+ETkBAGgaPp2SUTT/+cb63z+jg2Yu8BbFdP9kYrV38lpDDKbLdHf+WZxkxNbv3hTo
+         x4RyY1tned1wjtXGViDgUSrrEJ7MWqJQBRAhxDCA64m5JsW673nXb30N8eAJIlShnt1C
+         ZOUaymbwDFfpcAxawL1efw1k5IgxP6i0xVjG14urMNrIGb6UbsWK2mL20qdiw6xJ0iro
+         5HIwts5KQuOYzLdS4RfZquG49xfAchug4+pXbG1OEOU77jT4JZ7yTkUWDfkCOIC6DyJn
+         PEng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=W9jdk7r3IOG4RIA9s1m47ShpIrTm4qBfDERhWxxlQOw=;
-        b=hSMwJQYX2ospImLhaYbG9e234fI6z5aDI8OM8dI85yOPg8cCNBYi3OXtYR0g0dPJxK
-         DlfxYuII0ZP3/+RyMKWBTN1M3bCULuT88E1qPeIzk9pksRHNaXTcpYKWyzEYkg+ZAQhI
-         QXlP7dtV9b6FL2El/uADa8TdKjZQg1drdTaQiW10StRkwpX0Kh17mlZytVx7m5BXOusY
-         kSFprzoNxu4DJ3Ptl7FyD+5oKLRo1DhHqQRCnWVrGhuyrxXWfX7sKyF7ftduc0woS9o1
-         V8NHMYWn+hsDwWGd5wv0nIaJiZ1HMRm8hcGiCpmPO37pGMN5eEHtcbFveCdRxrNkAAfg
-         pxPQ==
-X-Gm-Message-State: AOAM530HVOfeSYhug4v0TOY4qyolIxIJLryROXRBW/npWuTk+9VRLP7+
-        dBV00tT2firFD7EJkB3aYEMxgg==
-X-Google-Smtp-Source: ABdhPJydOkVbKGQ/hWi+9HUsHe1JrKrmVeYg/YxzxxgLW8yv3pS2beqnplZEFG4BHC5xEAl/MeRDoQ==
-X-Received: by 2002:a2e:80a:: with SMTP id 10mr6891037lji.337.1639836634059;
-        Sat, 18 Dec 2021 06:10:34 -0800 (PST)
+        bh=MJD3i4LNvk3j5OqCXxhWKJZIrOos2jbPnsDYbhu5cbY=;
+        b=UUj9yXOJ5JELmmliCGEdxRJKdqDp4vLXFa+nYBkL7jtpSxwaH65P8Zxii4ITO4knuo
+         g3s+nUa0LQmT0mJIRV3Fori+SmQTcoCQ21dqrCpsJxPbW0TEdVC7S1eWzOki71sUaCtE
+         /Ay8LONnP5uQOXubqH1YO8p7eCFc1D80zDNEVeyvTO/e44PoZpd0IhZFkJwZqDunnBbh
+         pQkRWbQbjd7JIm74wEl1B727fiToZhYuTZs5OdqbxDYGBalVhGlk/pyndv/DyZqWEdcq
+         bWyb+43SfLZ7BYUrLCiwbfL3k4RPNMVN45VJipETbLTFr5TGfBSLb8TLvev3Q4cEwe2u
+         j3DA==
+X-Gm-Message-State: AOAM532BUFYM1nrAkXJ/GvxcNMbrzTzLHkC3lRZ7psuWquto/Ktg2o8P
+        QRllk/EC9pxG//9f8hjlktbhUFFSucNf8ABU
+X-Google-Smtp-Source: ABdhPJw4gmIsvWUIkTGVcUvJG7SDQCnhLHlVHWepghCKwDrLGuvKEp1/vSo8nQG5IhhVw7MYZRa6ig==
+X-Received: by 2002:a05:6512:682:: with SMTP id t2mr7065881lfe.503.1639836636089;
+        Sat, 18 Dec 2021 06:10:36 -0800 (PST)
 Received: from eriador.lan ([2001:470:dd84:abc0::8a5])
-        by smtp.gmail.com with ESMTPSA id c2sm145789lfh.189.2021.12.18.06.10.32
+        by smtp.gmail.com with ESMTPSA id c2sm145789lfh.189.2021.12.18.06.10.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Dec 2021 06:10:33 -0800 (PST)
+        Sat, 18 Dec 2021 06:10:35 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,9 +59,9 @@ Cc:     Bjorn Helgaas <bhelgaas@google.com>,
         =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
         linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: [PATCH v5 3/5] PCI: qcom: Add ddrss_sf_tbu flag
-Date:   Sat, 18 Dec 2021 17:10:22 +0300
-Message-Id: <20211218141024.500952-4-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v5 4/5] PCI: qcom: Add interconnect support to 2.7.0/1.9.0 ops
+Date:   Sat, 18 Dec 2021 17:10:23 +0300
+Message-Id: <20211218141024.500952-5-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20211218141024.500952-1-dmitry.baryshkov@linaro.org>
 References: <20211218141024.500952-1-dmitry.baryshkov@linaro.org>
@@ -71,44 +71,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm PCIe driver uses compatible string to check if the ddrss_sf_tbu
-clock should be used. Since sc7280 support has added flags, switch to
-the new mechanism to check if this clock should be used.
+Add optional interconnect support for the 2.7.0/1.9.0 hosts. Set the
+bandwidth according to the values from the downstream driver.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/pci/controller/dwc/pcie-qcom.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/pci/controller/dwc/pcie-qcom.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
 diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 1204011c96ee..d8d400423a0a 100644
+index d8d400423a0a..55ac3caa6d7d 100644
 --- a/drivers/pci/controller/dwc/pcie-qcom.c
 +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -191,6 +191,7 @@ struct qcom_pcie_ops {
- struct qcom_pcie_cfg {
- 	const struct qcom_pcie_ops *ops;
- 	unsigned int pipe_clk_need_muxing:1;
-+	unsigned int has_ddrss_sf_tbu_clk:1;
+@@ -12,6 +12,7 @@
+ #include <linux/crc8.h>
+ #include <linux/delay.h>
+ #include <linux/gpio/consumer.h>
++#include <linux/interconnect.h>
+ #include <linux/interrupt.h>
+ #include <linux/io.h>
+ #include <linux/iopoll.h>
+@@ -167,6 +168,7 @@ struct qcom_pcie_resources_2_7_0 {
+ 	struct clk *pipe_clk_src;
+ 	struct clk *phy_pipe_clk;
+ 	struct clk *ref_clk_src;
++	struct icc_path *path;
  };
  
- struct qcom_pcie {
-@@ -1133,7 +1134,7 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
- 	res->clks[3].id = "bus_slave";
- 	res->clks[4].id = "slave_q2a";
- 	res->clks[5].id = "tbu";
--	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sm8250")) {
-+	if (pcie->cfg->has_ddrss_sf_tbu_clk) {
- 		res->clks[6].id = "ddrss_sf_tbu";
- 		res->num_clks = 7;
- 	} else {
-@@ -1449,6 +1450,7 @@ static const struct qcom_pcie_cfg sdm845_cfg = {
+ union qcom_pcie_resources {
+@@ -1121,6 +1123,10 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
+ 	if (IS_ERR(res->pci_reset))
+ 		return PTR_ERR(res->pci_reset);
  
- static const struct qcom_pcie_cfg sm8250_cfg = {
- 	.ops = &ops_1_9_0,
-+	.has_ddrss_sf_tbu_clk = true,
- };
++	res->path = devm_of_icc_get(dev, "pci");
++	if (IS_ERR(res->path))
++		return PTR_ERR(res->path);
++
+ 	res->supplies[0].supply = "vdda";
+ 	res->supplies[1].supply = "vddpe-3v3";
+ 	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(res->supplies),
+@@ -1183,6 +1189,9 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
+ 	if (pcie->cfg->pipe_clk_need_muxing)
+ 		clk_set_parent(res->pipe_clk_src, res->phy_pipe_clk);
  
- static const struct qcom_pcie_cfg sc7280_cfg = {
++	if (res->path)
++		icc_set_bw(res->path, 500, 800);
++
+ 	ret = clk_bulk_prepare_enable(res->num_clks, res->clks);
+ 	if (ret < 0)
+ 		goto err_disable_regulators;
+@@ -1241,6 +1250,8 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
+ 	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+ 
+ 	clk_bulk_disable_unprepare(res->num_clks, res->clks);
++	if (res->path)
++		icc_set_bw(res->path, 0, 0);
+ 
+ 	/* Set TCXO as clock source for pcie_pipe_clk_src */
+ 	if (pcie->cfg->pipe_clk_need_muxing)
 -- 
 2.34.1
 
