@@ -2,81 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C648479B6D
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 15:37:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75C88479B75
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 15:49:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230052AbhLROhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 09:37:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54066 "EHLO
+        id S233486AbhLROtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 09:49:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230522AbhLROhF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 09:37:05 -0500
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [IPv6:2001:67c:2050::465:101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1AB6C061574
-        for <devicetree@vger.kernel.org>; Sat, 18 Dec 2021 06:37:04 -0800 (PST)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:105:465:1:1:0])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4JGT2Q6hB0zQkBp;
-        Sat, 18 Dec 2021 15:37:02 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-        t=1639838221;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=0sXFk4A29aee5T5cwUNQcaVfx8IXgBcOndunD/GQABw=;
-        b=RgwsZQMU5t6UEwe/6+9AblpO0KJsdJ1a28TWmaducNA2Z9d3gkDAytIRQq675cjNG+V7b6
-        TEL61c27eqoOAabnHCZJmt+hBOsnm/uKI4ELdTVo0ss5QuIeh3ENGREAT9z+2eGZPcKNgR
-        aciwMPZZaWz1zFwJ8LfX6SZoReVG+guNWorw3sUcDz5vF7r+ASwfmBrI+Rk+Ld2HQYLl4q
-        0TSwm2WFySHxCc3hzbDwZ13Rsr11cSY3ve5QBlQ8huY03zgdpMdlX/O3qdv6xjr8bmetLG
-        yc7X+e99bo0QCvCebNaElqew6XDvUc1/823cjHNpt38PRdNhKP0GdAkzfOPL9w==
-From:   Alexander Stein <alexander.stein@mailbox.org>
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Alexander Stein <alexander.stein@mailbox.org>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH 1/1] dt-bindings: display: meson-vpu: Add missing amlogic,canvas property
-Date:   Sat, 18 Dec 2021 15:36:41 +0100
-Message-Id: <20211218143641.19372-1-alexander.stein@mailbox.org>
+        with ESMTP id S233481AbhLROtb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 09:49:31 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81B53C061574;
+        Sat, 18 Dec 2021 06:49:30 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id a9so9773524wrr.8;
+        Sat, 18 Dec 2021 06:49:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+        bh=4dTIJ4LLWFdMS2XTO0tU1VpI6xwERc2lNgtDmw13Gqs=;
+        b=AW+/l0FYGFXWf5eLENzL8c7j5Hi9eYjKH5VbXQuZyCqgctX1JmwF+DqSeIarao/xBP
+         3aa9eKaeJNexu5PHJjNG4DIP6NRl24UkZrrVnrluVn2ZfBRdTmrhX2h8CF5+t8tlo/vc
+         HEh6tiO/d7kMn3KXvdsHelgFXiA7ZsCzooA7HbCxmHBG7fOTY8Kmt5yBl726y6Y6w+Vb
+         v1inmspnboQKMwzdZDH31OTAew6ForPjtQ54yuZs3y5qKafsu6q3/w6Bji2XNwsD9XMi
+         6XYk7iiO5TgiEXMMYHnvPalugHo0S0csZnb4Yw5JEIg+y0IqYuGB2kf32qyegAJPEzs5
+         v/OA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=4dTIJ4LLWFdMS2XTO0tU1VpI6xwERc2lNgtDmw13Gqs=;
+        b=CLoyt7KcoGw2S/V/ZKB8pkEXJDM0KFQWmUJMST54wKZcoKMKDa7wBj3HuGoqNCzbDs
+         PfcGDzKuZh+zNivlBCFE0N8TObl/jFMrmwG5eMTpAJ1bt+9BcTfnRqSPLQnJYyf7CGw0
+         5juQW5BMmBnNMi2tOPvtzdntjkTJQ7zdrrVQg1IcvyHduPXBSsfVWXZGQyeKx7B2UVLk
+         dlquJde0PoztqWTFXh2CzD87ni6ENE4EtljXLYqH+vBo8SwoK3h+DiV7n8degtO6yuao
+         TOz2xG+30mv8QGWYR+vh/apKdj/RmZ5uC3ZRqbzagk03AW8rtInM3eC3h5dulI4o9nB0
+         LNig==
+X-Gm-Message-State: AOAM532XVKkZG7GL3xooO8o2NYGxc/VU1+1JNAzLHdmYJaQMA4U3yQRh
+        LSy34fo6SR5WO9QsdIHddcM=
+X-Google-Smtp-Source: ABdhPJzU+oh70+2zV1gTmQpy7pPDJ5og6t5NewX/hUA2MJZTupAg4qJE9l5FPf94p2AdIctugJjkdQ==
+X-Received: by 2002:a05:6000:148:: with SMTP id r8mr5993251wrx.333.1639838969101;
+        Sat, 18 Dec 2021 06:49:29 -0800 (PST)
+Received: from standask-GA-A55M-S2HP ([188.123.115.255])
+        by smtp.gmail.com with ESMTPSA id f15sm12560572wmg.30.2021.12.18.06.49.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 18 Dec 2021 06:49:28 -0800 (PST)
+Date:   Sat, 18 Dec 2021 15:49:27 +0100
+From:   Stanislav Jakubek <stano.jakubek@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: arm: ux500: Document missing compatibles
+Message-ID: <20211218144927.GA6388@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This property was already mentioned in the old textual bindings
-amlogic,meson-vpu.txt, but got dropped during conversion.
-Adding it back similar to amlogic,gx-vdec.yaml.
+These compatibles are used in Ux500 device trees, but were not documented so
+far. Add them to the schema to document them.
 
-Fixes: 6b9ebf1e0e67 ("dt-bindings: display: amlogic, meson-vpu: convert to
- yaml")
-Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 ---
- .../devicetree/bindings/display/amlogic,meson-vpu.yaml        | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../devicetree/bindings/arm/ux500.yaml        | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-index 851cb0781217..65bf6d7ec707 100644
---- a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-+++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-@@ -78,6 +78,10 @@ properties:
-   interrupts:
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/arm/ux500.yaml b/Documentation/devicetree/bindings/arm/ux500.yaml
+index 5db7cfba81a4..a46193ad94e0 100644
+--- a/Documentation/devicetree/bindings/arm/ux500.yaml
++++ b/Documentation/devicetree/bindings/arm/ux500.yaml
+@@ -20,6 +20,11 @@ properties:
+           - const: st-ericsson,mop500
+           - const: st-ericsson,u8500
  
-+  amlogic,canvas:
-+    description: should point to a canvas provider node
-+    $ref: /schemas/types.yaml#/definitions/phandle
++      - description: ST-Ericsson HREF520
++        items:
++          - const: st-ericsson,href520
++          - const: st-ericsson,u8500
 +
-   power-domains:
-     maxItems: 1
-     description: phandle to the associated power domain
+       - description: ST-Ericsson HREF (v60+)
+         items:
+           - const: st-ericsson,hrefv60+
+@@ -30,9 +35,34 @@ properties:
+           - const: calaosystems,snowball-a9500
+           - const: st-ericsson,u9500
+ 
++      - description: Samsung Galaxy Ace 2 (GT-I8160)
++        items:
++          - const: samsung,codina
++          - const: st-ericsson,u8500
++
++      - description: Samsung Galaxy Beam (GT-I8530)
++        items:
++          - const: samsung,gavini
++          - const: st-ericsson,u8500
++
+       - description: Samsung Galaxy S III mini (GT-I8190)
+         items:
+           - const: samsung,golden
+           - const: st-ericsson,u8500
+ 
++      - description: Samsung Galaxy S Advance (GT-I9070)
++        items:
++          - const: samsung,janice
++          - const: st-ericsson,u8500
++
++      - description: Samsung Galaxy Amp (SGH-I407)
++        items:
++          - const: samsung,kyle
++          - const: st-ericsson,u8500
++
++      - description: Samsung Galaxy XCover 2 (GT-S7710)
++        items:
++          - const: samsung,skomer
++          - const: st-ericsson,u8500
++
+ additionalProperties: true
 -- 
-2.34.1
+2.25.1
 
