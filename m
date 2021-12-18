@@ -2,65 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21D32479A72
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 11:59:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BF0B479A79
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 12:02:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232789AbhLRK73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 05:59:29 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:57010
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232761AbhLRK73 (ORCPT
+        id S232851AbhLRLCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 06:02:13 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:41444
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232844AbhLRLCL (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Sat, 18 Dec 2021 05:59:29 -0500
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
+        Sat, 18 Dec 2021 06:02:11 -0500
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E85D23FFD4
-        for <devicetree@vger.kernel.org>; Sat, 18 Dec 2021 10:59:27 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C6AAA3F1A9
+        for <devicetree@vger.kernel.org>; Sat, 18 Dec 2021 11:02:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639825167;
-        bh=iKwmiQLDuY8LAE9jHuz/0Vr7mjQTQyKIClva1cDuOYA=;
+        s=20210705; t=1639825330;
+        bh=GUzaeCFYuvmlfIXasOI8CPD5nT7udP18GRuhsPnN/O4=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=FHByJwmDrBFEUkCTPOQXmSLU9kCGXKlB2Zcyce9yun5zAmkpYnRdJVF80y0kr/lID
-         /YgWcbfi45gSQ7/JSI2gIG9J4KkHsPCJzhddeuqqM8tyMu/DSaeEfO/YqbngHQ5IlT
-         xxek49Rj+u4wsKpM/Q5XRDJbaWTEob0lIL5X+q/8wnjJ4RyO2w0zvh8OYf18Or7hW5
-         y98xzbT+WV3vS5eBupWqDsJFz5Q6nfndGQ4u5qoF+/loaVPfQyumYiAjCSLhJGM1+E
-         c6VsK2pHElTV1ETN6bMBQEx0BW+QES37r8y9886jd5CegFPPGT4BK/GAVpM6RG8Jzl
-         8CdSk/0dYzLoQ==
-Received: by mail-lf1-f72.google.com with SMTP id w18-20020a194912000000b004254e83978cso1691504lfa.3
-        for <devicetree@vger.kernel.org>; Sat, 18 Dec 2021 02:59:27 -0800 (PST)
+        b=GTJNQnuh3fMVd0O5mQhkLLCgHKdyTafK9DLyNEf/rri9SM/lUnH3I5OsPjuj++wci
+         6Sb2ilo5IEWw4dPszN5yr+E0gzQCMTa4rbytg2XGl36nwIleW6oSwDbvpPNRtc+ASt
+         z5XBn2k/kKU6Afi3H0CdfYMSRKxh3u9DSdR66Kq/SN8ciXSw0NeXLVpCsZRR8+u6jq
+         HKkaUs9Ix21AaY0LnAKCjeaxBMA4Hq39hxaLp7OucKAeb3kJc2Y2DNg2nWbFhlRKJ4
+         rYL3NXAImrFP1LlxLpBKHsXrjlf+dI4IrrIE6Le0dMaJd2zHYpl61IlJX647mn82Fj
+         EsUTkB1iFoC9w==
+Received: by mail-lf1-f69.google.com with SMTP id d2-20020a0565123d0200b0040370d0d2fbso2137978lfv.23
+        for <devicetree@vger.kernel.org>; Sat, 18 Dec 2021 03:02:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=iKwmiQLDuY8LAE9jHuz/0Vr7mjQTQyKIClva1cDuOYA=;
-        b=uEa1sICLOMMFkW/lLOfXgff/UrmM7egGAZ4tK/6lpOPCey5dNzhag+XLi4H2UEoOf0
-         judorXTb2K1quopACj+bRtUBj9vECgfqzuko3CYlDnySldrsUgGsU/QlyTdzVbYGDAoY
-         14LJd4yLqPoJhQG6/bJITRUwVFdoG/55knSiGzxF7Fb05/BR1/1YxapEuz93DU1P9TE+
-         V/UsymkW5JXLKLEDL5DV+Ipn1HK4FheuihdmGvJW3BDLOH9PHEsy50PPXYPayjV/q6K+
-         h/HHc6sRKzHUQ0h2Mmj4+KZfRhz8B5FxtJ3CEbVccBjUIeuLG6ZMk0F0d2iuOZV6iIeS
-         flzA==
-X-Gm-Message-State: AOAM533W8grvEVuMrMwHhHhnOPlVcxusu6IQuHlI2IGCBlZFBDHQRZ09
-        gFmBf7F3NVJwiuj/eghEdYqHsLrbWBOPGoF6Rq4/aE4HSlQa5aZvsWvTTG7ST73Od4injdzkTPz
-        PbQe1+oPr1ZBbi6ZP2DCQ5LgdrF6IQADq9qyvBBU=
-X-Received: by 2002:ac2:4142:: with SMTP id c2mr6806186lfi.608.1639825167352;
-        Sat, 18 Dec 2021 02:59:27 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJx2EVD6v55ZbjvTY15Qiz1fXJ3yFxwDBZMbkwGZYLQ9xoefSrFNyVjgHsqQXhV4QAt8jp/v1g==
-X-Received: by 2002:ac2:4142:: with SMTP id c2mr6806172lfi.608.1639825167152;
-        Sat, 18 Dec 2021 02:59:27 -0800 (PST)
+        bh=GUzaeCFYuvmlfIXasOI8CPD5nT7udP18GRuhsPnN/O4=;
+        b=6b63xgzKBCHUNx7Euh/11RD2ni58Gj5xnS5tiBpcfLECXi1ceDONfLggWLjAg53bgN
+         t5Z3Gm0DlVuAqvifzyixWBafEi9dJG3UtdaOZXXhznkr2TpPfuvDAF6tuaSp2hQkaFzd
+         u74uZ5Fn/vT8QzXBUz5fPuYWnKcDxqOWzcJuAifWgnlCZnL/VV4kiy1G2BbkwGKk5BTf
+         edGiaNLEgX7fmAGZ6Vbj/+WLLy8C+bqgjAWln1o4rWVATXZI0FIBQMLkibE3BjzMohAN
+         e0FZkYky7OTL5qTZcUORCaODw31BVmXNpqLvbBhvEkcWoX+XTL0Wma/5SF1RU55GYNQq
+         ylpQ==
+X-Gm-Message-State: AOAM530+cnxKziwqDZ5kVfpK2ipR8GQ25fDDaO2etPj1X53+APzwXvqb
+        RPbgnUa2bwnuaALsiOYePtkUpqRH97IieW9pvtQ4tbL5U/OPMSlsNdLaWfCy2zocLFLcvZ9+dQB
+        Sk+yW18f/8WlPHflQEJr4JH4cKWXf/moEudgydi0=
+X-Received: by 2002:a05:6512:1506:: with SMTP id bq6mr6899798lfb.118.1639825330171;
+        Sat, 18 Dec 2021 03:02:10 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz76BRek5xxaxXK0gykfSceKpej+lAJ/MUNQimyMdvDsGknqATVKSV4qiXP216Y6DblSZl2Kw==
+X-Received: by 2002:a05:6512:1506:: with SMTP id bq6mr6899780lfb.118.1639825329889;
+        Sat, 18 Dec 2021 03:02:09 -0800 (PST)
 Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id x11sm142447lfr.171.2021.12.18.02.59.26
+        by smtp.gmail.com with ESMTPSA id bu11sm917201lfb.15.2021.12.18.03.02.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 18 Dec 2021 02:59:26 -0800 (PST)
-Message-ID: <d64330da-3ced-b37e-4bc9-ba7556822f7d@canonical.com>
-Date:   Sat, 18 Dec 2021 11:59:26 +0100
+        Sat, 18 Dec 2021 03:02:09 -0800 (PST)
+Message-ID: <0778edf1-25c3-e375-9806-46c35c18e233@canonical.com>
+Date:   Sat, 18 Dec 2021 12:02:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.1
-Subject: Re: [PATCH 2/5] dt-bindings: memory: Add Tegra210 memory controller
+Subject: Re: [PATCH 3/5] dt-bindings: memory: Add Tegra114 memory controller
  bindings
 Content-Language: en-US
 To:     Thierry Reding <thierry.reding@gmail.com>,
@@ -68,9 +68,9 @@ To:     Thierry Reding <thierry.reding@gmail.com>,
 Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
         linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20211217165919.2700920-1-thierry.reding@gmail.com>
- <20211217165919.2700920-2-thierry.reding@gmail.com>
+ <20211217165919.2700920-3-thierry.reding@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211217165919.2700920-2-thierry.reding@gmail.com>
+In-Reply-To: <20211217165919.2700920-3-thierry.reding@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
@@ -80,69 +80,76 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 17/12/2021 17:59, Thierry Reding wrote:
 > From: Thierry Reding <treding@nvidia.com>
 > 
-> Document the bindings for the memory controller found on Tegra210 SoCs.
+> Document the bindings for the memory controller found on Tegra114 SoCs.
 > 
 > Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  .../nvidia,tegra210-mc.yaml                   | 77 +++++++++++++++++++
->  1 file changed, 77 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-mc.yaml
+>  .../nvidia,tegra114-mc.yaml                   | 85 +++++++++++++++++++
+>  1 file changed, 85 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra114-mc.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-mc.yaml
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra114-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra114-mc.yaml
 > new file mode 100644
-> index 000000000000..ef21c11052e3
+> index 000000000000..2fa50eb3aadb
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-mc.yaml
-> @@ -0,0 +1,77 @@
+> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra114-mc.yaml
+> @@ -0,0 +1,85 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra210-mc.yaml#
+> +$id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra114-mc.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: NVIDIA Tegra210 SoC Memory Controller
+> +title: NVIDIA Tegra114 SoC Memory Controller
 > +
 > +maintainers:
 > +  - Thierry Reding <thierry.reding@gmail.com>
 > +  - Jon Hunter <jonathanh@nvidia.com>
 > +
 > +description: |
-> +  The NVIDIA Tegra210 SoC features a 64 bit memory controller that is split into two 32 bit
-> +  channels to support LPDDR3 and LPDDR4 with x16 subpartitions. The MC handles memory requests for
-> +  34-bit virtual addresses from internal clients and arbitrates among them to allocate memory
-> +  bandwidth.
+> +  The Tegra114 Memory Controller architecturally consists of the following parts:
 > +
-> +  Up to 8 GiB of physical memory can be supported. Security features such as encryption of traffic
-> +  to and from DRAM via general security apertures are available for video and other secure
-> +  applications.
+> +    Arbitration Domains, which can handle a single request or response per
+> +    clock from a group of clients. Typically, a system has a single Arbitration
+> +    Domain, but an implementation may divide the client space into multiple
+> +    Arbitration Domains to increase the effective system bandwidth.
+> +
+> +    Protocol Arbiter, which manage a related pool of memory devices. A system
+> +    may have a single Protocol Arbiter or multiple Protocol Arbiters.
+> +
+> +    Memory Crossbar, which routes request and responses between Arbitration
+> +    Domains and Protocol Arbiters. In the simplest version of the system, the
+> +    Memory Crossbar is just a pass through between a single Arbitration Domain
+> +    and a single Protocol Arbiter.
+> +
+> +    Global Resources, which include things like configuration registers which
+> +    are shared across the Memory Subsystem.
+> +
+> +  The Tegra114 Memory Controller handles memory requests from internal clients
+> +  and arbitrates among them to allocate memory bandwidth for DDR3L and LPDDR2
+> +  SDRAMs.
 > +
 > +properties:
-> +  $nodename:
-> +    pattern: "^memory-controller@[0-9a-f]+$"
-> +
 > +  compatible:
-> +    items:
-> +      - enum:
-> +          - nvidia,tegra210-mc
+> +    const: nvidia,tegra114-mc
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  interrupts:
-> +    maxItems: 1
-> +
 > +  clocks:
-> +    items:
-> +      - description: module clock
+> +    maxItems: 1
 > +
 > +  clock-names:
 > +    items:
 > +      - const: mc
 > +
-> +  "#iommu-cells":
-> +    const: 1
+> +  interrupts:
+> +    maxItems: 1
 > +
 > +  "#reset-cells":
+> +    const: 1
+> +
+> +  "#iommu-cells":
 > +    const: 1
 > +
 > +required:
@@ -151,20 +158,13 @@ On 17/12/2021 17:59, Thierry Reding wrote:
 > +  - interrupts
 > +  - clocks
 > +  - clock-names
-> +  - "#iommu-cells"
 > +  - "#reset-cells"
+> +  - "#iommu-cells"
 > +
 > +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/tegra210-car.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    mc: memory-controller@70019000 {
 
-If there is going to be resubmit, please skip the alias. It just adds
-noise. Without resubmit, I can fix it when applying.
+The binding looks the same as Tegra210, Tegra 20 MC. What is the point
+of having three separate binding documents which are exactly the same?
 
 
 Best regards,
