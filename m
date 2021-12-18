@@ -2,163 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA6C84797B8
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 01:07:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C6DB4797C4
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 01:18:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229665AbhLRAH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 19:07:29 -0500
-Received: from mga07.intel.com ([134.134.136.100]:25241 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229576AbhLRAH3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Dec 2021 19:07:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1639786049; x=1671322049;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=tY9H97mhZQZZUfy1ssG1riRgiBvv3oOnmpjkH2DiLIQ=;
-  b=D4Qz38dYudSqq+vPJ9u9Ot0tm88pg3MVrSNx6GC3GDS3koLDqk3i6FbC
-   Fk2IwaF8lQY9Qtaps0wSqpNTPdgW0D9j06xItDEp6hdYOMj8/ZJR99PU0
-   4SEFBRhpSSH5VxrQsKhZFAGmMqWpsX4EOtn4mKpLOOw2p5u39G6cp08M2
-   i783OkswHmXf+K/Vr9cABvlI5NYOWhozVTDNuAusLUuM+EZWOZscx4u1y
-   +VDX3CTXCGJifNaNeRECupw8iBp+oGH+rmKFU6FGUrLn1RlnWyjsIAutZ
-   sMffFlhCPD4n0JNCpYc0nTduXZ1pwbDUySsQYmiEXsfjzlq+RcUP4+ueZ
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10201"; a="303236360"
-X-IronPort-AV: E=Sophos;i="5.88,215,1635231600"; 
-   d="scan'208";a="303236360"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Dec 2021 16:07:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,215,1635231600"; 
-   d="scan'208";a="546565540"
-Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
-  by orsmga001.jf.intel.com with ESMTP; 17 Dec 2021 16:07:25 -0800
-Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1myNG1-0005MI-0A; Sat, 18 Dec 2021 00:07:25 +0000
-Date:   Sat, 18 Dec 2021 08:07:06 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Sumit Gupta <sumitg@nvidia.com>, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org
-Cc:     kbuild-all@lists.01.org, sumitg@nvidia.com, bbasu@nvidia.com,
-        vsethi@nvidia.com, jsequeira@nvidia.com
-Subject: Re: [Patch v2 8/9] soc: tegra: cbb: Add driver for Tegra234 CBB2.0
-Message-ID: <202112180744.BM6U6RpD-lkp@intel.com>
-References: <20211217120656.16480-9-sumitg@nvidia.com>
+        id S230054AbhLRASO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 19:18:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37928 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230039AbhLRASN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 19:18:13 -0500
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D6E9C061574
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 16:18:13 -0800 (PST)
+Received: by mail-io1-xd2d.google.com with SMTP id p23so5283450iod.7
+        for <devicetree@vger.kernel.org>; Fri, 17 Dec 2021 16:18:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4tvSSIv6oykE7Z8lVXdITTxqq12Ax48ZrNxLZddp4G0=;
+        b=HgMfDmQXXyLwPjElaDlnp7A1Z/mNhn3jcB7yN8SFLDDAriFnvrMsup27Vr4ussO5A8
+         LJoHuhvi51dlnWXTwH9X/SthuPlUAFUO6mxRUjKKIQlq4LCQ1ypKUnfaxeH04UAO+t06
+         vTjtNLDZqtJ+j9ugtpMG3j2KCnNxgBtHzmyMs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4tvSSIv6oykE7Z8lVXdITTxqq12Ax48ZrNxLZddp4G0=;
+        b=Dr4YyJFCMj0UxpaBdzLFWByW1MZ86mKSyTeYjahxq7k3fuB8xOo2IDn61F/Jvl2sGs
+         AEzwshIp8Xu+kEpYcwmpZvV2eLLIwXbJzZwg7Sm9eoOY1RqszujqYAusDbOnSXDKA0tk
+         5LUAymjjsm+8ldVAEmlOS7uMCWTeOhZDb1zumtODk3Vwr0L3YCwBw60RG/TdHiHP8lCQ
+         jI8W8ayYFb5FCxITOS5TS0/+a7kC6eP/F2VCfhaBTVssnQSneSDorYqk41TJGa81qMLn
+         Njz+CpLnrnPvN80znOTyZlGJG2H1T4l6NoM1f6IIiQrefaVoFMmrTEw1Wtpt9hXxTAv5
+         xR/A==
+X-Gm-Message-State: AOAM530NYtmZwrgRXFBec0VwceIAulSjoC60H3AwK8RPTYekZMC7Qxec
+        R5lYYSfllpgVBxY3xbbEUwFxkRuKAdQw8/VvoyUDrQ==
+X-Google-Smtp-Source: ABdhPJylaZWZZym5N4/Ctw+TqpQRIx/9FuzzizqGFkk0TI8R/PdaT/g3WhqP/wkItGcf1REgl+iUyhQMcgsTVezJOPU=
+X-Received: by 2002:a05:6638:3294:: with SMTP id f20mr3708819jav.222.1639786692986;
+ Fri, 17 Dec 2021 16:18:12 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211217120656.16480-9-sumitg@nvidia.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20211210192328.2844060-1-gwendal@chromium.org>
+ <20211210192328.2844060-6-gwendal@chromium.org> <CAE-0n51VSmRNiNeU09ygGmWfyg2F8DN4ujf9gUv4c3QRsmdLHA@mail.gmail.com>
+In-Reply-To: <CAE-0n51VSmRNiNeU09ygGmWfyg2F8DN4ujf9gUv4c3QRsmdLHA@mail.gmail.com>
+From:   Gwendal Grignou <gwendal@chromium.org>
+Date:   Fri, 17 Dec 2021 16:18:01 -0800
+Message-ID: <CAPUE2utnWKtZT=mvJ7TeNzDsQEEOL4tzCaaQdpR65B2=F91oog@mail.gmail.com>
+Subject: Re: [PATCH v7 5/5] iio: sx9324: Add dt_binding support
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sumit,
-
-Thank you for the patch! Perhaps something to improve:
-
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on tegra-drm/drm/tegra/for-next v5.16-rc5 next-20211217]
-[cannot apply to tegra/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Sumit-Gupta/CBB-driver-for-Tegra194-Tegra234-Tegra-Grace/20211217-200840
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20211218/202112180744.BM6U6RpD-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/79bd78736f10c5f36ba4a18c6d313d62cae7b010
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Sumit-Gupta/CBB-driver-for-Tegra194-Tegra234-Tegra-Grace/20211217-200840
-        git checkout 79bd78736f10c5f36ba4a18c6d313d62cae7b010
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/soc/tegra/cbb/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   drivers/soc/tegra/cbb/tegra234-cbb.c: In function 'print_errlog_err':
->> drivers/soc/tegra/cbb/tegra234-cbb.c:260:44: warning: variable 'access_id' set but not used [-Wunused-but-set-variable]
-     260 |         u8 beat_size = 0, access_type = 0, access_id = 0;
-         |                                            ^~~~~~~~~
-
-
-vim +/access_id +260 drivers/soc/tegra/cbb/tegra234-cbb.c
-
-   255	
-   256	static void print_errlog_err(struct seq_file *file, struct tegra_cbb_errmon_record *errmon)
-   257	{
-   258		u8 cache_type = 0, prot_type = 0, burst_length = 0;
-   259		u8 mstr_id = 0, grpsec = 0, vqc = 0, falconsec = 0;
- > 260		u8 beat_size = 0, access_type = 0, access_id = 0;
-   261		u8 slave_id = 0, fab_id = 0, burst_type = 0;
-   262		char fabric_name[20];
-   263	
-   264		mstr_id   = FIELD_GET(FAB_EM_EL_MSTRID, errmon->mn_user_bits);
-   265		vqc	  = FIELD_GET(FAB_EM_EL_VQC, errmon->mn_user_bits);
-   266		grpsec	  = FIELD_GET(FAB_EM_EL_GRPSEC, errmon->mn_user_bits);
-   267		falconsec = FIELD_GET(FAB_EM_EL_FALCONSEC, errmon->mn_user_bits);
-   268	
-   269		fab_id	   = FIELD_GET(FAB_EM_EL_FABID, errmon->mn_attr2);
-   270		slave_id   = FIELD_GET(FAB_EM_EL_SLAVEID, errmon->mn_attr2);
-   271	
-   272		access_id  = FIELD_GET(FAB_EM_EL_ACCESSID, errmon->mn_attr1);
-   273	
-   274		cache_type   = FIELD_GET(FAB_EM_EL_AXCACHE, errmon->mn_attr0);
-   275		prot_type    = FIELD_GET(FAB_EM_EL_AXPROT, errmon->mn_attr0);
-   276		burst_length = FIELD_GET(FAB_EM_EL_BURSTLENGTH, errmon->mn_attr0);
-   277		burst_type   = FIELD_GET(FAB_EM_EL_BURSTTYPE, errmon->mn_attr0);
-   278		beat_size    = FIELD_GET(FAB_EM_EL_BEATSIZE, errmon->mn_attr0);
-   279		access_type  = FIELD_GET(FAB_EM_EL_ACCESSTYPE, errmon->mn_attr0);
-   280	
-   281		print_cbb_err(file, "\t  First logged Err Code : %s\n",
-   282			      t234_errmon_errors[errmon->err_type].errcode);
-   283	
-   284		print_cbb_err(file, "\t  MASTER_ID\t\t: %s\n", errmon->tegra_cbb_master_id[mstr_id]);
-   285		print_cbb_err(file, "\t  Address\t\t: 0x%llx\n", (u64)errmon->addr_access);
-   286	
-   287		print_cache(file, cache_type);
-   288		print_prot(file, prot_type);
-   289	
-   290		print_cbb_err(file, "\t  Access_Type\t\t: %s", (access_type) ? "Write\n" : "Read\n");
-   291	
-   292		if (fab_id == PSC_FAB_ID)
-   293			strcpy(fabric_name, "psc-fabric");
-   294		else if (fab_id == FSI_FAB_ID)
-   295			strcpy(fabric_name, "fsi-fabric");
-   296		else
-   297			strcpy(fabric_name, errmon->name);
-   298	
-   299		print_cbb_err(file, "\t  Fabric\t\t: %s\n", fabric_name);
-   300		print_cbb_err(file, "\t  Slave_Id\t\t: 0x%x\n", slave_id);
-   301		print_cbb_err(file, "\t  Burst_length\t\t: 0x%x\n", burst_length);
-   302		print_cbb_err(file, "\t  Burst_type\t\t: 0x%x\n", burst_type);
-   303		print_cbb_err(file, "\t  Beat_size\t\t: 0x%x\n", beat_size);
-   304		print_cbb_err(file, "\t  VQC\t\t\t: 0x%x\n", vqc);
-   305		print_cbb_err(file, "\t  GRPSEC\t\t: 0x%x\n", grpsec);
-   306		print_cbb_err(file, "\t  FALCONSEC\t\t: 0x%x\n", falconsec);
-   307	
-   308		if ((fab_id == PSC_FAB_ID) || (fab_id == FSI_FAB_ID))
-   309			return;
-   310	
-   311		if (!strcmp(errmon->noc_errors[errmon->err_type].errcode, "TIMEOUT_ERR")) {
-   312			tegra234_lookup_slave_timeout(file, errmon, slave_id, fab_id);
-   313			return;
-   314		}
-   315		print_cbb_err(file, "\t  Slave\t\t\t: %s\n", errmon->sn_addr_map[slave_id].slave_name);
-   316	}
-   317	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+On Tue, Dec 14, 2021 at 5:13 PM Stephen Boyd <swboyd@chromium.org> wrote:
+>
+> Quoting Gwendal Grignou (2021-12-10 11:23:28)
+> > Based on bindings/iio/proximity/semtech,sx9324.yaml, implement
+> > retrieving sensor hardware property and alter default values.
+> >
+> > Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
+>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+>
+> > diff --git a/drivers/iio/proximity/sx9324.c b/drivers/iio/proximity/sx9324.c
+> > index ed7ac30e1915d5..78a173aeccf5ac 100644
+> > --- a/drivers/iio/proximity/sx9324.c
+> > +++ b/drivers/iio/proximity/sx9324.c
+> > @@ -77,6 +77,7 @@
+> >  #define SX9324_REG_PROX_CTRL0          0x30
+> >  #define SX9324_REG_PROX_CTRL0_GAIN_MASK        GENMASK(5, 3)
+> >  #define SX9324_REG_PROX_CTRL0_GAIN_1           0x80
+> > +#define SX9324_REG_PROX_CTRL0_RAWFILT_MASK     GENMASK(2, 0)
+> >  #define SX9324_REG_PROX_CTRL0_RAWFILT_1P50     0x01
+> >  #define SX9324_REG_PROX_CTRL1          0x31
+> >  #define SX9324_REG_PROX_CTRL2          0x32
+> > @@ -753,6 +754,74 @@ static int sx9324_write_raw(struct iio_dev *indio_dev,
+> >         return -EINVAL;
+> >  }
+> >
+> > +static const struct sx_common_reg_default sx9324_default_regs[] = {
+> > +       { SX9324_REG_IRQ_MSK, 0x00 },
+> > +       { SX9324_REG_IRQ_CFG0, 0x00 },
+> > +       { SX9324_REG_IRQ_CFG1, SX9324_REG_IRQ_CFG1_FAILCOND },
+> > +       { SX9324_REG_IRQ_CFG2, 0x00 },
+> > +       { SX9324_REG_GNRL_CTRL0, SX9324_REG_GNRL_CTRL0_SCANPERIOD_100MS },
+> > +       /*
+> > +        * The lower 4 bits should not be set as it enable sensors measurements.
+> > +        * Turning the detection on before the configuration values are set to
+> > +        * good values can cause the device to return erroneous readings.
+> > +        */
+> > +       { SX9324_REG_GNRL_CTRL1, SX9324_REG_GNRL_CTRL1_PAUSECTRL },
+> > +
+> > +       { SX9324_REG_AFE_CTRL0, 0x00 },
+> > +       { SX9324_REG_AFE_CTRL3, 0x00 },
+> > +       { SX9324_REG_AFE_CTRL4, SX9324_REG_AFE_CTRL4_FREQ_83_33HZ |
+> > +               SX9324_REG_AFE_CTRL4_RES_100 },
+> > +       { SX9324_REG_AFE_CTRL6, 0x00 },
+> > +       { SX9324_REG_AFE_CTRL7, SX9324_REG_AFE_CTRL4_FREQ_83_33HZ |
+> > +               SX9324_REG_AFE_CTRL4_RES_100 },
+> > +
+> > +       /* TODO(gwendal): PHx use chip default or all grounded? */
+> > +       { SX9324_REG_AFE_PH0, 0x29 },
+> [...]
+> > +       { SX9324_REG_ADV_CTRL11, 0x00 },
+> > +       { SX9324_REG_ADV_CTRL12, 0x00 },
+> > +       /* TODO(gwendal): SAR currenly disabled */
+>
+> s/currenly/currently/
+Done
+>
+> Is there a plan to resolve these todos? Or should they simply be
+> removed and then we can deal with the defaults?
+It would be nice to enable the Smart SAR engine, but it requires some
+coding (how to integrate nicely with iio subsystem) and coding (how to
+enable it right).
+>
+> > +       { SX9324_REG_ADV_CTRL13, 0x00 },
+> > +       { SX9324_REG_ADV_CTRL14, 0x00 },
