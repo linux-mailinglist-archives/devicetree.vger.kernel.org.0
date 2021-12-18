@@ -2,148 +2,320 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B75B479C82
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 21:12:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8545479CA2
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 21:50:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234107AbhLRUMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 15:12:03 -0500
-Received: from mail.noreya.tech ([46.38.236.86]:41836 "EHLO mail.noreya.tech"
+        id S234190AbhLRUuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 15:50:46 -0500
+Received: from ixit.cz ([94.230.151.217]:42114 "EHLO ixit.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234095AbhLRUMD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 18 Dec 2021 15:12:03 -0500
-X-Greylist: delayed 474 seconds by postgrey-1.27 at vger.kernel.org; Sat, 18 Dec 2021 15:12:03 EST
-Received: from localhost (localhost [127.0.0.1])
-        by mail.noreya.tech (Postfix) with ESMTP id 16BA7392;
-        Sat, 18 Dec 2021 21:04:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=noreya.tech;
-        s=s2048; t=1639857848;
-        bh=fLvKvgtjY8Q8G/HKVKFbFawJR1AzhXvOwLc2pAeiOuA=;
-        h=From:To:Cc:Subject:Date:From;
-        b=L3rkgg9ypEvwaG/VYCXmh0psfkdus+fcoltfKDoYigmpaeKRi6kQ13wGspfLLsBv2
-         mbUGOHdd6xQNLVnU2xcYOFB9t+WZpegtdFflbn97Zfvu5FLXcUY9NsWHjQ+gQFUofd
-         DtwPwUkT0Mh9J2+2fBibkO2yD6wMty+0ALclYY+fQMD8ihkUoYgLB1a/3aX8aXfAAe
-         1hDf8WtqvetXavGRctCq4siB+gaKHky0MU0qDa/jEL2TBD8MH7jacYeYroZlT/hyPo
-         VCq85Q/0Zd4LmdA0VxGjoiEOZzguYwTp8riMFRn9Frz9gt6pxR86k/m4tbMKC2cXEi
-         vFMVViHL/GJTg==
-X-Virus-Scanned: Debian amavisd-new at mail.noreya.tech
-Received: from mail.noreya.tech ([127.0.0.1])
-        by localhost (mail.noreya.tech [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 5vBD5DB9ThRR; Sat, 18 Dec 2021 21:04:05 +0100 (CET)
-Received: from richard-AX370.lan (17-12-121.cgnat.fonira.net [185.17.12.121])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        id S234175AbhLRUuq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 18 Dec 2021 15:50:46 -0500
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.noreya.tech (Postfix) with ESMTPSA;
-        Sat, 18 Dec 2021 21:04:05 +0100 (CET)
-From:   Richard Schleich <rs@noreya.tech>
-To:     robh+dt@kernel.org, nsaenz@kernel.org, f.fainelli@gmail.com,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Richard Schleich <rs@noreya.tech>
-Subject: [PATCH] ARM: dts: bcm2837: Add the missing L1/L2 cache information
-Date:   Sat, 18 Dec 2021 21:00:09 +0100
-Message-Id: <20211218200009.16856-1-rs@noreya.tech>
-X-Mailer: git-send-email 2.17.1
+        by ixit.cz (Postfix) with ESMTPSA id 96BBB2243C;
+        Sat, 18 Dec 2021 21:50:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1639860643;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=SPbbkeP1sGPm5LCVGx2XF3KQc2r04SYqHiM88lPcVw4=;
+        b=UsY6mKorbpx7guY13PFJR3DbCGngPBh+OHdYrho/roLBO6xn1POvWdcyQUTbBkAQEzyA9I
+        uxv7b4UNZSe2w+re1aCe0MbcMD6j2p2kKA+T8nRIzE8bPE392x7EYFrtjcVzEPuzSmfVL9
+        CwyAOexAuJfwHb5lHYmF6m3xvUo+hnY=
+From:   David Heidelberg <david@ixit.cz>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     ~okias/devicetree@lists.sr.ht, Alex Elder <elder@linaro.org>,
+        David Heidelberg <david@ixit.cz>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-binding: soc: qcom: convert QCOM SMP2P binding to yaml
+Date:   Sat, 18 Dec 2021 21:50:39 +0100
+Message-Id: <20211218205039.35994-1-david@ixit.cz>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch fixes the kernel warning
-"cacheinfo: Unable to detect cache hierarchy for CPU 0"
-for the bcm2837 on newer kernel versions.
+Convert Qualcomm SoC SMP2P binding to the yaml format.
 
-Signed-off-by: Richard Schleich <rs@noreya.tech>
+Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
- arch/arm/boot/dts/bcm2837.dtsi | 49 ++++++++++++++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+ .../bindings/soc/qcom/qcom,smp2p.txt          | 110 --------------
+ .../bindings/soc/qcom/qcom,smp2p.yaml         | 139 ++++++++++++++++++
+ 2 files changed, 139 insertions(+), 110 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
 
-diff --git a/arch/arm/boot/dts/bcm2837.dtsi b/arch/arm/boot/dts/bcm2837.dtsi
-index 0199ec98cd61..1af1616982bb 100644
---- a/arch/arm/boot/dts/bcm2837.dtsi
-+++ b/arch/arm/boot/dts/bcm2837.dtsi
-@@ -40,12 +40,26 @@
- 		#size-cells = <0>;
- 		enable-method = "brcm,bcm2836-smp"; // for ARM 32-bit
- 
-+		/* Source for d/i-cache-line-size and d/i-cache-sets
-+		 *  https://developer.arm.com/documentation/ddi0500/e/level-1-memory-system
-+		 *  /about-the-l1-memory-system?lang=en
-+		 *
-+		 *  Source for d/i-cache-size
-+		 *  https://magpi.raspberrypi.com/articles/raspberry-pi-3-specs-benchmarks
-+		 */
- 		cpu0: cpu@0 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a53";
- 			reg = <0>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0x0 0x000000d8>;
-+			d-cache-size = <0x8000>; // 32KiB
-+			d-cache-line-size = <64>;// Data side cache line length of 64 bytes
-+			d-cache-sets = <128>; // 32KiB(size)/64(line-size)=512ways/4-way set
-+			i-cache-size = <0x8000>; // 32KiB
-+			i-cache-line-size = <64>;// Instruction side cache line length of 64 bytes
-+			i-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
-+			next-level-cache = <&l2>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -54,6 +68,13 @@
- 			reg = <1>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0x0 0x000000e0>;
-+			d-cache-size = <0x8000>; // 32KiB
-+			d-cache-line-size = <64>;// Data side cache line length of 64 bytes
-+			d-cache-sets = <128>; // 32KiB(size)/64(line-size)=512ways/4-way set
-+			i-cache-size = <0x8000>; // 32KiB
-+			i-cache-line-size = <64>;// Instruction side cache line length of 64 bytes
-+			i-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
-+			next-level-cache = <&l2>;
- 		};
- 
- 		cpu2: cpu@2 {
-@@ -62,6 +83,13 @@
- 			reg = <2>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0x0 0x000000e8>;
-+			d-cache-size = <0x8000>; // 32KiB
-+			d-cache-line-size = <64>;// Data side cache line length of 64 bytes
-+			d-cache-sets = <128>; // 32KiB(size)/64(line-size)=512ways/4-way set
-+			i-cache-size = <0x8000>; // 32KiB
-+			i-cache-line-size = <64>;// Instruction side cache line length of 64 bytes
-+			i-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
-+			next-level-cache = <&l2>;
- 		};
- 
- 		cpu3: cpu@3 {
-@@ -70,6 +98,27 @@
- 			reg = <3>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0x0 0x000000f0>;
-+			d-cache-size = <0x8000>; // 32KiB
-+			d-cache-line-size = <64>;// Data side cache line length of 64 bytes
-+			d-cache-sets = <128>; // 32KiB(size)/64(line-size)=512ways/4-way set
-+			i-cache-size = <0x8000>; // 32KiB
-+			i-cache-line-size = <64>;// Instruction side cache line length of 64 bytes
-+			i-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
-+			next-level-cache = <&l2>;
-+		};
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.txt
+deleted file mode 100644
+index 49e1d72d3648..000000000000
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.txt
++++ /dev/null
+@@ -1,110 +0,0 @@
+-Qualcomm Shared Memory Point 2 Point binding
+-
+-The Shared Memory Point to Point (SMP2P) protocol facilitates communication of
+-a single 32-bit value between two processors.  Each value has a single writer
+-(the local side) and a single reader (the remote side).  Values are uniquely
+-identified in the system by the directed edge (local processor ID to remote
+-processor ID) and a string identifier.
+-
+-- compatible:
+-	Usage: required
+-	Value type: <string>
+-	Definition: must be one of:
+-		    "qcom,smp2p"
+-
+-- interrupts:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: one entry specifying the smp2p notification interrupt
+-
+-- mboxes:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: reference to the associated doorbell in APCS, as described
+-		    in mailbox/mailbox.txt
+-
+-- qcom,ipc:
+-	Usage: required, unless mboxes is specified
+-	Value type: <prop-encoded-array>
+-	Definition: three entries specifying the outgoing ipc bit used for
+-		    signaling the remote end of the smp2p edge:
+-		    - phandle to a syscon node representing the apcs registers
+-		    - u32 representing offset to the register within the syscon
+-		    - u32 representing the ipc bit within the register
+-
+-- qcom,smem:
+-	Usage: required
+-	Value type: <u32 array>
+-	Definition: two identifiers of the inbound and outbound smem items used
+-		    for this edge
+-
+-- qcom,local-pid:
+-	Usage: required
+-	Value type: <u32>
+-	Definition: specifies the identifier of the local endpoint of this edge
+-
+-- qcom,remote-pid:
+-	Usage: required
+-	Value type: <u32>
+-	Definition: specifies the identifier of the remote endpoint of this edge
+-
+-= SUBNODES
+-Each SMP2P pair contain a set of inbound and outbound entries, these are
+-described in subnodes of the smp2p device node. The node names are not
+-important.
+-
+-- qcom,entry-name:
+-	Usage: required
+-	Value type: <string>
+-	Definition: specifies the name of this entry, for inbound entries this
+-		    will be used to match against the remotely allocated entry
+-		    and for outbound entries this name is used for allocating
+-		    entries
+-
+-- interrupt-controller:
+-	Usage: required for incoming entries
+-	Value type: <empty>
+-	Definition: marks the entry as inbound; the node should be specified
+-		    as a two cell interrupt-controller as defined in
+-		    "../interrupt-controller/interrupts.txt"
+-		    If not specified this node will denote the outgoing entry
+-
+-- #interrupt-cells:
+-	Usage: required for incoming entries
+-	Value type: <u32>
+-	Definition: must be 2 - denoting the bit in the entry and IRQ flags
+-
+-- #qcom,smem-state-cells:
+-	Usage: required for outgoing entries
+-	Value type: <u32>
+-	Definition: must be 1 - denoting the bit in the entry
+-
+-= EXAMPLE
+-The following example shows the SMP2P setup with the wireless processor,
+-defined from the 8974 apps processor's point-of-view. It encompasses one
+-inbound and one outbound entry:
+-
+-wcnss-smp2p {
+-	compatible = "qcom,smp2p";
+-	qcom,smem = <431>, <451>;
+-
+-	interrupts = <0 143 1>;
+-
+-	qcom,ipc = <&apcs 8 18>;
+-
+-	qcom,local-pid = <0>;
+-	qcom,remote-pid = <4>;
+-
+-	wcnss_smp2p_out: master-kernel {
+-		qcom,entry-name = "master-kernel";
+-
+-		#qcom,smem-state-cells = <1>;
+-	};
+-
+-	wcnss_smp2p_in: slave-kernel {
+-		qcom,entry-name = "slave-kernel";
+-
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+new file mode 100644
+index 000000000000..40d1c42e917b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smp2p.yaml
+@@ -0,0 +1,139 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/soc/qcom/qcom,smp2p.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+		l2: l2-cache0 {
-+		 /*  Source for cache-line-size + cache-sets
-+		  *  https://developer.arm.com/documentation/ddi0500
-+		  *  /e/level-2-memory-system/about-the-l2-memory-system?lang=en
-+		  *  Source for cache-size
-+		  *  https://datasheets.raspberrypi.com/cm/cm1-and-cm3-datasheet.pdf
-+		  */
-+			compatible = "cache";
-+			cache-size = <0x80000>; // 512KiB
-+			cache-line-size = <64>; // Fixed line length of 64 bytes
-+			cache-sets = <512>; // 512KiB(size)/64(line-size)=8192ways/16-way set
-+			cache-level = <2>;
- 		};
- 	};
- };
++title: Qualcomm Shared Memory Point 2 Point
++
++description: |
++  The Shared Memory Point to Point (SMP2P) protocol facilitates communication of
++  a single 32-bit value between two processors.  Each value has a single writer
++  (the local side) and a single reader (the remote side).  Values are uniquely
++  identified in the system by the directed edge (local processor ID to remote
++  processor ID) and a string identifier.
++
++maintainers:
++  - Bjorn Andersson <bjorn.andersson@linaro.org>
++
++properties:
++  compatible:
++    const: qcom,smp2p
++
++  interrupts:
++    maxItems: 1
++
++  mboxes:
++    description: >
++      reference to the associated doorbell in APCS, as described
++      in mailbox/mailbox.txt
++
++  qcom,ipc:
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    description: >
++      three entries specifying the outgoing ipc bit used for
++      signaling the remote end of the smp2p edge
++    minItems: 1
++    maxItems: 32 # no hard limit
++    items:
++      items:
++        - description: phandle to a syscon node representing the apcs registers
++        - description: offset to the register within the syscon
++        - description: the IPC bit within the register
++
++  qcom,smem:
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    description: indentifiers of the smem items used for this edge
++    items:
++      - items:
++          - description: identifier of inbound smem items
++      - items:
++          - description: identifier of outbound smem items
++
++  qcom,local-pid:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: specifies the identifier of the local endpoint of this edge
++
++  qcom,remote-pid:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: specifies the identifier of the remote endpoint of this edge
++
++patternProperties:
++  "^((master|slave)-kernel|ipa-ap-to-modem|ipa-modem-to-ap|)$":
++    type: object
++    properties:
++      interrupt-controller:
++        description: >
++          marks the entry as inbound, if not specified
++          this node will denote the outgoing entry
++
++      '#interrupt-cells':
++        const: 2
++
++      qcom,entry-name:
++        $ref: /schemas/types.yaml#/definitions/string
++        description: >
++          specifies the name of this entry, for inbound entries this will be
++          used to match against the remotely allocated entry and for outbound
++          entries this name is used for allocating entries
++
++      '#qcom,smem-state-cells':
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: required for outgoing entries
++        const: 1
++
++    required:
++      - qcom,entry-name
++
++    oneOf:
++      - required:
++          - interrupt-controller
++          - '#interrupt-cells'
++      - required:
++          - '#qcom,smem-state-cells'
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - qcom,smem
++  - qcom,local-pid
++  - qcom,remote-pid
++
++anyOf:
++  - required:
++      - mboxes
++  - required:
++      - qcom,ipc
++
++additionalProperties: false
++
++examples:
++  # The following example shows the SMP2P setup with the wireless processor,
++  # defined from the 8974 apps processor's point-of-view. It encompasses one
++  # inbound and one outbound entry:
++  - |
++    wcnss-smp2p {
++        compatible = "qcom,smp2p";
++        qcom,smem = <431>, <451>;
++
++        interrupts = <0 143 1>;
++
++        qcom,ipc = <&apcs 8 18>;
++
++        qcom,local-pid = <0>;
++        qcom,remote-pid = <4>;
++
++        wcnss_smp2p_out: master-kernel {
++            qcom,entry-name = "master-kernel";
++
++            #qcom,smem-state-cells = <1>;
++        };
++
++        wcnss_smp2p_in: slave-kernel {
++            qcom,entry-name = "slave-kernel";
++
++            interrupt-controller;
++            #interrupt-cells = <2>;
++        };
++    };
 -- 
-2.17.1
+2.34.1
 
