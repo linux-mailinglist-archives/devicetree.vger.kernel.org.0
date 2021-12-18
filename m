@@ -2,69 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2CE6479CA9
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 21:52:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10ED5479CB8
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 22:12:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234144AbhLRUw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 15:52:27 -0500
-Received: from ixit.cz ([94.230.151.217]:42126 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232227AbhLRUw1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 18 Dec 2021 15:52:27 -0500
-Received: from [192.168.1.138] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 4B7432243C;
-        Sat, 18 Dec 2021 21:52:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1639860745;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Ns+kGQMsz1c6kz2fXI93jaD4tkUpgUypUxovZ3gfsTk=;
-        b=IxEMC83PAvLUGvzlAGclql1gHvH/JLnwkflR4KA/2wzJ4G9sjcgzUrQbiz6hwQ4lBVcHH/
-        lUWF1LyS5jG4Aa/J4txk0bRKeN3j3bkboGKg1djESqDbRoNDAWRGC2xuqOGdvm1MvW5b8J
-        D/abx62Zc0dNOajk8HdnR5plvSoN3Sw=
-Date:   Sat, 18 Dec 2021 21:52:19 +0100
-From:   David Heidelberg <david@ixit.cz>
-Subject: Re: SMP2P DT binding
-To:     Alex Elder <elder@linaro.org>
-Cc:     bjorn.andersson@linaro.org, Andy Gross <agross@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Message-Id: <7NWB4R.J78LDXTOZ9ED@ixit.cz>
-In-Reply-To: <c7bd6c08-9f13-83f6-08d6-178215bc9f54@linaro.org>
-References: <c7bd6c08-9f13-83f6-08d6-178215bc9f54@linaro.org>
-X-Mailer: geary/40.0
+        id S234225AbhLRVMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 16:12:41 -0500
+Received: from st43p00im-ztfb10063301.me.com ([17.58.63.179]:55512 "EHLO
+        st43p00im-ztfb10063301.me.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231240AbhLRVMl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 18 Dec 2021 16:12:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
+        t=1639861960; bh=y1Q4So049yY6R/vuf+Xi1DcTVKT0QzoZ7rCKMVlWz0s=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=jZObGqznkU6EM8+xJ1gdnGbLADC5MC6RVoYsfiVuQTyVMBfAcXJxTQPb79/sXDQaP
+         kAnJb0KJKjybiPsdyXce7+5Z1v9SEvuOBk8uWZicw6wYohi1guIbiUr5P8B/Em9YA6
+         Isa5xEWJi4ofup1cN1WQwz8FrdG1J+Zftwr4cEA59WoN6jzB87LI3/dlkmNAeNLoHa
+         mPrHrHxZkmRaHuNFaJ8Cx8+W/16pJLbK1DCVnWmSFOXYQTDQX4BjwUwRbvSwqsE+pg
+         xOTHL9heqWKhZGnFreqXlyxC/Os5YSuRw0xJqqGOyiJszAENTBW5YHmycBpv8VqyuG
+         4xFRJ2sc+hgtQ==
+Received: from localhost (101.220.150.77.rev.sfr.net [77.150.220.101])
+        by st43p00im-ztfb10063301.me.com (Postfix) with ESMTPSA id 356F0A40137;
+        Sat, 18 Dec 2021 21:12:38 +0000 (UTC)
+From:   Alain Volmat <avolmat@me.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Alain Volmat <avolmat@me.com>
+Subject: [PATCH v2 0/2] clk: st: update to avoid DT warnings
+Date:   Sat, 18 Dec 2021 22:11:55 +0100
+Message-Id: <20211218211157.188214-1-avolmat@me.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.425,18.0.790
+ definitions=2021-12-18_08:2021-12-15,2021-12-18 signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 clxscore=1015 mlxscore=0
+ mlxlogscore=560 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-2009150000 definitions=main-2112180129
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello all!
+The serie contains 2 updates within clkgen-fsyn and clkgen-mux
+in order to allow those drivers to pick up the reg property
+within their parent node instead of their own node.  Such
+behavior is already in place for the other st clk drivers and
+to allow to not have several time the same reg value within
+the device tree.
+Those changes are also done in order to avoid DT warning seen
+when compiling with W=1 and indicating unique-unit-address issues.
 
-Just sent finalized "dt-binding: soc: qcom: convert QCOM SMP2P binding 
-to yaml".
+v2: update clkgen-fsyn patch to add a pr_err
 
-One thing I'm little bit unsure is sub-nodes pattern matching. If it 
-needs to be improved, I'm looking forward to reviews.
-David
+Alain Volmat (2):
+  clk: st: clkgen-fsyn: search reg within node or parent
+  clk: st: clkgen-mux: search reg within node or parent
 
-On Fri, Dec 10 2021 at 08:27:09 -0600, Alex Elder <elder@linaro.org> 
-wrote:
-> Bjorn, Andy, in October David Heidelberg included the following
-> in a message about something related to IPA in a DTS file:
-> 
-> > On 10/21/26 11:34 AM, David Heidelberg wrote:
-> . . .
-> > P.S. I have some basic structure for qcom,smp2p.yaml, but to make it
-> > right take some effort. If someone want to, I can send it as WIP or
-> > just into private email.
-> 
-> Are you interested in this?
-> 
-> 					-Alex
+ drivers/clk/st/clkgen-fsyn.c | 13 +++++++++++--
+ drivers/clk/st/clkgen-mux.c  | 11 +++++++++--
+ 2 files changed, 20 insertions(+), 4 deletions(-)
 
+-- 
+2.25.1
 
