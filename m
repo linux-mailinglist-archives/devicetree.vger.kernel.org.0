@@ -2,121 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C94374797FE
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 02:14:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CB9A479897
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 05:35:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229500AbhLRBOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Dec 2021 20:14:53 -0500
-Received: from condef-02.nifty.com ([202.248.20.67]:60212 "EHLO
-        condef-02.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbhLRBOx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Dec 2021 20:14:53 -0500
-X-Greylist: delayed 386 seconds by postgrey-1.27 at vger.kernel.org; Fri, 17 Dec 2021 20:14:52 EST
-Received: from conssluserg-02.nifty.com ([10.126.8.81])by condef-02.nifty.com with ESMTP id 1BI13CuM013741;
-        Sat, 18 Dec 2021 10:03:12 +0900
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173]) (authenticated)
-        by conssluserg-02.nifty.com with ESMTP id 1BI12mhi002928;
-        Sat, 18 Dec 2021 10:02:48 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-02.nifty.com 1BI12mhi002928
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1639789369;
-        bh=g8kubEqzXtZebCqaSj9BAbqYgVkf91ju4F7inIn8m3A=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HQhqD+YdFOz/Ik3CiDJJHisluY+hIeooMONVi2AArR7U/FX/HzVd8IQPGdAODydCU
-         FNjE9bOyfEOSwSifeecA3gLKsW1OeiMGuTRF4p7WiSmz9gLip48gyo3Dy3GDQrKS4D
-         LOZWV0SE6kKGk+CyfUOud5w7gK9r4yLdvr811KXpFX7oy6mbjVFL3kgDnJv4ek0O1B
-         kQAUP+umUawzx50N10vOdSECmnsLS3QGSgkM/6vjyLN77LAuEYxZDE7IpH2xlhb0bB
-         9yAFWDIo5vxC6MS8Bu/iDnJNyUao+sOksgnxRbTJAtVpytt3LcNZDWHSl3inv/OaeH
-         wQVzPFOAI2/lg==
-X-Nifty-SrcIP: [209.85.210.173]
-Received: by mail-pf1-f173.google.com with SMTP id k64so3555716pfd.11;
-        Fri, 17 Dec 2021 17:02:48 -0800 (PST)
-X-Gm-Message-State: AOAM533XZVhXvQpb233pLg2ZOVwCaA41kqestkwg1nF0Ea10zRhz11H3
-        j+vhuor31e9rGKj8HLWNVL9ibSCrD2Zv4ppeujw=
-X-Google-Smtp-Source: ABdhPJzGjAbGv+I/bTwhfwziv7WOMTBsph6E+WB3YL1WNppfKcKxQIdMdXPcqqda5/GSDFyziRC3MBP9P76MWkCI0SA=
-X-Received: by 2002:a05:6a00:2d1:b0:4af:437c:5f50 with SMTP id
- b17-20020a056a0002d100b004af437c5f50mr5577166pft.32.1639789367863; Fri, 17
- Dec 2021 17:02:47 -0800 (PST)
+        id S231232AbhLREfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Dec 2021 23:35:36 -0500
+Received: from marcansoft.com ([212.63.210.85]:49502 "EHLO mail.marcansoft.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230053AbhLREff (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Dec 2021 23:35:35 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 3A62441E2F;
+        Sat, 18 Dec 2021 04:35:30 +0000 (UTC)
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Sven Peter <sven@svenpeter.dev>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20211212034726.26306-1-marcan@marcan.st>
+ <20211212034726.26306-4-marcan@marcan.st>
+ <CAHp75Vc17tOFTyMT2698BkENC23ocbX9QEc8-rj5=n3Lz5Pn=g@mail.gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 3/3] spi: apple: Add driver for Apple SPI controller
+Message-ID: <d4c5a1ef-1904-b464-5abd-1f983fe417eb@marcan.st>
+Date:   Sat, 18 Dec 2021 13:35:28 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20211207140334.10461-1-semen.protsenko@linaro.org> <CAPLW+4n-BjSHK4gdP=cGvAE+pZDfvYTO4yy09yNRJgSXt2VArg@mail.gmail.com>
-In-Reply-To: <CAPLW+4n-BjSHK4gdP=cGvAE+pZDfvYTO4yy09yNRJgSXt2VArg@mail.gmail.com>
-From:   Masahiro Yamada <masahiroy@kernel.org>
-Date:   Sat, 18 Dec 2021 10:02:09 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAQdPMjZozjuwp5Z=_pXi-7JMXXcG0CMW+dWWX4GxJX-qg@mail.gmail.com>
-Message-ID: <CAK7LNAQdPMjZozjuwp5Z=_pXi-7JMXXcG0CMW+dWWX4GxJX-qg@mail.gmail.com>
-Subject: Re: [PATCH] kbuild: Report enabled nodes with duplicated address
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAHp75Vc17tOFTyMT2698BkENC23ocbX9QEc8-rj5=n3Lz5Pn=g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 15, 2021 at 1:11 AM Sam Protsenko
-<semen.protsenko@linaro.org> wrote:
->
-> On Tue, 7 Dec 2021 at 16:03, Sam Protsenko <semen.protsenko@linaro.org> wrote:
-> >
-> > Duplicated unit address is a normal case, as long as no more than one
-> > node using that address is enabled. Having duplicated addresses is
-> > already allowed by '-Wno-unique_unit_address' in DTC_FLAGS. But two
-> > simultaneously enabled nodes sharing the same address is usually
-> > incorrect. Add '-Wunique_unit_address_if_enabled' flag to report
-> > warnings for such case when doing "make dtbs_check".
-> >
-> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > Reported-by: Rob Herring <robh@kernel.org>
-> > Suggested-by: Rob Herring <robh@kernel.org>
-> > ---
-> > NOTE: After applying this patch, a lot of warnings appear on "make
-> > dtbs_check". I'm not completely sure if it's ok, so feel free to Nack.
-> >
->
-> Hi Rob,
->
-> Do you think this patch is feasible? You asked me to send it before,
-> though I now see it leads to a lot of errors being revealed when doing
-> "make dtbs" and "make dtbs_check". Please let me know if it's Ack or
-> Nack -- I'm fine with any resolution, just want to know if I should
-> continue to carry it in my local branch or drop it.
->
-> Thanks!
+On 14/12/2021 08.42, Andy Shevchenko wrote:
+> On Sunday, December 12, 2021, Hector Martin <marcan@marcan.st
+> <mailto:marcan@marcan.st>> wrote:
+> 
+>     This SPI controller is present in Apple SoCs such as the M1 (t8103) and
+>     M1 Pro/Max (t600x). It is a relatively straightforward design with two
+>     16-entry FIFOs, arbitrary transfer sizes (up to 2**32 - 1) and fully
+>     configurable word size up to 32 bits. It supports one hardware CS line
+>     which can also be driven via the pinctrl/GPIO driver instead, if
+>     desired. TX and RX can be independently enabled.
+> 
+>     There are a surprising number of knobs for tweaking details of the
+>     transfer, most of which we do not use right now. Hardware CS control
+>     is available, but we haven't found a way to make it stay low across
+>     multiple logical transfers, so we just use software CS control for now.
+> 
+> 
+> So, AFAIU there is no limitation to the software CS lines (you actually
+> meant GPIO, right?). 
 
+No, this is software control over a single built-in CS line that is part
+of the SPI peripheral. You can of course use the GPIO mechanism too,
+which has no limit on the number of CS lines. That said, I don't think
+Apple uses more than one CS per controller on any current machine, so we
+just use internal CS.
 
-This is up to Rob.
-I do not mind either way.
+>     +struct apple_spi {
+>     +       void __iomem      *regs;        /* MMIO register address */
+>     +       struct clk        *clk;         /* bus clock */
+>     +       struct completion done;         /* wake-up from interrupt */
+> 
+> 
+> Making it first member may save a few cycles on pointer arithmetic 
 
->
-> >  scripts/Makefile.lib | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-> > index ce6142238835..2f00c996d2e3 100644
-> > --- a/scripts/Makefile.lib
-> > +++ b/scripts/Makefile.lib
-> > @@ -315,7 +315,8 @@ DTC_FLAGS += -Wno-unit_address_vs_reg \
-> >         -Wno-alias_paths \
-> >         -Wno-graph_child_address \
-> >         -Wno-simple_bus_reg \
-> > -       -Wno-unique_unit_address
-> > +       -Wno-unique_unit_address \
-> > +       -Wunique_unit_address_if_enabled
-> >  endif
-> >
-> >  ifneq ($(findstring 2,$(KBUILD_EXTRA_WARN)),)
-> > --
-> > 2.30.2
-> >
+The completion? The IRQ handler has to access regs more often than the
+completion, so it sounds like the current order should be faster.
 
+>     +static int apple_spi_wait(struct apple_spi *spi, u32 fifo_bit, u32
+>     xfer_bit, int poll)
+>     +{
+>     +       int ret = 0;
+>     +
+>     +       if (poll) {
+>     +               u32 fifo, xfer;
+>     +               unsigned long timeout = jiffies +
+>     APPLE_SPI_TIMEOUT_MS * HZ / 1000;
+>     +
+>     +               do {
+>     +                       fifo = reg_read(spi, APPLE_SPI_IF_FIFO);
+>     +                       xfer = reg_read(spi, APPLE_SPI_IF_XFER);
+>     +                       if (time_after(jiffies, timeout)) {
+>     +                               ret = -ETIMEDOUT;
+>     +                               break;
+>     +                       }
+>     +               } while (!((fifo & fifo_bit) || (xfer & xfer_bit)));
+> 
+> 
+> You may use read_poll_timeout() with a specific _read() function, but it
+> ma be not worth doing that, just compare and choose the best.
 
+Probably not worth it; I could have a function read both registers and
+stuff it into a u64, but I think it'd end up being about the same amount
+of code in the end with the extra scaffolding.
+
+>     +       case 4: {
+>     +               const u32 *p = *tx_ptr;
+>     +
+>     +               while (words--)
+>     +                       reg_write(spi, APPLE_SPI_TXDATA, *p++);
+>     +               break;
+>     +       }
+>     +       default:
+>     +               WARN_ON(1);
+>     +       }
+>     +
+>     +       *tx_ptr = ((u8 *)*tx_ptr) + bytes_per_word * wrote;
+> 
+> 
+> Not sure if it’s good written code from endianness / alignment handling
+> perspective (while it may still work), perhaps rewrite it a bit?
+
+I'm not entirely sure what the alignment guarantees for SPI buffers are.
+Some drivers use unaligned accessors (e.g. spi-uniphier.c), while others
+don't (e.g. spi-xilinx.c). That makes me think they're aligned in the
+general case (and they usually would be if drivers intend to use them in
+16-bit or 32-bit mode; hopefully they're allocated as arrays of those
+units in that case).
+
+spi.h has this to say:
+
+ * In-memory data values are always in native CPU byte order, translated
+ * from the wire byte order (big-endian except with SPI_LSB_FIRST).  So
+ * for example when bits_per_word is sixteen, buffers are 2N bytes long
+ * (@len = 2N) and hold N sixteen bit words in CPU byte order.
+
+So endianness should be correct, at least for power of two word sizes. I
+also believe it should work for non-POT word sizes, and assuming packing
+doesn't change in SPI_LSB_FIRST, also for that case. It's kind of hard
+to properly validate this without a real device that uses these modes,
+so I think at this point we can just go with the current logic and if we
+run into a problem in the future, we can fix it then :)
+
+>     +       ctlr = spi_alloc_master(&pdev->dev, sizeof(struct apple_spi));
+>     +       if (!ctlr) {
+>     +               dev_err(&pdev->dev, "out of memory\n");
+>     +               return -ENOMEM;
+> 
+> 
+> It’s fine to use dev_err_probe() here as well
+
+Yeah, I switched everything to dev_err_probe()
+
+>     +       pm_runtime_set_active(&pdev->dev);
+>     +       pm_runtime_enable(&pdev->dev);
+>     +
+>     +       pdev->dev.dma_mask = NULL;
+> 
+> 
+> Why do you need this? It won’t work anyway in SPI case.
+
+This was cargo-culted from spi-sifive and I noticed it actually causes a
+warning to be printed on rebinding the driver to the same device;
+already got rid of it :)
 
 -- 
-Best Regards
-Masahiro Yamada
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
