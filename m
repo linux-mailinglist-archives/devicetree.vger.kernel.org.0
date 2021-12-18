@@ -2,137 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B52F6479BEF
-	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 19:08:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E65FB479C04
+	for <lists+devicetree@lfdr.de>; Sat, 18 Dec 2021 19:27:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231892AbhLRSI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 13:08:29 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:45588 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229955AbhLRSI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 13:08:28 -0500
-Received: by mail-oi1-f173.google.com with SMTP id 7so8825802oip.12;
-        Sat, 18 Dec 2021 10:08:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=TSfoz4aXjnjdb0jbAmqY/StV1Ml9RtqYdNL2erwhLOI=;
-        b=SbSJRRmzpAmU59oBClH9aWnQWsOV762bAZZ9cqF88GABnh+bQRATVuU7XKUnpnLbr5
-         9PaO3mEDKKJVMCGTjF01XdiPf4/roH89dINb5rbysjCGxRpL36LzXHwkpjey4xMtrs9c
-         rQt3L4VWj6iFhOnE4EHAPGlYL0QR4H9vOqJQFxsxvNs82Si7GZWLvGqRPDr8hom1/iTh
-         qJ7ZOJjpC8pt76ONiC4dbmf2aCxKu9Ban7ZNzBaxQ6Fizi/RjfxSyOlv4cxqPu6AL/ZX
-         CMam8BtsXXQYVYFjPm/TEGVFLXtcoRBbmQvFMDqa01HYO9+JsNEx3iqx2W8YaqTI4eD8
-         gs8Q==
-X-Gm-Message-State: AOAM533Wy89GlP75aIVvHSmTpp5WHMWgRIRBVINkkGKEKmFXttmEo6bD
-        zsJLwcj/5RKSZMFLhsKWHMdF7S2f6w==
-X-Google-Smtp-Source: ABdhPJx9hhToxzGq7C+51vgR0l79b9qWSrZc9ukqQlRSkvk892TuWjxDQnarIz6MdIT/L4B0LdwJMQ==
-X-Received: by 2002:a05:6808:1aa8:: with SMTP id bm40mr11678539oib.38.1639850908176;
-        Sat, 18 Dec 2021 10:08:28 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x12sm2224275oom.44.2021.12.18.10.08.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Dec 2021 10:08:27 -0800 (PST)
-Received: (nullmailer pid 72437 invoked by uid 1000);
-        Sat, 18 Dec 2021 18:08:26 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>
-In-Reply-To: <20211217170507.2843568-1-thierry.reding@gmail.com>
-References: <20211217170507.2843568-1-thierry.reding@gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: regulator: palmas: Convert to json-schema
-Date:   Sat, 18 Dec 2021 12:08:26 -0600
-Message-Id: <1639850906.459198.72436.nullmailer@robh.at.kernel.org>
+        id S232136AbhLRS13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 13:27:29 -0500
+Received: from ixit.cz ([94.230.151.217]:41988 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232110AbhLRS12 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 18 Dec 2021 13:27:28 -0500
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id AFB602243C;
+        Sat, 18 Dec 2021 19:27:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1639852044;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=c6BTVEMFSRiexd1tcA2S/X57hpqnpmSt7hRLfzTx7VQ=;
+        b=u7PWyZ2ilVYbQQQAiquojc6yCb1Ay84zm4+bHvsuxRzw6F/kXUPvIyGYG+ZqE00DNxihAP
+        0B333UmDEfx6HmngIv2gE49T8dHS2XzVvVnSAsjPxZTdAX9vyojU+R00uIXjtcEMuvmWUF
+        ZdLdDpEYO2FFbPZvbK2lIjcL/8lfMOs=
+From:   David Heidelberg <david@ixit.cz>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Caleb Connolly <caleb@connolly.tech>,
+        David Heidelberg <david@ixit.cz>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-binding: soc: qcom: convert rmtfs documentation to yaml
+Date:   Sat, 18 Dec 2021 19:27:17 +0100
+Message-Id: <20211218182717.16928-1-david@ixit.cz>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Dec 2021 18:05:02 +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Convert the Texas Instruments Palmas bindings from the free-form text
-> format to json-schema.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  .../clock/clk-palmas-clk32kg-clocks.txt       |  35 ----
->  .../bindings/clock/ti,palmas-clk32k.yaml      |  68 ++++++++
->  .../bindings/extcon/extcon-palmas.txt         |  22 ---
->  .../bindings/extcon/ti,palmas-usb-vid.yaml    |  65 ++++++++
->  .../devicetree/bindings/gpio/gpio-palmas.txt  |  27 ---
->  .../bindings/gpio/ti,palmas-gpio.yaml         |  53 ++++++
->  .../bindings/iio/adc/ti,palmas-gpadc.yaml     |  26 ++-
->  .../bindings/input/ti,palmas-pwrbutton.txt    |  35 ----
->  .../bindings/input/ti,palmas-pwrbutton.yaml   |  76 +++++++++
->  .../devicetree/bindings/mfd/palmas.txt        |  52 ------
->  .../devicetree/bindings/mfd/ti,palmas.yaml    | 117 +++++++++++++
->  .../bindings/pinctrl/pinctrl-palmas.txt       | 105 ------------
->  .../bindings/pinctrl/ti,palmas-pinctrl.yaml   | 154 ++++++++++++++++++
->  .../bindings/regulator/palmas-pmic.txt        |  89 ----------
->  .../bindings/regulator/ti,palmas-pmic.yaml    | 144 ++++++++++++++++
->  .../devicetree/bindings/rtc/rtc-palmas.txt    |  32 ----
->  .../bindings/rtc/ti,palmas-rtc.yaml           |  62 +++++++
->  17 files changed, 756 insertions(+), 406 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/clk-palmas-clk32kg-clocks.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/ti,palmas-clk32k.yaml
->  delete mode 100644 Documentation/devicetree/bindings/extcon/extcon-palmas.txt
->  create mode 100644 Documentation/devicetree/bindings/extcon/ti,palmas-usb-vid.yaml
->  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-palmas.txt
->  create mode 100644 Documentation/devicetree/bindings/gpio/ti,palmas-gpio.yaml
->  delete mode 100644 Documentation/devicetree/bindings/input/ti,palmas-pwrbutton.txt
->  create mode 100644 Documentation/devicetree/bindings/input/ti,palmas-pwrbutton.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mfd/palmas.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/ti,palmas.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-palmas.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/ti,palmas-pinctrl.yaml
->  delete mode 100644 Documentation/devicetree/bindings/regulator/palmas-pmic.txt
->  create mode 100644 Documentation/devicetree/bindings/regulator/ti,palmas-pmic.yaml
->  delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-palmas.txt
->  create mode 100644 Documentation/devicetree/bindings/rtc/ti,palmas-rtc.yaml
-> 
+Convert Qualcomm Remote File System Memory binding to the yaml format.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ .../reserved-memory/qcom,rmtfs-mem.yaml       | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/ti,palmas-pmic.example.dt.yaml: pmic: 'interrupts-name', 'ti,system-power-controller' do not match any of the regexes: '^ldo([1-9]|ln|usb)-in-supply$', '^smps(([1-9]|10)-in-)|(smps10-out2-)supply$', 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/ti,palmas-pmic.yaml
-Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dts:27.13-26: Warning (reg_format): /example-0/i2c/pmic@48:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dts:21.13-39.11: Warning (i2c_bus_bridge): /example-0/i2c: incorrect #size-cells for I2C bus
-Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'i2c_bus_bridge'
-Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dts:25.19-38.13: Warning (avoid_default_addr_size): /example-0/i2c/pmic@48: Relying on default #size-cells value
-Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dt.yaml: pmic@48: compatible:0: 'ti,palmas' is not one of ['ti,twl6035', 'ti,twl6036', 'ti,twl6037', 'ti,tps65913', 'ti,tps65914', 'ti,tps80036', 'ti,tps659038', 'ti,tps65917']
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/ti,palmas.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dt.yaml: pmic@48: compatible: ['ti,palmas'] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/ti,palmas.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dt.yaml: pmic@48: 'interrupt-controller' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/ti,palmas.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dt.yaml: pmic@48: '#interrupt-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/ti,palmas.yaml
-
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/input/ti,palmas-pwrbutton.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/palmas.txt
-Documentation/devicetree/bindings/input/ti,palmas-pwrbutton.yaml: Documentation/devicetree/bindings/mfd/palmas.txt
-
-See https://patchwork.ozlabs.org/patch/1570213
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
+new file mode 100644
+index 000000000000..2998f1c8f0db
+--- /dev/null
++++ b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/reserved-memory/qcom,rmtfs-mem.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm Remote File System Memory
++
++description: |
++  This binding describes the Qualcomm remote filesystem memory, which serves the
++  purpose of describing the shared memory region used for remote processors to
++  access block device data using the Remote Filesystem protocol.
++
++maintainers:
++  - Bjorn Andersson <bjorn.andersson@linaro.org>
++
++allOf:
++  - $ref: "reserved-memory.yaml"
++
++properties:
++  compatible:
++    const: qcom,rmtfs-mem
++
++  qcom,client-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: >
++      identifier of the client to use this region for buffers
++
++  qcom,vmid:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: >
++      vmid of the remote processor, to set up memory protection
++
++required:
++  - qcom,client-id
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    reserved-memory {
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges;
++
++        rmtfs@86700000 {
++            compatible = "qcom,rmtfs-mem";
++            reg = <0x86700000 0xe0000>;
++            no-map;
++
++            qcom,client-id = <1>;
++        };
++    };
+-- 
+2.34.1
 
