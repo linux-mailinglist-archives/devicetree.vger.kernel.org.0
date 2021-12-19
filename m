@@ -2,189 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 337F647A28D
-	for <lists+devicetree@lfdr.de>; Sun, 19 Dec 2021 23:09:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60B4B47A295
+	for <lists+devicetree@lfdr.de>; Sun, 19 Dec 2021 23:14:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229790AbhLSWJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Dec 2021 17:09:57 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:48274 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233329AbhLSWJ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Dec 2021 17:09:56 -0500
-Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 10FD6E0C;
-        Sun, 19 Dec 2021 23:09:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1639951795;
-        bh=8B/uuS/+PFeR/5d+nHZ1vg4jsny8/13A6b80+dmflcY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=U8Z8c/5USlfkgSPB3D8liyWqnEpKM2ORA9VdkZPufj5a3wlW74ok0ZvEznD/+yXAX
-         Br/S8CHYYjPiajqY0JPCZoFLawpAr62BdbvgWHvEZYkpqXyyUAFngVZPfPUVNCTIie
-         ZPzEE/d0DNT6bfjLpSCUyvneSNEgH2MhB3YeoeYg=
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     linux-media@vger.kernel.org
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: media: i2c: Add IMX296 CMOS sensor binding
-Date:   Mon, 20 Dec 2021 00:09:47 +0200
-Message-Id: <20211219220948.28953-2-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211219220948.28953-1-laurent.pinchart@ideasonboard.com>
-References: <20211219220948.28953-1-laurent.pinchart@ideasonboard.com>
+        id S233672AbhLSWOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Dec 2021 17:14:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38870 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233594AbhLSWOj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Dec 2021 17:14:39 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 824F4C061574;
+        Sun, 19 Dec 2021 14:14:39 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9D90AB80CEA;
+        Sun, 19 Dec 2021 22:14:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FBE1C36AEC;
+        Sun, 19 Dec 2021 22:14:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1639952076;
+        bh=HP6D72vHsJz+3SuMHStuOjCwZz6yni1egGdsYKfvtq4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=iiCliS8rlxSpK7ZSKsMXG5TOY01duolI0vZcIKl1SnkM6nRqvR/2jPddBn/7+AeXx
+         Smcf+kaWWG1xMUhj1vntFKglBvJb7JH6RHuDweKnoGmVDcCprb9FNVEECdWveW20Is
+         DylQo4hVwC9jVPap/qNpI+Tpp1oL0wcTckOP934LMeePVAdaetWgW+FV291lgczbqH
+         QGrwIELRQOTuLoDqg4fppCrF9gq5k7GGww1J734rS+sMsLlBygntCDhQlXgy3U4QuW
+         F1Svn+JnrqmCD6eXLblQdaQso/sSe0Py44/PeSMtOaX/dDQQbVEnCNnrRzj0uin86y
+         /nuwlHKioUF0Q==
+Received: by mail-ed1-f46.google.com with SMTP id f5so7782275edq.6;
+        Sun, 19 Dec 2021 14:14:36 -0800 (PST)
+X-Gm-Message-State: AOAM532kQGpxk1Sgrq1LPlrJfJaumxWbE6GijrZ+FMUIV2VQKX8CpnU/
+        p2w91SII3/aqSoBs3Kwy6VZ2cQg3+uYXUMHSng==
+X-Google-Smtp-Source: ABdhPJzjQht3KyJniv0l0LSkFmt4saIEjVinWkcMnkDmDIZzEJnLyrHD6/sdsWN5qF36bqcU9AjNEi3K1AM91x8jBB0=
+X-Received: by 2002:a17:906:229b:: with SMTP id p27mr10683673eja.264.1639952074754;
+ Sun, 19 Dec 2021 14:14:34 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <mhng-854afd5f-800b-4b58-af68-cdc6afdc0a4a@palmer-ri-x1c9> <5471232.RFuYXYORHR@diego>
+In-Reply-To: <5471232.RFuYXYORHR@diego>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Sun, 19 Dec 2021 16:14:23 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKWZL42A8G4y3J3uyC5n+Md70rnJjZz2Tt8eJkSPPuAPw@mail.gmail.com>
+Message-ID: <CAL_JsqKWZL42A8G4y3J3uyC5n+Md70rnJjZz2Tt8eJkSPPuAPw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] riscv: dts: sifive unmatched: Expose the FU740
+ core supply regulator
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Vincent Pelletier <plr.vincent@gmail.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        qiuwenbo@kylinos.com.cn, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        David Abdurachmanov <david.abdurachmanov@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+On Sun, Dec 19, 2021 at 3:57 PM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
+>
+> Am Freitag, 17. Dezember 2021, 06:35:00 CET schrieb Palmer Dabbelt:
+> > On Fri, 19 Nov 2021 14:55:40 PST (-0800), plr.vincent@gmail.com wrote:
+> > > Provides monitoring of core voltage and current:
+> > > tps544b20-i2c-0-1e
+> > > Adapter: i2c-ocores
+> > > vout1:       906.00 mV
+> > > temp1:        -40.0=C2=B0C  (high =3D +125.0=C2=B0C, crit =3D +150.0=
+=C2=B0C)
+> > > iout1:         5.06 A  (max =3D +20.00 A, crit max =3D +26.00 A)
+> > >
+> > > Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
+> > >
+> > > ---
+> > > Note: checkpatch.pl complains about undocumented devicetree binding,
+> > > which is fixed by:
+> > >   https://lore.kernel.org/linux-devicetree/20211116110207.68494-1-krz=
+ysztof.kozlowski@canonical.com/T/#u
+> > >
+> > > Changes since v2:
+> > > - Fix end-of-commit-message separator so change lists do not end up i=
+n them.
+> > > Changes since v1:
+> > > - Added missing "ti," prefix in compatible string.
+> > > - Remove trailing "." on subject line.
+> > > - Rename tree node.
+> >
+> > I see this in Rob's for-next as 761de79adc2c ("dt-bindings: hwmon: add
+> > TI DC-DC converters"), so I'm going to hold off on this one until the
+> > bindings land.
+>
+> Can't this patch then simply go into your for-next branch then?
 
-Add YAML devicetree binding for IMX296 CMOS image sensor. Let's also
-add MAINTAINERS entry for the binding and driver.
+Yes.
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
-Changes since v4:
+> The split is most times binding goes through the driver-tree
+> (or Rob's dt tree) and the dts patch through an arch or soc tree.
+>
+> But in general once a maintainer accepts the binding it is ok
+> to also apply the dts patch for the same cycle (aka merge window)
+> the binding will be in.
 
-- Rename to sony,imx296.yaml
-- Add Laurent Pinchart as maintainer
-- Rename power supplies
-- Rename clock to INCK
-- Drop clock-frequency property
-- Reference OF graph DT schema
-- Mention reset GPIO pin name
-- Fix schema $id
-- Fix port
----
- .../bindings/media/i2c/sony,imx296.yaml       | 95 +++++++++++++++++++
- MAINTAINERS                                   |  8 ++
- 2 files changed, 103 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml
+Until there's issues with schema warnings showing up in specific
+branches, going thru different trees isn't an issue. There's a lot of
+warnings to fix first.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml
-new file mode 100644
-index 000000000000..e8f9a73bf2db
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml
-@@ -0,0 +1,95 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/sony,imx296.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sony IMX296 1/2.8-Inch CMOS Image Sensor
-+
-+maintainers:
-+  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+
-+description: |-
-+  The Sony IMX296 is a 1/2.9-Inch active pixel type CMOS Solid-state image
-+  sensor with square pixel array and 1.58 M effective pixels. This chip
-+  features a global shutter with variable charge-integration time. It is
-+  programmable through I2C and 4-wire interfaces. The sensor output is
-+  available via CSI-2 serial data output (1 Lane).
-+
-+properties:
-+  compatible:
-+    const: sony,imx296
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    description: Input clock (37.125 MHz, 54 MHz or 74.25 MHz)
-+    items:
-+      - const: inck
-+
-+  avdd-supply:
-+    description: Analog power supply (3.3V)
-+
-+  dvdd-supply:
-+    description: Digital power supply (1.2V)
-+
-+  ovdd-supply:
-+    description: Interface power supply (1.8V)
-+
-+  reset-gpios:
-+    description: Sensor reset (XCLR) GPIO
-+    maxItems: 1
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - avdd-supply
-+  - dvdd-supply
-+  - ovdd-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        imx296: camera-sensor@1a {
-+            compatible = "sony,imx296";
-+            reg = <0x1a>;
-+
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&camera_rear_default>;
-+
-+            clocks = <&gcc 90>;
-+            clock-names = "inck";
-+
-+            avdd-supply = <&camera_vdda_3v3>;
-+            dvdd-supply = <&camera_vddd_1v2>;
-+            ovdd-supply = <&camera_vddo_1v8>;
-+
-+            reset-gpios = <&msmgpio 35 GPIO_ACTIVE_LOW>;
-+
-+            port {
-+                imx296_ep: endpoint {
-+                    remote-endpoint = <&csiphy0_ep>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 43007f2d29e0..1b20f2b90aec 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17752,6 +17752,14 @@ T:	git git://linuxtv.org/media_tree.git
- F:	Documentation/devicetree/bindings/media/i2c/imx290.txt
- F:	drivers/media/i2c/imx290.c
- 
-+SONY IMX296 SENSOR DRIVER
-+M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml
-+
- SONY IMX319 SENSOR DRIVER
- M:	Bingbu Cao <bingbu.cao@intel.com>
- L:	linux-media@vger.kernel.org
--- 
-Regards,
-
-Laurent Pinchart
-
+Rob
