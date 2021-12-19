@@ -2,103 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C1B8479E8B
-	for <lists+devicetree@lfdr.de>; Sun, 19 Dec 2021 01:24:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F73F479EA8
+	for <lists+devicetree@lfdr.de>; Sun, 19 Dec 2021 02:25:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229641AbhLSAYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Dec 2021 19:24:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40050 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231367AbhLSAYZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Dec 2021 19:24:25 -0500
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFE10C06173F
-        for <devicetree@vger.kernel.org>; Sat, 18 Dec 2021 16:24:24 -0800 (PST)
-Received: by mail-qk1-x732.google.com with SMTP id d21so5971668qkl.3
-        for <devicetree@vger.kernel.org>; Sat, 18 Dec 2021 16:24:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=ttyGAnC6DkJUu9yUKghQOutRdQihW4nBSca09uaHzXk=;
-        b=NmPlmGPYDdSW2bXQrEPaAkpMk3nxXl0y3QnQgymW9b1gdV/fY4rw+yQ0CQrgNNuSOg
-         mUbq68f/09xpLLxThPJu9KZHsfhHDVw+sgxxnJfM1KyQdw0gDV2cb//4CFec4eWUHswz
-         1bljYP5PygpeLw++rwJ1zjx0ECC5QQcB3f8og9s0Rsc9qCwTbGQ9NxdwQaL2pFnkCE8k
-         6V6HnPh1ocmExue1TDmnTAnXVtVEl6qAqxXkOjpGhpZrEjCkXFiSGbm9jBAOG7IufQBJ
-         YUp4aapfghOr6SIdVvjuzH7KfVl/T/J6LmGFirCEI5i2XRSIJaH84Ba8CLOxEo5rqWqr
-         n3BQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=ttyGAnC6DkJUu9yUKghQOutRdQihW4nBSca09uaHzXk=;
-        b=34cpsAkVfGrFEh8YvfQGVQmDtyRaOfS/C5lgRZSiv8mM9Lj3aZVW5EMbU7hhQNMPFC
-         rtaTuAwtQUYNx7ljh20yiD1HCbKn0pCMQLSl8pVcDRfwopMNoHivs8wZlqI0ocQsDdgm
-         U13exr1NS36DEZuC0K61hHqjmWaVhNK8xR7H0bU8HbPwbNLdTmmI7BQ0jWddp8MEzDho
-         j5qFzSZvM9rKF16h5QJw/eVIDwsmmzgyA9WLnfmgtaeCaH2kbdZ9AJJuqpYFtufHKlO5
-         Bv0lbN3XYSRmFIcMXrUsQhNsFPTWi1zT3H2PTj2Y9PTJgtSTg2XmGYrQn7eQRkuzzPFh
-         hpXA==
-X-Gm-Message-State: AOAM532tggEk4hE9TTJ9EGOZRlWrEVknI2tJFUoeIjxnKHVu9aW7JbTY
-        8eHMLy0P847xtwdultuBX8Ackcbpp+0ljEI1EJ4=
-X-Google-Smtp-Source: ABdhPJzcmnGqGvFKrcqsRyy2FdX0EXiS43NPexJZyywvkY4SWMXIAPqwVFRCh3/gTRn2RewuqL1gLOLq0DRsEUtfE3U=
-X-Received: by 2002:ae9:f716:: with SMTP id s22mr5957504qkg.212.1639873463484;
- Sat, 18 Dec 2021 16:24:23 -0800 (PST)
+        id S232767AbhLSBZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Dec 2021 20:25:10 -0500
+Received: from mga04.intel.com ([192.55.52.120]:37465 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232124AbhLSBZK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 18 Dec 2021 20:25:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1639877110; x=1671413110;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=0M9MC4Ak8GfscacBHhzDCXtNrQbm72iDPkzmNwlSN0M=;
+  b=ZKlPfKBV3PxR9SS56z54p+diXQr6i/mUsxEsMvjq/kql25kn+eo+Et+H
+   7v1mooxbEuMJFq9Dq0m2ws3IArTntLrBDoVqLBL6NZqcTF8wejZbch/+D
+   SVSERycliIc6pUBICKQ3s8UInlUX/wY7lICKdeqxAhdSeOfcP1gVvUL4n
+   4UHSraccZuxgOOENlfFpaLvRowIU4mY31w/tyiP1fqvgTuH6XIx11BOfX
+   HnUKVZzIwBtE+B8SxIm2d+TtT11LJgZMgb5pgZ2Spy+YEwbTwmYGJJNuZ
+   K46ztukHovReD+KrgOH8jpq4OTF+hTEf6i7F5bbXQxwj+qmh/QEkpLheA
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10202"; a="238710105"
+X-IronPort-AV: E=Sophos;i="5.88,217,1635231600"; 
+   d="scan'208";a="238710105"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Dec 2021 17:25:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,217,1635231600"; 
+   d="scan'208";a="466945944"
+Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
+  by orsmga006.jf.intel.com with ESMTP; 18 Dec 2021 17:25:07 -0800
+Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mykwk-0006bS-NV; Sun, 19 Dec 2021 01:25:06 +0000
+Date:   Sun, 19 Dec 2021 09:24:44 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
+        <zhouyanjie@wanyeetech.com>, daniel.lezcano@linaro.org,
+        tglx@linutronix.de, robh+dt@kernel.org
+Cc:     kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] clocksource: Ingenic: Add SMP/SMT support for
+ sysost driver.
+Message-ID: <202112190917.6yxHlgI2-lkp@intel.com>
+References: <1639756624-46435-4-git-send-email-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-Received: by 2002:a05:6214:2405:0:0:0:0 with HTTP; Sat, 18 Dec 2021 16:24:22
- -0800 (PST)
-Reply-To: mrsbastienmarion@gmail.com
-From:   Mrs Bastien Marion <ikennaikenna140@gmail.com>
-Date:   Sun, 19 Dec 2021 00:24:22 +0000
-Message-ID: <CAE52L4sMmZvMzPbfFz8p00kBcDwhJhdyCV2TwGmO8u0NOeRzAw@mail.gmail.com>
-Subject: Greetings, this is humanitarian work
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1639756624-46435-4-git-send-email-zhouyanjie@wanyeetech.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I'AM SUFFERING FROM CANCER OF THE HEART
+Hi "周琰杰,
 
-Dear Friend.
+Thank you for the patch! Perhaps something to improve:
 
-Greetings to you in the name of the Lord God Almighty am Mrs Bastien Marion
-From (Paris) France, but am based in Burkina Faso Africa for eight
-years now as a business woman dealing on gold exportation and cotton
-Sales. But I have been suffering from this deadly disease called
-cancer for long and the doctor just said I have just few weeks to
-live.
+[auto build test WARNING on tip/timers/core]
+[also build test WARNING on robh/for-next v5.16-rc5 next-20211217]
+[cannot apply to daniel-lezcano/clockevents/next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-I know it will be difficult for you to believe my story now,
-but this is the situation I found myself in, it=E2=80=99s not my desire to =
-be
-on a sick bed today but God knows best,
+url:    https://github.com/0day-ci/linux/commits/Zhou-Yanjie/Add-SMP-SMT-support-for-Ingenic-sysost-driver/20211217-235813
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git a8da61cee95e627ed3d4274861428013aa9604ea
+config: sparc-randconfig-s031-20211218 (https://download.01.org/0day-ci/archive/20211219/202112190917.6yxHlgI2-lkp@intel.com/config)
+compiler: sparc-linux-gcc (GCC) 11.2.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # apt-get install sparse
+        # sparse version: v0.6.4-dirty
+        # https://github.com/0day-ci/linux/commit/3cd1f50718078825e6411751f137406442bb84c0
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Zhou-Yanjie/Add-SMP-SMT-support-for-Ingenic-sysost-driver/20211217-235813
+        git checkout 3cd1f50718078825e6411751f137406442bb84c0
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=sparc SHELL=/bin/bash drivers/clocksource/
 
-Now that I am about to end the race like this, without any family
-Members and no child. I have $6.8 Million US DOLLARS in BANK OF AFRICA
-(B.O.A) Burkina Faso it=E2=80=99s all my life savings, I instructed the Ban=
-k
-to give it to St Andrews Missionary and Home Kizito Orphanage in
-Burkina Faso. But my mind is not at rest because i do not trust them,
-I am writing this letter now through the help of my computer beside my
-sick bed.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-I will instruct the bank to transfer this fund to you as a foreigner
-but you have to promise me that you will take 40 Percent(%) of the
-total money for your personal use While 60 Percent (%) of the money
-will go to charity, Orphanage and less Privileges" people in the
-street and helping the Needy. I grew up as an Orphan and I don't have
-anybody as my family member, just to Endeavour that the house of God
-is maintained. Am doing this so that God will forgive my sins and
-accept my soul because this sickness has suffered me so much.
 
-As soon as I receive your reply I shall give you the contact of the
-bank and I will also instruct my Bank Manager to issue you an
-authority letter that will prove you the present beneficiary of the
-money in the bank that is if you assure me that you will act
-accordingly as I Stated herein.
+sparse warnings: (new ones prefixed by >>)
+>> drivers/clocksource/ingenic-sysost.c:702:65: sparse: sparse: incorrect type in argument 5 (different address spaces) @@     expected void *dev @@     got struct ingenic_ost_timer [noderef] __percpu *timers @@
+   drivers/clocksource/ingenic-sysost.c:702:65: sparse:     expected void *dev
+   drivers/clocksource/ingenic-sysost.c:702:65: sparse:     got struct ingenic_ost_timer [noderef] __percpu *timers
 
-I look forward to getting a reply from you.
+vim +702 drivers/clocksource/ingenic-sysost.c
 
-Thanks and God bless you,
-Mrs Bastien Marion.
+   677	
+   678	static int __init ingenic_ost_init(struct device_node *np)
+   679	{
+   680		struct ingenic_ost *ost;
+   681		unsigned long rate;
+   682		int ret;
+   683	
+   684		ret = ingenic_ost_probe(np);
+   685		if (ret) {
+   686			pr_crit("%s: Failed to initialize OST clocks: %d\n", __func__, ret);
+   687			return ret;
+   688		}
+   689	
+   690		of_node_clear_flag(np, OF_POPULATED);
+   691	
+   692		ost = ingenic_ost;
+   693		if (IS_ERR(ost))
+   694			return PTR_ERR(ost);
+   695	
+   696		if (ost->soc_info->has_event_timer) {
+   697			if (ost->soc_info->version >= ID_X2000)
+   698				ret = request_percpu_irq(ost->irq, ingenic_ost_cevt_cb,
+   699						  "OST event timer", ost->timers);
+   700			else
+   701				ret = request_irq(ost->irq, ingenic_ost_cevt_cb, IRQF_TIMER,
+ > 702						  "OST event timer", ost->timers);
+   703	
+   704			if (ret) {
+   705				pr_crit("%s: Unable to request IRQ: %d\n", __func__, ret);
+   706				goto err_free_ingenic_ost;
+   707			}
+   708	
+   709			/* Setup clock events on each CPU core */
+   710			ret = cpuhp_setup_state(CPUHP_AP_ONLINE_DYN, "Ingenic XBurst: online",
+   711						ingenic_ost_setup_cevt, NULL);
+   712			if (ret < 0) {
+   713				pr_crit("%s: Unable to init event timers: %d\n", __func__, ret);
+   714				goto err_free_ingenic_ost;
+   715			}
+   716		}
+   717	
+   718		if (ost->soc_info->has_global_timer) {
+   719			ret = ingenic_ost_global_timer_init(np, ost);
+   720			if (ret) {
+   721				pr_crit("%s: Unable to init global timer: %d\n", __func__, ret);
+   722	
+   723				if (!ost->soc_info->has_event_timer)
+   724					goto err_free_ingenic_ost;
+   725			}
+   726	
+   727			/* Register the sched_clock at the end as there's no way to undo it */
+   728			rate = clk_get_rate(ost->global_timer_clk);
+   729			sched_clock_register(ingenic_ost_global_timer_read_cntl, 32, rate);
+   730		}
+   731	
+   732		return 0;
+   733	
+   734	err_free_ingenic_ost:
+   735		kfree(ost);
+   736		return ret;
+   737	}
+   738	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
