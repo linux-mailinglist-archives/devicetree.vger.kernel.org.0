@@ -2,88 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7369447A1F2
-	for <lists+devicetree@lfdr.de>; Sun, 19 Dec 2021 20:37:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9C7F47A27A
+	for <lists+devicetree@lfdr.de>; Sun, 19 Dec 2021 22:57:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236467AbhLSTgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Dec 2021 14:36:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32982 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232361AbhLSTgz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Dec 2021 14:36:55 -0500
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC67C061574
-        for <devicetree@vger.kernel.org>; Sun, 19 Dec 2021 11:36:55 -0800 (PST)
-Received: by mail-pg1-x52f.google.com with SMTP id m15so7455743pgu.11
-        for <devicetree@vger.kernel.org>; Sun, 19 Dec 2021 11:36:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Otaqkl2PQbbt9kWPwOP0eb0nQXlen40cKF0ZeVLHcZs=;
-        b=Y3nUXXw6/V1pbUFkckNLvAPk4s1pXaGqE8aCEs3MtzlgFm/cS/J0fGQgz1rD7BGsYD
-         KaVJ5Wyckz7zv7pexF9lGoAQac8TfNjP53cRtaT8ZW8iEEfC9kSq5s8rV2T3JpE4sMkV
-         L7y14SyhmBd+70ixiKyjFPhDqzHXGCqmEZVaUJXzkZ9PkI1HfsoeNV+2Hcd1PQwWVIYO
-         1hWZPwbT3wTGS/QYaBD+Kx8X20pg8b6vAH31PlUFXlc2Her/ewronq0mgD5QLRbdpPm/
-         sv6LHyC4t4fwaPRR+rZ2UUHnM2otcrpWhKI71KOywg85N26bHhRfIklHnDXsdqDJyeqg
-         1FMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Otaqkl2PQbbt9kWPwOP0eb0nQXlen40cKF0ZeVLHcZs=;
-        b=6oPDZiLfl/Y9uiu1BtFNsjSf1N7d0T0tSR0tDAyCMJcqtZDLebJM5D41k42f+ABs7Z
-         ZTssL3dCzZhu/d6ELjGb7BQlF6sWv94SUZBWQP0wnqFaCbyBp8FICpFkOCg3DuGOYS94
-         1TLHHV7KBgUgLrUc0O/hY/E1UMh8WKvrLX+S4oHeOmj1nQcCI1o0nqAQwGqa1ReTKdqb
-         f/9j7C8zrd7hYA2DVNd2PaLZldL7JZKbkS0Scp7ezlU2zvQMsJtTkyYaL1ZPscfnzkI5
-         9bDHlznf16HkMlowSIBuTpbeKybMbUv6Rb/+/SwQbbS4mMo0ozPmBntEMoQcuxhlYzyv
-         MYgg==
-X-Gm-Message-State: AOAM531WbzleGiOQVxOt8Q+Ie4sMKHvlJDFST2qROHA8LWqPSXM9UxqP
-        hmr/lnyfHt1R4gaxfockkng=
-X-Google-Smtp-Source: ABdhPJyQcMCJXuYEoprg5z2WghBwAnboIx4EfTgGdoMmqZMjmuC+rzKNWrjNBNn9kOi7+Ed1kBZreA==
-X-Received: by 2002:a62:1dca:0:b0:4ba:cfc4:1af7 with SMTP id d193-20020a621dca000000b004bacfc41af7mr2525257pfd.58.1639942614827;
-        Sun, 19 Dec 2021 11:36:54 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id g17sm14420946pgh.46.2021.12.19.11.36.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Dec 2021 11:36:53 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-9?b?QXL9bucg3E5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Alvin =?iso-8859-2?q?=A9ipraga?= <ALSI@bang-olufsen.dk>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: BCM5301X: correct rx-internal-delay-ps & enable flow control on extsw on Asus RT-AC88U
-Date:   Sun, 19 Dec 2021 11:36:52 -0800
-Message-Id: <20211219193652.564259-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211216160319.2373-1-arinc.unal@arinc9.com>
-References: <20211216160319.2373-1-arinc.unal@arinc9.com>
+        id S233609AbhLSV5O convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 19 Dec 2021 16:57:14 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:53796 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233601AbhLSV5O (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 19 Dec 2021 16:57:14 -0500
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1mz4As-00068I-JM; Sun, 19 Dec 2021 22:56:58 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     plr.vincent@gmail.com, linux-riscv@lists.infradead.org
+Cc:     robh+dt@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
+        qiuwenbo@kylinos.com.cn, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        david.abdurachmanov@sifive.com, Palmer Dabbelt <palmer@dabbelt.com>
+Subject: Re: [PATCH v3 4/6] riscv: dts: sifive unmatched: Expose the FU740 core supply regulator
+Date:   Sun, 19 Dec 2021 22:56:57 +0100
+Message-ID: <5471232.RFuYXYORHR@diego>
+In-Reply-To: <mhng-854afd5f-800b-4b58-af68-cdc6afdc0a4a@palmer-ri-x1c9>
+References: <mhng-854afd5f-800b-4b58-af68-cdc6afdc0a4a@palmer-ri-x1c9>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Dec 2021 00:03:19 +0800, Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
-> The current rx-internal-delay-ps value on the Realtek switch node, 2000,
-> will be divided by 300, resulting in 6.66, which will be rounded to the
-> closest step value, 7. Change it to 2100 anyway to be accurate.
+Am Freitag, 17. Dezember 2021, 06:35:00 CET schrieb Palmer Dabbelt:
+> On Fri, 19 Nov 2021 14:55:40 PST (-0800), plr.vincent@gmail.com wrote:
+> > Provides monitoring of core voltage and current:
+> > tps544b20-i2c-0-1e
+> > Adapter: i2c-ocores
+> > vout1:       906.00 mV
+> > temp1:        -40.0�C  (high = +125.0�C, crit = +150.0�C)
+> > iout1:         5.06 A  (max = +20.00 A, crit max = +26.00 A)
+> >
+> > Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
+> >
+> > ---
+> > Note: checkpatch.pl complains about undocumented devicetree binding,
+> > which is fixed by:
+> >   https://lore.kernel.org/linux-devicetree/20211116110207.68494-1-krzysztof.kozlowski@canonical.com/T/#u
+> >
+> > Changes since v2:
+> > - Fix end-of-commit-message separator so change lists do not end up in them.
+> > Changes since v1:
+> > - Added missing "ti," prefix in compatible string.
+> > - Remove trailing "." on subject line.
+> > - Rename tree node.
 > 
-> Commit ef136837aaf6 ("net: dsa: rtl8365mb: set RGMII RX delay in steps of
-> 0.3 ns")
-> 
-> Flow control needs to be enabled on both sides. It's already enabled on the
-> CPU port of the Realtek switch. Enable it on the extsw port of the Broadcom
-> switch as well.
-> 
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> ---
+> I see this in Rob's for-next as 761de79adc2c ("dt-bindings: hwmon: add
+> TI DC-DC converters"), so I'm going to hold off on this one until the
+> bindings land.
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+Can't this patch then simply go into your for-next branch then?
+
+The split is most times binding goes through the driver-tree
+(or Rob's dt tree) and the dts patch through an arch or soc tree.
+
+But in general once a maintainer accepts the binding it is ok
+to also apply the dts patch for the same cycle (aka merge window)
+the binding will be in.
+
+
+Heiko
+
+
+> 
+> I've put the others on fixes.
+> 
+> Thanks!
+> 
+> > ---
+> >  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> > index 270360b258b7..6e7775fdae32 100644
+> > --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> > +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> > @@ -51,6 +51,11 @@ &uart1 {
+> >  &i2c0 {
+> >  	status = "okay";
+> >
+> > +	regulator@1e {
+> > +		compatible = "ti,tps544b20";
+> > +		reg = <0x1e>;
+> > +	};
+> > +
+> >  	temperature-sensor@4c {
+> >  		compatible = "ti,tmp451";
+> >  		reg = <0x4c>;
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> 
+
+
+
+
