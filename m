@@ -2,129 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC75A47A01B
-	for <lists+devicetree@lfdr.de>; Sun, 19 Dec 2021 10:56:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7817B47A056
+	for <lists+devicetree@lfdr.de>; Sun, 19 Dec 2021 12:18:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235539AbhLSJ4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Dec 2021 04:56:17 -0500
-Received: from mout-p-201.mailbox.org ([80.241.56.171]:8788 "EHLO
-        mout-p-201.mailbox.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbhLSJ4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Dec 2021 04:56:17 -0500
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [80.241.60.233])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4JGym003HBzQjkC;
-        Sun, 19 Dec 2021 10:56:16 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-        t=1639907773;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=IqNonhnZ7va7CG4xM/AGGpFbwPX8GSn4tg3EfD8HA5c=;
-        b=TqmHdHnJy+RlFc3gYwkc7BwG1sbIEM3bJKFNta78h4sCa4XvGUghkjP2bqZrzAN4A7jraA
-        dBpcJG+AesTBrYei+AIL1bOcMsMeyMzU+bMpXUi//+k7gEwp3V74J5Gz3ZY3Zmnrm+D28L
-        ThxqCZI5DuOLFlMXj0jrXbiUNhpquJ16GdlNeXdUBec5ohBoEntHk9Yt0FZxSlBwVL2rpy
-        p1zo0wB1r7Ht3M+eBPq+RntwWs0L77hNYRgfaDu9QJeYYfi/jSD4Q2ps+ImaF3AP/63GXY
-        lfw9+7nnXY+6sKCHE0ikEXhOb/WonHAbjOQ9uXOw7xGiNwvHNTlB2fRLaBPqlA==
-From:   Alexander Stein <alexander.stein@mailbox.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 1/1] arm64: dts: meson-g12b-odroid-n2: move assigned-clocks
-Date:   Sun, 19 Dec 2021 10:56:11 +0100
-Message-ID: <4534376.LvFx2qVVIh@kongar>
-In-Reply-To: <1j4k769ch7.fsf@starbuckisacylon.baylibre.com>
-References: <20211218142632.15293-1-alexander.stein@mailbox.org> <1j4k769ch7.fsf@starbuckisacylon.baylibre.com>
+        id S235607AbhLSLSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Dec 2021 06:18:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38366 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229801AbhLSLSZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Dec 2021 06:18:25 -0500
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE07C061574;
+        Sun, 19 Dec 2021 03:18:24 -0800 (PST)
+Received: by mail-io1-xd2d.google.com with SMTP id c3so9572898iob.6;
+        Sun, 19 Dec 2021 03:18:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=SaqxcOL4Lplrqp4ydrgNsbAAystgqbZByphef5IAeVk=;
+        b=WimBmUTpSol2/yjNRgufQXKLeAW5g4J0U3g+BX8HdSLHuK+bwqF069Z950xZFp2uo0
+         wjJxjGXLPE3uA2ZaX533nhv4v6m4FtgJbGi9W3Tr8pCQSujr7CXyoouT05+NJWYilZvX
+         ZuQU42CmjlHsPa87yrgA9EHgq8xaKfMNMitw06iPUDmGjQZwIqV5WF/aT81wfT89xTte
+         N9RhhLmY8nuDsC5SVkUesgZusmw8IscJruHBnXfDfzR/hoef3Co+nNT7qS+Dc6eVsvrb
+         tbG/tFaRIR5qU410QZtbpIiN9gf2j09aGII5jyRvkLXlusR8g/nQKudfbXekIPS2aT9z
+         1BiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SaqxcOL4Lplrqp4ydrgNsbAAystgqbZByphef5IAeVk=;
+        b=xNhvgc/F6TeonNSaqTwXG6b2yNwqLtpOVQbU6oqLBa+4AkeB7JQgr8kaP/7g+1dETd
+         FQOPiCVdoiXy8PpqI5/jXlgKgvn5ZkV4mzHN/okpGF1CMZsa/qhYfWxP4+IEvq7yVxrM
+         fi7gUeUzMZJwO0zF5ZulT1Kp8MZXa8sek5NzBDGhmfdqnVTTEdhP3FYA2udh/q/UJCzr
+         q24YbzlMsazbeTan3sybrzZ94v6IrQxrRb3rxBz4qJE0byDRKyMJ76G4k+FyxGTwNN+u
+         PXlqHiTTsncdKdmmh5Lu5ZOoNu+WFn/wZUSv/+PAaO5A3oFdPrPm5fI34STBQPYkP8VC
+         nQ4Q==
+X-Gm-Message-State: AOAM531bRZr08auUNBoS/E6tNrBWov9cNp3Zd68zawCQ/D7SoKsz3kEl
+        2jmMVMEFSg30MwcCm2jcpvMZGm3Zn0IqQvauInA=
+X-Google-Smtp-Source: ABdhPJxaLugeQ30fi+U6ruTyYEcXUrrjpSQdpWG/8MJ1Vs3FcxjB5GlNshM9fBY+w2yB5WCx2wjTN+YuGR1rMVeUCZs=
+X-Received: by 2002:a5d:9d92:: with SMTP id ay18mr5874393iob.130.1639912703839;
+ Sun, 19 Dec 2021 03:18:23 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+References: <20211126203641.24005-1-semen.protsenko@linaro.org>
+In-Reply-To: <20211126203641.24005-1-semen.protsenko@linaro.org>
+From:   Alim Akhtar <alim.akhtar@gmail.com>
+Date:   Sun, 19 Dec 2021 16:47:47 +0530
+Message-ID: <CAGOxZ51nmoiiWdr3FYLBpg+WSyfnK3wsK+aDi_Q7NAxVVBQWHQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: exynos850: Add bindings for
+ Exynos850 sysreg clocks
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        David Virag <virag.david003@gmail.com>,
+        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org,
+        open list <linux-kernel@vger.kernel.org>,
+        linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Samstag, 18. Dezember 2021, 16:03:16 CET schrieb Jerome Brunet:
->=20
-> On Sat 18 Dec 2021 at 15:26, Alexander Stein <alexander.stein@mailbox.org=
-> wrote:
->=20
-> > dtschema expects a 'clocks' property if 'assigned-clocks' is used, but
-> > 'sound' node does not.
-> > So move the MPLL[0-2] clock settings &clkc_audio which actually use the=
-m.
->=20
-> No, this does not make sense.
-> The sound card needs the clocks set in such way - nothing else
-> The clock controller work just as well regarless of the clock rate
->=20
-> Having a clock property or not does not change that
+On Mon, Nov 29, 2021 at 7:08 PM Sam Protsenko
+<semen.protsenko@linaro.org> wrote:
+>
+> System Register is used to configure system behavior, like USI protocol,
+> etc. SYSREG clocks should be provided to corresponding syscon nodes, to
+> make it possible to modify SYSREG registers.
+>
+> While at it, add also missing PMU and GPIO clocks, which looks necessary
+> and might be needed for corresponding Exynos850 features soon.
+>
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+>  include/dt-bindings/clock/exynos850.h | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
+>
+Looks good, feel free to add
 
-Well, I checked what others did to fix this warning. So I did the same as i=
-n [1].
-Despite that, IMHO if you split 'assigned-clocks' for the same clock =B4all
-over users who is gonna win? Because the sound card needs the clocks set
-his way it is set, it is done in the same file.
-
-Best regards,
-Alexander
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/comm=
-it/?id=3D4afb06afd76855932a2d19c983c013105f1cfb9a
-
-> > This fixes the dtschema warning:
-> > arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dt.yaml: sound: 'clock=
-s' is a dependency of 'assigned-clocks'
-> >
->=20
-> Then the schema needs fixing IMO
->=20
-> > Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
-> > ---
-> >  .../boot/dts/amlogic/meson-g12b-odroid-n2.dtsi    | 15 +++++++--------
-> >  1 file changed, 7 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/ar=
-ch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> > index 9c05c83453f5..85257507206c 100644
-> > --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> > +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> > @@ -252,14 +252,6 @@ sound {
-> >  				"U19 INR", "ACODEC LORP",
-> >  				"Lineout", "U19 OUTL",
-> >  				"Lineout", "U19 OUTR";
-> > -
-> > -		assigned-clocks =3D <&clkc CLKID_MPLL2>,
-> > -				  <&clkc CLKID_MPLL0>,
-> > -				  <&clkc CLKID_MPLL1>;
-> > -		assigned-clock-parents =3D <0>, <0>, <0>;
-> > -		assigned-clock-rates =3D <294912000>,
-> > -				       <270950400>,
-> > -				       <393216000>;
-> >  		status =3D "okay";
-> > =20
-> >  		dai-link-0 {
-> > @@ -365,6 +357,13 @@ &cecb_AO {
-> >  };
-> > =20
-> >  &clkc_audio {
-> > +	assigned-clocks =3D <&clkc CLKID_MPLL2>,
-> > +				<&clkc CLKID_MPLL0>,
-> > +				<&clkc CLKID_MPLL1>;
-> > +	assigned-clock-parents =3D <0>, <0>, <0>;
-> > +	assigned-clock-rates =3D <294912000>,
-> > +					<270950400>,
-> > +					<393216000>;
-> >  	status =3D "okay";
-> >  };
->=20
->=20
+Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
 
 
 
+> diff --git a/include/dt-bindings/clock/exynos850.h b/include/dt-bindings/clock/exynos850.h
+> index 8aa5e82af0d3..0b6a3c6a7c90 100644
+> --- a/include/dt-bindings/clock/exynos850.h
+> +++ b/include/dt-bindings/clock/exynos850.h
+> @@ -82,7 +82,10 @@
+>  #define CLK_GOUT_I3C_PCLK              19
+>  #define CLK_GOUT_I3C_SCLK              20
+>  #define CLK_GOUT_SPEEDY_PCLK           21
+> -#define APM_NR_CLK                     22
+> +#define CLK_GOUT_GPIO_ALIVE_PCLK       22
+> +#define CLK_GOUT_PMU_ALIVE_PCLK                23
+> +#define CLK_GOUT_SYSREG_APM_PCLK       24
+> +#define APM_NR_CLK                     25
+>
+>  /* CMU_CMGP */
+>  #define CLK_RCO_CMGP                   1
+> @@ -99,7 +102,8 @@
+>  #define CLK_GOUT_CMGP_USI0_PCLK                12
+>  #define CLK_GOUT_CMGP_USI1_IPCLK       13
+>  #define CLK_GOUT_CMGP_USI1_PCLK                14
+> -#define CMGP_NR_CLK                    15
+> +#define CLK_GOUT_SYSREG_CMGP_PCLK      15
+> +#define CMGP_NR_CLK                    16
+>
+>  /* CMU_HSI */
+>  #define CLK_MOUT_HSI_BUS_USER          1
+> @@ -167,7 +171,9 @@
+>  #define CLK_GOUT_MMC_EMBD_SDCLKIN      10
+>  #define CLK_GOUT_SSS_ACLK              11
+>  #define CLK_GOUT_SSS_PCLK              12
+> -#define CORE_NR_CLK                    13
+> +#define CLK_GOUT_GPIO_CORE_PCLK                13
+> +#define CLK_GOUT_SYSREG_CORE_PCLK      14
+> +#define CORE_NR_CLK                    15
+>
+>  /* CMU_DPU */
+>  #define CLK_MOUT_DPU_USER              1
+> --
+> 2.30.2
+>
 
+
+-- 
+Regards,
+Alim
