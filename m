@@ -2,285 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E1ED47B1F1
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 18:15:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C1CC47B226
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 18:31:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236998AbhLTRPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 12:15:23 -0500
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:25741 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230225AbhLTRPX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Dec 2021 12:15:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1640020523; x=1671556523;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=sUnftenY0Dcj8cPcjDNYikb7V009NGvqmMjZYFYjV3I=;
-  b=IJ6DuSlOSqrgHIUkwYQ3NBwMGRs+1Lc54kUQrbFNDI+ssFaoMnrDMEUe
-   UhB9zPE0w6u3n+kJPO+pGdBd7jxK13lAW2PpGUFM3hIwYaX9kYLJ37nMl
-   MFa91ThpKxiMmWsPriepEb4klzAXtLpufXY5XCy3BEVksGxFqkMdb8yTs
-   8=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 20 Dec 2021 09:15:22 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2021 09:15:22 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 20 Dec 2021 09:15:21 -0800
-Received: from khsieh-linux1.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 20 Dec 2021 09:15:21 -0800
-From:   Kuogee Hsieh <quic_khsieh@quicinc.com>
-To:     <robdclark@gmail.com>, <sean@poorly.run>, <swboyd@chromium.org>,
-        <vkoul@kernel.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <quic_abhinavk@quicinc.com>, <aravindh@codeaurora.org>,
-        <quic_khsieh@quicinc.com>, <freedreno@lists.freedesktop.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kishon@ti.com>, <p.zabel@pengutronix.de>
-Subject: [PATCH v9] phy: qcom-qmp: add display port v4 voltage and pre-emphasis swing tables
-Date:   Mon, 20 Dec 2021 09:15:12 -0800
-Message-ID: <1640020512-17224-1-git-send-email-quic_khsieh@quicinc.com>
+        id S233445AbhLTRbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 12:31:20 -0500
+Received: from mail-dm3nam07on2072.outbound.protection.outlook.com ([40.107.95.72]:40448
+        "EHLO NAM02-DM3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S233438AbhLTRbQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Dec 2021 12:31:16 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U+C2C1DKSyQTFSONq5eeyb5fJaU/+nbbAnFEGYWEMYuB4AWodL+qVRx8RRB7RjcjgSIQ2lESXStIDwuoempWyxvk1N4ATGfp+lVwpKJm1a8ck0DLSaqE+VmlQwhfvN5mI+dPhqF1b9MgAFYXQfOYn0QUARDWkmaUYYlsF5E78tBwMuJ/0oCcx1A9hCoGhLhjismhUFoi9EgBwIYnYkOTAoZtLaiojYCDR72XQeK0kMAwe2zdJ02WVna2zJ6TX0ZjBRlmDSjXoasrE9psISHojjpjixV1ZSoDboYrH4wd8n0ER+SsKi5dhK56KCnE3sgwXe+pW6LBWIddatKuaZwZ8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tA1yM5hF2qHHoZcGrGqKT9d7LdX6enQT2g68t9Ey+cU=;
+ b=OGXF+nVsiSNWLPQr4DJAVOChq6Kf6IlPCpnaZSEO7vyT9qufzq+XRRKg3XfTe7nUgsvdVMc3GUWBharoie7nksKmp0ivyCUa1pjAJ14uiLACz6sPOivVMWFQTm1yHADjTn7Q1k1+oL+HPWy5KUBDSKn06ldN1MeB+i6OPK5GV2YmfTKBETjeLiLXY3Pbu8ymlYeqtmtwb0GrCsOnY4pNmVaLWEjmGagTcte1uOSGbdte08mWxadgbpCI9+lLXZxhex9hmci4bFe8yjHUBvg8RiLmDgKC7y4mZIyHp6NoXwL93zzfvLgk4SAZpET6o1HIC1h/n+dpeEhsk4a+R0Jhxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.235) smtp.rcpttodomain=suse.com smtp.mailfrom=nvidia.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tA1yM5hF2qHHoZcGrGqKT9d7LdX6enQT2g68t9Ey+cU=;
+ b=uifaMf/nTqzzo0K7reWhnR56/cR3zS9hTvsue6c0jJC69AgJUp8oqJVpaW9RamxJoZcv9XX02MShtmCPv6a6FjG+unhCLNOeJqUM7RB1rNR6ZshXB9HIRwM4vNuWDsP/WN/Ihw38SCF3WGSQ/hJT6BG7SczOfsTX8WHL8L5RPURiCV5aGXTVyxOeDKBzBVkjNdjUIrm0YD5no5BtRKYuWKrEEXmDABL9KgYAtcMbsU15++GDWIBDFCGft3aG3Med4yiyOJ4Hl6KefPy/cC9TC2L4lLd4WxuQgeqZR6YM4VWV09YzuAtoz2UMC1LiJoovqP8QPrnyHHlu8IFuxtflrQ==
+Received: from BN9PR03CA0620.namprd03.prod.outlook.com (2603:10b6:408:106::25)
+ by BN7PR12MB2772.namprd12.prod.outlook.com (2603:10b6:408:26::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.14; Mon, 20 Dec
+ 2021 17:31:14 +0000
+Received: from BN8NAM11FT050.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:106:cafe::1f) by BN9PR03CA0620.outlook.office365.com
+ (2603:10b6:408:106::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.14 via Frontend
+ Transport; Mon, 20 Dec 2021 17:31:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.235)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.235 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.235; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (12.22.5.235) by
+ BN8NAM11FT050.mail.protection.outlook.com (10.13.177.5) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4801.14 via Frontend Transport; Mon, 20 Dec 2021 17:31:14 +0000
+Received: from HQMAIL111.nvidia.com (172.20.187.18) by DRHQMAIL107.nvidia.com
+ (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Mon, 20 Dec
+ 2021 17:30:32 +0000
+Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Mon, 20 Dec
+ 2021 17:30:32 +0000
+Received: from audio.nvidia.com (172.20.187.6) by mail.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
+ Transport; Mon, 20 Dec 2021 17:30:28 +0000
+From:   Sameer Pujar <spujar@nvidia.com>
+To:     <tiwai@suse.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>, <perex@perex.cz>
+CC:     <jonathanh@nvidia.com>, <digetx@gmail.com>, <mkumard@nvidia.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Sameer Pujar <spujar@nvidia.com>
+Subject: [PATCH v2 0/3] Fix Tegra194 HDA regression
+Date:   Mon, 20 Dec 2021 23:00:05 +0530
+Message-ID: <1640021408-12824-1-git-send-email-spujar@nvidia.com>
 X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7c3aee22-94c1-4c69-065e-08d9c3de85b4
+X-MS-TrafficTypeDiagnostic: BN7PR12MB2772:EE_
+X-Microsoft-Antispam-PRVS: <BN7PR12MB2772486E6AA5AFBC67CF9A36A77B9@BN7PR12MB2772.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: pjZQaZgQJ+j/0bQdsO87htJcgZCoZyaJgPh4Vo2Llms5CRNy0zdxIUj+KLYYftq7mQFtUZUgBwhEKkKLpXRIC//uw1u9e47iHD5XfkY3p568VdfcHKOG7KVhz2RFRCk8w93h67gCAe9dfrGcm1peVnzfxYPVrK8VVQqtXx40hwtgwCYun+zYxiSJY34MdFKkO6tnWE3oOgm1cHmsrtofe33xSFcD/Lmg+Kp4zvGGaMvSQzwRjijVZRNhcbFyOt5uMNs1bmBHLC6QTgw4WuLCOZDz2rg6V2M5Vjx9J1FRdcqEn/YFBXPtPI5oPQXbcWbgRXFiKU5K3UPpvWcarG7NSEt2ZOsjNPFrn9hb8EJGlBrJdhChRrai3YcWQpWyyqRruKCyQN3Sx6A7qz9oobyyR2DVdRE1uI0ufOrXxmAQI666+h1hlD3wVTogJI9g1/BAs7IAjdRWngLdeG51PzWIHMx+krVR/7f9B18699SD1B4VcHfVJnqU7Q50z5vm+04+Tw9YTErrxnbFOunFLocSX2EzEDCfnDs0aVMol3qo7urn7fnS5Of6fbgtxUTipBcsHix5YXAW1zCh4UZPhGobSb8A+Id9Rj18EnQdrIXWYpJlBGsJ+nOmVsu9mdjQjI1fRrffZ49cLj6oYerFnTEf9MGGhNY8kgWKDMVTsXDo/+cgZdrLbKRNUbBrIlPNmqivxkHfvpuF3DZcuybJkP6RkpaElz9/pvV/dx12qhXGFlYK1ErJCZcVQETYwdAgyhcXK8vpwFx7nLIoxlVEiXR/G04rxobLLJpOsyEkLLLQOWr6NzWK8/5EfYq396nGeaxMOMUUc1w6OXvLlHOm+046Tg==
+X-Forefront-Antispam-Report: CIP:12.22.5.235;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(4636009)(36840700001)(46966006)(40470700001)(4326008)(70586007)(34020700004)(36756003)(356005)(40460700001)(26005)(186003)(508600001)(47076005)(70206006)(81166007)(82310400004)(7696005)(336012)(316002)(6666004)(2616005)(36860700001)(2906002)(8676002)(83380400001)(426003)(5660300002)(8936002)(7416002)(107886003)(110136005)(54906003)(86362001)(4744005)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2021 17:31:14.1241
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c3aee22-94c1-4c69-065e-08d9c3de85b4
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.235];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT050.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR12MB2772
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit aff188feb5e1 ("phy: qcom-qmp: add support for sm8250-usb3-dp
-phy")' added functions to support V4 of the PHY, but it did not update
-voltage and pre-emphasis tables accordingly.
+HDA probe failure is observed on Tegra194 based platforms and this
+happens due to reset failure. This series fixes the problem by
+skipping the failing reset and DT bindings are updated accordingly.
 
-This patch add v4 voltage and pre-emphasis swing tables to complete v4
-phy implementation. Both voltage and pre-emphasis swing level are set
-during link training negotiation between host and sink. There are totally
-four tables added.  A voltage swing table for both hbr and hbr1, a voltage
-table for both hbr2 and hbr3, a pre-emphasis table for both hbr and hbr1
-and a pre-emphasis table for both hbr2 and hbr3.
 
-In addition, write 0x0a to TX_TX_POL_INV is added to complete the sequence
-of configure dp phy base on the hardware documentation.
+Changelog
+=========
+ v1 -> v2:
+ ---------
+   * Updated HDA driver patch to skip the failing reset instead of
+     skipping resets in general for BPMP devices as per comment from
+     Dmitry.
+   * Used a better strucure name for SoC data as per comment from
+     Thierry.
+   * Dropped 'Fixes' tag in binding doc patch as per comment from
+     Dmitry.
 
-Fixes: aff188feb5e1 ("phy: qcom-qmp: add support for sm8250-usb3-dp phy")
-Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- drivers/phy/qualcomm/phy-qcom-qmp.c | 112 +++++++++++++++++++++++++-----------
- 1 file changed, 77 insertions(+), 35 deletions(-)
+Sameer Pujar (3):
+  ALSA: hda/tegra: Fix Tegra194 HDA reset failure
+  dt-bindings: sound: tegra: Update HDA resets
+  arm64: tegra: Remove non existent Tegra194 reset
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-index 456a59d..d41e30c 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-@@ -4255,40 +4255,50 @@ static void qcom_qmp_v3_phy_dp_aux_init(struct qmp_phy *qphy)
- 	       qphy->pcs + QSERDES_V3_DP_PHY_AUX_INTERRUPT_MASK);
- }
- 
--static const u8 qmp_dp_v3_pre_emphasis_hbr3_hbr2[4][4] = {
-+#define MAX_SWING_LEVEL 4
-+#define MAX_VOLTAGE_LEVEL 4
-+#define MAX_EMPHASIS_LEVEL 4
-+
-+static const u8 qmp_dp_v3_pre_emphasis_hbr3_hbr2[MAX_SWING_LEVEL][MAX_EMPHASIS_LEVEL] = {
- 	{ 0x00, 0x0c, 0x15, 0x1a },
- 	{ 0x02, 0x0e, 0x16, 0xff },
- 	{ 0x02, 0x11, 0xff, 0xff },
- 	{ 0x04, 0xff, 0xff, 0xff }
- };
- 
--static const u8 qmp_dp_v3_voltage_swing_hbr3_hbr2[4][4] = {
-+static const u8 qmp_dp_v3_voltage_swing_hbr3_hbr2[MAX_SWING_LEVEL][MAX_VOLTAGE_LEVEL] = {
- 	{ 0x02, 0x12, 0x16, 0x1a },
- 	{ 0x09, 0x19, 0x1f, 0xff },
- 	{ 0x10, 0x1f, 0xff, 0xff },
- 	{ 0x1f, 0xff, 0xff, 0xff }
- };
- 
--static const u8 qmp_dp_v3_pre_emphasis_hbr_rbr[4][4] = {
-+static const u8 qmp_dp_v3_pre_emphasis_hbr_rbr[MAX_SWING_LEVEL][MAX_EMPHASIS_LEVEL] = {
- 	{ 0x00, 0x0c, 0x14, 0x19 },
- 	{ 0x00, 0x0b, 0x12, 0xff },
- 	{ 0x00, 0x0b, 0xff, 0xff },
- 	{ 0x04, 0xff, 0xff, 0xff }
- };
- 
--static const u8 qmp_dp_v3_voltage_swing_hbr_rbr[4][4] = {
-+static const u8 qmp_dp_v3_voltage_swing_hbr_rbr[MAX_SWING_LEVEL][MAX_VOLTAGE_LEVEL] = {
- 	{ 0x08, 0x0f, 0x16, 0x1f },
- 	{ 0x11, 0x1e, 0x1f, 0xff },
- 	{ 0x19, 0x1f, 0xff, 0xff },
- 	{ 0x1f, 0xff, 0xff, 0xff }
- };
- 
--static int qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
--		unsigned int drv_lvl_reg, unsigned int emp_post_reg)
-+static int __qcom_qmp_phy_configure_dp_swing
-+			(struct qmp_phy *qphy,
-+			unsigned int drv_lvl_reg,
-+			unsigned int emp_post_reg,
-+			const u8 voltage_swing_hbr_rbr[MAX_SWING_LEVEL][MAX_VOLTAGE_LEVEL],
-+			const u8 pre_emphasis_hbr_rbr[MAX_SWING_LEVEL][MAX_EMPHASIS_LEVEL],
-+			const u8 voltage_swing_hbr3_hbr2[MAX_SWING_LEVEL][MAX_VOLTAGE_LEVEL],
-+			const u8 pre_emphasis_hbr3_hbr2[MAX_SWING_LEVEL][MAX_EMPHASIS_LEVEL])
- {
- 	const struct phy_configure_opts_dp *dp_opts = &qphy->dp_opts;
- 	unsigned int v_level = 0, p_level = 0;
--	u8 voltage_swing_cfg, pre_emphasis_cfg;
-+	u8 voltage, emphasis;
- 	int i;
- 
- 	for (i = 0; i < dp_opts->lanes; i++) {
-@@ -4297,26 +4307,25 @@ static int qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
- 	}
- 
- 	if (dp_opts->link_rate <= 2700) {
--		voltage_swing_cfg = qmp_dp_v3_voltage_swing_hbr_rbr[v_level][p_level];
--		pre_emphasis_cfg = qmp_dp_v3_pre_emphasis_hbr_rbr[v_level][p_level];
-+		voltage = voltage_swing_hbr_rbr[v_level][p_level];
-+		emphasis = pre_emphasis_hbr_rbr[v_level][p_level];
- 	} else {
--		voltage_swing_cfg = qmp_dp_v3_voltage_swing_hbr3_hbr2[v_level][p_level];
--		pre_emphasis_cfg = qmp_dp_v3_pre_emphasis_hbr3_hbr2[v_level][p_level];
-+		voltage = voltage_swing_hbr3_hbr2[v_level][p_level];
-+		emphasis = pre_emphasis_hbr3_hbr2[v_level][p_level];
- 	}
- 
- 	/* TODO: Move check to config check */
--	if (voltage_swing_cfg == 0xFF && pre_emphasis_cfg == 0xFF)
-+	if (voltage == 0xFF && emphasis == 0xFF)
- 		return -EINVAL;
- 
- 	/* Enable MUX to use Cursor values from these registers */
--	voltage_swing_cfg |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
--	pre_emphasis_cfg |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
--
--	writel(voltage_swing_cfg, qphy->tx + drv_lvl_reg);
--	writel(pre_emphasis_cfg, qphy->tx + emp_post_reg);
--	writel(voltage_swing_cfg, qphy->tx2 + drv_lvl_reg);
--	writel(pre_emphasis_cfg, qphy->tx2 + emp_post_reg);
-+	voltage |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
-+	emphasis |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
- 
-+	writel(voltage, qphy->tx + drv_lvl_reg);
-+	writel(emphasis, qphy->tx + emp_post_reg);
-+	writel(voltage, qphy->tx2 + drv_lvl_reg);
-+	writel(emphasis, qphy->tx2 + emp_post_reg);
- 	return 0;
- }
- 
-@@ -4325,9 +4334,14 @@ static void qcom_qmp_v3_phy_configure_dp_tx(struct qmp_phy *qphy)
- 	const struct phy_configure_opts_dp *dp_opts = &qphy->dp_opts;
- 	u32 bias_en, drvr_en;
- 
--	if (qcom_qmp_phy_configure_dp_swing(qphy,
--				QSERDES_V3_TX_TX_DRV_LVL,
--				QSERDES_V3_TX_TX_EMP_POST1_LVL) < 0)
-+	if (__qcom_qmp_phy_configure_dp_swing
-+			(qphy,
-+			QSERDES_V3_TX_TX_DRV_LVL,
-+			QSERDES_V3_TX_TX_EMP_POST1_LVL,
-+			qmp_dp_v3_voltage_swing_hbr_rbr,
-+			qmp_dp_v3_pre_emphasis_hbr_rbr,
-+			qmp_dp_v3_voltage_swing_hbr3_hbr2,
-+			qmp_dp_v3_pre_emphasis_hbr3_hbr2) < 0)
- 		return;
- 
- 	if (dp_opts->lanes == 1) {
-@@ -4465,6 +4479,35 @@ static int qcom_qmp_v3_dp_phy_calibrate(struct qmp_phy *qphy)
- 	return 0;
- }
- 
-+/* The values in these tables are given without MUX_EN (0x20) bit set */
-+static const u8 qmp_dp_v4_pre_emphasis_hbr3_hbr2[MAX_SWING_LEVEL][MAX_EMPHASIS_LEVEL] = {
-+	{ 0x00, 0x0c, 0x15, 0x1b },
-+	{ 0x02, 0x0e, 0x16, 0xff },
-+	{ 0x02, 0x11, 0xff, 0xff },
-+	{ 0x04, 0xff, 0xff, 0xff }
-+};
-+
-+static const u8 qmp_dp_v4_voltage_swing_hbr3_hbr2[MAX_SWING_LEVEL][MAX_VOLTAGE_LEVEL] = {
-+	{ 0x02, 0x12, 0x16, 0x1a },
-+	{ 0x09, 0x19, 0x1f, 0xff },
-+	{ 0x10, 0x1f, 0xff, 0xff },
-+	{ 0x1f, 0xff, 0xff, 0xff }
-+};
-+
-+static const u8 qmp_dp_v4_pre_emphasis_hbr_rbr[MAX_SWING_LEVEL][MAX_EMPHASIS_LEVEL] = {
-+	{ 0x00, 0x0e, 0x15, 0x1b },
-+	{ 0x00, 0x0e, 0x15, 0xff },
-+	{ 0x00, 0x0e, 0xff, 0xff },
-+	{ 0x04, 0xff, 0xff, 0xff }
-+};
-+
-+static const u8 qmp_dp_v4_voltage_swing_hbr_rbr[MAX_SWING_LEVEL][MAX_VOLTAGE_LEVEL] = {
-+	{ 0x08, 0x0f, 0x16, 0x1f },
-+	{ 0x11, 0x1e, 0x1f, 0xff },
-+	{ 0x16, 0x1f, 0xff, 0xff },
-+	{ 0x1f, 0xff, 0xff, 0xff }
-+};
-+
- static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
- {
- 	writel(DP_PHY_PD_CTL_PWRDN | DP_PHY_PD_CTL_PSR_PWRDN | DP_PHY_PD_CTL_AUX_PWRDN |
-@@ -4494,16 +4537,14 @@ static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
- 
- static void qcom_qmp_v4_phy_configure_dp_tx(struct qmp_phy *qphy)
- {
--	/* Program default values before writing proper values */
--	writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
--	writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
--
--	writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
--	writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
--
--	qcom_qmp_phy_configure_dp_swing(qphy,
-+	__qcom_qmp_phy_configure_dp_swing
-+			(qphy,
- 			QSERDES_V4_TX_TX_DRV_LVL,
--			QSERDES_V4_TX_TX_EMP_POST1_LVL);
-+			QSERDES_V4_TX_TX_EMP_POST1_LVL,
-+			qmp_dp_v4_voltage_swing_hbr_rbr,
-+			qmp_dp_v4_pre_emphasis_hbr_rbr,
-+			qmp_dp_v4_voltage_swing_hbr3_hbr2,
-+			qmp_dp_v4_pre_emphasis_hbr3_hbr2);
- }
- 
- static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
-@@ -4622,6 +4663,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
- 	writel(drvr1_en, qphy->tx2 + QSERDES_V4_TX_HIGHZ_DRVR_EN);
- 	writel(bias1_en, qphy->tx2 + QSERDES_V4_TX_TRANSCEIVER_BIAS_EN);
- 
-+	writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
-+	writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
-+
- 	writel(0x18, qphy->pcs + QSERDES_DP_PHY_CFG);
- 	udelay(2000);
- 	writel(0x19, qphy->pcs + QSERDES_DP_PHY_CFG);
-@@ -4633,11 +4677,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
- 			10000))
- 		return -ETIMEDOUT;
- 
--	writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
--	writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
- 
--	writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
--	writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
-+	writel(0x22, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
-+	writel(0x22, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
- 
- 	writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
- 	writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
+ .../bindings/sound/nvidia,tegra30-hda.yaml         | 13 ++-
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi           |  5 +-
+ sound/pci/hda/hda_tegra.c                          | 96 +++++++++++++++++++---
+ 3 files changed, 97 insertions(+), 17 deletions(-)
+
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.7.4
 
