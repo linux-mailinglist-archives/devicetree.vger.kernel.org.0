@@ -2,107 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1D2F47A9D7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 13:44:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2258247A9F0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 13:51:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231268AbhLTMoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 07:44:10 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:11068 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229820AbhLTMoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 07:44:10 -0500
+        id S231839AbhLTMvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 07:51:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34886 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231838AbhLTMvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 07:51:54 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D8E8C06173E
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 04:51:54 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id n14-20020a7bcbce000000b00332f4abf43fso5144946wmi.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 04:51:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1640004250; x=1671540250;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=UY5QOK4WexkpB6nxRP6uRky4rhzRwrcfHaEgqbYJz9w=;
-  b=LYB3t3qZU6s3FO/I+f2mNfT2pZyUiYIXjGf/RO6LfkAkHLHIaGfbjfjA
-   0DZus/eG0uuYW/KhxkubIWO1w1xUgXU61+ZuS2B8KzScImXbJGMj2Rjc9
-   VLGiITo4RfARmnuUFS8JGysOLarGMNXWfH2+myfvqmy9MXTj1UPlmJ79E
-   g=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 20 Dec 2021 04:44:10 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2021 04:44:09 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 20 Dec 2021 04:44:09 -0800
-Received: from [10.216.48.77] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Mon, 20 Dec
- 2021 04:44:04 -0800
-Subject: Re: [PATCH V4 2/6] dt-bindings: regulator: Add pm8008 regulator
- bindings
-To:     Mark Brown <broonie@kernel.org>
-CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, <swboyd@chromium.org>,
-        <collinsd@codeaurora.org>, <subbaram@codeaurora.org>,
-        Das Srinagesh <gurus@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        "Lee Jones" <lee.jones@linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
- <1637314953-4215-3-git-send-email-quic_c_skakit@quicinc.com>
- <YZ+qn2hA4MzNEqM+@sirena.org.uk>
- <30b21a08-f7f7-f3a6-a3ac-156c7f8964b1@quicinc.com>
- <Ya4UcxxEq9t+isxS@sirena.org.uk>
-From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
-Message-ID: <30ec6b4c-f2a8-d80e-a542-1c2b3f30c049@quicinc.com>
-Date:   Mon, 20 Dec 2021 18:14:00 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PuZC+K3Kaok5hXKjmR3Gu9qJFZKj26rdkdsCekbAVko=;
+        b=ljJMnVDbZcI+Dhh1HqX3uLyt6uBCnSN4UvdQbPsKlmIbiDrVZC511h+pT5usnu7aiV
+         BgmkAZntnTgcBoJwQdjsnNhR0Kmsr8BTJmaCjylV7Li4HTMYK9rVh2l7Izbad+yB1JxJ
+         b1FynDH0BiZGaHieJE6XmA9hnlA7RLxQSOWsZwykM7SfcgYQq7WCjMfc4Heo6u2d1X31
+         VB8vC75zwNzSfVEsHBsbYZ5pHPRrWM+N+5zkJhZFikGaYVsAOiiBILRIAEP1qzc3Mxrn
+         MyS/E/XRJNiQpaiW+ldMC8NRNKXUN6JahdTQmQ0FXfnNfDjYiHqpjJ7DoZFRhYZEijvA
+         GbbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PuZC+K3Kaok5hXKjmR3Gu9qJFZKj26rdkdsCekbAVko=;
+        b=co0SXr1TC3cmkLPz9cDCjPeZ5jZAENzW+uT16UoiRfc7sJGDcXOEbjJJUsbkGY3VTM
+         p9jHWXnEuI4vE+ZqB9zS+DBx8z81baY7dfE6KprTt1dDpjky3ztM1gT8XPbxgXNGSjZK
+         /W89Ml1auUfdP0Dvsdbmo6so2K3rYI3rMJnRXJteDK3Inmr7uID8tkuIpw6ybzb9icia
+         F383WbWpFkta8bmgDouD4NYzeyr9o9ZePmdaQ/kDA/Fs3AruL5oaU+wwy6ST2IbA0Vay
+         mhvZAc2j/dnjOvREr7Yzvo4/Ze8nL4EkBQg/doORYGRswEewQft4BePubb82XO/gmw7i
+         fnOw==
+X-Gm-Message-State: AOAM531L4pN94t/2W5xLZu5vaLCe5HBTuoAwIJdqBPxT1sSNh8LHbr6J
+        uzwRplTQsm3Lh0cFOhxsGxw=
+X-Google-Smtp-Source: ABdhPJz0IQEiVaLK1pt3cm9gdzR58X+4LPKSU6c7UShi1z55pyRFRJidt5rlF2ufCR+OCN0Q7FpMiA==
+X-Received: by 2002:a05:600c:4e46:: with SMTP id e6mr3222669wmq.132.1640004712601;
+        Mon, 20 Dec 2021 04:51:52 -0800 (PST)
+Received: from localhost ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id r11sm15316245wrw.5.2021.12.20.04.51.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Dec 2021 04:51:51 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thomas Zimmermann <tzimmermann@suse.de>,
+        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: display: bridge: lvds-codec: Fix duplicate key
+Date:   Mon, 20 Dec 2021 13:51:47 +0100
+Message-Id: <20211220125147.519880-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-In-Reply-To: <Ya4UcxxEq9t+isxS@sirena.org.uk>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Thierry Reding <treding@nvidia.com>
 
-On 12/6/2021 7:17 PM, Mark Brown wrote:
-> On Mon, Dec 06, 2021 at 07:13:02PM +0530, Satya Priya Kakitapalli (Temp) wrote:
->> On 11/25/2021 8:54 PM, Mark Brown wrote:
->>> On Fri, Nov 19, 2021 at 03:12:29PM +0530, Satya Priya wrote:
->>>> +properties:
->>>> +  compatible:
->>>> +    const: qcom,pm8008-regulators
->>> Why are we adding a separate compatible for this when we already know
->>> that this is a pm8008 based on the parent?
->> For the regulator driver to be probed we do need a separate compatible
->> right? may be I didn't get your question..
->> My understanding is we should have a separate compatible for each peripheral
->> under the parent mfd node.. like gpios, temp alarm, regulators etc..
-> No, the MFD can register whatever children it likes without needing any
-> help from the DT.
+In order to validate multiple "if" conditionals, they must be part of an
+"allOf:" list, otherwise they will cause a failure in parsing the schema
+because of the duplicated "if" property.
 
-I think this is possible by using of_platform_bus_probe() API. But, the 
-mfd driver uses of_platform_populate() API, this needs all device nodes 
-to have a 'compatible' property unlike the of_platform_bus_probe() API.
+Fixes: d7df3948eb49 ("dt-bindings: display: bridge: lvds-codec: Document pixel data sampling edge select")
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ .../bindings/display/bridge/lvds-codec.yaml   | 43 ++++++++++---------
+ 1 file changed, 22 insertions(+), 21 deletions(-)
 
-All other MFD upstream drivers are also using the same API and 
-registering the child regulators by using separate compatible strings.
-
-
->>>> +  vdd_l1_l2-supply:
->>>> +    description: Input supply phandle of ldo1 and ldo2 regulators.
->>> These supply nodes should be chip level, they're going into the chip and
->>> in general the expectation is that you should be able to describe the
->>> supplies going into a device without worrying about how or if any
->>> particular OS splits things up.
->> So, if i understand correctly, we don't have to mention these in the
->> documentation as these are handled at framework level?
-> No.  I'm saying you should document these at the chip level, they do
-> need to be documented though.
-
-By chip level do you mean "pm8008.yaml" documentation? If so, yes, I can 
-move these to pm8008.yaml and change DT accordingly.
+diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+index 708de84ac138..5079c1cc337b 100644
+--- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+@@ -94,31 +94,32 @@ properties:
+ 
+   power-supply: true
+ 
+-if:
+-  not:
+-    properties:
+-      compatible:
+-        contains:
+-          const: lvds-decoder
+-then:
+-  properties:
+-    ports:
++allOf:
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              const: lvds-decoder
++    then:
+       properties:
+-        port@0:
++        ports:
+           properties:
+-            endpoint:
++            port@0:
+               properties:
+-                data-mapping: false
++                endpoint:
++                  properties:
++                    data-mapping: false
+ 
+-if:
+-  not:
+-    properties:
+-      compatible:
+-        contains:
+-          const: lvds-encoder
+-then:
+-  properties:
+-    pclk-sample: false
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              const: lvds-encoder
++    then:
++      properties:
++        pclk-sample: false
+ 
+ required:
+   - compatible
+-- 
+2.34.1
 
