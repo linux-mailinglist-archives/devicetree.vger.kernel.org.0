@@ -2,161 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A835D47A534
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 07:57:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D3CB47A558
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 08:22:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234122AbhLTG51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 01:57:27 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:41884 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232310AbhLTG51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 01:57:27 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BK6vA69050155;
-        Mon, 20 Dec 2021 00:57:10 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1639983430;
-        bh=34K0ObKN4Gi3tCKmWNs+0rWwZp0erVuQ1EhAy6igolA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=I1VOdzndFmrbvzIxVPBo2FWSqPD4O344Tpxix8iWvxSBsoquEdrcrhb43KELsv2TJ
-         EEfuaDM+74K+LRGmq9uj+gq2ikWLM0q7vqWAsrtjIBtNGyWy7KhuxIBNU3il0asFWk
-         3W+Ko+EdG+im/c9QfovqjKK8WoXfe+DSuuhOyl+o=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BK6v9hF121018
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 20 Dec 2021 00:57:09 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 20
- Dec 2021 00:57:09 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 20 Dec 2021 00:57:09 -0600
-Received: from [172.24.145.136] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BK6v6Pc118421;
-        Mon, 20 Dec 2021 00:57:07 -0600
-Subject: Re: [PATCH] mux: add missing mux_state_get
-To:     Peter Rosin <peda@axentia.se>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-References: <20211202124053.2835-1-a-govindraju@ti.com>
- <59c57ab7-a272-b925-befc-79f88c925e3c@axentia.se>
- <af642da8-a9e1-6d3a-a928-8a514f1c5eb0@axentia.se>
- <773b9424-a1c7-1955-886c-de36299a6873@axentia.se>
- <031e134d-dbe3-0f39-3e63-647d0efa1576@axentia.se>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <238c5e18-1b1e-9f9c-8c96-f25bd7f7f838@ti.com>
-Date:   Mon, 20 Dec 2021 12:27:06 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <031e134d-dbe3-0f39-3e63-647d0efa1576@axentia.se>
+        id S237656AbhLTHWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 02:22:09 -0500
+Received: from mail.emtrion.de ([87.139.198.129]:49586 "EHLO mail3.emtrion.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234251AbhLTHWI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Dec 2021 02:22:08 -0500
+Received: from EMT-KA-S004.emtrion.local (2003:f9:5824:1:c59f:32f4:72e5:b9e1)
+ by EMT-KA-S004.emtrion.local (2003:f9:5824:1:c59f:32f4:72e5:b9e1) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Mon, 20 Dec
+ 2021 08:22:06 +0100
+Received: from EMT-KA-S004.emtrion.local ([fe80::c59f:32f4:72e5:b9e1]) by
+ EMT-KA-S004.emtrion.local ([fe80::c59f:32f4:72e5:b9e1%11]) with mapi id
+ 15.02.0922.019; Mon, 20 Dec 2021 08:22:06 +0100
+From:   "Mueller, Reinhold" <Reinhold.Mueller@emtrion.de>
+To:     'Fabio Estevam' <festevam@gmail.com>
+CC:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Sascha Hauer" <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        "NXP Linux Team" <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: AW: [PATCH v3 2/2] arm64: dts: imx8mm: Add support for emtrion
+ emCON-MX8M Mini
+Thread-Topic: [PATCH v3 2/2] arm64: dts: imx8mm: Add support for emtrion
+ emCON-MX8M Mini
+Thread-Index: AQHX8p4/qVpEE+5XVkqp76PsxzzPJaw1S+yAgAWw2AA=
+Date:   Mon, 20 Dec 2021 07:22:05 +0000
+Message-ID: <45a433da4f12450f9f890f181bcd4126@emtrion.de>
+References: <20211216165851.64708-1-reinhold.mueller@emtrion.com>
+ <20211216165851.64708-3-reinhold.mueller@emtrion.com>
+ <CAOMZO5C346Om3QS19RQB3EzPu9Ey2b1jt_V_hzOZCk6bEd9wtQ@mail.gmail.com>
+In-Reply-To: <CAOMZO5C346Om3QS19RQB3EzPu9Ey2b1jt_V_hzOZCk6bEd9wtQ@mail.gmail.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2003:f9:5824:1:602d:8cff:3d08:141a]
+x-c2processedorg: 5b249fcb-306f-4927-9982-5d11b1d300ce
 Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 19/12/21 12:07 am, Peter Rosin wrote:
-> And implement devm_mux_state_get in terms of the new function.
-> 
-> Signed-off-by: Peter Rosin <peda@axentia.se>
-
-Tested-by: Aswath Govindraju <a-govindraju@ti.com>
-
-Thanks,
-Aswath
-
-> ---
->  drivers/mux/core.c           | 41 ++++++++++++++++++++++++++----------
->  include/linux/mux/consumer.h |  1 +
->  2 files changed, 31 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/mux/core.c b/drivers/mux/core.c
-> index 7d38e7c0c02e..90073ce01539 100644
-> --- a/drivers/mux/core.c
-> +++ b/drivers/mux/core.c
-> @@ -673,6 +673,33 @@ struct mux_control *devm_mux_control_get(struct device *dev,
->  }
->  EXPORT_SYMBOL_GPL(devm_mux_control_get);
->  
-> +/**
-> + * mux_state_get() - Get the mux-state for a device.
-> + * @dev: The device that needs a mux-state.
-> + * @mux_name: The name identifying the mux-state.
-> + *
-> + * Return: A pointer to the mux-state, or an ERR_PTR with a negative errno.
-> + */
-> +struct mux_state *mux_state_get(struct device *dev, const char *mux_name)
-> +{
-> +	struct mux_state *mstate;
-> +
-> +	mstate = kzalloc(sizeof(*mstate), GFP_KERNEL);
-> +	if (!mstate)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	mstate->mux = mux_get(dev, mux_name, &mstate->state);
-> +	if (IS_ERR(mstate->mux)) {
-> +		int err = PTR_ERR(mstate->mux);
-> +
-> +		kfree(mstate);
-> +		return ERR_PTR(err);
-> +	}
-> +
-> +	return mstate;
-> +}
-> +EXPORT_SYMBOL_GPL(mux_state_get);
-> +
->  /**
->   * mux_state_put() - Put away the mux-state for good.
->   * @mstate: The mux-state to put away.
-> @@ -705,25 +732,17 @@ struct mux_state *devm_mux_state_get(struct device *dev,
->  				     const char *mux_name)
->  {
->  	struct mux_state **ptr, *mstate;
-> -	struct mux_control *mux_ctrl;
-> -	int state;
-> -
-> -	mstate = devm_kzalloc(dev, sizeof(struct mux_state), GFP_KERNEL);
-> -	if (!mstate)
-> -		return ERR_PTR(-ENOMEM);
->  
->  	ptr = devres_alloc(devm_mux_state_release, sizeof(*ptr), GFP_KERNEL);
->  	if (!ptr)
->  		return ERR_PTR(-ENOMEM);
->  
-> -	mux_ctrl = mux_get(dev, mux_name, &state);
-> -	if (IS_ERR(mux_ctrl)) {
-> +	mstate = mux_state_get(dev, mux_name);
-> +	if (IS_ERR(mstate)) {
->  		devres_free(ptr);
-> -		return (struct mux_state *)mux_ctrl;
-> +		return mstate;
->  	}
->  
-> -	mstate->mux = mux_ctrl;
-> -	mstate->state = state;
->  	*ptr = mstate;
->  	devres_add(dev, ptr);
->  
-> diff --git a/include/linux/mux/consumer.h b/include/linux/mux/consumer.h
-> index babf2a744056..944678604549 100644
-> --- a/include/linux/mux/consumer.h
-> +++ b/include/linux/mux/consumer.h
-> @@ -54,6 +54,7 @@ int mux_control_deselect(struct mux_control *mux);
->  int mux_state_deselect(struct mux_state *mstate);
->  
->  struct mux_control *mux_control_get(struct device *dev, const char *mux_name);
-> +struct mux_state *mux_state_get(struct device *dev, const char *mux_name);
->  void mux_control_put(struct mux_control *mux);
->  void mux_state_put(struct mux_state *mstate);
->  
-> 
-
+SGkgRmFiaW8sDQoNCnRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KUGxlYXNlIHNlZSB0aGUgY29t
+bWVudHMgYXQgdGhlIG1hcmtlZCBpc3N1ZXMgYmVsb3cuDQpJIHdpbGwgc2VuZCBhIG5ldyBwYXRj
+aHNldC4NCg0KUmVnYXJkcw0KUmVpbmhvbGQNCg0KDQpSZWluaG9sZCBNdWVsbGVyDQpTb2Z0d2Fy
+ZSBlbmdpbmVlcg0KDQoNCmVtdHJpb24gR21iSA0KQW0gSGFzZW5iaWVsIDYgfCA3NjI5NyBTdHV0
+ZW5zZWUgfCBHZXJtYW55DQoNClBob25lICs0OSA3MjQ0IDYyNjk0IDIwDQpGYXggKzQ5IDcyNDQg
+NjI2OTQgMTkNCkVtYWlsIFJlaW5ob2xkLk11ZWxsZXJAZW10cmlvbi5kZQ0KT25saW5lIHd3dy5l
+bXRyaW9uLmRlDQoNCioqKiBNZXJyeSBYLU1hcyAmIEhhcHB5IE5ldyBZZWFyIDIwMjIgKioqDQoN
+Cg0KZW10cmlvbiBHbWJIIOKAoiBBbXRzZ2VyaWNodCBNYW5uaGVpbSDigKIgSFJCIDExMCAzMDAg
+4oCiIEdlc2Now6RmdHNmw7xocmVyOiBSYW1vbmEgTWF1cmVyLCBBY2htZWQgSGFkZG91IOKAoiBV
+bXNhdHpzdGV1ZXJpZGVudGlmaWthdGlvbnNudW1tZXI6REU4MTM2OTQyNjAg4oCiIEltcHJlc3N1
+bTogd3d3LmVtdHJpb24uZGUvZGUvaW1wcmVzc3VtLmh0bWwNCg0KSElOV0VJUzogUGVyc29uZW5i
+ZXpvZ2VuZSBEYXRlbiwgZGllIFNpZSBwZXIgRS1NYWlsIGFuIHVucyDDvGJlcm1pdHRlbG4sIHdl
+cmRlbiBiZWkgdW5zIGdlc3BlaWNoZXJ0IHVuZCB2ZXJhcmJlaXRldC4gSW5mb3JtYXRpb25lbiB6
+dSB1bnNlcmVuIGdlc2V0emxpY2hlbiBJbmZvcm1hdGlvbnNwZmxpY2h0ZW4sIHp1IHVucyB1bmQg
+dW5zZXJlbiBEaWVuc3RsZWlzdHVuZ2VuIGZpbmRlbiBTaWUgaW4gdW5zZXJlbiBEYXRlbnNjaHV0
+emhpbndlaXNlbi4NCkRpZXNlIEUtTWFpbCBrYW5uIHZlcnRyYXVsaWNoZSB1bmQgLyBvZGVyIHJl
+Y2h0bGljaCBnZXNjaMO8dHp0ZSBJbmZvcm1hdGlvbmVuIGVudGhhbHRlbi4gV2VubiBTaWUgbmlj
+aHQgZGVyIHJpY2h0aWdlIEFkcmVzc2F0IHNpbmQsIG9kZXIgZGllc2UgRS1NYWlsIGlycnTDvG1s
+aWNoIGVyaGFsdGVuIGhhYmVuLCBpbmZvcm1pZXJlbiBTaWUgYml0dGUgZGVuIEFic2VuZGVyIHVu
+ZCB2ZXJuaWNodGVuIGRpZXNlIE1haWwuIERhcyB1bmVybGF1YnRlIGtvcGllcmVuLCBzb3dpZSBk
+aWUgdW5iZWZ1Z3RlIFdlaXRlcmdhYmUgZGllc2VyIE1haWwgaXN0IG5pY2h0IGdlc3RhdHRldC4N
+Cj4gLS0tLS1VcnNwcsO8bmdsaWNoZSBOYWNocmljaHQtLS0tLQ0KPiBWb246IEZhYmlvIEVzdGV2
+YW0gPGZlc3RldmFtQGdtYWlsLmNvbT4NCj4gR2VzZW5kZXQ6IERvbm5lcnN0YWcsIDE2LiBEZXpl
+bWJlciAyMDIxIDE4OjE5DQo+IEFuOiBNdWVsbGVyLCBSZWluaG9sZCA8UmVpbmhvbGQuTXVlbGxl
+ckBlbXRyaW9uLmRlPg0KPiBDYzogU2hhd24gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPjsgUm9i
+IEhlcnJpbmcNCj4gPHJvYmgrZHRAa2VybmVsLm9yZz47IFNhc2NoYSBIYXVlciA8cy5oYXVlckBw
+ZW5ndXRyb25peC5kZT47IFNhc2NoYQ0KPiBIYXVlciA8a2VybmVsQHBlbmd1dHJvbml4LmRlPjsg
+TlhQIExpbnV4IFRlYW0gPGxpbnV4LWlteEBueHAuY29tPjsNCj4gb3BlbiBsaXN0Ok9QRU4gRklS
+TVdBUkUgQU5EIEZMQVRURU5FRCBERVZJQ0UgVFJFRSBCSU5ESU5HUw0KPiA8ZGV2aWNldHJlZUB2
+Z2VyLmtlcm5lbC5vcmc+OyBsaW51eC1rZXJuZWwgPGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5v
+cmc+DQo+IEJldHJlZmY6IFJlOiBbUEFUQ0ggdjMgMi8yXSBhcm02NDogZHRzOiBpbXg4bW06IEFk
+ZCBzdXBwb3J0IGZvciBlbXRyaW9uDQo+IGVtQ09OLU1YOE0gTWluaQ0KPg0KPiBIaSBSZWluaG9s
+ZCwNCj4NCj4gT24gVGh1LCBEZWMgMTYsIDIwMjEgYXQgMTo1OSBQTSA8cmVpbmhvbGQubXVlbGxl
+ckBlbXRyaW9uLmNvbT4gd3JvdGU6DQo+DQo+ID4gKyAgICAgICByZXNlcnZlZC1tZW1vcnkgew0K
+PiA+ICsgICAgICAgICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwyPjsNCj4gPiArICAgICAgICAg
+ICAgICAgI3NpemUtY2VsbHMgPSA8Mj47DQo+ID4gKyAgICAgICAgICAgICAgIHJhbmdlczsNCj4g
+PiArDQo+ID4gKyAgICAgICAgICAgICAgIHJwbXNnX3Jlc2VydmVkOiBycG1zZ0BiODAwMDAwMCB7
+DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgbm8tbWFwOw0KPiA+ICsgICAgICAgICAgICAg
+ICAgICAgICAgIHJlZyA9IDwwIDB4YjgwMDAwMDAgMCAweDQwMDAwMD47DQo+ID4gKyAgICAgICAg
+ICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICBsb2FkZXJfcmVzZXJ2ZWQ6IGxv
+YWRlckBiYjcwMDAwMCB7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgbm8tbWFwOw0KPiA+
+ICsgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDwwIDB4YmI3MDAwMDAgMHgwIDB4MDAxMDAw
+MDA+Ow0KPiA+ICsgICAgICAgICAgICAgICB9Ow0KPiA+ICsNCj4gPiArICAgICAgICAgICAgICAg
+cGNpX3Jlc2VydmVkOiBwY2lAYmI4MDAwMDAgew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
+IG5vLW1hcDsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICByZWcgPSA8MCAweGJiODAwMDAw
+IDB4MCAweDAwMjAwMDAwPjsNCj4gPiArICAgICAgICAgICAgICAgfTsNCj4gPiArDQo+ID4gKyAg
+ICAgICAgICAgICAgIGl2c2htZW0yX3Jlc2VydmVkOiBpdnNobWVtMkBiYmEwMDAwMCB7DQo+ID4g
+KyAgICAgICAgICAgICAgICAgICAgICAgbm8tbWFwOw0KPiA+ICsgICAgICAgICAgICAgICAgICAg
+ICAgIHJlZyA9IDwwIDB4YmJhMDAwMDAgMHgwIDB4MDAxMDAwMDA+Ow0KPiA+ICsgICAgICAgICAg
+ICAgICB9Ow0KPiA+ICsNCj4gPiArICAgICAgICAgICAgICAgaXZzaG1lbV9yZXNlcnZlZDogaXZz
+aG1lbUBiYmIwMDAwMCB7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgbm8tbWFwOw0KPiA+
+ICsgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDwwIDB4YmJiMDAwMDAgMHgwIDB4MDAxMDAw
+MDA+Ow0KPiA+ICsgICAgICAgICAgICAgICB9Ow0KPiA+ICsgICAgICAgfTsNCj4NCj4gQXJlIHRo
+ZXNlIHJlc2VydmVkIG5vZGVzIG5lZWRlZCB3aXRoIG1haW5saW5lPw0KPg0KPiBMb29rcyBsaWtl
+IHRoZXkgYXJlIHJlbW5hbnRzIGZyb20gTlhQIHZlbmRvciBCU1AuDQo+DQpUaGUgcmVzZXJ2ZWQg
+bWVtb3J5IG5vZGVzIGFyZSBtb3JlIGN1c3RvbSBzcGVjaWZpYywgc28gaSByZW1vdmUgaXQgZnJv
+bSB0aGUgdHJlZS4NCj4gPiArJmZlYzEgew0KPiA+ICsgICAgICAgcGluY3RybC1uYW1lcyA9ICJk
+ZWZhdWx0IjsNCj4gPiArICAgICAgIHBpbmN0cmwtMCA9IDwmcGluY3RybF9mZWMxPjsNCj4gPiAr
+ICAgICAgIHBoeS1tb2RlID0gInJnbWlpLWlkIjsNCj4gPiArICAgICAgIHBoeS1yZXNldC1ncGlv
+cyA9IDwmZ3BpbzEgOSAwPjsNCj4NCj4gcGh5LXJlc2V0LWdwaW9zID0gPCZncGlvMSA5IEdQSU9f
+QUNUSVZFX0xPVz47DQo+DQo+IEFjdHVhbGx5LCBwaHktcmVzZXQtZ3Bpb3MgaXMgY29uc2lkZXJl
+ZCBkZXByZWNhdGVkLg0KPg0KPiBZb3UgY291bGQgYWxzbyBhZGQgYW4gbWRpbyBub2RlIGFzIGZl
+YyBjaGlsZCBhbmQ6DQo+IGFkZCByZXNldC1ncGlvcyA9IDwmZ3BpbzEgOSBHUElPX0FDVElWRV9M
+T1c+OyB0aGVyZS4NCk9rLCBpIHdpbGwgYWRkIGEgY2hpbGQgaW4gZmVjIGZvcnQgaGUgcmVzZXQg
+Z3Bpb3MNCg==
