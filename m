@@ -2,159 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0306647B33B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 19:51:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13E7D47B375
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 20:08:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234026AbhLTSvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 13:51:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33936 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233731AbhLTSvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 13:51:19 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B176CC061574
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 10:51:18 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mzNke-0006Cr-I2; Mon, 20 Dec 2021 19:51:12 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mzNkX-0002xy-1W; Mon, 20 Dec 2021 19:51:05 +0100
-Date:   Mon, 20 Dec 2021 19:51:05 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 22/22] drm: rockchip: Add VOP2 driver
-Message-ID: <20211220185105.GX6003@pengutronix.de>
-References: <20211220110630.3521121-1-s.hauer@pengutronix.de>
- <20211220110630.3521121-23-s.hauer@pengutronix.de>
- <5637649.G3HFo5JPcS@archbook>
+        id S240719AbhLTTIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 14:08:53 -0500
+Received: from aposti.net ([89.234.176.197]:34338 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240694AbhLTTIw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Dec 2021 14:08:52 -0500
+From:   Paul Cercueil <paul@crapouillou.net>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     list@opendingux.net, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>
+Subject: [PATCH 0/2] mmc: ingenic: Support bi-directional DMA channel
+Date:   Mon, 20 Dec 2021 19:08:38 +0000
+Message-Id: <20211220190840.108061-1-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5637649.G3HFo5JPcS@archbook>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 19:33:51 up 10 days,  3:19, 41 users,  load average: 1.02, 1.08,
- 1.08
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 20, 2021 at 03:16:55PM +0100, Nicolas Frattaroli wrote:
-> On Montag, 20. Dezember 2021 12:06:30 CET Sascha Hauer wrote:
-> > From: Andy Yan <andy.yan@rock-chips.com>
-> > 
-> > The VOP2 unit is found on Rockchip SoCs beginning with rk3566/rk3568.
-> > It replaces the VOP unit found in the older Rockchip SoCs.
-> > 
-> > This driver has been derived from the downstream Rockchip Kernel and
-> > heavily modified:
-> > 
-> > - All nonstandard DRM properties have been removed
-> > - dropped struct vop2_plane_state and pass around less data between
-> >   functions
-> > - Dropped all DRM_FORMAT_* not known on upstream
-> > - rework register access to get rid of excessively used macros
-> > - Drop all waiting for framesyncs
-> > 
-> > The driver is tested with HDMI and MIPI-DSI display on a RK3568-EVB
-> > board. Overlay support is tested with the modetest utility. AFBC support
-> > on the cluster windows is tested with weston-simple-dmabuf-egl on
-> > weston using the (yet to be upstreamed) panfrost driver support.
-> > 
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > ---
-> 
-> Hi Sascha,
-> 
-> sadly I'm getting
-> 
-> [    1.668856] rockchip-drm display-subsystem: [drm] *ERROR* failed to get vop2 register byname
-> [    1.669621] rockchip-drm display-subsystem: failed to bind fe040000.vop (ops vop2_component_ops): -22
-> [    1.670584] rockchip-drm display-subsystem: master bind failed: -22
-> [    1.671164] dwhdmi-rockchip: probe of fe0a0000.hdmi failed with error -22
-> 
-> on a Quartz64 Model A.
-> 
-> 
-> > +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "regs");
-> > +	if (!res) {
-> > +		drm_err(vop2->drm, "failed to get vop2 register byname\n");
-> > +		return -EINVAL;
-> > +	}
-> 
-> This seems to be the code that triggers it.
-> 
-> Any ideas as to what could be causing this?
+Hi Ulf,
 
-Gnaa, this was a last minute change I did and thought it was too trivial
-to fail :(
+This patchset adds support for using a single DMA channel for both RX
+and TX operations, instead of using separate DMA channels for each
+operation.
 
-The binding previously had:
+As some older Ingenic SoCs offer only a handful of DMA channels,
+supporting bi-directional channels allow more hardware to use the
+channels that would otherwise be used for the MMC/SD operation.
 
-	reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
-	reg-names = "regs", "gamma_lut";
+Note that the Device Tree binding for the DMA controller has been
+updated in a (already merged) patchset, so that it accepts a 3 cells
+(#dma-cells == 3) instead of just 2. It was merged in the DMA tree, so I
+am not sure the autobuilders will like this YAML - but it was checked
+without errors.
 
-I thought that I can merge these two regions into one bigger region.
-Apart from the fact that I got it wrong (The driver still requests a
-resource "regs" as you found out), it doesnt work, because the space
-between those two regions is not unused, the iommu is in between them.
+I also removed the descriptions of the "dmas" property in the YAML, as
+they really weren't adding anything and were getting in my way.
 
-I'll have to revert that change for the next round. Please use the
-attached fixup patch in the meantime.
+There are patches touching the driver file merged in the PM tree (the
+ones that use the new PM macros) but I expect no problem here, they
+touch different parts of the file.
 
-Sascha
+Cheers,
+-Paul
 
--------------------------------8<------------------------------
+Paul Cercueil (2):
+  dt-bindings: mmc: ingenic: Support using bi-directional DMA channel
+  mmc: jz4740: Support using a bi-directional DMA channel
 
-From 9b3dee3d8584f5a9cc24f21ff8c5895465c4b3ae Mon Sep 17 00:00:00 2001
-From: Sascha Hauer <s.hauer@pengutronix.de>
-Date: Mon, 20 Dec 2021 19:49:14 +0100
-Subject: [PATCH] fixup! arm64: dts: rockchip: rk356x: Add VOP2 nodes
-
----
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 6d93b8fcee179..cce4b789d6d58 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -453,7 +453,8 @@ gmac1_mtl_tx_setup: tx-queues-config {
- 	};
- 
- 	vop: vop@fe040000 {
--		reg = <0x0 0xfe040000 0x0 0x5000>;
-+		reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
-+		reg-names = "regs", "gamma_lut";
- 		interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>, <&cru DCLK_VOP0>, <&cru DCLK_VOP1>, <&cru DCLK_VOP2>;
- 		clock-names = "aclk_vop", "hclk_vop", "dclk_vp0", "dclk_vp1", "dclk_vp2";
--- 
-2.30.2
-
+ .../devicetree/bindings/mmc/ingenic,mmc.yaml  | 37 ++++++++++++++++---
+ drivers/mmc/host/jz4740_mmc.c                 | 19 +++++++++-
+ 2 files changed, 48 insertions(+), 8 deletions(-)
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.34.1
+
