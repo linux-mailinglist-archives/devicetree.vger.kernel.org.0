@@ -2,146 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03D1F47B118
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 17:30:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A607847B178
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 17:44:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233163AbhLTQak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 11:30:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58234 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232726AbhLTQak (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 11:30:40 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D86C061574;
-        Mon, 20 Dec 2021 08:30:39 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id p8so16892830ljo.5;
-        Mon, 20 Dec 2021 08:30:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=nK8wg+ThtsoRIQwEeu/rFUoiyE0C3jF2d8qNzRJpLtg=;
-        b=PVa6mW0XBS4KPJfueUBFvXIwYWZmvnmySIfaMqWEpB0lP6zy0Uc1f0yuHc0fc7zNGQ
-         a3nkiy50XW9M5moJt4JeFgvKGdTTc8TQbtuFz6BtR77XOdAIo0DcbzIjkCKbhYznk+dl
-         NATRsoEfZ+bHYsdbCrwwu80EuoZ/WNjnopXuwYSx3DD5VSr/yjsXSOylvhl+rkfwJLW2
-         eVfAYAJlDSeCxUsIEM9CufwTPGohPTm+S7MIhR58LB1RbbGkQX8wO838qB/CvdYSMYGT
-         PWMie9fFdAgFEx6RnWdpTPvSM6yunpyzPBaGvOc/6UZqvgDRYJiilzZ/V/ora8eNTiz0
-         mgSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=nK8wg+ThtsoRIQwEeu/rFUoiyE0C3jF2d8qNzRJpLtg=;
-        b=c4P4mwlYEh/4dEiLAQe4a/2CrFbuDGllg7finWMUeJSQ+jBxPBY8/MaH9PP2cGQ5u6
-         KyCXlYU45bN9QOivCGvxh5zQqKlfHZwQYe1zEA7od2X6bdOr2gxXPWdOk664OtSq2bmX
-         CixAZWdvJho71/jJmVkxdiarcitBooJ62o6c5uTn9j21EuACgJVcFJsZvRFN3EXTAqHp
-         wX/WVIwI8Gsd+9udagLk+LtsPZQ3av53klZ+8bwsVv4AmmiOKeIGPVWsuFLLp3p/p3Zo
-         6d/5CqiVxjAgad/s2w3f8D+ikgKg9VkM9I9EHgl3atCRR/cRz2Ko98XTSPDVlBvJ4HLm
-         YhwQ==
-X-Gm-Message-State: AOAM533/VmS64aFAAIgbT6kCeSrIyJut+Rfi27YH276oDVqqD0pksY+T
-        UfcEzM2ULQ5DmpY0/kDsRZupu+e8X88=
-X-Google-Smtp-Source: ABdhPJwws576TxlN6hEqFkLDXPljO1c5WA7L1xawr9flrLIxu2o7FFQHQ2wlBv6l1HukG44jKfrVgw==
-X-Received: by 2002:a2e:2410:: with SMTP id k16mr15499339ljk.441.1640017838131;
-        Mon, 20 Dec 2021 08:30:38 -0800 (PST)
-Received: from [192.168.2.145] (46-138-43-24.dynamic.spd-mgts.ru. [46.138.43.24])
-        by smtp.googlemail.com with ESMTPSA id o19sm1379904lfu.149.2021.12.20.08.30.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Dec 2021 08:30:37 -0800 (PST)
-Subject: Re: [PATCH v15 2/4] dmaengine: tegra: Add tegra gpcdma driver
-To:     Akhil R <akhilrajeev@nvidia.com>
-Cc:     Pavan Kunapuli <pkunapuli@nvidia.com>,
-        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Rajesh Gumasta <rgumasta@nvidia.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>
-References: <1639674720-18930-1-git-send-email-akhilrajeev@nvidia.com>
- <1639674720-18930-3-git-send-email-akhilrajeev@nvidia.com>
- <45ba3abe-5e7e-4917-2b23-0616a758c4eb@gmail.com>
- <BN9PR12MB52730121B2B01739DA52020EC07B9@BN9PR12MB5273.namprd12.prod.outlook.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <6241cfa3-dd7e-012c-3687-daad0aa4631d@gmail.com>
-Date:   Mon, 20 Dec 2021 19:30:37 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <BN9PR12MB52730121B2B01739DA52020EC07B9@BN9PR12MB5273.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S238089AbhLTQoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 11:44:13 -0500
+Received: from m43-7.mailgun.net ([69.72.43.7]:59585 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239207AbhLTQoM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Dec 2021 11:44:12 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1640018652; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=tIjjCFzG7+q1lWtzq42/6y9LRRlcrUYEEWdfimSyY64=; b=Xy7KBvOdutGNGd5yBbHtiM+tyCWESQ3bJnbhtxQA4z7+/xiFZ87JlJPDtJ2Ln0dNhGG1I4Pw
+ 2k/qYRj2brPYlBSewTZO5HFmpVCIRizjyFJ4vcI83JEKr4LsrvT10eKe1TOUQyFW55b//1mg
+ sMJiBoS8D45pOMQBpEAYZ7x9jZg=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 61c0b2da305fa44552905db0 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 20 Dec 2021 16:44:10
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6920BC4360C; Mon, 20 Dec 2021 16:44:10 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from tdas-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 40330C4338F;
+        Mon, 20 Dec 2021 16:44:05 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 40330C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v2 0/5] Add support for LPASS Core and Audio Clock for SC7280
+Date:   Mon, 20 Dec 2021 22:13:53 +0530
+Message-Id: <1640018638-19436-1-git-send-email-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-20.12.2021 18:23, Akhil R пишет:
->> 16.12.2021 20:11, Akhil R пишет:
->>> +static int tegra_dma_terminate_all(struct dma_chan *dc) {
->>> +     struct tegra_dma_channel *tdc = to_tegra_dma_chan(dc);
->>> +     unsigned long wcount = 0;
->>> +     unsigned long status;
->>> +     unsigned long flags;
->>> +     int err;
->>> +
->>> +     raw_spin_lock_irqsave(&tdc->lock, flags);
->>> +
->>> +     if (!tdc->dma_desc) {
->>> +             raw_spin_unlock_irqrestore(&tdc->lock, flags);
->>> +             return 0;
->>> +     }
->>> +
->>> +     if (!tdc->busy)
->>> +             goto skip_dma_stop;
->>> +
->>> +     if (tdc->tdma->chip_data->hw_support_pause)
->>> +             err = tegra_dma_pause(tdc);
->>> +     else
->>> +             err = tegra_dma_stop_client(tdc);
->>> +
->>> +     if (err) {
->>> +             raw_spin_unlock_irqrestore(&tdc->lock, flags);
->>> +             return err;
->>> +     }
->>> +
->>> +     status = tdc_read(tdc, TEGRA_GPCDMA_CHAN_STATUS);
->>> +     if (status & TEGRA_GPCDMA_STATUS_ISE_EOC) {
->>> +             dev_dbg(tdc2dev(tdc), "%s():handling isr\n", __func__);
->>> +             tegra_dma_xfer_complete(tdc);
->>> +             status = tdc_read(tdc, TEGRA_GPCDMA_CHAN_STATUS);
->>> +     }
->>> +
->>> +     wcount = tdc_read(tdc, TEGRA_GPCDMA_CHAN_XFER_COUNT);
->>> +     tegra_dma_stop(tdc);
->>> +
->>> +     tdc->dma_desc->bytes_transferred +=
->>> +                     tdc->dma_desc->bytes_requested - (wcount * 4);
->>> +
->>> +skip_dma_stop:
->>> +     tegra_dma_sid_free(tdc);
->>> +     vchan_free_chan_resources(&tdc->vc);
->>> +     kfree(&tdc->vc);
->>
->> You really going to kfree the head of tegra_dma_channel here? Once again, this
->> code was 100% untested :/
-> I did validate this using DMATEST which did not show any error.
-> https://www.kernel.org/doc/html/latest/driver-api/dmaengine/dmatest.html
-> Do you suggest something better?
-> 
->> You're not allowed to free channel from the dma_terminate_all() callback. This
->> callback terminates submitted descs, that's it.
->>
-> Sorry, I am relatively new to DMA framework (probably you get it from the patch 
-> version no. :)). I read your previous comment as to use tdc->vc instead of dma_desc.
-> I would learn a bit more and update with a change. Thanks for the inputs.
+[v2]
+ * Drop code for "Add support for clock voting from GDSC" from
+   drivers/clk/qcom/gdsc.c
+ * Add support for runtime PM get/put from clk_summary.
+ * Update commit message for PLL detect lock timeout increase.
+ * Fix documentation bindings errors reported by DT_CHECKER_FLAGS.
+ * Update the driver code to take care of the following
+    - KCONFIG to add "select QCOM_GDSC"
+    - Use of "const" for pll_vco and clk_init_data
+    - Use of index instead of fw_name.
+    - Fix extra space, remove 'lpass_create_pm_clks' and corresponding code.
+    - cleanup 'lpass_hm_core_probe' and 'lpass_hm_sc7280_match_table'.
 
-Looks like DMATEST doesn't try to terminate in a middle of transfer and
-then check that further transfers work. You may try to extend DMATEST or
-simulate I2C error to test it, you should also test it with enabled KASAN.
+[v1]
+This patchset supports the following.
+- Few PLLs might require to a higher time to detect lock, thus increase the
+  polling time.
+- GDSC which require clocks to be explicitly enabled before access.
+- LPASS core and audio clock driver support for SC7280.
+
+
+Taniya Das (5):
+  clk: qcom: clk-alpha-pll: Increase PLL lock detect poll time
+  clk: Enable/Disable runtime PM for clk_summary
+  clk: qcom: gcc-sc7280: Mark gcc_cfg_noc_lpass_clk always enabled
+  dt-bindings: clock: Add YAML schemas for LPASS clocks on SC7280
+  clk: qcom: lpass: Add support for LPASS clock controller for SC7280
+
+ .../bindings/clock/qcom,sc7280-lpasscorecc.yaml    | 169 +++++
+ drivers/clk/clk.c                                  |   2 +
+ drivers/clk/qcom/Kconfig                           |  10 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/clk-alpha-pll.c                   |   2 +-
+ drivers/clk/qcom/gcc-sc7280.c                      |   2 +-
+ drivers/clk/qcom/lpassaudiocc-sc7280.c             | 832 +++++++++++++++++++++
+ drivers/clk/qcom/lpasscorecc-sc7280.c              | 433 +++++++++++
+ .../dt-bindings/clock/qcom,lpassaudiocc-sc7280.h   |  43 ++
+ .../dt-bindings/clock/qcom,lpasscorecc-sc7280.h    |  26 +
+ 10 files changed, 1518 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml
+ create mode 100644 drivers/clk/qcom/lpassaudiocc-sc7280.c
+ create mode 100644 drivers/clk/qcom/lpasscorecc-sc7280.c
+ create mode 100644 include/dt-bindings/clock/qcom,lpassaudiocc-sc7280.h
+ create mode 100644 include/dt-bindings/clock/qcom,lpasscorecc-sc7280.h
+
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
+
