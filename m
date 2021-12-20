@@ -2,192 +2,424 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3741A47B015
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 16:25:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 400A847B058
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 16:32:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230156AbhLTPYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 10:24:55 -0500
-Received: from mail-bn7nam10on2045.outbound.protection.outlook.com ([40.107.92.45]:9056
-        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S239977AbhLTPXe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Dec 2021 10:23:34 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l05UkGmCieZAgPQOXi0lwDZRCSqd1MdKqitpO6lvrNoNwmT93K/MGUyM2v7hnxQTliAjGirIQQK/TtoxJCuIH485LPZKfpIgBEDJXtaqxRnqQBh3lLNMBRzP+N+1OU6SbwE85m5oYTrL4qCnNv4VvUHqxPL1GwkRnepZeIEdoIFhFiL6AGy4JwusORoko+P8PpVGfZwjk8DRrFe1rqiFa6ss0n9l9zLvX5/Hioo+sICXPXBmJ7yMdFX0muX4nXEoOTyZ7az5cCmICu6fsPA4gFtQwi9DyIts9G/QIhO2JyOBismGInSZK01hqimoCuDNuuoFN19vnBH2x2VSMbSOLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hLtTDwR4l1KK3uCtpJ/Tso6X22XlWvjjzWZhRWvkuHY=;
- b=nycoNB0pJcW8Y03ft8nAxOZ0VcXDH2QZTT/pztuvVXO9GHXUQDNiy11VGNzPCx0Iz26IUDXdwQHFoKbujvyvjZxiPbAdic/y+c9+t8cwum7N5C65CXMXvgA0omcu568YtP37U+HeMtM9WB0ITTdV7Mklm7H28FJowNDS6uGcE0mbmVCTgc6bmrliBrgWxoscSQsgUbJaqbo42PPaEarzZAykFFTmqyyT+/O62Bi1/kvJpzQNNVT8vRIy7WOMdcOxx9bWDECmJjKJJPKoOR9t0gqdf9lF3j+TjdiQlMX0LUWPn3CXdN1D9KpeZFCf42mZ/Ni/o0N+kUcmOgpRUQG7dw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hLtTDwR4l1KK3uCtpJ/Tso6X22XlWvjjzWZhRWvkuHY=;
- b=QZdcjpt75ReZ+PGgVOgwv9frRJxbs/wsB0W3KP0o+9UuRo33W7VSTs2BFFh/kZ5VgDdgYQd2RQvI1MmcNlZKZC7AXa4TQF1m/B8tUi30/B6XUOZ7aq5rvPb6H13as4irf8GdrfN+vyfwtrdoXznnoiu5Hrc1pKaZTflRpxmJCnvcc3ZLIZo2NpW/5nOee3SzN0Q/TzocfK9V7JdyO9FbKsqTrp4zBCkIYD+rQ35wwe2+xn740USdOmAT26eAeOiPBPucyTXTBxJp/LF6ShJn2g/DGukCrNiJkHI200Vm2A0/CsaIuc2/S6gPYU4rExzFLdM4ld5GSpzkC4BsHwtsdg==
-Received: from BN9PR12MB5273.namprd12.prod.outlook.com (2603:10b6:408:11e::22)
- by BN9PR12MB5228.namprd12.prod.outlook.com (2603:10b6:408:101::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.20; Mon, 20 Dec
- 2021 15:23:32 +0000
-Received: from BN9PR12MB5273.namprd12.prod.outlook.com
- ([fe80::6867:d54e:5040:2167]) by BN9PR12MB5273.namprd12.prod.outlook.com
- ([fe80::6867:d54e:5040:2167%5]) with mapi id 15.20.4801.020; Mon, 20 Dec 2021
- 15:23:32 +0000
-From:   Akhil R <akhilrajeev@nvidia.com>
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Rajesh Gumasta <rgumasta@nvidia.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>
-CC:     Pavan Kunapuli <pkunapuli@nvidia.com>
-Subject: RE: [PATCH v15 2/4] dmaengine: tegra: Add tegra gpcdma driver
-Thread-Topic: [PATCH v15 2/4] dmaengine: tegra: Add tegra gpcdma driver
-Thread-Index: AQHX8qAe1UN3/N1l0EeiZPTfHL7S8qw1Y1YAgAC790A=
-Date:   Mon, 20 Dec 2021 15:23:31 +0000
-Message-ID: <BN9PR12MB52730121B2B01739DA52020EC07B9@BN9PR12MB5273.namprd12.prod.outlook.com>
-References: <1639674720-18930-1-git-send-email-akhilrajeev@nvidia.com>
- <1639674720-18930-3-git-send-email-akhilrajeev@nvidia.com>
- <45ba3abe-5e7e-4917-2b23-0616a758c4eb@gmail.com>
-In-Reply-To: <45ba3abe-5e7e-4917-2b23-0616a758c4eb@gmail.com>
-Accept-Language: en-IN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b8db4ae4-0326-41f2-4a92-08d9c3ccaeb0
-x-ms-traffictypediagnostic: BN9PR12MB5228:EE_
-x-microsoft-antispam-prvs: <BN9PR12MB522887AFADFDFD546DE9D90AC07B9@BN9PR12MB5228.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5516;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Xf/hyXxkDprATOZgzwUUDUOcRp+TTWKVhRaG745iliSIHa3cBdpXok1ga4fFByWurNpWam2M0CaWWWl46aPsRqYGu3Ojol6kgBYMZQBPZdQ2ofjTLmZFSNZ5laGX9Zjbx/GyrUZDgPOsjg8aDRranjjA5CGkfRfImfoYGVI59SYHbUdlsqCTyB97FB+OKJQAS1mgaE71XPLFwGt3NILWezlcyquA2z4UZKnvVgEqBNXJhbaxhMccFcx4rk6Z4LHhCQU4wmHAqfSZnpGq8aA/b6CpRKhi7RumbbfS6Adq47h5XVH2LJHZAKoJzqGlFb09WR2HlfM6rQ7oxio4Crs01Dmr2zVc0rU1XP8qmH/AJcO6PlAp0dNz4SWEeWQNXVjm362qCd7jEdur/OIpeDBIZfV3Voub43MIPigk6dNnHX3M6kbGfp/XABuVPNg8goCTXN50zXa1suuM3ybV6dMA0M7Hi5M2En/07aeEWqGgYVJ9Sipzi/60kt31W8CKKNMqTdoxs6fWT/3Q6ypSL8o58yBex7GNNEtWGUaeruLhmIOzfnBTvQmQMshgPqua05PFBQVm3mX9jIYt/X4oWlibzVdCKO57xC2bXUpWhQnihKwvvGhiXFVu29pXOG+2F7jdJcUH9BVcNX7kvkf+uf81IAEpX4ATbhvAavyOtVWo+HnTkxxYIdGs8J3bQsiHE6Z2Ln2ceUK/nGEtINU1ifUn/Q7mlSOXmOsQaD9+/pz6D+kIzl+ZDPCp5skHriJpXrgEBCNr152IOf/+CFaAOVJvJrDEwM/NhbQ02s05fJbdKqtWKEdH03WjCDbHgTclY0Jo
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN9PR12MB5273.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(2906002)(33656002)(7696005)(966005)(8676002)(5660300002)(55016003)(71200400001)(508600001)(7416002)(38070700005)(83380400001)(52536014)(4326008)(316002)(107886003)(9686003)(76116006)(8936002)(86362001)(6506007)(921005)(64756008)(55236004)(66446008)(66476007)(66556008)(66946007)(122000001)(26005)(38100700002)(186003)(110136005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?koi8-r?Q?sVAkcoUw4KAebSmV/eHQrKFoY6CGNg1jAf/D1qrhpMb2zSQxHA5MnbCQrX/vhe?=
- =?koi8-r?Q?gmA5NZSqjVp+XlhinZVq+Nh2gUUf8VFPp0S1hn8+a75xDhnHtbP8IiPfONXngl?=
- =?koi8-r?Q?vPAuOlu6AET/hq2bP7TOqIoxnsaHrkJkZLlmKmRetgfkCoFhEJBk38gBbsR+t1?=
- =?koi8-r?Q?7FTkpUhlSxyVEvTzoeoQl1E8pHy51Ln7SWKWhxqvuONhy3/I40OQfy1Tzduk5n?=
- =?koi8-r?Q?ue5TFPFsUsVOd5NvMrSDwhR4yDpnIzXnAI9xoNoC4m6/sxR6U7cG6oS/lPnpp/?=
- =?koi8-r?Q?RZvXjHNpUg9EoZpnry7MQHAsvz60gr+MqfsvmMrN2fY7rhMdLsW7UPQs3u9gVc?=
- =?koi8-r?Q?Mtu4HI7U64U6GdnHJciCMrqjEjQsV9t2Fv+i+IA5u8KBohmavl2u7y2VECOZMT?=
- =?koi8-r?Q?0HxY/XpHegxJWOp/leUy67HlpljLrN416StukbBsf9SmbmtF1h/thwJ1r8pPtb?=
- =?koi8-r?Q?1l4/qlk17J3zo/w69B0WspOvpmCeiiWuocunOx89EFmCef31YdoJz1Ufb4P5Bk?=
- =?koi8-r?Q?9Nfh0s8IL+Z8LcIkmV/J1xii92L01Rv5SwAnMMURV5T61OOj1fgJSTfjx+G1dY?=
- =?koi8-r?Q?kUl73yxhtFcUfK9Z4wPfed/Gx/Ad9YsYmLbTCi9iHX9CsPdNwzBafdTc0O13Va?=
- =?koi8-r?Q?AY74pw1Ike3fPMC2rM4ZTvDM+d+xtz2Y15MJEclDe4csrY5hJB1swhtrSLIwSx?=
- =?koi8-r?Q?519nUOTO78A0L+d2Xe8qZ4EfBWVmZEKByuY1eyRXcOd7whzPlq7wBDaZDUUbyk?=
- =?koi8-r?Q?aQvARuUQZRMr4E/tDUGoawvAq3tV/E+KmOUkBrypiSQKmkmfshtSgIF77Qt8Uj?=
- =?koi8-r?Q?GTl4zoElZP4g07KGPlmxXh9wI4EcBqTcgUn44ZcYKOh5ERfnfA6G/5OfemUt6w?=
- =?koi8-r?Q?22gq5RkTpkR1VrmCK0sWBcSrjmGaU2FY/0VduxWVVppLO+61KSh+xXbr16rkI0?=
- =?koi8-r?Q?zC0hsgvkNV184IrP3ZUcFMzoS40Gdc5UyS0BX4ua25dOT/pdrXRCltr1an6HJV?=
- =?koi8-r?Q?lGlEI9+Qp7zIi7dv3K1DzmWjZ8su2ssysS/M0TRlptY6tqoKW43T4tIYnLLMv9?=
- =?koi8-r?Q?EuwzTwPPhscjJs3T9SgkGTG9DSQ38zClxdzfRvyoWUXzGqgBJqnyflbAL6htct?=
- =?koi8-r?Q?V4EG9CL/GlFARdUxeOw9EZPj1JBzu9Om7OJOfxhjotF2+BWoLCFEM43yYJcAgP?=
- =?koi8-r?Q?zihXFpHDFX146TKpr7Osx9720xsR14TE2QJ9RLk+Jcwec4Pte75z+89Cmf+r+p?=
- =?koi8-r?Q?qJHtJ6FdNnaGr6VlzIRDvPD+89l/rz+YIXhs6JXeAp3X/PG+LiBAnZcvVXzosO?=
- =?koi8-r?Q?Kgyul38vusnVYahTr2EnV7aYIvozc/SJ5cKwxV2sDUOPP+JcHwoLgnk7wAtXWR?=
- =?koi8-r?Q?xtfssvo+WCAAXoaikhTSeteaSGT2UAfWmyzMNdHaReb+7jkkO8I9YXuGZjtRzT?=
- =?koi8-r?Q?WqYYZD+DwIhm8IQQY8bA+lxRFXxIYwTWo+SJt2TAS935KpAHdI8fJDUk6xjfY7?=
- =?koi8-r?Q?YRtO7oVzdkUlXC93KeIlZ2b/Fo81W6KDcrWTRbM8by7tg6euFZYFLnbhlRgrgh?=
- =?koi8-r?Q?ilcGNm3r4lUmSO/4rwkGt9OwPr4M4m4=3D?=
-Content-Type: text/plain; charset="koi8-r"
-Content-Transfer-Encoding: quoted-printable
+        id S236067AbhLTPb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 10:31:58 -0500
+Received: from relay10.mail.gandi.net ([217.70.178.230]:48173 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239833AbhLTPbg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 10:31:36 -0500
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 780D9240014;
+        Mon, 20 Dec 2021 15:31:33 +0000 (UTC)
+Date:   Mon, 20 Dec 2021 16:31:32 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH v6 1/4] phy: cadence: Add Cadence D-PHY Rx driver
+Message-ID: <YcCh1PU+Tc1+pzEL@aptenodytes>
+References: <20211214180703.3268-1-p.yadav@ti.com>
+ <20211214180703.3268-2-p.yadav@ti.com>
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5273.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b8db4ae4-0326-41f2-4a92-08d9c3ccaeb0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Dec 2021 15:23:31.9907
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4mxgX0ZQvH0iauALGlOo+j1DDG2JphwBor/6/8psEQE9WYV7OiG9rAc9KoPJrK5CwrcKgtcpRnEvrVueIiMobQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5228
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="4h0HZ6Zr1Kjo6M2j"
+Content-Disposition: inline
+In-Reply-To: <20211214180703.3268-2-p.yadav@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> 16.12.2021 20:11, Akhil R =D0=C9=DB=C5=D4:
-> > +static int tegra_dma_terminate_all(struct dma_chan *dc) {
-> > +     struct tegra_dma_channel *tdc =3D to_tegra_dma_chan(dc);
-> > +     unsigned long wcount =3D 0;
-> > +     unsigned long status;
-> > +     unsigned long flags;
-> > +     int err;
-> > +
-> > +     raw_spin_lock_irqsave(&tdc->lock, flags);
-> > +
-> > +     if (!tdc->dma_desc) {
-> > +             raw_spin_unlock_irqrestore(&tdc->lock, flags);
-> > +             return 0;
-> > +     }
-> > +
-> > +     if (!tdc->busy)
-> > +             goto skip_dma_stop;
-> > +
-> > +     if (tdc->tdma->chip_data->hw_support_pause)
-> > +             err =3D tegra_dma_pause(tdc);
-> > +     else
-> > +             err =3D tegra_dma_stop_client(tdc);
-> > +
-> > +     if (err) {
-> > +             raw_spin_unlock_irqrestore(&tdc->lock, flags);
-> > +             return err;
-> > +     }
-> > +
-> > +     status =3D tdc_read(tdc, TEGRA_GPCDMA_CHAN_STATUS);
-> > +     if (status & TEGRA_GPCDMA_STATUS_ISE_EOC) {
-> > +             dev_dbg(tdc2dev(tdc), "%s():handling isr\n", __func__);
-> > +             tegra_dma_xfer_complete(tdc);
-> > +             status =3D tdc_read(tdc, TEGRA_GPCDMA_CHAN_STATUS);
-> > +     }
-> > +
-> > +     wcount =3D tdc_read(tdc, TEGRA_GPCDMA_CHAN_XFER_COUNT);
-> > +     tegra_dma_stop(tdc);
-> > +
-> > +     tdc->dma_desc->bytes_transferred +=3D
-> > +                     tdc->dma_desc->bytes_requested - (wcount * 4);
-> > +
-> > +skip_dma_stop:
-> > +     tegra_dma_sid_free(tdc);
-> > +     vchan_free_chan_resources(&tdc->vc);
-> > +     kfree(&tdc->vc);
+
+--4h0HZ6Zr1Kjo6M2j
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Pratyush,
+
+On Tue 14 Dec 21, 23:37, Pratyush Yadav wrote:
+> The Cadence D-PHY can be configured in Tx (DSI) mode or Rx (CSI) mode.
+> Both modes have a different programming sequence and share little among
+> them. In addition, a PHY configured in Tx mode cannot be used in Rx mode
+> and vice versa. For this reason, create a separate driver for the Rx
+> mode to make it easier to read and maintain.
 >=20
-> You really going to kfree the head of tegra_dma_channel here? Once again,=
- this
-> code was 100% untested :/
-I did validate this using DMATEST which did not show any error.
-https://www.kernel.org/doc/html/latest/driver-api/dmaengine/dmatest.html
-Do you suggest something better?
-
-> You're not allowed to free channel from the dma_terminate_all() callback.=
- This
-> callback terminates submitted descs, that's it.
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
 >=20
-Sorry, I am relatively new to DMA framework (probably you get it from the p=
-atch=20
-version no. :)). I read your previous comment as to use tdc->vc instead of =
-dma_desc.
-I would learn a bit more and update with a change. Thanks for the inputs.
+> ---
+>=20
+> Changes in v6:
+> - Move to a separate driver.
+>=20
+> Changes in v5:
+> - Use the new cdns_dphy_info to specify PHY ops.
+> - Re-order include in alphabetical order.
+> - Make bands const.
+> - Drop num_bands.
+> - Make i, lanes unsigned.
+> - Drop the maximum check in cdns_dphy_rx_get_band_ctrl(). Let the loop
+>   complete and return -EOPNOTSUPP when we reach the end.
+> - Drop the "rate < bands[i].min_rate" check since the bands are in
+>   ascending order.
+> - Move data_lane_ctrl to start of function and make it static const.
+>=20
+> Changes in v4:
+> - Drop the submode parts. Use a different compatible for the Rx ops.
+> - Make bands and num_bands static.
+>=20
+> Changes in v3:
+> - Use a table to select the band.
+> - Use a table to poll the data lane ready bits.
+> - Multiply the DPHY HS clock rate by 2 to get the bit rate since the
+>   clock is DDR.
+>=20
+>  drivers/phy/cadence/Kconfig        |   8 +
+>  drivers/phy/cadence/Makefile       |   1 +
+>  drivers/phy/cadence/cdns-dphy-rx.c | 250 +++++++++++++++++++++++++++++
+>  3 files changed, 259 insertions(+)
+>  create mode 100644 drivers/phy/cadence/cdns-dphy-rx.c
+>=20
+> diff --git a/drivers/phy/cadence/Kconfig b/drivers/phy/cadence/Kconfig
+> index a62910ff5591..1adde2d99ae7 100644
+> --- a/drivers/phy/cadence/Kconfig
+> +++ b/drivers/phy/cadence/Kconfig
+> @@ -22,6 +22,14 @@ config PHY_CADENCE_DPHY
+>  	  system. If M is selected, the module will be called
+>  	  cdns-dphy.
+> =20
+> +config PHY_CADENCE_DPHY_RX
+> +	tristate "Cadence D-PHY Rx Support"
+> +	depends on HAS_IOMEM && OF
+> +	select GENERIC_PHY
+> +	select GENERIC_PHY_MIPI_DPHY
+> +	help
+> +	  Support for Cadence D-PHY in Rx configuration.
+> +
+>  config PHY_CADENCE_SIERRA
+>  	tristate "Cadence Sierra PHY Driver"
+>  	depends on OF && HAS_IOMEM && RESET_CONTROLLER
+> diff --git a/drivers/phy/cadence/Makefile b/drivers/phy/cadence/Makefile
+> index 26e16bd34efe..e17f035ddece 100644
+> --- a/drivers/phy/cadence/Makefile
+> +++ b/drivers/phy/cadence/Makefile
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  obj-$(CONFIG_PHY_CADENCE_TORRENT)	+=3D phy-cadence-torrent.o
+>  obj-$(CONFIG_PHY_CADENCE_DPHY)	+=3D cdns-dphy.o
+> +obj-$(CONFIG_PHY_CADENCE_DPHY_RX)	+=3D cdns-dphy-rx.o
+>  obj-$(CONFIG_PHY_CADENCE_SIERRA)	+=3D phy-cadence-sierra.o
+>  obj-$(CONFIG_PHY_CADENCE_SALVO)	+=3D phy-cadence-salvo.o
+> diff --git a/drivers/phy/cadence/cdns-dphy-rx.c b/drivers/phy/cadence/cdn=
+s-dphy-rx.c
+> new file mode 100644
+> index 000000000000..fb75e645e662
+> --- /dev/null
+> +++ b/drivers/phy/cadence/cdns-dphy-rx.c
+> @@ -0,0 +1,250 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.co=
+m/
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/module.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/phy/phy-mipi-dphy.h>
+> +#include <linux/platform_device.h>
+> +
+> +#define DPHY_PMA_CMN(reg)		(reg)
+> +#define DPHY_PCS(reg)			(0xb00 + (reg))
+> +#define DPHY_ISO(reg)			(0xc00 + (reg))
+> +
+> +#define DPHY_CMN_SSM			DPHY_PMA_CMN(0x20)
+> +#define DPHY_CMN_RX_MODE_EN		BIT(10)
+> +#define DPHY_CMN_RX_BANDGAP_TIMER_MASK	GENMASK(8, 1)
+> +#define DPHY_CMN_SSM_EN			BIT(0)
+> +
+> +#define DPHY_CMN_RX_BANDGAP_TIMER	0x14
+> +
+> +#define DPHY_BAND_CFG			DPHY_PCS(0x0)
+> +#define DPHY_BAND_CFG_RIGHT_BAND	GENMASK(9, 5)
+> +#define DPHY_BAND_CFG_LEFT_BAND		GENMASK(4, 0)
+> +
+> +#define DPHY_POWER_ISLAND_EN_DATA	DPHY_PCS(0x8)
+> +#define DPHY_POWER_ISLAND_EN_DATA_VAL	0xaaaaaaaa
+> +
+> +#define DPHY_POWER_ISLAND_EN_CLK	DPHY_PCS(0xc)
+> +#define DPHY_POWER_ISLAND_EN_CLK_VAL	0xaa
+> +
+> +#define DPHY_ISO_CL_CTRL_L		DPHY_ISO(0x10)
+> +#define DPHY_ISO_DL_CTRL_L0		DPHY_ISO(0x14)
+> +#define DPHY_ISO_DL_CTRL_L1		DPHY_ISO(0x20)
+> +#define DPHY_ISO_DL_CTRL_L2		DPHY_ISO(0x30)
+> +#define DPHY_ISO_DL_CTRL_L3		DPHY_ISO(0x3c)
+> +
+> +#define DPHY_ISO_LANE_READY_BIT		0
+> +#define DPHY_ISO_LANE_READY_TIMEOUT_MS	100UL
+> +
+> +#define DPHY_LANES_MIN			1
+> +#define DPHY_LANES_MAX			4
+> +
+> +struct cdns_dphy_rx {
+> +	void __iomem *regs;
+> +	struct device *dev;
+> +	struct phy *phy;
+> +};
+> +
+> +struct cdns_dphy_rx_band {
+> +	/* Rates are in Mbps. */
+> +	unsigned int min_rate;
+> +	unsigned int max_rate;
+> +};
+> +
+> +/* Order of bands is important since the index is the band number. */
+> +static const struct cdns_dphy_rx_band bands[] =3D {
+> +	{80, 100}, {100, 120}, {120, 160}, {160, 200}, {200, 240},
+> +	{240, 280}, {280, 320}, {320, 360}, {360, 400}, {400, 480},
+> +	{480, 560}, {560, 640}, {640, 720}, {720, 800}, {800, 880},
+> +	{880, 1040}, {1040, 1200}, {1200, 1350}, {1350, 1500}, {1500, 1750},
+> +	{1750, 2000}, {2000, 2250}, {2250, 2500}
 
-Thanks,
-Akhil
+Cosmetic suggestion: add whitespaces after { and before }.
 
---
-nvpublic
+> +};
+> +
+> +static int cdns_dphy_rx_power_on(struct phy *phy)
+> +{
+> +	struct cdns_dphy_rx *dphy =3D phy_get_drvdata(phy);
+> +
+> +	/* Start RX state machine. */
+> +	writel(DPHY_CMN_SSM_EN | DPHY_CMN_RX_MODE_EN |
+> +	       FIELD_PREP(DPHY_CMN_RX_BANDGAP_TIMER_MASK,
+> +			  DPHY_CMN_RX_BANDGAP_TIMER),
+> +	       dphy->regs + DPHY_CMN_SSM);
+> +
+> +	return 0;
+> +}
+> +
+> +static int cdns_dphy_rx_power_off(struct phy *phy)
+> +{
+> +	struct cdns_dphy_rx *dphy =3D phy_get_drvdata(phy);
+> +
+> +	writel(0, dphy->regs + DPHY_CMN_SSM);
+> +
+> +	return 0;
+> +}
+> +
+> +static int cdns_dphy_rx_get_band_ctrl(unsigned long hs_clk_rate)
+> +{
+> +	unsigned int rate, i;
+> +
+> +	rate =3D hs_clk_rate / 1000000UL;
+> +	/* Since CSI-2 clock is DDR, the bit rate is twice the clock rate. */
+> +	rate *=3D 2;
+> +
+> +	if (rate < bands[0].min_rate)
+> +		return -EOPNOTSUPP;
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(bands); i++) {
+> +		if (rate < bands[i].max_rate)
+> +			return i;
+> +	}
+
+Comstic: you don't need the wrapping { and } here.
+
+> +
+> +	return -EOPNOTSUPP;
+> +}
+> +
+> +static int cdns_dphy_rx_wait_for_bit(void __iomem *addr, unsigned int bi=
+t)
+
+You can probably inline this one.
+
+> +{
+> +	u32 val;
+> +
+> +	return readl_relaxed_poll_timeout(addr, val, val & BIT(bit), 10,
+> +					  DPHY_ISO_LANE_READY_TIMEOUT_MS * 1000);
+> +}
+> +
+> +static int cdns_dphy_rx_wait_lane_ready(struct cdns_dphy_rx *dphy,
+> +					unsigned int lanes)
+> +{
+> +	static const u32 data_lane_ctrl[] =3D {DPHY_ISO_DL_CTRL_L0,
+> +					     DPHY_ISO_DL_CTRL_L1,
+> +					     DPHY_ISO_DL_CTRL_L2,
+> +					     DPHY_ISO_DL_CTRL_L3};
+> +	void __iomem *reg =3D dphy->regs;
+> +	unsigned int i;
+> +	int ret;
+> +
+> +	/* Data lanes. Minimum one lane is mandatory. */
+> +	if (lanes < DPHY_LANES_MIN || lanes > DPHY_LANES_MAX)
+> +		return -EINVAL;
+> +
+> +	/* Clock lane */
+> +	ret =3D cdns_dphy_rx_wait_for_bit(reg + DPHY_ISO_CL_CTRL_L,
+> +					DPHY_ISO_LANE_READY_BIT);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i =3D 0; i < lanes; i++) {
+> +		ret =3D cdns_dphy_rx_wait_for_bit(reg + data_lane_ctrl[i],
+> +						DPHY_ISO_LANE_READY_BIT);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int cdns_dphy_rx_configure(struct phy *phy,
+> +				  union phy_configure_opts *opts)
+> +{
+> +	struct cdns_dphy_rx *dphy =3D phy_get_drvdata(phy);
+> +	unsigned int reg;
+> +	int band_ctrl, ret;
+> +
+> +	band_ctrl =3D cdns_dphy_rx_get_band_ctrl(opts->mipi_dphy.hs_clk_rate);
+> +	if (band_ctrl < 0)
+> +		return band_ctrl;
+> +
+> +	reg =3D FIELD_PREP(DPHY_BAND_CFG_LEFT_BAND, band_ctrl) |
+> +	      FIELD_PREP(DPHY_BAND_CFG_RIGHT_BAND, band_ctrl);
+> +	writel(reg, dphy->regs + DPHY_BAND_CFG);
+> +
+> +	/*
+> +	 * Set the required power island phase 2 time. This is mandated by DPHY
+> +	 * specs.
+> +	 */
+> +	reg =3D DPHY_POWER_ISLAND_EN_DATA_VAL;
+> +	writel(reg, dphy->regs + DPHY_POWER_ISLAND_EN_DATA);
+> +	reg =3D DPHY_POWER_ISLAND_EN_CLK_VAL;
+> +	writel(reg, dphy->regs + DPHY_POWER_ISLAND_EN_CLK);
+> +
+> +	ret =3D cdns_dphy_rx_wait_lane_ready(dphy, opts->mipi_dphy.lanes);
+> +	if (ret) {
+> +		dev_err(dphy->dev, "DPHY wait for lane ready timeout\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int cdns_dphy_rx_validate(struct phy *phy, enum phy_mode mode,
+> +				 int submode, union phy_configure_opts *opts)
+> +{
+> +	int ret;
+> +
+> +	if (mode !=3D PHY_MODE_MIPI_DPHY)
+> +		return -EINVAL;
+> +
+> +	ret =3D cdns_dphy_rx_get_band_ctrl(opts->mipi_dphy.hs_clk_rate);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return phy_mipi_dphy_config_validate(&opts->mipi_dphy);
+> +}
+> +
+> +static const struct phy_ops cdns_dphy_rx_ops =3D {
+> +	.power_on =3D cdns_dphy_rx_power_on,
+> +	.power_off =3D cdns_dphy_rx_power_off,
+> +	.configure =3D cdns_dphy_rx_configure,
+> +	.validate =3D cdns_dphy_rx_validate,
+> +};
+> +
+> +static int cdns_dphy_rx_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct phy_provider *provider;
+> +	struct cdns_dphy_rx *dphy;
+> +
+> +	dphy =3D devm_kzalloc(dev, sizeof(*dphy), GFP_KERNEL);
+> +	if (!dphy)
+> +		return -ENOMEM;
+> +
+> +	dev_set_drvdata(dev, dphy);
+
+It looks like you're never getting the dphy pointer from dev so this seems =
+a bit
+pointless.
+
+> +	dphy->dev =3D dev;
+> +
+> +	dphy->regs =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(dphy->regs))
+> +		return PTR_ERR(dphy->regs);
+> +
+> +	dphy->phy =3D devm_phy_create(dev, NULL, &cdns_dphy_rx_ops);
+> +	if (IS_ERR(dphy->phy)) {
+> +		dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
+> +		return PTR_ERR(dphy->phy);
+> +	}
+> +
+> +	phy_set_drvdata(dphy->phy, dphy);
+> +	provider =3D devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+
+You might want to print an error message if it failed to register.
+
+> +
+> +	return PTR_ERR_OR_ZERO(provider);
+> +}
+> +
+> +static const struct of_device_id cdns_dphy_rx_of_match[] =3D {
+> +	{ .compatible =3D "cdns,dphy-rx" },
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(of, cdns_dphy_rx_of_match);
+> +
+> +static struct platform_driver cdns_dphy_rx_platform_driver =3D {
+> +	.probe		=3D cdns_dphy_rx_probe,
+> +	.driver		=3D {
+> +		.name		=3D "cdns-mipi-dphy-rx",
+> +		.of_match_table	=3D cdns_dphy_rx_of_match,
+> +	},
+> +};
+> +module_platform_driver(cdns_dphy_rx_platform_driver);
+> +
+> +MODULE_AUTHOR("Pratyush Yadav <p.yadav@ti.com>");
+> +MODULE_DESCRIPTION("Cadence D-PHY Rx Driver");
+> +MODULE_LICENSE("GPL v2");
+
+Otherwise this looks good to me!
+
+Cheers,
+
+Paul
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--4h0HZ6Zr1Kjo6M2j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmHAodQACgkQ3cLmz3+f
+v9HmxQf/VeHHhcqtjJHpGGlGHc5Sj3gndLwFNRxc6wcDmUgVMKal7/z2w+OZF8DW
+8HoaqbPe5iMaZ4+M8WG69lx81MHSArMXpExXEIdSqSFYs1JQNKNplmiBcjjvZFxX
+uJQilAczmdlHkc+WmsaaKoy4YLL/vIUS2ev9/ckntS+xeAF+qNUZbsepjaAqCSyH
+qoRn9dmgyjGf+QIV14/+G+QSHlEY3fv04eoGH2MeOcqNMMFKSHyIjMy5nwK6Zfjv
+ijUad8AO0wNcU/hOh5CRD2o1HP42IKjmeOqSaRVbJ1Duq6H1Z3w/xzIRU41W99aM
+nUc+VVnwOjK0sORcf5I5ltFe4v2JFQ==
+=LnRz
+-----END PGP SIGNATURE-----
+
+--4h0HZ6Zr1Kjo6M2j--
