@@ -2,113 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C12D47A744
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 10:38:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90AF347A749
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 10:38:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229826AbhLTJiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 04:38:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46806 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229796AbhLTJiS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 04:38:18 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C53EC06173E
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 01:38:18 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id s1so18842702wrg.1
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 01:38:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=dYWkmery3XK6vwBBysFrmlhWjVvFlCfPLyck1j0dX7M=;
-        b=VjTtLdkTMRyf1qbutj9RgXV8zp1JMbMVxDIWHOvs0MqgQASAnoojM0PRN9MtcTgezK
-         ZB+wY94y9vDpqBEWQfAiw/wPs8sd34SSwZg6B2V23juAn5/lJ4tabtcASaPPQxRPCYNt
-         V5RWwiy08gXyLF9O1r4IPPhqmIYx1/skL++o18ywv+9NoyPUeVSrvjB5FTgHOoDx1cmG
-         4fzS+9MxOS5eiYlDdMYsgrAecYzfOYth3bNJ8IR90eo1O4g32IlLCpzjbilmXcKeduKn
-         u08998IdA5tjaHGt7GAw1keytxAm0+h1QjesFbIyQa5HtugpWovZl9C6eKBhdPbKmwzg
-         q2qw==
+        id S229847AbhLTJir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 04:38:47 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:55524
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229838AbhLTJir (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Dec 2021 04:38:47 -0500
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 61F0F3FFE5
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 09:38:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1639993126;
+        bh=dz6QFkxil+mKwYeYNiGaZzN1by93ig0Nsk5mlfTqUe4=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=pvhA2hKWL5qSje/hmnUptD2wCMr2TWtIbv0XHQ2tBnJLtmhGE1Jr9Eq7sKYD0iu97
+         bN3XVTJSKTEshUcvp6Jad0FNpM3g0Wbe502m+J3KqZfIZpVLF0pUyNfdXA0lr3ovw0
+         shmyAGpldSYRMdL0iSznmETIqmaVVECkLnBlyGLS2triOIBDsHDo7yw/VLrz8tpDyB
+         gYfjqmz4dIKElEVOFb3vXrNzEIB+XwRvzMhYfMSoZ80mtpPwWFVOR+9wQgT4DB/Slw
+         L4k+Rh2gMpMMC7CCbAOm16eVF5nvKqLyR2akANGqoKVAicrj9asbIC8uE1pIbjdeQZ
+         AKdAnW4habdbw==
+Received: by mail-lf1-f70.google.com with SMTP id q13-20020a19f20d000000b0041fcb65b6c7so4278025lfh.8
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 01:38:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=dYWkmery3XK6vwBBysFrmlhWjVvFlCfPLyck1j0dX7M=;
-        b=44rE8CVkhmZHkvNBZDdXFLkAHTjbLJMWR1RpGhQExtrsLJmOozHT9ExM0NtEADYcFV
-         nFIdljvWVJc9Zi9UNmc+68sCsJ3Pq+41Vk62ub58Q3H3SwLkAQyJ74DNbZmazDaS3wJz
-         QkzdkokFFnfpi3K/OeC1TP69a28anm+32V6RtJtPOCfK/ErIFrEO5fLjBH3vfXdijZVe
-         0462aVsmY0vWqXzW4JSWvwmhpm9lbXItQMht35UwsOt547oXzier4cxUqbv6jk8XSi+X
-         2Ufjg1ib4aCJtzJ2cv/QjNF5op6eG76w2m9h5igQCgoif+RC+MSGuLCIPO7KpBshBS2C
-         7yAQ==
-X-Gm-Message-State: AOAM532+gpGdThQyWZaCuVhfbf5pnxu0q4qW5u8z65R0jNGtUWSVbQ/T
-        Uc7ZfO/PQQteYnISQp+IiutuGQ==
-X-Google-Smtp-Source: ABdhPJy0j6jM/hz3E4ABp8fKZ8cOMV2ncUsVgRdk43pVrGIfjBJuOzi39GvpJ+yWZLBLewQnAqzO/A==
-X-Received: by 2002:a5d:610c:: with SMTP id v12mr7437729wrt.410.1639993096472;
-        Mon, 20 Dec 2021 01:38:16 -0800 (PST)
-Received: from ?IPv6:2a01:e34:ed2f:f020:fa36:a1cd:f64:7a6? ([2a01:e34:ed2f:f020:fa36:a1cd:f64:7a6])
-        by smtp.googlemail.com with ESMTPSA id k6sm12820826wrc.38.2021.12.20.01.38.14
+        bh=dz6QFkxil+mKwYeYNiGaZzN1by93ig0Nsk5mlfTqUe4=;
+        b=yY3+1Zm+tVp7WH8eTjT8J1jXz1qaBAVpGwRA8tEoeEu4dJBLnHW4P8xi9c+eMei7Z9
+         JQaVmfyIiNRg7hJVGqy5el4VtEH5TFhsHF3KOJUEyhHPpBT4CwhVoR4QX+950AF/zlPu
+         ixH9u/fy4a6C37+T6ynBV1lH5d0hcypw9SCsImOS8ffRkQ9Xb5G+RDnjcHZ1KaoAhXT4
+         ra47e/RREZRRuiaFiNoxGbUr+Uai0rM218TNGvDXKFaWSmgSN76N/sxGnejKF3VQoRBP
+         5wtZiCwWkHc6sL6xseVvb1w+f8/3wfVvB3x6EdEMKX7kMxY/7UUxyUSgOnjK80guDFng
+         MKtg==
+X-Gm-Message-State: AOAM533OTeJI+SjF/JnqBG56X36JGrv8JPK2oTOVSHskuZbmbIlXjWhk
+        B1tT42ngYdvMuUdWsI/ioT1IvtYHWNMDS+TokPUV0qi0reMohS4gGV4uVGYIQ9JYe5riKJqc5UE
+        kOXH6PwPlSJn27i7kXHZeHMqkxTLxQR8dhbf4h5w=
+X-Received: by 2002:a05:6512:682:: with SMTP id t2mr14515148lfe.503.1639993125881;
+        Mon, 20 Dec 2021 01:38:45 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzkAX81uYsA9KWyRerkrAl1PymORECC6YyMtRfMeEg50dsgMQ9YoDfBCysp1P+YA4xQKOVwow==
+X-Received: by 2002:a05:6512:682:: with SMTP id t2mr14515124lfe.503.1639993125721;
+        Mon, 20 Dec 2021 01:38:45 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id n10sm651478lfk.246.2021.12.20.01.38.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Dec 2021 01:38:15 -0800 (PST)
-Subject: Re: [PATCH v2 0/2] Add cpuidle driver for Sunplus SP7021
-To:     Edwin Chiu <edwinchiu0505tw@gmail.com>, robh+dt@kernel.org,
-        edwin.chiu@sunplus.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rafael@kernel.org,
-        linux-pm@vger.kernel.org
-References: <cover.1639971376.git.edwinchiu0505tw@gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <11fa1686-ae61-8f19-f0a0-d1e0fefedbb2@linaro.org>
-Date:   Mon, 20 Dec 2021 10:38:14 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        Mon, 20 Dec 2021 01:38:45 -0800 (PST)
+Message-ID: <b5ff4ca4-30fe-200b-77ee-1f1831329a99@canonical.com>
+Date:   Mon, 20 Dec 2021 10:38:42 +0100
 MIME-Version: 1.0
-In-Reply-To: <cover.1639971376.git.edwinchiu0505tw@gmail.com>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: (subset) [PATCH v4 3/7] dt-bindings: arm: samsung: document
+ jackpotlte board binding
 Content-Language: en-US
+To:     David Virag <virag.david003@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        linux-clk@vger.kernel.org,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        linux-samsung-soc@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+References: <20211206153124.427102-1-virag.david003@gmail.com>
+ <20211206153124.427102-4-virag.david003@gmail.com>
+ <163958527260.183299.17749602272220762675.b4-ty@canonical.com>
+ <b244735f83010fe198ead3b818ee0718dc654879.camel@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <b244735f83010fe198ead3b818ee0718dc654879.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi Edwin,
-
-sorry but I don't get the series. The bindings and the generic cpuidle
-should already take into account the idle path.
-
-Did I miss something ?
-
-
-On 20/12/2021 06:37, Edwin Chiu wrote:
-> This is a patch series for cpuidle driver for Sunplus SP7021 SoC.
+On 19/12/2021 15:53, David Virag wrote:
+> On Wed, 2021-12-15 at 17:21 +0100, Krzysztof Kozlowski wrote:
+>> On Mon, 6 Dec 2021 16:31:17 +0100, David Virag wrote:
+>>> Add binding for the jackpotlte board (Samsung Galaxy A8 (2018)).
+>>>
+>>>
+>>
+>> Applied, thanks!
+>>
+>> [3/7] dt-bindings: arm: samsung: document jackpotlte board binding
+>>       commit: c96ebc5fde274edcc02543dcfb6a1ee097f98070
+>>
+>> Best regards,
 > 
-> Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
-> many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and 
-> etc.) into a single chip. It is designed for industrial control.
+> Hi Krzysztof!
 > 
-> Refer to:
-> https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
-> https://tibbo.com/store/plus1.html
-> 
-> Edwin Chiu (2):
->   dt-bingings:arm:sunplus:add sp7021 compatible string to
->     sunplus,idle-state.yaml
->   cpuidle:sunplus:create cpuidle driver for sunplus sp7021
-> 
->  .../bindings/arm/sunplus/sunplus,idle-state.yaml   |  55 +++++++
->  MAINTAINERS                                        |   9 ++
->  drivers/cpuidle/Kconfig.arm                        |   7 +
->  drivers/cpuidle/Makefile                           |   1 +
->  drivers/cpuidle/cpuidle-sunplus.c                  | 180 +++++++++++++++++++++
->  include/linux/platform_data/cpuidle-sunplus.h      |  13 ++
->  6 files changed, 265 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/sunplus/sunplus,idle-state.yaml
->  create mode 100644 drivers/cpuidle/cpuidle-sunplus.c
->  create mode 100644 include/linux/platform_data/cpuidle-sunplus.h
-> 
+> Thanks! As I'll be sending v5 of this series soon (only really adding
+> r-by, acked-by tags and only real changes in dts/dtsi patch), should I
+> omit this patch from it since it has been applied? Or should I really
+> only send the dts/dtsi patch at this point? Sorry if this is obvious, I
+> just haven't sent that many patches before to know this.
+
+Skip this one, please.
 
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Best regards,
+Krzysztof
