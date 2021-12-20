@@ -2,144 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0248447B319
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 19:45:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0306647B33B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 19:51:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240526AbhLTSpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 13:45:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60714 "EHLO
+        id S234026AbhLTSvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 13:51:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240533AbhLTSpA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 13:45:00 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0749C061746
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 10:44:59 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id v19so8776316plo.7
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 10:44:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=WdbWOY03V2kpY7k/lf8oQTo4VEA2Vdp6umA4nuJEIuc=;
-        b=ofClJz4jo3PpFecYdRQZhVP85Bb8PtBQgBwgyp7zglJ53fJ18lBCJ1++xK5e2qbXTZ
-         gdVV854jGh9SJ8Z/7xSAottZKfoeVHL7nYCguLL9UOlLpyNXeNMtWHvVfTUylyVyVn0k
-         Gk3lDmZQ1sNFi9JwvcCeEoIbhcKLw5TktL9R8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=WdbWOY03V2kpY7k/lf8oQTo4VEA2Vdp6umA4nuJEIuc=;
-        b=7F/r6By2lbg4+EbdUb0apXkQz1gMcZXD8z2SU8j2YND4g87S+JRGY5NfrUIvGQIpmP
-         XN1ZmPz54C5Q8E0VfGZAunCSrmyM1xdwRAQH+NM5CJhG/AHnqXvZzGHdwNXYdsG6xn8R
-         NYRl1NgIqVPqvnmWaV2CKqPjHfIN9YAVW5OyvVfPgC56lMDv+JIz66TfagkHA6J1p5qk
-         6ML6ntvWQ65blw4ta/4n8dxjkqGg0ovzD7LSFGvkvmAkvpzXlVoavjQxWMgOjx0e44bv
-         y8ZNj5lBUOYyupBiZbZF2MSwuZXpoodutnhfo9Xx7I8C/RaQfnNPg+/PGKqVA6icu2hs
-         WsVw==
-X-Gm-Message-State: AOAM533WGs1jlRywkoikOD/uh/q7PrYxPhyVyAk4hMl1RuAMWTEueN9j
-        TzvIFJ7SH2/pr01Z0gAMXLNMTA==
-X-Google-Smtp-Source: ABdhPJyPQrHhFTVe7FBptsBwkry6fep3hyiTtJ3cgtGZkH8eIcRapLjFTx40/3fW35AjMX138/wVXQ==
-X-Received: by 2002:a17:902:e80f:b0:148:a949:93ab with SMTP id u15-20020a170902e80f00b00148a94993abmr17960692plg.113.1640025899153;
-        Mon, 20 Dec 2021 10:44:59 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:b6e8:fca9:3622:591e])
-        by smtp.gmail.com with UTF8SMTPSA id 72sm3775169pfu.70.2021.12.20.10.44.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Dec 2021 10:44:58 -0800 (PST)
-Date:   Mon, 20 Dec 2021 10:44:55 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Tony Lindgren <tony@atomide.com>,
-        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v17 7/7] usb: Specify dependencies on USB_XHCI_PLATFORM
- with 'depends on'
-Message-ID: <YcDPJ1POD5oAqyLj@google.com>
-References: <20211116200739.924401-1-mka@chromium.org>
- <20211116120642.v17.7.If248f05613bbb06a44eb0b0909be5d97218f417b@changeid>
- <YbvSNta4jCxizaTa@google.com>
- <b0b69294-e7fb-5e7a-80f3-466dd4bdc88a@gmail.com>
+        with ESMTP id S233731AbhLTSvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 13:51:19 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B176CC061574
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 10:51:18 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1mzNke-0006Cr-I2; Mon, 20 Dec 2021 19:51:12 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1mzNkX-0002xy-1W; Mon, 20 Dec 2021 19:51:05 +0100
+Date:   Mon, 20 Dec 2021 19:51:05 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH 22/22] drm: rockchip: Add VOP2 driver
+Message-ID: <20211220185105.GX6003@pengutronix.de>
+References: <20211220110630.3521121-1-s.hauer@pengutronix.de>
+ <20211220110630.3521121-23-s.hauer@pengutronix.de>
+ <5637649.G3HFo5JPcS@archbook>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b0b69294-e7fb-5e7a-80f3-466dd4bdc88a@gmail.com>
+In-Reply-To: <5637649.G3HFo5JPcS@archbook>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 19:33:51 up 10 days,  3:19, 41 users,  load average: 1.02, 1.08,
+ 1.08
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 17, 2021 at 03:47:24AM +0300, Dmitry Osipenko wrote:
-> 17.12.2021 02:56, Matthias Kaehlcke пишет:
-> > On Tue, Nov 16, 2021 at 12:07:39PM -0800, Matthias Kaehlcke wrote:
-> >> Some USB controller drivers that depend on the xhci-plat driver
-> >> specify this dependency using 'select' in Kconfig. This is not
-> >> recommended for symbols that have other dependencies as it may
-> >> lead to invalid configurations. Use 'depends on' to specify the
-> >> dependency instead of 'select'.
-> >>
-> >> For dwc3 specify the dependency on USB_XHCI_PLATFORM in
-> >> USB_DWC3_HOST and USB_DWC3_DUAL_ROLE. Also adjust the
-> >> dependencies of USB_DWC3_CORE to make sure that at least one
-> >> of USB_DWC3_HOST, USB_DWC3_GADGET or USB_DWC3_DUAL_ROLE can be
-> >> selected.
-> >>
-> >> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> >> Reviewed-by: Roger Quadros <rogerq@kernel.org>
-> >> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+On Mon, Dec 20, 2021 at 03:16:55PM +0100, Nicolas Frattaroli wrote:
+> On Montag, 20. Dezember 2021 12:06:30 CET Sascha Hauer wrote:
+> > From: Andy Yan <andy.yan@rock-chips.com>
 > > 
-> > Note: This patch has been removed from the onboard_usb_hub series,
-> > together with "ARM: configs: Explicitly enable USB_XHCI_PLATFORM
-> > where needed" and "arm64: defconfig: Explicitly enable
-> > USB_XHCI_PLATFORM". These patches aren't any longer needed for the
-> > series. If maintainers think they are useful independently from
-> > the series please pick them or let me know what needs to be
-> > changed to get them landed.
+> > The VOP2 unit is found on Rockchip SoCs beginning with rk3566/rk3568.
+> > It replaces the VOP unit found in the older Rockchip SoCs.
 > > 
+> > This driver has been derived from the downstream Rockchip Kernel and
+> > heavily modified:
+> > 
+> > - All nonstandard DRM properties have been removed
+> > - dropped struct vop2_plane_state and pass around less data between
+> >   functions
+> > - Dropped all DRM_FORMAT_* not known on upstream
+> > - rework register access to get rid of excessively used macros
+> > - Drop all waiting for framesyncs
+> > 
+> > The driver is tested with HDMI and MIPI-DSI display on a RK3568-EVB
+> > board. Overlay support is tested with the modetest utility. AFBC support
+> > on the cluster windows is tested with weston-simple-dmabuf-egl on
+> > weston using the (yet to be upstreamed) panfrost driver support.
+> > 
+> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > ---
 > 
-> Hi,
+> Hi Sascha,
 > 
-> I don't know what this all is about, perhaps I'm CC'ed semi-randomly
-> because touched that Kconfig once.
+> sadly I'm getting
+> 
+> [    1.668856] rockchip-drm display-subsystem: [drm] *ERROR* failed to get vop2 register byname
+> [    1.669621] rockchip-drm display-subsystem: failed to bind fe040000.vop (ops vop2_component_ops): -22
+> [    1.670584] rockchip-drm display-subsystem: master bind failed: -22
+> [    1.671164] dwhdmi-rockchip: probe of fe0a0000.hdmi failed with error -22
+> 
+> on a Quartz64 Model A.
+> 
+> 
+> > +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "regs");
+> > +	if (!res) {
+> > +		drm_err(vop2->drm, "failed to get vop2 register byname\n");
+> > +		return -EINVAL;
+> > +	}
+> 
+> This seems to be the code that triggers it.
+> 
+> Any ideas as to what could be causing this?
 
-Yes, it seems tools select you based on their heuristics because you
-made changes to that file.
+Gnaa, this was a last minute change I did and thought it was too trivial
+to fail :(
 
-> All I can say here is that the commit message tells us "This is not
-> recommended" and doesn't explain what's the actual problem is being
-> solved. If there is no real problem, why bother?
+The binding previously had:
 
-Earlier versions of the onboard_usb_hub series [1] which had a dependency
-involving USB_XHCI_PLATFORM had an issue with invalid (rand)configs
-that was related with the 'selects'.
+	reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
+	reg-names = "regs", "gamma_lut";
 
-The series doesn't depend on USB_XHCI_PLATFORM any longer, hence the
-original issue doesn't exist anymore, however it might re-surface in
-the future.
+I thought that I can merge these two regions into one bigger region.
+Apart from the fact that I got it wrong (The driver still requests a
+resource "regs" as you found out), it doesnt work, because the space
+between those two regions is not unused, the iommu is in between them.
 
-Personally I have no vested interest at this point in getting the
-config changes landed, I just wanted to make clear what the status
-is (split off from the series, no future versions unless someone
-requests them), rather than abandoning them silently.
+I'll have to revert that change for the next round. Please use the
+attached fixup patch in the meantime.
 
-[1]: https://patchwork.kernel.org/project/linux-usb/list/?series=531343
+Sascha
+
+-------------------------------8<------------------------------
+
+From 9b3dee3d8584f5a9cc24f21ff8c5895465c4b3ae Mon Sep 17 00:00:00 2001
+From: Sascha Hauer <s.hauer@pengutronix.de>
+Date: Mon, 20 Dec 2021 19:49:14 +0100
+Subject: [PATCH] fixup! arm64: dts: rockchip: rk356x: Add VOP2 nodes
+
+---
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+index 6d93b8fcee179..cce4b789d6d58 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -453,7 +453,8 @@ gmac1_mtl_tx_setup: tx-queues-config {
+ 	};
+ 
+ 	vop: vop@fe040000 {
+-		reg = <0x0 0xfe040000 0x0 0x5000>;
++		reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
++		reg-names = "regs", "gamma_lut";
+ 		interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>, <&cru DCLK_VOP0>, <&cru DCLK_VOP1>, <&cru DCLK_VOP2>;
+ 		clock-names = "aclk_vop", "hclk_vop", "dclk_vp0", "dclk_vp1", "dclk_vp2";
+-- 
+2.30.2
+
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
