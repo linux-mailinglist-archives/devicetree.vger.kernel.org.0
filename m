@@ -2,86 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6367847A9FF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 13:59:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63D4E47AA31
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 14:11:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231879AbhLTM7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 07:59:22 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:57190 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230262AbhLTM7V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 07:59:21 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S232711AbhLTNLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 08:11:15 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:32946
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232696AbhLTNLO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Dec 2021 08:11:14 -0500
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 84C1761052;
-        Mon, 20 Dec 2021 12:59:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E94BDC36AE9;
-        Mon, 20 Dec 2021 12:59:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640005161;
-        bh=cvkjnL8Vt4Ov4zMUd3/Cmz+GyzMZAAaM2YMINoQw4N0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JYQ2U66cYNkrvZfycRjpxFalLKRv4iDByDGyHrqkvlcJ3NHulktQ8DowT80sabbyJ
-         EjEX1xnNo0nvWwotPKuHw8R98nS2L3Nb1Fb3J8V79ifUPCUOTJynpFGOlabpM4yEmJ
-         6f9EQQtmXc1Icqmn8Qd2OAXoULNsBQKqlWihdMVkoC6dWOBBhd2rPfT7zntnzdYgCf
-         tFitLJYAV96cVBFvONS0kGK6sXBNMnFBy5VWyV9JS4v9yBaxBHDmfwRhF1ansG/ygM
-         UDoOCDblKMvywdd0NQD0pQfQQUvFhPOMnLFYrXI1Dbn2939yKG5xD2F9n0C/a1SvwV
-         eF5kVXGTKurxg==
-Date:   Mon, 20 Dec 2021 12:59:14 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     robh+dt@kernel.org, linus.walleij@linaro.org,
-        matthias.bgg@gmail.com, bgolaszewski@baylibre.com,
-        sean.wang@mediatek.com, bayi.cheng@mediatek.com,
-        gch981213@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v7 2/4] dt-bindings: spi: spi-mtk-nor: add new clock name
- 'axi' for spi nor
-Message-ID: <YcB+Ih5KkdaXGvsS@sirena.org.uk>
-References: <20211220121825.6446-1-tinghan.shen@mediatek.com>
- <20211220121825.6446-3-tinghan.shen@mediatek.com>
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 942723F1EE
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 13:11:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1640005873;
+        bh=UT3yb2on5vb7qi6AxvGOpzfrY6Kkd8z0OP15gMsmiBo=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=i7u5cwps9p9j9MrjvbqbI7pcS7y8i+904HYqWHM03b+m14PBsvLjHCVw0Qb3m1DtX
+         ncVUHgrntiH7HJhEUNQYt0YtRAMZJuYJjedf+1jRlVKmb17KwQ5MeoYd/+ozqCs5W9
+         8St8fP8xLTuOIeiIJ+llgiGHHUPCrdJpuRSqE82ZVwTrC4O8TQbMaErHJ9s1SoQuu6
+         noa14ahu3fLDZEHpVRJOcbb37GZkw301qmE7PidM+uf0lwJt48dM1XRF5wxGVnSm8V
+         aD3kcvUt6eGncPLIWKuHlmc2V/zT3Wx000rSnU7lQSAYmDr0Zm+NJ0emz7HgfgX4FK
+         J7TEI+z6kZTvA==
+Received: by mail-lf1-f69.google.com with SMTP id bq6-20020a056512150600b0041bf41f5437so4503584lfb.17
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 05:11:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=UT3yb2on5vb7qi6AxvGOpzfrY6Kkd8z0OP15gMsmiBo=;
+        b=sx0QckZRUI+NCoYESD1NIw4+mhK4uAI7mrzYQsS1v1zhuxehZR/VM1nXxvcilYGpjp
+         SoBlkmXFfZlMq7d+4xNJhWhJe9L+ioodKOt4fPtWuapKfgAVTYC9OOP9IJnsWwaPzwE7
+         lYsV90diBHvA/SS7VJS1LZznhhWJPyLJaO9JSmwHCHJ4ARs1knwKeDVXG5pFNuq0S1eR
+         ym2KUlp5MZJjEjtEKPOG08t8TUo2t8+0uMxVJIpP6a3fNKaMNtuLki2eRFAxdtQ6XYPO
+         X9UBLlz6NMN1Gz0c6RB7dZEB7Qt0BT6+UiP5vYbG0JzXfiMz8aKw0F2pHKgwnuOC17hk
+         NPAw==
+X-Gm-Message-State: AOAM531i0uW5XAe++MFQnVYOjghR9XEFRFnKbz8xsVjTSxwrhyYcEziR
+        8bWkAe5ton+0ui2PVDTaB7uNFMKt/HRa2tem+wiaCCw0G6CRFR6nz3/rB3VR4+7T14GhSPyrtMt
+        /nArcfWcEFmDrrSlxf2sUdROfEGKHHdFI/GWeqEM=
+X-Received: by 2002:a19:6912:: with SMTP id e18mr16353514lfc.25.1640005872998;
+        Mon, 20 Dec 2021 05:11:12 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwqJEKqWLJ9T71knFziOL/BJNclBCOVZhi6dq6bw62dTj8JNlsRGyrAogEkbajYbYo6uaSPsQ==
+X-Received: by 2002:a19:6912:: with SMTP id e18mr16353488lfc.25.1640005872677;
+        Mon, 20 Dec 2021 05:11:12 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id s10sm153245lfr.45.2021.12.20.05.11.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Dec 2021 05:11:12 -0800 (PST)
+Message-ID: <dbe8868e-3cda-4854-771f-22efcc795de8@canonical.com>
+Date:   Mon, 20 Dec 2021 14:11:10 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="NST5rrJ6CjnkHa/k"
-Content-Disposition: inline
-In-Reply-To: <20211220121825.6446-3-tinghan.shen@mediatek.com>
-X-Cookie: Christ was born in 4 B.C.
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v3 3/4] memory: omap-gpmc: Use a compatible match table
+ when checking for NAND controller
+Content-Language: en-US
+To:     Roger Quadros <rogerq@kernel.org>, tony@atomide.com
+Cc:     robh@kernel.org, kishon@ti.com, nm@ti.com, vigneshr@ti.com,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20211217102945.17432-1-rogerq@kernel.org>
+ <20211217102945.17432-4-rogerq@kernel.org>
+ <88ff0e3e-6709-68fc-88cb-f915dfddbe86@canonical.com>
+ <76076ff5-22d9-82d8-ba9e-77755e1ac433@kernel.org>
+ <691a7ace-f18c-157e-88d2-303213aa0ee8@canonical.com>
+ <645e4b90-c866-d8cf-6a1a-fdcc10278124@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <645e4b90-c866-d8cf-6a1a-fdcc10278124@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 20/12/2021 12:51, Roger Quadros wrote:
+> 
+> 
+> On 20/12/2021 13:05, Krzysztof Kozlowski wrote:
+>> On 20/12/2021 11:53, Roger Quadros wrote:
+>>>
+>>>
+>>> On 17/12/2021 17:21, Krzysztof Kozlowski wrote:
+>>>> On 17/12/2021 11:29, Roger Quadros wrote:
+>>>>> As more compatibles can be added to the GPMC NAND controller driver
+>>>>> use a compatible match table.
+>>>>>
+>>>>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>>>>> ---
+>>>>>  drivers/memory/omap-gpmc.c                   | 8 +++++++-
+>>>>>  drivers/mtd/nand/raw/omap2.c                 | 2 +-
+>>>>>  include/linux/platform_data/mtd-nand-omap2.h | 5 +++++
+>>>>>  3 files changed, 13 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
+>>>>> index 624153048182..814ddb45c13d 100644
+>>>>> --- a/drivers/memory/omap-gpmc.c
+>>>>> +++ b/drivers/memory/omap-gpmc.c
+>>>>> @@ -2091,6 +2091,7 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
+>>>>>  	u32 val;
+>>>>>  	struct gpio_desc *waitpin_desc = NULL;
+>>>>>  	struct gpmc_device *gpmc = platform_get_drvdata(pdev);
+>>>>> +	bool is_nand = false;
+>>>>>  
+>>>>>  	if (of_property_read_u32(child, "reg", &cs) < 0) {
+>>>>>  		dev_err(&pdev->dev, "%pOF has no 'reg' property\n",
+>>>>> @@ -2183,7 +2184,12 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
+>>>>>  		}
+>>>>>  	}
+>>>>>  
+>>>>> -	if (of_device_is_compatible(child, "ti,omap2-nand")) {
+>>>>> +#if defined(CONFIG_MTD_NAND_OMAP2)
+>>>>
+>>>> if (IS_ENABLED()) is preferred. If needed, you could make omap_nand_ids
+>>>> symbol visible always (so without ifdef around it), because extern
+>>>> structure should not have impact when not defined (if I recall
+>>>> correctly...).
+>>>>
+>>>>> +	if (of_match_node(omap_nand_ids, child))
+>>>>> +		is_nand = true;
+>>>>> +#endif
+>>>>> +
+>>>>> +	if (is_nand) {
+>>>>>  		/* NAND specific setup */
+>>>>>  		val = 8;
+>>>>>  		of_property_read_u32(child, "nand-bus-width", &val);
+>>>>> diff --git a/drivers/mtd/nand/raw/omap2.c b/drivers/mtd/nand/raw/omap2.c
+>>>>> index b26d4947af02..fff834ee726f 100644
+>>>>> --- a/drivers/mtd/nand/raw/omap2.c
+>>>>> +++ b/drivers/mtd/nand/raw/omap2.c
+>>>>> @@ -2352,7 +2352,7 @@ static int omap_nand_remove(struct platform_device *pdev)
+>>>>>  	return ret;
+>>>>>  }
+>>>>>  
+>>>>> -static const struct of_device_id omap_nand_ids[] = {
+>>>>> +const struct of_device_id omap_nand_ids[] = {
+>>>>>  	{ .compatible = "ti,omap2-nand", },
+>>>>>  	{},
+>>>>>  };
+>>>>
+>>>> I think OMAP2 NAND driver can be a module, so this should have
+>>>> EXPORT_SYMBOL.
+>>>
+>>> To make it work in all combinations (e.g. omap_gpmc built in and
+>>> nand/raw/omap2.c as module) I had to define omap_nand_ids table as static
+>>> in the linux/platform_data/mtd-nand-omap2.h header.
+>>>
+>>> EXPORT_SYMBOL will of course be not required there. ;)
+>>>
+>> Which case exactly does it require to be static in the header?
+> 
+> Maybe there is a better way to do it.
+> e.g. If omap_gpmc.c is built-in and nand/raw/omap2.c is not built or built as
+> a module, what better way we can use?
 
---NST5rrJ6CjnkHa/k
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Ah, you are right, that is the tricky configuration. It could be a
+separate built-in source file which is being selected by OMAP_GPMC and
+MTD_NAND_OMAP2, but it would be also an overkill for one-item array.
 
-On Mon, Dec 20, 2021 at 08:18:23PM +0800, Tinghan Shen wrote:
-> Some mtk spi nor has dedicated dma(s) inside. Add a new clock name, axi,
-> for spi nor dma bus clock.
+I guess your solution with header is the easiest.
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
 
---NST5rrJ6CjnkHa/k
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHAfiIACgkQJNaLcl1U
-h9CFkQf+PYaFOrmJrFz0nn/s4JFUuZA/0JmpfjK6Cv9M4kE+d077UHibmgwtxJnm
-MsH5VHjOgH7VdSFmaOi8vbSVyjjgEIQv23PP4JeNIJdZ9PO04XsveM9RosrAndfo
-T4H5HQTulqCYybkNBff2P1koJMZLitk9DilbGRv0KSQx6kf2fu04Hkp6Gb38ryee
-I2CydD5ul/+DCAG6VV1d9Q+dmYM3VH1qQnktN34pLpyVsDQX5MGaPDtS2xEzm+Bn
-W6nVpc6qqH2aNt3bQcil1SYjOnPx4urfxJ0+Nq0xhmbl+YsVFN8fdwq+LNbdBxYp
-89C6bb664Q3Tyj8qZMl0y9Iqn2tRiQ==
-=k7OU
------END PGP SIGNATURE-----
-
---NST5rrJ6CjnkHa/k--
+Best regards,
+Krzysztof
