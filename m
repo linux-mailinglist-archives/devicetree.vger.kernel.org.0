@@ -2,154 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 712E447A830
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 12:05:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DF8047A83A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 12:06:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231480AbhLTLFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 06:05:22 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:57668
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231477AbhLTLFV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Dec 2021 06:05:21 -0500
-Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BE0983F1EE
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 11:05:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1639998320;
-        bh=rfxgFKJr8uFxyqYsEDegaiygwVOsUgBbe3UebWQ+Qqk=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=jx9H5PQY2TdS4HJWd12NHXKnY1ebvx0i57L+qMpG7xIz/sFUYCDALggAw/tABoZcm
-         l38JFUKF5nO6PO7EMsGf211gL/OJOrd/xoHYFfKd0RwOm5Z43TVliCYiuIneCJ+2aS
-         7Gv/FDI3G2qXjXAeeBF9pL3drg3p3bDvC76qBRmiq6aGAKvjQfMS1sBjVMOLsGsP8E
-         svfr5+SdNfAVhTKr/EOmKzdEI7PGcuQbpvv7YHEHiZGGLy0JZ58XwnkSBAeRf6ZgtP
-         O++kLlTLYHsDdy2NhheiRQA438RjPTPOhjrSHCdgK4gB8GwWwuNkOy7UHn2RuuofLd
-         yh0/l+ML6CBPA==
-Received: by mail-lf1-f70.google.com with SMTP id p19-20020a19f113000000b00425930cf042so2636321lfh.22
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 03:05:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=rfxgFKJr8uFxyqYsEDegaiygwVOsUgBbe3UebWQ+Qqk=;
-        b=aKenDY+t9GNcRXt83Gv0JN1aTyk5vDczTvbxsT57L9tnw2jqr0T/tj+JpgimhiCXhs
-         vSs0Xi5sp+tqOz3LugQq4YqUixX5g775Si+7KfBLZQm7+k9xUjLBVRSjzFYBNCSkmt5r
-         0Yv3ZaXlPzEXcxYCVLl4UTSnijPOz6jkzWxx5AD3Vkpcqielk6vGfzJe7HFkDRh0RE/2
-         dTTw+rZR5+mJDdhgEhlBhBcGGB+QWdwV8RJSJmFBMz54NAFQQP3cAGZ0FHLGBM60FwAD
-         ERjrpCbSdF1F/MAIsuqxJfEOTN1UKU0U6kRr7H+xtaO5IIkDhoWnBvJMe0lRMqvmrClI
-         2V7A==
-X-Gm-Message-State: AOAM53098eZorn6RQGRvLSpnZV81MtQu3d09zmQxEX7KeGDLiAqcOU+r
-        fbt6O0a0k5nLJTwWlJOCod7Nk7Zin0dApkMpBjqlKVR1nfPdDznK1XoPer2w6GkTTOKU8sHTvOj
-        y4xBbVI5YkxeFJtol5JgL4E5CKfMAN4zL7YeID6s=
-X-Received: by 2002:a05:6512:2116:: with SMTP id q22mr11055859lfr.258.1639998320140;
-        Mon, 20 Dec 2021 03:05:20 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxNbc2ruMbmHj+tpQvut9QPgh/PTxOJeTtLsuw8ozg9BYgnJdISEnWmJrdHlhAWA8Lu/NQdsg==
-X-Received: by 2002:a05:6512:2116:: with SMTP id q22mr11055845lfr.258.1639998319955;
-        Mon, 20 Dec 2021 03:05:19 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id t25sm2475752ljd.24.2021.12.20.03.05.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Dec 2021 03:05:19 -0800 (PST)
-Message-ID: <691a7ace-f18c-157e-88d2-303213aa0ee8@canonical.com>
-Date:   Mon, 20 Dec 2021 12:05:18 +0100
+        id S231539AbhLTLGz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 06:06:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38496 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231546AbhLTLGz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 06:06:55 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C72CAC06173E
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 03:06:54 -0800 (PST)
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1mzGVE-0004wz-DM; Mon, 20 Dec 2021 12:06:48 +0100
+Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1mzGVA-00EmDw-Fp; Mon, 20 Dec 2021 12:06:44 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v3 00/22] drm/rockchip: RK356x VOP2 support
+Date:   Mon, 20 Dec 2021 12:06:08 +0100
+Message-Id: <20211220110630.3521121-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v3 3/4] memory: omap-gpmc: Use a compatible match table
- when checking for NAND controller
-Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>, tony@atomide.com
-Cc:     robh@kernel.org, kishon@ti.com, nm@ti.com, vigneshr@ti.com,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20211217102945.17432-1-rogerq@kernel.org>
- <20211217102945.17432-4-rogerq@kernel.org>
- <88ff0e3e-6709-68fc-88cb-f915dfddbe86@canonical.com>
- <76076ff5-22d9-82d8-ba9e-77755e1ac433@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <76076ff5-22d9-82d8-ba9e-77755e1ac433@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/12/2021 11:53, Roger Quadros wrote:
-> 
-> 
-> On 17/12/2021 17:21, Krzysztof Kozlowski wrote:
->> On 17/12/2021 11:29, Roger Quadros wrote:
->>> As more compatibles can be added to the GPMC NAND controller driver
->>> use a compatible match table.
->>>
->>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->>> ---
->>>  drivers/memory/omap-gpmc.c                   | 8 +++++++-
->>>  drivers/mtd/nand/raw/omap2.c                 | 2 +-
->>>  include/linux/platform_data/mtd-nand-omap2.h | 5 +++++
->>>  3 files changed, 13 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
->>> index 624153048182..814ddb45c13d 100644
->>> --- a/drivers/memory/omap-gpmc.c
->>> +++ b/drivers/memory/omap-gpmc.c
->>> @@ -2091,6 +2091,7 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
->>>  	u32 val;
->>>  	struct gpio_desc *waitpin_desc = NULL;
->>>  	struct gpmc_device *gpmc = platform_get_drvdata(pdev);
->>> +	bool is_nand = false;
->>>  
->>>  	if (of_property_read_u32(child, "reg", &cs) < 0) {
->>>  		dev_err(&pdev->dev, "%pOF has no 'reg' property\n",
->>> @@ -2183,7 +2184,12 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
->>>  		}
->>>  	}
->>>  
->>> -	if (of_device_is_compatible(child, "ti,omap2-nand")) {
->>> +#if defined(CONFIG_MTD_NAND_OMAP2)
->>
->> if (IS_ENABLED()) is preferred. If needed, you could make omap_nand_ids
->> symbol visible always (so without ifdef around it), because extern
->> structure should not have impact when not defined (if I recall
->> correctly...).
->>
->>> +	if (of_match_node(omap_nand_ids, child))
->>> +		is_nand = true;
->>> +#endif
->>> +
->>> +	if (is_nand) {
->>>  		/* NAND specific setup */
->>>  		val = 8;
->>>  		of_property_read_u32(child, "nand-bus-width", &val);
->>> diff --git a/drivers/mtd/nand/raw/omap2.c b/drivers/mtd/nand/raw/omap2.c
->>> index b26d4947af02..fff834ee726f 100644
->>> --- a/drivers/mtd/nand/raw/omap2.c
->>> +++ b/drivers/mtd/nand/raw/omap2.c
->>> @@ -2352,7 +2352,7 @@ static int omap_nand_remove(struct platform_device *pdev)
->>>  	return ret;
->>>  }
->>>  
->>> -static const struct of_device_id omap_nand_ids[] = {
->>> +const struct of_device_id omap_nand_ids[] = {
->>>  	{ .compatible = "ti,omap2-nand", },
->>>  	{},
->>>  };
->>
->> I think OMAP2 NAND driver can be a module, so this should have
->> EXPORT_SYMBOL.
-> 
-> To make it work in all combinations (e.g. omap_gpmc built in and
-> nand/raw/omap2.c as module) I had to define omap_nand_ids table as static
-> in the linux/platform_data/mtd-nand-omap2.h header.
-> 
-> EXPORT_SYMBOL will of course be not required there. ;)
-> 
-Which case exactly does it require to be static in the header?
 
-Best regards,
-Krzysztof
+Third round of patches and last one for this year. I hopefully integrated
+all review feedback. Additionally the driver is now fully converted to
+regmap, so no struct vop_reg necessary anymore.
+
+Sascha
+
+Changes since v2:
+- Add pin names to HDMI supply pin description
+- Add hclk support to HDMI driver
+- Dual license rockchip-vop2 binding, update binding
+- Add HDMI connector to board dts files
+- drop unnecessary gamma_lut registers from vop2
+- Update dclk_vop[012] clock handling, no longer hacks needed
+- Complete regmap conversion
+
+Changes since v1:
+- drop all unnecessary waiting for frames within atomic modeset and plane update
+- Cluster subwin support removed
+- gamma support removed
+- unnecessary irq_lock removed
+- interrupt handling simplified
+- simplified zpos handling
+- drop is_alpha_support(), use fb->format->has_alpha instead
+- use devm_regulator_get() rather than devm_regulator_get_optional() for hdmi regulators
+- Use fixed number of planes per video port
+- Drop homegrown regmap code from vop2 driver (not complete yet)
+- Add separate include file for vop2 driver to not pollute the vop include
+
+Andy Yan (1):
+  drm: rockchip: Add VOP2 driver
+
+Benjamin Gaignard (1):
+  dt-bindings: display: rockchip: dw-hdmi: Add compatible for rk3568
+    HDMI
+
+Michael Riesch (1):
+  arm64: dts: rockchip: enable vop2 and hdmi tx on quartz64a
+
+Sascha Hauer (19):
+  drm/rockchip: dw_hdmi: Do not leave clock enabled in error case
+  drm/rockchip: dw_hdmi: rename vpll clock to reference clock
+  drm/rockchip: dw_hdmi: add rk3568 support
+  drm/rockchip: dw_hdmi: add regulator support
+  drm/rockchip: dw_hdmi: Add support for hclk
+  dt-bindings: display: rockchip: dw-hdmi: Make unwedge pinctrl optional
+  dt-bindings: display: rockchip: dw-hdmi: use "ref" as clock name
+  dt-bindings: display: rockchip: dw-hdmi: Add regulator support
+  dt-bindings: display: rockchip: dw-hdmi: Add additional clock
+  dt-bindings: display: rockchip: Add binding for VOP2
+  arm64: dts: rockchip: rk3399: reorder hmdi clocks
+  arm64: dts: rockchip: rk3399: rename HDMI ref clock to 'ref'
+  arm64: dts: rockchip: rk356x: Add VOP2 nodes
+  arm64: dts: rockchip: rk356x: Add HDMI nodes
+  arm64: dts: rockchip: rk3568-evb: Enable VOP2 and hdmi
+  clk: rk3568: drop CLK_SET_RATE_PARENT from dclk_vop*
+  clk: rk3568: Add CLK_SET_RATE_PARENT to the HDMI reference clock
+  drm/encoder: Add of_graph port to struct drm_encoder
+  drm/rockchip: Make VOP driver optional
+
+ .../display/rockchip/rockchip,dw-hdmi.yaml    |   28 +-
+ .../display/rockchip/rockchip-vop2.yaml       |  146 +
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |    6 +-
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   |   48 +
+ arch/arm64/boot/dts/rockchip/rk3566.dtsi      |    4 +
+ .../boot/dts/rockchip/rk3568-evb1-v10.dts     |   48 +
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |    4 +
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   85 +
+ drivers/clk/rockchip/clk-rk3568.c             |    8 +-
+ drivers/gpu/drm/rockchip/Kconfig              |   14 +
+ drivers/gpu/drm/rockchip/Makefile             |    4 +-
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   |  125 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |    3 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |    7 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.c    |    2 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.h   |   15 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 2768 +++++++++++++++++
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h  |  480 +++
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  |  285 ++
+ include/drm/drm_encoder.h                     |    2 +
+ include/dt-bindings/soc/rockchip,vop2.h       |   14 +
+ 21 files changed, 4063 insertions(+), 33 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+ create mode 100644 include/dt-bindings/soc/rockchip,vop2.h
+
+-- 
+2.30.2
+
