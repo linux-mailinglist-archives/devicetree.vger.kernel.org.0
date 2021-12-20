@@ -2,121 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 220C647B0D6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 17:06:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03D1F47B118
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 17:30:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234595AbhLTQGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 11:06:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52788 "EHLO
+        id S233163AbhLTQak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 11:30:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232676AbhLTQGO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 11:06:14 -0500
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0266EC061574;
-        Mon, 20 Dec 2021 08:06:14 -0800 (PST)
-Received: by mail-ot1-x32e.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so13131544otj.7;
-        Mon, 20 Dec 2021 08:06:13 -0800 (PST)
+        with ESMTP id S232726AbhLTQak (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 11:30:40 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D86C061574;
+        Mon, 20 Dec 2021 08:30:39 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id p8so16892830ljo.5;
+        Mon, 20 Dec 2021 08:30:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=6xBKtmPlOjlH54Ve1Oha+c9eS3o5xXcGGVpSHaqBnVU=;
-        b=KPHVZPLD0vNzzeDBThLmBXeYYahwrnF/qqQPTJl/pXd7B7ICn/91fMs/bJ6EM93/zk
-         GHlNOvwpgbAojU6Zsk+I1kejeFea9WAXokLeXiaQVpv+IJ4rccXajwT9qa2oRUKY5T9S
-         wX32yAA7QeXltWuQnWmmtzkO5DlQybEgxO+f0MXzg24bl9y16TzUI/1srwHu1QqLWBYB
-         9V5VN2CDVxHDV3xu6gpTVctf/Kg38bdzs2L1Akrm8eEIF4dny6gzxqP4z2JMnCU0yCoO
-         mZnufoKko9KTdc1qsMtRGhUne4CGhH6l+m0BDLDnNMnv9eNezNi7Z1h5fZ8qZJcFUMdC
-         FgvA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=nK8wg+ThtsoRIQwEeu/rFUoiyE0C3jF2d8qNzRJpLtg=;
+        b=PVa6mW0XBS4KPJfueUBFvXIwYWZmvnmySIfaMqWEpB0lP6zy0Uc1f0yuHc0fc7zNGQ
+         a3nkiy50XW9M5moJt4JeFgvKGdTTc8TQbtuFz6BtR77XOdAIo0DcbzIjkCKbhYznk+dl
+         NATRsoEfZ+bHYsdbCrwwu80EuoZ/WNjnopXuwYSx3DD5VSr/yjsXSOylvhl+rkfwJLW2
+         eVfAYAJlDSeCxUsIEM9CufwTPGohPTm+S7MIhR58LB1RbbGkQX8wO838qB/CvdYSMYGT
+         PWMie9fFdAgFEx6RnWdpTPvSM6yunpyzPBaGvOc/6UZqvgDRYJiilzZ/V/ora8eNTiz0
+         mgSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=6xBKtmPlOjlH54Ve1Oha+c9eS3o5xXcGGVpSHaqBnVU=;
-        b=TBgr33R7VQrSfjj6a5c7zKHFeN6KatrWbPDk5lsdh77XGjzgRh/sU/0dB0fQC6M4sf
-         q8mkUOmTna7S3V2flEJr0ibPuLhoUoWtSTSJ1Y0Ty8eIMnkNuy80WyIiZt9QAvgrs3Wg
-         MkNs+P5yuU67MBstbmyhc11DRSsfC7jJASijQTuPMxi7RuzMrHQfRzO+xpLnmPpARksw
-         9ArQTTbLQM3yuEtaupPk7gU9Ecg+KadSUsIMOpAQP9hab6ZVjcWVg1IqkIfrUoG25QHa
-         ijbTlwYPxSCCRZnBd+Oodx2lgwlqqM0aGfEYZgDKlpcAijkS9i4lcvdOEyNF5ld3SU4T
-         dpCg==
-X-Gm-Message-State: AOAM531JF1Bc7zrR4Te8pCZtpU/L92eZqk3F+Z1XBfs0fPPYVgZj8Yei
-        bWOKHPhI7IhjR7gwzX5hsw0CmRuVmBo=
-X-Google-Smtp-Source: ABdhPJwTv979/Z1uY9ULHOO+6HlCKVISOPw3Wrirhggag9JKwWBiQDSh1ar902XkBQmovF5mMW6Y6w==
-X-Received: by 2002:a9d:774a:: with SMTP id t10mr12331695otl.2.1640016372964;
-        Mon, 20 Dec 2021 08:06:12 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id v12sm3241800ote.9.2021.12.20.08.06.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Dec 2021 08:06:12 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 20 Dec 2021 08:06:09 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Andrej Picej <andrej.picej@norik.com>
-Cc:     support.opensource@diasemi.com, linux-watchdog@vger.kernel.org,
-        wim@linux-watchdog.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org,
-        cniedermaier@dh-electronics.com
-Subject: Re: [PATCH v5 4/5] dt-bindings: watchdog: da9062: add watchdog
- timeout mode
-Message-ID: <20211220160609.GA1379130@roeck-us.net>
-References: <20211206064732.280375-1-andrej.picej@norik.com>
- <20211206064732.280375-4-andrej.picej@norik.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=nK8wg+ThtsoRIQwEeu/rFUoiyE0C3jF2d8qNzRJpLtg=;
+        b=c4P4mwlYEh/4dEiLAQe4a/2CrFbuDGllg7finWMUeJSQ+jBxPBY8/MaH9PP2cGQ5u6
+         KyCXlYU45bN9QOivCGvxh5zQqKlfHZwQYe1zEA7od2X6bdOr2gxXPWdOk664OtSq2bmX
+         CixAZWdvJho71/jJmVkxdiarcitBooJ62o6c5uTn9j21EuACgJVcFJsZvRFN3EXTAqHp
+         wX/WVIwI8Gsd+9udagLk+LtsPZQ3av53klZ+8bwsVv4AmmiOKeIGPVWsuFLLp3p/p3Zo
+         6d/5CqiVxjAgad/s2w3f8D+ikgKg9VkM9I9EHgl3atCRR/cRz2Ko98XTSPDVlBvJ4HLm
+         YhwQ==
+X-Gm-Message-State: AOAM533/VmS64aFAAIgbT6kCeSrIyJut+Rfi27YH276oDVqqD0pksY+T
+        UfcEzM2ULQ5DmpY0/kDsRZupu+e8X88=
+X-Google-Smtp-Source: ABdhPJwws576TxlN6hEqFkLDXPljO1c5WA7L1xawr9flrLIxu2o7FFQHQ2wlBv6l1HukG44jKfrVgw==
+X-Received: by 2002:a2e:2410:: with SMTP id k16mr15499339ljk.441.1640017838131;
+        Mon, 20 Dec 2021 08:30:38 -0800 (PST)
+Received: from [192.168.2.145] (46-138-43-24.dynamic.spd-mgts.ru. [46.138.43.24])
+        by smtp.googlemail.com with ESMTPSA id o19sm1379904lfu.149.2021.12.20.08.30.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Dec 2021 08:30:37 -0800 (PST)
+Subject: Re: [PATCH v15 2/4] dmaengine: tegra: Add tegra gpcdma driver
+To:     Akhil R <akhilrajeev@nvidia.com>
+Cc:     Pavan Kunapuli <pkunapuli@nvidia.com>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        Rajesh Gumasta <rgumasta@nvidia.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>
+References: <1639674720-18930-1-git-send-email-akhilrajeev@nvidia.com>
+ <1639674720-18930-3-git-send-email-akhilrajeev@nvidia.com>
+ <45ba3abe-5e7e-4917-2b23-0616a758c4eb@gmail.com>
+ <BN9PR12MB52730121B2B01739DA52020EC07B9@BN9PR12MB5273.namprd12.prod.outlook.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <6241cfa3-dd7e-012c-3687-daad0aa4631d@gmail.com>
+Date:   Mon, 20 Dec 2021 19:30:37 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211206064732.280375-4-andrej.picej@norik.com>
+In-Reply-To: <BN9PR12MB52730121B2B01739DA52020EC07B9@BN9PR12MB5273.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 06, 2021 at 07:47:31AM +0100, Andrej Picej wrote:
-> Document the watchdog timeout mode property. If this property is used
-> the user can select what happens on watchdog timeout. Set this property
-> to 1 to enable SHUTDOWN (the device resets), set it to 0 and the device
-> will go to POWERDOWN on watchdog timeout.
+20.12.2021 18:23, Akhil R пишет:
+>> 16.12.2021 20:11, Akhil R пишет:
+>>> +static int tegra_dma_terminate_all(struct dma_chan *dc) {
+>>> +     struct tegra_dma_channel *tdc = to_tegra_dma_chan(dc);
+>>> +     unsigned long wcount = 0;
+>>> +     unsigned long status;
+>>> +     unsigned long flags;
+>>> +     int err;
+>>> +
+>>> +     raw_spin_lock_irqsave(&tdc->lock, flags);
+>>> +
+>>> +     if (!tdc->dma_desc) {
+>>> +             raw_spin_unlock_irqrestore(&tdc->lock, flags);
+>>> +             return 0;
+>>> +     }
+>>> +
+>>> +     if (!tdc->busy)
+>>> +             goto skip_dma_stop;
+>>> +
+>>> +     if (tdc->tdma->chip_data->hw_support_pause)
+>>> +             err = tegra_dma_pause(tdc);
+>>> +     else
+>>> +             err = tegra_dma_stop_client(tdc);
+>>> +
+>>> +     if (err) {
+>>> +             raw_spin_unlock_irqrestore(&tdc->lock, flags);
+>>> +             return err;
+>>> +     }
+>>> +
+>>> +     status = tdc_read(tdc, TEGRA_GPCDMA_CHAN_STATUS);
+>>> +     if (status & TEGRA_GPCDMA_STATUS_ISE_EOC) {
+>>> +             dev_dbg(tdc2dev(tdc), "%s():handling isr\n", __func__);
+>>> +             tegra_dma_xfer_complete(tdc);
+>>> +             status = tdc_read(tdc, TEGRA_GPCDMA_CHAN_STATUS);
+>>> +     }
+>>> +
+>>> +     wcount = tdc_read(tdc, TEGRA_GPCDMA_CHAN_XFER_COUNT);
+>>> +     tegra_dma_stop(tdc);
+>>> +
+>>> +     tdc->dma_desc->bytes_transferred +=
+>>> +                     tdc->dma_desc->bytes_requested - (wcount * 4);
+>>> +
+>>> +skip_dma_stop:
+>>> +     tegra_dma_sid_free(tdc);
+>>> +     vchan_free_chan_resources(&tdc->vc);
+>>> +     kfree(&tdc->vc);
+>>
+>> You really going to kfree the head of tegra_dma_channel here? Once again, this
+>> code was 100% untested :/
+> I did validate this using DMATEST which did not show any error.
+> https://www.kernel.org/doc/html/latest/driver-api/dmaengine/dmatest.html
+> Do you suggest something better?
 > 
-> If this property is not set, don't touch the WATCHDOG_SD bit and leave
-> the configuration to OTP. This way backward compatibility is not broken.
-> 
-> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> Reviewed-by: Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+>> You're not allowed to free channel from the dma_terminate_all() callback. This
+>> callback terminates submitted descs, that's it.
+>>
+> Sorry, I am relatively new to DMA framework (probably you get it from the patch 
+> version no. :)). I read your previous comment as to use tdc->vc instead of dma_desc.
+> I would learn a bit more and update with a change. Thanks for the inputs.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
-> ---
-> Changes in v5:
->  - no changes
-> 
-> Changes in v4:
->  - no changes
-> 
-> Changes in v3:
->  - add note about using the default OTP setting if this DT binding is
->    not specified
-> 
-> Changes in v2:
->  - new patch, document new DT binding
-> ---
->  Documentation/devicetree/bindings/watchdog/da9062-wdt.txt | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt b/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
-> index 950e4fba8dbc..354314d854ef 100644
-> --- a/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
-> +++ b/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
-> @@ -10,6 +10,12 @@ Optional properties:
->  - dlg,use-sw-pm: Add this property to disable the watchdog during suspend.
->  	Only use this option if you can't use the watchdog automatic suspend
->  	function during a suspend (see register CONTROL_B).
-> +- dlg,wdt-sd: Set what happens on watchdog timeout. If this bit is set the
-> +	watchdog timeout triggers SHUTDOWN, if cleared the watchdog triggers
-> +	POWERDOWN. Can be 0 or 1. Only use this option if you want to change the
-> +	default chip's OTP setting for WATCHDOG_SD bit. If this property is NOT
-> +	set the WATCHDOG_SD bit and on timeout watchdog behavior will match the
-> +	chip's OTP settings.
->  
->  Example: DA9062
->  
+Looks like DMATEST doesn't try to terminate in a middle of transfer and
+then check that further transfers work. You may try to extend DMATEST or
+simulate I2C error to test it, you should also test it with enabled KASAN.
