@@ -2,128 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 490C747A9BB
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 13:34:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38F6D47A9D3
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 13:43:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230167AbhLTMet (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 07:34:49 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:50604 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229596AbhLTMet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 07:34:49 -0500
+        id S230251AbhLTMnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 07:43:35 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:50728 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229820AbhLTMne (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 07:43:34 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E9386B80E69;
-        Mon, 20 Dec 2021 12:34:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEEECC36AE8;
-        Mon, 20 Dec 2021 12:34:46 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 433F661043;
+        Mon, 20 Dec 2021 12:43:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B6FAC36AE8;
+        Mon, 20 Dec 2021 12:43:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640003686;
-        bh=wHYRaP1ocpqpomfYhnh1emifUMIY8omhOERwqVWiltY=;
+        s=k20201202; t=1640004213;
+        bh=qbxprMqCIA8aiPZPossO5ggao3JXZgSEWMr5dIvdevA=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=SAz49+qgRMaMyDMqWL/AD1BX/b+0VQleZco3tZptaL9XlbzDbxZlEgSdjODDoXLUk
-         GbXLqXqldDGrq4RXnWb5iCN7VhC2oZxjut7lxRghMZYsf+u89k1U8uDdzOB1vw4y4g
-         0WnUlkdutasCa4MV5Zx0Oc+OhFHRgDuvzsrapltKTAV9VtNfLvOE/DqS0VWK/koV/T
-         VmkYEgZxepqq6pMx1rJ+8ntxbX9gqW/4IGPHudYPbUFZtQOW4CKdkP2dr08D/E+ncS
-         RHSeNy0Mn+W2p6U7cbueMrheb24CxfaQYcU63FONX8Ea/fgE0CUc5rflnbMDeg53y7
-         JYUGp8avjzKlQ==
+        b=BcNrAgMGuk0ualZsRfLHJmeM2qXf1LMfbgDToteDw8So6HKPQKj5kmmEq5/awhUGC
+         40JFpm1USaF4fwNLz1HoprNwMq8RD0xl5cW5j4+VCUZzgztWFKwtASSQvK/4Wz8luv
+         DSKUkNAC/CQYcHlGFGr5g+01955apoNXS9LlBddyETMRsbGPwh611kBtopR6u9Xo+q
+         dRs+Rm+Fjxz67QR0GafZiAT8d+muydDUch/a0QScd2LCok+uF0abtPwaIN9AhnD4BQ
+         Fepbc02uEVKTQ0n3fWCJtFTbgC8PzYFFzfsv63u3o6/OGwOVirGxJosKHzOOY+Z5xo
+         ECNou0o5pLE/g==
 Received: from cfbb000407.r.cam.camfibre.uk ([185.219.108.64] helo=why.misterjones.org)
         by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <maz@kernel.org>)
-        id 1mzHsK-00DHYB-Qk; Mon, 20 Dec 2021 12:34:44 +0000
-Date:   Mon, 20 Dec 2021 12:34:44 +0000
-Message-ID: <87bl1bwj2z.wl-maz@kernel.org>
+        id 1mzI0p-00DHgG-Mp; Mon, 20 Dec 2021 12:43:31 +0000
+Date:   Mon, 20 Dec 2021 12:43:31 +0000
+Message-ID: <87a6gvwioc.wl-maz@kernel.org>
 From:   Marc Zyngier <maz@kernel.org>
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 1/5] dt-bindings: interrupt-controller: Update STM32 EXTI interrupt controller
-In-Reply-To: <3f8acbb8-0b7e-2f47-eefc-67e5a7632445@foss.st.com>
-References: <20211215105847.2328-1-alexandre.torgue@foss.st.com>
-        <20211215105847.2328-2-alexandre.torgue@foss.st.com>
-        <YbueUmqyzwS9rOu5@robh.at.kernel.org>
-        <3f8acbb8-0b7e-2f47-eefc-67e5a7632445@foss.st.com>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/6] irqchip/apple-aic: Add Fast IPI support
+In-Reply-To: <83631cf6-46c5-cd87-c3a7-6b619669a943@marcan.st>
+References: <20211209043249.65474-1-marcan@marcan.st>
+        <20211209043249.65474-3-marcan@marcan.st>
+        <87sfuyt3nh.wl-maz@kernel.org>
+        <83631cf6-46c5-cd87-c3a7-6b619669a943@marcan.st>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
  (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
 Content-Type: text/plain; charset=US-ASCII
 X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: alexandre.torgue@foss.st.com, robh@kernel.org, tglx@linutronix.de, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, devicetree@vger.kernel.org
+X-SA-Exim-Rcpt-To: marcan@marcan.st, tglx@linutronix.de, robh+dt@kernel.org, sven@svenpeter.dev, alyssa@rosenzweig.io, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 X-SA-Exim-Mail-From: maz@kernel.org
 X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Dec 2021 13:39:11 +0000,
-Alexandre TORGUE <alexandre.torgue@foss.st.com> wrote:
+On Sat, 18 Dec 2021 05:31:28 +0000,
+Hector Martin <marcan@marcan.st> wrote:
 > 
-> On 12/16/21 9:15 PM, Rob Herring wrote:
-> > On Wed, Dec 15, 2021 at 11:58:43AM +0100, Alexandre Torgue wrote:
-> >> Document new entry "st,exti-mapping" which links EXTI lines with GIC
-> >> interrupt lines and add an include file to define EXTI interrupt type.
-> >> 
-> >> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> >> 
-> >> diff --git a/Documentation/devicetree/bindings/interrupt-controller/st,stm32-exti.yaml b/Documentation/devicetree/bindings/interrupt-controller/st,stm32-exti.yaml
-> >> index d19c881b4abc..e08bb51e97a8 100644
-> >> --- a/Documentation/devicetree/bindings/interrupt-controller/st,stm32-exti.yaml
-> >> +++ b/Documentation/devicetree/bindings/interrupt-controller/st,stm32-exti.yaml
-> >> @@ -41,6 +41,17 @@ properties:
-> >>       description:
-> >>         Interrupts references to primary interrupt controller
-> >>   +  st,exti-mapping:
-> >> +    $ref: "/schemas/types.yaml#/definitions/uint32-matrix"
-> >> +    description: |
-> >> +            Define mapping between EXTI lines and GIC irq lines. Should be:
-> >> +            st,exti-mapping = <EXTI_LINE GIC_IRQ EXTI_TYPE>, ...;
-> >> +            With:
-> >> +            - EXTI_LINE: EXTI line number.
-> >> +            - GIC_IRQ: GIC IRQ associated to the EXTI line.
-> >> +            - EXTI_TYPE: STM32_EXTI_TYPE_CONFIGURABLE or STM32_EXTI_TYPE_DIRECT.
-> >> +              Defined in include/dt-bindings/interrupt-controller/stm32-exti.h
+> >> +	u64 idx = FIELD_GET(MPIDR_CPU, mpidr);
+> >> +
+> >> +	if (FIELD_GET(MPIDR_CLUSTER, my_mpidr) == cluster)
+> >> +		write_sysreg_s(FIELD_PREP(IPI_RR_CPU, idx),
+> >> +			       SYS_IMP_APL_IPI_RR_LOCAL_EL1);
+> >> +	else
+> >> +		write_sysreg_s(FIELD_PREP(IPI_RR_CPU, idx) | FIELD_PREP(IPI_RR_CLUSTER, cluster),
+> >> +			       SYS_IMP_APL_IPI_RR_GLOBAL_EL1);
 > > 
-> > No custom properties for this. See[1][2][3].
-> > 
+> > Don't you need an ISB, either here or in the two callers? At the
+> > moment, I don't see what will force the execution of these writes, and
+> > they could be arbitrarily delayed.
 > 
-> Thanks for inputs. In my case the mapping consists to map an EXTI line
-> with a GIC irq line which could be done using interrupt-map (avoiding
-> to parse it in my driver).
+> Is there any requirement for timeliness sending IPIs? They're going to
+> another CPU after all, they could be arbitrarily delayed because it has
+> FIQs masked.
 
-The problem is that 'interrupt-map' defines an interrupt mapping
-between an input and an output, and that mentioning the GIC in such a
-table will only result in your EXTI to be bypassed.
+They absolutely could, but this has a potential impact on the
+scheduling if you delay it (the vast majority of these IPIs are to
+indicate to the remote CPU that it needs to go and schedule something
+else). So there is an incentive for making it happen ASAP.
 
-'interrupt-map' really is a dispatch table for targeting an interrupt
-controller (or multiple controllers, even), but really isn't the
-correct tool to carry configuration informations to an interrupt
-controller driver.
-
-> But for each EXTI/GIC association I would
-> like also to describe the EXTI_TYPE (which actually describe the well
-> irqchip to use inside my exti driver) . This property is not generic
-> and so I assume I can't use a generic binding such "interrupt-map".
-> 
-> If the solution consists to use a common binding (i.e. interrupt-map)
-> plus a conversion table in exti driver to affect the well irq_chip to
-> the well EXTI line then we could envisage to keep the whole mapping
-> inside the driver (even if it's not the best solution).
-
-A possible solution would be to have:
-
-- A set of standard 'interrupts' properties describing the output
-signals
-
-- A set of properties describing the input to output mapping (if
-relevant) and additional configuration information that for the
-interrupt controller driver.
+Thanks,
 
 	M.
 
