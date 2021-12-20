@@ -2,117 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A70747B27C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 19:03:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8763C47B2F2
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 19:37:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238216AbhLTSDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 13:03:43 -0500
-Received: from o1.ptr2625.egauge.net ([167.89.112.53]:64024 "EHLO
-        o1.ptr2625.egauge.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239565AbhLTSDl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 13:03:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=egauge.net;
-        h=from:subject:in-reply-to:references:mime-version:to:cc:
-        content-transfer-encoding:content-type;
-        s=sgd; bh=QWM9YsbpUa2tq7fJXkCMatPQQZnA34M+sSBg18iyfvg=;
-        b=qYfOqHWLIZDUm8S5CLejAgsPW3zvJ8r1g1/gJQEmxx7d+6jnvZP5qvnpKD0LZEi39lGI
-        Y8mht/gIMMIIQoFedepzsdIzz1NZ1i4yeP+sjHpxgH1XzsBlwkfJ1skUFBq5NrP0Dhz4LF
-        AHkqZUis3rxrkr7MRq+c16AQ83lXGkKrHhB0o7iGbdAx0XJXlLSj1MJKGWy3vqSE/on1pw
-        ubd8dCOxlxBZFAeAseRULqBx5XFOZUtIpMDlgiSSo5fO1LNPauUNLp2XTgIUAcAnHygIdO
-        qTOEOXsfKPoIYxg9cOh3e9wx+MC8r2v9AXuNMsiSv0HpTbosT92Xel3I+L6Oq3uA==
-Received: by filterdrecv-656998cfdd-bkftm with SMTP id filterdrecv-656998cfdd-bkftm-1-61C0C57A-8
-        2021-12-20 18:03:38.098190542 +0000 UTC m=+7756580.525339306
-Received: from pearl.egauge.net (unknown)
-        by geopod-ismtpd-6-0 (SG)
-        with ESMTP
-        id 2IkVQ0rYSmmaaNjVrWXcYQ
-        Mon, 20 Dec 2021 18:03:37.905 +0000 (UTC)
-Received: by pearl.egauge.net (Postfix, from userid 1000)
-        id 52DB6700588; Mon, 20 Dec 2021 11:03:37 -0700 (MST)
-From:   David Mosberger-Tang <davidm@egauge.net>
-Subject: [PATCH v6 2/2] wilc1000: Document enable-gpios and reset-gpios
- properties
-Date:   Mon, 20 Dec 2021 18:03:38 +0000 (UTC)
-Message-Id: <20211220180334.3990693-3-davidm@egauge.net>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211220180334.3990693-1-davidm@egauge.net>
-References: <20211220180334.3990693-1-davidm@egauge.net>
+        id S236184AbhLTShC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 13:37:02 -0500
+Received: from mxout04.lancloud.ru ([45.84.86.114]:33452 "EHLO
+        mxout04.lancloud.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233831AbhLTShC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 13:37:02 -0500
+Received: from LanCloud
+DKIM-Filter: OpenDKIM Filter v2.11.0 mxout04.lancloud.ru 36F1020A6FCC
+Received: from LanCloud
+Received: from LanCloud
+Received: from LanCloud
+Subject: Re: [PATCH v2 2/2] dt-bindings: usb: document snps,dis_split_quirk
+ property in dwc3
+To:     Yaqin Pan <akingchen@vivo.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <kernel@vivo.com>
+References: <20211220141629.14282-1-akingchen@vivo.com>
+ <20211220141629.14282-3-akingchen@vivo.com>
+From:   Sergey Shtylyov <s.shtylyov@omp.ru>
+Organization: Open Mobile Platform
+Message-ID: <cb1c928c-07fa-e6f0-8166-d68596224105@omp.ru>
+Date:   Mon, 20 Dec 2021 21:36:52 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-X-SG-EID: =?us-ascii?Q?+kMxBqj35EdRUKoy8diX1j4AXmPtd302oan+iXZuF8m2Nw4HRW2irNspffT=2Fkh?=
- =?us-ascii?Q?ET6RJF6+Prbl0h=2FEtF1rRLvCZJmChV6WiC1WWND?=
- =?us-ascii?Q?c1LMEiKwYZUaMMEg8c9SpxKE1fHLOQLhUvKxEMi?=
- =?us-ascii?Q?HPcK+WyZBnUilTDsUEOjbOMr6h6h1YuTHV6IFRo?=
- =?us-ascii?Q?qA3BIhPYFv2kqU7liyLQcRYIz8mJRnkpb0r2jSt?=
- =?us-ascii?Q?rUDfw6K8k3RtF7xzxBmRP2F5xpeTl8TMxwcblnj?=
- =?us-ascii?Q?bQJVkh5G8+h90dokB7Tyw=3D=3D?=
-To:     Ajay Singh <ajay.kathat@microchip.com>
-Cc:     Adham Abozaeid <adham.abozaeid@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        David Mosberger-Tang <davidm@egauge.net>
-X-Entity-ID: Xg4JGAcGrJFIz2kDG9eoaQ==
+In-Reply-To: <20211220141629.14282-3-akingchen@vivo.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=us-ascii
+X-Originating-IP: [192.168.11.198]
+X-ClientProxiedBy: LFEXT02.lancloud.ru (fd00:f066::142) To
+ LFEX1907.lancloud.ru (fd00:f066::207)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the ENABLE and RESET GPIOs that may be needed by
-wilc1000-spi.
+Hello!
 
-Signed-off-by: David Mosberger-Tang <davidm@egauge.net>
----
- .../net/wireless/microchip,wilc1000.yaml      | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+On 12/20/21 5:16 PM, Yaqin Pan wrote:
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
-index 6c35682377e6d..60de78f1bc7b9 100644
---- a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
-@@ -32,6 +32,21 @@ properties:
-   clock-names:
-     const: rtc
- 
-+  enable-gpios:
-+    maxItems: 1
-+    description: Used by wilc1000-spi to determine the GPIO line
-+      connected to the ENABLE line.  If specified, reset-gpios
-+      must be specified as well as otherwise the driver cannot
-+      ensure the timing required between asserting ENABLE
-+      and deasserting RESET.  This should be declared as an
-+      active-high signal.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: Used by wilc1000-spi to determine the GPIO line
-+      connected to the RESET line.  This should be declared as an
-+      active-low signal.
-+
- required:
-   - compatible
-   - interrupts
-@@ -40,6 +55,8 @@ additionalProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-     spi {
-       #address-cells = <1>;
-       #size-cells = <0>;
-@@ -51,6 +68,8 @@ examples:
-         interrupts = <27 0>;
-         clocks = <&pck1>;
-         clock-names = "rtc";
-+        enable-gpios = <&pioA 5 GPIO_ACTIVE_HIGH>;
-+        reset-gpios = <&pioA 6 GPIO_ACTIVE_LOW>;
-       };
-     };
- 
--- 
-2.25.1
+> Add snps,dis_split_quirk property for dwc3 controller
 
+   The name doesn't match the prop itself anymore...
+
+> 
+> Signed-off-by: Yaqin Pan <akingchen@vivo.com>
+> ---
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> index 41416fbd92aa..e9615ca8f447 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -226,6 +226,12 @@ properties:
+>        avoid -EPROTO errors with usbhid on some devices (Hikey 970).
+>      type: boolean
+>  
+> +  snps,dis-split-quirk:
+> +    description:
+> +      When set, change the way host controller schedules transations for a Control transfer.
+> +      Avoid failing to enumerate some devices due to usb compatibility issues.
+> +    type: boolean
+> +
+>    snps,is-utmi-l1-suspend:
+>      description:
+>        True when DWC3 asserts output signal utmi_l1_suspend_n, false when
+> 
+
+MBR, Sergey
