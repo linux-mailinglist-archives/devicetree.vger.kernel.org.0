@@ -2,66 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3169D47B3A1
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 20:23:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB53347B3BF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 20:33:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240769AbhLTTXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 14:23:15 -0500
-Received: from mslow1.mail.gandi.net ([217.70.178.240]:56745 "EHLO
-        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233001AbhLTTXO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 14:23:14 -0500
-Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id EBCB9D147F;
-        Mon, 20 Dec 2021 19:23:12 +0000 (UTC)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 7CA50C0007;
-        Mon, 20 Dec 2021 19:22:49 +0000 (UTC)
-Date:   Mon, 20 Dec 2021 20:22:49 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, soc@kernel.org,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: Remove "spidev" nodes
-Message-ID: <YcDYCSamA31QLHtm@piout.net>
-References: <20211217221232.3664417-1-robh@kernel.org>
- <YcB3ZhbCZGmPNk5s@sirena.org.uk>
+        id S240816AbhLTTd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 14:33:27 -0500
+Received: from aposti.net ([89.234.176.197]:38746 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237942AbhLTTd0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Dec 2021 14:33:26 -0500
+From:   Paul Cercueil <paul@crapouillou.net>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     list@opendingux.net, linux-mips@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>
+Subject: [PATCH v3 0/2] clk: ingenic: Add MDMA and BDMA clocks
+Date:   Mon, 20 Dec 2021 19:33:17 +0000
+Message-Id: <20211220193319.114974-1-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YcB3ZhbCZGmPNk5s@sirena.org.uk>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Mark,
+Hi Michael & Stephen,
 
-On 20/12/2021 12:30:30+0000, Mark Brown wrote:
-> On Fri, Dec 17, 2021 at 04:12:32PM -0600, Rob Herring wrote:
-> > "spidev" is not a real device, but a Linux implementation detail. It has
-> > never been documented either. The kernel has WARNed on the use of it for
-> > over 6 years. Time to remove its usage from the tree.
-> 
-> Reviwed-by: Mark Brown <broonie@kernel.org>
+Only the first patch (a tree-wide patch to rename include files)
+of my v2 was merged, so I thought I'd send the second patch again. Since
+checkpatch complained that DT includes must be in their own patch,
+I just did that and decided to send a V3 instead of a RESEND.
 
-You have a typo there so I'm not sure b4 will be able to pick that up
+Changes from v2:
+- Previous patch [1/2] was merged
+- Split previous patch [2/2] into two patches
+
+Cheers,
+-Paul
+
+Paul Cercueil (2):
+  dt-bindings: clk/ingenic: Add MDMA and BDMA clocks
+  clk: ingenic: Add MDMA and BDMA clocks
+
+ drivers/clk/ingenic/jz4760-cgu.c               | 10 ++++++++++
+ drivers/clk/ingenic/jz4770-cgu.c               |  5 +++++
+ include/dt-bindings/clock/ingenic,jz4760-cgu.h |  2 ++
+ include/dt-bindings/clock/ingenic,jz4770-cgu.h |  1 +
+ 4 files changed, 18 insertions(+)
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.34.1
+
