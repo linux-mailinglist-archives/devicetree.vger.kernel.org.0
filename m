@@ -2,135 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DB0C47B55F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 22:49:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AF3947B626
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 00:20:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231673AbhLTVtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 16:49:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45996 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbhLTVtb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 16:49:31 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13864C061574
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 13:49:31 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id l7so18181066lja.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 13:49:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=gfwB1Y7WC9PzSYQgy+aXs+dGdxRfl9cHOHvCWDuJnkU=;
-        b=kDYD5ludLUCahkPbmHfYN+HOIKqU686radMmzyGW8pUbmGj5NrZtro7jjcNPRgkIm7
-         Yf3HEeLzUG9wx5jj/mh775SCi0vaUmjBjKqI4B5v3Q+0PoiAeyM7ND7UKLaPOCLECo9W
-         T6TaMrlpAudBkc6EXUhIKgEZOxxxTUd97O0N8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=gfwB1Y7WC9PzSYQgy+aXs+dGdxRfl9cHOHvCWDuJnkU=;
-        b=XjJo3ffy1UROsWB838mnBsVQcTTX+CU0RlKQLaYoaNMoXkOyiX+qSakHsxKgIWepF6
-         TKJZr8fUKxRP+UkPIuadTKJo1XIuQ5YCtqEnoZ6to5nIFdtIGHDefN4XQmtlJxOW0jQO
-         x1W7HkMs6KGRGf+MzA/eKN5k2wbmSICzz76uoswI8SSto5FkgPLAOJDogp5GLLQRyucN
-         1OPxYMeQ0/v6cM2Do08HX4aNKjJuPvVsUAaIgePGHXk46JFXPTERX3JDfbXmvzBH+5bU
-         jxD1wJn6UgMYECCSkaK17mI7ENQhBiEvTIy5fyzuJQcoi2C1Z5kvoch6Kh2GcJZtuAvE
-         27nQ==
-X-Gm-Message-State: AOAM532M3n2JY8uhGyn1xeyGV6BLChw+hxoVfsjY4BLJDwmbZNG756Pi
-        PWk0G4F85OSmoz2tUIpJzSu+fdcPp6eliNMo
-X-Google-Smtp-Source: ABdhPJxOl0pltGSLDg28mSlWiGzW+/atFEmy8RHu93NATNWO1JmwxbD4Oc2jadSgubJjYockYlliNQ==
-X-Received: by 2002:a2e:3e17:: with SMTP id l23mr42286lja.380.1640036968805;
-        Mon, 20 Dec 2021 13:49:28 -0800 (PST)
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com. [209.85.208.170])
-        by smtp.gmail.com with ESMTPSA id t21sm1750624lfe.266.2021.12.20.13.49.26
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Dec 2021 13:49:27 -0800 (PST)
-Received: by mail-lj1-f170.google.com with SMTP id b19so18088843ljr.12
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 13:49:26 -0800 (PST)
-X-Received: by 2002:a2e:8848:: with SMTP id z8mr17346ljj.429.1640036966379;
- Mon, 20 Dec 2021 13:49:26 -0800 (PST)
+        id S231466AbhLTXUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 18:20:34 -0500
+Received: from mga01.intel.com ([192.55.52.88]:36469 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230055AbhLTXUd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Dec 2021 18:20:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1640042433; x=1671578433;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2gMiwg/PyuvqjzPoCNHebtE17bJB95fTO0RVsbVSb6c=;
+  b=TUdufLWn3Wa9Y/SPS/2mdnVJI6xm4CZdLkOQyTb34dTEdoUig+SLls1s
+   EqouWthjdIIJIl0lmzVkoPJL14V428XjajQMU4GQa79QG5jg2e24IwujU
+   6k1unA658Vg08An8ZvNiM9sUUIPtbWZ5cLGMvauDqbu97Po6BC67w57vu
+   992CAC2qZDh8BOfJKrWvmCltmfdVKXZYwSEmbSYen5dIG3AuGgJCIyZKS
+   SWXEztA+zPj1dBLvzxBX0qahe3ohu/AWLE3CiNGNv4bsBxfnbrJ8Eu5yk
+   f+3BpBoBnGOe2X6K8E4gKzu88i88AW49cmhnzj7hEaQdd6A9dhZN1TatK
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10204"; a="264472368"
+X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; 
+   d="scan'208";a="264472368"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2021 15:20:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; 
+   d="scan'208";a="547593542"
+Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
+  by orsmga001.jf.intel.com with ESMTP; 20 Dec 2021 15:20:30 -0800
+Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mzRxF-0008Oo-OK; Mon, 20 Dec 2021 23:20:29 +0000
+Date:   Tue, 21 Dec 2021 07:20:08 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org
+Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH 22/22] drm: rockchip: Add VOP2 driver
+Message-ID: <202112210748.VrULDmGp-lkp@intel.com>
+References: <20211220110630.3521121-23-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-References: <20211220210643.47842-1-pmenzel@molgen.mpg.de>
-In-Reply-To: <20211220210643.47842-1-pmenzel@molgen.mpg.de>
-From:   Dmitry Torokhov <dtor@chromium.org>
-Date:   Mon, 20 Dec 2021 13:49:10 -0800
-X-Gmail-Original-Message-ID: <CAE_wzQ_Lg1ODV5sEqtW=SauhSXxi6+fh3msOuhnJy8-sNtORcg@mail.gmail.com>
-Message-ID: <CAE_wzQ_Lg1ODV5sEqtW=SauhSXxi6+fh3msOuhnJy8-sNtORcg@mail.gmail.com>
-Subject: Re: [PATCH] CHROMIUM: i2c: Add device property for probing
-To:     Paul Menzel <pmenzel@molgen.mpg.de>
-Cc:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Furquan Shaikh <furquan@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Tim Wawrzynczak <twawrzynczak@chromium.org>,
-        coreboot@coreboot.org, Matt DeVillier <matt.devillier@gmail.com>,
-        Felix Singer <felixsinger@posteo.net>,
-        Duncan Laurie <dlaurie@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Furquan Shaikh <furquan@chromium.org>,
-        Justin TerAvest <teravest@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211220110630.3521121-23-s.hauer@pengutronix.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Hi Sascha,
 
-On Mon, Dec 20, 2021 at 1:07 PM Paul Menzel <pmenzel@molgen.mpg.de> wrote:
->
-> From: Furquan Shaikh <furquan@google.com>
->
-> Dear Linux folks,
->
->
-> Google Chromebooks are often built with devices sourced from different
-> vendors. These need to be probed. To deal with this, the firmware =E2=80=
-=93 in
-> this case coreboot =E2=80=93 tags such optional devices accordingly =E2=
-=80=93 I think
-> this is commit fbf2c79b (drivers/i2c/generic: Add config for marking
-> device as probed) =E2=80=93 and Chromium OS=E2=80=99 Linux kernel has the=
- patch at hand
-> applied to act accordingly. Right after the merge, Dmitry created a
-> revert, which was actively discussed for two days but wasn=E2=80=99t appl=
-ied.
-> That means, millions of devices shipped with such a firmware and Linux
-> kernel. To support these devices with upstream Linux kernel, is there an
-> alternative to applying the patch to the Linux kernel, and to support
-> the shipped devices?
+Thank you for the patch! Perhaps something to improve:
 
-*sigh* I should have pushed harder, but I see it managed to
-proliferate even into our newer kernels. Not having this patch should
-not cause any problems, it can only hurt, because the i2c core has no
-idea how to power up and reset the device properly. The only downside
-of not having this patch is that we may have devices in sysfs that are
-not connected to actual hardware. They do now cause any problems and
-is how we have been shipping ARM-based devices where we also dual- and
-triple-source components. However if we were to have a device that
-switches between several addresses (let's say device in bootloader
-mode uses 0x10 address and in normal mode 0x20) this "probing" may
-result in device not being detected at all.
+[auto build test WARNING on rockchip/for-next]
+[also build test WARNING on tegra-drm/drm/tegra/for-next v5.16-rc6]
+[cannot apply to drm/drm-next drm-intel/for-linux-next drm-tip/drm-tip drm-exynos/exynos-drm-next airlied/drm-next next-20211220]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-If we wanted to do this correctly, coreboot would have to implement
-full power and reset control and also add drivers for I2C controllers
-to be able to communicate with peripherals, and then adjust _STA
-methods to report "not present" when the device is indeed absent. And
-note that even in this case we would have issues with "morphing
-devices", so coreboot would also need to know how to reset device out
-of bootloader mode, and maybe flash firmware so device can work in
-normal mode.
+url:    https://github.com/0day-ci/linux/commits/Sascha-Hauer/drm-rockchip-RK356x-VOP2-support/20211220-190821
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20211221/202112210748.VrULDmGp-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/ade6380669a79670b48d440d8b7a00986a5d7ca8
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Sascha-Hauer/drm-rockchip-RK356x-VOP2-support/20211220-190821
+        git checkout ade6380669a79670b48d440d8b7a00986a5d7ca8
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash drivers/gpu/drm/rockchip/
 
-However coreboot does (or did?) not want to add code to handle i2c
-controllers, and would like to push this knowledge to the kernel. And
-the kernel does know how to handle peripherals properly, but that
-knowledge lies in individual drivers, not i2c core.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-We should remove "linux,probed" from coreboot and not propagate to
-newer Chrome OS kernels, and keep it away from upstream.
+All warnings (new ones prefixed by >>):
 
-Thanks,
-Dmitry
+   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_cluster_init':
+>> drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:2525:1: warning: the frame size of 1100 bytes is larger than 1024 bytes [-Wframe-larger-than=]
+    2525 | };
+         | ^
+   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_esmart_init':
+   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:2597:1: warning: the frame size of 1100 bytes is larger than 1024 bytes [-Wframe-larger-than=]
+    2597 | };
+         | ^
+
+
+vim +2525 drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+
+  2450	
+  2451	static int vop2_cluster_init(struct vop2_win *win)
+  2452	{
+  2453		struct vop2 *vop2 = win->vop2;
+  2454		int i;
+  2455		struct reg_field vop2_cluster_regs[VOP2_WIN_MAX_REG] = {
+  2456			[VOP2_WIN_ENABLE] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 0, 0),
+  2457			[VOP2_WIN_FORMAT] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 1, 5),
+  2458			[VOP2_WIN_RB_SWAP] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 14, 14),
+  2459			[VOP2_WIN_DITHER_UP] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 18, 18),
+  2460			[VOP2_WIN_ACT_INFO] = REG_FIELD(RK3568_CLUSTER_WIN_ACT_INFO, 0, 31),
+  2461			[VOP2_WIN_DSP_INFO] = REG_FIELD(RK3568_CLUSTER_WIN_DSP_INFO, 0, 31),
+  2462			[VOP2_WIN_DSP_ST] = REG_FIELD(RK3568_CLUSTER_WIN_DSP_ST, 0, 31),
+  2463			[VOP2_WIN_YRGB_MST] = REG_FIELD(RK3568_CLUSTER_WIN_YRGB_MST, 0, 31),
+  2464			[VOP2_WIN_UV_MST] = REG_FIELD(RK3568_CLUSTER_WIN_CBR_MST, 0, 31),
+  2465			[VOP2_WIN_YUV_CLIP] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 19, 19),
+  2466			[VOP2_WIN_YRGB_VIR] = REG_FIELD(RK3568_CLUSTER_WIN_VIR, 0, 15),
+  2467			[VOP2_WIN_UV_VIR] = REG_FIELD(RK3568_CLUSTER_WIN_VIR, 16, 31),
+  2468			[VOP2_WIN_Y2R_EN] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 8, 8),
+  2469			[VOP2_WIN_R2Y_EN] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 9, 9),
+  2470			[VOP2_WIN_CSC_MODE] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 10, 11),
+  2471	
+  2472			/* Scale */
+  2473			[VOP2_WIN_SCALE_YRGB_X] = REG_FIELD(RK3568_CLUSTER_WIN_SCL_FACTOR_YRGB, 0, 15),
+  2474			[VOP2_WIN_SCALE_YRGB_Y] = REG_FIELD(RK3568_CLUSTER_WIN_SCL_FACTOR_YRGB, 16, 31),
+  2475			[VOP2_WIN_YRGB_VER_SCL_MODE] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL1, 14, 15),
+  2476			[VOP2_WIN_YRGB_HOR_SCL_MODE] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL1, 12, 13),
+  2477			[VOP2_WIN_BIC_COE_SEL] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL1, 2, 3),
+  2478			[VOP2_WIN_VSD_YRGB_GT2] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL1, 28, 28),
+  2479			[VOP2_WIN_VSD_YRGB_GT4] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL1, 29, 29),
+  2480	
+  2481			/* cluster regs */
+  2482			[VOP2_WIN_AFBC_ENABLE] = REG_FIELD(RK3568_CLUSTER_CTRL, 1, 1),
+  2483			[VOP2_WIN_CLUSTER_ENABLE] = REG_FIELD(RK3568_CLUSTER_CTRL, 0, 0),
+  2484			[VOP2_WIN_CLUSTER_LB_MODE] = REG_FIELD(RK3568_CLUSTER_CTRL, 4, 7),
+  2485	
+  2486			/* afbc regs */
+  2487			[VOP2_WIN_AFBC_FORMAT] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 2, 6),
+  2488			[VOP2_WIN_AFBC_RB_SWAP] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 9, 9),
+  2489			[VOP2_WIN_AFBC_UV_SWAP] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 10, 10),
+  2490			[VOP2_WIN_AFBC_AUTO_GATING_EN] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_OUTPUT_CTRL, 4, 4),
+  2491			[VOP2_WIN_AFBC_HALF_BLOCK_EN] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 7, 7),
+  2492			[VOP2_WIN_AFBC_BLOCK_SPLIT_EN] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 8, 8),
+  2493			[VOP2_WIN_AFBC_HDR_PTR] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_HDR_PTR, 0, 31),
+  2494			[VOP2_WIN_AFBC_PIC_SIZE] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_PIC_SIZE, 0, 31),
+  2495			[VOP2_WIN_AFBC_PIC_VIR_WIDTH] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_VIR_WIDTH, 0, 15),
+  2496			[VOP2_WIN_AFBC_TILE_NUM] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_VIR_WIDTH, 16, 31),
+  2497			[VOP2_WIN_AFBC_PIC_OFFSET] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_PIC_OFFSET, 0, 31),
+  2498			[VOP2_WIN_AFBC_DSP_OFFSET] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_DSP_OFFSET, 0, 31),
+  2499			[VOP2_WIN_AFBC_TRANSFORM_OFFSET] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_TRANSFORM_OFFSET, 0, 31),
+  2500			[VOP2_WIN_AFBC_ROTATE_90] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_ROTATE_MODE, 0, 0),
+  2501			[VOP2_WIN_AFBC_ROTATE_270] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_ROTATE_MODE, 1, 1),
+  2502			[VOP2_WIN_XMIRROR] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_ROTATE_MODE, 2, 2),
+  2503			[VOP2_WIN_YMIRROR] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_ROTATE_MODE, 3, 3),
+  2504			[VOP2_WIN_UV_SWAP] = { .reg = 0xffffffff },
+  2505			[VOP2_WIN_COLOR_KEY] = { .reg = 0xffffffff },
+  2506			[VOP2_WIN_COLOR_KEY_EN] = { .reg = 0xffffffff },
+  2507			[VOP2_WIN_SCALE_CBCR_X] = { .reg = 0xffffffff },
+  2508			[VOP2_WIN_SCALE_CBCR_Y] = { .reg = 0xffffffff },
+  2509			[VOP2_WIN_YRGB_HSCL_FILTER_MODE] = { .reg = 0xffffffff },
+  2510			[VOP2_WIN_YRGB_VSCL_FILTER_MODE] = { .reg = 0xffffffff },
+  2511			[VOP2_WIN_CBCR_VER_SCL_MODE] = { .reg = 0xffffffff },
+  2512			[VOP2_WIN_CBCR_HSCL_FILTER_MODE] = { .reg = 0xffffffff },
+  2513			[VOP2_WIN_CBCR_HOR_SCL_MODE] = { .reg = 0xffffffff },
+  2514			[VOP2_WIN_CBCR_VSCL_FILTER_MODE] = { .reg = 0xffffffff },
+  2515			[VOP2_WIN_VSD_CBCR_GT2] = { .reg = 0xffffffff },
+  2516			[VOP2_WIN_VSD_CBCR_GT4] = { .reg = 0xffffffff },
+  2517		};
+  2518	
+  2519		for (i = 0; i < ARRAY_SIZE(vop2_cluster_regs); i++)
+  2520			vop2_cluster_regs[i].reg += win->offset;
+  2521	
+  2522		return devm_regmap_field_bulk_alloc(vop2->dev, vop2->map, win->reg,
+  2523						    vop2_cluster_regs,
+  2524						    ARRAY_SIZE(vop2_cluster_regs));
+> 2525	};
+  2526	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
