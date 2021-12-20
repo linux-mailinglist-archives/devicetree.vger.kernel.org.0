@@ -2,70 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5379947AB28
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 15:17:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37CC747AB2B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 15:17:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233601AbhLTOQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 09:16:47 -0500
-Received: from mail-m17643.qiye.163.com ([59.111.176.43]:43060 "EHLO
-        mail-m17643.qiye.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233580AbhLTOQq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 09:16:46 -0500
-DKIM-Signature: a=rsa-sha256;
-        b=R9zqtvJhUW6wbOwr/rcpDxVdDEncsssB78Mnjwf/WsGg7R8l16nN7hl0CMp5FqaUQX+gziCS6rOWq3gUhU+zK7wfom0BpKYClVcB5nI1Znxc1xGCiYVJGOUXT/MJrB/DdzdlOcRu+DbMVvFDoWaYCWIBzwTwsHxMorA83wQp1R0=;
-        s=default; c=relaxed/relaxed; d=vivo.com; v=1;
-        bh=+ZGwriAJuyiQ/6DWrKMeVo79MPMyTH9IttdMkKzZ/T4=;
-        h=date:mime-version:subject:message-id:from;
-Received: from vivo-600-G6.vivo.xyz (unknown [58.250.176.229])
-        by mail-m17643.qiye.163.com (Hmail) with ESMTPA id D8AD67E0328;
-        Mon, 20 Dec 2021 22:16:43 +0800 (CST)
-From:   Yaqin Pan <akingchen@vivo.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     kernel@vivo.com, Yaqin Pan <akingchen@vivo.com>
-Subject: [PATCH v2 2/2] dt-bindings: usb: document snps,dis_split_quirk property in dwc3
-Date:   Mon, 20 Dec 2021 22:16:29 +0800
-Message-Id: <20211220141629.14282-3-akingchen@vivo.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211220141629.14282-1-akingchen@vivo.com>
-References: <20211220141629.14282-1-akingchen@vivo.com>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
-        kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWUIZTUlWGENJSkxMS0lDSR
-        gaVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWVVLWQY+
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OTI6Tzo6GD5LEyoPLUtCLA0Z
-        GjUaCQ9VSlVKTU9LS0tCQ0tPSEJLVTMWGhIXVRoQEhUcGBMeFTsNEg0UVRgUFkVZV1kSC1lBWU5D
-        VUlOS1VKTE1VSUlCWVdZCAFZQUlKQ0g3Bg++
-X-HM-Tid: 0a7dd833a95bd999kuwsd8ad67e0328
+        id S233580AbhLTORD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 09:17:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54706 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233605AbhLTOQ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 09:16:59 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F590C06173F
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 06:16:58 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id c4so20393177wrd.9
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 06:16:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=a/dzY1YCMEV94GDlHxnTZ/IoYWB5Rh81LbeOowMZqGM=;
+        b=DbTR8CjGEPLkZcPfOQ2bSAJfI05BlsSyq32/NLepId3eolkmcS9Pto2grXsGk3QGf0
+         WygF/ZVVBR2pExvvl31kqs/EhMfpcXJg054Zc3Pkt6YPi6pMIlIYrbwcxSKy1zRYp2DG
+         RKgJF/mIc/ZF0ylL6/eoJKaRBK2mGsGxs6cDe9KVV1bvfuaRn6BxtlEiGtqIPHTlo+bI
+         lds8ckISUoa9lG2rpVEtXsdFQXu9QN9fxNJZp0TjDDNBS2IXd7htik8Z8+9TEttAw7Kv
+         ABzpkLqOhAO/WCR7u5zTzqouc5awXRDaG8AfabSJYD7JjvOu2sAU/LnMc9Pjv1WRd3fT
+         C2eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=a/dzY1YCMEV94GDlHxnTZ/IoYWB5Rh81LbeOowMZqGM=;
+        b=zvorocNSFu/r33voUn7pHPSpUbHzx43gI2xB3a1bDQtl2x+i/fpUS3XLbJGzP5ECxO
+         /q1QArs+o0E+AaDviEPDtZG1FlkC8DtLWXDK3FP3RIjwPAw7k3tfCVBPFhaBbuVl0GEs
+         BjXzxPmkH0lui3pn+YNA+DkEaAgblgiVruKsnE5xQK3GXWC5OGIy7/0ZrzG9EIlEMJRE
+         Q1/c3zLmCQDCskueIDK24gJ67zSN/kn/5bfkzp+eGHWzeqxF55IiZ7B7CBiwBcPdxlxm
+         OPMoUNaOBELcWao8MUQQVrSf6/QuIeOxT6yMN7TvRuD0rtLhLUGn93YmVKCQMh02B4Ru
+         OzQA==
+X-Gm-Message-State: AOAM532NyQJiSaWQiy5iIVZSs9QZckR67+Nc/gBQW0FJXRxXEN42T1UW
+        jzYlemvTU2iJnrR8fDmhVyA=
+X-Google-Smtp-Source: ABdhPJwT5z75o2wjTM0/dL1UWGRH+dib+dAm4J1nut2+VYcXmQnUNw+lNsC3i2A1+u6HPPElJU1/yw==
+X-Received: by 2002:a05:6000:1a8c:: with SMTP id f12mr7072124wry.644.1640009816983;
+        Mon, 20 Dec 2021 06:16:56 -0800 (PST)
+Received: from archbook.localnet ([217.151.114.10])
+        by smtp.gmail.com with ESMTPSA id f13sm11754555wri.51.2021.12.20.06.16.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Dec 2021 06:16:56 -0800 (PST)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH 22/22] drm: rockchip: Add VOP2 driver
+Date:   Mon, 20 Dec 2021 15:16:55 +0100
+Message-ID: <5637649.G3HFo5JPcS@archbook>
+In-Reply-To: <20211220110630.3521121-23-s.hauer@pengutronix.de>
+References: <20211220110630.3521121-1-s.hauer@pengutronix.de> <20211220110630.3521121-23-s.hauer@pengutronix.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add snps,dis_split_quirk property for dwc3 controller
+On Montag, 20. Dezember 2021 12:06:30 CET Sascha Hauer wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
+> 
+> The VOP2 unit is found on Rockchip SoCs beginning with rk3566/rk3568.
+> It replaces the VOP unit found in the older Rockchip SoCs.
+> 
+> This driver has been derived from the downstream Rockchip Kernel and
+> heavily modified:
+> 
+> - All nonstandard DRM properties have been removed
+> - dropped struct vop2_plane_state and pass around less data between
+>   functions
+> - Dropped all DRM_FORMAT_* not known on upstream
+> - rework register access to get rid of excessively used macros
+> - Drop all waiting for framesyncs
+> 
+> The driver is tested with HDMI and MIPI-DSI display on a RK3568-EVB
+> board. Overlay support is tested with the modetest utility. AFBC support
+> on the cluster windows is tested with weston-simple-dmabuf-egl on
+> weston using the (yet to be upstreamed) panfrost driver support.
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
 
-Signed-off-by: Yaqin Pan <akingchen@vivo.com>
----
- Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+Hi Sascha,
 
-diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-index 41416fbd92aa..e9615ca8f447 100644
---- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-@@ -226,6 +226,12 @@ properties:
-       avoid -EPROTO errors with usbhid on some devices (Hikey 970).
-     type: boolean
- 
-+  snps,dis-split-quirk:
-+    description:
-+      When set, change the way host controller schedules transations for a Control transfer.
-+      Avoid failing to enumerate some devices due to usb compatibility issues.
-+    type: boolean
-+
-   snps,is-utmi-l1-suspend:
-     description:
-       True when DWC3 asserts output signal utmi_l1_suspend_n, false when
--- 
-2.17.1
+sadly I'm getting
+
+[    1.668856] rockchip-drm display-subsystem: [drm] *ERROR* failed to get vop2 register byname
+[    1.669621] rockchip-drm display-subsystem: failed to bind fe040000.vop (ops vop2_component_ops): -22
+[    1.670584] rockchip-drm display-subsystem: master bind failed: -22
+[    1.671164] dwhdmi-rockchip: probe of fe0a0000.hdmi failed with error -22
+
+on a Quartz64 Model A.
+
+
+> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "regs");
+> +	if (!res) {
+> +		drm_err(vop2->drm, "failed to get vop2 register byname\n");
+> +		return -EINVAL;
+> +	}
+
+This seems to be the code that triggers it.
+
+Any ideas as to what could be causing this?
+
+Regards,
+Nicolas Frattaroli
+
+
 
