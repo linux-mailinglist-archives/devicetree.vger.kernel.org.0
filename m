@@ -2,107 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 519C647A577
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 08:46:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7695F47A59F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 09:02:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231556AbhLTHqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 02:46:20 -0500
-Received: from mail.thorsis.com ([92.198.35.195]:39931 "EHLO mail.thorsis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229680AbhLTHqT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Dec 2021 02:46:19 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by mail.thorsis.com (Postfix) with ESMTP id 240F9144D;
-        Mon, 20 Dec 2021 08:46:18 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
-Received: from mail.thorsis.com ([127.0.0.1])
-        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id qpMcXO4EMgae; Mon, 20 Dec 2021 08:46:18 +0100 (CET)
-Received: by mail.thorsis.com (Postfix, from userid 109)
-        id E3DFF10F5; Mon, 20 Dec 2021 08:46:17 +0100 (CET)
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
-        NO_RELAYS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.2
-X-Spam-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-        *      [score: 0.0000]
-        * -0.0 NO_RELAYS Informational: message was not relayed via SMTP
-        *  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was
-        *      blocked.  See
-        *      http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
-        *      for more information.
-        *      [URIs: microchip.com]
-        * -0.0 NO_RECEIVED Informational: message has no Received headers
-Date:   Mon, 20 Dec 2021 08:46:03 +0100
-From:   Alexander Dahl <ada@thorsis.com>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        ludovic.desroches@microchip.com, robh+dt@kernel.org,
-        linux@armlinux.org.uk, mturquette@baylibre.com, sboyd@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 7/8] ARM: configs: at91: sama7: enable cpu idle
-Message-ID: <YcA0uxt8O/kO3Bo5@ada-deb-carambola.ifak-system.com>
-Mail-Followup-To: Claudiu Beznea <claudiu.beznea@microchip.com>,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        ludovic.desroches@microchip.com, robh+dt@kernel.org,
-        linux@armlinux.org.uk, mturquette@baylibre.com, sboyd@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211216141338.35144-1-claudiu.beznea@microchip.com>
- <20211216141338.35144-8-claudiu.beznea@microchip.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211216141338.35144-8-claudiu.beznea@microchip.com>
+        id S237782AbhLTIB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 03:01:58 -0500
+Received: from mxout70.expurgate.net ([194.37.255.70]:50785 "EHLO
+        mxout70.expurgate.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232332AbhLTIB5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 03:01:57 -0500
+Received: from [127.0.0.1] (helo=localhost)
+        by relay.expurgate.net with smtp (Exim 4.92)
+        (envelope-from <fe@dev.tdt.de>)
+        id 1mzDcF-0008Vi-WB; Mon, 20 Dec 2021 09:01:52 +0100
+Received: from [195.243.126.94] (helo=securemail.tdt.de)
+        by relay.expurgate.net with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <fe@dev.tdt.de>)
+        id 1mzDcF-0001Jt-A3; Mon, 20 Dec 2021 09:01:51 +0100
+Received: from securemail.tdt.de (localhost [127.0.0.1])
+        by securemail.tdt.de (Postfix) with ESMTP id BC61F240041;
+        Mon, 20 Dec 2021 09:01:50 +0100 (CET)
+Received: from mail.dev.tdt.de (unknown [10.2.4.42])
+        by securemail.tdt.de (Postfix) with ESMTP id 54654240040;
+        Mon, 20 Dec 2021 09:01:50 +0100 (CET)
+Received: from mail.dev.tdt.de (localhost [IPv6:::1])
+        by mail.dev.tdt.de (Postfix) with ESMTP id F30C522AD6;
+        Mon, 20 Dec 2021 09:01:49 +0100 (CET)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 20 Dec 2021 09:01:49 +0100
+From:   Florian Eckert <fe@dev.tdt.de>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] leds: ktd20xx: Add the KTD20xx family of the RGB
+ LEDs driver from Kinetic
+In-Reply-To: <20211215204606.GH28336@duo.ucw.cz>
+References: <20211123101826.9069-1-fe@dev.tdt.de>
+ <20211123101826.9069-2-fe@dev.tdt.de> <20211215204606.GH28336@duo.ucw.cz>
+Message-ID: <350ab383a3a40439c73a2769b9034ec6@dev.tdt.de>
+X-Sender: fe@dev.tdt.de
+User-Agent: Roundcube Webmail/1.3.17
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
+        autolearn_force=no version=3.4.2
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.dev.tdt.de
+X-purgate-ID: 151534::1639987311-00005ED7-50CE745C/0/0
+X-purgate-type: clean
+X-purgate: clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Claudiu,
+Hello Pavel,
 
-Am Thu, Dec 16, 2021 at 04:13:37PM +0200 schrieb Claudiu Beznea:
-> Enable CPU idle support for SAMA7 config.
+thanks for your reply.
+
+>> Variant 1:
+>> The device has the ability to group LED outputs into two banks so that
+>> the two LED banks can be controlled with the same color. This could 
+>> not
+>> be done via the LEDs 'sysfs' entry because of the limitation on the 
+>> color
+>> register count. The color of the two banks can be configured via 
+>> device
+>> 'sysfs' entry for all LEDs at once [current_color0|current_color1].
+>> Which color the LED is to be used can be set via the 'sysfs' of the
+>> individual LEDs via the 'multi_intensity' file. Valid values for the
+>> colors (RGB) are 0 | 1. The value 0 selects the color register 0 and 
+>> the
+>> value 1 selects the color register 1.
+>> 
+>> Variant 2:
+>> The device can also set the LED color independently. Since the chip 
+>> only
+>> has two color registers, but we want to control the 12 LEDs
+>> independently via the 'led-class-multicolour' sysfs entry,
+>> the full RGB color depth cannot be used. Due to this limitation, only 
+>> 7
+>> colors and the color black (off) can be set. To use this mode the 
+>> color
+>> registers must be preset via the device tree or the device 'sysfs'. 
+>> The
+>> color registers 0 must be preset with 0x00 (Red=0x00 Green=0x00 
+>> Blue=0x00).
+>> The color register1 should be preset all with the same value. This 
+>> value
+>> depends on which light intensity is to be used in the setup.
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
->  arch/arm/configs/sama7_defconfig | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> Summary: some crazy hardware.
+
+I agree with you completely.
+But there was no other hardware to choose it was already on the board.
+
 > 
-> diff --git a/arch/arm/configs/sama7_defconfig b/arch/arm/configs/sama7_defconfig
-> index 938aae4bd80b..95c2a7ed4816 100644
-> --- a/arch/arm/configs/sama7_defconfig
-> +++ b/arch/arm/configs/sama7_defconfig
-> @@ -26,6 +26,7 @@ CONFIG_FORCE_MAX_ZONEORDER=15
->  CONFIG_UACCESS_WITH_MEMCPY=y
->  # CONFIG_ATAGS is not set
->  CONFIG_CMDLINE="console=ttyS0,115200 earlyprintk ignore_loglevel"
-> +CONFIG_CPU_IDLE=y
->  CONFIG_VFP=y
->  CONFIG_NEON=y
->  CONFIG_KERNEL_MODE_NEON=y
-> @@ -33,7 +34,6 @@ CONFIG_MODULES=y
->  CONFIG_MODULE_FORCE_LOAD=y
->  CONFIG_MODULE_UNLOAD=y
->  CONFIG_MODULE_FORCE_UNLOAD=y
-> -# CONFIG_BLK_DEV_BSG is not set
->  CONFIG_PARTITION_ADVANCED=y
->  # CONFIG_EFI_PARTITION is not set
->  # CONFIG_COREDUMP is not set
-> @@ -90,6 +90,7 @@ CONFIG_BLK_DEV_RAM_SIZE=8192
->  CONFIG_EEPROM_AT24=y
->  CONFIG_SCSI=y
->  CONFIG_BLK_DEV_SD=y
-> +# CONFIG_BLK_DEV_BSG is not set
-
-That move of the CONFIG_BLK_DEV_BSG entry is not related to enabling
-the CONFIG_CPU_IDLE option, right?
-
-Greets
-Alex
-
->  CONFIG_NETDEVICES=y
->  CONFIG_MACB=y
->  CONFIG_MICREL_PHY=y
-> -- 
-> 2.32.0
+>> +static ssize_t current_color0_store(struct device *dev,
+>> +		struct device_attribute *a,
+>> +		const char *buf, size_t size)
+>> +{
 > 
+> And now we have custom interface. Undocumented.
+
+I just wanted to implement all possibilities features for the chip and
+not commit to one. It may be that someone else can use the hardware for
+something else. If that is the problem, then I can document that.
+
+> That is not acceptable, sorry.
+> Find a way to squeeze it into current RGB framework, perhaps with
+> reduced feature set.
+
+Ok I'll try and focus on variant 2.
+
+> AFAICT you could either pretend it is 2-LED driver with full 8bit RGB
+> on each, or you could pretend it is 12-LED driver with 1bit
+> RGB. Select one and implement that.
+
+On my board the LED driver is used for 12 LEDs and 1bit RGB colour 
+depth.
+So I could select 7 colors and (off).
+For my understanding, does this mean that I remove variant 1 from the
+source and send a v3 patchset? Or do I have to take anything else into
+account when I use variant 2 now?
+
+ From my point of view, the driver should fit if I remove variant 1?
+
+Best regards
+
+Florian
