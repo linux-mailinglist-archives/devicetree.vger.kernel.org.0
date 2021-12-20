@@ -2,135 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5271447A3C8
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 04:13:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 924D047A411
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 05:20:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237315AbhLTDNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Dec 2021 22:13:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47228 "EHLO
+        id S237402AbhLTEUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Dec 2021 23:20:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233033AbhLTDNv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Dec 2021 22:13:51 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21061C06173E
-        for <devicetree@vger.kernel.org>; Sun, 19 Dec 2021 19:13:51 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id m12so13669232ljj.6
-        for <devicetree@vger.kernel.org>; Sun, 19 Dec 2021 19:13:50 -0800 (PST)
+        with ESMTP id S237391AbhLTEUU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Dec 2021 23:20:20 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2E60C06173E
+        for <devicetree@vger.kernel.org>; Sun, 19 Dec 2021 20:20:19 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id v19so7053457plo.7
+        for <devicetree@vger.kernel.org>; Sun, 19 Dec 2021 20:20:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=mF5wYxPSqdxf3ndDaiNpjYh7EExZO+92B2rlWd4Hn/w=;
-        b=H/hN9JtCLykDVNHSsTlSCCQbC1jeDpVXuzoQfGiqcOKtC70LixZK3hc4x9DnBgZyYy
-         1lLhpZ4uboMNb8eVCBGXv+DAuWFNdo9AJq8iZMJAPl7xxsDE0dNGDqyySE0w4YJ1yLgU
-         QaK+fHHXI5tJEgGPBjGRAbFYXb32mQxTV2jCQ=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=idRrPNY8lT9qvJ1RX4lP6sDX0kRhviqifoOXKRGv1rY=;
+        b=HI/6YkCt3ky43jRDNEN2lf6M22JE6+kU4T+uMtFrbfWX8vNs6ZusoVEID1nBzvAShn
+         S5ZTX7Ta1P9uRa9kd/zrtJZhAtjeuHfoK85oJ1GeE2Dmh+H8ThxhaXpqrOXewiNLqOSQ
+         o5L6XC7ifvxgGIy6Rq0q29P9z//gZq4zSt2X6nIn1ewKEtKWFLpzMiRl3XaW+2KCsW1H
+         pPvGUDfqd1gxPY4X2f+ExStB3eDWtWpgRF3Gwdq/IRh/vjDpkLIdJ3PHlddVT2e1m4bx
+         FfoHQpIUHyIZn/2ipJ3kPNh1POZNSW/ZlOciYn3QWbrNNhMav5W8xhcr1PHVOQgsXOqL
+         pRsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=mF5wYxPSqdxf3ndDaiNpjYh7EExZO+92B2rlWd4Hn/w=;
-        b=DpKqGxDRPuYx69+dsZMxaApO7FKA1om9hXvxVcfXQpGpAFOYyrvF52zat0g8UpgvOP
-         mP3pHzPoRZc0v8xF8KUZr6xqmzjrQ+3xjdCZmUeEC4CD18wVb4ibiKAwjfvBJXys9Sxn
-         0LApkGYdyL8acX5+1ufElPjh0T6z7CABNq6lTOfHCHQ7M7JPX57xcoUa+yR8XSGnpm10
-         9fP1WdaA9fZj0H66JO5ytE23F7kmDaq0++QAJ2Ykv7pdPd2BGSCABqhY0Lse7TZRyAZ5
-         9xa01obu6RmDGZF17hwvoX/tbNN9ws+6c/frr82GYBLzw0GazGGfYU7Bm8+VKx1hlgS0
-         ukAw==
-X-Gm-Message-State: AOAM530BQNxGfoUCs3TgLMbFnZfB5Pb2QswosxGoarh5ogZ9RodJGnxF
-        Qnfnu95cNovXsHpCVbxuD6u+TMY6mqo+6RTy+fFqBg==
-X-Google-Smtp-Source: ABdhPJxunl6swmvnYR15PB/3dHuBiP42NrBlmSpRdVW8fHz4URsaEzdHg45SD9YGC11Q7qsqGbLcNVjoVI+7j1Re0fg=
-X-Received: by 2002:a2e:a54c:: with SMTP id e12mr13210214ljn.457.1639970029235;
- Sun, 19 Dec 2021 19:13:49 -0800 (PST)
-MIME-Version: 1.0
-References: <20211106183802.893285-1-aford173@gmail.com> <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
- <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com>
- <8db00a4b6faa99c940d9bc86e17161eb0db5efe3.camel@ndufresne.ca>
- <CAJ+vNU28UJffFv9jQ2KryJMudqYxvCaoVOVcU5dPqRA209iN6A@mail.gmail.com>
- <d91532c2c0772f9aa708ead36b2a97203727a7ea.camel@ndufresne.ca>
- <CAJ+vNU3H-V+bPoZ3qKead45h=W7AhQK6Lhjrx5ssdF4c_qfe=A@mail.gmail.com>
- <CAHCN7x+0LwwU_rEST+TZxGquswGKL19gnTy9WLofsXtGAtWqdw@mail.gmail.com>
- <7f94eaacfddb8c5434c17f1e069ea87a17657ce9.camel@ndufresne.ca>
- <CAHCN7xKRzxMBmPbDobWTuvNNSpTXk5XENvfBnfkhRY3eZKhn6w@mail.gmail.com>
- <CAHCN7xJFLNi_g+HX8PCy1Rkgf0jnWpO5QGYVz8nH19xrJkwHrA@mail.gmail.com>
- <CAJ+vNU3zFd=6k_Emc5aafxKkGwCPp4crgOFezQ-E_MbWsn1_EA@mail.gmail.com>
- <fed6c2fd7cf4971062c417ce41ed1e3812b900e0.camel@ndufresne.ca>
- <CAHCN7xK+wROHaqDcsY-3WYFQ82qX17L-LHNL3siSWnWvwFShzQ@mail.gmail.com>
- <CAAEAJfC1xXvemaFP+vTFVJ3S-SpYtrxyZgDamSOgLC1F3ua5xw@mail.gmail.com>
- <CAHCN7x+UMMP6RXsNm0=OC=UTQzh=RKqQo6B7FD5e4eoJAEfmpg@mail.gmail.com>
- <CAJ+vNU1epi9SwPMHkuDmKcb68RLemYF=bsp7AVnzz06zKc2efw@mail.gmail.com>
- <CAAEAJfCpjk5nWWkJYjjDT-YEpJi4pTZqZbzp_if9OGC0HKspzw@mail.gmail.com>
- <CAJ+vNU2we5mGXgYsR6CfimvFXZsc0zktR3fDa-h6RRa02jTT0g@mail.gmail.com>
- <CAHCN7xJrM9uZUnmx65uTxWEo6HAkjozd3kD3UoEv-pYd5DV4QA@mail.gmail.com>
- <CAAEAJfBXU-AiKKhkhXzgUSR4p1yefysNuHFycBz3F-GzNewS6w@mail.gmail.com>
- <CAHCN7xL4y67V6AW5MV=8iudvvGVBWs2LoUhu_2CUJf6bSycgFA@mail.gmail.com>
- <8438070708d16c34c0f79aba19e67fa343adb169.camel@ndufresne.ca>
- <CAJ+vNU1ZxAAasKT8j1sfcFz1pk8fyYjwOW6wqxYq_ur8+2MX_Q@mail.gmail.com> <41f0e00cf5e57668b643b096e6bb69c67635c540.camel@ndufresne.ca>
-In-Reply-To: <41f0e00cf5e57668b643b096e6bb69c67635c540.camel@ndufresne.ca>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 20 Dec 2021 11:13:37 +0800
-Message-ID: <CAGXv+5H1qdvRPK0Qf_aNFpaipateW9ZD4R+AHYT0d4Y8RnWKBw@mail.gmail.com>
-Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
-To:     Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc:     Tim Harvey <tharvey@gateworks.com>, Adam Ford <aford173@gmail.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        linux-media <linux-media@vger.kernel.org>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        cstevens@beaconembedded.com,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=idRrPNY8lT9qvJ1RX4lP6sDX0kRhviqifoOXKRGv1rY=;
+        b=nker8qL58qiuUrvLv1ukHDBRSY1vhDsOmh8PxMn3InIJGCLUkmEHr/oFFNxT/6uwlB
+         8bga1LEnGGgvO6UY71oakqNhOa1UA/PsSakxwjzMd82Tt2rTuCiwH/b+kKo3fYORqbtE
+         tT0Ainwsgays96DmFurCa0heYd7yYflqtFUiTASObcq6nvpOeadtzRhq+xeBN0kkFnAR
+         Zt376geJQOUig+Rnwp2+NOfo3pCwHpWjY5ZhegHHuCg94rU6yVTbeTs95Swmre+7ZBic
+         ayf+ZKlvAeKKrB0mM1xuuqJaYwDJGFyuSiXPwC4uYoA1C0FvfmOMaeHfmoJrxOpW8zJQ
+         QP5Q==
+X-Gm-Message-State: AOAM532RGv3JVPO9d/9q8hgZL+fLb1hdIUmFW5clj3tPY0wgVrYMe9g/
+        Xi2GQIFLLeVVGJyI0SqSDMzs3A==
+X-Google-Smtp-Source: ABdhPJzGZHTTmdWj0H2HUPNmPUFshIz7BAck3SWavB9iLe038KjqDHtpEYTn5mz3kFKV/RLuZgwPPw==
+X-Received: by 2002:a17:90b:164c:: with SMTP id il12mr17891712pjb.241.1639974019397;
+        Sun, 19 Dec 2021 20:20:19 -0800 (PST)
+Received: from localhost ([106.201.42.111])
+        by smtp.gmail.com with ESMTPSA id n14sm6000281pgd.80.2021.12.19.20.20.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Dec 2021 20:20:18 -0800 (PST)
+Date:   Mon, 20 Dec 2021 09:50:16 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     soc@kernel.org, Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: Remove "spidev" nodes
+Message-ID: <20211220042016.cnk332uthdxziv5a@vireshk-i7>
+References: <20211217221232.3664417-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211217221232.3664417-1-robh@kernel.org>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 18, 2021 at 1:52 AM Nicolas Dufresne <nicolas@ndufresne.ca> wro=
-te:
-> Le vendredi 17 d=C3=A9cembre 2021 =C3=A0 09:26 -0800, Tim Harvey a =C3=A9=
-crit :
-> > I'm not clear if anyone is working on IMX8MM VPU H1 support. You had
-> > mentioned that some support [1] and [2] can be derived from the RK3288
-> > using the Google ChromeOS method (a v4l2 plugin that simulates in
-> > userspace a stateful encoder). I'm not sure if this is worth pursuing
-> > if others are working on stateless encode support in kernel and
-> > gstreamer.
->
-> My colleagues started last week the project of crafting mainline stateles=
-s
-> encoder uAPI. This is too early. In older project, we have had good succe=
-ss with
-> the emulated stateful encoder. It is of course quite limited, but works i=
-n
-> gstreamer, ffmpeg and chromium. It is also likely safer compared to the v=
-endor
-> provided driver.
+On 17-12-21, 16:12, Rob Herring wrote:
+> "spidev" is not a real device, but a Linux implementation detail. It has
+> never been documented either. The kernel has WARNed on the use of it for
+> over 6 years. Time to remove its usage from the tree.
+> 
+> Cc: Mark Brown <broonie@kernel.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Arnd, Olof, Can you please apply this directly.
+> 
+>  arch/arm/boot/dts/spear1310-evb.dts           | 16 ---------
+>  arch/arm/boot/dts/spear1340-evb.dts           | 16 ---------
 
-If people still want to play with the old emulated stateful encoder, there
-is a forward-ported version in the ChromeOS v5.10 kernel now. Note that
-RK3288 (H1) support is untested. Also, RK3288 and RK3399 require different
-versions of the userspace plugin. And the RK3288 version might require some
-updates to add SELECTION API support.
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 
-
-ChenYu
+-- 
+viresh
