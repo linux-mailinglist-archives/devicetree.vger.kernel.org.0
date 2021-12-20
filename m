@@ -2,186 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AF3947B626
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 00:20:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1983047B650
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 00:54:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231466AbhLTXUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 18:20:34 -0500
-Received: from mga01.intel.com ([192.55.52.88]:36469 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230055AbhLTXUd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Dec 2021 18:20:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1640042433; x=1671578433;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2gMiwg/PyuvqjzPoCNHebtE17bJB95fTO0RVsbVSb6c=;
-  b=TUdufLWn3Wa9Y/SPS/2mdnVJI6xm4CZdLkOQyTb34dTEdoUig+SLls1s
-   EqouWthjdIIJIl0lmzVkoPJL14V428XjajQMU4GQa79QG5jg2e24IwujU
-   6k1unA658Vg08An8ZvNiM9sUUIPtbWZ5cLGMvauDqbu97Po6BC67w57vu
-   992CAC2qZDh8BOfJKrWvmCltmfdVKXZYwSEmbSYen5dIG3AuGgJCIyZKS
-   SWXEztA+zPj1dBLvzxBX0qahe3ohu/AWLE3CiNGNv4bsBxfnbrJ8Eu5yk
-   f+3BpBoBnGOe2X6K8E4gKzu88i88AW49cmhnzj7hEaQdd6A9dhZN1TatK
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10204"; a="264472368"
-X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; 
-   d="scan'208";a="264472368"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2021 15:20:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; 
-   d="scan'208";a="547593542"
-Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
-  by orsmga001.jf.intel.com with ESMTP; 20 Dec 2021 15:20:30 -0800
-Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mzRxF-0008Oo-OK; Mon, 20 Dec 2021 23:20:29 +0000
-Date:   Tue, 21 Dec 2021 07:20:08 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH 22/22] drm: rockchip: Add VOP2 driver
-Message-ID: <202112210748.VrULDmGp-lkp@intel.com>
-References: <20211220110630.3521121-23-s.hauer@pengutronix.de>
+        id S233184AbhLTXyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 18:54:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45716 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230155AbhLTXyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 18:54:08 -0500
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 602A7C061574
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 15:54:08 -0800 (PST)
+Received: by mail-qk1-x72c.google.com with SMTP id m186so10996834qkb.4
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 15:54:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ICTB8V4n+9cmca6+x37Ql0fa5KJvA8Kd4xGMSs77tp4=;
+        b=GOa3Py2rvoHFE1zmqG4g4VsKavd6FCbMcxB66Q0UHthvWMGSZ4qkosE2WTkfXY5jLj
+         GJEsJls1Q8hoJJe0Hz8joPOiyGiwn/He61O6Dpe3Y2sQ6iVAEfduAgGVtDQ3aKJHE+Cf
+         CNf42oqdHuyZxsnhBOfuuJuEy0uOszNUBOUyIrrH612CftS0o0hXP8a1a35t3HoCwHAK
+         55EDgjLU7QWhMfPUQ3lxpDHgZqZIXdT/wc+PVWVZOt2vshCjWC9xUCTJ6B7WFwZ0dwS9
+         TlLRGrJ22LePnO+EgLB9+yPEVV/ZwtWz52I92Hh881azKDNEYhSvkBO35edcz4Ii6Hvs
+         dOdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ICTB8V4n+9cmca6+x37Ql0fa5KJvA8Kd4xGMSs77tp4=;
+        b=52HQETpmsm7g22u/tNQtxbqRFUU29N8+hoNcnkbNaLveQ/O+MRl16Y9sBei6a67/rz
+         tpp+hCjMbEaWKuaLLD4dnXx5h9inlQm6WcaK2vwOCO3hFCBmm/6456hzVG50+OQy18td
+         PfJ/box9Bb/5QX0i+i1gEUZRDt19QgFPqPN2mU+6K+ujyOZn6XApe6s+bk6b+PqJq0Nn
+         TL2gA1vyuvrRgKiq+L0GmJwPXw2S5KGn+kjJcXPMXu5zjpDn/YKNtuDaESOc9WqmgPVG
+         YQfXLkiZWhzi/8/DSxm2BCBzU+WnDthQPR9vYNwusn86JQqd4vaRl/Ka0xnwMs2YqNXG
+         d5Ag==
+X-Gm-Message-State: AOAM532OVqLvhYUtB/c8AjKumJ8VQP3WiOuX3qxW4rpRsyOskqY8dnaA
+        JHCkIemSmVtZmG5p3OYUnQUwkGGxETp+h4jFgTzg2uD40X4D0Q==
+X-Google-Smtp-Source: ABdhPJzCxuuI7T69jGLo8Z9p5gSwkmCeAciC0CgBmGa3lxd+isswddNujRi13+rwrqy40MTb27glmY8K2mKYuRI17Ng=
+X-Received: by 2002:ae9:e641:: with SMTP id x1mr432352qkl.59.1640044447562;
+ Mon, 20 Dec 2021 15:54:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211220110630.3521121-23-s.hauer@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20211220184220.86328-1-david@ixit.cz>
+In-Reply-To: <20211220184220.86328-1-david@ixit.cz>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 21 Dec 2021 02:53:56 +0300
+Message-ID: <CAA8EJprqBELsZUCVqppAsNVBzsW3FxQbUCQ=zy_tAVY0SeTPwQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: msm: disp: remove bus from dpu bindings
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krishna Manikandan <mkrishn@codeaurora.org>,
+        ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sascha,
+On Mon, 20 Dec 2021 at 21:42, David Heidelberg <david@ixit.cz> wrote:
+>
+> Driver and dts has been already adjusted and bus moved out of dpu, let's
+> update also dt-bindings.
+>
+> Fixes warnings as:
+> arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: mdss
+> @ae00000: clock-names: ['iface', 'core'] is too short
+>         From schema: Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+>
+> Ref: https://lore.kernel.org/all/20210803101657.1072358-1-dmitry.baryshkov@linaro.org/
+>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 
-Thank you for the patch! Perhaps something to improve:
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-[auto build test WARNING on rockchip/for-next]
-[also build test WARNING on tegra-drm/drm/tegra/for-next v5.16-rc6]
-[cannot apply to drm/drm-next drm-intel/for-linux-next drm-tip/drm-tip drm-exynos/exynos-drm-next airlied/drm-next next-20211220]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+> ---
+>  .../devicetree/bindings/display/msm/dpu-sdm845.yaml          | 5 +----
+>  1 file changed, 1 insertion(+), 4 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+> index b4ea7c92fb3d..0dca4b3d66e4 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+> @@ -31,13 +31,11 @@ properties:
+>    clocks:
+>      items:
+>        - description: Display AHB clock from gcc
+> -      - description: Display AXI clock
+>        - description: Display core clock
+>
+>    clock-names:
+>      items:
+>        - const: iface
+> -      - const: bus
+>        - const: core
+>
+>    interrupts:
+> @@ -160,9 +158,8 @@ examples:
+>            power-domains = <&dispcc MDSS_GDSC>;
+>
+>            clocks = <&gcc GCC_DISP_AHB_CLK>,
+> -                   <&gcc GCC_DISP_AXI_CLK>,
+>                     <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> -          clock-names = "iface", "bus", "core";
+> +          clock-names = "iface", "core";
+>
+>            interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+>            interrupt-controller;
+> --
+> 2.34.1
+>
 
-url:    https://github.com/0day-ci/linux/commits/Sascha-Hauer/drm-rockchip-RK356x-VOP2-support/20211220-190821
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20211221/202112210748.VrULDmGp-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/ade6380669a79670b48d440d8b7a00986a5d7ca8
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Sascha-Hauer/drm-rockchip-RK356x-VOP2-support/20211220-190821
-        git checkout ade6380669a79670b48d440d8b7a00986a5d7ca8
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash drivers/gpu/drm/rockchip/
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_cluster_init':
->> drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:2525:1: warning: the frame size of 1100 bytes is larger than 1024 bytes [-Wframe-larger-than=]
-    2525 | };
-         | ^
-   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c: In function 'vop2_esmart_init':
-   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c:2597:1: warning: the frame size of 1100 bytes is larger than 1024 bytes [-Wframe-larger-than=]
-    2597 | };
-         | ^
-
-
-vim +2525 drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-
-  2450	
-  2451	static int vop2_cluster_init(struct vop2_win *win)
-  2452	{
-  2453		struct vop2 *vop2 = win->vop2;
-  2454		int i;
-  2455		struct reg_field vop2_cluster_regs[VOP2_WIN_MAX_REG] = {
-  2456			[VOP2_WIN_ENABLE] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 0, 0),
-  2457			[VOP2_WIN_FORMAT] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 1, 5),
-  2458			[VOP2_WIN_RB_SWAP] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 14, 14),
-  2459			[VOP2_WIN_DITHER_UP] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 18, 18),
-  2460			[VOP2_WIN_ACT_INFO] = REG_FIELD(RK3568_CLUSTER_WIN_ACT_INFO, 0, 31),
-  2461			[VOP2_WIN_DSP_INFO] = REG_FIELD(RK3568_CLUSTER_WIN_DSP_INFO, 0, 31),
-  2462			[VOP2_WIN_DSP_ST] = REG_FIELD(RK3568_CLUSTER_WIN_DSP_ST, 0, 31),
-  2463			[VOP2_WIN_YRGB_MST] = REG_FIELD(RK3568_CLUSTER_WIN_YRGB_MST, 0, 31),
-  2464			[VOP2_WIN_UV_MST] = REG_FIELD(RK3568_CLUSTER_WIN_CBR_MST, 0, 31),
-  2465			[VOP2_WIN_YUV_CLIP] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 19, 19),
-  2466			[VOP2_WIN_YRGB_VIR] = REG_FIELD(RK3568_CLUSTER_WIN_VIR, 0, 15),
-  2467			[VOP2_WIN_UV_VIR] = REG_FIELD(RK3568_CLUSTER_WIN_VIR, 16, 31),
-  2468			[VOP2_WIN_Y2R_EN] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 8, 8),
-  2469			[VOP2_WIN_R2Y_EN] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 9, 9),
-  2470			[VOP2_WIN_CSC_MODE] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 10, 11),
-  2471	
-  2472			/* Scale */
-  2473			[VOP2_WIN_SCALE_YRGB_X] = REG_FIELD(RK3568_CLUSTER_WIN_SCL_FACTOR_YRGB, 0, 15),
-  2474			[VOP2_WIN_SCALE_YRGB_Y] = REG_FIELD(RK3568_CLUSTER_WIN_SCL_FACTOR_YRGB, 16, 31),
-  2475			[VOP2_WIN_YRGB_VER_SCL_MODE] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL1, 14, 15),
-  2476			[VOP2_WIN_YRGB_HOR_SCL_MODE] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL1, 12, 13),
-  2477			[VOP2_WIN_BIC_COE_SEL] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL1, 2, 3),
-  2478			[VOP2_WIN_VSD_YRGB_GT2] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL1, 28, 28),
-  2479			[VOP2_WIN_VSD_YRGB_GT4] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL1, 29, 29),
-  2480	
-  2481			/* cluster regs */
-  2482			[VOP2_WIN_AFBC_ENABLE] = REG_FIELD(RK3568_CLUSTER_CTRL, 1, 1),
-  2483			[VOP2_WIN_CLUSTER_ENABLE] = REG_FIELD(RK3568_CLUSTER_CTRL, 0, 0),
-  2484			[VOP2_WIN_CLUSTER_LB_MODE] = REG_FIELD(RK3568_CLUSTER_CTRL, 4, 7),
-  2485	
-  2486			/* afbc regs */
-  2487			[VOP2_WIN_AFBC_FORMAT] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 2, 6),
-  2488			[VOP2_WIN_AFBC_RB_SWAP] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 9, 9),
-  2489			[VOP2_WIN_AFBC_UV_SWAP] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 10, 10),
-  2490			[VOP2_WIN_AFBC_AUTO_GATING_EN] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_OUTPUT_CTRL, 4, 4),
-  2491			[VOP2_WIN_AFBC_HALF_BLOCK_EN] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 7, 7),
-  2492			[VOP2_WIN_AFBC_BLOCK_SPLIT_EN] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_CTRL, 8, 8),
-  2493			[VOP2_WIN_AFBC_HDR_PTR] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_HDR_PTR, 0, 31),
-  2494			[VOP2_WIN_AFBC_PIC_SIZE] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_PIC_SIZE, 0, 31),
-  2495			[VOP2_WIN_AFBC_PIC_VIR_WIDTH] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_VIR_WIDTH, 0, 15),
-  2496			[VOP2_WIN_AFBC_TILE_NUM] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_VIR_WIDTH, 16, 31),
-  2497			[VOP2_WIN_AFBC_PIC_OFFSET] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_PIC_OFFSET, 0, 31),
-  2498			[VOP2_WIN_AFBC_DSP_OFFSET] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_DSP_OFFSET, 0, 31),
-  2499			[VOP2_WIN_AFBC_TRANSFORM_OFFSET] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_TRANSFORM_OFFSET, 0, 31),
-  2500			[VOP2_WIN_AFBC_ROTATE_90] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_ROTATE_MODE, 0, 0),
-  2501			[VOP2_WIN_AFBC_ROTATE_270] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_ROTATE_MODE, 1, 1),
-  2502			[VOP2_WIN_XMIRROR] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_ROTATE_MODE, 2, 2),
-  2503			[VOP2_WIN_YMIRROR] = REG_FIELD(RK3568_CLUSTER_WIN_AFBCD_ROTATE_MODE, 3, 3),
-  2504			[VOP2_WIN_UV_SWAP] = { .reg = 0xffffffff },
-  2505			[VOP2_WIN_COLOR_KEY] = { .reg = 0xffffffff },
-  2506			[VOP2_WIN_COLOR_KEY_EN] = { .reg = 0xffffffff },
-  2507			[VOP2_WIN_SCALE_CBCR_X] = { .reg = 0xffffffff },
-  2508			[VOP2_WIN_SCALE_CBCR_Y] = { .reg = 0xffffffff },
-  2509			[VOP2_WIN_YRGB_HSCL_FILTER_MODE] = { .reg = 0xffffffff },
-  2510			[VOP2_WIN_YRGB_VSCL_FILTER_MODE] = { .reg = 0xffffffff },
-  2511			[VOP2_WIN_CBCR_VER_SCL_MODE] = { .reg = 0xffffffff },
-  2512			[VOP2_WIN_CBCR_HSCL_FILTER_MODE] = { .reg = 0xffffffff },
-  2513			[VOP2_WIN_CBCR_HOR_SCL_MODE] = { .reg = 0xffffffff },
-  2514			[VOP2_WIN_CBCR_VSCL_FILTER_MODE] = { .reg = 0xffffffff },
-  2515			[VOP2_WIN_VSD_CBCR_GT2] = { .reg = 0xffffffff },
-  2516			[VOP2_WIN_VSD_CBCR_GT4] = { .reg = 0xffffffff },
-  2517		};
-  2518	
-  2519		for (i = 0; i < ARRAY_SIZE(vop2_cluster_regs); i++)
-  2520			vop2_cluster_regs[i].reg += win->offset;
-  2521	
-  2522		return devm_regmap_field_bulk_alloc(vop2->dev, vop2->map, win->reg,
-  2523						    vop2_cluster_regs,
-  2524						    ARRAY_SIZE(vop2_cluster_regs));
-> 2525	};
-  2526	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+-- 
+With best wishes
+Dmitry
