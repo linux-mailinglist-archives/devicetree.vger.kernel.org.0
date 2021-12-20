@@ -2,306 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C536247B4AC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 22:05:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DC9C47B4AF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 22:06:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230129AbhLTVF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 16:05:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35922 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229848AbhLTVFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 16:05:25 -0500
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 624B4C061574;
-        Mon, 20 Dec 2021 13:05:25 -0800 (PST)
-Received: by mail-yb1-xb31.google.com with SMTP id v64so32551210ybi.5;
-        Mon, 20 Dec 2021 13:05:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=11d8rru2EETSidFcm3mKKqRNQPAVKAx85vb8qThmIl0=;
-        b=UDKiiLBkBaWzvDkcGzMCHFrjzyHmxnl2QCjJMRz1Z5V7OdHVKmD6HWdmxdcbyc5Be8
-         gZ+YvUM6twHNZb/cD09bV4u3UpKDNcuBFBf0v8/bvpOv3wcLA49KYlleZAVn2QQANpXR
-         UwYdULLdZFWM+ElsQNmVuG4sj50bl82i0JChCsXi9ppNYf/GeQRVJ5me2Y0ToslMFR8R
-         N6U8A89YCarRlmJpPak5pPM9ghDfYmwqNKQ6gfjXdddkJgtczfLnk6D7IioqMi/MXZsz
-         TS+zK8mMxsVNRtw78aBm36rAyK+olnV2bbmXhP8ZbLgLM0xHvWMivN4aKD/R9QqRxUR7
-         1tIQ==
+        id S230143AbhLTVGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 16:06:04 -0500
+Received: from mail-qt1-f173.google.com ([209.85.160.173]:45856 "EHLO
+        mail-qt1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229848AbhLTVF7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 16:05:59 -0500
+Received: by mail-qt1-f173.google.com with SMTP id p19so11006836qtw.12;
+        Mon, 20 Dec 2021 13:05:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=11d8rru2EETSidFcm3mKKqRNQPAVKAx85vb8qThmIl0=;
-        b=ysgQhOp4lx1tzDxLLBZCbASrhibyRPXWNXrfVArtWxc3Dj1MCmS95gaVY+3KIg/G1M
-         dRRkXFBgjofnrD1VI17xInUZ6RvwazA0AJoQiRXTHiFQG5AU5tjQs+z/D1LNSKZ/qcqM
-         0+njN+C06wEmmb+9mYil5X6+xJUuNt1wayAZsOmmuhsn+lVrUXHipAHT+Syst5g4wWEW
-         04LTXAB72S5ypGz9BoU/WTKVXGbD3p8tkBWu4v2jHViC2UB8EKz7+KsRYtBygsA/Nh3P
-         BqCDrR7y6zV5NQZwSjRLepflU0tQjPVQLS3fBx4LHt9h5ILPk/4bKcET2JTMG258PexX
-         abrw==
-X-Gm-Message-State: AOAM530aGks7kppmjUtXlx9CkAv4IzPY98RMFSVo9i4dHXB3KaEPAZJz
-        08x1ycTNoBlwABGKZg5uTJ7ljYCxq8NoARKCe8c=
-X-Google-Smtp-Source: ABdhPJw7iPUl2I11F5tO5pNQm+Kffo/hSzHDFBQA327eaz9L75bQW8MdDDnHSCZyFUSLgRXKNSEiNsrYvFi0/oiqzco=
-X-Received: by 2002:a5b:ecd:: with SMTP id a13mr2878221ybs.251.1640034324516;
- Mon, 20 Dec 2021 13:05:24 -0800 (PST)
-MIME-Version: 1.0
-References: <20211207012351.15754-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20211207012351.15754-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 20 Dec 2021 21:04:58 +0000
-Message-ID: <CA+V-a8tVjv4gtGWD55Mh8e-P2gFSXYnwP26LsDi1yj3sCfCdMA@mail.gmail.com>
-Subject: Re: [RFC PATCH 0/3] Add driver for Renesas RZ/G2L CRU module
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-media <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=fqRSjSjlVwMx3PCYB3pn/czslzADAGvnpT9c5YDGfOE=;
+        b=WsZua+6VjEG/N4cxVAQwCUoy1L5ukQg8G2mBkszOgwC4ot8hjEuaz1AEojko+IauJw
+         aGoLlJQchG0NntwBHzul+8ytgh82pF64BGQTsommjyRksJl9jUTbZe+V1prgWJysH/vx
+         Dnd35S8xEBCcHzRY2qQvR9/mSTt9HZc4SL3KWRcT1BpIex0pF+os/0VQj2M6NxWNu36f
+         6Nhl3rLkeNWjJASI9RgJDZolPjaeASKDb/7cJWC5sM3npkQX226niUG9RSJ8R2NGNmTO
+         xeKIYTlxOvlRF/pJZ/LP8svp1+BdMFWmG/0/VyeDnHMyQELpM0cbh1uAkhiEf7AB3A9c
+         N/3g==
+X-Gm-Message-State: AOAM532qxqUybUgR2Eo8o0CGJ3UuPW6xR4mq06w6XP3MFRrPImhOkUnT
+        w9pd1Q4lEFR5tRRIyWfKpRYAssvhw1/P
+X-Google-Smtp-Source: ABdhPJyR9q1EP5eXq8kXEDXWr5wln0geOO6zBx9YUws8l8NgUVUVoK5EDZDup9slQkQFdPdCqx91eQ==
+X-Received: by 2002:ac8:5811:: with SMTP id g17mr9286067qtg.535.1640034357899;
+        Mon, 20 Dec 2021 13:05:57 -0800 (PST)
+Received: from robh.at.kernel.org (adsl-72-50-0-33.prtc.net. [72.50.0.33])
+        by smtp.gmail.com with ESMTPSA id o1sm15956979qtw.24.2021.12.20.13.05.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Dec 2021 13:05:57 -0800 (PST)
+Received: (nullmailer pid 3900651 invoked by uid 1000);
+        Mon, 20 Dec 2021 21:05:52 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Yaqin Pan <akingchen@vivo.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>, kernel@vivo.com,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20211220141629.14282-3-akingchen@vivo.com>
+References: <20211220141629.14282-1-akingchen@vivo.com> <20211220141629.14282-3-akingchen@vivo.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: usb: document snps,dis_split_quirk property in dwc3
+Date:   Mon, 20 Dec 2021 16:05:52 -0500
+Message-Id: <1640034352.478511.3900650.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 7, 2021 at 1:24 AM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
->
-> Hi All,
->
-> This patch series aims to add driver support to CRU module found
-> on Renesas RZ/G2L SoC.
->
-> The Camera Data Receiving Unit (CRU) consists of a MIPI CSI-2
-> block and an Image Processing block. The Image Processing block
-> can receive video data received from the external Digital Parallel
-> Interface or MIPI CSI-2 block, and perform appropriate image
-> processing for each.
->
-> More details:
-> * https://renesas.info/wiki/File:CRU.png
-> * https://www.renesas.com/document/mah/
->   rzg2l-group-rzg2lc-group-users-manual-hardware-0?language=en&r=1467981
->
-> Currently the driver has been tested using yavta and Gstreamer
-> on RZ/G2L SMARC EVK using the ov5645 sensor on CSI2 interface
-> only.
->
-> root@smarc-rzg2l:~# media-ctl -p
-> Media controller API version 5.16.0
->
-> Media device information
-> ------------------------
-> driver          rzg2l_cru
-> model           renesas,rzg2l-cru
-> serial
-> bus info        platform:10830000.video
-> hw revision     0x0
-> driver version  5.16.0
->
-> Device topology
-> - entity 1: rzg2l_cru 10830000.video (5 pads, 5 links)
->             type V4L2 subdev subtype Unknown flags 0
->             device node name /dev/v4l-subdev0
->         pad0: Sink
->                 [fmt:unknown/0x0]
->                 <- "ov5645 0-003c":0 [ENABLED,IMMUTABLE]
->         pad1: Source
->                 [fmt:unknown/0x0]
->                 -> "CRU output":0 []
->         pad2: Source
->                 [fmt:unknown/0x0]
->                 -> "CRU output":0 []
->         pad3: Source
->                 [fmt:unknown/0x0]
->                 -> "CRU output":0 []
->         pad4: Source
->                 [fmt:unknown/0x0]
->                 -> "CRU output":0 []
->
-> - entity 7: ov5645 0-003c (1 pad, 1 link)
->             type V4L2 subdev subtype Sensor flags 0
->             device node name /dev/v4l-subdev1
->         pad0: Source
->                 [fmt:UYVY8_2X8/1920x1080 field:none colorspace:srgb
->                  crop:(0,0)/1920x1080]
->                 -> "rzg2l_cru 10830000.video":0 [ENABLED,IMMUTABLE]
->
-> - entity 15: CRU output (1 pad, 4 links)
->              type Node subtype V4L flags 0
->              device node name /dev/video0
->         pad0: Sink
->                 <- "rzg2l_cru 10830000.video":1 []
->                 <- "rzg2l_cru 10830000.video":2 []
->                 <- "rzg2l_cru 10830000.video":3 []
->                 <- "rzg2l_cru 10830000.video":4 []
->
-> root@smarc-rzg2l:~#
-> root@smarc-rzg2l:~# v4l2-compliance -s
-> v4l2-compliance 1.22.1-4864, 64 bits, 64-bit time_t
-> v4l2-compliance SHA: 47c8c377cf29 2021-10-23 15:12:35
->
-> Compliance test for rzg2l_cru device /dev/video0:
->
-> Driver Info:
->         Driver name      : rzg2l_cru
->         Card type        : RZG2L_CRU
->         Bus info         : platform:10830000.video
->         Driver version   : 5.16.0
->         Capabilities     : 0xa5200001
->                 Video Capture
->                 Read/Write
->                 Streaming
->                 Extended Pix Format
->                 Device Capabilities
->         Device Caps      : 0x25200001
->                 Video Capt[   32.432429] rzg2l-cru 10830000.video: =================  START STATUS  =================
-> ure
->                 Read/Write
->                 Str[   32.442279] rzg2l-cru 10830000.video: ==================  END STATUS  ==================
-> eaming
->                 Extended Pix Format
-> Media Driver Info:
->         Driver name      : rzg2l_cru
->         Model            : renesas,rzg2l-cru
->         Serial           :
->         Bus info         : platform:10830000.video
->         Media version    : 5.16.0
->         Hardware revision: 0x00000000 (0)
->         Driver version   : 5.16.0
-> Interface Info:
->         ID               : 0x03000011
->         Type             : V4L Video
-> Entity Info:
->         ID               : 0x0000000f (15)
->         Name             : CRU output
->         Function         : V4L2 I/O
->         Pad 0x01000010   : 0: Sink
->           Link 0x02000013: from remote pad 0x1000003 of entity 'rzg2l_cru 10830000.video' (Video Pixel Formatter): Data, Enabled
->           Link 0x02000015: from remote pad 0x1000004 of entity 'rzg2l_cru 10830000.video' (Video Pixel Formatter): Data
->           Link 0x02000017: from remote pad 0x1000005 of entity 'rzg2l_cru 10830000.video' (Video Pixel Formatter): Data
->           Link 0x02000019: from remote pad 0x1000006 of entity 'rzg2l_cru 10830000.video' (Video Pixel Formatter): Data
->
-> Required ioctls:
->         test MC information (see 'Media Driver Info' above): OK
->         test VIDIOC_QUERYCAP: OK
->         test invalid ioctls: OK
->
-> Allow for multiple opens:
->         test second /dev/video0 open: OK
->         test VIDIOC_QUERYCAP: OK
->         test VIDIOC_G/S_PRIORITY: OK
->         test for unlimited opens: OK
->
-> Debug ioctls:
->         test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
->         test VIDIOC_LOG_STATUS: OK
->
-> Input ioctls:
->         test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
->         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->         test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
->         test VIDIOC_ENUMAUDIO: OK (Not Supported)
->         test VIDIOC_G/S/ENUMINPUT: OK
->         test VIDIOC_G/S_AUDIO: OK (Not Supported)
->         Inputs: 1 Audio Inputs: 0 Tuners: 0
->
-> Output ioctls:
->         test VIDIOC_G/S_MODULATOR: OK (Not Supported)
->         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->         test VIDIOC_ENUMAUDOUT: OK (Not Supported)
->         test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
->         test VIDIOC_G/S_AUDOUT: OK (Not Supported)
->         Outputs: 0 Audio Outputs: 0 Modulators: 0
->
-> Input/Output configuration ioctls:
->         test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
->         test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
->         test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
->         test VIDIOC_G/S_EDID: OK (Not Supported)
->
-> Control ioctls (Input 0):
->         test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
->         test VIDIOC_QUERYCTRL: OK (Not Supported)
->         test VIDIOC_G/S_CTRL: OK (Not Supported)
->         test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
->         test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
->         test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
->         Standard Controls: 0 Private Controls: 0
->
-> Format ioctls (Input 0):
->         test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
->         test VIDIOC_G/S_PARM: OK (Not Supported)
->         test VIDIOC_G_FBUF: OK (Not Supported)
->         test VIDIOC_G_FMT: OK
->         test VIDIOC_TRY_FMT: OK
->         test VIDIOC_S_FMT: OK
->         test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
->         test Cropping: OK (Not Supported)
->         test Composing: OK (Not Supported)
->         test Scaling: OK
->
-> Codec ioctls (Input 0):
->         test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
->         test VIDIOC_G_ENC_INDEX: OK (Not Supported)
->         test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
->
-> Buffer ioctls (Input 0):
->         test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
->         test VIDIOC_EXPBUF: OK
->         test Requests: OK (Not Supported)
->
-> Test input 0:
->
-> Streaming ioctls:
->         test read/write: OK
->         test blocking wait: OK
->         test MMAP (no poll): OK
->         test MMAP (select): OK
->         test MMAP (epoll): OK
->         test USERPTR (no poll): OK (Not Supported)
->         test USERPTR (select): OK (Not Supported)
->         test DMABUF: Cannot test, specify --expbuf-device
->
-> Total for rzg2l_cru device /dev/video0: 53, Succeeded: 53, Failed: 0, Warnings: 0
-> root@smarc-rzg2l:~#
->
-> Cheers,
-> Prabhakar
->
-> Lad Prabhakar (3):
->   media: dt-bindings: media: Document RZ/G2L CRU block
->   media: platform: Add CRU driver for RZ/G2L SoC
->   arm64: dts: renesas: r9a07g044: Add CRU node
->
->  .../bindings/media/renesas,rzg2l-cru.yaml     | 227 ++++++
->  arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |  59 ++
->  drivers/media/platform/Kconfig                |   1 +
->  drivers/media/platform/Makefile               |   2 +
->  drivers/media/platform/rzg2l-cru/Kconfig      |  15 +
->  drivers/media/platform/rzg2l-cru/Makefile     |   4 +
->  drivers/media/platform/rzg2l-cru/rzg2l-core.c | 473 ++++++++++++
->  drivers/media/platform/rzg2l-cru/rzg2l-cru.h  | 244 ++++++
->  drivers/media/platform/rzg2l-cru/rzg2l-csi2.c | 625 ++++++++++++++++
->  drivers/media/platform/rzg2l-cru/rzg2l-dma.c  | 703 ++++++++++++++++++
->  drivers/media/platform/rzg2l-cru/rzg2l-v4l2.c | 361 +++++++++
->  11 files changed, 2714 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
->  create mode 100644 drivers/media/platform/rzg2l-cru/Kconfig
->  create mode 100644 drivers/media/platform/rzg2l-cru/Makefile
->  create mode 100644 drivers/media/platform/rzg2l-cru/rzg2l-core.c
->  create mode 100644 drivers/media/platform/rzg2l-cru/rzg2l-cru.h
->  create mode 100644 drivers/media/platform/rzg2l-cru/rzg2l-csi2.c
->  create mode 100644 drivers/media/platform/rzg2l-cru/rzg2l-dma.c
->  create mode 100644 drivers/media/platform/rzg2l-cru/rzg2l-v4l2.c
->
-Gentle ping.
+On Mon, 20 Dec 2021 22:16:29 +0800, Yaqin Pan wrote:
+> Add snps,dis_split_quirk property for dwc3 controller
+> 
+> Signed-off-by: Yaqin Pan <akingchen@vivo.com>
+> ---
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
 
-Cheers,
-Prabhakar
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:229:3: [error] duplication of key "snps,dis-split-quirk" in mapping (key-duplicates)
+
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/usb/snps,dwc3.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 121, in get_single_data
+    return self.construct_document(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 131, in construct_document
+    for _dummy in generator:
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 674, in construct_yaml_map
+    value = self.construct_mapping(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 445, in construct_mapping
+    return BaseConstructor.construct_mapping(self, node, deep=deep)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 263, in construct_mapping
+    if self.check_mapping_key(node, key_node, mapping, key, value):
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 294, in check_mapping_key
+    raise DuplicateKeyError(*args)
+ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
+  in "<unicode string>", line 32, column 3
+found duplicate key "snps,dis-split-quirk" with value "{}" (original value: "{}")
+  in "<unicode string>", line 229, column 3
+
+To suppress this check see:
+    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
+
+make[1]: *** [Documentation/devicetree/bindings/Makefile:25: Documentation/devicetree/bindings/usb/snps,dwc3.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+schemas/usb/snps,dwc3.yaml: ignoring, error parsing file
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-doc-validate", line 25, in check_doc
+    testtree = dtschema.load(filename, line_number=line_number)
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 656, in load
+    return yaml.load(f.read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 121, in get_single_data
+    return self.construct_document(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 131, in construct_document
+    for _dummy in generator:
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 674, in construct_yaml_map
+    value = self.construct_mapping(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 445, in construct_mapping
+    return BaseConstructor.construct_mapping(self, node, deep=deep)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 263, in construct_mapping
+    if self.check_mapping_key(node, key_node, mapping, key, value):
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 294, in check_mapping_key
+    raise DuplicateKeyError(*args)
+ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
+  in "<unicode string>", line 32, column 3
+found duplicate key "snps,dis-split-quirk" with value "{}" (original value: "{}")
+  in "<unicode string>", line 229, column 3
+
+To suppress this check see:
+    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-doc-validate", line 67, in <module>
+    ret = check_doc(f)
+  File "/usr/local/bin/dt-doc-validate", line 30, in check_doc
+    print(filename + ":", exc.path[-1], exc.message, file=sys.stderr)
+AttributeError: 'DuplicateKeyError' object has no attribute 'path'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml: ignoring, error parsing file
+warning: no schema found in file: ./Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+make: *** [Makefile:1413: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1571063
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
