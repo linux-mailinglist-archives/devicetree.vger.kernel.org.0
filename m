@@ -2,135 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2258247A9F0
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 13:51:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7AAC47A9FB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 13:57:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231839AbhLTMvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 07:51:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34886 "EHLO
+        id S231687AbhLTM5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 07:57:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231838AbhLTMvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 07:51:54 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D8E8C06173E
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 04:51:54 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id n14-20020a7bcbce000000b00332f4abf43fso5144946wmi.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 04:51:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PuZC+K3Kaok5hXKjmR3Gu9qJFZKj26rdkdsCekbAVko=;
-        b=ljJMnVDbZcI+Dhh1HqX3uLyt6uBCnSN4UvdQbPsKlmIbiDrVZC511h+pT5usnu7aiV
-         BgmkAZntnTgcBoJwQdjsnNhR0Kmsr8BTJmaCjylV7Li4HTMYK9rVh2l7Izbad+yB1JxJ
-         b1FynDH0BiZGaHieJE6XmA9hnlA7RLxQSOWsZwykM7SfcgYQq7WCjMfc4Heo6u2d1X31
-         VB8vC75zwNzSfVEsHBsbYZ5pHPRrWM+N+5zkJhZFikGaYVsAOiiBILRIAEP1qzc3Mxrn
-         MyS/E/XRJNiQpaiW+ldMC8NRNKXUN6JahdTQmQ0FXfnNfDjYiHqpjJ7DoZFRhYZEijvA
-         GbbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PuZC+K3Kaok5hXKjmR3Gu9qJFZKj26rdkdsCekbAVko=;
-        b=co0SXr1TC3cmkLPz9cDCjPeZ5jZAENzW+uT16UoiRfc7sJGDcXOEbjJJUsbkGY3VTM
-         p9jHWXnEuI4vE+ZqB9zS+DBx8z81baY7dfE6KprTt1dDpjky3ztM1gT8XPbxgXNGSjZK
-         /W89Ml1auUfdP0Dvsdbmo6so2K3rYI3rMJnRXJteDK3Inmr7uID8tkuIpw6ybzb9icia
-         F383WbWpFkta8bmgDouD4NYzeyr9o9ZePmdaQ/kDA/Fs3AruL5oaU+wwy6ST2IbA0Vay
-         mhvZAc2j/dnjOvREr7Yzvo4/Ze8nL4EkBQg/doORYGRswEewQft4BePubb82XO/gmw7i
-         fnOw==
-X-Gm-Message-State: AOAM531L4pN94t/2W5xLZu5vaLCe5HBTuoAwIJdqBPxT1sSNh8LHbr6J
-        uzwRplTQsm3Lh0cFOhxsGxw=
-X-Google-Smtp-Source: ABdhPJz0IQEiVaLK1pt3cm9gdzR58X+4LPKSU6c7UShi1z55pyRFRJidt5rlF2ufCR+OCN0Q7FpMiA==
-X-Received: by 2002:a05:600c:4e46:: with SMTP id e6mr3222669wmq.132.1640004712601;
-        Mon, 20 Dec 2021 04:51:52 -0800 (PST)
-Received: from localhost ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id r11sm15316245wrw.5.2021.12.20.04.51.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Dec 2021 04:51:51 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thomas Zimmermann <tzimmermann@suse.de>,
-        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: display: bridge: lvds-codec: Fix duplicate key
-Date:   Mon, 20 Dec 2021 13:51:47 +0100
-Message-Id: <20211220125147.519880-1-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S230262AbhLTM5x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 07:57:53 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BD27C061574;
+        Mon, 20 Dec 2021 04:57:53 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id ED2136104D;
+        Mon, 20 Dec 2021 12:57:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 611DEC36AE8;
+        Mon, 20 Dec 2021 12:57:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640005072;
+        bh=pewh3AlWMe5plAWePnKDnUBSLaArfevPs/u+jV6kgLI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=at4Wqri4EnCyzlcrOTehdUmeiLD+KwpiApzE8sJfQ1VI9wXwUAklMHO1qzmGrS4Xo
+         Mj3E/kUMMDsAgDE+6F2kMqhN+W40DXkgnl3Ov2zPgk6sOKOg8eWDMJg+ObgkmGy0JY
+         R03KkJizMeAc/9H1bxYg2DHtT+NU8WAPcfrn2eF6i0xcA5KHX6tRcZC3Y6iUoDN1B8
+         ThefWEEPo8Gf5DXC9z9HjNOJkMC+NFWliSR4fg8/v0kPZ2WC61Jgyh9dw1kXBx97fx
+         j7JmBis8qv+8raaw7960yXNRq9CT8AQNLNoinc2ygaXZNAuMKj6NBZXWym7JJfh7ww
+         2Vcy6uFV1PccQ==
+Date:   Mon, 20 Dec 2021 12:57:46 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     robh+dt@kernel.org, linus.walleij@linaro.org,
+        matthias.bgg@gmail.com, bgolaszewski@baylibre.com,
+        sean.wang@mediatek.com, bayi.cheng@mediatek.com,
+        gch981213@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v7 2/4] dt-bindings: spi: spi-mtk-nor: add new clock name
+ 'axi' for spi nor
+Message-ID: <YcB9ygan0g/13Uz5@sirena.org.uk>
+References: <20211220121825.6446-1-tinghan.shen@mediatek.com>
+ <20211220121825.6446-3-tinghan.shen@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="TR47X5VnHL9xPYNY"
+Content-Disposition: inline
+In-Reply-To: <20211220121825.6446-3-tinghan.shen@mediatek.com>
+X-Cookie: Christ was born in 4 B.C.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
 
-In order to validate multiple "if" conditionals, they must be part of an
-"allOf:" list, otherwise they will cause a failure in parsing the schema
-because of the duplicated "if" property.
+--TR47X5VnHL9xPYNY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Fixes: d7df3948eb49 ("dt-bindings: display: bridge: lvds-codec: Document pixel data sampling edge select")
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- .../bindings/display/bridge/lvds-codec.yaml   | 43 ++++++++++---------
- 1 file changed, 22 insertions(+), 21 deletions(-)
+On Mon, Dec 20, 2021 at 08:18:23PM +0800, Tinghan Shen wrote:
+> Some mtk spi nor has dedicated dma(s) inside. Add a new clock name, axi,
+> for spi nor dma bus clock.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-index 708de84ac138..5079c1cc337b 100644
---- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-@@ -94,31 +94,32 @@ properties:
- 
-   power-supply: true
- 
--if:
--  not:
--    properties:
--      compatible:
--        contains:
--          const: lvds-decoder
--then:
--  properties:
--    ports:
-+allOf:
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              const: lvds-decoder
-+    then:
-       properties:
--        port@0:
-+        ports:
-           properties:
--            endpoint:
-+            port@0:
-               properties:
--                data-mapping: false
-+                endpoint:
-+                  properties:
-+                    data-mapping: false
- 
--if:
--  not:
--    properties:
--      compatible:
--        contains:
--          const: lvds-encoder
--then:
--  properties:
--    pclk-sample: false
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              const: lvds-encoder
-+    then:
-+      properties:
-+        pclk-sample: false
- 
- required:
-   - compatible
--- 
-2.34.1
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
+--TR47X5VnHL9xPYNY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHAfckACgkQJNaLcl1U
+h9Da1Af+K65qLUvTTB2A+4DEfiym3syrCFx3PTWGF/cCBhyV8nzoEtsYcqGUOTFi
+AoS7keXjHItQnMdIhdJKLoIWVBxaYPq6kYzmSRNauSh+nYZmPD+6MDCWW4Kytj6w
+tjbpSyxR3kQVv0dcMyVd+s7tajVRhYalDTDR7BUNMhA8hAvlxm9zm0Og/hxY1sUl
+hY8M2Tc+DftJEY2B298TfS53ZwaHhI+m8rs7xLBQOg1UpObq1tqWJ/Hkt4nMbMxg
+bdB8oVMMHLWHFoNpWoHJymPXXgZ35SqQxLnmBnAhHjwBnzFtwSl0ErFCiQ+2HdoJ
+VvRxydsrTOpysC3/AWesYz9Ej3ghUQ==
+=hs52
+-----END PGP SIGNATURE-----
+
+--TR47X5VnHL9xPYNY--
