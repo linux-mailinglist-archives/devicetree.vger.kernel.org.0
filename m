@@ -2,124 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98BDD47AB37
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 15:21:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A08147AB42
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 15:27:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230429AbhLTOV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 09:21:28 -0500
-Received: from mail-ua1-f46.google.com ([209.85.222.46]:33378 "EHLO
-        mail-ua1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229759AbhLTOV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 09:21:28 -0500
-Received: by mail-ua1-f46.google.com with SMTP id a14so18051194uak.0;
-        Mon, 20 Dec 2021 06:21:27 -0800 (PST)
+        id S233613AbhLTO1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 09:27:50 -0500
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:38750 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230477AbhLTO1t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 09:27:49 -0500
+Received: by mail-oi1-f170.google.com with SMTP id r26so16031524oiw.5
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 06:27:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VBIOg+699OF2vWA/PGRG8mcPD9eo4a27l9bsWnwdKZk=;
-        b=j+BO694ortjTH2+dXjQsgM5YPqNawZzco84DFK6FG/QVWHfoJaE9HkzWFJNbXEDiXC
-         YAwhe4kUG9t8p6KXkMeDE8KUQuC+etpDMtZV1kxxWM/xTYE01WlaKVmFcXDzzNxaD8M3
-         pDxyI0WXiex0GO/JjMt0ID8EMwVpw587PVuvU+bhRoq9WnqWVl9drSOwFD/X2faV9bu/
-         4JurrDyCW5azYCQQP5jlFqwVW7kRGlC9yKJjtZu2dWXjbZFx8yXR4utQdKGKsRpDUzM6
-         D7/lr/TtHvr1jU3Y4KM8URZ2VB/URHU3AzFondvx7mtOIxz8zPssOMRlY3Cvzn+AzlpY
-         AJ4g==
-X-Gm-Message-State: AOAM532aEvyHG2xTNY69QCIHgwhLJACmKLce9FqlBmrlo/qWfsNnhJkT
-        reDiKVmDHIefB+cdsfAg5wn/f3sagIMtWQ==
-X-Google-Smtp-Source: ABdhPJxwshOqTIxSXjSZNa/PpWXH4C6eDiVXNWtoURsi8/M9fTHyuQC5MiUSE9z1DZSXZBIWr8Jnyw==
-X-Received: by 2002:a67:fb8a:: with SMTP id n10mr5124548vsr.6.1640010086997;
-        Mon, 20 Dec 2021 06:21:26 -0800 (PST)
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
-        by smtp.gmail.com with ESMTPSA id d124sm112449vkb.9.2021.12.20.06.21.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Dec 2021 06:21:26 -0800 (PST)
-Received: by mail-ua1-f46.google.com with SMTP id p2so17893452uad.11;
-        Mon, 20 Dec 2021 06:21:26 -0800 (PST)
-X-Received: by 2002:a67:c81c:: with SMTP id u28mr4281638vsk.38.1640010086188;
- Mon, 20 Dec 2021 06:21:26 -0800 (PST)
-MIME-Version: 1.0
-References: <d4a00def-7765-e0e4-c5c7-8d648eeb8cf2@omp.ru> <20211214140607.1147976-1-nikita.yoush@cogentembedded.com>
-In-Reply-To: <20211214140607.1147976-1-nikita.yoush@cogentembedded.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 20 Dec 2021 15:21:14 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW=MytCOsghcH9p1GXOPCO3=1mSF8PKj_UAjYEqAq4-1Q@mail.gmail.com>
-Message-ID: <CAMuHMdW=MytCOsghcH9p1GXOPCO3=1mSF8PKj_UAjYEqAq4-1Q@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: renesas: r8a77961: Add lvds0 device node
-To:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=0HF1/eEs4uNXgGgZaGJCwogk1k1+OMvFCdkf2UqV7d0=;
+        b=7p0/gNxj+4jR/j7RLn9iwIAjg/FX2Tm2BZJ7uFD8IInudAzX3sOwxJotiQ5/rWgpbC
+         +S5Om7/DKkjXhGQYv10U5an4q6yvkl6C6d2Jz+4yxDNXc/Ov+o5ZNZplu/wI8hLpvA7I
+         RV2X5Kbc9x7Y5NrPE30/DhJjZd+fnOPdrdQFVPQ0CnViYspl+wA8bWWQIRkMTBXGBh/k
+         MVA+DQ2Khp5r3bvFr0hpuTAfin+UHEiJHY21+lDsVtwKXHz8bwSMVKZeGgvFtW72/Gfw
+         LhHPGAW+BEQUtFBKC/8ebzEHm4UglEinL2VJJEP6EEfcvvmOmYq1UnauUcBOxTLkRO/a
+         r8AQ==
+X-Gm-Message-State: AOAM531nKvhV78Wey0TmZJFDAk1I32VM51mx5bW134epY/UXH0etkyc2
+        BbabEsmwrrSX+DL60iYLwQ==
+X-Google-Smtp-Source: ABdhPJwPZtPxdqBpHNVXFuZ1adLYUpT5JTnct7AZ2huqm1Mfpvpf7plLuN0/gFVgnqB2QKMqArVi4Q==
+X-Received: by 2002:a54:4019:: with SMTP id x25mr18152692oie.116.1640010469050;
+        Mon, 20 Dec 2021 06:27:49 -0800 (PST)
+Received: from robh.at.kernel.org ([12.252.7.226])
+        by smtp.gmail.com with ESMTPSA id z12sm3072301oor.45.2021.12.20.06.27.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Dec 2021 06:27:48 -0800 (PST)
+Received: (nullmailer pid 3388822 invoked by uid 1000);
+        Mon, 20 Dec 2021 14:27:43 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        dri-devel@lists.freedesktop.org,
+        Andy Yan <andy.yan@rock-chips.com>, devicetree@vger.kernel.org,
+        =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        kernel@pengutronix.de
+In-Reply-To: <20211220110630.3521121-12-s.hauer@pengutronix.de>
+References: <20211220110630.3521121-1-s.hauer@pengutronix.de> <20211220110630.3521121-12-s.hauer@pengutronix.de>
+Subject: Re: [PATCH 11/22] dt-bindings: display: rockchip: Add binding for VOP2
+Date:   Mon, 20 Dec 2021 08:27:43 -0600
+Message-Id: <1640010463.860879.3388821.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikita,
+On Mon, 20 Dec 2021 12:06:19 +0100, Sascha Hauer wrote:
+> The VOP2 is found on newer Rockchip SoCs like the rk3568 or the rk3566.
+> The binding differs slightly from the existing VOP binding, so add a new
+> binding file for it.
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+>  .../display/rockchip/rockchip-vop2.yaml       | 146 ++++++++++++++++++
+>  1 file changed, 146 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+> 
 
-On Tue, Dec 14, 2021 at 3:06 PM Nikita Yushchenko
-<nikita.yoush@cogentembedded.com> wrote:
-> Add the missing lvds0 node for the R-Car M3-W+ SoC.
->
-> Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Thanks for your patch!
+yamllint warnings/errors:
 
-> --- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> @@ -2718,6 +2718,33 @@ du_out_hdmi0: endpoint {
->                                 port@2 {
->                                         reg = <2>;
->                                         du_out_lvds0: endpoint {
-> +                                               remote-endpoint = <&lvds0_in>;
-> +                                       };
-> +                               };
-> +                       };
-> +               };
-> +
-> +               lvds0: lvds@feb90000 {
-> +                       compatible = "renesas,r8a7796-lvds";
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.example.dt.yaml: vop@fe040000: ports: Unevaluated properties are not allowed ('port@0', 'port@1', 'port@2' were unexpected)
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
 
-This should be "renesas,r8a77961-lvds".
-To handle that, both the DT bindings[1] and the driver[2] should
-be updated.
+doc reference errors (make refcheckdocs):
 
-[1] Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
-[2] drivers/gpu/drm/rcar-du/rcar_lvds.c
+See https://patchwork.ozlabs.org/patch/1570971
 
-> +                       reg = <0 0xfeb90000 0 0x14>;
-> +                       clocks = <&cpg CPG_MOD 727>;
-> +                       power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
-> +                       resets = <&cpg 727>;
-> +                       status = "disabled";
-> +
-> +                       ports {
-> +                               #address-cells = <1>;
-> +                               #size-cells = <0>;
-> +
-> +                               port@0 {
-> +                                       reg = <0>;
-> +                                       lvds0_in: endpoint {
-> +                                               remote-endpoint = <&du_out_lvds0>;
-> +                                       };
-> +                               };
-> +                               port@1 {
-> +                                       reg = <1>;
-> +                                       lvds0_out: endpoint {
->                                         };
->                                 };
->                         };
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-Gr{oetje,eeting}s,
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-                        Geert
+pip3 install dtschema --upgrade
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Please check and re-submit.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
