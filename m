@@ -2,83 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48A5447A379
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 03:06:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5271447A3C8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 04:13:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237147AbhLTCG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Dec 2021 21:06:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60924 "EHLO
+        id S237315AbhLTDNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Dec 2021 22:13:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237125AbhLTCG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Dec 2021 21:06:26 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3678C061574
-        for <devicetree@vger.kernel.org>; Sun, 19 Dec 2021 18:06:25 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 32E89B9C;
-        Mon, 20 Dec 2021 03:06:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1639965983;
-        bh=doVUZtwd5suRhhpyA1TOQ5UWylcW5PU8HR/k3Gpy9LU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oGs/Ukpy0P0ijodXgNAMUbGjMn6G1ZYq3bolXsskCIMG5IyhwSlzCYDtevcrXPvcV
-         RCJGCyAI70wq84ph/d9qI3T8TDZQwqlpS83Po4iKJtDD5ki9GMJqLU6uGyumHvuK9N
-         982lTvEV1qc3ev5sQ27mTRHnGjqW7E9A884v5qM0=
-Date:   Mon, 20 Dec 2021 04:06:21 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Marek Vasut <marex@denx.de>
-Cc:     dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: bridge: lvds-codec: Document TI
- DS90CF364A decoder
-Message-ID: <Yb/lHeBIFM1Ih7zo@pendragon.ideasonboard.com>
-References: <20211218152309.256183-1-marex@denx.de>
+        with ESMTP id S233033AbhLTDNv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Dec 2021 22:13:51 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21061C06173E
+        for <devicetree@vger.kernel.org>; Sun, 19 Dec 2021 19:13:51 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id m12so13669232ljj.6
+        for <devicetree@vger.kernel.org>; Sun, 19 Dec 2021 19:13:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=mF5wYxPSqdxf3ndDaiNpjYh7EExZO+92B2rlWd4Hn/w=;
+        b=H/hN9JtCLykDVNHSsTlSCCQbC1jeDpVXuzoQfGiqcOKtC70LixZK3hc4x9DnBgZyYy
+         1lLhpZ4uboMNb8eVCBGXv+DAuWFNdo9AJq8iZMJAPl7xxsDE0dNGDqyySE0w4YJ1yLgU
+         QaK+fHHXI5tJEgGPBjGRAbFYXb32mQxTV2jCQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=mF5wYxPSqdxf3ndDaiNpjYh7EExZO+92B2rlWd4Hn/w=;
+        b=DpKqGxDRPuYx69+dsZMxaApO7FKA1om9hXvxVcfXQpGpAFOYyrvF52zat0g8UpgvOP
+         mP3pHzPoRZc0v8xF8KUZr6xqmzjrQ+3xjdCZmUeEC4CD18wVb4ibiKAwjfvBJXys9Sxn
+         0LApkGYdyL8acX5+1ufElPjh0T6z7CABNq6lTOfHCHQ7M7JPX57xcoUa+yR8XSGnpm10
+         9fP1WdaA9fZj0H66JO5ytE23F7kmDaq0++QAJ2Ykv7pdPd2BGSCABqhY0Lse7TZRyAZ5
+         9xa01obu6RmDGZF17hwvoX/tbNN9ws+6c/frr82GYBLzw0GazGGfYU7Bm8+VKx1hlgS0
+         ukAw==
+X-Gm-Message-State: AOAM530BQNxGfoUCs3TgLMbFnZfB5Pb2QswosxGoarh5ogZ9RodJGnxF
+        Qnfnu95cNovXsHpCVbxuD6u+TMY6mqo+6RTy+fFqBg==
+X-Google-Smtp-Source: ABdhPJxunl6swmvnYR15PB/3dHuBiP42NrBlmSpRdVW8fHz4URsaEzdHg45SD9YGC11Q7qsqGbLcNVjoVI+7j1Re0fg=
+X-Received: by 2002:a2e:a54c:: with SMTP id e12mr13210214ljn.457.1639970029235;
+ Sun, 19 Dec 2021 19:13:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211218152309.256183-1-marex@denx.de>
+References: <20211106183802.893285-1-aford173@gmail.com> <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
+ <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com>
+ <8db00a4b6faa99c940d9bc86e17161eb0db5efe3.camel@ndufresne.ca>
+ <CAJ+vNU28UJffFv9jQ2KryJMudqYxvCaoVOVcU5dPqRA209iN6A@mail.gmail.com>
+ <d91532c2c0772f9aa708ead36b2a97203727a7ea.camel@ndufresne.ca>
+ <CAJ+vNU3H-V+bPoZ3qKead45h=W7AhQK6Lhjrx5ssdF4c_qfe=A@mail.gmail.com>
+ <CAHCN7x+0LwwU_rEST+TZxGquswGKL19gnTy9WLofsXtGAtWqdw@mail.gmail.com>
+ <7f94eaacfddb8c5434c17f1e069ea87a17657ce9.camel@ndufresne.ca>
+ <CAHCN7xKRzxMBmPbDobWTuvNNSpTXk5XENvfBnfkhRY3eZKhn6w@mail.gmail.com>
+ <CAHCN7xJFLNi_g+HX8PCy1Rkgf0jnWpO5QGYVz8nH19xrJkwHrA@mail.gmail.com>
+ <CAJ+vNU3zFd=6k_Emc5aafxKkGwCPp4crgOFezQ-E_MbWsn1_EA@mail.gmail.com>
+ <fed6c2fd7cf4971062c417ce41ed1e3812b900e0.camel@ndufresne.ca>
+ <CAHCN7xK+wROHaqDcsY-3WYFQ82qX17L-LHNL3siSWnWvwFShzQ@mail.gmail.com>
+ <CAAEAJfC1xXvemaFP+vTFVJ3S-SpYtrxyZgDamSOgLC1F3ua5xw@mail.gmail.com>
+ <CAHCN7x+UMMP6RXsNm0=OC=UTQzh=RKqQo6B7FD5e4eoJAEfmpg@mail.gmail.com>
+ <CAJ+vNU1epi9SwPMHkuDmKcb68RLemYF=bsp7AVnzz06zKc2efw@mail.gmail.com>
+ <CAAEAJfCpjk5nWWkJYjjDT-YEpJi4pTZqZbzp_if9OGC0HKspzw@mail.gmail.com>
+ <CAJ+vNU2we5mGXgYsR6CfimvFXZsc0zktR3fDa-h6RRa02jTT0g@mail.gmail.com>
+ <CAHCN7xJrM9uZUnmx65uTxWEo6HAkjozd3kD3UoEv-pYd5DV4QA@mail.gmail.com>
+ <CAAEAJfBXU-AiKKhkhXzgUSR4p1yefysNuHFycBz3F-GzNewS6w@mail.gmail.com>
+ <CAHCN7xL4y67V6AW5MV=8iudvvGVBWs2LoUhu_2CUJf6bSycgFA@mail.gmail.com>
+ <8438070708d16c34c0f79aba19e67fa343adb169.camel@ndufresne.ca>
+ <CAJ+vNU1ZxAAasKT8j1sfcFz1pk8fyYjwOW6wqxYq_ur8+2MX_Q@mail.gmail.com> <41f0e00cf5e57668b643b096e6bb69c67635c540.camel@ndufresne.ca>
+In-Reply-To: <41f0e00cf5e57668b643b096e6bb69c67635c540.camel@ndufresne.ca>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 20 Dec 2021 11:13:37 +0800
+Message-ID: <CAGXv+5H1qdvRPK0Qf_aNFpaipateW9ZD4R+AHYT0d4Y8RnWKBw@mail.gmail.com>
+Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
+To:     Nicolas Dufresne <nicolas@ndufresne.ca>
+Cc:     Tim Harvey <tharvey@gateworks.com>, Adam Ford <aford173@gmail.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-media <linux-media@vger.kernel.org>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        cstevens@beaconembedded.com,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+On Sat, Dec 18, 2021 at 1:52 AM Nicolas Dufresne <nicolas@ndufresne.ca> wro=
+te:
+> Le vendredi 17 d=C3=A9cembre 2021 =C3=A0 09:26 -0800, Tim Harvey a =C3=A9=
+crit :
+> > I'm not clear if anyone is working on IMX8MM VPU H1 support. You had
+> > mentioned that some support [1] and [2] can be derived from the RK3288
+> > using the Google ChromeOS method (a v4l2 plugin that simulates in
+> > userspace a stateful encoder). I'm not sure if this is worth pursuing
+> > if others are working on stateless encode support in kernel and
+> > gstreamer.
+>
+> My colleagues started last week the project of crafting mainline stateles=
+s
+> encoder uAPI. This is too early. In older project, we have had good succe=
+ss with
+> the emulated stateful encoder. It is of course quite limited, but works i=
+n
+> gstreamer, ffmpeg and chromium. It is also likely safer compared to the v=
+endor
+> provided driver.
 
-Thank you for the patch.
+If people still want to play with the old emulated stateful encoder, there
+is a forward-ported version in the ChromeOS v5.10 kernel now. Note that
+RK3288 (H1) support is untested. Also, RK3288 and RK3399 require different
+versions of the userspace plugin. And the RK3288 version might require some
+updates to add SELECTION API support.
 
-On Sat, Dec 18, 2021 at 04:23:09PM +0100, Marek Vasut wrote:
-> Add compatible string for TI DS90CF364A, which is another LVDS to DPI
-> decoder similar to DS90CF384A, except it is using smaller package and
-> only provides 18bit DPI bus.
 
-We could add a rule to disallow jeida-24 and vesa-24 when the compatible
-string contains ti,ds90cf384a, but that may be overkill.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: devicetree@vger.kernel.org
-> To: dri-devel@lists.freedesktop.org
-> ---
->  Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> index 1faae3e323a4..99c13f879916 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> @@ -39,6 +39,7 @@ properties:
->            - const: lvds-encoder # Generic LVDS encoder compatible fallback
->        - items:
->            - enum:
-> +              - ti,ds90cf364a # For the DS90CF364A FPD-Link LVDS Receiver
->                - ti,ds90cf384a # For the DS90CF384A FPD-Link LVDS Receiver
->            - const: lvds-decoder # Generic LVDS decoders compatible fallback
->        - enum:
-
--- 
-Regards,
-
-Laurent Pinchart
+ChenYu
