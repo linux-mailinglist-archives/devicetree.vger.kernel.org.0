@@ -2,133 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D309947B310
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 19:44:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0248447B319
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 19:45:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233798AbhLTSoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 13:44:05 -0500
-Received: from ixit.cz ([94.230.151.217]:43896 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231635AbhLTSoF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Dec 2021 13:44:05 -0500
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id DD44E24CC2;
-        Mon, 20 Dec 2021 19:44:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1640025843;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=0pAXOGja/2dmDtyWJXbtgamO/U+PNoS4/USu48pMSoo=;
-        b=YM9ipUAznpkqf8He96pds0edqlWHFPI6DbliXavDM6Ct6kHYY3+Gzq/S0j7SnpO+0WkKbG
-        PeqzaXvQC59We/1xa790TVMAsS4pJ4GUqbIIHImRbft7LZ2Uwfpuphs+tVukum4VagBWxX
-        +yKzWKCJtwgUpntVxl4FXzmWoDvGLZU=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: crypto: convert Qualcomm PRNG to yaml
-Date:   Mon, 20 Dec 2021 19:43:55 +0100
-Message-Id: <20211220184355.86582-1-david@ixit.cz>
-X-Mailer: git-send-email 2.34.1
+        id S240526AbhLTSpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 13:45:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60714 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240533AbhLTSpA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 13:45:00 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0749C061746
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 10:44:59 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id v19so8776316plo.7
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 10:44:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=WdbWOY03V2kpY7k/lf8oQTo4VEA2Vdp6umA4nuJEIuc=;
+        b=ofClJz4jo3PpFecYdRQZhVP85Bb8PtBQgBwgyp7zglJ53fJ18lBCJ1++xK5e2qbXTZ
+         gdVV854jGh9SJ8Z/7xSAottZKfoeVHL7nYCguLL9UOlLpyNXeNMtWHvVfTUylyVyVn0k
+         Gk3lDmZQ1sNFi9JwvcCeEoIbhcKLw5TktL9R8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=WdbWOY03V2kpY7k/lf8oQTo4VEA2Vdp6umA4nuJEIuc=;
+        b=7F/r6By2lbg4+EbdUb0apXkQz1gMcZXD8z2SU8j2YND4g87S+JRGY5NfrUIvGQIpmP
+         XN1ZmPz54C5Q8E0VfGZAunCSrmyM1xdwRAQH+NM5CJhG/AHnqXvZzGHdwNXYdsG6xn8R
+         NYRl1NgIqVPqvnmWaV2CKqPjHfIN9YAVW5OyvVfPgC56lMDv+JIz66TfagkHA6J1p5qk
+         6ML6ntvWQ65blw4ta/4n8dxjkqGg0ovzD7LSFGvkvmAkvpzXlVoavjQxWMgOjx0e44bv
+         y8ZNj5lBUOYyupBiZbZF2MSwuZXpoodutnhfo9Xx7I8C/RaQfnNPg+/PGKqVA6icu2hs
+         WsVw==
+X-Gm-Message-State: AOAM533WGs1jlRywkoikOD/uh/q7PrYxPhyVyAk4hMl1RuAMWTEueN9j
+        TzvIFJ7SH2/pr01Z0gAMXLNMTA==
+X-Google-Smtp-Source: ABdhPJyPQrHhFTVe7FBptsBwkry6fep3hyiTtJ3cgtGZkH8eIcRapLjFTx40/3fW35AjMX138/wVXQ==
+X-Received: by 2002:a17:902:e80f:b0:148:a949:93ab with SMTP id u15-20020a170902e80f00b00148a94993abmr17960692plg.113.1640025899153;
+        Mon, 20 Dec 2021 10:44:59 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:b6e8:fca9:3622:591e])
+        by smtp.gmail.com with UTF8SMTPSA id 72sm3775169pfu.70.2021.12.20.10.44.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Dec 2021 10:44:58 -0800 (PST)
+Date:   Mon, 20 Dec 2021 10:44:55 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Tony Lindgren <tony@atomide.com>,
+        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v17 7/7] usb: Specify dependencies on USB_XHCI_PLATFORM
+ with 'depends on'
+Message-ID: <YcDPJ1POD5oAqyLj@google.com>
+References: <20211116200739.924401-1-mka@chromium.org>
+ <20211116120642.v17.7.If248f05613bbb06a44eb0b0909be5d97218f417b@changeid>
+ <YbvSNta4jCxizaTa@google.com>
+ <b0b69294-e7fb-5e7a-80f3-466dd4bdc88a@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <b0b69294-e7fb-5e7a-80f3-466dd4bdc88a@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Qualcomm PRNG documentation to yaml format.
+On Fri, Dec 17, 2021 at 03:47:24AM +0300, Dmitry Osipenko wrote:
+> 17.12.2021 02:56, Matthias Kaehlcke пишет:
+> > On Tue, Nov 16, 2021 at 12:07:39PM -0800, Matthias Kaehlcke wrote:
+> >> Some USB controller drivers that depend on the xhci-plat driver
+> >> specify this dependency using 'select' in Kconfig. This is not
+> >> recommended for symbols that have other dependencies as it may
+> >> lead to invalid configurations. Use 'depends on' to specify the
+> >> dependency instead of 'select'.
+> >>
+> >> For dwc3 specify the dependency on USB_XHCI_PLATFORM in
+> >> USB_DWC3_HOST and USB_DWC3_DUAL_ROLE. Also adjust the
+> >> dependencies of USB_DWC3_CORE to make sure that at least one
+> >> of USB_DWC3_HOST, USB_DWC3_GADGET or USB_DWC3_DUAL_ROLE can be
+> >> selected.
+> >>
+> >> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> >> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> >> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> > 
+> > Note: This patch has been removed from the onboard_usb_hub series,
+> > together with "ARM: configs: Explicitly enable USB_XHCI_PLATFORM
+> > where needed" and "arm64: defconfig: Explicitly enable
+> > USB_XHCI_PLATFORM". These patches aren't any longer needed for the
+> > series. If maintainers think they are useful independently from
+> > the series please pick them or let me know what needs to be
+> > changed to get them landed.
+> > 
+> 
+> Hi,
+> 
+> I don't know what this all is about, perhaps I'm CC'ed semi-randomly
+> because touched that Kconfig once.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../devicetree/bindings/crypto/qcom,prng.txt  | 19 --------
- .../devicetree/bindings/crypto/qcom,prng.yaml | 43 +++++++++++++++++++
- 2 files changed, 43 insertions(+), 19 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/crypto/qcom,prng.txt
- create mode 100644 Documentation/devicetree/bindings/crypto/qcom,prng.yaml
+Yes, it seems tools select you based on their heuristics because you
+made changes to that file.
 
-diff --git a/Documentation/devicetree/bindings/crypto/qcom,prng.txt b/Documentation/devicetree/bindings/crypto/qcom,prng.txt
-deleted file mode 100644
-index 7ee0e9eac973..000000000000
---- a/Documentation/devicetree/bindings/crypto/qcom,prng.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--Qualcomm MSM pseudo random number generator.
--
--Required properties:
--
--- compatible  : should be "qcom,prng" for 8916 etc
--              : should be "qcom,prng-ee" for 8996 and later using EE
--		(Execution Environment) slice of prng
--- reg         : specifies base physical address and size of the registers map
--- clocks      : phandle to clock-controller plus clock-specifier pair
--- clock-names : "core" clocks all registers, FIFO and circuits in PRNG IP block
--
--Example:
--
--	rng@f9bff000 {
--		compatible = "qcom,prng";
--		reg = <0xf9bff000 0x200>;
--		clocks = <&clock GCC_PRNG_AHB_CLK>;
--		clock-names = "core";
--	};
-diff --git a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
-new file mode 100644
-index 000000000000..bb42f4588b40
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/crypto/qcom,prng.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Pseudo Random Number Generator
-+
-+maintainers:
-+  - Vinod Koul <vkoul@kernel.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,prng  # 8916 etc.
-+      - qcom,prng-ee  # 8996 and later using EE
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: core
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    rng@f9bff000 {
-+        compatible = "qcom,prng";
-+        reg = <0xf9bff000 0x200>;
-+        clocks = <&clk 125>;
-+        clock-names = "core";
-+    };
--- 
-2.34.1
+> All I can say here is that the commit message tells us "This is not
+> recommended" and doesn't explain what's the actual problem is being
+> solved. If there is no real problem, why bother?
 
+Earlier versions of the onboard_usb_hub series [1] which had a dependency
+involving USB_XHCI_PLATFORM had an issue with invalid (rand)configs
+that was related with the 'selects'.
+
+The series doesn't depend on USB_XHCI_PLATFORM any longer, hence the
+original issue doesn't exist anymore, however it might re-surface in
+the future.
+
+Personally I have no vested interest at this point in getting the
+config changes landed, I just wanted to make clear what the status
+is (split off from the series, no future versions unless someone
+requests them), rather than abandoning them silently.
+
+[1]: https://patchwork.kernel.org/project/linux-usb/list/?series=531343
