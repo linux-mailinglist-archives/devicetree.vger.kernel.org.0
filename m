@@ -2,53 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E16E747A68E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 10:03:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B64547A713
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 10:31:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229480AbhLTJDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 04:03:25 -0500
-Received: from mail.thewinner.com.pl ([188.93.233.70]:35814 "EHLO
-        mail.thewinner.com.pl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229474AbhLTJDY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 04:03:24 -0500
-X-Greylist: delayed 455 seconds by postgrey-1.27 at vger.kernel.org; Mon, 20 Dec 2021 04:03:24 EST
-Received: by mail.thewinner.com.pl (Postfix, from userid 1002)
-        id 8113086988; Mon, 20 Dec 2021 08:55:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=thewinner.com.pl;
-        s=mail; t=1639990548;
-        bh=CkcVTSey68YTCRD9z+3qJoCkYJozCg1QfZ8p9C9Dmws=;
-        h=Date:From:To:Subject:From;
-        b=H7VguC+rHHefxFxb7RTmetV9TpgPnGQiHVLYdRZWYGzcvQyAazZdeCSUzaVOOGL8j
-         0q6TpPB374OnSzrQc1VVV8/ugLx67nf68GUNxkCsMQYq4L5Tgmq09j4fIQ8SgW6UaT
-         RhpVs7FRQ6qbGe4m+1101oBJwG7OcpK060MIaL4oCX8zTaa7Wgeqrb1BnoTRFVAzN6
-         7IMjafLY8XkokaCPPUC2nB0F6tBIlMRKO4C5kTmHiAxV/VnSoCOGGdfMt21Mz8UQM/
-         sm1ZWLqr3lF6CXcpodVnOCn6SoUUnjp7XgQvfgiFMg56zWEa+gQrvODATncKh+91M0
-         xLF/RJGQG+uQg==
-Received: by mail.thewinner.com.pl for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 08:55:09 GMT
-Message-ID: <20211220074500-0.1.b.fv0.0.z05cmvesoj@thewinner.com.pl>
-Date:   Mon, 20 Dec 2021 08:55:09 GMT
-From:   "Mateusz Gawron" <mateusz.gawron@thewinner.com.pl>
-To:     <devicetree@vger.kernel.org>
-Subject: Wycena paneli fotowoltaicznych
-X-Mailer: mail.thewinner.com.pl
+        id S229567AbhLTJbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 04:31:45 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:59326
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229622AbhLTJbo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Dec 2021 04:31:44 -0500
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 565C84000D
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 09:31:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1639992700;
+        bh=q7I5LUCu0tEwQU8mlJ01Zkswbw7h7CV+lz20uT47oA0=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=UnAtfDVqH5nO07QRByZ/jipV5qcR4Mu/Q8EUoz0ehmuvMn0IVatgft7vL6J9xAAhh
+         MCcTSL5Rxlyhh+sXwENcE+cOMq2fiH1kIOAoga9jB39FGnUIvnrgY1cJF/6MjGugDa
+         QWXyXLp6TakDqD3xJvdXJ2y660ANSnvnDjMxSyx/qysLdUnC95B1kOB5Y0LQbQUvkN
+         Q3fiepwPMWV7gNkCaLZV7wEsScmn88mIWFfmARYRDfciT5mpgYRiHRj6YPOSCeflC0
+         TMsKLYuQH6VSBt8/wwi1hP/d9LPF66TSNqLzXNZASNqDZDhFGOJQbWx1pUyq54qfnE
+         xTCUnOZggDvug==
+Received: by mail-lf1-f72.google.com with SMTP id w18-20020a194912000000b004254e83978cso3783088lfa.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 01:31:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=q7I5LUCu0tEwQU8mlJ01Zkswbw7h7CV+lz20uT47oA0=;
+        b=cBUt66JD3w7rllHHwknmYRnFLvnZAD0HE8x35NpWwA5OeCd6h2BHpoHCSWoCxoETp3
+         6qcFvp4Ydzh6lrFqHAdoKct25Hyt/sOpyiueVVU1FZM4+FeTdhDpnOboLVSnEb5jkP6M
+         6K3lhyQO8zWsadseVMFYACr/iU8bhJigmxDeSkmhytqWBcfO01Sem519T9QYkcVs15r8
+         rPjUnNDAs6C4DfTgR98eZ+znAbGaeGx04dZ18Lgq+M1+Oh7OfxsR2D/F0ryLCf8if32S
+         0SDWIb7MFjPzs9Hzv2B/VUiq8Qb+jwyE9ueXHgmjAnPSiLuUKkEFa+kXPg6FXuRhIU+G
+         3XVQ==
+X-Gm-Message-State: AOAM533Grbo/Ds3AVNCU5px2+VymCa9EYrNXS5PoYBPaHwZ9Dm2oCRYn
+        ejK8UyoIeWdY7sjXa8axECDU9KhKaIee/mKXSOSFbuGJmOTVcakwccEfecwfh52uQSDijvY4p0g
+        g3+X7c/zjIsmY/J2nGazMrxJF8G0hsLMR05PkuEc=
+X-Received: by 2002:a05:651c:503:: with SMTP id o3mr14038820ljp.249.1639992696184;
+        Mon, 20 Dec 2021 01:31:36 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzgVVgGiKkGKbx4ide5sjyVaqJ3UmUjO0Zkflx9HK1jDuh36xwydUtGqYdkrGBefX8MPBCelg==
+X-Received: by 2002:a05:651c:503:: with SMTP id o3mr14038784ljp.249.1639992695825;
+        Mon, 20 Dec 2021 01:31:35 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id j19sm2466716lji.94.2021.12.20.01.31.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Dec 2021 01:31:34 -0800 (PST)
+Message-ID: <5bd5c0bf-4390-22c2-e4e0-cb02b80dfb9c@canonical.com>
+Date:   Mon, 20 Dec 2021 10:31:33 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v4 1/7] dt-bindings: clock: exynos850: Add bindings for
+ Exynos850 sysreg clocks
+Content-Language: en-US
+To:     Sylwester Nawrocki <snawrocki@kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Hao Fang <fanghao11@huawei.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20211217161549.24836-1-semen.protsenko@linaro.org>
+ <20211217161549.24836-2-semen.protsenko@linaro.org>
+ <2fdc5c97-6c19-8e70-d717-28b29d86160c@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <2fdc5c97-6c19-8e70-d717-28b29d86160c@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry,
+On 19/12/2021 23:29, Sylwester Nawrocki wrote:
+> On 17.12.2021 17:15, Sam Protsenko wrote:
+>> System Register is used to configure system behavior, like USI protocol,
+>> etc. SYSREG clocks should be provided to corresponding syscon nodes, to
+>> make it possible to modify SYSREG registers.
+>>
+>> While at it, add also missing PMU and GPIO clocks, which looks necessary
+>> and might be needed for corresponding Exynos850 features soon.
+>>
+>> Reviewed-by: Krzysztof Kozlowski<krzysztof.kozlowski@canonical.com>
+>> Acked-by: Rob Herring<robh@kernel.org>
+>> Acked-by: Chanwoo Choi<cw00.choi@samsung.com>
+>> Signed-off-by: Sam Protsenko<semen.protsenko@linaro.org>
+> 
+> Apologies for late reply, this patch is applied now.
+> 
 
-dostrzegam mo=C5=BCliwo=C5=9B=C4=87 wsp=C3=B3=C5=82pracy z Pa=C5=84stwa f=
-irm=C4=85.
+Sam,
 
-=C5=9Awiadczymy kompleksow=C4=85 obs=C5=82ug=C4=99 inwestycji w fotowolta=
-ik=C4=99, kt=C3=B3ra obni=C5=BCa koszty energii elektrycznej nawet o 90%.
+The clock is used in the DTSI, so since this was applied, there are only
+two choices now:
+1. wait for next cycle with DTSI and DTS,
+2. Resubmit with replacing the newly added clocks in DTSI/DTS with
+numbers and a TODO note.
 
-Czy s=C4=85 Pa=C5=84stwo zainteresowani weryfikacj=C4=85 wst=C4=99pnych p=
-ropozycji?
-
-
-Pozdrawiam,
-Mateusz Gawron
+Best regards,
+Krzysztof
