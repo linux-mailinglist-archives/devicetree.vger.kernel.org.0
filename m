@@ -2,208 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B97FB47AB40
-	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 15:27:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DB8547AB9A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Dec 2021 15:38:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233526AbhLTO1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 09:27:48 -0500
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:38751 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230477AbhLTO1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 09:27:47 -0500
-Received: by mail-oi1-f174.google.com with SMTP id r26so16031442oiw.5
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 06:27:47 -0800 (PST)
+        id S234276AbhLTOh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 09:37:56 -0500
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:44863 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234003AbhLTOhc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 09:37:32 -0500
+Received: by mail-oi1-f175.google.com with SMTP id be32so16010867oib.11;
+        Mon, 20 Dec 2021 06:37:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=+RHoxMpuEpHG0UzNs2k3zfnd4Ojr3kUgEGPH8PnzgdQ=;
-        b=FsqvhwdxT85NvPkpmAOCLRmxijLUrHacZAjbSIzZJHY9JUzaxm7IoFcwMovILQNlii
-         mTnnuNFL9kwB/0tPNRqdmpsEHnvgKr7aewjcQuqcMVoFneQOoimk4tRVGyOsZswy7RU0
-         MzKVm77Xj7SdCdlrHo0aNAZ4/49HerbwhvAnIeX6+ZLVS9Cc7o1dsfkpJAYwOsotfGp3
-         2vnFiUpPCA+eydNCNNLtO+HrKGzOLpVvbyX7x/bKr6UTjN8y/EPF0b42YCpgowKSUzVE
-         25U6kzaNsIsy9yKVfL4ECIn4WLXNXKL5MIW/GjtSGiS8O77QT31OMV8+cxyRbEzNPsCu
-         D2Hg==
-X-Gm-Message-State: AOAM532FUFCyYVa58IynYEGJz3+s6NsWqhlTvXdmWQ8qSct06ZbrdDFe
-        z30hr7xA6aV46bSMZgmTzQ==
-X-Google-Smtp-Source: ABdhPJyjP75XwCukBG7nWeGcCx4c0dVbMWVgeytmYBFDArfVl+OVzUPBh/RyWLS0aCiQ6qQVAmYt3w==
-X-Received: by 2002:a05:6808:1597:: with SMTP id t23mr12132474oiw.24.1640010467360;
-        Mon, 20 Dec 2021 06:27:47 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MX2xD6NxZlK32RqDAc9k/pbvJlT/hpUSltlaWuBfZyY=;
+        b=EFHAOJhyVqLeqLC/eUZp83i4qW9h4YsxiQz2Endqotu0xrixWxvWd51u/Mqkb7sMio
+         h1Lyk7zHU/w+XXWEEgVN3nKVgjv6g+RLXclq7nzzprAVXh4W9b+Ozxm4O1+5k8KN+6xy
+         XqTGAUAk5YcfTKNpVtaCVP0Ahj97GESfyZvC+rm5DzW0nr/SXBiyg96cardibAGmTXYx
+         BaRm7Y5xBsHam/DpXYVW8zj5cr4360MEa6PZsVWOd6/6IzxloEx6JGSaTz2a1rZExP2y
+         EmyzyOLEyAkn0MqxUzZBstAbOTf9K9C8J7lupepcNiEftPFer015i4OyhcLXUFuc/ZCj
+         RsTw==
+X-Gm-Message-State: AOAM531PojBh0b0PMiH0ad3dIU3BUpU2gh04Izx25rJJo1R2ztYNFii1
+        Du0pl3Pu0uP9Z+ShpT1I/A==
+X-Google-Smtp-Source: ABdhPJwb8Epp66kgn5FAQJGNGoQLiIht6dxhdac9TXEyh6nIWNGhfonlF1xdobHH+VltWNqopZLZIQ==
+X-Received: by 2002:a05:6808:11:: with SMTP id u17mr1043535oic.88.1640011051574;
+        Mon, 20 Dec 2021 06:37:31 -0800 (PST)
 Received: from robh.at.kernel.org ([12.252.7.226])
-        by smtp.gmail.com with ESMTPSA id 23sm3245049oty.6.2021.12.20.06.27.46
+        by smtp.gmail.com with ESMTPSA id ay40sm3423367oib.1.2021.12.20.06.37.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Dec 2021 06:27:46 -0800 (PST)
-Received: (nullmailer pid 3388826 invoked by uid 1000);
-        Mon, 20 Dec 2021 14:27:43 -0000
+        Mon, 20 Dec 2021 06:37:30 -0800 (PST)
+Received: (nullmailer pid 3403888 invoked by uid 1000);
+        Mon, 20 Dec 2021 14:37:28 -0000
+Date:   Mon, 20 Dec 2021 08:37:28 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        dri-devel@lists.freedesktop.org, Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-In-Reply-To: <20211220110630.3521121-10-s.hauer@pengutronix.de>
-References: <20211220110630.3521121-1-s.hauer@pengutronix.de> <20211220110630.3521121-10-s.hauer@pengutronix.de>
-Subject: Re: [PATCH 09/22] dt-bindings: display: rockchip: dw-hdmi: Add regulator support
-Date:   Mon, 20 Dec 2021 08:27:43 -0600
-Message-Id: <1640010463.883061.3388825.nullmailer@robh.at.kernel.org>
+To:     conor.dooley@microchip.com
+Cc:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, broonie@kernel.org,
+        gregkh@linuxfoundation.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
+        krzysztof.kozlowski@canonical.com, geert@linux-m68k.org,
+        bin.meng@windriver.com, heiko@sntech.de, lewis.hanly@microchip.com,
+        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
+        atish.patra@wdc.com
+Subject: Re: [PATCH v2 07/17] dt-bindings: rtc: add bindings for microchip
+ mpfs rtc
+Message-ID: <YcCVKFm+7aEG2FYH@robh.at.kernel.org>
+References: <20211217093325.30612-1-conor.dooley@microchip.com>
+ <20211217093325.30612-8-conor.dooley@microchip.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211217093325.30612-8-conor.dooley@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Dec 2021 12:06:17 +0100, Sascha Hauer wrote:
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->  .../bindings/display/rockchip/rockchip,dw-hdmi.yaml   | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+On Fri, Dec 17, 2021 at 09:33:15AM +0000, conor.dooley@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
+> Add device tree bindings for the real time clock on
+> the Microchip PolarFire SoC.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> ---
+>  .../bindings/rtc/microchip,mfps-rtc.yaml      | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+> new file mode 100644
+> index 000000000000..d57460cbe5e3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/microchip,mfps-rtc.yaml#
+> +
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip PolarFire Soc (MPFS) RTC Device Tree Bindings
+> +
+> +allOf:
+> +  - $ref: rtc.yaml#
+> +
+> +maintainers:
+> +  - Daire McNamara <daire.mcnamara@microchip.com>
+> +  - Lewis Hanly <lewis.hanly@microchip.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - microchip,mpfs-rtc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 2
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Need to define what each one is.
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
-
-Full log is available here: https://patchwork.ozlabs.org/patch/1570969
-
-
-hdmi@200a0000: clock-names:0: 'iahb' was expected
-	arch/arm/boot/dts/rk3228-evb.dt.yaml
-	arch/arm/boot/dts/rk3229-evb.dt.yaml
-	arch/arm/boot/dts/rk3229-xms6.dt.yaml
-
-hdmi@200a0000: clock-names:1: 'isfr' was expected
-	arch/arm/boot/dts/rk3228-evb.dt.yaml
-	arch/arm/boot/dts/rk3229-evb.dt.yaml
-	arch/arm/boot/dts/rk3229-xms6.dt.yaml
-
-hdmi@200a0000: pinctrl-names: ['default'] is too short
-	arch/arm/boot/dts/rk3228-evb.dt.yaml
-	arch/arm/boot/dts/rk3229-evb.dt.yaml
-	arch/arm/boot/dts/rk3229-xms6.dt.yaml
-
-hdmi@200a0000: ports:port: 'endpoint@1' is a required property
-	arch/arm/boot/dts/rk3229-xms6.dt.yaml
-
-hdmi@200a0000: Unevaluated properties are not allowed ('reg', 'interrupts', 'pinctrl-names', 'pinctrl-0', 'resets', 'reset-names', 'ports' were unexpected)
-	arch/arm/boot/dts/rk3228-evb.dt.yaml
-	arch/arm/boot/dts/rk3229-evb.dt.yaml
-	arch/arm/boot/dts/rk3229-xms6.dt.yaml
-
-hdmi@ff3c0000: interrupts: [[0, 35, 4], [0, 71, 4]] is too long
-	arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-a1.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-evb.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-rock64.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-roc-pc.dt.yaml
-
-hdmi@ff3c0000: pinctrl-names: ['default'] is too short
-	arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-a1.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-evb.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-rock64.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-roc-pc.dt.yaml
-
-hdmi@ff3c0000: ports:port: 'endpoint@0' is a required property
-	arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-a1.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-rock64.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-roc-pc.dt.yaml
-
-hdmi@ff3c0000: ports:port: 'endpoint@1' is a required property
-	arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-a1.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-rock64.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-roc-pc.dt.yaml
-
-hdmi@ff3c0000: Unevaluated properties are not allowed ('reg', 'interrupts', 'pinctrl-names', 'pinctrl-0', '#sound-dai-cells', 'ports' were unexpected)
-	arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-a1.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-evb.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-rock64.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3328-roc-pc.dt.yaml
-
-hdmi@ff940000: clock-names:4: 'vpll' was expected
-	arch/arm64/boot/dts/rockchip/rk3399-evb.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-ficus.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-firefly.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet-dumo.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet-inx.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet-kd.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-khadas-edge-captain.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-khadas-edge-v.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4b.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-nanopi-neo4.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-orangepi.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399pro-rock-pi-n10.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rock960.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a-plus.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rockpro64-v2.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-roc-pc-mezzanine.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-sapphire.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-sapphire-excavator.dt.yaml
-
-hdmi@ff940000: pinctrl-names: ['default'] is too short
-	arch/arm64/boot/dts/rockchip/rk3399-ficus.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-firefly.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-khadas-edge-captain.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-khadas-edge-v.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4b.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-nanopi-neo4.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399pro-rock-pi-n10.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rock960.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a-plus.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-rockpro64-v2.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-roc-pc-mezzanine.dt.yaml
-	arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dt.yaml
-
-hdmi@ff980000: pinctrl-names: ['default'] is too short
-	arch/arm/boot/dts/rk3288-firefly-reload.dt.yaml
-	arch/arm/boot/dts/rk3288-rock-pi-n8.dt.yaml
-	arch/arm/boot/dts/rk3288-tinker-s.dt.yaml
-
+> +
+> +  microchip,prescaler:
+> +    description: |
+> +      The prescaler divides the input frequency to create a time-based strobe (typically 1 Hz) for
+> +      the calendar counter. The Alarm and Compare Registers, in conjunction with the calendar
+> +      counter, facilitate time-matched events. To properly operate in Calendar or Binary mode,
+> +      the 26-bit prescaler must be programmed to generate a strobe to the RTC.
+> +    maxItems: 1
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: rtc
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/microchip,mpfs-clock.h>
+> +    rtc@20124000 {
+> +        compatible = "microchip,mpfs-rtc";
+> +        reg = <0x20124000 0x1000>;
+> +        clocks = <&clkcfg CLK_RTC>;
+> +        clock-names = "rtc";
+> +        interrupts = <80>, <81>;
+> +    };
+> +...
+> -- 
+> 2.33.1
+> 
+> 
