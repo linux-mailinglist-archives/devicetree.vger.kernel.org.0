@@ -2,207 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0144C47C84C
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 21:36:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 926BE47C864
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 21:48:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234252AbhLUUgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 15:36:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47124 "EHLO
+        id S234905AbhLUUsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 15:48:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234228AbhLUUgB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 15:36:01 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4D2C061401
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 12:36:00 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id y13so56696655edd.13
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 12:36:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Cc6k9W/5KfQMrfyUUbcF3m3pmI+HBcvfTZyXhfKLqOs=;
-        b=h7MPCyL+EHZrC4Y/I7Y0lwFUgli6cxS3tAi+3LKS9vdzt4d14V1Cig7wPV/y9Z5IxT
-         PSkrkW9GaG9D1cOpBAErHINKSrWkxJjJHo3bQSKg3aqRSG4zKRjRITOKZ6EQA+e5qGxc
-         EyWREyrlqsi4RSyIgZ52fvR/3UVmUVGbW7f77ghn53LJbQYRymBnaI2G1nqRmVcv8gIn
-         qnuPu5xgDK2fiLpRIZasThv5XxXaabpG7PQVQrZc4GymdqYSYjl/+LEFF8EYXMPl9qr+
-         rqcD/eQTz6PZt0TcGJ0IkBQy86ohG3L3GPg/BO+VSEIa8+W5jAb/+oAqmIHsGFfQ3ueI
-         FRGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Cc6k9W/5KfQMrfyUUbcF3m3pmI+HBcvfTZyXhfKLqOs=;
-        b=oh9Wt3Mzbap8ncXG9HnvYlZ2znEorQpHG4aDsND1dZZdsyeY3U7CRrK4W4cvQslzNu
-         7rkG9lI7qZzIq9h02rS4+c0zmzWuCt8OHzhpRPdc2SbRts0nbkQqhTlxjOaaCX8boduD
-         B0TFx53qhifa0Dl2JlE6XCI4cwm/dVHWACmZRyIwbrHJR4pD1QDF7nJO68aFXIGrT3R1
-         ZvAPoFwLJ8ycYPRjsygqvULnn0DG/KXSocscaJvuFLcfId21iorccIVhc6K426RAzHVg
-         +O4Mf87ynND/2oyVQBcLafh1BmLMd1tRyX6b4OFYrTD/VCUtT4A+UoYRADZpgtp8cceU
-         wWkA==
-X-Gm-Message-State: AOAM533evaq5O1y6Rq5uIjxSyZPj3JFlGwk0fCn2KXj0Ny8Pt8vlFMv7
-        JxNX0MuE0ZDLrJI82giLpg9RvYumu74DPa+9W30ymg==
-X-Google-Smtp-Source: ABdhPJw4NoxOta8RDzBYWeAyXef7SIR5pNNJsoCUsWvqRGDAGe1kmXiasiKHXPhhCOhcJCuU57vw3i0YMkGzEicUjGI=
-X-Received: by 2002:aa7:c513:: with SMTP id o19mr11315edq.41.1640118959010;
- Tue, 21 Dec 2021 12:35:59 -0800 (PST)
-MIME-Version: 1.0
-References: <20211220210643.47842-1-pmenzel@molgen.mpg.de> <CAE_wzQ_Lg1ODV5sEqtW=SauhSXxi6+fh3msOuhnJy8-sNtORcg@mail.gmail.com>
- <CABXOdTeNy3jQ5aQijw9HTpwcNvkEJmddz9yf0Mk-Z+78bDDN-A@mail.gmail.com> <8a7fad1b-b34d-88db-2f6b-462303fe03d9@molgen.mpg.de>
-In-Reply-To: <8a7fad1b-b34d-88db-2f6b-462303fe03d9@molgen.mpg.de>
-From:   Guenter Roeck <groeck@google.com>
-Date:   Tue, 21 Dec 2021 12:35:47 -0800
-Message-ID: <CABXOdTfB4M8AcCOVERpQwddr_N09gpKF67FxRO32S4M9JUaYEQ@mail.gmail.com>
-Subject: Re: [PATCH] CHROMIUM: i2c: Add device property for probing
-To:     Paul Menzel <pmenzel@molgen.mpg.de>
-Cc:     Dmitry Torokhov <dtor@chromium.org>, Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Tim Wawrzynczak <twawrzynczak@chromium.org>,
-        coreboot@coreboot.org, Matt DeVillier <matt.devillier@gmail.com>,
-        Felix Singer <felixsinger@posteo.net>,
-        Benson Leung <bleung@chromium.org>,
-        Justin TerAvest <teravest@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>, linux-i2c@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-acpi@vger.kernel.org, Sangwon Jee <jeesw@melfas.com>
+        with ESMTP id S233546AbhLUUsw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 15:48:52 -0500
+Received: from sipsolutions.net (s3.sipsolutions.net [IPv6:2a01:4f8:191:4433::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 201CAC061574;
+        Tue, 21 Dec 2021 12:48:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
+        Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
+        Resent-Cc:Resent-Message-ID; bh=52nPiLeCIbzbs31AEDsXVWz0++v57IOwZujp1/Gj768=;
+        t=1640119732; x=1641329332; b=kPlwQxzuv9B8AWNCnyZ3uGveJZYtc7CAqyHYhRV/X4lbiYp
+        G9LR76ezsBc2I4ItYerEMVQ+iKJz95o/GgGsW7ZIGJK/0Eot2FAJY3UTzpDp8mZ5cy4NOWX+KGZAQ
+        IXZJzv3jyOEEMtjWJqKufmzwk3tryP7D8sDWvk2IY+KgSKUYJXBRwrsnwJI77Opyj6nSkkIZIlKiy
+        2aZXNN3UxCbypAjaUpt7ueKnKJ3m9avmaJJmUajamg9nBFZZEN8CjNu2jxNK30VSyAAe2J4dybsGl
+        vNX1KtlTh8KrWe+U/oyRUo89WCx44DAfSZ++dJIXe/1tso58cxN/CdqVSy0UddoQ==;
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+        (Exim 4.95)
+        (envelope-from <johannes@sipsolutions.net>)
+        id 1mzm3g-00Eijv-7p;
+        Tue, 21 Dec 2021 21:48:28 +0100
+Message-ID: <5f104044649ec60ba93648e68c3df2183e032072.camel@sipsolutions.net>
+Subject: Re: [PATCH] um: virtio_uml: allow probing from devicetree
+From:   Johannes Berg <johannes@sipsolutions.net>
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        Jeff Dike <jdike@addtoit.com>,
+        Richard Weinberger <richard@nod.at>,
+        Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     kernel@axis.com, devicetree@vger.kernel.org,
+        linux-um@lists.infradead.org, linux-kernel@vger.kernel.org
+Date:   Tue, 21 Dec 2021 21:48:26 +0100
+In-Reply-To: <20211221090447.1567-1-vincent.whitchurch@axis.com>
+References: <20211221090447.1567-1-vincent.whitchurch@axis.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-malware-bazaar: not-scanned
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 21, 2021 at 11:42 AM Paul Menzel <pmenzel@molgen.mpg.de> wrote:
->
-> Dear Guenter, dear Dmitry,
->
->
-> Am 21.12.21 um 17:47 schrieb Guenter Roeck:
-> > On Mon, Dec 20, 2021 at 1:49 PM Dmitry Torokhov <dtor@chromium.org> wro=
-te:
->
-> >> On Mon, Dec 20, 2021 at 1:07 PM Paul Menzel <pmenzel@molgen.mpg.de> wr=
-ote:
-> >>>
-> >>> From: Furquan Shaikh <furquan@google.com>
->
-> >>> Google Chromebooks are often built with devices sourced from differen=
-t
-> >>> vendors. These need to be probed. To deal with this, the firmware =E2=
-=80=93 in
-> >>> this case coreboot =E2=80=93 tags such optional devices accordingly =
-=E2=80=93 I think
-> >>> this is commit fbf2c79b (drivers/i2c/generic: Add config for marking
-> >>> device as probed) =E2=80=93 and Chromium OS=E2=80=99 Linux kernel has=
- the patch at hand
-> >>> applied to act accordingly. Right after the merge, Dmitry created a
-> >>> revert, which was actively discussed for two days but wasn=E2=80=99t =
-applied.
-> >>> That means, millions of devices shipped with such a firmware and Linu=
-x
-> >>> kernel. To support these devices with upstream Linux kernel, is there=
- an
-> >>> alternative to applying the patch to the Linux kernel, and to support
-> >>> the shipped devices?
-> >>
-> >> *sigh* I should have pushed harder, but I see it managed to
-> >> proliferate even into our newer kernels. Not having this patch should
-> >> not cause any problems, it can only hurt, because the i2c core has no
-> >> idea how to power up and reset the device properly. The only downside
-> >> of not having this patch is that we may have devices in sysfs that are
-> >> not connected to actual hardware. They do now cause any problems and
-> >> is how we have been shipping ARM-based devices where we also dual- and
-> >> triple-source components. However if we were to have a device that
-> >> switches between several addresses (let's say device in bootloader
-> >> mode uses 0x10 address and in normal mode 0x20) this "probing" may
-> >> result in device not being detected at all.
->
-> On google/sarien, the (upstream) Linux kernel sometimes detects the
-> Melfas touchscreen and sometimes not, but in never works. When it=E2=80=
-=99s
-> detected, the errors below are still shown.
->
-> ```
-> $ grep i2c voidlinux-linux-5.13.19-messages.txt
-> [    9.392598] i2c i2c-7: 2/2 memory slots populated (from DMI)
-> [    9.393108] i2c i2c-7: Successfully instantiated SPD at 0x50
-> [    9.622151] input: MELFAS MIP4 Touchscreen as
-> /devices/pci0000:00/0000:00:15.0/i2c_designware.0/i2c-8/i2c-MLFS0000:00/i=
-nput/input6
-> [    9.657964] cr50_i2c i2c-GOOG0005:00: cr50 TPM 2.0 (i2c 0x50 irq 114
-> id 0x28)
-> [    9.662309] elan_i2c i2c-ELAN0000:00: supply vcc not found, using
-> dummy regulator
-> [    9.773244] elan_i2c i2c-ELAN0000:00: Elan Touchpad: Module ID:
-> 0x00d6, Firmware: 0x0005, Sample: 0x0009, IAP: 0x0001
-> [    9.773349] input: Elan Touchpad as
-> /devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-9/i2c-ELAN0000:00/i=
-nput/input7
-> [   10.820307] i2c_designware i2c_designware.0: controller timed out
-> [   10.820359] mip4_ts i2c-MLFS0000:00: mip4_i2c_xfer - i2c_transfer
-> failed: -110 (-110)
-> [   11.844523] i2c_designware i2c_designware.0: controller timed out
-> [   11.844635] mip4_ts i2c-MLFS0000:00: mip4_i2c_xfer - i2c_transfer
-> failed: -110 (-110)
-> [   12.868376] i2c_designware i2c_designware.0: controller timed out
-> [   12.868488] mip4_ts i2c-MLFS0000:00: mip4_i2c_xfer - i2c_transfer
-> failed: -110 (-110)
-> [   12.868570] mip4_ts i2c-MLFS0000:00: Failed to read packet info: -110
-> ```
->
-> Is that related to the probing stuff?
->
+On Tue, 2021-12-21 at 10:04 +0100, Vincent Whitchurch wrote:
+> Allow the virtio_uml device to be probed from the devicetree so that
+> sub-devices can be specified using the standard virtio bindings, for
+> example:
+> 
+>   virtio@1 {
+>     compatible = "virtio,uml";
+>     socket-path = "i2c.sock";
+>     virtio-device-id = <0x22>;
+> 
 
-Difficult to say without further testing. I can see two possible
-problems: The device may sometimes not be seen because it is powered
-off, and/or interrupt handling may not work properly.  You could apply
-the patch (commit 11cd1bd03f75 in chromeos-5.15) and see if it
-improves the situation. I would also suggest applying commit
-b4b55381e5cf ("CHROMIUM: Input: elants_i2c: Default to low level
-interrupt for Chromebooks") from chromeos-4.19.
+Given this, maybe it should modify
+Documentation/devicetree/bindings/virtio/virtio-device.yaml? Or actually
+add a new Documentation/devicetree/bindings/virtio/uml.yaml I guess?
 
-Guenter
++Rob, because I'm not really into any of this.
 
-> >> If we wanted to do this correctly, coreboot would have to implement
-> >> full power and reset control and also add drivers for I2C controllers
-> >> to be able to communicate with peripherals, and then adjust _STA
-> >> methods to report "not present" when the device is indeed absent. And
-> >> note that even in this case we would have issues with "morphing
-> >> devices", so coreboot would also need to know how to reset device out
-> >> of bootloader mode, and maybe flash firmware so device can work in
-> >> normal mode.
->
-> What do you mean by =E2=80=9Cbootloader mode=E2=80=9D? coreboot also cann=
-ot flash
-> anything. That=E2=80=99s up to the payload, and even there support for fl=
-ashing
-> is rare.
->
-> Duncan wrote something about the ACPI _STA method idea, that ASL(?) and
-> I2C do not go well together.
->
-> >> However coreboot does (or did?) not want to add code to handle i2c
-> >> controllers, and would like to push this knowledge to the kernel. And
-> >> the kernel does know how to handle peripherals properly, but that
-> >> knowledge lies in individual drivers, not i2c core.
->
-> Excuse my ignorance, can you give an example driver? Does the Melfas
-> touchscreen driver (`drivers/input/touchscreen/melfas_mip4.c`) support it=
-?
->
-> >> We should remove "linux,probed" from coreboot and not propagate to
-> >> newer Chrome OS kernels, and keep it away from upstream.
-> >
-> > Revert from chromeos-5.15 is at
-> > https://chromium-review.googlesource.com/c/chromiumos/third_party/kerne=
-l/+/3350347.
-> > Everyone please feel free to comment there.
->
-> Guenther, thank you for your quick response. Note, that neither Furquan,
-> nor Aaron, nor Duncan work at Google anymore, so won=E2=80=99t comment.
-> Hopefully, others from the Chromium OS/coreboot folks can chime in.
->
->
-> Kind regards,
->
-> Paul
+Also, I'm not even sure we should/need to document the DT bits that are
+basically only used for testing in the first place?
+
+Code looks good to me.
+
+johannes
