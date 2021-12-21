@@ -2,86 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0004547C570
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 18:50:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7249C47C573
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 18:51:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240636AbhLURux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 12:50:53 -0500
-Received: from aposti.net ([89.234.176.197]:39354 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240646AbhLURux (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 12:50:53 -0500
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+        id S240666AbhLURvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 12:51:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37020 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240646AbhLURu7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 12:50:59 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 557E3C061574;
+        Tue, 21 Dec 2021 09:50:59 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EA301616BA;
+        Tue, 21 Dec 2021 17:50:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4AD4C36AE9;
+        Tue, 21 Dec 2021 17:50:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640109058;
+        bh=5f+E7cJULqIn1P5GZHZpSxW+++jdp1IvvCYJFitA2bE=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=RO079kw1zrxfLpiu9+IoGDdHZZICfml4yYeLh2QQd3uiht3M1IrOGkMbejVV/Pjv1
+         0dg1mCJtKhqLc8LFREepRu6wVHNothqXpKExMxsHc9IMZ4VBtV/hhBbQQcHO82mHVB
+         5dUjJD2x/6eSjikgHURtiZBUiDLFm0qL8gs4WcPO6EiEzUN3ZTticrIDheJYbBVoNi
+         At+eiHgWP1fS2mU8dqd8DFFOemqh0O5C5o6MUoT/zzdeLCQcK1+yv4GXt7VL7urdcE
+         Zz6mi6Ma6UfLHcWlRsBK4UJqEj9IdtOm9sTc5dqD3kcj7fgBtaNnhmAjKlRaCQzeuC
+         fxkk1JZ60L4CA==
+From:   Mark Brown <broonie@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        David Heidelberg <david@ixit.cz>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>
-Subject: [PATCH 2/2] hwmon: Add "label" attribute
-Date:   Tue, 21 Dec 2021 17:50:29 +0000
-Message-Id: <20211221175029.144906-3-paul@crapouillou.net>
-In-Reply-To: <20211221175029.144906-1-paul@crapouillou.net>
-References: <20211221175029.144906-1-paul@crapouillou.net>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-tegra@vger.kernel.org
+In-Reply-To: <20211216160229.17049-1-digetx@gmail.com>
+References: <20211216160229.17049-1-digetx@gmail.com>
+Subject: Re: [PATCH v1] dt-bindings: sound: tegra-audio-rt5677: Correct example
+Message-Id: <164010905640.2818037.9602407885797991307.b4-ty@kernel.org>
+Date:   Tue, 21 Dec 2021 17:50:56 +0000
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If a label is defined in the device tree for this device add that
-to the device specific attributes. This is useful for userspace to
-be able to identify an individual device when multiple identical
-chips are present in the system.
+On Thu, 16 Dec 2021 19:02:29 +0300, Dmitry Osipenko wrote:
+> Remove non-existent properties from the example of the binding. These
+> properties were borrower from the old txt binding, but they were never
+> used in practice and aren't documented in the new binding. They aren't
+> reported by the binding checker because dtschema needs extra patch that
+> hasn't been upstreamed yet to make unevaluatedProperties work properly.
+> 
+> 
+> [...]
 
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-Tested-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
----
- drivers/hwmon/hwmon.c | 22 +++++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+Applied to
 
-diff --git a/drivers/hwmon/hwmon.c b/drivers/hwmon/hwmon.c
-index 3501a3ead4ba..15826260a463 100644
---- a/drivers/hwmon/hwmon.c
-+++ b/drivers/hwmon/hwmon.c
-@@ -71,8 +71,23 @@ name_show(struct device *dev, struct device_attribute *attr, char *buf)
- }
- static DEVICE_ATTR_RO(name);
- 
-+static ssize_t
-+label_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	const char *label;
-+	int ret;
-+
-+	ret = device_property_read_string(dev, "label", &label);
-+	if (ret < 0)
-+		return ret;
-+
-+	return sysfs_emit(buf, "%s\n", label);
-+}
-+static DEVICE_ATTR_RO(label);
-+
- static struct attribute *hwmon_dev_attrs[] = {
- 	&dev_attr_name.attr,
-+	&dev_attr_label.attr,
- 	NULL
- };
- 
-@@ -81,7 +96,12 @@ static umode_t hwmon_dev_name_is_visible(struct kobject *kobj,
- {
- 	struct device *dev = kobj_to_dev(kobj);
- 
--	if (to_hwmon_device(dev)->name == NULL)
-+	if (attr == &dev_attr_name.attr &&
-+	    to_hwmon_device(dev)->name == NULL)
-+		return 0;
-+
-+	if (attr == &dev_attr_label.attr &&
-+	    !device_property_present(dev, "label"))
- 		return 0;
- 
- 	return attr->mode;
--- 
-2.34.1
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
+
+[1/1] dt-bindings: sound: tegra-audio-rt5677: Correct example
+      commit: 3bf4fb25d5c2455396a1decd43f5e6b775f0b377
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
