@@ -2,241 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 177AA47C18E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 15:33:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60A3C47C197
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 15:36:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235543AbhLUOd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 09:33:58 -0500
-Received: from mail-qt1-f173.google.com ([209.85.160.173]:42953 "EHLO
-        mail-qt1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234548AbhLUOd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 09:33:57 -0500
-Received: by mail-qt1-f173.google.com with SMTP id z9so12981387qtj.9
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 06:33:57 -0800 (PST)
+        id S234516AbhLUOgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 09:36:13 -0500
+Received: from mail-qv1-f54.google.com ([209.85.219.54]:39554 "EHLO
+        mail-qv1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234548AbhLUOgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 09:36:12 -0500
+Received: by mail-qv1-f54.google.com with SMTP id g15so11243446qvi.6;
+        Tue, 21 Dec 2021 06:36:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=aG0eQSYEAQyUQnUa/FOediZKLelTefKQEp1kjVjva0Q=;
-        b=mcupiB28/MGbau7TukxRxNC3AX2aCQpqA/BzhbqNUuYnSh/R1dfJcu0ZTPlKLv9XfJ
-         jS+glNBKjlqYn/kZL7JW4A5FSYjVshWXjry/jzH1MJGgnulg0dUImyzjfiWOM6RHnKd4
-         3l23tAmQp3kjqxigNRRzi4kBZ4+qpCRuzMd9disLP3AWi2rYRhPyGz4Ikj8qMhIssNld
-         3uPh3EYgo7g5WK799pZ1+/Ssi3Mmo83jTViIcXHk7nTZz1nzsOgdMfhK4nx8hi6ckh87
-         PQpGvTTh6CX4WSfOWbWp/pdvhKR743zSq/H7SBtlSXItTETJLlwaLATnxUf0xdFx7372
-         e9Yg==
-X-Gm-Message-State: AOAM533THp21rZD7Yp5EZQkAoIHyGrP38CmMNcRSHz4ywrhPTqhp5Idg
-        RSjtiOU9gjAqcb+1P/MQEg==
-X-Google-Smtp-Source: ABdhPJyhD7RbfWBFdjUBHLOnbPdtwHYSuCv8eC8x8hzMQ5P20a0gpm948kDAcVu1xWxBrU68uTKkVw==
-X-Received: by 2002:a05:622a:50a:: with SMTP id l10mr2374912qtx.491.1640097237052;
-        Tue, 21 Dec 2021 06:33:57 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=DAgxIL5+LfBMOUij7dixBA2kzok+uhqjW0YOVP3FJ64=;
+        b=iPqQbnlc5nFOllfSKi7vz2BQst5cYpXBWvcKH2KEQVbvvGNBfbr+wC0BXMaOBbw9Um
+         UyMfW2guV3g5SFzi4Xf8nar2CaS3crpjp1IAAL2FrmF8xwLnkLJf2zWmPna5MELV7PHz
+         +k3RCGkJFLhPc8wlQR4x6PV1EhNEiHrdiTvZVqhT4MVUNtxpnE1vXzfOarVFA+dPiCzO
+         i7S7qLgTTGh27JYGlwvzSlJH7xghu5w7FGKHGuJg/EYubAwu5Hv2O8wC4pka/djP58Mx
+         MpiEp9q9Vdopi3DLSDpOTJpIKwqmbrn77WJ7KQthDW5NZFZqKQgo37laEXnZ1zewMoC0
+         KK/g==
+X-Gm-Message-State: AOAM532vTVHO4fFFcIHdRgKp7fQgXmfW6zSPkvmefcyczcjVjfgxpT6A
+        QOoZ4Mm9inVrPILzKNq7hA==
+X-Google-Smtp-Source: ABdhPJylBXG4muz9ukCyJcRPgG5j/wh/YvvIRKT8d1OTxRKfi+lOHWdekpwKJ6hBomGZ8F/6CfNqsA==
+X-Received: by 2002:a05:6214:76a:: with SMTP id f10mr2246866qvz.80.1640097371373;
+        Tue, 21 Dec 2021 06:36:11 -0800 (PST)
 Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id j20sm14725579qko.117.2021.12.21.06.33.52
+        by smtp.gmail.com with ESMTPSA id u7sm14864481qkp.17.2021.12.21.06.36.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 06:33:55 -0800 (PST)
-Received: (nullmailer pid 1362097 invoked by uid 1000);
-        Tue, 21 Dec 2021 14:33:51 -0000
-Date:   Tue, 21 Dec 2021 10:33:51 -0400
+        Tue, 21 Dec 2021 06:36:10 -0800 (PST)
+Received: (nullmailer pid 1365872 invoked by uid 1000);
+        Tue, 21 Dec 2021 14:36:08 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 11/22] dt-bindings: display: rockchip: Add binding for
- VOP2
-Message-ID: <YcHlzzuvxMGpPaRa@robh.at.kernel.org>
-References: <20211220110630.3521121-1-s.hauer@pengutronix.de>
- <20211220110630.3521121-12-s.hauer@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211220110630.3521121-12-s.hauer@pengutronix.de>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        netdev@vger.kernel.org, linux-clk@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20211221094717.16187-12-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20211221094717.16187-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20211221094717.16187-12-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 11/16] dt-bindings: pinctrl: renesas: Document RZ/V2L pinctrl
+Date:   Tue, 21 Dec 2021 10:36:08 -0400
+Message-Id: <1640097368.261963.1365871.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 20, 2021 at 12:06:19PM +0100, Sascha Hauer wrote:
-> The VOP2 is found on newer Rockchip SoCs like the rk3568 or the rk3566.
-> The binding differs slightly from the existing VOP binding, so add a new
-> binding file for it.
+On Tue, 21 Dec 2021 09:47:12 +0000, Lad Prabhakar wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
 > 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> Document Renesas RZ/V2L pinctrl bindings. The RZ/V2L is package- and
+> pin-compatible with the RZ/G2L. No driver changes are required as RZ/G2L
+> compatible string "renesas,r9a07g044-pinctrl" will be used as a fallback.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->  .../display/rockchip/rockchip-vop2.yaml       | 146 ++++++++++++++++++
->  1 file changed, 146 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+>  .../bindings/pinctrl/renesas,rzg2l-pinctrl.yaml   | 15 +++++++++++----
+>  1 file changed, 11 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-> new file mode 100644
-> index 0000000000000..df14d5aa85c85
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-> @@ -0,0 +1,146 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/rockchip/rockchip-vop2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip SoC display controller (VOP2)
-> +
-> +description:
-> +  VOP2 (Video Output Processor v2) is the display controller for the Rockchip
-> +  series of SoCs which transfers the image data from a video memory
-> +  buffer to an external LCD interface.
-> +
-> +maintainers:
-> +  - Sandy Huang <hjc@rock-chips.com>
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk3566-vop
-> +      - rockchip,rk3568-vop
-> +
-> +  reg:
-> +    minItems: 1
-> +    items:
-> +      - description:
-> +          Must contain one entry corresponding to the base address and length
-> +          of the register space.
-> +      - description:
-> +          Can optionally contain a second entry corresponding to
-> +          the CRTC gamma LUT address.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      The VOP interrupt is shared by several interrupt sources, such as
-> +      frame start (VSYNC), line flag and other status interrupts.
-> +
-> +  clocks:
-> +    items:
-> +      - description: Clock for ddr buffer transfer.
-> +      - description: Clock for the ahb bus to R/W the phy regs.
-> +      - description: Pixel clock for video port 0.
-> +      - description: Pixel clock for video port 1.
-> +      - description: Pixel clock for video port 2.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: aclk_vop
-> +      - const: hclk_vop
 
-_vop is redundant.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> +      - const: dclk_vp0
-> +      - const: dclk_vp1
-> +      - const: dclk_vp2
-> +
-> +  rockchip,grf:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to GRF regs used for misc control
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/port
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml:26:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
 
-s/port/ports/
+dtschema/dtc warnings/errors:
 
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Output endpoint of VP0
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Output endpoint of VP1
-> +
-> +      port@:
+doc reference errors (make refcheckdocs):
 
-port@2
+See https://patchwork.ozlabs.org/patch/1571555
 
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Output endpoint of VP2
-> +
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-> +  assigned-clocks: true
-> +
-> +  assigned-clock-rates: true
-> +
-> +  assigned-clock-parents: true
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-These are automatically added.
+pip3 install dtschema --upgrade
 
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +        #include <dt-bindings/clock/rk3568-cru.h>
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +        #include <dt-bindings/power/rk3568-power.h>
-> +        bus {
-> +            #address-cells = <2>;
-> +            #size-cells = <2>;
-> +            vop: vop@fe040000 {
-> +                compatible = "rockchip,rk3568-vop";
-> +                reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
-> +                interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&cru ACLK_VOP>,
-> +                         <&cru HCLK_VOP>,
-> +                         <&cru DCLK_VOP0>,
-> +                         <&cru DCLK_VOP1>,
-> +                         <&cru DCLK_VOP2>;
-> +                clock-names = "aclk_vop",
-> +                              "hclk_vop",
-> +                              "dclk_vp0",
-> +                              "dclk_vp1",
-> +                              "dclk_vp2";
-> +                power-domains = <&power RK3568_PD_VO>;
-> +                iommus = <&vop_mmu>;
-> +                vop_out: ports {
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +                    vp0: port@0 {
-> +                        reg = <0>;
-> +                        #address-cells = <1>;
-> +                        #size-cells = <0>;
-> +                    };
-> +                    vp1: port@1 {
-> +                        reg = <1>;
-> +                        #address-cells = <1>;
-> +                        #size-cells = <0>;
-> +                    };
-> +                    vp2: port@2 {
-> +                        reg = <2>;
-> +                        #address-cells = <1>;
-> +                        #size-cells = <0>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> -- 
-> 2.30.2
-> 
-> 
+Please check and re-submit.
+
