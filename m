@@ -2,122 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 127C247C045
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 14:01:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E4DD47BED3
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 12:24:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237005AbhLUNB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 08:01:27 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:16648 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237988AbhLUNB1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 08:01:27 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1BL9nuC4027858;
-        Tue, 21 Dec 2021 08:01:20 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3d2pyqm2m3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 21 Dec 2021 08:01:20 -0500
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 1BLD1Jck013994
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 21 Dec 2021 08:01:19 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 21 Dec
- 2021 08:01:18 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Tue, 21 Dec 2021 08:01:18 -0500
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.181])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 1BLD1BQh024109;
-        Tue, 21 Dec 2021 08:01:15 -0500
-From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v7 3/3] Documentation:ABI:testing:admv1013: add ABI docs
-Date:   Tue, 21 Dec 2021 13:22:06 +0200
-Message-ID: <20211221112206.97066-3-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211221112206.97066-1-antoniu.miclaus@analog.com>
-References: <20211221112206.97066-1-antoniu.miclaus@analog.com>
+        id S237081AbhLULYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 06:24:50 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:36192 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237074AbhLULYu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 06:24:50 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 10CA0B81646
+        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 11:24:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC86EC36AE8
+        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 11:24:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640085887;
+        bh=yEa0QD+OlnAq0KG8V03Lf2a/avIQgT4OupzbrDjxEKI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=GCTz51t2G9nbEqMs0RyAG9UVJjZRl0nklAR8Mcz7UBOMwzx+9sbaUywSbEJdrzP91
+         9rOR6TuZOiPs5kkV4xff7JZFgVKKQCeSPVDx+1U9mf8iVJktc0hTRay1RW9B5c7raC
+         78aJ9BsBpf67LycwFcoFTQVg69x+FGqV1hymhVVvEBs0DpjrI6oJyQwFHnPIpY1obf
+         XoR5vRDiRTbYvAOxP805kwrR2cgwZw6A8/9VwZiJ4LmOgos0KoqP93jHSjpiy1ke1Z
+         +tMi1GXd1M+P1iDQFPr4YK8HZAa7jMj3ososAfbcuyIh15H0AZfrA3gVN4FfEDLGa0
+         iUGRueFWy9BuQ==
+Received: by mail-ed1-f54.google.com with SMTP id y22so50790728edq.2
+        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 03:24:47 -0800 (PST)
+X-Gm-Message-State: AOAM5319cRmaydNVfweEO0Jg4xoMxH2eU+jEIX7zs5RLH42ZyiKEhKYs
+        HQIsZsLUiW8HhKsLbQiiG5yaeEweFnlqKoRIlg==
+X-Google-Smtp-Source: ABdhPJyQXYznw27ZW1QqDPPInUbYUvwiGJmMkq7AD0jItwsYn6sgAuae2kYF/ZfegzgxRJKJBvdZl7IsZyqkJAGFgIQ=
+X-Received: by 2002:a05:6402:5c9:: with SMTP id n9mr2690106edx.306.1640085886110;
+ Tue, 21 Dec 2021 03:24:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: G5c2vhHyJ2a6RujJvVibxsOz6svQ66o6
-X-Proofpoint-ORIG-GUID: G5c2vhHyJ2a6RujJvVibxsOz6svQ66o6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2021-12-21_04,2021-12-21_01,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- phishscore=0 mlxlogscore=999 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 mlxscore=0 clxscore=1015 spamscore=0 suspectscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2110150000 definitions=main-2112210059
+References: <88f6428288756fb777d9fe6b910673c987757d10.1640076602.git.baruch@tkos.co.il>
+ <4cd1b24a2f4d185cf96799ab02ea4283437de67b.1640076602.git.baruch@tkos.co.il>
+In-Reply-To: <4cd1b24a2f4d185cf96799ab02ea4283437de67b.1640076602.git.baruch@tkos.co.il>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 21 Dec 2021 07:24:34 -0400
+X-Gmail-Original-Message-ID: <CAL_JsqKNjPsBCZjP5BuYsXjLpc+YMaPJhq2NA=qU5NGtwifUwg@mail.gmail.com>
+Message-ID: <CAL_JsqKNjPsBCZjP5BuYsXjLpc+YMaPJhq2NA=qU5NGtwifUwg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] of: base: Improve argument length mismatch error
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the use of the Local Oscillator Feedthrough Offset
-calibration.
+On Tue, Dec 21, 2021 at 4:51 AM Baruch Siach <baruch@tkos.co.il> wrote:
+>
+> The cells_name field of of_phandle_iterator might be NULL. Use the
+> phandle name instead. With this change we get the more helpful messages:
+>
+>   OF: /soc/pinctrl@1000000: phandle pinctrl@1000000 needs 3, found 2
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-changes in v7:
- - rename `phase` -> `calibphase`
- - specify that the phase values are unscaled
- .../testing/sysfs-bus-iio-frequency-admv1013  | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1013
+How is printing the same thing twice better?
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1013 b/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1013
-new file mode 100644
-index 000000000000..105bae9e2f5c
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1013
-@@ -0,0 +1,38 @@
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0-1_i_calibphase
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write unscaled value for the Local Oscillatior path quadrature I phase shift.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0-1_q_calibphase
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write unscaled value for the Local Oscillatior path quadrature Q phase shift.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0_i_calibbias
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write value for the Local Oscillatior Feedthrough Offset Calibration I Positive
-+		side.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0_q_calibbias
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write value for the Local Oscillatior Feedthrough Offset Calibration Q Positive side.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage1_i_calibbias
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write raw value for the Local Oscillatior Feedthrough Offset Calibration I Negative
-+		side.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage1_q_calibbias
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write raw value for the Local Oscillatior Feedthrough Offset Calibration Q Negative
-+		side.
--- 
-2.34.1
-
+>
+> instead of:
+>
+>   OF: /soc/pinctrl@1000000: (null) = 3 found 2
+>
+> That should make DT debugging easier.
+>
+> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+> ---
+>  drivers/of/base.c | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index 64218c614a85..7c03de370913 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -1349,9 +1349,14 @@ int of_phandle_iterator_next(struct of_phandle_iterator *it)
+>                  * property data length
+>                  */
+>                 if (it->cur + count > it->list_end) {
+> -                       pr_err("%pOF: %s = %d found %ld\n",
+> -                              it->parent, it->cells_name,
+> -                              count, it->list_end - it->cur);
+> +                       if (it->cells_name)
+> +                               pr_err("%pOF: %s = %d found %ld\n",
+> +                                       it->parent, it->cells_name,
+> +                                       count, it->list_end - it->cur);
+> +                       else
+> +                               pr_err("%pOF: phandle %s needs %d, found %ld\n",
+> +                                       it->parent, of_node_full_name(it->node),
+> +                                       count, it->list_end - it->cur);
+>                         goto err;
+>                 }
+>         }
+> --
+> 2.34.1
+>
