@@ -2,106 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0AE047C379
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 17:06:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71F0047C390
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 17:12:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239458AbhLUQGz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 11:06:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41026 "EHLO
+        id S239573AbhLUQMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 11:12:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239450AbhLUQGy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 11:06:54 -0500
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FBE4C061746
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 08:06:54 -0800 (PST)
-Received: by mail-qk1-x72c.google.com with SMTP id l25so12998192qkl.5
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 08:06:54 -0800 (PST)
+        with ESMTP id S239532AbhLUQMq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 11:12:46 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BACAC061574
+        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 08:12:46 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id i31so15194518lfv.10
+        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 08:12:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=egauge.net; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :organization:user-agent:mime-version:content-transfer-encoding;
-        bh=CA0vEmK4VuD0G874S6BcBlFV/fcXlZJ0vIg3qiYKRtE=;
-        b=qOIVe/Ulrw9M0ql12nQM/iQjHwp0KJnIxM9TgARluh2svI6qk9dSBSboo9pua1hOoR
-         jUsxmOzEVEFx4EzAcyVWC0ZA+ndcS6+sBpbGJ5VyTH7DRyDXo3Q7VT3HtXy4bxi3s+MV
-         yWeof3dsaDfLiZydW3qhODT6lz3X7RKu1FkvfPnvUDtvUQo7y+D49vSVxSeuQnp5nOvz
-         HCTVFaspA9npKQ2+SvimAumqTYCp4V8UJ1l/dE3/QD1nPB2IK2ENRrfoo/DcHVx9w5j3
-         UubJs6ATzXZFi00dP8k0ZOVE+n4E3EzdUhPEif/Po+dM45o+7GvVulrBFO/uMV1Xk5su
-         9BvA==
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Yfv5aXMU9TYpLkiQK9aoGDrbvJw2B5NWyCkCE7qVn0k=;
+        b=li1ReLybOkP08XdCuVSUKkhKFh1tsynEzrShPG9tZVG77RW9mAiWDi4AALJYfzNdE3
+         LPEM9MZpsgQ9nij1CHvG9nCSG0Okwi1oRSMbA/aPRvK5ThBYQ5gxdrIvuI78xHPYOR6i
+         h2L46+0MQxhX1hxzR4RthfzbMtFSpbxbVzRTlBwv4MH1pyfYxW+x/RVhws1OwZI2IrII
+         sgHNWzl2ovqTZ404wyQBl8D2ZNMUmIfQNLSIUM/dJ5GkZ2jJmBSGqCR18KoxdL5q6+13
+         eBZPSqoREQ8LdWM4/qNzxjb76VGzROfJ5pnHTrS4/RMjR7FyoD9XqEiXdMxcg0ua3oxI
+         /92w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:organization:user-agent:mime-version
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=CA0vEmK4VuD0G874S6BcBlFV/fcXlZJ0vIg3qiYKRtE=;
-        b=P8SXJ+/FWe6+Zsamnl1l+4cA92Y5UfFbrXX1Oiq482E0fVLOPwHUEyNIBIL1SsNRt4
-         53b68XcxzgO6BlDcN3dohLR45eJFSaq5p8BA+hE/ZF9mtsZSDZ1HxlerkEM/h4I57uol
-         N+t5aWF9AE0c+pxWbXWp3Fauhx8olij/mt3YpWlECan3xnhajmYjXtEMPBaDuNsiNCcC
-         Yn88oWiTmSLaG2wlf01JZmNHVC4DiQ8ud7jesxJmhWpBY/MTvowJKqu3zdQ4SabUs2xl
-         /GHnnskfQ+xD6006AC0fW6GtmkfjWQdec5z9wIJW3+JrrSUdb/TqCvWjH5wKVtgFv1LF
-         P6bw==
-X-Gm-Message-State: AOAM532kolRsrXcW8MH8jTWEGrBwQi7/bqaiXRBIwJFPFN123T3ANdmv
-        aCXRwBqXRfh5imKId7tt6+rh
-X-Google-Smtp-Source: ABdhPJwY/i2y/TBE4bud79JOMazs61JlNK44ovTedNtrgQW3IL7WCnnDmTktbDvmJaqxOyESEh8t3Q==
-X-Received: by 2002:a05:620a:4301:: with SMTP id u1mr2533209qko.134.1640102813467;
-        Tue, 21 Dec 2021 08:06:53 -0800 (PST)
-Received: from sloth ([2607:fb90:ac99:dad1:b58:661c:23ad:781e])
-        by smtp.gmail.com with ESMTPSA id 196sm13506624qkd.61.2021.12.21.08.06.50
+        bh=Yfv5aXMU9TYpLkiQK9aoGDrbvJw2B5NWyCkCE7qVn0k=;
+        b=TjUoPtLQPG6FqRH2mX5O7rMjytIAv6LoyVNG50oMQLN8flhcCZnPU1uvKd2yqSPYw3
+         AZcLDDF8y58VBerBZM17eaklcFa94+PwXwfAaCvvLjkBPg1ra3zgPFi6R0b9TfRFomca
+         97961OJOmExQZ1j3SJmRVErqVcv2GB65dpergSAt9Qgjaojn8Z3C+hjzOReB151Uh7ht
+         qckl233+wjGO7GHtvy/9vFGGHSbWA04CgHdWHaEymJtU7tOlUhCKCIwV2rrfMlDvulhB
+         f4+hvyCqxNUPdi1yyVjcGEtYrA8yY3rPSIQR7HCZfNzxHy3hPBR72yCDpgXAicNUe6Or
+         oqKg==
+X-Gm-Message-State: AOAM533AFrPJI0bvIELzAsX27TdUxL2uliPRhooRE3wILeljFQ1vNPPS
+        ujzumReVfgTEDWydQn0HW5ywxLTk8Ru6tA==
+X-Google-Smtp-Source: ABdhPJzhXuDTLbz5gDatMJq/3hpbsOBVVVeUDBRwYbAJyehpIqanF6bH0mE5vifofMRxd8aMsXQifw==
+X-Received: by 2002:a05:6512:374a:: with SMTP id a10mr3552988lfs.103.1640103164654;
+        Tue, 21 Dec 2021 08:12:44 -0800 (PST)
+Received: from localhost.localdomain (host-78-79-238-21.mobileonline.telia.com. [78.79.238.21])
+        by smtp.googlemail.com with ESMTPSA id s10sm550708lfr.45.2021.12.21.08.12.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 08:06:52 -0800 (PST)
-Message-ID: <5f4ab50b4773effafd0a43c8c541d49621f78980.camel@egauge.net>
-Subject: Re: [PATCH v6 2/2] wilc1000: Document enable-gpios and reset-gpios
- properties
-From:   David Mosberger-Tang <davidm@egauge.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Ajay Singh <ajay.kathat@microchip.com>,
-        Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Kalle Valo <kvalo@codeaurora.org>, netdev@vger.kernel.org,
-        linux-wireless@vger.kernel.org,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Adham Abozaeid <adham.abozaeid@microchip.com>
-Date:   Tue, 21 Dec 2021 09:06:48 -0700
-In-Reply-To: <YcHu8qkzguAPZcKx@robh.at.kernel.org>
-References: <20211220180334.3990693-1-davidm@egauge.net>
-         <20211220180334.3990693-3-davidm@egauge.net>
-         <YcHu8qkzguAPZcKx@robh.at.kernel.org>
-Organization: eGauge Systems LLC
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5-0ubuntu1 
+        Tue, 21 Dec 2021 08:12:44 -0800 (PST)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Subject: [PATCH v2] dt-bindings: i2c: maxim,max96712: Add bindings for Maxim Integrated MAX96712
+Date:   Tue, 21 Dec 2021 17:12:24 +0100
+Message-Id: <20211221161224.71258-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2021-12-21 at 11:12 -0400, Rob Herring wrote:
-> On Mon, 20 Dec 2021 18:03:38 +0000, David Mosberger-Tang wrote:
-> > Add documentation for the ENABLE and RESET GPIOs that may be needed
-> > by
-> > wilc1000-spi.
-> > 
-> > Signed-off-by: David Mosberger-Tang <davidm@egauge.net>
-> > ---
-> >  .../net/wireless/microchip,wilc1000.yaml      | 19
-> > +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> > 
-> 
-> Please add Acked-by/Reviewed-by tags when posting new versions. 
+Add bindings for Maxim Integrated MAX96712 deserializer. The MAX96712
+deserializer converts GMSL2 or GMSL1 serial inputs into MIPI CSI-2 D-PHY
+or C-PHY formatted outputs.
 
-Ah, sorry about that.
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+---
+* Changes since v1
+- Fixed spelling in binding description.
+- Drop 'staging' per Rob's suggestion.
+---
+ .../bindings/media/i2c/maxim,max96712.yaml    | 111 ++++++++++++++++++
+ 1 file changed, 111 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
 
-> However,
-> there's no need to repost patches *only* to add the tags. The
-> upstream
-> maintainer will do that for acks received on the version they apply.
-> 
-> If a tag was not added on purpose, please state why and what changed.
-
-Not on purpose.  I just didn't know how this is handled.
-
-Thanks and best regards,
-
-  --david
+diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+new file mode 100644
+index 0000000000000000..b303f7a891169a79
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+@@ -0,0 +1,111 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2021 Renesas Electronics Corp.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/staging/media/i2c/maxim,max96712.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Quad GMSL2 to CSI-2 Deserializer with GMSL1 Compatibility
++
++maintainers:
++  - Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
++
++description: |
++  The MAX96712 deserializer converts GMSL2 or GMSL1 serial inputs into MIPI
++  CSI-2 D-PHY or C-PHY formatted outputs. The device allows each link to
++  simultaneously transmit bidirectional control-channel data while forward
++  video transmissions are in progress. The MAX96712 can accommodate as many as
++  four remotely located sensors using industry-standard coax or STP
++  interconnects.
++
++  Each GMSL2 serial link operates at a fixed rate of 3Gbps or 6Gbps in the
++  forward direction and 187.5Mbps in the reverse direction. In GMSL1 mode, the
++  MAX96712 can be paired with first-generation 3.12Gbps or 1.5Gbps GMSL1
++  serializers or operate up to 3.12Gbps with GMSL2 serializers in GMSL1 mode.
++
++properties:
++  compatible:
++    const: maxim,max96712
++
++  reg:
++    description: I2C device address
++    maxItems: 1
++
++  enable-gpios: true
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: GMSL Input 0
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: GMSL Input 1
++
++      port@2:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: GMSL Input 2
++
++      port@3:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: GMSL Input 3
++
++      port@4:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: CSI-2 Output
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes: true
++
++            required:
++              - data-lanes
++
++    required:
++      - port@4
++
++required:
++  - compatible
++  - reg
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c@e6508000 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            reg = <0 0xe6508000>;
++
++            gmsl0: gmsl-deserializer@49 {
++                    compatible = "maxim,max96712";
++                    reg = <0x49>;
++                    enable-gpios = <&pca9654_a 0 GPIO_ACTIVE_HIGH>;
++
++                    ports {
++                            #address-cells = <1>;
++                            #size-cells = <0>;
++
++                            port@4 {
++                                    reg = <4>;
++                                    max96712_out0: endpoint {
++                                            clock-lanes = <0>;
++                                            data-lanes = <1 2 3 4>;
++                                            remote-endpoint = <&csi40_in>;
++                                    };
++                            };
++                    };
++            };
++    };
+-- 
+2.34.1
 
