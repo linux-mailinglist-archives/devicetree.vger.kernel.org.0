@@ -2,105 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5635447C3F1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 17:38:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70CA447C3FD
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 17:41:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236550AbhLUQi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 11:38:28 -0500
-Received: from guitar.tcltek.co.il ([84.110.109.230]:47314 "EHLO mx.tkos.co.il"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231744AbhLUQi2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 11:38:28 -0500
-Received: from sapphire.tkos.co.il (unknown [10.0.4.11])
+        id S238900AbhLUQl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 11:41:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49002 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236558AbhLUQl0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 11:41:26 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75A73C061574;
+        Tue, 21 Dec 2021 08:41:26 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id A63B5440AEE;
-        Tue, 21 Dec 2021 18:38:19 +0200 (IST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-        s=default; t=1640104699;
-        bh=9XYsrbBnHsAAg5lSCXiOqjc1O4cYSrEkTOgJpR3Joqs=;
+        by ams.source.kernel.org (Postfix) with ESMTPS id 318EFB817B6;
+        Tue, 21 Dec 2021 16:41:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0594C36AE8;
+        Tue, 21 Dec 2021 16:41:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640104883;
+        bh=JA2XthLwZ7lLTOnJ+u7LAbaKjOnIJFmoqSmlZzwHHlg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hfgfCyUCDWUVeOF6hyg/OZJSArQxlkDS1pCqh3yglOrdFRiUc4O95T0v5njE8h/An
-         obvtMD98jAZFB4jbpaoB+jemK5QhByRw7KCuS5z9BHRr/UZslopvRwzsuVEGm0z4V2
-         iwUH3T1DsBLALnZz/4lE/OppFuv0/uNq+/76VENRG566oMg0nJ+jkA5X3S/VTGF0N/
-         1VqOKSK3dwvCywC+uYcua1YljhiWnz77LD5i9POBbxWlnyDGPfxJFtxPWUZX8sPlC1
-         fhCN/WSYrX09cAwRHzc2Ro9i/llKSOuToUtF8miNChHjHtoMsGdMww+w2c/yUNr7F5
-         rFuSCamB8M0NQ==
-Date:   Tue, 21 Dec 2021 18:38:24 +0200
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] of: base: Improve argument length mismatch error
-Message-ID: <20211221163824.yrpr5rojjxocukxz@sapphire.tkos.co.il>
-References: <88f6428288756fb777d9fe6b910673c987757d10.1640076602.git.baruch@tkos.co.il>
- <4cd1b24a2f4d185cf96799ab02ea4283437de67b.1640076602.git.baruch@tkos.co.il>
- <CAL_JsqKNjPsBCZjP5BuYsXjLpc+YMaPJhq2NA=qU5NGtwifUwg@mail.gmail.com>
+        b=DjeCYWWYUNUV56UhX22pxyu2UjhqvrVBGsj8Lv7/lFRD8kvXCkCkzaQC0IsagL+l9
+         JNhqDVeFQwmi4AA2l80xBU8PX9Mp2kk756E4QSAW1NvQvrQsHxYWvTKAtbnfWWRkp1
+         ZwJow86sZOvuYF5K9tuigA8iveFUZ6yewjFlUKrTict5pY4uUlX00FzhhhwTMwwclf
+         ufKQuXlhk7tJwkJwgX9SgHeM/0VsI2OZlyzZauTJ5WZiuVAUvVXWyvKJdotlvDau6f
+         UVjeRf70evnnxtGOFK84WVfbb5rXEEd48R72JBxFHx4CzGUf8v8CWzL++/LMqq9SIq
+         HgPZAMbtm1hkw==
+Date:   Tue, 21 Dec 2021 16:41:18 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        David Heidelberg <david@ixit.cz>,
+        Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: sound: tegra-audio-rt5677: Correct
+ example
+Message-ID: <YcIDrlhopQXFomzU@sirena.org.uk>
+References: <20211216160229.17049-1-digetx@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="uyGpmtvI5umEZmqU"
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqKNjPsBCZjP5BuYsXjLpc+YMaPJhq2NA=qU5NGtwifUwg@mail.gmail.com>
+In-Reply-To: <20211216160229.17049-1-digetx@gmail.com>
+X-Cookie: knowledge, n.:
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-On Tue, Dec 21, 2021 at 07:24:34AM -0400, Rob Herring wrote:
-> On Tue, Dec 21, 2021 at 4:51 AM Baruch Siach <baruch@tkos.co.il> wrote:
-> >
-> > The cells_name field of of_phandle_iterator might be NULL. Use the
-> > phandle name instead. With this change we get the more helpful messages:
-> >
-> >   OF: /soc/pinctrl@1000000: phandle pinctrl@1000000 needs 3, found 2
-> 
-> How is printing the same thing twice better?
+--uyGpmtvI5umEZmqU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This is not the same thing. The first node is the parent node (it->parent), 
-the second is the phandle target (it->node). They happen to be the same in the 
-case I encountered[1]. I can generate a better example if it helps.
+On Thu, Dec 16, 2021 at 07:02:29PM +0300, Dmitry Osipenko wrote:
+> Remove non-existent properties from the example of the binding. These
+> properties were borrower from the old txt binding, but they were never
 
-Printing the property name would have been even better. But 
-of_phandle_iterator_init() does not preserve list_name.
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
-[1] https://lore.kernel.org/all/8a744cfd96aff5754bfdcf7298d208ddca5b319a.1638862030.git.baruch@tkos.co.il/
+--uyGpmtvI5umEZmqU
+Content-Type: application/pgp-signature; name="signature.asc"
 
-baruch
+-----BEGIN PGP SIGNATURE-----
 
-> > instead of:
-> >
-> >   OF: /soc/pinctrl@1000000: (null) = 3 found 2
-> >
-> > That should make DT debugging easier.
-> >
-> > Signed-off-by: Baruch Siach <baruch@tkos.co.il>
-> > ---
-> >  drivers/of/base.c | 11 ++++++++---
-> >  1 file changed, 8 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/of/base.c b/drivers/of/base.c
-> > index 64218c614a85..7c03de370913 100644
-> > --- a/drivers/of/base.c
-> > +++ b/drivers/of/base.c
-> > @@ -1349,9 +1349,14 @@ int of_phandle_iterator_next(struct of_phandle_iterator *it)
-> >                  * property data length
-> >                  */
-> >                 if (it->cur + count > it->list_end) {
-> > -                       pr_err("%pOF: %s = %d found %ld\n",
-> > -                              it->parent, it->cells_name,
-> > -                              count, it->list_end - it->cur);
-> > +                       if (it->cells_name)
-> > +                               pr_err("%pOF: %s = %d found %ld\n",
-> > +                                       it->parent, it->cells_name,
-> > +                                       count, it->list_end - it->cur);
-> > +                       else
-> > +                               pr_err("%pOF: phandle %s needs %d, found %ld\n",
-> > +                                       it->parent, of_node_full_name(it->node),
-> > +                                       count, it->list_end - it->cur);
-> >                         goto err;
-> >                 }
-> >         }
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHCA64ACgkQJNaLcl1U
+h9CskQf9H4IdMGrIuSb7/r9gEvwcPTaKSI9wGbd6jzbFPU/4byXuCujCjWN+VY/8
+giajs0QgQLeo8IcBryD9h7EeIre7nA5IDQhVKwGLb2tJV88HgXUzsel9lJcJnPOQ
+q8apMEzFQxM1VE9kba+yYAWOR3XBFJMrRrHNq/G/ObN2X/dajoK8M9IZkdQHtbmc
+pkyo4xPwi7iaUzkGhArqtrVH8wDb0LH950HtoOkK26rI78aKtyTJ1XqBru44Hpf9
+lYKzRRY8ijsadMcsKmSkjlU9KvDqJLEF0dx7DaafGh6Dx7VHw96QvEbyxTedIvoH
+5jysj9q0P+uvc7XmPppYHUUhJ2ZJrg==
+=67kT
+-----END PGP SIGNATURE-----
 
--- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+--uyGpmtvI5umEZmqU--
