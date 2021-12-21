@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF7BF47B8C7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 04:00:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4C0147B8CC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 04:01:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230180AbhLUDAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 22:00:24 -0500
-Received: from mail-sh.amlogic.com ([58.32.228.43]:31496 "EHLO
+        id S231801AbhLUDBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 22:01:50 -0500
+Received: from mail-sh.amlogic.com ([58.32.228.43]:34005 "EHLO
         mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230008AbhLUDAY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 22:00:24 -0500
+        with ESMTP id S230008AbhLUDBu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 22:01:50 -0500
 Received: from droid04.amlogic.com (10.18.11.246) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Tue, 21 Dec 2021
- 11:00:16 +0800
+ 11:01:47 +0800
 From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
-To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Christian Hewitt <christianshewitt@gmail.com>,
+To:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Neil Armstrong <narmstrong@baylibre.com>,
         Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Vyacheslav Bocharov <adeep@lexina.in>,
         <kelvin.zhang@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: [PATCH V3] dt-bindings: arm: amlogic: add S4 based AQ222 bindings
-Date:   Tue, 21 Dec 2021 11:00:14 +0800
-Message-ID: <20211221030014.434-1-xianwei.zhao@amlogic.com>
+Subject: [PATCH V2] dt-bindings: serial: amlogic, meson-uart: support S4
+Date:   Tue, 21 Dec 2021 11:01:45 +0800
+Message-ID: <20211221030146.522-1-xianwei.zhao@amlogic.com>
 X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7BIT
@@ -37,39 +37,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the new Amlogic S4 SoC family,
-and add binds the compatible for the Amlogic S4 Based AQ222 board.
-
-S4 is an application processor designed for hybrid OTT/IP Set To
-Box(STB) and high-end media box applications, with quad core Cortex-A35.
+Add serial bindings support menson S4 SoC family.
 
 Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
-V2 -> V3 : upate author name
-V1 -> V2 : modfiy soc name S805X2
+V1 -> V2 : update author name
 ---
- Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index 36081734f720..31df120d73b0 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -183,6 +183,12 @@ properties:
-               - amlogic,ad401
-           - const: amlogic,a1
+diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+index 7487aa6ef849..72e8868db3e0 100644
+--- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+@@ -29,6 +29,7 @@ properties:
+               - amlogic,meson8-uart
+               - amlogic,meson8b-uart
+               - amlogic,meson-gx-uart
++              - amlogic,meson-s4-uart
+           - const: amlogic,meson-ao-uart
+       - description: Everything-Else power domain UART controller
+         enum:
+@@ -36,6 +37,7 @@ properties:
+           - amlogic,meson8-uart
+           - amlogic,meson8b-uart
+           - amlogic,meson-gx-uart
++          - amlogic,meson-s4-uart
  
-+      - description: Boards with the Amlogic Meson S4 S805X2 SoC
-+        items:
-+          - enum:
-+              - amlogic,aq222
-+          - const: amlogic,s4
-+
- additionalProperties: true
- 
- ...
+   reg:
+     maxItems: 1
 
-base-commit: a3ebdcc8fb3d94de390e58ad3da6161826a58a87
+base-commit: 84184107c39ae65d08f6d449a57ec58734ff535a
 -- 
 2.30.2
 
