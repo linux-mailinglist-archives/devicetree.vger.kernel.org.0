@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFD6B47C4BF
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 18:10:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5E0847C4E2
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 18:21:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240226AbhLURK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 12:10:26 -0500
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:45589 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240185AbhLURKZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 12:10:25 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 7BE5FE000A;
-        Tue, 21 Dec 2021 17:10:21 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>, linux-mtd@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Chris Brandt <Chris.Brandt@renesas.com>,
-        Ralph Siemsen <ralph.siemsen@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v6 1/4] dt-bindings: mtd: renesas: Describe Renesas R-Car Gen3 & RZ/N1 NAND controller
-Date:   Tue, 21 Dec 2021 18:10:21 +0100
-Message-Id: <20211221171021.20101-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20211217142033.353599-2-miquel.raynal@bootlin.com>
-References: 
+        id S240336AbhLURV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 12:21:29 -0500
+Received: from mail-qv1-f43.google.com ([209.85.219.43]:39451 "EHLO
+        mail-qv1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240338AbhLURV2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 12:21:28 -0500
+Received: by mail-qv1-f43.google.com with SMTP id g15so11739764qvi.6;
+        Tue, 21 Dec 2021 09:21:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=X+CVb/g6dnkbXp9dG9nViDZF9etnV+5k0QPN7oufv/0=;
+        b=XK9d6MuRJnGT/rQ+hPpRFqD25quRHsiC9YP5xh5Rglet1/pLHGfj8uIFMBm3V9qX1E
+         wBo6dNq/d91QEpDKPPuusOFWYieyrt79ODBZfy8XeUjM3SgohzET/RfSx+Z2UbSjj19V
+         OB6oAzW5wdAH3VQhI6NlQI9plNiSTsyCWw5kJAqJtdA5V+P9KtgwPDUbdyCt/tolz/S8
+         xv6Zg8jHpsvFk1U9DngzWPVScPCxmTS7gj3+ffZVIKGFN3qPyjApAP/0Cp+ggKCqP5oo
+         IWTzgayeI7AymTlmzchu6jU6Cppn2uT55US4a8aGb1LHZi26HM1rQx7Rh1tiLCQQ2ttt
+         vQAw==
+X-Gm-Message-State: AOAM533QvilOIYYOLpav7Wss/qB9W/zoMcfiVO8E7HOUenSNuY6v88Xa
+        Ph0Pote5WnRJwbWsoWY3Yg==
+X-Google-Smtp-Source: ABdhPJyUZqgy8z6h1itTc00ig548tDmWDMm+yG6tEOlBa0l55dZI6W1MWmhrwR6z45DhGzx1FIF2iA==
+X-Received: by 2002:a05:6214:27c6:: with SMTP id ge6mr2077176qvb.83.1640107287804;
+        Tue, 21 Dec 2021 09:21:27 -0800 (PST)
+Received: from robh.at.kernel.org ([24.55.105.145])
+        by smtp.gmail.com with ESMTPSA id k8sm16700695qtx.35.2021.12.21.09.21.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Dec 2021 09:21:27 -0800 (PST)
+Received: (nullmailer pid 1478362 invoked by uid 1000);
+        Tue, 21 Dec 2021 17:21:24 -0000
+Date:   Tue, 21 Dec 2021 13:21:24 -0400
+From:   Rob Herring <robh@kernel.org>
+To:     Zelong Dong <zelong.dong@amlogic.com>
+Cc:     khilman@baylibre.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        narmstrong@baylibre.com, robh+dt@kernel.org,
+        linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: reset: add bindings for the Meson-S4 SoC
+ Reset Controller
+Message-ID: <YcINFJ2vaB5WRqzm@robh.at.kernel.org>
+References: <20211217073521.35820-1-zelong.dong@amlogic.com>
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'6b85a71cace75c9e06eb02f76216be1e26530058'
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211217073521.35820-1-zelong.dong@amlogic.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2021-12-17 at 14:20:30 UTC, Miquel Raynal wrote:
-> Add a Yaml description for this Renesas NAND controller.
+On Fri, 17 Dec 2021 15:35:21 +0800, Zelong Dong wrote:
+> Add DT bindings for the Meson-S4 SoC Reset Controller include file.
 > 
-> As this controller is embedded on different SoC families, provide:
-> * a family-specific "r-car-gen3" compatible and a more specific
->   "r8a77951" one
-> * a family-specific "rzn1" compatible and a more specific "r9a06g032"
->   one
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> ---
+>  .../reset/amlogic,meson-s4-reset.h            | 125 ++++++++++++++++++
+>  1 file changed, 125 insertions(+)
+>  create mode 100644 include/dt-bindings/reset/amlogic,meson-s4-reset.h
 > 
-> More compatibles can be added later if new SoCs with this controller
-> must be supported.
-> 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Acked-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next.
-
-Miquel
+Acked-by: Rob Herring <robh@kernel.org>
