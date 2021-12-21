@@ -2,73 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81C4147C456
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 18:00:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62AE847C45A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 18:01:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233804AbhLURAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 12:00:37 -0500
-Received: from mail-qk1-f169.google.com ([209.85.222.169]:37513 "EHLO
-        mail-qk1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232563AbhLURAg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 12:00:36 -0500
-Received: by mail-qk1-f169.google.com with SMTP id m186so13173261qkb.4;
-        Tue, 21 Dec 2021 09:00:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hppWg+GP3gWKz2SnHpLcfxKFRiULg/7tXUCt9Pb6Dtw=;
-        b=YhNfGJqvR7HmU+SZuRaiqqA3BwOqnDcRKhfrqyVwCsSZ7po+iuOYSKq9NfBx+MlX9w
-         9JntaGYgW0gxakjb17ST6xGalt+yNpffwEqgketLSleSijNp4Cql1kgZhWjvmRybcmmi
-         8zN7SddQjneAh1LzxucLtNDX9wSZB+JVvHWKsdf9O8BQJ6wvP1i3olFfpAZIsd9kpQxN
-         YRB6Cssb5NByluYNoGcH/PXOfyJ0CjfHid8GxsA4ixXRjAYNT0HPx0mKYefFlG99pGse
-         k1ADOCANqlXMKM2xxxwhwrb/RD6VArm3OnFVtU7IfPszwyZQMvI4AFBMOBkzfT56/LN7
-         OGdA==
-X-Gm-Message-State: AOAM531AgzmauqSMsiy7IRt+aEyL7IVsagcotLK9sKW0gkGX2NcAduue
-        S5kG1CDK4UWG0pgTywNOog==
-X-Google-Smtp-Source: ABdhPJy9Ijw3JTHq6M8l2dQq/+DijjJRegt9T5f4n4IacLZGw6vjlaabB9NNgyBoqSHkr1oDMj4OHw==
-X-Received: by 2002:a05:620a:301:: with SMTP id s1mr2645982qkm.771.1640106035583;
-        Tue, 21 Dec 2021 09:00:35 -0800 (PST)
-Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id h9sm14412295qkp.106.2021.12.21.09.00.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 09:00:35 -0800 (PST)
-Received: (nullmailer pid 1450837 invoked by uid 1000);
-        Tue, 21 Dec 2021 17:00:32 -0000
-Date:   Tue, 21 Dec 2021 13:00:32 -0400
-From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Ghiti <alexandre.ghiti@canonical.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        Guenter Roeck <linux@roeck-us.net>, linux-rtc@vger.kernel.org,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: Fix typo "DA9093" -> "DA9063"
-Message-ID: <YcIIMGHA5E2FS2M5@robh.at.kernel.org>
-References: <20211216164037.2888316-1-alexandre.ghiti@canonical.com>
+        id S240101AbhLURBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 12:01:06 -0500
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:51509 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232563AbhLURBF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 12:01:05 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id AC8A8240005;
+        Tue, 21 Dec 2021 17:00:59 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+Cc:     Michal Simek <monstr@monstr.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>, <linux-spi@vger.kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        <linux-mtd@lists.infradead.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v5 0/3] Stacked/parallel memories bindings
+Date:   Tue, 21 Dec 2021 18:00:55 +0100
+Message-Id: <20211221170058.18333-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211216164037.2888316-1-alexandre.ghiti@canonical.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Dec 2021 17:40:36 +0100, Alexandre Ghiti wrote:
-> The device described is the "DA9063", not "DA9093", so fix this typo.
-> 
-> Signed-off-by: Alexandre Ghiti <alexandre.ghiti@canonical.com>
-> ---
->  Documentation/devicetree/bindings/mfd/da9063.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Hello Rob, Mark, Tudor & Pratyush,
 
-Acked-by: Rob Herring <robh@kernel.org>
+Here is a fifth versions for these bindings, which applies on top of
+Pratyush's work:
+https://lore.kernel.org/all/20211109181911.2251-1-p.yadav@ti.com/
+
+Cheers,
+Miquèl
+
+Changes in v5:
+* Used the uint64-array instead of the matrix type.
+* Updated the example as well to use a single "/bits/ 64" cast because
+  doing it twice, despite being supported by the language itself, is not
+  yet something that we can use for describing bindings.
+
+Changes in v4:
+* Changed the type of properties to uint64-arrays in order to be able to
+  describe the size of each element in the array.
+* Updated the example accordingly.
+
+Changes in v3:
+* Rebased on top of Pratyush's recent changes.
+* Dropped the commit allowing to provide two reg entries on the node
+  name.
+* Dropped the commit referencing spi-controller.yaml from
+  jedec,spi-nor.yaml, now replaced by spi-peripheral-props.yaml and
+  already done in Pratyush's series.
+* Added Rob's Ack.
+* Enhanced a commit message.
+* Moved the new properties to the new SPI peripheral binding file.
+
+Changes in v2:
+* Dropped the dtc changes for now.
+* Moved the properties in the device's nodes, not the controller's.
+* Dropped the useless #address-cells change.
+* Added a missing "minItems".
+* Moved the new properties in the spi-controller.yaml file.
+* Added an example using two stacked memories in the
+  spi-controller.yaml file.
+* Renamed the properties to drop the Xilinx prefix.
+* Added a patch to fix the spi-nor jedec yaml file.
+
+Miquel Raynal (3):
+  dt-bindings: mtd: spi-nor: Allow two CS per device
+  spi: dt-bindings: Describe stacked/parallel memories modes
+  spi: dt-bindings: Add an example with two stacked flashes
+
+ .../bindings/mtd/jedec,spi-nor.yaml           |  3 ++-
+ .../bindings/spi/spi-controller.yaml          |  7 ++++++
+ .../bindings/spi/spi-peripheral-props.yaml    | 25 +++++++++++++++++++
+ 3 files changed, 34 insertions(+), 1 deletion(-)
+
+-- 
+2.27.0
+
