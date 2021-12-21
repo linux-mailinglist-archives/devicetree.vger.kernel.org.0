@@ -2,140 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 178CE47C618
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 19:14:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 176B447C62E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 19:16:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237283AbhLUSOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 13:14:45 -0500
-Received: from mail-qk1-f170.google.com ([209.85.222.170]:37690 "EHLO
-        mail-qk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241021AbhLUSOg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 13:14:36 -0500
-Received: by mail-qk1-f170.google.com with SMTP id m186so13397465qkb.4;
-        Tue, 21 Dec 2021 10:14:36 -0800 (PST)
+        id S236883AbhLUSQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 13:16:48 -0500
+Received: from mail-qt1-f176.google.com ([209.85.160.176]:38557 "EHLO
+        mail-qt1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236895AbhLUSQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 13:16:48 -0500
+Received: by mail-qt1-f176.google.com with SMTP id 8so13676966qtx.5;
+        Tue, 21 Dec 2021 10:16:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=pZh3Qpd5SvcqUEcT4y52L9C1fd8K8ht/Ht2rKQMnZjA=;
-        b=2le176EVEyP0SuNIq4HFWzj8b8PvR7z2k/GuCucaLgK4/artjHfyy5+IHJ/WNtDcoL
-         8elzBVMt6b8Q8F/u5b8+4J5y3jW85b8MLyiIVRUoqo4FmmdgyXQ7zBTocumVohT7ewJT
-         7n2pL4zVd7R/O40+7GyThIaGtrE5yv9G1yX+GrUCsOIeRTim82fsXKAy/L/KUQloR/b5
-         QO5flTyfRHlBHskLHxgG4Aztx7FIqRpfQeyFuBP94CC/fEFx4eKJGHqF2AN3p0KGDEy+
-         ybR3Wo14w0RbLEt9I2ckkiC3/7UYlMfNwhhaK3kbHFiEv6jgsv3fCLvdgELpwgz2EpEV
-         3afw==
-X-Gm-Message-State: AOAM532VkJJdu/mD/jLTZ/apyWAUQDnaiMFloy4NH4kOCWqNzpiz/l3f
-        S6YvLsImmddAUewuputLbg==
-X-Google-Smtp-Source: ABdhPJw/vwQnHfFXE5Kgv5iAOXOBqrO6DxVee4i4XIzMBK7qyJ5XdnnCecKYFFLszmdnzt2n50BYFw==
-X-Received: by 2002:a05:620a:e0e:: with SMTP id y14mr2856584qkm.760.1640110476023;
-        Tue, 21 Dec 2021 10:14:36 -0800 (PST)
+        bh=G0KLH304We2MtMeBL/gdhtdUVOVD7h4sXFGBXYegnBM=;
+        b=t8oEebsA8JJolu1+4YPTp1lg5egHgOoDBnd3gTtmKwsU/7ZebBAVj9NS5OpZkyGGUR
+         iy/IUIxYi2uDuI39t8xec8ljJDDT6PJP+EgNS9Pr4lJuA3Tt1m06LptP24xnTjzz/lYE
+         HhPbyIG6grFOGSJkQAvY0BWsrhKXNrYwNuKCuubYju4Z26pVcMeMM+TZnOxhuMgrtLKd
+         7POUVR43ekU2jIbL/czLgzjv3dJnn2uCAzf879zu8AW1L18NZOv1oAXJoG+tvWI8vrS6
+         k59mCPmiKcnQhUgW2X6BRbww4XGO8ZLeVWcxsgZVSux6X79ixnbpoOaGvKxYdHoOi82Y
+         xbfQ==
+X-Gm-Message-State: AOAM533B0N0Jiv8Nko3Qj1dbTw0omqyb3jFCuVjjsEWPNFZL+jp+JTRX
+        Oe/22ZVELzEFuSyXap9gdQ==
+X-Google-Smtp-Source: ABdhPJxU/XZuQaoJrTmtYNT7dGJy/XVcyEQjGA8n5/Xtt5hdqe+f4BHwin3LXW8AIpwqisAEkANHTA==
+X-Received: by 2002:a05:622a:291:: with SMTP id z17mr3428875qtw.138.1640110607139;
+        Tue, 21 Dec 2021 10:16:47 -0800 (PST)
 Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id e15sm325541qtq.83.2021.12.21.10.14.34
+        by smtp.gmail.com with ESMTPSA id v20sm14557335qkl.123.2021.12.21.10.16.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 10:14:35 -0800 (PST)
-Received: (nullmailer pid 1521054 invoked by uid 1000);
-        Tue, 21 Dec 2021 18:14:32 -0000
-Date:   Tue, 21 Dec 2021 14:14:32 -0400
+        Tue, 21 Dec 2021 10:16:46 -0800 (PST)
+Received: (nullmailer pid 1523952 invoked by uid 1000);
+        Tue, 21 Dec 2021 18:16:43 -0000
+Date:   Tue, 21 Dec 2021 14:16:43 -0400
 From:   Rob Herring <robh@kernel.org>
-To:     Hammer Hsieh <hammerh0314@gmail.com>
-Cc:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        lee.jones@linaro.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        wells.lu@sunplus.com, Hammer Hsieh <hammer.hsieh@sunplus.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings:pwm:Add bindings doc for Sunplus SoC
- PWM Driver
-Message-ID: <YcIZiFvyo+N4ai7r@robh.at.kernel.org>
-References: <1639741568-5846-1-git-send-email-hammer.hsieh@sunplus.com>
- <1639741568-5846-2-git-send-email-hammer.hsieh@sunplus.com>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, Tero Kristo <kristo@kernel.org>,
+        linux-omap@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH 1/2] clk: ti: Move dra7 clock devices out of the legacy
+ section
+Message-ID: <YcIaCxu1zgp4WsD1@robh.at.kernel.org>
+References: <20211217115559.15352-1-tony@atomide.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1639741568-5846-2-git-send-email-hammer.hsieh@sunplus.com>
+In-Reply-To: <20211217115559.15352-1-tony@atomide.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 17, 2021 at 07:46:07PM +0800, Hammer Hsieh wrote:
-> Add bindings doc for Sunplus SoC PWM Driver
+On Fri, 17 Dec 2021 13:55:58 +0200, Tony Lindgren wrote:
+> I accidentally added some dra7 clock defines to the legacy section that
+> we want to stop using. Let's move the defines to the right location.
+> Note that this is just a cosmetic fix.
 > 
-> Signed-off-by: Hammer Hsieh <hammer.hsieh@sunplus.com>
-
-The author email and S-o-b must match.
-
+> Cc: linux-clk@vger.kernel.org
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Tero Kristo <kristo@kernel.org>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
 > ---
->  .../devicetree/bindings/pwm/pwm-sunplus.yaml       | 45 ++++++++++++++++++++++
->  MAINTAINERS                                        |  5 +++
->  2 files changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+>  include/dt-bindings/clock/dra7.h | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml b/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
-> new file mode 100644
-> index 0000000..9af19df
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) Sunplus Co., Ltd. 2021
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/pwm-sunplus.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sunplus SoC PWM Controller
-> +
-> +maintainers:
-> +  - Hammer Hsieh <hammer.hsieh@sunplus.com>
-> +
-> +properties:
-> +  '#pwm-cells':
-> +    const: 2
-> +
-> +  compatible:
-> +    items:
-> +      - const: sunplus,sp7021-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - '#pwm-cells'
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pwm: pwm@9c007a00 {
-> +      #pwm-cells = <2>;
-> +      compatible = "sunplus,sp7021-pwm";
-> +      reg = <0x9c007a00 0x80>;
-> +      clocks = <&clkc 0xa2>;
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 13f9a84..721ed79 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18242,6 +18242,11 @@ L:	netdev@vger.kernel.org
->  S:	Maintained
->  F:	drivers/net/ethernet/dlink/sundance.c
->  
-> +SUNPLUS PWM DRIVER
-> +M:	Hammer Hsieh <hammer.hsieh@sunplus.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
-> +
->  SUPERH
->  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
->  M:	Rich Felker <dalias@libc.org>
-> -- 
-> 2.7.4
-> 
-> 
+
+Acked-by: Rob Herring <robh@kernel.org>
