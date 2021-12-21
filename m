@@ -2,116 +2,344 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3620347BC0D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 09:46:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDD0247BC1C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 09:47:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235773AbhLUIqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 03:46:33 -0500
-Received: from ixit.cz ([94.230.151.217]:44690 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235774AbhLUIqb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 03:46:31 -0500
-Received: from [127.0.0.1] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 5B2CC2243C;
-        Tue, 21 Dec 2021 09:46:29 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1640076389;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=eMCrwVedhww3XT7Zrx0zd1r8/n0TrPVz0TPWo4hKClc=;
-        b=EGeTGUsWAfnDLrFg1vnKYXCznCvum1KyPCYXUSpJkGqZM6Ye8Go1wDi2h2pfCYFIHNASH0
-        8cGzd87mo0xlrHzC+zQzUpm543rbpNVfyGogZi7xEFu+YjZ+beihpfKM2txAVIMFQU/zSg
-        m9Kogmx1mpSwIvzWHKJZ9xYja2q/7X8=
-Date:   Tue, 21 Dec 2021 08:46:28 +0000
-From:   David Heidelberg <david@ixit.cz>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH=5D_arm64=3A_dts=3A_qcom=3A_sdm845=3A_?= =?US-ASCII?Q?add_missing_power-controller_compatible?=
-In-Reply-To: <20211221065845.GC26872@thinkpad>
-References: <20211220211443.106754-1-david@ixit.cz> <20211221065845.GC26872@thinkpad>
-Message-ID: <231125F6-0A22-4042-969E-45347CBE8CB7@ixit.cz>
+        id S235793AbhLUIr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 03:47:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51288 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234395AbhLUIr0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 03:47:26 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 613E9C061574;
+        Tue, 21 Dec 2021 00:47:26 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A57B6881;
+        Tue, 21 Dec 2021 09:47:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1640076444;
+        bh=/VTze/ZagOupEMdJkPudNkGv0WwLpT5c151Qt2p6m+0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EAl/5clNb9X+HnXbNJ2uQ1dvnDHGKzFcoJ3sm4l2fsQnc+Fz0O0R6XX7fWB4xn0lX
+         5M9RFwndXEaEh5OS41bAg6bGL9jxEiZcsgN84lEDAFdE2z3uZwHOMa3/56EKjq+pRT
+         rbEdRpfA6OH4md6AU2s/teFv4/3/sCxweiXwgnRI=
+Date:   Tue, 21 Dec 2021 10:47:22 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Niklas =?utf-8?Q?S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-media <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [RFC PATCH 1/3] media: dt-bindings: media: Document RZ/G2L CRU
+ block
+Message-ID: <YcGUmvq32fUXOMTo@pendragon.ideasonboard.com>
+References: <20211207012351.15754-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20211207012351.15754-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <YbfQIPS270So+jUh@robh.at.kernel.org>
+ <CA+V-a8tHL-DwNz3USQwh5NieTRvPhUAjZV-GqFsK67fgU+kF_w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8tHL-DwNz3USQwh5NieTRvPhUAjZV-GqFsK67fgU+kF_w@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It's more about how documentation is written=2E Documentation expect "speci=
-fic compatible", "generic compatible" in that order=2E Of course it can be =
-changed to allow also  only specific compatible=2E
+Hi Prabhakar,
 
-Also this syntax ensure that older kernel (without implemented device comp=
-atible/support) will try to work when new dts is used=2E Kernel can fallbac=
-k to generic one compatible and code and device will still work, if the dri=
-ver is generic enough to provide at least some basic support without knowin=
-g which exact device is handled=2E
+Thank you for the patch.
 
-If I missed some reason to use it, I guess Rob will correct me :)
+On Tue, Dec 14, 2021 at 12:07:14PM +0000, Lad, Prabhakar wrote:
+> On Mon, Dec 13, 2021 at 10:58 PM Rob Herring wrote:
+> > On Tue, Dec 07, 2021 at 01:23:49AM +0000, Lad Prabhakar wrote:
+> > > Document the CRU block found on Renesas RZ/G2L SoC's.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > ---
+> > >  .../bindings/media/renesas,rzg2l-cru.yaml     | 227 ++++++++++++++++++
+> > >  1 file changed, 227 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> > > new file mode 100644
+> > > index 000000000000..7b2835810516
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> > > @@ -0,0 +1,227 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +# Copyright (C) 2021 Renesas Electronics Corp.
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/renesas,rzg2l-cru.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Renesas RZ/G2L Camera Data Receiving Unit (CRU)
+> > > +
+> > > +maintainers:
+> > > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > +
+> > > +description:
+> > > +  The RZ/G2L Camera Data Receiving Unit (CRU) device provides video input
+> > > +  capabilities for the Renesas RZ/G2L family of devices.
+> > > +
+> > > +  Depending on the instance the Image Processing input is connected to
+> > > +  external SoC pins or to a CSI-2 receiver.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - items:
+> >
+> > Don't need oneOf with only 1 entry.
+>
+> I added this as there will be couple of more SoC's using this driver.
 
-David
+Will that be SoCs not compatible tieh the rzg2l-cru compatible string ?
+If so oneOf may be needed, but you can also add it later.
 
+> > > +          - enum:
+> > > +              - renesas,r9a07g044-cru     # RZ/G2{L,LC}
+> > > +          - const: renesas,rzg2l-cru
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 4
+> > > +
+> > > +  interrupt-names:
+> > > +    items:
+> > > +      - const: csi2_link_int
 
--------- P=C5=AFvodn=C3=AD zpr=C3=A1va --------
-Odes=C3=ADlatel: Manivannan Sadhasivam <manivannan=2Esadhasivam@linaro=2Eo=
-rg>
-Odesl=C3=A1no: 21=2E prosince 2021 6:58:45 UTC
-Komu: David Heidelberg <david@ixit=2Ecz>
-Kopie: Andy Gross <agross@kernel=2Eorg>, Bjorn Andersson <bjorn=2Eandersso=
-n@linaro=2Eorg>, Rob Herring <robh+dt@kernel=2Eorg>, ~okias/devicetree@list=
-s=2Esr=2Eht, linux-arm-msm@vger=2Ekernel=2Eorg, devicetree@vger=2Ekernel=2E=
-org, linux-kernel@vger=2Ekernel=2Eorg
-P=C5=99edm=C4=9Bt: Re: [PATCH] arm64: dts: qcom: sdm845: add missing power=
--controller compatible
+I'm not thrilled by this. It looks like the CSI-2 receiver and the image
+processing block are separate IP cores. Can we model them as separate DT
+nodes ? I expect the CSI-2 receiver to possibly be reused in other SoCs
+with a different integration.
 
-On Mon, Dec 20, 2021 at 10:14:43PM +0100, David Heidelberg wrote:
-> dt-schema expect to have fallback compatible, which is now in-place=2E
->=20
-> Fixes warning generated by `make qcom/sdm845-oneplus-fajita=2Edtb`:
-> arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita=2Edt=2Eyaml: power-contro=
-ller@c300000: compatible: ['qcom,sdm845-aoss-qmp'] is too short
->         From schema: Documentation/devicetree/bindings/soc/qcom/qcom,aos=
-s-qmp=2Eyaml
->=20
-> Signed-off-by: David Heidelberg <david@ixit=2Ecz>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845=2Edtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845=2Edtsi b/arch/arm64/boot/dt=
-s/qcom/sdm845=2Edtsi
-> index 92ab4513a08b=2E=2Edbdb4243499c 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845=2Edtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845=2Edtsi
-> @@ -4619,7 +4619,7 @@ aoss_reset: reset-controller@c2a0000 {
->  		};
-> =20
->  		aoss_qmp: power-controller@c300000 {
-> -			compatible =3D "qcom,sdm845-aoss-qmp";
-> +			compatible =3D "qcom,sdm845-aoss-qmp", "qcom,aoss-qmp";
+> > > +      - const: image_conv_int
+> > > +      - const: image_conv_err_int
+> > > +      - const: axi_mst_err_int
+> >
+> > _int is redundant.
+>
+> Agreed will drop "_int".
+> 
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: Internal clock for connecting CRU and MIPI
+> > > +      - description: CRU Main clock
+> > > +      - description: CPU Register access clock
+> > > +      - description: CRU image transfer clock
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: sysclk
+> > > +      - const: vclk
+> > > +      - const: pclk
+> > > +      - const: aclk
+> > > +
+> > > +  power-domains:
+> > > +    maxItems: 1
+> > > +
+> > > +  resets:
+> > > +    items:
+> > > +      - description: CRU_CMN_RSTB reset terminal
+> > > +      - description: CRU_PRESETN reset terminal
+> > > +      - description: CRU_ARESETN reset terminal
+> > > +
+> > > +  reset-names:
+> > > +    items:
+> > > +      - const: cmn-rstb
+> > > +      - const: presetn
+> > > +      - const: aresetn
+> > > +
+> > > +  ports:
+> > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > +
+> > > +    properties:
+> > > +      port@0:
+> > > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > > +        unevaluatedProperties: false
+> > > +        description:
+> > > +          Input port node, single endpoint describing a parallel input source.
+> > > +
+> > > +        properties:
+> > > +          endpoint:
+> > > +            $ref: video-interfaces.yaml#
+> > > +            unevaluatedProperties: false
+> > > +
+> > > +            properties:
+> > > +              hsync-active: true
+> > > +
+> > > +              vsync-active: true
+> > > +
+> > > +              bus-width: true
+> > > +
+> > > +              data-shift: true
 
-"qcom,sdm845-aoss-qmp" compatible is supported by the driver=2E So ideally=
- we
-don't need a fallback here=2E
+No need for a blank line between all properties.
 
-Is this something for DT backwards compatibility?
+> > > +
+> > > +      port@1:
+> > > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > > +        unevaluatedProperties: false
+> > > +        description:
+> > > +          Input port node, single endpoint describing the CSI-2 transmitter.
+> > > +
+> > > +        properties:
+> > > +          endpoint:
+> > > +            $ref: video-interfaces.yaml#
+> > > +            unevaluatedProperties: false
+> > > +
+> > > +            properties:
+> > > +              clock-lanes:
+> > > +                maxItems: 1
 
-Thanks,
-Mani
+If lane reordering isn't supported, you could omit this.
 
->  			reg =3D <0 0x0c300000 0 0x100000>;
->  			interrupts =3D <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
->  			mboxes =3D <&apss_shared 0>;
-> --=20
-> 2=2E34=2E1
->=20
+> > > +
+> > > +              data-lanes:
+> > > +                maxItems: 1
+
+Doesn't the CSI-2 receiver support more than one lane ?
+
+> > > +
+> > > +            required:
+> > > +              - clock-lanes
+> > > +              - data-lanes
+> > > +
+> > > +      port@2:
+> > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > +        description:
+> > > +          Output port node, describing the RZ/G2L Image Processing module
+> > > +          connected the CSI-2 receiver
+> > > +
+> > > +        properties:
+> > > +          endpoint@0:
+> >
+> > Unless you have mutiple endpoints to define or endpoint properties to
+> > add, you don't need to specify anything more than the port.
+>
+> Agreed will drop it.
+> 
+> > > +            $ref: /schemas/graph.yaml#/properties/endpoint
+> > > +            description: Endpoint connected to CSI2.
+> > > +
+> > > +        anyOf:
+> > > +          - required:
+> > > +              - endpoint@0
+> > > +
+> > > +      port@3:
+> > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > +        description:
+> > > +          Input port node, describing the RZ/G2L CSI-2 module connected the
+> > > +          Image Processing block.
+> > > +
+> > > +        properties:
+> > > +          endpoint@0:
+> > > +            $ref: /schemas/graph.yaml#/properties/endpoint
+> > > +            description: Endpoint connected to CSI2.
+> > > +
+> > > +        anyOf:
+> > > +          - required:
+> > > +              - endpoint@0
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +  - interrupt-names
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - resets
+> > > +  - reset-names
+> > > +  - power-domains
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  # Device node example with CSI-2
+> > > +  - |
+> > > +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +
+> > > +    cru: video@10830000 {
+> > > +            compatible = "renesas,r9a07g044-cru", "renesas,rzg2l-cru";
+> > > +            reg = <0x10830000 0x10000>;
+> > > +            interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                         <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                         <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
+> > > +                         <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
+> > > +            interrupt-names = "csi2_link_int", "image_conv_int",
+> > > +                              "image_conv_err_int", "axi_mst_err_int";
+> > > +            clocks = <&cpg CPG_MOD R9A07G044_CRU_SYSCLK>,
+> > > +                     <&cpg CPG_MOD R9A07G044_CRU_VCLK>,
+> > > +                     <&cpg CPG_MOD R9A07G044_CRU_PCLK>,
+> > > +                     <&cpg CPG_MOD R9A07G044_CRU_ACLK>;
+> > > +            clock-names = "sysclk", "vclk", "pclk", "aclk";
+> > > +            power-domains = <&cpg>;
+> > > +            resets = <&cpg R9A07G044_CRU_CMN_RSTB>,
+> > > +                     <&cpg R9A07G044_CRU_PRESETN>,
+> > > +                     <&cpg R9A07G044_CRU_ARESETN>;
+> > > +            reset-names = "cmn-rstb", "presetn", "aresetn";
+> > > +
+> > > +            ports {
+> > > +                    #address-cells = <1>;
+> > > +                    #size-cells = <0>;
+> > > +
+> > > +                    port@1 {
+> > > +                            #address-cells = <1>;
+> > > +                            #size-cells = <0>;
+> > > +
+> > > +                            reg = <1>;
+> > > +
+> > > +                            csi2_in: endpoint@0 {
+> > > +                                    reg = <0>;
+> > > +                                    clock-lanes = <0>;
+> > > +                                    data-lanes = <1 2>;
+> > > +                                    remote-endpoint = <&ov5645_ep>;
+> > > +                            };
+> > > +                    };
+> > > +
+> > > +                    port@2 {
+> > > +                            #address-cells = <1>;
+> > > +                            #size-cells = <0>;
+> > > +
+> > > +                            reg = <2>;
+> > > +
+> > > +                            csi2cru: endpoint@0 {
+> > > +                                    reg = <0>;
+> > > +                                    remote-endpoint= <&crucsi2>;
+> > > +                            };
+> > > +                    };
+> > > +
+> > > +                    port@3 {
+> > > +                            #address-cells = <1>;
+> > > +                            #size-cells = <0>;
+> > > +
+> > > +                            reg = <3>;
+> > > +
+> > > +                            crucsi2: endpoint@0 {
+> > > +                                    reg = <0>;
+> > > +                                    remote-endpoint= <&csi2cru>;
+> > > +                            };
+> > > +                    };
+> > > +            };
+> > > +    };
+
+-- 
+Regards,
+
+Laurent Pinchart
