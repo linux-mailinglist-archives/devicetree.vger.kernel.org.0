@@ -2,172 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8218B47BC63
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 10:04:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33BC847BCAC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 10:16:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235976AbhLUJEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 04:04:50 -0500
-Received: from smtp1.axis.com ([195.60.68.17]:65464 "EHLO smtp1.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234178AbhLUJEu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 04:04:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1640077490;
-  x=1671613490;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=21MVjU8BBU4s3iqha0uhpIEldo19sR0X+czAnqzhGmM=;
-  b=f0OEJquD69q2pZcMG9bfU7vI7k/WP38ZLPu25rh/GAfc9ToH5U2Ck1r2
-   grSf5HRaoZDPZY4Gpf/SR+iDN5QZgp3o9+7KjtJ6H3Z7VrEMdnm28/oTz
-   nXSh9faMFL7OADZosutvzYuqsW/dlpiu/rbw22ipK38iIhW+CtE9Z52Jz
-   GgYGCM6uM+PjA65oLvWD8EXm0P4Lld3NrYhLQnOvx3isWMVXCNuPubDv0
-   heawjITqpEKs5wnc5x3OEHTlMdytKOfLj0iVqq1Qo51i99dlQi0YfYFv7
-   NH0a0RrrO1EPjQF81Nm1pRP+Bpoj9za7aK2U4b0yDxIyY0weFB0yszorg
-   A==;
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Jeff Dike <jdike@addtoit.com>, Richard Weinberger <richard@nod.at>,
-        Anton Ivanov <anton.ivanov@cambridgegreys.com>
-CC:     <kernel@axis.com>, <johannes.berg@intel.com>,
-        <devicetree@vger.kernel.org>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        <linux-um@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] um: virtio_uml: allow probing from devicetree
-Date:   Tue, 21 Dec 2021 10:04:46 +0100
-Message-ID: <20211221090447.1567-1-vincent.whitchurch@axis.com>
-X-Mailer: git-send-email 2.33.1
+        id S232445AbhLUJQu convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 21 Dec 2021 04:16:50 -0500
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:54765 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230125AbhLUJQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 04:16:50 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 5AC5C6000B;
+        Tue, 21 Dec 2021 09:16:45 +0000 (UTC)
+Date:   Tue, 21 Dec 2021 10:16:44 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Wolfram Sang <wsa@kernel.org>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Chris Brandt <Chris.Brandt@renesas.com>,
+        Ralph Siemsen <ralph.siemsen@linaro.org>
+Subject: Re: [PATCH v6 3/4] MAINTAINERS: Add an entry for Renesas NAND
+ controller
+Message-ID: <20211221101644.70bb4fdd@xps13>
+In-Reply-To: <Yb0CYpCBFA/bQFjF@kunai>
+References: <20211217142033.353599-1-miquel.raynal@bootlin.com>
+        <20211217142033.353599-4-miquel.raynal@bootlin.com>
+        <Yb0CYpCBFA/bQFjF@kunai>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow the virtio_uml device to be probed from the devicetree so that
-sub-devices can be specified using the standard virtio bindings, for
-example:
+Hi Wolfram,
 
-  virtio@1 {
-    compatible = "virtio,uml";
-    socket-path = "i2c.sock";
-    virtio-device-id = <0x22>;
+wsa@kernel.org wrote on Fri, 17 Dec 2021 22:34:26 +0100:
 
-    i2c-controller {
-      compatible = "virtio,device22";
-      #address-cells = <0x01>;
-      #size-cells = <0x00>;
+> > +RENESAS R-CAR GEN3 & RZ/N1 NAND CONTROLLER DRIVER
+> > +M:	Miquel Raynal <miquel.raynal@bootlin.com>
+> > +L:	linux-mtd@lists.infradead.org  
+> 
+> Could you add
+> 
+> L:      linux-renesas-soc@vger.kernel.org
+> 
+> as well please?
 
-      light-sensor@01 {
-        compatible = "ti,opt3001";
-        reg = <0x01>;
-      };
-    };
-  };
+Sure! I'll add this line when applying.
 
-Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
----
+Thanks for the feedback and for the overall review!
 
-Notes:
-    Requires the UML devicetree support I posted a couple of weeks ago:
-    https://lore.kernel.org/all/20211208151123.29313-1-vincent.whitchurch@axis.com/
+> 
+> > +S:	Maintained
+> > +F:	Documentation/devicetree/bindings/mtd/renesas-nandc.yaml
+> > +F:	drivers/mtd/nand/raw/renesas-nand-controller.c  
 
- arch/um/drivers/virtio_uml.c | 50 +++++++++++++++++++++++++++++++++---
- 1 file changed, 47 insertions(+), 3 deletions(-)
-
-diff --git a/arch/um/drivers/virtio_uml.c b/arch/um/drivers/virtio_uml.c
-index d51e445df797..3e4fa0f262d3 100644
---- a/arch/um/drivers/virtio_uml.c
-+++ b/arch/um/drivers/virtio_uml.c
-@@ -21,6 +21,7 @@
-  * Based on Virtio MMIO driver by Pawel Moll, copyright 2011-2014, ARM Ltd.
-  */
- #include <linux/module.h>
-+#include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/slab.h>
- #include <linux/virtio.h>
-@@ -49,6 +50,7 @@ struct virtio_uml_platform_data {
- struct virtio_uml_device {
- 	struct virtio_device vdev;
- 	struct platform_device *pdev;
-+	struct virtio_uml_platform_data *pdata;
- 
- 	spinlock_t sock_lock;
- 	int sock, req_fd, irq;
-@@ -149,7 +151,7 @@ static int vhost_user_recv(struct virtio_uml_device *vu_dev,
- 	if (rc == -ECONNRESET && vu_dev->registered) {
- 		struct virtio_uml_platform_data *pdata;
- 
--		pdata = vu_dev->pdev->dev.platform_data;
-+		pdata = vu_dev->pdata;
- 
- 		virtio_break_device(&vu_dev->vdev);
- 		schedule_work(&pdata->conn_broken_wk);
-@@ -1113,21 +1115,63 @@ void virtio_uml_set_no_vq_suspend(struct virtio_device *vdev,
- 		 no_vq_suspend ? "dis" : "en");
- }
- 
-+static void vu_of_conn_broken(struct work_struct *wk)
-+{
-+	/*
-+	 * We can't remove the device from the devicetree so the only thing we
-+	 * can do is warn.
-+	 */
-+	WARN_ON(1);
-+}
-+
- /* Platform device */
- 
-+static struct virtio_uml_platform_data *
-+virtio_uml_create_pdata(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct virtio_uml_platform_data *pdata;
-+	int ret;
-+
-+	if (!np)
-+		return ERR_PTR(-EINVAL);
-+
-+	pdata = devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KERNEL);
-+	if (!pdata)
-+		return ERR_PTR(-ENOMEM);
-+
-+	INIT_WORK(&pdata->conn_broken_wk, vu_of_conn_broken);
-+	pdata->pdev = pdev;
-+
-+	ret = of_property_read_string(np, "socket-path", &pdata->socket_path);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	ret = of_property_read_u32(np, "virtio-device-id",
-+				   &pdata->virtio_device_id);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	return pdata;
-+}
-+
- static int virtio_uml_probe(struct platform_device *pdev)
- {
- 	struct virtio_uml_platform_data *pdata = pdev->dev.platform_data;
- 	struct virtio_uml_device *vu_dev;
- 	int rc;
- 
--	if (!pdata)
--		return -EINVAL;
-+	if (!pdata) {
-+		pdata = virtio_uml_create_pdata(pdev);
-+		if (IS_ERR(pdata))
-+			return PTR_ERR(pdata);
-+	}
- 
- 	vu_dev = kzalloc(sizeof(*vu_dev), GFP_KERNEL);
- 	if (!vu_dev)
- 		return -ENOMEM;
- 
-+	vu_dev->pdata = pdata;
- 	vu_dev->vdev.dev.parent = &pdev->dev;
- 	vu_dev->vdev.dev.release = virtio_uml_release_dev;
- 	vu_dev->vdev.config = &virtio_uml_config_ops;
--- 
-2.33.1
-
+Cheers,
+Miquèl
