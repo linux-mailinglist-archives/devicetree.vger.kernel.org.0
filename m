@@ -2,140 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8DEC47C417
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 17:47:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B6BA47C450
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 17:59:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239983AbhLUQrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 11:47:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50384 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236477AbhLUQrd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 11:47:33 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEC7DC06173F
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 08:47:32 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id x15so54541026edv.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 08:47:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=qgzoOjuixCPGD3DrGcfNRG0OiVFUDG2snsOsT7Z+aWs=;
-        b=GfZb8I6uUXmA3ugHIvVwpvC75DFWqQ9FTrkYC+xshHSAlo0PBtBwr7JyaJl6qNUSCK
-         /NZ6dgKqVNXMkHXcvp8keaHOhC9o7qT5Z9WQn7CLE9/9acgQ9bSYnrzfhgtyY4icBoFS
-         S47vPFEUe8cwXS+Xtn4fDGjQIFrraNgMjP/RQf4KV17CZAV6Gs6jpwglRvHOcqHDpJaL
-         5hGWYcKtbkA6Zh2tnyqRJAbPS1yb272ZLAfgQMP1sImvfwE59amNwt1QMBPS3ZrdCfQA
-         wgF9LuSmes4YJDeRDmkhDeZ+UoZ5SxTFUH9cTHgpFrJY/OB3ks5+8yfIUcc0dhJH3lWj
-         tiEQ==
+        id S232923AbhLUQ74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 11:59:56 -0500
+Received: from mail-qv1-f51.google.com ([209.85.219.51]:37473 "EHLO
+        mail-qv1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232563AbhLUQ74 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 11:59:56 -0500
+Received: by mail-qv1-f51.google.com with SMTP id fo11so13022202qvb.4
+        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 08:59:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=qgzoOjuixCPGD3DrGcfNRG0OiVFUDG2snsOsT7Z+aWs=;
-        b=pkc/yLXcyWIJ9BrFA+zm0aPOUML493rG0T+Jl6uZYhguYtu9aokakbNy7VGHesLha9
-         /DF/DE8UliMWuHiEtKAtcNHsCMs81ban2pmUG/Qx2N312Q35oIs+2lKHJZ9ohJ90xXVT
-         JYRAo43M9qJF3MKLdsjHvoq5MjKHB4QFXL5gjzl5SuJ/2pQ6pdwupQps4zVgXYFc8846
-         eMgTsUeCCkJf7yvmWxJjmGWAv8bLKHi2jmGklMOI2+avat6NYuIkOmIlyirTm2kGXfof
-         QHf0jsKakjv11HX8qgOpimX3hP6YVsTQjG3hnmUgLcZdMjvtgn0BVAQmdWn+DdrHCMfX
-         vwcQ==
-X-Gm-Message-State: AOAM530j1aI3omIwMUkgx4igG47AJPSBKDjhI0wiYgYCx5dxfDklw9lz
-        yK8vxeB02LtkohjgXOpn3clCyEmtUmSD5MsUviWFmA==
-X-Google-Smtp-Source: ABdhPJwDLPCgB8Wi8VYCO/jFHJtdzGpyco8O0RmQmiFpE9YLdKzudzKph06jI7RIeEBybqsLVIoSLRUWzWUsqlZzMAA=
-X-Received: by 2002:a05:6402:1c08:: with SMTP id ck8mr4115171edb.32.1640105250601;
- Tue, 21 Dec 2021 08:47:30 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=d1I46WgDGRouKIKrs7F6Yd4w6Er6grT4e9hEG9b/EJM=;
+        b=couWJ8WIb/KP95YNXg0EkbN/hBSkBa0M01O+Av5xpqY6KUApbjmzsjfNRiu1qIoBJZ
+         Jte1Fwku0D2eZSEogxzgyXlTGcLIUZRqdWVjlpeyhITuC+RxnSut3pK627z048l7Ki1H
+         DwAxmpLPAN1/m254fOhuiS3J+lGdArCI1Q4AfWJaPkwu9hDg0fQUMndgPoBby9UoZ7kk
+         Ze6H0OQxQe1UKz71SK4/CTShzrQsO1E3JXXQuP+IwCPh84or0hwOm1T1JdJO3Myoxfew
+         XwzHV9YcTGz+iz6xxmclrYAoqTqInrnMmD9IK5FGh9gwa5wf42PH6Q9/OIv8cTFXAdps
+         ZL4Q==
+X-Gm-Message-State: AOAM531XQSf6BNevLVyAPH2nB5yx3ZMDtHgyFuZxI1izPsaigDby437I
+        KziHiw+4L90njpoGXaKdPg==
+X-Google-Smtp-Source: ABdhPJxPQL3aRuJfE5/il6Ej8ilSZkmkLHHfGLS3HlyAdqwvaTvq/EEN3H9xI4uWNxEjf4k+QKHEXw==
+X-Received: by 2002:ad4:5f4c:: with SMTP id p12mr3210178qvg.11.1640105995500;
+        Tue, 21 Dec 2021 08:59:55 -0800 (PST)
+Received: from robh.at.kernel.org ([24.55.105.145])
+        by smtp.gmail.com with ESMTPSA id c1sm17260709qte.79.2021.12.21.08.59.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Dec 2021 08:59:54 -0800 (PST)
+Received: (nullmailer pid 1449857 invoked by uid 1000);
+        Tue, 21 Dec 2021 16:59:52 -0000
+Date:   Tue, 21 Dec 2021 12:59:52 -0400
+From:   Rob Herring <robh@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: imx8mq-usb-phy: Add imx8mp
+ specific flags
+Message-ID: <YcIICIKjbgEn0I+P@robh.at.kernel.org>
+References: <20211216160541.544974-1-alexander.stein@ew.tq-group.com>
+ <20211216160541.544974-2-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-References: <20211220210643.47842-1-pmenzel@molgen.mpg.de> <CAE_wzQ_Lg1ODV5sEqtW=SauhSXxi6+fh3msOuhnJy8-sNtORcg@mail.gmail.com>
-In-Reply-To: <CAE_wzQ_Lg1ODV5sEqtW=SauhSXxi6+fh3msOuhnJy8-sNtORcg@mail.gmail.com>
-From:   Guenter Roeck <groeck@google.com>
-Date:   Tue, 21 Dec 2021 08:47:19 -0800
-Message-ID: <CABXOdTeNy3jQ5aQijw9HTpwcNvkEJmddz9yf0Mk-Z+78bDDN-A@mail.gmail.com>
-Subject: Re: [PATCH] CHROMIUM: i2c: Add device property for probing
-To:     Dmitry Torokhov <dtor@chromium.org>
-Cc:     Paul Menzel <pmenzel@molgen.mpg.de>, Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Furquan Shaikh <furquan@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Tim Wawrzynczak <twawrzynczak@chromium.org>,
-        coreboot@coreboot.org, Matt DeVillier <matt.devillier@gmail.com>,
-        Felix Singer <felixsinger@posteo.net>,
-        Duncan Laurie <dlaurie@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Furquan Shaikh <furquan@chromium.org>,
-        Justin TerAvest <teravest@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>, linux-i2c@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211216160541.544974-2-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 20, 2021 at 1:49 PM Dmitry Torokhov <dtor@chromium.org> wrote:
->
-> Hi Paul,
->
-> On Mon, Dec 20, 2021 at 1:07 PM Paul Menzel <pmenzel@molgen.mpg.de> wrote=
-:
-> >
-> > From: Furquan Shaikh <furquan@google.com>
-> >
-> > Dear Linux folks,
-> >
-> >
-> > Google Chromebooks are often built with devices sourced from different
-> > vendors. These need to be probed. To deal with this, the firmware =E2=
-=80=93 in
-> > this case coreboot =E2=80=93 tags such optional devices accordingly =E2=
-=80=93 I think
-> > this is commit fbf2c79b (drivers/i2c/generic: Add config for marking
-> > device as probed) =E2=80=93 and Chromium OS=E2=80=99 Linux kernel has t=
-he patch at hand
-> > applied to act accordingly. Right after the merge, Dmitry created a
-> > revert, which was actively discussed for two days but wasn=E2=80=99t ap=
-plied.
-> > That means, millions of devices shipped with such a firmware and Linux
-> > kernel. To support these devices with upstream Linux kernel, is there a=
-n
-> > alternative to applying the patch to the Linux kernel, and to support
-> > the shipped devices?
->
-> *sigh* I should have pushed harder, but I see it managed to
-> proliferate even into our newer kernels. Not having this patch should
-> not cause any problems, it can only hurt, because the i2c core has no
-> idea how to power up and reset the device properly. The only downside
-> of not having this patch is that we may have devices in sysfs that are
-> not connected to actual hardware. They do now cause any problems and
-> is how we have been shipping ARM-based devices where we also dual- and
-> triple-source components. However if we were to have a device that
-> switches between several addresses (let's say device in bootloader
-> mode uses 0x10 address and in normal mode 0x20) this "probing" may
-> result in device not being detected at all.
->
-> If we wanted to do this correctly, coreboot would have to implement
-> full power and reset control and also add drivers for I2C controllers
-> to be able to communicate with peripherals, and then adjust _STA
-> methods to report "not present" when the device is indeed absent. And
-> note that even in this case we would have issues with "morphing
-> devices", so coreboot would also need to know how to reset device out
-> of bootloader mode, and maybe flash firmware so device can work in
-> normal mode.
->
-> However coreboot does (or did?) not want to add code to handle i2c
-> controllers, and would like to push this knowledge to the kernel. And
-> the kernel does know how to handle peripherals properly, but that
-> knowledge lies in individual drivers, not i2c core.
->
-> We should remove "linux,probed" from coreboot and not propagate to
-> newer Chrome OS kernels, and keep it away from upstream.
->
+On Thu, Dec 16, 2021 at 05:05:39PM +0100, Alexander Stein wrote:
+> This adds bindings for features only available on imx8mp. They allow
+> setting polarity of PWR and OC as well as disabling port power control.
+> Also permanently atteched can be annotated as well.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> Adding properties specific to one compatible globally and disabling them on
+> other compatibles is the way to go?
+> 
+> Are there any best practices on the usage of '-' and/or '_' in property names?
 
-Revert from chromeos-5.15 is at
-https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/=
-3350347.
-Everyone please feel free to comment there.
+Yes, don't use '_'.
 
-Guenter
+> 
+>  .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 52 ++++++++++++++++++-
+>  1 file changed, 51 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> index 2936f3510a6a..1d28b7d1c413 100644
+> --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> @@ -16,7 +16,8 @@ properties:
+>        - fsl,imx8mp-usb-phy
+>  
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+>  
+>    "#phy-cells":
+>      const: 0
+> @@ -32,6 +33,28 @@ properties:
+>      description:
+>        A phandle to the regulator for USB VBUS.
+>  
+> +  fsl,permanently-attached:
+> +    type: boolean
+> +    description:
+> +      Indicates if the device atached to a downstream port is
+> +      permanently attached.
+
+Wouldn't just describing the downstream device be enough to indicate 
+this? Though that is in the host controller rather than the phy.
+
+> +
+> +  fsl,disable-port-power-control:
+> +    type: boolean
+> +    description:
+> +      Indicates whether the host controller implementation includes port
+> +      power control. Defines Bit 3 in capability register (HCCPARAMS).
+> +
+> +  fsl,over-current-active-low:
+> +    type: boolean
+> +    description:
+> +      Over current signal polarity is active low.
+> +
+> +  fsl,power-active-low:
+> +    type: boolean
+> +    description:
+> +      Power pad (PWR) polarity is active low.
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -39,6 +62,33 @@ required:
+>    - clocks
+>    - clock-names
+>  
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - fsl,imx8mp-usb-phy
+> +
+> +then:
+> +  properties:
+> +    reg:
+> +      minItems: 2
+> +      maxItems: 2
+> +      items:
+> +        - description: PHY register base address
+> +        - description: Glue layer base address
+
+Move 'items' to the top level and then here you only need 'minItems: 2'.
+
+> +
+> +else:
+> +  properties:
+> +    reg:
+> +      maxItems: 1
+> +      items:
+> +        - description: PHY register base address
+
+And just 'maxItems' here.
+
+> +    fsl,permanently-attached: false
+> +    fsl,disable-port-power-control: false
+> +    fsl,over-current-active-low: false
+> +    fsl,power-active-low: false
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> -- 
+> 2.25.1
+> 
+> 
