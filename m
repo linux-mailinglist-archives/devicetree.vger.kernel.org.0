@@ -2,132 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35B1F47B6A7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 02:02:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69E4047B6CA
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 02:21:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233539AbhLUBCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 20:02:41 -0500
-Received: from mga04.intel.com ([192.55.52.120]:59454 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229551AbhLUBCl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Dec 2021 20:02:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1640048561; x=1671584561;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NLUzOH6tUpTQcEC5NCc1CX4TrkqfT1bnpm8U/JWESV0=;
-  b=jcoEronuKGDEx1ueM2bb+eEqAKptpbLxihsHRRer2IHgRHsYVPJI+eZ/
-   06jsmRMXB+z/ihVwqTAK7jkY8SFvlodGiGj1iWV0x06xcwYPMnof9hpy3
-   fsmg2FJrVi20fspjl3ycwDnKQF+hB6axX4xQX93/Sz9A9ecfRJaIqOzDT
-   C7uk65AOgEMaul3q8C/6gpWLEOPUDuXHI2/PrxTsTuJlNbCDc9CiYiPxb
-   9tIAUoeclT+jvWlX1W8THHGNlHdDHUA6b1TNBVvCviJy8+O+AJNqD4oDu
-   ke5Tg+ZjfEVEue6QlcqA+GKrTCI0EvvW3o9/i61LQ4bjNuqGTcjBvWv56
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10204"; a="239043710"
-X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; 
-   d="scan'208";a="239043710"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2021 17:02:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; 
-   d="scan'208";a="466127803"
-Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
-  by orsmga003.jf.intel.com with ESMTP; 20 Dec 2021 17:02:36 -0800
-Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mzTY3-0008TZ-Vf; Tue, 21 Dec 2021 01:02:35 +0000
-Date:   Tue, 21 Dec 2021 09:02:06 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Taniya Das <tdas@codeaurora.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette =?iso-8859-1?Q?=A0?= 
-        <mturquette@baylibre.com>
-Cc:     kbuild-all@lists.01.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v2 5/5] clk: qcom: lpass: Add support for LPASS clock
- controller for SC7280
-Message-ID: <202112210805.wI87zJw0-lkp@intel.com>
-References: <1640018638-19436-6-git-send-email-tdas@codeaurora.org>
+        id S229991AbhLUBV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 20:21:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36386 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229596AbhLUBV2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 20:21:28 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2281C061574;
+        Mon, 20 Dec 2021 17:21:27 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id k37so25729405lfv.3;
+        Mon, 20 Dec 2021 17:21:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=nkRfs6Jq6Yr/a/t9OO2egmqloXCmD4IcdPxGpgHonb8=;
+        b=eF1G2y2TjCAkFUrBHcdwf3AbiSiwCXaA2g7IKISK3lq1/wtP150oj9nLjun2CQ+h1R
+         vot0D+gAcqRR647Zq81AI3CvVtcy3qDvnFMgCF4DHHFLLiEhLrLdpLz1gGyWi7JqjsMq
+         Q5XPxpn2JAkCLZfvmuz8D1aMmD/Bp5QBWMX+MGVw72KvpunSLbk+ZeKop5LvmtvU2n97
+         5CsfKyuXgPWnKXIlltWovD4O1uQy3ssLCHpROmBnMqq4e6sbAe5zm8UC2DTyXOTkglGX
+         EUt8rMwVdQ90IX6gxggPtLDeknNwu3LogfS0J0irajS7bExPTNK/MTUro5ZETcIatvCq
+         UFlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=nkRfs6Jq6Yr/a/t9OO2egmqloXCmD4IcdPxGpgHonb8=;
+        b=7rcyIkUoI9NraJrNWxDJHsjbW2MNT1HlFOtD8VP1REmS7Qh6ndSLxLU+c1CS8dYYIg
+         RQdnel7r0SjlCnaHqrSGrUZzsFsEi6kYpkWOa0HBbzA3JchhirukkyvP6IGkMJkG7zLS
+         7FqbQKtqgip3L8SS4jRYKf8fiVoy6tEoiVwKa+kQ7ipjFZC4uxqAYmSoPrptf2p4nxJe
+         179jvUk48t0i4OVJfUr55gPEbSv0VLLT/ghVTGFtnCRxD1c+dEBTBellU/JuwaW4M3P1
+         wI0VrrcQqfAwlS3Ex0RN/uTdU5Ta/mMK5FtmJ6JjB7TPZQD+onhnrNacBJBOjl34xmZB
+         IOhA==
+X-Gm-Message-State: AOAM531tAOnar56Xr0bx2fzfbt1R027T3/J7hQdwe6NV4tA0LYk/qldo
+        6bRuY1ByRdNqOq1r9BdK/yx1bjr0B6k=
+X-Google-Smtp-Source: ABdhPJziuxKcVGxUkjz2c00kkrTen8rOkYs71ofy6F7odPfZ42R/oI6ztDoz6894QXV2I32c3yKg8w==
+X-Received: by 2002:ac2:51bc:: with SMTP id f28mr842680lfk.222.1640049685857;
+        Mon, 20 Dec 2021 17:21:25 -0800 (PST)
+Received: from [192.168.2.145] (46-138-43-24.dynamic.spd-mgts.ru. [46.138.43.24])
+        by smtp.googlemail.com with ESMTPSA id h18sm2637460ljh.133.2021.12.20.17.21.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Dec 2021 17:21:25 -0800 (PST)
+Subject: Re: [PATCH v2 1/3] ALSA: hda/tegra: Fix Tegra194 HDA reset failure
+To:     Sameer Pujar <spujar@nvidia.com>, tiwai@suse.com,
+        broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, perex@perex.cz
+Cc:     jonathanh@nvidia.com, mkumard@nvidia.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+References: <1640021408-12824-1-git-send-email-spujar@nvidia.com>
+ <1640021408-12824-2-git-send-email-spujar@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <f859559c-abf1-ae37-6a0f-80329e6f747f@gmail.com>
+Date:   Tue, 21 Dec 2021 04:21:24 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1640018638-19436-6-git-send-email-tdas@codeaurora.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1640021408-12824-2-git-send-email-spujar@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Taniya,
+20.12.2021 20:30, Sameer Pujar пишет:
+> HDA regression is recently reported on Tegra194 based platforms.
+> This happens because "hda2codec_2x" reset does not really exist
+> in Tegra194 and it causes probe failure. All the HDA based audio
+> tests fail at the moment. This underlying issue is exposed by
+> commit c045ceb5a145 ("reset: tegra-bpmp: Handle errors in BPMP
+> response") which now checks return code of BPMP command response.
+> Fix this issue by skipping unavailable reset on Tegra194.
+> 
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Cc: stable@vger.kernel.org
+> Depends-on: 87f0e46e7559 ("ALSA: hda/tegra: Reset hardware")
+> ---
+>  sound/pci/hda/hda_tegra.c | 96 ++++++++++++++++++++++++++++++++++++++++++-----
+>  1 file changed, 86 insertions(+), 10 deletions(-)
+> 
+> diff --git a/sound/pci/hda/hda_tegra.c b/sound/pci/hda/hda_tegra.c
+> index ea700395..be010cd 100644
+> --- a/sound/pci/hda/hda_tegra.c
+> +++ b/sound/pci/hda/hda_tegra.c
+> @@ -68,14 +68,21 @@
+>   */
+>  #define TEGRA194_NUM_SDO_LINES	  4
+>  
+> +struct hda_tegra_soc {
+> +	bool has_hda2codec_2x_reset;
+> +};
+> +
+>  struct hda_tegra {
+>  	struct azx chip;
+>  	struct device *dev;
+> -	struct reset_control *reset;
+> +	struct reset_control *reset_hda;
+> +	struct reset_control *reset_hda2hdmi;
+> +	struct reset_control *reset_hda2codec_2x;
+>  	struct clk_bulk_data clocks[3];
+>  	unsigned int nclocks;
+>  	void __iomem *regs;
+>  	struct work_struct probe_work;
+> +	const struct hda_tegra_soc *data;
+>  };
+>  
+>  #ifdef CONFIG_PM
+> @@ -170,9 +177,26 @@ static int __maybe_unused hda_tegra_runtime_resume(struct device *dev)
+>  	int rc;
+>  
+>  	if (!chip->running) {
+> -		rc = reset_control_assert(hda->reset);
+> -		if (rc)
+> +		rc = reset_control_assert(hda->reset_hda);
+> +		if (rc) {
+> +			dev_err(dev, "hda reset assert failed, err: %d\n", rc);
+> +			return rc;
+> +		}
+> +
+> +		rc = reset_control_assert(hda->reset_hda2hdmi);
+> +		if (rc) {
+> +			dev_err(dev, "hda2hdmi reset assert failed, err: %d\n",
+> +				rc);
+> +			return rc;
+> +		}
+> +
+> +		rc = reset_control_assert(hda->reset_hda2codec_2x);
+> +		if (rc) {
+> +			dev_err(dev,
+> +				"hda2codec_2x reset assert failed, err: %d\n",
+> +				rc);
+>  			return rc;
+> +		}
+>  	}
+>  
+>  	rc = clk_bulk_prepare_enable(hda->nclocks, hda->clocks);
+> @@ -187,9 +211,27 @@ static int __maybe_unused hda_tegra_runtime_resume(struct device *dev)
+>  	} else {
+>  		usleep_range(10, 100);
+>  
+> -		rc = reset_control_deassert(hda->reset);
+> -		if (rc)
+> +		rc = reset_control_deassert(hda->reset_hda);
+> +		if (rc) {
+> +			dev_err(dev, "hda reset deassert failed, err: %d\n",
+> +				rc);
+>  			return rc;
+> +		}
+> +
+> +		rc = reset_control_deassert(hda->reset_hda2hdmi);
+> +		if (rc) {
+> +			dev_err(dev, "hda2hdmi reset deassert failed, err: %d\n",
+> +				rc);
+> +			return rc;
+> +		}
+> +
+> +		rc = reset_control_deassert(hda->reset_hda2codec_2x);
+> +		if (rc) {
+> +			dev_err(dev,
+> +				"hda2codec_2x reset deassert failed, err: %d\n",
+> +				rc);
+> +			return rc;
+> +		}
+>  	}
+>  
+>  	return 0;
+> @@ -427,9 +469,17 @@ static int hda_tegra_create(struct snd_card *card,
+>  	return 0;
+>  }
+>  
+> +static const struct hda_tegra_soc tegra30_data = {
+> +	.has_hda2codec_2x_reset = true,
+> +};
+> +
+> +static const struct hda_tegra_soc tegra194_data = {
+> +	.has_hda2codec_2x_reset = false,
+> +};
+> +
+>  static const struct of_device_id hda_tegra_match[] = {
+> -	{ .compatible = "nvidia,tegra30-hda" },
+> -	{ .compatible = "nvidia,tegra194-hda" },
+> +	{ .compatible = "nvidia,tegra30-hda", .data = &tegra30_data },
+> +	{ .compatible = "nvidia,tegra194-hda", .data = &tegra194_data },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, hda_tegra_match);
+> @@ -449,6 +499,10 @@ static int hda_tegra_probe(struct platform_device *pdev)
+>  	hda->dev = &pdev->dev;
+>  	chip = &hda->chip;
+>  
+> +	hda->data = of_device_get_match_data(&pdev->dev);
+> +	if (!hda->data)
+> +		return -EINVAL;
+> +
+>  	err = snd_card_new(&pdev->dev, SNDRV_DEFAULT_IDX1, SNDRV_DEFAULT_STR1,
+>  			   THIS_MODULE, 0, &card);
+>  	if (err < 0) {
+> @@ -456,12 +510,34 @@ static int hda_tegra_probe(struct platform_device *pdev)
+>  		return err;
+>  	}
+>  
+> -	hda->reset = devm_reset_control_array_get_exclusive(&pdev->dev);
+> -	if (IS_ERR(hda->reset)) {
+> -		err = PTR_ERR(hda->reset);
+> +	hda->reset_hda = devm_reset_control_get_exclusive(&pdev->dev, "hda");
+> +	if (IS_ERR(hda->reset_hda)) {
+> +		err = PTR_ERR(hda->reset_hda);
+>  		goto out_free;
+>  	}
+>  
+> +	hda->reset_hda2hdmi = devm_reset_control_get_exclusive(&pdev->dev,
+> +							       "hda2hdmi");
+> +	if (IS_ERR(hda->reset_hda2hdmi)) {
+> +		err = PTR_ERR(hda->reset_hda2hdmi);
+> +		goto out_free;
+> +	}
+> +
+> +	/*
+> +	 * "hda2codec_2x" reset is not present on Tegra194. Though DT would
+> +	 * be updated to reflect this, but to have backward compatibility
+> +	 * below is necessary.
+> +	 */
+> +	if (hda->data->has_hda2codec_2x_reset) {
+> +		hda->reset_hda2codec_2x =
+> +			devm_reset_control_get_exclusive(&pdev->dev,
+> +							 "hda2codec_2x");
+> +		if (IS_ERR(hda->reset_hda2codec_2x)) {
+> +			err = PTR_ERR(hda->reset_hda2codec_2x);
+> +			goto out_free;
+> +		}
+> +	}
+> +
+>  	hda->clocks[hda->nclocks++].id = "hda";
+>  	hda->clocks[hda->nclocks++].id = "hda2hdmi";
+>  	hda->clocks[hda->nclocks++].id = "hda2codec_2x";
+> 
 
-Thank you for the patch! Perhaps something to improve:
+All stable kernels affected by this problem that don't support the bulk
+reset API are EOL now. Please use bulk reset API like I suggested in the
+comment to v1, it will allow us to have a cleaner and nicer code.
 
-[auto build test WARNING on clk/clk-next]
-[also build test WARNING on robh/for-next linus/master v5.16-rc6 next-20211220]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Taniya-Das/Add-support-for-LPASS-Core-and-Audio-Clock-for-SC7280/20211221-004818
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-config: parisc-allyesconfig (https://download.01.org/0day-ci/archive/20211221/202112210805.wI87zJw0-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/fec640fab5ec498e79475ecd4b15bc95035a76b1
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Taniya-Das/Add-support-for-LPASS-Core-and-Audio-Clock-for-SC7280/20211221-004818
-        git checkout fec640fab5ec498e79475ecd4b15bc95035a76b1
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=parisc SHELL=/bin/bash drivers/clk/qcom/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/clk/qcom/lpassaudiocc-sc7280.c:39:9: warning: this decimal constant is unsigned only in ISO C90
-      39 |         { 595200000, 3600000000, 0 },
-         |         ^
-   In file included from include/uapi/linux/posix_types.h:5,
-                    from include/uapi/linux/types.h:14,
-                    from include/linux/types.h:6,
-                    from include/linux/of.h:14,
-                    from include/linux/clk-provider.h:9,
-                    from drivers/clk/qcom/lpassaudiocc-sc7280.c:6:
-   drivers/clk/qcom/lpassaudiocc-sc7280.c: In function 'lpass_audio_cc_sc7280_probe':
-   include/linux/stddef.h:8:14: error: called object is not a function or function pointer
-       8 | #define NULL ((void *)0)
-         |              ^
-   include/linux/pm_clock.h:82:25: note: in expansion of macro 'NULL'
-      82 | #define pm_clk_suspend  NULL
-         |                         ^~~~
-   drivers/clk/qcom/lpassaudiocc-sc7280.c:740:9: note: in expansion of macro 'pm_clk_suspend'
-     740 |         pm_clk_suspend(&pdev->dev);
-         |         ^~~~~~~~~~~~~~
-   drivers/clk/qcom/lpassaudiocc-sc7280.c: In function 'lpass_aon_cc_sc7280_probe':
-   include/linux/stddef.h:8:14: error: called object is not a function or function pointer
-       8 | #define NULL ((void *)0)
-         |              ^
-   include/linux/pm_clock.h:82:25: note: in expansion of macro 'NULL'
-      82 | #define pm_clk_suspend  NULL
-         |                         ^~~~
-   drivers/clk/qcom/lpassaudiocc-sc7280.c:798:9: note: in expansion of macro 'pm_clk_suspend'
-     798 |         pm_clk_suspend(&pdev->dev);
-         |         ^~~~~~~~~~~~~~
-
-
-vim +39 drivers/clk/qcom/lpassaudiocc-sc7280.c
-
-    37	
-    38	static const struct pll_vco zonda_vco[] = {
-  > 39		{ 595200000, 3600000000, 0 },
-    40	};
-    41	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+The bulk reset code will look similar to the bulk clk API already used
+by the HDA driver, you'll only need to skip adding the hda2codec_2x to
+resets[3] and switch to use reset_control_bulk_reset_*() variants of the
+functions.
