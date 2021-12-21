@@ -2,92 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42B4C47B662
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 01:06:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35B1F47B6A7
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 02:02:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231854AbhLUAGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 19:06:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48444 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230522AbhLUAGi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 19:06:38 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 949BFC061574;
-        Mon, 20 Dec 2021 16:06:37 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id bm14so32113777edb.5;
-        Mon, 20 Dec 2021 16:06:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lvUzazrWWp7IQK+actEDMRd1Nwhih5uO5PeylPSgyaY=;
-        b=U285jPI+Lfhd0lkiAZbY6UWOPFzuOEi9jJRpkElvFsoN5lGK9wHzqkFks/o7efXlI5
-         KXtmHwVoybu6lwGzEFzEA2XmXKcHCYHHfcQorMCtaXpInCCygBZVwddgodiuQd5jtWix
-         GvctX3yedFAOM4LxIUvhyRxThod1Gublpm7WrM2fSJvDssX94KKOmLlD2V6Fntbaugz2
-         /FpWgY4qxp1ww3HCBpjTwGotrmoYI3JOE0lJkLXxoMMaNEW01RE06z0KmrEQKowIIg3o
-         ufftNkvu0phd8H2jbACerDFV8zDi7/xijfQFeeW+YTIeYC135fGtWy3Al/jiDUf5fvKu
-         I+eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lvUzazrWWp7IQK+actEDMRd1Nwhih5uO5PeylPSgyaY=;
-        b=6Cv8ZSTGGYEIuBi0ep0hYOU9lhOX26AgjRueIlh0HjLs36SCm4RqQ0zlCp8xKbGzgA
-         JahB3e0oZf5qaK4ZjHJ5Op15mSgeXPGKTB17DKLTuWq9sF9Xvf6+C+Gld/A9N6/AclYQ
-         SerTS2CSXxKXyX5uJLcCuUnxkKehYLfIQ3t6DM1TYSckDRFobAyXVBYoHgCnx4QYjj9Y
-         yxy5IrbwTCT8fbo4ZG4xzyC8KjU85v5S02EEdHfGG8jiqvHrrJkjIXv8FEhd1+qSiYu1
-         WefYm/V9yHlHmzaZ0fvU7mxu3pzwGiX5JiB82BeZ/+pUVH9dzB56D7zac3ca6sVSLICG
-         xFLA==
-X-Gm-Message-State: AOAM533Pq6xiEHlE+W2hD9YnUUlbL+1zEtWWckBH7w0W7EYhX2cRcet+
-        zSjWIjfCo9ZeesnxqbKPhRKOB7Di+RDYfNmmJdU=
-X-Google-Smtp-Source: ABdhPJwhsj6nPnnGFryy1KBigHXOfjaBah3GIIiYUyZ/6xUxTf3gNiH45X7rpT8Tb5BMBICwWN3jhuhvcOGoM2JaeGU=
-X-Received: by 2002:a05:6402:5107:: with SMTP id m7mr583443edd.108.1640045195940;
- Mon, 20 Dec 2021 16:06:35 -0800 (PST)
+        id S233539AbhLUBCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 20:02:41 -0500
+Received: from mga04.intel.com ([192.55.52.120]:59454 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229551AbhLUBCl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Dec 2021 20:02:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1640048561; x=1671584561;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NLUzOH6tUpTQcEC5NCc1CX4TrkqfT1bnpm8U/JWESV0=;
+  b=jcoEronuKGDEx1ueM2bb+eEqAKptpbLxihsHRRer2IHgRHsYVPJI+eZ/
+   06jsmRMXB+z/ihVwqTAK7jkY8SFvlodGiGj1iWV0x06xcwYPMnof9hpy3
+   fsmg2FJrVi20fspjl3ycwDnKQF+hB6axX4xQX93/Sz9A9ecfRJaIqOzDT
+   C7uk65AOgEMaul3q8C/6gpWLEOPUDuXHI2/PrxTsTuJlNbCDc9CiYiPxb
+   9tIAUoeclT+jvWlX1W8THHGNlHdDHUA6b1TNBVvCviJy8+O+AJNqD4oDu
+   ke5Tg+ZjfEVEue6QlcqA+GKrTCI0EvvW3o9/i61LQ4bjNuqGTcjBvWv56
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10204"; a="239043710"
+X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; 
+   d="scan'208";a="239043710"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2021 17:02:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,221,1635231600"; 
+   d="scan'208";a="466127803"
+Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
+  by orsmga003.jf.intel.com with ESMTP; 20 Dec 2021 17:02:36 -0800
+Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mzTY3-0008TZ-Vf; Tue, 21 Dec 2021 01:02:35 +0000
+Date:   Tue, 21 Dec 2021 09:02:06 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Taniya Das <tdas@codeaurora.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette =?iso-8859-1?Q?=A0?= 
+        <mturquette@baylibre.com>
+Cc:     kbuild-all@lists.01.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v2 5/5] clk: qcom: lpass: Add support for LPASS clock
+ controller for SC7280
+Message-ID: <202112210805.wI87zJw0-lkp@intel.com>
+References: <1640018638-19436-6-git-send-email-tdas@codeaurora.org>
 MIME-Version: 1.0
-References: <20211220072332.81072-1-reinhold.mueller@emtrion.com> <20211220072332.81072-3-reinhold.mueller@emtrion.com>
-In-Reply-To: <20211220072332.81072-3-reinhold.mueller@emtrion.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 20 Dec 2021 21:06:25 -0300
-Message-ID: <CAOMZO5BvLZYh3=q_-XNcw-v5wDcBpR3Qo26Gd3hTtJ_a-FQiuA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: imx8mm: Add support for emtrion
- emCON-MX8M Mini
-To:     reinhold.mueller@emtrion.com
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1640018638-19436-6-git-send-email-tdas@codeaurora.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Reinhold,
+Hi Taniya,
 
-On Mon, Dec 20, 2021 at 4:23 AM <reinhold.mueller@emtrion.com> wrote:
+Thank you for the patch! Perhaps something to improve:
 
-> +       pinctrl_ecspi1: ecspi1-grp {
-> +               fsl,pins = <
-> +                       MX8MM_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK            0x82
-> +                       MX8MM_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI            0x82
-> +                       MX8MM_IOMUXC_ECSPI1_MISO_ECSPI1_MISO            0x82
-> +               >;
-> +       };
-> +
-> +       pinctrl_ecspi1_cs: ecspi1-cs {
-> +               fsl,pins = <
-> +                       MX8MM_IOMUXC_ECSPI1_SS0_GPIO5_IO9               0x40000
-> +                       MX8MM_IOMUXC_ECSPI2_SS0_GPIO5_IO13              0x40000
+[auto build test WARNING on clk/clk-next]
+[also build test WARNING on robh/for-next linus/master v5.16-rc6 next-20211220]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-This version looks good to me.
+url:    https://github.com/0day-ci/linux/commits/Taniya-Das/Add-support-for-LPASS-Core-and-Audio-Clock-for-SC7280/20211221-004818
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+config: parisc-allyesconfig (https://download.01.org/0day-ci/archive/20211221/202112210805.wI87zJw0-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/fec640fab5ec498e79475ecd4b15bc95035a76b1
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Taniya-Das/Add-support-for-LPASS-Core-and-Audio-Clock-for-SC7280/20211221-004818
+        git checkout fec640fab5ec498e79475ecd4b15bc95035a76b1
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=parisc SHELL=/bin/bash drivers/clk/qcom/
 
-One nit: you seem to use a single SPI chipselect, but you add two entries here.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Is the MX8MM_IOMUXC_ECSPI2_SS0_GPIO5_IO13 needed too?
+All warnings (new ones prefixed by >>):
 
-Either way:
+>> drivers/clk/qcom/lpassaudiocc-sc7280.c:39:9: warning: this decimal constant is unsigned only in ISO C90
+      39 |         { 595200000, 3600000000, 0 },
+         |         ^
+   In file included from include/uapi/linux/posix_types.h:5,
+                    from include/uapi/linux/types.h:14,
+                    from include/linux/types.h:6,
+                    from include/linux/of.h:14,
+                    from include/linux/clk-provider.h:9,
+                    from drivers/clk/qcom/lpassaudiocc-sc7280.c:6:
+   drivers/clk/qcom/lpassaudiocc-sc7280.c: In function 'lpass_audio_cc_sc7280_probe':
+   include/linux/stddef.h:8:14: error: called object is not a function or function pointer
+       8 | #define NULL ((void *)0)
+         |              ^
+   include/linux/pm_clock.h:82:25: note: in expansion of macro 'NULL'
+      82 | #define pm_clk_suspend  NULL
+         |                         ^~~~
+   drivers/clk/qcom/lpassaudiocc-sc7280.c:740:9: note: in expansion of macro 'pm_clk_suspend'
+     740 |         pm_clk_suspend(&pdev->dev);
+         |         ^~~~~~~~~~~~~~
+   drivers/clk/qcom/lpassaudiocc-sc7280.c: In function 'lpass_aon_cc_sc7280_probe':
+   include/linux/stddef.h:8:14: error: called object is not a function or function pointer
+       8 | #define NULL ((void *)0)
+         |              ^
+   include/linux/pm_clock.h:82:25: note: in expansion of macro 'NULL'
+      82 | #define pm_clk_suspend  NULL
+         |                         ^~~~
+   drivers/clk/qcom/lpassaudiocc-sc7280.c:798:9: note: in expansion of macro 'pm_clk_suspend'
+     798 |         pm_clk_suspend(&pdev->dev);
+         |         ^~~~~~~~~~~~~~
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+
+vim +39 drivers/clk/qcom/lpassaudiocc-sc7280.c
+
+    37	
+    38	static const struct pll_vco zonda_vco[] = {
+  > 39		{ 595200000, 3600000000, 0 },
+    40	};
+    41	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
