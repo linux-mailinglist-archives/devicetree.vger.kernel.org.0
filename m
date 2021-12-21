@@ -2,70 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AF9647B846
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 03:13:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0C0447B886
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 03:50:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231177AbhLUCNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 21:13:08 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:41504 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230060AbhLUCNH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 21:13:07 -0500
+        id S233921AbhLUCuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 21:50:44 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:53948 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233901AbhLUCun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 21:50:43 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C3FE3B810D9
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 02:13:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 939F8C36AE9
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 02:13:05 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2962A6136A
+        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 02:50:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF910C36AE8;
+        Tue, 21 Dec 2021 02:50:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640052785;
-        bh=xtLoWNL27ZT2nOXxUG9dgkAci+a5a6mW2D2J6GngDO0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ddfhMycQQT/2F0mKq+tDJ3oaXPAzeTOsq6SPU54pEqICKx/36CbnsK6sfmXxIH0B6
-         MuBJnrTz20WmADFthuTfXXPCNqAzRotFyfJelU61gNpsXZR7QvmyZWfYZA/nCKPoVT
-         QV07v0mlDSYAAdefaM2e4uKWjDkPCMZziLcXiIOwyG8fYAOxfXCx7QHMNQcvjBiGWd
-         W3f3SxL74KiR6Tc5VoCBjgTbZCqflQWr6wxz5YqqcEnrOBcm0MtVEjco3tIzC+x0zd
-         6B+Cds4FUHhZ2D/f+gSbs78ie9onE/UiQogU7jl38nUx0DwKOuI51kbuAikiT0Ms4Z
-         NVRbniY0FE+nA==
-Received: by mail-ed1-f53.google.com with SMTP id b13so17289198edd.8
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 18:13:05 -0800 (PST)
-X-Gm-Message-State: AOAM530++H0aknqZvU4yCr0QxG8QLjLjOOd/NtyjthXaomH++xDmo3F1
-        4RLxDh5dZI6vfqKG6Oh5FYADlY8q4rAesIOjAg==
-X-Google-Smtp-Source: ABdhPJyZjxxkiLiLnY3yh+Ed87AUgwZAtR+mtE9n+Mql5D+TnFkImpiUwWNvdOXwhHi0GhwsCkogbDZjjEYpMxshIOg=
-X-Received: by 2002:a05:6402:350a:: with SMTP id b10mr993755edd.89.1640052783965;
- Mon, 20 Dec 2021 18:13:03 -0800 (PST)
+        s=k20201202; t=1640055042;
+        bh=NflUddK7ZSORKU6UF7tiO2E1Di36GbuGTE02whw17Bw=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=Wi9KZ7fwyVIefDHjMdgeiKxq5SSqYzmVHLxRgJBKZnNhc7akAidwD1L4ri8QE6+HY
+         EYzi4z6pdprQqJP3fGm+niSWTBNNc1cQT7buIp9+l4v4OUC7W3l9gvAe4cflnO5hBC
+         aayyfyW1Oi0ityZ5ecXXqsnL19SWafMZ6GQVDPDX8kmWQ/CKpDjsU2Zyh8symQlHPQ
+         sfiUarNdHUtjJUwcdKI3qaKUGEL0Ef6SHQVA7+94Hs2b4Ud413Z/oLISXQy/PX8NHt
+         jvjiU0AZ/oX1sWs5rnlyz4Kw/ZYVipGXkwcMLSX5eEt1/7W88EXecpcqCLGFJS4K8K
+         6LRmISst06oMw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+In-Reply-To: <20211216000018.2641925-1-kuninori.morimoto.gx@renesas.com>
+References: <20211216000018.2641925-1-kuninori.morimoto.gx@renesas.com>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: audio-graph-port: enable both flag/phandle for bitclock/frame-master
+Message-Id: <164005504144.2647792.1608765502662236125.b4-ty@kernel.org>
+Date:   Tue, 21 Dec 2021 02:50:41 +0000
 MIME-Version: 1.0
-References: <20211220125147.519880-1-thierry.reding@gmail.com>
-In-Reply-To: <20211220125147.519880-1-thierry.reding@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 20 Dec 2021 22:12:52 -0400
-X-Gmail-Original-Message-ID: <CAL_JsqKZcctQ8yum-OLzNHccF3XQq4CEjNBsps4_+sDy86xPoA@mail.gmail.com>
-Message-ID: <CAL_JsqKZcctQ8yum-OLzNHccF3XQq4CEjNBsps4_+sDy86xPoA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: display: bridge: lvds-codec: Fix duplicate key
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
-        Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 20, 2021 at 8:51 AM Thierry Reding <thierry.reding@gmail.com> wrote:
->
-> From: Thierry Reding <treding@nvidia.com>
->
-> In order to validate multiple "if" conditionals, they must be part of an
-> "allOf:" list, otherwise they will cause a failure in parsing the schema
-> because of the duplicated "if" property.
->
-> Fixes: d7df3948eb49 ("dt-bindings: display: bridge: lvds-codec: Document pixel data sampling edge select")
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  .../bindings/display/bridge/lvds-codec.yaml   | 43 ++++++++++---------
->  1 file changed, 22 insertions(+), 21 deletions(-)
+On Thu, 16 Dec 2021 09:00:18 +0900, Kuninori Morimoto wrote:
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> 
+> snd_soc_daifmt_parse_clock_provider_raw() is handling both
+> bitclock/frame-master, and is supporting both flag/phandle.
+> Current DT is assuming it is flag style.
+> This patch allows both case.
+> 
+> [...]
+
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
 Thanks!
 
-Acked-by: Rob Herring <robh@kernel.org>
+[1/1] ASoC: dt-bindings: audio-graph-port: enable both flag/phandle for bitclock/frame-master
+      commit: 9b3c847b5fa0364a00227f13ab8ac0cbaf69be83
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
