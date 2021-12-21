@@ -2,126 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C110D47C58E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 18:55:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D81547C5AF
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 19:07:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240727AbhLURzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 12:55:40 -0500
-Received: from mail-qk1-f171.google.com ([209.85.222.171]:34778 "EHLO
-        mail-qk1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240752AbhLURzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 12:55:39 -0500
-Received: by mail-qk1-f171.google.com with SMTP id t6so13346038qkg.1;
-        Tue, 21 Dec 2021 09:55:39 -0800 (PST)
+        id S236785AbhLUSHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 13:07:04 -0500
+Received: from mail-qk1-f170.google.com ([209.85.222.170]:41816 "EHLO
+        mail-qk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232659AbhLUSHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 13:07:03 -0500
+Received: by mail-qk1-f170.google.com with SMTP id t83so13351563qke.8;
+        Tue, 21 Dec 2021 10:07:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=4GSGA/qwtNXG0IPZ01RqeQiJyKL3VoAZk2c0sbKkobg=;
-        b=hlfjFvMtD79EiL/LGYq82Z1elOoAOubXKDaCJkEHPoftWwakQIsYns8HVhu/mnQPum
-         2k1ZiIHWFYJYRo1XuE7Ni9+1ToDmJbOMqtJ7gWazRPyS0o0OsE8mFT5ZBwB6WnAryTYt
-         0Aogzc2pbINGNJQavvaoc4eE1/WzLf4de6pG6YL8vIavMjiDgeRedqTlGlAu6zqlGrq0
-         SShn+4CUa0bAvoN/dCtNBwnxUdYSIqdBc1uEFiEuZISrUs/Py5e7HjRIDexdJxhEjwsm
-         cCDzeljhIj/Q8KnwpHOYIQeEhB1wFJx873LVBp1XCjR+mfph2ZMhX45IpiA4k23p3+Or
-         Q/Xg==
-X-Gm-Message-State: AOAM531pTbm2BROPCb0zP4FG6ljA96TPzvJtT390rerLdu1ti+w1gYAk
-        0xHaYFz1lF6FU/pEHWvjWQ==
-X-Google-Smtp-Source: ABdhPJz5vgBn1TjeZtoc2YYKvQ+HmcEPZTFsNL3qHHc8SbteC0W1UmfcNlqbGX3NnNYb5boB3sk4Pg==
-X-Received: by 2002:a05:620a:258e:: with SMTP id x14mr2824830qko.578.1640109338673;
-        Tue, 21 Dec 2021 09:55:38 -0800 (PST)
+        bh=9lm8wyAI+eUCiBJVOI9uD8VZTFeBdgclDLbUamGhzqs=;
+        b=zxnSVL5zBTI6aNB4+9/XbF/0f78xiL6nB+19zMnK5Cvp62J4l3o8B/eFD14scmn8Kt
+         aN2162nca3HoV/4utTsoBQaJ0gTBQY+b0eCUo5kaFWE0GQeEPlD59pgjAhBvRQxhoUex
+         H+/UOvgXfdPZapN4wwKNu7ipaY18SwrPxSlkerMzK6b/UBc33mduaUGGx7s9wmijq1dH
+         e9+NNxKlwcJF4gZXXOuG0rLbK/r/Wniw0LwG0NlBJVbkSRHJ8whIfyBVMwb5ihWE3tPt
+         d9OwkldRnJqhShBSsYhM8d8VGnRPE/4LLtQuvRPXkyBGxPRb3LDyqyBzavOZ3yKZeoUv
+         uiwg==
+X-Gm-Message-State: AOAM531MFFVgehsur5o5syw0ZlHjz2gGNyZYk7lx2ZsuUs+agtM2zQmE
+        RGxOH8zDW1JpzsDVExkeHg==
+X-Google-Smtp-Source: ABdhPJwtxxelDVKz1HhtQyEdAFpHsZghF1LujIXHGb5Iy575nrVFSwsq+z/bK9LYmvQljz7pd19MoQ==
+X-Received: by 2002:a05:620a:4044:: with SMTP id i4mr2895786qko.271.1640110023071;
+        Tue, 21 Dec 2021 10:07:03 -0800 (PST)
 Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id bm35sm14659623qkb.86.2021.12.21.09.55.35
+        by smtp.gmail.com with ESMTPSA id h9sm14551053qkp.106.2021.12.21.10.07.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 09:55:38 -0800 (PST)
-Received: (nullmailer pid 1495705 invoked by uid 1000);
-        Tue, 21 Dec 2021 17:55:33 -0000
-Date:   Tue, 21 Dec 2021 13:55:33 -0400
+        Tue, 21 Dec 2021 10:07:02 -0800 (PST)
+Received: (nullmailer pid 1510771 invoked by uid 1000);
+        Tue, 21 Dec 2021 18:06:59 -0000
+Date:   Tue, 21 Dec 2021 14:06:59 -0400
 From:   Rob Herring <robh@kernel.org>
-To:     conor.dooley@microchip.com
-Cc:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, broonie@kernel.org,
-        gregkh@linuxfoundation.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
-        krzysztof.kozlowski@canonical.com, geert@linux-m68k.org,
-        bin.meng@windriver.com, heiko@sntech.de, lewis.hanly@microchip.com,
-        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
-        atish.patra@wdc.com
-Subject: Re: [PATCH v2 03/17] dt-bindings: soc/microchip: make
- systemcontroller a mfd
-Message-ID: <YcIVFZSqt/JSuk3J@robh.at.kernel.org>
-References: <20211217093325.30612-1-conor.dooley@microchip.com>
- <20211217093325.30612-4-conor.dooley@microchip.com>
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        romain.perier@gmail.com, livelwh@outlook.com,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add prefix for 100ask
+Message-ID: <YcIXw5Mmfo7mcroS@robh.at.kernel.org>
+References: <20211217093510.3674590-1-daniel@0x0f.com>
+ <20211217093510.3674590-2-daniel@0x0f.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211217093325.30612-4-conor.dooley@microchip.com>
+In-Reply-To: <20211217093510.3674590-2-daniel@0x0f.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 17, 2021 at 09:33:11AM +0000, conor.dooley@microchip.com wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Fri, Dec 17, 2021 at 06:35:08PM +0900, Daniel Palmer wrote:
+> 100ask is Linux SBC/module/training provider.
+> Add a prefix for them.
 > 
-> Make the system controller on the Polarfire SoC
-> a "simple,mfd" so that the services can be child
-> nodes of the system controller node.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Link: https://www.100ask.net
+> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
 > ---
->  .../microchip,mpfs-sys-controller.yaml        | 33 +++++++++++++++++--
->  1 file changed, 30 insertions(+), 3 deletions(-)
+>  To Rob: One thing I have noticed is that dtbs_check
+>  seems to be complaining about the prefix starting with
+>  a digit. If it's a problem I can change the prefix I think.
+
+Humm, we should relax that. I'll add a fix.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
-> index f699772fedf3..014cb44b8f31 100644
-> --- a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
-> +++ b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
-> @@ -13,13 +13,34 @@ description: |
->    The PolarFire SoC system controller is communicated with via a mailbox.
->    This document describes the bindings for the client portion of that mailbox.
->  
-> -
->  properties:
->    mboxes:
->      maxItems: 1
->  
->    compatible:
-> -    const: microchip,mpfs-sys-controller
-> +    items:
-> +      - const: microchip,mpfs-sys-controller
-> +      - const: simple-mfd
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-'simple-mfd' means there is zero dependency on the parent for the child 
-nodes. Isn't 'mboxes' a dependency?
-
-> +
-> +  hwrandom:
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        const: microchip,mpfs-rng
-> +
-> +    required:
-> +      - compatible
-> +
-> +  sysserv:
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        const: microchip,mpfs-generic-service
-> +
-> +    required:
-> +      - compatible
-
-There's not really any need to have child nodes which have no resources. 
-The driver for microchip,mpfs-sys-controller can create child devices.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
