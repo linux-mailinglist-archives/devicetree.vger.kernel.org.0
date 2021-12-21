@@ -2,142 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3702247C7FA
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 21:01:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0144C47C84C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 21:36:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231624AbhLUUBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 15:01:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39464 "EHLO
+        id S234252AbhLUUgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 15:36:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230350AbhLUUBf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 15:01:35 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E870C061574;
-        Tue, 21 Dec 2021 12:01:35 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1ED5EB819B2;
-        Tue, 21 Dec 2021 20:01:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F1DFC36AE8;
-        Tue, 21 Dec 2021 20:01:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640116892;
-        bh=vJkLjaATflEPsX+S3P13UPpgq8GAW8ytUv0DIV3pq8A=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=L7NkvhBKk8LWq5KpKKI3MfV/2OUSKilcD0MPAhJFzYbs6WDWSHpy7kTkKsizL2Pux
-         9pP7ahSftL8dbC7iGD5Wll8t+Lc5jlA5Hlz22y80o7I+k0NvYf5CjBjYeVcotP56U5
-         UiLwWU7Bb0ngLAuOHwiL1DkF+OHC+P4cIozUR3cvQOKl9i9X4gJm9woahhlXUaPQQ/
-         nUqeKPIlO1xn5pX1gfGuYd+HIsOib1LRyxeKQOWB1g8C/6p+srbfJo4FWgUccYZTnK
-         PBRDqop+reGNUjbTPQfVV7KOzZm0hkadmvw6qfvpPL/P+4SrBGGE4G+mp7X7/LLFlm
-         LKlt9tzZMabuQ==
-Subject: Re: [PATCH v4 3/4] memory: omap-gpmc: Use a compatible match table
- when checking for NAND controller
-To:     krzysztof.kozlowski@canonical.com, miquel.raynal@bootlin.com,
-        tony@atomide.com
-Cc:     robh@kernel.org, kishon@ti.com, nm@ti.com, vigneshr@ti.com,
-        linux-mtd@lists.infradead.org, linux-omap@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20211221131757.2030-1-rogerq@kernel.org>
- <20211221131757.2030-4-rogerq@kernel.org>
-From:   Roger Quadros <rogerq@kernel.org>
-Message-ID: <51b8e895-95e1-0024-1457-ec534985c9f0@kernel.org>
-Date:   Tue, 21 Dec 2021 22:01:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S234228AbhLUUgB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 15:36:01 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4D2C061401
+        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 12:36:00 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id y13so56696655edd.13
+        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 12:36:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Cc6k9W/5KfQMrfyUUbcF3m3pmI+HBcvfTZyXhfKLqOs=;
+        b=h7MPCyL+EHZrC4Y/I7Y0lwFUgli6cxS3tAi+3LKS9vdzt4d14V1Cig7wPV/y9Z5IxT
+         PSkrkW9GaG9D1cOpBAErHINKSrWkxJjJHo3bQSKg3aqRSG4zKRjRITOKZ6EQA+e5qGxc
+         EyWREyrlqsi4RSyIgZ52fvR/3UVmUVGbW7f77ghn53LJbQYRymBnaI2G1nqRmVcv8gIn
+         qnuPu5xgDK2fiLpRIZasThv5XxXaabpG7PQVQrZc4GymdqYSYjl/+LEFF8EYXMPl9qr+
+         rqcD/eQTz6PZt0TcGJ0IkBQy86ohG3L3GPg/BO+VSEIa8+W5jAb/+oAqmIHsGFfQ3ueI
+         FRGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Cc6k9W/5KfQMrfyUUbcF3m3pmI+HBcvfTZyXhfKLqOs=;
+        b=oh9Wt3Mzbap8ncXG9HnvYlZ2znEorQpHG4aDsND1dZZdsyeY3U7CRrK4W4cvQslzNu
+         7rkG9lI7qZzIq9h02rS4+c0zmzWuCt8OHzhpRPdc2SbRts0nbkQqhTlxjOaaCX8boduD
+         B0TFx53qhifa0Dl2JlE6XCI4cwm/dVHWACmZRyIwbrHJR4pD1QDF7nJO68aFXIGrT3R1
+         ZvAPoFwLJ8ycYPRjsygqvULnn0DG/KXSocscaJvuFLcfId21iorccIVhc6K426RAzHVg
+         +O4Mf87ynND/2oyVQBcLafh1BmLMd1tRyX6b4OFYrTD/VCUtT4A+UoYRADZpgtp8cceU
+         wWkA==
+X-Gm-Message-State: AOAM533evaq5O1y6Rq5uIjxSyZPj3JFlGwk0fCn2KXj0Ny8Pt8vlFMv7
+        JxNX0MuE0ZDLrJI82giLpg9RvYumu74DPa+9W30ymg==
+X-Google-Smtp-Source: ABdhPJw4NoxOta8RDzBYWeAyXef7SIR5pNNJsoCUsWvqRGDAGe1kmXiasiKHXPhhCOhcJCuU57vw3i0YMkGzEicUjGI=
+X-Received: by 2002:aa7:c513:: with SMTP id o19mr11315edq.41.1640118959010;
+ Tue, 21 Dec 2021 12:35:59 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20211221131757.2030-4-rogerq@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20211220210643.47842-1-pmenzel@molgen.mpg.de> <CAE_wzQ_Lg1ODV5sEqtW=SauhSXxi6+fh3msOuhnJy8-sNtORcg@mail.gmail.com>
+ <CABXOdTeNy3jQ5aQijw9HTpwcNvkEJmddz9yf0Mk-Z+78bDDN-A@mail.gmail.com> <8a7fad1b-b34d-88db-2f6b-462303fe03d9@molgen.mpg.de>
+In-Reply-To: <8a7fad1b-b34d-88db-2f6b-462303fe03d9@molgen.mpg.de>
+From:   Guenter Roeck <groeck@google.com>
+Date:   Tue, 21 Dec 2021 12:35:47 -0800
+Message-ID: <CABXOdTfB4M8AcCOVERpQwddr_N09gpKF67FxRO32S4M9JUaYEQ@mail.gmail.com>
+Subject: Re: [PATCH] CHROMIUM: i2c: Add device property for probing
+To:     Paul Menzel <pmenzel@molgen.mpg.de>
+Cc:     Dmitry Torokhov <dtor@chromium.org>, Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Tim Wawrzynczak <twawrzynczak@chromium.org>,
+        coreboot@coreboot.org, Matt DeVillier <matt.devillier@gmail.com>,
+        Felix Singer <felixsinger@posteo.net>,
+        Benson Leung <bleung@chromium.org>,
+        Justin TerAvest <teravest@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>, linux-i2c@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-acpi@vger.kernel.org, Sangwon Jee <jeesw@melfas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+On Tue, Dec 21, 2021 at 11:42 AM Paul Menzel <pmenzel@molgen.mpg.de> wrote:
+>
+> Dear Guenter, dear Dmitry,
+>
+>
+> Am 21.12.21 um 17:47 schrieb Guenter Roeck:
+> > On Mon, Dec 20, 2021 at 1:49 PM Dmitry Torokhov <dtor@chromium.org> wro=
+te:
+>
+> >> On Mon, Dec 20, 2021 at 1:07 PM Paul Menzel <pmenzel@molgen.mpg.de> wr=
+ote:
+> >>>
+> >>> From: Furquan Shaikh <furquan@google.com>
+>
+> >>> Google Chromebooks are often built with devices sourced from differen=
+t
+> >>> vendors. These need to be probed. To deal with this, the firmware =E2=
+=80=93 in
+> >>> this case coreboot =E2=80=93 tags such optional devices accordingly =
+=E2=80=93 I think
+> >>> this is commit fbf2c79b (drivers/i2c/generic: Add config for marking
+> >>> device as probed) =E2=80=93 and Chromium OS=E2=80=99 Linux kernel has=
+ the patch at hand
+> >>> applied to act accordingly. Right after the merge, Dmitry created a
+> >>> revert, which was actively discussed for two days but wasn=E2=80=99t =
+applied.
+> >>> That means, millions of devices shipped with such a firmware and Linu=
+x
+> >>> kernel. To support these devices with upstream Linux kernel, is there=
+ an
+> >>> alternative to applying the patch to the Linux kernel, and to support
+> >>> the shipped devices?
+> >>
+> >> *sigh* I should have pushed harder, but I see it managed to
+> >> proliferate even into our newer kernels. Not having this patch should
+> >> not cause any problems, it can only hurt, because the i2c core has no
+> >> idea how to power up and reset the device properly. The only downside
+> >> of not having this patch is that we may have devices in sysfs that are
+> >> not connected to actual hardware. They do now cause any problems and
+> >> is how we have been shipping ARM-based devices where we also dual- and
+> >> triple-source components. However if we were to have a device that
+> >> switches between several addresses (let's say device in bootloader
+> >> mode uses 0x10 address and in normal mode 0x20) this "probing" may
+> >> result in device not being detected at all.
+>
+> On google/sarien, the (upstream) Linux kernel sometimes detects the
+> Melfas touchscreen and sometimes not, but in never works. When it=E2=80=
+=99s
+> detected, the errors below are still shown.
+>
+> ```
+> $ grep i2c voidlinux-linux-5.13.19-messages.txt
+> [    9.392598] i2c i2c-7: 2/2 memory slots populated (from DMI)
+> [    9.393108] i2c i2c-7: Successfully instantiated SPD at 0x50
+> [    9.622151] input: MELFAS MIP4 Touchscreen as
+> /devices/pci0000:00/0000:00:15.0/i2c_designware.0/i2c-8/i2c-MLFS0000:00/i=
+nput/input6
+> [    9.657964] cr50_i2c i2c-GOOG0005:00: cr50 TPM 2.0 (i2c 0x50 irq 114
+> id 0x28)
+> [    9.662309] elan_i2c i2c-ELAN0000:00: supply vcc not found, using
+> dummy regulator
+> [    9.773244] elan_i2c i2c-ELAN0000:00: Elan Touchpad: Module ID:
+> 0x00d6, Firmware: 0x0005, Sample: 0x0009, IAP: 0x0001
+> [    9.773349] input: Elan Touchpad as
+> /devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-9/i2c-ELAN0000:00/i=
+nput/input7
+> [   10.820307] i2c_designware i2c_designware.0: controller timed out
+> [   10.820359] mip4_ts i2c-MLFS0000:00: mip4_i2c_xfer - i2c_transfer
+> failed: -110 (-110)
+> [   11.844523] i2c_designware i2c_designware.0: controller timed out
+> [   11.844635] mip4_ts i2c-MLFS0000:00: mip4_i2c_xfer - i2c_transfer
+> failed: -110 (-110)
+> [   12.868376] i2c_designware i2c_designware.0: controller timed out
+> [   12.868488] mip4_ts i2c-MLFS0000:00: mip4_i2c_xfer - i2c_transfer
+> failed: -110 (-110)
+> [   12.868570] mip4_ts i2c-MLFS0000:00: Failed to read packet info: -110
+> ```
+>
+> Is that related to the probing stuff?
+>
 
-On 21/12/2021 15:17, Roger Quadros wrote:
-> As more compatibles can be added to the GPMC NAND controller driver
-> use a compatible match table.
-> 
-> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> ---
->  drivers/memory/omap-gpmc.c                   | 6 +++++-
->  drivers/mtd/nand/raw/omap2.c                 | 5 +----
+Difficult to say without further testing. I can see two possible
+problems: The device may sometimes not be seen because it is powered
+off, and/or interrupt handling may not work properly.  You could apply
+the patch (commit 11cd1bd03f75 in chromeos-5.15) and see if it
+improves the situation. I would also suggest applying commit
+b4b55381e5cf ("CHROMIUM: Input: elants_i2c: Default to low level
+interrupt for Chromebooks") from chromeos-4.19.
 
-Will need your Ack for this one as well. Thanks :)
+Guenter
 
-
->  include/linux/platform_data/mtd-nand-omap2.h | 9 ++++++++-
->  3 files changed, 14 insertions(+), 6 deletions(-)
-
-cheers,
--roger
-
-> 
-> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
-> index 624153048182..d19ffc895e5b 100644
-> --- a/drivers/memory/omap-gpmc.c
-> +++ b/drivers/memory/omap-gpmc.c
-> @@ -2091,6 +2091,7 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
->  	u32 val;
->  	struct gpio_desc *waitpin_desc = NULL;
->  	struct gpmc_device *gpmc = platform_get_drvdata(pdev);
-> +	bool is_nand = false;
->  
->  	if (of_property_read_u32(child, "reg", &cs) < 0) {
->  		dev_err(&pdev->dev, "%pOF has no 'reg' property\n",
-> @@ -2183,7 +2184,10 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
->  		}
->  	}
->  
-> -	if (of_device_is_compatible(child, "ti,omap2-nand")) {
-> +	if (of_match_node(omap_nand_ids, child))
-> +		is_nand = true;
-> +
-> +	if (is_nand) {
->  		/* NAND specific setup */
->  		val = 8;
->  		of_property_read_u32(child, "nand-bus-width", &val);
-> diff --git a/drivers/mtd/nand/raw/omap2.c b/drivers/mtd/nand/raw/omap2.c
-> index b26d4947af02..e6dd8b4cf0d2 100644
-> --- a/drivers/mtd/nand/raw/omap2.c
-> +++ b/drivers/mtd/nand/raw/omap2.c
-> @@ -2352,10 +2352,7 @@ static int omap_nand_remove(struct platform_device *pdev)
->  	return ret;
->  }
->  
-> -static const struct of_device_id omap_nand_ids[] = {
-> -	{ .compatible = "ti,omap2-nand", },
-> -	{},
-> -};
-> +/* omap_nand_ids defined in linux/platform_data/mtd-nand-omap2.h */
->  MODULE_DEVICE_TABLE(of, omap_nand_ids);
->  
->  static struct platform_driver omap_nand_driver = {
-> diff --git a/include/linux/platform_data/mtd-nand-omap2.h b/include/linux/platform_data/mtd-nand-omap2.h
-> index de6ada739121..92f011805ad4 100644
-> --- a/include/linux/platform_data/mtd-nand-omap2.h
-> +++ b/include/linux/platform_data/mtd-nand-omap2.h
-> @@ -7,6 +7,7 @@
->  #define	_MTD_NAND_OMAP2_H
->  
->  #include <linux/mtd/partitions.h>
-> +#include <linux/mod_devicetable.h>
->  
->  #define	GPMC_BCH_NUM_REMAINDER	8
->  
-> @@ -61,4 +62,10 @@ struct gpmc_nand_regs {
->  	void __iomem	*gpmc_bch_result5[GPMC_BCH_NUM_REMAINDER];
->  	void __iomem	*gpmc_bch_result6[GPMC_BCH_NUM_REMAINDER];
->  };
-> -#endif
-> +
-> +static const struct of_device_id omap_nand_ids[] = {
-> +	{ .compatible = "ti,omap2-nand", },
-> +	{},
-> +};
-> +
-> +#endif /* _MTD_NAND_OMAP2_H */
-> 
+> >> If we wanted to do this correctly, coreboot would have to implement
+> >> full power and reset control and also add drivers for I2C controllers
+> >> to be able to communicate with peripherals, and then adjust _STA
+> >> methods to report "not present" when the device is indeed absent. And
+> >> note that even in this case we would have issues with "morphing
+> >> devices", so coreboot would also need to know how to reset device out
+> >> of bootloader mode, and maybe flash firmware so device can work in
+> >> normal mode.
+>
+> What do you mean by =E2=80=9Cbootloader mode=E2=80=9D? coreboot also cann=
+ot flash
+> anything. That=E2=80=99s up to the payload, and even there support for fl=
+ashing
+> is rare.
+>
+> Duncan wrote something about the ACPI _STA method idea, that ASL(?) and
+> I2C do not go well together.
+>
+> >> However coreboot does (or did?) not want to add code to handle i2c
+> >> controllers, and would like to push this knowledge to the kernel. And
+> >> the kernel does know how to handle peripherals properly, but that
+> >> knowledge lies in individual drivers, not i2c core.
+>
+> Excuse my ignorance, can you give an example driver? Does the Melfas
+> touchscreen driver (`drivers/input/touchscreen/melfas_mip4.c`) support it=
+?
+>
+> >> We should remove "linux,probed" from coreboot and not propagate to
+> >> newer Chrome OS kernels, and keep it away from upstream.
+> >
+> > Revert from chromeos-5.15 is at
+> > https://chromium-review.googlesource.com/c/chromiumos/third_party/kerne=
+l/+/3350347.
+> > Everyone please feel free to comment there.
+>
+> Guenther, thank you for your quick response. Note, that neither Furquan,
+> nor Aaron, nor Duncan work at Google anymore, so won=E2=80=99t comment.
+> Hopefully, others from the Chromium OS/coreboot folks can chime in.
+>
+>
+> Kind regards,
+>
+> Paul
