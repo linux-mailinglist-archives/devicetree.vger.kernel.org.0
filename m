@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A849C47BEB7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 12:16:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BDF747BEC9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 12:21:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236868AbhLULQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 06:16:21 -0500
-Received: from inva020.nxp.com ([92.121.34.13]:56348 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236990AbhLULQV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 06:16:21 -0500
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id BC5C11A1248;
-        Tue, 21 Dec 2021 12:16:19 +0100 (CET)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id AF5CC1A1208;
-        Tue, 21 Dec 2021 12:16:19 +0100 (CET)
-Received: from fsr-ub1664-175.ea.freescale.net (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id D0E9E203C3;
-        Tue, 21 Dec 2021 12:16:18 +0100 (CET)
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Abel Vesa <abel.vesa@nxp.com>
-Subject: [RESEND] dt-bindings: serial: fsl-lpuart: Add i.MX8DXL compatible
-Date:   Tue, 21 Dec 2021 13:16:12 +0200
-Message-Id: <1640085372-1972-1-git-send-email-abel.vesa@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S237043AbhLULVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 06:21:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58646 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230391AbhLULVJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 06:21:09 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70DFDC061574;
+        Tue, 21 Dec 2021 03:21:09 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2B907B81598;
+        Tue, 21 Dec 2021 11:21:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAC0CC36AE8;
+        Tue, 21 Dec 2021 11:21:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640085667;
+        bh=2Js6OTOXgFjZQ1/Lt3+P5V8TaO+a3gMLZqFbquMp14Q=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=iVdODdQ68+cl2SvyTjTWHZWCgF5P1beevj8zl109X5gvxDsANovGoelcL63S64yv2
+         zyrkTdulnS+oTBWNTeSdDvqME4uWwpmeyQZxIrdJ3AUU+P5WMW9o5uoL5FzNnYWCT5
+         Xs/kTWQQpPsAYofyg6+ObLSXdVcoMYD3S8cGRUMQ9UGppNBHZ6/ryaZAjfL+Qd3scb
+         S73nLoOHD73xnwetr+SUzeqDjcJtxXkH4mWBED7DAkPPYHseFFIi9Cthpx8kMybiV3
+         jYLvghlFKdSIKuyOyzq/LKMLSaLsBcH16FRapKshUQM8x3Ng7uqszufG1kpnmea7Y3
+         BZUbNrWayQu6g==
+Received: by mail-ed1-f42.google.com with SMTP id bm14so37777607edb.5;
+        Tue, 21 Dec 2021 03:21:06 -0800 (PST)
+X-Gm-Message-State: AOAM530iB/KjXr2VlHz/kPSvbq2+l9Y9LRCoRmMFTC9S7yPj26L8M5J1
+        lcYH0YnBEX7pntSy4ksOJcRjSU3pYHggjgCvXA==
+X-Google-Smtp-Source: ABdhPJxtSfpFlcxoNW0PrKICsU544S4NNvZ9OMkYeWI1nGxS3sU0RB46zKSlkFovH0Ucw4Yb3SuI8F4kwZj8Wct39UU=
+X-Received: by 2002:aa7:d6d5:: with SMTP id x21mr2698366edr.201.1640085665181;
+ Tue, 21 Dec 2021 03:21:05 -0800 (PST)
+MIME-Version: 1.0
+References: <20211221092830.680839-1-yinxiujiang@kylinos.cn>
+In-Reply-To: <20211221092830.680839-1-yinxiujiang@kylinos.cn>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 21 Dec 2021 07:20:53 -0400
+X-Gmail-Original-Message-ID: <CAL_JsqLtQanbiC4egB8d5quQRZNq0V6q2s+=qhBeypBqLH-pgA@mail.gmail.com>
+Message-ID: <CAL_JsqLtQanbiC4egB8d5quQRZNq0V6q2s+=qhBeypBqLH-pgA@mail.gmail.com>
+Subject: Re: [PATCH] of: unittest: Fix out of bounds array access when id < 0
+To:     Yin Xiujiang <yinxiujiang@kylinos.cn>
+Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add i.MX8DXL lpuart compatible to the bindings documentation.
+On Tue, Dec 21, 2021 at 5:34 AM Yin Xiujiang <yinxiujiang@kylinos.cn> wrote:
+>
+> In of_unittest_untrack_overlay if id is less than 0 then
+> overlay_id_bits will be out of bounds. And it is also mentioned
+> in bugzilla as a bug report:
+> https://bugzilla.kernel.org/show_bug.cgi?id=214867
+>
+> Fix this bug by tiggering WARN_ON()
 
-Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
----
+If id shouldn't be less than 0, can we make it unsigned instead as
+discussed here[1].
 
-This is a resend of the following, but as a separate patch.
+Rob
 
-https://lore.kernel.org/linux-arm-kernel/YcCisM3BqM984k%2F1@kroah.com/
-
- Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-index 6e04e3848261..1f482e166467 100644
---- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-+++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-@@ -30,6 +30,10 @@ properties:
-       - items:
-           - const: fsl,imx8qm-lpuart
-           - const: fsl,imx8qxp-lpuart
-+      - items:
-+          - const: fsl,imx8dxl-lpuart
-+          - const: fsl,imx8qxp-lpuart
-+          - const: fsl,imx7ulp-lpuart
- 
-   reg:
-     maxItems: 1
--- 
-2.31.1
-
+[1] https://lore.kernel.org/all/c474a371-b524-1da8-4a67-e72cf8f2b0f7@gmail.com/
