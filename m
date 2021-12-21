@@ -2,85 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2524547C541
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 18:47:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADE1B47C565
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 18:50:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233660AbhLURrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 12:47:23 -0500
-Received: from mail-qk1-f169.google.com ([209.85.222.169]:36856 "EHLO
-        mail-qk1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230248AbhLURrW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 12:47:22 -0500
-Received: by mail-qk1-f169.google.com with SMTP id d21so13314493qkl.3;
-        Tue, 21 Dec 2021 09:47:21 -0800 (PST)
+        id S240614AbhLURuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 12:50:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36840 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234272AbhLURuY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 12:50:24 -0500
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42253C061574;
+        Tue, 21 Dec 2021 09:50:24 -0800 (PST)
+Received: by mail-qt1-x82f.google.com with SMTP id a1so13547729qtx.11;
+        Tue, 21 Dec 2021 09:50:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=XXCtO0JFViUQ4+LHr/arkANJI9x3qLGM5DbuHmIW9MU=;
+        b=cqdR1FXALBsdAIeIV8vtSvxZ70JS3zhSNmmMXFZ+JH/4m2aL7sBmKnqBDR+urVXOb8
+         q4R8Uksz5dAgQ4gfrUnGf3gpmHO7hsN8EE+//PW30tBu2+5JIDFz3oC4re/lO0Ml18Ot
+         A8ujRtbPFwddS5kFLaNldkEN+N09qZydmxaUmZysCFtyrZGRW8BbfuwiVZRxjeYph0vU
+         MM24J1HKxS8jMYboQAtW7osZFku7lSxThL5i9dcc0jBo2f5lm0HQweVqfdd7W7icoJC9
+         NQU+8bOAMS1rhI3wRj9XTMclESA369bYgx3FL8SODJBwYCnlr4zcK7R+RQcjfRhWxKUb
+         JQiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=enBZKRe45Eq3IaJ4YleNfTEAHY3TWjrKA5JUyvv9lv8=;
-        b=JeClEPBJLPcofypG3IvhakzxIQWzwUo8T5nVuG+Oqz/QEi2PQZDyAKVz+YxmYn+1jH
-         eV6lkdJ1u9IMcvOHuTtqZeBnEflI5buV485I7lYR/s/A3tf6syixl6gRskqXoMEtwU6A
-         OYN3zuV26/0pjwXX3SSEdpxNA6kJ2oBdZEbFmZzZb1G0tpBCMRe8hrb4o75MPNxC4Kdk
-         VEQcVtvThWZ/dkr8f98Vwkh/Lx7fsS+0wRQB/04eKty7uWHBjPlef10ywhO9XWDHa5sV
-         lkm37g5iAwWYOAsyEENpOO0nC+KoNsS5v7DNyPbnLj+l3Y9C/Dv8RiBUs12quY3zKroK
-         MOYA==
-X-Gm-Message-State: AOAM532DXlnhyPa5dZTTH1kWcvMaDeP7Tqr+eioqJqU0jOoLhC5hy35x
-        b928/F29M8bpTaYi6qZVBA==
-X-Google-Smtp-Source: ABdhPJz3OOPp5uAFgP2bRqUduxgScmvXC/dj9htul/5dPYzu+6NqrrafVrSjfakiGVyL6R3b5cnMvw==
-X-Received: by 2002:a05:620a:1496:: with SMTP id w22mr206198qkj.463.1640108841543;
-        Tue, 21 Dec 2021 09:47:21 -0800 (PST)
-Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id ay42sm13916078qkb.40.2021.12.21.09.47.18
+        bh=XXCtO0JFViUQ4+LHr/arkANJI9x3qLGM5DbuHmIW9MU=;
+        b=5nGgZG2Zin3/qWjT3mSsDC651aclN87h32OhBPg1Z2T7rz+f90rYo3NtXHrAFmlOP3
+         s/AKXiA2qACUyGY+HgL3cA275MhrvDUKJ2Rjh7P0UYSS7BJDNYBLm18CGczlsveci7fw
+         KxfpwEqsvOdNiJY49QBo1aH7Si4x13INygahH/7aqYjfxsfMWMNH/A3uQUmK5tcVOTAy
+         rSXWT6+ZD3Icu5fNlS9df2pdZxfecqmsHQmY+S3vJgahAD3X4pQqJn1sITWyj/SC4Ox5
+         QTsJ8aH/fQK2uz9bpqKvSzNk0/ewubjRqbq/KpdrgqjuqIolcnxL0/5OJ0HnofgRqprb
+         gE2g==
+X-Gm-Message-State: AOAM532aaudu2Ar3ITaGQzZKNzRBz85QAxliIfKlUvjzEqpgGB3QqXGa
+        QF6sRyYWgYXTM2gdU+Kob1w=
+X-Google-Smtp-Source: ABdhPJyeulBwLEh9V+XaacXqpvSjj6KHvXBaAAnnedu0bOYFuAneCqi9bMrqxJk9NI3BIhYZGBLMaw==
+X-Received: by 2002:ac8:4459:: with SMTP id m25mr3185735qtn.659.1640109023435;
+        Tue, 21 Dec 2021 09:50:23 -0800 (PST)
+Received: from shaak (69-165-204-82.cable.teksavvy.com. [69.165.204.82])
+        by smtp.gmail.com with ESMTPSA id t3sm782344qtc.7.2021.12.21.09.50.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 09:47:20 -0800 (PST)
-Received: (nullmailer pid 1484960 invoked by uid 1000);
-        Tue, 21 Dec 2021 17:47:16 -0000
-Date:   Tue, 21 Dec 2021 13:47:16 -0400
-From:   Rob Herring <robh@kernel.org>
-To:     conor.dooley@microchip.com
-Cc:     lee.jones@linaro.org, devicetree@vger.kernel.org,
-        aou@eecs.berkeley.edu, atish.patra@wdc.com,
-        linux-crypto@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-gpio@vger.kernel.org, heiko@sntech.de, geert@linux-m68k.org,
-        lewis.hanly@microchip.com, daire.mcnamara@microchip.com,
-        jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
-        robh+dt@kernel.org, u.kleine-koenig@pengutronix.de,
-        linux-rtc@vger.kernel.org, linus.walleij@linaro.org,
-        linux-riscv@lists.infradead.org, krzysztof.kozlowski@canonical.com,
-        palmer@dabbelt.com, bgolaszewski@baylibre.com,
-        ivan.griffin@microchip.com, linux-kernel@vger.kernel.org,
-        broonie@kernel.org, gregkh@linuxfoundation.org,
-        linux-i2c@vger.kernel.org, thierry.reding@gmail.com,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        linux-spi@vger.kernel.org, linux-pwm@vger.kernel.org,
-        bin.meng@windriver.com
-Subject: Re: [PATCH v2 01/17] dt-bindings: interrupt-controller: create a
- header for RISC-V interrupts
-Message-ID: <YcITJFfZ/U56MxBv@robh.at.kernel.org>
-References: <20211217093325.30612-1-conor.dooley@microchip.com>
- <20211217093325.30612-2-conor.dooley@microchip.com>
+        Tue, 21 Dec 2021 09:50:22 -0800 (PST)
+Date:   Tue, 21 Dec 2021 12:50:20 -0500
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v10 03/14] iio: inkern: make a best effort on offset
+ calculation
+Message-ID: <YcIT3BSIKJKVWAgN@shaak>
+References: <20211219223953.16074-1-liambeguin@gmail.com>
+ <20211219223953.16074-4-liambeguin@gmail.com>
+ <CAHp75Ve_vv619-UxdBN+xhWGm32tCJkkN3epVRgCiLF7p6xMOw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211217093325.30612-2-conor.dooley@microchip.com>
+In-Reply-To: <CAHp75Ve_vv619-UxdBN+xhWGm32tCJkkN3epVRgCiLF7p6xMOw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Dec 2021 09:33:09 +0000, conor.dooley@microchip.com wrote:
-> From: Ivan Griffin <ivan.griffin@microchip.com>
-> 
-> Provide named identifiers for device tree for RISC-V interrupts.
-> 
-> Licensed under GPL and MIT, as this file may be useful to any OS that
-> uses device tree.
-> 
-> Signed-off-by: Ivan Griffin <ivan.griffin@microchip.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../interrupt-controller/riscv-hart.h         | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->  create mode 100644 include/dt-bindings/interrupt-controller/riscv-hart.h
-> 
+Hi Andy,
 
-Acked-by: Rob Herring <robh@kernel.org>
+On Tue, Dec 21, 2021 at 07:42:31AM +0200, Andy Shevchenko wrote:
+> On Mon, Dec 20, 2021 at 11:17 AM Liam Beguin <liambeguin@gmail.com> wrote:
+> >
+> > From: Liam Beguin <lvb@xiphos.com>
+> >
+> > iio_convert_raw_to_processed_unlocked() assumes the offset is an
+> > integer. Make a best effort to get a valid offset value for fractional
+> > cases without breaking implicit truncations.
+> 
+> ...
+> 
+> > +                       offset_val /= (1 << offset_val2);
+> 
+> Besides potentially being problematic (if arg is 31 for the left
+> shift) why not simply
+> 
+> _val >>= _val2;
+
+That is safer, and more elegant! I'll update.
+
+Thanks,
+Liam
+
+> --
+> With Best Regards,
+> Andy Shevchenko
