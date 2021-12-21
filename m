@@ -2,181 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B79147BCFE
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 10:38:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C108F47BD10
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 10:42:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236432AbhLUJiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 04:38:15 -0500
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:49375 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236423AbhLUJiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 04:38:14 -0500
-Received: from host-79-2-93-196.business.telecomitalia.it ([79.2.93.196]:35472 helo=[192.168.101.73])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1mzbb1-0007jy-QE; Tue, 21 Dec 2021 10:38:11 +0100
-Subject: Re: [PATCH v5 5/9] mfd: max77714: Add driver for Maxim MAX77714 PMIC
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Randy Dunlap <rdunlap@infradead.org>
-References: <20211211175951.30763-1-luca@lucaceresoli.net>
- <20211211175951.30763-6-luca@lucaceresoli.net> <YcGeZVgqNWDyvovW@google.com>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <698fb091-6532-7bba-bc14-6275db32c524@lucaceresoli.net>
-Date:   Tue, 21 Dec 2021 10:38:08 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S236478AbhLUJmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 04:42:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36044 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231185AbhLUJmM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 04:42:12 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED974C061574
+        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 01:42:11 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id o19-20020a1c7513000000b0033a93202467so1654627wmc.2
+        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 01:42:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=z1TZscSTdfeoTN+rbE+EnIAa34sPklQbO0+nPYIjMM8=;
+        b=Hk3Wc2CRMeXhPNMDBnLbb/9dUz3lTwWfPb6+PiVpEmYbKOTov+GQ/pc9B+Zww+q7Xu
+         eaJnd65ZO/SL9wxPSosiYL1zo/SIoahyAuXaBttG/VtNYIwXC32jEgn34PInJ6nsKILo
+         BS+snXU1YeOkfn0AGJNsUy6tpjIac/J+cUvygd9ci7QNRLtgUA5HD+UojzPPvGxtp7ea
+         UAAWpDlVkpO8YaFu4v4lt70LxK/TljvHpyuROsIap0i076mYe4hlhJizaB36CSE4Z8pV
+         RhdzE9U2ilD+fx1gHVEBknRoLkwQcCm67Wb6VnYO6N997Pd7Oe2oAbaL/XPCxTjFFt5+
+         DW0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=z1TZscSTdfeoTN+rbE+EnIAa34sPklQbO0+nPYIjMM8=;
+        b=aPWEkFDxNHv9qmhhRIQ2ACKYzVxLPfIGGcPWMrsG1fmes8NqJxOqXAUxFdzv6hUNYM
+         fq5hH4m68hEkeNIbXXBFT4a//bAmspDAL5NtdnS+n4ZHfrFvE58UeaPFGjWOi4jI3168
+         LGdgun2yg0Rsa47vsgYgGxasBHOF/xEJTr9Yte8oiaRS7+vhfBrlEl64KkHvIHbVq9h6
+         GQ6Wp4zYBKfs3QpWPG6jGU7DIU+0XLD3h6AU+mNpYlCyH+gBTBSAQOqsEZYiDll34MRK
+         5lQypcUEUcWMGGWMj5zbhoOgEFsRQp4D+uQMF2VpuvGNTX+B9BWujkIF//l1kiUQH827
+         Ly3A==
+X-Gm-Message-State: AOAM531dmKHzqbpjKnzwAgH3NZlt4hH2pZqaJwCYpoR4i8sNb4bLzBzI
+        G+SEtMu2qWXRkqVyahLRq6N6SQ==
+X-Google-Smtp-Source: ABdhPJxd8LBIzc0eEi6wUlWNN88/9JlZAIVMnYbN95LRErIhZmO5I9REj+rrEnLArVOYVrJ8Jb6U+A==
+X-Received: by 2002:a05:600c:2295:: with SMTP id 21mr1903119wmf.187.1640079730614;
+        Tue, 21 Dec 2021 01:42:10 -0800 (PST)
+Received: from google.com ([2.31.167.18])
+        by smtp.gmail.com with ESMTPSA id 9sm417923wrz.90.2021.12.21.01.42.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Dec 2021 01:42:10 -0800 (PST)
+Date:   Tue, 21 Dec 2021 09:42:08 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: Add Freecom system controller
+Message-ID: <YcGhcImIRV2Ylmz3@google.com>
+References: <20211122102210.3137559-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <YcGeZVgqNWDyvovW@google.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211122102210.3137559-1-linus.walleij@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+On Mon, 22 Nov 2021, Linus Walleij wrote:
 
-On 21/12/21 10:29, Lee Jones wrote:
-> On Sat, 11 Dec 2021, Luca Ceresoli wrote:
+> This adds a DT binding for the Freecom FSG3 system controller
+> found at CS2 in the Freecom FSG3 Intel IXP42x-based router.
 > 
->> Add a simple driver for the Maxim MAX77714 PMIC, supporting RTC and
->> watchdog only.
->>
->> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->>
->> ---
->>
->> Changes in v5: none
->>
->> Changes in v4: none
->>
->> Changes in v3:
->>  - Suggested by Lee Jones:
->>    - move struct mfd_cell to top of file
->>    - remove struct max77714 and its kmalloc, not used after probe
->>    - reword error messages
->>    - add "/* pF */" onto the end of the load_cap line
->>
->> Changes in v2:
->>  - fix "watchdog" word in heading comment (Guenter Roeck)
->>  - move struct max77714 to .c file (Krzysztof Kozlowski)
->>  - change include guard format (Krzysztof Kozlowski)
->>  - allow building as a module (Krzysztof Kozlowski)
->>  - remove of_match_ptr usage (Krzysztof Kozlowski / lkp)
->>    (Reported-by: kernel test robot <lkp@intel.com>)
->> ---
->>  MAINTAINERS                  |   2 +
->>  drivers/mfd/Kconfig          |  14 ++++
->>  drivers/mfd/Makefile         |   1 +
->>  drivers/mfd/max77714.c       | 152 +++++++++++++++++++++++++++++++++++
->>  include/linux/mfd/max77714.h |  60 ++++++++++++++
->>  5 files changed, 229 insertions(+)
->>  create mode 100644 drivers/mfd/max77714.c
->>  create mode 100644 include/linux/mfd/max77714.h
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index a08f5167dfe0..ef3ffba828af 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -11586,6 +11586,8 @@ MAXIM MAX77714 PMIC MFD DRIVER
->>  M:	Luca Ceresoli <luca@lucaceresoli.net>
->>  S:	Maintained
->>  F:	Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
->> +F:	drivers/mfd/max77714.c
->> +F:	include/linux/mfd/max77714.h
->>  
->>  MAXIM MAX77802 PMIC REGULATOR DEVICE DRIVER
->>  M:	Javier Martinez Canillas <javier@dowhile0.org>
->> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
->> index 3fb480818599..1b9d772bdae6 100644
->> --- a/drivers/mfd/Kconfig
->> +++ b/drivers/mfd/Kconfig
->> @@ -855,6 +855,20 @@ config MFD_MAX77693
->>  	  additional drivers must be enabled in order to use the functionality
->>  	  of the device.
->>  
->> +config MFD_MAX77714
->> +	tristate "Maxim Semiconductor MAX77714 PMIC Support"
->> +	depends on I2C
->> +	depends on OF || COMPILE_TEST
->> +	select MFD_CORE
->> +	select REGMAP_I2C
->> +	help
->> +	  Say yes here to add support for Maxim Semiconductor MAX77714.
->> +	  This is a Power Management IC with 4 buck regulators, 9
->> +	  low-dropout regulators, 8 GPIOs, RTC, watchdog etc. This driver
->> +	  provides common support for accessing the device; additional
->> +	  drivers must be enabled in order to use each functionality of the
->> +	  device.
->> +
->>  config MFD_MAX77843
->>  	bool "Maxim Semiconductor MAX77843 PMIC Support"
->>  	depends on I2C=y
->> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
->> index 0b1b629aef3e..03115cf1336b 100644
->> --- a/drivers/mfd/Makefile
->> +++ b/drivers/mfd/Makefile
->> @@ -162,6 +162,7 @@ obj-$(CONFIG_MFD_MAX77620)	+= max77620.o
->>  obj-$(CONFIG_MFD_MAX77650)	+= max77650.o
->>  obj-$(CONFIG_MFD_MAX77686)	+= max77686.o
->>  obj-$(CONFIG_MFD_MAX77693)	+= max77693.o
->> +obj-$(CONFIG_MFD_MAX77714)	+= max77714.o
->>  obj-$(CONFIG_MFD_MAX77843)	+= max77843.o
->>  obj-$(CONFIG_MFD_MAX8907)	+= max8907.o
->>  max8925-objs			:= max8925-core.o max8925-i2c.o
->> diff --git a/drivers/mfd/max77714.c b/drivers/mfd/max77714.c
->> new file mode 100644
->> index 000000000000..08dfb69bc6e8
->> --- /dev/null
->> +++ b/drivers/mfd/max77714.c
->> @@ -0,0 +1,152 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Maxim MAX77714 MFD Driver
-> 
-> I'm only mentioning this because you are still missing some reviews.
-> 
-> But I'd prefer for drivers not to describe themselves as MFD Drivers.
-> 
-> The term Parent or Core driver is usually better.
-> 
-> If you have to respin the set, please fix it.
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-OK. However No plan for a new iteration, but the wdog patches still need
-a review so it's possible. I don't expect changes for the other patches,
-they are acked and unchanged since a couple iterations.
+Applied, thanks.
 
-> If not, please sent a subsequent fix-up.
-
-Sure. Maybe I'll find some good will and reword all drivers which
-currently self-describe as "MFD drivers".
-
-> Acked-by: Lee Jones <lee.jones@linaro.org>
-
-Thanks.
 -- 
-Luca
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
