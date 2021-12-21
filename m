@@ -2,49 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47CB347BF19
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 12:48:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6690947BF65
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 13:08:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237246AbhLULsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 06:48:24 -0500
-Received: from mailgw.kylinos.cn ([123.150.8.42]:41416 "EHLO nksmu.kylinos.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233650AbhLULsY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 06:48:24 -0500
-X-UUID: d9f9f3a06411479cbd6b91107b1a9251-20211221
-X-CPASD-INFO: 72822263a5334c38b48f3febdbbd1d03@gIJyUl9kZGONVXV_g6Z-coJkZIaCqJ-
-        ClJCSkFG5gn96Ul9sWVWEfWxUYGJgYVVzeW1ZaV5gXlF2fn91f1CFYmBcUJl6gI9rV2JmYg==
-X-CPASD-FEATURE: 0.0
-X-CLOUD-ID: 72822263a5334c38b48f3febdbbd1d03
-X-CPASD-SUMMARY: SIP:-1,APTIP:-2.0,KEY:0.0,FROMBLOCK:1,EXT:0.0,OB:0.0,URL:-5,T
-        VAL:156.0,ESV:0.0,ECOM:-5.0,ML:0.0,FD:5.0,CUTS:7.0,IP:-2.0,MAL:0.0,ATTNUM:0.0
-        ,PHF:-5.0,PHC:-5.0,SPF:4.0,EDMS:-3,IPLABEL:4488.0,FROMTO:0,AD:0,FFOB:0.0,CFOB
-        :0.0,SPC:0.0,SIG:-5,AUF:100,DUF:27379,ACD:140,DCD:242,SL:0,AG:0,CFC:0.171,CFS
-        R:0.996,UAT:0,RAF:1,VERSION:2.3.4
-X-CPASD-ID: d9f9f3a06411479cbd6b91107b1a9251-20211221
-X-CPASD-BLOCK: 0
-X-CPASD-STAGE: 1, 1
-X-UUID: d9f9f3a06411479cbd6b91107b1a9251-20211221
-X-User: yinxiujiang@kylinos.cn
-Received: from localhost.localdomain [(118.26.139.139)] by nksmu.kylinos.cn
-        (envelope-from <yinxiujiang@kylinos.cn>)
-        (Generic MTA)
-        with ESMTP id 541015439; Tue, 21 Dec 2021 20:00:59 +0800
-From:   Yin Xiujiang <yinxiujiang@kylinos.cn>
-To:     frowand.list@gmail.com
-Cc:     devicetree@vger.kernel.org, erhard_f@mailbox.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: Fwd: [Bug 214867] New: UBSAN: shift-out-of-bounds in drivers/of/unittest.c:1933:36
-Date:   Tue, 21 Dec 2021 19:48:17 +0800
-Message-Id: <20211221114817.682347-1-yinxiujiang@kylinos.cn>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <c474a371-b524-1da8-4a67-e72cf8f2b0f7@gmail.com>
-References: <c474a371-b524-1da8-4a67-e72cf8f2b0f7@gmail.com>
+        id S234409AbhLUMII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 07:08:08 -0500
+Received: from mail-qv1-f46.google.com ([209.85.219.46]:46685 "EHLO
+        mail-qv1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229839AbhLUMII (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 07:08:08 -0500
+Received: by mail-qv1-f46.google.com with SMTP id r6so7944373qvr.13;
+        Tue, 21 Dec 2021 04:08:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UyRjgdZdH2u6AgkMVpICkiLuJLSjtBenDYwW+5rDy/s=;
+        b=2eLFbpESDDYklhrjWrWBJJ6auoLKlyqRkq8BNoP/1D0lQ8MefQADvKga2jjXFidRJJ
+         79hhKXFpCnF8O4tKqU+c29+LkVjQukJpppUtKiquIOB5qSrUtbbse/86aDUke1ZQ+YYf
+         ppjie3s09Y7BtDU3VTxk+daBe6iPKSXHgzsDLdA9dQaReqUsCew4ggJjZu1FHEmVVuOg
+         Xo9BU0PIcm48Tyd70i4Uro1VnC5H/vv8KpIM7jWDiZvmEWNgqsGbCp1f2m0Up8ng1hYc
+         hsal2fWnh7RKta2aRIl7j/dH8jzLudKB2jKKz4hVDRVCO07ub75NlSzgdtf7u02bj+t8
+         oJNA==
+X-Gm-Message-State: AOAM530zAG8cO9LjSNjpVw7dfOY8SEe2poQNEj+7qBW0nVb0VoQ73FRu
+        w97nd21gFKU1rC6D3IN22/f027tZZAUB
+X-Google-Smtp-Source: ABdhPJxUCvfO3/6AgIojDhEJqT5ULj5uXBQ9FdiM/AissKFlNOuR0vIuj8OAkAeBe93rcL1bbKBHhg==
+X-Received: by 2002:a05:6214:c8e:: with SMTP id r14mr1914861qvr.38.1640088487045;
+        Tue, 21 Dec 2021 04:08:07 -0800 (PST)
+Received: from xps15.. ([24.55.105.145])
+        by smtp.googlemail.com with ESMTPSA id h1sm420885qta.54.2021.12.21.04.08.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Dec 2021 04:08:06 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] regulator: dt-bindings: samsung,s5m8767: Move fixed string BUCK9 to 'properties'
+Date:   Tue, 21 Dec 2021 08:07:43 -0400
+Message-Id: <20211221120744.1118518-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I think if you use unsigned, then 'id -= overlay_first_id' will not be 
-less than 0 but will be a very large value and will be harder to judge.
+There's no need for a fixed string like 'BUCK9' to be under
+'patternProperties', so move it under 'properties' instead.
+
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/regulator/samsung,s5m8767.yaml         | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml b/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
+index 80a63d47790a..6c8ad82bd69c 100644
+--- a/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
++++ b/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
+@@ -54,8 +54,9 @@ patternProperties:
+     required:
+       - regulator-name
+ 
++properties:
+   # 9 buck
+-  "^BUCK9$":
++  BUCK9:
+     type: object
+     $ref: regulator.yaml#
+     unevaluatedProperties: false
+-- 
+2.32.0
+
