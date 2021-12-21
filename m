@@ -2,84 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E1A147BC33
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 09:51:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8218B47BC63
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 10:04:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235852AbhLUIvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 03:51:18 -0500
-Received: from guitar.tcltek.co.il ([84.110.109.230]:46913 "EHLO mx.tkos.co.il"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233569AbhLUIvS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 03:51:18 -0500
-Received: from tarshish.tkos.co.il (unknown [10.0.8.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id A1F0F4409BF;
-        Tue, 21 Dec 2021 10:51:10 +0200 (IST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-        s=default; t=1640076670;
-        bh=KmkazY+3KmFjF2gyaa0C1nCjKJAokRVOB304BgRCjWk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TDKTbW+yHetc6m/a2h4N2pou+tts/Q+5swO3Q9J5eKrkm+CvwoxsAqyBHQrEaHYTS
-         SUh7FH0fNKU/C3hrekCrOeDx8Su5SQ5+AgsZC3wdfn6PRKkEBYZ0grfipSmAqh+Ce5
-         s+nOmE3YNUa5+Nc2LnREauCAT8mif6uMCnzVPKZIPhX7LkYy3AJ5Bps/BvIVbMiNVE
-         n1TFjwf5wtxuTqSdHL98Iz1tU5Rkrsa9reVKw5ose62bAIGcFa6PB6O626k0g8PFbO
-         oSTeCmc+BqYeuaC2vItnFgB/2kpFdpQhP2Gx164peAY4vd+Tn0k9aw2/1R7+w0loZF
-         CHvQmwMaHnWhw==
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, Baruch Siach <baruch@tkos.co.il>
-Subject: [PATCH 2/2] of: base: Improve argument length mismatch error
-Date:   Tue, 21 Dec 2021 10:50:02 +0200
-Message-Id: <4cd1b24a2f4d185cf96799ab02ea4283437de67b.1640076602.git.baruch@tkos.co.il>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <88f6428288756fb777d9fe6b910673c987757d10.1640076602.git.baruch@tkos.co.il>
-References: <88f6428288756fb777d9fe6b910673c987757d10.1640076602.git.baruch@tkos.co.il>
+        id S235976AbhLUJEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 04:04:50 -0500
+Received: from smtp1.axis.com ([195.60.68.17]:65464 "EHLO smtp1.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234178AbhLUJEu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Dec 2021 04:04:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1640077490;
+  x=1671613490;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=21MVjU8BBU4s3iqha0uhpIEldo19sR0X+czAnqzhGmM=;
+  b=f0OEJquD69q2pZcMG9bfU7vI7k/WP38ZLPu25rh/GAfc9ToH5U2Ck1r2
+   grSf5HRaoZDPZY4Gpf/SR+iDN5QZgp3o9+7KjtJ6H3Z7VrEMdnm28/oTz
+   nXSh9faMFL7OADZosutvzYuqsW/dlpiu/rbw22ipK38iIhW+CtE9Z52Jz
+   GgYGCM6uM+PjA65oLvWD8EXm0P4Lld3NrYhLQnOvx3isWMVXCNuPubDv0
+   heawjITqpEKs5wnc5x3OEHTlMdytKOfLj0iVqq1Qo51i99dlQi0YfYFv7
+   NH0a0RrrO1EPjQF81Nm1pRP+Bpoj9za7aK2U4b0yDxIyY0weFB0yszorg
+   A==;
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Jeff Dike <jdike@addtoit.com>, Richard Weinberger <richard@nod.at>,
+        Anton Ivanov <anton.ivanov@cambridgegreys.com>
+CC:     <kernel@axis.com>, <johannes.berg@intel.com>,
+        <devicetree@vger.kernel.org>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        <linux-um@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] um: virtio_uml: allow probing from devicetree
+Date:   Tue, 21 Dec 2021 10:04:46 +0100
+Message-ID: <20211221090447.1567-1-vincent.whitchurch@axis.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The cells_name field of of_phandle_iterator might be NULL. Use the
-phandle name instead. With this change we get the more helpful messages:
+Allow the virtio_uml device to be probed from the devicetree so that
+sub-devices can be specified using the standard virtio bindings, for
+example:
 
-  OF: /soc/pinctrl@1000000: phandle pinctrl@1000000 needs 3, found 2
+  virtio@1 {
+    compatible = "virtio,uml";
+    socket-path = "i2c.sock";
+    virtio-device-id = <0x22>;
 
-instead of:
+    i2c-controller {
+      compatible = "virtio,device22";
+      #address-cells = <0x01>;
+      #size-cells = <0x00>;
 
-  OF: /soc/pinctrl@1000000: (null) = 3 found 2
+      light-sensor@01 {
+        compatible = "ti,opt3001";
+        reg = <0x01>;
+      };
+    };
+  };
 
-That should make DT debugging easier.
-
-Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
 ---
- drivers/of/base.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 64218c614a85..7c03de370913 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -1349,9 +1349,14 @@ int of_phandle_iterator_next(struct of_phandle_iterator *it)
- 		 * property data length
- 		 */
- 		if (it->cur + count > it->list_end) {
--			pr_err("%pOF: %s = %d found %ld\n",
--			       it->parent, it->cells_name,
--			       count, it->list_end - it->cur);
-+			if (it->cells_name)
-+				pr_err("%pOF: %s = %d found %ld\n",
-+					it->parent, it->cells_name,
-+					count, it->list_end - it->cur);
-+			else
-+				pr_err("%pOF: phandle %s needs %d, found %ld\n",
-+					it->parent, of_node_full_name(it->node),
-+					count, it->list_end - it->cur);
- 			goto err;
- 		}
- 	}
+Notes:
+    Requires the UML devicetree support I posted a couple of weeks ago:
+    https://lore.kernel.org/all/20211208151123.29313-1-vincent.whitchurch@axis.com/
+
+ arch/um/drivers/virtio_uml.c | 50 +++++++++++++++++++++++++++++++++---
+ 1 file changed, 47 insertions(+), 3 deletions(-)
+
+diff --git a/arch/um/drivers/virtio_uml.c b/arch/um/drivers/virtio_uml.c
+index d51e445df797..3e4fa0f262d3 100644
+--- a/arch/um/drivers/virtio_uml.c
++++ b/arch/um/drivers/virtio_uml.c
+@@ -21,6 +21,7 @@
+  * Based on Virtio MMIO driver by Pawel Moll, copyright 2011-2014, ARM Ltd.
+  */
+ #include <linux/module.h>
++#include <linux/of.h>
+ #include <linux/platform_device.h>
+ #include <linux/slab.h>
+ #include <linux/virtio.h>
+@@ -49,6 +50,7 @@ struct virtio_uml_platform_data {
+ struct virtio_uml_device {
+ 	struct virtio_device vdev;
+ 	struct platform_device *pdev;
++	struct virtio_uml_platform_data *pdata;
+ 
+ 	spinlock_t sock_lock;
+ 	int sock, req_fd, irq;
+@@ -149,7 +151,7 @@ static int vhost_user_recv(struct virtio_uml_device *vu_dev,
+ 	if (rc == -ECONNRESET && vu_dev->registered) {
+ 		struct virtio_uml_platform_data *pdata;
+ 
+-		pdata = vu_dev->pdev->dev.platform_data;
++		pdata = vu_dev->pdata;
+ 
+ 		virtio_break_device(&vu_dev->vdev);
+ 		schedule_work(&pdata->conn_broken_wk);
+@@ -1113,21 +1115,63 @@ void virtio_uml_set_no_vq_suspend(struct virtio_device *vdev,
+ 		 no_vq_suspend ? "dis" : "en");
+ }
+ 
++static void vu_of_conn_broken(struct work_struct *wk)
++{
++	/*
++	 * We can't remove the device from the devicetree so the only thing we
++	 * can do is warn.
++	 */
++	WARN_ON(1);
++}
++
+ /* Platform device */
+ 
++static struct virtio_uml_platform_data *
++virtio_uml_create_pdata(struct platform_device *pdev)
++{
++	struct device_node *np = pdev->dev.of_node;
++	struct virtio_uml_platform_data *pdata;
++	int ret;
++
++	if (!np)
++		return ERR_PTR(-EINVAL);
++
++	pdata = devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KERNEL);
++	if (!pdata)
++		return ERR_PTR(-ENOMEM);
++
++	INIT_WORK(&pdata->conn_broken_wk, vu_of_conn_broken);
++	pdata->pdev = pdev;
++
++	ret = of_property_read_string(np, "socket-path", &pdata->socket_path);
++	if (ret)
++		return ERR_PTR(ret);
++
++	ret = of_property_read_u32(np, "virtio-device-id",
++				   &pdata->virtio_device_id);
++	if (ret)
++		return ERR_PTR(ret);
++
++	return pdata;
++}
++
+ static int virtio_uml_probe(struct platform_device *pdev)
+ {
+ 	struct virtio_uml_platform_data *pdata = pdev->dev.platform_data;
+ 	struct virtio_uml_device *vu_dev;
+ 	int rc;
+ 
+-	if (!pdata)
+-		return -EINVAL;
++	if (!pdata) {
++		pdata = virtio_uml_create_pdata(pdev);
++		if (IS_ERR(pdata))
++			return PTR_ERR(pdata);
++	}
+ 
+ 	vu_dev = kzalloc(sizeof(*vu_dev), GFP_KERNEL);
+ 	if (!vu_dev)
+ 		return -ENOMEM;
+ 
++	vu_dev->pdata = pdata;
+ 	vu_dev->vdev.dev.parent = &pdev->dev;
+ 	vu_dev->vdev.dev.release = virtio_uml_release_dev;
+ 	vu_dev->vdev.config = &virtio_uml_config_ops;
 -- 
-2.34.1
+2.33.1
 
