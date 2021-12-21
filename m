@@ -2,83 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C108F47BD10
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 10:42:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF5EC47BDB6
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 10:50:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236478AbhLUJmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 04:42:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36044 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231185AbhLUJmM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 04:42:12 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED974C061574
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 01:42:11 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id o19-20020a1c7513000000b0033a93202467so1654627wmc.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 01:42:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=z1TZscSTdfeoTN+rbE+EnIAa34sPklQbO0+nPYIjMM8=;
-        b=Hk3Wc2CRMeXhPNMDBnLbb/9dUz3lTwWfPb6+PiVpEmYbKOTov+GQ/pc9B+Zww+q7Xu
-         eaJnd65ZO/SL9wxPSosiYL1zo/SIoahyAuXaBttG/VtNYIwXC32jEgn34PInJ6nsKILo
-         BS+snXU1YeOkfn0AGJNsUy6tpjIac/J+cUvygd9ci7QNRLtgUA5HD+UojzPPvGxtp7ea
-         UAAWpDlVkpO8YaFu4v4lt70LxK/TljvHpyuROsIap0i076mYe4hlhJizaB36CSE4Z8pV
-         RhdzE9U2ilD+fx1gHVEBknRoLkwQcCm67Wb6VnYO6N997Pd7Oe2oAbaL/XPCxTjFFt5+
-         DW0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=z1TZscSTdfeoTN+rbE+EnIAa34sPklQbO0+nPYIjMM8=;
-        b=aPWEkFDxNHv9qmhhRIQ2ACKYzVxLPfIGGcPWMrsG1fmes8NqJxOqXAUxFdzv6hUNYM
-         fq5hH4m68hEkeNIbXXBFT4a//bAmspDAL5NtdnS+n4ZHfrFvE58UeaPFGjWOi4jI3168
-         LGdgun2yg0Rsa47vsgYgGxasBHOF/xEJTr9Yte8oiaRS7+vhfBrlEl64KkHvIHbVq9h6
-         GQ6Wp4zYBKfs3QpWPG6jGU7DIU+0XLD3h6AU+mNpYlCyH+gBTBSAQOqsEZYiDll34MRK
-         5lQypcUEUcWMGGWMj5zbhoOgEFsRQp4D+uQMF2VpuvGNTX+B9BWujkIF//l1kiUQH827
-         Ly3A==
-X-Gm-Message-State: AOAM531dmKHzqbpjKnzwAgH3NZlt4hH2pZqaJwCYpoR4i8sNb4bLzBzI
-        G+SEtMu2qWXRkqVyahLRq6N6SQ==
-X-Google-Smtp-Source: ABdhPJxd8LBIzc0eEi6wUlWNN88/9JlZAIVMnYbN95LRErIhZmO5I9REj+rrEnLArVOYVrJ8Jb6U+A==
-X-Received: by 2002:a05:600c:2295:: with SMTP id 21mr1903119wmf.187.1640079730614;
-        Tue, 21 Dec 2021 01:42:10 -0800 (PST)
-Received: from google.com ([2.31.167.18])
-        by smtp.gmail.com with ESMTPSA id 9sm417923wrz.90.2021.12.21.01.42.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 01:42:10 -0800 (PST)
-Date:   Tue, 21 Dec 2021 09:42:08 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: Add Freecom system controller
-Message-ID: <YcGhcImIRV2Ylmz3@google.com>
-References: <20211122102210.3137559-1-linus.walleij@linaro.org>
+        id S229564AbhLUJtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 04:49:46 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:14489 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236716AbhLUJte (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 04:49:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1640079992;
+    s=strato-dkim-0002; d=fpond.eu;
+    h=Subject:References:In-Reply-To:Message-ID:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=42mCLPP+/26IgMgMu1NSuqVuS12TTqkjJCf4VQaLAzE=;
+    b=P+MuxOGkejIvVYs8B0FfYf07ourOmlhnk8fDrXS+O2Z29FGhYbSpBElj2G61A1V19i
+    6op+sEgjbbWIDfFKhjwhriy25OJ1DfPX2WTgIw+u+wZNN8pO9SwH8oupUjQQRSRkGWX9
+    GDCjJl/boX2ZZfihy0LLuLwY4yqt7YVyD7che9m+kSfOnOIu+jxgOT+sIKgMEtzcHV6m
+    OZmbAac7bXHYsrZpBZTbxxWCeo+wf4Bu47pJJVmlrWDWWrhmYsxpka/vgSWqxWrJeMWB
+    DoJL6gQcVt0QkX0bi6qnDcXDxXPwLh11DGzHEEqAJyM7E6LXAt5+IkWL2yk1KxegYHUI
+    4JWA==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":OWANVUa4dPFUgKR/3dpvnYP0Np73amq+g13rqGzvv3qxio1R8fCt/7B6PNk="
+X-RZG-CLASS-ID: mo00
+Received: from oxapp04-01.back.ox.d0m.de
+    by smtp-ox.front (RZmta 47.35.3 AUTH)
+    with ESMTPSA id N01f39xBL9kWyGE
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Tue, 21 Dec 2021 10:46:32 +0100 (CET)
+Date:   Tue, 21 Dec 2021 10:46:32 +0100 (CET)
+From:   Ulrich Hecht <uli@fpond.eu>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        vkoul@kernel.org, robh+dt@kernel.org
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Message-ID: <1313974359.541738.1640079992364@webmail.strato.com>
+In-Reply-To: <20211221052722.597407-3-yoshihiro.shimoda.uh@renesas.com>
+References: <20211221052722.597407-1-yoshihiro.shimoda.uh@renesas.com>
+ <20211221052722.597407-3-yoshihiro.shimoda.uh@renesas.com>
+Subject: Re: [PATCH 2/3] dmaengine: rcar-dmac: Add support for R-Car S4-8
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211122102210.3137559-1-linus.walleij@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+Importance: Normal
+X-Mailer: Open-Xchange Mailer v7.10.5-Rev33
+X-Originating-Client: open-xchange-appsuite
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Nov 2021, Linus Walleij wrote:
 
-> This adds a DT binding for the Freecom FSG3 system controller
-> found at CS2 in the Freecom FSG3 Intel IXP42x-based router.
+> On 12/21/2021 6:27 AM Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com> wrote:
 > 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+>  
+> Add support for R-Car S4-8. We can reuse R-Car V3U code so that
+> renames variable names as "gen4".
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/dma/sh/rcar-dmac.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/dma/sh/rcar-dmac.c b/drivers/dma/sh/rcar-dmac.c
+> index 5c7716fd6bc5..e409c89edca1 100644
+> --- a/drivers/dma/sh/rcar-dmac.c
+> +++ b/drivers/dma/sh/rcar-dmac.c
+> @@ -2009,7 +2009,7 @@ static const struct rcar_dmac_of_data rcar_dmac_data = {
+>  	.chan_offset_stride	= 0x80,
+>  };
+>  
+> -static const struct rcar_dmac_of_data rcar_v3u_dmac_data = {
+> +static const struct rcar_dmac_of_data rcar_gen4_dmac_data = {
+>  	.chan_offset_base	= 0x0,
+>  	.chan_offset_stride	= 0x1000,
+>  };
+> @@ -2018,9 +2018,12 @@ static const struct of_device_id rcar_dmac_of_ids[] = {
+>  	{
+>  		.compatible = "renesas,rcar-dmac",
+>  		.data = &rcar_dmac_data,
+> +	}, {
+> +		.compatible = "renesas,rcar-gen4-dmac",
+> +		.data = &rcar_gen4_dmac_data,
+>  	}, {
+>  		.compatible = "renesas,dmac-r8a779a0",
+> -		.data = &rcar_v3u_dmac_data,
+> +		.data = &rcar_gen4_dmac_data,
+>  	},
+>  	{ /* Sentinel */ }
+>  };
+> -- 
+> 2.25.1
 
-Applied, thanks.
+Reviewed-by: Ulrich Hecht <uli+renesas@fpond.eu>
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+CU
+Uli
