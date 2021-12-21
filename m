@@ -2,103 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 584EE47BB6D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 09:03:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C844547BB8E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 09:14:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235395AbhLUIDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 03:03:52 -0500
-Received: from mga02.intel.com ([134.134.136.20]:43348 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235383AbhLUIDv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 03:03:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1640073831; x=1671609831;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=41Ve57LH9vKZVkmrFdgNEo5ROhFavgNxMAwyZUJAA3g=;
-  b=ReRiju6WMjirNb7Fwpa5QPqzc94UL3DpNgVC6aFqv6tEbx6Dc/VTd30d
-   jKn7tTI8nwiOZuzeaOyRhEY/jNezBwb4HFa0zWPnNTIvIJbkdfu9FFGZm
-   MMVTeXkbSPJwX0us+5gKfWqdnIFm2gHvDpfhKWm0rOmAl7FUt6ZCoYAjv
-   dCxi3hU67HTjwYTceWntGkGs+lR9qWsOVbSvW3wdbjQIEAuibiP6Ickhg
-   Anh02Ui/lP/xsJn7Sc2pQCtxvERnrGXWb/5G/IJJXG+7CP6BuzUGgZ53N
-   EziCa88U0ogE72VHM9lrjS4w6OdqZs4uA3Hi1nBpG0XNaL4kJnIs8OCPc
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10204"; a="227640800"
-X-IronPort-AV: E=Sophos;i="5.88,222,1635231600"; 
-   d="scan'208";a="227640800"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2021 00:03:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,222,1635231600"; 
-   d="scan'208";a="684580945"
-Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
-  by orsmga005.jf.intel.com with ESMTP; 21 Dec 2021 00:03:49 -0800
-Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mza7g-0008qw-HR; Tue, 21 Dec 2021 08:03:48 +0000
-Date:   Tue, 21 Dec 2021 16:03:39 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Liam Beguin <liambeguin@gmail.com>, peda@axentia.se,
-        jic23@kernel.org, lars@metafoo.de
-Cc:     kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v10 10/14] iio: test: add basic tests for the iio-rescale
- driver
-Message-ID: <202112211530.JHHCLDOr-lkp@intel.com>
-References: <20211219223953.16074-11-liambeguin@gmail.com>
+        id S235447AbhLUIOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 03:14:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43660 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235408AbhLUIOL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 03:14:11 -0500
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09012C06173F;
+        Tue, 21 Dec 2021 00:14:11 -0800 (PST)
+Received: by mail-pf1-x435.google.com with SMTP id v13so11047097pfi.3;
+        Tue, 21 Dec 2021 00:14:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=KfWp3EC1FzqgOl2C4TeIv3DanfwzS2Q8LVhv9Iqo4TE=;
+        b=nc1katz4p2W9VXbj0pMPJd8OENjc4Hpl62crQFmbR8P4Cs7rEzHnvcw5IM/Pzav+oX
+         grljk9embKuYCbngIdXGEqOneqd8mu+JGnefW3135Ofui5iMbcxfrpz8TKeBZFQg2Lel
+         OQPVw9Ay1oAntv9YW02dQHnF1hdXi5a5W5vPNhRI9wPKLS/0Bve6gTcZZCMKZeF3S5de
+         fyKvwZXQFHOxBtJ1tWuDP2taarbkWZKLUArIE38xFZMgZUu7WrA5Ms2tfaeZoRStqO1R
+         vIi12wrK8LUzwGAX8DiLhABNBdj4pLb8l4+y2L1/e3W0eitcOupVIdKfeHbHSEUDKT/D
+         F7nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=KfWp3EC1FzqgOl2C4TeIv3DanfwzS2Q8LVhv9Iqo4TE=;
+        b=0SqSb19uEyEMaOGzgo/Bf+5uZb/kdduhi+MfFJoskhSRI/ZlfEq8QT60vFtYqoCRav
+         Xoze6bqGbJVV4EiKb0SiljGoX3BHWM51rWCRflyS1dc6a4/YGRGM11Tyu8VlDdVRC6gv
+         1tV26xPTZ3Jasgp9oTAcxAGh4J5adtixGiuMfZOK8dARyszq3o2ZRtYgxmCbKwuVj7rL
+         LrWJwSF7jeP2pfMcnQf1PAEzcn8kdjc0P0HUEEFOwmL8JQuUlMWwyc7JXqQWObBH2JB9
+         NecA+RCGbtoDNwSe1prZg46qYgXXegLp8NshjzEHGrJOBCuxvXqpTrFKNq8C7vRKAAOW
+         +S8A==
+X-Gm-Message-State: AOAM533NTMzBybddZmCAVO395QHxXXPJteB8WnFTL99i6kK8oKr7fdA4
+        So5pn5le364sNuJB0ir2FQ7CTBHudrJihy4YjN0=
+X-Google-Smtp-Source: ABdhPJyfjZs1i63+vVnbWIogeffAkybtFZr5MWXqBu8A8DgLYraxD4dYQq79sGPc8LpnZCTZIQbyf4kuj0AhNLeaLWk=
+X-Received: by 2002:a63:1858:: with SMTP id 24mr1960142pgy.338.1640074450574;
+ Tue, 21 Dec 2021 00:14:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211219223953.16074-11-liambeguin@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1639379407-28607-1-git-send-email-hammer.hsieh@sunplus.com>
+ <1639379407-28607-3-git-send-email-hammer.hsieh@sunplus.com> <YcCmaJkeKy+R0mhF@kroah.com>
+In-Reply-To: <YcCmaJkeKy+R0mhF@kroah.com>
+From:   hammer hsieh <hammerh0314@gmail.com>
+Date:   Tue, 21 Dec 2021 16:14:16 +0800
+Message-ID: <CAOX-t54j9=7eLMAx4n-ngiNdM=Ab=YcK-zdxRW88e41cPS=46Q@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     robh+dt@kernel.org, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jirislaby@kernel.org, p.zabel@pengutronix.de, wells.lu@sunplus.com,
+        Hammer Hsieh <hammer.hsieh@sunplus.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liam,
+Greg KH <gregkh@linuxfoundation.org> =E6=96=BC 2021=E5=B9=B412=E6=9C=8820=
+=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=8811:51=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> On Mon, Dec 13, 2021 at 03:10:07PM +0800, Hammer Hsieh wrote:
+> > +/* Register offsets */
+> > +#define SUP_UART_DATA                        0x00
+> > +#define SUP_UART_LSR                 0x04
+> > +#define SUP_UART_MSR                 0x08
+> > +#define SUP_UART_LCR                 0x0C
+> > +#define SUP_UART_MCR                 0x10
+> > +#define SUP_UART_DIV_L                       0x14
+> > +#define SUP_UART_DIV_H                       0x18
+> > +#define SUP_UART_ISC                 0x1C
+> > +#define SUP_UART_TX_RESIDUE          0x20
+> > +#define SUP_UART_RX_RESIDUE          0x24
+> > +
+> > +/* Line Status Register bits */
+> > +#define SUP_UART_LSR_TXE             BIT(6) /* tx empty */
+> > +#define SUP_UART_LSR_BC                      BIT(5) /* break condition=
+ status */
+> > +#define SUP_UART_LSR_FE                      BIT(4) /* frame error sta=
+tus */
+> > +#define SUP_UART_LSR_OE                      BIT(3) /* overrun error s=
+tatus */
+> > +#define SUP_UART_LSR_PE                      BIT(2) /* parity error st=
+atus */
+> > +#define SUP_UART_LSR_RX                      BIT(1) /* 1: receive fifo=
+ not empty */
+> > +#define SUP_UART_LSR_TX                      BIT(0) /* 1: transmit fif=
+o is not full */
+> > +#define SUP_UART_LSR_TX_NOT_FULL     1
+> > +#define SUP_UART_LSR_BRK_ERROR_BITS  GENMASK(5, 2)
+> > +
+> > +/* Line Control Register bits */
+> > +#define SUP_UART_LCR_BC                      BIT(5) /* break condition=
+ select */
+> > +#define SUP_UART_LCR_PR                      BIT(4) /* parity bit pola=
+rity select */
+> > +#define SUP_UART_LCR_PE                      BIT(3) /* parity bit enab=
+le */
+> > +#define SUP_UART_LCR_ST                      BIT(2) /* stop bits selec=
+t */
+> > +#define SUP_UART_LCR_WL5             0x00 /*  word length 5 */
+> > +#define SUP_UART_LCR_WL6             0x01 /*  word length 6 */
+> > +#define SUP_UART_LCR_WL7             0x02 /*  word length 7 */
+> > +#define SUP_UART_LCR_WL8             0x03 /*  word length 8 (default) =
+*/
+> > +
+> > +/* Modem Control Register bits */
+> > +#define SUP_UART_MCR_LB                      BIT(4) /* Loopback mode *=
+/
+> > +#define SUP_UART_MCR_RI                      BIT(3) /* ring indicator =
+*/
+> > +#define SUP_UART_MCR_DCD             BIT(2) /* data carrier detect */
+> > +#define SUP_UART_MCR_RTS             BIT(1) /* request to send */
+> > +#define SUP_UART_MCR_DTS             BIT(0) /* data terminal ready */
+> > +
+> > +/* Interrupt Status/Control Register bits */
+> > +#define SUP_UART_ISC_RXM             BIT(5) /* RX interrupt enable */
+> > +#define SUP_UART_ISC_TXM             BIT(4) /* TX interrupt enable */
+> > +#define SUP_UART_ISC_RX                      BIT(1) /* RX interrupt st=
+atus */
+> > +#define SUP_UART_ISC_TX                      BIT(0) /* TX interrupt st=
+atus */
+> > +
+> > +#define SUP_DUMMY_READ                       BIT(16) /* drop bytes rec=
+eived on a !CREAD port */
+> > +#define SUP_UART_NR                  5
+>
+> Aren't most of these defines already in the kernel header files?  Why
+> create them again?
+>
 
-Thank you for the patch! Yet something to improve:
+If for reduce code.
+I can add #include<linux/serial_reg.h>
+And remove some overlap define name.
 
-[auto build test ERROR on 2b6bff0b122785f09cfbdc34b1aa9edceea6e4c1]
+#define SUP_UART_LCR_PR -> UART_LCR_EPAR
+#define SUP_UART_LCR_PE -> UART_LCR_PARITY
+#define SUP_UART_LCR_ST -> UART_LCR_STOP
+#define SUP_UART_LCR_WL5 -> UART_LCR_WLEN5
+#define SUP_UART_LCR_WL6 -> UART_LCR_WLEN6
+#define SUP_UART_LCR_WL7 -> UART_LCR_WLEN7
+#define SUP_UART_LCR_WL8 -> UART_LCR_WLEN8
 
-url:    https://github.com/0day-ci/linux/commits/Liam-Beguin/iio-afe-add-temperature-rescaling-support/20211220-064048
-base:   2b6bff0b122785f09cfbdc34b1aa9edceea6e4c1
-config: mips-randconfig-r026-20211220 (https://download.01.org/0day-ci/archive/20211221/202112211530.JHHCLDOr-lkp@intel.com/config)
-compiler: mipsel-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/833188fad2d37f1e40f56eb7286d6dd2e1a2ced5
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Liam-Beguin/iio-afe-add-temperature-rescaling-support/20211220-064048
-        git checkout 833188fad2d37f1e40f56eb7286d6dd2e1a2ced5
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=mips SHELL=/bin/bash
+#define SUP_UART_MCR_LB -> UART_MCR_LOOP
+#define SUP_UART_MCR_RI -> UART_MCR_OUT2 ?
+#define SUP_UART_MCR_DCD -> UART_MCR_OUT1 ?
+#define SUP_UART_MCR_RTS -> UART_MCR_RTS
+#define SUP_UART_MCR_DTS -> UART_MCR_DTR
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   mipsel-linux-ld: drivers/iio/test/iio-test-rescale.o: in function `iio_rescale_test_offset':
->> iio-test-rescale.c:(.text+0x48): undefined reference to `kunit_kmalloc_array'
->> mipsel-linux-ld: iio-test-rescale.c:(.text+0xc4): undefined reference to `kunit_binary_assert_format'
-   mipsel-linux-ld: iio-test-rescale.c:(.text+0xc8): undefined reference to `kunit_binary_assert_format'
->> mipsel-linux-ld: iio-test-rescale.c:(.text+0x13c): undefined reference to `kunit_do_assertion'
->> mipsel-linux-ld: iio-test-rescale.c:(.text+0x15c): undefined reference to `kunit_binary_str_assert_format'
-   mipsel-linux-ld: iio-test-rescale.c:(.text+0x160): undefined reference to `kunit_binary_str_assert_format'
-   mipsel-linux-ld: iio-test-rescale.c:(.text+0x1b0): undefined reference to `kunit_do_assertion'
-   mipsel-linux-ld: drivers/iio/test/iio-test-rescale.o: in function `iio_rescale_test_scale':
-   iio-test-rescale.c:(.text+0x40c): undefined reference to `kunit_kmalloc_array'
-   mipsel-linux-ld: iio-test-rescale.c:(.text+0x490): undefined reference to `kunit_binary_assert_format'
-   mipsel-linux-ld: iio-test-rescale.c:(.text+0x4c0): undefined reference to `kunit_binary_assert_format'
-   mipsel-linux-ld: iio-test-rescale.c:(.text+0x4f0): undefined reference to `kunit_do_assertion'
-   mipsel-linux-ld: iio-test-rescale.c:(.text+0x6a4): undefined reference to `kunit_do_assertion'
-   mipsel-linux-ld: iio-test-rescale.c:(.text+0x718): undefined reference to `kunit_do_assertion'
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+But the rest define didn't match internal #include<linux/serial_reg.h>
+, those define still need to keep.
+Some use SUP_xxxx specific define.
+Some use internal #include<linux/serial_reg.h>, it is strange.
