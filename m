@@ -2,128 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1C9847C60A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 19:13:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 178CE47C618
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 19:14:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240952AbhLUSNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 13:13:14 -0500
-Received: from mail-qk1-f175.google.com ([209.85.222.175]:37543 "EHLO
-        mail-qk1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240915AbhLUSNN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 13:13:13 -0500
-Received: by mail-qk1-f175.google.com with SMTP id m186so13393544qkb.4;
-        Tue, 21 Dec 2021 10:13:13 -0800 (PST)
+        id S237283AbhLUSOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 13:14:45 -0500
+Received: from mail-qk1-f170.google.com ([209.85.222.170]:37690 "EHLO
+        mail-qk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241021AbhLUSOg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 13:14:36 -0500
+Received: by mail-qk1-f170.google.com with SMTP id m186so13397465qkb.4;
+        Tue, 21 Dec 2021 10:14:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=FgGg2+AitqaP56Vm5YjQbOGniqdnRT3Htjx11pTGsHI=;
-        b=Da7tFk/6tYiRshAfP61sYreV1E/+BbSJNkMnGtPtKU0wNFw11NXZ/igXaqyqSWFFBK
-         sWb3NsVAj7Qifkyte18rLu5++QAMRKpOZ667Usam2zDrBTWXT/GwxP8FISB7qW/rHjD/
-         zut5GLlaFGAzU0fxSxIZnfljHVzqGpzyIJvub5/F0BskLp7cRMrWDPfLWAyMBMmx92P2
-         uazpVdsg2CIZbFiSD2vlUpegax2WQeUOKP84oD2L8V+ikIW9aRgq2/4b0PKuMafxkaiT
-         NxdOXEWVzUbXzbx7i7dJ0FmnQtdO0BtYV2nTgjYBlR6wcpQRjzmRePizn5gDSRBn6ZDf
-         e8gA==
-X-Gm-Message-State: AOAM532EFPldzYsAxAgaudZJSkq3BZ3b7wcF9+6NCGk7VEAaSB9TAonI
-        X4VDKVZTBXWJDi967GM9Hw==
-X-Google-Smtp-Source: ABdhPJzQOQFLlDsziLyuvLEMaPbhJnT/tO8cXDb76gkkArdTN7ToTzKDvDS0PliXy7FOIxJcAUWOrg==
-X-Received: by 2002:a05:620a:f12:: with SMTP id v18mr3010095qkl.720.1640110392914;
-        Tue, 21 Dec 2021 10:13:12 -0800 (PST)
+        bh=pZh3Qpd5SvcqUEcT4y52L9C1fd8K8ht/Ht2rKQMnZjA=;
+        b=2le176EVEyP0SuNIq4HFWzj8b8PvR7z2k/GuCucaLgK4/artjHfyy5+IHJ/WNtDcoL
+         8elzBVMt6b8Q8F/u5b8+4J5y3jW85b8MLyiIVRUoqo4FmmdgyXQ7zBTocumVohT7ewJT
+         7n2pL4zVd7R/O40+7GyThIaGtrE5yv9G1yX+GrUCsOIeRTim82fsXKAy/L/KUQloR/b5
+         QO5flTyfRHlBHskLHxgG4Aztx7FIqRpfQeyFuBP94CC/fEFx4eKJGHqF2AN3p0KGDEy+
+         ybR3Wo14w0RbLEt9I2ckkiC3/7UYlMfNwhhaK3kbHFiEv6jgsv3fCLvdgELpwgz2EpEV
+         3afw==
+X-Gm-Message-State: AOAM532VkJJdu/mD/jLTZ/apyWAUQDnaiMFloy4NH4kOCWqNzpiz/l3f
+        S6YvLsImmddAUewuputLbg==
+X-Google-Smtp-Source: ABdhPJw/vwQnHfFXE5Kgv5iAOXOBqrO6DxVee4i4XIzMBK7qyJ5XdnnCecKYFFLszmdnzt2n50BYFw==
+X-Received: by 2002:a05:620a:e0e:: with SMTP id y14mr2856584qkm.760.1640110476023;
+        Tue, 21 Dec 2021 10:14:36 -0800 (PST)
 Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id t18sm18368027qtw.64.2021.12.21.10.13.11
+        by smtp.gmail.com with ESMTPSA id e15sm325541qtq.83.2021.12.21.10.14.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 10:13:12 -0800 (PST)
-Received: (nullmailer pid 1519162 invoked by uid 1000);
-        Tue, 21 Dec 2021 18:13:09 -0000
-Date:   Tue, 21 Dec 2021 14:13:09 -0400
+        Tue, 21 Dec 2021 10:14:35 -0800 (PST)
+Received: (nullmailer pid 1521054 invoked by uid 1000);
+        Tue, 21 Dec 2021 18:14:32 -0000
+Date:   Tue, 21 Dec 2021 14:14:32 -0400
 From:   Rob Herring <robh@kernel.org>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        Tero Kristo <kristo@kernel.org>
-Subject: Re: [PATCH] dt-bindings: clock: Add binding for TI clksel
-Message-ID: <YcIZNfTn37uNbj0F@robh.at.kernel.org>
-References: <20211217113640.59840-1-tony@atomide.com>
+To:     Hammer Hsieh <hammerh0314@gmail.com>
+Cc:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        lee.jones@linaro.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wells.lu@sunplus.com, Hammer Hsieh <hammer.hsieh@sunplus.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings:pwm:Add bindings doc for Sunplus SoC
+ PWM Driver
+Message-ID: <YcIZiFvyo+N4ai7r@robh.at.kernel.org>
+References: <1639741568-5846-1-git-send-email-hammer.hsieh@sunplus.com>
+ <1639741568-5846-2-git-send-email-hammer.hsieh@sunplus.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211217113640.59840-1-tony@atomide.com>
+In-Reply-To: <1639741568-5846-2-git-send-email-hammer.hsieh@sunplus.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 17, 2021 at 01:36:40PM +0200, Tony Lindgren wrote:
-> In order to prepare for fixing lots of devicetree unique_unit_address
-> warnings for the TI clock nodes, let's add a binding for the clksel
-> clocks. This allows us to move the overlapping devicetree clocks to be
-> children of the related clksel nodes. And then we need the reg property
-> only for the parent clksel node.
+On Fri, Dec 17, 2021 at 07:46:07PM +0800, Hammer Hsieh wrote:
+> Add bindings doc for Sunplus SoC PWM Driver
 > 
-> We want to set #clock-cells = <1> in case we ever start parsing the clkcsel
-> clocks directly using a clksel driver rather than using the existing
-> component clock drivers and child nodes. We also need to update the clock
-> drivers to get the IO address from the parent clksel node before updating
-> the dts files. These will be posted as separate patches.
-> 
-> Cc: Tero Kristo <kristo@kernel.org>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> Signed-off-by: Hammer Hsieh <hammer.hsieh@sunplus.com>
+
+The author email and S-o-b must match.
+
 > ---
->  .../bindings/clock/ti/ti,clksel.yaml          | 41 +++++++++++++++++++
->  1 file changed, 41 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml
+>  .../devicetree/bindings/pwm/pwm-sunplus.yaml       | 45 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 +++
+>  2 files changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml b/Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml b/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
 > new file mode 100644
+> index 0000000..9af19df
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/ti/ti,clksel.yaml
-> @@ -0,0 +1,41 @@
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+> @@ -0,0 +1,45 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) Sunplus Co., Ltd. 2021
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/clock/ti/ti,clksel.yaml#
+> +$id: http://devicetree.org/schemas/pwm/pwm-sunplus.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Binding for TI clksel clock
+> +title: Sunplus SoC PWM Controller
 > +
 > +maintainers:
-> +  - Tony Lindgren <tony@atomide.com>
-> +
-> +description: |
-> +  The TI CLKSEL clocks consist of consist of a mux, divider, multiplier and
-> +  gate bits.
+> +  - Hammer Hsieh <hammer.hsieh@sunplus.com>
 > +
 > +properties:
+> +  '#pwm-cells':
+> +    const: 2
+> +
 > +  compatible:
-> +    const: ti,clksel
+> +    items:
+> +      - const: sunplus,sp7021-pwm
 > +
 > +  reg:
 > +    maxItems: 1
-> +    description: The CLKSEL register
 > +
-> +  "#clock-cells":
-> +    const: 1
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
 > +
 > +required:
+> +  - '#pwm-cells'
 > +  - compatible
 > +  - reg
-> +  - "#clock-cells"
+> +  - clocks
 > +
-> +additionalProperties: true
-
-Like what properties?
-
-true is only used for common, incomplete schemas referenced by device 
-schemas.
-
+> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    clksel_gfx_fclk: clock@52c {
-> +      compatible = "ti,clksel";
-> +      reg = <0x25c 0x4>;
-> +      #clock-cells = <1>;
+> +    pwm: pwm@9c007a00 {
+> +      #pwm-cells = <2>;
+> +      compatible = "sunplus,sp7021-pwm";
+> +      reg = <0x9c007a00 0x80>;
+> +      clocks = <&clkc 0xa2>;
 > +    };
-> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 13f9a84..721ed79 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18242,6 +18242,11 @@ L:	netdev@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/net/ethernet/dlink/sundance.c
+>  
+> +SUNPLUS PWM DRIVER
+> +M:	Hammer Hsieh <hammer.hsieh@sunplus.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+> +
+>  SUPERH
+>  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
+>  M:	Rich Felker <dalias@libc.org>
 > -- 
-> 2.34.1
+> 2.7.4
+> 
 > 
