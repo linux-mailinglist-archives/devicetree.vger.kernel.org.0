@@ -2,99 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CDDA47C8B1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 22:13:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80FA447C8BE
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 22:25:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236291AbhLUVNG convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 21 Dec 2021 16:13:06 -0500
-Received: from lithops.sigma-star.at ([195.201.40.130]:44052 "EHLO
-        lithops.sigma-star.at" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230326AbhLUVNG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 16:13:06 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by lithops.sigma-star.at (Postfix) with ESMTP id F113B62DA5F6;
-        Tue, 21 Dec 2021 22:13:04 +0100 (CET)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-        by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id zP1ltzRIKDzP; Tue, 21 Dec 2021 22:13:03 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by lithops.sigma-star.at (Postfix) with ESMTP id C8D3662DA5F1;
-        Tue, 21 Dec 2021 22:13:03 +0100 (CET)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-        by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 9ZlfUu-NM3ib; Tue, 21 Dec 2021 22:13:03 +0100 (CET)
-Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
-        by lithops.sigma-star.at (Postfix) with ESMTP id 9A16A60A3582;
-        Tue, 21 Dec 2021 22:13:03 +0100 (CET)
-Date:   Tue, 21 Dec 2021 22:13:03 +0100 (CET)
-From:   Richard Weinberger <richard@nod.at>
-To:     Johannes Berg <johannes@sipsolutions.net>
-Cc:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        Jeff Dike <jdike@addtoit.com>,
-        anton ivanov <anton.ivanov@cambridgegreys.com>,
-        kernel <kernel@axis.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-um <linux-um@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>
-Message-ID: <1446970217.191062.1640121183419.JavaMail.zimbra@nod.at>
-In-Reply-To: <c48f86ad5d31f7f0cfa08d895bb03a4d92a3ce26.camel@sipsolutions.net>
-References: <20211208151123.29313-1-vincent.whitchurch@axis.com> <342397676.191011.1640120120622.JavaMail.zimbra@nod.at> <c48f86ad5d31f7f0cfa08d895bb03a4d92a3ce26.camel@sipsolutions.net>
-Subject: Re: [PATCH 0/2] Devicetree support for UML
+        id S236525AbhLUVZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 16:25:36 -0500
+Received: from o1.ptr2625.egauge.net ([167.89.112.53]:46258 "EHLO
+        o1.ptr2625.egauge.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236345AbhLUVZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 16:25:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=egauge.net;
+        h=from:subject:mime-version:to:cc:content-transfer-encoding:
+        content-type;
+        s=sgd; bh=JHeSu5B22K89b1uN+6C/y1+Gc1Ewng2Ne1GLKiG5hJQ=;
+        b=Z50HddbN7Z/f/ln9vKHZp6CTWY0iWLqGHWzu/2r3ZTnZ0tP3yo/UuOoy0+DmooxppUlv
+        FpiF7wVHWOCGInsa0cPMupBPO+vI/FcZlKo/qDoiV4WEOFpJAxcA06C28T0drF+VNULZYA
+        xJaGpZz9cqRjy3LmYrUlVnKuHVDQUv1Y3vKu3Z6Jnrq1VS3QwNj5FTRe5Z7HiH3tSdqfum
+        PnQX7wk6g/9aujdCiOOlEiiJIu+O1PS7a5xK7mIZsSqaERmEGkZ7bN396FDakoulUjWb8r
+        INi5ZwrOknEHWOgKf7hTFYcMDR04IzK7glJKAUMQ3b5VpodP0da9hnnsMs69U2RA==
+Received: by filterdrecv-75ff7b5ffb-96rhp with SMTP id filterdrecv-75ff7b5ffb-96rhp-1-61C2464E-39
+        2021-12-21 21:25:34.636667651 +0000 UTC m=+9587114.517174376
+Received: from pearl.egauge.net (unknown)
+        by geopod-ismtpd-2-0 (SG)
+        with ESMTP
+        id NbOfuhV3SlqtHpibrZR1UA
+        Tue, 21 Dec 2021 21:25:34.460 +0000 (UTC)
+Received: by pearl.egauge.net (Postfix, from userid 1000)
+        id B6466700264; Tue, 21 Dec 2021 14:25:33 -0700 (MST)
+From:   David Mosberger-Tang <davidm@egauge.net>
+Subject: [PATCH v7 0/2] wilc1000: Add reset/enable GPIO support to SPI driver
+Date:   Tue, 21 Dec 2021 21:25:34 +0000 (UTC)
+Message-Id: <20211221212531.4011609-1-davidm@egauge.net>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [195.201.40.130]
-X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF95 (Linux)/8.8.12_GA_3809)
-Thread-Topic: Devicetree support for UML
-Thread-Index: xFJr8Y1gUUL3kk9OrWANIXE8xRKDHQ==
+X-SG-EID: =?us-ascii?Q?+kMxBqj35EdRUKoy8diX1j4AXmPtd302oan+iXZuF8m2Nw4HRW2irNspffT=2Fkh?=
+ =?us-ascii?Q?ET6RJF6+Prbl0h=2FEtF1rRLvPckgytttEHbTWkZU?=
+ =?us-ascii?Q?zzUaFH1kLvflQDrAYob2c03sztJSr2Z+wyu3Pv2?=
+ =?us-ascii?Q?No9OaSTU1pAoX0MBLY8TXKkx+uOZczxqWD6ydsf?=
+ =?us-ascii?Q?Zqj=2FmxP8UbtHxoxSsGE2ltAj9GYUKDRP1bKvSdn?=
+ =?us-ascii?Q?Ca0HMZITL0Au6PZPRAwfjqb5m=2FuWDBtvR7ckgB=2F?=
+ =?us-ascii?Q?VWjcDLfKO7hV=2Fv9U50U+w=3D=3D?=
+To:     Ajay Singh <ajay.kathat@microchip.com>
+Cc:     Adham Abozaeid <adham.abozaeid@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+        Kalle Valo <kvalo@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        David Mosberger-Tang <davidm@egauge.net>
+X-Entity-ID: Xg4JGAcGrJFIz2kDG9eoaQ==
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
------ Ursprüngliche Mail -----
-> Von: "Johannes Berg" <johannes@sipsolutions.net>
-> An: "richard" <richard@nod.at>, "Vincent Whitchurch" <vincent.whitchurch@axis.com>
-> CC: "Jeff Dike" <jdike@addtoit.com>, "anton ivanov" <anton.ivanov@cambridgegreys.com>, "kernel" <kernel@axis.com>,
-> "linux-kernel" <linux-kernel@vger.kernel.org>, "linux-um" <linux-um@lists.infradead.org>, "devicetree"
-> <devicetree@vger.kernel.org>
-> Gesendet: Dienstag, 21. Dezember 2021 21:56:50
-> Betreff: Re: [PATCH 0/2] Devicetree support for UML
+v7:
+	- Rebase to latest wireless-drivers-next.
+v6:
+	- Convert line comments to block comments.
+v5:
+	- Fix a dt_binding_check error by including
+	  <dt-bindings/gpio/gpio.h> in microchip,wilc1000.yaml.
+v4:
+	- Simplify wilc_wlan_power() by letting gpiod_set_value()
+	  handle NULL gpios.
+v3:
+	- Fix to include correct header file.
+	- Rename wilc_set_enable() to wilc_wlan_power().
+	- Use devm_gpiod_get{,_optional}() instead of of_get_named_gpio()
+	- Parse GPIO pins once at probe time.
+v2:
+	- Split documentation update and driver changes into seprate
+          patches.
 
-> On Tue, 2021-12-21 at 21:55 +0100, Richard Weinberger wrote:
->> Vincent,
->> 
->> ----- Ursprüngliche Mail -----
->> > Von: "Vincent Whitchurch" <vincent.whitchurch@axis.com>
->> > An: "Jeff Dike" <jdike@addtoit.com>, "richard" <richard@nod.at>, "anton ivanov"
->> > <anton.ivanov@cambridgegreys.com>
->> > CC: kernel@axis.com, "linux-kernel" <linux-kernel@vger.kernel.org>, "linux-um"
->> > <linux-um@lists.infradead.org>,
->> > "devicetree" <devicetree@vger.kernel.org>, "Vincent Whitchurch"
->> > <vincent.whitchurch@axis.com>
->> > Gesendet: Mittwoch, 8. Dezember 2021 16:11:21
->> > Betreff: [PATCH 0/2] Devicetree support for UML
->> 
->> > This series add support for passing a devicetree blob to UML.  It can be used
->> > for testing device drivers.
->> 
->> Nice feature.
->> Code looks good so far. But while building I'm facing this warning:
->> 
->> WARNING: unmet direct dependencies detected for OF_EARLY_FLATTREE
->>   Depends on [n]: OF [=n]
->>   Selected by [y]:
->>   - UML [=y]
->> 
->> 
->> Please note that my UML config has CONFIG_OF=n.
->> 
-> 
-> Hm. So maybe that needs to be
-> 
->	select OF_EARLY_FLATTREE if OF
+David Mosberger-Tang (2):
+  wilc1000: Add reset/enable GPIO support to SPI driver
+  wilc1000: Document enable-gpios and reset-gpios properties
 
-Yeah, IIRC arm and mips use such a pattern too.
-Vincent, what do you think?
+ .../net/wireless/microchip,wilc1000.yaml      | 19 ++++++
+ drivers/net/wireless/microchip/wilc1000/spi.c | 62 ++++++++++++++++++-
+ .../net/wireless/microchip/wilc1000/wlan.c    |  2 +-
+ 3 files changed, 79 insertions(+), 4 deletions(-)
 
-Thanks,
-//richard
+-- 
+2.25.1
+
