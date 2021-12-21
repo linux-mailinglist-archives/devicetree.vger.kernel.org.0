@@ -2,109 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9383947B958
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 06:22:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADA0D47B988
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 06:27:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232807AbhLUFWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 00:22:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33786 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232786AbhLUFWU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 00:22:20 -0500
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27762C061574
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 21:22:20 -0800 (PST)
-Received: by mail-ot1-x333.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so15312652otj.7
-        for <devicetree@vger.kernel.org>; Mon, 20 Dec 2021 21:22:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=S7rrl45AdyxxKacHinE6NR1eVjErEjJCz4ycjQLwVQg=;
-        b=oCNcDUAZbTfjq4JDIkmJAS2ynHZ19RLCG39RfHRpI81pC04bGnN4LTO2UVHMC7rlms
-         AGbQJjZeMADxThyV9NplBENhPp+MlTbuPjjiagX2vGLu6JCMCKgwd+OGMnS0Z19OQKv+
-         omm69/Kkxe+PE4evCyWRrQecA8MQ3EY+6iM8Hr4g7fRTFg1QSDAfmUkkpyjgBSHyR8wK
-         ZdhT9nZuzlXFvyCMflottA5EYq4gD5CIE1XJMhKOWAP5W2gEqLE71F8onN3GrAARIcBs
-         g07yb7f7RFTj7vSdcvct/y0rcs0gCcIpi5oUtWODaPnwD7lhktbFwdtTEQudE/FUSJvE
-         6EWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=S7rrl45AdyxxKacHinE6NR1eVjErEjJCz4ycjQLwVQg=;
-        b=oZMvQCeiGwi5m0yt6wnbe7pHBzIVAVRJ3orpy28Gc/T04OtTSHT9FUdkRrqYDtkDIc
-         xAjkSWKtlpNCVu0cIBwJIeJ3QwYGT5Ktf95r7cyCkiN999w7g2oYRe4UNQu7fNv0LPeY
-         RYIs29dFRJHEJAs+dHB+flWd2PkNidrkSq4Sd9J7m//o1mKH//6HzprtjlPOQwz+ioOo
-         QZsE5lfz5Y0v1AOZbuk8mv0tCyEfpEXaT9QSRBX+uiPZv3+dgmHbyMWRvzIG6K5WNe+u
-         dwzLB9C2U1XMHocDFn01reH5HRKX9u1zLbwG+Oaa1IoHWMMVSXYIiU2y57Mhxcfhu1dI
-         0M9w==
-X-Gm-Message-State: AOAM533OXkCUKtsq8udjGYs2A5OAxGKwTzFYfRs2slMOj8wCNILqzfnF
-        Hey6ZaPmVgP/CLoxiwMwJzS8bQ==
-X-Google-Smtp-Source: ABdhPJzncsqjstcyJUyav6KPDF+CRGhZ+ROYuYW2Sw+DClXfd4rJnrU7jyTRy06q+QOeRE9/aW0+vQ==
-X-Received: by 2002:a9d:7548:: with SMTP id b8mr1047567otl.92.1640064139484;
-        Mon, 20 Dec 2021 21:22:19 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id f9sm3582053oto.56.2021.12.20.21.22.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Dec 2021 21:22:19 -0800 (PST)
-Date:   Mon, 20 Dec 2021 21:23:28 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,qmp: Add SM8450 PCIe PHY
- bindings
-Message-ID: <YcFk0PdQxMhwrdU+@ripper>
-References: <20211218141754.503661-1-dmitry.baryshkov@linaro.org>
- <20211218141754.503661-2-dmitry.baryshkov@linaro.org>
+        id S231861AbhLUF1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 00:27:37 -0500
+Received: from relmlor2.renesas.com ([210.160.252.172]:15239 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229690AbhLUF1h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Dec 2021 00:27:37 -0500
+X-IronPort-AV: E=Sophos;i="5.88,222,1635174000"; 
+   d="scan'208";a="104664121"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 21 Dec 2021 14:27:36 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 61E2D41D5D91;
+        Tue, 21 Dec 2021 14:27:36 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     vkoul@kernel.org, robh+dt@kernel.org
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH 0/3] treewide: rcar-dmac: Add support for R-Car S4-8
+Date:   Tue, 21 Dec 2021 14:27:19 +0900
+Message-Id: <20211221052722.597407-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211218141754.503661-2-dmitry.baryshkov@linaro.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 18 Dec 06:17 PST 2021, Dmitry Baryshkov wrote:
+This patch series adds support for rcar-dmac of R-Car S4-8.
+To use the rcar-dmac, we also need to enable the module clocks
+by the following patch:
+https://patchwork.kernel.org/project/linux-renesas-soc/patch/20211221052423.597283-1-yoshihiro.shimoda.uh@renesas.com/
 
-> There are two different PCIe PHYs on SM8450, one having one lane and
-> another with two lanes. Add support for second (gen4, two lanes) PHY.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Yoshihiro Shimoda (3):
+  dt-bindings: renesas,rcar-dmac: Add r8a779f0 support
+  dmaengine: rcar-dmac: Add support for R-Car S4-8
+  arm64: dts: renesas: r8a779f0: Add sys-dmac nodes
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+ .../bindings/dma/renesas,rcar-dmac.yaml       |  5 ++
+ arch/arm64/boot/dts/renesas/r8a779f0.dtsi     | 70 +++++++++++++++++++
+ drivers/dma/sh/rcar-dmac.c                    |  7 +-
+ 3 files changed, 80 insertions(+), 2 deletions(-)
 
-Regards,
-Bjorn
+-- 
+2.25.1
 
-> ---
->  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> index d18075cb2b5d..41a8d00bd576 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> @@ -51,6 +51,7 @@ properties:
->        - qcom,sm8350-qmp-usb3-phy
->        - qcom,sm8350-qmp-usb3-uni-phy
->        - qcom,sm8450-qmp-gen3x1-pcie-phy
-> +      - qcom,sm8450-qmp-gen4x2-pcie-phy
->        - qcom,sm8450-qmp-ufs-phy
->        - qcom,sdx55-qmp-pcie-phy
->        - qcom,sdx55-qmp-usb3-uni-phy
-> @@ -335,6 +336,7 @@ allOf:
->                - qcom,sm8250-qmp-gen3x2-pcie-phy
->                - qcom,sm8250-qmp-modem-pcie-phy
->                - qcom,sm8450-qmp-gen3x1-pcie-phy
-> +              - qcom,sm8450-qmp-gen4x2-pcie-phy
->      then:
->        properties:
->          clocks:
-> -- 
-> 2.34.1
-> 
