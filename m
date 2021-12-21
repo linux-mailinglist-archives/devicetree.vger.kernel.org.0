@@ -2,149 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39D1947BA75
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 08:09:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56DF347BA8C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 08:14:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234682AbhLUHJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 02:09:51 -0500
-Received: from mga04.intel.com ([192.55.52.120]:31973 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234654AbhLUHJv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 02:09:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1640070591; x=1671606591;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=BrnYzdupK7Mon8z3LnNOHBwS+nRwQf8wZeTsebuwHBE=;
-  b=ZUuVAo1unLlde9AiZYPNzfewVtFagDcmHbPUZhO+MvHPowzondsp+IoC
-   J1Rc+fzGdqLIEoOict/ecabAux5twD0wx+wZLjnhHEgMjOd1c27r23pbn
-   iCYTD6ibfbwdds2xgS7OvWpFf/JaD77FF8SXqhCulkgdWS+nZZw0QAaaj
-   QQX99mfKZObpyVFhB52fIl/coqq90Drw3oRUOuNcXChjK4E1jRIZaMHeA
-   8aSb+YlTbXuGGWWCLglUumu/2a3/qC1uBEQaH6gHjD6dwhH4HX08swdbi
-   +oEsJAOM84HNqM3pbPwRsIf9dCszzrUucQvaBAKe30hcaS0mDtPq8POAJ
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10204"; a="239087020"
-X-IronPort-AV: E=Sophos;i="5.88,222,1635231600"; 
-   d="scan'208";a="239087020"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Dec 2021 23:09:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,222,1635231600"; 
-   d="scan'208";a="484329292"
-Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
-  by orsmga002.jf.intel.com with ESMTP; 20 Dec 2021 23:09:48 -0800
-Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mzZHP-0008ni-FN; Tue, 21 Dec 2021 07:09:47 +0000
-Date:   Tue, 21 Dec 2021 15:09:33 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Liam Beguin <liambeguin@gmail.com>, peda@axentia.se,
-        jic23@kernel.org, lars@metafoo.de
-Cc:     kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v10 10/14] iio: test: add basic tests for the iio-rescale
- driver
-Message-ID: <202112211453.3XBOHbkh-lkp@intel.com>
-References: <20211219223953.16074-11-liambeguin@gmail.com>
+        id S234872AbhLUHON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 02:14:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58484 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234839AbhLUHOL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 02:14:11 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53EC0C061574;
+        Mon, 20 Dec 2021 23:14:11 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E76C261425;
+        Tue, 21 Dec 2021 07:14:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A83CC36AF2;
+        Tue, 21 Dec 2021 07:14:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640070850;
+        bh=pet+5nZ3YsUrDM1y7wikuZyIOVOtlV32Cw3uB4H2DJc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QECFQRg8p4dF101b9fLTnPawure50NdA3GSGhhh8rQFXce+UA0k0bXATHrH8auUn+
+         p2EkI3AD7KFkWYpaNhGk9ZrBcwRfktaz9sdWPh099Q6vNHBEjp3u1X4p6yR0kthAS7
+         Ab5Y+1LoM/eQp7koF9sKTTGYTP+7DgwQuNnEa/XSIdJc4lROI4LSSZfX6X+JBxIHik
+         PDspj6GN3WRCim7PXIwsARRmDA02vbQSwJpg0+/i/ZR7QtebGZDf7mx/E9nG5GCLmZ
+         Tnn/peqEKPZ5jPWnYdMyexmBALTDcn2GS1pwDAODb1SpJxtzqNL9R4DGkarMAsx6q3
+         ReYor0FwpW1nw==
+Received: by mail-yb1-f178.google.com with SMTP id v203so36075666ybe.6;
+        Mon, 20 Dec 2021 23:14:10 -0800 (PST)
+X-Gm-Message-State: AOAM533jwlIT4/ns5m6JArszOA61JLTrx7eoZev1tDuCD9AamoYPug1g
+        IzFedU7+p/6+atHY6n+GHLM1u1fBujRlGOofF/U=
+X-Google-Smtp-Source: ABdhPJyUasToffdH7VWWeNxwmyz5bus2vfFAFNluy7LbTivfhNNqdSU3wM8D5SAfFuWo+p74gHbwadZY7sSbWB+1n2Q=
+X-Received: by 2002:a25:68c9:: with SMTP id d192mr2538214ybc.645.1640070849302;
+ Mon, 20 Dec 2021 23:14:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211219223953.16074-11-liambeguin@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20211217121148.6753-1-sam.shih@mediatek.com> <20211217121148.6753-4-sam.shih@mediatek.com>
+ <4b3cbf50198c5f57101135ffc44fa95bfda55139.camel@mediatek.com>
+In-Reply-To: <4b3cbf50198c5f57101135ffc44fa95bfda55139.camel@mediatek.com>
+From:   Ryder Lee <ryder.lee@kernel.org>
+Date:   Mon, 20 Dec 2021 23:13:58 -0800
+X-Gmail-Original-Message-ID: <CA+SzRW4smu8bX_iky-yeU3viC6SyNthiWR=APJL17FHeVVzTAQ@mail.gmail.com>
+Message-ID: <CA+SzRW4smu8bX_iky-yeU3viC6SyNthiWR=APJL17FHeVVzTAQ@mail.gmail.com>
+Subject: Re: [PATCH v7 3/3] clk: mediatek: add mt7986 clock support
+To:     Sam Shih <sam.shih@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Ikjoon Jang <ikjn@chromium.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Chen-Yu Tsai <wenst@chromium.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     John Crispin <john@phrozen.org>,
+        Ryder Lee <Ryder.Lee@mediatek.com>,
+        YH Chen <yh.chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liam,
+> On Fri, 2021-12-17 at 20:11 +0800, Sam Shih wrote:
+> > Add MT7986 clock support, include topckgen, apmixedsys,
+> > infracfg, and ethernet subsystem clocks.
+> >
+> > Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> > ---
+> > v7: exclude DTS changes in the patch series
+> > v5: used builtin_platform_driver instead of CLK_OF_DECLARE
+> >     follow recent clk-mt8195 clock patch series:
+> >
+> > https://lore.kernel.org/linux-arm-kernel/20210914021633.26377-1-chun-jie.chen@mediatek.com/
+> >
+> > v4: separate clock part into a single patch series
+> >
+> > Original thread:
+> >
+> https://lore.kernel.org/lkml/20210914085137.31761-4-sam.shih@mediatek.com/
+> >
+> > v2: applied the comment suggested by reviewers:
+> >     - splited basic clock driver to apmixed, topckgen, and infracfg
+> >     - removed 1:1 factor clock
+> >     - renamed factor clock for easier to understand
+> > ---
+> >  drivers/clk/mediatek/Kconfig               |  17 +
+> >  drivers/clk/mediatek/Makefile              |   4 +
+> >  drivers/clk/mediatek/clk-mt7986-apmixed.c  | 100 ++++++
+> >  drivers/clk/mediatek/clk-mt7986-eth.c      | 132 ++++++++
+> >  drivers/clk/mediatek/clk-mt7986-infracfg.c | 224 ++++++++++++++
+> >  drivers/clk/mediatek/clk-mt7986-topckgen.c | 342
+> > +++++++++++++++++++++
+> >  6 files changed, 819 insertions(+)
+> >  create mode 100644 drivers/clk/mediatek/clk-mt7986-apmixed.c
+> >  create mode 100644 drivers/clk/mediatek/clk-mt7986-eth.c
+> >  create mode 100644 drivers/clk/mediatek/clk-mt7986-infracfg.c
+> >  create mode 100644 drivers/clk/mediatek/clk-mt7986-topckgen.c
+> >
+> > diff --git a/drivers/clk/mediatek/Kconfig
+> > b/drivers/clk/mediatek/Kconfig
+> > index 3ce6fb04d8ff..dd546d34d5e8 100644
+> > --- a/drivers/clk/mediatek/Kconfig
+> > +++ b/drivers/clk/mediatek/Kconfig
+> > @@ -344,6 +344,23 @@ config COMMON_CLK_MT7629_HIFSYS
+> >         This driver supports MediaTek MT7629 HIFSYS clocks providing
+> >         to PCI-E and USB.
+> >
+> > +config COMMON_CLK_MT7986
+> > +     bool "Clock driver for MediaTek MT7986"
+> > +     depends on ARCH_MEDIATEK || COMPILE_TEST
+> > +     select COMMON_CLK_MEDIATEK
+> > +     default ARCH_MEDIATEK
+> > +     help
+> > +       This driver supports MediaTek MT7986 basic clocks and clocks
+> > +       required for various periperals found on MediaTek.
 
-Thank you for the patch! Yet something to improve:
+s/periperals/peripherals/
 
-[auto build test ERROR on 2b6bff0b122785f09cfbdc34b1aa9edceea6e4c1]
+> > +config COMMON_CLK_MT7986_ETHSYS
+> > +     bool "Clock driver for MediaTek MT7986 ETHSYS"
+> > +     depends on COMMON_CLK_MT7986
+> > +     default COMMON_CLK_MT7986
+> > +     help
+> > +       This driver add support for clocks for Ethernet and SGMII
+> > +       required on MediaTek MT7986 SoC.
 
-url:    https://github.com/0day-ci/linux/commits/Liam-Beguin/iio-afe-add-temperature-rescaling-support/20211220-064048
-base:   2b6bff0b122785f09cfbdc34b1aa9edceea6e4c1
-config: ia64-buildonly-randconfig-r004-20211221 (https://download.01.org/0day-ci/archive/20211221/202112211453.3XBOHbkh-lkp@intel.com/config)
-compiler: ia64-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/833188fad2d37f1e40f56eb7286d6dd2e1a2ced5
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Liam-Beguin/iio-afe-add-temperature-rescaling-support/20211220-064048
-        git checkout 833188fad2d37f1e40f56eb7286d6dd2e1a2ced5
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=ia64 SHELL=/bin/bash
+s/add/adds/
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_set_suspend':
-   (.text+0x732): undefined reference to `fb_set_suspend'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_resume_worker':
-   drm_fb_helper.c:(.text+0x792): undefined reference to `fb_set_suspend'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_unregister_fbi':
-   (.text+0x8f2): undefined reference to `unregister_framebuffer'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_fini':
-   (.text+0x9c2): undefined reference to `fb_dealloc_cmap'
-   ia64-linux-ld: (.text+0x9d2): undefined reference to `framebuffer_release'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_sys_read':
-   (.text+0xba2): undefined reference to `fb_sys_read'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_alloc_fbi':
-   (.text+0x2c82): undefined reference to `framebuffer_alloc'
-   ia64-linux-ld: (.text+0x2cc2): undefined reference to `fb_alloc_cmap'
-   ia64-linux-ld: (.text+0x2d52): undefined reference to `fb_dealloc_cmap'
-   ia64-linux-ld: (.text+0x2d72): undefined reference to `framebuffer_release'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_generic_probe':
-   drm_fb_helper.c:(.text+0x3072): undefined reference to `fb_deferred_io_init'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `__drm_fb_helper_initial_config_and_unlock':
-   drm_fb_helper.c:(.text+0x3302): undefined reference to `register_framebuffer'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_set_suspend_unlocked':
-   (.text+0x4842): undefined reference to `fb_set_suspend'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_sys_write':
-   (.text+0x5a82): undefined reference to `fb_sys_write'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_sys_fillrect':
-   (.text+0x5b22): undefined reference to `sys_fillrect'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_sys_copyarea':
-   (.text+0x5bc2): undefined reference to `sys_copyarea'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_sys_imageblit':
-   (.text+0x5c62): undefined reference to `sys_imageblit'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_cfb_fillrect':
-   (.text+0x5d02): undefined reference to `cfb_fillrect'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_cfb_copyarea':
-   (.text+0x5da2): undefined reference to `cfb_copyarea'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_cfb_imageblit':
-   (.text+0x5e42): undefined reference to `cfb_imageblit'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fbdev_fb_imageblit':
-   drm_fb_helper.c:(.text+0x5f12): undefined reference to `cfb_imageblit'
-   ia64-linux-ld: drm_fb_helper.c:(.text+0x5f32): undefined reference to `sys_imageblit'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fbdev_fb_copyarea':
-   drm_fb_helper.c:(.text+0x5ff2): undefined reference to `cfb_copyarea'
-   ia64-linux-ld: drm_fb_helper.c:(.text+0x6012): undefined reference to `sys_copyarea'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fbdev_fb_fillrect':
-   drm_fb_helper.c:(.text+0x60d2): undefined reference to `cfb_fillrect'
-   ia64-linux-ld: drm_fb_helper.c:(.text+0x60f2): undefined reference to `sys_fillrect'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fbdev_cleanup':
-   drm_fb_helper.c:(.text+0x6212): undefined reference to `fb_deferred_io_cleanup'
-   ia64-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fbdev_client_unregister':
-   drm_fb_helper.c:(.text+0x6402): undefined reference to `unregister_framebuffer'
-   ia64-linux-ld: drivers/iio/test/iio-test-rescale.o: in function `iio_rescale_test_offset':
-   iio-test-rescale.c:(.text+0x52): undefined reference to `kunit_kmalloc_array'
->> ia64-linux-ld: iio-test-rescale.c:(.text+0x1a0): undefined reference to `kunit_binary_assert_format'
->> ia64-linux-ld: iio-test-rescale.c:(.text+0x252): undefined reference to `kunit_do_assertion'
->> ia64-linux-ld: iio-test-rescale.c:(.text+0x280): undefined reference to `kunit_binary_str_assert_format'
-   ia64-linux-ld: iio-test-rescale.c:(.text+0x342): undefined reference to `kunit_do_assertion'
-   ia64-linux-ld: drivers/iio/test/iio-test-rescale.o: in function `iio_rescale_test_scale':
->> iio-test-rescale.c:(.text+0x570): undefined reference to `kunit_binary_assert_format'
->> ia64-linux-ld: iio-test-rescale.c:(.text+0x5b2): undefined reference to `kunit_kmalloc_array'
-   ia64-linux-ld: iio-test-rescale.c:(.text+0x792): undefined reference to `kunit_do_assertion'
-   ia64-linux-ld: iio-test-rescale.c:(.text+0xac2): undefined reference to `kunit_do_assertion'
-   ia64-linux-ld: iio-test-rescale.c:(.text+0xb72): undefined reference to `kunit_do_assertion'
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+With that said, you can add my tag:
+Reviewed-by: Ryder Lee <ryder.lee@kernel.org>
