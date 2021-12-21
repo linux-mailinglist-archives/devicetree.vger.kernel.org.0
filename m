@@ -2,104 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55E1647BB24
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 08:33:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC70C47BBAD
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 09:19:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232728AbhLUHdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 02:33:20 -0500
-Received: from mail.emtrion.de ([87.139.198.129]:44325 "EHLO mail3.emtrion.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232745AbhLUHdT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 02:33:19 -0500
-Received: from EMT-KA-S004.emtrion.local (2003:f9:5824:1:c59f:32f4:72e5:b9e1)
- by EMT-KA-S004.emtrion.local (2003:f9:5824:1:c59f:32f4:72e5:b9e1) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Tue, 21 Dec
- 2021 08:33:16 +0100
-Received: from EMT-KA-S004.emtrion.local ([fe80::c59f:32f4:72e5:b9e1]) by
- EMT-KA-S004.emtrion.local ([fe80::c59f:32f4:72e5:b9e1%11]) with mapi id
- 15.02.0922.019; Tue, 21 Dec 2021 08:33:16 +0100
-From:   "Mueller, Reinhold" <Reinhold.Mueller@emtrion.de>
-To:     'Fabio Estevam' <festevam@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "NXP Linux Team" <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: AW: [PATCH v4 2/2] arm64: dts: imx8mm: Add support for emtrion
- emCON-MX8M Mini
-Thread-Topic: [PATCH v4 2/2] arm64: dts: imx8mm: Add support for emtrion
- emCON-MX8M Mini
-Thread-Index: AQHX9XKJlzVF8fJ5YEOzNVjKch3kBaw8AYeAgACLvEA=
-Date:   Tue, 21 Dec 2021 07:33:16 +0000
-Message-ID: <e6adf5d9473e417d85a1845b007a4ee1@emtrion.de>
-References: <20211220072332.81072-1-reinhold.mueller@emtrion.com>
- <20211220072332.81072-3-reinhold.mueller@emtrion.com>
- <CAOMZO5BvLZYh3=q_-XNcw-v5wDcBpR3Qo26Gd3hTtJ_a-FQiuA@mail.gmail.com>
-In-Reply-To: <CAOMZO5BvLZYh3=q_-XNcw-v5wDcBpR3Qo26Gd3hTtJ_a-FQiuA@mail.gmail.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [2003:f9:5824:1:602d:8cff:3d08:141a]
-x-c2processedorg: 5b249fcb-306f-4927-9982-5d11b1d300ce
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
+        id S233697AbhLUITL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 03:19:11 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:60136 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230365AbhLUITL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Dec 2021 03:19:11 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C0A072019C2;
+        Tue, 21 Dec 2021 09:19:09 +0100 (CET)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 866A72012FB;
+        Tue, 21 Dec 2021 09:19:09 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 17AE7183ACDD;
+        Tue, 21 Dec 2021 16:19:08 +0800 (+08)
+From:   haibo.chen@nxp.com
+To:     jic23@kernel.org, cai.huoqing@linux.dev, robh+dt@kernel.org
+Cc:     lars@metafoo.de, linux-iio@vger.kernel.org, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, haibo.chen@nxp.com,
+        shawnguo@kernel.org, festevam@gmail.com
+Subject: [PATCH 1/2] MAINTAINERS: add imx7d/imx6sx/imx6ul/imx8qxp and vf610 adc maintainer
+Date:   Tue, 21 Dec 2021 15:49:59 +0800
+Message-Id: <1640073000-32629-1-git-send-email-haibo.chen@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRmFiaW8sDQoNCnRoYW5rcyBmb3IgdGhlIGZhc3QgZmVlZGJhY2suDQpCZWxvdyBpIGhhdmUg
-Y29tbWVudGVkIHlvdXIgaXNzdWUgZm9yIGNsYXJpZmljYXRpb24uDQoNClJlZ2FyZHMNClJlaW5o
-b2xkDQoNCg0KUmVpbmhvbGQgTXVlbGxlcg0KU29mdHdhcmUgZW5naW5lZXINCg0KDQplbXRyaW9u
-IEdtYkgNCkFtIEhhc2VuYmllbCA2IHwgNzYyOTcgU3R1dGVuc2VlIHwgR2VybWFueQ0KDQpQaG9u
-ZSArNDkgNzI0NCA2MjY5NCAyMA0KRmF4ICs0OSA3MjQ0IDYyNjk0IDE5DQpFbWFpbCBSZWluaG9s
-ZC5NdWVsbGVyQGVtdHJpb24uZGUNCk9ubGluZSB3d3cuZW10cmlvbi5kZQ0KDQoqKiogTWVycnkg
-WC1NYXMgJiBIYXBweSBOZXcgWWVhciAyMDIyICoqKg0KDQoNCmVtdHJpb24gR21iSCDigKIgQW10
-c2dlcmljaHQgTWFubmhlaW0g4oCiIEhSQiAxMTAgMzAwIOKAoiBHZXNjaMOkZnRzZsO8aHJlcjog
-UmFtb25hIE1hdXJlciwgQWNobWVkIEhhZGRvdSDigKIgVW1zYXR6c3RldWVyaWRlbnRpZmlrYXRp
-b25zbnVtbWVyOkRFODEzNjk0MjYwIOKAoiBJbXByZXNzdW06IHd3dy5lbXRyaW9uLmRlL2RlL2lt
-cHJlc3N1bS5odG1sDQoNCkhJTldFSVM6IFBlcnNvbmVuYmV6b2dlbmUgRGF0ZW4sIGRpZSBTaWUg
-cGVyIEUtTWFpbCBhbiB1bnMgw7xiZXJtaXR0ZWxuLCB3ZXJkZW4gYmVpIHVucyBnZXNwZWljaGVy
-dCB1bmQgdmVyYXJiZWl0ZXQuIEluZm9ybWF0aW9uZW4genUgdW5zZXJlbiBnZXNldHpsaWNoZW4g
-SW5mb3JtYXRpb25zcGZsaWNodGVuLCB6dSB1bnMgdW5kIHVuc2VyZW4gRGllbnN0bGVpc3R1bmdl
-biBmaW5kZW4gU2llIGluIHVuc2VyZW4gRGF0ZW5zY2h1dHpoaW53ZWlzZW4uDQpEaWVzZSBFLU1h
-aWwga2FubiB2ZXJ0cmF1bGljaGUgdW5kIC8gb2RlciByZWNodGxpY2ggZ2VzY2jDvHR6dGUgSW5m
-b3JtYXRpb25lbiBlbnRoYWx0ZW4uIFdlbm4gU2llIG5pY2h0IGRlciByaWNodGlnZSBBZHJlc3Nh
-dCBzaW5kLCBvZGVyIGRpZXNlIEUtTWFpbCBpcnJ0w7xtbGljaCBlcmhhbHRlbiBoYWJlbiwgaW5m
-b3JtaWVyZW4gU2llIGJpdHRlIGRlbiBBYnNlbmRlciB1bmQgdmVybmljaHRlbiBkaWVzZSBNYWls
-LiBEYXMgdW5lcmxhdWJ0ZSBrb3BpZXJlbiwgc293aWUgZGllIHVuYmVmdWd0ZSBXZWl0ZXJnYWJl
-IGRpZXNlciBNYWlsIGlzdCBuaWNodCBnZXN0YXR0ZXQuDQo+IC0tLS0tVXJzcHLDvG5nbGljaGUg
-TmFjaHJpY2h0LS0tLS0NCj4gVm9uOiBGYWJpbyBFc3RldmFtIDxmZXN0ZXZhbUBnbWFpbC5jb20+
-DQo+IEdlc2VuZGV0OiBEaWVuc3RhZywgMjEuIERlemVtYmVyIDIwMjEgMDE6MDYNCj4gQW46IE11
-ZWxsZXIsIFJlaW5ob2xkIDxSZWluaG9sZC5NdWVsbGVyQGVtdHJpb24uZGU+DQo+IENjOiBSb2Ig
-SGVycmluZyA8cm9iaCtkdEBrZXJuZWwub3JnPjsgU2FzY2hhIEhhdWVyDQo+IDxzLmhhdWVyQHBl
-bmd1dHJvbml4LmRlPjsgU2FzY2hhIEhhdWVyIDxrZXJuZWxAcGVuZ3V0cm9uaXguZGU+Ow0KPiBT
-aGF3biBHdW8gPHNoYXduZ3VvQGtlcm5lbC5vcmc+OyBOWFAgTGludXggVGVhbSA8bGludXgtDQo+
-IGlteEBueHAuY29tPjsgb3BlbiBsaXN0Ok9QRU4gRklSTVdBUkUgQU5EIEZMQVRURU5FRCBERVZJ
-Q0UgVFJFRQ0KPiBCSU5ESU5HUyA8ZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc+OyBsaW51eC1r
-ZXJuZWwgPGxpbnV4LQ0KPiBrZXJuZWxAdmdlci5rZXJuZWwub3JnPg0KPiBCZXRyZWZmOiBSZTog
-W1BBVENIIHY0IDIvMl0gYXJtNjQ6IGR0czogaW14OG1tOiBBZGQgc3VwcG9ydCBmb3IgZW10cmlv
-bg0KPiBlbUNPTi1NWDhNIE1pbmkNCj4NCj4gSGkgUmVpbmhvbGQsDQo+DQo+IE9uIE1vbiwgRGVj
-IDIwLCAyMDIxIGF0IDQ6MjMgQU0gPHJlaW5ob2xkLm11ZWxsZXJAZW10cmlvbi5jb20+IHdyb3Rl
-Og0KPg0KPiA+ICsgICAgICAgcGluY3RybF9lY3NwaTE6IGVjc3BpMS1ncnAgew0KPiA+ICsgICAg
-ICAgICAgICAgICBmc2wscGlucyA9IDwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBNWDhN
-TV9JT01VWENfRUNTUEkxX1NDTEtfRUNTUEkxX1NDTEsgICAgICAgICAgICAweDgyDQo+ID4gKyAg
-ICAgICAgICAgICAgICAgICAgICAgTVg4TU1fSU9NVVhDX0VDU1BJMV9NT1NJX0VDU1BJMV9NT1NJ
-ICAgICAgICAgICAgMHg4Mg0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIE1YOE1NX0lPTVVY
-Q19FQ1NQSTFfTUlTT19FQ1NQSTFfTUlTTyAgICAgICAgICAgIDB4ODINCj4gPiArICAgICAgICAg
-ICAgICAgPjsNCj4gPiArICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgcGluY3RybF9lY3Nw
-aTFfY3M6IGVjc3BpMS1jcyB7DQo+ID4gKyAgICAgICAgICAgICAgIGZzbCxwaW5zID0gPA0KPiA+
-ICsgICAgICAgICAgICAgICAgICAgICAgIE1YOE1NX0lPTVVYQ19FQ1NQSTFfU1MwX0dQSU81X0lP
-OSAgICAgICAgICAgICAgIDB4NDAwMDANCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBNWDhN
-TV9JT01VWENfRUNTUEkyX1NTMF9HUElPNV9JTzEzICAgICAgICAgICAgICAweDQwMDAwDQo+DQo+
-IFRoaXMgdmVyc2lvbiBsb29rcyBnb29kIHRvIG1lLg0KPg0KPiBPbmUgbml0OiB5b3Ugc2VlbSB0
-byB1c2UgYSBzaW5nbGUgU1BJIGNoaXBzZWxlY3QsIGJ1dCB5b3UgYWRkIHR3byBlbnRyaWVzDQo+
-IGhlcmUuDQo+DQo+IElzIHRoZSBNWDhNTV9JT01VWENfRUNTUEkyX1NTMF9HUElPNV9JTzEzIG5l
-ZWRlZCB0b28/DQpZZXMsIG9mIGNvdXJzZSB0aGUgZW1DT04gcHJvdmlkZXMgYSBjb25uZWN0b3Ig
-Y29ubmVjdGluZyB0d28gc2xhdmVzIG9uIHRoZSBzcGkgYnVzLg0KPg0KPiBFaXRoZXIgd2F5Og0K
-Pg0KPiBSZXZpZXdlZC1ieTogRmFiaW8gRXN0ZXZhbSA8ZmVzdGV2YW1AZ21haWwuY29tPg0K
+From: Haibo Chen <haibo.chen@nxp.com>
+
+Add myself as imx7d/imx6sx/imx6ul/imx8qxp and vf610 adc maintainer.
+
+Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+
+---
+
+First, thanks Cai Huoqing upstream the i.MX 8QXP ADC driver, really appreciate!
+
+For some unknown issue, I miss all imx8qxp adc related mail threads,
+now I actively maintain all i.MX ADC downstream drivers, so add myself
+here as maintainer, and make sure I can be cc/to when there is any new patch.
+
+---
+ MAINTAINERS | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index c87a3f5e302a..210bded08641 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -13792,11 +13792,23 @@ F:	drivers/gpu/drm/imx/dcss/
+ 
+ NXP i.MX 8QXP ADC DRIVER
+ M:	Cai Huoqing <cai.huoqing@linux.dev>
++M:	Haibo Chen <haibo.chen@nxp.com>
++L:	linux-imx@nxp.com
+ L:	linux-iio@vger.kernel.org
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
+ F:	drivers/iio/adc/imx8qxp-adc.c
+ 
++NXP i.MX 7D/6SX/6UL AND VF610 ADC DRIVER
++M:	Haibo Chen <haibo.chen@nxp.com>
++L:	linux-iio@vger.kernel.org
++L:	linux-imx@nxp.com
++S:	Maintained
++F:	Documentation/devicetree/bindings/iio/adc/fsl,imx7d-adc.yaml
++F:	Documentation/devicetree/bindings/iio/adc/fsl,vf610-adc.yaml
++F:	drivers/iio/adc/imx7d_adc.c
++F:	drivers/iio/adc/vf610_adc.c
++
+ NXP PF8100/PF8121A/PF8200 PMIC REGULATOR DEVICE DRIVER
+ M:	Jagan Teki <jagan@amarulasolutions.com>
+ S:	Maintained
+-- 
+2.25.1
+
