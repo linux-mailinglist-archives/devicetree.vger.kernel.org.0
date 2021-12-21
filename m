@@ -2,46 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 919AA47B703
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 02:57:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 014AB47B759
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 03:00:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231678AbhLUB56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Dec 2021 20:57:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44432 "EHLO
+        id S233689AbhLUB7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Dec 2021 20:59:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231674AbhLUB56 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 20:57:58 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31B9FC061574;
-        Mon, 20 Dec 2021 17:57:58 -0800 (PST)
+        with ESMTP id S233695AbhLUB6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Dec 2021 20:58:53 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C4DCC061401;
+        Mon, 20 Dec 2021 17:58:49 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E1B6AB810FE;
-        Tue, 21 Dec 2021 01:57:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0FA6C36AEA;
-        Tue, 21 Dec 2021 01:57:54 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A79666134A;
+        Tue, 21 Dec 2021 01:58:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D218BC36AE9;
+        Tue, 21 Dec 2021 01:58:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640051875;
-        bh=nwIldBV2EYbv9oUkDcGCzsWpKwoC2I4wBYpPS5LWTJQ=;
+        s=k20201202; t=1640051928;
+        bh=7NSsBaHXQMFfVoY4cW3RE40VwQv5+FRGo36d2V2oPwE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=EQoOteLetUJWMqgIw/mBhV0Wy1sn8i4anRC7/9Kss4/CrfF4Ek/VysKpSbkSfRDf1
-         NnJYe3LZMi/V5rc+fIgyGZrVDG75upW52/Sr9sh2FOdIot2MOtD9/4Su8oqPfgNbSx
-         yJG5LGxpHFrm9glvGPAQfYmeCiEglxIES2oDxenpjGWlwlFtDns4bN789QSIYdd6Eu
-         DA4ZcP/EyVp95mPJ4GKUYnYblR2YEVXQoNPSaZ6NVU6JEnS7pH0a8aPLFEo3/CMScw
-         vTleFM6bY9MpFOnJvzAA2C9JAXvR6Wt5N9/g3YbTRQJ3GGR5wjgQaRHDFqJqQgVYhY
-         C2pOMEVQkNq6g==
+        b=mKJMtDG614YL+Px8Qh6b4iqImdk4+CglMnHXnJBz004CP57uYnVcNJg3kMnJYt8Qn
+         +FKUC9jq7ElIdfsmkvFdtjGmQDCUVxV03EisfSAbs1tKFCYZe+w12Mco421lTPVXTK
+         sFECvFx+L9oT2W7/BxK1Q8KuQt/EA2JD4GK1mxyyp6zKQjgzHToVGuyJCMlEf2OGpV
+         Dlxo95gD+iNatAyyjb6fo7ugHSGQxlH4LAM9TcSEeDFCI4QSeQS0ibPps6MhVrkARY
+         lh5kTXpzDo2quj16/ldAlcS0BsE8i0rZGC8whlCx/MOGR8GqdzPzQav8+ey8FGHei9
+         n57slcUqRGnjg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, leoyang.li@nxp.com,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 02/29] ARM: dts: ls1021a-tsn: update RGMII delays for sja1105 switch
-Date:   Mon, 20 Dec 2021 20:57:23 -0500
-Message-Id: <20211221015751.116328-2-sashal@kernel.org>
+Cc:     Vincent Pelletier <plr.vincent@gmail.com>,
+        Palmer Dabbelt <palmer@rivosinc.com>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, qiuwenbo@kylinos.com.cn,
+        yash.shah@sifive.com, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.15 24/29] riscv: dts: sifive unmatched: Name gpio lines
+Date:   Mon, 20 Dec 2021 20:57:45 -0500
+Message-Id: <20211221015751.116328-24-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20211221015751.116328-1-sashal@kernel.org>
 References: <20211221015751.116328-1-sashal@kernel.org>
@@ -53,44 +54,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
+From: Vincent Pelletier <plr.vincent@gmail.com>
 
-[ Upstream commit e691f9282a89e24a8e87cdb91a181c6283ee5124 ]
+[ Upstream commit ea81b91e4e256b0bb75d47ad3a5c230b2171a005 ]
 
-In the new behavior, the sja1105 driver expects there to be explicit
-RGMII delays present on the fixed-link ports, otherwise it will complain
-that it falls back to legacy behavior, which is to apply RGMII delays
-incorrectly derived from the phy-mode string.
+Follow the pin descriptions given in the version 3 of the board schematics.
 
-In this case, the legacy behavior of the driver is to not apply delays
-in any direction (mostly because the SJA1105T can't do that, so this
-board uses PCB traces). To preserve that but also silence the driver,
-use explicit delays of 0 ns. The delay information from the phy-mode is
-ignored by new kernels (it's still RGMII as long as it's "rgmii*"
-something), and the explicit {rx,tx}-internal-delay-ps properties are
-ignored by old kernels, so the change works both ways.
-
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
+Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/ls1021a-tsn.dts | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/boot/dts/ls1021a-tsn.dts b/arch/arm/boot/dts/ls1021a-tsn.dts
-index aca78b5eddf20..194748737724c 100644
---- a/arch/arm/boot/dts/ls1021a-tsn.dts
-+++ b/arch/arm/boot/dts/ls1021a-tsn.dts
-@@ -90,6 +90,8 @@ port@4 {
- 				/* Internal port connected to eth2 */
- 				ethernet = <&enet2>;
- 				phy-mode = "rgmii";
-+				rx-internal-delay-ps = <0>;
-+				tx-internal-delay-ps = <0>;
- 				reg = <4>;
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+index 2e4ea84f27e77..a788b99638af8 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+@@ -250,4 +250,8 @@ &pwm1 {
  
- 				fixed-link {
+ &gpio {
+ 	status = "okay";
++	gpio-line-names = "J29.1", "PMICNTB", "PMICSHDN", "J8.1", "J8.3",
++		"PCIe_PWREN", "THERM", "UBRDG_RSTN", "PCIe_PERSTN",
++		"ULPI_RSTN", "J8.2", "UHUB_RSTN", "GEMGXL_RST", "J8.4",
++		"EN_VDD_SD", "SD_CD";
+ };
 -- 
 2.34.1
 
