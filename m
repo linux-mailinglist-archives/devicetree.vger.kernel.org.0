@@ -2,204 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C03247C8C3
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 22:25:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB51547C92D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 23:23:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236563AbhLUVZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 16:25:36 -0500
-Received: from o1.ptr2625.egauge.net ([167.89.112.53]:46218 "EHLO
-        o1.ptr2625.egauge.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236211AbhLUVZf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 16:25:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=egauge.net;
-        h=from:subject:in-reply-to:references:mime-version:to:cc:
-        content-transfer-encoding:content-type;
-        s=sgd; bh=GhknQ87+Tv1LmYbdBKN1RfjxKncXbw6QuueDhACEINk=;
-        b=V2sZySGRr+92Ls5vHoOgt7JRt07mwHUmsKLLshep1SnGHuSy45C5Ompy7WiBB3KA8ZQx
-        XvsIli2wvIKSZHHvY3yhEu7C6cU8TGguVJjnBZhCPQSSSXfUQ7vstVAZZYczHSdIeq9cXj
-        b1gOe1ecaW8qkWmTWP9toCU4KVSuxr8/Q4/wwgwmkJw2ficX8jzO3Po4YBYSxzR1B/if7V
-        y4IzSKfGHcoQb/0miVlm3rHdt8YHhFcMxfwYAd8hipHTDuSHoOTDcaYYRR57fRfyI/uU+p
-        beOkz4fTMB8ENRa0O9pefKWbNzE7ABalX21U3ry8wywzTHXzE2r2tAaD6/XqT3Xw==
-Received: by filterdrecv-75ff7b5ffb-v6hzv with SMTP id filterdrecv-75ff7b5ffb-v6hzv-1-61C2464E-39
-        2021-12-21 21:25:34.638731428 +0000 UTC m=+9587076.829192542
-Received: from pearl.egauge.net (unknown)
-        by geopod-ismtpd-3-1 (SG)
-        with ESMTP
-        id calMx7_ASpimB95p8AtDUQ
-        Tue, 21 Dec 2021 21:25:34.496 +0000 (UTC)
-Received: by pearl.egauge.net (Postfix, from userid 1000)
-        id B87E8700356; Tue, 21 Dec 2021 14:25:33 -0700 (MST)
-From:   David Mosberger-Tang <davidm@egauge.net>
-Subject: [PATCH v7 1/2] wilc1000: Add reset/enable GPIO support to SPI driver
-Date:   Tue, 21 Dec 2021 21:25:34 +0000 (UTC)
-Message-Id: <20211221212531.4011609-2-davidm@egauge.net>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211221212531.4011609-1-davidm@egauge.net>
-References: <20211221212531.4011609-1-davidm@egauge.net>
-MIME-Version: 1.0
-X-SG-EID: =?us-ascii?Q?+kMxBqj35EdRUKoy8diX1j4AXmPtd302oan+iXZuF8m2Nw4HRW2irNspffT=2Fkh?=
- =?us-ascii?Q?ET6RJF6+Prbl0h=2FEtF1rRLvFd9EQKyTuRHwMkdm?=
- =?us-ascii?Q?G4eA0s3wODjoobJqig+D+CRuoBhWy1To12klxdS?=
- =?us-ascii?Q?maM0Y0p99RxzMREPHR9HPN2xtoRYfRCuPkGEZt7?=
- =?us-ascii?Q?jxnwwkvY6ys=2FELeRW3ifj7cqCBaT=2FCFNjcQYD9p?=
- =?us-ascii?Q?lLaEmWRWHpLfwVE+DzjS4ZXBOFofdtAPz0R7D+O?=
- =?us-ascii?Q?PsaOhH9gjo0MJYjYd3ikw=3D=3D?=
-To:     Ajay Singh <ajay.kathat@microchip.com>
-Cc:     Adham Abozaeid <adham.abozaeid@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        Kalle Valo <kvalo@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        id S237783AbhLUWXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 17:23:43 -0500
+Received: from mail.skyhub.de ([5.9.137.197]:57506 "EHLO mail.skyhub.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230085AbhLUWXn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Dec 2021 17:23:43 -0500
+Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id B21A51EC04F0;
+        Tue, 21 Dec 2021 23:23:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1640125417;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=+O0s3awTUfaTqDNJAoHb8Lz3/d+d4qogTrV38e7gPeU=;
+        b=kddB+2HJyC5J7VPL8ewYZNG1hXr1cSXKktuPdANFMEbNIeSgiD9ofyZCV+bUP9p3m3DnBu
+        DjVmGIWcSRqLhvIWxyZlqXgOiqvbmMIyi1EAgX4LaOgQ5PuJ5XInOgK3ZpudFnUiCCKlF6
+        eSiy/61yh0Fvks9pB7VdYQXcMaphCcg=
+Date:   Tue, 21 Dec 2021 23:23:38 +0100
+From:   Borislav Petkov <bp@alien8.de>
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Baoquan He <bhe@redhat.com>, Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
+        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
+        Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        David Mosberger-Tang <davidm@egauge.net>
-X-Entity-ID: Xg4JGAcGrJFIz2kDG9eoaQ==
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=us-ascii
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>
+Subject: Re: [PATCH v17 03/10] x86: kdump: use macro CRASH_ADDR_LOW_MAX in
+ functions reserve_crashkernel()
+Message-ID: <YcJT6lylm1KZ6Hdc@zn.tnic>
+References: <20211210065533.2023-1-thunder.leizhen@huawei.com>
+ <20211210065533.2023-4-thunder.leizhen@huawei.com>
+ <YbntdtQo2jfbO4cO@zn.tnic>
+ <20211216011040.GG3023@MiWiFi-R3L-srv>
+ <9513d74c-d4c7-babd-f823-8999e195d96d@huawei.com>
+ <YbseAX6X1VHUF12f@zn.tnic>
+ <35810a61-604e-9b90-2a7f-cfca6ae042ac@huawei.com>
+ <YbtRs3Tq1UpCOpg8@zn.tnic>
+ <d2b199b7-584e-8ad4-9626-09bb86cf92c5@huawei.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <d2b199b7-584e-8ad4-9626-09bb86cf92c5@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For the SDIO driver, the RESET/ENABLE pins of WILC1000 are controlled
-through the SDIO power sequence driver.  This commit adds analogous
-support for the SPI driver.  Specifically, during initialization, the
-chip will be ENABLEd and taken out of RESET and during
-deinitialization, the chip will be placed back into RESET and disabled
-(both to reduce power consumption and to ensure the WiFi radio is
-off).
+On Fri, Dec 17, 2021 at 10:51:04AM +0800, Leizhen (ThunderTown) wrote:
+> [KNL, X86-64], This doc is for X86-64, not for X86-32
 
-Both RESET and ENABLE GPIOs are optional.  However, if the ENABLE GPIO
-is specified, then the RESET GPIO should normally also be specified as
-otherwise there is no way to ensure proper timing of the ENABLE/RESET
-sequence.
+reserve_crashkernel() runs on both.
 
-Signed-off-by: David Mosberger-Tang <davidm@egauge.net>
----
- drivers/net/wireless/microchip/wilc1000/spi.c | 62 ++++++++++++++++++-
- .../net/wireless/microchip/wilc1000/wlan.c    |  2 +-
- 2 files changed, 60 insertions(+), 4 deletions(-)
+> If there is no such restriction, we can make CRASH_ADDR_LOW_MAX equal
+> to (1ULL << 32) minus 1 on X86_32.
 
-diff --git a/drivers/net/wireless/microchip/wilc1000/spi.c b/drivers/net/wireless/microchip/wilc1000/spi.c
-index 5ace9e3a56fc8..2c2ed4b09efd5 100644
---- a/drivers/net/wireless/microchip/wilc1000/spi.c
-+++ b/drivers/net/wireless/microchip/wilc1000/spi.c
-@@ -8,6 +8,7 @@
- #include <linux/spi/spi.h>
- #include <linux/crc7.h>
- #include <linux/crc-itu-t.h>
-+#include <linux/gpio/consumer.h>
- 
- #include "netdev.h"
- #include "cfg80211.h"
-@@ -45,6 +46,10 @@ struct wilc_spi {
- 	bool probing_crc;	/* true if we're probing chip's CRC config */
- 	bool crc7_enabled;	/* true if crc7 is currently enabled */
- 	bool crc16_enabled;	/* true if crc16 is currently enabled */
-+	struct wilc_gpios {
-+		struct gpio_desc *enable;	/* ENABLE GPIO or NULL */
-+		struct gpio_desc *reset;	/* RESET GPIO or NULL */
-+	} gpios;
- };
- 
- static const struct wilc_hif_func wilc_hif_spi;
-@@ -152,6 +157,50 @@ struct wilc_spi_special_cmd_rsp {
- 	u8 status;
- } __packed;
- 
-+static int wilc_parse_gpios(struct wilc *wilc)
-+{
-+	struct spi_device *spi = to_spi_device(wilc->dev);
-+	struct wilc_spi *spi_priv = wilc->bus_data;
-+	struct wilc_gpios *gpios = &spi_priv->gpios;
-+
-+	/* get ENABLE pin and deassert it (if it is defined): */
-+	gpios->enable = devm_gpiod_get_optional(&spi->dev,
-+						"enable", GPIOD_OUT_LOW);
-+	/* get RESET pin and assert it (if it is defined): */
-+	if (gpios->enable) {
-+		/* if enable pin exists, reset must exist as well */
-+		gpios->reset = devm_gpiod_get(&spi->dev,
-+					      "reset", GPIOD_OUT_HIGH);
-+		if (IS_ERR(gpios->reset)) {
-+			dev_err(&spi->dev, "missing reset gpio.\n");
-+			return PTR_ERR(gpios->reset);
-+		}
-+	} else {
-+		gpios->reset = devm_gpiod_get_optional(&spi->dev,
-+						       "reset", GPIOD_OUT_HIGH);
-+	}
-+	return 0;
-+}
-+
-+static void wilc_wlan_power(struct wilc *wilc, bool on)
-+{
-+	struct wilc_spi *spi_priv = wilc->bus_data;
-+	struct wilc_gpios *gpios = &spi_priv->gpios;
-+
-+	if (on) {
-+		/* assert ENABLE: */
-+		gpiod_set_value(gpios->enable, 1);
-+		mdelay(5);
-+		/* deassert RESET: */
-+		gpiod_set_value(gpios->reset, 0);
-+	} else {
-+		/* assert RESET: */
-+		gpiod_set_value(gpios->reset, 1);
-+		/* deassert ENABLE: */
-+		gpiod_set_value(gpios->enable, 0);
-+	}
-+}
-+
- static int wilc_bus_probe(struct spi_device *spi)
- {
- 	int ret;
-@@ -171,6 +220,10 @@ static int wilc_bus_probe(struct spi_device *spi)
- 	wilc->bus_data = spi_priv;
- 	wilc->dev_irq_num = spi->irq;
- 
-+	ret = wilc_parse_gpios(wilc);
-+	if (ret < 0)
-+		goto netdev_cleanup;
-+
- 	wilc->rtc_clk = devm_clk_get_optional(&spi->dev, "rtc");
- 	if (IS_ERR(wilc->rtc_clk)) {
- 		ret = PTR_ERR(wilc->rtc_clk);
-@@ -983,9 +1036,10 @@ static int wilc_spi_reset(struct wilc *wilc)
- 
- static int wilc_spi_deinit(struct wilc *wilc)
- {
--	/*
--	 * TODO:
--	 */
-+	struct wilc_spi *spi_priv = wilc->bus_data;
-+
-+	spi_priv->isinit = false;
-+	wilc_wlan_power(wilc, false);
- 	return 0;
- }
- 
-@@ -1006,6 +1060,8 @@ static int wilc_spi_init(struct wilc *wilc, bool resume)
- 		dev_err(&spi->dev, "Fail cmd read chip id...\n");
- 	}
- 
-+	wilc_wlan_power(wilc, true);
-+
- 	/*
- 	 * configure protocol
- 	 */
-diff --git a/drivers/net/wireless/microchip/wilc1000/wlan.c b/drivers/net/wireless/microchip/wilc1000/wlan.c
-index 3f339c2f46f11..1a37a49fe6477 100644
---- a/drivers/net/wireless/microchip/wilc1000/wlan.c
-+++ b/drivers/net/wireless/microchip/wilc1000/wlan.c
-@@ -1254,7 +1254,7 @@ void wilc_wlan_cleanup(struct net_device *dev)
- 	wilc->rx_buffer = NULL;
- 	kfree(wilc->tx_buffer);
- 	wilc->tx_buffer = NULL;
--	wilc->hif_func->hif_deinit(NULL);
-+	wilc->hif_func->hif_deinit(wilc);
- }
- 
- static int wilc_wlan_cfg_commit(struct wilc_vif *vif, int type,
+Again, the 4G limit check is relevant only for 64-bit kernels - not
+32-bit ones.
+
 -- 
-2.25.1
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
