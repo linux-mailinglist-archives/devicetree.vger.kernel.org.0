@@ -2,153 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE7B047BBBA
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 09:21:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AFC047BBBC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 09:21:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235551AbhLUIVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 03:21:04 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:55932
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235534AbhLUIVD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 03:21:03 -0500
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S234234AbhLUIVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 03:21:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45498 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234212AbhLUIVw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 03:21:52 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F72C061574;
+        Tue, 21 Dec 2021 00:21:52 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E9148402FC
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 08:21:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640074861;
-        bh=v0pYSSp/PcIv+PEuO43VB0PAVYtz/J9iayLFB3j6wVE=;
-        h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-         In-Reply-To:Content-Type;
-        b=K98x8oD792NwuHx3jKXCEdDJDVMr5FgN4jtxDe/D5IwAfYxh0NWq8MNLA6TQEUIZg
-         WqkF0WfLi8to2JBFtxbEDzE98IfSCcMu1vdxiQ17itVNYFQ7MJ79uRw+bwdNicbaip
-         GwVHgNcg6VlPg9eQhFYsJZ3aaUmsZ9jXWo/uKw8rR/9/KlklcDVnv+liVllpT4FNBq
-         Bw3ZlbIPGMamT4ky+JgnfN5c3C7lIpg11BBR7QE9e6Y71oKmLOQZe7KmhLLh+MGOzi
-         9gwcYW/+byVI5bwxSR7I4Rl6HFnRIpVKipeZELZoLYxHhd5B8itCm2baODt5N1E9o9
-         CEv4ye6YX0g2w==
-Received: by mail-lj1-f199.google.com with SMTP id h18-20020a05651c159200b0021cf7c089d0so1987212ljq.21
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 00:21:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=v0pYSSp/PcIv+PEuO43VB0PAVYtz/J9iayLFB3j6wVE=;
-        b=LD8xuR4psCcS/NOgmGGAVUKQVuxHVH6JMv14lZDHvwDwyqwiu8/Pux4A9n6tM4KkHy
-         0gcdlh8dzUZ9KxbBKts9bHROB6fzyUznXGsRdWrd9XUc4kGusGZ5EqbzntSveUV33YiC
-         /BfXzj7iHQfW1ZlL8yVV9v2uUh7ty++ZXv2FRbvjqM5D8hWrdiS9BX8wZMWp3m0BMwy3
-         0iN2seKQVpFAXsTPdJh1PGo8zhfLiMTd2jSqpHD+uShYwHi79QwMbKWZpx6pIxCQ+EFY
-         gI3EEZZRHWbrmIAogDPmWrIdLUOYM/iZXX6NoMZE+NY3gDFNeJnGwktp2m9eJcD3SXYU
-         ab2A==
-X-Gm-Message-State: AOAM531ET9+jCMf8KitcKjAWAorU9AZCSVf/8z4LwdtNW+F58MubfRJC
-        EWDGvIbmU6fbYydOQqiXDwl6RuVY9qwpwxq3jgtSivj7SDvCJm1KnYgM6bff8hAu/966VJhyWCy
-        PzzccPv9ChzalBrXCC7q1nL9zFA4+vSFh0Nv9eaQ=
-X-Received: by 2002:a2e:9003:: with SMTP id h3mr1760356ljg.68.1640074858376;
-        Tue, 21 Dec 2021 00:20:58 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy0OZUFkiXcgS9OL3e05QKQSZ+sUUPAqqBNMDEDrcXVHl2uJzLoQrvQudPyTdiPoAXlwrDzKA==
-X-Received: by 2002:a2e:9003:: with SMTP id h3mr1760338ljg.68.1640074858075;
-        Tue, 21 Dec 2021 00:20:58 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id w12sm881619lfe.256.2021.12.21.00.20.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Dec 2021 00:20:57 -0800 (PST)
-Message-ID: <d10584ac-9ce6-9f8d-aeb9-8497e32f1661@canonical.com>
-Date:   Tue, 21 Dec 2021 09:20:56 +0100
+        by ams.source.kernel.org (Postfix) with ESMTPS id ECF84B81052;
+        Tue, 21 Dec 2021 08:21:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A6B9C36AE2;
+        Tue, 21 Dec 2021 08:21:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1640074909;
+        bh=Jxf9DAuQuO8xcW9OS1qw9tIRuUDJLr4jTwE07F5oW3I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pLsMkpeqS042L4Zkt3ekHaBqPpaK5FmkGMqeTXG0iNCvfdFCZIphWV8RojvYRu0xs
+         bT8sMSjzk34oqeAhN6CkIljtWfLwgFWAK1uP9mPErmCGbuohuzbWuLozoBVyAnDiGq
+         q8yqUoLJPhMteIC2UDunN1dp5mPn8dwd7H6LQq5s=
+Date:   Tue, 21 Dec 2021 09:21:47 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     hammer hsieh <hammerh0314@gmail.com>
+Cc:     robh+dt@kernel.org, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jirislaby@kernel.org, p.zabel@pengutronix.de, wells.lu@sunplus.com,
+        Hammer Hsieh <hammer.hsieh@sunplus.com>
+Subject: Re: [PATCH v5 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
+Message-ID: <YcGOmzKSHOoycZNC@kroah.com>
+References: <1639379407-28607-1-git-send-email-hammer.hsieh@sunplus.com>
+ <1639379407-28607-3-git-send-email-hammer.hsieh@sunplus.com>
+ <YcCmaJkeKy+R0mhF@kroah.com>
+ <CAOX-t54j9=7eLMAx4n-ngiNdM=Ab=YcK-zdxRW88e41cPS=46Q@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v4 1/7] dt-bindings: clock: exynos850: Add bindings for
- Exynos850 sysreg clocks
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Sylwester Nawrocki <snawrocki@kernel.org>,
-        Jaewon Kim <jaewon02.kim@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Hao Fang <fanghao11@huawei.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20211217161549.24836-1-semen.protsenko@linaro.org>
- <20211217161549.24836-2-semen.protsenko@linaro.org>
- <2fdc5c97-6c19-8e70-d717-28b29d86160c@kernel.org>
- <5bd5c0bf-4390-22c2-e4e0-cb02b80dfb9c@canonical.com>
- <CAPLW+4msw_yeG4uDbS9mMULOuc43MK9O6Paya_Z2jBj2t6ZTiA@mail.gmail.com>
- <edd828b4-66ad-1c1e-4332-e1b05931e92a@canonical.com>
-In-Reply-To: <edd828b4-66ad-1c1e-4332-e1b05931e92a@canonical.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOX-t54j9=7eLMAx4n-ngiNdM=Ab=YcK-zdxRW88e41cPS=46Q@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/12/2021 09:19, Krzysztof Kozlowski wrote:
-> On 20/12/2021 15:55, Sam Protsenko wrote:
->> On Mon, 20 Dec 2021 at 11:31, Krzysztof Kozlowski
->> <krzysztof.kozlowski@canonical.com> wrote:
->>>
->>> On 19/12/2021 23:29, Sylwester Nawrocki wrote:
->>>> On 17.12.2021 17:15, Sam Protsenko wrote:
->>>>> System Register is used to configure system behavior, like USI protocol,
->>>>> etc. SYSREG clocks should be provided to corresponding syscon nodes, to
->>>>> make it possible to modify SYSREG registers.
->>>>>
->>>>> While at it, add also missing PMU and GPIO clocks, which looks necessary
->>>>> and might be needed for corresponding Exynos850 features soon.
->>>>>
->>>>> Reviewed-by: Krzysztof Kozlowski<krzysztof.kozlowski@canonical.com>
->>>>> Acked-by: Rob Herring<robh@kernel.org>
->>>>> Acked-by: Chanwoo Choi<cw00.choi@samsung.com>
->>>>> Signed-off-by: Sam Protsenko<semen.protsenko@linaro.org>
->>>>
->>>> Apologies for late reply, this patch is applied now.
->>>>
->>>
->>> Sam,
->>>
->>> The clock is used in the DTSI, so since this was applied, there are only
->>> two choices now:
->>> 1. wait for next cycle with DTSI and DTS,
->>> 2. Resubmit with replacing the newly added clocks in DTSI/DTS with
->>> numbers and a TODO note.
->>>
->>
->> But why? I thought because Sylwester applied my clock patches, those
->> will get into v5.17, and so DTSI/DTS might rely on those clocks? If I
->> get it wrong, please let me know why, and I'll go with item (2) you
->> suggested.
+On Tue, Dec 21, 2021 at 04:14:16PM +0800, hammer hsieh wrote:
+> Greg KH <gregkh@linuxfoundation.org> 於 2021年12月20日 週一 下午11:51寫道：
+> >
+> > On Mon, Dec 13, 2021 at 03:10:07PM +0800, Hammer Hsieh wrote:
+> > > +/* Register offsets */
+> > > +#define SUP_UART_DATA                        0x00
+> > > +#define SUP_UART_LSR                 0x04
+> > > +#define SUP_UART_MSR                 0x08
+> > > +#define SUP_UART_LCR                 0x0C
+> > > +#define SUP_UART_MCR                 0x10
+> > > +#define SUP_UART_DIV_L                       0x14
+> > > +#define SUP_UART_DIV_H                       0x18
+> > > +#define SUP_UART_ISC                 0x1C
+> > > +#define SUP_UART_TX_RESIDUE          0x20
+> > > +#define SUP_UART_RX_RESIDUE          0x24
+> > > +
+> > > +/* Line Status Register bits */
+> > > +#define SUP_UART_LSR_TXE             BIT(6) /* tx empty */
+> > > +#define SUP_UART_LSR_BC                      BIT(5) /* break condition status */
+> > > +#define SUP_UART_LSR_FE                      BIT(4) /* frame error status */
+> > > +#define SUP_UART_LSR_OE                      BIT(3) /* overrun error status */
+> > > +#define SUP_UART_LSR_PE                      BIT(2) /* parity error status */
+> > > +#define SUP_UART_LSR_RX                      BIT(1) /* 1: receive fifo not empty */
+> > > +#define SUP_UART_LSR_TX                      BIT(0) /* 1: transmit fifo is not full */
+> > > +#define SUP_UART_LSR_TX_NOT_FULL     1
+> > > +#define SUP_UART_LSR_BRK_ERROR_BITS  GENMASK(5, 2)
+> > > +
+> > > +/* Line Control Register bits */
+> > > +#define SUP_UART_LCR_BC                      BIT(5) /* break condition select */
+> > > +#define SUP_UART_LCR_PR                      BIT(4) /* parity bit polarity select */
+> > > +#define SUP_UART_LCR_PE                      BIT(3) /* parity bit enable */
+> > > +#define SUP_UART_LCR_ST                      BIT(2) /* stop bits select */
+> > > +#define SUP_UART_LCR_WL5             0x00 /*  word length 5 */
+> > > +#define SUP_UART_LCR_WL6             0x01 /*  word length 6 */
+> > > +#define SUP_UART_LCR_WL7             0x02 /*  word length 7 */
+> > > +#define SUP_UART_LCR_WL8             0x03 /*  word length 8 (default) */
+> > > +
+> > > +/* Modem Control Register bits */
+> > > +#define SUP_UART_MCR_LB                      BIT(4) /* Loopback mode */
+> > > +#define SUP_UART_MCR_RI                      BIT(3) /* ring indicator */
+> > > +#define SUP_UART_MCR_DCD             BIT(2) /* data carrier detect */
+> > > +#define SUP_UART_MCR_RTS             BIT(1) /* request to send */
+> > > +#define SUP_UART_MCR_DTS             BIT(0) /* data terminal ready */
+> > > +
+> > > +/* Interrupt Status/Control Register bits */
+> > > +#define SUP_UART_ISC_RXM             BIT(5) /* RX interrupt enable */
+> > > +#define SUP_UART_ISC_TXM             BIT(4) /* TX interrupt enable */
+> > > +#define SUP_UART_ISC_RX                      BIT(1) /* RX interrupt status */
+> > > +#define SUP_UART_ISC_TX                      BIT(0) /* TX interrupt status */
+> > > +
+> > > +#define SUP_DUMMY_READ                       BIT(16) /* drop bytes received on a !CREAD port */
+> > > +#define SUP_UART_NR                  5
+> >
+> > Aren't most of these defines already in the kernel header files?  Why
+> > create them again?
+> >
 > 
-> If I apply the DTSI+DTS, all my builds will start failing. The
-> linux-next (since Sylwester's tree is included) should build fine, but
-> my tree won't be buildable anymore. Then arm-soc pulls my tree and gets
-> said because it does not build. Later, Linus will be unhappy if he pulls
-
-s/said/sad/ obviously :)
-
-> arm-soc (thus mine) before clock tree.
+> If for reduce code.
+> I can add #include<linux/serial_reg.h>
+> And remove some overlap define name.
 > 
-> Other solution, instead of using raw numbers, is to copy-paste the clock
-> macros you use directly in DTSI and do not include the clock header.
-> This actually might be cleaner choice - changes will be limited to one
-> place in DTSI.
+> #define SUP_UART_LCR_PR -> UART_LCR_EPAR
+> #define SUP_UART_LCR_PE -> UART_LCR_PARITY
+> #define SUP_UART_LCR_ST -> UART_LCR_STOP
+> #define SUP_UART_LCR_WL5 -> UART_LCR_WLEN5
+> #define SUP_UART_LCR_WL6 -> UART_LCR_WLEN6
+> #define SUP_UART_LCR_WL7 -> UART_LCR_WLEN7
+> #define SUP_UART_LCR_WL8 -> UART_LCR_WLEN8
 > 
-> Best regards,
-> Krzysztof
+> #define SUP_UART_MCR_LB -> UART_MCR_LOOP
+> #define SUP_UART_MCR_RI -> UART_MCR_OUT2 ?
+> #define SUP_UART_MCR_DCD -> UART_MCR_OUT1 ?
+> #define SUP_UART_MCR_RTS -> UART_MCR_RTS
+> #define SUP_UART_MCR_DTS -> UART_MCR_DTR
 > 
+> But the rest define didn't match internal #include<linux/serial_reg.h>
+> , those define still need to keep.
+> Some use SUP_xxxx specific define.
+> Some use internal #include<linux/serial_reg.h>, it is strange.
 
+Do not duplicate defines that we already have for the same hardware
+type.
 
-Best regards,
-Krzysztof
+And again, why is this not a normal serial driver for the existing UART
+types as this hardware is obviously an 8250 variant?
+
+thanks,
+
+greg k-h
