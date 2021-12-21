@@ -2,70 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CA7647C727
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 20:00:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E57A047C739
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 20:12:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231449AbhLUTAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 14:00:23 -0500
-Received: from mail-qt1-f178.google.com ([209.85.160.178]:43859 "EHLO
-        mail-qt1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233896AbhLUTAX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 14:00:23 -0500
-Received: by mail-qt1-f178.google.com with SMTP id q14so13767889qtx.10;
-        Tue, 21 Dec 2021 11:00:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zIOkU2R7q53s30poXB6wKE9nB8lhIyVZh0GpeEte98E=;
-        b=p8+1nAfqBpzSZGBRRnQSrhUteuQuFkXDqBnXGRTfy6nUPKKE6knk1M5LM3Z7ix52gz
-         vl3ldZPJqysUiL6AGz3M40+e7YH41a7Qfk/y6emxfL2PcDXd+JZN0Q6LGWAhLElqdDMg
-         Qp+eO05lkb/NZmYaIfb7W7Se2+GfyQjegBTAtT7yi/tttu8zcgf+RMLlA09Pe32fwgrJ
-         s9iwnEsfsTy4okL2SgiRd4Wj+Q6NpIwhTe3mZ/i3XeqyMrdA2JEt0p0BkvSKS3XE8+Z4
-         lgKb4yeH1PrPD02vLsIeDNiSWfm2iaD3VsD/dd6kMSS4KvuUIaCTZMpmTKVqvg8sFKS2
-         +Xvg==
-X-Gm-Message-State: AOAM532gxBvYjc2wc42qaObM2sR9u6yqP8oSbis6pyuKry4fMcHDalE9
-        kV7H3qqfgV2wMsMh+1S59Q==
-X-Google-Smtp-Source: ABdhPJxl9dMQ4zuv5cXtQpPzSLb/VzWpP+JvgACX0GJhdIcKn21JJ1AOh0MCSUEPJjJKV/nGWher3A==
-X-Received: by 2002:a05:622a:394:: with SMTP id j20mr3415270qtx.562.1640113222382;
-        Tue, 21 Dec 2021 11:00:22 -0800 (PST)
-Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id u17sm10060282qko.133.2021.12.21.11.00.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 11:00:21 -0800 (PST)
-Received: (nullmailer pid 1573222 invoked by uid 1000);
-        Tue, 21 Dec 2021 19:00:20 -0000
-Date:   Tue, 21 Dec 2021 15:00:20 -0400
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 6/6] dt-bindings: regulator: tps65090: Convert to
- json-schema
-Message-ID: <YcIkRMWAFLdiRiDC@robh.at.kernel.org>
-References: <20211217170507.2843568-1-thierry.reding@gmail.com>
- <20211217170507.2843568-6-thierry.reding@gmail.com>
+        id S241723AbhLUTMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 14:12:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56528 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241719AbhLUTMi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 14:12:38 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39012C061574;
+        Tue, 21 Dec 2021 11:12:38 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C8E6C6178B;
+        Tue, 21 Dec 2021 19:12:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05B6EC36AE8;
+        Tue, 21 Dec 2021 19:12:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640113957;
+        bh=PAs5jiYeFo0MBioLBW42YrvXg3HDfr/75mvKAgP84o4=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=mU333hz0r1ky9N5/Cxf891yMrzILchntrHGZPscClx+sfRB1ORC2u1lgzqaabDVbg
+         MzFK5rtV5d0fpUUQMeCKfCXCVsKeUxEBxlMBEbZVGWOfIi9fOrROjFdWx5dy2Kv8xv
+         7ROsBWlNoLI1YYooIMxAoSdCPfqW8bNz7nw0elqS482K9+BvB+zdQD5NV7OMLUIjht
+         0f4iA9t8RiETnFfczdqAmNTvNLfd2nWTHgFEFBKa/t5/LDy+DMSwEhqfYrzZDW8Q5s
+         r6pVoYlqnn3PDsjS/mRgtuV0iwFXJriQoUFKKBL12hUJTuXyvWRsG24T8u3qx0hmoP
+         BDfONoq1OfehQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     lgirdwood@gmail.com, tiwai@suse.com, robh+dt@kernel.org,
+        perex@perex.cz, Vincent Knecht <vincent.knecht@mailoo.org>
+Cc:     stephan@gerhold.net, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20211220193725.2650356-1-vincent.knecht@mailoo.org>
+References: <20211220193725.2650356-1-vincent.knecht@mailoo.org>
+Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: codecs: Add bindings for ak4375
+Message-Id: <164011395475.93163.15678068758276605566.b4-ty@kernel.org>
+Date:   Tue, 21 Dec 2021 19:12:34 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211217170507.2843568-6-thierry.reding@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Dec 2021 18:05:07 +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Mon, 20 Dec 2021 20:37:24 +0100, Vincent Knecht wrote:
+> AK4375 is an audio DAC with headphones amplifier controlled via I2C.
+> Add simple device tree bindings that describe how to set it up.
 > 
-> Convert the Texas Instruments TPS65090 bindings from the free-form text
-> format to json-schema.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  .../bindings/regulator/ti,tps65090.yaml       | 199 ++++++++++++++++++
->  .../bindings/regulator/tps65090.txt           | 126 -----------
->  2 files changed, 199 insertions(+), 126 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/regulator/ti,tps65090.yaml
->  delete mode 100644 Documentation/devicetree/bindings/regulator/tps65090.txt
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: dt-bindings: codecs: Add bindings for ak4375
+      commit: 70ba14cf6dfd7ebd1275562bb9637b8d0ddb8f49
+[2/2] ASoC: Add AK4375 support
+      commit: 53778b8292b5492ec3ecf1efb84163eac2a6e422
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
