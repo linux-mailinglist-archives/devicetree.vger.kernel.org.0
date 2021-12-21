@@ -2,148 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A52FD47C964
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 23:49:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CA8047C995
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 00:15:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234386AbhLUWtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 17:49:16 -0500
-Received: from mail.noreya.tech ([46.38.236.86]:44454 "EHLO mail.noreya.tech"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229732AbhLUWtQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 17:49:16 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by mail.noreya.tech (Postfix) with ESMTP id 81F6C43A;
-        Tue, 21 Dec 2021 23:49:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=noreya.tech;
-        s=s2048; t=1640126954;
-        bh=8MSg8JYOEwSbXzLEjg2qk0EvfWpMkhElUFOoqPZUN4I=;
-        h=From:To:Cc:Subject:Date:From;
-        b=WlcQLymJHjxB05mVfLRKejeDHwe3p9MQBsVyGa61zf+soTZPrFZ2pztk2AsHOk2fZ
-         DGrRPhXe085oAeZjsQF9gwZK3Zw7oDOjJ4DrR5vNxd9OdW/gV25wdWj8bREh4pwR6H
-         1AvSeDUv6S2VHnJYMGkBJGUjvRu7p8AvEOVcaaGMEuLnSEHKA2H011CcuQiwJW+6Q9
-         0WUrUb5nltF1dWqbzHYnbIbhJu9qWkS6apKYITkic+7VS772/nSlk/ruLq/Ut2KD/L
-         3DnHnIR+HQjoqgFgEUz08pB8OrD3Ry0nNTczl/WTdkEvgjSXnGwG4vg0hfud13tF/8
-         uLxSTRhR6EQ2Q==
-X-Virus-Scanned: Debian amavisd-new at mail.noreya.tech
-Received: from mail.noreya.tech ([127.0.0.1])
-        by localhost (mail.noreya.tech [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id ljV9xXx99KjW; Tue, 21 Dec 2021 23:49:11 +0100 (CET)
-Received: from richard-AX370.lan (unknown [IPv6:2a02:1748:dd5c:72f0:d99e:3050:a76:285d])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.noreya.tech (Postfix) with ESMTPSA;
-        Tue, 21 Dec 2021 23:49:11 +0100 (CET)
-From:   Richard Schleich <rs@noreya.tech>
-To:     robh+dt@kernel.org, nsaenz@kernel.org, f.fainelli@gmail.com,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Richard Schleich <rs@noreya.tech>
-Subject: [PATCH] ARM: dts: bcm2711: Add the missing L1/L2 cache information
-Date:   Tue, 21 Dec 2021 23:48:30 +0100
-Message-Id: <20211221224830.16746-1-rs@noreya.tech>
-X-Mailer: git-send-email 2.17.1
+        id S235999AbhLUXP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 18:15:29 -0500
+Received: from mail-qk1-f171.google.com ([209.85.222.171]:39672 "EHLO
+        mail-qk1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235041AbhLUXP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 18:15:29 -0500
+Received: by mail-qk1-f171.google.com with SMTP id 69so606134qkd.6;
+        Tue, 21 Dec 2021 15:15:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=o6ghia2oyzyiH6598CR7ywYiwIMz19YOc/inSFGIjXg=;
+        b=66EvN33l/vN3KVBdNEYE2q/RnO6Fxf0ZKY1Lo+4hPWPcHDh8T6cCXsxKHqn+zuSooQ
+         8JlOc1mQnZZF5CKX8YxZtQyR3mzxu2r3BnoeVPdGoqP6r7EK3SPAqsA9oVhgxvXi07CI
+         uWHsmr5I+MbR97hnixV0rTNnVwRlupfrSBfQuvxYuWw+DrXVgSkhX6gZLFxOdBZzOLGj
+         Vsy5GxVtJw3OMkbwzKVFxdOI9ByJQdrFfeQvMrlt/iRuu1LZ7E74jeySuBQ+Y4mBb6ZY
+         EcaYpFhNbDHkgk+qvr4a3Dx3JnwX4HtHxppMwQNPY0WqqFdl653kr8aiO2yeJImOxe7u
+         cpLA==
+X-Gm-Message-State: AOAM531vsWc7dEOiafdCJqvOUBOJ4Ddogp/lAFRHIyEnWR2JJQnw5tLh
+        LhBOMj9IzJgaDxYfYWCNmA==
+X-Google-Smtp-Source: ABdhPJy/cHQS5nApZxm48O3HXciLucD7zbZaW6bVGeweLlpl2HjKP7ScYE0q99i2ucfRtMIlvzF8aQ==
+X-Received: by 2002:a05:620a:2789:: with SMTP id g9mr436915qkp.295.1640128528267;
+        Tue, 21 Dec 2021 15:15:28 -0800 (PST)
+Received: from robh.at.kernel.org ([24.55.105.145])
+        by smtp.gmail.com with ESMTPSA id o21sm288848qta.89.2021.12.21.15.15.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Dec 2021 15:15:27 -0800 (PST)
+Received: (nullmailer pid 1696922 invoked by uid 1000);
+        Tue, 21 Dec 2021 23:15:25 -0000
+Date:   Tue, 21 Dec 2021 19:15:25 -0400
+From:   Rob Herring <robh@kernel.org>
+To:     Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     Niklas Cassel <nks@flawful.org>,
+        Niklas Cassel <niklas.cassel@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: power: avs: qcom,cpr: Convert to DT schema
+Message-ID: <YcJgDToAY/vXXekl@robh.at.kernel.org>
+References: <20211221133937.173618-1-y.oudjana@protonmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211221133937.173618-1-y.oudjana@protonmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch fixes the kernel warning
-"cacheinfo: Unable to detect cache hierarchy for CPU 0"
-for the bcm2711 on newer kernel versions.
+On Tue, Dec 21, 2021 at 01:40:05PM +0000, Yassine Oudjana wrote:
+> Convert qcom,cpr.txt to DT schema format.
+> 
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> ---
+>  .../bindings/power/avs/qcom,cpr.txt           | 130 --------------
+>  .../bindings/power/avs/qcom,cpr.yaml          | 161 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 162 insertions(+), 131 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/power/avs/qcom,cpr.txt
+>  create mode 100644 Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml
 
-Signed-off-by: Richard Schleich <rs@noreya.tech>
----
- arch/arm/boot/dts/bcm2711.dtsi | 50 ++++++++++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
 
-diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-index 9e01dbca4a01..b2f403fc420c 100644
---- a/arch/arm/boot/dts/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/bcm2711.dtsi
-@@ -458,12 +458,26 @@
- 		#size-cells = <0>;
- 		enable-method = "brcm,bcm2836-smp"; // for ARM 32-bit
- 
-+		/* Source for d/i-cache-line-size and d/i-cache-sets
-+		 *  https://developer.arm.com/documentation/100095/0003
-+		 *  /Level-1-Memory-System/About-the-L1-memory-system?lang=en
-+		 * Source for d/i-cache-size
-+		 *  https://www.raspberrypi.com/documentation/computers
-+		 *  /processors.html#bcm2711
-+		 */
- 		cpu0: cpu@0 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a72";
- 			reg = <0>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0x0 0x000000d8>;
-+			d-cache-size = <0x8000>; // 32KB 2-way set-associative data cache
-+			d-cache-line-size = <64>;// Fixed line length of 64 bytes
-+			d-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
-+			i-cache-size = <0xc000>; // 48kB 3-way set-associative data cache
-+			i-cache-line-size = <64>;// Fixed line length of 64 bytes
-+			i-cache-sets = <256>; // 48KiB(size)/64(line-size)=768ways/3-way set
-+			next-level-cache = <&l2>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -472,6 +486,13 @@
- 			reg = <1>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0x0 0x000000e0>;
-+			d-cache-size = <0x8000>; // 32KB 2-way set-associative data cache
-+			d-cache-line-size = <64>;// Fixed line length of 64 bytes
-+			d-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
-+			i-cache-size = <0xc000>; // 48kB 3-way set-associative data cache
-+			i-cache-line-size = <64>;// Fixed line length of 64 bytes
-+			i-cache-sets = <256>; // 48KiB(size)/64(line-size)=768ways/3-way set
-+			next-level-cache = <&l2>;
- 		};
- 
- 		cpu2: cpu@2 {
-@@ -480,6 +501,13 @@
- 			reg = <2>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0x0 0x000000e8>;
-+			d-cache-size = <0x8000>; // 32KB 2-way set-associative data cache
-+			d-cache-line-size = <64>;// Fixed line length of 64 bytes
-+			d-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
-+			i-cache-size = <0xc000>; // 48kB 3-way set-associative data cache
-+			i-cache-line-size = <64>;// Fixed line length of 64 bytes
-+			i-cache-sets = <256>; // 48KiB(size)/64(line-size)=768ways/3-way set
-+			next-level-cache = <&l2>;
- 		};
- 
- 		cpu3: cpu@3 {
-@@ -488,6 +516,28 @@
- 			reg = <3>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0x0 0x000000f0>;
-+			d-cache-size = <0x8000>; // 32KB 2-way set-associative data cache
-+			d-cache-line-size = <64>;// Fixed line length of 64 bytes
-+			d-cache-sets = <256>; // 32KiB(size)/64(line-size)=512ways/2-way set
-+			i-cache-size = <0xc000>; // 48kB 3-way set-associative data cache
-+			i-cache-line-size = <64>;// Fixed line length of 64 bytes
-+			i-cache-sets = <256>; // 48KiB(size)/64(line-size)=768ways/3-way set
-+			next-level-cache = <&l2>;
-+		};
-+
-+		l2: l2-cache0 {
-+			/* Source for d/i-cache-line-size and d/i-cache-sets
-+			 *  https://developer.arm.com/documentation/100095/0003
-+			 *  /Level-2-Memory-System/About-the-L2-memory-system?lang=en
-+			 *  Source for d/i-cache-size
-+			 *  https://www.raspberrypi.com/documentation/computers
-+			 *  /processors.html#bcm2711
-+			 */
-+			compatible = "cache";
-+			cache-size = <0x100000>; // 1MB
-+			cache-line-size = <64>; // Fixed line length of 64 bytes
-+			cache-sets = <1024>; // 1MiB(size)/64(line-size)=16000ways/16-way set
-+			cache-level = <2>;
- 		};
- 	};
- 
--- 
-2.17.1
+> diff --git a/Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml b/Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml
+> new file mode 100644
+> index 000000000000..852eb36eea93
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml
+> @@ -0,0 +1,161 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/avs/qcom,cpr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Core Power Reduction (CPR) bindings
+> +
+> +maintainers:
+> +  - Niklas Cassel <nks@flawful.org>
+> +
+> +description: |
+> +  CPR (Core Power Reduction) is a technology to reduce core power on a CPU
+> +  or other device. Each OPP of a device corresponds to a "corner" that has
+> +  a range of valid voltages for a particular frequency. While the device is
+> +  running at a particular frequency, CPR monitors dynamic factors such as
+> +  temperature, etc. and suggests adjustments to the voltage to save power
+> +  and meet silicon characteristic requirements.
+> +
+> +properties:
+> +  compatible:
+> +    allOf:
 
+Don't need allOf with only 1 entry.
+
+> +      - items:
+> +          - enum:
+> +              - qcom,qcs404-cpr
+> +          - const: qcom,cpr
+> +
+> +  reg:
+> +    description: Base address and size of the RBCPR register region.
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Reference clock.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ref
+> +
+> +  vdd-apc-supply:
+> +    description: APC regulator supply.
+> +
+> +  '#power-domain-cells':
+> +    const: 0
+> +
+> +  operating-points-v2:
+> +    description: |
+> +      A phandle to the OPP table containing the performance states
+> +      supported by the CPR power domain.
+> +
+> +  acc-syscon:
+> +    description: A phandle to the syscon used for writing ACC settings.
+> +
+> +  nvmem-cells:
+> +    items:
+> +      - description: Corner 1 quotient offset
+> +      - description: Corner 2 quotient offset
+> +      - description: Corner 3 quotient offset
+> +      - description: Corner 1 initial voltage
+> +      - description: Corner 2 initial voltage
+> +      - description: Corner 3 initial voltage
+> +      - description: Corner 1 quotient
+> +      - description: Corner 2 quotient
+> +      - description: Corner 3 quotient
+> +      - description: Corner 1 ring oscillator
+> +      - description: Corner 2 ring oscillator
+> +      - description: Corner 3 ring oscillator
+> +      - description: Fuse revision
+> +
+> +  nvmem-cell-names:
+> +    items:
+> +      - const: cpr_quotient_offset1
+> +      - const: cpr_quotient_offset2
+> +      - const: cpr_quotient_offset3
+> +      - const: cpr_init_voltage1
+> +      - const: cpr_init_voltage2
+> +      - const: cpr_init_voltage3
+> +      - const: cpr_quotient1
+> +      - const: cpr_quotient2
+> +      - const: cpr_quotient3
+> +      - const: cpr_ring_osc1
+> +      - const: cpr_ring_osc2
+> +      - const: cpr_ring_osc3
+> +      - const: cpr_fuse_revision
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - vdd-apc-supply
+> +  - '#power-domain-cells'
+> +  - operating-points-v2
+> +  - nvmem-cells
+> +  - nvmem-cell-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    cpr_opp_table: cpr-opp-table {
+> +        compatible = "operating-points-v2-qcom-level";
+> +
+> +        cpr_opp1: opp1 {
+> +            opp-level = <1>;
+> +            qcom,opp-fuse-level = <1>;
+> +        };
+> +        cpr_opp2: opp2 {
+> +            opp-level = <2>;
+> +            qcom,opp-fuse-level = <2>;
+> +        };
+> +        cpr_opp3: opp3 {
+> +            opp-level = <3>;
+> +            qcom,opp-fuse-level = <3>;
+> +        };
+> +    };
+> +
+> +    power-controller@b018000 {
+> +        compatible = "qcom,qcs404-cpr", "qcom,cpr";
+> +        reg = <0x0b018000 0x1000>;
+> +        interrupts = <0 15 IRQ_TYPE_EDGE_RISING>;
+> +        clocks = <&xo_board>;
+> +        clock-names = "ref";
+> +        vdd-apc-supply = <&pms405_s3>;
+> +        #power-domain-cells = <0>;
+> +        operating-points-v2 = <&cpr_opp_table>;
+> +        acc-syscon = <&tcsr>;
+> +
+> +        nvmem-cells = <&cpr_efuse_quot_offset1>,
+> +            <&cpr_efuse_quot_offset2>,
+> +            <&cpr_efuse_quot_offset3>,
+> +            <&cpr_efuse_init_voltage1>,
+> +            <&cpr_efuse_init_voltage2>,
+> +            <&cpr_efuse_init_voltage3>,
+> +            <&cpr_efuse_quot1>,
+> +            <&cpr_efuse_quot2>,
+> +            <&cpr_efuse_quot3>,
+> +            <&cpr_efuse_ring1>,
+> +            <&cpr_efuse_ring2>,
+> +            <&cpr_efuse_ring3>,
+> +            <&cpr_efuse_revision>;
+> +        nvmem-cell-names = "cpr_quotient_offset1",
+> +            "cpr_quotient_offset2",
+> +            "cpr_quotient_offset3",
+> +            "cpr_init_voltage1",
+> +            "cpr_init_voltage2",
+> +            "cpr_init_voltage3",
+> +            "cpr_quotient1",
+> +            "cpr_quotient2",
+> +            "cpr_quotient3",
+> +            "cpr_ring_osc1",
+> +            "cpr_ring_osc2",
+> +            "cpr_ring_osc3",
+> +            "cpr_fuse_revision";
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index a7d86182fa6b..9ebbccb0494e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15746,7 +15746,7 @@ M:	Niklas Cassel <nks@flawful.org>
+>  L:	linux-pm@vger.kernel.org
+>  L:	linux-arm-msm@vger.kernel.org
+>  S:	Maintained
+> -F:	Documentation/devicetree/bindings/power/avs/qcom,cpr.txt
+> +F:	Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml
+>  F:	drivers/soc/qcom/cpr.c
+>  
+>  QUALCOMM CPUFREQ DRIVER MSM8996/APQ8096
+> -- 
+> 2.34.1
+> 
+> 
+> 
