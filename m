@@ -2,97 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A10B147C3C5
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 17:28:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5635447C3F1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 17:38:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233951AbhLUQ2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 11:28:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45976 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232746AbhLUQ2g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 11:28:36 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3D57C061574;
-        Tue, 21 Dec 2021 08:28:35 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        id S236550AbhLUQi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 11:38:28 -0500
+Received: from guitar.tcltek.co.il ([84.110.109.230]:47314 "EHLO mx.tkos.co.il"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231744AbhLUQi2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Dec 2021 11:38:28 -0500
+Received: from sapphire.tkos.co.il (unknown [10.0.4.11])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 726AE61688;
-        Tue, 21 Dec 2021 16:28:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30F4AC36AE9;
-        Tue, 21 Dec 2021 16:28:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640104114;
-        bh=nN4AHR3OkqAY7NOiMkBeo+hddknNIcMQ8QywF/aa76g=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=bc6mUS8RQv6q9L0CJA7/vZsM8uA1wd5crSSm9cMrYVbRKmHDAHle0eGji83fIltBp
-         hsylPpODCtiiVBZc4lSKjdpETl/OmAvuEq3V9+To7LYNZD2wYCN1LSfn3RFA4+7KZY
-         FaXJYpdKZ6BwUiTLKVGDCjqlltkA28I63BfdOjOXoizZYmLmpoEUGC99ihQBp32J0A
-         WnxiHGx7VbgFdZD7XMKx92000oCpkvHY35I3hwQF8il2GdZaKea1ft1KCDqKGPlXsY
-         2ngEf56EaWNpzVyCWYknqLM4sxzqCsuSC+1DUJmcqkh1hB8mk4r1OviPpnUCot20S2
-         UaWBjGYqiJ2VQ==
-From:   Kalle Valo <kvalo@kernel.org>
-To:     David Mosberger-Tang <davidm@egauge.net>
-Cc:     Rob Herring <robh@kernel.org>,
-        Ajay Singh <ajay.kathat@microchip.com>,
-        Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Adham Abozaeid <adham.abozaeid@microchip.com>
-Subject: Re: [PATCH v6 2/2] wilc1000: Document enable-gpios and reset-gpios properties
-References: <20211220180334.3990693-1-davidm@egauge.net>
-        <20211220180334.3990693-3-davidm@egauge.net>
-        <YcHu8qkzguAPZcKx@robh.at.kernel.org>
-        <5f4ab50b4773effafd0a43c8c541d49621f78980.camel@egauge.net>
-Date:   Tue, 21 Dec 2021 18:28:30 +0200
-In-Reply-To: <5f4ab50b4773effafd0a43c8c541d49621f78980.camel@egauge.net>
-        (David Mosberger-Tang's message of "Tue, 21 Dec 2021 09:06:48 -0700")
-Message-ID: <87a6gt53dd.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        by mx.tkos.co.il (Postfix) with ESMTPS id A63B5440AEE;
+        Tue, 21 Dec 2021 18:38:19 +0200 (IST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
+        s=default; t=1640104699;
+        bh=9XYsrbBnHsAAg5lSCXiOqjc1O4cYSrEkTOgJpR3Joqs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hfgfCyUCDWUVeOF6hyg/OZJSArQxlkDS1pCqh3yglOrdFRiUc4O95T0v5njE8h/An
+         obvtMD98jAZFB4jbpaoB+jemK5QhByRw7KCuS5z9BHRr/UZslopvRwzsuVEGm0z4V2
+         iwUH3T1DsBLALnZz/4lE/OppFuv0/uNq+/76VENRG566oMg0nJ+jkA5X3S/VTGF0N/
+         1VqOKSK3dwvCywC+uYcua1YljhiWnz77LD5i9POBbxWlnyDGPfxJFtxPWUZX8sPlC1
+         fhCN/WSYrX09cAwRHzc2Ro9i/llKSOuToUtF8miNChHjHtoMsGdMww+w2c/yUNr7F5
+         rFuSCamB8M0NQ==
+Date:   Tue, 21 Dec 2021 18:38:24 +0200
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] of: base: Improve argument length mismatch error
+Message-ID: <20211221163824.yrpr5rojjxocukxz@sapphire.tkos.co.il>
+References: <88f6428288756fb777d9fe6b910673c987757d10.1640076602.git.baruch@tkos.co.il>
+ <4cd1b24a2f4d185cf96799ab02ea4283437de67b.1640076602.git.baruch@tkos.co.il>
+ <CAL_JsqKNjPsBCZjP5BuYsXjLpc+YMaPJhq2NA=qU5NGtwifUwg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKNjPsBCZjP5BuYsXjLpc+YMaPJhq2NA=qU5NGtwifUwg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-David Mosberger-Tang <davidm@egauge.net> writes:
+Hi Rob,
 
-> On Tue, 2021-12-21 at 11:12 -0400, Rob Herring wrote:
->> On Mon, 20 Dec 2021 18:03:38 +0000, David Mosberger-Tang wrote:
->> > Add documentation for the ENABLE and RESET GPIOs that may be needed
->> > by
->> > wilc1000-spi.
->> > 
->> > Signed-off-by: David Mosberger-Tang <davidm@egauge.net>
->> > ---
->> >  .../net/wireless/microchip,wilc1000.yaml      | 19
->> > +++++++++++++++++++
->> >  1 file changed, 19 insertions(+)
->> > 
->> 
->> Please add Acked-by/Reviewed-by tags when posting new versions. 
->
-> Ah, sorry about that.
->
->> However,
->> there's no need to repost patches *only* to add the tags. The
->> upstream
->> maintainer will do that for acks received on the version they apply.
->> 
->> If a tag was not added on purpose, please state why and what changed.
->
-> Not on purpose.  I just didn't know how this is handled.
+On Tue, Dec 21, 2021 at 07:24:34AM -0400, Rob Herring wrote:
+> On Tue, Dec 21, 2021 at 4:51 AM Baruch Siach <baruch@tkos.co.il> wrote:
+> >
+> > The cells_name field of of_phandle_iterator might be NULL. Use the
+> > phandle name instead. With this change we get the more helpful messages:
+> >
+> >   OF: /soc/pinctrl@1000000: phandle pinctrl@1000000 needs 3, found 2
+> 
+> How is printing the same thing twice better?
 
-No worries, we have a lot of special rules :) I'll add Rob's tag from v5
-when I commit the patch.
+This is not the same thing. The first node is the parent node (it->parent), 
+the second is the phandle target (it->node). They happen to be the same in the 
+case I encountered[1]. I can generate a better example if it helps.
 
-Actually, I'm lazy and patchwork can pick it up automatically:
+Printing the property name would have been even better. But 
+of_phandle_iterator_init() does not preserve list_name.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+[1] https://lore.kernel.org/all/8a744cfd96aff5754bfdcf7298d208ddca5b319a.1638862030.git.baruch@tkos.co.il/
+
+baruch
+
+> > instead of:
+> >
+> >   OF: /soc/pinctrl@1000000: (null) = 3 found 2
+> >
+> > That should make DT debugging easier.
+> >
+> > Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+> > ---
+> >  drivers/of/base.c | 11 ++++++++---
+> >  1 file changed, 8 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/of/base.c b/drivers/of/base.c
+> > index 64218c614a85..7c03de370913 100644
+> > --- a/drivers/of/base.c
+> > +++ b/drivers/of/base.c
+> > @@ -1349,9 +1349,14 @@ int of_phandle_iterator_next(struct of_phandle_iterator *it)
+> >                  * property data length
+> >                  */
+> >                 if (it->cur + count > it->list_end) {
+> > -                       pr_err("%pOF: %s = %d found %ld\n",
+> > -                              it->parent, it->cells_name,
+> > -                              count, it->list_end - it->cur);
+> > +                       if (it->cells_name)
+> > +                               pr_err("%pOF: %s = %d found %ld\n",
+> > +                                       it->parent, it->cells_name,
+> > +                                       count, it->list_end - it->cur);
+> > +                       else
+> > +                               pr_err("%pOF: phandle %s needs %d, found %ld\n",
+> > +                                       it->parent, of_node_full_name(it->node),
+> > +                                       count, it->list_end - it->cur);
+> >                         goto err;
+> >                 }
+> >         }
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+                                                     ~. .~   Tk Open Systems
+=}------------------------------------------------ooO--U--Ooo------------{=
+   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
