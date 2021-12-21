@@ -2,68 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F3BE47C7C1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 20:48:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4889747C7C9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 20:52:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241898AbhLUTsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 14:48:47 -0500
-Received: from mail-qk1-f177.google.com ([209.85.222.177]:39716 "EHLO
-        mail-qk1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230226AbhLUTsq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 14:48:46 -0500
-Received: by mail-qk1-f177.google.com with SMTP id 69so119135qkd.6;
-        Tue, 21 Dec 2021 11:48:46 -0800 (PST)
+        id S241908AbhLUTwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 14:52:21 -0500
+Received: from mail-qk1-f176.google.com ([209.85.222.176]:42911 "EHLO
+        mail-qk1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229779AbhLUTwV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 14:52:21 -0500
+Received: by mail-qk1-f176.google.com with SMTP id g28so113346qkk.9;
+        Tue, 21 Dec 2021 11:52:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=cr4ohkHw/sRSaSwbagnguCVynOjj/JGVHdxWebkI42I=;
-        b=7P/gTtOfsGpouEtBn9CHR9ezpKEgtb8xTQKpaTmfZPw/MK3fzFMe63mU8I3QcUDcdZ
-         /cKhInVcyaxm/ScYGMT6uWxJGAHpNSdvJs9FmC+veTgIqPYkNmpi4/PTTwruykyRuWVk
-         uW/Rou917zhpZRqTVGgbw0QzsyBy5vvBoVmb7TIBmajzK1NUuOudwUOAMsUtYHz9jlJr
-         vhYjpsURA71TlPvsHzKVTd3lkGJlc5s5ZKk9X1Sby3ycrzuEjDWK0LiRjMCJtnwdV3sC
-         TgbQF5jiyAHFAuSE6nfK3sr5nFleDd0/FaM5mzbqvlhle5ofQzMfMELiqCcP8YZ5yfJq
-         WA0A==
-X-Gm-Message-State: AOAM533T/0WBYs6cwoeOORtgaq8NX0/den+PCSepI0TqsRp+Dj9JQM4Z
-        j0NjRO3EDqb7sEpeLHqGxw==
-X-Google-Smtp-Source: ABdhPJwXk30eHl9BnaqFn+Na777MBuoDagY1LQ5wk8N+oJ0D32Y8XLTVh1ccwmJgdv6WmLuAi8Vhmg==
-X-Received: by 2002:a37:9a94:: with SMTP id c142mr1649419qke.117.1640116125979;
-        Tue, 21 Dec 2021 11:48:45 -0800 (PST)
+        bh=6KTbJr72rRr9PgymTip4M6pAs/zMxShgqIUpXjW532I=;
+        b=YJvbynnGw+WcziAymS+HeHh4FN45U8uAkxdaI6inqFfariffat5ac9XRZ6msuBEvJV
+         02R9SVoOgTwWVFCCBDQKFJkJiszghCfkHl0Iii2DLtv9r2ivaplxg0uHrxWQKi3UfZ0Z
+         VaPefxKkz74mQIYw7fBEbGRP0rHgLPYRbgLwHajrAHBusAdpx6U1exhi+ERqlIz94JRE
+         D8LrqImwN6EYuhZJyl462gKvuYCuec/xghVYvb/f+/p9CudWhmpSexqYxzm2O86tnnvR
+         1Mjhbn6eZmUVgvk1tytf0Q7QwFof1NJvC5AXtFiT9YJVG2dq0fq0SFkAuSHIKXjXnIb/
+         Nwtw==
+X-Gm-Message-State: AOAM53089g9SPk2DLaDKaSIqhJa6RS4+WJSr6A8D5ZgsLJoAQTr6mDFp
+        S94uLkIfhDWsLUB0tOBtWA==
+X-Google-Smtp-Source: ABdhPJx3zZgrKOC/ikoGYyvjxr1YgqwCwXRo6Ficx2kO1hnoC7oIyz8VeuqxfzQ5mhKv/fqOVX9jkQ==
+X-Received: by 2002:a05:620a:b47:: with SMTP id x7mr2289893qkg.174.1640116340667;
+        Tue, 21 Dec 2021 11:52:20 -0800 (PST)
 Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id d17sm17161839qtx.96.2021.12.21.11.48.44
+        by smtp.gmail.com with ESMTPSA id 8sm18888546qtz.28.2021.12.21.11.52.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 11:48:45 -0800 (PST)
-Received: (nullmailer pid 1635995 invoked by uid 1000);
-        Tue, 21 Dec 2021 19:48:43 -0000
-Date:   Tue, 21 Dec 2021 15:48:43 -0400
+        Tue, 21 Dec 2021 11:52:19 -0800 (PST)
+Received: (nullmailer pid 1640609 invoked by uid 1000);
+        Tue, 21 Dec 2021 19:52:17 -0000
+Date:   Tue, 21 Dec 2021 15:52:17 -0400
 From:   Rob Herring <robh@kernel.org>
-To:     matthias.bgg@kernel.org
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        groeck@chromium.org, matthias.bgg@gmail.com, lee.jones@linaro.org,
-        Matthias Brugger <mbrugger@suse.com>, bleung@chromium.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] mfd: google,cros-ec: fix property name for MediaTek rpmsg
-Message-ID: <YcIvm/RaMxLL7gSK@robh.at.kernel.org>
-References: <20211218081543.3851-1-matthias.bgg@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v5 1/5] dt-bindings: pci: qcom: Document PCIe bindings
+ for SM8450
+Message-ID: <YcIwcUzYCq1v4Kfs@robh.at.kernel.org>
+References: <20211218141024.500952-1-dmitry.baryshkov@linaro.org>
+ <20211218141024.500952-2-dmitry.baryshkov@linaro.org>
+ <YcHr0/W0QqRlj1Ji@robh.at.kernel.org>
+ <CAA8EJpr1wfW2CLSjBjJdMhhgBmcnMRkx=x5SAC_4LDQCHw1_qA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211218081543.3851-1-matthias.bgg@kernel.org>
+In-Reply-To: <CAA8EJpr1wfW2CLSjBjJdMhhgBmcnMRkx=x5SAC_4LDQCHw1_qA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 18 Dec 2021 09:15:43 +0100, matthias.bgg@kernel.org wrote:
-> From: Matthias Brugger <mbrugger@suse.com>
+On Tue, Dec 21, 2021 at 06:43:31PM +0300, Dmitry Baryshkov wrote:
+> On Tue, 21 Dec 2021 at 17:59, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Sat, Dec 18, 2021 at 05:10:20PM +0300, Dmitry Baryshkov wrote:
+> > > Document the PCIe DT bindings for SM8450 SoC. The PCIe IP is similar
+> > > to the one used on SM8250, however unlike SM8250, PCIe0 and PCIe1 use
+> > > different set of clocks, so two compatible entries are required.
+> > >
+> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > ---
+> > >  .../devicetree/bindings/pci/qcom,pcie.txt     | 22 ++++++++++++++++++-
+> > >  1 file changed, 21 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.txt b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> > > index a0ae024c2d0c..0adb56d5645e 100644
+> > > --- a/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> > > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> > > @@ -15,6 +15,8 @@
+> > >                       - "qcom,pcie-sc8180x" for sc8180x
+> > >                       - "qcom,pcie-sdm845" for sdm845
+> > >                       - "qcom,pcie-sm8250" for sm8250
+> > > +                     - "qcom,pcie-sm8450-pcie0" for PCIe0 on sm8450
+> > > +                     - "qcom,pcie-sm8450-pcie1" for PCIe1 on sm8450
+> >
+> > What's the difference between the two?
 > 
-> The MediaTek rpmsg-name is defined as mediatek,rpmsg-name in
-> mtk,scp.yaml. Fix the binding documentation to match the new property
+> Clocks used by these hosts. Quoting the definition:
 > 
-> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
-> ---
->  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> +                     - "aggre0"      Aggre NoC PCIe0 AXI clock, only
+> for sm8450-pcie0
+> +                     - "aggre1"      Aggre NoC PCIe1 AXI clock
 > 
+> aggre1 is used by both pcie0 and pcie1, while aggre0 is used only by pcie0.
 
-Acked-by: Rob Herring <robh@kernel.org>
+That doesn't really seem like you need a different compatible for that. 
+Do you need to handle them differently? It seems like abuse of clocks 
+putting bus/interconnect clocks here, but sadly that's all too common.
+
+Rob
