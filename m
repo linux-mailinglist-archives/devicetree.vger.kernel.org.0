@@ -2,100 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60A3C47C197
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 15:36:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF79F47C1A3
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 15:38:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234516AbhLUOgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 09:36:13 -0500
-Received: from mail-qv1-f54.google.com ([209.85.219.54]:39554 "EHLO
-        mail-qv1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234548AbhLUOgM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 09:36:12 -0500
-Received: by mail-qv1-f54.google.com with SMTP id g15so11243446qvi.6;
-        Tue, 21 Dec 2021 06:36:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=DAgxIL5+LfBMOUij7dixBA2kzok+uhqjW0YOVP3FJ64=;
-        b=iPqQbnlc5nFOllfSKi7vz2BQst5cYpXBWvcKH2KEQVbvvGNBfbr+wC0BXMaOBbw9Um
-         UyMfW2guV3g5SFzi4Xf8nar2CaS3crpjp1IAAL2FrmF8xwLnkLJf2zWmPna5MELV7PHz
-         +k3RCGkJFLhPc8wlQR4x6PV1EhNEiHrdiTvZVqhT4MVUNtxpnE1vXzfOarVFA+dPiCzO
-         i7S7qLgTTGh27JYGlwvzSlJH7xghu5w7FGKHGuJg/EYubAwu5Hv2O8wC4pka/djP58Mx
-         MpiEp9q9Vdopi3DLSDpOTJpIKwqmbrn77WJ7KQthDW5NZFZqKQgo37laEXnZ1zewMoC0
-         KK/g==
-X-Gm-Message-State: AOAM532vTVHO4fFFcIHdRgKp7fQgXmfW6zSPkvmefcyczcjVjfgxpT6A
-        QOoZ4Mm9inVrPILzKNq7hA==
-X-Google-Smtp-Source: ABdhPJylBXG4muz9ukCyJcRPgG5j/wh/YvvIRKT8d1OTxRKfi+lOHWdekpwKJ6hBomGZ8F/6CfNqsA==
-X-Received: by 2002:a05:6214:76a:: with SMTP id f10mr2246866qvz.80.1640097371373;
-        Tue, 21 Dec 2021 06:36:11 -0800 (PST)
-Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id u7sm14864481qkp.17.2021.12.21.06.36.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 06:36:10 -0800 (PST)
-Received: (nullmailer pid 1365872 invoked by uid 1000);
-        Tue, 21 Dec 2021 14:36:08 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        netdev@vger.kernel.org, linux-clk@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20211221094717.16187-12-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20211221094717.16187-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20211221094717.16187-12-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 11/16] dt-bindings: pinctrl: renesas: Document RZ/V2L pinctrl
-Date:   Tue, 21 Dec 2021 10:36:08 -0400
-Message-Id: <1640097368.261963.1365871.nullmailer@robh.at.kernel.org>
+        id S231432AbhLUOiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 09:38:21 -0500
+Received: from mail-m17643.qiye.163.com ([59.111.176.43]:28718 "EHLO
+        mail-m17643.qiye.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229741AbhLUOiU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 09:38:20 -0500
+DKIM-Signature: a=rsa-sha256;
+        b=ZOTauHFSTptQElpXZ96+6MkHnw7m/374FVSmeXCjCQE9QFDsXeobqVeRvr3ThhrQVf38metm8RmuzBFHpDGO/Db1WXxHhcltqxwKom5hHUfmYsm5YKGa6bX+2MmrWZQCXtPHVxEj0/jJMUWpvv9/DhbhzEbltu1WLUemJSUXwQs=;
+        s=default; c=relaxed/relaxed; d=vivo.com; v=1;
+        bh=qqi2NB++O8YsRSISzGbQPm9lkvKN4dVoNjxQD2PLFW8=;
+        h=date:mime-version:subject:message-id:from;
+Received: from vivo-600-G6.vivo.xyz (unknown [58.251.74.232])
+        by mail-m17643.qiye.163.com (Hmail) with ESMTPA id 76B457E03B1;
+        Tue, 21 Dec 2021 22:38:18 +0800 (CST)
+From:   Yaqin Pan <akingchen@vivo.com>
+To:     s.shtylyov@omp.ru
+Cc:     akingchen@vivo.com, balbi@kernel.org, devicetree@vger.kernel.org,
+        gregkh@linuxfoundation.org, kernel@vivo.com,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: usb: document snps,dis_split_quirk property in dwc3
+Date:   Tue, 21 Dec 2021 22:38:06 +0800
+Message-Id: <20211221143806.4143-1-akingchen@vivo.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <cb1c928c-07fa-e6f0-8166-d68596224105@omp.ru>
+References: <cb1c928c-07fa-e6f0-8166-d68596224105@omp.ru>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWUJMTE1WT09MTR0eH0xDHk
+        1LVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWVVLWQY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OjI6HSo4LT5WPSgcPBoxPjVK
+        Eh0aCjhVSlVKTU9LS0JMT0JCS0lMVTMWGhIXVRoQEhUcGBMeFTsNEg0UVRgUFkVZV1kSC1lBWU5D
+        VUlOSlVMT1VJSElZV1kIAVlBSklISTcG
+X-HM-Tid: 0a7ddd6dc681d999kuws76b457e03b1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Dec 2021 09:47:12 +0000, Lad Prabhakar wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
-> 
-> Document Renesas RZ/V2L pinctrl bindings. The RZ/V2L is package- and
-> pin-compatible with the RZ/G2L. No driver changes are required as RZ/G2L
-> compatible string "renesas,r9a07g044-pinctrl" will be used as a fallback.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  .../bindings/pinctrl/renesas,rzg2l-pinctrl.yaml   | 15 +++++++++++----
->  1 file changed, 11 insertions(+), 4 deletions(-)
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml:26:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1571555
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Sorry, i make a mistake, and the snps,dis_split_quirk should be snps,sprs-ctrl-trans-quirk.
+And i will renew the patch.
