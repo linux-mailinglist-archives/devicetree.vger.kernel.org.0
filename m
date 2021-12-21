@@ -2,115 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BE5B47C8A9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 22:09:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CDDA47C8B1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 22:13:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235645AbhLUVJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 16:09:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54776 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234920AbhLUVJj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 16:09:39 -0500
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40B48C061401
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 13:09:39 -0800 (PST)
-Received: by mail-qv1-xf32.google.com with SMTP id g15so450800qvi.6
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 13:09:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5b8n9orjAEw20yJsUAGO8xOhgi3RcUL34raFmKfwMXw=;
-        b=yts9ohbmCCUWr3HVviMlhLdcGCGcYytNi3Xxr0i8vdU5sxgJU9tbhkWxfue0cntgSu
-         LsFNtcZO5eVezqWQosNtyUOZBYj3uJjiYoeMBUbbD4B1WdllWuiAVAB5rRdof4246HuC
-         3/IropbvZ+DfegxN5sguXRI5xVJxq9k2pXQZDh3QgUMe45/kW7r9rx6JUjFHoUg1F5CD
-         KN6n3Gwn9s3Wf0LKPVtNAMwJobIQGqIimtGIQPXoOecIsajN0bfNTtcnIy9o5C3oF20C
-         IdcSR62YI92QCrGdl08wtQ8dNfsC2qE9qVywEBN0t948uemB9KXWogaJtUYARsonSdZ2
-         /Jzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5b8n9orjAEw20yJsUAGO8xOhgi3RcUL34raFmKfwMXw=;
-        b=p5u87pz44rR/1zAikop//dIbBVInlrRnSk9gwVDKhXasejJkBfnXVdEJXMmF8IBH0r
-         RQkgdAiWtgLJ3Vex4pE3JbYTAQ9iO1n99WKtkG1aQAACzK9zV4O3rQMDu4eLMweGZ1s6
-         6apP/l7P04dcy4uvzil2L5LEsR2hqgRRZIbc0Ii8r9OCHYZDHQhzYIBY99eJhX+bEhNs
-         98jaVMkTrV16uDfnGIrPrJyVr1Yz7CyXiTS5WddcP030/whPmsZAJyKI8fMf6jIz3cuI
-         5O7DsX4u4yofqp7BLG/v18vQfugQVYiLoNt0ZTf+ydnqlxdjSHTogb0zY4hX+FDIwhuy
-         jRCg==
-X-Gm-Message-State: AOAM531yBnjdCVvbeQQ4PlPnulT9sinlTNuwOIjj2FufwCd2TzwNbt6u
-        wA8t3l/qhwQ0pmABPkj58jxoduwwpOe2qmphWQTdpg==
-X-Google-Smtp-Source: ABdhPJzO5NpLO0SWdQTQPLQ3pS5T+LQSeDWkBslctelVx9sng0G6KIRVPPF5PRkzhgH/O69heeBVsDLZKSB8oL6gvHE=
-X-Received: by 2002:a05:6214:248a:: with SMTP id gi10mr108271qvb.115.1640120978287;
- Tue, 21 Dec 2021 13:09:38 -0800 (PST)
+        id S236291AbhLUVNG convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 21 Dec 2021 16:13:06 -0500
+Received: from lithops.sigma-star.at ([195.201.40.130]:44052 "EHLO
+        lithops.sigma-star.at" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230326AbhLUVNG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 16:13:06 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by lithops.sigma-star.at (Postfix) with ESMTP id F113B62DA5F6;
+        Tue, 21 Dec 2021 22:13:04 +0100 (CET)
+Received: from lithops.sigma-star.at ([127.0.0.1])
+        by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id zP1ltzRIKDzP; Tue, 21 Dec 2021 22:13:03 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+        by lithops.sigma-star.at (Postfix) with ESMTP id C8D3662DA5F1;
+        Tue, 21 Dec 2021 22:13:03 +0100 (CET)
+Received: from lithops.sigma-star.at ([127.0.0.1])
+        by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id 9ZlfUu-NM3ib; Tue, 21 Dec 2021 22:13:03 +0100 (CET)
+Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
+        by lithops.sigma-star.at (Postfix) with ESMTP id 9A16A60A3582;
+        Tue, 21 Dec 2021 22:13:03 +0100 (CET)
+Date:   Tue, 21 Dec 2021 22:13:03 +0100 (CET)
+From:   Richard Weinberger <richard@nod.at>
+To:     Johannes Berg <johannes@sipsolutions.net>
+Cc:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        Jeff Dike <jdike@addtoit.com>,
+        anton ivanov <anton.ivanov@cambridgegreys.com>,
+        kernel <kernel@axis.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-um <linux-um@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>
+Message-ID: <1446970217.191062.1640121183419.JavaMail.zimbra@nod.at>
+In-Reply-To: <c48f86ad5d31f7f0cfa08d895bb03a4d92a3ce26.camel@sipsolutions.net>
+References: <20211208151123.29313-1-vincent.whitchurch@axis.com> <342397676.191011.1640120120622.JavaMail.zimbra@nod.at> <c48f86ad5d31f7f0cfa08d895bb03a4d92a3ce26.camel@sipsolutions.net>
+Subject: Re: [PATCH 0/2] Devicetree support for UML
 MIME-Version: 1.0
-References: <20211218141024.500952-1-dmitry.baryshkov@linaro.org>
- <20211218141024.500952-2-dmitry.baryshkov@linaro.org> <YcHr0/W0QqRlj1Ji@robh.at.kernel.org>
- <CAA8EJpr1wfW2CLSjBjJdMhhgBmcnMRkx=x5SAC_4LDQCHw1_qA@mail.gmail.com> <YcIwcUzYCq1v4Kfs@robh.at.kernel.org>
-In-Reply-To: <YcIwcUzYCq1v4Kfs@robh.at.kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 22 Dec 2021 00:09:27 +0300
-Message-ID: <CAA8EJpr7c-x3WJJQCXy3Wo0o82vODw4svwdZHrJ6ht5=WLNJ3A@mail.gmail.com>
-Subject: Re: [PATCH v5 1/5] dt-bindings: pci: qcom: Document PCIe bindings for SM8450
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-Originating-IP: [195.201.40.130]
+X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF95 (Linux)/8.8.12_GA_3809)
+Thread-Topic: Devicetree support for UML
+Thread-Index: xFJr8Y1gUUL3kk9OrWANIXE8xRKDHQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Dec 2021 at 22:52, Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Dec 21, 2021 at 06:43:31PM +0300, Dmitry Baryshkov wrote:
-> > On Tue, 21 Dec 2021 at 17:59, Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Sat, Dec 18, 2021 at 05:10:20PM +0300, Dmitry Baryshkov wrote:
-> > > > Document the PCIe DT bindings for SM8450 SoC. The PCIe IP is similar
-> > > > to the one used on SM8250, however unlike SM8250, PCIe0 and PCIe1 use
-> > > > different set of clocks, so two compatible entries are required.
-> > > >
-> > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > > ---
-> > > >  .../devicetree/bindings/pci/qcom,pcie.txt     | 22 ++++++++++++++++++-
-> > > >  1 file changed, 21 insertions(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.txt b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> > > > index a0ae024c2d0c..0adb56d5645e 100644
-> > > > --- a/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> > > > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> > > > @@ -15,6 +15,8 @@
-> > > >                       - "qcom,pcie-sc8180x" for sc8180x
-> > > >                       - "qcom,pcie-sdm845" for sdm845
-> > > >                       - "qcom,pcie-sm8250" for sm8250
-> > > > +                     - "qcom,pcie-sm8450-pcie0" for PCIe0 on sm8450
-> > > > +                     - "qcom,pcie-sm8450-pcie1" for PCIe1 on sm8450
-> > >
-> > > What's the difference between the two?
-> >
-> > Clocks used by these hosts. Quoting the definition:
-> >
-> > +                     - "aggre0"      Aggre NoC PCIe0 AXI clock, only
-> > for sm8450-pcie0
-> > +                     - "aggre1"      Aggre NoC PCIe1 AXI clock
-> >
-> > aggre1 is used by both pcie0 and pcie1, while aggre0 is used only by pcie0.
->
-> That doesn't really seem like you need a different compatible for that.
-> Do you need to handle them differently? It seems like abuse of clocks
-> putting bus/interconnect clocks here, but sadly that's all too common.
+----- Ursprüngliche Mail -----
+> Von: "Johannes Berg" <johannes@sipsolutions.net>
+> An: "richard" <richard@nod.at>, "Vincent Whitchurch" <vincent.whitchurch@axis.com>
+> CC: "Jeff Dike" <jdike@addtoit.com>, "anton ivanov" <anton.ivanov@cambridgegreys.com>, "kernel" <kernel@axis.com>,
+> "linux-kernel" <linux-kernel@vger.kernel.org>, "linux-um" <linux-um@lists.infradead.org>, "devicetree"
+> <devicetree@vger.kernel.org>
+> Gesendet: Dienstag, 21. Dezember 2021 21:56:50
+> Betreff: Re: [PATCH 0/2] Devicetree support for UML
 
-Unfortunately, yes, it looks like we need to handle them differently.
-The clocks are not handled by the interconnect on their own.
+> On Tue, 2021-12-21 at 21:55 +0100, Richard Weinberger wrote:
+>> Vincent,
+>> 
+>> ----- Ursprüngliche Mail -----
+>> > Von: "Vincent Whitchurch" <vincent.whitchurch@axis.com>
+>> > An: "Jeff Dike" <jdike@addtoit.com>, "richard" <richard@nod.at>, "anton ivanov"
+>> > <anton.ivanov@cambridgegreys.com>
+>> > CC: kernel@axis.com, "linux-kernel" <linux-kernel@vger.kernel.org>, "linux-um"
+>> > <linux-um@lists.infradead.org>,
+>> > "devicetree" <devicetree@vger.kernel.org>, "Vincent Whitchurch"
+>> > <vincent.whitchurch@axis.com>
+>> > Gesendet: Mittwoch, 8. Dezember 2021 16:11:21
+>> > Betreff: [PATCH 0/2] Devicetree support for UML
+>> 
+>> > This series add support for passing a devicetree blob to UML.  It can be used
+>> > for testing device drivers.
+>> 
+>> Nice feature.
+>> Code looks good so far. But while building I'm facing this warning:
+>> 
+>> WARNING: unmet direct dependencies detected for OF_EARLY_FLATTREE
+>>   Depends on [n]: OF [=n]
+>>   Selected by [y]:
+>>   - UML [=y]
+>> 
+>> 
+>> Please note that my UML config has CONFIG_OF=n.
+>> 
+> 
+> Hm. So maybe that needs to be
+> 
+>	select OF_EARLY_FLATTREE if OF
 
--- 
-With best wishes
-Dmitry
+Yeah, IIRC arm and mips use such a pattern too.
+Vincent, what do you think?
+
+Thanks,
+//richard
