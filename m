@@ -2,69 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 294C047C5D4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 19:09:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59BEB47C5FD
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 19:11:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232255AbhLUSJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 13:09:03 -0500
-Received: from mail-qv1-f48.google.com ([209.85.219.48]:39826 "EHLO
-        mail-qv1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236910AbhLUSJD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 13:09:03 -0500
-Received: by mail-qv1-f48.google.com with SMTP id g15so8873qvi.6;
-        Tue, 21 Dec 2021 10:09:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=GbwuGuR9jfAEfWHT8YPJNc9cTjP1HSl8uRhaJJDjW80=;
-        b=jWRtbK83gzfd/qBddHl77Dqs6PTRx5rdmQC5j6SmwePWQQQi8hA5Nqi84xPoz/QbOe
-         e2b7vy5tuzL507V99emzVjCrDVs1BqOUcAwgEzM4iLYmIpk40L5d5TIMnsPeDXbVUD18
-         6975/xjKDR0rt/Q8MTvy0zyabi6OiAtYPoWGDPO1LdFAbr9fQprqvC3McQgqlpVYXeDd
-         sR+PgC9WLNr8FudFGOJ++hd8pQwfAfO+qxCWMbNy6kudZRvh4wf15BQnls1x8mApIYQ7
-         bUojW5UO3AwFeyR20gdMSsQAsb0pTXqRAeMpCbmPoSNCJVCnTZz8YgxP+8+hPsS222I6
-         SKiw==
-X-Gm-Message-State: AOAM530EgvrDLNogknc/QW54ddqmzYnnidhPVuStrgDYrRnIbEmikbYo
-        P8FU7cLvqZEWHz3wHGoBVQ==
-X-Google-Smtp-Source: ABdhPJwQakcHH+jQK4zwEgDoG3F8/3Wzg7wCEt07ZDVyOcZ+SKAixTM0lG4z2HhmqkeTvEtJf+ZGeg==
-X-Received: by 2002:a05:6214:27ee:: with SMTP id jt14mr3449666qvb.119.1640110141686;
-        Tue, 21 Dec 2021 10:09:01 -0800 (PST)
-Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id l22sm17069921qtj.68.2021.12.21.10.09.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 10:09:01 -0800 (PST)
-Received: (nullmailer pid 1513560 invoked by uid 1000);
-        Tue, 21 Dec 2021 18:08:58 -0000
-Date:   Tue, 21 Dec 2021 14:08:58 -0400
-From:   Rob Herring <robh@kernel.org>
-To:     Eugen Hristev <eugen.hristev@microchip.com>
-Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, jic23@kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: adc: atmel,sama5d2-adc: make
- atmel,trigger-edge-type non-mandatory
-Message-ID: <YcIYOh6TmtVElt05@robh.at.kernel.org>
-References: <20211217095401.583821-1-eugen.hristev@microchip.com>
+        id S240999AbhLUSLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 13:11:24 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:40970 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233449AbhLUSLX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 13:11:23 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 588786171A;
+        Tue, 21 Dec 2021 18:11:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7805C36AE9;
+        Tue, 21 Dec 2021 18:11:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640110282;
+        bh=7ezUXDCpzUX86IBuxs4d3ZAJp0n6hwwofR+D+8ceuW4=;
+        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+        b=hucdRqR5W0X5UXLZbnLopw3wMx2rmIBkTz3XiMlHCvu+G5azjzhCB5lES3Ix0nqGK
+         KMcbL5At6410aQEw4fCja1mAfNCsqsFo/KI8/LDRboQlIIECdXhOWshSJttNP1rimv
+         1fWQln4hr1dZY2k6H6DuXDpJLH0LjXZHdNl43ttGbNvgSdWpJeRM3DWxryrLD0104j
+         kfv73BFjCezBuYP09mHG6uZwm46/s/Oz5XiEWoermMcox5H0OTigfNUPf4+la7hZtd
+         Rw5RUnZp9z8JYgE+j4ZqRVsz4iBW0qjbir/cl7DquxgqSNUuKn8P+CBDVFrqmx4HBr
+         7kpX9Ony7OsZA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211217095401.583821-1-eugen.hristev@microchip.com>
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v6 1/2] wilc1000: Add reset/enable GPIO support to SPI
+ driver
+From:   Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20211220180334.3990693-2-davidm@egauge.net>
+References: <20211220180334.3990693-2-davidm@egauge.net>
+To:     David Mosberger-Tang <davidm@egauge.net>
+Cc:     Ajay Singh <ajay.kathat@microchip.com>,
+        Adham Abozaeid <adham.abozaeid@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        David Mosberger-Tang <davidm@egauge.net>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <164011027826.7951.6332452994063982868.kvalo@kernel.org>
+Date:   Tue, 21 Dec 2021 18:11:19 +0000 (UTC)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Dec 2021 11:54:01 +0200, Eugen Hristev wrote:
-> The atmel,trigger-edge-type was never imposed by the driver.
-> Make things right and remove this property from the mandatory list.
-> This will not break existing nodes because according to the binding they
-> should have this property.
-> However, the driver does not impose it and it works without it, the property
-> selects the trigger type, and without it, the driver will have no trigger
-> available, which is the case on some boards which do not have access
-> to the trigger pin.
-> This will avoid generating this warning for example:
-> 
-> */arch/arm/boot/dts/at91-sama7g5ek.dt.yaml: adc@e1000000: 'atmel,trigger-edge-type' is a required property
-> 
+David Mosberger-Tang <davidm@egauge.net> wrote:
 
-Acked-by: Rob Herring <robh@kernel.org>
+> For the SDIO driver, the RESET/ENABLE pins of WILC1000 are controlled
+> through the SDIO power sequence driver.  This commit adds analogous
+> support for the SPI driver.  Specifically, during initialization, the
+> chip will be ENABLEd and taken out of RESET and during
+> deinitialization, the chip will be placed back into RESET and disabled
+> (both to reduce power consumption and to ensure the WiFi radio is
+> off).
+> 
+> Both RESET and ENABLE GPIOs are optional.  However, if the ENABLE GPIO
+> is specified, then the RESET GPIO should normally also be specified as
+> otherwise there is no way to ensure proper timing of the ENABLE/RESET
+> sequence.
+> 
+> Signed-off-by: David Mosberger-Tang <davidm@egauge.net>
+
+Failed to apply, please rebase on top of wireless-drivers-next.
+
+error: sha1 information is lacking or useless (drivers/net/wireless/microchip/wilc1000/wlan.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: wilc1000: Add reset/enable GPIO support to SPI driver
+Patch failed at 0001 wilc1000: Add reset/enable GPIO support to SPI driver
+
+2 patches set to Changes Requested.
+
+12688345 [v6,1/2] wilc1000: Add reset/enable GPIO support to SPI driver
+12688343 [v6,2/2] wilc1000: Document enable-gpios and reset-gpios properties
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20211220180334.3990693-2-davidm@egauge.net/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
