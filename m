@@ -2,92 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E2247C090
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 14:15:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D44CB47C09D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 14:18:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235214AbhLUNPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 08:15:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56954 "EHLO
+        id S235151AbhLUNSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 08:18:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229732AbhLUNPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 08:15:51 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFD12C061574;
-        Tue, 21 Dec 2021 05:15:51 -0800 (PST)
+        with ESMTP id S235070AbhLUNSG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 08:18:06 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B59C061574;
+        Tue, 21 Dec 2021 05:18:06 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6F416B816A7;
-        Tue, 21 Dec 2021 13:15:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2517C36AE8;
-        Tue, 21 Dec 2021 13:15:45 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0E31E61599;
+        Tue, 21 Dec 2021 13:18:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D14CC36AE2;
+        Tue, 21 Dec 2021 13:18:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640092549;
-        bh=sk0Q9IPjJ44wyQeKhwyoUIo8aDfFP9mAvviunqg2RJQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=m6Ru1qA/BwMNoRmlG3JT9QXGR7mNlPURyEPBPgg7O2UVh+qO6kgbt5FD21wOiX+Bn
-         NZ7W2z6fpqKzcBDwnmLpsgGey4EyfMeELoFvvqROKvH7klb6kMzwg3OxYtArZaKZP1
-         RxWpgLvHHpiiPsoh+vaQOIRDhZ9CO0v2iL0aNqYVxpwJtb4TZUnPK7+TbM4SV7kfS6
-         HyNbs6hoJotoxtg0Ln/agVd71oHIvWggsl3yIIgH9YEPIFuHIoZjvGbdmFePG9aDaN
-         EWPywZM1HhIcAcar0Fl6PppzJSR96PwF+t/cqynz7rjo0UiUeb9mi26QjVlU7KF89J
-         LmbcUT7+cUE9Q==
-Date:   Tue, 21 Dec 2021 13:15:42 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v10 1/10] ASoC: qcom: SC7280: Update config for building
- codec dma drivers
-Message-ID: <YcHTfh8ojUc1wB7W@sirena.org.uk>
-References: <1639503391-10715-1-git-send-email-quic_srivasam@quicinc.com>
- <1639503391-10715-2-git-send-email-quic_srivasam@quicinc.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="9LTqFLt7kVn5dSDb"
-Content-Disposition: inline
-In-Reply-To: <1639503391-10715-2-git-send-email-quic_srivasam@quicinc.com>
-X-Cookie: Use only as directed.
+        s=k20201202; t=1640092685;
+        bh=vo8HYA91fJrNzKCM3e/ChCv+UtZgf7w0ko3Vww763Ok=;
+        h=From:To:Cc:Subject:Date:From;
+        b=d1CD9eLSgsDY50iyZueLU7GJUc+oyul+BlDojq++kIC5nePz8yx/g72Tw1UNGVG+B
+         uxFXucfCbEFxUh5o64+06pnL9DDe44Aphmahc+B+x2cLrFvBic87y7162RD9FQqF3q
+         hQ6gulHE4ezkvJ72FoT+b1p4AmBf0XnWuYiznsved4kf0SbEvyQMERVgwVOJ8zSHzU
+         lF7Etk6upTqlgqHi4ucMv3pJPYPfv/ANoDnq+pMSuzwjLNG4/2ez4c6vdM+wAPjket
+         y2GuRLk0RwSBTNY9IBYFTqWm7cv/3Ifo2fIxCHhkK01R1lBp936KTxaFtRMdHWEpz9
+         UI6FDxmWDobiA==
+From:   Roger Quadros <rogerq@kernel.org>
+To:     krzysztof.kozlowski@canonical.com, miquel.raynal@bootlin.com,
+        tony@atomide.com
+Cc:     robh@kernel.org, kishon@ti.com, nm@ti.com, vigneshr@ti.com,
+        linux-mtd@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH v4 0/4] memory: omap-gpmc: Add AM64 SoC support
+Date:   Tue, 21 Dec 2021 15:17:53 +0200
+Message-Id: <20211221131757.2030-1-rogerq@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---9LTqFLt7kVn5dSDb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+TI's AM64 SoC contains one GPMC module. Add driver support for it.
 
-On Tue, Dec 14, 2021 at 11:06:22PM +0530, Srinivasa Rao Mandadapu wrote:
+cheers,
+-roger
 
-> This patch set depends on:
->     -- sc7280 machine driver patch
->        (https://patchwork.kernel.org/project/alsa-devel/list/?series=590035&state=%2A&archive=both)
+Changelog:
+v4
+- move compatible match table to header file so it can be used by
+GPMC driver even when NAND driver is not enabled or as a module.
+GPMC driver is always enabled as built-in.
+- Select OMAP_GPMC driver from MTD_NAND_OMAP2 driver config as
+OMAP_GPMC is not essential for ARCH_K3 boot.
 
-Can you please just either submit a single patch set or hold off on
-submitting this until you've got the machine driver merged?  Both are
-going through huge numbers of revisions so there seem to be substantial
-difficulties here and having to follow web links to figure out what
-patch sets you're talking about when you talk about dependencies is just
-making things more complicated to manage.
+v3
+- use compatible match table for checking for NAND controller node in
+GPMC driver.
 
---9LTqFLt7kVn5dSDb
-Content-Type: application/pgp-signature; name="signature.asc"
+v2
+- update DT binding doc to make reg-names and power-domains property
+required only for specific SoC.
 
------BEGIN PGP SIGNATURE-----
+Roger Quadros (4):
+  dt-bindings: memory-controllers: ti,gpmc: Add compatible for AM64
+  memory: omap-gpmc: Add support for GPMC on AM64 SoC
+  memory: omap-gpmc: Use a compatible match table when checking for NAND
+    controller
+  mtd: rawnand: omap2: Select GPMC device driver for ARCH_K3
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHB034ACgkQJNaLcl1U
-h9DKsgf+KSR5/R77djrkp5CPROoyS7NGtEZZ1o4SzjI1cl1P6waYki8BHEN7K1ZE
-uibXZZSeqbxRzSxb/1gn86KWUP/arKBmZRBZy7VESp1jIp7sGmaI9FQaDHe3i/CQ
-QnqU7nBbQvxuh2uquOOOpidfAoZ3t3bT220ZNvjT53Ck4mkqqGet7/CrigdmJkxL
-cjGMHM8Ps/vDSSNCJ/2pcYotf8+FqT9sPlss4vyNFtdzgzSGVfGSyAuDl47l0QCW
-VSiDU/AslHMLFcpESz9GnvKxYZW9q8YdTLgYCoQWiYUEWyXeBTKfxSEcU+N8akU6
-i7C4mlIOtcD4DP8NHGgnvPLXBa/+zg==
-=5IV1
------END PGP SIGNATURE-----
+ .../bindings/memory-controllers/ti,gpmc.yaml  | 23 +++++++++-
+ drivers/memory/omap-gpmc.c                    | 46 ++++++++++++++-----
+ drivers/mtd/nand/raw/Kconfig                  |  1 +
+ drivers/mtd/nand/raw/omap2.c                  |  5 +-
+ include/linux/platform_data/mtd-nand-omap2.h  |  9 +++-
+ 5 files changed, 67 insertions(+), 17 deletions(-)
 
---9LTqFLt7kVn5dSDb--
+-- 
+2.17.1
+
