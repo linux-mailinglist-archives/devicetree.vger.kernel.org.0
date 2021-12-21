@@ -2,202 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71F0047C390
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 17:12:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A10B147C3C5
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 17:28:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239573AbhLUQMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 11:12:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42376 "EHLO
+        id S233951AbhLUQ2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 11:28:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239532AbhLUQMq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 11:12:46 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BACAC061574
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 08:12:46 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id i31so15194518lfv.10
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 08:12:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Yfv5aXMU9TYpLkiQK9aoGDrbvJw2B5NWyCkCE7qVn0k=;
-        b=li1ReLybOkP08XdCuVSUKkhKFh1tsynEzrShPG9tZVG77RW9mAiWDi4AALJYfzNdE3
-         LPEM9MZpsgQ9nij1CHvG9nCSG0Okwi1oRSMbA/aPRvK5ThBYQ5gxdrIvuI78xHPYOR6i
-         h2L46+0MQxhX1hxzR4RthfzbMtFSpbxbVzRTlBwv4MH1pyfYxW+x/RVhws1OwZI2IrII
-         sgHNWzl2ovqTZ404wyQBl8D2ZNMUmIfQNLSIUM/dJ5GkZ2jJmBSGqCR18KoxdL5q6+13
-         eBZPSqoREQ8LdWM4/qNzxjb76VGzROfJ5pnHTrS4/RMjR7FyoD9XqEiXdMxcg0ua3oxI
-         /92w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Yfv5aXMU9TYpLkiQK9aoGDrbvJw2B5NWyCkCE7qVn0k=;
-        b=TjUoPtLQPG6FqRH2mX5O7rMjytIAv6LoyVNG50oMQLN8flhcCZnPU1uvKd2yqSPYw3
-         AZcLDDF8y58VBerBZM17eaklcFa94+PwXwfAaCvvLjkBPg1ra3zgPFi6R0b9TfRFomca
-         97961OJOmExQZ1j3SJmRVErqVcv2GB65dpergSAt9Qgjaojn8Z3C+hjzOReB151Uh7ht
-         qckl233+wjGO7GHtvy/9vFGGHSbWA04CgHdWHaEymJtU7tOlUhCKCIwV2rrfMlDvulhB
-         f4+hvyCqxNUPdi1yyVjcGEtYrA8yY3rPSIQR7HCZfNzxHy3hPBR72yCDpgXAicNUe6Or
-         oqKg==
-X-Gm-Message-State: AOAM533AFrPJI0bvIELzAsX27TdUxL2uliPRhooRE3wILeljFQ1vNPPS
-        ujzumReVfgTEDWydQn0HW5ywxLTk8Ru6tA==
-X-Google-Smtp-Source: ABdhPJzhXuDTLbz5gDatMJq/3hpbsOBVVVeUDBRwYbAJyehpIqanF6bH0mE5vifofMRxd8aMsXQifw==
-X-Received: by 2002:a05:6512:374a:: with SMTP id a10mr3552988lfs.103.1640103164654;
-        Tue, 21 Dec 2021 08:12:44 -0800 (PST)
-Received: from localhost.localdomain (host-78-79-238-21.mobileonline.telia.com. [78.79.238.21])
-        by smtp.googlemail.com with ESMTPSA id s10sm550708lfr.45.2021.12.21.08.12.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 08:12:44 -0800 (PST)
-From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Subject: [PATCH v2] dt-bindings: i2c: maxim,max96712: Add bindings for Maxim Integrated MAX96712
-Date:   Tue, 21 Dec 2021 17:12:24 +0100
-Message-Id: <20211221161224.71258-1-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S232746AbhLUQ2g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 11:28:36 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3D57C061574;
+        Tue, 21 Dec 2021 08:28:35 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 726AE61688;
+        Tue, 21 Dec 2021 16:28:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30F4AC36AE9;
+        Tue, 21 Dec 2021 16:28:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640104114;
+        bh=nN4AHR3OkqAY7NOiMkBeo+hddknNIcMQ8QywF/aa76g=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=bc6mUS8RQv6q9L0CJA7/vZsM8uA1wd5crSSm9cMrYVbRKmHDAHle0eGji83fIltBp
+         hsylPpODCtiiVBZc4lSKjdpETl/OmAvuEq3V9+To7LYNZD2wYCN1LSfn3RFA4+7KZY
+         FaXJYpdKZ6BwUiTLKVGDCjqlltkA28I63BfdOjOXoizZYmLmpoEUGC99ihQBp32J0A
+         WnxiHGx7VbgFdZD7XMKx92000oCpkvHY35I3hwQF8il2GdZaKea1ft1KCDqKGPlXsY
+         2ngEf56EaWNpzVyCWYknqLM4sxzqCsuSC+1DUJmcqkh1hB8mk4r1OviPpnUCot20S2
+         UaWBjGYqiJ2VQ==
+From:   Kalle Valo <kvalo@kernel.org>
+To:     David Mosberger-Tang <davidm@egauge.net>
+Cc:     Rob Herring <robh@kernel.org>,
+        Ajay Singh <ajay.kathat@microchip.com>,
+        Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Adham Abozaeid <adham.abozaeid@microchip.com>
+Subject: Re: [PATCH v6 2/2] wilc1000: Document enable-gpios and reset-gpios properties
+References: <20211220180334.3990693-1-davidm@egauge.net>
+        <20211220180334.3990693-3-davidm@egauge.net>
+        <YcHu8qkzguAPZcKx@robh.at.kernel.org>
+        <5f4ab50b4773effafd0a43c8c541d49621f78980.camel@egauge.net>
+Date:   Tue, 21 Dec 2021 18:28:30 +0200
+In-Reply-To: <5f4ab50b4773effafd0a43c8c541d49621f78980.camel@egauge.net>
+        (David Mosberger-Tang's message of "Tue, 21 Dec 2021 09:06:48 -0700")
+Message-ID: <87a6gt53dd.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for Maxim Integrated MAX96712 deserializer. The MAX96712
-deserializer converts GMSL2 or GMSL1 serial inputs into MIPI CSI-2 D-PHY
-or C-PHY formatted outputs.
+David Mosberger-Tang <davidm@egauge.net> writes:
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
----
-* Changes since v1
-- Fixed spelling in binding description.
-- Drop 'staging' per Rob's suggestion.
----
- .../bindings/media/i2c/maxim,max96712.yaml    | 111 ++++++++++++++++++
- 1 file changed, 111 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+> On Tue, 2021-12-21 at 11:12 -0400, Rob Herring wrote:
+>> On Mon, 20 Dec 2021 18:03:38 +0000, David Mosberger-Tang wrote:
+>> > Add documentation for the ENABLE and RESET GPIOs that may be needed
+>> > by
+>> > wilc1000-spi.
+>> > 
+>> > Signed-off-by: David Mosberger-Tang <davidm@egauge.net>
+>> > ---
+>> >  .../net/wireless/microchip,wilc1000.yaml      | 19
+>> > +++++++++++++++++++
+>> >  1 file changed, 19 insertions(+)
+>> > 
+>> 
+>> Please add Acked-by/Reviewed-by tags when posting new versions. 
+>
+> Ah, sorry about that.
+>
+>> However,
+>> there's no need to repost patches *only* to add the tags. The
+>> upstream
+>> maintainer will do that for acks received on the version they apply.
+>> 
+>> If a tag was not added on purpose, please state why and what changed.
+>
+> Not on purpose.  I just didn't know how this is handled.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-new file mode 100644
-index 0000000000000000..b303f7a891169a79
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-@@ -0,0 +1,111 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2021 Renesas Electronics Corp.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/staging/media/i2c/maxim,max96712.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Quad GMSL2 to CSI-2 Deserializer with GMSL1 Compatibility
-+
-+maintainers:
-+  - Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-+
-+description: |
-+  The MAX96712 deserializer converts GMSL2 or GMSL1 serial inputs into MIPI
-+  CSI-2 D-PHY or C-PHY formatted outputs. The device allows each link to
-+  simultaneously transmit bidirectional control-channel data while forward
-+  video transmissions are in progress. The MAX96712 can accommodate as many as
-+  four remotely located sensors using industry-standard coax or STP
-+  interconnects.
-+
-+  Each GMSL2 serial link operates at a fixed rate of 3Gbps or 6Gbps in the
-+  forward direction and 187.5Mbps in the reverse direction. In GMSL1 mode, the
-+  MAX96712 can be paired with first-generation 3.12Gbps or 1.5Gbps GMSL1
-+  serializers or operate up to 3.12Gbps with GMSL2 serializers in GMSL1 mode.
-+
-+properties:
-+  compatible:
-+    const: maxim,max96712
-+
-+  reg:
-+    description: I2C device address
-+    maxItems: 1
-+
-+  enable-gpios: true
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: GMSL Input 0
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: GMSL Input 1
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: GMSL Input 2
-+
-+      port@3:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: GMSL Input 3
-+
-+      port@4:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: CSI-2 Output
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              data-lanes: true
-+
-+            required:
-+              - data-lanes
-+
-+    required:
-+      - port@4
-+
-+required:
-+  - compatible
-+  - reg
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c@e6508000 {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            reg = <0 0xe6508000>;
-+
-+            gmsl0: gmsl-deserializer@49 {
-+                    compatible = "maxim,max96712";
-+                    reg = <0x49>;
-+                    enable-gpios = <&pca9654_a 0 GPIO_ACTIVE_HIGH>;
-+
-+                    ports {
-+                            #address-cells = <1>;
-+                            #size-cells = <0>;
-+
-+                            port@4 {
-+                                    reg = <4>;
-+                                    max96712_out0: endpoint {
-+                                            clock-lanes = <0>;
-+                                            data-lanes = <1 2 3 4>;
-+                                            remote-endpoint = <&csi40_in>;
-+                                    };
-+                            };
-+                    };
-+            };
-+    };
+No worries, we have a lot of special rules :) I'll add Rob's tag from v5
+when I commit the patch.
+
+Actually, I'm lazy and patchwork can pick it up automatically:
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
 -- 
-2.34.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
