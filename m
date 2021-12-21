@@ -2,82 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEE0E47B9A0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 06:44:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5736C47B9DA
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 07:08:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232960AbhLUFoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 00:44:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38596 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229964AbhLUFoa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 00:44:30 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF447C061574;
-        Mon, 20 Dec 2021 21:44:29 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id o20so47352852eds.10;
-        Mon, 20 Dec 2021 21:44:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WfyePfmL/6PbMkdAx5m1eRPoPiYBO22Uo7YSKjpNtg0=;
-        b=DN4ocdvcqRWfd4BtTStwvsWXV1Ef+YaOqc2YBW94VIXnsawllCyZN16fLuA2dYRML6
-         yo+IjiDON2TkCiH3v+dEtoigb5JZYQZ7Ra7PLuC5+8I9Zc0hRUQYVLARj7vSDFbIbZeJ
-         ibVMkr+1q7tlYr6HqLb4XKHw1VrgBAVsAJIVI+J+l/9QS6h/ItC/jlTZl4HC248+mGRo
-         Eny/irrpyc3gunkiZjdvHullxPFrEVIOD2WuJ4FKlXSmWdlIOqGOHSdNkMk+jBEQTsy8
-         GIGbUYef564QFgLFxnCwACj3QjvYSDPudwWpfn5ZxPF8D2v/v/7EV2yKBbJnHB/3c82O
-         dJRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WfyePfmL/6PbMkdAx5m1eRPoPiYBO22Uo7YSKjpNtg0=;
-        b=2VN/RtPLPvKBGojPK6UjsRpn6bJYpn9kZtbfKF8acOrq2Cv6O9thTOf7kHb/jxCpLr
-         iIyhH+W+Lit5RrM7zC0RKbQY1b13ZVuSXI+oV1I7Xx3SPKTrOMQOehgfm5uqC3+0efub
-         jvIdUP3gsfWkhqW5escUaAsg4RSv8qlwDR+8oxXT9/0mYB4BcYyuryb20gz6YEh28kw3
-         p7IvAN5HNjKiWkPIWYsbP0DcEOX1SPX+afx7Sj2TeNNV9ML0cwxii9EnH1yGYJN+YRdg
-         9Ji0FG5QMd2bC/PtaDDSqfpxE74DXLr+xsU2sRuMIu0wtJYMNj6DXz5iNwyPFXAK1284
-         tCVQ==
-X-Gm-Message-State: AOAM532LoCBrvBvBN1jtnfCN+chvU0XlxnEgpgfhZvtAog8a64znUerz
-        xY3z2Pyh0ZkKXKiNzer8yvWSgX+XBXWpmKZM3uw=
-X-Google-Smtp-Source: ABdhPJx01YuM+vDoRrnr94fj7HEejrUTqnANmRsQyM0CMN6f/DIpqDqckGRVXJERLi+UTYsC8AfscSN8xsIyewd3hsc=
-X-Received: by 2002:a17:906:3ed0:: with SMTP id d16mr1293197ejj.636.1640065468348;
- Mon, 20 Dec 2021 21:44:28 -0800 (PST)
+        id S229778AbhLUGIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 01:08:12 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:43858 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229698AbhLUGIM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 01:08:12 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CF7F861459;
+        Tue, 21 Dec 2021 06:08:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33F68C36AEE;
+        Tue, 21 Dec 2021 06:08:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640066891;
+        bh=1+pdq3KVkpWxLeSEJSOc8Gje3z/xJVmfhMBaGDIU3ck=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=h6U7snWKmDHMF4rceeQUqMSMQjsYHVk/L9TbHz1pZVcNRcsSc2nCOkethuRL45XSn
+         zfHEEsFTPzMgQq0qbEJViDMQpIt21KA93KHWGaiFtVhhgj98gcAGhDtyNEipGOf/2Y
+         Pd6ba8e8dJQrxQGbf7DcBfLyzWbQ1jO2Ys05ca+LXfyoFy7AZXrrbbM1K9mCtwd99+
+         C0cg7mdahuwYnWz5/2kcYQM9dx3BCCRffn6lm1BmxeHji+ZYwe6PuMDUtIpFDtSVR8
+         JgEFlU62JgBonJ5mZyvcDLKqtvx520N9LS3uXcwXpEKpwKFLWpoJj7HLyWg4/cjG/s
+         IHVaFvq2NfwWA==
+Received: by mail-yb1-f174.google.com with SMTP id q74so35532999ybq.11;
+        Mon, 20 Dec 2021 22:08:11 -0800 (PST)
+X-Gm-Message-State: AOAM533Xeh/hQHuHi5BWioG+76D7HJJcev1zBDjHcmslJQ6L+A0yDrbY
+        IZ9q0pLxTov0+JYvz5Tv0c2VSHgfXJWLHGePCr0=
+X-Google-Smtp-Source: ABdhPJwVF0i69IklA109HppW9xClsaOPWV/8F4VKxROC6V7DTCTfoxyZ/y8mV+y+bKIbK6FlJpACeoT+PxqKslHGcOQ=
+X-Received: by 2002:a25:b187:: with SMTP id h7mr2487968ybj.445.1640066890269;
+ Mon, 20 Dec 2021 22:08:10 -0800 (PST)
 MIME-Version: 1.0
-References: <20211219223953.16074-1-liambeguin@gmail.com> <20211219223953.16074-5-liambeguin@gmail.com>
- <CAHp75VdfPf6FMvkGqhhQg5e5XE1cgE-K8seobe5n0yGarnPGtQ@mail.gmail.com>
-In-Reply-To: <CAHp75VdfPf6FMvkGqhhQg5e5XE1cgE-K8seobe5n0yGarnPGtQ@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 21 Dec 2021 07:43:52 +0200
-Message-ID: <CAHp75VcRH9ZGYuXteT2WQWqr8sch3EsSYu_AYtNx2jEJY76tow@mail.gmail.com>
-Subject: Re: [PATCH v10 04/14] iio: afe: rescale: expose scale processing function
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     "peda@axentia.se" <peda@axentia.se>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
+References: <20211217121148.6753-1-sam.shih@mediatek.com> <bf78ebdf10bcff21dfe844e619ead13162534d97.camel@mediatek.com>
+ <CA+SzRW5PeNurT5rNoGpcLcPE9nu4XFnrPOxq7a1dcV905FC++Q@mail.gmail.com>
+In-Reply-To: <CA+SzRW5PeNurT5rNoGpcLcPE9nu4XFnrPOxq7a1dcV905FC++Q@mail.gmail.com>
+From:   Ryder Lee <ryder.lee@kernel.org>
+Date:   Mon, 20 Dec 2021 22:07:59 -0800
+X-Gmail-Original-Message-ID: <CA+SzRW6=C3X-i3kOqzhRZ-At49103L-dDi5dm70jbWEuVKjufA@mail.gmail.com>
+Message-ID: <CA+SzRW6=C3X-i3kOqzhRZ-At49103L-dDi5dm70jbWEuVKjufA@mail.gmail.com>
+Subject: Re: [PATCH v7 0/3] Mediatek MT7986 basic clock support
+To:     Sam Shih <sam.shih@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>,
+        Ikjoon Jang <ikjn@chromium.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        John Crispin <john@phrozen.org>,
+        Ryder Lee <Ryder.Lee@mediatek.com>,
+        YH Chen <yh.chen@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 21, 2021 at 7:20 AM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Monday, December 20, 2021, Liam Beguin <liambeguin@gmail.com> wrote:
-
-...
-
->> +               tmp = *val * 1000000000LL;
+On Mon, Dec 20, 2021 at 10:01 PM Ryder Lee <ryder.lee@kernel.org> wrote:
 >
-> I see this is the original code, but perhaps use proper SI multipliers here and there?
+> On Fri, 2021-12-17 at 20:11 +0800, Sam Shih wrote:
+> > This patch series add basic clock support for mediatek mt7986 SoC.
+> > It is based on patch series "Add basic SoC support for mediatek
+> > mt7986"
+> >
+> https://lore.kernel.org/all/20211018114009.13350-1-sam.shih@mediatek.com/
+> > and "clk: mediatek: Add API for clock resource recycle"
+> >
+> https://lore.kernel.org/linux-arm-kernel/20210914021633.26377-5-chun-jie.=
+chen@mediatek.com/
+> > ---
+> > v7: exclude DTS changes in the patch series
+> > v5: used builtin_platform_driver instead of CLK_OF_DECLARE
+> >     follow recent clk-mt8195 clock patch series:
+> >
+> > https://lore.kernel.org/linux-arm-kernel/20210914021633.26377-1-chun-ji=
+e.chen@mediatek.com/
+> >
+> > v4:
+> > According to the maintainer=C2=A1=C2=A6s suggestion, this patch splits =
+the
+> > previous
+> > thread into independent patch series.
+> > This patch include clock driver and device tree update
+> >
+> > Original thread:
+> >
+> https://lore.kernel.org/all/20210914085137.31761-1-sam.shih@mediatek.com/
+> >
+> https://lore.kernel.org/linux-arm-kernel/20210914085137.31761-2-sam.shih@=
+mediatek.com/
+> > ---
+> >
+> > Sam Shih (3):
+> >   dt-bindings: clock: mediatek: document clk bindings for mediatek
+> >     mt7986 SoC
+> >   clk: mediatek: add mt7986 clock IDs
+> >   clk: mediatek: add mt7986 clock support
+> >
+> >  .../arm/mediatek/mediatek,apmixedsys.txt      |   1 +
+> >  .../bindings/arm/mediatek/mediatek,ethsys.txt |   1 +
+> >  .../arm/mediatek/mediatek,infracfg.txt        |   1 +
+> >  .../arm/mediatek/mediatek,sgmiisys.txt        |   2 +
+> >  .../arm/mediatek/mediatek,topckgen.txt        |   1 +
+> >  drivers/clk/mediatek/Kconfig                  |  17 +
+> >  drivers/clk/mediatek/Makefile                 |   4 +
+> >  drivers/clk/mediatek/clk-mt7986-apmixed.c     | 100 +++++
+> >  drivers/clk/mediatek/clk-mt7986-eth.c         | 132 +++++++
+> >  drivers/clk/mediatek/clk-mt7986-infracfg.c    | 224 ++++++++++++
+> >  drivers/clk/mediatek/clk-mt7986-topckgen.c    | 342
+> > ++++++++++++++++++
+> >  include/dt-bindings/clock/mt7986-clk.h        | 169 +++++++++
+> >  12 files changed, 994 insertions(+)
+> >  create mode 100644 drivers/clk/mediatek/clk-mt7986-apmixed.c
+> >  create mode 100644 drivers/clk/mediatek/clk-mt7986-eth.c
+> >  create mode 100644 drivers/clk/mediatek/clk-mt7986-infracfg.c
+> >  create mode 100644 drivers/clk/mediatek/clk-mt7986-topckgen.c
+> >  create mode 100644 include/dt-bindings/clock/mt7986-clk.h
+> >
 
-I mean in a separate change.
+ugh. Should be plain text mode for the previous mail.
 
->> +               do_div(tmp, 1000000000LL);
-
--- 
-With Best Regards,
-Andy Shevchenko
+For the series -
+Reviewed-by: Ryder Lee <ryder.lee@kernel.org>
