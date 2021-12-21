@@ -2,149 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67AC147C33F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 16:43:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE55B47C342
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 16:43:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236431AbhLUPno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 10:43:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35632 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236422AbhLUPno (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 10:43:44 -0500
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAEC5C06173F
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 07:43:43 -0800 (PST)
-Received: by mail-qk1-x735.google.com with SMTP id g28so12891504qkk.9
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 07:43:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TM/EYNiDRj3pjelGxdOL0frKQz44QCfMf7gv+XrXNos=;
-        b=F1zsFtSE/NrsuidTSveNM0gDl67h08lj4dDeshbc+YE7OSUlu8s+0Y5iQn23G3bhNF
-         L7/wa0r6XY1bE9rXMFZfTu+Fly1u4zwbeabaGym5nNemI2EFNhoiXlaiBafNGzJ1pQTP
-         2NOR8VcChlrzxpu+4bESwQClbVMPNNWZEmiSRYvtoPxULTf3nt37FlKW9Q6pfO9iYgbF
-         RF4ZUgWzsXH2D1zT2fqvqSyfy+nAKOb2IS+rLrdYuLLa6toakJZdsUj51MwzHzPBkLlL
-         HjQtQKKZ5i8anDKE5BUSwmBMZOsyOFDsDI7yRi2g62QjU2REivitJy90PH6tgx9HdEAF
-         0qog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TM/EYNiDRj3pjelGxdOL0frKQz44QCfMf7gv+XrXNos=;
-        b=WzFWI05ICkyvfHM8Nvf5U5cc40GWJnKriwE89Ld83ZwpaeXzlyB9HH6EX67bBmo3V9
-         rOCHauoA77XgsXe+YDGOowoZI7CINzK8yOriSQ9erQuYuHbZ8CrLk9PShPGqfECUHT2e
-         QM4pE07QLPoLujRIvocip2HO65F3LCiHqHP0S1vjQdWo+koVbBs0RdzF46pICpQ8UijN
-         QXyJ47OvYE6li3sCCNpxG2ubUolomL+dhAxRXK7+QBBAUDKX6zdU1vl0tpvKiHan48my
-         5VVsUmMUJVPCOgiplLTs9bAz1uEbgHQ4zBMxpfI3aphFTCGP+kNjwi7Mf7h+b45WFYuo
-         uCsA==
-X-Gm-Message-State: AOAM531n4tViqqiy9oWcv8nlu5n/rPLjK3l5gARpEzyfuD32mz43g/VL
-        s6DJIS2fvdt/LeZoMsAzdNvqk1PLD7kaslInh+SkRg==
-X-Google-Smtp-Source: ABdhPJwWSdSLT82NkDeKpmGZRZMmiKAk2WV6/DtmpRrClrcP7y9OglFbZ/77UwSWGk2t4gOg0h3W0exFjn2hG+lTn5U=
-X-Received: by 2002:a05:620a:4101:: with SMTP id j1mr2357042qko.593.1640101422825;
- Tue, 21 Dec 2021 07:43:42 -0800 (PST)
+        id S236418AbhLUPnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 10:43:50 -0500
+Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:53599 "EHLO
+        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236412AbhLUPnu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Dec 2021 10:43:50 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id C411A32007BE;
+        Tue, 21 Dec 2021 10:43:48 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Tue, 21 Dec 2021 10:43:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=m87v0MiJXQ0AYj9J0oYwIBg3htz
+        mOL4yODzPrK1faxo=; b=DhHhd+KTg89y/ElZQyf/JblypvTFCxblsyT0FwOWh0C
+        DFLCfq2NQSAV/YWoGengVqG4FK1Yli3uyOVOhDm7aDMSa0AbtC0LgcCVR2JNFr+8
+        8VPYmrv83E2dtQ6UW9NlVhtzAw0QdAY9FH5CATN1x43VlmkRMTSrXycCpt324VYq
+        4PwrtElB5GHaum4a3bZwe9eUcA6SLG2kUeoUC+06iG+B6sVOS32m8SBGmK8qIDW3
+        YVchBKlshK1HI9M7xCinF4hlLNoN35qLJ61mOOjNBzef7BNfwEA6bRnxZcftfSmS
+        Fo7vNUXr5IkvVkWe8jnnDQXxoTXv7w6/u8LkuW77P1Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=m87v0M
+        iJXQ0AYj9J0oYwIBg3htzmOL4yODzPrK1faxo=; b=nUeJlLCcJ4LL0E2BzTOUKn
+        s5xBGjo9kbChietQozgooF+RRtz6hO+MY0ETTSfh77gVW6GY3jn5dNf/2wIrsAQ5
+        MgxhGSyVEFFjuY2uHKN7xPb8Werh//4vlnufwmAEQSb1XqfqrkA2UVLpiAWfhXLN
+        a/lqEnMj6ZAmHQPr1ECRO3LNWmqWAai62UrHRRsoeVgSJxdMtqHSIhXTjXqIIAq3
+        W2K17lUL4Wq5h2pKW+SsYIqgscr5gIb1pkIZMGGhYxznvu93F9UGBeq8MYQQZ3WE
+        AMgG5U6tD0O1vYQNZw7UcJOcDarvxG/2u3GKp0vvYqvLEzduOU4ze0/d2zfkojnQ
+        ==
+X-ME-Sender: <xms:MvbBYa5qCcNVQIHEuOncCQGWrAJInObd9nNXgJuylDkWzNixyJ_OpQ>
+    <xme:MvbBYT7cOAUDgviUN7A7z5moTBaKrfMwDkZHnKTu9uHicJxP4u0tCpZijN6Oqev0v
+    -TQqUwM2jQU8wl8tjE>
+X-ME-Received: <xmr:MvbBYZfSnRMnHofZP4WbgQwuipIPH4ckldNCNgfePVd3__bV6wNMSC2tcCFuI6-F9Q0rqdcizgNpBB5x-cBSOAzdNKXhd6qo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddruddtgedgkeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    gfrhhlucfvnfffucdlfeehmdenucfjughrpeffhffvuffkfhggtggujgesghdtreertddt
+    vdenucfhrhhomheprfgrthhrihgtkhcuhghilhhlihgrmhhsuceophgrthhrihgtkhessh
+    htfigtgidrgiihiieqnecuggftrfgrthhtvghrnhepgeehheefffegkeevhedthffgudfh
+    geefgfdthefhkedtleffveekgfeuffehtdeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepphgrthhrihgtkhesshhtfigtgidrgiihii
+X-ME-Proxy: <xmx:MvbBYXLAfX85ZXBgHoQD6yr5GfObCv5QEBuo3AkXFaiUPOeZfUyQ-Q>
+    <xmx:MvbBYeIgzcRVY2jMYVpLhYgqYx0cfj2K2sy272aq8Yl6SXeHiWM88w>
+    <xmx:MvbBYYyoIOSYQTv67lvvGNwT8S_PHxD_Uk5wGtRHO0g8pfnAXSrISg>
+    <xmx:NPbBYd-O0noIj5jhq8LbVaoMvsZx1RmyUILgmIKdKNhiCbVActrJag>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 21 Dec 2021 10:43:46 -0500 (EST)
+Date:   Tue, 21 Dec 2021 09:43:45 -0600
+From:   Patrick Williams <patrick@stwcx.xyz>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Howard Chiu <howard10703049@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Potin Lai =?utf-8?B?KOiztOafj+W7tyk=?= <Potin.Lai@quantatw.com>,
+        Howard Chiu <howard.chiu@quantatw.com>
+Subject: Re: [PATCH v8] ARM: dts: aspeed: Adding Facebook Bletchley BMC
+Message-ID: <YcH2MSByPLAvw5mI@heinlein>
+References: <20211207094923.422422-1-howard.chiu@quantatw.com>
+ <CACPK8XddhFn3PreJM3D=djkREgqGD7yZhS7YoqxxXsNfhZpLhQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <20211218141024.500952-1-dmitry.baryshkov@linaro.org>
- <20211218141024.500952-2-dmitry.baryshkov@linaro.org> <YcHr0/W0QqRlj1Ji@robh.at.kernel.org>
-In-Reply-To: <YcHr0/W0QqRlj1Ji@robh.at.kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 21 Dec 2021 18:43:31 +0300
-Message-ID: <CAA8EJpr1wfW2CLSjBjJdMhhgBmcnMRkx=x5SAC_4LDQCHw1_qA@mail.gmail.com>
-Subject: Re: [PATCH v5 1/5] dt-bindings: pci: qcom: Document PCIe bindings for SM8450
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="HM0gOAIGGoJB3tSG"
+Content-Disposition: inline
+In-Reply-To: <CACPK8XddhFn3PreJM3D=djkREgqGD7yZhS7YoqxxXsNfhZpLhQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Dec 2021 at 17:59, Rob Herring <robh@kernel.org> wrote:
->
-> On Sat, Dec 18, 2021 at 05:10:20PM +0300, Dmitry Baryshkov wrote:
-> > Document the PCIe DT bindings for SM8450 SoC. The PCIe IP is similar
-> > to the one used on SM8250, however unlike SM8250, PCIe0 and PCIe1 use
-> > different set of clocks, so two compatible entries are required.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  .../devicetree/bindings/pci/qcom,pcie.txt     | 22 ++++++++++++++++++-
-> >  1 file changed, 21 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.txt b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> > index a0ae024c2d0c..0adb56d5645e 100644
-> > --- a/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
-> > @@ -15,6 +15,8 @@
-> >                       - "qcom,pcie-sc8180x" for sc8180x
-> >                       - "qcom,pcie-sdm845" for sdm845
-> >                       - "qcom,pcie-sm8250" for sm8250
-> > +                     - "qcom,pcie-sm8450-pcie0" for PCIe0 on sm8450
-> > +                     - "qcom,pcie-sm8450-pcie1" for PCIe1 on sm8450
->
-> What's the difference between the two?
 
-Clocks used by these hosts. Quoting the definition:
+--HM0gOAIGGoJB3tSG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-+                     - "aggre0"      Aggre NoC PCIe0 AXI clock, only
-for sm8450-pcie0
-+                     - "aggre1"      Aggre NoC PCIe1 AXI clock
-
-aggre1 is used by both pcie0 and pcie1, while aggre0 is used only by pcie0.
-
->
-> >                       - "qcom,pcie-ipq6018" for ipq6018
+On Tue, Dec 21, 2021 at 04:37:55AM +0000, Joel Stanley wrote:
+> Hi Patrick,
+>=20
+> On Tue, 7 Dec 2021 at 09:52, Howard Chiu <howard10703049@gmail.com> wrote:
 > >
-> >  - reg:
-> > @@ -169,6 +171,24 @@
-> >                       - "ddrss_sf_tbu" PCIe SF TBU clock
-> >                       - "pipe"        PIPE clock
+> > Initial introduction of Facebook Bletchley equipped with
+> > Aspeed 2600 BMC SoC.
 > >
-> > +- clock-names:
-> > +     Usage: required for sm8450-pcie0 and sm8450-pcie1
-> > +     Value type: <stringlist>
-> > +     Definition: Should contain the following entries
-> > +                     - "aux"         Auxiliary clock
-> > +                     - "cfg"         Configuration clock
-> > +                     - "bus_master"  Master AXI clock
-> > +                     - "bus_slave"   Slave AXI clock
-> > +                     - "slave_q2a"   Slave Q2A clock
-> > +                     - "tbu"         PCIe TBU clock
-> > +                     - "ddrss_sf_tbu" PCIe SF TBU clock
-> > +                     - "pipe"        PIPE clock
-> > +                     - "pipe_mux"    PIPE MUX
-> > +                     - "phy_pipe"    PIPE output clock
-> > +                     - "ref"         REFERENCE clock
-> > +                     - "aggre0"      Aggre NoC PCIe0 AXI clock, only for sm8450-pcie0
-> > +                     - "aggre1"      Aggre NoC PCIe1 AXI clock
-> > +
-> >  - resets:
-> >       Usage: required
-> >       Value type: <prop-encoded-array>
-> > @@ -246,7 +266,7 @@
-> >                       - "ahb"                 AHB reset
-> >
-> >  - reset-names:
-> > -     Usage: required for sc8180x, sdm845 and sm8250
-> > +     Usage: required for sc8180x, sdm845, sm8250 and sm8450
-> >       Value type: <stringlist>
-> >       Definition: Should contain the following entries
-> >                       - "pci"                 PCIe core reset
-> > --
-> > 2.34.1
-> >
-> >
+> > Signed-off-by: Howard Chiu <howard.chiu@quantatw.com>
+>=20
+> Are you ok for this one to go in for v5.17?
 
+Yes.
 
+Reviewed-by: Patrick Williams <patrick@stwcx.xyz>
 
--- 
-With best wishes
-Dmitry
+Would also appreciate if you could apply to your Aspeed tree for OpenBMC.
+
+--=20
+Patrick Williams
+
+--HM0gOAIGGoJB3tSG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmHB9i8ACgkQqwNHzC0A
+wRkTXQ/+KMROyY3iAc3pg9nNuSF7rxqc8a1K7gZ+4SHFwwvD49PMhiywWiR8qqs/
+ehvUMImlcjIfTGAizpi1zlWwH87GOxqLnLwJ4IfFaiC895ho20SJWTaazksu6/SV
+qdjHOOkvBScfGfftQoq4/G4ty1rNUlLl1O2AuXoDaLGZali9TbupFcQqd8qOKYAp
+MaVEQck3YPd5Tj3PGQSpVnuUvZL77qvjoIgaeR9Pdoj02O4rTZZXcHsckGi0doDD
+ZmZA4Xt4COqT+VDXrc0I5UsGvhYtlzCJ8V+nt6lRbQ+Kc0klIhTt5/iZ04HmKzsO
+y5gw/CgBTSkvd/6aHYvXTyby4uSzSvrJn5GHH40aG8FA4z2BDst+C0Y64Q+2xc0j
+ZNkq2HWsNYlHJsEhlSwDwglh8otlJn/+czYcuHkiDuylrXItuRS8O0C+sfxhE9l9
+dCpVfLKM/idXbyIMTK5Ya8Q1cfRHsarpNHsBH7bYm/FuuNJHu9OBojTfE5F60ia2
+qwSLf3O6V8UpDMKJM/ntItNh3B5X9HjjsTpfiVqV7fLb0MpwiA7KmY/AGcqs7sPJ
+kKODFplbuJKI7CHzzzGdXwDZruXaWUOaiEB4WjGUjCSBYhWNRjaCafvRjNYmMciW
+YEWrOcPSfV2A8BHqv6NjRMgBCOSkCUTA3veNYPNT89GFPIukAnI=
+=izBI
+-----END PGP SIGNATURE-----
+
+--HM0gOAIGGoJB3tSG--
