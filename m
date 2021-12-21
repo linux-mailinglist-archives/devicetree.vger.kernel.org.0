@@ -2,102 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C06147C526
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 18:43:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A8C447C533
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 18:45:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240464AbhLURnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 12:43:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35136 "EHLO
+        id S240510AbhLURpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 12:45:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231764AbhLURnc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 12:43:32 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7909CC061574
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 09:43:32 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id a203-20020a1c7fd4000000b003457874263aso2251142wmd.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 09:43:32 -0800 (PST)
+        with ESMTP id S240505AbhLURpE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 12:45:04 -0500
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42BBDC061574
+        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 09:45:04 -0800 (PST)
+Received: by mail-pg1-x52c.google.com with SMTP id y9so12972480pgj.5
+        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 09:45:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=qBE12b8vdnqtstGHFEJZcs6qFoeauTfFcVbXgvgPULA=;
-        b=hdnPfbv2sNQLuRXnuw3LxzsfrfuuQFSEWMWM2+xryiMjdQgWpY+182PYMMRSHmx1Er
-         nAwTgZUrFPRo6u3h7IlgkxLPRxFQ3WeJmpeDmQZThimeADQEc5nnyD+7nAblN+8x1+iQ
-         IHzaz0tFFOdBP2SSJnKGV4VulYnyJ4WYyuXZWUwAbSuV9CKba/SOQnS7I4+uYbSaIWP+
-         +z1cnJK9c2U/GmMc2hy5ax2p2DlTf95ykYwNhFWMHby/8O4RpHI++ftH0zVwgak9G321
-         lTctF/xGdd4wLFGTOqzh4MkRm8/ycK2+4ZFtwlYSXMx4AD4gMmhrre6mrE/faUTOl5gn
-         d89Q==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bqezZ2/HwBTxC4hfR4A8RkBTbm8B6r0iUtltdIvH/WQ=;
+        b=HenZ6CO3BtGV8EorbDJoyPVSzJlzhn+iHRjk9YtqqLPHN4ePZ8QVDtBgVHRXVZQ8oH
+         E0dt/72cZS+O3UEUQBk2+LWW1fLeiLTBlj3aHDXDZnQMyY3SpumoJXl7roNtT5mZeWm2
+         H+au6mRnSFz1PqeI+TqCvDxtLEiCjbzfJk+Uhoxfpxpz9CSDnUcsu266k5Rq8WtQsMew
+         +xvnHyPcHFvyQqL/oE2+nCnXYiWJ9HbUGarG1if1rcp9B8eg2qRKADUee/ZHcDCOd3vr
+         RO0poJfpfCVUNlk10B36QA2QtiSLwP32N6TVb0q9IanTbUMnIfPIedRbFT1BNEGa5P9t
+         q7zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qBE12b8vdnqtstGHFEJZcs6qFoeauTfFcVbXgvgPULA=;
-        b=W8SeN1h7GFPUtra8XxkQCIdKOVPHK4Cl0diMsixz9CNm3RsiJrt8/bBSFAOlm68vJD
-         gDBkchHHBYSY7fM80WTb/NlQfByCfd0E66nDUyXR0g2aqrLgf5ks786l299azAxV/oVZ
-         YCPBuPToTdPPCyH8GntaU+qO43sj7Ji95YfmHm5q2RGhsH9/64kNFAEJEoCvciVlAmHa
-         edsU3LRGRyFbmINzCJJLhx4r0kpG8nVu0RHZv+Vw8/8a1SZvHEv0avEHYTLylXZLKTV0
-         /XFDi+wXh102OjB/JqCE1LrQdaYhgdq4GursmJAaS1JMazSu6JtJpX/eNMCfWq5V7g0C
-         21OQ==
-X-Gm-Message-State: AOAM531n7ZwMPDNrQIrbwYCnL7Yycj+CqxQz4JpsCQfRizTlOw8E9yDO
-        gj8ElbqUIHePhiGZrGiDwQFgplpccah7k1gh
-X-Google-Smtp-Source: ABdhPJxr9epBEjiveABhSyTbxZrFLQQ1wVGQ2VrDZrrOrzDb25Cwi8Vbsjqw1O7zBByQHEU7Y8b2VA==
-X-Received: by 2002:a1c:e909:: with SMTP id q9mr3597321wmc.184.1640108610904;
-        Tue, 21 Dec 2021 09:43:30 -0800 (PST)
-Received: from google.com ([2a00:79e0:d:209:4a23:42ad:dc71:62e9])
-        by smtp.gmail.com with ESMTPSA id a1sm19123717wru.113.2021.12.21.09.43.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 09:43:30 -0800 (PST)
-Date:   Tue, 21 Dec 2021 17:43:26 +0000
-From:   David Brazdil <dbrazdil@google.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>, Will Deacon <will@kernel.org>,
-        Andrew Scull <ascull@google.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: firmware: Add Open Profile for DICE
-Message-ID: <YcISPrm/R8QIqkMb@google.com>
-References: <20211213195833.772892-1-dbrazdil@google.com>
- <20211213195833.772892-2-dbrazdil@google.com>
- <YbpPYG4rzPmJmwA6@robh.at.kernel.org>
- <YbpZTSpmnieCNZ9a@google.com>
- <CAL_JsqJRpNr7McM9OJcPs095ZfAqGJfN7FhGhy7i6pN+tx1MGg@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bqezZ2/HwBTxC4hfR4A8RkBTbm8B6r0iUtltdIvH/WQ=;
+        b=EHzSjBl38P66kQhkuOO2+5xwuQOL9RdiTSCqyBNkT+dNK1M8lAoHZHYU96e8LNJEvi
+         uOc249mtlqWGBGZ2xsxjUIFiSjG/WcvhwGXjANNGaatYPe8nTx2lWVCgN/cHG6zZvpeO
+         +MVI37KdZzXuCv1HTJNBHCmQT+qOjjZczcQpiQ0EtiAMK+1CoYEWDZK7pq+h5zYPIonq
+         kq4AcgnCCOJYR1D+bZv4C54ucpcLrNYhsaZjK+ALKDRTxRgmpxkzvUHULh5eabXZ8+Uf
+         qfuyXCJkok+YoerO9JkrQ3ywOod4D2KgTkEjfxX0w7iX2d795ZJ2y76rZ7EKE4DcUqKD
+         19/g==
+X-Gm-Message-State: AOAM532+FInY5WjfnkoaHNZz48+AsLHvJkVoH8hYcHSMj6/kDS44wdE7
+        u70RNWLmnFkV4chKF0qNlMcSZW1TgZ0QVYhkNjHALru8uKJVkHTc
+X-Google-Smtp-Source: ABdhPJzVBmLN8aJGGq6rMMoKPHuN2mmCNcgqKIN9eaam0PO9xsjRP0XHPg/gLoicZBE7H9V0/GKtOOkWeTkanEX+IXw=
+X-Received: by 2002:a62:d044:0:b0:4ba:6f3b:ab08 with SMTP id
+ p65-20020a62d044000000b004ba6f3bab08mr4416682pfg.29.1640108703755; Tue, 21
+ Dec 2021 09:45:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJRpNr7McM9OJcPs095ZfAqGJfN7FhGhy7i6pN+tx1MGg@mail.gmail.com>
+References: <20211213133626.2498056-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20211213133626.2498056-1-alexander.stein@ew.tq-group.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Tue, 21 Dec 2021 18:44:52 +0100
+Message-ID: <CAG3jFyt8K4mwHrECqOZ3h91YjX=k2MRPsvHHxYT40rR8tyFO_g@mail.gmail.com>
+Subject: Re: [PATCH v5 0/4] ti-sn65dsi83 patches
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 09:21:00AM -0600, Rob Herring wrote:
-> On Wed, Dec 15, 2021 at 3:08 PM David Brazdil <dbrazdil@google.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > > > +        dice_reserved: dice@12340000 {
-> > > > +            reg = <0x00 0x12340000 0x2000>;
-> > > > +            no-map;
-> > > > +        };
-> > > > +    };
-> > > > +
-> > > > +    dice {
-> > > > +        compatible = "google,open-dice";
-> > > > +        memory-region = <&dice_reserved>;
-> > >
-> > > There's no need for this indirection. Just add the compatible to the
-> > > dice@12340000 node. You can bind drivers to /reserved-memory nodes.
-> >
-> > I have not found a way to make that work for kernel modules. Built-in
-> > drivers can bind with RESERVEDMEM_OF_DECLARE, which puts an entry in
-> > __reservedmem_of_table and __reserved_mem_init_node() iterates find it
-> > there. A good case study might be CONFIG_TEGRA210_EMC, where the driver
-> > itself can be a module but the rmem parsing is always built-in under
-> > CONFIG_TEGRA210_EMC_TABLE. I don't think that's worth the trouble with
-> > this driver.
-> 
-> I forgot you have to add the compatible to reserved_mem_matches in
-> drivers/of/platform.c.
-
-Oh nice! Exactly what I was looking for, thanks. I'll respin shortly.
-
-David
+Applied to drm-misc-next
