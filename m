@@ -2,140 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AFC047BBBC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 09:21:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3620347BC0D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 09:46:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234234AbhLUIVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 03:21:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45498 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234212AbhLUIVw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 03:21:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F72C061574;
-        Tue, 21 Dec 2021 00:21:52 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S235773AbhLUIqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 03:46:33 -0500
+Received: from ixit.cz ([94.230.151.217]:44690 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235774AbhLUIqb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Dec 2021 03:46:31 -0500
+Received: from [127.0.0.1] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id ECF84B81052;
-        Tue, 21 Dec 2021 08:21:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A6B9C36AE2;
-        Tue, 21 Dec 2021 08:21:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1640074909;
-        bh=Jxf9DAuQuO8xcW9OS1qw9tIRuUDJLr4jTwE07F5oW3I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pLsMkpeqS042L4Zkt3ekHaBqPpaK5FmkGMqeTXG0iNCvfdFCZIphWV8RojvYRu0xs
-         bT8sMSjzk34oqeAhN6CkIljtWfLwgFWAK1uP9mPErmCGbuohuzbWuLozoBVyAnDiGq
-         q8yqUoLJPhMteIC2UDunN1dp5mPn8dwd7H6LQq5s=
-Date:   Tue, 21 Dec 2021 09:21:47 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     hammer hsieh <hammerh0314@gmail.com>
-Cc:     robh+dt@kernel.org, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jirislaby@kernel.org, p.zabel@pengutronix.de, wells.lu@sunplus.com,
-        Hammer Hsieh <hammer.hsieh@sunplus.com>
-Subject: Re: [PATCH v5 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
-Message-ID: <YcGOmzKSHOoycZNC@kroah.com>
-References: <1639379407-28607-1-git-send-email-hammer.hsieh@sunplus.com>
- <1639379407-28607-3-git-send-email-hammer.hsieh@sunplus.com>
- <YcCmaJkeKy+R0mhF@kroah.com>
- <CAOX-t54j9=7eLMAx4n-ngiNdM=Ab=YcK-zdxRW88e41cPS=46Q@mail.gmail.com>
+        by ixit.cz (Postfix) with ESMTPSA id 5B2CC2243C;
+        Tue, 21 Dec 2021 09:46:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1640076389;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=eMCrwVedhww3XT7Zrx0zd1r8/n0TrPVz0TPWo4hKClc=;
+        b=EGeTGUsWAfnDLrFg1vnKYXCznCvum1KyPCYXUSpJkGqZM6Ye8Go1wDi2h2pfCYFIHNASH0
+        8cGzd87mo0xlrHzC+zQzUpm543rbpNVfyGogZi7xEFu+YjZ+beihpfKM2txAVIMFQU/zSg
+        m9Kogmx1mpSwIvzWHKJZ9xYja2q/7X8=
+Date:   Tue, 21 Dec 2021 08:46:28 +0000
+From:   David Heidelberg <david@ixit.cz>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH=5D_arm64=3A_dts=3A_qcom=3A_sdm845=3A_?= =?US-ASCII?Q?add_missing_power-controller_compatible?=
+In-Reply-To: <20211221065845.GC26872@thinkpad>
+References: <20211220211443.106754-1-david@ixit.cz> <20211221065845.GC26872@thinkpad>
+Message-ID: <231125F6-0A22-4042-969E-45347CBE8CB7@ixit.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAOX-t54j9=7eLMAx4n-ngiNdM=Ab=YcK-zdxRW88e41cPS=46Q@mail.gmail.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 21, 2021 at 04:14:16PM +0800, hammer hsieh wrote:
-> Greg KH <gregkh@linuxfoundation.org> 於 2021年12月20日 週一 下午11:51寫道：
-> >
-> > On Mon, Dec 13, 2021 at 03:10:07PM +0800, Hammer Hsieh wrote:
-> > > +/* Register offsets */
-> > > +#define SUP_UART_DATA                        0x00
-> > > +#define SUP_UART_LSR                 0x04
-> > > +#define SUP_UART_MSR                 0x08
-> > > +#define SUP_UART_LCR                 0x0C
-> > > +#define SUP_UART_MCR                 0x10
-> > > +#define SUP_UART_DIV_L                       0x14
-> > > +#define SUP_UART_DIV_H                       0x18
-> > > +#define SUP_UART_ISC                 0x1C
-> > > +#define SUP_UART_TX_RESIDUE          0x20
-> > > +#define SUP_UART_RX_RESIDUE          0x24
-> > > +
-> > > +/* Line Status Register bits */
-> > > +#define SUP_UART_LSR_TXE             BIT(6) /* tx empty */
-> > > +#define SUP_UART_LSR_BC                      BIT(5) /* break condition status */
-> > > +#define SUP_UART_LSR_FE                      BIT(4) /* frame error status */
-> > > +#define SUP_UART_LSR_OE                      BIT(3) /* overrun error status */
-> > > +#define SUP_UART_LSR_PE                      BIT(2) /* parity error status */
-> > > +#define SUP_UART_LSR_RX                      BIT(1) /* 1: receive fifo not empty */
-> > > +#define SUP_UART_LSR_TX                      BIT(0) /* 1: transmit fifo is not full */
-> > > +#define SUP_UART_LSR_TX_NOT_FULL     1
-> > > +#define SUP_UART_LSR_BRK_ERROR_BITS  GENMASK(5, 2)
-> > > +
-> > > +/* Line Control Register bits */
-> > > +#define SUP_UART_LCR_BC                      BIT(5) /* break condition select */
-> > > +#define SUP_UART_LCR_PR                      BIT(4) /* parity bit polarity select */
-> > > +#define SUP_UART_LCR_PE                      BIT(3) /* parity bit enable */
-> > > +#define SUP_UART_LCR_ST                      BIT(2) /* stop bits select */
-> > > +#define SUP_UART_LCR_WL5             0x00 /*  word length 5 */
-> > > +#define SUP_UART_LCR_WL6             0x01 /*  word length 6 */
-> > > +#define SUP_UART_LCR_WL7             0x02 /*  word length 7 */
-> > > +#define SUP_UART_LCR_WL8             0x03 /*  word length 8 (default) */
-> > > +
-> > > +/* Modem Control Register bits */
-> > > +#define SUP_UART_MCR_LB                      BIT(4) /* Loopback mode */
-> > > +#define SUP_UART_MCR_RI                      BIT(3) /* ring indicator */
-> > > +#define SUP_UART_MCR_DCD             BIT(2) /* data carrier detect */
-> > > +#define SUP_UART_MCR_RTS             BIT(1) /* request to send */
-> > > +#define SUP_UART_MCR_DTS             BIT(0) /* data terminal ready */
-> > > +
-> > > +/* Interrupt Status/Control Register bits */
-> > > +#define SUP_UART_ISC_RXM             BIT(5) /* RX interrupt enable */
-> > > +#define SUP_UART_ISC_TXM             BIT(4) /* TX interrupt enable */
-> > > +#define SUP_UART_ISC_RX                      BIT(1) /* RX interrupt status */
-> > > +#define SUP_UART_ISC_TX                      BIT(0) /* TX interrupt status */
-> > > +
-> > > +#define SUP_DUMMY_READ                       BIT(16) /* drop bytes received on a !CREAD port */
-> > > +#define SUP_UART_NR                  5
-> >
-> > Aren't most of these defines already in the kernel header files?  Why
-> > create them again?
-> >
-> 
-> If for reduce code.
-> I can add #include<linux/serial_reg.h>
-> And remove some overlap define name.
-> 
-> #define SUP_UART_LCR_PR -> UART_LCR_EPAR
-> #define SUP_UART_LCR_PE -> UART_LCR_PARITY
-> #define SUP_UART_LCR_ST -> UART_LCR_STOP
-> #define SUP_UART_LCR_WL5 -> UART_LCR_WLEN5
-> #define SUP_UART_LCR_WL6 -> UART_LCR_WLEN6
-> #define SUP_UART_LCR_WL7 -> UART_LCR_WLEN7
-> #define SUP_UART_LCR_WL8 -> UART_LCR_WLEN8
-> 
-> #define SUP_UART_MCR_LB -> UART_MCR_LOOP
-> #define SUP_UART_MCR_RI -> UART_MCR_OUT2 ?
-> #define SUP_UART_MCR_DCD -> UART_MCR_OUT1 ?
-> #define SUP_UART_MCR_RTS -> UART_MCR_RTS
-> #define SUP_UART_MCR_DTS -> UART_MCR_DTR
-> 
-> But the rest define didn't match internal #include<linux/serial_reg.h>
-> , those define still need to keep.
-> Some use SUP_xxxx specific define.
-> Some use internal #include<linux/serial_reg.h>, it is strange.
+It's more about how documentation is written=2E Documentation expect "speci=
+fic compatible", "generic compatible" in that order=2E Of course it can be =
+changed to allow also  only specific compatible=2E
 
-Do not duplicate defines that we already have for the same hardware
-type.
+Also this syntax ensure that older kernel (without implemented device comp=
+atible/support) will try to work when new dts is used=2E Kernel can fallbac=
+k to generic one compatible and code and device will still work, if the dri=
+ver is generic enough to provide at least some basic support without knowin=
+g which exact device is handled=2E
 
-And again, why is this not a normal serial driver for the existing UART
-types as this hardware is obviously an 8250 variant?
+If I missed some reason to use it, I guess Rob will correct me :)
 
-thanks,
+David
 
-greg k-h
+
+-------- P=C5=AFvodn=C3=AD zpr=C3=A1va --------
+Odes=C3=ADlatel: Manivannan Sadhasivam <manivannan=2Esadhasivam@linaro=2Eo=
+rg>
+Odesl=C3=A1no: 21=2E prosince 2021 6:58:45 UTC
+Komu: David Heidelberg <david@ixit=2Ecz>
+Kopie: Andy Gross <agross@kernel=2Eorg>, Bjorn Andersson <bjorn=2Eandersso=
+n@linaro=2Eorg>, Rob Herring <robh+dt@kernel=2Eorg>, ~okias/devicetree@list=
+s=2Esr=2Eht, linux-arm-msm@vger=2Ekernel=2Eorg, devicetree@vger=2Ekernel=2E=
+org, linux-kernel@vger=2Ekernel=2Eorg
+P=C5=99edm=C4=9Bt: Re: [PATCH] arm64: dts: qcom: sdm845: add missing power=
+-controller compatible
+
+On Mon, Dec 20, 2021 at 10:14:43PM +0100, David Heidelberg wrote:
+> dt-schema expect to have fallback compatible, which is now in-place=2E
+>=20
+> Fixes warning generated by `make qcom/sdm845-oneplus-fajita=2Edtb`:
+> arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita=2Edt=2Eyaml: power-contro=
+ller@c300000: compatible: ['qcom,sdm845-aoss-qmp'] is too short
+>         From schema: Documentation/devicetree/bindings/soc/qcom/qcom,aos=
+s-qmp=2Eyaml
+>=20
+> Signed-off-by: David Heidelberg <david@ixit=2Ecz>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845=2Edtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845=2Edtsi b/arch/arm64/boot/dt=
+s/qcom/sdm845=2Edtsi
+> index 92ab4513a08b=2E=2Edbdb4243499c 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845=2Edtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845=2Edtsi
+> @@ -4619,7 +4619,7 @@ aoss_reset: reset-controller@c2a0000 {
+>  		};
+> =20
+>  		aoss_qmp: power-controller@c300000 {
+> -			compatible =3D "qcom,sdm845-aoss-qmp";
+> +			compatible =3D "qcom,sdm845-aoss-qmp", "qcom,aoss-qmp";
+
+"qcom,sdm845-aoss-qmp" compatible is supported by the driver=2E So ideally=
+ we
+don't need a fallback here=2E
+
+Is this something for DT backwards compatibility?
+
+Thanks,
+Mani
+
+>  			reg =3D <0 0x0c300000 0 0x100000>;
+>  			interrupts =3D <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
+>  			mboxes =3D <&apss_shared 0>;
+> --=20
+> 2=2E34=2E1
+>=20
