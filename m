@@ -2,215 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A771047C944
-	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 23:36:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAD7347C94E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Dec 2021 23:45:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237985AbhLUWgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 17:36:45 -0500
-Received: from mga07.intel.com ([134.134.136.100]:22000 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237387AbhLUWgo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Dec 2021 17:36:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1640126204; x=1671662204;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7+zcXeJFEm2uxCbsmG6YEfjfiN3y+5NaQlSt8ITghWg=;
-  b=LCGUCFvz00m1wdNVyVKFPq4PhCQ22gQ4FpA5kFJOO5XNgCIoouU+4M+3
-   tAPMbDd9AwzQSdWntLQkECt+fXHu9PKysY04Npr4YXPYGa00Tkvo3Td/U
-   vcvMI/QOUw3vk8MCsLUllaZb/65wmhOq3a6ooi8x827J1K2/CYEqTqjjs
-   NJtKBWHKK9KPjJ19juEiT5TvOgEA/AoPVEUPi6q1NT1fzT6qtnkHlOMzY
-   w9ItropC1Ou785HM5cBXjXuUCfzwMcHJtYVRamXfz50kQfE9byS97GEFJ
-   KOPHFe5QJ/ZdcnHbxZqxvFShMPIU3p8zbUjfo2gOaeUAqN25N+2GhG61c
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10205"; a="303874448"
-X-IronPort-AV: E=Sophos;i="5.88,224,1635231600"; 
-   d="scan'208";a="303874448"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2021 14:36:44 -0800
-X-IronPort-AV: E=Sophos;i="5.88,224,1635231600"; 
-   d="scan'208";a="484563640"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2021 14:36:42 -0800
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 460842057F;
-        Wed, 22 Dec 2021 00:36:40 +0200 (EET)
-Date:   Wed, 22 Dec 2021 00:36:40 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: Add IMX296 CMOS sensor
- binding
-Message-ID: <YcJW+EZhDkxk2u2w@paasikivi.fi.intel.com>
-References: <20211219220948.28953-1-laurent.pinchart@ideasonboard.com>
- <20211219220948.28953-2-laurent.pinchart@ideasonboard.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211219220948.28953-2-laurent.pinchart@ideasonboard.com>
+        id S229695AbhLUWpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 17:45:35 -0500
+Received: from mail-qv1-f46.google.com ([209.85.219.46]:34333 "EHLO
+        mail-qv1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232664AbhLUWpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 17:45:35 -0500
+Received: by mail-qv1-f46.google.com with SMTP id ke6so674260qvb.1;
+        Tue, 21 Dec 2021 14:45:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=+SlxlPFUAIksbSGbfJhkBNtunIqmSVgKHxJRcHXcQ94=;
+        b=AJuXwtOvnE2z2Z2uE1xR5PAV1qYm1FPVqBeZBStfqNw+k1NoxZpQFh74cl5fVjqMTL
+         yd47S3qp8F/W2eOECTiH5gSmx7Rr6sQB/jyqhQdkV2/5Nv0cvs0CBpusWuuYEwB6yncc
+         mmj9olN2eFdbgCx/nrM8zDA50jLhgA+fLKcXK6KaYdnDhkX8TpNpJNdeTgMTTaHM1nST
+         Uzz0zRXPfMCJanaaxYizVn0kU2cGxZgReGpPVPq1QE7064u2FpRunrXkgeSAMlHqXIoe
+         iccl/ikakYV5ctT9u85b8sa0QgnxSla+rC9VbBURC3wahWMC/WSYoP1YAeq5B35/uqwK
+         uuGw==
+X-Gm-Message-State: AOAM530IDGRr9e9rneeYF8Emoixx/Kxn5FB+7M+MkxcvCftT65tC5B0r
+        pWYJ/U6yaiav3BVIkeEezqb17gAhtupm
+X-Google-Smtp-Source: ABdhPJwICeOv3LZbjDh2U2Dcn/0vXEzNImCZcYu9rQjErZcZ4o6ZGrQ9T/ozNaawRpsqDXgRdrWE2A==
+X-Received: by 2002:a05:6214:4008:: with SMTP id kd8mr390066qvb.127.1640126734116;
+        Tue, 21 Dec 2021 14:45:34 -0800 (PST)
+Received: from robh.at.kernel.org ([24.55.105.145])
+        by smtp.gmail.com with ESMTPSA id w10sm255592qtj.37.2021.12.21.14.45.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Dec 2021 14:45:33 -0800 (PST)
+Received: (nullmailer pid 1654435 invoked by uid 1000);
+        Tue, 21 Dec 2021 22:45:31 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        Niklas Cassel <niklas.cassel@linaro.org>,
+        Niklas Cassel <nks@flawful.org>, linux-arm-msm@vger.kernel.org
+In-Reply-To: <20211221133937.173618-1-y.oudjana@protonmail.com>
+References: <20211221133937.173618-1-y.oudjana@protonmail.com>
+Subject: Re: [PATCH] dt-bindings: power: avs: qcom,cpr: Convert to DT schema
+Date:   Tue, 21 Dec 2021 18:45:31 -0400
+Message-Id: <1640126731.354790.1654434.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
-
-On Mon, Dec 20, 2021 at 12:09:47AM +0200, Laurent Pinchart wrote:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+On Tue, 21 Dec 2021 13:40:05 +0000, Yassine Oudjana wrote:
+> Convert qcom,cpr.txt to DT schema format.
 > 
-> Add YAML devicetree binding for IMX296 CMOS image sensor. Let's also
-> add MAINTAINERS entry for the binding and driver.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
 > ---
-> Changes since v4:
+>  .../bindings/power/avs/qcom,cpr.txt           | 130 --------------
+>  .../bindings/power/avs/qcom,cpr.yaml          | 161 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 162 insertions(+), 131 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/power/avs/qcom,cpr.txt
+>  create mode 100644 Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml
 > 
-> - Rename to sony,imx296.yaml
-> - Add Laurent Pinchart as maintainer
-> - Rename power supplies
-> - Rename clock to INCK
-> - Drop clock-frequency property
-> - Reference OF graph DT schema
-> - Mention reset GPIO pin name
-> - Fix schema $id
-> - Fix port
-> ---
->  .../bindings/media/i2c/sony,imx296.yaml       | 95 +++++++++++++++++++
->  MAINTAINERS                                   |  8 ++
->  2 files changed, 103 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml
-> new file mode 100644
-> index 000000000000..e8f9a73bf2db
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml
-> @@ -0,0 +1,95 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/sony,imx296.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sony IMX296 1/2.8-Inch CMOS Image Sensor
-> +
-> +maintainers:
-> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> +
-> +description: |-
-> +  The Sony IMX296 is a 1/2.9-Inch active pixel type CMOS Solid-state image
-> +  sensor with square pixel array and 1.58 M effective pixels. This chip
-> +  features a global shutter with variable charge-integration time. It is
-> +  programmable through I2C and 4-wire interfaces. The sensor output is
-> +  available via CSI-2 serial data output (1 Lane).
-> +
-> +properties:
-> +  compatible:
-> +    const: sony,imx296
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    description: Input clock (37.125 MHz, 54 MHz or 74.25 MHz)
-> +    items:
-> +      - const: inck
 
-As the driver only gets the frequency, should we require assigned-clock-*
-stuff here?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Virtually all other sensors have a wide range of supported frequencies.
+yamllint warnings/errors:
 
-> +
-> +  avdd-supply:
-> +    description: Analog power supply (3.3V)
-> +
-> +  dvdd-supply:
-> +    description: Digital power supply (1.2V)
-> +
-> +  ovdd-supply:
-> +    description: Interface power supply (1.8V)
-> +
-> +  reset-gpios:
-> +    description: Sensor reset (XCLR) GPIO
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - avdd-supply
-> +  - dvdd-supply
-> +  - ovdd-supply
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        imx296: camera-sensor@1a {
-> +            compatible = "sony,imx296";
-> +            reg = <0x1a>;
-> +
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&camera_rear_default>;
-> +
-> +            clocks = <&gcc 90>;
-> +            clock-names = "inck";
-> +
-> +            avdd-supply = <&camera_vdda_3v3>;
-> +            dvdd-supply = <&camera_vddd_1v2>;
-> +            ovdd-supply = <&camera_vddo_1v8>;
-> +
-> +            reset-gpios = <&msmgpio 35 GPIO_ACTIVE_LOW>;
-> +
-> +            port {
-> +                imx296_ep: endpoint {
-> +                    remote-endpoint = <&csiphy0_ep>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 43007f2d29e0..1b20f2b90aec 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17752,6 +17752,14 @@ T:	git git://linuxtv.org/media_tree.git
->  F:	Documentation/devicetree/bindings/media/i2c/imx290.txt
->  F:	drivers/media/i2c/imx290.c
->  
-> +SONY IMX296 SENSOR DRIVER
-> +M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> +M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +T:	git git://linuxtv.org/media_tree.git
-> +F:	Documentation/devicetree/bindings/media/i2c/sony,imx296.yaml
-> +
->  SONY IMX319 SENSOR DRIVER
->  M:	Bingbu Cao <bingbu.cao@intel.com>
->  L:	linux-media@vger.kernel.org
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/power/avs/qcom,cpr.example.dt.yaml:0:0: /example-0/cpr-opp-table: failed to match any schema with compatible: ['operating-points-v2-qcom-level']
 
--- 
-Kind regards,
+doc reference errors (make refcheckdocs):
 
-Sakari Ailus
+See https://patchwork.ozlabs.org/patch/1571666
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
