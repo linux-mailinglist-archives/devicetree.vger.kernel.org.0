@@ -2,109 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0B7347C9D0
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 00:41:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6639B47C9DC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 00:50:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237268AbhLUXl4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 18:41:56 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:49322 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237103AbhLUXl4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 18:41:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1640130116; x=1671666116;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=YrEk2U8/c5RaE74NICYhYBvJowu6EP7iBBBHKsBbex8=;
-  b=rR6gL87TPHYK0C46KFn4y99T5FDxYbsM0f3zAir7xGabUxxeBQex6cz1
-   dOUDvf0hnpeA6kFgL/xnulVau0lboTunLTGymyTIELiVrPt/dNl6b0/Or
-   5jJR5XJEkyPHg5mXyrod3IBiozTsT+/L2pV1nOUmar7tVf54q0UwwEKPv
-   8=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 21 Dec 2021 15:41:55 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2021 15:41:40 -0800
-Received: from nalasex01c.na.qualcomm.com (10.47.97.35) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 21 Dec 2021 15:41:40 -0800
-Received: from [10.231.205.174] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Tue, 21 Dec
- 2021 15:41:37 -0800
-Message-ID: <517655ce-e4b2-809d-3244-25ab25128b65@quicinc.com>
-Date:   Wed, 22 Dec 2021 07:41:34 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [PATCH v4 11/11] dt-bindings: convert qcom,spmi-pmic-arb binding
- to YAML format
-Content-Language: en-US
+        id S237821AbhLUXux convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 21 Dec 2021 18:50:53 -0500
+Received: from mail-4018.proton.ch ([185.70.40.18]:43797 "EHLO
+        mail-4018.proton.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236449AbhLUXux (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 18:50:53 -0500
+Date:   Tue, 21 Dec 2021 23:50:47 +0000
+Authentication-Results: mail-4018.proton.ch; dkim=none
 To:     Rob Herring <robh@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <collinsd@codeaurora.org>,
-        <linux-kernel@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        "Subbaraman Narayanamurthy" <quic_subbaram@quicinc.com>,
-        <subbaram@codeaurora.org>, <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <maz@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <tglx@linutronix.de>
-References: <1640071211-31462-1-git-send-email-quic_fenglinw@quicinc.com>
- <1640071211-31462-12-git-send-email-quic_fenglinw@quicinc.com>
- <1640085064.276534.1014103.nullmailer@robh.at.kernel.org>
-From:   Fenglin Wu <quic_fenglinw@quicinc.com>
-In-Reply-To: <1640085064.276534.1014103.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
+From:   conor dooley <mail@conchuod.ie>
+Cc:     conor.dooley@microchip.com, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, jassisinghbrar@gmail.com,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, broonie@kernel.org,
+        gregkh@linuxfoundation.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
+        krzysztof.kozlowski@canonical.com, geert@linux-m68k.org,
+        bin.meng@windriver.com, heiko@sntech.de, lewis.hanly@microchip.com,
+        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
+        atish.patra@wdc.com
+Reply-To: conor dooley <mail@conchuod.ie>
+Subject: Re: [PATCH v2 03/17] dt-bindings: soc/microchip: make systemcontroller a mfd
+Message-ID: <YfGEPBe6qV6ieFoD_Xk-rEkBwvyWlVDCxk1PNycMfHsRYK1zMpawiDI25G1EZorczGJGj8e-epWgPs_UB8_-DP4keo1ivgfrLOXJNliFRxE=@conchuod.ie>
+In-Reply-To: <YcIVFZSqt/JSuk3J@robh.at.kernel.org>
+References: <20211217093325.30612-1-conor.dooley@microchip.com> <20211217093325.30612-4-conor.dooley@microchip.com> <YcIVFZSqt/JSuk3J@robh.at.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.0 required=10.0 tests=ALL_TRUSTED shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 2021/12/21 19:11, Rob Herring wrote:
-> On Tue, 21 Dec 2021 15:20:09 +0800, Fenglin Wu wrote:
->> Convert the SPMI PMIC arbiter documentation to JSON/yaml.
+On Tuesday, December 21st, 2021 at 17:55, Rob Herring <robh@kernel.org> wrote:
+
+>On Fri, Dec 17, 2021 at 09:33:11AM +0000, conor.dooley@microchip.com wrote:
+>> From: Conor Dooley <conor.dooley@microchip.com>
 >>
->> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+>> Make the system controller on the Polarfire SoC
+>> a "simple,mfd" so that the services can be child
+>> nodes of the system controller node.
+>>
+>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 >> ---
->>   .../bindings/spmi/qcom,spmi-pmic-arb.txt           |  67 ----------
->>   .../bindings/spmi/qcom,spmi-pmic-arb.yaml          | 146 +++++++++++++++++++++
->>   2 files changed, 146 insertions(+), 67 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
->>   create mode 100644 Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+>>  .../microchip,mpfs-sys-controller.yaml        | 33 +++++++++++++++++--
+>>  1 file changed, 30 insertions(+), 3 deletions(-)
 >>
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>> diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml b/>Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
+>> index f699772fedf3..014cb44b8f31 100644
+>> --- a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
+>> +++ b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
+>> @@ -13,13 +13,34 @@ description: |
+>>    The PolarFire SoC system controller is communicated with via a mailbox.
+>>    This document describes the bindings for the client portion of that mailbox.
+>>
+>> -
+>>  properties:
+>>    mboxes:
+>>      maxItems: 1
+>>
+>>    compatible:
+>> -    const: microchip,mpfs-sys-controller
+>> +    items:
+>> +      - const: microchip,mpfs-sys-controller
+>> +      - const: simple-mfd
 >
-> yamllint warnings/errors:
+>'simple-mfd' means there is zero dependency on the parent for the child
+>nodes. Isn't 'mboxes' a dependency?
+
+I suppose it is. I was going off what had been done for the bcm2835
+firmware for the rpi its also a mailbox providing "services".
+(arm/bcm/raspberrypi,bcm2835-firmware.yaml)
 >
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.example.dt.yaml: spmi@fc4cf000: reg: [[4232900608, 4096], [4232884224, 4096], [4232880128, 4096]] is too long
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/spmi.yaml
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.example.dt.yaml: spmi@fc4cf000: reg: [[4232900608, 4096], [4232884224, 4096], [4232880128, 4096]] is too long
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-I re-based the change on the tip of spmi-next project which has this 
-change included:
-https://lore.kernel.org/all/20211119034613.32489-2-james.lo@mediatek.com/
-With it, the constraint should be removed and this warning/error won't 
-be seen.
-> doc reference errors (make refcheckdocs):
-> Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt: Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
+>> +
+>> +  hwrandom:
+>> +    type: object
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        const: microchip,mpfs-rng
+>> +
+>> +    required:
+>> +      - compatible
+>> +
+>> +  sysserv:
+>> +    type: object
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        const: microchip,mpfs-generic-service
+>> +
+>> +    required:
+>> +      - compatible
 >
-> See https://patchwork.ozlabs.org/patch/1571409
+>There's not really any need to have child nodes which have no resources.
+>The driver for microchip,mpfs-sys-controller can create child devices.
+
+I am assuming by this you mean say, take a list of boolean properties and
+convert those into child devices? There's a fairly decent number of services
+provided by the system controller and these children just represent the
+subset that we've implemented so far.
+
+Conor
 >
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
->
+>Rob
+
