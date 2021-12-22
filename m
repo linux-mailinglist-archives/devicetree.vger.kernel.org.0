@@ -2,227 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 759D947CB21
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 02:53:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 337DC47CAF2
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 02:52:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238489AbhLVBx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 20:53:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33234 "EHLO
+        id S241359AbhLVBwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 20:52:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238481AbhLVBxZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 20:53:25 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B648C061574
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 17:53:25 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id bt1so1740905lfb.13
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 17:53:25 -0800 (PST)
+        with ESMTP id S241343AbhLVBwt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 20:52:49 -0500
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 467C4C061574;
+        Tue, 21 Dec 2021 17:52:48 -0800 (PST)
+Received: by mail-qt1-x82e.google.com with SMTP id l17so607536qtk.7;
+        Tue, 21 Dec 2021 17:52:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=PvpXSanHxWA1NlFuLepjdH5cmZWOnCjHjBgKWYYS9CA=;
-        b=irdgpDSaEGdOT/kET7iJz/biFGlel/L2LGBeBZmFuhPc1QnXUMW5LrVBkg2t8s47SD
-         r9YqZXCBpPfNkMrZLuQMR0CH8H3hjyWy0Fa1pF/EZNEVSAz11mT+fFD8vdBVB6aoYh+N
-         CDUy9ZO3yvd/66nBubIF/oFxG11HOI5G8hw9Y=
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Lc/MTdHw8w2hgosWEnakgoAuLPp1GXkSGiA0tQorVkU=;
+        b=R7ellObNYoZZhvSi6Mj5U2BzNlr1It4Z0+HoNASJv0BPyN4haouDVv7tXJwYPeQtGq
+         EuWGiiWognusoqwStq9drFuQWE2J1h7QlW2YncGZsiNnGGwultWA0aq6vGIoSBnGCAjm
+         2kSNtbKnepWHq0lBEY+MQMOziDJMOhmSFkHO1dgE0aOzc/YmMKgZUmD1hakUHizfILMQ
+         IqJRefyOEtdpv58OcdjC0mSn1Ja4Y01ANYuHvYbVyW4eHbujzPIyK/hpkbtPHKKfwBjn
+         mMdy5GvMXJR7I54vNfPIzhngDVUDWHKCgjUIwqKNKUN4yRopyY3PY1XHExYTznO7KgZp
+         m+kQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=PvpXSanHxWA1NlFuLepjdH5cmZWOnCjHjBgKWYYS9CA=;
-        b=svnH4mpfLyKmQD3ktvvORDwiKvDjuohPUNlxg8dYddCmL94p9MXIzXSY1JDwBIDWPk
-         VD+rTlhwSRsMAC09ePGkAMGTDDMlzONZXp86pmiPSStznJZfGPz/am22cVYcvpS/pWDV
-         upuyeWnCjXupcbw+jEO9kBNQwwFGXtb6Pd2P51CWQ1cGJjXR8VKEB00bK2R7RwLEtu5G
-         dSpqDrHQFlio8RIVfJiDO94xRajswwlAlk+n/zDrPr1MwGjVh/oLZfcmRh3YWM2QWdFM
-         43eZdazjX/FUyZZEScqPqN3FS9D4IwhzTh36dvfl/NzOmxNYi1SzIP/aDpsclO8op8JD
-         08FQ==
-X-Gm-Message-State: AOAM530QbUv4ZIO6Ug1fOcUIpkBCYXgF0NH98HAqVT1VX0ma96U/7RXh
-        cQxGp1LbuhyDVy4CU6wKOnDBP6osrkOf93OwWNU=
-X-Google-Smtp-Source: ABdhPJxBSD1tjEbNgmfScieTVI0XXxVI1Va+iLwnSsvpXTEZYC5yWrR4N0OoOo/7KviHB0EZiv4HmA==
-X-Received: by 2002:ac2:5fca:: with SMTP id q10mr790136lfg.281.1640138003248;
-        Tue, 21 Dec 2021 17:53:23 -0800 (PST)
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com. [209.85.208.169])
-        by smtp.gmail.com with ESMTPSA id r10sm57168ljg.116.2021.12.21.17.53.23
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Dec 2021 17:53:23 -0800 (PST)
-Received: by mail-lj1-f169.google.com with SMTP id b19so1191765ljr.12
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 17:53:23 -0800 (PST)
-X-Received: by 2002:ac2:498c:: with SMTP id f12mr776217lfl.250.1640137540653;
- Tue, 21 Dec 2021 17:45:40 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Lc/MTdHw8w2hgosWEnakgoAuLPp1GXkSGiA0tQorVkU=;
+        b=PV8WOLtbKH9iH90gbz5g2f0JZKiB0zoLh316NmjX8r3nJNEomKHTO2PhFixc0yoW4p
+         dASMmCfj6h5a26x/GtA+DMTV3ydGhTUcQB26DFIxLcsIZeNiHnmu5i6X8zy5BJj52qYv
+         8GMlmxZvp/nm94LU0erTachcfb6O6ju0hYeBEAjtJ5KsUJ/wQN261gnp7X/YMymEbe1s
+         44kbQ1VUrVJEycxGpgnOcugeZojkMFzk5F5/fz+2tcx2U1xTp9UWMbVfKNH2TrUrFl3T
+         HsE5N6od9dBIp2IurAt7Q1NPnKmff73S/xS7CGTfvyzMb0K3ehBsaz4Ieh4cLtpBWbsf
+         f/mg==
+X-Gm-Message-State: AOAM531ejEMFNXpToyKKwfSUzKhlgU+RMzZJXwh8WrX9VSQEulXaL/6N
+        MXv96wjRnpCxIN6AMXhcnK4=
+X-Google-Smtp-Source: ABdhPJw30wTn59z1W6Nzm0yuguVm/dcUmBERaT67Mf7UsZAWyRvBWggsNidAzER7qvfjCZIsAz/Gig==
+X-Received: by 2002:a05:622a:590:: with SMTP id c16mr741519qtb.289.1640137966915;
+        Tue, 21 Dec 2021 17:52:46 -0800 (PST)
+Received: from jesse-desktop.jtp-bos.lab (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id d4sm658161qkn.79.2021.12.21.17.52.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Dec 2021 17:52:46 -0800 (PST)
+From:   Jesse Taube <mr.bossman075@gmail.com>
+X-Google-Original-From: Jesse Taube <Mr.Bossman075@gmail.com>
+To:     linux-imx@nxp.com
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
+        stefan@agner.ch, linus.walleij@linaro.org,
+        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
+        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
+        adrian.hunter@intel.com, jirislaby@kernel.org,
+        giulio.benetti@benettiengineering.com,
+        nobuhiro1.iwamatsu@toshiba.co.jp, Mr.Bossman075@gmail.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-serial@vger.kernel.org
+Subject: [PATCH v6 0/7] dd initial support for the i.MXRTxxxx SoC family starting from i.IMXRT1050 SoC.
+Date:   Tue, 21 Dec 2021 20:52:37 -0500
+Message-Id: <20211222015244.2464671-1-Mr.Bossman075@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20211220210643.47842-1-pmenzel@molgen.mpg.de> <CAE_wzQ_Lg1ODV5sEqtW=SauhSXxi6+fh3msOuhnJy8-sNtORcg@mail.gmail.com>
- <CABXOdTeNy3jQ5aQijw9HTpwcNvkEJmddz9yf0Mk-Z+78bDDN-A@mail.gmail.com> <8a7fad1b-b34d-88db-2f6b-462303fe03d9@molgen.mpg.de>
-In-Reply-To: <8a7fad1b-b34d-88db-2f6b-462303fe03d9@molgen.mpg.de>
-From:   Dmitry Torokhov <dtor@chromium.org>
-Date:   Tue, 21 Dec 2021 17:45:24 -0800
-X-Gmail-Original-Message-ID: <CAE_wzQ9+esd7WX0hFYVwAyWT_WjywRemPFhyWRmKQpx_4BmfcA@mail.gmail.com>
-Message-ID: <CAE_wzQ9+esd7WX0hFYVwAyWT_WjywRemPFhyWRmKQpx_4BmfcA@mail.gmail.com>
-Subject: Re: [PATCH] CHROMIUM: i2c: Add device property for probing
-To:     Paul Menzel <pmenzel@molgen.mpg.de>
-Cc:     Guenter Roeck <groeck@google.com>, Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Tim Wawrzynczak <twawrzynczak@chromium.org>,
-        coreboot@coreboot.org, Matt DeVillier <matt.devillier@gmail.com>,
-        Felix Singer <felixsinger@posteo.net>,
-        Benson Leung <bleung@chromium.org>,
-        Justin TerAvest <teravest@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, Sangwon Jee <jeesw@melfas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 21, 2021 at 11:42 AM Paul Menzel <pmenzel@molgen.mpg.de> wrote:
->
-> Dear Guenter, dear Dmitry,
->
->
-> Am 21.12.21 um 17:47 schrieb Guenter Roeck:
-> > On Mon, Dec 20, 2021 at 1:49 PM Dmitry Torokhov <dtor@chromium.org> wro=
-te:
->
-> >> On Mon, Dec 20, 2021 at 1:07 PM Paul Menzel <pmenzel@molgen.mpg.de> wr=
-ote:
-> >>>
-> >>> From: Furquan Shaikh <furquan@google.com>
->
-> >>> Google Chromebooks are often built with devices sourced from differen=
-t
-> >>> vendors. These need to be probed. To deal with this, the firmware =E2=
-=80=93 in
-> >>> this case coreboot =E2=80=93 tags such optional devices accordingly =
-=E2=80=93 I think
-> >>> this is commit fbf2c79b (drivers/i2c/generic: Add config for marking
-> >>> device as probed) =E2=80=93 and Chromium OS=E2=80=99 Linux kernel has=
- the patch at hand
-> >>> applied to act accordingly. Right after the merge, Dmitry created a
-> >>> revert, which was actively discussed for two days but wasn=E2=80=99t =
-applied.
-> >>> That means, millions of devices shipped with such a firmware and Linu=
-x
-> >>> kernel. To support these devices with upstream Linux kernel, is there=
- an
-> >>> alternative to applying the patch to the Linux kernel, and to support
-> >>> the shipped devices?
-> >>
-> >> *sigh* I should have pushed harder, but I see it managed to
-> >> proliferate even into our newer kernels. Not having this patch should
-> >> not cause any problems, it can only hurt, because the i2c core has no
-> >> idea how to power up and reset the device properly. The only downside
-> >> of not having this patch is that we may have devices in sysfs that are
-> >> not connected to actual hardware. They do now cause any problems and
-> >> is how we have been shipping ARM-based devices where we also dual- and
-> >> triple-source components. However if we were to have a device that
-> >> switches between several addresses (let's say device in bootloader
-> >> mode uses 0x10 address and in normal mode 0x20) this "probing" may
-> >> result in device not being detected at all.
->
-> On google/sarien, the (upstream) Linux kernel sometimes detects the
-> Melfas touchscreen and sometimes not, but in never works. When it=E2=80=
-=99s
-> detected, the errors below are still shown.
->
-> ```
-> $ grep i2c voidlinux-linux-5.13.19-messages.txt
-> [    9.392598] i2c i2c-7: 2/2 memory slots populated (from DMI)
-> [    9.393108] i2c i2c-7: Successfully instantiated SPD at 0x50
-> [    9.622151] input: MELFAS MIP4 Touchscreen as
-> /devices/pci0000:00/0000:00:15.0/i2c_designware.0/i2c-8/i2c-MLFS0000:00/i=
-nput/input6
-> [    9.657964] cr50_i2c i2c-GOOG0005:00: cr50 TPM 2.0 (i2c 0x50 irq 114
-> id 0x28)
-> [    9.662309] elan_i2c i2c-ELAN0000:00: supply vcc not found, using
-> dummy regulator
-> [    9.773244] elan_i2c i2c-ELAN0000:00: Elan Touchpad: Module ID:
-> 0x00d6, Firmware: 0x0005, Sample: 0x0009, IAP: 0x0001
-> [    9.773349] input: Elan Touchpad as
-> /devices/pci0000:00/0000:00:15.1/i2c_designware.1/i2c-9/i2c-ELAN0000:00/i=
-nput/input7
-> [   10.820307] i2c_designware i2c_designware.0: controller timed out
-> [   10.820359] mip4_ts i2c-MLFS0000:00: mip4_i2c_xfer - i2c_transfer
-> failed: -110 (-110)
-> [   11.844523] i2c_designware i2c_designware.0: controller timed out
-> [   11.844635] mip4_ts i2c-MLFS0000:00: mip4_i2c_xfer - i2c_transfer
-> failed: -110 (-110)
-> [   12.868376] i2c_designware i2c_designware.0: controller timed out
-> [   12.868488] mip4_ts i2c-MLFS0000:00: mip4_i2c_xfer - i2c_transfer
-> failed: -110 (-110)
-> [   12.868570] mip4_ts i2c-MLFS0000:00: Failed to read packet info: -110
-> ```
->
-> Is that related to the probing stuff?
+This patchset contains:
+- i.MXRT10xx family infrastructure
+- i.MXRT1050 pinctrl driver adaption
+- i.MXRT1050 clock driver adaption
+- i.MXRT1050 sd-card driver adaption
+- i.MXRT1050 uart driver adaption
+- i.MXRT1050-evk basic support
 
-So what happens is that there are Melfas and Elan (i2c-hid)
-touchscreens described in DSDT, both sharing the same reset line. So
-you get Melfas identified, and then i2c-hid comes along, does not find
-anything, and powers off/resets Melfas controller. Unfortunately
-coreboot does not implement logic for shared power resources here, so
-when I2C core thinks that it is powering off Elan it in fact powers
-off an unrelated device.
+The i.MXRTxxxx family that could have support by Linux actually spreads
+from i.MXRT1020 to i.MXRT1170 with the first one supporting 1 USB OTG &
+100M ethernet with a cortex-M7@500Mhz up to the latter with i.MXRT1170
+with cortex-M7@1Ghz and cortex-M4@400Mhz, 2MB of internal SRAM, 2D GPU,
+2x 1Gb and 1x 100Mb ENET. The i.MXRT family is NXP's answer to
+STM32F7XX, as it uses only simple SDRAM, it gives the chance of a 4 or
+less layer PCBs. Seeing that these chips are comparable to the
+STM32F7XXs which have linux ported to them it seems reasonable to add
+support for them.
 
-I wonder if we should offer a language to better describe dual-sourced
-components/shared power resources so we would not get into this
-situation. I am still curious what powers up the devices in case we
-use
-i2c_new_scanned_device() path. Is it simply a happenstance? I have a
-Sarien with Melfas, I guess I can play with it a bit...
+Giving Linux support to this family should ease the development process,
+instead of using a RTOS they could use Embedded Linux allowing for more
+portability, ease of design and will broaden the scope of people using
+embedded linux.
 
-OK, I guess we've built more stuff on top of linux,probed and we will
-have to have it if we want to support current Google firmware. We need
-to have much stronger wording about what linux,probed property really
-means (i.e. we expect the device to be powered up by the firmware,
-executing proper power up timing sequence, and not being a "morphing"
-device) for this to work reliably.
+The EVK has very little SDRAM, generally 32MB starting from
+i.MXRT1020(the lowest P/N), although the i.MXRT1160/70 provide instead
+64MB of SDRAM for more functionality.
 
->
-> >> If we wanted to do this correctly, coreboot would have to implement
-> >> full power and reset control and also add drivers for I2C controllers
-> >> to be able to communicate with peripherals, and then adjust _STA
-> >> methods to report "not present" when the device is indeed absent. And
-> >> note that even in this case we would have issues with "morphing
-> >> devices", so coreboot would also need to know how to reset device out
-> >> of bootloader mode, and maybe flash firmware so device can work in
-> >> normal mode.
->
-> What do you mean by =E2=80=9Cbootloader mode=E2=80=9D?
+At the moment we do not support XIP for either u-boot or Linux but it
+should be done in the future. XIP will also save SDRAM.
 
-Modern touch controllers and other peripherals are pretty complex.
-They typically have R0 firmware (bootloader) and RW main firmware, and
-the controller might end up being in "bootloader" mode if RW firmware
-gets corrupted or because of power surge, or something else. Some
-controllers (for example Atmel) use different addresses on the bus
-when in bootloader mode vs normal mode.
+Another interesting fact is the amount of internal SRAM, as the P/N
+increases the SRAM will reach up to 2MB(some could be for cache and
+some would be for video).
 
-> coreboot also cannot flash
-> anything. That=E2=80=99s up to the payload, and even there support for fl=
-ashing
-> is rare.
->
-> Duncan wrote something about the ACPI _STA method idea, that ASL(?) and
-> I2C do not go well together.
+Also, some parts have embed flash of 4MB that can be used for
+u-boot/Linux, if both correctly sized it will leave the SDRAM free.
 
-There would need to be arbitration between OS and firmware when
-accessing I2C controllers in this case so indeed this would be hard.
-Maybe coreboot would have to pre-scan the peripherals before booting
-the OS.
+External flash can be Quad SPI and HyperFlash, so throughput would be
+decent.
 
->
-> >> However coreboot does (or did?) not want to add code to handle i2c
-> >> controllers, and would like to push this knowledge to the kernel. And
-> >> the kernel does know how to handle peripherals properly, but that
-> >> knowledge lies in individual drivers, not i2c core.
->
-> Excuse my ignorance, can you give an example driver? Does the Melfas
-> touchscreen driver (`drivers/input/touchscreen/melfas_mip4.c`) support it=
-?
+The i.MXRT11xx series supports MIPI interface too.
 
-Melfas has handling for its reset line, as well as Elan touch
-controllers (elants_i2c.c), Atmel (atmel_mxt_ts.c), Raydium, etc.
+The family in general provide CAN bus, audio I/O, 1 or more
+USB(otg/host), 1 or more 100Mb/1Gb ethernet, camera interface, sd-card.
 
-Thanks,
-Dmitry
+All this can be used for simple GUIs, web-servers, point-of-sale
+stations, etc.
+
+Giulio Benetti (4):
+  ARM: imx: Add initial support for i.MXRT10xx family
+  dt-bindings: imx: Add clock binding for i.MXRT1050
+  ARM: dts: imx: Add i.MXRT1050-EVK support
+  ARM: imxrt_defconfig: Add i.MXRT family defconfig
+
+Jesse Taube (3):
+  ARM: dts: imxrt1050-pinfunc: Add pinctrl binding header
+  dt-bindings: clock: imx: Add documentation for i.MXRT1050 clock
+  clk: imx: Add initial support for i.MXRT1050 clock driver
+
+ .../bindings/clock/imxrt1050-clock.yaml       |  67 ++
+ arch/arm/boot/dts/Makefile                    |   2 +
+ arch/arm/boot/dts/imxrt1050-evk.dts           |  72 ++
+ arch/arm/boot/dts/imxrt1050-pinfunc.h         | 993 ++++++++++++++++++
+ arch/arm/boot/dts/imxrt1050.dtsi              | 154 +++
+ arch/arm/configs/imxrt_defconfig              |  35 +
+ arch/arm/mach-imx/Kconfig                     |   7 +
+ arch/arm/mach-imx/Makefile                    |   2 +
+ arch/arm/mach-imx/mach-imxrt.c                |  19 +
+ drivers/clk/imx/Kconfig                       |   5 +
+ drivers/clk/imx/Makefile                      |   1 +
+ drivers/clk/imx/clk-imxrt1050.c               | 181 ++++
+ include/dt-bindings/clock/imxrt1050-clock.h   |  73 ++
+ 13 files changed, 1611 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/imxrt1050-clock.yaml
+ create mode 100644 arch/arm/boot/dts/imxrt1050-evk.dts
+ create mode 100644 arch/arm/boot/dts/imxrt1050-pinfunc.h
+ create mode 100644 arch/arm/boot/dts/imxrt1050.dtsi
+ create mode 100644 arch/arm/configs/imxrt_defconfig
+ create mode 100644 arch/arm/mach-imx/mach-imxrt.c
+ create mode 100644 drivers/clk/imx/clk-imxrt1050.c
+ create mode 100644 include/dt-bindings/clock/imxrt1050-clock.h
+
+-- 
+2.34.1
+
