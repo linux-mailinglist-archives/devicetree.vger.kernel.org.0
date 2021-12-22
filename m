@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDDEC47D0CC
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 12:18:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D1A347D0D7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 12:18:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236622AbhLVLSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 06:18:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46676 "EHLO
+        id S244576AbhLVLSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 06:18:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240248AbhLVLSR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 06:18:17 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 139A7C061574
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 03:18:17 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id g7-20020a7bc4c7000000b00345c4bb365aso863958wmk.4
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 03:18:17 -0800 (PST)
+        with ESMTP id S244582AbhLVLSj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 06:18:39 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23702C061748
+        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 03:18:39 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id t26so4189218wrb.4
+        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 03:18:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=UqlZAuK587EnmAYWNwie5YNKKe3+Y4dPueeQgf26x50=;
-        b=vuOSX1bxQMEKxQcPN+VUUzKo5/t4x6aE8a4lqBIBg/AfdmqB+6KVo2XrTQoBcSf2tU
-         KYJuzyeQqh3/veN33Hl/w1tg5wAKXrHSqexWXadPAvPdIo2fytqpF+9ocXySUdMR3RSa
-         MRY/zjG3TljBxAp93rn6PZZhO6CIQlFo7eg8MfpoGY4uLFl8WbhQVQWDCNgMFXMJEXEj
-         59Cpgd/Db1D2YmwSp6L3dll3YieiAaOsusYepMXSzdIcvxRt/NSzk4VWzfgi+tPzySeJ
-         6nMIr7jC78BS9CfRNHmzaVPCONacS2shsylJV4x54vPtLpx+iIqlcIRIMe/fJbdR7SWF
-         PRpQ==
+        bh=BTFrGRijmyqVtwNX+eYj7uLDLDEXDa8YjLzuMRD+fi4=;
+        b=n1wWbc5/GBac4/7gX+mStLNdXD+9ZndYLSDI5tNU/kz1pFG6iO/9vDLjbq3DvBMd7w
+         XDwjYdZrCF3T5s1L15XEHfsQe81DDgZNTBJGUXvkDlQdIGA71FSjMEnYgn3gz3LbqQgH
+         JgGkm5YZGWh6e0AyCb2sK0g9PiUEL7B7UieKYvrzmgObGqfRvPMPKs0uhSUk9RJWHsCM
+         V8dbXY3DQADZK5nusdcU76Fmwe4y5LKKgYmD4niSo6OGjcvhaPt9OJvsuQ3MrIPhmLow
+         8ClxdDLz+f99tFS5ABAYB4WeonMu7CrFh5Vp/if6pzBieskOCnPyBORKZDHVlCyGhLLM
+         CBQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=UqlZAuK587EnmAYWNwie5YNKKe3+Y4dPueeQgf26x50=;
-        b=Ol0vdvj+clGBIpiJnQvztKnocPVbJkXSOFBXe0Kgjl4vD8tgPvfhqQVCsk/xAc0SDu
-         No0ZZjT5hA7yuOq010G4AS3GHVHa1YOJWj3rsLEtpLClQKxVERr9+o8d5ElwJ6enJODX
-         nOcAyI7N9wClmYHve9mXYbqJuMLzNiEV3ytzC3XOsdvOFRE2pE9rLMxWl9HtCiiMnX3b
-         /agq/98yrwtWJrWemhYqIQkkwsZ9SOrnWFbtWF0plPeSlzVwL3bKLLQjz5y22Xd7mHjJ
-         jYYPlWHSqQAY13UmOD9+VOkzrPSmBfJHw8Wi+nrON5B4eVoJAWHoFhPkO1HwzC0N/qQa
-         jv4Q==
-X-Gm-Message-State: AOAM530ZlQFboS0j49uPtExzwra4252yX9m7lOkUhNNhtpC7D74oeNt9
-        IihDYjDb/42kC+gafsVxZ8uH7g==
-X-Google-Smtp-Source: ABdhPJxTnsCCzl4VAhbNMA9kFEFyPrCJC8S3xlkUnNwpH7/g4OOdhsrsOwbBPBROyn7j9hcnjUPYSQ==
-X-Received: by 2002:a1c:4d03:: with SMTP id o3mr609179wmh.3.1640171895690;
-        Wed, 22 Dec 2021 03:18:15 -0800 (PST)
+        bh=BTFrGRijmyqVtwNX+eYj7uLDLDEXDa8YjLzuMRD+fi4=;
+        b=MKQg0qqXVvAn0zJLQI1nbOUJwhp574KkcLp1+YOsT6JkSYEMA1d49Asxuanxw1k4lj
+         FRUciKj3kA8ZTObiMeM2ZiHvgLLxIq/Xj9OAz4Asj/9Gh5FkJa/HCEKHpJGLL2C8rNhS
+         tJ7pXUNkrQQWTwFthOJMB/bAOaF1mQxDL0/ScRggOvqhLlM+rLYD2fFd0IMdejTIO8m0
+         tDx9e68m7EFg7bZT+BEmNRuymOAicD0rUxbbQJ8QDS9+Kv4U5u5dgDlCA9Dua/wqKgDm
+         2C7hk9HixZmHiI0try2xuAoWgI6ZVMsa2qxPJqYV8f7Tmc9F8jHVZy7qePdkgIjIN8yq
+         5+zw==
+X-Gm-Message-State: AOAM533FW65Yk67HNQZtqhxFJqYLDK7j817oz5T5IcTH+e832EuCP5re
+        kDqnenIB5oMCj3jSfjrwr8DnPQ==
+X-Google-Smtp-Source: ABdhPJw38s9cSuuBgFo9+w66UfDHy3rKbuDjgI0szZLbSoZofWuGha24IIq6shTkSBB6qomoMhNtng==
+X-Received: by 2002:a5d:554e:: with SMTP id g14mr1750277wrw.353.1640171917614;
+        Wed, 22 Dec 2021 03:18:37 -0800 (PST)
 Received: from google.com ([2.31.167.18])
-        by smtp.gmail.com with ESMTPSA id h4sm1643585wrf.93.2021.12.22.03.18.14
+        by smtp.gmail.com with ESMTPSA id a198sm1460546wmd.42.2021.12.22.03.18.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Dec 2021 03:18:15 -0800 (PST)
-Date:   Wed, 22 Dec 2021 11:18:13 +0000
+        Wed, 22 Dec 2021 03:18:37 -0800 (PST)
+Date:   Wed, 22 Dec 2021 11:18:35 +0000
 From:   Lee Jones <lee.jones@linaro.org>
 To:     Marijn Suijten <marijn.suijten@somainline.org>
 Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
@@ -67,35 +67,31 @@ Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
         Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v3 7/9] backlight: qcom-wled: Provide enabled_strings
- default for WLED 4 and 5
-Message-ID: <YcMJdZRoOtUrWvkV@google.com>
+Subject: Re: [PATCH v3 8/9] backlight: qcom-wled: Remove unnecessary double
+ whitespace
+Message-ID: <YcMJi5Gpx84zaau6@google.com>
 References: <20211115203459.1634079-1-marijn.suijten@somainline.org>
- <20211115203459.1634079-8-marijn.suijten@somainline.org>
+ <20211115203459.1634079-9-marijn.suijten@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211115203459.1634079-8-marijn.suijten@somainline.org>
+In-Reply-To: <20211115203459.1634079-9-marijn.suijten@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, 15 Nov 2021, Marijn Suijten wrote:
 
-> Only WLED 3 sets a sensible default that allows operating this driver
-> with just qcom,num-strings in the DT; WLED 4 and 5 require
-> qcom,enabled-strings to be provided otherwise enabled_strings remains
-> zero-initialized, resulting in every string-specific register write
-> (currently only the setup and config functions, brightness follows in a
-> future patch) to only configure the zero'th string multiple times.
+> Remove redundant spaces inside for loop conditions.  No other double
+> spaces were found that are not part of indentation with `[^\s]  `.
 > 
 > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 > Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
 > ---
->  drivers/video/backlight/qcom-wled.c | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/video/backlight/qcom-wled.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
 Applied, thanks.
 
