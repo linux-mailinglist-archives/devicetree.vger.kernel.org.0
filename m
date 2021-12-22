@@ -2,36 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D460A47CDDF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 09:13:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC0E947CDE2
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 09:16:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233206AbhLVINC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 03:13:02 -0500
-Received: from comms.puri.sm ([159.203.221.185]:39468 "EHLO comms.puri.sm"
+        id S243194AbhLVIQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 03:16:45 -0500
+Received: from comms.puri.sm ([159.203.221.185]:39570 "EHLO comms.puri.sm"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231675AbhLVINB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Dec 2021 03:13:01 -0500
+        id S243191AbhLVIQo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Dec 2021 03:16:44 -0500
 Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 25F16E0304;
-        Wed, 22 Dec 2021 00:12:31 -0800 (PST)
+        by comms.puri.sm (Postfix) with ESMTP id 5D41BE114A;
+        Wed, 22 Dec 2021 00:16:44 -0800 (PST)
 Received: from comms.puri.sm ([127.0.0.1])
         by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id sMwnXcywxnyo; Wed, 22 Dec 2021 00:12:30 -0800 (PST)
-Message-ID: <a20ecd639f8e8b7fa4a9bed7a8e9590225262784.camel@puri.sm>
-Subject: Re: [PATCH] hack: soc: imx: gpcv2: avoid unbalanced powering off of
- one device
+        with ESMTP id xQqZJwAZlcXR; Wed, 22 Dec 2021 00:16:43 -0800 (PST)
+Message-ID: <3b9f6d64007ff38ffbd36d2648dd827594cc9d59.camel@puri.sm>
+Subject: Re: [PATCH v3 1/2] media: imx: imx7-media-csi: add support for
+ imx8mq
 From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     aford173@gmail.com, devicetree@vger.kernel.org, festevam@gmail.com,
-        frieder.schrempf@kontron.de, kernel@pengutronix.de,
+To:     laurent.pinchart@ideasonboard.com, mchehab@kernel.org,
+        rmfrfs@gmail.com
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de, kernel@puri.sm,
         linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        marex@denx.de, patchwork-lst@pengutronix.de, robh@kernel.org,
-        shawnguo@kernel.org, tharvey@gateworks.com
-Date:   Wed, 22 Dec 2021 09:12:23 +0100
-In-Reply-To: <e9758aac9a0ce296353f5484694c9db14962dfd7.camel@pengutronix.de>
-References: <20211002005954.1367653-8-l.stach@pengutronix.de>
-         <20211208134725.3328030-1-martin.kepplinger@puri.sm>
-         <e9758aac9a0ce296353f5484694c9db14962dfd7.camel@pengutronix.de>
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        robh@kernel.org, shawnguo@kernel.org
+Date:   Wed, 22 Dec 2021 09:16:38 +0100
+In-Reply-To: <20211122072708.95269-1-martin.kepplinger@puri.sm>
+References: <20211122072708.95269-1-martin.kepplinger@puri.sm>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
@@ -40,121 +38,151 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, dem 08.12.2021 um 15:05 +0100 schrieb Lucas Stach:
-> Hi Martin,
+Am Montag, dem 22.11.2021 um 08:27 +0100 schrieb Martin Kepplinger:
+> Modeled after the NXP driver mx6s_capture.c that this driver is based
+> on,
+> imx8mq needs different settings for the baseaddr_switch mechanism.
+> Define
+> the needed bits and set that for imx8mq.
 > 
-> Am Mittwoch, dem 08.12.2021 um 14:47 +0100 schrieb Martin Kepplinger:
-> > Hi Lucas,
-> > 
-> > I've posted this hack with a report here a few days back:
-> > https://lore.kernel.org/linux-arm-kernel/20211122115145.177196-1-martin.kepplinger@puri.sm/
-> > 
-> > But now that I see these suspend/resume callback additions things
-> > again go wrong on my imx8mq system.
-> > 
-> > With a v5.16-rc4 based tree and printing on regulator
-> > enable/disable,
-> > system suspend + resume looks like so:
-> > 
-> > [   47.559681] imx-pgc imx-pgc-domain.5: enable
-> > [   47.584679] imx-pgc imx-pgc-domain.0: disable
-> > [   47.646592] imx-pgc imx-pgc-domain.5: disable
-> > [   47.823627] imx-pgc imx-pgc-domain.5: enable
-> > [   47.994805] imx-pgc imx-pgc-domain.5: disable
-> > [   48.664018] imx-pgc imx-pgc-domain.5: enable
-> > [   48.805828] imx-pgc imx-pgc-domain.5: disable
-> > [   49.909579] imx-pgc imx-pgc-domain.6: enable
-> > [   50.013079] imx-pgc imx-pgc-domain.6: failed to enable
-> > regulator: -110
-> > [   50.013686] imx-pgc imx-pgc-domain.5: enable
-> > [   50.120224] imx-pgc imx-pgc-domain.5: failed to enable
-> > regulator: -110
-> > [   50.120324] imx-pgc imx-pgc-domain.0: enable
-> > [   53.703468] imx-pgc imx-pgc-domain.0: disable
-> > [   53.746368] imx-pgc imx-pgc-domain.5: disable
-> > [   53.754452] imx-pgc imx-pgc-domain.5: failed to disable
-> > regulator: -5
-> > [   53.765045] imx-pgc imx-pgc-domain.6: disable
-> > [   53.822269] imx-pgc imx-pgc-domain.6: failed to disable
-> > regulator: -5
-> > 
-> > 
-> > But my main point is that the situation is a bit hard to understand
-> > right now. when transitioning to system suspend we expect (if
-> > disabled)
-> > enable+disable to happen, right? and after resuming: enable (+
-> > runtime disable).
+> Without these settings, the system will "sometimes" hang completely
+> when
+> starting to stream (the interrupt will never be called).
 > 
-> Right.
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> Acked-by: Rui Miguel Silva <rmfrfs@gmail.com>
+> ---
 > 
-> > Makes sense functinally, but I wonder if we could implement it a
-> > bit clearer?
+> revision history
+> ----------------
+> v3:
+>  * fix compiler warning when assigning a 64 bit (void *) to an int
+>  * add Ruis' Acked-by tag
 > 
-> Unfortunately, I don't think there is a way to do this in a much
-> cleaner way. 
-> > 
-> > Anyway I'm also not sure whether imx8mq might be different than
-> > your
-> > imx8mm system.
+> v2: (thank you Rui and Laurent)
+>  * rename function and enum
+>  * remove unrealted newline
+>  * add Laurents reviewed tag to the bindings patch
+>  https://lore.kernel.org/linux-media/20211118063347.3370678-1-martin.kepplinger@puri.sm/
 > 
-> imx8mq, without the upcoming VPU blk-ctrl, has no nested power
-> domains,
-> which are the main reason for the power domain runtime resume before
-> the system suspend. If they aren't resumed before the suspend the
-> nested domains will not be able to power up their parent domains on
-> resume, due to runtime PM being unavailable at this stage. All of
-> 8mm/8mn/8mp have some sorts of nested power domains.
+> v1:
+> https://lore.kernel.org/linux-media/20211117092710.3084034-1-martin.kepplinger@puri.sm/T/#t
 > 
-> > 
-> > When I revert your one patch and add my hack below again, things
-> > work again and the system resumes without errors.
-> > 
-> > Can you imagine what might be missing here?
-> > 
-> I would like to understand why the runtime resume of the power domain
-> isn't working for you. Is this a i2c attached regulator? There might
-> be
-> some RPM dependency handling (device link) missing to keep the i2c
-> bus
-> alive until the power domains finished their suspend handling.
+> 
+> 
+>  drivers/staging/media/imx/imx7-media-csi.c | 32
+> ++++++++++++++++++++--
+>  1 file changed, 30 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/staging/media/imx/imx7-media-csi.c
+> b/drivers/staging/media/imx/imx7-media-csi.c
+> index 2288dadb2683..32311fc0e2a4 100644
+> --- a/drivers/staging/media/imx/imx7-media-csi.c
+> +++ b/drivers/staging/media/imx/imx7-media-csi.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/interrupt.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/module.h>
+> +#include <linux/of_device.h>
+>  #include <linux/of_graph.h>
+>  #include <linux/pinctrl/consumer.h>
+>  #include <linux/platform_device.h>
+> @@ -122,6 +123,10 @@
+>  #define BIT_DATA_FROM_MIPI             BIT(22)
+>  #define BIT_MIPI_YU_SWAP               BIT(21)
+>  #define BIT_MIPI_DOUBLE_CMPNT          BIT(20)
+> +#define BIT_MASK_OPTION_FIRST_FRAME    (0 << 18)
+> +#define BIT_MASK_OPTION_CSI_EN         (1 << 18)
+> +#define BIT_MASK_OPTION_SECOND_FRAME   (2 << 18)
+> +#define BIT_MASK_OPTION_ON_DATA                (3 << 18)
+>  #define BIT_BASEADDR_CHG_ERR_EN                BIT(9)
+>  #define BIT_BASEADDR_SWITCH_SEL                BIT(5)
+>  #define BIT_BASEADDR_SWITCH_EN         BIT(4)
+> @@ -154,6 +159,11 @@
+>  #define CSI_CSICR18                    0x48
+>  #define CSI_CSICR19                    0x4c
+>  
+> +enum imx_csi_model {
+> +       IMX7_CSI_IMX7 = 0,
+> +       IMX7_CSI_IMX8MQ,
+> +};
+> +
+>  struct imx7_csi {
+>         struct device *dev;
+>         struct v4l2_subdev sd;
+> @@ -189,6 +199,8 @@ struct imx7_csi {
+>         bool is_csi2;
+>  
+>         struct completion last_eof_completion;
+> +
+> +       enum imx_csi_model model;
+>  };
+>  
+>  static struct imx7_csi *
+> @@ -537,6 +549,16 @@ static void imx7_csi_deinit(struct imx7_csi
+> *csi,
+>         clk_disable_unprepare(csi->mclk);
+>  }
+>  
+> +static void imx7_csi_baseaddr_switch_on_second_frame(struct imx7_csi
+> *csi)
+> +{
+> +       u32 cr18 = imx7_csi_reg_read(csi, CSI_CSICR18);
+> +
+> +       cr18 |= BIT_BASEADDR_SWITCH_EN | BIT_BASEADDR_SWITCH_SEL |
+> +               BIT_BASEADDR_CHG_ERR_EN;
+> +       cr18 |= BIT_MASK_OPTION_SECOND_FRAME;
+> +       imx7_csi_reg_write(csi, cr18, CSI_CSICR18);
+> +}
+> +
+>  static void imx7_csi_enable(struct imx7_csi *csi)
+>  {
+>         /* Clear the Rx FIFO and reflash the DMA controller. */
+> @@ -552,6 +574,9 @@ static void imx7_csi_enable(struct imx7_csi *csi)
+>         /* Enable the RxFIFO DMA and the CSI. */
+>         imx7_csi_dmareq_rff_enable(csi);
+>         imx7_csi_hw_enable(csi);
+> +
+> +       if (csi->model == IMX7_CSI_IMX8MQ)
+> +               imx7_csi_baseaddr_switch_on_second_frame(csi);
+>  }
+>  
+>  static void imx7_csi_disable(struct imx7_csi *csi)
+> @@ -1155,6 +1180,8 @@ static int imx7_csi_probe(struct
+> platform_device *pdev)
+>         if (IS_ERR(csi->regbase))
+>                 return PTR_ERR(csi->regbase);
+>  
+> +       csi->model = (enum
+> imx_csi_model)(uintptr_t)of_device_get_match_data(&pdev->dev);
+> +
+>         spin_lock_init(&csi->irqlock);
+>         mutex_init(&csi->lock);
+>  
+> @@ -1249,8 +1276,9 @@ static int imx7_csi_remove(struct
+> platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id imx7_csi_of_match[] = {
+> -       { .compatible = "fsl,imx7-csi" },
+> -       { .compatible = "fsl,imx6ul-csi" },
+> +       { .compatible = "fsl,imx8mq-csi", .data = (void
+> *)IMX7_CSI_IMX8MQ },
+> +       { .compatible = "fsl,imx7-csi", .data = (void *)IMX7_CSI_IMX7
+> },
+> +       { .compatible = "fsl,imx6ul-csi", .data = (void
+> *)IMX7_CSI_IMX7 },
+>         { },
+>  };
+>  MODULE_DEVICE_TABLE(of, imx7_csi_of_match);
 
-domain 5 is gpu, domain 6 is vpu. gpu has power-supply described to be
-the "buck3_reg" regulator:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi#n760
+Laurent et al.
 
-vpu has power-supply described as "buck4_reg" on the board. So no
-regulators that control a gpio. They are handled by the pmic though
-that is attached to i2c. Maybe I should trace what the pmic does a bit
-closer...
+Any doubts about this? I run it for a long time now an it fixes the
+driver on imx8mq.
 
-> 
-> Regards,
-> Lucas
-> 
-> > thanks a lot for working on this!
-> > 
-> >                                martin
-> > ---
-> >  drivers/soc/imx/gpcv2.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-> > index 07610bf87854..898886c9d799 100644
-> > --- a/drivers/soc/imx/gpcv2.c
-> > +++ b/drivers/soc/imx/gpcv2.c
-> > @@ -319,6 +319,9 @@ static int imx_pgc_power_down(struct
-> > generic_pm_domain *genpd)
-> >         u32 reg_val, pgc;
-> >         int ret;
-> >  
-> > +       if (pm_runtime_suspended(domain->dev))
-> > +               return 0;
-> > +
-> >         /* Enable reset clocks for all devices in the domain */
-> >         if (!domain->keep_clocks) {
-> >                 ret = clk_bulk_prepare_enable(domain->num_clks,
-> > domain->clks);
-> 
-> 
+thank you and all the best,
+
+                             martin
 
 
