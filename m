@@ -2,108 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1346E47D5F0
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 18:44:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 405BA47D604
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 18:50:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234281AbhLVRoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 12:44:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49816 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232852AbhLVRoB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 12:44:01 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9CC0C061574;
-        Wed, 22 Dec 2021 09:44:00 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id bt1so6937231lfb.13;
-        Wed, 22 Dec 2021 09:44:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:to:cc:from:subject
-         :content-transfer-encoding;
-        bh=hI44alCBMb6sS97Llt50LudbiqSbCyeG3dGh0ijfen0=;
-        b=Fi8N9py/rC0Xo3UM2gSETcw5MQw6N68kl4EAZfQGH/FQt8I9jZb+ruX4yejltNZNIu
-         L9UEhN501ZgKMtGXaKprl1V618hnjq8JVjejpQLtTvjPCaRBtVr64ZR4VfvStECGuPeP
-         cGdz9SZWQ15eRgItKRmqVx/lFD19UlUrV9mxrloWGoZCinyP9Qy78uei39ROlTsXYpHh
-         AKghDpZBDA7NzsDg7ro88VMLSoQ7goBLMLdrzlNM2OsA0XnGYeTwW6T4DZTfQi2U4bzH
-         gTQtIJuros5yUBDBN/bOFkrP5Bg1KgFCKPbnyvZs3LanDq2IF7gEK/MGirWBlg/J7nCn
-         EhPg==
+        id S1344411AbhLVRuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 12:50:19 -0500
+Received: from mail-qk1-f173.google.com ([209.85.222.173]:36841 "EHLO
+        mail-qk1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234375AbhLVRuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 12:50:18 -0500
+Received: by mail-qk1-f173.google.com with SMTP id i130so2055397qke.3;
+        Wed, 22 Dec 2021 09:50:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:to:cc
-         :from:subject:content-transfer-encoding;
-        bh=hI44alCBMb6sS97Llt50LudbiqSbCyeG3dGh0ijfen0=;
-        b=fqsZLBHzpjPffb3jS+Lz3KNzkPTp1/rkE8gdQk9+brByLJpGp4rS5wtzZs1n42PCW8
-         kfjBs5jy7rHtxGM/YT7Q9hHNShwnLiX5kZcANO+1QABh8Dumom6JXm/NyFk75G7Us7Fc
-         v4w3xg34NyD95DYkpvrL71ALU/12DGgw9IYL6DlaLezCkCwVMvJML6G9MRjXBTTyF+uY
-         NgCcw247g+4Ql16OT6DIzqjO8/kT2fQGMIsjjepZQgKIVuAVRKkWGRrRS8WbJzCjfE8S
-         uLc4le2EkzekmQ7SBKlFhDnk9VdLsur6EBiVpPKN5GlhqYhq3Oh3IraDqw5eovR+js0x
-         BMaQ==
-X-Gm-Message-State: AOAM530qpCbtha12u3J/3lEezKF23SqiXEpKstuMS23ogSzoIfdOPCFr
-        SnOduca26mBAPmC2DncW3VNhejpKm1I=
-X-Google-Smtp-Source: ABdhPJyW9dM5lw3f7wmG+eynErvsrPNTPxLwa6U/fMu42qB6SmF1ruMSOp0ZA0ffOjUVhQSTAfn5fA==
-X-Received: by 2002:ac2:4e11:: with SMTP id e17mr3143634lfr.126.1640195039174;
-        Wed, 22 Dec 2021 09:43:59 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id d5sm273568lfv.83.2021.12.22.09.43.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Dec 2021 09:43:58 -0800 (PST)
-Message-ID: <35c7df78-6e8a-b996-3df8-2c405bfcff81@gmail.com>
-Date:   Wed, 22 Dec 2021 18:43:57 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=G0Bo2xi487zsjbvsxUHGM60Jt3WTXGtaD5AP/5FQrYU=;
+        b=U1DRQ1kyz3tC1gqyuCFbkXgWUH0kb8lnL9SZw0Aon7ymbzCDayP+dytcedCCW5enb1
+         93g2QNKvKmuNw7KKDqCaINW9/JRBwQma/W+r4i1q36TKmVMO51JpUGiaDLMs9hQdPv61
+         P2o1pTTCKEfkixWwQPh1hmxgxZ4MxhG1oiYxSNFXZnrF8gKaOypgLj5v7ZdvVLHpW7Xq
+         7us32IGd9iI5c0szbp5+welX1sWvshnRE/bS+XWyC3J9ScUIIY0WWekjB6QOr/QckjtY
+         5JJtrgHqO7kyUd81kGmp85Lju8P6tFE6zP1QuVIwCDdGFCKPGtzWj68+vvmhMIbKceIo
+         qWQg==
+X-Gm-Message-State: AOAM530s36eZFWgKXPkaszVP98soKAQQRrz6EqeN53Z2kReLSyy0ZKo8
+        xdfoaGa1JLXq260QgyIg9A==
+X-Google-Smtp-Source: ABdhPJyvAAEpmHO21h+BgfeOi40PfsFEpHcNduiO7Js5mzx8z/J1daeSExKuDA/ssJQ+ZFmLU9Ujqg==
+X-Received: by 2002:a05:620a:15cb:: with SMTP id o11mr2820061qkm.371.1640195417674;
+        Wed, 22 Dec 2021 09:50:17 -0800 (PST)
+Received: from robh.at.kernel.org ([24.55.105.145])
+        by smtp.gmail.com with ESMTPSA id f18sm2518981qko.34.2021.12.22.09.50.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Dec 2021 09:50:16 -0800 (PST)
+Received: (nullmailer pid 2400088 invoked by uid 1000);
+        Wed, 22 Dec 2021 17:50:15 -0000
+Date:   Wed, 22 Dec 2021 13:50:15 -0400
+From:   Rob Herring <robh@kernel.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     broonie@kernel.org, sean.wang@mediatek.com,
+        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+        matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+        bgolaszewski@baylibre.com, linux-mediatek@lists.infradead.org,
+        bayi.cheng@mediatek.com, linux-arm-kernel@lists.infradead.org,
+        linus.walleij@linaro.org, gch981213@gmail.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 3/4] dt-bindings: pinctrl: mt8195: add wrapping node
+ of pin configurations
+Message-ID: <YcNlVzSZAWCM9eKO@robh.at.kernel.org>
+References: <20211220121825.6446-1-tinghan.shen@mediatek.com>
+ <20211220121825.6446-4-tinghan.shen@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-To:     Marek Vasut <marex@denx.de>, David Airlie <airlied@linux.ie>
-Cc:     Rob Herring <robh@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        dri-devel@lists.freedesktop.org,
-        Linux Next Mailing List <linux-next@vger.kernel.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Subject: make dt_binding_check broken by drm & lvds-codec
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211220121825.6446-4-tinghan.shen@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, 20 Dec 2021 20:18:24 +0800, Tinghan Shen wrote:
+> On mt8195, the pinctrl node has pinctrl groups to group pin
+> configurations by users' need. In each pinctrl group, it has
+> subnode(s) to list pins needed and pin configurations. By supporting
+> multiple subnodes, we can configure different pin characteristics
+> (driving/pull-up/pull-down/etc.) in a pinctrl group.
+> 
+> Update pinctrl-mt8195.yaml to add subnode in pinctrl groups and an
+> example to illustrate the usage.
+> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>  .../bindings/pinctrl/pinctrl-mt8195.yaml      | 338 ++++++++++--------
+>  1 file changed, 188 insertions(+), 150 deletions(-)
+> 
 
-I just noticed that "make dt_binding_check" doesn't work in linux-next:
-
-   SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
-Traceback (most recent call last):
-   File "/home/rmilecki/.local/bin/dt-mk-schema", line 38, in <module>
-     schemas = dtschema.process_schemas(args.schemas, core_schema=(not args.useronly))
-   File "/home/rmilecki/.local/lib/python3.6/site-packages/dtschema/lib.py", line 587, in process_schemas
-     sch = process_schema(os.path.abspath(filename))
-   File "/home/rmilecki/.local/lib/python3.6/site-packages/dtschema/lib.py", line 561, in process_schema
-     schema = load_schema(filename)
-   File "/home/rmilecki/.local/lib/python3.6/site-packages/dtschema/lib.py", line 126, in load_schema
-     return do_load(os.path.join(schema_basedir, schema))
-   File "/home/rmilecki/.local/lib/python3.6/site-packages/dtschema/lib.py", line 112, in do_load
-     return yaml.load(tmp)
-   File "/usr/lib/python3.6/site-packages/ruamel/yaml/main.py", line 343, in load
-     return constructor.get_single_data()
-   File "/usr/lib/python3.6/site-packages/ruamel/yaml/constructor.py", line 113, in get_single_data
-     return self.construct_document(node)
-   File "/usr/lib/python3.6/site-packages/ruamel/yaml/constructor.py", line 123, in construct_document
-     for _dummy in generator:
-   File "/usr/lib/python3.6/site-packages/ruamel/yaml/constructor.py", line 723, in construct_yaml_map
-     value = self.construct_mapping(node)
-   File "/usr/lib/python3.6/site-packages/ruamel/yaml/constructor.py", line 440, in construct_mapping
-     return BaseConstructor.construct_mapping(self, node, deep=deep)
-   File "/usr/lib/python3.6/site-packages/ruamel/yaml/constructor.py", line 257, in construct_mapping
-     if self.check_mapping_key(node, key_node, mapping, key, value):
-   File "/usr/lib/python3.6/site-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
-     raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-   in "<unicode string>", line 4, column 1
-found duplicate key "if" with value "{}" (original value: "{}")
-   in "<unicode string>", line 113, column 1
-
-It's caused by two commits:
-ba3e86789eaf ("dt-bindings: display: bridge: lvds-codec: Document LVDS data mapping select")
-d7df3948eb49 ("dt-bindings: display: bridge: lvds-codec: Document pixel data sampling edge select")
-
-Both commits add "if" and "then" at YAML "root" level.
-
-Can you take a look at that, please?
+Reviewed-by: Rob Herring <robh@kernel.org>
