@@ -2,70 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C82E47D645
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 19:10:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2344E47D64E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 19:11:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344477AbhLVSKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 13:10:00 -0500
-Received: from mail-qk1-f171.google.com ([209.85.222.171]:39751 "EHLO
-        mail-qk1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234629AbhLVSKA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 13:10:00 -0500
-Received: by mail-qk1-f171.google.com with SMTP id 69so3112269qkd.6;
-        Wed, 22 Dec 2021 10:09:59 -0800 (PST)
+        id S235143AbhLVSLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 13:11:11 -0500
+Received: from mail-qt1-f181.google.com ([209.85.160.181]:40746 "EHLO
+        mail-qt1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344507AbhLVSLK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 13:11:10 -0500
+Received: by mail-qt1-f181.google.com with SMTP id l17so2675799qtk.7;
+        Wed, 22 Dec 2021 10:11:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=KTIqQpQ7RCF278GdqSbhmvSoIu5FXpBD2evLi7Gwsvo=;
-        b=Ph16s+vi7pXX9RIlyejHAQR0O+GBULuJ/DONxPOjMDlVRuA6EISl2ZEmrnSSCa2Cr2
-         jmWDo3ZdiWrIfHxRnPKTRQ6dwdOyyT/8q8tRA1aFsNzYBdjqaIBiQRENdvFhUOtnNcv1
-         ozugIiMxuLUe+s/wUoQmMoNN81301h9thukxXapTGPC1BXwZmFfSWe8CFWicCYlityyR
-         kTsDiT+2usxZGtt7K40snMi9FtTz1nnTHwvb4Zi0kfaCBd+Ux/H4o61r3Iw62JUJSVjG
-         DKlM4Oy7P0tNwcGsVacaVq0795baU176IXEJ+TPOR0mXlGbjx2+OjTGE+vrLpbzymVjk
-         yBGQ==
-X-Gm-Message-State: AOAM533QP5u/396zDj8qUzqYo2xwOiifTo+Til9qkshifX24ZmSolqah
-        EqxeaqdCNHlIyJ2a6I/50A==
-X-Google-Smtp-Source: ABdhPJwgtaYFVUDdyame6/XYYKkRbGq5W7j9AjqEkQUD/2pDfkzBHsdHwIMdSEfPe52Am76ViUavpw==
-X-Received: by 2002:a05:620a:1792:: with SMTP id ay18mr2926162qkb.5.1640196599172;
-        Wed, 22 Dec 2021 10:09:59 -0800 (PST)
+        bh=Il/qIXEpM0k/r83Hkz4DiWBovhWj2kmv+y71DSrCm8c=;
+        b=OwrAUZb5StnHhcO28cBmna5iii7ghZZG+ogdQcsCILcswmI13LLALDrRpWEiFshe7Y
+         tYCsPe+Y/KrQxXeFnOe5jV8sEbIghTOA4wQtuxPsn7F+/Mos/ORxqksALw029It3ZFCI
+         oNzCYUqBXbLY3Ybg/UFxKw06RUMLTusVRm3wcCDaLuMZAsnrODjiKkOLbBfHZUW2V2En
+         QzGA+aagftw+IZxrYvhgVhoAWOeny3xb74rcsUbIDHIVSj9GuZS+I9pgw6d88Ifs7UmZ
+         mhB3b7RJj2EBwv2xzzc81vBJVJEmhzLvQ/f1cc+YGiKRFiuNORjmk9HN0Sy/MWzHRX56
+         IUEg==
+X-Gm-Message-State: AOAM531D8QGLcB5x7UEVS8K/neW5LEntHdmReZyFcTTEapJ5PTwFSeiM
+        5Az9QFV2rRbwGulBT7kO/g==
+X-Google-Smtp-Source: ABdhPJw47NUTqeOoKpNDgF7NJg6QIbxE7QNiZXBbjqvRNsib5jawU+pweuawJYm1Hu7bbr9h2qzQFA==
+X-Received: by 2002:a05:622a:1813:: with SMTP id t19mr2115869qtc.256.1640196669405;
+        Wed, 22 Dec 2021 10:11:09 -0800 (PST)
 Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id q12sm2229494qtx.16.2021.12.22.10.09.57
+        by smtp.gmail.com with ESMTPSA id g12sm2279193qtk.69.2021.12.22.10.11.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Dec 2021 10:09:58 -0800 (PST)
-Received: (nullmailer pid 2433267 invoked by uid 1000);
-        Wed, 22 Dec 2021 18:09:56 -0000
-Date:   Wed, 22 Dec 2021 14:09:56 -0400
+        Wed, 22 Dec 2021 10:11:08 -0800 (PST)
+Received: (nullmailer pid 2435332 invoked by uid 1000);
+        Wed, 22 Dec 2021 18:11:07 -0000
+Date:   Wed, 22 Dec 2021 14:11:07 -0400
 From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        ~okias/devicetree@lists.sr.ht, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-crypto@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH] dt-bindings: crypto: convert Qualcomm PRNG to yaml
-Message-ID: <YcNp9KRLgkiI65p2@robh.at.kernel.org>
-References: <20211220184355.86582-1-david@ixit.cz>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        list@opendingux.net, linux-kernel@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: clk/ingenic: Add MDMA and BDMA clocks
+Message-ID: <YcNqOwjYQT8GTwqD@robh.at.kernel.org>
+References: <20211220193319.114974-1-paul@crapouillou.net>
+ <20211220193319.114974-2-paul@crapouillou.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211220184355.86582-1-david@ixit.cz>
+In-Reply-To: <20211220193319.114974-2-paul@crapouillou.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Dec 2021 19:43:55 +0100, David Heidelberg wrote:
-> Convert Qualcomm PRNG documentation to yaml format.
+On Mon, 20 Dec 2021 19:33:18 +0000, Paul Cercueil wrote:
+> The Ingenic JZ4760 and JZ4770 both have an extra DMA core named BDMA
+> dedicated to the NAND and BCH controller, but which can also do
+> memory-to-memory transfers. The JZ4760 additionally has a DMA core named
+> MDMA dedicated to memory-to-memory transfers. The programming manual for
+> the JZ4770 does have a bit for a MDMA clock, but does not seem to have
+> the hardware wired in.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Add macros for the MDMA and BDMA clocks to the dt-bindings include
+> files, so that they can be used within Device Tree files.
+> 
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 > ---
->  .../devicetree/bindings/crypto/qcom,prng.txt  | 19 --------
->  .../devicetree/bindings/crypto/qcom,prng.yaml | 43 +++++++++++++++++++
->  2 files changed, 43 insertions(+), 19 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/crypto/qcom,prng.txt
->  create mode 100644 Documentation/devicetree/bindings/crypto/qcom,prng.yaml
+> 
+> Notes:
+>     v3: New patch
+> 
+>  include/dt-bindings/clock/ingenic,jz4760-cgu.h | 2 ++
+>  include/dt-bindings/clock/ingenic,jz4770-cgu.h | 1 +
+>  2 files changed, 3 insertions(+)
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring <robh@kernel.org>
