@@ -2,81 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E514C47D66B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 19:20:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0BC847D674
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 19:22:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240389AbhLVSUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 13:20:54 -0500
-Received: from mail-qt1-f174.google.com ([209.85.160.174]:42948 "EHLO
-        mail-qt1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233546AbhLVSUy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 13:20:54 -0500
-Received: by mail-qt1-f174.google.com with SMTP id z9so2698045qtj.9;
-        Wed, 22 Dec 2021 10:20:53 -0800 (PST)
+        id S1344589AbhLVSWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 13:22:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58416 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233546AbhLVSWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 13:22:00 -0500
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 595C5C061574;
+        Wed, 22 Dec 2021 10:22:00 -0800 (PST)
+Received: by mail-qk1-x730.google.com with SMTP id m2so1521052qkd.8;
+        Wed, 22 Dec 2021 10:22:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=BGQG7MpUuO8Dn90FzY+KF2Mpbosynn3yvRmxHyLir74=;
+        b=C973QPlhrs2ni/3VmkHzXswwW8Ao6y2tR7Dx/6m6zUL3M+H90aJzPqialTN3dzZ5wR
+         1hFBzjDUIpbJt58axomcuBPkS7xYmAx24DFvjFjxZl3MxQPg4vcPFjCQycmwZhvfxVQI
+         Cudi1zPDrJSuareaelfBVyPmcs9NeG/uR95KOwxjoLeGEzDmlbHEpqtgxp8l6kBS2x1O
+         zP9UGRV1Z2m7zqrz5CXqXEejX/H/nSWsxpSL7NtVjSi6Nvkn9fWFRgCE29ZRlrNXzk9W
+         h8Om8ptnjYO+L0bT4CG5b6g9PBXvW5Lfp8Wy3FLzq085IBukwTTAkKvya4IvQZ+1iKvC
+         q6Eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=XRcKcj+cA5XUzfaaLDrt+fgsCeFBFXEbRB10f73PiyY=;
-        b=HpQkxD8PFEW1pXKzrcbAq4JNa/CYjCzCyVbK/FeoAPuu+lI2G4CORO39HWa77WlXJ5
-         KuQV0zWDfTz55rXrNGljIuVnqgH8ppTXTxjNqIjTr5am9uOTaQJjGXen45Eq4nLvixUV
-         JCpEBsaNaDyWif/zPbdJN8GQVYzahE9kSDGThS9e0PtPTmMTtHcUEp8mHUkJw4yn9NQg
-         76+RHoo/j0DcPhnVkLToNa542R5AapmPdzs7JsBtDajybkjRXeFEXEjCNSYkSoMQvgU8
-         Q+kQEkAWsq/EKUzVcgMEMi7ZRWITpz0/1ZF38hFNRREoBfKEjU/g8866AWZAeLx8YnET
-         e/mQ==
-X-Gm-Message-State: AOAM530+CgEbBBEvJ2AO2riZMibE5SLLHYm+A/i/T0MFsU8//gjvSZ/R
-        tmeZkF+BvX1CI73hnXYnTg==
-X-Google-Smtp-Source: ABdhPJzBkXsa+9kAJPWbu/0STBGBkUvlqE6y6OnQfmhaZwkNESHTX36Exuu8bQZ3A42RH4J1RtvjSA==
-X-Received: by 2002:a05:622a:43:: with SMTP id y3mr3143240qtw.575.1640197252979;
-        Wed, 22 Dec 2021 10:20:52 -0800 (PST)
-Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id t3sm2256640qtc.7.2021.12.22.10.20.50
+        bh=BGQG7MpUuO8Dn90FzY+KF2Mpbosynn3yvRmxHyLir74=;
+        b=SFjhCAY59Zhqn8b5Pu0o+SKkyFeH5acP79Ay/lxSGw/Wd5z0HjTQ/D7cvQhN7kUAnQ
+         1g3HsYU2jTgLXxh/TwHSgZKiOWUPOBe0PJrG/kDSm5Quuf+wo/ppimuicyXqtvs5sy4Y
+         lIVhOjqd9PuvQhKX6MCod8etUdMli92TtepJ3zCkgAw3QAgtzcuLX36ku581D+aHCp0/
+         lJKqDAhOtWyCJS4bahT6OuVb3D4lAGyLYLp0MmtD87zEF/BbIKGCswbdIaYHK35DUy/o
+         VuFtxzmoGNYZ8sUYz8y+c4JcBJaBMdupsVbCq7RH2kXTOub8pWfwF6IyAPQXG0aQjSNE
+         4WXg==
+X-Gm-Message-State: AOAM531N2/OoDaIhuIAheNiAVTz0iUMFPDU60x1BRo5w5ECMfopq7OrF
+        45eqnYh3GkTnpW0zWl0SWR05UbxL1hk=
+X-Google-Smtp-Source: ABdhPJzqukMloJR9MENOryu0ylESrjEf+RNFDMK1zRdsXFTrq1qcz3N7PooF4aYec1ylNFFX8ik6Fg==
+X-Received: by 2002:a05:620a:21cc:: with SMTP id h12mr2278606qka.319.1640197319562;
+        Wed, 22 Dec 2021 10:21:59 -0800 (PST)
+Received: from shaak (69-165-204-82.cable.teksavvy.com. [69.165.204.82])
+        by smtp.gmail.com with ESMTPSA id bm25sm2526307qkb.4.2021.12.22.10.21.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Dec 2021 10:20:52 -0800 (PST)
-Received: (nullmailer pid 2451021 invoked by uid 1000);
-        Wed, 22 Dec 2021 18:20:50 -0000
-Date:   Wed, 22 Dec 2021 14:20:50 -0400
-From:   Rob Herring <robh@kernel.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     linux-clk@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-serial@vger.kernel.org, netdev@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Subject: Re: [PATCH 01/16] dt-bindings: arm: renesas: Document Renesas RZ/V2L
- SoC
-Message-ID: <YcNsggkexM75uxni@robh.at.kernel.org>
-References: <20211221094717.16187-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20211221094717.16187-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Wed, 22 Dec 2021 10:21:59 -0800 (PST)
+Date:   Wed, 22 Dec 2021 13:21:56 -0500
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v11 07/15] iio: afe: rescale: use s64 for temporary scale
+ calculations
+Message-ID: <YcNsxNPWY4lc/PHf@shaak>
+References: <20211222034646.222189-1-liambeguin@gmail.com>
+ <20211222034646.222189-8-liambeguin@gmail.com>
+ <CAHp75VciEd55KfQQ6VdK84-uufO-N5k0TLrvv9tn7-wj3n=Bug@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211221094717.16187-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <CAHp75VciEd55KfQQ6VdK84-uufO-N5k0TLrvv9tn7-wj3n=Bug@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Dec 2021 09:47:02 +0000, Lad Prabhakar wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
+On Wed, Dec 22, 2021 at 02:25:31PM +0200, Andy Shevchenko wrote:
+> On Wed, Dec 22, 2021 at 5:47 AM Liam Beguin <liambeguin@gmail.com> wrote:
+> >
+> > From: Liam Beguin <lvb@xiphos.com>
+> >
+> > All four scaling coefficients can take signed values.
+> > Make tmp a signed 64-bit integer and switch to div_s64() to preserve
+> > signs during 64-bit divisions.
 > 
-> Document Renesas RZ/V2L SoC.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  Documentation/devicetree/bindings/arm/renesas.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+> Sounds to me like a fix with all necessary stuff needed about it:
+> - Fixes tag
+> - moving to the beginning of the series, where other fixes are
 
-Acked-by: Rob Herring <robh@kernel.org>
+Will do
+
+> -- 
+> With Best Regards,
+> Andy Shevchenko
