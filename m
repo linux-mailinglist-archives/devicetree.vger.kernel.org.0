@@ -2,370 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C601F47D79F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 20:23:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0443747D7AD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 20:29:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345188AbhLVTXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 14:23:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44594 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345181AbhLVTXd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 14:23:33 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26498C061574;
-        Wed, 22 Dec 2021 11:23:33 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id p8so5386325ljo.5;
-        Wed, 22 Dec 2021 11:23:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KCFi6Q8pBpxmwtXpGyK7AP439ce4VvXx32qzmws3x1E=;
-        b=cJjioB/hxUJh2u4hbdtQPn4hjYG0gi6K00gDF3V2XdiQ6mlcRK/ja/dJLi55dbRlbp
-         YhnVDmJWU/sto6DcOOTtUo0uHMqRQ6DvQ8J1VeYoho1Ft145DhoV5RtR5KLNaC9zds6K
-         MOolsvX2LZJTvua9QY+8b5s2BvZaXNR86APSDtzavnSMd4uLIyDtYPSv1L8PZ4M6/oMz
-         fEOpp1aEdHuYSWweMkeH7wBCVmyAQWxNCapdxfrmmdOoLA4ZabJIhXg2U9zrwOzxv6Iq
-         5/GRmpXyyIkEI/fC9Ba0+H6DA6eD8NbF2jBJdHWhc9AgOO+GDM/ZfMR2H/l1okbVTkyM
-         A7xQ==
+        id S1345195AbhLVT26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 14:28:58 -0500
+Received: from mail-qv1-f44.google.com ([209.85.219.44]:40694 "EHLO
+        mail-qv1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237755AbhLVT26 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 14:28:58 -0500
+Received: by mail-qv1-f44.google.com with SMTP id q3so3209089qvc.7;
+        Wed, 22 Dec 2021 11:28:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KCFi6Q8pBpxmwtXpGyK7AP439ce4VvXx32qzmws3x1E=;
-        b=5ccyO+W3BfjN6OVFTk0IOHKysyK8qfqB+jAe9I3/B5MqZckyX7MC6Ag6gyB7wrBtk6
-         kcCyvYCw5RXwU+p6VoYoc820G98vwahGpeLmO4nu1/Q3cmckN7JtztcZKwfWKBxttlPj
-         ENMxaYgRWTqaxu4/pQPOpZbl6DXXR1CAUNRBveVKZj0/tAevy3vZCHjcMGqG3aC7ifTY
-         9H0FodiY/KJwBz4xKZm7DH3ebHOwSY0M36UAjT6p14dm4s6OwjeiqNG3AHrb7DIFr89J
-         rvsi1oMxcJzkAfwr42yzcEJynxcj0Ec7/GDBSKHcS+dJrDdafC8sUiADv6KmZyqTVRVt
-         cpSQ==
-X-Gm-Message-State: AOAM532j9tUe6FDa7u4kyGjJQF7DbS6qaaUBU6A9gElslQQshHwZoPj/
-        5FEoxtfQYneusrgS+sByMnM=
-X-Google-Smtp-Source: ABdhPJwp84y8P1DWDVWXYwLYsBSWE/jSSjLctWrdXYF0jAJ1+P8bh0JzGcFJ6J7VjoWD56VLghaADA==
-X-Received: by 2002:a2e:a917:: with SMTP id j23mr1851642ljq.317.1640201011450;
-        Wed, 22 Dec 2021 11:23:31 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id q10sm242070lfm.163.2021.12.22.11.23.30
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9JLlzL6JkLMvYS8qsLxxlj+RLmlEabUucYr74EUim5s=;
+        b=IzXd+udmDoCz4bWT4719XvDit7enpKLGVaV/IabkwwSahwiv8uHalIlf09kazCTZht
+         fH8MnJEFog0mdsq2wn5qYXx7CfwE/JJQkREqNZXoxefxZm6xFfxF8OC3HXwOjX7bxPAV
+         DV+f7QMgv+qPtK6Tkt+gqGwSAnFFnpnCvj+0aWuTB81DyZYpv6pMedBPKByrUvqX7/qy
+         FHwd/EpzN9NPyotLJN1kjSZguuvuCHF5unLuylL4Z+AM8MY+CQQShJQvQVeUyQz8Wmqq
+         DczZRZ5kGB1Xw5l9qY8P42aigOekQi6YmOfaaSqRcVHlCJEyaldRVJKtsXPP1mT5K+dM
+         fwWg==
+X-Gm-Message-State: AOAM5337Hs1j2CeuIlHD9eIfsSB/Ck6DKd3Z7CJcphN8cqptaLZOVwhI
+        mhpcHDM472YQNJqjMyWZryIPGQeSDSYm
+X-Google-Smtp-Source: ABdhPJy0xCxfPK2k14T0nQonufth8X5fCM724vTU/sv3JASArUBgc6mnYEe955x2Jj6M3C+2a+Vymg==
+X-Received: by 2002:ad4:48c5:: with SMTP id v5mr3737347qvx.64.1640201337574;
+        Wed, 22 Dec 2021 11:28:57 -0800 (PST)
+Received: from robh.at.kernel.org ([24.55.105.145])
+        by smtp.gmail.com with ESMTPSA id ay42sm2473637qkb.40.2021.12.22.11.28.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Dec 2021 11:23:31 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Wed, 22 Dec 2021 11:28:56 -0800 (PST)
+Received: (nullmailer pid 2562386 invoked by uid 1000);
+        Wed, 22 Dec 2021 19:28:55 -0000
+Date:   Wed, 22 Dec 2021 15:28:55 -0400
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     devicetree@vger.kernel.org, Michal Simek <monstr@monstr.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
         Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 3/3] nvmem: add driver handling U-Boot environment variables
-Date:   Wed, 22 Dec 2021 20:23:20 +0100
-Message-Id: <20211222192320.21974-3-zajec5@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211222192320.21974-1-zajec5@gmail.com>
-References: <20211222192320.21974-1-zajec5@gmail.com>
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>, linux-mtd@lists.infradead.org
+Subject: Re: [PATCH v5 2/3] spi: dt-bindings: Describe stacked/parallel
+ memories modes
+Message-ID: <YcN8d1xA1sx2llzk@robh.at.kernel.org>
+References: <20211221170058.18333-1-miquel.raynal@bootlin.com>
+ <20211221170058.18333-3-miquel.raynal@bootlin.com>
+ <YcN3y/gelGcH5/Be@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YcN3y/gelGcH5/Be@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, Dec 22, 2021 at 03:08:59PM -0400, Rob Herring wrote:
+> On Tue, Dec 21, 2021 at 06:00:57PM +0100, Miquel Raynal wrote:
+> > Describe two new memories modes:
+> > - A stacked mode when the bus is common but the address space extended
+> >   with an additinals wires.
+> > - A parallel mode with parallel busses accessing parallel flashes where
+> >   the data is spread.
+> > 
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> > 
+> > Hello Rob,
+> > 
+> > I know the below does not pass the tests (at least the example patch 3
+> > does not pass) but I believe the issue is probably on the tooling side
+> > because the exact same thing with uing32-array instead is accepted. The
+> > problem comes from the minItems/maxItems lines. Without them, this is
+> > okay. The maxItems btw matches the "good enough value for now" idea.
+> > 
+> > The errors I get are:
+> > 
+> > $ make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/spi-controller.yaml
+> >   LINT    Documentation/devicetree/bindings
+> >   CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
+> >   SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
+> >   DTEX    Documentation/devicetree/bindings/spi/spi-controller.example.dts
+> >   DTC     Documentation/devicetree/bindings/spi/spi-controller.example.dt.yaml
+> >   CHECK   Documentation/devicetree/bindings/spi/spi-controller.example.dt.yaml
+> > /src/Documentation/devicetree/bindings/spi/spi-controller.example.dt.yaml: spi@80010000: flash@2:stacked-memories: [[268435456, 268435456]] is too short
+> > 	From schema: /src/Documentation/devicetree/bindings/spi/spi-controller.yaml
+> > /src/Documentation/devicetree/bindings/spi/spi-controller.example.dt.yaml: spi@80010000: flash@2:stacked-memories: [[268435456, 268435456]] is too short
+> > 	From schema: /src/Documentation/devicetree/bindings/spi/mxs-spi.yaml
+> > /src/Documentation/devicetree/bindings/spi/spi-controller.example.dt.yaml: spi@80010000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'display@0', 'sensor@1', 'flash@2' were unexpected)
+> > 	From schema: /src/Documentation/devicetree/bindings/spi/mxs-spi.yaml
+> > /src/Documentation/devicetree/bindings/spi/spi-controller.example.dt.yaml: flash@2: stacked-memories: [[268435456, 268435456]] is too short
+> > 	From schema: /src/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> 
+> I'm not seeing any of these. Are you up to date with dtschema?
 
-U-Boot binary contains a block of environment variables (NVMEM) that
-should be parsed and exposed as NVMEM cells.
+NM, I was missing a patch and now see it. It is indeed a tool problem. 
+I'll work on a fix.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- MAINTAINERS                |   1 +
- drivers/nvmem/Kconfig      |  10 ++
- drivers/nvmem/Makefile     |   2 +
- drivers/nvmem/u-boot-env.c | 236 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 249 insertions(+)
- create mode 100644 drivers/nvmem/u-boot-env.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 271c29c84c7d..cc9bdeb33b64 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19628,6 +19628,7 @@ U-BOOT ENVIRONMENT VARIABLES
- M:	Rafał Miłecki <rafal@milecki.pl>
- S:	Maintained
- F:	Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-+F:	drivers/nvmem/u-boot-env.c
- 
- UACCE ACCELERATOR FRAMEWORK
- M:	Zhangfei Gao <zhangfei.gao@linaro.org>
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index da414617a54d..af9115852412 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -300,4 +300,14 @@ config NVMEM_BRCM_NVRAM
- 	  This driver provides support for Broadcom's NVRAM that can be accessed
- 	  using I/O mapping.
- 
-+config NVMEM_U_BOOT_ENV
-+	tristate "U-Boot environment variables support"
-+	depends on ARCH_BCM4908 || COMPILE_TEST
-+	depends on OF
-+	help
-+	  This driver adds support for parsing U-Boot environment variables
-+	  stored on flash partition.
-+
-+	  If compiled as module it will be called nvmem_u-boot-env.
-+
- endif
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index dcbbde35b6a8..772904cdebdb 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -61,3 +61,5 @@ obj-$(CONFIG_NVMEM_RMEM) 	+= nvmem-rmem.o
- nvmem-rmem-y			:= rmem.o
- obj-$(CONFIG_NVMEM_BRCM_NVRAM)	+= nvmem_brcm_nvram.o
- nvmem_brcm_nvram-y		:= brcm_nvram.o
-+obj-$(CONFIG_NVMEM_U_BOOT_ENV)	+= nvmem_u-boot-env.o
-+nvmem_u-boot-env-y		:= u-boot-env.o
-diff --git a/drivers/nvmem/u-boot-env.c b/drivers/nvmem/u-boot-env.c
-new file mode 100644
-index 000000000000..a932b3d3c63b
---- /dev/null
-+++ b/drivers/nvmem/u-boot-env.c
-@@ -0,0 +1,236 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2021 Rafał Miłecki <rafal@milecki.pl>
-+ */
-+
-+#include <linux/crc32.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/mtd/mtd.h>
-+#include <linux/nvmem-consumer.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+enum u_boot_env_format {
-+	U_BOOT_FORMAT_DEFAULT,
-+	U_BOOT_FORMAT_BRCM,
-+};
-+
-+struct u_boot_env {
-+	struct device *dev;
-+	enum u_boot_env_format format;
-+	struct mtd_info *mtd;
-+	size_t offset;
-+	size_t size;
-+	struct nvmem_cell_info *cells;
-+	int ncells;
-+};
-+
-+struct u_boot_env_image {
-+	__le32 crc32;
-+	uint8_t data[0];
-+} __packed;
-+
-+struct u_boot_brcm_header {
-+	__le32 unk;
-+	__le32 len;
-+} __packed;
-+
-+static int u_boot_env_read(void *context, unsigned int offset, void *val,
-+			   size_t bytes)
-+{
-+	struct u_boot_env *priv = context;
-+	struct device *dev = priv->dev;
-+	size_t bytes_read;
-+	int err;
-+
-+	err = mtd_read(priv->mtd, priv->offset + offset, bytes, &bytes_read, val);
-+	if (err && !mtd_is_bitflip(err)) {
-+		dev_err(dev, "Failed to read from mtd: %d\n", err);
-+		return err;
-+	}
-+
-+	if (bytes_read != bytes) {
-+		dev_err(dev, "Failed to read %zd bytes\n", bytes);
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static int u_boot_env_add_cells(struct u_boot_env *priv, size_t data_offset,
-+				uint8_t *data, size_t len)
-+{
-+	struct device *dev = priv->dev;
-+	char *var, *value, *eq;
-+	int idx;
-+
-+	priv->ncells = 0;
-+	for (var = data; var < (char *)data + len && *var; var += strlen(var) + 1)
-+		priv->ncells++;
-+
-+	priv->cells = devm_kcalloc(dev, priv->ncells, sizeof(*priv->cells), GFP_KERNEL);
-+	if (!priv->cells)
-+		return -ENOMEM;
-+
-+	for (var = data, idx = 0;
-+	     var < (char *)data + len && *var;
-+	     var = value + strlen(value) + 1, idx++) {
-+		eq = strchr(var, '=');
-+		if (!eq)
-+			break;
-+		*eq = '\0';
-+		value = eq + 1;
-+
-+		priv->cells[idx].name = devm_kstrdup(dev, var, GFP_KERNEL);
-+		if (!priv->cells[idx].name)
-+			return -ENOMEM;
-+		priv->cells[idx].offset = data_offset + value - (char *)data;
-+		priv->cells[idx].bytes = strlen(value);
-+	}
-+
-+	if (WARN_ON(idx != priv->ncells))
-+		priv->ncells = idx;
-+
-+	return 0;
-+}
-+
-+static int u_boot_env_parse(struct u_boot_env *priv)
-+{
-+	struct device *dev = priv->dev;
-+	struct u_boot_env_image *image;
-+	size_t image_offset;
-+	size_t image_len;
-+	uint32_t crc32;
-+	size_t bytes;
-+	uint8_t *buf;
-+	int err;
-+
-+	image_offset = 0;
-+	image_len = priv->size;
-+	if (priv->format == U_BOOT_FORMAT_BRCM) {
-+		struct u_boot_brcm_header header;
-+
-+		err = mtd_read(priv->mtd, priv->offset, sizeof(header), &bytes,
-+			       (uint8_t *)&header);
-+		if (err && !mtd_is_bitflip(err)) {
-+			dev_err(dev, "Failed to read from mtd: %d\n", err);
-+			return err;
-+		}
-+
-+		image_offset = sizeof(header);
-+		image_len = le32_to_cpu(header.len);
-+	}
-+	dev_info(dev, "offset:0x%08x len:0x%08x\n", image_offset, image_len);
-+
-+	buf = kcalloc(1, image_len, GFP_KERNEL);
-+	if (!buf) {
-+		err = -ENOMEM;
-+		goto err_out;
-+	}
-+	image = (struct u_boot_env_image *)buf;
-+
-+	err = mtd_read(priv->mtd, priv->offset + image_offset, image_len, &bytes, buf);
-+	if (err && !mtd_is_bitflip(err)) {
-+		dev_err(dev, "Failed to read from mtd: %d\n", err);
-+		goto err_kfree;
-+	}
-+
-+	crc32 = crc32(~0, buf + 4, image_len - 4) ^ ~0L;
-+	if (crc32 != le32_to_cpu(image->crc32)) {
-+		dev_err(dev, "Invalid calculated CRC32: 0x%08x\n", crc32);
-+		err = -EINVAL;
-+		goto err_kfree;
-+	}
-+
-+	buf[image_len - 1] = '\0';
-+	err = u_boot_env_add_cells(priv, image_offset + sizeof(*image),
-+				   buf + sizeof(*image),
-+				   image_len - sizeof(*image));
-+	if (err)
-+		dev_err(dev, "Failed to add cells: %d\n", err);
-+
-+err_kfree:
-+	kfree(buf);
-+err_out:
-+	return err;
-+}
-+
-+static const struct of_device_id u_boot_env_of_match_table[] = {
-+	{ .compatible = "u-boot,env", .data = (void *)U_BOOT_FORMAT_DEFAULT, },
-+	{ .compatible = "brcm,env", .data = (void *)U_BOOT_FORMAT_BRCM, },
-+	{},
-+};
-+
-+static int u_boot_env_probe(struct platform_device *pdev)
-+{
-+	struct nvmem_config config = {
-+		.name = "u-boot-env",
-+		.reg_read = u_boot_env_read,
-+	};
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+	const struct of_device_id *of_id;
-+	struct u_boot_env *priv;
-+	const char *label;
-+	int err;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+	priv->dev = dev;
-+
-+	of_id = of_match_device(u_boot_env_of_match_table, dev);
-+	if (!of_id)
-+		return -EINVAL;
-+	priv->format = (uintptr_t)of_id->data;
-+
-+	if (of_property_read_u32(np, "reg", &priv->offset) ||
-+	    of_property_read_u32_index(np, "reg", 1, &priv->size)) {
-+		dev_err(dev, "Failed to read \"reg\" property\n");
-+		return -EINVAL;
-+	}
-+
-+	label = of_get_property(np->parent, "label", NULL);
-+	if (!label)
-+		label = np->parent->name;
-+
-+	priv->mtd = get_mtd_device_nm(label);
-+	if (IS_ERR(priv->mtd)) {
-+		dev_err(dev, "Failed to find \"%s\" MTD device: %ld\n", label, PTR_ERR(priv->mtd));
-+		return PTR_ERR(priv->mtd);
-+	}
-+
-+	err = u_boot_env_parse(priv);
-+	if (err)
-+		return err;
-+
-+	config.dev = dev;
-+	config.cells = priv->cells;
-+	config.ncells = priv->ncells;
-+	config.priv = priv;
-+	config.size = priv->size;
-+
-+	return PTR_ERR_OR_ZERO(devm_nvmem_register(dev, &config));
-+}
-+
-+static struct platform_driver u_boot_env_driver = {
-+	.probe = u_boot_env_probe,
-+	.driver = {
-+		.name = "u_boot_env",
-+		.of_match_table = u_boot_env_of_match_table,
-+	},
-+};
-+
-+static int __init u_boot_env_init(void)
-+{
-+	return platform_driver_register(&u_boot_env_driver);
-+}
-+
-+subsys_initcall_sync(u_boot_env_init);
-+
-+MODULE_AUTHOR("Rafał Miłecki");
-+MODULE_LICENSE("GPL");
-+MODULE_DEVICE_TABLE(of, u_boot_env_of_match_table);
--- 
-2.31.1
-
+Rob
