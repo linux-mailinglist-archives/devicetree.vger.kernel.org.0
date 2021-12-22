@@ -2,140 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 857CC47D378
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 15:18:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3383C47D37D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 15:18:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245631AbhLVOS1 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 22 Dec 2021 09:18:27 -0500
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:52999 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245605AbhLVOS1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 09:18:27 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 77CBEE000D;
-        Wed, 22 Dec 2021 14:18:24 +0000 (UTC)
-Date:   Wed, 22 Dec 2021 15:18:23 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Roger Quadros <rogerq@kernel.org>
-Cc:     krzysztof.kozlowski@canonical.com, tony@atomide.com,
-        robh@kernel.org, kishon@ti.com, nm@ti.com, vigneshr@ti.com,
-        linux-mtd@lists.infradead.org, linux-omap@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] memory: omap-gpmc: Use a compatible match table
- when checking for NAND controller
-Message-ID: <20211222151823.77179b74@xps13>
-In-Reply-To: <51b8e895-95e1-0024-1457-ec534985c9f0@kernel.org>
-References: <20211221131757.2030-1-rogerq@kernel.org>
-        <20211221131757.2030-4-rogerq@kernel.org>
-        <51b8e895-95e1-0024-1457-ec534985c9f0@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S245605AbhLVOSz convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 22 Dec 2021 09:18:55 -0500
+Received: from aposti.net ([89.234.176.197]:44230 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S245647AbhLVOSz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Dec 2021 09:18:55 -0500
+Date:   Wed, 22 Dec 2021 14:18:46 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 2/2] hwmon: Add "label" attribute
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>
+Message-Id: <A3TI4R.0KWPRNVE7E7M3@crapouillou.net>
+In-Reply-To: <78620358-737e-368e-e5f5-82a673adf26a@roeck-us.net>
+References: <20211221175029.144906-1-paul@crapouillou.net>
+        <20211221175029.144906-3-paul@crapouillou.net>
+        <78620358-737e-368e-e5f5-82a673adf26a@roeck-us.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
 Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Roger,
+Hi Guenter,
 
-rogerq@kernel.org wrote on Tue, 21 Dec 2021 22:01:28 +0200:
+Comments noted, thanks. I'll send a V2 later today.
 
-> Hi Miquel,
+Cheers,
+-Paul
+
+
+Le mar., déc. 21 2021 at 10:17:03 -0800, Guenter Roeck 
+<linux@roeck-us.net> a écrit :
+> On 12/21/21 9:50 AM, Paul Cercueil wrote:
+>> If a label is defined in the device tree for this device add that
+>> to the device specific attributes. This is useful for userspace to
+>> be able to identify an individual device when multiple identical
+>> chips are present in the system.
+>> 
 > 
-> On 21/12/2021 15:17, Roger Quadros wrote:
-> > As more compatibles can be added to the GPMC NAND controller driver
-> > use a compatible match table.
-> > 
-> > Cc: Miquel Raynal <miquel.raynal@bootlin.com>
-> > Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> > ---
-> >  drivers/memory/omap-gpmc.c                   | 6 +++++-
-> >  drivers/mtd/nand/raw/omap2.c                 | 5 +----  
+> This is an ABI change which needs to be documented in
+> Documentation/hwmon/sysfs-interface.rst.
 > 
-> Will need your Ack for this one as well. Thanks :)
+>> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>> Tested-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+>> ---
+>>   drivers/hwmon/hwmon.c | 22 +++++++++++++++++++++-
+>>   1 file changed, 21 insertions(+), 1 deletion(-)
+>> 
+>> diff --git a/drivers/hwmon/hwmon.c b/drivers/hwmon/hwmon.c
+>> index 3501a3ead4ba..15826260a463 100644
+>> --- a/drivers/hwmon/hwmon.c
+>> +++ b/drivers/hwmon/hwmon.c
+>> @@ -71,8 +71,23 @@ name_show(struct device *dev, struct 
+>> device_attribute *attr, char *buf)
+>>   }
+>>   static DEVICE_ATTR_RO(name);
+>>   +static ssize_t
+>> +label_show(struct device *dev, struct device_attribute *attr, char 
+>> *buf)
+>> +{
+>> +	const char *label;
+>> +	int ret;
+>> +
+>> +	ret = device_property_read_string(dev, "label", &label);
 > 
+> Requires "#include <linux/property.h>". Also, reading and verifying 
+> the label
+> each time it is read is excessive. More on that see below.
 > 
-> >  include/linux/platform_data/mtd-nand-omap2.h | 9 ++++++++-
-> >  3 files changed, 14 insertions(+), 6 deletions(-)  
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	return sysfs_emit(buf, "%s\n", label);
+>> +}
+>> +static DEVICE_ATTR_RO(label);
+>> +
+>>   static struct attribute *hwmon_dev_attrs[] = {
+>>   	&dev_attr_name.attr,
+>> +	&dev_attr_label.attr,
+>>   	NULL
+>>   };
+>>   @@ -81,7 +96,12 @@ static umode_t 
+>> hwmon_dev_name_is_visible(struct kobject *kobj,
 > 
-> cheers,
-> -roger
+> That function name is no longer appropriate and should be changed to
+> something like hwmon_dev_attr_is_visible.
 > 
-> > 
-> > diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
-> > index 624153048182..d19ffc895e5b 100644
-> > --- a/drivers/memory/omap-gpmc.c
-> > +++ b/drivers/memory/omap-gpmc.c
-> > @@ -2091,6 +2091,7 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
-> >  	u32 val;
-> >  	struct gpio_desc *waitpin_desc = NULL;
-> >  	struct gpmc_device *gpmc = platform_get_drvdata(pdev);
-> > +	bool is_nand = false;
-> >  
-> >  	if (of_property_read_u32(child, "reg", &cs) < 0) {
-> >  		dev_err(&pdev->dev, "%pOF has no 'reg' property\n",
-> > @@ -2183,7 +2184,10 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
-> >  		}
-> >  	}
-> >  
-> > -	if (of_device_is_compatible(child, "ti,omap2-nand")) {
-> > +	if (of_match_node(omap_nand_ids, child))
-> > +		is_nand = true;
-> > +
-> > +	if (is_nand) {
-
-nitpick: why this intermediate variable?
-
-Otherwise for the NAND bits:
-
-Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
-
-> >  		/* NAND specific setup */
-> >  		val = 8;
-> >  		of_property_read_u32(child, "nand-bus-width", &val);
-> > diff --git a/drivers/mtd/nand/raw/omap2.c b/drivers/mtd/nand/raw/omap2.c
-> > index b26d4947af02..e6dd8b4cf0d2 100644
-> > --- a/drivers/mtd/nand/raw/omap2.c
-> > +++ b/drivers/mtd/nand/raw/omap2.c
-> > @@ -2352,10 +2352,7 @@ static int omap_nand_remove(struct platform_device *pdev)
-> >  	return ret;
-> >  }
-> >  
-> > -static const struct of_device_id omap_nand_ids[] = {
-> > -	{ .compatible = "ti,omap2-nand", },
-> > -	{},
-> > -};
-> > +/* omap_nand_ids defined in linux/platform_data/mtd-nand-omap2.h */
-> >  MODULE_DEVICE_TABLE(of, omap_nand_ids);
-> >  
-> >  static struct platform_driver omap_nand_driver = {
-> > diff --git a/include/linux/platform_data/mtd-nand-omap2.h b/include/linux/platform_data/mtd-nand-omap2.h
-> > index de6ada739121..92f011805ad4 100644
-> > --- a/include/linux/platform_data/mtd-nand-omap2.h
-> > +++ b/include/linux/platform_data/mtd-nand-omap2.h
-> > @@ -7,6 +7,7 @@
-> >  #define	_MTD_NAND_OMAP2_H
-> >  
-> >  #include <linux/mtd/partitions.h>
-> > +#include <linux/mod_devicetable.h>
-> >  
-> >  #define	GPMC_BCH_NUM_REMAINDER	8
-> >  
-> > @@ -61,4 +62,10 @@ struct gpmc_nand_regs {
-> >  	void __iomem	*gpmc_bch_result5[GPMC_BCH_NUM_REMAINDER];
-> >  	void __iomem	*gpmc_bch_result6[GPMC_BCH_NUM_REMAINDER];
-> >  };
-> > -#endif
-> > +
-> > +static const struct of_device_id omap_nand_ids[] = {
-> > +	{ .compatible = "ti,omap2-nand", },
-> > +	{},
-> > +};
-> > +
-> > +#endif /* _MTD_NAND_OMAP2_H */
-> >   
+>>   {
+>>   	struct device *dev = kobj_to_dev(kobj);
+>>   -	if (to_hwmon_device(dev)->name == NULL)
+>> +	if (attr == &dev_attr_name.attr &&
+>> +	    to_hwmon_device(dev)->name == NULL)
+> 
+> Unnecessary continuation line.
+> 
+>> +		return 0;
+>> +
+>> +	if (attr == &dev_attr_label.attr &&
+>> +	    !device_property_present(dev, "label"))
+> 
+> If the property is present but not a string, each read of "label" 
+> would
+> return a runtime error. I don't like that. I would suggest to store
+> a pointer to the label in struct hwmon_device, set it during 
+> registration
+> (eg by using devm_strdup() if it is defined), and use
+> 
+> 	if (attr == &dev_attr_label.attr && to_hwmon_device(dev)->label == 
+> NULL)
+> 		return 0;
+> 
+> to check if it is present.
+> 
+>>   		return 0;
+>>     	return attr->mode;
+>> 
+> 
 
 
-Thanks,
-MiquÃ¨l
