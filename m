@@ -2,72 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C66547D654
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 19:12:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F377947D657
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 19:13:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235424AbhLVSMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 13:12:38 -0500
-Received: from mail-qt1-f176.google.com ([209.85.160.176]:34811 "EHLO
-        mail-qt1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234101AbhLVSMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 13:12:38 -0500
-Received: by mail-qt1-f176.google.com with SMTP id o17so2721907qtk.1;
-        Wed, 22 Dec 2021 10:12:37 -0800 (PST)
+        id S235655AbhLVSNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 13:13:36 -0500
+Received: from mail-qk1-f170.google.com ([209.85.222.170]:36660 "EHLO
+        mail-qk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233546AbhLVSNf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 13:13:35 -0500
+Received: by mail-qk1-f170.google.com with SMTP id i130so2125285qke.3;
+        Wed, 22 Dec 2021 10:13:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=pIn5Bic5ZbGSB9APhGUz4jy4pv35Qb3TTEOzVa4bkls=;
-        b=sIF/loD38IeiiP16ZdJ/A577BPJkckjXp5jo2wXM1fI57/11gY9WoOmxo5h8f7086P
-         chRX6N/E/G90RCe8AB4B0agtz2o5NDbl4tb2oxvSC14MLePFTZNCDlxL13wU6UomqMna
-         EjKP/6NXLQpjr89ZIMqZx60NDNaahXXg+MTJjWu5HZllaDGiswP5+pWVHjW9BkUZCMl1
-         tUT0b0SXWHfDNDsx8os7BM3ecgA1Kdch72qE/hBBZ+PmBrlFPwnVB9yKg3d4whDYUoxE
-         kgw2GDTmepFPajvStwjQ0M/sbQR4ps6XSHvPZFU3W5wEx7cbofnM6HvP1DzywuDiAvC4
-         grWA==
-X-Gm-Message-State: AOAM530RUFGvjwmjr+uQlQUsxKfhmII+1GuidS4lykv8dTsQCVfi1a3x
-        vPeT95tKLr3y8xgPr4Q6857wjG20UEfK
-X-Google-Smtp-Source: ABdhPJw1fD7Aoe6vRDXEtZ30TjpD5hboLxAiT0qLvoQmynw9JfTHn6lnO3BOUX1Xo5oq8dXrcpLOLw==
-X-Received: by 2002:ac8:5404:: with SMTP id b4mr3044585qtq.657.1640196757473;
-        Wed, 22 Dec 2021 10:12:37 -0800 (PST)
+        bh=1vM+X4HcbixZ8QJIGmktJgMcYQkhz0YWRNaFywDlSok=;
+        b=Hw2XqzOCJcKNO6UmMliNDmXpuy7uc5zhQJfClKLj2njye4GRUdtIRqO7OpJAQxvd0B
+         OyoIFzBmoGwKePv5sg0YjGuuzhNoeXTRR36+OAbvMM75Y2b5En71ezRzGYh8CcQKWNtf
+         lwZZc52oyFEZFFPs8k85l55K5SEh0Hu7jEw4T9wCXNETA3i1iI3JhRTnLM7ntuCtSzgh
+         t2g/MabRSqETqp8z2YWq3+TJwCrdwAMI7gwlWcswZEe9l0GqE7Mr6lpQuiMeNr8vEbaa
+         Db44toY44TeIGOHkuID1yEJCdNxR+yPLW5UYRF09fTMCo0Ka3CYXPJIHMazY64c8b5rj
+         ozyQ==
+X-Gm-Message-State: AOAM531s5WINEO8F5kHv22h12TcQUX+kroDa528r5X4XtKJv6PlJ2zo7
+        FC2eD+yrY5aQjG1fRD9/kQ==
+X-Google-Smtp-Source: ABdhPJz2TY1HWqHFcqHe6AGH3EbiwO4F0rIHKL7w324aXSN34Cjlve95xI73IVAziukYLx5jhWTVAw==
+X-Received: by 2002:a37:6587:: with SMTP id z129mr2942886qkb.384.1640196815059;
+        Wed, 22 Dec 2021 10:13:35 -0800 (PST)
 Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id e7sm2317876qtx.72.2021.12.22.10.12.35
+        by smtp.gmail.com with ESMTPSA id j14sm2536014qkp.28.2021.12.22.10.13.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Dec 2021 10:12:36 -0800 (PST)
-Received: (nullmailer pid 2437831 invoked by uid 1000);
-        Wed, 22 Dec 2021 18:12:35 -0000
-Date:   Wed, 22 Dec 2021 14:12:35 -0400
+        Wed, 22 Dec 2021 10:13:34 -0800 (PST)
+Received: (nullmailer pid 2439455 invoked by uid 1000);
+        Wed, 22 Dec 2021 18:13:33 -0000
+Date:   Wed, 22 Dec 2021 14:13:33 -0400
 From:   Rob Herring <robh@kernel.org>
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc:     kelvin.zhang@amlogic.com, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-amlogic@lists.infradead.org,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH V2] dt-bindings: serial: amlogic, meson-uart: support S4
-Message-ID: <YcNqk/tHBttSTENO@robh.at.kernel.org>
-References: <20211221030146.522-1-xianwei.zhao@amlogic.com>
+To:     haibo.chen@nxp.com
+Cc:     robh+dt@kernel.org, lars@metafoo.de, shawnguo@kernel.org,
+        cai.huoqing@linux.dev, festevam@gmail.com,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-imx@nxp.com, jic23@kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings:iio:adc: update the maintainer of
+ vf610-adc
+Message-ID: <YcNqzbjeXf5nY4A3@robh.at.kernel.org>
+References: <1640073000-32629-1-git-send-email-haibo.chen@nxp.com>
+ <1640073000-32629-2-git-send-email-haibo.chen@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211221030146.522-1-xianwei.zhao@amlogic.com>
+In-Reply-To: <1640073000-32629-2-git-send-email-haibo.chen@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Dec 2021 11:01:45 +0800, Xianwei Zhao wrote:
-> Add serial bindings support menson S4 SoC family.
+On Tue, 21 Dec 2021 15:50:00 +0800, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> Drop Fugang Duan as the vf610-adc maintainer, and add my self as
+> the maintainer.
+> 
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
 > ---
-> V1 -> V2 : update author name
+> 
+> Fugang Duan already leave NXP, his mail address is dropped. And He can't
+> keep maintain this driver.
+> 
 > ---
->  .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/iio/adc/fsl,vf610-adc.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
