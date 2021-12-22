@@ -2,113 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F95447D149
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 12:50:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7616347D18D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 13:14:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239047AbhLVLuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 06:50:22 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:36934
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240290AbhLVLuV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Dec 2021 06:50:21 -0500
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 5B2A13F32C
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 11:50:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640173820;
-        bh=IoWj9oNDweMrZAiZnpWJ2M9mqGVrhoH3F2ncAQcZpG8=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=LqriuYkJoKTW1URXXG/eUf3KB/2NdA0N8HDriO9q1cAbXd0YdX/qFOBMKt0IA4Qvp
-         0DinGl6UUbPg1J2FKhuF9YcsgC8rrsCJsGIUFrTttDdh3ci+iLDs1fSu63+MeGShDd
-         0tJuivKYWpDxBjkEKWLQYMjI9KF3CNxoLwp/GIDeu9JW0MAugdpEmjBEHEaVaCVlpb
-         KzgDG56MuGt/p00Yf3m08vTRg02Y56c78L5BXfxIwh97mXsEZc9aL90ERfOagAygI/
-         au09L22qc9Mtv/pfqF2c6dLtxveFcCWSw77NEDlmksufWGhju24xRfNrlO+Z3ZxG1f
-         Eqpg/5mnj3/VA==
-Received: by mail-lf1-f69.google.com with SMTP id cf14-20020a056512280e00b00426460c9af9so800296lfb.4
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 03:50:20 -0800 (PST)
+        id S240514AbhLVMOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 07:14:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59464 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233864AbhLVMOL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 07:14:11 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C374C061574;
+        Wed, 22 Dec 2021 04:14:11 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id z29so7854744edl.7;
+        Wed, 22 Dec 2021 04:14:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=3ZM7U5IQ5UMOQwC4FTn9PkIIrXkBUnJr18s67beYpto=;
+        b=C/SejDNgTx+9c5w8WGYkkQlEtRHcutHV7xfCDgexhHOQE9nTw/nSAU7Ine0sRIk/gZ
+         zpoSf0Omei5MCeA8j2ewE1TObeRcTYmE8ki7xHdE1vtN9ADQCrhtlxTXqdt1Dlfg3Ars
+         Jeq1+0HMdEWwA5U+SMMgrUcj17OXk0LS0vAHmaZX7X3pdaA9KOf8VSY2RybEzZZ7j7WX
+         tolsv3ANL6gsSpfxSEsnavz1XA1BsHc8Kj2ozn9b4y8R0tBGs+Q9t83U+QWh7ToCMViW
+         5ps+XvdrHenIOwMx4Wu5+ftM4iXhdC5XVaTD9lQPj/ZQwPgAg1PNVZZjwSDvOu46/pg+
+         uw1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=IoWj9oNDweMrZAiZnpWJ2M9mqGVrhoH3F2ncAQcZpG8=;
-        b=DJqpsZ6Zm6dLlXOmc9fPpSD8QtyrOejqmoO7l2cokwkEkn0ZJldxSQMcUkPDCvYwFA
-         xmiLc+7toQrA4zH9keYXPI2JBJFbpeGb0ahPcIpQeTYPEs7vPIPDpsgvwucQMSGg/nYG
-         hncpPUjJzDGyeCMzO/ZaRahWy7xM5LMrMVDXn0mfSPk87Bzf2R4B5IGPd9/g7hs5OI4R
-         dCPPev2pqfvNBH7q/Ffwje6i7+3Tfgxp9zYK3RcB7/3VT8i2wydeWBWTMKl2ClTNXNo6
-         k2TzG4/DVN0fspiK/OzuuNGUU0QCuul/D3SfuOC5TKu05CQcEKulNsnU+0MwBQT+iXTy
-         BBsw==
-X-Gm-Message-State: AOAM530oh4rYsUmvZUvgfchN86/Vyr/6THGPw/4D1fWWwSYspRbghagj
-        BggEvg7T8Dixe9jehGfb827f0JgrwQpQyA8c1vFlE4+jRzcOyejuR3mlRP2V0UufBU+Wm4K6NEm
-        L8YzajQ30JlD/28l0Z+fHOpDicQlsuTolcbXeMzk=
-X-Received: by 2002:a2e:bb98:: with SMTP id y24mr1834329lje.315.1640173819744;
-        Wed, 22 Dec 2021 03:50:19 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyA35gJz13lmXvYXfWrxjhinbcGJguqP+W5VI63zqG4S459hkNVbC2c7iwZdwKh71gviVwf8Q==
-X-Received: by 2002:a2e:bb98:: with SMTP id y24mr1834322lje.315.1640173819594;
-        Wed, 22 Dec 2021 03:50:19 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id bi29sm191325lfb.234.2021.12.22.03.50.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Dec 2021 03:50:18 -0800 (PST)
-Message-ID: <2b4386a4-0acc-5db1-fc55-b57ad8a84be3@canonical.com>
-Date:   Wed, 22 Dec 2021 12:50:18 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=3ZM7U5IQ5UMOQwC4FTn9PkIIrXkBUnJr18s67beYpto=;
+        b=hYZjA65pbDWJcdbCZRGqqEAp5vzK5LkGDjiL08GD/akvpVZOSPFT1YwzrmEq5QH791
+         TFhVFeTLjoq/r8uQwdB4B6S+iEX5szd/wAEHdciiAVOY4fG45dPbZKSmGn6T7eKdb8FP
+         lDnVgIO08mvGuQNiSBORBzbN7dpqtYbJj3lxZMqgU+ikC9QrBPGitFx+lGy5GwGGp1yt
+         c2Rwuv/X8HSPFQuKprVpcGhL8fx0HwYvITozGPGt0KEG7iNpx2ruKKkf6VbMdUoaGLGV
+         3gcn602y1mOrf82nOvFlfsuvcw06FvfXkM9MfOlHTA4eFrZdIEofJu/pU1ZjIp4AkFF7
+         f6QQ==
+X-Gm-Message-State: AOAM533Y3unIXQ0On7iQGfJ4kQDDRK04GgwyberfBNy/9H2T+Slx3X9S
+        cue2xsfPGjO8KH13qNx/tC3SoGafz1DMwj+C9wU=
+X-Google-Smtp-Source: ABdhPJz2i6OXBEK+v9UsfreCvF6GoLrEauIHscblrBUdW8uxzbqPPEHwK3e3JAs2OrMcP2vvTjb1DHooUoE8iOqZmYA=
+X-Received: by 2002:a05:6402:849:: with SMTP id b9mr1205649edz.258.1640175249667;
+ Wed, 22 Dec 2021 04:14:09 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v4 4/4] mtd: rawnand: omap2: Select GPMC device driver for
- ARCH_K3
-Content-Language: en-US
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Roger Quadros <rogerq@kernel.org>
-Cc:     tony@atomide.com, robh@kernel.org, kishon@ti.com, nm@ti.com,
-        vigneshr@ti.com, linux-mtd@lists.infradead.org,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20211221131757.2030-1-rogerq@kernel.org>
- <20211221131757.2030-5-rogerq@kernel.org> <20211221144917.0a5d8f1a@xps13>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211221144917.0a5d8f1a@xps13>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20211215204753.5956-1-zajec5@gmail.com> <20211215204753.5956-2-zajec5@gmail.com>
+ <CAHp75Vcu2JLE2w8LkGO9i1kL6-stL6nXsG6Ghnk0af4amY---A@mail.gmail.com> <c17724bc-2d5a-7c70-4aea-899ff3665b73@milecki.pl>
+In-Reply-To: <c17724bc-2d5a-7c70-4aea-899ff3665b73@milecki.pl>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 22 Dec 2021 14:12:11 +0200
+Message-ID: <CAHp75Vd3npYTP7etoBdOL1UbXYqJZ1qhPzft+hspUmUib0bppQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] pinctrl: bcm: add driver for BCM4908 pinmux
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/12/2021 14:49, Miquel Raynal wrote:
-> Hi Roger,
-> 
-> rogerq@kernel.org wrote on Tue, 21 Dec 2021 15:17:57 +0200:
-> 
->> The GPMC device driver is required for NAND controller
->> to work on K3 Architecture. Select it if required.
->>
->> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
->> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->> ---
->>  drivers/mtd/nand/raw/Kconfig | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
->> index 67b7cb67c030..587f20c6184f 100644
->> --- a/drivers/mtd/nand/raw/Kconfig
->> +++ b/drivers/mtd/nand/raw/Kconfig
->> @@ -42,6 +42,7 @@ config MTD_NAND_OMAP2
->>  	tristate "OMAP2, OMAP3, OMAP4 and Keystone NAND controller"
->>  	depends on ARCH_OMAP2PLUS || ARCH_KEYSTONE || COMPILE_TEST
->>  	depends on HAS_IOMEM
->> +	select OMAP_GPMC if ARCH_K3
-> 
-> Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> 
+On Wed, Dec 22, 2021 at 12:19 PM Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>=
+ wrote:
+> On 16.12.2021 20:55, Andy Shevchenko wrote:
+> >> +/*
+> >> + * Copyright (C) 2021 Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> >> + */
+> >
+> > One line?
+>
+> I don't think there's a rule for that. Not in coding-style.rst as much
+> as I'm aware of. checkpatch.pl also doesn't complain.
 
-This patch looks actually independent. Miquel, do you want me to take it
-via memory controller drivers tree (like three other patches)?
+There is no rule, but common sense. Why occupy 3 LOCs instead of 1 LOC?
 
+...
 
-Best regards,
-Krzysztof
+> >> +#include <linux/pinctrl/pinconf-generic.h>
+> >> +#include <linux/pinctrl/pinctrl.h>
+> >> +#include <linux/pinctrl/pinmux.h>
+> >
+> > Can you move this group...
+> >
+> >> +#include <linux/platform_device.h>
+> >> +#include <linux/slab.h>
+> >
+> > ...here?
+>
+> Any reason for that? For most of the time I keep my includes sorted
+> alphabetically. Now I checked coding-style.rst is actually seems to
+> recomment "clang-format" for the same reason: sorting includes.
+
+Yes. The reason is simple. With moving this group separately you
+follow the rule of going from most generic to most particular headers
+in the block.  Grouping like this will show better that this code has
+tighten relations with the pin control subsystem.
+
+...
+
+> >> +#define TEST_PORT_BLOCK_EN_LSB                 0x00
+> >> +#define TEST_PORT_BLOCK_DATA_MSB               0x04
+> >> +#define TEST_PORT_BLOCK_DATA_LSB               0x08
+> >> +#define  TEST_PORT_LSB_PINMUX_DATA_SHIFT       12
+> >> +#define TEST_PORT_COMMAND                      0x0c
+> >> +#define  TEST_PORT_CMD_LOAD_MUX_REG            0x00000021
+> >
+> > The prefix of all above doesn't match the module name.
+>
+> Those are register names as in Broadcom's documentation. I don't think
+> those names can conflict with any included header defines but I can
+> change it.
+
+They may easily conflict through headers with something more generic
+not related to your driver or even GPIO. The TEST_PORT_COMMAND seems
+one of this kind that might potentially collide.
+
+...
+
+> >> +
+> >
+> > Here and everywhere else, please drop redundant blank line.
+>
+> No clear kernel rule for that.
+>
+> I use blank line to indicate / suggest that comment applies to more than
+> just a single line that follows.
+
+Maybe these comments are not so useful after all?
+
+...
+
+> >> +
+> >
+> > No need.
+> >
+> >> +module_platform_driver(bcm4908_pinctrl_driver);
+>
+> You have 1344 other source files with empty line above
+> module_platform_driver(). coding-style.rst says to "separate functions
+> with one blank line". Are we supposed to argue now whether a macro can
+> be considered a functio nor not?
+>
+> grep -B 1 -r "module_platform_driver" drivers/* | egrep -c "\.c-$"
+> 1344
+
+Same as above, common sense and the tight relationship between two.
+
+--=20
+With Best Regards,
+Andy Shevchenko
