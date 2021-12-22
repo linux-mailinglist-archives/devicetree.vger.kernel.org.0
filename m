@@ -2,182 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE93347CEE5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 10:12:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E205147CEE9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 10:13:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243774AbhLVJM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 04:12:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46246 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243772AbhLVJM0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 04:12:26 -0500
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A92AC06173F;
-        Wed, 22 Dec 2021 01:12:26 -0800 (PST)
-Received: by mail-pg1-x531.google.com with SMTP id f125so1748542pgc.0;
-        Wed, 22 Dec 2021 01:12:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=RMvKmba4JM/jTaewTS19tLIKpwQrfdMAgxZsYWo8gwI=;
-        b=OhZIRRH3Rohw6lx/eqCxnykzIJUZq9CiuZsBXxiyeWP6+jaLyoASijR+IJJZYlltym
-         jvUTGVfTAm3G9N2Kp3Kf1ajlcul4GeMcRw82nGHrels5v9mxxnle2b35L8+LZQPFtHI8
-         AjLlPl564lZ0XwrzRox/7XCZY3M4CPU00NcviKkK7JIhLOc5k0CkdmSeZBoybuuQoeje
-         jyJ8ljNSpAFwTvvi23X+dWZ04xo55JBmZ1z0P4sd0K79mFLxuR7Fe7KDrMvFldC6nQix
-         +pDfKVFQIMJ1lyVYctCdlV2NPqOPeCKATx75j5p0gj7KQM08Ubx4mi0PAWK1ejxwYJSy
-         rpJA==
+        id S243794AbhLVJNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 04:13:10 -0500
+Received: from mail-ua1-f41.google.com ([209.85.222.41]:41833 "EHLO
+        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236486AbhLVJNI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 04:13:08 -0500
+Received: by mail-ua1-f41.google.com with SMTP id p37so2988149uae.8;
+        Wed, 22 Dec 2021 01:13:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=RMvKmba4JM/jTaewTS19tLIKpwQrfdMAgxZsYWo8gwI=;
-        b=YlJ6wQ/qj8tT/svvtIEXnkatt//u8mQH86ZPeiZ/jnIdCOILPFzgjIJxCzBik078Fq
-         tLBfciGxlE61x4jT/kcI4DX+69FtTQSAcXc+nP7O24lsLngEwp5aTXlsY6pgHRUmW0XT
-         KuPzg9Rwck76Aoytu6DPobFthGG9Q6GZc3CfSWz2kEobOC1Uu/HEyx1nMhzpuqhpKaKk
-         rBc9T1D2eZMc2bT7MidWokcoyThopg9FMWg7/KNiNx1M0UNM6GUrNrZz7P8/7lPtBEVF
-         Gr56qicnV9c4iX4De29SJNspk5QxoNGNFUh19j3BvHwaX0ygfx4KOqL5lsQYn8XN6ASc
-         fw1g==
-X-Gm-Message-State: AOAM532f7Rb5F8eNakGLp8ViorupBj2gzW5quH8YICzZhrE04qsCpYPs
-        +NzjuEGN8gMAyx7Ox7cx6m+ez/wj5Mk=
-X-Google-Smtp-Source: ABdhPJwx0YVpaL2i/qvQx9mrylFHz9D4AMWpOvxDfauLp2jo0p9bpgQU+hUXDFJGfQOMBo2aDhjorg==
-X-Received: by 2002:a05:6a00:22d2:b0:4b0:da80:2dac with SMTP id f18-20020a056a0022d200b004b0da802dacmr2067157pfj.66.1640164345847;
-        Wed, 22 Dec 2021 01:12:25 -0800 (PST)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id y65sm1470011pgd.79.2021.12.22.01.12.24
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 22 Dec 2021 01:12:25 -0800 (PST)
-From:   Vincent Shih <vincent.sunplus@gmail.com>
-To:     srinivas.kandagatla@linaro.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        wells.lu@sunplus.com, vincent.shih@sunplus.com
-Cc:     Vincent Shih <vincent.sunplus@gmail.com>
-Subject: [PATCH v4 2/2] dt-bindings: nvmem: Add bindings doc for Sunplus OCOTP driver
-Date:   Wed, 22 Dec 2021 17:12:26 +0800
-Message-Id: <1640164346-26818-3-git-send-email-vincent.sunplus@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1640164346-26818-1-git-send-email-vincent.sunplus@gmail.com>
-References: <1640164346-26818-1-git-send-email-vincent.sunplus@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VW/Pwg5Ke22MAchuX1prlmMQk+F7qSVh6AcCbguvgR0=;
+        b=6K3RJGybQlQfcYETAcJ+fZP7vph3Scl5F+ZGxIGwucDAzdjmI5yQzQa2E+YWmOjd6t
+         TCUlXl+xdBWaEADREucAOndI5t0tNVP31GXu48S3AZhH41jqJpOoO3C0JRy6P1y+UvTC
+         C2vuPI1kATiwDLjhUcUuxGjM940ajZwpncPLzksB0lL2L47p4fnH5Pk1ZUm2DC3SaFax
+         BBBUR2aliPVsYYugl1omj3XGt+68HZvorYotoSNH1u5nnjmisl2k0BLTvhAEQA7MNN1/
+         iZFESp0kGztbmX7B6kX1B45NqxmP7Fmq1TM7VBXspr2HVLF/bZDZzqiLD8WPoA4O5xtj
+         JUFQ==
+X-Gm-Message-State: AOAM531j90oDOCTsZT+5secCHO7IkET4jfmru1rb6XcxHLeT2W2DXhHt
+        Ct6AI6TsEnsCNvntQdA4cN1rT9HLSzciqw==
+X-Google-Smtp-Source: ABdhPJxePAvMnmofP8+cl0tRMycrkicpCdPZCT2Ha13eW8cHO4Qe+UVcJKjCweHt3QQNL5fJILlCFw==
+X-Received: by 2002:ab0:3c4f:: with SMTP id u15mr709432uaw.108.1640164387237;
+        Wed, 22 Dec 2021 01:13:07 -0800 (PST)
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
+        by smtp.gmail.com with ESMTPSA id r2sm283609vsk.28.2021.12.22.01.13.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Dec 2021 01:13:07 -0800 (PST)
+Received: by mail-ua1-f41.google.com with SMTP id n7so2970857uaq.12;
+        Wed, 22 Dec 2021 01:13:07 -0800 (PST)
+X-Received: by 2002:a05:6102:2155:: with SMTP id h21mr605418vsg.68.1640164386939;
+ Wed, 22 Dec 2021 01:13:06 -0800 (PST)
+MIME-Version: 1.0
+References: <20211221052722.597407-1-yoshihiro.shimoda.uh@renesas.com> <20211221052722.597407-2-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20211221052722.597407-2-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 22 Dec 2021 10:12:55 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWS+6wdN+3eE-A3EF74-SsY4bZrFZ+8-Now78H0U+fG1g@mail.gmail.com>
+Message-ID: <CAMuHMdWS+6wdN+3eE-A3EF74-SsY4bZrFZ+8-Now78H0U+fG1g@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: renesas,rcar-dmac: Add r8a779f0 support
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Vinod <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings doc for Sunplus OCOTP driver
+Hi Shimoda-san,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Vincent Shih <vincent.sunplus@gmail.com>
----
-Changes in v3
- - No change
- 
- .../bindings/nvmem/sunplus,sp7021-ocotp.yaml       | 86 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 87 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
+Thanks for your patch!
 
-diff --git a/Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml b/Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
-new file mode 100644
-index 0000000..4b28f37
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd. 2021
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/sunplus,sp7021-ocotp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: On-Chip OTP Memory for Sunplus SP7021
-+
-+maintainers:
-+  - Vincent Shih <vincent.sunplus@gmail.com>
-+
-+allOf:
-+  - $ref: "nvmem.yaml#"
-+
-+properties:
-+  compatible:
-+    const: sunplus,sp7021-ocotp
-+
-+  reg:
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: hb_gpio
-+      - const: otprx
-+
-+  clocks:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  thermal-calibration:
-+    type: object
-+    description: thermal calibration values
-+
-+  disconnect-voltage:
-+    type: object
-+    description: disconnect voltages of usb2 port 0 and port 1
-+
-+  mac-address0:
-+    type: object
-+    description: MAC address of ethernet port 0
-+
-+  mac-address1:
-+    type: object
-+    description: MAC address of ethernet port 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/sp-sp7021.h>
-+
-+    otp: otp@9c00af00 {
-+        compatible = "sunplus,sp7021-ocotp";
-+        reg = <0x9c00af00 0x34>, <0x9c00af80 0x58>;
-+        reg-names = "hb_gpio", "otprx";
-+        clocks = <&clks OTPRX>;
-+
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        therm_calib: thermal-calibration@14 {
-+          reg = <0x14 0x3>;
-+        };
-+        disc_vol: disconnect-voltage@18 {
-+          reg = <0x18 0x2>;
-+        };
-+        mac_addr0: mac-address0@34 {
-+          reg = <0x34 0x6>;
-+        };
-+        mac_addr1: mac-address1@3a {
-+          reg = <0x3a 0x6>;
-+        };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0e6593a..2afd1ea 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17950,6 +17950,7 @@ F:	drivers/net/ethernet/dlink/sundance.c
- SUNPLUS OCOTP DRIVER
- M:	Vincent Shih <vincent.sunplus@gmail.com>
- S:	Maintained
-+F:	Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
- F:	drivers/nvmem/sunplus-ocotp.c
- 
- SUPERH
--- 
-2.7.4
+On Tue, Dec 21, 2021 at 10:50 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Document the compatible value for the Direct Memory Access Controller
+> blocks in the Renesas R-Car S4-8 (R8A779F0) SoC.
+>
+> The most visible difference with DMAC blocks on other R-Car SoCs
+> (except R8A779F0) is the move of the per-channel registers to
 
+R8A779A0.
+
+> a separate register block.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
