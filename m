@@ -2,86 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6986247D357
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 15:04:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CCB347D39B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 15:24:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245573AbhLVOEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 09:04:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237349AbhLVOEo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 09:04:44 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C07B1C061574
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 06:04:44 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 53E1961A3D
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 14:04:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7702AC36AEA;
-        Wed, 22 Dec 2021 14:04:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640181883;
-        bh=GNoSR9vATcN9dhd1CYRFeQx4pH59qmWj2wK1IQ1OdLU=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=RPLXrACyo+zki3TL6/5jE5+DFghyQj9p9XLlNuRVUhjR7NBNVXU4r1L8Ymim1S6+c
-         qGmD7qYWE17yzP+RKpFR+innBJHu6WDYe5qvFTPzgeSe2IiyXwLrOykfNIqbd5MOJt
-         RUIp9OvmDRiqWK2pdinnJFrP9a/aW4GyB6uypgWVlZkN943cPlyIAyPa9Hahbcg/mQ
-         YkAFt/q54b9l0bB+BF8hNkJcC6B8M+MZqGo8tImKj/rIUnjozr7IgaO64hvaWqiO/9
-         Sd741ngElI5Cfd7WZgplUMQXFPEw44f2clSsNeIwTMBA7cidiffUpwLU1CYYTaASez
-         ex/qIOjLKo2ZQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Alexander Stein <alexander.stein@mailbox.org>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-In-Reply-To: <20211218143423.18768-1-alexander.stein@mailbox.org>
-References: <20211218143423.18768-1-alexander.stein@mailbox.org>
-Subject: Re: [PATCH v2 1/3] ASoC: dt-bindings: Use name-prefix schema
-Message-Id: <164018188218.2905927.3191011789641589358.b4-ty@kernel.org>
-Date:   Wed, 22 Dec 2021 14:04:42 +0000
+        id S236731AbhLVOYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 09:24:16 -0500
+Received: from ewsoutbound.kpnmail.nl ([195.121.94.170]:64103 "EHLO
+        ewsoutbound.kpnmail.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233186AbhLVOYQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 09:24:16 -0500
+X-Greylist: delayed 662 seconds by postgrey-1.27 at vger.kernel.org; Wed, 22 Dec 2021 09:24:15 EST
+X-KPN-MessageId: 274244dc-6331-11ec-8a6e-005056ab378f
+Received: from smtp.kpnmail.nl (unknown [10.31.155.38])
+        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+        id 274244dc-6331-11ec-8a6e-005056ab378f;
+        Wed, 22 Dec 2021 15:12:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=xs4all.nl; s=xs4all01;
+        h=content-type:from:to:subject:mime-version:date:message-id;
+        bh=D7qUlmyWyRiBM87fcOPYLUo3TqeXcR8SLDEfqWVhTeE=;
+        b=tQQnRIjzHhP68s+68bMajYZC+ii1qI3/L3IXMw5kKGRQhGTvePFDJL5KOaiwJFupzjV6tU87E0sxw
+         inac2+cllLahPQMZVciYEYYUfCQ0BbOBoLQXtkMiC55lnGj0pyOBzcwE60TJ9m4bZ2vlY4GNXf6sLd
+         1bsAwShfFsqMMMEltfQsSmbXiuxctI1MLY8+Az6hwEZ+2tn8ZmfibNgtRdhg22CfpLOKiAbOUSGdQx
+         AFfBZHg13pBsKdZCnj+C+eKZ+/NDU2jeQPk57vVoBrd/2i5OGSwsUjjeqwMUjPwFfMgKD+DgFPcxPY
+         nS/l81eNrXE1uOUCfWDQ5WOMQ+EF1lg==
+X-KPN-VerifiedSender: Yes
+X-CMASSUN: 33|qg0CkmnxFkjnY6FZyiTdaeY6kx8pktK47rEV/taqXLOMDWKl4uNrWffXrYj8eka
+ wfPHVTauMYkr6gD6uVRS4Gg==
+X-Originating-IP: 80.101.105.217
+Received: from [192.168.1.10] (marune.xs4all.nl [80.101.105.217])
+        by smtp.xs4all.nl (Halon) with ESMTPSA
+        id 4bcaacaa-6331-11ec-94d2-005056abf0db;
+        Wed, 22 Dec 2021 15:13:12 +0100 (CET)
+Message-ID: <04e5c9b4-2a96-6b5f-7c26-89e1cbf8576f@xs4all.nl>
+Date:   Wed, 22 Dec 2021 15:13:11 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH v4 0/2] Remove clock-lanes DT property from CAMSS
+Content-Language: en-US
+To:     Robert Foss <robert.foss@linaro.org>, todor.too@gmail.com,
+        agross@kernel.org, bjorn.andersson@linaro.org, mchehab@kernel.org,
+        robh+dt@kernel.org, angelogioacchino.delregno@somainline.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>
+References: <20211206151811.39271-1-robert.foss@linaro.org>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+In-Reply-To: <20211206151811.39271-1-robert.foss@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 18 Dec 2021 15:34:21 +0100, Alexander Stein wrote:
-> name-prefix.txt does not exist anymore, just reference the schema instead.
-> 
-> 
+Hi Robert,
 
-Applied to
+I posted a PR for Bryan's 'CAMSS: Add SM8250 support' series, but your patch series
+clashes with his. Can you rebase this series on top of Bryan's work?
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+You can use this branch I made for the PR if you want:
+
+https://git.linuxtv.org/hverkuil/media_tree.git/log/?h=for-v5.17j
 
 Thanks!
 
-[1/3] ASoC: dt-bindings: Use name-prefix schema
-      commit: 0d422a466ef7fdbbe402194ac06144d1bbcdc227
-[2/3] ASoC: meson: t9015: add missing sound-name-prefix property
-      commit: 847cbea6459d5beb3f0f960fde4337f28b663eae
-[3/3] ASoC: meson: g12a: add missing sound-name-prefix property
-      commit: 1f6532073e3e9caee1dbc3f9b4be28359a181ea4
+	Hans
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+On 06/12/2021 16:18, Robert Foss wrote:
+> Changes since v3:
+>  - Split patches heading for Media and ARM64 tress
+>    into two seperate series
+> 
+> Changes since v2:
+>  - Stephan: Rebased on v5.16-rc1
+>  - Stephan: Fixed 3/4 commit message title
+> 
+> Changes since v1:
+>  - Rob: Instead of documenting and fixing the use of the clock-lanes
+>    property, remove it, since it is is not programmable and
+>    therefore shouldn't be exposed in the DT.
+> 
+> Robert Foss (2):
+>   media: camss: csiphy: Move to hardcode CSI Clock Lane number
+>   media: dt-bindings: media: camss: Remove clock-lane property
+> 
+>  .../bindings/media/qcom,msm8916-camss.yaml    | 10 ---------
+>  .../bindings/media/qcom,msm8996-camss.yaml    | 20 ------------------
+>  .../bindings/media/qcom,sdm660-camss.yaml     | 20 ------------------
+>  .../bindings/media/qcom,sdm845-camss.yaml     | 17 ---------------
+>  .../qcom/camss/camss-csiphy-2ph-1-0.c         | 19 +++++++++++++++--
+>  .../qcom/camss/camss-csiphy-3ph-1-0.c         | 17 ++++++++++++++-
+>  .../media/platform/qcom/camss/camss-csiphy.c  | 21 +------------------
+>  .../media/platform/qcom/camss/camss-csiphy.h  |  7 +++++++
+>  8 files changed, 41 insertions(+), 90 deletions(-)
+> 
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
