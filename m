@@ -2,105 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1402E47CFD9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 11:21:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB02947CFE7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 11:24:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244118AbhLVKVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 05:21:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33602 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236558AbhLVKVj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 05:21:39 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB7F2C061574;
-        Wed, 22 Dec 2021 02:21:38 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id w16so6602123edc.11;
-        Wed, 22 Dec 2021 02:21:38 -0800 (PST)
+        id S239964AbhLVKX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 05:23:59 -0500
+Received: from smtp1.axis.com ([195.60.68.17]:19706 "EHLO smtp1.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239280AbhLVKX7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Dec 2021 05:23:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TU7dyJKQKtUa7Bp992pXfOwL0ZeVphvql4VDb9W1uSE=;
-        b=SCwI4pttJkVZfAaYOFBQTFCh9jhK4Le26UvobhIjJsqDrdonlYFwSwOMIimkKd/R1z
-         mdk/5wsw+IaUIzNPQGMTQ+XPRHwprMcWxWYEAoPWH68XaRgwSRLJ7Wjzn5TQNhGY7QZi
-         GoSPR2bqv4Z9dDNWkZXhq9MzEs7aIkwUsDJXU8o+ucThFyA2aXQKZlv/uDw4vjDbWCP+
-         LWwqk3gugDPJoihlT4xy6joCOtPF8bCiYjX8qvONLhmsGnOKlHqtK+t4I+/fEXUSyph7
-         oSB75AYAd5TG0SRzGVkPC55wdQ13W9Gdsan+TDbm1V5cykis8pjK+Kl/eC6QDtM0lJrg
-         cr1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TU7dyJKQKtUa7Bp992pXfOwL0ZeVphvql4VDb9W1uSE=;
-        b=OaJwzFt2+To/rWsjdq1qxsJHyiIEcYx9WaXasSGcSRRyUTTHLupJ0YooBj7vpKYn0N
-         I29B0D7uipBzB9q3BJDVlb3045htkG3jI1xCO4d2VeF3pcO4gKS0QF4TP5cwVph4pAsq
-         NfcvU8Ri+ZFT0InCeAMLWtd9xW9X+p/KpWEnQ192UXO49cnOB+cOIadNU0AKLGsmGNAn
-         8Pylkd3uP/A8WwIhbt1nwCw3l0tz84hBU/BQ1IO+dI3suhm4YkK4EB2u0YZPTu0t4lOF
-         yIT4z2Bkqy7GlCfH4kdvZxFocTlOVjDOTtSxq/3Wr0/P4ZfNXN9JG5YLhEAbu1FxsFln
-         4EEw==
-X-Gm-Message-State: AOAM533r9bzrLECk3uVjFSHCAIK85qdbXZzUke+YrwQROXBcUzFLg1Oy
-        IOVJUjOnviyKaKA6uDRD1aoVpJruMULbCvYbOa9+wIzFyGD+lA==
-X-Google-Smtp-Source: ABdhPJyhZIjLhbrjZZCaoOxbVuoWLmJbZAnmJRjj4wvpf/lS3YOi45QDeSykT7cyVLSPJKuIhSWkbWt3De4HN6hyx1g=
-X-Received: by 2002:aa7:cd75:: with SMTP id ca21mr2204212edb.242.1640168497416;
- Wed, 22 Dec 2021 02:21:37 -0800 (PST)
+  d=axis.com; q=dns/txt; s=axis-central1; t=1640168639;
+  x=1671704639;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=AiRNQTH94r+D9lKMXJMutmL10d1qDEsq3uj6a3lEGO8=;
+  b=lwyPloZTQba7Tld8cKS8Bvaupv7qHm7bCvDbDyMUtP/J4Pk+jWrcLVPs
+   R/JN8DbYR+gj/hnpimNvvypcR/jsrf5RLDiGsFVK9gRBdvH/xrwlFcl+r
+   h/PX+uinWB0r0rc8sApm8uOMbDM9Ak+ZXui9mCyNSo1aZ9/GUBkE/JFD7
+   t0HJ+UI+kMOJmBNzwtYzvJegwYPbDKw0Ynl84uWpTSOuvSt9Oj8dCmHul
+   2qnZoB69mbvdGAgRlzVzX9RI8F7A6M/uj8kgjPXdckBfd/c1yPJKLj2YC
+   qHf452PVF9SWsb/is+V5yGYLJ43EEc7JksphA+BT3Zb1GUjD9/0oKO4ql
+   g==;
+Date:   Wed, 22 Dec 2021 11:23:57 +0100
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Richard Weinberger <richard@nod.at>
+CC:     Johannes Berg <johannes@sipsolutions.net>,
+        Jeff Dike <jdike@addtoit.com>,
+        anton ivanov <anton.ivanov@cambridgegreys.com>,
+        kernel <kernel@axis.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-um <linux-um@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 0/2] Devicetree support for UML
+Message-ID: <20211222102356.GA25135@axis.com>
+References: <20211208151123.29313-1-vincent.whitchurch@axis.com>
+ <342397676.191011.1640120120622.JavaMail.zimbra@nod.at>
+ <c48f86ad5d31f7f0cfa08d895bb03a4d92a3ce26.camel@sipsolutions.net>
+ <1446970217.191062.1640121183419.JavaMail.zimbra@nod.at>
 MIME-Version: 1.0
-References: <20211222034646.222189-1-liambeguin@gmail.com> <20211222034646.222189-5-liambeguin@gmail.com>
-In-Reply-To: <20211222034646.222189-5-liambeguin@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 22 Dec 2021 12:21:01 +0200
-Message-ID: <CAHp75Vc009o5EunYP3QAB8up8hMrRL7oNax7cjphCFVUgSKXRw@mail.gmail.com>
-Subject: Re: [PATCH v11 04/15] iio: afe: rescale: expose scale processing function
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1446970217.191062.1640121183419.JavaMail.zimbra@nod.at>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 22, 2021 at 5:46 AM Liam Beguin <liambeguin@gmail.com> wrote:
->
-> From: Liam Beguin <lvb@xiphos.com>
->
-> In preparation for the addition of kunit tests, expose the logic
-> responsible for combining channel scales.
+On Tue, Dec 21, 2021 at 10:13:03PM +0100, Richard Weinberger wrote:
+> ----- Ursprüngliche Mail -----
+> > Von: "Johannes Berg" <johannes@sipsolutions.net>
+> > Gesendet: Dienstag, 21. Dezember 2021 21:56:50
+> > On Tue, 2021-12-21 at 21:55 +0100, Richard Weinberger wrote:
+> >> WARNING: unmet direct dependencies detected for OF_EARLY_FLATTREE
+> >>   Depends on [n]: OF [=n]
+> >>   Selected by [y]:
+> >>   - UML [=y]
+> >> 
+> >> Please note that my UML config has CONFIG_OF=n.
+> >> 
+> > Hm. So maybe that needs to be
+> > 
+> >	select OF_EARLY_FLATTREE if OF
+> 
+> Yeah, IIRC arm and mips use such a pattern too.  Vincent, what do you
+> think?
 
-...
-
->  #include <linux/gcd.h>
->  #include <linux/iio/consumer.h>
->  #include <linux/iio/iio.h>
-> +#include <linux/iio/afe/rescale.h>
-
-It should go before the consumer.h, no?
-
-And I would rather move the entire IIO group of headers...
-
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/of_device.h>
->  #include <linux/platform_device.h>
->  #include <linux/property.h>
-
-... somewhere here (with blank line above).
-
->
-> -struct rescale;
-
-...
-
-> +#ifndef __IIO_RESCALE_H__
-> +#define __IIO_RESCALE_H__
-> +
-> +#include <linux/iio/iio.h>
-
-Missed types.h and forward declarations like
-struct device;
-
--- 
-With Best Regards,
-Andy Shevchenko
+Yes, that looks like the correct fix.  I've tested it and it works.  Do
+you prefer to fix it up locally or should I repost?
