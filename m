@@ -2,72 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB02947CFE7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 11:24:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C227B47D00B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 11:34:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239964AbhLVKX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 05:23:59 -0500
-Received: from smtp1.axis.com ([195.60.68.17]:19706 "EHLO smtp1.axis.com"
+        id S236575AbhLVKeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 05:34:19 -0500
+Received: from smtp1.axis.com ([195.60.68.17]:36794 "EHLO smtp1.axis.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239280AbhLVKX7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Dec 2021 05:23:59 -0500
+        id S235010AbhLVKeT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Dec 2021 05:34:19 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1640168639;
-  x=1671704639;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1640169259;
+  x=1671705259;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=AiRNQTH94r+D9lKMXJMutmL10d1qDEsq3uj6a3lEGO8=;
-  b=lwyPloZTQba7Tld8cKS8Bvaupv7qHm7bCvDbDyMUtP/J4Pk+jWrcLVPs
-   R/JN8DbYR+gj/hnpimNvvypcR/jsrf5RLDiGsFVK9gRBdvH/xrwlFcl+r
-   h/PX+uinWB0r0rc8sApm8uOMbDM9Ak+ZXui9mCyNSo1aZ9/GUBkE/JFD7
-   t0HJ+UI+kMOJmBNzwtYzvJegwYPbDKw0Ynl84uWpTSOuvSt9Oj8dCmHul
-   2qnZoB69mbvdGAgRlzVzX9RI8F7A6M/uj8kgjPXdckBfd/c1yPJKLj2YC
-   qHf452PVF9SWsb/is+V5yGYLJ43EEc7JksphA+BT3Zb1GUjD9/0oKO4ql
-   g==;
-Date:   Wed, 22 Dec 2021 11:23:57 +0100
+   mime-version:in-reply-to;
+  bh=VLMLmT5m3m7o69AaIKBFwKPKTlTsCPE8fqiz5LYmR68=;
+  b=I5V2s3X+qEdyEm0ZzTycnYPNeZhN90SESk62UfyWIhRxSliTj2xaGsb4
+   2+Gv6xECHEWMwN3G+nYD+t+rzCtyC5pAPpL7mCHzVSs/FyuRZ2C8bqAz8
+   Y3Ait1HugHTaiwteFIXGqo/nHD76Eg1xDKYbZsnE2efkw580q/ywtr7FC
+   1jAfeYmslCXM4Dk/UBM+rLdyHhT8SzUAH4dkcrWZADX1jcZz3xDT/Hz4J
+   TD16qz5B6LR0eQm9Adm6fVgbLLdY8NOzXEW90u79ss/JQxZpv7iDLIe/0
+   by65PZ+x4s4WlSYIo+GMu8nGNM/73AwFXXn3z/zfjKlmYtTNO4e7CZSV6
+   Q==;
+Date:   Wed, 22 Dec 2021 11:34:17 +0100
 From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Richard Weinberger <richard@nod.at>
-CC:     Johannes Berg <johannes@sipsolutions.net>,
-        Jeff Dike <jdike@addtoit.com>,
-        anton ivanov <anton.ivanov@cambridgegreys.com>,
-        kernel <kernel@axis.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-um <linux-um@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 0/2] Devicetree support for UML
-Message-ID: <20211222102356.GA25135@axis.com>
-References: <20211208151123.29313-1-vincent.whitchurch@axis.com>
- <342397676.191011.1640120120622.JavaMail.zimbra@nod.at>
- <c48f86ad5d31f7f0cfa08d895bb03a4d92a3ce26.camel@sipsolutions.net>
- <1446970217.191062.1640121183419.JavaMail.zimbra@nod.at>
+To:     Johannes Berg <johannes@sipsolutions.net>
+CC:     Jeff Dike <jdike@addtoit.com>, Richard Weinberger <richard@nod.at>,
+        Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+        Rob Herring <robh+dt@kernel.org>, kernel <kernel@axis.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-um@lists.infradead.org" <linux-um@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] um: virtio_uml: allow probing from devicetree
+Message-ID: <20211222103417.GB25135@axis.com>
+References: <20211221090447.1567-1-vincent.whitchurch@axis.com>
+ <5f104044649ec60ba93648e68c3df2183e032072.camel@sipsolutions.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1446970217.191062.1640121183419.JavaMail.zimbra@nod.at>
+In-Reply-To: <5f104044649ec60ba93648e68c3df2183e032072.camel@sipsolutions.net>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 21, 2021 at 10:13:03PM +0100, Richard Weinberger wrote:
-> ----- Ursprüngliche Mail -----
-> > Von: "Johannes Berg" <johannes@sipsolutions.net>
-> > Gesendet: Dienstag, 21. Dezember 2021 21:56:50
-> > On Tue, 2021-12-21 at 21:55 +0100, Richard Weinberger wrote:
-> >> WARNING: unmet direct dependencies detected for OF_EARLY_FLATTREE
-> >>   Depends on [n]: OF [=n]
-> >>   Selected by [y]:
-> >>   - UML [=y]
-> >> 
-> >> Please note that my UML config has CONFIG_OF=n.
-> >> 
-> > Hm. So maybe that needs to be
+On Tue, Dec 21, 2021 at 09:48:26PM +0100, Johannes Berg wrote:
+> On Tue, 2021-12-21 at 10:04 +0100, Vincent Whitchurch wrote:
+> > Allow the virtio_uml device to be probed from the devicetree so that
+> > sub-devices can be specified using the standard virtio bindings, for
+> > example:
 > > 
-> >	select OF_EARLY_FLATTREE if OF
+> >   virtio@1 {
+> >     compatible = "virtio,uml";
+> >     socket-path = "i2c.sock";
+> >     virtio-device-id = <0x22>;
+> > 
 > 
-> Yeah, IIRC arm and mips use such a pattern too.  Vincent, what do you
-> think?
+> Given this, maybe it should modify
+> Documentation/devicetree/bindings/virtio/virtio-device.yaml? Or actually
+> add a new Documentation/devicetree/bindings/virtio/uml.yaml I guess?
+> 
+> +Rob, because I'm not really into any of this.
+> 
+> Also, I'm not even sure we should/need to document the DT bits that are
+> basically only used for testing in the first place?
 
-Yes, that looks like the correct fix.  I've tested it and it works.  Do
-you prefer to fix it up locally or should I repost?
+I wasn't sure either, but Rob was OK with not documenting some other
+bindings which are only used for testing[0], so I assumed that that
+applied here too:
+
+ [0] https://lore.kernel.org/all/5baa1ae6.1c69fb81.847f2.3ab1@mx.google.com/ 
+
+Also, DT bindings are supposed to be generic and based on what the
+hardware has, but here we have no hardware and something very Linux and
+UML-specific.
+
+> Code looks good to me.
+
+Thanks!
