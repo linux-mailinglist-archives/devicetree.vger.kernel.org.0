@@ -2,106 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C5E247CAD3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 02:38:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12FE047CAD9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 02:41:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232440AbhLVBiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 20:38:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58020 "EHLO
+        id S231558AbhLVBlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 20:41:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230033AbhLVBiH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 20:38:07 -0500
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12392C061574;
-        Tue, 21 Dec 2021 17:38:07 -0800 (PST)
-Received: by mail-qk1-x72d.google.com with SMTP id b85so896683qkc.1;
-        Tue, 21 Dec 2021 17:38:07 -0800 (PST)
+        with ESMTP id S230033AbhLVBlU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 20:41:20 -0500
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43BBDC061574;
+        Tue, 21 Dec 2021 17:41:20 -0800 (PST)
+Received: by mail-pg1-x534.google.com with SMTP id k4so631088pgb.8;
+        Tue, 21 Dec 2021 17:41:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fJAfK3DqpfiPmHQwaBI/smOBiafG0laxAPbgGyOvQTg=;
-        b=NEsC0bwTrII2R5alA3OhKMtCJh6qrGtuahtPqUjey2ycLMqVZjwaz2JNlqDUDv/LSz
-         ZQqLPDa9wna5XSVi0/muG0Apl+8GH4q4zGAPrcxoZX9XOmTJRnuCPjYxhATh7kTWXRyf
-         gUiVLkVJypdREiMOBk6ZrWff6h4SMV81HMYzg=
+         :cc:content-transfer-encoding;
+        bh=6K7N4UjpnuaxK3Sh6mPVLELDuxKa+PLKP+BFEP685jY=;
+        b=SMRAJ1xqXIoyhnMoLmIxQWVa/YpTEx71QOMPEebv+xBLCjgoDFHJAVpy6eMOzkWzox
+         6WQ7BplXFgfVGNUJHyyMEIY+OREEbXI/dbTIxkQBaXWDaZ+Aa0BsyhEEsCI/C6rR8DcY
+         N5Fcz1DKiWid+tJSSVdpQWri1J05CvDrbUY4E1W5m90vEfu8g6gb40rkykh/WVaLlAtM
+         Ki+7JHxby0+dKGMTgJptKz7D7oxDC4q27O6h/uA8bmf37GGFlMGUziq3sTQzF41x48ZG
+         XWR2KfIgzY1ZBwLSJi7Qv9qpVqhmJZvGJsTsd/CrXfz4HU8g0yHsd4u6AV6jCGT6KLkr
+         iC8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fJAfK3DqpfiPmHQwaBI/smOBiafG0laxAPbgGyOvQTg=;
-        b=prvjwYAz+l+EluCH0U9o08m8r9/UgX9lBYTnTpEesjFz5vl9fX1n/fpPXO1vXkDpnJ
-         g+EY9wV/+FQbY13C5uxOrfGf37iOfDPvUFFXXLQCtYPb6OCGog8PnWQO6ilbigy3Tfva
-         QQTlb+8pLRBWATPb1yjwjxDxdP2Oi4NxhYN7h6EeC/+TyMdYg3a452I+RmfDP+FDvTu4
-         uW1UJ7l3X4HUmR0Q9n4PWPxl9Y4vWgc15XVAj8GrnTl3p88WHUT0I+73IBzqHkzim8O7
-         ytpEVPSwdJDE7nyDA4OEVOdG3+z3G3KqDmSTcLXSfiNFf4V3GodFntCfkdbUAruxGq+N
-         tHeQ==
-X-Gm-Message-State: AOAM532JNu+uFdQUpLQOoINppzZZNcgVL3h+R/bsfzh2ALGsP57HbCfN
-        RIzMeLgAUktcFx4+FoRTiqyDSPVWaxpW6FCjtvs=
-X-Google-Smtp-Source: ABdhPJxhiavwjj59AhM6tp4D2rXd4oQSL5w/FRsldzbqAWfZsoEC+QgYrJGyQgUTUvGjcxZ9auohlAELtVpy61lkCeg=
-X-Received: by 2002:a37:94c2:: with SMTP id w185mr740322qkd.666.1640137086103;
- Tue, 21 Dec 2021 17:38:06 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=6K7N4UjpnuaxK3Sh6mPVLELDuxKa+PLKP+BFEP685jY=;
+        b=xeVI1sxSVMjV7HaDEn8OjJERbRvY/+ixp+oEJjLJ367Ahl2RKZIbW7XFIJGoLE81eN
+         xGYgBPoU7XFuTe5sB/uKOKKsOQmRQx2CqxzcPo33/TBt16uzwBywUS+SpIOKkLu6g2HA
+         nYRMnUb622OMcVyO+4VlL9McH8at5f2ZxLXOJB1tYN6J6nuVX6LcipwqsAPXscaoo348
+         KGXpts0HtecSzuxIaPRF/MNTMYM67+MQoxOW+rS6ajzHeboxTlwwbSwtlsYG84VIMDoW
+         PIDUuO8dt9SEpOMM69RcCwFFEfVo8kbKoTpFjJ44zT/MxoXT4aP2YjN5+gO6Vt1VjkeB
+         8STA==
+X-Gm-Message-State: AOAM531DeLUqCE3G5OeDeQPa20zp7XVBI/ffIrd6+MOR/m3ArlbCZBz7
+        1N5OG1I/DG3JTqHEdQ0QNSwMJvZlXFpZsLFyA6Q=
+X-Google-Smtp-Source: ABdhPJzfCo98u7x/jwskvJDCvCk1PyC9iP6mze1CLwuBv6w/DaWloS5g93zen5uYK6IYg+LxohLuHf7U1T7kw7PGlJ8=
+X-Received: by 2002:a63:5725:: with SMTP id l37mr914873pgb.476.1640137279698;
+ Tue, 21 Dec 2021 17:41:19 -0800 (PST)
 MIME-Version: 1.0
-References: <20211210093623.2140640-1-yulei.sh@bytedance.com>
-In-Reply-To: <20211210093623.2140640-1-yulei.sh@bytedance.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 22 Dec 2021 01:37:53 +0000
-Message-ID: <CACPK8XeK977rY33Kt3-vhEbqa68iXbG6vbRAfRGYxC94tE=t_g@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: g220a: Enable secondary flash
-To:     Lei YU <yulei.sh@bytedance.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        openbmc <openbmc@lists.ozlabs.org>
+References: <1639741568-5846-1-git-send-email-hammer.hsieh@sunplus.com>
+ <1639741568-5846-2-git-send-email-hammer.hsieh@sunplus.com> <YcIZiFvyo+N4ai7r@robh.at.kernel.org>
+In-Reply-To: <YcIZiFvyo+N4ai7r@robh.at.kernel.org>
+From:   hammer hsieh <hammerh0314@gmail.com>
+Date:   Wed, 22 Dec 2021 09:41:25 +0800
+Message-ID: <CAOX-t55PpckabHXHU+f9_Js16qiFk2rcmG7-TjOwVkq6OspTZA@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings:pwm:Add bindings doc for Sunplus SoC
+ PWM Driver
+To:     Rob Herring <robh@kernel.org>
+Cc:     thierry.reding@gmail.com,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, lee.jones@linaro.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, wells.lu@sunplus.com,
+        Hammer Hsieh <hammer.hsieh@sunplus.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lei,
+Hi, Rob Herring:
 
-On Fri, 10 Dec 2021 at 09:36, Lei YU <yulei.sh@bytedance.com> wrote:
->
-> Enable the secondary flash of the g220a's BMC and the wdt2.
->
-> Signed-off-by: Lei YU <yulei.sh@bytedance.com>
+I will fix it in next submit patch.
 
-I've applied this and the layout patch for v5.17, and to the openbmc tree.
+Regards,
+Hammer Hsieh
 
-> ---
->  arch/arm/boot/dts/aspeed-bmc-bytedance-g220a.dts | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+
+Rob Herring <robh@kernel.org> =E6=96=BC 2021=E5=B9=B412=E6=9C=8822=E6=97=A5=
+ =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=882:14=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-bytedance-g220a.dts b/arch/arm/boot/dts/aspeed-bmc-bytedance-g220a.dts
-> index 01dace8f5e5f..05f392f42960 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-bytedance-g220a.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-bytedance-g220a.dts
-> @@ -260,6 +260,13 @@ flash@0 {
->                 spi-max-frequency = <50000000>;
->  #include "openbmc-flash-layout-64.dtsi"
->         };
-> +       flash@1 {
-> +               status = "okay";
-> +               label = "alt-bmc";
-> +               m25p,fast-read;
-> +               spi-max-frequency = <50000000>;
-> +#include "openbmc-flash-layout-64-alt.dtsi"
-> +       };
->  };
+> On Fri, Dec 17, 2021 at 07:46:07PM +0800, Hammer Hsieh wrote:
+> > Add bindings doc for Sunplus SoC PWM Driver
+> >
+> > Signed-off-by: Hammer Hsieh <hammer.hsieh@sunplus.com>
 >
->  &spi1 {
-> @@ -278,6 +285,10 @@ &adc {
->         status = "okay";
->  };
+> The author email and S-o-b must match.
 >
-> +&wdt2 {
-> +       aspeed,alt-boot;
-> +};
-> +
->  &gpio {
->         status = "okay";
->         gpio-line-names =
-> --
-> 2.25.1
->
+> > ---
+> >  .../devicetree/bindings/pwm/pwm-sunplus.yaml       | 45 ++++++++++++++=
+++++++++
+> >  MAINTAINERS                                        |  5 +++
+> >  2 files changed, 50 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sunplus.y=
+aml
+> >
+> > diff --git a/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml b/D=
+ocumentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+> > new file mode 100644
+> > index 0000000..9af19df
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+> > @@ -0,0 +1,45 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# Copyright (C) Sunplus Co., Ltd. 2021
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pwm/pwm-sunplus.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Sunplus SoC PWM Controller
+> > +
+> > +maintainers:
+> > +  - Hammer Hsieh <hammer.hsieh@sunplus.com>
+> > +
+> > +properties:
+> > +  '#pwm-cells':
+> > +    const: 2
+> > +
+> > +  compatible:
+> > +    items:
+> > +      - const: sunplus,sp7021-pwm
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - '#pwm-cells'
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    pwm: pwm@9c007a00 {
+> > +      #pwm-cells =3D <2>;
+> > +      compatible =3D "sunplus,sp7021-pwm";
+> > +      reg =3D <0x9c007a00 0x80>;
+> > +      clocks =3D <&clkc 0xa2>;
+> > +    };
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 13f9a84..721ed79 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -18242,6 +18242,11 @@ L:   netdev@vger.kernel.org
+> >  S:   Maintained
+> >  F:   drivers/net/ethernet/dlink/sundance.c
+> >
+> > +SUNPLUS PWM DRIVER
+> > +M:   Hammer Hsieh <hammer.hsieh@sunplus.com>
+> > +S:   Maintained
+> > +F:   Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+> > +
+> >  SUPERH
+> >  M:   Yoshinori Sato <ysato@users.sourceforge.jp>
+> >  M:   Rich Felker <dalias@libc.org>
+> > --
+> > 2.7.4
+> >
+> >
