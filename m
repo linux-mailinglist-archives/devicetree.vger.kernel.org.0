@@ -2,541 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9502D47CA49
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 01:35:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A239C47CA81
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 01:45:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239561AbhLVAft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 19:35:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44334 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239555AbhLVAfs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 19:35:48 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12E8DC06173F
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 16:35:48 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id bg2-20020a05600c3c8200b0034565c2be15so2847912wmb.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Dec 2021 16:35:48 -0800 (PST)
+        id S238340AbhLVApj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 19:45:39 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:2281 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230412AbhLVApi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 19:45:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=JxEWAeNVJKEIf23MftqiE+2szf+/v3JYv1Krjzg8Yls=;
-        b=keuLj/qult47zXmkaNuY2yYJLz9052tOkPktP2mGnu8WHlo79TFHe5Y060O9RLMZnN
-         Y5TdOQuVhzO/cFCux7mAVKob6JQB9mRVOOfS+2Z6f+ap56sJeL7WTWBcGRTk0+KJbvVw
-         jQoLMsmY4p/pzof6ILTQfVupX3EdNZpw/rBAocHOTSmH66qYWmHr7GuVwTVpeRDDHb6f
-         2w94jHz2tTmHQNxO4PmzyofDanqDLa1ANFSiCBT8mq3gyZkojkpLEQuH4DHKLe898I+D
-         GqnhbhD7nb4vAUIq5/zSIe+mJubeIufpV/e+mOS4/LiR2whIbW1HfSWxvqzQYylEUlMe
-         G99g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=JxEWAeNVJKEIf23MftqiE+2szf+/v3JYv1Krjzg8Yls=;
-        b=RuAHNj0SWGt/znDY3HcZh/kdCnA9TeRA2ZDNbBn0BaErJnKVESDPdkMsszbkZmSyCK
-         nkovUbTwIAFNQ7S8h/3crSDJy+UdyAxab6gmQwLSAnfNzChTNQe+l1VAN2XaA/RHHtGm
-         G9yr5/nhtWAkwSLHAevLcp8EcIp1QE/VNis9nyXvD8aClmeFWFEmDMgp6dkC+s+YFT2M
-         oPw6DLb/Fd3hQ8r/kKEPqstFFNg5A36qIZUSxPOp+5bcM/d/HRRzAK0HGN4MHrrI/gMF
-         YmpRF0/g83d4ijpM4PNG7hYCiEUteQpsh5fREAIMutuuWng1bHOA/kZCpWBOPqy+y+s2
-         En8A==
-X-Gm-Message-State: AOAM5317p71FUHVYlDvHBn/J1VnXOGyMEhrOyz1z9oCN4TjaUtLpFqRC
-        pG61Bo7g2mGq+kH4i4wQrpzHJA==
-X-Google-Smtp-Source: ABdhPJzR+bYDZCkRVhl4FfprueAdtn70+OXPeZtqEX01+E9Qo2Hd++2u61hiUFt0iuLa6ntV7ecZUQ==
-X-Received: by 2002:a05:600c:296:: with SMTP id 22mr614046wmk.11.1640133346508;
-        Tue, 21 Dec 2021 16:35:46 -0800 (PST)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id n7sm282825wms.45.2021.12.21.16.35.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 16:35:45 -0800 (PST)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        mchehab@kernel.org, hverkuil@xs4all.nl, robert.foss@linaro.org
-Cc:     jonathan@marek.ca, andrey.konovalov@linaro.org,
-        todor.too@gmail.com, agross@kernel.org, bjorn.andersson@linaro.org,
-        jgrahsl@snap.com, hfink@snap.com, vladimir.zapolskiy@linaro.org,
-        dmitry.baryshkov@linaro.org, bryan.odonoghue@linaro.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 01/19] media: dt-bindings: media: camss: Add qcom,sm8250-camss binding
-Date:   Wed, 22 Dec 2021 00:37:33 +0000
-Message-Id: <20211222003751.2461466-2-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211222003751.2461466-1-bryan.odonoghue@linaro.org>
-References: <20211222003751.2461466-1-bryan.odonoghue@linaro.org>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1640133938; x=1671669938;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=GJaQ5FkdpJLd0SOS8siK4lgiyGjMx7yBQQ7gb5ulYLM=;
+  b=Pt34Yb7LS3TGtNtH5zJ6KF59L/eZxJJU6KfRgdvmd/mY/x5UHSEyKp0g
+   0+69rmPdQ0IX3TvalcfIyffBPACKNXQE+fYQfrhH4BxKBcOPm/d0EdP0I
+   R3amwX4P77w2BZHR2fUc+r4JpeB8OmeSw6S46Gc/eq9dw19B0/gTc2pvs
+   Y=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 21 Dec 2021 16:45:38 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Dec 2021 16:45:37 -0800
+Received: from nalasex01c.na.qualcomm.com (10.47.97.35) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 21 Dec 2021 16:45:37 -0800
+Received: from [10.231.205.174] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Tue, 21 Dec
+ 2021 16:45:34 -0800
+Message-ID: <b35d0f12-1de2-9e15-2d87-5049614eeff1@quicinc.com>
+Date:   Wed, 22 Dec 2021 08:45:31 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v4 11/11] dt-bindings: convert qcom,spmi-pmic-arb binding
+ to YAML format
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>,
+        <devicetree@vger.kernel.org>, <collinsd@codeaurora.org>,
+        <subbaram@codeaurora.org>, <tglx@linutronix.de>, <maz@kernel.org>
+References: <1640071211-31462-1-git-send-email-quic_fenglinw@quicinc.com>
+ <1640071211-31462-12-git-send-email-quic_fenglinw@quicinc.com>
+ <YcHn0MLuqvMHbmuO@robh.at.kernel.org>
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+In-Reply-To: <YcHn0MLuqvMHbmuO@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jonathan Marek <jonathan@marek.ca>
+resend with plain text
 
-Add bindings for qcom,sm8250-camss in order to support the camera
-subsystem for SM8250.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/media/qcom,sm8250-camss.yaml     | 450 ++++++++++++++++++
- 1 file changed, 450 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+On 2021/12/21 22:42, Rob Herring wrote:
+> On Tue, Dec 21, 2021 at 03:20:09PM +0800, Fenglin Wu wrote:
+>> Convert the SPMI PMIC arbiter documentation to JSON/yaml.
+>>
+>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+>> ---
+>>   .../bindings/spmi/qcom,spmi-pmic-arb.txt           |  67 ----------
+>>   .../bindings/spmi/qcom,spmi-pmic-arb.yaml          | 146 +++++++++++++++++++++
+>>   2 files changed, 146 insertions(+), 67 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
+>>   create mode 100644 Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+>>
+> 
+>> diff --git a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+>> new file mode 100644
+>> index 0000000..df8cfb7
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+>> @@ -0,0 +1,146 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/spmi/qcom,spmi-pmic-arb.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm SPMI PMIC Arbiter
+>> +
+>> +maintainers:
+>> +  - Fenglin Wu <quic_fenglinw@quicinc.com>
+>> +  - Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
+>> +
+>> +description: |
+>> +  The SPMI PMIC Arbiter is found on Snapdragon chipsets. It is an SPMI
+>> +  controller with wrapping arbitration logic to allow for multiple
+>> +  on-chip devices to control a single SPMI master.
+>> +
+>> +  The PMIC Arbiter can also act as an interrupt controller, providing
+>> +  interrupts to slave devices.
+>> +
+>> +  See Documentation/devicetree/bindings/spmi/spmi.yaml for the generic
+>> +  SPMI controller binding requirements for child nodes.
+>> +
+>> +allOf:
+>> +  - $ref: spmi.yaml#
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^spmi@.*"
+>> +
+>> +  compatible:
+>> +    const: qcom,spmi-pmic-arb
+>> +
+>> +  reg-names:
+>> +    $ref: /schemas/types.yaml#/definitions/string-array
+> 
+> reg-names already has a type defined.
+I understand there is a pattern property defined in dt-core.yaml and it 
+defines ".*-names" as a "non-unique-string-array" type. But here, the 
+strings in "reg-names" needs to be unique and it has to be ["core", 
+"intr", "cnfg"] or ["core", "intr", "cnfg", "chnls", "obsrvr"] , that's 
+why I redefined it as "string-array" type which requires each string to 
+be unique. Otherwise, if any dtsi nodes define the "reg-name" as 
+["core", "core", "core"] will not be caught as a fault.
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-new file mode 100644
-index 0000000000000..af877d61b607d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-@@ -0,0 +1,450 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/media/qcom,sm8250-camss.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Qualcomm CAMSS ISP
-+
-+maintainers:
-+  - Robert Foss <robert.foss@linaro.org>
-+
-+description: |
-+  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
-+
-+properties:
-+  compatible:
-+    const: qcom,sm8250-camss
-+
-+  clocks:
-+    minItems: 37
-+    maxItems: 37
-+
-+  clock-names:
-+    items:
-+      - const: cam_ahb_clk
-+      - const: cam_hf_axi
-+      - const: cam_sf_axi
-+      - const: camnoc_axi
-+      - const: camnoc_axi_src
-+      - const: core_ahb
-+      - const: cpas_ahb
-+      - const: csiphy0
-+      - const: csiphy0_timer
-+      - const: csiphy1
-+      - const: csiphy1_timer
-+      - const: csiphy2
-+      - const: csiphy2_timer
-+      - const: csiphy3
-+      - const: csiphy3_timer
-+      - const: csiphy4
-+      - const: csiphy4_timer
-+      - const: csiphy5
-+      - const: csiphy5_timer
-+      - const: slow_ahb_src
-+      - const: vfe0_ahb
-+      - const: vfe0_axi
-+      - const: vfe0
-+      - const: vfe0_cphy_rx
-+      - const: vfe0_csid
-+      - const: vfe0_areg
-+      - const: vfe1_ahb
-+      - const: vfe1_axi
-+      - const: vfe1
-+      - const: vfe1_cphy_rx
-+      - const: vfe1_csid
-+      - const: vfe1_areg
-+      - const: vfe_lite_ahb
-+      - const: vfe_lite_axi
-+      - const: vfe_lite
-+      - const: vfe_lite_cphy_rx
-+      - const: vfe_lite_csid
-+
-+  interrupts:
-+    minItems: 14
-+    maxItems: 14
-+
-+  interrupt-names:
-+    items:
-+      - const: csiphy0
-+      - const: csiphy1
-+      - const: csiphy2
-+      - const: csiphy3
-+      - const: csiphy4
-+      - const: csiphy5
-+      - const: csid0
-+      - const: csid1
-+      - const: csid2
-+      - const: csid3
-+      - const: vfe0
-+      - const: vfe1
-+      - const: vfe_lite0
-+      - const: vfe_lite1
-+
-+  iommus:
-+    minItems: 8
-+    maxItems: 8
-+
-+  interconnects:
-+    minItems: 4
-+    maxItems: 4
-+
-+  interconnect-names:
-+    items:
-+      - const: cam_ahb
-+      - const: cam_hf_0_mnoc
-+      - const: cam_sf_0_mnoc
-+      - const: cam_sf_icp_mnoc
-+
-+  power-domains:
-+    items:
-+      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
-+      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
-+      - description: Titan GDSC - Titan ISP Block, Global Distributed Switch Controller.
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    description:
-+      CSI input ports.
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@3:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@4:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@5:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+  reg:
-+    minItems: 10
-+    maxItems: 10
-+
-+  reg-names:
-+    items:
-+      - const: csiphy0
-+      - const: csiphy1
-+      - const: csiphy2
-+      - const: csiphy3
-+      - const: csiphy4
-+      - const: csiphy5
-+      - const: vfe0
-+      - const: vfe1
-+      - const: vfe_lite0
-+      - const: vfe_lite1
-+
-+required:
-+  - clock-names
-+  - clocks
-+  - compatible
-+  - interconnects
-+  - interconnect-names
-+  - interrupts
-+  - interrupt-names
-+  - iommus
-+  - power-domains
-+  - reg
-+  - reg-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/qcom,camcc-sm8250.h>
-+    #include <dt-bindings/interconnect/qcom,sm8250.h>
-+    #include <dt-bindings/clock/qcom,gcc-sm8250.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        camss: camss@ac6a000 {
-+            compatible = "qcom,sm8250-camss";
-+
-+            reg = <0 0xac6a000 0 0x2000>,
-+                  <0 0xac6c000 0 0x2000>,
-+                  <0 0xac6e000 0 0x1000>,
-+                  <0 0xac70000 0 0x1000>,
-+                  <0 0xac72000 0 0x1000>,
-+                  <0 0xac74000 0 0x1000>,
-+                  <0 0xacb4000 0 0xd000>,
-+                  <0 0xacc3000 0 0xd000>,
-+                  <0 0xacd9000 0 0x2200>,
-+                  <0 0xacdb200 0 0x2200>;
-+            reg-names = "csiphy0",
-+                        "csiphy1",
-+                        "csiphy2",
-+                        "csiphy3",
-+                        "csiphy4",
-+                        "csiphy5",
-+                        "vfe0",
-+                        "vfe1",
-+                        "vfe_lite0",
-+                        "vfe_lite1";
-+
-+            interrupts = <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "csiphy0",
-+                              "csiphy1",
-+                              "csiphy2",
-+                              "csiphy3",
-+                              "csiphy4",
-+                              "csiphy5",
-+                              "csid0",
-+                              "csid1",
-+                              "csid2",
-+                              "csid3",
-+                              "vfe0",
-+                              "vfe1",
-+                              "vfe_lite0",
-+                              "vfe_lite1";
-+
-+            power-domains = <&camcc IFE_0_GDSC>,
-+                            <&camcc IFE_1_GDSC>,
-+                            <&camcc TITAN_TOP_GDSC>;
-+
-+            clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-+                     <&gcc GCC_CAMERA_HF_AXI_CLK>,
-+                     <&gcc GCC_CAMERA_SF_AXI_CLK>,
-+                     <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+                     <&camcc CAM_CC_CAMNOC_AXI_CLK_SRC>,
-+                     <&camcc CAM_CC_CORE_AHB_CLK>,
-+                     <&camcc CAM_CC_CPAS_AHB_CLK>,
-+                     <&camcc CAM_CC_CSIPHY0_CLK>,
-+                     <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY1_CLK>,
-+                     <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY2_CLK>,
-+                     <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY3_CLK>,
-+                     <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY4_CLK>,
-+                     <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY5_CLK>,
-+                     <&camcc CAM_CC_CSI5PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+                     <&camcc CAM_CC_IFE_0_AHB_CLK>,
-+                     <&camcc CAM_CC_IFE_0_AXI_CLK>,
-+                     <&camcc CAM_CC_IFE_0_CLK>,
-+                     <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
-+                     <&camcc CAM_CC_IFE_0_CSID_CLK>,
-+                     <&camcc CAM_CC_IFE_0_AREG_CLK>,
-+                     <&camcc CAM_CC_IFE_1_AHB_CLK>,
-+                     <&camcc CAM_CC_IFE_1_AXI_CLK>,
-+                     <&camcc CAM_CC_IFE_1_CLK>,
-+                     <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
-+                     <&camcc CAM_CC_IFE_1_CSID_CLK>,
-+                     <&camcc CAM_CC_IFE_1_AREG_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_AXI_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
-+            clock-names = "cam_ahb_clk",
-+                          "cam_hf_axi",
-+                          "cam_sf_axi",
-+                          "camnoc_axi",
-+                          "camnoc_axi_src",
-+                          "core_ahb",
-+                          "cpas_ahb",
-+                          "csiphy0",
-+                          "csiphy0_timer",
-+                          "csiphy1",
-+                          "csiphy1_timer",
-+                          "csiphy2",
-+                          "csiphy2_timer",
-+                          "csiphy3",
-+                          "csiphy3_timer",
-+                          "csiphy4",
-+                          "csiphy4_timer",
-+                          "csiphy5",
-+                          "csiphy5_timer",
-+                          "slow_ahb_src",
-+                          "vfe0_ahb",
-+                          "vfe0_axi",
-+                          "vfe0",
-+                          "vfe0_cphy_rx",
-+                          "vfe0_csid",
-+                          "vfe0_areg",
-+                          "vfe1_ahb",
-+                          "vfe1_axi",
-+                          "vfe1",
-+                          "vfe1_cphy_rx",
-+                          "vfe1_csid",
-+                          "vfe1_areg",
-+                          "vfe_lite_ahb",
-+                          "vfe_lite_axi",
-+                          "vfe_lite",
-+                          "vfe_lite_cphy_rx",
-+                          "vfe_lite_csid";
-+
-+            iommus = <&apps_smmu 0x800 0x400>,
-+                     <&apps_smmu 0x801 0x400>,
-+                     <&apps_smmu 0x840 0x400>,
-+                     <&apps_smmu 0x841 0x400>,
-+                     <&apps_smmu 0xC00 0x400>,
-+                     <&apps_smmu 0xC01 0x400>,
-+                     <&apps_smmu 0xC40 0x400>,
-+                     <&apps_smmu 0xC41 0x400>;
-+
-+            interconnects = <&gem_noc MASTER_AMPSS_M0 &config_noc SLAVE_CAMERA_CFG>,
-+                            <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI_CH0>,
-+                            <&mmss_noc MASTER_CAMNOC_SF &mc_virt SLAVE_EBI_CH0>,
-+                            <&mmss_noc MASTER_CAMNOC_ICP &mc_virt SLAVE_EBI_CH0>;
-+            interconnect-names = "cam_ahb",
-+                                 "cam_hf_0_mnoc",
-+                                 "cam_sf_0_mnoc",
-+                                 "cam_sf_icp_mnoc";
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+            };
-+        };
-+    };
--- 
-2.33.0
+> 
+>> +    anyOf:
+>> +      - minItems: 3
+>> +      - maxItems: 3
+>> +      - enum: ["core", "intr", "cnfg"]
+>> +
+>> +      - minItems: 5
+>> +      - maxItems: 5
+>> +      - enum: ["core", "intr", "cnfg", "chnls", "obsrvr"]
+> 
+> I think you want something like this:
+> 
+> minItems: 3
+> items:
+>    - const: core
+>    - const: intr
+>    - const: cnfg
+>    - const: chnls
+>    - const: obsrvr
+> 
+> 
+As I said, the content for "reg-names" here only has two options , 
+either ["core", "intr", "cnfg"] or ["core", "intr", "cnfg", "chnls", 
+"obsrvr"]. In patch V3, I defined it as below and "make dtbs_check" 
+threw out warnings because some of existing nodes defined "reg-names" 
+with these strings are not having the same order as I defined here (I 
+understood from the warnings that const items need to be followed 
+strictly even in order wise, is this correct?), and I guess the order of 
+the strings doesn't matter here and the schema here shouldn't have such 
+limitation, so I updated it as the "array-string" type and specified the 
+tuples can only be one of the strings defined in the enum. With this, 
+the previous warning regarding "reg-names" in "make dtbs_check" are all 
+fixed.
 
+   reg-names:
+     oneOf:
+       - items:
+           - const: core
+           - const: intr
+           - const: cnfg
+       - items:
+           - const: core
+           - const: intr
+           - const: cnfg
+           - const: chnls
+           - const: obsrvr
+
+
+>> +
+>> +  reg:
+>> +    minItems: 3
+>> +    maxItems: 5
+>> +    description: |
+>> +      Specifies base physical address and size of the registers in SPMI PMIC
+>> +      Arbiter HW module, with the following order.
+>> +        - SPMI PMIC arbiter core registers (core)
+>> +        - SPMI PMIC arbiter interrupt controller registers (intr)
+>> +        - SPMI PMIC arbiter configuration registers (cnfg)
+>> +        - SPMI PMIC arbiter tx-channel per virtual slave registers (chnls)
+>> +        - SPMI PMIC arbiter rx-channel per virtual slave registers (obsrvr).
+>> +      Register for "chnls" and "obsrvr" are only applicable for PMIC arbiter
+>> +      with HW version greater than V2.
+>> +
+>> +  "#address-cells":
+>> +    const: 2
+>> +
+>> +  "#size-cells":
+>> +    const: 0
+>> +
+>> +  interrupts:
+>> +    description: The summary interrupt for the PMIC Arb controller.
+>> +    maxItems: 1
+>> +
+>> +  interrupt-names:
+>> +    const: periph_irq
+>> +
+>> +  interrupt-controller: true
+>> +
+>> +  "#interrupt-cells":
+>> +    const: 4
+>> +    description: |
+>> +      Specifies the number of cells needed to encode any interrupt source.
+>> +      The 1st cell is the slave ID for the requested interrupt, its valid
+>> +      range is [0-15].
+>> +      The 2nd cell is the  peripheral ID for requested interrupt, its valid
+>> +      range is [0-255].
+>> +      The 3rd cell is the requested peripheral interrupt, its valid range
+>> +      is [0-7].
+>> +      The 4th cell is interrupt flags indicating level-sense information,
+>> +      as defined in dt-bindings/interrupt-controller/irq.h
+>> +
+>> +  qcom,ee:
+>> +    description: the active Execution Environment identifier
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [0, 1, 2, 3, 4, 5]
+>> +
+>> +  qcom,channel:
+>> +    description: which of the PMIC Arbiter provided channels to use for accesses
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [0, 1, 2, 3, 4, 5]
+>> +
+> 
+>> +patternProperties:
+>> +  "@[0-9a-f]$":
+>> +    description: up to 16 child PMIC nodes
+>> +    type: object
+>> +
+>> +    properties:
+>> +      reg:
+>> +        items:
+>> +          - minItems: 1
+>> +            items:
+>> +              - minimum: 0
+>> +                maximum: 0xf
+>> +              - enum: [ 0 ]
+>> +                description:
+>> +                  0 means user ID address. 1 is reserved for group ID
+>> +                  address.
+>> +
+>> +    required:
+>> +      - reg
+> 
+> All this should be covered by spmi.yaml
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg-names
+>> +  - reg
+>> +  - "#address-cells"
+>> +  - "#size-cells"
+>> +  - qcom,ee
+>> +  - qcom,channel
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    spmi@fc4cf000 {
+>> +          compatible = "qcom,spmi-pmic-arb";
+>> +          reg-names = "core", "intr", "cnfg";
+>> +          reg = <0xfc4cf000 0x1000>,
+>> +                <0xfc4cb000 0x1000>,
+>> +                <0xfc4ca000 0x1000>;
+>> +          interrupt-names = "periph_irq";
+>> +          interrupts = <0 190 0>;
+>> +          interrupt-controller;
+>> +          #interrupt-cells = <4>;
+>> +
+>> +          qcom,ee = <0>;
+>> +          qcom,channel = <0>;
+>> +
+>> +          #address-cells = <2>;
+>> +          #size-cells = <0>;
+>> +    };
+>> -- 
+>> 2.7.4
+>>
+>>
