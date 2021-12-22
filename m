@@ -2,103 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B4DB47CCF2
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 07:24:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9417947CD01
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 07:31:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242733AbhLVGY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 01:24:26 -0500
-Received: from muru.com ([72.249.23.125]:41156 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233176AbhLVGYZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Dec 2021 01:24:25 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id D33BB8107;
-        Wed, 22 Dec 2021 06:25:07 +0000 (UTC)
-Date:   Wed, 22 Dec 2021 08:24:22 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        Tero Kristo <kristo@kernel.org>
-Subject: Re: [PATCH] dt-bindings: clock: Add binding for TI clksel
-Message-ID: <YcLElm04V47kP0Z9@atomide.com>
-References: <20211217113640.59840-1-tony@atomide.com>
- <YcIZNfTn37uNbj0F@robh.at.kernel.org>
+        id S242758AbhLVGb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 01:31:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38112 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233175AbhLVGb0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 01:31:26 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D6B1C061574;
+        Tue, 21 Dec 2021 22:31:26 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2D24E6189F;
+        Wed, 22 Dec 2021 06:31:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3A8AC36AE8;
+        Wed, 22 Dec 2021 06:31:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640154685;
+        bh=7NmdHcwB+/nylAMW4yN/VuHS9DzrX/FmHd8am4UiMOk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YfTI1iL0xhlOZc43ftoVaYHxzagg0aC/+9ABfisPvSFbJQfiRjuzHjBjmLrpWWyh2
+         dp4NEr7mV86a1/NSFOzfMZ/zgWTKPZvgvDBNnjsy37THaxGD1VjmO4A95erKu9wGN0
+         uG8XSqNSyNHWz3zdPx+vU7S964D/thEisKaLo+1RXvnQyf5KTLL0eRoXv26h3og8cc
+         B7KtJJKWaOj7wa1RgNoClgpN2QyVDt2FuC52ZanUJ5rTrE7aH9GlSz8lX3aDKvi6Xn
+         VU5czq5lSTIHg0C17dyZUsAjy79J8RIYBYWvoIVj/pbnFpz39dXmK62pJ/jUMFaO6p
+         14QxKWboY+obw==
+Date:   Wed, 22 Dec 2021 12:01:21 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: crypto: convert Qualcomm PRNG to yaml
+Message-ID: <YcLGOWSnIDFpNcW6@matsya>
+References: <20211220184355.86582-1-david@ixit.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YcIZNfTn37uNbj0F@robh.at.kernel.org>
+In-Reply-To: <20211220184355.86582-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 20-12-21, 19:43, David Heidelberg wrote:
+> Convert Qualcomm PRNG documentation to yaml format.
 
-* Rob Herring <robh@kernel.org> [211221 18:13]:
-> On Fri, Dec 17, 2021 at 01:36:40PM +0200, Tony Lindgren wrote:
-> > +additionalProperties: true
+
+Acked-By: Vinod Koul <vkoul@kernel.org>
+
 > 
-> Like what properties?
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  .../devicetree/bindings/crypto/qcom,prng.txt  | 19 --------
+>  .../devicetree/bindings/crypto/qcom,prng.yaml | 43 +++++++++++++++++++
+>  2 files changed, 43 insertions(+), 19 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/crypto/qcom,prng.txt
+>  create mode 100644 Documentation/devicetree/bindings/crypto/qcom,prng.yaml
 > 
-> true is only used for common, incomplete schemas referenced by device 
-> schemas.
+> diff --git a/Documentation/devicetree/bindings/crypto/qcom,prng.txt b/Documentation/devicetree/bindings/crypto/qcom,prng.txt
+> deleted file mode 100644
+> index 7ee0e9eac973..000000000000
+> --- a/Documentation/devicetree/bindings/crypto/qcom,prng.txt
+> +++ /dev/null
+> @@ -1,19 +0,0 @@
+> -Qualcomm MSM pseudo random number generator.
+> -
+> -Required properties:
+> -
+> -- compatible  : should be "qcom,prng" for 8916 etc
+> -              : should be "qcom,prng-ee" for 8996 and later using EE
+> -		(Execution Environment) slice of prng
+> -- reg         : specifies base physical address and size of the registers map
+> -- clocks      : phandle to clock-controller plus clock-specifier pair
+> -- clock-names : "core" clocks all registers, FIFO and circuits in PRNG IP block
+> -
+> -Example:
+> -
+> -	rng@f9bff000 {
+> -		compatible = "qcom,prng";
+> -		reg = <0xf9bff000 0x200>;
+> -		clocks = <&clock GCC_PRNG_AHB_CLK>;
+> -		clock-names = "core";
+> -	};
+> diff --git a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
+> new file mode 100644
+> index 000000000000..bb42f4588b40
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/crypto/qcom,prng.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Pseudo Random Number Generator
+> +
+> +maintainers:
+> +  - Vinod Koul <vkoul@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,prng  # 8916 etc.
+> +      - qcom,prng-ee  # 8996 and later using EE
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    rng@f9bff000 {
+> +        compatible = "qcom,prng";
+> +        reg = <0xf9bff000 0x200>;
+> +        clocks = <&clk 125>;
+> +        clock-names = "core";
+> +    };
+> -- 
+> 2.34.1
 
-There is a collection of the current component clock child nodes for each
-clksel instance. I got warnings with "additionalProperties: false", but
-maybe the child clock nodes need to be somehow specified in the binding?
-
-For example, below is a sample patch for am335x CLKSEL_GFX_FCLK using a
-clksel parent node with the child nodes moved to fix warnings for
-unique_unit_address. It also has clock-output-names property added to
-avoid the node naming warnings. For the other clksel instances, they can
-be a collection of dividers, multipliers, gates and muxes.
-
-Regards,
-
-Tony
-
-8< --------
-diff --git a/arch/arm/boot/dts/am33xx-clocks.dtsi b/arch/arm/boot/dts/am33xx-clocks.dtsi
---- a/arch/arm/boot/dts/am33xx-clocks.dtsi
-+++ b/arch/arm/boot/dts/am33xx-clocks.dtsi
-@@ -494,20 +494,27 @@ mmc_clk: mmc_clk {
- 		clock-div = <2>;
- 	};
- 
--	gfx_fclk_clksel_ck: gfx_fclk_clksel_ck@52c {
--		#clock-cells = <0>;
--		compatible = "ti,mux-clock";
--		clocks = <&dpll_core_m4_ck>, <&dpll_per_m2_ck>;
--		ti,bit-shift = <1>;
--		reg = <0x052c>;
--	};
-+	clock@52c {
-+		compatible = "ti,clksel";
-+		reg = <0x52c>;
-+		#clock-cells = <1>;
-+		#address-cells = <0>;
-+
-+		gfx_fclk_clksel_ck: clock-gfx-fclk-clksel {
-+			#clock-cells = <0>;
-+			compatible = "ti,mux-clock";
-+			clock-output-names = "gfx_fclk_clksel_ck";
-+			clocks = <&dpll_core_m4_ck>, <&dpll_per_m2_ck>;
-+			ti,bit-shift = <1>;
-+		};
- 
--	gfx_fck_div_ck: gfx_fck_div_ck@52c {
--		#clock-cells = <0>;
--		compatible = "ti,divider-clock";
--		clocks = <&gfx_fclk_clksel_ck>;
--		reg = <0x052c>;
--		ti,max-div = <2>;
-+		gfx_fck_div_ck: clock-gfx-fck-div {
-+			#clock-cells = <0>;
-+			compatible = "ti,divider-clock";
-+			clock-output-names = "gfx_fck_div_ck";
-+			clocks = <&gfx_fclk_clksel_ck>;
-+			ti,max-div = <2>;
-+		};
- 	};
- 
- 	sysclkout_pre_ck: sysclkout_pre_ck@700 {
+-- 
+~Vinod
