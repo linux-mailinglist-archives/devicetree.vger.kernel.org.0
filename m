@@ -2,213 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EE5247D8C1
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 22:30:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43D6347D8D0
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 22:34:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239552AbhLVVar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 16:30:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44306 "EHLO
+        id S232951AbhLVVeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 16:34:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239309AbhLVVap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 16:30:45 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A0C4C061401;
-        Wed, 22 Dec 2021 13:30:45 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id o6so13649465edc.4;
-        Wed, 22 Dec 2021 13:30:45 -0800 (PST)
+        with ESMTP id S231946AbhLVVeY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 16:34:24 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1612CC061574;
+        Wed, 22 Dec 2021 13:34:24 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id y22so13721298edq.2;
+        Wed, 22 Dec 2021 13:34:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=iplbSwiVf6b64+flx7Li4BU1W4Eid44TyGxCKnCRca4=;
-        b=Sb6/nc3z8/Y4H0lGOPRClAe7BhwXGvn6Ac6pu54EEmRw4dXWm5WEIVyVm2EKnBFDfl
-         B8fP1CVL1tV5vDrE1UtcqoLspqnD5R8JugCWEGSiK3SGydqJQVQ5cZlpxsZmq3WPbPYp
-         kZ3f0eZB0IJBh/6jCrDlVlRxdmc+nd0RtQgWlEdZ1t7GfvlR3Ik8nQbFcGnzaHbsWoso
-         dTt3wJrVrR7rMoHP1d8eEpqxh9EhPt+OW7TI04iYkd5lPDr07bz8wjiPBxFhS2p1WNHA
-         wgJlYv4QZEWhmQT/0z241jHx6dAwC/uIU6N/kH2OA/aGSPP6T8xcUCg8m7rAm4U1FFn5
-         rvCA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BQlQlYrZXdOlmemUUXiF4Fhovo2L1S/LzruvfN712uY=;
+        b=br4b7Dx3l6Zfp65HGNkqUIOl6r/hzzYAYN2NdDkPMpX0mGBSMDJh7KeVbsx8yT7QTR
+         Ex5+LyzbOoGmM//h1zL/FSTfdOe6Im+MWg49HVf3yg0R61kP3Y4ryyBzk3qPUHMuLnvE
+         oPbLLiZQ0ICHlTkTsV/f3gkmZAXBsjODurvhCCGiWRTdWUBXffBYlYWUy9a9IGxc2MlP
+         dbQqsqsHrMtP/0ClN2GWH2W7SCveLV5d4s9e9o6A0FeDoxwJamNN+Slbgn/To6H8sf/z
+         vkyb+1skGRbW4rNR8rLLokkhnvZSNqQm/ZCCBgd5L24nIKTJ9kQRO/sDk8MZUUqO6bkO
+         /C0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=iplbSwiVf6b64+flx7Li4BU1W4Eid44TyGxCKnCRca4=;
-        b=32LGGZVgly0wIIVtxWK7j5/DtLTqG0gm985DAIiitw8vFl4Uv1RD3PivNFtQgwcccw
-         hLnYe86q4nvwnJSaXzkmDZKRAzraIytyNOSYsvJAl/mtjcQCBTLhz5DHM5LrZNzR+Yx5
-         Pw8wdJiZnw9SbPGoiSMrqsrfnZtp++GFbD2nz9CmLPCULLOGc6JMcTUg+BXFgqXYIQzg
-         8Y2PaTHxpDF1NkvxrUf7cjI2u3Vit3hQDbGRePD3nW4aIDgNc60HcLdhYk/SEjs7uAO2
-         s/7cUWTZtwB162fmPyMvk/jVEK4drZOBQRVj/uO3mGwufygFeY4vC1gAB38wLCHo20Sr
-         F/mw==
-X-Gm-Message-State: AOAM531sC0plyf9iGhgmQCbsTB0Ca60zJG15+QPdyrw9F4NuRwVASJMj
-        eWSvepNV6dGTJBUWd4+1y3c=
-X-Google-Smtp-Source: ABdhPJzmZ5/2Yy7zLaDSt7vWQIxgFmATyGaI1BP/pB8RJvno6F+3Daj8qabccEhxciiJ2QmlfJai2g==
-X-Received: by 2002:a17:907:2d10:: with SMTP id gs16mr3800028ejc.489.1640208643891;
-        Wed, 22 Dec 2021 13:30:43 -0800 (PST)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id ne2sm1087776ejc.108.2021.12.22.13.30.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Dec 2021 13:30:43 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, kishon@ti.com, vkoul@kernel.org,
-        p.zabel@pengutronix.de, lee.jones@linaro.org,
-        yifeng.zhao@rock-chips.com, kever.yang@rock-chips.com,
-        cl@rock-chips.com, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [RFC PATCH v6 4/4] arm64: dts: rockchip: add naneng multi phy nodes for rk3568
-Date:   Wed, 22 Dec 2021 22:30:32 +0100
-Message-Id: <20211222213032.7678-5-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20211222213032.7678-1-jbx6244@gmail.com>
-References: <20211222213032.7678-1-jbx6244@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BQlQlYrZXdOlmemUUXiF4Fhovo2L1S/LzruvfN712uY=;
+        b=cSO+MUVeHSSJsRGUzqA7H5lmjZH3qlnBHdbCsbALbH8Op3BbtwVLh96XGzXlqJ3UlA
+         2Kgoh5VrGkVHo6PdyL6ZkCbmvW9up7VFLzh62WEd1g/1/R9T1Uh0IRINUQNGHouIdvMp
+         DyOgSP/hi3XVe3vZdXhp+MjN/gTzh8q1oe5bGrjK0DK76FtE+YJqtBlEdLot52KNtddg
+         sdZlFw33ZXV/AJMuF4wXM05azUE5IyGC+ibEpVmQ7qoihZzLQoxvKXQuO9jSR+n4dq2x
+         FFbYwfgxvA0ZTQoefQOldO0kw4CfHdtk8K1ft6dNmVHDMJftgzU+zFJOOkvezjLHTnKr
+         RS9Q==
+X-Gm-Message-State: AOAM530MWS9bifgi+BFR7W7Lns8LIczDQY4mt+E3598fFFAqyrP4iOEI
+        1t3Wn+Vz3GCYwvxJy99LUcQylId/n1aYTqXSpXk=
+X-Google-Smtp-Source: ABdhPJxPcjYs5SH3P+Dvg2BhIowtF8SCyB4m0E2WIuGCd+CxC0ZdFvR74vmCCjoZgGk3P++JhhtkmIQ57SBR0JaSFUc=
+X-Received: by 2002:a17:906:c450:: with SMTP id ck16mr3745748ejb.579.1640208862599;
+ Wed, 22 Dec 2021 13:34:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211222034646.222189-1-liambeguin@gmail.com> <20211222034646.222189-10-liambeguin@gmail.com>
+ <CAHp75Vc0aWrFtNK1ZkHkwP62zNXQJaDcn9pc8Uhfq0kOnWzmJg@mail.gmail.com>
+ <YcNwt5RFMNFUimD/@shaak> <CAHp75VdrLTNLWZRgWkLXD23RAF28zh29XybywAPyMtb=GNxXbw@mail.gmail.com>
+ <YcODglDWiknz2oeV@shaak>
+In-Reply-To: <YcODglDWiknz2oeV@shaak>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 22 Dec 2021 23:32:24 +0200
+Message-ID: <CAHp75Vejfr_S7iK7fAvs7ELxE1TJUECvmKv0-G5Zwunyc6nDQA@mail.gmail.com>
+Subject: Re: [PATCH v11 09/15] iio: afe: rescale: reduce risk of integer overflow
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+On Wed, Dec 22, 2021 at 9:59 PM Liam Beguin <liambeguin@gmail.com> wrote:
+> On Wed, Dec 22, 2021 at 08:56:12PM +0200, Andy Shevchenko wrote:
+> > On Wed, Dec 22, 2021 at 8:38 PM Liam Beguin <liambeguin@gmail.com> wrote:
+> > > On Wed, Dec 22, 2021 at 02:29:04PM +0200, Andy Shevchenko wrote:
+> > > > On Wed, Dec 22, 2021 at 5:47 AM Liam Beguin <liambeguin@gmail.com> wrote:
 
-Add the core DT nodes for the rk3568 Naneng multi phys.
+...
 
-Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3566.dtsi |  4 ++
- arch/arm64/boot/dts/rockchip/rk3568.dtsi | 23 +++++++++++
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 50 ++++++++++++++++++++++++
- 3 files changed, 77 insertions(+)
+> > > > > -               tmp = 1 << *val2;
+> > > >
+> > > > At some point this should be BIT()
+> >
+> > Forgot to add, If it's 64-bit, then BIT_ULL().
+> >
+> > > I'm not against changing this, but (to me at least) 1 << *val2 seems
+> > > more explicit as we're not working with bitfields. No?
+> >
+> > You may add a comment. You may use int_pow(), but it will be suboptimal.
+> >
+> > > > Rule of thumb (in accordance with C standard), always use unsigned
+> > > > value as left operand of the _left_ shift.
+> > >
+> > > Right, that makes sense! In practice though, since we'll most likely
+> > > never use higher bits of *val2 with IIO_VAL_FRACTIONAL_LOG2, would it be
+> > > enough to simply typecast?
+> > >
+> > >         tmp = 1 << (unsigned int)*val2;
+> >
+> > No, it's about the _left_ operand.
+> > I haven't checked if tmp is 64-bit, then even that would be still wrong.
+>
+> Okay so your recommendation is to not use a left shift?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566.dtsi b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-index 3839eef5e..af442e83b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-@@ -6,6 +6,10 @@
- 	compatible = "rockchip,rk3566";
- };
- 
-+&multiphy {
-+	compatible = "rockchip,rk3566-naneng-multiphy";
-+};
-+
- &power {
- 	power-domain@RK3568_PD_PIPE {
- 		reg = <RK3568_PD_PIPE>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-index 2fd313a29..22bc0e85b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-@@ -8,6 +8,11 @@
- / {
- 	compatible = "rockchip,rk3568";
- 
-+	pipe_phy_grf0: syscon@fdc70000 {
-+		compatible = "rockchip,rk3568-pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc70000 0x0 0x1000>;
-+	};
-+
- 	qos_pcie3x1: qos@fe190080 {
- 		compatible = "rockchip,rk3568-qos", "syscon";
- 		reg = <0x0 0xfe190080 0x0 0x20>;
-@@ -80,6 +85,24 @@
- 	};
- };
- 
-+&multiphy {
-+	compatible = "rockchip,rk3568-naneng-multiphy";
-+
-+	multiphy0: multi-phy@fe820000 {
-+		reg = <0x0 0xfe820000 0x0 0x100>;
-+		clocks = <&pmucru CLK_PCIEPHY0_REF>,
-+			 <&cru PCLK_PIPEPHY0>,
-+			 <&cru PCLK_PIPE>;
-+		clock-names = "ref", "apb", "pipe";
-+		assigned-clocks = <&pmucru CLK_PCIEPHY0_REF>;
-+		assigned-clock-rates = <100000000>;
-+		resets = <&cru SRST_PIPEPHY0>;
-+		rockchip,pipe-phy-grf = <&pipe_phy_grf0>;
-+		#phy-cells = <1>;
-+		status = "disabled";
-+	};
-+};
-+
- &power {
- 	power-domain@RK3568_PD_PIPE {
- 		reg = <RK3568_PD_PIPE>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 46d9552f6..32e5c8026 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -214,11 +214,26 @@
- 		};
- 	};
- 
-+	pipegrf: syscon@fdc50000 {
-+		compatible = "rockchip,rk3568-pipe-grf", "syscon";
-+		reg = <0x0 0xfdc50000 0x0 0x1000>;
-+	};
-+
- 	grf: syscon@fdc60000 {
- 		compatible = "rockchip,rk3568-grf", "syscon", "simple-mfd";
- 		reg = <0x0 0xfdc60000 0x0 0x10000>;
- 	};
- 
-+	pipe_phy_grf1: syscon@fdc80000 {
-+		compatible = "rockchip,rk3568-pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc80000 0x0 0x1000>;
-+	};
-+
-+	pipe_phy_grf2: syscon@fdc90000 {
-+		compatible = "rockchip,rk3568-pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc90000 0x0 0x1000>;
-+	};
-+
- 	pmucru: clock-controller@fdd00000 {
- 		compatible = "rockchip,rk3568-pmucru";
- 		reg = <0x0 0xfdd00000 0x0 0x1000>;
-@@ -1077,6 +1092,41 @@
- 		status = "disabled";
- 	};
- 
-+	multiphy: multiphy {
-+		rockchip,pipe-grf = <&pipegrf>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		status = "disabled";
-+
-+		multiphy1: multi-phy@fe830000 {
-+			reg = <0x0 0xfe830000 0x0 0x100>;
-+			clocks = <&pmucru CLK_PCIEPHY1_REF>,
-+				 <&cru PCLK_PIPEPHY1>,
-+				 <&cru PCLK_PIPE>;
-+			clock-names = "ref", "apb", "pipe";
-+			assigned-clocks = <&pmucru CLK_PCIEPHY1_REF>;
-+			assigned-clock-rates = <100000000>;
-+			resets = <&cru SRST_PIPEPHY1>;
-+			rockchip,pipe-phy-grf = <&pipe_phy_grf1>;
-+			#phy-cells = <1>;
-+			status = "disabled";
-+		};
-+
-+		multiphy2: multi-phy@fe840000 {
-+			reg = <0x0 0xfe840000 0x0 0x100>;
-+			clocks = <&pmucru CLK_PCIEPHY2_REF>,
-+				 <&cru PCLK_PIPEPHY2>,
-+				 <&cru PCLK_PIPE>;
-+			clock-names = "ref", "apb", "pipe";
-+			assigned-clocks = <&pmucru CLK_PCIEPHY2_REF>;
-+			assigned-clock-rates = <100000000>;
-+			resets = <&cru SRST_PIPEPHY2>;
-+			rockchip,pipe-phy-grf = <&pipe_phy_grf2>;
-+			#phy-cells = <1>;
-+			status = "disabled";
-+		};
-+	};
-+
- 	pinctrl: pinctrl {
- 		compatible = "rockchip,rk3568-pinctrl";
- 		rockchip,grf = <&grf>;
+No, I recommend not to use int type as a _leftside_ operand.
+BIT() / BIT_ULL() does a left shift anyway.
+
+> I can look into that but given how unlikely it is to fall into those bad
+> cases, I'd rather keep things as they are. Would that be okay?
+
+> Also, I don't think using BIT() or BIT_ULL() would address this as they
+> both do the same shift, with no extra checks.
+
+They do slightly different versions of it. They use an unsigned int type.
+
+Open coded or not, it's up to you. Just convert to unsigned int.
+
 -- 
-2.20.1
-
+With Best Regards,
+Andy Shevchenko
