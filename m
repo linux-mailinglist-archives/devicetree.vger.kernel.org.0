@@ -2,110 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B7CA47D80E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 20:57:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6EAA47D814
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 20:59:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237724AbhLVT5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 14:57:16 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:58122 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345346AbhLVT5N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 14:57:13 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2C82161CF1
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 19:57:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89386C36AEB
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 19:57:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640203031;
-        bh=vo+ANnKfigzQzAo0jwVxZr3VvLPILGV+V4D2g0cDOJo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HHxrgtCPmPXHz+fCsXIxU9gvKpwFtUl+/sSit1hSB20LIHQ0CwUG3DRvyzyF/+Xtl
-         azm9i3QIznjWoESMqSvLxexoV8svAkhCsYMXGAi8pOSW5oiuIAxNwdp1ec72dJVz8G
-         MLrDwB1cidAo4xb9BWLkgAd3zHcnWF6FI/si3e/ldQGCmUms38Y+sPqNbIkRAlUPiy
-         G2RKLFyVo5Q6wd19UREl48K9GCiAQl/39sD6uTfngJMKMGOtDtuB4pxLarScPqU3eQ
-         XLvJxu9SZ9h7oJfIzvWhiMZEA0X3f7yHru9faCoNYn9F+kk042poC7ta0bMs4QQcvu
-         XxSoT5DsqB9Nw==
-Received: by mail-ed1-f53.google.com with SMTP id bm14so12837137edb.5
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 11:57:11 -0800 (PST)
-X-Gm-Message-State: AOAM531SKxNeaV9/Dfk7UnlhDysMVBWnuwThyuWzuw9AM1yPuWARPUwE
-        AoA5WZqUaK0Rtx5Nrdc/Q7EmmFsG6mAOVu00rg==
-X-Google-Smtp-Source: ABdhPJzwsbCZWdVn8cOcu5PGCVl4Axi+Ni8kjsGL4ubCS8dZgY8gPy7zwXj1bZMZYLolMdf6vi/pSdQRIPwxu9a9uQc=
-X-Received: by 2002:a17:906:229b:: with SMTP id p27mr3667056eja.264.1640203029841;
- Wed, 22 Dec 2021 11:57:09 -0800 (PST)
+        id S1345359AbhLVT7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 14:59:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52566 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345346AbhLVT7D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 14:59:03 -0500
+Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2913C061574;
+        Wed, 22 Dec 2021 11:59:02 -0800 (PST)
+Received: by mail-qv1-xf2d.google.com with SMTP id a9so3260270qvd.12;
+        Wed, 22 Dec 2021 11:59:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=0glwfJ1+6hPNLqILfcBccYJ9Fimpt8DeheiL8u4NZ7w=;
+        b=nvaD1ClkgEPQILfuamlGvxIS40pE2PZWmPwJRfysBVP2QreaX1hxbnaQCk5XQNLQpD
+         K6prAqDaR4dG5Om3vp5UveFGvOt8lf9WJumgq4regGVxpSRs+B95r1oQ3Z5OovasQ3Gb
+         +BtDwm0Iep/soYnXm3BU+407w53PsbuIO5UOjOUEIM/Lom2U0S6/zUktwZAJLrzzlGHn
+         mn6dCZ5Cd1wDkPAR+RDkcoFrXEHnBErFhdPWx4rthIxlRkTRkAq4IHvygoadnqEVKYpI
+         EVtc/k2Eflf0OauSNYadLjVHNt7PXGmigSE0x7ROOx2Jctty+aNflVGV2AELiQTaqWGd
+         V94g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0glwfJ1+6hPNLqILfcBccYJ9Fimpt8DeheiL8u4NZ7w=;
+        b=fyrkcY334M3kCW1XnZi4u0txuX4+g/FeBKqMOs1CItVdAnxfNUFZQtfPPdWwoeHna8
+         4LpJr53cTBh7ZGe+61J9GiRSQb6GxPa/lA6jF2BCzQk0TsMV2wErY+YUcrg2300W9Wck
+         7jT8BpAkOgU7/LQhb+URINVX+V1rXg+jj/4OMG8SGCazBSlCq9BvfHq8FV9vFnKucjJU
+         PAF5aYdl/T+t6ISB3eS9CbIV41Q0FGhsF44/bTpqaL0l9XeBMVRfi3yLQneUyXUIa9GS
+         7+bHGE0ukkb7nen4oJkwAotB4BTAJOxFgpnUaH3kjoOZ5/LOPuHqhOgqoGUfJkhuX9Xm
+         0x2g==
+X-Gm-Message-State: AOAM533NLyE6ZLkxTAYfNIJ3HJahYoSgBRzOxF+tYNf/o811Ds1MG4g9
+        e3mFCqmW7HrLV15+vNCGG/c=
+X-Google-Smtp-Source: ABdhPJz4/qtvHmEMYnGaHwGIVAm0B3yFhw67iqoCZx70WSTaDXgXri6jlP9pvdWSHmqHEvGMMhwAuw==
+X-Received: by 2002:a05:6214:21e9:: with SMTP id p9mr3785717qvj.100.1640203142029;
+        Wed, 22 Dec 2021 11:59:02 -0800 (PST)
+Received: from shaak (69-165-204-82.cable.teksavvy.com. [69.165.204.82])
+        by smtp.gmail.com with ESMTPSA id bm35sm2644916qkb.86.2021.12.22.11.59.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Dec 2021 11:59:01 -0800 (PST)
+Date:   Wed, 22 Dec 2021 14:58:58 -0500
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v11 09/15] iio: afe: rescale: reduce risk of integer
+ overflow
+Message-ID: <YcODglDWiknz2oeV@shaak>
+References: <20211222034646.222189-1-liambeguin@gmail.com>
+ <20211222034646.222189-10-liambeguin@gmail.com>
+ <CAHp75Vc0aWrFtNK1ZkHkwP62zNXQJaDcn9pc8Uhfq0kOnWzmJg@mail.gmail.com>
+ <YcNwt5RFMNFUimD/@shaak>
+ <CAHp75VdrLTNLWZRgWkLXD23RAF28zh29XybywAPyMtb=GNxXbw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20211220110630.3521121-1-s.hauer@pengutronix.de>
- <20211222104736.GZ6003@pengutronix.de> <CAL_Jsq+jhaE7DWNu1=n9JX+oNp8XRW7mNi--8moDU6RYNyBgBw@mail.gmail.com>
- <8156864.jFcTpQmkuZ@diego>
-In-Reply-To: <8156864.jFcTpQmkuZ@diego>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 22 Dec 2021 15:56:57 -0400
-X-Gmail-Original-Message-ID: <CAL_JsqJqXHcSQEw9rz1PDk++WUf_Pgh7S09Z2UGOQUxvT6ftGA@mail.gmail.com>
-Message-ID: <CAL_JsqJqXHcSQEw9rz1PDk++WUf_Pgh7S09Z2UGOQUxvT6ftGA@mail.gmail.com>
-Subject: Re: [PATCH 08/22] dt-bindings: display: rockchip: dw-hdmi: use "ref"
- as clock name
-To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org, Sascha Hauer <kernel@pengutronix.de>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75VdrLTNLWZRgWkLXD23RAF28zh29XybywAPyMtb=GNxXbw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 22, 2021 at 3:40 PM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
->
-> Am Mittwoch, 22. Dezember 2021, 14:52:51 CET schrieb Rob Herring:
-> > On Wed, Dec 22, 2021 at 6:47 AM Sascha Hauer <s.hauer@pengutronix.de> w=
-rote:
+On Wed, Dec 22, 2021 at 08:56:12PM +0200, Andy Shevchenko wrote:
+> On Wed, Dec 22, 2021 at 8:38 PM Liam Beguin <liambeguin@gmail.com> wrote:
+> > On Wed, Dec 22, 2021 at 02:29:04PM +0200, Andy Shevchenko wrote:
+> > > On Wed, Dec 22, 2021 at 5:47 AM Liam Beguin <liambeguin@gmail.com> wrote:
+> 
+> ...
+> 
+> > > > -               tmp = 1 << *val2;
 > > >
-> > > On Tue, Dec 21, 2021 at 10:31:23AM -0400, Rob Herring wrote:
-> > > > On Mon, Dec 20, 2021 at 12:06:16PM +0100, Sascha Hauer wrote:
-> > > > > "vpll" is a misnomer. A clock input to a device should be named a=
-fter
-> > > > > the usage in the device, not after the clock that drives it. On t=
-he
-> > > > > rk3568 the same clock is driven by the HPLL.
-> > > > > To fix that, this patch renames the vpll clock to ref clock.
-> > > >
-> > > > The problem with this series is it breaks an old kernel with new dt=
-. You
-> > > > can partially mitigate that with stable kernel backport, but IMO ke=
-eping
-> > > > the old name is not a burden to maintain.
-> > >
-> > > As suggested I only removed vpll from the binding document, but not f=
-rom
-> > > the code. The code still handles the old binding as well.
+> > > At some point this should be BIT()
+> 
+> Forgot to add, If it's 64-bit, then BIT_ULL().
+> 
+> > I'm not against changing this, but (to me at least) 1 << *val2 seems
+> > more explicit as we're not working with bitfields. No?
+> 
+> You may add a comment. You may use int_pow(), but it will be suboptimal.
+> 
+> > > Rule of thumb (in accordance with C standard), always use unsigned
+> > > value as left operand of the _left_ shift.
 > >
-> > The problem is updating rk3399.dtsi. That change won't work with old
-> > kernels because they won't look for 'ref'. Since you shouldn't change
-> > it, the binding needs to cover both the old and new cases.
->
-> is "newer dt with old kernel" really a case these days?
+> > Right, that makes sense! In practice though, since we'll most likely
+> > never use higher bits of *val2 with IIO_VAL_FRACTIONAL_LOG2, would it be
+> > enough to simply typecast?
+> >
+> >         tmp = 1 << (unsigned int)*val2;
+> 
+> No, it's about the _left_ operand.
+> I haven't checked if tmp is 64-bit, then even that would be still wrong.
 
-I've had complaints about it. In particular from SUSE folks that were
-shipping new dtbs with old (stable) kernels.
+Okay so your recommendation is to not use a left shift?
 
-> I do understand the new kernel old dt case - for example with the
-> dtb being provided by firmware.
+I can look into that but given how unlikely it is to fall into those bad
+cases, I'd rather keep things as they are. Would that be okay?
 
-Yes, so update your firmware that contains a newer dtb and then you
-stop booting or a device stops working.
+Also, I don't think using BIT() or BIT_ULL() would address this as they
+both do the same shift, with no extra checks.
 
-> But which user would get the idea of updating only the devicetree
-> while staying with an older kernel?
+Cheers,
+Liam
 
-Any synchronization between firmware and OS updates is a problem.
-
-Rob
+> -- 
+> With Best Regards,
+> Andy Shevchenko
