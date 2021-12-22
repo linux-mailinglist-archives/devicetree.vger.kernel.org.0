@@ -2,99 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA2DA47D859
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 21:43:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1568A47D8B8
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 22:30:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233147AbhLVUnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 15:43:23 -0500
-Received: from mail.skyhub.de ([5.9.137.197]:45736 "EHLO mail.skyhub.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229548AbhLVUnX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Dec 2021 15:43:23 -0500
-Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 3C18A1EC04EC;
-        Wed, 22 Dec 2021 21:43:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1640205797;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=IYOkv/wZNRUq1jFqHRJ8eEFsPFIJMsHiVgTrU4Qn3jE=;
-        b=AdNHqG0gUsIG3OleVyOwpKWaZF+BWvfo7oDTY7Flv5oE833oieZI8yK763E0zBAn7kwP2v
-        vxwARfMnrEUI+3boPNc+2pCmF032MCFqpYL/RT9oszqYwiLYxogzRsG3FiZ7IUeM9oNanJ
-        23K6P1n8ngHQDKH/C/8cFigN0UWHt5o=
-Date:   Wed, 22 Dec 2021 21:43:17 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
-        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
+        id S238461AbhLVVam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 16:30:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44274 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233161AbhLVVal (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 16:30:41 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EB4EC061574;
+        Wed, 22 Dec 2021 13:30:41 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id w16so13527959edc.11;
+        Wed, 22 Dec 2021 13:30:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=coEccP6zZM5PP15UOTxsrXWW0cXc+iHQhmE0IjhaoXA=;
+        b=bcNp1CEVtu7v7nuRrlPp98+zljrvIF77G8t06sYR5Zbo9dNuEoLl786DxwhmBRTou7
+         Ul0UGE3V24X+95XbTcaYLCenGf0afhvOn7j2CoGU342YbYljzOsziOPX9FaRy4i+vtdO
+         GibmYZq50QT9z+VYfCDoCzAOrx+SWR/pWWFbnZtn/tLqdjFV8nhZ7/EMuMvAHH34T6JB
+         avoOe7OEj9l83OVPt4yBA6VrmvY6uCqpkpNaEYYjSkq2V5FbH1RAdW66MLmrmYRKMkla
+         R+6Q0SsGuEu3RbAv7UOZj/Lj5/AB8yDdjrK0rDjiiou5w6Fkkx3VJo6xBGRZ3++W6vXL
+         X5Gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=coEccP6zZM5PP15UOTxsrXWW0cXc+iHQhmE0IjhaoXA=;
+        b=VhyC5pLwHHtzoDhb6caLgK1uTdvk1NS3gj3qtt87uxz5aBqzAKwR3BIIx7V+dPjTeV
+         KVRdMVIp/moJQIbG8Ft4hYsmx+uEwvLWOtJ8Y+XgLXzdYTcn7FAj7/x/u1RjlO3rZu0j
+         oilw+94WQJ/MxBXrvvr5YNMOTJe68AeQYkYMm4PVS30YMy4Xj8y1x4V/2U1fMNSBU/Ij
+         ARfN8wAgry4PQViYr3GSNn/V5NEswvnl4NcIRzs7M9x+PKdb2eEsvA6nxciaerxgzoU7
+         clljdRryhg7WzKjlCbOC/Ds43qWR947OmtGUdSby0cQC1rAYRoi4kzr3/5QNOk+4DTal
+         bDNg==
+X-Gm-Message-State: AOAM531BUfsO63VPCTB+Uex1W3zz7fEhcBgyqGDqr5J7IlB0Q3NW+2Be
+        UjnW6H1wm1aHdiZgXUrNFa0=
+X-Google-Smtp-Source: ABdhPJxvSWOETcPDqQj7WXzbmesiuA3Egb0BiA6ohcGR6dWmohDfq5vLRiZt97656OhB2eVMXPBc9w==
+X-Received: by 2002:a17:906:37d3:: with SMTP id o19mr4162211ejc.32.1640208639816;
+        Wed, 22 Dec 2021 13:30:39 -0800 (PST)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id ne2sm1087776ejc.108.2021.12.22.13.30.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Dec 2021 13:30:39 -0800 (PST)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, kishon@ti.com, vkoul@kernel.org,
+        p.zabel@pengutronix.de, lee.jones@linaro.org,
+        yifeng.zhao@rock-chips.com, kever.yang@rock-chips.com,
+        cl@rock-chips.com, linux-phy@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>
-Subject: Re: [PATCH v18 01/17] x86/setup: Move CRASH_ALIGN and
- CRASH_ADDR_{LOW|HIGH}_MAX to asm/kexec.h
-Message-ID: <YcON5Y7DKitiQhHu@zn.tnic>
-References: <20211222130820.1754-1-thunder.leizhen@huawei.com>
- <20211222130820.1754-2-thunder.leizhen@huawei.com>
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [RFC PATCH v6 0/4] Add Naneng multi phy support for rk3568
+Date:   Wed, 22 Dec 2021 22:30:28 +0100
+Message-Id: <20211222213032.7678-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211222130820.1754-2-thunder.leizhen@huawei.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 22, 2021 at 09:08:04PM +0800, Zhen Lei wrote:
-> From: Chen Zhou <chenzhou10@huawei.com>
-> 
-> We want to make function reserve_crashkernel[_low](), which is implemented
-  ^^
+=============================================
 
-Please use passive voice in your commit message: no "we" or "I", etc,
-and describe your changes in imperative mood.
+TEST COMPILED ONLY!
+Driver not verified with hardware!
+Produced in the hope that we can get some review progress
+with this serie for the documents and driver.
+Use at your own risk!
 
-Also, pls read section "2) Describe your changes" in
-Documentation/process/submitting-patches.rst for more details.
+Renamed the combi phy driver to multi phy to highlight the different approach and
+not to confuse with the driver from the Rockchip manufacturer tree.
+By using a parent node it makes it hopefully easier to coordinate
+for new futures/functions between nodes.
 
-Bottom line is: personal pronouns are ambiguous in text, especially with
-so many parties/companies/etc developing the kernel so let's avoid them
-please.
+Removed a few properties, because it's not entire clear how they should be used.
+To prevent the obligation to keep supporting them despite changed handling.
 
-> by X86, available to other architectures. It references macro CRASH_ALIGN
+=============================================
 
-"x86"
+Changes in v6:
+- restyle
+- rename defines
+- change from comb to multi phy
+- clean up includes
+- add parent node
+- change compatible strings
+- remove rockchip,sgmii-mac-sel support
+- remove rockchip,dis-u3otg0-port support
+- remove rockchip,dis-u3otg1-port support
 
-> and will be moved to public crash_core.c. But the defined values of
-> CRASH_ALIGN may be different in different architectures. So moving the
-> definition of CRASH_ALIGN to asm/kexec.h is a good choice.
-> 
-> The reason for moving CRASH_ADDR_{LOW|HIGH}_MAX is the same as above.
+Changes in v5:
+- modify description for ssc and ext-refclk
+- remove apb reset
+- add rockchip_combphy_updatel()
+- restyle
 
-This commit message needs to say something along the lines of:
+Changes in v4:
+- restyle
+- remove some minItems
+- add more properties
+- remove reset-names
+- move #phy-cells
+- add rockchip,rk3568-pipe-grf
+- add rockchip,rk3568-pipe-phy-grf
+- add devm_reset_control_array_get()
+- remove clk structure
+- change refclk DT parse
+- change dev_err message
+- add dot to phrase
+- add ext_refclk variable
+- add enable_ssc variable
+- rename rockchip_combphy_param_write
+- remove param_read
+- replace rockchip-naneng-combphy driver name
+- rename node name
 
-"Move CRASH_ALIGN and ... to the arch-specific header in preparation
-of making reserve_crashkernel[_low]() generic, used by other
-architectures."
+Changes in v3:
+- Using api devm_reset_control_get_optional_exclusive and dev_err_probe.
+- Remove apb_rst.
+- Redefine registers address.
+- Move pipe_phy_grf0 to rk3568.dtsi
 
-or so.
+Changes in v2:
+- Fix dtschema/dtc warnings/errors
+- Using api devm_platform_get_and_ioremap_resource.
+- Modify rockchip_combphy_set_Mode.
+- Add some PHY registers definition.
+- Move phy0 to rk3568.dtsi
+
+Johan Jonker (1):
+  dt-bindings: mfd: syscon: add naneng multi phy register compatible
+
+Yifeng Zhao (3):
+  dt-bindings: phy: rockchip: add naneng multi phy bindings
+  phy: rockchip: add naneng multi phy for rk3568
+  arm64: dts: rockchip: add naneng multi phy nodes for rk3568
+
+ .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+ .../phy/phy-rockchip-naneng-multiphy.yaml     | 167 +++++
+ arch/arm64/boot/dts/rockchip/rk3566.dtsi      |   4 +
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  23 +
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  50 ++
+ drivers/phy/rockchip/Kconfig                  |   8 +
+ drivers/phy/rockchip/Makefile                 |   1 +
+ .../rockchip/phy-rockchip-naneng-multiphy.c   | 661 ++++++++++++++++++
+ 8 files changed, 916 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-naneng-multiphy.yaml
+ create mode 100644 drivers/phy/rockchip/phy-rockchip-naneng-multiphy.c
 
 -- 
-Regards/Gruss,
-    Boris.
+2.20.1
 
-https://people.kernel.org/tglx/notes-about-netiquette
