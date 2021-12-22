@@ -2,120 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D546247D1B3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 13:30:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4D9247D1CA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 13:35:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240460AbhLVMav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 07:30:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35000 "EHLO
+        id S244881AbhLVMfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 07:35:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232388AbhLVMau (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 07:30:50 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5395AC061574;
-        Wed, 22 Dec 2021 04:30:50 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id bn20so3529048ljb.8;
-        Wed, 22 Dec 2021 04:30:50 -0800 (PST)
+        with ESMTP id S234110AbhLVMfx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 07:35:53 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F17BC061574;
+        Wed, 22 Dec 2021 04:35:52 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id b13so8058935edd.8;
+        Wed, 22 Dec 2021 04:35:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=iIr26KyOkmmARDAmr9R+iY9FmSdwEq1NYoaAlGQMEtw=;
-        b=i7DQBPfsmEqnYdLwHTeeEx5XHDLXfNzkfnvrQXRcnEaAO9LC5Vlz2cpoxrFSm2KboX
-         sYLok2WBFdXT9HyqHx8UxNgIMcoLPYrVs4RyaiBl6ujescdz9tlO+Sd9MkeOFyVbGKsa
-         WRgSwUQKlyQac6gLMOL6dxIH2JkiVCE753kALJEEyKDt7E7/I1A3H144CwE5EX3H3T7r
-         i1JbAGUKGqk7wqXp/HOMz6D7fOdWpuWCgMZGBoak6KFMHz1XVfNq14WHKMT5C4l/aNF1
-         EJAJ8HzRqmfzHXqIVjYtthS43wi3E1KeP9GAG2EHmLjvDgyZSb+sulZPMvLdHL2Y59WQ
-         ZZSg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=37cmTFk9Mn8yVGgefCEUxfQ2BLBsyDY2ddr/2hwTMYw=;
+        b=JbOxgJ6PwvF9yR5ROx3FQOEe59iEZ+CPCdSM1KbFs9aMkGYSXxrOTspeMC2qNGkD3p
+         qkluDU3s0Nous9hAxBz1WvHInu6CX/+xeKdYyO8S9Toij+CZX0rrCTh6jGJxJN7RkkXB
+         0q7bdnwsX/nmWJwOPsfN4gN8soWj/X0BFPDm2z+5TnCsntHKi2QJg19XHyy9pykx9riy
+         YrU90ogM3MjA8OC/Z7TlbWw7DKw/WFA1tjb6o5peonMv5wTDiegzTo55C3P9LEa4L8z2
+         kifZ9angmc83TjHMoQ6V4QDnAEdNipqAwh2RYNrpKwWeJ0HJNSn0Zr9Q5Y22DL7pihm/
+         Cleg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=iIr26KyOkmmARDAmr9R+iY9FmSdwEq1NYoaAlGQMEtw=;
-        b=WJqDbVxr/KkfXQt41E5/ZED+4TNcUBgRS3Bui1LDzyUerofGJ98iVkWhWnppDWw07i
-         kHpBQ6/53hMQ/dyjPhOkY513KHMu8itbkDxtiD3q1I38kei8GgOrRzZitB08HgmfrhWK
-         qxfNihds8axImTBj5aQBxNgnt+R/AWOkJBFlrOsi5Mo/z+WwCFUU7kKSUqG8VSXLELxE
-         L6uYuXWn31P23OlLBqniILe1Kq6AODhIKPQ4KqE1gAh13A2YE3eOJBwUxjrsorhsHY3X
-         SIdIrC+/NIHvlK70+0SlvSjOhUmvvb0TqsWABZGmT4HNpzE6qtKpihjCYRhXwR8cJJQY
-         8bHA==
-X-Gm-Message-State: AOAM532pfYklo5IIpmenDvHgwcdJ88kO9jhluiw3jlHuqTfPGwUkmWZb
-        uVWtfOpfzhp1EtsYIju1oWCpJ225FaA=
-X-Google-Smtp-Source: ABdhPJxADldgDEkA4BmBKjw8XrAAWy/8HuLq2JDLHbGS63MUo/Fr72ZIryVT2cHHMjzV6F7lVKpzZw==
-X-Received: by 2002:a05:651c:1988:: with SMTP id bx8mr1964070ljb.22.1640176248468;
-        Wed, 22 Dec 2021 04:30:48 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id q2sm202935lfr.64.2021.12.22.04.30.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Dec 2021 04:30:48 -0800 (PST)
-Message-ID: <daa0eaf5-952f-df7a-b8a7-08f7d34a8d58@gmail.com>
-Date:   Wed, 22 Dec 2021 13:30:47 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=37cmTFk9Mn8yVGgefCEUxfQ2BLBsyDY2ddr/2hwTMYw=;
+        b=ZMXMu0q+XDvf4/hUuSUP756XqLE36uXeQA/MChb5rIFjlX9AalO00tjqPIoD4vzsfg
+         eh0MkJ/+DtjT1AWMIut6BDavzYqrvQJlBFO4LTY3aVWWCZgQQodNz6dCv6p7wIUHixas
+         pGM1pCIukd3EpFfg9SL7aLXo6LC6j8nTdH/KkrL0s9UnWhVg4gsNxwwiN2VsCg+7fdQ3
+         NSoziBL0EQr3vc6gdWv/e8U7MvnaWrP/9xrHwn0nzbVPh+SIkgDawQ8QjN9uVawxh611
+         GFrLZflTzs54JnmPLlqRqt/9gnWKdZHReld/hdCRhOak9TZ3Ux5zc5ywH4dIo2zuoYbe
+         BsAA==
+X-Gm-Message-State: AOAM530rp2tE515UOQWOLe9kJX435+l3rG2aA7FcWkgO/M/OkpZanxSc
+        OE1AKYzcpFGp+cJfzkHINRNV6odmxMNqWbSHX3U=
+X-Google-Smtp-Source: ABdhPJw7SOX9VoeJ9Bjbc8AgEbKpVhvXD6YzEfF4kpqtRjMx1JNkxfKzHIMsglslxNYX1VzIsNpRZLAt8ba7dmiLJBw=
+X-Received: by 2002:a05:6402:849:: with SMTP id b9mr1283557edz.258.1640176551197;
+ Wed, 22 Dec 2021 04:35:51 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH V2 2/2] pinctrl: bcm: add driver for BCM4908 pinmux
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        =?UTF-8?Q?=c3=81lvaro_Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+References: <20211222034646.222189-1-liambeguin@gmail.com> <20211222034646.222189-11-liambeguin@gmail.com>
+In-Reply-To: <20211222034646.222189-11-liambeguin@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 22 Dec 2021 14:33:52 +0200
+Message-ID: <CAHp75VeGNuYiqqHzv9cAbHKy-h3dnazf2YEvgJ4fwb88wgY48w@mail.gmail.com>
+Subject: Re: [PATCH v11 10/15] iio: afe: rescale: make use of units.h
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20211222111108.13260-1-zajec5@gmail.com>
- <20211222111108.13260-2-zajec5@gmail.com>
- <CAHp75VcdXR=vZ3=UX+GKbA1hMvQ=4rKJyPkg+BQskepL9SCSyw@mail.gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <CAHp75VcdXR=vZ3=UX+GKbA1hMvQ=4rKJyPkg+BQskepL9SCSyw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22.12.2021 13:13, Andy Shevchenko wrote:
-> On Wed, Dec 22, 2021 at 1:11 PM Rafał Miłecki <zajec5@gmail.com> wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> BCM4908 has its own pins layout so it needs a custom binding and a Linux
->> driver.
-> 
-> ...
-> 
->> V2: Formatting fixes
->>      Kconfig fix
->>      Cleanup of #include-s
->>      Use devm_kasprintf_strarray()
-> 
-> Thanks, but it seems there are unsettled down points as per v1.
-> Can you comment on them there?
+On Wed, Dec 22, 2021 at 5:47 AM Liam Beguin <liambeguin@gmail.com> wrote:
+>
+> From: Liam Beguin <lvb@xiphos.com>
+>
+> Make use of well-defined SI metric prefixes to improve code readability.
 
-Those remaining comments are a matter of personal taste & details of
-personal coding style. We don't have defined rules for such details.
+...
 
-If developer submitted code that matches *defined* rules and is fine to
-read I don't see why we should enforce someone's coding style. We may
-easily get into pointless and time wasting argues between multiple
-developers.
+>         case IIO_VAL_FRACTIONAL_LOG2:
+> -               tmp = (s64)*val * 1000000000LL;
+> +               tmp = (s64)*val * NANO;
+>                 tmp = div_s64(tmp, rescale->denominator);
+>                 tmp *= rescale->numerator;
+>
+> -               tmp = div_s64_rem(tmp, 1000000000LL, &rem);
+> +               tmp = div_s64_rem(tmp, NANO, &rem);
+>                 *val = tmp;
 
-Empty line after one-line comment isn't against rules and checkpatch.pl
-doesn't complain about it.
+Thanks! The important part of this conversion is to get one trick,
+i.e. NANO and GIGA are both represented by 10^9. We need to be sure
+that here we use the proper sign of the power of these numbers. So
+please double check in all cases that the chosen SI prefixes are
+correct from the power sign point of view, e.g. it is 10^-9 and not
+10^9 or otherwise.
 
-I've never heard of rule of sorting #include-s from the most generic to
-the most particular one. I don't even know how to meter that. Actually
-coding-style.rst suggests #include-s should be sorted but without
-specifying how. My first guess is alphabetical order.
+...
 
-If you think some extra coding style should be enforced for Linux code
-please kindly update coding-style.rst and checkpatch.pl so that:
+>                 *val2 = rem / (int)tmp;
+>                 if (rem2)
+> -                       *val2 += div_s64((s64)rem2 * 1000000000LL, tmp);
+> +                       *val2 += div_s64((s64)rem2 * NANO, tmp);
 
-1. We have clear rules
-2. We keep code consistent across subsystems
-3. It can be automatically verified
-4. There are not more argues about what's the preferred format
+Ditto here and for the rest
 
-As I pointed out we have over 1000 examples of empty line above
-module_platform_driver() so clearly what you describe as common sense
-isn't clear for all developers.
+-- 
+With Best Regards,
+Andy Shevchenko
