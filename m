@@ -2,69 +2,450 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3AE447D716
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 19:44:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F392C47D71C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 19:46:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344853AbhLVSo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 13:44:26 -0500
-Received: from mail-qk1-f172.google.com ([209.85.222.172]:39668 "EHLO
-        mail-qk1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344858AbhLVSo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 13:44:26 -0500
-Received: by mail-qk1-f172.google.com with SMTP id 69so3207009qkd.6;
-        Wed, 22 Dec 2021 10:44:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bPspzDuKNB8kofhblEkihV/6ql1mbXnTcOAH4jQ9jqI=;
-        b=FIaCc253WwVsTede94TDF0o24xDW2xtq0ObdfZqkyI+y5QKPlmUgRLHOF31GebHDy5
-         RyyYXPZKVSlNNbSEnkOk0LDwZXNGcYa0/HBLh3Ty/3OEG58GL6m7llJW8isUIveyrhzC
-         LhwETay2GoNXLP0Fk7K8wLD1ZPQsNNnH7hPHKLqGRdTE7aeo19dDW7mEs1QUfzfR3NFG
-         EGTfDRkdA2ft3kEdl9itbEVMb0HbN7F+YD7g42XyIitIq2y+1bG4ys5YoLD8uv0eiSbI
-         QwJBk8dsDXkjqx25DuOyRAOAn71cAsh1bZKsbcK2LgwHSwfdiMyBqXsN7gnF3nFkJloP
-         AQJQ==
-X-Gm-Message-State: AOAM530Vx36dgeQOHPzOFrYMijdP8u/i7nDTke9aOAQvIxuqGWt+MD14
-        B/p5J97mIJLjeGv46HWW5A==
-X-Google-Smtp-Source: ABdhPJzCgS2+9IVk5Tx2uZxt53icJClclYr41+KWs+1MFAWFGah5SuHKlzKkJ0a41MUO3c67G6RZaA==
-X-Received: by 2002:ae9:e649:: with SMTP id x9mr2922653qkl.204.1640198665215;
-        Wed, 22 Dec 2021 10:44:25 -0800 (PST)
-Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id j13sm2217950qtr.21.2021.12.22.10.44.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Dec 2021 10:44:24 -0800 (PST)
-Received: (nullmailer pid 2490160 invoked by uid 1000);
-        Wed, 22 Dec 2021 18:44:23 -0000
-Date:   Wed, 22 Dec 2021 14:44:23 -0400
-From:   Rob Herring <robh@kernel.org>
-To:     Florian Eckert <fe@dev.tdt.de>
-Cc:     Eckert.Florian@googlemail.com, pavel@ucw.cz, robh+dt@kernel.org,
-        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt: bindings: KTD20xx: Introduce the ktd20xx
- family of RGB drivers
-Message-ID: <YcNyBxamNnPqSAt2@robh.at.kernel.org>
-References: <20211221134052.22387-1-fe@dev.tdt.de>
- <20211221134052.22387-3-fe@dev.tdt.de>
+        id S235035AbhLVSqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 13:46:14 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:56878 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234898AbhLVSqN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 13:46:13 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BMIjnqA130836;
+        Wed, 22 Dec 2021 12:45:49 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1640198749;
+        bh=m7HaYrNWlY/wtTbutByFNU5d0qsx4Ws2/hy54s3BuI8=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=Kyu1ezyG5eaz6pikn93LgdzSMpJX5nDc8JrsW4UCbh+CIOSd9oLGxZpsUbyRcxVzb
+         1O1e330CtHiSDfIZBGyY3lidW2iuklNkDbQtuceY7/nKFaiK2y5k9R0mNdBR2Z4nZ8
+         ohaz9Q6Neogjm6PdL1DFeCw2usmYBMNlp3oBFMGA=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BMIjngN100942
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 22 Dec 2021 12:45:49 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 22
+ Dec 2021 12:45:49 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 22 Dec 2021 12:45:49 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BMIjmfC043912;
+        Wed, 22 Dec 2021 12:45:49 -0600
+Date:   Thu, 23 Dec 2021 00:15:48 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+CC:     Vinod Koul <vkoul@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+Subject: Re: [PATCH v6 1/4] phy: cadence: Add Cadence D-PHY Rx driver
+Message-ID: <20211222184545.atci25onvpw6f2ed@ti.com>
+References: <20211214180703.3268-1-p.yadav@ti.com>
+ <20211214180703.3268-2-p.yadav@ti.com>
+ <YcCh1PU+Tc1+pzEL@aptenodytes>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20211221134052.22387-3-fe@dev.tdt.de>
+In-Reply-To: <YcCh1PU+Tc1+pzEL@aptenodytes>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Dec 2021 14:40:52 +0100, Florian Eckert wrote:
-> Introduce the bindings for the Kinetic KTD2061/58/59/60RGB LED device
-> driver. The KTD20xx can control RGB LEDs individually. Because of the
-> hardware limitations, only 7 colors and the color black (off) can be set.
+On 20/12/21 04:31PM, Paul Kocialkowski wrote:
+> Hi Pratyush,
 > 
-> Signed-off-by: Florian Eckert <fe@dev.tdt.de>
-> ---
->  .../bindings/leds/leds-ktd20xx.yaml           | 130 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 131 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-ktd20xx.yaml
+> On Tue 14 Dec 21, 23:37, Pratyush Yadav wrote:
+> > The Cadence D-PHY can be configured in Tx (DSI) mode or Rx (CSI) mode.
+> > Both modes have a different programming sequence and share little among
+> > them. In addition, a PHY configured in Tx mode cannot be used in Rx mode
+> > and vice versa. For this reason, create a separate driver for the Rx
+> > mode to make it easier to read and maintain.
+> > 
+> > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> > 
+> > ---
+> > 
+> > Changes in v6:
+> > - Move to a separate driver.
+> > 
+> > Changes in v5:
+> > - Use the new cdns_dphy_info to specify PHY ops.
+> > - Re-order include in alphabetical order.
+> > - Make bands const.
+> > - Drop num_bands.
+> > - Make i, lanes unsigned.
+> > - Drop the maximum check in cdns_dphy_rx_get_band_ctrl(). Let the loop
+> >   complete and return -EOPNOTSUPP when we reach the end.
+> > - Drop the "rate < bands[i].min_rate" check since the bands are in
+> >   ascending order.
+> > - Move data_lane_ctrl to start of function and make it static const.
+> > 
+> > Changes in v4:
+> > - Drop the submode parts. Use a different compatible for the Rx ops.
+> > - Make bands and num_bands static.
+> > 
+> > Changes in v3:
+> > - Use a table to select the band.
+> > - Use a table to poll the data lane ready bits.
+> > - Multiply the DPHY HS clock rate by 2 to get the bit rate since the
+> >   clock is DDR.
+> > 
+> >  drivers/phy/cadence/Kconfig        |   8 +
+> >  drivers/phy/cadence/Makefile       |   1 +
+> >  drivers/phy/cadence/cdns-dphy-rx.c | 250 +++++++++++++++++++++++++++++
+> >  3 files changed, 259 insertions(+)
+> >  create mode 100644 drivers/phy/cadence/cdns-dphy-rx.c
+> > 
+> > diff --git a/drivers/phy/cadence/Kconfig b/drivers/phy/cadence/Kconfig
+> > index a62910ff5591..1adde2d99ae7 100644
+> > --- a/drivers/phy/cadence/Kconfig
+> > +++ b/drivers/phy/cadence/Kconfig
+> > @@ -22,6 +22,14 @@ config PHY_CADENCE_DPHY
+> >  	  system. If M is selected, the module will be called
+> >  	  cdns-dphy.
+> >  
+> > +config PHY_CADENCE_DPHY_RX
+> > +	tristate "Cadence D-PHY Rx Support"
+> > +	depends on HAS_IOMEM && OF
+> > +	select GENERIC_PHY
+> > +	select GENERIC_PHY_MIPI_DPHY
+> > +	help
+> > +	  Support for Cadence D-PHY in Rx configuration.
+> > +
+> >  config PHY_CADENCE_SIERRA
+> >  	tristate "Cadence Sierra PHY Driver"
+> >  	depends on OF && HAS_IOMEM && RESET_CONTROLLER
+> > diff --git a/drivers/phy/cadence/Makefile b/drivers/phy/cadence/Makefile
+> > index 26e16bd34efe..e17f035ddece 100644
+> > --- a/drivers/phy/cadence/Makefile
+> > +++ b/drivers/phy/cadence/Makefile
+> > @@ -1,5 +1,6 @@
+> >  # SPDX-License-Identifier: GPL-2.0-only
+> >  obj-$(CONFIG_PHY_CADENCE_TORRENT)	+= phy-cadence-torrent.o
+> >  obj-$(CONFIG_PHY_CADENCE_DPHY)	+= cdns-dphy.o
+> > +obj-$(CONFIG_PHY_CADENCE_DPHY_RX)	+= cdns-dphy-rx.o
+> >  obj-$(CONFIG_PHY_CADENCE_SIERRA)	+= phy-cadence-sierra.o
+> >  obj-$(CONFIG_PHY_CADENCE_SALVO)	+= phy-cadence-salvo.o
+> > diff --git a/drivers/phy/cadence/cdns-dphy-rx.c b/drivers/phy/cadence/cdns-dphy-rx.c
+> > new file mode 100644
+> > index 000000000000..fb75e645e662
+> > --- /dev/null
+> > +++ b/drivers/phy/cadence/cdns-dphy-rx.c
+> > @@ -0,0 +1,250 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +/*
+> > + * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
+> > + */
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/bitops.h>
+> > +#include <linux/io.h>
+> > +#include <linux/iopoll.h>
+> > +#include <linux/module.h>
+> > +#include <linux/phy/phy.h>
+> > +#include <linux/phy/phy-mipi-dphy.h>
+> > +#include <linux/platform_device.h>
+> > +
+> > +#define DPHY_PMA_CMN(reg)		(reg)
+> > +#define DPHY_PCS(reg)			(0xb00 + (reg))
+> > +#define DPHY_ISO(reg)			(0xc00 + (reg))
+> > +
+> > +#define DPHY_CMN_SSM			DPHY_PMA_CMN(0x20)
+> > +#define DPHY_CMN_RX_MODE_EN		BIT(10)
+> > +#define DPHY_CMN_RX_BANDGAP_TIMER_MASK	GENMASK(8, 1)
+> > +#define DPHY_CMN_SSM_EN			BIT(0)
+> > +
+> > +#define DPHY_CMN_RX_BANDGAP_TIMER	0x14
+> > +
+> > +#define DPHY_BAND_CFG			DPHY_PCS(0x0)
+> > +#define DPHY_BAND_CFG_RIGHT_BAND	GENMASK(9, 5)
+> > +#define DPHY_BAND_CFG_LEFT_BAND		GENMASK(4, 0)
+> > +
+> > +#define DPHY_POWER_ISLAND_EN_DATA	DPHY_PCS(0x8)
+> > +#define DPHY_POWER_ISLAND_EN_DATA_VAL	0xaaaaaaaa
+> > +
+> > +#define DPHY_POWER_ISLAND_EN_CLK	DPHY_PCS(0xc)
+> > +#define DPHY_POWER_ISLAND_EN_CLK_VAL	0xaa
+> > +
+> > +#define DPHY_ISO_CL_CTRL_L		DPHY_ISO(0x10)
+> > +#define DPHY_ISO_DL_CTRL_L0		DPHY_ISO(0x14)
+> > +#define DPHY_ISO_DL_CTRL_L1		DPHY_ISO(0x20)
+> > +#define DPHY_ISO_DL_CTRL_L2		DPHY_ISO(0x30)
+> > +#define DPHY_ISO_DL_CTRL_L3		DPHY_ISO(0x3c)
+> > +
+> > +#define DPHY_ISO_LANE_READY_BIT		0
+> > +#define DPHY_ISO_LANE_READY_TIMEOUT_MS	100UL
+> > +
+> > +#define DPHY_LANES_MIN			1
+> > +#define DPHY_LANES_MAX			4
+> > +
+> > +struct cdns_dphy_rx {
+> > +	void __iomem *regs;
+> > +	struct device *dev;
+> > +	struct phy *phy;
+> > +};
+> > +
+> > +struct cdns_dphy_rx_band {
+> > +	/* Rates are in Mbps. */
+> > +	unsigned int min_rate;
+> > +	unsigned int max_rate;
+> > +};
+> > +
+> > +/* Order of bands is important since the index is the band number. */
+> > +static const struct cdns_dphy_rx_band bands[] = {
+> > +	{80, 100}, {100, 120}, {120, 160}, {160, 200}, {200, 240},
+> > +	{240, 280}, {280, 320}, {320, 360}, {360, 400}, {400, 480},
+> > +	{480, 560}, {560, 640}, {640, 720}, {720, 800}, {800, 880},
+> > +	{880, 1040}, {1040, 1200}, {1200, 1350}, {1350, 1500}, {1500, 1750},
+> > +	{1750, 2000}, {2000, 2250}, {2250, 2500}
 > 
+> Cosmetic suggestion: add whitespaces after { and before }.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I think it would just add noise. I would like to keep it compact.
+
+> 
+> > +};
+> > +
+> > +static int cdns_dphy_rx_power_on(struct phy *phy)
+> > +{
+> > +	struct cdns_dphy_rx *dphy = phy_get_drvdata(phy);
+> > +
+> > +	/* Start RX state machine. */
+> > +	writel(DPHY_CMN_SSM_EN | DPHY_CMN_RX_MODE_EN |
+> > +	       FIELD_PREP(DPHY_CMN_RX_BANDGAP_TIMER_MASK,
+> > +			  DPHY_CMN_RX_BANDGAP_TIMER),
+> > +	       dphy->regs + DPHY_CMN_SSM);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int cdns_dphy_rx_power_off(struct phy *phy)
+> > +{
+> > +	struct cdns_dphy_rx *dphy = phy_get_drvdata(phy);
+> > +
+> > +	writel(0, dphy->regs + DPHY_CMN_SSM);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int cdns_dphy_rx_get_band_ctrl(unsigned long hs_clk_rate)
+> > +{
+> > +	unsigned int rate, i;
+> > +
+> > +	rate = hs_clk_rate / 1000000UL;
+> > +	/* Since CSI-2 clock is DDR, the bit rate is twice the clock rate. */
+> > +	rate *= 2;
+> > +
+> > +	if (rate < bands[0].min_rate)
+> > +		return -EOPNOTSUPP;
+> > +
+> > +	for (i = 0; i < ARRAY_SIZE(bands); i++) {
+> > +		if (rate < bands[i].max_rate)
+> > +			return i;
+> > +	}
+> 
+> Comstic: you don't need the wrapping { and } here.
+
+Yes, but I generally like to add it for cases like this to make the 
+scope clearer. But I have no strong preferences, I can drop them.
+
+> 
+> > +
+> > +	return -EOPNOTSUPP;
+> > +}
+> > +
+> > +static int cdns_dphy_rx_wait_for_bit(void __iomem *addr, unsigned int bit)
+> 
+> You can probably inline this one.
+
+The compiler will likely do it anyway, but sure I will add it.
+
+> 
+> > +{
+> > +	u32 val;
+> > +
+> > +	return readl_relaxed_poll_timeout(addr, val, val & BIT(bit), 10,
+> > +					  DPHY_ISO_LANE_READY_TIMEOUT_MS * 1000);
+> > +}
+> > +
+> > +static int cdns_dphy_rx_wait_lane_ready(struct cdns_dphy_rx *dphy,
+> > +					unsigned int lanes)
+> > +{
+> > +	static const u32 data_lane_ctrl[] = {DPHY_ISO_DL_CTRL_L0,
+> > +					     DPHY_ISO_DL_CTRL_L1,
+> > +					     DPHY_ISO_DL_CTRL_L2,
+> > +					     DPHY_ISO_DL_CTRL_L3};
+> > +	void __iomem *reg = dphy->regs;
+> > +	unsigned int i;
+> > +	int ret;
+> > +
+> > +	/* Data lanes. Minimum one lane is mandatory. */
+> > +	if (lanes < DPHY_LANES_MIN || lanes > DPHY_LANES_MAX)
+> > +		return -EINVAL;
+> > +
+> > +	/* Clock lane */
+> > +	ret = cdns_dphy_rx_wait_for_bit(reg + DPHY_ISO_CL_CTRL_L,
+> > +					DPHY_ISO_LANE_READY_BIT);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	for (i = 0; i < lanes; i++) {
+> > +		ret = cdns_dphy_rx_wait_for_bit(reg + data_lane_ctrl[i],
+> > +						DPHY_ISO_LANE_READY_BIT);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int cdns_dphy_rx_configure(struct phy *phy,
+> > +				  union phy_configure_opts *opts)
+> > +{
+> > +	struct cdns_dphy_rx *dphy = phy_get_drvdata(phy);
+> > +	unsigned int reg;
+> > +	int band_ctrl, ret;
+> > +
+> > +	band_ctrl = cdns_dphy_rx_get_band_ctrl(opts->mipi_dphy.hs_clk_rate);
+> > +	if (band_ctrl < 0)
+> > +		return band_ctrl;
+> > +
+> > +	reg = FIELD_PREP(DPHY_BAND_CFG_LEFT_BAND, band_ctrl) |
+> > +	      FIELD_PREP(DPHY_BAND_CFG_RIGHT_BAND, band_ctrl);
+> > +	writel(reg, dphy->regs + DPHY_BAND_CFG);
+> > +
+> > +	/*
+> > +	 * Set the required power island phase 2 time. This is mandated by DPHY
+> > +	 * specs.
+> > +	 */
+> > +	reg = DPHY_POWER_ISLAND_EN_DATA_VAL;
+> > +	writel(reg, dphy->regs + DPHY_POWER_ISLAND_EN_DATA);
+> > +	reg = DPHY_POWER_ISLAND_EN_CLK_VAL;
+> > +	writel(reg, dphy->regs + DPHY_POWER_ISLAND_EN_CLK);
+> > +
+> > +	ret = cdns_dphy_rx_wait_lane_ready(dphy, opts->mipi_dphy.lanes);
+> > +	if (ret) {
+> > +		dev_err(dphy->dev, "DPHY wait for lane ready timeout\n");
+> > +		return ret;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int cdns_dphy_rx_validate(struct phy *phy, enum phy_mode mode,
+> > +				 int submode, union phy_configure_opts *opts)
+> > +{
+> > +	int ret;
+> > +
+> > +	if (mode != PHY_MODE_MIPI_DPHY)
+> > +		return -EINVAL;
+> > +
+> > +	ret = cdns_dphy_rx_get_band_ctrl(opts->mipi_dphy.hs_clk_rate);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	return phy_mipi_dphy_config_validate(&opts->mipi_dphy);
+> > +}
+> > +
+> > +static const struct phy_ops cdns_dphy_rx_ops = {
+> > +	.power_on = cdns_dphy_rx_power_on,
+> > +	.power_off = cdns_dphy_rx_power_off,
+> > +	.configure = cdns_dphy_rx_configure,
+> > +	.validate = cdns_dphy_rx_validate,
+> > +};
+> > +
+> > +static int cdns_dphy_rx_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct phy_provider *provider;
+> > +	struct cdns_dphy_rx *dphy;
+> > +
+> > +	dphy = devm_kzalloc(dev, sizeof(*dphy), GFP_KERNEL);
+> > +	if (!dphy)
+> > +		return -ENOMEM;
+> > +
+> > +	dev_set_drvdata(dev, dphy);
+> 
+> It looks like you're never getting the dphy pointer from dev so this seems a bit
+> pointless.
+
+Yes, we don't need it since there is no remove hook as of now. But I 
+would still like to keep it. It would avoid extra churn when someone 
+does want to add one.
+
+> 
+> > +	dphy->dev = dev;
+> > +
+> > +	dphy->regs = devm_platform_ioremap_resource(pdev, 0);
+> > +	if (IS_ERR(dphy->regs))
+> > +		return PTR_ERR(dphy->regs);
+> > +
+> > +	dphy->phy = devm_phy_create(dev, NULL, &cdns_dphy_rx_ops);
+> > +	if (IS_ERR(dphy->phy)) {
+> > +		dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
+> > +		return PTR_ERR(dphy->phy);
+> > +	}
+> > +
+> > +	phy_set_drvdata(dphy->phy, dphy);
+> > +	provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> 
+> You might want to print an error message if it failed to register.
+
+Ok, will do.
+
+> 
+> > +
+> > +	return PTR_ERR_OR_ZERO(provider);
+> > +}
+> > +
+> > +static const struct of_device_id cdns_dphy_rx_of_match[] = {
+> > +	{ .compatible = "cdns,dphy-rx" },
+> > +	{ /* sentinel */ },
+> > +};
+> > +MODULE_DEVICE_TABLE(of, cdns_dphy_rx_of_match);
+> > +
+> > +static struct platform_driver cdns_dphy_rx_platform_driver = {
+> > +	.probe		= cdns_dphy_rx_probe,
+> > +	.driver		= {
+> > +		.name		= "cdns-mipi-dphy-rx",
+> > +		.of_match_table	= cdns_dphy_rx_of_match,
+> > +	},
+> > +};
+> > +module_platform_driver(cdns_dphy_rx_platform_driver);
+> > +
+> > +MODULE_AUTHOR("Pratyush Yadav <p.yadav@ti.com>");
+> > +MODULE_DESCRIPTION("Cadence D-PHY Rx Driver");
+> > +MODULE_LICENSE("GPL v2");
+> 
+> Otherwise this looks good to me!
+
+Thanks for reviewing.
+
+> 
+> Cheers,
+> 
+> Paul
+> 
+> -- 
+> Paul Kocialkowski, Bootlin
+> Embedded Linux and kernel engineering
+> https://bootlin.com
+
+
+
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
