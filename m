@@ -2,79 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 270A047D59C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 18:12:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BCD847D5A2
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 18:17:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241838AbhLVRMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 12:12:05 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:47440 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230314AbhLVRME (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 12:12:04 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5D6BDB81DA5;
-        Wed, 22 Dec 2021 17:12:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4442C36AEA;
-        Wed, 22 Dec 2021 17:12:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640193122;
-        bh=YyQpIii70JjHEhkKuOoqalVoZnVwEjyLEqWLGi8hF0c=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=N3L22agxhoJDeZnG+j9EUdqi/LyejvaUQNv0nZetgCzho+dIzxXRw2QtkezWn2lNL
-         vg6L3NOkS5VKRxnaVLjNLQP4UoNsP3S2jNKqiOX387PqNU44OAk3p3a32B+BGwGKFN
-         pZO6QjrAeaRdgnVkzCtmJMAx03y0gckvdNLSYatf6ouBb9heYGjQVTjMoqjBYu/5ue
-         FWXKx6suKm6Ys+XfOr6MhM1n9TqGxi+H29PUw7dzvuLIIvrDMzUagMlC8tU3yakCtr
-         nqOPysGQNe+AJQZGsR7U4TqhowO1hY5MeXYObVt9IGfI19rN4PHstnpH0/ZMbzmevd
-         oDjoA/gapFa2Q==
-Subject: Re: [PATCH v2 0/2] arm64: dts: ti: k3-am64-main: Add GPMC & ELM nodes
-To:     nm@ti.com
-Cc:     kishon@ti.com, vigneshr@ti.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211208131536.23667-1-rogerq@kernel.org>
-From:   Roger Quadros <rogerq@kernel.org>
-Message-ID: <9250e5ed-6d4a-9eae-93d4-90e5906ae166@kernel.org>
-Date:   Wed, 22 Dec 2021 19:11:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S235975AbhLVRRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 12:17:15 -0500
+Received: from mail-qv1-f42.google.com ([209.85.219.42]:43970 "EHLO
+        mail-qv1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229525AbhLVRRM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 12:17:12 -0500
+Received: by mail-qv1-f42.google.com with SMTP id fq10so2887976qvb.10;
+        Wed, 22 Dec 2021 09:17:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=A+warVrbZ1rSpFdDflw1rVq6fcBj5XMeMggY16ONxI8=;
+        b=yKy80yhcxLnhAI/gIJC9iS4eNVT9x3tDlVK+zli92ukD7j8lWMcoJPeVqCltkeHYRw
+         ZdeqlDfPzj1CChioYoPr7g8HyDTZPe80hcGVQp4Gp4GzgeaqK6jWcRMEQ2915A9OHP+A
+         8el/9pkYT6xHABHTKBTrmTrH2KEWRqy3Ccm0bf7x3etA4ntY2kAn0LW7O9aAiPyqqiFR
+         BZGy659JTGHx+vbQowubsluSKu2HwFF5jtWSoUzFNVcbjaj2XtpYb5KQV9xvIFzYZ9n8
+         FJoJ4znrrdyFj1csQwSLm6LeiYm3p64WH1QI6JwtEUetGCpeJcuoUGsne8uIsGG/k+2j
+         j1NQ==
+X-Gm-Message-State: AOAM533cjHeSd9Y+BJMMF+k9d8dKrqXOfOZHmQwa//kR5us3DzYp85wN
+        Zz22MGGaQ9sQkNmWFoSDgF4pDFpU09ms
+X-Google-Smtp-Source: ABdhPJz28QcGjYbqaNcyw8MLZuNSVIYkX2yRXs7A/+8nLgT8bq6nlL4TyIcGUnOBc2aDc/vIEGr+Jw==
+X-Received: by 2002:a05:6214:238e:: with SMTP id fw14mr3315762qvb.86.1640193432154;
+        Wed, 22 Dec 2021 09:17:12 -0800 (PST)
+Received: from robh.at.kernel.org ([24.55.105.145])
+        by smtp.gmail.com with ESMTPSA id y20sm2323830qkj.24.2021.12.22.09.17.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Dec 2021 09:17:11 -0800 (PST)
+Received: (nullmailer pid 2345794 invoked by uid 1000);
+        Wed, 22 Dec 2021 17:17:09 -0000
+Date:   Wed, 22 Dec 2021 13:17:09 -0400
+From:   Rob Herring <robh@kernel.org>
+To:     Alexandre Ghiti <alexandre.ghiti@canonical.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Documentation: bindings: Warn about yamllint and
+ dt-schema before submitting patches
+Message-ID: <YcNdlaxuGzhDlNKf@robh.at.kernel.org>
+References: <20211216164727.2888916-1-alexandre.ghiti@canonical.com>
 MIME-Version: 1.0
-In-Reply-To: <20211208131536.23667-1-rogerq@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211216164727.2888916-1-alexandre.ghiti@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
-
-On 08/12/2021 15:15, Roger Quadros wrote:
-> Hi Nishanth,
+On Thu, Dec 16, 2021 at 05:47:27PM +0100, Alexandre Ghiti wrote:
+> Make sure people know that yamllint must be installed and dt-schema up
+> to date before they submit device tree bindings patches.
 > 
-> This series adds GPMC and ELM controller device tree nodes to
-> AM64 SoC's dtsi file.
+> Signed-off-by: Alexandre Ghiti <alexandre.ghiti@canonical.com>
+> ---
+>  Documentation/devicetree/bindings/submitting-patches.rst | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> Changelog:
-> v2
-> - Fix register sizes for GPMC node.
-> - Disable GPMC and ELM nodes in board files. They will be enabled in
-> NAND card device tree overlay.
+> diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
+> index 36a17b250ccc..3553e90bef5a 100644
+> --- a/Documentation/devicetree/bindings/submitting-patches.rst
+> +++ b/Documentation/devicetree/bindings/submitting-patches.rst
+> @@ -25,6 +25,10 @@ I. For patch submitters
+>  
+>         make dt_binding_check
+>  
 
-Gentle reminder to pick this for -next
-GPMC + NAND side patches are already in queue for -next. Thanks.
+This will already tell you if dt-schema is out of date.
 
-cheers,
--roger
+yamllint is optional for the build system, but we could make it 
+required or warn when not present. I think people do get surprised by 
+yamllint warnings reported.
 
+> +     Make sure yamllint is installed and dt-schema is up to date::
+> +
+> +       pip3 install dtschema --upgrade
+> +
+>       See Documentation/devicetree/bindings/writing-schema.rst for more details
+
+This already has details on running pip3, so now we have it in 2 places. 
+And they don't match because writing-schema.rst says how to install from 
+git rather than pypi. Not sure what happens if you install from git and 
+then run the above...
+
+>       about schema and tools setup.
+>  
+> -- 
+> 2.32.0
 > 
-> Roger Quadros (2):
->   arm64: dts: ti: k3-am64-main: Add GPMC memory controller node
->   arm64: dts: ti: k3-am64-main: Add ELM (Error Location Module) node
-> 
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 28 ++++++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am642-evm.dts  |  8 +++++++
->  arch/arm64/boot/dts/ti/k3-am642-sk.dts   |  8 +++++++
->  3 files changed, 44 insertions(+)
 > 
