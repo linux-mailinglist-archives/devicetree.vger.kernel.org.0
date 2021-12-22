@@ -2,79 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04A3B47D381
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 15:19:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71F9D47D407
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 15:59:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245668AbhLVOT0 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 22 Dec 2021 09:19:26 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:59633 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245661AbhLVOTY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 09:19:24 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 6A7D2200002;
-        Wed, 22 Dec 2021 14:19:21 +0000 (UTC)
-Date:   Wed, 22 Dec 2021 15:19:19 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Roger Quadros <rogerq@kernel.org>, tony@atomide.com,
-        robh@kernel.org, kishon@ti.com, nm@ti.com, vigneshr@ti.com,
-        linux-mtd@lists.infradead.org, linux-omap@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] mtd: rawnand: omap2: Select GPMC device driver
- for ARCH_K3
-Message-ID: <20211222151919.5d95d72c@xps13>
-In-Reply-To: <2b4386a4-0acc-5db1-fc55-b57ad8a84be3@canonical.com>
-References: <20211221131757.2030-1-rogerq@kernel.org>
-        <20211221131757.2030-5-rogerq@kernel.org>
-        <20211221144917.0a5d8f1a@xps13>
-        <2b4386a4-0acc-5db1-fc55-b57ad8a84be3@canonical.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+        id S241449AbhLVO7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 09:59:22 -0500
+Received: from relmlor1.renesas.com ([210.160.252.171]:46439 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S241422AbhLVO7V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Dec 2021 09:59:21 -0500
+X-IronPort-AV: E=Sophos;i="5.88,226,1635174000"; 
+   d="scan'208";a="104370103"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 22 Dec 2021 23:59:20 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 3BC834004BC3;
+        Wed, 22 Dec 2021 23:59:18 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add description for power-source property
+Date:   Wed, 22 Dec 2021 14:59:01 +0000
+Message-Id: <20211222145901.23661-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Add description for "power-source" property mentioning the values in enum
+are in millivolts.
 
-krzysztof.kozlowski@canonical.com wrote on Wed, 22 Dec 2021 12:50:18
-+0100:
+Suggested-by: Pavel Machek <pavel@denx.de>
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ .../devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml       | 1 +
+ 1 file changed, 1 insertion(+)
 
-> On 21/12/2021 14:49, Miquel Raynal wrote:
-> > Hi Roger,
-> > 
-> > rogerq@kernel.org wrote on Tue, 21 Dec 2021 15:17:57 +0200:
-> >   
-> >> The GPMC device driver is required for NAND controller
-> >> to work on K3 Architecture. Select it if required.
-> >>
-> >> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
-> >> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> >> ---
-> >>  drivers/mtd/nand/raw/Kconfig | 1 +
-> >>  1 file changed, 1 insertion(+)
-> >>
-> >> diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
-> >> index 67b7cb67c030..587f20c6184f 100644
-> >> --- a/drivers/mtd/nand/raw/Kconfig
-> >> +++ b/drivers/mtd/nand/raw/Kconfig
-> >> @@ -42,6 +42,7 @@ config MTD_NAND_OMAP2
-> >>  	tristate "OMAP2, OMAP3, OMAP4 and Keystone NAND controller"
-> >>  	depends on ARCH_OMAP2PLUS || ARCH_KEYSTONE || COMPILE_TEST
-> >>  	depends on HAS_IOMEM
-> >> +	select OMAP_GPMC if ARCH_K3  
-> > 
-> > Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> >   
-> 
-> This patch looks actually independent. Miquel, do you want me to take it
-> via memory controller drivers tree (like three other patches)?
+diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+index b749c82edebd..2d59c341c28c 100644
+--- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+@@ -76,6 +76,7 @@ additionalProperties:
+         output-impedance-ohms:
+           enum: [ 33, 50, 66, 100 ]
+         power-source:
++          description: IO voltage in millivolts.
+           enum: [ 1800, 2500, 3300 ]
+         slew-rate: true
+         gpio-hog: true
+-- 
+2.17.1
 
-Yes please, you can take it in your tree, I don't expect any conflicts
-in this area.
-
-Thanks,
-Miquèl
