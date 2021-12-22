@@ -2,202 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6934347CBF2
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 04:47:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9D4747CC31
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 05:36:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242346AbhLVDrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Dec 2021 22:47:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58250 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242256AbhLVDrR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Dec 2021 22:47:17 -0500
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70066C06179B;
-        Tue, 21 Dec 2021 19:47:15 -0800 (PST)
-Received: by mail-qt1-x82f.google.com with SMTP id q14so781759qtx.10;
-        Tue, 21 Dec 2021 19:47:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ARAnJI6Kh01POg+Ick5UifmHWpptElTSf8hWc/xW4rk=;
-        b=qrKQYNM01OmYGNwiEumMzJI2RKwmWGl9S7s0/lQWjTKdH5UL5x6SLz/rp8eDMS8iA+
-         tv/sVFL7nyglLeL4FGH1o0fgx8FHnhWW3tJzS3lwkOGrgApZf4VqY6/uMMmuPIVLIN9+
-         wJfp59I0mwbH/4vxINubgHFyp6KQ/FpR30mVALeF4WNCgoEwb8LxKjzbW28/ljTiLFpz
-         2FNaUQHvmPxXKC26hbjaxcQhcqgxT89A18LyI3yBJJPbQAKBY0e8cgdVdJvo+VRQ4nHz
-         fdDq6/AhL7/J43MDAldfK1tZiDhUJ3FfJ7a+FUTtmEDhksMP3g5l1hRPbgwlsiAt60ig
-         YGEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ARAnJI6Kh01POg+Ick5UifmHWpptElTSf8hWc/xW4rk=;
-        b=14n+ya3AoB+K0TMU8XH0hhuKI7SyGgdGMeggeo5A+3MiQYc4c7WU3dHC7Q7qg1ZMJq
-         9m7x3XaRDxIbUkp+UdIvAL/FNPzkOak/LGuhU1wSU4f8MRSdmiRJAxx8FHXQiiA7xPio
-         Wn8oI0ulbwPhJFLx5UQYGQvrlmQyw+07qZ4LmpGyX0pO4F2vHTdVh52ppYzr6Wpn7xCb
-         lfpSKp0Tobp2d1R36vC4wdV29G5Il4QHCcGOmPEpTZ0g/5EjTOgZyzuZGKdcTwbUwulJ
-         Wg9gTrH5dYsW+BPsnEIW2hT0PTDBfRZEX2gC6axoCO/iLl3F32ulLU20xijOOyeq9SxS
-         P1Ew==
-X-Gm-Message-State: AOAM531Z+NvcSC5FUytpWaYZRu8aBpCSz/jvUsCzUhhlN4n3sib7QvS+
-        pctI9wMS0T5ARtzjA95agAU=
-X-Google-Smtp-Source: ABdhPJxFsmX3sr4HFJa9Sw7ZNXfOdpEMfIQ/Jauo/9P56Y+mJ7W2h4yGPbeARlaej/Ut/JVBNiGK5Q==
-X-Received: by 2002:a05:622a:346:: with SMTP id r6mr928005qtw.78.1640144834592;
-        Tue, 21 Dec 2021 19:47:14 -0800 (PST)
-Received: from shaak.xiphos.ca (69-165-204-82.cable.teksavvy.com. [69.165.204.82])
-        by smtp.gmail.com with ESMTPSA id f18sm918944qko.34.2021.12.21.19.47.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Dec 2021 19:47:14 -0800 (PST)
-From:   Liam Beguin <liambeguin@gmail.com>
-To:     liambeguin@gmail.com, peda@axentia.se, jic23@kernel.org,
-        andy.shevchenko@gmail.com, lars@metafoo.de
-Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: [PATCH v11 15/15] dt-bindings: iio: afe: add bindings for temperature transducers
-Date:   Tue, 21 Dec 2021 22:46:46 -0500
-Message-Id: <20211222034646.222189-16-liambeguin@gmail.com>
-X-Mailer: git-send-email 2.34.0
-In-Reply-To: <20211222034646.222189-1-liambeguin@gmail.com>
-References: <20211222034646.222189-1-liambeguin@gmail.com>
+        id S238963AbhLVEgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Dec 2021 23:36:03 -0500
+Received: from mail-dm6nam11on2060.outbound.protection.outlook.com ([40.107.223.60]:1233
+        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S238993AbhLVEgD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Dec 2021 23:36:03 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nP1v5hFBzGv7/NiiFfwJBNJRgG0x09MfmZXwgHkBFgRJ6Ps3Df76MgnQVYz2vvi2lAVtmMVpGboqMTRl9yLyv/r8oZWvV7Wo6eSr3qCyK316Fdtuml5226yBd/6QH0RA8Q5GIllHktAKbl2//4ulTDorNFPcWNFWXO2MMlehzc/d4nzl0vytLg6lrRYWvofFvIUbfLbg/h5mavNPsbEfQy7jHKL1iVhEzvvFSc88srDLRlioxTHdYovx6GJ+pnf4sdfNMGIYyG4Ur/8XL9mHZtdPpRWd9NNHrFQ8cBl+KCLXhLIZXKG2bxRtryxhERmbfBuRQ5AXXHMqctDSHgYe3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dJfUthxHYtpc37hGwUQVxfGmK95bT8NPHrzh4qViFf0=;
+ b=JyeCdB8UIfqzJi2M7CAbQHV5pRl4zO6VhhmGmesy3br5V0khtao7+osSKiHHzBxovIPuRAnFXXL279e2CoRjnGL15LCbaNGgdQsZ+5c2JqBcIqk4Ua2BR7Eo4kCmPcY/ylbu5ydh8niU21b0G1HxWSs8ghYNCDRX7Ryhosk44f55Lzadzd7mxrafSn7oFoKZ7G3jLZ9+G//0g4hcV+vjsMaeXLMq9vDRg8YET6livWyXfwH4wclWyaonU/9G3B7110GfI1jrvJ0AcJD0MVZ/jeRvFwJQ6/fq82DEl5wTERQbrQq9hOaqsGyuQP7gcOl6WuLfN1GDrWLwq6Rj2Jpi9w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.234) smtp.rcpttodomain=suse.com smtp.mailfrom=nvidia.com; dmarc=pass
+ (p=reject sp=reject pct=100) action=none header.from=nvidia.com; dkim=none
+ (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dJfUthxHYtpc37hGwUQVxfGmK95bT8NPHrzh4qViFf0=;
+ b=CsuI7Eq32ntVBxK0cTvD+d8XJ4EqUImI65k0/zytztO70cLyZAzFdYAAbFpmgGJqsokTMAy84+LKW2TsdVZ7lTaIPXThK/Wp/iTNrXNFhqk8Zo2eEBK0QjTx6smziB0/mE34ijQfKFjPgrnIMmjzUy74xY2hDsedRsxQajmTTvjS+pjpwO5xxx8q/1yAgPYFWITY2y1AKmF/THrJYGqSmpg39K0OXL5hveQGY+sulHYEz3IkIykTHE0n2SH2I8mWVQ89cOx6/uwfN6eJ66Z1imC05wBejO0KqnwRy0mxO+R0oJaXWZn7zOXJCGx2470NsnQJyKUNAayuD3VCtlKN0Q==
+Received: from BN0PR04CA0191.namprd04.prod.outlook.com (2603:10b6:408:e9::16)
+ by BN6PR12MB1458.namprd12.prod.outlook.com (2603:10b6:405:d::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.20; Wed, 22 Dec
+ 2021 04:36:00 +0000
+Received: from BN8NAM11FT028.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:e9:cafe::64) by BN0PR04CA0191.outlook.office365.com
+ (2603:10b6:408:e9::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.17 via Frontend
+ Transport; Wed, 22 Dec 2021 04:36:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.234)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.234 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.234; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (12.22.5.234) by
+ BN8NAM11FT028.mail.protection.outlook.com (10.13.176.225) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4823.18 via Frontend Transport; Wed, 22 Dec 2021 04:36:00 +0000
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by DRHQMAIL101.nvidia.com
+ (10.27.9.10) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 22 Dec
+ 2021 04:35:59 +0000
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 22 Dec
+ 2021 04:35:58 +0000
+Received: from audio.nvidia.com (172.20.187.5) by mail.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
+ Transport; Wed, 22 Dec 2021 04:35:55 +0000
+From:   Sameer Pujar <spujar@nvidia.com>
+To:     <tiwai@suse.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>, <perex@perex.cz>
+CC:     <jonathanh@nvidia.com>, <digetx@gmail.com>, <mkumard@nvidia.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Sameer Pujar <spujar@nvidia.com>
+Subject: [PATCH v3 0/3] Fix Tegra194 HDA regression
+Date:   Wed, 22 Dec 2021 10:05:48 +0530
+Message-ID: <1640147751-4777-1-git-send-email-spujar@nvidia.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 32e70685-5559-4cec-52dc-08d9c5048e56
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1458:EE_
+X-Microsoft-Antispam-PRVS: <BN6PR12MB14589BDBAB8D56E7382982F4A77D9@BN6PR12MB1458.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 40C/MOiq634fpOhzFXvWSQBqJSd0QKEgj7hpHSH/q0Tcu4K2GOSJqKjQN5sp/09ZIJldsj2Gka2yiPq7RcbBxcYF9CR+6NunhmY7RYDjA4NMiq2Ljco/QzJJ9xX789FTxjxb0FWcVQCpnWoUjbET5taZDHa64Za95OioYrTVwSkW+2yo2B7Dm4QtoRS8F+jkrbJKzLV1lZuyQvEbvqFLro8aa9bftfP74uY4B4mAc4R1PX5hclQUCRgfit2a10QJMR62uAjmJczh9WTxPErPAjEG/+G8ncgRKlPtZwH3AHgLT+wfrjqrIZnMzO93mVzfXH7hPF9fM0HyyatEuS/DSTrMalNk419IsGzLjScKGeDdAwPemMNAuMKKMfgghw/cXBFhzJNqxn3tRR9Nb8VDFU8fZncTYc6eTTQHOlO3BRloCUYcJHEFYRi2tyTzrQCBZW85303ok44AKNluOAYkzXntn0s7cfdM/Fiio3+szJpBqVE9lSq/qhOUvxf+bnbzRc1++bK5uq1cKBksVJ3VMlHZI47eWY73s6ZPYR+CF5yGWBwmz//n024mp2vTuTaCs+LDDofqVMFQx8cKwZqrE+rkZe+r9EyMLIgP2/ODiDgzB0Q+2IpGVAtLAOYqRhB6+9O+e/zL3OAyrby2mVQ7O3EOmoLtxge2LXWhx4uJzOv2dD8ZvDVCIBjy59ajNHc48uImSQ+SO3SpN2OlFDHG4TITc0DC+WxnHBGfrXyRZ93X2FJIX9kUMZCc14xd4J0cFrX2nKlcqg2nmF1NrxUpHA6oHpNgSLQ8BYE3m4UX5csNugrdLYs8L3LMxFQBcSGwkQd/uu1Xg/XEInawPL5DEw==
+X-Forefront-Antispam-Report: CIP:12.22.5.234;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(4636009)(36840700001)(40470700002)(46966006)(316002)(8676002)(8936002)(110136005)(7696005)(54906003)(336012)(6666004)(7416002)(86362001)(107886003)(34020700004)(426003)(2906002)(36860700001)(4326008)(70206006)(2616005)(186003)(82310400004)(36756003)(26005)(47076005)(70586007)(81166007)(508600001)(5660300002)(83380400001)(4744005)(40460700001)(356005)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Dec 2021 04:36:00.6480
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 32e70685-5559-4cec-52dc-08d9c5048e56
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.234];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT028.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1458
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Liam Beguin <lvb@xiphos.com>
+HDA probe failure is observed on Tegra194 based platforms and this
+happens due to reset failure. This series fixes the problem by
+skipping the failing reset and DT bindings are updated accordingly.
 
-An ADC is often used to measure other quantities indirectly.
-This binding describe one case, the measurement of a temperature
-through a temperature transducer (either voltage or current).
 
-Signed-off-by: Liam Beguin <lvb@xiphos.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Peter Rosin <peda@axentia.se>
----
- .../iio/afe/temperature-transducer.yaml       | 114 ++++++++++++++++++
- 1 file changed, 114 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
+Changelog
+=========
+ v2 -> v3:
+ ---------
+   * Use reset bulk APIs in HDA driver as suggested by Dmitry.
 
-diff --git a/Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml b/Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
-new file mode 100644
-index 000000000000..cfbf5350db27
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
-@@ -0,0 +1,114 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/afe/temperature-transducer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Temperature Transducer
-+
-+maintainers:
-+  - Liam Beguin <liambeguin@gmail.com>
-+
-+description: |
-+  A temperature transducer is a device that converts a thermal quantity
-+  into any other physical quantity. This binding applies to temperature to
-+  voltage (like the LTC2997), and temperature to current (like the AD590)
-+  linear transducers.
-+  In both cases these are assumed to be connected to a voltage ADC.
-+
-+  When an io-channel measures the output voltage of a temperature analog front
-+  end such as a temperature transducer, the interesting measurement is almost
-+  always the corresponding temperature, not the voltage output. This binding
-+  describes such a circuit.
-+
-+  The general transfer function here is (using SI units)
-+    V(T) = Rsense * Isense(T)
-+    T = (Isense(T) / alpha) + offset
-+    T = 1 / (Rsense * alpha) * (V + offset * Rsense * alpha)
-+
-+  When using a temperature to voltage transducer, Rsense is set to 1.
-+
-+  The following circuits show a temperature to current and a temperature to
-+  voltage transducer that can be used with this binding.
-+
-+           VCC
-+          -----
-+            |
-+        +---+---+
-+        | AD590 |                               VCC
-+        +---+---+                              -----
-+            |                                    |
-+            V proportional to T             +----+----+
-+            |                          D+ --+         |
-+            +---- Vout                      | LTC2997 +--- Vout
-+            |                          D- --+         |
-+        +---+----+                          +---------+
-+        | Rsense |                               |
-+        +---+----+                             -----
-+            |                                   GND
-+          -----
-+           GND
-+
-+properties:
-+  compatible:
-+    const: temperature-transducer
-+
-+  io-channels:
-+    maxItems: 1
-+    description: |
-+      Channel node of a voltage io-channel.
-+
-+  '#io-channel-cells':
-+    const: 0
-+
-+  sense-offset-millicelsius:
-+    description: |
-+      Temperature offset.
-+      This offset is commonly used to convert from Kelvins to degrees Celsius.
-+      In that case, sense-offset-millicelsius would be set to <(-273150)>.
-+    default: 0
-+
-+  sense-resistor-ohms:
-+    description: |
-+      The sense resistor.
-+      By default sense-resistor-ohms cancels out the resistor making the
-+      circuit behave like a temperature transducer.
-+    default: 1
-+
-+  alpha-ppm-per-celsius:
-+    description: |
-+      Sometimes referred to as output gain, slope, or temperature coefficient.
-+
-+      alpha is expressed in parts per million which can be micro-amps per
-+      degrees Celsius or micro-volts per degrees Celsius. The is the main
-+      characteristic of a temperature transducer and should be stated in the
-+      datasheet.
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - io-channels
-+  - alpha-ppm-per-celsius
-+
-+examples:
-+  - |
-+    ad950: temperature-sensor-0 {
-+        compatible = "temperature-transducer";
-+        #io-channel-cells = <0>;
-+        io-channels = <&temp_adc 3>;
-+
-+        sense-offset-millicelsius = <(-273150)>; /* Kelvin to degrees Celsius */
-+        sense-resistor-ohms = <8060>;
-+        alpha-ppm-per-celsius = <1>; /* 1 uA/K */
-+    };
-+  - |
-+    znq_tmp: temperature-sensor-1 {
-+        compatible = "temperature-transducer";
-+        #io-channel-cells = <0>;
-+        io-channels = <&temp_adc 2>;
-+
-+        sense-offset-millicelsius = <(-273150)>; /* Kelvin to degrees Celsius */
-+        alpha-ppm-per-celsius = <4000>; /* 4 mV/K */
-+    };
-+...
+
+ v1 -> v2:
+ ---------
+   * Updated HDA driver patch to skip the failing reset instead of
+     skipping resets in general for BPMP devices as per comment from
+     Dmitry.
+   * Used a better strucure name for SoC data as per comment from
+     Thierry.
+   * Dropped 'Fixes' tag in binding doc patch as per comment from
+     Dmitry.
+
+Sameer Pujar (3):
+  ALSA: hda/tegra: Fix Tegra194 HDA reset failure
+  dt-bindings: sound: tegra: Update HDA resets
+  arm64: tegra: Remove non existent Tegra194 reset
+
+ .../bindings/sound/nvidia,tegra30-hda.yaml         | 13 +++++--
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi           |  5 +--
+ sound/pci/hda/hda_tegra.c                          | 45 +++++++++++++++++-----
+ 3 files changed, 47 insertions(+), 16 deletions(-)
+
 -- 
-2.34.0
+2.7.4
 
