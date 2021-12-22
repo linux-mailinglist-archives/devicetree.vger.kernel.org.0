@@ -2,121 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 800E647D060
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 11:56:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91B6547D086
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 12:11:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244311AbhLVK4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 05:56:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41508 "EHLO
+        id S244411AbhLVLLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 06:11:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240061AbhLVK4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 05:56:49 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA9F5C061574
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 02:56:47 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id t18so4010859wrg.11
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 02:56:47 -0800 (PST)
+        with ESMTP id S244410AbhLVLLS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 06:11:18 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98466C061574;
+        Wed, 22 Dec 2021 03:11:17 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id bt1so4521033lfb.13;
+        Wed, 22 Dec 2021 03:11:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=3Wks2OpuoB00uHRdh5JUOv2eXhyxD1JIeK8fHzyUvqM=;
-        b=P4Xys96R8sOLs5LvpYi8S+iGyJy/CyJ/hliNHjWaDR72pb5VG5lXrnhBXmj4y0RlHX
-         4v9sLZtMm8BVyxq+sRO25uelCX6izdp05ULp9hvwm/Mglo8UYDote5AH36detwLyX7Vm
-         mUvXr5jvb1YHSfeHVoPa0KzR46C3uFcGlEGAt7GFJWZdQ3iVBAgP83nrolccxZknIuWW
-         dCuuv1cj9ZlhKQ5xb/0JrTTtUe1cufNZnJX0cPDPa6p5zWK+99K/zeKfTycRnnXgyO5M
-         8dza5aq6D3S1rkIrUbC8l5cPMlq0UCY/lzfkJHQcOjH5CvLXP44Cglx13sliu0dbxC+d
-         a37Q==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZH3DJ4O6RX9KRTBXPgYvqJ8q3R6fJTAgZ/pUJfzbC3U=;
+        b=eK1MicFLVDuoJKdGFVyBF/FHBK8kh9neCky0dOv1W+Gsu1ag/lDNWNrfGPNU8/AOIb
+         CRF+5U8TjgwQuyek64dhOIqv42GhhqxHO4wKp6AXkbGajZoWj+NhDr68MTMuKB/kZ/9+
+         TXMXEmnSCRpigo4klH0xbnoVpmrtLVQrGqvC9mvPEKM+OSHb46mVUGnkJbCnfHf8MU2w
+         vChq8nqDy6h3a8KJPBWAKAoEzYFOAK+I2HrwCB58M6Nc0OEMvMZoJUXPyFb7j53BND6r
+         bWVWyOdD8E5vnuYOhMNJcNeji4tzS89L5wAlBFtEOVLu2jYlIk2Mgo+V+p9HQRiWS+dO
+         fduQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=3Wks2OpuoB00uHRdh5JUOv2eXhyxD1JIeK8fHzyUvqM=;
-        b=02Nh1biXfD5jeNmwAu6Io4ErO95J+614RQMltN2FAu/msLBxhkbHZhIJiahypeIphw
-         vUCUNCmneNuvFYzUkwZjdm6IGrHQZLBXCr3U59KZndtcqdVFDeDvGzl2fG3rL+9MfWHO
-         n7qYYpwdQWi+NLWmgZUnSR/q3MXF2dMOZnWOmr72SQBOjvG03qWZrKcEtaXCAeXiYNl7
-         bdJo6UekmFJ2focq1lWFHSbyjc/Rxcq0pUf8A1swofRUSZMo3I5RGTwqxgyFPVZY4CDY
-         Tp/EgBbKHGLrkzN4jbdk+eE4Voa9x1j9LFo/jB3AWEvylmeABu3ajEwjsRiDGyrHHk7g
-         cVTw==
-X-Gm-Message-State: AOAM530EStzM6g5ckswhqLqejTbT1l7lge1k3YPBtxqoTxZaDhZmnkdq
-        Jidy1+PfVfFJQYdbHteyGP/qZw==
-X-Google-Smtp-Source: ABdhPJzPy9qHrxvmsh7Kw2oL3n3gfjoGIN/UMGaa134hOuMY2k9I3qz20YIwWw5VJKZnnyWplusSuQ==
-X-Received: by 2002:adf:bb4a:: with SMTP id x10mr1714179wrg.269.1640170606402;
-        Wed, 22 Dec 2021 02:56:46 -0800 (PST)
-Received: from google.com ([2.31.167.18])
-        by smtp.gmail.com with ESMTPSA id l19sm1507984wmq.22.2021.12.22.02.56.45
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZH3DJ4O6RX9KRTBXPgYvqJ8q3R6fJTAgZ/pUJfzbC3U=;
+        b=DBd/O1pLky5WNftokVLSRTUsyhEB7Ju1/bDzFlHby+1JQEbZ8b8XNKnWfSV2F4jhIf
+         pjDkwCG7e/m16XrHGdUmN/p+Po85IpLuvLqBjNTv+Y0LopjF4wkBLKLmzS8XU9MuwF7L
+         eVstbvwqITAD5o6yR0YP5Xpfo5lRcZE+iblDXn2CzSQH5luuLpAsHvVoB/0VOUFTcv0Z
+         rGXDnaAY+lJCwXaDA0a9o8PFmSAmEoyM1TxWe+muNh0qniNxvTvyizOMoUiTwLkBO7YI
+         SPFURVLMWYRgrQsvM7oPxaChGY35/vJ0XnN8g+W/yV7Spws8w42xUfZgVc6P9QIlkRVv
+         T0iQ==
+X-Gm-Message-State: AOAM531jhqvWzv8pci0lKYeSxgcm6tX41z733AKi4YNRwyCkG5JuzsSq
+        nG9/9GNa8WdhGZw9ITTbHzI=
+X-Google-Smtp-Source: ABdhPJwfLTkDO/MVkiRUFEHCkCwnCOaKAoPrEb1ZSjUvbaFePBWi9rlIeSjhLVnKknvA+6nfLLdlzQ==
+X-Received: by 2002:a19:a402:: with SMTP id q2mr2139115lfc.125.1640171475882;
+        Wed, 22 Dec 2021 03:11:15 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id m3sm150935lji.112.2021.12.22.03.11.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Dec 2021 02:56:45 -0800 (PST)
-Date:   Wed, 22 Dec 2021 10:56:43 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v3 0/9] backlight: qcom-wled: fix and solidify handling
- of enabled-strings
-Message-ID: <YcMEa7aEXKrgjwuG@google.com>
-References: <20211115203459.1634079-1-marijn.suijten@somainline.org>
- <20211116120213.n7qxqfi62lrxhyl7@maple.lan>
- <YZPRV2jD1EBYGdHL@google.com>
- <20211221233131.rwjjojuawgffr2gf@SoMainline.org>
+        Wed, 22 Dec 2021 03:11:15 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>, Jonas Gorski <jonas.gorski@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH V2 1/2] dt-bindings: pinctrl: Add binding for BCM4908 pinctrl
+Date:   Wed, 22 Dec 2021 12:11:07 +0100
+Message-Id: <20211222111108.13260-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211221233131.rwjjojuawgffr2gf@SoMainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Dec 2021, Marijn Suijten wrote:
+From: Rafał Miłecki <rafal@milecki.pl>
 
-> On 2021-11-16 15:42:15, Lee Jones wrote:
-> > On Tue, 16 Nov 2021, Daniel Thompson wrote:
-> > 
-> > > Hi Lee
-> > > 
-> > > On Mon, Nov 15, 2021 at 09:34:50PM +0100, Marijn Suijten wrote:
-> > > > This patchset fixes WLED's handling of enabled-strings: besides some
-> > > > cleanup it is now actually possible to specify a non-contiguous array of
-> > > > enabled strings (not necessarily starting at zero) and the values from
-> > > > DT are now validated to prevent possible unexpected out-of-bounds
-> > > > register and array element accesses.
-> > > > Off-by-one mistakes in the maximum number of strings, also causing
-> > > > out-of-bounds access, have been addressed as well.
-> > > 
-> > > They have arrived piecemeal (during v1, v2 and v3) but all patches on
-> > > the set should now have my R-b: attached to them.
-> > 
-> > I can see that.  Nothing for you to worry about.
-> > 
-> > I'll apply these when I conduct my next sweep, thanks.
-> 
-> Thanks for that Lee!  Has the next sweep already passed by?  Seems
-> everyone is preparing for the 5.17 merge window but these patches
-> haven't yet landed on the backlight tree [1].  I'd appreciate it if we
-> can make them appear in the 5.17 window :)
+It's hardware block that is part of every SoC from BCM4908 family.
 
-No need to panic.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+This patch targets linux-pinctrl.git for-next. It requires commit
+896568e5b9c8 ("dt-bindings: pinctrl: convert controller description to the json-schema")
+---
+ .../pinctrl/brcm,bcm4908-pinctrl.yaml         | 72 +++++++++++++++++++
+ MAINTAINERS                                   |  7 ++
+ 2 files changed, 79 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/brcm,bcm4908-pinctrl.yaml
 
-v5.17-rc1 isn't due to be cut for either 3.5 or 4.5 weeks.
-
+diff --git a/Documentation/devicetree/bindings/pinctrl/brcm,bcm4908-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/brcm,bcm4908-pinctrl.yaml
+new file mode 100644
+index 000000000000..175a992f15e1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/brcm,bcm4908-pinctrl.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/brcm,bcm4908-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom BCM4908 pin controller
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++description:
++  Binding for pin controller present on BCM4908 family SoCs.
++
++properties:
++  compatible:
++    const: brcm,bcm4908-pinctrl
++
++  reg:
++    maxItems: 1
++
++patternProperties:
++  '-pins$':
++    type: object
++    $ref: pinmux-node.yaml#
++
++    properties:
++      function:
++        enum: [ led_0, led_1, led_2, led_3, led_4, led_5, led_6, led_7, led_8,
++                led_9, led_10, led_11, led_12, led_13, led_14, led_15, led_16,
++                led_17, led_18, led_19, led_20, led_21, led_22, led_23, led_24,
++                led_25, led_26, led_27, led_28, led_29, led_30, led_31,
++                hs_uart, i2c, i2s, nand_ctrl, nand_data, emmc_ctrl, usb0_pwr,
++                usb1_pwr ]
++
++      groups:
++        minItems: 1
++        maxItems: 2
++        items:
++          enum: [ led_0_grp_a, led_1_grp_a, led_2_grp_a, led_3_grp_a,
++                  led_4_grp_a, led_5_grp_a, led_6_grp_a, led_7_grp_a,
++                  led_8_grp_a, led_9_grp_a, led_10_grp_a, led_10_grp_b,
++                  led_11_grp_a, led_11_grp_b, led_12_grp_a, led_12_grp_b,
++                  led_13_grp_a, led_13_grp_b, led_14_grp_a, led_15_grp_a,
++                  led_16_grp_a, led_17_grp_a, led_18_grp_a, led_19_grp_a,
++                  led_20_grp_a, led_21_grp_a, led_22_grp_a, led_23_grp_a,
++                  led_24_grp_a, led_25_grp_a, led_26_grp_a, led_27_grp_a,
++                  led_28_grp_a, led_29_grp_a, led_30_grp_a, led_31_grp_a,
++                  led_31_grp_b, hs_uart_grp, i2c_grp_a, i2c_grp_b, i2s_grp,
++                  nand_ctrl_grp, nand_data_grp, emmc_ctrl_grp, usb0_pwr_grp,
++                  usb1_pwr_grp ]
++
++allOf:
++  - $ref: pinctrl.yaml#
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    pinctrl@ff800560 {
++        compatible = "brcm,bcm4908-pinctrl";
++        reg = <0xff800560 0x10>;
++
++        led_0-a-pins {
++            function = "led_0";
++            groups = "led_0_grp_a";
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 16bc8cdc1492..e352991484e7 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -3668,6 +3668,13 @@ F:	Documentation/devicetree/bindings/net/brcm,bcm4908-enet.yaml
+ F:	drivers/net/ethernet/broadcom/bcm4908_enet.*
+ F:	drivers/net/ethernet/broadcom/unimac.h
+ 
++BROADCOM BCM4908 PINMUX DRIVER
++M:	Rafał Miłecki <rafal@milecki.pl>
++M:	bcm-kernel-feedback-list@broadcom.com
++L:	linux-gpio@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/pinctrl/brcm,bcm4908-pinctrl.yaml
++
+ BROADCOM BCM5301X ARM ARCHITECTURE
+ M:	Hauke Mehrtens <hauke@hauke-m.de>
+ M:	Rafał Miłecki <zajec5@gmail.com>
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.31.1
+
