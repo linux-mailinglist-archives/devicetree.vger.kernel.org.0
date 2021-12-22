@@ -2,125 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A01E47D777
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 20:11:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B03F47D782
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 20:13:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345106AbhLVTK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 14:10:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41764 "EHLO
+        id S234107AbhLVTNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 14:13:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233746AbhLVTK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 14:10:58 -0500
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B067C061574;
-        Wed, 22 Dec 2021 11:10:58 -0800 (PST)
-Received: by mail-yb1-xb2b.google.com with SMTP id y68so9589955ybe.1;
-        Wed, 22 Dec 2021 11:10:58 -0800 (PST)
+        with ESMTP id S234913AbhLVTNj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 14:13:39 -0500
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47DD0C061574;
+        Wed, 22 Dec 2021 11:13:39 -0800 (PST)
+Received: by mail-qt1-x82e.google.com with SMTP id q14so2831334qtx.10;
+        Wed, 22 Dec 2021 11:13:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=q1hdt0rDFdHxjRFH+PlDJWOqrqXjNMYQgzxO9JoTv1M=;
-        b=FH2OIxLlfjCXKeNd/w+tj2e0QGACBuGzCP0Fhd3T/Tf2/WdQsKb4rYZVS+uTdEgxjj
-         O8FmiismtHSnMdjGL8U7TWJ7AuREpe6l+UTCVnut4l7vAUjTvISWXO4RJPWd1jOBRJMH
-         sR2+14tkAKlD7YIqeMmFFzYoHWu6OCqOZPGUl6z5rR7yJdsI2czfK2MiJ2TRCownNX0r
-         Ux8sjsqDU6wwIxuKIeX1dJTdiKnS3s1OKu+6pNjudwWl6zXpFfkP5v66ZVq2d8Apho6W
-         FOeJD42qUSwtcdx9n1MmOYObey+UGMeNvY6UAq6hZi8RTmTn2GT7AIJDb6SsXuaVZy8t
-         Cu1A==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=wqw4Csw6qZshE12s1pYlPJOaQv5WDALPakxDCEsMC0E=;
+        b=iWSZ9MZRac4lr9Bc8dNkgqGJSwe4YRtLf4xm6ZGxlzisWWu+INYtwBVh8eleUyD5bQ
+         NpZlzrZ/RgG69av+Ak6mlzN2A1UKKAeeIGabGN+T9VGbbxv0yft1AvttkNZUIL7p+80W
+         hfKFRzy9F4+CHbFF4Gzdrx8Vj1oyGwOs3oyxL6SUs71HDZ8H3SxNtnyPJufqXdaDr5gu
+         ATbIjL6j5aQ8ed7bBc8QZO43OB5vHh8LQhZaImP9e5MRjElmPg9BQedjzxRjRka2L+FP
+         TJweNJru/JkZCoHYQs0Crz5+BU3wlwrdYx5/43WtbONviEs8LIpc0RdoyHWsOgr+6BnE
+         FkKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=q1hdt0rDFdHxjRFH+PlDJWOqrqXjNMYQgzxO9JoTv1M=;
-        b=19U+CsRDxhx9V1Q8Cat4jEibhW0BS+9+PMDwhcDqQI+vNdnU9maajMmlF0+vMsCWfd
-         5y3TVbDhxSLbTg11QzIjzeFzDgJijdOk1rv6+DOM7whB3PX46bm0qYxI1sIMUsr2ujW/
-         PR7RICQM/MX5+Rq8OKgH3IIvvl+GV7kuE7AWz2G+15O05MoeZjDf47domItn361g9hUa
-         BT9Wu6YAzB8qjyLWtsrQfGceEc+AxK3+oVrJcN8E5Ak/Sqlno+ql9JJPnWqvG5QscYGU
-         FAQ2HILM1DX2SlpaBR2qNojGQ/6X2c4PCCXqMIF0swCB1Y97X5O+YAYMm6z777KDZwQx
-         N6XA==
-X-Gm-Message-State: AOAM5323Zg4Nn7Lfa/t/ESzjidVjjlBM4c2+D9LAaen/piFCkA5Y1fVq
-        1vka1SL0EKgATlExOeEjHBnTt43E/OwgBZo1zLo=
-X-Google-Smtp-Source: ABdhPJz//MnasOLSuKMhIkomj1Wv97uOQxSUzI7hnBEHjkfeiJQY3u0+Z4FPT5sDi7cOY5fXd4ytr3iALOVPk1fQlgM=
-X-Received: by 2002:a5b:ecd:: with SMTP id a13mr6058913ybs.251.1640200257217;
- Wed, 22 Dec 2021 11:10:57 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wqw4Csw6qZshE12s1pYlPJOaQv5WDALPakxDCEsMC0E=;
+        b=jAeVo0jPIxWKhPDVkt+oZRDN9/+mJFx3rMwe1XMsl9BkBqzBg4IJpAYJdCUDm9P05J
+         x7phle1Y62Ux1uSWJ/UovCFD7YtCJqBm0jG/xsT5cbtRweqJ7fcts+gMSbW+bs4S4qAv
+         CsVDMI/x5Gxka7bTedDW7D7Z54XSp1uJxEZdEcIWKcRkz8Qed59fhxdK+kfPUI5v3Xpw
+         ny2RzTSkbKvHQhSGY73R9bn6v1yx5XCWTog6C8dZBOyfyg+AD3IUCIpD1li9nKRynHII
+         HlCWNqWUrqy59RWscbQUMWb+0SAaYU3h6eG4eO6EWHPdDHE67geZS8c7m9zjGyupnfgq
+         PyNg==
+X-Gm-Message-State: AOAM533+9D46+QTXdbwZRhi6u2v2wFMqzZs4oaPLev7aHiYx3HJDLxz2
+        XR69kpc8FD3IkWCCuyFVpbQ=
+X-Google-Smtp-Source: ABdhPJzMAZN9PefC3l8mbgN/lL2Fr9Hu2xQIr8mr1qd9Xv/9JrRw5X9U0G8nSTMMdKEtTW3+eu5NVg==
+X-Received: by 2002:a05:622a:134f:: with SMTP id w15mr3282155qtk.561.1640200418501;
+        Wed, 22 Dec 2021 11:13:38 -0800 (PST)
+Received: from shaak (69-165-204-82.cable.teksavvy.com. [69.165.204.82])
+        by smtp.gmail.com with ESMTPSA id bs16sm2687874qkb.45.2021.12.22.11.13.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Dec 2021 11:13:37 -0800 (PST)
+Date:   Wed, 22 Dec 2021 14:13:35 -0500
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v11 11/15] iio: test: add basic tests for the iio-rescale
+ driver
+Message-ID: <YcN43+L77t/EoKKf@shaak>
+References: <20211222034646.222189-1-liambeguin@gmail.com>
+ <20211222034646.222189-12-liambeguin@gmail.com>
+ <CAHp75Ve4RuJLMdpdKe14nobuZHRNKA7tWt4yE82+noF5p+xxpw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20211221094717.16187-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20211221094717.16187-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <YcNtAtVZgM+Z9i3X@robh.at.kernel.org>
-In-Reply-To: <YcNtAtVZgM+Z9i3X@robh.at.kernel.org>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Wed, 22 Dec 2021 19:10:31 +0000
-Message-ID: <CA+V-a8sjY7JOYuXhh50nfk9U+QdF0vQ5w-O9aLHGURfU8hKc0Q@mail.gmail.com>
-Subject: Re: [PATCH 01/16] dt-bindings: arm: renesas: Document Renesas RZ/V2L SoC
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75Ve4RuJLMdpdKe14nobuZHRNKA7tWt4yE82+noF5p+xxpw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Wed, Dec 22, 2021 at 02:38:13PM +0200, Andy Shevchenko wrote:
+> On Wed, Dec 22, 2021 at 5:47 AM Liam Beguin <liambeguin@gmail.com> wrote:
+> >
+> > From: Liam Beguin <lvb@xiphos.com>
+> >
+> > The iio-rescale driver supports various combinations of scale types and
+> > offsets. These can often result in large integer multiplications. Make
+> > sure these calculations are done right by adding a set of kunit test
+> > cases that build on top of iio-test-format.
+> 
+> ...
+> 
+> > +       int fract_mult = 100000000LL;
+> 
+> Perhaps also change to use the prefix?
 
-Thank you for the review.
+Argh.. I missed this file. Sorry, will update.
 
-On Wed, Dec 22, 2021 at 6:23 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Dec 21, 2021 at 09:47:02AM +0000, Lad Prabhakar wrote:
-> > From: Biju Das <biju.das.jz@bp.renesas.com>
-> >
-> > Document Renesas RZ/V2L SoC.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/renesas.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/renesas.yaml b/Documentation/devicetree/bindings/arm/renesas.yaml
-> > index 6a9350ee690b..55a5aec418ab 100644
-> > --- a/Documentation/devicetree/bindings/arm/renesas.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
-> > @@ -421,6 +421,13 @@ properties:
-> >                - renesas,r9a07g044l2 # Dual Cortex-A55 RZ/G2L
-> >            - const: renesas,r9a07g044
-> >
-> > +      - description: RZ/V2L (R9A07G054)
-> > +        items:
-> > +          - enum:
-> > +              - renesas,r9a07g054l1 # Single Cortex-A55 RZ/V2L
-> > +              - renesas,r9a07g054l2 # Dual Cortex-A55 RZ/V2L
->
-> I'd assume this is just a fuse difference and with cpu nodes you can
-> distinguish how many cores.
->
-Yes and there is a register too which tells the CPU count.
+> ...
+> 
+> > +       *nano = (s64)tmp * 10 * fract_mult + tmp2;
+> 
+> I'm also puzzled what the meaning of the 10 is here?
+
+That comes from iio_str_to_fixpoint().
+I sould've added a comment to make it more explicit as details escape me
+right now...  Will fix.
+
+> ...
+> 
+> > +       err = 1000000 * abs(exp - real);
+> 
+> Prefix?
+
+Ok
+
+> ...
+> 
+> > +       err = div64_u64(err, abs(exp));
+> > +       return (int)err;
+> 
+> return div64_u64();
+
+will do.
 
 Cheers,
-Prabhakar
+Liam
 
-> > +          - const: renesas,r9a07g054
-> > +
-> >  additionalProperties: true
-> >
-> >  ...
-> > --
-> > 2.17.1
-> >
-> >
+> -- 
+> With Best Regards,
+> Andy Shevchenko
