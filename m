@@ -2,146 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BD1847D505
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 17:19:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6605347D58E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 18:04:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241651AbhLVQTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 11:19:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59090 "EHLO
+        id S239382AbhLVREe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 12:04:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233896AbhLVQTu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 11:19:50 -0500
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EADCC06173F
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 08:19:50 -0800 (PST)
-Received: by mail-oi1-x236.google.com with SMTP id bj13so4695848oib.4
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 08:19:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KsMTQnn2hVgwCV9VL0XIlVRgqcd6Mo49QGleKB40N5s=;
-        b=cQVNdfsOqPCgMRnpZ0vVEr7mTW/MTssqV1D9ipzpq53tZlNfHfiR2jQX9ATxWwO57B
-         ug4flrFT5GFR7ZOAQRLcNl/p+vJ0bDvacacR+cpdbhiJUT7pwlpkjlZfWwKntvy3EzLo
-         FlunzdW5Uibrs1BYdkHDJ3Q0Oa9xAlYMRywQUdJpETp98GWMz+StCV+72xm8D6+LaWDK
-         uGApUA8b49e8Gm6ba4GjF+A9Y2YBVYcHAEIWrBhxT9Tpqtl41N6LXhsw0qUT9EiUBjs5
-         BNLnOHdObbi53/3r3VkNSgik4FZCz/LtftdqvSJSvmxhlhHMZFLdnZykIUhGcIGgxxEh
-         BH3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KsMTQnn2hVgwCV9VL0XIlVRgqcd6Mo49QGleKB40N5s=;
-        b=HV+wyw1hpsDf3v2QufsVhxjxeySx6YR7lYTE3tvYmWBFp35M5idljgdrA12PjYgdBc
-         u6N3IAoH/mw4cfRhu+0U18fcuIPvlW6PYlyBzBXDYFfxwgmQT5fpHeZ8OoAwAvEeJm2c
-         DUWttdFgQF1WtdhdA/l8b3WyU+5wRbkG3GakCcPvJPgY8ZLcReKy0BiuHHS4EAARNRCW
-         Wjd36FUE9Qpz6v3GRz4722EblTmO8wIKR3Mv3EizYnRXTZA/DxYEkKq14mRH2uavebRG
-         JP1SnFznAcQilZ9Q5tTEyhBg8FU1zKFAcXtgJpoey59AwC5aphQj5C/d6qUWpnB4MbeL
-         kezg==
-X-Gm-Message-State: AOAM533qwSiReJ8ZE4JOFx8IuG5F+W90TIs/mYbLv2g3TBrxuiTycmDW
-        56aFoRkpsRfE6MgDP/tFezPunQ==
-X-Google-Smtp-Source: ABdhPJwPyqUJva4dUMwe/PvgCVq/e0xZr9cuEL+q1BiOzdSMfIV5QbD689pDIUyrxX1aZxfvwmMaqA==
-X-Received: by 2002:a05:6808:a84:: with SMTP id q4mr1296759oij.28.1640189989523;
-        Wed, 22 Dec 2021 08:19:49 -0800 (PST)
-Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id h1sm433376oog.26.2021.12.22.08.19.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Dec 2021 08:19:49 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: qcom: sm8350: Correct UFS symbol clocks
-Date:   Wed, 22 Dec 2021 08:20:58 -0800
-Message-Id: <20211222162058.3418902-1-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.33.1
+        with ESMTP id S230314AbhLVREe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 12:04:34 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BEB6C061574;
+        Wed, 22 Dec 2021 09:04:34 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 61508B81D73;
+        Wed, 22 Dec 2021 17:04:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80E55C36AE8;
+        Wed, 22 Dec 2021 17:04:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640192671;
+        bh=eKeBnq08+rs4HIltvdOQE1gbk3B+qSg0tbnV0Mny9Vk=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=AmjPH440BrrkIJR4cAs2V16o2SJ/RpyZ1esZVolO0FCEkXY+hzxh6vCirfnKfMSBn
+         cM4BZVhJsv3DCgYYMA2cNk9otRZVceQFGAJSuXKMuAWPhDi7Ym45Fj1BSIArvzzOlK
+         4234X+asFzqM4iFBApagVmTLCZ1Ep8+1Zg03MoLWoVHX0dr/SbVnB2ss/TLz7gK3J5
+         KNc9OwxFyqDlOZpZaJQxE/SbFKE8guwVl3nlAr3uuV7MKAWIzlHj/eeoRq3abpO93B
+         SSCsRS9TiMkt+GOTJq4vUMJzuDzaAdX23dxcEzbWZW9nUmyuwOE4MKsxrwx1sK2fLu
+         rzgjiuh5nuYAw==
+Subject: Re: [PATCH v4 3/4] memory: omap-gpmc: Use a compatible match table
+ when checking for NAND controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     tony@atomide.com, robh@kernel.org, kishon@ti.com, nm@ti.com,
+        vigneshr@ti.com, linux-mtd@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20211221131757.2030-1-rogerq@kernel.org>
+ <20211221131757.2030-4-rogerq@kernel.org>
+ <51b8e895-95e1-0024-1457-ec534985c9f0@kernel.org>
+ <20211222151823.77179b74@xps13>
+ <a1ef85b2-25a9-dbdf-c6b0-b645d1c1aad6@canonical.com>
+From:   Roger Quadros <rogerq@kernel.org>
+Message-ID: <29e50a31-97ca-06dc-474e-2ceb5486e5bc@kernel.org>
+Date:   Wed, 22 Dec 2021 19:04:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <a1ef85b2-25a9-dbdf-c6b0-b645d1c1aad6@canonical.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The introduction of '9a61f813fcc8 ("clk: qcom: regmap-mux: fix parent
-clock lookup")' broke UFS support on SM8350.
 
-The cause for this is that the symbol clocks have a specified rate in
-the "freq-table-hz" table in the UFS node, which causes the UFS code to
-request a rate change, for which the "bi_tcxo" happens to provide the
-closest rate.  Prior to the change in regmap-mux it was determined
-(incorrectly) that no change was needed and everything worked.
 
-The rates of 75 and 300MHz matches the documentation for the symbol
-clocks, but we don't represent the parent clocks today. So let's mimic
-the configuration found in other platforms, by omitting the rate for the
-symbol clocks as well to avoid the rate change.
+On 22/12/2021 17:49, Krzysztof Kozlowski wrote:
+> On 22/12/2021 15:18, Miquel Raynal wrote:
+>> Hi Roger,
+>>
+>> rogerq@kernel.org wrote on Tue, 21 Dec 2021 22:01:28 +0200:
+>>
+>>> Hi Miquel,
+>>>
+>>> On 21/12/2021 15:17, Roger Quadros wrote:
+>>>> As more compatibles can be added to the GPMC NAND controller driver
+>>>> use a compatible match table.
+>>>>
+>>>> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+>>>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>>>> ---
+>>>>  drivers/memory/omap-gpmc.c                   | 6 +++++-
+>>>>  drivers/mtd/nand/raw/omap2.c                 | 5 +----  
+>>>
+>>> Will need your Ack for this one as well. Thanks :)
+>>>
+>>>
+>>>>  include/linux/platform_data/mtd-nand-omap2.h | 9 ++++++++-
+>>>>  3 files changed, 14 insertions(+), 6 deletions(-)  
+>>>
+>>> cheers,
+>>> -roger
+>>>
+>>>>
+>>>> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
+>>>> index 624153048182..d19ffc895e5b 100644
+>>>> --- a/drivers/memory/omap-gpmc.c
+>>>> +++ b/drivers/memory/omap-gpmc.c
+>>>> @@ -2091,6 +2091,7 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
+>>>>  	u32 val;
+>>>>  	struct gpio_desc *waitpin_desc = NULL;
+>>>>  	struct gpmc_device *gpmc = platform_get_drvdata(pdev);
+>>>> +	bool is_nand = false;
+>>>>  
+>>>>  	if (of_property_read_u32(child, "reg", &cs) < 0) {
+>>>>  		dev_err(&pdev->dev, "%pOF has no 'reg' property\n",
+>>>> @@ -2183,7 +2184,10 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
+>>>>  		}
+>>>>  	}
+>>>>  
+>>>> -	if (of_device_is_compatible(child, "ti,omap2-nand")) {
+>>>> +	if (of_match_node(omap_nand_ids, child))
+>>>> +		is_nand = true;
+>>>> +
+>>>> +	if (is_nand) {
+>>
+>> nitpick: why this intermediate variable?
+>>
+> 
+> Indeed, it looks useless. I think it is left-over from previous version.
+> I will remove it while applying.
 
-While at it also fill in the dummy symbol clocks that was dropped from
-the GCC driver as it was upstreamed.
+You are right. Thanks for saving me a re-spin Krzysztof :)
 
-Fixes: 59c7cf814783 ("arm64: dts: qcom: sm8350: Add UFS nodes")
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
-
-Changes since v1:
-- Updated commit message to clarify that the removed numbers are correct.
-
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 28 +++++++++++++++++++++++-----
- 1 file changed, 23 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index bc176c252bca..ceb064a83038 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -38,6 +38,24 @@ sleep_clk: sleep-clk {
- 			clock-frequency = <32000>;
- 			#clock-cells = <0>;
- 		};
-+
-+		ufs_phy_rx_symbol_0_clk: ufs-phy-rx-symbol-0 {
-+			compatible = "fixed-clock";
-+			clock-frequency = <1000>;
-+			#clock-cells = <0>;
-+		};
-+
-+		ufs_phy_rx_symbol_1_clk: ufs-phy-rx-symbol-1 {
-+			compatible = "fixed-clock";
-+			clock-frequency = <1000>;
-+			#clock-cells = <0>;
-+		};
-+
-+		ufs_phy_tx_symbol_0_clk: ufs-phy-tx-symbol-0 {
-+			compatible = "fixed-clock";
-+			clock-frequency = <1000>;
-+			#clock-cells = <0>;
-+		};
- 	};
- 
- 	cpus {
-@@ -606,9 +624,9 @@ gcc: clock-controller@100000 {
- 				 <0>,
- 				 <0>,
- 				 <0>,
--				 <0>,
--				 <0>,
--				 <0>,
-+				 <&ufs_phy_rx_symbol_0_clk>,
-+				 <&ufs_phy_rx_symbol_1_clk>,
-+				 <&ufs_phy_tx_symbol_0_clk>,
- 				 <0>,
- 				 <0>;
- 		};
-@@ -2079,8 +2097,8 @@ ufs_mem_hc: ufshc@1d84000 {
- 				<75000000 300000000>,
- 				<0 0>,
- 				<0 0>,
--				<75000000 300000000>,
--				<75000000 300000000>;
-+				<0 0>,
-+				<0 0>;
- 			status = "disabled";
- 		};
- 
--- 
-2.33.1
-
+cheers,
+-roger
