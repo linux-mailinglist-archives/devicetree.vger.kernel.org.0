@@ -2,101 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CCB347D39B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 15:24:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 857CC47D378
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 15:18:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236731AbhLVOYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 09:24:16 -0500
-Received: from ewsoutbound.kpnmail.nl ([195.121.94.170]:64103 "EHLO
-        ewsoutbound.kpnmail.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233186AbhLVOYQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 09:24:16 -0500
-X-Greylist: delayed 662 seconds by postgrey-1.27 at vger.kernel.org; Wed, 22 Dec 2021 09:24:15 EST
-X-KPN-MessageId: 274244dc-6331-11ec-8a6e-005056ab378f
-Received: from smtp.kpnmail.nl (unknown [10.31.155.38])
-        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
-        id 274244dc-6331-11ec-8a6e-005056ab378f;
-        Wed, 22 Dec 2021 15:12:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=xs4all.nl; s=xs4all01;
-        h=content-type:from:to:subject:mime-version:date:message-id;
-        bh=D7qUlmyWyRiBM87fcOPYLUo3TqeXcR8SLDEfqWVhTeE=;
-        b=tQQnRIjzHhP68s+68bMajYZC+ii1qI3/L3IXMw5kKGRQhGTvePFDJL5KOaiwJFupzjV6tU87E0sxw
-         inac2+cllLahPQMZVciYEYYUfCQ0BbOBoLQXtkMiC55lnGj0pyOBzcwE60TJ9m4bZ2vlY4GNXf6sLd
-         1bsAwShfFsqMMMEltfQsSmbXiuxctI1MLY8+Az6hwEZ+2tn8ZmfibNgtRdhg22CfpLOKiAbOUSGdQx
-         AFfBZHg13pBsKdZCnj+C+eKZ+/NDU2jeQPk57vVoBrd/2i5OGSwsUjjeqwMUjPwFfMgKD+DgFPcxPY
-         nS/l81eNrXE1uOUCfWDQ5WOMQ+EF1lg==
-X-KPN-VerifiedSender: Yes
-X-CMASSUN: 33|qg0CkmnxFkjnY6FZyiTdaeY6kx8pktK47rEV/taqXLOMDWKl4uNrWffXrYj8eka
- wfPHVTauMYkr6gD6uVRS4Gg==
-X-Originating-IP: 80.101.105.217
-Received: from [192.168.1.10] (marune.xs4all.nl [80.101.105.217])
-        by smtp.xs4all.nl (Halon) with ESMTPSA
-        id 4bcaacaa-6331-11ec-94d2-005056abf0db;
-        Wed, 22 Dec 2021 15:13:12 +0100 (CET)
-Message-ID: <04e5c9b4-2a96-6b5f-7c26-89e1cbf8576f@xs4all.nl>
-Date:   Wed, 22 Dec 2021 15:13:11 +0100
+        id S245631AbhLVOS1 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 22 Dec 2021 09:18:27 -0500
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:52999 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245605AbhLVOS1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 09:18:27 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 77CBEE000D;
+        Wed, 22 Dec 2021 14:18:24 +0000 (UTC)
+Date:   Wed, 22 Dec 2021 15:18:23 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Roger Quadros <rogerq@kernel.org>
+Cc:     krzysztof.kozlowski@canonical.com, tony@atomide.com,
+        robh@kernel.org, kishon@ti.com, nm@ti.com, vigneshr@ti.com,
+        linux-mtd@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 3/4] memory: omap-gpmc: Use a compatible match table
+ when checking for NAND controller
+Message-ID: <20211222151823.77179b74@xps13>
+In-Reply-To: <51b8e895-95e1-0024-1457-ec534985c9f0@kernel.org>
+References: <20211221131757.2030-1-rogerq@kernel.org>
+        <20211221131757.2030-4-rogerq@kernel.org>
+        <51b8e895-95e1-0024-1457-ec534985c9f0@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v4 0/2] Remove clock-lanes DT property from CAMSS
-Content-Language: en-US
-To:     Robert Foss <robert.foss@linaro.org>, todor.too@gmail.com,
-        agross@kernel.org, bjorn.andersson@linaro.org, mchehab@kernel.org,
-        robh+dt@kernel.org, angelogioacchino.delregno@somainline.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20211206151811.39271-1-robert.foss@linaro.org>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-In-Reply-To: <20211206151811.39271-1-robert.foss@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robert,
+Hi Roger,
 
-I posted a PR for Bryan's 'CAMSS: Add SM8250 support' series, but your patch series
-clashes with his. Can you rebase this series on top of Bryan's work?
+rogerq@kernel.org wrote on Tue, 21 Dec 2021 22:01:28 +0200:
 
-You can use this branch I made for the PR if you want:
-
-https://git.linuxtv.org/hverkuil/media_tree.git/log/?h=for-v5.17j
-
-Thanks!
-
-	Hans
-
-On 06/12/2021 16:18, Robert Foss wrote:
-> Changes since v3:
->  - Split patches heading for Media and ARM64 tress
->    into two seperate series
+> Hi Miquel,
 > 
-> Changes since v2:
->  - Stephan: Rebased on v5.16-rc1
->  - Stephan: Fixed 3/4 commit message title
+> On 21/12/2021 15:17, Roger Quadros wrote:
+> > As more compatibles can be added to the GPMC NAND controller driver
+> > use a compatible match table.
+> > 
+> > Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+> > Signed-off-by: Roger Quadros <rogerq@kernel.org>
+> > ---
+> >  drivers/memory/omap-gpmc.c                   | 6 +++++-
+> >  drivers/mtd/nand/raw/omap2.c                 | 5 +----  
 > 
-> Changes since v1:
->  - Rob: Instead of documenting and fixing the use of the clock-lanes
->    property, remove it, since it is is not programmable and
->    therefore shouldn't be exposed in the DT.
+> Will need your Ack for this one as well. Thanks :)
 > 
-> Robert Foss (2):
->   media: camss: csiphy: Move to hardcode CSI Clock Lane number
->   media: dt-bindings: media: camss: Remove clock-lane property
 > 
->  .../bindings/media/qcom,msm8916-camss.yaml    | 10 ---------
->  .../bindings/media/qcom,msm8996-camss.yaml    | 20 ------------------
->  .../bindings/media/qcom,sdm660-camss.yaml     | 20 ------------------
->  .../bindings/media/qcom,sdm845-camss.yaml     | 17 ---------------
->  .../qcom/camss/camss-csiphy-2ph-1-0.c         | 19 +++++++++++++++--
->  .../qcom/camss/camss-csiphy-3ph-1-0.c         | 17 ++++++++++++++-
->  .../media/platform/qcom/camss/camss-csiphy.c  | 21 +------------------
->  .../media/platform/qcom/camss/camss-csiphy.h  |  7 +++++++
->  8 files changed, 41 insertions(+), 90 deletions(-)
+> >  include/linux/platform_data/mtd-nand-omap2.h | 9 ++++++++-
+> >  3 files changed, 14 insertions(+), 6 deletions(-)  
 > 
+> cheers,
+> -roger
+> 
+> > 
+> > diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
+> > index 624153048182..d19ffc895e5b 100644
+> > --- a/drivers/memory/omap-gpmc.c
+> > +++ b/drivers/memory/omap-gpmc.c
+> > @@ -2091,6 +2091,7 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
+> >  	u32 val;
+> >  	struct gpio_desc *waitpin_desc = NULL;
+> >  	struct gpmc_device *gpmc = platform_get_drvdata(pdev);
+> > +	bool is_nand = false;
+> >  
+> >  	if (of_property_read_u32(child, "reg", &cs) < 0) {
+> >  		dev_err(&pdev->dev, "%pOF has no 'reg' property\n",
+> > @@ -2183,7 +2184,10 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
+> >  		}
+> >  	}
+> >  
+> > -	if (of_device_is_compatible(child, "ti,omap2-nand")) {
+> > +	if (of_match_node(omap_nand_ids, child))
+> > +		is_nand = true;
+> > +
+> > +	if (is_nand) {
 
+nitpick: why this intermediate variable?
+
+Otherwise for the NAND bits:
+
+Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
+
+> >  		/* NAND specific setup */
+> >  		val = 8;
+> >  		of_property_read_u32(child, "nand-bus-width", &val);
+> > diff --git a/drivers/mtd/nand/raw/omap2.c b/drivers/mtd/nand/raw/omap2.c
+> > index b26d4947af02..e6dd8b4cf0d2 100644
+> > --- a/drivers/mtd/nand/raw/omap2.c
+> > +++ b/drivers/mtd/nand/raw/omap2.c
+> > @@ -2352,10 +2352,7 @@ static int omap_nand_remove(struct platform_device *pdev)
+> >  	return ret;
+> >  }
+> >  
+> > -static const struct of_device_id omap_nand_ids[] = {
+> > -	{ .compatible = "ti,omap2-nand", },
+> > -	{},
+> > -};
+> > +/* omap_nand_ids defined in linux/platform_data/mtd-nand-omap2.h */
+> >  MODULE_DEVICE_TABLE(of, omap_nand_ids);
+> >  
+> >  static struct platform_driver omap_nand_driver = {
+> > diff --git a/include/linux/platform_data/mtd-nand-omap2.h b/include/linux/platform_data/mtd-nand-omap2.h
+> > index de6ada739121..92f011805ad4 100644
+> > --- a/include/linux/platform_data/mtd-nand-omap2.h
+> > +++ b/include/linux/platform_data/mtd-nand-omap2.h
+> > @@ -7,6 +7,7 @@
+> >  #define	_MTD_NAND_OMAP2_H
+> >  
+> >  #include <linux/mtd/partitions.h>
+> > +#include <linux/mod_devicetable.h>
+> >  
+> >  #define	GPMC_BCH_NUM_REMAINDER	8
+> >  
+> > @@ -61,4 +62,10 @@ struct gpmc_nand_regs {
+> >  	void __iomem	*gpmc_bch_result5[GPMC_BCH_NUM_REMAINDER];
+> >  	void __iomem	*gpmc_bch_result6[GPMC_BCH_NUM_REMAINDER];
+> >  };
+> > -#endif
+> > +
+> > +static const struct of_device_id omap_nand_ids[] = {
+> > +	{ .compatible = "ti,omap2-nand", },
+> > +	{},
+> > +};
+> > +
+> > +#endif /* _MTD_NAND_OMAP2_H */
+> >   
+
+
+Thanks,
+Miquèl
