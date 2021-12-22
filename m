@@ -2,68 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71EDD47D40E
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 15:59:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C23F647D45D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 16:49:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343644AbhLVO75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 09:59:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41176 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343640AbhLVO74 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 09:59:56 -0500
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86191C061746
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 06:59:56 -0800 (PST)
-Received: by mail-pj1-x1030.google.com with SMTP id mj19so2520365pjb.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 06:59:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=R4fAvto+5kiJhIGMycVJNRIDsGMunfWc3NoA9gToFxc=;
-        b=yAYsIew16rDxK2O8IBSr18NkIZNRERvjTpiLlglFWe7mdn+WkOxn6IU5Ar2X5kHWqW
-         71UgZbTwcoNT5Olu2zDRURo8mWCi+LY6l3M3D3UXfEZicV7wCMfOj7Op5zDWDfVIx2w3
-         CRK/Tf/UZM5tSjXeKNEoQbC9F6PHwtEL0AzoihUU5ccqp0U28BRygvV3N2MKvDNhg5on
-         pyYw73E46Vhal0zXq/48c7XQxUPw4ihx2Jlb3TMYhB8cjTOutZEgY+XvDoWnVPBlcFG/
-         aBOtJOiU8njTxlHaBeQMLTt8LMz2WSbXCA62sVBTUVYano6heJeY3yrb1IFIEHIMWthq
-         DPCg==
+        id S237302AbhLVPt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 10:49:27 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:42476
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237071AbhLVPt1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Dec 2021 10:49:27 -0500
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 6C5523F1EE
+        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 15:49:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1640188159;
+        bh=5hgZLopSA5RqgA5GFHhtSYmuF7JejYilzaVDTyDa+yI=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=MNZ7qT8MlPQEZ1DmwvoR5wrHvhh5o5dNXaYIqReBfbK2WN5vykz3hNnK+LoIM0ltV
+         pi9k2MPyKZBqot1hBUZIEr9K8spi8j2UtstCxb/NqcWKZIhkTR3Tqzab4AZEKAQQFQ
+         hOH0BNy2txjDrFCS7g3ClE838r/mTmkNlc+Izr9m3g2tZKRx7Wj0W9tszPFan7I2V7
+         icAiDTKaaxbzbIJxrLkNyMM+zco26TKcy2FbOJ8mvPi8ykuvaeoiueJYB+8F1XuwQu
+         KUwaeM/jzG9SrTGEJ6UGgRSe2hjSLCVIj3Qc/jI0rjDE9OSmNWc5TTTSftMSniY69b
+         MJl5oHxulh6WA==
+Received: by mail-lf1-f70.google.com with SMTP id b5-20020a196445000000b0042659f2a17cso428504lfj.23
+        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 07:49:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=R4fAvto+5kiJhIGMycVJNRIDsGMunfWc3NoA9gToFxc=;
-        b=t3u2YYVAgOAhG+Pcu9vxjtMxAVLLl2t65ppsYBSSEBOtz7bCn2NrYuAo3hxmyXvQTg
-         f/Rit1kggFrqWuXEeesKqto8oXCGomsZXUwf1y+NsSBXh87mVTuGHixBxTVCz4BszCo9
-         wzIHJS1O5EEE2vkkgbqf7nP8gz9GQ3rmysoPqCneobjdODQWEzVuBf0rfFEKwQENWpzF
-         a02surZd1smaQIcB9NyiC2YH9WJ1YQJsBOjs2dnGewFSBqMjo9GC4/x85yxU8tsmX/Pq
-         c9xC5vhAvzWqINsRZrqyhAqRboduBwLEtzW6+ngEbfYZmzVFTdREQBpTo5w1TOH7iZxm
-         dfFg==
-X-Gm-Message-State: AOAM531FOM5tavxfh7vpds9tnzDY3KpVhBRgyneUW0VnBLVILM1HrVms
-        kD0UKeHXNmNm32dPrICVDO9y61qHIwzQkW0aYh2xaA==
-X-Google-Smtp-Source: ABdhPJxD+B+hmQU/gZDQgKwOCAzSvQG1Z4rSyD47kKB+7bVpUE/kfF9NRmwJWNjPCxWHnv2nROBlW7MbbxP2zerqXEs=
-X-Received: by 2002:a17:90a:a6d:: with SMTP id o100mr1780124pjo.179.1640185195954;
- Wed, 22 Dec 2021 06:59:55 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5hgZLopSA5RqgA5GFHhtSYmuF7JejYilzaVDTyDa+yI=;
+        b=AKYkK3zEkzBOw+i7uI/so1wJaGjvP35NkX/w4Rhq0f9pz3f8pgbehD9EwF7Sg+AIQt
+         ZtKOwd45LJx/CUoY/DM9mw/N1QRP++m4zKyYUy4zbAvJtYW26CvmasYGTT5iYuoUgYyy
+         stcqht62h+P1qNlpcOpjbDs5KN/E5ElwWXXKrac1Kt0lhBXPK+GLCSKPJf/TJI8rzBaE
+         KIZmXD7wlBGTPfxMsan+EcgZjt06XQFvA4o1HLrLbWg4D2+nItnQHH1LD48qZVzmxNdQ
+         XE8MkpzhnIxFo5zqFHUMjVNKUjSAMH0/qFoKPUpMVcNRzxM5GxdADsAjwJpchodffock
+         pvVg==
+X-Gm-Message-State: AOAM53262Q0pOnmnYJQaZ7aX7C014IPQpmpxJxxcLxMTfiTvC5d/TKLg
+        cRgiHOkqFsLsOYmEC98RljKGtKKwEE9o2mB2fVzpOcfXTcoA4Cuc7ZsJDxfNmgSq4fWr2j3fZs2
+        qtHf/GU5oG8eDCz3otCQOy3iT/MPfwidWwxiHA6M=
+X-Received: by 2002:a05:6512:3baa:: with SMTP id g42mr2755869lfv.651.1640188158801;
+        Wed, 22 Dec 2021 07:49:18 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzwr7cmepBfwLxRYZ+54oFEjSLqgBl8VM/NyfSsn8HLpTn8R8don1yxBiII9LLz1nQ7T4lVUA==
+X-Received: by 2002:a05:6512:3baa:: with SMTP id g42mr2755857lfv.651.1640188158623;
+        Wed, 22 Dec 2021 07:49:18 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id c36sm247915lfv.193.2021.12.22.07.49.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Dec 2021 07:49:17 -0800 (PST)
+Message-ID: <a1ef85b2-25a9-dbdf-c6b0-b645d1c1aad6@canonical.com>
+Date:   Wed, 22 Dec 2021 16:49:16 +0100
 MIME-Version: 1.0
-References: <20211206151811.39271-1-robert.foss@linaro.org> <20211206151811.39271-2-robert.foss@linaro.org>
-In-Reply-To: <20211206151811.39271-2-robert.foss@linaro.org>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Wed, 22 Dec 2021 15:59:44 +0100
-Message-ID: <CAG3jFys1MO461TeWMdasVS0B_ya5NU=5mMomchq_nZ+X+v07SQ@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] media: camss: csiphy: Move to hardcode CSI Clock
- Lane number
-To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
-        bjorn.andersson@linaro.org, mchehab@kernel.org, robh+dt@kernel.org,
-        angelogioacchino.delregno@somainline.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v4 3/4] memory: omap-gpmc: Use a compatible match table
+ when checking for NAND controller
+Content-Language: en-US
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Roger Quadros <rogerq@kernel.org>
+Cc:     tony@atomide.com, robh@kernel.org, kishon@ti.com, nm@ti.com,
+        vigneshr@ti.com, linux-mtd@lists.infradead.org,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20211221131757.2030-1-rogerq@kernel.org>
+ <20211221131757.2030-4-rogerq@kernel.org>
+ <51b8e895-95e1-0024-1457-ec534985c9f0@kernel.org>
+ <20211222151823.77179b74@xps13>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211222151823.77179b74@xps13>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bjorn: The CAMSS changes related to this series have just been applied
-to the media tree, so I think this series is ready to be applied now.
+On 22/12/2021 15:18, Miquel Raynal wrote:
+> Hi Roger,
+> 
+> rogerq@kernel.org wrote on Tue, 21 Dec 2021 22:01:28 +0200:
+> 
+>> Hi Miquel,
+>>
+>> On 21/12/2021 15:17, Roger Quadros wrote:
+>>> As more compatibles can be added to the GPMC NAND controller driver
+>>> use a compatible match table.
+>>>
+>>> Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+>>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>>> ---
+>>>  drivers/memory/omap-gpmc.c                   | 6 +++++-
+>>>  drivers/mtd/nand/raw/omap2.c                 | 5 +----  
+>>
+>> Will need your Ack for this one as well. Thanks :)
+>>
+>>
+>>>  include/linux/platform_data/mtd-nand-omap2.h | 9 ++++++++-
+>>>  3 files changed, 14 insertions(+), 6 deletions(-)  
+>>
+>> cheers,
+>> -roger
+>>
+>>>
+>>> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
+>>> index 624153048182..d19ffc895e5b 100644
+>>> --- a/drivers/memory/omap-gpmc.c
+>>> +++ b/drivers/memory/omap-gpmc.c
+>>> @@ -2091,6 +2091,7 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
+>>>  	u32 val;
+>>>  	struct gpio_desc *waitpin_desc = NULL;
+>>>  	struct gpmc_device *gpmc = platform_get_drvdata(pdev);
+>>> +	bool is_nand = false;
+>>>  
+>>>  	if (of_property_read_u32(child, "reg", &cs) < 0) {
+>>>  		dev_err(&pdev->dev, "%pOF has no 'reg' property\n",
+>>> @@ -2183,7 +2184,10 @@ static int gpmc_probe_generic_child(struct platform_device *pdev,
+>>>  		}
+>>>  	}
+>>>  
+>>> -	if (of_device_is_compatible(child, "ti,omap2-nand")) {
+>>> +	if (of_match_node(omap_nand_ids, child))
+>>> +		is_nand = true;
+>>> +
+>>> +	if (is_nand) {
+> 
+> nitpick: why this intermediate variable?
+> 
 
-https://lore.kernel.org/all/20211206151811.39271-1-robert.foss@linaro.org/
+Indeed, it looks useless. I think it is left-over from previous version.
+I will remove it while applying.
+
+
+Best regards,
+Krzysztof
