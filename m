@@ -2,115 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9090B47D0B6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 12:17:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6030047D0C2
+	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 12:17:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244509AbhLVLQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 06:16:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46264 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244467AbhLVLQu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 06:16:50 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA9D7C061748
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 03:16:49 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id s1so4161572wra.6
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 03:16:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=2Mo32W8JTFCjLZ+EMibViyk9WSjJAZW9YRzpSwd3f5g=;
-        b=b35DmtKSDnjtb6g2XbUSASAX6/7SHGKxQV6uWLwyw6310JQwkUH6R0rej6OFVHPYqt
-         ZlWaRtb/LPwD5OCoNnObBuF1A4D63fPud4aldcdHBKDADvVbaTYiJ9sJWrzoahnnbVYU
-         Y8XzAbXjaOzt95D42cUtf/pE9Q6KbfEdUa+DxqvkzB7MKSw6kGgcQ9pEAvzKrBBCfqbw
-         gAXvD3D4vMOkfGBOl0Rj4gx5Jf3AuheDTAHD81bM2J6XbdJQLxfqu8xhLJMxW1DPaL9g
-         N9cqWvydXYjwxv7xi/eiepDHmO5F1zwGNA8W6TXVwUIIzfOlhUsN8NyF+k1QtC2OkhDB
-         bjow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=2Mo32W8JTFCjLZ+EMibViyk9WSjJAZW9YRzpSwd3f5g=;
-        b=ks/AQoSL3ZBB3xvrLL8lWjgECAvUfMP0xlwW3NcQ+JX9stb1exBs+7U+ARkldYVDAc
-         eRtwpf2yxIJzhIfaDwSGOssolpD2VYaN9o3A9QqubmFMw7WuJHUsclOdxOm7LIvr5N7F
-         6A5xLp24ZomhgBAeDjZjsNtx39g1NaeeUpFmqF+vIu6XNrJI700/8ndgQJg1NE22cvRg
-         BkZD8cRHd8L5Y89sWYCT9Oiq5HlfUdsxaiqGkq7TQd/X3VSl4CibTNiQiU150DqEiVAM
-         2UJkFUFpyBco3L3+XFX+Up8s7rDEjgrBDBoodemSjo48AdwHBecaNrBT++u/UE/2uBlj
-         96jw==
-X-Gm-Message-State: AOAM533yAguJSO7UwXuI+YvPHcxMm2LZRu7v4bjwfvdOjPhEPPyJwvb7
-        bAvtCTt1LkrFLBaVNycSTfz5Bw==
-X-Google-Smtp-Source: ABdhPJzzz4x3+XF/hgP5qqgQREYAHIjOt2datURQjBi/nC8bdYRav/zP4bLMzHZ1FBo2p6vV4L2+9A==
-X-Received: by 2002:a05:6000:181b:: with SMTP id m27mr1705042wrh.43.1640171808427;
-        Wed, 22 Dec 2021 03:16:48 -0800 (PST)
-Received: from google.com ([2.31.167.18])
-        by smtp.gmail.com with ESMTPSA id p23sm1446946wms.3.2021.12.22.03.16.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Dec 2021 03:16:48 -0800 (PST)
-Date:   Wed, 22 Dec 2021 11:16:46 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
-        Courtney Cavin <courtney.cavin@sonymobile.com>
-Subject: Re: [PATCH v3 4/9] backlight: qcom-wled: Fix off-by-one maximum with
- default num_strings
-Message-ID: <YcMJHmpheylD+L3l@google.com>
-References: <20211115203459.1634079-1-marijn.suijten@somainline.org>
- <20211115203459.1634079-5-marijn.suijten@somainline.org>
+        id S244551AbhLVLRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 06:17:39 -0500
+Received: from mout.kundenserver.de ([212.227.126.130]:40609 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244538AbhLVLRf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 06:17:35 -0500
+Received: from mail-wr1-f52.google.com ([209.85.221.52]) by
+ mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1Mzi3l-1mDXm12Pth-00vddY; Wed, 22 Dec 2021 12:17:32 +0100
+Received: by mail-wr1-f52.google.com with SMTP id j18so4215804wrd.2;
+        Wed, 22 Dec 2021 03:17:32 -0800 (PST)
+X-Gm-Message-State: AOAM531vWTHNTzykq4unpDUrfNwuUJ+/nOAAmKTnJ1uadF/vyhcAuVHH
+        RhuLOcWUL/S5AfsnTtruvuIoMug3jpXzbfwSXdc=
+X-Google-Smtp-Source: ABdhPJyaaVKk3ij7jkLGVaEFAO4sePbkYDGdbMYrYwErWCECxFNczxoRpepU5YVttAHlwzlBujezG7fVoMI9BRWHIQU=
+X-Received: by 2002:a5d:6989:: with SMTP id g9mr1764720wru.12.1640171852021;
+ Wed, 22 Dec 2021 03:17:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211115203459.1634079-5-marijn.suijten@somainline.org>
+References: <20211222015244.2464671-1-Mr.Bossman075@gmail.com>
+In-Reply-To: <20211222015244.2464671-1-Mr.Bossman075@gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 22 Dec 2021 12:17:15 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2TujT7u4Y2hOce0h9SyRWuQP9+8wbXhZEzgNp5FSTwSg@mail.gmail.com>
+Message-ID: <CAK8P3a2TujT7u4Y2hOce0h9SyRWuQP9+8wbXhZEzgNp5FSTwSg@mail.gmail.com>
+Subject: Re: [PATCH v6 0/7] dd initial support for the i.MXRTxxxx SoC family
+ starting from i.IMXRT1050 SoC.
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        gregkh <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        SoC Team <soc@kernel.org>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:JSF0KGb40Rsnqn+Ec99D13zUGQFmbby/CsYvqtXFH0U2ucRnHpG
+ fOah2SnCbsQQZ5D4RLIy2JnSaIjR5maVUsfFxaYYl8BV2W2nfmRpprO27BqOqPJUvzcHZSp
+ f8yAOWapaolaUQfuv6wKIB9QaeG609kx9MgYPInFOsptOhTFl/2mC8HAgnELthnkzoPI8kq
+ Ah+iQhM8OkhMNl7wwxOpA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Wi0as2i4V30=:KAiE78GeuH52oUCbNDM5+Z
+ +RGVpN0TuMOpzn2tUl+vksRaTJ9aPfACVN7TUTnEzimoeqh6H2OX+RkryQeyDrCQK6uLlKBgO
+ YIpW0cJuhLY2lseFit2K1icu6IkR1Cmmer17nfz5tnhyS3ABjNF3uCqaI41olK9k1fYEUmUDe
+ damZlhruOP3Z4vw7+O1/+ung+o0h34QNkDLngrKhNRU6WVTuJ9oAP2ms1kfbNHnftf58bKMPW
+ H6aTT+GBTz5V7zp+HNTnmEeDlpHr0Y3GesesEjmd6AVp2AzgOLC4HoqgAHSvqgUQ8ozNQ0jxy
+ jb7hW6bNqankFyD+zehzULqHpY5auhtx/EZDSqGAbaU4tS9bHfJInmdI1J3RhwfbabX5OWHxI
+ lpbaGiuOigUByMi5yhcK/7MRHGLpO2MC0eWeLLlEXRvjxgc/sLP9YPTCuWdJok24hNxSQ9f2T
+ fKAcBpmRzHGgIbwDHRcpf/ZFSS6IWKLAZ16vk88m7wSlVRImfY/uLPSyQLmQmIRJxp1Vc/1BN
+ 1C1M4L8a0djq4YwOPt8gFe0Hg5qR44JPDjEy2Xr21lpNTpf2Oo3sDFpuEr6Wmu8iR265KPFhr
+ y1AYrifgP+1gj/P9l87QYVtqNFeUsDQOP4aOnn6+oOIneLy819ZGz/zrbYI88Wsr8E/6WOiBB
+ CULsl5Zx1rO5oeoGCITn8/FkDuT2yqANECDhCqsl1hw4cOuL1xsEIpXraCF9Kw6GbdVJ9btqN
+ MP1NeQt+sKHqebH1Fijuch0gcPXB2Sx4Gk6tCJyI0wWMF5X94vQVh0S52zpJU6VHMw8KYazMM
+ 1GHmzyOqVFvfmaHPiBid1h1hNIUO+Co96Fbf2VkI6qk1WafIYY=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Nov 2021, Marijn Suijten wrote:
+On Wed, Dec 22, 2021 at 2:52 AM Jesse Taube <mr.bossman075@gmail.com> wrote:
+>
+> This patchset contains:
+> - i.MXRT10xx family infrastructure
+> - i.MXRT1050 pinctrl driver adaption
+> - i.MXRT1050 clock driver adaption
+> - i.MXRT1050 sd-card driver adaption
+> - i.MXRT1050 uart driver adaption
+> - i.MXRT1050-evk basic support
+>
+> The i.MXRTxxxx family that could have support by Linux actually spreads
+> from i.MXRT1020 to i.MXRT1170 with the first one supporting 1 USB OTG &
+> 100M ethernet with a cortex-M7@500Mhz up to the latter with i.MXRT1170
+> with cortex-M7@1Ghz and cortex-M4@400Mhz, 2MB of internal SRAM, 2D GPU,
+> 2x 1Gb and 1x 100Mb ENET. The i.MXRT family is NXP's answer to
+> STM32F7XX, as it uses only simple SDRAM, it gives the chance of a 4 or
+> less layer PCBs. Seeing that these chips are comparable to the
+> STM32F7XXs which have linux ported to them it seems reasonable to add
+> support for them.
 
-> When not specifying num-strings in the DT the default is used, but +1 is
-> added to it which turns WLED3 into 4 and WLED4/5 into 5 strings instead
-> of 3 and 4 respectively, causing out-of-bounds reads and register
-> read/writes.  This +1 exists for a deficiency in the DT parsing code,
-> and is simply omitted entirely - solving this oob issue - by parsing the
-> property separately much like qcom,enabled-strings.
-> 
-> This also enables more stringent checks on the maximum value when
-> qcom,enabled-strings is provided in the DT, by parsing num-strings after
-> enabled-strings to allow it to check against (and in a subsequent patch
-> override) the length of enabled-strings: it is invalid to set
-> num-strings higher than that.
-> The DT currently utilizes it to get around an incorrect fixed read of
-> four elements from that array (has been addressed in a prior patch) by
-> setting a lower num-strings where desired.
-> 
-> Fixes: 93c64f1ea1e8 ("leds: add Qualcomm PM8941 WLED driver")
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> ---
->  drivers/video/backlight/qcom-wled.c | 48 ++++++++++-------------------
->  1 file changed, 16 insertions(+), 32 deletions(-)
+I'm in the process of finalizing the pull requests for 5.16, this came
+up since you
+have soc@kernel.org on Cc, but it looks like you don't have an Ack for the
+clock driver, and I have not heard from Shawn or Sasha about whether they
+want to pick it up in a separate branch or I should pick it up.
 
-Applied, thanks.
+I suggest we leave it for this time then, let's plan for 5.18 instead.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+          Arnd
