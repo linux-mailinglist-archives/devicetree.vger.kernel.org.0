@@ -2,115 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B4BF47E2B2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 12:54:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14AB247E2F4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 13:08:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348069AbhLWLyL convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 23 Dec 2021 06:54:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39312 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348053AbhLWLyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 06:54:10 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AE49C061759;
-        Thu, 23 Dec 2021 03:54:10 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1348143AbhLWMIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 07:08:54 -0500
+Received: from polaris.svanheule.net ([84.16.241.116]:41712 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348135AbhLWMIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 07:08:51 -0500
+Received: from terra.local.svanheule.net (unknown [IPv6:2a02:a03f:eafe:c901:29a7:866a:cac1:4c27])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9DA4661E5C;
-        Thu, 23 Dec 2021 11:54:09 +0000 (UTC)
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtp.kernel.org (Postfix) with ESMTPSA id 50A78C36AE9;
-        Thu, 23 Dec 2021 11:54:05 +0000 (UTC)
-Date:   Thu, 23 Dec 2021 11:59:40 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cai Huoqing <cai.huoqing@linux.dev>
-Cc:     haibo.chen@nxp.com, robh+dt@kernel.org, lars@metafoo.de,
-        linux-iio@vger.kernel.org, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, shawnguo@kernel.org, festevam@gmail.com
-Subject: Re: [PATCH 1/2] MAINTAINERS: add imx7d/imx6sx/imx6ul/imx8qxp and
- vf610 adc maintainer
-Message-ID: <20211223115940.10074064@jic23-huawei>
-In-Reply-To: <20211221131124.GA23836@chq-T47>
-References: <1640073000-32629-1-git-send-email-haibo.chen@nxp.com>
-        <20211221131124.GA23836@chq-T47>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id D357A2866B1;
+        Thu, 23 Dec 2021 13:08:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1640261329;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Hl6ypLPIKtG4YO1pAlD2rvC3FP6Mfp96O+5pKt7o0eI=;
+        b=prG+DHqSQYtmeS49JJutfglTKW7hOecvoXSaJkX7o+8Deq+xQPSCkvqDEQ846U64S3aQhh
+        UAyuogqW7vnN9U2FD6BHCOCcKP1Ai61ICLZSNDxyUXtGeTa/wrhTGDJbSYzT3SMVCeYfcq
+        xxzsDW9tHxI0CYWCN1YFIFB952hlXyyv17gQ1ppssTzMap4TVBzlPYpBrPtbM0M/pdNRET
+        UYt9uIGlbVNPcjj79WITi/FJ5q9XcA8KkPAPC5nHb14gEMVJlH0dnQWKrCaBs78Q4yy/q9
+        P2HsZHkdeeWX+rf0/KmHVqr4AZxh8uT1VfMD2gP4TMWiwB8OlMJIY2I7f2sqSw==
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Bert Vermeulen <bert@biot.com>,
+        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org,
+        Sander Vanheule <sander@svanheule.net>
+Subject: [RFC PATCH v1 0/4] Rework realtek-rtl IRQ driver
+Date:   Thu, 23 Dec 2021 13:08:30 +0100
+Message-Id: <cover.1640261161.git.sander@svanheule.net>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 21 Dec 2021 21:11:24 +0800
-Cai Huoqing <cai.huoqing@linux.dev> wrote:
+After seeing some use and with more devices tested, the current implementation
+for the Realtek SoC interrupt controller was found to contain a few flaws.
 
-> On 21 12月 21 15:49:59, haibo.chen@nxp.com wrote:
-> > From: Haibo Chen <haibo.chen@nxp.com>
-> > 
-> > Add myself as imx7d/imx6sx/imx6ul/imx8qxp and vf610 adc maintainer.
-> > 
-> > Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> > 
-> > ---
-> > 
-> > First, thanks Cai Huoqing upstream the i.MX 8QXP ADC driver, really appreciate!
-> > 
-> > For some unknown issue, I miss all imx8qxp adc related mail threads,
-> > now I actively maintain all i.MX ADC downstream drivers, so add myself
-> > here as maintainer, and make sure I can be cc/to when there is any new patch.
-> > 
-> > ---
-> >  MAINTAINERS | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index c87a3f5e302a..210bded08641 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -13792,11 +13792,23 @@ F:	drivers/gpu/drm/imx/dcss/
-> >  
-> >  NXP i.MX 8QXP ADC DRIVER
-> >  M:	Cai Huoqing <cai.huoqing@linux.dev>
-> > +M:	Haibo Chen <haibo.chen@nxp.com>
-> > +L:	linux-imx@nxp.com  
-> This driver is based on the work of Haibo Chen <haibo.chen@nxp.com>,
-> it's ok to add this, here.
-> 
-> Reviewed-by: Cai Huoqing <cai.huoqing@linux.dev>
+The driver requires the following fixes:
+- irq_domain_ops::map should map the virq, not the hwirq
+- routing has an off-by-one error. Values (1..6) correspond to MIPS CAUSEF(2..7)
 
-Series applied to the togreg branch of iio.git and initially pushed
-out as testing as other stuff on that branch will benefit from 0-day
-poking at it.
+The following improvements should also be made:
+- Use N real cascaded interrupts with an interrupt-specific mask of child irq lines.
+  Otherwise a high-priority interrupt may cause a low-priority interrupt to be
+  handled first.
+- Get rid of custom interrupt-map interpretation, replace by realtek,interrupt-routing.
 
-Thanks,
+These patches are some initial changes, and since is this my first real work on
+an interrupt driver, I'm submitting this as an RFC first. Please see the notes
+on the patches for some extra remarks.
 
-Jonathan
+I've also currently opted to stay with cascased interrupts, as I'm not
+sure if (and how) this should be implemented as a hierarchical
+controller.
 
-> 
-> Thanks,
-> Cai
-> >  L:	linux-iio@vger.kernel.org
-> >  S:	Maintained
-> >  F:	Documentation/devicetree/bindings/iio/adc/nxp,imx8qxp-adc.yaml
-> >  F:	drivers/iio/adc/imx8qxp-adc.c
-> >  
-> > +NXP i.MX 7D/6SX/6UL AND VF610 ADC DRIVER
-> > +M:	Haibo Chen <haibo.chen@nxp.com>
-> > +L:	linux-iio@vger.kernel.org
-> > +L:	linux-imx@nxp.com
-> > +S:	Maintained
-> > +F:	Documentation/devicetree/bindings/iio/adc/fsl,imx7d-adc.yaml
-> > +F:	Documentation/devicetree/bindings/iio/adc/fsl,vf610-adc.yaml
-> > +F:	drivers/iio/adc/imx7d_adc.c
-> > +F:	drivers/iio/adc/vf610_adc.c
-> > +
-> >  NXP PF8100/PF8121A/PF8200 PMIC REGULATOR DEVICE DRIVER
-> >  M:	Jagan Teki <jagan@amarulasolutions.com>
-> >  S:	Maintained
-> > -- 
-> > 2.25.1
-> >   
+Best,
+Sander
+
+Sander Vanheule (4):
+  irqchip: realtek-rtl: map control data to virq
+  irqchip: realtek-rtl: use per-parent irq handling
+  dt-bindings: interrupt-controller: realtek,rtl-intc: replace irq
+    mapping
+  irqchip: realtek-rtl: replace custom interrupt-map
+
+ .../realtek,rtl-intc.yaml                     |  49 +++--
+ drivers/irqchip/irq-realtek-rtl.c             | 202 +++++++++++-------
+ 2 files changed, 163 insertions(+), 88 deletions(-)
+
+-- 
+2.33.1
 
