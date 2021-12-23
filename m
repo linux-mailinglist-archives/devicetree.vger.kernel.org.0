@@ -2,171 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89C5847E2F9
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 13:09:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CB2A47E313
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 13:17:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348155AbhLWMJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 07:09:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42662 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348145AbhLWMI4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 07:08:56 -0500
-Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB76FC06175B
-        for <devicetree@vger.kernel.org>; Thu, 23 Dec 2021 04:08:52 -0800 (PST)
-Received: from terra.local.svanheule.net (unknown [IPv6:2a02:a03f:eafe:c901:29a7:866a:cac1:4c27])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id E4C292866B5;
-        Thu, 23 Dec 2021 13:08:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1640261331;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=1em+x8emmOQHJWrevz6ZnKRMz4D+64SPUIqqFXJFNjw=;
-        b=hdHdmMl+XnxcLO+RcCPLd5mCF4gZdJHlaNZQq+zxdXjbodOB47Jq3jGL09JkK6kx2lVib2
-        y/moD9fDm1bXChCRSKHKKLvB0r4kSDlc+Ld9qjkefIlVzCBZUogxyUOGbItHXYW40co+9T
-        txisnMzyrxfcOG2v230K03+6h0DtXGkVj7jXobSOCIfDvBeEehfNxAjt+u3qnN4a3sBwWH
-        ruVPzlEZOVJfXCA+YwgUnpANhLIEUnB4ygPFE4T0l7uD0I4NZocxO2akRu6cq5gB/eDL0V
-        06CNgi8590l5GvcgHH7aiHqPb4u6PZVv8EtF50h75EwAe0WTxOi431GMc3Mk8Q==
-From:   Sander Vanheule <sander@svanheule.net>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        Bert Vermeulen <bert@biot.com>,
-        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org,
-        Sander Vanheule <sander@svanheule.net>
-Subject: [RFC PATCH v1 4/4] irqchip: realtek-rtl: replace custom interrupt-map
-Date:   Thu, 23 Dec 2021 13:08:34 +0100
-Message-Id: <97c90aa00c1bf31152585d204636a569bd86d745.1640261161.git.sander@svanheule.net>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <cover.1640261161.git.sander@svanheule.net>
-References: <cover.1640261161.git.sander@svanheule.net>
+        id S1348179AbhLWMRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 07:17:32 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:36574 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243479AbhLWMRc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 07:17:32 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BNCHQmt018198;
+        Thu, 23 Dec 2021 06:17:26 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1640261846;
+        bh=tRH4EuorSdryfqX3zogUzAkJHn5H2PXs2AZBXRzWybg=;
+        h=From:To:CC:Subject:Date;
+        b=yPZwBCc+BufVPKrYglQn07t4BeyUvSQtdmZzlvOkcuI5yvxU+2mVEZ2xluxy58bP1
+         bdXBmROlUfpnBXwVQ7luTZB3DkvpSB9OWXaxbkcAUEcs2Jw5dAyWM8bpzDd4zW0a3Y
+         +5eMQOD54R0TUVJ4Hg++aLm+9DOxykADRLGJ84lA=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BNCHQ8O014797
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 23 Dec 2021 06:17:26 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 23
+ Dec 2021 06:17:25 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 23 Dec 2021 06:17:25 -0600
+Received: from uda0132425.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BNCHN6B047704;
+        Thu, 23 Dec 2021 06:17:23 -0600
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH-next 0/2] arm64: dts: ti: Cleanup aliases
+Date:   Thu, 23 Dec 2021 17:46:48 +0530
+Message-ID: <20211223121650.26868-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Dat:    Thu, 23 Dec 2021 17:41:24 +0530
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To match the updated realtek,rtl-intc devicetree binding, replace the
-interrupt routing parsing.
+Move aliases to board dts and trim the list to interfaces that are
+enabled.
+Alias main_uart8 to serial2 so as to use ttyS2 as console on all K3 SoCs
 
-Signed-off-by: Sander Vanheule <sander@svanheule.net>
----
- drivers/irqchip/irq-realtek-rtl.c | 77 +++++++++++++++----------------
- 1 file changed, 36 insertions(+), 41 deletions(-)
+Aswath Govindraju (2):
+  arm64: dts: ti: k3-j721s2: Move aliases to board dts
+  arm64: dts: ti: k3-j721s2-common-proc-board: Alias console uart to
+    serial2
 
-diff --git a/drivers/irqchip/irq-realtek-rtl.c b/drivers/irqchip/irq-realtek-rtl.c
-index 71366f1cf721..d80fbc5e651b 100644
---- a/drivers/irqchip/irq-realtek-rtl.c
-+++ b/drivers/irqchip/irq-realtek-rtl.c
-@@ -160,55 +160,50 @@ static int __init setup_parent_interrupt(struct realtek_ictl_priority *prio_ctl,
- 	return request_irq(parent, realtek_irq_dispatch, flags, "rtl-intc", prio_ctl);
- }
- 
--static int __init map_interrupts(struct device_node *node)
-+static int __init route_interrupts(struct device_node *node)
- {
- 	struct realtek_ictl_priority *prio_ctl;
--	struct device_node *cpu_ictl;
--	const __be32 *imap;
--	u32 imaplen, soc_int, priority, tmp;
--	int ret, i;
--
--	ret = of_property_read_u32(node, "#address-cells", &tmp);
--	if (ret || tmp)
--		return -EINVAL;
--
--	imap = of_get_property(node, "interrupt-map", &imaplen);
--	if (!imap || imaplen % 3)
--		return -EINVAL;
--
--	for (i = 0; i < imaplen; i += 3 * sizeof(u32)) {
--		soc_int = be32_to_cpup(imap);
--		if (soc_int > 31)
--			return -EINVAL;
-+	unsigned int num_prio, parent_idx;
-+	const __be32 *routing_table;
-+	int table_len;
-+	u32 hw_irq;
-+	int ret;
- 
--		cpu_ictl = of_find_node_by_phandle(be32_to_cpup(imap + 1));
--		if (!cpu_ictl)
--			return -EINVAL;
--		ret = of_property_read_u32(cpu_ictl, "#interrupt-cells", &tmp);
--		if (ret || tmp != 1)
--			return -EINVAL;
--		of_node_put(cpu_ictl);
-+	num_prio = of_irq_count(node);
-+	if (num_prio > RTL_ICTL_NUM_PRIO) {
-+		pr_err("too many parent interrupts\n");
-+		return -ENODEV;
-+	}
- 
--		/* Map priority (1..6) to MIPS CPU interrupt (2..7) */
--		priority = be32_to_cpup(imap + 2);
--		if (priority > 6 || priority < 1)
--			return -EINVAL;
-+	for (parent_idx = 0; parent_idx < num_prio; parent_idx++) {
-+		prio_ctl = &priorities[parent_idx];
- 
--		prio_ctl = &priorities[priority - 1];
-+		ret = irq_of_parse_and_map(node, parent_idx);
-+		if (ret < 0)
-+			return ret;
- 
--		if (!prio_ctl->routing_value) {
--			ret = setup_parent_interrupt(prio_ctl, priority + 1);
--			if (ret)
--				return ret;
-+		ret = setup_parent_interrupt(prio_ctl, ret);
-+		if (ret)
-+			return ret;
- 
--			prio_ctl->routing_value = priority;
--		}
-+		prio_ctl->routing_value = parent_idx + 1;
-+	}
- 
--		set_routing(prio_ctl, soc_int);
-+	routing_table = of_get_property(node, "realtek,interrupt-routing", &table_len);
-+	if (!routing_table)
-+		return -ENOENT;
- 
--		imap += 3;
--	}
-+	for (table_len /= sizeof(*routing_table); table_len >= 2; table_len -= 2) {
-+		hw_irq = be32_to_cpup(routing_table++);
-+		if (hw_irq > 31)
-+			return -EINVAL;
- 
-+		parent_idx = be32_to_cpup(routing_table++);
-+		if (parent_idx >= num_prio)
-+			return -EINVAL;
-+
-+		set_routing(&priorities[parent_idx], hw_irq);
-+	}
- 
- 	return 0;
- }
-@@ -231,9 +226,9 @@ static int __init realtek_rtl_of_init(struct device_node *node, struct device_no
- 
- 	realtek_ictl_domain = irq_domain_add_simple(node, 32, 0, &irq_domain_ops, NULL);
- 
--	ret = map_interrupts(node);
-+	ret = route_interrupts(node);
- 	if (ret) {
--		pr_err("invalid interrupt map\n");
-+		pr_err("invalid interrupt routing\n");
- 		return ret;
- 	}
- 
+ .../dts/ti/k3-j721s2-common-proc-board.dts    | 14 ++++++++++--
+ arch/arm64/boot/dts/ti/k3-j721s2.dtsi         | 22 -------------------
+ 2 files changed, 12 insertions(+), 24 deletions(-)
+
 -- 
-2.33.1
+2.34.1
 
