@@ -2,82 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F41347DC76
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 02:01:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FF9E47DD9D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 03:09:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240206AbhLWBBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 20:01:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36154 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238387AbhLWBA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 20:00:58 -0500
-Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E002C06173F
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 17:00:58 -0800 (PST)
-Received: by mail-yb1-xb41.google.com with SMTP id v138so11507941ybb.8
-        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 17:00:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=fcGOhpP2fh4L0P54itv7DpzugvdwboeZoteLAX3ou8w=;
-        b=C/VTC7k1eMXdWuDsEAO2zcNNxMEZoEFBpSWVUkf9fKBMHIwTQfNrlYpqVhB2sSylRI
-         IifuRmd/eyS00tHTFL5tzIouPJlHU8gwo2TUeYWiaNMn1lFBXtHmxYLwu6833y5Nt/ES
-         r6MptfK7y8AblslJG+SxlajRupKznVfr7T1yaR0+FizbkdA9lpMfNtdPY/KAPc1y00SZ
-         OYoY0USZlqNMys0OzACiVgnngpWzw8bVYEq6F6dul887POylh92VtHGDta4t3zgwuExk
-         zxPqkwvyLeQDEF1lbIYfcwPqRmnj+PcBwai0GELMIBr2rFF8MKNEshRUhHO4sROwAa+D
-         WRRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=fcGOhpP2fh4L0P54itv7DpzugvdwboeZoteLAX3ou8w=;
-        b=Jd1MI4C6YEK8aA1CsgOnx1plRZi+BsH8Ke8M/93Pjl1SgPEulYOZulf0DvRgPhp0x1
-         m5VCsHVH20MotOKPWRJCOZIRpTSQn/8uDNRT6E8CSHmTkvAU95nTznZb27MUx/ZPUoB2
-         SUnmEKD9d/p0FznbZIjnfxzK2GIJXwX6mfjptyjFjSvEZRjtjOTrwI9b+WZ14lBG47YZ
-         RJiXwiXZWHiqOXdgDh0pwyj7XwqY+/jGZ/XU0rLn+Bt5lbBJH/cJ0FH5VZpBIkHuw7At
-         UC1ovHWKL6LC9TBy6MdXedp1phLsq7q0H3Ac/xra5N6hTkewsMRxNSd/c4fv5c5wBaUc
-         KZXw==
-X-Gm-Message-State: AOAM533G6Sm8SULoG0PNif5Ij4m98HdXBi7BEERYOtpedo5CZlv8ICId
-        IPok6ruHsFpD7yJwXVnfa7FRjH9cVUlUFQemSIc=
-X-Google-Smtp-Source: ABdhPJx/xaheAiJND0UcQTbnrIqG0bXm9gNTnd23XVHUleJm9bVpgYXjzn4jAaQf5cH9C3W4xQESQ86gvoaefDOugTc=
-X-Received: by 2002:a25:dc54:: with SMTP id y81mr273299ybe.183.1640221257312;
- Wed, 22 Dec 2021 17:00:57 -0800 (PST)
+        id S242636AbhLWCJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 21:09:40 -0500
+Received: from szxga08-in.huawei.com ([45.249.212.255]:30096 "EHLO
+        szxga08-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229788AbhLWCJk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 21:09:40 -0500
+Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.55])
+        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4JKD844RkLz1DK6h;
+        Thu, 23 Dec 2021 10:06:28 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 23 Dec 2021 10:09:38 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 23 Dec 2021 10:09:37 +0800
+Subject: Re: [PATCH v18 01/17] x86/setup: Move CRASH_ALIGN and
+ CRASH_ADDR_{LOW|HIGH}_MAX to asm/kexec.h
+To:     Borislav Petkov <bp@alien8.de>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, <x86@kernel.org>,
+        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
+        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        "John Donnelly" <John.p.donnelly@oracle.com>
+References: <20211222130820.1754-1-thunder.leizhen@huawei.com>
+ <20211222130820.1754-2-thunder.leizhen@huawei.com> <YcON5Y7DKitiQhHu@zn.tnic>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <c7b8ed2f-7280-faf9-66e8-ad329dbc10f6@huawei.com>
+Date:   Thu, 23 Dec 2021 10:09:25 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Received: by 2002:a05:7110:5542:b0:11c:1b85:d39e with HTTP; Wed, 22 Dec 2021
- 17:00:56 -0800 (PST)
-Reply-To: aishagaddafi5788@gmail.com
-From:   "Mrs. Aisha Gaddafi" <doctorpowel@gmail.com>
-Date:   Thu, 23 Dec 2021 02:00:56 +0100
-Message-ID: <CAM6TyW7HyJTA0r_p51icB2YrWjqVQ0KfcxAmaUrMaRrQSFQoEQ@mail.gmail.com>
-Subject: Hello!!
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YcON5Y7DKitiQhHu@zn.tnic>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Friend,
 
-I came across your e-mail contact prior a private search while in need
-of your assistance. I am Aisha Al-Qaddafi, the only daughter to Former
-President of Libya Col. Muammar Al-Qaddafi. Am a Widow with Children.
 
-I have investment funds worth Twenty Seven Million Five Hundred
-Thousand United State Dollar ($27.500.000.00 ) and i need a trusted
-investment Manager/Partner because of my current refugee status,
-however, I am interested in you for investment project assistance in
-your country, may be from there, we can build business relationship in
-the nearest future.
+On 2021/12/23 4:43, Borislav Petkov wrote:
+> On Wed, Dec 22, 2021 at 09:08:04PM +0800, Zhen Lei wrote:
+>> From: Chen Zhou <chenzhou10@huawei.com>
+>>
+>> We want to make function reserve_crashkernel[_low](), which is implemented
+>   ^^
+> 
+> Please use passive voice in your commit message: no "we" or "I", etc,
+> and describe your changes in imperative mood.
 
-I am willing to negotiate investment/business profit sharing ratio
-with you based on the future investment earning profits.
+My bad language habits. I've made this mistake several times.
 
-If you are willing to handle this project on my behalf, kindly reply
-urgent to enable me provide you more information about the investment
-funds.
+> 
+> Also, pls read section "2) Describe your changes" in
+> Documentation/process/submitting-patches.rst for more details.
+> 
+> Bottom line is: personal pronouns are ambiguous in text, especially with
+> so many parties/companies/etc developing the kernel so let's avoid them
+> please.
 
-Your Urgent Reply Will Be Appreciated
+OK, I'll check the description of the other patches.
 
-Best Regards
-Mrs Aisha Al-Qaddafi
-Email: (  aishagaddafi5788@gmail.com  ).
+> 
+>> by X86, available to other architectures. It references macro CRASH_ALIGN
+> 
+> "x86"
+
+OK
+
+> 
+>> and will be moved to public crash_core.c. But the defined values of
+>> CRASH_ALIGN may be different in different architectures. So moving the
+>> definition of CRASH_ALIGN to asm/kexec.h is a good choice.
+>>
+>> The reason for moving CRASH_ADDR_{LOW|HIGH}_MAX is the same as above.
+> 
+> This commit message needs to say something along the lines of:
+> 
+> "Move CRASH_ALIGN and ... to the arch-specific header in preparation
+> of making reserve_crashkernel[_low]() generic, used by other
+> architectures."
+
+OK, I will use this one, thanks.
+
+By the way, patch 0004-0006 were written based on your suggestion. Can you
+take a moment to review it? I think I forgot to add "Suggested-by".
+
+> 
+> or so.
+> 
