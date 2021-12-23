@@ -2,104 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92BCF47E86A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 20:39:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 879D247E8A5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 21:13:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350013AbhLWTjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 14:39:37 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:34698 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244778AbhLWTje (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 14:39:34 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 9C77ECE2178;
-        Thu, 23 Dec 2021 19:39:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE51CC36AE9;
-        Thu, 23 Dec 2021 19:39:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640288370;
-        bh=k9GLyyBuOQ9Sm/cdmFUcfY4OryXSOQK/ki79q1v2xQs=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=teCi81Fa9JLCqnabKNsg/PrAlHemns/yU09FMCuiPyVEoc4luFHDOqy6qbNfnGHKJ
-         ZoJr7MZzFZWiYLXcmmHGy/KRNQEXHPE/WMkuW0nld4DkxvbM3/qWP54lK5IfDlK/vL
-         ali+mRB4ark07IqM5aZvCSkqogySVXBe2AQC0WSqWgVZOiLqZTfn2TFPVZg6amuIeV
-         VVCikWprG9dLQluQVCfebfusXBJN4At8jeoCvdDrseJoeGgAedTXkJZLx+6Irxd129
-         TPJIfMdaZUIDz+QQuNXK1Rl3d7H8pQnjGHoy6a4cuQ0KhvYPODYq0g1TiD9oTgMlEG
-         LHKBL9FuYlndg==
-From:   Mark Brown <broonie@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Vincent Knecht <vincent.knecht@mailoo.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Andy Gross <agross@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        phone-devel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        ~postmarketos/upstreaming@lists.sr.ht
-In-Reply-To: <20211214142049.20422-1-stephan@gerhold.net>
-References: <20211214142049.20422-1-stephan@gerhold.net>
-Subject: Re: [PATCH 0/4] ASoC: qcom: Parse "pin-switches" and "widgets" from DT
-Message-Id: <164028836762.13551.16534248024583184241.b4-ty@kernel.org>
-Date:   Thu, 23 Dec 2021 19:39:27 +0000
+        id S1350220AbhLWUNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 15:13:16 -0500
+Received: from relay033.a.hostedemail.com ([64.99.140.33]:57442 "EHLO
+        relay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233073AbhLWUNP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 15:13:15 -0500
+Received: from omf16.hostedemail.com (a10.router.float.18 [10.200.18.1])
+        by unirelay11.hostedemail.com (Postfix) with ESMTP id EB32A801BB;
+        Thu, 23 Dec 2021 20:13:12 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf16.hostedemail.com (Postfix) with ESMTPA id 22B9920018;
+        Thu, 23 Dec 2021 20:13:07 +0000 (UTC)
+Message-ID: <02c71d9fe95f72c5aa5a01adadda8fb7e756fae1.camel@perches.com>
+Subject: Re: [PATCH v6 2/2] Driver for ON Semi AR0521 camera sensor
+From:   Joe Perches <joe@perches.com>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Krzysztof =?UTF-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>
+Date:   Thu, 23 Dec 2021 12:13:10 -0800
+In-Reply-To: <20211223184856.v34ecibwzepahsju@uno.localdomain>
+References: <m3ee63hkuu.fsf@t19.piap.pl> <m35yrfhkaf.fsf@t19.piap.pl>
+         <cee1bbe6c8dda1c79ba19f7bbf68fc1d74558cae.camel@perches.com>
+         <20211223184856.v34ecibwzepahsju@uno.localdomain>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.40.4-1ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.29
+X-Stat-Signature: ehpk47q155tcy3dg1zb1njgji99ohwrb
+X-Rspamd-Server: rspamout05
+X-Rspamd-Queue-Id: 22B9920018
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX18saZhjlvDXBc4d99IBoWG3sawjnxcJ5v8=
+X-HE-Tag: 1640290387-824412
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Dec 2021 15:20:45 +0100, Stephan Gerhold wrote:
-> Some sound card setups might require extra pin switches to allow
-> turning off certain audio components. simple-card supports this
-> already using the "pin-switches" and "widgets" device tree property.
-> This series makes it possible to use the same properties for the Qcom
-> sound cards.
+On Thu, 2021-12-23 at 19:48 +0100, Jacopo Mondi wrote:
+> The media subsystem requires to validate patches with
 > 
-> To implement that, the function that parses the "pin-switches" property
-> in simple-card-utils.c is first moved into the ASoC core. Then two
-> simple function calls are added to the common Qcom sound card DT parser.
-> Finally there is a small patch for the msm8916-wcd-analog codec to make
-> it possible to model sound card setups used in some MSM8916 smartphones.
-> (See PATCH 2/4 for an explanation of some real example use cases.)
+>         ./scripts/checkpatch.pl --strict --max-line-length=80
 > 
-> [...]
+> We longly debated this and I believe it's now generally accepted to go
+> over 80 when it makes sense, but not regularly span to 120 cols like
+> in the previous version.
 
-Applied to
+Where is this documented and do you have a link to the debate?
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+The archive for the i2c mailing list doesn't show much debate:
 
-Thanks!
+https://lore.kernel.org/linux-i2c/?q=%2280+columns%22
+https://lore.kernel.org/linux-i2c/?q=%22line+length%22
 
-[1/4] ASoC: core: Add snd_soc_of_parse_pin_switches() from simple-card-utils
-      commit: 3d4641a42ccf1593b3f3a474ee7541727acbb8e0
-[2/4] ASoC: dt-bindings: qcom: sm8250: Document "pin-switches" and "widgets"
-      commit: 37a49da9a7d5ac1f7128000de42ff222da46ba7a
-[3/4] ASoC: qcom: common: Parse "pin-switches" and "widgets" from DT
-      commit: 2623e66de125ba153e41be6a0b8af24cae8aa436
-[4/4] ASoC: msm8916-wcd-analog: Use separate outputs for HPH_L/HPH_R
-      commit: 319a05330f4ff3f951f9c42094958c6cdef393b3
+Perhaps there should be a MAINTAINERS P: entry for this requirement.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+From MAINTAINERS:
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+	P: Subsystem Profile document for more details submitting
+	   patches to the given subsystem. This is either an in-tree file,
+	   or a URI. See Documentation/maintainer/maintainer-entry-profile.rst
+	   for details.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
