@@ -2,98 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4F5D47E06F
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 09:32:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1A3D47E0A0
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 09:55:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347210AbhLWIcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 03:32:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51088 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229785AbhLWIcE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 03:32:04 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0B34C061401;
-        Thu, 23 Dec 2021 00:32:03 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id bg2-20020a05600c3c8200b0034565c2be15so5248520wmb.0;
-        Thu, 23 Dec 2021 00:32:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=aCIN5UEkhZHfGa17tseQv9FnjRthtppZcJKFcClKQv8=;
-        b=lDlyK9/aN5B7LV/uo5bqDLESmVRwh4eJlHl34hVoTAns1peuvgodKp3s7yZIKw/wuf
-         QVMt/5NIMoqcJL/M8drPVYEv0aOnY3+d2EppmBk5v6e4sPlH7lUw/HqLkTkZ9TbcI7IB
-         MvgOlWPluR3MQNVsyTfbmFpk1e+umBxTDanEBBP0esxtKQy/erCMoAFDq2enhpIXuh8/
-         vXsVumldxNzYnwUfh21zQLIqnf4HN/RuEb4lKIx24BW3ysdZGZxHXKTTi6qTlmkTSxkf
-         Ff8T1ZxpKlwL6yXUhRCZzmWz4Fb6Tx8Iv+hasLIdE5+Zyt0aiH0jLUE+imKVtzcGhxum
-         CokQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=aCIN5UEkhZHfGa17tseQv9FnjRthtppZcJKFcClKQv8=;
-        b=lhXZ1uD1PkUbfCDnozq5ORC8UsjIB4W0YUfTw5I0IvN8xgpl6RNex7GgovwXu+HXhi
-         CY4NARGdVkNAdFpGzSLQTx5nkNCliW4ZqSpMS0GMvSiVzUprK5+T5ZMYwdedtN3bfeHg
-         chb4PEsnmmQ0ALVZSB3LXylZ2zrHZBlm9ukJI91YoB8OyOFDj+Rt1IJ6RqEHeaHXp3JF
-         XuILUJsoWndId0873bwcGDgukfeyugWyxlw3CpH9N/UiHOLqYU3EYJ/sms5fdpPk5f4M
-         khbadk2XJRonySqoS0ok5zatLNZEbcspnYn/x2lst2z0LO0Y2D63Gz0TgH1BTQHk09RV
-         R4cg==
-X-Gm-Message-State: AOAM532/MMhJPyFLNzuzW8kQJcC0AoU99O49tfTw5wEGy0h1O4eKoDLt
-        Q0faj+gvev8JP6n2QrdH6PuZMhAaJTQUbg==
-X-Google-Smtp-Source: ABdhPJxE1BSyW50MmY1o26qz0DfvyUqNaXC6qBKQOhwW75vXiRYlN97LVqr8ILDPqN2prLe/dkeuNw==
-X-Received: by 2002:a1c:1906:: with SMTP id 6mr841291wmz.19.1640248322419;
-        Thu, 23 Dec 2021 00:32:02 -0800 (PST)
-Received: from dell5510.arch.suse.de (gw1.ms-free.net. [185.243.124.10])
-        by smtp.gmail.com with ESMTPSA id p21sm4038277wmq.20.2021.12.23.00.32.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Dec 2021 00:32:02 -0800 (PST)
-From:   Petr Vorel <petr.vorel@gmail.com>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Petr Vorel <petr.vorel@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8996: SoC specific compatible strings for qcom-sdhci
-Date:   Thu, 23 Dec 2021 09:31:53 +0100
-Message-Id: <20211223083153.22435-3-petr.vorel@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211223083153.22435-1-petr.vorel@gmail.com>
-References: <20211223083153.22435-1-petr.vorel@gmail.com>
+        id S239217AbhLWIzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 03:55:02 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:60530 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229563AbhLWIzC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 03:55:02 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BN8svLR012320;
+        Thu, 23 Dec 2021 02:54:57 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1640249697;
+        bh=MAexO+PYsxzMl0a2eYUCxmbuJwH0ZBBPTo7IPT6ob0A=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=kjzRQgQvaq68HQlxsT8cJkK76LVHVVnCK/ypVKuFRnHWwd1KzFUoOaPi5HOu+MP9v
+         OvJ8z+0AKEPuCl9vt7vNZCAfnHyy3HF3FkmgMPxTJJ04KsPcsY/uxwnMNpEIarCJrU
+         5aIVcxxpmG4YnFObSdAlpmxo8FvVI3vM7lijflF4=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BN8svbY113123
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 23 Dec 2021 02:54:57 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 23
+ Dec 2021 02:54:56 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 23 Dec 2021 02:54:57 -0600
+Received: from uda0132425 (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BN8ssqJ076776;
+        Thu, 23 Dec 2021 02:54:54 -0600
+Date:   Thu, 23 Dec 2021 14:24:53 +0530
+From:   Vignesh R <vigneshr@ti.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v3 0/5] J721S2: Add initial support
+Message-ID: <20211223085453.GD7862@uda0132425>
+References: <20211207080904.14324-1-a-govindraju@ti.com>
+ <163955230562.15251.10921015972649910083.b4-ty@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="J5MfuwkIyy7RmF4Q"
+Content-Disposition: inline
+In-Reply-To: <163955230562.15251.10921015972649910083.b4-ty@ti.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+--J5MfuwkIyy7RmF4Q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 91bc974aeb0a..01d914221a95 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -2693,7 +2693,7 @@ hsusb_phy2: phy@7412000 {
- 		};
- 
- 		sdhc1: sdhci@7464900 {
--			compatible = "qcom,sdhci-msm-v4";
-+			compatible = "qcom,msm8996-sdhci", "qcom,sdhci-msm-v4";
- 			reg = <0x07464900 0x11c>, <0x07464000 0x800>;
- 			reg-names = "hc_mem", "core_mem";
- 
-@@ -2716,7 +2716,7 @@ sdhc1: sdhci@7464900 {
- 		};
- 
- 		sdhc2: sdhci@74a4900 {
--			compatible = "qcom,sdhci-msm-v4";
-+			compatible = "qcom,msm8996-sdhci", "qcom,sdhci-msm-v4";
- 			reg = <0x074a4900 0x314>, <0x074a4000 0x800>;
- 			reg-names = "hc_mem", "core_mem";
- 
--- 
-2.34.1
+On Wed, Dec 15, 2021 at 02:08:04PM +0530, Vignesh Raghavendra wrote:
+> Hi Aswath Govindraju,
+> =20
+> On Tue, 7 Dec 2021 13:38:59 +0530, Aswath Govindraju wrote:
+> > The J721S2 SoC belongs to the K3 Multicore SoC architecture platform,
+> > providing advanced system integration in automotive ADAS applications a=
+nd
+> > industrial applications requiring AI at the network edge. This SoC exte=
+nds
+> > the Jacinto 7 family of SoCs with focus on lowering system costs and po=
+wer
+> > while providing interfaces, memory architecture and compute performance=
+ for
+> > single and multi-sensor applications.
+> >=20
+> > [...]
+> =20
+> I have applied the following to branch ti-k3-dts-next on [1].
+> Thank you!
+> =20
+> [1/5] dt-bindings: arm: ti: Add bindings for J721s2 SoC
+>       commit: 6b1caf4dea3e0a961b7a11cff6757ff74c1c34ea
+> [2/5] dt-bindings: pinctrl: k3: Introduce pinmux definitions for J721S2
+>       commit: beba81faad86fc2bad567b1c029d6a000a43ca78
+> [3/5] arm64: dts: ti: Add initial support for J721S2 SoC
+>       commit: b8545f9d3a5426a5f76814c8aaebc5cb46a3213a
+> [4/5] arm64: dts: ti: Add initial support for J721S2 System on Module
+>       commit: d502f852d22af1ca33e7a2fedd7426831f6dbaef
+> [5/5] arch: arm64: ti: Add support J721S2 Common Processor Board
+>       commit: effb32e931dd4feb8aa3cee7b5b4ddda43c8b701
+> =20
 
+Dropped in favour of v4
+
+--=20
+Regards
+Vignesh
+
+--J5MfuwkIyy7RmF4Q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEEyRC2zAhGcGjrhiNExEYeRXyRFuMFAmHEOVMACgkQxEYeRXyR
+FuMeCAf/XkqFZR/5h46LQQNhODf3Sgw+Y8WkqSV5QAyhjKlWUkQegVFjbzVI6nKY
++jmg5IoS/FCH+v98FcY3KawDl3IqnE8jhOZhzZYM5WPgIi2sLgv6cKImTL3TAUVb
+C/7fjshpmhPTFIc05hfq0qNQKRWkysU8VGpzIfcdBR9VlwG7bbgq9UhmwjZYR/k9
+ierJlrLs8Q/NCH19nJ3z9SaEXccdAuaJd+cDcPNrNVXKidg40QwWr686+hvqpdFx
+F909IBSEuOhLaOT/eF2NECTeXPUoq5+a9zUEgsVbobI/Az05/wsKL5g4mpNUUGPb
+em1nBDrCbwXl6st55H3Q+mU2JqgCCQ==
+=nO1t
+-----END PGP SIGNATURE-----
+
+--J5MfuwkIyy7RmF4Q--
