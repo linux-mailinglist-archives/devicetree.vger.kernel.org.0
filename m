@@ -2,91 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0AB047E329
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 13:24:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8FB247E337
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 13:28:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348206AbhLWMY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 07:24:56 -0500
-Received: from mout-p-101.mailbox.org ([80.241.56.151]:15210 "EHLO
-        mout-p-101.mailbox.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348194AbhLWMY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 07:24:56 -0500
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [80.241.60.245])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4JKTsf5kkFzQlMr;
-        Thu, 23 Dec 2021 13:24:54 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-        t=1640262292;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=8AJpoRdexrnOtBRI2pfsPR3ucnnbUQrgNa/5ZNXlnTw=;
-        b=pBEv7ALiG6Hg1wxHFU+oU6uBhU51v7lwcvW3Rkap/aFAesWIN7GDgAL8AlON5cYrj2k9AD
-        dKLysegDxC3ZQozdGI6yC0dXZb4tIengZ7xk/5we8n9/hHu8d6g2xaKdydhgYsRQtxiFPb
-        Dn5D0byw8ImsqMkGoWspgtj+Cg/44uhpi+l/F+gXLYJYbI7G8rnnhzgIAxrK+NIQEbPBuq
-        657lc9ckNInGEdt99GeoJNprbBYs5luLpQoKR+USAa7sbs676IP1rVd47YTiyLyKL2Vdpl
-        g0aJnmf5H35IIAjfdRDINN8XtUlPle+11RnzjF5dp8fd3LCoFvGNFnuK9PqntA==
-From:   Alexander Stein <alexander.stein@mailbox.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Alexander Stein <alexander.stein@mailbox.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH 3/3] ASoC: dt-bindings: aiu: spdif-dit: add missing sound-name-prefix property
-Date:   Thu, 23 Dec 2021 13:24:34 +0100
-Message-Id: <20211223122434.39378-4-alexander.stein@mailbox.org>
-In-Reply-To: <20211223122434.39378-1-alexander.stein@mailbox.org>
-References: <20211223122434.39378-1-alexander.stein@mailbox.org>
+        id S1348230AbhLWM2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 07:28:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46970 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243438AbhLWM2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 07:28:01 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8015AC061401;
+        Thu, 23 Dec 2021 04:28:00 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id o12so12095200lfk.1;
+        Thu, 23 Dec 2021 04:28:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tMANTZjGM32zMcdkkj2p89DnLbFvSZJ2+UHontqoues=;
+        b=hY6OF5Ps0Z+zomNDbxSEKN7iOI7Zlv5+YrivUSePJfJzOX14NSntueewgw0UuqSVlq
+         fF9CydBkkIceW8adueAhFUIy8yZKhwVuvT4RTFpT0drdjWgXI47So+++BQMqe+DYCkoP
+         iUCXEqscJfLNrj9BgfDigmZQB13WhDw4GfvW3JkI+uaNuI3G42KNTAkudCkcgI4Dlgv5
+         edMpPUrYh1AgO0bL11joUARnqmYVu1tqAnuIrKVXrEdpI35MDdPy+rwevfgxtFgahS4C
+         jak4enkryNLAN4m7gI86i9AXxp6jq909Fal0RbRcLGTLSKwffW7E5hVP9czn0mgrQw+p
+         UBDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tMANTZjGM32zMcdkkj2p89DnLbFvSZJ2+UHontqoues=;
+        b=EvH3TWpnv5tKdVClXWDkKR3l4kw81k5NnrxWxJe47uDsRqhoQIXQsQOU5gi3rUOmIx
+         E7KppNrfhNf/7PgTJZum3etUcmEANekmkDq1+vZU2SRpTi5xmoC6ulF8f8snY9Sp9db/
+         6QnZYxVhgQjtk+zPMO4ryd+PNCuoVCX11kq+FiBM4ua9ootToum6BYEw2lb3BRkAOBNK
+         5mpEMCXpdWfgXME0TiwbMBCSE46CnuzbJO4iSJX+r1YOwRoKC8juV8y6I4oM3JyZgOJ3
+         7JCGG/txLqMDznoDxlAkHeE1TW49Ej5terWIAlZwW2NcBIfIH1DTVZBrIlJCKxUx8Vf3
+         zFeg==
+X-Gm-Message-State: AOAM533db7a2O/SKeVjbMqvtdmJFP4d0LCTHLeg6OpFOspgdjhimFdhD
+        z9zvyG1smSBZWFU+1tfIrlu0dK6LKIE=
+X-Google-Smtp-Source: ABdhPJzETOF5KZPnRyxldDYRSsCOLI/3AO7w0OWFwazHLU5WbqEiHTj6lOCZ+31uthWAGrnNZyhl8g==
+X-Received: by 2002:a19:5e41:: with SMTP id z1mr1634697lfi.657.1640262478798;
+        Thu, 23 Dec 2021 04:27:58 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id a17sm495881ljq.72.2021.12.23.04.27.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Dec 2021 04:27:58 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] of: net: support NVMEM cells with MAC in text format
+Date:   Thu, 23 Dec 2021 13:27:47 +0100
+Message-Id: <20211223122747.30448-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is used in meson-gx. Add the property to the binding.
-This fixes the dtschema warning:
-audio-controller@5400: 'sound-name-prefix' does not match any of the
-regexes: 'pinctrl-[0-9]+'
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+Some NVMEM devices have text based cells. In such cases MAC is stored in
+a XX:XX:XX:XX:XX:XX format. Use mac_pton() to parse such data and
+support those NVMEM cells. This is required to support e.g. a very
+popular U-Boot and its environment variables.
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- Documentation/devicetree/bindings/sound/amlogic,aiu.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+Please let me know if checking NVMEM cell length (6 B vs. 17 B) can be
+considered a good enough solution. Alternatively we could use some DT
+property to make it explicity, e.g. something like:
 
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,aiu.yaml b/Documentation/devicetree/bindings/sound/amlogic,aiu.yaml
-index f50558ed914f..0705f91199a0 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,aiu.yaml
-+++ b/Documentation/devicetree/bindings/sound/amlogic,aiu.yaml
-@@ -9,6 +9,9 @@ title: Amlogic AIU audio output controller
- maintainers:
-   - Jerome Brunet <jbrunet@baylibre.com>
+ethernet@18024000 {
+	compatible = "brcm,amac";
+	reg = <0x18024000 0x800>;
+
+	nvmem-cells = <&mac_addr>;
+	nvmem-cell-names = "mac-address";
+	nvmem-mac-format = "text";
+};
+---
+ net/core/of_net.c | 33 ++++++++++++++++++++++-----------
+ 1 file changed, 22 insertions(+), 11 deletions(-)
+
+diff --git a/net/core/of_net.c b/net/core/of_net.c
+index f1a9bf7578e7..95a64c813ae5 100644
+--- a/net/core/of_net.c
++++ b/net/core/of_net.c
+@@ -61,7 +61,7 @@ static int of_get_mac_addr_nvmem(struct device_node *np, u8 *addr)
+ {
+ 	struct platform_device *pdev = of_find_device_by_node(np);
+ 	struct nvmem_cell *cell;
+-	const void *mac;
++	const void *buf;
+ 	size_t len;
+ 	int ret;
  
-+allOf:
-+  - $ref: name-prefix.yaml#
-+
- properties:
-   $nodename:
-     pattern: "^audio-controller@.*"
-@@ -65,6 +68,8 @@ properties:
-   resets:
-     maxItems: 1
+@@ -78,21 +78,32 @@ static int of_get_mac_addr_nvmem(struct device_node *np, u8 *addr)
+ 	if (IS_ERR(cell))
+ 		return PTR_ERR(cell);
  
-+  sound-name-prefix: true
+-	mac = nvmem_cell_read(cell, &len);
++	buf = nvmem_cell_read(cell, &len);
+ 	nvmem_cell_put(cell);
+ 
+-	if (IS_ERR(mac))
+-		return PTR_ERR(mac);
+-
+-	if (len != ETH_ALEN || !is_valid_ether_addr(mac)) {
+-		kfree(mac);
+-		return -EINVAL;
++	if (IS_ERR(buf))
++		return PTR_ERR(buf);
 +
- required:
-   - "#sound-dai-cells"
-   - compatible
++	ret = 0;
++	if (len == ETH_ALEN) {
++		if (is_valid_ether_addr(buf))
++			memcpy(addr, buf, ETH_ALEN);
++		else
++			ret = -EINVAL;
++	} else if (len == 3 * ETH_ALEN - 1) {
++		u8 mac[ETH_ALEN];
++
++		if (mac_pton(buf, mac))
++			memcpy(addr, mac, ETH_ALEN);
++		else
++			ret = -EINVAL;
++	} else {
++		ret = -EINVAL;
+ 	}
+ 
+-	memcpy(addr, mac, ETH_ALEN);
+-	kfree(mac);
++	kfree(buf);
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ /**
 -- 
-2.34.1
+2.31.1
 
