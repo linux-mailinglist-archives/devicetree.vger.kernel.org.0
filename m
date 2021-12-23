@@ -2,60 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B03747E85C
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 20:28:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B53B47E85E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 20:29:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244934AbhLWT2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 14:28:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56908 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244945AbhLWT22 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 14:28:28 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6EB1C06175B
-        for <devicetree@vger.kernel.org>; Thu, 23 Dec 2021 11:28:27 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id bu9so14419002lfb.7
-        for <devicetree@vger.kernel.org>; Thu, 23 Dec 2021 11:28:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=PA5Eb3SKatYFaqsO/40bx9AAytaL07oA6ydkj8EAbzQ=;
-        b=iNO5KUmikPkz3ShrAwbNDhs1F0g1BpFrkALo2JPbw2AieGq25K5GmCTrNw3Re8VM6F
-         Y5Xmpu7HLpxU4gVCY2b2y6DixC3yR9NLdsqarnzhSviN7NkiVai0InHpjrvRfKL/ioSN
-         Upi+HMKOeYOxfV2P4zwthZA0oJt34ikKwVJ5XWmW13bhvMMAF9AZZNO+mwjRpj4O/xl1
-         JOSLbIxRb5N1ECUIb1caPtlCLj912cKvoYwwW/9zsmPiFv0+IcRTQax8KZQIc0DUeX94
-         ptIpx6xKC1vgENa3tt350TL/ee1YCLagBIvXSLg1NcV0l8txjCcu+qkOJ5zBp1nlurzC
-         pQ7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=PA5Eb3SKatYFaqsO/40bx9AAytaL07oA6ydkj8EAbzQ=;
-        b=6iNR63zBjFDc00MTrqjYIN8VPkxk3rLZKp+PiOwsQc0yL3e8d4VTUHHWQEb9u7Fixj
-         jFT39AzUwT2966K5U+ui3xb0lenpeFuTt204/oVW5/8yNgyrr4DdUqunCFj8tC+EGxcd
-         liJQx5BZGfMHrtasEeD3J4jFf1+0EvLqkky/w5X49CAkKLDiq16d9TczxT8j96oRJEaH
-         gZi/4uTcdKJrF6RS3gfkdcOcmqts+4j7V3DChx/jCv8WQDQYLrtDeVKrsWsX5lfzyx0J
-         gIfxXPW6hjOWqkuNdMv8uVoR0ppgrX6rOvP75TKtKWeEyCdD+9ocUAvOx+mAX7f48EIF
-         KGCg==
-X-Gm-Message-State: AOAM532MId/Hn6p8rCpjYQmc/1frJDZ1XG0poDNFfqseJLrMeGCvRndt
-        xOjzL2eUPNY/RczufjJH2G8gFeJPcFT1ton5M+Q=
-X-Google-Smtp-Source: ABdhPJyH1h4Jd1RmqCGXxduT5MsZgYRjm633yqYt7NOLR2HS0K7AQMhIi0kBig86yae7R59xehcNErL9jr+GYXJ3kw8=
-X-Received: by 2002:a05:6512:3294:: with SMTP id p20mr2713795lfe.214.1640287705909;
- Thu, 23 Dec 2021 11:28:25 -0800 (PST)
-MIME-Version: 1.0
-Received: by 2002:ab3:73d5:0:0:0:0:0 with HTTP; Thu, 23 Dec 2021 11:28:25
- -0800 (PST)
-Reply-To: revfrpaulwilliams2@gmail.com
-From:   "Rev. Fr. Paul Williams" <melindagatesfoundation84@gmail.com>
-Date:   Fri, 24 Dec 2021 00:58:25 +0530
-Message-ID: <CANLnpRsKWGNdN04pKcRG1Dy_CdWmq8tR+-CF1BMdw7eWKNSw6Q@mail.gmail.com>
-Subject: Donation From Williams Foundation.
-To:     undisclosed-recipients:;
+        id S244877AbhLWT30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 14:29:26 -0500
+Received: from polaris.svanheule.net ([84.16.241.116]:52220 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244849AbhLWT3Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 14:29:25 -0500
+Received: from [IPv6:2a02:a03f:eafe:c901:64fb:1efb:3747:a81f] (unknown [IPv6:2a02:a03f:eafe:c901:64fb:1efb:3747:a81f])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 4868D2869F5;
+        Thu, 23 Dec 2021 20:29:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1640287764;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=UU7qzXBB8jmiMrCwurtVyc0mmCpjHgy77oyZ+/UkVLs=;
+        b=i4cO68vv6Fpae5k6E4IrNog/Vgip5Kt11zwDbsQdwcWFnkTjcpSPe5JTgSMcoD3uq1yecx
+        K2Zjm/vGnqhwZLQt+d6MBtoup12ggO/xHR82mf7F4MfYuOgMmmxq8VxwQpqWKwtqKrvNqv
+        pZEoyD5/LWK5UXqn9ZMMFCByoj0tayB07qRrZVJtwhm0UqAs2EZtkqME0m08pm9D+aox2r
+        54RLA2o6cy5tqDADKVOrfIThd1W7sRW1gkREKUU/OtNlnE1d4iOx7gavMBV952jcvwVYAi
+        m2VHlKSGSYrW48uIOABrOvZjTWileRzbJYzRIelYS5H89K/exEJqRQr6iDAwVg==
+Message-ID: <add13702d89fdad4ae7a479c0894aaa3be794087.camel@svanheule.net>
+Subject: Re: [RFC PATCH v1 3/4] dt-bindings: interrupt-controller:
+ realtek,rtl-intc: replace irq mapping
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Bert Vermeulen <bert@biot.com>,
+        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org
+Date:   Thu, 23 Dec 2021 20:29:23 +0100
+In-Reply-To: <87y24byzej.wl-maz@kernel.org>
+References: <cover.1640261161.git.sander@svanheule.net>
+         <8a5931f18a6f1c92f8c8e4965dc65674d7e5a4c4.1640261161.git.sander@svanheule.net>
+         <87y24byzej.wl-maz@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Contact Rev. Fr. Paul Williams Immediately For A Charity Donation Of
-$6,200,000.00 United States Dollars At E-Mail:
-revfrpaulwilliams2@gmail.com
+On Thu, 2021-12-23 at 18:00 +0000, Marc Zyngier wrote:
+> On Thu, 23 Dec 2021 12:08:33 +0000,
+> Sander Vanheule <sander@svanheule.net> wrote:
+> > 
+> > The binding incorrectly specified the "interrupt-map" property should be
+> > used, although the use is non-standard. A quirk had to be introduced in
+> > commit de4adddcbcc2 ("of/irq: Add a quirk for controllers with their own
+> > definition of interrupt-map") to allow the driver to function again.
+> 
+> That's too late. We have released a kernel with this binding, and it
+> will live on forever until we totally remove the platform from the
+> tree.
+> 
+> DT is an ABI, and only time travel can fix this blunder.
+
+Taking into account your comments on the previous patch, this change wouldn't even be
+required if I correct the mappings for my devices. But that wouldn't get rid of the
+assumed mapping between output lines and parent interrupts.
+
+To what extent can the binding be updated to get rid of this assumption? Or would that
+require a completely new binding?
+
+
+Best,
+Sander
