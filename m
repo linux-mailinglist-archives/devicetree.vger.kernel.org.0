@@ -2,86 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB28E47E8C1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 21:27:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B333A47E8FC
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 22:19:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240774AbhLWU1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 15:27:42 -0500
-Received: from relay034.a.hostedemail.com ([64.99.140.34]:59301 "EHLO
-        relay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234114AbhLWU1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 15:27:42 -0500
-Received: from omf03.hostedemail.com (a10.router.float.18 [10.200.18.1])
-        by unirelay02.hostedemail.com (Postfix) with ESMTP id 02B37217FD;
-        Thu, 23 Dec 2021 20:27:39 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf03.hostedemail.com (Postfix) with ESMTPA id 6C5576000D;
-        Thu, 23 Dec 2021 20:27:34 +0000 (UTC)
-Message-ID: <2135f71822711698ecfdaa5f0267e0324e424248.camel@perches.com>
-Subject: Re: [PATCH v6 2/2] Driver for ON Semi AR0521 camera sensor
-From:   Joe Perches <joe@perches.com>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Krzysztof =?UTF-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>
-Date:   Thu, 23 Dec 2021 12:27:36 -0800
-In-Reply-To: <02c71d9fe95f72c5aa5a01adadda8fb7e756fae1.camel@perches.com>
-References: <m3ee63hkuu.fsf@t19.piap.pl> <m35yrfhkaf.fsf@t19.piap.pl>
-         <cee1bbe6c8dda1c79ba19f7bbf68fc1d74558cae.camel@perches.com>
-         <20211223184856.v34ecibwzepahsju@uno.localdomain>
-         <02c71d9fe95f72c5aa5a01adadda8fb7e756fae1.camel@perches.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.40.4-1ubuntu2 
+        id S1350321AbhLWVTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 16:19:07 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:40356 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233222AbhLWVTG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 16:19:06 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 40DD061F91;
+        Thu, 23 Dec 2021 21:19:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FA63C36AE9;
+        Thu, 23 Dec 2021 21:19:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640294345;
+        bh=RHwR7WJnTDGHXUR+NlikicbsjnB3cUEtRLcjjNBCDdI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ms47wMwQ5bSMZzlGNt1qIns2K5kVThKoXd7e938Yd+RYxGappMdZ9P9hGHax/vz0c
+         so3KAjEt9dAtJ1+Jr4sxu1o+7Nj/tBwFtkeq1ZWaEpu6+IIuAGo0ng1lfSvR4CdlJB
+         8LIsm9OOuMseMIMRf7LUulx2OfCAua1Rnq0HRKpnt+P4QnFoHI4KbpoQnOTvPHzDm7
+         pHgiavo3NAJACrgVglfxzthKmVe5DmWsSvX8neOfCRgytf8Gq6h/uwaIRKLqOA33tm
+         AxCB2aJi6bXQBnzQ1y0Wi5bULn/DUeWIt+/Ag18gm9iRxaaIOcgLiK4D9XuspQIUPN
+         NWKsE2mbCbjiA==
+Received: by mail-ed1-f43.google.com with SMTP id z29so26038699edl.7;
+        Thu, 23 Dec 2021 13:19:05 -0800 (PST)
+X-Gm-Message-State: AOAM5330ESLaUH5UIVAUgCWbJso4y4FtV4a1zVGizZG1SfIWKVt4SZLc
+        gSTFXfglANfZJo+x9hDVpoGS2NKYqiyrL76rxg==
+X-Google-Smtp-Source: ABdhPJzi5ldYUkBvCrQJ/P23jc2Mhr2nETWi9GjrXsmkOXNTU7ndvABfAN+OgXiAUuPyp+SfEtlmtIzFARpBZb0X6rw=
+X-Received: by 2002:a17:907:3d94:: with SMTP id he20mr3155428ejc.14.1640294343703;
+ Thu, 23 Dec 2021 13:19:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 6C5576000D
-X-Spam-Status: No, score=-3.40
-X-Stat-Signature: oryznni7orai4xz5hpb9rarsuzeeq18h
-X-Rspamd-Server: rspamout02
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX1/LvrMcnUh7u0lsb7sYPZ7gbjNPuYXMEfA=
-X-HE-Tag: 1640291254-457205
+References: <20211223110755.22722-1-zajec5@gmail.com> <20211223110755.22722-4-zajec5@gmail.com>
+In-Reply-To: <20211223110755.22722-4-zajec5@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 23 Dec 2021 17:18:52 -0400
+X-Gmail-Original-Message-ID: <CAL_JsqK2TMu+h4MgQqjN0bvEzqdhsEviBwWiiR9hfNbC5eOCKg@mail.gmail.com>
+Message-ID: <CAL_JsqK2TMu+h4MgQqjN0bvEzqdhsEviBwWiiR9hfNbC5eOCKg@mail.gmail.com>
+Subject: Re: [PATCH 3/5] dt-bindings: nvmem: allow referencing device defined
+ cells by names
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-12-23 at 12:13 -0800, Joe Perches wrote:
-> On Thu, 2021-12-23 at 19:48 +0100, Jacopo Mondi wrote:
-> > The media subsystem requires to validate patches with
-> > 
-> >         ./scripts/checkpatch.pl --strict --max-line-length=80
-> > 
-> > We longly debated this and I believe it's now generally accepted to go
-> > over 80 when it makes sense, but not regularly span to 120 cols like
-> > in the previous version.
-[]
-> Perhaps there should be a MAINTAINERS P: entry for this requirement.
-> 
-> From MAINTAINERS:
-> 
-> 	P: Subsystem Profile document for more details submitting
-> 	   patches to the given subsystem. This is either an in-tree file,
-> 	   or a URI. See Documentation/maintainer/maintainer-entry-profile.rst
-> 	   for details.
+On Thu, Dec 23, 2021 at 7:08 AM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
+wrote:
+>
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>
+> Not every NVMEM has predefined cells at hardcoded addresses. Some
+> devices store cells in internal structs and custom formats. Referencing
+> such cells is still required to let other bindings use them.
+>
+> Modify binding to require "reg" xor "label". The later one can be used
+> to match "dynamic" NVMEM cells by their names.
 
-Perhaps:
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+'label' is supposed to correspond to a sticker on a port or something
+human identifiable. It generally should be something optional to
+making the OS functional. Yes, there are already some abuses of that,
+but this case is too far for me.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cd55b83878e05..bbfcb8e7eef06 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11977,6 +11977,7 @@ L:	linux-media@vger.kernel.org
- S:	Maintained
- W:	https://linuxtv.org
- Q:	http://patchwork.kernel.org/project/linux-media/list/
-+P:	https://linuxtv.org/downloads/v4l-dvb-apis-new/driver-api/maintainer-entry-profile.html
- T:	git git://linuxtv.org/media_tree.git
- F:	Documentation/admin-guide/media/
- F:	Documentation/devicetree/bindings/media/
-
-
+Rob
