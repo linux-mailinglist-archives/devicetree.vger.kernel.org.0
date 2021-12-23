@@ -2,42 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4146F47E74C
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 18:58:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65D1047E75A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 19:00:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244701AbhLWR6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 12:58:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36420 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233620AbhLWR6A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 12:58:00 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D10CC061401;
-        Thu, 23 Dec 2021 09:58:00 -0800 (PST)
+        id S1349657AbhLWSAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 13:00:41 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:39246 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349665AbhLWSAl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 13:00:41 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D80E0B82005;
-        Thu, 23 Dec 2021 17:57:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68F80C36AE5;
-        Thu, 23 Dec 2021 17:57:57 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C9487B82005;
+        Thu, 23 Dec 2021 18:00:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CD3AC36AE5;
+        Thu, 23 Dec 2021 18:00:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640282277;
-        bh=UqOTQAC+BkvAyQ6n2ATblH4oOVF0kqELVqTbn95wEIM=;
+        s=k20201202; t=1640282438;
+        bh=Ymt7XJC0WdUR5iutl+1TtT3KnXZijhLOfyPiDeYj3ns=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=KBLI5g0CzmKOH2aVZc7a+r7MfylcPLVVr3ZfwHWkTspbmldeJfzO6AZGK2LkMAO6J
-         +dRR7N9DkUH349t19JeBSJkKdQqElktUE/tgmhQh0xnE5qr2WuJR9rqIq1VIxQWX3l
-         jaunIntKTVoA/fVemkUm9J987zOzx52WAc+IKrt+7SRU9/ZsH/naXrjLPjq2NizEpk
-         rCivtvjizxxt0NyPMulc2u/gKifVrZowf1pdz7GdNEwgGeP7RG9A5zuGFNbY8zB681
-         6I3p8IvNl6ImKBuY4S51vrC5pC+MwJPXZikDTrdlcXw7lT4yiWsmVoemzDLHaE5Z27
-         GLbzkO0a+Io8g==
+        b=aL2RZRouFGh76M4uu1cMHa26swV0EYslji31PFPXIU3pRGAtVwdZ5TaGFXPwQuVoJ
+         Uthd3qjGojg/XPxLtXi31cc5LkMkRtY7y4uj5yqR6lHYtcCD+peyJHHIBvT5TdPG1s
+         I2/MRoUOuHNEFx5wFwABtBhdJ3BLzPc//qkCVt0PJp/x/JXf1IAqlpH40JHTeBTtMu
+         srgYPJpzxLlNqKYYvobeO4mIFHOx2mXZ8+2syv+w6n5vZ1N1acEyXyt+56brxsiwEy
+         ROEuP8oNmtycIJ5iB2S8/dyWcCpkGf6A1Iuy94FGKcgNGuLrztFFIbQjHXa/k/xJGE
+         vwzUFQMPdclvw==
 Received: from 91-161-240-24.subs.proxad.net ([91.161.240.24] helo=wait-a-minute.misterjones.org)
         by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <maz@kernel.org>)
-        id 1n0SLj-00E0Q4-3X; Thu, 23 Dec 2021 17:57:55 +0000
-Date:   Thu, 23 Dec 2021 17:57:54 +0000
-Message-ID: <87zgoryzj1.wl-maz@kernel.org>
+        id 1n0SOK-00E0Tf-Qj; Thu, 23 Dec 2021 18:00:36 +0000
+Date:   Thu, 23 Dec 2021 18:00:36 +0000
+Message-ID: <87y24byzej.wl-maz@kernel.org>
 From:   Marc Zyngier <maz@kernel.org>
 To:     Sander Vanheule <sander@svanheule.net>
 Cc:     Thomas Gleixner <tglx@linutronix.de>, devicetree@vger.kernel.org,
@@ -45,10 +42,10 @@ Cc:     Thomas Gleixner <tglx@linutronix.de>, devicetree@vger.kernel.org,
         Birger Koblitz <mail@birger-koblitz.de>,
         Bert Vermeulen <bert@biot.com>,
         John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v1 2/4] irqchip: realtek-rtl: use per-parent irq handling
-In-Reply-To: <81bebcf62dfdc63155a69c3bdb2acefe4f5995ac.1640261161.git.sander@svanheule.net>
+Subject: Re: [RFC PATCH v1 3/4] dt-bindings: interrupt-controller: realtek,rtl-intc: replace irq mapping
+In-Reply-To: <8a5931f18a6f1c92f8c8e4965dc65674d7e5a4c4.1640261161.git.sander@svanheule.net>
 References: <cover.1640261161.git.sander@svanheule.net>
-        <81bebcf62dfdc63155a69c3bdb2acefe4f5995ac.1640261161.git.sander@svanheule.net>
+        <8a5931f18a6f1c92f8c8e4965dc65674d7e5a4c4.1640261161.git.sander@svanheule.net>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
  (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -62,255 +59,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sander,
-
-nit: please check the way the irqchip patches have their title
-formatted, and make sure you follow these rules. In this case, it
-should read:
-
-irqchip/realtek-rtl: Use per-parent...
-
-On Thu, 23 Dec 2021 12:08:32 +0000,
+On Thu, 23 Dec 2021 12:08:33 +0000,
 Sander Vanheule <sander@svanheule.net> wrote:
 > 
-> The interrupt router controller is used to route 32 SoC interrupts to up
-> to 6 MIPS CPU interrupts. This means that the SoC interrupts inherit the
-> priority of to the target CPU interrupt.
-> 
-> Currently the driver handles all SoC interrupts equally, independent of
-> which CPU interrupt it is routed to. The use of __ffs actually gives
-> higher priority to lower IRQ lines, effectively bypassing the CPU
-> interrupt priority.
-> 
-> Additionally, this indiscriminate handling of SoC interrupts masked
-> another issue. There is an actually an offset between routing values
-> (1..6) and CPU interrupts (2..7), but the current mapping makes no
-> distinction between these two values. This issue was also hidden during
-> testing, because an interrupt mapping was used where for each required
-> interrupt another (unused) routing was configured, with an offset of +1.
-> 
-> Rework the driver to use a separate handler for each used CPU interrupt,
-> and use the correct routing values. Instead of assuming that the parent
-> interrupt controller is the MIPS CPU interrupt controller
-> ("mti,cpu-interrupt-controller"), this is now checked explicitly to
-> correctly handle the timer interrupt.
-> 
-> Fixes: 9f3a0f34b84a ("irqchip: Add support for Realtek RTL838x/RTL839x interrupt controller")
-> Signed-off-by: Sander Vanheule <sander@svanheule.net>
-> ---
-> 
-> This patch makes a few changes at the same time, and introduces the
-> *_irr functions, which aren't strictly required. This allows the last
-> patch to be a bit smaller, and seeks to add some clarity to the code.
-> 
-> Please let me know if this should be split into separate patches with
-> more incremental changes (in addition to other likely comments).
-> ---
->  drivers/irqchip/irq-realtek-rtl.c | 153 +++++++++++++++++++++---------
->  1 file changed, 108 insertions(+), 45 deletions(-)
-> 
-> diff --git a/drivers/irqchip/irq-realtek-rtl.c b/drivers/irqchip/irq-realtek-rtl.c
-> index d6788dd93c7b..71366f1cf721 100644
-> --- a/drivers/irqchip/irq-realtek-rtl.c
-> +++ b/drivers/irqchip/irq-realtek-rtl.c
-> @@ -7,6 +7,7 @@
->  
->  #include <linux/of_irq.h>
->  #include <linux/irqchip.h>
-> +#include <linux/interrupt.h>
->  #include <linux/spinlock.h>
->  #include <linux/of_address.h>
->  #include <linux/irqchip/chained_irq.h>
-> @@ -21,10 +22,43 @@
->  #define RTL_ICTL_IRR2		0x10
->  #define RTL_ICTL_IRR3		0x14
->  
-> -#define REG(x)		(realtek_ictl_base + x)
-> +#define RTL_ICTL_NUM_PRIO	6
-> +
-> +#define REG(x)			(realtek_ictl_base + x)
+> The binding incorrectly specified the "interrupt-map" property should be
+> used, although the use is non-standard. A quirk had to be introduced in
+> commit de4adddcbcc2 ("of/irq: Add a quirk for controllers with their own
+> definition of interrupt-map") to allow the driver to function again.
 
-Spurious change?
+That's too late. We have released a kernel with this binding, and it
+will live on forever until we totally remove the platform from the
+tree.
 
->
->  static DEFINE_RAW_SPINLOCK(irq_lock);
->  static void __iomem *realtek_ictl_base;
-> +static struct irq_domain *realtek_ictl_domain;
-> +
-> +struct realtek_ictl_priority {
-> +	unsigned int routing_value;
-> +	u32 child_mask;
-> +};
-> +
-> +static struct realtek_ictl_priority priorities[RTL_ICTL_NUM_PRIO];
-> +
-> +/*
-> + * IRR0-IRR3 store 4 bits per interrupt, but Realtek uses inverted
-> + * numbering, placing IRQ 31 in the first four bits.
-> + */
-> +#define IRR_OFFSET(idx)		(4 * (3 - (idx * 4) / 32))
-> +#define IRR_SHIFT(idx)		((idx * 4) % 32)
-> +
-> +static inline u32 read_irr(void __iomem *irr0, int idx)
-> +{
-> +	return (readl(irr0 + IRR_OFFSET(idx)) >> IRR_SHIFT(idx)) & 0xf;
-> +}
-> +
-> +static inline void write_irr(void __iomem *irr0, int idx, u32 value)
-> +{
-> +	unsigned int offset = IRR_OFFSET(idx);
-> +	unsigned int shift = IRR_SHIFT(idx);
-> +	u32 irr;
-> +
-> +	irr = readl(irr0 + offset) & ~(0xf << shift);
-> +	irr |= (value & 0xf) << shift;
-> +	writel(irr, irr0 + offset);
-
-Are you always in a situation where this doesn't need any locking?
-
-> +}
->  
->  static void realtek_ictl_unmask_irq(struct irq_data *i)
->  {
-> @@ -72,43 +106,67 @@ static const struct irq_domain_ops irq_domain_ops = {
->  	.xlate = irq_domain_xlate_onecell,
->  };
->  
-> -static void realtek_irq_dispatch(struct irq_desc *desc)
-> +static irqreturn_t realtek_irq_dispatch(int irq, void *devid)
-
-No, that's definitely not on. Interrupt handlers are not chained
-handlers. They have different guarantees, and they aren't
-interchangeable. It is only in limited circumstances that you can do
-this change (threaded interrupts).
-
->  {
-> -	struct irq_chip *chip = irq_desc_get_chip(desc);
-> -	struct irq_domain *domain;
-> -	unsigned int pending;
-> -
-> -	chained_irq_enter(chip, desc);
-> -	pending = readl(REG(RTL_ICTL_GIMR)) & readl(REG(RTL_ICTL_GISR));
-> -	if (unlikely(!pending)) {
-> -		spurious_interrupt();
-> -		goto out;
-> +	struct realtek_ictl_priority *priority = devid;
-
-So this is *why* you made this change. We have per-interrupt data that
-you can use, and get rid of this horrible hack.
-
-> +	unsigned long pending;
-> +	int soc_irq;
-> +	int ret = 0;
-> +
-> +	pending = readl(REG(RTL_ICTL_GIMR)) & readl(REG(RTL_ICTL_GISR))
-> +		& priority->child_mask;
-> +
-> +	for_each_set_bit(soc_irq, &pending, BITS_PER_LONG) {
-> +		generic_handle_domain_irq(realtek_ictl_domain, soc_irq);
-> +		ret = 1;
->  	}
-> -	domain = irq_desc_get_handler_data(desc);
-> -	generic_handle_domain_irq(domain, __ffs(pending));
->  
-> -out:
-> -	chained_irq_exit(chip, desc);
-> +	return IRQ_RETVAL(ret);
->  }
->  
-> -/*
-> - * SoC interrupts are cascaded to MIPS CPU interrupts according to the
-> - * interrupt-map in the device tree. Each SoC interrupt gets 4 bits for
-> - * the CPU interrupt in an Interrupt Routing Register. Max 32 SoC interrupts
-> - * thus go into 4 IRRs.
-> - */
-> -static int __init map_interrupts(struct device_node *node, struct irq_domain *domain)
-> +static void __init set_routing(struct realtek_ictl_priority *priority, unsigned int soc_int)
->  {
-> +	unsigned int priority_old;
-> +
-> +	priority_old = read_irr(REG(RTL_ICTL_IRR0), soc_int);
-> +	if (priority_old) {
-> +		pr_warn("int %d already routed to %d, not updating\n", soc_int, priority_old);
-> +		return;
-> +	}
-> +
-> +	priority->child_mask |= BIT(soc_int);
-> +	write_irr(REG(RTL_ICTL_IRR0), soc_int, priority->routing_value);
-> +}
-> +
-> +static int __init setup_parent_interrupt(struct realtek_ictl_priority *prio_ctl, int parent)
-> +{
-> +	struct device_node *parent_node;
-> +	struct irq_data *irqd;
-> +	unsigned int flags;
-> +	int parent_hwirq;
-> +
-> +	irqd = irq_get_irq_data(parent);
-> +	if (!irqd)
-> +		return -ENOENT;
-> +
-> +	parent_node = to_of_node(irqd->domain->fwnode);
-> +	parent_hwirq = irqd_to_hwirq(irqd);
-> +
-> +	flags = IRQF_PERCPU | IRQF_SHARED;
-> +	if (of_device_is_compatible(parent_node, "mti,cpu-interrupt-controller")
-> +		&& parent_hwirq == 7)
-> +		flags |= IRQF_TIMER;
-> +
-> +	return request_irq(parent, realtek_irq_dispatch, flags, "rtl-intc", prio_ctl);
-
-This really is mixing two different things. Why aren't the flags on
-the actual endpoint interrupt? This really is the business of the
-driver requesting the interrupt, and not the irqchip.
-
-> +}
-> +
-> +static int __init map_interrupts(struct device_node *node)
-> +{
-> +	struct realtek_ictl_priority *prio_ctl;
->  	struct device_node *cpu_ictl;
->  	const __be32 *imap;
-> -	u32 imaplen, soc_int, cpu_int, tmp, regs[4];
-> -	int ret, i, irr_regs[] = {
-> -		RTL_ICTL_IRR3,
-> -		RTL_ICTL_IRR2,
-> -		RTL_ICTL_IRR1,
-> -		RTL_ICTL_IRR0,
-> -	};
-> -	u8 mips_irqs_set;
-> +	u32 imaplen, soc_int, priority, tmp;
-> +	int ret, i;
->  
->  	ret = of_property_read_u32(node, "#address-cells", &tmp);
->  	if (ret || tmp)
-> @@ -118,8 +176,6 @@ static int __init map_interrupts(struct device_node *node, struct irq_domain *do
->  	if (!imap || imaplen % 3)
->  		return -EINVAL;
->  
-> -	mips_irqs_set = 0;
-> -	memset(regs, 0, sizeof(regs));
->  	for (i = 0; i < imaplen; i += 3 * sizeof(u32)) {
->  		soc_int = be32_to_cpup(imap);
->  		if (soc_int > 31)
-> @@ -133,42 +189,49 @@ static int __init map_interrupts(struct device_node *node, struct irq_domain *do
->  			return -EINVAL;
->  		of_node_put(cpu_ictl);
->  
-> -		cpu_int = be32_to_cpup(imap + 2);
-> -		if (cpu_int > 7)
-> +		/* Map priority (1..6) to MIPS CPU interrupt (2..7) */
-> +		priority = be32_to_cpup(imap + 2);
-
-I don't understand this. As far as the binding describes it, this is
-the target interrupt, and not a priority. Either the binding is wrong,
-and it needs fixing, or this is wrong. What gives?
-
-If the binding is really describing a priority, how is the interrupt
-priority actually mapped to the CPU interrupt? Why can't you just
-ignore the DT-provided priority and simply have a flat priority
-scheme, allocating mapping input lines to output lines as they get
-allocated?
+DT is an ABI, and only time travel can fix this blunder.
 
 	M.
 
