@@ -2,103 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E998A47E71B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 18:33:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EC9747E726
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 18:36:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231386AbhLWRdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 12:33:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59226 "EHLO
+        id S240250AbhLWRgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 12:36:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229797AbhLWRdn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 12:33:43 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C770C061401;
-        Thu, 23 Dec 2021 09:33:43 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id z29so24116209edl.7;
-        Thu, 23 Dec 2021 09:33:42 -0800 (PST)
+        with ESMTP id S237554AbhLWRgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 12:36:24 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D2A7C061756
+        for <devicetree@vger.kernel.org>; Thu, 23 Dec 2021 09:36:24 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id n15-20020a17090a160f00b001a75089daa3so9380448pja.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Dec 2021 09:36:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
-        bh=E0/YQJ43ks9rfBu4JnnAsmKLJ07kJTfqV/arSmMfD9Q=;
-        b=CfmnnQraty6UZHCrWwtMX/TFGU1UgDTVytCT9sKEY4sZgXNOv0JF6NEVb3IroMCwUP
-         nNOLSiU36bIUDocXH3mkY21WQ/js0o+kPISJK+0yD4zqfUvYqz853pm9dsY+iPWfpefZ
-         ZLaA/xJVISHgZJmN64GLASMchrK7qpBCdNF6vQEWZpFQ+vTYQ1WFvCaZ64QrEj5bd8TS
-         A3ckS0tjuGiDorxN8btb7QhAlF2HvGhva5obFrBE5z/Lo+o5Fo2OXp0cBV3LjFd+uHLZ
-         BtQNpwq1bOTYV8BOij3Na5iUptrURZbog73xEUSG8K+5kxGIqpL2OHt0QlxbwQqGTiE4
-         UqMw==
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dPYUZWC+77UBrBLBUUxU9fHb6AxVTt9UdaUWIxpei+o=;
+        b=L0sjRUzYInvoF3lTrWwfgbrnXNR7T+eXsaPmPTag7OLNZPysAOAy+7D/eWdc8Y8pWa
+         ZYd8pC2fEDwzZy3dX8MHG6cokMq+LvNvhyVHt7n4Ot4zwmRwldtutxXO3oyyhccGcTGj
+         6HqoZZOHqzyqhn2YiN2yvj0pdcsduMD2RNXRxGoK6VCf9RFwFffI4Bcz668E4CDGnHCe
+         W9InkcEY0CD9FxjiRL4s4xROMFQ19FlU2EzPctV1dHFiCYC2qFsXNDzh4+eMW8ZOMg0i
+         GvYkYHgDSayVhkayneoGjmk9tIMU7TKP2/FjiXoGEbnsbQKYI7gPlGu5VC6SGmmrwTQd
+         Q6mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=E0/YQJ43ks9rfBu4JnnAsmKLJ07kJTfqV/arSmMfD9Q=;
-        b=HZd5aJsRoEudzv8etkZ/Pj/mSEaPUUqCGm1lEI3HWJ1deWREtANBSg0YsZfKq0UnQG
-         xhAhy+mVq9AGH+6iSpuvh4H8BHbuiloBu7di1GnE505+SZgMnKpGsYfbnUaOQmXGNMzi
-         f6sX5MLFlzn9eknJpdVzkwPL/O4ulOpZ93ncR7imSlUYieiP1UBcYHq0cUb6od0TDeWS
-         nZC8zv06R0p2aQtSaNUdrZnudbJITpRb2u8qZGsv5SuEVgwUfF5J74chJWEjLI5raxJs
-         MByfWUN4/NeZ40+98B7tL8COufG/3iz/9VnZeMROtO3ZZUTt9iItfYt1i8y6wyAEPAjf
-         vP3A==
-X-Gm-Message-State: AOAM530LmooHBvqCwAyetlSPgKcSi9cmf7xJgcFo3HqV3bpXDWsIS7kE
-        c+I4aCZsNIagaMIdhH/u8TU=
-X-Google-Smtp-Source: ABdhPJz1wb9lZeAJjuhN0BSqjf+Y/9f1AfyNiqQT/ha2qp8Ia+obXP8Z6LU16my6WHEOEyT7BpN+xw==
-X-Received: by 2002:a17:906:9413:: with SMTP id q19mr2756677ejx.296.1640280821676;
-        Thu, 23 Dec 2021 09:33:41 -0800 (PST)
-Received: from standask-GA-A55M-S2HP ([188.123.115.255])
-        by smtp.gmail.com with ESMTPSA id m12sm967093edd.86.2021.12.23.09.33.41
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=dPYUZWC+77UBrBLBUUxU9fHb6AxVTt9UdaUWIxpei+o=;
+        b=IPgQMCKRsNzSc8r8JRBRdbIueZJwOlq88m8s+lfNVUq6ciedzayx7+H3wa+ni01/dx
+         e1SwbFbdKydjwya3ZNSUVHFquuy/4yl2jFu5dlsQXP8ssShE4Qv/QeDKzNQz59aBVLVA
+         ZutCuPNwqUzowMtj+hYKxNfUvpG6V8D6iDN6iC/J5CmFJXxBesSmdJkaB22B01NC5vhA
+         6VieDy9QTJhUM+wmo1G5afxw3aMe2AtB2f3prnxamazVaHm5wBTFk1rXQCEnYDgT1shT
+         xXN/idxiuTZgG7wgq6I+J0ejYJBZQkWVR/Ac9lnH43LytMHW+G0jampoQtaDXpgBGkLp
+         3M/A==
+X-Gm-Message-State: AOAM531vAjl+imJ+iTSXKyCbCynnVuUBEPovFY+cGBmAWmhUbBRe5Mfy
+        8qBZj7m2FltC9p2A4wpQ6xuAKw==
+X-Google-Smtp-Source: ABdhPJypoRaM/7mbkBhlfvlUN6kGHVEF9KQ22b8kXscmQCQL7JNkF0LVo3y3phgMBogpBLz4jmYGaw==
+X-Received: by 2002:a17:90b:4d07:: with SMTP id mw7mr3712671pjb.69.1640280983976;
+        Thu, 23 Dec 2021 09:36:23 -0800 (PST)
+Received: from localhost ([12.163.77.120])
+        by smtp.gmail.com with ESMTPSA id g6sm7407727pfj.156.2021.12.23.09.36.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Dec 2021 09:33:41 -0800 (PST)
-Date:   Thu, 23 Dec 2021 18:33:39 +0100
-From:   Stanislav Jakubek <stano.jakubek@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] Revert "dt-bindings: arm: qcom: Document SDX65 platform and
- boards"
-Message-ID: <20211223173339.GA3925@standask-GA-A55M-S2HP>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+        Thu, 23 Dec 2021 09:36:23 -0800 (PST)
+Date:   Thu, 23 Dec 2021 09:36:23 -0800 (PST)
+X-Google-Original-Date: Thu, 23 Dec 2021 09:36:07 PST (-0800)
+Subject:     Re: [PATCH v2 17/17] MAINTAINERS: update riscv/microchip entry
+In-Reply-To: <05d6a273-19f6-2147-75ba-1fff726a0f70@microchip.com>
+CC:     krzysztof.kozlowski@canonical.com, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com, Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, broonie@kernel.org,
+        Greg KH <gregkh@linuxfoundation.org>, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
+        geert@linux-m68k.org, bin.meng@windriver.com, heiko@sntech.de,
+        Lewis.Hanly@microchip.com, Daire.McNamara@microchip.com,
+        Ivan.Griffin@microchip.com, Atish Patra <atishp@rivosinc.com>
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Conor.Dooley@microchip.com
+Message-ID: <mhng-0e4cde83-cfa1-4bf6-9f2c-611d9a4ddb5f@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit 3b338c9a6a2afd6db46d5d8e39ae4f5eef420bf8.
+On Thu, 23 Dec 2021 06:56:45 PST (-0800), Conor.Dooley@microchip.com wrote:
+> On 17/12/2021 15:09, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>> 
+>> On 17/12/2021 10:33, conor.dooley@microchip.com wrote:
+>>> From: Conor Dooley <conor.dooley@microchip.com>
+>>>
+>>> Update the RISC-V/Microchip entry by adding the microchip dts
+>>> directory and myself as maintainer
+>>>
+>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>>> ---
+>>>   MAINTAINERS | 2 ++
+>>>   1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>> index 7a2345ce8521..3b1d6be7bd56 100644
+>>> --- a/MAINTAINERS
+>>> +++ b/MAINTAINERS
+>>> @@ -16348,8 +16348,10 @@ K:   riscv
+>>>
+>>>   RISC-V/MICROCHIP POLARFIRE SOC SUPPORT
+>>>   M:   Lewis Hanly <lewis.hanly@microchip.com>
+>>> +M:   Conor Dooley <conor.dooley@microchip.com>
+>>>   L:   linux-riscv@lists.infradead.org
+>>>   S:   Supported
+>>> +F:   arch/riscv/boot/dts/microchip/
+>>>   F:   drivers/mailbox/mailbox-mpfs.c
+>>>   F:   drivers/soc/microchip/
+>>>   F:   include/soc/microchip/mpfs.h
+>>>
+>> 
+>> Good to have the DTS covered, so FWIW:
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> 
+>> You still should get Lewis' ack (unless he merges it)
+> Aye, it'll be an ack. We don't currently have a tree & would rather do 
+> this via risc-v than the at91/sam arm soc tree.
 
-This was a duplicate of 61339f368d59d25e22401731f89de44e3215508b,
-causing the sdx65 compatible and its board to be documented twice.
+WFM.  I'll be awaiting the ack.  I don't see any fundamental issues from 
+my end, as long is it's got all the acks/reviews then I'm generally fine 
+with this sort of stuff.  I'll take a look before merging it, I'm kind 
+of buried right now.  Sorry!
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-Link: https://lore.kernel.org/all/20211223144407.GA6503@standask-GA-A55M-S2HP/
----
- Documentation/devicetree/bindings/arm/qcom.yaml | 6 ------
- 1 file changed, 6 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 370aab274cd1..04ff0b55bb85 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -48,7 +48,6 @@ description: |
-         sdx65
-         sm7225
-         sm8150
--        sdx65
-         sm8250
-         sm8350
-         sm8450
-@@ -228,11 +227,6 @@ properties:
-               - qcom,sdx65-mtp
-           - const: qcom,sdx65
- 
--      - items:
--          - enum:
--              - qcom,sdx65-mtp
--          - const: qcom,sdx65
--
-       - items:
-           - enum:
-               - qcom,ipq6018-cp01
--- 
-2.25.1
-
+>> 
+>> Best regards,
+>> Krzysztof
+>> 
+> 
