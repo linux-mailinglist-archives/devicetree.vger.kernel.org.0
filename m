@@ -2,72 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C4D747E0B1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 10:07:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F27F847E0C9
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 10:19:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347415AbhLWJHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 04:07:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58776 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347407AbhLWJHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 04:07:10 -0500
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 648B2C061756;
-        Thu, 23 Dec 2021 01:07:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=+F9l4oaTYcTezns5dJwiIVOjH6VpsW1N0yjevEuxrKk=; b=U1KCjtRxFZAs1+SJMEnP4jjE3Q
-        Rf0uJ9dXTATYkWCfAVUNbdJngAU35jR2BflmZpLuqHAyCYm/5wFKXxRV8TKhzxkCGQcFIRicAGzzp
-        V8QmGC0pJUh2nBRqGgGs50RkNJBkw5whd4abKSMoYdpu9IhJpI7wYPMXP9OdQ2Pkqj1U=;
-Received: from p200300ccff0e67001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0e:6700:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1n0K40-0002b4-P2; Thu, 23 Dec 2021 10:07:05 +0100
-Date:   Thu, 23 Dec 2021 10:07:03 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmitry.torokhov@gmail.com, alistair23@gmail.com,
-        robh+dt@kernel.org, linus.walleij@linaro.org, rydberg@bitmath.org,
-        =?UTF-8?B?TXlsw6huZQ==?= Josserand <mylene.josserand@bootlin.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Subject: Re: [PATCH v4 1/4] Input: Add driver for Cypress Generation 5
- touchscreen
-Message-ID: <20211223100703.78bbdf84@aktux>
-In-Reply-To: <20211222124603.326920-2-alistair@alistair23.me>
-References: <20211222124603.326920-1-alistair@alistair23.me>
-        <20211222124603.326920-2-alistair@alistair23.me>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S1347352AbhLWJTv convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 23 Dec 2021 04:19:51 -0500
+Received: from aposti.net ([89.234.176.197]:33056 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239245AbhLWJTv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Dec 2021 04:19:51 -0500
+Date:   Thu, 23 Dec 2021 09:19:43 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Introduce common properties
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Message-Id: <VW9K4R.K71G6V70Q9T81@crapouillou.net>
+In-Reply-To: <YcN+NwFu2m6WZCdE@robh.at.kernel.org>
+References: <20211221175029.144906-1-paul@crapouillou.net>
+        <20211221175029.144906-2-paul@crapouillou.net>
+        <YcN+NwFu2m6WZCdE@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Score: -1.0 (-)
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Dec 2021 22:46:00 +1000
-Alistair Francis <alistair@alistair23.me> wrote:
+Hi Rob,
 
-> From: Myl=C3=A8ne Josserand <mylene.josserand@bootlin.com>
->=20
-> This is the basic driver for the Cypress TrueTouch Gen5 touchscreen
-> controllers. This driver supports only the I2C bus but it uses regmap
-> so SPI support could be added later.
-> The touchscreen can retrieve some defined zone that are handled as
-> buttons (according to the hardware). That is why it handles
-> button and multitouch events.
->=20
-> Reviewed-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> Signed-off-by: Myl=C3=A8ne Josserand <mylene.josserand@bootlin.com>
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+Le mer., déc. 22 2021 at 15:36:23 -0400, Rob Herring <robh@kernel.org> 
+a écrit :
+> On Tue, Dec 21, 2021 at 05:50:28PM +0000, Paul Cercueil wrote:
+>>  Introduce a file for common properties of hwmon sensors.
+>> 
+>>  As of now it contains only the "label" property, which can contain a
+>>  descriptive label that allows to uniquely identify a device within 
+>> the
+>>  system.
+> 
+> I don't think we need this. What we need is a global (in dtschema)
+> type definition and then any users just add 'label: true'.
 
-Works for me (with devicetree additions for my device)
+Well, users would also need to set an actual label, otherwise this 
+defeats the point :)
 
-Tested-by: Andreas Kemnade <andreas@kemnade.info> # Kobo Clara HD
+Cheers,
+-Paul
+
+> 
+>> 
+>>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>>  ---
+>>   .../devicetree/bindings/hwmon/common.yaml     | 31 
+>> +++++++++++++++++++
+>>   1 file changed, 31 insertions(+)
+>>   create mode 100644 
+>> Documentation/devicetree/bindings/hwmon/common.yaml
+>> 
+>>  diff --git a/Documentation/devicetree/bindings/hwmon/common.yaml 
+>> b/Documentation/devicetree/bindings/hwmon/common.yaml
+>>  new file mode 100644
+>>  index 000000000000..997f74127d8c
+>>  --- /dev/null
+>>  +++ b/Documentation/devicetree/bindings/hwmon/common.yaml
+>>  @@ -0,0 +1,31 @@
+>>  +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>  +%YAML 1.2
+>>  +---
+>>  +$id: http://devicetree.org/schemas/hwmon/common.yaml#
+>>  +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>  +
+>>  +title: Common properties for hwmon sensors
+>>  +
+>>  +maintainers:
+>>  +  - Jean Delvare <jdelvare@suse.com>
+>>  +  - Guenter Roeck <linux@roeck-us.net>
+>>  +
+>>  +description: |
+>>  +  This document defines device tree properties common to several 
+>> hwmon
+>>  +  sensors. It doesn't constitue a device tree binding 
+>> specification by itself but
+>>  +  is meant to be referenced by device tree bindings.
+>>  +
+>>  +  When referenced from sensor tree bindings the properties defined 
+>> in this
+>>  +  document are defined as follows. The sensor tree bindings are 
+>> responsible for
+>>  +  defining whether each property is required or optional.
+>>  +
+>>  +properties:
+>>  +  label:
+>>  +    $ref: /schemas/types.yaml#/definitions/string
+>>  +    description: >
+>>  +      Descriptive label that allows to uniquely identify a device 
+>> within
+>>  +      the system.
+>>  +
+>>  +additionalProperties: true
+>>  +
+>>  +...
+>>  --
+>>  2.34.1
+>> 
+>> 
+
+
