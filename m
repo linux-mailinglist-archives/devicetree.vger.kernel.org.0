@@ -2,140 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BDB547E6E2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 18:26:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E998A47E71B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 18:33:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349493AbhLWR0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 12:26:11 -0500
-Received: from mail.skyhub.de ([5.9.137.197]:37560 "EHLO mail.skyhub.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233445AbhLWR0K (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 Dec 2021 12:26:10 -0500
-Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 247051EC050F;
-        Thu, 23 Dec 2021 18:26:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1640280365;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=LMGR+C4m+9735OKWvzE0ovfyOVaNRuViyaqk9TpUU70=;
-        b=pEsc1O/vnUhF2PpdTe0dYzrWZuYPARhmwaANkBfA0WcDaXQGQnq7zL3/WQNXKOFHnO8TyC
-        5U5gxduSv6Qzp+EpkTNBXD2r+RiK5R8qKC8qIOhzjCWBX6Tk0aE/hZHbWG7lbPn+lciTrS
-        NUn+YJWn2Ix4REiuv5J6C57w6h2L45g=
-Date:   Thu, 23 Dec 2021 18:26:06 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
-        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
+        id S231386AbhLWRdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 12:33:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59226 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229797AbhLWRdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 12:33:43 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C770C061401;
+        Thu, 23 Dec 2021 09:33:43 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id z29so24116209edl.7;
+        Thu, 23 Dec 2021 09:33:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+        bh=E0/YQJ43ks9rfBu4JnnAsmKLJ07kJTfqV/arSmMfD9Q=;
+        b=CfmnnQraty6UZHCrWwtMX/TFGU1UgDTVytCT9sKEY4sZgXNOv0JF6NEVb3IroMCwUP
+         nNOLSiU36bIUDocXH3mkY21WQ/js0o+kPISJK+0yD4zqfUvYqz853pm9dsY+iPWfpefZ
+         ZLaA/xJVISHgZJmN64GLASMchrK7qpBCdNF6vQEWZpFQ+vTYQ1WFvCaZ64QrEj5bd8TS
+         A3ckS0tjuGiDorxN8btb7QhAlF2HvGhva5obFrBE5z/Lo+o5Fo2OXp0cBV3LjFd+uHLZ
+         BtQNpwq1bOTYV8BOij3Na5iUptrURZbog73xEUSG8K+5kxGIqpL2OHt0QlxbwQqGTiE4
+         UqMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=E0/YQJ43ks9rfBu4JnnAsmKLJ07kJTfqV/arSmMfD9Q=;
+        b=HZd5aJsRoEudzv8etkZ/Pj/mSEaPUUqCGm1lEI3HWJ1deWREtANBSg0YsZfKq0UnQG
+         xhAhy+mVq9AGH+6iSpuvh4H8BHbuiloBu7di1GnE505+SZgMnKpGsYfbnUaOQmXGNMzi
+         f6sX5MLFlzn9eknJpdVzkwPL/O4ulOpZ93ncR7imSlUYieiP1UBcYHq0cUb6od0TDeWS
+         nZC8zv06R0p2aQtSaNUdrZnudbJITpRb2u8qZGsv5SuEVgwUfF5J74chJWEjLI5raxJs
+         MByfWUN4/NeZ40+98B7tL8COufG/3iz/9VnZeMROtO3ZZUTt9iItfYt1i8y6wyAEPAjf
+         vP3A==
+X-Gm-Message-State: AOAM530LmooHBvqCwAyetlSPgKcSi9cmf7xJgcFo3HqV3bpXDWsIS7kE
+        c+I4aCZsNIagaMIdhH/u8TU=
+X-Google-Smtp-Source: ABdhPJz1wb9lZeAJjuhN0BSqjf+Y/9f1AfyNiqQT/ha2qp8Ia+obXP8Z6LU16my6WHEOEyT7BpN+xw==
+X-Received: by 2002:a17:906:9413:: with SMTP id q19mr2756677ejx.296.1640280821676;
+        Thu, 23 Dec 2021 09:33:41 -0800 (PST)
+Received: from standask-GA-A55M-S2HP ([188.123.115.255])
+        by smtp.gmail.com with ESMTPSA id m12sm967093edd.86.2021.12.23.09.33.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Dec 2021 09:33:41 -0800 (PST)
+Date:   Thu, 23 Dec 2021 18:33:39 +0100
+From:   Stanislav Jakubek <stano.jakubek@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>
-Subject: Re: [PATCH v18 02/17] x86/setup: Move xen_pv_domain() check and
- insert_resource() to setup_arch()
-Message-ID: <YcSxLodOnxXHx0sV@zn.tnic>
-References: <20211222130820.1754-1-thunder.leizhen@huawei.com>
- <20211222130820.1754-3-thunder.leizhen@huawei.com>
+        Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] Revert "dt-bindings: arm: qcom: Document SDX65 platform and
+ boards"
+Message-ID: <20211223173339.GA3925@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211222130820.1754-3-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 22, 2021 at 09:08:05PM +0800, Zhen Lei wrote:
-> From: Chen Zhou <chenzhou10@huawei.com>
-> 
-> We will make the functions reserve_crashkernel() as generic, the
-> xen_pv_domain() check in reserve_crashkernel() is relevant only to
-> x86,
+This reverts commit 3b338c9a6a2afd6db46d5d8e39ae4f5eef420bf8.
 
-Why is that so? Is Xen-PV x86-only?
+This was a duplicate of 61339f368d59d25e22401731f89de44e3215508b,
+causing the sdx65 compatible and its board to be documented twice.
 
-> the same as insert_resource() in reserve_crashkernel[_low]().
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+Link: https://lore.kernel.org/all/20211223144407.GA6503@standask-GA-A55M-S2HP/
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 6 ------
+ 1 file changed, 6 deletions(-)
 
-Why?
-
-Looking at
-
-  0212f9159694 ("x86: Add Crash kernel low reservation")
-
-it *surprisingly* explains why that resources thing is being added:
-
-    We need to add another range in /proc/iomem like "Crash kernel low",
-    so kexec-tools could find that info and append to kdump kernel
-    command line.
-
-Then,
-
-  157752d84f5d ("kexec: use Crash kernel for Crash kernel low")
-
-renamed it because, as it states, kexec-tools was taught to handle
-multiple resources of the same name.
-
-So why does kexec-tools on arm *not* need those iomem resources? How
-does it parse the ranges there? Questions over questions...
-
-So last time I told you to sit down and take your time with this cleanup.
-From reading this here, it doesn't look like it. Rather, it looks like
-hastily done in a hurry and hurrying stuff doesn't help you one bit - it
-actually makes it worse.
-
-Your commit messages need to explain *why* a change is being done and
-why is that ok. This one doesn't.
-
-> @@ -1120,7 +1109,17 @@ void __init setup_arch(char **cmdline_p)
->  	 * Reserve memory for crash kernel after SRAT is parsed so that it
->  	 * won't consume hotpluggable memory.
->  	 */
-> -	reserve_crashkernel();
-> +#ifdef CONFIG_KEXEC_CORE
-> +	if (xen_pv_domain())
-> +		pr_info("Ignoring crashkernel for a Xen PV domain\n");
-
-This is wrong - the check is currently being done inside
-reserve_crashkernel(), *after* it has parsed a crashkernel= cmdline
-correctly - and not before.
-
-Your change would print on Xen PV, regardless of whether it has received
-crashkernel= on the cmdline or not.
-
-This is exactly why I say that making those functions generic and shared
-might not be such a good idea, after all, because then you'd have to
-sprinkle around arch-specific stuff.
-
-One of the ways how to address this particular case here would be:
-
-1. Add a x86-specific wrapper around parse_crashkernel() which does
-all the parsing. When that wrapper finishes, you should have parsed
-everything that has crashkernel= on the cmdline.
-
-2. At the end of that wrapper, you do arch-specific checks and setup
-like the xen_pv_domain() one.
-
-3. Now, you do reserve_crashkernel(), if those checks pass.
-
-The question is, whether the flow on arm64 can do the same. Probably but
-it needs careful auditing.
-
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 370aab274cd1..04ff0b55bb85 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -48,7 +48,6 @@ description: |
+         sdx65
+         sm7225
+         sm8150
+-        sdx65
+         sm8250
+         sm8350
+         sm8450
+@@ -228,11 +227,6 @@ properties:
+               - qcom,sdx65-mtp
+           - const: qcom,sdx65
+ 
+-      - items:
+-          - enum:
+-              - qcom,sdx65-mtp
+-          - const: qcom,sdx65
+-
+       - items:
+           - enum:
+               - qcom,ipq6018-cp01
 -- 
-Regards/Gruss,
-    Boris.
+2.25.1
 
-https://people.kernel.org/tglx/notes-about-netiquette
