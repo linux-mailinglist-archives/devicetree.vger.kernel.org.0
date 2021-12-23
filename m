@@ -2,96 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63AD147E93C
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 22:59:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAE4247E999
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 23:57:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240806AbhLWV67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 16:58:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33344 "EHLO
+        id S240526AbhLWW5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 17:57:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240782AbhLWV67 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 16:58:59 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C116C061401;
-        Thu, 23 Dec 2021 13:58:59 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id y22so26426123edq.2;
-        Thu, 23 Dec 2021 13:58:58 -0800 (PST)
+        with ESMTP id S234511AbhLWW5w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 17:57:52 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19DC2C061401;
+        Thu, 23 Dec 2021 14:57:52 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id bm14so26739818edb.5;
+        Thu, 23 Dec 2021 14:57:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=tHmZrintmsfr/VUUizaz4/mfgzPKrPwPFlMKH0k4wW8=;
-        b=ipD+HLnlhbtF6BV3FwaIg6tOcqXdp69mRp4zQVgF2PPERKLDZvuhKmjRZVzdMxAvY5
-         d+8U6MMfdpx5w13OLnFpn9dDTFWTckl4I1cAxClgpuSB7y3F6HeBe3toAhnvyWP5UNZu
-         5hojP4ilGIcfK5AyhYWN5uaZbv4PTCGLZqCO3zlShYz8LvoKdx9AgqqyoNltCp7Sj6H9
-         JCXGKIJcJ4VtIon+I93Do/vBx1UCZnSJQZkoLKtQW256JYL6pTcAWG1pEYtEwp4+W9cw
-         qYDs22587Fedpgyp0ci35fRY8wGxC5hpEjU1xFlv6uiyUsgQ0kA4RxyUKHngMvWahvNS
-         gFZg==
+        h=date:from:to:cc:subject:message-id:reply-to:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5G6N5MmO8P/7YzeJvaLeII1BWwEj3vKFRtBNPQAw/Sw=;
+        b=jO+k7tI2SYe4kM78XDof1xpdskkVd3Wq1uL6OFkWrT7fMJQczi6hMb2Vnvf0WTKSo2
+         rOhHh7ZgDiuhslZGvvbBxRNFzgio8fXbk/Ax7N7Yrfb6gooKUim5egVJlW/3e3zts59Z
+         w+zGErw8XiLawd2LzGoZ7ET9KLSNQi3WPANveJDKSmGeriCM1Ay8A5ygLqJyZF06MSOy
+         T/klowHG0xT6BoZPVaHPSn6gCWEz1c9EmduBg8i64uv5gaJjKmDJIkKeteURTK5C8iYg
+         MGmy7hPQ3dqbwZn9qCi+8vzxXtuaLglbmGr/AUVzRB0HGx9PVkGLbgmoBzMiNesb84St
+         G1jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=tHmZrintmsfr/VUUizaz4/mfgzPKrPwPFlMKH0k4wW8=;
-        b=iZDDVWvUNDcs6h+GTwGDQVPNH8ESnZnf+1JrNeWcuEqOKaxHSspvuucrBfMjXLaJJ+
-         Fm44sXXfp35QQrYEEEv0oc/T8KVWQpnnvHwTT6nJAr3MfzYBnQESf4Cx2drfGAfqptWp
-         3dNchokqhad7WqjqHkV/y+hu3W/4CTOMeT+0S07dH1kQi4SAG3lxy90Zmeq/i5s1wXSN
-         dCxbi/8kNKL+uumilMLKxg1+yBASB/sCMP/Jw/nVgheN619wVHamvuixIgvRELLVHTsC
-         JGq5W+VOVpFQoJpcOzxm7/hbc4W6kHDT7Cd+8gV3cwlbrZ2RLWC7z/FUb93lo9feoIya
-         Ewfg==
-X-Gm-Message-State: AOAM530GEP77JMbhf2XeUIf2R2ppMTM2tBW/fKA0vX7+ZK8zmGdxH7Ev
-        hdp6oOGJTDCYy34RITOffxbOssF6Tlk=
-X-Google-Smtp-Source: ABdhPJzBQxAu318JRQ9x+W/KUbHqz2Qhd+rfY/gTD5nSlsGqJ/FRrGyV/k+ErGGpME4ZLkuB4rzx6g==
-X-Received: by 2002:aa7:d2d1:: with SMTP id k17mr3650108edr.250.1640296737531;
-        Thu, 23 Dec 2021 13:58:57 -0800 (PST)
-Received: from [192.168.1.41] (83.25.198.180.ipv4.supernova.orange.pl. [83.25.198.180])
-        by smtp.googlemail.com with ESMTPSA id gt17sm2116379ejc.151.2021.12.23.13.58.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Dec 2021 13:58:57 -0800 (PST)
-Message-ID: <f173d7a6-70e7-498f-8a04-b025c75f2b66@gmail.com>
-Date:   Thu, 23 Dec 2021 22:58:56 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:reply-to
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=5G6N5MmO8P/7YzeJvaLeII1BWwEj3vKFRtBNPQAw/Sw=;
+        b=g5ffOtd3+kf/oLgt44pcl1zH0S7QiBaVxkVRWB29Zsgz08VvAcJj52dcXgw2D8/hYH
+         jE6qsXod2QWeYw8KMKUBu4h4XVEsLnMoRiM+V+Uwyl8mq/nA9Si1BtNtgrOQ7y54AMZU
+         SQ9DC62QxqZ2syH6RhImbsjpO/PyuiW39fjRP2AHhqa2Ey5BwsEBE/kC8uEuYq83uYnZ
+         zqmSLps9CTng6v0cUszWVWQOuDm3JAisJ9O3rduZdZ/Dv/nw8KDR4YtJeplonDYtAtxL
+         +3OA+jSsDhtP+wsD65S8rfBrdMlLEl2fNDq1tBc4PiJVBWL4A7/yOKx7H3X0rqv1HZ7y
+         IjoQ==
+X-Gm-Message-State: AOAM531+t3qaoaKIMgfULXymrPyQxJDHPO0irsAZtwwG1eKdd9S0dC9G
+        9B394my8Z/PsGI38MFBEwuQ=
+X-Google-Smtp-Source: ABdhPJwmwb7Ez7u+nU+Um2tqVoQ54ewknskyhGW6wJDxcFuRKp7l/iWHm8IwRNdX+X9Eg8I95I5vRA==
+X-Received: by 2002:a17:907:33c4:: with SMTP id zk4mr3494896ejb.569.1640300270598;
+        Thu, 23 Dec 2021 14:57:50 -0800 (PST)
+Received: from pevik (gw1.ms-free.net. [185.243.124.10])
+        by smtp.gmail.com with ESMTPSA id y5sm2101424ejk.203.2021.12.23.14.57.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Dec 2021 14:57:49 -0800 (PST)
+Date:   Thu, 23 Dec 2021 23:57:42 +0100
+From:   Petr Vorel <petr.vorel@gmail.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: mmc: sdhci-msm: Add compatible string
+ for msm8994
+Message-ID: <YcT+5h15T0/gFCZO@pevik>
+Reply-To: Petr Vorel <petr.vorel@gmail.com>
+References: <20211223083153.22435-1-petr.vorel@gmail.com>
+ <CAPDyKFosa+V8E3pRBcwzOp48KfXZvLVmwCAro66gsWKZdAMmag@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH 3/5] dt-bindings: nvmem: allow referencing device defined
- cells by names
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20211223110755.22722-1-zajec5@gmail.com>
- <20211223110755.22722-4-zajec5@gmail.com>
- <CAL_JsqK2TMu+h4MgQqjN0bvEzqdhsEviBwWiiR9hfNbC5eOCKg@mail.gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <CAL_JsqK2TMu+h4MgQqjN0bvEzqdhsEviBwWiiR9hfNbC5eOCKg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFosa+V8E3pRBcwzOp48KfXZvLVmwCAro66gsWKZdAMmag@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23.12.2021 22:18, Rob Herring wrote:
-> On Thu, Dec 23, 2021 at 7:08 AM Rafał Miłecki <zajec5@gmail.com> wrote:
->>
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> Not every NVMEM has predefined cells at hardcoded addresses. Some
->> devices store cells in internal structs and custom formats. Referencing
->> such cells is still required to let other bindings use them.
->>
->> Modify binding to require "reg" xor "label". The later one can be used
->> to match "dynamic" NVMEM cells by their names.
-> 
-> 'label' is supposed to correspond to a sticker on a port or something
-> human identifiable. It generally should be something optional to
-> making the OS functional. Yes, there are already some abuses of that,
-> but this case is too far for me.
+> On Thu, 23 Dec 2021 at 09:32, Petr Vorel <petr.vorel@gmail.com> wrote:
 
-Good to learn that!
+> > Add msm8994 SoC specific compatible strings for qcom-sdhci controller.
 
-"name" is special & not allowed I think.
+> > Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
 
-Any suggestion what to use? I'm not native. What about "title"? Or maybe
-"term", "entity", "tag"?
+> Hi Petr,
+
+Hi Uffe,
+
+> Can you please re-submit this to linux-mmc too, so I can pick it from
+> the patchtracker.
+
+Done (I had to send it from my work mail, because majordomo haven't
+authenticated my private gmail address).
+
+Kind regards,
+Petr
+
+> Kind regards
+> Uffe
+
+> > ---
+> >  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 1 +
+> >  1 file changed, 1 insertion(+)
+
+> > diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> > index 50841e2843fc..6a8cc261bf61 100644
+> > --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> > +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> > @@ -17,6 +17,7 @@ Required properties:
+> >                 "qcom,msm8974-sdhci", "qcom,sdhci-msm-v4"
+> >                 "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4"
+> >                 "qcom,msm8992-sdhci", "qcom,sdhci-msm-v4"
+> > +               "qcom,msm8994-sdhci", "qcom,sdhci-msm-v4"
+> >                 "qcom,msm8996-sdhci", "qcom,sdhci-msm-v4"
+> >                 "qcom,qcs404-sdhci", "qcom,sdhci-msm-v5"
+> >                 "qcom,sc7180-sdhci", "qcom,sdhci-msm-v5";
+> > --
+> > 2.34.1
 
