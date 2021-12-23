@@ -2,94 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3985647E317
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 13:17:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D84E47E327
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 13:24:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348175AbhLWMRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 07:17:35 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:36620 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348194AbhLWMRe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 07:17:34 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BNCHVBU018214;
-        Thu, 23 Dec 2021 06:17:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1640261851;
-        bh=MRTBaAPYINx8g8q6Gwz5JTYLNHH239obwXFk0D+nNiE=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=saad6HRBgWGnoJpMJkTJh3OfSKN+s80Q/5JLpTOboxLVUik9n6qtDY2/cZi0TipJS
-         FlAhumqWLq3aY15KclhGz/Z5HLv09eFfbePlQLJEBsJSqydQMrnCoJdl0WvDAZJo5l
-         zpoYicGdl9Je6HL0JHU2mPsGQO6g8TFsN5gibHXI=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BNCHVND052354
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 23 Dec 2021 06:17:31 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 23
- Dec 2021 06:17:30 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 23 Dec 2021 06:17:30 -0600
-Received: from uda0132425.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BNCHN6D047704;
-        Thu, 23 Dec 2021 06:17:28 -0600
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH-next 2/2] arm64: dts: ti: k3-j721s2-common-proc-board: Alias console uart to serial2
-Date:   Thu, 23 Dec 2021 17:46:50 +0530
-Message-ID: <20211223121650.26868-3-vigneshr@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211223121650.26868-1-vigneshr@ti.com>
-References: <20211223121650.26868-1-vigneshr@ti.com>
+        id S239495AbhLWMYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 07:24:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46252 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243469AbhLWMYy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 07:24:54 -0500
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [IPv6:2001:67c:2050::465:102])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED8CFC061756
+        for <devicetree@vger.kernel.org>; Thu, 23 Dec 2021 04:24:53 -0800 (PST)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:105:465:1:4:0])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4JKTsZ714bzQjf1;
+        Thu, 23 Dec 2021 13:24:50 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+        t=1640262288;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=aKcMJ+j2oyWpNwagklOb+qQvqMvdN8cr0o6AoVgyaHc=;
+        b=MuD5cR/m8AYNiIEcP9IXw2JpBwT+zbjuYta36LHUX0URRpgUQ5RCil8wWakye1peNQmbMq
+        MXijqQEF1vdSOE087O6S0m70mX2q5mXewA9SRziyMTBEmKxlZD2Rs9xZeWLeeFLeepAr6B
+        1jiRlatxkFDkgfFH7rH1rUWiO0cuv3ANVoZtONocGzAQWArchRPmFpaUUNEXy77yuq4Vt8
+        mmpYvCZIOaVgpNegNlY5sQGvCU3IJndlKDyU0G/QiyAfs/RYU/tOjf8ZSgCRXbBLoYV+8S
+        ovhYqnkR81t2YlBipaW1/I0DRAgDkbtbLXcP+1QOgLggwaNwtjow2kQPBQcr1w==
+From:   Alexander Stein <alexander.stein@mailbox.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Alexander Stein <alexander.stein@mailbox.org>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: [PATCH 0/3] More amlogic sound-name-prefix DT fixes
+Date:   Thu, 23 Dec 2021 13:24:31 +0100
+Message-Id: <20211223122434.39378-1-alexander.stein@mailbox.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aswath Govindraju <a-govindraju@ti.com>
+Following up [1] here are more fix for missing sound-name-prefix properties in
+the arch/arm64/boot/dts/amlogic/ subtree.
 
-On J721s2 Linux console is on main_uart8 but to be consistent with other
-J7 family of devices, alias it to ttyS2 (serial2). This also eliminates
-need to have higher number of 8250 runtime UARTs.
+[1] https://www.spinics.net/lists/devicetree/msg466125.html
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-Reviewed-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Alexander Stein (3):
+  dt-bindings: display: meson-dw-hdmi: add missing sound-name-prefix
+    property
+  ASoC: dt-bindings: spdif-dit: add missing sound-name-prefix property
+  ASoC: dt-bindings: aiu: spdif-dit: add missing sound-name-prefix
+    property
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index 708c14338eb7..b210cc07c539 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -15,13 +15,13 @@ / {
- 	model = "Texas Instruments J721S2 EVM";
- 
- 	chosen {
--		stdout-path = "serial10:115200n8";
--		bootargs = "console=ttyS10,115200n8 earlycon=ns16550a,mmio32,2880000";
-+		stdout-path = "serial2:115200n8";
-+		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,2880000";
- 	};
- 
- 	aliases {
- 		serial1 = &mcu_uart0;
--		serial10 = &main_uart8;
-+		serial2 = &main_uart8;
- 		mmc0 = &main_sdhci0;
- 		mmc1 = &main_sdhci1;
- 		can0 = &main_mcan16;
+ .../devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml   | 5 +++++
+ Documentation/devicetree/bindings/sound/amlogic,aiu.yaml     | 5 +++++
+ Documentation/devicetree/bindings/sound/linux,spdif-dit.yaml | 5 +++++
+ 3 files changed, 15 insertions(+)
+
 -- 
 2.34.1
 
