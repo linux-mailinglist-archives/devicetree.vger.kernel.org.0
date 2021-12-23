@@ -2,88 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0C3F47E43B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 14:52:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 526CB47E458
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 15:10:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348693AbhLWNv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 08:51:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37850 "EHLO
+        id S234535AbhLWOKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 09:10:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348462AbhLWNv7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 08:51:59 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE753C061401;
-        Thu, 23 Dec 2021 05:51:58 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id z29so21689987edl.7;
-        Thu, 23 Dec 2021 05:51:58 -0800 (PST)
+        with ESMTP id S232279AbhLWOKG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 09:10:06 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D001CC061401;
+        Thu, 23 Dec 2021 06:10:05 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id f5so21896862edq.6;
+        Thu, 23 Dec 2021 06:10:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=xnf5tg9xjHOiwQT7N7ZwvL+tTqg5m1BRJMGrP/gost0=;
-        b=W1gHvUFoH7AC/jJSsUR+59BWEHjad338aw2rsUTO4hTo39kVOtEN5XRgqkmu5iHBTl
-         xciVJzHMEsEyFwkI0Tp3YZjg4ec7aIYjlvnrOKR5hU1JXFUaFzsxeou6BPoUiYEZap+J
-         Wwbf8mT41tWLCjbO/PdHIpqM+gaHLunukPSCKHcZsRU5hpZoqPXhmK1MltlwKFKNpSkW
-         NDXQEdaGCeYIsl3ZrnOmL1ZuzLJxIj+P9YjrVDjWNNRFbeTb48shaffamYJARuWH3eVN
-         lyAghmhiBSmX8wsNtpdvqGStGkQoPUKofYsT6jmSBMXGHpqNQh3+6oZZa4Qp5TyWuzv7
-         HO0A==
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+        bh=UjJkKz/JWKKHY4Lc0BtDfzIifxG8kvNPIELEZ6V+jDY=;
+        b=NKzwnSNRYOXEwAggF5JDNwy5v8Mn81zuzcbWVzsjbz0srosH/h7yCUbFTUfmLmWdeC
+         +DsN8gvOMvgVKOfXVPiakOi1CU/mA+PZBpVZRCAfBrFV+a/oF0lyzG5mOQ8r8eahej4Q
+         0DatHCDcM3TODghtsFjPp2ULnRNgTmQcH7ZmzgLJGfE1fbGRi4mJhaBRtBKKKZ0q+L3M
+         P12fXNAuYPEVT5lrsLUG89P5RcFy0L8pNCMC+Ntj5rFjC9HjMuL2S/E/Awb4KpuI4PMd
+         U0mdBf+gZHHLuhyymQddTKZXknf9pbmC/IW5/sS0K4Bq3h2Kjxj4iT5rzIwpZi9SrDkZ
+         PhBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=xnf5tg9xjHOiwQT7N7ZwvL+tTqg5m1BRJMGrP/gost0=;
-        b=19Bq8w1HHXe8aG+NYZ0f5x0VrX0ibc0R/0+cQCUGCTwSBDzvwtTc8eb2dohe46guU7
-         W0JPAE/jk8O/KgzCo8RU34mLMdVJPXeGgL3fiyd7EAjMStkSVCgyYOTLXObiyWIzAzt2
-         YWhMN4zkYVrPBcsEi2/yl/V4YzetB1ZFE+HPqh3xzj9nk23UIDiQps72beyhCT65To90
-         itfCDtjz1VYkcwDiqVEfa+Quvt2yeQSB96Xc5mDjU9SJrxYgJnZkz5TUGVEuNDhS0KoD
-         vuw/NLu3SYxbDfoREQR21LRPz9QgvENheGrVGfRRiusnVT2JCiltZlkEDUIpEqA3BO51
-         cemw==
-X-Gm-Message-State: AOAM531MpSVVvDuK3zv+sM8YRTYufyTtTzuX2XZqQYsVjpVHXGZPgQjy
-        HXKSxhM+Ydi5X37jr2wbGTeDYcdzXAGS+sttBG0=
-X-Google-Smtp-Source: ABdhPJz+eA0P9hj70NkKVI2oJ5ZhiYaKQWne8/nJALPRVJKwOWxjRe+E1NYX8khEBzMr1jOLJieed7m/+AqpVzKp28E=
-X-Received: by 2002:a17:906:ced9:: with SMTP id si25mr2160700ejb.77.1640267517196;
- Thu, 23 Dec 2021 05:51:57 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=UjJkKz/JWKKHY4Lc0BtDfzIifxG8kvNPIELEZ6V+jDY=;
+        b=BKwzbAIwmR/qg9ILTbB5w5pLs/AkwRi/AA4EJNCsb2vZ9WM1DzTtCE/v/QBIZhIm4+
+         zXVQgTVAftlfQpxfaAv7JqALi8z959Mrz1WPQZgMOxM8SE2fdWtZ+4rdkvuKU8TS8ns0
+         RlGq744wupwe7yn/78kBmU5Z5ME9XbQeTYKDna83jXS3whHbWQ8CqFijGr3HIpzPnh2B
+         u6PixF2NAlZqNAgStCUJDMwwEGGapINgeX6y/IhdImIKFZN7ILOoRUc7Fm6cGS0Gc+rB
+         gGZHdWTrjFwRAyF6AQdG6wohlWLegiM6LyYOMFS3f+9HoBHC6ndBQRpiQup8WR/7DRTk
+         EqwA==
+X-Gm-Message-State: AOAM531DPIyoPGDkkwt2SR/cCW+cK0kVbR7v62KSNDZt2iCKPakJTq3x
+        teYi8CGIp5CEw36U6sFI36mGr66gyuQ=
+X-Google-Smtp-Source: ABdhPJwED6pkRIcLk+EsacuGOReF+17cVzQfVNLpZvtcQGcSn16U9mhv+DWleHQztAyaEnftcWQ2iQ==
+X-Received: by 2002:a17:907:7295:: with SMTP id dt21mr2023199ejc.441.1640268604463;
+        Thu, 23 Dec 2021 06:10:04 -0800 (PST)
+Received: from standask-GA-A55M-S2HP ([188.123.115.255])
+        by smtp.gmail.com with ESMTPSA id 27sm1784451ejm.41.2021.12.23.06.10.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Dec 2021 06:10:04 -0800 (PST)
+Date:   Thu, 23 Dec 2021 15:10:02 +0100
+From:   Stanislav Jakubek <stano.jakubek@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] dt-bindings: vendor-prefixes: add OnePlus
+Message-ID: <20211223141002.GA5979@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
-References: <20211202122021.43124-1-alistair@alistair23.me> <20211202122021.43124-2-alistair@alistair23.me>
-In-Reply-To: <20211202122021.43124-2-alistair@alistair23.me>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 23 Dec 2021 15:49:59 +0200
-Message-ID: <CAHp75VfGmn8+3=qx1-jqO+yO4zFgS854LcVm1tDSwhz5BnJF0A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] Input: Add driver for Cypress Generation 5 touchscreen
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-input <linux-input@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Alistair Francis <alistair23@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        =?UTF-8?Q?Myl=C3=A8ne_Josserand?= <mylene.josserand@bootlin.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 6, 2021 at 9:05 AM Alistair Francis <alistair@alistair23.me> wr=
-ote:
->
-> From: Myl=C3=A8ne Josserand <mylene.josserand@bootlin.com>
->
-> This is the basic driver for the Cypress TrueTouch Gen5 touchscreen
-> controllers. This driver supports only the I2C bus but it uses regmap
-> so SPI support could be added later.
-> The touchscreen can retrieve some defined zone that are handled as
-> buttons (according to the hardware). That is why it handles
-> button and multitouch events.
+Add vendor prefix for OnePlus (https://www.oneplus.com/)
 
-Most of the comments I just gave against v2 are applicable here,
-please address them.
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
---=20
-With Best Regards,
-Andy Shevchenko
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 1497303e2600..a13d6a19c2b4 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -858,6 +858,8 @@ patternProperties:
+     description: OLIMEX Ltd.
+   "^olpc,.*":
+     description: One Laptop Per Child
++  "^oneplus,.*":
++    description: OnePlus Technology (Shenzhen) Co., Ltd.
+   "^onion,.*":
+     description: Onion Corporation
+   "^onnn,.*":
+-- 
+2.25.1
+
