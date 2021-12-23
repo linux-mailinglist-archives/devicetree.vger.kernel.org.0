@@ -2,110 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0FF347DFA1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 08:33:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44AFD47E00E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 08:56:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346868AbhLWHdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 02:33:23 -0500
-Received: from szxga02-in.huawei.com ([45.249.212.188]:16853 "EHLO
-        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346855AbhLWHdX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 02:33:23 -0500
-Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.54])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4JKMNF6Z8jz91sQ;
-        Thu, 23 Dec 2021 15:32:29 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 23 Dec 2021 15:33:21 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 23 Dec 2021 15:33:20 +0800
-Subject: Re: [PATCHv3] efi: apply memblock cap after memblock_add()
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-To:     Pingfan Liu <kernelfans@gmail.com>, <devicetree@vger.kernel.org>,
-        <linux-efi@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@kernel.org>,
-        "Geert Uytterhoeven" <geert+renesas@glider.be>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Nick Terrell <terrelln@fb.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20211214040157.27443-3-kernelfans@gmail.com>
- <20211215021348.8766-1-kernelfans@gmail.com>
- <7060b244-03d3-e81f-f545-cf2d4fe5c2dd@huawei.com>
-Message-ID: <99322a5a-42c3-29b8-df57-f096f9ac95e9@huawei.com>
-Date:   Thu, 23 Dec 2021 15:33:08 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S239468AbhLWH4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 02:56:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43128 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241794AbhLWH4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 02:56:52 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A92B9C061756
+        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 23:56:51 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id 207so7719369ljf.10
+        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 23:56:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j3BDYvh6G6Kwwfj8Ljh6Lxu3/k0dPkOL4LYyEvjC7J0=;
+        b=rVF6Tc3/MFHIEUwvtVahS5P3e+/awptOHz3RZwyIk70cgvCtfwkillFGnFcntnCChH
+         PpBhj8E+RESx6fdn5Zq2PYmACwNGR4xY2WCB7kC1iHMJAj6YKdtJWU6rmkH+bjrCeIwo
+         diwvwrZSvLY5pmnsliODr5gw5w1xcKMPJ9424QsqNaKoTdLfveqSLLYlxUGKbrh56tpZ
+         Vd7HEX8oo+tBqiAeDlns8ICxNTNxKko5Bhc7uI7fIcgBZOFT53zSCswEb/d8itW3LqGx
+         EWPp4naSasCCDkMHTrNhAj1Ff0Dn3peut4XhAM7YIpS+cbtbQVxGoSuGzQ8byCdSGNP4
+         QZSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j3BDYvh6G6Kwwfj8Ljh6Lxu3/k0dPkOL4LYyEvjC7J0=;
+        b=yIOtKvSuvGqcznj5n6pY/dmjPriicPLanewcgpg/SFXNydaL5hUxzZ43OJ0xaAgtdC
+         Xj0uwxklk9utlL6LBSjq7krczgT0EoUXCvy8FESmR5wJsy3UtcsGSE7goOrfO4/knKdH
+         Bn902ElUv9bBbuQ3cUHg3BuvXsPMUlqx0U5468wFCs0I5PMkPY7J9LcLujo3y/M/jFyv
+         da9sLcd1zEfBTaNl7nKZyPY04AYebbvTGfQhD1gCu1A8S9kdUj9LOOsFcEnFVqeQNWuc
+         9TlHtoqoHcAJa8nq69GctExDSJm9QrLrhiTN+MWO68BRmjWfM50hVP0pKjiM4yoK9dL+
+         r46A==
+X-Gm-Message-State: AOAM530bxhUfrHhK71Rirxl0AUwFS2RaWlgawDxkQlfIFuoal3NQv6Bx
+        hxIBjzRScsjOKYO1MvJk2+Qs4Q==
+X-Google-Smtp-Source: ABdhPJzlbWVgk9B9QJKs/ie+tgQLXVUI3ooCQ6uDo8ydIQyDaZAdM4hWLN94s1P2QoN98Wxyse8e5g==
+X-Received: by 2002:a05:651c:198e:: with SMTP id bx14mr935157ljb.370.1640246209901;
+        Wed, 22 Dec 2021 23:56:49 -0800 (PST)
+Received: from localhost.localdomain (88-113-46-102.elisa-laajakaista.fi. [88.113.46.102])
+        by smtp.gmail.com with ESMTPSA id v24sm433140lfr.30.2021.12.22.23.56.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Dec 2021 23:56:49 -0800 (PST)
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Thara Gopinath <thara.gopinath@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sm8250: add description of dcvsh interrupts
+Date:   Thu, 23 Dec 2021 09:56:40 +0200
+Message-Id: <20211223075640.2924569-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <7060b244-03d3-e81f-f545-cf2d4fe5c2dd@huawei.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The change adds SM8250 cpufreq-epss controller interrupts for each
+CPU core cluster.
 
+Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Thara Gopinath <thara.gopinath@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-On 2021/12/22 16:00, Leizhen (ThunderTown) wrote:
-> 
-> 
-> On 2021/12/15 10:13, Pingfan Liu wrote:
->>  
->> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
->> index 18a2df431bfd..aa07ef5cab5f 100644
->> --- a/drivers/of/fdt.c
->> +++ b/drivers/of/fdt.c
->> @@ -972,7 +972,7 @@ static unsigned long chosen_node_offset = -FDT_ERR_NOTFOUND;
->>   * location from flat tree
->>   * @node: reference to node containing usable memory range location ('chosen')
->>   */
->> -static void __init early_init_dt_check_for_usable_mem_range(void)
->> +void __init early_init_dt_check_for_usable_mem_range(void)
-> 
-> Why do I see a parameter 'node'?
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 5617a46e5ccd..e7d20c55a743 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -4571,7 +4571,10 @@ cpufreq_hw: cpufreq@18591000 {
+ 
+ 			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
+ 			clock-names = "xo", "alternate";
+-
++			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "dcvsh-irq-0", "dcvsh-irq-1", "dcvsh-irq-2";
+ 			#freq-domain-cells = <1>;
+ 		};
+ 	};
+-- 
+2.33.0
 
-Sorry, I just saw that the patch 1/2 in v2 was also applied.
-
-> 
-> master:
-> drivers/of/fdt.c:976:static void __init early_init_dt_check_for_usable_mem_range(unsigned long node)
-> 
-> next:
-> drivers/of/fdt.c:980:static void __init early_init_dt_check_for_usable_mem_range(unsigned long node)
-> 
->>  {
->>  	const __be32 *prop;
->>  	int len;
->> diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
->> index cf48983d3c86..ad09beb6d13c 100644
->> --- a/include/linux/of_fdt.h
->> +++ b/include/linux/of_fdt.h
->> @@ -62,6 +62,7 @@ extern int early_init_dt_scan_chosen(unsigned long node, const char *uname,
->>  				     int depth, void *data);
->>  extern int early_init_dt_scan_memory(unsigned long node, const char *uname,
->>  				     int depth, void *data);
->> +extern void early_init_dt_check_for_usable_mem_range(void);
->>  extern int early_init_dt_scan_chosen_stdout(void);
->>  extern void early_init_fdt_scan_reserved_mem(void);
->>  extern void early_init_fdt_reserve_self(void);
->> @@ -86,6 +87,7 @@ extern void unflatten_and_copy_device_tree(void);
->>  extern void early_init_devtree(void *);
->>  extern void early_get_first_memblock_info(void *, phys_addr_t *);
->>  #else /* CONFIG_OF_EARLY_FLATTREE */
->> +static inline void early_init_dt_check_for_usable_mem_range(void) {}
->>  static inline int early_init_dt_scan_chosen_stdout(void) { return -ENODEV; }
->>  static inline void early_init_fdt_scan_reserved_mem(void) {}
->>  static inline void early_init_fdt_reserve_self(void) {}
->>
