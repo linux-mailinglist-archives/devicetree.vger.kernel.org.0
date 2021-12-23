@@ -2,70 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EA1E47E860
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 20:32:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92BCF47E86A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 20:39:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350036AbhLWTcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 14:32:02 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:40820 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1350022AbhLWTcB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 Dec 2021 14:32:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=GTJhaj2XCJscWkNa8lKeeUxD0omZidYOBZ+2c/Vg/no=; b=1/yxUF96lAwfOfZzel2ujl/6ug
-        aZx4seCY/5ibhrMZ+mEdvMlMN5+tVOhjVYxQNqqInie4nk+K61GS85UJXRGT9LWFNWDx8etExiSEZ
-        Qay0a7rnCaGunGW3SBkZR1nukreOndyGkNNL5SwlToEmXTMqq8BgPP9+ZK1cjIUJLM8g=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1n0ToT-00HJzO-HZ; Thu, 23 Dec 2021 20:31:41 +0100
-Date:   Thu, 23 Dec 2021 20:31:41 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: net: dsa: Fix realtek-smi example
-Message-ID: <YcTOnYFKpYOYiRrN@lunn.ch>
-References: <20211223181741.3999-1-f.fainelli@gmail.com>
+        id S1350013AbhLWTjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 14:39:37 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:34698 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244778AbhLWTje (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 14:39:34 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 9C77ECE2178;
+        Thu, 23 Dec 2021 19:39:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE51CC36AE9;
+        Thu, 23 Dec 2021 19:39:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640288370;
+        bh=k9GLyyBuOQ9Sm/cdmFUcfY4OryXSOQK/ki79q1v2xQs=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=teCi81Fa9JLCqnabKNsg/PrAlHemns/yU09FMCuiPyVEoc4luFHDOqy6qbNfnGHKJ
+         ZoJr7MZzFZWiYLXcmmHGy/KRNQEXHPE/WMkuW0nld4DkxvbM3/qWP54lK5IfDlK/vL
+         ali+mRB4ark07IqM5aZvCSkqogySVXBe2AQC0WSqWgVZOiLqZTfn2TFPVZg6amuIeV
+         VVCikWprG9dLQluQVCfebfusXBJN4At8jeoCvdDrseJoeGgAedTXkJZLx+6Irxd129
+         TPJIfMdaZUIDz+QQuNXK1Rl3d7H8pQnjGHoy6a4cuQ0KhvYPODYq0g1TiD9oTgMlEG
+         LHKBL9FuYlndg==
+From:   Mark Brown <broonie@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Andy Gross <agross@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        phone-devel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        ~postmarketos/upstreaming@lists.sr.ht
+In-Reply-To: <20211214142049.20422-1-stephan@gerhold.net>
+References: <20211214142049.20422-1-stephan@gerhold.net>
+Subject: Re: [PATCH 0/4] ASoC: qcom: Parse "pin-switches" and "widgets" from DT
+Message-Id: <164028836762.13551.16534248024583184241.b4-ty@kernel.org>
+Date:   Thu, 23 Dec 2021 19:39:27 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211223181741.3999-1-f.fainelli@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 23, 2021 at 10:17:41AM -0800, Florian Fainelli wrote:
-> The 'ports' node is not supposed to have a 'reg' property at all, in
-> fact, doing so will lead to dtc issuing warnings looking like these:
+On Tue, 14 Dec 2021 15:20:45 +0100, Stephan Gerhold wrote:
+> Some sound card setups might require extra pin switches to allow
+> turning off certain audio components. simple-card supports this
+> already using the "pin-switches" and "widgets" device tree property.
+> This series makes it possible to use the same properties for the Qcom
+> sound cards.
 > 
-> arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts:109.4-14: Warning (reg_format): /switch/ports:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-> arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-> arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-> arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-> arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-> arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts:106.9-149.5: Warning (avoid_default_addr_size): /switch/ports: Relying on default #address-cells value
-> arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts:106.9-149.5: Warning (avoid_default_addr_size): /switch/ports: Relying on default #size-cells value
+> To implement that, the function that parses the "pin-switches" property
+> in simple-card-utils.c is first moved into the ASoC core. Then two
+> simple function calls are added to the common Qcom sound card DT parser.
+> Finally there is a small patch for the msm8916-wcd-analog codec to make
+> it possible to model sound card setups used in some MSM8916 smartphones.
+> (See PATCH 2/4 for an explanation of some real example use cases.)
 > 
-> Fix the example by remove the stray 'reg' property.
-> 
-> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> Fixes: 3b3b6b460f78 ("net: dsa: Add bindings for Realtek SMI DSAs")
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> [...]
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Applied to
 
-    Andrew
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/4] ASoC: core: Add snd_soc_of_parse_pin_switches() from simple-card-utils
+      commit: 3d4641a42ccf1593b3f3a474ee7541727acbb8e0
+[2/4] ASoC: dt-bindings: qcom: sm8250: Document "pin-switches" and "widgets"
+      commit: 37a49da9a7d5ac1f7128000de42ff222da46ba7a
+[3/4] ASoC: qcom: common: Parse "pin-switches" and "widgets" from DT
+      commit: 2623e66de125ba153e41be6a0b8af24cae8aa436
+[4/4] ASoC: msm8916-wcd-analog: Use separate outputs for HPH_L/HPH_R
+      commit: 319a05330f4ff3f951f9c42094958c6cdef393b3
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
