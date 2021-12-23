@@ -2,128 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBA1D47E204
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 12:08:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5367F47E226
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 12:19:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347907AbhLWLIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 06:08:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57260 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347900AbhLWLIM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 06:08:12 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB389C06175A;
-        Thu, 23 Dec 2021 03:08:11 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id p8so8487530ljo.5;
-        Thu, 23 Dec 2021 03:08:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=84LeHW/e19a5g89AaewWo8yiJv+44/hW3Ak/xWdyyA8=;
-        b=LnZGA5tObecQRuwxdzey7KYJRuQO7Du0GYRah5VyFrCTa6a0Chg6WIzADqa51h7qpp
-         +8TczdT/VPZHAagcOijkp1UlluvbIuWap+Bt/h02HLcq/v0dhmNQQ6/YtXanFiiWpjGk
-         w7wu3wSBqLJ1fHWJju2xPOTWHC3xGrK/K22SkPMeC+AbwUvfha/G5wmThbNZgq7Gd9jm
-         JlNG6TVGuRk1oKyoq2E8YfJfK4aQ/XfPR07sk7V1A7tnDwbAlfJoLZcheQJr8Zru7q2l
-         x1C0XMQFZaM+amyqrESqPUctvg3ESz0+OY4v5MtZpz2GLH89bemWgs4wcc3OWKBEjJxo
-         eLDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=84LeHW/e19a5g89AaewWo8yiJv+44/hW3Ak/xWdyyA8=;
-        b=HixRQIUUeMBUSGV9ZckDiZh8or5GqmXpcttjktbCqIxbBu/QMsAXVxARm1D/x282T4
-         P4VPwCcmLZgkLbtxqRGAdP1bWU0IHUnQ9N99nUhuxVLIZzhWyHznTRGGSUb8yXlCsCCQ
-         15nMxoaamouyO84Qy9QXs9AsDOPdjaMX/JaDN9NT/saaKd5B3pzh0URMcxT+zA+3Y98M
-         zDn6i8mLcKJsIlFyVgiqPsbc3O/PItFj+rxHiNdP6GgOrHkuYnel8LsP399jmiKvQOiO
-         lJ3gb09YXNZENvyJRAhnMglleHnglWe+7t2JRS4OkOr3SQ6Zwk0dzMJkUwX6iFpjnmKs
-         PQxg==
-X-Gm-Message-State: AOAM532i0BQNAkKGHOoRbBGogMkmS+Vr+FqH71kGyKsnS3vyCAUfnEyJ
-        Z0+7mAs5yhSjl5LELiGDJ8w=
-X-Google-Smtp-Source: ABdhPJwHtj537VAWY1ZrCuOV3QEoO+Y8FoZA8+jyb0dgmaT1NpPfixRyUYbGFo0vvvpZ1afm2Rbwng==
-X-Received: by 2002:a2e:9192:: with SMTP id f18mr1316446ljg.211.1640257690200;
-        Thu, 23 Dec 2021 03:08:10 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id t7sm473047lfg.115.2021.12.23.03.08.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Dec 2021 03:08:09 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 5/5] nvmem: core: add cell name based matching of DT cell nodes
-Date:   Thu, 23 Dec 2021 12:07:55 +0100
-Message-Id: <20211223110755.22722-6-zajec5@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211223110755.22722-1-zajec5@gmail.com>
-References: <20211223110755.22722-1-zajec5@gmail.com>
+        id S233849AbhLWLTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 06:19:45 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:40596 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232691AbhLWLTp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 06:19:45 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id A0148CE1FDD;
+        Thu, 23 Dec 2021 11:19:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4FF7C36AE5;
+        Thu, 23 Dec 2021 11:19:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640258381;
+        bh=9as6QT34cWbvbNObFkKEmAbbIbFepkq9xGUjBBZthCc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rsNQ3Cgzqe76Nl7jbeA9jP9g0EAb1BuYU9G0thpzhEr1KRhlP+Ah7r3RM2zycMkSw
+         O0C1Xqs9fCGzdUvDP+wsvqIXDPlcDCssAkeBdx0LC9OOOSvwxax+RXUZ9DPHHYVv21
+         yJ8wNQhdjgEquae/DyWWNQVKVIbn2xk07uZeRBCx+It5B0SJS/qVsS238HZMnoPhEX
+         pHuTcbsU4foxjQAr3cSYHr4uOXYCkbsliFZsSzfKtO1MTJLfYL5VOxdeCoRmNEstiX
+         ldPVrWvV5zbl+2AapLt2zX2mcvkQXiKMlqNrGRBrAiGWo84ik7NJDwGBtfCFuAAP8j
+         4wPEIaf4g7Mcw==
+Date:   Thu, 23 Dec 2021 16:49:37 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     kernel test robot <lkp@intel.com>
+Cc:     Yifeng Zhao <yifeng.zhao@rock-chips.com>, heiko@sntech.de,
+        kbuild-all@lists.01.org, robh+dt@kernel.org, jbx6244@gmail.com,
+        devicetree@vger.kernel.org, michael.riesch@wolfvision.net,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH v5 3/4] phy: rockchip: add naneng combo phy for RK3568
+Message-ID: <YcRbST7GDTNiZAkn@matsya>
+References: <20211215095657.13183-4-yifeng.zhao@rock-chips.com>
+ <202112160605.2BqI0hlK-lkp@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202112160605.2BqI0hlK-lkp@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 16-12-21, 06:47, kernel test robot wrote:
+> Hi Yifeng,
+> 
+> Thank you for the patch! Yet something to improve:
+> 
+> [auto build test ERROR on rockchip/for-next]
+> [also build test ERROR on robh/for-next lee-mfd/for-mfd-next v5.16-rc5 next-20211214]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+> 
+> url:    https://github.com/0day-ci/linux/commits/Yifeng-Zhao/Add-Naneng-combo-PHY-support-for-RK3568/20211215-180610
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+> config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20211216/202112160605.2BqI0hlK-lkp@intel.com/config)
+> compiler: aarch64-linux-gcc (GCC) 11.2.0
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # https://github.com/0day-ci/linux/commit/5e4ddb08d86d5232174d88483f29e96272a4b6c0
+>         git remote add linux-review https://github.com/0day-ci/linux
+>         git fetch --no-tags linux-review Yifeng-Zhao/Add-Naneng-combo-PHY-support-for-RK3568/20211215-180610
+>         git checkout 5e4ddb08d86d5232174d88483f29e96272a4b6c0
+>         # save the config file to linux build tree
+>         mkdir build_dir
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>):
+> 
+>    drivers/phy/rockchip/phy-rockchip-naneng-combphy.c: In function 'rk3568_combphy_cfg':
+> >> drivers/phy/rockchip/phy-rockchip-naneng-combphy.c:22:47: error: 'HZ_PER_MHZ' undeclared (first use in this function)
+>       22 | #define REF_CLOCK_24MHz                 (24 * HZ_PER_MHZ)
+>          |                                               ^~~~~~~~~~
 
-When adding NVMEM cells defined by driver it's important to match them
-with DT nodes that specify matching names. That way other bindings &
-drivers can reference such "dynamic" NVMEM cells.
+You need to add the header to your driver for this
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/nvmem/core.c | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+>    drivers/phy/rockchip/phy-rockchip-naneng-combphy.c:490:14: note: in expansion of macro 'REF_CLOCK_24MHz'
+>      490 |         case REF_CLOCK_24MHz:
+>          |              ^~~~~~~~~~~~~~~
+>    drivers/phy/rockchip/phy-rockchip-naneng-combphy.c:22:47: note: each undeclared identifier is reported only once for each function it appears in
+>       22 | #define REF_CLOCK_24MHz                 (24 * HZ_PER_MHZ)
+>          |                                               ^~~~~~~~~~
+>    drivers/phy/rockchip/phy-rockchip-naneng-combphy.c:490:14: note: in expansion of macro 'REF_CLOCK_24MHz'
+>      490 |         case REF_CLOCK_24MHz:
+>          |              ^~~~~~~~~~~~~~~
+> 
+> 
+> vim +/HZ_PER_MHZ +22 drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> 
+>     20	
+>     21	#define BIT_WRITEABLE_SHIFT		16
+>   > 22	#define REF_CLOCK_24MHz			(24 * HZ_PER_MHZ)
+>     23	#define REF_CLOCK_25MHz			(25 * HZ_PER_MHZ)
+>     24	#define REF_CLOCK_100MHz		(100 * HZ_PER_MHZ)
+>     25	
+> 
+> ---
+> 0-DAY CI Kernel Test Service, Intel Corporation
+> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 45c39ac401bd..5fe92751645a 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -499,6 +499,33 @@ static int nvmem_cell_info_to_nvmem_cell_entry(struct nvmem_device *nvmem,
- 	return 0;
- }
- 
-+/**
-+ * nvmem_find_cell_of_node() - Find DT node matching nvmem cell
-+ *
-+ * @nvmem: nvmem device to add cells to.
-+ * @name: nvmem cell name
-+ *
-+ * Runtime created nvmem cells (those not coming from DT) may still need to be
-+ * referenced in DT. This function allows finding DT node referencing nvmem cell
-+ * by its name. Such a DT node can be used by nvmem consumers.
-+ *
-+ * Return: NULL or pointer to DT node
-+ */
-+static struct device_node *nvmem_find_cell_of_node(struct nvmem_device *nvmem,
-+						   const char *name)
-+{
-+	struct device_node *child;
-+	const char *label;
-+
-+	for_each_child_of_node(nvmem->dev.of_node, child) {
-+		if (!of_property_read_string(child, "label", &label) &&
-+		    !strcmp(label, name))
-+			return child;
-+	}
-+
-+	return NULL;
-+}
-+
- /**
-  * nvmem_add_cells() - Add cell information to an nvmem device
-  *
-@@ -532,6 +559,8 @@ static int nvmem_add_cells(struct nvmem_device *nvmem,
- 			goto err;
- 		}
- 
-+		cells[i]->np = nvmem_find_cell_of_node(nvmem, cells[i]->name);
-+
- 		nvmem_cell_entry_add(cells[i]);
- 	}
- 
 -- 
-2.31.1
-
+~Vinod
