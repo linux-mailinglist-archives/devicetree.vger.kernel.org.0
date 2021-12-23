@@ -2,148 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7620E47DE76
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 06:06:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AC9747DEC3
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 06:36:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231848AbhLWFGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 00:06:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33528 "EHLO
+        id S1346431AbhLWFgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 00:36:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232034AbhLWFGY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 00:06:24 -0500
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3C78C061401;
-        Wed, 22 Dec 2021 21:06:23 -0800 (PST)
-Received: by mail-pl1-x630.google.com with SMTP id j13so3469501plx.4;
-        Wed, 22 Dec 2021 21:06:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=MyD24FNyOTXZ6y6NJg0xU97g9tQ5vVAI4e4gfsSyX8I=;
-        b=RQ+QnDl8ig7aT5l2ZErU1sJvwbgOlN8RlqENXg1pmGgYAhyHUREZ37OAKnRoMGb6Tt
-         czraqNgZpiv0BIEE02uj9+aJQrDdn9edPYsLpvKMdyvdwdQj/059BY18vPZg1aMWH2B1
-         YgiocTdTksbTxjlgESHWrR62VEcBjlTem2s8pYOTs2qoDg1i//Ia/lO2H4ekW52PrJuG
-         EUftBbUNRfKzkTh+LywPxx7DxopDt0VpvT5lhmD0BsNQy8YEfPfjCisaBkXDFbgs6wo1
-         Bms8EAQN3enYmMzlJw/aV0zDNdTYUFmXPW1s23i9WZp8XHpsLVs++F3njj+WGe5C7u43
-         GLOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=MyD24FNyOTXZ6y6NJg0xU97g9tQ5vVAI4e4gfsSyX8I=;
-        b=ySYQlizcANqqbVTOlwKPoxF7LQ33gPldCViY21hoCuerVdAMmDfq6oYjU8S5nowNMd
-         iGHwR+7ygovPUU6dHpqZU38f/GcEODommW+TFEMG6wDYlHdFBoAcVL75PTE8K4s5idQs
-         PjSWaNDMsUZqm8u/TPEBdbM78IssLm8mcIYfR7pvbOgbElzHIW9GhOpdFf9phdsvF0F+
-         i4UGdCAWUL8mNY0KgRi0XYCuNlGJTUS1dCdeVI6kGzuw/1yQqxPvRweF++FjyAya3lRk
-         pJ9m7juquTe/MuvJ2cSTuEQl+ZINKdXmr+5KIfkYP920NOwbErizHLCABDJ6ZwjMXUO0
-         Wodg==
-X-Gm-Message-State: AOAM532vwr5T5RsmYk3avdcy2VnoRPIkftONWEE0TVe3U8Ewg3+enN9l
-        /ZOix7hB8WUFyeVKvUlptIo=
-X-Google-Smtp-Source: ABdhPJy7amt41DT3NqaSEXbPnwcszzTczZoQnmoKtjzbYzDvu/N82HqBI3WPVfzqr/STwuUvSPPrLw==
-X-Received: by 2002:a17:90a:fb83:: with SMTP id cp3mr1200518pjb.111.1640235983218;
-        Wed, 22 Dec 2021 21:06:23 -0800 (PST)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id oo13sm4170936pjb.25.2021.12.22.21.06.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 22 Dec 2021 21:06:22 -0800 (PST)
-From:   Li-hao Kuo <lhjeff911@gmail.com>
-To:     rafael@kernel.org, daniel.lezcano@linaro.org, amitk@kernel.org,
-        rui.zhang@intel.com, robh+dt@kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     wells.lu@sunplus.com, Li-hao Kuo <lhjeff911@gmail.com>
-Subject: [PATCH v2 2/2] devicetree: bindings THERMAL Add bindings doc for Sunplus SP7021
-Date:   Thu, 23 Dec 2021 13:06:26 +0800
-Message-Id: <297b69fbd49ac68e082ea43bbfd4e42bebdf5b77.1640235724.git.lhjeff911@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1640235724.git.lhjeff911@gmail.com>
-References: <cover.1640235724.git.lhjeff911@gmail.com>
-In-Reply-To: <cover.1640235724.git.lhjeff911@gmail.com>
-References: <cover.1640235724.git.lhjeff911@gmail.com>
+        with ESMTP id S1346414AbhLWFgh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 00:36:37 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD8CEC061401;
+        Wed, 22 Dec 2021 21:36:36 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 659DAB81EA5;
+        Thu, 23 Dec 2021 05:36:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D8B5C36AE5;
+        Thu, 23 Dec 2021 05:36:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640237794;
+        bh=+RESyguACPEDh1QytdBXRrgftqqCYuF45pA3Mr9Wjxg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=R+B4fqLuFIRpKY4PBoPuzC9E+gil3cRxeN4MSMcE0Hppy+Zt6KIU44I12ZCBLPdlf
+         i3ElEdyK2+UclrKL2BtzQnoJ95nhXnzOz7gbgwTNHTjlj0laLTa7M9ifI6dZQ6vL7G
+         U78XZLkeyxkxIgzm1w4vFb5cuuvXuOCmKFiScF5iabrOZwUPS3vIrkHSAIN59O9rls
+         kg9/qaWTB+SKOg1Z5ddg38N7xijd10OTJyKPazAoxX4HmTOaveA5TJbOalaAy3eQLG
+         I8ZGZJZVSOa21DrWdbz9SbNWzlxRX6d4syPwv8LT1SXlrE8Nf4qEbTk6uWRvnt4Jgj
+         fHR/7xxRU7z4w==
+Date:   Thu, 23 Dec 2021 11:06:29 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH v6 1/4] phy: cadence: Add Cadence D-PHY Rx driver
+Message-ID: <YcQK3WVEo6FyEtVa@matsya>
+References: <20211214180703.3268-1-p.yadav@ti.com>
+ <20211214180703.3268-2-p.yadav@ti.com>
+ <YcCh1PU+Tc1+pzEL@aptenodytes>
+ <20211222184545.atci25onvpw6f2ed@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211222184545.atci25onvpw6f2ed@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings THERMAL Add bindings doc for Sunplus SP7021
+On 23-12-21, 00:15, Pratyush Yadav wrote:
+> On 20/12/21 04:31PM, Paul Kocialkowski wrote:
+> > Hi Pratyush,
+> > 
+> > On Tue 14 Dec 21, 23:37, Pratyush Yadav wrote:
+> > > The Cadence D-PHY can be configured in Tx (DSI) mode or Rx (CSI) mode.
+> > > Both modes have a different programming sequence and share little among
+> > > them. In addition, a PHY configured in Tx mode cannot be used in Rx mode
+> > > and vice versa. For this reason, create a separate driver for the Rx
+> > > mode to make it easier to read and maintain.
+> > > 
+> > > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> > > 
+> > > ---
+> > > 
+> > > Changes in v6:
+> > > - Move to a separate driver.
+> > > 
+> > > Changes in v5:
+> > > - Use the new cdns_dphy_info to specify PHY ops.
+> > > - Re-order include in alphabetical order.
+> > > - Make bands const.
+> > > - Drop num_bands.
+> > > - Make i, lanes unsigned.
+> > > - Drop the maximum check in cdns_dphy_rx_get_band_ctrl(). Let the loop
+> > >   complete and return -EOPNOTSUPP when we reach the end.
+> > > - Drop the "rate < bands[i].min_rate" check since the bands are in
+> > >   ascending order.
+> > > - Move data_lane_ctrl to start of function and make it static const.
+> > > 
+> > > Changes in v4:
+> > > - Drop the submode parts. Use a different compatible for the Rx ops.
+> > > - Make bands and num_bands static.
+> > > 
+> > > Changes in v3:
+> > > - Use a table to select the band.
+> > > - Use a table to poll the data lane ready bits.
+> > > - Multiply the DPHY HS clock rate by 2 to get the bit rate since the
+> > >   clock is DDR.
+> > > 
+> > >  drivers/phy/cadence/Kconfig        |   8 +
+> > >  drivers/phy/cadence/Makefile       |   1 +
+> > >  drivers/phy/cadence/cdns-dphy-rx.c | 250 +++++++++++++++++++++++++++++
+> > >  3 files changed, 259 insertions(+)
+> > >  create mode 100644 drivers/phy/cadence/cdns-dphy-rx.c
+> > > 
+> > > diff --git a/drivers/phy/cadence/Kconfig b/drivers/phy/cadence/Kconfig
+> > > index a62910ff5591..1adde2d99ae7 100644
+> > > --- a/drivers/phy/cadence/Kconfig
+> > > +++ b/drivers/phy/cadence/Kconfig
+> > > @@ -22,6 +22,14 @@ config PHY_CADENCE_DPHY
+> > >  	  system. If M is selected, the module will be called
+> > >  	  cdns-dphy.
+> > >  
+> > > +config PHY_CADENCE_DPHY_RX
+> > > +	tristate "Cadence D-PHY Rx Support"
+> > > +	depends on HAS_IOMEM && OF
+> > > +	select GENERIC_PHY
+> > > +	select GENERIC_PHY_MIPI_DPHY
+> > > +	help
+> > > +	  Support for Cadence D-PHY in Rx configuration.
+> > > +
+> > >  config PHY_CADENCE_SIERRA
+> > >  	tristate "Cadence Sierra PHY Driver"
+> > >  	depends on OF && HAS_IOMEM && RESET_CONTROLLER
+> > > diff --git a/drivers/phy/cadence/Makefile b/drivers/phy/cadence/Makefile
+> > > index 26e16bd34efe..e17f035ddece 100644
+> > > --- a/drivers/phy/cadence/Makefile
+> > > +++ b/drivers/phy/cadence/Makefile
+> > > @@ -1,5 +1,6 @@
+> > >  # SPDX-License-Identifier: GPL-2.0-only
+> > >  obj-$(CONFIG_PHY_CADENCE_TORRENT)	+= phy-cadence-torrent.o
+> > >  obj-$(CONFIG_PHY_CADENCE_DPHY)	+= cdns-dphy.o
+> > > +obj-$(CONFIG_PHY_CADENCE_DPHY_RX)	+= cdns-dphy-rx.o
+> > >  obj-$(CONFIG_PHY_CADENCE_SIERRA)	+= phy-cadence-sierra.o
+> > >  obj-$(CONFIG_PHY_CADENCE_SALVO)	+= phy-cadence-salvo.o
+> > > diff --git a/drivers/phy/cadence/cdns-dphy-rx.c b/drivers/phy/cadence/cdns-dphy-rx.c
+> > > new file mode 100644
+> > > index 000000000000..fb75e645e662
+> > > --- /dev/null
+> > > +++ b/drivers/phy/cadence/cdns-dphy-rx.c
+> > > @@ -0,0 +1,250 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +/*
+> > > + * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
+> > > + */
+> > > +
+> > > +#include <linux/bitfield.h>
+> > > +#include <linux/bitops.h>
+> > > +#include <linux/io.h>
+> > > +#include <linux/iopoll.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/phy/phy.h>
+> > > +#include <linux/phy/phy-mipi-dphy.h>
+> > > +#include <linux/platform_device.h>
+> > > +
+> > > +#define DPHY_PMA_CMN(reg)		(reg)
+> > > +#define DPHY_PCS(reg)			(0xb00 + (reg))
+> > > +#define DPHY_ISO(reg)			(0xc00 + (reg))
+> > > +
+> > > +#define DPHY_CMN_SSM			DPHY_PMA_CMN(0x20)
+> > > +#define DPHY_CMN_RX_MODE_EN		BIT(10)
+> > > +#define DPHY_CMN_RX_BANDGAP_TIMER_MASK	GENMASK(8, 1)
+> > > +#define DPHY_CMN_SSM_EN			BIT(0)
+> > > +
+> > > +#define DPHY_CMN_RX_BANDGAP_TIMER	0x14
+> > > +
+> > > +#define DPHY_BAND_CFG			DPHY_PCS(0x0)
+> > > +#define DPHY_BAND_CFG_RIGHT_BAND	GENMASK(9, 5)
+> > > +#define DPHY_BAND_CFG_LEFT_BAND		GENMASK(4, 0)
+> > > +
+> > > +#define DPHY_POWER_ISLAND_EN_DATA	DPHY_PCS(0x8)
+> > > +#define DPHY_POWER_ISLAND_EN_DATA_VAL	0xaaaaaaaa
+> > > +
+> > > +#define DPHY_POWER_ISLAND_EN_CLK	DPHY_PCS(0xc)
+> > > +#define DPHY_POWER_ISLAND_EN_CLK_VAL	0xaa
+> > > +
+> > > +#define DPHY_ISO_CL_CTRL_L		DPHY_ISO(0x10)
+> > > +#define DPHY_ISO_DL_CTRL_L0		DPHY_ISO(0x14)
+> > > +#define DPHY_ISO_DL_CTRL_L1		DPHY_ISO(0x20)
+> > > +#define DPHY_ISO_DL_CTRL_L2		DPHY_ISO(0x30)
+> > > +#define DPHY_ISO_DL_CTRL_L3		DPHY_ISO(0x3c)
+> > > +
+> > > +#define DPHY_ISO_LANE_READY_BIT		0
+> > > +#define DPHY_ISO_LANE_READY_TIMEOUT_MS	100UL
+> > > +
+> > > +#define DPHY_LANES_MIN			1
+> > > +#define DPHY_LANES_MAX			4
+> > > +
+> > > +struct cdns_dphy_rx {
+> > > +	void __iomem *regs;
+> > > +	struct device *dev;
+> > > +	struct phy *phy;
+> > > +};
+> > > +
+> > > +struct cdns_dphy_rx_band {
+> > > +	/* Rates are in Mbps. */
+> > > +	unsigned int min_rate;
+> > > +	unsigned int max_rate;
+> > > +};
+> > > +
+> > > +/* Order of bands is important since the index is the band number. */
+> > > +static const struct cdns_dphy_rx_band bands[] = {
+> > > +	{80, 100}, {100, 120}, {120, 160}, {160, 200}, {200, 240},
+> > > +	{240, 280}, {280, 320}, {320, 360}, {360, 400}, {400, 480},
+> > > +	{480, 560}, {560, 640}, {640, 720}, {720, 800}, {800, 880},
+> > > +	{880, 1040}, {1040, 1200}, {1200, 1350}, {1350, 1500}, {1500, 1750},
+> > > +	{1750, 2000}, {2000, 2250}, {2250, 2500}
+> > 
+> > Cosmetic suggestion: add whitespaces after { and before }.
+> 
+> I think it would just add noise. I would like to keep it compact.
 
-Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
----
-Changes in v2:
- - Addressed all comments from Mr. Rob Herring
- - Modify Theraml driver
+No, it makes it look lot more neater and is usually the convention
+followed in kernel
 
- .../bindings/thermal/sunplus_thermal.yaml          | 49 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 50 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/thermal/sunplus_thermal.yaml
-
-diff --git a/Documentation/devicetree/bindings/thermal/sunplus_thermal.yaml b/Documentation/devicetree/bindings/thermal/sunplus_thermal.yaml
-new file mode 100644
-index 0000000..e0290fa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/sunplus_thermal.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/thermal/sunplus_thermal.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sunplus Thermal controller
-+
-+maintainers:
-+  - Li-hao Kuo <lhjeff911@gmail.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sunplus,sp7021-thermal
-+
-+  reg:
-+    maxItems: 1
-+
-+  reg-names:
-+    items:
-+      - const: reg
-+      - const: moon4
-+
-+  nvmem-cells:
-+    maxItems: 1
-+
-+  nvmem-cell-names:
-+    const: therm_calib
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - nvmem-cells
-+  - nvmem-cell-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    thermal@9c000280 {
-+        compatible = "sunplus,sp7021-thermal";
-+        reg = <0x9c000280 0x80>;
-+        nvmem-cells = <&therm_calib>;
-+        nvmem-cell-names = "therm_calib";
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5f1fa6d..17035b5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18246,6 +18246,7 @@ SUNPLUS THERMAL DRIVER
- M:	Li-hao Kuo <lhjeff911@gmail.com>
- L:	linux-pm@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/thermal/sunplus_thermal.yaml
- F:	drivers/thermal/sunplus_thermal.c
- 
- SUPERH
 -- 
-2.7.4
-
+~Vinod
