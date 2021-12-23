@@ -2,115 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43D6347D8D0
-	for <lists+devicetree@lfdr.de>; Wed, 22 Dec 2021 22:34:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F41347DC76
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 02:01:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232951AbhLVVeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Dec 2021 16:34:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45186 "EHLO
+        id S240206AbhLWBBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Dec 2021 20:01:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231946AbhLVVeY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 16:34:24 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1612CC061574;
-        Wed, 22 Dec 2021 13:34:24 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id y22so13721298edq.2;
-        Wed, 22 Dec 2021 13:34:24 -0800 (PST)
+        with ESMTP id S238387AbhLWBA6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Dec 2021 20:00:58 -0500
+Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E002C06173F
+        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 17:00:58 -0800 (PST)
+Received: by mail-yb1-xb41.google.com with SMTP id v138so11507941ybb.8
+        for <devicetree@vger.kernel.org>; Wed, 22 Dec 2021 17:00:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BQlQlYrZXdOlmemUUXiF4Fhovo2L1S/LzruvfN712uY=;
-        b=br4b7Dx3l6Zfp65HGNkqUIOl6r/hzzYAYN2NdDkPMpX0mGBSMDJh7KeVbsx8yT7QTR
-         Ex5+LyzbOoGmM//h1zL/FSTfdOe6Im+MWg49HVf3yg0R61kP3Y4ryyBzk3qPUHMuLnvE
-         oPbLLiZQ0ICHlTkTsV/f3gkmZAXBsjODurvhCCGiWRTdWUBXffBYlYWUy9a9IGxc2MlP
-         dbQqsqsHrMtP/0ClN2GWH2W7SCveLV5d4s9e9o6A0FeDoxwJamNN+Slbgn/To6H8sf/z
-         vkyb+1skGRbW4rNR8rLLokkhnvZSNqQm/ZCCBgd5L24nIKTJ9kQRO/sDk8MZUUqO6bkO
-         /C0w==
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=fcGOhpP2fh4L0P54itv7DpzugvdwboeZoteLAX3ou8w=;
+        b=C/VTC7k1eMXdWuDsEAO2zcNNxMEZoEFBpSWVUkf9fKBMHIwTQfNrlYpqVhB2sSylRI
+         IifuRmd/eyS00tHTFL5tzIouPJlHU8gwo2TUeYWiaNMn1lFBXtHmxYLwu6833y5Nt/ES
+         r6MptfK7y8AblslJG+SxlajRupKznVfr7T1yaR0+FizbkdA9lpMfNtdPY/KAPc1y00SZ
+         OYoY0USZlqNMys0OzACiVgnngpWzw8bVYEq6F6dul887POylh92VtHGDta4t3zgwuExk
+         zxPqkwvyLeQDEF1lbIYfcwPqRmnj+PcBwai0GELMIBr2rFF8MKNEshRUhHO4sROwAa+D
+         WRRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BQlQlYrZXdOlmemUUXiF4Fhovo2L1S/LzruvfN712uY=;
-        b=cSO+MUVeHSSJsRGUzqA7H5lmjZH3qlnBHdbCsbALbH8Op3BbtwVLh96XGzXlqJ3UlA
-         2Kgoh5VrGkVHo6PdyL6ZkCbmvW9up7VFLzh62WEd1g/1/R9T1Uh0IRINUQNGHouIdvMp
-         DyOgSP/hi3XVe3vZdXhp+MjN/gTzh8q1oe5bGrjK0DK76FtE+YJqtBlEdLot52KNtddg
-         sdZlFw33ZXV/AJMuF4wXM05azUE5IyGC+ibEpVmQ7qoihZzLQoxvKXQuO9jSR+n4dq2x
-         FFbYwfgxvA0ZTQoefQOldO0kw4CfHdtk8K1ft6dNmVHDMJftgzU+zFJOOkvezjLHTnKr
-         RS9Q==
-X-Gm-Message-State: AOAM530MWS9bifgi+BFR7W7Lns8LIczDQY4mt+E3598fFFAqyrP4iOEI
-        1t3Wn+Vz3GCYwvxJy99LUcQylId/n1aYTqXSpXk=
-X-Google-Smtp-Source: ABdhPJxPcjYs5SH3P+Dvg2BhIowtF8SCyB4m0E2WIuGCd+CxC0ZdFvR74vmCCjoZgGk3P++JhhtkmIQ57SBR0JaSFUc=
-X-Received: by 2002:a17:906:c450:: with SMTP id ck16mr3745748ejb.579.1640208862599;
- Wed, 22 Dec 2021 13:34:22 -0800 (PST)
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=fcGOhpP2fh4L0P54itv7DpzugvdwboeZoteLAX3ou8w=;
+        b=Jd1MI4C6YEK8aA1CsgOnx1plRZi+BsH8Ke8M/93Pjl1SgPEulYOZulf0DvRgPhp0x1
+         m5VCsHVH20MotOKPWRJCOZIRpTSQn/8uDNRT6E8CSHmTkvAU95nTznZb27MUx/ZPUoB2
+         SUnmEKD9d/p0FznbZIjnfxzK2GIJXwX6mfjptyjFjSvEZRjtjOTrwI9b+WZ14lBG47YZ
+         RJiXwiXZWHiqOXdgDh0pwyj7XwqY+/jGZ/XU0rLn+Bt5lbBJH/cJ0FH5VZpBIkHuw7At
+         UC1ovHWKL6LC9TBy6MdXedp1phLsq7q0H3Ac/xra5N6hTkewsMRxNSd/c4fv5c5wBaUc
+         KZXw==
+X-Gm-Message-State: AOAM533G6Sm8SULoG0PNif5Ij4m98HdXBi7BEERYOtpedo5CZlv8ICId
+        IPok6ruHsFpD7yJwXVnfa7FRjH9cVUlUFQemSIc=
+X-Google-Smtp-Source: ABdhPJx/xaheAiJND0UcQTbnrIqG0bXm9gNTnd23XVHUleJm9bVpgYXjzn4jAaQf5cH9C3W4xQESQ86gvoaefDOugTc=
+X-Received: by 2002:a25:dc54:: with SMTP id y81mr273299ybe.183.1640221257312;
+ Wed, 22 Dec 2021 17:00:57 -0800 (PST)
 MIME-Version: 1.0
-References: <20211222034646.222189-1-liambeguin@gmail.com> <20211222034646.222189-10-liambeguin@gmail.com>
- <CAHp75Vc0aWrFtNK1ZkHkwP62zNXQJaDcn9pc8Uhfq0kOnWzmJg@mail.gmail.com>
- <YcNwt5RFMNFUimD/@shaak> <CAHp75VdrLTNLWZRgWkLXD23RAF28zh29XybywAPyMtb=GNxXbw@mail.gmail.com>
- <YcODglDWiknz2oeV@shaak>
-In-Reply-To: <YcODglDWiknz2oeV@shaak>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 22 Dec 2021 23:32:24 +0200
-Message-ID: <CAHp75Vejfr_S7iK7fAvs7ELxE1TJUECvmKv0-G5Zwunyc6nDQA@mail.gmail.com>
-Subject: Re: [PATCH v11 09/15] iio: afe: rescale: reduce risk of integer overflow
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
+Received: by 2002:a05:7110:5542:b0:11c:1b85:d39e with HTTP; Wed, 22 Dec 2021
+ 17:00:56 -0800 (PST)
+Reply-To: aishagaddafi5788@gmail.com
+From:   "Mrs. Aisha Gaddafi" <doctorpowel@gmail.com>
+Date:   Thu, 23 Dec 2021 02:00:56 +0100
+Message-ID: <CAM6TyW7HyJTA0r_p51icB2YrWjqVQ0KfcxAmaUrMaRrQSFQoEQ@mail.gmail.com>
+Subject: Hello!!
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 22, 2021 at 9:59 PM Liam Beguin <liambeguin@gmail.com> wrote:
-> On Wed, Dec 22, 2021 at 08:56:12PM +0200, Andy Shevchenko wrote:
-> > On Wed, Dec 22, 2021 at 8:38 PM Liam Beguin <liambeguin@gmail.com> wrote:
-> > > On Wed, Dec 22, 2021 at 02:29:04PM +0200, Andy Shevchenko wrote:
-> > > > On Wed, Dec 22, 2021 at 5:47 AM Liam Beguin <liambeguin@gmail.com> wrote:
+Dear Friend,
 
-...
+I came across your e-mail contact prior a private search while in need
+of your assistance. I am Aisha Al-Qaddafi, the only daughter to Former
+President of Libya Col. Muammar Al-Qaddafi. Am a Widow with Children.
 
-> > > > > -               tmp = 1 << *val2;
-> > > >
-> > > > At some point this should be BIT()
-> >
-> > Forgot to add, If it's 64-bit, then BIT_ULL().
-> >
-> > > I'm not against changing this, but (to me at least) 1 << *val2 seems
-> > > more explicit as we're not working with bitfields. No?
-> >
-> > You may add a comment. You may use int_pow(), but it will be suboptimal.
-> >
-> > > > Rule of thumb (in accordance with C standard), always use unsigned
-> > > > value as left operand of the _left_ shift.
-> > >
-> > > Right, that makes sense! In practice though, since we'll most likely
-> > > never use higher bits of *val2 with IIO_VAL_FRACTIONAL_LOG2, would it be
-> > > enough to simply typecast?
-> > >
-> > >         tmp = 1 << (unsigned int)*val2;
-> >
-> > No, it's about the _left_ operand.
-> > I haven't checked if tmp is 64-bit, then even that would be still wrong.
->
-> Okay so your recommendation is to not use a left shift?
+I have investment funds worth Twenty Seven Million Five Hundred
+Thousand United State Dollar ($27.500.000.00 ) and i need a trusted
+investment Manager/Partner because of my current refugee status,
+however, I am interested in you for investment project assistance in
+your country, may be from there, we can build business relationship in
+the nearest future.
 
-No, I recommend not to use int type as a _leftside_ operand.
-BIT() / BIT_ULL() does a left shift anyway.
+I am willing to negotiate investment/business profit sharing ratio
+with you based on the future investment earning profits.
 
-> I can look into that but given how unlikely it is to fall into those bad
-> cases, I'd rather keep things as they are. Would that be okay?
+If you are willing to handle this project on my behalf, kindly reply
+urgent to enable me provide you more information about the investment
+funds.
 
-> Also, I don't think using BIT() or BIT_ULL() would address this as they
-> both do the same shift, with no extra checks.
+Your Urgent Reply Will Be Appreciated
 
-They do slightly different versions of it. They use an unsigned int type.
-
-Open coded or not, it's up to you. Just convert to unsigned int.
-
--- 
-With Best Regards,
-Andy Shevchenko
+Best Regards
+Mrs Aisha Al-Qaddafi
+Email: (  aishagaddafi5788@gmail.com  ).
