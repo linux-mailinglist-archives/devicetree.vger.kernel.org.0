@@ -2,126 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EC9747E726
-	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 18:36:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C50847E74E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Dec 2021 18:58:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240250AbhLWRgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 12:36:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59852 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237554AbhLWRgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 12:36:24 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D2A7C061756
-        for <devicetree@vger.kernel.org>; Thu, 23 Dec 2021 09:36:24 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id n15-20020a17090a160f00b001a75089daa3so9380448pja.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Dec 2021 09:36:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=dPYUZWC+77UBrBLBUUxU9fHb6AxVTt9UdaUWIxpei+o=;
-        b=L0sjRUzYInvoF3lTrWwfgbrnXNR7T+eXsaPmPTag7OLNZPysAOAy+7D/eWdc8Y8pWa
-         ZYd8pC2fEDwzZy3dX8MHG6cokMq+LvNvhyVHt7n4Ot4zwmRwldtutxXO3oyyhccGcTGj
-         6HqoZZOHqzyqhn2YiN2yvj0pdcsduMD2RNXRxGoK6VCf9RFwFffI4Bcz668E4CDGnHCe
-         W9InkcEY0CD9FxjiRL4s4xROMFQ19FlU2EzPctV1dHFiCYC2qFsXNDzh4+eMW8ZOMg0i
-         GvYkYHgDSayVhkayneoGjmk9tIMU7TKP2/FjiXoGEbnsbQKYI7gPlGu5VC6SGmmrwTQd
-         Q6mA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=dPYUZWC+77UBrBLBUUxU9fHb6AxVTt9UdaUWIxpei+o=;
-        b=IPgQMCKRsNzSc8r8JRBRdbIueZJwOlq88m8s+lfNVUq6ciedzayx7+H3wa+ni01/dx
-         e1SwbFbdKydjwya3ZNSUVHFquuy/4yl2jFu5dlsQXP8ssShE4Qv/QeDKzNQz59aBVLVA
-         ZutCuPNwqUzowMtj+hYKxNfUvpG6V8D6iDN6iC/J5CmFJXxBesSmdJkaB22B01NC5vhA
-         6VieDy9QTJhUM+wmo1G5afxw3aMe2AtB2f3prnxamazVaHm5wBTFk1rXQCEnYDgT1shT
-         xXN/idxiuTZgG7wgq6I+J0ejYJBZQkWVR/Ac9lnH43LytMHW+G0jampoQtaDXpgBGkLp
-         3M/A==
-X-Gm-Message-State: AOAM531vAjl+imJ+iTSXKyCbCynnVuUBEPovFY+cGBmAWmhUbBRe5Mfy
-        8qBZj7m2FltC9p2A4wpQ6xuAKw==
-X-Google-Smtp-Source: ABdhPJypoRaM/7mbkBhlfvlUN6kGHVEF9KQ22b8kXscmQCQL7JNkF0LVo3y3phgMBogpBLz4jmYGaw==
-X-Received: by 2002:a17:90b:4d07:: with SMTP id mw7mr3712671pjb.69.1640280983976;
-        Thu, 23 Dec 2021 09:36:23 -0800 (PST)
-Received: from localhost ([12.163.77.120])
-        by smtp.gmail.com with ESMTPSA id g6sm7407727pfj.156.2021.12.23.09.36.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Dec 2021 09:36:23 -0800 (PST)
-Date:   Thu, 23 Dec 2021 09:36:23 -0800 (PST)
-X-Google-Original-Date: Thu, 23 Dec 2021 09:36:07 PST (-0800)
-Subject:     Re: [PATCH v2 17/17] MAINTAINERS: update riscv/microchip entry
-In-Reply-To: <05d6a273-19f6-2147-75ba-1fff726a0f70@microchip.com>
-CC:     krzysztof.kozlowski@canonical.com, linus.walleij@linaro.org,
-        bgolaszewski@baylibre.com, robh+dt@kernel.org,
-        jassisinghbrar@gmail.com, Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, broonie@kernel.org,
-        Greg KH <gregkh@linuxfoundation.org>, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
-        geert@linux-m68k.org, bin.meng@windriver.com, heiko@sntech.de,
-        Lewis.Hanly@microchip.com, Daire.McNamara@microchip.com,
-        Ivan.Griffin@microchip.com, Atish Patra <atishp@rivosinc.com>
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Conor.Dooley@microchip.com
-Message-ID: <mhng-0e4cde83-cfa1-4bf6-9f2c-611d9a4ddb5f@palmer-ri-x1c9>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S1349551AbhLWR60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 12:58:26 -0500
+Received: from relay033.a.hostedemail.com ([64.99.140.33]:48192 "EHLO
+        relay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233620AbhLWR60 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Dec 2021 12:58:26 -0500
+X-Greylist: delayed 500 seconds by postgrey-1.27 at vger.kernel.org; Thu, 23 Dec 2021 12:58:26 EST
+Received: from omf03.hostedemail.com (a10.router.float.18 [10.200.18.1])
+        by unirelay09.hostedemail.com (Postfix) with ESMTP id 3CFB321967;
+        Thu, 23 Dec 2021 17:50:02 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf03.hostedemail.com (Postfix) with ESMTPA id 1522560014;
+        Thu, 23 Dec 2021 17:49:55 +0000 (UTC)
+Message-ID: <cee1bbe6c8dda1c79ba19f7bbf68fc1d74558cae.camel@perches.com>
+Subject: Re: [PATCH v6 2/2] Driver for ON Semi AR0521 camera sensor
+From:   Joe Perches <joe@perches.com>
+To:     Krzysztof =?UTF-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Jacopo Mondi <jacopo@jmondi.org>
+Date:   Thu, 23 Dec 2021 09:49:58 -0800
+In-Reply-To: <m35yrfhkaf.fsf@t19.piap.pl>
+References: <m3ee63hkuu.fsf@t19.piap.pl> <m35yrfhkaf.fsf@t19.piap.pl>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4-1ubuntu2 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Stat-Signature: np36hfktpep65hys3tpd4hjqng9646pj
+X-Rspamd-Server: rspamout03
+X-Rspamd-Queue-Id: 1522560014
+X-Spam-Status: No, score=-3.31
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX19Z3GPdwpXmwkGYSFVpQF+GO7Dm2x4ydkg=
+X-HE-Tag: 1640281795-678023
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Dec 2021 06:56:45 PST (-0800), Conor.Dooley@microchip.com wrote:
-> On 17/12/2021 15:09, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->> 
->> On 17/12/2021 10:33, conor.dooley@microchip.com wrote:
->>> From: Conor Dooley <conor.dooley@microchip.com>
->>>
->>> Update the RISC-V/Microchip entry by adding the microchip dts
->>> directory and myself as maintainer
->>>
->>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->>> ---
->>>   MAINTAINERS | 2 ++
->>>   1 file changed, 2 insertions(+)
->>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index 7a2345ce8521..3b1d6be7bd56 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -16348,8 +16348,10 @@ K:   riscv
->>>
->>>   RISC-V/MICROCHIP POLARFIRE SOC SUPPORT
->>>   M:   Lewis Hanly <lewis.hanly@microchip.com>
->>> +M:   Conor Dooley <conor.dooley@microchip.com>
->>>   L:   linux-riscv@lists.infradead.org
->>>   S:   Supported
->>> +F:   arch/riscv/boot/dts/microchip/
->>>   F:   drivers/mailbox/mailbox-mpfs.c
->>>   F:   drivers/soc/microchip/
->>>   F:   include/soc/microchip/mpfs.h
->>>
->> 
->> Good to have the DTS covered, so FWIW:
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> 
->> You still should get Lewis' ack (unless he merges it)
-> Aye, it'll be an ack. We don't currently have a tree & would rather do 
-> this via risc-v than the at91/sam arm soc tree.
+On Thu, 2021-12-23 at 08:06 +0100, Krzysztof Hałasa wrote:
+> The driver has been extensively tested in an i.MX6-based system.
+> AR0521 is a 5.7 mm x 4.3 mm, 5 MPix RGGB MIPI/HiSPi BSI CMOS sensor
+> from On Semiconductor.
 
-WFM.  I'll be awaiting the ack.  I don't see any fundamental issues from 
-my end, as long is it's got all the acks/reviews then I'm generally fine 
-with this sort of stuff.  I'll take a look before merging it, I'm kind 
-of buried right now.  Sorry!
+trivial notes:
 
->> 
->> Best regards,
->> Krzysztof
->> 
-> 
+> diff --git a/drivers/media/i2c/ar0521.c b/drivers/media/i2c/ar0521.c
+[]
+> +/* External clock (extclk) frequencies */
+> +#define AR0521_EXTCLK_MIN	  (10 * 1000 * 1000)
+
+Generally, adding a prefix like AR0521_ to defines that are
+locally defined in a single file unnecessarily increases
+identifier length.
+
+It makes using short line lengths difficult.
+
+e.g. Using this identifier anywhere
+
+> +#define AR0521_REG_HISPI_CONTROL_STATUS_FRAMER_TEST_MODE_ENABLE 0x80
+
+Many of the 80 column line lengths and line wrapping used in this
+file are not really nice to read.  I believe you don't have to be
+strict about 80 column lines.
+
+> +#define be		cpu_to_be16
+
+It's a pity there's no way to declare an array with all members
+having a specific endianness.  Making sure all elements in these
+arrays are declared with be() is tedious.
+
+> +#define AR0521_NUM_SUPPLIES ARRAY_SIZE(ar0521_supply_names)
+
+It's almost always better to use ARRAY_SIZE directly and not
+use a #define for the array size.
+
+> +static int ar0521_set_gains(struct ar0521_dev *sensor)
+> +{
+[]
+> +	dev_dbg(&sensor->i2c_client->dev, "%s()\n", __func__);
+
+ftrace works and perhaps all the similar debug logging uses aren't
+really necessary.
+
+
