@@ -2,63 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED38947F063
-	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 18:29:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1A4747F06F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 18:46:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353303AbhLXR31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Dec 2021 12:29:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34172 "EHLO
+        id S1344039AbhLXRqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Dec 2021 12:46:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbhLXR31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Dec 2021 12:29:27 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 965F6C061401;
-        Fri, 24 Dec 2021 09:29:26 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id x15so35659158edv.1;
-        Fri, 24 Dec 2021 09:29:26 -0800 (PST)
+        with ESMTP id S239382AbhLXRqX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Dec 2021 12:46:23 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18473C061401;
+        Fri, 24 Dec 2021 09:46:23 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id m21so36927599edc.0;
+        Fri, 24 Dec 2021 09:46:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=d++DuyGAvsDciM6eGzuNhohbcfflkfo8Updj8Oi3lko=;
-        b=Zcgxx/PFCm1Gk9GInJ75jZeRJmqq+ExTbcJMmRAvxyiOVA+59v9fa3/PuW3YvcvsDF
-         g85lUn+o/rV5qvQGZiSuYuT+rLAwLPTeEAswjwVl2rNPxELY2uuymt+2Cf/jVIn8yATz
-         ebKzbFXBB5ZkbiKrQnkh6i/RpKyZNGuCUlkp7JdSFASSS98wdgmqe4yhJgRQcb8VGuhy
-         NEPmU/3iHbo5x/SO1JoU57djIwQzdt4IWlrTSY9nWipTxtfGe7KP2jof41JOCvMuFVCz
-         rH9AR/PQv2INTq7/mlz0JHx2gdHAbLYUtVG/AXnE3RJmzCA+B8h/72Ff70D3rAwrJTGO
-         c1XA==
+        bh=gWLqudzw3rPOkXTg3uLw4bUPdmaGZXOelkQawT33qqs=;
+        b=mS8Clobq9wPiU/5RvxXvuhGVw18f56VpcHRXdE38puWRYFpMiY51UFC/P2oZv81yPU
+         6295K90YhoimHqNzM4ANW0eXSxizQey2jfB+u6c5wAnfLUwFERwmhoYMzH8WJyZNlGLg
+         L6VCr+XZZXDucr2NHliHri4XE/JNk1IGo5UZVda+xTsaBAJenkIHWDumA0BD9Ofi9lQD
+         paOYut2eKbYcL2lslsajIY3wmY/pDbeUpQXK38EEPgIkZgGofzl5YkUZ2b2DMScHwVxT
+         h2ABOS1hxlbAmWGElFCwm+4k3Qsr0F59k4D0XKvtuF2cVTrFwksaiqQWZGAIn6PnUpbW
+         4YBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=d++DuyGAvsDciM6eGzuNhohbcfflkfo8Updj8Oi3lko=;
-        b=YUKSat71CZB+oQl5xi1yLCpAY8cSq0bd57NplGikGQPSsX1sTdWdb45m4oK2vhOZeL
-         Y+AJDz6kzlU3MQT/eFKEU/JNtXmIp0qvaNoocJq5UI/2PvMIMjvXRAiXAhIxaAPsli0N
-         NaN80uT+O7+fxvZ2AvREcRKuZox/MDRJs/23wrIBp59qoIOCbzlVCUBw8DCCvS090sXC
-         hkXGvzmjwGaLWFOl3wq38KC//UwJVmz1qx9/f4pCMpPnqFSL0QXfJ0QMTewXw88VfVWV
-         ucVwZnZeCpUyEK2tL4f5mCJUxWkIW7B8L4DyYQot6fMtWQ+zxPhGFRpHNT5kGUcBhyuz
-         sTBg==
-X-Gm-Message-State: AOAM531agVeI4Cmt0w0hWGZ3HoASBM2m7q5RrYXFm2qPHCWtOai3kqc5
-        3UIty0Firro4V1fSkL6QFSy9JjxdHkTfCU3xDJg=
-X-Google-Smtp-Source: ABdhPJy5VXGB5ok/CmgPeHloEn/RJrG5bmqnry8/oB6sB1YLfj9+63el5LzYjEmKrtfP3c0Dlx2ODZUCIBVT/XgsVe8=
-X-Received: by 2002:a05:6402:518a:: with SMTP id q10mr4538306edd.29.1640366965079;
- Fri, 24 Dec 2021 09:29:25 -0800 (PST)
+        bh=gWLqudzw3rPOkXTg3uLw4bUPdmaGZXOelkQawT33qqs=;
+        b=7io8+Dl+L1tpoEI502Srx6WgBJ+vADONv4GHWCQdvB3PWwxuOHS56lFWoLv9APaUFZ
+         K/uZWycvsWG7ETQdEQ+AYAiEkZS5JwtWx6hxmDK2aPCqQB5goyUWvXJI5CClIuyyDe0x
+         TDUD9nz9DNq8HlVoZ5A0e8C2kHt8HvVaM6ioll/h0u+Qjdb1jI+AClioja3lyx7jxiBU
+         IQvqWLKWvGTY5ifJwvAev78WyrjxL4imVZ9iMrN08rUAuyweDVL8ba/ZzAjTgfLR2Nc/
+         u1/NkjlKrqRIVixprnohOMA0BGMQIKnbV97JpxhNsZHwfI4oIndFoul5zAGh/1weaR9r
+         BnOQ==
+X-Gm-Message-State: AOAM532hzVK+vn/X1h/FL/aL/k3N0u2LZv+nikf09/b+jxs/JNZojux2
+        2/zFlcBd1OGTrYUM7X+pcdMk7ide1yBQe/qruYc=
+X-Google-Smtp-Source: ABdhPJwO7D6VLbvq8orz3tQTTtQkEYvyo8XTOkfEiZZlLYVJFaLtUL15VnQe9jwlScjI6HUBJGr7SEL9Nu3a1UjYfWY=
+X-Received: by 2002:a17:907:c0c:: with SMTP id ga12mr5969032ejc.147.1640367981490;
+ Fri, 24 Dec 2021 09:46:21 -0800 (PST)
 MIME-Version: 1.0
-References: <20211221030146.522-1-xianwei.zhao@amlogic.com>
-In-Reply-To: <20211221030146.522-1-xianwei.zhao@amlogic.com>
+References: <20211224071706.2505726-1-shunzhou.jiang@amlogic.com>
+In-Reply-To: <20211224071706.2505726-1-shunzhou.jiang@amlogic.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Fri, 24 Dec 2021 18:29:14 +0100
-Message-ID: <CAFBinCDgQbjZ2QyTBbFuj--e6=mdxcd1PgYJNZJQFEvo3vco5g@mail.gmail.com>
-Subject: Re: [PATCH V2] dt-bindings: serial: amlogic, meson-uart: support S4
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+Date:   Fri, 24 Dec 2021 18:46:10 +0100
+Message-ID: <CAFBinCAh2_2B8KXcN5BBNqgfsE09ZW=wQ-UfaYoWGi1DPGrhsw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: power: add Amlogic s4 power doamins bindings
+To:     "Shunzhou.Jiang" <shunzhou.jiang@amlogic.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>, kelvin.zhang@amlogic.com
+        robh+dt@kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+        khilman@baylibre.com, jbrunet@baylibre.com, jianxin.pan@amlogic.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -66,11 +62,33 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hello,
 
-On Tue, Dec 21, 2021 at 4:01 AM Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
+first of all: thanks for working on this!
+
+On Fri, Dec 24, 2021 at 8:17 AM Shunzhou.Jiang
+<shunzhou.jiang@amlogic.com> wrote:
 >
-> Add serial bindings support menson S4 SoC family.
-please fix the typo here: menson -> meson
+> Add the bindings for the Amlogic Secure power domains, controlling the
+> secure power domains.
+Here the spelling of "domains" is correct but in the subject line it's
+not (the subject has: doamins)
+
+> The bindings targets the Amlogic s4, in which the power domain registers
+> are in secure world.
+>
+> Signed-off-by: Shunzhou.Jiang <shunzhou.jiang@amlogic.com>
+I found your name in an Android kernel maintainers file with a space
+(instead of a dot): Shunzhou Jiang
+In Germany a space between the names would be correct - but I can't
+tell what's right or wrong for your case.
+
+PS: as a small side-note: when using multiple patches we typically
+send a cover-letter.
+You can use the following patch-set/series as an example: [0]
+It's not critical but it certainly helps identify which patches belong together.
 
 
 Best regards,
 Martin
+
+
+[0] https://lore.kernel.org/linux-amlogic/20211214022100.14841-1-qianggui.song@amlogic.com/T/
