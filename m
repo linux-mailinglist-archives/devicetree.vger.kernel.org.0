@@ -2,69 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 730A147F092
-	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 19:26:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C30747F097
+	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 19:37:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344204AbhLXS0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Dec 2021 13:26:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46722 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343993AbhLXS0m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Dec 2021 13:26:42 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 647E0C061401
-        for <devicetree@vger.kernel.org>; Fri, 24 Dec 2021 10:26:42 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id v11so18806021wrw.10
-        for <devicetree@vger.kernel.org>; Fri, 24 Dec 2021 10:26:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:from:mime-version:content-transfer-encoding
-         :content-description:subject:to:date:reply-to;
-        bh=UtoF0r4yG8U/T8UOLxn8dacSd49m7zi2Qvhr7fGOaoo=;
-        b=SP4VbDJndK1vfr9lN+sw04mkEsCI37k3Id8GoUSQ/+mgXB3vQ1UIHuYhN5MWbgh0x2
-         PNiFS4lQ1fqtONMLCO1+25K/d0ZEcEEszoEeFMo0o6qCxu/a09UoUEDu9iaaq0hApxY3
-         jwrvTe3ubBuBXukrwmYbLaUpHC7QOvu20XbyoX+pxW58JpCf60r6cjNV1SkAvTJ1DtmP
-         sfxcMmklTpmukaljrGxhFOE1CDOFANLagEP8IYP5nfeCYlpXwdajOY9HA2KatXL4X6hR
-         ltZE3voYFi9iefwHiNylMCDdXidL2H9btFV3O0CeDof7pg92ecjb97VjWrBELLLW2v1X
-         x2hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:from:mime-version
-         :content-transfer-encoding:content-description:subject:to:date
-         :reply-to;
-        bh=UtoF0r4yG8U/T8UOLxn8dacSd49m7zi2Qvhr7fGOaoo=;
-        b=8FwVh129xW05R3N3BvQflNM68abikRY9rR6oL1iu0W1yJMT4yMvT2m10vnD/S+RGcd
-         JCzzvm690OuOMRB7ClSJcsGREWKcZVwQY8bEvEkPFj43tXrwbYP+IckZ0TLq3z331b7i
-         v/oyJMGfvLc8P9PgWx1fDI22plnTOJKzlhGpD1RiYKpWKbm+xOCWrlK8VMuBVmRxF0I5
-         Mq/kiXzNizZrMtu1fSM6s1V7uTMNTlC5uISOJu25zxnf8i28vE3gZEPMwfOxakYW3Z4Y
-         Osc5Vd0qXXCqUszGpZsApmxxxb2OQCPqww0KueLuPjz8W0/LaieWQyqtEUy3p4VzMY3c
-         PlNg==
-X-Gm-Message-State: AOAM530+QU+elO44wtnVQ+XcfOwXfSjQQnRiQx6cyNeY6wVJ4WD4XOoe
-        lxdsANtdbsCYkME1Aux47qY=
-X-Google-Smtp-Source: ABdhPJzy7zIQGEr7wEc9uFC+GUsQYu+MW3TcHaOPFGnP5Ue8zkXGOLdo9F9TcR05heBU69iy/DwWmQ==
-X-Received: by 2002:adf:f68a:: with SMTP id v10mr5406946wrp.212.1640370400492;
-        Fri, 24 Dec 2021 10:26:40 -0800 (PST)
-Received: from [192.168.9.102] ([197.211.59.108])
-        by smtp.gmail.com with ESMTPSA id g18sm6640056wmq.5.2021.12.24.10.26.36
-        (version=TLS1 cipher=AES128-SHA bits=128/128);
-        Fri, 24 Dec 2021 10:26:40 -0800 (PST)
-Message-ID: <61c610e0.1c69fb81.68a1.decd@mx.google.com>
-From:   Margaret Leung KO May-yee <iniforeal@gmail.com>
-X-Google-Original-From: Margaret Leung KO May-yee
-Content-Type: text/plain; charset="iso-8859-1"
+        id S1353440AbhLXShM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Dec 2021 13:37:12 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:41346 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230508AbhLXShM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Dec 2021 13:37:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=xku1QHcxVPF7fQRxfZSG+DY/O5O411+eXbfwYd9KIRw=; b=UVdIp3lrIqAmRHd29SdhaNPIM7
+        YyqmsMahTjUGQkcr7FeY+gEl/TggTEQ4CNQWFfMNSkGiolHWOdbcOk7r0VyUSAUVGxPvCnebvoP0p
+        61pV/RXF0lFht/LIs83jB4qqCrKffIlri9dUfGFwecpFV3zreQXJ75l7Zg9CTiTXz3vM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1n0pR5-00HOWu-F8; Fri, 24 Dec 2021 19:36:59 +0100
+Date:   Fri, 24 Dec 2021 19:36:59 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Joseph CHAMG <josright123@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, joseph_chang@davicom.com.tw,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Leon Romanovsky <leon@kernel.org>
+Subject: Re: [PATCH v8, 2/2] net: Add dm9051 driver
+Message-ID: <YcYTS2Mv6NufN9iL@lunn.ch>
+References: <20211224101606.10125-1-josright123@gmail.com>
+ <20211224101606.10125-3-josright123@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
-Subject: =?utf-8?q?Gesch=C3=A4ftsvorschlag?=
-To:     Recipients <Margaret@vger.kernel.org>
-Date:   Fri, 24 Dec 2021 19:26:32 +0100
-Reply-To: la67737777@gmail.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211224101606.10125-3-josright123@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bin Frau Margaret Leung Ich habe einen Gesch=E4ftsvorschlag f=FCr Sie, erre=
-ichen Sie mich unter: la67737777@gmail.com
+> +config DM9051
+> +	tristate "DM9051 SPI support"
+> +	select PHYLIB
+> +	depends on SPI
+> +	select CRC32
+> +	select MII
 
-Margaret Leung
-Managing Director of Chong Hing Bank
+Since you are using PHYLIB, you should not require MII.
+
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/kernel.h>
+> +#include <linux/netdevice.h>
+> +#include <linux/etherdevice.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/phy.h>
+> +#include <linux/skbuff.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/cache.h>
+> +#include <linux/crc32.h>
+> +#include <linux/mii.h>
+> +#include <linux/ethtool.h>
+> +#include <linux/delay.h>
+> +#include <linux/irq.h>
+> +#include <linux/slab.h>
+> +#include <linux/gpio.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/of_gpio.h>
+> +#include <linux/spi/spi.h>
+> +
+> +#include "dm9051.h"
+> +
+> +static int msg_enable = NETIF_MSG_PROBE |
+> +			NETIF_MSG_LINK |
+> +			NETIF_MSG_IFDOWN |
+> +			NETIF_MSG_IFUP |
+> +			NETIF_MSG_RX_ERR |
+> +			NETIF_MSG_TX_ERR;
+> +
+> +module_param(msg_enable, int, 0);
+> +MODULE_PARM_DESC(msg_enable, "Message mask bitmapped");
+
+No module parameters please. You have the need ethtool ops to control
+this.
+
+> +
+> +/* spi low level code */
+> +static inline int dm9051_xfer(struct board_info *db, u8 cmd, u8 *txb, u8 *rxb, unsigned int len)
+
+No inline functions in C code, let the compiler decide.
+
+> +{
+> +	struct device *dev = &db->spidev->dev;
+> +	int ret;
+> +
+> +	db->cmd[0] = cmd;
+> +	db->spi_xfer2[0].tx_buf = &db->cmd[0];
+> +	db->spi_xfer2[0].rx_buf = NULL;
+> +	db->spi_xfer2[0].len = 1;
+> +	if (!rxb) {
+> +		db->spi_xfer2[1].tx_buf = txb;
+> +		db->spi_xfer2[1].rx_buf = NULL;
+> +		db->spi_xfer2[1].len = len;
+> +	} else {
+> +		db->spi_xfer2[1].tx_buf = txb;
+> +		db->spi_xfer2[1].rx_buf = rxb;
+> +		db->spi_xfer2[1].len = len;
+> +	}
+
+Nit pick, but i would invert the logic here, to make it more natural.
+
+> +	ret = spi_sync(db->spidev, &db->spi_msg);
+> +	if (ret < 0)
+> +		dev_err(dev, "spi burst cmd 0x%02x, ret=%d\n", cmd, ret);
+> +	return ret;
+> +}
+> +
+> +static u8 dm9051_ior(struct board_info *db, unsigned int reg)
+> +{
+> +	int ret;
+> +	u8 rxb[1];
+> +
+> +	ret = dm9051_xfer(db, DM_SPI_RD | reg, NULL, rxb, 1);
+> +	if (ret < 0)
+> +		return 0xff;
+
+No, return the error code which dm9051_xfer() returns.
+
+> +	return rxb[0];
+> +}
+> +
+> +static void dm9051_iow(struct board_info *db, unsigned int reg, unsigned int val)
+> +{
+> +	u8 txb[1];
+> +
+> +	txb[0] = val;
+> +	dm9051_xfer(db, DM_SPI_WR | reg, txb, NULL, 1);
+
+This should be an int function, which returns 0, or the error code
+which dm9051_xfer() returns.
+
+> +}
+> +
+> +static int dm9051_inblk(struct board_info *db, u8 *buff, unsigned int len)
+> +{
+> +	int ret;
+> +	u8 txb[1];
+> +
+> +	ret = dm9051_xfer(db, DM_SPI_RD | DM_SPI_MRCMD, txb, buff, len);
+> +	return ret;
+> +}
+> +
+> +static void dm9051_dumpblk(struct board_info *db, unsigned int len)
+> +{
+> +	while (len--)
+> +		dm9051_ior(db, DM_SPI_MRCMD);
+
+and here you need to look for an error from dm9051_ior() and return it
+to the caller etc.
+
+> +static int dm9051_phy_read(struct board_info *db, int reg, int *pvalue)
+> +{
+> +	int ret;
+> +	u8 check_val;
+> +
+> +	dm9051_iow(db, DM9051_EPAR, DM9051_PHY | reg);
+> +	dm9051_iow(db, DM9051_EPCR, EPCR_ERPRR | EPCR_EPOS);
+> +	ret = read_poll_timeout(dm9051_ior, check_val, !(check_val & EPCR_ERRE), 100, 10000,
+> +				true, db, DM9051_EPCR);
+> +	dm9051_iow(db, DM9051_EPCR, 0x0);
+
+> +	if (ret) {
+> +		netdev_err(db->ndev, "timeout read phy register\n");
+> +		return -ETIMEDOUT;
+> +	}
+
+You should check for an error before doing the dm9051_iow(). And don't
+return -ETIMEDOUT, return whatever read_poll_timeout() returns as an
+error code.
+
+Your error handling in this driver needs a lot of work. Please improve
+it for the next submission. Error codes need returning as far as
+possible up the call stack.
+
+	 Andrew
