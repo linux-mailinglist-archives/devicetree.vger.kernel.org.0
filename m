@@ -2,241 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14D5047F042
-	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 18:02:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED38947F063
+	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 18:29:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353265AbhLXRCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Dec 2021 12:02:46 -0500
-Received: from ixit.cz ([94.230.151.217]:49762 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236414AbhLXRCq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Dec 2021 12:02:46 -0500
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 802A92243C;
-        Fri, 24 Dec 2021 18:02:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1640365363;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=HbmIZwLuV6VZPMQ2LsqtWZDS7tE+7vlqNV7H+vpBED0=;
-        b=lfeE112a7wnQxddN8gP4N6WncHhMYn9EUXBgFow+Li0+umYK5u9LN9Uv+Y8U9Ws3fffWo/
-        YxvXmVbiBWEGXbTHelN4pltsw1BYQDJWpO7gyTbEmAs+TcazwNmDfeZNcddBhd/sqbAGqF
-        +I4LPzc8tdnONr068KDTr9pNY8XcM14=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: phy: convert Qualcomm USB HS phy to yaml
-Date:   Fri, 24 Dec 2021 18:02:41 +0100
-Message-Id: <20211224170242.57816-1-david@ixit.cz>
-X-Mailer: git-send-email 2.34.1
+        id S1353303AbhLXR31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Dec 2021 12:29:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34172 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229539AbhLXR31 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Dec 2021 12:29:27 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 965F6C061401;
+        Fri, 24 Dec 2021 09:29:26 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id x15so35659158edv.1;
+        Fri, 24 Dec 2021 09:29:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=d++DuyGAvsDciM6eGzuNhohbcfflkfo8Updj8Oi3lko=;
+        b=Zcgxx/PFCm1Gk9GInJ75jZeRJmqq+ExTbcJMmRAvxyiOVA+59v9fa3/PuW3YvcvsDF
+         g85lUn+o/rV5qvQGZiSuYuT+rLAwLPTeEAswjwVl2rNPxELY2uuymt+2Cf/jVIn8yATz
+         ebKzbFXBB5ZkbiKrQnkh6i/RpKyZNGuCUlkp7JdSFASSS98wdgmqe4yhJgRQcb8VGuhy
+         NEPmU/3iHbo5x/SO1JoU57djIwQzdt4IWlrTSY9nWipTxtfGe7KP2jof41JOCvMuFVCz
+         rH9AR/PQv2INTq7/mlz0JHx2gdHAbLYUtVG/AXnE3RJmzCA+B8h/72Ff70D3rAwrJTGO
+         c1XA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=d++DuyGAvsDciM6eGzuNhohbcfflkfo8Updj8Oi3lko=;
+        b=YUKSat71CZB+oQl5xi1yLCpAY8cSq0bd57NplGikGQPSsX1sTdWdb45m4oK2vhOZeL
+         Y+AJDz6kzlU3MQT/eFKEU/JNtXmIp0qvaNoocJq5UI/2PvMIMjvXRAiXAhIxaAPsli0N
+         NaN80uT+O7+fxvZ2AvREcRKuZox/MDRJs/23wrIBp59qoIOCbzlVCUBw8DCCvS090sXC
+         hkXGvzmjwGaLWFOl3wq38KC//UwJVmz1qx9/f4pCMpPnqFSL0QXfJ0QMTewXw88VfVWV
+         ucVwZnZeCpUyEK2tL4f5mCJUxWkIW7B8L4DyYQot6fMtWQ+zxPhGFRpHNT5kGUcBhyuz
+         sTBg==
+X-Gm-Message-State: AOAM531agVeI4Cmt0w0hWGZ3HoASBM2m7q5RrYXFm2qPHCWtOai3kqc5
+        3UIty0Firro4V1fSkL6QFSy9JjxdHkTfCU3xDJg=
+X-Google-Smtp-Source: ABdhPJy5VXGB5ok/CmgPeHloEn/RJrG5bmqnry8/oB6sB1YLfj9+63el5LzYjEmKrtfP3c0Dlx2ODZUCIBVT/XgsVe8=
+X-Received: by 2002:a05:6402:518a:: with SMTP id q10mr4538306edd.29.1640366965079;
+ Fri, 24 Dec 2021 09:29:25 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
+References: <20211221030146.522-1-xianwei.zhao@amlogic.com>
+In-Reply-To: <20211221030146.522-1-xianwei.zhao@amlogic.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Fri, 24 Dec 2021 18:29:14 +0100
+Message-ID: <CAFBinCDgQbjZ2QyTBbFuj--e6=mdxcd1PgYJNZJQFEvo3vco5g@mail.gmail.com>
+Subject: Re: [PATCH V2] dt-bindings: serial: amlogic, meson-uart: support S4
+To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>, kelvin.zhang@amlogic.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Conversion of Qualcomm USB HS phy documentation to yaml.
+Hello,
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../bindings/phy/qcom,usb-hs-phy.txt          | 84 ------------------
- .../bindings/phy/qcom,usb-hs-phy.yaml         | 86 +++++++++++++++++++
- 2 files changed, 86 insertions(+), 84 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.txt
- create mode 100644 Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
+On Tue, Dec 21, 2021 at 4:01 AM Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
+>
+> Add serial bindings support menson S4 SoC family.
+please fix the typo here: menson -> meson
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.txt b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.txt
-deleted file mode 100644
-index b3b75c1e6285..000000000000
---- a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.txt
-+++ /dev/null
-@@ -1,84 +0,0 @@
--Qualcomm's USB HS PHY
--
--PROPERTIES
--
--- compatible:
--    Usage: required
--    Value type: <string>
--    Definition: Should contain "qcom,usb-hs-phy" and more specifically one of the
--                following:
--
--                        "qcom,usb-hs-phy-apq8064"
--                        "qcom,usb-hs-phy-msm8916"
--                        "qcom,usb-hs-phy-msm8974"
--
--- #phy-cells:
--    Usage: required
--    Value type: <u32>
--    Definition: Should contain 0
--
--- clocks:
--    Usage: required
--    Value type: <prop-encoded-array>
--    Definition: Should contain clock specifier for the reference and sleep
--                clocks
--
--- clock-names:
--    Usage: required
--    Value type: <stringlist>
--    Definition: Should contain "ref" and "sleep" for the reference and sleep
--                clocks respectively
--
--- resets:
--    Usage: required
--    Value type: <prop-encoded-array>
--    Definition: Should contain the phy and POR resets
--
--- reset-names:
--    Usage: required
--    Value type: <stringlist>
--    Definition: Should contain "phy" and "por" for the phy and POR resets
--                respectively
--
--- v3p3-supply:
--    Usage: required
--    Value type: <phandle>
--    Definition: Should contain a reference to the 3.3V supply
--
--- v1p8-supply:
--    Usage: required
--    Value type: <phandle>
--    Definition: Should contain a reference to the 1.8V supply
--
--- extcon:
--    Usage: optional
--    Value type: <prop-encoded-array>
--    Definition: Should contain the vbus extcon
--
--- qcom,init-seq:
--    Usage: optional
--    Value type: <u8 array>
--    Definition: Should contain a sequence of ULPI address and value pairs to
--                program into the ULPI_EXT_VENDOR_SPECIFIC area. This is related
--                to Device Mode Eye Diagram test. The addresses are offsets
--                from the ULPI_EXT_VENDOR_SPECIFIC address, for example,
--                <0x1 0x53> would mean "write the value 0x53 to address 0x81".
--
--EXAMPLE
--
--otg: usb-controller {
--	ulpi {
--		phy {
--			compatible = "qcom,usb-hs-phy-msm8974", "qcom,usb-hs-phy";
--			#phy-cells = <0>;
--			clocks = <&xo_board>, <&gcc GCC_USB2A_PHY_SLEEP_CLK>;
--			clock-names = "ref", "sleep";
--			resets = <&gcc GCC_USB2A_PHY_BCR>, <&otg 0>;
--			reset-names = "phy", "por";
--			v3p3-supply = <&pm8941_l24>;
--			v1p8-supply = <&pm8941_l6>;
--			extcon = <&smbb>;
--			qcom,init-seq = /bits/ 8 <0x1 0x63>;
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-new file mode 100644
-index 000000000000..202c42754188
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/qcom,usb-hs-phy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm's USB HS PHY binding description
-+
-+maintainers:
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - qcom,usb-hs-phy-apq8064
-+          - qcom,usb-hs-phy-msm8916
-+          - qcom,usb-hs-phy-msm8974
-+      - const: qcom,usb-hs-phy
-+
-+  clocks: true
-+
-+  clock-names:
-+    oneOf:
-+      - items:
-+          - const: ref
-+          - const: sleep
-+      - items:
-+          - const: sleep
-+          - const: ref
-+
-+  resets: true
-+
-+  reset-names:
-+    oneOf:
-+      - items:
-+          - const: por
-+      - items:
-+          - const: phy
-+          - const: por
-+
-+  v1p8-supply: true
-+
-+  v3p3-supply: true
-+
-+  extcon: true
-+
-+  "#phy-cells":
-+    const: 0
-+
-+  qcom,init-seq:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      Should contain a sequence of ULPI address and value pairs to
-+      program into the ULPI_EXT_VENDOR_SPECIFIC area. This is related
-+      to Device Mode Eye Diagram test. The addresses are offsets
-+      from the ULPI_EXT_VENDOR_SPECIFIC address, for example,
-+      <0x1 0x53> would mean "write the value 0x53 to address 0x81".
-+
-+required:
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - "#phy-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    otg: usb-controller {
-+      ulpi {
-+        phy {
-+          compatible = "qcom,usb-hs-phy-msm8974", "qcom,usb-hs-phy";
-+          #phy-cells = <0>;
-+          clocks = <&clk 0>, <&clk 258>;
-+          clock-names = "ref", "sleep";
-+          resets = <&gcc 10>, <&otg 0>;
-+          reset-names = "phy", "por";
-+          v3p3-supply = <&pm8941_l24>;
-+          v1p8-supply = <&pm8941_l6>;
-+          extcon = <&smbb>;
-+          qcom,init-seq = /bits/ 8 <0x1 0x63>;
-+        };
-+      };
-+    };
--- 
-2.34.1
 
+Best regards,
+Martin
