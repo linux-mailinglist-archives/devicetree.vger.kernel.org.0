@@ -2,40 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41F1747F026
-	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 17:31:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A8E647F02B
+	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 17:33:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353251AbhLXQbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Dec 2021 11:31:12 -0500
-Received: from ixit.cz ([94.230.151.217]:49682 "EHLO ixit.cz"
+        id S245579AbhLXQdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Dec 2021 11:33:52 -0500
+Received: from ixit.cz ([94.230.151.217]:49696 "EHLO ixit.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230213AbhLXQbK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Dec 2021 11:31:10 -0500
+        id S230213AbhLXQds (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Dec 2021 11:33:48 -0500
 Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id D67552243C;
-        Fri, 24 Dec 2021 17:31:08 +0100 (CET)
+        by ixit.cz (Postfix) with ESMTPSA id 1BCFA2243C;
+        Fri, 24 Dec 2021 17:33:46 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1640363469;
+        t=1640363626;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding;
-        bh=RNEtzN3VfT1jCD3jgIcqPxGguH5LZ39PDpSxj+kjOYo=;
-        b=wcW6sHWo68amxwKq57FXLY147X5ECNYPOr9eVU8w/0aSIHkiGz5+Rp8jb7TGfrRRhNOLJH
-        zRUFH2MbUNxJHbabEDVk6zdl3j7fs1j/W8pWZPPMOm3/cbG9bwwdNXpyPSDLZtsf6b3eg5
-        CChQscQ3oTBz8CoaJmCqZd5WzsjRuj8=
+        bh=FoA5iIkkF6H+aVXyAyIGl68mDWYX9Ghj7Pu9I1UcMTk=;
+        b=Lam7IlCcYZ9rbjbVarQFfEqOx5eVAKDBlKssLc0uDa3KyzCQBe/KEOre/yEBaGZgRO0G2H
+        DxrLm4xB4LhY/mD1dhRgUI0NSOXJHnh7kJlfSnnhU3gM+//A9V1qy1NcJNl+yloflkFzrP
+        sn2F1K43IE4NGY7N3v6Md0TOpmVijWo=
 From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>
 Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: msm8996: use standartized naming for spmi node
-Date:   Fri, 24 Dec 2021 17:31:07 +0100
-Message-Id: <20211224163107.53708-1-david@ixit.cz>
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: spmi: spmi can have at least up to 5 registers
+Date:   Fri, 24 Dec 2021 17:33:43 +0100
+Message-Id: <20211224163344.54177-1-david@ixit.cz>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -43,26 +40,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Following naming convention, rename qcom,spmi@ node to spmi@
+Since Qualcomm SPMI Controller (PMIC Arbiter) can have 5,
+bump reg up to maxItems 5.
+
+Fixes warning as:
+arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: spmi@c440000: reg: [[0, 205783040, 0, 4352], [0, 207618048, 0, 33554432], [0, 241172480, 0, 1048576], [0, 242221056, 0, 655360], [0, 205561856, 0, 155648]] is too long
+        From schema: Documentation/devicetree/bindings/spmi/spmi.yaml
 
 Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/spmi/spmi.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 722fdda54a54..ae09007866e8 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -1546,7 +1546,7 @@ sram@290000 {
- 			reg = <0x00290000 0x10000>;
- 		};
+diff --git a/Documentation/devicetree/bindings/spmi/spmi.yaml b/Documentation/devicetree/bindings/spmi/spmi.yaml
+index 1d243faef2f8..d7d9345d7c60 100644
+--- a/Documentation/devicetree/bindings/spmi/spmi.yaml
++++ b/Documentation/devicetree/bindings/spmi/spmi.yaml
+@@ -25,7 +25,8 @@ properties:
+     pattern: "^spmi@.*"
  
--		spmi_bus: qcom,spmi@400f000 {
-+		spmi_bus: spmi@400f000 {
- 			compatible = "qcom,spmi-pmic-arb";
- 			reg = <0x0400f000 0x1000>,
- 			      <0x04400000 0x800000>,
+   reg:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 5
+ 
+   "#address-cells":
+     const: 2
 -- 
 2.34.1
 
