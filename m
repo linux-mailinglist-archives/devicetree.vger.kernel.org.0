@@ -2,176 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0045647EC2B
-	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 07:37:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50F6D47EC97
+	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 08:16:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237237AbhLXGhE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Dec 2021 01:37:04 -0500
-Received: from szxga01-in.huawei.com ([45.249.212.187]:33909 "EHLO
-        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229862AbhLXGhE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Dec 2021 01:37:04 -0500
-Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.55])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4JKy5J6T09zcbZg;
-        Fri, 24 Dec 2021 14:36:36 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 24 Dec 2021 14:37:01 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 24 Dec 2021 14:37:00 +0800
-Subject: Re: [PATCH v18 02/17] x86/setup: Move xen_pv_domain() check and
- insert_resource() to setup_arch()
-To:     Borislav Petkov <bp@alien8.de>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, <x86@kernel.org>,
-        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        "John Donnelly" <John.p.donnelly@oracle.com>
-References: <20211222130820.1754-1-thunder.leizhen@huawei.com>
- <20211222130820.1754-3-thunder.leizhen@huawei.com> <YcSxLodOnxXHx0sV@zn.tnic>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <d6226aa2-f1f2-24cc-c9d2-9762bd615686@huawei.com>
-Date:   Fri, 24 Dec 2021 14:36:59 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1351768AbhLXHQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Dec 2021 02:16:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42202 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343520AbhLXHQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Dec 2021 02:16:50 -0500
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D478AC061401;
+        Thu, 23 Dec 2021 23:16:50 -0800 (PST)
+Received: by mail-pf1-x42a.google.com with SMTP id t19so7147657pfg.9;
+        Thu, 23 Dec 2021 23:16:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Zhwb/1rkoFIfNJihrhMcunuEn4WEc3y8o31ix4CFyjU=;
+        b=b4Kvbs45Qr6PRMyWWn89aKY+AiKiW+YoZcb0F3AZiEdt62ZrHZLylLv88kjGTV10yp
+         znp1cXYLG7oo6LIDK/2c/ZsgxPHsm4aIXjTfzd5hsD2V7FLyBevPw9joXwYwZxEKQPci
+         AmMJDGQhmksGwjgxA2+SF5uBBuB9V0wBriorPaiBnlzySyeZOPpoEiHkSiFrJtRy/bMv
+         eR6A9raPgATbNTXKRqSxnGKjTLx2BB2O1bMwAC2X9CBB+vv/VyfhfxdjX44jiw0pU2X9
+         E1TFiOSYf5cADMFj9sNKXAmXSGklf2XNJ++YBRFAy/spCVKXd65Sh+wPW4yHuFopVzEv
+         MPuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Zhwb/1rkoFIfNJihrhMcunuEn4WEc3y8o31ix4CFyjU=;
+        b=kqXX42CMAH66hSHpz9/s5MZmTXff/JCG0+oEuyOPvzMOEltetx+J+SvuewPyZj/Y2F
+         Ni0GBZJnnBmvPYEWrVJE0c5hgzLqQODsZvfUZ3MCqtp7DqKjLZte4RRpibTqX10mspc/
+         VBUj6JdmlyQ0SUuWXyIlGdCZ85ODyI3tN5vgj6+dY1I8BrG5KkEaesp+k9PbWaIFDTgp
+         uM51JcB2yAp3mf4L7I5odCTnlknYGdeq573rfkFaROR+BSvVJSZUQIQmVidprYsqzoSQ
+         zA5TkUQ+3WRmxJLSqJP8MwmKPfe6IFunyD1qYR5t9y5Ckvd4RJgYUJW/26hSX+/gWxRK
+         +24A==
+X-Gm-Message-State: AOAM532FoB4lBEujKuyD7pR2+bCQTt+q3296aY3mc1Mws6juRnclx5oD
+        icJ/7PB+mZk3OetKoQ8lxqV/xpy//cDGfifwZrvwWOx3p8o=
+X-Google-Smtp-Source: ABdhPJzLVSYDsmClvfrI8LbillRgjj3U2qtgV463+mBt90V3xYlLMjXSdjEuWuXSMjT7xr/YGE/Qp/eFZo0LfA18S08=
+X-Received: by 2002:a63:5725:: with SMTP id l37mr5062321pgb.476.1640330209857;
+ Thu, 23 Dec 2021 23:16:49 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <YcSxLodOnxXHx0sV@zn.tnic>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
+References: <1639379407-28607-1-git-send-email-hammer.hsieh@sunplus.com>
+ <1639379407-28607-3-git-send-email-hammer.hsieh@sunplus.com>
+ <YcCmaJkeKy+R0mhF@kroah.com> <CAOX-t54j9=7eLMAx4n-ngiNdM=Ab=YcK-zdxRW88e41cPS=46Q@mail.gmail.com>
+ <YcGOmzKSHOoycZNC@kroah.com>
+In-Reply-To: <YcGOmzKSHOoycZNC@kroah.com>
+From:   hammer hsieh <hammerh0314@gmail.com>
+Date:   Fri, 24 Dec 2021 15:16:55 +0800
+Message-ID: <CAOX-t55fBM7u3qZm7ubLANDnWNFhCiBXB29v00racWd-gy3OgA@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     robh+dt@kernel.org, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jirislaby@kernel.org, p.zabel@pengutronix.de, wells.lu@sunplus.com,
+        Hammer Hsieh <hammer.hsieh@sunplus.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi, Greg KH :
 
+In patch v1 coding quite mess, it is almost 2000 LOCs.
+For down size code under 1000 LOCs, I decide to drop DMA function code
+after patch v3.
+I think that's the biggest difference compared with 8250.
+Without DMA function, like you said it looks like 8250 variant.
+I think I should put DMA function back in next submit.
 
-On 2021/12/24 1:26, Borislav Petkov wrote:
-> On Wed, Dec 22, 2021 at 09:08:05PM +0800, Zhen Lei wrote:
->> From: Chen Zhou <chenzhou10@huawei.com>
->>
->> We will make the functions reserve_crashkernel() as generic, the
->> xen_pv_domain() check in reserve_crashkernel() is relevant only to
->> x86,
-> 
-> Why is that so? Is Xen-PV x86-only?
-> 
->> the same as insert_resource() in reserve_crashkernel[_low]().
-> 
-> Why?
-> 
-> Looking at
-> 
->   0212f9159694 ("x86: Add Crash kernel low reservation")
-> 
-> it *surprisingly* explains why that resources thing is being added:
-> 
->     We need to add another range in /proc/iomem like "Crash kernel low",
->     so kexec-tools could find that info and append to kdump kernel
->     command line.
-> 
-> Then,
-> 
->   157752d84f5d ("kexec: use Crash kernel for Crash kernel low")
-> 
-> renamed it because, as it states, kexec-tools was taught to handle
-> multiple resources of the same name.
-> 
-> So why does kexec-tools on arm *not* need those iomem resources? How
-> does it parse the ranges there? Questions over questions...
+Another question for why I need PORT_SLUNPLUS ?
+I just check many other uart driver, almost all driver define their
+own PORT number.
+Actually, I didn't know about it.
+Maybe some device like bluetooth(use uart port) need autoconfig.
+Then it will call ioctl with TIOCSERCONFIG.
+I don't have tool for calling type/config/request/release/verify.
 
-https://lkml.org/lkml/2019/4/4/1758
+Regards,
+Hammer Hsieh
 
-Chen Zhou has explained before, see below. I'll analyze why x86 and arm64 need
-to process iomem resources at different times.
-
- < This very reminds what x86 does. Any chance some of the code can be reused
- < rather than duplicated?
-As i said in the comment, i transport reserve_crashkernel_low() from x86_64. There are minor
-differences. In arm64, we don't need to do insert_resource(), we do request_resource()
-in request_standard_resources() later.
-
-> 
-> So last time I told you to sit down and take your time with this cleanup.
->>From reading this here, it doesn't look like it. Rather, it looks like
-> hastily done in a hurry and hurrying stuff doesn't help you one bit - it
-> actually makes it worse.
-> 
-> Your commit messages need to explain *why* a change is being done and
-> why is that ok. This one doesn't.
-
-OK, I'll do this in follow-up patches.
-
-> 
->> @@ -1120,7 +1109,17 @@ void __init setup_arch(char **cmdline_p)
->>  	 * Reserve memory for crash kernel after SRAT is parsed so that it
->>  	 * won't consume hotpluggable memory.
->>  	 */
->> -	reserve_crashkernel();
->> +#ifdef CONFIG_KEXEC_CORE
->> +	if (xen_pv_domain())
->> +		pr_info("Ignoring crashkernel for a Xen PV domain\n");
-> 
-> This is wrong - the check is currently being done inside
-> reserve_crashkernel(), *after* it has parsed a crashkernel= cmdline
-> correctly - and not before.
-> 
-> Your change would print on Xen PV, regardless of whether it has received
-> crashkernel= on the cmdline or not.
-
-Yes, you're right. There are changes in code logic, but the print doesn't
-seem to cause any misunderstanding.
-
-> 
-> This is exactly why I say that making those functions generic and shared
-> might not be such a good idea, after all, because then you'd have to
-> sprinkle around arch-specific stuff.
-
-Yes, I'm thinking about that too. Perhaps they are not suitable for full
-code sharing, but it looks like there's some code that can be shared.
-For example, the function parse_crashkernel_in_order() that I extracted
-based on your suggestion, it could also be parse_crashkernel_high_low().
-Or the function reserve_crashkernel_low().
-
-There are two ways to reserve memory above 4G:
-1. Use crashkernel=X,high, with or without crashkernel=X,low
-2. Use crashkernel=X,[offset], but try low memory first. If failed, then
-   try high memory, and retry at least 256M low memory.
-
-I plan to only implement 2 in the next version so that there can be fewer
-changes. Then implement 1 after 2 is applied.
-
-> 
-> One of the ways how to address this particular case here would be:
-> 
-> 1. Add a x86-specific wrapper around parse_crashkernel() which does
-> all the parsing. When that wrapper finishes, you should have parsed
-> everything that has crashkernel= on the cmdline.
-> 
-> 2. At the end of that wrapper, you do arch-specific checks and setup
-> like the xen_pv_domain() one.
-> 
-> 3. Now, you do reserve_crashkernel(), if those checks pass.
-> 
-> The question is, whether the flow on arm64 can do the same. Probably but
-> it needs careful auditing.
-> 
+Greg KH <gregkh@linuxfoundation.org> =E6=96=BC 2021=E5=B9=B412=E6=9C=8821=
+=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=884:21=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> On Tue, Dec 21, 2021 at 04:14:16PM +0800, hammer hsieh wrote:
+> > Greg KH <gregkh@linuxfoundation.org> =E6=96=BC 2021=E5=B9=B412=E6=9C=88=
+20=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=8811:51=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+> > >
+> > > On Mon, Dec 13, 2021 at 03:10:07PM +0800, Hammer Hsieh wrote:
+> > > > +/* Register offsets */
+> > > > +#define SUP_UART_DATA                        0x00
+> > > > +#define SUP_UART_LSR                 0x04
+> > > > +#define SUP_UART_MSR                 0x08
+> > > > +#define SUP_UART_LCR                 0x0C
+> > > > +#define SUP_UART_MCR                 0x10
+> > > > +#define SUP_UART_DIV_L                       0x14
+> > > > +#define SUP_UART_DIV_H                       0x18
+> > > > +#define SUP_UART_ISC                 0x1C
+> > > > +#define SUP_UART_TX_RESIDUE          0x20
+> > > > +#define SUP_UART_RX_RESIDUE          0x24
+> > > > +
+> > > > +/* Line Status Register bits */
+> > > > +#define SUP_UART_LSR_TXE             BIT(6) /* tx empty */
+> > > > +#define SUP_UART_LSR_BC                      BIT(5) /* break condi=
+tion status */
+> > > > +#define SUP_UART_LSR_FE                      BIT(4) /* frame error=
+ status */
+> > > > +#define SUP_UART_LSR_OE                      BIT(3) /* overrun err=
+or status */
+> > > > +#define SUP_UART_LSR_PE                      BIT(2) /* parity erro=
+r status */
+> > > > +#define SUP_UART_LSR_RX                      BIT(1) /* 1: receive =
+fifo not empty */
+> > > > +#define SUP_UART_LSR_TX                      BIT(0) /* 1: transmit=
+ fifo is not full */
+> > > > +#define SUP_UART_LSR_TX_NOT_FULL     1
+> > > > +#define SUP_UART_LSR_BRK_ERROR_BITS  GENMASK(5, 2)
+> > > > +
+> > > > +/* Line Control Register bits */
+> > > > +#define SUP_UART_LCR_BC                      BIT(5) /* break condi=
+tion select */
+> > > > +#define SUP_UART_LCR_PR                      BIT(4) /* parity bit =
+polarity select */
+> > > > +#define SUP_UART_LCR_PE                      BIT(3) /* parity bit =
+enable */
+> > > > +#define SUP_UART_LCR_ST                      BIT(2) /* stop bits s=
+elect */
+> > > > +#define SUP_UART_LCR_WL5             0x00 /*  word length 5 */
+> > > > +#define SUP_UART_LCR_WL6             0x01 /*  word length 6 */
+> > > > +#define SUP_UART_LCR_WL7             0x02 /*  word length 7 */
+> > > > +#define SUP_UART_LCR_WL8             0x03 /*  word length 8 (defau=
+lt) */
+> > > > +
+> > > > +/* Modem Control Register bits */
+> > > > +#define SUP_UART_MCR_LB                      BIT(4) /* Loopback mo=
+de */
+> > > > +#define SUP_UART_MCR_RI                      BIT(3) /* ring indica=
+tor */
+> > > > +#define SUP_UART_MCR_DCD             BIT(2) /* data carrier detect=
+ */
+> > > > +#define SUP_UART_MCR_RTS             BIT(1) /* request to send */
+> > > > +#define SUP_UART_MCR_DTS             BIT(0) /* data terminal ready=
+ */
+> > > > +
+> > > > +/* Interrupt Status/Control Register bits */
+> > > > +#define SUP_UART_ISC_RXM             BIT(5) /* RX interrupt enable=
+ */
+> > > > +#define SUP_UART_ISC_TXM             BIT(4) /* TX interrupt enable=
+ */
+> > > > +#define SUP_UART_ISC_RX                      BIT(1) /* RX interrup=
+t status */
+> > > > +#define SUP_UART_ISC_TX                      BIT(0) /* TX interrup=
+t status */
+> > > > +
+> > > > +#define SUP_DUMMY_READ                       BIT(16) /* drop bytes=
+ received on a !CREAD port */
+> > > > +#define SUP_UART_NR                  5
+> > >
+> > > Aren't most of these defines already in the kernel header files?  Why
+> > > create them again?
+> > >
+> >
+> > If for reduce code.
+> > I can add #include<linux/serial_reg.h>
+> > And remove some overlap define name.
+> >
+> > #define SUP_UART_LCR_PR -> UART_LCR_EPAR
+> > #define SUP_UART_LCR_PE -> UART_LCR_PARITY
+> > #define SUP_UART_LCR_ST -> UART_LCR_STOP
+> > #define SUP_UART_LCR_WL5 -> UART_LCR_WLEN5
+> > #define SUP_UART_LCR_WL6 -> UART_LCR_WLEN6
+> > #define SUP_UART_LCR_WL7 -> UART_LCR_WLEN7
+> > #define SUP_UART_LCR_WL8 -> UART_LCR_WLEN8
+> >
+> > #define SUP_UART_MCR_LB -> UART_MCR_LOOP
+> > #define SUP_UART_MCR_RI -> UART_MCR_OUT2 ?
+> > #define SUP_UART_MCR_DCD -> UART_MCR_OUT1 ?
+> > #define SUP_UART_MCR_RTS -> UART_MCR_RTS
+> > #define SUP_UART_MCR_DTS -> UART_MCR_DTR
+> >
+> > But the rest define didn't match internal #include<linux/serial_reg.h>
+> > , those define still need to keep.
+> > Some use SUP_xxxx specific define.
+> > Some use internal #include<linux/serial_reg.h>, it is strange.
+>
+> Do not duplicate defines that we already have for the same hardware
+> type.
+>
+> And again, why is this not a normal serial driver for the existing UART
+> types as this hardware is obviously an 8250 variant?
+>
+> thanks,
+>
+> greg k-h
