@@ -2,104 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45C0947EECE
-	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 13:30:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FACA47EF1A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 14:19:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352643AbhLXMal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Dec 2021 07:30:41 -0500
-Received: from relay037.a.hostedemail.com ([64.99.140.37]:44483 "EHLO
-        relay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233709AbhLXMal (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Dec 2021 07:30:41 -0500
-Received: from omf03.hostedemail.com (a10.router.float.18 [10.200.18.1])
-        by unirelay13.hostedemail.com (Postfix) with ESMTP id 3891160225;
-        Fri, 24 Dec 2021 12:30:39 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf03.hostedemail.com (Postfix) with ESMTPA id D5E8A60010;
-        Fri, 24 Dec 2021 12:30:33 +0000 (UTC)
-Message-ID: <6c81ef5a8407d9bb782dfbc9365a4c0658b667ca.camel@perches.com>
-Subject: Re: [PATCH v6 2/2] Driver for ON Semi AR0521 camera sensor
-From:   Joe Perches <joe@perches.com>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Krzysztof =?UTF-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>
-Date:   Fri, 24 Dec 2021 04:30:36 -0800
-In-Reply-To: <20211224092226.vmqkmybpx4zodezt@uno.localdomain>
-References: <m3ee63hkuu.fsf@t19.piap.pl> <m35yrfhkaf.fsf@t19.piap.pl>
-         <cee1bbe6c8dda1c79ba19f7bbf68fc1d74558cae.camel@perches.com>
-         <20211223184856.v34ecibwzepahsju@uno.localdomain>
-         <02c71d9fe95f72c5aa5a01adadda8fb7e756fae1.camel@perches.com>
-         <20211224092226.vmqkmybpx4zodezt@uno.localdomain>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.40.4-1ubuntu2 
+        id S231410AbhLXNTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Dec 2021 08:19:47 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:40826 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230463AbhLXNTr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Dec 2021 08:19:47 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B242862043;
+        Fri, 24 Dec 2021 13:19:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FF53C36AE5;
+        Fri, 24 Dec 2021 13:19:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640351985;
+        bh=RRC0/259fcqHbTn1tWwd3RXhY57VSROcl0lc6qKKWdY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EEJ8KMwBUMwKQVwvE8D34Otw7cDN5W5yRIX4/F/mJXKzKsHAlFf2b/ujW+9dkkq9m
+         nvwlgHv29Gs1iv1gzJHkweZW3DN3N6qgfMmviBXMCEDKw0Dq52WZHYiyAKffwqoBb8
+         qG0kyPcnBpujUGB+4SC5+LJvN+/+bNqtuV16aaWYfkZzf/b/i0VVr51Dpi5ZGQt9Jy
+         oIshsV73npxECqQXUFaT1DRB46FwXtTWvK6Sn4e1yKxWcEn4imNsszFopXtZFNJrm2
+         pkjABeo5XycsVYISnnjbIQZK+DajbUAnL+DPZUJ7/YOTykmQJW+MQNSMFJfVlRRg46
+         wwoSQXY6bt+ng==
+Date:   Fri, 24 Dec 2021 13:19:43 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Quan Nguyen <quan@os.amperecomputing.com>
+Cc:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        openbmc@lists.ozlabs.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+Subject: Re: [PATCH v6 5/9] regmap: Introduces regmap lock helpers
+Message-ID: <YcXI73GKNdx/gvUb@sirena.org.uk>
+References: <20211224041352.29405-1-quan@os.amperecomputing.com>
+ <20211224041352.29405-6-quan@os.amperecomputing.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.40
-X-Stat-Signature: ntueftf8c8fe318h6twwqznih8ozu61d
-X-Rspamd-Server: rspamout05
-X-Rspamd-Queue-Id: D5E8A60010
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX18P/ub0aaE+1Mahwx3jULEDVjviyMM0zd8=
-X-HE-Tag: 1640349033-706551
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="mlX9XU0JAkRu6gCR"
+Content-Disposition: inline
+In-Reply-To: <20211224041352.29405-6-quan@os.amperecomputing.com>
+X-Cookie: I brake for chezlogs!
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2021-12-24 at 10:22 +0100, Jacopo Mondi wrote:
-> Hi Joe
 
-hi again.
+--mlX9XU0JAkRu6gCR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> On Thu, Dec 23, 2021 at 12:13:10PM -0800, Joe Perches wrote:
-> > On Thu, 2021-12-23 at 19:48 +0100, Jacopo Mondi wrote:
-> > > The media subsystem requires to validate patches with
-> > > 
-> > >         ./scripts/checkpatch.pl --strict --max-line-length=80
-> > > 
-> > > We longly debated this and I believe it's now generally accepted to go
-> > > over 80 when it makes sense, but not regularly span to 120 cols like
-> > > in the previous version.
-> > 
-> > Where is this documented and do you have a link to the debate?
-> 
-> It's in the subsystem maintainer profile
-> Documentation/driver-api/media/maintainer-entry-profile.rst
-> 
-> Where of course some exceptions are listed but it's anyway enforced
-> that "efforts should be made towards staying within 80
-> characters per line"
-> 
->     - on strings, as they shouldn't be broken due to line length limits;
->     - when a function or variable name need to have a big identifier name,
->       which keeps hard to honor the 80 columns limit;
->     - on arithmetic expressions, when breaking lines makes them harder to
->       read;
->     - when they avoid a line to end with an open parenthesis or an open
->       bracket.
-> 
-> The debate I mentioned was specifically on the previous version of the
-> driver where me and Krzysztof shown quite different understanding of
-> coding style requirements.
-> https://patchwork.linuxtv.org/project/linux-media/patch/m3fstfoexa.fsf@t19.piap.pl/
+On Fri, Dec 24, 2021 at 11:13:48AM +0700, Quan Nguyen wrote:
+> This commit introduces regmap_acquire/release_lock() functions and makes
+> them available for drivers that need atomic access of regmap registers
 
-Thanks for that.
+You've not explained what something would need this for and how
+it's expected to work - we don't provide unlocked access to the
+regmap to client drivers so I don't see how one could safely use
+this.  It's unclear to me what this would mean or why it's not
+better implemented in the client driver.
 
-> That lead me to submit this
-> https://patchwork.linuxtv.org/project/linux-media/patch/20211013092005.14268-1-jacopo@jmondi.org/
+--mlX9XU0JAkRu6gCR
+Content-Type: application/pgp-signature; name="signature.asc"
 
-That too.
+-----BEGIN PGP SIGNATURE-----
 
-FWIW, I believe using more than 100 columns or so makes it more
-difficult to track quickly and efficiently to the next line.
-Reading with multiple visual saccades on a single line is slow.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHFyO4ACgkQJNaLcl1U
+h9DaeAf+LrT+e8nVJuT7C0PxLOgU/FymUBhAX0UdyOknH3zdIG0c7DcvOXau1O1x
+Kld90ZKSql9M73A3NpWy7ZnamQwLSd+7ik25B9lSL6lY7yRK7Or2N5YL0yWWg9Tl
+fJq5v7gTLRLHk5DYQaO7OGXpW5GHKuE4VB7u2aoiWGH1/ovF1odyGVRhbFz6Yn2c
+8PaAz4+ja4FDk77vird8NbSpHWOTFVPJg1hq9Kl1ru/ylihcqcNQOlYdubCxLudc
+LZSmGUv3WYRRq6ruyjGgQblUkYdlakLVTk8lNi5LaJamD2gKBqPOi1Q1NvPGrhZi
+JIMOd8EICA6jR9Hj+s1SIxK4RJNPDQ==
+=Dgc1
+-----END PGP SIGNATURE-----
 
-And IMO:
-
-o reverse xmas tree declarations is quite a poor style requirement
-o single line c99 // comments should be encouraged/preferred
-o identifiers longer than 20 characters or so should be discouraged
-
-
+--mlX9XU0JAkRu6gCR--
