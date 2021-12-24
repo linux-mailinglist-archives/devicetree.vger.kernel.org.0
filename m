@@ -2,282 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEF7347EFB0
-	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 15:48:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90FB347EFE9
+	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 17:03:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241647AbhLXOsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Dec 2021 09:48:40 -0500
-Received: from ixit.cz ([94.230.151.217]:49562 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231836AbhLXOsk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Dec 2021 09:48:40 -0500
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 68F952243C;
-        Fri, 24 Dec 2021 15:48:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1640357317;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=mR8uorQ2/cBIUnBEfvoxTcBWsRXZKWWQDqPfp3FOr4w=;
-        b=Jf8D8BQMMhmvd2f4Xil1oR2+DH6IVSKw/WXb6zuzH4xrxPGoI73taWeAsLFHxW+leZwQdB
-        InZNMcdISkSvUS6DhJ3MjhwIOzwRfgi5psZDgVbdL6YAFgARDHZ0+SVUVTJaDoOVLxcULz
-        AaCHB8nAJpFy32G+DWhx4FSG7bTW8AE=
-From:   David Heidelberg <david@ixit.cz>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: arm: merge qcom,idle-state with idle-state
-Date:   Fri, 24 Dec 2021 15:48:34 +0100
-Message-Id: <20211224144835.39193-1-david@ixit.cz>
-X-Mailer: git-send-email 2.34.1
+        id S1353114AbhLXQDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Dec 2021 11:03:33 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:55249 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241840AbhLXQDc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Dec 2021 11:03:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1640361812; x=1671897812;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=gvW8BpWYYoD49GMjS+kF2ZpKIYY2ofh32Rb4TnVOEYc=;
+  b=Bwz+Lf9z/XvCKrLpCrn1PL+g+E7RyxsvTtvAbbb4P0rY/E0FRQqGRlRZ
+   g8DVFO/w6RAzryET0NdFwHHxTSWIxSptwfeikdNZ8/Mrq7VTdp3HsbVjI
+   lg5nPOHIiacok/9jlclFlEcgeb9cAysUX3NX8bK7Oflg0CuJulns18aBW
+   A=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Dec 2021 08:03:32 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Dec 2021 08:03:31 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Fri, 24 Dec 2021 08:03:31 -0800
+Received: from sbillaka-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Fri, 24 Dec 2021 08:03:26 -0800
+From:   Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+To:     <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>
+CC:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        <robdclark@gmail.com>, <seanpaul@chromium.org>,
+        <swboyd@chromium.org>, <quic_kalyant@quicinc.com>,
+        <quic_abhinavk@quicinc.com>, <dianders@chromium.org>,
+        <quic_khsieh@quicinc.com>, <quic_mkrishn@quicinc.com>
+Subject: [PATCH v5 0/4] arm: dts: qcom: sc7280: Add display DT nodes for sc7280
+Date:   Fri, 24 Dec 2021 21:33:09 +0530
+Message-ID: <1640361793-26486-1-git-send-email-quic_sbillaka@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Merge Qualcomm specific idle-state binding with generic one.
+Add display devicetree support for sc7280 platform. 
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
+Krishna Manikandan (1):
+  arm64: dts: qcom: sc7280: add display dt nodes
 
----
-v3:
- - integrate into idle-state.yml
- - orig. patch name was:
-   "[v2] dt-bindings: arm/msm/qcom,idle-state convert to YAML"
+Kuogee Hsieh (1):
+  arm64: dts: qcom: sc7280: Add Display Port node
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../devicetree/bindings/arm/idle-states.yaml  | 107 ++++++++++++++++++
- .../bindings/arm/msm/qcom,idle-state.txt      |  84 --------------
- 2 files changed, 107 insertions(+), 84 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt
+Rajeev Nandan (1):
+  arm64: dts: qcom: sc7280: Add DSI display nodes
 
-diff --git a/Documentation/devicetree/bindings/arm/idle-states.yaml b/Documentation/devicetree/bindings/arm/idle-states.yaml
-index 52bce5dbb11f..fde1557f2332 100644
---- a/Documentation/devicetree/bindings/arm/idle-states.yaml
-+++ b/Documentation/devicetree/bindings/arm/idle-states.yaml
-@@ -241,6 +241,64 @@ description: |+
-   [6] ARM Linux Kernel documentation - Booting AArch64 Linux
-       Documentation/arm64/booting.rst
- 
-+  ===========================================
-+  5 - Qualcomm specific STATES
-+  ===========================================
-+
-+  cpuidle-qcom is the cpuidle driver for Qualcomm SoCs and uses these idle
-+  states. Idle states have different enter/exit latency and residency values.
-+  The idle states supported by the QCOM SoC are defined as -
-+
-+    * Standby
-+    * Retention
-+    * Standalone Power Collapse (Standalone PC or SPC)
-+    * Power Collapse (PC)
-+
-+  Standby: Standby does a little more in addition to architectural clock gating.
-+  When the WFI instruction is executed the ARM core would gate its internal
-+  clocks. In addition to gating the clocks, QCOM cpus use this instruction as a
-+  trigger to execute the SPM state machine. The SPM state machine waits for the
-+  interrupt to trigger the core back in to active. This triggers the cache
-+  hierarchy to enter standby states, when all cpus are idle. An interrupt brings
-+  the SPM state machine out of its wait, the next step is to ensure that the
-+  cache hierarchy is also out of standby, and then the cpu is allowed to resume
-+  execution. This state is defined as a generic ARM WFI state by the ARM cpuidle
-+  driver and is not defined in the DT. The SPM state machine should be
-+  configured to execute this state by default and after executing every other
-+  state below.
-+
-+  Retention: Retention is a low power state where the core is clock gated and
-+  the memory and the registers associated with the core are retained. The
-+  voltage may be reduced to the minimum value needed to keep the processor
-+  registers active. The SPM should be configured to execute the retention
-+  sequence and would wait for interrupt, before restoring the cpu to execution
-+  state. Retention may have a slightly higher latency than Standby.
-+
-+  Standalone PC: A cpu can power down and warmboot if there is a sufficient time
-+  between the time it enters idle and the next known wake up. SPC mode is used
-+  to indicate a core entering a power down state without consulting any other
-+  cpu or the system resources. This helps save power only on that core.  The SPM
-+  sequence for this idle state is programmed to power down the supply to the
-+  core, wait for the interrupt, restore power to the core, and ensure the
-+  system state including cache hierarchy is ready before allowing core to
-+  resume. Applying power and resetting the core causes the core to warmboot
-+  back into Elevation Level (EL) which trampolines the control back to the
-+  kernel. Entering a power down state for the cpu, needs to be done by trapping
-+  into a EL. Failing to do so, would result in a crash enforced by the warm boot
-+  code in the EL for the SoC. On SoCs with write-back L1 cache, the cache has to
-+  be flushed in s/w, before powering down the core.
-+
-+  Power Collapse: This state is similar to the SPC mode, but distinguishes
-+  itself in that the cpu acknowledges and permits the SoC to enter deeper sleep
-+  modes. In a hierarchical power domain SoC, this means L2 and other caches can
-+  be flushed, system bus, clocks - lowered, and SoC main XO clock gated and
-+  voltages reduced, provided all cpus enter this state.  Since the span of low
-+  power modes possible at this state is vast, the exit latency and the residency
-+  of this low power mode would be considered high even though at a cpu level,
-+  this essentially is cpu power down. The SPM in this state also may handshake
-+  with the Resource power manager (RPM) processor in the SoC to indicate a
-+  complete application processor subsystem shut down.
-+
- properties:
-   $nodename:
-     const: idle-states
-@@ -323,6 +381,44 @@ patternProperties:
-       - exit-latency-us
-       - min-residency-us
- 
-+  "^(ret|spc|pc)$":
-+    type: object
-+    description:
-+      Each state node represents a domain idle state description.
-+
-+    properties:
-+      compatible:
-+        items:
-+          - enum:
-+              - qcom,idle-state-ret
-+              - qcom,idle-state-spc
-+              - qcom,idle-state-pc
-+          - const: arm,idle-state
-+
-+      entry-latency-us:
-+        description:
-+          The worst case latency in microseconds required to enter the idle
-+          state. Note that, the exit-latency-us duration may be guaranteed only
-+          after the entry-latency-us has passed.
-+
-+      exit-latency-us:
-+        description:
-+          The worst case latency in microseconds required to exit the idle
-+          state.
-+
-+      min-residency-us:
-+        description:
-+          The minimum residency duration in microseconds after which the idle
-+          state will yield power benefits, after overcoming the overhead while
-+          entering the idle state.
-+
-+    required:
-+      - compatible
-+      - entry-latency-us
-+      - exit-latency-us
-+      - min-residency-us
-+
-+
- additionalProperties: false
- 
- examples:
-@@ -658,4 +754,15 @@ examples:
-         };
-     };
- 
-+  - |
-+    // Example 3 - QCOM SPC
-+    idle-states {
-+      cpu_spc: spc {
-+        compatible = "qcom,idle-state-spc", "arm,idle-state";
-+        entry-latency-us = <150>;
-+        exit-latency-us = <200>;
-+        min-residency-us = <2000>;
-+      };
-+    };
-+
- ...
-diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt b/Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt
-deleted file mode 100644
-index 6ce0b212ec6d..000000000000
---- a/Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt
-+++ /dev/null
-@@ -1,84 +0,0 @@
--QCOM Idle States for cpuidle driver
--
--ARM provides idle-state node to define the cpuidle states, as defined in [1].
--cpuidle-qcom is the cpuidle driver for Qualcomm SoCs and uses these idle
--states. Idle states have different enter/exit latency and residency values.
--The idle states supported by the QCOM SoC are defined as -
--
--    * Standby
--    * Retention
--    * Standalone Power Collapse (Standalone PC or SPC)
--    * Power Collapse (PC)
--
--Standby: Standby does a little more in addition to architectural clock gating.
--When the WFI instruction is executed the ARM core would gate its internal
--clocks. In addition to gating the clocks, QCOM cpus use this instruction as a
--trigger to execute the SPM state machine. The SPM state machine waits for the
--interrupt to trigger the core back in to active. This triggers the cache
--hierarchy to enter standby states, when all cpus are idle. An interrupt brings
--the SPM state machine out of its wait, the next step is to ensure that the
--cache hierarchy is also out of standby, and then the cpu is allowed to resume
--execution. This state is defined as a generic ARM WFI state by the ARM cpuidle
--driver and is not defined in the DT. The SPM state machine should be
--configured to execute this state by default and after executing every other
--state below.
--
--Retention: Retention is a low power state where the core is clock gated and
--the memory and the registers associated with the core are retained. The
--voltage may be reduced to the minimum value needed to keep the processor
--registers active. The SPM should be configured to execute the retention
--sequence and would wait for interrupt, before restoring the cpu to execution
--state. Retention may have a slightly higher latency than Standby.
--
--Standalone PC: A cpu can power down and warmboot if there is a sufficient time
--between the time it enters idle and the next known wake up. SPC mode is used
--to indicate a core entering a power down state without consulting any other
--cpu or the system resources. This helps save power only on that core.  The SPM
--sequence for this idle state is programmed to power down the supply to the
--core, wait for the interrupt, restore power to the core, and ensure the
--system state including cache hierarchy is ready before allowing core to
--resume. Applying power and resetting the core causes the core to warmboot
--back into Elevation Level (EL) which trampolines the control back to the
--kernel. Entering a power down state for the cpu, needs to be done by trapping
--into a EL. Failing to do so, would result in a crash enforced by the warm boot
--code in the EL for the SoC. On SoCs with write-back L1 cache, the cache has to
--be flushed in s/w, before powering down the core.
--
--Power Collapse: This state is similar to the SPC mode, but distinguishes
--itself in that the cpu acknowledges and permits the SoC to enter deeper sleep
--modes. In a hierarchical power domain SoC, this means L2 and other caches can
--be flushed, system bus, clocks - lowered, and SoC main XO clock gated and
--voltages reduced, provided all cpus enter this state.  Since the span of low
--power modes possible at this state is vast, the exit latency and the residency
--of this low power mode would be considered high even though at a cpu level,
--this essentially is cpu power down. The SPM in this state also may handshake
--with the Resource power manager (RPM) processor in the SoC to indicate a
--complete application processor subsystem shut down.
--
--The idle-state for QCOM SoCs are distinguished by the compatible property of
--the idle-states device node.
--
--The devicetree representation of the idle state should be -
--
--Required properties:
--
--- compatible: Must be one of -
--			"qcom,idle-state-ret",
--			"qcom,idle-state-spc",
--			"qcom,idle-state-pc",
--		and "arm,idle-state".
--
--Other required and optional properties are specified in [1].
--
--Example:
--
--	idle-states {
--		CPU_SPC: spc {
--			compatible = "qcom,idle-state-spc", "arm,idle-state";
--			entry-latency-us = <150>;
--			exit-latency-us = <200>;
--			min-residency-us = <2000>;
--		};
--	};
--
--[1]. Documentation/devicetree/bindings/arm/idle-states.yaml
+Sankeerth Billakanti (1):
+  arm64: dts: qcom: sc7280: add edp display dt nodes
+
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 390 ++++++++++++++++++++++++++++++++++-
+ 1 file changed, 388 insertions(+), 2 deletions(-)
+
 -- 
-2.34.1
+2.7.4
 
