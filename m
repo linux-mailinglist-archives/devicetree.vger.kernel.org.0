@@ -2,336 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6149747EA73
-	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 03:09:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43B1E47EABB
+	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 04:03:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245458AbhLXCJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Dec 2021 21:09:25 -0500
-Received: from mail-eopbgr150043.outbound.protection.outlook.com ([40.107.15.43]:47790
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        id S1351079AbhLXDDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Dec 2021 22:03:18 -0500
+Received: from mail-eopbgr80088.outbound.protection.outlook.com ([40.107.8.88]:25326
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230044AbhLXCJY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 Dec 2021 21:09:24 -0500
+        id S1351076AbhLXDDR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 23 Dec 2021 22:03:17 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B8T+O/9ri9cCRAdQWxVZV10yFHp8l11DSyXM6X9Lr5XewUw+3P1YpN0jdm0ltOeo6JeKXFg0eBtgDj/ywsEmGH2WH9IvoPBgVyJ2bA/VnySLck+UeJy/r3+1G55/CXmbWX232d6T7h+weJnTgNf44pnJpWpphcNBoTcnMXh9paCfLMklKAfy5okCsjIovk98R5lui++sMVdZlIbCHdbE3D7EGb/BkfGWZI9clWF9SpxGujeNHP+OvOh5mXa6cicYQUSX8eVUfa6OAn3lNWp1iyydiRGZvR1sE/x2kRGc/WeXccHn5hMhgUaY2qRgyDy2zHMpf5ycpOQfhcpTU0wJ6A==
+ b=l1EVy3QwHE0g3W6yAAEHfgR1KTI7jQtrZYHO4DWL5H2z1SykP9ZMdhufnlIZv05ZtHlHpsiav4rPpVP5Go5lY6czNYSp98kbL+T2DwO/kRiI/muxskeIIImq8YBsMKzliVX3WB/YTR1RbU1+b7oh05vo82/sXC51WGsJDbjpcpW8geUWIa2M0biVUA10XZLsx6afKNbpe0ePwPlaydf3ceObXvGb3R5h3eUmVNFY1Kch5+fMTbv4xILJiwktpsemLaG3giOegzIh9UgM8XBsxlFupG98BDAAbZWvlgH2Ym2Bdg4kY0HIPk9RPBqJYaqq4WSziRrYxcTQnhoC2Nqu2Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yDOJ+vjEOjpOcqEd4lL5eeAeAQFK5TuUtYcLN+ZrQSc=;
- b=aCNxcCqed7AL9GaHFYtwNIZi0wkSWtsYODwX6R8X9t9qByVPtfec3DR1OD0zdrUqZuiV1AhOa+Cgt4seL23mO1AZxGHCtyZZwJ7e82b2DkUwsEoUNKSP+dpW2fRQr4tnUmKWUfC32ysc/0dqLFL5qGIg0ABOXWTE+ftAtRmJCG20it7RFIsQMBsC8KJ2pg3JQ6PwL7iRBp5hghRDrFbOMq1kN5JWujMfkANygKcAJ4HvyUAB/i+0HYLNcb9GTiiN5Rop322cTfS5Hgt/YWl409WyDr+NmGrMURKU7GClu8ij8uPeaAlLFvezMHxR8YCdCiQ5HRMpvY1dM4iBOGpp3g==
+ bh=XivBjGzXt4JdBM8TWOFYepActdojMCZqmTiaYNXY5bw=;
+ b=l/nhELycH8TWWQjRv8YnEPsqDghA7HEWg9nwASs9bl8kRdcwdSepbojA09S2LlfU5gahKr4qjjDD2IqOkApVGJG/XmUjQRU9fH9QLYzwsFB0okrYQtA3MY12tDd62Yvx1hpI+ba8QzqpeptFKSpv1CJK74PMpxZJzk7YsrSjneJDtMBXHdmrjeEMRZSI5BjeZ9HwRydMObwGHIm6O5revCmH3+40IJEKWTA9Nd8s1n65an3MEodZYM9ryaMlMhs+EyPHwDihtTgqXBtbSQN8ZQNHCx5RnGujP8w5qIlaKM17ECYl2S0oSaVKgbTn73B0wYXmx9LcEoe+hUktHqZDHQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yDOJ+vjEOjpOcqEd4lL5eeAeAQFK5TuUtYcLN+ZrQSc=;
- b=kVtnrtHH7TB57C9mFAGh7DmJQ3grmtzjgmBXrrtQRIXvtoVTehTUsNbwpHopDxwmSvKqz1WwBkyee7102dkxqssKds1/96Y7yz4ApUNtej4qCbTL5D1hB++KzgiyCzZXXKvJDURw4mhnQJ9b+cLUsKU/kRa++2E+WT9umFZjP9Y=
-Received: from AS8PR04MB8676.eurprd04.prod.outlook.com (2603:10a6:20b:42b::10)
- by AS8PR04MB8914.eurprd04.prod.outlook.com (2603:10a6:20b:42d::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4823.18; Fri, 24 Dec
- 2021 02:09:21 +0000
-Received: from AS8PR04MB8676.eurprd04.prod.outlook.com
- ([fe80::d15e:c0be:cc2d:77f9]) by AS8PR04MB8676.eurprd04.prod.outlook.com
- ([fe80::d15e:c0be:cc2d:77f9%6]) with mapi id 15.20.4823.021; Fri, 24 Dec 2021
- 02:09:21 +0000
-From:   Hongxing Zhu <hongxing.zhu@nxp.com>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-CC:     =?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        "tharvey@gateworks.com" <tharvey@gateworks.com>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "galak@kernel.crashing.org" <galak@kernel.crashing.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH v7 8/8] PCI: imx: Add the imx8mm pcie support
-Thread-Topic: [PATCH v7 8/8] PCI: imx: Add the imx8mm pcie support
-Thread-Index: AQHX51bdQrJfUAGahEmIU+86q0TYAKw1a7+AgACkc9CACgeLAIAA78yg
-Date:   Fri, 24 Dec 2021 02:09:21 +0000
-Message-ID: <AS8PR04MB8676DC6855B91B34E441E4648C7F9@AS8PR04MB8676.eurprd04.prod.outlook.com>
-References: <1638432158-4119-1-git-send-email-hongxing.zhu@nxp.com>
- <1638432158-4119-9-git-send-email-hongxing.zhu@nxp.com>
- <Ybtuo0CzfUhoJwsT@rocinante>
- <AS8PR04MB8676F7F8BBE79E36D3EAFB6B8C789@AS8PR04MB8676.eurprd04.prod.outlook.com>
- <20211223114958.GA30243@lpieralisi>
-In-Reply-To: <20211223114958.GA30243@lpieralisi>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+ bh=XivBjGzXt4JdBM8TWOFYepActdojMCZqmTiaYNXY5bw=;
+ b=Ya/cpu6smEtQJJ0YJxMLSzlkzmV1EU5Wq1w0s9iDIY0CE8KupWB/BdokYMu6CIWcKHahT7vs9wjbMS+3lY2J2X1DePNb0x6qrIscOVdwLaXP9KSU9lenSSMe9PALhoMky2lgbKVU3LzCH1aCaM4bFplK7A1ViHhMjmShA/niM6E=
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 65fad9b0-dbc9-4050-d469-08d9c6826660
-x-ms-traffictypediagnostic: AS8PR04MB8914:EE_
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-microsoft-antispam-prvs: <AS8PR04MB891469ACDA3DB48BEA492C008C7F9@AS8PR04MB8914.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Z6/TAU/qG8AENQ1o4Qo5bFf1fu8a+zFaCc0B+9So6FwpfPOcrq9XHTL0dsHK1T7YwUz9MCHR5C0HvFDOJto1/3Qqu2V48EDxrbBvBy3z1QOO5pE43rg850+PgO79LU8pYnCjrc4HLU7rkZ3gTjnAMKmeSFnvpBfHobH32oBd3PUAsG2iwj5AfiYtlZalAP7eiFezJKKPeV0AAtnCjxAlSQdmeCbRaxtVow2Upqv5irVWJYVvVujFrjnhB+/AYaXSfZMf3rU5I5kL/Dh8q7CXAR2mxf3zcOdbcZVphd6geQT+UmUpR3ty4sp0ZGh9PIZ6L7fY6UolhiLeC+U3KwrpFrz58S1zurU64JCgIJKJ9ZnRFjUX8sCnMd5R5GS82cNq9RRmJc9k6A4ErZmSqRdBoT9ZcsrBKCQ8KbCHqTPwGWYW2CmcnBWmasKKn9KKSGV2D3uKlRz1WaI9QRjHI9fjLbtLVA280lRPddhM8jDYvNb/OX1IDDtzrz5FymuvifVn/mozIacYiKmZBqKBZ9c99JNMIV3sts2fD9Q0ezfzJ6l4Ljw5mw3P0lxWc7hU7J/+OBcwo7D1cdP1ehkzIPjjrySdCksutRAi07QBb5aF8HRI8Edni1OfjgJfhE/SOsFu9B4tFv3R8V4P1iGpEEPwEKuwxE9bRqUsUB97KOE+3zp3iSfmErvlhy861ILTtMe1ZmsMyx6oypIS4p0pk1jop6Mj0oQMzKiZq+REBT3aLx1APKrADGfEgn7iKYh0QJrowBA5kHLQVVd+qBpDgzK+HiSs4bnp3EHuhy5+AefEbTQCJdhvwiZZqZjfUU22zpKYa/z0Dj+Ua2HitfEC+tJ10io1zosVpWrDGNkF4CUQGC8=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8676.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(966005)(508600001)(45080400002)(7696005)(9686003)(8936002)(7416002)(2906002)(83380400001)(316002)(54906003)(8676002)(66574015)(6916009)(122000001)(66946007)(76116006)(38100700002)(33656002)(66556008)(5660300002)(66476007)(53546011)(6506007)(66446008)(64756008)(186003)(26005)(71200400001)(44832011)(4326008)(86362001)(38070700005)(52536014)(55016003)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-2?Q?aWEqXjLO1RaUJ1v1hzgiKCaqg3/Olz3tt0dRs3055YaFRvYesprZt0V0C3?=
- =?iso-8859-2?Q?DiOCf+qdMOGKkYAJBZmZwU6fpolo4YXgO1ruoouvhUPwh/6RhGnWnGnBqT?=
- =?iso-8859-2?Q?RoqI53th13k05kjQT0zmJZRBMWwUkLvk0IoBgRGrIFjkekNM914rkExfQW?=
- =?iso-8859-2?Q?CPTKfUFqi4n5IInovBDOJQXDC3//0sHSWDztp56vL4ctg6VfCQA3Okb1Qz?=
- =?iso-8859-2?Q?CHpZzBxIIcCFp9plaEFT2c6Xmi1zHPdZt/UUIm/xeoKtN4Cl7smU3u9rKg?=
- =?iso-8859-2?Q?2bA8kLmWlWQPcpmGViA8fEtmn39Q9/da097CCfcRz9jo7LJmzp778sjFjA?=
- =?iso-8859-2?Q?c6WJzg0iGiBrRKKlNNjJO0t6ide0oHxrVjKoAfCWncHE71GpLWDX/mL77g?=
- =?iso-8859-2?Q?p/8F9JXL5vDpA0YAeaF+54f2Qfl7DKFCXfpChkxiyJLn9z/6oYjFEZbxzo?=
- =?iso-8859-2?Q?euG0aDKgrNBffn4H4TsSXkt0czA5uYw8YwdRrZJ/yqRlX2Q/sVtG2oKz6P?=
- =?iso-8859-2?Q?s+rJbYLfUpCYbWP3c6Ak6y92mgk2ClAZtRBn6GSBqOFZUZVmmE2FnJhT8r?=
- =?iso-8859-2?Q?8//eay/2ZBeY7IyEm0SQ+V6kjwHkVe7FnLL/bjCkl25DIHIzYi8LdctHE7?=
- =?iso-8859-2?Q?Mxw5axbJDCwEpuZUaxgT0xlZgCy+DHSKt8KU/W3TmElzC6Lew1rKFwbRER?=
- =?iso-8859-2?Q?fTD1ASZIGw+1f7xWHu8zR5ma3oqtmMkUkrx6spkvHPx36T7qSeVUZ1GIzS?=
- =?iso-8859-2?Q?OhTjAydWAaxycfXHWUXo+FCCVUbbrvSEyF1H60l0Wknx5/6aD6ggfK5ke4?=
- =?iso-8859-2?Q?meT++RrLNqWiRZZ1TGMyTvHd/dgPqAvPaV8MhCZqowCTZ4k3aZqc+GUARV?=
- =?iso-8859-2?Q?V1LjdaDf07699Bql96fQ9KvFlaEg4uuDhat7ssqUCKfFx5u5poud83JY7P?=
- =?iso-8859-2?Q?qfVPrR3RveFayN5gv+yh9V7cZSPbCXPtbDsGK5tSH55uTpMb4jcgAjRwBf?=
- =?iso-8859-2?Q?5GENvwhCX8etCqUuBkFWhk11nqoJC0A3YkFEEzDfX78Ucih7a9QRqomjLI?=
- =?iso-8859-2?Q?lmTDy5cXutrQRN5fh/Qum6XqREr7+7slDSRYK6fvkVT2sfL4pO52lLF14c?=
- =?iso-8859-2?Q?waepWffx/6aRTCekYtAQsAW6jb+VwFzzAfF8Y3Y1OOn3I/shWdMJXgUEgm?=
- =?iso-8859-2?Q?5YOvXmwjGXfnLl+iL69kvbIG7wrM0nOrAQWz82zOnCatckhK7A9Nzm8+jf?=
- =?iso-8859-2?Q?bv/paxgKRSlDoP+Nnn9Jn81TAUgewXC+BVwss3wtDOBakQuItLYahi3xs/?=
- =?iso-8859-2?Q?Rf1RTk5+Z6a8O3y9DqoYAON3B2rCuoJD4Okv0trQv3U6DKmBc79BSztHIG?=
- =?iso-8859-2?Q?mk2ywypP2KiDiKpdtOqQ7slYaTTkvt6eBaUOQwD/RbbkAxsd1H7ybx+iad?=
- =?iso-8859-2?Q?vm2hJsAsLp4U6uJ87A7tYkLPSJr9ngojGO1rNb02VnqHS+cYeiayoCsXVx?=
- =?iso-8859-2?Q?X5gZCSbqUgwHjKTDtB/RgT0di+5ZwWleXQ/EWAURyM2zg0qhqt7oJJA2l9?=
- =?iso-8859-2?Q?NPc2wlpjHmC2r9M/ca7r+nj98hPqQ0naAxLbJLYzknDGbl8N1uizj0LjUi?=
- =?iso-8859-2?Q?vyKJDG+8F2x07mijr5ZJV4NI9KvL7f7jbaOwxrfdQdOznnw3W0+Kx80A?=
- =?iso-8859-2?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+ by AM5PR04MB3266.eurprd04.prod.outlook.com (2603:10a6:206:6::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.19; Fri, 24 Dec
+ 2021 03:03:15 +0000
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::b9f1:7371:3484:95b2]) by AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::b9f1:7371:3484:95b2%4]) with mapi id 15.20.4823.021; Fri, 24 Dec 2021
+ 03:03:15 +0000
+From:   Ming Qian <ming.qian@nxp.com>
+To:     mchehab@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        mirela.rabulea@oss.nxp.com
+Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v1] media: imx-jpeg: use NV12M to represent non contiguous NV12
+Date:   Fri, 24 Dec 2021 11:02:41 +0800
+Message-Id: <20211224030241.4624-1-ming.qian@nxp.com>
+X-Mailer: git-send-email 2.33.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0059.apcprd02.prod.outlook.com
+ (2603:1096:4:54::23) To AM6PR04MB6341.eurprd04.prod.outlook.com
+ (2603:10a6:20b:d8::14)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4b347ee6-43fa-4a8e-9bf5-08d9c689ed82
+X-MS-TrafficTypeDiagnostic: AM5PR04MB3266:EE_
+X-Microsoft-Antispam-PRVS: <AM5PR04MB32664BEA26E20A08FFDDCA7EE77F9@AM5PR04MB3266.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:785;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KsA2FZm0FsNh+PkTV3FzeSW5Su7cbFhuwxIV77t94xHq8l1K8BR+nkL8ULW8rxjufSYrdnlH8uWiH2tJq1ZbTBo9oRcdHydh62LA7JI8l9iwlMcpejFsXjvdJfz/C6uE91CGz165mpPFPi8AnF+7CiAoAN9i4V47b31J7TyJRz3weQ18Ii4zrcL1oN41qoJgM0QzTMWB9Cie0WBK6k2INVe1VCLiF5kwaT/IDTRpTGhP/SCyvD0S8ZAxZ1ogQVg/tREaoUgFjeehqmU052uFhkmIERRJtDuFInsk4d77hJLjBY801RULOtrCICHqnf/ETsnt4KS6Mt0UmMrSpfaH5OW79L5tf/LxD+Z0jhA5UCs7+3Cpasn1MHkXZ4BghLq4iDJHJWVAMzQUKPgm/QbbcNK3G+rpDvWGWcbg9GndQg3l7QTgtCdDhROhNlO/nRnQul9Ai6mqnIzE/mgHYHuamCBOX4fuIkkGR4GSjpsRg64IIFTUt/gEvo1AFoQpYjG0eiTAQVAT0+UrEyLLa2C+Pf1oNSDZh815lstfvVQSnFnTJhzxpy6BCohpv9xuI92bfE8Zyc8iXyKtouRMjOxTWSumK0JFVWb+DrjbVJsYFR8XUYa8GEaZT22nH1Tq6JtBNL33lTFbgf3qDeLIfIeweXfz15g+MF7q0t1Q7ZzHLbEjwPqyqTllALQ5BptCu4IXduJX4O0VcVjzBjd/0npU9g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(6486002)(86362001)(44832011)(6512007)(83380400001)(36756003)(2616005)(316002)(52116002)(1076003)(66556008)(8676002)(4326008)(6666004)(38100700002)(5660300002)(2906002)(66946007)(7416002)(6506007)(8936002)(186003)(26005)(38350700002)(508600001)(66476007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IwkKJdq9Ku5DEvI2pzsgWuf3hYD/E6QVMNzjXNQgtmByNUlcBkef5TuS7BwL?=
+ =?us-ascii?Q?9+/tT6N5MVQobSzB7ENoWtW0dK2drKul89y+GFiNBgmcHLPPLlICIZj7JD/B?=
+ =?us-ascii?Q?I9c26r706VpILRoxpNQsBVRNi1iRXiLB6m0Wwnj1JdQ50bCydZM1/gI1ux4U?=
+ =?us-ascii?Q?FQYzUyGinlod36O8fTNxHGpGNVCM24ZJQVH7qVPFXdy/BLry5WWx2qd+XwB3?=
+ =?us-ascii?Q?c5j4cDChFb2ns/DobYRInb1zLAuQXaEkBpm5KXzWF3T+JnMo3AN22glYTfvs?=
+ =?us-ascii?Q?JbcL3N/tB+GJH3wer1JiYQbZRavRB4MdQnBFTULnEwefKo/+uIy0rUpBHpwH?=
+ =?us-ascii?Q?8geK0UIEhX3PC773XKtYBAq2hIMwr38QSpj2O6kzB+MzI/ehuzfQahlmbdvb?=
+ =?us-ascii?Q?EiZviI+nim4rw+c0ahZEUBle6OlTpw/VFqEJw7Z3IDjn4PhwmMRwT8mJILKn?=
+ =?us-ascii?Q?SeAHtqVq2nRy4BXsNAKpv7Rqu/E4QmgRDCUFHJPycnJ9u/NpynaerIRI0hrD?=
+ =?us-ascii?Q?zzmAZpLo4edmYoDkIjMdp7aGXJlGpcrglRSGXMiSLQLbGABpdiYkqE2YQUCX?=
+ =?us-ascii?Q?u9gDHQ46n7+LBXppvXwUxsXhYHPmV8a2Swf+U2gZzkQEmBiRGMToNbT6Tgpf?=
+ =?us-ascii?Q?hhZqjhQn4+xxgBbpxf5J2X/yZgCFlEwVHE1hlfRNyJMBPuyf2vvWhanvv3Pi?=
+ =?us-ascii?Q?gQV44JWt6O85mXpxB+DgtGdGFTZQBxyG5ydJUYcnMLcs7+6ISxLXvmltaM8S?=
+ =?us-ascii?Q?KVVFVNikFDEfZug+hQueJ09YaX6FxG0lIPg4MhIhODEmZlfg0ZIkMG08p5KR?=
+ =?us-ascii?Q?69VsMkraogsvTodE/mE4mxR1Jeg0H+pTCr6M8V4URLck8Glo6ROeoF41Vc+M?=
+ =?us-ascii?Q?8rvi++uD8Whwg84sQ3qliUzf/DDWg4gYSb5mTndRZHdFL4orevfkusK91FxP?=
+ =?us-ascii?Q?JtsiJjeRSlJP4OWFDxggRjIt9KslXs3Ok7JYGUfkDrypSLRf39VBDJjmjcOr?=
+ =?us-ascii?Q?zecEeT1tDLFOeHCCbDQUk9CKqOjIWZDGLl0u/retKqgAz1uat9wbW+c6mjeX?=
+ =?us-ascii?Q?2gxZoC1gWX3W2rUaV/rlZxSP/mD+Ec5UffQs44SQ+pvfbxkWPeA39Bbkh+3f?=
+ =?us-ascii?Q?uQV/+c6TaH9oF65h2absXslcApEws9I4u74p3p2C0A6RSltjakXRkr1PiM21?=
+ =?us-ascii?Q?NgAj0eR7phDPNJGlhk56qWv6zaN1enFsIOyRBt/Bd62T96iOPdMfJ3g3Y8ui?=
+ =?us-ascii?Q?f7EqDdw4mUQGUoafINmaIAPuJlt/0JXlVKqrV2w0+L0icMLjxydr+qNIOpOL?=
+ =?us-ascii?Q?bWWh4OIm0G75Xo9eB5ZmSN096WMaWErfqeRatiNZnCN0KDR6pkF1D20TBj8v?=
+ =?us-ascii?Q?h6/1h1xCPpQqvDF1XBq/n72xTiDsAvEkrd4Ql32pWotfMNsFhh25j0I+j7cs?=
+ =?us-ascii?Q?nick1Z2NQR20fq8/cmdLuA1UKsHaWSG/gevusrw0O+XDDbuOFKejxqd99Sko?=
+ =?us-ascii?Q?HXOurh7VNPGMgxbbHneX7iyN8tSY/svkB0CfxuvxUp1TeUthe412JuGH2s+z?=
+ =?us-ascii?Q?mEDCJsRaXwPJh54cO0yaP1r8QzHPiTYXZSVsLZY26vca0GN5ZMw9KDnPYxhp?=
+ =?us-ascii?Q?Wc77ZBvVb22b6W3JpVlB9z8=3D?=
 X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4b347ee6-43fa-4a8e-9bf5-08d9c689ed82
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8676.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 65fad9b0-dbc9-4050-d469-08d9c6826660
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Dec 2021 02:09:21.3744
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Dec 2021 03:03:14.9089
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: J8yBGBSv3bjlex9GBvqPp5+pZZfhaT/IYXFNhfz4KAP5TXqyATvVKkwf5Usg5+153mtGO0tvUoN3QIz5OROwUA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8914
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DK6sQXItDK0Xm+3d/+eGN+bJ6S243p16zvJlCPVA88/KXR+rA2060ZIVv3+5yxTtzQe9lVxN3U1xbW1CYGMABQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR04MB3266
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> Sent: Thursday, December 23, 2021 7:50 PM
-> To: Hongxing Zhu <hongxing.zhu@nxp.com>
-> Cc: Krzysztof Wilczy=F1ski <kw@linux.com>; l.stach@pengutronix.de;
-> bhelgaas@google.com; Marcel Ziswiler <marcel.ziswiler@toradex.com>;
-> tharvey@gateworks.com; kishon@ti.com; vkoul@kernel.org;
-> robh@kernel.org; galak@kernel.crashing.org; shawnguo@kernel.org;
-> linux-phy@lists.infradead.org; devicetree@vger.kernel.org;
-> linux-pci@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> linux-kernel@vger.kernel.org; kernel@pengutronix.de; dl-linux-imx
-> <linux-imx@nxp.com>
-> Subject: Re: [PATCH v7 8/8] PCI: imx: Add the imx8mm pcie support
->=20
-> On Fri, Dec 17, 2021 at 05:54:21AM +0000, Hongxing Zhu wrote:
-> > > -----Original Message-----
-> > > From: Krzysztof Wilczy=F1ski <kw@linux.com>
-> > > Sent: Friday, December 17, 2021 12:52 AM
-> > > To: Hongxing Zhu <hongxing.zhu@nxp.com>
-> > > Cc: l.stach@pengutronix.de; bhelgaas@google.com;
-> > > lorenzo.pieralisi@arm.com; Marcel Ziswiler
-> > > <marcel.ziswiler@toradex.com>; tharvey@gateworks.com;
-> kishon@ti.com;
-> > > vkoul@kernel.org; robh@kernel.org; galak@kernel.crashing.org;
-> > > shawnguo@kernel.org; linux-phy@lists.infradead.org;
-> > > devicetree@vger.kernel.org; linux-pci@vger.kernel.org;
-> > > linux-arm-kernel@lists.infradead.org;
-> > > linux-kernel@vger.kernel.org; kernel@pengutronix.de; dl-linux-imx
-> > > <linux-imx@nxp.com>
-> > > Subject: Re: [PATCH v7 8/8] PCI: imx: Add the imx8mm pcie support
-> > >
-> > > Hi Richard,
-> > >
-> > > Apologies for a very late review!  Especially since Lorenzo already
-> > > took patches as per:
-> > >
-> > >
-> > >
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flo
-> > > r
-> > >
-> e.kernel.org%2Flinux-pci%2F163965080404.20006.52416095516435017
-> > >
-> 49.b4-ty%40arm.com%2F&amp;data=3D04%7C01%7Chongxing.zhu%40nxp
-> > > .com%7C8afb673348214261883608d9c0b45b1d%7C686ea1d3bc2b4
-> c6fa
-> > >
-> 92cd99c5c301635%7C0%7C0%7C637752703124166805%7CUnknown%7
-> > >
-> CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1ha
-> > >
-> WwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3DrfmN1Xojubap2vi3J4Jol3ozy
-> > > N1Q2q7YiBM5bqMm22s%3D&amp;reserved=3D0
-> > >
-> > > However, perhaps it's not too late.
-> > [Richard Zhu] Hi Krzysztof:
-> > Thanks for your review.
-> > But I don't know how to handle this situation.
-> > How about that I add this refine patch into the following bug fix and
-> > refine patch-set later?
-> > PCI: imx6: refine codes and add compliance tests mode support "
-> >
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpa
-> tchwork.kernel.org%2Fproject%2Flinux-arm-kernel%2Fcover%2F1635747
-> 478-25562-1-git-send-email-hongxing.zhu%40nxp.com%2F&amp;data=3D0
-> 4%7C01%7Chongxing.zhu%40nxp.com%7Ce04c6cda020b4f3849bf08d9c
-> 60a5da0%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C1%7C6377
-> 58570100053598%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwM
-> DAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C2000&amp;
-> sdata=3DjoTJZcYJhmYlzSTWY%2BhGCFV5ch12HPR4mbbOwZ5vcO0%3D&a
-> mp;reserved=3D0"
-> >
-> > >
-> > > [...]
-> > > > @@ -446,6 +452,13 @@ static int imx6_pcie_enable_ref_clk(struct
-> > > imx6_pcie *imx6_pcie)
-> > > >  		break;
-> > > >  	case IMX7D:
-> > > >  		break;
-> > > > +	case IMX8MM:
-> > > > +		ret =3D clk_prepare_enable(imx6_pcie->pcie_aux);
-> > > > +		if (ret) {
-> > > > +			dev_err(dev, "unable to enable pcie_aux clock\n");
-> > > > +			break;
-> > > > +		}
-> > > > +		break;
-> > >
-> > > You can drop the inner break, it wouldn't do much here, unless this
-> > > was intended to be a return?
-> > [Richard Zhu] Yes, it is. The inner break can be dropped. The error
-> > return would be handled in the end.
-> >
-> > >
-> > > > @@ -538,6 +559,10 @@ static void
-> > > imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
-> > > >  	case IMX8MQ:
-> > > >  		reset_control_deassert(imx6_pcie->pciephy_reset);
-> > > >  		break;
-> > > > +	case IMX8MM:
-> > > > +		if (phy_init(imx6_pcie->phy) !=3D 0)
-> > > > +			dev_err(dev, "Waiting for PHY ready timeout!\n");
-> > > > +		break;
-> > >
-> > > If the above, you can keep the same style as used throughout the
-> > > file already, so it would just simply be:
-> > >
-> > >   if (phy_init(imx6_pcie->phy))
-> > >
-> > > Also, a nitpick: to be consistent with other such messages here, the
-> > > error message would be all lower-case letters.
-> > [Richard Zhu] Yes, it is.
-> > >
-> > > [...]
-> > > > @@ -614,6 +639,8 @@ static void imx6_pcie_configure_type(struct
-> > > > imx6_pcie *imx6_pcie)  static void imx6_pcie_init_phy(struct
-> > > imx6_pcie
-> > > > *imx6_pcie)  {
-> > > >  	switch (imx6_pcie->drvdata->variant) {
-> > > > +	case IMX8MM:
-> > > > +		break;
-> > > >  	case IMX8MQ:
-> > >
-> > > Would it warrant a comment that adds a note there to this single
-> > > bare break?  Perhaps this version is not support, lack this
-> > > particular functionality, etc.
-> > [Richard Zhu] Yes, it's easier to understand after add one comment.
-> > >
-> > > [...]
-> > > > @@ -1089,10 +1122,39 @@ static int imx6_pcie_probe(struct
-> > > platform_device *pdev)
-> > > >  			dev_err(dev, "Failed to get PCIE APPS reset
-> control\n");
-> > > >  			return PTR_ERR(imx6_pcie->apps_reset);
-> > > >  		}
-> > > > +		break;
-> > > > +	case IMX8MM:
-> > > > +		imx6_pcie->pcie_aux =3D devm_clk_get(dev, "pcie_aux");
-> > > > +		if (IS_ERR(imx6_pcie->pcie_aux))
-> > > > +			return dev_err_probe(dev,
-> > > PTR_ERR(imx6_pcie->pcie_aux),
-> > > > +					     "pcie_aux clock source missing or
-> > > invalid\n");
-> > > > +		imx6_pcie->apps_reset =3D
-> > > devm_reset_control_get_exclusive(dev,
-> > > > +									 "apps");
-> > > > +		if (IS_ERR(imx6_pcie->apps_reset)) {
-> > > > +			dev_err(dev, "Failed to get PCIE APPS reset
-> control\n");
-> > > > +			return PTR_ERR(imx6_pcie->apps_reset);
-> > > > +		}
-> > > > +
-> > > > +		imx6_pcie->phy =3D devm_phy_get(dev, "pcie-phy");
-> > > > +		if (IS_ERR(imx6_pcie->phy)) {
-> > > > +			if (PTR_ERR(imx6_pcie->phy) =3D=3D -EPROBE_DEFER)
-> > > > +				return -EPROBE_DEFER;
-> > > > +			dev_err(dev, "Failed to get PCIE PHY\n");
-> > > > +			return PTR_ERR(imx6_pcie->phy);
-> > > > +		}
-> > >
-> > > A question about handling of the -EPROBE_DEFER above: why not to
-> use
-> > > the
-> > > dev_err_probe() helper similarly to the code above and below?
-> Would
-> > > there be something different preventing the use of dev_err_probe()
-> > > here too?
-> > [Richard Zhu] To be aligned, the above one can be replaced totally.
-> > I didn't want to dump the error message when -EPROBE_DEFFER
-> occurs.
-> > Anyway, I can make them aligned later.
->=20
-> Can you send me an update for this patch only so that I can update the
-> corresponding commit according to this review please ?
-[Richard Zhu] Sure, thanks a lot for your kindly help.
+V4L2_PIX_FMT_NV12 requires num_planes equals to 1,
+V4L2_PIX_FMT_NV12M requires num_planes equals to 2.
+and mxc-jpeg supports 2 planes for nv12,
+so we should use 4L2_PIX_FMT_NV12M instead of V4L2_PIX_FMT_NV12,
+otherwise it will confuses gstreamer and prevent encoding and decoding.
 
-Best Regards
-Richard Zhu
+Signed-off-by: Ming Qian <ming.qian@nxp.com>
+Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
+Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
+Reviewed-by: Mirela Rabulea <mirela.rabulea@oss.nxp.com>
+---
+ drivers/media/platform/imx-jpeg/mxc-jpeg.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
->=20
-> Thanks,
-> Lorenzo
->=20
-> > Best Regards
-> > Richard
-> >
-> > >
-> > > >  		break;
-> > > >  	default:
-> > > >  		break;
-> > > >  	}
-> > > > +	/* Don't fetch the pcie_phy clock, if it has abstract PHY driver =
-*/
-> > > > +	if (imx6_pcie->phy =3D=3D NULL) {
-> > > > +		imx6_pcie->pcie_phy =3D devm_clk_get(dev, "pcie_phy");
-> > > > +		if (IS_ERR(imx6_pcie->pcie_phy))
-> > > > +			return dev_err_probe(dev,
-> > > PTR_ERR(imx6_pcie->pcie_phy),
-> > > > +					     "pcie_phy clock source missing or
-> > > invalid\n");
-> > > > +	}
-> > >
-> > > Thank you for another amazing patch!
-> > >
-> > > 	Krzysztof
+diff --git a/drivers/media/platform/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/imx-jpeg/mxc-jpeg.c
+index 4ca96cf9def7..7c0366f5f801 100644
+--- a/drivers/media/platform/imx-jpeg/mxc-jpeg.c
++++ b/drivers/media/platform/imx-jpeg/mxc-jpeg.c
+@@ -96,7 +96,7 @@ static const struct mxc_jpeg_fmt mxc_formats[] = {
+ 	},
+ 	{
+ 		.name		= "YUV420", /* 1st plane = Y, 2nd plane = UV */
+-		.fourcc		= V4L2_PIX_FMT_NV12,
++		.fourcc		= V4L2_PIX_FMT_NV12M,
+ 		.subsampling	= V4L2_JPEG_CHROMA_SUBSAMPLING_420,
+ 		.nc		= 3,
+ 		.depth		= 12, /* 6 bytes (4Y + UV) for 4 pixels */
+@@ -404,7 +404,7 @@ static enum mxc_jpeg_image_format mxc_jpeg_fourcc_to_imgfmt(u32 fourcc)
+ 		return MXC_JPEG_GRAY;
+ 	case V4L2_PIX_FMT_YUYV:
+ 		return MXC_JPEG_YUV422;
+-	case V4L2_PIX_FMT_NV12:
++	case V4L2_PIX_FMT_NV12M:
+ 		return MXC_JPEG_YUV420;
+ 	case V4L2_PIX_FMT_YUV24:
+ 		return MXC_JPEG_YUV444;
+@@ -673,7 +673,7 @@ static int mxc_jpeg_fixup_sof(struct mxc_jpeg_sof *sof,
+ 	_bswap16(&sof->width);
+ 
+ 	switch (fourcc) {
+-	case V4L2_PIX_FMT_NV12:
++	case V4L2_PIX_FMT_NV12M:
+ 		sof->components_no = 3;
+ 		sof->comp[0].v = 0x2;
+ 		sof->comp[0].h = 0x2;
+@@ -709,7 +709,7 @@ static int mxc_jpeg_fixup_sos(struct mxc_jpeg_sos *sos,
+ 	u8 *sof_u8 = (u8 *)sos;
+ 
+ 	switch (fourcc) {
+-	case V4L2_PIX_FMT_NV12:
++	case V4L2_PIX_FMT_NV12M:
+ 		sos->components_no = 3;
+ 		break;
+ 	case V4L2_PIX_FMT_YUYV:
+@@ -1183,7 +1183,7 @@ static void mxc_jpeg_bytesperline(struct mxc_jpeg_q_data *q,
+ 		/* bytesperline unused for compressed formats */
+ 		q->bytesperline[0] = 0;
+ 		q->bytesperline[1] = 0;
+-	} else if (q->fmt->fourcc == V4L2_PIX_FMT_NV12) {
++	} else if (q->fmt->fourcc == V4L2_PIX_FMT_NV12M) {
+ 		/* When the image format is planar the bytesperline value
+ 		 * applies to the first plane and is divided by the same factor
+ 		 * as the width field for the other planes
+@@ -1215,7 +1215,7 @@ static void mxc_jpeg_sizeimage(struct mxc_jpeg_q_data *q)
+ 	} else {
+ 		q->sizeimage[0] = q->bytesperline[0] * q->h;
+ 		q->sizeimage[1] = 0;
+-		if (q->fmt->fourcc == V4L2_PIX_FMT_NV12)
++		if (q->fmt->fourcc == V4L2_PIX_FMT_NV12M)
+ 			q->sizeimage[1] = q->sizeimage[0] / 2;
+ 	}
+ }
+
+base-commit: 68b9bcc8a534cd11fe55f8bc82f948aae7d81b3c
+-- 
+2.33.0
+
