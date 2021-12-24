@@ -2,120 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B415847EF2B
-	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 14:29:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B470547EF66
+	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 15:12:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241804AbhLXN3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Dec 2021 08:29:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38676 "EHLO
+        id S241729AbhLXOMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Dec 2021 09:12:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235765AbhLXN3F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Dec 2021 08:29:05 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E366EC061401;
-        Fri, 24 Dec 2021 05:29:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id C9035CE22C2;
-        Fri, 24 Dec 2021 13:29:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1579AC36AE5;
-        Fri, 24 Dec 2021 13:29:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640352541;
-        bh=UoajXc+CrR3PRknu7vySK5yIyh1YJBGaJyOtLXOzKGM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VY2cEJRMR/FqszYdH46i/IcbzJjXbzRFxvm67I4wcZogI/x1PCQ4tRx6H6S8F12yR
-         Sw8qpqFmBL8l+x5SG/vchXb75Od27/QRQ8ZsFZM4gTMtDKtNaf98MF0hcHbOhcMgGM
-         EsqYZFB7l4IAFL9K6FmQishn700Z45I9uz1MYR9JH10TOvlQE6FZa/G5RDpU5dtGns
-         6gTZMf9Av5XRrIIylR0k4c+kTJz4uDI6Svzly6SUbamBxyaS7KbSOOdF1lNyK8j8Yc
-         4+Sa0kt+HGL17b7stSuFoR12QfbjwUQS3vgmKE8lVBse4JeikaYsGgRNF+vE5PgnnB
-         s7Z+mI1aLilcg==
-Date:   Fri, 24 Dec 2021 13:28:57 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        openbmc@lists.ozlabs.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: Re: [PATCH v6 6/9] misc: smpro-errmon: Add Ampere's SMpro error
- monitor driver
-Message-ID: <YcXLGYWx4gYq/Y+J@sirena.org.uk>
-References: <20211224041352.29405-1-quan@os.amperecomputing.com>
- <20211224041352.29405-7-quan@os.amperecomputing.com>
+        with ESMTP id S235830AbhLXOMb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Dec 2021 09:12:31 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36495C061401;
+        Fri, 24 Dec 2021 06:12:31 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id gj24so7807394pjb.0;
+        Fri, 24 Dec 2021 06:12:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VtPf/Iw3oKW7SjqgJKtt+Q5d6Jb37vINBRVmuoZAHlw=;
+        b=ENc6ky9e/mt/VRWpBsDP/fT+YyPj602j72RD0InZqfV4ILpG9XdJYMiYd+/SP4Rutz
+         jjIEw7ZD8vEHFsdIW+Rl5y5TCsAMPxqDcJr+tghirPYRPDL8xErWN+sT30KOVtTUi7ak
+         MDhyEXx3fCZhPt/SSCbYL5zmXaYN7Ol8WHHfvBpqdft8Jzi/d4O/UsEMQOFrtHinvP+j
+         n1/wV4KoiF+JMLM8VPvmqfqK9LN0nHWUkaI/X+RUC4E35aB6HdDzV2oraogH7JPOtaz2
+         aOElZjNaxQYRfxkkWv4iNlKHv3LdXKUrEHpPfj09oc4uYhYUqiiV1K2PJcGy1y9VOvKx
+         IUMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VtPf/Iw3oKW7SjqgJKtt+Q5d6Jb37vINBRVmuoZAHlw=;
+        b=kJ4DUne/E0GXlRToVspX/5+CvqOzNH3ODlIWvjqWXfq+EChkPdU6XaCSsu809Uwqds
+         kUrotimT6wUuXiuIWZ8jab/Y0ycsvYPhUhka2VBcnIhifXgTTIYmr+mwDRWu2eqCDqyZ
+         LMIMHqg9KsRRKTg1XXjIaBYvH+jEmDVnibmpNFGxp9RhgfjRKjDDoVckSuaUG9Tcftdd
+         jHHnnUDouL2eZVN+bpGSmkWaWaTtkmTNviwqEiEPGkD6dRpjDs/3oLk4JG5zHY4qzW93
+         DWXKaKUGDFosKkXR28awVasdjlnFHG8d1Noot6pjBfWxTbbOx6N7+/9vodJGyFTT+REy
+         0chg==
+X-Gm-Message-State: AOAM532u7M3gYOj30eb1He5ptXT9UKTMfwwDM7vC7GBAnira2NiCPA4M
+        5jHd6iAtYwlBrxESaP5Qxaw=
+X-Google-Smtp-Source: ABdhPJwuHNQ5wIihLXmE4RhuD5G0B9yFVj7TU/csvtFs8majuv8qgopdCGHaYHkmq75cFt+ukir3Ww==
+X-Received: by 2002:a17:903:2302:b0:148:e4c7:5573 with SMTP id d2-20020a170903230200b00148e4c75573mr6824405plh.109.1640355150821;
+        Fri, 24 Dec 2021 06:12:30 -0800 (PST)
+Received: from nj08008nbu.spreadtrum.com ([240e:47a:800:94db:99e3:c3c:2dfc:8554])
+        by smtp.gmail.com with ESMTPSA id h7sm9919140pfv.35.2021.12.24.06.12.24
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 24 Dec 2021 06:12:30 -0800 (PST)
+From:   Kevin Tang <kevin3.tang@gmail.com>
+To:     maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     kevin3.tang@gmail.com, pony1.wu@gmail.com, orsonzhai@gmail.com,
+        dan.carpenter@oracle.com, zou_wei@huawei.com,
+        lukas.bulwahn@gmail.com, zhang.lyra@gmail.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v1 0/2] sprd drm cover letter
+Date:   Fri, 24 Dec 2021 22:12:11 +0800
+Message-Id: <20211224141213.27612-1-kevin3.tang@gmail.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="p1TkcOZIYZMx6FNy"
-Content-Disposition: inline
-In-Reply-To: <20211224041352.29405-7-quan@os.amperecomputing.com>
-X-Cookie: I brake for chezlogs!
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v1:
+  remove the selected DRM_KMS_CMA_HELPER in kconfig
+  drm-sprd-fix-potential-NULL-dereference
 
---p1TkcOZIYZMx6FNy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Kevin Tang (2):
+  drm/sprd: remove the selected DRM_KMS_CMA_HELPER in kconfig
+  drm/sprd: fix potential NULL dereference
 
-On Fri, Dec 24, 2021 at 11:13:49AM +0700, Quan Nguyen wrote:
+ drivers/gpu/drm/sprd/Kconfig    | 1 -
+ drivers/gpu/drm/sprd/sprd_dpu.c | 3 +++
+ drivers/gpu/drm/sprd/sprd_drm.c | 8 ++------
+ drivers/gpu/drm/sprd/sprd_dsi.c | 3 +++
+ 4 files changed, 8 insertions(+), 7 deletions(-)
 
-> +static int read_i2c_block_data(struct i2c_client *client, u16 address, u16 length, u8 *data)
-> +{
-> +	unsigned char outbuf[MAX_READ_BLOCK_LENGTH];
-> +	unsigned char inbuf[2];
-> +	struct i2c_msg msgs[2];
-> +	ssize_t ret;
-> +
-> +	inbuf[0] = (address & 0xff);
-> +	inbuf[1] = length;
-> +
-> +	msgs[0].addr = client->addr;
-> +	msgs[0].flags = client->flags & I2C_M_TEN;
-> +	msgs[0].len = 2;
-> +	msgs[0].buf = inbuf;
-> +
-> +	msgs[1].addr = client->addr;
-> +	msgs[1].flags = (client->flags  & I2C_M_TEN) | I2C_M_RD;
-> +	msgs[1].len = length;
-> +	msgs[1].buf = outbuf;
-> +
-> +	ret = i2c_transfer(client->adapter, msgs, NUM_I2C_MESSAGES);
-> +	if (ret < 0)
+-- 
+2.29.0
 
-regmap already supports bulk data access so it's not clear why we
-would open code this.  Given that this is a single I2C transfer
-it's also unclear why we'd need to export the regmap lock - a
-single I2C transfer is atomic at the bus level so the regmap lock
-isn't providing any additional concurrency protection.
-
---p1TkcOZIYZMx6FNy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHFyxkACgkQJNaLcl1U
-h9DP9gf/Q0bcZ3lkRyxjxhgET9fowIKusHVDbL3su16XSlv5Rt4Tih9Rf9nu8FBm
-oHmRlAtBCP9ZuA+7I743tz+/H2BeISzoGI8aF3h+MPdh2darno04pVGedC2XR1jn
-9Q9cu4/TZhXOt7pazpkfUCmxHT4kn3tMDZ8u9XSWHpDX9mh80/IHwyZ6NFgMruKF
-RHWAu9RjAeUCOy8tlembNTm+G9EMDKFS2XI44T3/BtW8u3c7WyiMqdr3EICCyHbd
-PjXo5uAjGCljZoVoJ7L0+zUYjzvdQvYuRZ+kQfXEX8MPnE7WyV1MREkMSwl/dqXN
-0M6wsXHhdztUM4b2EtWrp6M0kem1tg==
-=hzut
------END PGP SIGNATURE-----
-
---p1TkcOZIYZMx6FNy--
