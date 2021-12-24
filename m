@@ -2,125 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55C6447ECAF
-	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 08:33:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C0B47ECD7
+	for <lists+devicetree@lfdr.de>; Fri, 24 Dec 2021 08:50:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351814AbhLXHdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Dec 2021 02:33:53 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:54478 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1351813AbhLXHdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Dec 2021 02:33:53 -0500
-X-UUID: 642cc6016aae4d9092443f83fa7722ca-20211224
-X-UUID: 642cc6016aae4d9092443f83fa7722ca-20211224
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1548116192; Fri, 24 Dec 2021 15:33:48 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 24 Dec 2021 15:33:48 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 24 Dec 2021 15:33:47 +0800
-Message-ID: <a5c9133e2bc856f8f9cbf6c70bc5196bce61639e.camel@mediatek.com>
-Subject: Re: [PATCH v16 2/7] arm64: dts: mt8183: add svs device information
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 24 Dec 2021 15:33:47 +0800
-In-Reply-To: <70e71210-6d17-92e3-4e3f-01b83380be42@collabora.com>
-References: <20210428065440.3704-1-roger.lu@mediatek.com>
-         <20210428065440.3704-3-roger.lu@mediatek.com>
-         <70e71210-6d17-92e3-4e3f-01b83380be42@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+        id S1343560AbhLXHut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Dec 2021 02:50:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49658 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234111AbhLXHut (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Dec 2021 02:50:49 -0500
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D349C061401;
+        Thu, 23 Dec 2021 23:50:48 -0800 (PST)
+Received: by mail-pg1-x535.google.com with SMTP id r138so7014217pgr.13;
+        Thu, 23 Dec 2021 23:50:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=jPo9yF90yb6Tml8cLFg4vSSw+Zf7GoEQngD5eTEX1OY=;
+        b=o6AZ60TksFPsSJSQ72DUDRRzpUTtoGNPTBNGcr+wGf7lQ1LC2fDWb6Wp2pWlMWU+gr
+         r+OrkV3RhoGY/YdyXuC7B5NRyUQOrvpLAknVyXgsWzzem4e6FkHsFjK+UHbtzTwTofne
+         W1Ff5TsY6ReEsTZdGidJM/4LxxRrprscedzYY0ix/cg9jkuBx4lhIMHZcT6x7i6eqp/c
+         aUGXFMzFq37hO+ivg1jmeG7tC2uxvT9JeQEdknzB/IZN3Jc+v+xAM6eRit0kNsjrb1Oc
+         wDj3jEONytF9chIcDoEzAFWWPDYxCqWTYd7Ri/jqdbHZkexwZlbkZFjj4QTh4sx4pnl5
+         IiMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=jPo9yF90yb6Tml8cLFg4vSSw+Zf7GoEQngD5eTEX1OY=;
+        b=DKATj2wsE/XwaTQ6v5bEoVK/e9Yrci1PgRnkQKyRrtIbHeNTihW7Q2Qk8D7DSDVy2O
+         7VOh4ETVKby80BWNx2cBqrAF25+z3vspPfiDl8hP8wmNaTXqC1tufiYWxkUmfAuKKiah
+         trvZxBAsH6JruYM+AGdLmOwd/xYNQ8aG9q4IEYSU9S/nD1ImCnErktZF9L1eg7aLnIBL
+         /TycLosV2eegtcNPhRMtbevSqLz03Jxz1H8ohdImCP3JuM0Q4ph781+kndpm0uHAUfHt
+         JsZ6zCvjt+Tc7BdREnoZ2W4JGaGc6D5UMSPznLwafG3NOEgOMqdPYMNEECqnAJoksLB/
+         edaw==
+X-Gm-Message-State: AOAM530wQcdzzQSVlVmIg+pjTsdbukFlPGlyCbqh0VvujC2bCZSM6qL1
+        hLJ9PCuX92LGXr2RQ9TPXlU=
+X-Google-Smtp-Source: ABdhPJyL+M7kwA3RB1jOBULDmZL382fyohtjDHLYMATrFA4XD7buEb0hwEr5OLXp0B5kr89XXQRzGQ==
+X-Received: by 2002:a63:7c1b:: with SMTP id x27mr5158267pgc.176.1640332247743;
+        Thu, 23 Dec 2021 23:50:47 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id h15sm8649164pfc.134.2021.12.23.23.50.45
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 23 Dec 2021 23:50:47 -0800 (PST)
+From:   Wells Lu <wellslutw@gmail.com>
+To:     linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     wells.lu@sunplus.com, dvorkin@tibbo.com,
+        Wells Lu <wellslutw@gmail.com>
+Subject: [PATCH v5 0/2] This is a patch series for pinctrl driver of Sunplus SP7021 SoC.
+Date:   Fri, 24 Dec 2021 15:42:57 +0800
+Message-Id: <1640331779-18277-1-git-send-email-wellslutw@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi AngeloGioacchino,
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control
+applications.
 
-Sorry for the late reply. 
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-On Wed, 2021-10-20 at 17:20 +0200, AngeloGioacchino Del Regno wrote:
-> Il 28/04/21 08:54, Roger Lu ha scritto:
-> > add compitable/reg/irq/clock/efuse setting in svs node
-> > 
-> > Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 18 ++++++++++++++++++
-> >   1 file changed, 18 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > index 80519a145f13..441d617ece43 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > @@ -657,6 +657,18 @@
-> >   			status = "disabled";
-> >   		};
-> >   
-> > +		svs: svs@1100b000 {
-> > +			compatible = "mediatek,mt8183-svs";
-> > +			reg = <0 0x1100b000 0 0x1000>;
-> > +			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_LOW>;
-> > +			clocks = <&infracfg CLK_INFRA_THERM>;
-> > +			clock-names = "main";
-> > +			nvmem-cells = <&svs_calibration>,
-> > +				      <&thermal_calibration>;
-> > +			nvmem-cell-names = "svs-calibration-data",
-> > +					   "t-calibration-data";
-> > +		};
-> > +
-> >   		pwm0: pwm@1100e000 {
-> >   			compatible = "mediatek,mt8183-disp-pwm";
-> >   			reg = <0 0x1100e000 0 0x1000>;
-> > @@ -941,9 +953,15 @@
-> >   			reg = <0 0x11f10000 0 0x1000>;
-> >   			#address-cells = <1>;
-> >   			#size-cells = <1>;
-> > +			thermal_calibration: calib@180 {
-> > +				reg = <0x180 0xc>;
-> > +			};
-> >   			mipi_tx_calibration: calib@190 {
-> >   				reg = <0x190 0xc>;
-> >   			};
-> > +			svs_calibration: calib@580 {
-> > +				reg = <0x580 0x64>;
-> > +			};
-> >   		};
-> >   
-> >   		u3phy: usb-phy@11f40000 {
-> > 
-> 
-> This patch doesn't apply on the latest linux-next due to some new commits in
-> mt8183.dtsi, can you please rebase?
+Wells Lu (2):
+  dt-bindings: pinctrl: Add dt-bindings for Sunplus SP7021
+  pinctrl: Add driver for Sunplus SP7021
 
-Okay. I'll rebase it.
+ .../bindings/pinctrl/sunplus,sp7021-pinctrl.yaml   |  373 +++++++
+ MAINTAINERS                                        |   10 +
+ drivers/pinctrl/Kconfig                            |    1 +
+ drivers/pinctrl/Makefile                           |    1 +
+ drivers/pinctrl/sunplus/Kconfig                    |   21 +
+ drivers/pinctrl/sunplus/Makefile                   |    5 +
+ drivers/pinctrl/sunplus/sppctl.c                   | 1178 ++++++++++++++++++++
+ drivers/pinctrl/sunplus/sppctl.h                   |  155 +++
+ drivers/pinctrl/sunplus/sppctl_sp7021.c            |  584 ++++++++++
+ include/dt-bindings/pinctrl/sppctl-sp7021.h        |  171 +++
+ include/dt-bindings/pinctrl/sppctl.h               |   30 +
+ 11 files changed, 2529 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/sunplus,sp7021-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/sunplus/Kconfig
+ create mode 100644 drivers/pinctrl/sunplus/Makefile
+ create mode 100644 drivers/pinctrl/sunplus/sppctl.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl.h
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_sp7021.c
+ create mode 100644 include/dt-bindings/pinctrl/sppctl-sp7021.h
+ create mode 100644 include/dt-bindings/pinctrl/sppctl.h
 
-> Thanks,
-> - Angelo
+-- 
+2.7.4
 
