@@ -2,53 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02C2147F239
-	for <lists+devicetree@lfdr.de>; Sat, 25 Dec 2021 06:41:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8464F47F245
+	for <lists+devicetree@lfdr.de>; Sat, 25 Dec 2021 06:52:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbhLYFk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Dec 2021 00:40:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49930 "EHLO
+        id S229916AbhLYFrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Dec 2021 00:47:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229714AbhLYFk4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Dec 2021 00:40:56 -0500
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7A22C061757
-        for <devicetree@vger.kernel.org>; Fri, 24 Dec 2021 21:40:55 -0800 (PST)
-Received: by mail-qv1-xf2f.google.com with SMTP id kk22so9321161qvb.0
-        for <devicetree@vger.kernel.org>; Fri, 24 Dec 2021 21:40:55 -0800 (PST)
+        with ESMTP id S229910AbhLYFrY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Dec 2021 00:47:24 -0500
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3974EC061401
+        for <devicetree@vger.kernel.org>; Fri, 24 Dec 2021 21:47:24 -0800 (PST)
+Received: by mail-qt1-x831.google.com with SMTP id p19so9051708qtw.12
+        for <devicetree@vger.kernel.org>; Fri, 24 Dec 2021 21:47:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=atishpatra.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=eVf5ASnQyWxFtVYPQd2gNN7mzIEJUDef/ygen8sz+zE=;
-        b=PcDn2aMMB/ta7fNug/Eg1rGzoxogfr9ZGi6vqFEcF2W9OVLs2z8JpP0oLc334v0L4/
-         bwFJvVn4GHAzBkwtcFhHl6p7uDixF9muZlb4+cRL1xFqjhNXZDawB+w0e/9Kq3Nc3L4o
-         q1n5aYZ/W95lPMAFQyPMXqOekvGc8GqDy8OKc=
+        b=XbiMOE9O97S2AX4Edic6aIx4BpOQmAx+A/tN39175P//XPymu027UQUew7DD5WQ8Ng
+         UQRYZZCvUCUHPNt2zX1xv64n2f92wYj/mOCMRaR4x4JyDNg1whO/q3GJy2YE7hAjoalP
+         qoPiQ5EN1E3JPzv3iFT8iEJFCf5ShZhf3OY18=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=eVf5ASnQyWxFtVYPQd2gNN7mzIEJUDef/ygen8sz+zE=;
-        b=i7r9QaMBrizy6/UXOGTXby8deGim5Csxpmg6TR8ZdGxGHz4bPyv6dbNTkXVmy6eROU
-         R6KK2GqNMZQXg1bdyZ4bZuBnKze/J1lY3hw29zAW4gixQHNrCc9pAgdneek5NTyPJn05
-         xnaCFzikMc/nYD+BYP7PX3qscJfAYDVyztlHppdLU8Uqefhu1jBZiOjz5GNW/PQB32vb
-         Atvan9ncbSsI0O6T4otht2Jdwci9XbACKyxgTjNgcXbcAYwZcvRGGyGbxoI8mZJKbqHx
-         nbWDiIJy/v5TBRM2fJDlawiI56S4Kh8v7VjNiMiKbapIDb0FaptUonny/WF1N22Xp/mv
-         YK2A==
-X-Gm-Message-State: AOAM532ND6czQ282DI6Q+xw+IyEo1qYAU9sIsE/H5lJ7e3WQPO8BIgPV
-        DcUKwT/SfS1awNA9uYeov9tc
-X-Google-Smtp-Source: ABdhPJyePniAwy5ZyhYMohnPAZTIi0GW7ngbYpDu0HOnwDS56/Kn/8JYC72l7Oi8/Qc6ymk+XJII4g==
-X-Received: by 2002:a05:6214:301e:: with SMTP id ke30mr8000803qvb.2.1640410854258;
-        Fri, 24 Dec 2021 21:40:54 -0800 (PST)
+        b=aV8b5OaavxHJ1cEDQOnzxgVOWe0h+8r4rxaJmc0sEWpmdTCZSjlNa367RMjIL9iX3n
+         NIUbcUTt80egLbGzIKpW7a/VxL6jZ3CEjbDURchDZCbhbmOcQwdSq29rn5H5RtQxuuyb
+         Gp+fM8xmXDlit5DqHbQf+S7b28h9cFwnnnlxLDmQ/e7+NrTJSax9FeNn8HnNgy7OyDUl
+         ETu57kJ6xa+LGQ/QAdXEDHrSbQG27XIRKawGiTvMLaxYUQR8IzNEMPGUhY56SmiKItXp
+         3yeEGSS71dAxkEvB2Rx4vOIp0Vta5Njz3pqqaNsmJ56Xw4+hkvdFX2/TpO+kdr1c8aJf
+         vFAg==
+X-Gm-Message-State: AOAM531FvMVnrTIha3s8SUaAwNh/xxNHmqDApQ2N0AWoJ2bWxqSsD7vk
+        brTW2VtIRo4CyUZIbKB5NL1j
+X-Google-Smtp-Source: ABdhPJy/gGNoMjc90peM+WciNihyqFAZseZKaqdbIvx1vNnzYniYoA4GFUxKlyauCoZQ7jjbvLwRmA==
+X-Received: by 2002:ac8:7dd5:: with SMTP id c21mr7824178qte.176.1640411243339;
+        Fri, 24 Dec 2021 21:47:23 -0800 (PST)
 Received: from fedora.. (adsl-70-228-75-190.dsl.akrnoh.ameritech.net. [70.228.75.190])
-        by smtp.gmail.com with ESMTPSA id x16sm8304574qko.15.2021.12.24.21.40.52
+        by smtp.gmail.com with ESMTPSA id c7sm8492780qtx.67.2021.12.24.21.47.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Dec 2021 21:40:53 -0800 (PST)
+        Fri, 24 Dec 2021 21:47:22 -0800 (PST)
 From:   Atish Patra <atishp@atishpatra.org>
 X-Google-Original-From: Atish Patra <atishp@rivosinc.com>
 To:     linux-kernel@vger.kernel.org
-Cc:     Atish Patra <atishp@rivosinc.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
+Cc:     Albert Ou <aou@eecs.berkeley.edu>,
         Atish Patra <atishp@atishpatra.org>,
         Anup Patel <anup@brainfault.org>,
         Damien Le Moal <damien.lemoal@wdc.com>,
@@ -59,8 +58,8 @@ Cc:     Atish Patra <atishp@rivosinc.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>
 Subject: [v5 0/9] Improve RISC-V Perf support using SBI PMU and sscofpmf extension
-Date:   Fri, 24 Dec 2021 21:40:18 -0800
-Message-Id: <20211225054027.1750075-1-atishp@rivosinc.com>
+Date:   Fri, 24 Dec 2021 21:46:38 -0800
+Message-Id: <20211225054647.1750577-1-atishp@rivosinc.com>
 X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
