@@ -2,106 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4B1947F2DC
-	for <lists+devicetree@lfdr.de>; Sat, 25 Dec 2021 11:11:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBFC247F2E6
+	for <lists+devicetree@lfdr.de>; Sat, 25 Dec 2021 11:17:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231184AbhLYKLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Dec 2021 05:11:25 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:52556
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229699AbhLYKLZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 25 Dec 2021 05:11:25 -0500
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 999B1402D7
-        for <devicetree@vger.kernel.org>; Sat, 25 Dec 2021 10:11:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640427078;
-        bh=I39oV/QZaWmlVgFT3DcbTijQiyG6xjSwFwSGQ0EVsOQ=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=EZQT3CtUQQ2gvjtwuwPnEYjZUl4pc0oL9rjmPqp4yF6mih0UOGbsk4FChjYQ97Iy8
-         q4nRYtKlbEot5dC7VrKiGkTpY/BmD2xf4bF0AYrUV8Us5eaSvIpyf9um644hN4grVd
-         CrUtw+Q7u4HppHy3KBPZ2MMdx9WqLvqqvY7qQHOLEDrDCviNqGKbE9cMRWBqvIeD2z
-         xh5jyWaYfX+8QqmxXgy0xWAb6saP2na+4sVZyCFVaM/fdmyR7kMQ6MzGMlYxYy3eSf
-         HwMSDJPadMyu/w31bb/v6gEIkteqond5l5j8jzLj4eTuOdJZOtMXKPLWsDXq8xxIYv
-         WvS5uamwnQiAA==
-Received: by mail-lj1-f199.google.com with SMTP id r20-20020a2eb894000000b0021a4e932846so2893493ljp.6
-        for <devicetree@vger.kernel.org>; Sat, 25 Dec 2021 02:11:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=I39oV/QZaWmlVgFT3DcbTijQiyG6xjSwFwSGQ0EVsOQ=;
-        b=DFnsI9RLLSQeCdH3wPBZgpFOnUy1+yCC22G1jzB3N2qnQEzCM632AVqN2Py47+vLJY
-         T7UiWZ0RCI1dMWyIyW785TK/nBd4FZm4zrUBWkqpqXiYYOXj3t9sdoGvbVpxkBIJaLEr
-         zxCotAXzZ9CFk08SFm7zblONyaaIhiOcfV5ihdmhRVzwx8bsApfliS2feHrlPt0vbDsD
-         prOQFi9bSFO5JR4POogxGbj8qrtsiCT4nAJUe8zTyESV5EyX74pUvqRk0hxLd/lP3C9n
-         dXEhlL+cRKP+X/139SQvUC+P3nW7FeK/A3/pbkuY3vffmXDhNdqKNvpXoswTBPQGmEOC
-         hZqw==
-X-Gm-Message-State: AOAM531EI4kS0whSlWJXMAMCT2s/lLwjpV0dE/DqVms8xenv9sS0J0pX
-        QfWSL3j0NarNmIvpgoMsg8FPv66yZsS79bV8Y3Hm9wMAY/6SHtIAKSSmKPaKjbzYE2M/2MbnUCF
-        y2gUmT1Z/cwPHSy71ZbPyXKqyQO9nX9fjRm+oW9E=
-X-Received: by 2002:ac2:4e06:: with SMTP id e6mr7482606lfr.295.1640427077469;
-        Sat, 25 Dec 2021 02:11:17 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJx4sjq+1CG+HpXFM71RWmF3bJveHv7XWD7dzylenrpt+oIJERl9BtbYscnpD8bEiahaL/dhKw==
-X-Received: by 2002:ac2:4e06:: with SMTP id e6mr7482598lfr.295.1640427077285;
-        Sat, 25 Dec 2021 02:11:17 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id f19sm183205lfv.100.2021.12.25.02.11.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 25 Dec 2021 02:11:16 -0800 (PST)
-Message-ID: <e20a52cf-69cf-747d-7cfb-0a2b58008ce4@canonical.com>
-Date:   Sat, 25 Dec 2021 11:11:15 +0100
+        id S231345AbhLYKRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Dec 2021 05:17:00 -0500
+Received: from szxga02-in.huawei.com ([45.249.212.188]:16862 "EHLO
+        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230407AbhLYKRA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Dec 2021 05:17:00 -0500
+Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.54])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4JLfw431BRz90Jk;
+        Sat, 25 Dec 2021 18:16:04 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Sat, 25 Dec 2021 18:16:57 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Sat, 25 Dec 2021 18:16:56 +0800
+Subject: Re: [PATCH v18 02/17] x86/setup: Move xen_pv_domain() check and
+ insert_resource() to setup_arch()
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+To:     Borislav Petkov <bp@alien8.de>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, <x86@kernel.org>,
+        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
+        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        "John Donnelly" <John.p.donnelly@oracle.com>
+References: <20211222130820.1754-1-thunder.leizhen@huawei.com>
+ <20211222130820.1754-3-thunder.leizhen@huawei.com> <YcSxLodOnxXHx0sV@zn.tnic>
+ <d6226aa2-f1f2-24cc-c9d2-9762bd615686@huawei.com>
+ <5d8aed79-b20f-2575-3c3f-8945d8cbac3f@huawei.com>
+Message-ID: <aaa219c5-aca6-adb5-58d8-365693be249c@huawei.com>
+Date:   Sat, 25 Dec 2021 18:16:55 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v1 1/2] RISC-V: Provide a framework for parsing
- multi-letter ISA extensions
+In-Reply-To: <5d8aed79-b20f-2575-3c3f-8945d8cbac3f@huawei.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-To:     Atish Patra <atishp@atishpatra.org>, linux-kernel@vger.kernel.org
-Cc:     Atish Patra <atishp@rivosinc.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
-        linux-riscv@lists.infradead.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20211224211632.1698523-1-atishp@rivosinc.com>
- <20211224211632.1698523-2-atishp@rivosinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211224211632.1698523-2-atishp@rivosinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/12/2021 22:16, Atish Patra wrote:
-> Recently, there were 15 specifications/40 ISA extensions were ratified.
-> Except hypervisor ('H') extension, all of them are multi-letter extensions.
-> Going forward, there will be more number of multi-letter extensions as
-> well. Parsing all of these extensions from ISA string is not scalable.
-> Thus, this patch provides a DT based framework to for easy parsing and
-> querying of any ISA extensions. It facilitates custom user visible strings
-> for the ISA extensions via /proc/cpuinfo as well.
+
+
+On 2021/12/25 9:53, Leizhen (ThunderTown) wrote:
+>>> This is exactly why I say that making those functions generic and shared
+>>> might not be such a good idea, after all, because then you'd have to
+>>> sprinkle around arch-specific stuff.
+
+Hi Borislav and all:
+  Merry Christmas!
+
+  I have a new idea now. It helps us get around all the arguments and
+minimizes changes to the x86 (also to arm64).
+  Previously, Chen Zhou and I tried to share the entire function
+reserve_crashkernel(), which led to the following series of problems:
+1. reserve_crashkernel() is also defined on other architectures, so we should
+   add build option ARCH_WANT_RESERVE_CRASH_KERNEL to avoid conflicts.
+2. Move xen_pv_domain() check out of reserve_crashkernel().
+3. Move insert_resource() out of reserve_crashkernel()
+
+Others:
+4. start = memblock_phys_alloc_range(crash_size, SZ_1M, crash_base,
+                                                  crash_base + crash_size);
+   Change SZ_1M to CRASH_ALIGN, or keep it no change.
+   The current conclusion is no change. But I think adding a new macro
+   CRASH_FIXED_ALIGN is also a way. 2M alignment allows page tables to
+   use block mappings for most architectures.
+5. if (crash_base >= (1ULL << 32) && reserve_crashkernel_low())
+   Change (1ULL << 32) to CRASH_ADDR_LOW_MAX, or keep it no change.
+   I reanalyzed it, and this doesn't need to be changed.
+
+So for 1-3，why not add a new function reserve_crashkernel_mem() and rename
+reserve_crashkernel_low() to reserve_crashkernel_mem_low().
+On x86:
+static void __init reserve_crashkernel(void)
+{
+	//Parse all "crashkernel=" configurations in priority order until
+        //a valid combination is found. Or return upon failure.
+	
+	if (xen_pv_domain()) {
+                pr_info("Ignoring crashkernel for a Xen PV domain\n");
+                return;
+        }
+
+	//Call reserve_crashkernel_mem() to reserve crashkernel memory, it will
+	//call reserve_crashkernel_mem_low() if needed.
+
+	if (crashk_low_res.end)
+		insert_resource(&iomem_resource, &crashk_low_res);
+	insert_resource(&iomem_resource, &crashk_res);
+}
+
+On arm64:
+static void __init reserve_crashkernel(void)
+{
+	//Parse all "crashkernel=" configurations in priority order until
+        //a valid combination is found. Or return upon failure.
+	
+	//Call reserve_crashkernel_mem() to reserve crashkernel memory, it will
+	//call reserve_crashkernel_mem_low() if needed.
+}
+
+
+1. reserve_crashkernel() is still static, so that there is no
+   need to add ARCH_WANT_RESERVE_CRASH_KERNEL.
+2. The xen_pv_domain() check have not been affected in any way.
+   Hi Borislav:
+     As you mentioned, this check may also be needed on arm64. But it may be
+   better not to add it until the problem is actually triggered on arm64.
+3. insert_resource() is not moved outside reserve_crashkernel() on x86.
+   Hi Borislav:
+     Currently, I haven't figured out why request_resource() can't be replaced
+   with insert_resource() on arm64. But I have a hunch that the kexec tool may
+   be involved. The cost of modification on arm64 is definitely higher than that
+   on x86. Other architectures that want to use reserve_crashkernel_mem() may
+   also face the same problem. So it's probably better that function
+   reserve_crashkernel_mem() doesn't invoke insert_resource().
+
+I guess you have a long Christmas holiday. So I'm going to send the next version
+without waiting for your response.
+
+
+>> Yes, I'm thinking about that too. Perhaps they are not suitable for full
+>> code sharing, but it looks like there's some code that can be shared.
+>> For example, the function parse_crashkernel_in_order() that I extracted
+>> based on your suggestion, it could also be parse_crashkernel_high_low().
+>> Or the function reserve_crashkernel_low().
+>>
+>> There are two ways to reserve memory above 4G:
+>> 1. Use crashkernel=X,high, with or without crashkernel=X,low
+>> 2. Use crashkernel=X,[offset], but try low memory first. If failed, then
+>>    try high memory, and retry at least 256M low memory.
+>>
+>> I plan to only implement 2 in the next version so that there can be fewer
+>> changes. Then implement 1 after 2 is applied.
+> I tried it yesterday and it didn't work. I still have to deal with the
+> problem of adjusting insert_resource().
 > 
-> Currently, there are no platforms with heterogeneous Linux capable harts.
-> That's why, this patch supports only a single DT node which can only work
-> for systems with homogeneous harts. To support heterogeneous systems, this
-> cpu node must be a subnode for each cpu.
+> How about I isolate some cleanup patches first? Strive for them to be
+> merged into v5.17. This way, we can focus on the core changes in the
+> next version. And I can also save some repetitive rebase workload.
 > 
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
 
-Your from address does not match SoB. Please use consistent one - they
-must match.
-
-
-Best regards,
-Krzysztof
+-- 
+Regards,
+  Zhen Lei
