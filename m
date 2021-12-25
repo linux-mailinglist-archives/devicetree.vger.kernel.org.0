@@ -2,171 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBFC247F2E6
-	for <lists+devicetree@lfdr.de>; Sat, 25 Dec 2021 11:17:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0097A47F317
+	for <lists+devicetree@lfdr.de>; Sat, 25 Dec 2021 12:54:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231345AbhLYKRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Dec 2021 05:17:00 -0500
-Received: from szxga02-in.huawei.com ([45.249.212.188]:16862 "EHLO
-        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230407AbhLYKRA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Dec 2021 05:17:00 -0500
-Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.54])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4JLfw431BRz90Jk;
-        Sat, 25 Dec 2021 18:16:04 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Sat, 25 Dec 2021 18:16:57 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Sat, 25 Dec 2021 18:16:56 +0800
-Subject: Re: [PATCH v18 02/17] x86/setup: Move xen_pv_domain() check and
- insert_resource() to setup_arch()
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-To:     Borislav Petkov <bp@alien8.de>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, <x86@kernel.org>,
-        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        "John Donnelly" <John.p.donnelly@oracle.com>
-References: <20211222130820.1754-1-thunder.leizhen@huawei.com>
- <20211222130820.1754-3-thunder.leizhen@huawei.com> <YcSxLodOnxXHx0sV@zn.tnic>
- <d6226aa2-f1f2-24cc-c9d2-9762bd615686@huawei.com>
- <5d8aed79-b20f-2575-3c3f-8945d8cbac3f@huawei.com>
-Message-ID: <aaa219c5-aca6-adb5-58d8-365693be249c@huawei.com>
-Date:   Sat, 25 Dec 2021 18:16:55 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S231518AbhLYLye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Dec 2021 06:54:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45380 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231442AbhLYLyd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Dec 2021 06:54:33 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56C19C061757
+        for <devicetree@vger.kernel.org>; Sat, 25 Dec 2021 03:54:33 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id g11so24213952lfu.2
+        for <devicetree@vger.kernel.org>; Sat, 25 Dec 2021 03:54:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cogentembedded-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jekdnbYh9G4CN1Ds17WRd92yJsjR3300LoVLcZLYxzY=;
+        b=gtIHbIqA7tKe8mwYwmT7QEQnRQ4hgKodDgKug7BZtIRF9wuciZgDtjYP9U/AYMdY+Y
+         Jw+2CgatMFhonIoK+zFFOY9dkms/z0pAjJ1u/Lwf1pEHae0X108guZq80MKVJ/YiQZsM
+         8PQJ6y/lndi3mQVXBISI34aIxVYBvq3TYbAVkEey5/rYSpYgMyYAnkjPD43SS9yrU/WL
+         RjcNR3E6A/7HswKlal2RAEkB8e5izQfByjg0BGhs/y8EU1ucbqYr/ZuI3a9uSnPfx//m
+         TQpJAnjfzsJ9yK+dRzg3Uvy2naOANDQbIgtkm2RehQSaa6v2fCWy+3e3UgpY7GjCjTVi
+         nmBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jekdnbYh9G4CN1Ds17WRd92yJsjR3300LoVLcZLYxzY=;
+        b=RD8/zm4cNvKoBqP/NwY7HRNSJ/+58rg5e/xj+5Gg6fTO9aKH6tn/4EOX5htwCFoScK
+         NE+541i9UEOCYnla7NvIoia+d6qudCwWDvkAeCOGHS7ekYuoaUyZDn/kideWvQ7czKji
+         qWjCPdWLJPEwQMWvSwqxG/l4U72zdsxFHZv+HSxI6bkP1tov2Pru36rk7ZvL3gN0HzIE
+         TT76EKw9S8lu6P2azA4a76FDcKrbv1N8O1XTjHvNWyvoF7ndMICeK8e59k9Zbxh3PCmS
+         eSMj6WKWm6SQk6AAwbyi3xbTBVB5LK+gl6oNzBbKnxEM6cliiYEJQ54UBs3T+BAD/RHP
+         q5iw==
+X-Gm-Message-State: AOAM532J/du4y/2qK63yKi/UasllZ2TrWUARFMPvfvK5A75tFdhgF5NA
+        7KTr1zmfhT9t7gjfIoPrda6asw==
+X-Google-Smtp-Source: ABdhPJxCJhS0qtre782NmekcMV3NiXQ1EiYU3QU6aZy5+paSlNVQbdi3FB+LAsBhurtMp4ZTMZJbBw==
+X-Received: by 2002:a05:6512:1506:: with SMTP id bq6mr8765711lfb.444.1640433271070;
+        Sat, 25 Dec 2021 03:54:31 -0800 (PST)
+Received: from cobook.home (nikaet.starlink.ru. [94.141.168.29])
+        by smtp.gmail.com with ESMTPSA id 9sm726678ljq.120.2021.12.25.03.54.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Dec 2021 03:54:30 -0800 (PST)
+From:   Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+Subject: [PATCH] arm64: dts: renesas: ulcb-kf: add KF HDMI output
+Date:   Sat, 25 Dec 2021 14:53:09 +0300
+Message-Id: <20211225115308.2152364-1-nikita.yoush@cogentembedded.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <5d8aed79-b20f-2575-3c3f-8945d8cbac3f@huawei.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch adds nodes needed to enable DRM video output over HDMI
+connector located on KF board.
 
+Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+---
+ arch/arm64/boot/dts/renesas/ulcb-kf.dtsi | 93 ++++++++++++++++++++++++
+ 1 file changed, 93 insertions(+)
 
-On 2021/12/25 9:53, Leizhen (ThunderTown) wrote:
->>> This is exactly why I say that making those functions generic and shared
->>> might not be such a good idea, after all, because then you'd have to
->>> sprinkle around arch-specific stuff.
-
-Hi Borislav and all:
-  Merry Christmas!
-
-  I have a new idea now. It helps us get around all the arguments and
-minimizes changes to the x86 (also to arm64).
-  Previously, Chen Zhou and I tried to share the entire function
-reserve_crashkernel(), which led to the following series of problems:
-1. reserve_crashkernel() is also defined on other architectures, so we should
-   add build option ARCH_WANT_RESERVE_CRASH_KERNEL to avoid conflicts.
-2. Move xen_pv_domain() check out of reserve_crashkernel().
-3. Move insert_resource() out of reserve_crashkernel()
-
-Others:
-4. start = memblock_phys_alloc_range(crash_size, SZ_1M, crash_base,
-                                                  crash_base + crash_size);
-   Change SZ_1M to CRASH_ALIGN, or keep it no change.
-   The current conclusion is no change. But I think adding a new macro
-   CRASH_FIXED_ALIGN is also a way. 2M alignment allows page tables to
-   use block mappings for most architectures.
-5. if (crash_base >= (1ULL << 32) && reserve_crashkernel_low())
-   Change (1ULL << 32) to CRASH_ADDR_LOW_MAX, or keep it no change.
-   I reanalyzed it, and this doesn't need to be changed.
-
-So for 1-3，why not add a new function reserve_crashkernel_mem() and rename
-reserve_crashkernel_low() to reserve_crashkernel_mem_low().
-On x86:
-static void __init reserve_crashkernel(void)
-{
-	//Parse all "crashkernel=" configurations in priority order until
-        //a valid combination is found. Or return upon failure.
-	
-	if (xen_pv_domain()) {
-                pr_info("Ignoring crashkernel for a Xen PV domain\n");
-                return;
-        }
-
-	//Call reserve_crashkernel_mem() to reserve crashkernel memory, it will
-	//call reserve_crashkernel_mem_low() if needed.
-
-	if (crashk_low_res.end)
-		insert_resource(&iomem_resource, &crashk_low_res);
-	insert_resource(&iomem_resource, &crashk_res);
-}
-
-On arm64:
-static void __init reserve_crashkernel(void)
-{
-	//Parse all "crashkernel=" configurations in priority order until
-        //a valid combination is found. Or return upon failure.
-	
-	//Call reserve_crashkernel_mem() to reserve crashkernel memory, it will
-	//call reserve_crashkernel_mem_low() if needed.
-}
-
-
-1. reserve_crashkernel() is still static, so that there is no
-   need to add ARCH_WANT_RESERVE_CRASH_KERNEL.
-2. The xen_pv_domain() check have not been affected in any way.
-   Hi Borislav:
-     As you mentioned, this check may also be needed on arm64. But it may be
-   better not to add it until the problem is actually triggered on arm64.
-3. insert_resource() is not moved outside reserve_crashkernel() on x86.
-   Hi Borislav:
-     Currently, I haven't figured out why request_resource() can't be replaced
-   with insert_resource() on arm64. But I have a hunch that the kexec tool may
-   be involved. The cost of modification on arm64 is definitely higher than that
-   on x86. Other architectures that want to use reserve_crashkernel_mem() may
-   also face the same problem. So it's probably better that function
-   reserve_crashkernel_mem() doesn't invoke insert_resource().
-
-I guess you have a long Christmas holiday. So I'm going to send the next version
-without waiting for your response.
-
-
->> Yes, I'm thinking about that too. Perhaps they are not suitable for full
->> code sharing, but it looks like there's some code that can be shared.
->> For example, the function parse_crashkernel_in_order() that I extracted
->> based on your suggestion, it could also be parse_crashkernel_high_low().
->> Or the function reserve_crashkernel_low().
->>
->> There are two ways to reserve memory above 4G:
->> 1. Use crashkernel=X,high, with or without crashkernel=X,low
->> 2. Use crashkernel=X,[offset], but try low memory first. If failed, then
->>    try high memory, and retry at least 256M low memory.
->>
->> I plan to only implement 2 in the next version so that there can be fewer
->> changes. Then implement 1 after 2 is applied.
-> I tried it yesterday and it didn't work. I still have to deal with the
-> problem of adjusting insert_resource().
-> 
-> How about I isolate some cleanup patches first? Strive for them to be
-> merged into v5.17. This way, we can focus on the core changes in the
-> next version. And I can also save some repetitive rebase workload.
-> 
-
+diff --git a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+index 61bd4df09df0..a66301a4081d 100644
+--- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
++++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+@@ -51,6 +51,31 @@ wlan_en: regulator-wlan_en {
+ 		startup-delay-us = <70000>;
+ 		enable-active-high;
+ 	};
++
++	hdmi_1v8: regulator-hdmi-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "hdmi-1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
++
++	hdmi_3v3: regulator-hdmi-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "hdmi-3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	hdmi1-out {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi1_con: endpoint {
++				remote-endpoint = <&adv7513_out>;
++			};
++		};
++	};
+ };
+ 
+ &can0 {
+@@ -91,6 +116,58 @@ i2cswitch2: i2c-switch@71 {
+ 		reg = <0x71>;
+ 		reset-gpios = <&gpio5 3 GPIO_ACTIVE_LOW>;
+ 
++		/* HDMIoSDA, HDMIoSCL */
++		i2c@4 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <4>;
++
++			hdmi@3d {
++				compatible = "adi,adv7513";
++				reg = <0x3d>;
++
++				pinctrl-0 = <&hdmi1_pins>;
++				pinctrl-names = "default";
++
++				interrupt-parent = <&gpio2>;
++				interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
++
++				clocks = <&cs2000>;
++				clock-names = "cec";
++
++				pd-gpios = <&gpio_exp_75 5 GPIO_ACTIVE_LOW>;
++
++				avdd-supply = <&hdmi_1v8>;
++				dvdd-supply = <&hdmi_1v8>;
++				pvdd-supply = <&hdmi_1v8>;
++				dvdd-3v-supply = <&hdmi_3v3>;
++				bgvdd-supply = <&hdmi_1v8>;
++
++				adi,input-depth = <8>;
++				adi,input-colorspace = "rgb";
++				adi,input-clock = "1x";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++						adv7513_in: endpoint {
++							remote-endpoint = <&du_out_rgb>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++						adv7513_out: endpoint {
++							remote-endpoint = <&hdmi1_con>;
++						};
++					};
++				};
++			};
++		};
++
+ 		/* Audio_SDA, Audio_SCL */
+ 		i2c@7 {
+ 			#address-cells = <1>;
+@@ -236,6 +313,10 @@ gpio_exp_77: gpio@77 {
+ 	};
+ };
+ 
++&du_out_rgb {
++	remote-endpoint = <&adv7513_in>;
++};
++
+ &ohci0 {
+ 	dr_mode = "otg";
+ 	status = "okay";
+@@ -289,6 +370,18 @@ usb0_pins: usb0 {
+ 		groups = "usb0";
+ 		function = "usb0";
+ 	};
++
++	hdmi1_pins: hdmi1 {
++		du {
++			groups = "du_rgb888", "du_sync", "du_clk_out_0", "du_disp";
++			function = "du";
++		};
++
++		adv7513-interrupt {
++			pins = "GP_2_14";
++			bias-pull-up;
++		};
++	};
+ };
+ 
+ &rcar_sound {
 -- 
-Regards,
-  Zhen Lei
+2.30.2
+
