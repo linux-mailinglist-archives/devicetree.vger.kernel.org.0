@@ -2,139 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B787647F388
-	for <lists+devicetree@lfdr.de>; Sat, 25 Dec 2021 15:49:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5058947F381
+	for <lists+devicetree@lfdr.de>; Sat, 25 Dec 2021 15:49:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232059AbhLYOtK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Dec 2021 09:49:10 -0500
-Received: from mail-qk1-f182.google.com ([209.85.222.182]:41926 "EHLO
-        mail-qk1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231983AbhLYOs4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Dec 2021 09:48:56 -0500
-Received: by mail-qk1-f182.google.com with SMTP id m2so8936862qkd.8;
-        Sat, 25 Dec 2021 06:48:56 -0800 (PST)
+        id S231978AbhLYOtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Dec 2021 09:49:03 -0500
+Received: from mail-qk1-f175.google.com ([209.85.222.175]:40841 "EHLO
+        mail-qk1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231990AbhLYOs7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Dec 2021 09:48:59 -0500
+Received: by mail-qk1-f175.google.com with SMTP id w27so4454856qkj.7;
+        Sat, 25 Dec 2021 06:48:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=R1JDD4xzjoppkmMrdMNvIsTxQPbbgQDJd30wDWgFjJc=;
-        b=trSorZDnnj7Geg1wf+1k+p0mPx+qupiiM42F+as3BElvkO/D4xqxxn386t1mwTp5XD
-         84Pjomy5hzTv25+0vJ0PeMKZ1k6aBKq/Aq8WphJnaexDxa45y1YNXLZAMdrSpGPZ2ymH
-         MhcXTmA5oO00/orsnpoD83ssswstT+0kgfhVvmfLxluGRoESu8JAD9uZn59FWU3Z+hkP
-         kfz9KI4oNC32nKj0K5q42QpTkvNyRrHYM7P7r/wc/0AQ9zdM5lR48wG7CMIgmWj5BYoh
-         rO04gVvx/2JZSQooJQQ7SNpyTzAVBpVbZ8EBVT/ZU9YFazyV6FTNuC2tyOLvmFo+29DX
-         wxxQ==
-X-Gm-Message-State: AOAM531XDBRAMQ42LSys8qfxCLLBZn9sp+gY/2PJ3mwj6ISYqxZzUwfF
-        luoIlhZQ5XkupJlvAeMRug==
-X-Google-Smtp-Source: ABdhPJy41bN2OKCs6DRMAzWHlgY67Qfln27TTdFRrlIAkav1HNHHQAdAArVH3yuVG3xO4nKXFdFazQ==
-X-Received: by 2002:a37:b744:: with SMTP id h65mr7542309qkf.131.1640443736011;
-        Sat, 25 Dec 2021 06:48:56 -0800 (PST)
+        bh=WwY+LxRGYjmGy4RNrns234zbmxymS+OanKyxEXrqH0s=;
+        b=j3oyBfzWHCUuMt6e9PKFVCsK8OIKYxQiy6cKojwzw5LbzygVDuH2slgwRHM3GtzSDv
+         ZLDdnuzm7HSSq7g7OBhr0yivE6qG+Yjy/nh6KK3LJRFogWSl8gmTVO35GYxMdAZyd+zJ
+         r0AXmzfqHpelZfIEs8aBOp8Kr65sx3Ws25RRf1Ln37lWtjJzYbdhP0ptNZQXd0yzzwzC
+         OrBLPj162s/l23NPXEQO4dbLnvR/KnE5HeQou/OjjVt/dJlKwpdszSKaOVQ3AoxE4A3b
+         05jdHLJyKU6/6VeFk1SDF4KkKmTIUANtYgUk/Oo2MqOze2eSNJSrj8aNwTiz7zo1qZdx
+         +uKQ==
+X-Gm-Message-State: AOAM533d1tW/hUyREeYyfbhbbkWQPPoT10NLUR4hyjBxEVaCXm54JdBa
+        TBXmvwoMHQtrcdTOZhWS7QvBiz4BYWxY
+X-Google-Smtp-Source: ABdhPJz2jdWWd9BmP30Ev0PdnQc4+holyBZlfI1eeuU3s9w4SZsAkposD7j9PHDAyPUIfts91rRKUw==
+X-Received: by 2002:a05:620a:948:: with SMTP id w8mr7409911qkw.475.1640443738482;
+        Sat, 25 Dec 2021 06:48:58 -0800 (PST)
 Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id z4sm9002675qtj.42.2021.12.25.06.48.54
+        by smtp.gmail.com with ESMTPSA id q21sm3743646qtw.26.2021.12.25.06.48.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Dec 2021 06:48:55 -0800 (PST)
-Received: (nullmailer pid 363349 invoked by uid 1000);
+        Sat, 25 Dec 2021 06:48:57 -0800 (PST)
+Received: (nullmailer pid 363343 invoked by uid 1000);
         Sat, 25 Dec 2021 14:48:42 -0000
 From:   Rob Herring <robh@kernel.org>
 To:     David Heidelberg <david@ixit.cz>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~okias/devicetree@lists.sr.ht
-In-Reply-To: <20211224144835.39193-1-david@ixit.cz>
-References: <20211224144835.39193-1-david@ixit.cz>
-Subject: Re: [PATCH v3] dt-bindings: arm: merge qcom,idle-state with idle-state
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        ~okias/devicetree@lists.sr.ht, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, Will Deacon <will@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        iommu@lists.linux-foundation.org
+In-Reply-To: <20211224165014.56308-1-david@ixit.cz>
+References: <20211224165014.56308-1-david@ixit.cz>
+Subject: Re: [PATCH] dt-bindings: iommu: Convert msm,iommu-v0 to yaml
 Date:   Sat, 25 Dec 2021 10:48:42 -0400
-Message-Id: <1640443722.937725.363348.nullmailer@robh.at.kernel.org>
+Message-Id: <1640443722.906705.363342.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Dec 2021 15:48:34 +0100, David Heidelberg wrote:
-> Merge Qualcomm specific idle-state binding with generic one.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> 
-> ---
-> v3:
->  - integrate into idle-state.yml
->  - orig. patch name was:
->    "[v2] dt-bindings: arm/msm/qcom,idle-state convert to YAML"
+On Fri, 24 Dec 2021 17:50:14 +0100, David Heidelberg wrote:
+> Convert Qualcomm IOMMU v0 implementation to yaml format.
 > 
 > Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->  .../devicetree/bindings/arm/idle-states.yaml  | 107 ++++++++++++++++++
->  .../bindings/arm/msm/qcom,idle-state.txt      |  84 --------------
->  2 files changed, 107 insertions(+), 84 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt
+>  .../bindings/iommu/msm,iommu-v0.txt           | 64 -------------
+>  .../bindings/iommu/qcom,iommu-v0.yaml         | 96 +++++++++++++++++++
+>  2 files changed, 96 insertions(+), 64 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/iommu/msm,iommu-v0.txt
+>  create mode 100644 Documentation/devicetree/bindings/iommu/qcom,iommu-v0.yaml
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1573055
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/iommu/qcom,iommu-v0.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/iommu/qcom,iommu-v0.yaml#
+Documentation/devicetree/bindings/iommu/qcom,iommu-v0.example.dts:37.26-43.11: Warning (unit_address_vs_reg): /example-0/mdp@5100000: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/iommu/qcom,iommu-v0.example.dt.yaml:0:0: /example-0/mdp@5100000: failed to match any schema with compatible: ['qcom,mdp4']
 
+doc reference errors (make refcheckdocs):
 
-idle-states: 'clusteroff_b', 'clusteroff_l', 'cpuoff_b', 'cpuoff_l' do not match any of the regexes: '^(cpu|cluster)-', '^(ret|spc|pc)$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/mediatek/mt8192-evb.dt.yaml
+See https://patchwork.ozlabs.org/patch/1573077
 
-idle-states: 'cluster_pd', 'core_pd' do not match any of the regexes: '^(cpu|cluster)-', '^(ret|spc|pc)$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/sprd/sp9860g-1h10.dt.yaml
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-idle-states: 'core-pd' does not match any of the regexes: '^(cpu|cluster)-', '^(ret|spc|pc)$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/sprd/sp9863a-1h10.dt.yaml
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-idle-states: cpu-sleep-0:compatible:0: 'arm,idle-state' was expected
-	arch/arm/boot/dts/qcom-msm8916-samsung-serranove.dt.yaml
+pip3 install dtschema --upgrade
 
-idle-states: entry-method:0: 'psci' was expected
-	arch/arm64/boot/dts/mediatek/mt8192-evb.dt.yaml
-
-idle-states: 'mpu_gate' does not match any of the regexes: '^(cpu|cluster)-', '^(ret|spc|pc)$', 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/am335x-baltos-ir2110.dt.yaml
-	arch/arm/boot/dts/am335x-baltos-ir3220.dt.yaml
-	arch/arm/boot/dts/am335x-baltos-ir5221.dt.yaml
-	arch/arm/boot/dts/am335x-base0033.dt.yaml
-	arch/arm/boot/dts/am335x-boneblack.dt.yaml
-	arch/arm/boot/dts/am335x-boneblack-wireless.dt.yaml
-	arch/arm/boot/dts/am335x-boneblue.dt.yaml
-	arch/arm/boot/dts/am335x-bone.dt.yaml
-	arch/arm/boot/dts/am335x-bonegreen.dt.yaml
-	arch/arm/boot/dts/am335x-bonegreen-wireless.dt.yaml
-	arch/arm/boot/dts/am335x-chiliboard.dt.yaml
-	arch/arm/boot/dts/am335x-cm-t335.dt.yaml
-	arch/arm/boot/dts/am335x-evm.dt.yaml
-	arch/arm/boot/dts/am335x-evmsk.dt.yaml
-	arch/arm/boot/dts/am335x-guardian.dt.yaml
-	arch/arm/boot/dts/am335x-icev2.dt.yaml
-	arch/arm/boot/dts/am335x-lxm.dt.yaml
-	arch/arm/boot/dts/am335x-moxa-uc-2101.dt.yaml
-	arch/arm/boot/dts/am335x-moxa-uc-8100-me-t.dt.yaml
-	arch/arm/boot/dts/am335x-myirtech-myd.dt.yaml
-	arch/arm/boot/dts/am335x-nano.dt.yaml
-	arch/arm/boot/dts/am335x-netcan-plus-1xx.dt.yaml
-	arch/arm/boot/dts/am335x-netcom-plus-2xx.dt.yaml
-	arch/arm/boot/dts/am335x-netcom-plus-8xx.dt.yaml
-	arch/arm/boot/dts/am335x-osd3358-sm-red.dt.yaml
-	arch/arm/boot/dts/am335x-pdu001.dt.yaml
-	arch/arm/boot/dts/am335x-pepper.dt.yaml
-	arch/arm/boot/dts/am335x-phycore-rdk.dt.yaml
-	arch/arm/boot/dts/am335x-pocketbeagle.dt.yaml
-	arch/arm/boot/dts/am335x-regor-rdk.dt.yaml
-	arch/arm/boot/dts/am335x-sancloud-bbe.dt.yaml
-	arch/arm/boot/dts/am335x-sancloud-bbe-lite.dt.yaml
-	arch/arm/boot/dts/am335x-sbc-t335.dt.yaml
-	arch/arm/boot/dts/am335x-shc.dt.yaml
-	arch/arm/boot/dts/am335x-sl50.dt.yaml
-	arch/arm/boot/dts/am335x-wega-rdk.dt.yaml
-	arch/arm/boot/dts/am437x-cm-t43.dt.yaml
-	arch/arm/boot/dts/am437x-gp-evm.dt.yaml
-	arch/arm/boot/dts/am437x-idk-evm.dt.yaml
-	arch/arm/boot/dts/am437x-sbc-t43.dt.yaml
-	arch/arm/boot/dts/am437x-sk-evm.dt.yaml
-	arch/arm/boot/dts/am43x-epos-evm.dt.yaml
+Please check and re-submit.
 
