@@ -2,72 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39AB047F37B
-	for <lists+devicetree@lfdr.de>; Sat, 25 Dec 2021 15:49:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1F4547F383
+	for <lists+devicetree@lfdr.de>; Sat, 25 Dec 2021 15:49:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231989AbhLYOs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 25 Dec 2021 09:48:58 -0500
-Received: from mail-qv1-f46.google.com ([209.85.219.46]:34744 "EHLO
-        mail-qv1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231958AbhLYOsw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Dec 2021 09:48:52 -0500
-Received: by mail-qv1-f46.google.com with SMTP id ke6so10029225qvb.1;
-        Sat, 25 Dec 2021 06:48:51 -0800 (PST)
+        id S232014AbhLYOtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 25 Dec 2021 09:49:04 -0500
+Received: from mail-qk1-f180.google.com ([209.85.222.180]:37808 "EHLO
+        mail-qk1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232029AbhLYOtB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 25 Dec 2021 09:49:01 -0500
+Received: by mail-qk1-f180.google.com with SMTP id m186so10563106qkb.4;
+        Sat, 25 Dec 2021 06:49:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=Qsnbtl5TIcmZmqxLDymCjbWs59/KyNv5D5IkyU1n0AU=;
-        b=vg5U+sz4rCD4/TlglSLBBXbZtUn37lQJ+R25HJwOlZq9JIJZ/7RAQgmfuSgX8/40ju
-         3d4SXLKUJsIhC/OCsyFJWiDQdQniItg9AbO9jpNzW6gayI+5qChsYYpCtmyZ8cDDxv09
-         aj3opHokBgM2w5xufqDBRurX1u+duKx66oaDrUy9OX1H+S5/bGmdokjSdcep4OutycOI
-         dWeRod/TYu1x3xMO+xK+C4LviqWxE9wZVAhUjqQCq/8HwGs5+IConnEqRqAsmDDCa1iq
-         Cy4bFP6hTevpxEfUOkaTOHOJzpMzrRz1ytNmkG81TBz+DtsDpHAdmjeTnTerURPH10VB
-         u1RQ==
-X-Gm-Message-State: AOAM5338AcwTePjFlZVUtKwvTb/I3DWxd8KGeQTIqSJhicQcew7U1gdz
-        OrXbwEhYIlMxlYhgI0Z8pg==
-X-Google-Smtp-Source: ABdhPJwJgoLi0RNO++5bjNzVyf1UGhEkAqQg5RIYL5IIYHFZV7ZTNMEU0IFW3Oh0cT2hJMlLWBJOYg==
-X-Received: by 2002:a05:6214:2aa1:: with SMTP id js1mr9229788qvb.27.1640443731505;
-        Sat, 25 Dec 2021 06:48:51 -0800 (PST)
+        bh=ZKo4CuVNE9aj6YktgJ2/0mQdTIBC53q4u65AzxojkOI=;
+        b=h6r/Jx6JaHetFln2Ch8U+XOWNAx94VlVI5WBTLExe7nNOF7Sub4q0+8mr5QkjXSNe4
+         GDhmVul3LIBz61i5mcU2oZAM87lU//FszXNKvrd1R8ag4WNAcaCZNasE9ZNqeDWapPzC
+         vbba9EJ+WjgZ7EVe5LF8QtWglLh0dJhQJTcTT4IqT0dA/knjzy/q4to4qIG8Tyqm+nnJ
+         5weA82PvOfeDGlLtvRpjtDwKjiXLO07EpNSjLIzowZ3VNOerTDVWrvX8t5wbclw1xmjj
+         zkBqtZL9WiaUkTiv4DKkCP4g9XEiOgyAjklByFzRWt3p2BJuyIyziULOCekJpBLUfNSh
+         BJtQ==
+X-Gm-Message-State: AOAM533NJ/FelXCqC8a90U06Wl0E03iBOqr5cS18NvdqyxMhjj7UuINm
+        Ct08tq5eqSoizBhckg9A/A==
+X-Google-Smtp-Source: ABdhPJxbEwWOAh1OuwX92qa21z32NQ6vc/Q6XUc34IMLFdh/n70CHypODZCeYjxxUMlkjawTK0+Z+Q==
+X-Received: by 2002:a05:620a:14ae:: with SMTP id x14mr7451582qkj.347.1640443741093;
+        Sat, 25 Dec 2021 06:49:01 -0800 (PST)
 Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id a38sm8788129qkp.80.2021.12.25.06.48.50
+        by smtp.gmail.com with ESMTPSA id q12sm8962160qtx.16.2021.12.25.06.48.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 25 Dec 2021 06:48:50 -0800 (PST)
-Received: (nullmailer pid 363341 invoked by uid 1000);
+        Sat, 25 Dec 2021 06:49:00 -0800 (PST)
+Received: (nullmailer pid 363345 invoked by uid 1000);
         Sat, 25 Dec 2021 14:48:42 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        ~okias/devicetree@lists.sr.ht
-In-Reply-To: <20211224163344.54177-2-david@ixit.cz>
-References: <20211224163344.54177-1-david@ixit.cz> <20211224163344.54177-2-david@ixit.cz>
-Subject: Re: [PATCH 2/2] dt-bindings: spmi: convert QCOM PMIC SPMI bindings to yaml
+To:     Atish Patra <atishp@atishpatra.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Anup Patel <anup@brainfault.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org
+In-Reply-To: <20211224211632.1698523-3-atishp@rivosinc.com>
+References: <20211224211632.1698523-1-atishp@rivosinc.com> <20211224211632.1698523-3-atishp@rivosinc.com>
+Subject: Re: [PATCH v1 2/2] dt-bindings: riscv: Add DT binding for RISC-V ISA extensions
 Date:   Sat, 25 Dec 2021 10:48:42 -0400
-Message-Id: <1640443722.898852.363340.nullmailer@robh.at.kernel.org>
+Message-Id: <1640443722.919526.363344.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Dec 2021 17:33:44 +0100, David Heidelberg wrote:
-> Convert Qualcomm PMIC SPMI binding to yaml format.
+On Fri, 24 Dec 2021 13:16:32 -0800, Atish Patra wrote:
+> RISC-V ISA extensions can be single letter or multi-letter names.
+> The single letter extensions are mostly base extensions and encoded in
+> "riscv,isa" DT property. However, parsing the multi-letter extensions
+> via the isa string is cumbersome and is not scalable.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Add a new DT node for multi-letter extensions.
 > 
+> Signed-off-by: Atish Patra <atishp@rivosinc.com>
 > ---
-> Patches for fixing dt-schema warnings for SDX55 and MSM8998 qcom,spmi
-> already sent to ML.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  .../bindings/spmi/qcom,spmi-pmic-arb.txt      |  65 ----------
->  .../bindings/spmi/qcom,spmi-pmic-arb.yaml     | 118 ++++++++++++++++++
->  2 files changed, 118 insertions(+), 65 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
->  create mode 100644 Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -76,17 +77,11 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.example.dts:20.14-38.11: Warning (unit_address_vs_reg): /example-0/spmi: node has a reg or ranges property, but no unit name
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.example.dt.yaml: spmi: $nodename:0: 'spmi' does not match '^spmi@.*'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.example.dt.yaml: spmi: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+./Documentation/devicetree/bindings/riscv/cpus.yaml: Unresolvable JSON pointer: 'definitions/boolean'
 
 doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt references a file that doesn't exist: Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
-Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt: Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
 
-See https://patchwork.ozlabs.org/patch/1573075
+See https://patchwork.ozlabs.org/patch/1573119
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
