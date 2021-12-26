@@ -2,157 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00FC047F6A6
-	for <lists+devicetree@lfdr.de>; Sun, 26 Dec 2021 12:45:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8CE247F6C1
+	for <lists+devicetree@lfdr.de>; Sun, 26 Dec 2021 13:37:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233332AbhLZLpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Dec 2021 06:45:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40934 "EHLO
+        id S233228AbhLZMhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Dec 2021 07:37:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbhLZLpv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Dec 2021 06:45:51 -0500
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32BE9C06173E;
-        Sun, 26 Dec 2021 03:45:51 -0800 (PST)
-Received: by mail-qk1-x732.google.com with SMTP id de30so12164227qkb.0;
-        Sun, 26 Dec 2021 03:45:51 -0800 (PST)
+        with ESMTP id S231726AbhLZMhx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Dec 2021 07:37:53 -0500
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08F14C06173E
+        for <devicetree@vger.kernel.org>; Sun, 26 Dec 2021 04:37:53 -0800 (PST)
+Received: by mail-wr1-x441.google.com with SMTP id i22so26737684wrb.13
+        for <devicetree@vger.kernel.org>; Sun, 26 Dec 2021 04:37:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Gx/LVdOKVPdIIVvf4kyiCxApl3cQNs623jcW1dhS9hU=;
-        b=Al9dgbWzBEwdfuT96o+TcXkIBfx7ocEh3tmtx9JhFMpFH06smCctMD2Mes3tgBY3D3
-         y4kw1/Ke4AI6C/eOi2LLigoFiLI0B2i/lL0kOKaCbWCfchowJ35yFaXRMLAvBDkkfNdG
-         NjKE2VSWvUWzzPjCxbfK+zsf+tjBtOtTPueLUIEwpxP4kb9WQM/htjAp8HzKPGFliJjn
-         ckxNrKYB/aw5Bkm4ec2SpVbqtDB8wPg4N/2SMLqPJS2E/rajgAcMoEPO9NBY+rjPGhPs
-         syMiW1OQPy3ufn9KFrudKpkVF3zp1tIoL8oq/JflOdCbsN1AiQPasKbzCJA4+MnxHLVw
-         PBSA==
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=f7wXvgf/Aj3y55/rH+ZCQ52rW1BTUm618QuBM5WHZWM=;
+        b=EWJI3ooCj/WKE9SZjbEStQug8lgog0VkDZ+NSwhKz8eA7HuLKWnf08SJn/N0c3PFue
+         1f9EeErL9pIa/fOHLQBn2LBL7wPbpVi6ND5zAn9CPbr/fwpCeukVtMhI0TMqP1T4moQ5
+         xY23M+a+RSgJMGbOih6CAryAbIi8h7vbUMNlXTkbP6ztu/FzmCeJoLURnaRwSSROKEEe
+         oZN4lsEgsJCr9LRG+uPpjXSkqZGevmsCcvRlotocuXEVKR53/g46GxOKG9rNyq9kfm8Y
+         bxrjAE+ykzx6XwKNDxMmTztD4Mbvrvd7bxLWN3M5Bd+f1tXpUtqK592rQFAJoEGkjPwn
+         2Ufg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Gx/LVdOKVPdIIVvf4kyiCxApl3cQNs623jcW1dhS9hU=;
-        b=YR+RRw6Ie0bVpfF1ZG+8bhngkn1nO8T8Fw6p75TZ0eZ2QvYSDEJqVvQos1fHwg/1/H
-         jTnU/aFlTAWYQP3lPtIcMUNE5XXX1vYh8jKn4pXjYZrLT9XHYFk6wi/7Yk6OZl7/YdOA
-         Fx9hc9M3vbyDlRUbba6rMEnPR1xSckiqTzK5pvksbXkmcTXknoErSGOMlwCaoOgzt/cn
-         tuKzg7CoTOEve5yv3tkVVfW8fN6PaiqHmip5j8h+XtBA94rx88E6XvT7M5wc6LBtI7g+
-         WhSF0Suk1uzCdbYiyeU4iO9ai0gqA1Auqladt4In++o2fhrB1YxMTVJk/TQoSXFFsBUE
-         +F+Q==
-X-Gm-Message-State: AOAM532eYbA8ZfB8161FYJ+sbEsk6Hxkr8irWxtT1Wwv0K0S9Jk9eI92
-        +oEQ/MtmszUpr6SkF8qTS3o=
-X-Google-Smtp-Source: ABdhPJy1IYbqV/qswHELJr7WC102HRuwe7+KWGO5MuEJHgJOC/fFUUzePeV/Id3N64oBaz6mw3q++A==
-X-Received: by 2002:a05:620a:22c3:: with SMTP id o3mr9017961qki.748.1640519149801;
-        Sun, 26 Dec 2021 03:45:49 -0800 (PST)
-Received: from glsvmlin.ini.cmu.edu (GLSVMLIN.INI.CMU.EDU. [128.2.16.9])
-        by smtp.gmail.com with ESMTPSA id l15sm11474488qtx.77.2021.12.26.03.45.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Dec 2021 03:45:49 -0800 (PST)
-Date:   Sun, 26 Dec 2021 06:45:41 -0500
-From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>, krakoczy@antmicro.com,
-        mdudek@internships.antmicro.com, paulus@ozlabs.org,
-        Joel Stanley <joel@jms.id.au>,
-        Stafford Horne <shorne@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
-        Randy Dunlap <rdunlap@infradead.org>
-Subject: Re: [PATCH v5 3/3] mmc: Add driver for LiteX's LiteSDCard interface
-Message-ID: <YchV5UvIq7xgkbF6@glsvmlin.ini.cmu.edu>
-References: <20211215130711.111186-1-gsomlo@gmail.com>
- <20211215130711.111186-4-gsomlo@gmail.com>
- <CAHp75Vf7ktdoBoOHVE72LO19vxZiQ82eBg9_xP2ywB6c4yqXWQ@mail.gmail.com>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=f7wXvgf/Aj3y55/rH+ZCQ52rW1BTUm618QuBM5WHZWM=;
+        b=3fT5qGKrfkpQn/VIw1rnrnyd+FHrzg50FAtzCVTUE82QGEhH7TNUWgM+qDDtd82Kx2
+         5kwgO8t84RlDkSpxnGd8MCFxzhg3awcSdm9kDmXLJo/ktTbkB3inSK8lZd4GIZ6UaQ4g
+         fxzIv7LZBAg0ybvJWOo6/6Nb9vHQYfS1iKCQc1vht9ZvXTVDvc+6QL0ZyVaxM3sYI1ih
+         pDGKfIS40x59AEYxG6Gh61A893KZ0v6GTwWEH+jFh5csS7uoLagl4Z5pSKU3ZRePAHIJ
+         5r8oQjDkKcTJDYHmONbaO9HHiq+oRVKO8CQL8xGhhYPACxhCKQJFjnGu5QdPytp06ihT
+         1K9A==
+X-Gm-Message-State: AOAM533iqf+tvbWpdMt9XMeGIKwAuOYmOpjnkTrY00Kmbn1cBQYZCIus
+        TdRuHsFS0DraoNDEJYftk1lnRhNZ6O4+hdAS33I=
+X-Google-Smtp-Source: ABdhPJzENF33UcYJ9b0IejazgiO7qO159baNFfsokVAueQZ+GH7XMLDJWzDEedDcJtHTJLcQPPcQ7yuKyulDF/XoUE8=
+X-Received: by 2002:a05:6000:1817:: with SMTP id m23mr9655595wrh.684.1640522270333;
+ Sun, 26 Dec 2021 04:37:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHp75Vf7ktdoBoOHVE72LO19vxZiQ82eBg9_xP2ywB6c4yqXWQ@mail.gmail.com>
-X-Clacks-Overhead: GNU Terry Pratchett
+Received: by 2002:a7b:c08e:0:0:0:0:0 with HTTP; Sun, 26 Dec 2021 04:37:49
+ -0800 (PST)
+Reply-To: mrhassanr900@gmail.com
+From:   "MR. HASSAN ROUHANI" <mrstalshafir0@gmail.com>
+Date:   Sun, 26 Dec 2021 04:37:49 -0800
+Message-ID: <CABksSsnNVNGRWZCRBFrsroUT=R9VSpFBQHTH=MVVSQRob6ZdKQ@mail.gmail.com>
+Subject: YOUR COOPERATION NEEDED
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Dear Friend,
 
-Thanks for the feedback!
+I hope this mail meet you in good health, I'm contacting you for a
+transaction of USD$41.6, Million Dollars. You will be rewarded with
+35% of the total sum for your partnership. Can you handle this? Your
+assistance and support is needed to transfer the Fourth one Million
+Six hundred Thousand US Dollars out of the Institution where I work,
+to your bank account in your Country.
 
-On Sat, Dec 25, 2021 at 06:43:22PM +0200, Andy Shevchenko wrote:
-> On Wed, Dec 15, 2021 at 10:00 PM Gabriel Somlo <gsomlo@gmail.com> wrote:
-> >
-> > LiteX (https://github.com/enjoy-digital/litex) is a SoC framework
-> > that targets FPGAs. LiteSDCard is a small footprint, configurable
-> > SDCard core commonly used in LiteX designs.
-> >
-> > The driver was first written in May 2020 and has been maintained
-> > cooperatively by the LiteX community. Thanks to all contributors!
-> 
-> ...
-> 
-> > +       int ret;
-> > +
-> > +       host->irq = platform_get_irq_optional(host->dev, 0);
-> > +       if (host->irq <= 0) {
-> > +               dev_warn(dev, "Failed to get IRQ, using polling\n");
-> > +               goto use_polling;
-> > +       }
-> 
-> [Same comment as per v3.]
+This is an abandon sum and it belongs to our late customer Mr. Heidi
+Salf Al-Islam, a Libya oil tycoon who died with his family as result
+of war in Libya on 31th of December  2010/2011. This fund was left
+unclaimed in custody of the Firm for safe keeping and without a
+beneficiary.
 
-> This is wrong. It missed the deferred probe, for example.
-> 
-> The best approach is
-> 
-> ret = platform_get_irq_optional(...);
-> if (ret < 0 && ret != -ENXIO)
->   return ret;
-> if (ret > 0)
->   ...we got it...
-> 
-> It will allow the future API fix of platform_get_irq_optional() to be
-> really optional.
+The transaction has to be concluded as soon and as I confirm your
+readiness to proceed with me, I will provide you with details.please
+get back to me through this email (mrhassanr900@gmail.com)
 
-Thanks for the example. I still need to work in a decision to use
-polling, though. How about something like this instead:
-
-ret = platform_get_irq_optional(...);
-if (ret == -ENXIO)
-  goto use_polling;
-if (ret < 0)
-  return ret; // deferred probe (-EAGAIN likely?)
-if (ret > 0)
-  ...we got it, keep going...
-
-> 
-> ...
-> 
-> > +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> 
-> Why under ifdeffery?
-
-Because I only want to do it on 64-bit capable architectures.
-
-The alternative would be to call
-
-  dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(64));
-
-on *all* architectures, but ignore the returned error (-EIO,
-presumably on architetures that only support 32-bit DMA).
-
-Do you think that would be cleaner?
-
-Thanks,
---Gabriel
-
-> > +       /* increase from default 32 on 64-bit-DMA capable architectures */
-> > +       ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(64));
-> > +       if (ret)
-> > +               goto err;
-> > +#endif
-> 
-> With Best Regards,
-> Andy Shevchenko
+My best regards,
+     Mr. Hassan Rouhani
