@@ -2,53 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5857947F91C
-	for <lists+devicetree@lfdr.de>; Sun, 26 Dec 2021 22:54:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20D9347F963
+	for <lists+devicetree@lfdr.de>; Sun, 26 Dec 2021 23:38:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234677AbhLZVyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Dec 2021 16:54:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59286 "EHLO
+        id S234766AbhLZWiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Dec 2021 17:38:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234670AbhLZVyE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Dec 2021 16:54:04 -0500
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [IPv6:2404:9400:2:0:216:3eff:fee2:21ea])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C2C1C061401;
-        Sun, 26 Dec 2021 13:54:04 -0800 (PST)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4JMZLz0f5yz4xnD;
-        Mon, 27 Dec 2021 08:54:03 +1100 (AEDT)
-From:   Michael Ellerman <patch-notifications@ellerman.id.au>
-To:     Paul Mackerras <paulus@samba.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Rob Herring <robh@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>
-Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-In-Reply-To: <20211217221400.3667133-1-robh@kernel.org>
-References: <20211217221400.3667133-1-robh@kernel.org>
-Subject: Re: [PATCH] powerpc: dts: Remove "spidev" nodes
-Message-Id: <164055553337.3187272.12536677526522754431.b4-ty@ellerman.id.au>
-Date:   Mon, 27 Dec 2021 08:52:13 +1100
+        with ESMTP id S234756AbhLZWiO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Dec 2021 17:38:14 -0500
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 212D9C06173E;
+        Sun, 26 Dec 2021 14:38:14 -0800 (PST)
+Received: by mail-qt1-x82a.google.com with SMTP id q14so12170838qtx.10;
+        Sun, 26 Dec 2021 14:38:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Dla9HZIWln/w38OHK9SyCVvQ87bxB06+YbK7BEZQNuk=;
+        b=kD1AOoMph9bR4Z7V3dI87abKcVvDIFzS+XuKaZcQdnAOsbbAQfdbILdUiEkHEtn/+B
+         5vS8Gj6VGr6wLvhGRf371UNx8k0SvqhX4uIeZOqaC3BNLL9lTwcm3/tNEJ5XNOW/miNt
+         TeLQyAdmvSlYsv12qc8NmaXfgys4OwBwe2KQrz4uhG/derqnYDIoqRbjWtBlojH/O5uE
+         OKZKTUBzcErGjinsjZy1i/tMaBYXI4VWY9jRMt1oKpgvOAb8ILObb7804MZkXnHVmPyT
+         87S0EKQ8jpT1ZCcKf9GFdvA69omVIse4YcqfemBKyJf3B4haZDb/ZnNvNmuuDETx4+0g
+         kWmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Dla9HZIWln/w38OHK9SyCVvQ87bxB06+YbK7BEZQNuk=;
+        b=zWbLu81lrek4lLP8/tUljglUhYVs6cIQV2W54++8e4G7aqnrnuGfNNyVDeTdbKll1a
+         zj6gre8UUwOlVlxaeZ0UtCJ/0GKb9Dx8cr6VJBUoozg506467cm9XKvWySw3yb5YwUW1
+         wbTN1qHsmPWyApEj24FY0Pc/srlCGKNRzf3SJ6eejXhfRrRpILHRld1wskjst9+1FGHy
+         sOHAfurLXoKp56bOCCCxjbe04MbvTFqvvC6Uqidg1OiI0Z4q6ShaGP9pbIkCN1l20fMd
+         DYSxd6xVkkESuQNSap9nKJ8yAAffbJUQt2Z1OGGk2VhHayZumZZTB3il5sXomvi5wg0k
+         CdOA==
+X-Gm-Message-State: AOAM532zojs6mS6jTGI6WGDb9yEbYMwReQIe/i8AaNO3ZhdYo+kag7tT
+        +uxkeqSMMZY3Ihcq9kHIzgYU0PxSpgnhTw==
+X-Google-Smtp-Source: ABdhPJwIsWw5ueE5lr7FkHtsAXfzHMh7+pQ3ABzL4F/Id97HBHx1LHi9MVbrHbfJ8iV+UCeLPpcX9w==
+X-Received: by 2002:ac8:1e1b:: with SMTP id n27mr12640728qtl.618.1640558293006;
+        Sun, 26 Dec 2021 14:38:13 -0800 (PST)
+Received: from glsvmlin.ini.cmu.edu (GLSVMLIN.INI.CMU.EDU. [128.2.16.9])
+        by smtp.gmail.com with ESMTPSA id o17sm11863763qtv.87.2021.12.26.14.38.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Dec 2021 14:38:12 -0800 (PST)
+Date:   Sun, 26 Dec 2021 17:37:54 -0500
+From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>, krakoczy@antmicro.com,
+        mdudek@internships.antmicro.com, paulus@ozlabs.org,
+        Joel Stanley <joel@jms.id.au>,
+        Stafford Horne <shorne@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
+        Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [PATCH v5 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+Message-ID: <Ycjuwqgj9UV//dxd@glsvmlin.ini.cmu.edu>
+References: <20211215130711.111186-1-gsomlo@gmail.com>
+ <20211215130711.111186-4-gsomlo@gmail.com>
+ <CAHp75Vf7ktdoBoOHVE72LO19vxZiQ82eBg9_xP2ywB6c4yqXWQ@mail.gmail.com>
+ <YchV5UvIq7xgkbF6@glsvmlin.ini.cmu.edu>
+ <CAHp75VfDq+QM30tmCy2Wg+fj+mqervh2=1LVD5BwyVmbm1PYgQ@mail.gmail.com>
+ <Ychv7z6ggZGRY08l@glsvmlin.ini.cmu.edu>
+ <CAHp75VcTZzqvOLEOs50PD48P55f_EnBHjDiNBS-LPfSXhMxRAQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75VcTZzqvOLEOs50PD48P55f_EnBHjDiNBS-LPfSXhMxRAQ@mail.gmail.com>
+X-Clacks-Overhead: GNU Terry Pratchett
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Dec 2021 16:14:00 -0600, Rob Herring wrote:
-> "spidev" is not a real device, but a Linux implementation detail. It has
-> never been documented either. The kernel has WARNed on the use of it for
-> over 6 years. Time to remove its usage from the tree.
+On Sun, Dec 26, 2021 at 04:01:03PM +0200, Andy Shevchenko wrote:
+> On Sun, Dec 26, 2021 at 3:36 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+> > On Sun, Dec 26, 2021 at 03:13:21PM +0200, Andy Shevchenko wrote:
+> > > On Sun, Dec 26, 2021 at 1:45 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+> > > > On Sat, Dec 25, 2021 at 06:43:22PM +0200, Andy Shevchenko wrote:
+> > > > > On Wed, Dec 15, 2021 at 10:00 PM Gabriel Somlo <gsomlo@gmail.com> wrote:
 > 
+> ...
 > 
+> > > > > > +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
+> > > > >
+> > > > > Why under ifdeffery?
+> > > >
+> > > > Because I only want to do it on 64-bit capable architectures.
+> > > >
+> > > > The alternative would be to call
+> > > >
+> > > >   dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(64));
+> > > >
+> > > > on *all* architectures, but ignore the returned error (-EIO,
+> > > > presumably on architetures that only support 32-bit DMA).
+> > >
+> > > I don't understand why you are supposed to ignore errors and why you
+> > > expect to get such.
+> >
+> > If I call `dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(64));`
+> > on a machine where `CONFIG_ARCH_DMA_ADDR_T_64BIT` is *not* set, I
+> > expect an error. The implicit default
+> > (per Documentation/core-api/dma-api-howto.rst), is DMA_BIT_MASK(32).
+> > I'm working under the impression that on machines with
+> > CONFIG_ARCH_DMA_ADDR_T_64BIT I should increase that to DMA_BIT_MASK(64).
+> >
+> > So if I don't #ifdef it, that call will fail on machines supporting
+> > only 32-bits.
+> >
+> > What am I missing?
+> 
+> This thread: https://lkml.org/lkml/2021/6/7/398 ?
 
-Applied to powerpc/next.
+OK, so just call `dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(64));`
+regardless of 32- or 64-bit dma capability, *do* check the return value,
+and it should *not* fail on 32-bit systems.
 
-[1/1] powerpc: dts: Remove "spidev" nodes
-      https://git.kernel.org/powerpc/c/9cbbe6bae938dd335a5092b0ce41f88cb39ba40c
+I'll do that in v6 (should go out in early January '22, since I'm traveling
+with only occasional email access at the moment).
 
-cheers
+Thanks,
+--Gabriel
