@@ -2,114 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 656F747F70A
-	for <lists+devicetree@lfdr.de>; Sun, 26 Dec 2021 15:01:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC34C47F76F
+	for <lists+devicetree@lfdr.de>; Sun, 26 Dec 2021 16:34:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231429AbhLZOBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Dec 2021 09:01:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42002 "EHLO
+        id S233745AbhLZPe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Dec 2021 10:34:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230035AbhLZOBl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Dec 2021 09:01:41 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41569C06173E;
-        Sun, 26 Dec 2021 06:01:41 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id o20so51816929eds.10;
-        Sun, 26 Dec 2021 06:01:41 -0800 (PST)
+        with ESMTP id S233703AbhLZPe0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Dec 2021 10:34:26 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41BDEC061757
+        for <devicetree@vger.kernel.org>; Sun, 26 Dec 2021 07:34:25 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id g26so29680777lfv.11
+        for <devicetree@vger.kernel.org>; Sun, 26 Dec 2021 07:34:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DpJIUbj9tBFYqlvv9yvDGLLOioxncOCxtxthXuJR5jk=;
-        b=HAJP3eQJ6YmuhVuh1u4jcJqBthQhBJAWQbYRUMSo6wnuYFbjYErut4KBp+Sau6Dy73
-         2fDaH0tsQMg+HMipngLmAvCbRUuk4biUpUMCfCJx5FMHKfY3eWcFXWnIeUSjc841d+nC
-         5mISGMsDVJ2Q5WmmaRXd9+m++FIo9OgREYJzH3+puQa8VpHiPdmOLcAzXPXdyvUEUstL
-         4jqQHECwm58KwiWp7u5TFy7XWr4FDq/FQETv/iQQ2gfFqbDKY0K0DWLFXOXAzLV3ehR9
-         SK7bWkeog6L8x6fqb4j1WvaR1H0/QXCTh4hIna/hh1xc+p7MZfAcaRWyFvJV1Xg7NwCT
-         yunA==
+        d=cogentembedded-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=WKOhgFA6EDwm88QeGjFMZpYe/CzCFPYOKrRLqO3vV1k=;
+        b=SaKmJaAjNcM38WDeiEpQvB/UDGXuxDY9zScCFHrNM8tcwGHY+atfBHItPABb3EYyTE
+         lnj03VfCWZ5yNBTzCfnBCzVDQ0fnfPrz1/wER+E30UP4333/2hY+86NABzb7R11k1OA1
+         0k84s65GEGLtSGcU2VmZdBNcAnHesg7LGIANKwvN3rw29kYyVaGH/uhEoYqRwO8XpX+J
+         b/Ix2TbNX9SLnPktJNZmQJ1jiR4gSDghVU7CV28AGC01u+LG4RI6gYze3wJyk8mCqTM8
+         5/ZF32IgI1hIVVYP0M2PUH8nGf5Lu4Esa+WC7vG9CRVtI8GHohA+TgGa+rJSsmsPsDTD
+         Bnbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DpJIUbj9tBFYqlvv9yvDGLLOioxncOCxtxthXuJR5jk=;
-        b=g7tOhcoItpZTvY+D/lsXEh+TuuVyenXDsWGqdMj7J/z0ilkv5idvaajAcxBKhktIKX
-         /065HQCg6ZbkIjaIDZa/U2Itdm897Y0LvH/CUI0CS/vb1wnsLy1nAgYdsoUAmGqPUbN9
-         ThOAf96K6NVbtAKebY1ojcXD33SewcAGn3JqaUz4gMC6uPBVCLAmVjKaz7rQX1xYfQrK
-         RHlXvfMG7QEWIgjrWfuWGyBDwpXbC+VT2u5At4t8Rhb9L1WHIiglGypanDt/QPMQT0pp
-         HK5E+x8Po87xBsAelsIir4TtRWufTLkg3n1vvEpwYppNTQarG17H/QvjB9FpvU4PYDtI
-         zRWQ==
-X-Gm-Message-State: AOAM531QsSexvJLJiT+x/S4CnBfUhj6RbdUtRvbcVTrC1rrcq6nuUObj
-        rGQ6r3tMUC6OLBMGaZ0+zRuLN2YsteRKBiwuXrA=
-X-Google-Smtp-Source: ABdhPJy8YSypp1U3p7uN6w3i/OJLZZZzxtLVOBZz1MUbCsqSBqnzweBiNog30d2xuCFSgXtjdPEpLU+86XwJ81v3ubY=
-X-Received: by 2002:a50:e611:: with SMTP id y17mr12618798edm.270.1640527299727;
- Sun, 26 Dec 2021 06:01:39 -0800 (PST)
-MIME-Version: 1.0
-References: <20211215130711.111186-1-gsomlo@gmail.com> <20211215130711.111186-4-gsomlo@gmail.com>
- <CAHp75Vf7ktdoBoOHVE72LO19vxZiQ82eBg9_xP2ywB6c4yqXWQ@mail.gmail.com>
- <YchV5UvIq7xgkbF6@glsvmlin.ini.cmu.edu> <CAHp75VfDq+QM30tmCy2Wg+fj+mqervh2=1LVD5BwyVmbm1PYgQ@mail.gmail.com>
- <Ychv7z6ggZGRY08l@glsvmlin.ini.cmu.edu>
-In-Reply-To: <Ychv7z6ggZGRY08l@glsvmlin.ini.cmu.edu>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sun, 26 Dec 2021 16:01:03 +0200
-Message-ID: <CAHp75VcTZzqvOLEOs50PD48P55f_EnBHjDiNBS-LPfSXhMxRAQ@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] mmc: Add driver for LiteX's LiteSDCard interface
-To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=WKOhgFA6EDwm88QeGjFMZpYe/CzCFPYOKrRLqO3vV1k=;
+        b=KhXY4bX0pLgCOFqAW23eqUHkxkaUfCUF4ewxxMfhxfJ8WkW5rjkOhNnTwna/PYGxZq
+         lo2O7JGWPltDx9c+XmVrxVh07rfFU6aQnUxsVU+NiFMzvdFt7MrLQ221QTQoRINHtyVp
+         zKvJunYH68FCcUGt6R9CmXXKQaDFuwjoFS9sceU+G4clVDsaHhvHsf+Um8BZ22rHnb08
+         NcTkEM2upc325dfXP3vzRT9lAumQEx0i7TrWrGPNtifXNdfYzkI3fhWk46C7Vk4FB00P
+         9/INrUv3PFnzHsw7hivo4YfPW7qyME8BDQ+rZq0tk6plu630kO5+YJ7bSW8fRqYdJShz
+         8N2Q==
+X-Gm-Message-State: AOAM533arD3TSGVlOugTrL3hdbhTLgHslHRbhwaJAEv86XA83XbfmJwj
+        PD/y1m8PGFMkcIAOHQ50rPR4Ng==
+X-Google-Smtp-Source: ABdhPJzKPNqyGHVcxaijR/QircqRFVi3vsCTgIQTUsGh2adgcNzCVL+1DsTHPd7iRHvAttj++G1Cjw==
+X-Received: by 2002:a05:6512:15b:: with SMTP id m27mr9770330lfo.218.1640532863400;
+        Sun, 26 Dec 2021 07:34:23 -0800 (PST)
+Received: from cobook.home ([176.59.43.180])
+        by smtp.gmail.com with ESMTPSA id p14sm1388402ljj.12.2021.12.26.07.34.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Dec 2021 07:34:22 -0800 (PST)
+From:   Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>, krakoczy@antmicro.com,
-        mdudek@internships.antmicro.com, paulus@ozlabs.org,
-        Joel Stanley <joel@jms.id.au>,
-        Stafford Horne <shorne@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
-        Randy Dunlap <rdunlap@infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Christian Gromm <christian.gromm@microchip.com>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+Subject: [PATCH 3/3 v2] arm64: dts: renesas: add MOST device
+Date:   Sun, 26 Dec 2021 18:33:50 +0300
+Message-Id: <20211226153349.2296024-1-nikita.yoush@cogentembedded.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20211226082530.2245198-4-nikita.yoush@cogentembedded.com>
+References: <20211226082530.2245198-4-nikita.yoush@cogentembedded.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 26, 2021 at 3:36 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
-> On Sun, Dec 26, 2021 at 03:13:21PM +0200, Andy Shevchenko wrote:
-> > On Sun, Dec 26, 2021 at 1:45 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
-> > > On Sat, Dec 25, 2021 at 06:43:22PM +0200, Andy Shevchenko wrote:
-> > > > On Wed, Dec 15, 2021 at 10:00 PM Gabriel Somlo <gsomlo@gmail.com> wrote:
+This patch adds mlp device to dtsi files for R-Car Gen3 SoCs that have
+it.
 
-...
+Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+---
+Change from v1:
+- fix power domain ids so all dtbs build properly
 
-> > > > > +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> > > >
-> > > > Why under ifdeffery?
-> > >
-> > > Because I only want to do it on 64-bit capable architectures.
-> > >
-> > > The alternative would be to call
-> > >
-> > >   dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(64));
-> > >
-> > > on *all* architectures, but ignore the returned error (-EIO,
-> > > presumably on architetures that only support 32-bit DMA).
-> >
-> > I don't understand why you are supposed to ignore errors and why you
-> > expect to get such.
->
-> If I call `dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(64));`
-> on a machine where `CONFIG_ARCH_DMA_ADDR_T_64BIT` is *not* set, I
-> expect an error. The implicit default
-> (per Documentation/core-api/dma-api-howto.rst), is DMA_BIT_MASK(32).
-> I'm working under the impression that on machines with
-> CONFIG_ARCH_DMA_ADDR_T_64BIT I should increase that to DMA_BIT_MASK(64).
->
-> So if I don't #ifdef it, that call will fail on machines supporting
-> only 32-bits.
->
-> What am I missing?
+ arch/arm64/boot/dts/renesas/r8a77951.dtsi | 13 +++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77960.dtsi | 13 +++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77961.dtsi | 13 +++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77965.dtsi | 13 +++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77990.dtsi | 13 +++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77995.dtsi | 13 +++++++++++++
+ 6 files changed, 78 insertions(+)
 
-This thread: https://lkml.org/lkml/2021/6/7/398 ?
-
+diff --git a/arch/arm64/boot/dts/renesas/r8a77951.dtsi b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+index 1768a3e6bb8d..179d860ab9c3 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+@@ -2412,6 +2412,19 @@ ssi9: ssi-9 {
+ 			};
+ 		};
+ 
++		mlp: mlp@ec520000 {
++			compatible = "renesas,rcar-gen3-mlp";
++			reg = <0 0xec520000 0 0x800>;
++			interrupts = <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 385 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 388 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 802>;
++			power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
++			status = "disabled";
++		};
++
+ 		audma0: dma-controller@ec700000 {
+ 			compatible = "renesas,dmac-r8a7795",
+ 				     "renesas,rcar-dmac";
+diff --git a/arch/arm64/boot/dts/renesas/r8a77960.dtsi b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+index 2bd8169735d3..1e90e848d2c8 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77960.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+@@ -2284,6 +2284,19 @@ ssiu97: ssiu-51 {
+ 			};
+ 		};
+ 
++		mlp: mlp@ec520000 {
++			compatible = "renesas,rcar-gen3-mlp";
++			reg = <0 0xec520000 0 0x800>;
++			interrupts = <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 385 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 388 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 802>;
++			power-domains = <&sysc R8A7796_PD_ALWAYS_ON>;
++			status = "disabled";
++		};
++
+ 		audma0: dma-controller@ec700000 {
+ 			compatible = "renesas,dmac-r8a7796",
+ 				     "renesas,rcar-dmac";
+diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+index a34d5b1d6431..eb70b601191b 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+@@ -2128,6 +2128,19 @@ ssiu97: ssiu-51 {
+ 			};
+ 		};
+ 
++		mlp: mlp@ec520000 {
++			compatible = "renesas,rcar-gen3-mlp";
++			reg = <0 0xec520000 0 0x800>;
++			interrupts = <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 385 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 388 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 802>;
++			power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
++			status = "disabled";
++		};
++
+ 		audma0: dma-controller@ec700000 {
+ 			compatible = "renesas,dmac-r8a77961",
+ 				     "renesas,rcar-dmac";
+diff --git a/arch/arm64/boot/dts/renesas/r8a77965.dtsi b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
+index 08df75606430..293021f59818 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77965.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
+@@ -2147,6 +2147,19 @@ ssi9: ssi-9 {
+ 			};
+ 		};
+ 
++		mlp: mlp@ec520000 {
++			compatible = "renesas,rcar-gen3-mlp";
++			reg = <0 0xec520000 0 0x800>;
++			interrupts = <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 385 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 388 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 802>;
++			power-domains = <&sysc R8A77965_PD_ALWAYS_ON>;
++			status = "disabled";
++		};
++
+ 		audma0: dma-controller@ec700000 {
+ 			compatible = "renesas,dmac-r8a77965",
+ 				     "renesas,rcar-dmac";
+diff --git a/arch/arm64/boot/dts/renesas/r8a77990.dtsi b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+index 0ea300a8147d..232391fd0751 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+@@ -1682,6 +1682,19 @@ ssi9: ssi-9 {
+ 			};
+ 		};
+ 
++		mlp: mlp@ec520000 {
++			compatible = "renesas,rcar-gen3-mlp";
++			reg = <0 0xec520000 0 0x800>;
++			interrupts = <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 385 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 388 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 802>;
++			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
++			status = "disabled";
++		};
++
+ 		audma0: dma-controller@ec700000 {
+ 			compatible = "renesas,dmac-r8a77990",
+ 				     "renesas,rcar-dmac";
+diff --git a/arch/arm64/boot/dts/renesas/r8a77995.dtsi b/arch/arm64/boot/dts/renesas/r8a77995.dtsi
+index 16ad5fc23a67..33d9ed431d9c 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77995.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77995.dtsi
+@@ -1132,6 +1132,19 @@ ssi4: ssi-4 {
+ 			};
+ 		};
+ 
++		mlp: mlp@ec520000 {
++			compatible = "renesas,rcar-gen3-mlp";
++			reg = <0 0xec520000 0 0x800>;
++			interrupts = <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 385 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 388 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 802>;
++			power-domains = <&sysc R8A77995_PD_ALWAYS_ON>;
++			status = "disabled";
++		};
++
+ 		audma0: dma-controller@ec700000 {
+ 			compatible = "renesas,dmac-r8a77995",
+ 				     "renesas,rcar-dmac";
 -- 
-With Best Regards,
-Andy Shevchenko
+2.30.2
+
