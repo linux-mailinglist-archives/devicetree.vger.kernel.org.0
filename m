@@ -2,130 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20D9347F963
-	for <lists+devicetree@lfdr.de>; Sun, 26 Dec 2021 23:38:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C13347F981
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 00:34:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234766AbhLZWiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Dec 2021 17:38:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40612 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234756AbhLZWiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Dec 2021 17:38:14 -0500
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 212D9C06173E;
-        Sun, 26 Dec 2021 14:38:14 -0800 (PST)
-Received: by mail-qt1-x82a.google.com with SMTP id q14so12170838qtx.10;
-        Sun, 26 Dec 2021 14:38:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Dla9HZIWln/w38OHK9SyCVvQ87bxB06+YbK7BEZQNuk=;
-        b=kD1AOoMph9bR4Z7V3dI87abKcVvDIFzS+XuKaZcQdnAOsbbAQfdbILdUiEkHEtn/+B
-         5vS8Gj6VGr6wLvhGRf371UNx8k0SvqhX4uIeZOqaC3BNLL9lTwcm3/tNEJ5XNOW/miNt
-         TeLQyAdmvSlYsv12qc8NmaXfgys4OwBwe2KQrz4uhG/derqnYDIoqRbjWtBlojH/O5uE
-         OKZKTUBzcErGjinsjZy1i/tMaBYXI4VWY9jRMt1oKpgvOAb8ILObb7804MZkXnHVmPyT
-         87S0EKQ8jpT1ZCcKf9GFdvA69omVIse4YcqfemBKyJf3B4haZDb/ZnNvNmuuDETx4+0g
-         kWmA==
+        id S234828AbhLZXeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Dec 2021 18:34:16 -0500
+Received: from mail-qt1-f176.google.com ([209.85.160.176]:43986 "EHLO
+        mail-qt1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234825AbhLZXeP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Dec 2021 18:34:15 -0500
+Received: by mail-qt1-f176.google.com with SMTP id q14so12232934qtx.10;
+        Sun, 26 Dec 2021 15:34:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Dla9HZIWln/w38OHK9SyCVvQ87bxB06+YbK7BEZQNuk=;
-        b=zWbLu81lrek4lLP8/tUljglUhYVs6cIQV2W54++8e4G7aqnrnuGfNNyVDeTdbKll1a
-         zj6gre8UUwOlVlxaeZ0UtCJ/0GKb9Dx8cr6VJBUoozg506467cm9XKvWySw3yb5YwUW1
-         wbTN1qHsmPWyApEj24FY0Pc/srlCGKNRzf3SJ6eejXhfRrRpILHRld1wskjst9+1FGHy
-         sOHAfurLXoKp56bOCCCxjbe04MbvTFqvvC6Uqidg1OiI0Z4q6ShaGP9pbIkCN1l20fMd
-         DYSxd6xVkkESuQNSap9nKJ8yAAffbJUQt2Z1OGGk2VhHayZumZZTB3il5sXomvi5wg0k
-         CdOA==
-X-Gm-Message-State: AOAM532zojs6mS6jTGI6WGDb9yEbYMwReQIe/i8AaNO3ZhdYo+kag7tT
-        +uxkeqSMMZY3Ihcq9kHIzgYU0PxSpgnhTw==
-X-Google-Smtp-Source: ABdhPJwIsWw5ueE5lr7FkHtsAXfzHMh7+pQ3ABzL4F/Id97HBHx1LHi9MVbrHbfJ8iV+UCeLPpcX9w==
-X-Received: by 2002:ac8:1e1b:: with SMTP id n27mr12640728qtl.618.1640558293006;
-        Sun, 26 Dec 2021 14:38:13 -0800 (PST)
-Received: from glsvmlin.ini.cmu.edu (GLSVMLIN.INI.CMU.EDU. [128.2.16.9])
-        by smtp.gmail.com with ESMTPSA id o17sm11863763qtv.87.2021.12.26.14.38.11
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=NETpgQreEkE0gE9DQPwpFwXA1UStvlAU8ygbD7hK0Xk=;
+        b=sSJF8U6ipR58Rj9cbyqf+uzLiI7il0x8Mi6pVFPkYqfGK5HPb4ThoFp3xLAIglmDGV
+         L4r3lTtzlwt7QSVxKsg9VwBzDGYQ+vNzmSE7Lu6cpjjQ3LbMPH6qOzKZQgch8jZLSc6r
+         HEk1IVy2Ck3JCXto7C9yLe4j5/SLseDqDQWiPg9GV3ILbCzcKE4AcPJvMRMw3cbW36AG
+         +CrHB1GE2ebK5E8KghCZ3LQm8hsxidSoWi5HnIyx+5U2UmXxl9GjrTOG5FZCflpxhToC
+         baAjp16XF9Fpx8/hYOUQuN0IwoJsUUUBjnBUsP93Uk9ytBFEoq515ktnfhBsNXBg0Cuj
+         m6kw==
+X-Gm-Message-State: AOAM532X0Z3vz+sSqAZfJq8eIlmaBiCdBJDc/IWTwgkO8XN7omQqjFVK
+        T83I38JojqipMbbSqeV1rg==
+X-Google-Smtp-Source: ABdhPJwmB8l3yVdPMaOhVjqp2R1FQK7EFPIjxgr6FKQwo2ucLUotMAZlPjmh25e/mpIixU+4R6wxYQ==
+X-Received: by 2002:a05:622a:194:: with SMTP id s20mr13118002qtw.617.1640561654156;
+        Sun, 26 Dec 2021 15:34:14 -0800 (PST)
+Received: from robh.at.kernel.org ([24.55.105.145])
+        by smtp.gmail.com with ESMTPSA id y124sm11455493qkd.105.2021.12.26.15.34.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Dec 2021 14:38:12 -0800 (PST)
-Date:   Sun, 26 Dec 2021 17:37:54 -0500
-From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>, krakoczy@antmicro.com,
-        mdudek@internships.antmicro.com, paulus@ozlabs.org,
-        Joel Stanley <joel@jms.id.au>,
-        Stafford Horne <shorne@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
-        Randy Dunlap <rdunlap@infradead.org>
-Subject: Re: [PATCH v5 3/3] mmc: Add driver for LiteX's LiteSDCard interface
-Message-ID: <Ycjuwqgj9UV//dxd@glsvmlin.ini.cmu.edu>
-References: <20211215130711.111186-1-gsomlo@gmail.com>
- <20211215130711.111186-4-gsomlo@gmail.com>
- <CAHp75Vf7ktdoBoOHVE72LO19vxZiQ82eBg9_xP2ywB6c4yqXWQ@mail.gmail.com>
- <YchV5UvIq7xgkbF6@glsvmlin.ini.cmu.edu>
- <CAHp75VfDq+QM30tmCy2Wg+fj+mqervh2=1LVD5BwyVmbm1PYgQ@mail.gmail.com>
- <Ychv7z6ggZGRY08l@glsvmlin.ini.cmu.edu>
- <CAHp75VcTZzqvOLEOs50PD48P55f_EnBHjDiNBS-LPfSXhMxRAQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHp75VcTZzqvOLEOs50PD48P55f_EnBHjDiNBS-LPfSXhMxRAQ@mail.gmail.com>
-X-Clacks-Overhead: GNU Terry Pratchett
+        Sun, 26 Dec 2021 15:34:13 -0800 (PST)
+Received: (nullmailer pid 393573 invoked by uid 1000);
+        Sun, 26 Dec 2021 23:34:07 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Kalle Valo <kvalo@codeaurora.org>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
+        "Daniel (Deognyoun) Kim" <dekim@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Wright Feng <wright.feng@infineon.com>,
+        brcm80211-dev-list.pdl@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Len Brown <lenb@kernel.org>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        linux-acpi@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Franky Lin <franky.lin@broadcom.com>,
+        linux-wireless@vger.kernel.org, SHA-cyfmac-dev-list@infineon.com,
+        Hans de Goede <hdegoede@redhat.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>
+In-Reply-To: <20211226153624.162281-2-marcan@marcan.st>
+References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-2-marcan@marcan.st>
+Subject: Re: [PATCH 01/34] dt-bindings: net: bcm4329-fmac: Add Apple properties & chips
+Date:   Sun, 26 Dec 2021 19:34:07 -0400
+Message-Id: <1640561647.363614.393572.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 26, 2021 at 04:01:03PM +0200, Andy Shevchenko wrote:
-> On Sun, Dec 26, 2021 at 3:36 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
-> > On Sun, Dec 26, 2021 at 03:13:21PM +0200, Andy Shevchenko wrote:
-> > > On Sun, Dec 26, 2021 at 1:45 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
-> > > > On Sat, Dec 25, 2021 at 06:43:22PM +0200, Andy Shevchenko wrote:
-> > > > > On Wed, Dec 15, 2021 at 10:00 PM Gabriel Somlo <gsomlo@gmail.com> wrote:
+On Mon, 27 Dec 2021 00:35:51 +0900, Hector Martin wrote:
+> This binding is currently used for SDIO devices, but these chips are
+> also used as PCIe devices on DT platforms and may be represented in the
+> DT. Re-use the existing binding and add chip compatibles used by Apple
+> T2 and M1 platforms (the T2 ones are not known to be used in DT
+> platforms, but we might as well document them).
 > 
-> ...
+> Then, add properties required for firmware selection and calibration on
+> M1 machines.
 > 
-> > > > > > +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> > > > >
-> > > > > Why under ifdeffery?
-> > > >
-> > > > Because I only want to do it on 64-bit capable architectures.
-> > > >
-> > > > The alternative would be to call
-> > > >
-> > > >   dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(64));
-> > > >
-> > > > on *all* architectures, but ignore the returned error (-EIO,
-> > > > presumably on architetures that only support 32-bit DMA).
-> > >
-> > > I don't understand why you are supposed to ignore errors and why you
-> > > expect to get such.
-> >
-> > If I call `dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(64));`
-> > on a machine where `CONFIG_ARCH_DMA_ADDR_T_64BIT` is *not* set, I
-> > expect an error. The implicit default
-> > (per Documentation/core-api/dma-api-howto.rst), is DMA_BIT_MASK(32).
-> > I'm working under the impression that on machines with
-> > CONFIG_ARCH_DMA_ADDR_T_64BIT I should increase that to DMA_BIT_MASK(64).
-> >
-> > So if I don't #ifdef it, that call will fail on machines supporting
-> > only 32-bits.
-> >
-> > What am I missing?
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  .../net/wireless/brcm,bcm4329-fmac.yaml       | 32 +++++++++++++++++--
+>  1 file changed, 29 insertions(+), 3 deletions(-)
 > 
-> This thread: https://lkml.org/lkml/2021/6/7/398 ?
 
-OK, so just call `dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(64));`
-regardless of 32- or 64-bit dma capability, *do* check the return value,
-and it should *not* fail on 32-bit systems.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-I'll do that in v6 (should go out in early January '22, since I'm traveling
-with only occasional email access at the moment).
+yamllint warnings/errors:
 
-Thanks,
---Gabriel
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml: properties:apple,antenna-sku: '$def' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'type', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml: properties:apple,antenna-sku: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('$def' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml: properties:apple,antenna-sku: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml: properties:apple,antenna-sku: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml: ignoring, error in schema: properties: apple,antenna-sku
+Documentation/devicetree/bindings/mmc/mmc-controller.example.dt.yaml:0:0: /example-0/mmc@1c12000/wifi@1: failed to match any schema with compatible: ['brcm,bcm4329-fmac']
+Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.example.dt.yaml:0:0: /example-0/mmc@80118000/wifi@1: failed to match any schema with compatible: ['brcm,bcm4334-fmac', 'brcm,bcm4329-fmac']
+Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.example.dt.yaml:0:0: /example-0/mmc@80118000/wifi@1: failed to match any schema with compatible: ['brcm,bcm4334-fmac', 'brcm,bcm4329-fmac']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1573232
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
