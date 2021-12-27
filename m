@@ -2,83 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EC7F480298
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 18:08:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B61DD4802BA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 18:23:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229975AbhL0RId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 12:08:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59094 "EHLO
+        id S229674AbhL0RXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 12:23:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbhL0RId (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 12:08:33 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5045C06173E;
-        Mon, 27 Dec 2021 09:08:32 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id o6so64008082edc.4;
-        Mon, 27 Dec 2021 09:08:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CP3XLT+70/9TbwzYF+eOW8bBY3OtuRCt28EaG1yMPjI=;
-        b=ZnWgZ0/0+2JOJyXbSy/uJJqVU9N3F81fLwani2ZdxqnjQ6ee+RKGAnTIPGF3VTsQrv
-         cGkJvJlXYxfFRcESX6Pep4WvIMU+U37QjIhQcz5I+XGEZD41vGYKR/lsod8ChOEXq0C3
-         FWPM+c6olxDPS4EQOmijx/UDUr2z/aOQ3jOzwm1hYnW9+sh6pm+DgaRPFojfC74wJ2c8
-         GI25ZBCRQc+WVcoslQOmdszG+hppBi2CMx5b+JBy+o2QGToU8BXiJWZGWxGlt3/FiklY
-         KABhbwkW7OWX7FrWeDr1J5qUIgX6fM53zrs8wMnuV+nQOzmKxfbIv/DWK2iXaq5k2dMU
-         r13g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CP3XLT+70/9TbwzYF+eOW8bBY3OtuRCt28EaG1yMPjI=;
-        b=HZNPMahL5J6Psp99tCv5R7XwBx6qTvdVB0Dn/K8CKRc5MP6NQywEq4z8qgskAwMtH2
-         NKZ+Cyfa8c16i52Tkl0L3CrXvNzAk2TheQjXaRVA+gxSid1nqJ68NK2KXwm6ZYtIeVO+
-         mYTCNunAXArnBoLdQytD5zV7nwLbe+VFkiKr/AQVPBQMiTS98ZCqzAgO8jXaH1w8DweS
-         aSboiHfYljdxT6DrubKe9xUMFBGifDZralb1lyChviKo8xOUVijONuuTHfp5LSHD5LQz
-         VXUKrisnWe222ive2fpiz/u95YzXUf+ygkhuntG5nuMzg+hQ8aP5egfBUFxs4NMZ+4RS
-         +u+w==
-X-Gm-Message-State: AOAM531zJF1j63H8Bg8QUxLCUwhokUL90xreGZd/pvQVZ5YzfS44BKuI
-        yGJNz+CLJ2xAKWOcBxCPer37u/jVZl6TnV5QAYU=
-X-Google-Smtp-Source: ABdhPJwpCEJ3+l77fWb2qzfj5ZSxrhjxVBVPcL+FNzq7vm4rd82I+aiVNvv5fk2DIsZzjCAxljBFKp/Di6bSsbjLSo8=
-X-Received: by 2002:a05:6402:1c08:: with SMTP id ck8mr17033688edb.32.1640624911401;
- Mon, 27 Dec 2021 09:08:31 -0800 (PST)
-MIME-Version: 1.0
-References: <20211227054529.30586-1-xianwei.zhao@amlogic.com> <1640619206.696540.519387.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1640619206.696540.519387.nullmailer@robh.at.kernel.org>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Mon, 27 Dec 2021 18:08:20 +0100
-Message-ID: <CAFBinCAhbJUevamYqmzrFsVcXoK8Wcntem9VmYUpBL8ktEsVAA@mail.gmail.com>
-Subject: Re: [PATCH V3] dt-bindings: serial: amlogic, meson-uart: support S4
+        with ESMTP id S229508AbhL0RXO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 12:23:14 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B432C06173E;
+        Mon, 27 Dec 2021 09:23:14 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 79C56419BC;
+        Mon, 27 Dec 2021 17:23:05 +0000 (UTC)
 To:     Rob Herring <robh@kernel.org>
-Cc:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        kelvin.zhang@amlogic.com, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-serial@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Cc:     Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20211226153624.162281-1-marcan@marcan.st>
+ <20211226153624.162281-2-marcan@marcan.st>
+ <YcnrjySZ9mPbkidZ@robh.at.kernel.org>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 01/34] dt-bindings: net: bcm4329-fmac: Add Apple
+ properties & chips
+Message-ID: <1e5e88a1-5457-2211-dc08-fe98415ae21b@marcan.st>
+Date:   Tue, 28 Dec 2021 02:23:02 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <YcnrjySZ9mPbkidZ@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 27, 2021 at 4:33 PM Rob Herring <robh@kernel.org> wrote:
-[...]
-> serial@84dc: compatible: 'oneOf' conditional failed, one must be fixed:
->         arch/arm/boot/dts/meson6-atv1200.dt.yaml
->         arch/arm/boot/dts/meson8b-ec100.dt.yaml
->         arch/arm/boot/dts/meson8b-mxq.dt.yaml
->         arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
->         arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
->         arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-The warnings from this section (affecting arch/arm/boot/dts/meson*)
-have been there before this patch already.
-I am going to send a patch to clean them up so it doesn't cause
-further confusion in the future.
+On 28/12/2021 01.36, Rob Herring wrote:
+> On Mon, Dec 27, 2021 at 12:35:51AM +0900, Hector Martin wrote:
+>> +  brcm,cal-blob:
+>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>> +    description: A per-device calibration blob for the Wi-Fi radio. This
+>> +      should be filled in by the bootloader from platform configuration
+>> +      data, if necessary, and will be uploaded to the device if present.
+>> +
+>> +  apple,module-instance:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description: Module codename used to identify a specific board on
+>> +      Apple platforms. This is used to build the firmware filenames, to allow
+>> +      different platforms to have different firmware and/or NVRAM config.
+>> +
+>> +  apple,antenna-sku:
+>> +    $def: /schemas/types.yaml#/definitions/string
+>> +    description: Antenna SKU used to identify a specific antenna configuration
+>> +      on Apple platforms. This is use to build firmware filenames, to allow
+>> +      platforms with different antenna configs to have different firmware and/or
+>> +      NVRAM. This would normally be filled in by the bootloader from platform
+>> +      configuration data.
+> 
+> Is there a known set of strings that can be defined?
 
+For apple,module-instance there is, though it will grow with every new
+machine. If you're happy with me pushing updates to this through
+asahi-soc I can keep it maintained as we add DTs and compatibles there.
 
-Best regards,
-Martin
+I'm curious whether you prefer this approach or something like
+brcm,board-name instead. Right now we do:
+
+apple,module-instance = "honshu"
+
+That gets converted to board_name="apple,honshu" in the code, which is
+what the firmwares are named after (plus extra info later appended, if
+the rest of the Apple data is available).
+
+But we could also do:
+
+brcm,board-name = "apple,honshu"
+
+The latter would be more generically useful for other platforms, since
+it would allow e.g. having DTs for different boards that use the same
+WiFi module/subsystem and thus a compatible NVRAM fw file alias to the
+same file name (right now this is done with symlinks in /lib/firmware,
+one for each equivalent board). For non-Apple platforms (i.e. if
+antenna-sku and/or the OTP aren't available to do the funky Apple
+firmware selection), this just ends up replacing what would normally be
+the OF root node compatible in the firmware filename.
+
+E.g. right now we have:
+
+brcmfmac43430-sdio.AP6212.txt
+brcmfmac43430-sdio.raspberrypi,3-model-b.txt
+brcmfmac43430-sdio.raspberrypi,model-zero-w.txt -> brcmfmac43430-sdio.raspberrypi,3-model-b.txt
+brcmfmac43430-sdio.sinovoip,bpi-m2-plus.txt -> brcmfmac43430-sdio.AP6212.txt
+brcmfmac43430-sdio.sinovoip,bpi-m2-ultra.txt -> brcmfmac43430-sdio.AP6212.txt
+brcmfmac43430-sdio.sinovoip,bpi-m2-zero.txt -> brcmfmac43430-sdio.AP6212.txt
+brcmfmac43430-sdio.sinovoip,bpi-m3.txt -> brcmfmac43430-sdio.AP6212.txt
+
+And this could allow the sinovoip.* DTs to say:
+	brcm,board-name = "AP6212";
+
+And the rPi zero one:
+	brcm,board-name = "raspberrypi,3-model-b";
+
+And avoid the symlinks.
+
+The antenna-sku thing is specific to the Apple firmware selection
+process and doesn't make sense as a more generic property.
+
+antenna-sku right now always seems to be one of "ID", "X0", "X2", "X3",
+though that could presumably change in the future. I can add this to the
+binding if you want, though since this will be filled in by the
+bootloader from platform data we wouldn't be validating it anyway. Not
+sure if it's worth it.
+
+> There's also the somewhat standard 'firmware-name' property that
+> serves similar purpose, but if there's multiple files, then I guess
+> this approach is fine.
+
+Yeah, and the firmware name is constructed using non-DT information too
+(and we have several attempted filenames times several firmware types),
+so it wouldn't be complete.
+
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
