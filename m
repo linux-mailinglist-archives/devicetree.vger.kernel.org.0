@@ -2,241 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7BDE47FEEF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 16:34:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 479A9480051
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 16:45:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237770AbhL0Pdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 10:33:55 -0500
-Received: from mail-qt1-f177.google.com ([209.85.160.177]:41571 "EHLO
-        mail-qt1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237707AbhL0Pdb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 10:33:31 -0500
-Received: by mail-qt1-f177.google.com with SMTP id v22so13750103qtx.8;
-        Mon, 27 Dec 2021 07:33:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=FwZQOWeqoj/A63XT5pEn9HZSQ3cY9sRkGGed0FATKDw=;
-        b=zAigRwH+Py7cSifJQT9HCZESezc42pJ3FG4PH7dw+WlxykNOTYAx/oAou7jin259KH
-         33lFnrhD9y1yY6EJFn1sPDp1QY6F+syqOr2Nbd1allt7eZ3v/BSVnne5zjCTevQP9Iy7
-         a0G0bDrfEnbHSW4QjX8LhLKmPnk8fDfszWOuNFgvOn/zEwZUKQMbgGRX7Lr5K0A9+jUy
-         VP24YHWd/zl9lOEf+MPI70rsgf5W8Wxsgeqp9le62FRiTficzhIRDQglDqUgx+2VJ7ts
-         TuvuHM459sFucic/pS7o3RNawDVz3ngjfSjg37fjGfabzBlTibvnXLrgWaWW4uxaaxkL
-         lwcw==
-X-Gm-Message-State: AOAM533kQPkNYbCnFwRekhR7jx2tEIcA7GpBB4nNoXCLhirb/We9fFSL
-        x88YVsYyle7YlNjiKEf2+w==
-X-Google-Smtp-Source: ABdhPJzgNNGYj4jnprOtCG45DZlKE+H4MQBRgoMU8JbLBWjvZgou8p1UtEXaB66csKcw5ySPQu6PmA==
-X-Received: by 2002:ac8:47d3:: with SMTP id d19mr15325971qtr.72.1640619210381;
-        Mon, 27 Dec 2021 07:33:30 -0800 (PST)
-Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id d20sm12473326qtg.73.2021.12.27.07.33.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Dec 2021 07:33:29 -0800 (PST)
-Received: (nullmailer pid 519388 invoked by uid 1000);
-        Mon, 27 Dec 2021 15:33:26 -0000
+        id S236257AbhL0Ppn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 10:45:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37710 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239642AbhL0Pm6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 10:42:58 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C087BC07E5DD;
+        Mon, 27 Dec 2021 07:41:26 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8A89BB80E5A;
+        Mon, 27 Dec 2021 15:41:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E48CC36AEB;
+        Mon, 27 Dec 2021 15:41:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640619684;
+        bh=15mMjnAJtOvIMn6zPv/4Je924uGKzCsmt8+HS5gmN20=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LU9WtGSi1RIaQ3Obqt23VhFJ/0uEDZLpUimW9OQoURgljdEIsWaGKqA55rq1pA96R
+         J2q6sx1+Fk8taeNIGu2eg/z1SesNapn24DXTxrG2Wei9JQFiS6CbIBApFpeDs6S3Dv
+         bRMLEC25DPJJd/MBLB2A8XyaNZF1pYBbWooLjXsAHhQhC5J54np/S8XXGPphifRrTk
+         TXiIHJNXRN6M5cEJctVbcx7SnjVl12kjKZh3cDa6FehJeHX/NrL7RBDCUihFwwOeRc
+         uADk1sPmFRbri6Mm9lk2qrlBriq82xQVWsxqhYDRK7rSrX+cXPW7oKoYM9kErixfnF
+         +6F0CcTtCoFBQ==
+Received: by mail-ed1-f47.google.com with SMTP id o6so63116909edc.4;
+        Mon, 27 Dec 2021 07:41:24 -0800 (PST)
+X-Gm-Message-State: AOAM533xQN9dZ6gAqity0zX4M83RpnuMgB7oSq403naUNGLfZTCw9rzz
+        /ywGqELjxJ/15jfbgZIDVo8AXnoGj1lofwFFtg==
+X-Google-Smtp-Source: ABdhPJxrg1e+Qn2QFV1JLvASB+GljzG6LFYYW5RjZebxYJd8e7aHGbkaKlnnbY17b7L0jTd6OFpJGLZEMhYGgJDjHQA=
+X-Received: by 2002:a17:906:eb04:: with SMTP id mb4mr13908147ejb.27.1640619682657;
+ Mon, 27 Dec 2021 07:41:22 -0800 (PST)
+MIME-Version: 1.0
+References: <20211221125117.6545-1-sumitg@nvidia.com> <20211221125117.6545-4-sumitg@nvidia.com>
+ <YcNv7xm19sFTlfjW@robh.at.kernel.org> <226fd57c-2631-ec7a-fc48-d6547d557681@nvidia.com>
+In-Reply-To: <226fd57c-2631-ec7a-fc48-d6547d557681@nvidia.com>
 From:   Rob Herring <robh@kernel.org>
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        kelvin.zhang@amlogic.com, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-serial@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org
-In-Reply-To: <20211227054529.30586-1-xianwei.zhao@amlogic.com>
-References: <20211227054529.30586-1-xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH V3] dt-bindings: serial: amlogic, meson-uart: support S4
-Date:   Mon, 27 Dec 2021 11:33:26 -0400
-Message-Id: <1640619206.696540.519387.nullmailer@robh.at.kernel.org>
+Date:   Mon, 27 Dec 2021 11:41:10 -0400
+X-Gmail-Original-Message-ID: <CAL_Jsq+=hGG-cMwvM0sKFW=Rwa56=fqS379jL4ZjSyDKOia-RA@mail.gmail.com>
+Message-ID: <CAL_Jsq+=hGG-cMwvM0sKFW=Rwa56=fqS379jL4ZjSyDKOia-RA@mail.gmail.com>
+Subject: Re: [Patch v3 3/9] dt-bindings: arm: tegra: Add NVIDIA Tegra194
+ axi2apb binding
+To:     Sumit Gupta <sumitg@nvidia.com>
+Cc:     linux-tegra <linux-tegra@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jon Hunter <jonathanh@nvidia.com>, kbuild-all@lists.01.org,
+        bbasu@nvidia.com, vsethi@nvidia.com, jsequeira@nvidia.com,
+        Thierry Reding <treding@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Dec 2021 13:45:29 +0800, Xianwei Zhao wrote:
-> Add serial bindings support meson S4 SoC family.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
-> V2 -> V3 : fix the type menson->meson
-> V1 -> V2 : update author name
-> ---
->  .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+On Thu, Dec 23, 2021 at 4:24 AM Sumit Gupta <sumitg@nvidia.com> wrote:
+> > On Tue, Dec 21, 2021 at 06:21:11PM +0530, Sumit Gupta wrote:
+> >> Add device-tree binding documentation to represent the axi2apb bridges
+> >> used by Control Backbone (CBB) 1.0 in Tegra194 SOC. All errors for APB
+> >> slaves are reported as slave error because APB bas single bit to report
+> >> error. So, CBB driver needs to further check error status registers of
+> >> all the axi2apb bridges to find error type.
+> >>
+> >> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+> >> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> >> ---
+> >>   .../arm/tegra/nvidia,tegra194-axi2apb.yaml    | 40 +++++++++++++++++++
+> >>   1 file changed, 40 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-axi2apb.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-axi2apb.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-axi2apb.yaml
+> >> new file mode 100644
+> >> index 000000000000..788a13f8aa93
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-axi2apb.yaml
+> >> @@ -0,0 +1,40 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: "http://devicetree.org/schemas/arm/tegra/nvidia,tegra194-axi2apb.yaml#"
+> >> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> >> +
+> >> +title: NVIDIA Tegra194 AXI2APB bridge
+> >> +
+> >> +maintainers:
+> >> +  - Sumit Gupta <sumitg@nvidia.com>
+> >> +
+> >> +properties:
+> >> +  $nodename:
+> >> +    pattern: "^axi2apb@([0-9a-f]+)$"
+> >> +
+> >> +  compatible:
+> >> +    enum:
+> >> +      - nvidia,tegra194-axi2apb
+> >> +
+> >> +  reg:
+> >> +    maxItems: 6
+> >> +    description: Physical base address and length of registers for all bridges
+> >> +
+> >> +additionalProperties: false
+> >> +
+> >> +required:
+> >> +  - compatible
+> >> +  - reg
+> >> +
+> >> +examples:
+> >> +  - |
+> >> +    axi2apb: axi2apb@2390000 {
+> >
+> > As axi2apb appears to be a bus, then all the child nodes (APB devices)
+> > should be under this node.
+>
+> axi2apb is a bridge which coverts an AXI to APB interface and not a bus.
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+A bus and bridge node are pretty much one and the same in DT
+representation. A PCI host bridge has a PCI bus beneath it for
+example.
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
-
-Full log is available here: https://patchwork.ozlabs.org/patch/1573297
-
-
-serial@23000: 'bluetooth', 'uart-has-rtscts' do not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dt.yaml
-
-serial@24000: 'bluetooth', 'uart-has-rtscts' do not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dt.yaml
-
-serial@4c0: clock-names:0: 'xtal' was expected
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@4c0: clock-names:1: 'pclk' was expected
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@4c0: clock-names:2: 'baud' was expected
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@4c0: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/meson6-atv1200.dt.yaml
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@4e0: 'uart-has-rtscts' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dt.yaml
-
-serial@84c0: 'bluetooth' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-meta.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-pro.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95-telos.dt.yaml
-
-serial@84c0: 'bluetooth', 'uart-has-rtscts' do not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-mecool-kii-pro.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxm-mecool-kiii-pro.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxm-wetek-core2.dt.yaml
-
-serial@84c0: clock-names:0: 'xtal' was expected
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@84c0: clock-names:1: 'pclk' was expected
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@84c0: clock-names:2: 'baud' was expected
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@84c0: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/meson6-atv1200.dt.yaml
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@84c0: 'uart-has-rtscts' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dt.yaml
-	arch/arm64/boot/dts/amlogic/meson-gxl-s905w-jethome-jethub-j80.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-
-serial@84dc: clock-names:0: 'xtal' was expected
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@84dc: clock-names:1: 'pclk' was expected
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@84dc: clock-names:2: 'baud' was expected
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@84dc: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/meson6-atv1200.dt.yaml
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@84dc: 'uart-has-rtscts' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-
-serial@8700: clock-names:0: 'xtal' was expected
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@8700: clock-names:1: 'pclk' was expected
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@8700: clock-names:2: 'baud' was expected
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
-serial@8700: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/meson6-atv1200.dt.yaml
-	arch/arm/boot/dts/meson8b-ec100.dt.yaml
-	arch/arm/boot/dts/meson8b-mxq.dt.yaml
-	arch/arm/boot/dts/meson8b-odroidc1.dt.yaml
-	arch/arm/boot/dts/meson8m2-mxiii-plus.dt.yaml
-	arch/arm/boot/dts/meson8-minix-neo-x8.dt.yaml
-
+Rob
