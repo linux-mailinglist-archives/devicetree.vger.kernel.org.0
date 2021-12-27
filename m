@@ -2,265 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4B8947FBD8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 11:38:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DBC347FBDD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 11:39:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236059AbhL0KiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 05:38:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54968 "EHLO
+        id S236106AbhL0KjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 05:39:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236006AbhL0KiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 05:38:24 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57D6CC06173E;
-        Mon, 27 Dec 2021 02:38:24 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S236097AbhL0KjN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 05:39:13 -0500
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5803AC06173E
+        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 02:39:13 -0800 (PST)
+Received: from [10.0.28.181] (cust-13-241-108-94.dyn.as47377.net [94.108.241.13])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9D40D60F57;
-        Mon, 27 Dec 2021 10:38:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9B40C36AEA;
-        Mon, 27 Dec 2021 10:38:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640601503;
-        bh=3T/QRWR/tP1Z/6mnQLWPvM7J1jyDUH8UoIy5Dro8NcU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Sw7MkueexQle75phO9VmstNWVupfm0KkGWIV0IoRhXpyzZ/VeCrcmB8aam6SxaR3R
-         TVe3Sx6npMAYGKv1Yz5vc7PYA7jRBj0+PNUYctyhBgoP1QUlaHRXCIhngyvXICfY+1
-         ykq6UKa3UoTcp49dz8TvjRyVKOd9jgCstEWUUyitu9xcUlOx/E/QBkvA+KHgLdVIgf
-         CgizjRmYMcNC7v1HtC2Ubgkjj1W0r9yOW3v+uyJCuK24zTAp/J42APgIPH7sxo7P9e
-         82wnG2bmSx481yRYwmZVQTAkT/AIKi9XlNv3I2LcmUPFnaoEQDqdfnzOQ5x76eWEcH
-         uRsZmwQBIHwSA==
-Received: from cfbb000407.r.cam.camfibre.uk ([185.219.108.64] helo=wait-a-minute.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1n1nOW-00EX5j-QQ; Mon, 27 Dec 2021 10:38:20 +0000
-Date:   Mon, 27 Dec 2021 10:38:20 +0000
-Message-ID: <87sfuez61v.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        Bert Vermeulen <bert@biot.com>,
-        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 3/5] irqchip/realtek-rtl: use per-parent irq handling
-In-Reply-To: <73789385f470b7630c19b4c632d60ef7b89a46d0.1640548009.git.sander@svanheule.net>
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id AC74F2886DF;
+        Mon, 27 Dec 2021 11:39:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1640601551;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Wq7sdb7qma6R/oPcxN9dHn9j7pVXZHtAxjglmPoi05w=;
+        b=KfbgmS4qCWMsDONcQHMCCYRoQ0RMMgD64+vBFDLemimWJ9RzkTbQpUCZuCxqmpj4XnTLb6
+        K6yit0Qq3nW3f5BUf8iniBDQsIhd9010oq6D00OyeQwqDqCl7NZkJ0doqkycgZQwK/ciHO
+        YM/TVyfkKZq86+B/fHsQ5EY6DQ4W1+Ae8cA91tAfGaFIpNbTnuf18Zi5LIp4EnsbkHM7nx
+        QKGBARJNw6MjOptocAxzIEE1wvUgSv7QCIZqKkfIwWEuo5pNC3sIWIe0x26SO8JDDTe+rl
+        mEU+6jkB1iFhTVjiwePamR3ns8p14+Dr70R5IEH3A/ZyLpRwQbQc/e9Wsfukpw==
+From:   Sander Vanheule <sander@svanheule.net>
+X-Priority: 3
+To:     tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, mail@birger-koblitz.de
+Cc:     linux-kernel@vger.kernel.org, bert@biot.com, john@phrozen.org
+Subject: Re: [RFC PATCH v2 0/5] Rework realtek-rtl IRQ driver
+In-Reply-To: <90a3ce57-875f-d34a-0714-f815acae12d4@birger-koblitz.de>
 References: <cover.1640548009.git.sander@svanheule.net>
-        <73789385f470b7630c19b4c632d60ef7b89a46d0.1640548009.git.sander@svanheule.net>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: sander@svanheule.net, tglx@linutronix.de, robh+dt@kernel.org, devicetree@vger.kernel.org, mail@birger-koblitz.de, bert@biot.com, john@phrozen.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+ <90a3ce57-875f-d34a-0714-f815acae12d4@birger-koblitz.de>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+Date:   Mon, 27 Dec 2021 10:39:10 +0000
+Message-ID: <bvv98e.r4rs9b.2rw3hx-qmf@polaris.svanheule.net>
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 26 Dec 2021 19:59:26 +0000,
-Sander Vanheule <sander@svanheule.net> wrote:
-> 
-> The driver handled all SoC interrupts equally, independent of which
-> parent interrupt it is routed to. Between all configured inputs, the use
-> of __ffs actually gives higher priority to lower input lines,
-> effectively bypassing any priority there might be among the parent
-> interrupts.
-> 
-> Rework the driver to use a separate handler for each parent interrupt,
-> to respect the order in which those parents interrupt are handled.
-> 
-> Signed-off-by: Sander Vanheule <sander@svanheule.net>
-> ---
-> With switching back to chained handlers, it became impossible to route a
-> SoC interrupt to the timer interrupt (CPU IRQ 7) on systems using the
-> CEVT-R4K timer. If a chained handler is already set for the timer
-> interrupt, the timer cannot request it anymore (due to IRQ_NOREQUEST)
-> and the system hangs. It is probably a terrible idea to also run e.g.
-> the console on the timer interrupt, but it is possible. If there are no
-> solutions to this, I can live with it though; there are still 5 other
-> interrupts.
-
-Shared interrupts and chaining don't mix. You can look at it any way
-you want, there is always something that breaks eventually.
-
-> 
-> Changes since v1:
-> - Limit scope to per-parent handling
-> - Replace the "priority" naming with the more generic "output"
-> - Don't request interrupts, but stick to chained handlers
-> ---
->  drivers/irqchip/irq-realtek-rtl.c | 109 ++++++++++++++++++++----------
->  1 file changed, 74 insertions(+), 35 deletions(-)
-> 
-> diff --git a/drivers/irqchip/irq-realtek-rtl.c b/drivers/irqchip/irq-realtek-rtl.c
-> index 568614edd88f..1f8f21a0bd1a 100644
-> --- a/drivers/irqchip/irq-realtek-rtl.c
-> +++ b/drivers/irqchip/irq-realtek-rtl.c
-> @@ -7,6 +7,7 @@
->  
->  #include <linux/of_irq.h>
->  #include <linux/irqchip.h>
-> +#include <linux/interrupt.h>
->  #include <linux/spinlock.h>
->  #include <linux/of_address.h>
->  #include <linux/irqchip/chained_irq.h>
-> @@ -21,10 +22,45 @@
->  #define RTL_ICTL_IRR2		0x10
->  #define RTL_ICTL_IRR3		0x14
->  
-> +#define RTL_ICTL_NUM_OUTPUTS	6
-> +
->  #define REG(x)		(realtek_ictl_base + x)
->  
->  static DEFINE_RAW_SPINLOCK(irq_lock);
->  static void __iomem *realtek_ictl_base;
-> +static struct irq_domain *realtek_ictl_domain;
-> +
-> +struct realtek_ictl_output {
-> +	unsigned int routing_value;
-> +	u32 child_mask;
-> +};
-> +
-> +static struct realtek_ictl_output realtek_ictl_outputs[RTL_ICTL_NUM_OUTPUTS];
-> +
-> +/*
-> + * IRR0-IRR3 store 4 bits per interrupt, but Realtek uses inverted numbering,
-> + * placing IRQ 31 in the first four bits. A routing value of '0' means the
-> + * interrupt is left disconnected. Routing values {1..15} connect to output
-> + * lines {0..14}.
-> + */
-> +#define IRR_OFFSET(idx)		(4 * (3 - (idx * 4) / 32))
-> +#define IRR_SHIFT(idx)		((idx * 4) % 32)
-> +
-> +static inline u32 read_irr(void __iomem *irr0, int idx)
-> +{
-> +	return (readl(irr0 + IRR_OFFSET(idx)) >> IRR_SHIFT(idx)) & 0xf;
-> +}
-> +
-> +static inline void write_irr(void __iomem *irr0, int idx, u32 value)
-> +{
-> +	unsigned int offset = IRR_OFFSET(idx);
-> +	unsigned int shift = IRR_SHIFT(idx);
-> +	u32 irr;
-> +
-> +	irr = readl(irr0 + offset) & ~(0xf << shift);
-> +	irr |= (value & 0xf) << shift;
-> +	writel(irr, irr0 + offset);
-> +}
->  
->  static void realtek_ictl_unmask_irq(struct irq_data *i)
->  {
-> @@ -74,42 +110,45 @@ static const struct irq_domain_ops irq_domain_ops = {
->  
->  static void realtek_irq_dispatch(struct irq_desc *desc)
->  {
-> +	struct realtek_ictl_output *parent = irq_desc_get_handler_data(desc);
->  	struct irq_chip *chip = irq_desc_get_chip(desc);
-> -	struct irq_domain *domain;
->  	unsigned int pending;
->  
->  	chained_irq_enter(chip, desc);
-> -	pending = readl(REG(RTL_ICTL_GIMR)) & readl(REG(RTL_ICTL_GISR));
-> +	pending = readl(REG(RTL_ICTL_GIMR)) & readl(REG(RTL_ICTL_GISR))
-> +		& parent->child_mask;
-> +
->  	if (unlikely(!pending)) {
->  		spurious_interrupt();
->  		goto out;
->  	}
-> -	domain = irq_desc_get_handler_data(desc);
-> -	generic_handle_domain_irq(domain, __ffs(pending));
-> +	generic_handle_domain_irq(realtek_ictl_domain, __ffs(pending));
-
-You were complaining about the use of __ffs() creating artificial
-priorities. And yet you keep using it, recreating the same issue for a
-smaller set of interrupts. Why do we need all the complexity of
-registering multiple handlers when a simple loop on the pending bits
-would ensure some level of fairness?
-
-It looks to me that you are solving a different problem, where you'd
-deliver interrupts that have may not yet been signalled to the CPU
-yet.  And you definitely should consider consuming all the pending
-bits before exiting.
-
->
->  out:
->  	chained_irq_exit(chip, desc);
->  }
->  
-> -/*
-> - * SoC interrupts are cascaded to MIPS CPU interrupts according to the
-> - * interrupt-map in the device tree. Each SoC interrupt gets 4 bits for
-> - * the CPU interrupt in an Interrupt Routing Register. Max 32 SoC interrupts
-> - * thus go into 4 IRRs. A routing value of '0' means the interrupt is left
-> - * disconnected. Routing values {1..15} connect to output lines {0..14}.
-> - */
-> -static int __init map_interrupts(struct device_node *node, struct irq_domain *domain)
-> +static void __init set_routing(struct realtek_ictl_output *output, unsigned int soc_int)
->  {
-> +	unsigned int routing_old;
-> +
-> +	routing_old = read_irr(REG(RTL_ICTL_IRR0), soc_int);
-> +	if (routing_old) {
-> +		pr_warn("int %d already routed to %d, not updating\n", soc_int, routing_old);
-> +		return;
-> +	}
-> +
-> +	output->child_mask |= BIT(soc_int);
-> +	write_irr(REG(RTL_ICTL_IRR0), soc_int, output->routing_value);
-> +}
-> +
-> +static int __init map_interrupts(struct device_node *node)
-> +{
-> +	struct realtek_ictl_output *output;
->  	struct device_node *cpu_ictl;
->  	const __be32 *imap;
-> -	u32 imaplen, soc_int, cpu_int, tmp, regs[4];
-> -	int ret, i, irr_regs[] = {
-> -		RTL_ICTL_IRR3,
-> -		RTL_ICTL_IRR2,
-> -		RTL_ICTL_IRR1,
-> -		RTL_ICTL_IRR0,
-> -	};
-> -	u8 mips_irqs_set;
-> +	u32 imaplen, soc_int, cpu_int, tmp;
-> +	int ret, i;
->  
->  	ret = of_property_read_u32(node, "#address-cells", &tmp);
->  	if (ret || tmp)
-> @@ -119,8 +158,6 @@ static int __init map_interrupts(struct device_node *node, struct irq_domain *do
->  	if (!imap || imaplen % 3)
->  		return -EINVAL;
->  
-> -	mips_irqs_set = 0;
-> -	memset(regs, 0, sizeof(regs));
->  	for (i = 0; i < imaplen; i += 3 * sizeof(u32)) {
->  		soc_int = be32_to_cpup(imap);
->  		if (soc_int > 31)
-> @@ -138,39 +175,41 @@ static int __init map_interrupts(struct device_node *node, struct irq_domain *do
->  		if (cpu_int > 7 || cpu_int < 2)
->  			return -EINVAL;
->  
-> -		if (!(mips_irqs_set & BIT(cpu_int))) {
-> -			irq_set_chained_handler_and_data(cpu_int, realtek_irq_dispatch,
-> -							 domain);
-> -			mips_irqs_set |= BIT(cpu_int);
-> +		output = &realtek_ictl_outputs[cpu_int - 2];
-> +
-> +		if (!output->routing_value) {
-> +			irq_set_chained_handler_and_data(cpu_int, realtek_irq_dispatch, output);
-> +			/* Use routing values (1..6) for CPU interrupts (2..7) */
-> +			output->routing_value = cpu_int - 1;
-
-Why do you keep this routing_value around? Its only purpose is to be
-read by set_routing(), which already checks for a programmed value.
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+SGkgQmlyZ2VyLA0KDQpPbiBNb25kYXksIDI3IERlY2VtYmVyIDIwMjEsIEJpcmdlciBLb2JsaXR6
+IHdyb3RlOg0KPiBIaSwNCj4gDQo+IEkgZG9uJ3QgdGhpbmsgdGhlIElSUSByb3V0aW5nIGhhcyBh
+biBvZmYtYnkgb25lIGVycm9yLiBUaGlzIHdhcyBjaG9zZW4NCj4gYnkgSm9obiB0byBjb3JyZXNw
+b25kIHRvIFJlYWx0ZWsncyBvd24gImRvY3VtZW50YXRpb24iIGFuZCB0bw0KPiB0YWtlIGFjY291
+bnQgb2YgdGhlIHNwZWNpYWwgbWVhbmluZyBvZiBJUlFzIDAsIDEgZm9yIFZTTVAgYW5kIDYgYW5k
+IDcNCj4gZm9yIHRoZSBSZWFsdGVrIFNvQ3MuIEluIGFueSBjYXNlIGl0IHdvdWxkIGJyZWFrIHRo
+ZSBBQkkgYXMgdGhlIG1lYW5pbmcNCj4gb2YgdGhlc2UgdmFsdWVzIGNoYW5nZXMgYW5kIEkgZG9u
+J3QgdGhpbmsgdGhlIGNoYW5nZSBpbiByYW5nZSBhY3R1YWxseQ0KPiBnaXZlcyBhbnkgYWRkaXRp
+b25hbCBmdW5jdGlvbmFsaXR5Lg0KDQpSZWFsdGVrJ3MgU0RLIHByb3ZpZGVzIHJvdXRpbmcgcmVn
+aXN0ZXIgdmFsdWVzLiBJIHdvdWxkIGhhdmUgdG8gY2hlY2sgdG8gc2VlIHdoYXQgQ1BVIElSUXMg
+aXQgdGhlbiBiaW5kcyB0bywgdG8gc2VydmljZSB0aG9zZSBpbnRlcnJ1cHRzLiBUaGUgYmluZGlu
+ZyB3b3VsZG4ndCBoYXZlIHRvIGNoYW5nZSwgYnV0IHdlIGNvdWxkIGZpeCB0aGUgZHJpdmVyIGFu
+ZCBkZXZpY2V0cmVlcy4NCg0KVGhlIGJpbmRpbmcgc3BlY2lmaWVzIHRoYXQgaW50ZXJydXB0LW1h
+cCBwcm92aWRlcyBhIG1hcHBpbmcgb2YgaW50ZXJydXB0IGlucHV0cyB0byBwYXJlbnQgaW50ZXJy
+dXB0LiBUaGUgZHJpdmVyIHRoZW4gdGFrZXMgdGhlc2UgdmFsdWVzLCBidXQgZG9lc24ndCBjaGVj
+ayB3aGF0IHRoZSBwYXJlbnQgaW50ZXJydXB0IGNvbnRyb2xsZXIgYWN0dWFsbHkgaXMsIGFuZCBm
+aW5hbGx5IGFzc2lnbnMgYSBjaGFpbmVkIGhhbmRsZXIgdG8gYSBoYXJkd2FyZSBJUlEgaW5kZXgg
+KGluc3RlYWQgb2YgYSBWSVJRKS4NCg0KWW91IGNhbiB0cnkgbGltaXRpbmcgdGhlIGludGVycnVw
+dC1tYXAgdG8gb25seSB0aGUgbWFwcGluZyBmb3IgVUFSVDAgd2l0aCB0aGUgY3VycmVudCBkcml2
+ZXIsIGFuZCB5b3Ugd2lsbCBmaW5kIHRoYXQgeW91IGVuZCB1cCB3aXRoIGEgYnJva2VuIHN5c3Rl
+bS4NCg0KQ1BVIElSUXMgMCBhbmQgMSBhcmUgaW5kZWVkIHNwZWNpYWwgKElQSSBmb3IgVlNNUCks
+IHlldCB3ZSBoYXZlIGludGVycnVwdCBtYXBwaW5ncyB0aGF0IGNvbnRhaW4gPC4uLiAmY3B1aW50
+YyAxPi4gRnVydGhlcm1vcmUsIGlmIHlvdSBzcGVjaWZ5IGEgbWFwcGluZyBvZiA8Li4uICZjcHVp
+bnQgNj4gZm9yIGFuIGFjdGl2ZSBpbnRlcnJ1cHQgc291cmNlLCB5b3Ugd2lsbCBnZXQgc3B1cmlv
+dXMgdGltZXIgKENQVSBJUlEgNykgaW50ZXJydXB0cy4gVGhpcyBjYW4ndCBiZSBjb3JyZWN0LiAN
+CiANCj4gV2l0aCByZWdhcmRzIHRvIHRoZSBSVEw4MzkwLCB0aGF0IFNvQyBhY3R1YWxseSBoYXMg
+dHdvIElSUSBjb250cm9sbGVycw0KPiB0byBhbGxvdyBWU01QLiBUaGUgY2hhbmdlcyBpbiBwYXJl
+bnQgcm91dGluZyBoYXZlIGEgZ29vZCBjaGFuY2Ugb2YgYnJlYWtpbmcNCj4gVlNNUCBvbiB0aGUg
+UlRMODM5MCB0YXJnZXRzLiBEaWQgeW91IHN0cmVzcyB0ZXN0IHRoaXMgbmV3IGxvZ2ljIHVuZGVy
+IFZTTVA/DQoNCkkgaGF2ZW4ndCB0ZXN0ZWQgdGhpcyB3aXRoIFZTTVAsIGJlY2F1c2UgaXQgaXMg
+b3V0IG9mIHNjb3BlIGZvciB0aGlzIHNlcmllcy4gRm9yIHRoZSBiaW5kaW5nLCBJIGV4cGVjdCB0
+aGF0IHdvdWxkIG9ubHkgcmVxdWlyZSBOIHJlZ2lzdGVyIHJhbmdlcyBpbnN0ZWFkIG9mIG9uZTsg
+b25lIHBlciBDUFUuIEkgdGhpbmsgdGhlIGRyaXZlciBzaG91bGQgdGhlbiBiZSBhYmxlIHRvIHBl
+cmZvcm0gdGhlIElSUSBiYWxhbmNpbmcgYmFzZWQgb24gdGhhdCBpbmZvcm1hdGlvbiBhbG9uZSwg
+Z2l2ZW4gdGhhdCB0aGUgcGFyZW50IElSUXMgYXJlIGF2YWlsYWJsZSBhdCBlYWNoIENQVS4NCg0K
+QmVzdCwNClNhbmRlcg==
