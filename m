@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38D2947FD7C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 14:36:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D2EA47FD82
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 14:36:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236811AbhL0NgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 08:36:08 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:54618
+        id S236890AbhL0NgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 08:36:10 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:54652
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236825AbhL0NgH (ORCPT
+        by vger.kernel.org with ESMTP id S236778AbhL0NgJ (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Dec 2021 08:36:07 -0500
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
+        Mon, 27 Dec 2021 08:36:09 -0500
+Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1D03C3FFDD
-        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 13:36:06 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1B34A3FFDD
+        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 13:36:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640612166;
-        bh=WfhTTV0Y1eE7nwdIxKma7kRI9gj0CY3EEbVZ0tpJfUg=;
+        s=20210705; t=1640612168;
+        bh=6CumE1tdz/IiMkyzPEeBLg2u+UtItsz0xDBI5CCIEIU=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=fMvyt3aA5bTwgEqDpsT4bdVKp6tIvOLvmR6cZFeuYfDEidQ7aZGNUh8SmwFxg/Ssd
-         yGksGhwFVCUoBep5SceGFF/wW84kAZRc/aZGHGiKoekuHk28ZbmRMkPgsr3agDWTCt
-         KUoy6WFrUNZaqZW2oQhdq8Ln64IKsmy+PSZp4z5IsIszxP+/SXMu0kKLvF1BrKAk7v
-         V0f12Jzr/fJqq7IAJ0nAB1NRjpTL4m/aEMBYCmIhONj+09EzjMCrAHWRLVTeuLqn3+
-         4QnsXWLSTDAGlwz13SVgKdet15dJOcmyWitAo4OcQtOcfAplPqCEbpCx3F+tKK1rWj
-         s1vdQwZl9XqXQ==
-Received: by mail-lj1-f199.google.com with SMTP id w17-20020a05651c119100b0022dcdb204b9so1604002ljo.5
-        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 05:36:06 -0800 (PST)
+        b=IACquTVdj+XwJl01DFBnp+yX/dkqa4vF8hIEAd2d1CcLor/XJ4ivzhtw7ZOxtjXMa
+         kcvIE0ro1X+OqqjunJXPMn91l7jbQhjnSEVWbISdoc7cHUloBokdJYYrcHhFnjEccM
+         RF+Zsve1M+W9IIMa6XMJJn3M363iSkeNaGAK7n00Ej9QDD4D8tk1zXh5zXeN5/wW1x
+         E35TuulAcDioPDNvndaV5VSqn0pQrgNAY9yfHMnHmc8AZ5Q9mJK6ilgWKVXzHPEJtX
+         r7GDjJDDM6N7Csl7fkxPlg0Zw0OLXaXjqWgnfVgn3+FkNJs6jxEwilUpx2/c796E6Z
+         tqEg8eNBfNdfA==
+Received: by mail-lj1-f197.google.com with SMTP id l6-20020a2e8686000000b0022d9a4d18d5so3955209lji.19
+        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 05:36:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=WfhTTV0Y1eE7nwdIxKma7kRI9gj0CY3EEbVZ0tpJfUg=;
-        b=VY7IZWwQ16MdsV5SopJ7DSvpMomJL1W3yp4xN8gWkelqTnyuRzw6qiEBagOzo0KvcQ
-         m0o6lX5Dd7HR3drahJSp0zC0cFkE0J7N6ca/iq5wtuxc9QSrPpMbrGSFZ7jIbj1o2wjB
-         psTF0396qWfzb6RQTXKQoCj3HJmZA03BhHD9FcjqpiaZHLRsN+aUed+50sK5d1irfxp8
-         TIjoz2voiK7YjFK+x7L0U499IYRZ0Xh1OeeML5Ma7ihiRnqWGhd4L0foFufH3IUqAIte
-         vmow5DKddGtZkpYe5IJje54+C/t/nrXgKKHILNBru65YXKoR2dyyQ/e19GyovZ6jNYRS
-         x4xg==
-X-Gm-Message-State: AOAM530xNIrE/yMzxWKTthBVcJRgFm1Awm85aEK9U6XY6kOIFsG0Xfz2
-        JM5VAZPWNB0d6d3BvwYr8/jubuat0V78h+1jLa9hmBLCheczEWvp9RN8BRTmTryzVqggjTCmvXv
-        ILYw2uUVCXNWUQFD4lvJ95wqSJYqOsR6SvmBJKyg=
-X-Received: by 2002:a19:6502:: with SMTP id z2mr15579093lfb.151.1640612165309;
-        Mon, 27 Dec 2021 05:36:05 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy38iR16DrL9VfxBjC243Im/jp4zdjU6XJ5h3h1PY0QPqf2vwc+9AKP2xWJxPjm2ge92SselA==
-X-Received: by 2002:a19:6502:: with SMTP id z2mr15579082lfb.151.1640612165142;
-        Mon, 27 Dec 2021 05:36:05 -0800 (PST)
+        bh=6CumE1tdz/IiMkyzPEeBLg2u+UtItsz0xDBI5CCIEIU=;
+        b=5FJUuLJaQmz48QRSUpHIzqQz+ksbixFAStOlksQbc4C8dAJTVMIAYMsHMErGQjrrvX
+         vxaErGFBSU/IENYAMcbn/QfdNy0W2GUgmq8dgAw6uGAJN3ZdRTVYUva2Fik13XhWQJQX
+         0BeEShBUadMeHHzFHLgisGLMxEzJRVJZZFULrgWjzHICcbASvWv5QMEfXq6RDWoNTX4r
+         pYdKKFMUWeyzat0LEZE8IKI631oZgG694TDWjp8jH1dw2zWnBtxZE3MF+6bLCaMUP96b
+         jN1GfLfvaxGs79hsecBkfpBXxWdsSHEk33na7/6ashtJcJufv4dB6To9ofikeoSdF97l
+         u2Zg==
+X-Gm-Message-State: AOAM532jMe+mBE9YkATfMhZHMy9GlbbT+u5zkOA8XgHCAqjAvlA8aDHY
+        DTfIqUTbChobvGkKm0qV+A2LNFldgUDPL/uynsVjIosipVVs0m/YlnZ/Ink20QtBoC5Tjr+xYGp
+        1Btkm4Pa6yHJyPAWVy92V0Cpov5yZOwtBoicA1EQ=
+X-Received: by 2002:a2e:bf24:: with SMTP id c36mr14663994ljr.150.1640612166758;
+        Mon, 27 Dec 2021 05:36:06 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyXnVeuN6Vzh2Sk739PqVMNoEtG1DsCj0nvwPussspyosmpW1khavfDw2ZEC2G+P4qbT06Zlg==
+X-Received: by 2002:a2e:bf24:: with SMTP id c36mr14663990ljr.150.1640612166609;
+        Mon, 27 Dec 2021 05:36:06 -0800 (PST)
 Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id g18sm800107ljj.124.2021.12.27.05.36.04
+        by smtp.gmail.com with ESMTPSA id g18sm800107ljj.124.2021.12.27.05.36.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Dec 2021 05:36:04 -0800 (PST)
+        Mon, 27 Dec 2021 05:36:05 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Michael Turquette <mturquette@baylibre.com>,
@@ -63,9 +63,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-mmc@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH 10/19] ARM: dts: arria5: add board compatible for SoCFPGA DK
-Date:   Mon, 27 Dec 2021 14:35:49 +0100
-Message-Id: <20211227133558.135185-4-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 11/19] ARM: dts: arria10: add board compatible for Mercury AA1
+Date:   Mon, 27 Dec 2021 14:35:50 +0100
+Message-Id: <20211227133558.135185-5-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211227133131.134369-1-krzysztof.kozlowski@canonical.com>
 References: <20211227133131.134369-1-krzysztof.kozlowski@canonical.com>
@@ -75,27 +75,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Altera SoCFPGA Arria V SoC Development Kit is a board with Arria 5,
-so it needs its own compatible.
+The Enclustra Mercury AA1 is a module with Arria 10, so it needs its own
+compatible.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- arch/arm/boot/dts/socfpga_arria5_socdk.dts | 2 +-
+ arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/socfpga_arria5_socdk.dts b/arch/arm/boot/dts/socfpga_arria5_socdk.dts
-index 1b02d46496a8..0e03011d0247 100644
---- a/arch/arm/boot/dts/socfpga_arria5_socdk.dts
-+++ b/arch/arm/boot/dts/socfpga_arria5_socdk.dts
-@@ -7,7 +7,7 @@
- 
+diff --git a/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts b/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
+index 2a3364b26361..a75c059b6727 100644
+--- a/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
++++ b/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
+@@ -6,7 +6,7 @@
  / {
- 	model = "Altera SOCFPGA Arria V SoC Development Kit";
--	compatible = "altr,socfpga-arria5", "altr,socfpga";
-+	compatible = "altr,socfpga-arria5-socdk", "altr,socfpga-arria5", "altr,socfpga";
  
- 	chosen {
- 		bootargs = "earlyprintk";
+ 	model = "Enclustra Mercury AA1";
+-	compatible = "altr,socfpga-arria10", "altr,socfpga";
++	compatible = "enclustra,mercury-aa1", "altr,socfpga-arria10", "altr,socfpga";
+ 
+ 	aliases {
+ 		ethernet0 = &gmac0;
 -- 
 2.32.0
 
