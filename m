@@ -2,100 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BDD94804A7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 21:49:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B419A4804F0
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 22:52:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233094AbhL0UtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 15:49:13 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:55468 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbhL0UtM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 15:49:12 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BRKn0vf081374;
-        Mon, 27 Dec 2021 14:49:00 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1640638140;
-        bh=Sf+TygJTFGkJZaMoLDFtGI1kePsfZJMILid4Yayi3QY=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=lNJOuzS8kBS5Ms6YKmBSWuOZSTC9WqZt+t2ALBpx6KSeMgadLH5oXz+SLgCc9aLus
-         c/1cCaoiFZgDH/gXZ0GWAX4xXeVvWlaSZqje/ClXIK4jt+7K8nAOpqixfNmQEMC42v
-         5LZ5Xo5BaQji54CwkWMu0/6ba6rPryYioUuCQ1wo=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BRKn0iR024882
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 27 Dec 2021 14:49:00 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 27
- Dec 2021 14:49:00 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 27 Dec 2021 14:49:00 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BRKmxHS123431;
-        Mon, 27 Dec 2021 14:48:59 -0600
-Date:   Tue, 28 Dec 2021 02:18:58 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <devicetree@vger.kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v7 4/4] phy: dt-bindings: Add Cadence D-PHY Rx bindings
-Message-ID: <20211227204856.o6s6kjt5yahuk2j7@ti.com>
-References: <20211227105545.4852-1-p.yadav@ti.com>
- <20211227105545.4852-5-p.yadav@ti.com>
- <YcnwcpPdOOJ7WgSe@robh.at.kernel.org>
+        id S233569AbhL0Vwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 16:52:55 -0500
+Received: from ixit.cz ([94.230.151.217]:48642 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229728AbhL0Vwz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 27 Dec 2021 16:52:55 -0500
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 7B26C2243C;
+        Mon, 27 Dec 2021 22:52:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1640641972;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=u3VD4X345O68uaZNqZvUhlwb1CDjiiPvV1FJOjvoHN8=;
+        b=s5YLM8OaA+PnWvdiQhIjk3f46wIu6x0meY0Dk5cWK0SqChTFOtCKHFkGk/JRKmxO1N0e3U
+        H2UM68QkD1aylkaGlcNirCIRprtBvtMGcZk91NUZDhirTz8RBGf5L77jugvk11LDF+yng4
+        FqPBVcPh+/CAmUy9hiqaf+VCRpXHKg4=
+From:   David Heidelberg <david@ixit.cz>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: pms405: assign device specific compatible
+Date:   Mon, 27 Dec 2021 22:52:37 +0100
+Message-Id: <20211227215238.113956-1-david@ixit.cz>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <YcnwcpPdOOJ7WgSe@robh.at.kernel.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Follow common pattern for this device, first specific
+and then generic compatible.
 
-On 27/12/21 12:57PM, Rob Herring wrote:
-> On Mon, 27 Dec 2021 16:25:45 +0530, Pratyush Yadav wrote:
-> > The Rx mode DPHY is different from Tx mode DPHY. Add a separate binding
-> > for it.
-> > 
-> > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> > 
-> > ---
-> > 
-> > (no changes since v6)
-> > 
-> > Changes in v6:
-> > - Add a new binding for DPHY Rx.
-> > 
-> >  .../devicetree/bindings/phy/cdns,dphy-rx.yaml | 42 +++++++++++++++++++
-> >  1 file changed, 42 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/phy/cdns,dphy-rx.yaml
-> > 
-> 
-> 
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
-> 
-> If a tag was not added on purpose, please state why and what changed.
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ arch/arm64/boot/dts/qcom/pms405.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Sorry. I missed adding your R-by. It was by mistake, since this patch 
-has not changed since.
-
+diff --git a/arch/arm64/boot/dts/qcom/pms405.dtsi b/arch/arm64/boot/dts/qcom/pms405.dtsi
+index 172be177fc8f..98d173a377d5 100644
+--- a/arch/arm64/boot/dts/qcom/pms405.dtsi
++++ b/arch/arm64/boot/dts/qcom/pms405.dtsi
+@@ -32,7 +32,7 @@ pms405_crit: pms405-crit {
+ 
+ &spmi_bus {
+ 	pms405_0: pms405@0 {
+-		compatible = "qcom,spmi-pmic";
++		compatible = "qcom,pms405", "qcom,spmi-pmic";
+ 		reg = <0x0 SPMI_USID>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+@@ -139,7 +139,7 @@ rtc@6000 {
+ 	};
+ 
+ 	pms405_1: pms405@1 {
+-		compatible = "qcom,spmi-pmic";
++		compatible = "qcom,pms405", "qcom,spmi-pmic";
+ 		reg = <0x1 SPMI_USID>;
+ 
+ 		pms405_spmi_regulators: regulators {
 -- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+2.34.1
+
