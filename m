@@ -2,161 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B2424801A8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 17:36:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DC0A4801BB
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 17:43:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229717AbhL0Qgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 11:36:36 -0500
-Received: from mail-qt1-f176.google.com ([209.85.160.176]:40600 "EHLO
-        mail-qt1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbhL0Qgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 11:36:35 -0500
-Received: by mail-qt1-f176.google.com with SMTP id l17so13900536qtk.7;
-        Mon, 27 Dec 2021 08:36:35 -0800 (PST)
+        id S229874AbhL0Qnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 11:43:41 -0500
+Received: from mail-qk1-f170.google.com ([209.85.222.170]:45649 "EHLO
+        mail-qk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229899AbhL0Qnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 11:43:40 -0500
+Received: by mail-qk1-f170.google.com with SMTP id e25so9156606qkl.12;
+        Mon, 27 Dec 2021 08:43:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=NvWv4FZyIrN5nkG1K4g0aTLhjlCARTmPaNYGMqKugSc=;
-        b=5GsOjXRMGLxcMMHdatIGk/JUkHA3TPGVd9QQ9uW5H4KwDcZpzvizpzKbyu4vtBoW0B
-         7sEtTb3s5c9y2wLdWFMGXqMJWNvxXPzOgkWCtgvJCNLQfmsJz+tfCEZlImQcJWsQutnT
-         fPjp4MJPC8OYM2QaVOh93SaN/SqLEiMJwMZ83lqXrvgwoLun6ltlz5+2b2nMhsrXYKr4
-         3hVgi/q+jxlH+qrnGeqRUTNkiwa9f7AMIc8WKhP+pVq4+HDker7F5in/Bi/W4k6CrqC+
-         YKBNsdG69Zjxlz8NnxjreyECVYrqDaP4eksBafFnqq14wJTdGv45rxqmQ28zQdiAhYlE
-         X3bw==
-X-Gm-Message-State: AOAM531yWoHB5OLV9iIz1QG7SleCgHkpGUAuLss6JLCQk505lj7WvQAN
-        M1uWgvl3EkNL7ehFRyXPgw==
-X-Google-Smtp-Source: ABdhPJzZshfJsJcm/yRFsND6Ah0/cdHd3EQ/kiIvKCMIIlxDD8VMQBD0jLJZB8JuOMfoeC9tnV9gwQ==
-X-Received: by 2002:ac8:4e4b:: with SMTP id e11mr15629813qtw.503.1640622994883;
-        Mon, 27 Dec 2021 08:36:34 -0800 (PST)
+        bh=jMdv9xd9PoSHjcMmTulIP1O3UGaGGGFNdoHfOX3Pq64=;
+        b=NxPSbLCqxoqXk1GNe5oPI57GbJbl12NXr6VEqhF+udFe2GN5J7Tlee3cJLIQEfYPpl
+         58OVhd35Y32cZOeRTufFc8pa9cm7IcsOYYA6FzbqzaYnwlPBsRr3z+nXR8r/H+Y+KU8x
+         vMvTfViollPXprSlOdNWg2wXd1rIbStuMOKTYfSLZvTe9eUrTp+4ceLO2XwvX4yijVDm
+         re0blqpER24wfI3synqy9h5JCILPWbqjs08owoR6+k1SUckv48+uAeyJOWDHSneHIDs7
+         TfRJN2ZQkN3W2C//cRLiH22Xt24YgwY/V1pfWoxLMOy6HdBQCsIK8xvMuMGYORTO2XnQ
+         3tDw==
+X-Gm-Message-State: AOAM531OmHrcrgglCw0ok73P1Imq7/VtwbQZIAJVJ/qY/CyG9/aG7Jpz
+        sYLVYrZEg5gL15cRLNJUOw==
+X-Google-Smtp-Source: ABdhPJxMQh8LnbwbTtqBVlk0XLUYP7bjASwZRhN7o9JN5O3G0NMtglZO6GHrRdEklfXZke5t26TDqg==
+X-Received: by 2002:a05:620a:b47:: with SMTP id x7mr12386678qkg.749.1640623419748;
+        Mon, 27 Dec 2021 08:43:39 -0800 (PST)
 Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id r16sm13658375qta.46.2021.12.27.08.36.32
+        by smtp.gmail.com with ESMTPSA id d17sm13373495qtx.96.2021.12.27.08.43.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Dec 2021 08:36:34 -0800 (PST)
-Received: (nullmailer pid 617864 invoked by uid 1000);
-        Mon, 27 Dec 2021 16:36:31 -0000
-Date:   Mon, 27 Dec 2021 12:36:31 -0400
+        Mon, 27 Dec 2021 08:43:38 -0800 (PST)
+Received: (nullmailer pid 631653 invoked by uid 1000);
+        Mon, 27 Dec 2021 16:43:37 -0000
+Date:   Mon, 27 Dec 2021 12:43:37 -0400
 From:   Rob Herring <robh@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "Daniel (Deognyoun) Kim" <dekim@broadcom.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-Subject: Re: [PATCH 01/34] dt-bindings: net: bcm4329-fmac: Add Apple
- properties & chips
-Message-ID: <YcnrjySZ9mPbkidZ@robh.at.kernel.org>
-References: <20211226153624.162281-1-marcan@marcan.st>
- <20211226153624.162281-2-marcan@marcan.st>
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org, tony.huang@sunplus.com,
+        wells.lu@sunplus.com
+Subject: Re: [PATCH v5 1/2] dt-binding: misc: Add iop yaml file for Sunplus
+ SP7021
+Message-ID: <YcntOas63oWyZ1sq@robh.at.kernel.org>
+References: <cover.1640332430.git.tonyhuang.sunplus@gmail.com>
+ <edc63b968d7903cc6e96151c7e51cd6446835b70.1640332430.git.tonyhuang.sunplus@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211226153624.162281-2-marcan@marcan.st>
+In-Reply-To: <edc63b968d7903cc6e96151c7e51cd6446835b70.1640332430.git.tonyhuang.sunplus@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 27, 2021 at 12:35:51AM +0900, Hector Martin wrote:
-> This binding is currently used for SDIO devices, but these chips are
-> also used as PCIe devices on DT platforms and may be represented in the
-> DT. Re-use the existing binding and add chip compatibles used by Apple
-> T2 and M1 platforms (the T2 ones are not known to be used in DT
-> platforms, but we might as well document them).
+On Fri, Dec 24, 2021 at 04:35:55PM +0800, Tony Huang wrote:
+> Add iop yaml file for Sunplus SP7021
 > 
-> Then, add properties required for firmware selection and calibration on
-> M1 machines.
-> 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
 > ---
->  .../net/wireless/brcm,bcm4329-fmac.yaml       | 32 +++++++++++++++++--
->  1 file changed, 29 insertions(+), 3 deletions(-)
+> Changes in v5:
+> -Add iop-wakeup pin for 8051 to wake up the Linux kernel in shutdown mode.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> index c11f23b20c4c..2530ff3e7b90 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-fmac.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Broadcom BCM4329 family fullmac wireless SDIO devices
-> +title: Broadcom BCM4329 family fullmac wireless SDIO/PCIE devices
->  
->  maintainers:
->    - Arend van Spriel <arend@broadcom.com>
-> @@ -36,16 +36,22 @@ properties:
->                - brcm,bcm43455-fmac
->                - brcm,bcm43456-fmac
->                - brcm,bcm4354-fmac
-> +              - brcm,bcm4355c1-fmac
->                - brcm,bcm4356-fmac
->                - brcm,bcm4359-fmac
-> +              - brcm,bcm4364b2-fmac
-> +              - brcm,bcm4364b3-fmac
-> +              - brcm,bcm4377b3-fmac
-> +              - brcm,bcm4378b1-fmac
-> +              - brcm,bcm4387c2-fmac
->                - cypress,cyw4373-fmac
->                - cypress,cyw43012-fmac
->            - const: brcm,bcm4329-fmac
->        - const: brcm,bcm4329-fmac
->  
->    reg:
-> -    description: SDIO function number for the device, for most cases
-> -      this will be 1.
-> +    description: SDIO function number for the device (for most cases
-> +      this will be 1) or PCI device identifier.
->  
->    interrupts:
->      maxItems: 1
-> @@ -75,6 +81,26 @@ properties:
->      items:
->        pattern: '^[A-Z][A-Z]-[A-Z][0-9A-Z]-[0-9]+$'
->  
-> +  brcm,cal-blob:
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    description: A per-device calibration blob for the Wi-Fi radio. This
-> +      should be filled in by the bootloader from platform configuration
-> +      data, if necessary, and will be uploaded to the device if present.
+>  .../devicetree/bindings/misc/sunplus-iop.yaml      | 72 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 ++
+>  2 files changed, 77 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/sunplus-iop.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/sunplus-iop.yaml b/Documentation/devicetree/bindings/misc/sunplus-iop.yaml
+> new file mode 100644
+> index 0000000..fad0f50
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/sunplus-iop.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) Sunplus Ltd. Co. 2021
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/sunplus-iop.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +  apple,module-instance:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: Module codename used to identify a specific board on
-> +      Apple platforms. This is used to build the firmware filenames, to allow
-> +      different platforms to have different firmware and/or NVRAM config.
+> +title: Sunplus IOP(8051) controller
 > +
-> +  apple,antenna-sku:
-> +    $def: /schemas/types.yaml#/definitions/string
-> +    description: Antenna SKU used to identify a specific antenna configuration
-> +      on Apple platforms. This is use to build firmware filenames, to allow
-> +      platforms with different antenna configs to have different firmware and/or
-> +      NVRAM. This would normally be filled in by the bootloader from platform
-> +      configuration data.
+> +maintainers:
+> +  - Tony Huang <tonyhuang.sunplus@gmail.com>
+> +
+> +description: |
+> +  Processor for I/O control, RTC wake-up procedure management,
+> +  and cooperation with CPU&PMC in power management.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sunplus,sp7021-iop
+> +
+> +  reg:
+> +    items:
+> +      - description: IOP registers regions
+> +      - description: PMC registers regions
+> +      - description: MOON0 registers regions
+> +
+> +  reg-names:
+> +    items:
+> +      - const: iop
+> +      - const: iop_pmc
+> +      - const: moon0
+> +
+> +  interrupts:
+> +    items:
+> +      - description: IOP_INT0. IOP to system Interrupt 0.
+> +                     Sent by IOP to system RISC.
+> +      - description: IOP_INT1. IOP to System Interrupt 1.
+> +                     Sent by IOP to system RISC.
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +
+> +  iop-wakeup:
+> +    description: Notify 8051 to wake up the Linux kernel.
 
-Is there a known set of strings that can be defined?
+What does that mean? What's the type? Does the standard 'wakeup-source' 
+property not work here?
 
-There's also the somewhat standard 'firmware-name' property that serves 
-similar purpose, but if there's multiple files, then I guess this 
-approach is fine.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - memory-region
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    iop: iop@9c000400 {
+> +        compatible = "sunplus,sp7021-iop";
+> +        reg = <0x9c000400 0x80>, <0x9c003100 0x80>, <0x9c000000 0x80>;
+> +        reg-names = "iop", "iop_pmc", "moon0";
+> +        interrupt-parent = <&intc>;
+> +        interrupts = <41 IRQ_TYPE_LEVEL_HIGH>, <42 IRQ_TYPE_LEVEL_HIGH>;
+> +        memory-region = <&iop_reserve>;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&iop_pins>;
+> +        iop-wakeup = <&pctl 1 GPIO_ACTIVE_HIGH>;
 
-Rob
+That's not how the GPIO binding works.
+
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 3b79fd4..071b5e6 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -17945,6 +17945,11 @@ L:	netdev@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/net/ethernet/dlink/sundance.c
+>  
+> +SUNPLUS IOP DRIVER
+> +M:	Tony Huang <tonyhuang.sunplus@gmail.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/misc/sunplu-iop.yaml
+> +
+>  SUPERH
+>  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
+>  M:	Rich Felker <dalias@libc.org>
+> -- 
+> 2.7.4
+> 
+> 
