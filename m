@@ -2,104 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D597E480279
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 17:54:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A57748027C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 17:57:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbhL0QyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 11:54:14 -0500
-Received: from mail-qk1-f177.google.com ([209.85.222.177]:45585 "EHLO
-        mail-qk1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbhL0QyN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 11:54:13 -0500
-Received: by mail-qk1-f177.google.com with SMTP id e25so9181781qkl.12;
-        Mon, 27 Dec 2021 08:54:13 -0800 (PST)
+        id S229473AbhL0Q50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 11:57:26 -0500
+Received: from mail-qv1-f53.google.com ([209.85.219.53]:43707 "EHLO
+        mail-qv1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229460AbhL0Q5Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 11:57:25 -0500
+Received: by mail-qv1-f53.google.com with SMTP id fq10so14239193qvb.10;
+        Mon, 27 Dec 2021 08:57:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=HUQW6IpkyjLukSOt9D0oujpEApqWaV8yZBESVCrJm0c=;
-        b=fXJVKFFnKWnpPD/Blj5uUaD1OaslE8u6NgXftFYAy7h1qg9Vop19BbAEInlzeK+9qF
-         h8dVx3bEWLN5kqxt84/ZT4tE9CC7V6N5mn2YvetO1hwGnnEcAZKOPWgfnxrJjXkh5OU8
-         y8iZdzzHaOHJ9EAVpxIxWtYXhvx5/FmzpGXO4+tayOWN4zlH85W4uFvMhdL9bvTAshIi
-         sglhpseqQX0hibFPi4F8Bbs8UUwXggblBGywGNf2z5DqMvGu1dOFachfGyu4T7FKd1JN
-         LP5S+ieEcbbxuGrtf3AmxVZL2CoGTmYaF7BH5y/gH+bW4q6tX/BXTkNiOb58A2xBB/N1
-         +LYg==
-X-Gm-Message-State: AOAM530NpV3IVyrJKNqPdhxg40/zjN5bM+e5IDvpWa7mB7cI35TDjAF4
-        KYlbqit93X2goHc+eitJXQ==
-X-Google-Smtp-Source: ABdhPJzkM7JmikYM7JLfuijM4GdYFenX1pnv9WJFIE/CT7bFaCiQZlHXnwfhTPsptFlZrKbjp+77FQ==
-X-Received: by 2002:a05:620a:2687:: with SMTP id c7mr12225344qkp.473.1640624052589;
-        Mon, 27 Dec 2021 08:54:12 -0800 (PST)
+        bh=h9MD2ILL8cJCsMX2TWi0ZW0BbPKpv24auuKjJHOTHVE=;
+        b=6jm1S5sdS+ZFdzQeiJT0HdBUJDuhFRHygGaVLHfCSFEP3Xj0S5DC9nyy9iYmMJfUGk
+         lADbA68ojpDf4shvA+f5ZyaMnMQXuCANEVoFHwvDvK6mJeBA+ne26lE94E8T3/+74sAA
+         +YiuPdmITbtEmDgzUxdugBD0e1oB4gid9NWUPlKeMZ/z3U5rTbKOhYVRgIl90Y9gizPP
+         Pyy6zE363DkB/os7yWBEYuxCcifJUt9WxauaewZKp3gRB4cHOg9vAlzIzZcYqUvaRTyk
+         SsUTeGmhgvHaXb48ImuwoJLVjxH57GE5df7mj2W/KIi1ulpbdAouk0feQkPu5zDEJoj7
+         Wuww==
+X-Gm-Message-State: AOAM530N/5v9sPfPKwoBrXkKidtQrtacqz6JNXbxAs65kxucCFaxCrN/
+        dd+4tHvMcbfXXXLBFN2FSA==
+X-Google-Smtp-Source: ABdhPJxKexGLS6oGqUfy3flP+Go9wPBi6+ZdDc6jbPj363M5hgtTre+ACko+KJJCU7CnuveKZggnfQ==
+X-Received: by 2002:ad4:5aad:: with SMTP id u13mr16025862qvg.46.1640624245151;
+        Mon, 27 Dec 2021 08:57:25 -0800 (PST)
 Received: from robh.at.kernel.org ([24.55.105.145])
-        by smtp.gmail.com with ESMTPSA id z8sm14070194qta.50.2021.12.27.08.54.11
+        by smtp.gmail.com with ESMTPSA id c7sm14263292qtx.67.2021.12.27.08.57.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Dec 2021 08:54:12 -0800 (PST)
-Received: (nullmailer pid 648280 invoked by uid 1000);
-        Mon, 27 Dec 2021 16:54:10 -0000
-Date:   Mon, 27 Dec 2021 12:54:10 -0400
+        Mon, 27 Dec 2021 08:57:24 -0800 (PST)
+Received: (nullmailer pid 653619 invoked by uid 1000);
+        Mon, 27 Dec 2021 16:57:22 -0000
+Date:   Mon, 27 Dec 2021 12:57:22 -0400
 From:   Rob Herring <robh@kernel.org>
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-kernel@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        kelvin.zhang@amlogic.com, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-serial@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH V3] dt-bindings: serial: amlogic, meson-uart: support S4
-Message-ID: <YcnvsriW+mHHBIti@robh.at.kernel.org>
-References: <20211227054529.30586-1-xianwei.zhao@amlogic.com>
- <1640619206.696540.519387.nullmailer@robh.at.kernel.org>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v7 4/4] phy: dt-bindings: Add Cadence D-PHY Rx bindings
+Message-ID: <YcnwcpPdOOJ7WgSe@robh.at.kernel.org>
+References: <20211227105545.4852-1-p.yadav@ti.com>
+ <20211227105545.4852-5-p.yadav@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1640619206.696540.519387.nullmailer@robh.at.kernel.org>
+In-Reply-To: <20211227105545.4852-5-p.yadav@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 27, 2021 at 11:33:26AM -0400, Rob Herring wrote:
-> On Mon, 27 Dec 2021 13:45:29 +0800, Xianwei Zhao wrote:
-> > Add serial bindings support meson S4 SoC family.
-> > 
-> > Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> > ---
-> > V2 -> V3 : fix the type menson->meson
-> > V1 -> V2 : update author name
-> > ---
-> >  .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
+On Mon, 27 Dec 2021 16:25:45 +0530, Pratyush Yadav wrote:
+> The Rx mode DPHY is different from Tx mode DPHY. Add a separate binding
+> for it.
 > 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
 > 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
+> ---
 > 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1573297
+> (no changes since v6)
 > 
+> Changes in v6:
+> - Add a new binding for DPHY Rx.
 > 
-> serial@23000: 'bluetooth', 'uart-has-rtscts' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 	arch/arm64/boot/dts/amlogic/meson-axg-jethome-jethub-j100.dt.yaml
+>  .../devicetree/bindings/phy/cdns,dphy-rx.yaml | 42 +++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/cdns,dphy-rx.yaml
 > 
-> serial@24000: 'bluetooth', 'uart-has-rtscts' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
-> 	arch/arm64/boot/dts/amlogic/meson-g12a-radxa-zero.dt.yaml
-> 	arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dt.yaml
-> 	arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dt.yaml
-> 	arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dt.yaml
-> 	arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dt.yaml
-> 	arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dt.yaml
-> 	arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dt.yaml
-> 	arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dt.yaml
-> 	arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dt.yaml
-> 	arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dt.yaml
-> 	arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dt.yaml
 
-These are all due to no reference to serial.yaml. Please fix that. We 
-fixed all of these, so this schema must have come in at the same time.
 
-Rob
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
