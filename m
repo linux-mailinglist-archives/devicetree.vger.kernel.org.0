@@ -2,73 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D6A247FA62
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 06:45:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B96E47FADF
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 09:06:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232163AbhL0Fpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 00:45:34 -0500
-Received: from mail-sh.amlogic.com ([58.32.228.43]:42416 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230061AbhL0Fpe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 00:45:34 -0500
-Received: from droid04.amlogic.com (10.18.11.246) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Mon, 27 Dec 2021
- 13:45:31 +0800
-From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
-To:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S231484AbhL0IG4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 03:06:56 -0500
+Received: from mail-sz.amlogic.com ([211.162.65.117]:59793 "EHLO
+        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231358AbhL0IGz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 03:06:55 -0500
+Received: from droid09-sz.software.amlogic (10.28.8.19) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Mon, 27 Dec 2021
+ 16:06:53 +0800
+From:   Qianggui Song <qianggui.song@amlogic.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Qianggui Song <qianggui.song@amlogic.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <kelvin.zhang@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: [PATCH V3] dt-bindings: serial: amlogic, meson-uart: support S4
-Date:   Mon, 27 Dec 2021 13:45:29 +0800
-Message-ID: <20211227054529.30586-1-xianwei.zhao@amlogic.com>
-X-Mailer: git-send-email 2.29.2
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v2 0/2] pinctrl: meson-s4: add pinctrl driver
+Date:   Mon, 27 Dec 2021 16:06:47 +0800
+Message-ID: <20211227080649.32275-1-qianggui.song@amlogic.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7BIT
 Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.18.11.246]
+X-Originating-IP: [10.28.8.19]
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add serial bindings support meson S4 SoC family.
+This patchset adds Pin controller driver support for Meson-A1 Soc
+which shares the same register layout with previous Meson-S4
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
-V2 -> V3 : fix the type menson->meson
-V1 -> V2 : update author name
----
- .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
- 1 file changed, 2 insertions(+)
+Note that since dt-binding header file patch(already get ack) has been removed
+from this patch set, compiling need header file in patch 2 of [0].
 
-diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-index 7487aa6ef849..72e8868db3e0 100644
---- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-@@ -29,6 +29,7 @@ properties:
-               - amlogic,meson8-uart
-               - amlogic,meson8b-uart
-               - amlogic,meson-gx-uart
-+              - amlogic,meson-s4-uart
-           - const: amlogic,meson-ao-uart
-       - description: Everything-Else power domain UART controller
-         enum:
-@@ -36,6 +37,7 @@ properties:
-           - amlogic,meson8-uart
-           - amlogic,meson8b-uart
-           - amlogic,meson-gx-uart
-+          - amlogic,meson-s4-uart
- 
-   reg:
-     maxItems: 1
+Changes since v1 at [0]:
+- fix typos in commit message
+- fix coding style problem in pinctrl-meson-s4.c
+- change tdm groups makeup and split mclk groups
 
-base-commit: 84184107c39ae65d08f6d449a57ec58734ff535a
+[0] https://lore.kernel.org/linux-amlogic/20211214022100.14841-1-qianggui.song@amlogic.com/
+
+Qianggui Song (2):
+  dt-bindings: pinctrl: meson: Add compatible for S4
+  pinctrl: meson: add pinctrl driver support for Meson-S4 Soc
+
+ .../bindings/pinctrl/meson,pinctrl.txt        |    1 +
+ drivers/pinctrl/meson/Kconfig                 |    6 +
+ drivers/pinctrl/meson/Makefile                |    1 +
+ drivers/pinctrl/meson/pinctrl-meson-s4.c      | 1289 +++++++++++++++++
+ 4 files changed, 1297 insertions(+)
+ create mode 100644 drivers/pinctrl/meson/pinctrl-meson-s4.c
+
 -- 
-2.30.2
+2.34.1
 
