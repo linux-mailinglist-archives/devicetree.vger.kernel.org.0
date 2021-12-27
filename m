@@ -2,238 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63A2F480115
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 16:53:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0720848015D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 17:02:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240169AbhL0PxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 10:53:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38986 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240224AbhL0PvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 10:51:08 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99D69C08EB28;
-        Mon, 27 Dec 2021 07:46:08 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5FF34B810CC;
-        Mon, 27 Dec 2021 15:46:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15B53C36AF9;
-        Mon, 27 Dec 2021 15:46:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640619966;
-        bh=QwJfSm+dlg50xDEsydpdzN4VFxUQiYUIsoIRz08YMpg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=UpNtBCf/OSSo+OjXWy5CHI0rUBlJiHe9NYOvMIYd+2s3K8a8aiZnK/5e6E/1btRE7
-         K2tOD668hW2a61Ji8ieOavw2g5+KEbNOkyd4m5amAMN4RnkyW7oVEiaT1gWPuPLUM7
-         gm8hqWqxUmeRNAXHYOfQ7HHphkcJ/IZrYdy12C9ETB2K2r81F1A9hCC5xZwruhIK1q
-         TtgnxcEROb3vn4onjDE9iFof2sX/CkaQqneni5PdXBOFLQ4TEWXievaRFkCKqu0mUp
-         bt0D8ddTYSeAXLoxxKfDfyBAZ4wfiLk4jM3vdlCRf9TuqUU3hhnw9m6LZxEeI0PjHO
-         zqa+1d8/B0OfQ==
-Received: by mail-ed1-f49.google.com with SMTP id q14so55430983edi.3;
-        Mon, 27 Dec 2021 07:46:05 -0800 (PST)
-X-Gm-Message-State: AOAM532tHl5UtikWtiLWoY8T0WZL2I69ahmM8oxAxE/le01VV3OqAbV5
-        7V2ki0sYBvCcRTjX/RcqzPkHezZBUvi6XxlHtw==
-X-Google-Smtp-Source: ABdhPJwMStdwgjE2OH4uiH+Ziep31Wwjs0Ml2x3toG+q5+RE5DPVmHHn5GkiKuZKENGJU9ACKddmGxQdY+Y8EOr4ubk=
-X-Received: by 2002:a05:6402:1691:: with SMTP id a17mr17057660edv.109.1640619964379;
- Mon, 27 Dec 2021 07:46:04 -0800 (PST)
-MIME-Version: 1.0
-References: <20211221182826.2141789-1-jaschultzMS@gmail.com>
- <20211221182826.2141789-2-jaschultzMS@gmail.com> <YcJiBk5f071eJ5+n@robh.at.kernel.org>
- <DM6PR21MB13230483733ECB77304EC416A5429@DM6PR21MB1323.namprd21.prod.outlook.com>
-In-Reply-To: <DM6PR21MB13230483733ECB77304EC416A5429@DM6PR21MB1323.namprd21.prod.outlook.com>
+        id S233947AbhL0QCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 11:02:24 -0500
+Received: from mail-qk1-f175.google.com ([209.85.222.175]:35553 "EHLO
+        mail-qk1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233575AbhL0QCX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 11:02:23 -0500
+Received: by mail-qk1-f175.google.com with SMTP id 131so14777826qkk.2;
+        Mon, 27 Dec 2021 08:02:23 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=72b7qtnlhIwvuhkRbhpWgwlpCXI2ABLdzVqP9BokJ/0=;
+        b=dyZkNnQbjYfoKhGDhxI6fjqcw4tMLk6IdLxTE5wBSKn7yyMa6P86laFqSuvg2ySLEh
+         +959vJQhdVVRL/2tqpVX09QPdb4MRr1mGaz3DZfxiVP8HeHTl+hp/VOBFTDKtRnVt5LS
+         299bPofzDFHIbkM94rad/qLPuKZJH8xxDigEit52z8NFZGFRO8BFloAtDABi/2Ow/0fJ
+         Y2SDftexHmt46rY/eceGT5TsSoEneFS2Hz0eLKwVKQdfo9mkwDkk4E54L+M57eUHGcAH
+         0w4yiR2VzAbiWaWpKrXAy+R0SfRqBGH00SZajKM/2xNlmJCF0Ac5X9zr4E2UQ1o6Uxmm
+         x/uA==
+X-Gm-Message-State: AOAM530bNtrevdJQzK3TzByf79bcodSfbpkFsWeeB0tu3ySdIAHwJD73
+        2iHylc7h57aPTOvh85Z6Xw==
+X-Google-Smtp-Source: ABdhPJzhUfn1ljd+iEYwyHyPKRAIZ+0Cuqt0J1Jz8ysNrIC4Q7ORN4kxEELMFLm2rG2UrLLMx6NU5A==
+X-Received: by 2002:a05:620a:1a9e:: with SMTP id bl30mr12229618qkb.130.1640620942770;
+        Mon, 27 Dec 2021 08:02:22 -0800 (PST)
+Received: from robh.at.kernel.org ([24.55.105.145])
+        by smtp.gmail.com with ESMTPSA id z5sm12613140qti.57.2021.12.27.08.02.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Dec 2021 08:02:22 -0800 (PST)
+Received: (nullmailer pid 564562 invoked by uid 1000);
+        Mon, 27 Dec 2021 16:02:19 -0000
+Date:   Mon, 27 Dec 2021 12:02:19 -0400
 From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 27 Dec 2021 11:45:51 -0400
-X-Gmail-Original-Message-ID: <CAL_JsqLuwvxkxeOmZQVOpMX_aA83LzEc4Tg+bkcFp3mUZYiTKw@mail.gmail.com>
-Message-ID: <CAL_JsqLuwvxkxeOmZQVOpMX_aA83LzEc4Tg+bkcFp3mUZYiTKw@mail.gmail.com>
-Subject: Re: [EXTERNAL] Re: [PATCH RESEND v4 1/4] dt-bindings: platform:
- microsoft: Document surface xbl
-To:     Jarrett Schultz <jaschultz@microsoft.com>
-Cc:     Jarrett Schultz <jaschultzms@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Mark Gross <markgross@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "platform-driver-x86@vger.kernel.org" 
-        <platform-driver-x86@vger.kernel.org>,
+To:     Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Cc:     Wells Lu <wellslutw@gmail.com>,
+        "dvorkin@tibbo.com" <dvorkin@tibbo.com>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: pinctrl: Add dt-bindings for Sunplus
+ SP7021
+Message-ID: <Ycnji5pNLnA/YZbX@robh.at.kernel.org>
+References: <1640331779-18277-1-git-send-email-wellslutw@gmail.com>
+ <1640331779-18277-2-git-send-email-wellslutw@gmail.com>
+ <1640443722.885735.363337.nullmailer@robh.at.kernel.org>
+ <666ad4caaafa4090a9f3c99f56c10bc8@sphcmbx02.sunplus.com.tw>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <666ad4caaafa4090a9f3c99f56c10bc8@sphcmbx02.sunplus.com.tw>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 27, 2021 at 10:54 AM Jarrett Schultz
-<jaschultz@microsoft.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Rob Herring <robh@kernel.org>
-> > Sent: Tuesday, December 21, 2021 5:24 PM
-> > To: Jarrett Schultz <jaschultzms@gmail.com>
-> > Cc: Andy Gross <agross@kernel.org>; bjorn.andersson@linaro.org; Hans de
-> > Goede <hdegoede@redhat.com>; Mark Gross <markgross@kernel.org>;
-> > Maximilian Luz <luzmaximilian@gmail.com>; Felipe Balbi
-> > <balbi@kernel.org>; linux-arm-msm@vger.kernel.org; platform-driver-
-> > x86@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > devicetree@vger.kernel.org; Jarrett Schultz <jaschultz@microsoft.com>
-> > Subject: [EXTERNAL] Re: [PATCH RESEND v4 1/4] dt-bindings: platform:
-> > microsoft: Document surface xbl
-> >
-> > On Tue, Dec 21, 2021 at 10:28:23AM -0800, Jarrett Schultz wrote:
-> > > From: Jarrett Schultz <jaschultz@microsoft.com>
-> > >
-> > > Introduce yaml for surface xbl driver.
-> > >
-> > > Signed-off-by: Jarrett Schultz <jaschultz@microsoft.com>
-> > >
-> > > ---
-> > >
-> > > Changes in v4:
-> > >  - Addressed small formatting changes
-> > >  - Removed unnecessary lines
-> > >
-> > > ---
-> > >
-> > > Changes in v3:
-> > >  - Updated description to only pertain to the hardware
-> > >  - Updated the required field to properly reflect the binding
-> > >  - Removed the first example
-> > >  - Fixed the size of the reg field in the second example
-> > >
-> > > ---
-> > >
-> > > Changes in v2:
-> > >  - Removed json-schema dependence
-> > >  - Elaborated on description of driver
-> > >  - Updated example
-> > > ---
-> > >  .../platform/microsoft/surface-xbl.yaml       | 64 +++++++++++++++++++
-> > >  MAINTAINERS                                   |  7 ++
-> > >  2 files changed, 71 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/platform/microsoft/surface-xbl.yaml
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/platform/microsoft/surface-
-> > xbl.yam
-> > > l
-> > > b/Documentation/devicetree/bindings/platform/microsoft/surface-
-> > xbl.yam
-> > > l
-> > > new file mode 100644
-> > > index 000000000000..df5a87a016f4
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/platform/microsoft/surface-xbl
-> > > +++ .yaml
-> > > @@ -0,0 +1,64 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > > +---
-> > > +$id:
-> > >
-> > +https://nam06.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
-> > > +cetree.org%2Fschemas%2Fplatform%2Fmicrosoft%2Fsurface-
-> > xbl.yaml%23&amp
-> > >
-> > +;data=04%7C01%7Cjaschultz%40microsoft.com%7C77abe729b69a40624472
-> > 08d9c
-> > >
-> > +4d8f44e%7C72f988bf86f141af91ab2d7cd011db47%7C0%7C0%7C637757258
-> > 3887312
-> > >
-> > +05%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luM
-> > zIiLCJBTi
-> > >
-> > +I6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=jG0qubz122GG2s8%2B
-> > 1ZuMCcPIa
-> > > +33KWwPoO2VNlDySmvs%3D&amp;reserved=0
-> > > +$schema:
-> > >
-> > +https://nam06.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
-> > > +cetree.org%2Fmeta-
-> > schemas%2Fcore.yaml%23&amp;data=04%7C01%7Cjaschultz
-> > >
-> > +%40microsoft.com%7C77abe729b69a4062447208d9c4d8f44e%7C72f988bf8
-> > 6f141a
-> > >
-> > +f91ab2d7cd011db47%7C0%7C0%7C637757258388731205%7CUnknown%7C
-> > TWFpbGZsb3
-> > >
-> > +d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0
-> > %3D%
-> > >
-> > +7C3000&amp;sdata=FxKNLPok9eW%2FBPmuGzU6x7dPwpnev0Ngr8epO4NA
-> > UzA%3D&amp
-> > > +;reserved=0
-> > > +
-> > > +title: Surface Extensible Bootloader for Microsoft Surface Duo
-> > > +
-> > > +maintainers:
-> > > +  - Jarrett Schultz <jaschultz@microsoft.com>
-> > > +
-> > > +description: |
-> > > +  Defined to expose information that is used during production when
-> > > +  device is in manufacturing mode. Some of the information included
-> > > +  in this imem section is -
-> >
-> > If this is onchip sram, we have a binding for that. That's not an MFD.
-> >
-> > > +    * board_id
-> > > +    * battery_present
-> > > +    * hw_init_retries
-> > > +    * is_customer_mode
-> > > +    * is_act_mode
-> > > +    * pmic_reset_reason
-> > > +    * touch_fw_version
-> > > +    * ocp_error_location
-> >
-> > nvmem binding doesn't work for describing these fields?
-> >
-> > > +  See sysfs documentation for more information.
-> >
-> > sysfs? Not relevant to the binding.
-> >
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: simple-mfd
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - ranges
-> > > +  - address-cells
-> > > +  - size-cells
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    / {
-> > > +        compatible = "foo";
-> > > +        model = "foo";
-> >
-> > No need to make this the root node with a fake compatible.
->
-> I included this root node in order to make #address-cells = #size-cells = 2,
-> since this example raises errors otherwise.
+On Sun, Dec 26, 2021 at 12:44:25PM +0000, Wells Lu 呂芳騰 wrote:
+> Hi Rob,
+> 
+> Thanks a lot for review.
+> 
+> I ran 'make dt_binding_check' and got PASS before I submitted the dt-binding doc (yaml) file.
+> 
+> I found the "dtschema/dtc warnings/errors:" is resulted from lack of vendor name in "vendor-prefixes.yaml".
+> 
+> My colleague has submitted a patch for adding our company name to the yaml file. It was acknowledged by you but not yet committed into Linux tree.
+> 
+> Refer to:
+> 
+> On Mon, 01 Nov 2021 13:01:51 +0800, Qin Jian wrote:
+> > Add vendor prefix for Sunplus Technology Co., Ltd.
+> > 
+> > Signed-off-by: Qin Jian <qinjian@cqplus1.com>
+> > ---
+> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> 
+> 
+> Can this error be waived?
 
-Why does your example require 2 cells? You only have 4KB of address space.
+No. The patch for vendor prefix has to be applied before this one or 
+we'll keep getting this error.
 
-Though you can do:
+> When I send a new patch, should I add "vendor-prefixes.yaml"?
 
-bus {
-  #address-cells = <2>;
-  #size-cells = <2>;
-  ...
-};
+As it doesn't look like that series is going to make 5.17?, I can apply 
+the vendor prefix patch.
 
 Rob
