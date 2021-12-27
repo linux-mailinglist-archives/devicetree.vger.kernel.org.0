@@ -2,101 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C41D47FBBC
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 11:04:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 317F847FBC8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 11:15:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233511AbhL0KER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 05:04:17 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:47852 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233438AbhL0KEQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 05:04:16 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S231290AbhL0KPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 05:15:45 -0500
+Received: from polaris.svanheule.net ([84.16.241.116]:50524 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235925AbhL0KPo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 05:15:44 -0500
+Received: from [10.0.28.181] (cust-13-241-108-94.dyn.as47377.net [94.108.241.13])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 90B2260180;
-        Mon, 27 Dec 2021 10:04:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1057C36AEA;
-        Mon, 27 Dec 2021 10:04:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640599456;
-        bh=dIUo5ofCQLZZ1PsUCb9oGfiTXesB8b/NGHxJvV/9Z0c=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=eumOjWQo9QHrP6X8xL5qaaoW3R+6hWhiiiUASb5VZs5JBcdwEiRJUHv/r+lb2nUEX
-         HlzLPqz2jWPX5tk2p5b2VWLk+BDRJ2OsDg/HbwkeGU3997sg+I27cBXzIpwJjmwX4V
-         buAzghBEyTMj2qa2JuZSJIpxV5JvojBhp6/qElcbzI3HhxMU/U77YhEAosykA+2QQm
-         1TyOflEI/YuEqchixgq1LyXNRyLLvZ3omYZaWLAOqtOXDokDJCea8wOqM3CfhCCFVh
-         EvH993i/LzYkT6De7V6HNiKXhRrfnRR+vcuygSvNnqaX4RHVPvf7y6tUmsUXkaKQRG
-         mXkwYi6zkix8A==
-Received: from cfbb000407.r.cam.camfibre.uk ([185.219.108.64] helo=wait-a-minute.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1n1mrV-00EWsK-Ig; Mon, 27 Dec 2021 10:04:13 +0000
-Date:   Mon, 27 Dec 2021 10:04:18 +0000
-Message-ID: <87v8zaz7ml.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Sander Vanheule <sander@svanheule.net>
-Cc:     Thomas Gleixner <tglx@linutronix.de>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        Bert Vermeulen <bert@biot.com>,
-        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v1 3/4] dt-bindings: interrupt-controller: realtek,rtl-intc: replace irq mapping
-In-Reply-To: <add13702d89fdad4ae7a479c0894aaa3be794087.camel@svanheule.net>
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 43EAF2886BF;
+        Mon, 27 Dec 2021 11:15:43 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1640600143;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=XQ++rAypcF3cqGDp+CkRP6VSaTvtTw7bDNf/Cjh12yQ=;
+        b=M2Zz/YvhlPTKQhifSHslqT3njncTkVqBXJfMlyj8OJuIqEkdOR7KqzzsvZc7UZEjg4Hg+h
+        GQk1b0xP6xA+3/+a/DzBVqg1TKlF+0Ezc3I0bSK/73aBsi5VHNYr989Xwdfr1HAMK1HC3A
+        i4N+SdqVMCD9GP/jAKtpw9OAghAKLPmHpMoHCxoWvJu/Q1ANKUmLYXxZxvB48JhozlU0sQ
+        nA9BhUF6uy3+DD4kmGIzXtJZUlwxuWLrqX5E/DsG4rQapNHEHJCNNqGx9pjAJAMVRXT/hF
+        ZeqVVw1s0A1HLnYGtzShTl7JKr391m+TPmYiRCP85XD+F7rgc2Me+IlgE2KjwQ==
+X-Priority: 3
+To:     maz@kernel.org
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        mail@birger-koblitz.de, bert@biot.com, john@phrozen.org,
+        linux-kernel@vger.kernel.org, tglx@linutronix.de
+From:   Sander Vanheule <sander@svanheule.net>
+Subject: Re: [RFC PATCH v1 3/4] dt-bindings: interrupt-controller:
+ realtek,rtl-intc: replace irq mapping
+In-Reply-To: <87v8zaz7ml.wl-maz@kernel.org>
 References: <cover.1640261161.git.sander@svanheule.net>
-        <8a5931f18a6f1c92f8c8e4965dc65674d7e5a4c4.1640261161.git.sander@svanheule.net>
-        <87y24byzej.wl-maz@kernel.org>
-        <add13702d89fdad4ae7a479c0894aaa3be794087.camel@svanheule.net>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: sander@svanheule.net, tglx@linutronix.de, devicetree@vger.kernel.org, robh+dt@kernel.org, mail@birger-koblitz.de, bert@biot.com, john@phrozen.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        <8a5931f18a6f1c92f8c8e4965dc65674d7e5a4c4.1640261161.git.sander@svanheule.net>  <87y24byzej.wl-maz@kernel.org>  <add13702d89fdad4ae7a479c0894aaa3be794087.camel@svanheule.net> <87v8zaz7ml.wl-maz@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+Date:   Mon, 27 Dec 2021 10:15:41 +0000
+Message-ID: <ofvekt.r4rr67.2rw3hx-qmf@polaris.svanheule.net>
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Dec 2021 19:29:23 +0000,
-Sander Vanheule <sander@svanheule.net> wrote:
-> 
-> On Thu, 2021-12-23 at 18:00 +0000, Marc Zyngier wrote:
-> > On Thu, 23 Dec 2021 12:08:33 +0000,
-> > Sander Vanheule <sander@svanheule.net> wrote:
-> > > 
-> > > The binding incorrectly specified the "interrupt-map" property should be
-> > > used, although the use is non-standard. A quirk had to be introduced in
-> > > commit de4adddcbcc2 ("of/irq: Add a quirk for controllers with their own
-> > > definition of interrupt-map") to allow the driver to function again.
-> > 
-> > That's too late. We have released a kernel with this binding, and it
-> > will live on forever until we totally remove the platform from the
-> > tree.
-> > 
-> > DT is an ABI, and only time travel can fix this blunder.
-> 
-> Taking into account your comments on the previous patch, this change
-> wouldn't even be required if I correct the mappings for my
-> devices. But that wouldn't get rid of the assumed mapping between
-> output lines and parent interrupts.
-
-A driver can always ignore some information from the DT and do its own
-thing. No sure if that addresses your problem though.
-
-> 
-> To what extent can the binding be updated to get rid of this
-> assumption? Or would that require a completely new binding?
-
-You can only extend a binding in a two-way fashion: old kernel works
-with new DT, new kernel works old DT. Which means that in practice,
-you can only *add* information to the DT, and have reasonable defaults
-in the driver when you don't find it.
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+SGkgTWFyYywNCg0KT24gTW9uZGF5LCAyNyBEZWNlbWJlciAyMDIxLCBNYXJjIFp5bmdpZXIgd3Jv
+dGU6DQo+IE9uIFRodSwgMjMgRGVjIDIwMjEgMTk6Mjk6MjMgKzAwMDAsDQo+IFNhbmRlciBWYW5o
+ZXVsZSA8c2FuZGVyQHN2YW5oZXVsZS5uZXQ+IHdyb3RlOg0KPiA+IA0KPiA+IE9uIFRodSwgMjAy
+MS0xMi0yMyBhdCAxODowMCArMDAwMCwgTWFyYyBaeW5naWVyIHdyb3RlOg0KPiA+ID4gT24gVGh1
+LCAyMyBEZWMgMjAyMSAxMjowODozMyArMDAwMCwNCj4gPiA+IFNhbmRlciBWYW5oZXVsZSA8c2Fu
+ZGVyQHN2YW5oZXVsZS5uZXQ+IHdyb3RlOg0KPiA+ID4gPiANCj4gPiA+ID4gVGhlIGJpbmRpbmcg
+aW5jb3JyZWN0bHkgc3BlY2lmaWVkIHRoZSAiaW50ZXJydXB0LW1hcCIgcHJvcGVydHkgc2hvdWxk
+IGJlDQo+ID4gPiA+IHVzZWQsIGFsdGhvdWdoIHRoZSB1c2UgaXMgbm9uLXN0YW5kYXJkLiBBIHF1
+aXJrIGhhZCB0byBiZSBpbnRyb2R1Y2VkIGluDQo+ID4gPiA+IGNvbW1pdCBkZTRhZGRkY2JjYzIg
+KCJvZi9pcnE6IEFkZCBhIHF1aXJrIGZvciBjb250cm9sbGVycyB3aXRoIHRoZWlyIG93bg0KPiA+
+ID4gPiBkZWZpbml0aW9uIG9mIGludGVycnVwdC1tYXAiKSB0byBhbGxvdyB0aGUgZHJpdmVyIHRv
+IGZ1bmN0aW9uIGFnYWluLg0KPiA+ID4gDQo+ID4gPiBUaGF0J3MgdG9vIGxhdGUuIFdlIGhhdmUg
+cmVsZWFzZWQgYSBrZXJuZWwgd2l0aCB0aGlzIGJpbmRpbmcsIGFuZCBpdA0KPiA+ID4gd2lsbCBs
+aXZlIG9uIGZvcmV2ZXIgdW50aWwgd2UgdG90YWxseSByZW1vdmUgdGhlIHBsYXRmb3JtIGZyb20g
+dGhlDQo+ID4gPiB0cmVlLg0KPiA+ID4gDQo+ID4gPiBEVCBpcyBhbiBBQkksIGFuZCBvbmx5IHRp
+bWUgdHJhdmVsIGNhbiBmaXggdGhpcyBibHVuZGVyLg0KPiA+IA0KPiA+IFRha2luZyBpbnRvIGFj
+Y291bnQgeW91ciBjb21tZW50cyBvbiB0aGUgcHJldmlvdXMgcGF0Y2gsIHRoaXMgY2hhbmdlDQo+
+ID4gd291bGRuJ3QgZXZlbiBiZSByZXF1aXJlZCBpZiBJIGNvcnJlY3QgdGhlIG1hcHBpbmdzIGZv
+ciBteQ0KPiA+IGRldmljZXMuIEJ1dCB0aGF0IHdvdWxkbid0IGdldCByaWQgb2YgdGhlIGFzc3Vt
+ZWQgbWFwcGluZyBiZXR3ZWVuDQo+ID4gb3V0cHV0IGxpbmVzIGFuZCBwYXJlbnQgaW50ZXJydXB0
+cy4NCj4gDQo+IEEgZHJpdmVyIGNhbiBhbHdheXMgaWdub3JlIHNvbWUgaW5mb3JtYXRpb24gZnJv
+bSB0aGUgRFQgYW5kIGRvIGl0cyBvd24NCj4gdGhpbmcuIE5vIHN1cmUgaWYgdGhhdCBhZGRyZXNz
+ZXMgeW91ciBwcm9ibGVtIHRob3VnaC4NCj4gDQo+ID4gDQo+ID4gVG8gd2hhdCBleHRlbnQgY2Fu
+IHRoZSBiaW5kaW5nIGJlIHVwZGF0ZWQgdG8gZ2V0IHJpZCBvZiB0aGlzDQo+ID4gYXNzdW1wdGlv
+bj8gT3Igd291bGQgdGhhdCByZXF1aXJlIGEgY29tcGxldGVseSBuZXcgYmluZGluZz8NCj4gDQo+
+IFlvdSBjYW4gb25seSBleHRlbmQgYSBiaW5kaW5nIGluIGEgdHdvLXdheSBmYXNoaW9uOiBvbGQg
+a2VybmVsIHdvcmtzDQo+IHdpdGggbmV3IERULCBuZXcga2VybmVsIHdvcmtzIG9sZCBEVC4gV2hp
+Y2ggbWVhbnMgdGhhdCBpbiBwcmFjdGljZSwNCj4geW91IGNhbiBvbmx5ICphZGQqIGluZm9ybWF0
+aW9uIHRvIHRoZSBEVCwgYW5kIGhhdmUgcmVhc29uYWJsZSBkZWZhdWx0cw0KPiBpbiB0aGUgZHJp
+dmVyIHdoZW4geW91IGRvbid0IGZpbmQgaXQuDQoNClRoYW5rcyBmb3IgY2xhcmlmeWluZy4gSW4g
+dGhhdCBjYXNlIEkgZG9uJ3QgdGhpbmsgaXQgaXMgcG9zc2libGUgdG8gZ2V0IHJpZCBvZiB0aGUg
+b3V0cHV0LXRvLXBhcmVudCBhc3N1bXB0aW9uIGVudGlyZWx5LCBzaW5jZSB0aGUgZHJpdmVyIHdv
+dWxkIGFsd2F5cyBuZWVkIHRvIGFjY29tbW9kYXRlIGZvciB0aGUgb3JpZ2luYWwgYmluZGluZywg
+d2hlcmUgdGhlcmUgaXMgbm8gb3V0cHV0IG1hcHBpbmcgc3BlY2lmaWVkIGluIHRoZSBiaW5kaW5n
+LiBUaGVyZSBhcmUgbm8gU29DLXNwZWNpZmljIGNvbXBhdGlibGVzICh3aGVyZSBhIG1hcHBpbmcg
+Y291bGQgYmUgYXNzdW1lZCksIGFuZCBJIGRvbid0IGtub3cgb24gaG93IG1hbnkgTUlQUyBwbGF0
+Zm9ybXMgUmVhbHRlayBoYXMgdXNlZCB0aGlzIGludGVycnVwdCByb3V0ZXIvY29udHJvbGxlci4N
+Cg0KSSBkb24ndCBoYXZlIG11Y2ggdGltZSBhbnltb3JlIHRvZGF5LCBidXQgSSdsbCBicmVhayBt
+eSBoZWFkIG92ZXIgaXQgYWdhaW4gdG9tb3Jyb3cuDQoNCkJlc3QsDQpTYW5kZXI=
