@@ -2,100 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 136A447FB55
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 10:30:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BC7447FBAA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 10:54:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231808AbhL0Ja3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 04:30:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39882 "EHLO
+        id S231736AbhL0Jyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 04:54:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229652AbhL0Ja3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 04:30:29 -0500
-X-Greylist: delayed 1437 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 27 Dec 2021 01:30:29 PST
-Received: from wp175.webpack.hosteurope.de (wp175.webpack.hosteurope.de [IPv6:2a01:488:42:1000:50ed:84b6::])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A605C06173E;
-        Mon, 27 Dec 2021 01:30:29 -0800 (PST)
-Received: from p54bc6060.dip0.t-ipconnect.de ([84.188.96.96] helo=[192.168.1.135]); authenticated
-        by wp175.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        id 1n1lxc-0003Ep-Vr; Mon, 27 Dec 2021 10:06:29 +0100
-Message-ID: <90a3ce57-875f-d34a-0714-f815acae12d4@birger-koblitz.de>
-Date:   Mon, 27 Dec 2021 10:06:17 +0100
+        with ESMTP id S229734AbhL0Jyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 04:54:43 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2543C06173E
+        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 01:54:42 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id n15-20020a17090a160f00b001a75089daa3so18013934pja.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 01:54:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=7m+K8APeDnAgcCgPHpf0L9PMpnPrkoC/IPFRW6i1Ibs=;
+        b=g1Y4fKfgbXSBJ52yn01dMgThcewFAQfsJ3aEbRdTIiohfhE9onuk8TA8yma8Ilt2JI
+         t7nBjO/D8IiGkuDqiRWBuaQFT1QIAwbLcF3PSkKH8mI3frK2TvuAsakFhgVT47LUAYAU
+         rEhwRscvPEppWuaSOWm18uPNbiPTeEswVVfuA84sg9prsEMdzZ0OiTwWut33Ml5/QzVe
+         icP8JdGdQCpzgutnew1jMy+FopwgI42xnm7k+FEMKfJh7rVjykw8H6D1/Z0ej/62OI/v
+         Bx/OpMKc2L397Z+vOK1sId8YsCAo/V0MencW5IvqekCWCQcxeJUl4znnnDB5lEgoE6ED
+         2bZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=7m+K8APeDnAgcCgPHpf0L9PMpnPrkoC/IPFRW6i1Ibs=;
+        b=wfaxBkfktoO21ouWicQAlonIJ61si7IKFpDEgChF22+iDSTQw4pU16aGeg4v0neJpR
+         WthzG548bC4vINqZiGnPlbCTLA9JdPOGu7GOS6UYHIfyAvk2FG01G075+uRhBtqig5+q
+         TMcafW5xfLzpjG38d2+3EIpxcC4/XtLn6PfmLzNSOFaj2qfSW9Ol3VuQu0qp/abRtAuB
+         rurqKrnsWZbCGyEePdY08YgeEdiWUg7vDn+YmNK/R4GrzLCZ+QQRrz361FZ+YteVLCit
+         LpJ5/cpCjxpyEi7qZBcuDj+Z3dtmFxinUiKGeT0025ppuoVtPoaZ8P9lTb8JdEAdm6sO
+         PgwQ==
+X-Gm-Message-State: AOAM533mhc3MyHo3SJNZyYtKPtDA4mBKnHq8oxqaiDrKu/GDPx+tlm00
+        qE5ugE+6lnUiz0sXRCliWjOV4Jg0x19KfucCRYI=
+X-Google-Smtp-Source: ABdhPJyY/TdgrU1OvBk+a1OiWLpJLCW1e+yZtZQTZZhi6socEMCu8+ESZkVH0qQvSiAlVnQcdusU3H4C+9kQCB0huEU=
+X-Received: by 2002:a17:90b:198b:: with SMTP id mv11mr20291568pjb.12.1640598882551;
+ Mon, 27 Dec 2021 01:54:42 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [RFC PATCH v2 0/5] Rework realtek-rtl IRQ driver
-Content-Language: en-US
-To:     Sander Vanheule <sander@svanheule.net>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Bert Vermeulen <bert@biot.com>, John Crispin <john@phrozen.org>,
-        linux-kernel@vger.kernel.org
-References: <cover.1640548009.git.sander@svanheule.net>
-From:   Birger Koblitz <mail@birger-koblitz.de>
-In-Reply-To: <cover.1640548009.git.sander@svanheule.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-bounce-key: webpack.hosteurope.de;mail@birger-koblitz.de;1640597429;2c978a16;
-X-HE-SMSGID: 1n1lxc-0003Ep-Vr
+Sender: jj3504938@gmail.com
+Received: by 2002:a05:6a20:8c11:b0:5d:563d:b15b with HTTP; Mon, 27 Dec 2021
+ 01:54:42 -0800 (PST)
+From:   Omar <omarousman125@gmail.com>
+Date:   Mon, 27 Dec 2021 16:24:42 +0630
+X-Google-Sender-Auth: E-q60k6BuLMXoJ_MJGQVTlwNjF0
+Message-ID: <CANzn7qrrkcRWQkjXio1NWb2z+eneqnvQ9y_5Lu6JtgdJnc1cXw@mail.gmail.com>
+Subject: Dear Respected Friend...
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+I am Mr. Ousman Omar a regional managing director (CORIS BANK
+INTERNATIONAL) Ouagadougou Burkina Faso, in my department we have
+US$9,500.000.00 million united state dollars, to transfer into your
+account as a dormant fund,If you are interested to use this fund to
+help the orphans around the world contact me with your personal
+information for more details to my email (omarousman125@gmail.com).
 
-I don't think the IRQ routing has an off-by one error. This was chosen
-by John to correspond to Realtek's own "documentation" and to
-take account of the special meaning of IRQs 0, 1 for VSMP and 6 and 7
-for the Realtek SoCs. In any case it would break the ABI as the meaning
-of these values changes and I don't think the change in range actually
-gives any additional functionality.
+Your Full names.
+Your Country of origin.
+Your Occupation.
+Your Age....
+Your Mobile Number.
+Your copy of identification......
 
-With regards to the RTL8390, that SoC actually has two IRQ controllers
-to allow VSMP. The changes in parent routing have a good chance of breaking
-VSMP on the RTL8390 targets. Did you stress test this new logic under VSMP?
-
-Cheers,
-   Birger
-
-
-On 26/12/2021 20:59, Sander Vanheule wrote:
-> After seeing some use, and with more devices tested, the current
-> implementation for the Realtek SoC interrupt controller was found to
-> contain a few flaws.
-> 
-> The driver requires the following fixes:
-> - irq_domain_ops::map should map the virq, not the hwirq (patch 1)
-> - routing has an off-by-one error. Routing values (1..6) correspond to
->    MIPS CAUSEF(2..7) (patch 2)
-> 
-> The following improvements should also be made:
-> - Use N real cascaded interrupts with an interrupt-specific mask of
->    child irq lines. Otherwise a high-priority interrupt may cause a
->    low-priority interrupt to be handled first. (patch 3)
-> - Get rid of assumed routing to parent interrupts of the original
->    implementation (patch 4, 5)
-> 
-> Changes since v1:
-> Link: https://lore.kernel.org/all/cover.1640261161.git.sander@svanheule.net/
-> 
-> Still an RFC. Mainly since I don't like the open coding in the last
-> patch, but also since I still have a question about the chained IRQ
-> handlers.
-> 
-> - Split some of the changes to limit the patch scope to one issue.
-> - Dropped some small (spurious or unneeded) changes
-> - Instead of dropping/replacing interrupt-map, the last patches now
->    provide an implementation that amends the current situtation.
-> 
-> Sander Vanheule (5):
->    irqchip/realtek-rtl: map control data to virq
->    irqchip/realtek-rtl: fix off-by-one in routing
->    irqchip/realtek-rtl: use per-parent irq handling
->    dt-bindings: interrupt-controller: realtek,rtl-intc: map output lines
->    irqchip/realtek-rtl: add explicit output routing
-> 
->   .../realtek,rtl-intc.yaml                     |  38 ++-
->   drivers/irqchip/irq-realtek-rtl.c             | 232 ++++++++++++++----
->   2 files changed, 218 insertions(+), 52 deletions(-)
-> 
+Best Regards
+Mr. Ousman Omar.
