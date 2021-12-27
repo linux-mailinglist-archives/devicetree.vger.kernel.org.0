@@ -2,153 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B61DD4802BA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 18:23:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AC514802C4
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 18:28:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229674AbhL0RXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 12:23:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34038 "EHLO
+        id S229727AbhL0R2c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 12:28:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbhL0RXO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 12:23:14 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B432C06173E;
-        Mon, 27 Dec 2021 09:23:14 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 79C56419BC;
-        Mon, 27 Dec 2021 17:23:05 +0000 (UTC)
-To:     Rob Herring <robh@kernel.org>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-References: <20211226153624.162281-1-marcan@marcan.st>
- <20211226153624.162281-2-marcan@marcan.st>
- <YcnrjySZ9mPbkidZ@robh.at.kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH 01/34] dt-bindings: net: bcm4329-fmac: Add Apple
- properties & chips
-Message-ID: <1e5e88a1-5457-2211-dc08-fe98415ae21b@marcan.st>
-Date:   Tue, 28 Dec 2021 02:23:02 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S229508AbhL0R2b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 12:28:31 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B5F4C06173E;
+        Mon, 27 Dec 2021 09:28:31 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id w16so64148171edc.11;
+        Mon, 27 Dec 2021 09:28:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fvswGQErb/IXWp0Ujxv53FZ/wcn6vDPizJMswGWYt8k=;
+        b=aEMf3nbv9x24qgp4OFEQiFZrAXHzGkp7M3MCwIk4+HnvH3pFPlLBWPibXCATBAB7DP
+         vdfVC5yi2yOPNyV8uSN4FQXnET0HHVlXNmBzYMsz5celB929zqcc+wq/DWXuLSiIo8XI
+         kn4uMfielj16oEo/6WczySrmt6COrDTwJyzXPqll3HP4tfqvwi+0I34rMInWidzeFqPK
+         EuWZRDPEJr6Un5PnLSlZSEF5pdYuUNfaH+kmOVtcAzGJ7pqh+XkJ3uLpC867HRXqX3Xe
+         oKSzX0mgDL4QlclhTiPS6tC08q6usMTM/aQCNgUrJnRNOTqkZ6R6HdJcgNeG5mSz2UE4
+         3XPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fvswGQErb/IXWp0Ujxv53FZ/wcn6vDPizJMswGWYt8k=;
+        b=MKdg5jsLh2jP7gee67uxQecmMLDqgTUId8tACahXFMkwy3W+PIQYJqnSG6XGPXE7vt
+         MTm8Y3qgLjacoS2sDwm/8E3S6jV//twmsf+/NawlIC9g5UcGLxcGnra6rELKibOxulIf
+         KG59MHLjVWbDty+307gsEgMPTuhUHvkLQ33O7AMXna+2c5R5m4b4hpxm/hENixwWb+Dn
+         ex/XaUfgYCti1Sj6jRCKljexDwZLafOIZyYfgUJ3y1GG1gtyt0Lvdj009xZHIwuQqjC3
+         X/aqWnlphQhjab1y5p5ekbhdnItb5kWd2yh79EFDNPn5OTeLvPev7kQbCGsMhaT1GA9P
+         w4Pw==
+X-Gm-Message-State: AOAM531FmcHoWr6hby63XS+C/vwuAjbb5XonhNpF7218YjJtPiJbNB4n
+        UKmSp58JViLwz+PiGv2x586Dw5/2y6/mGicWHNc=
+X-Google-Smtp-Source: ABdhPJwMGxE07ANpk+vQAh+chlk8FEfyr4VtcPtxTYO2uTEqvp91J9JDPq3tRLAak0uFSD/dsB9drtwjBOUh92a1XeY=
+X-Received: by 2002:a05:6402:2ce:: with SMTP id b14mr17294314edx.122.1640626110012;
+ Mon, 27 Dec 2021 09:28:30 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <YcnrjySZ9mPbkidZ@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+References: <20211227083641.12538-1-axe.yang@mediatek.com> <20211227083641.12538-4-axe.yang@mediatek.com>
+In-Reply-To: <20211227083641.12538-4-axe.yang@mediatek.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 27 Dec 2021 19:27:53 +0200
+Message-ID: <CAHp75VcVx4Yf69TEoSy8GL-he9ZAW+yvoH8-DXAotQ3Mwx7n2A@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] mmc: mediatek: add support for SDIO eint irq
+To:     Axe Yang <axe.yang@mediatek.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/12/2021 01.36, Rob Herring wrote:
-> On Mon, Dec 27, 2021 at 12:35:51AM +0900, Hector Martin wrote:
->> +  brcm,cal-blob:
->> +    $ref: /schemas/types.yaml#/definitions/uint8-array
->> +    description: A per-device calibration blob for the Wi-Fi radio. This
->> +      should be filled in by the bootloader from platform configuration
->> +      data, if necessary, and will be uploaded to the device if present.
->> +
->> +  apple,module-instance:
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +    description: Module codename used to identify a specific board on
->> +      Apple platforms. This is used to build the firmware filenames, to allow
->> +      different platforms to have different firmware and/or NVRAM config.
->> +
->> +  apple,antenna-sku:
->> +    $def: /schemas/types.yaml#/definitions/string
->> +    description: Antenna SKU used to identify a specific antenna configuration
->> +      on Apple platforms. This is use to build firmware filenames, to allow
->> +      platforms with different antenna configs to have different firmware and/or
->> +      NVRAM. This would normally be filled in by the bootloader from platform
->> +      configuration data.
-> 
-> Is there a known set of strings that can be defined?
+On Mon, Dec 27, 2021 at 6:46 PM Axe Yang <axe.yang@mediatek.com> wrote:
 
-For apple,module-instance there is, though it will grow with every new
-machine. If you're happy with me pushing updates to this through
-asahi-soc I can keep it maintained as we add DTs and compatibles there.
+...
 
-I'm curious whether you prefer this approach or something like
-brcm,board-name instead. Right now we do:
+> +       if (mmc->card && !mmc->card->cccr.enable_async_int) {
+> +               if (enb)
 
-apple,module-instance = "honshu"
+Spell it fully, i.e. enable.
 
-That gets converted to board_name="apple,honshu" in the code, which is
-what the firmwares are named after (plus extra info later appended, if
-the rest of the Apple data is available).
 
-But we could also do:
+> +                       pm_runtime_get_noresume(host->dev);
+> +               else
+> +                       pm_runtime_put_noidle(host->dev);
+> +       }
 
-brcm,board-name = "apple,honshu"
+...
 
-The latter would be more generically useful for other platforms, since
-it would allow e.g. having DTs for different boards that use the same
-WiFi module/subsystem and thus a compatible NVRAM fw file alias to the
-same file name (right now this is done with symlinks in /lib/firmware,
-one for each equivalent board). For non-Apple platforms (i.e. if
-antenna-sku and/or the OTP aren't available to do the funky Apple
-firmware selection), this just ends up replacing what would normally be
-the OF root node compatible in the firmware filename.
+> +       int ret = 0;
 
-E.g. right now we have:
+Redundant assignment, see below.
 
-brcmfmac43430-sdio.AP6212.txt
-brcmfmac43430-sdio.raspberrypi,3-model-b.txt
-brcmfmac43430-sdio.raspberrypi,model-zero-w.txt -> brcmfmac43430-sdio.raspberrypi,3-model-b.txt
-brcmfmac43430-sdio.sinovoip,bpi-m2-plus.txt -> brcmfmac43430-sdio.AP6212.txt
-brcmfmac43430-sdio.sinovoip,bpi-m2-ultra.txt -> brcmfmac43430-sdio.AP6212.txt
-brcmfmac43430-sdio.sinovoip,bpi-m2-zero.txt -> brcmfmac43430-sdio.AP6212.txt
-brcmfmac43430-sdio.sinovoip,bpi-m3.txt -> brcmfmac43430-sdio.AP6212.txt
+...
 
-And this could allow the sinovoip.* DTs to say:
-	brcm,board-name = "AP6212";
+> +       desc = devm_gpiod_get_index(host->dev, "eint", 0, GPIOD_IN);
 
-And the rPi zero one:
-	brcm,board-name = "raspberrypi,3-model-b";
+Why _index variant? By default devm_gpiod_get() uses 0 for index.
 
-And avoid the symlinks.
+> +       if (IS_ERR(desc))
+> +               return PTR_ERR(desc);
 
-The antenna-sku thing is specific to the Apple firmware selection
-process and doesn't make sense as a more generic property.
+...
 
-antenna-sku right now always seems to be one of "ID", "X0", "X2", "X3",
-though that could presumably change in the future. I can add this to the
-binding if you want, though since this will be filled in by the
-bootloader from platform data we wouldn't be validating it anyway. Not
-sure if it's worth it.
+> +       irq = gpiod_to_irq(desc);
 
-> There's also the somewhat standard 'firmware-name' property that
-> serves similar purpose, but if there's multiple files, then I guess
-> this approach is fine.
+ret = ...
+if (ret < 0)
+  ...handle error...
 
-Yeah, and the firmware name is constructed using non-DT information too
-(and we have several attempted filenames times several firmware types),
-so it wouldn't be complete.
+> +       if (irq >= 0) {
+
+(for the record, 0 is never returned by gpiod_to_irq() according to
+all its versions).
+
+> +               irq_set_status_flags(irq, IRQ_NOAUTOEN);
+
+Use corresponding flag:
+https://elixir.bootlin.com/linux/latest/source/include/linux/interrupt.h#L83
+
+> +               ret = devm_request_threaded_irq(host->dev, irq, NULL, msdc_sdio_eint_irq,
+> +                                               IRQF_TRIGGER_LOW | IRQF_ONESHOT,
+> +                                               "sdio-eint", host);
+> +       } else {
+> +               ret = irq;
+> +       }
+> +
+> +       host->eint_irq = irq;
+
+Is it okay if you assign garbage here in case of error?
+
+> +       return ret;
+
+...
+
+> +       host->pins_eint = pinctrl_lookup_state(host->pinctrl, "state_eint");
+> +       if (IS_ERR(host->pins_eint)) {
+> +               dev_dbg(&pdev->dev, "Cannot find pinctrl eint!\n");
+> +       } else {
+> +               host->pins_dat1 = pinctrl_lookup_state(host->pinctrl, "state_dat1");
+> +               if (IS_ERR(host->pins_dat1)) {
+
+> +                       ret = PTR_ERR(host->pins_dat1);
+> +                       dev_err(&pdev->dev, "Cannot find pinctrl dat1!\n");
+
+ret = dev_err_probe(...); ?
+
+> +                       goto host_free;
+> +               }
+> +       }
+
+...
+
+> +       if (!IS_ERR(host->pins_eint)) {
+
+I'm wondering if you can use a pattern "error check first"?
+
+> +               disable_irq(host->irq);
+> +               pinctrl_select_state(host->pinctrl, host->pins_eint);
+> +               spin_lock_irqsave(&host->lock, flags);
+> +               if (host->sdio_irq_cnt == 0) {
+> +                       enable_irq(host->eint_irq);
+> +                       enable_irq_wake(host->eint_irq);
+> +                       host->sdio_irq_cnt++;
+> +               }
+> +               sdr_clr_bits(host->base + SDC_CFG, SDC_CFG_SDIOIDE);
+> +               spin_unlock_irqrestore(&host->lock, flags);
+> +       }
 
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+With Best Regards,
+Andy Shevchenko
