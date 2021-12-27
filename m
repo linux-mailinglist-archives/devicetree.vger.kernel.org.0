@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81A4347FD9C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 14:36:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6CA647FD94
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 14:36:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237077AbhL0Ngf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 08:36:35 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:39734
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236944AbhL0NgQ (ORCPT
+        id S236999AbhL0Ng0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 08:36:26 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:54762
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236958AbhL0NgS (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Dec 2021 08:36:16 -0500
-Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
+        Mon, 27 Dec 2021 08:36:18 -0500
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 591A43F1B2
-        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 13:36:15 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id F03E73FFD5
+        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 13:36:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640612175;
-        bh=3AbZgxGDXgdNiIa0Jk7Nnp9ACqroRk58o0FdzMEMrPY=;
+        s=20210705; t=1640612176;
+        bh=JFavKQ4EpkcOZ7wQmRTeTvx/mZGmly/qZElot/QHLH0=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=hcFzRTVeGyuEiNCIrKYtINddTewEergq5sWGmwhkFNvIwX5HPHynD7NfXnLZDCnSS
-         1YZeV94RiHp0refr8gIfYY94BA00BX/zNUYYGvH9kfuDnwB84YWxo+/n0byzmfQANm
-         HQOBL5iltGp41HojuH2NvjKkRtsMepAk05dO7monp/fB2WkpwzJQjEugBoQaKyoZHu
-         RCvFucIAceApTtJfIn59uqtkM1vAKnXIE3O3KwK6Xv48W6IMpdoXJYDezcLf6ATYAK
-         wwj0pFJxUUUQ8uoYIby8kI8OrRi77htR9EWwZpq7Z/I3SzGnwTh0XPIuE+LeGCcbnG
-         xGf8vWxeNLQXQ==
-Received: by mail-lj1-f200.google.com with SMTP id v19-20020a2e87d3000000b0022dbe4687f1so2193750ljj.7
-        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 05:36:15 -0800 (PST)
+        b=Z9U5rdJcOtHe9DMjh0otK6nZ77vPGZNAQQ15NecpofHYh+qJ796act2dZv2mc9Qbx
+         iVCBrfHGutb8zATIMRwlxEVW9gAprFZ8GbsGjOqekF8MJnjJb0iuOlbjBctl622wUq
+         u18x/LVEJ0KADUl7eY9n4v3IbzEwQpkTRUgFhaNVZHyyodIGPuYySo9t+eGRtYI9Vm
+         bR4ALx1VygOi+jFmeZNBkGEiENovx74yetlmfZxvczSXH5vRLlbj3C0IC+PNIWgNGu
+         mCD/0z/H59fmXfy8MNLQKHM9eTo4DjXPHvrZ2iac8rrMckGcyoBh35nWVlNMV7r6ST
+         g59QiQL5Brl5w==
+Received: by mail-lj1-f198.google.com with SMTP id b20-20020a2e9894000000b0022dc5a5f841so1944272ljj.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 05:36:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=3AbZgxGDXgdNiIa0Jk7Nnp9ACqroRk58o0FdzMEMrPY=;
-        b=Hk4Yc0PUr3eNGyYxvbfXe6dhflUy9xOLPq/t/mIrkBOCE2OYQ4of7RKYdacfaRwm+I
-         d38U6Xi6IF21rCG7l+4JIbuvVYfZRE+NgytKgxzhSu0zfTqA2e1ApBVJEnG2ZYaw/WdO
-         sZ4nyyN868SVoxt2YU8+8n9DZH4XV5YuZyXaAu9UMwECkXbRY96YQJ0+iLMZCX9SmHRS
-         OKcmNeqE+jOBFMSZH8Q0QAnmGjGsTHVOZAKW52WOoTCfdzig/7O4QAJ8gW1ek+vM0qWP
-         mCq62DsPZRA5z20uw3yy0rihCNbkrkvmmesSPHt4/H1M+1FTUzZcAGXwAteMseuOhbYN
-         dv3g==
-X-Gm-Message-State: AOAM530oWHwzEQKg2SiFpiSii89F+fnDaKn0A8vZlQyCmOq5Z4CG8RMR
-        jjiFvFdiV4JX0jxHulR2pZR0ANmp1103sYiZTCEwb8LHNqGZqbqYNDxf2tvABqJnEAZYOxRlDNZ
-        M2uB59142wxWSs9kUQar3SYqLo9k9VVG18NCA/8c=
-X-Received: by 2002:a05:6512:12d5:: with SMTP id p21mr8942039lfg.569.1640612174870;
-        Mon, 27 Dec 2021 05:36:14 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyfQu6n8QDkb9KxZ3wkpoGs+rZ8DmC5Rse+TWkIV2qUXfeuDeJNbHXLY+a1Sk3njem4BbGbmA==
-X-Received: by 2002:a05:6512:12d5:: with SMTP id p21mr8942022lfg.569.1640612174714;
-        Mon, 27 Dec 2021 05:36:14 -0800 (PST)
+        bh=JFavKQ4EpkcOZ7wQmRTeTvx/mZGmly/qZElot/QHLH0=;
+        b=0nt1wSG0Jw9YpKIMMSqpUtN61LGgjsluUD+lJJBR0OnGUwGvuqL2mtN1b1EVaQDC9K
+         XED73HEJZxKzzoH1CG0ygYPper8p9KxSvn8pbxKVQDU3iSAv2sHXqR1CD1uKyhETwq4l
+         LJDePQg+Qy5hTfsvMN5KwOuoP6rY9puD5Hxq+U8EPrTHYwAjVRRcrQ44WA0xcV8LhT7R
+         XWkQZpgCh25qSuu0scBbLYp+23qK/ivBHT1nG+AVlzXaz+TMbuHsTvB9kpufh0I781Ug
+         nNLlJY02HyaQ/IXKfHnM7KNTfoSNe4B39wFijBzKJyFGS5D1thd2LQVr9GxquqEiLQnJ
+         uXeA==
+X-Gm-Message-State: AOAM532hayjbFKpDMZ+FKvZgVCz7WqH3Doq0hHj8oR1zlkXJrxIRoCl7
+        0BqEGwu3n/lM4ahT/2U3y4BXGOardNZbYmWEPDLJ4Wcei57FSgwHareYLCd5ISLE4lyp9hPW6p8
+        0G10COVo6ySqMsIqOnahBKh1H1yuK4bK/+LskQeQ=
+X-Received: by 2002:a05:651c:612:: with SMTP id k18mr14341424lje.383.1640612176049;
+        Mon, 27 Dec 2021 05:36:16 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyigWSTBhHMTJw9c+BMRCCqABSOCIw31rtBFtt3dBgwEbcNUZTxOPbnbqo+v1WaY9WCE71FlQ==
+X-Received: by 2002:a05:651c:612:: with SMTP id k18mr14341415lje.383.1640612175896;
+        Mon, 27 Dec 2021 05:36:15 -0800 (PST)
 Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id g18sm800107ljj.124.2021.12.27.05.36.13
+        by smtp.gmail.com with ESMTPSA id g18sm800107ljj.124.2021.12.27.05.36.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Dec 2021 05:36:14 -0800 (PST)
+        Mon, 27 Dec 2021 05:36:15 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Michael Turquette <mturquette@baylibre.com>,
@@ -63,9 +63,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-mmc@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH 17/19] arm64: dts: agilex: add board compatible for SoCFPGA DK
-Date:   Mon, 27 Dec 2021 14:35:56 +0100
-Message-Id: <20211227133558.135185-11-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 18/19] arm64: dts: agilex: add board compatible for N5X DK
+Date:   Mon, 27 Dec 2021 14:35:57 +0100
+Message-Id: <20211227133558.135185-12-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211227133131.134369-1-krzysztof.kozlowski@canonical.com>
 References: <20211227133131.134369-1-krzysztof.kozlowski@canonical.com>
@@ -75,36 +75,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Intel SoCFPGA Agilex 10 SoC Development Kit is a board with
+The Intel SoCFPGA N5X SoC Development Kit is a board with
 Agilex, so it needs its own compatible.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts      | 1 +
- arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts | 1 +
- 2 files changed, 2 insertions(+)
+ arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-index 0f7a0ba344be..ea37ba7ccff9 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+diff --git a/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
+index f3c1310dae0a..5609d8df6729 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
++++ b/arch/arm64/boot/dts/intel/socfpga_n5x_socdk.dts
 @@ -6,6 +6,7 @@
  
  / {
- 	model = "SoCFPGA Agilex SoCDK";
-+	compatible = "intel,socfpga-agilex-socdk", "intel,socfpga-agilex";
- 
- 	aliases {
- 		serial0 = &uart0;
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts
-index 57f83481f551..51f83f96ec65 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_nand.dts
-@@ -6,6 +6,7 @@
- 
- / {
- 	model = "SoCFPGA Agilex SoCDK";
-+	compatible = "intel,socfpga-agilex-socdk", "intel,socfpga-agilex";
+ 	model = "eASIC N5X SoCDK";
++	compatible = "intel,n5x-socdk", "intel,socfpga-agilex";
  
  	aliases {
  		serial0 = &uart0;
