@@ -2,130 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D67E147FC04
-	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 11:56:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C69347FC17
+	for <lists+devicetree@lfdr.de>; Mon, 27 Dec 2021 12:08:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236249AbhL0K4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 05:56:15 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:42134 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236236AbhL0K4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 05:56:14 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BRAu4YX005375;
-        Mon, 27 Dec 2021 04:56:04 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1640602564;
-        bh=oXajD0FwetE/XHBNrETP8S1acJn4mJr3BQS+cPeHJjc=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=w8ZkAO3L9+pOIAs2ObE0Ndh9ybFCJKTZ6SUS/z+AkESEjAA2RQ8Qf5spWrRjnSUYL
-         BsUP6Fwjn0rMTtR/YNkjrVoSZ1ATF6LxLbrwgLdyGh6e6oPKApeirfvq0ENdv7eGmd
-         L3sBSxie1OK4HRSx3tA8FgN8KeKX29z70GWole5Y=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BRAu4Mo066946
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 27 Dec 2021 04:56:04 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 27
- Dec 2021 04:56:04 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 27 Dec 2021 04:56:04 -0600
-Received: from pratyush-OptiPlex-790.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BRAtkVP029188;
-        Mon, 27 Dec 2021 04:56:01 -0600
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     Pratyush Yadav <p.yadav@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-Subject: [PATCH v7 4/4] phy: dt-bindings: Add Cadence D-PHY Rx bindings
-Date:   Mon, 27 Dec 2021 16:25:45 +0530
-Message-ID: <20211227105545.4852-5-p.yadav@ti.com>
-X-Mailer: git-send-email 2.33.1.835.ge9e5ba39a7
-In-Reply-To: <20211227105545.4852-1-p.yadav@ti.com>
-References: <20211227105545.4852-1-p.yadav@ti.com>
+        id S236290AbhL0LIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Dec 2021 06:08:01 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:36694 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233404AbhL0LIA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 06:08:00 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8D5F860F15;
+        Mon, 27 Dec 2021 11:08:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23712C36AEA;
+        Mon, 27 Dec 2021 11:07:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640603280;
+        bh=lGd8HHkcDZEOoSy237CO/NUiA+Tb3WGAEboNDpfIehI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tk29EfKd9Ez996/BKIIiTsX7pMjITL5y/OgAOG0XZKGWEBoqhQpKzLDcaNZnJzVs0
+         c5CyGuY+QFf3qwFyArs2Dnze14B8mONCDxouymFWUS9pO35FoWY/VwMrb60cP9l4Py
+         VmFO8+TTYpP1f1yJxMYqSc++xzfDq58NaIeUQlpsBVOFsosVRSCB5dD9mKBQ8gnQcu
+         1WLl3fVwt7e3nW0KLIY2GuPwxq0BEkoSbwrorAKQlkHYU2EqpspwAWWnsErWDCfuOL
+         LygSKg3RifaqNO+XYBdqZCzNeVIf85YYM197FRlXgU4lTCP4MPso9HpO8cqUk2sU+5
+         NWmC01vKU6cFA==
+Date:   Mon, 27 Dec 2021 16:37:56 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Swapnil Jakhade <sjakhade@cadence.com>
+Cc:     kishon@ti.com, robh+dt@kernel.org, p.zabel@pengutronix.de,
+        linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, mparab@cadence.com, a-govindraju@ti.com
+Subject: Re: [PATCH v4 00/15] PHY: Add support for multilink configurations
+ in Cadence Sierra PHY driver
+Message-ID: <YcmejF/Xs+RfnTQC@matsya>
+References: <20211223060137.9252-1-sjakhade@cadence.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211223060137.9252-1-sjakhade@cadence.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Rx mode DPHY is different from Tx mode DPHY. Add a separate binding
-for it.
+On 23-12-21, 07:01, Swapnil Jakhade wrote:
+> Cadence Sierra PHY is a multiprotocol PHY supporting different multilink
+> PHY configurations. This patch series extends functionality of Sierra PHY
+> driver by adding features like support for multilink multiprotocol
+> configurations, derived reference clock etc.
+> 
+> The changes have been validated on TI J721E platform.
 
-Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+Applied, thanks
 
----
-
-(no changes since v6)
-
-Changes in v6:
-- Add a new binding for DPHY Rx.
-
- .../devicetree/bindings/phy/cdns,dphy-rx.yaml | 42 +++++++++++++++++++
- 1 file changed, 42 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/cdns,dphy-rx.yaml
-
-diff --git a/Documentation/devicetree/bindings/phy/cdns,dphy-rx.yaml b/Documentation/devicetree/bindings/phy/cdns,dphy-rx.yaml
-new file mode 100644
-index 000000000000..07be031d82e6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/cdns,dphy-rx.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/cdns,dphy-rx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cadence DPHY Rx Device Tree Bindings
-+
-+maintainers:
-+  - Pratyush Yadav <p.yadav@ti.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: cdns,dphy-rx
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#phy-cells":
-+    const: 0
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#phy-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-+
-+    dphy0: phy@4580000 {
-+        compatible = "cdns,dphy-rx";
-+        reg = <0x4580000 0x1100>;
-+        #phy-cells = <0>;
-+        power-domains = <&k3_pds 147 TI_SCI_PD_EXCLUSIVE>;
-+    };
 -- 
-2.33.1.835.ge9e5ba39a7
-
+~Vinod
