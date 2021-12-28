@@ -2,107 +2,343 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CB6D480B1D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 17:13:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD5A2480B24
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 17:16:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235617AbhL1QNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 11:13:10 -0500
-Received: from mail.skyhub.de ([5.9.137.197]:48190 "EHLO mail.skyhub.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235511AbhL1QNK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Dec 2021 11:13:10 -0500
-Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 5B0001EC03C9;
-        Tue, 28 Dec 2021 17:13:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1640707984;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=WXiQ34aw3BVND/Em7tvSPxlLMgOR1j97eSJLIoe4hEo=;
-        b=Wxfh2AfVkOPehtchcQkGOoQ0oGIuT8TcGQj16+fz/HtvWax3OrT7PDYc6oNz8WRzjBQVGz
-        Y5x48biGa9AeRsmxuPHUMmhPc/e5BbRXINa6EOML0ucxMIFvD84s6QGJryKawaDfVG69Fh
-        DDSVwawRqdPXycOFmaGv7WJE5dupzC8=
-Date:   Tue, 28 Dec 2021 17:13:06 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
-        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>
-Subject: Re: [PATCH v19 02/13] x86/setup: Use parse_crashkernel_high_low() to
- simplify code
-Message-ID: <Ycs3kpZD/vpoo1AX@zn.tnic>
-References: <20211228132612.1860-1-thunder.leizhen@huawei.com>
- <20211228132612.1860-3-thunder.leizhen@huawei.com>
+        id S235719AbhL1QQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 11:16:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52004 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235159AbhL1QQE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 11:16:04 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D33C061574
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:16:03 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id p7so30707498ljj.1
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:16:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4k4njwm7hK6Z45dckiCYbmCzLy/kr0ugHzYUGxbiInU=;
+        b=Ek1p4foThB+yuOnIzjsvfQr0fFSjQQbiQsGxSFJiUd5rHYVeapqJevPb/9EV2nu/sX
+         OKfWCPftZmWx7EaXMwLeJy7Zyb8qp+0Hvfi5OVPkBuO7l1LPehb9xKumZsXCpNocn5DV
+         8Ksiw5vFs4+EpTjsM0G+HaPQWiY3qGK6QQu1sgkluuLle+YYkZzYuympAB6sjyJjYe5R
+         EuRwoi5Fi3knGB29CgLT7eeP5o3jhQloStL+/7j+LaveK7oV0fGpJNIDETtMWOJfPG7B
+         NHgFuvCyU4lYGq7MTiUCxgW2h5/OZ64c6ArCfWQE/P0iOWw5Da8Zr02Rr2MTN4VVVas/
+         cETQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4k4njwm7hK6Z45dckiCYbmCzLy/kr0ugHzYUGxbiInU=;
+        b=odnOmlnGOzcGoOuIoaVgXwuwegN4qc2AB4kKpKayRuOGB8h6NV7Fs713N1kwZkTrHq
+         QDphQEF28UCk99DoOzoqEdJZwD6Nge+P6I2v3GjvbOvmve6VuHVvlg2wuCZbgMidMbgX
+         QX9ZmKUdgoUM1iklWb0Ngp5/Uuo6oVfAo36dL8C/CwdlPBk3gro1tXz8K+e/isaV1nH+
+         idS86TDyuqEdJqzOzKWxafOq8/5gvs4M+ujAHgXPzcwQvtb7mBq6s/oaCtrKkjc1oL29
+         pJCS64xC4DzpPNbFVJmm6KMd0w1PXRQFBsEZKFiG6cUwR4qFJPWP47OKNc5LNEgd0HaA
+         9txA==
+X-Gm-Message-State: AOAM531r3upedpQkw0xC8osbxo3nzAthCq24lfq21uYiUoDdC9LLx+ze
+        Isph7lmpGmrVlN9PF30BcPpNv5RoeRQPWw2qtwNrDA==
+X-Google-Smtp-Source: ABdhPJz2MeuKH/Nzw6lbMyBsvACOeWh7uQV47y66mmJQhZsIRESHcyGkt6EGEiX3GcFZ29eJLYbs9f2LPwsdlGEzjSY=
+X-Received: by 2002:a2e:9659:: with SMTP id z25mr17154594ljh.16.1640708162009;
+ Tue, 28 Dec 2021 08:16:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211228132612.1860-3-thunder.leizhen@huawei.com>
+References: <20211215130711.111186-1-gsomlo@gmail.com> <20211215130711.111186-4-gsomlo@gmail.com>
+In-Reply-To: <20211215130711.111186-4-gsomlo@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 28 Dec 2021 17:15:25 +0100
+Message-ID: <CAPDyKFqo5sZy8aVbOcfS_cxT9T5r214GKCL-FKRg_0P0yQJTFQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+To:     Gabriel Somlo <gsomlo@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        kgugala@antmicro.com, mholenko@antmicro.com, krakoczy@antmicro.com,
+        mdudek@internships.antmicro.com, paulus@ozlabs.org, joel@jms.id.au,
+        shorne@gmail.com, geert@linux-m68k.org,
+        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
+        rdunlap@infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 28, 2021 at 09:26:01PM +0800, Zhen Lei wrote:
-> Use parse_crashkernel_high_low() to bring the parsing of
-> "crashkernel=X,high" and the parsing of "crashkernel=Y,low" together, they
-> are strongly dependent, make code logic clear and more readable.
-> 
-> Suggested-by: Borislav Petkov <bp@alien8.de>
+On Wed, 15 Dec 2021 at 14:09, Gabriel Somlo <gsomlo@gmail.com> wrote:
+>
+> LiteX (https://github.com/enjoy-digital/litex) is a SoC framework
+> that targets FPGAs. LiteSDCard is a small footprint, configurable
+> SDCard core commonly used in LiteX designs.
+>
+> The driver was first written in May 2020 and has been maintained
+> cooperatively by the LiteX community. Thanks to all contributors!
+>
+> Co-developed-by: Kamil Rakoczy <krakoczy@antmicro.com>
+> Signed-off-by: Kamil Rakoczy <krakoczy@antmicro.com>
+> Co-developed-by: Maciej Dudek <mdudek@internships.antmicro.com>
+> Signed-off-by: Maciej Dudek <mdudek@internships.antmicro.com>
+> Co-developed-by: Paul Mackerras <paulus@ozlabs.org>
+> Signed-off-by: Paul Mackerras <paulus@ozlabs.org>
+> Signed-off-by: Gabriel Somlo <gsomlo@gmail.com>
+> Cc: Mateusz Holenko <mholenko@antmicro.com>
+> Cc: Karol Gugala <kgugala@antmicro.com>
+> Cc: Joel Stanley <joel@jms.id.au>
+> Cc: Stafford Horne <shorne@gmail.com>
+> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+> Cc: David Abdurachmanov <david.abdurachmanov@sifive.com>
+> Cc: Florent Kermarrec <florent@enjoy-digital.fr>
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
 
-Yeah, doesn't look like something I suggested...
+[...]
 
-> @@ -474,10 +472,9 @@ static void __init reserve_crashkernel(void)
->  	/* crashkernel=XM */
->  	ret = parse_crashkernel(boot_command_line, total_mem, &crash_size, &crash_base);
->  	if (ret != 0 || crash_size <= 0) {
-> -		/* crashkernel=X,high */
-> -		ret = parse_crashkernel_high(boot_command_line, total_mem,
-> -					     &crash_size, &crash_base);
-> -		if (ret != 0 || crash_size <= 0)
-> +		/* crashkernel=X,high and possible crashkernel=Y,low */
-> +		ret = parse_crashkernel_high_low(boot_command_line, &crash_size, &low_size);
+> +
+> +static int litex_mmc_set_bus_width(struct litex_mmc_host *host)
+> +{
+> +       bool app_cmd_sent;
+> +       int ret;
+> +
+> +       if (host->is_bus_width_set)
+> +               return 0;
+> +
+> +       /* ensure 'app_cmd' precedes 'app_set_bus_width_cmd' */
+> +       app_cmd_sent = host->app_cmd; /* was preceding command app_cmd? */
+> +       if (!app_cmd_sent) {
+> +               ret = litex_mmc_send_app_cmd(host);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       /* litesdcard only supports 4-bit bus width */
+> +       ret = litex_mmc_send_set_bus_w_cmd(host, MMC_BUS_WIDTH_4);
+> +       if (ret)
+> +               return ret;
+> +
+> +       /* re-send 'app_cmd' if necessary */
+> +       if (app_cmd_sent) {
+> +               ret = litex_mmc_send_app_cmd(host);
+> +               if (ret)
+> +                       return ret;
+> +       }
 
-So this calls parse_crashkernel() and when that one fails, it calls this
-new weird parse high/low helper you added.
+I understand that you are trying to address the limitation that the
+controller supports 4-bit width only. In principle it looks like we
+may need to violate the SD spec to be able to initialise an SD card,
+right? Isn't that a concern for you?
 
-But then all three end up in the same __parse_crashkernel() worker
-function which seems to do the actual parsing.
+> +
+> +       host->is_bus_width_set = true;
+> +
+> +       return 0;
+> +}
 
-What I suggested and what would be real clean is if the arches would
-simply call a *single* 
+[...]
 
-	parse_crashkernel()
+> +
+> +static void litex_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+> +{
+> +       struct litex_mmc_host *host = mmc_priv(mmc);
+> +       struct device *dev = mmc_dev(mmc);
+> +       struct mmc_command *cmd = mrq->cmd;
+> +       struct mmc_command *sbc = mrq->sbc;
+> +       struct mmc_data *data = mrq->data;
+> +       struct mmc_command *stop = mrq->stop;
+> +       unsigned int retries = cmd->retries;
+> +       unsigned int len = 0;
+> +       bool direct = false;
+> +       u32 response_len = litex_mmc_response_len(cmd);
+> +       u8 transfer = SD_CTL_DATA_XFER_NONE;
+> +
+> +       /* First check that the card is still there */
+> +       if (!litex_mmc_get_cd(mmc)) {
+> +               cmd->error = -ENOMEDIUM;
+> +               mmc_request_done(mmc, mrq);
+> +               return;
+> +       }
+> +
+> +       /* Send set-block-count command if needed */
+> +       if (sbc) {
+> +               sbc->error = litex_mmc_send_cmd(host, sbc->opcode, sbc->arg,
+> +                                               litex_mmc_response_len(sbc),
+> +                                               SD_CTL_DATA_XFER_NONE);
+> +               if (sbc->error) {
+> +                       host->is_bus_width_set = false;
+> +                       mmc_request_done(mmc, mrq);
+> +                       return;
+> +               }
+> +       }
+> +
+> +       if (data) {
+> +               /* LiteSDCard only supports 4-bit bus width; therefore, we MUST
+> +                * inject a SET_BUS_WIDTH (acmd6) before the very first data
+> +                * transfer, earlier than when the mmc subsystem would normally
+> +                * get around to it!
 
-function and when that one returns, *all* crashkernel= options would
-have been parsed properly, low, high, middle crashkernel, whatever...
-and the caller would know what crash kernel needs to be allocated.
+This means that you may end up trying to switch bus-width, to a width
+that isn't supported by the card, for example.
 
-Then each arch can do its memory allocations and checks based on that
-parsed data and decide to allocate or bail.
+As also stated above, I wonder how this conforms to the SD spec from
+the initialization sequence point of view. Have you verified that this
+isn't a problem?
 
-So it is getting there but it needs more surgery...
+> +                */
+> +               cmd->error = litex_mmc_set_bus_width(host);
+> +               if (cmd->error) {
+> +                       dev_err(dev, "Can't set bus width!\n");
+> +                       mmc_request_done(mmc, mrq);
+> +                       return;
+> +               }
+> +
+> +               litex_mmc_do_dma(host, data, &len, &direct, &transfer);
+> +       }
+> +
+> +       do {
+> +               cmd->error = litex_mmc_send_cmd(host, cmd->opcode, cmd->arg,
+> +                                               response_len, transfer);
+> +       } while (cmd->error && retries-- > 0);
+> +
+> +       if (cmd->error) {
+> +               /* card may be gone; don't assume bus width is still set */
+> +               host->is_bus_width_set = false;
+> +       }
+> +
+> +       if (response_len == SD_CTL_RESP_SHORT) {
+> +               /* pull short response fields from appropriate host registers */
+> +               cmd->resp[0] = host->resp[3];
+> +               cmd->resp[1] = host->resp[2] & 0xFF;
+> +       } else if (response_len == SD_CTL_RESP_LONG) {
+> +               cmd->resp[0] = host->resp[0];
+> +               cmd->resp[1] = host->resp[1];
+> +               cmd->resp[2] = host->resp[2];
+> +               cmd->resp[3] = host->resp[3];
+> +       }
+> +
+> +       /* Send stop-transmission command if required */
+> +       if (stop && (cmd->error || !sbc)) {
+> +               stop->error = litex_mmc_send_cmd(host, stop->opcode, stop->arg,
+> +                                                litex_mmc_response_len(stop),
+> +                                                SD_CTL_DATA_XFER_NONE);
+> +               if (stop->error)
+> +                       host->is_bus_width_set = false;
+> +       }
+> +
+> +       if (data) {
+> +               dma_unmap_sg(dev, data->sg, data->sg_len,
+> +                            mmc_get_dma_dir(data));
+> +       }
+> +
+> +       if (!cmd->error && transfer != SD_CTL_DATA_XFER_NONE) {
+> +               data->bytes_xfered = min(len, mmc->max_req_size);
+> +               if (transfer == SD_CTL_DATA_XFER_READ && !direct) {
+> +                       sg_copy_from_buffer(data->sg, sg_nents(data->sg),
+> +                                           host->buffer, data->bytes_xfered);
+> +               }
+> +       }
+> +
+> +       mmc_request_done(mmc, mrq);
+> +}
+> +
 
-Thx.
+[...]
 
--- 
-Regards/Gruss,
-    Boris.
+> +
+> +       mmc->ocr_avail = MMC_VDD_32_33 | MMC_VDD_33_34;
 
-https://people.kernel.org/tglx/notes-about-netiquette
+I noticed that you use these hard coded values and don't really care
+to manage voltage changes via ->set_ios().
+
+Rather than doing it like this, I would prefer if you can hook up a
+fixed vmmc regulator in the DTS. Then call mmc_regulator_get_supply()
+to fetch it from here, which will let the mmc core create the
+mmc->ocr_avail mask, based upon the voltage level the regulator
+supports.
+
+This becomes more generic and allows more flexibility for the platform
+configuration.
+
+> +       mmc->ops = &litex_mmc_ops;
+> +
+> +       /* set default sd_clk frequency range based on empirical observations
+> +        * of LiteSDCard gateware behavior on typical SDCard media
+> +        */
+> +       mmc->f_min = 12.5e6;
+> +       mmc->f_max = 50e6;
+> +
+> +       ret = mmc_of_parse(mmc);
+> +       if (ret)
+> +               goto err;
+> +
+> +       /* force 4-bit bus_width (only width supported by hardware) */
+> +       mmc->caps &= ~MMC_CAP_8_BIT_DATA;
+> +       mmc->caps |= MMC_CAP_4_BIT_DATA;
+> +
+> +       /* set default capabilities */
+> +       mmc->caps |= MMC_CAP_WAIT_WHILE_BUSY |
+> +                    MMC_CAP_DRIVER_TYPE_D |
+> +                    MMC_CAP_CMD23;
+> +       mmc->caps2 |= MMC_CAP2_NO_WRITE_PROTECT |
+> +                     MMC_CAP2_FULL_PWR_CYCLE |
+
+A full power cycle requires you to be able to power on/off the vmmc
+regulator (unless this is internally managed by the controller). Can
+you really do that?
+
+> +                     MMC_CAP2_NO_SDIO;
+
+We should add MMC_CAP2_NO_MMC here as well, as it looks like it can't
+be supported. Right?
+
+> +
+> +       platform_set_drvdata(pdev, host);
+> +
+> +       ret = mmc_add_host(mmc);
+> +       if (ret < 0)
+> +               goto err;
+> +
+> +       return 0;
+> +
+> +err:
+> +       mmc_free_host(mmc);
+> +       return ret;
+> +}
+> +
+> +static int litex_mmc_remove(struct platform_device *pdev)
+> +{
+> +       struct litex_mmc_host *host = dev_get_drvdata(&pdev->dev);
+> +
+> +       if (host->irq > 0)
+> +               free_irq(host->irq, host->mmc);
+> +       mmc_remove_host(host->mmc);
+> +       mmc_free_host(host->mmc);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id litex_match[] = {
+> +       { .compatible = "litex,mmc" },
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(of, litex_match);
+> +
+> +static struct platform_driver litex_mmc_driver = {
+> +       .probe = litex_mmc_probe,
+> +       .remove = litex_mmc_remove,
+> +       .driver = {
+> +               .name = "litex-mmc",
+> +               .of_match_table = of_match_ptr(litex_match),
+> +       },
+> +};
+> +module_platform_driver(litex_mmc_driver);
+> +
+> +MODULE_DESCRIPTION("LiteX SDCard driver");
+> +MODULE_AUTHOR("Antmicro <contact@antmicro.com>");
+> +MODULE_AUTHOR("Kamil Rakoczy <krakoczy@antmicro.com>");
+> +MODULE_AUTHOR("Maciej Dudek <mdudek@internships.antmicro.com>");
+> +MODULE_AUTHOR("Paul Mackerras <paulus@ozlabs.org>");
+> +MODULE_AUTHOR("Gabriel Somlo <gsomlo@gmail.com>");
+> +MODULE_LICENSE("GPL v2");
+> --
+
+Other than the comments above, the code looks nice and was easy to
+review, thanks!
+
+Kind regards
+Uffe
