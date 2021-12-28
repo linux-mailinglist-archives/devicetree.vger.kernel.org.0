@@ -2,332 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28E44480B0D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 17:05:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CB6D480B1D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 17:13:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235488AbhL1QE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 11:04:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49484 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235492AbhL1QE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 11:04:57 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E73FBC061401
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:04:56 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id by39so31425497ljb.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:04:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=y46ItluB+wxZf2BvQYS03fKvpZOpwUYEhb1YAVfRA8E=;
-        b=ku8VScfdvvCkTVIlu6WTtz4lOLH/lRr9zL0iMlQ6se8siHILqK4y5rCZVMrtyRffyn
-         3ozbrm5Dji8aNFoIAyuKQ+d19HpeyGo6fYt1HDPPa64AjfKnM1KPhi7d2o6jDzoC5pKp
-         SzJigO/nlOic8+ZNXRwqsYnTxMEp9iosXRKCM54LtwS9git/WDSgmUx+iGakGvJJevo/
-         8epBQL1lhbXAbNOXZMDam3EY5KXqokJOZ19vEzuLigzqE4FudWy73+zcTRnfa88KhFgR
-         GTlEr+yNqJasfJhYsSLLAO0OO/fQ6a3AQPzeZSxdv8ATqikr7jhYS9StYivTQKGpAeUn
-         Q/DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=y46ItluB+wxZf2BvQYS03fKvpZOpwUYEhb1YAVfRA8E=;
-        b=4ss3hLNHZBd20yMxzZike4G6pNynAkuf16fLkATcQ3u4Fc3qyb73GYlH/dXw6XKPAi
-         LKuA1r0r4VpT6GPWVRL72V3lBP5v9uuBLPt90MG43s7lWPAzwOSPyibRQlsPoZ4nyJ0J
-         OeNYQRvMp2FhW0SpUrd9/AKg71QdJauJK9vq9CuRLW3j+4FIMm+6Fcj+gwtKmqwvEUDE
-         uBty8L/n0ELSY6dljUH9VFxJ0LYfvzWQ47R+vUW71KDdkvB7Hj9Ba1YVZIO9n2u/ZkRn
-         NiiSqu26eluyFRC4s0U7+uzVX+hNOzEtnVr65vxgiEWa2zH9pOoOeq3rj6O4VGPB3Sq1
-         UL1g==
-X-Gm-Message-State: AOAM5318I2n2WPqAaeNLsVPdcqgMsHidY7bUhxzCfi4fUoHSjnyTaZKe
-        f+jQYj6/sszQsy8U/yU1eej8fg==
-X-Google-Smtp-Source: ABdhPJyKh6M+Vt6hb9G/TlAArRC5jVSarQnogP4TbLRH2TIqKNbIzSoP3L5lHC9yQy0MktTFlthspA==
-X-Received: by 2002:a2e:913:: with SMTP id 19mr18636932ljj.343.1640707494857;
-        Tue, 28 Dec 2021 08:04:54 -0800 (PST)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id x6sm1960563lfn.38.2021.12.28.08.04.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Dec 2021 08:04:54 -0800 (PST)
-Message-ID: <42ef1ff8-1c60-c601-3e97-7b9ffb3cab07@linaro.org>
-Date:   Tue, 28 Dec 2021 19:04:53 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [PATCH 6/8] typec: mux: Allow multiple mux_devs per mux
-Content-Language: en-GB
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        id S235617AbhL1QNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 11:13:10 -0500
+Received: from mail.skyhub.de ([5.9.137.197]:48190 "EHLO mail.skyhub.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235511AbhL1QNK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Dec 2021 11:13:10 -0500
+Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 5B0001EC03C9;
+        Tue, 28 Dec 2021 17:13:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1640707984;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=WXiQ34aw3BVND/Em7tvSPxlLMgOR1j97eSJLIoe4hEo=;
+        b=Wxfh2AfVkOPehtchcQkGOoQ0oGIuT8TcGQj16+fz/HtvWax3OrT7PDYc6oNz8WRzjBQVGz
+        Y5x48biGa9AeRsmxuPHUMmhPc/e5BbRXINa6EOML0ucxMIFvD84s6QGJryKawaDfVG69Fh
+        DDSVwawRqdPXycOFmaGv7WJE5dupzC8=
+Date:   Tue, 28 Dec 2021 17:13:06 +0100
+From:   Borislav Petkov <bp@alien8.de>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
+        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
+        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Hans de Goede <hdegoede@redhat.com>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
- <20211228052116.1748443-7-bjorn.andersson@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20211228052116.1748443-7-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>
+Subject: Re: [PATCH v19 02/13] x86/setup: Use parse_crashkernel_high_low() to
+ simplify code
+Message-ID: <Ycs3kpZD/vpoo1AX@zn.tnic>
+References: <20211228132612.1860-1-thunder.leizhen@huawei.com>
+ <20211228132612.1860-3-thunder.leizhen@huawei.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211228132612.1860-3-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/12/2021 08:21, Bjorn Andersson wrote:
-> In the Qualcomm platforms the USB/DP PHY handles muxing and orientation
-> switching of the SuperSpeed lines, but the SBU lines needs to be
-> connected and switched by external (to the SoC) hardware.
+On Tue, Dec 28, 2021 at 09:26:01PM +0800, Zhen Lei wrote:
+> Use parse_crashkernel_high_low() to bring the parsing of
+> "crashkernel=X,high" and the parsing of "crashkernel=Y,low" together, they
+> are strongly dependent, make code logic clear and more readable.
 > 
-> It's therefor necessary to be able to have the TypeC controller operate
-> multiple TypeC muxes and switches. Use the newly introduced indirection
-> object to handle this, to avoid having to taint the TypeC controllers
-> with knowledge about the downstream hardware configuration.
-> 
-> The max number of devs per indirection is set to 3, based on the number
-> of ports defined in the usb-c-connector binding.
+> Suggested-by: Borislav Petkov <bp@alien8.de>
 
-If we had the 'count' ability, we wouldn't have to put limits here.
-The limit 3 is a bit artificial if you consider the redriver chips.
+Yeah, doesn't look like something I suggested...
 
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->   drivers/usb/typec/mux.c | 124 +++++++++++++++++++++++++++++++---------
->   1 file changed, 98 insertions(+), 26 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/mux.c b/drivers/usb/typec/mux.c
-> index d0b42c297aca..adf3681cf22d 100644
-> --- a/drivers/usb/typec/mux.c
-> +++ b/drivers/usb/typec/mux.c
-> @@ -17,8 +17,11 @@
->   #include "class.h"
->   #include "mux.h"
->   
-> +#define TYPEC_MUX_MAX_DEVS	3
-> +
->   struct typec_switch {
-> -	struct typec_switch_dev *sw_dev;
-> +	struct typec_switch_dev *sw_devs[TYPEC_MUX_MAX_DEVS];
-> +	unsigned int num_sw_devs;
->   };
->   
->   static int switch_fwnode_match(struct device *dev, const void *fwnode)
-> @@ -67,25 +70,48 @@ static void *typec_switch_match(struct fwnode_handle *fwnode, const char *id,
->    */
->   struct typec_switch *fwnode_typec_switch_get(struct fwnode_handle *fwnode)
->   {
-> -	struct typec_switch_dev *sw_dev;
-> +	struct typec_switch_dev *sw_devs[TYPEC_MUX_MAX_DEVS];
->   	struct typec_switch *sw;
-> +	int count;
-> +	int err;
-> +	int i;
->   
->   	sw = kzalloc(sizeof(*sw), GFP_KERNEL);
->   	if (!sw)
->   		return ERR_PTR(-ENOMEM);
->   
-> -	sw_dev = fwnode_connection_find_match(fwnode, "orientation-switch", NULL,
-> -					      typec_switch_match);
-> -	if (IS_ERR_OR_NULL(sw_dev)) {
-> +	count = fwnode_connection_find_matches(fwnode, "orientation-switch", NULL,
-> +					       typec_switch_match,
-> +					       (void **)sw_devs,
-> +					       ARRAY_SIZE(sw_devs));
-> +	if (count <= 0) {
->   		kfree(sw);
-> -		return ERR_CAST(sw_dev);
-> +		return NULL;
->   	}
->   
-> -	WARN_ON(!try_module_get(sw_dev->dev.parent->driver->owner));
-> +	for (i = 0; i < count; i++) {
-> +		if (IS_ERR(sw_devs[i])) {
-> +			err = PTR_ERR(sw_devs[i]);
-> +			goto put_sw_devs;
-> +		}
-> +	}
-> +
-> +	for (i = 0; i < count; i++) {
-> +		WARN_ON(!try_module_get(sw_devs[i]->dev.parent->driver->owner));
-> +		sw->sw_devs[i] = sw_devs[i];
-> +	}
->   
-> -	sw->sw_dev = sw_dev;
-> +	sw->num_sw_devs = count;
->   
->   	return sw;
-> +
-> +put_sw_devs:
-> +	for (i = 0; i < count; i++) {
-> +		if (!IS_ERR(sw_devs[i]))
-> +			put_device(&sw_devs[i]->dev);
-> +	}
-> +
-> +	return ERR_PTR(err);
->   }
->   EXPORT_SYMBOL_GPL(fwnode_typec_switch_get);
->   
-> @@ -98,14 +124,17 @@ EXPORT_SYMBOL_GPL(fwnode_typec_switch_get);
->   void typec_switch_put(struct typec_switch *sw)
->   {
->   	struct typec_switch_dev *sw_dev;
-> +	unsigned int i;
->   
->   	if (IS_ERR_OR_NULL(sw))
->   		return;
->   
-> -	sw_dev = sw->sw_dev;
-> +	for (i = 0; i < sw->num_sw_devs; i++) {
-> +		sw_dev = sw->sw_devs[i];
->   
-> -	module_put(sw_dev->dev.parent->driver->owner);
-> -	put_device(&sw_dev->dev);
-> +		module_put(sw_dev->dev.parent->driver->owner);
-> +		put_device(&sw_dev->dev);
-> +	}
->   	kfree(sw);
->   }
->   EXPORT_SYMBOL_GPL(typec_switch_put);
-> @@ -170,13 +199,21 @@ int typec_switch_set(struct typec_switch *sw,
->   		     enum typec_orientation orientation)
->   {
->   	struct typec_switch_dev *sw_dev;
-> +	unsigned int i;
-> +	int ret;
->   
->   	if (IS_ERR_OR_NULL(sw))
->   		return 0;
->   
-> -	sw_dev = sw->sw_dev;
-> +	for (i = 0; i < sw->num_sw_devs; i++) {
-> +		sw_dev = sw->sw_devs[i];
-> +
-> +		ret = sw_dev->set(sw_dev, orientation);
-> +		if (ret)
-> +			return ret;
-> +	}
->   
-> -	return sw_dev->set(sw_dev, orientation);
-> +	return 0;
->   }
->   EXPORT_SYMBOL_GPL(typec_switch_set);
->   
-> @@ -208,7 +245,8 @@ EXPORT_SYMBOL_GPL(typec_switch_get_drvdata);
->   /* ------------------------------------------------------------------------- */
->   
->   struct typec_mux {
-> -	struct typec_mux_dev *mux_dev;
-> +	struct typec_mux_dev *mux_devs[TYPEC_MUX_MAX_DEVS];
-> +	unsigned int num_mux_devs;
->   };
->   
->   static int mux_fwnode_match(struct device *dev, const void *fwnode)
-> @@ -291,25 +329,48 @@ static void *typec_mux_match(struct fwnode_handle *fwnode, const char *id,
->   struct typec_mux *fwnode_typec_mux_get(struct fwnode_handle *fwnode,
->   				       const struct typec_altmode_desc *desc)
->   {
-> -	struct typec_mux_dev *mux_dev;
-> +	struct typec_mux_dev *mux_devs[TYPEC_MUX_MAX_DEVS];
->   	struct typec_mux *mux;
-> +	int count;
-> +	int err;
-> +	int i;
->   
->   	mux = kzalloc(sizeof(*mux), GFP_KERNEL);
->   	if (!mux)
->   		return ERR_PTR(-ENOMEM);
->   
-> -	mux_dev = fwnode_connection_find_match(fwnode, "mode-switch", (void *)desc,
-> -					       typec_mux_match);
-> -	if (IS_ERR_OR_NULL(mux_dev)) {
-> +	count = fwnode_connection_find_matches(fwnode, "mode-switch",
-> +					       (void *)desc, typec_mux_match,
-> +					       (void **)mux_devs,
-> +					       ARRAY_SIZE(mux_devs));
-> +	if (count <= 0) {
->   		kfree(mux);
-> -		return ERR_CAST(mux_dev);
-> +		return NULL;
->   	}
->   
-> -	WARN_ON(!try_module_get(mux_dev->dev.parent->driver->owner));
-> +	for (i = 0; i < count; i++) {
-> +		if (IS_ERR(mux_devs[i])) {
-> +			err = PTR_ERR(mux_devs[i]);
-> +			goto put_mux_devs;
-> +		}
-> +	}
-> +
-> +	for (i = 0; i < count; i++) {
-> +		WARN_ON(!try_module_get(mux_devs[i]->dev.parent->driver->owner));
-> +		mux->mux_devs[i] = mux_devs[i];
-> +	}
->   
-> -	mux->mux_dev = mux_dev;
-> +	mux->num_mux_devs = count;
->   
->   	return mux;
-> +
-> +put_mux_devs:
-> +	for (i = 0; i < count; i++) {
-> +		if (!IS_ERR(mux_devs[i]))
-> +			put_device(&mux_devs[i]->dev);
-> +	}
-> +
-> +	return ERR_PTR(err);
->   }
->   EXPORT_SYMBOL_GPL(fwnode_typec_mux_get);
->   
-> @@ -322,13 +383,16 @@ EXPORT_SYMBOL_GPL(fwnode_typec_mux_get);
->   void typec_mux_put(struct typec_mux *mux)
->   {
->   	struct typec_mux_dev *mux_dev;
-> +	unsigned int i;
->   
->   	if (IS_ERR_OR_NULL(mux))
->   		return;
->   
-> -	mux_dev = mux->mux_dev;
-> -	module_put(mux_dev->dev.parent->driver->owner);
-> -	put_device(&mux_dev->dev);
-> +	for (i = 0; i < mux->num_mux_devs; i++) {
-> +		mux_dev = mux->mux_devs[i];
-> +		module_put(mux_dev->dev.parent->driver->owner);
-> +		put_device(&mux_dev->dev);
-> +	}
->   	kfree(mux);
->   }
->   EXPORT_SYMBOL_GPL(typec_mux_put);
-> @@ -336,13 +400,21 @@ EXPORT_SYMBOL_GPL(typec_mux_put);
->   int typec_mux_set(struct typec_mux *mux, struct typec_mux_state *state)
->   {
->   	struct typec_mux_dev *mux_dev;
-> +	unsigned int i;
-> +	int ret;
->   
->   	if (IS_ERR_OR_NULL(mux))
->   		return 0;
->   
-> -	mux_dev = mux->mux_dev;
-> +	for (i = 0; i < mux->num_mux_devs; i++) {
-> +		mux_dev = mux->mux_devs[i];
-> +
-> +		ret = mux_dev->set(mux_dev, state);
-> +		if (ret)
-> +			return ret;
-> +	}
->   
-> -	return mux_dev->set(mux_dev, state);
-> +	return 0;
->   }
->   EXPORT_SYMBOL_GPL(typec_mux_set);
->   
+> @@ -474,10 +472,9 @@ static void __init reserve_crashkernel(void)
+>  	/* crashkernel=XM */
+>  	ret = parse_crashkernel(boot_command_line, total_mem, &crash_size, &crash_base);
+>  	if (ret != 0 || crash_size <= 0) {
+> -		/* crashkernel=X,high */
+> -		ret = parse_crashkernel_high(boot_command_line, total_mem,
+> -					     &crash_size, &crash_base);
+> -		if (ret != 0 || crash_size <= 0)
+> +		/* crashkernel=X,high and possible crashkernel=Y,low */
+> +		ret = parse_crashkernel_high_low(boot_command_line, &crash_size, &low_size);
 
+So this calls parse_crashkernel() and when that one fails, it calls this
+new weird parse high/low helper you added.
+
+But then all three end up in the same __parse_crashkernel() worker
+function which seems to do the actual parsing.
+
+What I suggested and what would be real clean is if the arches would
+simply call a *single* 
+
+	parse_crashkernel()
+
+function and when that one returns, *all* crashkernel= options would
+have been parsed properly, low, high, middle crashkernel, whatever...
+and the caller would know what crash kernel needs to be allocated.
+
+Then each arch can do its memory allocations and checks based on that
+parsed data and decide to allocate or bail.
+
+So it is getting there but it needs more surgery...
+
+Thx.
 
 -- 
-With best wishes
-Dmitry
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
