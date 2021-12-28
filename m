@@ -2,321 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06020480B5C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 17:39:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEE45480B76
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 17:43:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235679AbhL1QjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 11:39:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57118 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235578AbhL1QjE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 11:39:04 -0500
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0DAEC06173F
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:39:03 -0800 (PST)
-Received: by mail-oi1-x22d.google.com with SMTP id p4so30791538oia.9
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:39:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZIpboUz/xGiGm0M2bXxED5rkbHQBbAAf8QHnqv08958=;
-        b=AFobbcTiuaEItSulj0GbplCZ6nJLKEzZbS81I/vjDL5fHMv8umDxbEl+tLsi3MxQBY
-         46vmWs1PJkhy9r0z2ovi/LIaVLnG53l16NTAaut38zEBwHhpnVj2rEPyLbJfveeGg0Bj
-         DSwuFfeEPNUP1qlM6JObzKhKwW+qoQoOUVXoRCBCvgiOgBiCLGhEOnebkh8jrpyBPcOM
-         rFW3mMUh/v4bjiRSYbMb+K9WImT2Va7UIXo4yc0PDwufsUYc34QhbvMVpNajXfg1QOiC
-         1Gq7DSneEuXJk7uff1K3YoVpM3Atz6KsNLgUYKNHy7yDQ0tN0VeZHhjUpSFIH/9TQYGw
-         6eGQ==
+        id S232398AbhL1QnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 11:43:12 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:49394
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229843AbhL1QnL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Dec 2021 11:43:11 -0500
+Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 08FE83F1A5
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 16:43:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1640709791;
+        bh=QEjdNCFh1I2/FVAvbi9/CNnV0tj1pywVMVJDrsQ6S/M=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=hO9SBTCvj4yJwTZp4qQSCrRm12qihM+xaKjm7ujrza1iXtVu9AQTt5G36Vx95Gfvi
+         EsijNpVbzvR166Ax2BY7iX/DxHHwx70mPpi4tJl6is55ctFMtWFWIJxV8g8AyYQuMU
+         XZNCvv2PlSwwTcb1gF5a6Sp79afhLQPtBjS9m7aanaD9UzODD8kA53Gu+ixpsBwtuz
+         hZeK5/1XDBJ4qdwrMNqAnwYhQad2SUx91h47nurd+KDw0GjwbIhhAzfUVAAbQwTx+R
+         yx7bhEYsYAntoj/cdmQ67XC9hk9ZZi2wv1f7ruADMUvlgzCNKLRBSRDH3XYhRAW5lr
+         NTzXM3pddjQuA==
+Received: by mail-lj1-f199.google.com with SMTP id z9-20020a2e3509000000b0022d8e7f5889so5876645ljz.16
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:43:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZIpboUz/xGiGm0M2bXxED5rkbHQBbAAf8QHnqv08958=;
-        b=X4oMvITbeoIcEaqIO70vKD2DOJhreR9xXIUGpqrXtzF5WAVNVDrrW8156I13R0anHT
-         LtY+UFCBS5lN73hQbVbfwyd0uU+pWqoAVJly3riAAe2uS0P69SaJvK+B3wDtVuyx6anv
-         utFXVh7Gnz2ui5lLP/g0UiKRsW+sPUYgKkshVx/7kHenE5LgIheyIS2F6D/1umxT+vSX
-         pyUS47yWYgf+ULdBx/MdfusXURr4cOtvwU/+H1KqCZDx11MYsYyJSK7xOstnSmpiEfRO
-         UZpcYj0+4qUWjp7K2IKwBqLD0k0xpgKMXRfvXUlTXuhI/iY4Qv0BUqjmRZ5gw+nbfV1p
-         gObQ==
-X-Gm-Message-State: AOAM532y+hHwB8vkGRA2f8XTnwoq6AA3LlbVc9J1YDKGRWCtOVlgUt8q
-        zcjQLQVVJsG6NsJHLO3rPqOW5Q==
-X-Google-Smtp-Source: ABdhPJzOODy4nmc8nUHSmsbMH/o2ue92pmv2LHEXCJDGBzRWhqAPOozIKUl/ymCjnUMkyifprhlvtA==
-X-Received: by 2002:a05:6808:682:: with SMTP id k2mr18106337oig.63.1640709541365;
-        Tue, 28 Dec 2021 08:39:01 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id o11sm3993423oiv.10.2021.12.28.08.39.00
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QEjdNCFh1I2/FVAvbi9/CNnV0tj1pywVMVJDrsQ6S/M=;
+        b=1d2/J4ujgrQOO6o1ZO4/xeUYV3diEpNNQ+ULsA6yd8tR6TIGqqGpeKZHt3YQyn/8vM
+         OYO/n1CEQ4g7HYRLgARXF/+JfVhlysJIIohKfsWUKtJIC5BcQN8kCnIm0Cp/ssTko0sH
+         vhrp1heFEyfoF8esCNSoQ/Nrm57dDym+ANYixy5fIp2Cw2RrCW78YnQu8yI+9204YgGK
+         bLHeWFj4UtOrpdebNYYYWObPBy6Wg0PfzZ9nIR4dnZsDPkc70QIAUF/aWj+sVrtsNkNS
+         8ZCC0KR0E3j7/+YqqzOw3YVBW2fX1h6tgjdQvLhzD/qwZwSpC7c2rbUPkShaMVtqydY+
+         Hvyw==
+X-Gm-Message-State: AOAM531S8GJLAhfqC0y+dpYll8oJcoIjwJkMl/oHgIfrRi/a4piPaQUc
+        LsCZ+5bYISfYXPm2gedQnhWJ6O28pVFFZtKmJbRTNUlcn6aImBV2O19V8LNTHCZHjVp74+0JCs0
+        5e5D6WIsP946KOywV4sN0oHDWc8nGaDz6gUaUL0E=
+X-Received: by 2002:a05:6512:2103:: with SMTP id q3mr12696201lfr.538.1640709790381;
+        Tue, 28 Dec 2021 08:43:10 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyuF3oWT8cZMD7Nqx/2DjV9aAVXl8AQ/O4g5c+EzTbwKY07FXphsdOMJMAV+vz7PorU0kowRQ==
+X-Received: by 2002:a05:6512:2103:: with SMTP id q3mr12696184lfr.538.1640709790220;
+        Tue, 28 Dec 2021 08:43:10 -0800 (PST)
+Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id u5sm968701lja.36.2021.12.28.08.43.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Dec 2021 08:39:00 -0800 (PST)
-Date:   Tue, 28 Dec 2021 08:40:01 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        Tue, 28 Dec 2021 08:43:09 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH 6/8] typec: mux: Allow multiple mux_devs per mux
-Message-ID: <Ycs94b+Uh42KQKui@ripper>
-References: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
- <20211228052116.1748443-7-bjorn.andersson@linaro.org>
- <42ef1ff8-1c60-c601-3e97-7b9ffb3cab07@linaro.org>
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH 0/3] regulator/mfd: dt-bindings: maxim,max77802: convert to dtschema
+Date:   Tue, 28 Dec 2021 17:43:02 +0100
+Message-Id: <20211228164305.35877-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <42ef1ff8-1c60-c601-3e97-7b9ffb3cab07@linaro.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 28 Dec 08:04 PST 2021, Dmitry Baryshkov wrote:
+Hi,
 
-> On 28/12/2021 08:21, Bjorn Andersson wrote:
-> > In the Qualcomm platforms the USB/DP PHY handles muxing and orientation
-> > switching of the SuperSpeed lines, but the SBU lines needs to be
-> > connected and switched by external (to the SoC) hardware.
-> > 
-> > It's therefor necessary to be able to have the TypeC controller operate
-> > multiple TypeC muxes and switches. Use the newly introduced indirection
-> > object to handle this, to avoid having to taint the TypeC controllers
-> > with knowledge about the downstream hardware configuration.
-> > 
-> > The max number of devs per indirection is set to 3, based on the number
-> > of ports defined in the usb-c-connector binding.
-> 
-> If we had the 'count' ability, we wouldn't have to put limits here.
-> The limit 3 is a bit artificial if you consider the redriver chips.
-> 
+Dependencies:
+1. DTS patch: nothing depends on it, sending here so Rob's automatic
+   checker won't complain about DTS.
+   I will take it via Samsung SoC tree.
 
-I don't know if it's worth making it more dynamic at this point in time.
-I definitely don't think it's worth taking two passes here, because
-typec_switch_match will allocate objects that needs to be freed after
-the "count" pass. I.e.  taking two passes is expensive (and ugly).
+2. Final MFD patch depends on regulator, so the two last patches could
+   go via Rob's, Mark's or Lee's trees. :)
 
-Also in it's current state we're wasting 16 bytes per USB connector at
-worst and in the case of us having QMP muxing SuperSpeed signals and an
-external redriver we have 2.
+Best regards,
+Krzysztof
 
+Krzysztof Kozlowski (3):
+  ARM: dts: exynos: drop unsupported MAX77802 regulators on Odroid XU
+  regulator: dt-bindings: maxim,max77802: Convert to dtschema
+  dt-bindings: mfd: maxim,max77802: Convert to dtschema
 
-Given that we're just dealing with pointers the waste isn't that big,
-but we could put say 8 (16?) entries on the stack and then dynamically
-allocate the typec_switch and typec_mux arrays based on the actual
-number of items returned.
+ .../devicetree/bindings/mfd/max77802.txt      |  25 ---
+ .../bindings/mfd/maxim,max77802.yaml          | 194 ++++++++++++++++++
+ .../bindings/regulator/max77802.txt           | 111 ----------
+ .../bindings/regulator/maxim,max77802.yaml    | 118 +++++++++++
+ MAINTAINERS                                   |   2 +-
+ arch/arm/boot/dts/exynos5410-odroidxu.dts     |  12 --
+ 6 files changed, 313 insertions(+), 149 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/max77802.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77802.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/max77802.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77802.yaml
 
-Regards,
-Bjorn
+-- 
+2.32.0
 
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >   drivers/usb/typec/mux.c | 124 +++++++++++++++++++++++++++++++---------
-> >   1 file changed, 98 insertions(+), 26 deletions(-)
-> > 
-> > diff --git a/drivers/usb/typec/mux.c b/drivers/usb/typec/mux.c
-> > index d0b42c297aca..adf3681cf22d 100644
-> > --- a/drivers/usb/typec/mux.c
-> > +++ b/drivers/usb/typec/mux.c
-> > @@ -17,8 +17,11 @@
-> >   #include "class.h"
-> >   #include "mux.h"
-> > +#define TYPEC_MUX_MAX_DEVS	3
-> > +
-> >   struct typec_switch {
-> > -	struct typec_switch_dev *sw_dev;
-> > +	struct typec_switch_dev *sw_devs[TYPEC_MUX_MAX_DEVS];
-> > +	unsigned int num_sw_devs;
-> >   };
-> >   static int switch_fwnode_match(struct device *dev, const void *fwnode)
-> > @@ -67,25 +70,48 @@ static void *typec_switch_match(struct fwnode_handle *fwnode, const char *id,
-> >    */
-> >   struct typec_switch *fwnode_typec_switch_get(struct fwnode_handle *fwnode)
-> >   {
-> > -	struct typec_switch_dev *sw_dev;
-> > +	struct typec_switch_dev *sw_devs[TYPEC_MUX_MAX_DEVS];
-> >   	struct typec_switch *sw;
-> > +	int count;
-> > +	int err;
-> > +	int i;
-> >   	sw = kzalloc(sizeof(*sw), GFP_KERNEL);
-> >   	if (!sw)
-> >   		return ERR_PTR(-ENOMEM);
-> > -	sw_dev = fwnode_connection_find_match(fwnode, "orientation-switch", NULL,
-> > -					      typec_switch_match);
-> > -	if (IS_ERR_OR_NULL(sw_dev)) {
-> > +	count = fwnode_connection_find_matches(fwnode, "orientation-switch", NULL,
-> > +					       typec_switch_match,
-> > +					       (void **)sw_devs,
-> > +					       ARRAY_SIZE(sw_devs));
-> > +	if (count <= 0) {
-> >   		kfree(sw);
-> > -		return ERR_CAST(sw_dev);
-> > +		return NULL;
-> >   	}
-> > -	WARN_ON(!try_module_get(sw_dev->dev.parent->driver->owner));
-> > +	for (i = 0; i < count; i++) {
-> > +		if (IS_ERR(sw_devs[i])) {
-> > +			err = PTR_ERR(sw_devs[i]);
-> > +			goto put_sw_devs;
-> > +		}
-> > +	}
-> > +
-> > +	for (i = 0; i < count; i++) {
-> > +		WARN_ON(!try_module_get(sw_devs[i]->dev.parent->driver->owner));
-> > +		sw->sw_devs[i] = sw_devs[i];
-> > +	}
-> > -	sw->sw_dev = sw_dev;
-> > +	sw->num_sw_devs = count;
-> >   	return sw;
-> > +
-> > +put_sw_devs:
-> > +	for (i = 0; i < count; i++) {
-> > +		if (!IS_ERR(sw_devs[i]))
-> > +			put_device(&sw_devs[i]->dev);
-> > +	}
-> > +
-> > +	return ERR_PTR(err);
-> >   }
-> >   EXPORT_SYMBOL_GPL(fwnode_typec_switch_get);
-> > @@ -98,14 +124,17 @@ EXPORT_SYMBOL_GPL(fwnode_typec_switch_get);
-> >   void typec_switch_put(struct typec_switch *sw)
-> >   {
-> >   	struct typec_switch_dev *sw_dev;
-> > +	unsigned int i;
-> >   	if (IS_ERR_OR_NULL(sw))
-> >   		return;
-> > -	sw_dev = sw->sw_dev;
-> > +	for (i = 0; i < sw->num_sw_devs; i++) {
-> > +		sw_dev = sw->sw_devs[i];
-> > -	module_put(sw_dev->dev.parent->driver->owner);
-> > -	put_device(&sw_dev->dev);
-> > +		module_put(sw_dev->dev.parent->driver->owner);
-> > +		put_device(&sw_dev->dev);
-> > +	}
-> >   	kfree(sw);
-> >   }
-> >   EXPORT_SYMBOL_GPL(typec_switch_put);
-> > @@ -170,13 +199,21 @@ int typec_switch_set(struct typec_switch *sw,
-> >   		     enum typec_orientation orientation)
-> >   {
-> >   	struct typec_switch_dev *sw_dev;
-> > +	unsigned int i;
-> > +	int ret;
-> >   	if (IS_ERR_OR_NULL(sw))
-> >   		return 0;
-> > -	sw_dev = sw->sw_dev;
-> > +	for (i = 0; i < sw->num_sw_devs; i++) {
-> > +		sw_dev = sw->sw_devs[i];
-> > +
-> > +		ret = sw_dev->set(sw_dev, orientation);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > -	return sw_dev->set(sw_dev, orientation);
-> > +	return 0;
-> >   }
-> >   EXPORT_SYMBOL_GPL(typec_switch_set);
-> > @@ -208,7 +245,8 @@ EXPORT_SYMBOL_GPL(typec_switch_get_drvdata);
-> >   /* ------------------------------------------------------------------------- */
-> >   struct typec_mux {
-> > -	struct typec_mux_dev *mux_dev;
-> > +	struct typec_mux_dev *mux_devs[TYPEC_MUX_MAX_DEVS];
-> > +	unsigned int num_mux_devs;
-> >   };
-> >   static int mux_fwnode_match(struct device *dev, const void *fwnode)
-> > @@ -291,25 +329,48 @@ static void *typec_mux_match(struct fwnode_handle *fwnode, const char *id,
-> >   struct typec_mux *fwnode_typec_mux_get(struct fwnode_handle *fwnode,
-> >   				       const struct typec_altmode_desc *desc)
-> >   {
-> > -	struct typec_mux_dev *mux_dev;
-> > +	struct typec_mux_dev *mux_devs[TYPEC_MUX_MAX_DEVS];
-> >   	struct typec_mux *mux;
-> > +	int count;
-> > +	int err;
-> > +	int i;
-> >   	mux = kzalloc(sizeof(*mux), GFP_KERNEL);
-> >   	if (!mux)
-> >   		return ERR_PTR(-ENOMEM);
-> > -	mux_dev = fwnode_connection_find_match(fwnode, "mode-switch", (void *)desc,
-> > -					       typec_mux_match);
-> > -	if (IS_ERR_OR_NULL(mux_dev)) {
-> > +	count = fwnode_connection_find_matches(fwnode, "mode-switch",
-> > +					       (void *)desc, typec_mux_match,
-> > +					       (void **)mux_devs,
-> > +					       ARRAY_SIZE(mux_devs));
-> > +	if (count <= 0) {
-> >   		kfree(mux);
-> > -		return ERR_CAST(mux_dev);
-> > +		return NULL;
-> >   	}
-> > -	WARN_ON(!try_module_get(mux_dev->dev.parent->driver->owner));
-> > +	for (i = 0; i < count; i++) {
-> > +		if (IS_ERR(mux_devs[i])) {
-> > +			err = PTR_ERR(mux_devs[i]);
-> > +			goto put_mux_devs;
-> > +		}
-> > +	}
-> > +
-> > +	for (i = 0; i < count; i++) {
-> > +		WARN_ON(!try_module_get(mux_devs[i]->dev.parent->driver->owner));
-> > +		mux->mux_devs[i] = mux_devs[i];
-> > +	}
-> > -	mux->mux_dev = mux_dev;
-> > +	mux->num_mux_devs = count;
-> >   	return mux;
-> > +
-> > +put_mux_devs:
-> > +	for (i = 0; i < count; i++) {
-> > +		if (!IS_ERR(mux_devs[i]))
-> > +			put_device(&mux_devs[i]->dev);
-> > +	}
-> > +
-> > +	return ERR_PTR(err);
-> >   }
-> >   EXPORT_SYMBOL_GPL(fwnode_typec_mux_get);
-> > @@ -322,13 +383,16 @@ EXPORT_SYMBOL_GPL(fwnode_typec_mux_get);
-> >   void typec_mux_put(struct typec_mux *mux)
-> >   {
-> >   	struct typec_mux_dev *mux_dev;
-> > +	unsigned int i;
-> >   	if (IS_ERR_OR_NULL(mux))
-> >   		return;
-> > -	mux_dev = mux->mux_dev;
-> > -	module_put(mux_dev->dev.parent->driver->owner);
-> > -	put_device(&mux_dev->dev);
-> > +	for (i = 0; i < mux->num_mux_devs; i++) {
-> > +		mux_dev = mux->mux_devs[i];
-> > +		module_put(mux_dev->dev.parent->driver->owner);
-> > +		put_device(&mux_dev->dev);
-> > +	}
-> >   	kfree(mux);
-> >   }
-> >   EXPORT_SYMBOL_GPL(typec_mux_put);
-> > @@ -336,13 +400,21 @@ EXPORT_SYMBOL_GPL(typec_mux_put);
-> >   int typec_mux_set(struct typec_mux *mux, struct typec_mux_state *state)
-> >   {
-> >   	struct typec_mux_dev *mux_dev;
-> > +	unsigned int i;
-> > +	int ret;
-> >   	if (IS_ERR_OR_NULL(mux))
-> >   		return 0;
-> > -	mux_dev = mux->mux_dev;
-> > +	for (i = 0; i < mux->num_mux_devs; i++) {
-> > +		mux_dev = mux->mux_devs[i];
-> > +
-> > +		ret = mux_dev->set(mux_dev, state);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > -	return mux_dev->set(mux_dev, state);
-> > +	return 0;
-> >   }
-> >   EXPORT_SYMBOL_GPL(typec_mux_set);
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
