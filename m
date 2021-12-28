@@ -2,121 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C307E48085A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 11:22:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8175E480898
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 11:59:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229565AbhL1KWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 05:22:53 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:43218 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230112AbhL1KWx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Dec 2021 05:22:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=u0EkY1lnh76MYMJkuit0CKG2uWZXaSFk3KZr7b0LbNQ=; b=rW/VL1WXNy2Jlk87NDxhhvmxVi
-        cLOAaGEwe/yMFO1bX4N/ZSFxCHead15+j/eWveTAj51mjFBkzXSRbLyerjnrCcTK31zSmDt1tVZnE
-        YG+eO7QFwxHCgla0nS9sLspkWJFRwXZEPFB7JkH8JsVD70Ipf6dBebzetztsA06B2Eso=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1n29d2-0001tc-Lx; Tue, 28 Dec 2021 11:22:48 +0100
-Date:   Tue, 28 Dec 2021 11:22:48 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Joseph CHAMG <josright123@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, joseph_chang@davicom.com.tw,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Leon Romanovsky <leon@kernel.org>
-Subject: Re: [PATCH v9, 2/2] net: Add dm9051 driver
-Message-ID: <YcrleBNQhHCHhmL5@lunn.ch>
-References: <20211227100233.8037-1-josright123@gmail.com>
- <20211227100233.8037-3-josright123@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211227100233.8037-3-josright123@gmail.com>
+        id S236351AbhL1K7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 05:59:07 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:33430 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236349AbhL1K7H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 05:59:07 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 21AE0B8118C;
+        Tue, 28 Dec 2021 10:59:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC71AC36AE8;
+        Tue, 28 Dec 2021 10:59:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640689144;
+        bh=V9gtOTQ9445ykm/NMczA4Mr/BILDuVO31HC/GfD9qj4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=nuA2QKPKNigHlcx/dv2SK0WsgBYv9gX+KHt5xkm9KxYOoutma2YKkG6iwLOT42DZx
+         oQGPA9cetP6hRjR0mpq/rG4zJ+2PafYPkgOWT6a66vCClXQBQ3WlvY8n8Vv4x13ikm
+         1won/ZIMMBYDEMdS8d/QJ0uRhG+z1/6ZMNx6uC+zYJULp4+ebVGfAu8tGNTJoMI+iJ
+         luFVKBpH9ZL4LoREFCSAAw3SrNmW14W2gvbjgF/nOGQTV6kp9ZP7vmSyZQcWywGrn1
+         bTyPeMGAJbZ0tj0gvjv4kCobxuOENVufGWu6HsouWbTPJ0Iyt5DAf3G8aMyYEZCP0E
+         lv8nuXapXYXcw==
+Received: from cfbb000407.r.cam.camfibre.uk ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1n2AC6-00Ehow-PW; Tue, 28 Dec 2021 10:59:02 +0000
+Date:   Tue, 28 Dec 2021 10:59:02 +0000
+Message-ID: <87k0fpyozt.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Bert Vermeulen <bert@biot.com>,
+        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v2 2/5] irqchip/realtek-rtl: fix off-by-one in routing
+In-Reply-To: <48164a669fee54e2dc58cdbbde25c600d88d93f9.camel@svanheule.net>
+References: <cover.1640548009.git.sander@svanheule.net>
+        <2235a7748b8f7689a96b1e0f91461e36a946a4ef.1640548009.git.sander@svanheule.net>
+        <87tueuz732.wl-maz@kernel.org>
+        <48164a669fee54e2dc58cdbbde25c600d88d93f9.camel@svanheule.net>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: sander@svanheule.net, tglx@linutronix.de, robh+dt@kernel.org, devicetree@vger.kernel.org, mail@birger-koblitz.de, bert@biot.com, john@phrozen.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +#define	dm9051_inb(db, reg, prxb)	dm9051_xfer(db, DM_SPI_RD | (reg), NULL, prxb, 1)
-> +#define	dm9051_outb(db, reg, ptxb)	dm9051_xfer(db, DM_SPI_WR | (reg), ptxb, NULL, 1)
-> +#define	dm9051_inblk(db, buff, len)	dm9051_xfer(db, DM_SPI_RD | DM_SPI_MRCMD, NULL, buff, len)
-> +#define	dm9051_outblk(db, buff, len)	dm9051_xfer(db, DM_SPI_WR | DM_SPI_MWCMD, buff, NULL, len)
+On Tue, 28 Dec 2021 10:13:26 +0000,
+Sander Vanheule <sander@svanheule.net> wrote:
+>=20
+> Hi Marc,
+>=20
+> On Mon, 2021-12-27 at 10:16 +0000, Marc Zyngier wrote:
+> > On Sun, 26 Dec 2021 19:59:25 +0000,
+> > Sander Vanheule <sander@svanheule.net> wrote:
+> > >=20
+> > > There is an offset between routing values (1..6) and the connected MI=
+PS
+> > > CPU interrupts (2..7), but no distinction was made between these two
+> > > values.
+> > >=20
+> > > This issue was previously hidden during testing, because an interrupt
+> > > mapping was used where for each required interrupt another (unused)
+> > > routing was configured, with an offset of +1.
+> >=20
+> > Where does this 'other routing' come from?
+>=20
+> When I reported the interrupt-map issue with this binding/driver, I
+> tried to reduce the mapping/routing to something as small as
+> possible, but I couldn't get away with anything less than the
+> following:
+>=20
+> 	interrupt-map =3D
+> 		<31 &cpuintc 2>, /* UART0 */
+> 		<20 &cpuintc 3>, /* SWCORE */
+> 		<19 &cpuintc 4>, /* WDT IP1 */
+> 		<18 &cpuintc 5>; /* WDT IP2 */
+>=20
+> The UART0 and WDT_IP1 mappings were required. These would cause the
+> driver to assign chained handlers to <&cpuint 2> and <&cpuint 4>,
+> and also write values "2" and "4" to the respective routing
+> registers.
+>=20
+> The SWCORE mapping was not required for any configured features, but
+> it was required to get the console to work. This is because a
+> routing register value of "2", actually causes that interrupt input
+> to be (electrically) cascaded into to <&cpuintc 3>. But <&cpuintc 3>
+> would only be assigned a chained handler because of the SWCORE
+> mapping.
+>=20
+> By then assigning the same handler to all parent interrupts, and not
+> caring about which parent interrupt caused the handler to be called,
+> this ended up actually working.
 
-How many times do i have to say it, no wrappers. This makes it a lot
-less obvious you are throwing away the error code from dm9051_xfer().
+Urgh... Pure luck, then.
 
-> +/* spi low level code */
-> +static int dm9051_xfer(struct board_info *db, u8 cmd, u8 *txb, u8 *rxb, unsigned int len)
-> +{
-> +	struct device *dev = &db->spidev->dev;
-> +	int ret;
-> +
-> +	db->cmd[0] = cmd;
-> +	db->spi_xfer2[0].tx_buf = &db->cmd[0];
-> +	db->spi_xfer2[0].rx_buf = NULL;
-> +	db->spi_xfer2[0].len = 1;
-> +	db->spi_xfer2[1].tx_buf = txb;
-> +	db->spi_xfer2[1].rx_buf = rxb;
-> +	db->spi_xfer2[1].len = len;
-> +	ret = spi_sync(db->spidev, &db->spi_msg);
-> +	if (ret < 0)
-> +		dev_err(dev, "spi burst cmd 0x%02x, ret=%d\n", cmd, ret);
-> +	return ret;
-> +}
-> +
-> +static u8 dm9051_getreg(struct board_info *db, unsigned int reg)
-> +{
-> +	int ret;
-> +	u8 rxb[1];
-> +
-> +	ret = dm9051_inb(db, reg, rxb);
-> +	if (ret < 0) {
+>=20
+> > >=20
+> > > Offset the CPU IRQ numbers by -1 to retrieve the correct routing valu=
+e.
+> > >=20
+> > > Fixes: 9f3a0f34b84a ("irqchip: Add support for Realtek RTL838x/RTL839=
+x interrupt
+> > > controller")
+> > > Signed-off-by: Sander Vanheule <sander@svanheule.net>
+> > > ---
+> > > =C2=A0drivers/irqchip/irq-realtek-rtl.c | 8 +++++---
+> > > =C2=A01 file changed, 5 insertions(+), 3 deletions(-)
+> > >=20
+> > > diff --git a/drivers/irqchip/irq-realtek-rtl.c b/drivers/irqchip/irq-=
+realtek-rtl.c
+> > > index d6788dd93c7b..568614edd88f 100644
+> > > --- a/drivers/irqchip/irq-realtek-rtl.c
+> > > +++ b/drivers/irqchip/irq-realtek-rtl.c
+> > > @@ -95,7 +95,8 @@ static void realtek_irq_dispatch(struct irq_desc *d=
+esc)
+> > > =C2=A0 * SoC interrupts are cascaded to MIPS CPU interrupts according=
+ to the
+> > > =C2=A0 * interrupt-map in the device tree. Each SoC interrupt gets 4 =
+bits for
+> > > =C2=A0 * the CPU interrupt in an Interrupt Routing Register. Max 32 S=
+oC interrupts
+> > > - * thus go into 4 IRRs.
+> > > + * thus go into 4 IRRs. A routing value of '0' means the interrupt i=
+s left
+> > > + * disconnected. Routing values {1..15} connect to output lines {0..=
+14}.
+> > > =C2=A0 */
+> > > =C2=A0static int __init map_interrupts(struct device_node *node, stru=
+ct irq_domain *domain)
+> > > =C2=A0{
+> > > @@ -134,7 +135,7 @@ static int __init map_interrupts(struct device_no=
+de *node, struct
+> > > irq_domain *do
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0of_node_put(cpu_ictl);
+> > > =C2=A0
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0cpu_int =3D be32_to_cpup(imap + 2);
+> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0if (cpu_int > 7)
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0if (cpu_int > 7 || cpu_int < 2)
+> >=20
+> > How many output lines do you have? The comment above says something
+> > about having 15 output lines, but you limit it to 7...
+>=20
+> The SoCs we are using with this interrupt controller, connect their
+> output lines to CPU IRQ 2..7. If "interrupt-map" specifies parent HW
+> IRQ numbers, the driver needs to verify those numbers are valid. If
+> they are, it can derive the routing register values from that.
+>=20
+> On the other hand, routing register values have four bits. "0"
+> appears to disconnect an input interrupt, so that leaves 15
+> potential interrupt outputs (in theory, we don't have actual
+> hardware descriptions). Only 6 outputs are used here, but that could
+> be an implementation detail for these SoCs, rather than a limitation
+> of the interrupt router.
 
-If ret < 0 you probably have had an SPI error, -EIO, or maybe -ETIMEDOUT? 
+It would be good to find out if there are more CPU interrupts that can
+be targeted. My impression is that this is a copy/paste effect from
+the original BSP, and that nobody actually checked. But maybe that's
+the wrong impression.
 
-> +		if (reg == DM9051_NSR)
-> +			return NSR_TX2END | NSR_TX1END;
-> +		if (reg == DM9051_EPCR)
-> +			return (u8)(~EPCR_ERRE);
+>=20
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+return -EINVAL;
+> > > =C2=A0
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!(mips_irqs_set & BIT(cpu_int))) {
+> > > @@ -143,7 +144,8 @@ static int __init map_interrupts(struct device_no=
+de *node, struct
+> > > irq_domain *do
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+mips_irqs_set |=3D BIT(cpu_int);
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+> > > =C2=A0
+> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0regs[(soc_int * 4) / 32] |=3D cpu_int << (soc_int *=
+ 4) % 32;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0/* Use routing values (1..6) for CPU interrupts (2.=
+.7) */
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0regs[(soc_int * 4) / 32] |=3D (cpu_int - 1) << (soc=
+_int * 4) % 32;
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0imap +=3D 3;
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+> > > =C2=A0
+> >=20
+> > What I don't understand is how this worked so far if all mappings were
+> > off my one. Or the mapping really doesn't matter, because this is all
+> > under SW control?
+>=20
+> The reason this worked, was due to a number of issues compensating
+> for each other, like I tried to explain above.
+>=20
+> The mapping is indeed arbitrary, and not designed into the
+> hardware. So it could (should?)  just be put in the driver, instead
+> of the devicetree.
 
-So please add a comment explaining why it is O.K. to return these
-values when you probably cannot even talk to the device.
+Indeed. Which is what I was advocating for the first place. What I
+understand from the HW is that it is able to freely route any input to
+any output (muxing them as required), and to map each output to any
+CPU interrupt line.
 
-> +		return 0;
+If my understanding is correct, the only thing you need from the DT is
+a description of which input an endpoint is targeting (the interrupt
+specifier), and a list of CPU interrupt lines. Everything else can be
+decided at runtime.
 
-And here you should be returning the error code. And whatever called
-dm9051_getreg() needs to deal with that error code, probably returning
-it to its caller, etc.
+Anyway, I'll probably end-up queuing the first two patches for 5.17,
+and a Cc: to stable. The rest we can discuss ad-nauseam.
 
-> +	}
-> +	return rxb[0];
-> +}
-> +
+	M.
 
-> +static int dm9051_phy_read(struct board_info *db, int reg, int *pvalue)
-> +{
-> +	int ret;
-> +	u8 check_val;
-> +	u8 eph, epl;
-> +
-> +	dm9051_iow(db, DM9051_EPAR, DM9051_PHY | reg);
-
-dm9051_iow() returns an error code. You should check for an error, and
-return it. dm9051_mdio_read() already does the correct thing, passing
-the error code along. The MDIO core will then pass the error along to
-phylib, and phylib will probably report the error to user space and
-probably disable the PHY, since the PHY is no longer accessible. That
-is how error handling should work.
-
-Since you still do not have the trivial things correct, i've not done
-a deep review yet. I would not expect this driver to be merged very
-soon, and until somebody does make a deeper review, there could be
-more serious things wrong with this driver, like locking.
-
-     Andrew
-
+--=20
+Without deviation from the norm, progress is not possible.
