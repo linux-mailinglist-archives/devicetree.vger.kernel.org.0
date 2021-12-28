@@ -2,169 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5F17480BAB
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 17:58:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD96D480BBD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 18:03:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236512AbhL1Q6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 11:58:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33380 "EHLO
+        id S236529AbhL1RDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 12:03:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236518AbhL1Q6q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 11:58:46 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00774C061401
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:58:46 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id x7so42622374lfu.8
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:58:45 -0800 (PST)
+        with ESMTP id S236525AbhL1RDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 12:03:04 -0500
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6B52C061574
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 09:03:03 -0800 (PST)
+Received: by mail-ot1-x32a.google.com with SMTP id g79-20020a9d12d5000000b0058f08f31338so25175551otg.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 09:03:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aLS767KJTZfvw5/Pb90qAf4lv/UgXzjgnY65+gUmz1k=;
-        b=h6kLOAeWGL2CluUxbLepQ1y9HSLKlXZKkho5A1VDDVF8paOZSSAvw1dxROD6rkd/ba
-         TpGyRyKjcTEPQMbqCwjOLj8+ug9uyO6U+S3HdAMwDkbb19hMEkUmMZ0Nd0SjMJFF+6qt
-         +glPqyCTX8XHD3nnyqlp35igsacDq+ZiXXeMUOl/8fNegh+cBM5tje8bm4AFKMD4t8tB
-         EDefaYRtlfL8+fgied+f4uvIkkAlOStidiIJqerM9aEtUz2O17lVFf9uqy8zNsgOSgPR
-         TnEMpJIaXxGzN7NQZAgt0ZA6HNd3oIY2vwbralUqxBrlpJSUqY3OTdhs7+RahR5Jz9oB
-         eeqw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=fqf6rnu14bDcvfi+8SmXc4YYaIPD5Y5BMeMfUKGb4Us=;
+        b=Q1g4xTfPyDpqUCNwkLkeFb//0xX7ikBIMqrUdqFawh6PtBlvxIccjpOIcwhlL0k9XN
+         1N4E3628wYyb8G026ATBaCCg6+pvYDDjg3YqEbIG71db0aA9JKp/od6+XnGZicuA/Qyn
+         61MXaSSXpser58bwiPjyaw/HX8pRAc4XrKrz2dBQ22KXXozk53g/fBOR4HUDNflhR7kx
+         zXfaUnabRgelj9ecECDBy1u5GP4D09xEcqSWny4wQ+9q7awsQCjia+ELUO8hGlku4pqw
+         q0wG3r1A1kS6jodL+IszR8iSihSq90BHkVGJadQkaFX3W783nusEVtkElHmaN6UByJmf
+         VPKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aLS767KJTZfvw5/Pb90qAf4lv/UgXzjgnY65+gUmz1k=;
-        b=vxGNjXoeZRi90EXZS7/K9QNEWCZ2X6D2+t9NA3+IDlFVsuF1G6UP3mVJ2D9E0/b9lk
-         Lf2bTmuAhvVBgo+r9P/5H6X+N/CRzrwbkzR2c2JG76mUC7ZlT2pHRnW270lAqBnkHew2
-         Sl13I/Op4SIOZAbwhlzp5p+6ZL0tC05QdZaxbDVwNi3w5/6vjHV8vtfvQ5Iw6dpflqsv
-         +1q2nKXnddlSzdcfFpSB8fIDgmJv8+Ft+VyQ1VcKrzdlHLJCqcmJWv5VUhzu9VYFXgdb
-         i89SfpSxVvyLLfjI9pxt2MEaDAHscEixY4peJGxf/ryjRX4k5+zkOlBY6mJGfW/b3HjH
-         0wdg==
-X-Gm-Message-State: AOAM532/XqwViaZ9VWfRN53uF3dU9U94GC5kbj5elYtIRGvLNeVMHltk
-        l+EfiFsJq3lIjImGb+7VyT41fQoyRSbbKuARV+mxHQ==
-X-Google-Smtp-Source: ABdhPJwyZ9JvkIK3ExHySh5L90wxtJYKduqCDHyqNMikqWtjWEpQBb5jtvqNjjZwpSDQQ5znW/Iu2simawK1NooQXJc=
-X-Received: by 2002:a05:6512:3d9e:: with SMTP id k30mr20014933lfv.184.1640710722641;
- Tue, 28 Dec 2021 08:58:42 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=fqf6rnu14bDcvfi+8SmXc4YYaIPD5Y5BMeMfUKGb4Us=;
+        b=rofGXBePfA5y8PKu8bpxgO8qG1F4pqWWiyimhzKV+D+9OjJ0OjUj7YNTuDtd5f+b0I
+         Z4BAstEMmcvwUw5tOjzyQbhGPN5d1lwMULa+oyFVK03IiY6HopKjU8Je8ph1nrMouXVF
+         8WrAij6OofRVt8IARZX7MCJ7HXaS736H1jtET2C/3wKlDuQNfoUgch18H/S32OcJ7GLX
+         mOS4MxsDtoFb5Ud0Bo+aGHA4p2L8sJGKVUoYdaNHbWtWGkgHEzqxYZV7FnqJ1ZZMeWqe
+         jEX/Tb071ugjogrt1nFESYLEn+G5STNtpfcAFdvXdVD9+jTY6LqKHES5+tEUO5ejT/vd
+         sCZA==
+X-Gm-Message-State: AOAM530LKVjYam3StF35Uxhajgvc36uZKyhEAKgQKNiTrDo8V1h6oAhE
+        3EgYJ7Yn7e+5KzdB6KxxeUy9OQ==
+X-Google-Smtp-Source: ABdhPJy5Q+qG8e6GgdGlS/P/AAwb6MJsX1Mb2OftGMNR+3bOuj6mA7qyc5/YLVorXuTaOxs40dY3Ow==
+X-Received: by 2002:a05:6830:1d49:: with SMTP id p9mr15849113oth.108.1640710983055;
+        Tue, 28 Dec 2021 09:03:03 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id q5sm4081528oiv.2.2021.12.28.09.03.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Dec 2021 09:03:02 -0800 (PST)
+Date:   Tue, 28 Dec 2021 09:04:01 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH 3/8] device property: Helper to match multiple connections
+Message-ID: <YctDgaHV8dsR109L@ripper>
+References: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
+ <20211228052116.1748443-4-bjorn.andersson@linaro.org>
+ <78491489-6b31-c741-8c69-8d52fb614a6c@linaro.org>
 MIME-Version: 1.0
-References: <20211227133131.134369-1-krzysztof.kozlowski@canonical.com> <20211227133558.135185-3-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211227133558.135185-3-krzysztof.kozlowski@canonical.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 28 Dec 2021 17:58:06 +0100
-Message-ID: <CAPDyKFqJYMkxS01dQCGhtwGtFdf98XnvEJOoeYu9=pnnRUhJhA@mail.gmail.com>
-Subject: Re: [PATCH 09/19] dt-bindings: mmc: synopsys-dw-mshc: integrate
- Altera and Imagination
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <78491489-6b31-c741-8c69-8d52fb614a6c@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Dec 2021 at 14:36, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> The bindings for Altera and Imagination extensions are the same as for
-> the original Synopsys Designware Mobile Storage Host Controller.
-> Integrate them into Synopsys bindings to have dtschema coverage.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+On Tue 28 Dec 05:09 PST 2021, Dmitry Baryshkov wrote:
 
-Applied for next, thanks!
+> On 28/12/2021 08:21, Bjorn Andersson wrote:
+> > In some cases multiple connections with the same connection id
+> > needs to be resolved from a fwnode graph.
+> > 
+> > One such example is when separate hardware is used for performing muxing and/or
+> > orientation switching of the SuperSpeed and SBU lines in a USB-C
+> > connector. In this case the connector needs to belong to a graph with
+> > multiple matching remote endpoints, and the TypeC controller needs to be
+> > able to resolve them both.
+> > 
+> > Add a new API that allows this kind of lookup.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > ---
+> >   drivers/base/property.c  | 94 ++++++++++++++++++++++++++++++++++++++++
+> >   include/linux/property.h |  5 +++
+> >   2 files changed, 99 insertions(+)
+> > 
+> > diff --git a/drivers/base/property.c b/drivers/base/property.c
+> > index cbe4fa298413..0aa0296fd991 100644
+> > --- a/drivers/base/property.c
+> > +++ b/drivers/base/property.c
+> > @@ -1180,6 +1180,36 @@ fwnode_graph_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+> >   	return NULL;
+> >   }
+> > +static unsigned int fwnode_graph_devcon_matches(struct fwnode_handle *fwnode,
+> > +						const char *con_id, void *data,
+> > +						devcon_match_fn_t match,
+> > +						void **matches,
+> > +						unsigned int matches_len)
+> > +{
+> > +	struct fwnode_handle *node;
+> > +	struct fwnode_handle *ep;
+> > +	unsigned int count = 0;
+> > +	void *ret;
+> > +
+> > +	fwnode_graph_for_each_endpoint(fwnode, ep) {
+> > +		if (count >= matches_len) {
+> > +			fwnode_handle_put(ep);
+> > +			return count;
+> > +		}
+> > +
+> > +		node = fwnode_graph_get_remote_port_parent(ep);
+> > +		if (!fwnode_device_is_available(node))
+> > +			continue;
+> > +
+> > +		ret = match(node, con_id, data);
+> > +		fwnode_handle_put(node);
+> > +
+> > +		if (ret)
+> > +			matches[count++] = ret;
+> > +	}
+> > +	return count;
+> > +}
+> 
+> This API doesn't let it's user know if there are more matches found in the
+> device tree or not. I'd suggest to add 'count' mode that would return the
+> amount of found matches if (matches == NULL) && (matches_len == 0).
+> 
 
-Kind regards
-Uffe
+Unfortunately in this code path we don't know how to "free" the objects
+returned by match(), e.g. see how typec_switch_match() returns wrapper
+of a refcounted device.
 
+So we must return all the match results to the caller to it can free
+things up based on its knowledge of what matches[] actually contains..
 
-> ---
->  .../devicetree/bindings/mmc/img-dw-mshc.txt   | 28 -------------------
->  .../bindings/mmc/socfpga-dw-mshc.txt          | 23 ---------------
->  .../bindings/mmc/synopsys-dw-mshc.yaml        |  5 +++-
->  3 files changed, 4 insertions(+), 52 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mmc/img-dw-mshc.txt
->  delete mode 100644 Documentation/devicetree/bindings/mmc/socfpga-dw-mshc.txt
->
-> diff --git a/Documentation/devicetree/bindings/mmc/img-dw-mshc.txt b/Documentation/devicetree/bindings/mmc/img-dw-mshc.txt
-> deleted file mode 100644
-> index c54e577eea07..000000000000
-> --- a/Documentation/devicetree/bindings/mmc/img-dw-mshc.txt
-> +++ /dev/null
-> @@ -1,28 +0,0 @@
-> -* Imagination specific extensions to the Synopsys Designware Mobile Storage
-> -  Host Controller
-> -
-> -The Synopsys designware mobile storage host controller is used to interface
-> -a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
-> -differences between the core Synopsys dw mshc controller properties described
-> -by synopsys-dw-mshc.txt and the properties used by the Imagination specific
-> -extensions to the Synopsys Designware Mobile Storage Host Controller.
-> -
-> -Required Properties:
-> -
-> -* compatible: should be
-> -       - "img,pistachio-dw-mshc": for Pistachio SoCs
-> -
-> -Example:
-> -
-> -       mmc@18142000 {
-> -               compatible = "img,pistachio-dw-mshc";
-> -               reg = <0x18142000 0x400>;
-> -               interrupts = <GIC_SHARED 39 IRQ_TYPE_LEVEL_HIGH>;
-> -
-> -               clocks = <&system_clk>, <&sdhost_clk>;
-> -               clock-names = "biu", "ciu";
-> -
-> -               fifo-depth = <0x20>;
-> -               bus-width = <4>;
-> -               disable-wp;
-> -       };
-> diff --git a/Documentation/devicetree/bindings/mmc/socfpga-dw-mshc.txt b/Documentation/devicetree/bindings/mmc/socfpga-dw-mshc.txt
-> deleted file mode 100644
-> index 4897bea7e3f8..000000000000
-> --- a/Documentation/devicetree/bindings/mmc/socfpga-dw-mshc.txt
-> +++ /dev/null
-> @@ -1,23 +0,0 @@
-> -* Altera SOCFPGA specific extensions to the Synopsys Designware Mobile
-> -  Storage Host Controller
-> -
-> -The Synopsys designware mobile storage host controller is used to interface
-> -a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
-> -differences between the core Synopsys dw mshc controller properties described
-> -by synopsys-dw-mshc.txt and the properties used by the Altera SOCFPGA specific
-> -extensions to the Synopsys Designware Mobile Storage Host Controller.
-> -
-> -Required Properties:
-> -
-> -* compatible: should be
-> -       - "altr,socfpga-dw-mshc": for Altera's SOCFPGA platform
-> -
-> -Example:
-> -
-> -       mmc: dwmmc0@ff704000 {
-> -               compatible = "altr,socfpga-dw-mshc";
-> -               reg = <0xff704000 0x1000>;
-> -               interrupts = <0 129 4>;
-> -               #address-cells = <1>;
-> -               #size-cells = <0>;
-> -       };
-> diff --git a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
-> index 240abb6f102c..ae6d6fca79e2 100644
-> --- a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
-> @@ -15,7 +15,10 @@ maintainers:
->  # Everything else is described in the common file
->  properties:
->    compatible:
-> -    const: snps,dw-mshc
-> +    enum:
-> +      - altr,socfpga-dw-mshc
-> +      - img,pistachio-dw-mshc
-> +      - snps,dw-mshc
->
->    reg:
->      maxItems: 1
-> --
-> 2.32.0
->
+Regards,
+Bjorn
+
+> > +
+> >   static void *
+> >   fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+> >   		    void *data, devcon_match_fn_t match)
+> > @@ -1202,6 +1232,35 @@ fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+> >   	return NULL;
+> >   }
+> > +static unsigned int fwnode_devcon_matches(struct fwnode_handle *fwnode,
+> > +					  const char *con_id, void *data,
+> > +					  devcon_match_fn_t match,
+> > +					  void **matches,
+> > +					  unsigned int matches_len)
+> > +{
+> > +	struct fwnode_handle *node;
+> > +	unsigned int count = 0;
+> > +	void *ret;
+> > +	int i;
+> > +
+> > +	for (i = 0; ; i++) {
+> > +		if (count >= matches_len)
+> > +			return count;
+> > +
+> > +		node = fwnode_find_reference(fwnode, con_id, i);
+> > +		if (IS_ERR(node))
+> > +			break;
+> > +
+> > +		ret = match(node, NULL, data);
+> > +		fwnode_handle_put(node);
+> > +
+> > +		if (ret)
+> > +			matches[count++] = ret;
+> > +	}
+> > +
+> > +	return count;
+> > +}
+> > +
+> 
+> Same comment applies.
+> 
+> >   /**
+> >    * fwnode_connection_find_match - Find connection from a device node
+> >    * @fwnode: Device node with the connection
+> > @@ -1229,3 +1288,38 @@ void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
+> >   	return fwnode_devcon_match(fwnode, con_id, data, match);
+> >   }
+> >   EXPORT_SYMBOL_GPL(fwnode_connection_find_match);
+> > +
+> > +/**
+> > + * fwnode_connection_find_matches - Find connections from a device node
+> > + * @fwnode: Device node with the connection
+> > + * @con_id: Identifier for the connection
+> > + * @data: Data for the match function
+> > + * @match: Function to check and convert the connection description
+> > + * @matches: Array of pointers to fill with matches
+> > + * @matches_len: Length of @matches
+> > + *
+> > + * Find up to @matches_len connections with unique identifier @con_id between
+> > + * @fwnode and other device nodes. @match will be used to convert the
+> > + * connection description to data the caller is expecting to be returned
+> > + * through the @matches array.
+> > + *
+> > + * Return: Number of matches resolved, of negative errno.
+> > + */
+> > +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> > +				   const char *con_id, void *data,
+> > +				   devcon_match_fn_t match,
+> > +				   void **matches, unsigned int matches_len)
+> > +{
+> > +	unsigned int count;
+> > +
+> > +	if (!fwnode || !match || !matches)
+> > +		return -EINVAL;
+> > +
+> > +	count = fwnode_graph_devcon_matches(fwnode, con_id, data, match,
+> > +					    matches, matches_len);
+> > +
+> > +	return count + fwnode_devcon_matches(fwnode, con_id, data, match,
+> > +					     matches + count,
+> > +					     matches_len - count);
+> > +}
+> > +EXPORT_SYMBOL_GPL(fwnode_connection_find_matches);
+> > diff --git a/include/linux/property.h b/include/linux/property.h
+> > index 16f736c698a2..59484ccb260e 100644
+> > --- a/include/linux/property.h
+> > +++ b/include/linux/property.h
+> > @@ -444,6 +444,11 @@ static inline void *device_connection_find_match(struct device *dev,
+> >   	return fwnode_connection_find_match(dev_fwnode(dev), con_id, data, match);
+> >   }
+> > +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> > +				   const char *con_id, void *data,
+> > +				   devcon_match_fn_t match,
+> > +				   void **matches, unsigned int matches_len);
+> > +
+> >   /* -------------------------------------------------------------------------- */
+> >   /* Software fwnode support - when HW description is incomplete or missing */
+> 
+> 
+> -- 
+> With best wishes
+> Dmitry
