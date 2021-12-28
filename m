@@ -2,63 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A2FA480627
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 05:58:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75E2248063A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 06:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231747AbhL1E6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Dec 2021 23:58:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44070 "EHLO
+        id S231702AbhL1FUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 00:20:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbhL1E6f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Dec 2021 23:58:35 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F416AC06173E
-        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 20:58:34 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id t19so28381432oij.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 20:58:34 -0800 (PST)
+        with ESMTP id S229484AbhL1FUR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 00:20:17 -0500
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44382C06173E
+        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 21:20:17 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id t23so28398607oiw.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 21:20:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=98szpQBZjtZvNYlpyX/l6mXnydiaf9Cz3PXEMmMi7WI=;
-        b=RkAse5a++wcvwXouZbSPgrz1WAGLQRgomwBlTuBF+n11/dsDnSAFBiJ5IZO71tXwWQ
-         oG3FDo764vE2UDNwyhMV8XKQTjJ2EVfvXYrhWV84Nz2dPQRNRJGhvSbzCQ6Kvi9wletK
-         IyNqaEnQOApQTc2sh/uEynNLXrOozmRDI3YVa8JTHsf6CQfPaoW2BqoLiBD6q7HpYBym
-         GGI4CQXhGZAhFOrBfxmUFmGYOMxRPQbYcKDIqFbWJ6LsKOZRGv7c4YGCan52dlHN0SIX
-         HnKaSdR0XXsFutjqissD5fp8Rsn/LZoyqDuI87U5H+YAlIFzeZaPKnRGVzD1+U4SDi1I
-         OfrQ==
+        bh=t9/Q42cL9IQzn8S0oUqtJHRIk8EihJrAdm7N2Ps38H4=;
+        b=AgLNEqgK+8hwY6zV5kthAixDaxQj4eYqUwQrrSkVuXw8TExhoEo6j2FBT9fGKz4kf/
+         YcZVzElmrof21IeGPBnzlEb6Ju9RYaIDgVJMhmQCNRtz+pFWvniBQ3vlWc6M+gH4xCcf
+         tMuB2vKYz00kxgeN59yM5PK5XNKHi1+81VHVpLF1++FCO+X1cARMY/OxiAPYv3VMnMuc
+         6ghjoDOFLyyiMhlxMvZ0xhErBpes+FZsEsVx4w1l3q97Po1wpHxffS+g9JmAWOVdXr5j
+         2dSTFpurh/VPmvZlRDLAVR24CQIR2+Tch4UpZ4OrBYNeuCoHULZeISiytecCQcwm5MpX
+         lJcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=98szpQBZjtZvNYlpyX/l6mXnydiaf9Cz3PXEMmMi7WI=;
-        b=Fz1tLtj8Wv5GykIjxaU4pAW/nsCdw2yg80QBoSXDwtYyQsXlNhA6FKOzbl4aoV4Ssf
-         9Gdyu6fKbNJxmbJuG3VMaUerD0Gvp90Z/zH3vPbFY/pwtyez4KR6J5Ri0TxtBQJKh3Ux
-         rRF0v4OFHDDKkiAlZMFWbZUeGAKRZq/dxNdC1O7D3T8HOEIvs/0YOAVW4UnoNo0wTeZN
-         eVrdOZHfIk+tI1Ls/kT6Z8cpJwNftsv5XaowSQjkj7jrxIESqKtFQkxxmz6ogxmnjDeG
-         lF7zNWvK6sELwbrS2A+1CI4WSBHyFi+bWOdBobB1uuu0IByzX2Qn7pJ8UhRFJFE+I9Ep
-         Yc+g==
-X-Gm-Message-State: AOAM531hZMUzD40QietcOVkRjihi5PS9zUUorT74FQYtwM9keK4C1qCZ
-        G00hGpfyjC7tBTQqrSBP9Hwc0Q==
-X-Google-Smtp-Source: ABdhPJw0LCJVxHQQ9QCWqtmjXSIikXnypZw3Qfu/0FsEFSTp1ESZgDOl8PKo+a6h8HMAc8zWhQBM9g==
-X-Received: by 2002:a05:6808:aa7:: with SMTP id r7mr15681459oij.120.1640667514163;
-        Mon, 27 Dec 2021 20:58:34 -0800 (PST)
+        bh=t9/Q42cL9IQzn8S0oUqtJHRIk8EihJrAdm7N2Ps38H4=;
+        b=s+a/G0d1NcE+XB9IQbFiZihO4lEFe6AyrQB14oUy4ubJkCUZq1w2CkpNyYUqFua6dp
+         9iD+gLY+Fl14Cf/hBMOHgdWHKyij9XH/B4j7tPLsDxKPsuVMx3FayeF2Mu0i6TqNiMyn
+         stf1/TVljV8OkFqTc/u9M9dTQY66NR0n4fVBGgjYnMlL+zbgsqLQN51zSGN1RKudu+tl
+         5E3ZCO9FyXqRzhu/V8zAXWcUdAnt2xY7VhMZU0xl0KzCweQK6Maa60VCIzk2XR9R5sEI
+         qTAzZ6KRbIeMpL0guQf9J9NN/BpR4H7n5RL4jRKjr+5aZAp0RvSC2sc8nb6nUIMSJimY
+         GODw==
+X-Gm-Message-State: AOAM531rCaZx7vntBgJ4ESPEX/X9v0sg9B6mW0a+BGxvuBnpcGlQd0cf
+        /1H3Yb/9lb1DCYrX5FIlhEiViMtvtluROA==
+X-Google-Smtp-Source: ABdhPJxc8vtB2u0AWKk85NxyiwmI3df7PshPc3CtR9aiP0B23rnjw6FNzRCYvNh1ARtl9vQea5v2ng==
+X-Received: by 2002:aca:907:: with SMTP id 7mr15253139oij.128.1640668816508;
+        Mon, 27 Dec 2021 21:20:16 -0800 (PST)
 Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id n18sm3004786ooj.30.2021.12.27.20.58.33
+        by smtp.gmail.com with ESMTPSA id j5sm3002277oou.23.2021.12.27.21.20.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Dec 2021 20:58:33 -0800 (PST)
+        Mon, 27 Dec 2021 21:20:16 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/msm/dp: Add DisplayPort controller for SM8350
-Date:   Mon, 27 Dec 2021 20:59:34 -0800
-Message-Id: <20211228045934.1524865-1-bjorn.andersson@linaro.org>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Hans de Goede <hdegoede@redhat.com>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: [PATCH 0/8] typec: mux: Introduce support for multiple TypeC muxes
+Date:   Mon, 27 Dec 2021 21:21:08 -0800
+Message-Id: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -66,50 +68,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm SM8350 platform comes with a single DisplayPort controller,
-add support for this in the DisplayPort driver.
+This series introduces a level of indirection between the controller's view of
+a typec_mux/switch and the implementation and then expands that to support
+multiple drivers.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- .../devicetree/bindings/display/msm/dp-controller.yaml    | 1 +
- drivers/gpu/drm/msm/dp/dp_display.c                       | 8 ++++++++
- 2 files changed, 9 insertions(+)
+This is needed in order to support devices such as the Qualcomm Snapdragon 888
+HDK, which does muxing and orientation handling in the QMP (USB+DP) PHY and SBU
+muxing in the external FSA4480 chip.
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-index 5457612ab136..cd05cfd76536 100644
---- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-@@ -21,6 +21,7 @@ properties:
-       - qcom,sc7280-edp
-       - qcom,sc8180x-dp
-       - qcom,sc8180x-edp
-+      - qcom,sm8350-dp
- 
-   reg:
-     items:
-diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index 8d9c19dbf33e..fd0fd03f8fed 100644
---- a/drivers/gpu/drm/msm/dp/dp_display.c
-+++ b/drivers/gpu/drm/msm/dp/dp_display.c
-@@ -143,10 +143,18 @@ static const struct msm_dp_config sc7280_dp_cfg = {
- 	.num_descs = 2,
- };
- 
-+static const struct msm_dp_config sm8350_dp_cfg = {
-+	.descs = (const struct msm_dp_desc[]) {
-+		[MSM_DP_CONTROLLER_0] = { .io_start = 0x0ae90000, .connector_type = DRM_MODE_CONNECTOR_DisplayPort },
-+	},
-+	.num_descs = 1,
-+};
-+
- static const struct of_device_id dp_dt_match[] = {
- 	{ .compatible = "qcom,sc7180-dp", .data = &sc7180_dp_cfg },
- 	{ .compatible = "qcom,sc7280-dp", .data = &sc7280_dp_cfg },
- 	{ .compatible = "qcom,sc7280-edp", .data = &sc7280_dp_cfg },
-+	{ .compatible = "qcom,sm8350-dp", .data = &sm8350_dp_cfg },
- 	{}
- };
- 
+Additionally integration of typec mux and switch in the QMP PHY is included in
+the series, as is the new FSA4480 driver. This is done to deal with the
+renaming of the driver-side typec_mux -> typec_mux_dev.
+
+Bjorn Andersson (8):
+  dt-bindings: phy: qcom,qmp-usb3-dp: Add altmode/switch properties
+  phy: qcom-qmp: Register typec mux and orientation switch
+  device property: Helper to match multiple connections
+  device property: Use multi-connection matchers for single case
+  typec: mux: Introduce indirection
+  typec: mux: Allow multiple mux_devs per mux
+  dt-bindings: usb: Add binding for fcs,fsa4480
+  usb: typec: mux: Add On Semi fsa4480 driver
+
+ .../bindings/phy/qcom,qmp-usb3-dp-phy.yaml    |  14 +
+ .../devicetree/bindings/usb/fcs,fsa4480.yaml  |  72 +++++
+ drivers/base/property.c                       |  83 ++++--
+ drivers/phy/qualcomm/phy-qcom-qmp.c           | 176 ++++++++++--
+ drivers/usb/typec/bus.c                       |   2 +-
+ drivers/usb/typec/mux.c                       | 257 +++++++++++++-----
+ drivers/usb/typec/mux.h                       |  12 +-
+ drivers/usb/typec/mux/Kconfig                 |   9 +
+ drivers/usb/typec/mux/Makefile                |   1 +
+ drivers/usb/typec/mux/fsa4480.c               | 220 +++++++++++++++
+ drivers/usb/typec/mux/intel_pmc_mux.c         |   8 +-
+ drivers/usb/typec/mux/pi3usb30532.c           |   8 +-
+ include/linux/property.h                      |   5 +
+ include/linux/usb/typec_mux.h                 |  22 +-
+ 14 files changed, 762 insertions(+), 127 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
+ create mode 100644 drivers/usb/typec/mux/fsa4480.c
+
 -- 
 2.33.1
 
