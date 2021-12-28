@@ -2,81 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 715B248077A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 09:45:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EB3D480896
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 11:58:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235759AbhL1IpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 03:45:24 -0500
-Received: from mswedge2.sunplus.com ([60.248.182.106]:37402 "EHLO
-        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231670AbhL1IpX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 03:45:23 -0500
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.202
-        by mg02.sunplus.com with MailGates ESMTP Server V5.0(49508:0:AUTH_RELAY)
-        (envelope-from <edwin.chiu@sunplus.com>); Tue, 28 Dec 2021 16:45:27 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.26; Tue, 28 Dec 2021 16:45:21 +0800
-Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
- sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
- 15.00.1497.026; Tue, 28 Dec 2021 16:45:21 +0800
-From:   =?big5?B?RWR3aW4gQ2hpdSCq9KurrnA=?= <edwin.chiu@sunplus.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        Edwin Chiu <edwinchiu0505tw@gmail.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
-Subject: RE: [PATCH v2 2/2] cpuidle:sunplus:create cpuidle driver for sunplus
- sp7021
-Thread-Topic: [PATCH v2 2/2] cpuidle:sunplus:create cpuidle driver for sunplus
- sp7021
-Thread-Index: AQHX9WEUrNii4YTVCkGIbW8MVVMb3Kw6xGIAgAzaWSA=
-Date:   Tue, 28 Dec 2021 08:45:21 +0000
-Message-ID: <0812c44f777d4026b79df2e3698294be@sphcmbx02.sunplus.com.tw>
-References: <cover.1639971376.git.edwinchiu0505tw@gmail.com>
- <6092f5f372851e2d6bf12b4b23209558038b9fda.1639971376.git.edwinchiu0505tw@gmail.com>
- <20211220121050.rnd3o7d5cksqbqnk@bogus>
-In-Reply-To: <20211220121050.rnd3o7d5cksqbqnk@bogus>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.40]
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        id S236350AbhL1K6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 05:58:14 -0500
+Received: from www.linux-watchdog.org ([185.87.125.42]:43990 "EHLO
+        www.linux-watchdog.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236349AbhL1K6N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 05:58:13 -0500
+X-Greylist: delayed 538 seconds by postgrey-1.27 at vger.kernel.org; Tue, 28 Dec 2021 05:58:12 EST
+Received: by www.linux-watchdog.org (Postfix, from userid 500)
+        id ACFC4409CD; Tue, 28 Dec 2021 10:21:40 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 www.linux-watchdog.org ACFC4409CD
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-watchdog.org;
+        s=odk20180602; t=1640683300;
+        bh=w8aJnqJpyuqC/xW+n2cbZi4xCrodj+BMPfpwrAepq8g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=E6A+Zft6yL02VjO/ZAA2eLOd46aBp6wp8jxGolGB+5zu6ZcrhRd4Xe3HZrnPvyxSt
+         I5vkXxHxn1NLzFoHWWt3nD8cUl0m2IkjVf2sfRPEJViD6vUYm8MlCPq4MNutT6BroT
+         YZwZlHFqYY3P/37WfLY+MTJSM15Gv8BC9L4ujEFs=
+Date:   Tue, 28 Dec 2021 10:21:40 +0100
+From:   Wim Van Sebroeck <wim@linux-watchdog.org>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Justin Chen <justinpopo6@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH V4 RESEND 1/2] dt-bindings: watchdog: convert Broadcom's
+ WDT to the json-schema
+Message-ID: <20211228092140.GA26632@www.linux-watchdog.org>
+References: <f5745952-9e3c-ed7a-cced-ce42d3da2276@gmail.com>
+ <Ya5ctkIU+jNzDfBc@google.com>
+ <f4af4971-7047-80c9-69ae-e6587979ecd5@roeck-us.net>
+ <e1fa1683-a0a6-8ee0-9da5-8e97dd9c820a@gmail.com>
+ <432664af-5660-aaad-bf75-81e4d61cb078@roeck-us.net>
+ <46a88b40-6d92-727c-7adc-5723921d08e3@gmail.com>
+ <20211206195115.GC3759192@roeck-us.net>
+ <Ya8xhUR5GbTxVE8w@google.com>
+ <a86d5998-8d84-7afe-e34e-a632aa890683@roeck-us.net>
+ <Ya+BX1X7/YqmfCU8@google.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Ya+BX1X7/YqmfCU8@google.com>
+User-Agent: Mutt/1.5.20 (2009-12-10)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgU3VkZWVwIGFuZCBEYW5pZWw6DQoNClRoYW5rcyB5b3VyIHJlc3BvbnNlLg0KTXkgQ1BVIGlz
-IGFybSBDQTcgdGhhdCBpcyAzMmJpdHMgY3B1Lg0KSWYgSSBkaXJlY3RseSB1c2VkIGNwdWlkbGUt
-YXJtLmMgZnVuY3Rpb24gd2l0aCBlbmFibGUgIkdlbmVyaWMgQVJNL0FSTTY0IENQVSBpZGxlIERy
-aXZlciIsDQp0aGUgY3B1aWRsZSBkcml2ZXIgbW91bnQgZmFpbCB3aXRoICJ1bnN1cHBvcnRlZCBl
-bmFibGUtbWV0aG9kIHByb3BlcnR5Ii4NCg0KVGhpcyBpcyBkdWUgdG8gbGludXgga2VybmVsIG5v
-IGludm9rZSBDUFVJRExFX01FVEhPRF9PRl9ERUNMQVJFIGZvciBhcm0gMzJiaXRzIGNwdS4NClRo
-ZXJlIGhhdmUgbm8gZGVmaW5lIGNwdWlkbGVfb3BzLmluaXQgYW5kIGNwdWlkbGVfb3BzLnN1c3Bl
-bmQgZnVuY3Rpb24gZm9yIGFybSAzMmJpdHMgY3B1IHRvby4NCg0KU28gSSBjcmVhdGUgY3B1aWRs
-ZS1zdW5wbHVzLmMgdG8gZXhlY3V0ZSBteSBjcHVpZGxlIGZ1bmN0aW9uLg0KUGxlYXNlIGNvcnJl
-Y3QgbWUgaWYgSSBnb3QgbWlzdGFrZS4NCg0KDQqq9KurrnAgRWR3aW5DaGl1DQq0vK/guUK64rFN
-rtcNClQ6ICs4ODYtMy01Nzg2MDA1IGV4dC4yNTkwDQplZHdpbi5jaGl1QHN1bnBsdXMuY29tDQoz
-MDAgt3Omy6zsvse26bDPs9C3c6RAuPQxObi5DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0t
-LS0NCj4gRnJvbTogU3VkZWVwIEhvbGxhIDxzdWRlZXAuaG9sbGFAYXJtLmNvbT4NCj4gU2VudDog
-TW9uZGF5LCBEZWNlbWJlciAyMCwgMjAyMSA4OjExIFBNDQo+IFRvOiBFZHdpbiBDaGl1IDxlZHdp
-bmNoaXUwNTA1dHdAZ21haWwuY29tPg0KPiBDYzogcm9iaCtkdEBrZXJuZWwub3JnOyBFZHdpbiBD
-aGl1IKr0q6uucCA8ZWR3aW4uY2hpdUBzdW5wbHVzLmNvbT47IGRldmljZXRyZWVAdmdlci5rZXJu
-ZWwub3JnOw0KPiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyByYWZhZWxAa2VybmVsLm9y
-ZzsgU3VkZWVwIEhvbGxhIDxzdWRlZXAuaG9sbGFAYXJtLmNvbT47DQo+IGRhbmllbC5sZXpjYW5v
-QGxpbmFyby5vcmc7IGxpbnV4LXBtQHZnZXIua2VybmVsLm9yZw0KPiBTdWJqZWN0OiBSZTogW1BB
-VENIIHYyIDIvMl0gY3B1aWRsZTpzdW5wbHVzOmNyZWF0ZSBjcHVpZGxlIGRyaXZlciBmb3Igc3Vu
-cGx1cyBzcDcwMjENCj4gDQo+IE9uIE1vbiwgRGVjIDIwLCAyMDIxIGF0IDAxOjM3OjMyUE0gKzA4
-MDAsIEVkd2luIENoaXUgd3JvdGU6DQo+ID4gQ3JlYXRlIGNwdWlkbGUgZHJpdmVyIGZvciBzdW5w
-bHVzIHNwNzAyMSBjaGlwDQo+ID4NCj4gDQo+IEJhc2VkIG9uIHRoZSBkcml2ZXIgaGVyZSwgSSBj
-b3VsZG4ndCB1bmRlcnN0YW5kIHdoeSB5b3UgY2FuJ3QgbWFrZSB1c2Ugb2YgZXhpc3RpbmcgY3B1
-aWRsZS1hcm0uYyBkcml2ZXINCj4gDQo+IC0tDQo+IFJlZ2FyZHMsDQo+IFN1ZGVlcA0K
+Hi Lee,
+
+> On Tue, 07 Dec 2021, Guenter Roeck wrote:
+> 
+> > On 12/7/21 2:03 AM, Lee Jones wrote:
+> > [ ... ]
+> > > > It sounded to me like Lee wanted an immutable branch for that
+> > > 
+> > > Not exactly, I said:
+> > > 
+> > >    "> Suppose we should take patch #2 via [Watchdog] as well.
+> > > 
+> > >     If that happens, I would like a PR to an immutable branch."
+> > > 
+> > > The alternative is that I take the patch and provide an immutable
+> > > branch to you, which I am in a position to do.
+> > > 
+> > 
+> > I understand, only I am not in a position to take it since my tree
+> > isn't the official watchdog-next tree, and it doesn't show up in -next.
+> > If Wim takes it into the official watchdog-next tree or not would be
+> > completely up to him.
+> > 
+> > I personally don't care if the bindings check is clean in my inofficial
+> > tree, so maybe this is a non-issue.
+> 
+> That doesn't help, sadly.
+> 
+> I think the best course of action is for Wim to let me know when this
+> patch makes it into his tree.  I'll take the MFD one at the same time
+> and the two shall meet in -next.
+> 
+> Honestly, this is all such a faff.
+> 
+> Just to keep a script happy that 3 people care about.
+
+It's going in today.
+
+Kind regards,
+Wim.
+
