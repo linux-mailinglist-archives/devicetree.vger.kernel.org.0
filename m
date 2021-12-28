@@ -2,111 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 823154808F9
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 13:08:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BFBE480911
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 13:20:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230212AbhL1MIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 07:08:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53256 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230080AbhL1MID (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 07:08:03 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69162C061574;
-        Tue, 28 Dec 2021 04:08:03 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id o6so73008589edc.4;
-        Tue, 28 Dec 2021 04:08:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=shBrQLOvlvGM8s87Is6erSp89kAhjElOM3ByEm8H9Sw=;
-        b=GatQEtLEWzlVYpRap1EdimbXE4NmVhdDJilB6yXhm4+rhoqwuJVfK1lNarv0BLo4TT
-         4Tx5N9/fR8DOF8LH8YX9Tl7h3nmj4l0NM7ORHOyGC+78hIY+TVRjKokXoj3WGbLoNotB
-         7NRCHoad5DrNhkgpmuk9cPQJ0bPmntiGIVdx6J9UJIZeT9u80qUu/PfcQ6NHSW/MvDvm
-         FpRsIwO1XzAGm4OOghWi7oFxWUOCMLdD9Uxfzg9gim+8c5LMinOXOtFMXh1B4ZX9eHR8
-         C79JszSQ/+wdKA/NLl/V0L04/BxqFXjc1ZjaBGJz9EURaDyUp1tj16RJeGPu1V+aDomt
-         9b3g==
+        id S231361AbhL1MUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 07:20:21 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:53644 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231142AbhL1MUQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Dec 2021 07:20:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1640694015;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=5VvjubQBgQXusD/qnqAa/6+So3MqJfcWXAtQ7MU1qeU=;
+        b=WC1ZZZ6hKJHgh0LP91eQ86qFLDCBX+7j5fVdH1HZZj7CgApjg7Fqrq1CdsWTKlk4V7/vxm
+        8zfCJT5hMYpeA6gAxO1eRLDenpZbdc3u5qcTEGX0Mg7gMzbK/Ee4fIjJeUd20+lJqWeLQ2
+        xRCGWwYLGuTdlvUaHBLjxoll7sImbgI=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-556-jZTHijMLOMCCxZsfKVXU2Q-1; Tue, 28 Dec 2021 07:20:13 -0500
+X-MC-Unique: jZTHijMLOMCCxZsfKVXU2Q-1
+Received: by mail-ed1-f70.google.com with SMTP id z10-20020a05640235ca00b003f8efab3342so5973697edc.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 04:20:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=shBrQLOvlvGM8s87Is6erSp89kAhjElOM3ByEm8H9Sw=;
-        b=G7uzUkoJp4CEVIDOmM1dknW69wrMIniBBYS1tXHoTA1rPbaemjz1jgu3VuYiS4b3fs
-         G5zZqkyOI2TQNhql9ynCkyMdy5tCbRIb6yO+mbquYIAaAExL8bSyWZf8g91gaJY7FKHg
-         vmb/Tm4KO36HIFd0oexDLBsw5vzcNWooc4i5zgLvep5y4HP1ps0NE3J7aBhmbi29IcUU
-         gUqGaSUgjysBid4PbGr3BRTU49Zj2/+SLV7fJUZQk04jv8kfrokwHF7g5D7s1/KNsNwo
-         /qPa3wr2gu0DMWiZNDxODB8caLVsOXbNe5OqsHoObliBT6FGqJqmMOF3PdPbPp1RmZ+N
-         DWSA==
-X-Gm-Message-State: AOAM530g/lGkglbr9IVdyC38KpN+gJsRE4rS7H1e8RiPOhP9JVFSJbVw
-        9wAnEQ4QScye9B7dbDxjdMZcQQ86dRSIzA==
-X-Google-Smtp-Source: ABdhPJyRsGWIlw4+PkSGRchYiWx5CIhsqycvCoWYUKkfIwWrrUJ2z/BGz72NUiT0cZFa9nwJ7d6FtA==
-X-Received: by 2002:a05:6402:254e:: with SMTP id l14mr20520394edb.241.1640693281897;
-        Tue, 28 Dec 2021 04:08:01 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id h13sm1807814edt.61.2021.12.28.04.08.01
+        bh=5VvjubQBgQXusD/qnqAa/6+So3MqJfcWXAtQ7MU1qeU=;
+        b=jko69MpoZWaJCqolpzuG4Vvs8y/RfiNGaRNRZ7Aup6oqtQsa41bhIpMyC/HnaVO8df
+         GfzSJHs2ja9rSqStsXBFrRm0I9AxiCdyB6GbOrjFKrXppq7ekoVKmbloD4TnekmocvdW
+         H1kwW3n+VvUw6XvfBKPEgRic8L4r0A4Q+CUQrSiVAkqxYQWIkcEety15TNWGkf1XB0Or
+         a8KsoeLSJD5KGpVJphUcMD8TlPqnM8cjPHzJDcPGrYRkqtEiESS9laxxXogXJ0gQFEC0
+         0ejhpeO6UnubTqOfnL2A6ytdUOQgaLke725M1VAB43QYNqCMF6wgQVW2ItAZCP79lg1b
+         GBsw==
+X-Gm-Message-State: AOAM532edNFZF8AM3qJKN5cq6bq3CkOVzwk2ILOYvH1XNUcK4n0K2Cjz
+        Eiipp5fBvNdDN/om6ipjspBy/UYojWvVw5i7BPIoFJ/Ht93YUFWtZ2tMnENjLWZnNXRofnjVJvr
+        8qJsS1qV9lZ1oK3d6b1Uaog==
+X-Received: by 2002:a17:907:60d6:: with SMTP id hv22mr17260600ejc.478.1640694012553;
+        Tue, 28 Dec 2021 04:20:12 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJx5XdEog79sJL19FCO0DE7mMk8OhXWL3OTKf+yaTjbtWynbAlqQXyYdTwnhqf6+6U8AWbL0Hg==
+X-Received: by 2002:a17:907:60d6:: with SMTP id hv22mr17260594ejc.478.1640694012382;
+        Tue, 28 Dec 2021 04:20:12 -0800 (PST)
+Received: from ?IPV6:2001:1c00:c1e:bf00:1db8:22d3:1bc9:8ca1? (2001-1c00-0c1e-bf00-1db8-22d3-1bc9-8ca1.cable.dynamic.v6.ziggo.nl. [2001:1c00:c1e:bf00:1db8:22d3:1bc9:8ca1])
+        by smtp.gmail.com with ESMTPSA id 14sm6007390ejk.215.2021.12.28.04.20.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Dec 2021 04:08:01 -0800 (PST)
-Subject: Re: [RFC PATCH v6 1/4] dt-bindings: mfd: syscon: add naneng multi phy
- register compatible
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, kishon@ti.com, vkoul@kernel.org,
-        p.zabel@pengutronix.de, lee.jones@linaro.org,
-        yifeng.zhao@rock-chips.com, kever.yang@rock-chips.com,
-        cl@rock-chips.com, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211222213032.7678-1-jbx6244@gmail.com>
- <20211222213032.7678-2-jbx6244@gmail.com>
-Message-ID: <50f49afa-6042-03f2-a8ed-cfffd317aa15@gmail.com>
-Date:   Tue, 28 Dec 2021 13:08:00 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        Tue, 28 Dec 2021 04:20:11 -0800 (PST)
+Message-ID: <279c7bd8-c0bb-e58c-1149-d124102bf8b8@redhat.com>
+Date:   Tue, 28 Dec 2021 13:20:10 +0100
 MIME-Version: 1.0
-In-Reply-To: <20211222213032.7678-2-jbx6244@gmail.com>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [PATCH 0/8] typec: mux: Introduce support for multiple TypeC
+ muxes
 Content-Language: en-US
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
+From:   Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+Hi Bjorn,
 
-The file grf.yaml is already pretty full with legacy stuff.
-Now rockchip,rk3568-usb2phy-grf is added, would you like these two
-compatible strings also there?
-Could you give advice to Yifeng?
-
-Kind regards,
-
-Johan Jonker
-
-
-On 12/22/21 10:30 PM, Johan Jonker wrote:
-> Add Naneng multi phy register compatible.
+On 12/28/21 06:21, Bjorn Andersson wrote:
+> This series introduces a level of indirection between the controller's view of
+> a typec_mux/switch and the implementation and then expands that to support
+> multiple drivers.
 > 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> This is needed in order to support devices such as the Qualcomm Snapdragon 888
+> HDK, which does muxing and orientation handling in the QMP (USB+DP) PHY and SBU
+> muxing in the external FSA4480 chip.
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> index 5de16388a..9f0c8aa81 100644
-> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> @@ -52,6 +52,8 @@ properties:
->                - rockchip,rk3288-qos
->                - rockchip,rk3368-qos
->                - rockchip,rk3399-qos
-> +              - rockchip,rk3568-pipe-grf
-> +              - rockchip,rk3568-pipe-phy-grf
->                - rockchip,rk3568-qos
->                - samsung,exynos3-sysreg
->                - samsung,exynos4-sysreg
+> Additionally integration of typec mux and switch in the QMP PHY is included in
+> the series, as is the new FSA4480 driver. This is done to deal with the
+> renaming of the driver-side typec_mux -> typec_mux_dev.
 > 
+> Bjorn Andersson (8):
+>   dt-bindings: phy: qcom,qmp-usb3-dp: Add altmode/switch properties
+>   phy: qcom-qmp: Register typec mux and orientation switch
+>   device property: Helper to match multiple connections
+>   device property: Use multi-connection matchers for single case
+>   typec: mux: Introduce indirection
+>   typec: mux: Allow multiple mux_devs per mux
+>   dt-bindings: usb: Add binding for fcs,fsa4480
+>   usb: typec: mux: Add On Semi fsa4480 driver
+
+Thank you for your series, I will leave commenting on the
+dt-bindings and typec-mux changes to others.
+
+But what I can do is test this on an x86 device using
+a pi3usb30532 mux for USB super-speed and DP-alt-mode
+muxing / orientation switching.
+
+I'm going to wait a bit with doing that till this has had
+some reviews and possibly also some newer versions because
+of those reviews. If you haven't received a Tested-by from me
+when this looks like it is ready for merging please ping me.
+
+Regards,
+
+Hans
+
+
+> 
+>  .../bindings/phy/qcom,qmp-usb3-dp-phy.yaml    |  14 +
+>  .../devicetree/bindings/usb/fcs,fsa4480.yaml  |  72 +++++
+>  drivers/base/property.c                       |  83 ++++--
+>  drivers/phy/qualcomm/phy-qcom-qmp.c           | 176 ++++++++++--
+>  drivers/usb/typec/bus.c                       |   2 +-
+>  drivers/usb/typec/mux.c                       | 257 +++++++++++++-----
+>  drivers/usb/typec/mux.h                       |  12 +-
+>  drivers/usb/typec/mux/Kconfig                 |   9 +
+>  drivers/usb/typec/mux/Makefile                |   1 +
+>  drivers/usb/typec/mux/fsa4480.c               | 220 +++++++++++++++
+>  drivers/usb/typec/mux/intel_pmc_mux.c         |   8 +-
+>  drivers/usb/typec/mux/pi3usb30532.c           |   8 +-
+>  include/linux/property.h                      |   5 +
+>  include/linux/usb/typec_mux.h                 |  22 +-
+>  14 files changed, 762 insertions(+), 127 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
+>  create mode 100644 drivers/usb/typec/mux/fsa4480.c
+> 
+
