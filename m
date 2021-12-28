@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6841480B61
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 17:39:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21A19480B62
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 17:39:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236077AbhL1Qjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 11:39:37 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:49170
+        id S236093AbhL1Qji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 11:39:38 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:49206
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236044AbhL1Qjh (ORCPT
+        by vger.kernel.org with ESMTP id S236010AbhL1Qjh (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
         Tue, 28 Dec 2021 11:39:37 -0500
-Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
+Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 505913F31F
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 16:39:35 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 5921F3FFDB
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 16:39:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640709575;
-        bh=HGuU3G/CmacYFKUeANclkwpOH3maXtk12cKoz5IJaT0=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=oxxN6eSWF7AXk4UAgg/175iDP8hmfpEDN1ZnkOItg3GnAAV8mg/Y7D7sOPyrjzRcC
-         6m2XhJuKSYgwRwLLWIf+JbP4BVs/31EIC9Cn1ut+1WkTN6RrtLdfnnASUGcl1omKmN
-         HDGk97b8wIj0V5RoFUY0kipcX61vKZjCnvNU5EAdxH8ErPQxZAX1dB2BZuHK74W18i
-         w3+YVLp9WgODqPwAdS3pemiG25UpeceDqBDmJl2uJ4JkhJhXVwUXaDCuw5yQFB1+FJ
-         4daaf9eTSGy0o9bZd/+fNE+sa+2quqmfuBpMXqbhFphcInc06uPdnUOeKGQr5v2Lwf
-         dfeOkC/jDeElQ==
-Received: by mail-lj1-f197.google.com with SMTP id r20-20020a2eb894000000b0021a4e932846so6242913ljp.6
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:39:35 -0800 (PST)
+        s=20210705; t=1640709576;
+        bh=Ky4Nsy7oalY16bNXsSxGbr4iSjVK2d1F92X5y/VROW8=;
+        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version;
+        b=GO365K0Ens3Tp9dyB8AXv3os/1eP9l0LI16MdQ9IK9rJ68xYhK9emV60PTBlj+kMT
+         sOxz4R45Vndfx+hNw+khUjXJxBbBVBBQay/NoNBn/IrGwNzqr9cj6QsJ3qpGpj+b54
+         Tqh3F1WzBMEgM7SDxwSnqm1+b/VHyhpxsk3Q8QvNNPl/SgHvcJSJVL25cfv6O3sJqV
+         2/ygY+pxJHSwqzs8Xy362bl9pYfbGHnQLESKjBMPcQclYb9irSW3z4BMrM9vj3JX/A
+         3+tOWKZ1Q87oww0p3U0cRTJCImbxQoU3IuNWJou39tGpdCgTZarJBX8qdZtptBtZhx
+         /FiVIeRHJkXqw==
+Received: by mail-lj1-f199.google.com with SMTP id j15-20020a2e6e0f000000b0022db2724332so3881394ljc.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:39:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=HGuU3G/CmacYFKUeANclkwpOH3maXtk12cKoz5IJaT0=;
-        b=XgR/AKIHH1kGoqzKlcEJWUVJasD27DY4pl2VTJZ6dy9CIaq3DOsbPlWsNEcJozKxkG
-         fttexdCN8zo9ErK3Pv2WkmNRhDSua1KXIvQA7CTGVckwzo+Drhd/Aa3rTdPiLAqiR4ir
-         DY8icl/1X2JaUC/LiKT27uYfKog+RDx9quFoKyg5RV/Ka9aoRIqiIpQigAuNrZcmdIHe
-         osV2Er4rqacAuLiNCNoE78cECNKtQiCHtn3RxS4mBhg0h/tr4QJdKm93Q9KeOaCCPOwU
-         6/99VrlwZdoF8apy9YrXMskzwsibZru2G1abUgqwEGE+OCpdANduoHyRBnRoDrbsi4rI
-         D73g==
-X-Gm-Message-State: AOAM533du9gMVJITb2AdRpf71yIAUa8P5tvoThwsVYz1NsPYZde4mQHa
-        /W8zlSwkc6jPufddJ5atYe23xJ8pu3FE3n/aeNJo4CVL26s6KyN7nqd7oLy7AOdykGfJmZsFJS6
-        gL9isrAj7IHXcigCwt1a4Sz/Kj563N//MpJqar7A=
-X-Received: by 2002:a2e:894b:: with SMTP id b11mr12168955ljk.22.1640709574632;
-        Tue, 28 Dec 2021 08:39:34 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJz2R4OjcmDuYU5dFgZyIsJA+br3TJLYbRM0hsPoVHlotH5EqETNcXzL7aQK6WUoOnCtKUrTgQ==
-X-Received: by 2002:a2e:894b:: with SMTP id b11mr12168917ljk.22.1640709574002;
-        Tue, 28 Dec 2021 08:39:34 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Ky4Nsy7oalY16bNXsSxGbr4iSjVK2d1F92X5y/VROW8=;
+        b=qSl/oLeEKMU61gc6+6qKhUBzycTE88aK72vO1epZ67rC8T7UY/dxgtBtc2uMCk+if6
+         w7fxQUBBKitsXg/ymPKa7Bz2lhtSmJZxFmoi4VjG+VntqbUXRvAWXHXz9uS4O8iaiZ/a
+         9GCK5KN6L1mvzX7oDv4mg5qoXt9FjrHsxHkbeeRmqV3AEvo6l1rAPg/xMpahvtf1AJVG
+         7WvsgW1S7Hk8KjlcnfzoExpHC56rnuUZyjQTiPTwZPloLhRjze0z8c1KaNgZy+hpzcei
+         5cv3KB1PS7JE01MEjJrkL4boQprUjDCXb9E5dkeLs/ZDP3M9B4QS/aCqDu99/qWKXIYm
+         dBVw==
+X-Gm-Message-State: AOAM531VuH+Us66B58xUUR/u1tBm10CHyytb89OVeoiAx0agD1giJDps
+        l7mLrYscMblWGzm3Z9gCepPzgecJcujE9+24lNBUDXISIhkWTubulgAKrfuD9YSG9V64UTa9YlN
+        BnlSESyLcX97t9hGu0BGOo9G4yD8H/m7dyCo+/Ho=
+X-Received: by 2002:ac2:4e06:: with SMTP id e6mr19280505lfr.295.1640709575809;
+        Tue, 28 Dec 2021 08:39:35 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwn49giUa0jb5mjyDBDwC6FHVyt0eQwfiCTQgcQWOInXEW1g5gUzmTg54LYWNpL3GkXApDSFw==
+X-Received: by 2002:ac2:4e06:: with SMTP id e6mr19280485lfr.295.1640709575622;
+        Tue, 28 Dec 2021 08:39:35 -0800 (PST)
 Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id d3sm1972876lfs.204.2021.12.28.08.39.32
+        by smtp.gmail.com with ESMTPSA id d3sm1972876lfs.204.2021.12.28.08.39.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Dec 2021 08:39:33 -0800 (PST)
+        Tue, 28 Dec 2021 08:39:34 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Chanwoo Choi <cw00.choi@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -64,43 +65,138 @@ To:     Chanwoo Choi <cw00.choi@samsung.com>,
         Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
         linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
         linux-pm@vger.kernel.org
-Subject: [PATCH 0/4] leds/power/regulator/mfd: dt-bindings: maxim,max77693: convert to dtschema
-Date:   Tue, 28 Dec 2021 17:39:26 +0100
-Message-Id: <20211228163930.35524-1-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 1/4] dt-bindings: leds: maxim,max77693: convert to dtschema
+Date:   Tue, 28 Dec 2021 17:39:27 +0100
+Message-Id: <20211228163930.35524-2-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20211228163930.35524-1-krzysztof.kozlowski@canonical.com>
+References: <20211228163930.35524-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Convert the LEDs bindings of Maxim MAX77693 MUIC to DT schema format.
+The existing bindings were defined in ../bindings/mfd/max77693.txt.
 
-The final patch - MFD maxim,max77693 bindings conversion - depends on
-all previous. Therefore this could go via Rob's or Lee's trees.
-
-Best regards,
-Krzysztof
-
-Krzysztof Kozlowski (4):
-  dt-bindings: leds: maxim,max77693: convert to dtschema
-  dt-bindings: power: supply: maxim,max77693: convert to dtschema
-  regulator: dt-bindings: maxim,max77693: convert to dtschema
-  dt-bindings: mfd: maxim,max77693: convert to dtschema
-
- .../bindings/leds/maxim,max77693.yaml         | 105 ++++++++++
- .../devicetree/bindings/mfd/max77693.txt      | 194 ------------------
- .../bindings/mfd/maxim,max77693.yaml          | 139 +++++++++++++
- .../bindings/power/supply/maxim,max77693.yaml |  70 +++++++
- .../bindings/regulator/maxim,max77693.yaml    |  49 +++++
- MAINTAINERS                                   |   3 +-
- 6 files changed, 365 insertions(+), 195 deletions(-)
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ .../bindings/leds/maxim,max77693.yaml         | 105 ++++++++++++++++++
+ 1 file changed, 105 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/leds/maxim,max77693.yaml
- delete mode 100644 Documentation/devicetree/bindings/mfd/max77693.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
- create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,max77693.yaml
- create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77693.yaml
 
+diff --git a/Documentation/devicetree/bindings/leds/maxim,max77693.yaml b/Documentation/devicetree/bindings/leds/maxim,max77693.yaml
+new file mode 100644
+index 000000000000..86a0005cf156
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/maxim,max77693.yaml
+@@ -0,0 +1,105 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/maxim,max77693.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Maxim MAX77693 MicroUSB and Companion Power Management IC LEDs
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
++
++description: |
++  This is a part of device tree bindings for Maxim MAX77693 MicroUSB Integrated
++  Circuit (MUIC).
++
++  There are two LED outputs available - FLED1 and FLED2. Each of them can
++  control a separate LED or they can be connected together to double the
++  maximum current for a single connected LED. One LED is represented by one
++  child node.
++
++  See also Documentation/devicetree/bindings/mfd/maxim,max77693.yaml for
++  additional information and example.
++
++properties:
++  compatible:
++    const: maxim,max77693-led
++
++  maxim,boost-mode:
++    description:
++      In boost mode the device can produce up to 1.2A of total current on both
++      outputs. The maximum current on each output is reduced to 625mA then. If
++      not enabled explicitly, boost setting defaults to LEDS_BOOST_FIXED in
++      case both current sources are used.
++      See LEDS_BOOST_* in include/dt-bindings/leds/common.h.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2]
++
++  maxim,boost-mvout:
++    description: |
++      Output voltage of the boost module in millivolts.
++      Valid values: 3300 - 5500, step by 25 (rounded down)
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 3300
++    maximum: 5500
++    default: 3300
++
++  maxim,mvsys-min:
++    description: |
++      Low input voltage level in millivolts. Flash is not fired if chip
++      estimates that system voltage could drop below this level due to flash
++      power consumption.
++      Valid values: 2400 - 3400, step by 33 (rounded down)
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 2400
++    maximum: 3400
++    default: 2400
++
++patternProperties:
++  "^([a-z]+-)?led[01]?$":
++    type: object
++    $ref: common.yaml#
++    unevaluatedProperties: false
++
++    properties:
++      led-sources:
++        allOf:
++          - minItems: 1
++            maxItems: 2
++            items:
++              minimum: 0
++              maximum: 1
++
++      led-max-microamp:
++        description: |
++          Valid values for a LED connected to one FLED output:
++            15625 - 250000, step by 15625 (rounded down)
++          Valid values for a LED connected to both FLED outputs:
++            15625 - 500000, step by 15625 (rounded down)
++
++      flash-max-microamp:
++        description: |
++          Valid values for a single LED connected to one FLED output
++          (boost mode must be turned off):
++            15625 - 1000000, step by 15625 (rounded down)
++          Valid values for a single LED connected to both FLED outputs:
++            15625 - 1250000, step by 15625 (rounded down)
++          Valid values for two LEDs case:
++            15625 - 625000, step by 15625 (rounded down)
++
++      flash-max-timeout-us:
++        description: |
++          Valid values: 62500 - 1000000, step by 62500 (rounded down)
++        minimum: 62500
++        maximum: 1000000
++
++    required:
++      - flash-max-microamp
++      - flash-max-timeout-us
++      - led-max-microamp
++      - led-sources
++
++required:
++  - compatible
++
++additionalProperties: false
 -- 
 2.32.0
 
