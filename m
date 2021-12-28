@@ -2,349 +2,310 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82C90480652
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 06:20:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB8EB4806D4
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 07:48:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234879AbhL1FUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 00:20:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48812 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232926AbhL1FUY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 00:20:24 -0500
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11C70C061401
-        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 21:20:24 -0800 (PST)
-Received: by mail-oi1-x233.google.com with SMTP id p4so28388655oia.9
-        for <devicetree@vger.kernel.org>; Mon, 27 Dec 2021 21:20:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VN6g2mXvfM1KCsUt0asBDpDPGoZHaGgVVhC+vigu24g=;
-        b=p3XsuBH5Ce+4XFxnUxDm5VhCHRNFmrL5SaMVH97RiQELYCAVjcUVXrtdL1H/IYGGPg
-         QUVBViJiXyUF2G8BlpVkvwfCdFYf00fwIiqcAwlVzzwHghOYVC2WoG4Ly2wX2VlLHZzD
-         RRG1qHfZDbJGMSRLiRVOBCvCu6NLySe/ZQNC+CWHkbhMKu6tgzfCZvDLpLRx8sFVrToy
-         NA1cREOjgLEC2sImrGGz7h3BMI41jeYk9PnI89jbiotXiRZHzt2qMRXMCg4QXjf7mp91
-         rbz6eFl7rsGH69J0bX4/cHzpZEgB5iKPCRSw9tZMhB+EymL81IHLta5bQsEg7zT4+899
-         jc3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VN6g2mXvfM1KCsUt0asBDpDPGoZHaGgVVhC+vigu24g=;
-        b=NsvyeU0Yt+QJg8Y8E97Kf9GYPopllDcB31Vu6o7us6EqQprlGGZBMxZiNBVz/++dwP
-         uaXTXKHaqQqAYvRGRFmYTE+pGTdOnl0/kRX9NKxFBMpTgLLVVj4vhIhdFQngFqa8xLKO
-         ytugFsEP0I0IZoU6C6KP/PnJnL7gombGwsrv6+IyEZA9Gk8QNuShcRdoqVTkcO654k07
-         bS0KmMSKCTB6jga4zgImSSBzry+7y4dElflNanfHBxN0RdYCKS8mDTZ4+PSh8qags9HG
-         HZ9R3YZLxUjZuGEG0aq5BdF4i1VBwFlALwhBu2+O0C2AF0h3F20cFpqTq3CSXOiMGLlu
-         21og==
-X-Gm-Message-State: AOAM531nHELodrVQyRFNo+fFdCWzn3wHefMd1TLDNdTRmqfvbKFEM5KX
-        TlGEtqTpFdCj/zEHl0nXURosAw==
-X-Google-Smtp-Source: ABdhPJxkRBJpLMaoG851Ug1pzt6f1LSJsisYbH6ezhVt++Ag/ATsiBQjESXSx28m+PmGh+VY+SBdAA==
-X-Received: by 2002:a05:6808:2309:: with SMTP id bn9mr15021540oib.42.1640668823417;
-        Mon, 27 Dec 2021 21:20:23 -0800 (PST)
-Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id j5sm3002277oou.23.2021.12.27.21.20.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Dec 2021 21:20:23 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Hans de Goede <hdegoede@redhat.com>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: [PATCH 8/8] usb: typec: mux: Add On Semi fsa4480 driver
-Date:   Mon, 27 Dec 2021 21:21:16 -0800
-Message-Id: <20211228052116.1748443-9-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
-References: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
+        id S235220AbhL1Gs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 01:48:29 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:46980 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235198AbhL1Gs2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 01:48:28 -0500
+X-UUID: 594e3613dc8f4311bbf479f4fa493a53-20211228
+X-UUID: 594e3613dc8f4311bbf479f4fa493a53-20211228
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <trevor.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1302098814; Tue, 28 Dec 2021 14:48:24 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 28 Dec 2021 14:48:22 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 28 Dec 2021 14:48:22 +0800
+From:   Trevor Wu <trevor.wu@mediatek.com>
+To:     <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>
+CC:     <trevor.wu@mediatek.com>, <alsa-devel@alsa-project.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <jiaxin.yu@mediatek.com>, <shumingf@realtek.com>,
+        <tzungbi@google.com>
+Subject: [PATCH v2] ASoC: mediatek: mt8195: update control for RT5682 series
+Date:   Tue, 28 Dec 2021 14:48:21 +0800
+Message-ID: <20211228064821.27865-1-trevor.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ON Semiconductor FSA4480 is a USB Type-C port multimedia switch with
-support for analog audio headsets. It allows sharing a common USB Type-C
-port to pass USB2.0 signal, analog audio, sideband use wires and analog
-microphone signal.
+Playback pop is observed and the root cause is the reference clock
+provided by MT8195 is diabled before RT5682 finishes the control flow.
 
-Due to lacking upstream audio support for testing, the audio muxing is
-left untouched, but implementation of muxing the SBU lines is provided
-as a pair of TypeC mux and switch devices. This provides the necessary
-support for enabling the DisplayPort altmode on devices with this
-circuit.
+To ensure the reference clock supplied to RT5682 is disabled after RT5682
+finishes all register controls. We replace BCLK with MCLK for RT5682
+reference clock, and makes use of set_bias_level_post to handle MCLK
+which guarantees MCLK is off after all RT5682 register access.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
 ---
- drivers/usb/typec/mux/Kconfig   |   9 ++
- drivers/usb/typec/mux/Makefile  |   1 +
- drivers/usb/typec/mux/fsa4480.c | 220 ++++++++++++++++++++++++++++++++
- 3 files changed, 230 insertions(+)
- create mode 100644 drivers/usb/typec/mux/fsa4480.c
+Changes since v1:
+  1. Adopt some suggestions from Tzung-bi.
+  2. mclk phandle is retrieved from afe component instead of dts.
+---
+ .../mt8195/mt8195-mt6359-rt1011-rt5682.c      | 56 ++++++++++++++-
+ .../mt8195/mt8195-mt6359-rt1019-rt5682.c      | 68 ++++++++++++++++---
+ 2 files changed, 110 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
-index edead555835e..5e20112c3f51 100644
---- a/drivers/usb/typec/mux/Kconfig
-+++ b/drivers/usb/typec/mux/Kconfig
-@@ -2,6 +2,15 @@
+diff --git a/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1011-rt5682.c b/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1011-rt5682.c
+index ce8dace6527c..8adbd46c4bc4 100644
+--- a/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1011-rt5682.c
++++ b/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1011-rt5682.c
+@@ -18,6 +18,7 @@
+ #include "../../codecs/rt1011.h"
+ #include "../../codecs/rt5682.h"
+ #include "../common/mtk-afe-platform-driver.h"
++#include "mt8195-afe-clk.h"
+ #include "mt8195-afe-common.h"
  
- menu "USB Type-C Multiplexer/DeMultiplexer Switch support"
+ #define RT1011_CODEC_DAI	"rt1011-aif"
+@@ -34,6 +35,7 @@ struct mt8195_mt6359_rt1011_rt5682_priv {
+ 	struct snd_soc_jack headset_jack;
+ 	struct snd_soc_jack dp_jack;
+ 	struct snd_soc_jack hdmi_jack;
++	struct clk *i2so1_mclk;
+ };
  
-+config TYPEC_MUX_FSA4480
-+	tristate "ON Semi FSA4480 Analog Audio Switch driver"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  Driver for the ON Semiconductor FSA4480 Analog Audio Switch, which
-+	  provides support for muxing analog audio and sideband signals on a
-+	  common USB Type-C connector.
-+
- config TYPEC_MUX_PI3USB30532
- 	tristate "Pericom PI3USB30532 Type-C cross switch driver"
- 	depends on I2C
-diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
-index 280a6f553115..e52a56c16bfb 100644
---- a/drivers/usb/typec/mux/Makefile
-+++ b/drivers/usb/typec/mux/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
+ static const struct snd_soc_dapm_widget
+@@ -84,8 +86,8 @@ static int mt8195_rt5682_etdm_hw_params(struct snd_pcm_substream *substream,
+ 		return ret;
+ 	}
  
-+obj-$(CONFIG_TYPEC_MUX_FSA4480)		+= fsa4480.o
- obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
- obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
-diff --git a/drivers/usb/typec/mux/fsa4480.c b/drivers/usb/typec/mux/fsa4480.c
-new file mode 100644
-index 000000000000..ac2d8648db6a
---- /dev/null
-+++ b/drivers/usb/typec/mux/fsa4480.c
-@@ -0,0 +1,220 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2021 Linaro Ltd.
-+ * Copyright (C) 2018-2020 The Linux Foundation
-+ */
+-	ret = snd_soc_dai_set_pll(codec_dai, RT5682_PLL1, RT5682_PLL1_S_BCLK1,
+-				  rate * 64, rate * 512);
++	ret = snd_soc_dai_set_pll(codec_dai, RT5682_PLL1, RT5682_PLL1_S_MCLK,
++				  rate * 256, rate * 512);
+ 	if (ret) {
+ 		dev_err(card->dev, "failed to set pll\n");
+ 		return ret;
+@@ -98,7 +100,7 @@ static int mt8195_rt5682_etdm_hw_params(struct snd_pcm_substream *substream,
+ 		return ret;
+ 	}
+ 
+-	return snd_soc_dai_set_sysclk(cpu_dai, 0, rate * 128,
++	return snd_soc_dai_set_sysclk(cpu_dai, 0, rate * 256,
+ 				      SND_SOC_CLOCK_OUT);
+ }
+ 
+@@ -327,8 +329,14 @@ static int mt8195_rt5682_init(struct snd_soc_pcm_runtime *rtd)
+ 	struct mt8195_mt6359_rt1011_rt5682_priv *priv =
+ 		snd_soc_card_get_drvdata(rtd->card);
+ 	struct snd_soc_jack *jack = &priv->headset_jack;
++	struct snd_soc_component *cmpnt_afe =
++		snd_soc_rtdcom_lookup(rtd, AFE_PCM_NAME);
++	struct mtk_base_afe *afe = snd_soc_component_get_drvdata(cmpnt_afe);
++	struct mt8195_afe_private *afe_priv = afe->platform_priv;
+ 	int ret;
+ 
++	priv->i2so1_mclk = afe_priv->clk[MT8195_CLK_TOP_APLL12_DIV2];
 +
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/regmap.h>
-+#include <linux/usb/typec_dp.h>
-+#include <linux/usb/typec_mux.h>
-+
-+#define FSA4480_SWITCH_ENABLE	0x04
-+#define FSA4480_SWITCH_SELECT	0x05
-+#define FSA4480_SWITCH_STATUS1	0x07
-+#define FSA4480_SLOW_L		0x08
-+#define FSA4480_SLOW_R		0x09
-+#define FSA4480_SLOW_MIC	0x0a
-+#define FSA4480_SLOW_SENSE	0x0b
-+#define FSA4480_SLOW_GND	0x0c
-+#define FSA4480_DELAY_L_R	0x0d
-+#define FSA4480_DELAY_L_MIC	0x0e
-+#define FSA4480_DELAY_L_SENSE	0x0f
-+#define FSA4480_DELAY_L_AGND	0x10
-+#define FSA4480_RESET		0x1e
-+
-+#define FSA4480_ENABLE_DEVICE	BIT(7)
-+#define FSA4480_ENABLE_SBU	GENMASK(6, 5)
-+#define FSA4480_ENABLE_USB	GENMASK(4, 3)
-+
-+#define FSA4480_SEL_SBU_REVERSE	GENMASK(6, 5)
-+#define FSA4480_SEL_USB		GENMASK(4, 3)
-+
-+struct fsa4480 {
-+	struct i2c_client *client;
-+
-+	/* used to serialize concurrect change requests */
-+	struct mutex lock;
-+
-+	struct typec_switch_dev *sw;
-+	struct typec_mux_dev *mux;
-+
-+	struct regmap *regmap;
-+
-+	u8 cur_enable;
-+	u8 cur_select;
-+};
-+
-+static const struct regmap_config fsa4480_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = FSA4480_RESET,
-+};
-+
-+static int fsa4480_switch_set(struct typec_switch_dev *sw,
-+			      enum typec_orientation orientation)
+ 	ret = snd_soc_card_jack_new(rtd->card, "Headset Jack",
+ 				    SND_JACK_HEADSET | SND_JACK_BTN_0 |
+ 				    SND_JACK_BTN_1 | SND_JACK_BTN_2 |
+@@ -562,6 +570,47 @@ static const struct snd_soc_ops mt8195_capture_ops = {
+ 	.startup = mt8195_capture_startup,
+ };
+ 
++static int mt8195_set_bias_level_post(struct snd_soc_card *card,
++	struct snd_soc_dapm_context *dapm, enum snd_soc_bias_level level)
 +{
-+	struct fsa4480 *fsa = typec_switch_get_drvdata(sw);
-+	u8 new_sel;
++	struct snd_soc_component *component = dapm->component;
++	struct mt8195_mt6359_rt1011_rt5682_priv *priv =
++		snd_soc_card_get_drvdata(card);
++	int ret;
 +
-+	mutex_lock(&fsa->lock);
-+	new_sel = FSA4480_SEL_USB;
-+	if (orientation == TYPEC_ORIENTATION_REVERSE)
-+		new_sel |= FSA4480_SEL_SBU_REVERSE;
++	/*
++	 * It's required to control mclk directly in the set_bias_level_post
++	 * function for rt5682 and rt5682s codec, or the unexpected pop happens
++	 * at the end of playback.
++	 */
++	if (!component ||
++	    (strcmp(component->name, RT5682_DEV0_NAME) &&
++	    strcmp(component->name, RT5682S_DEV0_NAME)))
++		return 0;
 +
-+	if (new_sel == fsa->cur_select)
-+		goto out_unlock;
++	switch (level) {
++	case SND_SOC_BIAS_OFF:
++		if (!__clk_is_enabled(priv->i2so1_mclk))
++			return 0;
 +
-+	if (fsa->cur_enable & FSA4480_ENABLE_SBU) {
-+		/* Disable SBU output while re-configuring the switch */
-+		regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE,
-+			     fsa->cur_enable & ~FSA4480_ENABLE_SBU);
-+
-+		/* 35us to allow the SBU switch to turn off */
-+		usleep_range(35, 1000);
++		clk_disable_unprepare(priv->i2so1_mclk);
++		dev_dbg(card->dev, "Disable i2so1 mclk\n");
++		break;
++	case SND_SOC_BIAS_ON:
++		ret = clk_prepare_enable(priv->i2so1_mclk);
++		if (ret) {
++			dev_err(card->dev, "Can't enable i2so1 mclk: %d\n", ret);
++			return ret;
++		}
++		dev_dbg(card->dev, "Enable i2so1 mclk\n");
++		break;
++	default:
++		break;
 +	}
-+
-+	regmap_write(fsa->regmap, FSA4480_SWITCH_SELECT, new_sel);
-+	fsa->cur_select = new_sel;
-+
-+	if (fsa->cur_enable & FSA4480_ENABLE_SBU) {
-+		regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, fsa->cur_enable);
-+
-+		/* 15us to allow the SBU switch to turn on again */
-+		usleep_range(15, 1000);
-+	}
-+
-+out_unlock:
-+	mutex_unlock(&fsa->lock);
 +
 +	return 0;
 +}
 +
-+static int fsa4480_mux_set(struct typec_mux_dev *mux, struct typec_mux_state *state)
+ enum {
+ 	DAI_LINK_DL2_FE,
+ 	DAI_LINK_DL3_FE,
+@@ -1037,6 +1086,7 @@ static struct snd_soc_card mt8195_mt6359_rt1011_rt5682_soc_card = {
+ 	.num_dapm_routes = ARRAY_SIZE(mt8195_mt6359_rt1011_rt5682_routes),
+ 	.codec_conf = rt1011_amp_conf,
+ 	.num_configs = ARRAY_SIZE(rt1011_amp_conf),
++	.set_bias_level_post = mt8195_set_bias_level_post,
+ };
+ 
+ static int mt8195_mt6359_rt1011_rt5682_dev_probe(struct platform_device *pdev)
+diff --git a/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-rt5682.c b/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-rt5682.c
+index c15c58170e9d..20b351faeaff 100644
+--- a/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-rt5682.c
++++ b/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-rt5682.c
+@@ -19,6 +19,7 @@
+ #include "../../codecs/mt6359.h"
+ #include "../../codecs/rt5682.h"
+ #include "../common/mtk-afe-platform-driver.h"
++#include "mt8195-afe-clk.h"
+ #include "mt8195-afe-common.h"
+ 
+ #define RT1019_CODEC_DAI	"HiFi"
+@@ -46,6 +47,7 @@ struct mt8195_mt6359_rt1019_rt5682_priv {
+ 	struct snd_soc_jack headset_jack;
+ 	struct snd_soc_jack dp_jack;
+ 	struct snd_soc_jack hdmi_jack;
++	struct clk *i2so1_mclk;
+ };
+ 
+ static const struct snd_soc_dapm_widget
+@@ -92,8 +94,6 @@ static int mt8195_rt5682_etdm_hw_params(struct snd_pcm_substream *substream,
+ 	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
+ 	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
+ 	unsigned int rate = params_rate(params);
+-	unsigned int mclk_fs_ratio = 128;
+-	unsigned int mclk_fs = rate * mclk_fs_ratio;
+ 	int bitwidth;
+ 	int ret;
+ 
+@@ -109,25 +109,22 @@ static int mt8195_rt5682_etdm_hw_params(struct snd_pcm_substream *substream,
+ 		return ret;
+ 	}
+ 
+-	ret = snd_soc_dai_set_pll(codec_dai, RT5682_PLL1,
+-				  RT5682_PLL1_S_BCLK1,
+-				  params_rate(params) * 64,
+-				  params_rate(params) * 512);
++	ret = snd_soc_dai_set_pll(codec_dai, RT5682_PLL1, RT5682_PLL1_S_MCLK,
++				  rate * 256, rate * 512);
+ 	if (ret) {
+ 		dev_err(card->dev, "failed to set pll\n");
+ 		return ret;
+ 	}
+ 
+-	ret = snd_soc_dai_set_sysclk(codec_dai,
+-				     RT5682_SCLK_S_PLL1,
+-				     params_rate(params) * 512,
+-				     SND_SOC_CLOCK_IN);
++	ret = snd_soc_dai_set_sysclk(codec_dai, RT5682_SCLK_S_PLL1,
++				     rate * 512, SND_SOC_CLOCK_IN);
+ 	if (ret) {
+ 		dev_err(card->dev, "failed to set sysclk\n");
+ 		return ret;
+ 	}
+ 
+-	return snd_soc_dai_set_sysclk(cpu_dai, 0, mclk_fs, SND_SOC_CLOCK_OUT);
++	return snd_soc_dai_set_sysclk(cpu_dai, 0, rate * 256,
++				      SND_SOC_CLOCK_OUT);
+ }
+ 
+ static const struct snd_soc_ops mt8195_rt5682_etdm_ops = {
+@@ -322,8 +319,14 @@ static int mt8195_rt5682_init(struct snd_soc_pcm_runtime *rtd)
+ 	struct mt8195_mt6359_rt1019_rt5682_priv *priv =
+ 		snd_soc_card_get_drvdata(rtd->card);
+ 	struct snd_soc_jack *jack = &priv->headset_jack;
++	struct snd_soc_component *cmpnt_afe =
++		snd_soc_rtdcom_lookup(rtd, AFE_PCM_NAME);
++	struct mtk_base_afe *afe = snd_soc_component_get_drvdata(cmpnt_afe);
++	struct mt8195_afe_private *afe_priv = afe->platform_priv;
+ 	int ret;
+ 
++	priv->i2so1_mclk = afe_priv->clk[MT8195_CLK_TOP_APLL12_DIV2];
++
+ 	ret = snd_soc_card_jack_new(rtd->card, "Headset Jack",
+ 				    SND_JACK_HEADSET | SND_JACK_BTN_0 |
+ 				    SND_JACK_BTN_1 | SND_JACK_BTN_2 |
+@@ -560,6 +563,48 @@ static const struct snd_soc_ops mt8195_capture_ops = {
+ 	.startup = mt8195_capture_startup,
+ };
+ 
++static int mt8195_set_bias_level_post(struct snd_soc_card *card,
++	struct snd_soc_dapm_context *dapm, enum snd_soc_bias_level level)
 +{
-+	struct fsa4480 *fsa = typec_mux_get_drvdata(mux);
-+	u8 new_enable;
++	struct snd_soc_component *component = dapm->component;
++	struct mt8195_mt6359_rt1019_rt5682_priv *priv =
++		snd_soc_card_get_drvdata(card);
++	int ret;
 +
-+	mutex_lock(&fsa->lock);
++	/*
++	 * It's required to control mclk directly in the set_bias_level_post
++	 * function for rt5682 and rt5682s codec, or the unexpected pop happens
++	 * at the end of playback.
++	 */
++	if (!component ||
++	    (strcmp(component->name, RT5682_DEV0_NAME) &&
++	    strcmp(component->name, RT5682S_DEV0_NAME)))
++		return 0;
 +
-+	new_enable = FSA4480_ENABLE_DEVICE | FSA4480_ENABLE_USB;
-+	if (state->mode >= TYPEC_DP_STATE_A)
-+		new_enable |= FSA4480_ENABLE_SBU;
 +
-+	if (new_enable == fsa->cur_enable)
-+		goto out_unlock;
++	switch (level) {
++	case SND_SOC_BIAS_OFF:
++		if (!__clk_is_enabled(priv->i2so1_mclk))
++			return 0;
 +
-+	regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, new_enable);
-+	fsa->cur_enable = new_enable;
-+
-+	if (new_enable & FSA4480_ENABLE_SBU) {
-+		/* 15us to allow the SBU switch to turn off */
-+		usleep_range(15, 1000);
++		clk_disable_unprepare(priv->i2so1_mclk);
++		dev_dbg(card->dev, "Disable i2so1 mclk\n");
++		break;
++	case SND_SOC_BIAS_ON:
++		ret = clk_prepare_enable(priv->i2so1_mclk);
++		if (ret) {
++			dev_err(card->dev, "Can't enable i2so1 mclk: %d\n", ret);
++			return ret;
++		}
++		dev_dbg(card->dev, "Enable i2so1 mclk\n");
++		break;
++	default:
++		break;
 +	}
-+
-+out_unlock:
-+	mutex_unlock(&fsa->lock);
 +
 +	return 0;
 +}
 +
-+static int fsa4480_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct typec_switch_desc sw_desc = { };
-+	struct typec_mux_desc mux_desc = { };
-+	struct fsa4480 *fsa;
-+
-+	fsa = devm_kzalloc(dev, sizeof(*fsa), GFP_KERNEL);
-+	if (!fsa)
-+		return -ENOMEM;
-+
-+	fsa->client = client;
-+	mutex_init(&fsa->lock);
-+
-+	fsa->regmap = devm_regmap_init_i2c(client, &fsa4480_regmap_config);
-+	if (IS_ERR(fsa->regmap)) {
-+		dev_err(dev, "failed to initialize regmap\n");
-+		return PTR_ERR(fsa->regmap);
-+	}
-+
-+	fsa->cur_enable = FSA4480_ENABLE_DEVICE | FSA4480_ENABLE_USB;
-+	fsa->cur_select = FSA4480_SEL_USB;
-+
-+	/* set default settings */
-+	regmap_write(fsa->regmap, FSA4480_SLOW_L, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_SLOW_R, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_SLOW_MIC, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_SLOW_SENSE, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_SLOW_GND, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_DELAY_L_R, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_DELAY_L_MIC, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_DELAY_L_SENSE, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_DELAY_L_AGND, 0x09);
-+	regmap_write(fsa->regmap, FSA4480_SWITCH_SELECT, fsa->cur_select);
-+	regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, fsa->cur_enable);
-+
-+	sw_desc.drvdata = fsa;
-+	sw_desc.fwnode = dev->fwnode;
-+	sw_desc.set = fsa4480_switch_set;
-+
-+	fsa->sw = typec_switch_register(dev, &sw_desc);
-+	if (IS_ERR(fsa->sw)) {
-+		dev_err(dev, "failed to register typec switch: %ld\n", PTR_ERR(fsa->sw));
-+		return PTR_ERR(fsa->sw);
-+	}
-+
-+	mux_desc.drvdata = fsa;
-+	mux_desc.fwnode = dev->fwnode;
-+	mux_desc.set = fsa4480_mux_set;
-+
-+	fsa->mux = typec_mux_register(dev, &mux_desc);
-+	if (IS_ERR(fsa->mux)) {
-+		typec_switch_unregister(fsa->sw);
-+		dev_err(dev, "failed to register typec mux: %ld\n", PTR_ERR(fsa->mux));
-+		return PTR_ERR(fsa->mux);
-+	}
-+
-+	i2c_set_clientdata(client, fsa);
-+	return 0;
-+}
-+
-+static int fsa4480_remove(struct i2c_client *client)
-+{
-+	struct fsa4480 *fsa = i2c_get_clientdata(client);
-+
-+	typec_mux_unregister(fsa->mux);
-+	typec_switch_unregister(fsa->sw);
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id fsa4480_table[] = {
-+	{ "fsa4480" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, fsa4480_table);
-+
-+static const struct of_device_id fsa4480_of_table[] = {
-+	{ .compatible = "fcs,fsa4480" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, fsa4480_of_table);
-+
-+static struct i2c_driver fsa4480_driver = {
-+	.driver = {
-+		.name = "fsa4480",
-+		.of_match_table = fsa4480_of_table,
-+	},
-+	.probe_new	= fsa4480_probe,
-+	.remove		= fsa4480_remove,
-+	.id_table	= fsa4480_table,
-+};
-+
-+module_i2c_driver(fsa4480_driver);
-+
-+MODULE_DESCRIPTION("ON Semiconductor FSA4480 driver");
-+MODULE_LICENSE("GPL v2");
+ enum {
+ 	DAI_LINK_DL2_FE,
+ 	DAI_LINK_DL3_FE,
+@@ -1199,6 +1244,7 @@ static struct snd_soc_card mt8195_mt6359_rt1019_rt5682_soc_card = {
+ 	.num_dapm_widgets = ARRAY_SIZE(mt8195_mt6359_rt1019_rt5682_widgets),
+ 	.dapm_routes = mt8195_mt6359_rt1019_rt5682_routes,
+ 	.num_dapm_routes = ARRAY_SIZE(mt8195_mt6359_rt1019_rt5682_routes),
++	.set_bias_level_post = mt8195_set_bias_level_post,
+ };
+ 
+ static int mt8195_dailink_parse_of(struct snd_soc_card *card, struct device_node *np,
 -- 
-2.33.1
+2.18.0
 
