@@ -2,135 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39E5148096A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 14:08:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73FEF48096D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 14:09:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232035AbhL1NIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 08:08:15 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:35280
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230477AbhL1NIP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Dec 2021 08:08:15 -0500
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 0B95E3FFDE
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 13:08:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640696887;
-        bh=xibL3Er2RlJO3Lyq5bFLO5eoLWJoOakTjgo7xp1xbB4=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=gDA4ryiGoyY0zzXTXjEtEipfjiWbV3XlbfUhsqso0SwRFq7sQoOCCaXMnnshcToM6
-         NmDyHPHqj/DMVyWAK7yL21XpiKL3buXOnezWn2Qf84601FJfkPsiqe26lkETLX6ve7
-         s1pfs9UcpQfvN0s7fE2Dquco3NpnQxoWBg4nPRxlgAvzjAElYQbxuu5x4MejrlreO1
-         NcL5Kt7EOGOW6bK4LtJ2oxhaDLQKTA89MaB80TuaTn12Tg3aDoRjxy2ay5HJRVZEUa
-         i1UIrR5Io2D8YEGfToECdlKbkqMcczoDTaeQ8iRk3YYqKawN9Q64qaRkfL9Fs47t+d
-         DHNhbkNoC7FAQ==
-Received: by mail-lf1-f71.google.com with SMTP id g18-20020a05651222d200b0042612bda352so4195281lfu.11
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 05:08:07 -0800 (PST)
+        id S232089AbhL1NJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 08:09:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38474 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232136AbhL1NJg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 08:09:36 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FC6BC06173F
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 05:09:35 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id i11so18188981ljm.13
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 05:09:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=raZYs6hq+w01uYhTxQ4dt0lfSN7FKbl65aoYpDo2wa8=;
+        b=bMBBF+IboANSYzFd+cuwV6TxaR/XwMgsJdhl2WQWVGCrLoBSnuGjU6HrTmQPUJQdW2
+         TowygMK2oeduJTG6NfRDCaTRPFHyDtjjB9k69Qcd/AOgWIHTWGM+evA7Z3l875/yRj62
+         emg3etkFgXmlp3CTAtlNivL8U9phUDiCJYG+cdZPqX1/wquNyF7gy0wnsVzLSao2FrlH
+         QXCaMI9tmRHOsM40kjeNYNBYwufh6UaKWljTwQd2iVkKI6veZiRuyGKEGCZe26b3FiF7
+         7GDhsnKYByg6wcAo/pQkA4fYwy4HFGxZNDl9qt+TGOL7MzAjvx6khhouGxwTg9+NWim8
+         HBYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=xibL3Er2RlJO3Lyq5bFLO5eoLWJoOakTjgo7xp1xbB4=;
-        b=kuAe92FhxzzEXJXhSdR2tKQfy+UYErQC0LV1IX9RJR1PSCbT5QCdQdC3C6ifz7bkX3
-         uKrps0KOttoGzgNWk4mQmwnWdLZM0iJ20tcHkcUpoLYUy1BQNIsWZGy4smVEPS8pQKTV
-         AJ3HF3wIuomeV0j7uJzK2t/nMybEZQCc65AWs0K1c76NzVzT3p0JQTRoSdtJzJLpCEqS
-         1hFZqcdKwLEFExaONur2fxszrUTQ0NH76ln3ZmAZrrQN3TpywVBzapfIlhMkF9ziL8Id
-         zw6RXpL9AsrXOn/nOCPlt7CpdbEDRFd8gDHd2BVJdYCS9fd9l1wa9j61PBPvWLnjjsAY
-         r/FQ==
-X-Gm-Message-State: AOAM5300nXzRW8dHafmeWSNfUAmGmW2j2vBdqiJrnZQQZki+H2UeMZji
-        6k7OQRPRj/VhGMnTIdU+zByyYfLhGywYIVanoR0RS0meGwriHxcW3RoNC1OMFJTy0Ks/0sQyIC2
-        E3iH0ocQ2PLuV7TFdqcr1CMSjMKb6bt9NXyyKAEQ=
-X-Received: by 2002:a2e:a781:: with SMTP id c1mr4586648ljf.115.1640696886146;
-        Tue, 28 Dec 2021 05:08:06 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxFjwStqYRxpYpd5M+oo66/YQIJRdAQIrnEgPtyPnApN6cw5bAhO3y932dFaMY9Y2MWm/0NKg==
-X-Received: by 2002:a2e:a781:: with SMTP id c1mr4586620ljf.115.1640696885915;
-        Tue, 28 Dec 2021 05:08:05 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id bt9sm175878lfb.206.2021.12.28.05.08.03
+        bh=raZYs6hq+w01uYhTxQ4dt0lfSN7FKbl65aoYpDo2wa8=;
+        b=AGQ8rncluFXyj1+Wu4iCNTKxHrZrZdm4twaO05hFqCIdTjaqwn+8rlwpFxvKB7NsCz
+         wT9JebVM6rZop/wrqKGVUyAb+IwEvQgLwANnJTEV3ODyAuEirzFx/HKjnauFAdFFYiUC
+         BMm2O3Rb49TEkjLsJ/glttkkAyHqMqWYd1slj+qGTJ/6Saght5pPQuLE1I4IbXNHUbeG
+         0gOMC8h7BLkGFl+iRvpAvLiHjFHXuDVlCboA6YEUOMpUj5O2ECpJSKs43LTWeZdDmy0o
+         SZgvIPshQpR+rG6tMoReGdkOXYvQVOqxVvUZHSdk6jup6I4q/JQKi/mIHfm2JYBwI+zM
+         XHyQ==
+X-Gm-Message-State: AOAM533axz7IWk4wADjMH/eX7hDhg/OcfEZ0tmrny2QSK2krGdB7h+ld
+        bSP0Nz3YQ2QIKGvA9B0Yxgc5hQY0ITaZhzX/
+X-Google-Smtp-Source: ABdhPJx6u+jzmEuwoiD+u5NjUBn0UWuE/FLrFW8oSRkmquZSTQh17QJmENKS/N2RyuHXxjKT9tpjEw==
+X-Received: by 2002:a05:651c:1993:: with SMTP id bx19mr2085421ljb.472.1640696973673;
+        Tue, 28 Dec 2021 05:09:33 -0800 (PST)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id u3sm908644ljo.95.2021.12.28.05.09.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Dec 2021 05:08:04 -0800 (PST)
-Message-ID: <5a3d7233-8ce0-dbb5-aac4-393caadf2a6a@canonical.com>
-Date:   Tue, 28 Dec 2021 14:07:59 +0100
+        Tue, 28 Dec 2021 05:09:33 -0800 (PST)
+Message-ID: <78491489-6b31-c741-8c69-8d52fb614a6c@linaro.org>
+Date:   Tue, 28 Dec 2021 16:09:32 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 2/8] dt-bindings: rng: atmel,at91-trng: convert Atmel TRNG
- to dtschema
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Tony Lindgren <tony@atomide.com>, linux-kernel@vger.kernel.org,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Matt Mackall <mpm@selenic.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Nishanth Menon <nm@ti.com>,
-        Patrick Venture <venture@google.com>, openbmc@lists.ozlabs.org,
-        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
-        linux-crypto@vger.kernel.org,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Tali Perry <tali.perry1@gmail.com>, devicetree@vger.kernel.org,
-        Benjamin Fair <benjaminfair@google.com>,
+ Thunderbird/91.4.0
+Subject: Re: [PATCH 3/8] device property: Helper to match multiple connections
+Content-Language: en-GB
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Nancy Yuen <yuenn@google.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Nicolas Ferre <nicolas.ferre@microchip.com>
-References: <20211227183251.132525-1-krzysztof.kozlowski@canonical.com>
- <20211227183251.132525-2-krzysztof.kozlowski@canonical.com>
- <1640696040.235226.685116.nullmailer@robh.at.kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <1640696040.235226.685116.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Hans de Goede <hdegoede@redhat.com>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
+ <20211228052116.1748443-4-bjorn.andersson@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20211228052116.1748443-4-bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/12/2021 13:54, Rob Herring wrote:
-> On Mon, 27 Dec 2021 19:32:45 +0100, Krzysztof Kozlowski wrote:
->> Convert the Atmel TRNG bindings to DT schema.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> ---
->>  .../bindings/rng/atmel,at91-trng.yaml         | 46 +++++++++++++++++++
->>  .../devicetree/bindings/rng/atmel-trng.txt    | 16 -------
->>  2 files changed, 46 insertions(+), 16 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/rng/atmel,at91-trng.yaml
->>  delete mode 100644 Documentation/devicetree/bindings/rng/atmel-trng.txt
->>
+On 28/12/2021 08:21, Bjorn Andersson wrote:
+> In some cases multiple connections with the same connection id
+> needs to be resolved from a fwnode graph.
 > 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
+> One such example is when separate hardware is used for performing muxing and/or
+> orientation switching of the SuperSpeed and SBU lines in a USB-C
+> connector. In this case the connector needs to belong to a graph with
+> multiple matching remote endpoints, and the TypeC controller needs to be
+> able to resolve them both.
 > 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
+> Add a new API that allows this kind of lookup.
 > 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1573492
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>   drivers/base/property.c  | 94 ++++++++++++++++++++++++++++++++++++++++
+>   include/linux/property.h |  5 +++
+>   2 files changed, 99 insertions(+)
 > 
-> 
-> rng@e2010000: compatible:0: 'microchip,sama7g5-trng' is not one of ['atmel,at91sam9g45-trng', 'microchip,sam9x60-trng']
-> 	arch/arm/boot/dts/at91-sama7g5ek.dt.yaml
-> 
-> rng@e2010000: compatible: Additional items are not allowed ('atmel,at91sam9g45-trng' was unexpected)
-> 	arch/arm/boot/dts/at91-sama7g5ek.dt.yaml
-> 
-> rng@e2010000: compatible: ['microchip,sama7g5-trng', 'atmel,at91sam9g45-trng'] is too long
-> 	arch/arm/boot/dts/at91-sama7g5ek.dt.yaml
-> 
+> diff --git a/drivers/base/property.c b/drivers/base/property.c
+> index cbe4fa298413..0aa0296fd991 100644
+> --- a/drivers/base/property.c
+> +++ b/drivers/base/property.c
+> @@ -1180,6 +1180,36 @@ fwnode_graph_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+>   	return NULL;
+>   }
+>   
+> +static unsigned int fwnode_graph_devcon_matches(struct fwnode_handle *fwnode,
+> +						const char *con_id, void *data,
+> +						devcon_match_fn_t match,
+> +						void **matches,
+> +						unsigned int matches_len)
+> +{
+> +	struct fwnode_handle *node;
+> +	struct fwnode_handle *ep;
+> +	unsigned int count = 0;
+> +	void *ret;
+> +
+> +	fwnode_graph_for_each_endpoint(fwnode, ep) {
+> +		if (count >= matches_len) {
+> +			fwnode_handle_put(ep);
+> +			return count;
+> +		}
+> +
+> +		node = fwnode_graph_get_remote_port_parent(ep);
+> +		if (!fwnode_device_is_available(node))
+> +			continue;
+> +
+> +		ret = match(node, con_id, data);
+> +		fwnode_handle_put(node);
+> +
+> +		if (ret)
+> +			matches[count++] = ret;
+> +	}
+> +	return count;
+> +}
 
-This patch is only converting the existing bindings, so new compatible
-is not added. The issue reported here is being fixed in the next patch
-(3/8).
+This API doesn't let it's user know if there are more matches found in 
+the device tree or not. I'd suggest to add 'count' mode that would 
+return the amount of found matches if (matches == NULL) && (matches_len 
+== 0).
 
-Best regards,
-Krzysztof
+> +
+>   static void *
+>   fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+>   		    void *data, devcon_match_fn_t match)
+> @@ -1202,6 +1232,35 @@ fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+>   	return NULL;
+>   }
+>   
+> +static unsigned int fwnode_devcon_matches(struct fwnode_handle *fwnode,
+> +					  const char *con_id, void *data,
+> +					  devcon_match_fn_t match,
+> +					  void **matches,
+> +					  unsigned int matches_len)
+> +{
+> +	struct fwnode_handle *node;
+> +	unsigned int count = 0;
+> +	void *ret;
+> +	int i;
+> +
+> +	for (i = 0; ; i++) {
+> +		if (count >= matches_len)
+> +			return count;
+> +
+> +		node = fwnode_find_reference(fwnode, con_id, i);
+> +		if (IS_ERR(node))
+> +			break;
+> +
+> +		ret = match(node, NULL, data);
+> +		fwnode_handle_put(node);
+> +
+> +		if (ret)
+> +			matches[count++] = ret;
+> +	}
+> +
+> +	return count;
+> +}
+> +
+
+Same comment applies.
+
+>   /**
+>    * fwnode_connection_find_match - Find connection from a device node
+>    * @fwnode: Device node with the connection
+> @@ -1229,3 +1288,38 @@ void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
+>   	return fwnode_devcon_match(fwnode, con_id, data, match);
+>   }
+>   EXPORT_SYMBOL_GPL(fwnode_connection_find_match);
+> +
+> +/**
+> + * fwnode_connection_find_matches - Find connections from a device node
+> + * @fwnode: Device node with the connection
+> + * @con_id: Identifier for the connection
+> + * @data: Data for the match function
+> + * @match: Function to check and convert the connection description
+> + * @matches: Array of pointers to fill with matches
+> + * @matches_len: Length of @matches
+> + *
+> + * Find up to @matches_len connections with unique identifier @con_id between
+> + * @fwnode and other device nodes. @match will be used to convert the
+> + * connection description to data the caller is expecting to be returned
+> + * through the @matches array.
+> + *
+> + * Return: Number of matches resolved, of negative errno.
+> + */
+> +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> +				   const char *con_id, void *data,
+> +				   devcon_match_fn_t match,
+> +				   void **matches, unsigned int matches_len)
+> +{
+> +	unsigned int count;
+> +
+> +	if (!fwnode || !match || !matches)
+> +		return -EINVAL;
+> +
+> +	count = fwnode_graph_devcon_matches(fwnode, con_id, data, match,
+> +					    matches, matches_len);
+> +
+> +	return count + fwnode_devcon_matches(fwnode, con_id, data, match,
+> +					     matches + count,
+> +					     matches_len - count);
+> +}
+> +EXPORT_SYMBOL_GPL(fwnode_connection_find_matches);
+> diff --git a/include/linux/property.h b/include/linux/property.h
+> index 16f736c698a2..59484ccb260e 100644
+> --- a/include/linux/property.h
+> +++ b/include/linux/property.h
+> @@ -444,6 +444,11 @@ static inline void *device_connection_find_match(struct device *dev,
+>   	return fwnode_connection_find_match(dev_fwnode(dev), con_id, data, match);
+>   }
+>   
+> +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> +				   const char *con_id, void *data,
+> +				   devcon_match_fn_t match,
+> +				   void **matches, unsigned int matches_len);
+> +
+>   /* -------------------------------------------------------------------------- */
+>   /* Software fwnode support - when HW description is incomplete or missing */
+>   
+
+
+-- 
+With best wishes
+Dmitry
