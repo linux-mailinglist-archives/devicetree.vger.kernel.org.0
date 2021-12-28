@@ -2,115 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B5B94809CA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 15:00:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 010804809E6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 15:26:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233004AbhL1OAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 09:00:10 -0500
-Received: from mga03.intel.com ([134.134.136.65]:29734 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230477AbhL1OAK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Dec 2021 09:00:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1640700010; x=1672236010;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=BQO7BYOZldJkPRdIMtnTnMhArKnvAqURyNkBwAwY9Vg=;
-  b=MGS/7aonAK3MtUGumg0yxOGpiGNyYevsCLvROD6mO19uNHDbdXeTEguy
-   OOUh5qOfjhFQ9gz8SXrE92sDC1pIZEU0bTw4cJNVhXvGZhtFRlLjrwMtm
-   WBI8bMRaX6K9lnxH3PHpfFCHArVGd0rQ+OJL5WpgDSmOBLAlcT1Y6KfAs
-   E4nRdXgtbMid3tFh/hAqBoZFOuI2i/vnQRHdHokXBYALCQ1WaEiJkVGTb
-   2Jvgb5jCQSolZUaVop/uQktg7Oswcinmlav9JwJvdJL0M0Ml0gnyQhsHH
-   4ldZsNMPgGNsTFzJooisrpYbYv1RcbtbZHQsdrcS0wKSFe+pnMohNRfDJ
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10210"; a="241320762"
-X-IronPort-AV: E=Sophos;i="5.88,242,1635231600"; 
-   d="scan'208";a="241320762"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Dec 2021 06:00:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,242,1635231600"; 
-   d="scan'208";a="615651315"
-Received: from lkp-server01.sh.intel.com (HELO e357b3ef1427) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 28 Dec 2021 06:00:05 -0800
-Received: from kbuild by e357b3ef1427 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1n2D1J-0007bo-6B; Tue, 28 Dec 2021 14:00:05 +0000
-Date:   Tue, 28 Dec 2021 21:59:08 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        id S233651AbhL1O0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 09:26:16 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:41727 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231821AbhL1O0Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 09:26:16 -0500
+Received: from mwalle01.kontron.local. (unknown [IPv6:2a02:810b:4340:43bf:fa59:71ff:fe9b:b851])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 759F122246;
+        Tue, 28 Dec 2021 15:26:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1640701574;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=R7nzXrrSsFrUHRSgijOJS8QeBq0JY35WUr2whTQ6JzM=;
+        b=Mdr6LWqzC3IcHb3GPTOPvu6mLduLfAc1d91yRwpVrPDM3N1JMBc9TFFErc3tdNqHi8WSVR
+        /634D2XTLXxZlujv0T7ReIQoXRFDx5uTdST3fuARDna6iOoZ1WVWlfe8nT2PO+aa7aD2uu
+        wAHqRd6bUXoMDoYzRB8oWR2jUxT3+D8=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        netdev@vger.kernel.org
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Hans de Goede <hdegoede@redhat.com>
-Cc:     kbuild-all@lists.01.org, "Rafael J. Wysocki" <rafael@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/8] phy: qcom-qmp: Register typec mux and orientation
- switch
-Message-ID: <202112282120.JleedcIB-lkp@intel.com>
-References: <20211228052116.1748443-3-bjorn.andersson@linaro.org>
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>, Michael Walle <michael@walle.cc>
+Subject: [PATCH 0/8] nvmem: add ethernet address offset support
+Date:   Tue, 28 Dec 2021 15:25:41 +0100
+Message-Id: <20211228142549.1275412-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211228052116.1748443-3-bjorn.andersson@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+This is my second attempt to solve the use case where there is only the
+base MAC address stored in an EEPROM or similar storage provider. This
+is the case for the Kontron sl28 board and multiple openwrt supported
+boards.
 
-I love your patch! Yet something to improve:
+Introduce an NVMEM transformation op. This can then be used to parse or
+swap bytes of the NVMEM cell value. A transformation might also have
+multiple output values, like in the base mac address case. It reads the mac
+address from the nvmem storage and generates multiple individual addresses,
+i.e. on our board we reserve 8 consecutive addresses. These addresses then
+can be assigned to different network interfaces. To make it possible to
+reference different values we need to introduce an argument to the phandle.
+This additional argument is then an index which is can be used by the
+transformation op.
 
-[auto build test ERROR on usb/usb-testing]
-[also build test ERROR on robh/for-next driver-core/driver-core-testing linus/master v5.16-rc7 next-20211224]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Previous discussion can be found here:
+https://lore.kernel.org/linux-devicetree/20211123134425.3875656-1-michael@walle.cc/
 
-url:    https://github.com/0day-ci/linux/commits/Bjorn-Andersson/typec-mux-Introduce-support-for-multiple-TypeC-muxes/20211228-132045
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
-config: arc-randconfig-r043-20211228 (https://download.01.org/0day-ci/archive/20211228/202112282120.JleedcIB-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/db0b002b5b2e1055b2df7b430438335a75dc1557
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Bjorn-Andersson/typec-mux-Introduce-support-for-multiple-TypeC-muxes/20211228-132045
-        git checkout db0b002b5b2e1055b2df7b430438335a75dc1557
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash
+Michael Walle (8):
+  of: base: add of_parse_phandle_with_optional_args()
+  dt-bindings: nvmem: add transformation bindings
+  nvmem: core: add an index parameter to the cell
+  nvmem: core: add transformations support
+  net: add helper eth_addr_add()
+  nvmem: transformations: ethernet address offset support
+  arm64: dts: ls1028a: sl28: get MAC addresses from VPD
+  arm64: defconfig: enable NVMEM transformations
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+ .../devicetree/bindings/mtd/mtd.yaml          |  7 +-
+ .../bindings/nvmem/nvmem-transformations.yaml | 46 ++++++++++++
+ .../fsl-ls1028a-kontron-kbox-a-230-ls.dts     |  8 ++
+ .../fsl-ls1028a-kontron-sl28-var1.dts         |  2 +
+ .../fsl-ls1028a-kontron-sl28-var2.dts         |  4 +
+ .../fsl-ls1028a-kontron-sl28-var4.dts         |  2 +
+ .../freescale/fsl-ls1028a-kontron-sl28.dts    | 17 +++++
+ arch/arm64/configs/defconfig                  |  1 +
+ drivers/nvmem/Kconfig                         |  7 ++
+ drivers/nvmem/Makefile                        |  1 +
+ drivers/nvmem/core.c                          | 44 ++++++++---
+ drivers/nvmem/imx-ocotp.c                     |  4 +-
+ drivers/nvmem/transformations.c               | 73 +++++++++++++++++++
+ drivers/of/base.c                             | 23 ++++++
+ include/linux/etherdevice.h                   | 14 ++++
+ include/linux/nvmem-provider.h                | 13 +++-
+ include/linux/of.h                            | 12 +++
+ 17 files changed, 260 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml
+ create mode 100644 drivers/nvmem/transformations.c
 
-All errors (new ones prefixed by >>):
+-- 
+2.30.2
 
-   arceb-elf-ld: drivers/phy/qualcomm/phy-qcom-qmp.o: in function `qcom_qmp_phy_remove':
->> phy-qcom-qmp.c:(.text+0x37e): undefined reference to `typec_mux_unregister'
->> arceb-elf-ld: phy-qcom-qmp.c:(.text+0x37e): undefined reference to `typec_mux_unregister'
->> arceb-elf-ld: phy-qcom-qmp.c:(.text+0x384): undefined reference to `typec_switch_unregister'
->> arceb-elf-ld: phy-qcom-qmp.c:(.text+0x384): undefined reference to `typec_switch_unregister'
-   arceb-elf-ld: drivers/phy/qualcomm/phy-qcom-qmp.o: in function `qcom_qmp_phy_probe':
->> phy-qcom-qmp.c:(.text+0x14bc): undefined reference to `typec_switch_register'
->> arceb-elf-ld: phy-qcom-qmp.c:(.text+0x14bc): undefined reference to `typec_switch_register'
->> arceb-elf-ld: phy-qcom-qmp.c:(.text+0x14e2): undefined reference to `typec_mux_register'
->> arceb-elf-ld: phy-qcom-qmp.c:(.text+0x14e2): undefined reference to `typec_mux_register'
-   arceb-elf-ld: phy-qcom-qmp.c:(.text+0x14f6): undefined reference to `typec_switch_unregister'
-   arceb-elf-ld: phy-qcom-qmp.c:(.text+0x14f6): undefined reference to `typec_switch_unregister'
-   arceb-elf-ld: drivers/phy/qualcomm/phy-qcom-qmp.o: in function `qcom_qmp_phy_typec_switch_set':
->> phy-qcom-qmp.c:(.text+0x18f0): undefined reference to `typec_switch_get_drvdata'
->> arceb-elf-ld: phy-qcom-qmp.c:(.text+0x18f0): undefined reference to `typec_switch_get_drvdata'
-   arceb-elf-ld: drivers/phy/qualcomm/phy-qcom-qmp.o: in function `qcom_qmp_phy_typec_mux_set':
->> phy-qcom-qmp.c:(.text+0x1962): undefined reference to `typec_mux_get_drvdata'
->> arceb-elf-ld: phy-qcom-qmp.c:(.text+0x1962): undefined reference to `typec_mux_get_drvdata'
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
