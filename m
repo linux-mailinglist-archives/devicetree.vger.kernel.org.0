@@ -2,336 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B183480B80
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 17:43:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 584BA480B97
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 17:53:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236222AbhL1QnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 11:43:22 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:39668
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236205AbhL1QnR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Dec 2021 11:43:17 -0500
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 833FA402FC
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 16:43:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640709796;
-        bh=LWpKLoE0BQYAlN39yeK9QxixT3GtLXrh/TOWUi443sk=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=UD10wK1l3fra7k2cRA4axQyRx3re7NECH5jbylFxBuwi2GPChUwJ8JArKF/S3/DAz
-         20iJK42Qfx5KzKRN1HoLspdqGipqnrE9j2Tv5zk/D70gXjE+8DHETcjWFzeHHGQHzF
-         aoSCQbJc94wGtKlg0oHlEKUh+lqmMPA9pS/9UkSP4vI4xkGHo5Oj0MxvFL9CBLF/lG
-         /VcO463VK3Au+LITw7RUQeX5tgxxh86hzd9VnPT9gGr5F+lLo4UNxLJ2/S9H2/u/fS
-         UOmXq2yGgstIjT29Z6oLeKnF8wVnXv4tZp91njUYNbiRaOECXodynEapW3fyJJOtk2
-         nY6KUSkKMJXCQ==
-Received: by mail-lj1-f199.google.com with SMTP id r20-20020a2eb894000000b0021a4e932846so6246699ljp.6
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:43:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=LWpKLoE0BQYAlN39yeK9QxixT3GtLXrh/TOWUi443sk=;
-        b=m28JBCjDThI+MHNWPuuQjZOHU4zpHgpwK4b80MiIySLtEHzrPO3Jf6pMwW7DNn6oUL
-         RAlqncGS7aeT6hPsrNEgX1iSsQ+DuSWJHfHYjdwypSroXgbAk7k4xbuy/FaYBXfwGvT0
-         vYUz9hhMJIJKq8kq29wPDM4jexXM53d4+NJYO75T2+jM+0Rpqw14hCXT9tLioK0Xq1v7
-         aRqph7/tZ8G/qnmMJHa25xH4O4hQ1mP62viWl0zYiEAvi2MY76NaICB63z8U783ChNEB
-         JFunPAJ2YpoGXFViMlnjw3Uq9Rjkvr/Ef83AB2AoIaWrks4JJcN8aiybRSRh8VAFT9N9
-         Fu6A==
-X-Gm-Message-State: AOAM530IAOn05ubf9XYmLQyoHJENqQG8/4ue3BodHwerO9hRC9BKScIM
-        x4Jo9F+G15c2g2W4494I/QjgwU19h04ZnNn90zZ8ZAn4e4WnpmxY1b/fYURrZPHd5ysRQQcWPzU
-        0rBDksAxOCWGwjD9DajzRDrHFP0hunQfo0v1ZOlc=
-X-Received: by 2002:a19:dc57:: with SMTP id f23mr19029407lfj.245.1640709795544;
-        Tue, 28 Dec 2021 08:43:15 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwqseq4Sp84ozRpaHHxcVhWgWfB1NTN6A3uTXObXh7HWRmTjja6ZjpvU7bvJhugOhfxG2UJVg==
-X-Received: by 2002:a19:dc57:: with SMTP id f23mr19029393lfj.245.1640709795305;
-        Tue, 28 Dec 2021 08:43:15 -0800 (PST)
-Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id u5sm968701lja.36.2021.12.28.08.43.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Dec 2021 08:43:14 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: mfd: maxim,max77802: Convert to dtschema
-Date:   Tue, 28 Dec 2021 17:43:05 +0100
-Message-Id: <20211228164305.35877-4-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211228164305.35877-1-krzysztof.kozlowski@canonical.com>
-References: <20211228164305.35877-1-krzysztof.kozlowski@canonical.com>
+        id S236272AbhL1Qxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 11:53:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60462 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231370AbhL1Qxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 11:53:48 -0500
+Received: from wp175.webpack.hosteurope.de (wp175.webpack.hosteurope.de [IPv6:2a01:488:42:1000:50ed:84b6::])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C389EC061574;
+        Tue, 28 Dec 2021 08:53:47 -0800 (PST)
+Received: from p54bc6060.dip0.t-ipconnect.de ([84.188.96.96] helo=[192.168.1.135]); authenticated
+        by wp175.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        id 1n2FjN-0001hf-Gj; Tue, 28 Dec 2021 17:53:45 +0100
+Message-ID: <06c1662a-76ff-2ede-a308-ce87186a2311@birger-koblitz.de>
+Date:   Tue, 28 Dec 2021 17:53:44 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [RFC PATCH v2 4/5] dt-bindings: interrupt-controller:
+ realtek,rtl-intc: map output lines
+Content-Language: en-US
+To:     Sander Vanheule <sander@svanheule.net>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Bert Vermeulen <bert@biot.com>,
+        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org
+References: <cover.1640548009.git.sander@svanheule.net>
+ <0a91967d40d486bb8cccd0dcf5a817df11317cf0.1640548009.git.sander@svanheule.net>
+ <87r19yz47t.wl-maz@kernel.org>
+ <7a02b3af9b68adeba787418eb042cd262ee335b7.camel@svanheule.net>
+From:   Birger Koblitz <mail@birger-koblitz.de>
+In-Reply-To: <7a02b3af9b68adeba787418eb042cd262ee335b7.camel@svanheule.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;mail@birger-koblitz.de;1640710427;a6aadc82;
+X-HE-SMSGID: 1n2FjN-0001hf-Gj
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the MFD part of Maxim MAX77802 PMIC to DT schema format.  The
-example DTS was copied from existing DTS (exynos5800-peach-pi.dts), so
-keep the license as GPL-2.0-only.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- .../devicetree/bindings/mfd/max77802.txt      |  25 ---
- .../bindings/mfd/maxim,max77802.yaml          | 194 ++++++++++++++++++
- MAINTAINERS                                   |   2 +-
- 3 files changed, 195 insertions(+), 26 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mfd/max77802.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77802.yaml
 
-diff --git a/Documentation/devicetree/bindings/mfd/max77802.txt b/Documentation/devicetree/bindings/mfd/max77802.txt
-deleted file mode 100644
-index 09decac20d91..000000000000
---- a/Documentation/devicetree/bindings/mfd/max77802.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--Maxim MAX77802 multi-function device
--
--The Maxim MAX77802 is a Power Management IC (PMIC) that contains 10 high
--efficiency Buck regulators, 32 Low-DropOut (LDO) regulators used to power
--up application processors and peripherals, a 2-channel 32kHz clock outputs,
--a Real-Time-Clock (RTC) and a I2C interface to program the individual
--regulators, clocks outputs and the RTC.
--
--Bindings for the built-in 32k clock generator block and
--regulators are defined in ../clk/maxim,max77802.txt and
--../regulator/max77802.txt respectively.
--
--Required properties:
--- compatible		: Must be "maxim,max77802"
--- reg			: Specifies the I2C slave address of PMIC block.
--- interrupts		: I2C device IRQ line connected to the main SoC.
--
--Example:
--
--	max77802: pmic@9 {
--		compatible = "maxim,max77802";
--		interrupt-parent = <&intc>;
--		interrupts = <26 IRQ_TYPE_NONE>;
--		reg = <0x09>;
--	};
-diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77802.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77802.yaml
-new file mode 100644
-index 000000000000..26f49fbace18
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/maxim,max77802.yaml
-@@ -0,0 +1,194 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/maxim,max77802.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Maxim MAX77802 Power Management IC
-+
-+maintainers:
-+  - Javier Martinez Canillas <javier@dowhile0.org>
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-+
-+description: |
-+  This is a part of device tree bindings for Maxim MAX77802 Power Management
-+  Integrated Circuit (PMIC).
-+
-+  The Maxim MAX77802 is a Power Management IC which includes voltage and
-+  current regulators (10 high efficiency Buck regulators and 32 Low-DropOut
-+  (LDO)), RTC and clock outputs.
-+
-+  The MAX77802 provides two 32.768khz clock outputs that can be controlled
-+  (gated/ungated) over I2C.  The clock IDs are defined as preprocessor macros
-+  in dt-bindings/clock/maxim,max77802.h.
-+
-+properties:
-+  compatible:
-+    const: maxim,max77802
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+  regulators:
-+    $ref: ../regulator/maxim,max77802.yaml
-+    description:
-+      List of child nodes that specify the regulators.
-+
-+  inb1-supply:
-+    description: Power supply for buck1
-+  inb2-supply:
-+    description: Power supply for buck2
-+  inb3-supply:
-+    description: Power supply for buck3
-+  inb4-supply:
-+    description: Power supply for buck4
-+  inb5-supply:
-+    description: Power supply for buck5
-+  inb6-supply:
-+    description: Power supply for buck6
-+  inb7-supply:
-+    description: Power supply for buck7
-+  inb8-supply:
-+    description: Power supply for buck8
-+  inb9-supply:
-+    description: Power supply for buck9
-+  inb10-supply:
-+    description: Power supply for buck10
-+
-+  inl1-supply:
-+    description: Power supply for LDO8, LDO15
-+  inl2-supply:
-+    description: Power supply for LDO17, LDO27, LDO30, LDO35
-+  inl3-supply:
-+    description: Power supply for LDO3, LDO5, LDO7, LDO7
-+  inl4-supply:
-+    description: Power supply for LDO10, LDO11, LDO13, LDO14
-+  inl5-supply:
-+    description: Power supply for LDO9, LDO19
-+  inl6-supply:
-+    description: Power supply for LDO4, LDO21, LDO24, LDO33
-+  inl7-supply:
-+    description: Power supply for LDO18, LDO20, LDO28, LDO29
-+  inl9-supply:
-+    description: Power supply for LDO12, LDO23, LDO25, LDO26, LDO32, LDO34
-+  inl10-supply:
-+    description: Power supply for LDO1, LDO2
-+
-+  wakeup-source: true
-+
-+required:
-+  - compatible
-+  - '#clock-cells'
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/regulator/maxim,max77802.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pmic@9 {
-+            compatible = "maxim,max77802";
-+            interrupt-parent = <&gpx3>;
-+            interrupts = <1 IRQ_TYPE_NONE>;
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&max77802_irq>, <&pmic_selb>,
-+                        <&pmic_dvs_1>, <&pmic_dvs_2>, <&pmic_dvs_3>;
-+            wakeup-source;
-+            reg = <0x9>;
-+            #clock-cells = <1>;
-+
-+            inb1-supply = <&tps65090_dcdc2>;
-+            inb2-supply = <&tps65090_dcdc1>;
-+            inb3-supply = <&tps65090_dcdc2>;
-+            inb4-supply = <&tps65090_dcdc2>;
-+            inb5-supply = <&tps65090_dcdc1>;
-+            inb6-supply = <&tps65090_dcdc2>;
-+            inb7-supply = <&tps65090_dcdc1>;
-+            inb8-supply = <&tps65090_dcdc1>;
-+            inb9-supply = <&tps65090_dcdc1>;
-+            inb10-supply = <&tps65090_dcdc1>;
-+
-+            inl1-supply = <&buck5_reg>;
-+            inl2-supply = <&buck7_reg>;
-+            inl3-supply = <&buck9_reg>;
-+            inl4-supply = <&buck9_reg>;
-+            inl5-supply = <&buck9_reg>;
-+            inl6-supply = <&tps65090_dcdc2>;
-+            inl7-supply = <&buck9_reg>;
-+            inl9-supply = <&tps65090_dcdc2>;
-+            inl10-supply = <&buck7_reg>;
-+
-+            regulators {
-+                BUCK1 {
-+                    regulator-name = "vdd_mif";
-+                    regulator-min-microvolt = <800000>;
-+                    regulator-max-microvolt = <1300000>;
-+                    regulator-always-on;
-+                    regulator-boot-on;
-+                    regulator-ramp-delay = <12500>;
-+                    regulator-state-mem {
-+                        regulator-off-in-suspend;
-+                    };
-+                };
-+
-+                BUCK2 {
-+                    regulator-name = "vdd_arm";
-+                    regulator-min-microvolt = <800000>;
-+                    regulator-max-microvolt = <1500000>;
-+                    regulator-always-on;
-+                    regulator-boot-on;
-+                    regulator-ramp-delay = <12500>;
-+                    regulator-coupled-with = <&buck3_reg>;
-+                    regulator-coupled-max-spread = <300000>;
-+                    regulator-state-mem {
-+                        regulator-off-in-suspend;
-+                    };
-+                };
-+
-+                // ...
-+
-+                BUCK10 {
-+                    regulator-name = "vdd_1v8";
-+                    regulator-min-microvolt = <1800000>;
-+                    regulator-max-microvolt = <1800000>;
-+                    regulator-always-on;
-+                    regulator-boot-on;
-+                    regulator-state-mem {
-+                        regulator-on-in-suspend;
-+                    };
-+                };
-+
-+                LDO1 {
-+                    regulator-name = "vdd_1v0";
-+                    regulator-min-microvolt = <1000000>;
-+                    regulator-max-microvolt = <1000000>;
-+                    regulator-always-on;
-+                    regulator-initial-mode = <MAX77802_OPMODE_NORMAL>;
-+                    regulator-state-mem {
-+                        regulator-on-in-suspend;
-+                        regulator-mode = <MAX77802_OPMODE_LP>;
-+                    };
-+                };
-+
-+                // ...
-+
-+                LDO35 {
-+                    regulator-name = "ldo_35";
-+                    regulator-min-microvolt = <1200000>;
-+                    regulator-max-microvolt = <1200000>;
-+                };
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5ea5655a29c3..b5e4f14f6768 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11666,7 +11666,7 @@ MAXIM MAX77802 PMIC REGULATOR DEVICE DRIVER
- M:	Javier Martinez Canillas <javier@dowhile0.org>
- L:	linux-kernel@vger.kernel.org
- S:	Supported
--F:	Documentation/devicetree/bindings/*/*max77802.txt
-+F:	Documentation/devicetree/bindings/*/*max77802.yaml
- F:	drivers/regulator/max77802-regulator.c
- F:	include/dt-bindings/*/*max77802.h
- 
--- 
-2.32.0
+On 28/12/2021 17:21, Sander Vanheule wrote:
+> On Mon, 2021-12-27 at 11:17 +0000, Marc Zyngier wrote:
+>> On Sun, 26 Dec 2021 19:59:27 +0000,
+>> Sander Vanheule <sander@svanheule.net> wrote:
+>>>
+>>> Amend the binding to also require a list of parent interrupts, and an
+>>> optional mask to specify which parent is mapped to which output.
+>>>
+>>> Without this information, any driver would have to make an assumption on
+>>> which parent interrupt is connected to which output.
+>>
+>> Why should an endpoint driver care at all?
+> 
+> Interrupt inputs to interrupt outputs are SW configurable, but outputs to parent
+> interrupts are hard-wired and cannot be modified. "interrupt-map" defines an input to
+> parent interrupt mapping, so it seems a piece of information is missing. This is currently
+> provided as an assumption in the driver ("CPU IRQs (2..7) are connected to outputs
+> (1..6)").
+> 
+> Input-to-output is SW configurable, so that can be put in the driver. Output-to-parent is
+> hardware configuration,
+> 
+> 
+>>>
+>>> Additionally, extend (or add) the relevant descriptions to more clearly
+>>> describe the inputs and outputs of this router.
+>>>
+>>> Signed-off-by: Sander Vanheule <sander@svanheule.net>
+>>> ---
+>>> Since it does not properly describe the hardware, I would still really
+>>> rather get rid of "interrupt-map", even though that would mean breaking
+>>> ABI for this binding. As we've argued before [1], that is our prefered
+>>> solution, and would enable us to not carry more (hacky) code because of
+>>> a mistake with the initial submission.
+>>
+>> Again, this is too late. Broken bindings live forever.
+>>
+>>>
+>>> Vendors don't ship independent DT blobs for devices with this hardware,
+>>> so the independent devicetree/kernel upgrades issue is really rather
+>>> theoretical here. Realtek isn't driving the development of the bindings
+>>> and associated drivers for this platform. They have their SDK and seem
+>>> to care very little about proper kernel integration.
+>>
+>> Any vendor can do whatever they want. You can do the same thing if you
+>> really want to.
+>>
+>>>
+>>> Furthermore, there are currently no device descriptions in the kernel
+>>> using this binding. There are in OpenWrt, but OpenWrt firmware images
+>>> for this platform always contain both the kernel and the appended DTB,
+>>> so there's also no breakage to worry about.
+>>
+>> That's just one use case. Who knows who is using this stuff in a
+>> different context? Nobody can tell.
+>>
+>>>
+>>> [1] https://lore.kernel.org/all/9c169aad-3c7b-2ffb-90a2-1ca791a3f411@phrozen.org/
+>>>
+>>> Differences with v1:
+>>> - Don't drop the "interrupt-map" property
+>>> - Add the "realtek,output-valid-mask" property
+>>> ---
+>>>   .../realtek,rtl-intc.yaml                     | 38 ++++++++++++++++---
+>>>   1 file changed, 33 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-
+>>> intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-
+>>> intc.yaml
+>>> index 9e76fff20323..29014673c34e 100644
+>>> --- a/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
+>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
+>>> @@ -6,6 +6,10 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>   
+>>>   title: Realtek RTL SoC interrupt controller devicetree bindings
+>>>   
+>>> +description:
+>>> +  Interrupt router for Realtek MIPS SoCs, allowing up to 32 SoC interrupts to
+>>> +  be routed to one of up to 15 parent interrupts, or left disconnected.
+>>> +
+>>>   maintainers:
+>>>     - Birger Koblitz <mail@birger-koblitz.de>
+>>>     - Bert Vermeulen <bert@biot.com>
+>>> @@ -22,7 +26,11 @@ properties:
+>>>       maxItems: 1
+>>>   
+>>>     interrupts:
+>>> -    maxItems: 1
+>>> +    minItems: 1
+>>> +    maxItems: 15
+>>> +    description:
+>>> +      List of parent interrupts, in the order that they are connected to this
+>>> +      interrupt router's outputs.
+>>
+>> Is that to support multiple SoCs? I'd expect a given SoC to have a
+>> fixed number of output interrupts.
+> 
+> It is, and they do AFAICT. But all values from 1 to 15 can be written to the routing
+> registers, so I wanted this definition to be as broad as possible.
+> 
+> The SoCs I'm working with only connect to the six CPU HW interrupts, but I don't know what
+> the actual limit of this interrupt hardware is, or if the outputs always connect to the
+> MIPS CPU HW interrupts.
+> 
+ From what I know, the IRQ controller is used solely by Realtek in the RTL838x, RTL839x and
+RTL930x SoC families, all of them MIPS 4KEc or 34Kc with the standard 7 CPU IRQ lines.
+In their final RTL931x series they abandoned their custom IRQ controller and went for
+an InterAptiv core with a standard MIPS GIC.
+
+Multiple SoCs are supported by these SoCs via direct register access for configuration either
+via SPI or I2C, for which the SoCs have HW support as a slave and master (only RTL93xx).
+Optionally, a GPIO pin can be used for raising an IRQ between SoCs. Fast control of the switch
+hardware in the SoCs is done by proprietary Ethernet frames. At least for OpenWRT, only the original
+7 IRQ outputs are used. Adding support for 15 does not seem to hurt, though and if necessary
+the driver can do additional error checking.
+
+Cheers,
+   Birger
 
