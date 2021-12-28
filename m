@@ -2,246 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C5CC480C2E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 18:53:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5B1480C80
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 19:24:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236542AbhL1RxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 12:53:04 -0500
-Received: from mout.kundenserver.de ([212.227.126.187]:49569 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233327AbhL1RxD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 12:53:03 -0500
-Received: from [192.168.1.107] ([37.4.249.169]) by mrelayeu.kundenserver.de
- (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MQeIA-1mpYmr1Pvi-00Nj5R; Tue, 28 Dec 2021 18:52:51 +0100
-Subject: Re: [PATCH] ARM: dts: bcm2837: Add the missing L1/L2 cache
- information
-To:     Richard Schleich <rs@noreya.tech>, robh+dt@kernel.org,
-        nsaenz@kernel.org, f.fainelli@gmail.com,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20211218200009.16856-1-rs@noreya.tech>
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-Autocrypt: addr=stefan.wahren@i2se.com; keydata=
- LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tClZlcnNpb246IEdudVBHIHYy
- CgptUUlOQkZ0NmdCTUJFQUN1Yi9wQmV2SHhidkplZnlaRzMySklObW4yYnNFUFgyNVY2ZmVq
- bXlZd21DR0tqRnRMCi9Eb1VNRVZIRHhDSjQ3Qk1YbzM0NGZIVjFDM0FudWRnTjFCZWhMb0J0
- TEh4bW5lQ3pnSDNLY1B0V1c3cHRqNEcKdEp2OUNRRFp5MjdTS29FUHh5YUk4Q0YweWdSeEpj
- NzJNOUk5d21zUFo1YlVIc0x1WVdNcVE3SmNSbVBzNkQ4ZwpCa2srOC95bmdFeU5FeHd4SnBS
- MXlsajVianhXREh5WVF2dUo1THpaS3VPOUxCM2xYVnNjNGJxWEVqYzZWRnVaCkZDQ2svc3lp
- by9ZaHNlOE4rUXN4N01RYWd6NHdLVWtRUWJmWGcxVnFrVG5BaXZYczQyVm5Ja211NWd6SXcv
- MHQKUkp2NTBGUmhIaHhweUtBSThCOG5oTjhRdng3TVZrUGM1dkRmZDN1R1lXNDdKUGhWUUJj
- VXdKd05rLzQ5RjllQQp2ZzJtdE1QRm5GT1JrV1VSdlArRzZGSmZtNitDdk92N1lmUDF1ZXdB
- aTRsbitKTzFnK2dqVklXbC9XSnB5MG5UCmlwZGZlSDlkSGtnU2lmUXVuWWN1Y2lzTXlvUmJG
- OTU1dENna0VZOUVNRWRZMXQ4aUdEaUNnWDZzNTBMSGJpM2sKNDUzdWFjcHhmUVhTYUF3UGtz
- bDhNa0NPc3YyZUVyNElOQ0hZUUR5WmljbEJ1dUNnOEVOYlI2QUdWdFpTUGNRYgplbnpTektS
- Wm9POUNhcUlEK2ZhdkxpQi9kaHptSEErOWJnSWhtWGZ2WFJMRFp6ZThwbzFkeXQzRTFzaFhp
- ZGRaClBBOE51SlZ6RUl0MmxtSTZWOHBaRHBuMjIxcmZLaml2UlFpYW9zNTRUZ1pqak1ZSTdu
- bko3ZTZ4endBUkFRQUIKdENCVGRHVm1ZVzRnVjJGb2NtVnVJRHgzWVdoeVpXNXpkRUJuYlhn
- dWJtVjBQb2tDTndRVEFRZ0FJUVVDWElkYwo0Z0liQXdVTENRZ0hBZ1lWQ0FrS0N3SUVGZ0lE
- QVFJZUFRSVhnQUFLQ1JDVWdld1BFWkR5MjFPVEQvOUdpWkxkCnRSWWNteVJKZ2x0aVFRekFp
- UWRjSUQ3OGxHb1dwL3grci92Y1U2YjZqdVl1ZVR3Z1Iwclc3djdsMklSQnlEN24KSEp4YSt0
- SVNvUVpCZ2hvbE1JZmI5TXRoR09KTENZNzdrL1FoQWhuMzJOR1prZWp3OXR6a3MvNDBtclpT
- VVQ4NApaeWJzUVhyTE0vSFI2VElJL0RlUEIwbktEM0ppcHBzMlVIUUQ5cUQySWpFd1NRUGxI
- akNPckVaaDQ1UFo3bTkrClo5M0x6aVRlc1dabFlRdUxpSndzNHJLcHRIVzFkL3dSZWxzaG1t
- NlFxY0wybDRDL2U0MGVEQjlncTRkU1poOVgKUEVZbGxpeU5RaDdhMkxTZHVtRTFyK2NTd0lq
- RS91ZHRSdmRPOWFLb0psT2JVSzVkTmpTUEg3d0tUYndkWGRZRApHUHdEaFhkNThOQXdyK1BY
- QmxQajB0STFMQ3ErTEJ4ZUt6aFdYK0dWcTlEb2pWanlVREV4Rk5Ga1h1b0M3ZzhtClY5VDB0
- ZUJpdVpSbm91WEt3VjJGcHRaT0hIN0JVRVd0a0t0aGgxZXRmT1dwaWdCemtVN2JQc2ZJWVQr
- cnk5dGIKMW9KK3Y0MVBOYXFaRW1QVXBKeHZmek5UN3Ayd01lRDdaajlmMHJ1YlJQdExBSjJR
- R2pyRkhzdVh3QU9xcHl6ZQoxOEVidHNZazBOMHp1SEVoY2orUEJJQmZoMFlJWWQ1MW9mNkdJ
- aU95UjlxMFhYdHBsVUo3VDIvSDF1UXFrWGxwCitnVzRWa2lmc2NJckl1eWZueFpXMTJlSXZq
- NnlicVdMN2FZS0dZbVQ2aUxDUGJIWXlZY2F5bDRFa0ZjckNGN0UKZTBXVC9zY1ZNaE8vNVgv
- SGFOQTVIQngvcjUycGdMY3Y0aTlNeExRbVUzUmxabUZ1SUZkaGFISmxiaUE4YzNSbApabUZ1
- TG5kaGFISmxia0JwTW5ObExtTnZiVDZKQWpnRUV3RUNBQ0lGQWx0NmdCTUNHd01HQ3drSUJ3
- TUNCaFVJCkFna0tDd1FXQWdNQkFoNEJBaGVBQUFvSkVKU0I3QThSa1BMYmpic1AvamdqYVNz
- NUh0bGtBSXZXUytGcm15N2MKaG5jT0F4TFRWL0Q2UkV3SU95R0poRkt3d29pck55UTJnOXZV
- YTNZQ1lDZjFmSjh3RWhhS09COWQwTHBNUm5MNApkRVQ4ZDgyMzhFL3BLK0hxTktpSXNKaHM2
- SnNLOFpnalZRR3JtbWZua0dyWisxdjBIQnV4ZGljZ0duUC9XdHVBClVsOGw2Mi9BTGJheXlq
- KzYxQ2xyc0V0UklhcU82N0xJWXdQaVBEUkkrWGlNek5pR3pIRi8xUTZHUjAyUkg2YTMKRjg5
- ejhhUHhjSGkxWnZDdDJ5a3o2VUVjaHpQMHI1Z3FGSisvTC9VcHU4ME1YaVk0djVlSWFCNTJn
- VlBnaXlNQQpsTDJkRHMxbUladm5yUkxSWTJ0YjNtQVlOa1Y1QjVJRFQzcGtXeTZrS281T0Nn
- SytZZFlPUjhGTloyb04ydDhPCnJLK1ZudGFLN01NU0tIbG1ZL3NPd3RSbEVoMU9CbXJjQ3dH
- d21wLzA1R2tSNDZmL0lzaFJWZUZPUmF3K0dBcXQKUDIrQ0ZhMkNOQS9JSG5aTm95aWtsRHpQ
- UUhVVUdzck5wcERyaFg5Sm1oQm1nMXYyeXdIMU5YdTFpRGZQMUJBdwpLZ29rdDVmNVVhUkY5
- c0FBNTN2V0V2YlVVTjllZXNGR0x6UFdkSkdRNWhwZC9WSDVJUXk5U0JyaC93SWNla3E1Cm4w
- a042cGJUSHhHRTUyU2kvTVZJa05UdURaM2FwbjJqbERaNHBPdHBCWEkydlAzYlBPK05pcUJa
- anNVM3R4TGkKV2R2MkZqeXp6NlhMUndlV1JZVkw1SGE2TER0eG9yMnZ1NlVQMDdwOXh6MXhS
- WmFPRFczb1lsSEZ6WXBhNFc1ZwpMSGIybEVrSXVVZlNjaWNHYmpqQXRDbFRkR1ZtWVc0Z1Yy
- Rm9jbVZ1SUR4emRHVm1ZVzR1ZDJGb2NtVnVRR2x1CkxYUmxZMmd1WTI5dFBva0NOd1FUQVFn
- QUlRVUNYSWRlaHdJYkF3VUxDUWdIQWdZVkNBa0tDd0lFRmdJREFRSWUKQVFJWGdBQUtDUkNV
- Z2V3UEVaRHkyeUhURC85VUY3UWxEa0d4elE3QWFDSTZOOTVpUWY4LzFvU1VhRE51Mlk2SQpL
- K0R6UXBiMVRiVE9yM1ZKd3dZOGEzT1d6NU5MU09MTVdlVnh0K29zTW1sUUlHdWJEM09EWko4
- aXpQbEcvSnJOCnQ1elNkbU41SUE1ZjNlc1dXUVZLdmdoWkFnVERxZHB2K1pIVzJFbXhuQUox
- dUxGWFhlUWQzVVpjQzVyMy9nL3YKU2FNbzl4ZWszSjVtTnVEbTcxbEVXc0FzL0JBY0ZjK3lu
- TGh4d0JXQld3c3Z3UjhiSHRKNURPTVd2YUt1RHNrcApJR0ZVZS9LYjJCK2pyYXZRM1RuNnMv
- SHFKTTBjZXhTSHo1cGUrMHNHdlArdDlKNzIzNEJGUXdlRkV4cmlleThVCkl4T3I0WEFiYWFi
- U3J5WW5VL3pWSDlVMWkyQUlRWk1XSkFldkN2VmdRL1UrTmVSaFh1ZGU5WVVtRE1EbzJzQjIK
- VkFGRUFxaUYyUVVIUEEybThhN0VPM3lmTDRyTWswaUh6TElLdmg2L3JIOFFDWThpM1h4VE5M
- OWlDTHpCV3UvTgpPbkNBYlMremx2TFphaVNNaDVFZnV4VHR2NFBsVmRFamY2MlArWkhJRDE2
- Z1VEd0VtYXpMQU1yeDY2NmpINWt1ClVDVFZ5bWJMMFR2Qis2TDZBUmw4QU55TTRBRG1rV2tw
- eU0yMmtDdUlTWUFFZlFSM3VXWFo5WWd4YVBNcWJWK3cKQnJoSmc0SGFONkM2eFRxR3YzcjRC
- MmFxYjc3L0NWb1JKMVo5Y3BIQ3dpT3pJYUFtdnl6UFU2TXhDRFhaOEZnWQpsVDR2MjNHNWlt
- SlAyemdYNXMrRjZBQ1VKOVVRUEQwdVRmK0o5RGEycitza2gvc1dPbloreWNvSE5CUXZvY1pF
- Ck5BSFFmN2tDRFFSYmVvQVRBUkFBMkhkMGZzRFZLNzJSTFNESGJ5ME9oZ0RjRGxWQk0yTSto
- WVlwTzNmWDFyKysKc2hpcVBLQ0hWQXNRNWJ4ZTdIbUppbUhhNEtLWXMya3YvbWx0L0NhdUNK
- Ly9wbWN5Y0JNN0d2d25Lem11WHp1QQpHbVZUWkM2V1I1TGtha0ZydEhPelZtc0VHcE52NVJj
- OWw2SFlGcExrYlNrVmk1U1BRWkp5K0VNZ01DRmdqclpmClZGNnlvdHdFMWFmN0hOdE1oTlBh
- TEROMW9VS0Y1aitSeVJnNWl3SnVDRGtuSGp3QlFWNHBndzIvNXZTOEE3WlEKdjJNYlcvVExF
- eXBLWGlmNzhJaGdBelh0RTJYck0xbi9vNlpINzFvUkZGS096NDJsRmR6ZHJTWDBZc3FYZ0hD
- WAo1Z0l0TGZxemoxcHNNYTlvMWVpTlRFbTFkVlFyVHFueXMwbDE4b2FsUk5zd1lsUW1uWUJ3
- cHdDa2FUSExNSHdLCmZHQmJvNWRMUEVzaHRWb3dJNm5zZ3FMVHlRSG1xSFlxVVpZSXBpZ21t
- QzNTd0JXWTFWNmZmVUVta3FwQUFDRW4KTDQvZ1Vnbjd5US81ZDBzZXFuQXEycFNCSE1VVW9D
- Y1R6RVFVV1ZraUR2M1JrN2hURm1oVHNNcTc4eHYyWFJzWApNUjZ5UWhTVFBGWkNZRFVFeEVs
- RXNTbzlGV0hXcjZ6SHlZY2M4cURMRnZHOUZQaG1RdVQyczlCbHg2Z0kzMjNHCm5FcTFsd1dQ
- SlZ6UDRqUWtKS0lBWHdGcHYrVzhDV0xxekRXT3ZkbHJEYVRhVk1zY0ZUZUg1VzZVcHJsNjVq
- cUYKUUdNcGNSR0NzOEdDVVcxM0gwSXlPdFF0d1dYQTRueStTTDgxcHZpQW1hU1hVOGxhS2FS
- dTkxVk9WYUY5ZjRzQQpFUUVBQVlrQ0h3UVlBUUlBQ1FVQ1czcUFFd0liREFBS0NSQ1VnZXdQ
- RVpEeTIrb1hELzljSEhSa0JaT2ZrbVNxCjE0U3Z4MDYyUHRVMEtWNDcwVFNucC9qV29ZSm5L
- SXczRzBtWElSZ3J0SDJkUHdwSWdWanNZeVJTVk1LbVNwdDUKWnJEZjlOdFRiTldnazhWb0xl
- WnpZRW8rSjNvUHFGclRNczNhWVl2N2U0K0pLNjk1WW5tUSttT0Q5bmlhOTE1dApyNUFaajk1
- VWZTVGx5VW15aWMxZDhvdnNmMWZQN1hDVVZSRmNSamZOZkRGMW9ML3BEZ01QNUdaMk93YVRl
- am15CkN1SGpNOElSMUNpYXZCcFlEbUJuVFlrN1B0aHk2YXRXdllsMGZ5L0NxYWpUS3N4Nytw
- OXh6aXU4WmZWWCtpS0IKQ2MrSGUrRURFZEdJRGh2TlovSVFIZk9CMlBVWFdHUytzOUZOVHhy
- L0E2bkxHWG5BOVk2dzkzaVBkWUl3eFM3SwpYTG9LSmVlMTBEamx6c1lzUmZsRk9XMFpPaVNp
- aElDWGlRVjF1cU02dHpGRzlndFJjaXVzNVVBdGhXYU8xT3dVClNDUW1mQ09tNGZ2TUlKSUE5
- cnh0b1M2T3FSUWNpRjNjcm1vMHJKQ3ROMmF3WmZnaThYRWlmN2Q2aGp2MEVLTTkKWFpvaUFa
- WVpEKy9pTG01VGFLV042b0dJdGkwVmpKdjhaWk9aT2ZDYjZ2cUZJa0pXK2FPdTRvclRMRk16
- MjhhbwpVM1F5V3BOQzhGRm1kWXNWdWE4czZnTjFOSWE2eTNxYS9aQjhiQS9pa3k1OUFFejRp
- RElScmdVek1FZzhBazdUCmZtMUtpWWVpVHRCRENvMjVCdlhqYnFzeXhrUUQxbmtSbTZGQVZ6
- RXVPUEllOEp1cVcyeEQ5aXhHWXZqVTVoa1IKZ0pwM2dQNWIrY25HM0xQcXF1UTJFNmdvS1VN
- TEFia0NEUVJiZmw5REFSQUFzRExjYStMbFAydm5mdEVHaHBjQQpCR1ZOUUVGbkdQckNhdVU2
- SGhOODA1V3RQVHRtc1JPdUp6cWdVVDBtcHFXSWZacTZzTXd5dkhLOVRzL0tIM0paClVWYlJD
- M3oyaDNLZmhIL0RhZjk1cGQ2bVBjL2g5dkYvT3kzK2VUV2hnR25QNmNBNWtsUitmTzFXaEc4
- VnJpWHYKck5lUkcyMHN6emplSG9jblNJY1Q1WHVaUjB1REhPaUd4T2l6MXNNUkZUR3h6R095
- MTlSOXJ2dTYzdGlJM2Q3dgpnYzc1T0NBZGtlQi9TZUNFbGFSdzBUZjdMWmJQampzRjI2M0JZ
- bk1mNGtrTkVLdnFXY1UyaWNNcCtxZXpqeW5CCnB2ZXVlMHJDVFFCWUFRbG9GQ1ZUR0hyV1dB
- NkQ0VzVPMkFmSWRJYzF1MUpDWnAyZjVMV1ZvVUZUVklyUW5RUVUKU0hDaWZyOU1aeExUdFBK
- ZFU1Mm9TUHczZGs0aExQOGlKSUx1dnYvYXZhakNzUVlIRXR3WXNiZUZaeGl1TGdscApBN1lj
- Sk5ObXBnQ3BNRDR3VWh2bEN0QUtOQlFXeXIyOTc2OThFUVRuNDZlQmVVNkttMkNpaFhrZ3dD
- eWY4ZXlLCkxFM3NYZXdhcTVrZ1pXdk5xNml1NXFZSVJCOXl3K2NYYzYwZE9aRE9scTkzWDVT
- QVJZemFvZXBrSHo0cmtMa1AKUG8rdENIeUhRUHNHblBYYzlXVDgwREM5Tm5KR2R2VWx5NXJk
- TUk0eHBaeWdlb2tqd293VlFsUFV1Y1M2TXluNwpmOHc4Y2dmQjdDMklBSWNEeDJwUC9IendY
- dmtDT1FOQTdtVjFsTTA4bitnVmtUcnpweGlwNURicTRDSW9ZeDJNCkpaVDhiR1JINlhqY1VE
- S2EwOVFoeVpzQUVRRUFBWWtFUkFRWUFRZ0FEd1VDVzM1ZlF3SWJBZ1VKQThKbkFBSXAKQ1JD
- VWdld1BFWkR5MjhGZElBUVpBUWdBQmdVQ1czNWZRd0FLQ1JCVnhETFBjVk1NamNkc0QvMFJo
- QXN1UVlPeQpyMTNCbDNOaFhrWUFaR3AyWkZER3VrZTdPU2tWOG9qT09UZFR5ei9jT1JHQ2J5
- ZEQrRGd2cUZ5VmRuT1hLZ08wCmxKbUd3ckdlTGRnZ0F2aDBpaHJwNU8wWVVKOWJCU1htR01t
- UVRZSC9BbUxUR2FkYnVqQ1dqNWZGVWtDeXd4aW0KSHV5MFBiMjRwelR2UzUwR1k1WStxSDBG
- SE5haWdka2tpV04zcnVnN0haRXUvQ3lsUFpqT1h6K0QxUVBNckV4dwo3ZC9NS2FiVis5YU5i
- UVlabGRJajk4UXd2VUYxS1N6YThqbFVJdnBoUnEyN0FUOGZER1lHUGZERU1nMmNCT2FlCkty
- N29uUXM0YjdhV082aWZEbHhRVHB6c3pvK0FuODA3Tk1TdFZFRmYrczNBaFZEM2U3bmY4SkJh
- dmJWckFlMGsKb20yNm96elBubnh6K2xxVlZ0dzZVazRYTUl6dGl4L0h3SFl3dUNuY1VYWndL
- MEkzeUFKd2pZd29vck9DaEozUwpFVWJKUVB0R3NneFJERXhWQkZlNk5MUC82MnhQOU82dGFj
- d09kYjBNbVAxYjM5cFJBVEM3YmdkMWxkVUxpNzVaCmxKckowL1NpVkVyb3FOWXk3OXRmbWdB
- WjJVeFptczlTckV5Nm85UVNmc24xYVh2K01QTDlKYUNHbWtQNnpiTFEKTm5kajBKY2FRbmtD
- MHZneWRPMUJtNk11OTZQOXVmbEtaY0FTNndtTE01SWRIT3lqTDg4d0h3anVjakFPQnRjdwpw
- MG9HVG5WT25Sc05ZU084VzhZWi9LZGJ1Nzg1ZGF6TXFKMmlOakFEdUJiZG02TjRqNUVkTW5r
- TG4wQklmUEpwCmRnbTR2bDJVcExqd1JHci9NM3dtbTVwdnMrNnVCN2hrL0ZKaUQvNGxsRU5Q
- NGVNMWg3U200aitWcTZOMSt6VEIKSVhKQWViSXFhc0RwNXlaUzdYcnk0STM2bjg1WEVZZkcw
- MWx0QXlob05WMkRPOFNJUlFwdWkydHErOVJQM1JLMQpKREJ4eEVKWTJFTzVKWjhNeGFQSFEw
- RFQwNWxSRmpLMkFsaGRFSXRqTGpwSjNmVW05c3FMeE1XeHpQNlV6M2lpCjJ1YTR1bnJ0Nk9D
- VHFRd2lqRi8zYlRXaXd2VkFBSG5NRlVpb1hzaEhhb2hWRGNWZm5lSU1mVjBiUUNYWWkzTnAK
- WTB2MFp3Y2lGSCtnU0M3cUQ2WE51aHBWR1NMNElpbGlGeS9TemNhSkV6QUhlTERTaFpQMkNX
- ZG5DNHZnbDM3dApocHg4aDU1WWhKbjZIU3VVelBnaGFLdFZCMmsrajdaZXlaK1NGeHA3SXVi
- SEN3TEhsUWhUNzVSd1EzaUF4S242CjBxajUxY1lUbnF4ZFpYVzZmSDNQa3VNellVNUdwcVIv
- MU9sNWMvd2ZJNmc2QW04eUtXLzBFVUx0K0tuNExGc1MKbTdZM201SDV2MTJVNkpCWXZWK3Ix
- M2paaW9zNEVFREU5M0Q1c05IMk1JeVJ6Q0RxMXpkZHQ0WHV5S0ZqUEtXMQo5aWJaRGZGVjdL
- dUNzdnVMMjNzQmMxc0NNb3ArRTFtVC9ReE9JQTZvRFQxTVFzdHdPVnVReURDdi9PdktTZ2Z6
- CjhGWEdMNkFQY2xqQ3FqOEFKaHhReXN4ZG9pUVA4bS92dStialdHR3Z4dzVzMWxncGlSRFRS
- VVBnY0pKTmFHWTIKVklEclpRaTROU2lOUTBOSWkrZGp1NGZOTW1DcFFxZzh0YkMzY0FhNnl3
- bTZvUUIxU0JobURYMmUxMWdSbGx1SQpPblRHUEUwSFRvM2w3MmxoYmc9PQo9cVpNVgotLS0t
- LUVORCBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCg==
-Message-ID: <97df6e40-4305-1964-71df-07459a2ab25f@i2se.com>
-Date:   Tue, 28 Dec 2021 18:52:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S237020AbhL1SYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 13:24:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52614 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237004AbhL1SYr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 13:24:47 -0500
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E00D3C06173F
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 10:24:46 -0800 (PST)
+Received: by mail-qt1-x831.google.com with SMTP id q14so16865150qtx.10
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 10:24:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=N2IL2B0lVlzDDKflM5/dU7wtOruTd4vhkwBkmfQOkqs=;
+        b=uwz15lVlduYINnzR3VpaUPNFKIW6cXsPcXeSstjGPZYSzC1etybiaIXmCbL0y1UOek
+         IoSdyG04WAnCN4KGBp+LqN8hjFJsp8TTW9k1xDhX6gv6MD+8fb6G0PbpXO4TDFESKVuQ
+         iBJcoLwcsgNstrnyf9/FRq9AxNo/8V2uHa+sMwCE/ejPD6jMn6a008/wxy9f+tXE3XLN
+         Y8eMCsDLC+fjA6vkjIhS99c4+4fBIjj+Y5G2KL5PGi8JOTK+pBjm1qzMoPuEOCgmlDiQ
+         Wq660xmsF+wt8qdRC3NQbx9i20K6sCg6jbwqNJ0MfKYdwM//2/to9RuVpesTUX4RDIxX
+         BvvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=N2IL2B0lVlzDDKflM5/dU7wtOruTd4vhkwBkmfQOkqs=;
+        b=GDpc47smI9C41RTUYqqHNZLBf0SiXkKLGDq180v0nG1qa7FuxZldNC8dF6ow0pnTQa
+         +MjTtBDvJtL0udXFlb+7q88AXp23av3B4OO5R0qE/o7sN/4obrV5Upa4U4mwA4LEdoeJ
+         /WpX/pjZexnCcvXFRcXPUGgwsfHqVpnCflr6pTUsdbO+VBSopy/kQHf2AeYVLUiGlatU
+         4MATrMPgb32Ug2QiIov38NRlTkTVliTL2UH1DFaZAq3GDukWHNB5J/Wp55lRTJur71tZ
+         N93Ut29uSuuWWdlVSPVMnfirQ1coZEwNcXqasmXRqlypodSHRDyWmi/JOMW4mvDhuIZ3
+         b8ZA==
+X-Gm-Message-State: AOAM531DHPaHhKEkUGg/GnLm92C42Nb9MRqxwYyZVJKkAbX3s0S+5tEB
+        nIvCz3t5f9MXcYSNo7wffDuqosFPponWqfsrzPbEueOSN+wYUQ==
+X-Google-Smtp-Source: ABdhPJyM34OihwzGbuEqYf59SHZSNrRkti5xiawGB0dXZ1399Edl8FEcyIQAtfMGg6IU9j6BAcWfwP/Xe8IsRVNP9O4=
+X-Received: by 2002:a05:622a:411:: with SMTP id n17mr19589076qtx.439.1640715885970;
+ Tue, 28 Dec 2021 10:24:45 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20211218200009.16856-1-rs@noreya.tech>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Provags-ID: V03:K1:DXOsRuP0MfWVhPvjo5B4+L7PYlKw2tQcUwPwCdm2j+2TeNDEYNu
- 7AuH4tobAnVInZg9xhEtT31Bt82qYesCmODVMUEMNpkI22sLFL7h0RRQf+3B6JsOfgfBueB
- 1TnOCB74P/PM8ihB7jKtmgbn0055qACFoALExx+NrL6Ud4DPfyIFdJlaspnBSPnuD4vk3cl
- qZT4N0X0WHI+oLpj9AIow==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:1u/G4Lul6Bs=:bSayQtBsDPb7v/wMFB0WLo
- vR6O6HEmME5/tmSlR6Dd82Iuq43OUkQeuOXlvrD6p2pGdc0VcpgLi08MaV990eonItLdBcIwF
- xufzmnObBA3evM4DXEeM6vfU2ku2+lsqpEbQzz5P7EcX6SF/E13vMZfSNnBP3K/cbDU2V/anQ
- qhoZFg6xw3R9JfUBELEerc37oWYJzfKMBa9C9s0imVMX/BQ1oi3xlk+IOKGs4vnF/gldLi98y
- MMCmHFPi8nnP8tqqVHIEWrpoVrfVwvapYeqVC51nywbyiowHasuxKO6JoxCfXMh7ScurGLWrg
- mgFsvUTU0Al3EUaglRZXYZAmXkX+W9WwjfltmA+U1aBvsz+pXUoPMj/sejxgFzGJyMpeEWWVB
- izBDiFZo7OsUdvOddPfoLLh/tjNf2v6d4OQr6lrjMYDDt5Yu2ZOxdDfZNQHEye/NdBhgfCdiZ
- M/Qwt7W09ihhYSC935YqnClW+YpXCPYLP87j044lTKO4to+FVoAaCJu7bEzDgJ0fMoCnD/k1L
- Br+II2EG755leoNJW/C6/PO0OX/5Jq6/NAZa/kGb7zhuFlYIRwCrCNlPt4m0xlOzHhYtaFIuJ
- FOPYcVWMjo+ThwCBHQANhbN5wYSw6dTh7iec4zQFgo1dxDToeSyUlFPoA4rQKYkL5tW+/PidT
- 6j/fVB7QOt54Nv7v0iVm9JpZkn6/7i77b0jxzsTlgtDH8K/0fzVABrxUBWXOMJTCwDBez75n+
- K/DlnvUvTc2OdAhK
+References: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
+ <20211228052116.1748443-4-bjorn.andersson@linaro.org> <78491489-6b31-c741-8c69-8d52fb614a6c@linaro.org>
+ <YctDgaHV8dsR109L@ripper>
+In-Reply-To: <YctDgaHV8dsR109L@ripper>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 28 Dec 2021 21:24:34 +0300
+Message-ID: <CAA8EJpqO7-2_xNRvgTzi9nBNEpWwO6G2-97BWKg2tZFZ-WsQKw@mail.gmail.com>
+Subject: Re: [PATCH 3/8] device property: Helper to match multiple connections
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 18.12.21 um 21:00 schrieb Richard Schleich:
-> This patch fixes the kernel warning
-> "cacheinfo: Unable to detect cache hierarchy for CPU 0"
-> for the bcm2837 on newer kernel versions.
+On Tue, 28 Dec 2021 at 20:03, Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
 >
-> Signed-off-by: Richard Schleich <rs@noreya.tech>
+> On Tue 28 Dec 05:09 PST 2021, Dmitry Baryshkov wrote:
+>
+> > On 28/12/2021 08:21, Bjorn Andersson wrote:
+> > > In some cases multiple connections with the same connection id
+> > > needs to be resolved from a fwnode graph.
+> > >
+> > > One such example is when separate hardware is used for performing muxing and/or
+> > > orientation switching of the SuperSpeed and SBU lines in a USB-C
+> > > connector. In this case the connector needs to belong to a graph with
+> > > multiple matching remote endpoints, and the TypeC controller needs to be
+> > > able to resolve them both.
+> > >
+> > > Add a new API that allows this kind of lookup.
+> > >
+> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > ---
+> > >   drivers/base/property.c  | 94 ++++++++++++++++++++++++++++++++++++++++
+> > >   include/linux/property.h |  5 +++
+> > >   2 files changed, 99 insertions(+)
+> > >
+> > > diff --git a/drivers/base/property.c b/drivers/base/property.c
+> > > index cbe4fa298413..0aa0296fd991 100644
+> > > --- a/drivers/base/property.c
+> > > +++ b/drivers/base/property.c
+> > > @@ -1180,6 +1180,36 @@ fwnode_graph_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+> > >     return NULL;
+> > >   }
+> > > +static unsigned int fwnode_graph_devcon_matches(struct fwnode_handle *fwnode,
+> > > +                                           const char *con_id, void *data,
+> > > +                                           devcon_match_fn_t match,
+> > > +                                           void **matches,
+> > > +                                           unsigned int matches_len)
+> > > +{
+> > > +   struct fwnode_handle *node;
+> > > +   struct fwnode_handle *ep;
+> > > +   unsigned int count = 0;
+> > > +   void *ret;
+> > > +
+> > > +   fwnode_graph_for_each_endpoint(fwnode, ep) {
+> > > +           if (count >= matches_len) {
+> > > +                   fwnode_handle_put(ep);
+> > > +                   return count;
+> > > +           }
+> > > +
+> > > +           node = fwnode_graph_get_remote_port_parent(ep);
+> > > +           if (!fwnode_device_is_available(node))
+> > > +                   continue;
+> > > +
+> > > +           ret = match(node, con_id, data);
+> > > +           fwnode_handle_put(node);
+> > > +
+> > > +           if (ret)
+> > > +                   matches[count++] = ret;
+> > > +   }
+> > > +   return count;
+> > > +}
+> >
+> > This API doesn't let it's user know if there are more matches found in the
+> > device tree or not. I'd suggest to add 'count' mode that would return the
+> > amount of found matches if (matches == NULL) && (matches_len == 0).
+> >
+>
+> Unfortunately in this code path we don't know how to "free" the objects
+> returned by match(), e.g. see how typec_switch_match() returns wrapper
+> of a refcounted device.
+>
+> So we must return all the match results to the caller to it can free
+> things up based on its knowledge of what matches[] actually contains..
 
-Tested-by: Stefan Wahren <stefan.wahren@i2se.com>
+Ugh. Then we should probably return -E2BIG, -ENOSPC or any other such error.
+Another option might be to split match into match & map functions,
+first one returning bool and second one returning actual corresponding
+object..
 
-I tested the patch with a Raspberry Pi 3 B Plus (arm64/defconfig) and here are
-some outputs:
+>
+> Regards,
+> Bjorn
+>
+> > > +
+> > >   static void *
+> > >   fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+> > >                 void *data, devcon_match_fn_t match)
+> > > @@ -1202,6 +1232,35 @@ fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+> > >     return NULL;
+> > >   }
+> > > +static unsigned int fwnode_devcon_matches(struct fwnode_handle *fwnode,
+> > > +                                     const char *con_id, void *data,
+> > > +                                     devcon_match_fn_t match,
+> > > +                                     void **matches,
+> > > +                                     unsigned int matches_len)
+> > > +{
+> > > +   struct fwnode_handle *node;
+> > > +   unsigned int count = 0;
+> > > +   void *ret;
+> > > +   int i;
+> > > +
+> > > +   for (i = 0; ; i++) {
+> > > +           if (count >= matches_len)
+> > > +                   return count;
+> > > +
+> > > +           node = fwnode_find_reference(fwnode, con_id, i);
+> > > +           if (IS_ERR(node))
+> > > +                   break;
+> > > +
+> > > +           ret = match(node, NULL, data);
+> > > +           fwnode_handle_put(node);
+> > > +
+> > > +           if (ret)
+> > > +                   matches[count++] = ret;
+> > > +   }
+> > > +
+> > > +   return count;
+> > > +}
+> > > +
+> >
+> > Same comment applies.
+> >
+> > >   /**
+> > >    * fwnode_connection_find_match - Find connection from a device node
+> > >    * @fwnode: Device node with the connection
+> > > @@ -1229,3 +1288,38 @@ void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
+> > >     return fwnode_devcon_match(fwnode, con_id, data, match);
+> > >   }
+> > >   EXPORT_SYMBOL_GPL(fwnode_connection_find_match);
+> > > +
+> > > +/**
+> > > + * fwnode_connection_find_matches - Find connections from a device node
+> > > + * @fwnode: Device node with the connection
+> > > + * @con_id: Identifier for the connection
+> > > + * @data: Data for the match function
+> > > + * @match: Function to check and convert the connection description
+> > > + * @matches: Array of pointers to fill with matches
+> > > + * @matches_len: Length of @matches
+> > > + *
+> > > + * Find up to @matches_len connections with unique identifier @con_id between
+> > > + * @fwnode and other device nodes. @match will be used to convert the
+> > > + * connection description to data the caller is expecting to be returned
+> > > + * through the @matches array.
+> > > + *
+> > > + * Return: Number of matches resolved, of negative errno.
+> > > + */
+> > > +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> > > +                              const char *con_id, void *data,
+> > > +                              devcon_match_fn_t match,
+> > > +                              void **matches, unsigned int matches_len)
+> > > +{
+> > > +   unsigned int count;
+> > > +
+> > > +   if (!fwnode || !match || !matches)
+> > > +           return -EINVAL;
+> > > +
+> > > +   count = fwnode_graph_devcon_matches(fwnode, con_id, data, match,
+> > > +                                       matches, matches_len);
+> > > +
+> > > +   return count + fwnode_devcon_matches(fwnode, con_id, data, match,
+> > > +                                        matches + count,
+> > > +                                        matches_len - count);
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(fwnode_connection_find_matches);
+> > > diff --git a/include/linux/property.h b/include/linux/property.h
+> > > index 16f736c698a2..59484ccb260e 100644
+> > > --- a/include/linux/property.h
+> > > +++ b/include/linux/property.h
+> > > @@ -444,6 +444,11 @@ static inline void *device_connection_find_match(struct device *dev,
+> > >     return fwnode_connection_find_match(dev_fwnode(dev), con_id, data, match);
+> > >   }
+> > > +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> > > +                              const char *con_id, void *data,
+> > > +                              devcon_match_fn_t match,
+> > > +                              void **matches, unsigned int matches_len);
+> > > +
+> > >   /* -------------------------------------------------------------------------- */
+> > >   /* Software fwnode support - when HW description is incomplete or missing */
+> >
+> >
+> > --
+> > With best wishes
+> > Dmitry
 
-/sys/devices/system/cpu/cpu0/cache
 
-./index2/number_of_sets:512
-./index2/ways_of_associativity:16
-./index2/shared_cpu_list:0-3
-./index2/type:Unified
-./index2/size:512K
-./index2/level:2
-./index2/coherency_line_size:64
-./index2/shared_cpu_map:f
-./index0/number_of_sets:128
-./index0/ways_of_associativity:4
-./index0/shared_cpu_list:0
-./index0/type:Data
-./index0/size:32K
-./index0/level:1
-./index0/coherency_line_size:64
-./index0/shared_cpu_map:1
-./index1/number_of_sets:256
-./index1/ways_of_associativity:2
-./index1/shared_cpu_list:0
-./index1/type:Instruction
-./index1/size:32K
-./index1/level:1
-./index1/coherency_line_size:64
-./index1/shared_cpu_map:1
 
-lscpu
-
-Architecture:        aarch64
-Byte Order:          Little Endian
-CPU(s):              4
-On-line CPU(s) list: 0-3
-Thread(s) per core:  1
-Core(s) per socket:  4
-Socket(s):           1
-NUMA node(s):        1
-Vendor ID:           ARM
-Model:               4
-Model name:          Cortex-A53
-Stepping:            r0p4
-CPU max MHz:         1400,0000
-CPU min MHz:         600,0000
-BogoMIPS:            38.40
-L1d cache:           32K
-L1i cache:           32K
-L2 cache:            512K
-NUMA node0 CPU(s):   0-3
-Flags:               fp asimd evtstrm crc32 cpuid
-
+-- 
+With best wishes
+Dmitry
