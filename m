@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F3C9480BA4
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 17:58:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5F17480BAB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 17:58:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236465AbhL1Q6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 11:58:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33320 "EHLO
+        id S236512AbhL1Q6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 11:58:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236481AbhL1Q6i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 11:58:38 -0500
+        with ESMTP id S236518AbhL1Q6q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 11:58:46 -0500
 Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79C73C06173F
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:58:38 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id g11so42698746lfu.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:58:38 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00774C061401
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:58:46 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id x7so42622374lfu.8
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 08:58:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=0D9r3mLul2ar0LgSD8/IOjG0KAPGEOa0MFXsHroSmNg=;
-        b=ZCuITCD/gPzPwsyI3gqJYzgJY61ybSgT4GMKhF9nwtrktez1pRqLMyRdS+i/wdIFZ6
-         9CLvaDzynrc7uCuAS/jtlZTMfEYYKwo6lAsJFhJaqsNmPdC9H20LyEU+WjOyNSLJ0Rjj
-         6FNl3MGSIIOnMjjyp3+Y4r54wCmTVVg/HrA5uRdkcdhpM1P4ZepwnYbpGGdk6G5SkYUk
-         123sEaRm6t7ZJIkOW/KtDc3GSQKnqRXsxrDSkAND71dthGiybUnSv1wPXkeldJxtWpl+
-         EL/Dp5Rv4LvjLhwGDBXsguoVfWFsPERcdBf8R2S74OFLQ1H2Sdx2xf42dd1EaNClEp30
-         P8eQ==
+        bh=aLS767KJTZfvw5/Pb90qAf4lv/UgXzjgnY65+gUmz1k=;
+        b=h6kLOAeWGL2CluUxbLepQ1y9HSLKlXZKkho5A1VDDVF8paOZSSAvw1dxROD6rkd/ba
+         TpGyRyKjcTEPQMbqCwjOLj8+ug9uyO6U+S3HdAMwDkbb19hMEkUmMZ0Nd0SjMJFF+6qt
+         +glPqyCTX8XHD3nnyqlp35igsacDq+ZiXXeMUOl/8fNegh+cBM5tje8bm4AFKMD4t8tB
+         EDefaYRtlfL8+fgied+f4uvIkkAlOStidiIJqerM9aEtUz2O17lVFf9uqy8zNsgOSgPR
+         TnEMpJIaXxGzN7NQZAgt0ZA6HNd3oIY2vwbralUqxBrlpJSUqY3OTdhs7+RahR5Jz9oB
+         eeqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=0D9r3mLul2ar0LgSD8/IOjG0KAPGEOa0MFXsHroSmNg=;
-        b=YPDmFxtF85q8PDnx90ykEYTvb/y4w3irOw8zAxln7oyaeXWSS/onJJL4h8X8GnHVGK
-         DqJPh4kkuBXu8EzuozYpUoGEuC3EodqTp6qDE/ER6I2h1PhC1VtxyUcIB9xYu+ghAeTl
-         3RuJVLbq4xC+AL1j1qpynADlbgl2+5FTqlnXSg5dzOLum0CdyiAk1Fx1VrZ7YN6poH1w
-         fxdKeRZJQjRWn7NZdjkkDxbsY5UkWZV9F0PX7MtkvBONI6jwOM1ZWT/Cd44arpAVFmXv
-         1h+NmKkKe6f37isq+od4ekqmZsJvrXyBilmIi3L7TcNEbve2JxL4/sVPiwN4TXdtdZTG
-         sGkA==
-X-Gm-Message-State: AOAM533rTs3Nxph0vk+9EVLrMkYARtrUte1uw8GRa2HBjMP57nBIjHDN
-        E6fGnWp+llxMNJ+RDJ8o4/6MUx6qnbAV6eA0Kterzw==
-X-Google-Smtp-Source: ABdhPJz1q7mhZOF0eI6zsQx2UPYqrGGdD1ruEZcsQYjkxHS54Vi4X7QfPeXJ6Ch5D9b2peWld4azn+1VGmysoAoKHGg=
-X-Received: by 2002:a05:6512:3bb:: with SMTP id v27mr19505255lfp.71.1640710716727;
- Tue, 28 Dec 2021 08:58:36 -0800 (PST)
+        bh=aLS767KJTZfvw5/Pb90qAf4lv/UgXzjgnY65+gUmz1k=;
+        b=vxGNjXoeZRi90EXZS7/K9QNEWCZ2X6D2+t9NA3+IDlFVsuF1G6UP3mVJ2D9E0/b9lk
+         Lf2bTmuAhvVBgo+r9P/5H6X+N/CRzrwbkzR2c2JG76mUC7ZlT2pHRnW270lAqBnkHew2
+         Sl13I/Op4SIOZAbwhlzp5p+6ZL0tC05QdZaxbDVwNi3w5/6vjHV8vtfvQ5Iw6dpflqsv
+         +1q2nKXnddlSzdcfFpSB8fIDgmJv8+Ft+VyQ1VcKrzdlHLJCqcmJWv5VUhzu9VYFXgdb
+         i89SfpSxVvyLLfjI9pxt2MEaDAHscEixY4peJGxf/ryjRX4k5+zkOlBY6mJGfW/b3HjH
+         0wdg==
+X-Gm-Message-State: AOAM532/XqwViaZ9VWfRN53uF3dU9U94GC5kbj5elYtIRGvLNeVMHltk
+        l+EfiFsJq3lIjImGb+7VyT41fQoyRSbbKuARV+mxHQ==
+X-Google-Smtp-Source: ABdhPJwyZ9JvkIK3ExHySh5L90wxtJYKduqCDHyqNMikqWtjWEpQBb5jtvqNjjZwpSDQQ5znW/Iu2simawK1NooQXJc=
+X-Received: by 2002:a05:6512:3d9e:: with SMTP id k30mr20014933lfv.184.1640710722641;
+ Tue, 28 Dec 2021 08:58:42 -0800 (PST)
 MIME-Version: 1.0
-References: <20211224192545.74528-1-david@ixit.cz>
-In-Reply-To: <20211224192545.74528-1-david@ixit.cz>
+References: <20211227133131.134369-1-krzysztof.kozlowski@canonical.com> <20211227133558.135185-3-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211227133558.135185-3-krzysztof.kozlowski@canonical.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 28 Dec 2021 17:58:00 +0100
-Message-ID: <CAPDyKFqrZ349O+vNSExaU7QUTeCjf_Hfu_ia4T7AujCMiOZ1ow@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: PL18x stop relying on order of dma-names
-To:     David Heidelberg <david@ixit.cz>
+Date:   Tue, 28 Dec 2021 17:58:06 +0100
+Message-ID: <CAPDyKFqJYMkxS01dQCGhtwGtFdf98XnvEJOoeYu9=pnnRUhJhA@mail.gmail.com>
+Subject: Re: [PATCH 09/19] dt-bindings: mmc: synopsys-dw-mshc: integrate
+ Altera and Imagination
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Thierry Reding <treding@nvidia.com>,
-        ~okias/devicetree@lists.sr.ht, Rob Herring <robh@kernel.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-mmc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Dec 2021 at 20:25, David Heidelberg <david@ixit.cz> wrote:
+On Mon, 27 Dec 2021 at 14:36, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
 >
-> We don't care in which order are "rx" and "tx" DMA names supplied.
+> The bindings for Altera and Imagination extensions are the same as for
+> the original Synopsys Designware Mobile Storage Host Controller.
+> Integrate them into Synopsys bindings to have dtschema coverage.
 >
-> Fixes: 4df297aaeb9c ("dt-bindings: mmc: Add missing properties used in examples")
->
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
 Applied for next, thanks!
 
@@ -77,30 +79,92 @@ Uffe
 
 
 > ---
->  Documentation/devicetree/bindings/mmc/arm,pl18x.yaml | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
+>  .../devicetree/bindings/mmc/img-dw-mshc.txt   | 28 -------------------
+>  .../bindings/mmc/socfpga-dw-mshc.txt          | 23 ---------------
+>  .../bindings/mmc/synopsys-dw-mshc.yaml        |  5 +++-
+>  3 files changed, 4 insertions(+), 52 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/img-dw-mshc.txt
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/socfpga-dw-mshc.txt
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> index f0a44b2cfa79..a4f74bec68a3 100644
-> --- a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> @@ -70,9 +70,13 @@ properties:
->      maxItems: 2
+> diff --git a/Documentation/devicetree/bindings/mmc/img-dw-mshc.txt b/Documentation/devicetree/bindings/mmc/img-dw-mshc.txt
+> deleted file mode 100644
+> index c54e577eea07..000000000000
+> --- a/Documentation/devicetree/bindings/mmc/img-dw-mshc.txt
+> +++ /dev/null
+> @@ -1,28 +0,0 @@
+> -* Imagination specific extensions to the Synopsys Designware Mobile Storage
+> -  Host Controller
+> -
+> -The Synopsys designware mobile storage host controller is used to interface
+> -a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
+> -differences between the core Synopsys dw mshc controller properties described
+> -by synopsys-dw-mshc.txt and the properties used by the Imagination specific
+> -extensions to the Synopsys Designware Mobile Storage Host Controller.
+> -
+> -Required Properties:
+> -
+> -* compatible: should be
+> -       - "img,pistachio-dw-mshc": for Pistachio SoCs
+> -
+> -Example:
+> -
+> -       mmc@18142000 {
+> -               compatible = "img,pistachio-dw-mshc";
+> -               reg = <0x18142000 0x400>;
+> -               interrupts = <GIC_SHARED 39 IRQ_TYPE_LEVEL_HIGH>;
+> -
+> -               clocks = <&system_clk>, <&sdhost_clk>;
+> -               clock-names = "biu", "ciu";
+> -
+> -               fifo-depth = <0x20>;
+> -               bus-width = <4>;
+> -               disable-wp;
+> -       };
+> diff --git a/Documentation/devicetree/bindings/mmc/socfpga-dw-mshc.txt b/Documentation/devicetree/bindings/mmc/socfpga-dw-mshc.txt
+> deleted file mode 100644
+> index 4897bea7e3f8..000000000000
+> --- a/Documentation/devicetree/bindings/mmc/socfpga-dw-mshc.txt
+> +++ /dev/null
+> @@ -1,23 +0,0 @@
+> -* Altera SOCFPGA specific extensions to the Synopsys Designware Mobile
+> -  Storage Host Controller
+> -
+> -The Synopsys designware mobile storage host controller is used to interface
+> -a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
+> -differences between the core Synopsys dw mshc controller properties described
+> -by synopsys-dw-mshc.txt and the properties used by the Altera SOCFPGA specific
+> -extensions to the Synopsys Designware Mobile Storage Host Controller.
+> -
+> -Required Properties:
+> -
+> -* compatible: should be
+> -       - "altr,socfpga-dw-mshc": for Altera's SOCFPGA platform
+> -
+> -Example:
+> -
+> -       mmc: dwmmc0@ff704000 {
+> -               compatible = "altr,socfpga-dw-mshc";
+> -               reg = <0xff704000 0x1000>;
+> -               interrupts = <0 129 4>;
+> -               #address-cells = <1>;
+> -               #size-cells = <0>;
+> -       };
+> diff --git a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
+> index 240abb6f102c..ae6d6fca79e2 100644
+> --- a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
+> @@ -15,7 +15,10 @@ maintainers:
+>  # Everything else is described in the common file
+>  properties:
+>    compatible:
+> -    const: snps,dw-mshc
+> +    enum:
+> +      - altr,socfpga-dw-mshc
+> +      - img,pistachio-dw-mshc
+> +      - snps,dw-mshc
 >
->    dma-names:
-> -    items:
-> -      - const: rx
-> -      - const: tx
-> +    oneOf:
-> +      - items:
-> +          - const: tx
-> +          - const: rx
-> +      - items:
-> +          - const: rx
-> +          - const: tx
->
->    power-domains: true
->
+>    reg:
+>      maxItems: 1
 > --
-> 2.34.1
+> 2.32.0
 >
