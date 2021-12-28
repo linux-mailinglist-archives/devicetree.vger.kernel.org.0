@@ -2,101 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EB3D480896
-	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 11:58:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDD954807FF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Dec 2021 10:42:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236350AbhL1K6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Dec 2021 05:58:14 -0500
-Received: from www.linux-watchdog.org ([185.87.125.42]:43990 "EHLO
-        www.linux-watchdog.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236349AbhL1K6N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 05:58:13 -0500
-X-Greylist: delayed 538 seconds by postgrey-1.27 at vger.kernel.org; Tue, 28 Dec 2021 05:58:12 EST
-Received: by www.linux-watchdog.org (Postfix, from userid 500)
-        id ACFC4409CD; Tue, 28 Dec 2021 10:21:40 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.11.0 www.linux-watchdog.org ACFC4409CD
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-watchdog.org;
-        s=odk20180602; t=1640683300;
-        bh=w8aJnqJpyuqC/xW+n2cbZi4xCrodj+BMPfpwrAepq8g=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=E6A+Zft6yL02VjO/ZAA2eLOd46aBp6wp8jxGolGB+5zu6ZcrhRd4Xe3HZrnPvyxSt
-         I5vkXxHxn1NLzFoHWWt3nD8cUl0m2IkjVf2sfRPEJViD6vUYm8MlCPq4MNutT6BroT
-         YZwZlHFqYY3P/37WfLY+MTJSM15Gv8BC9L4ujEFs=
-Date:   Tue, 28 Dec 2021 10:21:40 +0100
-From:   Wim Van Sebroeck <wim@linux-watchdog.org>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        id S236017AbhL1JmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Dec 2021 04:42:11 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:49922 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S236015AbhL1JmC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Dec 2021 04:42:02 -0500
+X-UUID: ade9b90949654ee09d75cbd4951798f7-20211228
+X-UUID: ade9b90949654ee09d75cbd4951798f7-20211228
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1939391826; Tue, 28 Dec 2021 17:41:50 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 28 Dec 2021 17:41:49 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 28 Dec 2021 17:41:47 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Justin Chen <justinpopo6@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH V4 RESEND 1/2] dt-bindings: watchdog: convert Broadcom's
- WDT to the json-schema
-Message-ID: <20211228092140.GA26632@www.linux-watchdog.org>
-References: <f5745952-9e3c-ed7a-cced-ce42d3da2276@gmail.com>
- <Ya5ctkIU+jNzDfBc@google.com>
- <f4af4971-7047-80c9-69ae-e6587979ecd5@roeck-us.net>
- <e1fa1683-a0a6-8ee0-9da5-8e97dd9c820a@gmail.com>
- <432664af-5660-aaad-bf75-81e4d61cb078@roeck-us.net>
- <46a88b40-6d92-727c-7adc-5723921d08e3@gmail.com>
- <20211206195115.GC3759192@roeck-us.net>
- <Ya8xhUR5GbTxVE8w@google.com>
- <a86d5998-8d84-7afe-e34e-a632aa890683@roeck-us.net>
- <Ya+BX1X7/YqmfCU8@google.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v2, 00/12] media: mtk-vcodec: support for MT8192 decoder
+Date:   Tue, 28 Dec 2021 17:41:34 +0800
+Message-ID: <20211228094146.20505-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Ya+BX1X7/YqmfCU8@google.com>
-User-Agent: Mutt/1.5.20 (2009-12-10)
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+This series adds support for mt8192 h264 decoder. Firstly, need to refactor
+power/clock/interrupt interfaces for mt8192 is lat and core architecture.
 
-> On Tue, 07 Dec 2021, Guenter Roeck wrote:
-> 
-> > On 12/7/21 2:03 AM, Lee Jones wrote:
-> > [ ... ]
-> > > > It sounded to me like Lee wanted an immutable branch for that
-> > > 
-> > > Not exactly, I said:
-> > > 
-> > >    "> Suppose we should take patch #2 via [Watchdog] as well.
-> > > 
-> > >     If that happens, I would like a PR to an immutable branch."
-> > > 
-> > > The alternative is that I take the patch and provide an immutable
-> > > branch to you, which I am in a position to do.
-> > > 
-> > 
-> > I understand, only I am not in a position to take it since my tree
-> > isn't the official watchdog-next tree, and it doesn't show up in -next.
-> > If Wim takes it into the official watchdog-next tree or not would be
-> > completely up to him.
-> > 
-> > I personally don't care if the bindings check is clean in my inofficial
-> > tree, so maybe this is a non-issue.
-> 
-> That doesn't help, sadly.
-> 
-> I think the best course of action is for Wim to let me know when this
-> patch makes it into his tree.  I'll take the MFD one at the same time
-> and the two shall meet in -next.
-> 
-> Honestly, this is all such a faff.
-> 
-> Just to keep a script happy that 3 people care about.
+Secondly, add new functions to get frame buffer size and resolution according
+to decoder capability from scp side. Then add callback function to get/put
+capture buffer in order to enable lat and core decoder in parallel. 
 
-It's going in today.
+Then add to support MT21C compressed mode and fix v4l2-compliance fail.
 
-Kind regards,
-Wim.
+Lastly, extract H264 request api driver to let mt8183 and mt8192 use the same
+code, and adds mt8192 frame based h264 driver for stateless decoder.
+
+Patches 1 refactor power/clock/interrupt interface.
+Patches 2~4 get frame buffer size and resolution according to decoder capability.
+Patches 5~6 enable lat and core decode in parallel.
+Patch 7~10 Add to support MT21C compressed mode and fix v4l2-compliance fail.
+Patch 11~12 extract h264 driver and add mt8192 frame based driver for h264 decoder.
+----
+Dependents on "Support multi hardware decode using of_platform_populate"[1].
+
+This patches are the second part used to add mt8192 h264 decoder. And the base part is [1].
+
+[1]https://patchwork.linuxtv.org/project/linux-media/cover/20211215061552.8523-1-yunfei.dong@mediatek.com/
+---
+changes compared with v1:
+- rewrite commit message for patch 12.
+- rewrite cover-letter message.
+---
+Yunfei Dong (12):
+  media: mtk-vcodec: Add vdec enable/disable hardware helpers
+  media: mtk-vcodec: Using firmware type to separate different firmware
+    architecture
+  media: mtk-vcodec: get capture queue buffer size from scp
+  media: mtk-vcodec: Read max resolution from dec_capability
+  media: mtk-vcodec: Call v4l2_m2m_set_dst_buffered() set capture buffer
+    buffered
+  media: mtk-vcodec: Refactor get and put capture buffer flow
+  media: mtk-vcodec: Refactor supported vdec formats and framesizes
+  media: mtk-vcodec: Add format to support MT21C
+  media: mtk-vcodec: disable vp8 4K capability
+  media: mtk-vcodec: Fix v4l2-compliance fail
+  media: mtk-vcodec: Extract H264 common code
+  media: mtk-vcodec: Add h264 decoder driver for mt8192
+
+ drivers/media/platform/mtk-vcodec/Makefile    |   2 +
+ .../platform/mtk-vcodec/mtk_vcodec_dec.c      |  49 +-
+ .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  |   5 -
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   | 168 +++--
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.h   |   6 +-
+ .../mtk-vcodec/mtk_vcodec_dec_stateful.c      |  14 +-
+ .../mtk-vcodec/mtk_vcodec_dec_stateless.c     | 246 +++++--
+ .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  27 +-
+ .../media/platform/mtk-vcodec/mtk_vcodec_fw.c |   6 +
+ .../media/platform/mtk-vcodec/mtk_vcodec_fw.h |   1 +
+ .../mtk-vcodec/vdec/vdec_h264_req_common.c    | 303 +++++++++
+ .../mtk-vcodec/vdec/vdec_h264_req_common.h    | 247 +++++++
+ .../mtk-vcodec/vdec/vdec_h264_req_if.c        | 402 +-----------
+ .../mtk-vcodec/vdec/vdec_h264_req_lat_if.c    | 620 ++++++++++++++++++
+ .../media/platform/mtk-vcodec/vdec_drv_if.c   |  28 +-
+ .../media/platform/mtk-vcodec/vdec_drv_if.h   |   1 +
+ .../media/platform/mtk-vcodec/vdec_ipi_msg.h  |  36 +
+ .../platform/mtk-vcodec/vdec_msg_queue.c      |   2 +
+ .../media/platform/mtk-vcodec/vdec_vpu_if.c   |  55 +-
+ .../media/platform/mtk-vcodec/vdec_vpu_if.h   |  15 +
+ include/linux/remoteproc/mtk_scp.h            |   2 +
+ 21 files changed, 1680 insertions(+), 555 deletions(-)
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_common.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_common.h
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_lat_if.c
+
+-- 
+2.25.1
 
