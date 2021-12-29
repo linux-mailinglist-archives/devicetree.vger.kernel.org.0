@@ -2,101 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B72C481169
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 10:49:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9797248117B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 11:03:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239596AbhL2Js7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 04:48:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57242 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239593AbhL2Js7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 04:48:59 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93220C06173F
-        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 01:48:58 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id b186-20020a1c1bc3000000b00345734afe78so11468235wmb.0
-        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 01:48:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=rnqIJ93SIBVZUCI9X/AetRRmoWOd4XV45kkwiBxzW8w=;
-        b=ib8gT5tuuhPV1gSybVe/tlInOl9+YYFC5ZplG96nqVmFy5mTQR6P6c1hXW8XUWxLWD
-         4To2qEahL1IQm+9/ouJHjN3SLgcUCcA8ADb6RmJ9CwoMnWhoGB1/Qck44u/ENM3g9c+V
-         C6gRMZzf7e92RbkUiKQ0kj326LcMAWnnnBZPuvUX4lX0sJgo2Xbu7jgwGpjWrHLhyhI+
-         D+OcZMONTeFWPRpbE8kRq3RwrdSIlA25EFtBiwgH2U3Mok/qTHpDjsP2SxgJ31E2wCpb
-         eRt+55Ww7ujnKRSkR8g1OgcrKl+WJN+9aLRaBgnWZK6/NbeHNwcDGDwzJGxE70Jia1GW
-         7NqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=rnqIJ93SIBVZUCI9X/AetRRmoWOd4XV45kkwiBxzW8w=;
-        b=58mYmG+TOghea5SCCMGW395Ke0LKC6gnFjA21akArnNtR9F1Fzlm5as/H5mUjCMwpm
-         QR4IGYGMeutFGDyTb/oInqcLUbFZniEVuDqUXDAiMmCN++Un8RSx6lB41H3QNRgS6P4J
-         MB1ZmCoqceCIjOHBS+OLbgpxCMyCKf6juV/8sFJ+Ej/Ck0b+icuyTMD7fVIPnRXOyoXc
-         0OHS0mbhzw0C3NpSFb1wQGw8SzZeYcnpy3moF4UrLaK1M0BX/q1dP1JE0V/YaJG7AIOU
-         wAgtQQ2k/8R3DHv6mmL4tRmfgnKUCUeDdXLcq+GOBvcCEUmxwDrleHNSBUmJAjUDHunq
-         DVXg==
-X-Gm-Message-State: AOAM530WeLtRNkOG2n49mx5MmWQmu2tlAXygUB/J49OFb7fYnpfhShq3
-        aUQItV6AN0h5HauAdEqqEdAU5Q==
-X-Google-Smtp-Source: ABdhPJxEfMhetHrX2yHPjWktWJTBwLeecfxINiXmJgXKm53r1A35ap/9XVsZci1/VoVeSJlSm/ss+g==
-X-Received: by 2002:a1c:9dd4:: with SMTP id g203mr21201962wme.114.1640771337080;
-        Wed, 29 Dec 2021 01:48:57 -0800 (PST)
-Received: from google.com ([2.31.167.18])
-        by smtp.gmail.com with ESMTPSA id 11sm25917589wrz.63.2021.12.29.01.48.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Dec 2021 01:48:56 -0800 (PST)
-Date:   Wed, 29 Dec 2021 09:48:54 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S239646AbhL2KDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 05:03:23 -0500
+Received: from mail.skyhub.de ([5.9.137.197]:36986 "EHLO mail.skyhub.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235190AbhL2KDW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Dec 2021 05:03:22 -0500
+Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id ABC701EC03AD;
+        Wed, 29 Dec 2021 11:03:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1640772196;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=E7l2Hget7TEfy/D4Kt6JxexeerHjWcOm+gP+OBWenWQ=;
+        b=RcQiLjen9MnTUyP0mwt93CuYK5qID8MRKmaVpcZFZQoHI5gs37RP3GHECR/ijjiVfj9KdU
+        ZGs+Zv41YZg66Hlb7k/rkIiO1GGaACLCXL2ZW6eA6hDXGY/QsoQlj8YrFNeyyN1fGd5EgC
+        zHvCIoGUZ3SwKCTJStrtSnq7mQ6gEpk=
+Date:   Wed, 29 Dec 2021 11:03:17 +0100
+From:   Borislav Petkov <bp@alien8.de>
+To:     Dave Young <dyoung@redhat.com>
+Cc:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
+        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, ~okias/devicetree@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: spmi: convert QCOM PMIC SPMI bindings to
- yaml
-Message-ID: <YcwvBj/OeeiPGB8T@google.com>
-References: <20211227170151.73116-1-david@ixit.cz>
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>
+Subject: Re: [PATCH v19 02/13] x86/setup: Use parse_crashkernel_high_low() to
+ simplify code
+Message-ID: <YcwyZRDJUMniSaY9@zn.tnic>
+References: <20211228132612.1860-1-thunder.leizhen@huawei.com>
+ <20211228132612.1860-3-thunder.leizhen@huawei.com>
+ <Ycs3kpZD/vpoo1AX@zn.tnic>
+ <b017a8ea-989b-c251-f5c8-a8a7940877cf@huawei.com>
+ <YcwN9Mfwsh/lPbbd@dhcp-128-65.nay.redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211227170151.73116-1-david@ixit.cz>
+In-Reply-To: <YcwN9Mfwsh/lPbbd@dhcp-128-65.nay.redhat.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Dec 2021, David Heidelberg wrote:
+On Wed, Dec 29, 2021 at 03:27:48PM +0800, Dave Young wrote:
+> So I think you can unify the parse_crashkernel* in x86 first with just
+> one function.  And leave the further improvements to later work. But
+> let's see how Boris think about this.
 
-> Convert Qualcomm PMIC SPMI binding to yaml format.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> 
-> ---
-> v2:
->  - add #address and #size-cells
->  - add reg and remove spmi include from example
-> v3:
->  - fix doc reference error (make refcheckdocs)
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  .../bindings/mfd/qcom,spmi-pmic.txt           |   2 +-
+Well, I think this all unnecessary work. Why?
 
-Acked-by: Lee Jones <lee.jones@linaro.org>
+If the goal is to support crashkernel...high,low on arm64, then you
+should simply *copy* the functionality on arm64 and be done with it.
 
->  .../bindings/spmi/qcom,spmi-pmic-arb.txt      |  65 ----------
->  .../bindings/spmi/qcom,spmi-pmic-arb.yaml     | 120 ++++++++++++++++++
->  3 files changed, 121 insertions(+), 66 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
->  create mode 100644 Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+Unification is done by looking at code which is duplicated across
+architectures and which has been untouched for a while now, i.e., no
+new or arch-specific changes are going to it so a unification can be
+as simple as trivially switching the architectures to call a generic
+function.
+
+What this does is carve out the "generic" parts and then try not to
+break existing usage.
+
+Which is a total waste of energy and resources. And it is casting that
+functionality in stone so that when x86 wants to change something there,
+it should do it in a way not to break arm64. And I fail to see the
+advantage of all that. Code sharing ain't it.
+
+So what it should do is simply copy the necessary code to arm64.
+Unifications can always be done later, when the dust settles.
+
+IMNSVHO.
 
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
