@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03371481036
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 06:56:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC78A481075
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 07:37:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238859AbhL2F4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 00:56:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34822 "EHLO
+        id S234688AbhL2GhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 01:37:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238858AbhL2F4l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 00:56:41 -0500
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30A72C06173F
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 21:56:41 -0800 (PST)
-Received: by mail-pg1-x531.google.com with SMTP id 8so17671694pgc.10
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 21:56:41 -0800 (PST)
+        with ESMTP id S234634AbhL2GhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 01:37:01 -0500
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4503C06173F
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 22:37:00 -0800 (PST)
+Received: by mail-pl1-x630.google.com with SMTP id i6so9198448pla.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 22:37:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=yw8/kl2LGfHC+BRmnmcCo9TSrmmH3aT+nAaekBOiO84=;
-        b=Jz2/jPkRYhFOljG62i4B7CbqP2s+5rpiUExqAr3THdm7ApWZCW3quUvQUc6TCbjvXz
-         ZS14n6yc5QX7S5//GZczK8jcqzKPY5Zyj+klFtCJZ1s/5NB/NociQFp/J76l+mH64w6j
-         vnrH+eOPmptJxsrYRNqWFoE4Edo4GPZq0MjWE/VuxP0VhL/nseetd/yZlI6GiXECgGuY
-         VNRFeWWXwryJXwVTH2juslXxwWQn+tPh92CK6Y6p1Rji40oy52SzTwEXxgITl+fvCkjm
-         yDjpc50piI01C8nsF6lTsHaNgygcBX82iTuGLucZYsVz+AFNhcyUPnhKP67hEITG4wrG
-         TiYg==
+        bh=p7zVEyegDmuj+6n30KCO1S5If0BRlYsdYfkjtOazVTk=;
+        b=US3E/hqHlmnyPzOy/HskFnqIw6YITYtB3SecYzBz/TvRFRiaQ5DNALRLAG1KPwoX4J
+         sdBQ2c6Fm0s8nGLH1iLRLu6FUqFDXjmD5E5kgs1rUOuHC+aCdtwY5dqh2Ev41kZOMVMb
+         JT/44yXGfpcDJ/kOLKnYQIqs7HAjYlSLDIVP98i5KxF2HWCRbPPlFuiGAGcRbPQoTNpq
+         pKVNacwTs8+fmivZ1QHilorH76JfKWLYlHAR+j1FcZCE4uG8HNOHvJyki9/G9qHZ9doc
+         w3+mIdcw/VCRHpkDbNyJyPBV0iBAIkpoMwfbDuFPZgJmId3BIzA0/bGe1/XouW9QehRg
+         3+uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=yw8/kl2LGfHC+BRmnmcCo9TSrmmH3aT+nAaekBOiO84=;
-        b=vNfef7ebRY0FTaz8o7qLRgXOmvQ4tZMnu6brbCXunIhxVXI2Pm/7c3WL5RGimMhGDC
-         F/7AeY+8T35YALMGu0zT1U79l2JQCI3WQPlLqBhYdFjFjIEuXNk7pIWG53/M6BSra75t
-         L/xSQKdXOunJJ2Acn1R8Fd59HHKjVAwI4CV80u66iKIfduyrMscR+AMLI1JH30Go9T4C
-         Fh++7kxpXWFTn+L/iUtar52yy6Z0PGt+qdqkxW3x022J6QjHPU1L59v1+fc5D2w7kkl3
-         oHNWV7uQ2s8lqOhCnquZqyxxhBE29kBXhn2QSKd16vFttJUGwOVMGEPtrgbuosI8rJRk
-         7vqw==
-X-Gm-Message-State: AOAM533jUSScwLx4ReMNrTyENvORTxdIgkqDZ8VrUhu5oCCh4cWy13wp
-        cH5I/hE2sEuteW3nrBIYh+FHfQ==
-X-Google-Smtp-Source: ABdhPJzWVI7pbJHuImaGNh5XJMu92kFHsTAwgUYOuJm6wAZ5cXRl312R6S9VJqBw5q/POmfLp7/urg==
-X-Received: by 2002:a63:ab08:: with SMTP id p8mr17578168pgf.617.1640757400456;
-        Tue, 28 Dec 2021 21:56:40 -0800 (PST)
+        bh=p7zVEyegDmuj+6n30KCO1S5If0BRlYsdYfkjtOazVTk=;
+        b=aYUbnL6X4ym1BQ0fvivkqEq+fn0vhKekNt+71FYyzlIf8HizRDN7zgmntXAEL9i14q
+         +4jxZ2MnCClWdMb6MSyQe1wqN6p13GpqW5M8PyY54/Q3NTVFAwcdqjVjlnV6e62Cd/wC
+         xMtMlnlcuFymJIZr/Ea4yLfhv+mHeHM8DTAHXyBhzAaH4g7r0O23U2je5aeGU964O+r4
+         sbpJN1uHxChlMJTSdbu7SzHoaMEtxlWWJ9XmdyqS7IIWj2Y7lEn50S5sIWT4hrhe1142
+         IfmG+1kOSmN8FsvGE7TGM4mty8zQ9TJ30eheZsjjCAaHHwduI0ufRJPI7sVMXQLCf6Or
+         y1/w==
+X-Gm-Message-State: AOAM5304sn+UVEDFlXybWBFpavMsf6NR9Kr/IUmXtEmd7onSc/o3w7uW
+        z72U0naWoLoP7SA0i/Vg4rc06g==
+X-Google-Smtp-Source: ABdhPJzbQgs3ZiPyG3g68c9CE72l8nXqFUBGdfo2PobHZ4oRqfWUj1AoQFmLtN/bznm5cjXVREY+kQ==
+X-Received: by 2002:a17:902:6a82:b0:148:a2e7:fb5c with SMTP id n2-20020a1709026a8200b00148a2e7fb5cmr25308794plk.157.1640759819836;
+        Tue, 28 Dec 2021 22:36:59 -0800 (PST)
 Received: from google.com ([2401:fa00:1:10:4dea:2b20:ea89:724b])
-        by smtp.gmail.com with ESMTPSA id cx5sm20766657pjb.22.2021.12.28.21.56.36
+        by smtp.gmail.com with ESMTPSA id p37sm18097039pfh.97.2021.12.28.22.36.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Dec 2021 21:56:40 -0800 (PST)
-Date:   Wed, 29 Dec 2021 13:56:35 +0800
+        Tue, 28 Dec 2021 22:36:59 -0800 (PST)
+Date:   Wed, 29 Dec 2021 14:36:54 +0800
 From:   Tzung-Bi Shih <tzungbi@google.com>
 To:     Yunfei Dong <yunfei.dong@mediatek.com>
 Cc:     Alexandre Courbot <acourbot@chromium.org>,
@@ -73,27 +73,47 @@ Cc:     Alexandre Courbot <acourbot@chromium.org>,
         linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
         linux-mediatek@lists.infradead.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v2, 04/12] media: mtk-vcodec: Read max resolution from
- dec_capability
-Message-ID: <Ycv4k+xHupjrualp@google.com>
+Subject: Re: [PATCH v2, 05/12] media: mtk-vcodec: Call
+ v4l2_m2m_set_dst_buffered() set capture buffer buffered
+Message-ID: <YcwCBgw6ZjYwBLFf@google.com>
 References: <20211228094146.20505-1-yunfei.dong@mediatek.com>
- <20211228094146.20505-5-yunfei.dong@mediatek.com>
+ <20211228094146.20505-6-yunfei.dong@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211228094146.20505-5-yunfei.dong@mediatek.com>
+In-Reply-To: <20211228094146.20505-6-yunfei.dong@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 28, 2021 at 05:41:38PM +0800, Yunfei Dong wrote:
+On Tue, Dec 28, 2021 at 05:41:39PM +0800, Yunfei Dong wrote:
 > From: Yunfei Dong <yunfei.dong@mediatek.corp-partner.google.com>
 
-Just realized this on reviewing the 4th patch of the series.  Please fix it to prevent from showing the line in next version series.
+Same as 4th patch.  Please fix it.
 
-> Supported max resolution for different platforms are not the same: 2K
-> or 4K, getting it according to dec_capability.
-> 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> For lat and core architecture, just need to get output buffer for lat
+> decode. For core hardware need to get lat's message and capture buffer.
+> In order to let lat and core decode in parallel, need to set capture
+> buffer buffered.
 
-Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
+I think the description should be rephrased.
+
+I may misunderstand but something like the template:
+"""
+OUTPUT -> lat -> core -> CAPTURE.  Lat and core can work in parallel.
+
+Sets capture buffer buffered to ...
+"""
+
+> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_stateless.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_stateless.c
+> index 5aebf88f997b..23a154c4e321 100644
+> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_stateless.c
+> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_stateless.c
+> @@ -314,6 +314,9 @@ static void mtk_init_vdec_params(struct mtk_vcodec_ctx *ctx)
+>  	src_vq = v4l2_m2m_get_vq(ctx->m2m_ctx,
+>  				 V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
+>  
+> +	if (ctx->dev->vdec_pdata->hw_arch != MTK_VDEC_PURE_SINGLE_CORE)
+> +		v4l2_m2m_set_dst_buffered(ctx->m2m_ctx, 1);
+
+s/1/true/ helps readability.
