@@ -2,86 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53987481382
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 14:30:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42F804813D7
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 15:11:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236223AbhL2NaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 08:30:06 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:49586 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236182AbhL2N3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 08:29:41 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 454F4B8190A;
-        Wed, 29 Dec 2021 13:29:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4942C36AE7;
-        Wed, 29 Dec 2021 13:29:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1640784579;
-        bh=bk4jM8QLUK3Drk+Pn2dYURwUnfzbNco8xaPEn3dvdCU=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=m9AaPfcgi8aWZin3GD1ksPkBlmIPdqIomyB3jW5OoIpD/gsOcT6zhF5p66aDhNV8S
-         hwuNZGkxqEs/oPTd3q++pI+nP+KEv//q5cDaZM32iwENl54VNBw5fF2gK1uNzyiK6O
-         omj3L4FEMSljFBVkKKw5UsNDC43krAeYAGbvQQDU5uy9C5ZwK1gMp3mcAmhMb6OxO2
-         9vPE/c2tShHhkv8q+qKVl1CzrYrZ+VCTyhRmcMdLQy7kPYOPZG8fz6CqMUwWVk1Nsp
-         Bp6Qb0NCHFlqj66vfkBs9XNqrKyV5FlxZGcuR3Hy8XZWvg74/k301qNSxj0qn1gHh6
-         kSgIek5StfNEA==
-From:   Mark Brown <broonie@kernel.org>
-To:     tiwai@suse.com, matthias.bgg@gmail.com,
-        Trevor Wu <trevor.wu@mediatek.com>, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        tzungbi@google.com, jiaxin.yu@mediatek.com, shumingf@realtek.com,
-        alsa-devel@alsa-project.org
-In-Reply-To: <20211228064821.27865-1-trevor.wu@mediatek.com>
-References: <20211228064821.27865-1-trevor.wu@mediatek.com>
-Subject: Re: [PATCH v2] ASoC: mediatek: mt8195: update control for RT5682 series
-Message-Id: <164078457646.1246652.7413539172267193137.b4-ty@kernel.org>
-Date:   Wed, 29 Dec 2021 13:29:36 +0000
+        id S237159AbhL2OL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 09:11:28 -0500
+Received: from ni.piap.pl ([195.187.100.5]:45936 "EHLO ni.piap.pl"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237129AbhL2OL1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Dec 2021 09:11:27 -0500
+Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
+        by ni.piap.pl (Postfix) with ESMTPSA id ADD66C3EDF3E;
+        Wed, 29 Dec 2021 15:11:22 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl ADD66C3EDF3E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
+        t=1640787083; bh=9zhor7CdxbsPCJIO83SEnIytnazMD9oMhN5rLvb/M4Q=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=HYayTqHPjS1OJrn7FnVeJLeW9slV/0uj2awpmgTAo3I/BIIT0EGClS5w6o5TOPoIS
+         OvOwrxape7QZ9KUYx2GnUM+DVdJvMRtCEaUcjIaRQAZoCoOonXPyV5Hm2CSVbhSU5/
+         3tkKyIXSA5gt3hGGWiWwJ6FCvI5viroqsuCOUVm0=
+From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
+To:     Joe Perches <joe@perches.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Jacopo Mondi <jacopo@jmondi.org>
+Subject: Re: [PATCH v6 2/2] Driver for ON Semi AR0521 camera sensor
+References: <m3ee63hkuu.fsf@t19.piap.pl> <m35yrfhkaf.fsf@t19.piap.pl>
+        <cee1bbe6c8dda1c79ba19f7bbf68fc1d74558cae.camel@perches.com>
+Sender: khalasa@piap.pl
+Date:   Wed, 29 Dec 2021 15:11:22 +0100
+In-Reply-To: <cee1bbe6c8dda1c79ba19f7bbf68fc1d74558cae.camel@perches.com> (Joe
+        Perches's message of "Thu, 23 Dec 2021 09:49:58 -0800")
+Message-ID: <m3wnjnfqlx.fsf@t19.piap.pl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-KLMS-Rule-ID: 3
+X-KLMS-Message-Action: skipped
+X-KLMS-AntiSpam-Status: not scanned, whitelist
+X-KLMS-AntiPhishing: not scanned, whitelist
+X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, not scanned, whitelist
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Dec 2021 14:48:21 +0800, Trevor Wu wrote:
-> Playback pop is observed and the root cause is the reference clock
-> provided by MT8195 is diabled before RT5682 finishes the control flow.
-> 
-> To ensure the reference clock supplied to RT5682 is disabled after RT5682
-> finishes all register controls. We replace BCLK with MCLK for RT5682
-> reference clock, and makes use of set_bias_level_post to handle MCLK
-> which guarantees MCLK is off after all RT5682 register access.
-> 
-> [...]
+Hello Joe,
 
-Applied to
+Joe Perches <joe@perches.com> writes:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+>> +/* External clock (extclk) frequencies */
+>> +#define AR0521_EXTCLK_MIN	  (10 * 1000 * 1000)
+>
+> Generally, adding a prefix like AR0521_ to defines that are
+> locally defined in a single file unnecessarily increases
+> identifier length.
 
-Thanks!
+Right. In general, I don't do that (for that very reason), however in
+drivers/media this looks like a common practice and I didn't want to
+break it.
 
-[1/1] ASoC: mediatek: mt8195: update control for RT5682 series
-      commit: c5ab93e289ce554a4e0d47330dde120284541aa1
+> e.g. Using this identifier anywhere
+>
+>> +#define AR0521_REG_HISPI_CONTROL_STATUS_FRAMER_TEST_MODE_ENABLE 0x80
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Right. However, such a name helps looking this up in the docs.
+E.g. the register name in the docs is "hispi_control_status" and the
+bitfield is "framer_test_mode" or something like that.
+Since it's just one register (+ value) and it actually fits in 80
+columns without too much problems, I'd rather like to leave it
+unchanged.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+> Many of the 80 column line lengths and line wrapping used in this
+> file are not really nice to read.  I believe you don't have to be
+> strict about 80 column lines.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Well, personally I think we could all switch to VT100's 132 columns.
+Introduced in '78 :-) That's what I currently use for non-kernel tasks
+(not the VT100 but just the line length). OTOH I'm using that emacs
+wrapping mode so longer lines aren't a problem either.
+But here, in drivers/media, I'm told 80 column is strict.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+>> +#define be		cpu_to_be16
+>
+> It's a pity there's no way to declare an array with all members
+> having a specific endianness.  Making sure all elements in these
+> arrays are declared with be() is tedious.
 
-Thanks,
-Mark
+Right. Unfortunately anything else would mean recoding.
+
+>> +#define AR0521_NUM_SUPPLIES ARRAY_SIZE(ar0521_supply_names)
+>
+> It's almost always better to use ARRAY_SIZE directly and not
+> use a #define for the array size.
+
+It's another custom in drivers/media, but I guess I don't have to follow
+it closely, do I? I never liked the #define.
+
+>> +static int ar0521_set_gains(struct ar0521_dev *sensor)
+>> +{
+> []
+>> +	dev_dbg(&sensor->i2c_client->dev, "%s()\n", __func__);
+>
+> ftrace works and perhaps all the similar debug logging uses aren't
+> really necessary.
+
+TBH I've never used ftrace.
+It appears that it can't show the arguments, can it?
+If not, I'd rather leave these dev_dbg()s in place - like other
+drivers/media/* in fact.
+However obviously the code without deb_dbg()s would be cleaner, so if
+ftrace can show the (formatted) arguments, I'm all for it.
+
+Thanks for looking at this,
+--=20
+Krzysztof "Chris" Ha=C5=82asa
+
+Sie=C4=87 Badawcza =C5=81ukasiewicz
+Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
+Al. Jerozolimskie 202, 02-486 Warszawa
