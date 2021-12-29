@@ -2,152 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F07D48152E
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 17:42:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00763481543
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 17:47:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240854AbhL2QmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 11:42:20 -0500
-Received: from sibelius.xs4all.nl ([83.163.83.176]:50403 "EHLO
-        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234322AbhL2QmU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 11:42:20 -0500
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 079f839a;
-        Wed, 29 Dec 2021 17:42:17 +0100 (CET)
-Date:   Wed, 29 Dec 2021 17:42:17 +0100 (CET)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     kvalo@codeaurora.org, davem@davemloft.net, kuba@kernel.org,
-        robh+dt@kernel.org, rafael@kernel.org, lenb@kernel.org,
-        aspriel@gmail.com, franky.lin@broadcom.com,
-        hante.meuleman@broadcom.com, chi-hsien.lin@infineon.com,
-        wright.feng@infineon.com, chung-hsien.hsu@infineon.com,
-        marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
-        kettenis@openbsd.org, zajec5@gmail.com,
-        pieter-paul.giesberts@broadcom.com, linus.walleij@linaro.org,
-        hdegoede@redhat.com, linville@tuxdriver.com, dekim@broadcom.com,
-        sandals@crustytoothpaste.net, linux-wireless@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-        brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-In-Reply-To: <20211226153624.162281-2-marcan@marcan.st> (message from Hector
-        Martin on Mon, 27 Dec 2021 00:35:51 +0900)
-Subject: Re: [PATCH 01/34] dt-bindings: net: bcm4329-fmac: Add Apple properties & chips
-References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-2-marcan@marcan.st>
-MIME-version: 1.0
-Content-type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Message-ID: <d3cb7b3782b16029@bloch.sibelius.xs4all.nl>
+        id S240905AbhL2QrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 11:47:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240898AbhL2QrD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 11:47:03 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C9FC06173E;
+        Wed, 29 Dec 2021 08:47:02 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 20AC1D6E;
+        Wed, 29 Dec 2021 17:47:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1640796420;
+        bh=ymKJuUNIvrp3/QHbIsO0gRO9KwKbQnHDSoAKgx7VMMQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ITKgtCJX60ss+aEn430yirkaZ87nHCGVxRYHuRLK9nKW4bYLGp60z3za9VwQDGQKU
+         4PG9K2RbnCA2zq7wBUgknmGoRC7wIBRKVI+sDiJRYh/C5C5vUu9lfai9XrNhR2cMJX
+         utWApJhZOqssm/2yqr1sXcuVNAxqFB0jh932HRvU=
+Date:   Wed, 29 Dec 2021 18:46:58 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: display: bridge: renesas,lvds: Document
+ r8a77961 bindings
+Message-ID: <YcyRAk/d2728mDgH@pendragon.ideasonboard.com>
+References: <20211224052309.1997096-1-nikita.yoush@cogentembedded.com>
+ <20211224052309.1997096-4-nikita.yoush@cogentembedded.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211224052309.1997096-4-nikita.yoush@cogentembedded.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Hector Martin <marcan@marcan.st>
-> Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
->         Alyssa Rosenzweig <alyssa@rosenzweig.io>,
->         Mark Kettenis <kettenis@openbsd.org>,
->         Rafał Miłecki <zajec5@gmail.com>,
->         Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
->         Linus Walleij <linus.walleij@linaro.org>,
->         Hans de Goede <hdegoede@redhat.com>,
->         "John W. Linville" <linville@tuxdriver.com>,
->         "Daniel (Deognyoun) Kim" <dekim@broadcom.com>,
->         "brian m. carlson" <sandals@crustytoothpaste.net>,
->         linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
->         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
->         linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
->         SHA-cyfmac-dev-list@infineon.com
-> Date: Mon, 27 Dec 2021 00:35:51 +0900
+Hi Nikita,
+
+Thank you for the patch.
+
+On Fri, Dec 24, 2021 at 08:23:09AM +0300, Nikita Yushchenko wrote:
+> Document the R-Car M3-W+ (R8A77961) SoC in the R-Car LVDS encoder
+> bindings.
 > 
-> This binding is currently used for SDIO devices, but these chips are
-> also used as PCIe devices on DT platforms and may be represented in the
-> DT. Re-use the existing binding and add chip compatibles used by Apple
-> T2 and M1 platforms (the T2 ones are not known to be used in DT
-> platforms, but we might as well document them).
-> 
-> Then, add properties required for firmware selection and calibration on
-> M1 machines.
-> 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
 > ---
->  .../net/wireless/brcm,bcm4329-fmac.yaml       | 32 +++++++++++++++++--
->  1 file changed, 29 insertions(+), 3 deletions(-)
+>  .../devicetree/bindings/display/bridge/renesas,lvds.yaml         | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> index c11f23b20c4c..2530ff3e7b90 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-fmac.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Broadcom BCM4329 family fullmac wireless SDIO devices
-> +title: Broadcom BCM4329 family fullmac wireless SDIO/PCIE devices
->  
->  maintainers:
->    - Arend van Spriel <arend@broadcom.com>
-> @@ -36,16 +36,22 @@ properties:
->                - brcm,bcm43455-fmac
->                - brcm,bcm43456-fmac
->                - brcm,bcm4354-fmac
-> +              - brcm,bcm4355c1-fmac
->                - brcm,bcm4356-fmac
->                - brcm,bcm4359-fmac
-> +              - brcm,bcm4364b2-fmac
-> +              - brcm,bcm4364b3-fmac
-> +              - brcm,bcm4377b3-fmac
-> +              - brcm,bcm4378b1-fmac
-> +              - brcm,bcm4387c2-fmac
->                - cypress,cyw4373-fmac
->                - cypress,cyw43012-fmac
->            - const: brcm,bcm4329-fmac
->        - const: brcm,bcm4329-fmac
+> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
+> index acfc327f70a7..ca5443e5c2e3 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
+> @@ -27,6 +27,7 @@ properties:
+>        - renesas,r8a7791-lvds # for R-Car M2-W compatible LVDS encoders
+>        - renesas,r8a7793-lvds # for R-Car M2-N compatible LVDS encoders
+>        - renesas,r8a7795-lvds # for R-Car H3 compatible LVDS encoders
+> +      - renesas,r8a77961-lvds # for R-Car M3-W+ compatible LVDS encoders
 
-I suppose this helps with validation of device trees.  However, nodes
-for PCI devices are not supposed to have a "compatible" property as
-the PCI vendor and device IDs are supposed to be used to identify a
-device.
+I'll move this line after the next to keep them sorted. No need to
+resubmit.
 
-That does raise the question how a schema for additional properties
-for PCI device nodes is supposed to be defined...
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
->    reg:
-> -    description: SDIO function number for the device, for most cases
-> -      this will be 1.
-> +    description: SDIO function number for the device (for most cases
-> +      this will be 1) or PCI device identifier.
->  
->    interrupts:
->      maxItems: 1
-> @@ -75,6 +81,26 @@ properties:
->      items:
->        pattern: '^[A-Z][A-Z]-[A-Z][0-9A-Z]-[0-9]+$'
->  
-> +  brcm,cal-blob:
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    description: A per-device calibration blob for the Wi-Fi radio. This
-> +      should be filled in by the bootloader from platform configuration
-> +      data, if necessary, and will be uploaded to the device if present.
-> +
-> +  apple,module-instance:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: Module codename used to identify a specific board on
-> +      Apple platforms. This is used to build the firmware filenames, to allow
-> +      different platforms to have different firmware and/or NVRAM config.
-> +
-> +  apple,antenna-sku:
-> +    $def: /schemas/types.yaml#/definitions/string
-> +    description: Antenna SKU used to identify a specific antenna configuration
-> +      on Apple platforms. This is use to build firmware filenames, to allow
-> +      platforms with different antenna configs to have different firmware and/or
-> +      NVRAM. This would normally be filled in by the bootloader from platform
-> +      configuration data.
-> +
->  required:
->    - compatible
->    - reg
-> -- 
-> 2.33.0
-> 
-> 
+>        - renesas,r8a7796-lvds # for R-Car M3-W compatible LVDS encoders
+>        - renesas,r8a77965-lvds # for R-Car M3-N compatible LVDS encoders
+>        - renesas,r8a77970-lvds # for R-Car V3M compatible LVDS encoders
+
+-- 
+Regards,
+
+Laurent Pinchart
