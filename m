@@ -2,128 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E103E48143A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 15:48:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CEEC48144B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 16:04:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240414AbhL2OsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 09:48:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38934 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236856AbhL2OsR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 09:48:17 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6E8DC061574;
-        Wed, 29 Dec 2021 06:48:16 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id j18so44910729wrd.2;
-        Wed, 29 Dec 2021 06:48:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=OMlLUALYJKdFe/JZOoIbTwKW7ZzuyEQvczxSC+L2fy4=;
-        b=gV5diQtKpyLmmu7MzK3MftjSDVmr/TNKs7RNreXjQ40dRcKDEhSERRqvVZS5aJpptu
-         h3PZs7f/OILYzS23AA7Gnj7dcv0JxUvq9tYR76ymZHZveWRJ/yCYwPGoQGyReDQlqN5p
-         2bbBOcLc+WooNqMT/AVLEeiw4wciVXqnVNx33k1pbHY313hpvYkdzN2xkdkvhS4YZV58
-         feodJ/f2+iSdFhNQ+S5O+B1dbFVuOFOepzIoziV64fsujG75Ul4Hx3Z96uXxrnkmitcq
-         VBWsMxPU893TcKYHdQ07KCR0IQi95uAP9OHFccCdLmNYTGelBoBm/K0q3JdclzCXPbW4
-         Ov/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=OMlLUALYJKdFe/JZOoIbTwKW7ZzuyEQvczxSC+L2fy4=;
-        b=1mHqbyps5dwasvGLfypg/5rnTpVQzoNID3R0ySUkJSD6+6IxLwFF6A8tGHyjxC3wN9
-         YxPByqUPebnJgIC5sFydkXcZ/MntOfCUs++QcQXPrcw7c/HOUbvY2OfknEsmivLEez0F
-         Er7pku7GCGMaA81DnOrucXBUyrKXfnOV5ixE/zcIXwtlREXEkxX0NkeTwcJTubocgIxU
-         pT5RAwsLOiDy43UCb0VrA/vgh65aF5gqUa38q2D27DKDtL/OnzpM2rVcaTcTlSxPj/RT
-         ggtf/osATdn40OJ06k3LlixgHUSuefWfKPVry1Z9DxUQbFasu0N+x369hM9jhPGvj+lB
-         SPKA==
-X-Gm-Message-State: AOAM532K2uWBRHxueDTsG5aEMMg8gOzIqifa3QupFngQJqOFkFYYFLBa
-        gLPr0jNHLDuWef0yCT3B49U=
-X-Google-Smtp-Source: ABdhPJy+nTFpxhAiApnXGMcT2sANzUH6lS6azCYKQd7r4UcTWbghoRh8SdR196X/CImptF1IkNaZ2A==
-X-Received: by 2002:adf:db04:: with SMTP id s4mr21643636wri.467.1640789295268;
-        Wed, 29 Dec 2021 06:48:15 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.161.251])
-        by smtp.gmail.com with ESMTPSA id y11sm24767746wry.70.2021.12.29.06.48.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Dec 2021 06:48:14 -0800 (PST)
-Message-ID: <a96ff42c-d8e0-3c26-633e-dad4db18a71a@gmail.com>
-Date:   Wed, 29 Dec 2021 15:48:14 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH v8 02/14] dt-bindings: arm: airoha: Add binding for EN7523
- SoC and EVB
-Content-Language: en-US
-To:     Felix Fietkau <nbd@nbd.name>, linux-arm-kernel@lists.infradead.org,
+        id S240451AbhL2PEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 10:04:37 -0500
+Received: from szxga02-in.huawei.com ([45.249.212.188]:29308 "EHLO
+        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233681AbhL2PEh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 10:04:37 -0500
+Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.53])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4JPF6X5gPxzbjgW;
+        Wed, 29 Dec 2021 23:04:04 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Wed, 29 Dec 2021 23:04:33 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Wed, 29 Dec 2021 23:04:32 +0800
+Subject: Re: [PATCH v19 02/13] x86/setup: Use parse_crashkernel_high_low() to
+ simplify code
+To:     Dave Young <dyoung@redhat.com>, Borislav Petkov <bp@alien8.de>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, <x86@kernel.org>,
+        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        John Crispin <john@phrozen.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211220211854.89452-1-nbd@nbd.name>
- <20211220211854.89452-3-nbd@nbd.name>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20211220211854.89452-3-nbd@nbd.name>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        "Chen Zhou" <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>
+References: <20211228132612.1860-1-thunder.leizhen@huawei.com>
+ <20211228132612.1860-3-thunder.leizhen@huawei.com> <Ycs3kpZD/vpoo1AX@zn.tnic>
+ <b017a8ea-989b-c251-f5c8-a8a7940877cf@huawei.com>
+ <YcwN9Mfwsh/lPbbd@dhcp-128-65.nay.redhat.com> <YcwyZRDJUMniSaY9@zn.tnic>
+ <Ycw8n2BvJzH9wJKG@dhcp-128-65.nay.redhat.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <21736ba2-883d-1037-dbe8-299e40f7ad13@huawei.com>
+Date:   Wed, 29 Dec 2021 23:04:21 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <Ycw8n2BvJzH9wJKG@dhcp-128-65.nay.redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 20/12/2021 22:18, Felix Fietkau wrote:
-> From: John Crispin <john@phrozen.org>
-> 
-> Add devicetree binding for Airoha EN7523 SoC and evaluation board.
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Bert Vermeulen <bert@biot.com>
-> Signed-off-by: Felix Fietkau <nbd@nbd.name>
+On 2021/12/29 18:46, Dave Young wrote:
+> On 12/29/21 at 11:03am, Borislav Petkov wrote:
+>> On Wed, Dec 29, 2021 at 03:27:48PM +0800, Dave Young wrote:
+>>> So I think you can unify the parse_crashkernel* in x86 first with just
+>>> one function.  And leave the further improvements to later work. But
+>>> let's see how Boris think about this.
+>>
+>> Well, I think this all unnecessary work. Why?
+>>
+>> If the goal is to support crashkernel...high,low on arm64, then you
+>> should simply *copy* the functionality on arm64 and be done with it.
+>>
+>> Unification is done by looking at code which is duplicated across
+>> architectures and which has been untouched for a while now, i.e., no
+>> new or arch-specific changes are going to it so a unification can be
+>> as simple as trivially switching the architectures to call a generic
+>> function.
+>>
+>> What this does is carve out the "generic" parts and then try not to
+>> break existing usage.
+>>
+>> Which is a total waste of energy and resources. And it is casting that
+>> functionality in stone so that when x86 wants to change something there,
+>> it should do it in a way not to break arm64. And I fail to see the
+>> advantage of all that. Code sharing ain't it.
 
-Now part of v5.17-tmp/dts32
+It's just a worry, there's uncertainty about whether it's going to be. I think
+the only thing that might change is the default value of "low_size". Of course,
+the alignment size and start address may also change, but most of them can be
+controlled by macros.
 
-Thanks.
+Chen Zhou and I tried to share the code because of a suggestion. After so many
+attempts, it doesn't seem to fit to make generic. Or maybe I haven't figured
+out a good solution yet.
 
-> ---
->   .../devicetree/bindings/arm/airoha.yaml       | 28 +++++++++++++++++++
->   1 file changed, 28 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/arm/airoha.yaml
+
+>>
+>> So what it should do is simply copy the necessary code to arm64.
+>> Unifications can always be done later, when the dust settles.
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/airoha.yaml b/Documentation/devicetree/bindings/arm/airoha.yaml
-> new file mode 100644
-> index 000000000000..fc19b1a6f37b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/airoha.yaml
-> @@ -0,0 +1,28 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/airoha.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Airoha SoC based Platforms Device Tree Bindings
-> +
-> +maintainers:
-> +  - Felix Fietkau <nbd@nbd.name>
-> +  - John Crispin <john@phrozen.org>
-> +
-> +description:
-> +  Boards with an Airoha SoC shall have the following properties.
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - airoha,en7523-evb
-> +          - const: airoha,en7523
-> +
-> +additionalProperties: true
-> +
-> +...
+> I think I agree with you about the better way is to doing some
+> improvements so that arches can logically doing things better.  I can
+> leave with the way I suggested although it is not the best.  But I think
+> Leizhen needs a clear direction about how to do it. It is very clear
+> now.  See how he will handle this. 
+
+Surviving, then pursuing ideals.
+
+I will put the patches that make arm64 support crashkernel...high,low to
+the front, then the parse_crashkernel() unification patches. Even if the
+second half of the patches is not ready for v5.18, the first half of the
+patches is ready.
+
 > 
+>>
+>> IMNSVHO.
+>>
+>> -- 
+>> Regards/Gruss,
+>>     Boris.
+>>
+>> https://people.kernel.org/tglx/notes-about-netiquette
+>>
+> 
+> .
+> 
+
+-- 
+Regards,
+  Zhen Lei
