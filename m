@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D26BF481010
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 06:36:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6376A481017
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 06:36:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238779AbhL2FgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 00:36:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58514 "EHLO
+        id S229666AbhL2FgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 00:36:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234267AbhL2FgD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 00:36:03 -0500
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72543C061574
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 21:36:03 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id b1-20020a17090a990100b001b14bd47532so19006439pjp.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 21:36:03 -0800 (PST)
+        with ESMTP id S236777AbhL2FgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 00:36:20 -0500
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D455DC061574
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 21:36:19 -0800 (PST)
+Received: by mail-pf1-x42a.google.com with SMTP id m1so17884105pfk.8
+        for <devicetree@vger.kernel.org>; Tue, 28 Dec 2021 21:36:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=LCWTLU499vgUIibOB7RC/Lf29OvyjLAfzziGpa9pprc=;
-        b=UHG2Wr/bUh9+RG3z6/wLDKvolZg27kHxzETT+w1PyYUO0M/sEDfnfDaXFK1/Fe+EgQ
-         EPmePdb9FtgIXRoeOSmBlqYRDCHjdVhn5U3zfC73wvgE9tX1KbrJH1jfp4d9PlDGU/XQ
-         WN/0TGLd8cDAoQlePh8eUjttGzfucKl1hZPjfzGSC0zx4iosSx7jERUbeqLcHxD1Cxfo
-         lcoILVOjDWFPER13QQjV2dxLhxvnSaNP2wnyqahYu84szMUf1fvfvQZr6YYtlaI5wHbk
-         RCareXx3mv9jLuqA1CDDe+stKGjbppVraM/vQFxLpzLq2BY9y8oEUIp+Z/T5s5sQNUgp
-         GWXA==
+        bh=Nsu5SLu33j/sE27MQRMv94REvtF5KHoUUdJ/rRJCBKc=;
+        b=LhGTWxNvS8f/k6IwrYBQ9w+endDRu4HsYOTFu77KuXJeWzeMmaw4hKbczXWI/szDDk
+         wS4FZUCSdhkkh2Mn4fAK/stz6O2G7EcqFlEBlPQpKd8E6vA9/z8DzNyE6Ix4EwfqQFOF
+         wjEckNlMPsww8Z5MFcn/GJUpSlbdroyWpjmndn9A/3brVFseH0ZbtG8hzf3O0OykSxWZ
+         B0ZVZq/f2NHlyuqqmNdQFMZEy5B9BSd62iU0AYsI7oM7jKhW/0J20tjrdxvJVGjuDGF5
+         45ARdKJqro60BwRNng8lAOOynIvKiiijeukxyu01rlWZpyq4hFhRrthVM7Kh95aisejd
+         ynpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=LCWTLU499vgUIibOB7RC/Lf29OvyjLAfzziGpa9pprc=;
-        b=ulDW2LFjwsqFazkmw4OikNEVp4M1nkroTdJkVGYhG0PRgu1U040c0Fx4csFCdDOghh
-         tKf63S0Ddt/UX5MKnpxw8Oa+9RoACEF41gF/pe0gnHpowJAKkiHcS19sKjQdZT4Mvlnq
-         WBCxSxMCWBrSMw8ehkFV2tgRpJJFirzQKD/ujRNWNReoCAjOzBOG2rpmj/pOkpt1TrTc
-         JrVcLOM6wsubK9UnncM7MgO8cHGo4ySV+Zf9+V0zsYCd6uLzDQe5NzJ/7vvsJwKU33QC
-         t9UqyUUq6UlXZSvXpSK9nVefs7qa/YnhA3K51KC6lbrCn8wtjNyZqH2Bn/UIlp7gVKta
-         PbyA==
-X-Gm-Message-State: AOAM531a61WFWg3bXnKLkbZ9QVW/qjJfwEo7Ecqf3hUvrqgsXsKLa593
-        FPdf23PplQpQXlFXgzYOMstOzA==
-X-Google-Smtp-Source: ABdhPJwI3ybkjKJD6RZt2826LHFESA/M3BbWEhFyh7OncX6wgaoW14cNyMMqRzWh+NFFFl1UtWzOSA==
-X-Received: by 2002:a17:902:6b02:b0:149:7c20:c15b with SMTP id o2-20020a1709026b0200b001497c20c15bmr13898631plk.173.1640756162651;
-        Tue, 28 Dec 2021 21:36:02 -0800 (PST)
+        bh=Nsu5SLu33j/sE27MQRMv94REvtF5KHoUUdJ/rRJCBKc=;
+        b=qzU9fl91kluIjcWJsYSIABRXh7x7F+dWC8DOGUvuVq0n7732zfIzpkeEE3O/vdk9gZ
+         1Ej3sE9onHXlM+0ROfnNYYQYQh3yzeTd4FZjnNe/7bOpFnzQeAmiaOC6N5Fsgq931T3G
+         VMSmx6CQfEVC0sVexw2WVwN1yHJlMPo8bQxq7T8IxVCcnUr6lV2TXyn7BJpcW2PTGt7l
+         nIA3H36GbOdcCZBaRIPkDyZGR+PrgXWtijGenM30RByv0FsEUpg/wsMwytYjrwuhvLQ8
+         hBUowv5qDWGLSRYOmcxQQzOT2fbxhmkKdGRQvDH/8ioNBivqWFTSB/9yxdeg/1hZnFm3
+         Y5Iw==
+X-Gm-Message-State: AOAM530ahA/em3c3mkxesenToa0P2tQU2PO4AGyLju+w5zciJ7mp4gCI
+        HhWPPYGy1HOezKQ5BTuqy/+5fQ==
+X-Google-Smtp-Source: ABdhPJzQuki0iGD+cAH6k2vcVjIwQQyRJUo+cD69ZoMLZ/4KGBWqzam4XH+vbVYrMkUhzsc3Kiugrw==
+X-Received: by 2002:aa7:8bc3:0:b0:4bb:d87:c988 with SMTP id s3-20020aa78bc3000000b004bb0d87c988mr25335502pfd.66.1640756178267;
+        Tue, 28 Dec 2021 21:36:18 -0800 (PST)
 Received: from google.com ([2401:fa00:1:10:4dea:2b20:ea89:724b])
-        by smtp.gmail.com with ESMTPSA id w7sm23509460pfu.180.2021.12.28.21.35.58
+        by smtp.gmail.com with ESMTPSA id bg23sm20695639pjb.24.2021.12.28.21.36.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Dec 2021 21:36:02 -0800 (PST)
-Date:   Wed, 29 Dec 2021 13:35:57 +0800
+        Tue, 28 Dec 2021 21:36:18 -0800 (PST)
+Date:   Wed, 29 Dec 2021 13:36:13 +0800
 From:   Tzung-Bi Shih <tzungbi@google.com>
 To:     Yunfei Dong <yunfei.dong@mediatek.com>
 Cc:     Alexandre Courbot <acourbot@chromium.org>,
@@ -73,24 +73,25 @@ Cc:     Alexandre Courbot <acourbot@chromium.org>,
         linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
         linux-mediatek@lists.infradead.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v2, 01/12] media: mtk-vcodec: Add vdec enable/disable
- hardware helpers
-Message-ID: <YcvzvXQ2Yov3OSvZ@google.com>
+Subject: Re: [PATCH v2, 02/12] media: mtk-vcodec: Using firmware type to
+ separate different firmware architecture
+Message-ID: <YcvzzZJJBoVtsU/y@google.com>
 References: <20211228094146.20505-1-yunfei.dong@mediatek.com>
- <20211228094146.20505-2-yunfei.dong@mediatek.com>
+ <20211228094146.20505-3-yunfei.dong@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211228094146.20505-2-yunfei.dong@mediatek.com>
+In-Reply-To: <20211228094146.20505-3-yunfei.dong@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 28, 2021 at 05:41:35PM +0800, Yunfei Dong wrote:
+On Tue, Dec 28, 2021 at 05:41:36PM +0800, Yunfei Dong wrote:
 > From: Yunfei Dong <yunfei.dong@mediatek.corp-partner.google.com>
 > 
-> Lock, power and clock are highly coupled operations. Adds vdec
-> enable/disable hardware helpers and uses them.
+> MT8173 platform use vpu firmware, mt8183/mt8192 will use scp
+> firmware instead, using chip name is not reasonable to separate
+> different firmware architecture. Using firmware type is much better.
 > 
 > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 
