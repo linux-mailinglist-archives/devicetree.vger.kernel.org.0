@@ -2,100 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B769A4815D4
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 18:35:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A3A7481608
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 19:18:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237653AbhL2RfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 12:35:01 -0500
-Received: from mail-vk1-f169.google.com ([209.85.221.169]:35405 "EHLO
-        mail-vk1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237592AbhL2RfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 12:35:01 -0500
-Received: by mail-vk1-f169.google.com with SMTP id c10so12181809vkn.2;
-        Wed, 29 Dec 2021 09:35:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=aUHpp8EvSHkbTSOpO7EAhwgN47lj/B2NCRjAH8ogVNY=;
-        b=j2VAyX90SahRtzu7se71HL81ofR90BObMQATOGYTCRTbQeI8MHBQB4hlCtx6sG2rvP
-         4K5/zBZBRne54/yXkpBT5zs+eIy+TwIRR/6SoPXiVa8SS5fXuEJIcumhIpY2GFXqClYM
-         o95NLCZ0Ey4qdykwO1i9XfDLdtxtzrQRVIVsZERAF0WyyflJPvmUn4nMLkMYAyKd2nCn
-         Vu9JN96NbtFXbT3ddKBXEZgraYaVtrzZA/Ma4M+t4bD9NDl3F6GtQx0UsOzp07pO1F4g
-         c0sd/sMO35Snaf5sHxgVvlOCKxTPu71HO9Ft9itDL85FHiXOdm8/A7CosSkR0GnGiwhb
-         ecMw==
-X-Gm-Message-State: AOAM532ClB9fdV3vut6v6JQcOc+jPyF6978iVfkA9RrihGCBEX1XFBmr
-        HQaHXGKwx0SEIeXeRj8Enw==
-X-Google-Smtp-Source: ABdhPJyOF0vl8XP8OvBBTML/uKoHyRuxtjN0Rnlem0Y5Od2GAtuBNGgE57jGrVSn7Nm5hRfh5D2x1w==
-X-Received: by 2002:a05:6122:91e:: with SMTP id j30mr9169182vka.20.1640799299996;
-        Wed, 29 Dec 2021 09:34:59 -0800 (PST)
-Received: from robh.at.kernel.org ([209.91.231.198])
-        by smtp.gmail.com with ESMTPSA id m62sm1805207uam.0.2021.12.29.09.34.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Dec 2021 09:34:59 -0800 (PST)
-Received: (nullmailer pid 824017 invoked by uid 1000);
-        Wed, 29 Dec 2021 17:34:56 -0000
-From:   Rob Herring <robh@kernel.org>
+        id S229638AbhL2SS1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 13:18:27 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:40244 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229472AbhL2SS0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 13:18:26 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2086EB819CD;
+        Wed, 29 Dec 2021 18:18:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 535BDC36AE7;
+        Wed, 29 Dec 2021 18:18:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640801903;
+        bh=vCthyItRqvizxx+azzolTtTuoxGMbjuUmtjnpPICm/Q=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ZQXOI5B+oIETYvasY8oymoljGcK/VvE4fSWsWOyEPFTzVu2ksCWiYMwb+YoqJMvUZ
+         er/mnKq1Zvj+eVYLy5cJ7IgSu6jzAiFiCmfiDIIh2PXBsiQhvoxQJ4eTD12t5qs9Zd
+         mKQZsK75Kkx6ncoUUnAX0H1+ZWX3GXof1a26a+Ob/d0sFd7fZpaK266D7hdgrFE4ti
+         ainu63KDMVgNDYVKk3/AF6ZeBgUxhaXUOkmh1OOSUvlztccLE+LFhPuwVv7vFEn/1t
+         1GEuAw6gi3ljFSMJaT9HHaqWe8RbzwhgJJGM213jYewNzEwSzq9Ly9tRKR12kpehJJ
+         Oshf3SSSZX4Fg==
+Date:   Wed, 29 Dec 2021 10:18:22 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
 To:     Michael Walle <michael@walle.cc>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>, netdev@vger.kernel.org,
-        Richard Weinberger <richard@nod.at>,
-        linux-mtd@lists.infradead.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, Li Yang <leoyang.li@nxp.com>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>
-In-Reply-To: <20211228142549.1275412-3-michael@walle.cc>
-References: <20211228142549.1275412-1-michael@walle.cc> <20211228142549.1275412-3-michael@walle.cc>
-Subject: Re: [PATCH 2/8] dt-bindings: nvmem: add transformation bindings
-Date:   Wed, 29 Dec 2021 13:34:56 -0400
-Message-Id: <1640799296.468454.824016.nullmailer@robh.at.kernel.org>
+Cc:     zajec5@gmail.com, andrew@lunn.ch, davem@davemloft.net,
+        devicetree@vger.kernel.org, hkallweit1@gmail.com,
+        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, rafal@milecki.pl, robh+dt@kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH] of: net: support NVMEM cells with MAC in text format
+Message-ID: <20211229101822.7a740aed@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
+In-Reply-To: <20211229124047.1286965-1-michael@walle.cc>
+References: <20211223122747.30448-1-zajec5@gmail.com>
+        <20211229124047.1286965-1-michael@walle.cc>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 28 Dec 2021 15:25:43 +0100, Michael Walle wrote:
-> Just add a simple list of the supported devices which need a nvmem
-> transformations.
-> 
-> Also, since the compatible string is prepended to the actual nvmem
-> compatible string, we need to match using "contains" instead of an exact
-> match.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
->  .../devicetree/bindings/mtd/mtd.yaml          |  7 +--
->  .../bindings/nvmem/nvmem-transformations.yaml | 46 +++++++++++++++++++
->  2 files changed, 50 insertions(+), 3 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml
-> 
+On Wed, 29 Dec 2021 13:40:47 +0100 Michael Walle wrote:
+> > Some NVMEM devices have text based cells. In such cases MAC is stored in
+> > a XX:XX:XX:XX:XX:XX format. Use mac_pton() to parse such data and
+> > support those NVMEM cells. This is required to support e.g. a very
+> > popular U-Boot and its environment variables.
+> >=20
+> > Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> > ---
+> > Please let me know if checking NVMEM cell length (6 B vs. 17 B) can be
+> > considered a good enough solution. Alternatively we could use some DT
+> > property to make it explicity, e.g. something like:
+> >=20
+> > ethernet@18024000 {
+> > 	compatible =3D "brcm,amac";
+> > 	reg =3D <0x18024000 0x800>;
+> >=20
+> > 	nvmem-cells =3D <&mac_addr>;
+> > 	nvmem-cell-names =3D "mac-address";
+> > 	nvmem-mac-format =3D "text";
+> > }; =20
+>=20
+> Please note, that there is also this proposal, which had such a conversion
+> in mind:
+> https://lore.kernel.org/linux-devicetree/20211228142549.1275412-1-michael=
+@walle.cc/
+>=20
+> With this patch, there are now two different places where a mac address
+> format is converted. In of_get_mac_addr_nvmem() and in the imx otp driver.
+> And both have their shortcomings and aren't really flexible. Eg. this one
+> magically detects the format by comparing the length, but can't be used f=
+or
+> to swap bytes (because the length is also ETH_ALEN), which apparently is a
+> use case in the imx otp driver. And having the conversion in an nvmem
+> provider device driver is still a bad thing IMHO.
+>=20
+> I'd really like to see all these kind of transformations in one place.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+FWIW offsetting from a common base address is relatively common, that's
+why we have:
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml:19:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml:20:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
-
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1573687
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+/**
+ * eth_hw_addr_gen - Generate and assign Ethernet address to a port
+ * @dev: pointer to port's net_device structure
+ * @base_addr: base Ethernet address
+ * @id: offset to add to the base address
+ *
+ * Generate a MAC address using a base address and an offset and assign it
+ * to a net_device. Commonly used by switch drivers which need to compute
+ * addresses for all their ports. addr_assign_type is not changed.
+ */
+static inline void eth_hw_addr_gen(struct net_device *dev, const u8 *base_a=
+ddr,
+				   unsigned int id)
