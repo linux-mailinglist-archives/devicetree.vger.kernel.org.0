@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 352D44813E8
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 15:15:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 755DA4813EA
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 15:15:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240183AbhL2OPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 09:15:37 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:36544
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240159AbhL2OPf (ORCPT
+        id S240164AbhL2OPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 09:15:40 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:41020
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240170AbhL2OPf (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
         Wed, 29 Dec 2021 09:15:35 -0500
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
+Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 060CC40710
-        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 14:15:33 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 6BE833F1AF
+        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 14:15:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640787333;
-        bh=UlJjLAfS40qt5leudPWhfuRwJJRufaBrjQlrhE6JqdI=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=fbUWzs3gCad0e67u/90GE275tv/Lnz4IxlIb4CyO8SrX8IEq9qC530qBY2ZtyUyG2
-         LbVEUWRAivkfpwXt4XhdkTrI2Scwvqi9FvK9924yot1oxu+QDUGzSTYNlmMTZ3oy4B
-         t0BL2e9Z3fULeKUqTaD6deKHMbOribBqCc5HwrscLqOxxwEvQMHJCR0Em55zKYT11e
-         Rz0BoQwnNjumO8Z9wn5Kqram3f6+SOgaKjfvR8Dpu9m6Pwg/v5gThyRV+8W3pDSHb2
-         Gxt3x9LbVsGtNtRNExee5WJs3rYoBH4ho1gMXqQP/0P981H/tiVIlGv24A41XsJpOb
-         TH+ATPhgzt1uQ==
-Received: by mail-lj1-f199.google.com with SMTP id e7-20020a05651c090700b0022d70efe931so7332542ljq.10
-        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 06:15:32 -0800 (PST)
+        s=20210705; t=1640787334;
+        bh=HbKpfkrZUGdadD7XmgDwzNz9vUvDJVLjf2lMxGGzeCA=;
+        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version;
+        b=Es7GRG35Q2c9lUb1rOL3h00HWAww7hFFlh/y6OsLz4BGjY7k92kEtuHa5e3FZR7MA
+         tg0IGF+sMJqu160hntY7BKEF0b7cl8yhplAkrNDl6arlCznffNz0vSkKlpo/sHqIdx
+         8rFG/XhfrKxhgPUsjhNZFcRxpFvpFHVadN+4LvLsF1/J2tO95+awTSSutc4Wzb6vlO
+         LBYJOBj6rwRsmIb8C0yZpiHPztPloMTxcZ+UIZCvIW/edb+Kmm0pPcj8wDy9LDPtHK
+         gcmskskRyYJR3gltuCioN81Xy5qfn+IfbYCzVEOmNEYWsW4j7fRx7CYmnRe4XJpfZJ
+         pcejCvzpd5XGQ==
+Received: by mail-lj1-f200.google.com with SMTP id k11-20020a05651c0a0b00b0022dc4d55f14so4339038ljq.22
+        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 06:15:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UlJjLAfS40qt5leudPWhfuRwJJRufaBrjQlrhE6JqdI=;
-        b=AF9SRHsXBQE+ScJx6c3fVsNddALTA2oXYUu/oTNnCCTsc7MP0Z+e2ldg8T+7vuTrMP
-         IiuQpsO9o48vcVqxVTlKv5AYx6jy+NzOc3NK03Kkku5sfXSyBVk+zxuHtXv95JCCc+g6
-         K2Aaw5R4cdUmJY6iG5y3xIbmopxu8YoRumde7mw2pDm4ey9THVro3lNHZUReGW0OsyCI
-         mBbNqsVX4xf5+pFMpGFfkpXtYj63sx0o1w/l0EZLTBJNsYnQ+8ZGR74G1mXY/lbr9Ph2
-         LaJMAghYlUYVXaee1wevIL0/YnEsSksbkrz1rcNiwg8sovrBSrygM7h9aSAI45AtpgQe
-         Kdvw==
-X-Gm-Message-State: AOAM530FeOuuo5HOG1GkGAWWVdHuAFzpkYtOSE2mu6tMlsU6BaVPKYYh
-        56YmgF8gJTdbUPHHqQqKXkWrcsWDPGZz8J4kBf4ny3q3pjO7m1kcgS7BlrfNfwJuggSB3VMt2Vl
-        NQNrb4OKgEXpvB30Xr5g24Zk1eZV1fO1xkj8h3io=
-X-Received: by 2002:a05:651c:ba8:: with SMTP id bg40mr18007302ljb.276.1640787332073;
-        Wed, 29 Dec 2021 06:15:32 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJz5TtuMxYfpkf1FSMtnQIraHesCWHTbGXlzooBflaELIyumSIPdU/aIFK3/MPK4jIGTN5L8Vw==
-X-Received: by 2002:a05:651c:ba8:: with SMTP id bg40mr18007281ljb.276.1640787331900;
-        Wed, 29 Dec 2021 06:15:31 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=HbKpfkrZUGdadD7XmgDwzNz9vUvDJVLjf2lMxGGzeCA=;
+        b=jitvzhsgiCr59dqHATxbSV6UGSsPNYhL2Rj1irBoLck6gKbp5PY76W4ueGMIfvLVsW
+         ij5N+Kp8itVCXel0i1FosvB+C/Z9QWaSepot/gn4HB6fcDptUsLeWF6XdW/QQUYLt7H2
+         2KggkhCl8ygxytitln5oH9b59sPmh/Tq650BC8sAasUqdbFa9qbi7UJBLmCL//7VJqjy
+         XmwfcxYKfOVVdyy09v+uzRGoblw0IAuCzuUP6uWDuLfwbqdVRIjakCeIu5VDrUlMLNd8
+         PKWGsSKiPtWF04jiLO+bEBcf3UiH0UFGXXy9c0EnelK7L3oWa2GT0xtxsBxdZvw394v5
+         Fyyg==
+X-Gm-Message-State: AOAM531jOkef2dWOoCFFtjD46wzioBGaCe32NSm4HEwniaklR60D1Fq/
+        kjb5FV+B0yKrbxaIUxXB4qTBrsvKrtN9u38H3dLuKLJKKv0aawzWIc7w6nx7YeG4TkOgDceOgMg
+        zqziWtT841VEEri1d0yOSvfdOBCgzBs5P1/HvfXw=
+X-Received: by 2002:a2e:8296:: with SMTP id y22mr16677144ljg.428.1640787333911;
+        Wed, 29 Dec 2021 06:15:33 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwjXxL7aKWt636pncf+xiaoHP44LWKxcavbqPXExP82pcMnBTYB6VgLf5x+PqOMV16O88Co8w==
+X-Received: by 2002:a2e:8296:: with SMTP id y22mr16677129ljg.428.1640787333748;
+        Wed, 29 Dec 2021 06:15:33 -0800 (PST)
 Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id a16sm1316164ljm.98.2021.12.29.06.15.30
+        by smtp.gmail.com with ESMTPSA id a16sm1316164ljm.98.2021.12.29.06.15.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Dec 2021 06:15:31 -0800 (PST)
+        Wed, 29 Dec 2021 06:15:32 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
         Chanwoo Choi <cw00.choi@samsung.com>,
@@ -63,49 +64,56 @@ To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
         linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org
-Subject: [PATCH 0/4] mfd/power/regulators: dt-bindings: max14577: convert to dtschema
-Date:   Wed, 29 Dec 2021 15:15:20 +0100
-Message-Id: <20211229141524.34174-1-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 1/4] ARM: dts: exynos: Align MAX77836 nodes with dtschema on Monk and Rinato
+Date:   Wed, 29 Dec 2021 15:15:21 +0100
+Message-Id: <20211229141524.34174-2-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20211229141524.34174-1-krzysztof.kozlowski@canonical.com>
+References: <20211229141524.34174-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The newly introduced dtschema for MAX77836 MUIC requires proper naming
+of extcon child node.
 
-Dependencies:
-1. DTS patch 1/4: nothing depends on it, sending here so Rob's automatic
-   checker won't complain about DTS.
-   I will take it via Samsung SoC tree.
+This should not have actual impact on MFD children driver binding,
+because the max77836 MFD driver uses compatibles.
 
-2. Final MFD patch (4/4) depends on regulator and power, so the last
-   patches (2+3+4) should go via same tree.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ arch/arm/boot/dts/exynos3250-monk.dts   | 2 +-
+ arch/arm/boot/dts/exynos3250-rinato.dts | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-Best regards,
-Krzysztof
-
-Krzysztof Kozlowski (4):
-  ARM: dts: exynos: Align MAX77836 nodes with dtschema on Monk and
-    Rinato
-  dt-bindings: power: supply: maxim,max14577: convert to dtschema
-  regulator: dt-bindings: maxim,max14577: convert to dtschema
-  dt-bindings: mfd: maxim,max14577: convert to dtschema
-
- .../devicetree/bindings/mfd/max14577.txt      | 147 -------------
- .../bindings/mfd/maxim,max14577.yaml          | 195 ++++++++++++++++++
- .../bindings/power/supply/maxim,max14577.yaml |  84 ++++++++
- .../bindings/regulator/maxim,max14577.yaml    |  81 ++++++++
- MAINTAINERS                                   |   3 +-
- arch/arm/boot/dts/exynos3250-monk.dts         |   2 +-
- arch/arm/boot/dts/exynos3250-rinato.dts       |   2 +-
- 7 files changed, 364 insertions(+), 150 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mfd/max14577.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max14577.yaml
- create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,max14577.yaml
- create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max14577.yaml
-
+diff --git a/arch/arm/boot/dts/exynos3250-monk.dts b/arch/arm/boot/dts/exynos3250-monk.dts
+index 8b41a9d5e2db..02a9dc479d34 100644
+--- a/arch/arm/boot/dts/exynos3250-monk.dts
++++ b/arch/arm/boot/dts/exynos3250-monk.dts
+@@ -69,7 +69,7 @@ max77836: pmic@25 {
+ 			reg = <0x25>;
+ 			wakeup-source;
+ 
+-			muic: max77836-muic {
++			extcon {
+ 				compatible = "maxim,max77836-muic";
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/exynos3250-rinato.dts b/arch/arm/boot/dts/exynos3250-rinato.dts
+index 5f7f8fedfb92..6d2c7bb19184 100644
+--- a/arch/arm/boot/dts/exynos3250-rinato.dts
++++ b/arch/arm/boot/dts/exynos3250-rinato.dts
+@@ -70,7 +70,7 @@ max77836: pmic@25 {
+ 			reg = <0x25>;
+ 			wakeup-source;
+ 
+-			muic: max77836-muic {
++			extcon {
+ 				compatible = "maxim,max77836-muic";
+ 			};
+ 
 -- 
 2.32.0
 
