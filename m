@@ -2,89 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C45AE481485
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 16:41:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 560184814DF
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 17:10:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240593AbhL2PlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 10:41:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50560 "EHLO
+        id S237388AbhL2QKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 11:10:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237096AbhL2PlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 10:41:22 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95C96C061574
-        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 07:41:22 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id be32so35445294oib.11
-        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 07:41:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=k8xcoM08aGsQ9cgOiWILeKp3rFeqCGSS3Z+ipGXVLHU=;
-        b=rwvDoEk/kN13V2PMeafxRzr64jH39i+khURkn4NYSnLlyLDE/zubrsMHorgomf5ZdW
-         ofdrt4LcayFTFAIXQ218p3IxCVFu/IKFBucpaYzXAsWKTEWAyzrI+OrMwYp9SR02kxXG
-         YBDmORwtu8QGG6Y5Cg2QDtFrQivrTANYT33g+6TKqV4zbbo/4P8QdULaRtc7cQdpax1Z
-         4NvEKbWPnXyVXrcyQ8e18xEppjuy694uWVwou/u/tJFYsiwVfPK/ZmOISZlJo/HjD0Mu
-         0hfN5DDDwSvPuHXaaNVQttJq7LNjVZ/QjvKY9Bqc72QaCwuu+ojUEm/uCESmSH8imDI8
-         5rJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=k8xcoM08aGsQ9cgOiWILeKp3rFeqCGSS3Z+ipGXVLHU=;
-        b=2vyOw+/vxLuI9fRLXSfxMIhKI/6SoYqZkZhThpc5KgYU43nZjST6x2AIdgFAZ37pwB
-         TDzl/nGlsOxEbkZ2G94RUuOEjrFEG3M91MkPdEpoQc20gPwbYAp1jtcNUQoB6nNbo2ec
-         JrrEBStzKeOO7yDDflMBLT5kjv0+ROiewwlZ98xyD3EmiVfAOd+yIP3ZNjaAC8lSyiHH
-         CuKlMzm41F7+4wo+eSwiQtYvK1DXDgkOTRlUf/CqmOdfrQ3BfU9jLlG921YyKueh8FwQ
-         ARZupBV/3KlERJxluyZ2p5cb/bavfcZXmD9+pIyq2MW25tDOfwNrEIznhoHKQX2GI0sT
-         IUDA==
-X-Gm-Message-State: AOAM533CqivUz2Z/9T0PWWqMf1n7ypqjAK0OqTYCEm8Z857DB7sSlO8F
-        G7XOxNt0Zl+Ek0N7Gbzn/V8Hfw==
-X-Google-Smtp-Source: ABdhPJwJUr/fpObTJMHPrT/NkF6fQxl07QYgOqC8iAwJuKY/YU1wquZM9/dXbiKugVMhqjvafFZ8sA==
-X-Received: by 2002:a05:6808:1396:: with SMTP id c22mr21870052oiw.59.1640792481997;
-        Wed, 29 Dec 2021 07:41:21 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id k101sm3988166otk.60.2021.12.29.07.41.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Dec 2021 07:41:21 -0800 (PST)
-Date:   Wed, 29 Dec 2021 07:42:19 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     20200622075956.171058-5-bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm8250: Drop tcsr_mutex syscon
-Message-ID: <YcyB21OI0GVhNmQJ@ripper>
-References: <JWEO4R.7M77VCZXYS531@ixit.cz>
+        with ESMTP id S229528AbhL2QKe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 11:10:34 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D723C061574;
+        Wed, 29 Dec 2021 08:10:34 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 40133B81904;
+        Wed, 29 Dec 2021 16:10:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44B02C36AE9;
+        Wed, 29 Dec 2021 16:10:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640794230;
+        bh=8t7mrNFu3LPmCwf7053YLkDEk1ZfHFwv2/JCjqAhjJ4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=kdKr/oV/pCcCp2EJq7Pm/JFgmwkuhph7KGIe+5GWj7NGSsVpSI9WMKtSCBkkzI5U8
+         jrAwi95tGe0HIOHDNvwwvLktREFIL8JRi0VcYFWJ2TyaLsbKzi7LcOVutXbP7Yx2ul
+         Fn0trEk1mkbxK1Eh3rWDcGIAFz2fUM3UFxzm/IKWcyu6ipI9ojgMPgjltluiHgZdrZ
+         s0M39YiIAGOrm8zrgexTH9WOr/bnhr/WtTWbsJpkONnLfSOaIBQmlPDfsUM8MC1cd0
+         Uhn5+7/wKRQFaA1fVlJjve6wvBOdtaPsum+h2/gRFXeG+BdDLZqOfErofvWIfP6OdI
+         h3tJPnYSU9Xnw==
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH 0/7] arm/arm64: dts: Remove unused num-viewport from pcie node
+Date:   Thu, 30 Dec 2021 00:02:38 +0800
+Message-Id: <20211229160245.1338-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <JWEO4R.7M77VCZXYS531@ixit.cz>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 25 Dec 06:57 PST 2021, David Heidelberg wrote:
+After commit 281f1f99cf3a("PCI: dwc: Detect number of iATU windows"),
+the number of iATU windows is detected at runtime, what's more,
+the 'num-viewport' property parsing has been removed, so remove the
+unused num-viewport from pcie node(s).
 
-> Hello,
-> 
-> any particular reason, why you did applied this patch only to sm8250?
-> 
+It's too late for linux-5.17-rc1, I will rebase and send out v2 if
+necessary when 5.17-rc1 is released.
 
-I was working on a 8250 board when this annoyed me, and I wanted to keep
-the "example" clean so I only did that platform and then forgot to go
-back and clean up the rest. (Same thing with the smem compatible moving
-to reserved-memory).
+Jisheng Zhang (7):
+  ARM: dts: ls1021a: remove unused num-viewport from pcie nodes
+  arm64: dts: visconti: Remove unused num-viewport from pcie node
+  arm64: dts: uniphier: Remove unused num-viewport from pcie node
+  arm64: tegra: Remove unused num-viewport from pcie node
+  arm64: dts: marvell: Remove unused num-viewport from pcie node
+  arm64: dts: freescale: Remove unused num-viewport from pcie node
+  arm64: dts: exynos: Remove unused num-viewport from pcie node
 
-> Is it safe to convert rest of tcsr-mutex nodes to new schema without
-> additional testing?
-> 
+ arch/arm/boot/dts/ls1021a.dtsi                          | 2 --
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi              | 1 -
+ arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi          | 1 -
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi          | 2 --
+ arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi          | 3 ---
+ arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi          | 3 ---
+ arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi          | 3 ---
+ arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi          | 4 ----
+ arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi      | 1 -
+ arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts | 1 -
+ arch/arm64/boot/dts/marvell/cn9130-crb-A.dts            | 1 -
+ arch/arm64/boot/dts/marvell/cn9130-crb-B.dts            | 1 -
+ arch/arm64/boot/dts/marvell/cn9130-db.dtsi              | 1 -
+ arch/arm64/boot/dts/marvell/cn9131-db.dtsi              | 1 -
+ arch/arm64/boot/dts/marvell/cn9132-db.dtsi              | 2 --
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi                | 6 ------
+ arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi        | 1 -
+ arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi        | 1 -
+ arch/arm64/boot/dts/toshiba/tmpv7708.dtsi               | 1 -
+ 19 files changed, 36 deletions(-)
 
-I can't think of any reason it wouldn't be safe, so please feel free to
-prepare a patch.
+-- 
+2.34.1
 
-Thanks,
-Bjorn
