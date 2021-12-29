@@ -2,109 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A00F3481735
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 23:19:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78D8B481780
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 00:14:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231660AbhL2WTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 17:19:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53246 "EHLO
+        id S232910AbhL2XOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 18:14:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231259AbhL2WTh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 17:19:37 -0500
+        with ESMTP id S232867AbhL2XOo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 18:14:44 -0500
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C99DFC061574;
-        Wed, 29 Dec 2021 14:19:36 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7CFCC061574;
+        Wed, 29 Dec 2021 15:14:43 -0800 (PST)
 Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2DA0433F;
-        Wed, 29 Dec 2021 23:19:34 +0100 (CET)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B843B2A5;
+        Thu, 30 Dec 2021 00:14:41 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1640816374;
-        bh=NmBuSa0Tm1XDHSFWplYPZ+GeRMcg0ZC1lIjZHsY3g84=;
+        s=mail; t=1640819682;
+        bh=4eq2xSPxJdkCgLTr3g1rhY4N6v+fUkMRBP9qpSr4SVg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EaozM4GcjGJY8sUUXytB4f01VixzjPgwX8wzHBFuZrsIbY382Y+h7S59oBwZ2ywXI
-         Zc3hGQ7m/bL50H0HrQaefS+/d8zClr35IM6Q7ofrR2XTf8AXWPGIt3X7HjU0PW889C
-         l4Tl+NywrkwKt5PjiDkG7vNktYMsqmu1guxjlGAM=
-Date:   Thu, 30 Dec 2021 00:19:31 +0200
+        b=q2wPoSyjkwGqoDZKEWW8/KDure2VxHruX7BKX1Gkk7wXXM5lkk5yPg1CiY/MzMrNz
+         BWKSL96jkL7HoOWOCJnyBE69PKQ4EM4W4lMUSnXYsa6Ij0mDJ6o3umpN7jpC0EAqba
+         uBn2iqerA94xp4l4gHeaWLF1UoEVepOeqQZhqbDY=
+Date:   Thu, 30 Dec 2021 01:14:39 +0200
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] arm64: dts: renesas: r8a77961: Add lvds0 device node
-Message-ID: <Ycze8wzD3Qi8YVAa@pendragon.ideasonboard.com>
-References: <20211224052309.1997096-1-nikita.yoush@cogentembedded.com>
- <20211224052309.1997096-3-nikita.yoush@cogentembedded.com>
- <YcyTV4fJqMHIeyYB@pendragon.ideasonboard.com>
- <87626d61-ada0-c220-bea5-5330f5256629@cogentembedded.com>
- <YcyXQxW3kRqQ2Yv0@pendragon.ideasonboard.com>
- <39f70781-831e-c86a-ec5f-68f2b4bd3d62@cogentembedded.com>
- <Ycy4AMAT53Uzf+K7@pendragon.ideasonboard.com>
- <bb6ef732-7cd2-5ba9-0eef-caf2fbfbf829@cogentembedded.com>
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH v7 4/4] phy: dt-bindings: Add Cadence D-PHY Rx bindings
+Message-ID: <Yczr39LMvdYT4SNL@pendragon.ideasonboard.com>
+References: <20211227105545.4852-1-p.yadav@ti.com>
+ <20211227105545.4852-5-p.yadav@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <bb6ef732-7cd2-5ba9-0eef-caf2fbfbf829@cogentembedded.com>
+In-Reply-To: <20211227105545.4852-5-p.yadav@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikito,
+Hi Pratyush,
 
-On Thu, Dec 30, 2021 at 12:12:04AM +0300, Nikita Yushchenko wrote:
->   Endpoints are meant to model a link between two ports, so an endpoint
-> > shouldn't exist in isolation. The issue with creating named endpoints in
-> > SoC files is that you can't tell there what remote devices may exist, so
-> > the endpoint may or may not match the actual hardware design of a board.
-> > I think it's better to create endpoints on both sides together in
-> > overlays.
-> > 
-> > https://lore.kernel.org/linux-renesas-soc/20211229193135.28767-2-laurent.pinchart+renesas@ideasonboard.com/T/#t
-> 
-> What I don't like here is: details of particular SoC (such as "panel gets video from port@1 of &lvds1) 
-> leak into per-panel DT fragment.
-> 
-> This limits possibilities to share DT fragments between different use cases. In the patch pointed by the 
-> above URL, you have to reference both board and panel in the dts file name.
->
-> I'd prefer to make each DT fragment to use only either entities defined in that fragment itself, or 
-> defined "interface entities" between this and "neighbor" DT fragment.
-> 
-> Such as:
-> - SoC's DT fragment defines a named port/endpoint to export video stream at
-> - board's DT fragment defines a named panel node corresponding to panel plugged into board's physical 
-> connector, and connects endpoints with SoC's video export,
-> - panel's DT fragment extends the panel node from board with video mode information for this particular 
-> panel.
-> 
-> And similar for backlight, power, and whatever else exposed on the physical panel connector.
-> 
-> So for the board's physical connector there is a set of board-DT-provided entities for use by DT 
-> fragment of whatever component plugged to the connector, without direct references to final SoC 
-> interfaces. And possibility to reuse DT fragments between boards, and probably have a library of DT 
-> fragments for hardware currently available in the market, usable with different boards where that 
-> hardware can be connected.
+Thank you for the patch.
 
-I agree it's annoying, but we'll have a similar problem, just the other
-way around, with an endpoint defined in the SoC dtsi. Many R-Car SoCs
-have two LVDS encoders, and you can attach a panel to either of them.
-Some boards use LVDS0, some boards use LVDS1, and some boards could even
-use both.
+On Mon, Dec 27, 2021 at 04:25:45PM +0530, Pratyush Yadav wrote:
+> The Rx mode DPHY is different from Tx mode DPHY. Add a separate binding
+> for it.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
 
-A real solution for this problem will require a new concept. The "DT
-connector" proposal is related to this problem space. There's also a
-proprietary implementation in the Rapsberry Pi boot loader of a
-mechanism to support parametrized overlays ([2] and [3], or [4] for an
-example of how a panel reset or backlight GPIO can be parametrized).
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-[1] https://lwn.net/Articles/689783/
-[2] https://www.raspberrypi.com/documentation/computers/configuration.html#part3
-[3] https://github.com/raspberrypi/firmware/blob/master/boot/overlays/README#L122
-[4] https://github.com/raspberrypi/firmware/blob/master/boot/overlays/README#L312
+> ---
+> 
+> (no changes since v6)
+> 
+> Changes in v6:
+> - Add a new binding for DPHY Rx.
+> 
+>  .../devicetree/bindings/phy/cdns,dphy-rx.yaml | 42 +++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/cdns,dphy-rx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/cdns,dphy-rx.yaml b/Documentation/devicetree/bindings/phy/cdns,dphy-rx.yaml
+> new file mode 100644
+> index 000000000000..07be031d82e6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/cdns,dphy-rx.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/cdns,dphy-rx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cadence DPHY Rx Device Tree Bindings
+> +
+> +maintainers:
+> +  - Pratyush Yadav <p.yadav@ti.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: cdns,dphy-rx
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
+> +
+> +    dphy0: phy@4580000 {
+> +        compatible = "cdns,dphy-rx";
+> +        reg = <0x4580000 0x1100>;
+> +        #phy-cells = <0>;
+> +        power-domains = <&k3_pds 147 TI_SCI_PD_EXCLUSIVE>;
+> +    };
 
 -- 
 Regards,
