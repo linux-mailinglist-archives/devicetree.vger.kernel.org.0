@@ -2,95 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 141FF4811E1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 12:11:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2820A481210
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 12:40:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235768AbhL2LLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 06:11:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46938 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235680AbhL2LLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 06:11:08 -0500
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7CB4C061574;
-        Wed, 29 Dec 2021 03:11:07 -0800 (PST)
-Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
+        id S235582AbhL2LkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 06:40:12 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:60480 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231327AbhL2LkM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 06:40:12 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 353C21EC04D1;
-        Wed, 29 Dec 2021 12:11:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1640776262;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=airGDjUxCcJh80Hcyr6jOEHci9owmSN8F2s+Qye6gdM=;
-        b=c2QDGOra6/ICP03WygoMMs45fqwYs76gnmhzZFO1o8a/GIjZFIMKcfFNMOMZ/5i/1fjjbm
-        1dn6X3mj4JuMeATbim9WfyPoSa4jEfgb5y+/O+dRajblTM+qB9fAkipmcxfwTloaEwh7Jz
-        /P2uHhOyf3iudq2ma2SuFjcnt0MIwyg=
-Date:   Wed, 29 Dec 2021 12:11:09 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     Dave Young <dyoung@redhat.com>
-Cc:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
-        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
-        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>
-Subject: Re: [PATCH v19 02/13] x86/setup: Use parse_crashkernel_high_low() to
- simplify code
-Message-ID: <YcxCTTGu/Ut7bU+W@zn.tnic>
-References: <20211228132612.1860-1-thunder.leizhen@huawei.com>
- <20211228132612.1860-3-thunder.leizhen@huawei.com>
- <Ycs3kpZD/vpoo1AX@zn.tnic>
- <b017a8ea-989b-c251-f5c8-a8a7940877cf@huawei.com>
- <YcwN9Mfwsh/lPbbd@dhcp-128-65.nay.redhat.com>
- <YcwSCAuEgO10DFDT@dhcp-128-65.nay.redhat.com>
- <Ycw0V1CmBPCPqexn@zn.tnic>
- <Ycw6s6DwZuHjckXL@dhcp-128-65.nay.redhat.com>
+        by ams.source.kernel.org (Postfix) with ESMTPS id ACA73B818CA;
+        Wed, 29 Dec 2021 11:40:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 50468C36AED;
+        Wed, 29 Dec 2021 11:40:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1640778009;
+        bh=7hrZQRzziyMaAU7Q1yyuExgdIP7rDtd8yIiNpXhh/pI=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=FPXjBWsIBYrLuWIFXyiLB01gCkUv+zJ/0CoSRFINyyC06LJZTTyrNiDoFsgHMC1bG
+         RkZBl3rfAPM8qm/aXWwLpl3a+d59TXPXI6ruocTW+jYzrdke4WrAr/blhjWtFNpTvT
+         HSrf/5d7HzZmMNSsTF/bL1j59m+JJ4Q9fv23Ma7GJpdtQkjFZvaKQ/pLrNFVd46Jrr
+         j4xn5RLUmFjzUXbG6KQdkeWsUEt11MKKtbNAf4DpcE08I9/UaI27/ex7+AqppuXsfI
+         YLzzARJfOq1y40DtemhXBpreCacb6zXRf3BO2JNDDYCVolsfjT0TKYbuLbKgFJxMXc
+         /U5XsFCwOIUdA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 341AEC395DD;
+        Wed, 29 Dec 2021 11:40:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <Ycw6s6DwZuHjckXL@dhcp-128-65.nay.redhat.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] of: net: support NVMEM cells with MAC in text format
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <164077800920.21586.15235934371283917526.git-patchwork-notify@kernel.org>
+Date:   Wed, 29 Dec 2021 11:40:09 +0000
+References: <20211223122747.30448-1-zajec5@gmail.com>
+In-Reply-To: <20211223122747.30448-1-zajec5@gmail.com>
+To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tpIDx6YWplYzVAZ21haWwuY29tPg==?=@ci.codeaurora.org
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rafal@milecki.pl
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 29, 2021 at 06:38:43PM +0800, Dave Young wrote:
-> I appreciate you further explanation below to describe the situation.
-> I do not see how can I tell this to *all* submitters,
+Hello:
 
-You don't have to - that was hypothetical. :-)
+This patch was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
 
-I'm typing this on a public mailing list with the hope that people will
-see it.
+On Thu, 23 Dec 2021 13:27:47 +0100 you wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> Some NVMEM devices have text based cells. In such cases MAC is stored in
+> a XX:XX:XX:XX:XX:XX format. Use mac_pton() to parse such data and
+> support those NVMEM cells. This is required to support e.g. a very
+> popular U-Boot and its environment variables.
+> 
+> [...]
 
-> but I am and I will try to do this as far as I can.
+Here is the summary with links:
+  - of: net: support NVMEM cells with MAC in text format
+    https://git.kernel.org/netdev/net-next/c/9ed319e41191
 
-Much appreciated.
-
-> Maintainers and patch submitters, it would help for both
-> parties show sympathy with each other, some soft reminders will help
-> people to understand each other, especially for new comers.
-
-Yap, that's why we keep repeating it.
-
-Thx.
-
+You are awesome, thank you!
 -- 
-Regards/Gruss,
-    Boris.
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-https://people.kernel.org/tglx/notes-about-netiquette
+
