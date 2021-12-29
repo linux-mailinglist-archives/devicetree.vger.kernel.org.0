@@ -2,115 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A1F9481654
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 20:31:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9EBA481655
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 20:32:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230430AbhL2Tbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 14:31:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44786 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230419AbhL2Tbo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 14:31:44 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6726EC061574;
-        Wed, 29 Dec 2021 11:31:44 -0800 (PST)
-Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8A792D89;
-        Wed, 29 Dec 2021 20:31:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1640806303;
-        bh=r7xTCDf6/ZwoGKEoQxRT5ywOUWRFaFv6tvLd43H5DhE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BcIlyHsm6m5ERi3b9ahNHYzJRjooTfjXLkH37JxSZ60JjXwICBYF4Z/gI0BSiqHbu
-         GgAwhDtr6a/VSy1uw8y+9lW/DJTGrujGZsMwWSwuAJwryCpTw9mCkswTtqI9j8C1a9
-         gw+0had/m3+tEGJozWOsK7X+/WVTNh9COshibAds=
-From:   Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>
-Subject: [PATCH v2 3/3] arm64: dts: renesas: Add panel overlay for Draak and Ebisu boards
-Date:   Wed, 29 Dec 2021 21:31:35 +0200
-Message-Id: <20211229193135.28767-4-laurent.pinchart+renesas@ideasonboard.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211229193135.28767-1-laurent.pinchart+renesas@ideasonboard.com>
-References: <20211229193135.28767-1-laurent.pinchart+renesas@ideasonboard.com>
+        id S230419AbhL2Tc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 14:32:29 -0500
+Received: from polaris.svanheule.net ([84.16.241.116]:37296 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230305AbhL2Tc3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 14:32:29 -0500
+Received: from [IPv6:2a02:a03f:eafe:c901:bb38:31d0:45d2:689b] (unknown [IPv6:2a02:a03f:eafe:c901:bb38:31d0:45d2:689b])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 7C1AD289957;
+        Wed, 29 Dec 2021 20:32:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1640806347;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=A5C3PvcXgTqpf3mcI2kpWNaNMJ5Bkkk4oXWzEV1oR4U=;
+        b=x57+yHPNVcWIO3Xa6Jk7t7wsyvoXUFVr0SyuoKvyO2VqOwDbpdzsEeO0vB6SnBMUz/qfti
+        JHkivbHwzBUW7OkHa5Z0hs2usGh+4YG0T3IfTiEHc6dxiRjD55a/yZdvEfAEZsjYXmA8T2
+        2agSFI93I2Gb78yAp0KoBvYP8HAUHV2GCVLXtmELfrzEHQZAQM3NH0dkDbyL9/+VenD097
+        Rn+5X/+OxqXG9ZELBvOADGKlrs6vqBAQTC0DeE7xqFtIj15swDJKkuw9vNLzs4DrVS84yU
+        L3JRAe2cVn/V2Sc5U0McEZvZXf7J5rm2v2aKRmfppt+mRVi2HE25E9p1+6JA+A==
+Message-ID: <2274d5dea29dc1a1969985e193ce98fe1eeef6ca.camel@svanheule.net>
+Subject: Re: [RFC PATCH v2 4/5] dt-bindings: interrupt-controller:
+ realtek,rtl-intc: map output lines
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Birger Koblitz <mail@birger-koblitz.de>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Bert Vermeulen <bert@biot.com>,
+        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org
+Date:   Wed, 29 Dec 2021 20:32:25 +0100
+In-Reply-To: <06c1662a-76ff-2ede-a308-ce87186a2311@birger-koblitz.de>
+References: <cover.1640548009.git.sander@svanheule.net>
+         <0a91967d40d486bb8cccd0dcf5a817df11317cf0.1640548009.git.sander@svanheule.net>
+         <87r19yz47t.wl-maz@kernel.org>
+         <7a02b3af9b68adeba787418eb042cd262ee335b7.camel@svanheule.net>
+         <06c1662a-76ff-2ede-a308-ce87186a2311@birger-koblitz.de>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Draak and Ebisu boards support an optional LVDS panel. One
-compatible panel is the Mitsubishi AA104XD12. Add a corresponding DT
-overlay.
+Hi Birger,
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
----
-Changes since v1:
+On Tue, 2021-12-28 at 17:53 +0100, Birger Koblitz wrote:
+> On 28/12/2021 17:21, Sander Vanheule wrote:
+> > On Mon, 2021-12-27 at 11:17 +0000, Marc Zyngier wrote:
+> > > On Sun, 26 Dec 2021 19:59:27 +0000,
+> > > Sander Vanheule <sander@svanheule.net> wrote:  
+> > > >     interrupts:
+> > > > -    maxItems: 1
+> > > > +    minItems: 1
+> > > > +    maxItems: 15
+> > > > +    description:
+> > > > +      List of parent interrupts, in the order that they are connected to this
+> > > > +      interrupt router's outputs.
+> > > 
+> > > Is that to support multiple SoCs? I'd expect a given SoC to have a
+> > > fixed number of output interrupts.
+> > 
+> > It is, and they do AFAICT. But all values from 1 to 15 can be written to the routing
+> > registers, so I wanted this definition to be as broad as possible.
+> > 
+> > The SoCs I'm working with only connect to the six CPU HW interrupts, but I don't know
+> > what
+> > the actual limit of this interrupt hardware is, or if the outputs always connect to
+> > the
+> > MIPS CPU HW interrupts.
+> > 
+>  From what I know, the IRQ controller is used solely by Realtek in the RTL838x, RTL839x
+> and
+> RTL930x SoC families, all of them MIPS 4KEc or 34Kc with the standard 7 CPU IRQ lines.
+> In their final RTL931x series they abandoned their custom IRQ controller and went for
+> an InterAptiv core with a standard MIPS GIC.
 
-- Create endpoint in lvds1 port@1
----
- arch/arm64/boot/dts/renesas/Makefile          |  1 +
- .../renesas/draak-ebisu-panel-aa104xd12.dts   | 36 +++++++++++++++++++
- 2 files changed, 37 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd12.dts
+There is some code floating around [1] to support a few Wi-Fi SoCs (RTL8196E, RTL8197D,
+and RTL8197F) which appear to use the same interrupt controller. Not that it's very likely
+these will ever be supported property, because they contain Lexra MIPS cores.
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 982ca3e0e86f..5e831bd33828 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -76,3 +76,4 @@ dtb-$(CONFIG_ARCH_R8A77965) += r8a779m5-salvator-xs.dtb
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc.dtb
- 
- dtb-$(CONFIG_ARCH_RCAR_GEN3) += salvator-panel-aa104xd12.dtbo
-+dtb-$(CONFIG_ARCH_RCAR_GEN3) += draak-ebisu-panel-aa104xd12.dtbo
-diff --git a/arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd12.dts b/arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd12.dts
-new file mode 100644
-index 000000000000..258f8668ca36
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/draak-ebisu-panel-aa104xd12.dts
-@@ -0,0 +1,36 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Device Tree overlay for the AA104XD12 panel connected to LVDS1 on a Draak or
-+ * Ebisu board
-+ *
-+ * Copyright 2021 Ideas on Board Oy
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+#include "panel-aa104xd12.dtsi"
-+};
-+
-+&{/panel} {
-+	backlight = <&backlight>;
-+
-+	port {
-+		panel_in: endpoint {
-+			remote-endpoint = <&lvds1_out>;
-+		};
-+	};
-+};
-+
-+&lvds1 {
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			lvds1_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+};
--- 
-Regards,
+That code claims these cores can have 16 CPU interrupts, althought the non-standard
+interrupts are apparently not implemented in that driver. There is also mention of 64 SoC
+interrupts, but it looks like this can be implemented by just instantiating this driver
+once for each register range (given the code would be modified to get rid of some static
+variables).
 
-Laurent Pinchart
+Anyway, a mostly theoretical problem. The SoCs we're targetting (RTL8380x, RTL839x, and
+RTL930x) use the /6/ MIPS CPU HW interrupts (the two software interrupts are not used
+AFAICT).
+
+[1]
+https://github.com/ggbruno/openwrt/blob/Realtek/target/linux/realtek/files-4.14/arch/mips/realtek/irq.c
+
+Best,
+Sander
 
