@@ -2,113 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BAF04816EC
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 22:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 807204816F0
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 22:12:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232115AbhL2VLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 16:11:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38468 "EHLO
+        id S232241AbhL2VMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 16:12:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229754AbhL2VLL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 16:11:11 -0500
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 704D6C061574;
-        Wed, 29 Dec 2021 13:11:11 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id n30-20020a17090a5aa100b001b2b6509685so3635471pji.3;
-        Wed, 29 Dec 2021 13:11:11 -0800 (PST)
+        with ESMTP id S232217AbhL2VMI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 16:12:08 -0500
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707C0C06173E
+        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 13:12:07 -0800 (PST)
+Received: by mail-lj1-x241.google.com with SMTP id h15so24171455ljh.12
+        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 13:12:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=lUnDghFJEnX7HKIkKaL2v/UI+FnjGpWjBjAatHbaNyk=;
-        b=SDadAKXPNwYijC1AOhPAM5AgMIX9fs8P1KgwyPT5waMcWKHvI8dR80dztwfZa2E2R7
-         S8xZcBNqEGnadZM9eesKZMJmWw5OHgW4dQoH4FF9uJjsghMT0zjdvfEVx4nOZje3pRiO
-         3BVlOX96ehGgywIkZxEWyMP+y68Kj7qw1Qd8+gW9g+AHhPg3lYVo3KuHuEvSO5fciwL6
-         dYzgZaTj0CQCFpRr2WarQmvhFF6nD+wHtZ3hBdNGi5P7WgX4IWS+DbQntqzsG4D6ijNS
-         T+r0JQhKScO7bSGX1mZDk1HuzYtfxc4hLKAxFlIJ73QMVHGRYwIK0jBXqgBudJEHaP9V
-         XXQw==
+        d=cogentembedded-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=vjBtWdrmAlpHjYLO6yg6l3ARS7/1BBcb9/UFVxhf8Vc=;
+        b=7Q8Yw9ADq2f6kLVocaZI9d1PCSVV/0J2PMI1H/vtOXZ1eYpu8+eFz42LLt9By15vcG
+         oqQ6gFT1dLBlF7OhxCyrXw7rAmgduoWDyZ7E5sfg6bxp8lkRq4Pqtw/3rOLa6TJA59Dz
+         Q3RqBpEaAtyhMhvsA6pTHqIreSuO25sWCBqb9j/dLszXUtSdtyT+xak+0/SS8moMmQ1H
+         CMIwWiRsrZC9zLG65gT27kU9zetOUzgTjeOvtSZ7Zx8nFzTBBtx1+TVdAOk4tMjbXvJv
+         Mpj6grLM78CDfuQJM1BapkjHQTNePlA/rtogzmeA6oely/vcGKlP2KZHHK2nxhZ7VeT4
+         o6HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=lUnDghFJEnX7HKIkKaL2v/UI+FnjGpWjBjAatHbaNyk=;
-        b=SrWyP5nC62Io/i0IkTsnew7SGICY23ZLUBXVXczsYubepx7Q0YsPBF6hAVnTm+ECht
-         /XICcLolK2QNkgd0C6LjwZddFzD3GKPdRL7w3l2ZK9WlcE6u3GjM/Ium8LQ358Czu0m5
-         RhTg2TMdkKKpicu9XNxyCNK0vyBOGiFNbz/49AlRyV0Lk1+P4oYAa82XS/b+AM6FnC+t
-         Gv9qY2zEqczDEywANpXrC//eFmEwcVDl2lfw2lllzidPMUodFZ25JXTp3svdmYs9B+DK
-         QX7IL4PtnxLq7/OvWTteZ9kwBBPaQaTsEr+pL6twVoE4PclWpicLWfZOg2szz81kLZuZ
-         fjNA==
-X-Gm-Message-State: AOAM531t3wV5xNhTVo1uH0N0Rd2BITePpqfPwsv2Dv+yEFqnZKahu0Pz
-        ipIKTrVU6u/9/3PUiF7oVw0=
-X-Google-Smtp-Source: ABdhPJxgjH2BR2Fy0OP7CMCAJhKPBcHuWX/2CL0KSZ7eg2bVhtRnS+AyKSrwtfEwTmuke3HvOb0w3w==
-X-Received: by 2002:a17:90b:33cd:: with SMTP id lk13mr34215326pjb.35.1640812270900;
-        Wed, 29 Dec 2021 13:11:10 -0800 (PST)
-Received: from ?IPV6:2600:8802:b00:4a48:580b:8916:6bbf:96c9? ([2600:8802:b00:4a48:580b:8916:6bbf:96c9])
-        by smtp.gmail.com with ESMTPSA id q28sm20840398pgn.14.2021.12.29.13.11.09
+        bh=vjBtWdrmAlpHjYLO6yg6l3ARS7/1BBcb9/UFVxhf8Vc=;
+        b=Xlo7aFLKXIytg0/lAoyWBEpicGyJdXYvTvRY70+aZjnp1AP+JjYlNx/KtysfMyqC8h
+         bm6se5ox5lee1kTbFhybcdPqr4TXkmaGEsOc72xcTmLyofD+3cLABMqiC02ySJT17h2m
+         L1JHH3uiPEeGDgUWxwncjjsqAHIImAUuzETtR7PlAdISlUPIub8u2YcNbVQn50INgwc4
+         JUd3Pkfa1LAliuaoSd8WT09DGqCRbNq6xYC3Px1+Py+g2T7Eyjp+8er3F6YrjowPYwpQ
+         xxveRyX0SC9JJ03zJall6XDG5zVNsYL300xI5/nxMmcm/7rZ2j6v6f2yt9UVGZ9RmyIT
+         5FFg==
+X-Gm-Message-State: AOAM533J2dhVPqrKfBuzC8c5MrDRAf/CWYXuWeFOgEJ1PJ3t5y330Ikl
+        Vg5NQ33LrWDLv/hKFIr722LMxg==
+X-Google-Smtp-Source: ABdhPJzNSZouXDGO7X5hs9MlNi3MGSek5vs3WsO6ApXEIyAxpTgsbCnmTebH3VbGA66lL6gaSiXHEQ==
+X-Received: by 2002:a2e:8781:: with SMTP id n1mr3037502lji.96.1640812325657;
+        Wed, 29 Dec 2021 13:12:05 -0800 (PST)
+Received: from [192.168.112.17] (nikaet.starlink.ru. [94.141.168.29])
+        by smtp.gmail.com with ESMTPSA id m28sm2305722lfo.76.2021.12.29.13.12.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Dec 2021 13:11:10 -0800 (PST)
-Message-ID: <1df8425c-c1bb-3d1e-4a78-87b6d0967d57@gmail.com>
-Date:   Wed, 29 Dec 2021 13:11:08 -0800
+        Wed, 29 Dec 2021 13:12:05 -0800 (PST)
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: r8a77961: Add lvds0 device node
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211224052309.1997096-1-nikita.yoush@cogentembedded.com>
+ <20211224052309.1997096-3-nikita.yoush@cogentembedded.com>
+ <YcyTV4fJqMHIeyYB@pendragon.ideasonboard.com>
+ <87626d61-ada0-c220-bea5-5330f5256629@cogentembedded.com>
+ <YcyXQxW3kRqQ2Yv0@pendragon.ideasonboard.com>
+ <39f70781-831e-c86a-ec5f-68f2b4bd3d62@cogentembedded.com>
+ <Ycy4AMAT53Uzf+K7@pendragon.ideasonboard.com>
+From:   Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+Message-ID: <bb6ef732-7cd2-5ba9-0eef-caf2fbfbf829@cogentembedded.com>
+Date:   Thu, 30 Dec 2021 00:12:04 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH v2 1/2] pinctrl: bcm2835: Change init order for gpio hogs
+In-Reply-To: <Ycy4AMAT53Uzf+K7@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Phil Elwell <phil@raspberrypi.com>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-gpio@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Thierry Reding <treding@nvidia.com>
-References: <20211206092237.4105895-1-phil@raspberrypi.com>
- <20211206092237.4105895-2-phil@raspberrypi.com>
- <CACRpkdZ95bCJVDo4tCXsMnsXax4+ZydoLS7AsM-yzMjXbONk=w@mail.gmail.com>
- <95851343-2887-1e04-9598-e8c8ae74a99a@i2se.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <95851343-2887-1e04-9598-e8c8ae74a99a@i2se.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 12/29/2021 11:07 AM, Stefan Wahren wrote:
-> Am 10.12.21 um 00:24 schrieb Linus Walleij:
->> On Mon, Dec 6, 2021 at 10:22 AM Phil Elwell <phil@raspberrypi.com> wrote:
->>
->>> ...and gpio-ranges
->>>
->>> pinctrl-bcm2835 is a combined pinctrl/gpio driver. Currently the gpio
->>> side is registered first, but this breaks gpio hogs (which are
->>> configured during gpiochip_add_data). Part of the hog initialisation
->>> is a call to pinctrl_gpio_request, and since the pinctrl driver hasn't
->>> yet been registered this results in an -EPROBE_DEFER from which it can
->>> never recover.
->>>
->>> Change the initialisation sequence to register the pinctrl driver
->>> first.
->>>
->>> This also solves a similar problem with the gpio-ranges property, which
->>> is required in order for released pins to be returned to inputs.
->>>
->>> Fixes: 73345a18d464b ("pinctrl: bcm2835: Pass irqchip when adding gpiochip")
->>> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
->> This patch (1/2) applied for fixes.
+  Endpoints are meant to model a link between two ports, so an endpoint
+> shouldn't exist in isolation. The issue with creating named endpoints in
+> SoC files is that you can't tell there what remote devices may exist, so
+> the endpoint may or may not match the actual hardware design of a board.
+> I think it's better to create endpoints on both sides together in
+> overlays.
 > 
-> Unfortunately this change breaks all GPIO LEDs at least on the Raspberry
-> Pi 3 Plus (Linux 5.16-rc7, multi_v7_defconfig). The ACT LED for instance
-> stays in the last state instead of the configured heartbeat behavior.
-> Also there are no GPIO LEDs in /sys/class/leds/ directory.
-> 
-> After reverting this change everything is back to normal.
+> https://lore.kernel.org/linux-renesas-soc/20211229193135.28767-2-laurent.pinchart+renesas@ideasonboard.com/T/#t
 
-And this patch has already been applied to the stable 5.15 and 5.10 
-branches as well, FWIW.
--- 
-Florian
+What I don't like here is: details of particular SoC (such as "panel gets video from port@1 of &lvds1) 
+leak into per-panel DT fragment.
+
+This limits possibilities to share DT fragments between different use cases. In the patch pointed by the 
+above URL, you have to reference both board and panel in the dts file name.
+
+I'd prefer to make each DT fragment to use only either entities defined in that fragment itself, or 
+defined "interface entities" between this and "neighbor" DT fragment.
+
+Such as:
+- SoC's DT fragment defines a named port/endpoint to export video stream at
+- board's DT fragment defines a named panel node corresponding to panel plugged into board's physical 
+connector, and connects endpoints with SoC's video export,
+- panel's DT fragment extends the panel node from board with video mode information for this particular 
+panel.
+
+And similar for backlight, power, and whatever else exposed on the physical panel connector.
+
+So for the board's physical connector there is a set of board-DT-provided entities for use by DT 
+fragment of whatever component plugged to the connector, without direct references to final SoC 
+interfaces. And possibility to reuse DT fragments between boards, and probably have a library of DT 
+fragments for hardware currently available in the market, usable with different boards where that 
+hardware can be connected.
+
+Nikita
