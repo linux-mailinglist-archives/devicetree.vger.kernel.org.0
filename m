@@ -2,111 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 208324812DB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 13:47:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B8F481301
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 14:07:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238836AbhL2MrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 07:47:15 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:39808
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238920AbhL2MrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Dec 2021 07:47:12 -0500
-Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id BC2EB402EA
-        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 12:47:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640782031;
-        bh=b8unpukURFoj9tYv6hEHKZIOPqKdbI+UT8tS2dxzJ3A=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=R4ZIwpfuxfIM8Fel1C+ZHbPMbz/8dB64avjBxLCwqNhsguXVTn8rbVU2Vuci4ic93
-         1xr6BuQMSIy3gMMjX8Gg+POP09tLBICqyiguX3eD8FZZp4eb7OmWN5hR/nfcqUKDNz
-         Z6U/zv36ahIqJF2vvcPfLOkji6gVN5sKgD6WCaAJowVB6Gmt5cH+nrK7wMMVqiMhZI
-         7LB+oUFscOiXd8JGDbD7u9qR60LJbRndTM0m3F/Fy+Sc4qPkqJcUe9Oyzya+1uTsy+
-         SlnBKhwYdO4ZBdAqJVGi/vQtTGRTKPbHqAzegSBIBJPgeDW1r6kD5eQkauamA69bu5
-         nFVLQWRtBeSkA==
-Received: by mail-lj1-f197.google.com with SMTP id c31-20020a2ebf1f000000b0022d87a28911so7080205ljr.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 04:47:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=b8unpukURFoj9tYv6hEHKZIOPqKdbI+UT8tS2dxzJ3A=;
-        b=1zyjv6uwpUHzxnosbu270g2JL2uhxia/WTxXoXAslIMs6YYsKoRO93i8qInSGUZxpe
-         r9XfKNbxqDxu+JIQcUvdIt/h/VuDonh3eVuvjZ4dyqegR2tgQzqyQ7R9JbNkqETZtjHL
-         J4Fba0/TK9KOtM3asw2Ox5ttBLkELNGBov+91WfK1n8HtWWyYk8Hm6LdACs9zeo5uXAr
-         yQhIoCZQJ+T71jQbxjUHpWV/g1KaKnrvIl3I66gSFlTlx+n+f46YP+Ny3cIv8CSICmXV
-         r+dL3/+9EbkEeAxZXgg4HkI5jQXZHFx3D7ZAMvyWmjXS8ILMaoR95NdB5ULEV5bAc46t
-         58Mg==
-X-Gm-Message-State: AOAM531wHZhxmF88ZUq0seaWAqtkdRTW9dkYVD2jlsWZN5/wmPmiFdNt
-        gjeF+NCDZ20Yu0Xfhn0YsN39U7aEWI2yQ1z8QJts7dz9S26lHYITBcC2AebWNWk/MpQ4ltv3fwV
-        skn6P0edm8eGA3msX9mdS4BHT8gxuEJglNyA26CQ=
-X-Received: by 2002:a2e:574b:: with SMTP id r11mr16745446ljd.489.1640782027281;
-        Wed, 29 Dec 2021 04:47:07 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyLiHFDic96sN498wDn0DRNBEIHxbIVncu3lh3X6e7AC89ghZepVCvnmS0/L/+JzAFD33udSA==
-X-Received: by 2002:a2e:574b:: with SMTP id r11mr16745428ljd.489.1640782027109;
-        Wed, 29 Dec 2021 04:47:07 -0800 (PST)
-Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id e11sm711158ljn.73.2021.12.29.04.47.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Dec 2021 04:47:06 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Inki Dae <inki.dae@samsung.com>,
-        Jaewon Kim <jaewon02.kim@samsung.com>,
-        Beomho Seo <beomho.seo@samsung.com>
-Subject: [PATCH 5/5] MAINTAINERS: mfd: cover MAX77843 by Maxim PMIC/MUIC for Exynos boards entry
-Date:   Wed, 29 Dec 2021 13:46:31 +0100
-Message-Id: <20211229124631.21576-6-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211229124631.21576-1-krzysztof.kozlowski@canonical.com>
-References: <20211229124631.21576-1-krzysztof.kozlowski@canonical.com>
+        id S238891AbhL2NFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 08:05:04 -0500
+Received: from mga11.intel.com ([192.55.52.93]:39960 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238590AbhL2NFE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Dec 2021 08:05:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1640783104; x=1672319104;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OPekGE0BysIj2ePhh+K0lb5fBtjc9oFbufOduayBaso=;
+  b=hbav0veG9xqjrCyuSS6gSHoUJZ6RLBvWbCTU6WwyITqq5oj7o2QN/cQ2
+   zy3rk99xPKlD0gWq8vwbw6uJ8MSv8FJDktTfH2QNF3BafxSBrG3Db7AdV
+   zSY3Pu23DWDdVQDw72ISuXU12Q5VgZELyJ4QkgUpdz6wK2Zy7kVhispff
+   EszCj0KAHNQDcXQdHmxTWR0OgAy2tTIYDZFz5QhXrWOo371vbtfAfmnBY
+   YIb0CD3Ynh+M+kUzupbN4ZoQTnn6e/SPzUgIv3Q8+CDdqLq64vhHAwc87
+   bAJt/QMTqpbTy+CrMTxbrScCQtHHAcFFSx1jdM9YWYXLbSkGu7x3yfAS0
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10211"; a="239059690"
+X-IronPort-AV: E=Sophos;i="5.88,245,1635231600"; 
+   d="scan'208";a="239059690"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2021 05:05:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,245,1635231600"; 
+   d="scan'208";a="572600689"
+Received: from lkp-server01.sh.intel.com (HELO e357b3ef1427) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 29 Dec 2021 05:05:01 -0800
+Received: from kbuild by e357b3ef1427 with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1n2YdZ-0008vc-20; Wed, 29 Dec 2021 13:05:01 +0000
+Date:   Wed, 29 Dec 2021 21:04:29 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Li-hao Kuo <lhjeff911@gmail.com>, rafael@kernel.org,
+        daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
+        robh+dt@kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, wells.lu@sunplus.com,
+        Li-hao Kuo <lhjeff911@gmail.com>
+Subject: Re: [PATCH v2 1/2] THERMAL: Add THERMAL driver for Sunplus SP7021
+Message-ID: <202112292049.x3u9VQgr-lkp@intel.com>
+References: <a5b37169978e9b82c33718289066287dfd1b9c00.1640235724.git.lhjeff911@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a5b37169978e9b82c33718289066287dfd1b9c00.1640235724.git.lhjeff911@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MAX77843 is used in Exynos5433-based TM2 boards and shares some
-parts of code with MAX77693 (regulator and haptic motor drivers).
-Include all MAX77843 drivers in the entry for Maxim PMIC/MUIC drivers
-for Exynos boards, so they will receive some dedicated review coverage.
+Hi Li-hao,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+I love your patch! Perhaps something to improve:
+
+[auto build test WARNING on rafael-pm/thermal]
+[also build test WARNING on linus/master v5.16-rc7 next-20211224]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Li-hao-Kuo/Add-THERMAL-control-driver-for-Sunplus-SP7021-SoC/20211223-130720
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git thermal
+config: h8300-allyesconfig (https://download.01.org/0day-ci/archive/20211229/202112292049.x3u9VQgr-lkp@intel.com/config)
+compiler: h8300-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/99e97d44b9115aad59fc953c2945c7cbda1d57bb
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Li-hao-Kuo/Add-THERMAL-control-driver-for-Sunplus-SP7021-SoC/20211223-130720
+        git checkout 99e97d44b9115aad59fc953c2945c7cbda1d57bb
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=h8300 SHELL=/bin/bash drivers/thermal/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/thermal/sunplus_thermal.c:44:7: warning: no previous prototype for 'sp7021_otp_coef_read' [-Wmissing-prototypes]
+      44 | char *sp7021_otp_coef_read(struct device *dev, ssize_t *len)
+         |       ^~~~~~~~~~~~~~~~~~~~
+   In file included from include/linux/printk.h:559,
+                    from include/linux/kernel.h:20,
+                    from include/linux/clk.h:13,
+                    from drivers/thermal/sunplus_thermal.c:8:
+   drivers/thermal/sunplus_thermal.c: In function 'sp7021_otp_coef_read':
+>> drivers/thermal/sunplus_thermal.c:55:22: warning: format '%d' expects argument of type 'int', but argument 4 has type 'ssize_t' {aka 'long int'} [-Wformat=]
+      55 |         dev_dbg(dev, "%d bytes read from OTP", *len);
+         |                      ^~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dynamic_debug.h:134:29: note: in definition of macro '__dynamic_func_call'
+     134 |                 func(&id, ##__VA_ARGS__);               \
+         |                             ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:166:9: note: in expansion of macro '_dynamic_func_call'
+     166 |         _dynamic_func_call(fmt,__dynamic_dev_dbg,               \
+         |         ^~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:155:9: note: in expansion of macro 'dynamic_dev_dbg'
+     155 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:155:30: note: in expansion of macro 'dev_fmt'
+     155 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                              ^~~~~~~
+   drivers/thermal/sunplus_thermal.c:55:9: note: in expansion of macro 'dev_dbg'
+      55 |         dev_dbg(dev, "%d bytes read from OTP", *len);
+         |         ^~~~~~~
+   drivers/thermal/sunplus_thermal.c:55:24: note: format string is defined here
+      55 |         dev_dbg(dev, "%d bytes read from OTP", *len);
+         |                       ~^
+         |                        |
+         |                        int
+         |                       %ld
+
+
+vim +55 drivers/thermal/sunplus_thermal.c
+
+    43	
+  > 44	char *sp7021_otp_coef_read(struct device *dev, ssize_t *len)
+    45	{
+    46		char *ret = NULL;
+    47		struct nvmem_cell *c = nvmem_cell_get(dev, "therm_calib");
+    48	
+    49		if (IS_ERR_OR_NULL(c)) {
+    50			dev_err(dev, "OTP read failure:%ld", PTR_ERR(c));
+    51			return NULL;
+    52		}
+    53		ret = nvmem_cell_read(c, len);
+    54		nvmem_cell_put(c);
+  > 55		dev_dbg(dev, "%d bytes read from OTP", *len);
+    56		return ret;
+    57	}
+    58	
+
 ---
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e5f2758531bc..d1f8f312f322 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11693,8 +11693,10 @@ L:	linux-kernel@vger.kernel.org
- S:	Supported
- F:	Documentation/devicetree/bindings/*/maxim,max77686.yaml
- F:	Documentation/devicetree/bindings/*/maxim,max77693.yaml
-+F:	Documentation/devicetree/bindings/*/maxim,max77843.yaml
- F:	Documentation/devicetree/bindings/clock/maxim,max77686.txt
- F:	Documentation/devicetree/bindings/mfd/max14577.txt
-+F:	drivers/*/*max77843.c
- F:	drivers/*/max14577*.c
- F:	drivers/*/max77686*.c
- F:	drivers/*/max77693*.c
--- 
-2.32.0
-
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
