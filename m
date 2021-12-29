@@ -2,115 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA572481514
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 17:28:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24A70481521
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 17:38:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237271AbhL2Q2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 11:28:14 -0500
-Received: from mga06.intel.com ([134.134.136.31]:40748 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229608AbhL2Q2O (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Dec 2021 11:28:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1640795294; x=1672331294;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EYZ4trChjOVZMO8gA3yIhWOsh+UYAlG8vyDOfLAeORk=;
-  b=JfIWmYxYKFcih9p8aRdjdiscQ1RtPgnKaGoeO1BSx2AQH7RxtGLqkOEF
-   cv/1Yo5BXxkrWF/YxAYgAJmLtUais1fFgSv9qBXpxpk1fExQsR5EwRle3
-   I4MiCwWLvW6qgILq6MyzQBsbLi/P+v7e23wdHG4X9jogxXVV1X/XGZnhy
-   BbDzio+Q6RxQMArTHGmDp5jm5MQ3OriHlxavacXv2KkJKSerSK20apuDw
-   gZhLP/wmgresobeCHFHQq7xDO9nYUcDt7XOyJIWWMn0w/kUlgtzfqaoI1
-   zL4wMl8J4NihhSVlNfxSIQjpD9IOIXS9teOhG59+rNKnKF8/2i+hsDRIV
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10211"; a="302291595"
-X-IronPort-AV: E=Sophos;i="5.88,245,1635231600"; 
-   d="scan'208";a="302291595"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Dec 2021 08:28:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,245,1635231600"; 
-   d="scan'208";a="619078840"
-Received: from lkp-server01.sh.intel.com (HELO e357b3ef1427) ([10.239.97.150])
-  by orsmga004.jf.intel.com with ESMTP; 29 Dec 2021 08:28:11 -0800
-Received: from kbuild by e357b3ef1427 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1n2boA-0009Ce-DR; Wed, 29 Dec 2021 16:28:10 +0000
-Date:   Thu, 30 Dec 2021 00:27:11 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Li-hao Kuo <lhjeff911@gmail.com>, rafael@kernel.org,
-        daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
-        robh+dt@kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, wells.lu@sunplus.com,
-        Li-hao Kuo <lhjeff911@gmail.com>
-Subject: Re: [PATCH v2 1/2] THERMAL: Add THERMAL driver for Sunplus SP7021
-Message-ID: <202112300008.jdRkNNeV-lkp@intel.com>
-References: <a5b37169978e9b82c33718289066287dfd1b9c00.1640235724.git.lhjeff911@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a5b37169978e9b82c33718289066287dfd1b9c00.1640235724.git.lhjeff911@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S240807AbhL2Qiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 11:38:54 -0500
+Received: from sibelius.xs4all.nl ([83.163.83.176]:50849 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240794AbhL2Qiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 11:38:54 -0500
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 7e0a267d;
+        Wed, 29 Dec 2021 17:38:51 +0100 (CET)
+Date:   Wed, 29 Dec 2021 17:38:51 +0100 (CET)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     robh@kernel.org, kvalo@codeaurora.org, davem@davemloft.net,
+        kuba@kernel.org, rafael@kernel.org, lenb@kernel.org,
+        aspriel@gmail.com, franky.lin@broadcom.com,
+        hante.meuleman@broadcom.com, chi-hsien.lin@infineon.com,
+        wright.feng@infineon.com, sven@svenpeter.dev, alyssa@rosenzweig.io,
+        kettenis@openbsd.org, zajec5@gmail.com,
+        pieter-paul.giesberts@broadcom.com, linus.walleij@linaro.org,
+        hdegoede@redhat.com, linville@tuxdriver.com,
+        sandals@crustytoothpaste.net, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+In-Reply-To: <1e5e88a1-5457-2211-dc08-fe98415ae21b@marcan.st> (message from
+        Hector Martin on Tue, 28 Dec 2021 02:23:02 +0900)
+Subject: Re: [PATCH 01/34] dt-bindings: net: bcm4329-fmac: Add Apple
+ properties & chips
+References: <20211226153624.162281-1-marcan@marcan.st>
+ <20211226153624.162281-2-marcan@marcan.st>
+ <YcnrjySZ9mPbkidZ@robh.at.kernel.org> <1e5e88a1-5457-2211-dc08-fe98415ae21b@marcan.st>
+Message-ID: <d3cb7aff430324ca@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Li-hao,
+> From: Hector Martin <marcan@marcan.st>
+> Date: Tue, 28 Dec 2021 02:23:02 +0900
+> 
+> On 28/12/2021 01.36, Rob Herring wrote:
+> > On Mon, Dec 27, 2021 at 12:35:51AM +0900, Hector Martin wrote:
+> >> +  brcm,cal-blob:
+> >> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> >> +    description: A per-device calibration blob for the Wi-Fi radio. This
+> >> +      should be filled in by the bootloader from platform configuration
+> >> +      data, if necessary, and will be uploaded to the device if present.
+> >> +
+> >> +  apple,module-instance:
+> >> +    $ref: /schemas/types.yaml#/definitions/string
+> >> +    description: Module codename used to identify a specific board on
+> >> +      Apple platforms. This is used to build the firmware filenames, to allow
+> >> +      different platforms to have different firmware and/or NVRAM config.
+> >> +
+> >> +  apple,antenna-sku:
+> >> +    $def: /schemas/types.yaml#/definitions/string
+> >> +    description: Antenna SKU used to identify a specific antenna configuration
+> >> +      on Apple platforms. This is use to build firmware filenames, to allow
+> >> +      platforms with different antenna configs to have different firmware and/or
+> >> +      NVRAM. This would normally be filled in by the bootloader from platform
+> >> +      configuration data.
+> > 
+> > Is there a known set of strings that can be defined?
+> 
+> For apple,module-instance there is, though it will grow with every new
+> machine. If you're happy with me pushing updates to this through
+> asahi-soc I can keep it maintained as we add DTs and compatibles there.
+> 
+> I'm curious whether you prefer this approach or something like
+> brcm,board-name instead. Right now we do:
+> 
+> apple,module-instance = "honshu"
+> 
+> That gets converted to board_name="apple,honshu" in the code, which is
+> what the firmwares are named after (plus extra info later appended, if
+> the rest of the Apple data is available).
+> 
+> But we could also do:
+> 
+> brcm,board-name = "apple,honshu"
+> 
+> The latter would be more generically useful for other platforms, since
+> it would allow e.g. having DTs for different boards that use the same
+> WiFi module/subsystem and thus a compatible NVRAM fw file alias to the
+> same file name (right now this is done with symlinks in /lib/firmware,
+> one for each equivalent board). For non-Apple platforms (i.e. if
+> antenna-sku and/or the OTP aren't available to do the funky Apple
+> firmware selection), this just ends up replacing what would normally be
+> the OF root node compatible in the firmware filename.
+> 
+> E.g. right now we have:
+> 
+> brcmfmac43430-sdio.AP6212.txt
+> brcmfmac43430-sdio.raspberrypi,3-model-b.txt
+> brcmfmac43430-sdio.raspberrypi,model-zero-w.txt -> brcmfmac43430-sdio.raspberrypi,3-model-b.txt
+> brcmfmac43430-sdio.sinovoip,bpi-m2-plus.txt -> brcmfmac43430-sdio.AP6212.txt
+> brcmfmac43430-sdio.sinovoip,bpi-m2-ultra.txt -> brcmfmac43430-sdio.AP6212.txt
+> brcmfmac43430-sdio.sinovoip,bpi-m2-zero.txt -> brcmfmac43430-sdio.AP6212.txt
+> brcmfmac43430-sdio.sinovoip,bpi-m3.txt -> brcmfmac43430-sdio.AP6212.txt
+> 
+> And this could allow the sinovoip.* DTs to say:
+> 	brcm,board-name = "AP6212";
+> 
+> And the rPi zero one:
+> 	brcm,board-name = "raspberrypi,3-model-b";
+> 
+> And avoid the symlinks.
+> 
+> The antenna-sku thing is specific to the Apple firmware selection
+> process and doesn't make sense as a more generic property.
+> 
+> antenna-sku right now always seems to be one of "ID", "X0", "X2", "X3",
+> though that could presumably change in the future. I can add this to the
+> binding if you want, though since this will be filled in by the
+> bootloader from platform data we wouldn't be validating it anyway. Not
+> sure if it's worth it.
 
-I love your patch! Perhaps something to improve:
+Actually what Apple does here makes quite a bit of sense.  Typically
+WiFi chips are integrated with some analog components into a shielded
+module.  The AP6212 mentioned above is an example of such a module.  I
+suspect that the module defines some of the characteristics encoded in
+the "nvmram" files, but certainly not all because the connected
+antenna will also affect how the thing behaves.  Of course many SBCs
+come without an antenna so the actual antenna depends on whatever the
+user connects to the board.  So using a module-specific "nvram" file
+is probably the best one can do here.  So I think if you want to have
+a generic module name property, it should be called "brcm,module-name"
+instead of "brcm,board-name".  However...
 
-[auto build test WARNING on rafael-pm/thermal]
-[also build test WARNING on linus/master v5.16-rc7 next-20211224]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+> > There's also the somewhat standard 'firmware-name' property that
+> > serves similar purpose, but if there's multiple files, then I guess
+> > this approach is fine.
+> 
+> Yeah, and the firmware name is constructed using non-DT information too
+> (and we have several attempted filenames times several firmware types),
+> so it wouldn't be complete.
 
-url:    https://github.com/0day-ci/linux/commits/Li-hao-Kuo/Add-THERMAL-control-driver-for-Sunplus-SP7021-SoC/20211223-130720
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git thermal
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20211230/202112300008.jdRkNNeV-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/99e97d44b9115aad59fc953c2945c7cbda1d57bb
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Li-hao-Kuo/Add-THERMAL-control-driver-for-Sunplus-SP7021-SoC/20211223-130720
-        git checkout 99e97d44b9115aad59fc953c2945c7cbda1d57bb
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=sh SHELL=/bin/bash drivers/thermal/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/thermal/sunplus_thermal.c:44:7: warning: no previous prototype for 'sp7021_otp_coef_read' [-Wmissing-prototypes]
-      44 | char *sp7021_otp_coef_read(struct device *dev, ssize_t *len)
-         |       ^~~~~~~~~~~~~~~~~~~~
-
-
-vim +/sp7021_otp_coef_read +44 drivers/thermal/sunplus_thermal.c
-
-    43	
-  > 44	char *sp7021_otp_coef_read(struct device *dev, ssize_t *len)
-    45	{
-    46		char *ret = NULL;
-    47		struct nvmem_cell *c = nvmem_cell_get(dev, "therm_calib");
-    48	
-    49		if (IS_ERR_OR_NULL(c)) {
-    50			dev_err(dev, "OTP read failure:%ld", PTR_ERR(c));
-    51			return NULL;
-    52		}
-    53		ret = nvmem_cell_read(c, len);
-    54		nvmem_cell_put(c);
-    55		dev_dbg(dev, "%d bytes read from OTP", *len);
-    56		return ret;
-    57	}
-    58	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+...if the way the firmware name is constructed remains Apple-specific
+because of this non-DT information, keeping the "apple,xxx" properties
+has the benefit of signalling that firmware names constructed this way
+are desired.  Or rather, their absence can signal that the
+Apple-specific code in the driver should be skipped.
