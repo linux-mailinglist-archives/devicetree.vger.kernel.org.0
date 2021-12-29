@@ -2,110 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70DE34811A4
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 11:23:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75C1C4811B8
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 11:39:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235396AbhL2KXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 05:23:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36694 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231732AbhL2KXu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 05:23:50 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C72FAC061574
-        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 02:23:49 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id bm14so84432023edb.5
-        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 02:23:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=EA0qkbRaoKZN2LJIyAhcaamMLi0dAd0M02lNssX5Iok=;
-        b=EPiuY3A9acdx00QrZkSO9AofczW76WMUh5iimGjhK5LwdFzgzBNjE+nGEN89Rt/I+E
-         Hnq40F5holtMuR4yskSl3xEWtwdihYuSHo8kzFwJcCahc2YztbaF/JM72W4zupIgmat4
-         8p74rb8fMx0RI8iScTJpFmdE5upSgAkPTp7hI6S6POlU2hhFMtkH5HXFtGfh8L5u75WU
-         kMJR4LlI0iFDTjMARnw3mSmgFfyNlDJOr0kO7+IRrKyElfSxLoKBQ3aQtH+BwSNj2BQh
-         mo6H7BYnDKfl7dZSL4X81vxxEeLYIEMEIU+rFVGROizvs7iuBiEgNIvdF6UUud5BUGDr
-         QA3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=EA0qkbRaoKZN2LJIyAhcaamMLi0dAd0M02lNssX5Iok=;
-        b=QYrCn+rIWamyoVDE/VDYhpMxdGd2eiawNiP3Layv1GzB7AnVDV/VzezHOpH1lSRIFc
-         V7zj6Kjoidt4D4MlQnJSLkOn8qfoFjjTPrmQEeyojPUtlzTUJEjBNxxiztpK3AEtOYL6
-         DIYmqDqb72Um9XzYSczToi4nZMePBUQlWo5DgbVhPv4JhaBltnhqv2bOGtfwGiSpwjZd
-         ykRUpGjstOVl2cUf9Kw03xrpiLrRIpsFsCV0PEigVXlXIkAiRIgJsaB1TDXXyXPNrG5h
-         GDvvaYJLKgHgzOW47J5bE0Hwt8p46v9/sXSp6yccCbstBoT3gt22zWOFYmXxSsTc83Kg
-         aZmg==
-X-Gm-Message-State: AOAM5311YDpFjkeWwKRwnkeOWxhRwFdbtBkf+hRuEKIKuIEHX6VMWgSz
-        7t+YIfLqkTyBtNGZlgG0/nU=
-X-Google-Smtp-Source: ABdhPJwbqHz+srlkVIl/yRjEeVWNby3WH8gSVVOFq9YkjVFnloTKo6i7xUwrMQU8eZlg7QSc0SLJWg==
-X-Received: by 2002:a17:907:1b21:: with SMTP id mp33mr19866000ejc.580.1640773428350;
-        Wed, 29 Dec 2021 02:23:48 -0800 (PST)
-Received: from localhost.localdomain ([2a00:f41:3894:b142:1667:a0ff:5387:8a85])
-        by smtp.gmail.com with ESMTPSA id n8sm6189490edb.41.2021.12.29.02.23.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Dec 2021 02:23:47 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] arm64: dts: broadcom: bcm4908: use proper TWD binding
-Date:   Wed, 29 Dec 2021 11:23:14 +0100
-Message-Id: <20211229102314.5423-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.31.1
+        id S239767AbhL2KjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 05:39:08 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:23167 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230489AbhL2KjH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Dec 2021 05:39:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1640774347;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=gQ3Cw+k3UMeBdiHPh9g0eM12SBQJLgdBY7UIBnA37XI=;
+        b=MLZrw7vMFKPqBXrQQsDPZ+BZ0HR+aG/ED0jd7hw2bqcoYDlc9JuKPHvrY+ls839dt6JGez
+        hN4+DsNHc8qu4wwc4F0mTWCKRjSwRh5kucVa03aDwrqBOgPfmYrZ4Im3qUUm3j8RFkBsCM
+        jd0b2VHfkC97JSgm29l+IZgKgDOKRt8=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-344-UEvHSK6OPI6jXkgkAr38Fw-1; Wed, 29 Dec 2021 05:39:03 -0500
+X-MC-Unique: UEvHSK6OPI6jXkgkAr38Fw-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com [10.5.11.15])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 6FF581853028;
+        Wed, 29 Dec 2021 10:39:01 +0000 (UTC)
+Received: from dhcp-128-65.nay.redhat.com (ovpn-12-131.pek2.redhat.com [10.72.12.131])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 9634C6F11D;
+        Wed, 29 Dec 2021 10:38:46 +0000 (UTC)
+Date:   Wed, 29 Dec 2021 18:38:43 +0800
+From:   Dave Young <dyoung@redhat.com>
+To:     Borislav Petkov <bp@alien8.de>
+Cc:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
+        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>
+Subject: Re: [PATCH v19 02/13] x86/setup: Use parse_crashkernel_high_low() to
+ simplify code
+Message-ID: <Ycw6s6DwZuHjckXL@dhcp-128-65.nay.redhat.com>
+References: <20211228132612.1860-1-thunder.leizhen@huawei.com>
+ <20211228132612.1860-3-thunder.leizhen@huawei.com>
+ <Ycs3kpZD/vpoo1AX@zn.tnic>
+ <b017a8ea-989b-c251-f5c8-a8a7940877cf@huawei.com>
+ <YcwN9Mfwsh/lPbbd@dhcp-128-65.nay.redhat.com>
+ <YcwSCAuEgO10DFDT@dhcp-128-65.nay.redhat.com>
+ <Ycw0V1CmBPCPqexn@zn.tnic>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Ycw0V1CmBPCPqexn@zn.tnic>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 12/29/21 at 11:11am, Borislav Petkov wrote:
+> On Wed, Dec 29, 2021 at 03:45:12PM +0800, Dave Young wrote:
+> > BTW, I would suggest to wait for reviewers to response (eg. one week at
+> > least, or more due to the holidays) before updating another version
+> > 
+> > Do not worry to miss the 5.17.  I would say take it easy if it will
+> > miss then let's just leave with it and continue to work on the future
+> > improvements.  I think one reason this issue takes too long time is that it was
+> > discussed some time but no followup and later people need to warm up
+> > again.  Just keep it warm and continue to engage in the improvements, do
+> > not hurry for the specific mainline release.
+> 
+> Can you tell this to *all* patch submitters please?
 
-Block at <ff800400 0x4c> is a TWD that contains timers, watchdog and
-reset. Actual timers happen to be at block beginning but they only span
-across the first 0x28 registers. It means the old block description was
-incorrect (size 0x3c).
+I appreciate you further explanation below to describe the situation.  I do not
+see how can I tell this to *all* submitters,  but I am and I will try to do this
+as far as I can.  Maintainers and patch submitters, it would help for both
+parties show sympathy with each other, some soft reminders will help
+people to understand each other, especially for new comers.
 
-Drop timers binding for now and use documented TWD binding. Timers
-should be properly documented and defined as TWD subnode.
+> 
+> I can't count the times where people simply hurry to send the new
+> revision just to get it in the next kernel, and make silly mistakes
+> while doing so. Or not think things straight and misdesign it all.
+> 
+> And what this causes is the opposite of what they wanna achieve - pissed
+> maintainers and ignored threads.
+> 
+> And they all *know* that the next kernel is around the corner. So why
+> the hell does it even matter when?
+> 
+> What most submitters fail to realize is, the moment your code hits
+> upstream, it becomes the maintainers' problem and submitters can relax.
+> 
+> But maintainers get to deal with this code forever. So after a while
+> maintainers learn that they either accept ready code and it all just
+> works or they make the mistake to take half-baked crap in and then they
+> themselves get to clean it up and fix it.
+> 
+> So maintainers learn quickly to push back.
+> 
+> But it is annoying and it would help immensely if submitters would
+> consider this and stop hurrying the code in but try to do a *good* job
+> first, design-wise and code-wise by thinking hard about what they're
+> trying to do.
+> 
+> Yeah, things could be a lot simpler and easier - it only takes a little
+> bit of effort...
+> 
+> -- 
+> Regards/Gruss,
+>     Boris.
+> 
+> https://people.kernel.org/tglx/notes-about-netiquette
+> 
 
-Fixes: 2961f69f151c ("arm64: dts: broadcom: add BCM4908 and Asus GT-AC5300 early DTS files")
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-index 984c737fa627..6e738f2a3701 100644
---- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-@@ -273,9 +273,9 @@ bus@ff800000 {
- 		#size-cells = <1>;
- 		ranges = <0x00 0x00 0xff800000 0x3000>;
- 
--		timer: timer@400 {
--			compatible = "brcm,bcm6328-timer", "syscon";
--			reg = <0x400 0x3c>;
-+		twd: timer-mfd@400 {
-+			compatible = "brcm,bcm4908-twd", "simple-mfd", "syscon";
-+			reg = <0x400 0x4c>;
- 		};
- 
- 		gpio0: gpio-controller@500 {
-@@ -330,7 +330,7 @@ reset-controller@2644 {
- 
- 	reboot {
- 		compatible = "syscon-reboot";
--		regmap = <&timer>;
-+		regmap = <&twd>;
- 		offset = <0x34>;
- 		mask = <1>;
- 	};
--- 
-2.31.1
+Thanks
+Dave
 
