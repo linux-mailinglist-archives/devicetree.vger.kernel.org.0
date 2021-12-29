@@ -2,68 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD928481717
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 22:36:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A58BA481725
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 23:01:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232440AbhL2Vga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 16:36:30 -0500
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:36087 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231322AbhL2Vga (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 16:36:30 -0500
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id DE8ED2000A;
-        Wed, 29 Dec 2021 21:36:27 +0000 (UTC)
-Date:   Wed, 29 Dec 2021 22:36:27 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: fsl: scu: Add i.MX8QM rtc binding
-Message-ID: <YczU26vFxiO0wWKa@piout.net>
-References: <1640088948-3690-1-git-send-email-abel.vesa@nxp.com>
- <1640088948-3690-2-git-send-email-abel.vesa@nxp.com>
+        id S230295AbhL2WBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 17:01:22 -0500
+Received: from relay01.th.seeweb.it ([5.144.164.162]:32923 "EHLO
+        relay01.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229577AbhL2WBV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 17:01:21 -0500
+Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 2081B1FAEC;
+        Wed, 29 Dec 2021 23:01:19 +0100 (CET)
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] Revert "arm64: dts: qcom: sm6125: Avoid using missing SM6125_VDDCX"
+Date:   Wed, 29 Dec 2021 23:01:17 +0100
+Message-Id: <20211229220117.293542-1-marijn.suijten@somainline.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1640088948-3690-2-git-send-email-abel.vesa@nxp.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/12/2021 14:15:46+0200, Abel Vesa wrote:
-> Add i.MX8QM rtc compatible to the SCU bindings documentation.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> ---
->  Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
-> index f1470d562156..4633be2182dd 100644
-> --- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
-> +++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
-> @@ -134,7 +134,9 @@ RTC bindings based on SCU Message Protocol
->  ------------------------------------------------------------
->  
->  Required properties:
-> -- compatible: should be "fsl,imx8qxp-sc-rtc";
-> +- compatible:		Should be one of:
-> +			"fsl,imx8qm-sc-rtc",
-> +			"fsl,imx8qxp-sc-rtc".
+This reverts commit c23f1b77358c173a25ef21303d2a8cc893e9ce22.
 
-Are the imx8qm and imx8qxp SCU actually different? I would hope you
-won't had a third messaging protocol for the RTC...
+The SM6125_VDDCX constant was replaced with 0 temporarily as the header
+patch defining this constant resided in a different branch, creating an
+unwanted dependency of the dts branch on the drivers branch.
+Now (by the time this patch will be applied) that both branches have
+been merged upstream, it is safe to revert to the constant again.
 
+Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+---
+ arch/arm64/boot/dts/qcom/sm6125.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+index 49e6bca646c2..e81b2a7794fb 100644
+--- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+@@ -449,7 +449,7 @@ sdhc_1: sdhci@4744000 {
+ 				 <&xo_board>;
+ 			clock-names = "iface", "core", "xo";
+ 
+-			power-domains = <&rpmpd 0>;
++			power-domains = <&rpmpd SM6125_VDDCX>;
+ 
+ 			bus-width = <8>;
+ 			non-removable;
+@@ -474,7 +474,7 @@ sdhc_2: sdhci@4784000 {
+ 			pinctrl-1 = <&sdc2_state_off>;
+ 			pinctrl-names = "default", "sleep";
+ 
+-			power-domains = <&rpmpd 0>;
++			power-domains = <&rpmpd SM6125_VDDCX>;
+ 
+ 			bus-width = <4>;
+ 			status = "disabled";
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.34.1
+
